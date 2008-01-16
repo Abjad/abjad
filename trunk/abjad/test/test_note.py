@@ -325,19 +325,6 @@ def test_cast_note_as_skip_04( ):
    assert t[0].duration == d
 
 
-### TEST DEFECTIVE CAST ###
-
-def test_defective_cast_01( ):
-   '''Use t = t.caster.toChord( ) and never simply t.caster.toChord( );
-      should this behavior change?'''
-   t = Note(0, (1, 4))
-   t.caster.toChord( )
-   assert raises(AttributeError, 't.articulations')
-   assert raises(AttributeError, 't.barline')
-   assert raises(AttributeError, 't.beam')
-   assert raises(AttributeError, 't.comments')
-
-
 ### TEST OCTAVE ZERO ###
 
 def test_octave_zero_01( ):

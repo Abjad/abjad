@@ -8,9 +8,8 @@ class NoteCaster(_Caster):
    def toRest(self):
       from .. rest.rest import Rest
       result = Rest( )
-      #self._friendlyTransferAllAttributesTo(result)
       self._transferAllAttributesTo(result)
-      self = result
+      #self._transferAllAttributesTo_old(result)
       return result
 
    def toChord(self):

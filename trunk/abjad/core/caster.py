@@ -16,7 +16,7 @@ class _Caster(object):
    ###        should we transfer all attributes (save caster & formatter)?
    ###        or are there other attrs that we should refuse to transfer?
 
-   def _transferAllAttributesTo(self, leaf):
+   def _transferAllAttributesTo_old(self, leaf):
       if self._client._parent:
          self._client._parent[self._client._parent.index(self._client)] = leaf
       del self._client._parent
@@ -33,6 +33,27 @@ class _Caster(object):
       leaf.formatter.right.extend(self._client.formatter.right)
       self._client.__dict__.clear( )
 
-   def _friendlyTransferAllAttributesTo(self, leaf):
-      for key, value in self._client.__dict__.items( ):
-         leaf.__dict__[key] = value._clone(leaf)
+   def _transferAllAttributesTo(self, new):
+      #new = Rest( )
+      old = self._client
+      oldCopy = old.copy( )
+      for key, value in oldCopy.__dict__.items( ):
+         if key not in ('formatter', 'caster', 'spanners'):
+            if hasattr(value, '_client'):
+               setattr(value, '_client', new)
+            setattr(new, key, value)
+      new._parent = old._parent
+      old._parent = None
+      if new._parent:
+         new._parent._music[new._parent.index(old)] = new
+
+      for spanner in old.spanners:
+         spanner._receptors[spanner.index(old)] = new.spanners
+         new.spanners.append(spanner)
+      new.formatter.before.extend(oldCopy.formatter.before)
+      new.formatter.after.extend(oldCopy.formatter.after)
+      new.formatter.left.extend(oldCopy.formatter.left)
+      new.formatter.right.extend(oldCopy.formatter.right)
+      old.spanners = oldCopy.spanners
+      old.spanners._client = old
+      del oldCopy
