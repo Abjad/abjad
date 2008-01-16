@@ -1,0 +1,14 @@
+from .. core.spanner import _Spanner
+
+class Beam(_Spanner):
+
+   def __init__(self, leaves):
+      _Spanner.__init__(self, leaves)
+
+   def _right(self, leaf):
+      result = [ ]
+      if self._isMyFirstLeaf(leaf):
+         result.append('[')
+      if self._isMyLastLeaf(leaf):
+         result.append(']')   
+      return result
