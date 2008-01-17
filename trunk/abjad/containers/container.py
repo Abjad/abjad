@@ -214,6 +214,10 @@ class Container(_Component):
 
    ### GETTERS ###
 
+   ### TODO - decide whether to leave Leaf.getInstances and
+   ###        Container.getInstances where they are, or to
+   ###        move to Component.getInstances.
+
    def getInstances(self, name):
       class Visitor(object):
          def __init__(self, name):

@@ -1,3 +1,5 @@
+### TODO - decide whether to rename to _Leaf ###
+
 from .. articulations.interface import ArticulationsInterface
 from .. beam.interface import BeamInterface
 from .. clef.clef import Clef
@@ -259,3 +261,13 @@ class Leaf(_Component):
    @property
    def leaves(self):
       return [self]
+
+   ### TODO - decide whether to leave Leaf.getInstances and
+   ###        Container.getInstances where they are, or to 
+   ###        move to Component.getInstances.
+   
+   def getInstances(self, name):
+      result = [ ]
+      if self.kind(name):
+         result.append(self)
+      return result
