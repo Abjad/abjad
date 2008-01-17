@@ -1,13 +1,13 @@
 from os import system, listdir, chdir
 from glob import fnmatch
-from .. cfg.cfg import VERSIONFILE, PICTURESDIR
+from .. cfg.cfg import VERSIONFILE, ABJADOUTPUT
 
 system('lilypond --version > %s' % VERSIONFILE)
 version = file('%s' % VERSIONFILE, 'r').read().split('\n')[0].split(' ')[-1]
 system('rm %s' % VERSIONFILE)
 
 def _getNextLilyFileName():
-   names = fnmatch.filter(listdir(PICTURESDIR), '*.ly')
+   names = fnmatch.filter(listdir(ABJADOUTPUT), '*.ly')
    names.sort()
    next = str(int(names[-1][:-3]) + 1).zfill(4)
    return next + '.ly'
@@ -20,7 +20,7 @@ def show(ly):
    opens the resulting PDF in Preview.
    '''
 
-   chdir(PICTURESDIR)
+   chdir(ABJADOUTPUT)
    name = _getNextLilyFileName()
    outfile = file(name, 'w')
    outfile.write(ly.format)

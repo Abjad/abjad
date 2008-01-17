@@ -1,3 +1,4 @@
-ABJADDIR    = '/home/abjad/'
-VERSIONFILE = ABJADDIR + '.version'
-PICTURESDIR = ABJADDIR + '/pictures'
+from os import environ
+
+ABJADOUTPUT = environ.get('ABJADOUTPUT', '/home/abjad/output/')
+VERSIONFILE = ABJADOUTPUT + '.version'
