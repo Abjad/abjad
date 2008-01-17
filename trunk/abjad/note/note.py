@@ -1,16 +1,12 @@
 from .. leaf.leaf import Leaf
-from caster import NoteCaster
 from .. notehead.notehead import NoteHead
+from initializer import NoteInitializer
 from .. pitch.pitch import Pitch
 
 class Note(Leaf):
    
-   def __init__(self, pitch = None, 
-      duration = None, multiplier = None, notehead = None):
-      Leaf.__init__(self, duration = duration, multiplier = multiplier)
-      self.caster = NoteCaster(self)
-      self.notehead = notehead
-      self.pitch = pitch
+   def __init__(self, *args):
+      self.initializer = NoteInitializer(self, Leaf, *args)
 
    ### REPR ###
 

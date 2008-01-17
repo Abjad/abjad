@@ -94,32 +94,31 @@ def test_init_empty_note_then_set_multiplier_01c( ):
 ### TEST INIT NOTE WITH DURATION & MULTIPLIER ONLY ###
 
 def test_init_note_with_duration_and_multiplier_only_01( ):
-
-   n = Note(duration = (1, 4), multiplier = (1, 2)) 
+   n = Note(None, (1, 4), (1, 2)) 
    assert repr(n) == 'Note(4 * 1/2)'
    assert n.duration == Duration(1, 4)
    assert n.multiplier == Rational(1, 2)
    assert n.duratum == Duration(1, 8)
 
-def test_init_note_with_duration_and_multiplier_only_02( ):
 
-   n = Note(duration = (1, 4), multiplier = (2, 3)) 
+def test_init_note_with_duration_and_multiplier_only_02( ):
+   n = Note(None, (1, 4), (2, 3)) 
    assert repr(n) == 'Note(4 * 2/3)'
    assert n.duration == Duration(1, 4)
    assert n.multiplier == Rational(2, 3)
    assert n.duratum == Duration(1, 6)
 
-def test_init_note_with_duration_and_multiplier_only_03( ):
 
-   n = Note(duration = (3, 64), multiplier = (2, 3)) 
+def test_init_note_with_duration_and_multiplier_only_03( ):
+   n = Note(None, (3, 64), (2, 3)) 
    assert repr(n) == 'Note(32. * 2/3)'
    assert n.duration == Duration(3, 64)
    assert n.multiplier == Rational(2, 3)
    assert n.duratum == Duration(1, 32)
 
-def test_init_note_with_duration_and_multiplier_only_04( ):
 
-   n = Note(duration = (7, 128), multiplier = (5, 6))
+def test_init_note_with_duration_and_multiplier_only_04( ):
+   n = Note(None, (7, 128), (5, 6))
    assert repr(n) == 'Note(32.. * 5/6)'
    assert n.duration == Duration(7, 128)
    assert n.multiplier == Rational(5, 6)
@@ -129,28 +128,27 @@ def test_init_note_with_duration_and_multiplier_only_04( ):
 ### TEST INIT EMPTY NOTE, THEN ADD PITCH ###
 
 def test_init_empty_note_then_add_pitch_01a( ):
-
    n = Note( )
    n.pitch = 13
    assert repr(n) == "Note(cs'')"
    assert n.pitch == Pitch(13)
 
-def test_init_empty_note_then_add_pitch_01b( ):
 
+def test_init_empty_note_then_add_pitch_01b( ):
    n = Note( )
    n.pitch = Pitch(13)
    assert repr(n) == "Note(cs'')"
    assert n.pitch == Pitch(13)
 
-def test_init_empty_note_then_add_pitch_01c( ):
 
+def test_init_empty_note_then_add_pitch_01c( ):
    n = Note( )
    n.pitch = ('cs', 5)
    assert repr(n) == "Note(cs'')"
    assert n.pitch == Pitch(13)
 
-def test_init_empty_note_then_add_pitch_01c( ):
 
+def test_init_empty_note_then_add_pitch_01c( ):
    n = Note( )
    n.pitch = (13, 'c')
    assert repr(n) == "Note(cs'')"
@@ -160,47 +158,46 @@ def test_init_empty_note_then_add_pitch_01c( ):
 ### TEST REWRITE DURATION AS ###
 
 def test_rewrite_duration_as_01a( ):
-
    n = Note(0, (1, 4))
    n.rewriteDurationAs((3, 16))
    assert n.duration == Duration(3, 16)
    assert n.multiplier == Rational(4, 3)
    assert n.duratum == Duration(1, 4)
 
-def test_rewrite_duration_as_01b( ):
 
+def test_rewrite_duration_as_01b( ):
    n = Note(0, (1, 4))
    n.rewriteDurationAs(Rational(3, 16))
    assert n.duration == Duration(3, 16)
    assert n.multiplier == Rational(4, 3)
    assert n.duratum == Duration(1, 4)
 
-def test_rewrite_duration_as_01c( ):
 
+def test_rewrite_duration_as_01c( ):
    n = Note(0, (1, 4))
    n.rewriteDurationAs(Duration(3, 16))
    assert n.duration == Duration(3, 16)
    assert n.multiplier == Rational(4, 3)
    assert n.duratum == Duration(1, 4)
 
-def test_rewrite_duration_as_02( ):
 
+def test_rewrite_duration_as_02( ):
    n = Note(0, (1, 4))
    n.rewriteDurationAs((3, 16))
    assert n.duration == Duration(3, 16)
    assert n.multiplier == Rational(4, 3)
    assert n.duratum == Duration(1, 4)
 
-def test_rewrite_duration_as_03( ):
 
+def test_rewrite_duration_as_03( ):
    n = Note(0, (1, 4))
    n.rewriteDurationAs((7, 8))
    assert n.duration == Duration(7, 8)
    assert n.multiplier == Rational(2, 7)
    assert n.duratum == Duration(1, 4)
 
-def test_rewrite_duration_as_04( ):
 
+def test_rewrite_duration_as_04( ):
    n = Note(0, (1, 4))
    n.rewriteDurationAs((15, 16))
    assert n.duration == Duration(15, 16)
@@ -213,34 +210,37 @@ def test_rewrite_duration_as_04( ):
 def test_cast_note_as_rest_01( ):
    n = Note(2, (1, 8))
    d = n.duration
-   n = n.caster.toRest( )
+   n = Rest(n)
    assert isinstance(n, Rest)
    assert n.format == 'r8'
    assert n._parent is None
    assert n.duration == d
 
+
 def test_cast_note_as_rest_02( ):
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    d = t[0].duration
-   t[0].caster.toRest( )
+   Rest(t[0])
    assert t[0].format == 'r8'
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
    assert t[0].duration == d
 
+
 def test_cast_note_as_rest_03( ):
    v = Voice(Note(0, (1, 8)) * 3)
    d = v[0].duration
-   v[0].caster.toRest( )
+   Rest(v[0])
    assert v[0].format == 'r8'
    assert isinstance(v[0], Rest)
    assert v[0]._parent is v
    assert v[0].duration == d
 
+
 def test_cast_note_as_rest_04( ):
    t = Staff(Note(0, (1, 8)) * 3)
    d = t[0].duration
-   t[0].caster.toRest( )
+   Rest(t[0])
    assert t[0].format == 'r8'
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
@@ -252,38 +252,49 @@ def test_cast_note_as_rest_04( ):
 def test_cast_note_as_chord_01( ):
    n = Note(2, (1, 8))
    h, p, d = n.notehead, n.pitch, n.duration
-   n = n.caster.toChord( )
+   n = Chord(n)
    assert isinstance(n, Chord)
    assert n.format == "<d'>8"
    assert n._parent is None
-   assert (n.noteheads[0], n.pitches[0], n.duration) == (h, p, d)
+   assert n.noteheads[0] is not h
+   assert n.pitches[0].number == p.number
+   assert n.duration.pair == d.pair
+
 
 def test_cast_note_as_chord_02( ):
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    h, p, d = t[0].notehead, t[0].pitch, t[0].duration
-   t[0].caster.toChord( )
+   Chord(t[0])
    assert isinstance(t[0], Chord)
    assert t[0].format == "<c'>8"
    assert t[0]._parent is t
-   assert (t[0].noteheads[0], t[0].pitches[0], t[0].duration) == (h, p, d)
+   assert t[0].noteheads[0] is not h
+   assert t[0].pitches[0].number == p.number
+   assert t[0].duration.pair == d.pair
+
 
 def test_cast_note_as_chord_03( ):
    v = Voice(Note(0, (1, 8)) * 3)
    h, p, d = v[0].notehead, v[0].pitch, v[0].duration
-   v[0].caster.toChord( )
+   Chord(v[0])
    assert isinstance(v[0], Chord)
    assert v[0].format == "<c'>8"
    assert v[0]._parent is v
-   assert (v[0].noteheads[0], v[0].pitches[0], v[0].duration) == (h, p, d)
+   assert v[0].noteheads[0] is not h
+   assert v[0].pitches[0].number == p.number
+   assert v[0].duration.pair == d.pair
+
 
 def test_cast_note_as_chord_04( ):
    t = Staff(Note(0, (1, 8)) * 3)
    h, p, d = t[0].notehead, t[0].pitch, t[0].duration
-   t[0].caster.toChord( )
+   Chord(t[0])
    assert isinstance(t[0], Chord)
    assert t[0].format == "<c'>8"
    assert t[0]._parent is t
-   assert (t[0].noteheads[0], t[0].pitches[0], t[0].duration) == (h, p, d)
+   assert t[0].noteheads[0] is not h
+   assert t[0].pitches[0].number == p.number
+   assert t[0].duration.pair == d.pair
 
 
 ### TEST CAST NOTE AS SKIP ###
@@ -291,34 +302,37 @@ def test_cast_note_as_chord_04( ):
 def test_cast_note_as_skip_01( ):
    n = Note(2, (1, 8))
    d = n.duration
-   n = n.caster.toSkip( )
+   n = Skip(n)
    assert isinstance(n, Skip)
    assert n.format == 's8'
    assert n._parent is None
    assert n.duration == d
 
+
 def test_cast_note_as_skip_02( ):
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    d = t[0].duration
-   t[0].caster.toSkip( )
+   Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0].format == 's8'
    assert t[0]._parent is t
    assert t[0].duration == d
 
+
 def test_cast_note_as_skip_03( ):
    v = Voice(Note(0, (1, 8)) * 3)
    d = v[0].duration
-   v[0].caster.toSkip( )
+   Skip(v[0])
    assert isinstance(v[0], Skip)
    assert v[0].format == 's8'
    assert v[0]._parent is v
    assert v[0].duration == d
 
+
 def test_cast_note_as_skip_04( ):
    t = Staff(Note(0, (1, 8)) * 3)
    d = t[0].duration
-   t[0].caster.toSkip( )
+   Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0].format == 's8'
    assert t[0]._parent is t
@@ -337,6 +351,3 @@ def test_octave_zero_01( ):
 
 def test_assert_duration_is_notehead_assignable_01( ):
    raises(ValueError, Note, 0, (5, 8))
-
-
-

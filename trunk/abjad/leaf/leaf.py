@@ -10,8 +10,9 @@ from .. glissando.interface import GlissandoInterface
 from .. core.history import HistoryInterface
 from .. core.interface import _Interface
 from formatter import LeafFormatter
-from .. duration.rational import Rational
+#from initializer import LeafInitializer
 from leafspanner import LeafSpannerInterface
+from .. duration.rational import Rational
 from .. staff.interface import StaffInterface
 from .. stem.interface import StemInterface
 from .. tempo.interface import TempoInterface

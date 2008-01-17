@@ -97,7 +97,7 @@ def test_one_note_chord_02( ):
 def test_cast_chord_as_note_01( ):
    d = Chord([2, 3, 4], (1, 4))
    duration = d.duration
-   d = d.caster.toNote( )
+   d = Note(d)
    assert isinstance(d, Note)
    assert d._parent is None
    assert d.duration == duration
@@ -105,7 +105,7 @@ def test_cast_chord_as_note_01( ):
 def test_cast_chord_as_note_02( ):
    t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration
-   t[0].caster.toNote( )
+   Note(t[0])
    assert isinstance(t[0], Note)
    assert t[0]._parent is t
    assert t[0].duration == d
@@ -113,7 +113,7 @@ def test_cast_chord_as_note_02( ):
 def test_cast_chord_as_note_03( ):
    v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
    d = v[0].duration
-   v[0].caster.toNote( )
+   Note(v[0])
    assert isinstance(v[0], Note)
    assert v[0]._parent is v
    assert v[0].duration == d
@@ -121,7 +121,7 @@ def test_cast_chord_as_note_03( ):
 def test_cast_chord_as_note_04( ):
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration
-   t[0].caster.toNote( )
+   Note(t[0])
    assert isinstance(t[0], Note)
    assert t[0]._parent is t
    assert t[0].duration == d
@@ -132,7 +132,7 @@ def test_cast_chord_as_note_04( ):
 def test_cast_chord_as_rest_01( ):
    d = Chord([2, 3, 4], (1, 4))
    duration = d.duration
-   s = s.caster.toRest( )
+   s = Rest(d)
    assert isinstance(s, Rest)
    assert s._parent is None
    assert s.duration == duration
@@ -140,7 +140,7 @@ def test_cast_chord_as_rest_01( ):
 def test_cast_chord_as_rest_02( ):
    t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration
-   t[0].caster.toRest( )
+   Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
    assert t[0].duration == d
@@ -148,7 +148,7 @@ def test_cast_chord_as_rest_02( ):
 def test_cast_chord_as_rest_03( ):
    v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
    d = v[0].duration
-   v[0].caster.toRest( )
+   Rest(v[0])
    assert isinstance(v[0], Rest)
    assert v[0]._parent is v
    assert v[0].duration == d
@@ -156,7 +156,7 @@ def test_cast_chord_as_rest_03( ):
 def test_cast_chord_as_rest_04( ):
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration
-   t[0].caster.toRest( )
+   Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
    assert t[0].duration == d
@@ -167,7 +167,7 @@ def test_cast_chord_as_rest_04( ):
 def test_cast_chord_as_rest_01( ):
    d = Chord([2, 3, 4], (1, 4))
    duration = d.duration
-   d = d.caster.toRest( )
+   d = Rest(d)
    assert isinstance(d, Rest)
    assert d._parent is None
    assert d.duration == duration
@@ -175,7 +175,7 @@ def test_cast_chord_as_rest_01( ):
 def test_cast_chord_as_rest_02( ):
    t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration
-   t[0].caster.toRest( )
+   Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
    assert t[0].duration == d
@@ -183,7 +183,7 @@ def test_cast_chord_as_rest_02( ):
 def test_cast_chord_as_rest_03( ):
    v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
    d = v[0].duration
-   v[0].caster.toRest( )
+   Rest(v[0])
    assert isinstance(v[0], Rest)
    assert v[0]._parent is v
    assert v[0].duration == d
@@ -191,7 +191,7 @@ def test_cast_chord_as_rest_03( ):
 def test_cast_chord_as_rest_04( ):
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration
-   t[0].caster.toRest( )
+   Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
    assert t[0].duration == d

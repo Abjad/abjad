@@ -16,25 +16,7 @@ class _Caster(object):
    ###        should we transfer all attributes (save caster & formatter)?
    ###        or are there other attrs that we should refuse to transfer?
 
-   def _transferAllAttributesTo_old(self, leaf):
-      if self._client._parent:
-         self._client._parent[self._client._parent.index(self._client)] = leaf
-      del self._client._parent
-      for key, value in self._client.__dict__.items( ):
-         if key not in ['caster', 'formatter']:
-            leaf.__dict__[key] = value
-            if hasattr(value, '_client'):
-               value._client = leaf
-            if hasattr(value, '_parent'):
-               raise ValueError('attr %s should not have _parent.' % value)
-      leaf.formatter.before.extend(self._client.formatter.before)
-      leaf.formatter.after.extend(self._client.formatter.after)
-      leaf.formatter.left.extend(self._client.formatter.left)
-      leaf.formatter.right.extend(self._client.formatter.right)
-      self._client.__dict__.clear( )
-
    def _transferAllAttributesTo(self, new):
-      #new = Rest( )
       old = self._client
       oldCopy = old.copy( )
       for key, value in oldCopy.__dict__.items( ):
@@ -46,7 +28,6 @@ class _Caster(object):
       old._parent = None
       if new._parent:
          new._parent._music[new._parent.index(old)] = new
-
       for spanner in old.spanners:
          spanner._receptors[spanner.index(old)] = new.spanners
          new.spanners.append(spanner)

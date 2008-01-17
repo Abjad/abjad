@@ -1,4 +1,4 @@
-from .. tools.abjad import hasname
+from .. helpers.hasname import hasname
 from .. barline.interface import BarLineInterface
 from comments import Comments
 from copier import Copier

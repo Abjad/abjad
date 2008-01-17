@@ -3,7 +3,7 @@
 ###        also ContainerSpannerInterface from _SpannerInterface.
 
 from copy import copy
-from .. tools.abjad import hasname
+from .. helpers.hasname import hasname
 from .. core.interface import _Interface
 from .. core.parser import _Parser
 

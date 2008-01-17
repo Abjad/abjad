@@ -1,17 +1,13 @@
-from caster import ChordCaster
 from formatter import ChordFormatter
+from initializer import ChordInitializer
 from .. leaf.leaf import Leaf
 from .. notehead.notehead import NoteHead
 from .. pitch.pitch import Pitch
 
 class Chord(Leaf):
 
-   def __init__(self, pitches = [ ], duration = None):
-      Leaf.__init__(self)
-      self.caster = ChordCaster(self)
-      self.duration = duration
-      self.formatter = ChordFormatter(self)
-      self.pitches = pitches
+   def __init__(self, *args):
+      self.initializer = ChordInitializer(self, Leaf, *args)
 
    ### REPR ### 
 

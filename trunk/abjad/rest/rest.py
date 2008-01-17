@@ -1,12 +1,10 @@
-from caster import RestCaster
 from .. leaf.leaf import Leaf
+from initializer import RestInitializer
 
 class Rest(Leaf):
 
-   def __init__(self, duration = None):
-      Leaf.__init__(self)
-      self.caster = RestCaster(self)
-      self.duration = duration
+   def __init__(self, *args):
+      self.initializer = RestInitializer(self, Leaf, *args )
    
 
    ### REPR ###

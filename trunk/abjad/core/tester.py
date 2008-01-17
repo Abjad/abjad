@@ -65,17 +65,38 @@ class Tester(object):
       else:
          return None
 
-   def testPitchlessNotes(self, report = True, ret = 'violators'):
+   def testPitchlessNotesChords(self, report = True, ret = 'violators'):
       violators = [ ]
-      notes = self._target.getInstances('Note')
+      leaves = self._target.getInstances(('Note', 'Chord'))
       total, bad = 0, 0
-      for note in notes:
+      for leaf in leaves:
          total += 1
-         if note.pitch is None or note.pitch.number is None:
-            violators.append(note)
+         if leaf.kind('Note'):
+            if leaf.pitch is None or leaf.pitch.number is None:
+               bad += 1
+         elif leaf.kind('Chord'):
+            if leaf.pitches is None or leaf.pitches == [ ]:
+               bad += 1
+      if report:
+         print '%4d / %4d notes or chords without pitch.' % (bad, total)
+      if ret == 'violators':
+         return violators
+      elif ret:
+         return bad == 0
+      else:
+         return None
+
+   def testDurationlessLeaves(self, report = True, ret = 'violators'):
+      violators = [ ]
+      leaves = self._target.getInstances('Leaf')
+      total, bad = 0, 0
+      for leaf in leaves:
+         total += 1
+         if leaf.duration is None :
+            violators.append(leaf)
             bad += 1
       if report:
-         print '%4d / %4d notes without pitch.' % (bad, total)
+         print '%4d / %4d leaves without duration.' % (bad, total)
       if ret == 'violators':
          return violators
       elif ret:
@@ -205,7 +226,8 @@ class Tester(object):
       result = [ ]
       result.append(self.testParents(report = report, ret = ret))
       result.append(self.testNextLeaves(report = report, ret = ret))
-      result.append(self.testPitchlessNotes(report = report, ret = ret))
+      result.append(self.testPitchlessNotesChords(report = report, ret = ret))
+      result.append(self.testDurationlessLeaves(report = report, ret = ret))
       result.append(self.testContainers(report = report, ret = ret))
       result.append(self.testMeasures(report = report, ret = ret))
       result.append(

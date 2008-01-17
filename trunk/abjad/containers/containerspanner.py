@@ -2,7 +2,7 @@
 ###        derive both this ContainerSpannerInterface and
 ###        also LeafSpannerInterface from _SpannerInterface;
 
-from .. tools.abjad import hasname
+from .. helpers.hasname import hasname
 from .. core.interface import _Interface
 
 class ContainerSpannerInterface(_Interface):
