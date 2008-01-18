@@ -1,7 +1,7 @@
 from brackets import Brackets
 from .. core.component import _Component
 from formatter import ContainerFormatter
-from containerspanner import ContainerSpannerInterface
+from spannerinterface import ContainerSpannerInterface
 from .. duration.duration import Duration
 from .. note.note import Note
 
