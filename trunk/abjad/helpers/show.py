@@ -25,6 +25,8 @@ def show(ly):
    chdir(ABJADOUTPUT)
    name = _getNextLilyFileName()
    outfile = file(name, 'w')
+   outfile.write('\\version "%s"\n' % version)
+   outfile.write('\\include "%s"\n' % 'english.ly')
    outfile.write(ly.format)
    outfile.close( )
    system('lilypond %s > lily.out 2>&1' %(name))
