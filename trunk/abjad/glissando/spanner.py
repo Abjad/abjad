@@ -7,8 +7,6 @@ class Glissando(_Spanner):
 
    def _right(self, leaf):
       result = [ ]
-      if self._isMyFirstLeaf(leaf):
+      if not self._isMyLastLeaf(leaf):
          result.append(r'\glissando')
-      if self._isMyLastLeaf(leaf):
-         result.append(r'%% end of glissando')
       return result
