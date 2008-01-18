@@ -5,7 +5,7 @@
 from .. helpers.hasname import hasname
 from .. core.interface import _Interface
 
-class ContainerSpannerInterface(_Interface):
+class SpannerInterface(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client, 'Spanner')
