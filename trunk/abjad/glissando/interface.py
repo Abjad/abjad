@@ -1,46 +1,39 @@
 from .. core.interface import _Interface
+from .. core.parser import _Parser
 
 class GlissandoInterface(_Interface):
 
-   def __init__(self, leaf, start = False, thickness = False, style = False):
-      self._leaf = leaf
-      self._start = start
-      self._thickness = thickness
-      self._style = style
+   def __init__(self, client):
+      self._client = None
+      self._parser = _Parser( )
+      self._set = None
+
+   def __nonzero__(self):
+      return bool(self._set)
+
+   def __eq__(self, arg):
+      assert isinstance(arg, bool)
+      return bool(self._set) == arg
 
    def clear(self):
-      self._start = False
-      self._thickness = False
-      self._style = False
-
-   def __repr__(self):
-      if self._start:
-         return 'Glissando(+)'
-      else:
-         return 'Glissando( )'
+      self._set = None
+      for key, value in self.__dict__.items( ):
+         if not key.startswith('_'):
+            delattr(self, key)
 
    @property
-   def before(self):
-      result = []
-      base = r'\once \override Glissando '
-      if self._thickness and self._thickness != 'revert':
-         result.append(base + "#'thickness = #%s" % self._thickness)
-      if self._style and self._style != 'revert':
-         result.append(base + "#'style = #'%s" % self._style)
+   def _before(self):
+      result = [ ]
+      for key, value in self.__dict__.items( ):
+         if not key.startswith('_'):
+            result.append('\once \override Glissando %s = %s' % (
+               self._parser.formatAttribute(key),
+               self._parser.formatValue(value)))
       return result
 
    @property
-   def after(self):
-      result = []
-      if self._thickness and self._thickness == 'revert':
-         result.append(r"\revert Glissando #'thickness")
-      if self._style and self._style == 'revert':
-         result.append(r"\revert Glissando #'style")
+   def _right(self):
+      result = [ ]
+      if self._set:
+         result.append(r'\glissando')
       return result
-
-   @property
-   def right(self):
-      if self._start:
-         return [r'\glissando']
-      else:
-         return []

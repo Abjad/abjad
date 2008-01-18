@@ -26,7 +26,7 @@ class Leaf(_Component):
       self.beam = BeamInterface(self)
       self._dynamics = DynamicsInterface(self)
       self.formatter = LeafFormatter(self)
-      self.glissando = GlissandoInterface(self)
+      self._glissando = GlissandoInterface(self)
       self.duration = duration
       self.history = HistoryInterface(self)
       self.multiplier = multiplier
@@ -63,6 +63,17 @@ class Leaf(_Component):
                duration)
          else:
             self._duration = duration
+      return property(**locals( ))
+
+   @apply
+   def glissando( ):
+      def fget(self):
+         return self._glissando   
+      def fset(self, arg):
+         if isinstance(arg, bool):
+            self._glissando._set = arg 
+         else:
+            raise ValueError('must be boolean.')
       return property(**locals( ))
 
    @apply
