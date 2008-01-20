@@ -2,29 +2,33 @@ from .. core.interface import _Interface
 
 class TremoloInterface(_Interface):
 
-   def __init__(self, client, subdivision = None):
-      _Interface.__init__(self, client, 'Tremolo')
-      self._subdivision = subdivision
+   def __init__(self, client):
+      _Interface.__init__(self, client, 'Tremolo', ['Tremolo'])
+      self._subdivision = None
 
    ### ACCESSORS ###
 
-   def clear(self):
-      self._subdivision = None
-
-   def setSubdivision(self, subdivision):
-      self._subdivision = subdivision
-
    def __repr__(self):
-      if self._subdivision:
-         return 'Tremolo(%s)' % self._subdivision
+      if self.subdivision:
+         return 'Tremolo(%s)' % self.subdivision
       else:
          return 'Tremolo( )'
+
+   ### MANAGED ###
+
+   @apply
+   def subdivision( ):
+      def fget(self):
+         return self._subdivision
+      def fset(self, expr):
+         self._subdivision = expr
+      return property(**locals())
 
    ### FORMATTING ###
 
    @property
    def body(self):
-      if self._subdivision:
-         return ':' + str(self._subdivision)
+      if self.subdivision:
+         return ':' + str(self.subdivision)
       else:
          return ''

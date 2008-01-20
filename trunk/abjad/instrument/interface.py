@@ -1,15 +1,13 @@
 from .. core.spanner import Spanner
 
+### TODO: turn this into a real interface. Inactive code presently.
+
 class Instrument(Spanner):
 
    def __init__(self, long = None, short = None):
       Spanner.__init__(self)
       self.long = long
       self.short = short
-
-   def clear(self):
-      self.long = None
-      self.short = None
 
    @property
    def default(self):

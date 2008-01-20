@@ -3,7 +3,7 @@ from .. core.interface import _Interface
 class DynamicsInterface(_Interface):
    
    def __init__(self, client):
-      self._client = client
+      _Interface.__init__(self, client, None, ['Crescendo', 'Decrescendo'])
       self._mark = None
 
    @property
@@ -21,14 +21,14 @@ class DynamicsInterface(_Interface):
    def __repr__(self):
       return 'DynamicsInterface(%s)' % self._summary
 
-   @property
-   def hairpins(self):
-      return self._client.spanners.get(classname = '_Hairpin')
-
+#   @prperty
+#   def hairpins(self):
+#      return self._client.spanners.get(classname = '_Hairpin')
+#
    @property
    def hairpin(self):
-      if self.hairpins:
-         return self.hairpins[0]
+      if self.spanned:
+         return self.spanners[0]
       else:
          return None
 

@@ -3,16 +3,18 @@ from .. core.interface import _Interface
 class BarLineInterface(_Interface):
    
    def __init__(self, client):
-      _Interface.__init__(self, client, 'BarLine')
-      self.type = None
+      _Interface.__init__(self, client, 'BarLine', ['BarLine'])
+      self._type = None
       
-   ### REPR ###
+   ### MANAGED ###
 
-   def __repr__(self):
-      if self.isSet( ):
-         return 'BarLineInterface(%s)' % len(self)
-      else:
-         return 'BarLineInterface( )' 
+   @apply
+   def type( ):
+      def fget(self):
+         return self._type
+      def fset(self, expr):
+         self._type = expr
+      return property(**locals())
 
    ### FORMATTING ###
 
