@@ -35,12 +35,10 @@
 ### where the note g, as the % goto @ comment suggests. would this 
 ### be overkill?
 
-from interface import _Interface
-
-class Navigator(_Interface):
+class Navigator(object):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'Navigator')
+      self._client = client
 
    def _ascend(self):
       if hasattr(self._client, '_parent'):
