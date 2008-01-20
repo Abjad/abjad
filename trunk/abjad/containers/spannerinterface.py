@@ -3,12 +3,11 @@
 ###        also LeafSpannerInterface from _SpannerInterface;
 
 from .. helpers.hasname import hasname
-from .. core.interface import _Interface
 
-class ContainerSpannerInterface(_Interface):
+class ContainerSpannerInterface(object):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'Spanner')
+      self._client = client
 
    def __repr__(self):
       return 'ContainerSpannerInterface(%s)' % len(self)

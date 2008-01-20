@@ -7,10 +7,10 @@ from .. helpers.hasname import hasname
 from .. core.interface import _Interface
 from .. core.parser import _Parser
 
-class LeafSpannerInterface(_Interface):
+class LeafSpannerInterface(object):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'Spanner')
+      self._client = client
       self._parser = _Parser( )
       self._spanners = [ ]
 
