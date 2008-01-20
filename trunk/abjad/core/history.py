@@ -1,9 +1,7 @@
-from interface import _Interface
-
-class HistoryInterface(_Interface):
+class HistoryInterface(object):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'History')
+      self._client = client
 
    ### PROPERTIES ###
 
