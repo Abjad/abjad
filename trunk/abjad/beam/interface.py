@@ -88,7 +88,7 @@ class BeamInterface(_Interface):
       result = [ ]
       result.extend(_Interface._before.fget(self))
       if self.counts[0] is not None:
-         result.append(r'\set stemLeftBeamCount #%s' % self.counts[0])
+         result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
       if self.counts[1] is not None:
-         result.append(r'\set stemRightBeamCount #%s' % self.counts[1])
+         result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
       return result
