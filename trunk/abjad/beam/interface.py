@@ -3,18 +3,10 @@ from .. core.interface import _Interface
 class BeamInterface(_Interface):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'Beam')
-      self.counts = None
+      _Interface.__init__(self, client, 'Beam', ['Beam'])
+      self._counts = (None, None)
 
-   @property
-   def _beam(self):
-      beams = self._client.spanners.get(classname = 'Beam')
-      if beams:
-         return beams[0]
-      else:
-         return None
-
-   ### PUBLIC ###
+   ### PROPERTIES ###
 
    @property
    def flags(self):
@@ -25,72 +17,78 @@ class BeamInterface(_Interface):
       return self._client.kind('Note') and self.flags > 0
 
    @property
-   def beamed(self):
-      return bool(self._beam)
-
-   @property
    def first(self):
-      return self._beam and self._beam._isMyFirstLeaf(self._client)
+      return self.spanned and self.spanners[0]._isMyFirstLeaf(self._client)
 
    @property
    def last(self):
-      return self._beam and self._beam._isMyLastLeaf(self._client)
+      return self.spanned and self.spanners[0]._isMyLastLeaf(self._client)
 
    @property
    def only(self):
-      return self._beam and self._beam._isMyOnlyLeaf(self._client)
+      return self.spanned and self.spanners[0]._isMyOnlyLeaf(self._client)
 
-   ### ACCESSORS ###
+   ### MANAGED ATTRIBUTES ###
 
-   ### TODO - eliminate setLeftCount, setRightCount, setBothCounts, clear
-   ###        in favor of a single managed attribute:
-   ###        self.counts = (3, 0), etc.;
-   ###        simplify the interface here by four methods.
+   @apply
+   def counts( ):
+      def fget(self):
+         return self._counts
+      def fset(self, expr):
+         if expr is None:
+            self._counts = (None, None)
+         elif isinstance(expr, int):
+            self._counts = (expr, expr)
+         elif isinstance(expr, (tuple, list)):
+            self._counts = (expr[0], expr[1])
+         else:
+            raise ValueError('must be nonzero integer, pair or None.')
+      return property(**locals( ))
 
-   def setLeftCount(self, l = None):
-      if not l:
-         self.counts = (self.flags, 0)
+   ### METHODS ###
+
+   def bridge(self, n, direction):
+      assert isinstance(n, int) and n >=0
+      assert direction in ('left', 'right')
+      if self.spanned:
+         if self.spanners[0]._matchingSpanner(direction = direction):
+            self.spanners[0].fuse(direction = direction)
+            self.bridge(n, direction)
+
+   def subdivide(self, n, direction):
+      assert isinstance(n, int) and n >= 0 or n is None
+      assert direction in ('left', 'right')
+      prev = self._client.prev
+      next = self._client.next
+      if n is None:
+         if direction == 'left':
+            self.counts = None, self.counts[1]
+            if prev:
+               prev.beam.counts = prev.beam.counts[0], None
+         else:
+            self.counts = self.counts[0], None
+            if next:
+               next.beam.counts = None, next.beam.counts[1]
       else:
-         self.counts = (l, 0)
-
-   def setRightCount(self, r = None):
-      if not r:
-         self.counts = (0, self.flags)
-      else:
-         self.counts = (0, r)
-
-   def setBothCounts(self, l = None, r = None):
-      if not l and not r:
-         self.counts = (self.flags, self.flags)
-      else:
-         self.counts = (l, r)
-
-   def clear(self):
-      self.counts = None
-
-   def spanRight(self, span = 1):
-      if self.beamed:
-         if self._beam._matchingSpannerAfterMe( ):
-            #self._beam.fuseRight( )
-            self._beam.fuse(direction = 'right')
-            self.counts = self.counts[0], span
-            next = self._client.next
-            next.beam.counts = span, next.beam.counts[-1]
-
-   def spanLeft(self, span = 1):
-      if self.beamed:
-         if self._beam._matchingSpannerBeforeMe( ):
-            #self._beam.fuseLeft( )
-            self._beam.fuse(direction = 'left')
-            self.counts = span, self.counts[-1]
+         if direction == 'left':
+            self.counts = n, self.counts[1]
             prev = self._client.prev
-            prev.beam.counts = prev.counts[0], span
+            if prev:
+               prev.beam.counts = prev.beam.counts[0], n 
+         else:
+            self.counts = self.counts[0], n
+            next = self._client.next
+            if next:
+               next.beam.counts = n, next.beam.counts[1]
 
    ### FORMATTING ###
 
    @property
-   def _left(self):
+   def _before(self):
       result = [ ]
-      if self.counts:
-         result.append(r'\beam #%s #%s' % self.counts)
+      result.extend(_Interface._before.fget(self))
+      if self.counts[0] is not None:
+         result.append(r'\set stemLeftBeamCount #%s' % self.counts[0])
+      if self.counts[1] is not None:
+         result.append(r'\set stemRightBeamCount #%s' % self.counts[1])
       return result
