@@ -262,6 +262,13 @@ class _Spanner(object):
    def _follows(self, spanner):
       return spanner.leaves[-1].next == self.leaves[0]
 
+   def _matchingSpanner(self, direction):
+      assert direction in ('left', 'right')
+      if direction == 'left':
+         return self._matchingSpannerBeforeMe( )
+      else:
+         return self._matchingSpannerAfterMe( )
+
    def _matchingSpannerBeforeMe(self):
       if self[0]._client.prev:
          matches = self[0]._client.prev.spanners.get(
