@@ -2,9 +2,8 @@ from .. core.interface import _Interface
 
 class ArticulationsInterface(list, _Interface):
 
-   def __init__(self, client, articulations = [ ]):
-      _Interface.__init__(self, client, 'Articulations')
-      self.extend(articulations)
+   def __init__(self, client):
+      _Interface.__init__(self, client, 'Articulations', ['Articulations'])
 
    def __repr__(self):
       if len(self):
