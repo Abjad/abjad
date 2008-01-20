@@ -1,49 +1,43 @@
+from .. core.parser import _Parser
+
 class _Interface(object):
 
-   def __init__(self, client, interface):
+   def __init__(self, client, grob, spanners):
       self._client = client
-      self._interface = interface
+      self._grob = grob
+      self._parser = _Parser( )
+      self._spanners = spanners
 
    ### REPR ###
 
    def __repr__(self):
       return '%s( )' % self.__class__.__name__
 
-   ### PROPERTIES ###
+   ### OVERRIDES ###
 
    def __len__(self):
-      return len(self._getActiveAttributes( ))
+      return len([kvp for kvp in self.__dict__.items( ) 
+         if not kvp[0].startswith('_')])
 
-   ### PREDICATES ###
-
-   def isSet(self):
-      return len(self._getActiveAttributes( )) > 0
-
-   ### ACCESSORS ###
-
-   def _getAttributes(self):
-      result = [ ]
-      for key in self.__dict__.iterkeys( ):
-         if not key.startswith('_'):
-            result.append(key)
-      result.sort( )
-      return result
-
-   def _getActiveAttributes(self):
-      result = [ ]
-      for attr in self._getAttributes( ):
-         value = self.__dict__[attr]
-         if value:
-            result.append(value)
-      return result 
+   ### PROPERTIES ###
 
    @property
    def spanners(self):
-      return self._client.spanners.get(self._interface)
+      result = []
+      for classname in self._spanners:
+         result.extend(self._client.spanners.get(classname = classname))
+      return result
+
+   @property
+   def spanned(self):
+      return bool(self.spanners)
+
+   ### METHODS ###
 
    def clear(self):
-      for attr in self._getActiveAttributes( ):
-         attr = None
+      for key, value in self.__dict__.items( ):
+         if not key.startswith('_'):
+            delattr(self, key)
 
    def copy(self):
       from copy import copy
@@ -51,4 +45,17 @@ class _Interface(object):
       self._client = None
       result = copy(self)
       self._client = client
+      return result
+
+   ### FORMATTING ###
+
+   @property
+   def _before(self):
+      result = [ ]
+      for key, value in self.__dict__.items( ):
+         if not key.startswith('_'):
+            result.append(r'\once \override %s %s = %s' % (
+               self._grob, 
+               self._parser.formatAttribute(key),
+               self._parser.formatValue(value)))
       return result
