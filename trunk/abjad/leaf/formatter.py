@@ -21,6 +21,7 @@ class LeafFormatter(_Formatter):
             exec('result.extend(interface.%s)' % location)
          except AttributeError:
             pass
+      exec('result.extend(self._client.spanners.%s)' % location)
       return result
 
    @property
