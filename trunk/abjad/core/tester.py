@@ -104,6 +104,33 @@ class Tester(object):
       else:
          return None
 
+   
+   def testBadFlags(self, report = True, ret = 'violators'):
+      violators = [ ]
+      leaves = self._target.leaves
+      for leaf in leaves:
+         flags = leaf.beam.flags
+         left, right = leaf.beam.counts
+         if left is not None:
+            if left > flags or (left < flags and right not in (flags, None)):
+               if leaf not in violators:
+                  violators.append(leaf)
+         if right is not None:
+            if right > flags or (right < flags and left not in (flags, None)):
+               if leaf not in violators:
+                  violators.append(leaf)
+      bad = len(violators)
+      total = len(leaves)
+      if report:
+         print '%4d / %4d leaves with bad flags.' % (bad, total)
+      if ret == 'violators':
+         return violators
+      elif ret:
+         return bad == 0
+      else:
+         return None
+
+
    def testContainers(self, report = True, ret = 'violators'):
       violators = [ ]
       containers = self._target.getInstances('Container')
@@ -165,6 +192,7 @@ class Tester(object):
       else:
          return None 
 
+
    def testShortHairpins(self, report = True, ret = 'violators'):
       violators = [ ]
       total, bad = 0, 0
@@ -202,6 +230,61 @@ class Tester(object):
       else:
          return None 
 
+
+   def testOverlappingGlissandi(self, report = True, ret = 'violators'):
+      '''Overlapping glissandi are a problem;
+         dove-tailed glissandi are OK.'''
+      violators = [ ] 
+      for leaf in self._target.leaves:
+         glissandi = leaf.glissando.spanners
+         if len(glissandi) > 1:
+            if len(glissandi) == 2:
+               common_leaves = set(glissandi[0].leaves) & \
+                  set(glissandi[1].leaves)
+               if len(common_leaves) == 1:
+                  x = list(common_leaves)[0]
+                  if (glissandi[0]._isMyFirstLeaf(x) and 
+                     glissandi[1]._isMyLastLeaf(x)) or \
+                     (glissandi[1]._isMyFirstLeaf(x) and 
+                      glissandi[0]._isMyLastLeaf(x)):
+                     break  
+
+            for glissando in glissandi:
+               if glissando not in violators:
+                  violators.append(glissando)
+      bad = len(violators)
+      total = len(self._target.spanners.get(classname = 'Glissando'))
+      if report:
+         print '%4d / %4d overlapping glissando spanners.' % (bad, total)
+      if ret == 'violators':
+         return violators
+      elif ret:
+         return bad == 0
+      else:
+         return None
+
+   def testGnashingGlissandi(self, report = True, ret = 'violators'):
+      '''Glissando interface may set on 
+         only last glissando spanner leaf.'''
+      violators =  [ ]
+      for leaf in self._target.leaves:
+         if leaf.glissando:
+            glissandi = leaf.glissando.spanners
+            for glissando in glissandi:
+               if not glissando._isMyLastLeaf(leaf):
+                  violators.append(leaf)
+      bad = len(violators)
+      total = len(self._target.leaves)
+      if report:
+         print '%4d / %4d gnashing glissando interfaces.' % (bad, total)
+      if ret == 'violators':
+         return violators
+      elif ret:
+         return bad == 0
+      else:
+         return None
+
+
    def testOverlappingOctavation(self, report = True, ret = 'violators'):
       violators = [ ]
       for leaf in self._target.leaves:
@@ -228,8 +311,11 @@ class Tester(object):
       result.append(self.testNextLeaves(report = report, ret = ret))
       result.append(self.testPitchlessNotesChords(report = report, ret = ret))
       result.append(self.testDurationlessLeaves(report = report, ret = ret))
+      result.append(self.testBadFlags(report = report, ret = ret))
       result.append(self.testContainers(report = report, ret = ret))
       result.append(self.testMeasures(report = report, ret = ret))
+      result.append(self.testOverlappingGlissandi(report = report, ret = ret))
+      result.append(self.testGnashingGlissandi(report = report, ret = ret))
       result.append(
          self.testSpanners(report, ret, interface, grob, attribute, value))
       result.append(self.testShortHairpins(report = report, ret = ret))
