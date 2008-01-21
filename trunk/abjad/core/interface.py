@@ -23,7 +23,7 @@ class _Interface(object):
 
    @property
    def spanners(self):
-      result = []
+      result = [ ]
       for classname in self._spanners:
          result.extend(self._client.spanners.get(classname = classname))
       return result
