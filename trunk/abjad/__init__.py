@@ -25,8 +25,9 @@ from staff.staff import Staff
 from voice.voice import Voice
 
 from helpers.f import f
-from helpers.show import show
 from helpers.hasname import hasname
+from helpers.instances import instances
+from helpers.show import show
 
 from types import ModuleType
 
