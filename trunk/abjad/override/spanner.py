@@ -3,8 +3,8 @@ from .. core.parser import _Parser
 
 class Override(_Spanner):
 
-   def __init__(self, leaves, *args):
-      _Spanner.__init__(self, leaves)
+   def __init__(self, music, *args):
+      _Spanner.__init__(self, music)
       if len(args) == 3:
          self._context = None
          self._grob, self._attribute, self._value  = args

@@ -2,8 +2,8 @@ from .. core.spanner import _Spanner
 
 class Octavation(_Spanner):
 
-   def __init__(self, leaves, start, stop = 0):
-      _Spanner.__init__(self, leaves)
+   def __init__(self, music, start, stop = 0):
+      _Spanner.__init__(self, music)
       self.start = start
       self.stop = stop
 

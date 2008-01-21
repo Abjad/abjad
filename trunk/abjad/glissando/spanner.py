@@ -2,8 +2,8 @@ from .. core.spanner import _Spanner
 
 class Glissando(_Spanner):
 
-   def __init__(self, leaves):
-      _Spanner.__init__(self, leaves)
+   def __init__(self, music):
+      _Spanner.__init__(self, music)
 
    def _right(self, leaf):
       result = [ ]

@@ -2,8 +2,8 @@ from .. core.spanner import _Spanner
 
 class _Hairpin(_Spanner):
 
-   def __init__(self, leaves, fit = None):
-      _Spanner.__init__(self, leaves)
+   def __init__(self, music, fit = None):
+      _Spanner.__init__(self, music)
       self.fit = fit
 
    def __str__(self):
@@ -47,7 +47,7 @@ class _Hairpin(_Spanner):
       return result
 
 
-def Hairpin(leaves, *args, **kwargs):
+def Hairpin(music, *args, **kwargs):
    if len(args) == 1:
        start, shape, stop = None, args[0], None
    elif len(args) == 3:
@@ -56,10 +56,10 @@ def Hairpin(leaves, *args, **kwargs):
       raise ValueError('args %s must be len 1 or 3.' % str(args))
    if shape == '<':
       from crescendo import Crescendo
-      result = Crescendo(leaves, **kwargs)
+      result = Crescendo(music, **kwargs)
    elif shape == '>':
       from decrescendo import Decrescendo
-      result = Decrescendo(leaves, **kwargs)
+      result = Decrescendo(music, **kwargs)
    if result.fit is None:
       if start:
          result.leaves[0].dynamics.mark = start

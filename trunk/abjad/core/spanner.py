@@ -72,14 +72,13 @@
 ### TODO   change model such that Spanner contains a list of leaves
 ###        and that Spanner no longer contains a list of receptors.
 
+from .. helpers.instances import instances
+
 class _Spanner(object):
 
-   def __init__(self, leaves = [ ]):
+   def __init__(self, music):
       self._receptors = [ ]
-      if isinstance(leaves, list):
-         self._extend(leaves)
-      else:
-         self._append(leaves)
+      self._extend(instances(music, 'Leaf'))
 
    ### REPR ###
    
