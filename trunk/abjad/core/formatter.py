@@ -6,6 +6,8 @@ class _Formatter(object):
       self.variable = None
       self.before = [ ]
       self.after = [ ]
+      self.opening = [ ]
+      self.closing = [ ]
       self.left = [ ]
       self.right = [ ]
    

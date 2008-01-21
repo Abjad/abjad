@@ -34,6 +34,8 @@ class TupletFormatter(ContainerFormatter):
          if self._client.multiplier != 1:
             result.append(r'%s\times %s %s' % (self._fraction, 
                self._client.multiplier, self._client.brackets.open))
+      inheritence = ContainerFormatter._opening
+      result.extend(inheritence.fget(self))
       return result
 
    @property
@@ -50,10 +52,12 @@ class TupletFormatter(ContainerFormatter):
       result.extend(self._client.comments._before)
       result.extend(self.before)
       result.extend(self._label)
+      result.extend(self.opening)
       result.extend(self._opening)
       result.extend(self._contents)
       result.extend(self._client.barline._closing)
       result.extend(self._closing)
+      result.extend(self.closing)
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)

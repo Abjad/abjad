@@ -11,6 +11,7 @@ from tester import Tester
 class _Component(object):
 
    def __init__(self):
+      self._accidentals = None
       self._barline = BarLineInterface(self)
       self._copier = Copier(self)
       self.comments = Comments( )
@@ -45,6 +46,15 @@ class _Component(object):
          return self._barline
       def fset(self, type):
          self._barline.type = type
+      return property(**locals( ))
+
+   @apply
+   def accidentals( ):
+      def fget(self):
+         return self._accidentals
+      def fset(self, style):
+         assert isinstance(style, (str, type(None)))
+         self._accidentals = style
       return property(**locals( ))
 
    ### PROPERTIES ###
