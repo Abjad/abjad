@@ -53,7 +53,7 @@ class BeamInterface(_Interface):
       if self.spanned:
          if self.spanners[0]._matchingSpanner(direction = direction):
             self.spanners[0].fuse(direction = direction)
-            self.bridge(n, direction)
+            self.subdivide(n, direction)
 
    def subdivide(self, n, direction):
       assert isinstance(n, int) and n >= 0 or n is None
