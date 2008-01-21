@@ -2,7 +2,17 @@ def hasname(instance, classname):
    x = instance.__class__
    if isinstance(classname, str):
       while x is not None:
-         if x.__name__ is classname:
+         ###
+         ### OH
+         ### MY
+         ### GOD
+         ###
+         ### if x.__name__ is classname:
+         ###
+         ### the 'is' operator is lethal here ...
+         ### problem only shows up after pickling!
+         ###
+         if x.__name__ == classname:
             return True
          else:
             x = x.__base__
