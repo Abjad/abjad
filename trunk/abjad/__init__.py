@@ -28,7 +28,7 @@ from helpers.f import f
 from helpers.hasname import hasname
 from helpers.instances import instances
 from helpers.show import show
-
+from helpers.picklers import *
 from types import ModuleType
 
 items = globals().items()
