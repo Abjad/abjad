@@ -3,9 +3,9 @@ from .. core.spanner import _Spanner
 
 class Tempo(_Spanner):
 
-   def __init__(self, music, tempo = (Duration(1, 4), 60)):
+   def __init__(self, music):
       _Spanner.__init__(self, music)
-      self.tempo = tempo
+      self.tempo = None
 
    def _before(self, leaf):
       result = [ ]

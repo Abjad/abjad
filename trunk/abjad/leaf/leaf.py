@@ -14,7 +14,6 @@ from spannerinterface import LeafSpannerInterface
 from .. duration.rational import Rational
 from .. staff.interface import StaffInterface
 from .. stem.interface import StemInterface
-from .. tempo.interface import TempoInterface
 from .. tremolo.interface import TremoloInterface
 
 class Leaf(_Component):
@@ -33,7 +32,6 @@ class Leaf(_Component):
       self.spanners = LeafSpannerInterface(self)
       self._staff = StaffInterface(self)
       self.stem = StemInterface(self)
-      self.tempo = TempoInterface(self)
       self.tremolo = TremoloInterface(self)
 
    ### REPR ###
@@ -267,18 +265,6 @@ class Leaf(_Component):
          spanner.sever(spanner.index(self))
       self._parentage._detach( )
 
-   ### TODO - extend self.instances to handle leaves ###
-
    @property
    def leaves(self):
       return [self]
-
-   ### TODO - decide whether to leave Leaf.getInstances and
-   ###        Container.getInstances where they are, or to 
-   ###        move to Component.getInstances.
-   
-   def getInstances(self, name):
-      result = [ ]
-      if self.kind(name):
-         result.append(self)
-      return result

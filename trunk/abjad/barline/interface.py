@@ -18,6 +18,8 @@ class BarLineInterface(_Interface):
 
    ### FORMATTING ###
 
+   ### TODO - accept either 'double' or '||' equivalently, etc. ###
+
    _barlineNameToLilyPondSymbol = {
       'final'  : '|.',
       'double' : '||',

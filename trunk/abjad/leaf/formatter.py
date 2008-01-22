@@ -32,6 +32,20 @@ class LeafFormatter(_Formatter):
       return result
 
    @property
+   def _before(self):
+      result = [ ]
+      tempo = self._client.tempo
+      if tempo:
+         result.append(r'\tempo %s=%s' % (tempo[0].lily, tempo[1]))
+      return result
+
+   @property
+   def _after(self):
+      result = [ ]
+      return result
+
+
+   @property
    def _body(self):
       result = [ ]
       result.extend(self.left)
@@ -61,10 +75,12 @@ class LeafFormatter(_Formatter):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)
+      result.extend(self._before)
       result.extend(self._clef)
       result.extend(self._collectLocation('_before'))
       result.append(self._body)
       result.extend(self._collectLocation('_after'))
+      result.extend(self._after)
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)

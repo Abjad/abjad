@@ -1,9 +1,10 @@
 from brackets import Brackets
 from .. core.component import _Component
-from formatter import ContainerFormatter
-from spannerinterface import ContainerSpannerInterface
 from .. duration.duration import Duration
+from formatter import ContainerFormatter
+from .. helpers.instances import instances
 from .. note.note import Note
+from spannerinterface import ContainerSpannerInterface
 
 class Container(_Component):
 
@@ -212,32 +213,6 @@ class Container(_Component):
       self._killLeaves( )   
       self._parentage._detach( )
 
-   ### GETTERS ###
-
-   ### TODO - decide whether to leave Leaf.getInstances and
-   ###        Container.getInstances where they are, or to
-   ###        move to Component.getInstances.
-
-   def getInstances(self, name):
-      class Visitor(object):
-         def __init__(self, name):
-            self.result = []
-         def visit(self, node):
-            if node.kind(name):
-               self.result.append(node)
-      v = Visitor(name)
-      self._navigator._traverse(v)
-      return v.result
-
    @property
    def leaves(self):
-      return self.getInstances('Leaf')
-
-#   ### ORPHANED GETTERS AND SETTERS ###
-#
-#   def setInitialTempo(self, tempoString):
-#      self[0].before.append(
-#         r"\override Score.MetronomeMark #'padding = #8")
-#      self[0].before.append(
-#         r"\override Score.MetronomeMark #'font-size = #3")
-#      self[0].before.append(r'\tempo ' + tempoString)
+      return instances(self, 'Leaf')

@@ -1,3 +1,5 @@
+from .. helpers.instances import instances
+
 class Tester(object):
 
    def __init__(self, target):
@@ -67,7 +69,7 @@ class Tester(object):
 
    def testPitchlessNotesChords(self, report = True, ret = 'violators'):
       violators = [ ]
-      leaves = self._target.getInstances(('Note', 'Chord'))
+      leaves = instances(self._target, ('Note', 'Chord'))
       total, bad = 0, 0
       for leaf in leaves:
          total += 1
@@ -88,7 +90,7 @@ class Tester(object):
 
    def testDurationlessLeaves(self, report = True, ret = 'violators'):
       violators = [ ]
-      leaves = self._target.getInstances('Leaf')
+      leaves = instances(self._target, 'Leaf')
       total, bad = 0, 0
       for leaf in leaves:
          total += 1
@@ -133,7 +135,7 @@ class Tester(object):
 
    def testContainers(self, report = True, ret = 'violators'):
       violators = [ ]
-      containers = self._target.getInstances('Container')
+      containers = instances(self._target, 'Container')
       bad, total = 0, 0
       for t in containers:
          if len(t) == 0:
@@ -154,7 +156,7 @@ class Tester(object):
    def testMeasures(self, report = True, ret = 'violators'):
       violators = [ ]
       total, bad = 0, 0
-      for p in self._target.getInstances('Measure'):
+      for p in instances(self._target, 'Measure'):
          if not p.testDuration( ):
             violators.append(p)
             bad += 1
