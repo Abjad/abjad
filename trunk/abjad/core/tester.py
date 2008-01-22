@@ -168,6 +168,7 @@ class Tester(object):
       else:
          return None
             
+
    def testSpanners(self, report = True, ret = 'violators',
       interface = None, grob = None, attribute = None, value = None):
       violators = [ ]
