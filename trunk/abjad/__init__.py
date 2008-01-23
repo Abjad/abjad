@@ -23,6 +23,7 @@ from containers.sequential import Sequential
 from skip.skip import Skip
 from staff.staff import Staff
 from voice.voice import Voice
+from wf.check import check
 
 from helpers.f import f
 from helpers.hasname import hasname

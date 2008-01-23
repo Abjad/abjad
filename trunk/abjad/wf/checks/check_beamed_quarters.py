@@ -1,19 +1,15 @@
+from ... helpers.instances import instances
+from .. tools import _report
 
 
-def check_beamed_quarters(self, report = True, ret = 'violators'):
+def check_beamed_quarters(expr, report = True, ret = 'violators'):
    violators = [ ]
-   leaves = self._target.leaves
+   leaves = instances(expr, 'Leaf')
    for leaf in leaves:
       if hasattr(leaf, 'beam') and leaf.beam.spanned:
          if leaf.beam.flags < 1:
             violators.append(leaf)
    bad = len(violators)
    total = len(leaves)
-   if report:
-      print '%4d / %4d quarter (or greater) durations in beam.' % (bad, total)
-   if ret == 'violators':
-      return violators
-   elif ret:
-      return bad == 0
-   else:
-      return None 
+   msg = 'quarter (or greater) durations in beam.'
+   return _report(report, ret, violators, total, msg)

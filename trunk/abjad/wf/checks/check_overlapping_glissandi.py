@@ -1,10 +1,12 @@
+from ... helpers.instances import instances
+from .. tools import _report
 
 
-def check_overlapping_glissandi(self, report = True, ret = 'violators'):
+def check_overlapping_glissandi(expr, report = True, ret = 'violators'):
    '''Overlapping glissandi are a problem;
       dove-tailed glissandi are OK.'''
    violators = [ ] 
-   for leaf in self._target.leaves:
+   for leaf in instances(expr, 'Leaf'):
       glissandi = leaf.glissando.spanners
       if len(glissandi) > 1:
          if len(glissandi) == 2:
@@ -21,13 +23,6 @@ def check_overlapping_glissandi(self, report = True, ret = 'violators'):
          for glissando in glissandi:
             if glissando not in violators:
                violators.append(glissando)
-   bad = len(violators)
-   total = len(self._target.spanners.get(classname = 'Glissando'))
-   if report:
-      print '%4d / %4d overlapping glissando spanners.' % (bad, total)
-   if ret == 'violators':
-      return violators
-   elif ret:
-      return bad == 0
-   else:
-      return None
+   total = len(expr.spanners.get(classname = 'Glissando'))
+   msg = 'overlapping glissandi spanners.'
+   return _report(report, ret, violators, total, msg)

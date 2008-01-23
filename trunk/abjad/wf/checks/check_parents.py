@@ -1,6 +1,7 @@
+from .. tools import _report
 
 
-def check_parents(self, report = True, ret = 'violators'):
+def check_parents(expr, report = True, ret = 'violators'):
    '''
    Each node needs a parent;
    each node needs the *correct* parent.
@@ -23,13 +24,6 @@ def check_parents(self, report = True, ret = 'violators'):
       def unvisit(self, node):
          if hasattr(node, '_music'):
             self.parents.pop( )
-   v = Visitor(self._target)
-   self._target._navigator._traverse(v)
-   if report:
-      print '%4d / %4d bad parents.' % (v.bad, v.total)
-   if ret == 'violators':
-      return v.violators
-   elif ret:
-      return v.bad == 0
-   else:
-      return None
+   v = Visitor(expr)
+   expr._navigator._traverse(v)
+   return _report(report, ret, v.violators, v.total, 'missing parents.')

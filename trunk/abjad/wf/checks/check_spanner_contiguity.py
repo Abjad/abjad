@@ -1,9 +1,10 @@
+from .. tools import _report
 
-def check_spanner_contiguity(self, report = True, ret = 'violators',
-   interface = None, grob = None, attribute = None, value = None):
+def check_spanner_contiguity(expr, report = True, ret = 'violators'):
    violators = [ ]
    total, bad = 0, 0
-   spanners = self._target.spanners.get(interface, grob, attribute, value)
+   ### TODO - remove 'interface' from spanners.get ###
+   spanners = expr.spanners.get( )
    for spanner in spanners:
       contiguousLeaves = True
       leaves = spanner.leaves
@@ -12,13 +13,6 @@ def check_spanner_contiguity(self, report = True, ret = 'violators',
             contiguousLeaves = False
       if not contiguousLeaves:
          violators.append(spanner)
-         bad += 1
       total += 1
-   if report:
-      print '%4d / %4d bad spanners.' % (bad, total)
-   if ret == 'violators':
-      return violators
-   elif ret:
-      return bad == 0
-   else:
-      return None 
+   msg = 'spanners with noncontiguous leaves.'
+   return _report(report, ret, violators, total, msg)

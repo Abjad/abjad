@@ -1,8 +1,10 @@
+from ... helpers.instances import instances
+from .. tools import _report
 
 
-def check_next_leaves(self, report = True, ret = 'violators'):
+def check_next_leaves(expr, report = True, ret = 'violators'):
    violators = [ ]
-   leaves = self._target.leaves
+   leaves = instances(expr, 'Leaf')
    total, bad = 0, 0
    if leaves:
       leaves.pop( )
@@ -12,11 +14,4 @@ def check_next_leaves(self, report = True, ret = 'violators'):
             violators.append(l)
             bad += 1
          total += 1
-   if report:
-      print '%4d / %4d bad leaves.' % (bad, total)
-   if ret == 'violators':
-      return violators
-   elif ret:
-      return bad == 0
-   else:
-      return None
+   return _report(report, ret, violators, total, 'bad leaves.')

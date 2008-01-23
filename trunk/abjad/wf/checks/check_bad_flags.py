@@ -1,5 +1,4 @@
-#from ... helper.instances import instances
-#from .. prepare import _prepare # wraps instances( )
+from ... helpers.instances import instances
 from .. tools import _report
 
 
@@ -19,4 +18,4 @@ def check_bad_flags(expr, report = True, ret = 'violators'):
                violators.append(leaf)
    bad = len(violators)
    total = len(leaves)
-   _report(report, ret, bad, total, 'leaves with bad flags.')
+   return _report(report, ret, violators, total, 'leaves with bad flags.')

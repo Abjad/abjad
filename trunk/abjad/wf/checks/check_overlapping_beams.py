@@ -1,20 +1,14 @@
+from ... helpers.instances import instances
+from .. tools import _report
 
 
-def check_overlapping_beams(self, report = True, ret = 'violators'):
+def check_overlapping_beams(expr, report = True, ret = 'violators'):
    violators = [ ]
-   for leaf in self._target.leaves:
+   for leaf in instances(expr, 'Leaf'):
       beams = leaf.spanners.get(classname = 'Beam')
       if len(beams) > 1:
          for beam in beams:
             if beam not in violators:
                violators.append(beam)
-   bad = len(violators)
-   total = len(self._target.spanners.get(classname = 'Beam'))
-   if report:
-      print '%4d / %4d overlapping beam spanners.' % (bad, total)
-   if ret == 'violators':
-      return violators
-   elif ret:
-      return bad == 0
-   else:
-      return None 
+   total = len(expr.spanners.get(classname = 'Beam'))
+   return _report(report, ret, violators, total, 'overlapping beam spanners.') 
