@@ -10,8 +10,8 @@ def test_empty_container( ):
    assert len(t) == 0
    assert t._parent == None
    assert t.duration == t.duratum == Duration(0)
-   # we do not assert testAll( ) because 
-   # tester.testContainers( ) marks empty containers bad
+   # empty containers are allowed but not well-formed;
+   # so we do not check( ) here
    
 
 def test_typical_container( ):
@@ -21,5 +21,5 @@ def test_typical_container( ):
    assert len(t) == 4
    assert t._parent == None
    assert t.duration == t.duratum == Duration(1)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 

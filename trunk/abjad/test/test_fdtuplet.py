@@ -102,7 +102,7 @@ def test_graft_tuplet_onto_container_01( ):
          assert isinstance(x, FixedDurationTuplet)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 def test_graft_tuplet_onto_container_02( ):
    t = FixedDurationTuplet((7, 8), [Note(n, (1, 8)) for n in range(8)])
@@ -116,7 +116,7 @@ def test_graft_tuplet_onto_container_02( ):
          assert isinstance(x, FixedDurationTuplet)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 def test_graft_tuplet_onto_container_03( ):
    t = FixedMultiplierTuplet((7, 8), [Note(n, (1, 8)) for n in range(8)])
@@ -130,7 +130,7 @@ def test_graft_tuplet_onto_container_03( ):
          assert isinstance(x, FixedDurationTuplet)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 def test_graft_tuplet_onto_container_04( ):
    t = Measure((8, 8), [Note(n, (1, 8)) for n in range(8)])
@@ -145,7 +145,7 @@ def test_graft_tuplet_onto_container_04( ):
          assert isinstance(x, FixedDurationTuplet)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 def test_graft_tuplet_onto_container_05( ):
    t = Voice([Note(n, (1, 8)) for n in range(8)])
@@ -159,7 +159,7 @@ def test_graft_tuplet_onto_container_05( ):
          assert isinstance(x, FixedDurationTuplet)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 def test_graft_tuplet_onto_container_06( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -173,7 +173,7 @@ def test_graft_tuplet_onto_container_06( ):
          assert isinstance(x, FixedDurationTuplet)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 
 ### TEST TUPLET LABEL ###

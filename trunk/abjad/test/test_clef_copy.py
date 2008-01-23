@@ -3,13 +3,13 @@ from abjad import *
 
 def test_clef_copy_01( ):
    '''Explicit clefs copy.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].clef = 'treble'
-   staff[4].clef = 'bass'
-   staff.extend(staff.copy(0, 1))
-   assert staff.tester.testAll(ret = True)
-   assert staff.format == "\\new Staff {\n\t\\clef treble\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef bass\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef treble\n\tc'8\n\tcs'8\n}"
-   assert [str(note.clef) for note in staff] == [
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   t[0].clef = 'treble'
+   t[4].clef = 'bass'
+   t.extend(t.copy(0, 1))
+   assert check(t, ret = True)
+   assert t.format == "\\new Staff {\n\t\\clef treble\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef bass\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef treble\n\tc'8\n\tcs'8\n}"
+   assert [str(note.clef) for note in t] == [
       'treble', 'treble', 'treble', 'treble',
       'bass', 'bass', 'bass', 'bass',
       'treble', 'treble']
@@ -34,13 +34,13 @@ def test_clef_copy_01( ):
 
 def test_clef_copy_02( ):
    '''Implicit clefs do not copy.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].clef = 'treble'
-   staff[4].clef = 'bass'
-   staff.extend(staff.copy(2, 3))
-   assert staff.tester.testAll(ret = True)
-   assert staff.format == "\\new Staff {\n\t\\clef treble\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef bass\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\td'8\n\tef'8\n}"
-   assert [str(note.clef) for note in staff] == [
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   t[0].clef = 'treble'
+   t[4].clef = 'bass'
+   t.extend(t.copy(2, 3))
+   assert check(t, ret = True)
+   assert t.format == "\\new Staff {\n\t\\clef treble\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef bass\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\td'8\n\tef'8\n}"
+   assert [str(note.clef) for note in t] == [
       'treble', 'treble', 'treble', 'treble',
       'bass', 'bass', 'bass', 'bass', 'bass', 'bass']
    '''

@@ -1,11 +1,12 @@
 from abjad import *
+from abjad.wf import check_overlapping_octavation
 
 
 def test_octavation_01( ):
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(staff[ : 4], 1)
-   assert staff.tester.testAll(ret = True)
-   assert staff.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t#(set-octavation 0)\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Octavation(t[ : 4], 1)
+   assert check(t, ret = True)
+   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t#(set-octavation 0)\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    '''
    \new Staff {
            #(set-octavation 1)
@@ -23,10 +24,10 @@ def test_octavation_01( ):
 
 
 def test_octavation_02( ):
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(staff[ : 4], 1, 2)
-   assert staff.tester.testAll(ret = True)
-   assert staff.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t#(set-octavation 2)\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Octavation(t[ : 4], 1, 2)
+   assert check(t, ret = True)
+   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t#(set-octavation 2)\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    '''
    \new Staff {
            #(set-octavation 1)
@@ -45,10 +46,10 @@ def test_octavation_02( ):
 
 def test_octavation_03( ):
    '''One-note octavation changes are allowed.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(staff[0], 1)
-   assert staff.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\t#(set-octavation 0)\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   assert staff.tester.testAll(ret = True)
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Octavation(t[0], 1)
+   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\t#(set-octavation 0)\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   assert check(t, ret = True)
    '''
    \new Staff {
            #(set-octavation 1)
@@ -69,11 +70,11 @@ def test_octavation_04( ):
    '''Adjacent one-note octavation changes are allowed;
       TODO - check for back-to-back set-octavation at format-
              time and compress to a single set-octavation.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(staff[0], 1)
-   Octavation(staff[1], 2)
-   assert staff.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\t#(set-octavation 0)\n\t#(set-octavation 2)\n\tcs'8\n\t#(set-octavation 0)\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   assert staff.tester.testAll(ret = True)
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Octavation(t[0], 1)
+   Octavation(t[1], 2)
+   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\t#(set-octavation 0)\n\t#(set-octavation 2)\n\tcs'8\n\t#(set-octavation 0)\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   assert check(t, ret = True)
    '''
    \new Staff {
            #(set-octavation 1)
@@ -93,13 +94,12 @@ def test_octavation_04( ):
 
 
 def test_octavation_05( ):
-   '''Overlapping octavation spanners are allowed;
-      but tester will grumble.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Octavation(staff[ : 4], 1)
-   Octavation(staff[2 : 6], 2)
-   assert staff.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\tcs'8\n\t#(set-octavation 2)\n\td'8\n\tef'8\n\t#(set-octavation 0)\n\te'8\n\tf'8\n\t#(set-octavation 0)\n\tfs'8\n\tg'8\n}"
-   assert not staff.tester.testOverlappingOctavation(ret = True)
+   '''Overlapping octavation spanners are allowed but not well-formed.'''
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Octavation(t[ : 4], 1)
+   Octavation(t[2 : 6], 2)
+   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\tc'8\n\tcs'8\n\t#(set-octavation 2)\n\td'8\n\tef'8\n\t#(set-octavation 0)\n\te'8\n\tf'8\n\t#(set-octavation 0)\n\tfs'8\n\tg'8\n}"
+   assert not check_overlapping_octavation(t, ret = True)
    '''
    \new Staff {
            #(set-octavation 1)

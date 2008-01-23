@@ -375,23 +375,22 @@ def test_beam_interface_19( ):
 
 
 def test_beam_interface_20( ):
-   '''Counts can set agrammatically;
-      tester will complain.'''
+   '''Counts can set agrammatically but will not check.'''
    t = Note(0, (1, 32))
-   assert t.tester.testBadFlags(ret = True)
+   assert check(t, ret = True)
    t.beam.counts = 1
-   assert not t.tester.testBadFlags(ret = True)
+   assert not check(t, ret = True)
    t.beam.counts = 2
-   assert not t.tester.testBadFlags(ret = True)
+   assert not check(t, ret = True)
    t.beam.counts = 3
-   assert t.tester.testBadFlags(ret = True)
+   assert check(t, ret = True)
    t.beam.counts = 3, 1
-   assert t.tester.testBadFlags(ret = True)
+   assert check(t, ret = True)
    t.beam.counts = 1, 3
-   assert t.tester.testBadFlags(ret = True)
+   assert check(t, ret = True)
    t.beam.counts = 3, 4
-   assert not t.tester.testBadFlags(ret = True)
+   assert not check(t, ret = True)
    t.beam.counts = 4
-   assert not t.tester.testBadFlags(ret = True)
+   assert not check(t, ret = True)
    t.beam.counts = None
-   assert t.tester.testBadFlags(ret = True)
+   assert check(t, ret = True)

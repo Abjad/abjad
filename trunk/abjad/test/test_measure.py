@@ -87,7 +87,7 @@ def test_graft_measure_to_container_01( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 def test_graft_measure_to_container_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -101,7 +101,7 @@ def test_graft_measure_to_container_02( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 def test_graft_measure_to_container_03( ):
    t = Staff([Note(n, (1, 1)) for n in range(4)])
@@ -115,7 +115,7 @@ def test_graft_measure_to_container_03( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)
 
 def test_graft_measure_to_container_03( ):
    t = Staff([Note(n, (1, 1)) for n in range(4)])
@@ -129,4 +129,4 @@ def test_graft_measure_to_container_03( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert t.tester.testAll(ret = True)
+   assert check(t, ret = True)

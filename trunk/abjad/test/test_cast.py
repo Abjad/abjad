@@ -3,10 +3,10 @@ from abjad import *
 
 def test_cast_01( ):
    '''Containerized notes can reinitialize to a rest.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Rest(staff[0])
-   assert staff.format == "\\new Staff {\n\tr8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   assert staff.tester.testAll(ret = True)
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Rest(t[0])
+   assert t.format == "\\new Staff {\n\tr8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   assert check(t, ret = True)
    '''
    \new Staff {
            r8
@@ -24,10 +24,10 @@ def test_cast_01( ):
 def test_cast_02( ):
    '''Round-trip (re)initialization from note to rest to note again
       does not preserve notehead.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Rest(staff[0])
-   Note(staff[0])
-   assert staff.format == "\\new Staff {\n\t8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Rest(t[0])
+   Note(t[0])
+   assert t.format == "\\new Staff {\n\t8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    '''
    \new Staff {
            8

@@ -5,11 +5,11 @@ from abjad import *
 
 
 def test_override_overlap_01( ):
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Override(staff[ : ], 'NoteHead', 'color', 'red')
-   assert staff.tester.testAll(ret = True)
-   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
-   for note in staff:
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Override(t[ : ], 'NoteHead', 'color', 'red')
+   assert check(t, ret = True)
+   assert t.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
+   for note in t:
       assert note.spanners.find('NoteHead', 'color') == 'red'
    '''
    \new Staff {
@@ -28,12 +28,12 @@ def test_override_overlap_01( ):
 
 
 def test_override_overlap_02( ):
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Override(staff[ : ], 'NoteHead', 'color', 'red')
-   Override(staff[2 : 6], 'NoteHead', 'color', 'blue')
-   assert staff.tester.testAll(ret = True)
-   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\t\\override NoteHead #'color = #blue\n\td'8\n\tef'8\n\te'8\n\tf'8\n\t\\revert NoteHead #'color\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
-   assert [leaf.spanners.find('NoteHead', 'color') for leaf in staff] == \
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Override(t[ : ], 'NoteHead', 'color', 'red')
+   Override(t[2 : 6], 'NoteHead', 'color', 'blue')
+   assert check(t, ret = True)
+   assert t.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\t\\override NoteHead #'color = #blue\n\td'8\n\tef'8\n\te'8\n\tf'8\n\t\\revert NoteHead #'color\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
+   assert [leaf.spanners.find('NoteHead', 'color') for leaf in t] == \
       ['red', 'red', 'blue', 'blue', 'blue', 'blue', None, None]
    '''
    \new Staff {
@@ -54,12 +54,12 @@ def test_override_overlap_02( ):
 
 
 def test_override_overlap_03( ):
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   Override(staff[ : ], 'NoteHead', 'color', 'red')
-   Override(staff[4], 'NoteHead', 'color', 'blue')
-   assert staff.tester.testAll(ret = True)
-   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\once \\override NoteHead #'color = #blue\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
-   assert [leaf.spanners.find('NoteHead', 'color') for leaf in staff] == \
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Override(t[ : ], 'NoteHead', 'color', 'red')
+   Override(t[4], 'NoteHead', 'color', 'blue')
+   assert check(t, ret = True)
+   assert t.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\once \\override NoteHead #'color = #blue\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
+   assert [leaf.spanners.find('NoteHead', 'color') for leaf in t] == \
       ['red', 'red', 'red', 'red', 'blue', 'red', 'red', 'red']
    '''
    \new Staff {
