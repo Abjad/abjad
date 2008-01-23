@@ -7,7 +7,6 @@ from .. core.parentage import Parentage
 from .. duration.rational import Rational
 from .. duration.duration import Duration
 from .. staff.interface import StaffInterface
-from tester import Tester
 
 class _Component(object):
 
@@ -19,7 +18,6 @@ class _Component(object):
       self._navigator = Navigator(self)
       self._parentage = Parentage(self)
       self._tempo = None
-      self.tester = Tester(self)
 
    ### CLASS NAME TESTING ###
    
