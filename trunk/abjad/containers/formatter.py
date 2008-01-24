@@ -37,5 +37,6 @@ class ContainerFormatter(_Formatter):
       result.extend(self._opening)
       result.extend(self._contents)
       result.extend(self._client.barline._closing)
+      result.extend(self._closing)
       result.extend(self.after)
       return '\n'.join(result)

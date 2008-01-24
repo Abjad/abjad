@@ -9,6 +9,7 @@ from duration.duration import Duration
 from tuplet.fdtuplet import FixedDurationTuplet
 from tuplet.fmtuplet import FixedMultiplierTuplet
 from glissando.spanner import Glissando
+from grace.grace import Grace
 from dynamics.hairpin import Hairpin
 from measure.measure import Measure
 from note.note import Note

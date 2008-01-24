@@ -3,7 +3,6 @@ from .. core.component import _Component
 from .. duration.duration import Duration
 from formatter import ContainerFormatter
 from .. helpers.instances import instances
-from .. note.note import Note
 from spannerinterface import ContainerSpannerInterface
 
 class Container(_Component):
