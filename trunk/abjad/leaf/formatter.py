@@ -34,9 +34,24 @@ class LeafFormatter(_Formatter):
    @property
    def _grace(self):
       result = [ ]
-      grace = self._client.grace
+      grace = self._client.grace.before
       if grace:
          result.append(grace.format)
+      return result
+
+   @property
+   def _agrace_opening(self):
+      if self._client.grace.after:
+         return [r'\afterGrace']
+      else:
+         return [ ] 
+
+   @property
+   def _agrace(self):
+      result = [ ]
+      agrace = self._client.grace.after
+      if agrace:
+         result.append(agrace.format)
       return result
 
    @property
@@ -46,12 +61,6 @@ class LeafFormatter(_Formatter):
       if tempo:
          result.append(r'\tempo %s=%s' % (tempo[0].lily, tempo[1]))
       return result
-
-   @property
-   def _after(self):
-      result = [ ]
-      return result
-
 
    @property
    def _body(self):
@@ -67,7 +76,7 @@ class LeafFormatter(_Formatter):
       result.extend(self.right)
       result.extend(self._number)
       result.extend(self._client.comments._right)
-      return ' '.join(result)
+      return [' '.join(result)]
 
    @property
    def _clef(self):
@@ -87,7 +96,9 @@ class LeafFormatter(_Formatter):
       result.extend(self._before)
       result.extend(self._clef)
       result.extend(self._collectLocation('_before'))
-      result.append(self._body)
+      result.extend(self._agrace_opening)
+      result.extend(self._body)
+      result.extend(self._agrace)
       result.extend(self._collectLocation('_after'))
       result.extend(self._after)
       result.extend(self.after)

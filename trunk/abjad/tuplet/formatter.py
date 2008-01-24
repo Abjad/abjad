@@ -41,6 +41,7 @@ class TupletFormatter(ContainerFormatter):
    @property
    def _closing(self):
       result = [ ]
+      result.extend(ContainerFormatter._closing.fget(self))
       if self._client.multiplier:
          if self._client.multiplier != 1:
             result.append(self._client.brackets.close)
@@ -55,7 +56,7 @@ class TupletFormatter(ContainerFormatter):
       result.extend(self.opening)
       result.extend(self._opening)
       result.extend(self._contents)
-      result.extend(self._client.barline._closing)
+      #result.extend(self._client.barline._closing)
       result.extend(self._closing)
       result.extend(self.closing)
       result.extend(self.after)

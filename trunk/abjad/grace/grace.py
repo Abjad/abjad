@@ -7,3 +7,4 @@ class Grace(Container):
    def __init__(self, music = [ ]):
       Container.__init__(self, music)
       self.formatter = GraceFormatter(self)
+      self._type = 'grace'

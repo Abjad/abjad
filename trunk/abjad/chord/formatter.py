@@ -28,7 +28,7 @@ class ChordFormatter(LeafFormatter):
             result.extend(['\t' + x for x in notehead.formatter._lily])
          result.append('>%s%s' % 
             (self._client._product, self._client.tremolo.body))
-         return '\n'.join(result)
+         return ['\n'.join(result)]
       else:
          result.extend(self._collectLocation('_left'))
          result.append(self._chordNucleus)
@@ -36,4 +36,4 @@ class ChordFormatter(LeafFormatter):
          result.extend(self.right)
          result.extend(self._number)
          result.extend(self._client.comments._right)
-         return ' '.join(result)
+         return [' '.join(result)]

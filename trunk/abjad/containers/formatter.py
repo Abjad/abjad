@@ -6,8 +6,25 @@ class ContainerFormatter(_Formatter):
       _Formatter.__init__(self, client)
 
    @property
+   def _invocation_opening(self):
+      result = [ ]
+      open = self._client.brackets.open
+      if open != '(':
+         result.append(open)
+      return result
+
+   @property
+   def _invocation_closing(self):
+      result = [ ]
+      close = self._client.brackets.close
+      if close != ')':
+         result.append(close)
+      return result
+
+   @property
    def _opening(self):
       result = [ ]
+      result.extend(_Formatter._opening.fget(self))
       tempo = self._client.tempo
       if tempo:
          result.append(r'\tempo %s=%s' % (tempo[0].lily, tempo[1]))
@@ -19,6 +36,11 @@ class ContainerFormatter(_Formatter):
    @property
    def _closing(self):
       result = [ ]
+      result.extend(_Formatter._closing.fget(self))
+      if hasattr(self._client, 'barline'):
+         closing = self._client.barline._closing
+         if closing:
+            result.extend(closing)
       return result
 
    @property
@@ -34,9 +56,12 @@ class ContainerFormatter(_Formatter):
       result = [ ]
       result.extend(self._client.comments.before)
       result.extend(self.before)
+      result.extend(self._before)
+      result.extend(self._invocation_opening)
       result.extend(self._opening)
       result.extend(self._contents)
-      result.extend(self._client.barline._closing)
       result.extend(self._closing)
+      result.extend(self._invocation_closing)
+      result.extend(self._after)
       result.extend(self.after)
       return '\n'.join(result)

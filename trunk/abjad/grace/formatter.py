@@ -6,15 +6,16 @@ class GraceFormatter(ContainerFormatter):
       ContainerFormatter.__init__(self, client)
 
    @property
-   def _opening(self):
+   def _invocation_opening(self):
       result = [ ]
-      result.append(r'\grace {')
-      result.extend(ContainerFormatter._opening.fget(self))
+      if self._client._type == 'after':
+         result.append('{')
+      else:
+         result.append(r'\%s {' % self._client._type)
       return result
 
    @property
-   def _closing(self):
+   def _invocation_closing(self):
       result = [ ]
-      result.extend(ContainerFormatter._closing.fget(self))
       result.append('}')
       return result

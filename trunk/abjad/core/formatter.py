@@ -13,3 +13,23 @@ class _Formatter(object):
    
    def __repr__(self):
       return '%s( )' % self.__class__.__name__
+
+   @property
+   def _before(self):
+      result = [ ]
+      return result
+
+   @property
+   def _after(self):
+      result = [ ]
+      return result
+
+   @property
+   def _opening(self):
+      result = [ ]
+      return result
+
+   @property
+   def _closing(self):
+      result = [ ]
+      return result

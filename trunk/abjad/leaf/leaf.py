@@ -7,7 +7,7 @@ from .. core.component import _Component
 from .. duration.duration import Duration
 from .. dynamics.interface import DynamicsInterface
 from .. glissando.interface import GlissandoInterface
-from .. grace.grace import Grace
+from .. grace.interface import GraceInterface
 from .. core.history import HistoryInterface
 from .. core.interface import _Interface
 from formatter import LeafFormatter
@@ -27,7 +27,7 @@ class Leaf(_Component):
       self._dynamics = DynamicsInterface(self)
       self.formatter = LeafFormatter(self)
       self._glissando = GlissandoInterface(self)
-      self._grace = None
+      self.grace = GraceInterface( )
       self.duration = duration
       self.history = HistoryInterface(self)
       self.multiplier = multiplier
@@ -193,21 +193,6 @@ class Leaf(_Component):
          return self._dynamics
       def fset(self, arg):
          self._dynamics.mark = arg
-      return property(**locals( ))
-
-   @apply
-   def grace( ):
-      def fget(self):
-         return self._grace
-      def fset(self, arg):
-         if arg == None:
-            self._grace = None
-         elif isinstance(arg, Grace):
-            self._grace = arg
-         elif isinstance(arg, Leaf):
-            self._grace = Grace([arg])
-         elif isinstance(arg, list):
-            self._grace = Grace(arg)
       return property(**locals( ))
 
    ### DURATION REWRITE ###

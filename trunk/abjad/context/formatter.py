@@ -22,7 +22,7 @@ class ContextFormatter(ContainerFormatter):
       result.extend(self.opening)
       result.extend(self._opening)
       result.extend(self._contents)
-      result.extend(self._client.barline._closing)
+      result.extend(self._closing)
       result.extend(self.closing)
       result.extend(self._client.invocation._closing)
       result.extend(self.after)

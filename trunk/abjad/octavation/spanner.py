@@ -12,7 +12,6 @@ class Octavation(_Spanner):
 
    def _before(self, leaf):
       result = [ ]
-      position = leaf.clef.middleCPosition - 7 * self.start
       if self._isMyFirstLeaf(leaf):
          result.append(r'#(set-octavation %s)' % self.start)
       ### TODO - this is a ghetto way of checking for a clef change
