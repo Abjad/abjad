@@ -210,11 +210,14 @@ def test_rewrite_duration_as_04( ):
 def test_cast_note_as_rest_01( ):
    n = Note(2, (1, 8))
    d = n.duration
-   n = Rest(n)
-   assert isinstance(n, Rest)
-   assert n.format == 'r8'
-   assert n._parent is None
-   assert n.duration == d
+   r = Rest(n)
+   assert isinstance(r, Rest)
+   # check that attributes have not been removed or added.
+   assert dir(n) == dir(Note())
+   assert dir(r) == dir(Rest())
+   assert r.format == 'r8'
+   assert r._parent is None
+   assert r.duration == d
 
 
 def test_cast_note_as_rest_02( ):
@@ -252,13 +255,16 @@ def test_cast_note_as_rest_04( ):
 def test_cast_note_as_chord_01( ):
    n = Note(2, (1, 8))
    h, p, d = n.notehead, n.pitch, n.duration
-   n = Chord(n)
-   assert isinstance(n, Chord)
-   assert n.format == "<d'>8"
-   assert n._parent is None
-   assert n.noteheads[0] is not h
-   assert n.pitches[0].number == p.number
-   assert n.duration.pair == d.pair
+   c = Chord(n)
+   assert isinstance(c, Chord)
+   # check that attributes have not been removed or added.
+   assert dir(n) == dir(Note())
+   assert dir(c) == dir(Chord())
+   assert c.format == "<d'>8"
+   assert c._parent is None
+   assert c.noteheads[0] is not h
+   assert c.pitches[0].number == p.number
+   assert c.duration.pair == d.pair
 
 
 def test_cast_note_as_chord_02( ):
@@ -302,11 +308,14 @@ def test_cast_note_as_chord_04( ):
 def test_cast_note_as_skip_01( ):
    n = Note(2, (1, 8))
    d = n.duration
-   n = Skip(n)
-   assert isinstance(n, Skip)
-   assert n.format == 's8'
-   assert n._parent is None
-   assert n.duration == d
+   s = Skip(n)
+   assert isinstance(s, Skip)
+   # check that attributes have not been removed or added.
+   assert dir(n) == dir(Note())
+   assert dir(s) == dir(Skip())
+   assert s.format == 's8'
+   assert s._parent is None
+   assert s.duration == d
 
 
 def test_cast_note_as_skip_02( ):

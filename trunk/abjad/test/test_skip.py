@@ -24,10 +24,13 @@ def test_demo_skip_public_interface_02( ):
 def test_cast_skip_as_note_01( ):
    s = Skip((1, 8))
    d = s.duration
-   s = Note(s)
-   assert isinstance(s, Note)
-   assert s._parent is None
-   assert s.duration == d
+   n = Note(s)
+   assert isinstance(n, Note)
+   # check that attributes have not been removed or added.
+   assert dir(s) == dir(Skip())
+   assert dir(n) == dir(Note())
+   assert n._parent is None
+   assert n.duration == d
 
 
 def test_cast_skip_as_note_02( ):
@@ -62,10 +65,13 @@ def test_cast_skip_as_note_04( ):
 def test_cast_skip_as_rest_01( ):
    s = Skip((1, 8))
    d = s.duration
-   s = Rest(s)
-   assert isinstance(s, Rest)
-   assert s._parent is None
-   assert s.duration == d
+   r = Rest(s)
+   assert isinstance(r, Rest)
+   # check that attributes have not been removed or added.
+   assert dir(s) == dir(Skip())
+   assert dir(r) == dir(Rest())
+   assert r._parent is None
+   assert r.duration == d
 
 
 def test_cast_skip_as_rest_02( ):
@@ -100,10 +106,13 @@ def test_cast_skip_as_rest_04( ):
 def test_cast_skip_as_chord_01( ):
    s = Skip((1, 8))
    d = s.duration
-   s = Chord(s)
-   assert isinstance(s, Chord)
-   assert s._parent is None
-   assert s.duration == d
+   c = Chord(s)
+   assert isinstance(c, Chord)
+   # check that attributes have not been removed or added.
+   assert dir(s) == dir(Skip())
+   assert dir(c) == dir(Chord())
+   assert c._parent is None
+   assert c.duration == d
 
 
 def test_cast_skip_as_chord_02( ):

@@ -95,12 +95,15 @@ def test_one_note_chord_02( ):
 ### TEST CAST CHORD AS NOTE ###
 
 def test_cast_chord_as_note_01( ):
-   d = Chord([2, 3, 4], (1, 4))
-   duration = d.duration
-   d = Note(d)
-   assert isinstance(d, Note)
-   assert d._parent is None
-   assert d.duration == duration
+   c = Chord([2, 3, 4], (1, 4))
+   duration = c.duration
+   n = Note(c)
+   assert isinstance(n, Note)
+   # check that attributes have not been removed or added.
+   assert dir(c) == dir(Chord())
+   assert dir(n) == dir(Note())
+   assert n._parent is None
+   assert n.duration == duration
 
 def test_cast_chord_as_note_02( ):
    t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
@@ -130,68 +133,74 @@ def test_cast_chord_as_note_04( ):
 ### TEST CAST CHORD AS REST ###
 
 def test_cast_chord_as_rest_01( ):
-   d = Chord([2, 3, 4], (1, 4))
-   duration = d.duration
-   s = Rest(d)
-   assert isinstance(s, Rest)
+   c = Chord([2, 3, 4], (1, 4))
+   duration = c.duration
+   r = Rest(c)
+   assert isinstance(r, Rest)
+   # check that attributes have not been removed or added.
+   assert dir(c) == dir(Chord())
+   assert dir(r) == dir(Rest())
+   assert r._parent is None
+   assert r.duration == duration
+
+def test_cast_chord_as_rest_02( ):
+   t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+   d = t[0].duration
+   Rest(t[0])
+   assert isinstance(t[0], Rest)
+   assert t[0]._parent is t
+   assert t[0].duration == d
+
+def test_cast_chord_as_rest_03( ):
+   v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
+   d = v[0].duration
+   Rest(v[0])
+   assert isinstance(v[0], Rest)
+   assert v[0]._parent is v
+   assert v[0].duration == d
+
+def test_cast_chord_as_rest_04( ):
+   t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
+   d = t[0].duration
+   Rest(t[0])
+   assert isinstance(t[0], Rest)
+   assert t[0]._parent is t
+   assert t[0].duration == d
+
+
+### TEST CAST CHORD AS SKIP ###
+
+def test_cast_chord_as_skip_01( ):
+   c = Chord([2, 3, 4], (1, 4))
+   duration = c.duration
+   s = Skip(c)
+   assert isinstance(s, Skip)
+   # check that attributes have not been removed or added.
+   assert dir(c) == dir(Chord())
+   assert dir(s) == dir(Skip())
    assert s._parent is None
    assert s.duration == duration
 
-def test_cast_chord_as_rest_02( ):
+def test_cast_chord_as_skip_02( ):
    t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration
-   Rest(t[0])
-   assert isinstance(t[0], Rest)
+   Skip(t[0])
+   assert isinstance(t[0], Skip)
    assert t[0]._parent is t
    assert t[0].duration == d
 
-def test_cast_chord_as_rest_03( ):
+def test_cast_chord_as_skip_03( ):
    v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
    d = v[0].duration
-   Rest(v[0])
-   assert isinstance(v[0], Rest)
+   Skip(v[0])
+   assert isinstance(v[0], Skip)
    assert v[0]._parent is v
    assert v[0].duration == d
 
-def test_cast_chord_as_rest_04( ):
+def test_cast_chord_as_skip_04( ):
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration
-   Rest(t[0])
-   assert isinstance(t[0], Rest)
-   assert t[0]._parent is t
-   assert t[0].duration == d
-
-
-### TEST CAST CHORD AS REST ###
-
-def test_cast_chord_as_rest_01( ):
-   d = Chord([2, 3, 4], (1, 4))
-   duration = d.duration
-   d = Rest(d)
-   assert isinstance(d, Rest)
-   assert d._parent is None
-   assert d.duration == duration
-
-def test_cast_chord_as_rest_02( ):
-   t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
-   d = t[0].duration
-   Rest(t[0])
-   assert isinstance(t[0], Rest)
-   assert t[0]._parent is t
-   assert t[0].duration == d
-
-def test_cast_chord_as_rest_03( ):
-   v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
-   d = v[0].duration
-   Rest(v[0])
-   assert isinstance(v[0], Rest)
-   assert v[0]._parent is v
-   assert v[0].duration == d
-
-def test_cast_chord_as_rest_04( ):
-   t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   d = t[0].duration
-   Rest(t[0])
-   assert isinstance(t[0], Rest)
+   Skip(t[0])
+   assert isinstance(t[0], Skip)
    assert t[0]._parent is t
    assert t[0].duration == d

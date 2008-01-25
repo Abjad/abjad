@@ -36,8 +36,8 @@ class ChordInitializer(_Initializer):
             rest = args[0]
             Leaf.__init__(client, None, None)
             client.formatter = ChordFormatter(client)
-            del rest._pitch
             transfer_all_attributes(rest, client)
+            del client._pitch
          elif args[0].kind('Chord'):
             chord = args[0]
             Leaf.__init__(client, None, None)

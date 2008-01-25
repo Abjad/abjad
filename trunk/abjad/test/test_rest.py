@@ -10,15 +10,58 @@ def test_typical_rest_01( ):
    assert r.duration == r.duratum == Duration(1, 4)
 
 
+def test_typical_rest_02( ):
+   '''Rests can have no duration.'''
+   r = Rest( )
+   assert repr(r) == 'Rest( )'
+   assert r.format == ''
+   assert r.duration is None
+
+
+### TEST PITCHED REST ###
+
+def test_pitched_rest_01( ):
+   '''Rests can have pitch set with int.'''
+   r = Rest((1, 4))
+   r.pitch = 0
+   assert isinstance(r.pitch, Pitch)
+   assert repr(r) == 'Rest(4)'
+   assert r.format == "c'4\\rest"
+   assert r.duration == r.duratum == Duration(1, 4)
+
+
+def test_pitched_rest_02( ):
+   '''Rests can have pitch set with Pitch.'''
+   r = Rest((1, 4))
+   r.pitch = Pitch(0)
+   assert isinstance(r.pitch, Pitch)
+   assert repr(r) == 'Rest(4)'
+   assert r.format == "c'4\\rest"
+   assert r.duration == r.duratum == Duration(1, 4)
+
+
+def test_pitched_rest_03( ):
+   '''Rests can have pitch set to None.'''
+   r = Rest((1, 4))
+   r.pitch = None
+   assert isinstance(r.pitch, type(None))
+   assert repr(r) == 'Rest(4)'
+   assert r.format == "r4"
+   assert r.duration == r.duratum == Duration(1, 4)
+
+
 ### TEST CAST REST AS NOTE ###
 
 def test_cast_rest_as_note_01( ):
    r = Rest((1, 8))
    d = r.duration
-   r = Note(r)
-   assert isinstance(r, Note)
-   assert r._parent is None
-   assert r.duration == d
+   n = Note(r)
+   assert isinstance(n, Note)
+   # check that attributes have not been removed or added.
+   assert dir(r) == dir(Rest())
+   assert dir(n) == dir(Note())
+   assert n._parent is None
+   assert n.duration == d
 
 
 def test_cast_rest_as_note_02( ):
@@ -53,10 +96,13 @@ def test_cast_rest_as_note_04( ):
 def test_cast_rest_as_chord_01( ):
    r = Rest((1, 8))
    d = r.duration
-   r = Chord(r)
-   assert isinstance(r, Chord)
-   assert r._parent is None
-   assert r.duration == d
+   c = Chord(r)
+   assert isinstance(c, Chord)
+   # check that attributes have not been removed or added.
+   assert dir(r) == dir(Rest())
+   assert dir(c) == dir(Chord())
+   assert c._parent is None
+   assert c.duration == d
 
 
 def test_cast_rest_as_chord_02( ):
@@ -91,10 +137,13 @@ def test_cast_rest_as_chord_04( ):
 def test_cast_rest_as_skip_01( ):
    r = Rest((1, 8))
    d = r.duration
-   r = Skip(r)
-   assert isinstance(r, Skip)
-   assert r._parent is None
-   assert r.duration == d
+   s = Skip(r)
+   assert isinstance(s, Skip)
+   # check that attributes have not been removed or added.
+   assert dir(r) == dir(Rest())
+   assert dir(s) == dir(Skip())
+   assert s._parent is None
+   assert s.duration == d
 
 
 def test_cast_rest_as_skip_02( ):

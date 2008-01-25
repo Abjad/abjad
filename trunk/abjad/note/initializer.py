@@ -19,12 +19,13 @@ class NoteInitializer(_Initializer):
          if args[0].kind('Rest'):
             Leaf.__init__(client, None, None)
             rest = args[0]
-            del rest._pitch
             transfer_all_attributes(rest, client)
+            del client._pitch
          elif args[0].kind('Chord'):
             Leaf.__init__(client, None, None)
             chord = args[0]
             transfer_all_attributes(chord, client)
+            del client._noteheads
             if len(chord) > 0:
                copy = chord.copy( )
                client.notehead = copy.noteheads[0]
