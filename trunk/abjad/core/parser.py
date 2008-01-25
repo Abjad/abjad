@@ -6,7 +6,11 @@ class _Parser(object):
       return result
 
    def formatValue(self, value):
-      if self._isConstant(value):
+      if value is True:
+         return '##t'
+      elif value is False:
+         return '##f'
+      elif self._isConstant(value):
          return '#%s' % value
       elif self._isLilyFunctionName(value):
          return '#%s' % value
