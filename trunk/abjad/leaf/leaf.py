@@ -168,10 +168,10 @@ class Leaf(_Component):
          return self._staff.effective
       def fset(self, arg):
          if arg is None:
-            self._staff.forced = arg
+            self._staff._forced = arg
          else:
             assert arg.__class__.__name__ == 'Staff'
-            self._staff.forced = arg
+            self._staff._forced = arg
       return property(**locals( ))
 
    @apply

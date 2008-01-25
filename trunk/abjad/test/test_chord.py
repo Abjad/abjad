@@ -20,7 +20,7 @@ def test_demo_public_chord_interface_01( ):
 def test_tweaked_chord_01( ):
    t = Chord([2, 3, 4], (1, 4))
    t[0].style = 'harmonic'
-   assert t.format == "<\n\t\\tweak #'style #harmonic\n\td'\n\tef'\n\te'\n>4"
+   assert t.format == "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
 
 def test_tweaked_chord_02( ):
    t = Chord([2, 3, 4], (1, 4))

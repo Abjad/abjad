@@ -29,13 +29,14 @@ class ChordInitializer(_Initializer):
             client.formatter = ChordFormatter(client)
             transfer_all_attributes(note, client)
             del client._notehead
-            if note.notehead:
+            if note.notehead != None:
                copy = note.copy( )
                client.append(copy.notehead)
          if args[0].kind('Rest'):
             rest = args[0]
             Leaf.__init__(client, None, None)
             client.formatter = ChordFormatter(client)
+            del rest._pitch
             transfer_all_attributes(rest, client)
          elif args[0].kind('Chord'):
             chord = args[0]

@@ -10,8 +10,6 @@ def test_demo_public_notehead_interface_01( ):
    assert str(t.notehead) == "cs''"
    assert t.notehead.format == "cs''"
    assert t.notehead.pitch == Pitch(13)
-   assert t.notehead.style == None
-   assert t.notehead.transparent == None
 
 def test_demo_public_notehead_interface_02( ):
    t = Note(14, (1, 4))
@@ -19,8 +17,6 @@ def test_demo_public_notehead_interface_02( ):
    assert str(t.notehead) == "d''"
    assert t.notehead.format == "d''"
    assert t.notehead.pitch == Pitch(14)
-   assert t.notehead.style == None
-   assert t.notehead.transparent == None
 
 
 ### TEST CHANGE NOTEHEAD PITCH ###
@@ -67,9 +63,8 @@ def test_set_notehead_style_01( ):
    t = Note(13, (1, 4))
    t.notehead.style = 'harmonic'
    assert t.notehead.style == 'harmonic'
-   assert t.notehead.format == "\\once \\override NoteHead #'style = #harmonic\ncs''"
+   assert t.notehead.format == "\\once \\override NoteHead #'style = #'harmonic\ncs''"
    t.notehead.style = None
-   assert t.notehead.style == None
    assert t.notehead.format == "cs''"
 
 
@@ -81,5 +76,4 @@ def test_set_notehead_transparent_01( ):
    assert t.notehead.transparent
    assert t.notehead.format == "\\once \\override NoteHead #'transparent = ##t\ncs''"
    t.notehead.transparent = None
-   assert t.notehead.transparent == None
    assert t.notehead.format == "cs''"

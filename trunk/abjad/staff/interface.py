@@ -4,7 +4,7 @@ class StaffInterface(_Interface):
    
    def __init__(self, client):
       _Interface.__init__(self, client, 'Staff', ['Staff'])
-      self.forced = None
+      self._forced = None
 
    @property
    def given(self):
@@ -12,7 +12,7 @@ class StaffInterface(_Interface):
 
    @property
    def effective(self):
-      return self.forced if self.forced else self.given
+      return self._forced if self._forced else self.given
       
    @property
    def changed(self):
@@ -24,7 +24,7 @@ class StaffInterface(_Interface):
    @property
    def _before(self):
       result = [ ]
-      if self.changed or (not self._client.prev and self.forced):
+      if self.changed or (not self._client.prev and self._forced):
          assert self.effective.invocation.rhs
          result.append(r'\change Staff = %s' % self.effective.invocation.rhs)
       return result
@@ -33,7 +33,7 @@ class StaffInterface(_Interface):
    def _after(self):
       '''Used only when very last note in staff is staff changed.'''
       result = [ ]
-      if (self.changed or (not self._client.prev and self.forced)) and \
+      if (self.changed or (not self._client.prev and self._forced)) and \
          not self._client.next:
          result.append(r'\change Staff = %s' % self.given.invocation.rhs)
       return result

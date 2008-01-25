@@ -45,12 +45,12 @@ def test_cast_02( ):
 def test_cast_03( ):
    '''Round-trip (re)initialization from (pitched) chord to
       rest (or skip) and back again strips pitch.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0] = Chord([2, 3, 4], (1, 8))
-   assert staff.format == "\\new Staff {\n\t<d' ef' e'>8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   Rest(staff[0])
-   Chord(staff[0])
-   assert staff.format == "\\new Staff {\n\t<>8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   t[0] = Chord([2, 3, 4], (1, 8))
+   assert t.format == "\\new Staff {\n\t<d' ef' e'>8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   Rest(t[0])
+   Chord(t[0])
+   assert t.format == "\\new Staff {\n\t<>8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    '''
    \new Staff {
            <>8

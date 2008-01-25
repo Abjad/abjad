@@ -19,6 +19,12 @@ class _Interface(object):
       return len([kvp for kvp in self.__dict__.items( ) 
          if not kvp[0].startswith('_')])
 
+   def __setattr__(self, attr, value):
+      if not attr.startswith('_') and value is None and attr in self.__dict__:
+         delattr(self, attr) 
+      else:
+         object.__setattr__(self, attr, value)
+
    ### PROPERTIES ###
 
    @property

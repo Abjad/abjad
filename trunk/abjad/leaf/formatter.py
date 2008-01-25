@@ -69,7 +69,7 @@ class LeafFormatter(_Formatter):
       result.extend(self._collectLocation('_left'))
       if hasattr(self._client, 'notehead') and \
          self._client.notehead is not None:
-         result.extend(self._client.notehead.formatter.left)
+         result.extend(self._client.notehead._formatter.left)
       result.append(self._client._body)
       result.extend(self._client.tremolo.body)
       result.extend(self._collectLocation('_right'))

@@ -1,15 +1,14 @@
+from .. core.interface import _Interface
 from formatter import NoteHeadFormatter
 from .. pitch.pitch import Pitch
 
-class NoteHead(object):
+class NoteHead(_Interface):
 
-   def __init__(self, client, pitch = None, style = None, 
-      transparent = None):
+   def __init__(self, client, pitch = None):
+      _Interface.__init__(self, client, 'NoteHead', [ ])
       self._client = client
-      self.formatter = NoteHeadFormatter(self)
+      self._formatter = NoteHeadFormatter(self)
       self.pitch = pitch
-      self.style = style
-      self.transparent = transparent
 
    ### REPR ###
 
@@ -40,10 +39,23 @@ class NoteHead(object):
             self._pitch = Pitch(arg)
          else:
             raise ValueError('Can not set NoteHead.pitch = %s' % arg)
-      def fdel(self):
-         self._pitch = None
       return property(**locals( ))
+
+   ### FORMATTING ###
+
+   @property
+   def _before(self):
+      result = [ ]
+      if self._client.kind('Chord'):
+         for key, value in self.__dict__.items( ):
+            if not key.startswith('_'):
+               result.append(r'\tweak %s %s' % (
+                  self._parser.formatAttribute(key),
+                  self._parser.formatValue(value)))
+      else:
+         result.extend(_Interface._before.fget(self))
+      return result
 
    @property
    def format(self):
-      return self.formatter.lily
+      return self._formatter.lily

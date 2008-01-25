@@ -18,6 +18,7 @@ class SkipInitializer(_Initializer):
          if args[0].kind('Rest'):
             Leaf.__init__(client, None, None)
             rest = args[0]
+            del rest._pitch
             transfer_all_attributes(rest, client)
          elif args[0].kind('Chord'):
             Leaf.__init__(client, None, None)

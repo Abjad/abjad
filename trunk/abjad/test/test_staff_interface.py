@@ -1,10 +1,6 @@
 from abjad import *
 
 
-### TODO test, profile and figure out if this stuff is ###
-###      taking too long                               ###
-
-
 def test_staff_interface_01( ):
    '''Staff changes work on the first note of a staff.'''
    piano = Staff(Staff([Note(n, (1, 8)) for n in range(8)]) * 2)
