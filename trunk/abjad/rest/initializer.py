@@ -8,6 +8,8 @@ class RestInitializer(_Initializer):
       from .. chord.chord import Chord
       from .. skip.skip import Skip
 
+      client.pitch = None
+
       if len(args) == 0:
          Leaf.__init__(client, None, None)
       elif len(args) == 1 and isinstance(args[0], Leaf):
