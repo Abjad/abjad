@@ -1,5 +1,6 @@
 from .. leaf.leaf import Leaf
 from initializer import RestInitializer
+from .. pitch.pitch import Pitch
 
 class Rest(Leaf):
 
@@ -21,11 +22,32 @@ class Rest(Leaf):
       else:
          return ''
 
+   ### PROPERTIES ###
+   @apply
+   def pitch( ):
+      def fget(self):
+          return self._pitch
+      def fset(self, arg):
+         if isinstance(arg, type(None)):
+            self._pitch = None
+         elif isinstance(arg, (int, float, long)):
+            self._pitch = Pitch(arg)
+         elif isinstance(arg, tuple):
+            self._pitch = Pitch(*arg)
+         elif isinstance(arg, Pitch):
+            self._pitch = arg
+         else:
+            raise ValueError('Can not set Rest.pitch from %s' % str(arg))
+      return property(**locals( ))
+
    ### FORMATTING ###
   
    @property
    def _body(self):
       if self._product:
-         return 'r%s' % self._product
+         if self.pitch:
+            return '%s%s\\rest' % (self.pitch, self._product)
+         else:
+            return 'r%s' % self._product
       else:
          return ''
