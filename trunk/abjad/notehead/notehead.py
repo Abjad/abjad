@@ -2,6 +2,7 @@ from .. core.interface import _Interface
 from formatter import NoteHeadFormatter
 from .. pitch.pitch import Pitch
 
+
 class NoteHead(_Interface):
 
    def __init__(self, client, pitch = None):
