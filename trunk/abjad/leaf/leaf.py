@@ -9,7 +9,7 @@ from .. duration.duration import Duration
 from .. dynamics.interface import DynamicsInterface
 from .. glissando.interface import GlissandoInterface
 from .. grace.interface import GraceInterface
-from .. core.history import HistoryInterface
+#from .. core.history import HistoryInterface
 from .. core.interface import _Interface
 from formatter import LeafFormatter
 from spannerinterface import LeafSpannerInterface
@@ -32,7 +32,7 @@ class Leaf(_Component):
       self._glissando = GlissandoInterface(self)
       self.grace = GraceInterface( )
       self.duration = duration
-      self.history = HistoryInterface(self)
+      self.history = { }
       self.multiplier = multiplier
       self.spanners = LeafSpannerInterface(self)
       self._staff = StaffInterface(self)
