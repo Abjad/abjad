@@ -4,6 +4,7 @@ from .. articulations.interface import ArticulationsInterface
 from .. beam.interface import BeamInterface
 from .. clef.clef import Clef
 from .. core.component import _Component
+from .. dots.interface import DotsInterface
 from .. duration.duration import Duration
 from .. dynamics.interface import DynamicsInterface
 from .. glissando.interface import GlissandoInterface
@@ -16,6 +17,7 @@ from .. duration.rational import Rational
 from .. staff.interface import StaffInterface
 from .. stem.interface import StemInterface
 from .. tremolo.interface import TremoloInterface
+from .. trill.interface import TrillInterface
 
 class Leaf(_Component):
 
@@ -24,6 +26,7 @@ class Leaf(_Component):
       self._parent = None
       self._articulations = ArticulationsInterface(self)
       self.beam = BeamInterface(self)
+      self.dots = DotsInterface(self)
       self._dynamics = DynamicsInterface(self)
       self.formatter = LeafFormatter(self)
       self._glissando = GlissandoInterface(self)
@@ -35,6 +38,7 @@ class Leaf(_Component):
       self._staff = StaffInterface(self)
       self.stem = StemInterface(self)
       self.tremolo = TremoloInterface(self)
+      self.trill = TrillInterface(self)
 
    ### REPR ###
 
@@ -261,7 +265,7 @@ class Leaf(_Component):
 
    def _die(self):
       for spanner in self.spanners.get( ):
-         spanner.sever(spanner.index(self))
+         spanner._sever(spanner.index(self))
       self._parentage._detach( )
 
    @property
