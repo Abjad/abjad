@@ -23,6 +23,7 @@ from score.score import Score
 from containers.sequential import Sequential
 from skip.skip import Skip
 from staff.staff import Staff
+from trill.spanner import Trill
 from voice.voice import Voice
 from wf.check import check
 
