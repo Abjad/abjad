@@ -35,6 +35,12 @@ class _Interface(object):
       return result
 
    @property
+   def spanner(self):
+      spanners = self.spanners
+      if spanners:
+         return self.spanners[0]
+
+   @property
    def spanned(self):
       return bool(self.spanners)
 
@@ -44,6 +50,10 @@ class _Interface(object):
       for key, value in self.__dict__.items( ):
          if not key.startswith('_'):
             delattr(self, key)
+
+   def unspan(self):
+      for spanner in self.spanners[ : ]:
+         spanner.die( )
 
    def copy(self):
       from copy import copy
