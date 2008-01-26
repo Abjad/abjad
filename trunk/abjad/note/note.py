@@ -71,11 +71,20 @@ class Note(Leaf):
 
    @property
    def _body(self):
-      if self.pitch and self._product:
-         return '%s%s' % (self.pitch, self._product)
-      elif self.pitch:
-         return str(self.pitch)
-      elif self._product:
-         return str(self._product)
-      else:
-         return ''
+#      if self.pitch and self._product:
+#         return '%s%s' % (self.pitch, self._product)
+#      elif self.pitch:
+#         return str(self.pitch)
+#      elif self._product:
+#         return str(self._product)
+#      else:
+#         return ''
+
+      result = ''
+      if self.pitch:
+         result += str(self.pitch)
+      if self._product:
+         result += str(self._product)
+      if self.stem.tremolo:
+         result += ' :%s' % self.stem.tremolo
+      return result 

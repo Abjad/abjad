@@ -8,8 +8,12 @@ class ChordFormatter(LeafFormatter):
 
    @property
    def _chordNucleus(self):
-      return '<%s>%s%s' % (self._client._summary, 
-         self._client._product, self._client.tremolo.body)
+      result = '<%s>' % self._client._summary
+      if self._client._product:
+         result += str(self._client._product)
+      if self._client.stem.tremolo:
+         result += ' :%s' % self._client.stem.tremolo
+      return result
 
    @property
    def _body(self):
@@ -19,8 +23,11 @@ class ChordFormatter(LeafFormatter):
          result.append('<')
          for notehead in self._client.noteheads:
             result.extend(['\t' + x for x in notehead._formatter._lily])
-         result.append('>%s%s' % 
-            (self._client._product, self._client.tremolo.body))
+         if self._client.stem.tremolo:
+            result.append('>%s%s' % 
+               (self._client._product, self._client.tremolo.body))
+         else:
+            result.append('>%s' % self._client._product)
          return ['\n'.join(result)]
       else:
          result.extend(self._collectLocation('_left'))

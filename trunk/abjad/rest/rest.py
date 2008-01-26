@@ -44,10 +44,23 @@ class Rest(Leaf):
   
    @property
    def _body(self):
-      if self._product:
-         if self.pitch:
-            return '%s%s\\rest' % (self.pitch, self._product)
-         else:
-            return 'r%s' % self._product
+#      if self._product:
+#         if self.pitch:
+#            return '%s%s\\rest' % (self.pitch, self._product)
+#         else:
+#            return 'r%s' % self._product
+#      else:
+#         return ''
+
+      result = ''
+      if self.pitch:
+         result += str(self.pitch)
       else:
-         return ''
+         result += 'r'
+      if self._product:
+         result += str(self._product)
+      if self.pitch:
+         result += r' \rest'
+      if self.stem.tremolo:
+         result += ' :%s' % self.stem.tremolo
+      return result
