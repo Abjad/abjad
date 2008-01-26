@@ -10,6 +10,7 @@ class NoteHead(_Interface):
       self._client = client
       self._formatter = NoteHeadFormatter(self)
       self.pitch = pitch
+      self._shape = None
 
    ### REPR ###
 
@@ -42,6 +43,38 @@ class NoteHead(_Interface):
             raise ValueError('Can not set NoteHead.pitch = %s' % arg)
       return property(**locals( ))
 
+   @apply
+   def shape( ):
+      def fget(self):
+         return self._shape
+      def fset(self, expr):
+         if expr is None:
+            self._shape = None
+         elif isinstance(expr, str):
+            self._shape = expr
+         else:
+            raise ValueError('can not set notehead shape.')
+      return property(**locals( ))
+
+   ### SHAPE NOTE HANDLERS ###
+
+   _noteheadShapeToShapeNoteStyle = {
+      'triangle' : 'do',         'semicircle' : 're',    'diamond' : 'mi',
+      'tiltedtriangle' : 'fa',   'square' : 'la',        'wedge' : 'ti',
+      'cross' : 'cross' }
+
+   def _shapeNoteStyleVector(self, shape):
+      return '#(%s)' % ' '.join(
+         [self._noteheadShapeToShapeNoteStyle[shape]] * 7)
+
+   @property
+   def _shapeNoteStyleSetting(self):
+      result = [ ]
+      if self.shape:
+         result.append(r'\once \set shapeNoteStyles = #%s' % 
+            self._shapeNoteStyleVector(self.shape))
+      return result
+
    ### FORMATTING ###
 
    @property
@@ -55,6 +88,7 @@ class NoteHead(_Interface):
                   self._parser.formatValue(value)))
       else:
          result.extend(_Interface._before.fget(self))
+      result.extend(self._shapeNoteStyleSetting)
       return result
 
    @property
