@@ -2,6 +2,7 @@ from brackets import Brackets
 from .. core.component import _Component
 from .. duration.duration import Duration
 from formatter import ContainerFormatter
+from .. helpers.hasname import hasname
 from .. helpers.instances import instances
 from spannerinterface import ContainerSpannerInterface
 
@@ -56,7 +57,10 @@ class Container(_Component):
    def duration(self):
       duration = Duration(0)
       for x in self:
-         duration += x.duration
+         if hasname(x, 'Leaf') and x.multiplier is not None:
+            duration += x.duration * x.multiplier
+         else:
+            duration += x.duration
       return duration
 
    @property
@@ -186,6 +190,15 @@ class Container(_Component):
 
    def extend(self, expr):
       self[len(self) : len(self)] = expr
+
+   ### TODO - change pop so that it doesn't denature the popped item;
+   ###        also return the popped item;
+   ### EXAMPLE:
+   ###        t = Staff([Voice(0, (1, 8)) * 8)])
+   ###        v = t[0]
+   ###        t.pop( )
+   ###        v is now denatured & has no contents;
+   ###        this seems unnecessarily harsh.
 
    def pop(self, i = None):
       if i is None:

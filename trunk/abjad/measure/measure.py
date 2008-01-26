@@ -1,6 +1,7 @@
 from .. containers.container import Container
 from .. duration.duration import Duration
 from formatter import MeasureFormatter
+from .. helpers.hasname import hasname
 from meter import Meter
 
 class Measure(Container):
@@ -50,7 +51,10 @@ class Measure(Container):
    def duration(self):
       duration = Duration(0)
       for x in self:
-         duration += x.duration
+         if hasname(x, 'Leaf') and x.multiplier is not None:
+            duration += x.duration * x.multiplier
+         else:
+            duration += x.duration
       return duration
 
    @property
