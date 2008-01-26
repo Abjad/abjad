@@ -3,6 +3,9 @@ from math import floor
 
 class PitchTools(object):
 
+   def __init__(self, _client):
+      self._client = _client
+
    ### REPR ###
 
    def __repr__(self):
@@ -80,7 +83,7 @@ class PitchTools(object):
       staffSpaces = self.diatonicIntervalToStaffSpaces[interval]
       diatonicScaleDegree = self.addStaffSpaces(staffSpaces)
       letter = self.diatonicScaleDegreeToLetter[diatonicScaleDegree]
-      pitchNumber = self.number + \
+      pitchNumber = self._client.number + \
          self.diatonicIntervalToAbsoluteInterval[diatonicInterval]
       accidentalString = self.letterPitchNumberToNearestAccidentalString(
          letter, pitchNumber)
@@ -89,7 +92,7 @@ class PitchTools(object):
       return Pitch(pitchName, octave) 
 
    def addStaffSpaces(self, staffSpaces):
-      scaleDegree = (self.diatonicScaleDegree + staffSpaces) % 7
+      scaleDegree = (self._client.diatonicScaleDegree + staffSpaces) % 7
       if scaleDegree == 0:
          scaleDegree = 7
       return scaleDegree

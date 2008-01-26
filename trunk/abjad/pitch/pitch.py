@@ -6,7 +6,7 @@ from math import floor
 class Pitch(object):
 
    def __init__(self, *args):
-      self.tools = PitchTools( )
+      self.tools = PitchTools(self)
       self.initializer = PitchInitializer( )
       self.initializer.initialize(self, *args)
 
