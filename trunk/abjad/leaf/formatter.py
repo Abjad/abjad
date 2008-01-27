@@ -59,7 +59,7 @@ class LeafFormatter(_Formatter):
       result = [ ]
       tempo = self._client.tempo
       if tempo:
-         result.append(r'\tempo %s=%s' % (tempo[0].lily, tempo[1]))
+         result.append(r'\tempo %s=%s' % tempo)
       return result
 
    @property

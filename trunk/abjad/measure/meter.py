@@ -1,4 +1,4 @@
-from .. duration.duration import Duration
+from .. duration.rational import Rational
 
 class Meter(object):
 
@@ -45,7 +45,7 @@ class Meter(object):
 
    @property
    def duration(self):
-      return Duration(self.numerator, self.denominator)
+      return Rational(self.numerator, self.denominator)
 
    ### COMPARISON TESTING ###
 

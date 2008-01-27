@@ -2,7 +2,7 @@ from .. core.duration import _DurationInterface
 from .. core.interface import _Interface
 from .. helpers.binary import binary
 from .. helpers.hasname import hasname
-from rational import Rational
+from .. duration.rational import Rational
 from math import log, floor
 
 class LeafDurationInterface(_DurationInterface):

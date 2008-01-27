@@ -58,21 +58,6 @@ class Container(_Component):
    def duration(self):
       return self._duration
 
-#   @property
-#   def composite(self):
-#      duration = Duration(0)
-#      for x in self:
-#         if hasname(x, 'Leaf'):
-#            duration += x.duration.multiplied
-#         else:
-#            duration += x.duration
-#      return duration
-#
-#   @property
-#   def absolute(self):
-#      result = self._parentage._prolation * self.composite
-#      return Duration(*result.pair)
-
    ### NAVIGATION ###
 
    @property

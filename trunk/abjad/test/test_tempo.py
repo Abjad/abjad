@@ -76,7 +76,7 @@ def test_tempo_05( ):
 def test_tempo_06( ):
    '''Tempo accepts durations.'''
    t = Note(0, (1, 4))
-   t.tempo = Duration(1, 8), 38
+   t.tempo = Rational(1, 8), 38
    assert t.format == "\\tempo 8=38\nc'4"
    '''
    \tempo 8=38
@@ -87,7 +87,7 @@ def test_tempo_06( ):
 def test_tempo_07( ):
    '''None clears tempo.'''
    t = Note(0, (1, 4))
-   t.tempo = Duration(1, 8), 38
+   t.tempo = Rational(1, 8), 38
    t.tempo = None
    assert t.format == "c'4"
    '''

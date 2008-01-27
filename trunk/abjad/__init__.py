@@ -5,9 +5,8 @@ from chord.chord import Chord
 from dynamics.crescendo import Crescendo
 from containers.container import Container
 from dynamics.decrescendo import Decrescendo
-from duration.duration import Duration
-from tuplet.fdtuplet import FixedDurationTuplet
-from tuplet.fmtuplet import FixedMultiplierTuplet
+from tuplet.fd.tuplet import FixedDurationTuplet
+from tuplet.fm.tuplet import FixedMultiplierTuplet
 from glissando.spanner import Glissando
 from grace.grace import Grace
 from dynamics.hairpin import Hairpin

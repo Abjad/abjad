@@ -11,8 +11,8 @@ def test_typical_measure_01( ):
    assert t.format == "\t\\time 4/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4"
    #assert t.meter == Meter(4, 4)
    assert len(t) == 4
-   assert t.duration == Duration(1)
-   assert t.duration.absolute == Duration(1)
+   assert t.duration == Rational(1)
+   assert t.duration.absolute == Rational(1)
    assert check_measures(t, ret = True)
 
 
@@ -25,8 +25,8 @@ def test_unmetered_measure_01( ):
    assert t.format == "\tc'4\n\tc'4\n\tc'4\n\tc'4"
    assert t.meter == None
    assert len(t) == 4
-   assert t.duration == Duration(1)
-   assert t.duration.absolute == Duration(1)
+   assert t.duration == Rational(1)
+   assert t.duration.absolute == Rational(1)
    assert check_measures(t, ret = True)
 
 
@@ -39,8 +39,8 @@ def test_empty_measure_01( ):
    assert t.format == ''
    assert t.meter == None
    assert len(t) == 0
-   assert t.duration == Duration(0)
-   assert t.duration.absolute == Duration(0)
+   assert t.duration == Rational(0)
+   assert t.duration.absolute == Rational(0)
    assert check_measures(t, ret = True)
 
 def test_empty_measure_02( ):
@@ -50,8 +50,8 @@ def test_empty_measure_02( ):
    assert t.format == '\t\\time 4/4'
    #assert t.meter == Meter(4, 4)
    assert len(t) == 0
-   assert t.duration == Duration(0)
-   assert t.duration.absolute == Duration(0)
+   assert t.duration == Rational(0)
+   assert t.duration.absolute == Rational(0)
    assert not check_measures(t, ret = True)
 
 

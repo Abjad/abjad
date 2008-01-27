@@ -5,7 +5,7 @@ def test_grace_01( ):
    '''Grace music is a container.'''
    t = Grace([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
    assert len(t) == 3
-   assert t.duration == Duration(3, 16)
+   assert t.duration == Rational(3, 16)
    assert t.format == "\\grace {\n\tc'16\n\td'16\n\te'16\n}"
    '''
    \grace {

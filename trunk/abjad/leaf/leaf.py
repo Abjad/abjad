@@ -5,7 +5,7 @@ from .. beam.interface import BeamInterface
 from .. clef.clef import Clef
 from .. core.component import _Component
 from .. dots.interface import DotsInterface
-from .. duration.interface import LeafDurationInterface
+from duration import LeafDurationInterface
 from .. dynamics.interface import DynamicsInterface
 from .. glissando.interface import GlissandoInterface
 from .. grace.interface import GraceInterface

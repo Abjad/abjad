@@ -8,7 +8,7 @@ def test_demo_skip_public_interface_01( ):
    assert repr(s) == 'Skip(8)'
    assert str(s) == 's8'
    assert s.format == 's8'
-   assert s.duration.written == s.duration.absolute == Duration(1, 8)
+   assert s.duration.written == s.duration.absolute == Rational(1, 8)
 
 
 def test_demo_skip_public_interface_02( ):
@@ -16,7 +16,7 @@ def test_demo_skip_public_interface_02( ):
    assert repr(s) == 'Skip(8.)'
    assert str(s) == 's8.'
    assert s.format == 's8.'
-   assert s.duration.written == s.duration.absolute == Duration(3, 16)
+   assert s.duration.written == s.duration.absolute == Rational(3, 16)
 
 
 ### TEST CAST SKIP AS NOTE ###

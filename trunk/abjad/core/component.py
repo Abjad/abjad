@@ -5,7 +5,6 @@ from copier import Copier
 from .. core.navigator import Navigator
 from .. core.parentage import Parentage
 from .. duration.rational import Rational
-from .. duration.duration import Duration
 from .. staff.interface import StaffInterface
 
 class _Component(object):
@@ -43,18 +42,22 @@ class _Component(object):
    @apply
    def tempo( ):
       def fget(self):
-         return self._tempo
+         if self._tempo is not None:
+            return self._tempo[0].duration._dotted, self._tempo[1]
+         else:
+            return None
       def fset(self, expr):
          if expr == None:
             self._tempo = None
          else:
             assert isinstance(expr, tuple)
-            assert isinstance(expr[0], (tuple, Duration))
+            assert isinstance(expr[0], (tuple, Rational))
             assert isinstance(expr[1], (int, float, long))
+            from .. note.note import Note
             if isinstance(expr[0], tuple):
-               self._tempo = (Duration(*expr[0]), expr[1])
-            elif isinstance(expr[0], Duration):
-               self._tempo = (expr[0], expr[1])
+               self._tempo = (Note(0, expr[0]), expr[1])
+            elif isinstance(expr[0], Rational):
+               self._tempo = (Note(0, expr[0]), expr[1])
       return property(**locals( ))
 
    @apply

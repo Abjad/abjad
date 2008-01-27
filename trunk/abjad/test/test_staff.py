@@ -196,9 +196,9 @@ def test_staff_setitem_01( ):
 def test_staff_setitem_02( ):
    '''Reassign the *entire* contents of t.'''
    t = Staff(Note(0, (1, 4)) * 4)
-   assert t.duration == Duration(4, 4)
+   assert t.duration == Rational(4, 4)
    t[ : ] = Note(0, (1, 8)) * 4
-   assert t.duration == Duration(4, 8)
+   assert t.duration == Rational(4, 8)
 
 def test_staff_setitem_03( ):
    '''Item-assign an empty container to t.'''
@@ -237,9 +237,9 @@ def test_staff_setitem_08( ):
    t[0 : 4] = Chord([2, 3, 4], (1, 4)) * 4
    assert len(t) == 8
    for x in t[0 : 4]:
-      assert x.duration == Duration(1, 4)
+      assert x.duration == Rational(1, 4)
    for x in t[4 : 8]:
-      assert x.duration == Duration(1, 8)
+      assert x.duration == Rational(1, 8)
    assert check(t, ret = True)
 
 def test_staff_setitem_09( ):
@@ -377,28 +377,28 @@ def test_staff_append_01( ):
    t.append(Note(0, (1, 4)))
    assert check(t, ret = True)
    assert len(t) == 5
-   assert t.duration == Duration(5, 4)
+   assert t.duration == Rational(5, 4)
 
 def test_staff_append_02( ):
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(Chord([2, 3, 4], (1, 4)))
    assert check(t, ret = True)
    assert len(t) == 5
-   assert t.duration == Duration(5, 4)
+   assert t.duration == Rational(5, 4)
 
 def test_staff_append_03( ):
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3))
    assert check(t, ret = True)
    assert len(t) == 5
-   assert t.duration == Duration(5, 4)
+   assert t.duration == Rational(5, 4)
 
 def test_staff_append_04( ):
    '''Empty containers are allowed but not well-formed.'''
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(FixedDurationTuplet((2, 8), [ ]))
    assert len(t) == 5
-   assert t.duration == Duration(5, 4)
+   assert t.duration == Rational(5, 4)
 
 
 ### TEST SET STAFF INVOCATION ###

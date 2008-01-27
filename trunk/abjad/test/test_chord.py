@@ -12,7 +12,7 @@ def test_demo_public_chord_interface_01( ):
    assert len(t) == 3
    assert len(t.noteheads) == 3
    assert len(t.pitches) == 3
-   assert t.duration.written == t.duration.absolute == Duration(1, 4)
+   assert t.duration.written == t.duration.absolute == Rational(1, 4)
 
 
 ### TEST TWEAKED CHORD ###
