@@ -9,41 +9,41 @@ class NoteInitializer(_Initializer):
       from .. skip.skip import Skip
 
       client.notehead = None
-      if len(args) == 0:
-         Leaf.__init__(client, None, None)
-      elif len(args) == 1 and isinstance(args[0], Leaf):
+      #if len(args) == 0:
+      #   Leaf.__init__(client, None, None)
+      if len(args) == 1 and isinstance(args[0], Leaf):
          if args[0].kind('Note'):
-            Leaf.__init__(client, None, None)
             note = args[0]
+            Leaf.__init__(client, note.duration.written.pair)
             transfer_all_attributes(note, client)
          if args[0].kind('Rest'):
-            Leaf.__init__(client, None, None)
             rest = args[0]
+            Leaf.__init__(client, rest.duration.written.pair)
             transfer_all_attributes(rest, client)
             del client._pitch
          elif args[0].kind('Chord'):
-            Leaf.__init__(client, None, None)
             chord = args[0]
+            Leaf.__init__(client, chord.duration.written.pair)
             transfer_all_attributes(chord, client)
             del client._noteheads
             if len(chord) > 0:
                copy = chord.copy( )
                client.notehead = copy.noteheads[0]
          elif args[0].kind('Skip'):
-            Leaf.__init__(client, None, None)
             skip = args[0]
+            Leaf.__init__(client, skip.duration.written.pair)
             transfer_all_attributes(skip, client)
-      elif len(args) == 1:
-         Leaf.__init__(client, None, None)
-         pitch = args[0]
-         client.pitch = pitch
+#      elif len(args) == 1:
+#         Leaf.__init__(client, None, None)
+#         pitch = args[0]
+#         client.pitch = pitch
       elif len(args) == 2:
          pitch, duration = args
-         Leaf.__init__(client, duration, None)
+         Leaf.__init__(client, duration)
          client.pitch = pitch
-      elif len(args) == 3:
-         pitch, duration, multiplier = args
-         Leaf.__init__(client, duration, multiplier)
-         client.pitch = pitch
+#      elif len(args) == 3:
+#         pitch, duration, multiplier = args
+#         Leaf.__init__(client, duration, multiplier)
+#         client.pitch = pitch
       else:
          raise ValueError('can not initialize note.')

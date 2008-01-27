@@ -11,7 +11,7 @@ class LeafFormatter(_Formatter):
       for value in self._client.__dict__.values( ):
          if isinstance(value, _Interface):
             result.append(value)
-      result.sort( )
+      result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
 
    def _collectLocation(self, location):

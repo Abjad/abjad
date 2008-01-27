@@ -435,5 +435,4 @@ class _Spanner(object):
       
    @property
    def duration(self):
-      from .. duration.duration import Duration
-      return sum([l.duratum for l in self.leaves], Duration(0))
+      return sum([l.duration.absolute for l in self.leaves])

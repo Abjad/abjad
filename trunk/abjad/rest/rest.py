@@ -7,20 +7,13 @@ class Rest(Leaf):
    def __init__(self, *args):
       self.initializer = RestInitializer(self, Leaf, *args )
    
-
    ### REPR ###
 
    def __repr__(self):
-      if self._product:
-         return 'Rest(%s)' % self._product
-      else:
-         return 'Rest( )'
+      return 'Rest(%s)' % self.duration._product
 
    def __str__(self):
-      if self._product:
-         return 'r%s' % self._product
-      else:
-         return ''
+      return 'r%s' % self.duration._product
 
    ### PROPERTIES ###
    @apply
@@ -44,21 +37,12 @@ class Rest(Leaf):
   
    @property
    def _body(self):
-#      if self._product:
-#         if self.pitch:
-#            return '%s%s\\rest' % (self.pitch, self._product)
-#         else:
-#            return 'r%s' % self._product
-#      else:
-#         return ''
-
       result = ''
       if self.pitch:
          result += str(self.pitch)
       else:
          result += 'r'
-      if self._product:
-         result += str(self._product)
+      result += str(self.duration._product)
       if self.pitch:
          result += r' \rest'
       if self.stem.tremolo:

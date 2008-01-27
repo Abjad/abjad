@@ -11,14 +11,7 @@ class Note(Leaf):
    ### REPR ###
 
    def __repr__(self):
-      if self.pitch and self._product:
-         return 'Note(%s, %s)' % (self.pitch, self._product)
-      elif self.pitch:
-         return 'Note(%s)' % self.pitch
-      elif self._product:
-         return 'Note(%s)' % self._product
-      else:
-         return 'Note( )'
+      return 'Note(%s, %s)' % (self.pitch, self.duration._product)
 
    def __str__(self):
       return self._body
@@ -71,20 +64,10 @@ class Note(Leaf):
 
    @property
    def _body(self):
-#      if self.pitch and self._product:
-#         return '%s%s' % (self.pitch, self._product)
-#      elif self.pitch:
-#         return str(self.pitch)
-#      elif self._product:
-#         return str(self._product)
-#      else:
-#         return ''
-
       result = ''
       if self.pitch:
          result += str(self.pitch)
-      if self._product:
-         result += str(self._product)
+      result += str(self.duration._product)
       if self.stem.tremolo:
          result += ' :%s' % self.stem.tremolo
       return result 

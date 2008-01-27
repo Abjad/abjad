@@ -5,11 +5,10 @@ from .. beam.interface import BeamInterface
 from .. clef.clef import Clef
 from .. core.component import _Component
 from .. dots.interface import DotsInterface
-from .. duration.duration import Duration
+from .. duration.interface import LeafDurationInterface
 from .. dynamics.interface import DynamicsInterface
 from .. glissando.interface import GlissandoInterface
 from .. grace.interface import GraceInterface
-#from .. core.history import HistoryInterface
 from .. core.interface import _Interface
 from formatter import LeafFormatter
 from spannerinterface import LeafSpannerInterface
@@ -21,19 +20,18 @@ from .. trill.interface import TrillInterface
 
 class Leaf(_Component):
 
-   def __init__(self, duration = None, multiplier = None):
+   def __init__(self, duration):
       _Component.__init__(self)
       self._parent = None
       self._articulations = ArticulationsInterface(self)
       self.beam = BeamInterface(self)
       self.dots = DotsInterface(self)
+      self._duration = LeafDurationInterface(self, duration)
       self._dynamics = DynamicsInterface(self)
       self.formatter = LeafFormatter(self)
       self._glissando = GlissandoInterface(self)
       self.grace = GraceInterface( )
-      self.duration = duration
       self.history = { }
-      self.multiplier = multiplier
       self.spanners = LeafSpannerInterface(self)
       self._staff = StaffInterface(self)
       self.stem = StemInterface(self)
@@ -52,21 +50,15 @@ class Leaf(_Component):
       def fget(self):
          return self._duration
       def fset(self, *args):
-         if args[0] is None:
-            duration = None
-         elif isinstance(args[0], (int, long)):
-            duration = Duration(args[0])
+         if isinstance(args[0], (int, long)):
+            rational = Rational(args[0])
          elif isinstance(args[0], tuple):
-            duration = Duration(*args[0])
-         elif isinstance(args[0], (Duration, Rational)):
-            duration = Duration(*args[0].pair)
+            rational = Rational(*args[0])
+         elif isinstance(args[0], (Rational, Rational)):
+            rational = Rational(*args[0].pair)
          else:
             raise ValueError('can not set duration from %s.' % str(args))
-         if duration is not None and not duration.isNoteHeadAssignable( ):
-            raise ValueError('duration %s must be notehead-assignable.' % 
-               duration)
-         else:
-            self._duration = duration
+         self._duration.written = rational
       return property(**locals( ))
 
    @apply
@@ -80,49 +72,6 @@ class Leaf(_Component):
             raise ValueError('must be boolean.')
       return property(**locals( ))
 
-   @apply
-   def multiplier( ):
-      def fget(self):
-         return self._multiplier
-      def fset(self, *args):
-         if args[0] is None:
-            multiplier = None
-         elif isinstance(args[0], (int, long)):
-            multiplier = Rational(args[0])
-         elif isinstance(args[0], tuple):
-            multiplier = Rational(*args[0])
-         elif isinstance(args[0], (Duration, Rational)):
-            multiplier = Rational(*args[0].pair)
-         else:
-            raise ValueError('can not set multiplier from %s.' % str(args))
-         if multiplier and multiplier <= 0:
-            raise ValueError('multiplier %s must be positive.' % multiplier)
-         else:
-            self._multiplier = multiplier
-      return property(**locals( ))
-
-   @property
-   def _product(self):
-      if self.duration and self.multiplier:
-         return '%s * %s' % (self.duration.lily, self.multiplier)
-      elif self.duration:
-         return self.duration.lily
-      elif self.multiplier:
-         return '0 * %s' % self.multiplier
-      else:
-         return ''
-   
-   @property
-   def duratum(self):
-      if self.duration and self.multiplier:
-         result = self._parentage._prolation * self.duration * self.multiplier
-         return Duration(*result.pair)
-      elif self.duration:
-         result = self._parentage._prolation * self.duration
-         return Duration(*result.pair)
-      else:
-         return None
-
    @property
    def number(self):
       cur = self
@@ -135,10 +84,10 @@ class Leaf(_Component):
    @property
    def offset(self):
       cur = self
-      offset = Duration(0)
+      offset = 0
       while cur.prev:
          cur = cur.prev
-         offset += cur.duratum
+         offset += cur.duration.absolute
       return offset
 
    @apply
@@ -198,28 +147,6 @@ class Leaf(_Component):
       def fset(self, arg):
          self._dynamics.mark = arg
       return property(**locals( ))
-
-   ### DURATION REWRITE ###
-
-   ### TODO - decide whether to implement a DurationInterface to 
-   ###        encapsulate leaf.duration, leaf.multiplier and
-   ###        leaf.rewriteDurationAs( ).
-   ###        Advantage: cleans up public Leaf interface;
-   ###        disadvantage: makes duration accessible as
-   ###        Leaf.duration.duration.
-   ###        I'm leaning towards encapsulation to conform to all
-   ###        the other Interfaces.
-
-   def rewriteDurationAs(self, duration):
-      if self.duration:
-         previous = self.duration
-         self.duration = duration
-         if self.multiplier:
-            multiplier = previous * self.multiplier / self.duration
-         else:
-            multiplier = previous / self.duration
-         if multiplier != 1:
-            self.multiplier = multiplier
 
    ### NAVIGATION ###
 

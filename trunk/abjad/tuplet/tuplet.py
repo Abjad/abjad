@@ -1,13 +1,14 @@
 from .. containers.container import Container
-from .. duration.duration import Duration
-from ratio import Ratio
+from duration import _TupletDurationInterface
 from formatter import TupletFormatter
+from ratio import Ratio
 
 class _Tuplet(Container):
 
    def __init__(self, music = [ ]):
       Container.__init__(self, music)
       self.brackets = 'curly'
+      self._duration = _TupletDurationInterface(self)
       self.formatter = TupletFormatter(self) 
 
    ### REPR ###
@@ -27,49 +28,14 @@ class _Tuplet(Container):
 
    ### PROPERTIES ###
 
+   ### TODO - replace either with managed attribute OR
+   ###        even better, a TupletNumber grob for
+   ###        LilyPond \override TupletNumber #'fraction = True
+   ###        type of dynamic overrides.
+
    @property
    def ratio(self):
-      if self.multiplier:
-         return Ratio(*(~self.multiplier).pair)
+      if self.duration.multiplier:
+         return Ratio(*(~self.duration.multiplier).pair)
       else:
          return None
-
-   @property
-   def _musicDuration(self):
-      result = [ ]
-      for x in self._music:
-         if x.kind('Leaf'):
-            if x.duration and x.multiplier:
-               result.append(x.duration * x.multiplier)
-            elif x.duration:
-               result.append(x.duration)
-            else:
-               pass
-         elif x.kind('_Tuplet'):
-            result.append(x.duration)
-      return sum(result, Duration(0))
-
-   @property
-   def duratum(self):
-      result = self._parentage._prolation * self.duration
-      return Duration(*result.pair)
-
-   ### PREDICATES ###
-
-   def isBinary(self):
-      if self.multiplier:
-         return not self.multiplier._n & (self.multiplier._n - 1)
-      else:
-         return True
-
-   def isAugmentation(self):
-      if self.multiplier:
-         return self.multiplier > 1
-      else:
-         return False
-
-   def isDiminution(self):
-      if self.multiplier:
-         return self.multiplier < 1
-      else:
-         return False

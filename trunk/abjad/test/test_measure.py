@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.wf import check_measures
 
 
 ### TEST TYPICAL MEASURE ###
@@ -11,8 +12,8 @@ def test_typical_measure_01( ):
    #assert t.meter == Meter(4, 4)
    assert len(t) == 4
    assert t.duration == Duration(1)
-   assert t.duratum == Duration(1)
-   assert t.testDuration( )
+   assert t.duration.absolute == Duration(1)
+   assert check_measures(t, ret = True)
 
 
 ### TEST UNMETERED MEASURE ###
@@ -25,8 +26,8 @@ def test_unmetered_measure_01( ):
    assert t.meter == None
    assert len(t) == 4
    assert t.duration == Duration(1)
-   assert t.duratum == Duration(1)
-   assert t.testDuration( )
+   assert t.duration.absolute == Duration(1)
+   assert check_measures(t, ret = True)
 
 
 ### TEST EMPTY MEASURE ###
@@ -39,8 +40,8 @@ def test_empty_measure_01( ):
    assert t.meter == None
    assert len(t) == 0
    assert t.duration == Duration(0)
-   assert t.duratum == Duration(0)
-   assert t.testDuration( )
+   assert t.duration.absolute == Duration(0)
+   assert check_measures(t, ret = True)
 
 def test_empty_measure_02( ):
    t = Measure((4, 4), [ ])
@@ -50,27 +51,27 @@ def test_empty_measure_02( ):
    #assert t.meter == Meter(4, 4)
    assert len(t) == 0
    assert t.duration == Duration(0)
-   assert t.duratum == Duration(0)
-   assert not t.testDuration( )
+   assert t.duration.absolute == Duration(0)
+   assert not check_measures(t, ret = True)
 
 
 ### TEST MEASURE DURATION MISMATCH ###
 
 def test_measure_duration_mismatch_01( ):
    t = Measure((5, 8), Note(0, (1, 8)) * 4)
-   assert not t.testDuration( )
+   assert not check_measures(t, ret = True)
 
 def test_measure_duration_mismatch_02( ):
    t = Measure((5, 8), Note(0, (1, 16)) * 5)
-   assert not t.testDuration( )
+   assert not check_measures(t, ret = True)
 
 def test_measure_duration_mismatch_03( ):
    t = Measure((5, 8), [ ])
-   assert not t.testDuration( )
+   assert not check_measures(t, ret = True)
 
 def test_measure_duration_mismatch_04( ):
    t = Measure((4, 8), [ ])
-   assert not t.testDuration( )
+   assert not check_measures(t, ret = True)
 
 
 ### TEST GRAFT MEASURE TO CONTAINER ###
@@ -87,7 +88,7 @@ def test_graft_measure_to_container_01( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert check(t, ret = True)
+   assert check_measures(t, ret = True)
 
 def test_graft_measure_to_container_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -101,7 +102,7 @@ def test_graft_measure_to_container_02( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert check(t, ret = True)
+   assert check_measures(t, ret = True)
 
 def test_graft_measure_to_container_03( ):
    t = Staff([Note(n, (1, 1)) for n in range(4)])
@@ -115,7 +116,7 @@ def test_graft_measure_to_container_03( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert check(t, ret = True)
+   assert check_measures(t, ret = True)
 
 def test_graft_measure_to_container_03( ):
    t = Staff([Note(n, (1, 1)) for n in range(4)])
@@ -129,4 +130,4 @@ def test_graft_measure_to_container_03( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert check(t, ret = True)
+   assert check_measures(t, ret = True)

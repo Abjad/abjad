@@ -1,19 +1,20 @@
-from .. duration.duration import Duration
 from .. duration.rational import Rational
+from fdduration import _FDTupletDurationInterface
 from tuplet import _Tuplet
 
 class FixedDurationTuplet(_Tuplet):
 
    def __init__(self, duration, music):
       _Tuplet.__init__(self, music)
-      self.duration = duration
+      self._duration = _FDTupletDurationInterface(self, self)
       self._signifier = '@'
+      self.duration.fixed = duration
 
    ### REPR ###
  
    def __repr__(self):
       return 'FixedDurationTuplet(%s, [%s])' % (
-         self.duration, self._summary)
+         self.duration.fixed, self._summary)
 
    def __str__(self):
       if len(self) > 0:
@@ -21,7 +22,7 @@ class FixedDurationTuplet(_Tuplet):
             self._signifier, self.ratio, self._summary, self._signifier)
       else:
          return '{%s %s %s}' % (
-            self._signifier, self.duration, self._signifier)
+            self._signifier, self.duration.fixed, self._signifier)
 
    ### MANAGED ATTRIBUTES ###
 
@@ -29,27 +30,19 @@ class FixedDurationTuplet(_Tuplet):
    def duration( ):
       def fget(self):
          return self._duration
-      def fset(self, *args):
-         if isinstance(args[0], (int, long)):
-            duration = Duration(args[0])
-         elif isinstance(args[0], tuple):
-            duration = Duration(*args[0])
-         elif isinstance(args[0], Rational):
-            duration = Duration(*args[0].pair)
+      def fset(self, expr):
+         if isinstance(expr, (int, long)):
+            rational = Rational(expr)
+         elif isinstance(expr, tuple):
+            rational = Rational(*expr)
+         elif isinstance(expr, Rational):
+            rational = Rational(*expr.pair)
          else:
-            raise ValueError('Can not set tuplet duration from %s.' % 
-               str(args))
-         if duration > Duration(0):
-            self._duration = duration
+            raise ValueError('Can not set tuplet rational from %s.' % 
+               str(expr))
+         if rational > 0:
+            self.duration.fixed = rational
          else:
-            raise ValueError('Tuplet duration %s must be positive.' %
-               duration)
+            raise ValueError('Tuplet rational %s must be positive.' %
+               rational)
       return property(**locals( ))
-
-   @property
-   def multiplier(self):
-      if len(self) > 0:
-         result = self.duration / self._musicDuration
-         return Rational(*result.pair)
-      else:
-         return None

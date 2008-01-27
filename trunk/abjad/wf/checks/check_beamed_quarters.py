@@ -7,7 +7,7 @@ def check_beamed_quarters(expr, report = True, ret = 'violators'):
    leaves = instances(expr, 'Leaf')
    for leaf in leaves:
       if hasattr(leaf, 'beam') and leaf.beam.spanned:
-         if leaf.beam.flags < 1:
+         if leaf.beam._flags < 1:
             violators.append(leaf)
    bad = len(violators)
    total = len(leaves)

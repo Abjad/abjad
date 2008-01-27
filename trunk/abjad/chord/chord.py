@@ -12,24 +12,10 @@ class Chord(Leaf):
    ### REPR ### 
 
    def __repr__(self):
-      if len(self) > 0 and self._product:
-         return 'Chord(%s, %s)' % (self._summary, self._product)
-      elif len(self) > 0:
-         return 'Chord(%s)' % self._summary
-      elif self._product:
-         return 'Chord(%s)' % self._product
-      else:
-         return 'Chord( )'
+      return 'Chord(%s, %s)' % (self._summary, self.duration._product)
 
    def __str__(self):
-      if len(self) > 0 and self._product:
-         return '<%s>%s' % (self._summary, self._product)
-      elif len(self) > 0:
-         return '<%s>' % self._summary
-      elif self._product:
-         return '< >%s' % self._product
-      else:
-         return '< >'
+      return '<%s>%s' % (self._summary, self.duration._product)
 
    ### OVERRIDES ###
 

@@ -1,9 +1,6 @@
-# class: Rational.
-#
-# primary authors: Trevor Baca, Victor Adan.
-# optimization: Jared Grubb.
-# mailto: trevorbaca (at) gmail (dot) com.
-# revision: 6
+### TODO - make Rational(3, 8) == (3, 8) work,
+###        and likewise for all operations;
+###        strategy: use decorator.
 
 class Rational(object):
 
@@ -12,8 +9,8 @@ class Rational(object):
       assert isinstance(d, (int, long))
       assert d != 0
       gcd = self._gcd(n, d)
-      self._n = n / gcd
-      self._d = d / gcd
+      self._numerator = n / gcd
+      self._denominator = d / gcd
 
    ### INIT UTILS ###
 
@@ -36,12 +33,12 @@ class Rational(object):
    ### PROPERTIES ###
 
    @property
-   def numerator(self):
-      return self._n
+   def _n(self):
+      return self._numerator
 
    @property
-   def denominator(self):
-      return self._d
+   def _d(self):
+      return self._denominator
 
    @property
    def pair(self):
@@ -50,16 +47,19 @@ class Rational(object):
    ### ARITHMETIC OPERATORS ###
 
    def __neg__(self):
-      return self.__class__(-self._n, self._d)
+      return Rational(-self._n, self._d)
 
    def __invert__(self):
-      return self.__class__(self._d, self._n)
+      return Rational(self._d, self._n)
 
    def __abs__(self):
-      return self.__class__(abs(self._n), self._d)
+      return Rational(abs(self._n), self._d)
 
    def __eq__(self, arg):
-      return self._n == self._d * arg
+      if isinstance(arg, (int, long, Rational)):
+         return self._n == self._d * arg
+      else:
+         return False
 
    def __ne__(self, arg):
       return not self == arg
@@ -78,10 +78,10 @@ class Rational(object):
 
    def  __add__(self, arg):
       if isinstance(arg, Rational):
-         return self.__class__(
+         return Rational(
             self._n * arg._d + self._d * arg._n, self._d * arg._d)
       elif isinstance(arg, (int, long)):
-         return self.__class__(self._n + arg * self._d, self._d)
+         return Rational(self._n + arg * self._d, self._d)
       elif isinstance(arg, float):
          return float(self) + arg
       else:
@@ -98,9 +98,9 @@ class Rational(object):
 
    def __mul__(self, arg):
       if isinstance(arg, Rational):
-         return self.__class__(self._n * arg._n, self._d * arg._d)
+         return Rational(self._n * arg._n, self._d * arg._d)
       elif isinstance(arg, (int, long)):
-         return self.__class__(self._n * arg, self._d)
+         return Rational(self._n * arg, self._d)
       elif isinstance(arg, float):
          return float(self) * arg
       else:
@@ -111,9 +111,9 @@ class Rational(object):
    
    def __div__(self, arg):
       if isinstance(arg, Rational):
-         return self.__class__(self._n * arg._d, self._d * arg._n)
+         return Rational(self._n * arg._d, self._d * arg._n)
       elif isinstance(arg, (int, long)):
-         return self.__class__(self._n, self._d * arg)
+         return Rational(self._n, self._d * arg)
       elif isinstance(arg, float):
          return float(self) / arg
 
@@ -128,11 +128,11 @@ class Rational(object):
 
    def __floordiv__(self, arg):
       from math import floor
-      return self.__class__(int(floor(float(self / arg))))
+      return Rational(int(floor(float(self / arg))))
 
    def __rfloordiv__(self, arg):
       from math import floor
-      return self.__class__(int(floor(float(arg / self))))
+      return Rational(int(floor(float(arg / self))))
 
    def __pow__(self, arg):
       assert isinstance(arg, int)
@@ -141,7 +141,7 @@ class Rational(object):
          for i in range(arg - 1):
             result *= self
       elif arg == 0:
-         return self.__class__(1)
+         return Rational(1)
       elif arg < 0:
          result = ~self
          for i in range(abs(arg) - 1):

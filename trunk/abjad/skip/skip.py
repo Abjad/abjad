@@ -9,22 +9,13 @@ class Skip(Leaf):
    ### REPR ###
 
    def __repr__(self):
-      if self._product:
-         return 'Skip(%s)' % self._product
-      else:
-         return 'Skip( )'
+      return 'Skip(%s)' % self.duration._product
 
    def __str__(self):
-      if self._product:
-         return 's%s' % self._product
-      else:
-         return ''
+      return 's%s' % self.duration._product
 
    ### FORMATTING ###
   
    @property
    def _body(self):
-      if self._product:
-         return 's%s' % self._product
-      else:
-         return 'Skip( )'
+      return 's%s' % self.duration._product

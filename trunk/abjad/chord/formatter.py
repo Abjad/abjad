@@ -8,9 +8,8 @@ class ChordFormatter(LeafFormatter):
 
    @property
    def _chordNucleus(self):
-      result = '<%s>' % self._client._summary
-      if self._client._product:
-         result += str(self._client._product)
+      result = '<%s>%s' % (
+         self._client._summary, self._client.duration._product)
       if self._client.stem.tremolo:
          result += ' :%s' % self._client.stem.tremolo
       return result
@@ -25,9 +24,9 @@ class ChordFormatter(LeafFormatter):
             result.extend(['\t' + x for x in notehead._formatter._lily])
          if self._client.stem.tremolo:
             result.append('>%s%s' % 
-               (self._client._product, self._client.tremolo.body))
+               (self._client.duration._product, self._client.tremolo.body))
          else:
-            result.append('>%s' % self._client._product)
+            result.append('>%s' % self._client.duration._product)
          return ['\n'.join(result)]
       else:
          result.extend(self._collectLocation('_left'))

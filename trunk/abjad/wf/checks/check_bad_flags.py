@@ -6,7 +6,7 @@ def check_bad_flags(expr, report = True, ret = 'violators'):
    violators = [ ]
    leaves = instances(expr, 'Leaf')
    for leaf in leaves:
-      flags = leaf.beam.flags
+      flags = leaf.beam._flags
       left, right = leaf.beam.counts
       if left is not None:
          if left > flags or (left < flags and right not in (flags, None)):

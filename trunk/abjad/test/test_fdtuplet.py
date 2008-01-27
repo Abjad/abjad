@@ -10,9 +10,9 @@ def test_init_typical_fdtuplet( ):
    assert str(t) == "{@ 3:2 c'8, c'8, c'8 @}"
    assert t.format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
    assert len(t) == 3
-   assert t.duration == Duration(1, 4)
-   assert t.multiplier == Rational(2, 3)
-   assert t.duratum == Duration(1, 4)
+   assert t.duration == Rational(1, 4)
+   assert t.duration.multiplier == Rational(2, 3)
+   assert t.duration.absolute == Rational(1, 4)
 
 
 ### TEST INIT EMPTY FDTUPLET ###
@@ -23,9 +23,9 @@ def test_empty_fdtuplet( ):
    assert repr(t) == 'FixedDurationTuplet(1/4, [ ])'
    assert str(t) == '{@ 1/4 @}'
    assert len(t) == 0
-   assert t.duration == Duration(1, 4)
-   assert t.multiplier == None
-   assert t.duratum == Duration(1, 4)
+   assert t.duration == Rational(1, 4)
+   assert t.duration.multiplier == None
+   assert t.duration.absolute == Rational(1, 4)
 
 
 ### TEST NEST TYPICAL FDTUPLET ###
@@ -39,15 +39,15 @@ def test_nest_typical_fdtuplet( ):
       Note(0, (1, 8))])
    assert repr(t) == "FixedDurationTuplet(1/2, [{@ 3:2 c'8, c'8, c'8 @}, c'8, c'8, c'8])"
    assert str(t) == "{@ 5:4 {@ 3:2 c'8, c'8, c'8 @}, c'8, c'8, c'8 @}"
-   assert t.duration == Duration(1, 2)
-   assert t.multiplier == Rational(4, 5)
-   assert t.duratum == Duration(1, 2)
+   assert t.duration == Rational(1, 2)
+   assert t.duration.multiplier == Rational(4, 5)
+   assert t.duration.absolute == Rational(1, 2)
    assert repr(t[0]) == "FixedDurationTuplet(1/4, [c'8, c'8, c'8])"
    assert str(t[0]) == "{@ 3:2 c'8, c'8, c'8 @}"
    assert len(t[0]) == 3
-   assert t[0].duration == Duration(1, 4)
-   assert t[0].multiplier == Rational(2, 3)
-   assert t[0].duratum == Duration(1, 5)
+   assert t[0].duration == Rational(1, 4)
+   assert t[0].duration.multiplier == Rational(2, 3)
+   assert t[0].duration.absolute == Rational(1, 5)
 
 
 ### TEST NEST EMPTY FDTUPLET ###
@@ -61,15 +61,15 @@ def test_nest_typical_fdtuplet( ):
       Note(0, (1, 8))])
    assert repr(t) == "FixedDurationTuplet(1/2, [{@ 1/4 @}, c'8, c'8, c'8])"
    assert str(t) == "{@ 5:4 {@ 1/4 @}, c'8, c'8, c'8 @}"
-   assert t.duration == Duration(1, 2)
-   assert t.multiplier == Rational(4, 5)
-   assert t.duratum == Duration(1, 2)
+   assert t.duration == Rational(1, 2)
+   assert t.duration.multiplier == Rational(4, 5)
+   assert t.duration.absolute == Rational(1, 2)
    assert repr(t[0]) == 'FixedDurationTuplet(1/4, [ ])'
    assert str(t[0]) == '{@ 1/4 @}'
    assert len(t[0]) == 0
-   assert t[0].duration == Duration(1, 4)
-   assert t[0].multiplier == None
-   assert t[0].duratum == Duration(1, 5)
+   assert t[0].duration.fixed == Rational(1, 4)
+   assert t[0].duration.multiplier == None
+   assert t[0].duration.absolute == Rational(1, 5)
 
 
 ### TEST 1-MULTIPLIER TUPLET ###

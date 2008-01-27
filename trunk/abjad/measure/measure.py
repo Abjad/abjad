@@ -1,5 +1,5 @@
 from .. containers.container import Container
-from .. duration.duration import Duration
+from .. containers.duration import _ContainerDurationInterface
 from formatter import MeasureFormatter
 from .. helpers.hasname import hasname
 from meter import Meter
@@ -8,6 +8,7 @@ class Measure(Container):
 
    def __init__(self, meter = None, music = [ ]):
       Container.__init__(self, music)
+      self._duration = _ContainerDurationInterface(self)
       self.formatter = MeasureFormatter(self)
       self.meter = meter
 
@@ -49,23 +50,4 @@ class Measure(Container):
 
    @property
    def duration(self):
-      duration = Duration(0)
-      for x in self:
-         if hasname(x, 'Leaf') and x.multiplier is not None:
-            duration += x.duration * x.multiplier
-         else:
-            duration += x.duration
-      return duration
-
-   @property
-   def duratum(self):
-      result = self._parentage._prolation * self.duration
-      return Duration(*result.pair)
-
-   ### TESTS ###
-
-   def testDuration(self):
-      if self.meter:
-         return self.meter.duration == self.duration
-      else:
-         return True
+      return self._duration

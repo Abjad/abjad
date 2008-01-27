@@ -21,7 +21,7 @@ class TupletFormatter(ContainerFormatter):
 
    @property
    def _fraction(self):
-      if not self._client.duration.isBinary( ):
+      if not self._client.duration.binary:
          return r'\fraction '
       else:
          return ''
@@ -30,10 +30,10 @@ class TupletFormatter(ContainerFormatter):
    def _opening(self):
       '''Allow for no-multiplier and 1-multiplier tuplets.'''
       result = [ ]
-      if self._client.multiplier:
-         if self._client.multiplier != 1:
+      if self._client.duration.multiplier:
+         if self._client.duration.multiplier != 1:
             result.append(r'%s\times %s %s' % (self._fraction, 
-               self._client.multiplier, self._client.brackets.open))
+               self._client.duration.multiplier, self._client.brackets.open))
       inheritence = ContainerFormatter._opening
       result.extend(inheritence.fget(self))
       return result
@@ -42,8 +42,8 @@ class TupletFormatter(ContainerFormatter):
    def _closing(self):
       result = [ ]
       result.extend(ContainerFormatter._closing.fget(self))
-      if self._client.multiplier:
-         if self._client.multiplier != 1:
+      if self._client.duration.multiplier:
+         if self._client.duration.multiplier != 1:
             result.append(self._client.brackets.close)
       return result
 
@@ -56,7 +56,6 @@ class TupletFormatter(ContainerFormatter):
       result.extend(self.opening)
       result.extend(self._opening)
       result.extend(self._contents)
-      #result.extend(self._client.barline._closing)
       result.extend(self._closing)
       result.extend(self.closing)
       result.extend(self.after)

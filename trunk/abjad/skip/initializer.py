@@ -7,34 +7,33 @@ class SkipInitializer(_Initializer):
       from .. note.note import Note
       from .. rest.rest import Rest
       from .. chord.chord import Chord
-      if len(args) == 0:
-         Leaf.__init__(client, None, None)
-      elif len(args) == 1 and isinstance(args[0], Leaf):
+#      if len(args) == 0:
+#         Leaf.__init__(client, None, None)
+      if len(args) == 1 and isinstance(args[0], Leaf):
          if args[0].kind('Note'):
-            Leaf.__init__(client, None, None)
             note = args[0]
+            Leaf.__init__(client, note.duration.written.pair)
             transfer_all_attributes(note, client)
             del client._notehead
          if args[0].kind('Rest'):
-            Leaf.__init__(client, None, None)
             rest = args[0]
+            Leaf.__init__(client, rest.duration.written.pair)
             transfer_all_attributes(rest, client)
             del client._pitch
          elif args[0].kind('Chord'):
-            Leaf.__init__(client, None, None)
             chord = args[0]
+            Leaf.__init__(client, chord.duration.written.pair)
             transfer_all_attributes(chord, client)
             del client._noteheads
          elif args[0].kind('Skip'):
-            Leaf.__init__(client, None, None)
             skip = args[0]
+            Leaf.__init__(client, skip.duration.written.pair)
             transfer_all_attributes(skip, client)
       elif len(args) == 1:
-         Leaf.__init__(client, None, None)
          duration = args[0]
-         client.duration = duration
-      elif len(args) == 2:
-         duration, multiplier = args
-         Leaf.__init__(client, duration, multiplier)
+         Leaf.__init__(client, duration)
+#      elif len(args) == 2:
+#         duration, multiplier = args
+#         Leaf.__init__(client, duration, multiplier)
       else:
          raise ValueError('can not initialize skip.')

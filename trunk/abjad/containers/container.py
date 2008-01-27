@@ -1,6 +1,6 @@
 from brackets import Brackets
 from .. core.component import _Component
-from .. duration.duration import Duration
+from duration import _ContainerDurationInterface
 from formatter import ContainerFormatter
 from .. helpers.hasname import hasname
 from .. helpers.instances import instances
@@ -14,6 +14,7 @@ class Container(_Component):
       self._establish( )
       _Component.__init__(self)
       self._brackets = Brackets( )
+      self._duration = _ContainerDurationInterface(self)
       self.formatter = ContainerFormatter(self)
       self.spanners = ContainerSpannerInterface(self)
 
@@ -55,18 +56,22 @@ class Container(_Component):
 
    @property
    def duration(self):
-      duration = Duration(0)
-      for x in self:
-         if hasname(x, 'Leaf') and x.multiplier is not None:
-            duration += x.duration * x.multiplier
-         else:
-            duration += x.duration
-      return duration
+      return self._duration
 
-   @property
-   def duratum(self):
-      result = self._parentage._prolation * self.duration
-      return Duration(*result.pair)
+#   @property
+#   def composite(self):
+#      duration = Duration(0)
+#      for x in self:
+#         if hasname(x, 'Leaf'):
+#            duration += x.duration.multiplied
+#         else:
+#            duration += x.duration
+#      return duration
+#
+#   @property
+#   def absolute(self):
+#      result = self._parentage._prolation * self.composite
+#      return Duration(*result.pair)
 
    ### NAVIGATION ###
 

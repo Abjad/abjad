@@ -26,7 +26,6 @@ def test_beam_interface_01( ):
    assert not t.beam.spanned
    assert t.beam.spanners == [ ]
    assert t.beam.beamable
-   assert t.beam.flags == 3
    assert not t.beam.first
    assert not t.beam.last
    assert not t.beam.only
@@ -42,7 +41,6 @@ def test_beam_interface_02( ):
    assert not t[0].beam.spanned
    assert t[0].beam.spanners == [ ]
    assert t[0].beam.beamable
-   assert t[0].beam.flags == 1
    assert not t[0].beam.first
    assert not t[0].beam.last
    assert not t[0].beam.only
@@ -69,7 +67,6 @@ def test_beam_interface_03( ):
    assert t[0].beam.spanned
    assert len(t[0].beam.spanners) == 1
    assert t[0].beam.beamable
-   assert t[0].beam.flags == 1
    assert t[0].beam.first
    assert not t[0].beam.last
    assert not t[0].beam.only
@@ -97,7 +94,6 @@ def test_beam_interface_04( ):
    assert t[1].beam.spanned
    assert len(t[1].beam.spanners) == 1
    assert t[1].beam.beamable
-   assert t[1].beam.flags == 1
    assert not t[1].beam.first
    assert not t[1].beam.last
    assert not t[1].beam.only
@@ -125,7 +121,6 @@ def test_beam_interface_05( ):
    assert t[3].beam.spanned
    assert len(t[3].beam.spanners) == 1
    assert t[3].beam.beamable
-   assert t[3].beam.flags == 1
    assert not t[3].beam.first
    assert t[3].beam.last
    assert not t[3].beam.only
@@ -153,7 +148,6 @@ def test_beam_interface_06( ):
    assert t[3].beam.spanned
    assert len(t[3].beam.spanners) == 1
    assert t[3].beam.beamable
-   assert t[3].beam.flags == 1
    assert t[3].beam.first
    assert t[3].beam.last
    assert t[3].beam.only

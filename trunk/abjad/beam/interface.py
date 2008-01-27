@@ -9,12 +9,12 @@ class BeamInterface(_Interface):
    ### PROPERTIES ###
 
    @property
-   def flags(self):
-      return self._client.duration.flags
+   def _flags(self):
+      return self._client.duration._flags
 
    @property
    def beamable(self):
-      return self._client.kind('Note') and self.flags > 0
+      return self._client.kind('Note') and self._flags > 0
 
    @property
    def first(self):

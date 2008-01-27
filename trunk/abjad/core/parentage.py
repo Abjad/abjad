@@ -5,14 +5,14 @@ class Parentage(object):
    def __init__(self, client):
       self._client = client
 
-   @property
-   def _prolation(self):
-      result = Rational(1)
-      p = self._client._parent
-      while p is not None and hasattr(p, 'multiplier'):
-         result *= p.multiplier
-         p = p._parent
-      return result
+#   @property
+#   def _prolation(self):
+#      result = Rational(1)
+#      p = self._client._parent
+#      while p is not None and hasattr(p, 'multiplier'):
+#         result *= p.multiplier
+#         p = p._parent
+#      return result
          
    def _first(self, classname):
       p = self._client._parent
