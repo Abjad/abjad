@@ -15,23 +15,28 @@ class LeafDurationInterface(_DurationInterface):
    ### REPR ###
 
    def __repr__(self):
-      return 'DurationInterface(%s, %s)' % self.pair
+      if self.multiplier is not None:
+         return 'DurationInterface(%s, %s)' % (
+            str(self.written), str(self.multiplier))
+      else:
+         return 'DurationInterface(%s)' % str(self.written)
 
    ### READ-ONLY ATTRIBUTES ###
 
    @property
-   def _multiplied(self):
+   #def _multiplied(self):
+   def _duration(self):
       if self.multiplier is not None:
          return self.written * self.multiplier
       else:
          return self.written
 
-   @property
-   def absolute(self):
-      result = self.written * self.prolation
-      if self.multiplier is not None:
-         result *= self.multiplier
-      return result
+#   @property
+#   def absolute(self):
+#      result = self.written * self.prolation
+#      if self.multiplier is not None:
+#         result *= self.multiplier
+#      return result
 
    ### BOUND METHODS ###
    

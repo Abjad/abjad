@@ -13,12 +13,6 @@ class _TupletDurationInterface(_ContainerDurationInterface):
    def __repr__(self):
       return 'TupletDurationInterface( )'
 
-   ### DERIVED PROPERTIES ###
-   
-   @property
-   def absolute(self):
-      return self.prolation * self.resultant
-
    ### PREDICATES ###
 
    @property

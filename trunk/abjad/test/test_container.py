@@ -9,7 +9,7 @@ def test_empty_container( ):
    assert t.format == ''
    assert len(t) == 0
    assert t._parent == None
-   assert t.duration == t.duration.absolute == 0
+   assert t.duration == t.duration.prolated == 0
    # empty containers are allowed but not well-formed;
    # so we do not check( ) here
    
@@ -20,6 +20,6 @@ def test_typical_container( ):
    assert t.format == "\tc'4\n\tc'4\n\tc'4\n\tc'4"
    assert len(t) == 4
    assert t._parent == None
-   assert t.duration == t.duration.absolute == 1
+   assert t.duration == t.duration.prolated == 1
    assert check(t, ret = True)
 

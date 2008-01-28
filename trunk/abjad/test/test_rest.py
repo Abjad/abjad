@@ -7,7 +7,7 @@ def test_typical_rest_01( ):
    r = Rest((1, 4))
    assert repr(r) == 'Rest(4)'
    assert r.format == 'r4'
-   assert r.duration.written == r.duration.absolute == Rational(1, 4)
+   assert r.duration.written == r.duration.prolated == Rational(1, 4)
 
 
 ### TEST PITCHED REST ###
@@ -19,7 +19,7 @@ def test_pitched_rest_01( ):
    assert isinstance(r.pitch, Pitch)
    assert repr(r) == 'Rest(4)'
    assert r.format == "c'4 \\rest"
-   assert r.duration.written == r.duration.absolute == Rational(1, 4)
+   assert r.duration.written == r.duration.prolated == Rational(1, 4)
 
 
 def test_pitched_rest_02( ):
@@ -29,7 +29,7 @@ def test_pitched_rest_02( ):
    assert isinstance(r.pitch, Pitch)
    assert repr(r) == 'Rest(4)'
    assert r.format == "c'4 \\rest"
-   assert r.duration.written == r.duration.absolute == Rational(1, 4)
+   assert r.duration.written == r.duration.prolated == Rational(1, 4)
 
 
 def test_pitched_rest_03( ):
@@ -39,7 +39,7 @@ def test_pitched_rest_03( ):
    assert isinstance(r.pitch, type(None))
    assert repr(r) == 'Rest(4)'
    assert r.format == "r4"
-   assert r.duration.written == r.duration.absolute == Rational(1, 4)
+   assert r.duration.written == r.duration.prolated == Rational(1, 4)
 
 
 ### TEST CAST REST AS NOTE ###

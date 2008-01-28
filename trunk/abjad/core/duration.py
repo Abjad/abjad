@@ -12,11 +12,13 @@ class _DurationInterface(_Interface, Rational):
 
    @property
    def _n(self):  
-      return self.absolute._n 
+      #return self.absolute._n 
+      return self._duration._n
          
    @property
    def _d(self):
-      return self.absolute._d
+      #return self.absolute._d
+      return self._duration._d
 
    @property
    def prolation(self):
@@ -27,3 +29,7 @@ class _DurationInterface(_Interface, Rational):
             result *= t.duration.multiplier
          t = t._parent
       return result
+
+   @property
+   def prolated(self):
+      return self.prolation * self

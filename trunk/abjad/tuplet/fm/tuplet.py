@@ -6,9 +6,8 @@ class FixedMultiplierTuplet(_Tuplet):
 
    def __init__(self, multiplier, music = [ ]):
       _Tuplet.__init__(self, music)
-      self._duration = _FMTupletDurationInterface(self, self)
+      self._duration = _FMTupletDurationInterface(self, multiplier)
       self._signifier = '*'
-      self.duration.multiplier = multiplier
 
    ### REPR ###
 
@@ -29,8 +28,3 @@ class FixedMultiplierTuplet(_Tuplet):
    @property
    def duration(self):
       return self._duration
-      #if len(self) > 0:
-      #   result = self.multiplier * self.duration.composite
-         #return Rational(*result.pair)
-      #else:
-      #   return Rational(0)

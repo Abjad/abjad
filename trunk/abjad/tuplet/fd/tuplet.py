@@ -6,15 +6,18 @@ class FixedDurationTuplet(_Tuplet):
 
    def __init__(self, duration, music):
       _Tuplet.__init__(self, music)
-      self._duration = _FDTupletDurationInterface(self, self)
+      self._duration = _FDTupletDurationInterface(self, duration)
       self._signifier = '@'
-      self.duration.fixed = duration
+      #self.duration.fixed = duration
+      #self.duration._n = duration[0]
+      #self.duration._d = duration[1]
 
    ### REPR ###
  
    def __repr__(self):
       return 'FixedDurationTuplet(%s, [%s])' % (
-         self.duration.fixed, self._summary)
+         #self.duration.fixed, self._summary)
+         self.duration, self._summary)
 
    def __str__(self):
       if len(self) > 0:
@@ -22,7 +25,8 @@ class FixedDurationTuplet(_Tuplet):
             self._signifier, self.ratio, self._summary, self._signifier)
       else:
          return '{%s %s %s}' % (
-            self._signifier, self.duration.fixed, self._signifier)
+            #self._signifier, self.duration.fixed, self._signifier)
+            self._signifier, self.duration, self._signifier)
 
    ### MANAGED ATTRIBUTES ###
 
@@ -41,7 +45,7 @@ class FixedDurationTuplet(_Tuplet):
             raise ValueError('Can not set tuplet rational from %s.' % 
                str(expr))
          if rational > 0:
-            self.duration.fixed = rational
+            self.duration._duration = rational
          else:
             raise ValueError('Tuplet rational %s must be positive.' %
                rational)

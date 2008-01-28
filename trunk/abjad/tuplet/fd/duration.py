@@ -5,17 +5,17 @@ class _FDTupletDurationInterface(_TupletDurationInterface):
 
    def __init__(self, _client, duration):
       _TupletDurationInterface.__init__(self, _client)
-      self._fixed = duration
+      self._duration = duration
 
    ### REPR ###
 
    def __repr__(self):
-      return 'FDTupletDurationInterface( )'
+      return 'FDTupletDurationInterface(%s)' % self._duration
 
    ### MANAGED ATTRIBUTES ###
 
    @apply
-   def fixed( ):
+   def _duration( ):
       def fget(self):
          return self._fixed
       def fset(self, expr):
@@ -36,12 +36,8 @@ class _FDTupletDurationInterface(_TupletDurationInterface):
       return property(**locals( ))
 
    @property
-   def resultant(self):
-      return self.fixed
-
-   @property
    def multiplier(self):
       if len(self._client) > 0:
-         return self.fixed / self.composite
+         return self._duration / self.contents
       else:
          return None

@@ -9,7 +9,7 @@ def test_rewrite_duration_as_01a( ):
    n.duration.rewrite((3, 16))
    assert n.duration.written == Rational(3, 16)
    assert n.duration.multiplier == Rational(4, 3)
-   assert n.duration.absolute == Rational(1, 4)
+   assert n.duration.prolated == Rational(1, 4)
 
 
 def test_rewrite_duration_as_01b( ):
@@ -17,7 +17,7 @@ def test_rewrite_duration_as_01b( ):
    n.duration.rewrite(Rational(3, 16))
    assert n.duration.written == Rational(3, 16)
    assert n.duration.multiplier == Rational(4, 3)
-   assert n.duration.absolute == Rational(1, 4)
+   assert n.duration.prolated == Rational(1, 4)
 
 
 def test_rewrite_duration_as_01c( ):
@@ -25,7 +25,7 @@ def test_rewrite_duration_as_01c( ):
    n.duration.rewrite(Rational(3, 16))
    assert n.duration.written == Rational(3, 16)
    assert n.duration.multiplier == Rational(4, 3)
-   assert n.duration.absolute == Rational(1, 4)
+   assert n.duration.prolated == Rational(1, 4)
 
 
 def test_rewrite_duration_as_02( ):
@@ -33,7 +33,7 @@ def test_rewrite_duration_as_02( ):
    n.duration.rewrite((3, 16))
    assert n.duration.written == Rational(3, 16)
    assert n.duration.multiplier == Rational(4, 3)
-   assert n.duration.absolute == Rational(1, 4)
+   assert n.duration.prolated == Rational(1, 4)
 
 
 def test_rewrite_duration_as_03( ):
@@ -41,7 +41,7 @@ def test_rewrite_duration_as_03( ):
    n.duration.rewrite((7, 8))
    assert n.duration.written == Rational(7, 8)
    assert n.duration.multiplier == Rational(2, 7)
-   assert n.duration.absolute == Rational(1, 4)
+   assert n.duration.prolated == Rational(1, 4)
 
 
 def test_rewrite_duration_as_04( ):
@@ -49,7 +49,7 @@ def test_rewrite_duration_as_04( ):
    n.duration.rewrite((15, 16))
    assert n.duration.written == Rational(15, 16)
    assert n.duration.multiplier == Rational(4, 15)
-   assert n.duration.absolute == Rational(1, 4)
+   assert n.duration.prolated == Rational(1, 4)
 
 
 ### TEST CAST NOTE AS REST ###

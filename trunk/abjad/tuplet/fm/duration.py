@@ -5,12 +5,12 @@ class _FMTupletDurationInterface(_TupletDurationInterface):
 
    def __init__(self, _client, multiplier):
       _TupletDurationInterface.__init__(self, _client)
-      self._multiplier = multiplier
+      self.multiplier = multiplier
 
    ### REPR ###
 
    def __repr__(self):
-      return 'FMTupletDurationInterface( )'
+      return 'FMTupletDurationInterface(%s)' % str(self.multiplier)
 
    ### MANAGED ATTRIBUTES ###
 
@@ -36,8 +36,8 @@ class _FMTupletDurationInterface(_TupletDurationInterface):
       return property(**locals( ))
 
    @property
-   def resultant(self):
+   def _duration(self):
       if len(self._client) > 0:
-         return self.multiplier * self.composite
+         return self.multiplier * self.contents
       else:
          return Rational(0)

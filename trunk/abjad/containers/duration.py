@@ -11,22 +11,17 @@ class _ContainerDurationInterface(_DurationInterface):
    ### REPR ###
 
    def __repr__(self):
-      return 'ContainerDurationInterface( )'
+      return 'ContainerDurationInterface(%s)' % self.contents
 
    ### READ-ONLY ATTRIBUTES ###
 
    @property
-   def composite(self):
-      duration = Rational(0)
-      for x in self._client:
-         if hasname(x, 'Leaf'):
-            duration += x.duration._multiplied
-         elif hasname(x, '_Tuplet'):
-            duration += x.duration.resultant
-         else:
-            duration += x.duration.composite
-      return duration
+   def _duration(self):
+      return self.contents
 
    @property
-   def absolute(self):
-      return self.prolation * self.composite
+   def contents(self):
+      duration = Rational(0)
+      for x in self._client:
+         duration += x.duration
+      return duration

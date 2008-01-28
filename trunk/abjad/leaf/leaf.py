@@ -87,7 +87,7 @@ class Leaf(_Component):
       offset = 0
       while cur.prev:
          cur = cur.prev
-         offset += cur.duration.absolute
+         offset += cur.duration.prolated
       return offset
 
    @apply
