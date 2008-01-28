@@ -25,7 +25,14 @@ class Accidental(object):
    ### OVERRIDES ###
 
    def __eq__(self, arg):
-      return isinstance(arg, Accidental) and self.string == arg.string
+      #return isinstance(arg, Accidental) and self.string == arg.string
+      if arg is None:
+         return self.string == ''
+      elif isinstance(arg, Accidental):
+         return self.string == arg.string
+      elif isinstance(arg, str):
+         return self.string == arg
+      return False
 
    def __ne__(self, arg):
       return not self == arg
@@ -44,4 +51,8 @@ class Accidental(object):
       -2: 'ff',   -1.5: 'tqf',   
       -1: 'f',    -0.5: 'qf',
        2: 'ss',    1.5: 'tqs',    
-       1: 's',     0.5: 'qs'  }
+       1: 's',     0.5: 'qs',
+    -2.5: 'ff'
+       }
+
+   ### TODO - remove -2.5 after Lidercfeny ...

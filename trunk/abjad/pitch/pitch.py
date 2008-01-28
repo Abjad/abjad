@@ -78,6 +78,23 @@ class Pitch(object):
          return '%s%s' % (self.name, self.ticks)
       else:
          return ''
+
+   ### MANAGED ATTRIBUTES ###
+
+   @apply
+   def accidental( ):
+      def fget(self):
+         return self._accidental
+      def fset(self, expr):
+         if expr is None:
+            self._accidental = Accidental('')
+         elif isinstance(expr, str):
+            self._accidental = Accidental(expr)
+         elif isinstance(expr, Accidental):
+            self._accidental = expr
+         else:
+            raise ValueError('can not set accidental.')
+      return property(**locals( ))
       
    ### MATH AND COMPARISON TESTING ###
 
@@ -100,6 +117,19 @@ class Pitch(object):
       diatonicScaleDegree = self.tools.addStaffSpaces(staffSpaces)
       letter = self.tools.diatonicScaleDegreeToLetter[diatonicScaleDegree]
       return Pitch(pitchNumber, letter)
+
+   def diatonicTranspose(self, diatonicInterval):
+      quality, interval = diatonicInterval.split()
+      staffSpaces = self.tools.diatonicIntervalToStaffSpaces[interval]
+      diatonicScaleDegree = self.tools.addStaffSpaces(staffSpaces)
+      letter = self.tools.diatonicScaleDegreeToLetter[diatonicScaleDegree]
+      pitchNumber = self.number + \
+         self.tools.diatonicIntervalToAbsoluteInterval[diatonicInterval]
+      accidentalString = self.tools.letterPitchNumberToNearestAccidentalString(
+         letter, pitchNumber)
+      pitchName = letter + accidentalString
+      octave = self.tools.letterPitchNumberToOctave(letter, pitchNumber)
+      return Pitch(pitchName, octave) 
 
    ### FORMATTING ###
 

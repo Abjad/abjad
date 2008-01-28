@@ -78,18 +78,18 @@ class PitchTools(object):
       adjustedPitchNumber = pitchNumber + adjustment
       return self.pitchNumberToOctave(adjustedPitchNumber)
 
-   def diatonicTranspose(self, diatonicInterval):
-      quality, interval = diatonicInterval.split()
-      staffSpaces = self.diatonicIntervalToStaffSpaces[interval]
-      diatonicScaleDegree = self.addStaffSpaces(staffSpaces)
-      letter = self.diatonicScaleDegreeToLetter[diatonicScaleDegree]
-      pitchNumber = self._client.number + \
-         self.diatonicIntervalToAbsoluteInterval[diatonicInterval]
-      accidentalString = self.letterPitchNumberToNearestAccidentalString(
-         letter, pitchNumber)
-      pitchName = letter + accidentalString
-      octave = self.letterPitchNumberToOctave(letter, pitchNumber)
-      return Pitch(pitchName, octave) 
+#   def diatonicTranspose(self, diatonicInterval):
+#      quality, interval = diatonicInterval.split()
+#      staffSpaces = self.diatonicIntervalToStaffSpaces[interval]
+#      diatonicScaleDegree = self.addStaffSpaces(staffSpaces)
+#      letter = self.diatonicScaleDegreeToLetter[diatonicScaleDegree]
+#      pitchNumber = self._client.number + \
+#         self.diatonicIntervalToAbsoluteInterval[diatonicInterval]
+#      accidentalString = self.letterPitchNumberToNearestAccidentalString(
+#         letter, pitchNumber)
+#      pitchName = letter + accidentalString
+#      octave = self.letterPitchNumberToOctave(letter, pitchNumber)
+#      return Pitch(pitchName, octave) 
 
    def addStaffSpaces(self, staffSpaces):
       scaleDegree = (self._client.diatonicScaleDegree + staffSpaces) % 7
