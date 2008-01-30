@@ -1,6 +1,6 @@
 from .. duration.rational import Rational
 
-class Parentage(object):
+class _Parentage(object):
 
    def __init__(self, client):
       self._client = client

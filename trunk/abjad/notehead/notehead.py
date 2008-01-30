@@ -1,14 +1,14 @@
 from .. core.interface import _Interface
-from formatter import NoteHeadFormatter
+from formatter import _NoteHeadFormatter
 from .. pitch.pitch import Pitch
 
 
-class NoteHead(_Interface):
+class _NoteHead(_Interface):
 
    def __init__(self, client, pitch = None):
       _Interface.__init__(self, client, 'NoteHead', [ ])
       self._client = client
-      self._formatter = NoteHeadFormatter(self)
+      self._formatter = _NoteHeadFormatter(self)
       self.pitch = pitch
       self._shape = None
 
@@ -16,9 +16,9 @@ class NoteHead(_Interface):
 
    def __repr__(self):
       if self.pitch:
-         return 'NoteHead(%s)' % self.pitch
+         return '_NoteHead(%s)' % self.pitch
       else:
-         return 'NoteHead( )'
+         return '_NoteHead( )'
 
    def __str__(self):
       if self.pitch:
@@ -40,7 +40,7 @@ class NoteHead(_Interface):
          elif isinstance(arg, (int, float, long)):
             self._pitch = Pitch(arg)
          else:
-            raise ValueError('Can not set NoteHead.pitch = %s' % arg)
+            raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
 
    @apply

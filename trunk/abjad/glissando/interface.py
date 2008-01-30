@@ -1,6 +1,6 @@
 from .. core.interface import _Interface
 
-class GlissandoInterface(_Interface):
+class _GlissandoInterface(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client, 'Glissando', ['Glissando'] )

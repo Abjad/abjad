@@ -16,7 +16,7 @@ class _TupletDurationInterface(_ContainerDurationInterface):
    ### PREDICATES ###
 
    @property
-   def binary(self):
+   def _binary(self):
       if self.multiplier:
          return not self.multiplier._n & (self.multiplier._n - 1)
       else:

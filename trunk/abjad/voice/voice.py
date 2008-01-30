@@ -1,5 +1,5 @@
 from .. context.context import Context
-from .. context.formatter import ContextFormatter
+from .. context.formatter import _ContextFormatter
 
 class Voice(Context):
 

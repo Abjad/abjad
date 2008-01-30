@@ -1,6 +1,6 @@
 import initializers
 
-class PitchInitializer(object):
+class _PitchInitializer(object):
    
    def __init__(self): 
       self.initializers = [ ]

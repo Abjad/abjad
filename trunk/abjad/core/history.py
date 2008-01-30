@@ -1,4 +1,4 @@
-class HistoryInterface(object):
+class _HistoryInterface(object):
 
    def __init__(self, client):
       self._client = client

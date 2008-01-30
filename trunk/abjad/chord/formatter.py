@@ -1,10 +1,10 @@
-from .. leaf.leaf import LeafFormatter
+from .. leaf.leaf import _LeafFormatter
 from .. core.interface import _Interface
 
-class ChordFormatter(LeafFormatter):
+class _ChordFormatter(_LeafFormatter):
 
    def __init__(self, client):
-      LeafFormatter.__init__(self, client)
+      _LeafFormatter.__init__(self, client)
 
    @property
    def _chordNucleus(self):

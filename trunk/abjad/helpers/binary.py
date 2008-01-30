@@ -1,4 +1,4 @@
-def binary(n):
+def _binary(n):
    result = ''
    while n > 0:
       result = str(n % 2) + result

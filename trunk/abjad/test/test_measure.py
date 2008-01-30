@@ -9,7 +9,7 @@ def test_typical_measure_01( ):
    assert repr(t) == "Measure(4/4, [c'4, c'4, c'4, c'4])"
    assert str(t) == "|4/4, c'4, c'4, c'4, c'4|"
    assert t.format == "\t\\time 4/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4"
-   #assert t.meter == Meter(4, 4)
+   #assert t.meter == _Meter(4, 4)
    assert len(t) == 4
    assert t.duration == Rational(1)
    assert t.duration.prolated == Rational(1)
@@ -48,7 +48,7 @@ def test_empty_measure_02( ):
    assert repr(t) == 'Measure(4/4)'
    assert str(t) == '|4/4|'
    assert t.format == '\t\\time 4/4'
-   #assert t.meter == Meter(4, 4)
+   #assert t.meter == _Meter(4, 4)
    assert len(t) == 0
    assert t.duration == Rational(0)
    assert t.duration.prolated == Rational(0)

@@ -1,8 +1,8 @@
-### TODO profile and figure out why Leaf.next and Leaf.prev
+### TODO profile and figure out why _Leaf.next and _Leaf.prev
 ###      are taking so much time
 
 ### TODO decide if navigation should work only *within the voice*;
-###      right now it's possible that Leaf.next will point
+###      right now it's possible that _Leaf.next will point
 ###      point to the next leaf in the following *staff*,
 ###      which is not what we want.
 
@@ -35,7 +35,7 @@
 ### where the note g, as the % goto @ comment suggests. would this 
 ### be overkill?
 
-class Navigator(object):
+class _Navigator(object):
 
    def __init__(self, client):
       self._client = client

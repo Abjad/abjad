@@ -1,7 +1,6 @@
-from .. duration.duration import Duration
 from .. core.spanner import _Spanner
 
-class Tempo(_Spanner):
+class _Tempo(_Spanner):
 
    def __init__(self, music):
       _Spanner.__init__(self, music)

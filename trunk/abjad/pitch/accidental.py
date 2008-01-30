@@ -1,4 +1,4 @@
-class Accidental(object):
+class _Accidental(object):
 
    def __init__(self, string = ''):
       self.string = string
@@ -6,7 +6,7 @@ class Accidental(object):
    ### REPR ###
 
    def __repr__(self):
-      return 'Accidental(%s)' % self
+      return '_Accidental(%s)' % self
 
    def __str__(self):
       return self.string
@@ -25,10 +25,10 @@ class Accidental(object):
    ### OVERRIDES ###
 
    def __eq__(self, arg):
-      #return isinstance(arg, Accidental) and self.string == arg.string
+      #return isinstance(arg, _Accidental) and self.string == arg.string
       if arg is None:
          return self.string == ''
-      elif isinstance(arg, Accidental):
+      elif isinstance(arg, _Accidental):
          return self.string == arg.string
       elif isinstance(arg, str):
          return self.string == arg

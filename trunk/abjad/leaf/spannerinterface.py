@@ -1,13 +1,13 @@
 ### TODO - create abstract _SpannerInterface class;
-###        derive both this LeafSpannerInterface and
-###        also ContainerSpannerInterface from _SpannerInterface.
+###        derive both this _LeafSpannerInterface and
+###        also _ContainerSpannerInterface from _SpannerInterface.
 
 from copy import copy
 from .. helpers.hasname import hasname
 from .. core.interface import _Interface
 from .. core.parser import _Parser
 
-class LeafSpannerInterface(object):
+class _LeafSpannerInterface(object):
 
    def __init__(self, client):
       self._client = client

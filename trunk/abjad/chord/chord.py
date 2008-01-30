@@ -1,13 +1,13 @@
-from formatter import ChordFormatter
-from initializer import ChordInitializer
-from .. leaf.leaf import Leaf
-from .. notehead.notehead import NoteHead
+from formatter import _ChordFormatter
+from initializer import _ChordInitializer
+from .. leaf.leaf import _Leaf
+from .. notehead.notehead import _NoteHead
 from .. pitch.pitch import Pitch
 
-class Chord(Leaf):
+class Chord(_Leaf):
 
    def __init__(self, *args):
-      self.initializer = ChordInitializer(self, Leaf, *args)
+      self.initializer = _ChordInitializer(self, _Leaf, *args)
 
    ### REPR ### 
 
@@ -27,7 +27,7 @@ class Chord(Leaf):
          return Pitch(arg) in self.pitches
       elif isinstance(arg, Pitch):
          return arg in self.pitches
-      elif isinstance(arg, NoteHead):
+      elif isinstance(arg, _NoteHead):
          return arg in self.noteheads
       else:
          return False
@@ -37,10 +37,10 @@ class Chord(Leaf):
 
    def __setitem__(self, i, arg):
       if isinstance(arg, (int, long, float)):
-         self._noteheads[i] = NoteHead(pitch = arg)
+         self._noteheads[i] = _NoteHead(pitch = arg)
       elif isinstance(arg, Pitch):
-         self._noteheads[i] = NoteHead(pitch = arg)
-      elif isinstance(arg, NoteHead):
+         self._noteheads[i] = _NoteHead(pitch = arg)
+      elif isinstance(arg, _NoteHead):
          self._noteheads[i] = arg
 
    def __delitem__(self, i):
@@ -50,10 +50,10 @@ class Chord(Leaf):
 
    def insert(self, i, arg):
       if isinstance(arg, (int, float, long)):
-         self._noteheads.insert(NoteHead(self, pitch = arg))
+         self._noteheads.insert(_NoteHead(self, pitch = arg))
       elif isinstance(arg, Pitch):
-         self._noteheads.insert(NoteHead(self, pitch = arg))
-      elif isinstance(arg, NoteHead):
+         self._noteheads.insert(_NoteHead(self, pitch = arg))
+      elif isinstance(arg, _NoteHead):
          arg._client = self
          self._noteheads.insert(arg)
       else:
@@ -61,10 +61,10 @@ class Chord(Leaf):
 
    def append(self, arg):
       if isinstance(arg, (int, float, long)):
-         self._noteheads.append(NoteHead(self, pitch = arg))
+         self._noteheads.append(_NoteHead(self, pitch = arg))
       elif isinstance(arg, Pitch):
-         self._noteheads.append(NoteHead(self, pitch = arg))
-      elif isinstance(arg, NoteHead):
+         self._noteheads.append(_NoteHead(self, pitch = arg))
+      elif isinstance(arg, _NoteHead):
          arg._client = self
          self._noteheads.append(arg)
       else:
@@ -96,10 +96,10 @@ class Chord(Leaf):
          self._noteheads = [ ]
          for x in arg:
             if isinstance(x, (int, float, long)):
-               self._noteheads.append(NoteHead(self, pitch = x))
+               self._noteheads.append(_NoteHead(self, pitch = x))
             elif isinstance(x, Pitch):
-               self._noteheads.append(NoteHead(self, pitch = x))
-            elif isinstance(x, NoteHead):
+               self._noteheads.append(_NoteHead(self, pitch = x))
+            elif isinstance(x, _NoteHead):
                x._client = self
                self._noteheads.append(x)
             else:
@@ -119,10 +119,10 @@ class Chord(Leaf):
          self._noteheads = [ ]
          for arg in arglist:
             if isinstance(arg, (int, float, long)):
-               self._noteheads.append(NoteHead(self, pitch = arg))
+               self._noteheads.append(_NoteHead(self, pitch = arg))
             elif isinstance(arg, Pitch):
-               self._noteheads.append(NoteHead(self, pitch = arg))
-            elif isinstance(aarg, NoteHead):
+               self._noteheads.append(_NoteHead(self, pitch = arg))
+            elif isinstance(aarg, _NoteHead):
                arg._client = self
                self._noteheads.append(arg)
             else:

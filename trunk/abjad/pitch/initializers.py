@@ -1,11 +1,11 @@
 from math import floor
-from accidental import Accidental
+from accidental import _Accidental
 
 class _PitchInit(object):
 
     pass
 
-class Clear(_PitchInit):
+class _Clear(_PitchInit):
 
     def matchSignature(self, *args):
         return len(args) == 0
@@ -16,7 +16,7 @@ class Clear(_PitchInit):
         client.octave = None
 
 
-class InitializeByPitchNumber(_PitchInit):
+class _InitializeByPitchNumber(_PitchInit):
     
     def matchSignature(self, *args):
         return len(args) == 1
@@ -24,20 +24,20 @@ class InitializeByPitchNumber(_PitchInit):
     def initialize(self, client, pitchNumber):
         pitchName = client.tools.pcToPitchName[pitchNumber % 12]
         client.letter = pitchName[0]
-        client.accidental = Accidental(pitchName[1:])
+        client.accidental = _Accidental(pitchName[1:])
         client.octave = int(floor(pitchNumber / 12)) + 4
 
-class InitializeByPitchNameAndOctave(_PitchInit):
+class _InitializeByPitchNameAndOctave(_PitchInit):
 
     def matchSignature(self, *args):
         return len(args) == 2 and isinstance(args[0], str)
 
     def initialize(self, client, pitchName, octave):
         client.letter = pitchName[0]
-        client.accidental = Accidental(pitchName[1:])
+        client.accidental = _Accidental(pitchName[1:])
         client.octave = octave
 
-class InitializeByPitchNumberAndLetter(_PitchInit):
+class _InitializeByPitchNumberAndLetter(_PitchInit):
 
     def matchSignature(self, *args):
         return len(args) == 2  and isinstance(args[0], (int, long, float))
@@ -46,10 +46,10 @@ class InitializeByPitchNumberAndLetter(_PitchInit):
         pc = client.tools.letterToPC[letter]
         nearestNeighbor = client.tools.nearestNeighbor(pitchNumber, pc)
         adjustment = pitchNumber - nearestNeighbor
-        accidentalString = Accidental.adjustmentToAccidentalString[adjustment]
+        accidentalString = _Accidental.adjustmentToAccidentalString[adjustment]
         pitchName = letter + accidentalString
         octave = client.tools.pitchNumberAdjustmentToOctave ( 
             pitchNumber, adjustment)
         client.letter = letter
-        client.accidental = Accidental(pitchName[1:])
+        client.accidental = _Accidental(pitchName[1:])
         client.octave = octave

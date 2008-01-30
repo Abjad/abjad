@@ -1,4 +1,4 @@
-class Clef(object):
+class _Clef(object):
 
    def __init__(self, name = 'treble'):
       self.name = name

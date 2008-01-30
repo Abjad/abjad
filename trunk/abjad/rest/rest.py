@@ -1,11 +1,11 @@
-from .. leaf.leaf import Leaf
-from initializer import RestInitializer
+from .. leaf.leaf import _Leaf
+from initializer import _RestInitializer
 from .. pitch.pitch import Pitch
 
-class Rest(Leaf):
+class Rest(_Leaf):
 
    def __init__(self, *args):
-      self.initializer = RestInitializer(self, Leaf, *args )
+      self.initializer = _RestInitializer(self, _Leaf, *args )
    
    ### REPR ###
 

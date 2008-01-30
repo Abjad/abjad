@@ -1,13 +1,13 @@
-from accidental import Accidental
-from initializer import PitchInitializer
-from tools import PitchTools
+from accidental import _Accidental
+from initializer import _PitchInitializer
+from tools import _PitchTools
 from math import floor
 
 class Pitch(object):
 
    def __init__(self, *args):
-      self.tools = PitchTools(self)
-      self.initializer = PitchInitializer( )
+      self.tools = _PitchTools(self)
+      self.initializer = _PitchInitializer( )
       self.initializer.initialize(self, *args)
 
    ### PROPERTIES ###
@@ -87,10 +87,10 @@ class Pitch(object):
          return self._accidental
       def fset(self, expr):
          if expr is None:
-            self._accidental = Accidental('')
+            self._accidental = _Accidental('')
          elif isinstance(expr, str):
-            self._accidental = Accidental(expr)
-         elif isinstance(expr, Accidental):
+            self._accidental = _Accidental(expr)
+         elif isinstance(expr, _Accidental):
             self._accidental = expr
          else:
             raise ValueError('can not set accidental.')

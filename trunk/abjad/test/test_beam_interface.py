@@ -1,6 +1,6 @@
 from abjad import *
 
-### BeamInterface
+### _BeamInterface
 ###
 ###   SPANNER ACCESSOR:
 ###      t.beam.spanners

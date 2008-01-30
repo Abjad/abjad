@@ -1,15 +1,15 @@
 from .. containers.container import Container
 from .. containers.duration import _ContainerDurationInterface
-from formatter import MeasureFormatter
+from formatter import _MeasureFormatter
 from .. helpers.hasname import hasname
-from meter import Meter
+from meter import _Meter
 
 class Measure(Container):
 
    def __init__(self, meter = None, music = [ ]):
       Container.__init__(self, music)
       self._duration = _ContainerDurationInterface(self)
-      self.formatter = MeasureFormatter(self)
+      self.formatter = _MeasureFormatter(self)
       self.meter = meter
 
    ### REPR ###
@@ -44,7 +44,7 @@ class Measure(Container):
          if arg is None:
             self._meter = None
          else:
-            meter = Meter(*arg)
+            meter = _Meter(*arg)
             self._meter = meter
       return property(**locals( ))
 

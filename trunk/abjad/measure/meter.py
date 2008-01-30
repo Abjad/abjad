@@ -1,6 +1,6 @@
 from .. duration.rational import Rational
 
-class Meter(object):
+class _Meter(object):
 
    def __init__(self, n, d):
       self.pair = (n, d)
@@ -9,7 +9,7 @@ class Meter(object):
    ### REPR ###
 
    def __repr__(self):
-      return 'Meter(%s, %s)' % (self.numerator, self.denominator)
+      return '_Meter(%s, %s)' % (self.numerator, self.denominator)
 
    def __str__(self):
       return '%s/%s' % (self.numerator, self.denominator)
@@ -50,7 +50,7 @@ class Meter(object):
    ### COMPARISON TESTING ###
 
    def __eq__(self, arg):
-      if isinstance(arg, Meter):
+      if isinstance(arg, _Meter):
          return self.pair == arg.pair
       elif isinstance(arg, tuple):
          return self.pair == arg

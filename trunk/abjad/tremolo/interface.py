@@ -1,6 +1,6 @@
 from .. core.interface import _Interface
 
-class TremoloInterface(_Interface):
+class _TremoloInterface(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client, 'Tremolo', ['Tremolo'])

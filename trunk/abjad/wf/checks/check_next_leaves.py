@@ -4,7 +4,7 @@ from .. tools import _report
 
 def check_next_leaves(expr, report = True, ret = 'violators'):
    violators = [ ]
-   leaves = instances(expr, 'Leaf')
+   leaves = instances(expr, '_Leaf')
    total, bad = 0, 0
    if leaves:
       leaves.pop( )

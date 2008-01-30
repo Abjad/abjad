@@ -1,7 +1,7 @@
 from .. containers.container import Container
 from duration import _TupletDurationInterface
-from formatter import TupletFormatter
-from ratio import Ratio
+from formatter import _TupletFormatter
+from ratio import _Ratio
 
 class _Tuplet(Container):
 
@@ -9,7 +9,7 @@ class _Tuplet(Container):
       Container.__init__(self, music)
       self.brackets = 'curly'
       self._duration = _TupletDurationInterface(self)
-      self.formatter = TupletFormatter(self) 
+      self.formatter = _TupletFormatter(self) 
 
    ### REPR ###
 
@@ -36,6 +36,6 @@ class _Tuplet(Container):
    @property
    def ratio(self):
       if self.duration.multiplier:
-         return Ratio(*(~self.duration.multiplier).pair)
+         return _Ratio(*(~self.duration.multiplier).pair)
       else:
          return None

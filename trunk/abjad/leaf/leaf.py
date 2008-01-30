@@ -1,42 +1,42 @@
 ### TODO - decide whether to rename to _Leaf ###
 
-from .. articulations.interface import ArticulationsInterface
-from .. beam.interface import BeamInterface
-from .. clef.clef import Clef
+from .. articulations.interface import _ArticulationsInterface
+from .. beam.interface import _BeamInterface
+from .. clef.clef import _Clef
 from .. core.component import _Component
-from .. dots.interface import DotsInterface
-from duration import LeafDurationInterface
-from .. dynamics.interface import DynamicsInterface
-from .. glissando.interface import GlissandoInterface
-from .. grace.interface import GraceInterface
+from .. dots.interface import _DotsInterface
+from duration import _LeafDurationInterface
+from .. dynamics.interface import _DynamicsInterface
+from .. glissando.interface import _GlissandoInterface
+from .. grace.interface import _GraceInterface
 from .. core.interface import _Interface
-from formatter import LeafFormatter
-from spannerinterface import LeafSpannerInterface
+from formatter import _LeafFormatter
+from spannerinterface import _LeafSpannerInterface
 from .. duration.rational import Rational
-from .. staff.interface import StaffInterface
-from .. stem.interface import StemInterface
-from .. tremolo.interface import TremoloInterface
-from .. trill.interface import TrillInterface
+from .. staff.interface import _StaffInterface
+from .. stem.interface import _StemInterface
+from .. tremolo.interface import _TremoloInterface
+from .. trill.interface import _TrillInterface
 
-class Leaf(_Component):
+class _Leaf(_Component):
 
    def __init__(self, duration):
       _Component.__init__(self)
       self._parent = None
-      self._articulations = ArticulationsInterface(self)
-      self.beam = BeamInterface(self)
-      self.dots = DotsInterface(self)
-      self._duration = LeafDurationInterface(self, duration)
-      self._dynamics = DynamicsInterface(self)
-      self.formatter = LeafFormatter(self)
-      self._glissando = GlissandoInterface(self)
-      self.grace = GraceInterface( )
+      self._articulations = _ArticulationsInterface(self)
+      self.beam = _BeamInterface(self)
+      self.dots = _DotsInterface(self)
+      self._duration = _LeafDurationInterface(self, duration)
+      self._dynamics = _DynamicsInterface(self)
+      self.formatter = _LeafFormatter(self)
+      self._glissando = _GlissandoInterface(self)
+      self.grace = _GraceInterface( )
       self.history = { }
-      self.spanners = LeafSpannerInterface(self)
-      self._staff = StaffInterface(self)
-      self.stem = StemInterface(self)
-      self.tremolo = TremoloInterface(self)
-      self.trill = TrillInterface(self)
+      self.spanners = _LeafSpannerInterface(self)
+      self._staff = _StaffInterface(self)
+      self.stem = _StemInterface(self)
+      self.tremolo = _TremoloInterface(self)
+      self.trill = _TrillInterface(self)
 
    ### REPR ###
 
@@ -102,15 +102,15 @@ class Leaf(_Component):
                   return cur._clef
                else:
                   cur = cur.prev  
-            return Clef('treble')
+            return _Clef('treble')
       def fset(self, arg):
          if arg is None:
             if hasattr(self, '_clef'):
                del self._clef
          elif isinstance(arg, str):
-            self._clef = Clef(arg)
-         elif isinstance(arg, Clef):
-            self._clef = Clef(arg.name)
+            self._clef = _Clef(arg)
+         elif isinstance(arg, _Clef):
+            self._clef = _Clef(arg.name)
          else:
             raise ValueError('clef %s must be str or clef.' % arg)
       return property(**locals( ))
@@ -154,7 +154,7 @@ class Leaf(_Component):
    @property
    def next(self):
       nextNode, lastVisitedRank = self._navigator._nextNodeHelper( )
-      while nextNode != None and not isinstance(nextNode, Leaf):
+      while nextNode != None and not isinstance(nextNode, _Leaf):
          nextNode, lastVisitedRank = \
             nextNode._navigator._nextNodeHelper(lastVisitedRank)
       ### TODO fix this; it's not a staff comparison we need
@@ -173,7 +173,7 @@ class Leaf(_Component):
    @property
    def prev(self):
       prevNode, lastVisitedRank = self._navigator._prevNodeHelper( )
-      while prevNode != None and not isinstance(prevNode, Leaf):
+      while prevNode != None and not isinstance(prevNode, _Leaf):
          prevNode, lastVisitedRank = \
             prevNode._navigator._prevNodeHelper(lastVisitedRank)
       ### TODO fix this; it's not a staff comparison we need

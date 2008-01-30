@@ -1,6 +1,6 @@
 from .. core.interface import _Interface
 
-class BarLineInterface(_Interface):
+class _BarLineInterface(_Interface):
    
    def __init__(self, client):
       _Interface.__init__(self, client, 'BarLine', ['BarLine'])
@@ -33,7 +33,7 @@ class BarLineInterface(_Interface):
    @property
    def _after(self):
       result = [ ]
-      if self._client.kind('Leaf'):
+      if self._client.kind('_Leaf'):
          if self.type:
             result.append(self._barlineNameToLilyPondString(self.type))
       return result

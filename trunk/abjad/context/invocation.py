@@ -1,4 +1,4 @@
-class Invocation(object):
+class _Invocation(object):
 
    def __init__(self, client, lhs = None, rhs = None, modifications = [ ]):
       self._client = client
@@ -19,9 +19,9 @@ class Invocation(object):
          result.append(self.modifications)
       result = [str(x) for x in result]
       if len(result) > 0:
-         return 'Invocation(%s)' % ', '.join(result)
+         return '_Invocation(%s)' % ', '.join(result)
       else:
-         return 'Invocation( )'
+         return '_Invocation( )'
 
    ### FORMATTING ###
 

@@ -4,7 +4,7 @@ from .. tools import _report
 
 def check_bad_flags(expr, report = True, ret = 'violators'):
    violators = [ ]
-   leaves = instances(expr, 'Leaf')
+   leaves = instances(expr, '_Leaf')
    for leaf in leaves:
       flags = leaf.beam._flags
       left, right = leaf.beam.counts

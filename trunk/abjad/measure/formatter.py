@@ -1,9 +1,9 @@
-from .. containers.formatter import ContainerFormatter
+from .. containers.formatter import _ContainerFormatter
 
-class MeasureFormatter(ContainerFormatter):
+class _MeasureFormatter(_ContainerFormatter):
 
    def __init__(self, client):
-      ContainerFormatter.__init__(self, client)
+      _ContainerFormatter.__init__(self, client)
 
    @property
    def _meter(self):

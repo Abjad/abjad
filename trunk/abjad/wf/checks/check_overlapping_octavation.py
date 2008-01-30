@@ -4,7 +4,7 @@ from .. tools import _report
 
 def check_overlapping_octavation(expr, report = True, ret = 'violators'):
    violators = [ ]
-   for leaf in instances(expr, 'Leaf'):
+   for leaf in instances(expr, '_Leaf'):
       octavations = leaf.spanners.get(classname = 'Octavation')
       if len(octavations) > 1:
          for octavation in octavations:

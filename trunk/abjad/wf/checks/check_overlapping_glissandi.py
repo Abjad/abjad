@@ -6,7 +6,7 @@ def check_overlapping_glissandi(expr, report = True, ret = 'violators'):
    '''Overlapping glissandi are a problem;
       dove-tailed glissandi are OK.'''
    violators = [ ] 
-   for leaf in instances(expr, 'Leaf'):
+   for leaf in instances(expr, '_Leaf'):
       glissandi = leaf.glissando.spanners
       if len(glissandi) > 1:
          if len(glissandi) == 2:

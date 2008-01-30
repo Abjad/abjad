@@ -1,21 +1,21 @@
 from .. helpers.hasname import hasname
-from .. barline.interface import BarLineInterface
-from comments import Comments
-from copier import Copier
-from .. core.navigator import Navigator
-from .. core.parentage import Parentage
+from .. barline.interface import _BarLineInterface
+from comments import _Comments
+from copier import _Copier
+from .. core.navigator import _Navigator
+from .. core.parentage import _Parentage
 from .. duration.rational import Rational
-from .. staff.interface import StaffInterface
+from .. staff.interface import _StaffInterface # This is not being used here?
 
 class _Component(object):
 
    def __init__(self):
       self._accidentals = None
-      self._barline = BarLineInterface(self)
-      self._copier = Copier(self)
-      self.comments = Comments( )
-      self._navigator = Navigator(self)
-      self._parentage = Parentage(self)
+      self._barline = _BarLineInterface(self)
+      self._copier = _Copier(self)
+      self.comments = _Comments( )
+      self._navigator = _Navigator(self)
+      self._parentage = _Parentage(self)
       self._tempo = None
 
    ### CLASS NAME TESTING ###

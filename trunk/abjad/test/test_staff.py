@@ -406,5 +406,5 @@ def test_staff_append_04( ):
 def test_set_staff_invocation_01( ):
    t = Staff([ ])
    t.invocation.lhs = 'RhythmicStaff'
-   assert repr(t.invocation) == 'Invocation(RhythmicStaff)'
+   assert repr(t.invocation) == '_Invocation(RhythmicStaff)'
    assert t.format == '\\new RhythmicStaff {\n}'

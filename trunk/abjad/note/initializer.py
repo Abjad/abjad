@@ -1,49 +1,49 @@
 from .. core.initializer import _Initializer
-from .. helpers.attributes import transfer_all_attributes
+from .. helpers.attributes import _transfer_all_attributes
 
-class NoteInitializer(_Initializer):
+class _NoteInitializer(_Initializer):
    
-   def __init__(self, client, Leaf, *args): 
+   def __init__(self, client, _Leaf, *args): 
       from .. rest.rest import Rest
       from .. chord.chord import Chord
       from .. skip.skip import Skip
 
       client.notehead = None
       #if len(args) == 0:
-      #   Leaf.__init__(client, None, None)
-      if len(args) == 1 and isinstance(args[0], Leaf):
+      #   _Leaf.__init__(client, None, None)
+      if len(args) == 1 and isinstance(args[0], _Leaf):
          if args[0].kind('Note'):
             note = args[0]
-            Leaf.__init__(client, note.duration.written.pair)
-            transfer_all_attributes(note, client)
+            _Leaf.__init__(client, note.duration.written.pair)
+            _transfer_all_attributes(note, client)
          if args[0].kind('Rest'):
             rest = args[0]
-            Leaf.__init__(client, rest.duration.written.pair)
-            transfer_all_attributes(rest, client)
+            _Leaf.__init__(client, rest.duration.written.pair)
+            _transfer_all_attributes(rest, client)
             del client._pitch
          elif args[0].kind('Chord'):
             chord = args[0]
-            Leaf.__init__(client, chord.duration.written.pair)
-            transfer_all_attributes(chord, client)
+            _Leaf.__init__(client, chord.duration.written.pair)
+            _transfer_all_attributes(chord, client)
             del client._noteheads
             if len(chord) > 0:
                copy = chord.copy( )
                client.notehead = copy.noteheads[0]
          elif args[0].kind('Skip'):
             skip = args[0]
-            Leaf.__init__(client, skip.duration.written.pair)
-            transfer_all_attributes(skip, client)
+            _Leaf.__init__(client, skip.duration.written.pair)
+            _transfer_all_attributes(skip, client)
 #      elif len(args) == 1:
-#         Leaf.__init__(client, None, None)
+#         _Leaf.__init__(client, None, None)
 #         pitch = args[0]
 #         client.pitch = pitch
       elif len(args) == 2:
          pitch, duration = args
-         Leaf.__init__(client, duration)
+         _Leaf.__init__(client, duration)
          client.pitch = pitch
 #      elif len(args) == 3:
 #         pitch, duration, multiplier = args
-#         Leaf.__init__(client, duration, multiplier)
+#         _Leaf.__init__(client, duration, multiplier)
 #         client.pitch = pitch
       else:
          raise ValueError('can not initialize note.')

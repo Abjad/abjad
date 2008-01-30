@@ -1,6 +1,6 @@
 from .. core.interface import _Interface
 
-class BeamInterface(_Interface):
+class _BeamInterface(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client, 'Beam', ['Beam'])

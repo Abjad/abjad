@@ -1,6 +1,6 @@
 from .. core.interface import _Interface
 
-class DynamicsInterface(_Interface):
+class _DynamicsInterface(_Interface):
    
    def __init__(self, client):
       _Interface.__init__(self, client, None, ['Crescendo', 'Decrescendo'])
@@ -19,7 +19,7 @@ class DynamicsInterface(_Interface):
          return ' '
 
    def __repr__(self):
-      return 'DynamicsInterface(%s)' % self._summary
+      return '_DynamicsInterface(%s)' % self._summary
 
 #   @prperty
 #   def hairpins(self):

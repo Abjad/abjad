@@ -1,4 +1,4 @@
-class Markup(object):
+class _Markup(object):
 
    def __init__(self, contents):
       self.contents = contents

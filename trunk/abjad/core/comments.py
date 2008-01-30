@@ -1,4 +1,4 @@
-class Comments(list):
+class _Comments(list):
    
    def __init__(self):
       self.before = [ ]

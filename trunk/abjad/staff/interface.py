@@ -1,6 +1,6 @@
 from .. core.interface import _Interface
 
-class StaffInterface(_Interface):
+class _StaffInterface(_Interface):
    
    def __init__(self, client):
       _Interface.__init__(self, client, 'Staff', ['Staff'])

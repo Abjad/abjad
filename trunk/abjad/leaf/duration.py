@@ -1,11 +1,11 @@
 from .. core.duration import _DurationInterface
 from .. core.interface import _Interface
-from .. helpers.binary import binary
+from .. helpers.binary import _binary
 from .. helpers.hasname import hasname
 from .. duration.rational import Rational
 from math import log, floor
 
-class LeafDurationInterface(_DurationInterface):
+class _LeafDurationInterface(_DurationInterface):
 
    def __init__(self, _client, duration):
       _DurationInterface.__init__(self, _client)
@@ -96,7 +96,7 @@ class LeafDurationInterface(_DurationInterface):
    def _assignable(self, q):
       return (not q._d & (q._d - 1)) and \
          (0 < q < 2) and \
-         (not '01' in binary(q._n)) 
+         (not '01' in _binary(q._n)) 
 
    ### PROPERTIES ###
 
@@ -106,7 +106,7 @@ class LeafDurationInterface(_DurationInterface):
 
    @property
    def _dots(self):
-      return sum([int(x) for x in list(binary(self.written._n))]) - 1
+      return sum([int(x) for x in list(_binary(self.written._n))]) - 1
 
    @property
    def _flags(self):

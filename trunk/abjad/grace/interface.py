@@ -2,7 +2,7 @@ from grace import Grace
 from .. helpers.hasname import hasname
 
 
-class GraceInterface(object):
+class _GraceInterface(object):
 
    def __init__(self):
       self._before = None
@@ -17,7 +17,7 @@ class GraceInterface(object):
             self._before = None
          elif isinstance(arg, Grace):
             self._before = arg
-         elif hasname(arg, 'Leaf'):
+         elif hasname(arg, '_Leaf'):
             self._before = Grace([arg])
          elif isinstance(arg, list):
             self._before = Grace(arg)
@@ -38,7 +38,7 @@ class GraceInterface(object):
          else:
             if isinstance(arg, Grace):
                self._after = arg
-            elif hasname(arg, 'Leaf'):
+            elif hasname(arg, '_Leaf'):
                self._after = Grace([arg])
             elif isinstance(arg, list):
                self._after = Grace(arg)

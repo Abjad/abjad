@@ -6,7 +6,7 @@ def check_gnashing_glissandi(expr, report = True, ret = 'violators'):
    '''Glissando interface may set on 
       only last glissando spanner leaf.'''
    violators =  [ ]
-   for leaf in instances(expr, 'Leaf'):
+   for leaf in instances(expr, '_Leaf'):
       if leaf.glissando:
          glissandi = leaf.glissando.spanners
          for glissando in glissandi:

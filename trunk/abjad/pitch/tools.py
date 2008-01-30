@@ -1,7 +1,7 @@
-from accidental import Accidental
+from accidental import _Accidental
 from math import floor
 
-class PitchTools(object):
+class _PitchTools(object):
 
    def __init__(self, _client):
       self._client = _client
@@ -9,7 +9,7 @@ class PitchTools(object):
    ### REPR ###
 
    def __repr__(self):
-      return 'PitchTools( )'
+      return '_PitchTools( )'
       
    ### UTILITIES ###
 
@@ -53,7 +53,7 @@ class PitchTools(object):
          adjustment %= 12
       elif adjustment > 6:
          adjustment = 12 - adjustment
-      return Accidental.adjustmentToAccidentalString[adjustment]
+      return _Accidental.adjustmentToAccidentalString[adjustment]
 
    def nearestNeighbor(self, pitchNumber, pc):
       targetPC = pitchNumber % 12
@@ -74,7 +74,7 @@ class PitchTools(object):
       # pitch number 12 notated as letter 'b' with accidentals
       accidentalString = self.letterPitchNumberToNearestAccidentalString(
          letter, pitchNumber)
-      adjustment = Accidental.accidentalStringToAdjustment[accidentalString]
+      adjustment = _Accidental.accidentalStringToAdjustment[accidentalString]
       adjustedPitchNumber = pitchNumber + adjustment
       return self.pitchNumberToOctave(adjustedPitchNumber)
 

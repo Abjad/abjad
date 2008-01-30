@@ -8,7 +8,7 @@
 ###        should we transfer all attributes (save caster & formatter)?
 ###        or are there other attrs that we should refuse to transfer?
 
-def transfer_all_attributes(old, new):
+def _transfer_all_attributes(old, new):
    oldCopy = old.copy( )
    for key, value in oldCopy.__dict__.items( ):
       if key not in ('formatter', 'caster', 'spanners'):

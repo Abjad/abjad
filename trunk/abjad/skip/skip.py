@@ -1,10 +1,10 @@
-from .. leaf.leaf import Leaf
-from initializer import SkipInitializer
+from .. leaf.leaf import _Leaf
+from initializer import _SkipInitializer
 
-class Skip(Leaf):
+class Skip(_Leaf):
 
    def __init__(self, *args):
-      self.initializer = SkipInitializer(self, Leaf, *args)
+      self.initializer = _SkipInitializer(self, _Leaf, *args)
       
    ### REPR ###
 

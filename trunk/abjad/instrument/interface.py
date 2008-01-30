@@ -1,8 +1,8 @@
-from .. core.spanner import Spanner
+from .. core.spanner import _Spanner
 
 ### TODO: turn this into a real interface. Inactive code presently.
 
-class Instrument(Spanner):
+class _Instrument(_Spanner):
 
    def __init__(self, long = None, short = None):
       Spanner.__init__(self)

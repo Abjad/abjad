@@ -1,9 +1,9 @@
-from .. containers.container import ContainerFormatter
+from .. containers.container import _ContainerFormatter
 
-class ContextFormatter(ContainerFormatter):
+class _ContextFormatter(_ContainerFormatter):
 
    def __init__(self, client):
-      ContainerFormatter.__init__(self, client)
+      _ContainerFormatter.__init__(self, client)
 
    @property
    def _invocation(self):

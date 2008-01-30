@@ -5,7 +5,7 @@
 from .. core.spanner import _Spanner
 from .. core.parser import _Parser
 
-class Setting(_Spanner):
+class _Setting(_Spanner):
 
    def __init__(self, attribute, value, context = None):
       self.attribute = attribute

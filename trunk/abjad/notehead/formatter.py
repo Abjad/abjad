@@ -1,6 +1,6 @@
 from .. core.formatter import _Formatter
 
-class NoteHeadFormatter(_Formatter):
+class _NoteHeadFormatter(_Formatter):
 
    def __init__(self, client):
       _Formatter.__init__(self, client)

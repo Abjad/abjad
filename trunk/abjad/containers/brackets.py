@@ -1,4 +1,4 @@
-class Brackets(object):
+class _Brackets(object):
 
    def __init__(self, name = 'round'):
       self.name = name
@@ -47,7 +47,7 @@ class Brackets(object):
    def __eq__(self, arg):
       if isinstance(arg, str):
          return self.name == arg
-      elif isinstance(arg, Brackets):
+      elif isinstance(arg, _Brackets):
          return self.name == arg.name
       else:
          return False

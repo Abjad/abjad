@@ -1,10 +1,10 @@
-from brackets import Brackets
+from brackets import _Brackets
 from .. core.component import _Component
 from duration import _ContainerDurationInterface
-from formatter import ContainerFormatter
+from formatter import _ContainerFormatter
 from .. helpers.hasname import hasname
 from .. helpers.instances import instances
-from spannerinterface import ContainerSpannerInterface
+from spannerinterface import _ContainerSpannerInterface
 
 class Container(_Component):
 
@@ -13,10 +13,10 @@ class Container(_Component):
       self._music = music
       self._establish( )
       _Component.__init__(self)
-      self._brackets = Brackets( )
+      self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
-      self.formatter = ContainerFormatter(self)
-      self.spanners = ContainerSpannerInterface(self)
+      self.formatter = _ContainerFormatter(self)
+      self.spanners = _ContainerSpannerInterface(self)
 
    ### INIT UTILS ###
 
@@ -217,4 +217,4 @@ class Container(_Component):
 
    @property
    def leaves(self):
-      return instances(self, 'Leaf')
+      return instances(self, '_Leaf')

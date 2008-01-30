@@ -7,7 +7,7 @@ def test_kind_01( ):
    assert not t.kind('Rest')
    assert not t.kind('Chord')
    assert t.kind('Note')
-   assert t.kind('Leaf')
+   assert t.kind('_Leaf')
 
 
 def test_kind_02( ):

@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-class Copier(object):
+class _Copier(object):
 
    def __init__(self, client):
       self._client = client

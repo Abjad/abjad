@@ -1,7 +1,7 @@
 from .. core.formatter import _Formatter
 from .. core.interface import _Interface
 
-class LeafFormatter(_Formatter):
+class _LeafFormatter(_Formatter):
 
    def __init__(self, client):
       _Formatter.__init__(self, client)
@@ -106,7 +106,7 @@ class LeafFormatter(_Formatter):
       return '\n'.join(result)
 
    def _clone(self, client):
-      result = LeafFormatter(client)  
+      result = _LeafFormatter(client)  
       for key, value in self.__dict__.items( ):
          if key is not '_client':
             setattr(result, key, deepcopy(value))

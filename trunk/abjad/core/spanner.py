@@ -9,9 +9,9 @@
 # we call overrides, settings and indicators collectively 'directives'.
 
 # This abstract spanner baseclass implements a 'receptors' list;
-# spanner subclasses include Override, Setting, BeamSpanner, etc.
+# spanner subclasses include Override, _Setting, BeamSpanner, etc.
 
-# Leaf components include Duration, Beam, Stem, etc.;
+# _Leaf components include Duration, Beam, Stem, etc.;
 # spanner receptors are a special type of leaf component;
 # spanner receptors include Beam, Stem, etc. but not Duration;
 # receptors reference spanners; other leaf components don't.
@@ -78,7 +78,7 @@ class _Spanner(object):
 
    def __init__(self, music):
       self._receptors = [ ]
-      self._extend(instances(music, 'Leaf'))
+      self._extend(instances(music, '_Leaf'))
 
    ### REPR ###
    

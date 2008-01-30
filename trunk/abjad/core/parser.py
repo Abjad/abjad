@@ -16,7 +16,7 @@ class _Parser(object):
          return '#%s' % value
       elif isinstance(value, tuple):
          return "#'(%s . %s)" % value
-      elif value.__class__.__name__ in ['String', 'Markup']:
+      elif value.__class__.__name__ in ['String', '_Markup']:
          return value
       else:
          return "#'%s" % value

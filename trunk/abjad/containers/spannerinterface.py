@@ -1,16 +1,16 @@
 ### TODO - create abstract _SpannerInterface class;
-###        derive both this ContainerSpannerInterface and
-###        also LeafSpannerInterface from _SpannerInterface;
+###        derive both this _ContainerSpannerInterface and
+###        also _LeafSpannerInterface from _SpannerInterface;
 
 from .. helpers.hasname import hasname
 
-class ContainerSpannerInterface(object):
+class _ContainerSpannerInterface(object):
 
    def __init__(self, client):
       self._client = client
 
    def __repr__(self):
-      return 'ContainerSpannerInterface(%s)' % len(self)
+      return '_ContainerSpannerInterface(%s)' % len(self)
 
    ### OVERRIDES ###
 

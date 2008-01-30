@@ -1,6 +1,6 @@
 from .. core.interface import _Interface
 
-class ArticulationsInterface(list, _Interface):
+class _ArticulationsInterface(list, _Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client, 'Articulations', ['Articulations'])

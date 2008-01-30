@@ -1,12 +1,12 @@
-from .. leaf.leaf import Leaf
-from .. notehead.notehead import NoteHead
-from initializer import NoteInitializer
+from .. leaf.leaf import _Leaf
+from .. notehead.notehead import _NoteHead
+from initializer import _NoteInitializer
 from .. pitch.pitch import Pitch
 
-class Note(Leaf):
+class Note(_Leaf):
    
    def __init__(self, *args):
-      self.initializer = NoteInitializer(self, Leaf, *args)
+      self.initializer = _NoteInitializer(self, _Leaf, *args)
 
    ### REPR ###
 
@@ -31,7 +31,7 @@ class Note(Leaf):
                self.notehead.pitch = None
          else:
             if self.notehead is None:
-               self.notehead = NoteHead(self)
+               self.notehead = _NoteHead(self)
             if isinstance(arg, (int, float, long)):
                self.notehead.pitch = Pitch(arg)
             elif isinstance(arg, tuple):
@@ -50,10 +50,10 @@ class Note(Leaf):
          if isinstance(arg, type(None)):
             self._notehead = None
          elif isinstance(arg, (int, float, long)):
-            self._notehead = NoteHead(self, pitch = arg)
+            self._notehead = _NoteHead(self, pitch = arg)
          elif isinstance(arg, Pitch):
-            self._notehead = NoteHead(self, pitch = arg)
-         elif isinstance(arg, NoteHead):
+            self._notehead = _NoteHead(self, pitch = arg)
+         elif isinstance(arg, _NoteHead):
             self._notehead = arg
             self._notehead._client = self
          else:

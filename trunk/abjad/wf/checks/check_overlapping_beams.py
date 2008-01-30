@@ -4,7 +4,7 @@ from .. tools import _report
 
 def check_overlapping_beams(expr, report = True, ret = 'violators'):
    violators = [ ]
-   for leaf in instances(expr, 'Leaf'):
+   for leaf in instances(expr, '_Leaf'):
       beams = leaf.spanners.get(classname = 'Beam')
       if len(beams) > 1:
          for beam in beams:
