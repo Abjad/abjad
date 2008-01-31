@@ -1,18 +1,30 @@
 from .. core.interface import _Interface
 
+### TODO - make composer interface decisions about whether to support
+###        _DynamicsInterface.effective or not, and, if so, how.
+
 class _DynamicsInterface(_Interface):
    
    def __init__(self, client):
       _Interface.__init__(self, client, None, ['Crescendo', 'Decrescendo'])
       self._mark = None
 
+   ### OVERRIDES ###
+
+   def __nonzero__(self):
+      return bool(self._mark)
+
+   def __eq__(self, arg):
+      assert isinstance(arg, bool)
+      return bool(self._mark) == arg
+
    @property
    def _summary(self):
       result = [ ]
       if self.mark:
          result.append(self.mark)
-      if self.hairpin:
-         result.append(self.hairpin)
+      if self.spanner:
+         result.append(self.spanner)
       if result:
          return ', '.join([str(x) for x in result])
       else:
@@ -21,16 +33,27 @@ class _DynamicsInterface(_Interface):
    def __repr__(self):
       return '_DynamicsInterface(%s)' % self._summary
 
-#   @prperty
-#   def hairpins(self):
-#      return self._client.spanners.get(classname = '_Hairpin')
-#
+   ### DERIVED PROPERTIES ###
+
    @property
-   def hairpin(self):
-      if self.spanned:
-         return self.spanners[0]
+   def effective(self):
+      if self.spanner:
+         return self.spanner
       else:
-         return None
+         if self.mark:
+            return self.mark
+         else:
+            cur = self._client.prev
+            while cur:
+               if cur.dynamics.spanner:
+                  return cur.dynamics.spanner.stop
+               elif cur.dynamics.mark:
+                  return cur.dynamics.mark
+               else:
+                  cur = cur.prev
+            return None
+
+   ### MANAGED ATTRIBUTES ###
 
    @apply
    def mark( ):
@@ -44,24 +67,6 @@ class _DynamicsInterface(_Interface):
          else:
             raise ValueError('dynamics %s must be str or None.' % str(arg))
       return property(**locals( ))
-
-   @property
-   def effective(self):
-      if self.hairpin:
-         return self.hairpin
-      else:
-         if self.mark:
-            return self.mark
-         else:
-            cur = self._client.prev
-            while cur:
-               if cur.dynamics.hairpin:
-                  return cur.dynamics.hairpin.stop
-               elif cur.dynamics.mark:
-                  return cur.dynamics.mark
-               else:
-                  cur = cur.prev
-            return None
 
    ### FORMATTING ###
 

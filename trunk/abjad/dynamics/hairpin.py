@@ -2,79 +2,73 @@ from .. core.spanner import _Spanner
 
 class _Hairpin(_Spanner):
 
-   def __init__(self, music, fit = None):
+   def __init__(self, music, start = None, stop = None, trim = False):
       _Spanner.__init__(self, music)
-      self.fit = fit
-
-   def __str__(self):
-      result = [ ]
-      if len(self) > 0:
-         if self.leaves[0].dynamics.mark:
-            result.append(self.leaves[0].dynamics.mark)
-         result.append(self._body)
-         if self.leaves[-1].dynamics.mark:
-            result.append(self.leaves[-1].dynamics.mark)
-         return ' '.join([str(x) for x in result])
-      else:
-         return self._body
-
-   @property
-   def start(self):
-      if len(self) > 0:
-         return self.leaves[0].dynamics.mark
-
-   @property
-   def stop(self):
-      if len(self) > 0:
-         return self.leaves[-1].dynamics.mark
+      self.start = start
+      self.stop = stop
+      self.trim = trim
 
    def _right(self, leaf):
       result = [ ]
-      if self.fit is None:
+      if not self.trim:
          if self._isMyFirstLeaf(leaf):
             result.append('\\%s' % self._shape)
+            if self.start:
+               result.append('\\%sX' % self.start)
          if self._isMyLastLeaf(leaf):
-            if not leaf.dynamics.mark:
-               result.append('\\!')
-      elif self.fit is 'trim':
-         if self._isMyFirst(leaf, ('Note', 'Chord')):
-            result.append('\\%s' % self._shape)
-         if self._isMyLast(leaf, ('Note', 'Chord')):
-            if not leaf.dynamics.mark:
+            if self.stop:
+               result.append('\\%sX' % self.stop)
+            elif not leaf.dynamics:
                result.append('\\!')
       else:
-         raise ValueError('unknown hairpin type %s.' % str(self.type))
+         if self._isMyFirst(leaf, ('Note', 'Chord')):
+            result.append('\\%s' % self._shape)
+            if self.start:
+               result.append('\\%sX' % self.start)
+         if self._isMyLast(leaf, ('Note', 'Chord')):
+            if self.stop:
+               result.append('\\%sX' % self.stop)
+            elif not leaf.dynamics:
+               result.append('\\!')
       return result
 
 
-def Hairpin(music, *args, **kwargs):
-   if len(args) == 1:
-       start, shape, stop = None, args[0], None
-   elif len(args) == 3:
-      start, shape, stop = args
+def _parse_descriptor(descriptor):
+   '''Example descriptors:
+      '<'
+      'p <'
+      'p < f'
+   '''
+   assert isinstance(descriptor, str)
+   parts = descriptor.split( )
+   num_parts = len(parts)
+   start, shape, stop = None, None, None
+   if parts[0] in ('<', '>'):
+      assert 1 <= num_parts <= 2
+      if num_parts == 1:
+         shape = parts[0]
+      else:
+         shape = parts[0]
+         stop = parts[1]
    else:
-      raise ValueError('args %s must be len 1 or 3.' % str(args))
+      assert 2 <= num_parts <= 3
+      if num_parts == 2:
+         start = parts[0]
+         shape = parts[1]
+      else:
+         start = parts[0]
+         shape = parts[1]
+         stop = parts[2]
+   assert shape in ('<', '>')
+   return start, shape, stop
+
+
+def Hairpin(music, descriptor, trim = False):
+   start, shape, stop = _parse_descriptor(descriptor)
    if shape == '<':
       from crescendo import Crescendo
-      result = Crescendo(music, **kwargs)
+      result = Crescendo(music, start = start, stop = stop, trim = trim)
    elif shape == '>':
       from decrescendo import Decrescendo
-      result = Decrescendo(music, **kwargs)
-   if result.fit is None:
-      if start:
-         result.leaves[0].dynamics.mark = start
-      if stop:
-         result.leaves[-1].dynamics.mark = stop
-   elif result.fit == 'trim':
-      if start:
-         for leaf in result.leaves:
-            if result._isMyFirst(leaf, ('Note', 'Chord')):
-               leaf.dynamics.mark = start
-               break
-      if stop:
-         for leaf in reversed(result.leaves):
-            if result._isMyLast(leaf, ('Note', 'Chord')):
-               leaf.dynamics.mark = stop
-               break
+      result = Decrescendo(music, start = start, stop = stop, trim = trim)
    return result
-

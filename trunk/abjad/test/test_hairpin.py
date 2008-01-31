@@ -134,7 +134,7 @@ def test_hairpins_06( ):
 def test_hairpins_07( ):
    '''Trim hairpins format only notes and chords.'''
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-   Crescendo(t[ : ], fit = 'trim')
+   Crescendo(t[ : ], trim = True)
    assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
    assert check(t, ret = True)
    '''
@@ -154,7 +154,7 @@ def test_hairpins_07( ):
 def test_hairpins_08( ):
    '''Trim hairpins format only notes and chords.'''
    t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-   Crescendo(t[ : ], fit = 'trim')
+   Crescendo(t[ : ], trim = True)
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"
    assert check(t, ret = True)
    '''
@@ -174,19 +174,22 @@ def test_hairpins_08( ):
 def test_hairpins_09( ):
    '''Trim hairpins with dynamic marks behave as expected;
       TODO change testIntermarkedHairpins to account for trims.'''
-   t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-   Hairpin(t.leaves, 'p', '<', 'f', fit = 'trim')
-   assert t.format == "\\new Staff {\n\tc'8 \\pX \\<\n\tcs'8\n\td'8\n\tef'8 \\fX\n\tr8\n\tr8\n\tr8\n\tr8\n}"
-   assert not check_intermarked_hairpins(t, ret = True)
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Rest(t[0])
+   Rest(t[-1])
+   Hairpin(t, 'p < f', trim = True)
+   assert len(t[0].dynamics.spanner) == len(t)
+   assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\pX\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\fX\n\tr8\n}"
+   assert check_intermarked_hairpins(t, ret = True)
    '''
    \new Staff {
-           c'8 \pX \<
-           cs'8
+           r8
+           cs'8 \< \pX
            d'8
-           ef'8 \fX
-           r8
-           r8
-           r8
+           ef'8
+           e'8
+           f'8
+           fs'8 \fX
            r8
    }
    '''
