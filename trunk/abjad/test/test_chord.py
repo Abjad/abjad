@@ -163,3 +163,31 @@ def test_cast_chord_as_skip_04( ):
    assert isinstance(t[0], Skip)
    assert t[0]._parent is t
    assert t[0].duration == d
+
+
+### TEST CHORD FORMAT RIGHT ###
+
+def test_chord_format_right_01( ):
+   '''Untweaked chords format right.'''
+   t = Chord([2, 3, 4], (1, 4))
+   t.glissando = True
+   assert t.format == "<d' ef' e'>4 \\glissando"
+   '''
+   <d' ef' e'>4 \glissando
+   '''
+
+
+def test_chord_format_right_02( ):
+   '''Untweaked chords format right.'''
+   t = Chord([2, 3, 4], (1, 4))
+   t[0].color = 'red'
+   t.glissando = True
+   assert t.format == "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
+   '''
+   <
+           \tweak #'color #red
+           d'
+           ef'
+           e'
+   >4 \glissando
+   '''

@@ -19,14 +19,16 @@ class _ChordFormatter(_LeafFormatter):
       result = [ ]
       result.extend(self.left)
       if any([len(x) for x in self._client.noteheads]):
-         result.append('<')
+         result.append(' '.join(self._collectLocation('_left') + ['<']))
          for notehead in self._client.noteheads:
             result.extend(['\t' + x for x in notehead._formatter._lily])
          if self._client.stem.tremolo:
             result.append('>%s%s' % 
                (self._client.duration._product, self._client.tremolo.body))
          else:
-            result.append('>%s' % self._client.duration._product)
+            closing = ['>%s' % self._client.duration._product]
+            closing += self._collectLocation('_right')
+            result.append(' '.join(closing))
          return ['\n'.join(result)]
       else:
          result.extend(self._collectLocation('_left'))
