@@ -1,5 +1,4 @@
 from .. chord.chord import Chord
-from .. notehead.notehead import NoteHead
 
 def add_artificial_harmonic(note, diatonicInterval = 'perfect fourth'):
    '''
