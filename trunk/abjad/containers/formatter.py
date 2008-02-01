@@ -25,9 +25,10 @@ class _ContainerFormatter(_Formatter):
    def _opening(self):
       result = [ ]
       result.extend(_Formatter._opening.fget(self))
+      print result
       tempo = self._client.tempo
       if tempo:
-         result.append(r'\tempo %s=%s' % tempo)
+         result.extend(tempo._before)
       accidentals = self._client.accidentals
       if accidentals:
          result.append(r"#(set-accidental-style '%s)" % accidentals)
