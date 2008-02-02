@@ -25,7 +25,6 @@ class _ContainerFormatter(_Formatter):
    def _opening(self):
       result = [ ]
       result.extend(_Formatter._opening.fget(self))
-      print result
       tempo = self._client.tempo
       if tempo:
          result.extend(tempo._before)
