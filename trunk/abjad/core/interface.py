@@ -44,6 +44,18 @@ class _Interface(object):
    def spanned(self):
       return bool(self.spanners)
 
+   @property
+   def first(self):
+      return self.spanned and self.spanner._isMyFirstLeaf(self._client)
+
+   @property
+   def last(self):
+      return self.spanned and self.spanner._isMyLastLeaf(self._client)
+
+   @property
+   def only(self):
+      return self.spanned and self.spanner._isMyOnlyLeaf(self._client)
+
    ### METHODS ###
 
    def clear(self):

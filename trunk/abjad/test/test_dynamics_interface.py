@@ -184,3 +184,35 @@ def test_dynamics_interface_02( ):
 #           g'8
 #   }
 #   '''
+
+
+def test_dynamics_interface_07( ):
+   '''Dynamics interface maps to DynamicText.'''
+   t = Note(0, (1, 4))
+   t.dynamics.self_alignment_X = -0.5
+   assert t.format == "\\once \\override DynamicText #'self-alignment-X = #-0.5\nc'4"
+   '''
+   \once \override DynamicText #'self-alignment-X = #-0.5
+   c'4
+   '''
+
+
+def test_dynamics_interface_08( ):
+   '''Dynamics interface implements first, last, only.'''
+   t = Staff([Note(n, (1, 8)) for n in range(8)])
+   Crescendo(t)
+   assert t[0].dynamics.first
+   assert t[-1].dynamics.last
+   assert not t[0].dynamics.only
+   '''
+   \new Staff {
+           c'8 \<
+           cs'8
+           d'8
+           ef'8
+           e'8
+           f'8
+           fs'8
+           g'8 \!
+   }
+   '''

@@ -6,7 +6,8 @@ from .. core.interface import _Interface
 class _DynamicsInterface(_Interface):
    
    def __init__(self, client):
-      _Interface.__init__(self, client, None, ['Crescendo', 'Decrescendo'])
+      _Interface.__init__(self, client, 'DynamicText', 
+         ['Crescendo', 'Decrescendo'])
       self._mark = None
 
    ### OVERRIDES ###

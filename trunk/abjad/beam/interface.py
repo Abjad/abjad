@@ -16,18 +16,6 @@ class _BeamInterface(_Interface):
    def beamable(self):
       return self._client.kind('Note') and self._flags > 0
 
-   @property
-   def first(self):
-      return self.spanned and self.spanners[0]._isMyFirstLeaf(self._client)
-
-   @property
-   def last(self):
-      return self.spanned and self.spanners[0]._isMyLastLeaf(self._client)
-
-   @property
-   def only(self):
-      return self.spanned and self.spanners[0]._isMyOnlyLeaf(self._client)
-
    ### MANAGED ATTRIBUTES ###
 
    @apply
