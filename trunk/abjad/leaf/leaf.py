@@ -66,10 +66,12 @@ class _Leaf(_Component):
       def fget(self):
          return self._glissando   
       def fset(self, arg):
-         if isinstance(arg, bool):
+         if arg is None:
+            self._glissando._set = False
+         elif isinstance(arg, bool):
             self._glissando._set = arg 
          else:
-            raise ValueError('must be boolean.')
+            raise ValueError('must be boolean or None.')
       return property(**locals( ))
 
    @property
