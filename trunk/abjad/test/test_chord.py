@@ -191,3 +191,50 @@ def test_chord_format_right_02( ):
            e'
    >4 \glissando
    '''
+
+### TEST CHORD INITIALIZE ###
+def test_chord_initialize_01( ):
+   '''Chord sorts pitches at initialization.'''
+   t = Chord([4, 2, 3], (1,4))
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+
+def test_chord_initialize_02( ):
+   '''Chord can initialize empty.'''
+   t = Chord([], (1,4))
+   assert repr(t) == "Chord(, 4)"
+   assert t.format == "<>4"
+
+### TEST MANAGED ATTRIBUTES ###
+
+def test_chord_set_pitches_01( ):
+   '''Chord pitches can be set as list or tuple of numbers.'''
+   t = Chord([], (1,4))
+   t.pitches = [4, 3, 2]
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+   t.pitches = (4, 3, 2)
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+
+def test_chord_set_pitches_02( ):
+   '''Chord pitches can be set as list or tuple of Pitches.'''
+   t = Chord([], (1,4))
+   t.pitches = [Pitch(4), Pitch(3), Pitch(2)]
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+
+def test_chord_set_noteheads_01( ):
+   '''Chord noteheads can be set as list or tuple of numbers.'''
+   t = Chord([], (1,4))
+   t.noteheads = [4, 3, 2]
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+   
+def test_chord_set_noteheads_02( ):
+   '''Chord noteheads can be set as list or tuple of Pitches.'''
+   t = Chord([], (1,4))
+   t.noteheads = [Pitch(4), Pitch(3), Pitch(2)]
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+

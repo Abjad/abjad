@@ -57,7 +57,7 @@ class _ChordInitializer(_Initializer):
          pitches, duration = args
          _Leaf.__init__(client, duration)
          client.formatter = _ChordFormatter(client)
-         client.pitches = pitches
+         client.pitches = sorted(pitches)
 #      elif len(args) == 3:
 #         pitches, duration, multiplier = args
 #         _Leaf.__init__(client, duration, multiplier)

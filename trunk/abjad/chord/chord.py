@@ -37,9 +37,9 @@ class Chord(_Leaf):
 
    def __setitem__(self, i, arg):
       if isinstance(arg, (int, long, float)):
-         self._noteheads[i] = _NoteHead(pitch = arg)
+         self._noteheads[i] = _NoteHead(self, pitch = arg)
       elif isinstance(arg, Pitch):
-         self._noteheads[i] = _NoteHead(pitch = arg)
+         self._noteheads[i] = _NoteHead(self, pitch = arg)
       elif isinstance(arg, _NoteHead):
          self._noteheads[i] = arg
 
@@ -91,20 +91,8 @@ class Chord(_Leaf):
             if notehead.pitch:
                result.append(notehead.pitch)   
          return result
-      def fset(self, arg):
-         assert isinstance(arg, list)
-         self._noteheads = [ ]
-         for x in arg:
-            if isinstance(x, (int, float, long)):
-               self._noteheads.append(_NoteHead(self, pitch = x))
-            elif isinstance(x, Pitch):
-               self._noteheads.append(_NoteHead(self, pitch = x))
-            elif isinstance(x, _NoteHead):
-               x._client = self
-               self._noteheads.append(x)
-            else:
-               print 'Can not set Chord.pitches = [..., %s, ...].' % arg
-               raise ValueError
+      def fset(self, arglist):
+         self.noteheads = arglist
       return property(**locals( ))
 
    @apply
@@ -115,14 +103,15 @@ class Chord(_Leaf):
             result.append(notehead)
          return result
       def fset(self, arglist):
-         assert isinstance(arg, list)
+         assert isinstance(arglist, (list, tuple))
+         arglist = sorted(arglist)
          self._noteheads = [ ]
          for arg in arglist:
             if isinstance(arg, (int, float, long)):
                self._noteheads.append(_NoteHead(self, pitch = arg))
             elif isinstance(arg, Pitch):
                self._noteheads.append(_NoteHead(self, pitch = arg))
-            elif isinstance(aarg, _NoteHead):
+            elif isinstance(arg, _NoteHead):
                arg._client = self
                self._noteheads.append(arg)
             else:
@@ -135,3 +124,8 @@ class Chord(_Leaf):
    @property
    def _summary(self):
       return ' '.join([str(x) for x in self._noteheads])
+
+   ### UTILITY ###
+
+   def _sort(self):
+      self._noteheads.sort()
