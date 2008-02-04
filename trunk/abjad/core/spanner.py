@@ -73,6 +73,7 @@
 ###        and that Spanner no longer contains a list of receptors.
 
 from .. helpers.instances import instances
+from .. duration.rational import Rational
 
 class _Spanner(object):
 
@@ -172,6 +173,13 @@ class _Spanner(object):
 
    def _isMyOnly(self, leaf, classname):
       return leaf.kind(classname) and len(self) == 1
+
+   ### DERIVED CONTENTS PROPERTIES ###
+
+   def _durationOffsetInMe(self, leaf):
+      assert leaf in self
+      prev = self.leaves[ : self.index(leaf)]
+      return sum([leaf.duration.prolated for leaf in prev], Rational(0))
 
    ### RECEPTOR INSERTS ###
 
