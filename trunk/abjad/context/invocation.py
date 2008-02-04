@@ -6,6 +6,7 @@ class _Invocation(object):
       self.rhs = rhs
       self.modifications = [ ]
       self.modifications.extend(modifications)
+      self.command = r'\new'
 
    ### REPR ###
 
@@ -29,7 +30,7 @@ class _Invocation(object):
    def _opening(self):
       result = [ ]
       if self.lhs:
-         cur = r'\new %s' % self.lhs
+         cur = '%s %s' % (self.command, self.lhs)
          if self.rhs:
             cur += ' = %s' % self.rhs
          if len(self.modifications) > 0:
