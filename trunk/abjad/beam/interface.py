@@ -14,7 +14,8 @@ class _BeamInterface(_Interface):
 
    @property
    def beamable(self):
-      return self._client.kind('Note') and self._flags > 0
+      return self._client.kind(('Note', 'Chord')) and \
+         self._flags > 0 and not getattr(self, '_refuse', False)
 
    ### MANAGED ATTRIBUTES ###
 
