@@ -29,7 +29,7 @@ class _ChordInitializer(_Initializer):
             client.formatter = _ChordFormatter(client)
             _transfer_all_attributes(note, client)
             del client._notehead
-            if note.notehead != None:
+            if note.notehead is not None:
                copy = note.copy( )
                client.append(copy.notehead)
          if args[0].kind('Rest'):

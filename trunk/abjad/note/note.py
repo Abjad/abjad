@@ -21,7 +21,7 @@ class Note(_Leaf):
    @apply
    def pitch( ):
       def fget(self):
-         if self.notehead != None:
+         if self.notehead is not None:
             return self._notehead.pitch
          else:
             return None

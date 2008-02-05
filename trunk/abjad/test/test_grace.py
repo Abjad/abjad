@@ -65,7 +65,7 @@ def test_grace_05( ):
    '''
 
 def test_grace_06( ):
-   '''_Leaf.grace.before accepts string descriptors: "grace", "acciaccatura", "appoggiatura" when grace.before != None'''
+   '''_Leaf.grace.before accepts string descriptors: "grace", "acciaccatura", "appoggiatura" when grace.before is not None'''
    t = Note(0, (1, 4)) 
    t.grace.before = Note(2, (1, 16))
    assert t.grace.before

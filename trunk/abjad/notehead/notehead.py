@@ -26,6 +26,11 @@ class _NoteHead(_Interface):
       else:
          return ''
 
+   ### MATH AND COMPARISON TESTING ###
+
+   def __cmp__(self, arg):
+      return cmp(self.pitch, arg.pitch)
+
    ### PROPERTIES ###
 
    @apply

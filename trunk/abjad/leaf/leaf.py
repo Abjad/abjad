@@ -156,7 +156,7 @@ class _Leaf(_Component):
    @property
    def next(self):
       nextNode, lastVisitedRank = self._navigator._nextNodeHelper( )
-      while nextNode != None and not isinstance(nextNode, _Leaf):
+      while nextNode is not None and not isinstance(nextNode, _Leaf):
          nextNode, lastVisitedRank = \
             nextNode._navigator._nextNodeHelper(lastVisitedRank)
       ### TODO fix this; it's not a staff comparison we need
@@ -175,7 +175,7 @@ class _Leaf(_Component):
    @property
    def prev(self):
       prevNode, lastVisitedRank = self._navigator._prevNodeHelper( )
-      while prevNode != None and not isinstance(prevNode, _Leaf):
+      while prevNode is not None and not isinstance(prevNode, _Leaf):
          prevNode, lastVisitedRank = \
             prevNode._navigator._prevNodeHelper(lastVisitedRank)
       ### TODO fix this; it's not a staff comparison we need
