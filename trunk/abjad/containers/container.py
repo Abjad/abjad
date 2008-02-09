@@ -184,17 +184,20 @@ class Container(_Component):
    ### TODO - change pop so that it doesn't denature the popped item;
    ###        also return the popped item;
    ### EXAMPLE:
-   ###        t = Staff([Voice(0, (1, 8)) * 8)])
+   ###        t = Staff([Voice(Note(0, (1, 8)) * 8)])
    ###        v = t[0]
    ###        t.pop( )
    ###        v is now denatured & has no contents;
    ###        this seems unnecessarily harsh.
+   ### DONE ??? LET ME KNOW!
 
-   def pop(self, i = None):
-      if i is None:
-         del(self[-1])
-      else:
-         del(self[i])
+   def pop(self, i = -1):
+      result = self[i]
+      del(self[i])
+      return result
+
+   def remove(self, i):
+      del(self[i])
 
    def _killLeaves(self, i = None, j = None):
       '''
@@ -212,7 +215,12 @@ class Container(_Component):
       '''
       These two steps work even for nested tuplets.
       '''
-      self._killLeaves( )   
+      #self._killLeaves( )   
+      #for l in self.leaves:
+         #for spanner in l.spanners.get( ):
+            #spanner._sever(spanner.index(l))
+      # we want to keep the spanners, so just fracture instead:
+      self.spanners.fracture( )
       self._parentage._detach( )
 
    @property
