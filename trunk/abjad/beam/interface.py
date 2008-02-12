@@ -17,6 +17,14 @@ class _BeamInterface(_Interface):
       return self._client.kind(('Note', 'Chord')) and \
          self._flags > 0 and not getattr(self, '_refuse', False)
 
+   @property
+   def opening(self):
+      return self.spanned and '[' in self.spanner._right(self._client)
+
+   @property
+   def closing(self):
+      return self.spanned and ']' in self.spanner._right(self._client)
+
    ### MANAGED ATTRIBUTES ###
 
    @apply

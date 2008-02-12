@@ -21,7 +21,10 @@ class _ContainerDurationInterface(_DurationInterface):
 
    @property
    def contents(self):
-      duration = Rational(0)
-      for x in self._client:
-         duration += x.duration
-      return duration
+      if self._client.brackets == 'double-angle':
+         return max([Rational(0)] + [x.duration for x in self._client])
+      else:
+         duration = Rational(0)
+         for x in self._client:
+            duration += x.duration
+         return duration
