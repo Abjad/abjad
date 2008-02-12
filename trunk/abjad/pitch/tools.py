@@ -44,6 +44,8 @@ class _PitchTools(object):
       'minor sixth': 8, 'major sixth': 9, 'minor seventh': 10,
       'major seventh': 11, 'perfect octave': 12 }
    
+   ### TODO - fix for letterPitchNumberToNearestAccidentalString('c', 11) ##
+   ###        currently gives 's' and should give 'f' ###
    def letterPitchNumberToNearestAccidentalString(self, letter, pitchNumber):
       # pitch 12 notated as 'b' with accidentals
       givenPC = self.letterToPC[letter]
@@ -75,21 +77,8 @@ class _PitchTools(object):
       accidentalString = self.letterPitchNumberToNearestAccidentalString(
          letter, pitchNumber)
       adjustment = _Accidental.accidentalStringToAdjustment[accidentalString]
-      adjustedPitchNumber = pitchNumber + adjustment
+      adjustedPitchNumber = pitchNumber - adjustment
       return self.pitchNumberToOctave(adjustedPitchNumber)
-
-#   def diatonicTranspose(self, diatonicInterval):
-#      quality, interval = diatonicInterval.split()
-#      staffSpaces = self.diatonicIntervalToStaffSpaces[interval]
-#      diatonicScaleDegree = self.addStaffSpaces(staffSpaces)
-#      letter = self.diatonicScaleDegreeToLetter[diatonicScaleDegree]
-#      pitchNumber = self._client.number + \
-#         self.diatonicIntervalToAbsoluteInterval[diatonicInterval]
-#      accidentalString = self.letterPitchNumberToNearestAccidentalString(
-#         letter, pitchNumber)
-#      pitchName = letter + accidentalString
-#      octave = self.letterPitchNumberToOctave(letter, pitchNumber)
-#      return Pitch(pitchName, octave) 
 
    def addStaffSpaces(self, staffSpaces):
       scaleDegree = (self._client.diatonicScaleDegree + staffSpaces) % 7
