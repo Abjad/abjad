@@ -1,9 +1,9 @@
 class _Invocation(object):
 
-   def __init__(self, client, lhs = None, rhs = None, modifications = [ ]):
+   def __init__(self, client, type = None, name = None, modifications = [ ]):
       self._client = client
-      self.lhs = lhs
-      self.rhs = rhs
+      self.type = type
+      self.name = name
       self.modifications = [ ]
       self.modifications.extend(modifications)
       self.command = r'\new'
@@ -12,10 +12,10 @@ class _Invocation(object):
 
    def __repr__(self):
       result = [ ]
-      if self.lhs:
-         result.append(self.lhs)
-      if self.rhs:
-         result.append(self.rhs)
+      if self.type:
+         result.append(self.type)
+      if self.name:
+         result.append(self.name)
       if self.modifications:
          result.append(self.modifications)
       result = [str(x) for x in result]
@@ -29,10 +29,10 @@ class _Invocation(object):
    @property
    def _opening(self):
       result = [ ]
-      if self.lhs:
-         cur = '%s %s' % (self.command, self.lhs)
-         if self.rhs:
-            cur += ' = %s' % self.rhs
+      if self.type:
+         cur = '%s %s' % (self.command, self.type)
+         if self.name:
+            cur += ' = %s' % self.name
          if len(self.modifications) > 0:
             cur += r' \with {'
             result.append(cur)

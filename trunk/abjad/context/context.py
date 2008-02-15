@@ -15,7 +15,7 @@ class Context(Container):
       else:
          summary = ' '
       return '%s%s%s%s' % (
-         self.invocation.lhs,
+         self.invocation.type,
          self.brackets.open,
          summary,
          self.brackets.close)
@@ -30,7 +30,7 @@ class Context(Container):
          if arg is None:
             self._invocation = _Invocation(self)
          elif isinstance(arg, str):
-            self._invocation = _Invocation(self, lhs = arg)
+            self._invocation = _Invocation(self, type = arg)
          elif isinstance(arg, tuple):
             self._invocation = _Invocation(self, *arg)
          else:
