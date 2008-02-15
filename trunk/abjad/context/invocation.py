@@ -6,7 +6,23 @@ class _Invocation(object):
       self.name = name
       self.modifications = [ ]
       self.modifications.extend(modifications)
-      self.command = r'\new'
+      self._command = r'\new'
+
+   ### MANAGED ATTRIBUTES ###
+
+   @apply
+   def command( ):
+      def fget(self):
+         return self._command
+      def fset(self, arg):
+         if isinstance(arg, str):
+            if arg in ('new', 'context'):
+               self._command = '\\' + arg
+            else:
+               raise ValueError('set invocation to "new" or "context" only')
+         else:
+            raise ValueError('set invocation to str only.')
+      return property(**locals( ))
 
    ### REPR ###
 
