@@ -17,9 +17,17 @@ class _PitchTools(object):
       0:  'c',     0.5: 'cqs',    1: 'cs',    1.5:  'dqf',
       2:  'd',     2.5: 'dqs',    3: 'ef',    3.5:  'eqf',
       4:  'e',     4.5: 'eqs',    5: 'f',     5.5:  'fqs',
-      6:  'fs',    6.5: 'gqf',    7: 'g',     7.5:  'aqs',
+      6:  'fs',    6.5: 'gqf',    7: 'g',     7.5:  'gqs',
       8:  'af',    8.5: 'aqf',    9: 'a',     9.5:  'aqs',
-      10: 'bf',   10.5: 'bqf',   11: 'b',     11.5: 'bqs' }
+      10: 'bf',   10.5: 'bqf',   11: 'b',    11.5:  'bqs' }
+
+   pcToPitchNameSharps = {
+      0:  'c',     0.5: 'cqs',    1: 'cs',    1.5:  'ctqs',
+      2:  'd',     2.5: 'dqs',    3: 'ds',    3.5:  'dtqs',
+      4:  'e',     4.5: 'eqs',    5: 'f',     5.5:  'fqs',
+      6:  'fs',    6.5: 'ftqs',   7: 'g',     7.5:  'gqs',
+      8:  'gs',    8.5: 'gtqs',   9: 'a',     9.5:  'aqs',
+      10: 'as',   10.5: 'atqs',  11: 'b',    11.5:  'bqs' }
 
    letterToPC = {
       'c': 0,  'd': 2,  'e': 4,  'f': 5,  'g': 7,  'a': 9,  'b': 11 }
