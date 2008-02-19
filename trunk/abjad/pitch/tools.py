@@ -52,17 +52,14 @@ class _PitchTools(object):
       'minor sixth': 8, 'major sixth': 9, 'minor seventh': 10,
       'major seventh': 11, 'perfect octave': 12 }
    
-   ### TODO - fix for letterPitchNumberToNearestAccidentalString('c', 11) ##
-   ###        currently gives 's' and should give 'f' ###
    def letterPitchNumberToNearestAccidentalString(self, letter, pitchNumber):
-      # pitch 12 notated as 'b' with accidentals
       givenPC = self.letterToPC[letter]
-      targetPC = pitchNumber % 12
-      adjustment = targetPC - givenPC
-      if adjustment < -6:
+      adjustment = pitchNumber - givenPC
+      if adjustment % 12 > 6:
+         adjustment %= -12
+      else:
          adjustment %= 12
-      elif adjustment > 6:
-         adjustment = 12 - adjustment
+      #print adjustment
       return _Accidental.adjustmentToAccidentalString[adjustment]
 
    def nearestNeighbor(self, pitchNumber, pc):
