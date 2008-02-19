@@ -8,6 +8,7 @@ from .. dots.interface import _DotsInterface
 from duration import _LeafDurationInterface
 from .. dynamics.interface import _DynamicsInterface
 from .. glissando.interface import _GlissandoInterface
+from .. tie.interface import _TieInterface
 from .. grace.interface import _GraceInterface
 from .. core.interface import _Interface
 from formatter import _LeafFormatter
@@ -35,6 +36,7 @@ class _Leaf(_Component):
       self.spanners = _LeafSpannerInterface(self)
       self._staff = _StaffInterface(self)
       self.stem = _StemInterface(self)
+      self._tie = _TieInterface(self)
       self.tremolo = _TremoloInterface(self)
       self.trill = _TrillInterface(self)
 
@@ -70,6 +72,19 @@ class _Leaf(_Component):
             self._glissando._set = False
          elif isinstance(arg, bool):
             self._glissando._set = arg 
+         else:
+            raise ValueError('must be boolean or None.')
+      return property(**locals( ))
+
+   @apply
+   def tie( ):
+      def fget(self):
+         return self._tie
+      def fset(self, arg):
+         if arg is None:
+            self._tie._set = False
+         elif isinstance(arg, bool):
+            self._tie._set = arg
          else:
             raise ValueError('must be boolean or None.')
       return property(**locals( ))
