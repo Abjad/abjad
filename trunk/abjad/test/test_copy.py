@@ -46,8 +46,8 @@ def test_copy_complete_container_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    u = t.copy( )
    id(u) is not id(t)
-   t.tester.testAll( )
-   u.tester.testAll( )
+   check(t)
+   check(u)
 
 
 ### TEST COPY ONE CONTAINERIZED NOTE ###
@@ -102,7 +102,7 @@ def test_copy_one_tupletized_note_01( ):
    assert u.pitch == t.leaves[4].pitch
    assert u.duration == t.leaves[4].duration
    assert id(u) != id(t.leaves[4])
-   assert u.duratum != t.leaves[4].duratum
+   assert u.duration.prolated != t.leaves[4].duration.prolated
 
 def test_copy_one_tupletized_note_02( ):
    t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
@@ -111,7 +111,7 @@ def test_copy_one_tupletized_note_02( ):
    assert u.pitch == t.leaves[5].pitch
    assert u.duration == t.leaves[5].duration
    assert id(u) != id(t.leaves[5])
-   assert u.duratum != t.leaves[5].duratum
+   assert u.duration.prolated != t.leaves[5].duration.prolated
 
 
 ### TEST COPY ADJACENT CONTAINERIZED NOTES ###
