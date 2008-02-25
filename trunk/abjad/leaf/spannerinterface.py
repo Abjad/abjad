@@ -2,7 +2,6 @@
 ###        derive both this _LeafSpannerInterface and
 ###        also _ContainerSpannerInterface from _SpannerInterface.
 
-from copy import copy
 from .. helpers.hasname import hasname
 from .. core.interface import _Interface
 from .. core.parser import _Parser

@@ -1,7 +1,7 @@
 from .. helpers.hasname import hasname
 from .. barline.interface import _BarLineInterface
 from comments import _Comments
-from copier import _Copier
+from copy import deepcopy
 from .. core.navigator import _Navigator
 from .. core.parentage import _Parentage
 from .. duration.rational import Rational
@@ -13,7 +13,6 @@ class _Component(object):
    def __init__(self):
       self._accidentals = None
       self._barline = _BarLineInterface(self)
-      self._copier = _Copier(self)
       self.comments = _Comments( )
       self._navigator = _Navigator(self)
       self._parentage = _Parentage(self)
@@ -35,8 +34,33 @@ class _Component(object):
    def __rmul__(self, n):
       return self * n
 
-   def copy(self, i = None, j = None):
-      return self._copier.copy(i, j)
+   def copy(self):
+      '''
+      Clones a complete Abjad object;
+      first fractures and then cuts parent;
+      (cut followed by fracture destroys 'next');
+      deepcopies reference-pruned version of self;
+      reestablishes parent and spanner references;
+      returns the deepcopy;
+      leaves self unchanged.
+      '''
+      hairpins = self.spanners.get(classname = '_Hairpin')
+      hairpinKillList = [ ]
+      clientLeaves = set(self.leaves)
+      hairpinKillList = [
+         not set(hp.leaves).issubset(clientLeaves) for hp in hairpins]
+      receipt = self.spanners.fracture( )
+      parent = self._parentage._cutOutgoingReferenceToParent( )
+      result = deepcopy(self)
+      for source, left, right in reversed(receipt):
+         source._unblock( )
+         left._sever( )
+         right._sever( )
+      self._parent = parent
+      for i, hp in enumerate(result.spanners.get(classname = '_Hairpin')):
+         if hairpinKillList[i]:
+            hp.die( )
+      return result
 
    ### MANAGED ATTRIBUTES ###
 

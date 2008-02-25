@@ -31,4 +31,4 @@ def show(ly):
    outfile.close( )
    system('lilypond %s > lily.out 2>&1' %(name))
    system('rm ' + name[:-3] + '.ps')
-   system('%s ' % PDFVIEWER  + name[:-3] + '.pdf')
+   system('%s ' % PDFVIEWER  + name[:-3] + '.pdf &')

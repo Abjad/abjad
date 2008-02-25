@@ -9,7 +9,7 @@
 ###        or are there other attrs that we should refuse to transfer?
 
 def _transfer_all_attributes(old, new):
-   oldCopy = old.copy( )
+   oldCopy = old.copy()
    for key, value in oldCopy.__dict__.items( ):
       if key not in ('formatter', 'caster', 'spanners'):
          if hasattr(value, '_client'):

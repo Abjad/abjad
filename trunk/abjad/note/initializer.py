@@ -27,7 +27,7 @@ class _NoteInitializer(_Initializer):
             _transfer_all_attributes(chord, client)
             del client._noteheads
             if len(chord) > 0:
-               copy = chord.copy( )
+               copy = chord.copy()
                client.notehead = copy.noteheads[0]
          elif args[0].kind('Skip'):
             skip = args[0]

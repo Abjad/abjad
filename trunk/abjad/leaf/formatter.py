@@ -96,9 +96,11 @@ class _LeafFormatter(_Formatter):
       result.extend(self._client.comments._after)
       return '\n'.join(result)
 
-   def _clone(self, client):
-      result = _LeafFormatter(client)  
-      for key, value in self.__dict__.items( ):
-         if key is not '_client':
-            setattr(result, key, deepcopy(value))
-      return result
+   ### TODO: what is this doing? Should we get rid of this?
+   ###       Not being used anywhere...
+#   def _clone(self, client):
+#      result = _LeafFormatter(client)  
+#      for key, value in self.__dict__.items( ):
+#         if key is not '_client':
+#            setattr(result, key, deepcopy(value))
+#      return result

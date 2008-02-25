@@ -179,7 +179,12 @@ class Container(_Component):
       self.insert(len(self), expr)
 
    def extend(self, expr):
-      self[len(self) : len(self)] = expr
+      if isinstance(expr, list):
+         self[len(self) : len(self)] = expr
+      elif isinstance(expr, Container):
+         self[len(self) : len(self)] = expr[ : ]
+      else:
+         raise ValueError('Extend containers with lists and containers only.')
 
    ### TODO - change pop so that it doesn't denature the popped item;
    ###        also return the popped item;
