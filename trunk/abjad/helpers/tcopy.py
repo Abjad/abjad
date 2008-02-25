@@ -1,23 +1,20 @@
+from contiguity import _are_contiguous_music_elements
+
 def tcopy(ll):
    '''
-   Clones slice of music from some container.
-   Asserts that all elements in input list ll are contiguous.
+   Clone list ll of contiguous music from some container.
    
-   Sample usage:
+   Usage:
 
      tcopy(t[37 : 39 + 1])
 
-   Returns copied music in container of type T,
+   Return copied music in container of type T,
    where T is the type of the parent of the first element in ll.
    '''
 
-   # assert that all elements in ll live inside a shared container
-   for i, element in enumerate(ll[ : -1]):
-      try:
-         assert element.next == ll[i + 1] 
-      except AssertionError:
-         raise AssertionError(
-            'Input to tcopy( ) must share a single container.')
+   # assert contiguous elements in ll
+   if not _are_contiguous_music_elements(ll):
+     raise ValueError('Input must be contiguous music elements.')
 
    # remember parent
    parent = ll[0]._parent
@@ -37,17 +34,12 @@ def tcopy(ll):
    # populate result with references to input list
    result.extend(ll)
 
-   # populate result with deepcopy of input list;
-   # fractures spanners for free
+   # populate result with deepcopy of input list and fracture spanners
    result = result.copy( )
-
-   #result = result._music[ : ]
-
-   #for x in result:
-   #   x._parent = None
 
    # give parent back to input list
    for element in ll:
       element._parent = parent
 
+   # return copy
    return result
