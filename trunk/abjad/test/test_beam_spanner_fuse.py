@@ -8,13 +8,13 @@ def test_beam_spanner_fuse_01( ):
    spanners = t.spanners.get( )
    assert len(spanners) == 2
    left, right = spanners
-   assert left.leaves == t[ : 2]
-   assert right.leaves == t[2 : 4]
+   assert left[ : ] == t[ : 2]
+   assert right[ : ] == t[2 : 4]
    left.fuse('right')
    spanners = t.spanners.get( )
    assert len(spanners) == 1
    spanner = spanners[0]
-   assert spanner.leaves == t[ : 4]
+   assert spanner[ : ] == t[ : 4]
 
 
 def test_beam_spanner_fuse_02( ):
@@ -24,13 +24,13 @@ def test_beam_spanner_fuse_02( ):
    spanners = t.spanners.get( )
    assert len(spanners) == 2
    left, right = spanners
-   assert left.leaves == t[ : 2]
-   assert right.leaves == t[2 : 4]
+   assert left[ : ] == t[ : 2]
+   assert right[ : ] == t[2 : 4]
    right.fuse('left')
    spanners = t.spanners.get( )
    assert len(spanners) == 1
    spanner = spanners[0]
-   assert spanner.leaves == t[ : 4]
+   assert spanner[ : ] == t[ : 4]
 
 
 def test_beam_spanner_fuse_03( ):
@@ -41,14 +41,14 @@ def test_beam_spanner_fuse_03( ):
    spanners = t.spanners.get( )
    assert len(spanners) == 2
    left, right = spanners
-   assert left.leaves == t[ : 2]
-   assert right.leaves == t[2 : 4]
+   assert left[ : ] == t[ : 2]
+   assert right[ : ] == t[2 : 4]
    left.fuse('left')
    spanners = t.spanners.get( )
    assert len(spanners) == 2
    left, right = spanners
-   assert left.leaves == t[ : 2]
-   assert right.leaves == t[2 : 4]
+   assert left[ : ] == t[ : 2]
+   assert right[ : ] == t[2 : 4]
 
 
 def test_beam_spanner_fuse_04( ):
@@ -59,11 +59,11 @@ def test_beam_spanner_fuse_04( ):
    spanners = t.spanners.get( )
    assert len(spanners) == 2
    left, right = spanners
-   assert left.leaves == t[ : 2]
-   assert right.leaves == t[2 : 4]
+   assert left[ : ] == t[ : 2]
+   assert right[ : ] == t[2 : 4]
    right.fuse('right')
    spanners = t.spanners.get( )
    assert len(spanners) == 2
    left, right = spanners
-   assert left.leaves == t[ : 2]
-   assert right.leaves == t[2 : 4]
+   assert left[ : ] == t[ : 2]
+   assert right[ : ] == t[2 : 4]

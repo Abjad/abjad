@@ -65,19 +65,19 @@ def test_override_getitem_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    q = Override(t[ : 4], 'Beam', 'positions', (8, 8))
    for i in range(4):
-      assert q.leaves[i] == t[i]
+      assert q[i] == t[i]
 
 def test_override_getitem_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    q = Override(t[ : 4], 'Beam', 'positions', (8, 8))
-   assert q[1 : 3] == [l.spanners for l in t[1 : 3]]
+   assert q[1 : 3] == t[1 : 3]
 
 def test_override_getitem_03( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    q = Override(t[ : 4], 'Beam', 'positions', (8, 8))
-   assert q[1 : ] == [l.spanners for l in t[1 : 4]]
+   assert q[1 : ] == t[1 : 4]
 
 def test_override_getitem_04( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    q = Override(t[ : 4], 'Beam', 'positions', (8, 8))
-   assert q[ : -1] == [l.spanners for l in t[ : 3]]
+   assert q[ : -1] == t[ : 3]

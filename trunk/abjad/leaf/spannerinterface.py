@@ -82,7 +82,8 @@ class _LeafSpannerInterface(object):
       classname = None, interface = None, 
       grob = None, attribute = None, value = None):
       spanners = self.get(classname, interface, grob, attribute, value)
-      spanners.sort(lambda x, y: cmp(y.leaves[0].offset, x.leaves[0].offset))
+      #spanners.sort(lambda x, y: cmp(y.leaves[0].offset, x.leaves[0].offset))
+      spanners.sort(lambda x, y: cmp(y[0].offset, x[0].offset))
       if spanners:
          return spanners[0]
       else:
@@ -111,7 +112,8 @@ class _LeafSpannerInterface(object):
       spanner = self._getYoungestSpanner(grob = grob, attribute = attribute)
       if spanner:
          for i in reversed(range(spanner.index(self._client))):
-            cur = spanner.leaves[i]
+            #cur = spanner.leaves[i]
+            cur = spanner[i]
             candidates = cur.spanners.get(grob = grob, attribute = attribute)
             candidates = [x for x in candidates if x is not spanner]
             for candidate in candidates:
@@ -180,7 +182,8 @@ class _LeafSpannerInterface(object):
       result = [ ]
       spanners = self.get(interface, grob, attribute, value)
       for spanner in spanners[ : ]:
-         result.append(spanner.fracture(spanner.index(self), 'left'))
+         #result.append(spanner.fracture(spanner.index(self), 'left'))
+         result.append(spanner.fracture(spanner.index(self._client), 'left'))
       return result
 
    def _fractureRight(self, 
@@ -188,7 +191,8 @@ class _LeafSpannerInterface(object):
       result = [ ]
       spanners = self.get(interface, grob, attribute, value)
       for spanner in spanners[ : ]:
-         result.append(spanner.fracture(spanner.index(self), 'right'))
+         #result.append(spanner.fracture(spanner.index(self), 'right'))
+         result.append(spanner.fracture(spanner.index(self._client), 'right'))
       return result
 
    def fracture(self, 

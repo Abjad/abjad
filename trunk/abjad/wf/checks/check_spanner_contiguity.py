@@ -7,9 +7,8 @@ def check_spanner_contiguity(expr, report = True, ret = 'violators'):
    spanners = expr.spanners.get( )
    for spanner in spanners:
       contiguousLeaves = True
-      leaves = spanner.leaves
-      for i in range(len(leaves) - 1):
-         if leaves[i].next != leaves[i + 1]:
+      for i, leaf in enumerate(spanner[:-1]):
+         if leaf.next != spanner[i + 1]:
             contiguousLeaves = False
       if not contiguousLeaves:
          violators.append(spanner)

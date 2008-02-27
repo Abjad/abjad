@@ -48,7 +48,7 @@ class _Component(object):
       hairpinKillList = [ ]
       clientLeaves = set(self.leaves)
       hairpinKillList = [
-         not set(hp.leaves).issubset(clientLeaves) for hp in hairpins]
+         not set(hp[ : ]).issubset(clientLeaves) for hp in hairpins]
       receipt = self.spanners.fracture( )
       parent = self._parentage._cutOutgoingReferenceToParent( )
       result = deepcopy(self)

@@ -9,11 +9,11 @@ def test_beam_spanner_fracture_01( ):
    Beam(t[ : 4])
    assert len(t.spanners.get( )) == 1
    old = t.spanners.get( )[0]
-   assert old.leaves == t[ : 4]
+   assert old[ : ] == t[ : 4]
    old.fracture(0, 'left')
    assert len(t.spanners.get( )) == 1
    new = t.spanners.get( )[0]
-   assert new.leaves == old.leaves == t[ : 4]
+   assert new[ : ] == old[ : ] == t[ : 4]
    assert new != old
 
 
@@ -22,12 +22,12 @@ def test_beam_spanner_fracture_02( ):
    Beam(t[ : 4])
    assert len(t.spanners.get( )) == 1
    old = t.spanners.get( )[0]
-   assert old.leaves == t[ : 4]
+   assert old[ : ] == t[ : 4]
    old.fracture(1, 'left')
    assert len(t.spanners.get( )) == 2
    left, right = t.spanners.get( )
-   assert left.leaves == t[0 : 1]
-   assert right.leaves == t[1 : 4]
+   assert left[ : ] == t[0 : 1]
+   assert right[ : ] == t[1 : 4]
 
 
 def test_beam_spanner_fracture_03( ):
@@ -38,11 +38,11 @@ def test_beam_spanner_fracture_03( ):
    Beam(t[ : 4])
    assert len(t.spanners.get( )) == 1
    old = t.spanners.get( )[0]
-   assert old.leaves == t[ : 4]
+   assert old[ : ] == t[ : 4]
    old.fracture(-1, 'right')
    assert len(t.spanners.get( )) == 1
    new = t.spanners.get( )[0]
-   assert new.leaves == old.leaves == t[ : 4]
+   assert new[ : ] == old[ : ] == t[ : 4]
    assert new != old
 
 
@@ -51,9 +51,9 @@ def test_beam_spanner_fracture_04( ):
    Beam(t[ : 4])
    assert len(t.spanners.get( )) == 1
    old = t.spanners.get( )[0]
-   assert old.leaves == t[ : 4]
+   assert old[ : ] == t[ : 4]
    old.fracture(1, 'right')
    assert len(t.spanners.get( )) == 2
    left, right = t.spanners.get( )
-   assert left.leaves == t[0 : 2]
-   assert right.leaves == t[2 : 4]
+   assert left[ : ] == t[0 : 2]
+   assert right[ : ] == t[2 : 4]

@@ -6,7 +6,7 @@ def check_intermarked_hairpins(expr, report = True, ret = 'violators'):
    total, bad = 0, 0
    for hairpin in expr.spanners.get(classname = '_Hairpin'):
       if len(hairpin) > 2:
-         for leaf in hairpin.leaves[1 : -1]:
+         for leaf in hairpin[1 : -1]:
             if leaf.dynamics.mark:
                violators.append(hairpin)
                bad += 1
