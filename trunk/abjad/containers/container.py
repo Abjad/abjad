@@ -2,6 +2,8 @@ from brackets import _Brackets
 from .. core.component import _Component
 from duration import _ContainerDurationInterface
 from formatter import _ContainerFormatter
+from .. helpers.contiguity import _are_atomic_music_elements
+from .. helpers.contiguity import _are_contiguous_music_elements
 from .. helpers.hasname import hasname
 from .. helpers.instances import instances
 from spannerinterface import _ContainerSpannerInterface
@@ -10,6 +12,16 @@ class Container(_Component):
 
    def __init__(self, music = [ ]):
       self._parent = None
+      #self._music = music
+      if music:
+         music_parent = music[0]._parent
+         if not _are_atomic_music_elements(music):
+            assert _are_contiguous_music_elements(music)
+            start_index = music_parent.index(music[0])
+            stop_index = music_parent.index(music[-1])
+            print start_index, stop_index
+         if music_parent is not None:
+            music_parent[start_index : stop_index + 1] = [self]
       self._music = music
       self._establish( )
       _Component.__init__(self)
