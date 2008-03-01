@@ -1,3 +1,17 @@
+def _are_atomic_music_elements(ll):
+   '''
+   Return True if each of the elements in the music list ll
+   have no parent.
+   '''
+
+   if ll:
+      for element in ll:
+         if element._parent is not None:
+            return False
+      return True
+   return False
+
+
 def _are_contiguous_music_elements(ll):
    '''
    Return True if each of the elements in music list ll 
