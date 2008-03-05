@@ -137,7 +137,7 @@ class Rational(object):
    def __pow__(self, arg):
       assert isinstance(arg, int)
       if arg > 0:
-         result = self.copy( )
+         result = Rational(self._n, self._d)
          for i in range(arg - 1):
             result *= self
       elif arg == 0:
