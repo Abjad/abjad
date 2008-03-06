@@ -25,13 +25,13 @@ def leaf_scale(new_dur, leaf):
       return leaf
    except ValueError:
       leaf.duration = converge_to_power2(leaf.duration, new_dur)
-      parent = leaf._parent
-      if parent is not None:
-         indx = parent.index(leaf)
-         result = FixedDurationTuplet(new_dur, [leaf])
-         parent[indx] = result
-      else:
-         result = FixedDurationTuplet(new_dur, [leaf])
+#      parent = leaf._parent
+#      if parent is not None:
+#         indx = parent.index(leaf)
+#         result = FixedDurationTuplet(new_dur, [leaf])
+#         parent[indx] = result
+#      else:
+      result = FixedDurationTuplet(new_dur, [leaf])
       return result
 
 
