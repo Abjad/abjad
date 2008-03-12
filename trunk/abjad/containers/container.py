@@ -36,6 +36,23 @@ class Container(_Component):
       for x in self._music:
          x._parent = self
 
+   ### SPECIAL OVERRIDES ###
+
+   def __imul__(self, n):
+      assert isinstance(n, int)
+      assert n >= 0
+      if n == 0:
+         ### TODO - implement this to return empty self.
+         ###
+         ### This doesn't work:
+         ###
+         ###   self._music == [ ]
+         pass
+      else:
+         for copy in self * (n - 1):
+            self.extend(copy)
+      return self
+
    ### REPR ###
 
    @property
