@@ -190,7 +190,6 @@ class Container(_Component):
       Insert and *fracture around* the insert;
       other types of insert are possible;
       for example, nonfracturing insert;
-      other insert types not yet implemented.
       '''
       assert isinstance(expr, _Component)
       result = [ ]
@@ -203,6 +202,21 @@ class Container(_Component):
          #result.extend(expr.next.spanners.fractureLeft( )) 
          result.extend(expr.next.spanners.fracture(direction = 'left')) 
       return result
+
+   def embed(self, i, expr):
+      '''
+      Non-fracturing insert.
+      Insert but *don't* fracture spanners.
+      '''
+      assert isinstance(expr, _Component)
+
+      for s in self.spanners.get():
+         for l in expr.leaves:
+            s._insert(s.index(self[i].leaves[0]), l)
+
+      expr._parent = self
+      self._music.insert(i, expr)
+
 
    def append(self, expr):
       self.insert(len(self), expr)
