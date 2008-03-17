@@ -2,6 +2,21 @@ from .. duration.rational import Rational
 from .. helpers.hasname import hasname
 from interface import _Interface
 
+### TODO: put in helpers directory? Make a decorators folder?
+### Don't need to use decorators to allow X.duration == (n, m), 
+### but could be useful elsewhere?
+def _rationalize(meth):
+   '''Convert method argument from list or tuple to Rational.
+      meth((m, n)) --> meth(Rational(m, n))
+   '''
+   def new(self, arg):
+      if isinstance(arg, (list, tuple)):
+         assert len(arg) < 3
+         arg = Rational(*arg)
+      return meth(self, arg)
+   return new
+
+
 class _DurationInterface(_Interface, Rational):
 
    def __init__(self, _client):
@@ -33,3 +48,11 @@ class _DurationInterface(_Interface, Rational):
    @property
    def prolated(self):
       return self.prolation * self
+
+   ### OVERRIDES ###
+
+   @_rationalize
+   def __eq__(self, arg):
+      return Rational.__eq__(self, arg) 
+
+   
