@@ -145,6 +145,14 @@ class _LeafSpannerInterface(object):
       else:
          return None
 
+   def die(self, 
+      classname = None, interface = None, 
+      grob = None, attribute = None, value = None):
+      spanners = self.get(classname = classname, interface = interface,
+         grob = grob, attribute = attribute, value = value)
+      for spanner in spanners:
+         spanner.die( )
+
    ### FORMATTING ###
 
    @property
