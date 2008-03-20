@@ -143,11 +143,6 @@ class _ContainerSpannerInterface(object):
       #result.extend(self.fractureRight(interface, grob, attribute, value))
       return result
 
-# TODO - deprecate in favor of self.die( )
-#   def clear(self):
-#      for spanner in self[ : ]:
-#         spanner.die( ) 
-
    def die(self, 
       classname = None, interface = None, 
       grob = None, attribute = None, value = None):
