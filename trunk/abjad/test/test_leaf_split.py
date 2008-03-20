@@ -11,7 +11,7 @@ def test_leaf_split_01( ):
    assert new[0] == t
 
 def test_leaf_split_02( ):
-   '''Split duration > Leaf duration. Leaf is not split and is left unmodified.'''
+   '''Split duration >= Leaf duration. Leaf is not split and is left unmodified.'''
    t = Note(0, (1, 4))
    new = leaf_split((3, 4), t)
    assert isinstance(new, list)
