@@ -10,6 +10,7 @@ class _Tuplet(Container):
       self.brackets = 'curly'
       self._duration = _TupletDurationInterface(self)
       self.formatter = _TupletFormatter(self) 
+      self._invisible = False
 
    ### REPR ###
 
@@ -39,3 +40,14 @@ class _Tuplet(Container):
          return _Ratio(*(~self.duration.multiplier).pair)
       else:
          return None
+
+   ### MANAGED ATTRIBUTES ###
+
+   @apply
+   def invisible( ):
+      def fget(self):
+         return self._invisible
+      def fset(self, arg):
+         assert isinstance(arg, bool)
+         self._invisible = arg
+      return property(**locals())

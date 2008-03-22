@@ -106,3 +106,20 @@ def test_tuplet_label_01( ):
    assert t.format == '\\once \\override TupletNumber #\'text = \\markup { "6:4" }\n\\times 2/3 {\n\tc\'8\n\tc\'8\n\tc\'8\n}'
    t.formatter.label = None
    assert t.format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
+
+
+def test_invisible_tuplet( ):
+   '''Tuplet.invisible formats compressed music.'''
+   t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   assert t.invisible == False
+   t.invisible = True
+   assert t.format == "\\compressMusic #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"
+   '''
+   \compressMusic #'(2 . 3) {
+      c'8
+      c'8
+      c'8
+   }
+   '''
+   t.invisible = False
+   assert t.format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"

@@ -22,7 +22,8 @@ class _TupletFormatter(_ContainerFormatter):
    @property
    def _fraction(self):
       if not self._client.duration._binary:
-         return r'\fraction '
+         if not self._client.invisible:
+            return r'\fraction '
       else:
          return ''
 
@@ -32,8 +33,12 @@ class _TupletFormatter(_ContainerFormatter):
       result = [ ]
       if self._client.duration.multiplier:
          if self._client.duration.multiplier != 1:
-            result.append(r'%s\times %s %s' % (self._fraction, 
-               self._client.duration.multiplier, self._client.brackets.open))
+            if self._client.invisible:
+               result.append(r"\compressMusic #'(%s . %s) {" % 
+                  self._client.ratio.pair)
+            else:
+               result.append(r'%s\times %s %s' % (self._fraction, 
+                  self._client.duration.multiplier, self._client.brackets.open))
       inheritence = _ContainerFormatter._opening
       result.extend(inheritence.fget(self))
       return result
