@@ -24,19 +24,11 @@ class _LeafDurationInterface(_DurationInterface):
    ### READ-ONLY ATTRIBUTES ###
 
    @property
-   #def _multiplied(self):
    def _duration(self):
       if self.multiplier is not None:
          return self.written * self.multiplier
       else:
          return self.written
-
-#   @property
-#   def absolute(self):
-#      result = self.written * self.prolation
-#      if self.multiplier is not None:
-#         result *= self.multiplier
-#      return result
 
    ### BOUND METHODS ###
    
