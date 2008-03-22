@@ -72,5 +72,3 @@ def test_measure_duration_mismatch_03( ):
 def test_measure_duration_mismatch_04( ):
    t = Measure((4, 8), [ ])
    assert not check_measures(t, ret = True)
-
-

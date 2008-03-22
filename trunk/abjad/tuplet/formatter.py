@@ -53,7 +53,7 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   def lily(self):
+   def _pieces(self):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)
@@ -65,4 +65,8 @@ class _TupletFormatter(_ContainerFormatter):
       result.extend(self.closing)
       result.extend(self.after)
       result.extend(self._client.comments._after)
-      return '\n'.join(result)
+      return result
+
+   @property
+   def lily(self):
+      return '\n'.join(self._pieces)

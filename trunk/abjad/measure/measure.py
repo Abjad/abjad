@@ -1,14 +1,18 @@
+from abjad.duration.rational import Rational
+from abjad.measure.duration import _MeasureDurationInterface
 from .. containers.container import Container
-from .. containers.duration import _ContainerDurationInterface
+#from .. containers.duration import _ContainerDurationInterface
 from formatter import _MeasureFormatter
 from .. helpers.hasname import hasname
+from math import log
 from meter import _Meter
 
 class Measure(Container):
 
    def __init__(self, meter = None, music = [ ]):
       Container.__init__(self, music)
-      self._duration = _ContainerDurationInterface(self)
+      #self._duration = _ContainerDurationInterface(self)
+      self._duration = _MeasureDurationInterface(self)
       self.formatter = _MeasureFormatter(self)
       self.meter = meter
 
@@ -33,8 +37,29 @@ class Measure(Container):
          return '|%s|' % self._summary
       else:
          return '| |'
+
+   ### DERIVED PROPERTIES ###
+
+   @property
+   def nonbinary(self):
+      if self.meter is not None:
+         return bool(self.meter.denominator & (self.meter.denominator - 1))
+      else:
+         return False
+
+   @property
+   def _multiplier(self):
+      if self.meter:
+         d = self.meter.denominator
+         return (2 ** int(log(d, 2)), d)
+      else:
+         return (1, 1)
   
-   ### MANAGED PROPERTIES ###
+   @property
+   def duration(self):
+      return self._duration
+
+   ### MANAGED ATTRIBUTES ###
 
    @apply
    def meter( ):
@@ -47,7 +72,3 @@ class Measure(Container):
             meter = _Meter(*arg)
             self._meter = meter
       return property(**locals( ))
-
-   @property
-   def duration(self):
-      return self._duration
