@@ -1,9 +1,8 @@
 from abjad import *
 
 
-### TEST INIT EMPTY CONTAINER ###
-
-def test_empty_container( ):
+def test_container_01( ):
+   '''Empty container.'''
    t = Container([ ])
    assert repr(t) == '( )'
    assert t.format == ''
@@ -14,7 +13,8 @@ def test_empty_container( ):
    # so we do not check( ) here
    
 
-def test_typical_container( ):
+def test_container_02( ):
+   '''Typical container.'''
    t = Container(Note(0, (1, 4)) * 4)
    assert repr(t) == "(c'4, c'4, c'4, c'4)"
    assert t.format == "\tc'4\n\tc'4\n\tc'4\n\tc'4"
@@ -23,3 +23,10 @@ def test_typical_container( ):
    assert t.duration == t.duration.prolated == 1
    assert check(t, ret = True)
 
+
+def test_container_03( ):
+   '''Container parallel boolean property.'''
+   t = Container(Note(0, (1, 4)) * 8)
+   assert not t.parallel
+   t.brackets = 'double-angle'
+   assert t.parallel

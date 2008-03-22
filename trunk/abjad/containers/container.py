@@ -19,7 +19,6 @@ class Container(_Component):
             assert _are_contiguous_music_elements(music)
             start_index = music_parent.index(music[0])
             stop_index = music_parent.index(music[-1])
-            #print start_index, stop_index
          if music_parent is not None:
             music_parent[start_index : stop_index + 1] = [self]
       self._music = music
@@ -72,6 +71,10 @@ class Container(_Component):
 
    def __len__(self):
       return len(self._music)
+
+   @property
+   def parallel(self):
+      return self.brackets == 'double-angle'
 
    ### MANAGED ATTRIBUTES ###
 
