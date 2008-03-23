@@ -26,4 +26,6 @@ def lcopy(expr, start = 0, stop = None):
    governor = leaves[start]._parentage._governor
    governor_copy = governor.copy( )
 
+   ### TODO -- implement Measure.trim( )
+
    return None

@@ -1,17 +1,17 @@
+from abjad.containers.container import Container
 from abjad.duration.rational import Rational
+from abjad.helpers.hasname import hasname
+from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.measure.duration import _MeasureDurationInterface
-from .. containers.container import Container
-#from .. containers.duration import _ContainerDurationInterface
-from formatter import _MeasureFormatter
-from .. helpers.hasname import hasname
+from abjad.measure.formatter import _MeasureFormatter
 from math import log
 from meter import _Meter
+
 
 class Measure(Container):
 
    def __init__(self, meter = None, music = [ ]):
       Container.__init__(self, music)
-      #self._duration = _ContainerDurationInterface(self)
       self._duration = _MeasureDurationInterface(self)
       self.formatter = _MeasureFormatter(self)
       self.meter = meter
@@ -72,3 +72,17 @@ class Measure(Container):
             meter = _Meter(*arg)
             self._meter = meter
       return property(**locals( ))
+   
+   ### BOUND METHODS ###
+
+   def trim(self, start, stop = 'unused'):
+      old_denominator = self.meter.denominator
+      if stop != 'unused':
+         assert not (start == 0 and (stop is None or stop >= len(self)))
+      if stop == 'unused':
+         del(self[start])
+      else:
+         del(self[start : stop])
+      naive_meter = self.duration.contents
+      better_meter = _in_terms_of(naive_meter, old_denominator)
+      self.meter = better_meter
