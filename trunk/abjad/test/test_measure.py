@@ -9,7 +9,6 @@ def test_typical_measure_01( ):
    assert repr(t) == "Measure(4/4, [c'4, c'4, c'4, c'4])"
    assert str(t) == "|4/4, c'4, c'4, c'4, c'4|"
    assert t.format == "\t\\time 4/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4"
-   #assert t.meter == _Meter(4, 4)
    assert len(t) == 4
    assert t.duration == Rational(1)
    assert t.duration.prolated == Rational(1)
@@ -28,47 +27,3 @@ def test_unmetered_measure_01( ):
    assert t.duration == Rational(1)
    assert t.duration.prolated == Rational(1)
    assert check_measures(t, ret = True)
-
-
-### TEST EMPTY MEASURE ###
-
-def test_empty_measure_01( ):
-   t = Measure(None, [ ])
-   assert repr(t) == 'Measure( )'
-   assert str(t) == '| |'
-   assert t.format == ''
-   assert t.meter == None
-   assert len(t) == 0
-   assert t.duration == Rational(0)
-   assert t.duration.prolated == Rational(0)
-   assert check_measures(t, ret = True)
-
-def test_empty_measure_02( ):
-   t = Measure((4, 4), [ ])
-   assert repr(t) == 'Measure(4/4)'
-   assert str(t) == '|4/4|'
-   assert t.format == '\t\\time 4/4'
-   #assert t.meter == _Meter(4, 4)
-   assert len(t) == 0
-   assert t.duration == Rational(0)
-   assert t.duration.prolated == Rational(0)
-   assert not check_measures(t, ret = True)
-
-
-### TEST MEASURE DURATION MISMATCH ###
-
-def test_measure_duration_mismatch_01( ):
-   t = Measure((5, 8), Note(0, (1, 8)) * 4)
-   assert not check_measures(t, ret = True)
-
-def test_measure_duration_mismatch_02( ):
-   t = Measure((5, 8), Note(0, (1, 16)) * 5)
-   assert not check_measures(t, ret = True)
-
-def test_measure_duration_mismatch_03( ):
-   t = Measure((5, 8), [ ])
-   assert not check_measures(t, ret = True)
-
-def test_measure_duration_mismatch_04( ):
-   t = Measure((4, 8), [ ])
-   assert not check_measures(t, ret = True)

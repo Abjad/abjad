@@ -22,17 +22,17 @@ class _MeasureFormatter(_ContainerFormatter):
       result.extend(self.before)
       result.extend(self._meter)
       if self._client.nonbinary:
-
-         ### TODO - may be dangerous; run tests; write tests
-         measure_music = self._client[ : ]
-         for x in measure_music:
-            x._parent = None
-         tuplet = FixedMultiplierTuplet(self._client._multiplier, measure_music)
-         tuplet.invisible = True
-         result.extend(['\t' + x for x in tuplet.formatter._pieces])
-         for x in measure_music:
-            x._parent = self._client
-
+         if len(self._client):
+            ### TODO - may be dangerous; run tests; write tests
+            measure_music = self._client[ : ]
+            for x in measure_music:
+               x._parent = None
+            tuplet = FixedMultiplierTuplet(
+               self._client._multiplier, measure_music)
+            tuplet.invisible = True
+            result.extend(['\t' + x for x in tuplet.formatter._pieces])
+            for x in measure_music:
+               x._parent = self._client
       else:
          result.extend(self.opening)
          result.extend(self._opening)
