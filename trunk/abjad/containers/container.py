@@ -1,18 +1,17 @@
-from brackets import _Brackets
-from .. core.component import _Component
-from duration import _ContainerDurationInterface
-from formatter import _ContainerFormatter
-from .. helpers.contiguity import _are_atomic_music_elements
-from .. helpers.contiguity import _are_contiguous_music_elements
-from .. helpers.hasname import hasname
-from .. helpers.instances import instances
-from spannerinterface import _ContainerSpannerInterface
+from abjad.containers.brackets import _Brackets
+from abjad.core.component import _Component
+from abjad.containers.duration import _ContainerDurationInterface
+from abjad.containers.formatter import _ContainerFormatter
+from abjad.helpers.contiguity import _are_atomic_music_elements
+from abjad.helpers.contiguity import _are_contiguous_music_elements
+from abjad.helpers.hasname import hasname
+from abjad.helpers.instances import instances
+from abjad.containers.spannerinterface import _ContainerSpannerInterface
 
 class Container(_Component):
 
    def __init__(self, music = [ ]):
       self._parent = None
-      #self._music = music
       if music:
          music_parent = music[0]._parent
          if not _are_atomic_music_elements(music):
@@ -94,9 +93,7 @@ class Container(_Component):
 
    @property
    def next(self):
-      '''
-      Next leaf righwards, otherwise None.
-      '''
+      '''Next leaf righwards, otherwise None.'''
       if len(self.leaves) > 0:
          return self.leaves[-1].next
       else:
@@ -104,9 +101,7 @@ class Container(_Component):
 
    @property
    def prev(self):
-      '''
-      Prev leaf leftwards, otherwise None.
-      '''
+      '''Prev leaf leftwards, otherwise None.'''
       if len(self.leaves) > 0:
          return self.leaves[0].prev
       else:
@@ -144,8 +139,6 @@ class Container(_Component):
          else:
             j = i
          expr._parent = self
-         #del(self[j])
-         #self._music.insert(j, expr)
          self._music[j] = expr
          if expr.leaves:
             left, right = expr.leaves[0], expr.leaves[-1]
@@ -156,8 +149,6 @@ class Container(_Component):
          assert isinstance(expr, list)
          for x in expr:
             x._parent = self
-         #del(self[i])
-         #self._music[i.start : i.start] = expr
          self._music[i.start : i.stop] = expr
          if expr[0].leaves:
             left = expr[0].leaves[0]
@@ -168,10 +159,8 @@ class Container(_Component):
          else:
             right = None
       if left and left.prev:
-         #left.prev.spanners.fractureRight( )
          left.prev.spanners.fracture(direction = 'right')
       if right and right.next:
-         #right.next.spanners.fractureLeft( )
          right.next.spanners.fracture(direction = 'left')
 
    def __delitem__(self, i):
@@ -191,18 +180,15 @@ class Container(_Component):
    def insert(self, i, expr):
       '''
       Insert and *fracture around* the insert;
-      other types of insert are possible;
-      for example, nonfracturing insert;
+      for nonfracturing insert, use embed( ).
       '''
       assert isinstance(expr, _Component)
       result = [ ]
       expr._parent = self
       self._music.insert(i, expr)
       if expr.prev:
-         #result.extend(expr.prev.spanners.fractureRight( ))
          result.extend(expr.prev.spanners.fracture(direction = 'right'))
       if expr.next:
-         #result.extend(expr.next.spanners.fractureLeft( )) 
          result.extend(expr.next.spanners.fracture(direction = 'left')) 
       return result
 
@@ -210,16 +196,14 @@ class Container(_Component):
       '''
       Non-fracturing insert.
       Insert but *don't* fracture spanners.
+      For fracturing insert, use insert( ).
       '''
       assert isinstance(expr, _Component)
-
       for s in self.spanners.get():
          for l in expr.leaves:
             s._insert(s.index(self[i].leaves[0]), l)
-
       expr._parent = self
       self._music.insert(i, expr)
-
 
    def append(self, expr):
       self.insert(len(self), expr)
@@ -232,16 +216,6 @@ class Container(_Component):
       else:
          raise ValueError('Extend containers with lists and containers only.')
 
-   ### TODO - change pop so that it doesn't denature the popped item;
-   ###        also return the popped item;
-   ### EXAMPLE:
-   ###        t = Staff([Voice(Note(0, (1, 8)) * 8)])
-   ###        v = t[0]
-   ###        t.pop( )
-   ###        v is now denatured & has no contents;
-   ###        this seems unnecessarily harsh.
-   ### DONE ??? LET ME KNOW!
-
    def pop(self, i = -1):
       result = self[i]
       del(self[i])
@@ -250,27 +224,23 @@ class Container(_Component):
    def remove(self, i):
       del(self[i])
 
-   def _killLeaves(self, i = None, j = None):
-      '''
-      First step in killing a container;
-      killing leaves eliminates crossing spanners.
-      '''
-      if i and j:
-         for l in self.leaves[i : j + 1]:
-            l._die( )
-      else:
-         for l in self.leaves:
-            l._die( )
+   ### TODO - can we deprecate this in favor of del( )? ###
+#   def _killLeaves(self, i = None, j = None):
+#      '''
+#      First step in killing a container;
+#      killing leaves eliminates crossing spanners.
+#      '''
+#      if i and j:
+#         for l in self.leaves[i : j + 1]:
+#            l._die( )
+#      else:
+#         for l in self.leaves:
+#            l._die( )
 
    def _die(self):
       '''
       These two steps work even for nested tuplets.
       '''
-      #self._killLeaves( )   
-      #for l in self.leaves:
-         #for spanner in l.spanners.get( ):
-            #spanner._sever(spanner.index(l))
-      # we want to keep the spanners, so just fracture instead:
       self.spanners.fracture( )
       self._parentage._detach( )
 

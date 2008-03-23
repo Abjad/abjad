@@ -50,7 +50,8 @@ class FixedDurationTuplet(_Tuplet):
    ### BOUND METHODS ###
 
    def trim(self, start, stop = 'unused'):
-      assert not (start == 0 and (stop is None or stop >= len(self)))
+      if stop != 'unused':
+         assert not (start == 0 and (stop is None or stop >= len(self)))
       old_multiplier = self.duration.multiplier
       if stop == 'unused':
          del(self[start])

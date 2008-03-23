@@ -26,4 +26,4 @@ def lcopy(expr, start = 0, stop = None):
    governor = leaves[start]._parentage._governor
    governor_copy = governor.copy( )
 
-   print governor
+   return None
