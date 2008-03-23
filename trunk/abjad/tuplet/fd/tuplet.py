@@ -1,6 +1,6 @@
-from ... duration.rational import Rational
-from duration import _FDTupletDurationInterface
-from .. tuplet import _Tuplet
+from abjad.duration.rational import Rational
+from abjad.tuplet.fd.duration import _FDTupletDurationInterface
+from abjad.tuplet.tuplet import _Tuplet
 
 class FixedDurationTuplet(_Tuplet):
 
@@ -8,15 +8,11 @@ class FixedDurationTuplet(_Tuplet):
       _Tuplet.__init__(self, music)
       self._duration = _FDTupletDurationInterface(self, duration)
       self._signifier = '@'
-      #self.duration.fixed = duration
-      #self.duration._n = duration[0]
-      #self.duration._d = duration[1]
 
    ### REPR ###
  
    def __repr__(self):
       return 'FixedDurationTuplet(%s, [%s])' % (
-         #self.duration.fixed, self._summary)
          self.duration, self._summary)
 
    def __str__(self):
@@ -25,7 +21,6 @@ class FixedDurationTuplet(_Tuplet):
             self._signifier, self.ratio, self._summary, self._signifier)
       else:
          return '{%s %s %s}' % (
-            #self._signifier, self.duration.fixed, self._signifier)
             self._signifier, self.duration, self._signifier)
 
    ### MANAGED ATTRIBUTES ###
@@ -50,3 +45,15 @@ class FixedDurationTuplet(_Tuplet):
             raise ValueError('Tuplet rational %s must be positive.' %
                rational)
       return property(**locals( ))
+
+
+   ### BOUND METHODS ###
+
+   def trim(self, start, stop = 'unused'):
+      assert not (start == 0 and (stop is None or stop >= len(self)))
+      old_multiplier = self.duration.multiplier
+      if stop == 'unused':
+         del(self[start])
+      else:
+         del(self[start : stop])
+      self.duration = old_multiplier * self.duration.contents

@@ -1,19 +1,19 @@
-from .. duration.rational import Rational
+from abjad.duration.rational import Rational
 
 class _Parentage(object):
 
    def __init__(self, client):
       self._client = client
 
-#   @property
-#   def _prolation(self):
-#      result = Rational(1)
-#      p = self._client._parent
-#      while p is not None and hasattr(p, 'multiplier'):
-#         result *= p.multiplier
-#         p = p._parent
-#      return result
-         
+   @property
+   def _governor(self):
+      p = self._client._parent
+      if p is None or p.parallel:
+         return None
+      while p._parent is not None and not p._parent.parallel:
+         p = p._parent
+      return p
+
    def _first(self, classname):
       p = self._client._parent
       while p is not None:
