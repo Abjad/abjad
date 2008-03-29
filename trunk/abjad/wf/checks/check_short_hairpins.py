@@ -1,4 +1,4 @@
-from .. tools import _report
+from abjad.wf.tools import _report
 
 
 def check_short_hairpins(expr, report = True, ret = 'violators'):

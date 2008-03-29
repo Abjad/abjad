@@ -1,5 +1,5 @@
-from ... helpers.instances import instances
-from .. tools import _report
+from abjad.helpers.instances import instances
+from abjad.wf.tools import _report
 
 
 def check_gnashing_glissandi(expr, report = True, ret = 'violators'):

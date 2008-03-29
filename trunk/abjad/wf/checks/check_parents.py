@@ -1,4 +1,4 @@
-from .. tools import _report
+from abjad.wf.tools import _report
 
 
 def check_parents(expr, report = True, ret = 'violators'):

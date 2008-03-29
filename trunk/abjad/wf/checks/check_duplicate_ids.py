@@ -1,6 +1,6 @@
-from ... helpers.instances import instances
-from ... helpers.unique import unique
-from .. tools import _report
+from abjad.helpers.instances import instances
+from abjad.helpers.unique import unique
+from abjad.wf.tools import _report
 
 
 def check_duplicate_ids(expr, report = True, ret = 'violators'):

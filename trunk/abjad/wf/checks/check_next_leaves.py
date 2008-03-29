@@ -1,5 +1,5 @@
-from ... helpers.instances import instances
-from .. tools import _report
+from abjad.helpers.instances import instances
+from abjad.wf.tools import _report
 
 # TODO - make this work in cases where expr contains one or more parallel
 # containers;
