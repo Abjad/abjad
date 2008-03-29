@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.wf import check_measures
+from abjad.wf import check_measures_durations
 
 
 def test_measure_unmetered_01( ):
@@ -11,7 +11,7 @@ def test_measure_unmetered_01( ):
    assert len(t) == 4
    assert t.duration == Rational(1)
    assert t.duration.prolated == Rational(1)
-   assert check_measures(t, ret = True)
+   assert check_measures_durations(t, ret = True)
 
 
 def test_measure_unmetered_02( ):
@@ -23,4 +23,4 @@ def test_measure_unmetered_02( ):
    assert len(t) == 6
    assert t.duration == Rational(6, 4)
    assert t.duration.prolated == Rational(6, 4)
-   assert check_measures(t, ret = True)
+   assert check_measures_durations(t, ret = True)

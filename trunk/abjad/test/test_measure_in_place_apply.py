@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.wf import check_measures
+from abjad.wf import check_measures_durations
 
 
 
@@ -18,7 +18,7 @@ def test_measure_in_place_apply_01( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert check_measures(t, ret = True)
+   assert check_measures_durations(t, ret = True)
 
 
 def test_measure_in_place_apply_02( ):
@@ -33,7 +33,7 @@ def test_measure_in_place_apply_02( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert check_measures(t, ret = True)
+   assert check_measures_durations(t, ret = True)
 
 
 def test_measure_in_place_apply_03( ):
@@ -48,7 +48,7 @@ def test_measure_in_place_apply_03( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert check_measures(t, ret = True)
+   assert check_measures_durations(t, ret = True)
 
 
 def test_measure_in_place_apply_04( ):
@@ -63,4 +63,4 @@ def test_measure_in_place_apply_04( ):
          assert isinstance(x, Measure)
       else:
          assert isinstance(x, Note)
-   assert check_measures(t, ret = True)
+   assert check_measures_durations(t, ret = True)
