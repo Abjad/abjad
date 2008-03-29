@@ -1,6 +1,6 @@
-from .. duration.rational import Rational
-from .. helpers.hasname import hasname
-from interface import _Interface
+from abjad.duration.rational import Rational
+from abjad.core.interface import _Interface
+from abjad.helpers.hasname import hasname
 
 ### TODO: put in helpers directory? Make a decorators folder?
 ### Don't need to use decorators to allow X.duration == (n, m), 
@@ -27,12 +27,10 @@ class _DurationInterface(_Interface, Rational):
 
    @property
    def _n(self):  
-      #return self.absolute._n 
       return self._duration._n
          
    @property
    def _d(self):
-      #return self.absolute._d
       return self._duration._d
 
    @property
@@ -40,7 +38,7 @@ class _DurationInterface(_Interface, Rational):
       result = Rational(1)
       t = self._client._parent
       while t is not None:
-         if hasname(t, '_Tuplet'):
+         if hasname(t, ('_Tuplet', 'Measure')):
             result *= t.duration.multiplier
          t = t._parent
       return result
@@ -54,5 +52,3 @@ class _DurationInterface(_Interface, Rational):
    @_rationalize
    def __eq__(self, arg):
       return Rational.__eq__(self, arg) 
-
-   

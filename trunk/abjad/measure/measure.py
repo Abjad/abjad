@@ -38,23 +38,6 @@ class Measure(Container):
       else:
          return '| |'
 
-   ### DERIVED PROPERTIES ###
-
-   @property
-   def nonbinary(self):
-      if self.meter is not None:
-         return bool(self.meter.denominator & (self.meter.denominator - 1))
-      else:
-         return False
-
-   @property
-   def _multiplier(self):
-      if self.meter:
-         d = self.meter.denominator
-         return (2 ** int(log(d, 2)), d)
-      else:
-         return (1, 1)
-  
    @property
    def duration(self):
       return self._duration

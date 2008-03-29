@@ -1,5 +1,5 @@
 from .. containers.formatter import _ContainerFormatter
-from math import log
+#from math import log
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
@@ -21,14 +21,16 @@ class _MeasureFormatter(_ContainerFormatter):
       result.extend(self._client.comments._before)
       result.extend(self.before)
       result.extend(self._meter)
-      if self._client.nonbinary:
+      #if self._client.nonbinary:
+      if self._client.duration.nonbinary:
          if len(self._client):
             ### TODO - may be dangerous; run tests; write tests
             measure_music = self._client[ : ]
             for x in measure_music:
                x._parent = None
             tuplet = FixedMultiplierTuplet(
-               self._client._multiplier, measure_music)
+               #self._client._multiplier, measure_music)
+               self._client.duration._multiplier, measure_music)
             tuplet.invisible = True
             result.extend(['\t' + x for x in tuplet.formatter._pieces])
             for x in measure_music:
