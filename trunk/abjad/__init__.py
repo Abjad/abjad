@@ -23,6 +23,5 @@ def _remove_modules():
       if isinstance(value, ModuleType) and not key.startswith('_'):
          globals().pop(key)
 
-from wf.check import check
 _load_classes(('svn', 'tools', 'wf', 'test', 'checks'))
 _remove_modules()
