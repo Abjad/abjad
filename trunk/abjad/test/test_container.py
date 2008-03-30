@@ -21,7 +21,7 @@ def test_container_02( ):
    assert len(t) == 4
    assert t._parent == None
    assert t.duration == t.duration.prolated == 1
-   assert check(t, ret = True)
+   assert check(t)
 
 
 def test_container_03( ):

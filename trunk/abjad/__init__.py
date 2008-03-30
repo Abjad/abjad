@@ -24,5 +24,5 @@ def _remove_modules():
          globals().pop(key)
 
 from wf.check import check
-_load_classes(('svn', 'tools', 'wf', 'test'))
+_load_classes(('svn', 'tools', 'wf', 'test', 'checks'))
 _remove_modules()

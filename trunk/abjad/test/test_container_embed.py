@@ -7,7 +7,7 @@ def test_embed_01( ):
    t = Staff(Note(0, (1, 8)) * 8)
    Beam(t)
    t.embed(2, Rest((1,8)))
-   assert check(t, ret = True)
+   assert check(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tc'8\n\tr8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
    '''
    \new Staff {
@@ -28,7 +28,7 @@ def test_embed_02( ):
    t = Staff(Note(0, (1, 8)) * 8)
    Beam(t)
    t.embed(2, Voice(Note(1, (1,16)) * 4))
-   assert check(t, ret = True)
+   assert check(t)
    assert t.format =="\\new Staff {\n\tc'8 [\n\tc'8\n\t\\new Voice {\n\t\tcs'16\n\t\tcs'16\n\t\tcs'16\n\t\tcs'16\n\t}\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}" 
    '''
    \new Staff {
@@ -55,7 +55,7 @@ def test_embed_03( ):
    Beam(t)
    Trill(t)
    t.embed(2, Rest((1,8)))
-   assert check(t, ret = True)
+   assert check(t)
    assert t.format == "\\new Staff {\n\tc'8 [ \\startTrillSpan\n\tc'8\n\tr8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ] \\stopTrillSpan\n}"
    '''
    \new Staff {
@@ -77,7 +77,7 @@ def test_embed_04( ):
    Beam(t)
    Trill(t)
    t.embed(2, Voice(Note(1, (1,16)) * 4))
-   assert check(t, ret = True)
+   assert check(t)
    assert t.format =="\\new Staff {\n\tc'8 [ \\startTrillSpan\n\tc'8\n\t\\new Voice {\n\t\tcs'16\n\t\tcs'16\n\t\tcs'16\n\t\tcs'16\n\t}\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ] \\stopTrillSpan\n}"
    '''
    \new Staff {

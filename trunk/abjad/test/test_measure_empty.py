@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.wf import check_measures_durations
+from abjad.checks import MeasuresMisdurated
+checker = MeasuresMisdurated( )
 
 
 def test_measure_empty_01( ):
@@ -11,7 +12,7 @@ def test_measure_empty_01( ):
    assert len(t) == 0
    assert t.duration == Rational(0)
    assert t.duration.prolated == Rational(0)
-   assert check_measures_durations(t, ret = True)
+   assert checker.check(t)
 
 
 def test_measure_empty_02( ):
@@ -22,7 +23,7 @@ def test_measure_empty_02( ):
    assert len(t) == 0
    assert t.duration == Rational(0)
    assert t.duration.prolated == Rational(0)
-   assert not check_measures_durations(t, ret = True)
+   assert not checker.check(t)
 
 
 def test_measure_empty_03( ):
@@ -33,4 +34,4 @@ def test_measure_empty_03( ):
    assert len(t) == 0
    assert t.duration == Rational(0)
    assert t.duration.prolated == Rational(0)
-   assert not check_measures_durations(t, ret = True)
+   assert not checker.check(t)

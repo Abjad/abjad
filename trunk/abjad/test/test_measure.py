@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.wf import check_measures_durations
+from abjad.checks import MeasuresMisdurated
+checker = MeasuresMisdurated( )
 
 
 ### TEST TYPICAL MEASURE ###
@@ -12,7 +13,8 @@ def test_typical_measure_01( ):
    assert len(t) == 4
    assert t.duration == Rational(1)
    assert t.duration.prolated == Rational(1)
-   assert check_measures_durations(t, ret = True)
+   assert checker.check(t)
+  
 
 
 ### TEST UNMETERED MEASURE ###
@@ -26,4 +28,4 @@ def test_unmetered_measure_01( ):
    assert len(t) == 4
    assert t.duration == Rational(1)
    assert t.duration.prolated == Rational(1)
-   assert check_measures_durations(t, ret = True)
+   assert checker.check(t)

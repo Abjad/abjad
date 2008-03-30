@@ -54,7 +54,7 @@ def test_copy_adjacent_containerized_notes_01( ):
    for i, x in enumerate(u):
       assert x.pitch == t[i].pitch
       assert id(x) is not id(t[i])
-   assert check(u, ret=True)
+   assert check(u)
 
 def test_copy_adjacent_containerized_notes_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -65,7 +65,7 @@ def test_copy_adjacent_containerized_notes_02( ):
       j = i + 1
       assert x.pitch == t[j].pitch
       assert id(x) is not id(t[j])
-   assert check(u, ret=True)
+   assert check(u)
 
 ### COPY ADJACENT TUPLETIZED NOTES ###
 ### note - right now notes get 'ripped' out of tuplets
@@ -91,7 +91,7 @@ def test_copy_adjacent_tupletized_notes_01( ):
       j = i + 0
       assert x.pitch == t[1][j].pitch
       assert id(x) != id(t[1][j])
-   assert check(u, ret=True)
+   assert check(u)
 
 def test_copy_adjacent_tupletized_notes_02( ):
    t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
@@ -102,7 +102,7 @@ def test_copy_adjacent_tupletized_notes_02( ):
       j = i + 1
       assert x.pitch == t[1][j].pitch
       assert id(x) != id(t[1][j])
-   assert check(u, ret=True)
+   assert check(u)
 
 ### TODO - implement some sort of 'crossing' copy.
 ### given t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)

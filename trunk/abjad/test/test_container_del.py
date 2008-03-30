@@ -5,7 +5,7 @@ def test_container_del_01( ):
    t = Staff(Note(0 , (1,8)) * 4)
    Beam(t)
    del(t[0])
-   assert check(t, ret = True)
+   assert check(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tc'8\n\tc'8 ]\n}"
    '''
    \new Staff {
@@ -20,21 +20,21 @@ def test_container_del_02( ):
    t = Staff(Note(0, (1, 8)) * 4)
    Beam(t)
    del(t[1:3])
-   assert check(t, ret = True)
+   assert check(t)
 
 def test_container_del_03( ):
    '''Delete slice from beginning to middle of container.'''
    t = Staff(Note(0, (1, 8)) * 4)
    Beam(t)
    del(t[0:2])
-   assert check(t, ret = True)
+   assert check(t)
 
 def test_container_del_04( ):
    '''Delete slice from middle to end of container.'''
    t = Staff(Note(0, (1, 8)) * 4)
    Beam(t)
    del(t[2:])
-   assert check(t, ret = True)
+   assert check(t)
 
 def test_container_del_05( ):
    '''Delete slice from beginning to end of container.'''
@@ -48,7 +48,7 @@ def test_container_del_06( ):
    t = FixedDurationTuplet((1, 4), Note(0 , (1,8)) * 3)
    Beam(t)
    del(t[0])
-   assert check(t, ret = True)
+   assert check(t)
    assert t.format =="\tc'8 [\n\tc'8 ]"
    '''
      c'8 [

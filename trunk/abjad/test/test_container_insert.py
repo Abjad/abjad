@@ -7,7 +7,7 @@ def test_container_insert_01( ):
    Beam(t)
    t.insert(0, Rest((1, 4)))
    assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"   
-   assert check(t, ret = True)
+   assert check(t)
    '''
    \new Staff {
            r4
@@ -25,7 +25,7 @@ def test_container_insert_02( ):
    Beam(t)
    t.insert(1, Rest((1, 4)))
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
-   assert check(t, ret = True)
+   assert check(t)
    '''
    \new Staff {
            c'8 [ ]
@@ -44,7 +44,7 @@ def test_container_insert_03( ):
    t.insert(4, Rest((1, 4)))
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
    
-   assert check(t, ret = True)
+   assert check(t)
    '''
    \new Staff {
            c'8 [
@@ -63,7 +63,7 @@ def test_container_insert_04( ):
    t.insert(1000, Rest((1, 4)))
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
    
-   assert check(t, ret = True)
+   assert check(t)
    '''
    \new Staff {
            c'8 [
@@ -81,7 +81,7 @@ def test_container_insert_05( ):
    Beam(t)
    t.insert(-1, Rest((1, 4)))
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
-   assert check(t, ret = True)
+   assert check(t)
    '''
    \new Staff {
            c'8 [
@@ -100,7 +100,7 @@ def test_container_insert_06( ):
    t.insert(-1000, Rest((1, 4)))
    assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
   
-   assert check(t, ret = True)
+   assert check(t)
    '''
    \new Staff {
            r4

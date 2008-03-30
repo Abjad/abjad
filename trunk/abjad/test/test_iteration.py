@@ -41,7 +41,7 @@ def test_iterate_and_cast_01( ):
    for i, x in enumerate(t.leaves):
       if i % 2 == 0:
          Rest(x)
-   assert check(t, ret = True)
+   assert check(t)
    assert t.format == "\\new Staff {\n\tr16\n\tc'16\n\tr16\n\tc'16\n\tr16\n\tc'16\n\tr16\n\tc'16\n\tr16\n\tc'16\n}"
    for i, x in enumerate(t.leaves):
       if i % 2 == 0:
@@ -57,7 +57,7 @@ def test_iterate_and_cast_02( ):
    for i, x in enumerate(t.leaves):
       if i % 2 == 0:
          Skip(x)
-   assert check(t, ret = True)
+   assert check(t)
    assert t.format == "\\new Staff {\n\ts16\n\tc'16\n\ts16\n\tc'16\n\ts16\n\tc'16\n\ts16\n\tc'16\n\ts16\n\tc'16\n}"
    for i, x in enumerate(t.leaves):
       if i % 2 == 0:
@@ -73,7 +73,7 @@ def test_iterate_and_cast_03( ):
    for i, x in enumerate(t.leaves):
       if i % 2 == 0:
          Chord(x)
-   assert check(t, ret = True)
+   assert check(t)
    for i, x in enumerate(t.leaves):
       if i % 2 == 0:
          assert isinstance(x, Chord)      
