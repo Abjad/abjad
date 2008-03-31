@@ -212,6 +212,12 @@ class _Leaf(_Component):
          spanner._sever(spanner.index(self))
       self._parentage._detach( )
 
+#   def _flamingo(self):
+#      parent = self._parent
+#      self._die( )
+#      #while parent is not None:
+         
+
    @property
    def leaves(self):
       return [self]

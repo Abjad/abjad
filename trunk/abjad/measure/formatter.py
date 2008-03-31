@@ -30,7 +30,8 @@ class _MeasureFormatter(_ContainerFormatter):
                x._parent = None
             tuplet = FixedMultiplierTuplet(
                #self._client._multiplier, measure_music)
-               self._client.duration._multiplier, measure_music)
+               #self._client.duration._multiplier, measure_music)
+               self._client.duration.multiplier, measure_music)
             tuplet.invisible = True
             result.extend(['\t' + x for x in tuplet.formatter._pieces])
             for x in measure_music:

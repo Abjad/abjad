@@ -224,19 +224,6 @@ class Container(_Component):
    def remove(self, i):
       del(self[i])
 
-   ### TODO - can we deprecate this in favor of del( )? ###
-#   def _killLeaves(self, i = None, j = None):
-#      '''
-#      First step in killing a container;
-#      killing leaves eliminates crossing spanners.
-#      '''
-#      if i and j:
-#         for l in self.leaves[i : j + 1]:
-#            l._die( )
-#      else:
-#         for l in self.leaves:
-#            l._die( )
-
    def _die(self):
       '''
       These two steps work even for nested tuplets.
