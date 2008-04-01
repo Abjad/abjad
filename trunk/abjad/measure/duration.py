@@ -1,6 +1,7 @@
 from abjad.containers.duration import _ContainerDurationInterface
 from abjad.core.interface import _Interface
 from abjad.duration.rational import Rational
+from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
 from math import log
 
 class _MeasureDurationInterface(_ContainerDurationInterface):
@@ -35,3 +36,12 @@ class _MeasureDurationInterface(_ContainerDurationInterface):
          return self._client.meter.duration / self.contents
       else:
          return Rational(1, 1)
+
+   @property
+   def compression(self):
+      '''Exists to handle the one exceptional case
+         where a nonbinary measure has a multiplier == 1.'''
+      if self.nonbinary and self.multiplier == Rational(1, 1):
+         return _denominator_to_multiplier(self._client.meter.denominator)
+      else:
+         return self.multiplier

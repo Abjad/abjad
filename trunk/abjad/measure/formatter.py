@@ -24,8 +24,10 @@ class _MeasureFormatter(_ContainerFormatter):
       result.extend(self._meter)
       #if self._client.nonbinary:
       #if self._client.duration.nonbinary:
-      if self._client.duration.multiplier != Rational(1, 1):
-         multiplier = self._client.duration.multiplier
+      #if self._client.duration.multiplier != Rational(1, 1):
+      if self._client.duration.compression != Rational(1, 1):
+         #multiplier = self._client.duration.multiplier
+         compression = self._client.duration.compression
          if len(self._client):
             ### TODO - may be dangerous; run tests; write tests
             measure_music = self._client[ : ]
@@ -34,7 +36,8 @@ class _MeasureFormatter(_ContainerFormatter):
             tuplet = FixedMultiplierTuplet(
                #self._client.duration.multiplier, measure_music)
                #self._client.duration.multiplier, measure_music)
-               multiplier, measure_music)
+               #multiplier, measure_music)
+               compression, measure_music)
             tuplet.invisible = True
             result.extend(['\t' + x for x in tuplet.formatter._pieces])
             for x in measure_music:
