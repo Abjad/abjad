@@ -37,7 +37,6 @@ def test_measure_prolation_03( ):
    assert t.leaves[1].duration.prolated == Rational(1, 9)
 
 
-### TODO - adjust the three tests from here to EOF ###
 def test_measure_prolation_04( ):
    '''Nonbinary measures contribute nontrivially to contents prolation;
       works on a flat list of notes.'''
