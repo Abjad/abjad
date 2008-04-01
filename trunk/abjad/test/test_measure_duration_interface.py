@@ -20,9 +20,10 @@ def test_measure_duration_interface_03( ):
 
 
 def test_measure_duration_interface_04( ):
-   '''Works with nonbinary meters.'''
+   '''Works with empty measures.'''
    t = Measure((4, 4), [ ])
-   assert t.duration == Rational(0)
+   #assert t.duration == Rational(0)
+   assert t.duration == Rational(1)
 
 
 def test_measure_duration_interface_05( ):

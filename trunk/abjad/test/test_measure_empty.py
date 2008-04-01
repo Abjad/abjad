@@ -1,6 +1,8 @@
 from abjad import *
-from abjad.checks import MeasuresMisdurated
-checker = MeasuresMisdurated( )
+#from abjad.checks import MeasuresMisdurated
+#checker = MeasuresMisdurated( )
+from abjad.checks import ContainersEmpty
+checker = ContainersEmpty( )
 
 
 def test_measure_empty_01( ):
@@ -12,7 +14,7 @@ def test_measure_empty_01( ):
    assert len(t) == 0
    assert t.duration == Rational(0)
    assert t.duration.prolated == Rational(0)
-   assert checker.check(t)
+   assert not checker.check(t)
 
 
 def test_measure_empty_02( ):
@@ -21,8 +23,10 @@ def test_measure_empty_02( ):
    assert str(t) == '|4/4|'
    assert t.format == '\t\\time 4/4'
    assert len(t) == 0
-   assert t.duration == Rational(0)
-   assert t.duration.prolated == Rational(0)
+   #assert t.duration == Rational(0)
+   #assert t.duration.prolated == Rational(0)
+   assert t.duration == Rational(1)
+   assert t.duration.prolated == Rational(1)
    assert not checker.check(t)
 
 
@@ -32,6 +36,8 @@ def test_measure_empty_03( ):
    assert str(t) == '|4/5|'
    assert t.format == '\t\\time 4/5'
    assert len(t) == 0
-   assert t.duration == Rational(0)
-   assert t.duration.prolated == Rational(0)
+   #assert t.duration == Rational(0)
+   #assert t.duration.prolated == Rational(0)
+   assert t.duration == Rational(4, 5)
+   assert t.duration.prolated == Rational(4, 5)
    assert not checker.check(t)

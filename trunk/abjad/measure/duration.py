@@ -8,17 +8,16 @@ class _MeasureDurationInterface(_ContainerDurationInterface):
    ### REPR ###
 
    def __repr__(self):
-      return 'MeasureDurationInterface(%s)' % self.contents
+      return 'MeasureDurationInterface(%s)' % self._duration
 
    ### DERIVED PROPERTIES ###
 
    @property
-   def contents(self):
-      unscaled_contents = _ContainerDurationInterface.contents.fget(self)
-      if self.nonbinary:
-         return unscaled_contents * self.multiplier
+   def _duration(self):
+      if self._client.meter:
+         return self._client.meter.duration
       else:
-         return unscaled_contents
+         return self.contents
 
    ### DERIVED PROPERTIES ###
 
@@ -32,8 +31,7 @@ class _MeasureDurationInterface(_ContainerDurationInterface):
 
    @property
    def multiplier(self):
-      if self._client.meter:
-         d = self._client.meter.denominator
-         return Rational(2 ** int(log(d, 2)), d)
+      if self._client.meter and self.contents != Rational(0):
+         return self._client.meter.duration / self.contents
       else:
          return Rational(1, 1)

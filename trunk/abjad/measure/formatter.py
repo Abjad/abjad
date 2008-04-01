@@ -1,5 +1,6 @@
-from .. containers.formatter import _ContainerFormatter
-#from math import log
+from abjad.containers.formatter import _ContainerFormatter
+from abjad.duration.rational import Rational
+from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
@@ -22,16 +23,18 @@ class _MeasureFormatter(_ContainerFormatter):
       result.extend(self.before)
       result.extend(self._meter)
       #if self._client.nonbinary:
-      if self._client.duration.nonbinary:
+      #if self._client.duration.nonbinary:
+      if self._client.duration.multiplier != Rational(1, 1):
+         multiplier = self._client.duration.multiplier
          if len(self._client):
             ### TODO - may be dangerous; run tests; write tests
             measure_music = self._client[ : ]
             for x in measure_music:
                x._parent = None
             tuplet = FixedMultiplierTuplet(
-               #self._client._multiplier, measure_music)
-               #self._client.duration._multiplier, measure_music)
-               self._client.duration.multiplier, measure_music)
+               #self._client.duration.multiplier, measure_music)
+               #self._client.duration.multiplier, measure_music)
+               multiplier, measure_music)
             tuplet.invisible = True
             result.extend(['\t' + x for x in tuplet.formatter._pieces])
             for x in measure_music:

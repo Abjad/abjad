@@ -4,8 +4,8 @@ from abjad.helpers.hasname import hasname
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.measure.duration import _MeasureDurationInterface
 from abjad.measure.formatter import _MeasureFormatter
+from abjad.measure.meter import _Meter
 from math import log
-from meter import _Meter
 
 
 class Measure(Container):
