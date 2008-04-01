@@ -32,4 +32,8 @@ def excise(leaf):
             else:
                FixedDurationTuplet(x.duration * adjusted_prolation, [x])
       parent = parent._parent
+   ### TODO - will probably need to generalize this parent-killing loop
+   ###        to make nested tuplets work
+   if len(leaf._parent) == 1:
+      leaf._parent._die( )
    leaf._die( )
