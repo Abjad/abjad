@@ -15,8 +15,12 @@ def excise(leaf):
    parent = leaf._parent
    while parent is not None and not parent.parallel:
       if isinstance(parent, FixedDurationTuplet):
-         immediate_parent_prolated = parent.duration.multiplier * leaf.duration
-         parent.duration -= immediate_parent_prolated
+         if len(parent) > 1:
+            immediate_parent_prolated = parent.duration.multiplier * \
+               leaf.duration
+            parent.duration -= immediate_parent_prolated
+         else:
+            pass
       elif isinstance(parent, Measure):
          old_denominator = parent.meter.denominator
          naive_meter = parent.meter.duration - prolated_leaf_duration
