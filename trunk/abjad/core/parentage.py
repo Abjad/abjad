@@ -6,6 +6,15 @@ class _Parentage(object):
       self._client = client
 
    @property
+   def _parentage(self):
+      result = [ ]
+      parent = self._client._parent
+      while parent is not None:
+         result.append(parent)
+         parent = parent._parent
+      return result
+
+   @property
    def _governor(self):
       p = self._client._parent
       if p is None or p.parallel:

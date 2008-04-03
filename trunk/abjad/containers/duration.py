@@ -16,7 +16,7 @@ class _ContainerDurationInterface(_DurationInterface):
    def __repr__(self):
       return 'ContainerDurationInterface(%s)' % self.contents
 
-   ### READ-ONLY ATTRIBUTES ###
+   ### DERIVED ATTRIBUTES ###
 
    @property
    def _duration(self):
@@ -31,3 +31,7 @@ class _ContainerDurationInterface(_DurationInterface):
          for x in self._client:
             duration += x.duration
          return duration
+
+   @property
+   def multiplier(self):
+      return Rational(1)

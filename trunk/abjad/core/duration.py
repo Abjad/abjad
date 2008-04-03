@@ -1,6 +1,7 @@
 from abjad.duration.rational import Rational
 from abjad.core.interface import _Interface
 from abjad.helpers.hasname import hasname
+from operator import mul
 
 ### TODO: put in helpers directory? Make a decorators folder?
 ### Don't need to use decorators to allow X.duration == (n, m), 
@@ -35,17 +36,31 @@ class _DurationInterface(_Interface, Rational):
 
    @property
    def prolation(self):
-      result = Rational(1)
-      t = self._client._parent
-      while t is not None:
-         if hasname(t, ('_Tuplet', 'Measure')):
-            result *= t.duration.multiplier
-         t = t._parent
+#      result = Rational(1)
+#      t = self._client._parent
+#      while t is not None:
+#         if hasname(t, ('_Tuplet', 'Measure')):
+#            result *= t.duration.multiplier
+#         t = t._parent
+#      return result
+      return reduce(mul, self.prolations, Rational(1))
+
+   @property
+   def prolations(self):
+      result = [ ]
+      parent = self._client._parent
+      while parent is not None:
+         #if hasname(parent, ('_Tuplet', 'Measure')):
+         #   result.append(parent.duration.multiplier)
+         result.append(parent.duration.multiplier)
+         parent = parent._parent
       return result
+
 
    @property
    def prolated(self):
       return self.prolation * self
+
 
    ### OVERRIDES ###
 
