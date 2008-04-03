@@ -4,9 +4,6 @@ from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.measure.measure import Measure
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
-### TODO -- don't know if this works yet with *nested* tuplets
-###         don't know if this works with fixed *multiplier* tuplets
-###         don't know if this works with plain vanilla containers
 
 def excise(leaf):
    '''Remove leaf from all sequential containers in leaf's parentage;
@@ -14,20 +11,14 @@ def excise(leaf):
    '''
    prolated_leaf_duration = leaf.duration.prolated
    prolations = leaf.duration.prolations
-   print prolations
    cur_prolation, i = Rational(1), 0
    parent = leaf._parent
    while parent is not None and not parent.parallel:
       cur_prolation *= prolations[i]
-      print cur_prolation
       if isinstance(parent, FixedDurationTuplet):
-         if len(parent) > 1:
-#            immediate_parent_prolated = parent.duration.multiplier * \
-#               leaf.duration
-#            parent.duration -= immediate_parent_prolated
-            parent.duration -= cur_prolation * leaf.duration
-         else:
-            pass
+         candidate_new_parent_dur = parent.duration - cur_prolation * leaf.duration
+         if candidate_new_parent_dur > Rational(0):
+            parent.duration = candidate_new_parent_dur
       elif isinstance(parent, Measure):
          old_denominator = parent.meter.denominator
          naive_meter = parent.meter.duration - prolated_leaf_duration
@@ -44,8 +35,11 @@ def excise(leaf):
                FixedDurationTuplet(x.duration * adjusted_prolation, [x])
       parent = parent._parent
       i += 1
-   ### TODO - will probably need to generalize this parent-killing loop
-   ###        to make nested tuplets work
-   if len(leaf._parent) == 1:
-      leaf._parent._die( )
+   parentage = leaf._parentage._parentage
+   print parentage
    leaf._die( )
+   for x in parentage:
+      if not len(x):
+         x._die( )
+      else:
+         break
