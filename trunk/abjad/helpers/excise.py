@@ -38,7 +38,6 @@ def excise(leaf):
       parent = parent._parent
       i += 1
    parentage = leaf._parentage._parentage
-   print parentage
    leaf._die( )
    for x in parentage:
       if not len(x):
