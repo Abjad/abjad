@@ -35,27 +35,17 @@ class _DurationInterface(_Interface, Rational):
       return self._duration._d
 
    @property
-   def prolation(self):
-#      result = Rational(1)
-#      t = self._client._parent
-#      while t is not None:
-#         if hasname(t, ('_Tuplet', 'Measure')):
-#            result *= t.duration.multiplier
-#         t = t._parent
-#      return result
-      return reduce(mul, self.prolations, Rational(1))
-
-   @property
    def prolations(self):
       result = [ ]
       parent = self._client._parent
       while parent is not None:
-         #if hasname(parent, ('_Tuplet', 'Measure')):
-         #   result.append(parent.duration.multiplier)
          result.append(parent.duration.multiplier)
          parent = parent._parent
       return result
 
+   @property
+   def prolation(self):
+      return reduce(mul, self.prolations, Rational(1))
 
    @property
    def prolated(self):

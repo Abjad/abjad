@@ -191,5 +191,3 @@ def test_excise_container_12( ):
    assert t[0][0].duration == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
    assert check(t)
-
-
