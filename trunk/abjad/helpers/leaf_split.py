@@ -1,15 +1,20 @@
-from attributes import _transfer_all_attributes
-from .. duration.rational import Rational
-from leaf_scale import leaf_scale
+from abjad.duration.rational import Rational
+from abjad.helpers.attributes import _transfer_all_attributes
+from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.helpers.leaf_scale import leaf_scale
 from abjad.leaf.leaf import _Leaf
 
 def leaf_split(split_dur, leaf):
    assert isinstance(leaf, _Leaf)
-   assert isinstance(split_dur, (int, list, tuple, Rational))
-   if isinstance(split_dur, (list, tuple)):
-      split_dur = Rational(*split_dur)
+   split_dur = Rational(*_duration_token_unpack(split_dur))
+   #unprolated_split_dur = leaf.duration - split_dur / leaf.duration.prolation
+   unprolated_split_dur = split_dur / leaf.duration.prolation
+   #print unprolated_split_dur
 
-   if split_dur == 0 or split_dur >= leaf.duration:
+   #prolated_leaf_duration = leaf.duration.prolated
+   #if split_dur == 0 or split_dur >= prolated_leaf_duration:
+   #if split_dur == 0 or split_dur >= leaf.duration:
+   if unprolated_split_dur == 0 or unprolated_split_dur >= leaf.duration:
       return [leaf]
    else:
       l1 = leaf.copy()
@@ -19,6 +24,8 @@ def leaf_split(split_dur, leaf):
          indx = parent.index(leaf)
          parent.embed(indx, l1)
 
-      l1 = leaf_scale(split_dur, l1)
-      l2 = leaf_scale(leaf.duration - split_dur, leaf)
+      l1 = leaf_scale(unprolated_split_dur, l1)
+      #l2 = leaf_scale(prolated_leaf_duration - split_dur, leaf)
+      #l2 = leaf_scale(leaf.duration.prolated - split_dur, leaf)
+      l2 = leaf_scale(leaf.duration - unprolated_split_dur, leaf)
       return [l1, l2]

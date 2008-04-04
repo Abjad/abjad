@@ -29,7 +29,6 @@ def excise(leaf):
          old_prolation = _denominator_to_multiplier(old_denominator)
          new_prolation = _denominator_to_multiplier(new_denominator)
          adjusted_prolation = old_prolation / new_prolation
-
          for x in parent:
             if isinstance(x, FixedDurationTuplet):
                x.duration *= adjusted_prolation
