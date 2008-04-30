@@ -1,21 +1,20 @@
-### TODO - decide whether to rename to _Leaf ###
-
 from .. articulations.interface import _ArticulationsInterface
 from .. beam.interface import _BeamInterface
 from .. clef.clef import _Clef
 from .. core.component import _Component
+from .. core.interface import _Interface
 from .. dots.interface import _DotsInterface
 from duration import _LeafDurationInterface
-from .. dynamics.interface import _DynamicsInterface
-from .. glissando.interface import _GlissandoInterface
-from .. tie.interface import _TieInterface
-from .. grace.interface import _GraceInterface
-from .. core.interface import _Interface
-from formatter import _LeafFormatter
-from spannerinterface import _LeafSpannerInterface
 from .. duration.rational import Rational
+from .. dynamics.interface import _DynamicsInterface
+from formatter import _LeafFormatter
+from .. glissando.interface import _GlissandoInterface
+from .. grace.interface import _GraceInterface
+from .. harmonic.interface import _HarmonicInterface
+from spannerinterface import _LeafSpannerInterface
 from .. staff.interface import _StaffInterface
 from .. stem.interface import _StemInterface
+from .. tie.interface import _TieInterface
 from .. tremolo.interface import _TremoloInterface
 from .. trill.interface import _TrillInterface
 
@@ -32,6 +31,7 @@ class _Leaf(_Component):
       self.formatter = _LeafFormatter(self)
       self._glissando = _GlissandoInterface(self)
       self.grace = _GraceInterface( )
+      self._harmonic = _HarmonicInterface(self)
       self.history = { }
       self.spanners = _LeafSpannerInterface(self)
       self._staff = _StaffInterface(self)
@@ -72,6 +72,19 @@ class _Leaf(_Component):
             self._glissando._set = False
          elif isinstance(arg, bool):
             self._glissando._set = arg 
+         else:
+            raise ValueError('must be boolean or None.')
+      return property(**locals( ))
+
+   @apply
+   def harmonic( ):
+      def fget(self):
+         return self._harmonic   
+      def fset(self, arg):
+         if arg is None:
+            self._harmonic._set = False
+         elif isinstance(arg, bool):
+            self._harmonic._set = arg 
          else:
             raise ValueError('must be boolean or None.')
       return property(**locals( ))
