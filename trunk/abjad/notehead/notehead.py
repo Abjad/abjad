@@ -63,22 +63,43 @@ class _NoteHead(_Interface):
 
    ### SHAPE NOTE HANDLERS ###
 
+   shapesSupported = (
+      'cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 
+      'neomensural', 'harmonic', 'mensural', 'petruccidiamond', 
+      'triangle',  'semicircle',  'diamond', 'tiltedtriangle', 
+      'square', 'wedge', )
+
    _noteheadShapeToShapeNoteStyle = {
       'triangle' : 'do',         'semicircle' : 're',    'diamond' : 'mi',
-      'tiltedtriangle' : 'fa',   'square' : 'la',        'wedge' : 'ti',
-      'cross' : 'cross' }
-
-   def _shapeNoteStyleVector(self, shape):
-      return '#(%s)' % ' '.join(
-         [self._noteheadShapeToShapeNoteStyle[shape]] * 7)
+      'tiltedtriangle' : 'fa',   'square' : 'la',        'wedge' : 'ti' }
 
    @property
    def _shapeNoteStyleSetting(self):
       result = [ ]
       if self.shape:
-         result.append(r'\once \set shapeNoteStyles = #%s' % 
-            self._shapeNoteStyleVector(self.shape))
+         if self.shape in self.shapesSupported:
+            try:
+               shape = self._noteheadShapeToShapeNoteStyle[self.shape]
+            except KeyError:
+               shape = self.shape
+            result.append(r"\once \override NoteHead #'style = #'%s" % shape)
+         else:
+            result.append(r"\%s" % self.shape + \
+            ' % user definded notehead variable')
       return result
+
+#   def _shapeNoteStyleVector(self, shape):
+#      return '#(%s)' % ' '.join(
+#         [self._noteheadShapeToShapeNoteStyle[shape]] * 7)
+
+#   @property
+#   def _shapeNoteStyleSetting(self):
+#      result = [ ]
+#      if self.shape:
+#         result.append(r'\once \set shapeNoteStyles = #%s' % 
+#            self._shapeNoteStyleVector(self.shape))
+#      return result
+
 
    ### FORMATTING ###
 

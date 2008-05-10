@@ -67,6 +67,28 @@ def test_set_notehead_style_01( ):
    t.notehead.style = None
    assert t.notehead.format == "cs''"
 
+### TEST SET NOTEHEAD SHAPE ###
+
+def test_set_notehead_shape_01( ):
+   '''Supported head shapes are formated with NoteHead #'style override.'''
+   t = Note(1, (1, 4))
+   t.notehead.shape = 'cross'
+   assert t.notehead.shape == 'cross'
+   assert t.notehead.format == "\\once \\override NoteHead #'style = #'cross\ncs'"
+   t.notehead.shape = None
+   assert t.notehead.format == "cs'"
+
+def test_set_notehead_shape_02( ):
+   '''Unsupported noteheads are placed verbatim in front of note and 
+      are assumed to be defined by user.'''
+   t = Note(1, (1, 4))
+   t.notehead.shape = 'mystrangehead'
+   assert t.notehead.shape == 'mystrangehead'
+   assert t.notehead.format == "\\mystrangehead % user definded notehead variable\ncs'"
+   t.notehead.shape = None
+   assert t.notehead.format == "cs'"
+
+
 
 ### TEST SET NOTEHEAD TRANSPARENT ###
 
