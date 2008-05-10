@@ -27,7 +27,7 @@ def show(ly):
    outfile = file(name, 'w')
    outfile.write('\\version "%s"\n' % version)
    outfile.write('\\include "%s"\n' % 'english.ly')
-   outfile.write(ly.format)
+   outfile.write('{\n\t%s\n}' % ly.format)
    outfile.close( )
    system('lilypond %s > lily.out 2>&1' %(name))
    system('rm ' + name[:-3] + '.ps')
