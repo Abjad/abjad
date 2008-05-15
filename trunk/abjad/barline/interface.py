@@ -7,6 +7,7 @@ class _BarLineInterface(_Interface):
       self._type = None
       
    ### MANAGED ###
+   # TODO: should we check validity of input and reject invalid barline types?
 
    @apply
    def type( ):
@@ -18,12 +19,17 @@ class _BarLineInterface(_Interface):
 
    ### FORMATTING ###
 
-   ### TODO - accept either 'double' or '||' equivalently, etc. ###
-
    _barlineNameToLilyPondSymbol = {
-      'final'  : '|.',
-      'double' : '||',
-      'single' : '|',
+      '|' : '|'   , 'single' : '|',
+      '||' : '||' , 'double' : '||',
+      '.|' :'.|'  , 'thickthin' : '.|',
+      '.|.':'.|.' , 'doublethick' : '.|.',
+      '|.' : '|.' , 'final'  : '|.',
+      ':' : ':'   , 'dotted' : ':',
+      'dashed':'dashed',
+      '|:' : '|:' , 'repeatopen' : '|:',
+      ':|:':':|:' , 'repeatopenclose' : ':|:',
+      ':|' : ':|' , 'repeatclose' : ':|',
    }
 
    def _barlineNameToLilyPondString(self, barlineName):
