@@ -3,7 +3,7 @@ from .. core.interface import _Interface
 class _HarmonicInterface(_Interface):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'Harominc', ['Harmonic'] )
+      _Interface.__init__(self, client, 'Harmonic', ['Harmonic'] )
       self._set = None
 
    ### OVERRIDES ###
