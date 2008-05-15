@@ -30,6 +30,7 @@ class _BarLineInterface(_Interface):
       '|:' : '|:' , 'repeatopen' : '|:',
       ':|:':':|:' , 'repeatopenclose' : ':|:',
       ':|' : ':|' , 'repeatclose' : ':|',
+      '' : ''     , 'invisible' : '',
    }
 
    def _barlineNameToLilyPondString(self, barlineName):
@@ -40,7 +41,7 @@ class _BarLineInterface(_Interface):
    def _after(self):
       result = [ ]
       if self._client.kind('_Leaf'):
-         if self.type:
+         if self.type is not None:
             result.append(self._barlineNameToLilyPondString(self.type))
       return result
 
