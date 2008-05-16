@@ -97,3 +97,27 @@ def test_embed_04( ):
            c'8 ] \stopTrillSpan
    }
    ''' 
+
+def test_embed_05( ):
+   '''Components with a spanner can embed a list of Components.'''
+   t = Staff(Note(0, (1, 8)) * 8)
+   Beam(t)
+   t.embed(2, [Note(i, (1,32)) for i in range(4)])
+   assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\tc'8\n\tc'32\n\tcs'32\n\td'32\n\tef'32\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+   '''
+   \new Staff {
+        c'8 [
+        c'8
+        c'32
+        cs'32
+        d'32
+        ef'32
+        c'8
+        c'8
+        c'8
+        c'8
+        c'8
+        c'8 ]
+   }
+   ''' 

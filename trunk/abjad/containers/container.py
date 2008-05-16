@@ -198,13 +198,22 @@ class Container(_Component):
       Insert but *don't* fracture spanners.
       For fracturing insert, use insert( ).
       '''
-      assert isinstance(expr, _Component)
-      for s in self.spanners.get():
+      def _embedComponent(self, i, expr):
          for l in expr.leaves:
-            s._insert(s.index(self[i].leaves[0]), l)
-      expr._parent = self
-      self._music.insert(i, expr)
+            for s in self.spanners.get():
+               s._insert(s.index(self[i].leaves[0]), l)
+         expr._parent = self
+         self._music.insert(i, expr)
 
+      if isinstance(expr, (list, tuple)):
+         for e in reversed(expr):
+            _embedComponent(self, i, e)
+      elif isinstance(expr, _Component):
+         _embedComponent(self, i, expr)
+      else:
+         raise TypeError("Can only embed _Component or list of _Component")
+
+      
    def append(self, expr):
       self.insert(len(self), expr)
 
