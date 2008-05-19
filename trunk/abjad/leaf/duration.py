@@ -61,7 +61,7 @@ class _LeafDurationInterface(_DurationInterface):
                rational = Rational(expr)
             else:
                raise ValueError('can not set duration multiplier')
-            assert rational > 0
+            assert rational >= 0
             self._multiplier = rational
       return property(**locals( ))
 
