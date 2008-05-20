@@ -96,7 +96,6 @@ class Chord(_Leaf):
          return result
       def fset(self, arglist):
          assert isinstance(arglist, (list, tuple))
-         arglist = sorted(arglist)
          self._noteheads = [ ]
          for arg in arglist:
             if isinstance(arg, (int, float, long)):
@@ -109,6 +108,7 @@ class Chord(_Leaf):
             else:
                print 'Can not set Chord.noteheads = [..., %s, ...].' % arg
                raise ValueError
+         self._sort()
       return property(**locals( ))
 
    ### FORMATTING ###

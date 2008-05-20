@@ -205,6 +205,13 @@ def test_chord_initialize_02( ):
    assert repr(t) == "Chord(, 4)"
    assert t.format == "<>4"
 
+def test_chord_initialize_03( ):
+   '''Elements in first list can be of different types.'''
+   t = Chord([2, Pitch(3), 4], (1, 4))
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+
+
 ### TEST MANAGED ATTRIBUTES ###
 
 def test_chord_set_pitches_01( ):
@@ -224,6 +231,13 @@ def test_chord_set_pitches_02( ):
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 
+def test_chord_set_pitches_03( ):
+   '''Chord pitches can be set as list or tuple of both numbers and Pitches.'''
+   t = Chord([], (1,4))
+   t.pitches = [4, Pitch(3), Pitch(2)]
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+
 def test_chord_set_noteheads_01( ):
    '''Chord noteheads can be set as list or tuple of numbers.'''
    t = Chord([], (1,4))
@@ -235,6 +249,13 @@ def test_chord_set_noteheads_02( ):
    '''Chord noteheads can be set as list or tuple of Pitches.'''
    t = Chord([], (1,4))
    t.noteheads = [Pitch(4), Pitch(3), Pitch(2)]
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"
+
+def test_chord_set_noteheads_03( ):
+   '''Chord noteheads can be set as list or tuple of both numbers and Pitches.'''
+   t = Chord([], (1,4))
+   t.noteheads = [Pitch(4), 3, Pitch(2)]
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 
