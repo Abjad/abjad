@@ -59,9 +59,9 @@ class _Navigator(object):
          if rank < len(self._client._music):
             return self._client._music[rank]
          else:
-            return self._client._ascend( )
+            return self._ascend( )
       else:
-         return self._client._ascend( )
+         return self._ascend( )
 
    # rightwards depth-first traversal:
    # advance rightwards; otherwise ascend; otherwise None.
