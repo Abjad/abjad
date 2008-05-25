@@ -41,13 +41,15 @@ class _Navigator(object):
       self._client = client
 
    def _ascend(self):
-      if hasattr(self._client, '_parent'):
-         return self._client._parent
-      else:
-         return None
+#      if hasattr(self._client, '_parent'):
+#         return self._client._parent
+#      else:
+#         return None
+      return self._client._parent
 
    def _rank(self):
-      if hasattr(self._client, '_parent'):
+      #if hasattr(self._client, '_parent'):
+      if not self._client._parent is None:
          return self._client._parent._music.index(self._client)
       else:
          return None
