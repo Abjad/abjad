@@ -20,6 +20,9 @@ class _Invocation(object):
             return False
       return False
          
+   def __ne__(self, arg):
+      return not self.__eq__(arg)
+
    ### MANAGED ATTRIBUTES ###
 
    @apply
