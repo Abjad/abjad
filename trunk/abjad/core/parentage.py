@@ -15,6 +15,31 @@ class _Parentage(object):
       return result
 
    @property
+   def _threadParentage(self):
+      '''Return thread-pertinent parentage structure.
+         Same as _parentage but with redundant Sequentials, 
+         Parallels and tautologies (unlikely) removed.'''
+      parentage = self._parentage
+      result = parentage[:]
+      if len(parentage) > 1:
+#         for p in parentage[:]:
+#            if p.kind('Sequential'):
+#               result.remove(p)
+#            else:
+#               break
+      # remove tautological nesting
+         for i, p in enumerate(parentage[:-1]):
+            if type(p) == type(parentage[i+1]):
+               if p.kind('Parallel') or p.kind('Sequential'):
+                  result.remove(p)
+               elif p.kind('Context'):
+                  if p.invocation == parentage[i+1].invocation:
+                     result.remove(p)
+      return result
+               
+            
+
+   @property
    def _governor(self):
       p = self._client._parent
       if p is None or p.parallel:
