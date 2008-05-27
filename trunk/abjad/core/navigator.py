@@ -5,6 +5,8 @@
 ###      right now it's possible that _Leaf.next will point
 ###      point to the next leaf in the following *staff*,
 ###      which is not what we want.
+### TODO should we replace the old next with the new ._navigator._next?
+###      add other next helpers such as nextLeaf?
 
 ### Hmm, this is an interesting one because, considering the use of 
 ### \context instead of \new as we've mentioned before, you may have 
@@ -32,22 +34,19 @@
 ### }
 ###
 ### it'd be nice if the next note of the note f in voice 'v_low' 
-### where the note g, as the % goto @ comment suggests. would this 
-### be overkill?
+### where the note g, as the % goto @ comment suggests. 
+### This is now implemented!!! works great! 
+### Not public yet thought. To navigate, use: Leaf._navigator._nextBead. 
+
 
 class _Navigator(object):
 
    def __init__(self, client):
       self._client = client
 
-   def _ascend(self):
-#      if hasattr(self._client, '_parent'):
-#         return self._client._parent
-#      else:
-#         return None
-      return self._client._parent
-
    def _rank(self):
+      '''Returns the index of the caller (its position) in the parent container.
+         If caller has no parent, returns None.'''
       #if hasattr(self._client, '_parent'):
       if not self._client._parent is None:
          return self._client._parent._music.index(self._client)
@@ -61,9 +60,107 @@ class _Navigator(object):
          if rank < len(self._client._music):
             return self._client._music[rank]
          else:
-            return self._ascend( )
+            return self._client._parent
       else:
-         return self._ascend( )
+         return self._client._parent
+
+   @property
+   def _firstLeaves(self):
+      '''Returns the first (leftmost) leaf or leaves 
+         (in case there's a parallel structure) in a tree.'''
+      if self._client.kind('_Leaf'):
+         return [self._client]
+      elif self._client.kind('Container'):
+         leaves = [ ]
+         if self._client.parallel:
+            for e in self._client:
+               leaves.extend(e._navigator._firstLeaves)
+         else:
+            #print self._client
+            leaves.extend(self._client[0]._navigator._firstLeaves)
+         return leaves
+   
+   @property
+   def _nextSibling(self):
+      '''Returns the next *sequential* element in the caller's parent; 
+         None otherwise'''
+      rank = self._rank( )
+      if (not rank is None) and (not self._client._parent.parallel): 
+      # (parallels are siameses)
+         if rank + 1 < len(self._client._parent._music):
+            return self._client._parent._music[rank + 1]
+      else:
+         return None
+         
+   @property
+   def _prevSibling(self):
+      '''Returns the previous *sequential* element in the caller's parent; 
+         None otherwise'''
+      rank = self._rank( )
+      if (not rank is None) and (not self._client._parent.parallel): 
+      # (parallels are siameses)
+         if rank - 1 >= 0:
+            return self._client._parent._music[rank - 1]
+      else:
+         return None
+
+   @property
+   def _next(self):
+      '''Returns next closest non-siamese Component.'''
+      next = self._nextSibling
+      if next:
+         return next
+      else:
+         for p in self._client._parentage._parentage:
+            next = p._navigator._nextSibling
+            if next:
+               return next
+      
+   @property
+   def _prev(self):
+      '''Returns previous closest non-siamese Component.'''
+      prev = self._prevSibling
+      if prev:
+         return prev
+      else:
+         for p in self._client._parentage._parentage:
+            prev = p._navigator._prevSibling
+            if prev:
+               return prev
+      
+   @property
+   def _nextBead(self):
+      '''Returns the next Bead (time threaded Leaf), if such exists. 
+         This method will search the whole (parentage) structure moving forward.
+         This will only return if called on a Leaf.'''
+      if not self._client.kind('_Leaf'):
+         return None
+
+      next = self._next
+      if next is None:
+         return None
+
+      candidates = next._navigator._firstLeaves
+      # for each candidate....
+      for candidate in candidates:
+         c_thread_parentage = candidate._parentage._threadParentage
+         thread_parentage = self._client._parentage._threadParentage
+         print thread_parentage
+         print c_thread_parentage
+         # check that parentages match.
+         match = True
+         if len(c_thread_parentage) == len(thread_parentage):
+            for c, p in zip(c_thread_parentage, thread_parentage):
+               if type(c) == type(p):
+                  if c.kind('Context') and p.kind('Context'):
+                     if c.invocation != p.invocation:
+                        match = False
+         else:
+            match = False
+
+         if match:
+            return candidate
+
 
    # rightwards depth-first traversal:
    # advance rightwards; otherwise ascend; otherwise None.

@@ -99,6 +99,12 @@ class Container(_Component):
       else:
          return None
 
+#### TODO: i propose this instead. 
+# if we want a next Leaf, we can call a nextLeaf explicitly.
+#   @property
+#   def next(self):
+#      return self._navigator._nextSibling
+
    @property
    def prev(self):
       '''Prev leaf leftwards, otherwise None.'''
