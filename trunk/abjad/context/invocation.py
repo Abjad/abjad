@@ -8,6 +8,18 @@ class _Invocation(object):
       self.modifications.extend(modifications)
       self._command = r'\new'
 
+
+   def __eq__(self, arg):
+      if isinstance(arg, _Invocation):
+         if self.type == arg.type and \
+            self.name == arg.name and \
+            self.command == arg.command and \
+            self.modifications == arg.modifications:
+            return True
+         else:
+            return False
+      return False
+         
    ### MANAGED ATTRIBUTES ###
 
    @apply

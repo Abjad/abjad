@@ -20,6 +20,16 @@ class Context(Container):
          summary,
          self.brackets.close)
 
+   def __eq__(self, arg):
+      if isinstance(arg, Context):
+         if self.brackets == arg.brackets and \
+            self.invocation == arg.invocation and\
+            self._music == arg._music:
+            return True
+         else:
+            return False
+      return False
+
    ### MANAGED ATTRIBUTES ###
 
    @apply
