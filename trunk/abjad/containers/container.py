@@ -118,6 +118,8 @@ class Container(_Component):
    def __contains__(self, expr):
       return expr in self._music
 
+   ### TODO should we make this non recursive to distinguish it from get( )
+   ###      and to make the behaviour more list-like?
    def __getitem__(self, expr):
       if isinstance(expr, str):
          class Visitor(object):
@@ -177,6 +179,36 @@ class Container(_Component):
       else:
          for m in self._music[i]:
             m._die( )
+
+   def get(self, name = None, classname = None):
+      '''Searches structure recursively for Components with name [name] and/or class
+         name [classname].
+         The name may be either an added attribute (e.g. Component.name = 'name') or, 
+         in the case of Contexts, the name of the Invocation 
+         (e.g. Context.invocation.name = 'name'). '''
+      class Visitor(object):
+         def __init__(self, name = name, classname = classname):
+            self.classname = classname
+            self.name = name
+            self.result = [ ]
+         def visit(self, node):
+            namematch = True
+            classmatch = True
+            if self.name:
+               if (hasattr(node, 'name') and self.name == node.name):   
+                  pass
+               elif hasattr(node, 'invocation') and node.invocation.name == self.name:
+                  pass
+               else:
+                  namematch = False
+            if self.classname: 
+               if not node.kind(self.classname):
+                  classmatch = False
+            if namematch and classmatch:
+               self.result.append(node)
+      v = Visitor(name, classname)
+      self._navigator._traverse(v)
+      return v.result
 
    ### MUSIC MANAGEMENT ###
 
