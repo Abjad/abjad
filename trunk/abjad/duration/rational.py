@@ -110,6 +110,8 @@ class Rational(object):
       return self * arg
    
    def __div__(self, arg):
+      if arg == 0:
+         raise(ZeroDivisionError)
       if isinstance(arg, Rational):
          return Rational(self._n * arg._d, self._d * arg._n)
       elif isinstance(arg, (int, long)):
@@ -118,7 +120,10 @@ class Rational(object):
          return float(self) / arg
 
    def __rdiv__(self, arg):
+      if arg == 0:
+         return arg
       return ~(self / arg)
+
 
    def __truediv__(self, arg):
       return self / arg
