@@ -1,13 +1,12 @@
-from .. core.interface import _Interface
-from formatter import _NoteHeadFormatter
-from .. pitch.pitch import Pitch
+from abjad.core.interface import _Interface
+from abjad.notehead.formatter import _NoteHeadFormatter
+from abjad.pitch.pitch import Pitch
 
 
 class _NoteHead(_Interface):
 
    def __init__(self, client, pitch = None):
       _Interface.__init__(self, client, 'NoteHead', [ ])
-      self._client = client
       self._formatter = _NoteHeadFormatter(self)
       self.pitch = pitch
       self._shape = None
@@ -48,6 +47,7 @@ class _NoteHead(_Interface):
             raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
 
+   ### TODO change this to style?
    @apply
    def shape( ):
       def fget(self):
