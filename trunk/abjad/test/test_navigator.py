@@ -115,52 +115,52 @@ def test_bead_navigation_20( ):
 
 def test_bead_navigation_21( ):
    '''Beads connect throght a symmetric depth 2 structure with parallel construct.'''
-   v_low1 = Voice([Note(i, (1,8)) for i in range(4)])
-   v_low1.invocation.name = 'low'
-   v_low1.invocation.command = 'context'
-   v_low2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   v_low2.invocation.name = 'low'
-   v_low2.invocation.command = 'context'
-   v_high1 = Voice([Note(i, (1,8)) for i in range(12,16)])
-   v_high1.invocation.name = 'high'
-   v_high1.invocation.command = 'context'
-   v_high2 = Voice([Note(i, (1,8)) for i in range(16,20)])
-   v_high2.invocation.name = 'high'
-   v_high2.invocation.command = 'context'
+   vl1 = Voice([Note(i, (1,8)) for i in range(4)])
+   vl1.invocation.name = 'low'
+   vl1.invocation.command = 'context'
+   vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
+   vl2.invocation.name = 'low'
+   vl2.invocation.command = 'context'
+   vh1 = Voice([Note(i, (1,8)) for i in range(12,16)])
+   vh1.invocation.name = 'high'
+   vh1.invocation.command = 'context'
+   vh2 = Voice([Note(i, (1,8)) for i in range(16,20)])
+   vh2.invocation.name = 'high'
+   vh2.invocation.command = 'context'
 
-   s1 = Staff([v_high1, v_low1])
+   s1 = Staff([vh1, vl1])
    s1.invocation.name = 'mystaff'
    s1.invocation.command = 'context'
    s1.brackets = 'double-angle'
-   s2 = Staff([v_low2, v_high2])
+   s2 = Staff([vl2, vh2])
    s2.invocation.name = 'mystaff'
    s2.invocation.command = 'context'
    s2.brackets = 'double-angle'
 
    seq = Sequential([s1, s2])
 
-   assert v_low1[3]._navigator._nextBead is v_low2[0]
-   assert v_high1[3]._navigator._nextBead is v_high2[0]
+   assert vl1[3]._navigator._nextBead is vl2[0]
+   assert vh1[3]._navigator._nextBead is vh2[0]
       
 def test_bead_navigation_22( ):
    '''Beads connect through a symmetrical depth 2 structure 
       with a parallel Staff and a sequential Staff constructs.'''
-   v_low1 = Voice([Note(i, (1,8)) for i in range(4)])
-   v_low1.invocation.name = 'low'
-   v_low2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   v_low2.invocation.name = 'low'
-   v_high = Voice([Note(i, (1,8)) for i in range(12,16)])
-   v_high.invocation.name = 'high'
+   vl1 = Voice([Note(i, (1,8)) for i in range(4)])
+   vl1.invocation.name = 'low'
+   vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
+   vl2.invocation.name = 'low'
+   vh = Voice([Note(i, (1,8)) for i in range(12,16)])
+   vh.invocation.name = 'high'
 
-   s1 = Staff([v_high, v_low1])
+   s1 = Staff([vh, vl1])
    s1.invocation.name = 'mystaff'
    s1.brackets = 'double-angle'
-   s2 = Staff([v_low2])
+   s2 = Staff([vl2])
    s2.invocation.name = 'mystaff'
 
    seq = Sequential([s1, s2])
 
-   assert v_low1[3]._navigator._nextBead is v_low2[0]
+   assert vl1[3]._navigator._nextBead is vl2[0]
 
 
 ### DEPTH ASYMMETRICAL STRUCTURES ###
@@ -299,3 +299,81 @@ def test_bead_navigation_52b( ):
    assert vin[1]._navigator._nextBead is vin[2]
    assert vout[0]._navigator._nextBead is None
 
+### NEXT LEAVES ###
+
+def test_nextLeaves_navigation_01( ):
+   '''nextLeaves works on simple Voice.'''
+   t = Voice([Note(i, (1,8)) for i in range(4)])
+   assert t[0]._navigator._nextLeaves == [t[1]]
+   assert t[1]._navigator._nextLeaves == [t[2]]
+   assert t[2]._navigator._nextLeaves == [t[3]]
+   assert t[3]._navigator._nextLeaves is None
+
+
+def test_nextLeaves_navigation_02( ):
+   '''NextLeaf works on simple Sequential.'''
+   t = Sequential([Note(i, (1,8)) for i in range(4)])
+   assert t[0]._navigator._nextLeaves == [t[1]]
+   assert t[1]._navigator._nextLeaves == [t[2]]
+   assert t[2]._navigator._nextLeaves == [t[3]]
+   assert t[3]._navigator._nextLeaves is None
+
+def test_nextLeaves_navigation_03( ):
+   '''NextLeaf works on simple Parallel.'''
+   t = Parallel([Note(i, (1,8)) for i in range(4)])
+   assert t[0]._navigator._nextLeaves is None
+   assert t[1]._navigator._nextLeaves is None
+   assert t[2]._navigator._nextLeaves is None
+   assert t[3]._navigator._nextLeaves is None
+
+### LEVEL 1 NESTING ###
+
+def test_nextLeaves_navigation_10( ):
+   '''nextLeaves works on contiguous Sequentials inside a Voice.'''
+   s1 = Sequential([Note(i, (1,8)) for i in range(4)])
+   s2 = Sequential([Note(i, (1,8)) for i in range(4,8)])
+   t = Voice([s1, s2])
+   assert s1[0]._navigator._nextLeaves == [s1[1]]
+   assert s1[1]._navigator._nextLeaves == [s1[2]]
+   assert s1[2]._navigator._nextLeaves == [s1[3]]
+   assert s1[3]._navigator._nextLeaves == [s2[0]]
+
+def test_nextLeaves_navigation_11( ):
+   '''nextLeaves works on contiguous Voices inside a Staff.'''
+   v1 = Voice([Note(i, (1,8)) for i in range(4)])
+   v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
+   t = Staff([v1, v2])
+   assert v1[0]._navigator._nextLeaves == [v1[1]]
+   assert v1[1]._navigator._nextLeaves == [v1[2]]
+   assert v1[2]._navigator._nextLeaves == [v1[3]]
+   assert v1[3]._navigator._nextLeaves == [v2[0]]
+
+### LEVEL 2 NESTING ###
+
+def test_nextLeaves_navigation_20( ):
+   v1 = Voice([Note(i, (1,8)) for i in range(4)])
+   v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
+   s1 = Staff([v1])
+   s2 = Staff([v2])
+   seq = Sequential([s1, s2])
+   assert v1[3]._navigator._nextLeaves == [v2[0]]
+   assert s1[0]._navigator._nextLeaves == [v2[0]]
+   
+
+def test_nextLeaves_navigation_21( ):
+   vl1 = Voice([Note(i, (1,8)) for i in range(4)])
+   vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
+   vh1 = Voice([Note(i, (1,8)) for i in range(12,16)])
+   vh2 = Voice([Note(i, (1,8)) for i in range(16,20)])
+
+   s1 = Staff([vh1, vl1])
+   s1.brackets = 'double-angle'
+   s2 = Staff([vl2, vh2])
+   s2.brackets = 'double-angle'
+
+   seq = Sequential([s1, s2])
+
+   assert vl1[3]._navigator._nextLeaves == [vl2[0], vh2[0]]
+   assert vh1[3]._navigator._nextLeaves == [vl2[0], vh2[0]]
+   assert s1[0]._navigator._nextLeaves  == [vl2[0], vh2[0]]
+   assert s1[1]._navigator._nextLeaves  == [vl2[0], vh2[0]]

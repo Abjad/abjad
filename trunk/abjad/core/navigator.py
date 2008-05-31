@@ -81,6 +81,16 @@ class _Navigator(object):
          return leaves
    
    @property
+   def _nextLeaves(self):
+      '''Returns list of next leaf/leaves regardless of "thread" or type 
+         of caller. If next component is/contains a parallel, return list 
+         of simultaneous leaves'''
+      next = self._next
+      if next:
+         firstleaves = next._navigator._firstLeaves
+         return firstleaves
+
+   @property
    def _nextSibling(self):
       '''Returns the next *sequential* element in the caller's parent; 
          None otherwise'''
