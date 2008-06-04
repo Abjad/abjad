@@ -71,6 +71,7 @@ class Container(_Component):
    def __len__(self):
       return len(self._music)
 
+   ### TODO make this settable?
    @property
    def parallel(self):
       return self.brackets == 'double-angle'
@@ -180,15 +181,15 @@ class Container(_Component):
          for m in self._music[i]:
             m._die( )
 
-   def get(self, name = None, classname = None):
+   def get(self, name = None, classtype = None):
       '''Searches structure recursively for Components with name [name] and/or class
-         name [classname].
+         name [classtype].
          The name may be either an added attribute (e.g. Component.name = 'name') or, 
          in the case of Contexts, the name of the Invocation 
          (e.g. Context.invocation.name = 'name'). '''
       class Visitor(object):
-         def __init__(self, name = name, classname = classname):
-            self.classname = classname
+         def __init__(self, name = name, classtype = classtype):
+            self.classtype = classtype
             self.name = name
             self.result = [ ]
          def visit(self, node):
@@ -201,12 +202,16 @@ class Container(_Component):
                   pass
                else:
                   namematch = False
-            if self.classname: 
-               if not node.kind(self.classname):
+            if self.classtype: 
+               if hasattr(node, 'invocation') and node.invocation.type==self.classtype:
+                  pass
+               elif node.kind(self.classtype):
+                  pass
+               else:
                   classmatch = False
             if namematch and classmatch:
                self.result.append(node)
-      v = Visitor(name, classname)
+      v = Visitor(name, classtype)
       self._navigator._traverse(v)
       return v.result
 
