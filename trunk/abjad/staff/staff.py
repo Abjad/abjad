@@ -2,7 +2,8 @@ from .. context.context import Context
 
 class Staff(Context):
 
-   def __init__(self, music = [ ]):
+   def __init__(self, music = None):
+      music = music or [ ]
       Context.__init__(self, music)
       self.invocation = 'Staff'
 

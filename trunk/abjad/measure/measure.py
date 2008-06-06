@@ -10,7 +10,8 @@ from math import log
 
 class Measure(Container):
 
-   def __init__(self, meter = None, music = [ ]):
+   def __init__(self, meter = None, music = None):
+      music = music or [ ]
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self.formatter = _MeasureFormatter(self)

@@ -5,7 +5,8 @@ from ratio import _Ratio
 
 class _Tuplet(Container):
 
-   def __init__(self, music = [ ]):
+   def __init__(self, music = None):
+      music = music or [ ]
       Container.__init__(self, music)
       self.brackets = 'curly'
       self._duration = _TupletDurationInterface(self)

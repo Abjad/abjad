@@ -4,7 +4,8 @@ from .. tuplet import _Tuplet
 
 class FixedMultiplierTuplet(_Tuplet):
 
-   def __init__(self, multiplier, music = [ ]):
+   def __init__(self, multiplier, music = None):
+      music = music or [ ]
       _Tuplet.__init__(self, music)
       self._duration = _FMTupletDurationInterface(self, multiplier)
       self._signifier = '*'

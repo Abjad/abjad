@@ -10,7 +10,9 @@ from abjad.containers.spannerinterface import _ContainerSpannerInterface
 
 class Container(_Component):
 
-   def __init__(self, music = [ ]):
+   def __init__(self, music = None):
+      music = music or [ ]
+      assert isinstance(music, list)
       self._parent = None
       if music:
          music_parent = music[0]._parent
@@ -138,6 +140,7 @@ class Container(_Component):
          return v.result
       else:
          return self._music[expr]
+            
 
    def __setitem__(self, i, expr):
       # item assignment

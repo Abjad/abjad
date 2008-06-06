@@ -4,7 +4,8 @@ from invocation import _Invocation
 
 class Context(Container):
 
-   def __init__(self, music = [ ]):
+   def __init__(self, music = None):
+      music = music or [ ]
       Container.__init__(self, music)
       self.brackets = 'curly'
       self.formatter = _ContextFormatter(self)

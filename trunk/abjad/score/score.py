@@ -2,7 +2,8 @@ from .. context.context import Context
 
 class Score(Context):
 
-   def __init__(self, music = [ ]):
+   def __init__(self, music = None):
+      music = music or [ ]
       Context.__init__(self, music)
       self.brackets = 'double-angle'
       self.invocation = 'Score'
