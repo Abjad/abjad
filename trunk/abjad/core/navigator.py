@@ -151,13 +151,12 @@ class _Navigator(object):
          return None
 
       candidates = next._navigator._firstLeaves
-      # for each candidate....
       for candidate in candidates:
          c_thread_parentage = candidate._parentage._threadParentage
          thread_parentage = self._client._parentage._threadParentage
-         print thread_parentage
-         print c_thread_parentage
-         # check that parentages match.
+         #print thread_parentage
+         #print c_thread_parentage
+         ### check that parentages match.
          match = True
          if len(c_thread_parentage) == len(thread_parentage):
             for c, p in zip(c_thread_parentage, thread_parentage):
