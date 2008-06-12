@@ -1,6 +1,6 @@
 from os import system, listdir, chdir
 from glob import fnmatch
-from .. cfg.cfg import VERSIONFILE, ABJADOUTPUT, PDFVIEWER, LILYPONDINCLUDE
+from .. cfg.cfg import VERSIONFILE, ABJADOUTPUT, PDFVIEWER, LILYPONDINCLUDES
 
 system('lilypond --version > %s' % VERSIONFILE)
 version = file('%s' % VERSIONFILE, 'r').read().split('\n')[0].split(' ')[-1]
@@ -27,8 +27,10 @@ def show(ly):
    outfile = file(name, 'w')
    outfile.write('\\version "%s"\n' % version)
    outfile.write('\\include "%s"\n' % 'english.ly')
-   if not LILYPONDINCLUDE is None:
-      outfile.write('\\include "%s"\n' % LILYPONDINCLUDE)
+   if not LILYPONDINCLUDES is None:
+      includes = LILYPONDINCLUDES.split(':')
+      for i in includes:
+         outfile.write('\\include "%s"\n' % i)
    outfile.write('{\n\t%s\n}' % ly.format)
    outfile.close( )
    system('lilypond %s > lily.out 2>&1' %(name))

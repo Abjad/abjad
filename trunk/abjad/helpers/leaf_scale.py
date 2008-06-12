@@ -5,7 +5,9 @@ from abjad.leaf.leaf import _Leaf
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 ### NOTE: (or rather questions) 
-### - should multipliers be retained in scaling ?
+### - would this be better named leaf_reset_duration( )?... 
+###   we are not really scaling.
+### - should multipliers be retained in setting of new duration ?
 ### - change ValueError in non notehead-assignable notes to InvalidDurationError?
 
 def leaf_scale(new_dur, leaf):
