@@ -1,3 +1,6 @@
+ppppX = #(make-dynamic-script (markup #:combine 
+   #:transparent #:dynamic "f" 
+   #:line(#:hspace 0 #:dynamic "pppp" #:hspace 0)))
 pppX = #(make-dynamic-script (markup #:combine 
    #:transparent #:dynamic "f" 
    #:line(#:hspace 0 #:dynamic "ppp" #:hspace 0)))
@@ -27,6 +30,9 @@ ffX = #(make-dynamic-script (markup #:combine
 fffX = #(make-dynamic-script (markup #:combine 
    #:transparent #:dynamic "f" 
    #:line(#:hspace 0 #:dynamic "fff" #:hspace 0)))
+ffffX = #(make-dynamic-script (markup #:combine 
+   #:transparent #:dynamic "f" 
+   #:line(#:hspace 0 #:dynamic "ffff" #:hspace 0)))
 
 sfX = #(make-dynamic-script (markup #:combine 
    #:transparent #:dynamic "f" 
