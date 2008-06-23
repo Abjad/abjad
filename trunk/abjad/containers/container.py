@@ -185,11 +185,11 @@ class Container(_Component):
             m._die( )
 
    def get(self, name = None, classtype = None):
-      '''Searches structure recursively for Components with name [name] and/or class
-         name [classtype].
-         The name may be either an added attribute (e.g. Component.name = 'name') or, 
-         in the case of Contexts, the name of the Invocation 
-         (e.g. Context.invocation.name = 'name'). '''
+      '''Searches structure recursively for Components with name <name> 
+         and/or class name <classtype>.
+         The name may be either an added attribute 
+         (e.g. Component.name = 'name') or, in the case of Contexts, 
+         the name of the Invocation (e.g. Context.invocation.name = 'name'). '''
       class Visitor(object):
          def __init__(self, name = name, classtype = classtype):
             self.classtype = classtype
@@ -276,6 +276,9 @@ class Container(_Component):
       del(self[i])
       return result
 
+   ### TODO should remove take a Component object instead of an index? 
+   ### e.g. voice.remove(voice[1]) 
+   ### This would make remove more like the list.remove( ).
    def remove(self, i):
       del(self[i])
 
