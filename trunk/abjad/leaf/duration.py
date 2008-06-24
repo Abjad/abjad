@@ -3,7 +3,7 @@ from .. core.interface import _Interface
 from .. helpers.binary import _binary
 from .. helpers.hasname import hasname
 from .. duration.rational import Rational
-from math import log, floor
+from math import log, floor, ceil
 
 class _LeafDurationInterface(_DurationInterface):
 
@@ -86,15 +86,19 @@ class _LeafDurationInterface(_DurationInterface):
    ### PREDICATES ###
          
    def _assignable(self, q):
+#      return (not q._d & (q._d - 1)) and \
+#         (0 < q < 2) and \
+#         (not '01' in _binary(q._n)) 
       return (not q._d & (q._d - 1)) and \
-         (0 < q < 2) and \
+         (0 < q < 16) and \
          (not '01' in _binary(q._n)) 
 
    ### PROPERTIES ###
 
    @property
    def _number(self):
-      return 2 ** (int(log(self.written._d, 2)) - self._dots)
+      #return 2 ** (int(log(self.written._d, 2)) - self._dots)
+      return 2 ** int(ceil(log(1/self.written, 2)))
 
    @property
    def _dots(self):
@@ -109,7 +113,12 @@ class _LeafDurationInterface(_DurationInterface):
 
    @property
    def _dotted(self):
-      return '%s%s' % (self._number, '.' * self._dots)
+#      return '%s%s' % (self._number, '.' * self._dots)
+      durationNames = {0.5:r'\breve', 0.25:r'\longa', 0.125:r'\maxima'}
+      number = self._number
+      if number in durationNames:
+         number = durationNames[number]
+      return '%s%s' % (number, '.' * self._dots)
 
    @property
    def _product(self):
