@@ -84,8 +84,7 @@ class _NoteHead(_Interface):
                shape = self.shape
             result.append(r"\once \override NoteHead #'style = #'%s" % shape)
          else:
-            result.append(r"\%s" % self.shape + \
-            ' % user definded notehead variable')
+            result.append(r"\%s" % self.shape)
       return result
 
 #   def _shapeNoteStyleVector(self, shape):

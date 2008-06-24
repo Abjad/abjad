@@ -84,7 +84,7 @@ def test_set_notehead_shape_02( ):
    t = Note(1, (1, 4))
    t.notehead.shape = 'mystrangehead'
    assert t.notehead.shape == 'mystrangehead'
-   assert t.notehead.format == "\\mystrangehead % user definded notehead variable\ncs'"
+   assert t.notehead.format == "\\mystrangehead\ncs'"
    t.notehead.shape = None
    assert t.notehead.format == "cs'"
 
