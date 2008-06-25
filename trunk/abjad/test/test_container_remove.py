@@ -29,7 +29,7 @@ def test_remove_01( ):
            }
    }
    '''
-   t.remove(0)
+   t.remove(t[0])
    assert t.format =="\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
    '''
    \new Staff {

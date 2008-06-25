@@ -276,11 +276,21 @@ class Container(_Component):
       del(self[i])
       return result
 
-   ### TODO should remove take a Component object instead of an index? 
-   ### e.g. voice.remove(voice[1]) 
-   ### This would make remove more like the list.remove( ).
-   def remove(self, i):
-      del(self[i])
+#   def remove(self, i):
+#      del(self[i])
+   def remove(self, expr):
+      class Visitor(object):
+         def __init__(self, expr):
+            self.expr = expr
+            self.deleted = False
+         def visit(self, node):
+            if node is self.expr:
+               node._die()
+               self.deleted = True
+      v = Visitor(expr)
+      self._navigator._traverse(v)
+      if not v.deleted:
+         raise ValueError("%s not in list." % expr)
 
    def _die(self):
       '''
