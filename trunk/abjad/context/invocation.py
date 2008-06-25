@@ -6,7 +6,7 @@ class _Invocation(object):
       self.name = name
       self.modifications = [ ]
       self.modifications.extend(modifications)
-      self._command = r'\new'
+      self.command = r'new'
 
 
    def __eq__(self, arg):
@@ -24,6 +24,15 @@ class _Invocation(object):
       return not self.__eq__(arg)
 
    ### MANAGED ATTRIBUTES ###
+
+   @apply
+   def name( ):
+      def fget(self):
+         return self._name
+      def fset(self, arg):
+         self._name = arg
+         self.command = 'context'
+      return property(**locals( ))
 
    @apply
    def command( ):
