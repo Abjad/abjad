@@ -72,7 +72,7 @@ class _Invocation(object):
       if self.type:
          cur = '%s %s' % (self.command, self.type)
          if self.name:
-            cur += ' = %s' % self.name
+            cur += ' = "%s"' % self.name
          if len(self.modifications) > 0:
             cur += r' \with {'
             result.append(cur)
