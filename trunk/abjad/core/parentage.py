@@ -20,22 +20,22 @@ class _Parentage(object):
          Same as _parentage but with redundant Sequentials, 
          Parallels and tautologies (unlikely) removed.'''
       parentage = self._parentage
-      result = parentage[:]
       if len(parentage) > 1:
-#         for p in parentage[:]:
-#            if p.kind('Sequential'):
-#               result.remove(p)
-#            else:
-#               break
+      ### remove sequentials
+         for p in parentage[:]:
+            if p.kind('Sequential'):
+               parentage.remove(p)
+            else:
+               break
       # remove tautological nesting
          for i, p in enumerate(parentage[:-1]):
             if type(p) == type(parentage[i+1]):
                if p.kind('Parallel') or p.kind('Sequential'):
-                  result.remove(p)
+                  parentage.remove(p)
                elif p.kind('Context'):
                   if p.invocation == parentage[i+1].invocation:
-                     result.remove(p)
-      return result
+                     parentage.remove(p)
+      return parentage
                
             
 
