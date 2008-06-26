@@ -81,6 +81,22 @@ class _Navigator(object):
          return leaves
    
    @property
+   def _lastLeaves(self):
+      '''Returns the last (rightmost) leaf or leaves
+         (in case there's a parallel structure) in a tree.'''
+      if self._client.kind('_Leaf'):
+         return [self._client]
+      elif self._client.kind('Container'):
+         leaves = [ ]
+         if self._client.parallel:
+            for e in self._client:
+               leaves.extend(e._navigator._lastLeaves)
+         else:
+            #print self._client
+            leaves.extend(self._client[-1]._navigator._lastLeaves)
+         return leaves
+      
+   @property
    def _nextLeaves(self):
       '''Returns list of next leaf/leaves regardless of "thread" or type 
          of caller. If next component is/contains a parallel, return list 
@@ -89,6 +105,16 @@ class _Navigator(object):
       if next:
          firstleaves = next._navigator._firstLeaves
          return firstleaves
+
+   @property
+   def _prevLeaves(self):
+      '''Returns list of previous leaf/leaves regardless of "thread" or type 
+         of caller. If next component is/contains a parallel, return list 
+         of simultaneous leaves'''
+      prev = self._prev
+      if prev:
+         lastLeaves = prev._navigator._lastLeaves
+         return lastLeaves
 
    @property
    def _nextSibling(self):
