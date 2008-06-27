@@ -27,10 +27,15 @@ class _ChordInitializer(_Initializer):
             note = args[0]
             _Leaf.__init__(client, note.duration.written.pair)
             client.formatter = _ChordFormatter(client)
+            # must copy notehead (if required) BEFORE
+            # _transfer_all_attributes;
+            # otherwise note.copy( ) will fail to fracture spanners
+            if note.notehead is not None:
+               copy = note.copy( )
             _transfer_all_attributes(note, client)
             del client._notehead
             if note.notehead is not None:
-               copy = note.copy( )
+               #copy = note.copy( )
                client.append(copy.notehead)
          if args[0].kind('Rest'):
             rest = args[0]

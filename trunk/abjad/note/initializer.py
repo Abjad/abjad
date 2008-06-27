@@ -24,10 +24,13 @@ class _NoteInitializer(_Initializer):
          elif args[0].kind('Chord'):
             chord = args[0]
             _Leaf.__init__(client, chord.duration.written.pair)
+            # must copy chord BEFORE _transfer_all_attributes
+            if len(chord) > 0:
+               copy = chord.copy( )
             _transfer_all_attributes(chord, client)
             del client._noteheads
             if len(chord) > 0:
-               copy = chord.copy()
+               #copy = chord.copy()
                client.notehead = copy.noteheads[0]
          elif args[0].kind('Skip'):
             skip = args[0]

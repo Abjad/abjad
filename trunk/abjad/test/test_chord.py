@@ -89,6 +89,15 @@ def test_cast_chord_as_note_04( ):
    assert t[0].duration == d
 
 
+def test_cast_chord_as_note_05( ):
+   '''Works fine when chord is beamed.'''
+   t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
+   Beam(t)
+   Note(t[0])
+   assert isinstance(t[0], Note)
+   assert t[0]._parent is t
+
+
 ### TEST CAST CHORD AS REST ###
 
 def test_cast_chord_as_rest_01( ):
@@ -127,6 +136,15 @@ def test_cast_chord_as_rest_04( ):
    assert t[0].duration == d
 
 
+def test_cast_chord_as_rest_05( ):
+   '''Works fine when chord is beamed.'''
+   t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
+   Beam(t)
+   Rest(t[0])
+   assert isinstance(t[0], Rest)
+   assert t[0]._parent is t
+
+
 ### TEST CAST CHORD AS SKIP ###
 
 def test_cast_chord_as_skip_01( ):
@@ -140,6 +158,7 @@ def test_cast_chord_as_skip_01( ):
    assert s._parent is None
    assert s.duration == duration
 
+
 def test_cast_chord_as_skip_02( ):
    t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration.written
@@ -147,6 +166,7 @@ def test_cast_chord_as_skip_02( ):
    assert isinstance(t[0], Skip)
    assert t[0]._parent is t
    assert t[0].duration == d
+
 
 def test_cast_chord_as_skip_03( ):
    v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
@@ -156,6 +176,7 @@ def test_cast_chord_as_skip_03( ):
    assert v[0]._parent is v
    assert v[0].duration == d
 
+
 def test_cast_chord_as_skip_04( ):
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
    d = t[0].duration.written
@@ -163,6 +184,15 @@ def test_cast_chord_as_skip_04( ):
    assert isinstance(t[0], Skip)
    assert t[0]._parent is t
    assert t[0].duration == d
+
+
+def test_cast_chord_as_skip_05( ):
+   '''Works fine when chord is beamed.'''
+   t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
+   Beam(t)
+   Skip(t[0])
+   assert isinstance(t[0], Skip)
+   assert t[0]._parent is t
 
 
 ### TEST CHORD FORMAT RIGHT ###

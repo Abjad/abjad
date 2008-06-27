@@ -83,6 +83,15 @@ def test_cast_rest_as_note_04( ):
    assert t[0].duration.written == d
 
 
+def test_cast_rest_as_note_05( ):
+   '''Works fine when rest is beamed.'''
+   t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
+   Beam(t)
+   Note(t[1])
+   assert isinstance(t[1], Note)
+   assert t[1]._parent is t
+
+
 ### TEST CAST REST AS CHORD ###
 
 def test_cast_rest_as_chord_01( ):
@@ -124,6 +133,15 @@ def test_cast_rest_as_chord_04( ):
    assert t[0].duration.written == d
 
 
+def test_cast_rest_as_chord_05( ):
+   '''Works fine when rest is beamed.'''
+   t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
+   Beam(t)
+   Chord(t[1])
+   assert isinstance(t[1], Chord)
+   assert t[1]._parent is t
+
+
 ### TEST CAST REST AS SKIP ###
 
 def test_cast_rest_as_skip_01( ):
@@ -163,3 +181,12 @@ def test_cast_rest_as_skip_04( ):
    assert isinstance(t[0], Skip)
    assert t[0]._parent is t
    assert t[0].duration.written == d
+
+
+def test_cast_rest_as_skip_05( ):
+   '''Works fine when rest is beamed.'''
+   t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
+   Beam(t)
+   Skip(t[1])
+   assert isinstance(t[1], Skip)
+   assert t[1]._parent is t

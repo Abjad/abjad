@@ -97,6 +97,15 @@ def test_cast_note_as_rest_04( ):
    assert t[0].duration.written == d
 
 
+def test_cast_note_as_rest_05( ):
+   '''Works fine when note is beamed.'''
+   t = Staff(Note(0, (1, 8)) * 3)
+   Beam(t)
+   Rest(t[0])
+   assert isinstance(t[0], Rest)
+   assert t[0]._parent is t
+
+
 ### TEST CAST NOTE AS CHORD ###
 
 def test_cast_note_as_chord_01( ):
@@ -150,6 +159,15 @@ def test_cast_note_as_chord_04( ):
    assert t[0].duration.written == d
 
 
+def test_cast_note_as_chord_05( ):
+   '''Works fine when note is beamed.'''
+   t = Staff(Note(0, (1, 8)) * 3)
+   Beam(t)
+   Chord(t[0])
+   assert isinstance(t[0], Chord)
+   assert t[0]._parent is t
+
+
 ### TEST CAST NOTE AS SKIP ###
 
 def test_cast_note_as_skip_01( ):
@@ -193,6 +211,15 @@ def test_cast_note_as_skip_04( ):
    assert t[0].format == 's8'
    assert t[0]._parent is t
    assert t[0].duration.written == d
+
+
+def test_cast_note_as_skip_05( ):
+   '''Works fine when note is beamed.'''
+   t = Staff(Note(0, (1, 8)) * 3)
+   Beam(t)
+   Skip(t[0])
+   assert isinstance(t[0], Skip)
+   assert t[0]._parent is t
 
 
 ### TEST OCTAVE ZERO ###
