@@ -6,3 +6,6 @@ class Parallel(Container):
       music = music  or [ ]
       Container.__init__(self, music)
       self.brackets = 'double-angle'
+
+   def __repr__(self):
+      return 'Parallel(%s)' % self._summary

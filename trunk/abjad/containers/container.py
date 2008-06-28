@@ -63,10 +63,7 @@ class Container(_Component):
          return ' '
 
    def __repr__(self):
-      if len(self) > 0:
-         return '(%s)' % self._summary
-      else:
-         return '( )'
+      return '(%s)' % self._summary
 
    ### PROPERTIES ###
 

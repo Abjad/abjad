@@ -9,3 +9,6 @@ class Grace(Container):
       Container.__init__(self, music)
       self.formatter = _GraceFormatter(self)
       self._type = 'grace'
+
+   def __repr__(self):
+      return 'Grace(%s)' % self._summary

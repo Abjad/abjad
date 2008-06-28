@@ -6,3 +6,6 @@ class Sequential(Container):
       music = music or [ ]
       Container.__init__(self, music)
       self.brackets = 'curly'
+
+   def __repr__(self):
+      return 'Sequential(%s)' % self._summary
