@@ -5,8 +5,11 @@ from .. helpers.hasname import hasname
 class _GraceInterface(object):
 
    def __init__(self):
-      self._before = None
-      self._after = None
+      #self._before = None
+      #self._after = None
+      self._before = Grace( )
+      self._after = Grace( )
+      self._after._type = 'after'
    
    @apply
    def before( ):
@@ -14,7 +17,8 @@ class _GraceInterface(object):
          return self._before
       def fset(self, arg):
          if arg == None:
-            self._before = None
+            #self._before = None
+            self._before = Grace( )
          elif isinstance(arg, Grace):
             self._before = arg
          elif hasname(arg, '_Leaf'):
@@ -34,7 +38,9 @@ class _GraceInterface(object):
          return self._after
       def fset(self, arg):
          if arg == None:
-            self._after = None
+            #self._after = None
+            self._after = Grace( )
+            self._after._type = 'after'
          else:
             if isinstance(arg, Grace):
                self._after = arg
