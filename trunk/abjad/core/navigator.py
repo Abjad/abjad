@@ -177,6 +177,27 @@ class _Navigator(object):
          return None
 
       candidates = next._navigator._firstLeaves
+      return self._findFellowBead(candidates)
+
+   @property
+   def _prevBead(self):
+      '''Returns the previous Bead (time threaded Leaf), if such exists. 
+         This method will search the whole (parentage) structure moving back.
+         This will only return if called on a Leaf.'''
+      if not self._client.kind('_Leaf'):
+         return None
+
+      prev = self._prev
+      if prev is None:
+         return None
+
+      candidates = prev._navigator._lastLeaves
+      return self._findFellowBead(candidates)
+
+   def _findFellowBead(self, candidates):
+      '''Helper method from prevBead and nextBead. 
+      Given a list of bead candiates of self, find and return the first one
+      that matches thread parentage. '''
       for candidate in candidates:
          c_thread_parentage = candidate._parentage._threadParentage
          thread_parentage = self._client._parentage._threadParentage
@@ -195,7 +216,6 @@ class _Navigator(object):
 
          if match:
             return candidate
-
 
    # rightwards depth-first traversal:
    # advance rightwards; otherwise ascend; otherwise None.
