@@ -1,7 +1,7 @@
 import math
 from .. duration.rational import Rational
 
-def converge_to_power2(source, target):
+def _converge_to_power2(source, target):
    '''Returns the number 2**n closest to target i.e. min(2**n - target)
       "coming from the direction of source". i.e. if source < target
       the function returns 2**n < target. If source > target, it returns
@@ -10,7 +10,7 @@ def converge_to_power2(source, target):
       Example:
 
       abjad> for x in range(1, 20):
-      ...     print x, converge_to_power2(0, x), converge_to_power2(10000, x)
+      ...     print x, _converge_to_power2(0, x), _converge_to_power2(10000, x)
       ...
       1 1 1
       2 2 2

@@ -1,5 +1,5 @@
 from abjad.duration.rational import Rational
-from abjad.helpers.converge_to_power2 import converge_to_power2
+from abjad.helpers.converge_to_power2 import _converge_to_power2
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.leaf.leaf import _Leaf
@@ -26,7 +26,7 @@ def leaf_scale(dur, leaf):
       leaf.duration = dur
       return leaf
    except ValueError:
-      leaf.duration = converge_to_power2(leaf.duration, dur)
+      leaf.duration = _converge_to_power2(leaf.duration, dur)
       result = FixedDurationTuplet(dur, [leaf])
       return result
 
