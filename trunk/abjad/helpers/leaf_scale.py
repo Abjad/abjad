@@ -46,20 +46,19 @@ def leaf_scale_binary(dur, leaf):
       return leaf
    except ValueError:
       result = [ ]
+      for wd in _duration_token_decompose(dur):
+         l = leaf.copy( )
+         l.spanners.die( )
+         l.duration.written = wd
+         result.append( l )
       parent = leaf._parent
       if parent:
          indx = parent.index(leaf)
-         leaf = parent.pop(indx)
-         leaf.spanners.die( )
-      for wd in _duration_token_decompose(dur):
-         leaf = leaf.copy( )
-         leaf.duration.written = wd
-         result.append( leaf )
+         parent.pop(indx)
+         parent.embed(indx, result)
+      ### TODO do we want these  inside a Tie spanner?
+      ### Tie(result)
       ### tie leaves
       for n in result[0:-1]:
          n.tie = True
-      if parent:
-         ### TODO do we want these to be inside a Sequential?
-         #result = Sequential(result)
-         parent.embed(indx, result)
       return result

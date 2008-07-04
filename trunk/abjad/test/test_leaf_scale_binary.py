@@ -50,3 +50,12 @@ def test_leaf_scale_binary_05( ):
    assert new.tie == False
 
 
+def test_leaf_scale_binary_10( ):
+   '''Target is alone in Voice container.'''
+   t = Voice([Note(0, (1, 4))])
+   leaf_scale_binary((5,16), t[0])
+   assert len(t) == 2
+   assert t[0].duration == Rational(1, 4)
+   assert t[1].duration == Rational(1, 16)
+
+
