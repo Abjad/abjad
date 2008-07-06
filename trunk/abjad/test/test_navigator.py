@@ -65,9 +65,21 @@ def test_bead_navigation_05( ):
    assert t[2]._navigator._prevBead is None
    assert t[3]._navigator._prevBead is None
 
+def test_bead_navigation_06( ):
+   '''NextBead and prevBead work on FixedDurationTuplet.'''
+   t = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3)])
+   assert t[0]._navigator._nextBead is t[1]
+   assert t[1]._navigator._nextBead is t[2]
+   assert t[2]._navigator._nextBead is None
+
+   assert t[0]._navigator._prevBead is None
+   assert t[1]._navigator._prevBead is t[0]
+   assert t[2]._navigator._prevBead is t[1]
+
+
 ### LEVEL 1 NESTING ###
 
-def test_bead_navigation_06( ):
+def test_bead_navigation_10( ):
    '''NextBead and prevBead work on contiguous Sequentials inside a Voice.'''
    s1 = Sequential([Note(i, (1,8)) for i in range(4)])
    s2 = Sequential([Note(i, (1,8)) for i in range(4,8)])
@@ -82,7 +94,20 @@ def test_bead_navigation_06( ):
    assert s1[3]._navigator._prevBead is s1[2]
    assert s2[0]._navigator._prevBead is s1[3]
 
-def test_bead_navigation_07( ):
+def test_bead_navigation_11( ):
+   '''NextBead and prevBead work on contiguous Tuplets inside a Voice.'''
+   t1 = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3)])
+   t2 = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3,6)])
+   t = Voice([t1, t2])
+   assert t1[0]._navigator._nextBead is t1[1]
+   assert t1[1]._navigator._nextBead is t1[2]
+   assert t1[2]._navigator._nextBead is t2[0]
+
+   assert t1[1]._navigator._prevBead is t1[0]
+   assert t1[2]._navigator._prevBead is t1[1]
+   assert t2[0]._navigator._prevBead is t1[2]
+
+def test_bead_navigation_12( ):
    '''NextBead and prevBead work on contiguous anonymous Voices 
    inside a Staff.'''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -98,7 +123,7 @@ def test_bead_navigation_07( ):
    assert v1[3]._navigator._prevBead is v1[2]
    assert v2[0]._navigator._prevBead is v1[3]
 
-def test_bead_navigation_08( ):
+def test_bead_navigation_13( ):
    '''NextBead and prevBead work on contiguous equally named Voices 
    inside a Staff.'''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -116,7 +141,7 @@ def test_bead_navigation_08( ):
    assert v1[3]._navigator._prevBead is v1[2]
    assert v2[0]._navigator._prevBead is v1[3]
 
-def test_bead_navigation_09( ):
+def test_bead_navigation_14( ):
    '''Beads do not connect through contiguous unequally named Voices; 
    these are, by definition, two different "threads".'''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
