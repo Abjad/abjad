@@ -405,15 +405,33 @@ class _Spanner(object):
       self._block( )
       return self, left, right
 
+### Crashes on direction = 'both'. Fixed below.
+#   def fracture(self, i, direction = 'both'):
+#      if direction == 'left':
+#         return self._fractureLeft(i)
+#      elif direction == 'right':
+#         return self._fractureRight(i)
+#      elif direction == 'both':
+#         result = [ ]
+#         result.append(self._fractureLeft(i))
+#         result.append(self._fractureRight(i))
+#      else:
+#         raise ValueError(
+#            'direction %s must be left, right or both.' % direction)
+
    def fracture(self, i, direction = 'both'):
+      if i < 0:
+         i = len(self) + i
       if direction == 'left':
          return self._fractureLeft(i)
       elif direction == 'right':
          return self._fractureRight(i)
       elif direction == 'both':
-         result = [ ]
-         result.append(self._fractureLeft(i))
-         result.append(self._fractureRight(i))
+         left = self.copy(0, i - 1)
+         right = self.copy(i + 1, len(self))
+         center = self.copy(i, i)
+         self._block( )
+         return self, left, center, right
       else:
          raise ValueError(
             'direction %s must be left, right or both.' % direction)
