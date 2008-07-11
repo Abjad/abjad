@@ -4,7 +4,6 @@ from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.leaf.leaf import _Leaf
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
-from abjad.containers.sequential import Sequential
 
 ### NOTE: (or rather questions) 
 ### - would this be better named leaf_reset_duration( )?... 
@@ -31,6 +30,7 @@ def leaf_scale(dur, leaf):
       return result
 
 
+from abjad.tie.spanner import Tie
 def leaf_scale_binary(dur, leaf):
    '''
       Example:
@@ -56,9 +56,12 @@ def leaf_scale_binary(dur, leaf):
          indx = parent.index(leaf)
          parent.pop(indx)
          parent.embed(indx, result)
-      ### TODO do we want these  inside a Tie spanner?
-      ### Tie(result)
       ### tie leaves
-      for n in result[0:-1]:
-         n.tie = True
+      Tie(result)
+#      for n in result[0:-1]:
+#         n.tie = True
+      ### remove dynamics and articulations from tied leaves.
+      for n in result[1:]:
+         n.dynamics = None
+         n.articulations = None
       return result

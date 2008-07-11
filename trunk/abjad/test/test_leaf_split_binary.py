@@ -43,19 +43,19 @@ def test_leaf_split_binary_04( ):
    assert isinstance(new[1], Note)
    assert new[1].duration == Rational(3, 16)
 
-def test_leaf_split_binary_05( ):
-   '''Split returns three Leaves, two are tied.'''
-   t = Note(0, (1, 4))
-   new = leaf_split_binary((5, 32), t)
-   assert isinstance(new, list)
-   assert len(new) == 3
-   assert isinstance(new[0], Note)
-   assert new[0].duration == Rational(4, 32)
-   assert new[0].tie == True
-   assert isinstance(new[1], Note)
-   assert new[1].duration == Rational(1, 32)
-   assert new[1].tie == False
-   assert isinstance(new[2], Note)
-   assert new[2].duration == Rational(3, 32)
-   assert new[2].tie == False
-
+#def test_leaf_split_binary_05( ):
+#   '''Split returns three Leaves, two are tied.'''
+#   t = Note(0, (1, 4))
+#   new = leaf_split_binary((5, 32), t)
+#   assert isinstance(new, list)
+#   assert len(new) == 3
+#   assert isinstance(new[0], Note)
+#   assert new[0].duration == Rational(4, 32)
+#   assert new[0].tie == True
+#   assert isinstance(new[1], Note)
+#   assert new[1].duration == Rational(1, 32)
+#   assert new[1].tie == False
+#   assert isinstance(new[2], Note)
+#   assert new[2].duration == Rational(3, 32)
+#   assert new[2].tie == False
+#

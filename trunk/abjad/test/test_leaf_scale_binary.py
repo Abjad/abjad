@@ -33,9 +33,9 @@ def test_leaf_scale_binary_04( ):
    assert isinstance(new, list)
    assert t.duration == Rational(4, 16)
    assert new[0].duration == Rational(4, 16)
-   assert new[0].tie == True
+   #assert new[0].tie == True
    assert new[1].duration == Rational(1, 16)
-   assert new[1].tie == False
+   #assert new[1].tie == False
 
 
 def test_leaf_scale_binary_05( ):
@@ -44,10 +44,10 @@ def test_leaf_scale_binary_05( ):
    new = leaf_scale_binary((3, 16), t)
    assert isinstance(t, Note)
    assert t.duration == Rational(3, 16)
-   assert t.tie == False
+   #assert t.tie == False
    assert isinstance(new, Note)
    assert new.duration == Rational(3, 16)
-   assert new.tie == False
+   #assert new.tie == False
 
 
 def test_leaf_scale_binary_10( ):
