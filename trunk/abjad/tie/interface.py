@@ -3,7 +3,7 @@ from .. core.interface import _Interface
 class _TieInterface(_Interface):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'Tie', [] )
+      _Interface.__init__(self, client, 'Tie', ['Tie'] )
       self._set = None
 
    ### OVERRIDES ###
