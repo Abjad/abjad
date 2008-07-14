@@ -47,8 +47,10 @@ def leaf_split_binary(split_dur, leaf):
       l2 = leaf_scale_binary(leaf.duration - unprolated_split_dur, leaf)
 
       result = [ ] 
-      if isinstance(l1, list): result.extend(l1)
-      else: result.append(l1)
-      if isinstance(l2, list): result.extend(l2)
-      else: result.append(l2)
+      #if isinstance(l1, list): result.extend(l1)
+      #else: result.append(l1)
+      #if isinstance(l2, list): result.extend(l2)
+      #else: result.append(l2)
+      result.append(l1)
+      result.append(l2)
       return result
