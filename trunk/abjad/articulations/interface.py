@@ -80,7 +80,6 @@ class _ArticulationsInterface(_Interface):
       else:
          assert isinstance(expr, list)
          expr = [self._makeArticulation(x) for x in expr]
-         print expr
          self._articulations[i.start : i.stop] = expr
 
    def __getitem__(self, expr):

@@ -43,24 +43,25 @@ def leaf_scale_binary(dur, leaf):
    assert dur > 0
    try:
       leaf.duration = dur
-      return leaf
+      return [leaf]
    except ValueError:
       result = [ ]
       for wd in _duration_token_decompose(dur):
          l = leaf.copy( )
-         l.spanners.die( )
          l.duration.written = wd
          result.append( l )
       parent = leaf._parent
       if parent:
+         for l in result:
+            l.spanners.die( )
          indx = parent.index(leaf)
          parent.pop(indx)
          parent.embed(indx, result)
       ### tie leaves
+      for l in result:
+         l.tie = None
       if not l.tie.spanner:
          Tie(result)
-#      for n in result[0:-1]:
-#         n.tie = True
       ### remove dynamics and articulations from tied leaves.
       for n in result[1:]:
          n.dynamics = None

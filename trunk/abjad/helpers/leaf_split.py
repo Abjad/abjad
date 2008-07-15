@@ -18,9 +18,9 @@ def leaf_split(split_dur, leaf):
       return [leaf]
    else:
       l1 = leaf.copy()
-      l1.spanners.die()
       parent = leaf._parent
       if parent:
+         l1.spanners.die() ### only kill spanners if there's a parent?
          indx = parent.index(leaf)
          parent.embed(indx, l1)
 
@@ -30,6 +30,7 @@ def leaf_split(split_dur, leaf):
       l2 = leaf_scale(leaf.duration - unprolated_split_dur, leaf)
       return [l1, l2]
 
+
 def leaf_split_binary(split_dur, leaf):
    assert isinstance(leaf, _Leaf)
    split_dur = Rational(*_duration_token_unpack(split_dur))
@@ -38,9 +39,9 @@ def leaf_split_binary(split_dur, leaf):
       return [leaf]
    else:
       l1 = leaf.copy()
-      l1.spanners.die()
       parent = leaf._parent
       if parent:
+         l1.spanners.die()
          indx = parent.index(leaf)
          parent.embed(indx, l1)
       l1 = leaf_scale_binary(unprolated_split_dur, l1)
