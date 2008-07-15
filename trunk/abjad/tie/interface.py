@@ -21,6 +21,14 @@ class _TieInterface(_Interface):
       self._set = None
       _Interface.clear(self)
 
+   def isTied(self):
+      if (self._client.tie or self._client.tie.spanner) or\
+         (self._client.prev and self._client.prev.tie):
+         return True
+      else:
+         return False
+
+
    ### FORMATTING ###
 
    @property
