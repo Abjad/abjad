@@ -1,4 +1,5 @@
 from abjad import *
+from py.test import raises
 
 ### EMBED ### # *insert* without fracturing spanners.
 
@@ -179,3 +180,9 @@ def test_embed_08( ):
    }
 '''
 
+def test_embed_09( ):
+   '''Embed complains on out of bounds indeces.'''
+   t = Staff(Note(0, (1, 8)) * 8)
+   Beam(t)
+   assert raises(IndexError, 't.embed(8, Note(1, (1,4)))')
+   assert raises(IndexError, 't.embed(-9, Note(1, (1,4)))')

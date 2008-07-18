@@ -235,6 +235,7 @@ class Container(_Component):
          result.extend(expr.next.spanners.fracture(direction = 'left')) 
       return result
 
+      
    def embed(self, i, expr):
       '''
       Non-fracturing insert.
@@ -242,10 +243,10 @@ class Container(_Component):
       For fracturing insert, use insert( ).
       '''
       def _embedComponent(self, i, expr):
-         for l in expr.leaves:
-            for s in self.spanners.get():
-               if self[i].leaves[0] in s: ### if the leaf at i is in spanner s
-                  s._insert(s.index(self[i].leaves[0]), l)
+         target = self[i]
+         for s in target.spanners:
+            for l in expr.leaves:
+               s._insert(s.index(target.leaves[0]), l)
          expr._parent = self
          self._music.insert(i, expr)
 
