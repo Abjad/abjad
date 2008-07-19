@@ -55,8 +55,8 @@ def leaf_scale_binary(dur, leaf):
          for l in result:
             l.spanners.die( )
          indx = parent.index(leaf)
-         parent.pop(indx)
          parent.embed(indx, result)
+         parent.pop(len(result) + indx)
       ### tie leaves
       for l in result:
          l.tie = None
