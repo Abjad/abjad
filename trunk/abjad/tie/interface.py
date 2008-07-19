@@ -21,13 +21,30 @@ class _TieInterface(_Interface):
       self._set = None
       _Interface.clear(self)
 
-   def isTied(self):
-      if (self._client.tie or self._client.tie.spanner) or\
-         (self._client.prev and self._client.prev.tie):
+   ### TODO generalize these to work with Glissando?
+   @property
+   def tied(self):
+      '''True if the previous leaf has a leaf tie.'''
+      if self._client.prev and self._client.prev.tie:
          return True
       else:
          return False
 
+   @property
+   def tail(self):
+      '''True if self.tied and not self.tie or self.last.'''
+      if self.last or (self.tied and not self._set):
+         return True
+      else:
+         return False
+         
+   @property
+   def head(self):
+      '''True if self.first or self.tie and not self.prev.tie'''
+      if self.first or (self._set and not self.tied):
+         return True
+      else:
+         return False
 
    ### FORMATTING ###
 

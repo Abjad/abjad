@@ -8,8 +8,8 @@ def test_tie_spanner_10( ):
    t[3].tie = True
    t[6].tie = True
    sp._captureLeafTies( )
-   assert t[3].tie == False
-   assert t[6].tie == False
+   assert not t[3].tie
+   assert not t[6].tie 
    assert t[3].tie.spanner ==  t[6].tie.spanner == sp
 
 def test_tie_spanner_11( ):
@@ -34,11 +34,11 @@ def test_tie_spanner_12( ):
    t[1].tie = True
    t[2].tie = True
    sp._captureLeafTies( )
-   assert t[0].tie == False
-   assert t[1].tie == True
-   assert t[2].tie == True
-   assert t[3].tie == False
-   assert not t[3].tie.spanner
+   assert not t[0].tie
+   assert t[1].tie 
+   assert t[2].tie 
+   assert not t[3].tie 
+   assert not t[3].tie.spanned
    assert t[4].tie.spanner ==  t[5].tie.spanner == sp
-   assert not t[6].tie.isTied( )
+   assert not t[6].tie.spanned
 
