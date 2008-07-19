@@ -186,3 +186,10 @@ def test_embed_09( ):
    Beam(t)
    assert raises(IndexError, 't.embed(8, Note(1, (1,4)))')
    assert raises(IndexError, 't.embed(-9, Note(1, (1,4)))')
+
+def test_embed_10( ):
+   '''Embed complains on empty Container.'''
+   t = Staff([ ])
+   Beam(t)
+   assert raises(IndexError, 't.embed(0, Note(1, (1,4)))')
+   assert raises(IndexError, 't.embed(-1, Note(1, (1,4)))')

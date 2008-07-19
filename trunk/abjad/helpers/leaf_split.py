@@ -41,7 +41,8 @@ def leaf_split_binary(split_dur, leaf):
       l1 = leaf.copy()
       parent = leaf._parent
       if parent:
-         l1.spanners.die()
+         l1.spanners.die() 
+         ### if l1 is the only leaf spanned, spanner dies for ever...
          indx = parent.index(leaf)
          parent.embed(indx, l1)
       l1 = leaf_scale_binary(unprolated_split_dur, l1)
