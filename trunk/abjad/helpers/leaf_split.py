@@ -35,6 +35,7 @@ def leaf_split_binary(split_dur, leaf):
    assert isinstance(leaf, _Leaf)
    split_dur = Rational(*_duration_token_unpack(split_dur))
    unprolated_split_dur = split_dur / leaf.duration.prolation
+   ### TODO: check it unprolated_split_dur is m / 2**n?
    if unprolated_split_dur == 0 or unprolated_split_dur >= leaf.duration:
       return [leaf]
    else:
