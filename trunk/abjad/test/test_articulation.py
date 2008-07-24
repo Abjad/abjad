@@ -61,11 +61,11 @@ def test_articulation_06( ):
    assert str(a) == r'_\staccato'
 
 def test_articulation_07( ):
-   '''Direction can be set to center.'''
+   '''Direction can be set to default.'''
    t = Note(0, (1, 4))
    t.articulations.append('staccato')
    a = t.articulations[0]
-   a.direction = 'center'
+   a.direction = 'default'
    assert a.direction == '-'
    assert str(a) == r'-\staccato'
    a.direction = '-'

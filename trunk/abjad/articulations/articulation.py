@@ -75,7 +75,7 @@ class _Articulation(object):
                self._direction = '^'
             elif expr in ('_', 'down'):
                self._direction = '_'
-            elif expr in ('-', 'center'):
+            elif expr in ('-', 'default'):
                self._direction = '-'
             else:
                raise ValueError('can not set articulation direction.')
