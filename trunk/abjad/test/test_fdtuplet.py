@@ -113,9 +113,9 @@ def test_invisible_tuplet( ):
    t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    assert t.invisible == False
    t.invisible = True
-   assert t.format == "\\compressMusic #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"
+   assert t.format == "\\scaleDurations #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"
    '''
-   \compressMusic #'(2 . 3) {
+   \scaleDurations #'(2 . 3) {
       c'8
       c'8
       c'8

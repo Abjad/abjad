@@ -7,12 +7,11 @@ class Staff(Context):
       Context.__init__(self, music)
       self.invocation = 'Staff'
 
-#def RhythmicStaff(music):
-#   result = Container(music)
-#   result.context.set('RhyhtmicStaff')
-#   result.brackets.set('{', '}')
-#   return result
-#
+def RhythmicStaff(music):
+   result = Staff(music)
+   result.invocation.type = 'RhythmicStaff'
+   return result
+
 #def PianoStaff(music):
 #   result = Container(music)
 #   result.context.set('PianoStaff')

@@ -34,7 +34,8 @@ class _TupletFormatter(_ContainerFormatter):
       if self._client.duration.multiplier:
          if self._client.duration.multiplier != 1:
             if self._client.invisible:
-               result.append(r"\compressMusic #'(%s . %s) {" % 
+               #result.append(r"\compressMusic #'(%s . %s) {" % 
+               result.append(r"\scaleDurations #'(%s . %s) {" % 
                   self._client.ratio.pair)
             else:
                result.append(r'%s\times %s %s' % (self._fraction, 
