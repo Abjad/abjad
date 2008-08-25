@@ -1,0 +1,65 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+</head>
+<body>
+<h1>Notehead assignability</h1>
+<hr>
+<p class="spacer" />
+
+<h2>What is notehead assignability?</h2>
+
+<p>
+Consider the durations of the notes in the rhythm below.
+</p>
+<pre>
+  abjad> n1 = [Note(0, (1, 4))]
+  abjad> n2 = [Note(0, (7, 32)), Note(0, (1, 32))]
+  abjad> Beam(n2)
+  abjad> n3 = [Note(0, (3, 32)), Note(0, (1, 32)), Note(0, (3, 32)), Note(0, (1, 32))]
+  abjad> Beam(n3)
+  abjad> measure = Measure((3, 4), n1 + n2 + n3)
+  abjad> staff = Staff([measure])
+  abjad> staff.invocation.type = 'RhythmicStaff'
+  abjad> show(staff)
+</pre>
+<image class="inline" src="images/1.png">
+
+<p>
+We find small and larger written durations equal to values like 1/32, 3/32, 7/32 and 1/4. These values result from putting noteheads, dots, flags and beams together in different ways. The combinations of noteheads, dots, flags and beams allowed in western notation allow for a great variety of different rhythmic durations. The set of allowable values is large but restricted in important ways. Without recourse to ties to add values together and without recourse to tuplet brackets and nonbinary meters to multiply values out, rhythmic durations like 1/5, 3/14 and 5/9 are impossible.
+</p>
+
+<p>
+Is there a way to characterize the ways that values like 1/4 differ from values like 1/5?
+</p>
+
+<p class="spacer">
+<h2>The conditions of notehead-assignability</h2>
+
+<p>
+When we look carefully we see that values like 1/4 in the example above are all of the form n/d with special constraints on n and on d. We see that d is always a nonngetiave integer power of 2. And we see that n is always either a nonnegative integer power of 2, like d, or else an even multiple of some nonnegative integer power of 2, minus 1. This constrains n to values like 1, 2, 4, 8, 16, ... and d to values to 1, 2, 3, 4, 6, 7, 8, 12, 14, 15, 16, .... Importantly, this characterization of d leaves out values like 5, 9, 10, 11, 13, 17, .... When we take numbers for n and d from these lists, we get values like 1/4 but not 1/5.
+</p>
+
+<p>
+Abjad labels rational numbers n/d of the form given above as <strong>notehead-assignable</strong>. Notes, rests, chords and skips initialize correctly with notehead-assignable durations, and no others.
+
+</p>
+
+<p>
+Initializing <code>Note(0, (15, 32))</code> works because 15/32 is notehead-assignabile. But initializing <code>Note(0, (17, 32))</code> fails because 17/32 isn't. It is, of course, still possible to notate durations equal to 17/32 of a whole note as, for example, <code>Note(0, (16, 32))</code> tied to <code>Note(0, (1, 32))</code>. But it is not possible to notate durations equal to 17/32 as a single symbol, without recourse to ties or special types of prolation.
+</p>
+
+<p class="spacer">
+<h2>To do</h2>
+<hr>
+
+<p class="commentary">
+1. Duration-label the examples in this chapter.
+</p>
+
+<p class="spacer"/>
+<hr>
+<a href="../../index.html">Contents</a>
+
+</body>
+</html>

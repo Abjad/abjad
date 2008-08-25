@@ -1,0 +1,209 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+</head>
+<body>
+<h1>Prolation</h1>
+<hr>
+
+<p>
+Abjad uses <i>prolation</i> as a cover term for rhythmic augmentation and diminution taken together. 
+Augmentation increases the rhythmic duration of notes, rests, chords or tuplets to fill more time than they otherwise would. 
+Diminution does the opposite. 
+Western notation employes tuplet brackets and, less commonly, special types of time signature to effect prolation.
+See the chapter on <a href="../lilypond_multipliers/text.html">LilyPond multipliers</a> for another way to change the duration of notes, rests and chords.
+</p>
+
+<p class="spacer" />
+<h2>Tuplet prolation</h2>
+
+<p>
+Abjad supports two different types of tuplet.
+<i>Fixed-duration tuplets</i> derive prolation as the quotient of variable contents duration taken over fixed container duration.
+<i>Fixed-multiplier tuplets</i> derive container duration as the product of a fixed tuplet multiplier taken against variable contents duration.
+These two different types of tuplet support different types of compositional model; see the chapter on <a href="../tuplets/text.html">tuplets</a> for more information.
+</p>
+
+<p>
+Tuplets support augmentation.
+</p>
+<pre>
+  abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
+  abjad> staff = RhythmicStaff([Measure((5, 8), [tuplet])])
+  abjad> Beam(tuplet)
+  abjad> show(staff)
+</pre>
+<image class="inline" src="images/1.png">
+<pre>
+  abjad> tuplet.duration.augmentation
+  True
+</pre>
+
+<p>
+And diminution.
+</p>
+<pre>
+  abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 6)
+  abjad> staff = RhythmicStaff([Measure((5, 8), [tuplet])])
+  abjad> Beam(tuplet)
+  abjad> show(staff)
+</pre>
+<image class="inline" src="images/2.png">
+<pre>
+  abjad> tuplet.duration.diminution
+  True
+</pre>
+
+<p>
+For tuplet prolation outside of either augmentation or diminution, see the section on zero prolation, below.
+</p>
+
+<p class="spacer"/>
+<h2>Meter prolation</h2>
+
+<p>
+Time signatures in western notation usually carry a denominator equal to some nonnegative integer power of 2. 
+We can call these conventional, power-of-2-based meters <i>binary meters</i>. Denominators equal to integers other than integer powers of 2 are, however, possible. 
+And these <i>nonbinary meters</i> contribute to the prolation of notes, rests, chords and tuplets in an important way.
+</p>
+
+<p>
+The 'eighth' notes here carry prolated duration equal to 1/10 of a whole note.
+</p>
+
+<pre>
+  abjad> measure = Measure((4, 10), Note(0, (1, 8)) * 4)
+  abjad> Beam(measure)
+  abjad> staff = RhythmicStaff([measure])
+  abjad> show(staff)
+</pre>
+<image class="inline" src="images/3.png">
+<pre>
+  abjad> note = staff.leaves[0]
+  abjad> note.duration.written
+  abjad> note.duration.prolated
+</pre>
+
+<p>
+And the 'sixteenth' notes here carry prolated duration equal to 1/18 of a whole note.
+</p>
+
+<pre>
+  abjad> measure = Measure((4, 9), Note(0, (1, 16)) * 8)
+  abjad> Beam(measure)
+  abjad> staff = RhythmicStaff([measure])
+  abjad> show(staff)
+</pre>
+<image class="inline" src="images/4.png">
+<pre>
+  abjad> note = staff.leaves[0]
+  abjad> note.duration.written
+  Rational(1, 16)
+  abjad> note.duration.prolated
+  Rational(1, 18)
+</pre>
+
+<p>
+Nonbinary meters n/d diminish the contents of the measures they govern by a factor j/k, with k set equal to d, and with j equal to the greatest integer power of 2 less than d.
+That is, j equals 2 ** int(log(2, d)). 
+</p>
+
+<p>
+With a meter of, for example, 4/10 we find that j/k = 8/10 = 4/5 and that notes, rests and chords with written duration equal to 1/8 carry prolated duration equal to 1/8 * j/k = 1/8 * 4/5 = 1/10.
+And with a meter of 4/9 we find that j/k = 8/9 and that notes, rests and chords with written duration equal to 1/16 carry prolated duration equal to 1/16 * j/k = 1/16 * 8/9 = 1/18.
+</p>
+
+<p>
+Nonbinary meters only ever diminish, and never augment, the contents of the measures they govern.
+</p>
+
+<p class="spacer">
+<h2>Tuplet and meter prolation together</h2>
+
+<p>
+Tuplet prolation and meter prolation combine freely.
+</p>
+
+<pre>
+  abjad> notes = Note(0, (1, 8)) * 2
+  abjad> Beam(notes)
+  abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 10)
+  abjad> Beam(tuplet)
+  abjad> measure = Measure((6, 10), notes + [tuplet])
+  abjad> staff = RhythmicStaff([measure])
+  abjad> show(staff)
+</pre>
+<image class="inline" src="images/5.png">
+<pre>
+  abjad> note = measure.leaves[0]
+  abjad> note.duration.written
+  Rational(1, 8)
+  abjad> note.duration.prolated
+  Rational(1, 10)
+</pre>
+<pre>
+  abjad> note = measure.leaves[2]
+  abjad> note.duration.written
+  Rational(1, 16)
+  abjad> note.duration.prolated
+  Rational(1, 25)
+</pre>
+
+<p class="spacer"/>
+<h2>Zero prolation</h2>
+
+<p>
+Western notation does not recognize tuplet brackets carrying one-to-one ratios.
+Such <i>trivial tuplets</i> may, however, be useful during different stages of composition, and Abjad allows them for that reason.
+</p>
+
+<pre>
+  abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 5)
+  abjad> staff = RhythmicStaff([Measure((5, 8), [tuplet])])
+  abjad> Beam(tuplet)
+  abjad> show(staff)
+</pre>
+<image class="inline" src="images/6.png">
+<pre>
+  abjad> tuplet.duration.augmentation
+  False
+  abjad> tuplet.duration.diminution
+  False
+</pre>
+
+<p>
+Trivial tuplets carry <i>zero prolation</i>.
+Zero-prolated tuplets neither augment nor diminsh the durations of the notes, rests, chords or other tuplets they contain.
+We can label conventional, binary meters zero-prolated for the same reasons.
+</p>
+
+<p class="spacer">
+<h2>Commentary</h2>
+<hr>
+
+<p class="commentary">
+1. Abjad implements one of two competing interpretations of nonbinary meters.
+The first, <i>implicit meter-interpretation</i> given here, follows, for example, Ferneyhough, in that nonbinary meters prolate the contents of the measures they govern implicitly, ie, without recourse to tuplet brackets.
+The second, <i>explicit meter-interpretation</i> scheme, which we find in, for example, Sciarrino, insists instead on the presence of some tuplet bracket, usually 'broken' or 'incomplete'.
+The implicit meter-interpretation that Abjad implements differs from the explicit meter-interpretation native to LilyPond, necessitating the addition of LilyPond <code>\scaleDurations</code> directives at format-time.
+Abjad will eventually implement both implicit and explicit meter-interpretation, settable on a container-by-container basis, though explicit meter-interpretation is still some time away.
+</p>
+
+<p class="spacer">
+<h2>To do</h2>
+<hr>
+
+<p class="commentary">
+1. Duration-label the examples in this chapter.
+</p>
+
+<p class="commentary">
+2. Include an example of a trivial tuplet with forced 1:1 bracket in this chapter.
+</p>
+
+<p class="spacer" />
+<hr>
+<a href="../../index.html">Contents</a>
+
+</body>
+</html>

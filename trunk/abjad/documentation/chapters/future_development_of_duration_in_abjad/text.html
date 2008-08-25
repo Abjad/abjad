@@ -1,0 +1,31 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+</head>
+<body>
+<h1>Future development of duration in Abjad</h1>
+<hr>
+
+<p>
+One additional duration rewrite remains.
+No <code>duration.absolute</code> attribute currently exists, and it needs to.
+Also, both <code>_LeafDurationInterface</code> and the various container duration interfaces implement the comparison operators in suboptimal ways; that needs to fix, too.
+Finally, we need to decide whether to give named-attributed access to the seven different combinations of <code>duration.written</code>, <code>duration.prolated</code> and <code>duration.multiplied</code> taken 1, 2 or 3 at a time, or, alternatively, whether to leave certain of the seven different combinations implicit.
+</p>
+
+<p class="spacer">
+<h2>Commentary</h2>
+<hr>
+
+<p class="commentary">
+1. The duration model predates any of the other major subsystems in Abjad, going back to the first author's model of nested expressions in <i>Mathematica</i>.
+The Python-based precusors to Abjad &mdash the first author's Lascaux and the second author's Cuepatlahto systems &mdash both included explicit <code>Duration</code> classes as, indeed, did the first versions of Abjad.
+The decision to remove the explicit <code>Duration</code> class in favor of only <code>Rational</code> instances instead reflected a desire to simplify the core type classification of the system and externalize duration-specific formatting and analysis.
+</p>
+
+<p class="spacer" />
+<hr>
+<a href="../../index.html">Contents</a>
+
+</body>
+</html>

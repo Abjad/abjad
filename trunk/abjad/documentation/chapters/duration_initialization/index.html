@@ -1,0 +1,93 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title> none? </title>
+</head>
+
+<body>
+
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+
+<div id="content">
+
+<h1>Duration initialization</h1>
+<hr>
+<p class="spacer" />
+
+<p>
+Durated Abjad classes initialize duration from arguments in the form <code>(n, d)</code> with numerator <code>n</code> and denominator <code>d</code>.
+</p>
+<pre>
+  abjad> note = Note(0, (3, 16))
+  abjad> show(note)
+</pre>
+<image src="images/1.png">
+
+<p>
+Durated classes include notes, rests, chords, skips, tuplets and measures.
+</p>
+<pre>
+  abjad> tuplet = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+  abjad> Beam(tuplet)
+  abjad> show(tuplet)
+</pre>
+<image src="images/2.png">
+
+<p>
+Abjad restricts notes, rests, chords and skips to durations like 3/16 that can be written with dots, beams and flags without ties or brackets. Abjad allows arbitrary positive durations like 5/8 for tuplets and measures.
+</p>
+<pre>
+  abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
+  abjad> Beam(tuplet)
+  abjad> show(tuplet)
+</pre>
+<image src="images/3.png">
+
+<p>
+Abjad supports breves.
+</p>
+<pre>
+  abjad> note = Note(0, (2, 1))
+  abjad> show(note)
+</pre>
+<image src="images/4.png">
+
+<p>
+And longas.
+</p>
+<pre>
+  abjad> note = Note(0, (4, 1))
+  abjad> show(note)
+</pre>
+<image src="images/5.png">
+
+<h2>Commentary</h2>
+<hr>
+
+<p class="commentary">
+1. The restriction that the written durations of notes, rests, chords and skips be expressible with some combination of dots, flags and beams without recourse to ties and brackets generalizes to the condition of notehead assignability. Values <code>(n, d)</code> are notehead-assignable when and only when (1) d is a nonnegative integer power of 2; (2) n is either a nonnegative integer power of 2 or is a nonnegative integer power of 2, minus 1; and (3) n/d is less than or equal to 8. Condition (3) captures the fact that LilyPond provides no glyph with greater duration than the maxima (equal to eight whole notes).
+</p>
+
+<p class="commentary">
+2. Integer forms like <code>4</code> as a substitute for <code>(4, 1)</code> in <code>Note(0, (4, 1))</code> are undocumented but allowed.
+</p>
+
+<p class="commentary">
+3. Abjad allows maxima noteheads as in <code>Note(0, (8, 1))</code>. LilyPond implements a <code>\maxima</code> command but does not supply a corresponding glyph for the notehead.
+</p>
+
+<p class="commentary">
+4. Abjad raises a <code>ValueError</code> for nonnotehead-assignable durations but should raise a custom exception instead.
+</p>
+
+
+
+<p class="spacer" />
+<hr>
+<a href="../../index.html">Contents</a>
+</div>
+
+</body>
+</html>
