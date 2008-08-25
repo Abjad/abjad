@@ -8,10 +8,10 @@ class _GraceFormatter(_ContainerFormatter):
    @property
    def _invocation_opening(self):
       result = [ ]
-      if self._client._type == 'after':
+      if self._client.type == 'after':
          result.append('{')
       else:
-         result.append(r'\%s {' % self._client._type)
+         result.append(r'\%s {' % self._client.type)
       return result
 
    @property

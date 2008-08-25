@@ -1,4 +1,5 @@
 from abjad import *
+from py.test import raises
 
 
 def test_grace_01( ):
@@ -65,10 +66,9 @@ def test_grace_05( ):
    '''
 
 def test_grace_06( ):
-   '''_Leaf.grace.before accepts string descriptors: "grace", "acciaccatura", "appoggiatura" when grace.before is not None'''
+   '''_Leaf.grace.before accepts string descriptors: "grace", "acciaccatura", "appoggiatura" '''
    t = Note(0, (1, 4)) 
    t.grace.before = Note(2, (1, 16))
-   assert t.grace.before
    t.grace.before = 'appoggiatura'
    assert t.format == "\\appoggiatura {\n\td'16\n}\nc'4"
    '''
@@ -144,3 +144,18 @@ def test_grace_10( ):
            e'16
    }
    '''
+
+
+def test_grace_11( ):
+   '''Grace.type is managed attribute. Grace.type knows about "after", "grace", "acciaccatura", "appoggiatura" '''
+   t = Grace([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+   t.type = 'acciaccatura'
+   assert t.type == 'acciaccatura'
+   t.type = 'grace'
+   assert t.type == 'grace'
+   t.type = 'after'
+   assert t.type == 'after'
+   t.type = 'appoggiatura'
+   assert t.type == 'appoggiatura'
+   assert raises(AssertionError, 't.type = "blah"')
+   

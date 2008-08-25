@@ -8,7 +8,18 @@ class Grace(Container):
       music = music or None
       Container.__init__(self, music)
       self.formatter = _GraceFormatter(self)
-      self._type = 'grace'
+      self.type = 'grace'
 
    def __repr__(self):
       return 'Grace(%s)' % self._summary
+
+   ### MANAGED ATTRIBUTES ###
+
+   @apply
+   def type( ):
+      def fget(self):
+         return self._type
+      def fset(self, arg):
+         assert arg in ('after', 'grace', 'acciaccatura', 'appoggiatura')
+         self._type = arg
+      return property(**locals( ))
