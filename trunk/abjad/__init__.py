@@ -23,5 +23,6 @@ def _remove_modules():
       if isinstance(value, ModuleType) and not key.startswith('_'):
          globals().pop(key)
 
-_load_classes(('svn', 'tools', 'wf', 'test', 'checks'))
+#_load_classes(('svn', 'tools', 'wf', 'test', 'checks'))
+_load_classes(('documentation', 'svn', 'tools', 'test', 'checks'))
 _remove_modules()
