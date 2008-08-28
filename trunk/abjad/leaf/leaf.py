@@ -164,7 +164,7 @@ class _Leaf(_Component):
       def fset(self, arg):
          if arg is None:
             self._articulations[ : ] = [ ]
-         elif isinstance(arg, (list, tuple)):
+         elif isinstance(arg, list):
             self._articulations[ : ] = arg
          else:
             raise ValueError('must be None or list of articulations.')

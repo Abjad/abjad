@@ -6,6 +6,7 @@ from abjad.helpers.contiguity import _are_atomic_music_elements
 from abjad.helpers.contiguity import _are_contiguous_music_elements
 from abjad.helpers.hasname import hasname
 from abjad.helpers.instances import instances
+from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.containers.spannerinterface import _ContainerSpannerInterface
 
 class Container(_Component):
@@ -36,7 +37,47 @@ class Container(_Component):
       for x in self._music:
          x._parent = self
 
+   ###########################################
+   ###### STILL TESTING ######################
+   def coalesce(self): # coalesce
+      '''Fuse all sub-containers in self that follow a thread.'''
+      class Visitor(object):
+         def __init__(self):
+            self.merged = False
+         def visit(self, node):
+            if hasname(node, 'Container'):
+               success = node._fuseRight()
+               if success:
+                  self.merged = True
+      v = Visitor( )
+      self._navigator._traverse(v)
+      _remove_empty_containers(self)
+      return v.merged
+                  
+   def _fuseRight(self):
+      '''Fuse self with next container if next is threadable with self.'''
+      next = self._navigator._nextThread
+      if next:
+         self.extend(next.copy( ))
+         next._die( )
+         return 1
+      else:
+         #print 'Nothing to fuse...'
+         return 0
+      
    ### SPECIAL OVERRIDES ###
+
+   def __add__(self, expr):
+      ### TODO: put this import at the top of the file.
+      from abjad.containers.sequential import Sequential
+      s = Sequential([self.copy( ), expr.copy( )])
+      success = s.coalesce()
+      if success:
+         return s.pop(0)
+      else:
+         raise TypeError('%s and %s cannot be fused.' % (self, expr))
+   ###########################################
+   ###########################################
 
    def __imul__(self, n):
       assert isinstance(n, int)

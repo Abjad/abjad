@@ -18,7 +18,9 @@ class _Articulation(object):
         'pralldown',          'prallup',           'lineprall',
         'signumcongruentiae', 'shortfermata',      'fermata',
         'longfermata',        'verylongfermata',   'segno',
-        'coda',               'varcoda',)
+        'coda',               'varcoda', 
+        '^', '+', '-', '|', '>', '.', '_',
+        )
 
    _shortcutToWord = {
          '^':'marcato', '+':'stopped', '-':'tenuto', '|':'staccatissimo', 
