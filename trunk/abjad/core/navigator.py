@@ -194,6 +194,36 @@ class _Navigator(object):
       candidates = prev._navigator._lastLeaves
       return self._findFellowBead(candidates)
 
+   @property
+   def _nextThread(self):
+      '''Returns the next threadable Container.'''
+      if not self._client.kind('Container'):
+         return None
+      next = self._next
+      if next is None:
+         return None
+      if next.parallel:
+         for component in next:
+            if self._isThreadable(component):
+               return component
+      else:
+         if self._isThreadable(next):
+            return next          
+         
+
+   def _isThreadable(self, expr):
+      '''Check if expr is threadable with respect to self.'''
+      result = False
+      if not self._client.parallel and not expr.parallel:
+         if self._client.kind('Container') and expr.kind('Container'):
+            if self._client.kind('Context') and expr.kind('Context'):
+               if self._client.invocation == expr.invocation:
+                  result =  True
+            elif type(self._client) == type(expr):
+               result =  True
+      return result
+
+
    def _findFellowBead(self, candidates):
       '''Helper method from prevBead and nextBead. 
       Given a list of bead candiates of self, find and return the first one
