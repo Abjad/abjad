@@ -6,5 +6,5 @@ def _remove_empty_containers(expr):
          if node.kind('Container') and len(node) == 0:
             node._die( )
    v = Visitor( )
-   expr._navigator._traverse(v)
+   expr._navigator._traverse(v, depthFirst = False)
 
