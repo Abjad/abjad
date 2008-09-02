@@ -37,47 +37,25 @@ class Container(_Component):
       for x in self._music:
          x._parent = self
 
-   ###########################################
-   ###### STILL TESTING ######################
-   def coalesce(self): # coalesce
-      '''Fuse all sub-containers in self that follow a thread.'''
-      class Visitor(object):
-         def __init__(self):
-            self.merged = False
-         def visit(self, node):
-            if hasname(node, 'Container'):
-               success = node._fuseRight()
-               if success:
-                  self.merged = True
-      v = Visitor( )
-      self._navigator._traverse(v)
-      _remove_empty_containers(self)
-      return v.merged
-                  
-   def _fuseRight(self):
-      '''Fuse self with next container if next is threadable with self.'''
-      next = self._navigator._nextThread
-      if next:
-         self.extend(next.copy( ))
-         next._die( )
-         return 1
-      else:
-         #print 'Nothing to fuse...'
-         return 0
-      
+
    ### SPECIAL OVERRIDES ###
 
    def __add__(self, expr):
-      ### TODO: put this import at the top of the file.
-      from abjad.containers.sequential import Sequential
-      s = Sequential([self.copy( ), expr.copy( )])
+      '''Concatenate containers self and expr.
+      The operation c = a + b returns a new Container c with
+      the content of both a and b.
+      The operation is non-commutative: the content of the first
+      operand will be placed before the content of the second operand.'''
+      #from abjad.containers.sequential import Sequential
+      s = Container([self.copy( ), expr.copy( )])
       success = s.coalesce()
       if success:
          return s.pop(0)
       else:
          raise TypeError('%s and %s cannot be fused.' % (self, expr))
-   ###########################################
-   ###########################################
+
+   def __radd__(self, expr):
+      return self + expr
 
    def __imul__(self, n):
       assert isinstance(n, int)
@@ -342,3 +320,32 @@ class Container(_Component):
    @property
    def leaves(self):
       return instances(self, '_Leaf')
+
+   def coalesce(self): 
+      '''Fuse all sub-containers in self that follow a thread.'''
+      class Visitor(object):
+         def __init__(self):
+            self.merged = False
+         def visit(self, node):
+            if hasname(node, 'Container'):
+               success = node._fuseRight()
+               if success:
+                  self.merged = True
+      v = Visitor( )
+      self._navigator._traverse(v, depthFirst=False, leftRight=False)
+      _remove_empty_containers(self)
+      return v.merged
+                  
+   ### TODO is this the best place for this helper method? 
+   ### should it be in helpers directory? or in navigator?
+   def _fuseRight(self):
+      '''Fuse self with next container if next is threadable with self.'''
+      next = self._navigator._nextThread
+      if next:
+         self.extend(next.copy( ))
+         next._die( )
+         return 1
+      else:
+         #print 'Nothing to fuse...'
+         return 0
+      
