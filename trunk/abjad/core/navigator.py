@@ -38,6 +38,7 @@
 ### This is now implemented!!! works great! 
 ### Not public yet thought. To navigate, use: Leaf._navigator._nextBead. 
 
+from collections import deque
 
 class _Navigator(object):
 
@@ -200,7 +201,7 @@ class _Navigator(object):
       if not self._client.kind('Container'):
          return None
       next = self._next
-      if next is None:
+      if next is None or next.kind('_Leaf'):
          return None
       if next.parallel:
          for component in next:
@@ -295,10 +296,36 @@ class _Navigator(object):
       else:
          return None, None
 
-   def _traverse(self, v):
+#   def _traverse(self, v):
+#      v.visit(self._client)
+#      if hasattr(self._client, '_music'):
+#         for m in self._client._music:
+#            m._navigator._traverse(v)
+#      if hasattr(v, 'unvisit'):
+#         v.unvisit(self._client)
+
+   def _traverse(self, v, depthFirst=True, leftRight=True):
+      if depthFirst:
+         self._traverseDepthFirst(v)
+      else:
+         self._traverseBreadthFirst(v, leftRight)
+
+   def _traverseDepthFirst(self, v):
       v.visit(self._client)
       if hasattr(self._client, '_music'):
          for m in self._client._music:
             m._navigator._traverse(v)
       if hasattr(v, 'unvisit'):
          v.unvisit(self._client)
+
+   def _traverseBreadthFirst(self, v, leftRight = True):
+      queue = deque([self._client])
+      while queue:
+         node = queue.popleft( )
+         v.visit(node)
+         if hasattr(node, '_music'):
+            if leftRight:
+               queue.extend(node._music)
+            else:
+               queue.extend(reversed(node._music))
+               
