@@ -1,0 +1,38 @@
+<h1>The Abjad <code>_Accidental</code> class</h1>
+
+<p>
+The Abjad <code>_Accidental</code> defines the following public interface.
+</p>
+
+<dl>
+<dt> attributes
+<dd> <ul>
+   <li> <code>adjustment</code>
+   <li> <code>string</code>
+   </ul>
+<dt> mappings
+<dd> <ul>
+   <li> <code>accidentalStringToAdjustment[ ]</code>
+   <li> <code>adjustmentToAccidentalString[ ]</code>
+   </ul>
+<dt> predicates
+<dd> <ul>
+   <li> <code>hasNone( )</code>
+   </ul>
+<dt> special methods
+<dd> <ul>
+   <li> <code>__eq__( )</code>
+   </ul>
+</dl>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+LilyPond implements several different accidental handling methods.
+Abjad outputs LilyPond input with no special indications for accidental handling.
+Nontonal music may prefer to use the LilyPond <code>'forget</code> option for handling accidentals.
+</p>
+
+<p class="comment">
+Do we have an Abjad-native way of setting <code>'forget</code>?
+</p>

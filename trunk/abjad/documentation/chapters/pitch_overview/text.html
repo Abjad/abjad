@@ -1,185 +1,40 @@
-<h1>The Abjad <code>Pitch</code> class</h1>
+<h1>Pitch overview</h1>
 
 <p>
-The Abjad <code>Pitch</code> class models musical pitch.
+Abjad models pitch with a combination of custom classes and helper functions.
 </p>
 
-<h2>Pitch conventions</h2>
+<h2>Custom classes</h2>
 
 <p>
-Abjad follows these conventions regarding pitch:
+Abjad implements custom <code>Note</code>, <code>Chord</code>, <code>_NoteHead</code>, <code>Pitch</code> and <code>_Accidental</code> classes to model the way that notes and pitches work together.
 </p>
 
-<ul>
-   <li> middle C equals 0
-   <li> numbers greater than 0 map to pitches higher than middle C
-   <li> numbers less than 0 map to pitches lower than middle C
-   <li> the octave of middle C equals octave number 4
-</ul>
-
-<h2>Pitch initialization</h2>
+<h2>Helper functions</h2>
 
 <p>
-Abjad provides four different ways to initialize <code>Pitch</code> objects.
+Abjad implements a collection of helper functions to operate on pitch.
 </p>
 
-<ul>
-   <li> integer
-   <li> float
-   <li> name, octave
-   <li> pitch-class, number
-</ul>
-
-<h3>Pitch initialization by integer</h3>
+<h2>Microtonality</h2>
 
 <p>
-The usual way to instantiate <code>Pitch</code> objects is with integers.
+Abjad implements quartertones only.
 </p>
-
-<pre>
-  abjad> Pitch(-10)
-  Pitch(d, 3)
-</pre>
-
-<pre>
-  abjad> Pitch(23)
-  Pitch(b, 4)
-</pre>
-
-<h3>Pitch initialization by float</h3>
-
-<p>
-For quartertones, you can initialize <code>Pitch</code> with floats.
-</p>
-
-<pre>
-  abjad> Pitch(12.0)
-  Pitch(c, 5)
-</pre>
-
-<pre>
-  abjad> Pitch(12.5)
-  Pitch(cqs, 5)
-</pre>
-
-<h3>Pitch initialization by name, octave</h3>
-
-<p>
-Initalize <code>Pitch</code> with pitchclass and octave to specify accidentals explicitly.
-</p>
-
-<pre>
-   abjad> Pitch('cs', 4)
-   Pitch(cs, 4)
-</pre>
-
-<pre>
-   abjad> Pitch('df', 4)
-   Pitch(df, 4)
-</pre>
-
-
-<h3>Pitch initialization by number, letter</h3>
-
-<p>
-Abjad will supply the correct accidental for a pitch of a given number if you supply the pitch letter against which to notate.
-</p>
-
-<pre>
-   abjad> Pitch(13, 'c')
-   Pitch(cs, 5)
-</pre>
-
-<pre>
-   abjad> Pitch(13, 'd')
-   Pitch(df, 5)
-</pre>
-
-<h2>Pitch in the Abjad interpreter, pitch as LilyPond input</h2>
-
-<p>
-Abjad displays <code>Pitch</code> objects as (pitch-class, octave) pairs in the interpreter.
-</p>
-
-<p>
-Abjad provides no <code>format</code> string for <code>Pitch</code> objects because <code>Pitch</code> objects should always be included as part of a notehead belonging to a note or chord for formatting.
-</p>
-
-<h2>Accidental spelling</h2>
-
-<p>
-Does pitch number <tt>6</tt> instantiate as F&#9839;4 or as G&#9837;4? 
-Pitch-classes 0, 2, 4, 5, 7, 9 and 11 notate without accidentals.
-But a question remains as to what to do with the remaining pitch-classes.
-By default, Abjad maps pitch-classes to accidentals acording to the following table.
-</p>
-
-<table>
-<tr>
-   <td> <tt>1</tt>
-   <td> &rarr;
-   <td> C&#9839;
-<tr>
-   <td> <tt>3</tt>
-   <td> &rarr;
-   <td> E&#9837;
-<tr>
-   <td> <tt>6</tt>
-   <td> &rarr;
-   <td> F&#9839;
-<tr>
-   <td> <tt>8</tt>
-   <td> &rarr;
-   <td> G&#9837;
-<tr>
-   <td> <tt>10</tt>
-   <td> &rarr;
-   <td> B&#9837;
-</table>
-
-<p>
-Tonal music handles accidental spelling according to a system of keys.
-Abjad uses the accidental resolution method describe here as a type of neutral spelling for nontonal musics.
-</p>
-
 
 <h2 class="end-of-page">Comments</h2>
 
 <p class="comment">
-Do not confuse the object-oriented use of 'class' to describe the Abjad <code>Pitch</code> class with the use of 'class' in American pitch-class theory.
-The first refers to instantiable code, the second to the residue classes of a pitch space.
+The chapters here refer to both object-oriented Abjad classes and to the pitch-classes of American music theory.
+This first use of 'class' refers to instantiable code and the second to the residue classes of a pitch space.
 </p>
 
 <p class="comment">
-Abjad pitch specification with middle C equal to 0 follows the presentation of American pitch-class theory in, for example, Robert Morris's <i>Composition with Pitch-classes</i> (1978). IRCAM / MIDI pitch numbers equal Abjad pitch numbers plus 60.
+For the conventions these chapters follow, refer to the appendix on <a href="../pitch_conventions/index.html">pitch conventions</a>.
 </p>
 
-<p class="comment">
-Abjad allows integer and float pitch arguments only. Abjad does not allow pitch arguments of the form <code>Rational(3, 2)</code> or <code>(3, 2)</code>. Use <code>1.5</code> instead.
-</p>
+<h2 class="end-of-page">To do</h2>
 
-<p class="comment">
-Abjad currently generates a <code>KeyError</code> for pitch arguments of the form <code>Rational(0, 2)</code> and <code>0.2</code> but should generate a custom exception instead.
-
-<p class="comment">
-Abjad assigns sharps to pitch-classes 1 and 6 and flats to pitch-classes 3, 8 and 10. There is currently no way to change this behavior at note-instantiation time. But it is easy to change the accidental of any notehead after instantiation. To-do: design and implement some way to allow different acciental-assignment behaviors at note-instantiation time. The first strategy that comes to mind is the creation of a new Abjad cfg variable that can change during runtime &mdash; all sharps before instantiating an upward chromatic run, all flats before a downward chromatic run, etc.
-</p>
-
-<p class="comment">
-Abjad implements quartertones but none of the other types of microtone. LilyPond now makes arrowed accidentals available and support for those is on the Abjad to-do list.
-</p>
-
-<p class="comment">
-LilyPond implements several different accidental handling methods.
-Abjad outputs LilyPond input with no special indications for accidental handling.
-Nontonal music may prefer to use the LilyPond <code>'forget</code> option for handling accidentals.
-</p>
-
-<p class="comment">
-Do we have an Abjad-native way of setting <code>'forget</code>?
-</p>
-
-<p class="comment">
-Abjad currently allows the initialization of empty pitch with <code>Pitch( )</code>.
-Future versions of Abjad may deprecate this behavior.
+<p class="to-do">
+Implement support for LilyPond arrowed accidentals.
 </p>

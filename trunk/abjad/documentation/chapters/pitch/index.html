@@ -21,48 +21,60 @@ if we want to have the TOC on every page, we can put it here...
 <h1>The Abjad <code>Pitch</code> class</h1>
 
 <p>
-The Abjad <code>Pitch</code> class models musical pitch.
+The Abjad <code>Pitch</code> defines the following public interface.
 </p>
 
-<p>
-See the chapters on <a href="../pitch_conventions/index.html">pitch conventions</a> and <a href="../chapters/pitch_initialization/index.html">pitch initialization</a>.
-</p>
+<dl>
+<dt> attributes
+<dd> <ul>
+   <li> <code>diatonicScaleDegree</code>
+   <li> <code>letter</code>
+   <li> <code>lily</code>
+   <li> <code>name</code>
+   <li> <code>number</code>
+   <li> <code>octave</code>
+   <li> <code>pair</code>
+   <li> <code>pc</code>
+   <li> <code>ticks</code>
+   </ul>
+<dt> predicates
+<dd> <ul>
+   <li> <code>isSet( )</code>
+   </ul>
+<dt> methods
+<dd> <ul>
+   <li> <code>diatonicTranspose( )</code>
+   <li> <code>enharmonicCompare( )</code>
+   <li> <code>staffSpaceTranspose( )</code>
+   </ul>
+<dt> components
+<dd> <ul>
+   <li> <code>accidental</code>
+   <li> <code>tools</code>
+</dl>
 
 <h2 class="end-of-page">Comments</h2>
 
 <p class="comment">
-Do not confuse the object-oriented use of 'class' to describe the Abjad <code>Pitch</code> class with the use of 'class' in American pitch-class theory.
-The first refers to instantiable code, the second to the residue classes of a pitch space.
+See the <code>Pitch</code> class in <code>pitch/pitch.py</code> for the implementation.
 </p>
 
-<p class="comment">
-Abjad allows integer and float pitch arguments only. Abjad does not allow pitch arguments of the form <code>Rational(3, 2)</code> or <code>(3, 2)</code>. Use <code>1.5</code> instead.
+<h2 class="end-of-page">To do</h2>
+
+<p class="to-do">
+Rename <code>diatonicScaleDegree</code> to <code>degree</code>.
 </p>
 
-<p class="comment">
-Abjad currently generates a <code>KeyError</code> for pitch arguments of the form <code>Rational(0, 2)</code> and <code>0.2</code> but should generate a custom exception instead.
-
-<p class="comment">
-Abjad assigns sharps to pitch-classes 1 and 6 and flats to pitch-classes 3, 8 and 10. There is currently no way to change this behavior at note-instantiation time. But it is easy to change the accidental of any notehead after instantiation. To-do: design and implement some way to allow different acciental-assignment behaviors at note-instantiation time. The first strategy that comes to mind is the creation of a new Abjad cfg variable that can change during runtime &mdash; all sharps before instantiating an upward chromatic run, all flats before a downward chromatic run, etc.
+<p class="to-do">
+Reimplement <code>tools</code> as helpers.
 </p>
 
-<p class="comment">
-Abjad implements quartertones but none of the other types of microtone. LilyPond now makes arrowed accidentals available and support for those is on the Abjad to-do list.
+<p class="to-do">
+Reimplement the bound methods here as helpers.
 </p>
 
-<p class="comment">
-LilyPond implements several different accidental handling methods.
-Abjad outputs LilyPond input with no special indications for accidental handling.
-Nontonal music may prefer to use the LilyPond <code>'forget</code> option for handling accidentals.
-</p>
-
-<p class="comment">
-Do we have an Abjad-native way of setting <code>'forget</code>?
-</p>
-
-<p class="comment">
-Abjad currently allows the initialization of empty pitch with <code>Pitch( )</code>.
-Future versions of Abjad may deprecate this behavior.
+<p class="to-do">
+Reimplement <code>isSet( )</code> as a one-word property.
 </p>
 
 
