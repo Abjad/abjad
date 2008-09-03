@@ -1,0 +1,39 @@
+<h1>Abjad pitch tools</h1>
+
+<p>
+The Abjad <code>_PitchTools</code> class implements the following public interface.
+</p>
+
+<dl>
+<dt> mappings
+<dd> <ul>
+   <li> <code>diatonicIntervalToAbsoluteInterval[ ]</code>
+   <li> <code>diatonicIntervalToStaffSpaces[ ]</code>
+   <li> <code>diatonicScaleDegreeToLetter[ ]</code>
+   <li> <code>pcToPitchName[ ]</code>
+   <li> <code>pcToPitchNameSharps[ ]</code>
+   </ul>
+<dt> methods
+<dd> <ul>
+   <li> <code>addStaffSpaces( )</code>
+   <li> <code>letterPitchNumberToNearestAccidentalString( )</code>
+   <li> <code>letterPitchNumberToOctave( )</code>
+   <li> <code>letterToDiatonicScaleDegree( )</code>
+   <li> <code>letterToPC( )</code>
+   <li> <code>nearestNeighbor( )</code>
+   <li> <code>pitchNumberAdjustmentToOctave( )</code>
+   <li> <code>pitchNumberToOctave( )</code>
+   </ul>
+</dl>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+See the <code>_PitchTools</code> class in <code>pitch/tool.py</code> for implementation details.
+</p>
+
+<h2 class="end-of-page">To do</h2>
+
+<p class="to-do">
+Reimplement these tools as helper functions.
+</p>
