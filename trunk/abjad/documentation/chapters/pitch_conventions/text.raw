@@ -1,0 +1,146 @@
+<h1>Pitch conventions</h1>
+
+<p>
+Abjad follows the following conventions regarding pitch.
+</p>
+
+<h2>Names</h2>
+
+<p>
+Abjad names pitches according to the LilyPond <code>english.ly</code> module.
+</p>
+
+<p>
+Abjad names accidentals according to the table below.
+</p>
+
+<table>
+<tr>
+   <td class="first-column-accidental"> quarter sharp
+   <td class="accidental-abbreviation"> <tt>'qs'</tt>
+   <td class="second-column-accidental"> quarter flat
+   <td class="accidental-abbreviation"> <tt>'qf'</tt>
+<tr>
+   <td class="first-column-accidental"> sharp
+   <td class="accidental-abbreviation"> <tt>'s'</tt>
+   <td class="second-column-accidental"> flat
+   <td class="accidental-abbreviation"> <tt>'f'</tt>
+<tr>
+   <td class="first-column-accidental"> three-quarters sharp
+   <td class="accidental-abbreviation"> <tt>'tqs'</tt>
+   <td class="second-column-accidental"> three-quarters flat
+   <td class="accidental-abbreviation"> <tt>'tqf'</tt>
+<tr>
+   <td class="first-column-accidental"> double sharp
+   <td class="accidental-abbreviation"> <tt>'ss'</tt>
+   <td class="second-column-accidental"> double flat
+   <td class="accidental-abbreviation"> <tt>'ff'</tt>
+</table>
+
+<h2>Numbers</h2>
+
+<p>
+Abjad sets middle C equal to 0.
+This follows the presentation of American pitch-class theory in, for example, Morris [1978].
+</p>
+
+<p>
+IRCAM / MIDI pitch numbers equal Abjad pitch numbers plus 60.
+</p>
+
+<h2>Octaves</h2>
+
+<p>
+Abjad represents octaves with both numbers and ticks.
+</p>
+
+<table>
+<tr>
+   <td class="us-pitch-name"> C7
+   <td class="euro-pitch-name"> <tt>c''''</tt>
+<tr>
+   <td class="us-pitch-name"> C6
+   <td class="euro-pitch-name"> <tt>c'''</tt>
+<tr>
+   <td class="us-pitch-name"> C5
+   <td class="euro-pitch-name"> <tt>c''</tt>
+<tr>
+   <td class="us-pitch-name"> C4
+   <td class="euro-pitch-name"> <tt>c'</tt>
+<tr>
+   <td class="us-pitch-name"> C3
+   <td class="euro-pitch-name"> <tt>c</tt>
+<tr>
+   <td class="us-pitch-name"> C2
+   <td class="euro-pitch-name"> <tt>c,</tt>
+<tr>
+   <td class="us-pitch-name"> C1
+   <td class="euro-pitch-name"> <tt>c,,</tt>
+</table>
+
+<p>
+Abjad sets the octave of middle C equal to 4.
+This follows American usage.
+</p>
+
+<p>
+Abjad uses ticks in LilyPond output only.
+</p>
+
+<h2>Accidentals</h2>
+
+<p>
+Abjad chooses between enharmonic spellings at pitch-initialization time according to the following table.
+</p>
+
+<table>
+<tr>
+   <td> <tt>0</tt>
+   <td> &rarr;
+   <td> C
+<tr>
+   <td> <tt>1</tt>
+   <td> &rarr;
+   <td> C&#9839;
+<tr>
+   <td> <tt>2</tt>
+   <td> &rarr;
+   <td> D
+<tr>
+   <td> <tt>3</tt>
+   <td> &rarr;
+   <td> E&#9837;
+<tr>
+   <td> <tt>4</tt>
+   <td> &rarr;
+   <td> E
+<tr>
+   <td> <tt>5</tt>
+   <td> &rarr;
+   <td> F
+<tr>
+   <td> <tt>6</tt>
+   <td> &rarr;
+   <td> F&#9839;
+<tr>
+   <td> <tt>7</tt>
+   <td> &rarr;
+   <td> G
+<tr>
+   <td> <tt>8</tt>
+   <td> &rarr;
+   <td> G&#9837;
+<tr>
+   <td> <tt>9</tt>
+   <td> &rarr;
+   <td> A
+<tr>
+   <td> <tt>10</tt>
+   <td> &rarr;
+   <td> B&#9837;
+<tr>
+   <td> <tt>11</tt>
+   <td> &rarr;
+   <td> B
+</table>
+

@@ -5,7 +5,8 @@ from mako.lookup import TemplateLookup
 import getopt, sys
 
 
-templates_dir = '/home/abjad/abjad/trunk/abjad/documentation/templates'
+#templates_dir = '/home/abjad/abjad/trunk/abjad/documentation/templates'
+templates_dir = '/Users/trevorbaca/Documents/abjad/trunk/abjad/documentation/templates'
 
 
 def get_file_directory(filename):

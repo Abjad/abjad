@@ -26,6 +26,28 @@ TD {
    text-align: center;
 }
 
+TD.euro-pitch-name {
+   text-align: left;
+}
+
+TD.first-column-accidental {
+   text-align: right;
+}
+
+TD.accidental-abbreviation {
+   text-align: left;
+   padding-left: 20px;
+}
+
+TD.second-column-accidental {
+   width: 140px;
+   text-align: right;
+}
+
+TD.us-pitch-name {
+   width: 80px;
+}
+
 TD.duration-interface-attribute {
    text-align: right;
 }

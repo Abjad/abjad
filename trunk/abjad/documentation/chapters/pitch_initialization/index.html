@@ -19,71 +19,108 @@ if we want to have the TOC on every page, we can put it here...
 <div id="content">
 
 <h1>Pitch initialization</h1>
-<hr>
-<p class="spacer" />
 
 <p>
-The Abjad <code>Note</code> and <code>Chord</code> classes initialize pitch from numeric arguments. Abjad sets middle C equal to 0.
+Abjad provides four different ways to initialize <code>Pitch</code> objects.
 </p>
-<pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> show(note)
-</pre>
-<image src="images/1.png">
+
+<!--
+<ul>
+   <li> by integer
+   <li> by float
+   <li> by name, octave
+   <li> by pitch-class, number
+</ul>
+-->
+
+<h2>By integer</h2>
 
 <p>
-Positive numbers indicate pitches higher than middle C.
+The usual way to instantiate <code>Pitch</code> objects is with integers.
 </p>
+
 <pre>
-  abjad> note = Note(1, (1, 4))
-  abjad> show(note)
+  abjad> Pitch(-10)
+  Pitch(d, 3)
 </pre>
-<image src="images/2.png">
+
+<pre>
+  abjad> Pitch(23)
+  Pitch(b, 4)
+</pre>
+
+<h2>By float</h2>
 
 <p>
-Negative numbers indicate pitches lower than middle C.
+For quartertones, you can initialize <code>Pitch</code> with floats.
 </p>
+
 <pre>
-  abjad> note = Note(-3, (1, 4))
-  abjad> show(note)
+  abjad> Pitch(12.0)
+  Pitch(c, 5)
 </pre>
-<image src="images/3.png">
+
+<pre>
+  abjad> Pitch(12.5)
+  Pitch(cqs, 5)
+</pre>
+
+<h2>By name, octave</h2>
 
 <p>
-Quartertones are also possible.
+Initalize <code>Pitch</code> with pitchclass and octave to specify accidentals explicitly.
 </p>
+
 <pre>
-  abjad> note = Note(5.5, (1, 4))
-  abjad> show(note)
+   abjad> Pitch('cs', 4)
+   Pitch(cs, 4)
 </pre>
-<image src="images/4.png">
 
-<h2>Commentary</h2>
-<hr>
+<pre>
+   abjad> Pitch('df', 4)
+   Pitch(df, 4)
+</pre>
 
-<p class="commentary">
-1. Abjad pitch specification with middle C equal to 0 follows the presentation of American pitch-class theory in, for example, Robert Morris's <i>Composition with Pitch-classes</i> (1978). IRCAM / MIDI pitch numbers equal Abjad pitch numbers plus 60.
+
+<h2>By number, letter</h2>
+
+<p>
+Abjad will supply the correct accidental for a pitch of a given number if you supply the pitch letter against which to notate.
 </p>
 
-<p class="commentary">
-2. Abjad allows integer and float pitch arguments only. Abjad does not allow pitch arguments of the form <code>Rational(3, 2)</code> or <code>(3, 2)</code>. Use <code>1.5</code> instead.
+<pre>
+   abjad> Pitch(13, 'c')
+   Pitch(cs, 5)
+</pre>
+
+<pre>
+   abjad> Pitch(13, 'd')
+   Pitch(df, 5)
+</pre>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+Abjad implements the initialization schemes documented here as a collection of <strong>initializers</strong>.
 </p>
 
-<p class="commentary">
-3. Abjad currently generates a <code>KeyError</code> for pitch arguments of the form <code>Rational(0, 2)</code> and <code>0.2</code> but should generate a custom exception instead.
-
-<p class="commentary">
-4. Abjad assigns sharps to pitch-classes 1 and 6 and flats to pitch-classes 3, 8 and 10. There is currently no way to change this behavior at note-instantiation time. But it is easy to change the accidental of any notehead after instantiation. To-do: design and implement some way to allow different acciental-assignment behaviors at note-instantiation time. The first strategy that comes to mind is the creation of a new Abjad cfg variable that can change during runtime &mdash; all sharps before instantiating an upward chromatic run, all flats before a downward chromatic run, etc.
+<p>
+Initializers are private classes that initialize Abjad classes and do nothing else.
 </p>
 
-<p class="commentary">
-5. Abjad implements quartertones but none of the other types of microtone. LilyPond now makes arrowed accidentals available and support for those is on the Abjad to-do list.
+<p>
+Abjad pitch initializers live in <code>pitch/initializers.py</code>. Add new pitch initializers there.
+</p>
+
+<p class="comment">
+Abjad allows empty pitch initialization with <code>Pitch( )</code>.
+Future implementations of Abjad may deprecate this behavior.
 </p>
 
 
-<p class="spacer" />
-<hr>
+<p class="footer">
 <a href="../../index.html">Contents</a>
+</p>
 </div>
 
 </body>

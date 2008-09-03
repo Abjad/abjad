@@ -4,105 +4,15 @@
 The Abjad <code>Pitch</code> class models musical pitch.
 </p>
 
-<p class="spacer"/>
-
 <p>
-The Abjad <code>Pitch</code> class is a public class that can instantiate at any time.
-The usual way to instantiate <code>Pitch</code> objects is numerically with middle C equal to 0. 
-Numbers greater than 0 give pitches higher than middle C; numbers less than 0 give pitches lower than middle C.
+See the chapters on <a href="../pitch_conventions/index.html">pitch conventions</a> and <a href="../chapters/pitch_initialization/index.html">pitch initialization</a>.
 </p>
 
-<pre>
-  abjad> Pitch(-1)
-  Pitch(b, 3)
-</pre>
-
-<pre>
-  abjad> Pitch(0)
-  Pitch(c, 4)
-</pre>
-
-<pre>
-  abjad> Pitch(1)
-  Pitch(cs, 4)
-</pre>
-
-<p>
-Abjad represents as pitch-class / octave pairs to the interpreter.
-</p>
-
-<p>
-Floating-point values initialize correctly.
-And quartertones are possible with floats ending in <tt>.5</tt>.
-</p>
-
-<pre>
-  abjad> Pitch(0.0)
-  Pitch(c, 4)
-</pre>
-
-<pre>
-  abjad> Pitch(0.5)
-  Pitch(cqs, 4)
-</pre>
-
-<pre>
-  abjad> Pitch(1.0)
-  Pitch(cs, 4)
-</pre>
-
-<pre>
-  abjad> Pitch(1.5)
-  abjad> Pitch(dqf, 4)
-</pre>
-
-<h2>Accidental spelling</h2>
-
-<p>
-Does pitch number <tt>6</tt> instantiate as F&#9839;4 or as G&#9837;4? 
-Pitch-classes 0, 2, 4, 5, 7, 9 and 11 notate without accidentals.
-But a question remains as to what to do with the remaining pitch-classes.
-By default, Abjad maps pitch-classes to accidentals acording to the following table.
-</p>
-
-<table>
-<tr>
-   <td> <tt>1</tt>
-   <td> &rarr;
-   <td> C&#9839;
-<tr>
-   <td> <tt>3</tt>
-   <td> &rarr;
-   <td> E&#9837;
-<tr>
-   <td> <tt>6</tt>
-   <td> &rarr;
-   <td> F&#9839;
-<tr>
-   <td> <tt>8</tt>
-   <td> &rarr;
-   <td> G&#9837;
-<tr>
-   <td> <tt>10</tt>
-   <td> &rarr;
-   <td> B&#9837;
-</table>
-
-<p>
-Tonal music handles accidental spelling according to a system of keys.
-Abjad uses the accidental resolution method describe here as a type of neutral spelling for nontonal musics.
-</p>
-
-
-<h2 section="end-of-page">Comments</h2>
+<h2 class="end-of-page">Comments</h2>
 
 <p class="comment">
 Do not confuse the object-oriented use of 'class' to describe the Abjad <code>Pitch</code> class with the use of 'class' in American pitch-class theory.
 The first refers to instantiable code, the second to the residue classes of a pitch space.
-</p>
-
-<p class="comment">
-Abjad pitch specification with middle C equal to 0 follows the presentation of American pitch-class theory in, for example, Robert Morris's <i>Composition with Pitch-classes</i> (1978). IRCAM / MIDI pitch numbers equal Abjad pitch numbers plus 60.
 </p>
 
 <p class="comment">
@@ -128,4 +38,9 @@ Nontonal music may prefer to use the LilyPond <code>'forget</code> option for ha
 
 <p class="comment">
 Do we have an Abjad-native way of setting <code>'forget</code>?
+</p>
+
+<p class="comment">
+Abjad currently allows the initialization of empty pitch with <code>Pitch( )</code>.
+Future versions of Abjad may deprecate this behavior.
 </p>
