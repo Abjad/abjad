@@ -1,0 +1,40 @@
+<h1>The core duration interface</h1>
+
+<p>
+The core duration interface implements three public attributes.
+All three are read-only.
+</p>
+
+<ul>
+   <li> <code>prolation</code>
+   <li> <code>prolations</code>
+   <li> <code>prolated</code>
+</ul>
+
+<p>
+See the chapters on <a href="../prolation/index.html">prolation</a> and <a href="../prolated_duration/index.html">prolated duration</a>.
+</p>
+
+<p>
+The core duration interface implements no public methods.
+</p>
+
+<p>
+The core duration interface inherits from the Abjad <code>Rational</code> class.
+This means that all Abjad duration interfaces afford the standard arithmetic operations, like addition, multiplication, exponentiation and comparison.
+</p>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+The core duration interface currently inherits from both <code>_Interface</code> and <code>Rational</code>.
+Smarter will be to strip the multiple inheritence and leave the core duration interface to inherit from <code>_Interface</code> only.
+This will greatly reduce the number of arithmetic operations which the different duration interfaces can undergo; and this is a good thing.
+We want duration interfaces to afford comparison but not arithmetic.
+This means that we will have to implement comparison on the core duration interface by hand after we remove <code>Rational</code> from the inheritance chain.
+</p>
+
+<p class="comment">
+The classname of the core duration interface is <code>_DurationInterface</code>.The class implements in the <code>core/duration</code> module.
+</p>
+

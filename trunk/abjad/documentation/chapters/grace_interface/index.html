@@ -1,0 +1,131 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title>Project Abjad - Chapter Name from h1 Goes Here</title>
+<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+</head>
+
+<body>
+
+<!--
+OK; prefer to leave TOC off of every page for now; 
+keep look simple ... maybe add back in later? TB.
+maybe a
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+-->
+
+<div id="content">
+
+<h1>grace interface (or working with grace notes)</h1>
+
+<p class="spacer" />
+
+<p>
+All types of Leaves (<code>Note</code>, <code>Rest</code>, <code>Skip</code>, <code>Chord</code>) have a <code>Grace</code> container, so all Leaves can have grace notes (or rather, grace Leaves) attached to them. 
+Inversely, all types of Leaves can be grace Leaves.
+</p>
+<p>
+Grace Leaves can occupy one of two position relative to their carrier Leaf (i.e. relative to the Leaf they are assigned to): <b>before</b> and <b>after</b>.
+</p>
+<p>
+Grace notes are managed through the <code>grace</code> interface. All Leaves posess this interface.
+</p>
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.grace
+</pre>
+
+<p>
+The grace interface has two attributes: before, after.
+Leaves assigned to the before attribute of the grace interface are placed before the carrier Leaf.
+</p>
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.grace.before = Note(4, (1, 32))
+abjad> show(note)
+</pre>
+<image src="images/1.png">
+<p>
+Analogously, Leaves assigned to the after attribute of the grace interface are placed after the carrier Leaf.
+</p>
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.grace.after = Note(4, (1, 32))
+abjad> v = Voice([note])
+abjad> show(v)
+</pre>
+<image src="images/2.png">
+<p>
+Grace notes placed before the carrier note can have one of three styles or types:
+<ul>
+   <li>grace
+   <li>acciaccatura
+   <li>appoggiatura
+</ul>
+Set the type by assigning the corresponding string to the before attribute of the grace interface.
+</p>
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.grace.before = Note(4, (1, 32))
+abjad> note.grace.before = 'acciaccatura'
+abjad> show(note)
+</pre>
+<image src="images/3.png">
+<p>
+Grace notes placed after the carrier have a default 'after' type and cannot be changed. 
+</p>
+<p>
+<code>_Leaf.grace.before</code> and  <code>_Leaf.grace.after</code> accept a list of Leaves.  
+</p>
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.grace.before = [Note(4, (1, 32)), Note(5, (1, 32)), Note(7, (1, 32))]
+abjad> show(note)
+</pre>
+<image src="images/4.png">
+<p>
+<code>_Leaf.grace.before</code> and <code>_Leaf.grace.after</code> accept a <code>Grace</code> container.  
+</p>
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.grace.before = Grace([Note(4, (1, 32)), Note(5, (1, 32))])
+abjad> show(note)
+</pre>
+<image src="images/5.png">
+
+
+
+<!--
+<table border="1">
+   <tr>
+      <td></td>
+      <td></td>
+      <th colspan="3">Type</th>
+   </tr>
+   <tr>
+      <td></td>
+      <td></td>
+      <td>grace</td>
+      <td>acciaccatura</td>
+      <td>appoggiatura</td>
+   </tr>
+   <tr>
+      <th rowspan="2">Position</th>
+      <td >before</td>
+   </tr>
+   <tr>
+      <td >after</td>
+   </tr>
+</table>
+-->
+
+
+<p class="footer">
+<a href="../../index.html">Contents</a>
+</p>
+</div>
+
+</body>
+</html>

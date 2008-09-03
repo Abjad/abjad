@@ -1,0 +1,27 @@
+<h1>The measure duration interface</h1>
+
+<dl>
+   <dt> read-only
+   <dd> <ul>
+      <li> <code>nonbinary</code>
+      <li> <code>multiplier</code>
+      <li> <code>compression</code>
+      <li> <code>prolated</code>
+      <li> <code>prolation</code>
+      <li> <code>prolations</code>
+      </ul>
+   <dt> methods
+   <dd> <ul>
+      <li> <code>copy( )</code>
+      </ul>
+</dl>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+The <code>nonbinary</code>, <code>multiplier</code> and <code>prolated</code> attributes handle measures governed by nonbinary meter.
+</p>
+
+<p class="comment">
+Look up <code>_MeasureDurationInterface</code> in <code>measure/duration.py</code> for implementation details.
+</p>

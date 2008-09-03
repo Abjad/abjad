@@ -1,0 +1,57 @@
+<h1>Pitch initialization</h1>
+<hr>
+<p class="spacer" />
+
+<p>
+The Abjad <code>Note</code> and <code>Chord</code> classes initialize pitch from numeric arguments. Abjad sets middle C equal to 0.
+</p>
+<pre>
+  abjad> note = Note(0, (1, 4))
+  abjad> show(note)
+</pre>
+
+<p>
+Positive numbers indicate pitches higher than middle C.
+</p>
+<pre>
+  abjad> note = Note(1, (1, 4))
+  abjad> show(note)
+</pre>
+
+<p>
+Negative numbers indicate pitches lower than middle C.
+</p>
+<pre>
+  abjad> note = Note(-3, (1, 4))
+  abjad> show(note)
+</pre>
+
+<p>
+Quartertones are also possible.
+</p>
+<pre>
+  abjad> note = Note(5.5, (1, 4))
+  abjad> show(note)
+</pre>
+
+<h2>Commentary</h2>
+<hr>
+
+<p class="commentary">
+1. Abjad pitch specification with middle C equal to 0 follows the presentation of American pitch-class theory in, for example, Robert Morris's <i>Composition with Pitch-classes</i> (1978). IRCAM / MIDI pitch numbers equal Abjad pitch numbers plus 60.
+</p>
+
+<p class="commentary">
+2. Abjad allows integer and float pitch arguments only. Abjad does not allow pitch arguments of the form <code>Rational(3, 2)</code> or <code>(3, 2)</code>. Use <code>1.5</code> instead.
+</p>
+
+<p class="commentary">
+3. Abjad currently generates a <code>KeyError</code> for pitch arguments of the form <code>Rational(0, 2)</code> and <code>0.2</code> but should generate a custom exception instead.
+
+<p class="commentary">
+4. Abjad assigns sharps to pitch-classes 1 and 6 and flats to pitch-classes 3, 8 and 10. There is currently no way to change this behavior at note-instantiation time. But it is easy to change the accidental of any notehead after instantiation. To-do: design and implement some way to allow different acciental-assignment behaviors at note-instantiation time. The first strategy that comes to mind is the creation of a new Abjad cfg variable that can change during runtime &mdash; all sharps before instantiating an upward chromatic run, all flats before a downward chromatic run, etc.
+</p>
+
+<p class="commentary">
+5. Abjad implements quartertones but none of the other types of microtone. LilyPond now makes arrowed accidentals available and support for those is on the Abjad to-do list.
+</p>

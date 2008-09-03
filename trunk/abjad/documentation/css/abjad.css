@@ -1,0 +1,148 @@
+#toc {
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 150px;
+   padding: 4px;
+}
+
+/* Where did these values come from? TB */
+#content{
+   min-height: 350px;
+   margin-top: 12px;
+   margin-right: 112px;
+   margin-left: 201px;
+   margin-left: 20px;
+   padding: 10px 20px 20px 20px;
+ 
+}
+
+TABLE {
+	font-size: 12px;
+   margin-left: 40px;
+}
+
+TD {
+   text-align: center;
+}
+
+TD.duration-interface-attribute {
+   text-align: right;
+}
+
+TR#abjad-classes TD {
+   padding-bottom: 10px;
+}
+
+TD.abjad-class {
+   width: 80px;
+}
+
+TD.key-rhs {
+   text-align: left;
+}
+
+TABLE.key {
+   font-size: 10px;
+}
+
+CAPTION {
+   caption-side: bottom;
+   font-size: 10px;
+   font-style: oblique;
+}
+
+BODY {
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	font-family: "Lucida Sans Unicode", "Lucida Sans", Arial,  sans-serif;
+	font-size: 12px;
+	color: #222222;
+	background-color: #fff;
+	height: 100%;
+	text-align: justify;
+   /*width: 90%;*/
+}
+
+H1, H2, H3, H4, H5, H6 {
+	font-variant: small-caps;
+	font-weight: lighter;
+	color: #444;
+}
+
+H1, .end-of-page {
+   border-bottom: 2px solid grey;
+   padding-bottom: 10px;
+}
+
+H2 {
+   margin-top: 60px;
+}
+
+A {
+	color: #2222aa;
+	text-decoration: none;
+}
+
+A:hover {
+	text-decoration: underline;
+}
+
+CODE, TD.duration-interface-attribute {
+	color: #a22222;
+	font-family: "Courier New", "Courier", serif;
+}
+
+IMG {
+	margin-left: 25px;
+   margin-bottom: 40px;
+}
+
+.inline {
+   margin-bottom: 10px;
+}
+
+PRE {
+	color: #a02222;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px dotted #aaaaaa;
+   text-align: left;
+}
+
+.comment, .to-do {
+   margin-bottom: 20px;
+}
+
+.spacer, .footer {
+   margin-top: 60px;
+}
+
+.half-spacer {
+   margin-top: 40px;
+}
+
+.third-spacer {
+   margin-top: 20px;
+}
+
+.toc {
+   padding-left: 10px;
+}
+
+.toc-section {
+   margin-top 30px;
+}
+
+.footer {
+   border-top: 2px solid gray;
+   padding-top: 10px;
+}
+
+.end-of-page {
+   margin-top: 60px;
+}

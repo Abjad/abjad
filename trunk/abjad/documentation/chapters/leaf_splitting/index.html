@@ -1,0 +1,132 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title>Project Abjad - Chapter Name from h1 Goes Here</title>
+<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+</head>
+
+<body>
+
+<!--
+OK; prefer to leave TOC off of every page for now; 
+keep look simple ... maybe add back in later? TB.
+maybe a
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+-->
+
+<div id="content">
+
+<h1>Leaf Splitting</h1>
+<hr>
+<p class="spacer" />
+An Abjad <code>Leaf</code> with duration <em>d</em> can be split in two Leaves with durations <em>e</em> and <em>f</em> such that <em>e</em> + <em>f</em> = <em>d</em>.
+</p>
+<p>
+There are two helper functions for doing this: 
+<code>leaf_split( )</code> 
+and
+<code>leaf_split_binary( )</code>.
+</p>
+<p>
+Both functions take two parameters: the duration <code>(n, d)</code> at which the <code>Leaf</code> will be broken, and the <code>Leaf</code> to break.
+</p>
+<p>
+<code>leaf_split( )</code> will accept any duration smaller than the duration of the <code>Leaf</code> to split. 
+<br>
+<code>leaf_split_binary( )</code> will only take durations with a power of 2 as denominator.
+</p>
+
+
+<p>
+Both functions behave the same way when resulting durations <em>e</em> and <em>f</em> are <b>notehead-assignable</b> 
+(i.e. <em>e</em> &#8712;
+(<b>D<sub>1</sub></b> &#8746;
+<b>D<sub>2</sub></b>)
+), 
+</p>
+
+<table width="100%" >
+<tr>
+   <th><code>leaf_split( )</code></th>
+   <th><code>leaf_split_binary( )</code></th>
+<tr>
+   <td>
+      <pre>
+         abjad> n = Note(0, (1, 4))
+         abjad> leaf_split((1, 8), n)
+         [Note(c', 8), Note(c', 8)]
+      </pre>
+   </td>
+   <td>
+      <pre>
+         abjad> n = Note(0, (1, 4))
+         abjad> leaf_split_binary((1, 8), n)
+         [[Note(c', 8)], [Note(c', 8)]]
+      </pre>
+   </td>
+</tr>
+</table>
+
+<p>
+Notice that 
+<code>leaf_split( )</code> 
+returns a list of 2 Leaves, while
+<code>leaf_split_binary( )</code> 
+returns a list of two lists, each with a <code>Leaf</code> in this case.
+The reason for this will become clear.
+<p>
+When the duration attribute is not <b>notehead-assignable</b>,   
+<code>leaf_split( )</code> 
+will wrap the splitted Leaves in a Tuplet;
+<br>
+<code>leaf_split_binary( )</code>
+will return splitted Leaves.
+</p>
+
+<table width="100%" >
+<tr>
+   <th><code>leaf_split( )</code></th>
+   <th><code>leaf_split_binary( )</code></th>
+<tr>
+   <td>
+      <pre>
+         abjad> n = Note(0, (1, 4))
+         abjad> leaf_split((5, 32), n)
+         [FixedDurationTuplet(5/32, [c'4]), Note(c', 16.)]
+      </pre>
+   </td>
+   <td>
+      <pre>
+         abjad> n = Note(0, (1, 4))
+         abjad> leaf_split_binary((5, 32), n)
+         [[Note(c', 8), Note(c', 32)], [Note(c', 16.)]]
+      </pre>
+   </td>
+</tr>
+</table>
+
+
+<p class="spacer">
+<h2>Commentary</h2>
+<hr>
+
+<p class="commentary">
+
+<p class="spacer">
+<h2>To do</h2>
+<hr>
+Do we really need <code>leaf_split_binary( )</code> to return a list of two lists? Why not just a flat list of leaves?
+
+<p class="commentary">
+</p>
+
+
+<p class="footer">
+<a href="../../index.html">Contents</a>
+</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<h1>Assignability</h1>
+
+<p>
+Western notation admits rational values like <tt>1/4</tt> readily.
+But values like <tt>1/5</tt> notate only without recourse to tuplet brackets or special time signatures. 
+</p>
+
+<p>
+We can capture the instinct that quarter notes appear more frequently, in western notation, than fifth notes, by an appeal to <strong>assignability</strong>.
+Abjad identifies those rational values that can assign to notes, rests, chords and skips directly as <strong>assignable</strong>.
+</p>
+
+<p>
+Which rational values meet the conditions of assignability?
+</p>
+
+<p>
+Rational values <tt>n/d</tt> are assignable when, and only when, <tt>n</tt> is of the form <tt>k * (2 ** u - j)</tt> and <tt>d</tt> is of the form <tt>2 ** v</tt>, with integers <tt>u, v &ge; 0</tt>, with integer <tt>k &gt; 0</tt>, and with integer <tt>j &isin; {0, 1}</tt>.
+</p>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+Abjad relies on these conditions of assignability to determine which rational values can initialize notes, rests, chords and skips, and which can't.
+</p>
+
+<p class="comment">
+This explains why initializing <code>Note(0, (1, 4))</code> works where <code>Note(0, (1, 5))</code> doesn't.
+</p>

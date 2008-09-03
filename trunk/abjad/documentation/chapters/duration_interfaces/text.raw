@@ -1,0 +1,21 @@
+<h1>Duration interfaces</h1>
+
+<p>
+Abjad implements a collection of seven related duration interfaces.
+</p>
+
+<ul>
+   <li> <code>_DurationInterface</code>
+   <li> <code>_LeafDurationInterface</code>
+   <li> <code>_ContainerDurationInterface</code>
+   <li> <code>_MeasureDurationInterface</code>
+   <li> <code>_TupletDurationInterface</code>
+   <li> <code>_FDTupletDurationInterface</code>
+   <li> <code>_FMTupletDurationInterface</code>
+</ul>
+
+<h2 class="end-of-page">To do</h2>
+
+<p class="to-do">
+Author and include the duration interface inheritance hierarchy diagram.
+</p>

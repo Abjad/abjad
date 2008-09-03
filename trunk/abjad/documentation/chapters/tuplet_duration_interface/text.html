@@ -1,0 +1,46 @@
+<h1>The tuplet duration interface</h1>
+
+<dl>
+   <dt> read-only
+   <dd> <ul>
+      <li> <code>augmentation</code>
+      <li> <code>diminution</code>
+      <li> <code>prolated</code>
+      <li> <code>prolation</code>
+      <li> <code>prolations</code>
+      </ul>
+   <dt> methods
+   <dd> <ul>
+      <li> <code>copy( )</code>
+      </ul>
+</dl>
+
+<p>
+<code>augmentation</code>: Boolean. True when tuplet multiplier is greater than 1. False otherwise.
+</p>
+
+<p>
+<code>diminution</code>: Boolean. True when tuplet multiplier is less than 1. False otherwise.
+</p>
+
+<p>
+<code>prolated</code>: nonnegative rational. See <a href="../prolated_duration/index.html">prolated duration</a>.
+</p>
+
+<p>
+<code>prolation</code>: positive rational. See <a href="../prolation/index.html">prolation</a>.
+</p>
+
+<p>
+<code>prolations</code>: list of positive rationals. See <a href="../prolation/index.html">prolation</a>.
+</p>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+This abstract tuplet duration interface probably should have a <code>multiplier</code> attribute. Both the concrete fixed-duration tuplet interface and the concrete fixed-multiplier tuplet interface have <code>multiplier</code> attributes. This abstract tuplet duration interface lacks a <code>multiplier</code> attribute because the two conrete children duration interfaces implement that attribute differently &mdash; in one case as a user-settable property and in the other case as a read-only property. Would be nice to figure out the python that will allow this abstract tuplet duration interface to have a <code>multiplier</code> value anyway.
+</p>
+
+<p class="comment">
+See <code>_TupletDurationInterface</code> in <code>tuplet/duration.py</code> for the implementation.
+</p>

@@ -1,0 +1,113 @@
+<h1>The fixed-multiplier tuplet interface</h1>
+
+<dl>
+   <dt> user-settable
+   <dd> <ul>
+      <li> <code>multiplier</code>
+      </ul>
+   <dt> read-only
+   <dd> <ul>
+      <li> <code>_duration</code>
+      <li> <code>augmentation</code>
+      <li> <code>diminution</code>
+      <li> <code>prolated</code>
+      <li> <code>prolation</code>
+      <li> <code>prolations</code>
+      </ul>
+   <dt> methods
+   <dd> <ul>
+      <li> <code>copy( )</code>
+      </ul>
+</dl>
+
+<h2>Example</h2>
+
+<pre>
+  abjad> tuplet = FixedMultiplierTuplet((5, 6), Note(0, (1, 16)) * 6)
+  abjad> Beam(tuplet)
+  abjad> outer = FixedMultiplierTuplet((2, 3), [Note(0, (1, 16)), tuplet])
+  abjad> measure = Measure((2, 8), [outer])
+  abjad> staff = RhythmicStaff([measure])
+  abjad> show(staff)
+</pre>
+<image class="inline" src="images/1.png">
+
+<h2>Definitions</h2>
+
+<p>
+<code>multiplier</code>: positive rational. Prolation factor tuplet donates to its contents.
+</p>
+
+<pre>
+  abjad> tuplet.duration.multiplier
+  Rational(5, 6)
+</pre>
+
+<p class="half-spacer"/>
+
+<p>
+<code>augmentation</code>: Boolean. True when tuplet multiplier is greater than 1. False otherwise.
+</p>
+
+<pre>
+  abjad> tuplet.duration.augmentation
+  False
+</pre>
+
+<p class="half-spacer"/>
+
+<p>
+<code>diminution</code>: Boolean. True when tuplet multiplier is less than 1. False otherwise.
+</p>
+
+<pre>
+  abjad> tuplet.duration.diminution
+  True
+</pre>
+
+<p class="half-spacer"/>
+
+<p>
+<code>prolated</code>: nonnegative rational. See <a href="../prolated_duration/index.html">prolated duration</a>.
+</p>
+
+<pre>
+  abjad> tuplet.duration.prolated
+  Rational(5, 24)
+</pre>
+
+<p class="half-spacer"/>
+
+<p>
+<code>prolation</code>: positive rational. Prolation tuplet receives from its parents, expressed as a single factor. See <a href="../prolation/index.html">prolation</a>.
+</p>
+
+<pre>
+  abjad> tuplet.duration.prolation
+  Rational(2, 3)
+</pre>
+
+<p class="half-spacer"/>
+
+<p>
+<code>prolations</code>: list of positive rationals. Prolation chain tuplet receives from its parents, expressed as a list of factors. See <a href="../prolation/index.html">prolation</a>.
+</p>
+
+<pre>
+  abjd> tuplet.duration.prolations
+  [Rational(2, 3)]
+</pre>
+
+<p class="half-spacer"/>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comemnt">
+See <code>_FMTupletDurationInterface</code> in <code>tuplet/fm/duration.py</code> for the implementation.
+</p>
+
+<h2 class="end-of-page">To do</h2>
+
+<p class="to-do">
+Reimplement implicit <code>_duration</code> as some explicit attribute, maybe <code>multiplied</code>.
+</p>

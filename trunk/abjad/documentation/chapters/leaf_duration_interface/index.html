@@ -1,0 +1,69 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title>Project Abjad - Chapter Name from h1 Goes Here</title>
+<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+</head>
+
+<body>
+
+<!--
+OK; prefer to leave TOC off of every page for now; 
+keep look simple ... maybe add back in later? TB.
+maybe a
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+-->
+
+<div id="content">
+
+<h1>The leaf duration interface</h1>
+
+<p class="spacer"/>
+
+<dl>
+   <dt> user-settable attributes
+   <dd> <ul>
+      <li> <code>written</code>
+      <li> <code>multiplier</code>
+   </ul>
+   <dt> read-only attributes
+   <dd> <ul>
+      <li> <code>prolation</code>
+      <li> <code>prolations</code>
+      <li> <code>prolated</code>
+   </ul>
+   <dt> methods
+   <dd> <ul>
+      <li> <code>copy( )</code>
+      <li> <code>rewrite( )</code>
+   </ul
+</dl
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+Notes, rests, chords and skips all aggregate the same leaf duration interface.
+</p>
+
+<p class="comment">
+Look up <code>_LeafDurationInterface</code> in <code>leaf/duration.py</code> for implementation details.
+</p>
+
+<h2 class="end-of-page">To do</h2>
+
+<p class="to-do">
+The leaf duration interface has a bunch of spurious public attributes.
+All of the attributes here in red are suspect:
+<strong>'clear'</strong>, 'copy', <strong>'first'</strong>, <strong>'last'</strong>, 'multiplier', <strong>'only'</strong>, <strong>'pair'</strong>, 'prolated', 'prolation', 'prolations', 'rewrite', <strong>'spanned'</strong>, <strong>'spanner'</strong>, <strong>'spanners'</strong>, <strong>'unspan'</strong>, 'written'.
+</p>
+
+
+<p class="footer">
+<a href="../../index.html">Contents</a>
+</p>
+</div>
+
+</body>
+</html>

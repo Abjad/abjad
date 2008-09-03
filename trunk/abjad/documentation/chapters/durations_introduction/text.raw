@@ -1,0 +1,41 @@
+<h1>Introduction</h1>
+
+<p>
+Abjad publishes information about many <strong>durated</strong> score objects.
+</p>
+
+<p class="spacer"/>
+
+<p>
+Notes, rests, chords and skips carry some duration attributes.
+</p>
+
+<pre>
+  abjad> note = Note(0, (3, 16))
+  abjad> measure = Measure((3, 16), [note])
+  abjad> staff = RhythmicStaff([measure])
+  abjad> show(staff)
+  abjad> note.duration.written
+  Rational(3, 16)
+</pre>
+
+<p class="spacer"/>
+
+<p>
+Tuplets, measures, voices, staves and the other containers carry even more.
+</p>
+
+<pre>
+  abjad> tuplet = FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
+  abjad> measure = Measure((3, 16), [tuplet])
+  abjad> staff = RhythmicStaff([measure])
+  abjad> show(staff)
+  abjad> tuplet.duration.multiplier
+  Rational(3, 5)
+</pre>
+
+<p class="spacer"/>
+
+<p>
+The next chapters document duration in Abjad and explain core duration concepts.
+</p>

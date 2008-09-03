@@ -1,0 +1,101 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title>Project Abjad - Chapter Name from h1 Goes Here</title>
+<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+</head>
+
+<body>
+
+<!--
+OK; prefer to leave TOC off of every page for now; 
+keep look simple ... maybe add back in later? TB.
+maybe a
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+-->
+
+<div id="content">
+
+<h1>The Abjad <code>Note</code> class</h1>
+
+<p>
+The Abjad <code>Note</code> class models musical notes.
+This chapter describes the different bound methods defined against the Abjad <code>Note</code> class.
+</p>
+
+<p class="spacer"/>
+
+<h2>Creating notes</h2>
+
+<p>
+The Abjad <code>Note</code> class initializes with numeric pitch and duration values.
+</p>
+
+<pre>
+  abjad> note = Note(0, (1, 4))
+  abjad> note
+  Note(c', 4)
+</pre>
+
+<h2>Getting information about notes</h2>
+
+<p>
+Abjad organizes note attributes into a collection of <strong>interfaces</strong>. 
+The note interfaces list alphabetically below.
+</p>
+
+<ul>
+   <li> <code>duration</code>
+   <li> <code>pitch</code>
+   <li> <code>notehead</code>
+</ul>
+
+<h2>Working with pitches</h2>
+
+<p>
+You can assign pitches to a note a note in a couple of different ways.
+</p>
+
+<pre>
+  abjad> note.pitch = 1
+  abjad> note
+  Note(cs', 4)
+</pre>
+
+<pre>
+  abjad> note.pitch = Pitch('d', 4)
+  abjad> note
+  Note(d', 4)
+</pre>
+
+<pre>
+  abjad> note.pitch = ('ds', 4)
+  abjad> note
+  Note(ds', 4)
+</pre>
+
+<p>
+See the chapter on <a href="../pitch/index.html">pitch</a> for more information.
+</p>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+The current implementation of Abjad allows the creation of notes without pitch.
+For example <code>Note(None, (1, 4))</code> and also <code>note.pitch = None</code>.
+Later implementations of Abjad may deprecate this behavior.
+</p>
+
+
+
+
+
+<p class="footer">
+<a href="../../index.html">Contents</a>
+</p>
+</div>
+
+</body>
+</html>

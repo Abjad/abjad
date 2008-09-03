@@ -1,0 +1,59 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+</head>
+<body>
+<h1>Duration types</h1>
+<hr>
+<h2>Duration attributes, duration interfaces</h2>
+<p>
+Abjad publishes duration information about notes, rests, chords and skips, and also about tuplets, measures, voices, staves and the other containers.
+Abjad groups duration information about notes, rests, chords and skips into the <code>_LeafDurationInterface</code> class; duration information about tuplets, measures, voices, staves and other containers groups together inside some type of container duration interface.
+For information on the duration of notes, rests, chords and skips, see <a href="../working_with_leaf_durations/index.html">the chapter on working with leaf durations</a>; for information on the duration of tuplets, measures, voices, staves and other containers, see <a href="../working_with_container_durations/index.html">the chapter on working with container durations</a>.
+This chapter lists all duration attributes, belonging to leaves, containers or both.
+</p>
+<p class="spacer">
+<h2>Written duration</h2>
+Abjad notes, rests, chords and skips all make written duration available as <code>duraiton.written</code>.
+Written duration is a user-assignable rational number.
+Users can assign and reassign the written duration of notes, rests, chords and skips at initialization and at any time during the life of the note, rest, chord or skip.
+Notes, rests, chords and skips admit a degree of input flexibility; Abjad <code>Rational</code> instances, rational tokens, and integers are all allowed; see the chapter on <a href="../duration_initialization/index.html">duration initialzation</a> for details.
+Written durations must always be notehead-assignable; see the chapter on <a href="../notehead_assignability/index.html">notehead assignability</a> for details.
+The written duration of notes, rests, chords and skips corresponds more closely to our usual understanding of musical duration than do any of the other Abjad duration attributes.
+Abjad containers do not carry written duration.
+</p>
+<pre>
+  abjad> note = Note(0, (1, 4))
+  abjad> note.duration.written
+  Rational(1, 4)
+</pre>
+<p class="spacer">
+<h2>Prolated duration</h2>
+<a href="../prolation/index.html">Prolation</a> refers to the duration-scaling effects of tuplets and special types of time signature.
+Prolation is a way of thinking about the contribution that <i>musical structure</i> makes to the duration of score objects.
+All durated Abjad objects carry a prolated duration as <code>duration.prolated</code>.
+Prolated duration is an emergent property of notes, tuplets and other durated objects.
+The prolated duration of notes, rests, chords and skips equals the product of the written duration and prolation of those objects.
+The prolated duration of tuplets, measures and other containers equals the product of the container duration interface itself and the prolation of the container in question.
+</p>
+
+
+<p class="spacer">
+<h2>Commentary</h2>
+<hr>
+<p class="commentary">
+1. Comment.
+</p>
+<p class="spacer">
+<h2>To do</h2>
+<hr>
+<p class="commentary">
+1. Prolated leaf duration makes perfect sense: written * prolation.
+But prolated container duration is a mess: self * prolation, where self is whatever magic value the container duration interface itself carries.
+Clean this in the one remaining duration rewrite.
+We want <i>duration interface comparison</i> of the form <code>leaf1.duration == leaf2.duration</code> and <code>container1.duration == container2.duration</code>.
+But we do <strong>not</strong> want <i>duration interface assignment</i> of the form <code>container1.duration = (1, 8)</code>.
+Right now, unfortunately, fixed-duration tuplets demand interface assignment when, for example, you want to change the "container size" (or whatever it is) of the tuplet in question.
+</p>
+</body>
+</html>
