@@ -24,6 +24,58 @@ if we want to have the TOC on every page, we can put it here...
 The Abjad <code>Rest</code> class models musical rests.
 </p>
 
+<p>
+The Abjad <code>Rest</code> class defines the following public interface.
+</p>
+
+<dl class="interface-definition">
+<dt> read-only
+<dd> <ul>
+   <li class="inherited"> clef 
+   <li class="inherited"> format 
+   <li class="inherited"> leaves 
+   <li class="inherited"> number 
+   <li class="inherited"> offset 
+   <li class="inherited"> staff 
+   </ul>
+<dt> read-writer
+<dd> <ul>
+   <li class="inherited"> accidentals 
+   </ul>
+<dt> interfaces
+<dd> <ul>
+   <li class="inherited"> articulations 
+   <li class="inherited"> barline 
+   <li class="inherited"> beam 
+   <li class="inherited"> dots 
+   <li class="inherited"> duration 
+   <li class="inherited"> dynamics 
+   <li class="inherited"> formatter 
+   <li class="inherited"> glissando 
+   <li class="inherited"> grace 
+   <li class="inherited"> harmonic 
+   <li> pitch
+   <li class="inherited"> spanners 
+   <li class="inherited"> staff 
+   <li class="inherited"> stem 
+   <li class="inherited"> tempo 
+   <li class="inherited"> tie 
+   <li class="inherited"> tremolo 
+   <li class="inherited"> trill 
+   </ul>
+<dt> navigation
+<dd> <ul>
+   <li class="inherited"> next
+   <li class="inherited"> prev
+   </ul>
+<dt> methods
+<dd> <ul>
+   <li class="inherited"> __mul__ 
+   <li class="inherited"> __rmul__ 
+   <li class="inherited"> copy( ) 
+   <li class="inherited"> kind( ) 
+   </ul>
+</dl>
 <p class="spacer"/>
 
 <h2>Creating Rests</h2>
@@ -38,45 +90,45 @@ The Abjad <code>Rest</code> initializes with a duration value only.
   Rest(4)
   abjad> show(rest)
 </pre>
-<image src="images/1.png">
+<image class="inline" src="images/1.png">
 
 <h2><code>Rest</code> specific attributes</h2>
+
 <p>
 In addition to the attributes inherited from the <code>_Leaf</code> class (such as <strong>duration</strong>, <strong>grace</strong>, etc.), the <code>Rest</code> class also possesses a <strong>pitch</strong> attribute. 
 This may seem strange given that Rests represent the absence of sound. 
 However, as a glyph in a score, Rests also necessarily have a vertical position relative to the Staff. 
 By default the vertical position of rests is set automatically by the LilyPond renderer, but it can be set arbitrarily with the <strong>pitch</strong> attribute. 
 </p>
+
 <pre>
   abjad> rest = Rest((1, 4))
   abjad> rest.pitch = -1
   abjad> show(rest)
 </pre>
 <image src="images/2.png">
+
 <p>
 Notice how the position of the rest is here moved down so it falls exactly on B<sub>3</sub>. 
 </p>
+
 <p>
 To remove the pitch from a <code>Rest</code> simply set the attribute to None.
 </p>
+
 <pre>
   abjad> rest.pitch = None
 </pre>
-<p>
-</p>
-
-
 
 <h2 class="end-of-page">Comments</h2>
 
 <p class="comment">
+See the <code>Rest</code> class in <code>rest/rest.py</code> for implementation deatils.
 </p>
 
 <h2 class="end-of-page">To-do</h2>
 <p class="to-do">
 </p>
-
-
 
 
 <p class="footer">
