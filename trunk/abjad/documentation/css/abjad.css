@@ -188,6 +188,6 @@ DL.interface-definition UL {
 }
 
 DL.interface-definition UL LI.inherited {
-   //color: green;
+   color: grey;
 	//background-color: grey;
 }
