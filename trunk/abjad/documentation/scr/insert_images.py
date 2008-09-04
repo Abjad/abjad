@@ -4,6 +4,8 @@ import os
 import re
 import sys
 
+ABJADPATH = os.environ['ABJADPATH']
+
 try:
    f = open(sys.argv[1], 'r')
    out = open(sys.argv[1].strip('.raw') + '.html', 'w')
@@ -61,8 +63,14 @@ for line in f.readlines( ):
          tmp_aj.write("tmp_ly = open('%s.ly', 'w')\n" % image_number)
          tmp_aj.write("""tmp_ly.write('\\\\version "2.11.56"\\n')\n""")
          tmp_aj.write("""tmp_ly.write('\\\\include "english.ly"\\n')\n""")
-         tmp_aj.write("""tmp_ly.write('\\\\include "/home/abjad/abjad/trunk/abjad/scm/abjad.scm"\\n')\n""")
-         tmp_aj.write("""tmp_ly.write('\\\\include "/home/abjad/abjad/trunk/abjad/layout/web.ly"\\n')\n""")
+         #tmp_aj.write("""tmp_ly.write('\\\\include "/home/abjad/abjad/trunk/abjad/scm/abjad.scm"\\n')\n""")
+         tmp_aj.write(
+            """tmp_ly.write('\\\\include "%s/scm/abjad.scm"\\n')\n""" %
+            ABJADPATH)
+         #tmp_aj.write("""tmp_ly.write('\\\\include "/home/abjad/abjad/trunk/abjad/layout/web.ly"\\n')\n""")
+         tmp_aj.write(
+            """tmp_ly.write('\\\\include "%s/layout/web.ly"\\n')\n""" %
+            ABJADPATH)
          tmp_aj.write(
             """tmp_ly.write('\\\\layout { ragged-right = ##t }\\n')\n""")
          tmp_aj.write("""tmp_ly.write('\\n')\n""")
