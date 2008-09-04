@@ -1,0 +1,83 @@
+<h1>The Abjad <code>_Leaf</code> class</h1>
+
+<p>
+The Abjad <code>_Leaf</code> class defines the following public interface.
+</p>
+
+<dl class="interface-definition">
+<dt> read-only
+<dd> <ul>
+   <li> clef
+   <li> format (_Component)
+   <li> leaves
+   <li> number
+   <li> offset
+   <li> staff
+   </ul>
+<dt> read-writer
+<dd> <ul>
+   <li> accidentals (_Component)
+   </ul>
+<dt> interfaces
+<dd> <ul>
+   <li> articulations
+   <li> barline (_Component)
+   <li> beam
+   <li> dots
+   <li> duration
+   <li> dynamics
+   <li> formatter
+   <li> glissando
+   <li> grace
+   <li> harmonic
+   <li> spanners
+   <li> staff
+   <li> stem
+   <li> tempo (_Component)
+   <li> tie
+   <li> tremolo
+   <li> trill
+   </ul>
+<dt> navigation
+<dd> <ul>
+   <li> next
+   <li> prev
+   </ul>
+<dt> methods
+<dd> <ul>
+   <li> __mul__ (_Component)
+   <li> __rmul__ (_Component)
+   <li> copy( ) (_Component)
+   <li> kind( ) (_Component)
+   </ul>
+</dl>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+See the <code>_Leaf</code> class in <code>leaf/leaf.py</code> for implementation details.
+</p>
+
+<h2 class="end-of-page">To do</h2>
+
+<p class="to-do">
+Group and alphabetize the interface definitions in <code>_Leaf</code>.
+</p> 
+
+<p class="to-do">
+Should <code>clef</code> promote to a full interface?
+</p>
+
+<p class="to-do">
+Should <code>accidentals</code> promote to a full interface?
+</p>
+
+<p class="to-do">
+Clean up the way <code>staff</code> works;
+is it a full interface or not?
+</p>
+
+<p class="to-do">
+Should we move <code>formatter</code> out of the 'interfaces' section?
+</p>
+

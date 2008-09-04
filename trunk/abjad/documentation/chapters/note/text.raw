@@ -1,11 +1,27 @@
 <h1>The Abjad <code>Note</code> class</h1>
 
 <p>
-The Abjad <code>Note</code> class models musical notes.
-This chapter describes the different bound methods defined against the Abjad <code>Note</code> class.
+The Abjad <code>Note</code> class defines the following public interface.
 </p>
 
-<p class="spacer"/>
+<dl>
+<dt> read-only attributes
+<dd> <ul>
+   <li> foo
+   </ul>
+<dt> read-write attributes
+<dd> <ul>
+   <li> bar
+   </ul>
+<dt> interfaces
+<dd> <ul>
+   <li> blee
+   </ul>
+<dt> methods
+<dd> <ul>
+   <li> blah
+   </ul>
+</dl>
 
 <h2>Creating notes</h2>
 
@@ -100,14 +116,3 @@ You can assign pitches to a note a note in a couple of different ways.
 <p>
 See the chapter on <a href="../pitch/index.html">pitch</a> for more information.
 </p>
-
-<h2 class="end-of-page">Comments</h2>
-
-<p class="comment">
-The current implementation of Abjad allows the creation of notes without pitch.
-For example <code>Note(None, (1, 4))</code> and also <code>note.pitch = None</code>.
-Later implementations of Abjad may deprecate this behavior.
-</p>
-
-
-

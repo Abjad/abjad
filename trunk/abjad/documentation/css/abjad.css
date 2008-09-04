@@ -112,7 +112,7 @@ A:hover {
 	text-decoration: underline;
 }
 
-CODE, TD.duration-interface-attribute {
+CODE, TD.duration-interface-attribute, DL.interface-definition UL LI {
 	color: #a22222;
 	font-family: "Courier New", "Courier", serif;
 }
@@ -167,4 +167,27 @@ PRE {
 
 .end-of-page {
    margin-top: 60px;
+}
+
+DL.interface-definition {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px dotted #aaaaaa;
+   text-align: left;
+}
+
+DL.interface-definition DT {
+	font-family: "Courier New", "Courier", serif;
+}
+
+DL.interface-definition UL {
+   padding-left: 0px;
+   list-style-type: none;
+}
+
+DL.interface-definition UL LI.inherited {
+   //color: green;
+	//background-color: grey;
 }
