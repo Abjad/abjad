@@ -74,6 +74,7 @@ for line in f.readlines( ):
          tmp_aj.write(
             """tmp_ly.write('\\\\layout { ragged-right = ##t }\\n')\n""")
          tmp_aj.write("""tmp_ly.write('\\n')\n""")
+         tmp_aj.write("""tmp_ly.write('\\\\header{ tagline = "" }\\n')\n""")
          tmp_aj.write(
             """tmp_ly.write("{ %%s\\n }" %% %s.format)\n""" % lily_object) 
          tmp_aj.write("""tmp_ly.close( )""")
