@@ -1,0 +1,126 @@
+<h1>The Abjad <code>Note</code> class</h1>
+
+<p>
+The Abjad <code>Note</code> class defines the following public interface.
+</p>
+
+<dl class="interface-definition">
+<dt> read-only
+<dd> <ul>
+   <li class="inherited"> clef 
+   <li class="inherited"> format 
+   <li class="inherited"> leaves 
+   <li class="inherited"> number 
+   <li class="inherited"> offset 
+   <li class="inherited"> staff 
+   </ul>
+<dt> read-writer
+<dd> <ul>
+   <li class="inherited"> accidentals 
+   </ul>
+<dt> interfaces
+<dd> <ul>
+   <li class="inherited"> articulations 
+   <li class="inherited"> barline 
+   <li class="inherited"> beam 
+   <li class="inherited"> dots 
+   <li class="inherited"> duration 
+   <li class="inherited"> dynamics 
+   <li class="inherited"> formatter 
+   <li class="inherited"> glissando 
+   <li class="inherited"> grace 
+   <li class="inherited"> harmonic 
+   <li> notehead
+   <li> pitch
+   <li class="inherited"> spanners 
+   <li class="inherited"> staff 
+   <li class="inherited"> stem 
+   <li class="inherited"> tempo 
+   <li class="inherited"> tie 
+   <li class="inherited"> tremolo 
+   <li class="inherited"> trill 
+   </ul>
+<dt> navigation
+<dd> <ul>
+   <li class="inherited"> next
+   <li class="inherited"> prev
+   </ul>
+<dt> methods
+<dd> <ul>
+   <li class="inherited"> __mul__ 
+   <li class="inherited"> __rmul__ 
+   <li class="inherited"> copy( ) 
+   <li class="inherited"> kind( ) 
+   </ul>
+</dl>
+
+<h2>Creating notes</h2>
+
+<p>
+The Abjad <code>Note</code> class initializes with numeric pitch and duration values.
+</p>
+
+<pre>
+  abjad> note = Note(0, (1, 4))
+  abjad> note
+  Note(c', 4)
+</pre>
+
+<h2>Working with note duration</h2>
+
+<p>
+You can assign values directly to the note duration interface.
+</p>
+
+<pre>
+  abjad> note = Note(0, (1, 4))
+  abjad> note.duration = (1, 8)
+  abjad> note
+  Note(c', 8)
+</pre>
+
+<p>
+And you can compare note duration interfaces.
+</p>
+
+<pre>
+  abjad> n1 = Note(0, (1, 4))
+  abjad> n2 = Note(0, (3, 16))
+  abjad> n1.duration > n2.duration
+  True
+</pre>
+
+<p>
+You can do all the normal things with the note duration interface that you can do with the other Abjad duration interfaces.
+These include copying and rewriting.
+See the overview of <a href="../duration_interfaces">duration interfaces</a>.
+</p>
+
+
+<h2>Working with note pitch</h2>
+
+<p>
+You can assign pitches to a note a note in a couple of different ways.
+</p>
+
+<pre>
+  abjad> note.pitch = 1
+  abjad> note
+  Note(cs', 4)
+</pre>
+
+<pre>
+  abjad> note.pitch = Pitch('d', 4)
+  abjad> note
+  Note(d', 4)
+</pre>
+
+<pre>
+  abjad> note.pitch = ('ds', 4)
+  abjad> note
+  Note(ds', 4)
+</pre>
+
+<p>
+See the chapter on <a href="../pitch/index.html">pitch</a> for more information.
+</p>
