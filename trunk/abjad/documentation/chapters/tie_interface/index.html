@@ -1,0 +1,137 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title>Project Abjad - Chapter Name from h1 Goes Here</title>
+<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+</head>
+
+<body>
+
+<!--
+OK; prefer to leave TOC off of every page for now; 
+keep look simple ... maybe add back in later? TB.
+maybe a
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+-->
+
+<div id="content">
+
+<h1>Tie interface</h1>
+
+<p class="spacer" />
+
+<p>
+Ties are managed via the <code>_TieInterface</code> interface. All Leaves and only Leaves posess this interface.
+</p>
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.tie
+_TieInterface( )
+</pre>
+
+
+<h2>Usage</h2>
+<p>
+Ties can be set in two ways:
+<ol>
+   <li> By "wrapping" an Abjad Component (be it a Container or a Leaf) with the <code>Tie</code> spanner (Refer to the Spanners section).
+   <li> By setting the tie attribute of a <code>_Leaf</code> instance to True.
+</ol>
+</p>
+<pre>
+abjad> note1 = Note(0, (1, 4))
+abjad> note2 = Note(0, (1, 4))
+abjad> note1.tie = True
+abjad> voice = Voice([note1, note2])
+abjad> show(voice)
+</pre>
+<image src="images/1.png">
+<p>
+To unset the tie attribute simply set it to False or None.
+</p>
+<pre>
+abjad> note1.tie = False
+</pre>
+
+
+<h2>Attributes</h2>
+<dl>
+   <dt> read-only
+   <dd> <ul>
+      <li> <code>tied</code>
+      <li> <code>tail</code>
+      <li> <code>head</code>
+      </ul>
+</dl>
+<p>
+The <code>tied</code> attribute indicates whether the Leaf is being tied to by the Leaf immediately preceding it. 
+</p>
+<pre>
+abjad> note1 = Note(0, (1, 4))
+abjad> note2 = Note(0, (1, 4))
+abjad> voice = Voice([note1, note2])
+abjad> note1.tie = True
+abjad> note1.tie.tied 
+False
+abjad> note2.tie.tied 
+True
+</pre>
+<p>
+The <code>tail</code> attribute indicates whether the Leaf is <code>tied</code> from the previous Leaf and it itself does not have a <code>tie</code> set. 
+</p>
+<pre>
+abjad> note1 = Note(0, (1, 4))
+abjad> note2 = Note(0, (1, 4))
+abjad> note3 = Note(0, (1, 4))
+abjad> voice = Voice([note1, note2, note3])
+abjad> note1.tie = True
+abjad> note2.tie = True
+abjad> note1.tie.tail 
+False
+abjad> note2.tie.tail 
+False
+abjad> note3.tie.tail 
+True
+</pre>
+<p>
+<code>_Leaf.tie.tail</code> is also True when the Leaf being queried is the last in a Tie spanner.
+</p>
+<p>
+The <code>head</code> attribute is analogous but opposite to <code>tail</code>. It is true iff the Leaf has a <code>tie</code> set and is not <code>tied</code> from the previous Leaf. 
+</p>
+<pre>
+abjad> note1 = Note(0, (1, 4))
+abjad> note2 = Note(0, (1, 4))
+abjad> note3 = Note(0, (1, 4))
+abjad> voice = Voice([note1, note2, note3])
+abjad> note1.tie = True
+abjad> note2.tie = True
+abjad> note1.tie.head 
+True
+abjad> note2.tie.head 
+False
+abjad> note3.tie.head 
+False
+</pre>
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+</p>
+
+<h2 class="end-of-page">To do</h2>
+
+<p class="to-do">
+It might be usefull to have these attributes in the Glissando interface as well...
+</p>
+
+
+<p class="footer">
+<a href="../../index.html">Contents</a>
+</p>
+</div>
+
+</body>
+</html>
