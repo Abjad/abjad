@@ -6,6 +6,25 @@
    padding: 4px;
 }
 
+DIV.interface-block {
+	/*border: 1px dotted #aaaaaa;*/
+}
+
+DIV P.interface-block-header {
+   margin-left: 0px;
+}
+
+DIV P.interface-attribute {
+	color: #a22222;
+	font-family: "Courier New", "Courier", serif;
+   /*border: 1px dotted;*/
+   padding: 0px;
+   margin: 0px;
+   margin-left: 30px;
+   margin-bottom: 2px;
+   margin-top: 2px;
+}
+
 /* Where did these values come from? TB */
 #content{
    min-height: 350px;
@@ -112,7 +131,12 @@ A:hover {
 	text-decoration: underline;
 }
 
-CODE, TD.duration-interface-attribute, DL.interface-definition UL LI {
+CODE, TD.duration-interface-attribute {
+	color: #a22222;
+	font-family: "Courier New", "Courier", serif;
+}
+
+DL.interface-definition UL LI {
 	color: #a22222;
 	font-family: "Courier New", "Courier", serif;
 }
@@ -174,9 +198,11 @@ DL.interface-definition {
    text-align: left;
 }
 
+/*
 DL.interface-definition DT {
 	font-family: "Courier New", "Courier", serif;
 }
+*/
 
 DL.interface-definition UL {
    padding-left: 0px;

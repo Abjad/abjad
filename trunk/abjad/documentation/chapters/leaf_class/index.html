@@ -20,6 +20,8 @@ if we want to have the TOC on every page, we can put it here...
 
 <h1>The Abjad <code>_Leaf</code> class</h1>
 
+<h2>Public interface</h2>
+
 <p>
 The Abjad <code>_Leaf</code> class defines the following public interface.
 </p>
@@ -28,7 +30,7 @@ The Abjad <code>_Leaf</code> class defines the following public interface.
 <dt> read-only
 <dd> <ul>
    <li> clef
-   <li> format (_Component)
+   <li class="inherited"> format
    <li> leaves
    <li> number
    <li> offset
@@ -36,12 +38,12 @@ The Abjad <code>_Leaf</code> class defines the following public interface.
    </ul>
 <dt> read-writer
 <dd> <ul>
-   <li> accidentals (_Component)
+   <li class="inherited"> accidentals
    </ul>
 <dt> interfaces
 <dd> <ul>
    <li> articulations
-   <li> barline (_Component)
+   <li class="inherited"> barline
    <li> beam
    <li> dots
    <li> duration
@@ -53,7 +55,7 @@ The Abjad <code>_Leaf</code> class defines the following public interface.
    <li> spanners
    <li> staff
    <li> stem
-   <li> tempo (_Component)
+   <li class="inherited"> tempo
    <li> tie
    <li> tremolo
    <li> trill
@@ -65,10 +67,10 @@ The Abjad <code>_Leaf</code> class defines the following public interface.
    </ul>
 <dt> methods
 <dd> <ul>
-   <li> __mul__ (_Component)
-   <li> __rmul__ (_Component)
-   <li> copy( ) (_Component)
-   <li> kind( ) (_Component)
+   <li class="inerhited"> __mul__
+   <li class="inherited"> __rmul__
+   <li class="inherited"> copy( )
+   <li class="inherited"> kind( )
    </ul>
 </dl>
 
