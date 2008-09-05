@@ -21,7 +21,7 @@ if we want to have the TOC on every page, we can put it here...
 <h1>The Abjad <code>_Component</code> class</h1>
 
 <p>
-The Abjad <code>_Component</code> class models the functionality all leaves and containers share.
+The Abjad <code>_Component</code> class models the functionality that all leaves and containers share.
 </p>
 
 <h2 class="end-of-page">
@@ -44,39 +44,21 @@ Public interface
 </div>
 
 <div class="interface-block">
-   <p class="interface-block-header"> Special methods </p>
-   <p class="interface-attribute"> __mul__
-   <p class="interface-attribute"> __rmul__
+   <p class="interface-block-header"> Operators </p>
+   <p class="interface-attribute"> *
 </div>
 
-<!--
-<dl class="interface-definition">
-<dt> read-write
-<dd> <ul>
-   <li> accidentals 
-   <li> barline 
-   <li> comments
-   <li> spanners 
-   <li> tempo 
-   </ul>
-<dt> read-only
-<dd> <ul>
-   <li> format 
-   </ul>
-<dt> special methods
-<dd> <ul>
-   <li> __mul__
-   <li> __rmul__
-   </ul>
-<dt> methods
-<dd> <ul>
-   <li> copy( ) 
-   <li> kind( ) 
-   </ul>
-</dl>
--->
+<h2 class="end-of-page">
+Examples
+</h2>
 
-<h2 class="end-of-page">Comments</h2>
+<p>
+The Abjad <code>_Component</code> class is an abstract class not meant to be instantiated by hand.
+</p>
+
+<h2 class="end-of-page">
+Comments
+</h2>
 
 <p class="comment">
 See the <code>_Component</code> class in <code>core/component.py</code> for implementation details.
