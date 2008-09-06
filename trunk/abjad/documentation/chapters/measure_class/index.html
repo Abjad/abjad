@@ -1,0 +1,114 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title>Project Abjad - Chapter Name from h1 Goes Here</title>
+<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+</head>
+
+<body>
+
+<!--
+OK; prefer to leave TOC off of every page for now; 
+keep look simple ... maybe add back in later? TB.
+maybe a
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+-->
+
+<div id="content">
+
+<h1>The Abjad <code>Measure</code> class</h1>
+
+<p>
+The Abjad <code>Measure</code> class models the measure-as-container understanding of the musical measure.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes </p>
+   <p class="interface-attribute-inherited"> accidentals </p>
+   <p class="interface-attribute-inherited"> barline </p>
+   <p class="interface-attribute-inherited"> brackets </p>
+   <p class="interface-attribute-inherited"> comments </p>
+   <p class="interface-attribute-inherited"> duration </p>
+   <p class="interface-attribute-inherited"> format </p>
+   <p class="interface-attribute-inherited"> formatter </p>
+   <p class="interface-attribute-inherited"> leaves </p>
+   <p class="interface-attribute"> meter </p>
+   <p class="interface-attribute-inherited"> music </p>
+   <p class="interface-attribute-inherited"> next </p>
+   <p class="interface-attribute-inherited"> parallel </p>
+   <p class="interface-attribute-inherited"> prev </p>
+   <p class="interface-attribute-inherited"> spanners </p>
+   <p class="interface-attribute-inherited"> tempo </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute-inherited"> append( ) </p>
+   <p class="interface-attribute-inherited"> coalesce( ) </p>
+   <p class="interface-attribute-inherited"> copy( ) </p>
+   <p class="interface-attribute-inherited"> embed( ) </p>
+   <p class="interface-attribute-inherited"> extend( ) </p>
+   <p class="interface-attribute-inherited"> get( ) </p>
+   <p class="interface-attribute-inherited"> index( ) </p>
+   <p class="interface-attribute-inherited"> insert( ) </p>
+   <p class="interface-attribute-inherited"> kind( ) </p>
+   <p class="interface-attribute-inherited"> pop( ) </p>
+   <p class="interface-attribute-inherited"> remove( ) </p>
+   <p class="interface-attribute"> trim( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute-inherited"> __add__ </p>
+   <p class="interface-attribute-inherited"> __contains__ </p>
+   <p class="interface-attribute-inherited"> __delitem__ </p>
+   <p class="interface-attribute-inherited"> __getitem__ </p>
+   <p class="interface-attribute-inherited"> __len__ </p>
+   <p class="interface-attribute-inherited"> __mul__ </p>
+   <p class="interface-attribute-inherited"> __setitem__ </p>
+</div>
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comment">
+See the <code>Container</code> class in <code>containers/container.py</code> for implementation details.
+</p>
+
+<p class="comment">
+The Abjad <code>Measure</code> class implements the <strong>measure-as-container</strong> interpretation of measures, common in Classical and Romantic music.
+The competing <strong>measure-as-picket</strong> interpretation understands the sequence of measures in the score not as a series of containers but as a backgrounded sequence of positions of vertical alignment instead.
+This second, measure-as-picket scheme predominates contemporary transcriptions of medieval scores.
+The measure-as-container scheme forbids <strong>barline cross</strong>;
+the measure-as-picket scheme allows it.
+The flexibility of measure-as-picket exceeds measure-as-container;
+it is probably for this reason that LilyPond implements the former rather than the latter.
+Abjad implements the measure-as-picket scheme in the Abjad <code>MetricGrid</code> spanner.
+</p>
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Add examples.
+</p>
+
+<p class="to-do">
+Implement an abstract <code>_TrimmedContainer</code> class from which both this class and <code>FixedDurationTuplet</code> can inherit.
+</p>
+
+
+<p class="footer">
+<a href="../../index.html">Contents</a>
+</p>
+</div>
+
+</body>
+</html>
