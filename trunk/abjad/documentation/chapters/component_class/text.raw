@@ -24,8 +24,8 @@ Public interface
 </div>
 
 <div class="interface-block">
-   <p class="interface-block-header"> Operators </p>
-   <p class="interface-attribute"> *
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute"> __mul__
 </div>
 
 <h2 class="end-of-page">
