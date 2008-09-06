@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 
 from mako.template import Template
 from mako.lookup import TemplateLookup
