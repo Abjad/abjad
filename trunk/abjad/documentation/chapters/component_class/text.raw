@@ -4,7 +4,7 @@
 The Abjad <code>_Component</code> class models the functionality that all leaves and containers share.
 </p>
 
-<h2 class="end-of-page">
+<h2 class="page-section">
 Public interface
 </h2>
 
@@ -19,16 +19,16 @@ Public interface
 
 <div class="interface-block">
    <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute"> copy( ) 
-   <p class="interface-attribute"> kind( ) 
+   <p class="interface-attribute"> copy( ) </p>
+   <p class="interface-attribute"> kind( ) </p>
 </div>
 
 <div class="interface-block">
    <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute"> __mul__
+   <p class="interface-attribute"> __mul__ </p>
 </div>
 
-<h2 class="end-of-page">
+<h2 class="page-section">
 Examples
 </h2>
 
@@ -36,10 +36,18 @@ Examples
 The Abjad <code>_Component</code> class is an abstract class not meant to be instantiated by hand.
 </p>
 
-<h2 class="end-of-page">
+<h2 class="page-section">
 Comments
 </h2>
 
 <p class="comment">
 See the <code>_Component</code> class in <code>core/component.py</code> for implementation details.
+</p>
+
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Add a stub <code>duration</code> attribute here since all leaves and all containers implement one.
 </p>
