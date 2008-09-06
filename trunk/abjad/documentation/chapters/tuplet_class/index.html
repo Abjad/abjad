@@ -18,75 +18,52 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
-<h1>The Abjad <code>Chord</code> class</h1>
+<h1>The Abjad <code>_Tuplet</code> class</h1>
 
 <p>
-The Abjad <code>Chord</code> class defines the following public interface.
+The Abjad <code>_Tuplet</code> class defines the functionality common to <code>FixedDurationTuplet</code> and <code>FixedMultiplierTuplet</code>.
 </p>
 
-<dl class="interface-definition">
-<dt> read-only
-<dd> <ul>
-   <li class="inherited"> clef 
-   <li class="inherited"> format 
-   <li class="inherited"> leaves 
-   <li class="inherited"> number 
-   <li class="inherited"> offset 
-   <li class="inherited"> staff 
-   </ul>
-<dt> read-writer
-<dd> <ul>
-   <li class="inherited"> accidentals 
-   </ul>
-<dt> interfaces
-<dd> <ul>
-   <li class="inherited"> articulations 
-   <li class="inherited"> barline 
-   <li class="inherited"> beam 
-   <li class="inherited"> dots 
-   <li class="inherited"> duration 
-   <li class="inherited"> dynamics 
-   <li class="inherited"> formatter 
-   <li class="inherited"> glissando 
-   <li class="inherited"> grace 
-   <li class="inherited"> harmonic 
-   <li> noteheads
-   <li> pitches
-   <li class="inherited"> spanners 
-   <li class="inherited"> staff 
-   <li class="inherited"> stem 
-   <li class="inherited"> tempo 
-   <li class="inherited"> tie 
-   <li class="inherited"> tremolo 
-   <li class="inherited"> trill 
-   </ul>
-<dt> navigation
-<dd> <ul>
-   <li class="inherited"> next
-   <li class="inherited"> prev
-   </ul>
-<dt> methods
-<dd> <ul>
-   <li> __len__
-   <li> __contains__
-   <li> __getitem__
-   <li> __setitem__
-   <li> __delitem__
-   <li class="inherited"> __mul__ 
-   <li class="inherited"> __rmul__ 
-   <li class="inherited"> copy( ) 
-   <li class="inherited"> kind( ) 
-   <li> append( )
-   <li> extend( )
-   <li> pop( )
-   <li> remove( )
-   </ul>
-</dl>
+<h2 class="page-section">
+Public interface
+</h2>
 
-<h2 class="end-of-page">Comments</h2>
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes </p>
+   <p class="interface-attribute-inherited"> accidentals </p>
+   <p class="interface-attribute-inherited"> barline </p>
+   <p class="interface-attribute"> brackets </p>
+   <p class="interface-attribute-inherited"> comments </p>
+   <p class="interface-attribute-inherited"> format </p>
+   <p class="interface-attribute"> formatter </p>
+   <p class="interface-attribute"> invisible </p>
+   <p class="interface-attribute"> ratio </p>
+   <p class="interface-attribute-inherited"> tempo </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute-inherited"> copy( ) </p>
+   <p class="interface-attribute-inherited"> kind( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute-inherited"> __mul__ </p>
+</div>
+
+<h2 class="page-section">Comments</h2>
 
 <p class="comment">
-See the <code>Chord</code> class in <code>chord/chord.py</code> for implementation details.
+See the <code>_Tuplet</code> class in <code>tuplet/tuplet.py</code> for implementation details.
+</p>
+
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Remove <code>__repr__</code> from abstract class.
 </p>
 
 

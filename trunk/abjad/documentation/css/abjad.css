@@ -15,7 +15,7 @@ DIV P.interface-block-header {
    margin-top: 20px;
 }
 
-DIV P.interface-attribute {
+DIV P.interface-attribute, DIV P.interface-attribute-inherited {
 	color: #a22222;
 	font-family: "Courier New", "Courier", serif;
    /*border: 1px dotted;*/
@@ -24,6 +24,11 @@ DIV P.interface-attribute {
    margin-left: 30px;
    margin-bottom: 2px;
    margin-top: 2px;
+}
+
+DIV P.interface-attribute-inherited {
+   /*color: #f77777;*/
+   color: gray;
 }
 
 /* Where did these values come from? TB */
@@ -114,7 +119,7 @@ H1, H2, H3, H4, H5, H6 {
 	color: #444;
 }
 
-H1, .end-of-page {
+H1, .end-of-page, .page-section {
    border-bottom: 2px solid grey;
    padding-bottom: 10px;
 }
