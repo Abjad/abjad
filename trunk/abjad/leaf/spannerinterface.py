@@ -244,6 +244,6 @@ class _LeafSpannerInterface(object):
       elif direction == 'right':
          result.extend(self._fuseRight(interface, grob, attribute, value))
       elif direction == 'both':
-         result.extend(self.fuseLeft(interface, grob, attribute, value))
-         result.extend(self.fuseRight(interface, grob, attribute, value))
+         result.extend(self._fuseLeft(interface, grob, attribute, value))
+         result.extend(self._fuseRight(interface, grob, attribute, value))
       return result
