@@ -1,0 +1,73 @@
+<h1>The Abjad <code>Sequential</code> class</h1>
+
+<p>
+The Abjad <code>Sequential</code> class models a sequence of notes, rests, chords, tuplets, measures or other musical objects played one after the other.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes </p>
+   <p class="interface-attribute-inherited"> accidentals </p>
+   <p class="interface-attribute-inherited"> barline </p>
+   <p class="interface-attribute-inherited"> brackets </p>
+   <p class="interface-attribute-inherited"> comments </p>
+   <p class="interface-attribute-inherited"> duration </p>
+   <p class="interface-attribute-inherited"> format </p>
+   <p class="interface-attribute-inherited"> formatter </p>
+   <p class="interface-attribute-inherited"> leaves </p>
+   <p class="interface-attribute-inherited"> music </p>
+   <p class="interface-attribute-inherited"> next </p>
+   <p class="interface-attribute-inherited"> parallel </p>
+   <p class="interface-attribute-inherited"> prev </p>
+   <p class="interface-attribute-inherited"> spanners </p>
+   <p class="interface-attribute-inherited"> tempo </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute-inherited"> append( ) </p>
+   <p class="interface-attribute-inherited"> coalesce( ) </p>
+   <p class="interface-attribute-inherited"> copy( ) </p>
+   <p class="interface-attribute-inherited"> embed( ) </p>
+   <p class="interface-attribute-inherited"> extend( ) </p>
+   <p class="interface-attribute-inherited"> get( ) </p>
+   <p class="interface-attribute-inherited"> index( ) </p>
+   <p class="interface-attribute-inherited"> insert( ) </p>
+   <p class="interface-attribute-inherited"> kind( ) </p>
+   <p class="interface-attribute-inherited"> pop( ) </p>
+   <p class="interface-attribute-inherited"> remove( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute-inherited"> __add__ </p>
+   <p class="interface-attribute-inherited"> __contains__ </p>
+   <p class="interface-attribute-inherited"> __delitem__ </p>
+   <p class="interface-attribute-inherited"> __getitem__ </p>
+   <p class="interface-attribute-inherited"> __len__ </p>
+   <p class="interface-attribute-inherited"> __mul__ </p>
+   <p class="interface-attribute-inherited"> __setitem__ </p>
+</div>
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comment">
+See the <code>Sequential</code> class in <code>containers/sequential.py</code> for implementation details.
+</p>
+
+<p class="comment">
+The Abjad <code>Sequential</code> class inherits the entirety of its interface from <code>Container</code> and implements no attributes of its own.
+</p>
+
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Add examples.
+</p>
