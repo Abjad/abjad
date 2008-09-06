@@ -37,4 +37,8 @@ Look up <code>_LeafDurationInterface</code> in <code>leaf/duration.py</code> for
 The leaf duration interface has a bunch of spurious public attributes.
 All of the attributes here in red are suspect:
 <strong>'clear'</strong>, 'copy', <strong>'first'</strong>, <strong>'last'</strong>, 'multiplier', <strong>'only'</strong>, <strong>'pair'</strong>, 'prolated', 'prolation', 'prolations', 'rewrite', <strong>'spanned'</strong>, <strong>'spanner'</strong>, <strong>'spanners'</strong>, <strong>'unspan'</strong>, 'written'.
+<br>
+<br>
+That is pretty weird. Most of these come from the core _Interface class. Why did we decide to make _DurationInterface inherit from _Interface? _Interface is really mostly about spanners and LilyPond attribute formatting....
 </p>
+

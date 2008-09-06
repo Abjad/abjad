@@ -1,0 +1,29 @@
+<h1>The leaf spanner interface</h1>
+
+<p class="spacer"/>
+
+<dl>
+   <dt> methods
+   <dd> <ul>
+      <li> <code>append( )</code> (why is this public?)
+      <li> <code>die( )</code>
+      <li> <code>find( )</code>
+      <li> <code>first( )</code>
+      <li> <code>fracture( )</code>
+      <li> <code>fuse( )</code>
+      <li> <code>get( )</code>
+      <li> <code>last( )</code>
+      <li> <code>rewrite( )</code>
+   </ul
+</dl
+
+<h2 class="end-of-page">Comments</h2>
+
+<p class="comment">
+</p>
+
+
+<h2 class="end-of-page">To do</h2>
+
+<p class="to-do">
+</p>
