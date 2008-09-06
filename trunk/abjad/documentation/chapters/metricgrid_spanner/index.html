@@ -1,0 +1,84 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title>Project Abjad - Chapter Name from h1 Goes Here</title>
+<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+</head>
+
+<body>
+
+<!--
+OK; prefer to leave TOC off of every page for now; 
+keep look simple ... maybe add back in later? TB.
+maybe a
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+-->
+
+<div id="content">
+
+<h1>The Abjad <code>MetricGrid</code> spanner</h1>
+
+<p>
+The Abjad <code>MetricGrid</code> spanner lays time signatures beneath arbitrary music.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes </p>
+   <p class="interface-attribute-inherited"> duration </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute-inherited"> capture( ) </p>
+   <p class="interface-attribute-inherited"> copy( ) </p>
+   <p class="interface-attribute-inherited"> die( ) </p>
+   <p class="interface-attribute-inherited"> fracture( ) </p>
+   <p class="interface-attribute-inherited"> fuse( ) </p>
+   <p class="interface-attribute-inherited"> index( ) </p>
+   <p class="interface-attribute-inherited"> move( ) </p>
+   <p class="interface-attribute"> splitOnBar( ) </p>
+   <p class="interface-attribute-inherited"> surrender( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute-inherited"> __contains__ </p>
+   <p class="interface-attribute-inherited"> __getitem__ </p>
+   <p class="interface-attribute-inherited"> __len__ </p>
+</div>
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comment">
+See the <code>MetricGrid</code> class in <code>metricgrid/spanner.py</code> for implementation details.
+</p>
+
+<p class="comment">
+The Abjad <code>MetricGrid</code> spanner implements the <strong>measure-as-picket</strong> understanding of the musical measure.
+The Abjad <code>Measure</code> class implements the competing <strong>measure-as-container</strong> understanding of the measure.
+</p>
+
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Add examples.
+</p>
+
+
+<p class="footer">
+<a href="../../index.html">Contents</a>
+</p>
+</div>
+
+</body>
+</html>
