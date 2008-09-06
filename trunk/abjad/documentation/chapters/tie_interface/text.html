@@ -1,18 +1,57 @@
-<h1>Tie interface</h1>
+<h1>
+The Abjad <code>_TieInterface</code> class
+</h1>
 
-<p class="spacer" />
+<p>
+The Abjad <code>_TieInterface</code> class manages note, rest and chord ties.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes </p>
+   <p class="interface-attribute-inherited"> first </p>
+   <p class="interface-attribute"> head </p>
+   <p class="interface-attribute-inherited"> last </p>
+   <p class="interface-attribute-inherited"> only </p>
+   <p class="interface-attribute-inherited"> spanned </p>
+   <p class="interface-attribute-inherited"> spanner </p>
+   <p class="interface-attribute-inherited"> spanners </p>
+   <p class="interface-attribute"> tail </p>
+   <p class="interface-attribute"> tied </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute-inherited"> clear( ) </p>
+   <p class="interface-attribute-inherited"> copy( ) </p>
+   <p class="interface-attribute-inherited"> unspan( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute"> __eq__ </p>
+   <p class="interface-attribute-inherited"> __len__ </p>
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
 
 <p>
 Ties are managed via the <code>_TieInterface</code> interface. All Leaves and only Leaves posess this interface.
 </p>
+
 <pre>
 abjad> note = Note(0, (1, 4))
 abjad> note.tie
 _TieInterface( )
 </pre>
 
-
 <h2>Usage</h2>
+
 <p>
 Ties can be set in two ways:
 <ol>
@@ -20,6 +59,7 @@ Ties can be set in two ways:
    <li> By setting the tie attribute of a <code>_Leaf</code> instance to True.
 </ol>
 </p>
+
 <pre>
 abjad> note1 = Note(0, (1, 4))
 abjad> note2 = Note(0, (1, 4))
@@ -28,13 +68,14 @@ abjad> voice = Voice([note1, note2])
 abjad> show(voice)
 </pre>
 <image src="images/1.png">
+
 <p>
 To unset the tie attribute simply set it to False or None.
 </p>
+
 <pre>
 abjad> note1.tie = False
 </pre>
-
 
 <h2>Attributes</h2>
 <dl>
@@ -45,9 +86,11 @@ abjad> note1.tie = False
       <li> <code>head</code>
       </ul>
 </dl>
+
 <p>
 The <code>tied</code> attribute indicates whether the Leaf is being tied to by the Leaf immediately preceding it. 
 </p>
+
 <pre>
 abjad> note1 = Note(0, (1, 4))
 abjad> note2 = Note(0, (1, 4))
@@ -58,9 +101,11 @@ False
 abjad> note2.tie.tied 
 True
 </pre>
+
 <p>
 The <code>tail</code> attribute indicates whether the Leaf is <code>tied</code> from the previous Leaf and it itself does not have a <code>tie</code> set. 
 </p>
+
 <pre>
 abjad> note1 = Note(0, (1, 4))
 abjad> note2 = Note(0, (1, 4))
@@ -75,12 +120,15 @@ False
 abjad> note3.tie.tail 
 True
 </pre>
+
 <p>
 <code>_Leaf.tie.tail</code> is also True when the Leaf being queried is the last in a Tie spanner.
 </p>
+
 <p>
 The <code>head</code> attribute is analogous but opposite to <code>tail</code>. It is true iff the Leaf has a <code>tie</code> set and is not <code>tied</code> from the previous Leaf. 
 </p>
+
 <pre>
 abjad> note1 = Note(0, (1, 4))
 abjad> note2 = Note(0, (1, 4))
@@ -96,13 +144,8 @@ abjad> note3.tie.head
 False
 </pre>
 
-<h2 class="end-of-page">Comments</h2>
-
-<p class="comment">
-</p>
-
-<h2 class="end-of-page">To do</h2>
+<h2 class="page-section">To do</h2>
 
 <p class="to-do">
-It might be usefull to have these attributes in the Glissando interface as well...
+It might be usefull to have these attributes in <code>_GlissandoInterface</code> as well...
 </p>
