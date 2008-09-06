@@ -98,6 +98,21 @@ class _Navigator(object):
          return leaves
       
    @property
+   def _firstContainers(self):
+      '''Returns the first (leftmost) container or containers 
+         (in case there's a parallel structure) in the calling structure.'''
+      if self._client.kind('Container'):
+         containers = [ ]
+         if self._client.parallel:
+            for e in self._client:
+               containers.extend(e._navigator._firstContainers)
+         else:
+            containers.append(self._client)
+         return containers
+      else:
+         return [None]
+   
+   @property
    def _nextLeaves(self):
       '''Returns list of next leaf/leaves regardless of "thread" or type 
          of caller. If next component is/contains a parallel, return list 
@@ -195,6 +210,22 @@ class _Navigator(object):
       candidates = prev._navigator._lastLeaves
       return self._findFellowBead(candidates)
 
+#   @property
+#   def _nextThread(self):
+#      '''Returns the next threadable Container.'''
+#      if not self._client.kind('Container'):
+#         return None
+#      next = self._next
+#      if next is None or next.kind('_Leaf'):
+#         return None
+#      if next.parallel:
+#         for component in next:
+#            if self._isThreadable(component):
+#               return component
+#      else:
+#         if self._isThreadable(next):
+#            return next          
+         
    @property
    def _nextThread(self):
       '''Returns the next threadable Container.'''
@@ -203,14 +234,12 @@ class _Navigator(object):
       next = self._next
       if next is None or next.kind('_Leaf'):
          return None
-      if next.parallel:
-         for component in next:
-            if self._isThreadable(component):
-               return component
-      else:
-         if self._isThreadable(next):
-            return next          
+      containers = next._navigator._firstContainers
+      for c in containers:
+         if self._isThreadable(c):
+            return c
          
+
 
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
