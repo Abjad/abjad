@@ -1,7 +1,38 @@
-<h1>The leaf spanner interface</h1>
+<h1>
+The Abjad <code>_LeafSpannerInterface</code> class
+</h1>
 
-<p class="spacer"/>
+<p>
+The Abjad <code>_LeafSpannerInterface</code> class models the functionality that all leaf interfaces share.
+</p>
 
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute"> append( ) </p>
+   <p class="interface-attribute"> die( ) </p>
+   <p class="interface-attribute"> find( ) </p>
+   <p class="interface-attribute"> first( ) </p>
+   <p class="interface-attribute"> fracture( ) </p>
+   <p class="interface-attribute"> fuse( ) </p>
+   <p class="interface-attribute"> get( ) </p>
+   <p class="interface-attribute"> last( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute"> __contains__ </p>
+   <!--
+   <p class="interface-attribute"> __delitem__ </p>
+   -->
+   <p class="interface-attribute"> __getitem__ </p>
+   <p class="interface-attribute"> __len__ </p>
+</div>
+
+<!--
 <dl>
    <dt> methods
    <dd> <ul>
@@ -15,15 +46,21 @@
       <li> <code>last( )</code>
       <li> <code>rewrite( )</code>
    </ul
-</dl
+</dl>
+-->
 
-<h2 class="end-of-page">Comments</h2>
+<h2 class="page-section">
+Comments
+</h2>
 
 <p class="comment">
+The Abajad <code>_LeafSpannerInterface</code> class instantiates automatically at leaf-initialization time.
 </p>
 
-
-<h2 class="end-of-page">To do</h2>
+<h2 class="page-section">
+To do
+</h2>
 
 <p class="to-do">
+Decide whether <code>append( )</code> should be private.
 </p>
