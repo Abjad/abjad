@@ -1,6 +1,34 @@
-<h1>grace interface (or working with grace notes)</h1>
+<h1>
+The Abjad <code>_GraceInterface</code> together with  working with grace notes
+</h1>
 
-<p class="spacer" />
+<p>
+The Abjad <code>_GraceInterface</code> class manages graces notes attaching to notes, rests, chords and skips.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes </p>
+   <p class="interface-attribute"> after </p>
+   <p class="interface-attribute"> before </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute"> foo( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute"> __foo__ </p>
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
 
 <p>
 All types of Leaves (<code>Note</code>, <code>Rest</code>, <code>Skip</code>, <code>Chord</code>) have a <code>Grace</code> container, so all Leaves can have grace notes (or rather, grace Leaves) attached to them. 
@@ -95,3 +123,11 @@ abjad> show(note)
    </tr>
 </table>
 -->
+
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Figure out why <code_GraceInterface</code> inherits from <code>object</code> instead of <code>_Interface</code>.
+</p>
