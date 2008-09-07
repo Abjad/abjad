@@ -1,17 +1,56 @@
-<h1>Glissando interface</h1>
+<h1>
+The Abjad <code>_GlissandoInterface</code> class
+</h1>
 
-<p class="spacer" />
+<p>
+The Abjad <code>_GlissandoInterface</code> class manages note, rest and chord glissandi.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes </p>
+   <p class="interface-attribute-inherited"> first </p>
+   <p class="interface-attribute-inherited"> last </p>
+   <p class="interface-attribute-inherited"> only </p>
+   <p class="interface-attribute-inherited"> spanned </p>
+   <p class="interface-attribute-inherited"> spanner </p>
+   <p class="interface-attribute-inherited"> spanners </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute"> clear( ) </p>
+   <p class="interface-attribute-inherited"> copy( ) </p>
+   <p class="interface-attribute-inherited"> unspan( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute"> __eq__ </p>
+   <p class="interface-attribute-inherited"> __len__ </p>
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
 
 <p>
 Glissandi are managed through the <code>Glissando</code> interface. All Leaves posess this interface.
 </p>
+
 <pre>
 abjad> note = Note(0, (1, 4))
 abjad> note.glissando
 _GlissandoInterface( )
 </pre>
 
-<h2>Attributes</h2>
+<h2>
+Attributes
+</h2>
+
 <p>
 The <code>Glissando</code> interface has no attributes particular to it. All its attributes are inherited from the <code>_Interface</code> class.
 </p>
@@ -33,7 +72,7 @@ abjad> show(voice)
 </pre>
 <image src="images/1.png">
 <p>
-To unset the glissando attribute simple set it to False or None.
+To unset the glissando attribute simply set it to False or None.
 </p>
 <pre>
 abjad> note1.glissando = False
