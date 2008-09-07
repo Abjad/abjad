@@ -1,0 +1,51 @@
+<h1>The Abjad <code>_DotsInterface</code> class</h1>
+
+<p>
+The Abjad <code>_DotsInterface</code> class manages note, rest and chord rhythmic dots.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes </p>
+   <p class="interface-attribute-inherited"> first </p>
+   <p class="interface-attribute-inherited"> last </p>
+   <p class="interface-attribute-inherited"> only </p>
+   <p class="interface-attribute-inherited"> spanned </p>
+   <p class="interface-attribute-inherited"> spanner </p>
+   <p class="interface-attribute-inherited"> spanners </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods </p>
+   <p class="interface-attribute-inherited"> clear( ) </p>
+   <p class="interface-attribute-inherited"> copy( ) </p>
+   <p class="interface-attribute-inherited"> unspan( ) </p>
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads </p>
+   <p class="interface-attribute-inherited"> __len__ </p>
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
+
+<p>
+The Abjad <code>_DotsInterface</code> class instantiates automatically at leaf-initialization time.
+</p>
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comment">
+See the <code>_DotsInterface</code> class in <code>dots/interface.py</code> for implementation details.
+</p>
+
+<p class="comment">
+The Ajbad <code>_DotsInterface</code> inherits the entirety of its interface from <code>_Interface</code> and implements no attributes of its own.
+</p>
