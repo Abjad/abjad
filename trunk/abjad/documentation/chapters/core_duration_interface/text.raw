@@ -1,30 +1,42 @@
-<h1>The core duration interface</h1>
+<h1>
+The Abjad <code>_DurationInterface</code> class
+</h1>
 
 <p>
-The core duration interface implements three public attributes.
-All three are read-only.
+The Abjad <code>_DurationInterface</code> class implements the functionality that all duration interfaces share.
 </p>
 
-<ul>
-   <li> <code>prolation</code>
-   <li> <code>prolations</code>
-   <li> <code>prolated</code>
-</ul>
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes
+   <p class="interface-attribute"> prolated
+   <p class="interface-attribute"> prolation
+   <p class="interface-attribute"> prolations
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
 
 <p>
-See the chapters on <a href="../prolation/index.html">prolation</a> and <a href="../prolated_duration/index.html">prolated duration</a>.
+The Abjad <code>_DurationInterface</code> class is an abstract class and is not meant to be instantiated by hand.
 </p>
 
-<p>
-The core duration interface implements no public methods.
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comment">
+See the <code>_DurationInterface</code> class in <code>core/duration.py</code> for implementation details.
 </p>
 
-<p>
+<p class="comment">
 The core duration interface inherits from the Abjad <code>Rational</code> class.
 This means that all Abjad duration interfaces afford the standard arithmetic operations, like addition, multiplication, exponentiation and comparison.
 </p>
-
-<h2 class="end-of-page">Comments</h2>
 
 <p class="comment">
 The core duration interface currently inherits from both <code>_Interface</code> and <code>Rational</code>.
@@ -34,7 +46,16 @@ We want duration interfaces to afford comparison but not arithmetic.
 This means that we will have to implement comparison on the core duration interface by hand after we remove <code>Rational</code> from the inheritance chain.
 </p>
 
+<!--
 <p class="comment">
-The classname of the core duration interface is <code>_DurationInterface</code>.The class implements in the <code>core/duration</code> module.
+See the chapters on <a href="../prolation/index.html">prolation</a> and <a href="../prolated_duration/index.html">prolated duration</a>.
 </p>
+-->
 
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Show <code>t.duration = (3, 8)</code> assignment somewhere.
+</p>
