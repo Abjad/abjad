@@ -1,5 +1,6 @@
 from abjad.duration.rational import Rational
-from abjad.core.interface import _Interface
+#from abjad.core.interface import _Interface
+from abjad.core.trivialinterface import _TrivialInterface
 from abjad.helpers.hasname import hasname
 from operator import mul
 
@@ -18,10 +19,12 @@ def _rationalize(meth):
    return new
 
 
-class _DurationInterface(_Interface, Rational):
+#class _DurationInterface(_Interface, Rational):
+class _DurationInterface(_TrivialInterface, Rational):
 
    def __init__(self, _client):
-      _Interface.__init__(self, _client, None, [ ])
+      #_Interface.__init__(self, _client, None, [ ])
+      _TrivialInterface.__init__(self, _client)
       Rational.__init__(self, 1)
 
    ### READ-ONLY ATTRIUTES ###
