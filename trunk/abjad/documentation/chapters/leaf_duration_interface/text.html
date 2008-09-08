@@ -20,18 +20,14 @@ Public interface
 </div>
 
 <div class="interface-block">
-   <d class="interface-block-header"> Methods
+   <p class="interface-block-header"> Methods
    <p class="interface-attribute"> copy( )
    <p class="interface-attribute"> rewrite( )
 </div>
 
 <h2 class="page-section">
-Usage examples
+Examples
 </h2>
-
-<p>
-Notes, rests, chords and skips all initialize exactly one <code>_LeafDurationInterface</code>.
-</p>
 
 <pre>
    abjad> measure = Measure((4, 4), [ ])
@@ -106,6 +102,20 @@ written
    abjad> note.duration.written = (3, 8)
    abjad> note
    Note(c', 4.)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header">
+rewrite( )
+</p>
+<pre>
+   abjad> note.duration.written = (1, 4)
+   abjad> note.duration.rewrite((1, 16))
+   abjad> note.duration.written
+   Rational(1, 16)
+   abjad> note.duration.multiplier
+   Rational(4, 1)
 </pre>
 </div>
 

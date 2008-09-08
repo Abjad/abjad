@@ -10,8 +10,7 @@ try:
    f = open(sys.argv[1], 'r')
    out = open(sys.argv[1].strip('.raw') + '.html', 'w')
 except:
-   print 'requires one commandline argument.'
-   raise Exception
+   raise Exception('requires one commandline argument.')
 
 def write_inline_img(out, prev_image_number):
    out.write('</pre>\n')
