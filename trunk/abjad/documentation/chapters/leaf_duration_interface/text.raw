@@ -1,37 +1,138 @@
-<h1>The leaf duration interface</h1>
+<h1>
+The Abjad <code>_LeafDurationInterface</code> class
+</h1>
 
-<p class="spacer"/>
-
-<dl>
-   <dt> user-settable attributes
-   <dd> <ul>
-      <li> <code>written</code>
-      <li> <code>multiplier</code>
-   </ul>
-   <dt> read-only attributes
-   <dd> <ul>
-      <li> <code>prolation</code>
-      <li> <code>prolations</code>
-      <li> <code>prolated</code>
-   </ul>
-   <dt> methods
-   <dd> <ul>
-      <li> <code>copy( )</code>
-      <li> <code>rewrite( )</code>
-   </ul
-</dl
-
-<h2 class="end-of-page">Comments</h2>
-
-<p class="comment">
-Notes, rests, chords and skips all aggregate the same leaf duration interface.
+<p>
+The Abjad <code>_LeafDurationInterface</code> class manages note, rest, chord and skip duration.
 </p>
 
-<p class="comment">
-Look up <code>_LeafDurationInterface</code> in <code>leaf/duration.py</code> for implementation details.
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-bock-header"> Attributes
+   <p class="interface-attribute"> multiplier
+   <p class="interface-attribute-inherited"> prolated
+   <p class="interface-attribute-inherited"> prolation
+   <p class="interface-attribute-inherited"> prolations
+   <p class="interface-attribute"> written
+</div>
+
+<div class="interface-block">
+   <d class="interface-block-header"> Methods
+   <p class="interface-attribute"> copy( )
+   <p class="interface-attribute"> rewrite( )
+</div>
+
+<h2 class="page-section">
+Usage examples
+</h2>
+
+<p>
+Notes, rests, chords and skips all initialize exactly one <code>_LeafDurationInterface</code>.
 </p>
 
-<h2 class="end-of-page">To do</h2>
+<pre>
+   abjad> measure = Measure((4, 4), [ ])
+   abjad> measure.append(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
+   abjad> measure.append(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
+   abjad> show(measure)
+   abjad> note = measure.leaves[0]
+</pre>
+
+<div class="example">
+<p class="example-header">
+multiplier
+</p>
+<pre>
+   abjad> note.duration.multiplier is None
+   True
+</pre>
+<pre>
+   abjad> note.duration.multiplier = (1, 2)
+   abjad> print(note.format)
+   c'4 * 1/2
+</pre>
+<pre>
+   abjad> note.duration.multiplier = None
+   abjad> note.duration.multiplier is None
+   True
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited">
+prolated
+</p>
+<pre>
+   abjad> note.duration.prolated
+   Rational(1, 6) 
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited">
+prolation
+</p>
+<pre>
+   abjad> note.duration.prolation
+   Rational(2, 3)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited">
+prolation
+</p>
+<pre>
+   abjad> note.duration.prolations
+   [Rational(2, 3)]
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header">
+written
+</p>
+<pre>
+   abjad> note.duration.written
+   Rational(1, 4)
+</pre>
+<pre>
+   abjad> note.duration.written = (3, 8)
+   abjad> note
+   Note(c', 4.)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header">
+rewrite( )
+</p>
+<pre>
+   abjad> note.duration.written = (1, 4)
+   abjad> note.duration.rewrite((1, 16))
+   abjad> note.duration.written
+   Rational(1, 16)
+   abjad> note.duration.multiplier
+   Rational(4, 1)
+   abjad> f(note)
+   c'16 * 4
+</pre>
+
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comment">
+See the <code>_LeafDurationInterface</code> class in <code>leaf/duration.py</code> for implementation details.
+</p>
+
+<h2 class="page-section">
+To do
+</h2>
 
 <p class="to-do">
 The leaf duration interface has a bunch of spurious public attributes.
@@ -40,5 +141,14 @@ All of the attributes here in red are suspect:
 <br>
 <br>
 That is pretty weird. Most of these come from the core _Interface class. Why did we decide to make _DurationInterface inherit from _Interface? _Interface is really mostly about spanners and LilyPond attribute formatting....
+<br>
+<br>
+Correct; I think we developed <code>_Interface</code> originally as a <code>_SpannerInterface</code> and durations have no reason to interact with spanners. So I'd be willing to bet that the duration interfaces inherit all these spanner-oriented attributes merely as a by-product.
+<br>
+<br>
+Amd here's another thought: classes that inherit from <code>_Interface</code> also inherit the magic ability to format arbitrary LilyPond overrides, which is cool; but notice that the duration interfaces don't need that ability; there is no <code>\once \override Duration #'color = #red</code>, for example.
+<br>
+<br>
+All of these things point to breaking the inheritance chain. Should the duration interfaces then inherit from <code>object</code>? Or from a custom Abjad class?
 </p>
 

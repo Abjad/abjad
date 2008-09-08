@@ -115,6 +115,10 @@ wedge = #(define-music-function (parser location music) (ly:music?)
 diamond = #(define-music-function (parser location music) (ly:music?)
 	#{ \once \override NoteHead #'style = #'harmonic $music #})
 
+% TODO: remove me after compliling SNOW
+harmonic = #(define-music-function (parser location music) (ly:music?)
+	#{ \once \override NoteHead #'style = #'harmonic $music #})
+
 cross = #(define-music-function (parser location music) (ly:music?)
 	#{ \once \set shapeNoteStyles = ##(cross cross cross cross cross cross cross) $music #})
 

@@ -6,13 +6,33 @@
    padding: 4px;
 }
 
+UL.horizontal-attribute-list {
+   margin: 0px;
+   padding: 0px;
+}
+
+UL.horizontal-attribute-list LI {
+   display: inline;
+   list-style-type: none;
+	color: #a22222;
+	font-family: "Courier New", "Courier", serif;
+   padding-right: 20px;
+
+}
+
 DIV.example {
    margin-top: 60px
 }
 
-DIV.example P.example-header {
+DIV.example P.example-header, DIV.example P.example-header-inherited {
 	color: #a22222;
 	font-family: "Courier New", "Courier", serif;
+   /*background: #dcdcdc;*/
+   /*border-bottom: 1px solid grey;*/
+}
+
+DIV.example P.example-header-inherited {
+   color: gray;
 }
 
 DIV.attribute-group {
