@@ -18,23 +18,30 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
-<h1>The tuplet duration interface</h1>
+<h1>
+The Abjad <code>_TupletDurationInterface</code> class
+</h1>
 
-<dl>
-   <dt> read-only
-   <dd> <ul>
-      <li> <code>augmentation</code>
-      <li> <code>diminution</code>
-      <li> <code>prolated</code>
-      <li> <code>prolation</code>
-      <li> <code>prolations</code>
-      </ul>
-   <dt> methods
-   <dd> <ul>
-      <li> <code>copy( )</code>
-      </ul>
-</dl>
+<p>
+The Abjad <code>_TupletDurationInterface</code> class models the functionality that the tuplet duration interfaces share.
+</p>
 
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes
+   <p class="interface-attribute"> augmentation
+   <p class="interface-attribute-inherited"> contents
+   <p class="interface-attribute"> diminution
+   <p class="interface-attribute-inherited"> multiplier
+   <p class="interface-attribute-inherited"> prolated
+   <p class="interface-attribute-inherited"> prolation
+   <p class="interface-attribute-inherited"> prolations
+</div>
+
+<!--
 <p>
 <code>augmentation</code>: Boolean. True when tuplet multiplier is greater than 1. False otherwise.
 </p>
@@ -54,15 +61,22 @@ if we want to have the TOC on every page, we can put it here...
 <p>
 <code>prolations</code>: list of positive rationals. See <a href="../prolation/index.html">prolation</a>.
 </p>
+-->
 
-<h2 class="end-of-page">Comments</h2>
+<h2 class="page-section">
+Examples
+</h2>
 
-<p class="comment">
-This abstract tuplet duration interface probably should have a <code>multiplier</code> attribute. Both the concrete fixed-duration tuplet interface and the concrete fixed-multiplier tuplet interface have <code>multiplier</code> attributes. This abstract tuplet duration interface lacks a <code>multiplier</code> attribute because the two conrete children duration interfaces implement that attribute differently &mdash; in one case as a user-settable property and in the other case as a read-only property. Would be nice to figure out the python that will allow this abstract tuplet duration interface to have a <code>multiplier</code> value anyway.
+<p>
+The Abjad <code>_TupletDurationInterface</code> is an abstract class and is not meant to be instantiated by hand.
 </p>
 
+<h2 class="page-section">
+Comments
+</h2>
+
 <p class="comment">
-See <code>_TupletDurationInterface</code> in <code>tuplet/duration.py</code> for the implementation.
+See the <code>_TupletDurationInterface</code> class in <code>tuplet/duration.py</code> for implementation details.
 </p>
 
 
