@@ -38,4 +38,3 @@ def test_durations_gt_one_01( ):
    t.duration = 15
    assert t.format == "cs'\\maxima..."
    assert raises(ValueError, 'Note(1, 16)')
-

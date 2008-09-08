@@ -50,7 +50,17 @@ class _DurationInterface(_Interface, Rational):
    @property
    def prolated(self):
       return self.prolation * self
-
+   # TODO:
+   # this sort of reference to 'self' as the _DurationInterface
+   # itself is confusing;
+   # this sort of code should clean up when we implement 
+   # absolute duration explicitly as duration.absolute,
+   # and when we implement multiplied duration explicitly as
+   # duration.multiplied.
+   # I'm still confused as to which of the different duration 
+   # attributes 'self' is supposed to model here;
+   # would prefer to allow *no math* against self and 
+   # *only comparisons* against self.
 
    ### OVERRIDES ###
 

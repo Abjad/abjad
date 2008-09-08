@@ -34,16 +34,24 @@ class _LeafDurationInterface(_DurationInterface):
 
    ### BOUND METHODS ###
    
-   def rewrite(self, duration):
-      if self.written:
-         previous = self.written
-         self.written = duration
-         if self.multiplier:
-            multiplier = previous * self.multiplier / self.written
-         else:
-            multiplier = previous / self.written
-         if multiplier != 1:
-            self.multiplier = multiplier
+#   def rewrite(self, duration):
+#      if self.written:
+#         previous = self.written
+#         self.written = duration
+#         if self.multiplier:
+#            multiplier = previous * self.multiplier / self.written
+#         else:
+#            multiplier = previous / self.written
+#         if multiplier != 1:
+#            self.multiplier = multiplier
+
+   def rewrite(self, target):
+      previous = self.multiplied
+      self.written = target
+      self.multiplier = None
+      multiplier = previous / self.written
+      if multiplier != 1:
+         self.multiplier = multiplier
 
    ### MANAGED ATTRIBUTES ###
 
@@ -110,6 +118,16 @@ class _LeafDurationInterface(_DurationInterface):
    def _flags(self):
       return max(-int(floor(log(float(self.written._n) / \
          self.written._d, 2))) - 2, 0)
+
+   @property
+   def multiplied(self):
+      if self.written:
+         if self.multiplier:
+            return self.written * self.multiplier
+         else:
+            return Rational(*self.written.pair)
+      else:
+         return None
 
    ### FORMATTING ###
 
