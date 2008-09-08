@@ -6,6 +6,11 @@
    padding: 4px;
 }
 
+DIV.attribute-group {
+	border: 1px dotted #aaaaaa;
+   margin-top: 2px;
+}
+   
 DIV.interface-block {
 	/*border: 1px dotted #aaaaaa;*/
 }
