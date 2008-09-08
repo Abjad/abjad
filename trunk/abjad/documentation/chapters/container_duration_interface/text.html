@@ -1,28 +1,91 @@
-<h1>The container duration interface</h1>
+<h1>
+The Abjad <code>_ContainerDurationInterface</code> class
+</h1>
 
-<dl>
-<dt> read-only
-   <dd> <ul>
-   <li> <code>contents</code>
-   <li> <code>multiplier</code> &mdash; deprecate
-   <li> <code>prolated</code>
-   <li> <code>prolation</code>
-   <li> <code>prolations</code>
-   </ul>
-<dt> methods
-   <dd> <ul>
-   <li> <code>copy( )</code>
-   </ul>
-</dl>
+<p>
+The Abjad <code>_ContainerDurationInterface</code> models the functionality that all container duration interfaces share.
+</p>
 
-<h2 class="end-of-page">Comments</h2>
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes
+   <p class="interface-attribute"> contents
+   <p class="interface-attribute"> multiplier
+   <p class="interface-attribute-inherited"> prolated
+   <p class="interface-attribute-inherited"> prolation
+   <p class="interface-attribute-inherited"> prolations
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
+
+<pre>
+   abjad> container = Container(Note(0, (1, 8)) * 5)
+   abjad> tuplet = FixedDurationTuplet((5, 8), [container, Note(0, (1, 8))])
+   abjad> measure = Measure((5, 8), [tuplet])
+   abjad> staff = RhythmicStaff([measure])
+   abjad> show(staff)
+</pre>
+<image class="inline" src="images/1.png">
+<pre>
+   abjad> container
+   (c'8, c'8, c'8, c'8, c'8)
+</pre>
+
+<div class="example">
+<p class="example-header"> contents
+<!-- <p class="attribute-type"> Rational -->
+<pre>
+   abjad> container.duration.contents
+   Rational(5, 8)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header"> multiplier
+<!-- <p class="attribute-type"> Rational -->
+<pre>
+   abjad> container.duration.multiplier
+   Rational(1, 1)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> prolated
+<pre>
+   abjad> container.duration.prolated
+   Rational(25, 48)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> prolation
+<pre>
+   abjad> conatiner.duration.prolation
+   Rational(5, 6)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> prolations
+<pre>
+   abjad> conatiner.duration.prolation
+   [Rational(5, 6)]
+</pre>
+</div>
+
+<h2 class="page-section">
+Comments
+</h2>
 
 <p class="comment">
-The container duration interface implements a trivial read-only <code>multiplier</code> attribute, always equal to 1.
-I'm sure this is a way of creating an abstract attribute in the parent class that makes calculations on the tuplet duration interfaces easier.
-But this is a hack and should remove.
-
+The container duration interface implements a trivial read-only <code>multiplier</code> attribute, always equal to 1, to clean up parent-climbing algorithms like <code>excise( )</code>.
+</p>
 
 <p class="comment">
-Look up <code>_ContainerDurationInterface</code> in <code>containers/duration.py</code> for implementation details.
+See the <code>_ContainerDurationInterface</code> class in <code>containers/duration.py</code> for implementation details.
 </p>
