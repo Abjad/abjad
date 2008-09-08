@@ -67,7 +67,7 @@ class _Interface(object):
       for spanner in self.spanners[ : ]:
          spanner.die( )
 
-   def copy(self):
+   def _copy(self):
       from copy import copy
       client = self._client
       self._client = None
