@@ -254,7 +254,6 @@ class Container(_Component):
          result.extend(expr.next.spanners.fracture(direction = 'left')) 
       return result
 
-      
    def embed(self, i, expr):
       '''
       Non-fracturing insert.

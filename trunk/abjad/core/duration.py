@@ -52,7 +52,12 @@ class _DurationInterface(_TrivialInterface, Rational):
 
    @property
    def prolated(self):
-      return self.prolation * self
+      #return self.prolation * self
+      # EVENTUALLY: self.prolation * self.preprolated
+      if hasattr(self, 'target'):
+         return self.prolation * self.target
+      else:
+         return self.prolation * self
    # TODO:
    # this sort of reference to 'self' as the _DurationInterface
    # itself is confusing;

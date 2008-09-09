@@ -46,7 +46,8 @@ def test_scopy_03( ):
    new = scopy(t, 0, (1, 8))
    assert isinstance(new, FixedDurationTuplet)
    assert len(new) == 2
-   assert new.duration == Rational(1, 8) 
+   #assert new.duration == Rational(1, 8) 
+   assert new.duration.target == Rational(1, 8) 
    assert new[0].duration == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
    assert new[1].duration == Rational(1, 16)

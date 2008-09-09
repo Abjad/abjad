@@ -30,7 +30,8 @@ def test_lcopy_01( ):
    tuplet = staff[0]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 2
-   assert tuplet.duration == Rational(2, 12)
+   #assert tuplet.duration == Rational(2, 12)
+   assert tuplet.duration.target == Rational(2, 12)
    assert tuplet.duration.prolated == Rational(1, 6)
    assert tuplet.duration.multiplier == Rational(2, 3)
    assert check(staff)
@@ -76,10 +77,12 @@ def test_lcopy_02( ):
    assert isinstance(new[0], Voice)
    assert len(new[0]) == 2
    assert isinstance(new[0][0], FixedDurationTuplet)
-   assert new[0][0].duration == Rational(2, 12)
+   #assert new[0][0].duration == Rational(2, 12)
+   assert new[0][0].duration.target == Rational(2, 12)
    assert len(new[0][0]) == 2
    assert isinstance(new[0][1], FixedDurationTuplet)
-   assert new[0][1].duration == Rational(2, 12)
+   #assert new[0][1].duration == Rational(2, 12)
+   assert new[0][1].duration.target == Rational(2, 12)
    assert len(new[0][1]) == 2
    '''
    \new Staff {
@@ -148,7 +151,8 @@ def test_lcopy_06( ):
    tuplet = new[0]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 3
-   assert tuplet.duration == Rational(3, 4)
+   #assert tuplet.duration == Rational(3, 4)
+   assert tuplet.duration.target == Rational(3, 4)
    assert tuplet.duration.prolated == Rational(3, 5)
    assert tuplet.duration.multiplier == Rational(1)
    note = tuplet[0]
@@ -174,7 +178,8 @@ def test_lcopy_07( ):
    tuplet = measure[0]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 3
-   assert tuplet.duration == Rational(3, 4)
+   #assert tuplet.duration == Rational(3, 4)
+   assert tuplet.duration.target == Rational(3, 4)
    assert tuplet.duration.prolated == Rational(3, 5)
 
 
@@ -188,13 +193,15 @@ def test_lcopy_08( ):
    tuplet = new[0]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 2
-   assert tuplet.duration == Rational(2, 4)
+   #assert tuplet.duration == Rational(2, 4)
+   assert tuplet.duration.target == Rational(2, 4)
    assert tuplet.duration.prolated == Rational(2, 6)
    assert tuplet.duration.multiplier == Rational(1)
    tuplet = new[1]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 3
-   assert tuplet.duration == Rational(3, 4)
+   #assert tuplet.duration == Rational(3, 4)
+   assert tuplet.duration.target == Rational(3, 4)
    assert tuplet.duration.prolated == Rational(3, 6)
    assert tuplet.duration.multiplier == Rational(1)
    '''

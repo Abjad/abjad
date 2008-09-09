@@ -41,11 +41,13 @@ def test_leaf_split_04( ):
    assert isinstance(new, list)
    assert len(new) == 2
    assert isinstance(new[0], FixedDurationTuplet)
-   assert new[0].duration == Rational(1, 12)
+   #assert new[0].duration == Rational(1, 12)
+   assert new[0].duration.target == Rational(1, 12)
    assert isinstance(new[0][0], Note)
    assert new[0][0].duration == Rational(1, 8)
    assert isinstance(new[1], FixedDurationTuplet)
-   assert new[1].duration == Rational(1, 6)
+   #assert new[1].duration == Rational(1, 6)
+   assert new[1].duration.target == Rational(1, 6)
    assert isinstance(new[1][0], Note)
    assert new[1][0].duration == Rational(1, 4)
 

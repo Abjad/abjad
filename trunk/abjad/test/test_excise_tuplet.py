@@ -7,7 +7,8 @@ def test_excise_tuplet_01(  ):
    excise(t.leaves[0])
    assert isinstance(t, FixedDurationTuplet)
    assert len(t) == 4
-   assert t.duration == Rational(4, 5)
+   #assert t.duration == Rational(4, 5)
+   assert t.duration.target == Rational(4, 5)
    assert t.duration.prolated == Rational(4, 5)
    assert isinstance(t[0], Note)
    assert t[0].duration == Rational(1, 4)
@@ -34,10 +35,12 @@ def test_excise_tuplet_03( ):
    excise(t.leaves[-1])
    assert isinstance(t, FixedDurationTuplet)
    assert len(t) == 3
-   assert t.duration == Rational(8,9)
+   #assert t.duration == Rational(8,9)
+   assert t.duration.target == Rational(8,9)
    assert t.duration.prolated == Rational(8,9)
    assert isinstance(t[2], FixedDurationTuplet)
-   assert t[2].duration == Rational(2,6)
+   #assert t[2].duration == Rational(2,6)
+   assert t[2].duration.target == Rational(2,6)
    assert t[2].duration.prolated == Rational(2, 9)
 
 

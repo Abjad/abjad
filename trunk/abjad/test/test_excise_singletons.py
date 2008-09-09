@@ -10,7 +10,8 @@ def test_excise_singletons_01( ):
    excise(t.leaves[-1])
    assert isinstance(t, FixedDurationTuplet)
    assert len(t) == 2
-   assert t.duration == Rational(2, 6)
+   #assert t.duration == Rational(2, 6)
+   assert t.duration.target == Rational(2, 6)
    assert t.duration.multiplier == Rational(2, 3)
    assert t.duration.prolated == Rational(2, 6)
    assert isinstance(t[0], Note)
@@ -28,7 +29,8 @@ def test_excise_singletons_02( ):
    excise(t.leaves[-1])
    assert isinstance(t, FixedDurationTuplet)
    assert len(t) == 2
-   assert t.duration == Rational(2, 6)
+   #assert t.duration == Rational(2, 6)
+   assert t.duration.target == Rational(2, 6)
    assert t.duration.multiplier == Rational(2, 3)
    assert t.duration.prolated == Rational(2, 6)
    assert isinstance(t[0], Note)
@@ -54,7 +56,8 @@ def test_excise_singletons_03( ):
    excise(t.leaves[-1])
    assert isinstance(t, FixedDurationTuplet)
    assert len(t) == 3
-   assert t.duration == Rational(5, 12)
+   #assert t.duration == Rational(5, 12)
+   assert t.duration.target == Rational(5, 12)
    assert t.duration.prolated == Rational(5, 12)
    assert t.duration.multiplier == Rational(2, 3)
    assert isinstance(t[0], Note)

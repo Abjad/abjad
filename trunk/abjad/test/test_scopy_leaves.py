@@ -24,7 +24,8 @@ def test_scopy_leaves_02( ):
    t = Note(0, (1, 4))
    new = scopy(t, 0, (1, 12))
    assert isinstance(new, FixedDurationTuplet)
-   assert new.duration == Rational(1, 12)
+   #assert new.duration == Rational(1, 12)
+   assert new.duration.target == Rational(1, 12)
    assert len(new) == 1
    assert new[0].duration == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
@@ -35,7 +36,8 @@ def test_scopy_leaves_03( ):
    t = Note(0, (1, 4))
    new = scopy(t, (1, 12), (2, 12)) 
    assert isinstance(new, FixedDurationTuplet)
-   assert new.duration == Rational(1, 12)
+   #assert new.duration == Rational(1, 12)
+   assert new.duration.target == Rational(1, 12)
    assert len(new) == 1
    assert new[0].duration == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
@@ -46,7 +48,8 @@ def test_scopy_leaves_04( ):
    t = Note(0, (1, 4))
    new = scopy(t, (1, 6), (1, 4))
    assert isinstance(new, FixedDurationTuplet)
-   assert new.duration == Rational(1, 12)
+   #assert new.duration == Rational(1, 12)
+   assert new.duration.target == Rational(1, 12)
    assert len(new) == 1
    assert new[0].duration == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
@@ -73,7 +76,8 @@ def test_scopy_leaves_07( ):
    t = Note(0, (1, 4))
    new = scopy(t, (2, 12), (1, 2))
    assert isinstance(new, FixedDurationTuplet)
-   assert new.duration == Rational(1, 12)
+   #assert new.duration == Rational(1, 12)
+   assert new.duration.target == Rational(1, 12)
    assert new[0].duration == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
 
@@ -91,7 +95,8 @@ def test_scopy_leaves_09( ):
    t = Note(0, (1, 4))
    new = scopy(t, 0, (5, 24))
    assert isinstance(new, FixedDurationTuplet)
-   assert new.duration == Rational(5, 24)
+   #assert new.duration == Rational(5, 24)
+   assert new.duration.target == Rational(5, 24)
    assert len(new) == 1
    assert new[0].duration == Rational(1, 4)
    assert new[0].duration.prolated == Rational(5, 24)
@@ -103,6 +108,7 @@ def test_scopy_leaves_10( ):
    new = scopy(t, 0, (1, 5))
    assert isinstance(new, FixedDurationTuplet)
    assert len(new) == 1
-   assert new.duration == Rational(1, 5)
+   #assert new.duration == Rational(1, 5)
+   assert new.duration.target == Rational(1, 5)
    assert new[0].duration == Rational(1, 4)
    assert new[0].duration.prolated == Rational(1, 5)

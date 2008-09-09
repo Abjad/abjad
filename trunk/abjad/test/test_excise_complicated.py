@@ -26,7 +26,8 @@ def test_excise_tuplet_01( ):
    tuplet = t[0]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 3
-   assert tuplet.duration == Rational(1)
+   #assert tuplet.duration == Rational(1)
+   assert tuplet.duration.target == Rational(1)
    assert tuplet.duration.prolated == Rational(8, 9)
    assert tuplet.duration.multiplier == Rational(3, 4)
    note = t[0][0]
@@ -36,7 +37,8 @@ def test_excise_tuplet_01( ):
    tuplet = t[0][-1]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 2
-   assert tuplet.duration == Rational(1, 3)
+   #assert tuplet.duration == Rational(1, 3)
+   assert tuplet.duration.target == Rational(1, 3)
    assert tuplet.duration.prolated == Rational(2, 9)
    assert tuplet.duration.multiplier == Rational(2, 3)
    note = t[0][-1][0]
