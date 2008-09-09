@@ -290,7 +290,7 @@ class _Spanner(object):
 
    def _unblockByReference(self, leaf):
       if self not in leaf.spanners:
-         leaf.spanners.append(self)
+         leaf.spanners._append(self)
 
    def _unblock(self, i = None, j = None):
       if i is not None and j is None:

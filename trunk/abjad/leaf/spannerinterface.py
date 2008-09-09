@@ -44,7 +44,7 @@ class _LeafSpannerInterface(object):
 
    ### HANDLERS ####
 
-   def append(self, spanner):
+   def _append(self, spanner):
       if spanner not in self:
          self._spanners.append(spanner)
 
