@@ -12,6 +12,8 @@ class _MeasureFormatter(_ContainerFormatter):
    @property
    def _meter(self):
       result = [ ]
+      if self._client.meter:
+         result.extend(['\t' + x for x in self._client.meter._before])
       if self._client.meter and not self._client.meter.hide:
          result.append('\t' + self._client.meter.lily)
       return result

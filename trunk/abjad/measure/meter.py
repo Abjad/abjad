@@ -1,8 +1,16 @@
 from .. duration.rational import Rational
+from .. core.interface import _Interface
 
-class _Meter(object):
+# TODO: give _Meter the LilyPond attribute-formatting code
+# without forcing _Meter to inherite from _Interface
+class _Meter(_Interface):
 
+   # NOTE: notice the trickiness with 'Staff.TimeSignature' instead
+   # of simply 'TimeSignature' for the grob;
+   # this is because the LilyPond TimeSignature grob lives in the 
+   # LilyPond Staff context rather than the LilyPond Voice context.
    def __init__(self, n, d):
+      _Interface.__init__(self, None, 'Staff.TimeSignature', ['TimeSignature'])
       self.pair = (n, d)
       self.hide = False
 
@@ -13,8 +21,22 @@ class _Meter(object):
 
    def __str__(self):
       return '%s/%s' % (self.numerator, self.denominator)
+
+   def __nonzero__(self):
+      return True
    
    ### MANAGED ATTRIBUTES ###
+
+   @apply
+   def hide( ):
+      def fget(self):
+         return self._hide
+      def fset(self, arg):
+         if isinstance(arg, bool):
+            self._hide = arg
+         else:
+            raise ValueError('meter hide must be boolean.')
+      return property(**locals( ))
 
    @apply
    def pair( ):
