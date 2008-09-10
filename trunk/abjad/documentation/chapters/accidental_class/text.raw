@@ -3,8 +3,12 @@ The Abjad <code>_Accidental</code> class
 </h1>
 
 <p>
-The Abjad <code>_Accidental</code> defines the following public interface.
+The Abjad <code>_Accidental</code> class models the sharps, flats and other accidentals attaching to notes and chords.
 </p>
+
+<h2 class="page-section">
+Public interface
+</h2>
 
 <div class="interface-block">
 <p class="interface-block-header"> Attributes
@@ -24,8 +28,87 @@ The Abjad <code>_Accidental</code> defines the following public interface.
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header"> Overrides
+<p class="interface-block-header"> Overloads
    <p class="interface-attribute"> __eq__
+</div>
+
+<h2 class="page-section">
+Attribute examples
+</h2>
+
+<div class="example">
+<p class="example-header"> adjustment
+<pre>
+   abjad> note = Note(13, (1, 4))
+   abjad> staff = Staff([note])
+   abjad> show(staff)
+   abjad> note.pitch.accidental.adjustment
+   1
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header"> string
+<pre>
+   abjad> note = Note(15, (1, 4))
+   abjad> staff = Staff([note])
+   abjad> show(staff)
+   abjad> note.pitch.accidental.string
+   'f'
+</pre>
+</div>
+
+<h2 class="page-section">
+Dictionary examples
+</h2>
+
+<div class="example">
+<p class="example-header"> accidentalStringToAdjustment
+</pre>
+<pre>
+   abjad> note = Note(0, (1, 4))
+   abjad> note.pitch.accidental.accidentalStringToAdjustment['tqs']
+   1.5
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header"> adjustmentToAccidentalString
+<pre>
+   abjad> note = Note(0, (1, 4))
+   abjad> note.pitch.accidental.adjustmentToAccidentalString[-1]
+   'f'
+</pre>
+</div>
+
+<h2 class="page-section">
+Method examples
+</h2>
+
+<div class="example">
+<p class="example-header"> hasNone( )
+<pre>
+   abjad> note = Note(17, (1, 4))
+   abjad> staff = Staff([note])
+   abjad> show(staff)
+   abjad> note.pitch.accidental.hasNone( )
+   True
+</pre>
+</div>
+
+<h2 class="page-section">
+Overload examples
+</h2>
+
+<div class="example">
+<p class="example-header"> __eq__
+<pre>
+   abjad> note = Note(18, (1, 4))
+   abjad> staff = Staff([note])
+   abjad> show(staff)
+   abjad> note.pitch.accidental == 's'
+   True
+</pre>
 </div>
 
 <h2 class="page-section">
@@ -40,4 +123,12 @@ Nontonal music may prefer to use the LilyPond <code>'forget</code> option for ha
 
 <p class="comment">
 Do we have an Abjad-native way of setting <code>'forget</code>?
+</p>
+
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Reimplement Java-style <code>hasNone( )</code> predicate as read-only <code>none</code> attribute.
 </p>
