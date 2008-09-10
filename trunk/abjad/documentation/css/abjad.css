@@ -21,18 +21,70 @@ UL.horizontal-attribute-list LI {
 }
 
 DIV.example {
-   margin-top: 60px
+   margin-top: 60px;
+}
+
+DIV.example-header {
+   margin-top: 80px;
+   margin-left: 0px;
+}
+
+DIV.example-summary {
+   margin-left: 0px;
+   /*border: 1px solid gray;*/
+}
+
+TABLE.example-summary-table {
+   margin-left: 0px;
+   /*border: 1px solid blue;*/
+}
+
+TD.example-summary-label {
+   text-align: right;
+}
+
+TD.example-summary-value {
+   text-align: left;
+   padding-left: 10px;
+}
+
+DIV.example-body {
+   margin-left: 40px;
+}
+
+H3.example-section {
+   margin-top: 40px;
+}
+
+DIV.example-text {
+
+}
+
+DIV.example-code {
+   margin-left: 40px;
+}
+
+DIV.example-code IMG {
+   margin-left: 20px;
+}
+
+DIV.example-footer {
+   margin-left: 0px;
+   font-style: italic;
 }
 
 DIV.example P.example-header, DIV.example P.example-header-inherited {
 	color: #a22222;
 	font-family: "Courier New", "Courier", serif;
    /*background: #dcdcdc;*/
-   /*border-bottom: 1px solid grey;*/
+	font-weight: bold;
+   border-bottom: 1px solid grey;
 }
 
 DIV.example P.example-header-inherited {
    color: gray;
+   font-size: 16px;
+   /*border: 1px solid gray;*/
 }
 
 DIV.attribute-group {
@@ -181,14 +233,16 @@ DL.interface-definition UL LI {
 	font-family: "Courier New", "Courier", serif;
 }
 
+/*
 IMG {
 	margin-left: 25px;
    margin-bottom: 40px;
 }
 
-.inline {
+IMG.inline {
    margin-bottom: 10px;
 }
+*/
 
 PRE, DIV.abjad {
 	color: #a02222;

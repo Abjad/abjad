@@ -1,70 +1,457 @@
-<h1>The Abjad <code>Chord</code> class</h1>
+<h1>
+The Abjad <code>Chord</code> class
+</h1>
 
 <p>
-The Abjad <code>Chord</code> class defines the following public interface.
+The Abjad <code>Chord</code> class models chords.
 </p>
 
-<dl class="interface-definition">
-<dt> read-only
-<dd> <ul>
-   <li class="inherited"> clef 
-   <li class="inherited"> format 
-   <li class="inherited"> leaves 
-   <li class="inherited"> number 
-   <li class="inherited"> offset 
-   <li class="inherited"> staff 
-   </ul>
-<dt> read-writer
-<dd> <ul>
-   <li class="inherited"> accidentals 
-   </ul>
-<dt> interfaces
-<dd> <ul>
-   <li class="inherited"> articulations 
-   <li class="inherited"> barline 
-   <li class="inherited"> beam 
-   <li class="inherited"> dots 
-   <li class="inherited"> duration 
-   <li class="inherited"> dynamics 
-   <li class="inherited"> formatter 
-   <li class="inherited"> glissando 
-   <li class="inherited"> grace 
-   <li class="inherited"> harmonic 
-   <li> noteheads
-   <li> pitches
-   <li class="inherited"> spanners 
-   <li class="inherited"> staff 
-   <li class="inherited"> stem 
-   <li class="inherited"> tempo 
-   <li class="inherited"> tie 
-   <li class="inherited"> tremolo 
-   <li class="inherited"> trill 
-   </ul>
-<dt> navigation
-<dd> <ul>
-   <li class="inherited"> next
-   <li class="inherited"> prev
-   </ul>
-<dt> methods
-<dd> <ul>
-   <li> __len__
-   <li> __contains__
-   <li> __getitem__
-   <li> __setitem__
-   <li> __delitem__
-   <li class="inherited"> __mul__ 
-   <li class="inherited"> __rmul__ 
-   <li class="inherited"> copy( ) 
-   <li class="inherited"> kind( ) 
-   <li> append( )
-   <li> extend( )
-   <li> pop( )
-   <li> remove( )
-   </ul>
-</dl>
+<h2 class="page-section">
+Public interface
+</h2>
 
-<h2 class="end-of-page">Comments</h2>
+<div class="example-block">
+<p class="example-block-header"> Attributes
+<p class="interface-attribute-inherited"> accidentals
+<p class="interface-attribute-inherited"> articulations
+<p class="interface-attribute-inherited"> barline
+<p class="interface-attribute-inherited"> beam
+<p class="interface-attribute-inherited"> clef
+<p class="interface-attribute-inherited"> dots
+<p class="interface-attribute-inherited"> duration
+<p class="interface-attribute-inherited"> dynamics
+<p class="interface-attribute-inherited"> format
+<p class="interface-attribute-inherited"> formatter
+<p class="interface-attribute-inherited"> glissando
+<p class="interface-attribute-inherited"> grace
+<p class="interface-attribute-inherited"> harmonic
+<p class="interface-attribute-inherited"> leaves
+<p class="interface-attribute-inherited"> next
+<p class="interface-attribute"> noteheads
+<p class="interface-attribute-inherited"> number
+<p class="interface-attribute-inherited"> offset
+<p class="interface-attribute"> pitches
+<p class="interface-attribute-inherited"> prev
+<p class="interface-attribute-inherited"> spanners
+<p class="interface-attribute-inherited"> staff
+<p class="interface-attribute-inherited"> stem
+<p class="interface-attribute-inherited"> tempo
+<p class="interface-attribute-inherited"> tie
+<p class="interface-attribute-inherited"> tremolo
+<p class="interface-attribute-inherited"> trill
+</div>
+
+<div class="interface-block">
+<p class="interface-block-header"> Methods
+<p class="interface-attribute"> append( )
+<p class="interface-attribute-inherited"> copy( )
+<p class="interface-attribute"> extend( )
+<p class="interface-attribute-inherited"> kind( )
+<p class="interface-attribute"> pop( )
+<p class="interface-attribute"> remove( )
+</div>
+
+<div class="interface-block">
+<p class="interface-block-header"> Overloads
+<p class="interface-attribute"> __contains__
+<p class="interface-attribute"> __len__
+<div class="attribute-group">
+<p class="interface-attribute"> __delitem__
+<p class="interface-attribute"> __getitem__
+<p class="interface-attribute"> __setitem__
+</div>
+<div class="attribute-group">
+<p class="interface-attribute-inherited"> __mul__
+<p class="interface-attribute-inherited"> __rmul__
+</div>
+</div>
+
+<h2 class="page-section">
+Attribute examples
+</h2>
+
+<!-- ### ACCIDENTALS ### -->
+
+<div class="example">
+<p class="example-header-inherited"> accidentals
+<p> NOT IMPLEMENTED
+</div>
+
+<!-- ### ARTICULATIONS ### -->
+
+<div class="example">
+<p class="example-header-inherited"> articulations
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> chord.articulations.append('staccato')
+abjad> show(measure)
+</pre>
+<image class="inline" src="images/1.png">
+<pre>
+abjad> print(chord.format)
+&lt;c' d' bf'&gt;4 -\staccato
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> barline
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> chord.barline = '||'
+abjad> show(measure)
+</pre>
+<image class="inline" src="images/2.png">
+<pre>
+abjad> print(chord.format)
+&lt;c' d' bf'&gt;4
+\bar "||"
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> beam
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> show(measure)
+</pre>
+<image class="inline" src="images/3.png">
+<pre>
+abjad> chord.beam.beamable
+False
+</pre>
+</div>
+
+<!-- ### CLEF ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> clef
+<p> Read / write attribute inherited from <code>_Leaf</code>.
+</div>
+
+<!--
+<div class="example-summary">
+<table class="example-summary-table">
+<tr>
+<td class="example-summary-label"> return type:
+<td class="example-summary-value"> <code>Clef</code> object
+<tr>
+<td class="example-summary-label"> assigns with:
+<td class="example-summary-value"> clef string
+<tr>
+<td class="example-summary-label"> clears with:
+<td class="example-summary-value"> <code>None</code>
+<tr>
+<td class="example-summary-label"> format:
+<td class="example-summary-value"> &mdash;
+</table>
+</div>
+-->
+
+<div class="example-body">
+
+<h3 class="example-section">
+Type
+</h3>
+
+<div class="example-text">
+<p> Returns an Abjad <code>Clef</code> object.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/4.png">
+<pre>
+abjad> chord.clef
+Clef(treble)
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment
+</h3>
+
+<div class="example-text">
+<p> Assign any valid clef string.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> chord.clef = 'alto'
+</pre>
+<image src="images/5.png">
+</div>
+
+<h3 class="example-section">
+Default
+</h3>
+
+<div class="example-text">
+<p> Unassign with <code>None</code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord.clef = None
+</pre>
+<image src="images/6.png">
+</div>
+
+</div>
+
+</div>
+
+<!-- ### DOTS ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> dots
+<p> Read-only attribute inherited from <code>_Leaf</code>.
+<p> See <a href="../dots_interface/index.html">_DotsInterface</a> for more information.
+</div>
+
+<!--
+<div class="example-summary">
+<table class="example-summary-table">
+<tr>
+<td class="example-summary-label"> return:
+<td class="example-summary-value"> <code>_DotsInterface</code> object
+<tr>
+<td class="example-summary-label"> assign:
+<td class="example-summary-value"> &mdash
+<tr>
+<td class="example-summary-label"> clear:
+<td class="example-summary-value"> &mdash
+<tr>
+<td class="example-summary-label"> format:
+<td class="example-summary-value"> LilyPond <tt>Dots</tt> grob
+</table>
+</div>
+-->
+
+<div class="example-body">
+
+<h3 class="example-section">
+Type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code>_DotsInterface</code.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/7.png">
+<pre>
+abjad> chord.dots
+_DotsInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment
+</h3>
+
+<div class="example-text">
+<p>The <code>dots</code> attribute is read-only.
+</div>
+
+<h3 class="example-section">
+Clear
+</h3>
+
+<div class="example-text">
+<p>The <code>dots</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+<!-- ### DURATION ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> duration
+<p> Read-only attribute inherited from <code>_Leaf</code>.
+</div>
+
+<div class="example-summary">
+<table class="example-summary-table">
+<tr>
+<td class="example-summary-label"> return:
+<td class="example-summary-value"> <code>_LeafDurationInterface</code>
+<tr>
+<td class="example-summary-label"> assign: 
+<td class="example-summary-value"> <code>Rational</code>
+<tr>
+<td class="example-summary-label"> clear: 
+<td class="example-summary-value"> &mdash;
+<tr>
+<td class="example-summary-label"> format: 
+<td class="example-summary-value"> &mdash;
+</table>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return
+</h3>
+
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> show(measure)
+</pre>
+<image class="inline" src="images/8.png">
+<pre>
+abjad> chord.duration
+DurationInterface(1/4)
+</pre>
+
+<h3 class="example-section">
+Assign
+</h3>
+
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> chord.duration = Rational(1, 8)
+abjad> show(measure)
+</pre>
+<image class="inline" src="images/9.png">
+
+</div>
+
+<div class="example-footer">
+<p> <i>See <a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a> for more information.</i>
+</div>
+
+</div>
+
+<div class="example">
+
+<!-- ### DYNAMICS ### -->
+
+<div class="example-header">
+<p class="example-header-inherited"> dynamics
+<p> Read /write attribute inherited from <code>_Leaf</code>.
+</div>
+
+<div class="example-summary">
+<table class="example-summary-table">
+<tr>
+<td class="example-summary-label"> return:
+<td class="example-summary-value"> <code>_DynamicsInterface</code>
+<tr>
+<td class="example-summary-label"> assign: 
+<td class="example-summary-value"> dynamics string
+<tr>
+<td class="example-summary-label"> clear: 
+<td class="example-summary-value"> <code>None</code>
+<tr>
+<td class="example-summary-label"> format: 
+<td class="example-summary-value"> LilyPond <tt>DynamicText</tt> grob
+</table>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return
+</h3>
+
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> show(measure)
+</pre>
+<image class="inline" src="images/10.png">
+<pre>
+abjad> chord.dynamics
+_DynamicsInterface( )
+</pre>
+
+<h3 class="example-section">
+Assign
+</h3>
+
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> chord.dynamics = 'f'
+abjad> show(measure)
+</pre>
+<image class="inline" src="images/11.png">
+
+<h3 class="example-section">
+Clear
+</h3>
+
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> chord.dynamics = 'f'
+abjad> chord.dynamics = None
+abjad> show(measure)
+</pre>
+<image class="inline" src="images/12.png">
+
+<h3 class="example-section">
+Format
+</h3>
+
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> measure = Measure((1, 4), [chord])
+abjad> measure.meter.transparent = True
+abjad> chord.dynamics.color = 'red'
+</pre>
+
+<pre>
+abjad> print(chord.format)
+\once \override DynamicText #'color = #red
+&lt;c' d' bf'&gt;4
+</pre>
+
+</div>
+
+<div class="example-footer">
+<p> <i>See <a href="../dynamics_interface/index.html">_DynamicsInterface</a> for more information.</i>
+</div>
+
+</div>
+<h2 class="page-section">
+Comments
+</h2>
 
 <p class="comment">
 See the <code>Chord</code> class in <code>chord/chord.py</code> for implementation details.
+</p>
+
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Implement <code>accidentals</code> in <code>_ChordFormatter</code>.
 </p>

@@ -18,69 +18,78 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
-<h1>The Abjad <code>_Leaf</code> class</h1>
-
-<h2>Public interface</h2>
+<h1>
+The Abjad <code>_Leaf</code> class
+</h1>
 
 <p>
-The Abjad <code>_Leaf</code> class defines the following public interface.
+The Abjad <code>_Leaf</code> class models the functionality that all notes, rests, chords and skips share.
 </p>
 
-<dl class="interface-definition">
-<dt> read-only
-<dd> <ul>
-   <li> clef
-   <li class="inherited"> format
-   <li> leaves
-   <li> number
-   <li> offset
-   <li> staff
-   </ul>
-<dt> read-writer
-<dd> <ul>
-   <li class="inherited"> accidentals
-   </ul>
-<dt> interfaces
-<dd> <ul>
-   <li> articulations
-   <li class="inherited"> barline
-   <li> beam
-   <li> dots
-   <li> duration
-   <li> dynamics
-   <li> formatter
-   <li> glissando
-   <li> grace
-   <li> harmonic
-   <li> spanners
-   <li> staff
-   <li> stem
-   <li class="inherited"> tempo
-   <li> tie
-   <li> tremolo
-   <li> trill
-   </ul>
-<dt> navigation
-<dd> <ul>
-   <li> next
-   <li> prev
-   </ul>
-<dt> methods
-<dd> <ul>
-   <li class="inerhited"> __mul__
-   <li class="inherited"> __rmul__
-   <li class="inherited"> copy( )
-   <li class="inherited"> kind( )
-   </ul>
-</dl>
+<h2 class="page-section">
+Public interface
+</h2>
 
-<h2 class="end-of-page">Comments</h2>
+<div class="example-block">
+<p class="example-block-header"> Attributes
+   <p class="interface-attribute-inherited"> accidentals
+   <p class="interface-attribute"> articulations
+   <p class="interface-attribute-inherited"> barline
+   <p class="interface-attribute"> beam
+   <p class="interface-attribute"> clef
+   <p class="interface-attribute"> dots
+   <p class="interface-attribute"> duration
+   <p class="interface-attribute"> dynamics
+   <p class="interface-attribute-inherited"> format
+   <p class="interface-attribute"> formatter
+   <p class="interface-attribute"> glissando
+   <p class="interface-attribute"> grace
+   <p class="interface-attribute"> harmonic
+   <p class="interface-attribute"> leaves
+   <p class="interface-attribute"> next
+   <p class="interface-attribute"> number
+   <p class="interface-attribute"> offset
+   <p class="interface-attribute"> prev
+   <p class="interface-attribute"> spanners
+   <p class="interface-attribute"> staff
+   <p class="interface-attribute"> stem
+   <p class="interface-attribute-inherited"> tempo
+   <p class="interface-attribute"> tie
+   <p class="interface-attribute"> tremolo
+   <p class="interface-attribute"> trill
+</div>
+
+<div class="interface-block">
+<p class="interface-block-header"> Methods
+   <p class="interface-attribute-inherited"> copy( )
+   <p class="interface-attribute-inherited"> kind( )
+</div>
+
+<div class="interface-block">
+<p class="interface-block-header"> Overloads
+   <div class="attribute-group">
+   <p class="interface-attribute-inherited"> __mul__
+   <p class="interface-attribute-inherited"> __rmul__
+   </div>
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
+
+<p>
+The Abjad <code>_Leaf</code> class is an abstract class and is not meant to be instantiated by hand.
+</p>
+
+<h2 class="page-section">
+Comments
+</h2>
 
 <p class="comment">
 See the <code>_Leaf</code> class in <code>leaf/leaf.py</code> for implementation details.
 </p>
 
-<h2 class="end-of-page">To do</h2>
+<h2 class="page-section">To do</h2>
 
 <p class="to-do">
 Group and alphabetize the interface definitions in <code>_Leaf</code>.
