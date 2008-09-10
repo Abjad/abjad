@@ -21,6 +21,7 @@ def write_terminal_img(out, prev_image_number):
    out.write('<image src="images/%s.png">\n' % prev_image_number)
 
 pattern = re.compile('abjad> ')
+hide_me_pattern = re.compile('hide> ')
 inline_indicator = '<!-- inline -->'
 
 found_abjad_directive = False
@@ -43,30 +44,31 @@ for line in f.readlines( ):
       #image_number += 1
    elif inline_indicator in line:
       found_inline = True
-   elif found_abjad_directive and 'abjad> ' in line:
+   elif found_abjad_directive and ('abjad> ' in line or 'hide> ' in line):
       if found_show:
          write_inline_img(out, image_number - 1)
          tmp_aj = open('tmp.aj', 'w')
          tmp_aj.write('from abjad import *\n')
          found_show = False
-      abjad_directive = pattern.split(line)[-1]
+      if 'abjad> ' in line:
+         abjad_directive = pattern.split(line)[-1]
+      elif 'hide> ' in line:
+         abjad_directive = hide_me_pattern.split(line)[-1]
       # keep adding successive lines of directives to the tempfile
       if not abjad_directive.startswith('show'):
          tmp_aj.write(abjad_directive)
       # compile the example after the last line makes it into the tempfile
       else:
          found_show = True
-         #lily_object = abjad_directive.strip('show(')
+         # strip 'show(' from beginning of line
          lily_object = abjad_directive[5:]
          lily_object = lily_object.strip(')\n')
          tmp_aj.write("tmp_ly = open('%s.ly', 'w')\n" % image_number)
          tmp_aj.write("""tmp_ly.write('\\\\version "2.11.56"\\n')\n""")
          tmp_aj.write("""tmp_ly.write('\\\\include "english.ly"\\n')\n""")
-         #tmp_aj.write("""tmp_ly.write('\\\\include "/home/abjad/abjad/trunk/abjad/scm/abjad.scm"\\n')\n""")
          tmp_aj.write(
             """tmp_ly.write('\\\\include "%s/scm/abjad.scm"\\n')\n""" %
             ABJADPATH)
-         #tmp_aj.write("""tmp_ly.write('\\\\include "/home/abjad/abjad/trunk/abjad/layout/web.ly"\\n')\n""")
          tmp_aj.write(
             """tmp_ly.write('\\\\include "%s/layout/web.ly"\\n')\n""" %
             ABJADPATH)
@@ -90,7 +92,9 @@ for line in f.readlines( ):
    # faithfully copy over line from input to outputfile;
    # embed image if deemed necessary earlier in loop above
    if inline_indicator not in line: 
-      out.write(line)
+      if 'hide> ' not in line:
+         #out.write(line)
+         out.write(line.strip(' '))
    if just_closed_tag:
       prev_image_number = image_number - 1
       if found_show:
