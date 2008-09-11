@@ -9,7 +9,7 @@ class _NoteHead(_Interface):
       _Interface.__init__(self, client, 'NoteHead', [ ])
       self._formatter = _NoteHeadFormatter(self)
       self.pitch = pitch
-      self._shape = None
+      self._style = None
 
    ### REPR ###
 
@@ -47,73 +47,80 @@ class _NoteHead(_Interface):
             raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
 
-   ### TODO change this to style?
    @apply
-   def shape( ):
+   def style( ):
       def fget(self):
-         return self._shape
+         return self._style
       def fset(self, expr):
          if expr is None:
-            self._shape = None
+            self._style = None
          elif isinstance(expr, str):
-            self._shape = expr
+            self._style = expr
          else:
-            raise ValueError('can not set notehead shape.')
+            raise ValueError('can not set notehead style.')
       return property(**locals( ))
 
-   ### SHAPE NOTE HANDLERS ###
+   ### STYLE NOTE HANDLERS ###
 
-   shapesSupported = (
+   stylesSupported = (
       'cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 
       'neomensural', 'harmonic', 'mensural', 'petruccidiamond', 
       'triangle',  'semicircle',  'diamond', 'tiltedtriangle', 
       'square', 'wedge', )
 
-   _noteheadShapeToShapeNoteStyle = {
+   _abjadLilyStyles = {
       'triangle' : 'do',         'semicircle' : 're',    'diamond' : 'mi',
       'tiltedtriangle' : 'fa',   'square' : 'la',        'wedge' : 'ti' }
 
+
    @property
-   def _shapeNoteStyleSetting(self):
-      result = [ ]
-      if self.shape:
-         if self.shape in self.shapesSupported:
-            try:
-               shape = self._noteheadShapeToShapeNoteStyle[self.shape]
-            except KeyError:
-               shape = self.shape
-            result.append(r"\once \override NoteHead #'style = #'%s" % shape)
-         else:
-            result.append(r"\%s" % self.shape)
-      return result
-
-#   def _shapeNoteStyleVector(self, shape):
-#      return '#(%s)' % ' '.join(
-#         [self._noteheadShapeToShapeNoteStyle[shape]] * 7)
-
-#   @property
-#   def _shapeNoteStyleSetting(self):
-#      result = [ ]
-#      if self.shape:
-#         result.append(r'\once \set shapeNoteStyles = #%s' % 
-#            self._shapeNoteStyleVector(self.shape))
-#      return result
-
+   def _abjadToLilyStyle(self):
+      style = self._abjadLilyStyles.get(self.style)
+      if style:
+         return style
+      else: 
+         return self.style
+      
 
    ### FORMATTING ###
+
+   @property
+   def _noteFormat(self):
+      result = [ ]
+      if self.style:
+         if self.style in self.stylesSupported:
+            result.append(r"\once \override NoteHead #'style = #'%s" \
+               % self._abjadToLilyStyle)
+         else:
+            result.append(r"\%s" % self.style)
+      return result
+
+   @property
+   def _chordFormat(self):
+      result = [ ]
+      for key, value in self.__dict__.items( ):
+         if not key.startswith('_'):
+            result.append(r'\tweak %s %s' % (
+               self._parser.formatAttribute(key),
+               self._parser.formatValue(value)))
+      if self.style:
+         if self.style in self.stylesSupported:
+            result.append(r'\tweak %s %s' % (
+                  self._parser.formatAttribute('style'),
+                  self._parser.formatValue(self._abjadToLilyStyle)))
+         else:
+            result.append(r"\%s" % self.style)
+      return result
+
 
    @property
    def _before(self):
       result = [ ]
       if self._client.kind('Chord'):
-         for key, value in self.__dict__.items( ):
-            if not key.startswith('_'):
-               result.append(r'\tweak %s %s' % (
-                  self._parser.formatAttribute(key),
-                  self._parser.formatValue(value)))
+         result.extend(self._chordFormat)
       else:
          result.extend(_Interface._before.fget(self))
-      result.extend(self._shapeNoteStyleSetting)
+         result.extend(self._noteFormat)
       return result
 
    @property
