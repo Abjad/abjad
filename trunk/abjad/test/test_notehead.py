@@ -60,34 +60,45 @@ def test_remove_notehead_pitch_02( ):
 ### TEST SET NOTEHEAD STYLE ###
 
 def test_set_notehead_style_01( ):
-   t = Note(13, (1, 4))
-   t.notehead.style = 'harmonic'
-   assert t.notehead.style == 'harmonic'
-   assert t.notehead.format == "\\once \\override NoteHead #'style = #'harmonic\ncs''"
-   t.notehead.style = None
-   assert t.notehead.format == "cs''"
-
-### TEST SET NOTEHEAD SHAPE ###
-
-def test_set_notehead_shape_01( ):
-   '''Supported head shapes are formated with NoteHead #'style override.'''
+   '''Supported head styles are formated with NoteHead #'style override.'''
    t = Note(1, (1, 4))
-   t.notehead.shape = 'cross'
-   assert t.notehead.shape == 'cross'
+   t.notehead.style = 'cross'
+   assert t.notehead.style == 'cross'
    assert t.notehead.format == "\\once \\override NoteHead #'style = #'cross\ncs'"
-   t.notehead.shape = None
+   t.notehead.style = None
    assert t.notehead.format == "cs'"
 
-def test_set_notehead_shape_02( ):
+def test_set_notehead_style_02( ):
    '''Unsupported noteheads are placed verbatim in front of note and 
       are assumed to be defined by user.'''
    t = Note(1, (1, 4))
-   t.notehead.shape = 'mystrangehead'
-   assert t.notehead.shape == 'mystrangehead'
+   t.notehead.style = 'mystrangehead'
+   assert t.notehead.style == 'mystrangehead'
    assert t.notehead.format == "\\mystrangehead\ncs'"
-   t.notehead.shape = None
+   t.notehead.style = None
    assert t.notehead.format == "cs'"
 
+def test_set_notehead_style_03( ):
+   '''Abjad supported head styles are translated to LilyPond style names.'''
+   t = Note(1, (1, 4))
+   t.notehead.style = 'triangle'
+   assert t.notehead.style == 'triangle'
+   assert t.notehead.format == "\\once \\override NoteHead #'style = #'do\ncs'"
+
+def test_set_notehead_style_04( ):
+   '''Notehead style formats correctly in Chords.'''
+   t = Chord([1,2,3], (1, 4))
+   t.noteheads[0].style = 'harmonic'
+   assert t.format == "<\n\t\\tweak #'style #'harmonic\n\tcs'\n\td'\n\tef'\n>4"
+
+   '''
+   <
+           \tweak #'style #'harmonic
+           cs'
+           d'
+           ef'
+   >4
+   '''
 
 
 ### TEST SET NOTEHEAD TRANSPARENT ###

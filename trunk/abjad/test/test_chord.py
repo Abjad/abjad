@@ -208,7 +208,7 @@ def test_chord_format_right_01( ):
 
 
 def test_chord_format_right_02( ):
-   '''Untweaked chords format right.'''
+   '''Tweaked chords format right.'''
    t = Chord([2, 3, 4], (1, 4))
    t[0].color = 'red'
    t.glissando = True
