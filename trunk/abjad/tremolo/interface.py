@@ -1,4 +1,4 @@
-from .. core.interface import _Interface
+from abjad.core.interface import _Interface
 
 class _TremoloInterface(_Interface):
 
@@ -29,6 +29,6 @@ class _TremoloInterface(_Interface):
    @property
    def body(self):
       if self.subdivision:
-         return ':' + str(self.subdivision)
+         return [':' + str(self.subdivision)]
       else:
-         return ''
+         return [ ]
