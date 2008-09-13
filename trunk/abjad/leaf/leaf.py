@@ -30,9 +30,13 @@ class _Leaf(_Component):
       self._dots = _DotsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._dynamics = _DynamicsInterface(self)
+      # TODO: can't make formatter a read-only property
+      # because of casting between notes and chords;
+      # come up with solution for read-only formatter
       self.formatter = _LeafFormatter(self)
       self._glissando = _GlissandoInterface(self)
-      self.grace = _GraceInterface( )
+      #self.grace = _GraceInterface( )
+      self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
       self.history = { }
       self.spanners = _LeafSpannerInterface(self)
@@ -94,6 +98,14 @@ class _Leaf(_Component):
             raise ValueError('must be boolean or None.')
       return property(**locals( ))
 
+   @apply
+   def grace( ):
+      def fget(self):
+         return self._grace
+      def fset(self, *args):
+         raise ValueError('can not overwrite _GraceInterface.')
+      return property(**locals( ))
+   
    @apply
    def harmonic( ):
       def fget(self):
