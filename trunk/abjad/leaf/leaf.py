@@ -39,10 +39,13 @@ class _Leaf(_Component):
       self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
       self.history = { }
-      #self.spanners = _LeafSpannerInterface(self)
-      self._spanners = _LeafSpannerInterface(self)
+      # TODO: can't make spanners a read-only property
+      # because of /helpers/attributes.py;
+      # come up with solution for read-only spanners
+      self.spanners = _LeafSpannerInterface(self)
       self._staff = _StaffInterface(self)
-      self.stem = _StemInterface(self)
+      #self.stem = _StemInterface(self)
+      self._stem = _StemInterface(self)
       self._tie = _TieInterface(self)
       self.tremolo = _TremoloInterface(self)
       self.trill = _TrillInterface(self)
@@ -121,11 +124,11 @@ class _Leaf(_Component):
       return property(**locals( ))
 
    @apply
-   def spanners( ):
+   def stem( ):
       def fget(self):
-         return self._spanner
+         return self._stem
       def fset(self, *args):
-         raise ValueError('can not overwrite _LeafSpannerInterface.')
+         raise ValueError('can not overwrite _StemInterface.')
       return property(**locals( ))
    
    @apply
