@@ -49,7 +49,8 @@ class _Leaf(_Component):
       self._tie = _TieInterface(self)
       #self.tremolo = _TremoloInterface(self)
       self._tremolo = _TremoloInterface(self)
-      self.trill = _TrillInterface(self)
+      #self.trill = _TrillInterface(self)
+      self._trill = _TrillInterface(self)
 
    ### REPR ###
 
@@ -150,7 +151,15 @@ class _Leaf(_Component):
       def fget(self):
          return self._tremolo
       def fset(self, *args):
-         raise ValueError('can not overwrite _Tremolo.')
+         raise ValueError('can not overwrite _TremoloInterface.')
+      return property(**locals( ))
+   
+   @apply
+   def trill( ):
+      def fget(self):
+         return self._trill
+      def fset(self, *args):
+         raise ValueError('can not overwrite _TrillInterface.')
       return property(**locals( ))
    
    @property
