@@ -90,6 +90,8 @@ Public interface
 Attribute examples
 </h2>
 
+
+
 <!-- ### ACCIDENTALS ### -->
 
 <div class="example">
@@ -97,55 +99,287 @@ Attribute examples
 <p> NOT IMPLEMENTED
 </div>
 
+
+
 <!-- ### ARTICULATIONS ### -->
 
 <div class="example">
+
+<div class="example-header">
 <p class="example-header-inherited"> articulations
+<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../articulations_interface/index.html">_ArticulationsInterface</a></code>.
+</div>
+
+<div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
-abjad> chord.articulations.append('staccato')
-abjad> show(measure)
 </pre>
-<image class="inline" src="images/1.png">
+<image src="images/1.png">
 <pre>
-abjad> print(chord.format)
-&lt;c' d' bf'&gt;4 -\staccato
+abjad> chord.articulations
+Articulations( )
 </pre>
 </div>
 
-<div class="example">
-<p class="example-header-inherited"> barline
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
-abjad> chord.barline = '||'
-abjad> show(measure)
-</pre>
-<image class="inline" src="images/2.png">
-<pre>
-abjad> print(chord.format)
-&lt;c' d' bf'&gt;4
-\bar "||"
-</pre>
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign a list of articulation strings.
 </div>
 
-<div class="example">
-<p class="example-header-inherited"> beam
+<div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
-abjad> show(measure)
+abjad> chord.articulations = ['staccato', 'marcato']
 </pre>
-<image class="inline" src="images/3.png">
+<image src="images/2.png">
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
 <pre>
-abjad> chord.beam.beamable
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> chord.articulations = None
+</pre>
+<image src="images/3.png">
+</div>
+
+<h3 class="example-section">
+Comparison testing
+</h3>
+
+<div class="example-text">
+<p> RETURNS GARBAGE.
+<p> This is a problem; raise <code>NotImplemented</code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> m = Chord([0, 2, 10], (1, 4))
+abjad> n = Chord([-1, 3, 9], (1, 4))
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.articulations == n.articulations
 False
 </pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.articulations > n.articulations
+False
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.articulations < n.articulations
+True
+</pre>
+</div class="example-code">
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### BARLINE ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> barline
+<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../articulations_interface/index.html">_BarlineInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/4.png">
+<pre>
+abjad> chord.barline
+_BarlineInterface
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign a LilyPond barline string.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> chord.barline = '||'
+</pre>
+<image src="images/5.png">
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> chord.barline = None
+</pre>
+<image src="images/6.png">
+</div>
+
+<h3 class="example-section">
+Comparison testing
+</h3>
+
+<div class="example-text">
+<p> RETURNS GARBAGE.
+<p> This is a problem; raise <code>NotImplemented</code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> m = Chord([0, 2, 10], (1, 4))
+abjad> n = Chord([-1, 3, 9], (1, 4))
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.barline == n.barline
+False
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.barline > n.barline
+False
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.barline < n.barline
+True
+</pre>
+</div class="example-code">
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### BEAM ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> beam
+<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../beam_interface/index.html">_BeamInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/7.png">
+<pre>
+abjad> chord.beam
+_BeamInterface
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>beam</code> attribute is read-only.
+</div>
+
+<h3 class="example-section">
+Comparison testing
+</h3>
+
+<div class="example-text">
+<p> RETURNS GARBAGE.
+<p> This is a problem; raise <code>NotImplemented</code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> m = Chord([0, 2, 10], (1, 4))
+abjad> n = Chord([-1, 3, 9], (1, 4))
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.beam == n.beam
+False
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.beam > n.beam
+False
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.beam < n.beam
+True
+</pre>
+</div class="example-code">
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
 
 <!-- ### CLEF ### -->
 
@@ -153,32 +387,13 @@ False
 
 <div class="example-header">
 <p class="example-header-inherited"> clef
-<p> Read / write attribute inherited from <code>_Leaf</code>.
+<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
-
-<!--
-<div class="example-summary">
-<table class="example-summary-table">
-<tr>
-<td class="example-summary-label"> return type:
-<td class="example-summary-value"> <code>Clef</code> object
-<tr>
-<td class="example-summary-label"> assigns with:
-<td class="example-summary-value"> clef string
-<tr>
-<td class="example-summary-label"> clears with:
-<td class="example-summary-value"> <code>None</code>
-<tr>
-<td class="example-summary-label"> format:
-<td class="example-summary-value"> &mdash;
-</table>
-</div>
--->
 
 <div class="example-body">
 
 <h3 class="example-section">
-Type
+Return type
 </h3>
 
 <div class="example-text">
@@ -189,7 +404,7 @@ Type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/4.png">
+<image src="images/8.png">
 <pre>
 abjad> chord.clef
 Clef(treble)
@@ -197,11 +412,11 @@ Clef(treble)
 </div>
 
 <h3 class="example-section">
-Assignment
+Assignment values
 </h3>
 
 <div class="example-text">
-<p> Assign any valid clef string.
+<p> Assign any LilyPond clef string.
 </div>
 
 <div class="example-code">
@@ -209,22 +424,18 @@ Assignment
 abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.clef = 'alto'
 </pre>
-<image src="images/5.png">
+<image src="images/9.png">
 </div>
 
-<h3 class="example-section">
-Default
-</h3>
-
 <div class="example-text">
-<p> Unassign with <code>None</code>.
+<p> Assign <code>None</code> to clear.
 </div>
 
 <div class="example-code">
 <pre>
 abjad> chord.clef = None
 </pre>
-<image src="images/6.png">
+<image src="images/10.png">
 </div>
 
 </div>
@@ -237,44 +448,24 @@ abjad> chord.clef = None
 
 <div class="example-header">
 <p class="example-header-inherited"> dots
-<p> Read-only attribute inherited from <code>_Leaf</code>.
-<p> See <a href="../dots_interface/index.html">_DotsInterface</a> for more information.
+<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
-
-<!--
-<div class="example-summary">
-<table class="example-summary-table">
-<tr>
-<td class="example-summary-label"> return:
-<td class="example-summary-value"> <code>_DotsInterface</code> object
-<tr>
-<td class="example-summary-label"> assign:
-<td class="example-summary-value"> &mdash
-<tr>
-<td class="example-summary-label"> clear:
-<td class="example-summary-value"> &mdash
-<tr>
-<td class="example-summary-label"> format:
-<td class="example-summary-value"> LilyPond <tt>Dots</tt> grob
-</table>
-</div>
--->
 
 <div class="example-body">
 
 <h3 class="example-section">
-Type
+Return type
 </h3>
 
 <div class="example-text">
-<p>Returns an Abjad <code>_DotsInterface</code.
+<p>Returns an Abjad <code><a href="../dots_interface/index.html">_DotsInterface</a></code>.
 </div>
 
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/7.png">
+<image src="images/11.png">
 <pre>
 abjad> chord.dots
 _DotsInterface( )
@@ -282,15 +473,7 @@ _DotsInterface( )
 </div>
 
 <h3 class="example-section">
-Assignment
-</h3>
-
-<div class="example-text">
-<p>The <code>dots</code> attribute is read-only.
-</div>
-
-<h3 class="example-section">
-Clear
+Assignment values
 </h3>
 
 <div class="example-text">
@@ -300,164 +483,195 @@ Clear
 </div> <!-- example body -->
 </div> <!-- example -->
 
+
+
 <!-- ### DURATION ### -->
 
 <div class="example">
 
 <div class="example-header">
 <p class="example-header-inherited"> duration
-<p> Read-only attribute inherited from <code>_Leaf</code>.
-</div>
-
-<div class="example-summary">
-<table class="example-summary-table">
-<tr>
-<td class="example-summary-label"> return:
-<td class="example-summary-value"> <code>_LeafDurationInterface</code>
-<tr>
-<td class="example-summary-label"> assign: 
-<td class="example-summary-value"> <code>Rational</code>
-<tr>
-<td class="example-summary-label"> clear: 
-<td class="example-summary-value"> &mdash;
-<tr>
-<td class="example-summary-label"> format: 
-<td class="example-summary-value"> &mdash;
-</table>
+<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
 <div class="example-body">
 
 <h3 class="example-section">
-Return
+Return type
 </h3>
 
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
+</div>
+
+<div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
-abjad> show(measure)
 </pre>
-<image class="inline" src="images/8.png">
+<image src="images/12.png">
 <pre>
 abjad> chord.duration
 DurationInterface(1/4)
 </pre>
+</div>
 
 <h3 class="example-section">
-Assign
+Assignment values
 </h3>
 
+<div class="example-text">
+<p> Assign any rational value which meets the tests for <strong><a href="../assignability/index.html">notehead assignability</a></strong>.
+</div>
+
+<div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
-abjad> chord.duration = Rational(1, 8)
-abjad> show(measure)
+abjad> chord.duration = Rational(3, 8)
 </pre>
-<image class="inline" src="images/9.png">
-
+<image src="images/13.png">
 </div>
 
-<div class="example-footer">
-<p> <i>See <a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a> for more information.</i>
+<h3 class="example-section">
+Comparison testing
+</h3>
+
+<div class="example-text">
+<p> Stuff seems to work, though can't find the definition of <code>__eq__</code> in the source.
 </div>
 
-</div>
+<div class="example-code">
+<pre>
+abjad> m = Chord([0, 2, 10], (1, 4))
+abjad> n = Chord([-1, 3, 9], (3, 8))
+</pre>
+</div class="example-code">
 
-<div class="example">
+<div class="example-code">
+<pre>
+abjad> m.duration == n.duration
+False
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.duration > n.duration
+False
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.duration < n.duration
+True
+</pre>
+</div class="example-code">
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
 
 <!-- ### DYNAMICS ### -->
 
+<div class="example">
+
 <div class="example-header">
 <p class="example-header-inherited"> dynamics
-<p> Read /write attribute inherited from <code>_Leaf</code>.
-</div>
-
-<div class="example-summary">
-<table class="example-summary-table">
-<tr>
-<td class="example-summary-label"> return:
-<td class="example-summary-value"> <code>_DynamicsInterface</code>
-<tr>
-<td class="example-summary-label"> assign: 
-<td class="example-summary-value"> dynamics string
-<tr>
-<td class="example-summary-label"> clear: 
-<td class="example-summary-value"> <code>None</code>
-<tr>
-<td class="example-summary-label"> format: 
-<td class="example-summary-value"> LilyPond <tt>DynamicText</tt> grob
-</table>
+<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
 <div class="example-body">
 
 <h3 class="example-section">
-Return
+Return type
 </h3>
 
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../dynamics_interface/index.html">_DynamicsInterface</a></code>.
+</div>
+
+<div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
-abjad> show(measure)
 </pre>
-<image class="inline" src="images/10.png">
+<image src="images/14.png">
 <pre>
 abjad> chord.dynamics
 _DynamicsInterface( )
 </pre>
+</div>
 
 <h3 class="example-section">
-Assign
+Assignment values
 </h3>
 
+<div class="example-text">
+<p> Assign any LilyPond dynamics string.
+</div>
+
+<div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
 abjad> chord.dynamics = 'f'
-abjad> show(measure)
 </pre>
-<image class="inline" src="images/11.png">
+<image src="images/15.png">
+</div>
 
-<h3 class="example-section">
-Clear
-</h3>
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
 
+<div class="example-code">
 <pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
-abjad> chord.dynamics = 'f'
 abjad> chord.dynamics = None
-abjad> show(measure)
 </pre>
-<image class="inline" src="images/12.png">
+<image src="images/16.png">
+</div>
 
 <h3 class="example-section">
-Format
+Comparison testing
 </h3>
 
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> measure = Measure((1, 4), [chord])
-abjad> measure.meter.transparent = True
-abjad> chord.dynamics.color = 'red'
-</pre>
-
-<pre>
-abjad> print(chord.format)
-\once \override DynamicText #'color = #red
-&lt;c' d' bf'&gt;4
-</pre>
-
+<div class="example-text">
+<p> Comparison testing seems to be half-implemented. Needs to be cleaned up.
 </div>
 
-<div class="example-footer">
-<p> <i>See <a href="../dynamics_interface/index.html">_DynamicsInterface</a> for more information.</i>
-</div>
+<div class="example-code">
+<pre>
+abjad> m = Chord([0, 2, 10], (1, 4))
+abjad> n = Chord([-1, 3, 9], (3, 8))
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.dynamics == n.dynamics
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+File "/Users/trevorbaca/Documents/abjad/trunk/abjad/dynamics/interface.py", line 19, in __eq__
+assert isinstance(arg, bool)
+AssertionError
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.dynamics > n.dynamics
+True
+</pre>
+</div class="example-code">
+
+<div class="example-code">
+<pre>
+abjad> m.dynamics < n.dynamics
+False
+</pre>
+</div class="example-code">
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
 
 </div>
 <h2 class="page-section">
@@ -474,6 +688,16 @@ To do
 
 <p class="to-do">
 Implement <code>accidentals</code> in <code>_ChordFormatter</code>.
+</p>
+
+<p class="to-do">
+Decide how to document comparison testing.
+Do we need examples only for <code>__eq__</code>?
+What about <code>__gt__</code>, <code>__ge__</code>, <code>__lt__</code>, etc?
+</p>
+
+<p class="to-do">
+Clean up leaf interface comparison testing.
 </p>
 
 

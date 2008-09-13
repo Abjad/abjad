@@ -49,7 +49,7 @@ TD.example-summary-value {
 }
 
 DIV.example-body {
-   margin-left: 40px;
+   /*margin-left: 40px;*/
 }
 
 H3.example-section {
@@ -57,7 +57,7 @@ H3.example-section {
 }
 
 DIV.example-text {
-
+   margin-left: 40px;
 }
 
 DIV.example-code {
