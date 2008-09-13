@@ -47,7 +47,8 @@ class _Leaf(_Component):
       #self.stem = _StemInterface(self)
       self._stem = _StemInterface(self)
       self._tie = _TieInterface(self)
-      self.tremolo = _TremoloInterface(self)
+      #self.tremolo = _TremoloInterface(self)
+      self._tremolo = _TremoloInterface(self)
       self.trill = _TrillInterface(self)
 
    ### REPR ###
@@ -144,6 +145,14 @@ class _Leaf(_Component):
             raise ValueError('must be boolean or None.')
       return property(**locals( ))
 
+   @apply
+   def tremolo( ):
+      def fget(self):
+         return self._tremolo
+      def fset(self, *args):
+         raise ValueError('can not overwrite _Tremolo.')
+      return property(**locals( ))
+   
    @property
    def number(self):
       cur = self
