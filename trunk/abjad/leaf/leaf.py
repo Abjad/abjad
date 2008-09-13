@@ -26,7 +26,8 @@ class _Leaf(_Component):
       self._articulations = _ArticulationsInterface(self)
       #self.beam = _BeamInterface(self)
       self._beam = _BeamInterface(self)
-      self.dots = _DotsInterface(self)
+      #self.dots = _DotsInterface(self)
+      self._dots = _DotsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._dynamics = _DynamicsInterface(self)
       self.formatter = _LeafFormatter(self)
@@ -54,6 +55,14 @@ class _Leaf(_Component):
          return self._beam
       def fset(self, *args):
          raise ValueError('can not overwrite _BeamInterface.')
+      return property(**locals( ))
+   
+   @apply
+   def dots( ):
+      def fget(self):
+         return self._dots
+      def fset(self, *args):
+         raise ValueError('can not overwrite _DotsInterface.')
       return property(**locals( ))
    
    @apply
