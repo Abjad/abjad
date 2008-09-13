@@ -39,7 +39,8 @@ class _Leaf(_Component):
       self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
       self.history = { }
-      self.spanners = _LeafSpannerInterface(self)
+      #self.spanners = _LeafSpannerInterface(self)
+      self._spanners = _LeafSpannerInterface(self)
       self._staff = _StaffInterface(self)
       self.stem = _StemInterface(self)
       self._tie = _TieInterface(self)
@@ -119,6 +120,14 @@ class _Leaf(_Component):
             raise ValueError('must be boolean or None.')
       return property(**locals( ))
 
+   @apply
+   def spanners( ):
+      def fget(self):
+         return self._spanner
+      def fset(self, *args):
+         raise ValueError('can not overwrite _LeafSpannerInterface.')
+      return property(**locals( ))
+   
    @apply
    def tie( ):
       def fget(self):
