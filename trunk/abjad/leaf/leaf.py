@@ -60,6 +60,19 @@ class _Leaf(_Component):
    ### MANAGED ATTRIBUTES ###
 
    @apply
+   def articulations( ):
+      def fget(self):
+         return self._articulations
+      def fset(self, arg):
+         if arg is None:
+            self._articulations[ : ] = [ ]
+         elif isinstance(arg, list):
+            self._articulations[ : ] = arg
+         else:
+            raise ValueError('must be None or list of articulations.')
+      return property(**locals( ))
+
+   @apply
    def beam( ):
       def fget(self):
          return self._beam
@@ -67,6 +80,31 @@ class _Leaf(_Component):
          raise ValueError('can not overwrite _BeamInterface.')
       return property(**locals( ))
    
+   @apply
+   def clef( ):
+      def fget(self):
+         if hasattr(self, '_clef'):
+            return self._clef
+         else:
+            cur = self.prev
+            while cur:
+               if hasattr(cur, '_clef'):
+                  return cur._clef
+               else:
+                  cur = cur.prev  
+            return _Clef('treble')
+      def fset(self, arg):
+         if arg is None:
+            if hasattr(self, '_clef'):
+               del self._clef
+         elif isinstance(arg, str):
+            self._clef = _Clef(arg)
+         elif isinstance(arg, _Clef):
+            self._clef = _Clef(arg.name)
+         else:
+            raise ValueError('clef %s must be str or clef.' % arg)
+      return property(**locals( ))
+
    @apply
    def dots( ):
       def fget(self):
@@ -89,6 +127,14 @@ class _Leaf(_Component):
          else:
             raise ValueError('can not set duration from %s.' % str(args))
          self._duration.written = rational
+      return property(**locals( ))
+
+   @apply
+   def dynamics( ):
+      def fget(self):
+         return self._dynamics
+      def fset(self, arg):
+         self._dynamics.mark = arg
       return property(**locals( ))
 
    @apply
@@ -123,6 +169,36 @@ class _Leaf(_Component):
             self._harmonic._set = arg 
          else:
             raise ValueError('must be boolean or None.')
+      return property(**locals( ))
+
+   @property
+   def number(self):
+      cur = self
+      i = 0
+      while cur.prev:
+         cur = cur.prev
+         i += 1
+      return i
+
+   @property
+   def offset(self):
+      cur = self
+      offset = 0
+      while cur.prev:
+         cur = cur.prev
+         offset += cur.duration.prolated
+      return offset
+
+   @apply
+   def staff( ):
+      def fget(self):
+         return self._staff.effective
+      def fset(self, arg):
+         if arg is None:
+            self._staff._forced = arg
+         else:
+            assert arg.__class__.__name__ == 'Staff'
+            self._staff._forced = arg
       return property(**locals( ))
 
    @apply
@@ -162,82 +238,6 @@ class _Leaf(_Component):
          raise ValueError('can not overwrite _TrillInterface.')
       return property(**locals( ))
    
-   @property
-   def number(self):
-      cur = self
-      i = 0
-      while cur.prev:
-         cur = cur.prev
-         i += 1
-      return i
-
-   @property
-   def offset(self):
-      cur = self
-      offset = 0
-      while cur.prev:
-         cur = cur.prev
-         offset += cur.duration.prolated
-      return offset
-
-   @apply
-   def clef( ):
-      def fget(self):
-         if hasattr(self, '_clef'):
-            return self._clef
-         else:
-            cur = self.prev
-            while cur:
-               if hasattr(cur, '_clef'):
-                  return cur._clef
-               else:
-                  cur = cur.prev  
-            return _Clef('treble')
-      def fset(self, arg):
-         if arg is None:
-            if hasattr(self, '_clef'):
-               del self._clef
-         elif isinstance(arg, str):
-            self._clef = _Clef(arg)
-         elif isinstance(arg, _Clef):
-            self._clef = _Clef(arg.name)
-         else:
-            raise ValueError('clef %s must be str or clef.' % arg)
-      return property(**locals( ))
-
-   @apply
-   def staff( ):
-      def fget(self):
-         return self._staff.effective
-      def fset(self, arg):
-         if arg is None:
-            self._staff._forced = arg
-         else:
-            assert arg.__class__.__name__ == 'Staff'
-            self._staff._forced = arg
-      return property(**locals( ))
-
-   @apply
-   def articulations( ):
-      def fget(self):
-         return self._articulations
-      def fset(self, arg):
-         if arg is None:
-            self._articulations[ : ] = [ ]
-         elif isinstance(arg, list):
-            self._articulations[ : ] = arg
-         else:
-            raise ValueError('must be None or list of articulations.')
-      return property(**locals( ))
-
-   @apply
-   def dynamics( ):
-      def fget(self):
-         return self._dynamics
-      def fset(self, arg):
-         self._dynamics.mark = arg
-      return property(**locals( ))
-
    ### NAVIGATION ###
 
    # next leaf rightwards, if any; otherwise None.
