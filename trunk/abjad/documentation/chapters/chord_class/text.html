@@ -54,16 +54,15 @@ Public interface
 <div class="interface-block">
 <p class="interface-block-header"> Overloads
 <p class="interface-attribute"> __contains__
-<p class="interface-attribute"> __len__
-<div class="attribute-group">
 <p class="interface-attribute"> __delitem__
 <p class="interface-attribute"> __getitem__
-<p class="interface-attribute"> __setitem__
-</div>
-<div class="attribute-group">
+<p class="interface-attribute"> __init__
+<p class="interface-attribute"> __len__
 <p class="interface-attribute-inherited"> __mul__
+<p class="interface-attribute"> __repr__
 <p class="interface-attribute-inherited"> __rmul__
-</div>
+<p class="interface-attribute"> __setitem__
+<p class="interface-attribute"> __str__
 </div>
 
 <h2 class="page-section">
@@ -1634,7 +1633,7 @@ Override examples
 
 <div class="example-header">
 <p class="example-header"> __contains__(<i>arg</i>)
-<p> Bound method defined on <code>Chord</code>.
+<p> Special method defined on <code>Chord</code>.
 <p> Return <code>True</code> if <i>arg</i> in <code>chord</code>, and <code>False</code> otherwise.
 <p> Valid types for <i>arg</i>:
 <ul>
@@ -1667,40 +1666,6 @@ True
 </div> <!-- example -->
 
 
-<!-- ### __LEN__ ### -->
-
-<div class="example">
-
-<div class="example-header">
-<p class="example-header"> __len__( )
-<p> Bound method defined on <code>Chord</code>.
-<p> Return the number of noteheads in <code><i>chord</i></code> as a nonnegative integer.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
-<div class="example-text">
-<p> Returns the number of noteheads in <code><i>chord</i></code> as a nonnegative integer.
-</div>
-
-<div class="example-code">
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
-<image src="images/59.png">
-<pre>
-abjad> len(chord)
-3
-</pre>
-</div>
-
-</div> <!-- example body -->
-</div> <!-- example -->
-
 
 <!-- ### __DELITEM__ ### --> 
 
@@ -1708,7 +1673,7 @@ abjad> len(chord)
 
 <div class="example-header">
 <p class="example-header"> __delitem__(<i>i</i>)
-<p> Defined on <code>Chord</code>.
+<p> Special method defined on <code>Chord</code>.
 <p> Delete the notehead at index <i>i</i> in  <code><i>chord</i></code>.
 </div>
 
@@ -1722,11 +1687,11 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/60.png">
+<image src="images/59.png">
 <pre>
 abjad> del(chord[2])
 </pre>
-<image src="images/61.png">
+<image src="images/60.png">
 </div>
 
 </div> <!-- example body -->
@@ -1740,7 +1705,7 @@ abjad> del(chord[2])
 
 <div class="example-header">
 <p class="example-header"> __getitem__(<i>i</i>)
-<p> Defined on <code>Chord</code>.
+<p> Special method defined on <code>Chord</code>.
 <p> Get notehead at index <i>i</i> in <code>chord</code>.
 </div>
 
@@ -1754,7 +1719,7 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/62.png">
+<image src="images/61.png">
 <pre>
 abjad> chord[1]
 _NoteHead(d')
@@ -1765,15 +1730,53 @@ _NoteHead(d')
 </div> <!-- example -->
 
 
-
-<!-- ### __SETITEM__ ### -->
+<!-- ### __INIT__ ### -->
 
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __setitem__(<i>i</i>, <i>arg</i>)
-<p> Defined on <code>Chord</code>.
-<p> Set <i>arg</i> at index <i>i</i> in <i>chord</i>.
+<p class="example-header"> __init__(<i>args*</i>)
+<p> Special method defined on <code>Chord</code>.
+<p> Initialize <code>chord</code> according to one of several input argument patterns:
+<ul>
+<li> <code>Chord(<i>pitchtokenlist</i>, <i>durationtoken</i>)
+<li> <code>Chord(<i>note</i>)
+<li> <code>Chord(<i>rest</i>)
+<li> <code>Chord(<i>skip</i>)
+</ul>
+<p> Where:
+</ul>
+<li> <code class="variable">pitchtokenlist</code> is a Python list of zero or more <strong><a href="../pitch_token/index.html">pitch tokens</a></strong>
+<li> <code class="variable">durationtoken</code> is a valid <strong><a href="../duration_token/index.html">duration token</a></strong>
+</ul>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/62.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __LEN__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __len__( )
+<p> Special method defined on <code>Chord</code>.
+<p> Return the number of noteheads in <code><i>chord</i></code> as a nonnegative integer.
 </div>
 
 <div class="example-body">
@@ -1788,13 +1791,14 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
 <image src="images/63.png">
 <pre>
-abjad> chord[1] = 4
+abjad> len(chord)
+3
 </pre>
-<image src="images/64.png">
 </div>
 
 </div> <!-- example body -->
 </div> <!-- example -->
+
 
 
 
@@ -1803,8 +1807,8 @@ abjad> chord[1] = 4
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __mul__(<i>n</i>)
-<p> Defined on <code>Chord</code>.
+<p class="example-header-inherited"> __mul__(<i>n</i>)
+<p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
 <p> Implements left-handed multiplication against <code>Chord</code>.
 <p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
 </div>
@@ -1819,13 +1823,45 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/65.png">
+<image src="images/64.png">
 <pre>
 abjad> chords = chord * 4
 abjad> chords
 [Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
 </pre>
+<image src="images/65.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __REPR__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __mul__(<i>n</i>)
+<p> Special method defined on <code>Chord</code>.
+<p> Returns string summary of <code>chord</code> for interpreter display.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
 <image src="images/66.png">
+<pre>
+abjad> chord
+Chord(c' d' bf', 4)
+</pre>
 </div>
 
 </div> <!-- example body -->
@@ -1839,7 +1875,7 @@ abjad> chords
 
 <div class="example-header">
 <p class="example-header"> __rmul__(<i>n</i>)
-<p> Defined on <code>Chord</code>.
+<p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
 <p> Implements right-handed multiplication against <code>Chord</code>. 
 <p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
 </div>
@@ -1861,6 +1897,71 @@ abjad> chords
 [Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
 </pre>
 <image src="images/68.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+
+<!-- ### __SETITEM__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __setitem__(<i>i</i>, <i>arg</i>)
+<p> Special method defined on <code>Chord</code>.
+<p> Set <i>arg</i> at index <i>i</i> in <i>chord</i>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/69.png">
+<pre>
+abjad> chord[1] = 4
+</pre>
+<image src="images/70.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __STR__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __mul__(<i>n</i>)
+<p> Special method defined on <code>Chord</code>.
+<p> Returns string summary of <code>chord</code> for inline display.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/71.png">
+<pre>
+abjad> str(chord)
+"&lt;c' d' bf'&gt;4"
+</pre>
 </div>
 
 </div> <!-- example body -->

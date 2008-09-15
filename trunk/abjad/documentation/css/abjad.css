@@ -222,9 +222,13 @@ A:hover {
 	text-decoration: underline;
 }
 
-CODE, TD.duration-interface-attribute {
+CODE, CODE.variable, TD.duration-interface-attribute {
 	color: #a22222;
 	font-family: "Courier New", "Courier", serif;
+}
+
+CODE.variable {
+   font-style: italic;
 }
 
 DL.interface-definition UL LI {
