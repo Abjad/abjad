@@ -12,57 +12,100 @@ Public interface
 
 <div class="example-block">
 <p class="example-block-header"> Attributes
-<p class="interface-attribute-inherited"> accidentals
-<p class="interface-attribute-inherited"> articulations
-<p class="interface-attribute-inherited"> barline
-<p class="interface-attribute-inherited"> beam
-<p class="interface-attribute-inherited"> clef
-<p class="interface-attribute-inherited"> dots
-<p class="interface-attribute-inherited"> duration
-<p class="interface-attribute-inherited"> dynamics
-<p class="interface-attribute-inherited"> format
-<p class="interface-attribute-inherited"> formatter
-<p class="interface-attribute-inherited"> glissando
-<p class="interface-attribute-inherited"> grace
-<p class="interface-attribute-inherited"> harmonic
-<p class="interface-attribute-inherited"> leaves
-<p class="interface-attribute-inherited"> next
-<p class="interface-attribute"> noteheads
-<p class="interface-attribute-inherited"> number
-<p class="interface-attribute-inherited"> offset
-<p class="interface-attribute"> pitches
-<p class="interface-attribute-inherited"> prev
-<p class="interface-attribute-inherited"> spanners
-<p class="interface-attribute-inherited"> staff
-<p class="interface-attribute-inherited"> stem
-<p class="interface-attribute-inherited"> tempo
-<p class="interface-attribute-inherited"> tie
-<p class="interface-attribute-inherited"> tremolo
-<p class="interface-attribute-inherited"> trill
+<p class="interface-attribute-inherited">
+<a href="#accidentals">accidentals</a>
+<p class="interface-attribute-inherited">
+<a href="#articulations">articulations</a>
+<p class="interface-attribute-inherited">
+<a href="#barline">barline</a>
+<p class="interface-attribute-inherited">
+<a href="#beam">beam</a>
+<p class="interface-attribute-inherited">
+<a href="#clef"> clef</a>
+<p class="interface-attribute-inherited">
+<a href="#dots">dots</a>
+<p class="interface-attribute-inherited">
+<a href="#duration">duration</a>
+<p class="interface-attribute-inherited">
+<a href="#dynamics">dynamics</a>
+<p class="interface-attribute-inherited">
+<a href="#format">format</a>
+<p class="interface-attribute-inherited">
+<a href="#formatter">formatter</a>
+<p class="interface-attribute-inherited">
+<a href="#glissando">glissando</a>
+<p class="interface-attribute-inherited">
+<a href="#grace">grace</a>
+<p class="interface-attribute-inherited">
+<a href="#harmonic">harmonic</a>
+<p class="interface-attribute-inherited">
+<a href="#leaves">leaves</a>
+<p class="interface-attribute-inherited">
+<a href="#next">next</a>
+<p class="interface-attribute">
+<a href="#noteheads">noteheads</a>
+<p class="interface-attribute-inherited">
+<a href="#number">number</a>
+<p class="interface-attribute-inherited">
+<a href="#offset">offset</a>
+<p class="interface-attribute">
+<a href="#pitches">pitches</a>
+<p class="interface-attribute-inherited">
+<a href="#prev">prev</a>
+<p class="interface-attribute-inherited">
+<a href="#spanners">spanners</a>
+<p class="interface-attribute-inherited">
+<a href="#staff">staff</a>
+<p class="interface-attribute-inherited">
+<a href="#stem">stem</a>
+<p class="interface-attribute-inherited">
+<a href="#tempo">tempo</a>
+<p class="interface-attribute-inherited">
+<a href="#tie">tie</a>
+<p class="interface-attribute-inherited">
+<a href="#tremolo">tremolo</a>
+<p class="interface-attribute-inherited">
+<a href="#trill">trill</a>
 </div>
 
 <div class="interface-block">
 <p class="interface-block-header"> Methods
-<p class="interface-attribute"> append( )
-<p class="interface-attribute-inherited"> copy( )
-<p class="interface-attribute"> extend( )
-<p class="interface-attribute-inherited"> kind( )
-<p class="interface-attribute"> pop( )
-<p class="interface-attribute"> remove( )
+<p class="interface-attribute">
+<a href="#append">append( )</a>
+<p class="interface-attribute-inherited">
+<a href="#copy">copy( )</a>
+<p class="interface-attribute">
+<a href="#extend">extend( )</a>
+<p class="interface-attribute-inherited">
+<a href="#kind">kind( )</a>
+<p class="interface-attribute">
+<a href="#pop">pop( )</a>
+<p class="interface-attribute">
+<a href="#remove">remove( )</a>
 </div>
 
 <div class="interface-block">
 <p class="interface-block-header"> Overloads
-<p class="interface-attribute"> __contains__
-<p class="interface-attribute"> __delitem__
-<p class="interface-attribute"> __getitem__
-<p class="interface-attribute"> __init__
-<p class="interface-attribute"> __len__
-<p class="interface-attribute-inherited"> __mul__
-<p class="interface-attribute"> __repr__
-<p class="interface-attribute-inherited"> __rmul__
-<p class="interface-attribute"> __setitem__
-<p class="interface-attribute"> __str__
+<p class="interface-attribute">
+<a href="#contains">__contains__</a>
+<p class="interface-attribute">
+<a href="#delitem">__delitem__</a>
+<p class="interface-attribute">
+<a href="#getitem">__getitem__</a>
+<p class="interface-attribute">
+<a href="#init">__init__</a>
+<p class="interface-attribute">
+<a href="#len">__len__</a>
+<p class="interface-attribute-inherited">
+<a href="#mul">__mul__</a>
+<p class="interface-attribute">
+<a href="#repr">__repr__</a>
+<p class="interface-attribute-inherited">
+<a href="#rmul">__rmul__</a>
+<p class="interface-attribute">
+<a href="#setitem">__setitem__</a>
+<p class="interface-attribute">
+<a href="#str">__str__</a>
 </div>
 
 <h2 class="page-section">
@@ -74,7 +117,8 @@ Attribute examples
 <!-- ### ACCIDENTALS ### -->
 
 <div class="example">
-<p class="example-header-inherited"> accidentals
+<p class="example-header-inherited"> 
+<a name="accidentals">accidentals</a>
 <p> NOT IMPLEMENTED
 </div>
 
@@ -85,7 +129,10 @@ Attribute examples
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> articulations
+<p class="example-header-inherited">
+<a name="articulations">
+articulations
+</a>
 <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -148,7 +195,10 @@ abjad> chord.articulations = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> barline
+<p class="example-header-inherited">
+<a name="barline">
+barline
+</a>
 <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -211,7 +261,8 @@ abjad> chord.barline = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> beam
+<p class="example-header-inherited">
+<a name="beam">beam</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -254,7 +305,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> clef
+<p class="example-header-inherited">
+<a name="clef">clef</a>
 <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -315,7 +367,8 @@ abjad> chord.clef = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> dots
+<p class="example-header-inherited">
+<a name="dots">dots</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -358,7 +411,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> duration
+<p class="example-header-inherited">
+<a name="duration">duration</a>
 <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -409,7 +463,8 @@ abjad> chord.duration = Rational(3, 8)
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> dynamics
+<p class="example-header-inherited">
+<a name="dynamics">dynamics</a>
 <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -470,7 +525,8 @@ abjad> chord.dynamics = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> format
+<p class="example-header-inherited">
+<a name="format">format</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -512,7 +568,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> formatter
+<p class="example-header-inherited">
+<a name="formatter">formatter</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -555,7 +612,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> glissando
+<p class="example-header-inherited">
+<a name="glissando">glissando</a>
 <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -619,7 +677,8 @@ abjad> chord.glissando = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> grace
+<p class="example-header-inherited">
+<a name="grace">grace</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -662,7 +721,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> harmonic
+<p class="example-header-inherited">
+<a name="harmonic">harmonic</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -723,7 +783,8 @@ abjad> chord.harmonic = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> leaves
+<p class="example-header-inherited">
+<a name="leaves">leaves</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -766,7 +827,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> next
+<p class="example-header-inherited">
+<a name="next">next</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -811,7 +873,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> noteheads
+<p class="example-header">
+<a name="noteheads">noteheads</a>
 <p> Read / write attribute defined on <code>Chord</code>.
 </div>
 
@@ -862,7 +925,8 @@ abjad> chord.noteheads = [-1, 3, 9, 11]
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> number
+<p class="example-header-inherited">
+<a name="number">number</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -906,7 +970,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> offset
+<p class="example-header-inherited">
+<a name="offset">offset</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -949,7 +1014,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> pitches
+<p class="example-header">
+<a name="pitches">pitches</a>
 <p> Read / write attribute implemented on <code>Chord</code>.
 </div>
 
@@ -1001,7 +1067,8 @@ abjad> chord.pitches = [-1, 3, 9, 11]
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> prev
+<p class="example-header-inherited">
+<a name="prev">prev</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -1046,7 +1113,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> spanners
+<p class="example-header-inherited">
+<a name="spanners">spanners</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -1089,7 +1157,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> staff
+<p class="example-header-inherited">
+<a name="staff">staff</a>
 <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -1153,7 +1222,8 @@ abjad> chord.staff = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> stem
+<p class="example-header-inherited">
+<a name="stem">stem</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -1196,7 +1266,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> tempo
+<p class="example-header-inherited">
+<a name="tempo">tempo</a>
 <p> Read-only attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
 </div>
 
@@ -1259,7 +1330,8 @@ abjad> chord.tempo = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> tie
+<p class="example-header-inherited">
+<a name="tie">tie</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -1321,7 +1393,8 @@ abjad> chords[0].tie = None
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> tremolo
+<p class="example-header-inherited">
+<a name="tremolo">tremolo</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -1364,7 +1437,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> trill
+<p class="example-header-inherited">
+<a name="trill">trill</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
@@ -1411,7 +1485,8 @@ Method examples
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> append(<i>arg</i>)
+<p class="example-header">
+<a name="append">append(<i>arg</i>)</a>
 <p> Bound method defined on <code>Chord</code>.
 <p> Interpret <i>arg</i> as a notehead and append to <code>chord</code>.
 <p> Valid types for <i>arg</i>:
@@ -1450,7 +1525,8 @@ abjad> chord.append(9)
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> copy( )
+<p class="example-header-inherited">
+<a name="copy">copy( )</a>
 <p> Bound method inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p> Returns a new copy of <code>chord</code>.
 <p> Accepts no input parameters.
@@ -1487,7 +1563,8 @@ True
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> extend(<i>arglist</i>)
+<p class="example-header">
+<a name="extend">extend(<i>arglist</i>)</a>
 <p> Bound method defined on <code>Chord</code>.
 <p> Interpret <i>arglist</i> as a list of noteheads and extend <code>chord</code>.
 <p> <i>arglist</i> must be a Python list of any of the following:
@@ -1527,7 +1604,8 @@ abjad> chord.extend([9, 16, 18])
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> kind(<i>classname</i>)
+<p class="example-header-inherited">
+<a name="kind">kind(<i>classname</i>)</a>
 <p> Bound method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>
 <p> Return <code>True</code> if <i>classname</i> in class hierarchy of <code>Chord</code>, and <code>False</code> otherwise.
 <p> DEPRECATED. Use <code>isinstance( )</code> instead.
@@ -1560,7 +1638,8 @@ True
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> pop(<i>i = -1</i>)
+<p class="example-header">
+<a name="pop">pop(<i>i = -1</i>)</a>
 <p> Bound method implemented on <code>Chord</code>
 <p> Return and remove the notehead at index <i>i</i> in <code>chord</code>.
 </div>
@@ -1592,7 +1671,8 @@ _NoteHead(bf')
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> remove(<i>notehead</i>)
+<p class="example-header">
+<a name="remove">remove(<i>notehead</i>)</a>
 <p> Bound method defined on <code>Chord</code>.
 <p> Remove <i>notehead</i> from <code>chord</code>.
 <p> Note that <code>remove( )</code> works <strong>by reference</strong> (rather than by index).
@@ -1632,7 +1712,8 @@ Override examples
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __contains__(<i>arg</i>)
+<p class="example-header">
+<a name="contains">__contains__(<i>arg</i>)</a>
 <p> Special method defined on <code>Chord</code>.
 <p> Return <code>True</code> if <i>arg</i> in <code>chord</code>, and <code>False</code> otherwise.
 <p> Valid types for <i>arg</i>:
@@ -1672,7 +1753,8 @@ True
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __delitem__(<i>i</i>)
+<p class="example-header">
+<a name="delitem">__delitem__(<i>i</i>)</a>
 <p> Special method defined on <code>Chord</code>.
 <p> Delete the notehead at index <i>i</i> in  <code><i>chord</i></code>.
 </div>
@@ -1704,7 +1786,8 @@ abjad> del(chord[2])
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __getitem__(<i>i</i>)
+<p class="example-header">
+<a name="getitem">__getitem__(<i>i</i>)</a>
 <p> Special method defined on <code>Chord</code>.
 <p> Get notehead at index <i>i</i> in <code>chord</code>.
 </div>
@@ -1735,7 +1818,8 @@ _NoteHead(d')
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __init__(<i>args*</i>)
+<p class="example-header">
+<a name="init">__init__(<i>args*</i>)</a>
 <p> Special method defined on <code>Chord</code>.
 <p> Initialize <code>chord</code> according to one of several input argument patterns:
 <ul>
@@ -1774,7 +1858,8 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __len__( )
+<p class="example-header">
+<a name="len">__len__( )</a>
 <p> Special method defined on <code>Chord</code>.
 <p> Return the number of noteheads in <code><i>chord</i></code> as a nonnegative integer.
 </div>
@@ -1807,7 +1892,8 @@ abjad> len(chord)
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> __mul__(<i>n</i>)
+<p class="example-header-inherited">
+<a name="mul">__mul__(<i>n</i>)</a>
 <p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
 <p> Implements left-handed multiplication against <code>Chord</code>.
 <p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
@@ -1842,7 +1928,8 @@ abjad> chords
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __mul__(<i>n</i>)
+<p class="example-header">
+<a name="repr">__repr__( )</a>
 <p> Special method defined on <code>Chord</code>.
 <p> Returns string summary of <code>chord</code> for interpreter display.
 </div>
@@ -1874,7 +1961,8 @@ Chord(c' d' bf', 4)
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __rmul__(<i>n</i>)
+<p class="example-header">
+<a name="rmul">__rmul__(<i>n</i>)</a>
 <p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
 <p> Implements right-handed multiplication against <code>Chord</code>. 
 <p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
@@ -1910,7 +1998,8 @@ abjad> chords
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __setitem__(<i>i</i>, <i>arg</i>)
+<p class="example-header">
+<a name="setitem">__setitem__(<i>i</i>, <i>arg</i>)</a>
 <p> Special method defined on <code>Chord</code>.
 <p> Set <i>arg</i> at index <i>i</i> in <i>chord</i>.
 </div>
@@ -1942,7 +2031,8 @@ abjad> chord[1] = 4
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __mul__(<i>n</i>)
+<p class="example-header">
+<a name="str">__str__( )</a>
 <p> Special method defined on <code>Chord</code>.
 <p> Returns string summary of <code>chord</code> for inline display.
 </div>
