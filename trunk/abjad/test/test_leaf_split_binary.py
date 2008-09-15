@@ -111,3 +111,36 @@ def test_leaf_split_binary_07( ):
    for l in t.leaves:
       assert len(l.beam.spanners) == 1
       assert l.beam.spanner is b
+
+### GRACE NOTES ###
+
+def test_leaf_split_binary_10( ):
+   '''After grace notes are removed from first leaf in bipartition.'''
+   t = Note(0, (1, 4))
+   t.grace.after = Note(0, (1, 32))
+   new = leaf_split_binary((1, 8), t)
+   assert len(new[0][0].grace.after) == 0
+   assert len(new[1][0].grace.after) == 1
+
+
+def test_leaf_split_binary_11( ):
+   '''After grace notes are removed from first tied leaves in bipartition.'''
+   t = Note(0, (1, 4))
+   t.grace.after = Note(0, (1, 32))
+   new = leaf_split_binary((5, 32), t)
+   assert len(new[0]) == 2
+   assert len(new[0][0].grace.after) == 0
+   assert len(new[0][1].grace.after) == 0
+   assert len(new[1]) == 1
+   assert len(new[1][0].grace.after) == 1
+
+def test_leaf_split_binary_10( ):
+   '''Grace notes are removed from second leaf in bipartition.'''
+   t = Note(0, (1, 4))
+   t.grace.before = Note(0, (1, 32))
+   new = leaf_split_binary((1, 8), t)
+   assert len(new[0]) == 1
+   assert len(new[1]) == 1
+   assert len(new[0][0].grace.before) == 1
+   assert len(new[1][0].grace.before) == 0
+

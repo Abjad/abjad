@@ -40,6 +40,9 @@ def leaf_split_binary(split_dur, leaf):
       return [leaf]
    else:
       l1 = leaf.copy()
+      ### remove afterGrace from l1 and Grace from leaf (l2)
+      l1.grace.after = None
+      leaf.grace.before = None
       parent = leaf._parent
       if parent:
          l1.spanners.die() 
