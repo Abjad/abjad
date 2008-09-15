@@ -1,0 +1,55 @@
+<h1>
+Pitch token
+</h1>
+
+<p>
+Abjad notes and chords accept all of the following as pitch input:
+
+<ul>
+<li> Python <tt>int</tt> and <tt>long</tt> instances
+<li> Python <tt>float</tt> instances
+<li> Abjad <code>Pitch</code> instances
+</ul>
+
+<p>
+For example:
+
+<div class="example-code">
+<pre>
+abjad> note = Note(0, (1, 4))
+</pre>
+<image src="images/1.png">
+</div>
+
+<p>
+And:
+
+<div class="example-code">
+<pre>
+abjad> note = Note(5.5, (1, 4))
+</pre>
+<image src="images/2.png">
+</div>
+
+<p>
+And:
+
+<div class="example-code">
+<pre>
+abjad> note = Note(Pitch(13), (1, 4))
+</pre>
+<image src="images/3.png">
+</div>
+
+<p>
+The Abjad <strong>pitch token</strong> generalizes these four types of input.
+
+<p>
+Examples in the documentation that ask for valid pitch token input accept any of the types of input show here.
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comment">
+Abjad accepts only those <code>float</code> instances evenly divisible by <tt>0.5</tt> as valid pitch token instances because Abjad implements accidental drawing symbols to the level of the quartertone only.
