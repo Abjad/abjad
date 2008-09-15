@@ -8,16 +8,17 @@ class _Interface(object):
       self._parser = _Parser( )
       self._spanners = spanners
 
-   ### REPR ###
-
-   def __repr__(self):
-      return '%s( )' % self.__class__.__name__
-
    ### OVERRIDES ###
+
+   def __cmp__(self, arg):
+      raise Exception(NotImplemented)
 
    def __len__(self):
       return len([kvp for kvp in self.__dict__.items( ) 
          if not kvp[0].startswith('_')])
+
+   def __repr__(self):
+      return '%s( )' % self.__class__.__name__
 
    def __setattr__(self, attr, value):
       if not attr.startswith('_') and value is None and attr in self.__dict__:
@@ -25,10 +26,19 @@ class _Interface(object):
       else:
          object.__setattr__(self, attr, value)
 
-   def __cmp__(self, arg):
-      raise Exception(NotImplemented)
+   ### PUBLIC PROPERTIES ###
 
-   ### PROPERTIES ###
+   @property
+   def first(self):
+      return self.spanned and self.spanner._isMyFirstLeaf(self._client)
+
+   @property
+   def last(self):
+      return self.spanned and self.spanner._isMyLastLeaf(self._client)
+
+   @property
+   def only(self):
+      return self.spanned and self.spanner._isMyOnlyLeaf(self._client)
 
    @property
    def spanners(self):
@@ -47,19 +57,7 @@ class _Interface(object):
    def spanned(self):
       return bool(self.spanners)
 
-   @property
-   def first(self):
-      return self.spanned and self.spanner._isMyFirstLeaf(self._client)
-
-   @property
-   def last(self):
-      return self.spanned and self.spanner._isMyLastLeaf(self._client)
-
-   @property
-   def only(self):
-      return self.spanned and self.spanner._isMyOnlyLeaf(self._client)
-
-   ### METHODS ###
+   ### PUBLIC METHODS ###
 
    def clear(self):
       for key, value in self.__dict__.items( ):
@@ -70,15 +68,7 @@ class _Interface(object):
       for spanner in self.spanners[ : ]:
          spanner.die( )
 
-   def _copy(self):
-      from copy import copy
-      client = self._client
-      self._client = None
-      result = copy(self)
-      self._client = client
-      return result
-
-   ### FORMATTING ###
+   ### PRIVATE ATTRIBUTES & METHODS ###
 
    @property
    def _before(self):
@@ -89,4 +79,12 @@ class _Interface(object):
                self._grob, 
                self._parser.formatAttribute(key),
                self._parser.formatValue(value)))
+      return result
+
+   def _copy(self):
+      from copy import copy
+      client = self._client
+      self._client = None
+      result = copy(self)
+      self._client = client
       return result
