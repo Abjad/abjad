@@ -99,7 +99,12 @@ class Pitch(object):
    ### MATH AND COMPARISON TESTING ###
 
    def __cmp__(self, arg):
-      return cmp(self.number, arg.number)
+      if isinstance(arg, Pitch):
+         return cmp(self.number, arg.number)
+      elif isinstance(arg, (int, long, float)):
+         return cmp(self.number, arg)
+      else:
+         raise Exception(NotImplemented)
 
    def enharmonicCompare(self, arg):
       result = cmp(self.number, arg.number)
