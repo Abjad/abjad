@@ -289,29 +289,11 @@ def test_chord_set_noteheads_03( ):
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 
-### TEST OVERRIDES and HANDLERS###
 
-def test_chord_modify_noteheads_01( ):
-   '''Chords can be appended noteheads. Noteheads are sorted.'''
-   t = Chord([2, 4], (1,4))
-   t.append(Pitch(3))
-   assert repr(t) == "Chord(d' ef' e', 4)"
-   assert t.format == "<d' ef' e'>4"
-   t.append(0)
-   assert repr(t) == "Chord(c' d' ef' e', 4)"
-   assert t.format == "<c' d' ef' e'>4"
+### TEST CHORD SPECIAL METHODS ###
 
-def test_chord_modify_noteheads_02( ):
-   '''Chords can be extended. Noteheads are sorted.'''
-   t = Chord([2, 4], (1,4))
-   t.extend([Pitch(3)])
-   assert repr(t) == "Chord(d' ef' e', 4)"
-   assert t.format == "<d' ef' e'>4"
-   t.extend([0, 1])
-   assert repr(t) == "Chord(c' cs' d' ef' e', 4)"
-   assert t.format == "<c' cs' d' ef' e'>4"
 
-def test_chord_modify_noteheads_03( ):
+def test_chord_setitem_01( ):
    '''Noteheads can be replaced. Noteheads are sorted.'''
    t = Chord([2, 4], (1,4))
    t[0] = Pitch(5)
