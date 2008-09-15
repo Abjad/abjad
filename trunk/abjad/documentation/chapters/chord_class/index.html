@@ -832,8 +832,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> noteheads
-<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+<p class="example-header"> noteheads
+<p> Read / write attribute defined on <code>Chord</code>.
 </div>
 
 <div class="example-body">
@@ -970,7 +970,7 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited"> pitches
+<p class="example-header"> pitches
 <p> Read / write attribute implemented on <code>Chord</code>.
 </div>
 
@@ -1432,8 +1432,17 @@ Method examples
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> append( )
-<p> Implemented on <code>Chord</code>
+<p class="example-header"> append(<i>arg</i>)
+<p> Bound method defined on <code>Chord</code>.
+<p> Interpret <i>arg</i> as a notehead and append to <code>chord</code>.
+<p> Valid types for <i>arg</i>:
+<ul>
+<li> int
+<li> long
+<li> float
+<li> Abjad <code><a href="../pitch_class/index.html">Pitch</a></code>
+<li> Abjad <code><a href="../notehead_class/index.html">_NoteHead</a></code> 
+</ul>
 </div>
 
 <div class="example-body">
@@ -1441,10 +1450,6 @@ Method examples
 <h3 class="example-section">
 Example
 </h3>
-
-<div class="example-text">
-<p> Append int, float, long, Abjad <code>Pitch</code> or Abjad <code>_NoteHead</code>
-</div>
 
 <div class="example-code">
 <pre>
@@ -1467,7 +1472,9 @@ abjad> chord.append(9)
 
 <div class="example-header">
 <p class="example-header-inherited"> copy( )
-<p> Inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+<p> Bound method inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+<p> Returns a new copy of <code>chord</code>.
+<p> Accepts no input parameters.
 </div>
 
 <div class="example-body">
@@ -1475,11 +1482,6 @@ abjad> chord.append(9)
 <h3 class="example-section">
 Example
 </h3>
-
-<div class="example-text">
-<p> Creates a new copy of chord with new id.
-<p> Accepts no input parameters.
-</div>
 
 <div class="example-code">
 <pre>
@@ -1506,8 +1508,17 @@ True
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> extend( )
-<p> Implemented on <code>Chord</code>
+<p class="example-header"> extend(<i>arglist</i>)
+<p> Bound method defined on <code>Chord</code>.
+<p> Interpret <i>arglist</i> as a list of noteheads and extend <code>chord</code>.
+<p> <i>arglist</i> must be a Python list of any of the following:
+<ul>
+<li> int
+<li> long
+<li> float
+<li> Abjad <code><a href="../pitch_class/index.html">Pitch</a></code>
+<li> Abjad <code><a href="../notehead_class/index.html">_NoteHead</a></code> 
+</ul>
 </div>
 
 <div class="example-body">
@@ -1515,10 +1526,6 @@ True
 <h3 class="example-section">
 Example
 </h3>
-
-<div class="example-text">
-<p> Extend a list of int, float, long, Abjad <code>Pitch</code> or Abjad <code>_NoteHead</code>
-</div>
 
 <div class="example-code">
 <pre>
@@ -1542,7 +1549,9 @@ abjad> chord.extend([9, 16, 18])
 
 <div class="example-header">
 <p class="example-header-inherited"> kind(<i>classname</i>)
-<p> Implemented on <code><a href="../core_component_class/index.html">_Component</a></code>
+<p> Bound method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>
+<p> Return <code>True</code> if <i>classname</i> in class hierarchy of <code>Chord</code>, and <code>False</code> otherwise.
+<p> DEPRECATED. Use <code>isinstance( )</code> instead.
 </div>
 
 <div class="example-body">
@@ -1550,11 +1559,6 @@ abjad> chord.extend([9, 16, 18])
 <h3 class="example-section">
 Example
 </h3>
-
-<div class="example-text">
-<p> Return <code>True</code> if <i>classname</i> in class hierarchy of <code>Chord</code>, and <code>False</code> otherwise.
-<p> DEPRECATED. Use <code>isinstance( )</code> instead.
-</div>
 
 <div class="example-code">
 <pre>
@@ -1578,7 +1582,8 @@ True
 
 <div class="example-header">
 <p class="example-header"> pop(<i>i = -1</i>)
-<p> Implemented on <code>Chord</code>
+<p> Bound method implemented on <code>Chord</code>
+<p> Return and remove the notehead at index <i>i</i> in <code>chord</code>.
 </div>
 
 <div class="example-body">
@@ -1586,10 +1591,6 @@ True
 <h3 class="example-section">
 Example
 </h3>
-
-<div class="example-text">
-<p> Return and remove <code>chord.noteheads[i]</code>.
-</div>
 
 <div class="example-code">
 <pre>
@@ -1613,7 +1614,9 @@ _NoteHead(bf')
 
 <div class="example-header">
 <p class="example-header"> remove(<i>notehead</i>)
-<p> Implemented on <code>Chord</code>
+<p> Bound method defined on <code>Chord</code>.
+<p> Remove <i>notehead</i> from <code>chord</code>.
+<p> Note that <code>remove( )</code> works <strong>by reference</strong> (rather than by index).
 </div>
 
 <div class="example-body">
@@ -1621,11 +1624,6 @@ _NoteHead(bf')
 <h3 class="example-section">
 Example
 </h3>
-
-<div class="example-text">
-<p> Remove <i>notehead</i> from <code>chord.noteheads</code>.
-<p> Note that <code>remove( )</code> works <strong>by reference</strong> (rather than by index).
-</div>
 
 <div class="example-code">
 <pre>
@@ -1656,7 +1654,16 @@ Override examples
 
 <div class="example-header">
 <p class="example-header"> __contains__(<i>arg</i>)
-<p> Implemented on <code>Chord</code>
+<p> Bound method defined on <code>Chord</code>.
+<p> Return <code>True</code> if <i>arg</i> in <code>chord</code>, and <code>False</code> otherwise.
+<p> Valid types for <i>arg</i>:
+<ul>
+<li> int
+<li> long
+<li> float
+<li> Abjad <code><a href="../pitch_class/index.html">Pitch</a></code>
+<li> Abjad <code><a href="../notehead_class/index.html">_NoteHead</a></code> 
+</ul>
 </div>
 
 <div class="example-body">
@@ -1664,11 +1671,6 @@ Override examples
 <h3 class="example-section">
 Example
 </h3>
-
-<div class="example-text">
-<p> Return <code>True</code> if <i>arg</i> in <code>chord</code>, and <code>False</code> otherwise.
-<p> <i>arg</i> may be int, float, long, Abjad <code>Pitch</code>, Abjad <code>_NoteHead</code>.
-</div>
 
 <div class="example-code">
 <pre>
@@ -1691,7 +1693,8 @@ True
 
 <div class="example-header">
 <p class="example-header"> __len__( )
-<p> Implemented on <code>Chord</code>
+<p> Bound method defined on <code>Chord</code>.
+<p> Return the number of noteheads in <code><i>chord</i></code> as a nonnegative integer.
 </div>
 
 <div class="example-body">
@@ -1719,13 +1722,14 @@ abjad> len(chord)
 </div> <!-- example -->
 
 
-<!-- ### __DELITEM__, __GETITEM__, __SETITEM__ ### -->
+<!-- ### __DELITEM__ ### --> 
 
 <div class="example">
 
 <div class="example-header">
-<p class="example-header"> __delitem__(<i>i</i>), __getitem__(<i>i</i>), __setitem__(<i>i</i>, <i>arg</i>)
-<p> Implemented on <code>Chord</code>
+<p class="example-header"> __delitem__(<i>i</i>)
+<p> Defined on <code>Chord</code>.
+<p> Delete the notehead at index <i>i</i> in  <code><i>chord</i></code>.
 </div>
 
 <div class="example-body">
@@ -1734,27 +1738,149 @@ abjad> len(chord)
 Example
 </h3>
 
-<div class="example-text">
-<p> Delete, get or set the item in  <code><i>chord</i></code> at <i>i</i>.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
 <image src="images/60.png">
 <pre>
+abjad> del(chord[2])
+</pre>
+<image src="images/61.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __GETITEM__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __getitem__(<i>i</i>)
+<p> Defined on <code>Chord</code>.
+<p> Get notehead at index <i>i</i> in <code>chord</code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/62.png">
+<pre>
 abjad> chord[1]
 _NoteHead(d')
 </pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __SETITEM__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __setitem__(<i>i</i>, <i>arg</i>)
+<p> Defined on <code>Chord</code>.
+<p> Set <i>arg</i> at index <i>i</i> in <i>chord</i>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
 <pre>
-abjad> del(chord[1])
+abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/61.png">
+<image src="images/63.png">
 <pre>
-abjad> chord[0] = -1
+abjad> chord[1] = 4
 </pre>
-<image src="images/62.png">
+<image src="images/64.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __MUL__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __mul__(<i>n</i>)
+<p> Defined on <code>Chord</code>.
+<p> Implements left-handed multiplication against <code>Chord</code>.
+<p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/65.png">
+<pre>
+abjad> chords = chord * 4
+abjad> chords
+[Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
+</pre>
+<image src="images/66.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __RMUL__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __rmul__(<i>n</i>)
+<p> Defined on <code>Chord</code>.
+<p> Implements right-handed multiplication against <code>Chord</code>. 
+<p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/67.png">
+<pre>
+abjad> chords = 4 * chord
+abjad> chords
+[Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
+</pre>
+<image src="images/68.png">
 </div>
 
 </div> <!-- example body -->
@@ -1793,7 +1919,9 @@ Write a few <code>Chord.remove( )</code> reg tests.
 </p>
 
 <p class="to-do">
-Break out __delitem__, __getitem__ and __setitem__ into separate examples, maybe one after the other regardless of alphabetic order.
+Create the concept of the <strong>notehead proxy type</strong> and document in a chapter somewhere.
+Notehead proxy types include int, long, float, Pitch and _NoteHead.
+Reference notehead proxy types in the chapter here instead of repeating the enumeration.
 </p>
 
 
