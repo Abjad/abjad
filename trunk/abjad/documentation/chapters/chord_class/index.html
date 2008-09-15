@@ -1275,10 +1275,495 @@ abjad> chord.tempo = None
 
 
 
+<!-- ### TIE ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> tie
+<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../tie_interface/index.html">_TieInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chords = Chord([0, 2, 10], (1, 4)) * 2
+</pre>
+<image src="images/43.png">
+<pre>
+abjad> chords[0].tie
+_TieInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign <code>True</code>, <code>False</code> to set, unset harmonics.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chords = Chord([0, 2, 10], (1, 4)) * 2
+abjad> chords[0].tie = True
+</pre>
+<image src="images/44.png">
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chords[0].tie = None
+</pre>
+<image src="images/45.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### TREMOLO ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> tremolo
+<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../tremolo_interface/index.html">_TremoloInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/46.png">
+<pre>
+abjad> chord.tremolo
+Tremolo( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>tremolo</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### TRILL ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> trill
+<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../trill_interface/index.html">_TrillInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/47.png">
+<pre>
+abjad> chord.trill
+_TrillInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>trill</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<h2 class="page-section">
+Method examples
+</h2>
+
+
+<!-- ### APPEND( ) ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> append( )
+<p> Implemented on <code>Chord</code>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Append int, float, long, Abjad <code>Pitch</code> or Abjad <code>_NoteHead</code>
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/48.png">
+<pre>
+abjad> chord.append(9)
+</pre>
+<image src="images/49.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### COPY( ) ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> copy( )
+<p> Inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Creates a new copy of chord with new id.
+<p> Accepts no input parameters.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/50.png">
+<pre>
+abjad> new = chord.copy( )
+</pre>
+<image src="images/51.png">
+<pre>
+abjad> id(chord) != id(new)
+True
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### EXTEND( ) ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> extend( )
+<p> Implemented on <code>Chord</code>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Extend a list of int, float, long, Abjad <code>Pitch</code> or Abjad <code>_NoteHead</code>
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/52.png">
+<pre>
+abjad> chord.extend([9, 16, 18])
+</pre>
+<image src="images/53.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### KIND( ) ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited"> kind(<i>classname</i>)
+<p> Implemented on <code><a href="../core_component_class/index.html">_Component</a></code>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Return <code>True</code> if <i>classname</i> in class hierarchy of <code>Chord</code>, and <code>False</code> otherwise.
+<p> DEPRECATED. Use <code>isinstance( )</code> instead.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/54.png">
+<pre>
+abjad> chord.kind('Chord')
+True
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### POP( ) ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> pop(<i>i = -1</i>)
+<p> Implemented on <code>Chord</code>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Return and remove <code>chord.noteheads[i]</code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/55.png">
+<pre>
+abjad> chord.pop( )
+_NoteHead(bf')
+</pre>
+<image src="images/56.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### REMOVE( ) ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> remove(<i>notehead</i>)
+<p> Implemented on <code>Chord</code>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Remove <i>notehead</i> from <code>chord.noteheads</code>.
+<p> Note that <code>remove( )</code> works <strong>by reference</strong> (rather than by index).
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/57.png">
+<pre>
+abjad> chord.remove(chord[1])
+TODO: FIX chord.remove
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+
+<h2 class="page-section">
+Override examples
+</h2>
+
+
+
+<!-- ### __CONTAINS__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __contains__(<i>arg</i>)
+<p> Implemented on <code>Chord</code>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Return <code>True</code> if <i>arg</i> in <code>chord</code>, and <code>False</code> otherwise.
+<p> <i>arg</i> may be int, float, long, Abjad <code>Pitch</code>, Abjad <code>_NoteHead</code>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/58.png">
+<pre>
+abjad> 10 in chord
+True
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### __LEN__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __len__( )
+<p> Implemented on <code>Chord</code>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Returns the number of noteheads in <code><i>chord</i></code> as a nonnegative integer.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/59.png">
+<pre>
+abjad> len(chord)
+3
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### __DELITEM__, __GETITEM__, __SETITEM__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header"> __delitem__(<i>i</i>), __getitem__(<i>i</i>), __setitem__(<i>i</i>, <i>arg</i>)
+<p> Implemented on <code>Chord</code>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-text">
+<p> Delete, get or set the item in  <code><i>chord</i></code> at <i>i</i>.
+</div>
+
+<div class="example-code">
+<pre>
+abjad> chord = Chord([0, 2, 10], (1, 4))
+</pre>
+<image src="images/60.png">
+<pre>
+abjad> chord[1]
+_NoteHead(d')
+</pre>
+<pre>
+abjad> del(chord[1])
+</pre>
+<image src="images/61.png">
+<pre>
+abjad> chord[0] = -1
+</pre>
+<image src="images/62.png">
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
 
 <!-- ### COMMENTS ### -->
 
-</div>
 <h2 class="page-section">
 Comments
 </h2>
@@ -1297,6 +1782,18 @@ Implement <code>accidentals</code> in <code>_ChordFormatter</code>.
 
 <p class="to-do">
 Write a better example for the <code>staff</code> attribute here.
+</p>
+
+<p class="to-do">
+FIXME: Chord.remove( ) breaks with new <code>_Interface.__eq__</code> now raising <code>Exception(NotImplemented)</code>.
+</p>
+
+<p class="to-do">
+Write a few <code>Chord.remove( )</code> reg tests.
+</p>
+
+<p class="to-do">
+Break out __delitem__, __getitem__ and __setitem__ into separate examples, maybe one after the other regardless of alphabetic order.
 </p>
 
 
