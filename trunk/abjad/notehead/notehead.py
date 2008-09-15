@@ -26,6 +26,9 @@ class _NoteHead(_Interface):
          return ''
 
    ### MATH AND COMPARISON TESTING ###
+   ### TODO: I propose dis-allowing notehead comparison;
+   ###       if we want to compare by pitch,
+   ###       then do so explicitly.
 
    def __cmp__(self, arg):
       return cmp(self.pitch, arg.pitch)

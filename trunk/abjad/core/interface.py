@@ -25,23 +25,8 @@ class _Interface(object):
       else:
          object.__setattr__(self, attr, value)
 
-   def __eq__(self, arg):
+   def __cmp__(self, arg):
       raise Exception(NotImplemented)
-
-   def __ne__(self, arg):
-      raise Exception(NotImplemented)
-
-#   def __gt__(self, arg):
-#      raise Exception(NotImplemented)
-#
-#   def __lt__(self, arg):
-#      raise Exception(NotImplemented)
-#
-#   def __ge__(self, arg):
-#      raise Exception(NotImplemented)
-#
-#   def __le__(self, arg):
-#      raise Exception(NotImplemented)
 
    ### PROPERTIES ###
 
