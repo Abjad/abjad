@@ -9,18 +9,7 @@ class Chord(_Leaf):
    def __init__(self, *args):
       self.initializer = _ChordInitializer(self, _Leaf, *args)
 
-   ### REPR ### 
-
-   def __repr__(self):
-      return 'Chord(%s, %s)' % (self._summary, self.duration._product)
-
-   def __str__(self):
-      return '<%s>%s' % (self._summary, self.duration._product)
-
    ### OVERRIDES ###
-
-   def __len__(self):
-      return len(self._noteheads)
 
    def __contains__(self, arg):
       if isinstance(arg, (int, float, long)):
@@ -32,8 +21,17 @@ class Chord(_Leaf):
       else:
          return False
 
+   def __delitem__(self, i):
+      del(self._noteheads[i])
+
    def __getitem__(self, i):
       return self._noteheads[i]
+
+   def __len__(self):
+      return len(self._noteheads)
+
+   def __repr__(self):
+      return 'Chord(%s, %s)' % (self._summary, self.duration._product)
 
    def __setitem__(self, i, arg):
       if isinstance(arg, (int, long, float)):
@@ -44,8 +42,8 @@ class Chord(_Leaf):
          self._noteheads[i] = arg
       self._sort()
 
-   def __delitem__(self, i):
-      del(self._noteheads[i])
+   def __str__(self):
+      return '<%s>%s' % (self._summary, self.duration._product)
 
    ### HANDLERS ###
 
@@ -76,18 +74,6 @@ class Chord(_Leaf):
    ### MANAGED ATTRIBUTES ###
 
    @apply
-   def pitches( ):
-      def fget(self):
-         result = [ ]
-         for notehead in self._noteheads:
-            if notehead.pitch:
-               result.append(notehead.pitch)   
-         return result
-      def fset(self, arglist):
-         self.noteheads = arglist
-      return property(**locals( ))
-
-   @apply
    def noteheads( ):
       def fget(self):
          result = [ ]
@@ -111,6 +97,18 @@ class Chord(_Leaf):
          self._sort()
       return property(**locals( ))
 
+   @apply
+   def pitches( ):
+      def fget(self):
+         result = [ ]
+         for notehead in self._noteheads:
+            if notehead.pitch:
+               result.append(notehead.pitch)   
+         return result
+      def fset(self, arglist):
+         self.noteheads = arglist
+      return property(**locals( ))
+
    ### FORMATTING ###
 
    @property
@@ -120,4 +118,4 @@ class Chord(_Leaf):
    ### UTILITY ###
 
    def _sort(self):
-      self._noteheads.sort()
+      self._noteheads.sort( )
