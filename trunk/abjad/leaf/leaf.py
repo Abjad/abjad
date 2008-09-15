@@ -60,6 +60,14 @@ class _Leaf(_Component):
    ### MANAGED ATTRIBUTES ###
 
    @apply
+   def accidentals( ):
+      def fget(self):
+         raise Exception(NotImplemented)
+      def fset(self, arglist):
+         raise Exception(NotImplemented)
+      return property(**locals( ))
+
+   @apply
    def articulations( ):
       def fget(self):
          return self._articulations
