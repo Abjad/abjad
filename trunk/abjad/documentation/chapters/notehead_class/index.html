@@ -21,13 +21,45 @@ if we want to have the TOC on every page, we can put it here...
 <h1>The Abjad <code>_NoteHead</code> class</h1>
 
 <p>
-The Abjad <code>_NoteHead</code> interface class models musical noteheads.
-This chapter describes the different bound methods defined against the Abjad <code>_NoteHead</code> class.
+The Abjad <code>_NoteHead</code> interface class models noteheads.
 </p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+<p class="interface-block-header"> Attributes </p>
+
+<p class="interface-attribute"> format </p>
+<p class="interface-attribute-inherited"> first </p>
+<p class="interface-attribute-inherited"> last </p>
+<p class="interface-attribute-inherited"> only </p>
+<p class="interface-attribute"> pitch </p>
+<p class="interface-attribute-inherited"> spanned </p>
+<p class="interface-attribute-inherited"> spanner </p>
+<p class="interface-attribute-inherited"> spanners </p>
+<p class="interface-attribute"> style </p>
+<p class="interface-attribute"> stylesSupported </p>
+</div>
+
+<div class="interface-block">
+<p class="interface-block-header"> Methods </p>
+<p class="interface-attribute-inherited"> clear( ) </p>
+<p class="interface-attribute-inherited"> unspan( ) </p>
+</div>
+
+<div class="interface-block">
+<p class="interface-block-header"> Overloads </p>
+<p class="interface-attribute-inherited"> __len__ </p>
+</div>
+
 
 <p class="spacer"/>
 
-<h2>Creating noteheads</h2>
+<h2 class="page-section">
+Creating Noteheads
+</h2>
 
 <p>
 The Abjad <code>_NoteHead</code> interface is a <strong>private</strong> class (as indicated by the _ before the class name). As such, it cannot be created directly and independently from a <code>Note</code> or <code>Chord</code> object. 
@@ -35,56 +67,155 @@ The Abjad <code>_NoteHead</code> interface is a <strong>private</strong> class (
 </p>
 
 <pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.notehead
-  _NoteHead(c', 4)
+abjad> note = Note(0, (1, 4))
+abjad> note.notehead
+_NoteHead(c', 4)
 </pre>
 <pre>
-  abjad> chord = Chord([0, 2] (1, 4))
-  abjad> note.noteheads
-  [_NoteHead(c'), _NoteHead(d')]
+abjad> chord = Chord([0, 2] (1, 4))
+abjad> note.noteheads
+[_NoteHead(c'), _NoteHead(d')]
 </pre>
 <p>
 Notice that a <code>Note</code> object has a <code>_NoteHead</code> interface directly attached to it, while the <code>Chord</code> object has a <strong>noteheads</strong> list of <code>_NoteHead</code> interfaces. 
 
 
 <p>
-A <code>_NoteHead</code> interface inherits from the abstract <code>_Interface</code>, and thus carries all the <code>_Interface</code> attributes. See the <code>_Interface</code> reference for details <b>TODO: add hyperlink here</b>.  <code>_NoteHead</code> has two important unique managed public attributes:  
-</p>
-<ul>
-   <li> <code>shape</code>
-   <li> <code>pitch</code>
-</ul>
+A <code>_NoteHead</code> interface inherits from the abstract <code>_Interface</code>, and thus carries all the <code>_Interface</code> attributes. See the <code><a href="../core_interface/index.html">_Interface</a></code> reference for details.
 
 
-<h3>Setting Notehead shape</h3>
-<p>
-A Notehead shape must be set with a Python string naming the desired notehead shape. 
-</p>
+<h2 class="page-section">
+Attribute examples
+</h2>
+
+<!-- ### PITCH ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header"> pitch </p>
+</div>
+<div class="example-body">
+<h3 class="example-section">
+Return type
+</h3>
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../pitch_class/index.html">Pitch</a></code>.
+</div>
+<div class="example-code">
 <pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.notehead.shape = 'cross'
-  abjad> f(note)
-  \once \override NoteHead #'style = #'cross
-  c'4
-  abjad> show(note)
+abjad> note = Note(0, (1, 4))
+abjad> note.notehead.pitch 
+Pitch(c, 4)
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment Values
+</h3>
+<div class="example-text">
+<p>
+A Notehead pitch attribute can be set in two ways: 
+<ul>
+<li>With a number representing the pitch in semitones from middle C.
+<li>With a <code>Pitch</code> object (Refer to the <code>Pitch</code> class section for details on <code>Pitch</code> initialization.  
+</ul>
+</p>
+</div>
+<div class="example-code">
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.notehead.pitch = 10
+abjad> note
+Note(bf', 4)
+
+abjad> note.notehead.pitch = Pitch('cs', 5)
+abjad> note
+Note(cs'', 4)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+<!-- ### STYLE ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header"> style </p>
+</div>
+
+<div class="example-body">
+<h3 class="example-section">
+Return type
+</h3>
+<div class="example-text">
+</div>
+<div class="example-code">
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.notehead.style == 'cross'
+abjad> note.notehead.style 
+'cross'
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment Values
+</h3>
+<div class="example-text">
+
+<p>
+A Notehead style must be set with a Python string naming the desired notehead style. 
+</p>
+</div>
+<div class="example-code">
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.notehead.style = 'cross'
+abjad> f(note)
+\once \override NoteHead #'style = #'cross
+c'4
+abjad> show(note)
 </pre>
 <image src="images/1.png">
+</div>
+<div class="example-text">
 <p>
-Notice how the notehead is formatted when applying the formatting function <code>f( )</code>. <strong>Known</strong> or recognized shapes, such as <code>'cross'</code>, will be formatted in the appropriate LilyPond input format.  
-<strong>Unknown</strong> shapes, such as <code>'myVeryOwnShape'</code> is not an allowed LilyPond notehead shape, and is thus formatted like so:
+Notice how the notehead is formatted when applying the formatting function <code>f( )</code>. <strong>Known</strong> or recognized styles, such as <code>'cross'</code>, will be formatted in the appropriate LilyPond input format.  
+<strong>Unknown</strong> styles, such as <code>'myVeryOwnShape'</code> is not an allowed LilyPond notehead style, and is thus formatted like so:
 </p>
+</div>
+<div class="example-code">
 <pre>
-  abjad> note.notehead.shape = 'myVeryOwnShape'
-  abjad> f(note)
-  \myVeryOwnShape
-  c'4
+abjad> note.notehead.style = 'myVeryOwnShape'
+abjad> f(note)
+\myVeryOwnShape
+c'4
 </pre>
+</div>
+<div class="example-text">
 <p>
-Unknown shapes are permitted and formatted differently to allow the user to define his/her own shapes with LilyPond <strong>identifiers</strong>. In this case, the user is responsible to define the <strong>identifiers</strong> for the <code>show( )</code> function to properly compile the LilyPond output. 
+Unknown styles are permitted and formatted differently to allow the user to define his/her own styles with LilyPond <strong>identifiers</strong>. In this case, the user is responsible to define the <strong>identifiers</strong> for the <code>show( )</code> function to properly compile the LilyPond output. 
 </p>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+<!-- ### STYLESSUPPORTED ### -->
+
+
+<div class="example">
+<div class="example-header">
+<p class="example-header"> stylesSupported </p>
+</div>
+
+<div class="example-body">
+<h3 class="example-section">
+Return type
+</h3>
+<div class="example-text">
 <p>
-The following are the supported shapes:
+The following are the supported styles:
 <ul>
 <li><code>'cross'</code> 
 <li><code>'parallelogram'</code> 
@@ -103,44 +234,30 @@ The following are the supported shapes:
 <li><code>'wedge'</code> 
 </ul>
 </p>
-
-
-<h3>Setting Notehead pitch</h3>
-<p>
-A Notehead pitch attribute can be set in two ways: 
-<ul>
-   <li>With a number representing the pitch in semitones from middle C.
-   <li>With a <code>Pitch</code> object (Refer to the <code>Pitch</code> class section for details on <code>Pitch</code> initialization.  
-</ul>
-</p>
+</div>
+<div class="example-code">
 <pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> note
-  Note(c', 4)
-  abjad> note.notehead.pitch = 10
-  abjad> note
-  Note(bf', 4)
+abjad> note.notehead.stylesSupported
+('cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 
+'neomensural', 'harmonic', 'mensural', 'petruccidiamond', 'triangle', 
+'semicircle', 'diamond', 'tiltedtriangle', 'square', 'wedge')
+</div>
 
-  abjad> p = Pitch('cs', 5)
-  abjad> p
-  Pitch(cs, 5)
-  abjad> note.notehead.pitch = p
-  abjad> note
-  Note(cs'', 4)
-</pre>
+</div> <!-- example body -->
+</div> <!-- example -->
 
 
 <h2 class="end-of-page">Comments</h2>
 
-<p class="comment">
-Do we want to change the <strong>shape</strong> attribute to <strong>style</strong> as suggested in the Abjad blog?
-</p>
 
 <h2 class="end-of-page">To-do</h2>
 <p class="to-do">
 Link <strong>identifiers</strong> to glossary. 
 </p>
 
+<p class="to-do">
+Rename <strong>stylesSupported</strong> to single word? Remove from public interface? 
+</p>
 
 
 
