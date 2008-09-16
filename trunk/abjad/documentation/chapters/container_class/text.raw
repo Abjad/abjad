@@ -53,6 +53,193 @@ Public interface
 </div>
 
 <h2 class="page-section">
+Attribute examples
+</h2>
+
+
+
+<!-- ### ACCIDENTALS ### -->
+
+<div class="example">
+<p class="example-header-inherited"> 
+<a name="accidentals" class="example-header-inherited">accidentals</a>
+</p>
+</div>
+
+
+
+<!-- ### BARLINE ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="barline" class="example-header-inherited">barline</a>
+<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns an Abjad <code><a href="../barline_interface/index.html">_BarLineInterface</a></code>.
+<p> Assign a LilyPond barline string, <code>None</code>.
+<p>See <a href="../component_class/index.html#barline">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+
+<!-- ### BRACKETS ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="brackets" class="example-header">brackets</a>
+<p> Read / write attribute defined on <code>Container</code>.
+</div> <!-- example header -->
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad 
+<a href="../brackets_class/index.html">_Brackets</a>  
+object.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> container = Container([ ])
+   hide> measure = Measure((1, 4), [container])
+   hide> measure.meter.transparent = True
+   abjad> container.brackets
+   ( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign a string description of brackets type.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> container = Container([ ])
+   hide> measure = Measure((1, 4), [container])
+   hide> measure.meter.transparent = True
+   abjad> container.brackets = 'double-angle'
+   abjad> container.brackets
+   << >>
+   abjad> container.brackets = 'curly'
+   abjad> container.brackets
+   { }
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### COMMENTS ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="barline" class="example-header-inherited">barline</a>
+<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns an Abjad <code><a href="../comments_class/index.html">_Comments</a></code> class.
+<p>See <a href="../component_class/index.html#comments">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+<!-- ### DURATION ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="duration" class="example-header">duration</a>
+<p> Read-only attribute defined on <code>Container</code>.
+</div> <!-- example header -->
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad 
+<a href="../container_duration_interface/index.html">_ContainerDurationInterface</a>  
+object.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> container = Container([ ])
+   hide> measure = Measure((1, 4), [container])
+   hide> measure.meter.transparent = True
+   abjad> container.duration
+   ContainerDurationInterface(0)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### FORMAT ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="format" class="example-header-inherited">format</a>
+<p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns a string of valid LilyPond input.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+
+<!-- ### FORMATTER ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="formatter" class="example-header">formatter</a>
+<p> Read-only attribute defined on <code>Container</code>.
+</div> <!-- example header -->
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad 
+<a href="../container_formatter/index.html">_ContainerFormatter</a>  
+object.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> container = Container([ ])
+   hide> measure = Measure((1, 4), [container])
+   hide> measure.meter.transparent = True
+   abjad> container.formatter
+   _ContainerFormatter( )
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+<h2 class="page-section">
 Comments
 </h2>
 
