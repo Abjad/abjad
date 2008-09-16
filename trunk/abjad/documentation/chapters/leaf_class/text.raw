@@ -12,45 +12,110 @@ Public interface
 
 <div class="example-block">
 <p class="example-block-header"> Attributes
-   <p class="interface-attribute-inherited"> accidentals
-   <p class="interface-attribute"> articulations
-   <p class="interface-attribute-inherited"> barline
-   <p class="interface-attribute"> beam
-   <p class="interface-attribute"> clef
-   <p class="interface-attribute"> dots
-   <p class="interface-attribute"> duration
-   <p class="interface-attribute"> dynamics
-   <p class="interface-attribute-inherited"> format
-   <p class="interface-attribute"> formatter
-   <p class="interface-attribute"> glissando
-   <p class="interface-attribute"> grace
-   <p class="interface-attribute"> harmonic
-   <p class="interface-attribute"> leaves
-   <p class="interface-attribute"> next
-   <p class="interface-attribute"> number
-   <p class="interface-attribute"> offset
-   <p class="interface-attribute"> prev
-   <p class="interface-attribute"> spanners
-   <p class="interface-attribute"> staff
-   <p class="interface-attribute"> stem
-   <p class="interface-attribute-inherited"> tempo
-   <p class="interface-attribute"> tie
-   <p class="interface-attribute"> tremolo
-   <p class="interface-attribute"> trill
+   <p class="interface-attribute-inherited">
+   <a href="#accidentals" class="interface-attribute-inherited">accidentals</a>
+
+   <p class="interface-attribute">
+   <a href="#articulations" class="interface-attribute">articulations</a>
+
+   <p class="interface-attribute-inherited">
+   <a href="#barline" class="interface-attribute-inherited">barline</a>
+
+   <p class="interface-attribute">
+   <a href="#beam" class="interface-attribute">beam</a>
+
+   <p class="interface-attribute">
+   <a href="#clef" class="interface-attribute">clef</a>
+
+   <p class="interface-attribute">
+   <a href="#dots" class="interface-attribute">dots</a>
+
+   <p class="interface-attribute">
+   <a href="#duration" class="interface-attribute">duration</a>
+
+   <p class="interface-attribute">
+   <a href="#dynamics" class="interface-attribute">dynamics</a>
+
+   <p class="interface-attribute-inherited">
+   <a href="#format" class="interface-attribute-inherited">format</a>
+
+   <p class="interface-attribute">
+   <a href="#formatter" class="interface-attribute">formatter</a>
+
+   <p class="interface-attribute">
+   <a href="#glissando" class="interface-attribute">glissando</a>
+
+   <p class="interface-attribute">
+   <a href="#grace" class="interface-attribute">grace</a>
+
+   <p class="interface-attribute">
+   <a href="#harmonic" class="interface-attribute">harmonic</a>
+
+   <p class="interface-attribute">
+   <a href="#leaves" class="interface-attribute">leaves</a>
+
+   <p class="interface-attribute">
+   <a href="#next" class="interface-attribute">next</a>
+
+   <p class="interface-attribute">
+   <a href="#number" class="interface-attribute">number</a>
+
+   <p class="interface-attribute">
+   <a href="#offset" class="interface-attribute">offset</a>
+
+   <p class="interface-attribute">
+   <a href="#prev" class="interface-attribute">prev</a>
+
+   <p class="interface-attribute">
+   <a href="#spanners" class="interface-attribute">spanners</a>
+
+   <p class="interface-attribute">
+   <a href="#staff" class="interface-attribute">staff</a>
+
+   <p class="interface-attribute">
+   <a href="#stem" class="interface-attribute">stem</a>
+
+   <p class="interface-attribute-inherited">
+   <a href="#tempo" class="interface-attribute-inherited">tempo</a>
+
+   <p class="interface-attribute">
+   <a href="#tie" class="interface-attribute">tie</a>
+
+   <p class="interface-attribute">
+   <a href="#tremolo" class="interface-attribute">tremolo</a>
+
+   <p class="interface-attribute">
+   <a href="#trill" class="interface-attribute">trill</a>
+
 </div>
 
 <div class="interface-block">
 <p class="interface-block-header"> Methods
-   <p class="interface-attribute-inherited"> copy( )
-   <p class="interface-attribute-inherited"> kind( )
+   <p class="interface-attribute-inherited">
+   <a href="#copy" class="interface-attribute-inherited">copy( )</a>
+
+   <p class="interface-attribute-inherited">
+   <a href="#kind" class="interface-attribute-inherited">kind( )</a>
+
 </div>
 
 <div class="interface-block">
 <p class="interface-block-header"> Overloads
-   <div class="attribute-group">
-   <p class="interface-attribute-inherited"> __mul__
-   <p class="interface-attribute-inherited"> __rmul__
-   </div>
+   <p class="interface-attribute">
+   <a href="#init" class="interface-attribute">__init__</a>
+
+   <p class="interface-attribute-inherited">
+   <a href="#mul" class="interface-attribute-inherited">__mul__</a>
+
+   <p class="interface-attribute">
+   <a href="#repr" class="interface-attribute">__repr__</a>
+
+   <p class="interface-attribute-inherited">
+   <a href="#rmul" class="interface-attribute-inherited">__rmul__</a>
+
+   <p class="interface-attribute">
+   <a href="#str" class="interface-attribute">__str__</a>
+
 </div>
 
 <h2 class="page-section">
@@ -59,7 +124,1721 @@ Examples
 
 <p>
 The Abjad <code>_Leaf</code> class is an abstract class and is not meant to be instantiated by hand.
-</p>
+
+<p>
+But we show examples of <code>_Leaf</code> attributes here using note, rest and chords as concrete examples of the <code>_Leaf</code> class.
+
+
+<!-- ### ACCIDENTALS ### -->
+
+<div class="example">
+<p class="example-header-inherited"> 
+<a name="accidentals" class="example-header-inherited">accidentals</a>
+<p> NOT IMPLEMENTED
+</div>
+
+
+
+<!-- ### ARTICULATIONS ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="articulations" class="example-header">articulations</a>
+<p> Read / write attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../articulations_interface/index.html">_ArticulationsInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.articulations
+   Articulations( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign a list of articulation strings.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.articulations = ['staccato', 'marcato']
+   hide> show(measure)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.articulations = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### BARLINE ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="barline" class="example-header-inherited">
+barline
+</a>
+<p> Read / write attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../articulations_interface/index.html">_BarlineInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.barline
+   _BarlineInterface
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign a LilyPond barline string.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.barline = '||'
+   hide> show(measure)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.barline = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### BEAM ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="beam" class="example-header">beam</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../beam_interface/index.html">_BeamInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.beam
+   _BeamInterface
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>beam</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### CLEF ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="clef" class="example-header">clef</a>
+<p> Read / write attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p> Returns an Abjad <code>Clef</code> object.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   abjad> chord.clef
+   Clef(treble)
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign any LilyPond clef string.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.clef = 'alto'
+   hide> show(measure)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+   
+<div class="example-code">
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> chord.clef = 'alto'
+   abjad> chord.clef = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<!-- ### DOTS ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="dots" class="example-header">dots</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../dots_interface/index.html">_DotsInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.dots
+   _DotsInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p>The <code>dots</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### DURATION ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="duration" class="example-header">duration</a>
+<p> Read / write attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.duration
+   DurationInterface(1/4)
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign any rational value which meets the tests for <strong><a href="../assignability/index.html">notehead assignability</a></strong>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.duration = Rational(3, 8)
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### DYNAMICS ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="dynamics" class="example-header">dynamics</a>
+<p> Read / write attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../dynamics_interface/index.html">_DynamicsInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.dynamics
+   _DynamicsInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign any LilyPond dynamics string.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.dynamics = 'f'
+   hide> show(measure)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> chord.dynamics = 'f'
+   abjad> chord.dynamics = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### FORMAT ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="format" class="example-header-inherited">format</a>
+<p> Read-only attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns a string of valid LilyPond input.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> print(chord.format)
+   &lt;c' d' bf'&gt;4
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>format</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### FORMATTER ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="formatter" class="example-header">formatter</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code>_ChordFormatter</code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.formatter
+   _ChordFormatter( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>formatter</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### GLISSANDO ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="glissando" class="example-header">glissando</a>
+<p> Read / write attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../glissando_interface/index.html">_GlissandoInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.glissando
+   _GlissandoInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign <code>True</code>, <code>False</code> to start, stop glissando.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> staff = Staff(chord * 2)
+   abjad> staff[0].glissando = True
+   hide> show(staff)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> chord.glissando = True
+   abjad> chord.glissando = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### GRACE ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="grace" class="example-header">grace</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code>_GraceInterface</code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.grace
+   _GraceInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>grace</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### HARMONIC ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="harmonic" class="example-header">harmonic</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code>_HarmonicInterface</code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.harmonic
+   _HarmonicInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign <code>True</code>, <code>False</code> to set, unset harmonics.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.harmonic = True
+   hide> show(measure)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+   
+<div class="example-code">
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> chord.harmonic = True
+   abjad> chord.harmonic = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### LEAVES ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="leaves" class="example-header">leaves</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns a Python list of chord itself.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.leaves
+   [Chord(c' d' bf', 4)]
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>leaves</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### NEXT ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="next" class="example-header">next</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p> Returns a reference to next-leaf-in-container after chord.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> note1 = Note(-1, (1, 4))
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   abjad> note2 = Note(9, (1, 4))
+   abjad> measure = Measure((1, 4), [note1, chord, note2])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> note1 = Note(-1, (1, 4))
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> note2 = Note(9, (1, 4))
+   hide> measure = Measure((1, 4), [note1, chord, note2])
+   hide> measure.meter.transparent = True
+   abjad> chord.next
+   Note(a', 4)
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>next</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### NUMBER ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="number" class="example-header">number</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns a zero-indexed integer representing the in-container position of chord.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
+   abjad> measure[6] = Chord([0, 2, 10], (1, 8))
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
+   hide> measure[6] = Chord([0, 2, 10], (1, 8))
+   hide> measure.meter.transparent = True
+   abjad> chord.number
+   6
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>number</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### OFFSET ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="offset" class="example-header">offset</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code>Rational</code> representing the amount of in-container musical time <strong>prior to</strong> the start of chord.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
+   abjad> measure[6] = Chord([0, 2, 10], (1, 8))
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
+   hide> measure[6] = Chord([0, 2, 10], (1, 8))
+   hide> measure.meter.transparent = True
+   abjad> chord.offset
+   Rational(3, 4)
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>offset</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### PREV ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="prev" class="example-header">prev</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p> Returns a reference to prev-leaf-in-container after chord.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> note1 = Note(-1, (1, 4))
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   abjad> note2 = Note(9, (1, 4))
+   abjad> measure = Measure((1, 4), [note1, chord, note2])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> note1 = Note(-1, (1, 4))
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> note2 = Note(9, (1, 4))
+   hide> measure = Measure((1, 4), [note1, chord, note2])
+   hide> measure.meter.transparent = True
+   abjad> chord.prev
+   Note(b, 4)
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>prev</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### SPANNERS ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="spanners" class="example-header">spanners</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../leaf_spanner_interface/index.html">_LeafSpannerInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.spanners
+   _LeafSpannerInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>spanners</code> attribute is read-only.
+<p> (Actually, the <code>spanners</code> attribute can be overwritten by the user. But don't do this.)
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### STAFF ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="staff" class="example-header">staff</a>
+<p> Read / write attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns a reference to the Abjad <code><a href="../staff_class/index.html">Staff</a></code> object that governs chord, else None if no staff governs chord.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.staff is None
+   True
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign a reference to an Abjad <code><a href="../staff_class/index.html">Staff</a></code> object.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   abjad> bottom_staff = Staff([ ])
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.staff = bottom_staff
+   hide> show(measure)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   abjad> bottom_staff = Staff([ ])
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.staff = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### STEM ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="stem" class="example-header">stem</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../stem_interface/index.html">_StemInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.stem
+   _StemInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>stem</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### TEMPO ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="tempo" class="example-header-inherited">tempo</a>
+<p> Read-only attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../tempo_interface/index.html">_TempoInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.tempo
+   _TempoInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign a (duration, tempo) pair to set tempo.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.tempo = (Rational(1, 4), 72)
+   hide> show(measure)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> chord.tempo = (Rational(1, 4), 72)
+   abjad> chord.tempo = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### TIE ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="tie" class="example-header">tie</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../tie_interface/index.html">_TieInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chords = Chord([0, 2, 10], (1, 4)) * 2
+   hide> measure = Measure((1, 4), chords)
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chords = Chord([0, 2, 10], (1, 4)) * 2
+   hide> measure = Measure((1, 4), chords)
+   hide> measure.meter.transparent = True
+   abjad> chords[0].tie
+   _TieInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> Assign <code>True</code>, <code>False</code> to set, unset harmonics.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chords = Chord([0, 2, 10], (1, 4)) * 2
+   hide> measure = Measure((1, 4), chords)
+   hide> measure.meter.transparent = True
+   abjad> chords[0].tie = True
+   hide> show(measure)
+</pre>
+</div>
+
+<div class="example-text">
+<p> Assign <code>None</code> to clear.
+</div>
+   
+<div class="example-code">
+<pre>
+   hide> chords = Chord([0, 2, 10], (1, 4)) * 2
+   hide> measure = Measure((1, 4), chords)
+   hide> measure.meter.transparent = True
+   hide> chords[0].tie = True
+   abjad> chords[0].tie = None
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### TREMOLO ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="tremolo" class="example-header">tremolo</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../tremolo_interface/index.html">_TremoloInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.tremolo
+   Tremolo( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>tremolo</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### TRILL ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="trill" class="example-header">trill</a>
+<p> Read-only attribute defined here.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns an Abjad <code><a href="../trill_interface/index.html">_TrillInterface</a></code>.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   abjad> chord.trill
+   _TrillInterface( )
+</pre>
+</div>
+
+<h3 class="example-section">
+Assignment values
+</h3>
+
+<div class="example-text">
+<p> The <code>trill</code> attribute is read-only.
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<h2 class="page-section">
+Method examples
+</h2>
+
+
+<!-- ### COPY( ) ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="copy" class="example-header-inherited">copy( )</a>
+<p> Bound method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+<p> Returns a new copy of <code>chord</code>.
+<p> Accepts no input parameters.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   abjad> new = chord.copy( )
+   hide> measure = Measure((2, 4), [chord, new])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> new = chord.copy( )
+   abjad> id(chord) != id(new)
+   True
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### KIND( ) ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="kind" class="example-header-inherited">kind(<i>classname</i>)</a>
+<p> Bound method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>
+<p> Return <code>True</code> if <i>classname</i> in class hierarchy of <code>Chord</code>, and <code>False</code> otherwise.
+<p> DEPRECATED. Use <code>isinstance( )</code> instead.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   abjad> chord.kind('Chord')
+   True
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<h2 class="page-section">
+Override examples
+</h2>
+
+
+
+
+<!-- ### __INIT__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="init" class="example-header">__init__(<i>args*</i>)</a>
+<p> Special method defined on <code>Chord</code>.
+<p> Initialize <code>chord</code> according to one of several input argument patterns:
+<ul>
+   <li> <code>Chord(<i>pitchtokenlist</i>, <i>durationtoken</i>)
+   <li> <code>Chord(<i>note</i>)
+   <li> <code>Chord(<i>rest</i>)
+   <li> <code>Chord(<i>skip</i>)
+</ul>
+<p> Where:
+</ul>
+   <li> <code class="variable">pitchtokenlist</code> is a Python list of zero or more <strong><a href="../pitch_token/index.html">pitch tokens</a></strong>
+   <li> <code class="variable">durationtoken</code> is a valid <strong><a href="../duration_token/index.html">duration token</a></strong>
+</ul>
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+
+
+<!-- ### __MUL__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="mul" class="example-header-inherited">__mul__(<i>n</i>)</a>
+<p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
+<p> Implements left-handed multiplication against <code>Chord</code>.
+<p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   abjad> chords = chord * 4
+   abjad> chords
+   [Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
+   hide> measure = Measure((4, 4), chords)
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __REPR__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="repr" class="example-header">__repr__( )</a>
+<p> Special method defined on <code>Chord</code>.
+<p> Returns string summary of <code>chord</code> for interpreter display.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   abjad> chord
+   Chord(c' d' bf', 4)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __RMUL__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
+<p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
+<p> Implements right-handed multiplication against <code>Chord</code>. 
+<p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   abjad> chords = 4 * chord
+   abjad> chords
+   [Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
+   hide> measure = Measure((4, 4), chords)
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+
+<!-- ### __STR__ ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="str" class="example-header">__str__( )</a>
+<p> Special method defined on <code>Chord</code>.
+<p> Returns string summary of <code>chord</code> for inline display.
+</div>
+
+<div class="example-body">
+
+<h3 class="example-section">
+Example
+</h3>
+
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   abjad> str(chord)
+   "&lt;c' d' bf'&gt;4"
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
 
 <h2 class="page-section">
 Comments

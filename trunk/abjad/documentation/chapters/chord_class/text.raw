@@ -127,74 +127,14 @@ Attribute examples
 <!-- ### ARTICULATIONS ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
-<a name="articulations" class="example-header-inherited">
-articulations
-</a>
+<a name="articulations" class="example-header-inherited">articulations</a>
 <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
 <p>Returns an Abjad <code><a href="../articulations_interface/index.html">_ArticulationsInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.articulations
-   Articulations( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign a list of articulation strings.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.articulations = ['staccato', 'marcato']
-   hide> show(measure)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.articulations = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p> Assign a articulations-string-list, <code>None</code>.
+<p> See <a href="../leaf_class/index.html#articulations">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -202,74 +142,14 @@ Assignment values
 <!-- ### BARLINE ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
-<a name="barline" class="example-header-inherited">
-barline
-</a>
-<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<a name="barline" class="example-header-inherited">barline</a>
+<p>Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../articulations_interface/index.html">_BarlineInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.barline
-   _BarlineInterface
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign a LilyPond barline string.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.barline = '||'
-   hide> show(measure)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.barline = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p> Assign a LilyPond barline string, <code>None</code>.
+<p>See <a href="../leaf_class/index.html#barline">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -277,48 +157,13 @@ Assignment values
 <!-- ### BEAM ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="beam" class="example-header-inherited">beam</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../beam_interface/index.html">_BeamInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.beam
-   _BeamInterface
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>beam</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+<p>See <a href="../leaf_class/index.html#beam">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -326,118 +171,26 @@ Assignment values
 <!-- ### CLEF ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="clef" class="example-header-inherited">clef</a>
-<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
+<p>Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+<p>Returns an Abjad <code>Clef</code> object.
+<p>Assign LilyPond clef string, <code>None</code>.
+<p>See <a href="../leaf_class/index.html#clef">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
 
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p> Returns an Abjad <code>Clef</code> object.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   abjad> chord.clef
-   Clef(treble)
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign any LilyPond clef string.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.clef = 'alto'
-   hide> show(measure)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-   
-<div class="example-code">
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> chord.clef = 'alto'
-   abjad> chord.clef = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div>
-
-</div>
 
 <!-- ### DOTS ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="dots" class="example-header-inherited">dots</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../dots_interface/index.html">_DotsInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.dots
-   _DotsInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p>The <code>dots</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -449,54 +202,11 @@ Assignment values
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="duration" class="example-header-inherited">duration</a>
-<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.duration
-   DurationInterface(1/4)
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign any rational value which meets the tests for <strong><a href="../assignability/index.html">notehead assignability</a></strong>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.duration = Rational(3, 8)
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p>Assign any rational value which meets the tests for <strong><a href="../assignability/index.html">notehead assignability</a></strong>.
+<p>See <a href="../leaf_class/index.html#duration">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -508,165 +218,35 @@ Assignment values
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="dynamics" class="example-header-inherited">dynamics</a>
-<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../dynamics_interface/index.html">_DynamicsInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.dynamics
-   _DynamicsInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign any LilyPond dynamics string.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.dynamics = 'f'
-   hide> show(measure)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> chord.dynamics = 'f'
-   abjad> chord.dynamics = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p>Assign LilyPond dynamics string, <code>None</code>.
+<p>See <a href="../leaf_class/index.html#dynamics">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
 <!-- ### FORMAT ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="format" class="example-header-inherited">format</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns a string of valid LilyPond input.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> print(chord.format)
-   &lt;c' d' bf'&gt;4
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>format</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
 <!-- ### FORMATTER ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="formatter" class="example-header">formatter</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code>_ChordFormatter</code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.formatter
-   _ChordFormatter( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>formatter</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -674,74 +254,14 @@ Assignment values
 <!-- ### GLISSANDO ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="glissando" class="example-header-inherited">glissando</a>
-<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../glissando_interface/index.html">_GlissandoInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.glissando
-   _GlissandoInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign <code>True</code>, <code>False</code> to start, stop glissando.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> staff = Staff(chord * 2)
-   abjad> staff[0].glissando = True
-   hide> show(staff)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> chord.glissando = True
-   abjad> chord.glissando = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p>Assign <code>True</code>, <code>False</code> to start, stop glissando.
+<p>See <a href="../leaf_class/index.html#glissando">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -749,48 +269,12 @@ Assignment values
 <!-- ### GRACE ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="grace" class="example-header-inherited">grace</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad <code>_GraceInterface</code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.grace
-   _GraceInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>grace</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+<p>Returns an Abjad <code><a href="../grace_interface/index.html">_GraceInterface</a></code>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -798,121 +282,26 @@ Assignment values
 <!-- ### HARMONIC ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="harmonic" class="example-header-inherited">harmonic</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code>_HarmonicInterface</code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.harmonic
-   _HarmonicInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign <code>True</code>, <code>False</code> to set, unset harmonics.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.harmonic = True
-   hide> show(measure)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-   
-<div class="example-code">
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> chord.harmonic = True
-   abjad> chord.harmonic = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p>Assign <code>True</code>, <code>False</code> to set, unset harmonics.
+<p>See <a href="../leaf_class/index.html#harmonic">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
 <!-- ### LEAVES ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="leaves" class="example-header-inherited">leaves</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns a Python list of chord itself.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.leaves
-   [Chord(c' d' bf', 4)]
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>leaves</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -920,52 +309,12 @@ Assignment values
 <!-- ### NEXT ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="next" class="example-header-inherited">next</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p> Returns a reference to next-leaf-in-container after chord.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> note1 = Note(-1, (1, 4))
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   abjad> note2 = Note(9, (1, 4))
-   abjad> measure = Measure((1, 4), [note1, chord, note2])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> note1 = Note(-1, (1, 4))
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> note2 = Note(9, (1, 4))
-   hide> measure = Measure((1, 4), [note1, chord, note2])
-   hide> measure.meter.transparent = True
-   abjad> chord.next
-   Note(a', 4)
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>next</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+<p>Returns a reference to next-leaf-in-container after chord.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -977,7 +326,7 @@ Assignment values
 <p class="example-header">
 <a name="noteheads" class="example-header">noteheads</a>
 <p> Read / write attribute defined on <code>Chord</code>.
-</div>
+</div> <!-- example header -->
 
 <div class="example-body">
 
@@ -1035,44 +384,10 @@ Abjad interprets lists and tuples of numbers as notehead pitches.
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="number" class="example-header-inherited">number</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns a zero-indexed integer representing the in-container position of chord.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
-   abjad> measure[6] = Chord([0, 2, 10], (1, 8))
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
-   hide> measure[6] = Chord([0, 2, 10], (1, 8))
-   hide> measure.meter.transparent = True
-   abjad> chord.number
-   6
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>number</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+<p>See <a href="../leaf_class/index.html#number">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -1080,48 +395,12 @@ Assignment values
 <!-- ### OFFSET ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="offset" class="example-header-inherited">offset</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code>Rational</code> representing the amount of in-container musical time <strong>prior to</strong> the start of chord.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
-   abjad> measure[6] = Chord([0, 2, 10], (1, 8))
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
-   hide> measure[6] = Chord([0, 2, 10], (1, 8))
-   hide> measure.meter.transparent = True
-   abjad> chord.offset
-   Rational(3, 4)
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>offset</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -1188,223 +467,51 @@ Abjad interprets lists and tuples of numbers as notehead pitches.
 <!-- ### PREV ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="prev" class="example-header-inherited">prev</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p> Returns a reference to prev-leaf-in-container after chord.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> note1 = Note(-1, (1, 4))
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   abjad> note2 = Note(9, (1, 4))
-   abjad> measure = Measure((1, 4), [note1, chord, note2])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> note1 = Note(-1, (1, 4))
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> note2 = Note(9, (1, 4))
-   hide> measure = Measure((1, 4), [note1, chord, note2])
-   hide> measure.meter.transparent = True
-   abjad> chord.prev
-   Note(b, 4)
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>prev</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+<p>Returns a reference to prev-leaf-in-container after chord.
+<p>See <a href="../leaf_class/index.html#prev">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
 <!-- ### SPANNERS ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="spanners" class="example-header-inherited">spanners</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../leaf_spanner_interface/index.html">_LeafSpannerInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.spanners
-   _LeafSpannerInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>spanners</code> attribute is read-only.
-<p> (Actually, the <code>spanners</code> attribute can be overwritten by the user. But don't do this.)
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
 <!-- ### STAFF ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="staff" class="example-header-inherited">staff</a>
-<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns a reference to the Abjad <code><a href="../staff_class/index.html">Staff</a></code> object that governs chord, else None if no staff governs chord.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.staff is None
-   True
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign a reference to an Abjad <code><a href="../staff_class/index.html">Staff</a></code> object.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   abjad> bottom_staff = Staff([ ])
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.staff = bottom_staff
-   hide> show(measure)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   abjad> bottom_staff = Staff([ ])
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.staff = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p>Assign a reference to an Abjad <code><a href="../staff_class/index.html">Staff</a></code> object.
+<p>See <a href="../leaf_class/index.html#staff">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
 <!-- ### STEM ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="stem" class="example-header-inherited">stem</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../stem_interface/index.html">_StemInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.stem
-   _StemInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>stem</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -1412,73 +519,13 @@ Assignment values
 <!-- ### TEMPO ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="tempo" class="example-header-inherited">tempo</a>
-<p> Read-only attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
 <p>Returns an Abjad <code><a href="../tempo_interface/index.html">_TempoInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.tempo
-   _TempoInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign a (duration, tempo) pair to set tempo.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.tempo = (Rational(1, 4), 72)
-   hide> show(measure)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> chord.tempo = (Rational(1, 4), 72)
-   abjad> chord.tempo = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p>See <a href="../core_component_class/index.html#tempo">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -1486,73 +533,14 @@ Assignment values
 <!-- ### TIE ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="tie" class="example-header-inherited">tie</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../tie_interface/index.html">_TieInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chords = Chord([0, 2, 10], (1, 4)) * 2
-   hide> measure = Measure((1, 4), chords)
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chords = Chord([0, 2, 10], (1, 4)) * 2
-   hide> measure = Measure((1, 4), chords)
-   hide> measure.meter.transparent = True
-   abjad> chords[0].tie
-   _TieInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign <code>True</code>, <code>False</code> to set, unset harmonics.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chords = Chord([0, 2, 10], (1, 4)) * 2
-   hide> measure = Measure((1, 4), chords)
-   hide> measure.meter.transparent = True
-   abjad> chords[0].tie = True
-   hide> show(measure)
-</pre>
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-   
-<div class="example-code">
-<pre>
-   hide> chords = Chord([0, 2, 10], (1, 4)) * 2
-   hide> measure = Measure((1, 4), chords)
-   hide> measure.meter.transparent = True
-   hide> chords[0].tie = True
-   abjad> chords[0].tie = None
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p>Assign <code>True</code>, <code>False</code> to set, unset ties.
+<p>See <a href="../leaf_class/index.html#tie">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -1560,48 +548,12 @@ Assignment values
 <!-- ### TREMOLO ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="tremolo" class="example-header-inherited">tremolo</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../tremolo_interface/index.html">_TremoloInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.tremolo
-   Tremolo( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>tremolo</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -1609,48 +561,13 @@ Assignment values
 <!-- ### TRILL ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="trill" class="example-header-inherited">trill</a>
-<p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
+<p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 <p>Returns an Abjad <code><a href="../trill_interface/index.html">_TrillInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   abjad> chord.trill
-   _TrillInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>trill</code> attribute is read-only.
-</div>
-
-</div> <!-- example body -->
+<p>See <a href="../leaf_class/index.html#trill">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -1711,40 +628,11 @@ Example
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="copy" class="example-header-inherited">copy( )</a>
-<p> Bound method inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+<p> Bound method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
 <p> Returns a new copy of <code>chord</code>.
 <p> Accepts no input parameters.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   abjad> new = chord.copy( )
-   hide> measure = Measure((2, 4), [chord, new])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   hide> new = chord.copy( )
-   abjad> id(chord) != id(new)
-   True
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p> See <a href="../core_component_class/index.html#copy">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -1798,35 +686,13 @@ Example
 <!-- ### KIND( ) ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="kind" class="example-header-inherited">kind(<i>classname</i>)</a>
 <p> Bound method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>
 <p> Return <code>True</code> if <i>classname</i> in class hierarchy of <code>Chord</code>, and <code>False</code> otherwise.
 <p> DEPRECATED. Use <code>isinstance( )</code> instead.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   abjad> chord.kind('Chord')
-   True
-</pre>
-</div>
-
-</div> <!-- example body -->
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -2120,40 +986,14 @@ Example
 <!-- ### __MUL__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="mul" class="example-header-inherited">__mul__(<i>n</i>)</a>
 <p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
 <p> Implements left-handed multiplication against <code>Chord</code>.
 <p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   abjad> chords = chord * 4
-   abjad> chords
-   [Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
-   hide> measure = Measure((4, 4), chords)
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p> See <a href="../core_component_class/index.html#mul">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -2197,40 +1037,14 @@ Example
 <!-- ### __RMUL__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
 <p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
 <p> Implements right-handed multiplication against <code>Chord</code>. 
 <p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
-<div class="example-code">
-<pre>
-   abjad> chord = Chord([0, 2, 10], (1, 4))
-   hide> measure = Measure((1, 4), [chord])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-<pre>
-   hide> chord = Chord([0, 2, 10], (1, 4))
-   abjad> chords = 4 * chord
-   abjad> chords
-   [Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
-   hide> measure = Measure((4, 4), chords)
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p> See <a href="../core_component_class/index.html#rmul">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -2330,14 +1144,6 @@ Implement <code>accidentals</code> in <code>_ChordFormatter</code>.
 
 <p class="to-do">
 Write a better example for the <code>staff</code> attribute here.
-</p>
-
-<p class="to-do">
-FIXME: Chord.remove( ) breaks with new <code>_Interface.__eq__</code> now raising <code>Exception(NotImplemented)</code>.
-</p>
-
-<p class="to-do">
-Write a few <code>Chord.remove( )</code> reg tests.
 </p>
 
 <p class="to-do">
