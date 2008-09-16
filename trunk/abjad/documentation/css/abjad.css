@@ -111,6 +111,16 @@ DIV P.interface-attribute, DIV P.interface-attribute-inherited {
    margin-top: 2px;
 }
 
+A.interface-attribute, A.example-header {
+   color: #a22222;
+	font-family: "Courier New", "Courier", serif;
+}
+
+A.interface-attribute-inherited, A.example-header-inherited {
+   color: gray;
+	font-family: "Courier New", "Courier", serif;
+}
+
 DIV P.interface-attribute-inherited {
    /*color: #f77777;*/
    color: gray;

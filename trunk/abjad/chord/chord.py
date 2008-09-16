@@ -9,7 +9,7 @@ class Chord(_Leaf):
    def __init__(self, *args):
       self.initializer = _ChordInitializer(self, _Leaf, *args)
 
-   ### OVERRIDES ###
+   ### SPECIAL METHODS ### 
 
    def __contains__(self, arg):
       if isinstance(arg, (int, float, long)):
@@ -45,33 +45,16 @@ class Chord(_Leaf):
    def __str__(self):
       return '<%s>%s' % (self._summary, self.duration._product)
 
-   ### HANDLERS ###
+   ### PRIVATE METHODS ###
 
-   def append(self, arg):
-      if isinstance(arg, (int, float, long)):
-         self._noteheads.append(_NoteHead(self, pitch = arg))
-      elif isinstance(arg, Pitch):
-         self._noteheads.append(_NoteHead(self, pitch = arg))
-      elif isinstance(arg, _NoteHead):
-         arg._client = self
-         self._noteheads.append(arg)
-      else:
-         print 'Can not append %s to Chord.' % arg
-      self._sort()
+   def _sort(self):
+      self._noteheads.sort( )
 
-   def extend(self, arglist):
-      assert isinstance(arglist, list)
-      for arg in arglist:
-         self.append(arg)
-      self._sort()
+   @property
+   def _summary(self):
+      return ' '.join([str(x) for x in self._noteheads])
 
-   def pop(self, i = -1):
-      return self._noteheads.pop(i)
-
-   def remove(self, notehead):
-      self._noteheads.remove(notehead)
-   
-   ### MANAGED ATTRIBUTES ###
+   ### PUBLIC ATTRIBUTES ### 
 
    @apply
    def noteheads( ):
@@ -109,13 +92,28 @@ class Chord(_Leaf):
          self.noteheads = arglist
       return property(**locals( ))
 
-   ### FORMATTING ###
+   ### PUBLIC METHODS ### 
 
-   @property
-   def _summary(self):
-      return ' '.join([str(x) for x in self._noteheads])
+   def append(self, arg):
+      if isinstance(arg, (int, float, long)):
+         self._noteheads.append(_NoteHead(self, pitch = arg))
+      elif isinstance(arg, Pitch):
+         self._noteheads.append(_NoteHead(self, pitch = arg))
+      elif isinstance(arg, _NoteHead):
+         arg._client = self
+         self._noteheads.append(arg)
+      else:
+         print 'Can not append %s to Chord.' % arg
+      self._sort()
 
-   ### UTILITY ###
+   def extend(self, arglist):
+      assert isinstance(arglist, list)
+      for arg in arglist:
+         self.append(arg)
+      self._sort()
 
-   def _sort(self):
-      self._noteheads.sort( )
+   def pop(self, i = -1):
+      return self._noteheads.pop(i)
+
+   def remove(self, notehead):
+      self._noteheads.remove(notehead)
