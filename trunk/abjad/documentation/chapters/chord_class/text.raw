@@ -30,8 +30,8 @@ Public interface
       <a href="#dynamics" class="interface-attribute-inherited">dynamics</a>
    <p class="interface-attribute-inherited">
       <a href="#format" class="interface-attribute-inherited">format</a>
-   <p class="interface-attribute-inherited">
-      <a href="#formatter" class="interface-attribute-inherited">formatter</a>
+   <p class="interface-attribute">
+      <a href="#formatter" class="interface-attribute">formatter</a>
    <p class="interface-attribute-inherited">
       <a href="#glissando" class="interface-attribute-inherited">glissando</a>
    <p class="interface-attribute-inherited">
@@ -627,8 +627,8 @@ Assignment values
 <div class="example">
 
 <div class="example-header">
-<p class="example-header-inherited">
-<a name="formatter" class="example-header-inherited">formatter</a>
+<p class="example-header">
+<a name="formatter" class="example-header">formatter</a>
 <p> Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
 </div>
 
