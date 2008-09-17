@@ -301,7 +301,7 @@ _ChordFormatter( )
 <p class="example-header-inherited">
 <a name="harmonic" class="example-header-inherited">harmonic</a>
 <p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-<p>Returns Abjad <code>_HarmonicInterface</code>.
+<p>Returns Abjad <code><a href="../harmonic_interface/index.html">_HarmonicInterface</a></code>.
 <p>Accepts <code>True</code>, <code>False</code>.
 <p>See <a href="../leaf_class/index.html#harmonic">example</a>.
 </div> <!-- example header -->
@@ -315,7 +315,7 @@ _ChordFormatter( )
 <p class="example-header-inherited">
 <a name="leaves" class="example-header-inherited">leaves</a>
 <p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-<p>Returns Python list of leaves-in-<code>self</code>.
+<p>Returns Python list of all leaves in <code>self</code>.
 <p>See <a href="../leaf_class/index.html">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
@@ -329,7 +329,7 @@ _ChordFormatter( )
 <p class="example-header-inherited">
 <a name="next" class="example-header-inherited">next</a>
 <p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-<p>Returns reference to leaf next-in-container.
+<p>Returns reference to next-in-container leaf after <code>self</code>.
 <p>See <a href="../leaf_class/index.html#next">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
@@ -342,8 +342,8 @@ _ChordFormatter( )
 <p class="example-header">
 <a name="noteheads" class="example-header">noteheads</a>
 <p>Read / write attribute defined here.
-<p>Returns Python list of noteheads-in-chord.
-<p>Accepts Python list or Python tuple of <a href="../notehead_token/index.html">notehead token input</a>.
+<p>Returns Python list of all noteheads in <code>self</code>.
+<p>Accepts Python list or Python tuple of <a href="../notehead_token/index.html">notehead token</a> instances.
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
@@ -370,7 +370,7 @@ abjad> chord.noteheads
 <p class="example-header-inherited">
 <a name="number" class="example-header-inherited">number</a>
 <p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-<p>Returns zero-indexed integer in-container position of <code>self</code>.
+<p>Returns nonnegative integer equal to zero-indexed in-governor position of <code>self</code>.
 <p>See <a href="../leaf_class/index.html#number">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
@@ -384,7 +384,7 @@ abjad> chord.noteheads
 <p class="example-header-inherited">
 <a name="offset" class="example-header-inherited">offset</a>
 <p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-<p>Returns Abjad <code>Rational</code> representing amount of in-container musical time <strong>prior to</strong> start of <code>self</code>.
+<p>Returns Abjad <code>Rational</code> representing amount of in-governor musical time prior to start of <code>self</code>.
 <p>See <a href="../leaf_class/index.html">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
@@ -397,8 +397,8 @@ abjad> chord.noteheads
 <p class="example-header">
 <a name="pitches" class="example-header">pitches</a>
 <p> Read / write attribute defined here.
-<p>Returns Python list of pitches-in-chord.
-<p>Accepts Python list or Python tuple of <a href="../notehead_token/index.html">notehead token input</a>.
+<p>Returns Python list of all pitches in <code>self</code>.
+<p>Accepts Python list or Python tuple of <a href="../notehead_token/index.html">notehead token</a> instances.
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
@@ -426,7 +426,7 @@ abjad> chord.pitches
 <p class="example-header-inherited">
 <a name="prev" class="example-header-inherited">prev</a>
 <p>Read-only attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-<p>Returns reference to leaf prev-in-container.
+<p>Returns reference to prev-in-container leaf before <code>self</code>.
 <p>See <a href="../leaf_class/index.html#prev">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
@@ -452,7 +452,7 @@ abjad> chord.pitches
 <p class="example-header-inherited">
 <a name="staff" class="example-header-inherited">staff</a>
 <p>Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-<p>Returns reference to the Abjad <code><a href="../staff_class/index.html">Staff</a></code> object that governs <code>self</code>, else <code>None</code>.
+<p>Returns reference to Abjad <code><a href="../staff_class/index.html">Staff</a></code> object governings <code>self</code>, else <code>None</code>.
 <p>Accepts Abjad <code><a href="../staff_class/index.html">Staff</a></code> reference.
 <p>See <a href="../leaf_class/index.html#staff">example</a>.
 </div> <!-- example header -->
@@ -481,7 +481,7 @@ abjad> chord.pitches
 <a name="tempo" class="example-header-inherited">tempo</a>
 <p>Read / write attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
 <p>Returns Abjad <code><a href="../tempo_interface/index.html">_TempoInterface</a></code>.
-<p>Accepts duration, type pair.
+<p>Accepts (duration, type) pair.
 <p>See <a href="../core_component_class/index.html#tempo">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
@@ -540,9 +540,9 @@ Public methods
 <div class="example">
 <div class="example-header">
 <p class="example-header">
-<a name="append" class="example-header">append(<i>nhtok</i>)</a>
+<a name="append" class="example-header">append(<i>nh</i>)</a>
 <p>Public method defined here.
-<p>Interprets <a href="../notehead_token/index.html">notehead token</a> <code><i>nhtok</i></code> and appends to <code>self</code>.
+<p>Interprets <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> and appends to <code>self</code>.
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
@@ -563,7 +563,6 @@ abjad> chord.append(9)
 <!-- ### COPY( ) ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="copy" class="example-header-inherited">copy( )</a>
@@ -580,9 +579,9 @@ abjad> chord.append(9)
 <div class="example">
 <div class="example-header">
 <p class="example-header">
-<a name="extend" class="example-header">extend(<i>nhtoklist</i>)</a>
+<a name="extend" class="example-header">extend(<i>nhs</i>)</a>
 <p>Public method defined here.
-<p>Interprets <code><i>nhtoklist</i></code> and extends <code>self</code>.
+<p>Interprets Python list or Python tuple <code><i>nhs</i></code> of <a href="../notehead_token/index.html">notehead token</a> instances and extends <code>self</code>.
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
@@ -608,7 +607,7 @@ abjad> chord.extend([9, 16, 18])
 <p class="example-header-inherited">
 <a name="kind" class="example-header-inherited">kind(<i>classname</i>)</a>
 <p>Deprecated public method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>
-<p>Return <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.
+<p>Returnx <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.
 <p>Use built-in Python <code>isinstance( )</code> instead.
 </div> <!-- example header -->
 </div> <!-- example -->
@@ -624,9 +623,7 @@ abjad> chord.extend([9, 16, 18])
 <p>Public method defined here.
 <p>Returns and removes notehead at index <code><i>i</i></code> in <code>self</code>.
 </div> <!-- example header -->
-
 <div class="example-body">
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
@@ -646,7 +643,6 @@ _NoteHead(bf')
 <!-- ### REMOVE( ) ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="remove" class="example-header">remove(<i>notehead</i>)</a>
@@ -654,9 +650,7 @@ _NoteHead(bf')
 <p>Removes <code><i>notehead</i></code> from <code>self</code>.
 <p> Note that <code>remove( )</code> works by reference rather than by index.
 </div> <!-- example header -->
-
 <div class="example-body">
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
@@ -682,32 +676,25 @@ Special methods
 <!-- ### __CONTAINS__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
-<a name="contains" class="example-header">__contains__(<i>nhtok</i>)</a>
+<a name="contains" class="example-header">__contains__(<i>nh</i>)</a>
 <p>Special method defined here.
-<p>Return <code>True</code> if <i>nhtok</i> in <code>self</code>, and <code>False</code> otherwise.
-<p>See <a href="../notehead_token/index.html">notehead token input</a>.
+<p>Returns <code>True</code> with <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> in <code>self</code>, otherwise <code>False</code>.
 </div> <!-- example header -->
-
 <div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/7.png">
+</div> <!-- example code -->
+<div class="example-code">
 <pre>
 abjad> 10 in chord
 True
 </pre>
-</div>
-
+<image src="images/7.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -716,31 +703,24 @@ True
 <!-- ### __DELITEM__ ### --> 
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="delitem" class="example-header">__delitem__(<i>i</i>)</a>
 <p>Special method defined here.
-<p>Delete the notehead at index <code><i>i</i></code> in  <code>self</code>.
+<p>Delete notehead at index <code><i>i</i></code> in  <code>self</code>.
 </div> <!-- example header -->
-
 <div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/8.png">
+</div> <!-- example code -->
+<div class="example-code">
 <pre>
-abjad> del(chord[2])
+abjad> del(chord[1])
 </pre>
-<image src="images/9.png">
-</div>
-
+<image src="images/8.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -749,31 +729,23 @@ abjad> del(chord[2])
 <!-- ### __GETITEM__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="getitem" class="example-header">__getitem__(<i>i</i>)</a>
 <p>Special method defined here.
 <p>Get notehead at index <code><i>i</i></code> in <code>self</code>.
-</div>
-
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/10.png">
 <pre>
 abjad> chord[1]
 _NoteHead(d')
 </pre>
-</div>
-
+<image src="images/9.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -781,38 +753,26 @@ _NoteHead(d')
 <!-- ### __INIT__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="init" class="example-header">__init__(<i>args*</i>)</a>
 <p>Special method defined here.
-<p> Initialize <code>chord</code> according to one of several input argument patterns:
+<p> Initialize <code>self</code> according to one of several input argument patterns:
 <ul>
-<li> <code>Chord(<i>pitchtokenlist</i>, <i>durationtoken</i>)
+<li> <code>Chord(<i>pitches</i>, <i>dur</i>)
 <li> <code>Chord(<i>note</i>)
 <li> <code>Chord(<i>rest</i>)
 <li> <code>Chord(<i>skip</i>)
 </ul>
-<p> Where:
-</ul>
-<li> <code class="variable">pitchtokenlist</code> is a Python list of zero or more <strong><a href="../pitch_token/index.html">pitch tokens</a></strong>
-<li> <code class="variable">durationtoken</code> is a valid <strong><a href="../duration_token/index.html">duration token</a></strong>
-</ul>
-</div>
-
+<p> Where <code><i>pitches</i></code> is a Python list or Python tuple of zero or more <a href="../pitch_token/index.html">pitch token</a> instances, and where <code><i>dur</i></code> is a <a href="../duration_token/index.html">duration token</a>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/11.png">
-</div>
-
+<image src="images/10.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -821,34 +781,26 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <!-- ### __LEN__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="len" class="example-header">__len__( )</a>
-<p> Special method defined on <code>Chord</code>.
-<p> Return the number of noteheads in <code><i>chord</i></code> as a nonnegative integer.
-</div>
-
+<p>Special method defined here.
+<p>Returns nonnegative integer equal to number of noteheads in <code>self</code>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/12.png">
+</div> <!-- example code -->
+<div class="example-code">
 <pre>
 abjad> len(chord)
 3
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
-
 
 
 
@@ -858,10 +810,10 @@ abjad> len(chord)
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="mul" class="example-header-inherited">__mul__(<i>n</i>)</a>
-<p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
-<p> Implements left-handed multiplication against <code>Chord</code>.
-<p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
-<p> See <a href="../core_component_class/index.html#mul">example</a>.
+<p> Special method inherited from <code><a href="../core_component_class">_Component</a></code>.
+<p>Implements left-handed multiplication of <code>self</code>.
+<p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.
+<p>See <a href="../core_component_class/index.html#mul">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
@@ -870,31 +822,24 @@ abjad> len(chord)
 <!-- ### __REPR__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="repr" class="example-header">__repr__( )</a>
-<p> Special method defined on <code>Chord</code>.
-<p> Returns string summary of <code>chord</code> for interpreter display.
-</div>
-
+<p>Special method defined here.
+<p>Returns string summary of <code>self</code> for interpreter display.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/13.png">
+</div> <!-- example code -->
+<div class="example-code">
 <pre>
 abjad> chord
 Chord(c' d' bf', 4)
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -904,11 +849,11 @@ Chord(c' d' bf', 4)
 
 <div class="example">
 <div class="example-header">
-<p class="example-header">
-<a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
-<p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
-<p> Implements right-handed multiplication against <code>Chord</code>. 
-<p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
+<p class="example-header-inherited">
+<a name="rmul" class="example-header-inherited">__rmul__(<i>n</i>)</a>
+<p> Special method inherited from <code><a href="../core_component_class">_Component</a></code>.
+<p>Implements right-handed multiplication on <code>self</code>. 
+<p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.
 <p> See <a href="../core_component_class/index.html#rmul">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
@@ -919,31 +864,24 @@ Chord(c' d' bf', 4)
 <!-- ### __SETITEM__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
-<a name="setitem" class="example-header">__setitem__(<i>i</i>, <i>arg</i>)</a>
-<p> Special method defined on <code>Chord</code>.
-<p> Set <i>arg</i> at index <i>i</i> in <i>chord</i>.
-</div>
-
+<a name="setitem" class="example-header">__setitem__(<i>i</i>, <i>nh</i>)</a>
+<p>Special method defined here.
+<p>Set <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> at index <code><i>i</i></code> in <code>self</code>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/14.png">
+</div> <!-- example code -->
+<div class="example-code">
 <pre>
 abjad> chord[1] = 4
 </pre>
-<image src="images/15.png">
-</div>
-
+<image src="images/11.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -952,31 +890,25 @@ abjad> chord[1] = 4
 <!-- ### __STR__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="str" class="example-header">__str__( )</a>
-<p> Special method defined on <code>Chord</code>.
-<p> Returns string summary of <code>chord</code> for inline display.
-</div>
-
+<p>Special method defined here.
+<p>Returns string summary of <code>self</code>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/16.png">
+</div> <!-- example code -->
+<div class="example-code">
 <pre>
 abjad> str(chord)
 "&lt;c' d' bf'&gt;4"
 </pre>
-</div>
-
+<image src="images/12.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -998,10 +930,6 @@ To do
 
 <p class="to-do">
 Implement <code>accidentals</code> in <code>_ChordFormatter</code>.
-</p>
-
-<p class="to-do">
-Write a better example for the <code>staff</code> attribute here.
 </p>
 
 <p class="to-do">
