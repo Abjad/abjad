@@ -162,62 +162,25 @@ But we show examples of <code>_Leaf</code> attributes here using note, rest and 
 <!-- ### ARTICULATIONS ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="articulations" class="example-header">articulations</a>
-<p> Read / write attribute defined here.
-</div>
-
+<p>Read / write attribute defined here.
+<p>Returns Abjad <code><a href="../articulations_interface/index.html">_ArticulationsInterface</a></code>.
+<p>Accepts Python list or Python tuple of zero or more LilyPond articulation strings, <code>None</code>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad <code><a href="../articulations_interface/index.html">_ArticulationsInterface</a></code>.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/1.png">
-<pre>
-abjad> chord.articulations
-Articulations( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign a list of articulation strings.
-</div>
-
+</div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.articulations = ['staccato', 'marcato']
 </pre>
-<image src="images/2.png">
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> chord.articulations = None
-</pre>
-<image src="images/3.png">
-</div>
-
+<image src="images/1.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -226,108 +189,40 @@ abjad> chord.articulations = None
 <!-- ### BARLINE ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="barline" class="example-header-inherited">
 barline
 </a>
-<p> Read / write attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad <code><a href="../articulations_interface/index.html">_BarlineInterface</a></code>.
-</div>
-
-<div class="example-code">
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
-<image src="images/4.png">
-<pre>
-abjad> chord.barline
-_BarlineInterface
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign a LilyPond barline string.
-</div>
-
-<div class="example-code">
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> chord.barline = '||'
-</pre>
-<image src="images/5.png">
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-abjad> chord.barline = None
-</pre>
-<image src="images/6.png">
-</div>
-
-</div> <!-- example body -->
+<p>Read / write attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+<p>Returns Abjad <code><a href="../articulations_interface/index.html">_BarlineInterface</a></code>.
+<p>Accepts LilyPond barline string, <code>None</code>.
+<p>See <a href="../core_component_class/index.html#barline">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
-
 
 
 <!-- ### BEAM ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="beam" class="example-header">beam</a>
-<p> Read-only attribute defined here.
-</div>
-
+<p>Read-only attribute defined here.
+<p>Returns Abjad <code><a href="../beam_interface/index.html">_BeamInterface</a></code>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad <code><a href="../beam_interface/index.html">_BeamInterface</a></code>.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/7.png">
+</div> <!-- example code -->
+<div class="example-code">
 <pre>
 abjad> chord.beam
 _BeamInterface
 </pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> The <code>beam</code> attribute is read-only.
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -336,104 +231,51 @@ Assignment values
 <!-- ### CLEF ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="clef" class="example-header">clef</a>
-<p> Read / write attribute defined here.
-</div>
-
+<p>Read / write attribute defined here.
+<p>Returns Abjad <code>Clef</code> object.
+<p>Accepts LilyPond clef string, <code>None</code>.
+</div> <!-- example header -->
 <div class="example-body">
 
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p> Returns an Abjad <code>Clef</code> object.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/8.png">
-<pre>
-abjad> chord.clef
-Clef(treble)
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign any LilyPond clef string.
-</div>
-
+</div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.clef = 'alto'
 </pre>
-<image src="images/9.png">
-</div>
+<image src="images/2.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
 
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-abjad> chord.clef = None
-</pre>
-<image src="images/10.png">
-</div>
-
-</div>
-
-</div>
 
 <!-- ### DOTS ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="dots" class="example-header">dots</a>
-<p> Read-only attribute defined here.
-</div>
-
+<p>Read-only attribute defined here.
+<p>Returns Abjad <code><a href="../dots_interface/index.html">_DotsInterface</a></code>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad <code><a href="../dots_interface/index.html">_DotsInterface</a></code>.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/11.png">
+</div> <!-- example code -->
+<div class="example-code">
 <pre>
 abjad> chord.dots
 _DotsInterface( )
 </pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p>The <code>dots</code> attribute is read-only.
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -442,50 +284,25 @@ Assignment values
 <!-- ### DURATION ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="duration" class="example-header">duration</a>
-<p> Read / write attribute defined here.
-</div>
-
+<p>Read / write attribute defined here.
+<p>Returns Abjad <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
+<p>Accepts <a hre="../duration_token/index.html">duration token</a>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/12.png">
-<pre>
-abjad> chord.duration
-DurationInterface(1/4)
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign any rational value which meets the tests for <strong><a href="../assignability/index.html">notehead assignability</a></strong>.
-</div>
-
+</div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.duration = Rational(3, 8)
 </pre>
-<image src="images/13.png">
-</div>
-
+<image src="images/3.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -494,61 +311,25 @@ abjad> chord.duration = Rational(3, 8)
 <!-- ### DYNAMICS ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="dynamics" class="example-header">dynamics</a>
-<p> Read / write attribute defined here.
-</div>
-
+<p>Read / write attribute defined here.
+<p>Returns Abjad <code><a href="../dynamics_interface/index.html">_DynamicsInterface</a></code>.
+<p>Accepts LilyPond dynamics string, <code>None</code>.
+</div> <!-- example header -->
 <div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad <code><a href="../dynamics_interface/index.html">_DynamicsInterface</a></code>.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/14.png">
-<pre>
-abjad> chord.dynamics
-_DynamicsInterface( )
-</pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign any LilyPond dynamics string.
-</div>
-
+</div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.dynamics = 'f'
 </pre>
-<image src="images/15.png">
-</div>
-
-<div class="example-text">
-<p> Assign <code>None</code> to clear.
-</div>
-
-<div class="example-code">
-<pre>
-abjad> chord.dynamics = None
-</pre>
-<image src="images/16.png">
-</div>
-
+<image src="images/4.png">
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -577,7 +358,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/17.png">
+<image src="images/5.png">
 <pre>
 abjad> print(chord.format)
 &lt;c' d' bf'&gt;4
@@ -620,7 +401,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/18.png">
+<image src="images/6.png">
 <pre>
 abjad> chord.formatter
 _ChordFormatter( )
@@ -664,7 +445,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/19.png">
+<image src="images/7.png">
 <pre>
 abjad> chord.glissando
 _GlissandoInterface( )
@@ -685,7 +466,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> staff = Staff(chord * 2)
 abjad> staff[0].glissando = True
 </pre>
-<image src="images/20.png">
+<image src="images/8.png">
 </div>
 
 <div class="example-text">
@@ -697,7 +478,7 @@ abjad> staff[0].glissando = True
 abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.glissando = None
 </pre>
-<image src="images/21.png">
+<image src="images/9.png">
 </div>
 
 </div> <!-- example body -->
@@ -729,7 +510,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/22.png">
+<image src="images/10.png">
 <pre>
 abjad> chord.grace
 _GraceInterface( )
@@ -773,7 +554,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/23.png">
+<image src="images/11.png">
 <pre>
 abjad> chord.harmonic
 _HarmonicInterface( )
@@ -793,7 +574,7 @@ Assignment values
 abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.harmonic = True
 </pre>
-<image src="images/24.png">
+<image src="images/12.png">
 </div>
 
 <div class="example-text">
@@ -804,7 +585,7 @@ abjad> chord.harmonic = True
 <pre>
 abjad> chord.harmonic = None
 </pre>
-<image src="images/25.png">
+<image src="images/13.png">
 </div>
 
 </div> <!-- example body -->
@@ -835,7 +616,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/26.png">
+<image src="images/14.png">
 <pre>
 abjad> chord.leaves
 [Chord(c' d' bf', 4)]
@@ -882,7 +663,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> note2 = Note(9, (1, 4))
 abjad> measure = Measure((1, 4), [note1, chord, note2])
 </pre>
-<image src="images/27.png">
+<image src="images/15.png">
 <pre>
 abjad> chord.next
 Note(a', 4)
@@ -926,7 +707,7 @@ Return type
 abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
 abjad> measure[6] = Chord([0, 2, 10], (1, 8))
 </pre>
-<image src="images/28.png">
+<image src="images/16.png">
 <pre>
 abjad> chord.number
 6
@@ -971,7 +752,7 @@ Return type
 abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(-1, 7)])
 abjad> measure[6] = Chord([0, 2, 10], (1, 8))
 </pre>
-<image src="images/29.png">
+<image src="images/17.png">
 <pre>
 abjad> chord.offset
 Rational(3, 4)
@@ -1017,7 +798,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> note2 = Note(9, (1, 4))
 abjad> measure = Measure((1, 4), [note1, chord, note2])
 </pre>
-<image src="images/30.png">
+<image src="images/18.png">
 <pre>
 abjad> chord.prev
 Note(b, 4)
@@ -1060,7 +841,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/31.png">
+<image src="images/19.png">
 <pre>
 abjad> chord.spanners
 _LeafSpannerInterface( )
@@ -1104,7 +885,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/32.png">
+<image src="images/20.png">
 <pre>
 abjad> chord.staff is None
 True
@@ -1125,7 +906,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> bottom_staff = Staff([ ])
 abjad> chord.staff = bottom_staff
 </pre>
-<image src="images/33.png">
+<image src="images/21.png">
 </div>
 
 <div class="example-text">
@@ -1138,7 +919,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> bottom_staff = Staff([ ])
 abjad> chord.staff = None
 </pre>
-<image src="images/34.png">
+<image src="images/22.png">
 </div>
 
 </div> <!-- example body -->
@@ -1169,7 +950,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/35.png">
+<image src="images/23.png">
 <pre>
 abjad> chord.stem
 _StemInterface( )
@@ -1213,7 +994,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/36.png">
+<image src="images/24.png">
 <pre>
 abjad> chord.tempo
 _TempoInterface( )
@@ -1233,7 +1014,7 @@ Assignment values
 abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.tempo = (Rational(1, 4), 72)
 </pre>
-<image src="images/37.png">
+<image src="images/25.png">
 </div>
 
 <div class="example-text">
@@ -1245,7 +1026,7 @@ abjad> chord.tempo = (Rational(1, 4), 72)
 abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.tempo = None
 </pre>
-<image src="images/38.png">
+<image src="images/26.png">
 </div>
 
 </div> <!-- example body -->
@@ -1277,7 +1058,7 @@ Return type
 <pre>
 abjad> chords = Chord([0, 2, 10], (1, 4)) * 2
 </pre>
-<image src="images/39.png">
+<image src="images/27.png">
 <pre>
 abjad> chords[0].tie
 _TieInterface( )
@@ -1297,7 +1078,7 @@ Assignment values
 abjad> chords = Chord([0, 2, 10], (1, 4)) * 2
 abjad> chords[0].tie = True
 </pre>
-<image src="images/40.png">
+<image src="images/28.png">
 </div>
 
 <div class="example-text">
@@ -1308,7 +1089,7 @@ abjad> chords[0].tie = True
 <pre>
 abjad> chords[0].tie = None
 </pre>
-<image src="images/41.png">
+<image src="images/29.png">
 </div>
 
 </div> <!-- example body -->
@@ -1340,7 +1121,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/42.png">
+<image src="images/30.png">
 <pre>
 abjad> chord.tremolo
 Tremolo( )
@@ -1384,7 +1165,7 @@ Return type
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/43.png">
+<image src="images/31.png">
 <pre>
 abjad> chord.trill
 _TrillInterface( )
@@ -1430,11 +1211,11 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/44.png">
+<image src="images/32.png">
 <pre>
 abjad> new = chord.copy( )
 </pre>
-<image src="images/45.png">
+<image src="images/33.png">
 <pre>
 abjad> id(chord) != id(new)
 True
@@ -1468,7 +1249,7 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/46.png">
+<image src="images/34.png">
 <pre>
 abjad> chord.kind('Chord')
 True
@@ -1519,7 +1300,7 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/47.png">
+<image src="images/35.png">
 </div>
 
 </div> <!-- example body -->
@@ -1551,13 +1332,13 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/48.png">
+<image src="images/36.png">
 <pre>
 abjad> chords = chord * 4
 abjad> chords
 [Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
 </pre>
-<image src="images/49.png">
+<image src="images/37.png">
 </div>
 
 </div> <!-- example body -->
@@ -1586,7 +1367,7 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/50.png">
+<image src="images/38.png">
 <pre>
 abjad> chord
 Chord(c' d' bf', 4)
@@ -1620,13 +1401,13 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/51.png">
+<image src="images/39.png">
 <pre>
 abjad> chords = 4 * chord
 abjad> chords
 [Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4), Chord(c' d' bf', 4)]
 </pre>
-<image src="images/52.png">
+<image src="images/40.png">
 </div>
 
 </div> <!-- example body -->
@@ -1656,7 +1437,7 @@ Example
 <pre>
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/53.png">
+<image src="images/41.png">
 <pre>
 abjad> str(chord)
 "&lt;c' d' bf'&gt;4"
