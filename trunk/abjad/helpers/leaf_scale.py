@@ -66,4 +66,10 @@ def leaf_scale_binary(dur, leaf):
       for n in result[1:]:
          n.dynamics = None
          n.articulations = None
+      ### remove afterGrace from all but the last leaf
+      ### and Grace all but the first leaf
+      for n in result[:-1]:
+         n.grace.after = None
+      for n in result[1:]:
+         n.grace.before = None
       return result

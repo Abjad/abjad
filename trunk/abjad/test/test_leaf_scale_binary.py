@@ -54,7 +54,7 @@ def test_leaf_scale_binary_04( ):
 
 
 def test_leaf_scale_binary_05( ):
-   '''Target features dotted numerator. Leaf is split.'''
+   '''Target features dotted numerator. Leaf is not split.'''
    t = Note(0, (1, 4))
    new = leaf_scale_binary((3, 16), t)
    assert isinstance(new, list)
@@ -139,5 +139,27 @@ def test_leaf_scale_binary_13( ):
    assert t[1].tie.spanned
    assert not t[1].tie
    assert len(t[1].tie.spanners) == 1
+
+
+### GRACE NOTES ###
+
+def test_leaf_scale_binary_20( ):
+   '''Grace notes are removed from all but the first leaf.'''
+   t = Note(0, (1, 4))
+   t.grace.before = Note(1, (1, 64))
+   new = leaf_scale_binary((5, 16), t)
+   assert len(new) == 2
+   assert len(new[0].grace.before) == 1
+   assert len(new[1].grace.before) == 0
+
+def test_leaf_scale_binary_21( ):
+   '''AfterGrace notes are removed from all but the last leaf.'''
+   t = Note(0, (1, 4))
+   t.grace.after = Note(1, (1, 64))
+   new = leaf_scale_binary((5, 16), t)
+   assert len(new) == 2
+   assert len(new[0].grace.after) == 0
+   assert len(new[1].grace.after) == 1
+
 
 
