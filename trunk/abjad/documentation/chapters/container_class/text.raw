@@ -11,6 +11,7 @@ Public interface
 <div class="interface-block">
    <p class="interface-block-header"> Attributes </p>
    <p class="interface-attribute-inherited"> accidentals </p>
+   <p class="interface-attribute"> append </p>
    <p class="interface-attribute-inherited"> barline </p>
    <p class="interface-attribute"> brackets </p>
    <p class="interface-attribute-inherited"> comments </p>
@@ -18,7 +19,6 @@ Public interface
    <p class="interface-attribute-inherited"> format </p>
    <p class="interface-attribute"> formatter </p>
    <p class="interface-attribute"> leaves </p>
-   <p class="interface-attribute"> music </p>
    <p class="interface-attribute"> next </p>
    <p class="interface-attribute"> parallel </p>
    <p class="interface-attribute"> prev </p>
@@ -239,6 +239,45 @@ object.
 </div> <!-- example body -->
 </div> <!-- example -->
 
+
+
+<!-- ### LEAVES ### -->
+
+<div class="example">
+
+<div class="example-header">
+<p class="example-header">
+<a name="formatter" class="example-header">leaves</a>
+<p> Read-only attribute defined here.
+</div> <!-- example header -->
+
+<div class="example-body">
+<h3 class="example-section">
+Return type
+</h3>
+
+<div class="example-text">
+<p>Returns a list of Abjad  
+<a href="../leaf_class/index.html">_Leaf</a>  
+objects.
+</div>
+
+<div class="example-code">
+<pre>
+   abjad> container = Container([Note(i, (1, 4)) for i in range(4)])
+   hide> measure = Measure((1, 4), [container])
+   hide> measure.meter.transparent = True
+   abjad> container.leaves
+   [Note(c', 4), Note(cs', 4), Note(d', 4), Note(ef', 4)]
+</pre>
+</div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- COMMENTS -->
 <h2 class="page-section">
 Comments
 </h2>
