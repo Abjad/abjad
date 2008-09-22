@@ -264,7 +264,7 @@ PRE, DIV.abjad {
 	padding-left: 10px;
 	padding-right: 10px;
 	border: 1px dotted #aaaaaa;
-   text-align: left;
+   text-align: left; 
 }
 
 .comment, .to-do {

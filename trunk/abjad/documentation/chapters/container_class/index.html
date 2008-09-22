@@ -259,7 +259,7 @@ _ContainerFormatter( )
 
 <div class="example-header">
 <p class="example-header">
-<a name="formatter" class="example-header">leaves</a>
+<a name="leaves" class="example-header">leaves</a>
 <p> Read-only attribute defined here.
 </div> <!-- example header -->
 
@@ -281,6 +281,106 @@ abjad> container.leaves
 [Note(c', 4), Note(cs', 4), Note(d', 4), Note(ef', 4)]
 </pre>
 </div>
+
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+
+<h2 class="page-section">
+Public methods
+</h2>
+
+
+<!-- ### APPEND( ) ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="append" class="example-header-inherited">append(<i>expr</i>)</a>
+</p>
+<p>Public method defined here.  </p>
+<p>Appends <code><i>expr</i></code> of type 
+<code>
+<a href="../component_class/index.html"> _Component</a>
+</code>
+to <code>self</code>. 
+</p>
+</div> <!-- example header -->
+
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(0, (1, 4)), Note(2, (1, 4))])
+abjad> container.append(Rest((1, 4)))
+abjad> show(container)
+</pre>
+<image src="images/1.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### COALESCE( ) ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="coalesce" class="example-header">coalesce( )</a>
+</p><p>Public method defined here.
+</p><p>Fuses sub-containers belonging to the same thread.
+</p></div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> voice1 = Voice(Note(7, (1, 8)) * 2)
+abjad> voice2 = Voice(Note(0, (1, 8)) * 2)
+abjad> voice1.invocation.name = 'voice1'
+abjad> voice2.invocation.name = 'voice2'
+abjad> staff = Staff([voice1, voice2])
+abjad> staff.brackets = 'double-angle'
+abjad> container = Container([staff, staff.copy()])
+abjad> f(container)
+\new Staff <<
+		\context Voice = "voice1" {
+			  c'8
+			  c'8
+		}
+		\context Voice = "voice2" {
+			  g'8
+			  g'8
+		}
+>>
+\new Staff <<
+		\context Voice = "voice1" {
+			  c'8
+			  c'8
+		}
+		\context Voice = "voice2" {
+			  g'8
+			  g'8
+		}
+>>
+abjad> container.coalesce( )
+abjad> f(container)
+\new Staff <<
+		\context Voice = "voice1" {
+			  c'8
+			  c'8
+			  c'8
+			  c'8
+		}
+		\context Voice = "voice2" {
+			  g'8
+			  g'8
+			  g'8
+			  g'8
+		}
+>>
+</pre>
+</div> <!-- example code -->
 
 </div> <!-- example body -->
 </div> <!-- example -->
