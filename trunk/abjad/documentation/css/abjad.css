@@ -122,6 +122,10 @@ A.interface-attribute-inherited, A.example-header-inherited {
 	font-family: "Courier New", "Courier", serif;
 }
 
+A.example-header-inherited:hover, A.example-header:hover{
+	text-decoration: none;
+}
+
 DIV P.interface-attribute-inherited {
    /*color: #f77777;*/
    color: gray;
