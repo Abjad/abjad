@@ -13,7 +13,8 @@ class _Component(object):
    def __init__(self):
       self._accidentals = None
       self._barline = _BarLineInterface(self)
-      self.comments = _Comments( )
+      #self.comments = _Comments( )
+      self._comments = _Comments( )
       self._navigator = _Navigator(self)
       self._parentage = _Parentage(self)
       self._tempo = _TempoInterface(self)
@@ -64,6 +65,38 @@ class _Component(object):
 
    ### MANAGED ATTRIBUTES ###
 
+   ### TODO - make work for leaves, too    ###
+   ###        add stuff to leaf formatters ###
+
+   @apply
+   def accidentals( ):
+      def fget(self):
+         return self._accidentals
+      def fset(self, style):
+         assert isinstance(style, (str, type(None)))
+         self._accidentals = style
+      return property(**locals( ))
+
+   @apply
+   def barline( ):
+      def fget(self):
+         return self._barline
+      def fset(self, type):
+         self._barline.type = type
+      return property(**locals( ))
+
+   @apply
+   def comments( ):
+      def fget(self):
+         return self._comments
+      def fset(self, type):
+         raise AttributeError('can not overwrite _Comments.')
+      return property(**locals( ))
+
+   @property
+   def format(self):
+      return self.formatter.lily
+
    @apply
    def tempo( ):
       def fget(self):
@@ -81,29 +114,3 @@ class _Component(object):
             elif isinstance(expr[0], Rational):
                self._tempo._metronome = (Note(0, expr[0]), expr[1])
       return property(**locals( ))
-            
-   @apply
-   def barline( ):
-      def fget(self):
-         return self._barline
-      def fset(self, type):
-         self._barline.type = type
-      return property(**locals( ))
-
-   ### TODO - make work for leaves, too    ###
-   ###        add stuff to leaf formatters ###
-
-   @apply
-   def accidentals( ):
-      def fget(self):
-         return self._accidentals
-      def fset(self, style):
-         assert isinstance(style, (str, type(None)))
-         self._accidentals = style
-      return property(**locals( ))
-
-   ### PROPERTIES ###
-
-   @property
-   def format(self):
-      return self.formatter.lily
