@@ -23,6 +23,8 @@ Interface
 <p class="interface-attribute-inherited">
 <a href="#clef" class="interface-attribute-inherited"> clef</a>
 <p class="interface-attribute-inherited">
+<a href="#comments" class="interface-attribute-inherited"> comments</a>
+<p class="interface-attribute-inherited">
 <a href="#dots" class="interface-attribute-inherited">dots</a>
 <p class="interface-attribute-inherited">
 <a href="#duration" class="interface-attribute-inherited">duration</a>
@@ -145,7 +147,7 @@ Public attributes
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="barline" class="example-header-inherited">barline</a>
-<p>Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
+<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
 <p>Returns Abjad <code><a href="../articulations_interface/index.html">_BarlineInterface</a></code>.
 <p>Accepts LilyPond barline string, <code>None</code>.
 <p>See <a href="../leaf_class/index.html#barline">example</a>.
@@ -180,6 +182,21 @@ Public attributes
 <p>See <a href="../leaf_class/index.html#clef">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
+
+
+
+<!-- ### COMMENTS ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="comments" class="example-header-inherited">comments</a>
+<p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns Abjad <code><a href="../comments_class/index.html">_Comments</a></code> object.
+<p>See <a href="../component_class/index.html#comments">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
 
 
 <!-- ### DOTS ### -->
@@ -231,9 +248,9 @@ Public attributes
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="format" class="example-header-inherited">format</a>
-<p>Read-only attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+<p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
 <p>Returns LilyPond input string.
-<p>See <a href="../core_component_class/index.html#format">example</a>.
+<p>See <a href="../component_class/index.html#format">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
@@ -479,10 +496,10 @@ abjad> chord.pitches
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="tempo" class="example-header-inherited">tempo</a>
-<p>Read / write attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
 <p>Returns Abjad <code><a href="../tempo_interface/index.html">_TempoInterface</a></code>.
 <p>Accepts (duration, type) pair.
-<p>See <a href="../core_component_class/index.html#tempo">example</a>.
+<p>See <a href="../component_class/index.html#tempo">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
@@ -566,9 +583,9 @@ abjad> chord.append(9)
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="copy" class="example-header-inherited">copy( )</a>
-<p>Public method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+<p>Public method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
 <p>Returns new copy of <code>self</code>.
-<p>See <a href="../core_component_class/index.html#copy">example</a>.
+<p>See <a href="../component_class/index.html#copy">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
@@ -606,7 +623,7 @@ abjad> chord.extend([9, 16, 18])
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="kind" class="example-header-inherited">kind(<i>classname</i>)</a>
-<p>Deprecated public method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>
+<p>Deprecated public method inherited from <code><a href="../component_class/index.html">_Component</a></code>
 <p>Returnx <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.
 <p>Use built-in Python <code>isinstance( )</code> instead.
 </div> <!-- example header -->
@@ -810,10 +827,10 @@ abjad> len(chord)
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="mul" class="example-header-inherited">__mul__(<i>n</i>)</a>
-<p> Special method inherited from <code><a href="../core_component_class">_Component</a></code>.
+<p> Special method inherited from <code><a href="../component_class">_Component</a></code>.
 <p>Implements left-handed multiplication of <code>self</code>.
 <p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.
-<p>See <a href="../core_component_class/index.html#mul">example</a>.
+<p>See <a href="../component_class/index.html#mul">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
@@ -851,10 +868,10 @@ Chord(c' d' bf', 4)
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="rmul" class="example-header-inherited">__rmul__(<i>n</i>)</a>
-<p> Special method inherited from <code><a href="../core_component_class">_Component</a></code>.
+<p> Special method inherited from <code><a href="../component_class">_Component</a></code>.
 <p>Implements right-handed multiplication on <code>self</code>. 
 <p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.
-<p> See <a href="../core_component_class/index.html#rmul">example</a>.
+<p> See <a href="../component_class/index.html#rmul">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
