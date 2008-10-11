@@ -17,13 +17,13 @@ class _Parentage(object):
    @property
    def _threadParentage(self):
       '''Return thread-pertinent parentage structure.
-         Same as _parentage but with redundant Sequentials, 
+         Same as _parentage but with _Tuplets, redundant Sequentials, 
          Parallels and tautologies (unlikely) removed.'''
       parentage = self._parentage
       if len(parentage) > 1:
       ### remove sequentials
          for p in parentage[:]:
-            if p.kind('Sequential'):
+            if p.kind('Sequential') or p.kind('_Tuplet'):
                parentage.remove(p)
             else:
                break

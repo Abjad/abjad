@@ -298,7 +298,8 @@ def test_bead_navigation_32( ):
 
 
 def test_bead_navigation_33( ):
-   '''nextBead and prevBead DO work in sequence of arbitrarily nexted sequentials.'''
+   '''nextBead and prevBead DO work in sequence of arbitrarily nested 
+   sequentials.'''
    s1 = Sequential([Note(i, (1,8)) for i in range(2)])
    s2 = Sequential([Note(i, (1,8)) for i in range(3,5)])
    v = Voice([s1, Note(2, (1,8)), s2])
@@ -308,9 +309,21 @@ def test_bead_navigation_33( ):
    assert v[1]._navigator._prevBead is s1[1]
    assert s2[0]._navigator._prevBead is v[1]
 
+def test_bead_navigation_34( ):
+   '''nextBead and prevBead DO work in sequence of arbitrarily nested 
+   tuplets.'''
+   t1 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(3)])
+   t2 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(4,7)])
+   v = Voice([t1, Note(3, (1,8)), t2])
+   assert t1[-1]._navigator._nextBead is v[1]
+   assert v[1]._navigator._nextBead is t2[0]
+
+   assert v[1]._navigator._prevBead is t1[-1]
+   assert t2[0]._navigator._prevBead is v[1]
+
 ### Parentage asymmetrical structures DON'T work if NOT tautological ###
 
-def test_bead_navigation_34( ):
+def test_bead_navigation_35( ):
    '''NextBead returns None in asymmetric thread parentage structurese.'''
    v1 = Voice([Note(i , (1,8)) for i in range(3)])
    n = Note(3, (1,8))
