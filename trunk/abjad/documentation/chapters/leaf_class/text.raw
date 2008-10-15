@@ -1299,7 +1299,6 @@ Method examples
 <!-- ### COPY( ) ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="copy" class="example-header-inherited">copy( )</a>
@@ -1307,13 +1306,10 @@ Method examples
 <p> Returns a new copy of <code>chord</code>.
 <p> Accepts no input parameters.
 </div>
-
 <div class="example-body">
-
 <h3 class="example-section">
 Example
 </h3>
-
 <div class="example-code">
 <pre>
    abjad> chord = Chord([0, 2, 10], (1, 4))
@@ -1334,8 +1330,7 @@ Example
    abjad> id(chord) != id(new)
    True
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -1344,7 +1339,6 @@ Example
 <!-- ### KIND( ) ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="kind" class="example-header-inherited">kind(<i>classname</i>)</a>
@@ -1352,13 +1346,10 @@ Example
 <p> Return <code>True</code> if <i>classname</i> in class hierarchy of <code>Chord</code>, and <code>False</code> otherwise.
 <p> DEPRECATED. Use <code>isinstance( )</code> instead.
 </div>
-
 <div class="example-body">
-
 <h3 class="example-section">
 Example
 </h3>
-
 <div class="example-code">
 <pre>
    abjad> chord = Chord([0, 2, 10], (1, 4))
@@ -1370,8 +1361,7 @@ Example
    abjad> chord.kind('Chord')
    True
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -1431,7 +1421,6 @@ Example
 <!-- ### __MUL__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="mul" class="example-header-inherited">__mul__(<i>n</i>)</a>
@@ -1439,13 +1428,10 @@ Example
 <p> Implements left-handed multiplication against <code>Chord</code>.
 <p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
 </div>
-
 <div class="example-body">
-
 <h3 class="example-section">
 Example
 </h3>
-
 <div class="example-code">
 <pre>
    abjad> chord = Chord([0, 2, 10], (1, 4))
@@ -1462,8 +1448,7 @@ Example
    hide> measure.meter.transparent = True
    hide> show(measure)
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
@@ -1508,7 +1493,6 @@ Example
 <!-- ### __RMUL__ ### -->
 
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
@@ -1516,13 +1500,10 @@ Example
 <p> Implements right-handed multiplication against <code>Chord</code>. 
 <p> Returns a Python list of <i>n</i> copies of <i>chord</i>.
 </div>
-
 <div class="example-body">
-
 <h3 class="example-section">
 Example
 </h3>
-
 <div class="example-code">
 <pre>
    abjad> chord = Chord([0, 2, 10], (1, 4))
@@ -1539,8 +1520,7 @@ Example
    hide> measure.meter.transparent = True
    hide> show(measure)
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 

@@ -8,24 +8,46 @@ The Abjad <code>_Component</code> class models the functionality that all leaves
 Public interface
 </h2>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute"> accidentals </p>
-   <p class="interface-attribute"> barline </p>
-   <p class="interface-attribute"> comments </p>
-   <p class="interface-attribute"> format </p>
-   <p class="interface-attribute"> tempo </p>
+<div class="example-block">
+   <p class="example-block-header">Attributes
+
+   <p class="interface-attribute">
+   <a href="#accidentals" class="interface-attribute">accidentals</a>
+
+   <p class="interface-attribute">
+   <a href="#barline" class="interface-attribute">barline</a>
+
+   <p class="interface-attribute">
+   <a href="#comments" class="interface-attribute">comments</a>
+
+   <p class="interface-attribute">
+   <a href="#format" class="interface-attribute">format</a>
+
+   <p class="interface-attribute">
+   <a href="#tempo" class="interface-attribute">tempo</a>
+
 </div>
 
 <div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute"> copy( ) </p>
-   <p class="interface-attribute"> kind( ) </p>
+   <p class="interface-block-header">Methods
+
+   <p class="interface-attribute">
+   <a href="#copy" class="interface-attribute">copy( )</a>
+
+   <p class="interface-attribute">
+   <a href="#kind" class="interface-attribute">kind( )</a>
+
 </div>
 
 <div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute"> __mul__ </p>
+   <p class="interface-block-header">Overloads
+
+   <p class="interface-attribute">
+   <a href="#mul" class="interface-attribute">__mul__</a>
+
+   <p class="interface-attribute">
+   <a href="#rmul" class="interface-attribute">__rmul__</a>
+
 </div>
 
 <h2 class="page-section">
@@ -34,7 +56,308 @@ Examples
 
 <p>
 The Abjad <code>_Component</code> class is an abstract class not meant to be instantiated by hand.
-</p>
+
+<p>
+But we show examples of <code>_Component</code> attributes here using notes and staves as concrete examples of the <code>_Component</code> class.
+
+
+<!-- ### ACCIDENTALS ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="accidentals" class="example-header">accidentals</a>
+<p>Read / write attribute defined here.
+<p>Returns LilyPond accidentals style string.
+<p>Accepts LilyPond accidentals style string, <code>None</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+   abjad> staff = Staff(Note(1, (1, 4)) * 4)
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+   hide> staff = Staff(Note(1, (1, 4)) * 4)
+   abjad> staff.accidentals = 'forget'
+   hide> show(staff)
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### BARLINE ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="barline" class="example-header">barline</a>
+<p>Read / write attribute defined here.
+<p>Returns LilyPond barline string.
+<p>Accepts LilyPond barline string, <code>None</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+   abjad> staff = Staff(Note(1, (1, 4)) * 4)
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+   hide> staff = Staff(Note(1, (1, 4)) * 4)
+   abjad> staff.barline = '|.'
+   hide> show(staff)
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### COMMENTS ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="comments" class="example-header">comments</a>
+<p>Read-only attribute defined here.
+<p>Returns LilyPond <code>_Comments</code> class.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+   abjad> staff = Staff(Note(1, (1, 4)) * 4)
+   abjad> staff.comments.append("All notes here exhibit the same pitch.")
+</pre>
+</div> <!-- example code -->
+<!-- ### TODO - we need a pre block that preserves indentation -->
+<div class="example-code">
+<pre>
+   % All notes here exhibit the same pitch.
+   \new Staff {
+      cs'4
+      cs'4
+      cs'4
+      cs'4
+   }
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### FORMAT ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="format" class="example-header">format</a>
+<p>Read-only attribute defined here.
+<p>Returns LilyPond input string.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+   abjad> staff = Staff(Note(0, (1, 4)) * 4)
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+   hide> staff = Staff(Note(0, (1, 4)) * 4)
+   abjad> staff.format
+   "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### TEMPO ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="tempo" class="example-header">tempo</a>
+<p>Read / write attribute defined here.
+<p>Returns LilyPond <a href="../tempo_interface/index.html">_TempoInterface</a>.
+<p>Accepts Abjad <a href="../tempo_token/index.html">tempo token</a>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+   abjad> note = Note(0, (1, 4))
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+   hide> note = Note(0, (1, 4))
+   abjad> note.tempo = ((3, 8), 52)
+   hide> measure = Measure((1, 4), [note])
+   hide> measure.meter.transparent = True
+   hide> show(note)
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<h2 class="page-section">
+Method examples
+</h2>
+
+
+<!-- ### COPY( ) ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="copy" class="example-header">copy( )</a>
+<p> Bound method implemented here.
+<p> Returns a new copy of <code>self</code>.
+<p> Accepts no input parameters.
+</div>
+<div class="example-body">
+<h3 class="example-section">
+Example
+</h3>
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   abjad> new = chord.copy( )
+   hide> measure = Measure((2, 4), [chord, new])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   hide> new = chord.copy( )
+   abjad> id(chord) != id(new)
+   True
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+
+<!-- ### KIND( ) ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="kind" class="example-header">kind(<i>classname</i>)</a>
+<p> Bound method implemented here.
+<p> Return <code>True</code> if <code>classname</code> in class hierarchy of <code>self</code>, and <code>False</code> otherwise.
+<p> DEPRECATED. Use <code>isinstance( )</code> instead.
+</div>
+<div class="example-body">
+<h3 class="example-section">
+Example
+</h3>
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   abjad> chord.kind('Chord')
+   True
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<h2 class="page-section">
+Override examples
+</h2>
+
+
+<!-- ### __MUL__ ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="mul" class="example-header">__mul__(<i>n</i>)</a>
+<p>Special method implemented here.
+<p>Implements left-handed multiplication against <code>self</code>.
+<p>Returns a Python list of <code>n</code> copies of <code>self</code>.
+</div>
+<div class="example-body">
+<h3 class="example-section">
+Example
+</h3>
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   abjad> chords = chord * 4
+   hide> measure = Measure((4, 4), chords)
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### __RMUL__ ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
+<p>Special method implemented here.
+<p>Implements right-handed multiplication against <code>self</code>.
+<p>Returns a Python list of <code>n</code> copies of <code>self</code>.
+</div>
+<div class="example-body">
+<h3 class="example-section">
+Example
+</h3>
+<div class="example-code">
+<pre>
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   hide> measure = Measure((1, 4), [chord])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+<pre>
+   hide> chord = Chord([0, 2, 10], (1, 4))
+   abjad> chords = 4 * chord
+   hide> measure = Measure((4, 4), chords)
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
 
 <h2 class="page-section">
 Comments
@@ -42,12 +365,4 @@ Comments
 
 <p class="comment">
 See the <code>_Component</code> class in <code>core/component.py</code> for implementation details.
-</p>
-
-<h2 class="page-section">
-To do
-</h2>
-
-<p class="to-do">
-Add a stub <code>duration</code> attribute here since all leaves and all containers implement one.
 </p>
