@@ -298,8 +298,8 @@ def test_bead_navigation_32( ):
 
 
 def test_bead_navigation_33( ):
-   '''nextBead and prevBead DO work in sequence of arbitrarily nested 
-   sequentials.'''
+   '''nextBead and prevBead DO work in sequence of alternating 
+   Sequentials and Note.'''
    s1 = Sequential([Note(i, (1,8)) for i in range(2)])
    s2 = Sequential([Note(i, (1,8)) for i in range(3,5)])
    v = Voice([s1, Note(2, (1,8)), s2])
@@ -310,8 +310,8 @@ def test_bead_navigation_33( ):
    assert s2[0]._navigator._prevBead is v[1]
 
 def test_bead_navigation_34( ):
-   '''nextBead and prevBead DO work in sequence of arbitrarily nested 
-   tuplets.'''
+   '''nextBead and prevBead DO work in sequence of alternating 
+   tuplets and Notes.'''
    t1 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(3)])
    t2 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(4,7)])
    v = Voice([t1, Note(3, (1,8)), t2])
@@ -321,9 +321,19 @@ def test_bead_navigation_34( ):
    assert v[1]._navigator._prevBead is t1[-1]
    assert t2[0]._navigator._prevBead is v[1]
 
+def test_bead_navigation_35( ):
+   '''nextBead and prevBead  work on asymmetrically nested tuplets.'''
+   tinner = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
+   assert t[0]._navigator._nextBead is tinner[0]
+   assert tinner[-1]._navigator._nextBead is t[-1]
+   assert t[-1]._navigator._prevBead is tinner[-1]
+   assert tinner[0]._navigator._prevBead is t[0]
+
+
 ### Parentage asymmetrical structures DON'T work if NOT tautological ###
 
-def test_bead_navigation_35( ):
+def test_bead_navigation_36( ):
    '''NextBead returns None in asymmetric thread parentage structurese.'''
    v1 = Voice([Note(i , (1,8)) for i in range(3)])
    n = Note(3, (1,8))

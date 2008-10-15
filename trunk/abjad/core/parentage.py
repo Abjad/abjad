@@ -20,7 +20,8 @@ class _Parentage(object):
          Same as _parentage but with _Tuplets, redundant Sequentials, 
          Parallels and tautologies (unlikely) removed.'''
       parentage = self._parentage
-      if len(parentage) > 1:
+      #if len(parentage) > 1: why was this 1???
+      if len(parentage) > 0:
       ### remove sequentials
          for p in parentage[:]:
             if p.kind('Sequential') or p.kind('_Tuplet'):
@@ -30,7 +31,7 @@ class _Parentage(object):
       # remove tautological nesting
          for i, p in enumerate(parentage[:-1]):
             if type(p) == type(parentage[i+1]):
-               if p.kind('Parallel') or p.kind('Sequential'):
+               if p.kind('Parallel') : # or p.kind('Sequential'):
                   parentage.remove(p)
                elif p.kind('Context'):
                   if p.invocation == parentage[i+1].invocation:
