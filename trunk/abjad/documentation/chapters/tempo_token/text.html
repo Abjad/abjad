@@ -1,0 +1,20 @@
+<h1>
+The Abjad tempo token
+</h1>
+
+<p>
+All Abjad components afford tempo assignment.
+
+<div class="example-code">
+<pre>
+abjad> note = Note(0, (1, 4))
+abjad> note.tempo = ((3, 8), 52)
+</pre>
+<image src="images/1.png">
+</div>
+
+<p>
+Abjad defines the <strong>tempo token</strong> equal to the pair of a <a href="../duration_token/index.html">duration token</a> and any integer or float interpretable as a metronome marking.
+
+<p>
+Examples in the documentation that ask for valid tempo token input accept pairs of the form shown here.
