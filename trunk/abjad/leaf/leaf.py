@@ -190,10 +190,17 @@ class _Leaf(_Component):
 
    @property
    def offset(self):
+#      cur = self
+#      offset = 0
+#      while cur.prev:
+#         cur = cur.prev
+#         offset += cur.duration.prolated
+#      return offset
+      ### This handles parallel structures correctly. 
       cur = self
       offset = 0
-      while cur.prev:
-         cur = cur.prev
+      while cur._navigator._prevBead:
+         cur = cur._navigator._prevBead
          offset += cur.duration.prolated
       return offset
 
