@@ -127,14 +127,8 @@ Public interface
 <p class="interface-attribute-inherited">
 <a href="#mul" class="interface-attribute-inherited">__mul__</a>
 
-<p class="interface-attribute">
-<a href="#repr" class="interface-attribute">__repr__</a>
-
 <p class="interface-attribute-inherited">
 <a href="#rmul" class="interface-attribute-inherited">__rmul__</a>
-
-<p class="interface-attribute">
-<a href="#str" class="interface-attribute">__str__</a>
 
 </div>
 
@@ -149,8 +143,8 @@ The Abjad <code>_Leaf</code> class is an abstract class and is not meant to be i
 But we show examples of <code>_Leaf</code> attributes here using note, rest and chords as concrete examples of the <code>_Leaf</code> class.
 
 
-<!-- ### ACCIDENTALS ### -->
 
+<!-- ### ACCIDENTALS ### -->
 <div class="example">
 <p class="example-header-inherited"> 
 <a name="accidentals" class="example-header-inherited">accidentals</a>
@@ -160,7 +154,6 @@ But we show examples of <code>_Leaf</code> attributes here using note, rest and 
 
 
 <!-- ### ARTICULATIONS ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -172,12 +165,12 @@ But we show examples of <code>_Leaf</code> attributes here using note, rest and 
 <div class="example-body">
 <div class="example-code">
 <pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> note = Note(0, (1, 4))
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> chord.articulations = ['staccato', 'marcato']
+abjad> note.articulations = ['staccato']
 </pre>
 <image src="images/1.png">
 </div> <!-- example code -->
@@ -187,23 +180,21 @@ abjad> chord.articulations = ['staccato', 'marcato']
 
 
 <!-- ### BARLINE ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="barline" class="example-header-inherited">
 barline
 </a>
-<p>Read / write attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
-<p>Returns Abjad <code><a href="../articulations_interface/index.html">_BarlineInterface</a></code>.
+<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns Abjad <code><a href="../barline_interface/index.html">_BarlineInterface</a></code>.
 <p>Accepts LilyPond barline string, <code>None</code>.
-<p>See <a href="../core_component_class/index.html#barline">example</a>.
+<p>See <a href="../component_class/index.html#barline">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
 
 <!-- ### BEAM ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -229,7 +220,6 @@ _BeamInterface
 
 
 <!-- ### CLEF ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -256,7 +246,6 @@ abjad> chord.clef = 'alto'
 
 
 <!-- ### DOTS ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -282,14 +271,13 @@ _DotsInterface( )
 
 
 <!-- ### DURATION ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
 <a name="duration" class="example-header">duration</a>
 <p>Read / write attribute defined here.
 <p>Returns Abjad <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
-<p>Accepts <a hre="../duration_token/index.html">duration token</a>.
+<p>Accepts <a href="../duration_token/index.html">duration token</a>.
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
@@ -309,7 +297,6 @@ abjad> chord.duration = (3, 8)
 
 
 <!-- ### DYNAMICS ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -334,13 +321,13 @@ abjad> chord.dynamics = 'f'
 </div> <!-- example -->
 
 
-<!-- ### FORMAT ### -->
 
+<!-- ### FORMAT ### -->
 <div class="example">
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="format" class="example-header-inherited">format</a>
-<p>Read-only attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+<p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
 <p>Returns LilyPond input string.
 <p>See <a href="../component_class/index.html#format">example</a>.
 </div> <!-- example header -->
@@ -349,7 +336,6 @@ abjad> chord.dynamics = 'f'
 
 
 <!-- ### FORMATTER ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -373,14 +359,13 @@ _ChordFormatter( )
 
 
 <!-- ### GLISSANDO ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
 <a name="glissando" class="example-header">glissando</a>
 <p>Read / write attribute defined here.
 <p>Returns Abjad <code><a href="../glissando_interface/index.html">_GlissandoInterface</a></code>.
-<p>Accepts <code>True</code>, <code>False</code>, <code>None</code>.
+<p>Accepts <code>True</code>, <code>False</code>.
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
@@ -398,7 +383,6 @@ abjad> notes[0].glissando = True
 
 
 <!-- ### GRACE ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -422,7 +406,6 @@ abjad> note.grace.before.append(Note(2, (1, 16)))
 
 
 <!-- ### HARMONIC ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -447,7 +430,6 @@ abjad> note.harmonic = True
 
 
 <!-- ### LEAVES ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -471,7 +453,6 @@ abjad> note.leaves
 
 
 <!-- ### NEXT ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -499,7 +480,6 @@ Note(a', 4)
 
 
 <!-- ### NUMBER ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -524,7 +504,6 @@ abjad> measure[6].number
 
 
 <!-- ### OFFSET ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -549,7 +528,6 @@ Rational(3, 4)
 
 
 <!-- ### PREV ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -577,7 +555,6 @@ Note(b, 4)
 
 
 <!-- ### SPANNERS ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -602,7 +579,6 @@ _LeafSpannerInterface( )
 
 
 <!-- ### STAFF ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -628,7 +604,6 @@ True
 
 
 <!-- ### STEM ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -652,12 +627,11 @@ _StemInterface( )
 
 
 <!-- ### TEMPO ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="tempo" class="example-header-inherited">tempo</a>
-<p>Read-only attribute inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+<p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
 <p>Returns Abjad <code><a href="../tempo_interface/index.html">_TempoInterface</a></code>.
 <p>See <a href="../component_class/index.html#tempo">example</a>.
 </div> <!-- example header -->
@@ -666,7 +640,6 @@ _StemInterface( )
 
 
 <!-- ### TIE ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -692,14 +665,12 @@ abjad> notes[0].tie = True
 
 
 <!-- ### TREMOLO ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
 <a name="tremolo" class="example-header">tremolo</a>
-<p>Read / write attribute defined here.
+<p>Read-only attribute defined here.
 <p>Returns Abjad <code><a href="../tremolo_interface/index.html">_TremoloInterface</a></code>.
-<p>Accepts <code>True</code>, <code>False</code>.
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
@@ -707,7 +678,7 @@ abjad> notes[0].tie = True
 abjad> note = Note(0, (1, 4))
 </pre>
 <pre>
-abjad> note.tremolo = True
+abjad> note.tremolo.subdivision = 32
 </pre>
 <image src="images/13.png">
 </div> <!-- example code -->
@@ -717,7 +688,6 @@ abjad> note.tremolo = True
 
 
 <!-- ### TRILL ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -730,7 +700,6 @@ abjad> note.tremolo = True
 <pre>
 abjad> note = Note(0, (1, 4))
 </pre>
-<image src="images/14.png">
 <pre>
 abjad> note.trill
 _TrillInterface( )
@@ -746,12 +715,13 @@ Method examples
 </h2>
 
 
+
 <!-- ### COPY( ) ### -->
 <div class="example">
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="copy" class="example-header-inherited">copy( )</a>
-<p>Bound method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>.
+<p>Bound method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
 <p>Returns a new copy of <code>self</code>.
 <p>Accepts no input parameters.
 <p>See <a href="../component_class/index.html#copy">example</a>.
@@ -765,7 +735,7 @@ Method examples
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="kind" class="example-header-inherited">kind(<i>classname</i>)</a>
-<p>Bound method inherited from <code><a href="../core_component_class/index.html">_Component</a></code>
+<p>Bound method inherited from <code><a href="../component_class/index.html">_Component</a></code>
 <p>Return <code>True</code> if <code>classname</code> in class hierarchy of <code>self</code>, and <code>False</code> otherwise.
 <p>DEPRECATED. Use <code>isinstance( )</code> instead.
 <p>See <a href="../component_class/index.html#kind">example</a>.
@@ -781,91 +751,27 @@ Override examples
 
 
 <!-- ### __INIT__ ### -->
-
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
-<a name="init" class="example-header">__init__(<i>args*</i>)</a>
-<p> Special method defined on <code>Chord</code>.
-<p> Initialize <code>chord</code> according to one of several input argument patterns:
-<ul>
-<li> <code>Chord(<i>pitchtokenlist</i>, <i>durationtoken</i>)
-<li> <code>Chord(<i>note</i>)
-<li> <code>Chord(<i>rest</i>)
-<li> <code>Chord(<i>skip</i>)
-</ul>
-<p> Where:
-</ul>
-<li> <code class="variable">pitchtokenlist</code> is a Python list of zero or more <strong><a href="../pitch_token/index.html">pitch tokens</a></strong>
-<li> <code class="variable">durationtoken</code> is a valid <strong><a href="../duration_token/index.html">duration token</a></strong>
-</ul>
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
-<div class="example-code">
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
-<image src="images/15.png">
-</div>
-
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-
-
-<!-- ### __MUL__ ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="mul" class="example-header-inherited">__mul__(<i>n</i>)</a>
-<p> Special method inherited from <code><a href="../core_component_class">Chord</a></code>.
-<p>Implements left-handed multiplication against <code>self</code>.
-<p>Returns Python list of <code>n</code> copies of <code>chord</code>.
-<p>See <a href="../component_class/index.html#mul">example</a>.
+<a name="init" class="example-header">__init__(<i>duration</i>)</a>
+<p>Special method defined here.
+<p>Abjad <code>_Leaf</code> class is not meant to be instantiated by hand.
 </div> <!-- example header -->
 </div> <!-- example -->
 
 
 
-<!-- ### __REPR__ ### -->
-
+<!-- ### __MUL__ ### -->
 <div class="example">
-
 <div class="example-header">
-<p class="example-header">
-<a name="repr" class="example-header">__repr__( )</a>
-<p> Special method defined on <code>Chord</code>.
-<p> Returns string summary of <code>chord</code> for interpreter display.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
-<div class="example-code">
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
-<image src="images/16.png">
-<pre>
-abjad> chord
-Chord(c' d' bf', 4)
-</pre>
-</div>
-
-</div> <!-- example body -->
+<p class="example-header-inherited">
+<a name="mul" class="example-header-inherited">__mul__(<i>n</i>)</a>
+<p>Special method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Implements left-handed multiplication against <code>self</code>.
+<p>Returns Python list of <code>n</code> copies of <code>self</code>.
+<p>See <a href="../component_class/index.html#mul">example</a>.
+</div> <!-- example header -->
 </div> <!-- example -->
 
 
@@ -874,46 +780,12 @@ Chord(c' d' bf', 4)
 <div class="example">
 <div class="example-header">
 <p class="example-header">
-<a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
-<p> Special method inherited from <code><a href="../core_component_class">_Component</a></code>.
-<p>Implements right-handed multiplication against <code>Chord</code>. 
-<p>Returns Python list of <i>n</i> copies of <i>chord</i>.
+<a name="rmul" class="example-header-inherited">__rmul__(<i>n</i>)</a>
+<p>Special method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Implements right-handed multiplication against <code>self</code>. 
+<p>Returns Python list of <code>n</code> copies of <code>self</code>.
 <p>See <a href="../component_class/index.html#rmul">example</a>.
 </div> <!-- example header -->
-</div> <!-- example -->
-
-
-
-
-<!-- ### __STR__ ### -->
-
-<div class="example">
-
-<div class="example-header">
-<p class="example-header">
-<a name="str" class="example-header">__str__( )</a>
-<p> Special method defined on <code>Chord</code>.
-<p> Returns string summary of <code>chord</code> for inline display.
-</div>
-
-<div class="example-body">
-
-<h3 class="example-section">
-Example
-</h3>
-
-<div class="example-code">
-<pre>
-abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
-<image src="images/17.png">
-<pre>
-abjad> str(chord)
-"&lt;c' d' bf'&gt;4"
-</pre>
-</div>
-
-</div> <!-- example body -->
 </div> <!-- example -->
 
 
@@ -924,31 +796,21 @@ Comments
 
 <p class="comment">
 See the <code>_Leaf</code> class in <code>leaf/leaf.py</code> for implementation details.
-</p>
 
 <h2 class="page-section">To do</h2>
 
 <p class="to-do">
-Group and alphabetize the interface definitions in <code>_Leaf</code>.
-</p> 
-
-<p class="to-do">
 Should <code>clef</code> promote to a full interface?
-</p>
 
 <p class="to-do">
 Should <code>accidentals</code> promote to a full interface?
-</p>
 
 <p class="to-do">
 Clean up the way <code>staff</code> works;
 is it a full interface or not?
-</p>
 
 <p class="to-do">
 Should we move <code>formatter</code> out of the 'interfaces' section?
-</p>
-
 
 
 <p class="footer">
