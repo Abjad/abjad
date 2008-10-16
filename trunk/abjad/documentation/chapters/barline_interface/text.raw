@@ -1,0 +1,36 @@
+<h1>The Abjad <code>_BarlineInterface</code> class</h1>
+
+<p>The Abjad <code>_BarlineInterface</code> manages attribute overrides for the LilyPond <code>Barline</code> grob.
+
+<h2 class="page-section">Public interface</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes
+   <p class="interface-attribute-inherited"> first
+   <p class="interface-attribute-inherited"> last
+   <p class="interface-attribute-inherited"> only
+   <p class="interface-attribute-inherited"> spanned
+   <p class="interface-attribute-inherited"> spanner
+   <p class="interface-attribute-inherited"> spanners
+   <p class="interface-attribute"> type
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods
+   <p class="interface-attribute-inherited"> clear( )
+   <p class="interface-attribute-inherited"> copy( )
+   <p class="interface-attribute-inherited"> unspan( )
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Overloads
+   <p class="interface-attribute-inherited"> __len__
+</div>
+
+<h2 class="page-section">Examples</h2>
+
+<p>The Abjad <code>_BarlineInterface</code> class instantiates automatically at leaf-initialization time.
+
+<h2 class="page-section">Comments</h2>
+
+<p class="comment">See the <code>_BarlineInterface</code> class in <code>barline/interface.py</code> for implementation details.
