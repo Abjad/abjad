@@ -24,9 +24,7 @@ class _Leaf(_Component):
       _Component.__init__(self)
       self._parent = None
       self._articulations = _ArticulationsInterface(self)
-      #self.beam = _BeamInterface(self)
       self._beam = _BeamInterface(self)
-      #self.dots = _DotsInterface(self)
       self._dots = _DotsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._dynamics = _DynamicsInterface(self)
@@ -35,7 +33,6 @@ class _Leaf(_Component):
       # come up with solution for read-only formatter
       self.formatter = _LeafFormatter(self)
       self._glissando = _GlissandoInterface(self)
-      #self.grace = _GraceInterface( )
       self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
       self.history = { }
@@ -44,18 +41,15 @@ class _Leaf(_Component):
       # come up with solution for read-only spanners
       self.spanners = _LeafSpannerInterface(self)
       self._staff = _StaffInterface(self)
-      #self.stem = _StemInterface(self)
       self._stem = _StemInterface(self)
       self._tie = _TieInterface(self)
-      #self.tremolo = _TremoloInterface(self)
       self._tremolo = _TremoloInterface(self)
-      #self.trill = _TrillInterface(self)
       self._trill = _TrillInterface(self)
 
-   ### REPR ###
-
-   def __repr__(self):
-      return self._body
+#   ### REPR ###
+#
+#   def __repr__(self):
+#      return self._body
 
    ### MANAGED ATTRIBUTES ###
 
@@ -180,6 +174,10 @@ class _Leaf(_Component):
       return property(**locals( ))
 
    @property
+   def leaves(self):
+      return [self]
+
+   @property
    def number(self):
       cur = self
       i = 0
@@ -254,6 +252,8 @@ class _Leaf(_Component):
       return property(**locals( ))
    
    ### NAVIGATION ###
+   ### TODO: put behind self.navigator?
+   ###       so self.navigator.next and self.navigator.prev?
 
    # next leaf rightwards, if any; otherwise None.
    @property
@@ -299,13 +299,3 @@ class _Leaf(_Component):
       for spanner in self.spanners.get( ):
          spanner._sever(spanner.index(self))
       self._parentage._detach( )
-
-#   def _flamingo(self):
-#      parent = self._parent
-#      self._die( )
-#      #while parent is not None:
-         
-
-   @property
-   def leaves(self):
-      return [self]
