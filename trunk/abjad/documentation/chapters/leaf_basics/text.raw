@@ -57,5 +57,39 @@ See the overview of <a href="../duration_interfaces">duration interfaces</a>.
   Note(ds', 4)
 </pre>
 
+
+<h2>Creating Rests</h2>
+
+<p>The Abjad <code>Rest</code> initializes with a duration value only.
+
+<pre>
+  abjad> rest = Rest((1, 4))
+  abjad> rest
+  Rest(4)
+  abjad> show(rest)
+  <!-- inline -->
+</pre>
+
+<h2><code>Rest</code> specific attributes</h2>
+
+<p>In addition to the attributes inherited from the <code>_Leaf</code> class (such as <strong>duration</strong>, <strong>grace</strong>, etc.), the <code>Rest</code> class also possesses a <strong>pitch</strong> attribute. 
+This may seem strange given that Rests represent the absence of sound. 
+However, as a glyph in a score, Rests also necessarily have a vertical position relative to the Staff. 
+By default the vertical position of rests is set automatically by the LilyPond renderer, but it can be set arbitrarily with the <strong>pitch</strong> attribute. 
+
+<pre>
+  abjad> rest = Rest((1, 4))
+  abjad> rest.pitch = -1
+  abjad> show(rest)
+</pre>
+
+<p>Notice how the position of the rest is here moved down so it falls exactly on B<sub>3</sub>. 
+
+<p>To remove the pitch from a <code>Rest</code> simply set the attribute to None.
+
+<pre>
+  abjad> rest.pitch = None
+</pre>
+
 <p>
 See the chapter on <a href="../pitch/index.html">pitch</a> for more information.
