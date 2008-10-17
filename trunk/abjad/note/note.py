@@ -8,7 +8,7 @@ class Note(_Leaf):
    def __init__(self, *args):
       self.initializer = _NoteInitializer(self, _Leaf, *args)
 
-   ### REPR ###
+   ### SPECIAL METHODS ###
 
    def __repr__(self):
       return 'Note(%s, %s)' % (self.pitch, self.duration._product)
@@ -16,7 +16,37 @@ class Note(_Leaf):
    def __str__(self):
       return self._body
 
-   ### PROPERTIES ###
+   ### PRIVATE ATTRIBUTES ###
+
+   @property
+   def _body(self):
+      result = ''
+      if self.pitch:
+         result += str(self.pitch)
+      result += str(self.duration._product)
+      if self.stem.tremolo:
+         result += ' :%s' % self.stem.tremolo
+      return result 
+
+   ### PUBLIC ATTRIBUTES ###
+
+   @apply
+   def notehead( ):
+      def fget(self):
+         return self._notehead
+      def fset(self, arg):
+         if isinstance(arg, type(None)):
+            self._notehead = None
+         elif isinstance(arg, (int, float, long)):
+            self._notehead = _NoteHead(self, pitch = arg)
+         elif isinstance(arg, Pitch):
+            self._notehead = _NoteHead(self, pitch = arg)
+         elif isinstance(arg, _NoteHead):
+            self._notehead = arg
+            self._notehead._client = self
+         else:
+            print 'Can not bind %s to Note.notehead.' % arg
+      return property(**locals( ))
 
    @apply
    def pitch( ):
@@ -41,33 +71,3 @@ class Note(_Leaf):
             else:
                raise ValueError('Can not set Note.pitch from %s' % str(arg))
       return property(**locals( ))
-
-   @apply
-   def notehead( ):
-      def fget(self):
-         return self._notehead
-      def fset(self, arg):
-         if isinstance(arg, type(None)):
-            self._notehead = None
-         elif isinstance(arg, (int, float, long)):
-            self._notehead = _NoteHead(self, pitch = arg)
-         elif isinstance(arg, Pitch):
-            self._notehead = _NoteHead(self, pitch = arg)
-         elif isinstance(arg, _NoteHead):
-            self._notehead = arg
-            self._notehead._client = self
-         else:
-            print 'Can not bind %s to Note.notehead.' % arg
-      return property(**locals( ))
-
-   ### FORMATTING ###
-
-   @property
-   def _body(self):
-      result = ''
-      if self.pitch:
-         result += str(self.pitch)
-      result += str(self.duration._product)
-      if self.stem.tremolo:
-         result += ' :%s' % self.stem.tremolo
-      return result 
