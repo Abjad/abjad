@@ -1,0 +1,61 @@
+<h1>Working with notes, rests, chords</h1>
+
+<h2>Creating notes</h2>
+
+<p>The Abjad <code>Note</code> class initializes with numeric pitch and duration values.
+
+<pre>
+  abjad> note = Note(0, (1, 4))
+  abjad> note
+  Note(c', 4)
+</pre>
+
+<h2>Working with note duration</h2>
+
+<p>You can assign values directly to the note duration interface.
+
+<pre>
+  abjad> note = Note(0, (1, 4))
+  abjad> note.duration = (1, 8)
+  abjad> note
+  Note(c', 8)
+</pre>
+
+<p>And you can compare note duration interfaces.
+
+<pre>
+  abjad> n1 = Note(0, (1, 4))
+  abjad> n2 = Note(0, (3, 16))
+  abjad> n1.duration > n2.duration
+  True
+</pre>
+
+<p>You can do all the normal things with the note duration interface that you can do with the other Abjad duration interfaces.
+These include copying and rewriting.
+See the overview of <a href="../duration_interfaces">duration interfaces</a>.
+
+
+<h2>Working with note pitch</h2>
+
+<p>You can assign pitches to a note a note in a couple of different ways.
+
+<pre>
+  abjad> note.pitch = 1
+  abjad> note
+  Note(cs', 4)
+</pre>
+
+<pre>
+  abjad> note.pitch = Pitch('d', 4)
+  abjad> note
+  Note(d', 4)
+</pre>
+
+<pre>
+  abjad> note.pitch = ('ds', 4)
+  abjad> note
+  Note(ds', 4)
+</pre>
+
+<p>
+See the chapter on <a href="../pitch/index.html">pitch</a> for more information.
