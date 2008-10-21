@@ -1,12 +1,9 @@
 <h1>The Abjad <code>_Component</code> class</h1>
 
-<p>
-The Abjad <code>_Component</code> class models the functionality that all leaves and containers share.
-</p>
+<p>The Abjad <code>_Component</code> class models the functionality that all leaves and containers share.
 
-<h2 class="page-section">
-Public interface
-</h2>
+
+<h2 class="page-section">Public interface</h2>
 
 <div class="example-block">
    <p class="example-block-header">Attributes
@@ -26,7 +23,7 @@ Public interface
    <p class="interface-attribute">
    <a href="#tempo" class="interface-attribute">tempo</a>
 
-</div>
+</div> <!-- example block -->
 
 <div class="interface-block">
    <p class="interface-block-header">Methods
@@ -37,7 +34,7 @@ Public interface
    <p class="interface-attribute">
    <a href="#kind" class="interface-attribute">kind( )</a>
 
-</div>
+</div> <!-- interface block -->
 
 <div class="interface-block">
    <p class="interface-block-header">Overloads
@@ -48,21 +45,17 @@ Public interface
    <p class="interface-attribute">
    <a href="#rmul" class="interface-attribute">__rmul__</a>
 
-</div>
+</div> <!-- interface block -->
 
-<h2 class="page-section">
-Examples
-</h2>
+<h2 class="page-section">Examples</h2>
 
-<p>
-The Abjad <code>_Component</code> class is an abstract class not meant to be instantiated by hand.
+<p>The Abjad <code>_Component</code> class is an abstract class not meant to be instantiated by hand.
 
-<p>
-But we show examples of <code>_Component</code> attributes here using notes and staves as concrete examples of the <code>_Component</code> class.
+<p>But we show examples of <code>_Component</code> attributes here using notes and staves as concrete examples of the <code>_Component</code> class.
+
 
 
 <!-- ### ACCIDENTALS ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -90,7 +83,6 @@ But we show examples of <code>_Component</code> attributes here using notes and 
 
 
 <!-- ### BARLINE ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -118,7 +110,6 @@ But we show examples of <code>_Component</code> attributes here using notes and 
 
 
 <!-- ### COMMENTS ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -151,7 +142,6 @@ But we show examples of <code>_Component</code> attributes here using notes and 
 
 
 <!-- ### FORMAT ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -180,7 +170,6 @@ But we show examples of <code>_Component</code> attributes here using notes and 
 
 
 <!-- ### TEMPO ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -211,13 +200,10 @@ But we show examples of <code>_Component</code> attributes here using notes and 
 
 
 
-<h2 class="page-section">
-Method examples
-</h2>
+<h2 class="page-section">Method examples</h2>
 
 
 <!-- ### COPY( ) ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -258,7 +244,6 @@ Example
 
 
 <!-- ### KIND( ) ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -287,13 +272,10 @@ Example
 </div> <!-- example -->
 
 
-<h2 class="page-section">
-Override examples
-</h2>
+<h2 class="page-section">Override examples</h2>
 
 
 <!-- ### __MUL__ ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -326,7 +308,6 @@ Example
 
 
 <!-- ### __RMUL__ ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header">
@@ -359,10 +340,6 @@ Example
 
 
 
-<h2 class="page-section">
-Comments
-</h2>
+<h2 class="page-section">Comments</h2>
 
-<p class="comment">
-See the <code>_Component</code> class in <code>core/component.py</code> for implementation details.
-</p>
+<p class="comment">See the <code>_Component</code> class in <code>core/component.py</code> for implementation details.
