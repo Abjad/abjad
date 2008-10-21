@@ -1,0 +1,203 @@
+<h1>The Abjad <code>_Brackets</code> class</h1>
+
+<p>The Abjad <code>_Brackets</code> class manages the simultaneity of score components.
+
+<h2 class="page-section">Interface</h2>
+
+<div class="interface-block">
+<p class="interface-block-header">Public attributes
+<p class="interface-attribute">
+<a href="#close" class="interface-attribute">close</a>
+<p class="interface-attribute">
+<a href="#name" class="interface-attribute">name</a>
+<p class="interface-attribute">
+<a href="#open" class="interface-attribute">open</a>
+</div> <!-- interface block -->
+
+<div class="interface-block">
+<p class="interface-block-header">Special methods
+<p class="interface-attribute">
+<a href="#eq" class="interface-attribute">__eq__</a>
+<p class="interface-attribute">
+<a href="#ne" class="interface-attribute">__ne__</a>
+<p class="interface-attribute">
+<a href="#repr" class="interface-attribute">__repr__</a>
+</div> <!-- interface block -->
+
+<h2 class="page-section">Public attributes</h2>
+
+
+
+<!-- ### CLOSE ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="close" class="example-header">close</a>
+<p>Read-only attribute defined here.
+<p>Returns LilyPond open bracket string.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.brackets.open
+'('
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### NAME ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="name" class="example-header">name</a>
+<p>Read / write attribute defined here.
+<p>Returns Abjad <a href="../bracket_string/index.html">brackets string</a>.
+<p>Accepts Abjad <a href="../bracket_string/index.html">brackets string</a>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([ ])
+abjad> container.brackets.name
+'round'
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.brackets.name = 'curly'
+abjad> container.brackets.name
+'curly'
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### OPEN ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="open" class="example-header">open</a>
+<p>Read-only attribute defined here.
+<p>Returns LilyPond close bracket string.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.brackets.close
+')'
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<h2 class="page-section">Special methods</h2>
+
+
+
+<!-- ### __INIT__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="init" class="example-header">__init__(<i>name</i>)</a>
+<p>Special method defined here.
+<p>Abjad <code>_Bracket</code> instances instantiate automatically at container-creation time.
+
+
+
+<!-- ### __EQ__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="eq" class="example-header">__eq__(<i>arg</i>)</a>
+<p>Special method defined here.
+<p>Returns <code>True</code> when <code>self.name</code> equals <code>arg.name</code>, otherwise <code>False</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> t = Container([ ])
+abjad> u = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> t.brackets == u.brackets
+True
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __NE__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="ne" class="example-header">__ne__(<i>arg</i>)</a>
+<p>Special method defined here.
+<p>Returns negation of <code>self == arg</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> t = Container([ ])
+abjad> u = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> t.brackets != u.brackets
+False
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __REPR__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="repr" class="example-header">__repr__( )</a>
+<p>Special method defined here.
+<p>Returns string summary of <code>self</code> for interpreter display.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.brackets
+'( )'
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<h2 class="page-section">Comments</h2>
+
+<p class="comment">See the <code>_Brackets</code> class in <code>containers/brackets.py</code> for implementation details.
