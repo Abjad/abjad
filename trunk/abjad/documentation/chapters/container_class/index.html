@@ -20,76 +20,111 @@ if we want to have the TOC on every page, we can put it here...
 
 <h1>The Abjad <code>Container</code> class</h1>
 
-<p>
-The Abjad <code>Container</code> class models the functionality shared by tuplets, measures, voices, staves and all other types of container.
-</p>
+<p>The Abjad <code>Container</code> class models the functionality shared by tuplets, measures, voices, staves and all other types of container.
 
-<h2 class="page-section">
-Public interface
-</h2>
+<h2 class="page-section">Public interface</h2>
 
-<div class="interface-block">
-<p class="interface-block-header"> Attributes </p>
-<p class="interface-attribute-inherited"> accidentals </p>
-<p class="interface-attribute"> append </p>
-<p class="interface-attribute-inherited"> barline </p>
-<p class="interface-attribute"> brackets </p>
-<p class="interface-attribute-inherited"> comments </p>
-<p class="interface-attribute"> duration </p>
-<p class="interface-attribute-inherited"> format </p>
-<p class="interface-attribute"> formatter </p>
-<p class="interface-attribute"> leaves </p>
-<p class="interface-attribute"> next </p>
-<p class="interface-attribute"> parallel </p>
-<p class="interface-attribute"> prev </p>
-<p class="interface-attribute"> spanners </p>
-<p class="interface-attribute-inherited"> tempo </p>
-</div>
+<div class="example-block">
+<p class="example-block-header">Public attributes 
+<p class="interface-attribute-inherited">
+<a href="#accidentals" class="interface-attribute-inherited">accidentals</a> 
+<p class="interface-attribute-inherited">
+<a href="#barline" class="interface-attribute-inherited">barline</a> 
+<p class="interface-attribute">
+<a href="#brackets" class="interface-attribute">brackets</a> 
+<p class="interface-attribute-inherited">
+<a href="#comments" class="interface-attribute-inherited">comments</a> 
+<p class="interface-attribute">
+<a href="#duration" class="interface-attribute">duration</a> 
+<p class="interface-attribute-inherited">
+<a href="#format" class="interface-attribute-inherited">format</a> 
+<p class="interface-attribute">
+<a href="#formatter" class="interface-attribute">formatter</a> 
+<p class="interface-attribute">
+<a href="#leaves" class="interface-attribute">leaves</a> 
+<p class="interface-attribute">
+<a href="#next" class="interface-attribute">next</a> 
+<p class="interface-attribute">
+<a href="#parallel" class="interface-attribute">parallel</a> 
+<p class="interface-attribute">
+<a href="#prev" class="interface-attribute">prev</a> 
+<p class="interface-attribute">
+<a href="#spanners" class="interface-attribute">spanners</a> 
+<p class="interface-attribute-inherited">
+<a href="#tempo" class="interface-attribute-inherited">tempo</a> 
+</div> <!-- example block -->
 
-<div class="interface-block">
-<p class="interface-block-header"> Methods </p>
-<p class="interface-attribute"> append( ) </p>
-<p class="interface-attribute"> coalesce( ) </p>
-<p class="interface-attribute-inherited"> copy( ) </p>
-<p class="interface-attribute"> embed( ) </p>
-<p class="interface-attribute"> extend( ) </p>
-<p class="interface-attribute"> get( ) </p>
-<p class="interface-attribute"> index( ) </p>
-<p class="interface-attribute"> insert( ) </p>
-<p class="interface-attribute-inherited"> kind( ) </p>
-<p class="interface-attribute"> pop( ) </p>
-<p class="interface-attribute"> remove( ) </p>
-</div>
+<div class="example-block">
+<p class="example-block-header">Public methods
+<p class="interface-attribute">
+<a href="#append" class="interface-attribute">append( )</a> 
+<p class="interface-attribute">
+<a href="#coalesce" class="interface-attribute">coalesce( )</a> 
+<p class="interface-attribute-inherited">
+<a href="#copy" class="interface-attribute-inherited">copy( )</a> 
+<p class="interface-attribute">
+<a href="#embed" class="interface-attribute">embed( )</a> 
+<p class="interface-attribute">
+<a href="#extend" class="interface-attribute">extend( )</a> 
+<p class="interface-attribute">
+<a href="#get" class="interface-attribute">get( )</a> 
+<p class="interface-attribute">
+<a href="#index" class="interface-attribute">index( )</a> 
+<p class="interface-attribute">
+<a href="#insert" class="interface-attribute">insert( )</a> 
+<p class="interface-attribute-inherited">
+<a href="#kind" class="interface-attribute-inherited">kind( )</a> 
+<p class="interface-attribute">
+<a href="#pop" class="interface-attribute">pop( )</a> 
+<p class="interface-attribute">
+<a href="#remove" class="interface-attribute">remove( )</a> 
+</div> <!-- public methods example block -->
 
-<div class="interface-block">
-<p class="interface-block-header"> Overloads </p>
-<p class="interface-attribute"> __add__ </p>
-<p class="interface-attribute"> __contains__ </p>
-<p class="interface-attribute"> __delitem__ </p>
-<p class="interface-attribute"> __getitem__ </p>
-<p class="interface-attribute"> __len__ </p>
-<p class="interface-attribute-inherited"> __mul__ </p>
-<p class="interface-attribute"> __setitem__ </p>
-</div>
+<div class="example-block">
+<p class="example-block-header">Special methods
+<p class="interface-attribute">
+<a href="#add" class="interface-attribute">__add__</a> 
+<p class="interface-attribute">
+<a href="#contains" class="interface-attribute">__contains__</a> 
+<p class="interface-attribute">
+<a href="#delitem" class="interface-attribute">__delitem__</a> 
+<p class="interface-attribute">
+<a href="#getitem" class="interface-attribute">__getitem__</a> 
+<p class="interface-attribute">
+<a href="#imul" class="interface-attribute">__imul__</a> 
+<p class="interface-attribute">
+<a href="#len" class="interface-attribute">__len__</a> 
+<p class="interface-attribute-inherited">
+<a href="#mul" class="interface-attribute-inherited">__mul__</a> 
+<p class="interface-attribute">
+<a href="#radd" class="interface-attribute">__radd__</a> 
+<p class="interface-attribute">
+<a href="#repr" class="interface-attribute">__repr__</a> 
+<p class="interface-attribute-inherited">
+<a href="#rmul" class="interface-attribute-inherited">__rmul__</a> 
+<p class="interface-attribute">
+<a href="#setitem" class="interface-attribute">__setitem__</a> 
+</div> <!-- special methods example block -->
 
-<h2 class="page-section">
-Attribute examples
-</h2>
+<h2 class="page-section">Attribute examples</h2>
 
 
 
 <!-- ### ACCIDENTALS ### -->
-
 <div class="example">
+<div class="example-header">
 <p class="example-header-inherited"> 
 <a name="accidentals" class="example-header-inherited">accidentals</a>
-</p>
-</div>
+<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns LilyPond accidentals style string.
+<p>Accepts LilyPond accidentals style string, <code>None</code>.
+<p>See <a href="../component_class/index.html#accidentals">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
 
 
 
 <!-- ### BARLINE ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header-inherited">
@@ -104,217 +139,128 @@ Attribute examples
 
 
 <!-- ### BRACKETS ### -->
-
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="brackets" class="example-header">brackets</a>
-<p> Read / write attribute defined on <code>Container</code>.
+<p>Read / write attribute defined here.
+<p>Returns Abjad <code><a href="../bracket_class/index.html">_Brackets</a></code>.
+<!-- TODO: rename bracket_string to brackets_string in repository -->
+<p>Accepts Abjad <a href="../bracket_string/index.html">bracket string</a>.
 </div> <!-- example header -->
-
 <div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad 
-<a href="../brackets_class/index.html">_Brackets</a>  
-object.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> container = Container([ ])
 abjad> container.brackets
 ( )
 </pre>
-</div>
-
-<h3 class="example-section">
-Assignment values
-</h3>
-
-<div class="example-text">
-<p> Assign a string description of brackets type.
-</div>
-
+</div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> container = Container([ ])
-abjad> container.brackets = 'double-angle'
-abjad> container.brackets
-<< >>
 abjad> container.brackets = 'curly'
 abjad> container.brackets
 { }
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
 
 <!-- ### COMMENTS ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header-inherited">
-<a name="barline" class="example-header-inherited">barline</a>
-<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Returns an Abjad <code><a href="../comments_class/index.html">_Comments</a></code> class.
+<a name="comments" class="example-header-inherited">comments</a>
+<p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns Abjad <code><a href="../comments_class/index.html">_Comments</a></code>.
 <p>See <a href="../component_class/index.html#comments">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
 
+
 <!-- ### DURATION ### -->
-
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="duration" class="example-header">duration</a>
-<p> Read-only attribute defined on <code>Container</code>.
+<p>Read-only attribute defined here.
+<p>Returns Abjad <code><a href="../container_duration_interface/index.html">_ContainerDurationInterface</a></code>.
 </div> <!-- example header -->
-
 <div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad 
-<a href="../container_duration_interface/index.html">_ContainerDurationInterface</a>  
-object.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> container = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
 abjad> container.duration
 ContainerDurationInterface(0)
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
 
 
 <!-- ### FORMAT ### -->
-
 <div class="example">
 <div class="example-header">
 <p class="example-header-inherited">
 <a name="format" class="example-header-inherited">format</a>
 <p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
 <p>Returns a string of valid LilyPond input.
+<p>See <a href="../component_class/index.html#format">example</a>.
 </div> <!-- example header -->
 </div> <!-- example -->
 
 
 
 <!-- ### FORMATTER ### -->
-
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="formatter" class="example-header">formatter</a>
-<p> Read-only attribute defined on <code>Container</code>.
+<p>Read-only attribute defined here.
+<p>Returns Abjad <code>_ContainerFormatter</code>.
 </div> <!-- example header -->
-
 <div class="example-body">
-
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns an Abjad 
-<a href="../container_formatter/index.html">_ContainerFormatter</a>  
-object.
-</div>
-
 <div class="example-code">
 <pre>
 abjad> container = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
 abjad> container.formatter
 _ContainerFormatter( )
 </pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
 
 
 <!-- ### LEAVES ### -->
-
 <div class="example">
-
 <div class="example-header">
 <p class="example-header">
 <a name="leaves" class="example-header">leaves</a>
-<p> Read-only attribute defined here.
+<p>Read-only attribute defined here.
+<p>Returns Python list of leaves in <code>self</code>.
 </div> <!-- example header -->
-
 <div class="example-body">
-<h3 class="example-section">
-Return type
-</h3>
-
-<div class="example-text">
-<p>Returns a list of Abjad  
-<a href="../leaf_class/index.html">_Leaf</a>  
-objects.
-</div>
-
 <div class="example-code">
 <pre>
-abjad> container = Container([Note(i, (1, 4)) for i in range(4)])
-abjad> container.leaves
-[Note(c', 4), Note(cs', 4), Note(d', 4), Note(ef', 4)]
+abjad> container = Container(Note(0, (1, 4)) * 4)
 </pre>
-</div>
-
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-
-<h2 class="page-section">
-Public methods
-</h2>
-
-
-<!-- ### APPEND( ) ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="append" class="example-header-inherited">append(<i>expr</i>)</a>
-</p>
-<p>Public method defined here.  </p>
-<p>Appends <code><i>expr</i></code> of type 
-<code>
-<a href="../component_class/index.html"> _Component</a>
-</code>
-to <code>self</code>. 
-</p>
-</div> <!-- example header -->
-
-<div class="example-body">
+</div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> container = Container([Note(0, (1, 4)), Note(2, (1, 4))])
-abjad> container.append(Rest((1, 4)))
-abjad> show(container)
+abjad> container.leaves
+[Note(c', 4), Note(c', 4), Note(c', 4), Note(c', 4)]
 </pre>
 <image src="images/1.png">
 </div> <!-- example code -->
@@ -323,15 +269,163 @@ abjad> show(container)
 
 
 
-<!-- ### COALESCE( ) ### -->
+<!-- ### NEXT ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="next" class="example-header">next</a>
+<p>Read-only attribute defined here.
+<p>Returns reference to next-in-container leaf following <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
+abjad> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
+abjad> staff = Staff([t, u])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> t.next
+Note(e', 4)
+</pre>
+<image src="images/2.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
 
+
+
+<!-- ### PARALLEL ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="parallel" class="example-header">parallel</a>
+<p>Read / write attribute defined here.
+<p>Returns <code>True</code> when contents of <code>self</code> interpret in parallel, ie, at the same musical time, and <code>False</code> otherwise.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.parallel
+False
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### PREV ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="prev" class="example-header">prev</a>
+<p>Read-only attribute defined here.
+<p>Returns reference to previous-in-container leaf following <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
+abjad> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
+abjad> staff = Staff([t, u])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> u.prev
+Note(d', 4)
+</pre>
+<image src="images/3.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### SPANNERS ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="spanners" class="example-header">spanners</a>
+<p>Read-only attribute defined here.
+<p>Returns Abjad <code><a href="../container_spanner_interface/index.html">_ContainerSpannerInterface</a></code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([ ])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.spanners
+_ContainerSpannerInterface(0)
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### TEMPO ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="tempo" class="example-header-inherited">tempo</a>
+<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns Abjad <code><a href="../tempo_interface/index.html">_TempoInterface</a></code>.
+<p>Accepts Abjad <a href="../tempo_token/index.html">tempo token</a>.
+<p>See <a href="../component_class/index.html#tempo">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+
+<h2 class="page-section">Public methods</h2>
+
+
+
+<!-- ### APPEND( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="append" class="example-header">append(<i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Appends <code><i>expr</i></code> of type <code> <a href="../component_class/index.html"> _Component</a></code> to <code>self</code>. 
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(0, (1, 4))])
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.append(Note(2, (1, 4)))
+</pre>
+<image src="images/4.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### COALESCE( ) ### -->
 <div class="example">
 <div class="example-header">
 <p class="example-header">
 <a name="coalesce" class="example-header">coalesce( )</a>
-</p><p>Public method defined here.
-</p><p>Fuses sub-containers belonging to the same thread.
-</p></div> <!-- example header -->
+<p>Public method defined here.
+<p>Fuses sub-containers belonging to the same thread.
+</div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
 <pre>
@@ -381,28 +475,154 @@ abjad> f(container)
 >>
 </pre>
 </div> <!-- example code -->
-
 </div> <!-- example body -->
 </div> <!-- example -->
 
 
 
+<!-- ### COPY( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="copy" class="example-header-inherited">copy( )</a>
+<p>Public method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Returns new copy of <code>self</code>.
+<p>See <a href="../component_class/index.html#copy">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+
+<!-- ### EMBED( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="embed" class="example-header">embed(<i>i</i>, <i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Inserts <code>expr</code> in <code>self</code> at index <code>i</code>. 
+<p><code><i>expr</i></code> may be either of type <code><a href="../component_class/index.html">_Component</a></code> or a Python list or Python tuple of type <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Does not fracture spanners; for fracturing insert, use <code>insert( )</code> instead.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container(Note(0, (1, 8)) * 4)
+abjad> Beam(container)
+</pre>
+<image src="images/5.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.embed(2, Note(2, (1, 8)))
+</pre>
+<image src="images/6.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### EXTEND( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="extend" class="example-header">extend(<i>i</i>, <i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Appends the contents of <code>expr</code> to <code>self</code>.
+<p><code><i>expr</i></code> may be either a Python list or an Abjad <code><a href="../container_class/index.html">Container</a></code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> t = Container(Note(0, (1, 16)) * 4)
+abjad> Beam(t)
+</pre>
+<image src="images/7.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> u = Container(Note(2, (1, 16)) * 4)
+abjad> Beam(u)
+</pre>
+<image src="images/8.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> u = Container(Note(2, (1, 16)) * 4)
+abjad> Beam(u)
+abjad> t.extend(u)
+</pre>
+<image src="images/9.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### GET( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="get" class="example-header">get(<i>name = None</i>, <i>classtype = None</i>)</a>
+<p>Public method defined here.  
+<p>Searches <code>self</code> recursively and returns all score components in <code>self</code> with name equal to <code>name</code> and / or with class name equal to <code>classname</code>.
+<p><code>name</code> will match either an "added attribute" of the type <code>self.name = 'name'</code> or context invocation name of the sort <code>context.invocation.name = 'name'</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> t = Container(Note(0, (1, 16)) * 4)
+abjad> Beam(t)
+abjad> t.name = 'first'
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> u = Container(Note(2, (1, 16)) * 4)
+abjad> Beam(u)
+abjad> u.name = 'second'
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container = Container([t, u])
+abjad> container.get('first')
+Conatiner(c'16, c'16, c'16, c'16)
+</pre>
+<image src="images/10.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### KIND( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="kind" class="example-header-inherited">kind(<i>classname</i>)</a>
+<p>Deprecated public method inherited from <code><a href="../component_class/index.html">_Component</a></code>
+<p>Returnx <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.
+<p>DEPRECATED. Use built-in Python <code>isinstance( )</code> instead.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+
+
+
+
+
+
 <!-- COMMENTS -->
-<h2 class="page-section">
-Comments
-</h2>
 
-<p class="comment">
-See the <code>Container</code> class in <code>containers/container.py</code> for implementation details.
-</p>
+<h2 class="page-section">Comments</h2>
 
-<h2 class="page-section">
-To do
-</h2>
+<p class="comment">See the <code>Container</code> class in <code>containers/container.py</code> for implementation details.
 
-<p class="to-do">
-Add examples.
-</p>
+<h2 class="page-section">To do</h2>
+
+<p class="to-do">Add examples.
 
 
 <p class="footer">
