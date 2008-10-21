@@ -3,46 +3,7 @@ class _Brackets(object):
    def __init__(self, name = 'round'):
       self.name = name
 
-   ### REPR ###
-
-   def __repr__(self):
-      return '%s %s' % (self.open, self.close)
-
-   ### PROPERTIES ###
-
-   @apply
-   def name( ):
-      def fget(self):
-         return self._name
-      def fset(self, name):
-         if name in self.bracketNameToOpenClosePair.keys( ):
-            self._name = name
-         else:
-            raise ValueError('bracket must be one of %s.' %
-               sorted(self.bracketNameToOpenClosePair.keys( )))
-      return property(**locals( ))
-
-   @property
-   def open(self):
-      return self.bracketNameToOpenClosePair[self.name][0]
-   
-   @property
-   def close(self):
-      return self.bracketNameToOpenClosePair[self.name][-1]
-
-   ### CONVERTERS ###
-
-   bracketNameToOpenClosePair = {
-      'round':          ('(', ')'),
-      'curly':          ('{', '}'),
-      'sequential':     ('{', '}'),
-      'angle':          ('<', '>'),
-      'chord':          ('<', '>'),
-      'double-angle':   ('<<', '>>'),
-      'simultaneous':   ('<<', '>>'),
-      }
-
-   ### COMPARISON ###
+   ### SPECIAL METHODS ###
 
    def __eq__(self, arg):
       if isinstance(arg, str):
@@ -54,3 +15,40 @@ class _Brackets(object):
 
    def __ne__(self, arg):
       return not self == arg
+
+   def __repr__(self):
+      return '%s %s' % (self.open, self.close)
+
+   ### PRIVATE METHODS ###
+
+   _bracketNameToOpenClosePair = {
+      'round':          ('(', ')'),
+      'curly':          ('{', '}'),
+      'sequential':     ('{', '}'),
+      'angle':          ('<', '>'),
+      'chord':          ('<', '>'),
+      'double-angle':   ('<<', '>>'),
+      'simultaneous':   ('<<', '>>'),
+      }
+
+   ### PUBLIC ATTRIBUTES ###
+
+   @property
+   def close(self):
+      return self._bracketNameToOpenClosePair[self.name][-1]
+
+   @apply
+   def name( ):
+      def fget(self):
+         return self._name
+      def fset(self, name):
+         if name in self._bracketNameToOpenClosePair.keys( ):
+            self._name = name
+         else:
+            raise ValueError('bracket must be one of %s.' %
+               sorted(self._bracketNameToOpenClosePair.keys( )))
+      return property(**locals( ))
+
+   @property
+   def open(self):
+      return self._bracketNameToOpenClosePair[self.name][0]

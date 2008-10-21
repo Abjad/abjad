@@ -31,14 +31,40 @@ class Container(_Component):
       self.formatter = _ContainerFormatter(self)
       self.spanners = _ContainerSpannerInterface(self)
 
-   ### INIT UTILS ###
+   ### PRIVATE ATTRIBUTES ###
+
+   def _die(self):
+      '''
+      These two steps work even for nested tuplets.
+      '''
+      self.spanners.fracture( )
+      self._parentage._detach( )
 
    def _establish(self):
       for x in self._music:
          x._parent = self
 
+   ### TODO is this the best place for this helper method? 
+   ### should it be in helpers directory? or in navigator?
+   def _fuseRight(self):
+      '''Fuse self with next container if next is threadable with self.'''
+      next = self._navigator._nextThread
+      if next:
+         self.extend(next.copy( ))
+         next._die( )
+         return 1
+      else:
+         #print 'Nothing to fuse...'
+         return 0
 
-   ### SPECIAL OVERRIDES ###
+   @property
+   def _summary(self):
+      if len(self) > 0:
+         return ', '.join([str(x) for x in self._music])
+      else:
+         return ' '
+
+   ### SPECIAL METHODS ###
 
    def __add__(self, expr):
       '''Concatenate containers self and expr.
@@ -54,88 +80,17 @@ class Container(_Component):
       else:
          raise TypeError('%s and %s cannot be fused.' % (self, expr))
 
-   def __radd__(self, expr):
-      return self + expr
-
-   def __imul__(self, n):
-      assert isinstance(n, int)
-      assert n >= 0
-      if n == 0:
-         ### TODO - implement this to return empty self.
-         ###
-         ### This doesn't work:
-         ###
-         ###   self._music == [ ]
-         pass
-      else:
-         for copy in self * (n - 1):
-            self.extend(copy)
-      return self
-
-   ### REPR ###
-
-   @property
-   def _summary(self):
-      if len(self) > 0:
-         return ', '.join([str(x) for x in self._music])
-      else:
-         return ' '
-
-   def __repr__(self):
-      return '(%s)' % self._summary
-
-   ### PROPERTIES ###
-
-   def __len__(self):
-      return len(self._music)
-
-   ### TODO make this settable?
-   @property
-   def parallel(self):
-      return self.brackets == 'double-angle'
-
-   ### MANAGED ATTRIBUTES ###
-
-   @apply
-   def brackets( ):
-      def fget(self):
-         return self._brackets
-      def fset(self, name):
-         self._brackets.name = name
-      return property(**locals( ))
-
-   @property
-   def duration(self):
-      return self._duration
-
-   ### NAVIGATION ###
-
-   @property
-   def next(self):
-      '''Next leaf righwards, otherwise None.'''
-      if len(self.leaves) > 0:
-         return self.leaves[-1].next
-      else:
-         return None
-
-#### TODO: i propose this instead. 
-# if we want a next Leaf, we can call a nextLeaf explicitly.
-#   @property
-#   def next(self):
-#      return self._navigator._nextSibling
-
-   @property
-   def prev(self):
-      '''Prev leaf leftwards, otherwise None.'''
-      if len(self.leaves) > 0:
-         return self.leaves[0].prev
-      else:
-         return None
-
-   ### ACCESSORS ###
-
    def __contains__(self, expr):
       return expr in self._music
+
+   def __delitem__(self, i):
+      # item deletion
+      if isinstance(i, int):
+         self._music[i]._die( )
+      # slice deletion
+      else:
+         for m in self._music[i]:
+            m._die( )
 
    ### TODO should we make this non recursive to distinguish it from get( )
    ###      and to make the behaviour more list-like?
@@ -157,6 +112,29 @@ class Container(_Component):
       else:
          return self._music[expr]
             
+   def __imul__(self, n):
+      assert isinstance(n, int)
+      assert n >= 0
+      if n == 0:
+         ### TODO - implement this to return empty self.
+         ###
+         ### This doesn't work:
+         ###
+         ###   self._music == [ ]
+         pass
+      else:
+         for copy in self * (n - 1):
+            self.extend(copy)
+      return self
+
+   def __len__(self):
+      return len(self._music)
+
+   def __radd__(self, expr):
+      return self + expr
+
+   def __repr__(self):
+      return '(%s)' % self._summary
 
    def __setitem__(self, i, expr):
       # item assignment
@@ -191,14 +169,99 @@ class Container(_Component):
       if right and right.next:
          right.next.spanners.fracture(direction = 'left')
 
-   def __delitem__(self, i):
-      # item deletion
-      if isinstance(i, int):
-         self._music[i]._die( )
-      # slice deletion
+   ### PUBLIC ATTRIBUTES ###
+
+   @apply
+   def brackets( ):
+      def fget(self):
+         return self._brackets
+      def fset(self, name):
+         self._brackets.name = name
+      return property(**locals( ))
+
+   @property
+   def duration(self):
+      return self._duration
+
+   @property
+   def leaves(self):
+      return instances(self, '_Leaf')
+
+   @property
+   def next(self):
+      '''Next leaf righwards, otherwise None.'''
+      if len(self.leaves) > 0:
+         return self.leaves[-1].next
       else:
-         for m in self._music[i]:
-            m._die( )
+         return None
+
+   ### TODO make this settable?
+   @property
+   def parallel(self):
+      return self.brackets == 'double-angle'
+
+   #### TODO: i propose this instead. 
+   # if we want a next Leaf, we can call a nextLeaf explicitly.
+   #   @property
+   #   def next(self):
+   #      return self._navigator._nextSibling
+   @property
+   def prev(self):
+      '''Prev leaf leftwards, otherwise None.'''
+      if len(self.leaves) > 0:
+         return self.leaves[0].prev
+      else:
+         return None
+
+   ### PUBLIC METHODS ### 
+
+   def append(self, expr):
+      self.insert(len(self), expr)
+
+   def coalesce(self): 
+      '''Fuse all sub-containers in self that follow a thread.'''
+      class Visitor(object):
+         def __init__(self):
+            self.merged = False
+         def visit(self, node):
+            if hasname(node, 'Container'):
+               success = node._fuseRight()
+               if success:
+                  self.merged = True
+      v = Visitor( )
+      self._navigator._traverse(v, depthFirst=False, leftRight=False)
+      _remove_empty_containers(self)
+      return v.merged
+                  
+   def embed(self, i, expr):
+      '''
+      Non-fracturing insert.
+      Insert but *don't* fracture spanners.
+      For fracturing insert, use insert( ).
+      '''
+      def _embedComponent(self, i, expr):
+         target = self[i]
+         for s in target.spanners:
+            for l in expr.leaves:
+               s._insert(s.index(target.leaves[0]), l)
+         expr._parent = self
+         self._music.insert(i, expr)
+
+      if isinstance(expr, (list, tuple)):
+         for e in reversed(expr):
+            _embedComponent(self, i, e)
+      elif isinstance(expr, _Component):
+         _embedComponent(self, i, expr)
+      else:
+         raise TypeError("Can only embed _Component or list of _Component")
+
+   def extend(self, expr):
+      if isinstance(expr, list):
+         self[len(self) : len(self)] = expr
+      elif isinstance(expr, Container):
+         self[len(self) : len(self)] = expr[ : ]
+      else:
+         raise ValueError('Extend containers with lists and containers only.')
 
    def get(self, name = None, classtype = None):
       '''Searches structure recursively for Components with name <name> 
@@ -234,8 +297,6 @@ class Container(_Component):
       self._navigator._traverse(v)
       return v.result
 
-   ### MUSIC MANAGEMENT ###
-
    def index(self, expr):
       return self._music.index(expr)
 
@@ -253,40 +314,6 @@ class Container(_Component):
       if expr.next:
          result.extend(expr.next.spanners.fracture(direction = 'left')) 
       return result
-
-   def embed(self, i, expr):
-      '''
-      Non-fracturing insert.
-      Insert but *don't* fracture spanners.
-      For fracturing insert, use insert( ).
-      '''
-      def _embedComponent(self, i, expr):
-         target = self[i]
-         for s in target.spanners:
-            for l in expr.leaves:
-               s._insert(s.index(target.leaves[0]), l)
-         expr._parent = self
-         self._music.insert(i, expr)
-
-      if isinstance(expr, (list, tuple)):
-         for e in reversed(expr):
-            _embedComponent(self, i, e)
-      elif isinstance(expr, _Component):
-         _embedComponent(self, i, expr)
-      else:
-         raise TypeError("Can only embed _Component or list of _Component")
-
-      
-   def append(self, expr):
-      self.insert(len(self), expr)
-
-   def extend(self, expr):
-      if isinstance(expr, list):
-         self[len(self) : len(self)] = expr
-      elif isinstance(expr, Container):
-         self[len(self) : len(self)] = expr[ : ]
-      else:
-         raise ValueError('Extend containers with lists and containers only.')
 
    def pop(self, i = -1):
       result = self[i]
@@ -308,43 +335,3 @@ class Container(_Component):
       self._navigator._traverse(v)
       if not v.deleted:
          raise ValueError("%s not in list." % expr)
-
-   def _die(self):
-      '''
-      These two steps work even for nested tuplets.
-      '''
-      self.spanners.fracture( )
-      self._parentage._detach( )
-
-   @property
-   def leaves(self):
-      return instances(self, '_Leaf')
-
-   def coalesce(self): 
-      '''Fuse all sub-containers in self that follow a thread.'''
-      class Visitor(object):
-         def __init__(self):
-            self.merged = False
-         def visit(self, node):
-            if hasname(node, 'Container'):
-               success = node._fuseRight()
-               if success:
-                  self.merged = True
-      v = Visitor( )
-      self._navigator._traverse(v, depthFirst=False, leftRight=False)
-      _remove_empty_containers(self)
-      return v.merged
-                  
-   ### TODO is this the best place for this helper method? 
-   ### should it be in helpers directory? or in navigator?
-   def _fuseRight(self):
-      '''Fuse self with next container if next is threadable with self.'''
-      next = self._navigator._nextThread
-      if next:
-         self.extend(next.copy( ))
-         next._die( )
-         return 1
-      else:
-         #print 'Nothing to fuse...'
-         return 0
-      
