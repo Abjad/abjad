@@ -81,7 +81,7 @@ if we want to have the TOC on every page, we can put it here...
 </div> <!-- public methods example block -->
 
 <div class="example-block">
-<p class="example-block-header">Special methods
+<p class="example-block-header">Overrides
 <p class="interface-attribute">
 <a href="#add" class="interface-attribute">__add__</a> 
 <p class="interface-attribute">
@@ -106,7 +106,7 @@ if we want to have the TOC on every page, we can put it here...
 <a href="#setitem" class="interface-attribute">__setitem__</a> 
 </div> <!-- special methods example block -->
 
-<h2 class="page-section">Attribute examples</h2>
+<h2 class="page-section">Public attributes</h2>
 
 
 
@@ -507,7 +507,6 @@ abjad> f(container)
 <div class="example-code">
 <pre>
 abjad> container = Container(Note(0, (1, 8)) * 4)
-abjad> Beam(container)
 </pre>
 <image src="images/5.png">
 </div> <!-- example code -->
@@ -596,6 +595,38 @@ Conatiner(c'16, c'16, c'16, c'16)
 
 
 
+<!-- ### INDEX( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="index" class="example-header">index(<i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Return nonnegative integer index of <code>expr</code> in <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/11.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> note = container[2]
+</pre>
+<image src="images/12.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.index(note)
+2
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
 <!-- ### KIND( ) ### -->
 <div class="example">
 <div class="example-header">
@@ -609,8 +640,412 @@ Conatiner(c'16, c'16, c'16, c'16)
 
 
 
+<!-- ### INSERT( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="insert" class="example-header">insert(<i>i</i>, <i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Inserts <code>expr</code> in <code>self</code> at index <code>i</code>. 
+<p><code><i>expr</i></code> must be of type <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Fractures spanners; for nonfracturing insert, use <code><a href="#embed">embed( )</a></code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/13.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> note = Note(7, (1, 16))
+</pre>
+<image src="images/14.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.insert(2, note)
+</pre>
+<image src="images/15.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
 
 
+
+<!-- ### POP( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="pop" class="example-header">pop(<i>i = -1</i>)</a>
+<p>Public method defined here.  
+<p>Removes and returns element at index <code>i</code> from <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/16.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> note = container.pop( )
+</pre>
+<image src="images/17.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> note
+</pre>
+<image src="images/18.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### REMOVE( ) ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="remove" class="example-header">remove(<i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Remove <code>expr</code> from <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/19.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> note = container[1]
+</pre>
+<image src="images/20.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container.remove(note)
+</pre>
+<image src="images/21.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<h2 class="page-section">Overrides</h2>
+
+
+
+<!-- ### __ADD__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="add" class="example-header">__add__(<i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Return new container equal to the concatenation of <code>self</code> followed by <code>expr</code>.
+<p>The operation is noncommutative: the contents of <code>self</code> will be placed before the contents of <code>expr</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> t = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/22.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> u = Container([Note(x, (1, 16)) for x in [7, 9, 11, 12]])
+</pre>
+<image src="images/23.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container = t + u 
+</pre>
+<image src="images/24.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __CONTAINS__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="contains" class="example-header">__contains__(<i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Return <code>True</code> when <code>self</code> contains <code>expr</code>, otherwise <code>False</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/25.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> note = container[1]
+</pre>
+<image src="images/26.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> note in container
+True
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __DELITEM__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="delitem" class="example-header">__delitem__(<i>i</i>)</a>
+<p>Public method defined here.  
+<p>Delete elements at index or slice <code>i</code> from <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/27.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> del container[1:3]
+</pre>
+<image src="images/28.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __GETITEM__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="getitem" class="example-header">__getitem__(<i>i</i>)</a>
+<p>Public method defined here.  
+<p>Return element at index <code>i</code> in <code>self</code>.
+<p>Works with positive indices, negative indices, and slices.
+<p class="example-header"><a class="example-header">__getitem__(<i>name</i>)</a>
+<p>Public method defined here.  
+<p>Return element in <code>self</code> with name equal to <code>name</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/29.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> note = container[0]
+</pre>
+<image src="images/30.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container[-1].name = 'last'
+abjad> note = container['last']
+</pre>
+<image src="images/31.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __IMUL__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="imul" class="example-header">__imul__(<i>n</i>)</a>
+<p>Public method defined here.  
+<p>Create <code>n</code> total copies of the contents of <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/32.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container *= 3
+</pre>
+<image src="images/33.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __LEN__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="len" class="example-header">__len__( )</a>
+<p>Public method defined here.  
+<p>Return the number of elements in <code>self</code> as a nonnegative integer.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/34.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> len(container)
+4
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __MUL__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="mul" class="example-header">__mul__(<i>n</i>)</a>
+<p>Public method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Return Python list of <code>n</code> copies of <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/35.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+abjad> container * 3
+[(c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16)]
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __RADD__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="radd" class="example-header">__radd__(<i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Return new container equal to the concatenation of <code>self</code> followed by <code>expr</code>.
+<p>The operation is noncommutative: the contents of <code>self</code> will be placed before the contents of <code>expr</code>.
+<p>See <code><a href="#add">add( )</a></code>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+
+<!-- ### __REPR__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="repr" class="example-header">__repr__( )</a>
+<p>Public method defined here.  
+<p>Return string representation of <code>self</code> fit for interpreter display.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/36.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container
+(c'16, d'16, e'16, f'16)
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __RMUL__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
+<p>Public method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
+<p>Return Python list of <code>n</code> copies of <code>self</code>.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/37.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+abjad> 3 * container
+[(c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16)]
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+
+<!-- ### __SETITEM__ ### -->
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="setitem" class="example-header">__setitem__(<i>i</i>, <i>expr</i>)</a>
+<p>Public method defined here.  
+<p>Assign <code>expr</code> to index <code>i</code> in <code>self</code>.
+<p>Works with positive indices, negative indices, and slices.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+</pre>
+<image src="images/38.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container[1] = Note(10, (1, 16))
+</pre>
+<image src="images/39.png">
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> container[1:3] = Note(7, (1, 16)) * 4
+</pre>
+<image src="images/40.png">
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
 
 
 
@@ -619,10 +1054,6 @@ Conatiner(c'16, c'16, c'16, c'16)
 <h2 class="page-section">Comments</h2>
 
 <p class="comment">See the <code>Container</code> class in <code>containers/container.py</code> for implementation details.
-
-<h2 class="page-section">To do</h2>
-
-<p class="to-do">Add examples.
 
 
 <p class="footer">
