@@ -50,7 +50,10 @@ class Container(_Component):
       '''Fuse self with next container if next is threadable with self.'''
       next = self._navigator._nextThread
       if next:
-         self.extend(next.copy( ))
+      ### no need to copy here!
+#         self.extend(next.copy( ))
+#         next._die( )
+         self.extend(next)
          next._die( )
          return 1
       else:
