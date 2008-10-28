@@ -112,6 +112,15 @@ class Container(_Component):
       else:
          return self._music[expr]
             
+   def __iadd__(self, expr):
+      '''iadd avoids unnecessary copying of structures.'''
+      s = Container([self, expr])
+      success = s.coalesce( )
+      if success:
+         return s.pop(0)
+      else:
+         raise TypeError('%s and %s cannot be fused.' % (self, expr))
+
    def __imul__(self, n):
       assert isinstance(n, int)
       assert n >= 0
