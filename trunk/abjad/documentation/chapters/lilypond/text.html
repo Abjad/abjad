@@ -1,0 +1,40 @@
+<title>Why LilyPond is right for Abjad</title>
+
+<h1>Why LilyPond is right for Abjad</h1>
+
+<p>It took us several years to decide on LilyPond as the best available notational rendering engine for Abjad. Specificaly, we found LilyPond superior to Finale, Sibelius and Leland Smith's SCORE for our purposes. In this chapter we share examples showing why LilyPond is right for Abjad.
+
+<ul>
+<li>Nested tuplets work out of the box
+<li>Broken tuplets work out of the box
+<li>Tuplets can cross barlines
+<li>Durations can cross barlines
+<li>Nonbinary meteres work out of the box
+</ul>
+
+<h2>Nested tuplets works out of the box</h2>
+
+<p>LilyPond supports nested tuplets out of the box.
+
+<pre>
+\new RhythmicStaff {
+\times 4/5 {
+\times 4/5 { c'16 c'16 c'16 c'16 c'16 }
+\times 3/5 { c'8 c'8 c'8 c'8 c'8 }
+}
+}
+</pre>
+
+<pre>
+</pre>
+<image src="images/1.png">
+
+<p>The LilyPond tuplet syntax extends to allow the creation of arbitrarily nested tuplets. Nest the tuplet-creator <code>\times { }</code> construct as deeply as required.
+
+
+<h2>Broken tuplets work out of the box</h2>
+<h2>Tuplets can cross barlines</h2>
+<h2>Durations can cross barlines</h2>
+<h2>Nonbinary meteres work out of the box</h2>
+
+
