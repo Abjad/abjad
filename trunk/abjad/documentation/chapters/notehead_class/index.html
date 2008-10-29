@@ -25,226 +25,231 @@ The Abjad <code>_NoteHead</code> interface class models noteheads.
 </p>
 
 <h2 class="page-section">
-Public interface
+Interface
 </h2>
 
 <div class="interface-block">
-<p class="interface-block-header"> Attributes </p>
+<p class="interface-block-header"> Public attributes </p>
 
-<p class="interface-attribute"> format </p>
-<p class="interface-attribute-inherited"> first </p>
-<p class="interface-attribute-inherited"> last </p>
-<p class="interface-attribute-inherited"> only </p>
-<p class="interface-attribute"> pitch </p>
-<p class="interface-attribute-inherited"> spanned </p>
-<p class="interface-attribute-inherited"> spanner </p>
-<p class="interface-attribute-inherited"> spanners </p>
-<p class="interface-attribute"> style </p>
-<p class="interface-attribute"> stylesSupported </p>
+<p class="interface-attribute"> 
+<a href="#format" class="interface-attribute">format</a>
+<p class="interface-attribute-inherited"> 
+<a href="#first" class="interface-attribute-inherited">first</a>
+<p class="interface-attribute-inherited"> 
+<a href="#last" class="interface-attribute-inherited">last</a>
+<p class="interface-attribute-inherited"> 
+<a href="#only" class="interface-attribute-inherited">only</a>
+<p class="interface-attribute"> 
+<a href="#pitch" class="interface-attribute">pitch</a>
+<p class="interface-attribute-inherited"> 
+<a href="#spanned" class="interface-attribute-inherited">spanned</a>
+<p class="interface-attribute-inherited">
+<a href="#spanner" class="interface-attribute-inherited">spanner</a>
+<p class="interface-attribute-inherited"> 
+<a href="#spanners" class="interface-attribute-inherited">spanners</a>
+<p class="interface-attribute"> 
+<a href="#style" class="interface-attribute">style</a>
+<p class="interface-attribute"> 
+<a href="#stylesSupported" class="interface-attribute">stylesSupported</a>
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header"> Methods </p>
-<p class="interface-attribute-inherited"> clear( ) </p>
-<p class="interface-attribute-inherited"> unspan( ) </p>
+<p class="interface-block-header"> Public methods </p>
+<p class="interface-attribute-inherited"> 
+<a href="#clear" class="interface-attribute">clear( )</a>
+<p class="interface-attribute-inherited"> 
+<a href="#unspan" class="interface-attribute-inherited">unspan( )</a>
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header"> Overloads </p>
-<p class="interface-attribute-inherited"> __len__ </p>
+<p class="interface-block-header"> Special methods </p>
+<p class="interface-attribute-inherited"> 
+<a href="#len" class="interface-attribute-inherited">__len__</a>
 </div>
-
-
-<p class="spacer"/>
 
 <h2 class="page-section">
-Creating Noteheads
+Public Attributes
 </h2>
 
-<p>
-The Abjad <code>_NoteHead</code> interface is a <strong>private</strong> class (as indicated by the _ before the class name). As such, it cannot be created directly and independently from a <code>Note</code> or <code>Chord</code> object. 
-<code>Note</code> and <code>Chord</code> are the only two Abjad Components that have <code>_NoteHead</code> attributes. 
-</p>
+<!-- ### FORMAT ### -->
 
-<pre>
-abjad> note = Note(0, (1, 4))
-abjad> note.notehead
-_NoteHead(c', 4)
-</pre>
-<pre>
-abjad> chord = Chord([0, 2] (1, 4))
-abjad> note.noteheads
-[_NoteHead(c'), _NoteHead(d')]
-</pre>
-<p>
-Notice that a <code>Note</code> object has a <code>_NoteHead</code> interface directly attached to it, while the <code>Chord</code> object has a <strong>noteheads</strong> list of <code>_NoteHead</code> interfaces. 
-
-
-<p>
-A <code>_NoteHead</code> interface inherits from the abstract <code>_Interface</code>, and thus carries all the <code>_Interface</code> attributes. See the <code><a href="../core_interface/index.html">_Interface</a></code> reference for details.
-
-
-<h2 class="page-section">
-Attribute examples
-</h2>
-
-<!-- ### PITCH ### -->
 <div class="example">
 <div class="example-header">
-<p class="example-header"> pitch </p>
-</div>
+<p class="example-header">
+<a name="format" class="example-header">format</a>
+<p>Read only attribute defined here.
+<p>Returns LilyPond input string.
+</div> <!-- example header -->
 <div class="example-body">
-<h3 class="example-section">
-Return type
-</h3>
-<div class="example-text">
-<p>Returns an Abjad <code><a href="../pitch_class/index.html">Pitch</a></code>.
-</div>
 <div class="example-code">
 <pre>
-abjad> note = Note(0, (1, 4))
-abjad> note.notehead.pitch 
-Pitch(c, 4)
+abjad> n = Note(1, (1, 4)) 
+abjad> n.notehead.format
+"cs'"
 </pre>
-</div>
-
-<h3 class="example-section">
-Assignment Values
-</h3>
-<div class="example-text">
-<p>
-A Notehead pitch attribute can be set in two ways: 
-<ul>
-<li>With a number representing the pitch in semitones from middle C.
-<li>With a <code>Pitch</code> object (Refer to the <code>Pitch</code> class section for details on <code>Pitch</code> initialization.  
-</ul>
-</p>
-</div>
-<div class="example-code">
-<pre>
-abjad> note = Note(0, (1, 4))
-abjad> note.notehead.pitch = 10
-abjad> note
-Note(bf', 4)
-
-abjad> note.notehead.pitch = Pitch('cs', 5)
-abjad> note
-Note(cs'', 4)
-</pre>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
+
+
+<!-- ### FIRST ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="first" class="example-header-inherited">format</a>
+<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
+<p>Returns <code>True</code> if caller is the first <code>_Leaf</code> in Spanner. 
+<p>See <a href="../core_interface/index.html#first">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+<!-- ### LAST ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="last" class="example-header-inherited">last</a>
+<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
+<p>Returns <code>True</code> if caller is the last <code>_Leaf</code> in Spanner. 
+<p>See <a href="../core_interface/index.html#last">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+<!-- ### ONLY ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="only" class="example-header-inherited">only</a>
+<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
+<p>Returns <code>True</code> if caller is the only <code>_Leaf</code> in Spanner. 
+<p>See <a href="../core_interface/index.html#only">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+<!-- ### PITCH ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header">
+<a name="pitch" class="example-header">pitch</a>
+<p>Read / write attribute defined here.
+<p>Returns Abjad <code>Pitch</code> class.
+<p>Accepts Python <tt>int</tt>, <tt>float</tt>, <tt>long</tt>, <tt>None</tt> or Abjad <code>Pitch</code> class.
+</div> <!-- example header -->
+<div class="example-body">
+<div class="example-code">
+<pre>
+abjad> n = Note(1, (1, 4)) 
+abjad> n.notehead.pitch
+Pitch(cs, 4)
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> n.notehead.pitch = 4
+abjad> n.notehead.pitch
+Pitch(e, 4)
+</pre>
+</div> <!-- example code -->
+</div> <!-- example body -->
+</div> <!-- example -->
+
+
+<!-- ### SPANNED ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="spanned" class="example-header-inherited">spanned</a>
+<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
+<p>Returns <code>True</code> if client <code>Note</code> is in Spanner. 
+<p>See <a href="../core_interface/index.html#spanned">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+<!-- ### SPANNER ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="spanner" class="example-header-inherited">spanner</a>
+<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
+<p>Returns first Notehead type Spanner spanning the <code>Note</code> client. 
+<p>See <a href="../core_interface/index.html#spanner">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
+<!-- ### SPANNERS ### -->
+
+<div class="example">
+<div class="example-header">
+<p class="example-header-inherited">
+<a name="spanners" class="example-header-inherited">spanners</a>
+<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
+<p>Returns all Notehead type Spanners spanning the <code>Note</code> client. 
+<p>See <a href="../core_interface/index.html#spanners">example</a>.
+</div> <!-- example header -->
+</div> <!-- example -->
+
+
 
 <!-- ### STYLE ### -->
 
 <div class="example">
 <div class="example-header">
-<p class="example-header"> style </p>
-</div>
-
+<p class="example-header">
+<a name="style" class="example-header">style</a>
+<p>Read / write attribute defined here.
+<p>Returns Abjad <code>Pitch</code> class.
+<p>Accepts Python <tt>string</tt> or <tt>None</tt>.
+</div> <!-- example header -->
 <div class="example-body">
-<h3 class="example-section">
-Return type
-</h3>
-<div class="example-text">
-</div>
 <div class="example-code">
 <pre>
-abjad> note = Note(0, (1, 4))
-abjad> note.notehead.style == 'cross'
-abjad> note.notehead.style 
+abjad> n = Note(1, (1, 4)) 
+abjad> n.notehead.style = 'cross'
+</pre>
+</div> <!-- example code -->
+<div class="example-code">
+<pre>
+abjad> n.notehead.style
 'cross'
 </pre>
-</div>
-
-<h3 class="example-section">
-Assignment Values
-</h3>
-<div class="example-text">
-
-<p>
-A Notehead style must be set with a Python string naming the desired notehead style. 
-</p>
-</div>
-<div class="example-code">
-<pre>
-abjad> note = Note(0, (1, 4))
-abjad> note.notehead.style = 'cross'
-abjad> f(note)
-\once \override NoteHead #'style = #'cross
-c'4
-abjad> show(note)
-</pre>
-<image src="images/1.png">
-</div>
-<div class="example-text">
-<p>
-Notice how the notehead is formatted when applying the formatting function <code>f( )</code>. <strong>Known</strong> or recognized styles, such as <code>'cross'</code>, will be formatted in the appropriate LilyPond input format.  
-<strong>Unknown</strong> styles, such as <code>'myVeryOwnShape'</code> is not an allowed LilyPond notehead style, and is thus formatted like so:
-</p>
-</div>
-<div class="example-code">
-<pre>
-abjad> note.notehead.style = 'myVeryOwnShape'
-abjad> f(note)
-\myVeryOwnShape
-c'4
-</pre>
-</div>
-<div class="example-text">
-<p>
-Unknown styles are permitted and formatted differently to allow the user to define his/her own styles with LilyPond <strong>identifiers</strong>. In this case, the user is responsible to define the <strong>identifiers</strong> for the <code>show( )</code> function to properly compile the LilyPond output. 
-</p>
-</div>
-
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
-<!-- ### STYLESSUPPORTED ### -->
 
+<!-- ### STYLES SUPPORTED ### -->
 
 <div class="example">
 <div class="example-header">
-<p class="example-header"> stylesSupported </p>
-</div>
-
+<p class="example-header">
+<a name="stylesSupported" class="example-header">stylesSupported</a>
+<p>Read only attribute defined here.
+<p>Returns Python <tt>tuple</tt>.
+</div> <!-- example header -->
 <div class="example-body">
-<h3 class="example-section">
-Return type
-</h3>
-<div class="example-text">
-<p>
-The following are the supported styles:
-<ul>
-<li><code>'cross'</code> 
-<li><code>'parallelogram'</code> 
-<li><code>'concavetriangle'</code> 
-<li><code>'slash'</code> 
-<li><code>'xcircle'</code> 
-<li><code>'neomensural'</code> 
-<li><code>'harmonic'</code> 
-<li><code>'mensural'</code> 
-<li><code>'petruccidiamond'
-<li><code>'triangle'</code> 
-<li><code>'semicircle' </code> 
-<li><code>'diamond'</code> 
-<li><code>'tiltedtriangle'</code>
-<li><code>'square'</code> 
-<li><code>'wedge'</code> 
-</ul>
-</p>
-</div>
 <div class="example-code">
 <pre>
-abjad> note.notehead.stylesSupported
+abjad> n = Note(1, (1, 4)) 
+abjad> n.notehead.stylesSupported
 ('cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 
 'neomensural', 'harmonic', 'mensural', 'petruccidiamond', 'triangle', 
 'semicircle', 'diamond', 'tiltedtriangle', 'square', 'wedge')
-</div>
-
+</pre>
+</div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
+
+
 
 
 <h2 class="end-of-page">Comments</h2>
