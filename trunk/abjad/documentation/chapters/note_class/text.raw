@@ -230,16 +230,16 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> note = Note(0, (1, 4))
    abjad> note.formatter
    _LeafFormatter( )
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -324,16 +324,16 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> note = Note(0, (1, 4))
    abjad> note.notehead
    _NoteHead(c')
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -377,16 +377,16 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> note = Note(0, (1, 4))
    abjad> note.pitch
    Pitch(c, 4)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -550,12 +550,12 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -586,16 +586,16 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> note = Note(0, (1, 4))
    abjad> note
    Note(c', 4)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -627,16 +627,16 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> note = Note(0, (1, 4))
    abjad> str(note)
    "c'4"
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
