@@ -32,6 +32,7 @@ class FileParser(object):
       
 
 class _TagParser(object):
+
    def __init__(self):
       self.output = [ ]
 
@@ -43,11 +44,12 @@ class LILY(_TagParser):
    def parse(self, lines):
       for line in lines:
          if '<lily>' in line:
-            self.output.append('<pre class="lilypond">')
+            self.output.append('<pre class="lilypond">\n')
          elif '</lily>' in line:
-            self.output.append('</pre>')
+            self.output.append('</pre>\n')
          else:
-            self.output.append(line.strip(' '))
+            #self.output.append(line.strip(' '))
+            self.output.append(line)
 
 
 class PRE(_TagParser):
@@ -61,7 +63,6 @@ class PRE(_TagParser):
    def write_terminal_img(self, out, prev_image_number):
       out.append('<image src="images/%s.png">\n' % prev_image_number)
 
-   
    def parse(self, lines):
       pattern = re.compile('abjad> ')
       hide_me_pattern = re.compile('hide> ')
@@ -138,8 +139,8 @@ class PRE(_TagParser):
          # embed image if deemed necessary earlier in loop above
          if inline_indicator not in line: 
             if 'hide> ' not in line:
-               #out.write(line)
-               self.output.append(line.strip(' '))
+               #self.output.append(line.strip(' '))
+               self.output.append(line)
          if just_closed_tag:
             prev_image_number = image_number - 1
             if found_show:
@@ -173,4 +174,3 @@ if __name__ == '__main__':
 
    fileparser.parse( )
    #print fileparser.output
-
