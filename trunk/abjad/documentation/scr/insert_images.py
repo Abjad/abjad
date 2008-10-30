@@ -66,7 +66,6 @@ class ABJAD(_TagParser):
 
    def parse(self, lines):
       for line in lines:
-         #print line
          if '<abjad>' in line:
             self.handle_open_tag(line)
          elif '</abjad>' in line:
@@ -108,9 +107,13 @@ class ABJAD(_TagParser):
          self.found_code_request = True
          self.output.append(line)
          abjad_directive = self.pattern.split(line)[-1]
-      if 'hide> ' in line:
+      elif 'hide> ' in line:
          abjad_directive = self.hide_me_pattern.split(line)[-1]
-      if not abjad_directive.startswith('show'):
+      else:
+         abjad_directive = None
+      if not abjad_directive:
+         self.output.append(line)
+      elif not abjad_directive.startswith('show'):
          self.tmp_aj.write(abjad_directive)
       else:
          self.found_image_request = True
