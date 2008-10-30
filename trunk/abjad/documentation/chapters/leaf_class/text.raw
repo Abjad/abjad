@@ -144,18 +144,18 @@ But we show examples of <code>_Leaf</code> attributes here using note, rest and 
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> note = Note(0, (1, 4))
    abjad> note.articulations = ['staccato']
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -187,18 +187,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    abjad> chord.beam
    _BeamInterface
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -217,18 +217,18 @@ barline
 <div class="example-body">
 
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.clef = 'alto'
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -244,16 +244,16 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.dots
    _DotsInterface( )
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -271,18 +271,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.duration = (3, 8)
    hide> measure = Measure((3, 8), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -300,18 +300,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.dynamics = 'f'
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -341,18 +341,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    abjad> chord.formatter
    _ChordFormatter( )
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -370,18 +370,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> notes = [Note(0, (1, 4)), Note(2, (1, 4))]
    hide> measure = Measure((2, 4), notes)
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> notes = [Note(0, (1, 4)), Note(2, (1, 4))]
    hide> measure = Measure((2, 4), notes)
    hide> measure.meter.transparent = True
    abjad> notes[0].glissando = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -398,18 +398,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    abjad> note.grace.before.append(Note(2, (1, 16)))
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -427,18 +427,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    abjad> note.harmonic = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -455,18 +455,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    abjad> note.leaves
    [Note(c', 4)]
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -483,14 +483,14 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note1 = Note(-1, (1, 4))
    abjad> chord = Chord([0, 2, 10], (1, 4))
    abjad> note2 = Note(9, (1, 4))
    abjad> measure = Measure((1, 4), [note1, chord, note2])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note1 = Note(-1, (1, 4))
    hide> chord = Chord([0, 2, 10], (1, 4))
    hide> note2 = Note(9, (1, 4))
@@ -499,7 +499,7 @@ barline
    abjad> chord.next
    Note(a', 4)
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -516,17 +516,17 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(8, 0, -1)])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(8, 0, -1)])
    hide> measure.meter.transparent = True
    abjad> measure[6].number
    6
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -543,17 +543,17 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(8, 0, -1)])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(8, 0, -1)])
    hide> measure.meter.transparent = True
    abjad> measure[6].offset
    Rational(3, 4)
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -570,14 +570,14 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note1 = Note(-1, (1, 4))
    abjad> chord = Chord([0, 2, 10], (1, 4))
    abjad> note2 = Note(9, (1, 4))
    abjad> measure = Measure((1, 4), [note1, chord, note2])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note1 = Note(-1, (1, 4))
    hide> chord = Chord([0, 2, 10], (1, 4))
    hide> note2 = Note(9, (1, 4))
@@ -586,7 +586,7 @@ barline
    abjad> chord.prev
    Note(b, 4)
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -604,18 +604,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    abjad> note.spanners
    _LeafSpannerInterface( )
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -634,18 +634,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    abjad> note.staff is None
    True
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -662,18 +662,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    abjad> note.stem
    _StemInterface( )
-</pre>
+</abjad>
 </div> <!-- example header -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -705,18 +705,18 @@ barline
 <div class="example-body">
 
 <div class="example-code">
-<pre>
+<abjad>
    abjad> notes = Note(0, (1, 4)) * 2
    hide> measure = Measure((2, 4), notes)
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> notes = Note(0, (1, 4)) * 2
    hide> measure = Measure((2, 4), notes)
    hide> measure.meter.transparent = True
    abjad> notes[0].tie = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -733,18 +733,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    abjad> note.tremolo.subdivision = 32
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -761,18 +761,18 @@ barline
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> note = Note(0, (1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    abjad> note.trill
    _TrillInterface( )
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
