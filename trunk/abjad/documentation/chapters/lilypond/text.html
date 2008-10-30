@@ -14,7 +14,7 @@ Here we give some examples to show why.
 Nest these recursively to make tuplets as deep as you want.
 
 <div class="example-code">
-<pre>
+<pre class="lilypond">
 \new RhythmicStaff {
 \times 4/5 {
 \times 4/5 { c'16 c'16 c'16 c'16 c'16 }
@@ -42,7 +42,7 @@ It's harder to engrave four septuplets, then something else, then three more sep
 In LilyPond, such broken tuplets work out of the box.
 
 <div class="example-code">
-<pre>
+<pre class="lilypond">
 \new Staff {
 \times 4/7 { c'16 c'16 c'16 c'16 }
 c'8 c'8
@@ -74,7 +74,7 @@ LilyPond's multiplier-based approach to tuplets lets us create not only the comp
 <p>We can rewrite the rhythm above in another way.
 
 <div class="example-code">
-<pre>
+<pre class="lilypond">
 \new Staff {
 \time 4/28 c'16 c'16 c'16 c'16 |
 \time 2/8  c'8  c'8 |
