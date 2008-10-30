@@ -31,7 +31,8 @@ image_number = 1
 
 for line in f.readlines( ):
    just_closed_tag = False
-   if '<pre>' in line:
+   #if '<pre>' in line:
+   if '<pre' in line:
       found_abjad_directive = True
       tmp_aj = open('tmp.aj', 'w')
       tmp_aj.write('from abjad import *\n')

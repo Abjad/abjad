@@ -1,0 +1,53 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<title>Project Abjad - Chapter Name from h1 Goes Here</title>
+<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+</head>
+
+<body>
+
+<!--
+OK; prefer to leave TOC off of every page for now; 
+keep look simple ... maybe add back in later? TB.
+maybe a
+<div id="toc">
+if we want to have the TOC on every page, we can put it here...
+</div>
+-->
+
+<div id="content">
+
+<title>Why MIDI is not enough</title>
+
+<h1>Why MIDI is not enough</h1>
+<p>
+Given that Abjad models written musical score, it might seem odd for MIDI to be even mentioned in this manual. 
+Yet, until fairly recently, MIDI has played a role (sometimes tangential, other times fundamental) in a variety of software tools related to music notation and engraving.
+</p>
+
+<h2>A brief history of MIDI</h2>
+<p>
+MIDI (Musical Instrument Digital Interface) was first introduced in 1981 by Dave Smith, the founder of Sequential Circuits. 
+The original purpose of MIDI was to allow the communication between different electronic musical instruments; more specifically, to allow one device to send <b>control</b> data to another device. Typical messages might be "note On" (play a <em>note</em>) "note Off" (turn off a <em>note</em>). <em>Note</em> in this context means something very different than <em>note</em> in a score. Since the first MIDI capable instruments where keyboard synthesizers (like the Prophet 600), in this early context <em>note</em> would more closely refer to <em>key</em>, or more generally "sound trigger number".   
+
+<p>
+With the subsequent popularity of music software development and consumption, the SMF (Standard Midi File) was introduced to allow the recording and storage of the control data in a MIDI stream. 
+The SMF required a time stamp to keep track of when control messages took place. These are called "delta-times" in the SMF specification:
+<q>The MTrk chunk type is where actual song data is stored. It is simply a stream of MIDI events (and non-MIDI events), preceded by delta-time values.</q>
+
+
+<h2>Limitations of MIDI from the point of view of score modeling</h2>
+
+<h3>Written Note Durations vs. MIDI delta-times</h3>
+
+<h3>Written Note Pitch vs. MIDI note-on</h3>
+
+
+<p class="footer">
+<a href="../../index.html">Contents</a>
+</p>
+</div>
+
+</body>
+</html>

@@ -271,6 +271,17 @@ PRE, DIV.abjad {
    text-align: left; 
 }
 
+PRE.lilypond {
+	color: #138012;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px dotted #aaaaca;
+   text-align: left; 
+
+}
+
 .comment, .to-do {
    margin-bottom: 20px;
 }
@@ -323,4 +334,9 @@ DL.interface-definition UL {
 DL.interface-definition UL LI.inherited {
    color: grey;
 	//background-color: grey;
+}
+
+Q {
+	font-family: "Courier New", "Courier", serif;
+   font-style: italic;
 }
