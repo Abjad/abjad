@@ -25,7 +25,7 @@ Nest these recursively to make tuplets as deep as you want.
 </div> <!-- example code -->
 
 <div class="example-code">
-<pre>
+<abjad>
    hide> t = FixedDurationTuplet((4, 16), Note(0, (1, 16)) * 5)
    hide> u = FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 5)
    hide> v = FixedDurationTuplet((4, 8), [t, u])
@@ -33,7 +33,7 @@ Nest these recursively to make tuplets as deep as you want.
    hide> measure.meter.transparent = True
    hide> staff = RhythmicStaff([measure])
    hide> show(staff)
-</pre>
+</abjad>
 </div> <!-- example code -->
 
 <p>We like LilyPond's tuplet input syntax because it works exactly the same way as any other recursive programming structure, such as, for example, any collection of nested attribute or element tags in XML.
@@ -58,7 +58,7 @@ In LilyPond, such broken tuplets work out of the box.
 </div> <!-- example code -->
 
 <div class="example-code">
-<pre>
+<abjad>
    hide> t = FixedMultiplierTuplet((4, 7), Note(0, (1, 16)) * 4)
    hide> notes = Note(0, (1, 8)) * 2
    hide> u = FixedMultiplierTuplet((4, 7), Note(0, (1, 16)) * 3)
@@ -68,7 +68,7 @@ In LilyPond, such broken tuplets work out of the box.
    hide> measure = Measure((4, 8), [t] + notes + [u])
    hide> staff = RhythmicStaff([measure])
    hide> show(staff)
-</pre>
+</abjad>
 </div> <!-- example code -->
 
 <p>We like this because it shows that LilyPond understands tuplets as <strong>carrying a fixed multiplier</strong> rather than <strong>fitting into a fixed duration</strong>.
@@ -98,7 +98,7 @@ LilyPond's multiplier-based approach to tuplets lets us create not only the comp
 </div> <!-- example code -->
 
 <div class="example-code">
-<pre>
+<abjad>
    hide> t = Measure((4, 28), Note(0, (1, 16)) * 4)
    hide> u = Measure((2, 8), Note(0, (1, 8)) * 2)
    hide> v = Measure((3, 28), Note(0, (1, 16)) * 3)
@@ -107,7 +107,7 @@ LilyPond's multiplier-based approach to tuplets lets us create not only the comp
    hide> Beam(v)
    hide> staff = RhythmicStaff([t, u, v])
    hide> show(staff)
-</pre>
+</abjad>
 </div> <!-- example code -->
 
 <p>The time signatures 4/28 and 3/28 here have a denominator not equal to 4, 8, 16 or any other nonnegative integer power of two.
