@@ -16,10 +16,10 @@ Nest these recursively to make tuplets as deep as you want.
 <div class="example-code">
 <pre class="lilypond">
 \new RhythmicStaff {
-\times 4/5 {
-\times 4/5 { c'16 c'16 c'16 c'16 c'16 }
-\times 3/5 { c'8 c'8 c'8 c'8 c'8 }
-}
+   \times 4/5 {
+      \times 4/5 { c'16 c'16 c'16 c'16 c'16 }
+      \times 3/5 { c'8 c'8 c'8 c'8 c'8 }
+   }
 }
 </pre>
 </div> <!-- example code -->
@@ -44,9 +44,9 @@ In LilyPond, such broken tuplets work out of the box.
 <div class="example-code">
 <pre class="lilypond">
 \new Staff {
-\times 4/7 { c'16 c'16 c'16 c'16 }
-c'8 c'8
-\times 4/7 { c'16 c'16 c'16 }
+   \times 4/7 { c'16 c'16 c'16 c'16 }
+   c'8 c'8
+   \times 4/7 { c'16 c'16 c'16 }
 }
 </pre>
 </div> <!-- example code -->
@@ -76,9 +76,9 @@ LilyPond's multiplier-based approach to tuplets lets us create not only the comp
 <div class="example-code">
 <pre class="lilypond">
 \new Staff {
-\time 4/28 c'16 c'16 c'16 c'16 |
-\time 2/8  c'8  c'8 |
-\time 3/28 c'16 c'16 c'16 |
+   \time 4/28 c'16 c'16 c'16 c'16 |
+   \time 2/8  c'8  c'8 |
+   \time 3/28 c'16 c'16 c'16 |
 }
 </pre>
 </div> <!-- example code -->
