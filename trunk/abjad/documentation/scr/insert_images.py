@@ -105,14 +105,14 @@ class ABJAD(_TagParser):
    def handle_internal_line(self, line):
       if 'abjad>' in line:
          self.found_code_request = True
-         self.output.append(line)
+         self.output.append(line.strip(' '))
          abjad_directive = self.pattern.split(line)[-1]
       elif 'hide> ' in line:
          abjad_directive = self.hide_me_pattern.split(line)[-1]
       else:
          abjad_directive = None
       if not abjad_directive:
-         self.output.append(line)
+         self.output.append(line.strip(' '))
       elif not abjad_directive.startswith('show'):
          self.tmp_aj.write(abjad_directive)
       else:
