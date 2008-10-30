@@ -54,7 +54,8 @@ class PRE(_TagParser):
 
    def write_inline_img(self, out, prev_image_number):
       out.append('</pre>\n')
-      out.append('<image class="inline" src="images/%s.png">\n' % prev_image_number)
+      out.append('<image class="inline" src="images/%s.png">\n' % 
+         prev_image_number)
       out.append('<pre>\n')
 
    def write_terminal_img(self, out, prev_image_number):
@@ -117,7 +118,8 @@ class PRE(_TagParser):
                tmp_aj.write(
                   """tmp_ly.write('\\\\layout { ragged-right = ##t }\\n')\n""")
                tmp_aj.write("""tmp_ly.write('\\n')\n""")
-               tmp_aj.write("""tmp_ly.write('\\\\header{ tagline = "" }\\n')\n""")
+               tmp_aj.write(
+                  """tmp_ly.write('\\\\header{ tagline = "" }\\n')\n""")
                tmp_aj.write(
                   """tmp_ly.write("{ %%s\\n }" %% %s.format)\n""" % lily_object) 
                tmp_aj.write("""tmp_ly.close( )""")
@@ -127,7 +129,8 @@ class PRE(_TagParser):
                os.popen('rm %s.ps' % image_number)
                os.popen('rm %s.ly' % image_number)
                os.popen('mv %s.png images' % image_number)
-               os.popen('convert images/%s.png -trim -resample 40%% images/%s.png' % 
+               os.popen(
+                  'convert images/%s.png -trim -resample 40%% images/%s.png' % 
                   (image_number, image_number))
                image_number += 1
 
@@ -141,10 +144,12 @@ class PRE(_TagParser):
             prev_image_number = image_number - 1
             if found_show:
                if found_inline:
-                  self.output.append('<image class="inline" src="images/%s.png">\n' % 
+                  self.output.append(
+                     '<image class="inline" src="images/%s.png">\n' % 
                      prev_image_number)
                else:
-                  self.output.append('<image src="images/%s.png">\n' % prev_image_number)
+                  self.output.append(
+                     '<image src="images/%s.png">\n' % prev_image_number)
             found_show = False
             found_inline = False
 
