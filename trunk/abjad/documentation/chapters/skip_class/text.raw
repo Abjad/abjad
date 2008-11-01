@@ -1,11 +1,13 @@
+<title>The Abjad Skip class</title>
+
 <h1>The Abjad <code>Skip</code> class</h1>
 
 <p>The Abjad <code>Skip</code> class wraps the LilyPond skip object. LilyPond skips represent unprocessed periods of musical time, somewhat like invisible rests.
 
-<h2 class="page-section">Interface</h2>
+<h2 class="page-section">Public interface</h2>
 
 <div class="example-block">
-<p class="example-block-header">Public attributes
+<p class="example-block-header">Attributes
    <p class="interface-attribute-inherited">
       <a href="#accidentals" class="interface-attribute-inherited">accidentals</a>
    <p class="interface-attribute-inherited">
@@ -61,7 +63,7 @@
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header">Public methods
+<p class="interface-block-header">Methods
    <p class="interface-attribute-inherited">
       <a href="#copy" class="interface-attribute-inherited">copy( )</a>
    <p class="interface-attribute-inherited">
@@ -69,7 +71,7 @@
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header">Special methods
+<p class="interface-block-header">Overrides
    <p class="interface-attribute">
       <a href="#init" class="interface-attribute">__init__</a>
    <p class="interface-attribute-inherited">
@@ -82,7 +84,7 @@
       <a href="#str" class="interface-attribute">__str__</a>
 </div>
 
-<h2 class="page-section">Public attributes</h2>
+<h2 class="page-section">Attributes</h2>
 
 
 
@@ -226,16 +228,16 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> skip = Skip((1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> skip = Skip((1, 4))
    abjad> skip.formatter
    _LeafFormatter( )
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -441,7 +443,7 @@
 </div> <!-- example -->
 
 
-<h2 class="page-section">Public methods</h2>
+<h2 class="page-section">Methods</h2>
 
 
 
@@ -471,7 +473,7 @@
 
 
 
-<h2 class="page-section">Special methods</h2>
+<h2 class="page-section">Overrides</h2>
 
 
 
@@ -492,12 +494,12 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> skip = Skip((1, 4))
    hide> measure = Measure((1, 4), [skip])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -528,16 +530,16 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> skip = Skip((1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> skip = Skip((1, 4))
    abjad> skip
    Skip(4)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -569,16 +571,16 @@
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> skip = Skip((1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> skip = Skip((1, 4))
    abjad> str(skip)
    's4'
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->

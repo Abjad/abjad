@@ -1,17 +1,13 @@
-<h1>
-The Abjad <code>Chord</code> class
-</h1>
+<title>The Abjad Chord class</title>
 
-<p>
-The Abjad <code>Chord</code> class models chords.
-</p>
+<h1>The Abjad <code>Chord</code> class</h1>
 
-<h2 class="page-section">
-Interface
-</h2>
+<p>The Abjad <code>Chord</code> class models chords.
+
+<h2 class="page-section">Public interface</h2>
 
 <div class="example-block">
-<p class="example-block-header"> Public attributes
+<p class="example-block-header">Attributes
    <p class="interface-attribute-inherited">
       <a href="#accidentals" class="interface-attribute-inherited">accidentals</a>
    <p class="interface-attribute-inherited">
@@ -71,7 +67,7 @@ Interface
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header"> Public methods
+<p class="interface-block-header">Methods
    <p class="interface-attribute">
       <a href="#append" class="interface-attribute">append( )</a>
    <p class="interface-attribute-inherited">
@@ -87,7 +83,7 @@ Interface
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header"> Special methods
+<p class="interface-block-header">Overrides
    <p class="interface-attribute">
       <a href="#contains" class="interface-attribute">__contains__</a>
    <p class="interface-attribute">
@@ -110,9 +106,7 @@ Interface
       <a href="#str" class="interface-attribute">__str__</a>
 </div>
 
-<h2 class="page-section">
-Public attributes
-</h2>
+<h2 class="page-section">Attributes</h2>
 
 
 
@@ -266,16 +260,16 @@ Public attributes
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.formatter
    _ChordFormatter( )
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -365,13 +359,13 @@ Public attributes
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.noteheads = [-1, 3, 9, 11]
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    hide> chord.noteheads = [-1, 3, 9, 11]
    abjad> chord.noteheads
@@ -379,7 +373,7 @@ Public attributes
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -424,13 +418,13 @@ Public attributes
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.pitches = [-1, 3, 9, 11]
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    hide> chord.pitches = [-1, 3, 9, 11]
    abjad> chord.pitches
@@ -438,7 +432,7 @@ Public attributes
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -556,9 +550,7 @@ Public attributes
 </div> <!-- example -->
 
 
-<h2 class="page-section">
-Public methods
-</h2>
+<h2 class="page-section">Methods</h2>
 
 
 <!-- ### APPEND( ) ### -->
@@ -572,18 +564,18 @@ Public methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.append(9)
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -614,18 +606,18 @@ Public methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.extend([9, 16, 18])
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -657,19 +649,19 @@ Public methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.pop( )
    _NoteHead(bf')
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -687,27 +679,25 @@ Public methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.remove(chord[1])
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
 
 
 
-<h2 class="page-section">
-Special methods
-</h2>
+<h2 class="page-section">Overrides</h2>
 
 
 
@@ -722,19 +712,19 @@ Special methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> 10 in chord
    True
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -752,18 +742,18 @@ Special methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> del(chord[1])
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -781,17 +771,17 @@ Special methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
-<pre>
+</abjad>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord[1]
    _NoteHead(d')
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -815,12 +805,12 @@ Special methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -838,18 +828,18 @@ Special methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    abjad> len(chord)
    3
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -882,16 +872,16 @@ Special methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord
    Chord(c' d' bf', 4)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -925,18 +915,18 @@ Special methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord[1] = 4
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->
@@ -954,19 +944,19 @@ Special methods
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<abjad>
    abjad> chord = Chord([0, 2, 10], (1, 4))
-</pre>
+</abjad>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> str(chord)
    "&lt;c' d' bf'&gt;4"
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
+</abjad>
 </div> <!-- example code -->
 </div> <!-- example body -->
 </div> <!-- example -->

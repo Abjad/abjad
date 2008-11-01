@@ -1,10 +1,8 @@
-<h1>
-The Abjad <code>_Accidental</code> class
-</h1>
+<title>The Abjad <code>_Accidental</code> class</title>
 
-<p>
-The Abjad <code>_Accidental</code> class models accidentals.
-</p>
+<h1>The Abjad <code>_Accidental</code> class</h1>
+
+<p>The Abjad <code>_Accidental</code> class models accidentals.
 
 <h2 class="page-section">
 Public interface
@@ -38,26 +36,31 @@ Attribute examples
 
 <div class="example">
 <p class="example-header"> adjustment
-<pre>
+<abjad>
    abjad> note = Note(13, (1, 4))
    abjad> measure = Measure((1, 4), [note])
    abjad> measure.meter.stencil = False
    abjad> show(measure)
+</abjad>
+<abjad>
    abjad> note.pitch.accidental.adjustment
    1
-</pre>
-</div>
+</abjad>
+</div> <!-- example -->
+
 
 <div class="example">
 <p class="example-header"> string
-<pre>
+<abjad>
    abjad> note = Note(13, (1, 4))
    abjad> measure = Measure((1, 4), [note])
    abjad> measure.meter.stencil = False
    abjad> show(measure)
+</abjad>
+<abjad>
    abjad> note.pitch.accidental.string
    's'
-</pre>
+</abjad>
 </div>
 
 <h2 class="page-section">
@@ -66,21 +69,21 @@ Dictionary examples
 
 <div class="example">
 <p class="example-header"> accidentalStringToAdjustment
-</pre>
-<pre>
+</abjad>
+<abjad>
    abjad> note = Note(13, (1, 4))
    abjad> note.pitch.accidental.accidentalStringToAdjustment['tqs']
    1.5
-</pre>
+</abjad>
 </div>
 
 <div class="example">
 <p class="example-header"> adjustmentToAccidentalString
-<pre>
+<abjad>
    abjad> note = Note(13, (1, 4))
    abjad> note.pitch.accidental.adjustmentToAccidentalString[-1]
    'f'
-</pre>
+</abjad>
 </div>
 
 <h2 class="page-section">
@@ -89,14 +92,16 @@ Method examples
 
 <div class="example">
 <p class="example-header"> hasNone( )
-<pre>
+<abjad>
    abjad> note = Note(13, (1, 4))
    abjad> measure = Measure((1, 4), [note])
    abjad> measure.meter.stencil = False
    abjad> show(measure)
+</abjad>
+<abjad>
    abjad> note.pitch.accidental.hasNone( )
    False
-</pre>
+</abjad>
 </div>
 
 <h2 class="page-section">
@@ -105,34 +110,26 @@ Overload examples
 
 <div class="example">
 <p class="example-header"> __eq__
-<pre>
+<abjad>
    abjad> note = Note(13, (1, 4))
    abjad> measure = Measure((1, 4), [note])
    abjad> measure.meter.stencil = False
    abjad> show(measure)
+</abjad>
+<abjad>
    abjad> note.pitch.accidental == 's'
    True
-</pre>
+</abjad>
 </div>
 
-<h2 class="page-section">
-Comments
-</h2>
+<h2 class="page-section">Comments</h2>
 
-<p class="comment">
-LilyPond implements several different accidental handling methods.
+<p class="comment">LilyPond implements several different accidental handling methods.
 Abjad outputs LilyPond input with no special indications for accidental handling.
 Nontonal music may prefer to use the LilyPond <code>'forget</code> option for handling accidentals.
-</p>
 
-<p class="comment">
-Do we have an Abjad-native way of setting <code>'forget</code>?
-</p>
+<p class="comment">Do we have an Abjad-native way of setting <code>'forget</code>?
 
-<h2 class="page-section">
-To do
-</h2>
+<h2 class="page-section">To do</h2>
 
-<p class="to-do">
-Reimplement Java-style <code>hasNone( )</code> as read-only <code>none</code> attribute.
-</p>
+<p class="to-do">Reimplement Java-style <code>hasNone( )</code> as read-only <code>none</code> attribute.

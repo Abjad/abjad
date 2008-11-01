@@ -1,8 +1,6 @@
 <html>
 <head>
 <link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
 </head>
 
 <body>
@@ -18,93 +16,95 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
+<title>The Abjad Rest class</title>
+
 <h1>The Abjad <code>Rest</code> class</h1>
 
 <p>The Abjad <code>Rest</code> class models musical rests.
 
-<h2 class="page-section">Interface</h2>
+<h2 class="page-section">Public interface</h2>
 
 <div class="example-block">
-<p class="example-block-header">Public attributes
-<p class="interface-attribute-inherited">
-<a href="#accidentals" class="interface-attribute-inherited">accidentals</a>
-<p class="interface-attribute-inherited">
-<a href="#articulations" class="interface-attribute-inherited">articulations</a>
-<p class="interface-attribute-inherited">
-<a href="#barline" class="interface-attribute-inherited">barline</a>
-<p class="interface-attribute-inherited">
-<a href="#beam" class="interface-attribute-inherited">beam</a>
-<p class="interface-attribute-inherited">
-<a href="#clef" class="interface-attribute-inherited"> clef</a>
-<p class="interface-attribute-inherited">
-<a href="#comments" class="interface-attribute-inherited"> comments</a>
-<p class="interface-attribute-inherited">
-<a href="#dots" class="interface-attribute-inherited">dots</a>
-<p class="interface-attribute-inherited">
-<a href="#duration" class="interface-attribute-inherited">duration</a>
-<p class="interface-attribute-inherited">
-<a href="#dynamics" class="interface-attribute-inherited">dynamics</a>
-<p class="interface-attribute-inherited">
-<a href="#format" class="interface-attribute-inherited">format</a>
-<p class="interface-attribute">
-<a href="#formatter" class="interface-attribute">formatter</a>
-<p class="interface-attribute-inherited">
-<a href="#glissando" class="interface-attribute-inherited">glissando</a>
-<p class="interface-attribute-inherited">
-<a href="#grace" class="interface-attribute-inherited">grace</a>
-<p class="interface-attribute-inherited">
-<a href="#harmonic" class="interface-attribute-inherited">harmonic</a>
-<p class="interface-attribute-inherited">
-<a href="#leaves" class="interface-attribute-inherited">leaves</a>
-<p class="interface-attribute-inherited">
-<a href="#next" class="interface-attribute-inherited">next</a>
-<p class="interface-attribute-inherited">
-<a href="#number" class="interface-attribute-inherited">number</a>
-<p class="interface-attribute-inherited">
-<a href="#offset" class="interface-attribute-inherited">offset</a>
-<p class="interface-attribute">
-<a href="#pitch" class="interface-attribute">pitch</a>
-<p class="interface-attribute-inherited">
-<a href="#prev" class="interface-attribute-inherited">prev</a>
-<p class="interface-attribute-inherited">
-<a href="#spanners" class="interface-attribute-inherited">spanners</a>
-<p class="interface-attribute-inherited">
-<a href="#staff" class="interface-attribute-inherited">staff</a>
-<p class="interface-attribute-inherited">
-<a href="#stem" class="interface-attribute-inherited">stem</a>
-<p class="interface-attribute-inherited">
-<a href="#tempo" class="interface-attribute-inherited">tempo</a>
-<p class="interface-attribute-inherited">
-<a href="#tie" class="interface-attribute-inherited">tie</a>
-<p class="interface-attribute-inherited">
-<a href="#tremolo" class="interface-attribute-inherited">tremolo</a>
-<p class="interface-attribute-inherited">
-<a href="#trill" class="interface-attribute-inherited">trill</a>
+<p class="example-block-header">Attributes
+   <p class="interface-attribute-inherited">
+      <a href="#accidentals" class="interface-attribute-inherited">accidentals</a>
+   <p class="interface-attribute-inherited">
+      <a href="#articulations" class="interface-attribute-inherited">articulations</a>
+   <p class="interface-attribute-inherited">
+      <a href="#barline" class="interface-attribute-inherited">barline</a>
+   <p class="interface-attribute-inherited">
+      <a href="#beam" class="interface-attribute-inherited">beam</a>
+   <p class="interface-attribute-inherited">
+      <a href="#clef" class="interface-attribute-inherited"> clef</a>
+   <p class="interface-attribute-inherited">
+      <a href="#comments" class="interface-attribute-inherited"> comments</a>
+   <p class="interface-attribute-inherited">
+      <a href="#dots" class="interface-attribute-inherited">dots</a>
+   <p class="interface-attribute-inherited">
+      <a href="#duration" class="interface-attribute-inherited">duration</a>
+   <p class="interface-attribute-inherited">
+      <a href="#dynamics" class="interface-attribute-inherited">dynamics</a>
+   <p class="interface-attribute-inherited">
+      <a href="#format" class="interface-attribute-inherited">format</a>
+   <p class="interface-attribute">
+      <a href="#formatter" class="interface-attribute">formatter</a>
+   <p class="interface-attribute-inherited">
+      <a href="#glissando" class="interface-attribute-inherited">glissando</a>
+   <p class="interface-attribute-inherited">
+      <a href="#grace" class="interface-attribute-inherited">grace</a>
+   <p class="interface-attribute-inherited">
+      <a href="#harmonic" class="interface-attribute-inherited">harmonic</a>
+   <p class="interface-attribute-inherited">
+      <a href="#leaves" class="interface-attribute-inherited">leaves</a>
+   <p class="interface-attribute-inherited">
+      <a href="#next" class="interface-attribute-inherited">next</a>
+   <p class="interface-attribute-inherited">
+      <a href="#number" class="interface-attribute-inherited">number</a>
+   <p class="interface-attribute-inherited">
+      <a href="#offset" class="interface-attribute-inherited">offset</a>
+   <p class="interface-attribute">
+      <a href="#pitch" class="interface-attribute">pitch</a>
+   <p class="interface-attribute-inherited">
+      <a href="#prev" class="interface-attribute-inherited">prev</a>
+   <p class="interface-attribute-inherited">
+      <a href="#spanners" class="interface-attribute-inherited">spanners</a>
+   <p class="interface-attribute-inherited">
+      <a href="#staff" class="interface-attribute-inherited">staff</a>
+   <p class="interface-attribute-inherited">
+      <a href="#stem" class="interface-attribute-inherited">stem</a>
+   <p class="interface-attribute-inherited">
+      <a href="#tempo" class="interface-attribute-inherited">tempo</a>
+   <p class="interface-attribute-inherited">
+      <a href="#tie" class="interface-attribute-inherited">tie</a>
+   <p class="interface-attribute-inherited">
+      <a href="#tremolo" class="interface-attribute-inherited">tremolo</a>
+   <p class="interface-attribute-inherited">
+      <a href="#trill" class="interface-attribute-inherited">trill</a>
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header">Public methods
-<p class="interface-attribute-inherited">
-<a href="#copy" class="interface-attribute-inherited">copy( )</a>
-<p class="interface-attribute-inherited">
-<a href="#kind" class="interface-attribute-inherited">kind( )</a>
+<p class="interface-block-header">Methods
+   <p class="interface-attribute-inherited">
+      <a href="#copy" class="interface-attribute-inherited">copy( )</a>
+   <p class="interface-attribute-inherited">
+      <a href="#kind" class="interface-attribute-inherited">kind( )</a>
 </div>
 
 <div class="interface-block">
-<p class="interface-block-header">Special methods
-<p class="interface-attribute">
-<a href="#init" class="interface-attribute">__init__</a>
-<p class="interface-attribute-inherited">
-<a href="#mul" class="interface-attribute-inherited">__mul__</a>
-<p class="interface-attribute">
-<a href="#repr" class="interface-attribute">__repr__</a>
-<p class="interface-attribute-inherited">
-<a href="#rmul" class="interface-attribute-inherited">__rmul__</a>
-<p class="interface-attribute">
-<a href="#str" class="interface-attribute">__str__</a>
+<p class="interface-block-header">Overrides
+   <p class="interface-attribute">
+      <a href="#init" class="interface-attribute">__init__</a>
+   <p class="interface-attribute-inherited">
+      <a href="#mul" class="interface-attribute-inherited">__mul__</a>
+   <p class="interface-attribute">
+      <a href="#repr" class="interface-attribute">__repr__</a>
+   <p class="interface-attribute-inherited">
+      <a href="#rmul" class="interface-attribute-inherited">__rmul__</a>
+   <p class="interface-attribute">
+      <a href="#str" class="interface-attribute">__str__</a>
 </div>
 
-<h2 class="page-section">Public attributes</h2>
+<h2 class="page-section">Attributes</h2>
 
 
 
@@ -248,12 +248,12 @@ if we want to have the TOC on every page, we can put it here...
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> rest = Rest((1, 4))
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> rest.formatter
 _LeafFormatter( )
 </pre>
@@ -367,12 +367,12 @@ _LeafFormatter( )
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> rest = Rest((1, 4))
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> rest.pitch = -5
 </pre>
 <image src="images/1.png">
@@ -488,7 +488,7 @@ abjad> rest.pitch = -5
 </div> <!-- example -->
 
 
-<h2 class="page-section">Public methods</h2>
+<h2 class="page-section">Methods</h2>
 
 
 
@@ -518,7 +518,7 @@ abjad> rest.pitch = -5
 
 
 
-<h2 class="page-section">Special methods</h2>
+<h2 class="page-section">Overrides</h2>
 
 
 
@@ -530,16 +530,16 @@ abjad> rest.pitch = -5
 <p>Special method defined here.
 <p> Initialize <code>self</code> according to one of several input argument patterns:
 <ul>
-<li> <code>Rest(<i>dur</i>)
-<li> <code>Rest(<i>note</i>)
-<li> <code>Rest(<i>chord</i>)
-<li> <code>Rest(<i>skip</i>)
+   <li> <code>Rest(<i>dur</i>)
+   <li> <code>Rest(<i>note</i>)
+   <li> <code>Rest(<i>chord</i>)
+   <li> <code>Rest(<i>skip</i>)
 </ul>
 <p> Where <code><i>dur</i></code> is an Abjad <a href="../duration_token/index.html">duration token</a>.
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> rest = Rest((1, 4))
 </pre>
 <image src="images/2.png">
@@ -573,12 +573,12 @@ abjad> rest = Rest((1, 4))
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> rest = Rest((1, 4))
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> rest
 Rest(4)
 </pre>
@@ -613,12 +613,12 @@ Rest(4)
 </div> <!-- example header -->
 <div class="example-body">
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> rest = Rest((1, 4))
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> str(rest)
 'r4'
 </pre>
