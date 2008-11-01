@@ -16,144 +16,186 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
-<title>The Abjad <code>_Accidental</code> class</title>
+<title> The Abjad _Accidental class </title>
 
-<h1>The Abjad <code>_Accidental</code> class</h1>
+<h1> The Abjad <code>_Accidental</code> class </h1>
 
-<p>The Abjad <code>_Accidental</code> class models accidentals.
+<p> The Abjad <code>_Accidental</code> class models accidentals.
 
-<h2 class="page-section">
-Public interface
-</h2>
 
-<div class="interface-block">
+
+<h2 class="page-section"> Public interface</h2>
+
+<div class="interface-block-header">
 <p class="interface-block-header"> Attributes
-   <p class="interface-attribute"> adjustment
-   <p class="interface-attribute"> string
-</div>
-
-<div class="interface-block">
+<p class="interface-attribute"><a href="#adjustment" class="interface-attribute">adjustment</a>
+<p class="interface-attribute"><a href="#string" class="interface-attribute">string</a>
+</div class="interface-block-header">
+<div class="interface-block-header">
 <p class="interface-block-header"> Dictionaries
-   <p class="interface-attribute"> accidentalStringToAdjustment[ ]
-   <p class="interface-attribute"> adjustmentToAccidentalString[ ]
-</div>
-
-<div class="interface-block">
+<p class="interface-attribute"><a href="#accidentalStringToAdjustment[ ]" class="interface-attribute">accidentalStringToAdjustment[ ]</a>
+<p class="interface-attribute"><a href="#adjustmentToAccidentalString[ ]" class="interface-attribute">adjustmentToAccidentalString[ ]</a>
+</div class="interface-block-header">
+<div class="interface-block-header">
 <p class="interface-block-header"> Methods
-   <p class="interface-attribute"> hasNone( )
-</div>
-
-<div class="interface-block">
+<p class="interface-attribute"><a href="#hasNone( )" class="interface-attribute">hasNone( )</a>
+</div class="interface-block-header">
+<div class="interface-block-header">
 <p class="interface-block-header"> Overloads
-   <p class="interface-attribute"> __eq__
-</div>
+<p class="interface-attribute"><a href="#__eq__" class="interface-attribute">__eq__</a>
+</div class="interface-block-header">
 
-<h2 class="page-section">
-Attribute examples
-</h2>
+
+
+<h2 class="page-section"> Attributes</h2>
+
+
 
 <div class="example">
-<p class="example-header"> adjustment
+<div class="example-header">
+<p class="example-header"><a name="adjustment" class="example-header">adjustment</a>
+   <p>Read-only attribute defined here.
+   <p>Returns number of semitones adjustment carried by <code>self</code>.
+</div class="example-header">
+<div class="example-body">
 <pre class="abjad">
 abjad> note = Note(13, (1, 4))
-abjad> measure = Measure((1, 4), [note])
-abjad> measure.meter.stencil = False
-abjad> show(measure)
 </pre>
-<image src="images/1.png">
 <pre class="abjad">
 abjad> note.pitch.accidental.adjustment
 1
 </pre>
-</div> <!-- example -->
+<image src="images/1.png">
+</div class="example-body">
+</div class="example">
+
 
 
 <div class="example">
-<p class="example-header"> string
+<div class="example-header">
+<p class="example-header"><a name="string" class="example-header">string</a>
+   <p> Read-only attribute defined here.
+   <p> Returns string representation of <code>self</code>.
+</div class="example-header">
+<div class="example-body">
 <pre class="abjad">
 abjad> note = Note(13, (1, 4))
-abjad> measure = Measure((1, 4), [note])
-abjad> measure.meter.stencil = False
-abjad> show(measure)
 </pre>
-<image src="images/2.png">
 <pre class="abjad">
 abjad> note.pitch.accidental.string
 's'
 </pre>
-</div>
+<image src="images/2.png">
+</div class="example-body">
+</div class="example">
 
-<h2 class="page-section">
-Dictionary examples
-</h2>
+
+
+<h2 class="page-section"> Dictionaries</h2>
+
+
 
 <div class="example">
-<p class="example-header"> accidentalStringToAdjustment
+<div class="example-header">
+<p class="example-header"><a name="accidentalStringToAdjustment[ ]" class="example-header">accidentalStringToAdjustment[ ]</a>
+   <p> Read-only attribute defined here.
+   <p> Returns numbers of semitones equal to accidental string.
+   <p> Accepts accidental string.
+</div class="example-header">
+<div class="example-body">
 <pre class="abjad">
 abjad> note = Note(13, (1, 4))
+</pre>
+<pre class="abjad">
 abjad> note.pitch.accidental.accidentalStringToAdjustment['tqs']
 1.5
 </pre>
-</div>
+</div class="example-body">
+</div class="example">
+
+
 
 <div class="example">
-<p class="example-header"> adjustmentToAccidentalString
+<div class="example-header">
+<p class="example-header"><a name="adjustmentToAccidentalString[ ]" class="example-header">adjustmentToAccidentalString[ ]</a>
+   <p> Read-only attribute defined here.
+   <p> Returns accidental string corresponding to numeric input adjustment.
+   <p> Accepts numeric adjustment.
+</div class="example-header">
+<div class="example-body">
 <pre class="abjad">
 abjad> note = Note(13, (1, 4))
+</pre>
+<pre class="abjad">
 abjad> note.pitch.accidental.adjustmentToAccidentalString[-1]
 'f'
 </pre>
-</div>
+</div class="example-body">
+</div class="example">
 
-<h2 class="page-section">
-Method examples
-</h2>
+
+
+<h2 class="page-section"> Methods</h2>
+
+
 
 <div class="example">
-<p class="example-header"> hasNone( )
+<div class="example-header">
+<p class="example-header"><a name="hasNone( )" class="example-header">hasNone( )</a>
+   <p> Read-only attribute defined here.
+   <p> Returns <code>True</code> when parent note carries no accidental.
+</div class="example-header">
+<div class="example-body">
 <pre class="abjad">
 abjad> note = Note(13, (1, 4))
-abjad> measure = Measure((1, 4), [note])
-abjad> measure.meter.stencil = False
-abjad> show(measure)
 </pre>
-<image src="images/3.png">
 <pre class="abjad">
 abjad> note.pitch.accidental.hasNone( )
 False
 </pre>
-</div>
+<image src="images/3.png">
+</div class="example-body">
+</div class="example">
 
-<h2 class="page-section">
-Overload examples
-</h2>
+
+
+<h2 class="page-section"> Overloads</h2>
+
+
 
 <div class="example">
-<p class="example-header"> __eq__
+<div class="example-header">
+<p class="example-header"><a name="__eq__" class="example-header">__eq__</a>
+   <p> Read-only attribute defined here.
+   <p> Returns <code>True</code> when <code>self</code> equals <code>rhs</code>, otherwise <code>False</code>.
+</div class="example-header">
+<div class="example-body">
 <pre class="abjad">
 abjad> note = Note(13, (1, 4))
-abjad> measure = Measure((1, 4), [note])
-abjad> measure.meter.stencil = False
-abjad> show(measure)
 </pre>
-<image src="images/4.png">
 <pre class="abjad">
 abjad> note.pitch.accidental == 's'
 True
 </pre>
-</div>
+<image src="images/4.png">
+</div class="example-body">
+</div class="example">
 
-<h2 class="page-section">Comments</h2>
 
-<p class="comment">LilyPond implements several different accidental handling methods.
+
+<h2 class="page-section"> Comments</h2>
+
+<p class="comment"> LilyPond implements several different accidental handling methods.
 Abjad outputs LilyPond input with no special indications for accidental handling.
 Nontonal music may prefer to use the LilyPond <code>'forget</code> option for handling accidentals.
 
-<p class="comment">Do we have an Abjad-native way of setting <code>'forget</code>?
+<p class="comment"> Do we have an Abjad-native way of setting <code>'forget</code>?
 
-<h2 class="page-section">To do</h2>
 
-<p class="to-do">Reimplement Java-style <code>hasNone( )</code> as read-only <code>none</code> attribute.
+
+<h2 class="page-section"> To do</h2>
+
+<p class="to-do"> Reimplement Java-style <code>hasNone( )</code> as read-only <code>none</code> attribute.
 
 
 <p class="footer">

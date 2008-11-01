@@ -1,135 +1,192 @@
-<title>The Abjad <code>_Accidental</code> class</title>
+<title> The Abjad _Accidental class </title>
 
-<h1>The Abjad <code>_Accidental</code> class</h1>
+<h1> The Abjad <code>_Accidental</code> class </h1>
 
-<p>The Abjad <code>_Accidental</code> class models accidentals.
-
-<h2 class="page-section">
-Public interface
-</h2>
-
-<div class="interface-block">
-<p class="interface-block-header"> Attributes
-   <p class="interface-attribute"> adjustment
-   <p class="interface-attribute"> string
-</div>
-
-<div class="interface-block">
-<p class="interface-block-header"> Dictionaries
-   <p class="interface-attribute"> accidentalStringToAdjustment[ ]
-   <p class="interface-attribute"> adjustmentToAccidentalString[ ]
-</div>
-
-<div class="interface-block">
-<p class="interface-block-header"> Methods
-   <p class="interface-attribute"> hasNone( )
-</div>
-
-<div class="interface-block">
-<p class="interface-block-header"> Overloads
-   <p class="interface-attribute"> __eq__
-</div>
-
-<h2 class="page-section">
-Attribute examples
-</h2>
-
-<div class="example">
-<p class="example-header"> adjustment
-<abjad>
-   abjad> note = Note(13, (1, 4))
-   abjad> measure = Measure((1, 4), [note])
-   abjad> measure.meter.stencil = False
-   abjad> show(measure)
-</abjad>
-<abjad>
-   abjad> note.pitch.accidental.adjustment
-   1
-</abjad>
-</div> <!-- example -->
+<p> The Abjad <code>_Accidental</code> class models accidentals.
 
 
-<div class="example">
-<p class="example-header"> string
-<abjad>
-   abjad> note = Note(13, (1, 4))
-   abjad> measure = Measure((1, 4), [note])
-   abjad> measure.meter.stencil = False
-   abjad> show(measure)
-</abjad>
-<abjad>
-   abjad> note.pitch.accidental.string
-   's'
-</abjad>
-</div>
 
-<h2 class="page-section">
-Dictionary examples
-</h2>
+<section> Public interface
 
-<div class="example">
-<p class="example-header"> accidentalStringToAdjustment
-</abjad>
-<abjad>
-   abjad> note = Note(13, (1, 4))
-   abjad> note.pitch.accidental.accidentalStringToAdjustment['tqs']
-   1.5
-</abjad>
-</div>
+<interface-block>
+   <interface-block-header> Attributes
+   <local> adjustment
+   <local> string
+</interface-block>
+<interface-block>
+   <interface-block-header> Dictionaries
+   <local> accidentalStringToAdjustment[ ]
+   <local> adjustmentToAccidentalString[ ]
+</interface-block>
+<interface-block>
+   <interface-block-header> Methods
+   <local> hasNone( )
+</interface-block>
+<interface-block>
+   <interface-block-header> Overloads
+   <local> __eq__
+</interface-block>
 
-<div class="example">
-<p class="example-header"> adjustmentToAccidentalString
-<abjad>
-   abjad> note = Note(13, (1, 4))
-   abjad> note.pitch.accidental.adjustmentToAccidentalString[-1]
-   'f'
-</abjad>
-</div>
 
-<h2 class="page-section">
-Method examples
-</h2>
 
-<div class="example">
-<p class="example-header"> hasNone( )
-<abjad>
-   abjad> note = Note(13, (1, 4))
-   abjad> measure = Measure((1, 4), [note])
-   abjad> measure.meter.stencil = False
-   abjad> show(measure)
-</abjad>
-<abjad>
-   abjad> note.pitch.accidental.hasNone( )
-   False
-</abjad>
-</div>
+<section> Attributes
 
-<h2 class="page-section">
-Overload examples
-</h2>
 
-<div class="example">
-<p class="example-header"> __eq__
-<abjad>
-   abjad> note = Note(13, (1, 4))
-   abjad> measure = Measure((1, 4), [note])
-   abjad> measure.meter.stencil = False
-   abjad> show(measure)
-</abjad>
-<abjad>
-   abjad> note.pitch.accidental == 's'
-   True
-</abjad>
-</div>
 
-<h2 class="page-section">Comments</h2>
+<example>
+<example-header>
+   <local-header> adjustment
+   <p>Read-only attribute defined here.
+   <p>Returns number of semitones adjustment carried by <code>self</code>.
+</example-header>
+<example-body>
+   <abjad>
+      abjad> note = Note(13, (1, 4))
+   </abjad>
+   <abjad>
+      hide> note = Note(13, (1, 4))
+      abjad> note.pitch.accidental.adjustment
+      1
+      hide> measure = Measure(note.duration.pair, [note])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</example-body>
+</example>
 
-<p class="comment">LilyPond implements several different accidental handling methods.
+
+
+<example>
+<example-header>
+   <local-header> string
+   <p> Read-only attribute defined here.
+   <p> Returns string representation of <code>self</code>.
+</example-header>
+<example-body>
+   <abjad>
+      abjad> note = Note(13, (1, 4))
+   </abjad>
+   <abjad>
+      hide> note = Note(13, (1, 4))
+      abjad> note.pitch.accidental.string
+      's'
+      hide> measure = Measure((1, 4), [note])
+      hide> measure.meter.stencil = False
+      hide> show(measure)
+   </abjad>
+</example-body>
+</example>
+
+
+
+<section> Dictionaries
+
+
+
+<example>
+<example-header>
+   <local-header> accidentalStringToAdjustment[ ]
+   <p> Read-only attribute defined here.
+   <p> Returns numbers of semitones equal to accidental string.
+   <p> Accepts accidental string.
+</example-header>
+<example-body>
+   <abjad>
+      abjad> note = Note(13, (1, 4))
+   </abjad>
+   <abjad>
+      abjad> note.pitch.accidental.accidentalStringToAdjustment['tqs']
+      1.5
+   </abjad>
+</example-body>
+</example>
+
+
+
+<example>
+<example-header>
+   <local-header> adjustmentToAccidentalString[ ]
+   <p> Read-only attribute defined here.
+   <p> Returns accidental string corresponding to numeric input adjustment.
+   <p> Accepts numeric adjustment.
+</example-header>
+<example-body>
+   <abjad>
+      abjad> note = Note(13, (1, 4))
+   </abjad>
+   <abjad>
+      abjad> note.pitch.accidental.adjustmentToAccidentalString[-1]
+      'f'
+   </abjad>
+</example-body>
+</example>
+
+
+
+<section> Methods
+
+
+
+<example>
+<example-header>
+   <local-header> hasNone( )
+   <p> Read-only attribute defined here.
+   <p> Returns <code>True</code> when parent note carries no accidental.
+</example-header>
+<example-body>
+   <abjad>
+      abjad> note = Note(13, (1, 4))
+   </abjad>
+   <abjad>
+      hide> note = Note(13, (1, 4))
+      abjad> note.pitch.accidental.hasNone( )
+      False
+      hide> measure = Measure((1, 4), [note])
+      hide> measure.meter.stencil = False
+      hide> show(measure)
+   </abjad>
+</example-body>
+</example>
+
+
+
+<section> Overloads
+
+
+
+<example>
+<example-header>
+   <local-header> __eq__
+   <p> Read-only attribute defined here.
+   <p> Returns <code>True</code> when <code>self</code> equals <code>rhs</code>, otherwise <code>False</code>.
+</example-header>
+<example-body>
+   <abjad>
+      abjad> note = Note(13, (1, 4))
+   </abjad>
+   <abjad>
+      hide> note = Note(13, (1, 4))
+      abjad> note.pitch.accidental == 's'
+      True
+      hide> measure = Measure((1, 4), [note])
+      hide> measure.meter.stencil = False
+      hide> show(measure)
+   </abjad>
+</example-body>
+</example>
+
+
+
+<section> Comments
+
+<comment> LilyPond implements several different accidental handling methods.
 Abjad outputs LilyPond input with no special indications for accidental handling.
 Nontonal music may prefer to use the LilyPond <code>'forget</code> option for handling accidentals.
 
-<p class="comment">Do we have an Abjad-native way of setting <code>'forget</code>?
+<comment> Do we have an Abjad-native way of setting <code>'forget</code>?
 
-<h2 class="page-section">To do</h2>
 
-<p class="to-do">Reimplement Java-style <code>hasNone( )</code> as read-only <code>none</code> attribute.
+
+<section> To do
+
+<to-do> Reimplement Java-style <code>hasNone( )</code> as read-only <code>none</code> attribute.
