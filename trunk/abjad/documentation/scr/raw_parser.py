@@ -10,8 +10,13 @@ class FileParser(object):
       self.filename = filename.strip('.raw')
       self.input = open(filename, 'r').readlines( )
       self.output =  [ ]
-      #self.tags = [PRE( ), LILY( )]
-      self.tags = [LILY( ), ABJAD( ), COMMENT( ), TODO( )]
+      self.tags = [SECTION( ), 
+         INTERFACE_BLOCK( ), INTERFACE_BLOCK_HEADER( ),
+         INHERITED( ), LOCAL( ), 
+         EXAMPLE( ), EXAMPLE_HEADER( ), EXAMPLE_BODY( ),
+         INHERITED_HEADER( ), LOCAL_HEADER( ),
+         COMMENT( ), TODO( ),
+         LILY( ), ABJAD( )]
 
    def writeOutput(self):
       if self.output:
@@ -183,6 +188,139 @@ class TODO(_TagParser):
          elif '</to-do>' in line:
             self.output.append(
                line.replace('</to-do>', '</p>'))
+         else:
+            self.output.append(line)
+
+
+class SECTION(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<section>' in line:
+            self.output.append(line.replace(
+               '<section>', '<h2 class="page-section">').strip('\n')
+               + '</h2>\n')
+         else:
+            self.output.append(line)
+
+
+class INTERFACE_BLOCK(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<interface-block>' in line:
+            output = '<div class="interface-block-header">\n'
+            self.output.append(output)
+         elif '</interface-block>' in line:
+            output = '</div class="interface-block-header">\n'
+            self.output.append(output)
+         else:
+            self.output.append(line)
+
+
+class INTERFACE_BLOCK_HEADER(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<interface-block-header>' in line:
+            content = line.replace('<interface-block-header>', '').strip( )
+            output = '<p class="interface-block-header">'
+            output += ' %s\n' % content
+            self.output.append(output)
+         else:
+            self.output.append(line)
+
+
+class INHERITED(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<inherited>' in line:
+            content = line.replace('<inherited>', '').strip( )
+            output = '<p class="interface-attribute-inherited">'
+            output += '<a href="#%s" class="interface-attribute-inherited">'
+            output %= content
+            output += '%s</a>\n' % content
+            self.output.append(output)
+         else:
+            self.output.append(line)
+
+
+class LOCAL(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<local>' in line:
+            content = line.replace('<local>', '').strip( )
+            output = '<p class="interface-attribute">'
+            output += '<a href="#%s" class="interface-attribute">'
+            output %= content
+            output += '%s</a>\n' % content
+            self.output.append(output)
+         else:
+            self.output.append(line)
+
+
+class EXAMPLE(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<example>' in line:
+            self.output.append('<div class="example">\n')
+         elif '</example>' in line:
+            self.output.append('</div class="example">\n')
+         else:
+            self.output.append(line)
+
+
+class EXAMPLE_HEADER(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<example-header>' in line:
+            self.output.append('<div class="example-header">\n')
+         elif '</example-header>' in line:
+            self.output.append('</div class="example-header">\n')
+         else:
+            self.output.append(line)
+
+
+class EXAMPLE_BODY(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<example-body>' in line:
+            self.output.append('<div class="example-body">\n')
+         elif '</example-body>' in line:
+            self.output.append('</div class="example-body">\n')
+         else:
+            self.output.append(line)
+
+
+class INHERITED_HEADER(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<inherited-header>' in line:
+            content = line.replace('<inherited-header>', '').strip( )
+            output = '<p class="example-header-inherited">'
+            output += '<a name="%s" class="example-header-inherited">' % content
+            output += '%s</a>\n' % content
+            self.output.append(output)
+         else:
+            self.output.append(line)
+
+
+class LOCAL_HEADER(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<local-header>' in line:
+            content = line.replace('<local-header>', '').strip( )
+            output = '<p class="example-header">'
+            output += '<a name="%s" class="example-header">' % content
+            output += '%s</a>\n' % content
+            self.output.append(output)
          else:
             self.output.append(line)
 

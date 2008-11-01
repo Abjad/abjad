@@ -65,6 +65,10 @@ DIV.example-code {
    margin-left: 40px;
 }
 
+DIV.example DIV.example-body {
+   margin-left: 40px;
+}
+
 DIV.example-code IMG {
    margin-left: 20px;
 }
