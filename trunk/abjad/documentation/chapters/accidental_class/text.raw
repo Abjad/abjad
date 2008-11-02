@@ -4,42 +4,32 @@
 
 <p> The Abjad <code>_Accidental</code> class models accidentals.
 
-
-
-<section> Public interface
-
-<interface-block>
-   <interface-block-header> Attributes
+<interface>
+<attributes>
    <local> adjustment
    <local> string
-</interface-block>
-<interface-block>
-   <interface-block-header> Dictionaries
+</attributes>
+<dictionaries>
    <local> accidentalStringToAdjustment[ ]
    <local> adjustmentToAccidentalString[ ]
-</interface-block>
-<interface-block>
-   <interface-block-header> Methods
+</dictionaries>
+<methods>
    <local> hasNone( )
-</interface-block>
-<interface-block>
-   <interface-block-header> Overloads
+</methods>
+<overloads>
    <local> __eq__
-</interface-block>
-
-
+</overloads>
+</interface>
 
 <section> Attributes
 
-
-
-<example>
-<example-header>
-   <local-header> adjustment
-   <p>Read-only attribute defined here.
-   <p>Returns number of semitones adjustment carried by <code>self</code>.
-</example-header>
-<example-body>
+<definition>
+<header>
+   <local> adjustment
+   <p> Read-only attribute defined here.
+   <p> Returns number of semitones adjustment carried by <code>self</code>.
+</header>
+<body>
    <abjad>
       abjad> note = Note(13, (1, 4))
    </abjad>
@@ -51,18 +41,16 @@
       hide> measure.meter.transparent = True
       hide> show(measure)
    </abjad>
-</example-body>
-</example>
+</body>
+</definition>
 
-
-
-<example>
-<example-header>
-   <local-header> string
+<definition>
+<header>
+   <local> string
    <p> Read-only attribute defined here.
    <p> Returns string representation of <code>self</code>.
-</example-header>
-<example-body>
+</header>
+<body>
    <abjad>
       abjad> note = Note(13, (1, 4))
    </abjad>
@@ -74,23 +62,19 @@
       hide> measure.meter.stencil = False
       hide> show(measure)
    </abjad>
-</example-body>
-</example>
-
-
+</body>
+</definition>
 
 <section> Dictionaries
 
-
-
-<example>
-<example-header>
-   <local-header> accidentalStringToAdjustment[ ]
+<definition>
+<header>
+   <local> accidentalStringToAdjustment[ ]
    <p> Read-only attribute defined here.
    <p> Returns numbers of semitones equal to accidental string.
    <p> Accepts accidental string.
-</example-header>
-<example-body>
+</header>
+<body>
    <abjad>
       abjad> note = Note(13, (1, 4))
    </abjad>
@@ -98,19 +82,17 @@
       abjad> note.pitch.accidental.accidentalStringToAdjustment['tqs']
       1.5
    </abjad>
-</example-body>
-</example>
+</body>
+</definition>
 
-
-
-<example>
-<example-header>
-   <local-header> adjustmentToAccidentalString[ ]
+<definition>
+<header>
+   <local> adjustmentToAccidentalString[ ]
    <p> Read-only attribute defined here.
    <p> Returns accidental string corresponding to numeric input adjustment.
    <p> Accepts numeric adjustment.
-</example-header>
-<example-body>
+</header>
+<body>
    <abjad>
       abjad> note = Note(13, (1, 4))
    </abjad>
@@ -118,22 +100,18 @@
       abjad> note.pitch.accidental.adjustmentToAccidentalString[-1]
       'f'
    </abjad>
-</example-body>
-</example>
-
-
+</body>
+</definition>
 
 <section> Methods
 
-
-
-<example>
-<example-header>
-   <local-header> hasNone( )
+<definition>
+<header>
+   <local> hasNone( )
    <p> Read-only attribute defined here.
    <p> Returns <code>True</code> when parent note carries no accidental.
-</example-header>
-<example-body>
+</header>
+<body>
    <abjad>
       abjad> note = Note(13, (1, 4))
    </abjad>
@@ -145,22 +123,18 @@
       hide> measure.meter.stencil = False
       hide> show(measure)
    </abjad>
-</example-body>
-</example>
-
-
+</body>
+</definition>
 
 <section> Overloads
 
-
-
-<example>
-<example-header>
-   <local-header> __eq__
+<definition>
+<header>
+   <local> __eq__
    <p> Read-only attribute defined here.
    <p> Returns <code>True</code> when <code>self</code> equals <code>rhs</code>, otherwise <code>False</code>.
-</example-header>
-<example-body>
+</header>
+<body>
    <abjad>
       abjad> note = Note(13, (1, 4))
    </abjad>
@@ -172,21 +146,16 @@
       hide> measure.meter.stencil = False
       hide> show(measure)
    </abjad>
-</example-body>
-</example>
+</body>
+</definition>
 
-
-
-<section> Comments
-
-<comment> LilyPond implements several different accidental handling methods.
+<comments>
+<p> LilyPond implements several different accidental handling methods.
 Abjad outputs LilyPond input with no special indications for accidental handling.
 Nontonal music may prefer to use the LilyPond <code>'forget</code> option for handling accidentals.
+<p> Do we have an Abjad-native way of setting <code>'forget</code>?
+</comments>
 
-<comment> Do we have an Abjad-native way of setting <code>'forget</code>?
-
-
-
-<section> To do
-
-<to-do> Reimplement Java-style <code>hasNone( )</code> as read-only <code>none</code> attribute.
+<to-do>
+<p> Reimplement Java-style <code>hasNone( )</code> as read-only <code>none</code> attribute.
+</to-do>
