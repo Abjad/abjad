@@ -6,6 +6,7 @@
    padding: 4px;
 }
 
+/*
 UL.horizontal-attribute-list {
    margin: 0px;
    padding: 0px;
@@ -28,6 +29,7 @@ DIV.example-header {
    margin-top: 80px;
    margin-left: 0px;
 }
+*/
 
 DIV.example-summary {
    margin-left: 0px;
@@ -48,8 +50,8 @@ TD.example-summary-value {
    padding-left: 10px;
 }
 
+/*
 DIV.example-body {
-   /*margin-left: 40px;*/
    margin-top: 20px;
 }
 
@@ -81,10 +83,8 @@ DIV.example-footer {
 DIV.example P.example-header, DIV.example P.example-header-inherited {
 	color: #a22222;
 	font-family: "Courier New", "Courier", serif;
-   /*background: #dcdcdc;*/
 	font-weight: bold;
    font-size:16px;
-   /*border-bottom: 1px solid grey;*/
 }
 
 DIV.example P.example-header-inherited {
@@ -96,10 +96,6 @@ DIV.attribute-group {
    margin-top: 2px;
 }
    
-DIV.interface-block {
-	/*border: 1px dotted #aaaaaa;*/
-}
-
 DIV P.interface-block-header {
    margin-left: 0px;
    margin-top: 20px;
@@ -108,7 +104,6 @@ DIV P.interface-block-header {
 DIV P.interface-attribute, DIV P.interface-attribute-inherited {
 	color: #a22222;
 	font-family: "Courier New", "Courier", serif;
-   /*border: 1px dotted;*/
    padding: 0px;
    margin: 0px;
    margin-left: 30px;
@@ -131,9 +126,9 @@ A.example-header-inherited:hover, A.example-header:hover{
 }
 
 DIV P.interface-attribute-inherited {
-   /*color: #f77777;*/
    color: gray;
 }
+*/
 
 /* Where did these values come from? TB */
 #content{
@@ -254,17 +249,6 @@ DL.interface-definition UL LI {
 	font-family: "Courier New", "Courier", serif;
 }
 
-/*
-IMG {
-	margin-left: 25px;
-   margin-bottom: 40px;
-}
-
-IMG.inline {
-   margin-bottom: 10px;
-}
-*/
-
 PRE, DIV.abjad {
 	color: #a02222;
 	padding-top: 10px;
@@ -286,6 +270,7 @@ PRE.lilypond {
 
 }
 
+/*
 .comment, .to-do {
    margin-bottom: 20px;
 }
@@ -324,23 +309,80 @@ DL.interface-definition {
    text-align: left;
 }
 
-/*
-DL.interface-definition DT {
-	font-family: "Courier New", "Courier", serif;
-}
-*/
-
 DL.interface-definition UL {
    padding-left: 0px;
    list-style-type: none;
 }
+*/
 
 DL.interface-definition UL LI.inherited {
    color: grey;
-	//background-color: grey;
 }
 
 Q {
 	font-family: "Courier New", "Courier", serif;
    font-style: italic;
+}
+
+
+
+/*************************************************************/
+/* NEW, CLEAN DEFINITIONS TO EVENTUALLY REPLACE OTHERS ABOVE */
+/*************************************************************/
+
+/*** INTERFACE STYLING ***/
+
+DIV.interface DIV.block {
+   margin-bottom: 10px;
+}
+
+DIV.interface DIV.block DIV.name {
+   margin-top: 3px;
+   margin-bottom: 3px;
+}
+
+DIV.interface DIV.block DIV.attribute {
+	font-family: "Courier New", "Courier", serif;
+   padding: 0px;
+   margin: 0px;
+   margin-left: 30px;
+   margin-bottom: 3px;
+   margin-top: 3px;
+}
+
+DIV.interface DIV.block DIV.attribute DIV.local A {
+	color: #a22222;
+}
+
+DIV.interface DIV.block DIV.attribute DIV.inherited A {
+	color: grey;
+}
+
+/*** DEFINITION STYLING ***/
+
+DIV.definition {
+   margin-bottom: 60px;
+}
+
+DIV.definition DIV.header DIV.attribute A {
+	font-family: "Courier New", "Courier", serif;
+	font-weight: bold;
+   font-size: 16px;
+}
+
+DIV.definition DIV.header DIV.attribute A:hover {
+   text-decoration: none;
+}
+
+DIV.definition DIV.header DIV.attribute DIV.local A {
+   color: #a22222;
+}
+
+DIV.definition DIV.header DIV.attribute DIV.inherited A {
+   color: grey;
+}
+
+DIV.definition DIV.body {
+   margin-left: 40px;
+   margin-bottom: 60px;
 }
