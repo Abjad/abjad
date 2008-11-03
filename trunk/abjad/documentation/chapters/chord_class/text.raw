@@ -2,7 +2,11 @@
 
 <h1> The Abjad <code>Chord</code> class </h1>
 
+<introduction>
+
 <p> The Abjad <code>Chord</code> class models chords.
+
+</introduction>
 
 <interface>
 <attributes>
