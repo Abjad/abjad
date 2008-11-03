@@ -24,7 +24,7 @@
 <header> Abjad fundamentals
 <body>
    <p> <a href="chapters/lcs/index.html">The Leaf Container Spanner (LCS) model</a>
-   <p> <a href="chapters/leaf_basics/index.html">Working with notes, rests, chords</a>
+   <p> <a href="chapters/note_basics/index.html">Working with notes</a>
 </body>
 </toc-section>
 

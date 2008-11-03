@@ -31,6 +31,16 @@ BODY {
    /*width: 90%;*/
 }
 
+/*** PAGE SUBSECTION STYLING ***/
+
+DIV.subsection {
+   margin-bottom: 60px;
+}
+
+DIV.subsection PRE, DIV.subsection IMG {
+   margin-left: 40px;
+}
+
 /*** TOC STYLING ***/
 
 DIV.toc-section {

@@ -10,7 +10,7 @@ class FileParser(object):
       self.filename = filename.strip('.raw')
       self.input = open(filename, 'r').readlines( )
       self.output =  [ ]
-      self.tags = [SECTION( ), INTERFACE( ), DEFINITION( ),
+      self.tags = [SECTION( ), SUBSECTION( ), INTERFACE( ), DEFINITION( ),
          COMMENTS( ), TO_DO( ), CLASS_NAMES( ), INTRODUCTION( ),
          TOC_SECTION( ),
          LILY( ), ABJAD( )]
@@ -50,6 +50,21 @@ class SECTION(_TagParser):
             self.output.append(line.replace(
                '<section>', '<h2 class="page-section">').strip('\n')
                + ' </h2>\n')
+         else:
+            self.output.append(line)
+
+
+class SUBSECTION(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<subsection>' in line:
+            name = line.replace('<subsection>', '')
+            name = name.strip( )
+            self.output.append('<div class="subsection">\n')
+            self.output.append('<h2> %s </h2>' % name.capitalize( )) 
+         elif '</subsection>' in line:
+            self.output.append('</div class="subsection">\n')
          else:
             self.output.append(line)
 
@@ -363,7 +378,8 @@ class ABJAD(_TagParser):
          if self.found_code_request:
             self.output.append('</pre>\n')
          if self.found_image_request:
-            image = '<image src="images/%s.png">\n'
+            #image = '<image src="images/%s.png">\n'
+            image = '<img src="images/%s.png">\n'
             self.output.append(image % self.cur_image_number)
             self.cur_image_number += 1
          if not self.found_code_request:
@@ -471,7 +487,9 @@ class CLASS_NAMES(_TagParser):
       '<_Leaf>' : 'leaf_class',
       '<_LeafDurationInterface>' : 'leaf_duration_interface',
       '<_LeafSpannerInterface>' : 'leaf_spanner_interface',
+      '<Note>' : 'note_class',
       '<_Pitch>' : 'pitch_class',
+      '<Rest>' : 'rest_class',
       '<_Staff>' : 'staff_class',
       '<_StemInterface>' : 'stem_interface',
       '<_TempoInterface>' : 'tempo_interface',
