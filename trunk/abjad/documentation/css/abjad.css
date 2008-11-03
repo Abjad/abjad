@@ -313,7 +313,6 @@ DL.interface-definition UL {
    padding-left: 0px;
    list-style-type: none;
 }
-*/
 
 DL.interface-definition UL LI.inherited {
    color: grey;
@@ -323,6 +322,7 @@ Q {
 	font-family: "Courier New", "Courier", serif;
    font-style: italic;
 }
+*/
 
 
 
@@ -384,5 +384,4 @@ DIV.definition DIV.header DIV.attribute DIV.inherited A {
 
 DIV.definition DIV.body {
    margin-left: 40px;
-   margin-bottom: 60px;
 }

@@ -11,7 +11,7 @@ class FileParser(object):
       self.input = open(filename, 'r').readlines( )
       self.output =  [ ]
       self.tags = [SECTION( ), INTERFACE( ), DEFINITION( ),
-         COMMENTS( ), TO_DO( ),
+         COMMENTS( ), TO_DO( ), CLASS_NAMES( ),
          LILY( ), ABJAD( )]
 
    def writeOutput(self):
@@ -239,8 +239,8 @@ class DEFINITION(_TagParser):
          output += '<a name="%s"> ' % attribute
          output += '%s ' % attribute
          output += '</a> '
-         output += '</div class="local> '
-         output += '</div class="attribute>\n'
+         output += '</div class="local"> '
+         output += '</div class="attribute">\n'
          self.output.append(output)
       else:
          self.output.append(line)
@@ -254,8 +254,8 @@ class DEFINITION(_TagParser):
          output += '<a name="%s"> ' % attribute
          output += '%s ' % attribute
          output += '</a> '
-         output += '</div class="inherited> '
-         output += '</div class="attribute>\n'
+         output += '</div class="inherited"> '
+         output += '</div class="attribute">\n'
          self.output.append(output)
       else:
          self.output.append(line)
@@ -405,6 +405,42 @@ class TO_DO(_TagParser):
             self.output.append('</div class="to-do">\n')
          else:
             self.output.append(line)
+
+
+class CLASS_NAMES(_TagParser):
+
+   change = {
+      '<_ArticulationsInterface>' : 'articulations_interface',
+      '<_BarlineInterface>' : 'barline_interface',
+      '<_BeamInterface>' : 'beam_interface',
+      '<_Comments>' : 'comments_class',
+      '<_Component>' : 'component_class',
+      '<_DotsInterface>' : 'dots_interface',
+      '<_DynamicsInterface>' : 'dynamics_interface',
+      '<_GlissandoInterface>' : 'glissando_interface',
+      '<_GraceInterface>' : 'grace_interface',
+      '<_HarmonicInterface>' : 'harmonic_interface',
+      '<_Leaf>' : 'leaf_class',
+      '<_LeafDurationInterface>' : 'leaf_duration_interface',
+      '<_LeafSpannerInterface>' : 'leaf_spanner_interface',
+      '<_Staff>' : 'staff_class',
+      '<_StemInterface>' : 'stem_interface',
+      '<_TempoInterface>' : 'tempo_interface',
+      '<_TieInterface>' : 'tie_interface',
+      '<_TremoloInterface>' : 'tremolo_interface',
+      '<_TrillInterface>' : 'trill_interface',
+   }
+
+   def parse(self, lines):
+      for line in lines:
+         for key in self.change.keys( ):
+            if key in line:
+               directory_name = self.change[key]
+               class_name = key[1 : -1]
+               target = '<code><a href="../%s/index.html">%s</a></code>'
+               target %= (directory_name, class_name)
+               line = line.replace(key, target)
+         self.output.append(line)
 
 
 #### EXECUTABLE ####
