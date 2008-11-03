@@ -1,0 +1,29 @@
+<title> A quick tour </title>
+
+<h1> A quick tour </h1>
+
+<introduction>
+
+<p> Abjad is a Symbolic Score-Control System (SSCS) designed to give composers complete control over almost all aspects of the musical score.
+Because Abjad incorporates GNU LilyPond, one of the most powerful music engraving packages available, Abjad is Full-Spectrum Typographic (FST).
+Abjad helps composers put symbols on the page and then control the placement and appearance of those symbols.
+Thickness, color, size and shape are all supported.
+Take a look.
+
+</introduction>
+
+<section> One note
+
+<introduction>
+
+It's easy to create a note.
+
+</introduction>
+
+<section> Many notes
+
+<introduction>
+
+It's easy to create many notes.
+
+</introduction>
