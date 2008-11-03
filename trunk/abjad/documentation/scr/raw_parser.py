@@ -471,6 +471,7 @@ class CLASS_NAMES(_TagParser):
       '<_Leaf>' : 'leaf_class',
       '<_LeafDurationInterface>' : 'leaf_duration_interface',
       '<_LeafSpannerInterface>' : 'leaf_spanner_interface',
+      '<_Pitch>' : 'pitch_class',
       '<_Staff>' : 'staff_class',
       '<_StemInterface>' : 'stem_interface',
       '<_TempoInterface>' : 'tempo_interface',
