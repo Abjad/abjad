@@ -1,7 +1,6 @@
 <html>
-<head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-</head>
+
+<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
 
 <body>
 
@@ -41,7 +40,7 @@ The SMF required a time stamp to keep track of when control messages took place.
 <q>The MTrk chunk type is where actual song data is stored. It is simply a stream of MIDI events (and non-MIDI events), preceded by delta-time values.</q>
 </p>
 <p>
-In combination with the MIDI Note message, the addition of duration now allowed one to have a minimal but sufficient <b>machine</b> representation--a machine score--of music requiring only these parameters. Such is the case of most piano music.  
+In combination with the MIDI Note message, the addition of duration now allowed one to have a minimal but sufficient <b>machine</b> representation--a machine score--of music requiring only these parameters: duration, pitch and loudness. Such is the case of most piano music.  
 </p>
 
 <h2>Limitations of MIDI from the point of view of score modeling</h2>
@@ -50,9 +49,9 @@ But, alas, there is much more information in a printed score that can not be pra
 A desire to include some of these concepts in MIDI is evident in the inclusion of some so called <em>meta-events</em>.
 From the SMF specification: <q>< meta-event> specifies non-MIDI information useful to this format or to sequencers...</q>.
 Common <em>meta-events</em> are <em>Time Signature</em> and <em>Key Signature</em>. 
-And then there is all the typographical information that a printed score carries. 
 </p>
 <p>
+And then there is all the typographical information that a printed score carries. 
 How is all this information to be represented in MIDI?
 From the point of view of encoding a traditional printed score, the main problem with MIDI is not the lack musical features or the absence of typographical data, but the assumption that musical durations, pitches and loudnesses can be each fully and efficiently encoded with an integer or a fractional number. In a printed score, this is not the case for any of them. 
 MIDI encodes only <em>magnitudes</em>: time interval magnitudes, pitch interval magnitudes, velocity magnitudes. While these may be sufficient attributes for an automated piano performance, they are not all the attributes of notes in a printed score.
@@ -75,10 +74,10 @@ While equivalent in magnitude, these are not the same durations in notation:
 <h3>Written Note Pitch vs. MIDI note-on</h3>
 
 
-<p class="footer">
-<a href="../../index.html">Contents</a>
-</p>
+<p class="footer"> <a href="../../index.html">Contents</a> </p>
+
 </div>
 
 </body>
+
 </html>

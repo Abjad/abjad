@@ -1,246 +1,247 @@
+<title> The Abjad _NoteHead class </title>
+
 <h1>The Abjad <code>_NoteHead</code> class</h1>
 
-<p>
-The Abjad <code>_NoteHead</code> interface class models noteheads.
-</p>
+<div class="introduction">
 
-<h2 class="page-section">
-Interface
-</h2>
+<p> The Abjad <code>_NoteHead</code> interface class models noteheads.
 
-<div class="interface-block">
-<p class="interface-block-header"> Public attributes </p>
+</div class="introduction">
 
-<p class="interface-attribute"> 
-<a href="#format" class="interface-attribute">format</a>
-<p class="interface-attribute-inherited"> 
-<a href="#first" class="interface-attribute-inherited">first</a>
-<p class="interface-attribute-inherited"> 
-<a href="#last" class="interface-attribute-inherited">last</a>
-<p class="interface-attribute-inherited"> 
-<a href="#only" class="interface-attribute-inherited">only</a>
-<p class="interface-attribute"> 
-<a href="#pitch" class="interface-attribute">pitch</a>
-<p class="interface-attribute-inherited"> 
-<a href="#spanned" class="interface-attribute-inherited">spanned</a>
-<p class="interface-attribute-inherited">
-<a href="#spanner" class="interface-attribute-inherited">spanner</a>
-<p class="interface-attribute-inherited"> 
-<a href="#spanners" class="interface-attribute-inherited">spanners</a>
-<p class="interface-attribute"> 
-<a href="#style" class="interface-attribute">style</a>
-<p class="interface-attribute"> 
-<a href="#stylesSupported" class="interface-attribute">stylesSupported</a>
-</div>
+<h2 class="page-section"> Public interface </h2>
 
-<div class="interface-block">
-<p class="interface-block-header"> Public methods </p>
-<p class="interface-attribute-inherited"> 
-<a href="#clear" class="interface-attribute">clear( )</a>
-<p class="interface-attribute-inherited"> 
-<a href="#unspan" class="interface-attribute-inherited">unspan( )</a>
-</div>
+<div class="interface">
+<div class="block">
+<div class="name"> Attributes </div class="name">
+<div class="attribute"> <div class="local"> <a href="#format"> format </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#first"> first </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#last"> last </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#only"> only </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#pitch"> pitch </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#spanned"> spanned </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#spanner"> spanner </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#spanners"> spanners </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#style"> style </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#stylesSupported"> stylesSupported </a> </div class="local"> </div class="attribute">
+</div class="block">
+<div class="block">
+<div class="name"> Methods </div class="name">
+<div class="attribute"> <div class="inherited"> <a href="#clear( )"> clear( ) </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#unspan( )"> unspan( ) </a> </div class="inherited"> </div class="attribute">
+</div class="block">
+<div class="block">
+<div class="name"> Overloads </div class="name">
+<div class="attribute"> <div class="inherited"> <a href="#__len__"> __len__ </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#__repr__"> __repr__ </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#__setattr__"> __setattr__ </a> </div class="inherited"> </div class="attribute">
+<div class="attribute"> <div class="inherited"> <a href="#__str__"> __str__ </a> </div class="inherited"> </div class="attribute">
+</div class="block">
+</div class="interface">
 
-<div class="interface-block">
-<p class="interface-block-header"> Special methods </p>
-<p class="interface-attribute-inherited"> 
-<a href="#len" class="interface-attribute-inherited">__len__</a>
-</div>
+<h2 class="page-section"> Attributes </h2>
 
-<h2 class="page-section">
-Public Attributes
-</h2>
-
-<!-- ### FORMAT ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="format" class="example-header">format</a>
-<p>Read only attribute defined here.
-<p>Returns LilyPond input string.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="format"> format </a> </div class="local"> </div class="attribute">
+   <p>Read only attribute defined here.
+   <p>Returns LilyPond input string.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> n = Note(1, (1, 4)) 
 abjad> n.notehead.format
 "cs'"
 </pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+</div class="body">
+</div class="definition">
 
 
-<!-- ### FIRST ### -->
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="first"> first </a> </div class="inherited"> </div class="attribute">
+   <p> Read only attribute inherited from <_Interface>.
+   <p> Returns <tt>True</tt> if caller is the first <code>_Leaf</code> in Spanner.
+   <p>See <a href="../core_interface/index.html#first">example</a>.
+</div class="header">
+</div class="definition">
 
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="first" class="example-header-inherited">format</a>
-<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
-<p>Returns <code>True</code> if caller is the first <code>_Leaf</code> in Spanner. 
-<p>See <a href="../core_interface/index.html#first">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="last"> last </a> </div class="inherited"> </div class="attribute">
+   <p> Read only attribute inherited from <_Interface>.
+   <p> Returns <tt>True</tt> if caller is the last <code>_Leaf</code> in Spanner.
+   <p>See <a href="../core_interface/index.html#last">example</a>.
+</div class="header">
+</div class="definition">
 
-
-<!-- ### LAST ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="last" class="example-header-inherited">last</a>
-<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
-<p>Returns <code>True</code> if caller is the last <code>_Leaf</code> in Spanner. 
-<p>See <a href="../core_interface/index.html#last">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
-
-
-<!-- ### ONLY ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="only" class="example-header-inherited">only</a>
-<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
-<p>Returns <code>True</code> if caller is the only <code>_Leaf</code> in Spanner. 
-<p>See <a href="../core_interface/index.html#only">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="only"> only </a> </div class="inherited"> </div class="attribute">
+   <p> Read only attribute inherited from <_Interface>.
+   <p> Returns <tt>True</tt> if caller is the only <code>_Leaf</code> in Spanner.
+   <p>See <a href="../core_interface/index.html#only">example</a>.
+</div class="header">
+</div class="definition">
 
 
-<!-- ### PITCH ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="pitch" class="example-header">pitch</a>
-<p>Read / write attribute defined here.
-<p>Returns Abjad <code>Pitch</code> class.
-<p>Accepts Python <tt>int</tt>, <tt>float</tt>, <tt>long</tt>, <tt>None</tt> or Abjad <code>Pitch</code> class.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="pitch"> pitch </a> </div class="local"> </div class="attribute">
+   <p>Read / write attribute defined here.
+   <p>Returns Abjad <code>Pitch</code> class.
+   <p>Accepts Python <tt>int</tt>, <tt>float</tt>, <tt>long</tt>, <tt>None</tt> 
+      or Abjad <code>Pitch</code> class.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> n = Note(1, (1, 4)) 
 abjad> n.notehead.pitch
 Pitch(cs, 4)
 </pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> n.notehead.pitch = 4
 abjad> n.notehead.pitch
 Pitch(e, 4)
 </pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+</div class="body">
+</div class="definition">
 
 
-<!-- ### SPANNED ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="spanned" class="example-header-inherited">spanned</a>
-<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
-<p>Returns <code>True</code> if client <code>Note</code> is in Spanner. 
-<p>See <a href="../core_interface/index.html#spanned">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="spanned"> spanned </a> </div class="inherited"> </div class="attribute">
+   <p> Read only attribute inherited from <_Interface>.
+   <p> Returns <tt>True</tt> if client <code>Note</code> is in Spanner.
+   <p>See <a href="../core_interface/index.html#spanned">example</a>.
+</div class="header">
+</div class="definition">
 
 
-<!-- ### SPANNER ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="spanner" class="example-header-inherited">spanner</a>
-<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
-<p>Returns first Notehead type Spanner spanning the <code>Note</code> client. 
-<p>See <a href="../core_interface/index.html#spanner">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="spanner"> spanner </a> </div class="inherited"> </div class="attribute">
+   <p> Read only attribute inherited from <_Interface>.
+   <p>Returns first Notehead type Spanner spanning <code>Note</code> client. 
+   <p>See <a href="../core_interface/index.html#spanner">example</a>.
+</div class="header">
+</div class="definition">
 
 
-<!-- ### SPANNERS ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="spanners" class="example-header-inherited">spanners</a>
-<p>Read only attribute inherited from <code><a href="../core_interface/index.html">_Interface</a></code>.
-<p>Returns all Notehead type Spanners spanning the <code>Note</code> client. 
-<p>See <a href="../core_interface/index.html#spanners">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="spanners"> spanners </a> </div class="inherited"> </div class="attribute">
+   <p> Read only attribute inherited from <_Interface>.
+   <p>Returns all Notehead type Spanner spanning <code>Note</code> client. 
+   <p>See <a href="../core_interface/index.html#spanners">example</a>.
+</div class="header">
+</div class="definition">
 
 
-
-<!-- ### STYLE ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="style" class="example-header">style</a>
-<p>Read / write attribute defined here.
-<p>Returns Abjad <code>Pitch</code> class.
-<p>Accepts Python <tt>string</tt> or <tt>None</tt>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="style"> style </a> </div class="local"> </div class="attribute">
+   <p>Read / write attribute defined here.
+   <p>Returns Python <tt>string</tt>.
+   <p>Accepts Python <tt>string</tt> or <tt>None</tt>.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> n = Note(1, (1, 4)) 
 abjad> n.notehead.style = 'cross'
 </pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> n.notehead.style
 'cross'
 </pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+</div class="body">
+</div class="definition">
 
 
-<!-- ### STYLES SUPPORTED ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="stylesSupported" class="example-header">stylesSupported</a>
-<p>Read only attribute defined here.
-<p>Returns Python <tt>tuple</tt>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="stylesSupported"> stylesSupported </a> </div class="local"> </div class="attribute">
+   <p>Read only attribute defined here.
+   <p>Returns Python <tt>tuple</tt>.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> n = Note(1, (1, 4)) 
 abjad> n.notehead.stylesSupported
 ('cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 
 'neomensural', 'harmonic', 'mensural', 'petruccidiamond', 'triangle', 
 'semicircle', 'diamond', 'tiltedtriangle', 'square', 'wedge')
 </pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+</div class="body">
+</div class="definition">
 
 
+<h2 class="page-section"> Methods </h2>
 
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="clear( )"> clear( ) </a> </div class="inherited"> </div class="attribute">
+   <p> Public method inherited from <_Interface>.
+   <p> Removes all user defined attributes.
+   <p>See <a href="../core_interface/index.html#clear">example</a>.
+</div class="header">
+</div class="definition">
 
-<h2 class="end-of-page">Comments</h2>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="unspan( )"> unspan( ) </a> </div class="inherited"> </div class="attribute">
+   <p> Public method inherited from <_Interface>.
+   <p> Removes all spanners of type NoteHead spanning client <code>_Leaf</code>.
+   <p>See <a href="../core_interface/index.html#unspan">example</a>.
+</div class="header">
+</div class="definition">
 
+<h2 class="page-section"> Overloads </h2>
 
-<h2 class="end-of-page">To-do</h2>
-<p class="to-do">
-Link <strong>identifiers</strong> to glossary. 
-</p>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="__len__"> __len__ </a> </div class="inherited"> </div class="attribute">
+   <p> Special method inherited from <_Interface>.
+   <p> Returns number of user defined attributes.
+   <p>See <a href="../core_interface/index.html#len">example</a>.
+</div class="header">
+</div class="definition">
 
-<p class="to-do">
-Rename <strong>stylesSupported</strong> to single word? Remove from public interface? 
-</p>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="__repr__"> __repr__ </a> </div class="inherited"> </div class="attribute">
+   <p> Special method inherited from <_Interface>.
+   <p> Returns string summary of <code>self</code> for interpreter display.
+   <p>See <a href="../core_interface/index.html#repr">example</a>.
+</div class="header">
+</div class="definition">
 
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="__setattr__"> __setattr__ </a> </div class="inherited"> </div class="attribute">
+   <p> Special method inherited from <_Interface>.
+   <p> Adds arbitrary attribute to  <code>self</code>.
+   <p>See <a href="../core_interface/index.html#setattr">example</a>.
+</div class="header">
+</div class="definition">
+
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="inherited"> <a name="__str__"> __str__ </a> </div class="inherited"> </div class="attribute">
+   <p> Special method inherited from <_Interface>.
+   <p> Returns string summary of  <code>self</code>.
+   <p>See <a href="../core_interface/index.html#str">example</a>.
+</div class="header">
+</div class="definition">
+
+<h2 class="page-section"> Comments </h2>
+
+<div class="comments">
+</div class="comments">
+
+<h2 class="page-section"> To do </h2>
+
+<div class="to-do">
+<p> Rename <strong>stylesSupported</strong> to single word? 
+   Remove from public interface? 
+
+</div class="to-do">
