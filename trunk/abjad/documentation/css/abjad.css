@@ -222,9 +222,11 @@ H1, .end-of-page, .page-section {
    padding-bottom: 10px;
 }
 
+/*
 H2 {
    margin-top: 60px;
 }
+*/
 
 A {
 	color: #2222aa;
@@ -332,6 +334,10 @@ Q {
 
 /*** INTERFACE STYLING ***/
 
+DIV.interface {
+   margin-bottom: 60px;
+}
+
 DIV.interface DIV.block {
    margin-bottom: 10px;
 }
@@ -384,4 +390,20 @@ DIV.definition DIV.header DIV.attribute DIV.inherited A {
 
 DIV.definition DIV.body {
    margin-left: 40px;
+}
+
+/*** COMMENTS, TO-DO STYLING ***/
+
+DIV.comments {
+   margin-bottom: 60px;
+}
+
+DIV.to-do {
+   margin-bottom: 60px;
+}
+
+/*** INTRODUCTION STYLING ***/
+
+DIV.introduction {
+   margin-bottom: 60px;
 }

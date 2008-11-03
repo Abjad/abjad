@@ -11,7 +11,7 @@ class FileParser(object):
       self.input = open(filename, 'r').readlines( )
       self.output =  [ ]
       self.tags = [SECTION( ), INTERFACE( ), DEFINITION( ),
-         COMMENTS( ), TO_DO( ), CLASS_NAMES( ),
+         COMMENTS( ), TO_DO( ), CLASS_NAMES( ), INTRODUCTION( ),
          LILY( ), ABJAD( )]
 
    def writeOutput(self):
@@ -259,6 +259,18 @@ class DEFINITION(_TagParser):
          self.output.append(output)
       else:
          self.output.append(line)
+
+
+class INTRODUCTION(_TagParser):
+
+   def parse(self, lines):
+      for line in lines:
+         if '<introduction>' in line:
+            self.output.append('<div class="introduction">\n')
+         elif '</introduction>' in line:
+            self.output.append('</div class="introduction">\n')
+         else:
+            self.output.append(line)
 
 
 class LILY(_TagParser):
