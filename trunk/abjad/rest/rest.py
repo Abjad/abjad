@@ -3,7 +3,6 @@ from .. leaf.leaf import _Leaf
 from initializer import _RestInitializer
 from .. pitch.pitch import Pitch
 
-#class Rest(_Leaf):
 class Rest(_Leaf, _AttributeFormatter):
 
    def __init__(self, *args):
