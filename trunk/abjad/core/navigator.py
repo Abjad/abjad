@@ -210,21 +210,6 @@ class _Navigator(object):
       candidates = prev._navigator._lastLeaves
       return self._findFellowBead(candidates)
 
-#   @property
-#   def _nextThread(self):
-#      '''Returns the next threadable Container.'''
-#      if not self._client.kind('Container'):
-#         return None
-#      next = self._next
-#      if next is None or next.kind('_Leaf'):
-#         return None
-#      if next.parallel:
-#         for component in next:
-#            if self._isThreadable(component):
-#               return component
-#      else:
-#         if self._isThreadable(next):
-#            return next          
          
    @property
    def _nextThread(self):
@@ -236,22 +221,37 @@ class _Navigator(object):
          return None
       containers = next._navigator._firstContainers
       for c in containers:
-         if self._isThreadable(c):
-            return c
+         if not c is None:
+            if self._isThreadable(c):
+               return c
          
 
 
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
-      result = False
-      if not self._client.parallel and not expr.parallel:
-         if self._client.kind('Container') and expr.kind('Container'):
+      c_thread_parentage = expr._parentage._threadParentage
+      thread_parentage = self._client._parentage._threadParentage
+      match_parent = True
+      if len(c_thread_parentage) == len(thread_parentage):
+         for c, p in zip(c_thread_parentage, thread_parentage):
+            if type(c) == type(p):
+               if c.kind('Context') and p.kind('Context'):
+                  if c.invocation != p.invocation:
+                     match_parent = False
+      else:
+         match_parent = False
+
+      match_self = False
+      if self._client.kind('_Leaf') and expr.kind('_Leaf'):
+         match_self = True
+      elif self._client.kind('Container') and expr.kind('Container'):
+         if not self._client.parallel and not expr.parallel:
             if self._client.kind('Context') and expr.kind('Context'):
                if self._client.invocation == expr.invocation:
-                  result =  True
+                  match_self =  True
             elif type(self._client) == type(expr):
-               result =  True
-      return result
+               match_self =  True
+      return match_self and match_parent
 
 
    def _findFellowBead(self, candidates):
@@ -259,23 +259,26 @@ class _Navigator(object):
       Given a list of bead candiates of self, find and return the first one
       that matches thread parentage. '''
       for candidate in candidates:
-         c_thread_parentage = candidate._parentage._threadParentage
-         thread_parentage = self._client._parentage._threadParentage
-         #print thread_parentage
-         #print c_thread_parentage
-         ### check that parentages match.
-         match = True
-         if len(c_thread_parentage) == len(thread_parentage):
-            for c, p in zip(c_thread_parentage, thread_parentage):
-               if type(c) == type(p):
-                  if c.kind('Context') and p.kind('Context'):
-                     if c.invocation != p.invocation:
-                        match = False
-         else:
-            match = False
-
-         if match:
+         if self._isThreadable(candidate):
             return candidate
+#         c_thread_parentage = candidate._parentage._threadParentage
+#         thread_parentage = self._client._parentage._threadParentage
+#         #print thread_parentage
+#         #print c_thread_parentage
+#         ### check that parentages match.
+#         match = True
+#         if len(c_thread_parentage) == len(thread_parentage):
+#            for c, p in zip(c_thread_parentage, thread_parentage):
+#               if type(c) == type(p):
+#                  if c.kind('Context') and p.kind('Context'):
+#                     if c.invocation != p.invocation:
+#                        match = False
+#         else:
+#            match = False
+#
+#         if match:
+#            return candidate
+
 
    # rightwards depth-first traversal:
    # advance rightwards; otherwise ascend; otherwise None.
