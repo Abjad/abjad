@@ -216,7 +216,11 @@ class _Leaf(_Component):
 #         cur = cur.prev
 #         offset += cur.duration.prolated
 #      return offset
-      ### This handles parallel structures correctly. 
+### This handles parallel structures correctly. 
+### TODO: this is still not general enough. 
+### We want to be able to offset based on thread AND non-thread.
+### We also probably want ALL components (containers too) to have an offset.
+### Make an offset interface?: _Leaf.offset.local, _Leaf.offset.global
       cur = self
       offset = 0
       while cur._navigator._prevBead:
