@@ -22,6 +22,11 @@ class _LeafFormatter(_Formatter):
          except AttributeError:
             pass
       exec('result.extend(self._client.spanners.%s)' % location)
+      # add self._client._before, if self._client is a Rest:
+      try:
+         exec('result.extend(self._client.%s)' % location)
+      except:
+         pass
       return result
 
    @property

@@ -13,7 +13,8 @@ def _transfer_all_attributes(old, new):
    for key, value in oldCopy.__dict__.items( ):
       #if key not in ('formatter', 'caster', 'spanners'):
       #if key not in ('_formatter', 'spanners'):
-      if key not in ('_formatter', '_spanners'):
+      #if key not in ('_formatter', '_spanners'):
+      if key not in ('_formatter', '_spanners', '_parser', '_grob'):
          if hasattr(value, '_client'):
             setattr(value, '_client', new)
          setattr(new, key, value)
