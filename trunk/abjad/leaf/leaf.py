@@ -31,7 +31,8 @@ class _Leaf(_Component):
       # TODO: can't make formatter a read-only property
       # because of casting between notes and chords;
       # come up with solution for read-only formatter
-      self.formatter = _LeafFormatter(self)
+      #self.formatter = _LeafFormatter(self)
+      self._formatter = _LeafFormatter(self)
       self._glissando = _GlissandoInterface(self)
       self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
@@ -150,6 +151,17 @@ class _Leaf(_Component):
             self._glissando._set = arg 
          else:
             raise ValueError('must be boolean or None.')
+      return property(**locals( ))
+
+   @apply
+   def formatter( ):
+      def fget(self):
+         return self._formatter
+      def fset(self, arg):
+         if isinstance(arg, _LeafFormatter):
+            self._formatter = arg
+         else:
+            raise ValueError('must be _LeafFormatter.')
       return property(**locals( ))
 
    @apply
