@@ -36,7 +36,8 @@ class _Leaf(_Component):
       self._glissando = _GlissandoInterface(self)
       self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
-      self.history = { }
+      #self.history = { }
+      self._history = { }
       # TODO: can't make spanners a read-only property
       # because of /helpers/attributes.py;
       # come up with solution for read-only spanners
@@ -186,6 +187,14 @@ class _Leaf(_Component):
             raise ValueError('must be boolean or None.')
       return property(**locals( ))
 
+   @apply
+   def history( ):
+      def fget(self):
+         return self._history
+      def fset(self, *args):
+         raise ValueError('history is read-only.')
+      return property(**locals( ))
+   
    @property
    def leaves(self):
       return [self]
