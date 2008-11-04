@@ -12,7 +12,7 @@
 </abjad>
 </subsection>
 
-<subsection> Changing note duration
+<subsection> Changing duration
 <p> You can assign values directly to the note duration interface.
 <abjad>
   hide> note = Note(0, (1, 4))
@@ -24,22 +24,7 @@
 <p> You can use any duration token on the right-hand side of such an assignment.
 </subsection>
 
-<subsection> Duration comparisons
-<p> Compare note durations with Python's equality operator.
-<abjad>
-  abjad> Note(0, (1, 8)) == Note(0, (3, 8))
-  False
-</abjad>
-<p> Greater than, less than and the other comparison operators work as expected.
-<abjad>
-   abjad> Note(0, (1, 8)) < Note(0, (3, 8))
-   True
-</abjad>
-<p> You can do all the normal things with the note duration interface that you can do with the other Abjad duration interfaces.
-These include copying and rewriting.
-</subsection>
-
-<subsection> Working with note pitch
+<subsection> Changing pitch
 <p> You can assign pitches to a note a note in a couple of different ways.
 <abjad>
   abjad> note.pitch = 1
@@ -58,35 +43,17 @@ These include copying and rewriting.
 </abjad>
 </subsection>
 
-<subsection> Creating rests
-<p> The Abjad <Rest> initializes with a duration value only.
+<subsection> Duration comparisons
+<p> Compare note durations with Python's equality operator.
 <abjad>
-  abjad> rest = Rest((1, 4))
-  abjad> rest
-  Rest(4)
-  abjad> show(rest)
+  abjad> Note(0, (1, 8)) == Note(0, (3, 8))
+  False
 </abjad>
+<p> Greater than, less than and the other comparison operators work as expected.
+<abjad>
+   abjad> Note(0, (1, 8)) < Note(0, (3, 8))
+   True
+</abjad>
+<p> You can do all the normal things with the note duration interface that you can do with the other Abjad duration interfaces.
+These include copying and rewriting.
 </subsection>
-
-<subsection> Rest-specific attributes
-<p> In addition to the attributes inherited from the <_Leaf> class (such as <strong>duration</strong>, <strong>grace</strong>, etc.), the <Rest> class also possesses a <strong>pitch</strong> attribute. 
-This may seem strange given that rests represent the absence of sound. 
-However, as a glyph in a score, rests also necessarily have a vertical position relative to the staff. 
-By default the vertical position of rests is set automatically by the LilyPond renderer, but it can be set arbitrarily with the <strong>pitch</strong> attribute. 
-<abjad>
-  abjad> rest = Rest((1, 4))
-  abjad> rest.pitch = -1
-  abjad> show(rest)
-</abjad>
-<p> Notice how the position of the rest is here moved down so it falls exactly on B<sub>3</sub>. 
-<p> To remove the pitch from a <code>Rest</code> simply set the attribute to None.
-<abjad>
-  abjad> rest.pitch = None
-</abjad>
-</subsection>
-
-<to-do>
-
-<p> Add casting.
-
-</to-do>

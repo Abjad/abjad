@@ -1,0 +1,61 @@
+<title> Working with rests </title>
+
+<h1> Working with rests </h1>
+
+<subsection> Creating rests
+<p> Create rests with any <duration token>.
+<abjad>
+   abjad> rest = Rest((1, 4))
+   hide> measure = Measure(rest.duration.pair, [rest])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+</subsection>
+
+<subsection> Changing duration
+<p> Change rest duration by direct assignment.
+<abjad>
+   abjad> rest = Rest((1, 4))
+   hide> measure = Measure(rest.duration.pair, [rest])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+<abjad>
+   hide> rest = Rest((1, 4))
+   abjad> rest.duration = (3, 16)
+   hide> measure = Measure(rest.duration.pair, [rest])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+<p> Any <duration token> will work on the right-hand side of the assigment operator.
+</subsection>
+
+<subsection> Using pitch as a vertical positioner
+<p> In addition to the attributes inherited from the <_Leaf> class (such as <strong>duration</strong>, <strong>grace</strong>, etc.), the <Rest> class also possesses a <strong>pitch</strong> attribute. 
+This may seem strange given that rests represent the absence of sound. 
+However, as a glyph in a score, rests also necessarily have a vertical position relative to the staff. 
+By default the vertical position of rests is set automatically by the LilyPond renderer, but it can be set arbitrarily with the <strong>pitch</strong> attribute. 
+<abjad>
+   hide> rest = Rest((1, 4))
+   abjad> rest.pitch = -1
+   hide> measure = Measure(rest.duration.pair, [rest])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+<p> Notice how the position of the rest is here moved down so it falls exactly on B<sub>3</sub>. 
+<p> To remove pitch from a rest, simply set pitch to None.
+<abjad>
+   hide> rest = Rest((1, 4))
+   hide> rest.pitch = -1
+   abjad> rest.pitch = None
+   hide> measure = Measure(rest.duration.pair, [rest])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+</subsection>
+
+<to-do>
+
+<p> The better way of setting vertical position in LilyPond is simply something like <code>\once \override Rest #'staff-position = #-6</code>, which sets <code>staff-position</code> explicitly on the LilyPond <code>Rest</code> grob. Notice, however, that Abjad currently affords no way to set LilyPond overrides on the <code>Rest</code> grob. The reason for this is that Abjad allows for automatic LilyPond overrides of only leaf <strong>interface</strong> and not of <strong>leaves themselves</strong>. So we should remedy this and allow for leaf overrides directly.
+
+</to-do>

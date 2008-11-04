@@ -480,6 +480,7 @@ class CLASS_NAMES(_TagParser):
       '<_Comments>' : 'comments_class',
       '<_Component>' : 'component_class',
       '<_DotsInterface>' : 'dots_interface',
+      '<duration token>' : 'duration_token',
       '<_DynamicsInterface>' : 'dynamics_interface',
       '<_GlissandoInterface>' : 'glissando_interface',
       '<_GraceInterface>' : 'grace_interface',
