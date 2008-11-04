@@ -40,7 +40,8 @@ class _Leaf(_Component):
       # TODO: can't make spanners a read-only property
       # because of /helpers/attributes.py;
       # come up with solution for read-only spanners
-      self.spanners = _LeafSpannerInterface(self)
+      #self.spanners = _LeafSpannerInterface(self)
+      self._spanners = _LeafSpannerInterface(self)
       self._staff = _StaffInterface(self)
       self._stem = _StemInterface(self)
       self._tie = _TieInterface(self)
@@ -213,6 +214,17 @@ class _Leaf(_Component):
          cur = cur._navigator._prevBead
          offset += cur.duration.prolated
       return offset
+
+   @apply
+   def spanners( ):
+      def fget(self):
+         return self._spanners
+      def fset(self, arg):
+         if isinstance(arg, _LeafSpannerInterface):
+            self._spanners = arg
+         else:
+            raise ValueError('must be _LeafSpannerInterface')
+      return property(**locals( ))
 
    @apply
    def staff( ):
