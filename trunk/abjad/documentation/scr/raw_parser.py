@@ -489,7 +489,9 @@ class CLASS_NAMES(_TagParser):
       '<_LeafDurationInterface>' : 'leaf_duration_interface',
       '<_LeafSpannerInterface>' : 'leaf_spanner_interface',
       '<Note>' : 'note_class',
-      '<_Pitch>' : 'pitch_class',
+      '<Pitch>' : 'pitch_class',
+      '<pitch token>' : 'pitch_token',
+      '<Rational>' : 'rational_class',
       '<Rest>' : 'rest_class',
       '<_Staff>' : 'staff_class',
       '<_StemInterface>' : 'stem_interface',
@@ -516,9 +518,12 @@ class CLASS_NAMES(_TagParser):
 ABJADPATH = os.environ['ABJADPATH']
 
 if __name__ == '__main__':
-   try:
-      fileparser = FileParser(sys.argv[1])
-   except:
-      raise Exception('requires one commandline argument.')
+
+   fileparser = FileParser(sys.argv[1])
+
+#   try:
+#      fileparser = FileParser(sys.argv[1])
+#   except:
+#      raise Exception('requires one commandline argument.')
 
    fileparser.parse( )

@@ -20,7 +20,7 @@ if we want to have the TOC on every page, we can put it here...
 <h1> Working with notes </h1>
 
 <div class="subsection">
-<h2> Creating notes </h2><p> Create notes with numeric pitch and duration indicators.
+<h2> Creating notes </h2><p> Create notes with a <code><a href="../pitch_token/index.html">pitch token</a></code> and a <code><a href="../duration_token/index.html">duration token</a></code>.
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
 </pre>
@@ -28,47 +28,169 @@ abjad> note = Note(0, (1, 4))
 </div class="subsection">
 
 <div class="subsection">
-<h2> Changing duration </h2><p> You can assign values directly to the note duration interface.
+<h2> Pitch assignment </h2><p> Change pitch with a number:
+<pre class="abjad">
+abjad> note = Note(0, (1, 4))
+</pre>
+<pre class="abjad">
+abjad> note.pitch = 2
+</pre>
+<img src="images/2.png">
+<p> With a pair:
+<pre class="abjad">
+abjad> note.pitch = ('e', 4)
+</pre>
+<img src="images/3.png">
+<p> Or with a <code><a href="../pitch_class/index.html">Pitch</a></code> instance:
+<pre class="abjad">
+abjad> note.pitch = Pitch('f', 4)
+</pre>
+<img src="images/4.png">
+<p> Any <code><a href="../pitch_token/index.html">pitch token</a></code> will work.
+<p> TODO: document pitch-to-pitch assignment.
+</div class="subsection">
+
+<div class="subsection">
+<h2> Pitch comparison </h2><p> Compare pitch to a number:
+<pre class="abjad">
+abjad> note = Note(0, (1, 4))
+</pre>
+<pre class="abjad">
+abjad> note.pitch == 0
+True
+</pre>
+<p> To a pair:
+<pre class="abjad">
+abjad> note.pitch == ('c', 4)
+True
+</pre>
+<p> To a <code><a href="../pitch_class/index.html">Pitch</a></code> instance:
+<pre class="abjad">
+abjad> note.pitch == Pitch('c', 4)
+True
+</pre>
+<p> Or to another pitched Abjad object:
+<pre class="abjad">
+abjad> chord = Chord([0, 2, 10], (1, 4))
+abjad> note.pitch == chord.noteheads[0].pitch
+True
+</pre>
+<p> Both <code><a href="../pitch_token/index.html">pitch token</a></code> and pitch-to-pitch tests work.
+</div class="subsection">
+
+<div class="subsection">
+<h2> Types of pitch comparison </h2><p> All six Python comparison operators work as expected.
+<pre class="abjad">
+abjad> n1 = Note(0, (1, 4))
+abjad> n2 = Note(2, (1, 4))
+</pre>
+<pre class="abjad">
+abjad> n1.pitch == n2.pitch
+False
+</pre>
+<pre class="abjad">
+abjad> n1.pitch != n2.pitch
+True
+</pre>
+<pre class="abjad">
+abjad> n1.pitch > n2.pitch
+False
+</pre>
+<pre class="abjad">
+abjad> n1.pitch < n2.pitch
+True
+</pre>
+<pre class="abjad">
+abjad> n1.pitch >= n2.pitch
+False
+</pre>
+<pre class="abjad">
+abjad> n1.pitch <= n2.pitch
+True
+</pre>
+</div class="subsection">
+
+<div class="subsection">
+<h2> Duration assignment </h2><p> Change duration with a pair:
+<pre class="abjad">
+abjad> note = Note(0, (1, 4))
+</pre>
 <pre class="abjad">
 abjad> note.duration = (1, 8)
 </pre>
-<img src="images/2.png">
-<p> You can use any duration token on the right-hand side of such an assignment.
+<img src="images/5.png">
+<p> With a <code><a href="../rational_class/index.html">Rational</a></code>:
+<pre class="abjad">
+abjad> note.duration = Rational(3, 16)
+</pre>
+<img src="images/6.png">
+<p> Or with another duration Abjad object:
+<pre class="abjad">
+abjad> chord = Chord([0, 2, 10], (3, 16))
+abjad> note.duration = chord.duration
+</pre>
+<img src="images/7.png">
+<p> Both <code><a href="../duration_token/index.html">duration token</a></code> and duration-to-duration assignment work.
 </div class="subsection">
 
 <div class="subsection">
-<h2> Changing pitch </h2><p> You can assign pitches to a note a note in a couple of different ways.
+<h2> Duration comparison </h2><p> Compare duration to a pair:
 <pre class="abjad">
-abjad> note.pitch = 1
-abjad> note
-Note(cs', 4)
+abjad> note = Note(0, (1, 4))
 </pre>
 <pre class="abjad">
-abjad> note.pitch = Pitch('d', 4)
-abjad> note
-Note(d', 4)
+abjad> note.duration == (1, 4)
+True
 </pre>
+<p> To a <code><a href="../rational_class/index.html">Rational</a></code>:
 <pre class="abjad">
-abjad> note.pitch = ('ds', 4)
-abjad> note
-Note(ds', 4)
+abjad> note.duration == Rational(1, 4)
+True
 </pre>
-</div class="subsection">
-
-<div class="subsection">
-<h2> Duration comparisons </h2><p> Compare note durations with Python's equality operator.
+<p> Or to another durated Abjad object:
 <pre class="abjad">
-abjad> Note(0, (1, 8)) == Note(0, (3, 8))
+abjad> chord = Chord([0, 2, 10], (3, 16))
+abjad> note.duration == chord.duration
 False
 </pre>
-<p> Greater than, less than and the other comparison operators work as expected.
+<p> Both <code><a href="../duration_token/index.html">duration token</a></code> and duration-to-duration testing work.
+</div class="subsection">
+
+<div class="subsection">
+<h2> Types of duration comparison </h2><p> All six Python comparison operators work as expected.
+<pre class="abjad">
+abjad> Note(0, (1, 8)) == Note(0, (3, 8))
+True
+</pre>
+<pre class="abjad">
+abjad> Note(0, (1, 8)) != Note(0, (3, 8))
+True
+</pre>
+<pre class="abjad">
+abjad> Note(0, (1, 8)) > Note(0, (3, 8))
+False
+</pre>
 <pre class="abjad">
 abjad> Note(0, (1, 8)) < Note(0, (3, 8))
 True
 </pre>
-<p> You can do all the normal things with the note duration interface that you can do with the other Abjad duration interfaces.
-These include copying and rewriting.
+<pre class="abjad">
+abjad> Note(0, (1, 8)) >= Note(0, (3, 8))
+False
+</pre>
+<pre class="abjad">
+abjad> Note(0, (1, 8)) <= Note(0, (3, 8))
+True
+</pre>
 </div class="subsection">
+
+<h2 class="page-section"> To do </h2>
+
+<div class="to-do">
+
+<p> This currently causes reference problems: <code>n1.pitch = n2.pitch</code>. Can we block directly in the implementation? Or must we teach users never to cross references this way?
+
+</div class="to-do">
 
 
 <p class="footer"> <a href="../../index.html">Contents</a> </p>

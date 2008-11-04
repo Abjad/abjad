@@ -3,7 +3,7 @@
 <h1> Working with notes </h1>
 
 <subsection> Creating notes
-<p> Create notes with numeric pitch and duration indicators.
+<p> Create notes with a <pitch token> and a <duration token>.
 <abjad>
   abjad> note = Note(0, (1, 4))
   hide> measure = Measure(note.duration.pair, [note])
@@ -12,8 +12,107 @@
 </abjad>
 </subsection>
 
-<subsection> Changing duration
-<p> You can assign values directly to the note duration interface.
+<subsection> Pitch assignment
+<p> Change pitch with a number:
+<abjad>
+   abjad> note = Note(0, (1, 4))
+</abjad>
+<abjad>
+   hide> note = Note(0, (1, 4))
+   abjad> note.pitch = 2
+   hide> measure = Measure(note.duration.pair, [note])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+<p> With a pair:
+<abjad>
+   hide> note = Note(2, (1, 4))
+   abjad> note.pitch = ('e', 4)
+   hide> measure = Measure(note.duration.pair, [note])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+<p> Or with a <Pitch> instance:
+<abjad>
+   hide> note = Note(('e', 4), (1, 4))
+   abjad> note.pitch = Pitch('f', 4)
+   hide> measure = Measure(note.duration.pair, [note])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+<p> Any <pitch token> will work.
+<p> TODO: document pitch-to-pitch assignment.
+</subsection>
+
+<subsection> Pitch comparison
+<p> Compare pitch to a number:
+<abjad>
+   abjad> note = Note(0, (1, 4))
+</abjad>
+<abjad>
+   hide> note = Note(0, (1, 4))
+   abjad> note.pitch == 0
+   True
+</abjad>
+<p> To a pair:
+<abjad>
+   hide> note = Note(0, (1, 4))
+   abjad> note.pitch == ('c', 4)
+   True
+</abjad>
+<p> To a <Pitch> instance:
+<abjad>
+   hide> note = Note(0, (1, 4))
+   abjad> note.pitch == Pitch('c', 4)
+   True
+</abjad>
+<p> Or to another pitched Abjad object:
+<abjad>
+   hide> note = Note(0, (1, 4))
+   abjad> chord = Chord([0, 2, 10], (1, 4))
+   abjad> note.pitch == chord.noteheads[0].pitch
+   True
+</abjad>
+<p> Both <pitch token> and pitch-to-pitch tests work.
+</subsection>
+
+<subsection> Types of pitch comparison
+<p> All six Python comparison operators work as expected.
+<abjad>
+   abjad> n1 = Note(0, (1, 4))
+   abjad> n2 = Note(2, (1, 4))
+</abjad>
+<abjad>
+   abjad> n1.pitch == n2.pitch
+   False
+</abjad>
+<abjad>
+   abjad> n1.pitch != n2.pitch
+   True
+</abjad>
+<abjad>
+   abjad> n1.pitch > n2.pitch
+   False
+</abjad>
+<abjad>
+   abjad> n1.pitch < n2.pitch
+   True
+</abjad>
+<abjad>
+   abjad> n1.pitch >= n2.pitch
+   False
+</abjad>
+<abjad>
+   abjad> n1.pitch <= n2.pitch
+   True
+</abjad>
+</subsection>
+
+<subsection> Duration assignment
+<p> Change duration with a pair:
+<abjad>
+   abjad> note = Note(0, (1, 4))
+</abjad>
 <abjad>
   hide> note = Note(0, (1, 4))
   abjad> note.duration = (1, 8)
@@ -21,39 +120,79 @@
   hide> measure.meter.transparent = True
   hide> show(measure)
 </abjad>
-<p> You can use any duration token on the right-hand side of such an assignment.
+<p> With a <Rational>:
+<abjad>
+  hide> note = Note(0, (1, 8))
+  abjad> note.duration = Rational(3, 16)
+  hide> measure = Measure(note.duration.pair, [note])
+  hide> measure.meter.transparent = True
+  hide> show(measure)
+</abjad>
+<p> Or with another duration Abjad object:
+<abjad>
+  hide> note = Note(0, (1, 8))
+  abjad> chord = Chord([0, 2, 10], (3, 16))
+  abjad> note.duration = chord.duration
+  hide> measure = Measure(note.duration.pair, [note])
+  hide> measure.meter.transparent = True
+  hide> show(measure)
+</abjad>
+<p> Both <duration token> and duration-to-duration assignment work.
 </subsection>
 
-<subsection> Changing pitch
-<p> You can assign pitches to a note a note in a couple of different ways.
+<subsection> Duration comparison
+<p> Compare duration to a pair:
 <abjad>
-  abjad> note.pitch = 1
-  abjad> note
-  Note(cs', 4)
+   abjad> note = Note(0, (1, 4))
 </abjad>
 <abjad>
-  abjad> note.pitch = Pitch('d', 4)
-  abjad> note
-  Note(d', 4)
+   abjad> note.duration == (1, 4)
+   True
 </abjad>
+<p> To a <Rational>:
 <abjad>
-  abjad> note.pitch = ('ds', 4)
-  abjad> note
-  Note(ds', 4)
+   abjad> note.duration == Rational(1, 4)
+   True
 </abjad>
+<p> Or to another durated Abjad object:
+<abjad>
+   abjad> chord = Chord([0, 2, 10], (3, 16))
+   abjad> note.duration == chord.duration
+   False
+</abjad>
+<p> Both <duration token> and duration-to-duration testing work.
 </subsection>
 
-<subsection> Duration comparisons
-<p> Compare note durations with Python's equality operator.
+<subsection> Types of duration comparison
+<p> All six Python comparison operators work as expected.
 <abjad>
-  abjad> Note(0, (1, 8)) == Note(0, (3, 8))
-  False
+   abjad> Note(0, (1, 8)) == Note(0, (3, 8))
+   True
 </abjad>
-<p> Greater than, less than and the other comparison operators work as expected.
+<abjad>
+   abjad> Note(0, (1, 8)) != Note(0, (3, 8))
+   True
+</abjad>
+<abjad>
+   abjad> Note(0, (1, 8)) > Note(0, (3, 8))
+   False
+</abjad>
 <abjad>
    abjad> Note(0, (1, 8)) < Note(0, (3, 8))
    True
 </abjad>
-<p> You can do all the normal things with the note duration interface that you can do with the other Abjad duration interfaces.
-These include copying and rewriting.
+<abjad>
+   abjad> Note(0, (1, 8)) >= Note(0, (3, 8))
+   False
+</abjad>
+<abjad>
+   abjad> Note(0, (1, 8)) <= Note(0, (3, 8))
+   True
+</abjad>
 </subsection>
+
+<to-do>
+
+<p> This currently causes reference problems: <code>n1.pitch = n2.pitch</code>. Can we block directly in the implementation? Or must we teach users never to cross references this way?
+
+</to-do>
