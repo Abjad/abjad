@@ -6,7 +6,7 @@ from .. pitch.pitch import Pitch
 class Note(_Leaf):
    
    def __init__(self, *args):
-      self.initializer = _NoteInitializer(self, _Leaf, *args)
+      self._initializer = _NoteInitializer(self, _Leaf, *args)
 
    ### SPECIAL METHODS ###
 

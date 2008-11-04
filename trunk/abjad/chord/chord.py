@@ -7,7 +7,7 @@ from .. pitch.pitch import Pitch
 class Chord(_Leaf):
 
    def __init__(self, *args):
-      self.initializer = _ChordInitializer(self, _Leaf, *args)
+      self._initializer = _ChordInitializer(self, _Leaf, *args)
 
    ### SPECIAL METHODS ### 
 

@@ -4,7 +4,7 @@ from initializer import _SkipInitializer
 class Skip(_Leaf):
 
    def __init__(self, *args):
-      self.initializer = _SkipInitializer(self, _Leaf, *args)
+      self._initializer = _SkipInitializer(self, _Leaf, *args)
       
    ### REPR ###
 
