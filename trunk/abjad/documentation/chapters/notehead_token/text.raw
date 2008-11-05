@@ -1,25 +1,23 @@
-<h1>
-Notehead token input
-</h1>
+<title> Notehead token input </title>
 
-<p>
-Abjad <code>Note</code> and <code>Chord</code> instances accept both <a href="../pitch_token/index.html">pitch token</a> instances and Abjad <code><a href="../notehead_class/index.html">_NoteHead</a></code> instances as input.
+<h1> Notehead token input </h1>
 
-<p>
-For example:
+<subsection>
 
-<div class="example-code">
-<pre>
+<p> Abjad <Note> and <Chord> instances accept both <pitch token> instances and Abjad <_NoteHead> instances as input.
+
+<p> For example:
+
+<abjad>
    abjad> note = Note(0, (1, 4))
    abjad> note.notehead = 13
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    hide> show(measure)
-</pre>
-</div>
+</abjad>
 
-<p>
-Abjad groups <a href="../pitch_token/index.html">pitch token</a> instances and Abjad <code><a href="../notehead_class/index.html">_NoteHead</a></code> instances together under the heading of <strong>notehead token input</strong>.
+<p> Abjad groups <pitch token> instances and Abjad <_NoteHead> instances together under the heading of <strong>notehead token input</strong>.
 
-<p>
-Examples in the documentation that ask for notehead token input accept any of the input types shown here.
+<p> Examples in the documentation that ask for notehead token input accept any of the input types shown here.
+
+</subsection>

@@ -1,39 +1,41 @@
+<title> Abjad pitch tools </title>
+
 <h1>Abjad pitch tools</h1>
 
-<p>
-The Abjad <code>_PitchTools</code> class implements the following public interface.
-</p>
+<subsection>
 
-<dl>
-<dt> mappings
-<dd> <ul>
-   <li> <code>diatonicIntervalToAbsoluteInterval[ ]</code>
-   <li> <code>diatonicIntervalToStaffSpaces[ ]</code>
-   <li> <code>diatonicScaleDegreeToLetter[ ]</code>
-   <li> <code>pcToPitchName[ ]</code>
-   <li> <code>pcToPitchNameSharps[ ]</code>
-   </ul>
-<dt> methods
-<dd> <ul>
-   <li> <code>addStaffSpaces( )</code>
-   <li> <code>letterPitchNumberToNearestAccidentalString( )</code>
-   <li> <code>letterPitchNumberToOctave( )</code>
-   <li> <code>letterToDiatonicScaleDegree( )</code>
-   <li> <code>letterToPC( )</code>
-   <li> <code>nearestNeighbor( )</code>
-   <li> <code>pitchNumberAdjustmentToOctave( )</code>
-   <li> <code>pitchNumberToOctave( )</code>
-   </ul>
-</dl>
+<p> The Abjad <code>_PitchTools</code> class implements the following public interface.
 
-<h2 class="end-of-page">Comments</h2>
+</subsection>
 
-<p class="comment">
-See the <code>_PitchTools</code> class in <code>pitch/tool.py</code> for implementation details.
-</p>
+<interface>
+<dictionaries>
+   <local> diatonicIntervalToAbsoluteInterval[ ]
+   <local> diatonicIntervalToStaffSpaces[ ]
+   <local> diatonicScaleDegreeToLetter[ ]
+   <local> pcToPitchName[ ]
+   <local> pcToPitchNameSharps[ ]
+</dictionaries>
+<methods>
+   <local> addStaffSpaces( )</code>
+   <local> letterPitchNumberToNearestAccidentalString( )</code>
+   <local> letterPitchNumberToOctave( )</code>
+   <local> letterToDiatonicScaleDegree( )</code>
+   <local> letterToPC( )</code>
+   <local> nearestNeighbor( )</code>
+   <local> pitchNumberAdjustmentToOctave( )</code>
+   <local> pitchNumberToOctave( )</code>
+</methods>
+</interface>
 
-<h2 class="end-of-page">To do</h2>
+<comments>
 
-<p class="to-do">
-Reimplement these tools as helper functions.
-</p>
+<p> See the <code>_PitchTools</code> class in <code>pitch/tool.py</code> for implementation details.
+
+</comments>
+
+<to-do>
+
+<p> Reimplement these tools as helper functions.
+
+</to-do>

@@ -489,6 +489,7 @@ class CLASS_NAMES(_TagParser):
       '<_LeafDurationInterface>' : 'leaf_duration_interface',
       '<_LeafSpannerInterface>' : 'leaf_spanner_interface',
       '<Note>' : 'note_class',
+      '<_NoteHead>' : 'notehead_class',
       '<Pitch>' : 'pitch_class',
       '<pitch token>' : 'pitch_token',
       '<Rational>' : 'rational_class',
