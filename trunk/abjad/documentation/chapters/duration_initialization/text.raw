@@ -1,65 +1,56 @@
-<h1>Duration initialization</h1>
-<hr>
-<p class="spacer" />
+<title> Duration initialization </title>
 
-<p>
-Durated Abjad classes initialize duration from arguments in the form <code>(n, d)</code> with numerator <code>n</code> and denominator <code>d</code>.
-</p>
-<pre>
+<h1>Duration initialization</h1>
+
+<subsection>
+
+<p> Durated Abjad classes initialize duration from arguments in the form <code>(n, d)</code> with numerator <code>n</code> and denominator <code>d</code>.
+
+<abjad>
   abjad> note = Note(0, (3, 16))
   abjad> show(note)
-</pre>
+</abjad>
 
-<p>
-Durated classes include notes, rests, chords, skips, tuplets and measures.
-</p>
-<pre>
+<p> Durated classes include notes, rests, chords, skips, tuplets and measures.
+
+<abjad>
   abjad> tuplet = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
   abjad> Beam(tuplet)
   abjad> show(tuplet)
-</pre>
+</abjad>
 
-<p>
-Abjad restricts notes, rests, chords and skips to durations like 3/16 that can be written with dots, beams and flags without ties or brackets. Abjad allows arbitrary positive durations like 5/8 for tuplets and measures.
-</p>
-<pre>
+<p> Abjad restricts notes, rests, chords and skips to durations like 3/16 that can be written with dots, beams and flags without ties or brackets. Abjad allows arbitrary positive durations like 5/8 for tuplets and measures.
+
+<abjad>
   abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
   abjad> Beam(tuplet)
   abjad> show(tuplet)
-</pre>
+</abjad>
 
-<p>
-Abjad supports breves.
-</p>
-<pre>
+<p> Abjad supports breves.
+
+<abjad>
   abjad> note = Note(0, (2, 1))
   abjad> show(note)
-</pre>
+</abjad>
 
-<p>
-And longas.
-</p>
-<pre>
+<p> And longas.
+
+<abjad>
   abjad> note = Note(0, (4, 1))
   abjad> show(note)
-</pre>
+</abjad>
 
-<h2>Commentary</h2>
-<hr>
+</subsection>
 
-<p class="commentary">
-1. The restriction that the written durations of notes, rests, chords and skips be expressible with some combination of dots, flags and beams without recourse to ties and brackets generalizes to the condition of notehead assignability. Values <code>(n, d)</code> are notehead-assignable when and only when (1) d is a nonnegative integer power of 2; (2) n is either a nonnegative integer power of 2 or is a nonnegative integer power of 2, minus 1; and (3) n/d is less than or equal to 8. Condition (3) captures the fact that LilyPond provides no glyph with greater duration than the maxima (equal to eight whole notes).
-</p>
+<comments>
 
-<p class="commentary">
-2. Integer forms like <code>4</code> as a substitute for <code>(4, 1)</code> in <code>Note(0, (4, 1))</code> are undocumented but allowed.
-</p>
+<p> The restriction that the written durations of notes, rests, chords and skips be expressible with some combination of dots, flags and beams without recourse to ties and brackets generalizes to the condition of notehead assignability. Values <code>(n, d)</code> are notehead-assignable when and only when (1) d is a nonnegative integer power of 2; (2) n is either a nonnegative integer power of 2 or is a nonnegative integer power of 2, minus 1; and (3) n/d is less than or equal to 8. Condition (3) captures the fact that LilyPond provides no glyph with greater duration than the maxima (equal to eight whole notes).
 
-<p class="commentary">
-3. Abjad allows maxima noteheads as in <code>Note(0, (8, 1))</code>. LilyPond implements a <code>\maxima</code> command but does not supply a corresponding glyph for the notehead.
-</p>
+<p> Integer forms like <code>4</code> as a substitute for <code>(4, 1)</code> in <code>Note(0, (4, 1))</code> are undocumented but allowed.
 
-<p class="commentary">
-4. Abjad raises a <code>ValueError</code> for nonnotehead-assignable durations but should raise a custom exception instead.
-</p>
+<p> Abjad allows maxima noteheads as in <code>Note(0, (8, 1))</code>. LilyPond implements a <code>\maxima</code> command but does not supply a corresponding glyph for the notehead.
 
+<p> Abjad raises a <code>ValueError</code> for nonnotehead-assignable durations but should raise a custom exception instead.
+
+</comments>

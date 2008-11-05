@@ -1,52 +1,52 @@
+<title> Written duration </title>
+
 <h1>Written duration</h1>
 
-<p>
-Abjad uses <strong>written duration</strong> to refer to the face value of notes, rests, chords and skips without prolation. Abjad written duration corresponds to the informal names we use when talking about duration.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> Abjad uses <strong>written duration</strong> to refer to the face value of notes, rests, chords and skips without prolation. Abjad written duration corresponds to the informal names we use when talking about duration.
 
-<p class="spacer" />
+</div class="subsection">
 
-<p>
-The sixteenth notes here are worth exactly a sixteenth of a whole note.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> The sixteenth notes here are worth exactly a sixteenth of a whole note.
 
-<pre>
-  abjad> measure = Measure((5, 16), Note(0, (1, 16)) * 5)
-  abjad> Beam(measure)
-  abjad> staff = RhythmicStaff([measure])
-  abjad> show(staff)
+<pre class="abjad">
+abjad> measure = Measure((5, 16), Note(0, (1, 16)) * 5)
+abjad> Beam(measure)
+abjad> staff = RhythmicStaff([measure])
+abjad> note = measure[0]
+abjad> note.duration.written
+Rational(1, 16)
+abjad> show(staff)
 </pre>
-<image class="inline" src="images/1.png">
-<pre>
-  abjad> note = measure[0]
-  abjad> note.duration.written
-  Rational(1, 16)
+<img src="images/1.png">
+
+</div class="subsection">
+
+<div class="subsection">
+<h2>  </h2>
+<p> The sixteenth notes here are worth more than a sixteenth of a whole note.
+
+<pre class="abjad">
+abjad> tuplet = FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)
+abjad> Beam(tuplet)
+abjad> measure = Measure((5, 16), [tuplet])
+abjad> staff = RhythmicStaff([measure])
+abjad> note = tuplet[0]
+abjad> note.duration.written
+Rational(1, 16)
+abjad> show(staff)
 </pre>
+<img src="images/2.png">
 
-<p class="spacer"/>
+</div class="subsection">
 
-<p>
-The sixteenth notes here are worth more than a sixteenth of a whole note.
-</p>
-
-<pre>
-  abjad> tuplet = FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)
-  abjad> Beam(tuplet)
-  abjad> measure = Measure((5, 16), [tuplet])
-  abjad> staff = RhythmicStaff([measure])
-  abjad> show(staff)
-</pre>
-<image class="inline" src="images/2.png">
-<pre>
-  abjad> note = tuplet[0]
-  abjad> note.duration.written
-  Rational(1, 16)
-</pre>
-
-<p class="spacer"/>
-
-<p>
-The notes in these examples carry different durations.
+<div class="subsection">
+<h2>  </h2>
+<p> The notes in these examples carry different durations.
 But we probably still call them all sixteenths anyway.
 Abjad written duration captures the fact that these notes write the same way before prolation.
-</p>
+
+</div class="subsection">

@@ -1,131 +1,129 @@
+<title> Rational values </title>
+
 <h1>Rational values</h1>
 
-<p>
-Abjad models musical duration with rational numbers. 
+<subsection>
+
+<p> Abjad models musical duration with rational numbers. 
 Standard Python distributions include built-in classes for integers, floats and many other types of number. 
 But no rational.
 So Abjad implements the custom rational class described here.
-</p>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-The Abjad <code>Rational</code> class initializes with integer numerator and integer denominator.
-</p>
+<subsection>
 
-<pre>
+<p> The Abjad <Rational> class initializes with integer numerator and integer denominator.
+
+<abjad>
   abjad> Rational(4, 5)
   Rational(4, 5)
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-Negative values are allowed.
-</p>
+<subsection>
 
-<pre>
+<p> Negative values are allowed.
+
+<abjad>
   abjad> Rational(-4, 5)
   Rational(-4, 5)
-</pre>
+</abjad>
 
-<pre>
+<abjad>
   abjad> Rational(-4, -5)
   Rational(4, 5)
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-Zero-valued numerators are allowed but zero-valued denominators aren't.
-</p>
+<subsection>
 
-<pre>
+<p> Zero-valued numerators are allowed but zero-valued denominators aren't.
+
+<abjad>
   abjad> Rational(0, 1)
   Rational(0, 1)
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-Numerator and denominator both simplify on input.
-</p>
+<subsection>
 
-<pre>
+<p> Numerator and denominator both simplify on input.
+
+<abjad>
   abjad> Rational(8, 10)
   Rational(4, 5)
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-Arithmetic operators work as expected.
-</p>
+<subsection>
 
-<pre>
+<p> Arithmetic operators work as expected.
+
+<abjad>
   abjad> Rational(4, 5) + Rational(2, 3)
   Rational(22, 15)
-</pre>
+</abjad>
 
-<pre>
+<abjad>
   abjad> Rational(4, 5) ** 2
   Rational(16, 25)
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-Comparison operators work, too.
-</p>
+<subsection>
 
-<pre>
+<p> Comparison operators work, too.
+
+<abjad>
   abjad> Rational(4, 5) >= Rational(2, 3)
   True
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-Type coercion works with <code>float( )</code>.
-</p>
+<subsection>
 
-<pre>
+<p> Type coercion works with <code>float( )</code>.
+
+<abjad>
   abjad> float(Rational(4, 5))
   0.80000000000000004
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-Use <code>pair</code> for numerator and denominator retrieval.
-</p>
+<subsection>
 
-<pre>
+<p> Use <code>pair</code> for numerator and denominator retrieval.
+
+<abjad>
   abjad> p = Rational(4, 5)
   abjad> p.pair
   (4, 5)
-</pre>
+</abjad>
 
-<h2 class="end-of-page">Comments</h2>
+</subsection>
 
-<p class="comment">
-The Abjad <code>Rational</code> exists only because current versions of Python contain no such functionality. Previous Python enhancement proposals, including <a href="http://www.python.org/dev/peps/pep-0239/">PEP 239</a>, have proposed the addition of a rational type to Python. Guido van Rossum has rejected all such proposals up to now. However, it looks like Python 2.6 implements a <code>Fraction</code> type with most of the functionality we need. Should this turn out to be the case, then the Abjad <code>Rational</code> class will be deprecate and then remove from the distribution. Abjad users and contributors should therefore avoid special customization or extension of the Abjad <code>Rational</code> class and consider adding helpers for novel uses of rational arithmetic instead.
-</p>
+<comments>
 
-<p class="comment">
-Other third-party implementations of rational arithmetic abound on the web. LilyPond distributions include a rational class that corresponds closely to the Abjad <code>Rational</code>. Other good examples show up readily in search results.
-</p>
+<p> The Abjad <Rational> exists only because current versions of Python contain no such functionality. Previous Python enhancement proposals, including <a href="http://www.python.org/dev/peps/pep-0239/">PEP 239</a>, have proposed the addition of a rational type to Python. Guido van Rossum has rejected all such proposals up to now. However, it looks like Python 2.6 implements a <code>Fraction</code> type with most of the functionality we need. Should this turn out to be the case, then the Abjad <Rational> class will be deprecate and then remove from the distribution. Abjad users and contributors should therefore avoid special customization or extension of the Abjad <Rational> class and consider adding helpers for novel uses of rational arithmetic instead.  </p>
 
-<p class="comment">
-Rational-to-rational exponentiation is not supported. <code>Rational(4, 5) ** Rational(2, 3)</code> will raise an exception.
-</p>
+<p> Other third-party implementations of rational arithmetic abound on the web. LilyPond distributions include a rational class that corresponds closely to the Abjad <Rational>. Other good examples show up readily in search results.
 
-<h2 class="end-of-page">To do</h2>
+<p> Rational-to-rational exponentiation is not supported. <code>Rational(4, 5) ** Rational(2, 3)</code> will raise an exception.
 
-<p class="comment">
-The Abjad <code>Rational</code> class currently does not implement the Value Object design pattern. But it should. To see that this is the case, consider that <code>p = Rational(4, 5)</code> followed by <code>p._numerator = 3</code> interprets and leaves <code>p</code> equal to <code>Rational(3, 5)</code>. This is probably a bad idea because two different class instances running somewhere in the same interpreter session with references to <code>p</code> will both receive value updates when <code>p</code> changes from <code>Rational(4, 5)</code> to <code>Rational(3, 5)</code>. Ths usual fix for this is the Value Object design pattern. The Value Object design pattern suggests that any changes to a value object result in the emission of a new instance. What this comes out to mean is that once, say, <code>Rational(4, 5)</code> instantiates, it can never change value, only emit a new <code>Rational(3, 5)</code> instance. It's not clear what the right implementation pattern is in Python, but we need to pick one and run with it. FWIW, this also raises a larger question as to whether even music classes like <code>Note</code> should refuse to change internal values and instead emit new <code>Note</code> instances. A more complicated decision.
-</p>
+</comments>
 
-<p class="comment">
-Zero-valued denominators currently raise an <code>AssertionError</code> but should raise the built-in <code>ZeroDivisionError</code> instead.
-</p>
+<to-do>
+
+<p> The Abjad <Rational> class currently does not implement the Value Object design pattern. But it should. To see that this is the case, consider that <code>p = Rational(4, 5)</code> followed by <code>p._numerator = 3</code> interprets and leaves <code>p</code> equal to <code>Rational(3, 5)</code>. This is probably a bad idea because two different class instances running somewhere in the same interpreter session with references to <code>p</code> will both receive value updates when <code>p</code> changes from <code>Rational(4, 5)</code> to <code>Rational(3, 5)</code>. Ths usual fix for this is the Value Object design pattern. The Value Object design pattern suggests that any changes to a value object result in the emission of a new instance. What this comes out to mean is that once, say, <code>Rational(4, 5)</code> instantiates, it can never change value, only emit a new <code>Rational(3, 5)</code> instance. It's not clear what the right implementation pattern is in Python, but we need to pick one and run with it. FWIW, this also raises a larger question as to whether even music classes like <code>Note</code> should refuse to change internal values and instead emit new <code>Note</code> instances. A more complicated decision.
+
+<p> Zero-valued denominators currently raise an <code>AssertionError</code> but should raise the built-in <code>ZeroDivisionError</code> instead.
+
+</to-do>

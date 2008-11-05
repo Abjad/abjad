@@ -1,39 +1,41 @@
+<title> Target duration </title>
+
 <h1>Target duration</h1>
 
-<p>
-Abjad defines the <strong>target duration</strong> of fixed-duration tuplets equal to composer-settable duration to which the tuplet prolates its contents.
-</p>
+<subsection>
 
-<p class="spacer" />
+<p> Abjad defines the <strong>target duration</strong> of fixed-duration tuplets equal to composer-settable duration to which the tuplet prolates its contents.
 
-<p>
-The fixed-duration tuplet here carries a target duration equal to <tt>4/8</tt>.
-</p>
+</subsection>
 
-<pre>
+<subsection>
+
+<p> The fixed-duration tuplet here carries a target duration equal to <tt>4/8</tt>.
+
+<abjad>
   abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
   abjad> Beam(tuplet)
   abjad> measure = Measure((4, 8), [tuplet]) 
   abjad> staff = RhythmicStaff([measure])
-  abjad> show(staff)
   abjad> tuplet.duration.contents
   Rational(5, 8)
-</pre>
+  abjad> show(staff)
+</abjad>
 
-<pre>
+<abjad>
   abjad> tuplet.duration
   FDTupletDurationInterface(1/2)
-</pre>
+</abjad>
 
-<p>
-The tuplet contents sum to <tt>5/8</tt>.
+<p> The tuplet contents sum to <tt>5/8</tt>.
 But tuplet target duration always equals <tt>4/8</tt>.
-</p>
 
-<h2 class="end-of-page">Comments</h2>
+</subsection>
 
-<p class="comment">
-The <code>_FDTupletDurationInterface</code> implements no explicit <code>target</code> attribute.
+<comments>
+
+<p> The <code>_FDTupletDurationInterface</code> implements no explicit <code>target</code> attribute.
 Target duration is instead implicit in the interpreter representation of the duration interface itself.
 I propose changing this so that we read from and assign to <code>tuplet.duration.target</code> instead.
-</p>
+
+</comments>

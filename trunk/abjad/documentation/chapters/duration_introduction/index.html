@@ -1,9 +1,6 @@
 <html>
-<head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
-</head>
+
+<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
 
 <body>
 
@@ -18,59 +15,47 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
+<title> Introduction </title>
+
 <h1>Introduction</h1>
 
-<p>
-Abjad publishes information about many <strong>durated</strong> score objects.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> Abjad publishes information about many <strong>durated</strong> score objects.
 
-<p class="spacer"/>
+<p> Notes, rests, chords and skips carry some duration attributes.
 
-<p>
-Notes, rests, chords and skips carry some duration attributes.
-</p>
-
-<pre>
-  abjad> note = Note(0, (3, 16))
-  abjad> measure = Measure((3, 16), [note])
-  abjad> staff = RhythmicStaff([measure])
-  abjad> show(staff)
+<pre class="abjad">
+abjad> note = Note(0, (3, 16))
+abjad> measure = Measure((3, 16), [note])
+abjad> staff = RhythmicStaff([measure])
+abjad> note.duration.written
+Rational(3, 16)
+abjad> show(staff)
 </pre>
-<image class="inline" src="images/1.png">
-<pre>
-  abjad> note.duration.written
-  Rational(3, 16)
+<img src="images/1.png">
+
+<p> Tuplets, measures, voices, staves and the other containers carry even more.
+
+<pre class="abjad">
+abjad> tuplet = FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
+abjad> measure = Measure((3, 16), [tuplet])
+abjad> staff = RhythmicStaff([measure])
+abjad> tuplet.duration.multiplier
+Rational(3, 5)
+abjad> show(staff)
 </pre>
+<img src="images/2.png">
 
-<p class="spacer"/>
+<p> The next chapters document duration in Abjad and explain core duration concepts.
 
-<p>
-Tuplets, measures, voices, staves and the other containers carry even more.
-</p>
-
-<pre>
-  abjad> tuplet = FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
-  abjad> measure = Measure((3, 16), [tuplet])
-  abjad> staff = RhythmicStaff([measure])
-  abjad> show(staff)
-</pre>
-<image class="inline" src="images/2.png">
-<pre>
-  abjad> tuplet.duration.multiplier
-  Rational(3, 5)
-</pre>
-
-<p class="spacer"/>
-
-<p>
-The next chapters document duration in Abjad and explain core duration concepts.
-</p>
+</div class="subsection">
 
 
-<p class="footer">
-<a href="../../index.html">Contents</a>
-</p>
+<p class="footer"> <a href="../../index.html">Contents</a> </p>
+
 </div>
 
 </body>
+
 </html>

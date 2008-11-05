@@ -1,64 +1,55 @@
-<h1>
-Duration token
-</h1>
+<title> Duration token </title>
 
-<p>
-Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
+<h1> Duration token </h1>
+
+<subsection>
+
+<p> Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
 
 <ul>
-   <li> Abjad <code>Rational</code> instances
+   <li> Abjad <Rational> instances
    <li> Python pairs
    <li> Python <tt>int</tt> and <tt>long</tt> instances
 </ul>
 
-<p>
-For example:
+<p> For example:
 
-<div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, Rational(1, 4))
    hide> measure = Measure((1, 4), [note])
    hide> measure.meter.transparent = True
    hide> staff = RhythmicStaff([measure])
    hide> show(staff)
-</pre>
-</div>
+</abjad>
 
-<p>
-And:
+<p> And:
 
-<div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, (3, 8))
    hide> measure = Measure((3, 8), [note])
    hide> measure.meter.transparent = True
    hide> staff = RhythmicStaff([measure])
    hide> show(staff)
-</pre>
-</div>
+</abjad>
 
-<p>
-And:
+<p> And:
 
-<div class="example-code">
-<pre>
+<abjad>
    abjad> note = Note(0, 1)
    hide> measure = Measure((1, 1), [note])
    hide> measure.meter.transparent = True
    hide> staff = RhythmicStaff([measure])
    hide> show(staff)
-</pre>
-</div>
+</abjad>
 
-<p>
-The Abjad <strong>duration token</strong> generalizes these different types of input.
+<p> The Abjad <strong>duration token</strong> generalizes these different types of input.
 
-<p>
-Examples in the documentation that ask for valid duration token input accept any of the types of input show here.
+<p> Examples in the documentation that ask for valid duration token input accept any of the types of input show here.
 
-<h2 class="page-section">
-Comments
-</h2>
+</subsection>
 
-<p class="comment">
-Abjad does not count the Python <tt>float</tt> among the valid types of duration token.
+<comments>
+
+<p> Abjad does not count the Python <tt>float</tt> among the valid types of duration token.
+
+</comments>

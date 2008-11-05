@@ -1,54 +1,56 @@
-<h1>Leaf multipliers</h1>
+<title> Leaf multipliers </title>
 
-<p>
-LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive rational values.
+<h1> Leaf multipliers </h1>
+
+<subsection>
+
+<p> LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive rational values.
 LilyPond multipliers are inivisible and generate no typographic output of their own.
-</p>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-Abjad implements LilyPond multpliers as the settable <code>duration.multiplier</code> attribute of notes, rests, chords and skips.
-</p>
+<subsection>
 
-<pre>
+<p> Abjad implements LilyPond multpliers as the settable <code>duration.multiplier</code> attribute of notes, rests, chords and skips.
+
+<abjad>
   abjad> note = Note(0, (1, 4))
   abjad> note.duration.multiplier = (1, 2)
   abjad> note.duration.multiplier
   Rational(1, 2)
-</pre>
+</abjad>
 
-<pre>
+<abjad>
   abjad> print(note.format)
   c'4 * 1/2
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-The duration interfaces of notes, rests, chords and skips with LilyPond multipliers test for equality differently than those without.
-</p>
+<subsection>
 
-<pre>
+<p> The duration interfaces of notes, rests, chords and skips with LilyPond multipliers test for equality differently than those without.
+
+<abjad>
   abjad> note = Note(0, (1, 4))
   abjad> note.duration == (1, 4)
   True
-</pre>
+</abjad>
 
-<pre>
+<abjad>
   abjad> note = Note(0, (1, 4))
   abjad> note.duration.multiplier = (1, 2)
   abjad> note.duration == (1, 8)
   True
-</pre>
+</abjad>
 
-<p class="spacer"/>
+</subsection>
 
-<p>
-LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
-</p>
+<subsection>
 
-<pre>
+<p> LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
+
+<abjad>
   abjad> notes = Note(0, (1, 4)) * 4
   abjad> multiplied_note = Note(0, (1, 2))
   abjad> multiplied_note.duration.multiplier = (1, 2)
@@ -59,24 +61,22 @@ LilyPond multipliers give the half notes here multiplied durations equal to a qu
   abjad> staves.invocation.type = 'StaffGroup'
   abjad> staves.brackets = 'double-angle'
   abjad> show(staves)
-</pre>
+</abjad>
 
-<p class="spacer">
+</subsection>
 
-<h2 class="end-of-page">Comments</h2>
+<comments>
 
-<p class="comment">
-Abjad models <i>multiplication</i> fundamentally differently than <i>prolation</i>. See the <a href="../prolation/text.html">chapter on prolation</a> for more information.
-</p>
+<p> Abjad models <i>multiplication</i> fundamentally differently than <i>prolation</i>. See the <a href="../prolation/text.html">chapter on prolation</a> for more information.
 
-<p class="comment">
-The LilyPond multiplication <code>*</code> operator differs from the Abjad multiplication <code>*</code> operator.
+<p> The LilyPond multiplication <code>*</code> operator differs from the Abjad multiplication <code>*</code> operator.
 LilyPond multiplication <i>scales duration</i> of LilyPond notes, rests, chords and skips.
 Abjad multiplication <i>copies</i> Abjad containers and leaves.
-</p>
 
-<h2 class="end-of-page">To do</h2>
+</comments>
 
-<p class="to-do">
-Implement a named <code>duration.multiplied</code> attribute on notes, rests, chords and skips to return <code>duration.written * duration.multiplier</code> where <code>duration.multiplier</code> is not <code>None</code>.
-</p>
+<to-do>
+
+<p> Implement a named <code>duration.multiplied</code> attribute on notes, rests, chords and skips to return <code>duration.written * duration.multiplier</code> where <code>duration.multiplier</code> is not <code>None</code>.
+
+</to-do>

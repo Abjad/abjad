@@ -1,9 +1,6 @@
 <html>
-<head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
-</head>
+
+<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
 
 <body>
 
@@ -18,54 +15,56 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
+<title> Target duration </title>
+
 <h1>Target duration</h1>
 
-<p>
-Abjad defines the <strong>target duration</strong> of fixed-duration tuplets equal to composer-settable duration to which the tuplet will prolate its contents.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> Abjad defines the <strong>target duration</strong> of fixed-duration tuplets equal to composer-settable duration to which the tuplet prolates its contents.
 
-<p class="spacer" />
+</div class="subsection">
 
-<p>
-The fixed-duration tuplet here carries a target duration equal to <tt>4/8</tt>.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> The fixed-duration tuplet here carries a target duration equal to <tt>4/8</tt>.
 
-<pre>
-  abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
-  abjad> Beam(tuplet)
-  abjad> measure = Measure((4, 8), [tuplet]) 
-  abjad> staff = RhythmicStaff([measure])
-  abjad> show(staff)
+<pre class="abjad">
+abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
+abjad> Beam(tuplet)
+abjad> measure = Measure((4, 8), [tuplet]) 
+abjad> staff = RhythmicStaff([measure])
+abjad> tuplet.duration.contents
+Rational(5, 8)
+abjad> show(staff)
 </pre>
-<image class="inline" src="images/1.png">
-<pre>
-  abjad> tuplet.duration.contents
-  Rational(5, 8)
-</pre>
+<img src="images/1.png">
 
-<pre>
-  abjad> tuplet.duration
-  FDTupletDurationInterface(1/2)
+<pre class="abjad">
+abjad> tuplet.duration
+FDTupletDurationInterface(1/2)
 </pre>
 
-<p>
-The tuplet contents sum to <tt>5/8</tt>.
+<p> The tuplet contents sum to <tt>5/8</tt>.
 But tuplet target duration always equals <tt>4/8</tt>.
-</p>
 
-<h2 class="end-of-page">Comments</h2>
+</div class="subsection">
 
-<p class="comment">
-The <code>_FDTupletDurationInterface</code> implements no explicit <code>target</code> attribute.
+<h2 class="page-section"> Comments </h2>
+
+<div class="comments">
+
+<p> The <code>_FDTupletDurationInterface</code> implements no explicit <code>target</code> attribute.
 Target duration is instead implicit in the interpreter representation of the duration interface itself.
 I propose changing this so that we read from and assign to <code>tuplet.duration.target</code> instead.
-</p>
+
+</div class="comments">
 
 
-<p class="footer">
-<a href="../../index.html">Contents</a>
-</p>
+<p class="footer"> <a href="../../index.html">Contents</a> </p>
+
 </div>
 
 </body>
+
 </html>

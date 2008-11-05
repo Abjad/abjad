@@ -1,8 +1,10 @@
+<title> Prolated duration </title>
+
 <h1>Prolated duration</h1>
 
-<p>
-Abjad defines <strong>prolated duration</strong> against all durated objects.
-Prolated duration models the total value of any durated object, accounting for prolation.
-</p>
+<subsection>
 
-<p class="spacer" />
+<p> Abjad defines <strong>prolated duration</strong> against all durated objects.
+Prolated duration models the total value of any durated object, accounting for prolation.
+
+</subsection>

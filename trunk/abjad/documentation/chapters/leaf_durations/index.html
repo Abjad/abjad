@@ -1,9 +1,6 @@
 <html>
-<head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
-</head>
+
+<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
 
 <body>
 
@@ -18,74 +15,62 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
+<title> Working with leaf durations </title>
+
 <h1>Working with leaf durations</h1>
-<hr>
-<p>
-Abjad notes, rests, chords and skips implement <code>_LeafDurationInterface</code>.
-<code>_LeafDurationInterface</code> bundles public leaf duration attributes. Public leaf duration attributes divide into three different categories &mdash; duration types, 
-<ul>
-   <li>written duration</li>
-   <li>prolated duration</li>
-   <li>multiplied duration</li>
-   <li>absolute duration</li>
-</ul>
-Additional public attributes of <code>_LeafDurationInterface</code> include:
-<ul>
-   <li>multiplier</li>
-   <li>prolation</li>
-   <li>prolations</li>
-   <li>pair</li>
-</ul>
-<code>_LeafDurationInterface</code> also implements the following public method:
-<ul>
-   <li>rewrite</li>
-</ul>
-</p>
-<p>
-Briefly, written duration models musical duration deriving from the combination of notehead and shape taken together with any dots, flags and beams and taken to the exclusion of any tuplet brackets or invisible multipliers.
-Prolated duration models musical duration deriving from the written shape of the note together with tuplet brackets but excluding invisible multipliers; multiplied duration models musical duration deriving from the written shape together with invisible multipliers but excluding tuplet brackets.
-</p>
 
-<p>
-Abjad <code>Note</code>, <code>Rest</code>, <code>Chord</code> and <code>Skip</code> implement <code>LeafDurationInterface</code> for access to information about the music duration of these classes.
-<pre>
-  abjad> note = Note(0, (1, 16))
-  abjad> note.duration
-  DurationInterface(1/16)
+<div class="subsection">
+<h2>  </h2>
+<p> Abjad <code><a href="../note_class/index.html">Note</a></code>, <code><a href="../rest_class/index.html">Rest</a></code>, <Chord> and <Skip> implement <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code> for access to information about the music duration of these classes.
+
+<pre class="abjad">
+abjad> note = Note(0, (1, 16))
+abjad> note.duration
+DurationInterface(1/16)
 </pre>
-</p>
 
-<p>
-The <code>LeafDurationInterface</code> models different types of note, rest, chord and skip duration. The most basic information provided by the <code>LeafDurationInterface</code> is the <i>written duration</i> of a leaf.
-<pre>
-  abjad> note.duration.written
-  Rational(1, 16)
+</div class="subsection">
+
+<div class="subsection">
+<h2>  </h2>
+<p> The most basic information provided by <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code> is <i>written duration</i>.
+
+<pre class="abjad">
+abjad> note.duration.written
+Rational(1, 16)
 </pre>
-Abjad written duration models the part of a the duration of a music object as contributed by the graphic shape of a music object &mdash; notehead or rest shape, together with any dots, flags or beams. Abjad written duration corresponds most closely to the usual intuitive understanding of music duration.
-</p>
 
-<p>
-Abjad <i>prolated duration</i> models music duration with the inclusion of tuplet brackets.
-<pre>
-  abjad> tuplet = FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3)
-  abjad> tuplet_note = tuplet[0]
-  abjad> tuplet_note.duration.written
-  Rational(1, 16)
-  abjad> tuplet_note.duration.prolated
-  Rational(1, 24)
+<p> Abjad written duration models the part of a the duration of a music object as contributed by the graphic shape of a music object &mdash; notehead or rest shape, together with any dots, flags or beams. Abjad written duration corresponds most closely to the usual intuitive understanding of music duration.
+
+</div class="subsection">
+
+<div class="subsection">
+<h2>  </h2>
+<p> Abjad <i>prolated duration</i> models music duration with the inclusion of tuplet brackets.
+
+<pre class="abjad">
+abjad> tuplet = FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3)
+abjad> tuplet_note = tuplet[0]
+abjad> tuplet_note.duration.written
+Rational(1, 16)
+abjad> tuplet_note.duration.prolated
+Rational(1, 24)
 </pre>
-Here we build a triplet and name a reference to the first note within in the triplet. We find the written duration of the first note equal to 1/16 and the prolated duration of the first note equal to 1/24. To see why this is the case, consider that the prolation ratio 3:2 acts as a type compression that squeezes three of something into the time of two of something. Three-in-the-time-of-two compression is the same thing multiplying the written duration of all tuplet members by 2/3. We then see that 1/16 * 2/3 = 1/24. The value of the 2/3 multiplier is available as the <code>prolation</code> attribute of the <code>LeafDurationInterface</code>.
-<pre>
-   abjad> tuplet_note.duration.prolation
-   Rational(2, 3)
+
+<p> Here we build a triplet and name a reference to the first note within in the triplet. We find the written duration of the first note equal to 1/16 and the prolated duration of the first note equal to 1/24. To see why this is the case, consider that the prolation ratio 3:2 acts as a type compression that squeezes three of something into the time of two of something. Three-in-the-time-of-two compression is the same thing multiplying the written duration of all tuplet members by 2/3. We then see that 1/16 * 2/3 = 1/24. The value of the 2/3 multiplier is available as the <code>prolation</code> attribute of <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
+
+<pre class="abjad">
+abjad> tuplet_note.duration.prolation
+Rational(2, 3)
 </pre>
-</p>
+
+</div class="subsection">
 
 
-<p class="spacer" />
-<hr>
-<a href="../../index.html">Contents</a>
+<p class="footer"> <a href="../../index.html">Contents</a> </p>
+
 </div>
 
 </body>
+
 </html>

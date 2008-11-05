@@ -1,31 +1,31 @@
+<title> Contents duration </title>
+
 <h1>Contents duration</h1>
 
-<p>
-Abjad defines the <strong>contents duration</strong> of tuplets, measures, voices, staves and other containers equal to the sum of the <strong>preprolated duration</strong> of each of the elements in the container.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> Abjad defines the <strong>contents duration</strong> of tuplets, measures, voices, staves and other containers equal to the sum of the <strong>preprolated duration</strong> of each of the elements in the container.
 
-<p class="spacer" />
+</div class="subsection">
 
-<p>
-The measure here contains two eighth notes and tuplet.
+<div class="subsection">
+<h2>  </h2>
+<p> The measure here contains two eighth notes and tuplet.
 These elements carry preprolated durations equal to <tt>1/8</tt>, <tt>1/8</tt> and <tt>2/8</tt>, respectively.
-</p>
 
-<pre>
-  abjad> notes = Note(0, (1, 8)) * 2
-  abjad> Beam(notes)
-  abjad> tuplet = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
-  abjad> Beam(tuplet)
-  abjad> measure = Measure((4, 8), notes + [tuplet]) 
-  abjad> staff = RhythmicStaff([measure])
-  abjad> show(staff)
+<pre class="abjad">
+abjad> notes = Note(0, (1, 8)) * 2
+abjad> Beam(notes)
+abjad> tuplet = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+abjad> Beam(tuplet)
+abjad> measure = Measure((4, 8), notes + [tuplet]) 
+abjad> staff = RhythmicStaff([measure])
+abjad> measure.duration.contents
+Rational(4, 8)
+abjad> show(staff)
 </pre>
-<image class="inline" src="images/1.png">
-<pre>
-  abjad> measure.duration.contents
-  Rational(4, 8)
-</pre>
+<img src="images/1.png">
 
-<p>
-The contents duration of the measure here equals <tt>1/8 + 1/8 + 2/8 = 4/8</tt>.
-</p>
+<p> The contents duration of the measure here equals <tt>1/8 + 1/8 + 2/8 = 4/8</tt>.
+
+</div class="subsection">

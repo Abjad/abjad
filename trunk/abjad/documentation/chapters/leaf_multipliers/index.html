@@ -1,9 +1,6 @@
 <html>
-<head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
-</head>
+
+<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
 
 <body>
 
@@ -18,114 +15,99 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
-<h1>Leaf multipliers</h1>
+<title> Leaf multipliers </title>
 
-<p>
-LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive, rational values.
+<h1> Leaf multipliers </h1>
+
+<div class="subsection">
+<h2>  </h2>
+<p> LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive rational values.
 LilyPond multipliers are inivisible and generate no typographic output of their own.
-</p>
 
-<p class="spacer"/>
+</div class="subsection">
 
-<p>
-Abjad implements LilyPond multpliers as the settable <code>duration.multiplier</code> attribute of notes, rests, chords and skips.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> Abjad implements LilyPond multpliers as the settable <code>duration.multiplier</code> attribute of notes, rests, chords and skips.
 
-<pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.duration.multiplier = (1, 2)
-  abjad> note.duration.multiplier
-  Rational(1, 2)
+<pre class="abjad">
+abjad> note = Note(0, (1, 4))
+abjad> note.duration.multiplier = (1, 2)
+abjad> note.duration.multiplier
+Rational(1, 2)
 </pre>
 
-<pre>
-  abjad> print(note.format)
-  c'4 * 1/2
+<pre class="abjad">
+abjad> print(note.format)
+c'4 * 1/2
 </pre>
 
-<p class="spacer"/>
+</div class="subsection">
 
-<p>
-The interpreter representation of the duration interfaces of notes, rests, chords and skips with LilyPond multipliers differs from those without.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> The duration interfaces of notes, rests, chords and skips with LilyPond multipliers test for equality differently than those without.
 
-<pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.duration
-  DurationInterface(1/4)
+<pre class="abjad">
+abjad> note = Note(0, (1, 4))
+abjad> note.duration == (1, 4)
+True
 </pre>
 
-<pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.duration.multiplier = (1, 2)
-  abjad> note.duration
-  DurationInterface(1/4, 1/2)
+<pre class="abjad">
+abjad> note = Note(0, (1, 4))
+abjad> note.duration.multiplier = (1, 2)
+abjad> note.duration == (1, 8)
+True
 </pre>
 
-<p class="spacer"/>
+</div class="subsection">
 
-<p>
-The duration interfaces of notes, rests, chords and skips with LilyPond multipliers test for equality differently than those without.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
 
-<pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.duration == (1, 4)
-  True
+<pre class="abjad">
+abjad> notes = Note(0, (1, 4)) * 4
+abjad> multiplied_note = Note(0, (1, 2))
+abjad> multiplied_note.duration.multiplier = (1, 2)
+abjad> multiplied_notes = multiplied_note * 4
+abjad> top = RhythmicStaff(notes)
+abjad> bottom = RhythmicStaff(multiplied_notes)
+abjad> staves = Staff([top, bottom])
+abjad> staves.invocation.type = 'StaffGroup'
+abjad> staves.brackets = 'double-angle'
+abjad> show(staves)
 </pre>
+<img src="images/1.png">
 
-<pre>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.duration.multiplier = (1, 2)
-  abjad> note.duration == (1, 8)
-  True
-</pre>
+</div class="subsection">
 
-<p class="spacer"/>
+<h2 class="page-section"> Comments </h2>
 
-<p>
-LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
-</p>
+<div class="comments">
 
-<pre>
-  abjad> notes = Note(0, (1, 4)) * 4
-  abjad> multiplied_note = Note(0, (1, 2))
-  abjad> multiplied_note.duration.multiplier = (1, 2)
-  abjad> multiplied_notes = multiplied_note * 4
-  abjad> top = RhythmicStaff(notes)
-  abjad> bottom = RhythmicStaff(multiplied_notes)
-  abjad> staves = Staff([top, bottom])
-  abjad> staves.invocation.type = 'StaffGroup'
-  abjad> staves.brackets = 'double-angle'
-  abjad> show(staves)
-</pre>
-<image src="images/1.png">
+<p> Abjad models <i>multiplication</i> fundamentally differently than <i>prolation</i>. See the <a href="../prolation/text.html">chapter on prolation</a> for more information.
 
-<p class="spacer">
-
-<h2 class="end-of-page">Comments</h2>
-
-<p class="comment">
-Abjad models <i>multiplication</i> fundamentally differently than <i>prolation</i>. See the <a href="../prolation/text.html">chapter on prolation</a> for more information.
-</p>
-
-<p class="comment">
-The LilyPond multiplication <code>*</code> operator differs from the Abjad multiplication <code>*</code> operator.
+<p> The LilyPond multiplication <code>*</code> operator differs from the Abjad multiplication <code>*</code> operator.
 LilyPond multiplication <i>scales duration</i> of LilyPond notes, rests, chords and skips.
 Abjad multiplication <i>copies</i> Abjad containers and leaves.
-</p>
 
-<h2 class="end-of-page">To do</h2>
+</div class="comments">
 
-<p class="to-do">
-Implement a named <code>duration.multiplied</code> attribute on notes, rests, chords and skips to return <code>duration.written * duration.multiplier</code> where <code>duration.multiplier</code> is not <code>None</code>.
-</p>
+<h2 class="page-section"> To do </h2>
+
+<div class="to-do">
+
+<p> Implement a named <code>duration.multiplied</code> attribute on notes, rests, chords and skips to return <code>duration.written * duration.multiplier</code> where <code>duration.multiplier</code> is not <code>None</code>.
+
+</div class="to-do">
 
 
-<p class="footer">
-<a href="../../index.html">Contents</a>
-</p>
+<p class="footer"> <a href="../../index.html">Contents</a> </p>
+
 </div>
 
 </body>
+
 </html>
