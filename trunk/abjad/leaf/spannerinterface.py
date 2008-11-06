@@ -13,13 +13,13 @@ class _LeafSpannerInterface(object):
       self._parser = _Parser( )
       self._spanners = [ ]
 
-   ### REPR ###
-
-   def __repr__(self):
-      if len(self) == 0:
-         return '%s( )' % self.__class__.__name__
-      else:
-         return '%s(%s)' % (self.__class__.__name__, len(self))
+#   ### REPR ###
+#
+#   def __repr__(self):
+#      if len(self) == 0:
+#         return '%s( )' % self.__class__.__name__
+#      else:
+#         return '%s(%s)' % (self.__class__.__name__, len(self))
 
    ### OVERRIDES ###
 

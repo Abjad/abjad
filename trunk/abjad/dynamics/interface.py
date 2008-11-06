@@ -37,8 +37,8 @@ class _DynamicsInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
       else:
          return ' '
 
-   def __repr__(self):
-      return '_DynamicsInterface(%s)' % self._summary
+#   def __repr__(self):
+#      return '_DynamicsInterface(%s)' % self._summary
 
    ### DERIVED PROPERTIES ###
 

@@ -4,7 +4,6 @@ from abjad import *
 def test_dynamics_interface_01( ):
    '''Dynamics default to no mark, no hairpin and no effective dynamic.'''
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   assert repr(staff[0].dynamics) == '_DynamicsInterface( )'
    for note in staff:
       assert note.dynamics.mark is None
       assert note.dynamics.spanner is None

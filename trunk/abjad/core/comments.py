@@ -5,11 +5,11 @@ class _Comments(list):
       self.after = [ ]
       self.right = [ ]
 
-   def __repr__(self):
-      if len(self):
-         return 'Comments(%s)' % ', '.join(self)
-      else:
-         return 'Comments( )'
+#   def __repr__(self):
+#      if len(self):
+#         return 'Comments(%s)' % ', '.join(self)
+#      else:
+#         return 'Comments( )'
 
    @property
    def _before(self):

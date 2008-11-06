@@ -11,8 +11,8 @@ class _Formatter(object):
       self.left = [ ]
       self.right = [ ]
    
-   def __repr__(self):
-      return '%s( )' % self.__class__.__name__
+#   def __repr__(self):
+#      return '%s( )' % self.__class__.__name__
 
    @property
    def _before(self):

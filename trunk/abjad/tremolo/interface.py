@@ -7,13 +7,13 @@ class _TremoloInterface(_Interface):
       _Interface.__init__(self, client)
       self._subdivision = None
 
-   ### ACCESSORS ###
-
-   def __repr__(self):
-      if self.subdivision:
-         return 'Tremolo(%s)' % self.subdivision
-      else:
-         return 'Tremolo( )'
+#   ### ACCESSORS ###
+#
+#   def __repr__(self):
+#      if self.subdivision:
+#         return 'Tremolo(%s)' % self.subdivision
+#      else:
+#         return 'Tremolo( )'
 
    ### MANAGED ###
 

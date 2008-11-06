@@ -16,12 +16,20 @@ class _LeafDurationInterface(_DurationInterface):
 
    ### REPR ###
 
+   ### TODO: suppress __repr__ for this private class;
+   ###       will only be possible to supress __repr__
+   ###       on the _DurationInterface parent class
+   ###       no longer inherits from Rational;
+   ###       until that time, supressing __repr__
+   ###       here will simply cause self to display
+   ###       as a Rational.
+
    def __repr__(self):
       if self.multiplier is not None:
-         return 'DurationInterface(%s, %s)' % (
+         return '_LeafDurationInterface(%s, %s)' % (
             str(self.written), str(self.multiplier))
       else:
-         return 'DurationInterface(%s)' % str(self.written)
+         return '_LeafDurationInterface(%s)' % str(self.written)
 
    ### READ-ONLY ATTRIBUTES ###
 
