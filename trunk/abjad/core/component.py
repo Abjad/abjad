@@ -32,6 +32,9 @@ class _Component(object):
          result.append(self.copy( ))
       return result
 
+   def __nonzero__(self):
+      return True
+
    def __rmul__(self, n):
       return self * n
 
