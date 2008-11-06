@@ -44,13 +44,15 @@ class _LeafFormatter(_Formatter):
    def _grace(self):
       result = [ ]
       grace = self._client.grace.before
-      if grace:
+      #if grace > 0:
+      if len(grace) > 0:
          result.append(grace.format)
       return result
 
    @property
    def _agrace_opening(self):
-      if self._client.grace.after:
+      #if self._client.grace.after:
+      if len(self._client.grace.after) > 0:
          return [r'\afterGrace']
       else:
          return [ ] 
@@ -59,7 +61,8 @@ class _LeafFormatter(_Formatter):
    def _agrace(self):
       result = [ ]
       agrace = self._client.grace.after
-      if agrace:
+      #if agrace:
+      if len(agrace) > 0:
          result.append(agrace.format)
       return result
 
