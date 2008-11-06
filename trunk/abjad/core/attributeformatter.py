@@ -1,4 +1,4 @@
-from .. core.parser import _Parser
+from abjad.core.parser import _Parser
 
 ### INTRO ###
 ### created from _Interface on 2008-11-04;
@@ -23,10 +23,10 @@ class _AttributeFormatter(object):
 #   def __cmp__(self, arg):
 #      raise Exception(NotImplemented)
 #
-#   def __len__(self):
-#      return len([kvp for kvp in self.__dict__.items( ) 
-#         if not kvp[0].startswith('_')])
-#
+   def __len__(self):
+      return len([kvp for kvp in self.__dict__.items( ) 
+         if not kvp[0].startswith('_')])
+
 #   def __repr__(self):
 #      return '%s( )' % self.__class__.__name__
 

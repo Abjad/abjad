@@ -1,6 +1,8 @@
-from grace import Grace
-from .. helpers.hasname import hasname
+from abjad.grace.grace import Grace
+from abjad.helpers.hasname import hasname
 
+### TODO: decide whether _GraceInterface should inherit from
+###       new, stripped-down _Interface
 
 class _GraceInterface(object):
 

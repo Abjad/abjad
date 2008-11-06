@@ -1,9 +1,10 @@
-from .. core.interface import _Interface
+from abjad.core.interface import _Interface
 
 class _HarmonicInterface(_Interface):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'Harmonic', ['Harmonic'] )
+      #_Interface.__init__(self, client, 'Harmonic', ['Harmonic'] )
+      _Interface.__init__(self, client)
       self._set = None
 
    ### OVERRIDES ###
@@ -19,7 +20,8 @@ class _HarmonicInterface(_Interface):
 
    def clear(self):
       self._set = None
-      _Interface.clear(self)
+      #_Interface.clear(self)
+      _AttributeFormatter.clear(self)
 
    ### FORMATTING ###
 

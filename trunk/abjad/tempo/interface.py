@@ -1,9 +1,15 @@
-from .. core.interface import _Interface
+from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.interface import _Interface
+from abjad.core.spannerreceptor import _SpannerReceptor
 
-class _TempoInterface(_Interface):
+#class _TempoInterface(_Interface):
+class _TempoInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
    
    def __init__(self, client):
-      _Interface.__init__(self, client, 'MetronomeMark', ['Tempo'])
+      #_Interface.__init__(self, client, 'MetronomeMark', ['Tempo'])
+      _Interface.__init__(self, client)
+      _AttributeFormatter.__init__(self, 'MetronomeMark')
+      _AttributeFormatter.__init__(self, ['Tempo'])
       self._metronome = None
  
    ### OVERRIDES ###
@@ -20,7 +26,8 @@ class _TempoInterface(_Interface):
 
    def clear(self):
       self._metronome = None
-      _Interface.clear(self)
+      #_Interface.clear(self)
+      _AttributeFormatter.clear(self)
 
    ### FORMATTING ###
    

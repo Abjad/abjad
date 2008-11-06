@@ -1,16 +1,19 @@
-from .. duration.rational import Rational
-from .. core.interface import _Interface
+from abjad.core.attributeformatter import _AttributeFormatter
+#from abjad.core.interface import _Interface
+from abjad.duration.rational import Rational
 
 # TODO: give _Meter the LilyPond attribute-formatting code
 # without forcing _Meter to inherite from _Interface
-class _Meter(_Interface):
+#class _Meter(_Interface):
+class _Meter(_AttributeFormatter):
 
    # NOTE: notice the trickiness with 'Staff.TimeSignature' instead
    # of simply 'TimeSignature' for the grob;
    # this is because the LilyPond TimeSignature grob lives in the 
    # LilyPond Staff context rather than the LilyPond Voice context.
    def __init__(self, n, d):
-      _Interface.__init__(self, None, 'Staff.TimeSignature', ['TimeSignature'])
+      #_Interface.__init__(self, None, 'Staff.TimeSignature', ['TimeSignature'])
+      _AttributeFormatter.__init__(self, 'Staff.TimeSignature')
       self.pair = (n, d)
       self.hide = False
 

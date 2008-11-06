@@ -1,9 +1,15 @@
-from .. core.interface import _Interface
+from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.interface import _Interface
+from abjad.core.spannerreceptor import _SpannerReceptor
 
-class _TieInterface(_Interface):
+#class _TieInterface(_Interface):
+class _TieInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
 
    def __init__(self, client):
-      _Interface.__init__(self, client, 'Tie', ['Tie'] )
+      #_Interface.__init__(self, client, 'Tie', ['Tie'] )
+      _Interface.__init__(self, client)
+      _AttributeFormatter.__init__(self, 'Tie')
+      _SpannerReceptor.__init__(self, ['Tie'])
       self._set = None
 
    ### OVERRIDES ###
@@ -19,7 +25,8 @@ class _TieInterface(_Interface):
 
    def clear(self):
       self._set = None
-      _Interface.clear(self)
+      #_Interface.clear(self)
+      _AttributeFormatter.clear(self)
 
    ### TODO generalize these to work with Glissando?
    @property

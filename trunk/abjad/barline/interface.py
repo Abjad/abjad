@@ -1,9 +1,13 @@
-from .. core.interface import _Interface
+from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.interface import _Interface
 
-class _BarLineInterface(_Interface):
+#class _BarLineInterface(_Interface):
+class _BarLineInterface(_Interface, _AttributeFormatter):
    
    def __init__(self, client):
-      _Interface.__init__(self, client, 'BarLine', ['BarLine'])
+      #_Interface.__init__(self, client, 'BarLine', ['BarLine'])
+      _Interface.__init__(self, client)
+      _AttributeFormatter.__init__(self, 'BarLine')
       self._type = None
       
    ### MANAGED ###

@@ -1,22 +1,26 @@
-from .. core.formatter import _Formatter
-from .. core.interface import _Interface
+from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.formatter import _Formatter
+from abjad.core.interface import _Interface
 
 class _LeafFormatter(_Formatter):
 
    def __init__(self, client):
       _Formatter.__init__(self, client)
 
-   def _getInterfaces(self):
+   #def _getInterfaces(self):
+   def _getFormatCarriers(self):
       result = [ ]
       for value in self._client.__dict__.values( ):
-         if isinstance(value, _Interface):
+         #if isinstance(value, _Interface):
+         if isinstance(value, (_Interface, _AttributeFormatter)):
             result.append(value)
       result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
 
    def _collectLocation(self, location):
       result = [ ]
-      for interface in self._getInterfaces( ):
+      #for interface in self._getInterfaces( ):
+      for interface in self._getFormatCarriers( ):
          try:
             exec('result.extend(interface.%s)' % location)
          except AttributeError:

@@ -1,7 +1,7 @@
-from .. core.attributeformatter import _AttributeFormatter
-from .. leaf.leaf import _Leaf
-from initializer import _RestInitializer
-from .. pitch.pitch import Pitch
+from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.leaf.leaf import _Leaf
+from abjad.pitch.pitch import Pitch
+from abjad.rest.initializer import _RestInitializer
 
 class Rest(_Leaf, _AttributeFormatter):
 
@@ -18,6 +18,7 @@ class Rest(_Leaf, _AttributeFormatter):
       return 'r%s' % self.duration._product
 
    ### PROPERTIES ###
+
    @apply
    def pitch( ):
       def fget(self):

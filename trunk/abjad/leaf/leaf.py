@@ -54,6 +54,9 @@ class _Leaf(_Component):
 #   def __repr__(self):
 #      return self._body
 
+   def __nonzero__(self):
+      return True
+
    ### MANAGED ATTRIBUTES ###
 
    @apply
