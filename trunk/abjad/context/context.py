@@ -2,7 +2,8 @@ from .. containers.container import Container
 from formatter import _ContextFormatter
 from invocation import _Invocation
 
-class Context(Container):
+#class Context(Container):
+class _Context(Container):
 
    def __init__(self, music = None):
       music = music or [ ]
@@ -22,7 +23,8 @@ class Context(Container):
          self.brackets.close)
 
    def __eq__(self, arg):
-      if isinstance(arg, Context):
+      #if isinstance(arg, Context):
+      if isinstance(arg, _Context):
          if self.brackets == arg.brackets and \
             self.invocation == arg.invocation and\
             self._music == arg._music:

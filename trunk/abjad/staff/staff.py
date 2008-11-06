@@ -1,10 +1,11 @@
-from .. context.context import Context
+#from .. context.context import Context
+from .. context.context import _Context
 
-class Staff(Context):
+class Staff(_Context):
 
    def __init__(self, music = None):
       music = music or [ ]
-      Context.__init__(self, music)
+      _Context.__init__(self, music)
       self.invocation = 'Staff'
 
 def RhythmicStaff(music):

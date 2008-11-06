@@ -235,7 +235,8 @@ class _Navigator(object):
       if len(c_thread_parentage) == len(thread_parentage):
          for c, p in zip(c_thread_parentage, thread_parentage):
             if type(c) == type(p):
-               if c.kind('Context') and p.kind('Context'):
+               #if c.kind('Context') and p.kind('Context'):
+               if c.kind('_Context') and p.kind('_Context'):
                   if c.invocation != p.invocation:
                      match_parent = False
       else:
@@ -246,7 +247,8 @@ class _Navigator(object):
          match_self = True
       elif self._client.kind('Container') and expr.kind('Container'):
          if not self._client.parallel and not expr.parallel:
-            if self._client.kind('Context') and expr.kind('Context'):
+            #if self._client.kind('Context') and expr.kind('Context'):
+            if self._client.kind('_Context') and expr.kind('_Context'):
                if self._client.invocation == expr.invocation:
                   match_self =  True
             elif type(self._client) == type(expr):
@@ -270,7 +272,8 @@ class _Navigator(object):
 #         if len(c_thread_parentage) == len(thread_parentage):
 #            for c, p in zip(c_thread_parentage, thread_parentage):
 #               if type(c) == type(p):
-#                  if c.kind('Context') and p.kind('Context'):
+#                  #if c.kind('Context') and p.kind('Context'):
+#                  if c.kind('_Context') and p.kind('_Context'):
 #                     if c.invocation != p.invocation:
 #                        match = False
 #         else:

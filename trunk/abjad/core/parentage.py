@@ -33,7 +33,8 @@ class _Parentage(object):
             if type(p) == type(parentage[i+1]):
                if p.kind('Parallel') : # or p.kind('Sequential'):
                   parentage.remove(p)
-               elif p.kind('Context'):
+               #elif p.kind('Context'):
+               elif p.kind('_Context'):
                   if p.invocation == parentage[i+1].invocation:
                      parentage.remove(p)
       return parentage

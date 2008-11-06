@@ -1,10 +1,11 @@
-from .. context.context import Context
+#from .. context.context import Context
+from .. context.context import _Context
 
-class Score(Context):
+class Score(_Context):
 
    def __init__(self, music = None):
       music = music or [ ]
-      Context.__init__(self, music)
+      _Context.__init__(self, music)
       self.brackets = 'double-angle'
       self.invocation = 'Score'
 
