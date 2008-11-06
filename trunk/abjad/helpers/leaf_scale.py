@@ -23,10 +23,12 @@ def leaf_scale(dur, leaf):
    dur = Rational(*_duration_token_unpack(dur))
    assert dur > 0
    try:
-      leaf.duration = dur
+      #leaf.duration = dur
+      leaf.duration.written = dur
       return leaf
    except ValueError:
-      leaf.duration = _converge_to_power2(leaf.duration, dur)
+      #leaf.duration = _converge_to_power2(leaf.duration, dur)
+      leaf.duration.written = _converge_to_power2(leaf.duration.written, dur)
       result = FixedDurationTuplet(dur, [leaf])
       return result
 
@@ -43,7 +45,8 @@ def leaf_scale_binary(dur, leaf):
    dur = Rational(*_duration_token_unpack(dur))
    assert dur > 0
    try:
-      leaf.duration = dur
+      #leaf.duration = dur
+      leaf.duration.written = dur
       return [leaf]
    except ValueError:
       result = [ ]

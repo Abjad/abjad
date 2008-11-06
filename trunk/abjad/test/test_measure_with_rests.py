@@ -8,7 +8,8 @@ def test_measure_with_rests_01( ):
    assert measure.meter.pair == (4, 4)
    assert len(measure) == 1
    assert isinstance(measure[0], Rest)
-   assert measure[0].duration.pair == (1, 1)
+   #assert measure[0].duration.pair == (1, 1)
+   assert measure[0].duration.written == Rational(1, 1)
    
 
 def test_measure_with_rests_02( ):
@@ -18,8 +19,10 @@ def test_measure_with_rests_02( ):
    assert len(measure) == 2
    assert isinstance(measure[0], Rest)
    assert isinstance(measure[1], Rest)
-   assert measure[0].duration.pair == (1, 1)
-   assert measure[1].duration.pair == (1, 4)
+   #assert measure[0].duration.pair == (1, 1)
+   #assert measure[1].duration.pair == (1, 4)
+   assert measure[0].duration.written == Rational(1, 1)
+   assert measure[1].duration.written == Rational(1, 4)
    
 
 def test_measure_with_rests_03( ):

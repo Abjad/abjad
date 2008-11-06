@@ -12,7 +12,8 @@ def test_measure_empty_01( ):
    assert t.format == ''
    assert t.meter == None
    assert len(t) == 0
-   assert t.duration == Rational(0)
+   #assert t.duration == Rational(0)
+   assert t.duration.preprolated == Rational(0)
    assert t.duration.prolated == Rational(0)
    assert not checker.check(t)
 
@@ -25,7 +26,8 @@ def test_measure_empty_02( ):
    assert len(t) == 0
    #assert t.duration == Rational(0)
    #assert t.duration.prolated == Rational(0)
-   assert t.duration == Rational(1)
+   #assert t.duration == Rational(1)
+   assert t.duration.preprolated == Rational(4, 4)
    assert t.duration.prolated == Rational(1)
    assert not checker.check(t)
 
@@ -38,6 +40,7 @@ def test_measure_empty_03( ):
    assert len(t) == 0
    #assert t.duration == Rational(0)
    #assert t.duration.prolated == Rational(0)
-   assert t.duration == Rational(4, 5)
+   #assert t.duration == Rational(4, 5)
+   assert t.duration.preprolated == Rational(4, 5)
    assert t.duration.prolated == Rational(4, 5)
    assert not checker.check(t)

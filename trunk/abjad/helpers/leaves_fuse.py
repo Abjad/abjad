@@ -11,7 +11,8 @@ def leaves_fuse_binary(data):
    if len(leaves) > 0:
       dur = 0
       for l in leaves:
-         dur += l.duration
+         #dur += l.duration
+         dur += l.duration.written
       ### delete all but the first
       for l in leaves[1:]:
          l._die( )

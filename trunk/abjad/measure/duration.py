@@ -7,12 +7,12 @@ from math import log
 
 class _MeasureDurationInterface(_ContainerDurationInterface):
 
-   ### REPR ###
+#   ### OVERLOADS ###
+#
+#   def __repr__(self):
+#      return 'MeasureDurationInterface(%s)' % self._duration
 
-   def __repr__(self):
-      return 'MeasureDurationInterface(%s)' % self._duration
-
-   ### DERIVED PROPERTIES ###
+   ### PRIVATE ATTRIBUTES ###
 
    @property
    def _duration(self):
@@ -21,7 +21,23 @@ class _MeasureDurationInterface(_ContainerDurationInterface):
       else:
          return self.contents
 
-   ### DERIVED PROPERTIES ###
+   ### PUBLIC ATTRIBUTES ###
+
+   @property
+   def compression(self):
+      '''Exists to handle the one exceptional case
+         where a nonbinary measure has a multiplier == 1.'''
+      if self.nonbinary and self.multiplier == Rational(1, 1):
+         return _denominator_to_multiplier(self._client.meter.denominator)
+      else:
+         return self.multiplier
+
+   @property
+   def multiplier(self):
+      if self._client.meter and self.contents != Rational(0):
+         return self._client.meter.duration / self.contents
+      else:
+         return Rational(1, 1)
 
    @property
    def nonbinary(self):
@@ -32,17 +48,8 @@ class _MeasureDurationInterface(_ContainerDurationInterface):
          return False
 
    @property
-   def multiplier(self):
-      if self._client.meter and self.contents != Rational(0):
-         return self._client.meter.duration / self.contents
+   def preprolated(self):
+      if self._client.meter is not None:
+         return self._client.meter.duration
       else:
-         return Rational(1, 1)
-
-   @property
-   def compression(self):
-      '''Exists to handle the one exceptional case
-         where a nonbinary measure has a multiplier == 1.'''
-      if self.nonbinary and self.multiplier == Rational(1, 1):
-         return _denominator_to_multiplier(self._client.meter.denominator)
-      else:
-         return self.multiplier
+         return self.contents

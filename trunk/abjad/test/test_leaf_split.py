@@ -7,7 +7,8 @@ def test_leaf_split_01( ):
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.written == Rational(1, 4)
    assert new[0] == t
 
 def test_leaf_split_02( ):
@@ -17,7 +18,8 @@ def test_leaf_split_02( ):
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.written == Rational(1, 4)
    assert new[0] == t
 
 def test_leaf_split_03( ):
@@ -27,9 +29,11 @@ def test_leaf_split_03( ):
    assert isinstance(new, list)
    assert len(new) == 2
    assert isinstance(new[0], Note)
-   assert new[0].duration == Rational(1, 8)
+   #assert new[0].duration == Rational(1, 8)
+   assert new[0].duration.written == Rational(1, 8)
    assert isinstance(new[1], Note)
-   assert new[1].duration == Rational(1, 8)
+   #assert new[1].duration == Rational(1, 8)
+   assert new[1].duration.written == Rational(1, 8)
 
 
 def test_leaf_split_04( ):
@@ -44,11 +48,13 @@ def test_leaf_split_04( ):
    #assert new[0].duration == Rational(1, 12)
    assert new[0].duration.target == Rational(1, 12)
    assert isinstance(new[0][0], Note)
-   assert new[0][0].duration == Rational(1, 8)
+   #assert new[0][0].duration == Rational(1, 8)
+   assert new[0][0].duration.written == Rational(1, 8)
    assert isinstance(new[1], FixedDurationTuplet)
    #assert new[1].duration == Rational(1, 6)
    assert new[1].duration.target == Rational(1, 6)
    assert isinstance(new[1][0], Note)
-   assert new[1][0].duration == Rational(1, 4)
+   #assert new[1][0].duration == Rational(1, 4)
+   assert new[1][0].duration.written == Rational(1, 4)
 
 

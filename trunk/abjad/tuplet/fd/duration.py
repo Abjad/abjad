@@ -10,13 +10,13 @@ class _FDTupletDurationInterface(_TupletDurationInterface):
       #self._duration = duration
       self.target = target
 
-   ### REPR ###
+#   ### OVERLOADS ###
+#
+#   def __repr__(self):
+#      #return 'FDTupletDurationInterface(%s)' % self._duration
+#      return 'FDTupletDurationInterface(%s)' % self.target
 
-   def __repr__(self):
-      #return 'FDTupletDurationInterface(%s)' % self._duration
-      return 'FDTupletDurationInterface(%s)' % self.target
-
-   ### MANAGED ATTRIBUTES ###
+   ### PUBLIC ATTRIBUTES ###
 
 #   @apply
 #   def _duration( ):
@@ -38,6 +38,18 @@ class _FDTupletDurationInterface(_TupletDurationInterface):
 #            raise ValueError('Tuplet rational %s must be positive.' %
 #               rational)
 #      return property(**locals( ))
+
+   @property
+   def multiplied(self):
+      return self.target
+
+   @property
+   def multiplier(self):
+      if len(self._client) > 0:
+         #return self._duration / self.contents
+         return self.target / self.contents
+      else:
+         return None
 
    @apply
    def target( ):
@@ -61,11 +73,3 @@ class _FDTupletDurationInterface(_TupletDurationInterface):
             raise ValueError('Tuplet rational %s must be positive.' %
                rational)
       return property(**locals( ))
-
-   @property
-   def multiplier(self):
-      if len(self._client) > 0:
-         #return self._duration / self.contents
-         return self.target / self.contents
-      else:
-         return None

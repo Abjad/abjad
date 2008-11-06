@@ -8,7 +8,8 @@ def test_container_01( ):
    assert t.format == ''
    assert len(t) == 0
    assert t._parent == None
-   assert t.duration == t.duration.prolated == 0
+   #assert t.duration == t.duration.prolated == 0
+   assert t.duration.contents == t.duration.prolated == 0
    # empty containers are allowed but not well-formed;
    # so we do not check( ) here
    
@@ -20,7 +21,8 @@ def test_container_02( ):
    assert t.format == ''
    assert len(t) == 0
    assert t._parent == None
-   assert t.duration == t.duration.prolated == 0
+   #assert t.duration == t.duration.prolated == 0
+   assert t.duration.contents == t.duration.prolated == 0
    # empty containers are allowed but not well-formed;
    # so we do not check( ) here
 
@@ -40,7 +42,8 @@ def test_container_04( ):
    assert t.format == "\tc'4\n\tc'4\n\tc'4\n\tc'4"
    assert len(t) == 4
    assert t._parent == None
-   assert t.duration == t.duration.prolated == 1
+   #assert t.duration == t.duration.prolated == 1
+   assert t.duration.contents == t.duration.prolated == 1
    assert check(t)
 
 

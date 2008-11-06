@@ -21,7 +21,8 @@ def leaf_list(leaf_token, duration_token):
    if isinstance(leaf_token, _Leaf):
       leaves = leaf_token * len(duration_tokens)
       for leaf, dt in zip(leaves, duration_tokens):
-         leaf.duration = dt
+         #leaf.duration = dt
+         leaf.duration.written = dt
    elif leaf_token == Note:
       leaves = [leaf_token(None, dt) for dt in duration_tokens]
    elif leaf_token == Chord:

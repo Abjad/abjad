@@ -123,16 +123,16 @@ class _Leaf(_Component):
    def duration( ):
       def fget(self):
          return self._duration
-      def fset(self, *args):
-         if isinstance(args[0], (int, long)):
-            rational = Rational(args[0])
-         elif isinstance(args[0], tuple):
-            rational = Rational(*args[0])
-         elif isinstance(args[0], (Rational, Rational)):
-            rational = Rational(*args[0].pair)
-         else:
-            raise ValueError('can not set duration from %s.' % str(args))
-         self._duration.written = rational
+#      def fset(self, *args):
+#         if isinstance(args[0], (int, long)):
+#            rational = Rational(args[0])
+#         elif isinstance(args[0], tuple):
+#            rational = Rational(*args[0])
+#         elif isinstance(args[0], (Rational, Rational)):
+#            rational = Rational(*args[0].pair)
+#         else:
+#            raise ValueError('can not set duration from %s.' % str(args))
+#         self._duration.written = rational
       return property(**locals( ))
 
    @apply

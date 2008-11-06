@@ -11,7 +11,8 @@ def test_excise_tuplet_01(  ):
    assert t.duration.target == Rational(4, 5)
    assert t.duration.prolated == Rational(4, 5)
    assert isinstance(t[0], Note)
-   assert t[0].duration == Rational(1, 4)
+   #assert t[0].duration == Rational(1, 4)
+   assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 5)
 
 
@@ -21,10 +22,12 @@ def test_excise_tuplet_02(  ):
    excise(t.leaves[0])
    assert isinstance(t, FixedMultiplierTuplet)
    assert len(t) == 4
-   assert t.duration == Rational(4, 5)
+   #assert t.duration == Rational(4, 5)
+   assert t.duration.preprolated == Rational(4, 5)
    assert t.duration.prolated == Rational(4, 5)
    assert isinstance(t[0], Note)
-   assert t[0].duration == Rational(1, 4)
+   #assert t[0].duration == Rational(1, 4)
+   assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 5)
 
 
@@ -51,8 +54,10 @@ def test_excise_tuplet_04( ):
    excise(t.leaves[-1])
    assert isinstance(t, FixedMultiplierTuplet)
    assert len(t) == 3
-   assert t.duration == Rational(8,9)
+   #assert t.duration == Rational(8,9)
+   assert t.duration.preprolated == Rational(8,9)
    assert t.duration.prolated == Rational(8,9)
    assert isinstance(t[2], FixedMultiplierTuplet)
-   assert t[2].duration == Rational(2,6)
+   #assert t[2].duration == Rational(2,6)
+   assert t[2].duration.preprolated == Rational(2,6)
    assert t[2].duration.prolated == Rational(2, 9)

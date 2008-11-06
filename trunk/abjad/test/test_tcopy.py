@@ -126,7 +126,8 @@ def test_copy_one_containerized_tuplet_01( ):
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], FixedDurationTuplet)
-   assert u[0].duration == t[0].duration
+   #assert u[0].duration == t[0].duration
+   assert u[0].duration.preprolated == t[0].duration.preprolated
    assert id(u[0]) is not id(t[0])
    assert u[0]._parent == u
    
@@ -136,7 +137,8 @@ def test_copy_one_containerized_tuplet_02( ):
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], FixedDurationTuplet)
-   assert u[0].duration == t[1].duration
+   #assert u[0].duration == t[1].duration
+   assert u[0].duration.preprolated == t[1].duration.preprolated
    assert id(u[0]) is not id(t[1])
    assert u[0]._parent == u
    
@@ -146,7 +148,8 @@ def test_copy_one_containerized_tuplet_03( ):
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], FixedDurationTuplet)
-   assert u[0].duration == t[-1].duration
+   #assert u[0].duration == t[-1].duration
+   assert u[0].duration.preprolated == t[-1].duration.preprolated
    assert id(u[0]) is not id(t[-1])
    assert u[0]._parent == u
 
@@ -156,6 +159,7 @@ def test_copy_one_containerized_tuplet_04( ):
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], FixedDurationTuplet)
-   assert u[0].duration == t[-2].duration
+   #assert u[0].duration == t[-2].duration
+   assert u[0].duration.preprolated == t[-2].duration.preprolated
    assert id(u[0]) is not id(t[-2])
    assert u[0]._parent == u

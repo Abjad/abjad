@@ -8,12 +8,25 @@ class _FMTupletDurationInterface(_TupletDurationInterface):
       _TupletDurationInterface.__init__(self, _client)
       self.multiplier = multiplier
 
-   ### REPR ###
+#   ### REPR ###
+#
+#   def __repr__(self):
+#      return 'FMTupletDurationInterface(%s)' % str(self.multiplier)
 
-   def __repr__(self):
-      return 'FMTupletDurationInterface(%s)' % str(self.multiplier)
+   ### PRIVATE ATTRIBUTES ###
 
-   ### MANAGED ATTRIBUTES ###
+   @property
+   def _duration(self):
+      if len(self._client) > 0:
+         return self.multiplier * self.contents
+      else:
+         return Rational(0)
+
+   ### PUBLIC ATTRIBUTES ###
+
+   @property
+   def multiplied(self):
+      return self.multiplier * self.contents
 
    @apply
    def multiplier( ):
@@ -35,10 +48,3 @@ class _FMTupletDurationInterface(_TupletDurationInterface):
             raise ValueError('Tuplet rational %s must be positive.' %
                rational)
       return property(**locals( ))
-
-   @property
-   def _duration(self):
-      if len(self._client) > 0:
-         return self.multiplier * self.contents
-      else:
-         return Rational(0)

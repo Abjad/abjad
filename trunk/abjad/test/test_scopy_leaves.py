@@ -16,7 +16,8 @@ def test_scopy_leaves_01( ):
    new = scopy(t, 0, (1, 8))
    assert isinstance(new, Note)
    assert t.pitch.number == new.pitch.number
-   assert new.duration == Rational(1, 8)
+   #assert new.duration == Rational(1, 8)
+   assert new.duration.written == Rational(1, 8)
 
 
 def test_scopy_leaves_02( ):
@@ -27,7 +28,8 @@ def test_scopy_leaves_02( ):
    #assert new.duration == Rational(1, 12)
    assert new.duration.target == Rational(1, 12)
    assert len(new) == 1
-   assert new[0].duration == Rational(1, 8)
+   #assert new[0].duration == Rational(1, 8)
+   assert new[0].duration.preprolated == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
   
 
@@ -39,7 +41,8 @@ def test_scopy_leaves_03( ):
    #assert new.duration == Rational(1, 12)
    assert new.duration.target == Rational(1, 12)
    assert len(new) == 1
-   assert new[0].duration == Rational(1, 8)
+   #assert new[0].duration == Rational(1, 8)
+   assert new[0].duration.preprolated == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
 
 
@@ -51,7 +54,8 @@ def test_scopy_leaves_04( ):
    #assert new.duration == Rational(1, 12)
    assert new.duration.target == Rational(1, 12)
    assert len(new) == 1
-   assert new[0].duration == Rational(1, 8)
+   #assert new[0].duration == Rational(1, 8)
+   assert new[0].duration.preprolated == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
   
 
@@ -60,7 +64,8 @@ def test_scopy_leaves_05( ):
    t = Note(0, (1, 4))
    new = scopy(t, 0, (1, 2))
    assert isinstance(new, Note)
-   assert new.duration == Rational(1, 4)
+   #assert new.duration == Rational(1, 4)
+   assert new.duration.written == Rational(1, 4)
 
 
 def test_scopy_leaves_06( ):
@@ -68,7 +73,8 @@ def test_scopy_leaves_06( ):
    t = Note(0, (1, 4))
    new = scopy(t, (1, 8), (1, 2))
    assert isinstance(new, Note)
-   assert new.duration == Rational(1, 8)
+   #assert new.duration == Rational(1, 8)
+   assert new.duration.written == Rational(1, 8)
 
 
 def test_scopy_leaves_07( ):
@@ -78,7 +84,8 @@ def test_scopy_leaves_07( ):
    assert isinstance(new, FixedDurationTuplet)
    #assert new.duration == Rational(1, 12)
    assert new.duration.target == Rational(1, 12)
-   assert new[0].duration == Rational(1, 8)
+   #assert new[0].duration == Rational(1, 8)
+   assert new[0].duration.preprolated == Rational(1, 8)
    assert new[0].duration.prolated == Rational(1, 12)
 
 
@@ -87,7 +94,8 @@ def test_scopy_leaves_08( ):
    t = Note(0, (1, 4))
    new = scopy(t, (-1, 4), (1, 2))
    assert isinstance(new, Note)
-   assert new.duration == Rational(1, 4)
+   #assert new.duration == Rational(1, 4)
+   assert new.duration.written == Rational(1, 4)
 
 
 def test_scopy_leaves_09( ):
@@ -98,7 +106,8 @@ def test_scopy_leaves_09( ):
    #assert new.duration == Rational(5, 24)
    assert new.duration.target == Rational(5, 24)
    assert len(new) == 1
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.preprolated == Rational(1, 4)
    assert new[0].duration.prolated == Rational(5, 24)
 
 
@@ -110,5 +119,6 @@ def test_scopy_leaves_10( ):
    assert len(new) == 1
    #assert new.duration == Rational(1, 5)
    assert new.duration.target == Rational(1, 5)
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.preprolated == Rational(1, 4)
    assert new[0].duration.prolated == Rational(1, 5)

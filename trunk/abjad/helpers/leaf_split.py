@@ -15,7 +15,8 @@ def leaf_split(split_dur, leaf):
    #prolated_leaf_duration = leaf.duration.prolated
    #if split_dur == 0 or split_dur >= prolated_leaf_duration:
    #if split_dur == 0 or split_dur >= leaf.duration:
-   if unprolated_split_dur == 0 or unprolated_split_dur >= leaf.duration:
+   if unprolated_split_dur == 0 or \
+      unprolated_split_dur >= leaf.duration.written:
       return [leaf]
    else:
       l1 = leaf.copy()
@@ -28,7 +29,8 @@ def leaf_split(split_dur, leaf):
       l1 = leaf_scale(unprolated_split_dur, l1)
       #l2 = leaf_scale(prolated_leaf_duration - split_dur, leaf)
       #l2 = leaf_scale(leaf.duration.prolated - split_dur, leaf)
-      l2 = leaf_scale(leaf.duration - unprolated_split_dur, leaf)
+      #l2 = leaf_scale(leaf.duration - unprolated_split_dur, leaf)
+      l2 = leaf_scale(leaf.duration.written - unprolated_split_dur, leaf)
       return [l1, l2]
 
 
@@ -37,7 +39,8 @@ def leaf_split_binary(split_dur, leaf):
    split_dur = Rational(*_duration_token_unpack(split_dur))
    unprolated_split_dur = split_dur / leaf.duration.prolation
    ### TODO: check it unprolated_split_dur is m / 2**n?
-   if unprolated_split_dur == 0 or unprolated_split_dur >= leaf.duration:
+   if unprolated_split_dur == 0 or \
+      unprolated_split_dur >= leaf.duration.written:
       return [leaf]
    else:
       l1 = leaf.copy()
@@ -51,7 +54,8 @@ def leaf_split_binary(split_dur, leaf):
          indx = parent.index(leaf)
          parent.embed(indx, l1)
       l1 = leaf_scale_binary(unprolated_split_dur, l1)
-      l2 = leaf_scale_binary(leaf.duration - unprolated_split_dur, leaf)
+      #l2 = leaf_scale_binary(leaf.duration - unprolated_split_dur, leaf)
+      l2 = leaf_scale_binary(leaf.duration.written - unprolated_split_dur, leaf)
 
       result = [ ] 
       #if isinstance(l1, list): result.extend(l1)

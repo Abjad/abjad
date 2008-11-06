@@ -8,7 +8,8 @@ def test_leaf_split_binary_01( ):
    assert len(new) == 1
    assert new[0] is t
    assert isinstance(new[0], Note)
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.written == Rational(1, 4)
    assert new[0] == t
 
 def test_leaf_split_binary_02( ):
@@ -18,7 +19,8 @@ def test_leaf_split_binary_02( ):
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.written == Rational(1, 4)
    assert new[0] == t
 
 def test_leaf_split_binary_03( ):
@@ -32,10 +34,12 @@ def test_leaf_split_binary_03( ):
    assert not new[0][0] is t
    assert new[1][0] is t  ### hmmm, is this what we want? does it matter?
    assert isinstance(new[0][0], Note)
-   assert new[0][0].duration == Rational(1, 8)
+   #assert new[0][0].duration == Rational(1, 8)
+   assert new[0][0].duration.written == Rational(1, 8)
    assert not new[0][0].tie.spanned
    assert isinstance(new[1][0], Note)
-   assert new[1][0].duration == Rational(1, 8)
+   #assert new[1][0].duration == Rational(1, 8)
+   assert new[1][0].duration.written == Rational(1, 8)
    assert not new[1][0].tie.spanned
 
 
@@ -48,9 +52,11 @@ def test_leaf_split_binary_04( ):
    assert len(new[0]) == 1
    assert len(new[1]) == 1
    assert isinstance(new[0][0], Note)
-   assert new[0][0].duration == Rational(1, 16)
+   #assert new[0][0].duration == Rational(1, 16)
+   assert new[0][0].duration.written == Rational(1, 16)
    assert isinstance(new[1][0], Note)
-   assert new[1][0].duration == Rational(3, 16)
+   #assert new[1][0].duration == Rational(3, 16)
+   assert new[1][0].duration.written == Rational(3, 16)
 
 def test_leaf_split_binary_05( ):
    '''Split returns three Leaves, two are tied.'''
@@ -62,15 +68,18 @@ def test_leaf_split_binary_05( ):
    assert len(new[1]) == 1
    assert isinstance(new[0], list)
    assert isinstance(new[0][0], Note)
-   assert new[0][0].duration == Rational(4, 32)
+   #assert new[0][0].duration == Rational(4, 32)
+   assert new[0][0].duration.written == Rational(4, 32)
    assert new[0][0].tie.spanned
    assert not new[0][0].tie
-   assert new[0][1].duration == Rational(1, 32)
+   #assert new[0][1].duration == Rational(1, 32)
+   assert new[0][1].duration.written == Rational(1, 32)
    assert new[0][1].tie.spanned
    assert not new[0][1].tie
    assert isinstance(new[1], list)
    assert isinstance(new[1][0], Note)
-   assert new[1][0].duration == Rational(3, 32)
+   #assert new[1][0].duration == Rational(3, 32)
+   assert new[1][0].duration.written == Rational(3, 32)
    assert not new[1][0].tie.spanned
 
 ### IN CONTEXT ###
@@ -86,17 +95,20 @@ def test_leaf_split_binary_06( ):
    assert len(new[1]) == 1
    assert isinstance(new[0], list)
    assert isinstance(new[0][0], Note)
-   assert new[0][0].duration == Rational(4, 32)
+   #assert new[0][0].duration == Rational(4, 32)
+   assert new[0][0].duration.written == Rational(4, 32)
    assert new[0][0].tie.spanned
    assert len(new[0][0].tie.spanners) == 1
    assert not new[0][0].tie
-   assert new[0][1].duration == Rational(1, 32)
+   #assert new[0][1].duration == Rational(1, 32)
+   assert new[0][1].duration.written == Rational(1, 32)
    assert new[0][1].tie.spanned
    assert len(new[0][1].tie.spanners) == 1
    assert not new[0][1].tie
    assert isinstance(new[1], list)
    assert isinstance(new[1][0], Note)
-   assert new[1][0].duration == Rational(3, 32)
+   #assert new[1][0].duration == Rational(3, 32)
+   assert new[1][0].duration.written == Rational(3, 32)
    assert len(new[1][0].tie.spanners) == 1
    assert not new[1][0].tie
 

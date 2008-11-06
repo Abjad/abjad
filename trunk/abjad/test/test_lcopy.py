@@ -157,7 +157,8 @@ def test_lcopy_06( ):
    assert tuplet.duration.multiplier == Rational(1)
    note = tuplet[0]
    assert isinstance(note, Note)
-   assert note.duration == Rational(1, 4)
+   #assert note.duration == Rational(1, 4)
+   assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 5)
 
 
@@ -173,7 +174,8 @@ def test_lcopy_07( ):
    assert isinstance(measure, Measure)
    assert measure.meter == (3, 5)
    assert len(measure) == 1
-   assert measure.duration == Rational(3, 5)
+   #assert measure.duration == Rational(3, 5)
+   assert measure.duration.preprolated == Rational(3, 5)
    assert measure.duration.prolated == Rational(3, 5)
    tuplet = measure[0]
    assert isinstance(tuplet, FixedDurationTuplet)

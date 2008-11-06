@@ -11,7 +11,8 @@ def test_measure_unmetered_01( ):
    assert t.format == "\tc'4\n\tc'4\n\tc'4\n\tc'4"
    assert t.meter == None
    assert len(t) == 4
-   assert t.duration == Rational(1)
+   #assert t.duration == Rational(1)
+   assert t.duration.preprolated == Rational(1)
    assert t.duration.prolated == Rational(1)
    assert checker.check(t)
 
@@ -23,6 +24,7 @@ def test_measure_unmetered_02( ):
    assert t.format == "\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4"
    assert t.meter == None
    assert len(t) == 6
-   assert t.duration == Rational(6, 4)
+   #assert t.duration == Rational(6, 4)
+   assert t.duration.preprolated == Rational(6, 4)
    assert t.duration.prolated == Rational(6, 4)
    assert checker.check(t)

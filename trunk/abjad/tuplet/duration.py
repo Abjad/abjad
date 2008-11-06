@@ -9,12 +9,12 @@ class _TupletDurationInterface(_ContainerDurationInterface):
    def __init__(self, _client):
       _ContainerDurationInterface.__init__(self, _client)
 
-#   ### REPR ###
+#   ### OVERLOADS ###
 #
 #   def __repr__(self):
 #      return 'TupletDurationInterface( )'
 
-   ### PREDICATES ###
+   ### PRVIATE ATTRIBUTES ###
 
    @property
    def _binary(self):
@@ -22,6 +22,8 @@ class _TupletDurationInterface(_ContainerDurationInterface):
          return not self.multiplier._n & (self.multiplier._n - 1)
       else:
          return True
+
+   ### PUBLIC ATTRIBUTES ###
 
    @property
    def augmentation(self):
@@ -36,3 +38,7 @@ class _TupletDurationInterface(_ContainerDurationInterface):
          return self.multiplier < 1
       else:
          return False
+
+   @property
+   def preprolated(self):
+      return self.multiplied

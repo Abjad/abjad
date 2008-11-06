@@ -9,7 +9,8 @@ def test_leaf_scale_binary_01( ):
    assert isinstance(new, list)
    assert isinstance(new[0], Note)
    assert new[0] is t
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.written == Rational(1, 4)
    assert not new[0].tie.spanned
 
 
@@ -20,7 +21,8 @@ def test_leaf_scale_binary_02( ):
    assert isinstance(new, list)
    assert isinstance(new[0], Note)
    assert new[0] is t
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.written == Rational(1, 4)
    assert not new[0].tie.spanned
 
 
@@ -31,7 +33,8 @@ def test_leaf_scale_binary_03( ):
    assert isinstance(new, list)
    assert isinstance(new[0], Note)
    assert new[0] is t
-   assert new[0].duration == Rational(1, 4)
+   #assert new[0].duration == Rational(1, 4)
+   assert new[0].duration.written == Rational(1, 4)
    assert not new[0].tie.spanned
 
 
@@ -45,10 +48,12 @@ def test_leaf_scale_binary_04( ):
    assert isinstance(new[1], Note)
    assert not new[0] is t
    assert not new[1] is t
-   assert new[0].duration == Rational(4, 16)
+   #assert new[0].duration == Rational(4, 16)
+   assert new[0].duration.written == Rational(4, 16)
    assert new[0].tie.spanned
    assert not new[0].tie
-   assert new[1].duration == Rational(1, 16)
+   #assert new[1].duration == Rational(1, 16)
+   assert new[1].duration.written == Rational(1, 16)
    assert new[1].tie.spanned
    assert not new[1].tie
 
@@ -60,7 +65,8 @@ def test_leaf_scale_binary_05( ):
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
-   assert new[0].duration == Rational(3, 16)
+   #assert new[0].duration == Rational(3, 16)
+   assert new[0].duration.written == Rational(3, 16)
    assert not new[0].tie.spanned
 
 
@@ -72,8 +78,10 @@ def test_leaf_scale_binary_10( ):
    assert len(new) == 2
    assert new[0] is t[0]
    assert new[1] is t[1]
-   assert t[0].duration == Rational(1, 4)
-   assert t[1].duration == Rational(1, 16)
+   #assert t[0].duration == Rational(1, 4)
+   assert t[0].duration.written == Rational(1, 4)
+   #assert t[1].duration == Rational(1, 16)
+   assert t[1].duration.written == Rational(1, 16)
    assert t[0].tie.spanned
    assert not t[0].tie
    assert t[1].tie.spanned
@@ -92,8 +100,10 @@ def test_leaf_scale_binary_11( ):
    assert len(new) == 2
    assert new[0] is t[0]
    assert new[1] is t[1]
-   assert t[0].duration == Rational(1, 4)
-   assert t[1].duration == Rational(1, 16)
+   #assert t[0].duration == Rational(1, 4)
+   #assert t[1].duration == Rational(1, 16)
+   assert t[0].duration.written == Rational(1, 4)
+   assert t[1].duration.written == Rational(1, 16)
    assert t[0].tie.spanned
    assert not t[0].tie
    assert len(t[0].tie.spanners) == 1
@@ -112,8 +122,10 @@ def test_leaf_scale_binary_12( ):
    assert len(new) == 2
    assert new[0] is t[0]
    assert new[1] is t[1]
-   assert t[0].duration == Rational(1, 4)
-   assert t[1].duration == Rational(1, 16)
+   #assert t[0].duration == Rational(1, 4)
+   #assert t[1].duration == Rational(1, 16)
+   assert t[0].duration.written == Rational(1, 4)
+   assert t[1].duration.written == Rational(1, 16)
    assert t[0].tie.spanned
    assert not t[0].tie
    assert len(t[0].tie.spanners) == 1
@@ -131,8 +143,10 @@ def test_leaf_scale_binary_13( ):
    assert len(new) == 2
    assert new[0] is t[0]
    assert new[1] is t[1]
-   assert t[0].duration == Rational(1, 4)
-   assert t[1].duration == Rational(1, 16)
+   #assert t[0].duration == Rational(1, 4)
+   #assert t[1].duration == Rational(1, 16)
+   assert t[0].duration.written == Rational(1, 4)
+   assert t[1].duration.written == Rational(1, 16)
    assert t[0].tie.spanned
    assert not t[0].tie
    assert len(t[0].tie.spanners) == 1

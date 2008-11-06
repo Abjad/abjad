@@ -23,12 +23,14 @@ def test_excise_01( ):
    tuplet = t[0]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 2
-   assert tuplet.duration == Rational(2, 4)
+   #assert tuplet.duration == Rational(2, 4)
+   assert tuplet.duration.preprolated == Rational(2, 4)
    assert tuplet.duration.prolated == Rational(2, 6)
    tuplet = t[1]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 3
-   assert tuplet.duration == Rational(3, 4)
+   #assert tuplet.duration == Rational(3, 4)
+   assert tuplet.duration.preprolated == Rational(3, 4)
    assert tuplet.duration.prolated == Rational(3, 6)
    '''
         \time 5/6
@@ -68,12 +70,14 @@ def test_excise_02( ):
    tuplet = t[0]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 4
-   assert tuplet.duration == Rational(4, 8)
+   #assert tuplet.duration == Rational(4, 8)
+   assert tuplet.duration.preprolated == Rational(4, 8)
    assert tuplet.duration.prolated == Rational(4, 10)
    tuplet = t[1]
    assert isinstance(tuplet, FixedDurationTuplet)
    assert len(tuplet) == 5
-   assert tuplet.duration == Rational(5, 8)
+   #assert tuplet.duration == Rational(5, 8)
+   assert tuplet.duration.preprolated == Rational(5, 8)
    assert tuplet.duration.prolated == Rational(5, 10)
    '''
      \time 9/10
@@ -130,7 +134,8 @@ def test_excise_03( ):
    assert tuplet.duration.target == Rational(3, 4)
    assert tuplet.duration.prolated == Rational(2, 5)
    note = t[0][0]
-   assert note.duration == Rational(1, 4)
+   #assert note.duration == Rational(1, 4)
+   assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 10)
    tuplet = t[1]
    assert isinstance(tuplet, FixedDurationTuplet)
@@ -139,7 +144,8 @@ def test_excise_03( ):
    assert tuplet.duration.target == Rational(5, 8)
    assert tuplet.duration.prolated == Rational(2, 6)
    note = t[1][0]
-   assert note.duration == Rational(1, 8)
+   #assert note.duration == Rational(1, 8)
+   assert note.duration.written == Rational(1, 8)
    assert note.duration.prolated == Rational(1, 21)
    assert check(t)
    '''
@@ -204,7 +210,8 @@ def test_excise_04( ):
    assert tuplet.duration.target == Rational(7, 8)
    assert tuplet.duration.prolated == Rational(2, 4)
    note = t[0][0]
-   assert note.duration == Rational(1, 4)
+   #assert note.duration == Rational(1, 4)
+   assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 10)
    tuplet = t[1]
    assert isinstance(tuplet, FixedDurationTuplet)
@@ -213,7 +220,8 @@ def test_excise_04( ):
    assert tuplet.duration.target == Rational(4, 8)
    assert tuplet.duration.prolated == Rational(2, 7)
    note = t[1][0]
-   assert note.duration == Rational(1, 8)
+   #assert note.duration == Rational(1, 8)
+   assert note.duration.written == Rational(1, 8)
    assert note.duration.prolated == Rational(1, 21)
    assert check(t)
    '''
@@ -275,7 +283,8 @@ def test_excise_05( ):
    assert tuplet.duration.target == Rational(2, 4)
    assert tuplet.duration.prolated == Rational(2, 7)
    note = t[0][0]
-   assert note.duration == Rational(1, 8)
+   #assert note.duration == Rational(1, 8)
+   assert note.duration.written == Rational(1, 8)
    assert note.duration.prolated == Rational(1, 21)
    tuplet = t[1]
    assert isinstance(tuplet, FixedDurationTuplet)
@@ -284,7 +293,8 @@ def test_excise_05( ):
    assert tuplet.duration.target == Rational(7, 24)
    assert tuplet.duration.prolated == Rational(1, 6)
    note = t[1][0]
-   assert note.duration == Rational(1, 4)
+   #assert note.duration == Rational(1, 4)
+   assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 6)
    assert check(t)
    '''
@@ -348,7 +358,8 @@ def test_excise_06( ):
    assert tuplet.duration.target == Rational(2, 4)
    assert tuplet.duration.prolated == Rational(2, 6)
    note = t[0][0]
-   assert note.duration == Rational(1, 8)
+   #assert note.duration == Rational(1, 8)
+   assert note.duration.written == Rational(1, 8)
    assert note.duration.prolated == Rational(1, 21)
    tuplet = t[1]
    assert isinstance(tuplet, FixedDurationTuplet)
@@ -356,6 +367,7 @@ def test_excise_06( ):
    assert tuplet.duration.target == Rational(1, 4)
    assert tuplet.duration.prolated == Rational(1, 6)
    note = t[1][0]
-   assert note.duration == Rational(1, 4)
+   #assert note.duration == Rational(1, 4)
+   assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 6)
    assert check(t)

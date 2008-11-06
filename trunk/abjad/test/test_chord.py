@@ -12,7 +12,8 @@ def test_demo_public_chord_interface_01( ):
    assert len(t) == 3
    assert len(t.noteheads) == 3
    assert len(t.pitches) == 3
-   assert t.duration == t.duration.prolated == Rational(1, 4)
+   #assert t.duration == t.duration.prolated == Rational(1, 4)
+   assert t.duration.written == t.duration.prolated == Rational(1, 4)
 
 
 ### TEST TWEAKED CHORD ###
@@ -62,7 +63,8 @@ def test_cast_chord_as_note_01( ):
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(n) == dir(Note(0, (1, 4)))
    assert n._parent is None
-   assert n.duration == duration
+   #assert n.duration == duration
+   assert n.duration.written == duration
 
 def test_cast_chord_as_note_02( ):
    t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
@@ -70,7 +72,8 @@ def test_cast_chord_as_note_02( ):
    Note(t[0])
    assert isinstance(t[0], Note)
    assert t[0]._parent is t
-   assert t[0].duration == d
+   #assert t[0].duration == d
+   assert t[0].duration.written == d
 
 def test_cast_chord_as_note_03( ):
    v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
@@ -78,7 +81,8 @@ def test_cast_chord_as_note_03( ):
    Note(v[0])
    assert isinstance(v[0], Note)
    assert v[0]._parent is v
-   assert v[0].duration == d
+   #assert v[0].duration == d
+   assert v[0].duration.written == d
 
 def test_cast_chord_as_note_04( ):
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
@@ -86,7 +90,8 @@ def test_cast_chord_as_note_04( ):
    Note(t[0])
    assert isinstance(t[0], Note)
    assert t[0]._parent is t
-   assert t[0].duration == d
+   #assert t[0].duration == d
+   assert t[0].duration.written == d
 
 
 def test_cast_chord_as_note_05( ):
@@ -109,7 +114,8 @@ def test_cast_chord_as_rest_01( ):
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(r) == dir(Rest((1, 4)))
    assert r._parent is None
-   assert r.duration == duration
+   #assert r.duration == duration
+   assert r.duration.written == duration
 
 def test_cast_chord_as_rest_02( ):
    t = FixedDurationTuplet((2, 8), Chord([2, 3, 4], (1, 4)) * 3)
@@ -117,7 +123,8 @@ def test_cast_chord_as_rest_02( ):
    Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
-   assert t[0].duration == d
+   #assert t[0].duration == d
+   assert t[0].duration.written == d
 
 def test_cast_chord_as_rest_03( ):
    v = Voice(Chord([2, 3, 4], (1, 4)) * 3)
@@ -125,7 +132,8 @@ def test_cast_chord_as_rest_03( ):
    Rest(v[0])
    assert isinstance(v[0], Rest)
    assert v[0]._parent is v
-   assert v[0].duration == d
+   #assert v[0].duration == d
+   assert v[0].duration.written == d
 
 def test_cast_chord_as_rest_04( ):
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
@@ -133,7 +141,8 @@ def test_cast_chord_as_rest_04( ):
    Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
-   assert t[0].duration == d
+   #assert t[0].duration == d
+   assert t[0].duration.written == d
 
 
 def test_cast_chord_as_rest_05( ):
@@ -156,7 +165,8 @@ def test_cast_chord_as_skip_01( ):
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(s) == dir(Skip((1, 4)))
    assert s._parent is None
-   assert s.duration == duration
+   #assert s.duration == duration
+   assert s.duration.written == duration
 
 
 def test_cast_chord_as_skip_02( ):
@@ -165,7 +175,8 @@ def test_cast_chord_as_skip_02( ):
    Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0]._parent is t
-   assert t[0].duration == d
+   #assert t[0].duration == d
+   assert t[0].duration.written == d
 
 
 def test_cast_chord_as_skip_03( ):
@@ -174,7 +185,8 @@ def test_cast_chord_as_skip_03( ):
    Skip(v[0])
    assert isinstance(v[0], Skip)
    assert v[0]._parent is v
-   assert v[0].duration == d
+   #assert v[0].duration == d
+   assert v[0].duration.written == d
 
 
 def test_cast_chord_as_skip_04( ):
@@ -183,7 +195,8 @@ def test_cast_chord_as_skip_04( ):
    Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0]._parent is t
-   assert t[0].duration == d
+   #assert t[0].duration == d
+   assert t[0].duration.written == d
 
 
 def test_cast_chord_as_skip_05( ):
