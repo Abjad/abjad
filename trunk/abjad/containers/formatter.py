@@ -4,6 +4,8 @@ class _ContainerFormatter(_Formatter):
 
    def __init__(self, client):
       _Formatter.__init__(self, client)
+      self.opening = [ ]
+      self.closing = [ ]
 
    @property
    def _invocation_opening(self):
@@ -24,7 +26,7 @@ class _ContainerFormatter(_Formatter):
    @property
    def _opening(self):
       result = [ ]
-      result.extend(_Formatter._opening.fget(self))
+#      result.extend(_Formatter._opening.fget(self))
       tempo = self._client.tempo
       if tempo:
          result.extend(tempo._before)
@@ -36,7 +38,7 @@ class _ContainerFormatter(_Formatter):
    @property
    def _closing(self):
       result = [ ]
-      result.extend(_Formatter._closing.fget(self))
+#      result.extend(_Formatter._closing.fget(self))
       if hasattr(self._client, 'barline'):
          closing = self._client.barline._closing
          if closing:
@@ -54,14 +56,18 @@ class _ContainerFormatter(_Formatter):
    @property
    def lily(self):
       result = [ ]
-      result.extend(self._client.comments.before)
+#      result.extend(self._client.comments.before)
+      result.extend(self._client.comments._before)
       result.extend(self.before)
-      result.extend(self._before)
+#      result.extend(self._before)
       result.extend(self._invocation_opening)
+      result.extend(self.opening)
       result.extend(self._opening)
       result.extend(self._contents)
       result.extend(self._closing)
+      result.extend(self.closing)
       result.extend(self._invocation_closing)
-      result.extend(self._after)
+#      result.extend(self._after)
       result.extend(self.after)
+      result.extend(self._client.comments._after)
       return '\n'.join(result)

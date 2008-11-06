@@ -6,6 +6,8 @@ class _LeafFormatter(_Formatter):
 
    def __init__(self, client):
       _Formatter.__init__(self, client)
+      self.left = [ ]
+      self.right = [ ]
 
    #def _getInterfaces(self):
    def _getFormatCarriers(self):
@@ -71,9 +73,10 @@ class _LeafFormatter(_Formatter):
       result = [ ]
       result.extend(self.left)
       result.extend(self._collectLocation('_left'))
-      if hasattr(self._client, 'notehead') and \
-         self._client.notehead is not None:
-         result.extend(self._client.notehead._formatter.left)
+### NOTE: What was this for? VA
+#      if hasattr(self._client, 'notehead') and \
+#         self._client.notehead is not None:
+#         result.extend(self._client.notehead._formatter.left)
       result.append(self._client._body)
       result.extend(self._client.tremolo.body)
       result.extend(self._collectLocation('_right'))
@@ -103,7 +106,7 @@ class _LeafFormatter(_Formatter):
       result.extend(self._body)
       result.extend(self._agrace)
       result.extend(self._collectLocation('_after'))
-      result.extend(self._after)
+#      result.extend(self._after)
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)
