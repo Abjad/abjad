@@ -1,8 +1,9 @@
-from abjad.duration.rational import Rational
 from abjad.core.interface import _Interface
+from abjad.duration.rational import Rational
 from abjad.helpers.hasname import hasname
 from abjad.helpers.rationalize import _rationalize
 from operator import mul
+
 
 ### TODO: sever _DurationInterface's inheritance from Rational;
 ###       this will be a relatively big change;

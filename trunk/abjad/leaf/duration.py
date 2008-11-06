@@ -1,9 +1,10 @@
-from .. core.duration import _DurationInterface
-from .. core.interface import _Interface
-from .. helpers.binary import _binary
-from .. helpers.hasname import hasname
-from .. duration.rational import Rational
+from abjad.core.duration import _DurationInterface
+from abjad.core.interface import _Interface
+from abjad.duration.rational import Rational
+from abjad.helpers.binary import _binary
+from abjad.helpers.hasname import hasname
 from math import log, floor, ceil
+
 
 class _LeafDurationInterface(_DurationInterface):
 

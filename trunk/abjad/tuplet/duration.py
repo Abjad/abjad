@@ -1,17 +1,18 @@
-from .. containers.duration import _ContainerDurationInterface
-from .. core.interface import _Interface
-from .. duration.rational import Rational
-from .. helpers.hasname import hasname
+from abjad.containers.duration import _ContainerDurationInterface
+from abjad.core.interface import _Interface
+from abjad.duration.rational import Rational
+from abjad.helpers.hasname import hasname
+
 
 class _TupletDurationInterface(_ContainerDurationInterface):
 
    def __init__(self, _client):
       _ContainerDurationInterface.__init__(self, _client)
 
-   ### REPR ###
-
-   def __repr__(self):
-      return 'TupletDurationInterface( )'
+#   ### REPR ###
+#
+#   def __repr__(self):
+#      return 'TupletDurationInterface( )'
 
    ### PREDICATES ###
 

@@ -1,5 +1,5 @@
-from .. containers.container import Container
-from formatter import _GraceFormatter
+from abjad.containers.container import Container
+from abjad.grace.formatter import _GraceFormatter
 
 
 class Grace(Container):
@@ -10,10 +10,12 @@ class Grace(Container):
       self.formatter = _GraceFormatter(self)
       self.type = 'grace'
 
+   ### OVERLOADS ###
+
    def __repr__(self):
       return 'Grace(%s)' % self._summary
 
-   ### MANAGED ATTRIBUTES ###
+   ### PUBLIC ATTRIBUTES ###
 
    @apply
    def type( ):

@@ -1,9 +1,9 @@
 from abjad.core.interface import _Interface
 
+
 class _StaffInterface(_Interface):
    
    def __init__(self, client):
-      #_Interface.__init__(self, client, 'Staff', ['Staff'])
       _Interface.__init__(self, client)
       self._forced = None
 

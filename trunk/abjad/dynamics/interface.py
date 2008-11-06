@@ -2,28 +2,35 @@ from abjad.core.attributeformatter import _AttributeFormatter
 from abjad.core.interface import _Interface
 from abjad.core.spannerreceptor import _SpannerReceptor
 
+
 ### TODO - make composer interface decisions about whether to support
 ###        _DynamicsInterface.effective or not, and, if so, how.
 
-#class _DynamicsInterface(_Interface):
 class _DynamicsInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
    
    def __init__(self, client):
-      #_Interface.__init__(self, client, 'DynamicText', 
-      #   ['Crescendo', 'Decrescendo'])
       _Interface.__init__(self, client)
       _AttributeFormatter.__init__(self, 'DynamicText')
       _SpannerReceptor.__init__(self, ['Crescendo', 'Decrescendo'])
       self._mark = None
 
-   ### OVERRIDES ###
-
-   def __nonzero__(self):
-      return bool(self._mark)
+   ### OVERLOADS ###
 
    def __eq__(self, arg):
       assert isinstance(arg, bool)
       return bool(self._mark) == arg
+
+   def __nonzero__(self):
+      return bool(self._mark)
+
+   ### PRIVATE ATTRIBUTES ###
+
+   @property
+   def _right(self):
+      result = [ ]
+      if self.mark:
+         result.append(r'\%sX' % self.mark)
+      return result
 
    @property
    def _summary(self):
@@ -37,10 +44,7 @@ class _DynamicsInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
       else:
          return ' '
 
-#   def __repr__(self):
-#      return '_DynamicsInterface(%s)' % self._summary
-
-   ### DERIVED PROPERTIES ###
+   ### PUBLIC ATTRIBUTES ###
 
    @property
    def effective(self):
@@ -60,8 +64,6 @@ class _DynamicsInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
                   cur = cur.prev
             return None
 
-   ### MANAGED ATTRIBUTES ###
-
    @apply
    def mark( ):
       def fget(self):
@@ -74,12 +76,3 @@ class _DynamicsInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
          else:
             raise ValueError('dynamics %s must be str or None.' % str(arg))
       return property(**locals( ))
-
-   ### FORMATTING ###
-
-   @property
-   def _right(self):
-      result = [ ]
-      if self.mark:
-         result.append(r'\%sX' % self.mark)
-      return result

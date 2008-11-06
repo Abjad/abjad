@@ -1,9 +1,10 @@
+from abjad.core.spanner import _Spanner
+from abjad.core.parser import _Parser
+
+
 ### TODO - revive this Setting class;
 ###        make conform to new pattern;
 ###        copy liberraly from Override.
-
-from .. core.spanner import _Spanner
-from .. core.parser import _Parser
 
 class _Setting(_Spanner):
 

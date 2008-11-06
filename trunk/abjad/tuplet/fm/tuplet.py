@@ -1,6 +1,7 @@
-from duration import _FMTupletDurationInterface
-from ... duration.rational import Rational
-from .. tuplet import _Tuplet
+from abjad.tuplet.fm.duration import _FMTupletDurationInterface
+from abjad.duration.rational import Rational
+from abjad.tuplet.tuplet import _Tuplet
+
 
 class FixedMultiplierTuplet(_Tuplet):
 

@@ -1,8 +1,9 @@
+from abjad.helpers.hasname import hasname
+
+
 ### TODO - create abstract _SpannerInterface class;
 ###        derive both this _ContainerSpannerInterface and
 ###        also _LeafSpannerInterface from _SpannerInterface;
-
-from .. helpers.hasname import hasname
 
 class _ContainerSpannerInterface(object):
 

@@ -28,4 +28,3 @@ class _HistoryInterface(object):
          return 'History( )'
       else:
          return 'History(%s)' % len(self)
-

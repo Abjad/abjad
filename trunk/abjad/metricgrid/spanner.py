@@ -6,6 +6,7 @@ from abjad.helpers.leaf_split import leaf_split_binary, leaf_split
 from abjad.helpers.leaves_fuse import leaves_fuse_binary
 from abjad.duration.rational import Rational
 
+
 class MetricGrid(_Spanner):
    '''MetricGrid is a list of MetricStrips.'''
    def __init__(self, music, meters):
@@ -288,4 +289,3 @@ class MetricGrid(_Spanner):
 #      if any([not meter.hide for meter in m]):
 #         result.append( '>>' )
 #      return result
-#

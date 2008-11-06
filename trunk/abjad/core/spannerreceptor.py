@@ -1,32 +1,9 @@
-#class _Interface(object):
 class _SpannerReceptor(object):
 
-   #def __init__(self, client, grob, spanners):
    def __init__(self, spanners):
-      #self._client = client
-      #self._grob = grob
-      #self._parser = _Parser( )
       self._spanners = spanners
 
-#   ### OVERRIDES ###
-#
-#   def __cmp__(self, arg):
-#      raise Exception(NotImplemented)
-#
-#   def __len__(self):
-#      return len([kvp for kvp in self.__dict__.items( ) 
-#         if not kvp[0].startswith('_')])
-#
-#   def __repr__(self):
-#      return '%s( )' % self.__class__.__name__
-#
-#   def __setattr__(self, attr, value):
-#      if not attr.startswith('_') and value is None and attr in self.__dict__:
-#         delattr(self, attr) 
-#      else:
-#         object.__setattr__(self, attr, value)
-
-   ### PUBLIC PROPERTIES ###
+   ### PUBLIC ATTRIBUTES ###
 
    @property
    def first(self):
@@ -59,32 +36,6 @@ class _SpannerReceptor(object):
 
    ### PUBLIC METHODS ###
 
-#   def clear(self):
-#      for key, value in self.__dict__.items( ):
-#         if not key.startswith('_'):
-#            delattr(self, key)
-
    def unspan(self):
       for spanner in self.spanners[ : ]:
          spanner.die( )
-
-#   ### PRIVATE ATTRIBUTES & METHODS ###
-#
-#   @property
-#   def _before(self):
-#      result = [ ]
-#      for key, value in self.__dict__.items( ):
-#         if not key.startswith('_'):
-#            result.append(r'\once \override %s %s = %s' % (
-#               self._grob, 
-#               self._parser.formatAttribute(key),
-#               self._parser.formatValue(value)))
-#      return result
-#
-#   def _copy(self):
-#      from copy import copy
-#      client = self._client
-#      self._client = None
-#      result = copy(self)
-#      self._client = client
-#      return result

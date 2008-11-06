@@ -1,5 +1,6 @@
-from ... duration.rational import Rational
-from .. duration import _TupletDurationInterface
+from abjad.duration.rational import Rational
+from abjad.tuplet.duration import _TupletDurationInterface
+
 
 class _FMTupletDurationInterface(_TupletDurationInterface):
 

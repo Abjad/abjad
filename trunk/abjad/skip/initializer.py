@@ -1,5 +1,6 @@
-from .. core.initializer import _Initializer
-from .. helpers.attributes import _transfer_all_attributes
+from abjad.core.initializer import _Initializer
+from abjad.helpers.attributes import _transfer_all_attributes
+
 
 class _SkipInitializer(_Initializer):
    

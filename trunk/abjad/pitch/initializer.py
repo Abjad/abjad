@@ -1,4 +1,5 @@
-import initializers
+import abjad.pitch.initializers as initializers
+
 
 class _PitchInitializer(object):
    

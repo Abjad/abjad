@@ -1,29 +1,22 @@
 from abjad.core.interface import _Interface
 
+
 class _HarmonicInterface(_Interface):
 
    def __init__(self, client):
-      #_Interface.__init__(self, client, 'Harmonic', ['Harmonic'] )
       _Interface.__init__(self, client)
       self._set = None
 
-   ### OVERRIDES ###
-
-   def __nonzero__(self):
-      return bool(self._set)
+   ### OVERLOADS ###
 
    def __eq__(self, arg):
       assert isinstance(arg, bool)
       return bool(self._set) == arg
 
-   ### METHODS ###
+   def __nonzero__(self):
+      return bool(self._set)
 
-   def clear(self):
-      self._set = None
-      #_Interface.clear(self)
-      _AttributeFormatter.clear(self)
-
-   ### FORMATTING ###
+   ### PRIVATE ATTRIBUTES ###
 
    @property
    def _right(self):
@@ -31,3 +24,9 @@ class _HarmonicInterface(_Interface):
       if self._set:
          result.append(r'\flageolet')
       return result
+
+   ### PUBLIC METHODS ###
+
+   def clear(self):
+      self._set = None
+      _AttributeFormatter.clear(self)

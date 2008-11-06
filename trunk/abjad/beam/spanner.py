@@ -1,4 +1,4 @@
-from .. core.spanner import _Spanner
+from abjad.core.spanner import _Spanner
 
 class Beam(_Spanner):
 

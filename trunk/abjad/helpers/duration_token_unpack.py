@@ -1,5 +1,6 @@
 from abjad.duration.rational import Rational
 
+
 def _duration_token_unpack(duration_token):
    '''Return numerator, denominator pair from duration token,
       where duration token is an integer or a one- or two-element tuple;

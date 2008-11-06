@@ -1,5 +1,6 @@
 from abjad.helpers.binary import _binary
 
+
 def _integer_decompose(n):
    '''Return big-ending tuple of n.
 

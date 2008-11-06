@@ -5,6 +5,7 @@ from abjad.note.note import Note
 from abjad.rest.rest import Rest
 from abjad.skip.skip import Skip
 
+
 def leaf_list(leaf_token, duration_token):
    '''Return big-endian list of leaves.
       leaf_token may be a leaf type equal to Note, Rest, Chord or Skip,

@@ -1,6 +1,7 @@
 from abjad.leaf.leaf import _LeafFormatter
 from abjad.core.interface import _Interface
 
+
 class _ChordFormatter(_LeafFormatter):
 
    def __init__(self, client):

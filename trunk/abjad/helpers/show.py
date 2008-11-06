@@ -1,6 +1,6 @@
-from os import system, listdir, chdir
+from abjad.cfg.cfg import VERSIONFILE, ABJADOUTPUT, PDFVIEWER, LILYPONDINCLUDES
 from glob import fnmatch
-from .. cfg.cfg import VERSIONFILE, ABJADOUTPUT, PDFVIEWER, LILYPONDINCLUDES
+from os import system, listdir, chdir
 
 system('lilypond --version > %s' % VERSIONFILE)
 version = file('%s' % VERSIONFILE, 'r').read().split('\n')[0].split(' ')[-1]

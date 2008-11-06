@@ -1,7 +1,8 @@
-from .. containers.container import Container
-from duration import _TupletDurationInterface
-from formatter import _TupletFormatter
-from ratio import _Ratio
+from abjad.containers.container import Container
+from abjad.tuplet.duration import _TupletDurationInterface
+from abjad.tuplet.formatter import _TupletFormatter
+from abjad.tuplet.ratio import _Ratio
+
 
 class _Tuplet(Container):
 

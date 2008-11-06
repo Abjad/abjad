@@ -1,6 +1,7 @@
 from abjad.duration.rational import Rational
 from math import log
 
+
 def _denominator_to_multiplier(d):
    '''
       Given positive integer denominator d,

@@ -5,6 +5,7 @@ from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.leaf.leaf import _Leaf
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
+
 ### NOTE: (or rather questions) 
 ### - would this be better named leaf_reset_duration( )?... 
 ###   we are not really scaling.

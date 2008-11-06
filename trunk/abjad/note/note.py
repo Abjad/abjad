@@ -1,7 +1,8 @@
-from .. leaf.leaf import _Leaf
-from .. notehead.notehead import _NoteHead
-from initializer import _NoteInitializer
-from .. pitch.pitch import Pitch
+from abjad.leaf.leaf import _Leaf
+from abjad.notehead.notehead import _NoteHead
+from abjad.note.initializer import _NoteInitializer
+from abjad.pitch.pitch import Pitch
+
 
 class Note(_Leaf):
    

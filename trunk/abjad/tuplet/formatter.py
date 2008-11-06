@@ -1,4 +1,5 @@
-from .. containers.formatter import _ContainerFormatter
+from abjad.containers.formatter import _ContainerFormatter
+
 
 class _TupletFormatter(_ContainerFormatter):
 

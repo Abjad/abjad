@@ -1,5 +1,6 @@
 from abjad.checks.check import _Check
 
+
 class HairpinsIntermarked(_Check):
    '''Are there any dynamic marks in the middle of a hairpin?'''
 

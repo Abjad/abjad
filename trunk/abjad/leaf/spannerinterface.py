@@ -1,10 +1,14 @@
+from abjad.helpers.hasname import hasname
+from abjad.core.interface import _Interface
+from abjad.core.parser import _Parser
+
+
 ### TODO - create abstract _SpannerInterface class;
 ###        derive both this _LeafSpannerInterface and
 ###        also _ContainerSpannerInterface from _SpannerInterface.
 
-from .. helpers.hasname import hasname
-from .. core.interface import _Interface
-from .. core.parser import _Parser
+### TODO - make inherit from thin _Interface;
+###        remove _Parser?
 
 class _LeafSpannerInterface(object):
 

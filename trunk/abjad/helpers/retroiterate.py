@@ -1,5 +1,6 @@
 from abjad.helpers.hasname import hasname
 
+
 def retroiterate(expr, classname):
    '''
    Returns a generator that iterates backwards collecting all instances 
@@ -15,5 +16,3 @@ def retroiterate(expr, classname):
       for m in reversed(expr._music):
          for x in retroiterate(m, classname):
             yield x
-
-   

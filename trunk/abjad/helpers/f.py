@@ -1,7 +1,7 @@
 from abjad.core.component import _Component
 
+
 def f(expr):
-   #if hasattr(expr, 'format'):
    if isinstance(expr, _Component):
       print expr.format
    elif isinstance(expr, list):

@@ -4,18 +4,22 @@ from abjad.notehead.formatter import _NoteHeadFormatter
 from abjad.pitch.pitch import Pitch
 
 
-#class _NoteHead(_Interface):
 class _NoteHead(_Interface, _AttributeFormatter):
 
    def __init__(self, client, pitch = None):
-      #_Interface.__init__(self, client, 'NoteHead', [ ])
       _Interface.__init__(self, client)
       _AttributeFormatter.__init__(self, 'NoteHead')
       self._formatter = _NoteHeadFormatter(self)
       self.pitch = pitch
       self._style = None
 
-   ### REPR ###
+   ### OVERLOADS ###
+
+   ### TODO: I propose dis-allowing notehead comparison;
+   ###       if we want to compare by pitch,
+   ###       then do so explicitly.
+   def __cmp__(self, arg):
+      return cmp(self.pitch, arg.pitch)
 
    def __repr__(self):
       if self.pitch:
@@ -29,56 +33,11 @@ class _NoteHead(_Interface, _AttributeFormatter):
       else:
          return ''
 
-   ### MATH AND COMPARISON TESTING ###
-   ### TODO: I propose dis-allowing notehead comparison;
-   ###       if we want to compare by pitch,
-   ###       then do so explicitly.
-
-   def __cmp__(self, arg):
-      return cmp(self.pitch, arg.pitch)
-
-   ### PROPERTIES ###
-
-   @apply
-   def pitch( ):
-      def fget(self):
-         return self._pitch
-      def fset(self, arg):
-         if arg is None:
-            self._pitch = None
-         elif isinstance(arg, Pitch):
-            self._pitch = arg
-         elif isinstance(arg, (int, float, long)):
-            self._pitch = Pitch(arg)
-         else:
-            raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
-      return property(**locals( ))
-
-   @apply
-   def style( ):
-      def fget(self):
-         return self._style
-      def fset(self, expr):
-         if expr is None:
-            self._style = None
-         elif isinstance(expr, str):
-            self._style = expr
-         else:
-            raise ValueError('can not set notehead style.')
-      return property(**locals( ))
-
-   ### STYLE NOTE HANDLERS ###
-
-   stylesSupported = (
-      'cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 
-      'neomensural', 'harmonic', 'mensural', 'petruccidiamond', 
-      'triangle',  'semicircle',  'diamond', 'tiltedtriangle', 
-      'square', 'wedge', )
+   ### PRIVATE ATTRIBUTES ###
 
    _abjadLilyStyles = {
       'triangle' : 'do',         'semicircle' : 're',    'diamond' : 'mi',
       'tiltedtriangle' : 'fa',   'square' : 'la',        'wedge' : 'ti' }
-
 
    @property
    def _abjadToLilyStyle(self):
@@ -88,18 +47,14 @@ class _NoteHead(_Interface, _AttributeFormatter):
       else: 
          return self.style
       
-
-   ### FORMATTING ###
-
    @property
-   def _noteFormat(self):
+   def _before(self):
       result = [ ]
-      if self.style:
-         if self.style in self.stylesSupported:
-            result.append(r"\once \override NoteHead #'style = #'%s" \
-               % self._abjadToLilyStyle)
-         else:
-            result.append(r"\%s" % self.style)
+      if self._client.kind('Chord'):
+         result.extend(self._chordFormat)
+      else:
+         result.extend(_AttributeFormatter._before.fget(self))
+         result.extend(self._noteFormat)
       return result
 
    @property
@@ -119,18 +74,54 @@ class _NoteHead(_Interface, _AttributeFormatter):
             result.append(r"\%s" % self.style)
       return result
 
-
    @property
-   def _before(self):
+   def _noteFormat(self):
       result = [ ]
-      if self._client.kind('Chord'):
-         result.extend(self._chordFormat)
-      else:
-         #result.extend(_Interface._before.fget(self))
-         result.extend(_AttributeFormatter._before.fget(self))
-         result.extend(self._noteFormat)
+      if self.style:
+         if self.style in self.stylesSupported:
+            result.append(r"\once \override NoteHead #'style = #'%s" \
+               % self._abjadToLilyStyle)
+         else:
+            result.append(r"\%s" % self.style)
       return result
+   
+   ### PUBLIC ATTRIBUTES ###
+
+   @apply
+   def pitch( ):
+      def fget(self):
+         return self._pitch
+      def fset(self, arg):
+         if arg is None:
+            self._pitch = None
+         elif isinstance(arg, Pitch):
+            self._pitch = arg
+         elif isinstance(arg, (int, float, long)):
+            self._pitch = Pitch(arg)
+         else:
+            raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
+      return property(**locals( ))
 
    @property
    def format(self):
       return self._formatter.lily
+
+   @apply
+   def style( ):
+      def fget(self):
+         return self._style
+      def fset(self, expr):
+         if expr is None:
+            self._style = None
+         elif isinstance(expr, str):
+            self._style = expr
+         else:
+            raise ValueError('can not set notehead style.')
+      return property(**locals( ))
+
+   stylesSupported = (
+      'cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 
+      'neomensural', 'harmonic', 'mensural', 'petruccidiamond', 
+      'triangle',  'semicircle',  'diamond', 'tiltedtriangle', 
+      'square', 'wedge', )
+

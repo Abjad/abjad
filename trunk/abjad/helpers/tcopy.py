@@ -1,4 +1,5 @@
-from contiguity import _are_contiguous_music_elements
+from abjad.helpers.contiguity import _are_contiguous_music_elements
+
 
 def tcopy(ll):
    '''

@@ -2,6 +2,7 @@ from abjad.core.attributeformatter import _AttributeFormatter
 from abjad.core.formatter import _Formatter
 from abjad.core.interface import _Interface
 
+
 class _LeafFormatter(_Formatter):
 
    def __init__(self, client):
@@ -110,12 +111,3 @@ class _LeafFormatter(_Formatter):
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)
-
-   ### TODO: what is this doing? Should we get rid of this?
-   ###       Not being used anywhere...
-#   def _clone(self, client):
-#      result = _LeafFormatter(client)  
-#      for key, value in self.__dict__.items( ):
-#         if key is not '_client':
-#            setattr(result, key, deepcopy(value))
-#      return result

@@ -1,5 +1,5 @@
-from .. core.spanner import _Spanner
-from .. pitch.pitch import Pitch
+from abjad.core.spanner import _Spanner
+from abjad.pitch.pitch import Pitch
 
 
 class Trill(_Spanner):

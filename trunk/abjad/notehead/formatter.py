@@ -1,4 +1,5 @@
-from .. core.formatter import _Formatter
+from abjad.core.formatter import _Formatter
+
 
 class _NoteHeadFormatter(_Formatter):
 

@@ -1,12 +1,13 @@
-from .. helpers.hasname import hasname
-from .. barline.interface import _BarLineInterface
-from comments import _Comments
+from abjad.barline.interface import _BarLineInterface
+from abjad.core.comments import _Comments
+from abjad.core.navigator import _Navigator
+from abjad.core.parentage import _Parentage
+from abjad.duration.rational import Rational
+from abjad.helpers.hasname import hasname
+from abjad.staff.interface import _StaffInterface # This is not being used here?
+from abjad.tempo.interface import _TempoInterface
 from copy import deepcopy
-from .. core.navigator import _Navigator
-from .. core.parentage import _Parentage
-from .. duration.rational import Rational
-from .. staff.interface import _StaffInterface # This is not being used here?
-from .. tempo.interface import _TempoInterface
+
 
 class _Component(object):
 

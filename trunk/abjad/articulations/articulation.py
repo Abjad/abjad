@@ -1,4 +1,3 @@
-
 class _Articulation(object):
 
    def __init__(self, string = None, direction = None):
@@ -91,6 +90,3 @@ class _Articulation(object):
    @property
    def lily(self):
       return str(self)
-      
-
-

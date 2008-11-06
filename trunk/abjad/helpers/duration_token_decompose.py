@@ -1,6 +1,7 @@
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.integer_decompose import _integer_decompose
 
+
 def _duration_token_decompose(duration_token):
    '''Return big-endian list of notehead-assignable duration tokens.
 

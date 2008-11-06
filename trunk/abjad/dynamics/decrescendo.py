@@ -1,4 +1,5 @@
-from hairpin import _Hairpin
+from abjad.dynamics.hairpin import _Hairpin
+
 
 class Decrescendo(_Hairpin):
 

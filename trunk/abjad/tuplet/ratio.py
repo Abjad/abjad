@@ -1,4 +1,5 @@
-from .. duration.rational import Rational
+from abjad.duration.rational import Rational
+
 
 class _Ratio(Rational):
 

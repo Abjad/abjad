@@ -1,6 +1,7 @@
 from abjad.checks.check import _Check
 from abjad.helpers.instances import instances
 
+
 # TODO - make this work in cases where expr contains one or more parallel
 # containers;
 # test case:

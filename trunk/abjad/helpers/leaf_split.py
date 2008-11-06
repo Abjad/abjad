@@ -4,6 +4,7 @@ from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.leaf_scale import leaf_scale, leaf_scale_binary
 from abjad.leaf.leaf import _Leaf
 
+
 def leaf_split(split_dur, leaf):
    assert isinstance(leaf, _Leaf)
    split_dur = Rational(*_duration_token_unpack(split_dur))

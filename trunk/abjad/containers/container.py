@@ -9,6 +9,7 @@ from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.containers.spannerinterface import _ContainerSpannerInterface
 
+
 class Container(_Component):
 
    def __init__(self, music = None):

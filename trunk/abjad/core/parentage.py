@@ -1,5 +1,6 @@
 from abjad.duration.rational import Rational
 
+
 class _Parentage(object):
 
    def __init__(self, client):

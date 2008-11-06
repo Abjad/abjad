@@ -1,16 +1,17 @@
 from abjad.grace.grace import Grace
 from abjad.helpers.hasname import hasname
 
+
 ### TODO: decide whether _GraceInterface should inherit from
 ###       new, stripped-down _Interface
 
 class _GraceInterface(object):
 
    def __init__(self):
-      #self._before = None
-      #self._after = None
       self.before = Grace( )
       self.after = Grace( )
+
+   ### PUBLIC ATTRIBUTES ###
    
    @apply
    def before( ):
@@ -18,7 +19,6 @@ class _GraceInterface(object):
          return self._before
       def fset(self, arg):
          if arg == None:
-            #self._before = None
             self._before = Grace( )
             self._before.type = 'grace'
          elif isinstance(arg, Grace):
@@ -28,7 +28,6 @@ class _GraceInterface(object):
          elif isinstance(arg, list):
             self._before = Grace(arg)
          elif arg in ('grace', 'acciaccatura', 'appoggiatura'):
-            #assert self._before
             self._before.type = arg
          else:
             raise ValueError('can not set before.')
@@ -40,7 +39,6 @@ class _GraceInterface(object):
          return self._after
       def fset(self, arg):
          if arg == None:
-            #self._after = None
             self._after = Grace( )
          else:
             if isinstance(arg, Grace):

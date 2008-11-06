@@ -1,4 +1,5 @@
-from container import Container
+from abjad.containers.container import Container
+
 
 class Sequential(Container):
 

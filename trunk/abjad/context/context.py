@@ -1,8 +1,8 @@
-from .. containers.container import Container
-from formatter import _ContextFormatter
-from invocation import _Invocation
+from abjad.containers.container import Container
+from abjad.context.formatter import _ContextFormatter
+from abjad.context.invocation import _Invocation
 
-#class Context(Container):
+
 class _Context(Container):
 
    def __init__(self, music = None):

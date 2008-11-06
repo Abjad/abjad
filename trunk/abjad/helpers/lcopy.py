@@ -4,6 +4,7 @@ from abjad.helpers.iterate import iterate
 from abjad.helpers.retroiterate import retroiterate
 from abjad.leaf.leaf import _Leaf
 
+
 def lcopy(expr, start = 0, stop = None):
    '''With stop = None, copy all leaves.'''
 

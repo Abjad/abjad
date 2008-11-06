@@ -1,4 +1,3 @@
-
 def _remove_empty_containers(expr):
    '''Delete all emtpy sub-containers in expr.'''
    class Visitor(object):
@@ -7,4 +6,3 @@ def _remove_empty_containers(expr):
             node._die( )
    v = Visitor( )
    expr._navigator._traverse(v, depthFirst = False)
-

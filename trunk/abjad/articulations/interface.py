@@ -1,20 +1,9 @@
 from abjad.articulations.articulation import _Articulation
-#from abjad.core.attributeformatter import _AttributeFormatter
 from abjad.core.interface import _Interface
-#form abjad.core.spannerreceptor import _SpannerReceptor
 
-### NOTE: _ArticulationsInterface is not an _AttributeFormatter;
-###       this is correct, yes?
-###       Because there's no LilyPond 'Articulations' grob, yes?
-###
-### ALSO: _ArticulationsInterface is not a _SpannerReceptor?
-###       For the same reason, yes?
-
-#class _ArticulationsInterface(list, _Interface):
 class _ArticulationsInterface(_Interface):
 
    def __init__(self, client):
-      #_Interface.__init__(self, client, 'Articulations', ['Articulations'])
       _Interface.__init__(self, client)
       self._articulations = [ ]
 
@@ -109,4 +98,3 @@ class _ArticulationsInterface(_Interface):
          return _Articulation(expr)
       else:
          raise ValueError('can not create _Articulation.')
-         

@@ -1,6 +1,7 @@
-### TODO - grab COMMANDFILE and WORKDIR from cfg/abjad.cfg ###
+from abjad.containers.container import Container
 
-from .. containers.container import Container
+
+### TODO - grab COMMANDFILE and WORKDIR from cfg/abjad.cfg ###
 
 class _Lily(Container):
    '''TODO remove paper, layout, header altogether.'''

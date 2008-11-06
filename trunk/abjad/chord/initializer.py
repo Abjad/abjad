@@ -1,6 +1,7 @@
-from formatter import _ChordFormatter
-from .. core.initializer import _Initializer
-from .. helpers.attributes import _transfer_all_attributes
+from abjad.chord.formatter import _ChordFormatter
+from abjad.core.initializer import _Initializer
+from abjad.helpers.attributes import _transfer_all_attributes
+
 
 ### NOTE - order of steps must be 
 ###

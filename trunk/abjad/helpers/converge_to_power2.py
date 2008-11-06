@@ -1,5 +1,6 @@
+from abjad.duration.rational import Rational
 import math
-from .. duration.rational import Rational
+
 
 def _converge_to_power2(source, target):
    '''Returns the number 2**n closest to target i.e. min(2**n - target)

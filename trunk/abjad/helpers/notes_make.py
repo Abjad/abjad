@@ -1,6 +1,7 @@
+from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.note.note import Note
 from abjad.tie.spanner import Tie
-from abjad.helpers.duration_token_decompose import _duration_token_decompose
+
 
 def notes_make(pitch, dur):
    '''Make note(s) by splitting dur if necessary. 

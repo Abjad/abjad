@@ -363,4 +363,3 @@ class _Navigator(object):
                queue.extend(node._music)
             else:
                queue.extend(reversed(node._music))
-               

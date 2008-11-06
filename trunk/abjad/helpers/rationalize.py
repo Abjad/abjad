@@ -1,7 +1,9 @@
 from abjad.duration.rational import Rational
 
+
 ### Don't need to use decorators to allow X.duration == (n, m), 
 ### but could be useful elsewhere?
+
 def _rationalize(meth):
    '''Convert method argument from list or tuple to Rational.
       meth((m, n)) --> meth(Rational(m, n))

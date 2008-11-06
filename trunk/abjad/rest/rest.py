@@ -3,6 +3,7 @@ from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
 from abjad.rest.initializer import _RestInitializer
 
+
 class Rest(_Leaf, _AttributeFormatter):
 
    def __init__(self, *args):
