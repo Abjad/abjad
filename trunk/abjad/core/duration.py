@@ -1,22 +1,33 @@
 from abjad.duration.rational import Rational
 from abjad.core.interface import _Interface
-#from abjad.core.trivialinterface import _TrivialInterface
 from abjad.helpers.hasname import hasname
 from abjad.helpers.rationalize import _rationalize
 from operator import mul
 
+### TODO: sever _DurationInterface's inheritance from Rational;
+###       this will be a relatively big change;
+###       calculations and comparison will no longer be
+###       possible on _DurationInterface and its children,
+###       including _LeafDurationInterface.
+###       This means that t.duration == Rational(1, 4)
+###       will no longer be allowed;
+###       we will have to use t.duration.written == Rational(1, 4)
+###       or t.duration.prolated == Rational(1, 4) instead.
+###       See other TODO, below for why this is a good idea.
 
-#class _DurationInterface(_Interface, Rational):
-#class _DurationInterface(_TrivialInterface, Rational):
 class _DurationInterface(_Interface, Rational):
 
    def __init__(self, _client):
-      #_Interface.__init__(self, _client, None, [ ])
-      #_TrivialInterface.__init__(self, _client)
       _Interface.__init__(self, _client)
       Rational.__init__(self, 1)
 
-   ### READ-ONLY ATTRIUTES ###
+   ### OVERLOADS ###
+
+   @_rationalize
+   def __eq__(self, arg):
+      return Rational.__eq__(self, arg) 
+
+   ### PRIVATE ATTRIBUTES ### 
 
    @property
    def _n(self):  
@@ -25,6 +36,8 @@ class _DurationInterface(_Interface, Rational):
    @property
    def _d(self):
       return self._duration._d
+
+   ### PUBLIC ATTRIBUTES ###
 
    @property
    def prolations(self):
@@ -58,9 +71,3 @@ class _DurationInterface(_Interface, Rational):
    # attributes 'self' is supposed to model here;
    # would prefer to allow *no math* against self and 
    # *only comparisons* against self.
-
-   ### OVERRIDES ###
-
-   @_rationalize
-   def __eq__(self, arg):
-      return Rational.__eq__(self, arg) 
