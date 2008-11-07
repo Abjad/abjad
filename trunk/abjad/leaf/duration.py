@@ -12,8 +12,8 @@ class _LeafDurationInterface(_DurationInterface):
       _DurationInterface.__init__(self, _client)
       self.multiplier = None
       self.written = duration
-      self._numerator = self.written._numerator
-      self._denominator = self.written._denominator
+#      self._numerator = self.written._numerator
+#      self._denominator = self.written._denominator
 
 #   ### OVERLOADS ###
 #
