@@ -1,14 +1,14 @@
-from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.core.spannerreceptor import _SpannerReceptor
 
 
-class _TempoInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
+class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _AttributeFormatter.__init__(self, 'MetronomeMark')
-      _AttributeFormatter.__init__(self, ['Tempo'])
+      _GrobHandler.__init__(self, 'MetronomeMark')
+      _GrobHandler.__init__(self, ['Tempo'])
       self._metronome = None
  
    ### OVERLOADS ###
@@ -35,5 +35,5 @@ class _TempoInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
 
    def clear(self):
       self._metronome = None
-      _AttributeFormatter.clear(self)
+      _GrobHandler.clear(self)
 

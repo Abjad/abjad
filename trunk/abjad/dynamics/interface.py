@@ -1,4 +1,4 @@
-from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.core.spannerreceptor import _SpannerReceptor
 
@@ -6,11 +6,11 @@ from abjad.core.spannerreceptor import _SpannerReceptor
 ### TODO - make composer interface decisions about whether to support
 ###        _DynamicsInterface.effective or not, and, if so, how.
 
-class _DynamicsInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
+class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _AttributeFormatter.__init__(self, 'DynamicText')
+      _GrobHandler.__init__(self, 'DynamicText')
       _SpannerReceptor.__init__(self, ['Crescendo', 'Decrescendo'])
       self._mark = None
 

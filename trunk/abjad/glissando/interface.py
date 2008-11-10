@@ -1,13 +1,13 @@
-from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.core.spannerreceptor import _SpannerReceptor
 
 
-class _GlissandoInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
+class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _AttributeFormatter.__init__(self, 'Glissando')
+      _GrobHandler.__init__(self, 'Glissando')
       _SpannerReceptor.__init__(self, ['Glissando'])
       self._set = None
 
@@ -33,5 +33,5 @@ class _GlissandoInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
 
    def clear(self):
       self._set = None
-      _AttributeFormatter.clear(self)
+      _GrobHandler.clear(self)
 

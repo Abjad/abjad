@@ -1,11 +1,11 @@
-from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
-class _BarLineInterface(_Interface, _AttributeFormatter):
+class _BarLineInterface(_Interface, _GrobHandler):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _AttributeFormatter.__init__(self, 'BarLine')
+      _GrobHandler.__init__(self, 'BarLine')
       self._type = None
       
    ### MANAGED ###

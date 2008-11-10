@@ -1,15 +1,15 @@
-from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.duration.rational import Rational
 
 
-class _Meter(_AttributeFormatter):
+class _Meter(_GrobHandler):
 
    # NOTE: notice the trickiness with 'Staff.TimeSignature' instead
    # of simply 'TimeSignature' for the grob;
    # this is because the LilyPond TimeSignature grob lives in the 
    # LilyPond Staff context rather than the LilyPond Voice context.
    def __init__(self, n, d):
-      _AttributeFormatter.__init__(self, 'Staff.TimeSignature')
+      _GrobHandler.__init__(self, 'Staff.TimeSignature')
       self.pair = (n, d)
       self.hide = False
 

@@ -1,13 +1,13 @@
-from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
 from abjad.rest.initializer import _RestInitializer
 
 
-class Rest(_Leaf, _AttributeFormatter):
+class Rest(_Leaf, _GrobHandler):
 
    def __init__(self, *args):
-      _AttributeFormatter.__init__(self, 'Rest')
+      _GrobHandler.__init__(self, 'Rest')
       self._initializer = _RestInitializer(self, _Leaf, *args)
    
    ### REPR ###

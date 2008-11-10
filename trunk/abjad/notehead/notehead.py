@@ -1,14 +1,14 @@
-from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.notehead.formatter import _NoteHeadFormatter
 from abjad.pitch.pitch import Pitch
 
 
-class _NoteHead(_Interface, _AttributeFormatter):
+class _NoteHead(_Interface, _GrobHandler):
 
    def __init__(self, client, pitch = None):
       _Interface.__init__(self, client)
-      _AttributeFormatter.__init__(self, 'NoteHead')
+      _GrobHandler.__init__(self, 'NoteHead')
       self._formatter = _NoteHeadFormatter(self)
       self.pitch = pitch
       self._style = None
@@ -53,7 +53,7 @@ class _NoteHead(_Interface, _AttributeFormatter):
       if self._client.kind('Chord'):
          result.extend(self._chordFormat)
       else:
-         result.extend(_AttributeFormatter._before.fget(self))
+         result.extend(_GrobHandler._before.fget(self))
          result.extend(self._noteFormat)
       return result
 

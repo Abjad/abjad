@@ -29,4 +29,5 @@ class _HarmonicInterface(_Interface):
 
    def clear(self):
       self._set = None
-      _AttributeFormatter.clear(self)
+      ### NOTE: why is this here?
+      _GrobHandler.clear(self)

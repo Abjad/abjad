@@ -1,5 +1,5 @@
-from abjad.core.attributeformatter import _AttributeFormatter
 from abjad.core.formatter import _Formatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
@@ -15,7 +15,7 @@ class _LeafFormatter(_Formatter):
       result = [ ]
       for value in self._client.__dict__.values( ):
          #if isinstance(value, _Interface):
-         if isinstance(value, (_Interface, _AttributeFormatter)):
+         if isinstance(value, (_Interface, _GrobHandler)):
             result.append(value)
       result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result

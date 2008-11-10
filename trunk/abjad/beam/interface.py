@@ -1,12 +1,12 @@
-from abjad.core.attributeformatter import _AttributeFormatter
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.core.spannerreceptor import _SpannerReceptor
 
-class _BeamInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
+class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _AttributeFormatter.__init__(self, 'Beam')
+      _GrobHandler.__init__(self, 'Beam')
       _SpannerReceptor.__init__(self, ['Beam'])
       self._counts = (None, None)
 
@@ -87,7 +87,7 @@ class _BeamInterface(_Interface, _AttributeFormatter, _SpannerReceptor):
    @property
    def _before(self):
       result = [ ]
-      result.extend(_AttributeFormatter._before.fget(self))
+      result.extend(_GrobHandler._before.fget(self))
       if self.counts[0] is not None:
          result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
       if self.counts[1] is not None:
