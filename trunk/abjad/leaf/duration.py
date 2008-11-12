@@ -2,6 +2,7 @@ from abjad.core.duration import _DurationInterface
 from abjad.core.interface import _Interface
 from abjad.duration.rational import Rational
 from abjad.helpers.binary import _binary
+from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.hasname import hasname
 from math import log, floor, ceil
 
@@ -11,7 +12,8 @@ class _LeafDurationInterface(_DurationInterface):
    def __init__(self, _client, duration):
       _DurationInterface.__init__(self, _client)
       self.multiplier = None
-      self.written = duration
+      #self.written = duration
+      self.written = Rational(*_duration_token_unpack(duration))
 #      self._numerator = self.written._numerator
 #      self._denominator = self.written._denominator
 
@@ -101,8 +103,8 @@ class _LeafDurationInterface(_DurationInterface):
          else:
             if isinstance(expr, Rational):
                rational = expr
-            elif isinstance(expr, tuple):
-               rational = Rational(*expr)
+#            elif isinstance(expr, tuple):
+#               rational = Rational(*expr)
             elif isinstance(expr, (int, long)):
                rational = Rational(expr)
             else:
@@ -124,8 +126,8 @@ class _LeafDurationInterface(_DurationInterface):
       def fset(self, expr):
          if isinstance(expr, Rational):
             rational = expr
-         elif isinstance(expr, tuple):
-            rational = Rational(*expr)
+#         elif isinstance(expr, tuple):
+#            rational = Rational(*expr)
          elif isinstance(expr, (int, long)):
             rational = Rational(expr)
          else:
@@ -150,7 +152,8 @@ class _LeafDurationInterface(_DurationInterface):
 
    def rewrite(self, target):
       previous = self.multiplied
-      self.written = target
+      #self.written = target
+      self.written = Rational(*_duration_token_unpack(target))
       self.multiplier = None
       multiplier = previous / self.written
       if multiplier != 1:

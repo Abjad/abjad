@@ -52,7 +52,8 @@ def leaf_scale_binary(dur, leaf):
       result = [ ]
       for wd in _duration_token_decompose(dur):
          l = leaf.copy( )
-         l.duration.written = wd
+         #l.duration.written = wd
+         l.duration.written = Rational(*wd)
          result.append( l )
       parent = leaf._parent
       if parent:

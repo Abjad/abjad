@@ -48,6 +48,8 @@ def leaf_split_binary(split_dur, leaf):
       l1.grace.after = None
       leaf.grace.before = None
       parent = leaf._parent
+      ### remove articulations
+      leaf.articulations = None
       if parent:
          l1.spanners.die() 
          ### if l1 is the only leaf spanned, spanner dies for ever...

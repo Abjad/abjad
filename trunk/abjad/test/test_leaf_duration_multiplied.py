@@ -4,7 +4,7 @@ from abjad import *
 def test_leaf_duration_multiplied_01( ):
    '''Mulplied leaf duration == written * multiplier.'''
    t = Note(0, (1, 4))
-   t.duration.multiplier = (1, 2)
+   t.duration.multiplier = Rational(1, 2)
    assert t.duration.multiplied == Rational(1, 8)
 
 
