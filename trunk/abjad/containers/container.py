@@ -269,12 +269,13 @@ class Container(_Component):
          raise TypeError("Can only embed _Component or list of _Component")
 
    def extend(self, expr):
-      if isinstance(expr, list):
-         self[len(self) : len(self)] = expr
-      elif isinstance(expr, Container):
-         self[len(self) : len(self)] = expr[ : ]
-      else:
-         raise ValueError('Extend containers with lists and containers only.')
+      if len(expr) > 0:
+         if isinstance(expr, list):
+            self[len(self) : len(self)] = expr
+         elif isinstance(expr, Container):
+            self[len(self) : len(self)] = expr[ : ]
+         else:
+            raise ValueError('Extend containers with lists and containers only.')
 
    def get(self, name = None, classtype = None):
       '''Searches structure recursively for Components with name <name> 
