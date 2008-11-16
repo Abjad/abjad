@@ -4,7 +4,6 @@ from abjad.clef.clef import _Clef
 from abjad.core.component import _Component
 from abjad.core.interface import _Interface
 from abjad.dots.interface import _DotsInterface
-from abjad.duration.rational import Rational
 from abjad.dynamics.interface import _DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
 from abjad.grace.interface import _GraceInterface
@@ -12,6 +11,7 @@ from abjad.harmonic.interface import _HarmonicInterface
 from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
 from abjad.leaf.spannerinterface import _LeafSpannerInterface
+from abjad.rational.rational import Rational
 from abjad.staff.interface import _StaffInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tie.interface import _TieInterface

@@ -1,5 +1,5 @@
-from abjad.duration.rational import Rational
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.rational.rational import Rational
 
 
 def _in_terms_of(q, desired_denominator):

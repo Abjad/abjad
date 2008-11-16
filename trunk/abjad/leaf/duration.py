@@ -1,9 +1,9 @@
 from abjad.core.duration import _DurationInterface
 from abjad.core.interface import _Interface
-from abjad.duration.rational import Rational
 from abjad.helpers.binary import _binary
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.hasname import hasname
+from abjad.rational.rational import Rational
 from math import log, floor, ceil
 
 

@@ -2,8 +2,8 @@ from abjad.barline.interface import _BarLineInterface
 from abjad.core.comments import _Comments
 from abjad.core.navigator import _Navigator
 from abjad.core.parentage import _Parentage
-from abjad.duration.rational import Rational
 from abjad.helpers.hasname import hasname
+from abjad.rational.rational import Rational
 from abjad.staff.interface import _StaffInterface # This is not being used here?
 from abjad.tempo.interface import _TempoInterface
 from copy import deepcopy

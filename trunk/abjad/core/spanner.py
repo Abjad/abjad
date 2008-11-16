@@ -68,7 +68,7 @@
 ###  TODO  make index( ) private.
 ###        reimplement capture / surrender to left / right.
 
-from abjad.duration.rational import Rational
+from abjad.rational.rational import Rational
 from abjad.helpers.instances import instances
 from copy import copy as python_copy
 

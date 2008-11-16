@@ -1,7 +1,7 @@
-from abjad.duration.rational import Rational
 from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.measure.measure import Measure
+from abjad.rational.rational import Rational
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 

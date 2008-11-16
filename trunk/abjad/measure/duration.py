@@ -1,7 +1,7 @@
 from abjad.containers.duration import _ContainerDurationInterface
 from abjad.core.interface import _Interface
-from abjad.duration.rational import Rational
 from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
+from abjad.rational.rational import Rational
 from math import log
 
 

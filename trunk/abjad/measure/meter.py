@@ -1,5 +1,5 @@
 from abjad.core.grobhandler import _GrobHandler
-from abjad.duration.rational import Rational
+from abjad.rational.rational import Rational
 
 
 class _Meter(_GrobHandler):

@@ -1,7 +1,7 @@
 from abjad.containers.duration import _ContainerDurationInterface
 from abjad.core.interface import _Interface
-from abjad.duration.rational import Rational
 from abjad.helpers.hasname import hasname
+from abjad.rational.rational import Rational
 
 
 class _TupletDurationInterface(_ContainerDurationInterface):

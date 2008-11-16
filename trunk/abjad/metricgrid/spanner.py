@@ -1,10 +1,10 @@
 from abjad.core.spanner import _Spanner
-from abjad.measure.meter import _Meter
-from abjad.skip.skip import Skip
-from abjad.tie.spanner import Tie
 from abjad.helpers.leaf_split import leaf_split_binary, leaf_split
 from abjad.helpers.leaves_fuse import leaves_fuse_binary
-from abjad.duration.rational import Rational
+from abjad.measure.meter import _Meter
+from abjad.rational.rational import Rational
+from abjad.skip.skip import Skip
+from abjad.tie.spanner import Tie
 
 
 class MetricGrid(_Spanner):
@@ -37,6 +37,9 @@ class MetricGrid(_Spanner):
          self._meters = meters
       return property(**locals( ))
          
+   def splittingCondition(self, leaf):
+      '''User definable conditioning function.'''
+      return True
 
    def splitOnBar(self):
       leaf = self[0]
@@ -44,7 +47,8 @@ class MetricGrid(_Spanner):
       meter = meters.next( )
       while leaf:
          if leaf.offset < meter.offset:
-            if leaf.offset + leaf.duration.prolated > meter.offset:
+            if leaf.offset + leaf.duration.prolated > meter.offset and \
+               self.splittingCondition(leaf):
                ### will split
                if not leaf.tie.spanner:
                   Tie(leaf)
@@ -59,8 +63,8 @@ class MetricGrid(_Spanner):
             else:
                ### only advance if we have not split.
                ### TODO _nextBead does not seem to play well with tuplets
-               #leaf = leaf._navigator._nextBead
-               leaf = leaf.next
+               leaf = leaf._navigator._nextBead
+               #leaf = leaf.next
          else:
             try:
                meter = meters.next( )
@@ -72,9 +76,10 @@ class MetricGrid(_Spanner):
       leaves_in_meter = [ ]
       leaf = self[0]
       while leaf:
-         if leaf.offset < meter.offset:
+         if leaf.offset < meter.offset + meter.duration:
             leaves_in_meter.append(leaf)
-            leaf = leaf.next
+            #leaf = leaf.next
+            leaf = leaf._navigator._nextBead
          else:
             if leaves_in_meter:
                result = [[leaves_in_meter[0]]]
@@ -86,6 +91,9 @@ class MetricGrid(_Spanner):
                      sp = l.tie.spanner
                      result.append([])
                for r in result:
+                  ### keep last after graces, if any
+                  if len(r) > 0:
+                     r[0].grace.after = r[-1].grace.after
                   leaves_fuse_binary(r)
             try:
                meter = meters.next( )

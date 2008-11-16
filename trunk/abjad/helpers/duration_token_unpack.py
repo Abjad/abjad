@@ -1,4 +1,4 @@
-from abjad.duration.rational import Rational
+from abjad.rational.rational import Rational
 
 
 def _duration_token_unpack(duration_token):

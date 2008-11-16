@@ -1,7 +1,7 @@
 from abjad.core.interface import _Interface
-from abjad.duration.rational import Rational
 from abjad.helpers.hasname import hasname
 from abjad.helpers.rationalize import _rationalize
+from abjad.rational.rational import Rational
 from operator import mul
 
 

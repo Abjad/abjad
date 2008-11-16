@@ -1,8 +1,8 @@
-from abjad.duration.rational import Rational
 from abjad.helpers.attributes import _transfer_all_attributes
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.leaf_scale import leaf_scale, leaf_scale_binary
 from abjad.leaf.leaf import _Leaf
+from abjad.rational.rational import Rational
 
 
 def leaf_split(split_dur, leaf):
@@ -48,8 +48,9 @@ def leaf_split_binary(split_dur, leaf):
       l1.grace.after = None
       leaf.grace.before = None
       parent = leaf._parent
-      ### remove articulations
+      ### remove articulations and dynamics
       leaf.articulations = None
+      leaf.dynamics = None
       if parent:
          l1.spanners.die() 
          ### if l1 is the only leaf spanned, spanner dies for ever...

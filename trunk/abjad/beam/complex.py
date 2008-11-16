@@ -1,5 +1,5 @@
 from abjad.beam.spanner import Beam
-from abjad.duration.rational import Rational
+from abjad.rational.rational import Rational
 
 class ComplexBeam(Beam):
 

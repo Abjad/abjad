@@ -6,7 +6,7 @@ from abjad.helpers.lcopy import lcopy
 from abjad.helpers.leaf_scale import leaf_scale
 from abjad.helpers.leaf_split import leaf_split
 from abjad.leaf.leaf import _Leaf
-from abjad.duration.rational import Rational
+from abjad.rational.rational import Rational
 
 
 def scopy(expr, start = 0, stop = None):

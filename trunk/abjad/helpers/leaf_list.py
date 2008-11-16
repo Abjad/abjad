@@ -1,8 +1,8 @@
 from abjad.chord.chord import Chord
-from abjad.duration.rational import Rational
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.leaf.leaf import _Leaf
 from abjad.note.note import Note
+from abjad.rational.rational import Rational
 from abjad.rest.rest import Rest
 from abjad.skip.skip import Skip
 

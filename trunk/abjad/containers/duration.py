@@ -1,6 +1,6 @@
 from abjad.core.duration import _DurationInterface
 from abjad.core.interface import _Interface
-from abjad.duration.rational import Rational
+from abjad.rational.rational import Rational
 
 
 class _ContainerDurationInterface(_DurationInterface):
