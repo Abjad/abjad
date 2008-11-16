@@ -1,16 +1,38 @@
 ### TODO - make Rational(3, 8) == (3, 8) work,
 ###        and likewise for all operations;
 ###        strategy: use decorator.
+### I think we have decided this is a bad idea. 
 
 class Rational(object):
 
-   def __init__(self, n, d = 1):
-      assert isinstance(n, (int, long))
-      assert isinstance(d, (int, long))
-      assert d != 0
-      gcd = self._gcd(n, d)
-      self._numerator = n / gcd
-      self._denominator = d / gcd
+   def __init__(self, *args):
+#   def __init__(self, n, d = 1):
+#      assert isinstance(n, (int, long))
+#      assert isinstance(d, (int, long))
+#      assert d != 0
+#      gcd = self._gcd(n, d)
+#      self._numerator = n / gcd
+#      self._denominator = d / gcd
+      if len(args) == 1:
+         n = args[0]
+         assert isinstance(n, (int, long, Rational))
+         if type(n) in (int, long):
+            self._numerator = n 
+            self._denominator = 1
+         else:
+            self._numerator = n._numerator
+            self._denominator = n._denominator
+      elif len(args) == 2:
+         n = args[0]
+         d = args[1]
+         assert isinstance(n, (int, long))
+         assert isinstance(d, (int, long))
+         gcd = self._gcd(n, d)
+         self._numerator = n / gcd
+         self._denominator = d / gcd
+      else:
+         raise TypeError('Rational() must take one or two arguments.')
+
 
    ### INIT UTILS ###
 
