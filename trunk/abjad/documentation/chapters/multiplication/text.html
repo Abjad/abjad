@@ -1,0 +1,25 @@
+<title>Multiplication</title>
+
+<h1>Multiplication</h1>
+
+<div class="subsection">
+<h2>  </h2>
+<p> You can multiply all Abjad components.
+
+<p> Here we multiply one note many times.
+
+<pre class="abjad">
+abjad> note = Note(0, (1, 16))
+abjad> notes = note * 72
+</pre>
+<img src="images/1.png">
+
+<p> All notes are different.
+
+<pre class="abjad">
+abjad> id(staff[0]) == id(staff[1])
+False
+</pre>
+
+</div class="subsection">
+
