@@ -6,7 +6,7 @@
 <p> Create notes with a <pitch token> and a <duration token>.
 <abjad>
   abjad> note = Note(0, (1, 4))
-  hide> measure = Measure(note.duration.pair, [note])
+  hide> measure = Measure(note.duration.prolated.pair, [note])
   hide> measure.meter.transparent = True
   hide> show(measure)
 </abjad>
@@ -20,7 +20,7 @@
 <abjad>
    hide> note = Note(0, (1, 4))
    abjad> note.pitch = 2
-   hide> measure = Measure(note.duration.pair, [note])
+   hide> measure = Measure(note.duration.prolated.pair, [note])
    hide> measure.meter.transparent = True
    hide> show(measure)
 </abjad>
@@ -28,7 +28,7 @@
 <abjad>
    hide> note = Note(2, (1, 4))
    abjad> note.pitch = ('e', 4)
-   hide> measure = Measure(note.duration.pair, [note])
+   hide> measure = Measure(note.duration.prolated.pair, [note])
    hide> measure.meter.transparent = True
    hide> show(measure)
 </abjad>
@@ -36,7 +36,7 @@
 <abjad>
    hide> note = Note(('e', 4), (1, 4))
    abjad> note.pitch = Pitch('f', 4)
-   hide> measure = Measure(note.duration.pair, [note])
+   hide> measure = Measure(note.duration.prolated.pair, [note])
    hide> measure.meter.transparent = True
    hide> show(measure)
 </abjad>
@@ -108,87 +108,95 @@
 </abjad>
 </subsection>
 
-<subsection> Duration assignment
-<p> Change duration with a pair:
+<subsection> Duration initialization
+<p> Initialize <Note> duration with a <Rational>.
+<abjad>
+   abjad> note = Note(0, Rational(1, 8))
+   hide> measure = Measure(note.duration.prolated.pair, [note])
+   hide> measure.meter.transparent = True
+   hide> show(measure)
+</abjad>
+<p> You can also use a <duration token> as a shortcut.
+</subsection>
+
+<subsection> Duration attributes
+<p> <Note> has a <_LeafDurationInterface>.
+<abjad>
+   abjad> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   abjad> note = tuplet[0]
+   abjad> note.duration
+   &lt;abjad.leaf.duration._LeafDurationInterface object at 0x63a30&gt;
+</abjad>
+<p> <_LeafDurationInterface> bundles six public attributes.
+<abjad>
+   hide> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   hide> note = tuplet[0]
+   abjad> note.duration.multiplied
+   Rational(1, 8)
+</abjad>
+<abjad>
+   hide> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   hide> note = tuplet[0]
+   abjad> note.duration.multiplier
+   Rational(1, 1)
+</abjad>
+<abjad>
+   hide> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   hide> note = tuplet[0]
+   abjad> note.duration.preprolated
+   Rational(1, 8)
+</abjad>
+<abjad>
+   hide> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   hide> note = tuplet[0]
+   abjad> note.duration.prolated
+   Rational(1, 12)
+</abjad>
+<abjad>
+   hide> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   hide> note = tuplet[0]
+   abjad> note.duration.prolation
+   Rational(2, 3)
+</abjad>
+<abjad>
+   hide> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   hide> note = tuplet[0]
+   abjad> note.duration.written
+   Rational(1, 8)
+</abjad>
+<p> Read more at <_LeafDurationInterface>.
+</subsection>
+
+<subsection> Duration attribute assignment
+<p> You can reassign <tt>note.duration.written</tt>.
 <abjad>
    abjad> note = Note(0, (1, 4))
 </abjad>
 <abjad>
-  hide> note = Note(0, (1, 4))
-  abjad> note.duration = (1, 8)
-  hide> measure = Measure(note.duration.pair, [note])
-  hide> measure.meter.transparent = True
-  hide> show(measure)
-</abjad>
-<p> With a <Rational>:
-<abjad>
   hide> note = Note(0, (1, 8))
-  abjad> note.duration = Rational(3, 16)
-  hide> measure = Measure(note.duration.pair, [note])
+  abjad> note.duration.written = Rational(3, 16)
+  hide> measure = Measure(note.duration.prolated.pair, [note])
   hide> measure.meter.transparent = True
   hide> show(measure)
 </abjad>
-<p> Or with another duration Abjad object:
-<abjad>
-  hide> note = Note(0, (1, 8))
-  abjad> chord = Chord([0, 2, 10], (3, 16))
-  abjad> note.duration = chord.duration
-  hide> measure = Measure(note.duration.pair, [note])
-  hide> measure.meter.transparent = True
-  hide> show(measure)
-</abjad>
-<p> Both <duration token> and duration-to-duration assignment work.
-</subsection>
-
-<subsection> Duration comparison
-<p> Compare duration to a pair:
+<p> Use must use a <Rational> which meets <assignability> criteria.
+<p> You can also assign <tt>note.duration.multiplier</tt>.
 <abjad>
    abjad> note = Note(0, (1, 4))
+   abjad> note.duration.multiplier = Rational(1, 6)
 </abjad>
 <abjad>
-   abjad> note.duration == (1, 4)
-   True
+   hide> note = Note(0, (1, 4))
+   hide> note.duration.mutiplier = Rational(1, 6)
+   abjad> note.duration.written
+   Rational(1, 4)
+   abjad> note.duration.multiplier
+   Rational(1, 6)
+   abjad> note.duration.multiplied
+   Rational(1, 24)
 </abjad>
-<p> To a <Rational>:
-<abjad>
-   abjad> note.duration == Rational(1, 4)
-   True
-</abjad>
-<p> Or to another durated Abjad object:
-<abjad>
-   abjad> chord = Chord([0, 2, 10], (3, 16))
-   abjad> note.duration == chord.duration
-   False
-</abjad>
-<p> Both <duration token> and duration-to-duration testing work.
-</subsection>
-
-<subsection> Types of duration comparison
-<p> All six Python comparison operators work as expected.
-<abjad>
-   abjad> Note(0, (1, 8)) == Note(0, (3, 8))
-   True
-</abjad>
-<abjad>
-   abjad> Note(0, (1, 8)) != Note(0, (3, 8))
-   True
-</abjad>
-<abjad>
-   abjad> Note(0, (1, 8)) > Note(0, (3, 8))
-   False
-</abjad>
-<abjad>
-   abjad> Note(0, (1, 8)) < Note(0, (3, 8))
-   True
-</abjad>
-<abjad>
-   abjad> Note(0, (1, 8)) >= Note(0, (3, 8))
-   False
-</abjad>
-<abjad>
-   abjad> Note(0, (1, 8)) <= Note(0, (3, 8))
-   True
-</abjad>
+<p> Use any positive <Rational>.
+<p> All other duration attributes are read-only.
 </subsection>
 
 <to-do>

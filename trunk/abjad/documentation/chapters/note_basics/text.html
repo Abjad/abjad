@@ -94,77 +94,75 @@ True
 </div class="subsection">
 
 <div class="subsection">
-<h2> Duration assignment </h2><p> Change duration with a pair:
+<h2> Duration initialization </h2><p> Initialize <code><a href="../note_class/index.html">Note</a></code> duration with a <code><a href="../rational_class/index.html">Rational</a></code>.
 <pre class="abjad">
-abjad> note = Note(0, (1, 4))
-</pre>
-<pre class="abjad">
-abjad> note.duration = (1, 8)
+abjad> note = Note(0, Rational(1, 8))
 </pre>
 <img src="images/5.png">
-<p> With a <code><a href="../rational_class/index.html">Rational</a></code>:
-<pre class="abjad">
-abjad> note.duration = Rational(3, 16)
-</pre>
-<img src="images/6.png">
-<p> Or with another duration Abjad object:
-<pre class="abjad">
-abjad> chord = Chord([0, 2, 10], (3, 16))
-abjad> note.duration = chord.duration
-</pre>
-<img src="images/7.png">
-<p> Both <code><a href="../duration_token/index.html">duration token</a></code> and duration-to-duration assignment work.
+<p> You can also use a <code><a href="../duration_token/index.html">duration token</a></code> as a shortcut.
 </div class="subsection">
 
 <div class="subsection">
-<h2> Duration comparison </h2><p> Compare duration to a pair:
+<h2> Duration attributes </h2><p> <code><a href="../note_class/index.html">Note</a></code> has a <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
+<pre class="abjad">
+abjad> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+abjad> note = tuplet[0]
+abjad> note.duration
+&lt;abjad.leaf.duration._LeafDurationInterface object at 0x63a30&gt;
+</pre>
+<p> <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code> bundles six public attributes.
+<pre class="abjad">
+abjad> note.duration.multiplied
+Rational(1, 8)
+</pre>
+<pre class="abjad">
+abjad> note.duration.multiplier
+Rational(1, 1)
+</pre>
+<pre class="abjad">
+abjad> note.duration.preprolated
+Rational(1, 8)
+</pre>
+<pre class="abjad">
+abjad> note.duration.prolated
+Rational(1, 12)
+</pre>
+<pre class="abjad">
+abjad> note.duration.prolation
+Rational(2, 3)
+</pre>
+<pre class="abjad">
+abjad> note.duration.written
+Rational(1, 8)
+</pre>
+<p> Read more at <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
+</div class="subsection">
+
+<div class="subsection">
+<h2> Duration attribute assignment </h2><p> You can reassign <tt>note.duration.written</tt>.
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
 </pre>
 <pre class="abjad">
-abjad> note.duration == (1, 4)
-True
+abjad> note.duration.written = Rational(3, 16)
 </pre>
-<p> To a <code><a href="../rational_class/index.html">Rational</a></code>:
+<img src="images/6.png">
+<p> Use must use a <code><a href="../rational_class/index.html">Rational</a></code> which meets <code><a href="../assignability/index.html">assignability</a></code> criteria.
+<p> You can also assign <tt>note.duration.multiplier</tt>.
 <pre class="abjad">
-abjad> note.duration == Rational(1, 4)
-True
-</pre>
-<p> Or to another durated Abjad object:
-<pre class="abjad">
-abjad> chord = Chord([0, 2, 10], (3, 16))
-abjad> note.duration == chord.duration
-False
-</pre>
-<p> Both <code><a href="../duration_token/index.html">duration token</a></code> and duration-to-duration testing work.
-</div class="subsection">
-
-<div class="subsection">
-<h2> Types of duration comparison </h2><p> All six Python comparison operators work as expected.
-<pre class="abjad">
-abjad> Note(0, (1, 8)) == Note(0, (3, 8))
-True
+abjad> note = Note(0, (1, 4))
+abjad> note.duration.multiplier = Rational(1, 6)
 </pre>
 <pre class="abjad">
-abjad> Note(0, (1, 8)) != Note(0, (3, 8))
-True
+abjad> note.duration.written
+Rational(1, 4)
+abjad> note.duration.multiplier
+Rational(1, 6)
+abjad> note.duration.multiplied
+Rational(1, 24)
 </pre>
-<pre class="abjad">
-abjad> Note(0, (1, 8)) > Note(0, (3, 8))
-False
-</pre>
-<pre class="abjad">
-abjad> Note(0, (1, 8)) < Note(0, (3, 8))
-True
-</pre>
-<pre class="abjad">
-abjad> Note(0, (1, 8)) >= Note(0, (3, 8))
-False
-</pre>
-<pre class="abjad">
-abjad> Note(0, (1, 8)) <= Note(0, (3, 8))
-True
-</pre>
+<p> Use any positive <code><a href="../rational_class/index.html">Rational</a></code>.
+<p> All other duration attributes are read-only.
 </div class="subsection">
 
 <h2 class="page-section"> To do </h2>

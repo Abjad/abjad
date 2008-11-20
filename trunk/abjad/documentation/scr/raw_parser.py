@@ -474,6 +474,7 @@ class TO_DO(_TagParser):
 class CLASS_NAMES(_TagParser):
 
    change = {
+      '<assignability>' : 'assignability',
       '<_ArticulationsInterface>' : 'articulations_interface',
       '<_BarlineInterface>' : 'barline_interface',
       '<_BeamInterface>' : 'beam_interface',
