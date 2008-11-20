@@ -10,7 +10,8 @@ def excise(leaf):
       shrink duration of any enclosing durated containers.
    '''
    prolated_leaf_duration = leaf.duration.prolated
-   prolations = leaf.duration.prolations
+   #prolations = leaf.duration.prolations
+   prolations = leaf.duration._prolations
    cur_prolation, i = Rational(1), 0
    parent = leaf._parent
    while parent is not None and not parent.parallel:

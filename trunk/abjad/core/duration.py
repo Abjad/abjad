@@ -43,7 +43,8 @@ class _DurationInterface(_Interface):
 
    @property
    def prolation(self):
-      return reduce(mul, self.prolations, Rational(1))
+      #return reduce(mul, self.prolations, Rational(1))
+      return reduce(mul, self._prolations, Rational(1))
 
    @property
    def prolated(self):
@@ -66,7 +67,8 @@ class _DurationInterface(_Interface):
       return self.prolation * self.preprolated
 
    @property
-   def prolations(self):
+   #def prolations(self):
+   def _prolations(self):
       result = [ ]
       parent = self._client._parent
       while parent is not None:
