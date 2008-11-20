@@ -15,30 +15,21 @@
    <TD class="abjad-class">fd tuplet
    <TD class="abjad-class">fm tuplet
 <TR>
-   <TD class="duration-interface-attribute">_duration
-   <TD>&ndash;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&ndash;
-   <TD>&radic;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">written
-   <TD>&ndash;
-   <TD>&radic;
-   <TD>&ndash;
-   <TD>&ndash;
-   <TD>&ndash;
-   <TD>&ndash;
-   <TD>&ndash;
-<TR>
    <TD class="duration-interface-attribute">contents
    <TD>&ndash;
    <TD>&ndash;
    <TD>&crarr;
    <TD>&crarr;
    <TD>&crarr;
+   <TD>&crarr;
+   <TD>&crarr;
+<TR>
+   <TD class="duration-interface-attribute">multiplied
+   <TD>&ndash;
+   <TD>&crarr;
+   <TD>&ndash;
+   <TD>&ndash;
+   <TD>&ndash;
    <TD>&crarr;
    <TD>&crarr;
 <TR>
@@ -51,6 +42,15 @@
    <TD>&crarr;
    <TD>&radic;
 <TR>
+   <TD class="duration-interface-attribute">preprolated
+   <TD>&ndash;
+   <TD>&crarr;
+   <TD>&crarr;
+   <TD>&crarr;
+   <TD>&crarr;
+   <TD>&crarr;
+   <TD>&crarr;
+<TR>
    <TD class="duration-interface-attribute">prolated
    <TD>&crarr;
    <TD>&crarr;
@@ -69,250 +69,25 @@
    <TD>&crarr;
    <TD>&crarr;
 <TR>
-   <TD class="duration-interface-attribute">prolations
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-</TABLE>
-<p class="spacer"/>
-
-<!--
-
-<p>
-How we want them to be, take I?
-</p>
-
-<TABLE>
-<TR id="abjad-classes">
-   <TD width=80px>&nbsp;
-   <TD class="abjad-class">leaves
-   <TD class="abjad-class"><code>FDTuplet</code>
-   <TD class="abjad-class"><code>FRTuplet</code>
-   <TD class="abjad-class"><code>Measure</code>
-   <TD class="abjad-class"><code>Voice</code>
+   <TD class="duration-interface-attribute">target
+   <TD>&ndash;
+   <TD>&ndash;
+   <TD>&ndash;
+   <TD>&ndash;
+   <TD>&ndash;
+   <TD>&radic;
+   <TD>&ndash;
 <TR>
    <TD class="duration-interface-attribute">written
+   <TD>&ndash;
    <TD>&radic;
    <TD>&ndash;
    <TD>&ndash;
    <TD>&ndash;
    <TD>&ndash;
-<TR>
-   <TD class="duration-interface-attribute">(container)
    <TD>&ndash;
-   <TD>( &radic; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-<TR>
-   <TD class="duration-interface-attribute">contents
-   <TD>&ndash;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">(multiplier)
-   <TD>( &radic; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">(multiplied)
-   <TD>( &crarr; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">(ratio)
-   <TD>( &ndash; )
-   <TD>( &crarr; )
-   <TD>( &radic; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">prolation
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">prolated
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">(absolute)
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-</TABLE>
-<p class="spacer"/>
-<p>
-How we want them to be, take II? Kinda wanna keep the duration interfaces compact. So this proposal changes (container) to (target) to slim down the duration interfaces belonging to <code>FMTuplet</code>, <code>Measure</code> and <code>Voice</code>.
-</p>
-<TABLE>
-<TR id="abjad-classes">
-   <TD width=80px>&nbsp;
-   <TD class="abjad-class">leaves
-   <TD class="abjad-class"><code>FDTuplet</code>
-   <TD class="abjad-class"><code>FRTuplet</code>
-   <TD class="abjad-class"><code>Measure</code>
-   <TD class="abjad-class"><code>Voice</code>
-<TR>
-   <TD class="duration-interface-attribute">written
-   <TD>&radic;
-   <TD>&ndash;
-   <TD>&ndash;
-   <TD>&ndash;
-   <TD>&ndash;
-<TR>
-   <TD class="duration-interface-attribute">(target)
-   <TD>( &ndash; )
-   <TD>( &radic; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">contents
-   <TD>&ndash;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">(multiplier)
-   <TD>( &radic; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">(multiplied)
-   <TD>( &crarr; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">(ratio)
-   <TD>( &ndash; )
-   <TD>( &crarr; )
-   <TD>( &radic; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">prolation
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">prolated
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">(absolute)
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-</TABLE>
-<p class="spacer"/>
-<p>
-How we want them to be, take III? Even more compact. This proposal gets rid of all derived attributes (the ones in -ed) except for absolute duration ... the 'ultimate' derived attribute. (Get access to the other attributes by multiplying by hand.)
-</p>
-<TABLE>
-<TR id="abjad-classes">
-   <TD width=80px>&nbsp;
-   <TD class="abjad-class">leaves
-   <TD class="abjad-class"><code>FDTuplet</code>
-   <TD class="abjad-class"><code>FRTuplet</code>
-   <TD class="abjad-class"><code>Measure</code>
-   <TD class="abjad-class"><code>Voice</code>
-<TR>
-   <TD class="duration-interface-attribute">written
-   <TD>&radic;
-   <TD>&ndash;
-   <TD>&ndash;
-   <TD>&ndash;
-   <TD>&ndash;
-<TR>
-   <TD class="duration-interface-attribute">(target)
-   <TD>( &ndash; )
-   <TD>( &radic; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">contents
-   <TD>&ndash;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">(multiplier)
-   <TD>( &radic; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">(ratio)
-   <TD>( &ndash; )
-   <TD>( &crarr; )
-   <TD>( &radic; )
-   <TD>( &ndash; )
-   <TD>( &ndash; )
-<TR>
-   <TD class="duration-interface-attribute">prolation
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-   <TD>&crarr;
-<TR>
-   <TD class="duration-interface-attribute">(absolute)
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-   <TD>( &crarr; )
-</TABLE>
-<p class="spacer"/>
-<TABLE class="key">
-<TR>
-   <TD width=40px>&radic;
-   <TD class="key-rhs">user-settable
-<TR>
-   <TD>&crarr;
-   <TD class="key-rhs">read-only
-<TR>
-   <TD>( &nbsp; )
-   <TD class="key-rhs">not yet implemented
-<TR>
-   <TD>&ndash;
-   <TD class="key-rhs">does not exist
 </TABLE>
 
--->
 
 </div class="subsection">
 
@@ -327,10 +102,8 @@ Durated Abjad classes offer up many read-only duration attributes but very few r
 It is possible, for example, to nest an entire voice within a fixed-duration tuplet.
 
 <p> Leaf multipliers and tuplet multipliers differ.
-Leaves implement a <a href="../lilypond_multipliers/index.html">LilyPond multiplier</a>; tuplets implement a ratio.
-<strong>Do we want to name these attributes differently?</strong>
-If we do then we might consider renaming leaf 'multipliers' as leaf 'scalars'.
-We might then have <code>leaf.duration.scalar</code> and <code>leaf.duration.scaled</code> on the one hand and <code>tuplet.duration.multiplier</code> and <code>tuplet.duration.multiplied</code> on the other.
+
+<p> <code><a href="../measure_duration_interface/index.html">_MeasureDurationInterface</a></code> implements <code>compression</code> and <code>nonbinary</code> attributes not shown above.
 
 </div class="comments">
 
@@ -343,18 +116,6 @@ The duration interfaces of multiplier-carrying containers like tuplets and measu
 Right now <strong>all</strong> containers inherit a multiplier attribute from the container duration interface, which is modeling problem for non-multiplier-carrying containers like voices and staves.
 Maybe the best solution is to implement an abstract <code>_MultipliedContainer</code> class from which the multiplier-carrying containers like tuplets and measures can inherit.
 
-<p> Reimplement implicit fixed-duration tuplet <code>_duration</code> as explicit <code>target</code>.
-
-<p> Decide whether <code>prolated</code> duration will always equal <code>absolute</code> duration.
-One possible difference we can exploit: right now multiplier-carrying leaves ('multiplied leaves'?) have no duration attribute equal to <code>leaf.duration.written * leaf.duration.prolation</code> <strong>leaving</strong> <code>leaf.duration.multiplier</code> <strong>out</strong> of the equation.
-It might be nice to have some leaf duration attribute that always equals the product of written duration and prolation, for both multiplied and nonmultiplied leaves.
-If we decide that we want such an attribute, then we can redefine prolated duration to carry that meaning and then implement absolute duration to equal <code>leaf.duration.written * leaf.duration.multiplier * leaf.duration.prolation</code>.
-
-<p> Should fixed-duration tuplets implement a multiplied duration?
-
-<p> Should we rename <code>duration.contents</code> to <code>duration.contained</code>?
-
-<p>
-Should we rename <code>FixedMultiplierTuplet</code> to <code>FixedRatioTuplet</code>?
+<p> Decide if we should add a <code>preprolated</code> attribute to <code><a href="../duration_interface/index.html">_DurationInterface</a></code>.
 
 </div class="to-do">

@@ -480,15 +480,20 @@ class CLASS_NAMES(_TagParser):
       '<_BeamInterface>' : 'beam_interface',
       '<_Comments>' : 'comments_class',
       '<_Component>' : 'component_class',
+      '<_ContainerDurationInterface>' : 'container_duration_interface',
       '<_DotsInterface>' : 'dots_interface',
+      '<_DurationInterface>' : 'duration_interface',
       '<duration token>' : 'duration_token',
       '<_DynamicsInterface>' : 'dynamics_interface',
+      '<_FixedDurationTupletInterface>' : 'fdtuplet_duration_interface',
+      '<_FixedMultiplierTupletInterface>' : 'fmtuplet_duration_interface',
       '<_GlissandoInterface>' : 'glissando_interface',
       '<_GraceInterface>' : 'grace_interface',
       '<_HarmonicInterface>' : 'harmonic_interface',
       '<_Leaf>' : 'leaf_class',
       '<_LeafDurationInterface>' : 'leaf_duration_interface',
       '<_LeafSpannerInterface>' : 'leaf_spanner_interface',
+      '<_MeasureDurationInterface>' : 'measure_duration_interface',
       '<Note>' : 'note_class',
       '<_NoteHead>' : 'notehead_class',
       '<Pitch>' : 'pitch_class',
@@ -501,6 +506,7 @@ class CLASS_NAMES(_TagParser):
       '<_TieInterface>' : 'tie_interface',
       '<_TremoloInterface>' : 'tremolo_interface',
       '<_TrillInterface>' : 'trill_interface',
+      '<_TupletDurationInterface>' : 'tuplet_duration_interface',
    }
 
    def parse(self, lines):
