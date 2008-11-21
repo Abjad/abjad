@@ -1,5 +1,4 @@
 from abjad.core.duration import _DurationInterface
-from abjad.core.interface import _Interface
 from abjad.rational.rational import Rational
 
 
@@ -7,11 +6,6 @@ class _ContainerDurationInterface(_DurationInterface):
 
    def __init__(self, _client):
       _DurationInterface.__init__(self, _client)
-
-#   ### OVERLOADS ###
-#
-#   def __repr__(self):
-#      return 'ContainerDurationInterface(%s)' % self.contents
 
    ### PRIVATE ATTRIBUTES ###
 
@@ -44,13 +38,14 @@ class _ContainerDurationInterface(_DurationInterface):
             duration += x.duration.preprolated
          return duration
 
-   @property
-   def multiplier(self):
-      return Rational(1)
+#   @property
+#   def multiplier(self):
+#      return Rational(1)
 
    @apply
    def preprolated( ):
       def fget(self):
          #return self.contents   
-         return self.multiplier * self.contents   
+         #return self.multiplier * self.contents   
+         return self.contents
       return  property(**locals( ))

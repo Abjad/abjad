@@ -17,7 +17,8 @@ class _DurationInterface(_Interface):
       result = [ ]
       parent = self._client._parent
       while parent is not None:
-         result.append(parent.duration.multiplier)
+         #result.append(parent.duration.multiplier)
+         result.append(getattr(parent.duration, 'multiplier', Rational(1)))
          parent = parent._parent
       return result
 

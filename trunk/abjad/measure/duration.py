@@ -1,16 +1,13 @@
-from abjad.containers.duration import _ContainerDurationInterface
-from abjad.core.interface import _Interface
+#from abjad.containers.duration import _ContainerDurationInterface
+from abjad.containers.multipliedduration import _MultipliedContainerDurationInterface
+#from abjad.core.interface import _Interface
 from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
 from abjad.rational.rational import Rational
-from math import log
+#from math import log
 
 
-class _MeasureDurationInterface(_ContainerDurationInterface):
-
-#   ### OVERLOADS ###
-#
-#   def __repr__(self):
-#      return 'MeasureDurationInterface(%s)' % self._duration
+#class _MeasureDurationInterface(_ContainerDurationInterface):
+class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
 
    ### PRIVATE ATTRIBUTES ###
 

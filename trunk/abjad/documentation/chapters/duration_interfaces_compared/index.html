@@ -53,7 +53,7 @@ if we want to have the TOC on every page, we can put it here...
    <TD class="duration-interface-attribute">multiplier
    <TD>&ndash;
    <TD>&radic;
-   <TD>&crarr;
+   <TD>&ndash;
    <TD>&crarr;
    <TD>&crarr;
    <TD>&crarr;
@@ -123,17 +123,6 @@ It is possible, for example, to nest an entire voice within a fixed-duration tup
 <p> <code><a href="../measure_duration_interface/index.html">_MeasureDurationInterface</a></code> implements <code>compression</code> and <code>nonbinary</code> attributes not shown above.
 
 </div class="comments">
-
-<h2 class="page-section"> To do </h2>
-
-<div class="to-do">
-
-<p> Remove <code>multiplier</code> from the container duration interface.
-The duration interfaces of multiplier-carrying containers like tuplets and measures should implement a multiplier attribute; the duration interfaces of non-multiplier-carrying containers like voices and staves should not.
-Right now <strong>all</strong> containers inherit a multiplier attribute from the container duration interface, which is modeling problem for non-multiplier-carrying containers like voices and staves.
-Maybe the best solution is to implement an abstract <code>_MultipliedContainer</code> class from which the multiplier-carrying containers like tuplets and measures can inherit.
-
-</div class="to-do">
 
 
 <p class="footer"> <a href="../../index.html">Contents</a> </p>
