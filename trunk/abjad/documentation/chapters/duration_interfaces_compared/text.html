@@ -43,7 +43,7 @@
    <TD>&radic;
 <TR>
    <TD class="duration-interface-attribute">preprolated
-   <TD>&ndash;
+   <TD>&crarr;
    <TD>&crarr;
    <TD>&crarr;
    <TD>&crarr;
@@ -115,7 +115,5 @@ It is possible, for example, to nest an entire voice within a fixed-duration tup
 The duration interfaces of multiplier-carrying containers like tuplets and measures should implement a multiplier attribute; the duration interfaces of non-multiplier-carrying containers like voices and staves should not.
 Right now <strong>all</strong> containers inherit a multiplier attribute from the container duration interface, which is modeling problem for non-multiplier-carrying containers like voices and staves.
 Maybe the best solution is to implement an abstract <code>_MultipliedContainer</code> class from which the multiplier-carrying containers like tuplets and measures can inherit.
-
-<p> Decide if we should add a <code>preprolated</code> attribute to <code><a href="../duration_interface/index.html">_DurationInterface</a></code>.
 
 </div class="to-do">
