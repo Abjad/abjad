@@ -5,7 +5,7 @@
 <subsection>
 
 <p> LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive rational values.
-LilyPond multipliers are inivisible and generate no typographic output of their own.
+LilyPond multipliers are inivisible and generate no typographic output of their own. However, while independent from the typographic output, LilyPond multipliers do factor in in calculations of duration and time.
 
 </subsection>
 
@@ -15,7 +15,7 @@ LilyPond multipliers are inivisible and generate no typographic output of their 
 
 <abjad>
   abjad> note = Note(0, (1, 4))
-  abjad> note.duration.multiplier = (1, 2)
+  abjad> note.duration.multiplier = Rational(1, 2)
   abjad> note.duration.multiplier
   Rational(1, 2)
 </abjad>
@@ -28,20 +28,13 @@ LilyPond multipliers are inivisible and generate no typographic output of their 
 </subsection>
 
 <subsection>
-
-<p> The duration interfaces of notes, rests, chords and skips with LilyPond multipliers test for equality differently than those without.
-
-<abjad>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.duration == (1, 4)
-  True
-</abjad>
+<p> Abjad also implements a <code>duration.multiplied</code> attribute to examine the duration of a note, rest, chord or skip as affected by the multiplier (see <a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a> for all other duration attributes available).
 
 <abjad>
-  abjad> note = Note(0, (1, 4))
-  abjad> note.duration.multiplier = (1, 2)
-  abjad> note.duration == (1, 8)
-  True
+  hide> note = Note(0, (1, 4))
+  hide> note.duration.multiplier = Rational(1, 2)
+  abjad> note.duration.multiplied
+  Rational(1, 8)
 </abjad>
 
 </subsection>
@@ -53,13 +46,11 @@ LilyPond multipliers are inivisible and generate no typographic output of their 
 <abjad>
   abjad> notes = Note(0, (1, 4)) * 4
   abjad> multiplied_note = Note(0, (1, 2))
-  abjad> multiplied_note.duration.multiplier = (1, 2)
+  abjad> multiplied_note.duration.multiplier = Rational(1, 2)
   abjad> multiplied_notes = multiplied_note * 4
   abjad> top = RhythmicStaff(notes)
   abjad> bottom = RhythmicStaff(multiplied_notes)
-  abjad> staves = Staff([top, bottom])
-  abjad> staves.invocation.type = 'StaffGroup'
-  abjad> staves.brackets = 'double-angle'
+  abjad> staves = StaffGroup([top, bottom])
   abjad> show(staves)
 </abjad>
 
@@ -75,8 +66,3 @@ Abjad multiplication <i>copies</i> Abjad containers and leaves.
 
 </comments>
 
-<to-do>
-
-<p> Implement a named <code>duration.multiplied</code> attribute on notes, rests, chords and skips to return <code>duration.written * duration.multiplier</code> where <code>duration.multiplier</code> is not <code>None</code>.
-
-</to-do>
