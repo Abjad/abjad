@@ -1,27 +1,26 @@
-<h1>The Abjad <code>Container</code> model</h1>
+<title> The Abjad container model </title>
 
-<h2 class="page-section">
-Description
-</h2>
-<p>
-An Abjad <code>Container</code> is an ordered collection (i.e. a <b>list</b> data type) of Abjad <code>_Component</code>s.  
-Various music structures, such as Staves, Measures or Tuplets, can be adequately modeled as Containers. More flexible musical structures that cannot be strictly contained, such as <code>Beam</code>s, free floating <code>MetricGrid</code>s, <code>Trill</code>s and dozens of others, are best modeled with other data structures. Abjad uses <a href="chapters/spanner_model/index.html"><strong>Spanner</strong>s</a> to model these other structures. 
-</p>
-<p>
-An Abjad <code>Container</code> can only hold Abjad <code>_Component</code>s, and nothing else. An Abjad <code>Leaf</code> is a <code>_Component</code>, so a <code>Container</code> can hold Leaves.
-Here is a <code>Voice</code> container holding a <code>Note</code>, a <code>Rest</code> and a <code>Chord</code>:
-</p>
-<pre>
+<h1>The Abjad container model </h1>
+
+<div class="subsection">
+<h2>  </h2>
+<p> An Abjad <Container> is an ordered collection (i.e. a <b>list</b> data type) of Abjad <code><a href="../component_class/index.html">_Component</a></code> instances.
+Various music structures, such as Staves, Measures or Tuplets, can be adequately modeled as Containers. 
+More flexible musical structures that cannot be strictly contained, such as <code>Beam</code>s, free floating <code>MetricGrid</code>s, <code>Trill</code>s and dozens of others, are best modeled with other data structures. Abjad uses <a href="chapters/spanner_model/index.html"><strong>Spanner</strong>s</a> to model these other structures. 
+<p> An Abjad <Container> can only hold Abjad <code><a href="../component_class/index.html">_Component</a></code>s, and nothing else. An Abjad <code><a href="../leaf_class/index.html">_Leaf</a></code> is a <code><a href="../component_class/index.html">_Component</a></code>, so a <Container> can hold Leaves.
+Here is a <Voice> container holding a <code><a href="../note_class/index.html">Note</a></code>, a <code><a href="../rest_class/index.html">Rest</a></code> and a <code><a href="../chord/index.html">Chord</a></code>:
+
+<pre class="abjad">
 abjad> notes = [Note(0, (1,8)), Rest((1,8)), Chord([2, 14], (1,8))]
 abjad> voice = Voice(notes)
 abjad> show(voice)
 </pre>
-<image src="images/1.png">
-<p>
-An Abjad <code>Container</code> is also a <code>_Component</code>, so Containers can hold other Containers. 
+<img src="images/1.png">
+
+<p> An Abjad <code>Container</code> is also a <code>_Component</code>, so Containers can hold other Containers. 
 Example: a <code>Staff</code> Container holds two <code>Voice</code> Containers which in turn hold three Leaves each:
-</p>
-<pre>
+
+<pre class="abjad">
 abjad> notes = [Note(0, (1,8)), Rest((1,8)), Chord([2, 14], (1,8))]
 abjad> voice1= Voice(notes)
 abjad> notes = [Note(4, (1,8)), Rest((1,8)), Chord([5, 17], (1,8))]
@@ -29,18 +28,6 @@ abjad> voice2= Voice(notes)
 abjad> staff = Staff([voice1, voice2])
 abjad> show(staff)
 </pre>
-<image src="images/2.png">
+<img src="images/2.png">
 
-<h2 class="page-section">
-Comments
-</h2>
-
-<p class="comment">
-</p>
-
-<h2 class="page-section">
-To do
-</h2>
-
-<p class="to-do">
-</p>
+</div class="subsection">

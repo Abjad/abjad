@@ -1,9 +1,6 @@
 <html>
-<head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
-</head>
+
+<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
 
 <body>
 
@@ -18,355 +15,256 @@ if we want to have the TOC on every page, we can put it here...
 
 <div id="content">
 
-<h1>The Abjad <code>_Component</code> class</h1>
+<title> The Abjad _Component class </title>
 
-<p>
-The Abjad <code>_Component</code> class models the functionality that all leaves and containers share.
-</p>
+<h1>The Abjad <code><a href="../component_class/index.html">_Component</a></code> class</h1>
 
-<h2 class="page-section">
-Public interface
-</h2>
+<div class="introduction">
 
-<div class="example-block">
-<p class="example-block-header">Attributes
+<p>The Abjad <code><a href="../component_class/index.html">_Component</a></code> class models the functionality that all leaves and containers share.
 
-<p class="interface-attribute">
-<a href="#accidentals" class="interface-attribute">accidentals</a>
-
-<p class="interface-attribute">
-<a href="#barline" class="interface-attribute">barline</a>
-
-<p class="interface-attribute">
-<a href="#comments" class="interface-attribute">comments</a>
-
-<p class="interface-attribute">
-<a href="#format" class="interface-attribute">format</a>
-
-<p class="interface-attribute">
-<a href="#tempo" class="interface-attribute">tempo</a>
-
-</div>
-
-<div class="interface-block">
-<p class="interface-block-header">Methods
-
-<p class="interface-attribute">
-<a href="#copy" class="interface-attribute">copy( )</a>
-
-<p class="interface-attribute">
-<a href="#kind" class="interface-attribute">kind( )</a>
-
-</div>
-
-<div class="interface-block">
-<p class="interface-block-header">Overloads
-
-<p class="interface-attribute">
-<a href="#mul" class="interface-attribute">__mul__</a>
-
-<p class="interface-attribute">
-<a href="#rmul" class="interface-attribute">__rmul__</a>
-
-</div>
-
-<h2 class="page-section">
-Examples
-</h2>
-
-<p>
-The Abjad <code>_Component</code> class is an abstract class not meant to be instantiated by hand.
-
-<p>
-But we show examples of <code>_Component</code> attributes here using notes and staves as concrete examples of the <code>_Component</code> class.
+</div class="introduction">
 
 
-<!-- ### ACCIDENTALS ### -->
+<h2 class="page-section"> Public interface </h2>
 
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="accidentals" class="example-header">accidentals</a>
-<p>Read / write attribute defined here.
-<p>Returns LilyPond accidentals style string.
-<p>Accepts LilyPond accidentals style string, <code>None</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="interface">
+<div class="block">
+<div class="name"> Attributes </div class="name">
+<div class="attribute"> <div class="local"> <a href="#accidentals"> accidentals </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#barline"> barline </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#comments"> comments </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#format"> format </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#tempo"> tempo </a> </div class="local"> </div class="attribute">
+</div class="block">
+<div class="block">
+<div class="name"> Methods </div class="name">
+<div class="attribute"> <div class="local"> <a href="#copy( )"> copy( ) </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#kind( )"> kind( ) </a> </div class="local"> </div class="attribute">
+</div class="block">
+<div class="block">
+<div class="name"> Overloads </div class="name">
+<div class="attribute"> <div class="local"> <a href="#__mul__"> __mul__ </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#__rmul__"> __rmul__ </a> </div class="local"> </div class="attribute">
+</div class="block">
+</div class="interface">
+
+<h2 class="page-section"> Attributes </h2>
+
+<div class="subsection">
+<h2>  </h2>
+<p>The Abjad <code><a href="../component_class/index.html">_Component</a></code> class is an abstract class not meant to be instantiated by hand.
+
+<p>But we show examples of <code><a href="../component_class/index.html">_Component</a></code> attributes here using notes and staves as concrete examples of the <code><a href="../component_class/index.html">_Component</a></code> class.
+
+</div class="subsection">
+
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="accidentals"> accidentals </a> </div class="local"> </div class="attribute">
+   <p>Read / write attribute defined here.
+   <p>Returns LilyPond accidentals style string.
+   <p>Accepts LilyPond accidentals style string, <code>None</code>.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> staff = Staff(Note(1, (1, 4)) * 4)
 </pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> staff.accidentals = 'forget'
 </pre>
-<image src="images/1.png">
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+<img src="images/1.png">
+</div class="body">
+</div class="definition">
 
 
 
-<!-- ### BARLINE ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="barline" class="example-header">barline</a>
-<p>Read / write attribute defined here.
-<p>Returns LilyPond barline string.
-<p>Accepts LilyPond barline string, <code>None</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="barline"> barline </a> </div class="local"> </div class="attribute">
+   <p>Read / write attribute defined here.
+   <p>Returns LilyPond barline string.
+   <p>Accepts LilyPond barline string, <code>None</code>.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> staff = Staff(Note(1, (1, 4)) * 4)
 </pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> staff.barline = '|.'
 </pre>
-<image src="images/2.png">
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+<img src="images/2.png">
+</div class="body">
+</div class="definition">
 
 
 
-<!-- ### COMMENTS ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="comments" class="example-header">comments</a>
-<p>Read-only attribute defined here.
-<p>Returns LilyPond <code>_Comments</code> class.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="comments"> comments </a> </div class="local"> </div class="attribute">
+   <p>Read-only attribute defined here.
+   <p>Returns LilyPond <code><a href="../comments_class/index.html">_Comments</a></code> object.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> staff = Staff(Note(1, (1, 4)) * 4)
 abjad> staff.comments.append("All notes here exhibit the same pitch.")
 </pre>
-</div> <!-- example code -->
-<!-- ### TODO - we need a pre block that preserves indentation -->
-<div class="example-code">
 <pre>
 % All notes here exhibit the same pitch.
 \new Staff {
-cs'4
-cs'4
-cs'4
-cs'4
+   cs'4
+   cs'4
+   cs'4
+   cs'4
 }
 </pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+</div class="body">
+</div class="definition">
 
 
 
-<!-- ### FORMAT ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="format" class="example-header">format</a>
-<p>Read-only attribute defined here.
-<p>Returns LilyPond input string.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="format"> format </a> </div class="local"> </div class="attribute">
+   <p>Read-only attribute defined here.
+   <p>Returns LilyPond input string.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> staff = Staff(Note(0, (1, 4)) * 4)
 </pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> staff.format
 "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 </pre>
-</div> <!-- example code -->
-<div class="example-code">
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+</div class="body">
+</div class="definition">
 
 
 
-<!-- ### TEMPO ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="tempo" class="example-header">tempo</a>
-<p>Read / write attribute defined here.
-<p>Returns LilyPond <a href="../tempo_interface/index.html">_TempoInterface</a>.
-<p>Accepts Abjad <a href="../tempo_token/index.html">tempo token</a>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="tempo"> tempo </a> </div class="local"> </div class="attribute">
+   <p>Read / write attribute defined here.
+   <p>Returns LilyPond <code><a href="../tempo_interface/index.html">_TempoInterface</a></code>.
+   <p>Accepts Abjad <code><a href="../tempo_token/index.html">tempo token</a></code>.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> note = Note(0, (1, 4))
 </pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
+<pre class="abjad">
 abjad> note.tempo = ((3, 8), 52)
 </pre>
-<image src="images/3.png">
-</div> <!-- example code -->
-<div class="example-code">
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+<img src="images/3.png">
+</div class="body">
+</div class="definition">
 
 
 
-<h2 class="page-section">
-Method examples
-</h2>
+<h2 class="page-section"> Methods </h2>
 
 
-<!-- ### COPY( ) ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="copy" class="example-header">copy( )</a>
-<p> Bound method implemented here.
-<p> Returns a new copy of <code>self</code>.
-<p> Accepts no input parameters.
-</div>
-<div class="example-body">
-<h3 class="example-section">
-Example
-</h3>
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="copy( )"> copy( ) </a> </div class="local"> </div class="attribute">
+   <p> Bound method implemented here.
+   <p> Returns a new copy of <code>self</code>.
+   <p> Accepts no input parameters.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/4.png">
-<pre>
+<pre class="abjad">
 abjad> new = chord.copy( )
 </pre>
-<image src="images/5.png">
-<pre>
+<img src="images/4.png">
+<pre class="abjad">
 abjad> id(chord) != id(new)
 True
 </pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+</div class="body">
+</div class="definition">
 
 
 
-
-<!-- ### KIND( ) ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="kind" class="example-header">kind(<i>classname</i>)</a>
-<p> Bound method implemented here.
-<p> Return <code>True</code> if <code>classname</code> in class hierarchy of <code>self</code>, and <code>False</code> otherwise.
-<p> DEPRECATED. Use <code>isinstance( )</code> instead.
-</div>
-<div class="example-body">
-<h3 class="example-section">
-Example
-</h3>
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="kind( )"> kind( ) </a> </div class="local"> </div class="attribute">
+   <p> Bound method implemented here.
+   <p> Return <code>True</code> if <code>classname</code> in class hierarchy of <code>self</code>, and <code>False</code> otherwise.
+   <p> DEPRECATED. Use <code>isinstance( )</code> instead.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/6.png">
-<pre>
+<img src="images/5.png">
+<pre class="abjad">
 abjad> chord.kind('Chord')
 True
 </pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+</div class="body">
+</div class="definition">
 
 
-<h2 class="page-section">
-Override examples
-</h2>
+<h2 class="page-section"> Overloads </h2>
 
 
-<!-- ### __MUL__ ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="mul" class="example-header">__mul__(<i>n</i>)</a>
-<p>Special method implemented here.
-<p>Implements left-handed multiplication against <code>self</code>.
-<p>Returns a Python list of <code>n</code> copies of <code>self</code>.
-</div>
-<div class="example-body">
-<h3 class="example-section">
-Example
-</h3>
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="__mul__"> __mul__ </a> </div class="local"> </div class="attribute">
+   <p>Special method implemented here.
+   <p>Implements left-handed multiplication against <code>self</code>.
+   <p>Returns a Python list of <code>n</code> copies of <code>self</code>.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/7.png">
-<pre>
+<pre class="abjad">
 abjad> chords = chord * 4
 </pre>
-<image src="images/8.png">
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+<img src="images/6.png">
+</div class="body">
+</div class="definition">
 
 
-<!-- ### __RMUL__ ### -->
-
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
-<p>Special method implemented here.
-<p>Implements right-handed multiplication against <code>self</code>.
-<p>Returns a Python list of <code>n</code> copies of <code>self</code>.
-</div>
-<div class="example-body">
-<h3 class="example-section">
-Example
-</h3>
-<div class="example-code">
-<pre>
+<div class="definition">
+<div class="header">
+<div class="attribute"> <div class="local"> <a name="__rmul__"> __rmul__ </a> </div class="local"> </div class="attribute">
+   <p>Special method implemented here.
+   <p>Implements right-handed multiplication against <code>self</code>.
+   <p>Returns a Python list of <code>n</code> copies of <code>self</code>.
+</div class="header">
+<div class="body">
+<pre class="abjad">
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/9.png">
-<pre>
+<pre class="abjad">
 abjad> chords = 4 * chord
 </pre>
-<image src="images/10.png">
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
+<img src="images/7.png">
+</div class="body">
+</div class="definition">
 
 
 
-<h2 class="page-section">
-Comments
-</h2>
+<h2 class="page-section"> Comments </h2>
 
-<p class="comment">
-See the <code>_Component</code> class in <code>core/component.py</code> for implementation details.
-</p>
+<div class="comments">
+
+<p>See the <code><a href="../component_class/index.html">_Component</a></code> class in <code>core/component.py</code> for implementation details.
+
+</div class="comments">
 
 
-<p class="footer">
-<a href="../../index.html">Contents</a>
-</p>
+<p class="footer"> <a href="../../index.html">Contents</a> </p>
+
 </div>
 
 </body>
+
 </html>
