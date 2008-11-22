@@ -112,7 +112,7 @@ def test_metricgrid_05( ):
    '''
 
 
-def test_metricgrid_10( ):
+def test_metricgrid_splitting_01( ):
    '''MetricGrid splits notes on bar lines.'''
    t = Staff(Note(0, (1,8)) * 8)
    m = MetricGrid(t, [(3, 16)])
@@ -135,7 +135,7 @@ def test_metricgrid_10( ):
    }
    '''
 
-def test_metricgrid_11( ):
+def test_metricgrid_splitting_02( ):
    '''MetricGrid splits notes on bar lines.'''
    t = Staff(Note(0, (1,8))*8)
    m = MetricGrid(t, [(3, 16), (2, 8)])
@@ -161,7 +161,7 @@ def test_metricgrid_11( ):
    }
    '''
 
-def test_metricgrid_12( ):
+def test_metricgrid_splitting_03( ):
    '''MetricGrid split works with tuplets.'''
    t = Voice([FixedMultiplierTuplet((2,3), Note(0, (1,8)) * 6)])
    m = MetricGrid(t, [(1, 8)])
@@ -184,7 +184,7 @@ def test_metricgrid_12( ):
    }
    '''
 
-def test_metricgrid_13( ):
+def test_metricgrid_splitting_04( ):
    '''MetricGrid split works with nested tuplets.'''
    t = Voice([FixedMultiplierTuplet((2,3), [Note(0, (1,8)), 
          FixedMultiplierTuplet((3,2), Note(0, (1,8)) *4)])])
@@ -225,3 +225,25 @@ def test_metricgrid_13( ):
            }
    }
    '''
+
+def test_metricgrid_splitting_05( ):
+   '''MetricGrid split fuses correctly tied leaves in last measure.'''
+   v = Voice(Note(1, (1, 4))*3)
+   v.extend(rests_make((5, 4)))
+   m = MetricGrid(v, [(4, 4)])
+   m.splitOnBar( )
+   assert isinstance(v[-1], Rest)
+   assert v[-1].duration.prolated == Rational(4, 4)
+   assert isinstance(v[-2], Rest)
+   assert v[-2].duration.prolated == Rational(1, 4)
+   assert v[-2].tie.spanner == v[-1].tie.spanner
+   '''
+   \new Voice {
+           \time 4/4
+           cs'4
+           cs'4
+           cs'4
+           r4 ~
+           r1
+   }
+'''
