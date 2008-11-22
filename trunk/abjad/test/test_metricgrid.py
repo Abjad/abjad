@@ -18,6 +18,7 @@ def test_metricgrid_01( ):
    }
    '''
    
+
 def test_metricgrid_02( ):
    t = Staff(Note(0, (1,8)) * 8)
    m = MetricGrid(t, [(3, 16)])
@@ -35,8 +36,8 @@ def test_metricgrid_02( ):
            c'8
    }
    '''
-
    
+
 def test_metricgrid_03( ):
    '''MetricGrid cycles throught given meters to cover spanner's duration.''' 
    t = Staff(Note(0, (1,8)) * 8)
@@ -61,6 +62,7 @@ def test_metricgrid_03( ):
            c'8
    }
    '''
+
 
 def test_metricgrid_04( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
@@ -88,6 +90,7 @@ def test_metricgrid_04( ):
         c'8
    }
    '''
+
 
 def test_metricgrid_05( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
@@ -134,6 +137,7 @@ def test_metricgrid_splitting_01( ):
            c'16
    }
    '''
+
 
 def test_metricgrid_splitting_02( ):
    '''MetricGrid splits notes on bar lines.'''
