@@ -230,7 +230,6 @@ def test_metricgrid_splitting_04( ):
    }
    '''
 
-
 def test_metricgrid_splitting_05( ):
    '''MetricGrid split fuses correctly tied leaves in last measure.'''
    v = Voice(Note(1, (1, 4))*3)
