@@ -1,8 +1,3 @@
-### TODO - make Rational(3, 8) == (3, 8) work,
-###        and likewise for all operations;
-###        strategy: use decorator.
-### I think we have decided this is a bad idea. 
-
 class Rational(object):
 
    def __init__(self, *args):
@@ -77,26 +72,35 @@ class Rational(object):
    def __abs__(self):
       return Rational(abs(self._n), self._d)
 
-   def __eq__(self, arg):
-      if isinstance(arg, (int, long, Rational)):
-         return self._n == self._d * arg
+   ### TODO: replace these six standard comparison operators
+   ###       with a definition of only __cmp__ instead
+
+   def __cmp__(self, arg):
+      if arg == 0:
+         return cmp(self._n, 0)
       else:
-         return False
+         return cmp(self - arg, 0)
 
-   def __ne__(self, arg):
-      return not self == arg
-
-   def __gt__(self, arg):
-       return self._n > self._d * arg
-
-   def __ge__(self, arg):
-       return self._n >= self._d * arg
-
-   def __lt__(self, arg):
-       return self._n < self._d * arg
-
-   def __le__(self, arg):
-       return self._n <= self._d * arg
+#   def __eq__(self, arg):
+#      if isinstance(arg, (int, long, Rational)):
+#         return self._n == self._d * arg
+#      else:
+#         return False
+#
+#   def __ne__(self, arg):
+#      return not self == arg
+#
+#   def __gt__(self, arg):
+#       return self._n > self._d * arg
+#
+#   def __ge__(self, arg):
+#       return self._n >= self._d * arg
+#
+#   def __lt__(self, arg):
+#       return self._n < self._d * arg
+#
+#   def __le__(self, arg):
+#       return self._n <= self._d * arg
 
    def  __add__(self, arg):
       if isinstance(arg, Rational):
