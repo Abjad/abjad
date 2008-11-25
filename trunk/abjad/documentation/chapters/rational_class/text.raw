@@ -1,312 +1,349 @@
-<h1>
-The Abjad <code>Rational</code> class
-</h1>
+<title> The Abjad Rational class </title>
 
-<p>
-The Abjad <code>Rational</code> class implements exact rational numbers.
-</p>
+<h1> The Abjad <Rational> class </h1>
 
-<h2 class="page-section">
-Public interface
-</h2>
+<introduction>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute"> pair </p>
-</div>
+<p> The Abjad <Rational> class implements exact rational numbers.
 
-<!--
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-</div>
--->
+</introduction>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute"> __abs__ </p>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __add__ </p>
-   <p class="interface-attribute"> __radd__ </p>
-   </div>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __div__ </p>
-   <p class="interface-attribute"> __rdiv__ </p>
-   </div>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __eq__ </p>
-   <p class="interface-attribute"> __ne__ </p>
-   </div>
-   <p class="interface-attribute"> __float__ </p>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __floordiv__ </p>
-   <p class="interface-attribute"> __rfloordiv__ </p>
-   </div>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __gt__ </p>
-   <p class="interface-attribute"> __ge__ </p>
-   </div>
-   <p class="interface-attribute"> __int__ </p>
-   <p class="interface-attribute"> __invert__ </p>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __le__ </p>
-   <p class="interface-attribute"> __lt__ </p>
-   </div>
-   <p class="interface-attribute"> __long__ </p>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __mod__ </p>
-   <p class="interface-attribute"> __rmod__ </p>
-   </div>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __mul__ </p>
-   <p class="interface-attribute"> __rmul__ </p>
-   </div>
-   <p class="interface-attribute"> __neg__ </p>
-   <p class="interface-attribute"> __pow__ </p>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __sub__ </p>
-   <p class="interface-attribute"> __rsub__ </p>
-   </div>
-   <div class="attribute-group">
-   <p class="interface-attribute"> __truediv__ </p>
-   <p class="interface-attribute"> __rtruediv__ </p>
-   </div>
-</div>
+<interface>
+<attributes>
+   <local> pair
+</attributes>
+<overloads>
+   <local> __abs__
+   <local> __add__
+   <local> __cmp__
+   <local> __div__
+   <local> __float__ 
+   <local> __floordiv__ 
+   <local> __int__ 
+   <local> __invert__ 
+   <local> __long__ 
+   <local> __mod__ 
+   <local> __mul__ 
+   <local> __neg__ 
+   <local> __pow__ 
+   <local> __sub__ 
+   <local> __radd__ 
+   <local> __rdiv__
+   <local> __rfloordiv__ 
+   <local> __rmod__ 
+   <local> __rmul__ 
+   <local> __rsub__ 
+   <local> __rtruediv__ 
+   <local> __truediv__ 
+</overloads>
+</interface>
 
-<h2 class="page-section">
-Examples
-</h2>
+<section> Attributes
 
-<div class="example">
-<p class="example-header">
-pair
-</p>
-<pre>
+<definition>
+<header>
+   <local> pair
+   <p> Numerator, denominator pair.
+</header>
+<body>
+<abjad>
    abjad> q = Rational(3, 5)
    abjad> q.pair
    (3, 5)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__abs__
-</p>
-<pre>
+<section> Overloads
+
+<definition>
+<header>
+   <local> __abs__
+   <p> Absolute value.
+</header>
+<body>
+<abjad>
    abjad> abs(Rational(-3, 5))
    Rational(3, 5)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__add__, __radd__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __add__
+   <p> Left-handed addition.
+</header>
+<body>
+<abjad>
    abjad> Rational(3, 5) + 2
    Rational(13, 5)
-</pre>
-<pre>
-   abjad> 2 + Rational(3, 5)
-   Rational(13, 5)
-</pre>
-</div>
+</abjad>
+</header>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__div__, __rdiv__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __cmp__
+   <p> Comparison operators.
+</header>
+<body>
+<abjad>
+   abjad> Rational(3, 5) == Rational(3, 5)
+   True
+</abjad>
+</body>
+</definition>
+
+<definition>
+<header>
+   <local> __div__
+   <p> Left-handed division.
+</header>
+<body>
+<abjad>
    abjad> Rational(3, 5) / 2
    Rational(3, 10)
-</pre>
-<pre>
-   abjad> 2 / Rational(3, 5)
-   Rational(10, 3)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__eq__, __ne__
-</p>
-<pre>
-   abjad> Rational(3, 5) == Rational(2, 5)
-   False
-</pre>
-<pre>
-   abjad> Rational(3, 5) != Rational(2, 5)
-   True
-</pre>
-</div>
-
-<div class="example">
-<p class="example-header">
-__float__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __float__
+   <p> Float conversion.
+</header>
+<body>
+<abjad>
    abjad> float(Rational(3, 5))
    0.59999999999999998
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__floordiv__, __rfloordiv__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __floordiv__
+   <p> Left-handed floor division.
+</header>
+<body>
+<abjad>
    abjad> Rational(3, 5) // 2
    Rational(0, 1)
-</pre>
-<pre>
-   abjad> 2 // Rational(3, 5)
-   Rational(3, 1)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__gt__, __ge__
-</p>
-<pre>
-   abjad> Rational(3, 5) > Rational(2, 5)
-   True
-</pre>
-<pre>
-   abjad> Rational(3, 5) >= Rational(2, 5)
-   True
-</pre>
-</div>
-
-<div class="example">
-<p class="example-header">
-__int__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __int__
+   <p> Integer conversion.
+</header>
+<body>
+<abjad>
    abjad> int(Rational(3, 5))
    0
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__invert__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __invert__
+   <p> Inversion
+</header>
+<body>
+<abjad>
    abjad> ~Rational(3, 5)
    Rational(5, 3)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__lt__, __le__
-</p>
-<pre>
-   abjad> Rational(3, 5) < Rational(2, 5)
-   False
-</pre>
-<pre>
-   abjad> Rational(3, 5) <= Rational(2, 5)
-   False
-</pre>
-</div>
-
-<div class="example">
-<p class="example-header">
-__long__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __long__
+   <p> Long conversion.
+</header>
+<body>
+<abjad>
    abjad> long(Rational(3, 5))
    0L
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__mod__, __rmod__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __mod__
+   <p> Left-handed modulus operator.
+</header>
+<body>
+<abjad>
    abjad> Rational(3, 5) % 2
    Rational(3, 5)
-</pre>
-<pre>
-   abjad> 2 % Rational(3, 5)
-   Rational(1, 5)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__mul__, __rmul__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __mul__
+   <p> Left-handed multiplication.
+</header>
+<body>
+<abjad>
    abjad> Rational(3, 5) * 2
    Rational(6, 5)
-</pre>
-<pre>
-   abjad> 2 * Rational(3, 5)
-   Rational(6, 5)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__neg__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __neg__
+   <p> Negation.
+</header>
+<body>
+<abjad>
    abjad> -Rational(3, 5)
    -Rational(3, 5)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__pow__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __pow__
+   <p> Exponentiation
+</header>
+<body>
+<abjad>
    abjad> Rational(3, 5) ** 2
    Rational(9, 25)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__sub__, __rsub__
-</p>
-<pre>
-   abjad> Rational(3, 5) - 2
-   Rational(-7, 5)
-</pre>
-<pre>
-   abjad> 2 - Rational(3, 5)
-   Rational(7, 5)
-</pre>
-</div>
+<definition>
+<header>
+   <local> __radd__
+   <p> Right-handed addition.
+</header>
+<body>
+<abjad>
+   abjad> 2 + Rational(3, 5)
+   Rational(13, 5)
+</abjad>
+</header>
+</definition>
 
-<div class="example">
-<p class="example-header">
-__truediv__, __rtruediv__
-</p>
-<pre>
+<definition>
+<header>
+   <local> __rdiv__
+   <p> Right-handed division.
+</header>
+<body>
+<abjad>
    abjad> Rational(3, 5) / 2
    Rational(3, 10)
-</pre>
-<pre>
+</abjad>
+</body>
+</definition>
+
+<definition>
+<header>
+   <local> __rfloordiv__
+   <p> Right-handed floor division.
+</header>
+<body>
+<abjad>
+   abjad> 2 // Rational(3, 5)
+   Rational(3, 1)
+</abjad>
+</body>
+</definition>
+
+<definition>
+<header>
+   <local> __rmod__
+   <p> Right-handed modulus operator.
+</header>
+<body>
+<abjad>
+   abjad> 2 % Rational(3, 5)
+   Rational(1, 5)
+</abjad>
+</body>
+</definition>
+
+<definition>
+<header>
+   <local> __rmul__
+   <p> Right-handed multiplication.
+</header>
+<body>
+<abjad>
+   abjad> 2 * Rational(3, 5)
+   Rational(6, 5)
+</abjad>
+</body>
+</definition>
+
+<definition>
+<header>
+   <local> __rsub__
+   <p> Right-handed subtraction.
+</header>
+<body>
+<abjad>
+   abjad> 2 - Rational(3, 5)
+   Rational(7, 5)
+</abjad>
+</body>
+</definition>
+
+<definition>
+<header>
+   <local> __rtruediv__
+   <p> Right-handed true division.
+</header>
+<body>
+<abjad>
    abjad> 2 / Rational(3, 5)
    Rational(10, 3)
-</pre>
-</div>
+</abjad>
+</body>
+</definition>
 
-<h2 class="page-section">
-Comments
-</h2>
+<definition>
+<header>
+   <local> __sub__
+   <p> Left-handed subtraction.
+</header>
+<body>
+<abjad>
+   abjad> Rational(3, 5) - 2
+   Rational(-7, 5)
+</abjad>
+</body>
+</definition>
 
-<p class="comment">
-See the <code>Rational</code> class in <code>duration/rational.py</code> for implementation details.
-</p>
+<definition>
+<header>
+   <local> __truediv__
+   <p> Left-handed true division.
+</header>
+<body>
+<abjad>
+   abjad> Rational(3, 5) / 2
+   Rational(3, 10)
+</abjad>
+</body>
+</definition>
 
-<!--
-<h2 class="page-section">
-To do
-</h2>
--->
+<comments>
+
+<p> See the <Rational> class in <code>duration/rational.py</code> for implementation details.
+
+</comments>
