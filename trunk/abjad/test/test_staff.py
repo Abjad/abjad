@@ -228,9 +228,11 @@ def test_staff_setitem_07( ):
    t[0 : 4] = Note(2, (1, 8)) * 4
    assert len(t) == 8
    for x in t[0 : 4]:
-      assert x.pitch == Pitch(2)
+      #assert x.pitch == Pitch(2)
+      assert x.pitch.number == 2
    for x in t[4 : 8]:
-      assert x.pitch == Pitch(0)
+      #assert x.pitch == Pitch(0)
+      assert x.pitch.number == 0
    assert check(t)
 
 def test_staff_setitem_08( ):

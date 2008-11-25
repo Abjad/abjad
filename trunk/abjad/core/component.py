@@ -27,6 +27,19 @@ class _Component(object):
 
    ### COPY ###
 
+#   ### TODO: block component comparison with these lines;
+#   ###       will have to fix a bunch of tests;
+#   ###       check-in as one, isolated commit
+#
+#   def __cmp__(self, arg):
+#      raise Exception(NotImplemented)
+#
+#   def __eq__(self, arg):
+#      return id(self) == id(arg)
+#
+#   def __ne__(self, arg):
+#      return id(self) != id(arg)
+
    def __mul__(self, n):
       result = [ ]
       for i in range(n):

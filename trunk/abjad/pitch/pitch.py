@@ -11,62 +11,23 @@ class Pitch(object):
       self.initializer = _PitchInitializer( )
       self.initializer.initialize(self, *args)
 
-   ### PROPERTIES ###
+   ### OVERLOADS ###
 
-   @property
-   def diatonicScaleDegree(self):
-      if self.letter:
-         return self.tools.letterToDiatonicScaleDegree[self.letter]
-      else:
-         return None
+   def __cmp__(self, arg):
+      raise Exception(NotImplemented)
+#      if isinstance(arg, Pitch):
+#         #return cmp(self.number, arg.number)
+#         return self.enharmonicCompare(arg)
+#      elif isinstance(arg, (int, long, float)):
+#         return cmp(self.number, arg)
+#      else:
+#         raise TypeError
 
-   @property
-   def name(self):
-      if self.letter and self.accidental:
-         return '%s%s' % (self.letter, self.accidental)
-      else:
-         return None
+   def __eq__(self, arg):
+      return id(self) == id(arg)
 
-   @property
-   def ticks(self):
-      if self.octave is not None:
-         if self.octave <= 2:
-            return ',' * (3 - self.octave)
-         elif self.octave == 3:
-            return ''
-         else:
-            return "'" * (self.octave - 3)
-      else:
-         return None
-
-   @property
-   def number(self):
-      if self.isSet( ):
-         return self.tools.letterToPC[self.letter] + \
-            self.accidental.adjustment + (self.octave - 4) * 12
-      else:
-         return None
-
-   @property
-   def pc(self):
-      if self.isSet( ):
-         return self.number % 12
-      else:
-         return None
-      
-   @property
-   def pair(self):
-      if self.name and self.octave is not None:
-         return (self.name, self.octave)
-      else:
-         return None
-
-   ### PREDICATES ###
-
-   def isSet(self):
-      return bool(self.letter and self.accidental and not self.octave is None)
-
-   ### REPR ###
+   def __ne__(self, arg):
+      return id(self) != id(arg)
 
    def __repr__(self):
       if self.name and not self.octave is None:
@@ -80,7 +41,12 @@ class Pitch(object):
       else:
          return ''
 
-   ### MANAGED ATTRIBUTES ###
+   ### PRIVATE METHODS ###
+
+   def _isSet(self):
+      return bool(self.letter and self.accidental and not self.octave is None)
+
+   ### PUBLIC ATTRIBUTES ###
 
    @apply
    def accidental( ):
@@ -96,39 +62,73 @@ class Pitch(object):
          else:
             raise ValueError('can not set accidental.')
       return property(**locals( ))
+
+   @property
+   def altitude(self):
+      if self.letter:
+         return (self.octave - 4) * 7 + self.degree - 1
+      else:
+         return None
       
-   ### MATH AND COMPARISON TESTING ###
-
-   def __cmp__(self, arg):
-      if isinstance(arg, Pitch):
-         return cmp(self.number, arg.number)
-      elif isinstance(arg, (int, long, float)):
-         return cmp(self.number, arg)
+   @property
+   def degree(self):
+      if self.letter:
+         return self.tools.letterToDiatonicScaleDegree[self.letter]
       else:
-         raise Exception(NotImplemented)
+         return None
 
-   def enharmonicCompare(self, arg):
-      result = cmp(self.number, arg.number)
-      if result == 0:
-         return -cmp(
-            self.accidental.adjustment, arg.accidental.adjustment)
+   @property
+   def lily(self):
+      return str(self)
+
+   @property
+   def name(self):
+      if self.letter and self.accidental:
+         return '%s%s' % (self.letter, self.accidental)
       else:
-         return result
+         return None
 
-   ### TRANSPOSITION ###
+   @property
+   def number(self):
+      if self._isSet( ):
+         return self.tools.letterToPC[self.letter] + \
+            self.accidental.adjustment + (self.octave - 4) * 12
+      else:
+         return None
 
-   # p.staffSpaceTranspose(-1, 0.5)
-   def staffSpaceTranspose(self, staffSpaces, absoluteInterval):
-      pitchNumber = self.number + absoluteInterval
-      diatonicScaleDegree = self.tools.addStaffSpaces(staffSpaces)
-      letter = self.tools.diatonicScaleDegreeToLetter[diatonicScaleDegree]
-      return Pitch(pitchNumber, letter)
+   @property
+   def pair(self):
+      if self.name and self.octave is not None:
+         return (self.name, self.octave)
+      else:
+         return None
+
+   @property
+   def pc(self):
+      if self._isSet( ):
+         return self.number % 12
+      else:
+         return None
+      
+   @property
+   def ticks(self):
+      if self.octave is not None:
+         if self.octave <= 2:
+            return ',' * (3 - self.octave)
+         elif self.octave == 3:
+            return ''
+         else:
+            return "'" * (self.octave - 3)
+      else:
+         return None
+
+   ### PUBLIC METHODS ###
 
    def diatonicTranspose(self, diatonicInterval):
       quality, interval = diatonicInterval.split()
       staffSpaces = self.tools.diatonicIntervalToStaffSpaces[interval]
-      diatonicScaleDegree = self.tools.addStaffSpaces(staffSpaces)
-      letter = self.tools.diatonicScaleDegreeToLetter[diatonicScaleDegree]
+      degree = self.tools.addStaffSpaces(staffSpaces)
+      letter = self.tools.diatonicScaleDegreeToLetter[degree]
       pitchNumber = self.number + \
          self.tools.diatonicIntervalToAbsoluteInterval[diatonicInterval]
       accidentalString = self.tools.letterPitchNumberToNearestAccidentalString(
@@ -137,8 +137,18 @@ class Pitch(object):
       octave = self.tools.letterPitchNumberToOctave(letter, pitchNumber)
       return Pitch(pitchName, octave) 
 
-   ### FORMATTING ###
+   ### DEPRECATED: use p1.altitude == p2.altitude instead
+#   def enharmonicCompare(self, arg):
+#      result = cmp(self.number, arg.number)
+#      if result == 0:
+#         return -cmp(
+#            self.accidental.adjustment, arg.accidental.adjustment)
+#      else:
+#         return result
 
-   @property
-   def lily(self):
-      return str(self)
+   # p.staffSpaceTranspose(-1, 0.5)
+   def staffSpaceTranspose(self, staffSpaces, absoluteInterval):
+      pitchNumber = self.number + absoluteInterval
+      degree = self.tools.addStaffSpaces(staffSpaces)
+      letter = self.tools.diatonicScaleDegreeToLetter[degree]
+      return Pitch(pitchNumber, letter)

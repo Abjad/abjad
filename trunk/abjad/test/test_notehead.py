@@ -9,14 +9,16 @@ def test_demo_public_notehead_interface_01( ):
    assert repr(t.notehead) == "_NoteHead(cs'')"
    assert str(t.notehead) == "cs''"
    assert t.notehead.format == "cs''"
-   assert t.notehead.pitch == Pitch(13)
+   #assert t.notehead.pitch == Pitch(13)
+   assert t.notehead.pitch.number == 13
 
 def test_demo_public_notehead_interface_02( ):
    t = Note(14, (1, 4))
    assert repr(t.notehead) == "_NoteHead(d'')"
    assert str(t.notehead) == "d''"
    assert t.notehead.format == "d''"
-   assert t.notehead.pitch == Pitch(14)
+   #assert t.notehead.pitch == Pitch(14)
+   assert t.notehead.pitch.number == 14
 
 
 ### TEST CHANGE NOTEHEAD PITCH ###
@@ -27,7 +29,8 @@ def test_change_notehead_pitch_01( ):
    assert repr(t.notehead) == "_NoteHead(d'')"
    assert str(t.notehead) == "d''"
    assert t.notehead.format == "d''"
-   assert t.notehead.pitch == Pitch(14)
+   #assert t.notehead.pitch == Pitch(14)
+   assert t.notehead.pitch.number == 14
 
 def test_change_notehead_pitch_02( ):
    t = Note(13, (1, 4))
@@ -35,7 +38,8 @@ def test_change_notehead_pitch_02( ):
    assert repr(t.notehead) == "_NoteHead(d'')"
    assert str(t.notehead) == "d''"
    assert t.notehead.format == "d''"
-   assert t.notehead.pitch == Pitch(14)
+   #assert t.notehead.pitch == Pitch(14)
+   assert t.notehead.pitch.number == 14
 
 
 ### TEST REMOVE NOTEHEAD PITCH ###

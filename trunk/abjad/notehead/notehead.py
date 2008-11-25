@@ -15,11 +15,14 @@ class _NoteHead(_Interface, _GrobHandler):
 
    ### OVERLOADS ###
 
-   ### TODO: I propose dis-allowing notehead comparison;
-   ###       if we want to compare by pitch,
-   ###       then do so explicitly.
    def __cmp__(self, arg):
-      return cmp(self.pitch, arg.pitch)
+      raise Exception(NotImplemented)
+
+   def __eq__(self, arg):
+      return id(self) == id(arg)
+
+   def __ne__(self, arg):
+      return id(self) == id(arg)
 
    def __repr__(self):
       if self.pitch:

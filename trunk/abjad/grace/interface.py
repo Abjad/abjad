@@ -18,7 +18,8 @@ class _GraceInterface(object):
       def fget(self):
          return self._before
       def fset(self, arg):
-         if arg == None:
+         #if arg == None:
+         if arg is None:
             self._before = Grace( )
             self._before.type = 'grace'
          elif isinstance(arg, Grace):
@@ -38,7 +39,8 @@ class _GraceInterface(object):
       def fget(self):
          return self._after
       def fset(self, arg):
-         if arg == None:
+         #if arg == None:
+         if arg is None:
             self._after = Grace( )
          else:
             if isinstance(arg, Grace):

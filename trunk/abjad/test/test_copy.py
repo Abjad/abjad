@@ -56,7 +56,8 @@ def test_copy_one_tupletized_note_01( ):
    t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
    u = t.leaves[4].copy( )
    assert isinstance(u, Note)
-   assert u.pitch == t.leaves[4].pitch
+   #assert u.pitch == t.leaves[4].pitch
+   assert u.pitch.number == t.leaves[4].pitch.number
    #assert u.duration == t.leaves[4].duration
    assert u.duration.written == t.leaves[4].duration.written
    assert id(u) != id(t.leaves[4])
@@ -66,7 +67,8 @@ def test_copy_one_tupletized_note_02( ):
    t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
    u = t.leaves[5].copy( )
    assert isinstance(u, Note)
-   assert u.pitch == t.leaves[5].pitch
+   #assert u.pitch == t.leaves[5].pitch
+   assert u.pitch.number == t.leaves[5].pitch.number
    #assert u.duration == t.leaves[5].duration
    assert u.duration.written == t.leaves[5].duration.written
    assert id(u) != id(t.leaves[5])

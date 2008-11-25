@@ -18,8 +18,8 @@ class _Interface(object):
 #      return len([kvp for kvp in self.__dict__.items( ) 
 #         if not kvp[0].startswith('_')])
 
-#   def __repr__(self):
-#      return '%s( )' % self.__class__.__name__
+   def __repr__(self):
+      return '<%s>' % self.__class__.__name__
 
 #   def __setattr__(self, attr, value):
 #      if not attr.startswith('_') and value is None and attr in self.__dict__:

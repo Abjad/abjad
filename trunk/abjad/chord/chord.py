@@ -49,7 +49,10 @@ class Chord(_Leaf):
    ### PRIVATE METHODS ###
 
    def _sort(self):
-      self._noteheads.sort( )
+      #self._noteheads.sort( )
+      def helper(nh1, nh2):
+         return cmp(nh1.pitch.number, nh2.pitch.number)
+      self._noteheads.sort(helper)
 
    @property
    def _summary(self):
@@ -65,7 +68,8 @@ class Chord(_Leaf):
             result.append(notehead)
          return result
       def fset(self, arglist):
-         assert isinstance(arglist, (list, tuple))
+         # TODO: what's the right way to allow *any* sequence here?
+         assert isinstance(arglist, (list, tuple, set))
          self._noteheads = [ ]
          for arg in arglist:
             if isinstance(arg, (int, float, long)):
@@ -80,6 +84,10 @@ class Chord(_Leaf):
                raise ValueError
          self._sort()
       return property(**locals( ))
+
+   @property
+   def numbers(self):
+      return [pitch.number for pitch in self.pitches]
 
    @apply
    def pitches( ):

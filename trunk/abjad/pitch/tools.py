@@ -87,7 +87,8 @@ class _PitchTools(object):
       return self.pitchNumberToOctave(adjustedPitchNumber)
 
    def addStaffSpaces(self, staffSpaces):
-      scaleDegree = (self._client.diatonicScaleDegree + staffSpaces) % 7
+      #scaleDegree = (self._client.diatonicScaleDegree + staffSpaces) % 7
+      scaleDegree = (self._client.degree + staffSpaces) % 7
       if scaleDegree == 0:
          scaleDegree = 7
       return scaleDegree

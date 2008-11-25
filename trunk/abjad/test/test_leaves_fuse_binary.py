@@ -30,5 +30,5 @@ def test_leaves_fuse_binary_04( ):
    assert fused[0].tie.spanner is fused[1].tie.spanner
    assert t[0] is fused[0]
    assert t[1] is fused[1]
-   assert t[0].pitch == t[1].pitch
-
+   #assert t[0].pitch == t[1].pitch
+   assert t[0].pitch.number == t[1].pitch.number

@@ -9,7 +9,7 @@ class Note(_Leaf):
    def __init__(self, *args):
       self._initializer = _NoteInitializer(self, _Leaf, *args)
 
-   ### SPECIAL METHODS ###
+   ### OVERLOADS ###
 
    def __repr__(self):
       return 'Note(%s, %s)' % (self.pitch, self.duration._product)

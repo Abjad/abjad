@@ -16,7 +16,8 @@ def test_eq_02( ):
 def test_eq_03( ):
    '''Written Durations can NOT be evaluated for equality with tuples.'''
    t = Note(1, (1, 4))
-   assert t.duration.written != (1, 4)
+   #assert t.duration.written != (1, 4)
+   assert raises(TypeError, 't.duration.written != (1, 4)')
 
 
 def test_eq_04( ):
@@ -35,7 +36,8 @@ def test_eq_06( ):
    '''Multiplier Durations can NOT be evaluated for equality with tuples.'''
    t = Note(1, (1, 4))
    t.duration.multiplier = Rational(1, 8)
-   assert t.duration.multiplier != (1, 8)
+   #assert t.duration.multiplier != (1, 8)
+   assert raises(TypeError, 't.duration.multiplier != (1, 8)')
 
 ### ASSIGNMENT ###
 
