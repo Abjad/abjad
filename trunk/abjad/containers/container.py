@@ -68,7 +68,7 @@ class Container(_Component):
       else:
          return ' '
 
-   ### SPECIAL METHODS ###
+   ### OVERLOADS ###
 
    def __add__(self, expr):
       '''Concatenate containers self and expr.

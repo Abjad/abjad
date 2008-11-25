@@ -22,8 +22,13 @@ class _Context(Container):
          summary,
          self.brackets.close)
 
+   ### TODO: eliminate this in favor of ID-only equivalence,
+   ###       just like all the other system objects;
+   ###       if we want to preserve this functionality,
+   ###       either test all three attributes by hand,
+   ###       or save this functionality off as a different
+   ###       function in the public interface
    def __eq__(self, arg):
-      #if isinstance(arg, Context):
       if isinstance(arg, _Context):
          if self.brackets == arg.brackets and \
             self.invocation == arg.invocation and\
