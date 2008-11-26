@@ -6,6 +6,9 @@ def test_container_add_01( ):
    t1 = Voice(Note(0, (1, 4))*2)
    t2 = Voice(Note(0, (1, 4))*2)
    tadd = t1 + t2
+   assert check(tadd)
+   assert check(t1)
+   assert check(t2)
    assert len(tadd) == len(t1) + len(t2)
    assert tadd.format == "\\new Voice {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
    '''
@@ -22,6 +25,9 @@ def test_container_add_02( ):
    t1 = Staff(Note(0, (1, 4))*2)
    t2 = Staff(Note(0, (1, 4))*2)
    tadd = t1 + t2
+   assert check(tadd)
+   assert check(t1)
+   assert check(t2)
    assert len(tadd) == len(t1) + len(t2)
    assert tadd.format == "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 
@@ -78,6 +84,9 @@ def test_container_add_11( ):
    t1 = Parallel([Voice(Note(0, (1, 4))*2)])
    t2 = Parallel([Voice(Note(0, (1, 4))*2)])
    tadd = t1 + t2
+   assert check(tadd)
+   assert check(t1)
+   assert check(t2)
    assert isinstance(tadd, Parallel)  
    assert len(tadd) == 1
    assert isinstance(tadd[0], Voice)
@@ -109,3 +118,16 @@ def test_container_add_13( ):
    assert len(tadd[1]) == 4
    assert tadd[0].invocation.name == 1
    assert tadd[1].invocation.name == 2
+
+
+### iadd ###
+
+def test_container_iadd_01( ):
+   '''In place add makes a copy of right hand operand only.'''
+   v1 = Voice(Note(1, (1, 4))*4)
+   v2 = Voice(Note(2, (1, 4))*4)
+   v1 += v2
+   assert check(v1)
+   assert check(v2)
+   assert len(v1) == 8
+   assert len(v2) == 4

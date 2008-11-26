@@ -118,7 +118,8 @@ class Container(_Component):
             
    def __iadd__(self, expr):
       '''iadd avoids unnecessary copying of structures.'''
-      s = Container([self, expr])
+      #s = Container([self, expr])
+      s = Container([self, expr.copy( )])
       success = s.coalesce( )
       if success:
          return s.pop(0)
