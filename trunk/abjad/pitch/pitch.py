@@ -15,13 +15,6 @@ class Pitch(object):
 
    def __cmp__(self, arg):
       raise Exception(NotImplemented)
-#      if isinstance(arg, Pitch):
-#         #return cmp(self.number, arg.number)
-#         return self.enharmonicCompare(arg)
-#      elif isinstance(arg, (int, long, float)):
-#         return cmp(self.number, arg)
-#      else:
-#         raise TypeError
 
    def __eq__(self, arg):
       return id(self) == id(arg)

@@ -63,5 +63,3 @@ def test_chord_remove_02( ):
    assert len(t) == 1
    #assert t.pitches[0] == 2
    assert t.pitches[0].number == 2
-   ### TODO: THIS IS REALLY WEIRD; FIXME;
-   ###       remove is removing the d' and NOT the e'!

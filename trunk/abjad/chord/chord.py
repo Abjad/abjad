@@ -41,7 +41,7 @@ class Chord(_Leaf):
          self._noteheads[i] = _NoteHead(self, pitch = arg)
       elif isinstance(arg, _NoteHead):
          self._noteheads[i] = arg
-      self._sort()
+      self._sort( )
 
    def __str__(self):
       return '<%s>%s' % (self._summary, self.duration._product)
@@ -50,9 +50,13 @@ class Chord(_Leaf):
 
    def _sort(self):
       #self._noteheads.sort( )
-      def helper(nh1, nh2):
-         return cmp(nh1.pitch.number, nh2.pitch.number)
-      self._noteheads.sort(helper)
+      def _helper(nh1, nh2):
+         altitude_cmp = cmp(nh1.pitch.altitude, nh2.pitch.altitude)
+         if altitude_cmp == 0:
+            return cmp(nh1.pitch.number, nh2.pitch.number)
+         else:
+            return altitude_cmp
+      self._noteheads.sort(_helper)
 
    @property
    def _summary(self):
@@ -62,11 +66,12 @@ class Chord(_Leaf):
 
    @apply
    def noteheads( ):
+      '''Return immutable tuple of noteheads in self.'''
       def fget(self):
          result = [ ]
          for notehead in self._noteheads:
             result.append(notehead)
-         return result
+         return tuple(result)
       def fset(self, arglist):
          # TODO: what's the right way to allow *any* sequence here?
          assert isinstance(arglist, (list, tuple, set))
@@ -80,23 +85,25 @@ class Chord(_Leaf):
                arg._client = self
                self._noteheads.append(arg)
             else:
-               print 'Can not set Chord.noteheads = [..., %s, ...].' % arg
-               raise ValueError
-         self._sort()
+               raise ValueError(
+                  'Can not set Chord.noteheads = [..., %s, ...].' % arg)
+         self._sort( )
       return property(**locals( ))
 
    @property
    def numbers(self):
-      return [pitch.number for pitch in self.pitches]
+      '''Return sorted immutable tuple of pitch numbers in self.'''
+      return tuple(sorted([pitch.number for pitch in self.pitches]))
 
    @apply
    def pitches( ):
+      '''Return immutable tuple of pitches in self.'''
       def fget(self):
          result = [ ]
          for notehead in self._noteheads:
             if notehead.pitch:
                result.append(notehead.pitch)   
-         return result
+         return tuple(result)
       def fset(self, arglist):
          self.noteheads = arglist
       return property(**locals( ))
@@ -113,13 +120,13 @@ class Chord(_Leaf):
          self._noteheads.append(arg)
       else:
          print 'Can not append %s to Chord.' % arg
-      self._sort()
+      self._sort( )
 
    def extend(self, arglist):
       assert isinstance(arglist, list)
       for arg in arglist:
          self.append(arg)
-      self._sort()
+      self._sort( )
 
    def pop(self, i = -1):
       return self._noteheads.pop(i)
