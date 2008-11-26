@@ -469,6 +469,13 @@ The Abjad <code>_TrillInterface</code> class
 </toc-section>
 
 <toc-section>
+<header> Abjad helper functions
+<body>
+   <p> <a href="chapters/helpers/instances/index.html"><code>instances( )</code></a>
+</body>
+</toc-section>
+
+<toc-section>
 <header> Attribute formatting in Abjad
 <body>
    <p> Understanding LilyPond overrides

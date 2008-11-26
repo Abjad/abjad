@@ -518,6 +518,8 @@ class CLASS_NAMES(_TagParser):
             if key in line:
                directory_name = self.change[key]
                class_name = key[1 : -1]
+               ### TODO: fix relative URL to work at different level
+               ###       of doc site
                target = '<code><a href="../%s/index.html">%s</a></code>'
                target %= (directory_name, class_name)
                line = line.replace(key, target)
