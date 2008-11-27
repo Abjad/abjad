@@ -79,6 +79,8 @@ class Chord(_Leaf):
          for arg in arglist:
             if isinstance(arg, (int, float, long)):
                self._noteheads.append(_NoteHead(self, pitch = arg))
+            elif isinstance(arg, tuple):
+               self._noteheads.append(_NoteHead(self, pitch = arg))   
             elif isinstance(arg, Pitch):
                self._noteheads.append(_NoteHead(self, pitch = arg))
             elif isinstance(arg, _NoteHead):
@@ -93,7 +95,12 @@ class Chord(_Leaf):
    @property
    def numbers(self):
       '''Return sorted immutable tuple of pitch numbers in self.'''
-      return tuple(sorted([pitch.number for pitch in self.pitches]))
+      return tuple([pitch.number for pitch in self.pitches])
+
+   @property
+   def pairs(self):
+      '''Return sorted immutable tuple of pitch pairs in self.'''
+      return tuple([pitch.pair for pitch in self.pitches])
 
    @apply
    def pitches( ):

@@ -49,6 +49,13 @@ class Note(_Leaf):
             print 'Can not bind %s to Note.notehead.' % arg
       return property(**locals( ))
 
+   @property
+   def pair(self):
+      if self.pitch:
+         return self.pitch.pair
+      else:
+         return None
+
    @apply
    def pitch( ):
       def fget(self):
@@ -72,3 +79,7 @@ class Note(_Leaf):
             else:
                raise ValueError('Can not set Note.pitch from %s' % str(arg))
       return property(**locals( ))
+
+   @property
+   def signature(self):
+      return (self.pair, self.duration.written.pair)

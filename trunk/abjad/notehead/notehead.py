@@ -97,10 +97,12 @@ class _NoteHead(_Interface, _GrobHandler):
       def fset(self, arg):
          if arg is None:
             self._pitch = None
-         elif isinstance(arg, Pitch):
-            self._pitch = arg
          elif isinstance(arg, (int, float, long)):
             self._pitch = Pitch(arg)
+         elif isinstance(arg, tuple):
+            self._pitch = Pitch(*arg) 
+         elif isinstance(arg, Pitch):
+            self._pitch = arg
          else:
             raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
