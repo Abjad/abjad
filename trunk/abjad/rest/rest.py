@@ -18,7 +18,23 @@ class Rest(_Leaf, _GrobHandler):
    def __str__(self):
       return 'r%s' % self.duration._product
 
-   ### PROPERTIES ###
+   ### PRIVATE ATTRIBUTES ###
+  
+   @property
+   def _body(self):
+      result = ''
+      if self.pitch:
+         result += str(self.pitch)
+      else:
+         result += 'r'
+      result += str(self.duration._product)
+      if self.pitch:
+         result += r' \rest'
+      if self.stem.tremolo:
+         result += ' :%s' % self.stem.tremolo
+      return result
+
+   ### PUBLIC ATTRIBUTES ###
 
    @apply
    def pitch( ):
@@ -37,18 +53,6 @@ class Rest(_Leaf, _GrobHandler):
             raise ValueError('Can not set Rest.pitch from %s' % str(arg))
       return property(**locals( ))
 
-   ### FORMATTING ###
-  
    @property
-   def _body(self):
-      result = ''
-      if self.pitch:
-         result += str(self.pitch)
-      else:
-         result += 'r'
-      result += str(self.duration._product)
-      if self.pitch:
-         result += r' \rest'
-      if self.stem.tremolo:
-         result += ' :%s' % self.stem.tremolo
-      return result
+   def signature(self):
+      return self.duration.written.pair
