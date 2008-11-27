@@ -74,6 +74,7 @@ class Chord(_Leaf):
          return tuple(result)
       def fset(self, arglist):
          # TODO: what's the right way to allow *any* sequence here?
+         # MAYBE: operator.isSequenceType( )
          assert isinstance(arglist, (list, tuple, set))
          self._noteheads = [ ]
          for arg in arglist:
@@ -114,6 +115,11 @@ class Chord(_Leaf):
       def fset(self, arglist):
          self.noteheads = arglist
       return property(**locals( ))
+
+   @property
+   def signature(self):
+      '''Return immutable pair of pitch pair and written duration.'''
+      return (self.pairs, self.duration.written.pair)
 
    ### PUBLIC METHODS ### 
 
