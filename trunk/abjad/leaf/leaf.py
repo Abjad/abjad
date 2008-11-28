@@ -1,6 +1,7 @@
 from abjad.articulations.interface import _ArticulationsInterface
 from abjad.beam.interface import _BeamInterface
 from abjad.clef.clef import _Clef
+from abjad.clef.interface import _ClefInterface
 from abjad.core.component import _Component
 from abjad.core.interface import _Interface
 from abjad.dots.interface import _DotsInterface
@@ -26,6 +27,7 @@ class _Leaf(_Component):
       self._parent = None
       self._articulations = _ArticulationsInterface(self)
       self._beam = _BeamInterface(self)
+      self._clef = _ClefInterface(self)
       self._dots = _DotsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._dynamics = _DynamicsInterface(self)
@@ -37,7 +39,6 @@ class _Leaf(_Component):
       self._glissando = _GlissandoInterface(self)
       self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
-      #self.history = { }
       self._history = { }
       # TODO: can't make spanners a read-only property
       # because of /helpers/attributes.py;
@@ -50,12 +51,7 @@ class _Leaf(_Component):
       self._tremolo = _TremoloInterface(self)
       self._trill = _TrillInterface(self)
 
-#   ### REPR ###
-#
-#   def __repr__(self):
-#      return self._body
-
-   ### MANAGED ATTRIBUTES ###
+   ### PUBLIC ATTRIBUTES ###
 
    @apply
    def accidentals( ):
@@ -89,27 +85,35 @@ class _Leaf(_Component):
    @apply
    def clef( ):
       def fget(self):
-         if hasattr(self, '_clef'):
-            return self._clef
-         else:
-            cur = self.prev
-            while cur:
-               if hasattr(cur, '_clef'):
-                  return cur._clef
-               else:
-                  cur = cur.prev  
-            return _Clef('treble')
+         return self._clef
       def fset(self, arg):
-         if arg is None:
-            if hasattr(self, '_clef'):
-               del self._clef
-         elif isinstance(arg, str):
-            self._clef = _Clef(arg)
-         elif isinstance(arg, _Clef):
-            self._clef = _Clef(arg.name)
-         else:
-            raise ValueError('clef %s must be str or clef.' % arg)
+         self._clef.forced = arg
       return property(**locals( ))
+
+#   @apply
+#   def clef( ):
+#      def fget(self):
+#         if hasattr(self, '_clef'):
+#            return self._clef
+#         else:
+#            cur = self.prev
+#            while cur:
+#               if hasattr(cur, '_clef'):
+#                  return cur._clef
+#               else:
+#                  cur = cur.prev  
+#            return _Clef('treble')
+#      def fset(self, arg):
+#         if arg is None:
+#            if hasattr(self, '_clef'):
+#               del self._clef
+#         elif isinstance(arg, str):
+#            self._clef = _Clef(arg)
+#         elif isinstance(arg, _Clef):
+#            self._clef = _Clef(arg.name)
+#         else:
+#            raise ValueError('clef %s must be str or clef.' % arg)
+#      return property(**locals( ))
 
    @apply
    def dots( ):

@@ -9,7 +9,7 @@ def test_clef_copy_01( ):
    t.extend(tcopy(t[0 : 2]))
    assert check(t)
    assert t.format == "\\new Staff {\n\t\\clef treble\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef bass\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef treble\n\tc'8\n\tcs'8\n}"
-   assert [str(note.clef) for note in t] == [
+   assert [note.clef.name for note in t] == [
       'treble', 'treble', 'treble', 'treble',
       'bass', 'bass', 'bass', 'bass',
       'treble', 'treble']
@@ -40,7 +40,7 @@ def test_clef_copy_02( ):
    t.extend(tcopy(t[2 : 4]))
    assert check(t)
    assert t.format == "\\new Staff {\n\t\\clef treble\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef bass\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\td'8\n\tef'8\n}"
-   assert [str(note.clef) for note in t] == [
+   assert [note.clef.name for note in t] == [
       'treble', 'treble', 'treble', 'treble',
       'bass', 'bass', 'bass', 'bass', 'bass', 'bass']
    '''

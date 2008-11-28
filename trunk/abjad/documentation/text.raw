@@ -256,14 +256,13 @@ The leaf inheritance hierarchy
 <toc-section>
 <header> The Abjad helper classes
 <body>
-<p> 
-<a href="chapters/accidental_class/index.html">The Abjad <code>_Accidental</code> class</a>
+<p> <a href="chapters/accidental_class/index.html">The Abjad <code>_Accidental</code> class</a>
 
-<p> 
-<a href="chapters/notehead_class/index.html">The Abjad <code>_Notehead</code> class</a>
+<p> <a href="chapters/clef_class/index.html">The Abjad <code>_Clef</code> class</a>
 
-<p> 
-<a href="chapters/pitch_class/index.html">The Abjad <code>Pitch</code> class</a>
+<p> <a href="chapters/notehead_class/index.html">The Abjad <code>_Notehead</code> class</a>
+
+<p> <a href="chapters/pitch_class/index.html">The Abjad <code>Pitch</code> class</a>
 </body>
 </toc-section>
 
@@ -399,6 +398,11 @@ The Abjad <code>_BarlineInterface</code> class
 <p> 
 <a href="chapters/beam_interface/index.html">
 The Abjad <code>_BeamInterface</code> class
+</a>
+
+<p> 
+<a href="chapters/clef_interface/index.html">
+The Abjad <code>_ClefInterface</code> class
 </a>
 
 <p> 

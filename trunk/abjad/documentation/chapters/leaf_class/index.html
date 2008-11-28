@@ -1,6 +1,14 @@
 <html>
 
-<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
+<!--  This is a hack so that files at two different levels of the doc
+      tree can find the stylesheet;
+      shoudl be specified as an absolute URL instead?
+-->
+
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<link rel="stylesheet" href="../../../css/abjad.css" type="text/css" />
+</head>
 
 <body>
 
@@ -100,7 +108,7 @@ abjad> note = Note(0, (1, 4))
 <pre class="abjad">
 abjad> note.articulations = ['staccato']
 </pre>
-<image src="images/1.png">
+<img src="images/1.png">
 </div class="body">
 </div class="definition">
 
@@ -135,8 +143,8 @@ _BeamInterface
 <div class="header">
 <div class="attribute"> <div class="local"> <a name="clef"> clef </a> </div class="local"> </div class="attribute">
 	<p> Read / write attribute defined here.
-	<p> Returns Abjad <code>Clef</code> object.
-	<p> Accepts LilyPond clef string, <code>None</code>.
+	<p> Returns Abjad <code><a href="../clef_interface/index.html">_ClefInterface</a></code>.
+	<p> Accepts LilyPond clef string, Abjad <code><a href="../clef_class/index.html">_Clef</a></code> instance, <code>None</code>.
 </div class="header">
 <div class="body">
 <pre class="abjad">
@@ -145,7 +153,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <pre class="abjad">
 abjad> chord.clef = 'alto'
 </pre>
-<image src="images/2.png">
+<img src="images/2.png">
 </div class="body">
 </div class="definition">
 
@@ -180,7 +188,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <pre class="abjad">
 abjad> chord.duration = (3, 8)
 </pre>
-<image src="images/3.png">
+<img src="images/3.png">
 </div class="body">
 </div class="definition">
 
@@ -198,7 +206,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <pre class="abjad">
 abjad> chord.dynamics = 'f'
 </pre>
-<image src="images/4.png">
+<img src="images/4.png">
 </div class="body">
 </div class="definition">
 
@@ -242,7 +250,7 @@ abjad> notes = [Note(0, (1, 4)), Note(2, (1, 4))]
 <pre class="abjad">
 abjad> notes[0].glissando = True
 </pre>
-<image src="images/5.png">
+<img src="images/5.png">
 </div class="body">
 </div class="definition">
 
@@ -259,7 +267,7 @@ abjad> note = Note(0, (1, 4))
 <pre class="abjad">
 abjad> note.grace.before.append(Note(2, (1, 16)))
 </pre>
-<image src="images/6.png">
+<img src="images/6.png">
 </div class="body">
 </div class="definition">
 
@@ -277,7 +285,7 @@ abjad> note = Note(0, (1, 4))
 <pre class="abjad">
 abjad> note.harmonic = True
 </pre>
-<image src="images/7.png">
+<img src="images/7.png">
 </div class="body">
 </div class="definition">
 
@@ -315,7 +323,7 @@ abjad> measure = Measure((1, 4), [note1, chord, note2])
 abjad> chord.next
 Note(a', 4)
 </pre>
-<image src="images/8.png">
+<img src="images/8.png">
 </div class="body">
 </div class="definition">
 
@@ -333,7 +341,7 @@ abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(8, 0, -1)])
 abjad> measure[6].number
 6
 </pre>
-<image src="images/9.png">
+<img src="images/9.png">
 </div class="body">
 </div class="definition">
 
@@ -351,7 +359,7 @@ abjad> measure = Measure((4, 4), [Note(x, (1, 8)) for x in range(8, 0, -1)])
 abjad> measure[6].offset
 Rational(3, 4)
 </pre>
-<image src="images/10.png">
+<img src="images/10.png">
 </div class="body">
 </div class="definition">
 
@@ -372,7 +380,7 @@ abjad> measure = Measure((1, 4), [note1, chord, note2])
 abjad> chord.prev
 Note(b, 4)
 </pre>
-<image src="images/11.png">
+<img src="images/11.png">
 </div class="body">
 </div class="definition">
 
@@ -453,7 +461,7 @@ abjad> notes = Note(0, (1, 4)) * 2
 <pre class="abjad">
 abjad> notes[0].tie = True
 </pre>
-<image src="images/12.png">
+<img src="images/12.png">
 </div class="body">
 </div class="definition">
 
@@ -470,7 +478,7 @@ abjad> note = Note(0, (1, 4))
 <pre class="abjad">
 abjad> note.tremolo.subdivision = 32
 </pre>
-<image src="images/13.png">
+<img src="images/13.png">
 </div class="body">
 </div class="definition">
 
@@ -560,8 +568,6 @@ _TrillInterface( )
 
 <div class="to-do">
 
-<p> Should <code>clef</code> promote to a full interface?
-
 <p> Should <code>accidentals</code> promote to a full interface?
 
 <p> Clean up the way <code>staff</code> works; is it a full interface or not?
@@ -571,7 +577,7 @@ _TrillInterface( )
 </div class="to-do">
 
 
-<p class="footer"> <a href="../../index.html">Contents</a> </p>
+<p class="footer"><a href="../../index.html">Contents</a></p>
 
 </div>
 

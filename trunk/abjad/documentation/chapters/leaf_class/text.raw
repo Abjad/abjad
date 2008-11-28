@@ -119,8 +119,8 @@
 <header>
    <local> clef
 	<p> Read / write attribute defined here.
-	<p> Returns Abjad <code>Clef</code> object.
-	<p> Accepts LilyPond clef string, <code>None</code>.
+	<p> Returns Abjad <_ClefInterface>.
+	<p> Accepts LilyPond clef string, Abjad <_Clef> instance, <code>None</code>.
 </header>
 <body>
 <abjad>
@@ -622,8 +622,6 @@
 </comments>
 
 <to-do>
-
-<p> Should <code>clef</code> promote to a full interface?
 
 <p> Should <code>accidentals</code> promote to a full interface?
 

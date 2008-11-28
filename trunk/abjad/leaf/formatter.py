@@ -97,7 +97,7 @@ class _LeafFormatter(_Formatter):
       result.extend(self._client.comments._before)
       result.extend(self.before)
       result.extend(self._grace)
-      result.extend(self._clef)
+      #result.extend(self._clef)
       result.extend(self._collectLocation('_before'))
       result.extend(self._agrace_opening)
       result.extend(self._body)

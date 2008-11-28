@@ -96,8 +96,8 @@
 <div class="header">
 <div class="attribute"> <div class="inherited"> <a name="clef"> clef </a> </div class="inherited"> </div class="attribute">
 	<p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-	<p> Returns Abjad <code>Clef</code> object.
-	<p> Accepts LilyPond clef string, <code>None</code>.
+	<p> Returns Abjad <code><a href="../clef_interface/index.html">_ClefInterface</a></code>.
+	<p> Accepts LilyPond clef string, Abjad <code><a href="../clef_class/index.html">_Clef</a></code> instances, <code>None</code>.
 	<p> See <a href="../leaf_class/index.html#clef">example</a>.
 </div class="header">
 </div class="definition">
@@ -235,7 +235,7 @@ _LeafFormatter( )
 <div class="header">
 <div class="attribute"> <div class="local"> <a name="pitch"> pitch </a> </div class="local"> </div class="attribute">
 	<p> Read / write attribute defined here.
-	<p> Returns Abjad <code><a href="../pitch_class/index.html">_Pitch</a></code> instance attaching to <code>self</code>.
+	<p> Returns Abjad <_Pitch> instance attaching to <code>self</code>.
 	<p> Accepts Abjad <a href="../pitch_token/index.html">pitch token</a>.
 </div class="header">
 <div class="body">
@@ -245,7 +245,7 @@ abjad> rest = Rest((1, 4))
 <pre class="abjad">
 abjad> rest.pitch = -5
 </pre>
-<image src="images/1.png">
+<img src="images/1.png">
 </div class="body">
 </div class="definition">
 
@@ -366,7 +366,7 @@ abjad> rest.pitch = -5
 <pre class="abjad">
 abjad> rest = Rest((1, 4))
 </pre>
-<image src="images/2.png">
+<img src="images/2.png">
 </div class="body">
 </div class="definition">
 

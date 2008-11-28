@@ -1,6 +1,14 @@
 <html>
 
-<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
+<!--  This is a hack so that files at two different levels of the doc
+      tree can find the stylesheet;
+      shoudl be specified as an absolute URL instead?
+-->
+
+<head>
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+<link rel="stylesheet" href="../../../css/abjad.css" type="text/css" />
+</head>
 
 <body>
 
@@ -125,8 +133,8 @@ if we want to have the TOC on every page, we can put it here...
 <div class="header">
 <div class="attribute"> <div class="inherited"> <a name="clef"> clef </a> </div class="inherited"> </div class="attribute">
    <p> Read / write attribute inherited from <code><a href="../leaf_class/index.html">_Leaf</a></code>.
-   <p> Returns Abjad <code>Clef</code> object.
-   <p> Accepts LilyPond clef string, <code>None</code>.
+   <p> Returns Abjad <code><a href="../clef_interface/index.html">_ClefInterface</a></code>.
+   <p> Accepts LilyPond clef string, Abjad <code><a href="../clef_class/index.html">_Clef</a></code> instance, <code>None</code>.
    <p> See <a href="../leaf_class/index.html#clef">example</a>.
 </div class="header">
 </div class="definition">
@@ -259,7 +267,7 @@ abjad> chord.noteheads = [-1, 3, 9, 11]
 abjad> chord.noteheads
 [_NoteHead(b), _NoteHead(ef'), _NoteHead(a'), _NoteHead(b')]
 </pre>
-<image src="images/1.png">
+<img src="images/1.png">
 </div class="body">
 </div class="definition">
 
@@ -297,7 +305,7 @@ abjad> chord.pitches = [-1, 3, 9, 11]
 abjad> chord.pitches
 [Pitch(b, 3), Pitch(ef, 4), Pitch(a, 4), Pitch(b, 4)]
 </pre>
-<image src="images/2.png">
+<img src="images/2.png">
 </div class="body">
 </div class="definition">
 
@@ -392,7 +400,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <pre class="abjad">
 abjad> chord.append(9)
 </pre>
-<image src="images/3.png">
+<img src="images/3.png">
 </div class="body">
 </div class="definition">
 
@@ -419,7 +427,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <pre class="abjad">
 abjad> chord.extend([9, 16, 18])
 </pre>
-<image src="images/4.png">
+<img src="images/4.png">
 </div class="body">
 </div class="definition">
 
@@ -448,7 +456,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord.pop( )
 _NoteHead(bf')
 </pre>
-<image src="images/5.png">
+<img src="images/5.png">
 </div class="body">
 </div class="definition">
 
@@ -467,7 +475,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <pre class="abjad">
 abjad> chord.remove(chord[1])
 </pre>
-<image src="images/6.png">
+<img src="images/6.png">
 </div class="body">
 </div class="definition">
 
@@ -489,7 +497,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> 10 in chord
 True
 </pre>
-<image src="images/7.png">
+<img src="images/7.png">
 </div class="body">
 </div class="definition">
 
@@ -507,7 +515,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <pre class="abjad">
 abjad> del(chord[1])
 </pre>
-<image src="images/8.png">
+<img src="images/8.png">
 </div class="body">
 </div class="definition">
 
@@ -527,7 +535,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> chord[1]
 _NoteHead(d')
 </pre>
-<image src="images/9.png">
+<img src="images/9.png">
 </div class="body">
 </div class="definition">
 
@@ -549,7 +557,7 @@ _NoteHead(d')
 <pre class="abjad">
 abjad> chord = Chord([0, 2, 10], (1, 4))
 </pre>
-<image src="images/10.png">
+<img src="images/10.png">
 </div class="body">
 </div class="definition">
 
@@ -626,7 +634,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 <pre class="abjad">
 abjad> chord[1] = 4
 </pre>
-<image src="images/11.png">
+<img src="images/11.png">
 </div class="body">
 </div class="definition">
 
@@ -645,7 +653,7 @@ abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> str(chord)
 "&lt;c' d' bf'&gt;4"
 </pre>
-<image src="images/12.png">
+<img src="images/12.png">
 </div class="body">
 </div class="definition">
 
@@ -668,7 +676,7 @@ abjad> str(chord)
 </div class="to-do">
 
 
-<p class="footer"> <a href="../../index.html">Contents</a> </p>
+<p class="footer"><a href="../../index.html">Contents</a></p>
 
 </div>
 

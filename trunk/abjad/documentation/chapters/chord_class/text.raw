@@ -103,8 +103,8 @@
 <header>
    <inherited> clef
    <p> Read / write attribute inherited from <_Leaf>.
-   <p> Returns Abjad <code>Clef</code> object.
-   <p> Accepts LilyPond clef string, <code>None</code>.
+   <p> Returns Abjad <_ClefInterface>.
+   <p> Accepts LilyPond clef string, Abjad <_Clef> instance, <code>None</code>.
    <p> See <a href="../leaf_class/index.html#clef">example</a>.
 </header>
 </definition>

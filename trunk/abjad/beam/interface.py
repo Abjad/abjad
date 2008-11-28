@@ -2,6 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.core.spannerreceptor import _SpannerReceptor
 
+
 class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    def __init__(self, client):
@@ -10,11 +11,23 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
       _SpannerReceptor.__init__(self, ['Beam'])
       self._counts = (None, None)
 
-   ### PROPERTIES ###
+   ### PRIVATE ATTRIBUTES ###
+
+   @property
+   def _before(self):
+      result = [ ]
+      result.extend(_GrobHandler._before.fget(self))
+      if self.counts[0] is not None:
+         result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
+      if self.counts[1] is not None:
+         result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
+      return result
 
    @property
    def _flags(self):
       return self._client.duration._flags
+
+   ### PUBLIC ATTRIBUTES ###
 
    @property
    def beamable(self):
@@ -22,14 +35,8 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
          self._flags > 0 and not getattr(self, '_refuse', False)
 
    @property
-   def opening(self):
-      return self.spanned and '[' in self.spanner._right(self._client)
-
-   @property
    def closing(self):
       return self.spanned and ']' in self.spanner._right(self._client)
-
-   ### MANAGED ATTRIBUTES ###
 
    @apply
    def counts( ):
@@ -45,6 +52,10 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
          else:
             raise ValueError('must be nonzero integer, pair or None.')
       return property(**locals( ))
+
+   @property
+   def opening(self):
+      return self.spanned and '[' in self.spanner._right(self._client)
 
    ### METHODS ###
 
@@ -81,15 +92,3 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
             next = self._client.next
             if next:
                next.beam.counts = n, next.beam.counts[1]
-
-   ### FORMATTING ###
-
-   @property
-   def _before(self):
-      result = [ ]
-      result.extend(_GrobHandler._before.fget(self))
-      if self.counts[0] is not None:
-         result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
-      if self.counts[1] is not None:
-         result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
-      return result

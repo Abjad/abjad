@@ -13,19 +13,19 @@ def test_clef_02( ):
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
    staff[0].clef = 'treble'
    for note in staff:
-      assert str(note.clef) == 'treble'
+      assert note.clef.name == 'treble'
 
 
 def test_clef_03( ):
-   '''Clef defaults to None;
+   '''Clef defaults to treble;
       clefs carry over to notes following.'''
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
    staff[4].clef = 'bass'
    for i, note in enumerate(staff):
       if i in (0, 1, 2, 3):
-         str(note.clef) is None
+         note.clef.name == 'treble'
       else:
-         str(note.clef) == 'bass'
+         note.clef.name == 'bass'
 
 
 def test_clef_04( ):
@@ -33,9 +33,10 @@ def test_clef_04( ):
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
    staff[0].clef = 'treble'
    staff[4].clef = 'bass'
-   assert [str(note.clef) for note in staff] == \
+   assert [note.clef.name for note in staff] == \
       ['treble', 'treble', 'treble', 'treble', 
       'bass', 'bass', 'bass', 'bass']
+
 
 def test_clef_05( ):
    '''None cancels an explicit clef.'''
@@ -44,7 +45,7 @@ def test_clef_05( ):
    staff[4].clef = 'bass'
    staff[4].clef = None
    for note in staff:
-      assert str(note.clef) == 'treble'
+      assert note.clef.name == 'treble'
       
 
 def test_clef_06( ):

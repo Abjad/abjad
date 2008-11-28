@@ -479,6 +479,8 @@ class CLASS_NAMES(_TagParser):
       '<_BarlineInterface>' : 'barline_interface',
       '<_BeamInterface>' : 'beam_interface',
       '<Chord>' : 'chord_class',
+      '<_Clef>' : 'clef_class', 
+      '<_ClefInterface>' : 'clef_interface',
       '<_Comments>' : 'comments_class',
       '<_Component>' : 'component_class',
       '<_ContainerDurationInterface>' : 'container_duration_interface',

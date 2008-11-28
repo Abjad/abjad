@@ -15,10 +15,9 @@ class Octavation(_Spanner):
       result = [ ]
       if self._isMyFirstLeaf(leaf):
          result.append(r'#(set-octavation %s)' % self.start)
-      ### TODO - this is a ghetto way of checking for a clef change
-      ###        maybe better to create a clef interface to hold info?
-      if self._isMyFirstLeaf(leaf) or hasattr(leaf, '_clef'):
-         position = leaf.clef.middleCPosition - 7 * self.start
+      if self._isMyFirstLeaf(leaf) or leaf.clef.change:
+         #position = leaf.clef.middleCPosition - 7 * self.start
+         position = leaf.clef.effective.middleCPosition - 7 * self.start
          result.append(r'\set Staff.middleCPosition = #%s' % position)
       return result
 
@@ -26,6 +25,7 @@ class Octavation(_Spanner):
       result = [ ]
       if self._isMyLastLeaf(leaf):
          result.append(r'#(set-octavation %s)' % self.stop)
-         position = leaf.clef.middleCPosition - 7 * self.stop
+         #position = leaf.clef.middleCPosition - 7 * self.stop
+         position = leaf.clef.effective.middleCPosition - 7 * self.stop
          result.append(r'\set Staff.middleCPosition = #%s' % position)
       return result

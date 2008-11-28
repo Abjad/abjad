@@ -31,14 +31,14 @@ class _StaffInterface(_Interface, _FormatCarrier):
    ### PUBLIC ATTRIBUTES ###
 
    @property
-   def given(self):
-      return self._client._parentage._first('Staff')
+   def changed(self):
+      return self._client.prev and \
+         self._client.prev.staff != self._client.staff
 
    @property
    def effective(self):
       return self._forced if self._forced else self.given
-      
+
    @property
-   def changed(self):
-      return self._client.prev and \
-         self._client.prev.staff != self._client.staff
+   def given(self):
+      return self._client._parentage._first('Staff')
