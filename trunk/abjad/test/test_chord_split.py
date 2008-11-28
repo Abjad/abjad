@@ -88,3 +88,36 @@ def test_chord_split_09( ):
    assert treble.signature == ((('ff', 4), ('g', 4)), (1, 4))
    assert isinstance(bass, Chord)
    assert bass.signature == ((('d', 4), ('es', 4)), (1, 4))
+
+
+def test_chord_split_10( ):
+   '''Single note below pitch number split point.'''
+   note = Note(0, (1, 4))
+   treble, bass = chord_split(note, Pitch('f', 4), attr = 'number')
+   assert isinstance(treble, Skip)
+   assert treble.signature == (1, 4)
+   assert isinstance(bass, Note)
+   assert bass.signature == (('c', 4), (1, 4))
+   assert not note is bass
+
+
+def test_chord_split_11( ):
+   '''Single note at pitch number split point.'''
+   note = Note(0, (1, 4))
+   treble, bass = chord_split(note, Pitch('c', 4), attr = 'number')
+   assert isinstance(treble, Note)
+   assert treble.signature == (('c', 4), (1, 4))
+   assert isinstance(bass, Skip)
+   assert bass.signature == (1, 4)
+   assert not note is treble
+
+
+def test_chord_split_12( ):
+   '''Single note above pitch number split point.'''
+   note = Note(0, (1, 4))
+   treble, bass = chord_split(note, Pitch('f', 3), attr = 'number')
+   assert isinstance(treble, Note)
+   assert treble.signature == (('c', 4), (1, 4))
+   assert isinstance(bass, Skip)
+   assert bass.signature == (1, 4)
+   assert not note is treble

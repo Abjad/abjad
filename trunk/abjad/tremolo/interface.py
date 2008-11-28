@@ -1,21 +1,22 @@
+from abjad.core.formatcarrier import _FormatCarrier
 from abjad.core.interface import _Interface
 
 
-class _TremoloInterface(_Interface):
+class _TremoloInterface(_Interface, _FormatCarrier):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
+      _FormatCarrier.__init__(self)
       self._subdivision = None
 
-#   ### ACCESSORS ###
-#
-#   def __repr__(self):
-#      if self.subdivision:
-#         return 'Tremolo(%s)' % self.subdivision
-#      else:
-#         return 'Tremolo( )'
+   ### PUBLIC ATTRIBUTES ###
 
-   ### MANAGED ###
+   @property
+   def body(self):
+      if self.subdivision:
+         return [':' + str(self.subdivision)]
+      else:
+         return [ ]
 
    @apply
    def subdivision( ):
@@ -24,12 +25,3 @@ class _TremoloInterface(_Interface):
       def fset(self, expr):
          self._subdivision = expr
       return property(**locals())
-
-   ### FORMATTING ###
-
-   @property
-   def body(self):
-      if self.subdivision:
-         return [':' + str(self.subdivision)]
-      else:
-         return [ ]

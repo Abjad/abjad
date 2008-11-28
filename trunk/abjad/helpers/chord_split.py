@@ -40,8 +40,8 @@ def chord_split(chord, pitch = Pitch('b', 3), attr = 'number'):
       That is: id(chord) != id(treble) != (bass).
    
    Spanners treatment:
-      Result spanners stripped completely with input chord left unaltered.
-      That is: neither bass nor treble carry any spanners of any sort.
+      Spanned source chords produce spanned output chords;
+      natural by-product of the copy operation employed here.
    '''
 
    assert isinstance(chord, (Note, Chord))
@@ -53,14 +53,25 @@ def chord_split(chord, pitch = Pitch('b', 3), attr = 'number'):
       for notehead in treble.noteheads:
          _prune_notehead(treble, notehead, pitch, attr, operator.lt)
       treble = chord_cast_defective(treble)
-      print treble
       for notehead in bass.noteheads:
          _prune_notehead(bass, notehead, pitch, attr, operator.ge)
       bass = chord_cast_defective(bass)
-      print bass
 
-   ### TODO: handle case where chord is Note instead of Chord
+   elif isinstance(chord, Note):
+      note = chord
+      treble, bass = note.copy( ), note.copy( )
+      if attr == 'number':
+         if note.pitch.number >= pitch.number:
+            bass = Skip(bass)
+         else:
+            treble = Skip(treble)
+      elif attr == 'altitude':
+         if note.pitch.altitude >= pitch.altitude:
+            bass = Skip(bass)
+         else:
+            treble = Skip(treble)
+      else:
+         raise ValueError('unknown attr.')
+      print treble, bass
 
-   ### TODO: write tests for spanned chords
-            
    return treble, bass

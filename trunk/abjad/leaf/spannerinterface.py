@@ -1,34 +1,26 @@
 from abjad.helpers.hasname import hasname
 from abjad.core.interface import _Interface
-from abjad.core.parser import _Parser
 
 
 ### TODO - create abstract _SpannerInterface class;
 ###        derive both this _LeafSpannerInterface and
 ###        also _ContainerSpannerInterface from _SpannerInterface.
 
-### TODO - make inherit from thin _Interface;
-###        remove _Parser?
-
-class _LeafSpannerInterface(object):
+class _LeafSpannerInterface(_Interface):
 
    def __init__(self, client):
-      self._client = client
-      self._parser = _Parser( )
+      _Interface.__init__(self, client)
       self._spanners = [ ]
-
-#   ### REPR ###
-#
-#   def __repr__(self):
-#      if len(self) == 0:
-#         return '%s( )' % self.__class__.__name__
-#      else:
-#         return '%s(%s)' % (self.__class__.__name__, len(self))
 
    ### OVERRIDES ###
 
    def __contains__(self, expr):
       return expr in self._spanners
+
+   ### TODO - implement slice inside delitem ###
+
+   def __delitem__(self, i):
+      self._spanners[i]._sever( )
 
    def __getitem__(self, i):
       return self._spanners[i]
@@ -37,11 +29,6 @@ class _LeafSpannerInterface(object):
 
    def __getslice__(self, i, j):
       return self._spanners[i : j]
-
-   ### TODO - implement slice inside delitem ###
-
-   def __delitem__(self, i):
-      self._spanners[i]._sever( )
 
    def __len__(self):
       return len(self._spanners)

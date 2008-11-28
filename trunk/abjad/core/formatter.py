@@ -1,10 +1,13 @@
-class _Formatter(object):
+from abjad.core.interface import _Interface
+
+
+#class _Formatter(object):
+class _Formatter(_Interface):
 
    def __init__(self, client):
-      self._client = client
+      #self._client = client
+      _Interface.__init__(self, client)
       self.number = False
-### NOTE: what is this fore?
-#      self.variable = None
       self.before = [ ]
       self.after = [ ]
 #      self.opening = [ ]
@@ -13,7 +16,7 @@ class _Formatter(object):
 #      self.right = [ ]
    
 #   def __repr__(self):
-#      return '%s( )' % self.__class__.__name__
+#      return '<%s>' % self.__class__.__name__
 
 #   @property
 #   def _before(self):

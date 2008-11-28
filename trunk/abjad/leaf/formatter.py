@@ -1,6 +1,5 @@
 from abjad.core.formatter import _Formatter
-from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.core.formatcarrier import _FormatCarrier
 
 
 class _LeafFormatter(_Formatter):
@@ -10,22 +9,19 @@ class _LeafFormatter(_Formatter):
       self.left = [ ]
       self.right = [ ]
 
-   #def _getInterfaces(self):
    def _getFormatCarriers(self):
       result = [ ]
       for value in self._client.__dict__.values( ):
-         #if isinstance(value, _Interface):
-         if isinstance(value, (_Interface, _GrobHandler)):
+         if isinstance(value, _FormatCarrier):
             result.append(value)
       result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
 
    def _collectLocation(self, location):
       result = [ ]
-      #for interface in self._getInterfaces( ):
-      for interface in self._getFormatCarriers( ):
+      for carrier in self._getFormatCarriers( ):
          try:
-            exec('result.extend(interface.%s)' % location)
+            exec('result.extend(carrier.%s)' % location)
          except AttributeError:
             pass
       exec('result.extend(self._client.spanners.%s)' % location)

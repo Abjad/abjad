@@ -1,26 +1,15 @@
+from abjad.core.formatcarrier import _FormatCarrier
 from abjad.core.interface import _Interface
 
 
-class _StaffInterface(_Interface):
+class _StaffInterface(_Interface, _FormatCarrier):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
+      _FormatCarrier.__init__(self)
       self._forced = None
 
-   @property
-   def given(self):
-      return self._client._parentage._first('Staff')
-
-   @property
-   def effective(self):
-      return self._forced if self._forced else self.given
-      
-   @property
-   def changed(self):
-      return self._client.prev and \
-         self._client.prev.staff != self._client.staff
-      
-   ### FORMATTING ###
+   ### PRIVATE ATTRIBUTES ###
 
    @property
    def _before(self):
@@ -38,3 +27,18 @@ class _StaffInterface(_Interface):
          not self._client.next:
          result.append(r'\change Staff = %s' % self.given.invocation.name)
       return result
+
+   ### PUBLIC ATTRIBUTES ###
+
+   @property
+   def given(self):
+      return self._client._parentage._first('Staff')
+
+   @property
+   def effective(self):
+      return self._forced if self._forced else self.given
+      
+   @property
+   def changed(self):
+      return self._client.prev and \
+         self._client.prev.staff != self._client.staff
