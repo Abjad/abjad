@@ -90,6 +90,10 @@ class _NoteHead(_Interface, _GrobHandler):
    
    ### PUBLIC ATTRIBUTES ###
 
+   @property
+   def format(self):
+      return self._formatter.lily
+
    @apply
    def pitch( ):
       def fget(self):
@@ -107,10 +111,6 @@ class _NoteHead(_Interface, _GrobHandler):
             raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
 
-   @property
-   def format(self):
-      return self._formatter.lily
-
    @apply
    def style( ):
       def fget(self):
@@ -124,9 +124,10 @@ class _NoteHead(_Interface, _GrobHandler):
             raise ValueError('can not set notehead style.')
       return property(**locals( ))
 
+   ### DICTIONARIES ###
+
    stylesSupported = (
       'cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 
       'neomensural', 'harmonic', 'mensural', 'petruccidiamond', 
       'triangle',  'semicircle',  'diamond', 'tiltedtriangle', 
       'square', 'wedge', )
-

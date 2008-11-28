@@ -1,43 +1,42 @@
-class _Accidental(object):
+from abjad.core.grobhandler import _GrobHandler
+
+
+class _Accidental(_GrobHandler):
 
    def __init__(self, string = ''):
-      self.string = string
+      _GrobHandler.__init__(self, 'Accidental')
+      self._string = string
 
-   ### REPR ###
-
-   def __repr__(self):
-      return '_Accidental(%s)' % self
-
-   def __str__(self):
-      return self.string
-
-   ### PROPERTIES ###
-
-   @property
-   def adjustment(self):
-      return self.accidentalStringToAdjustment[self.string]
-
-   ### PREDICATES ###
-
-   def hasNone(self):
-      return self.string == ''
-
-   ### OVERRIDES ###
+   ### OVERLOADS ###
 
    def __eq__(self, arg):
-      #return isinstance(arg, _Accidental) and self.string == arg.string
       if arg is None:
-         return self.string == ''
+         return self._string == ''
       elif isinstance(arg, _Accidental):
-         return self.string == arg.string
+         return self._string == arg._string
       elif isinstance(arg, str):
-         return self.string == arg
+         return self._string == arg
       return False
 
    def __ne__(self, arg):
       return not self == arg
 
-   ### CONVERTERS ###
+   def __nonzero__(self):
+      return True
+
+   def __repr__(self):
+      return '_Accidental(%s)' % self
+
+   def __str__(self):
+      return self._string
+
+   ### PUBLIC ATTRIBUTES ###
+
+   @property
+   def adjustment(self):
+      return self.accidentalStringToAdjustment[self._string]
+
+   ### DICTIONARIES ###
 
    accidentalStringToAdjustment = {
         '': 0,      '!': 0,
@@ -45,6 +44,8 @@ class _Accidental(object):
        'f': -1,    'qf': -0.5,
       'ss': 2,    'tqs': 1.5,
        's': 1,     'qs': 0.5  }
+
+   ### TODO - remove -2.5 after Lidercfeny ...
 
    adjustmentToAccidentalString = {
        0: '',
@@ -55,4 +56,7 @@ class _Accidental(object):
     -2.5: 'ff'
        }
 
-   ### TODO - remove -2.5 after Lidercfeny ...
+   ### PUBLIC METHODS ###
+
+   def hasNone(self):
+      return self._string == ''
