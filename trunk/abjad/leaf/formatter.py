@@ -9,28 +9,28 @@ class _LeafFormatter(_Formatter):
       self.left = [ ]
       self.right = [ ]
 
-   def _getFormatCarriers(self):
-      result = [ ]
-      for value in self._client.__dict__.values( ):
-         if isinstance(value, _FormatCarrier):
-            result.append(value)
-      result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
-      return result
+#   def _getFormatCarriers(self):
+#      result = [ ]
+#      for value in self._client.__dict__.values( ):
+#         if isinstance(value, _FormatCarrier):
+#            result.append(value)
+#      result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
+#      return result
 
-   def _collectLocation(self, location):
-      result = [ ]
-      for carrier in self._getFormatCarriers( ):
-         try:
-            exec('result.extend(carrier.%s)' % location)
-         except AttributeError:
-            pass
-      exec('result.extend(self._client.spanners.%s)' % location)
-      # add self._client._before, if self._client is a Rest:
-      try:
-         exec('result.extend(self._client.%s)' % location)
-      except:
-         pass
-      return result
+#   def _collectLocation(self, location):
+#      result = [ ]
+#      for carrier in self._getFormatCarriers( ):
+#         try:
+#            exec('result.extend(carrier.%s)' % location)
+#         except AttributeError:
+#            pass
+#      exec('result.extend(self._client.spanners.%s)' % location)
+#      # add self._client._before, if self._client is a Rest:
+#      try:
+#         exec('result.extend(self._client.%s)' % location)
+#      except:
+#         pass
+#      return result
 
    @property
    def _number(self):

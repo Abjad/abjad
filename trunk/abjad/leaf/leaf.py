@@ -82,13 +82,13 @@ class _Leaf(_Component):
          raise ValueError('can not overwrite _BeamInterface.')
       return property(**locals( ))
    
-   @apply
-   def clef( ):
-      def fget(self):
-         return self._clef
-      def fset(self, arg):
-         self._clef.forced = arg
-      return property(**locals( ))
+#   @apply
+#   def clef( ):
+#      def fget(self):
+#         return self._clef
+#      def fset(self, arg):
+#         self._clef.forced = arg
+#      return property(**locals( ))
 
 #   @apply
 #   def clef( ):

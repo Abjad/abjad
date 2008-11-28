@@ -1,4 +1,5 @@
 from abjad.barline.interface import _BarLineInterface
+from abjad.clef.interface import _ClefInterface
 from abjad.core.comments import _Comments
 from abjad.core.navigator import _Navigator
 from abjad.core.parentage import _Parentage
@@ -13,6 +14,7 @@ class _Component(object):
    def __init__(self):
       self._accidentals = None
       self._barline = _BarLineInterface(self)
+      self._clef = _ClefInterface(self)
       self._comments = _Comments( )
       self._navigator = _Navigator(self)
       self._parentage = _Parentage(self)
@@ -61,6 +63,14 @@ class _Component(object):
          return self._barline
       def fset(self, type):
          self._barline.type = type
+      return property(**locals( ))
+
+   @apply
+   def clef( ):
+      def fget(self):
+         return self._clef
+      def fset(self, arg):
+         self._clef.forced = arg
       return property(**locals( ))
 
    @apply

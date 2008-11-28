@@ -20,6 +20,15 @@ class _ClefInterface(_Interface, _GrobHandler):
          result.append(r'\clef %s' % self.name)
       return result
 
+   ### NOTE: this is kinda kinky:
+   ###       reusing _before as _opening;
+   ###       reason: Leaf._ClefInterface._before make sense
+   ###       analogously as Container._ClefInterface._opening.
+
+   @property
+   def _opening(self):
+      return self._before
+
    ### PUBLIC ATTRIBUTES ###
 
    @property
@@ -35,6 +44,9 @@ class _ClefInterface(_Interface, _GrobHandler):
             return cur.clef._forced
          else:
             cur = cur.prev
+      for x in self._client._parentage._parentage:
+         if hasattr(x, 'clef') and x.clef._forced:
+            return x.clef._forced
       return _Clef('treble')
 
    @apply
