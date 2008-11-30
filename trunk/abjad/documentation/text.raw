@@ -1,61 +1,57 @@
-<html>
 <head>
-<link rel="stylesheet" href="css/abjad.css" type="text/css" />
+<link rel="stylesheet" href="css/abjad.css" type="text/css"/>
 </head>
-<body>
-
-<title> The Abjad Doc Site </title>
 
 <h1>The Abjad Doc Site</h1>
-
-<introduction>
-
-</introduction>
 
 <toc-section>
 <header> Welcome
 <body>
-   <p> <a href="chapters/introduction/index.html">Abjad?</a>
-   <p> <a href="chapters/tour/index.html">A quick tour</a>
-   <p> <a href="chapters/install/index.html">Getting and installing the program</a>
-   <p> <a href="chapters/what_next/index.html">What next?</a>
+   <p><a href="chapters/introduction/index.html">Abjad?</a></p>
+   <p><a href="chapters/tour/index.html">A quick tour</a></p>
+   <p><a href="chapters/install/index.html">Getting and installing the program</a></p>
+   <p><a href="chapters/what_next/index.html">What next?</a></p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Abjad fundamentals
 <body>
-   <p> <a href="chapters/lcs/index.html">The Leaf Container Spanner (LCS) model</a>
-   <p> <a href="chapters/note_basics/index.html">Working with notes</a>
-   <p> <a href="chapters/rest_basics/index.html">Working with rests</a>
-   <p> <a href="chapters/chord_basics/index.html">Working with chords</a>
+   <p><a href="chapters/lcs/index.html">The Leaf Container Spanner (LCS) model</a></p>
+   <p><a href="chapters/note_basics/index.html">Working with notes</a></p>
+   <p><a href="chapters/rest_basics/index.html">Working with rests</a></p>
+   <p><a href="chapters/chord_basics/index.html">Working with chords</a></p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Understanding pitch
 <body>
-<p> <a href="chapters/pitch_overview/index.html"> Overview </a>
+<p><a href="chapters/pitch_overview/index.html">Overview</a></p>
 
 <p> 
 <a href="chapters/pitch_initialization/index.html">
 Pitch initialization
 </a>
+</p>
 
 <p> 
 <a href="chapters/pitch_token/index.html">
 Pitch token input
 </a>
+</p>
 
 <p> 
 <a href="chapters/notehead_token/index.html">
 Notehead token input
 </a>
+</p>
 
 <p> 
 <a href="chapters/pitch_tools/index.html">
 Pitch tools
 </a>
+</p>
 </body>
 </toc-section>
 
@@ -67,86 +63,103 @@ Pitch tools
 <a href="chapters/duration_introduction/index.html">
 Introduction
 </a>
+</p>
 
 <p> 
 <a href="chapters/rationals/index.html">
 Rational values
 </a>
+</p>
 
 <p> 
 <a href="chapters/assignability/index.html">
 Assignability
 </a>
+</p>
 
 <p> 
 <a href="chapters/duration_token/index.html">
 Duration token
 </a>
+</p>
 
 <p> 
 <a href="chapters/prolation/index.html">
 Prolation
 </a>
+</p>
 
 <p> 
 <a href="chapters/leaf_multipliers/index.html">
 Leaf multipliers
 </a>
+</p>
 
 <p> 
 <a href="chapters/duration_types/index.html">
 Duration types
 </a>
+</p>
 
 <p> 
 <a href="chapters/duration_initialization/index.html">
 Duration initialization
 </a>
+</p>
 
 <p> 
 <a href="chapters/written_duration/index.html">
 Written duration
 </a>
+</p>
 
 <p> 
 <a href="chapters/multiplied_duration/index.html">
 Multiplied duration
 </a>
+</p>
 
 <p> 
 <a href="chapters/contents_duration/index.html">
 Contents duration
 </a>
+</p>
 
 <p> 
 <a href="chapters/target_duration/index.html">
 Target duration
 </a>
+</p>
 
 <p> 
 <a href="chapters/prolated_duration/index.html">
 Prolated duration
 </a>
+</p>
 
 <p> 
 <a href="chapters/leaf_durations/index.html">
 Working with leaf durations
 </a>
+</p>
 
 <p> 
 <a href="chapters/container_durations/index.html">
 Working with container durations
 </a>
+</p>
 
 <p> 
 <a href="chapters/duration_interfaces/index.html">
 Overivew of the Abjad duration interfaces
 </a>
+</p>
 
 <p> 
 <a href="chapters/duration_interfaces_compared/index.html">
 Duration interfaces compared
 </a>
+</p>
 </body>
 </toc-section>
 
@@ -157,9 +170,11 @@ Duration interfaces compared
 <a href="chapters/container_model/index.html">
 The container model
 </a>
+</p>
 
 <p> 
 The container inheritance hierarchy
+</p>
 </body>
 </toc-section>
 
@@ -168,17 +183,18 @@ The container inheritance hierarchy
 <body>
 <p> 
 The spanner model
+</p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> The Abjad core classes
 <body>
-<p> <a href="chapters/comments_class/index.html">
-The Abjad <code>_Comments</code> class</a> 
+<p><a href="chapters/comments_class/index.html">
+The Abjad <code>_Comments</code> class</a></p> 
 
-<p> <a href="chapters/component_class/index.html">
-The Abjad <code>_Component</code> class</a>
+<p><a href="chapters/component_class/index.html">
+The Abjad <code>_Component</code> class</a></p>
 </body>
 </toc-section>
 
@@ -189,41 +205,49 @@ The Abjad <code>_Component</code> class</a>
 <a href="chapters/rational_class/index.html">
 The Abjad <code>Rational</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/duration_interface_class/index.html">
 The Abjad <code>_DurationInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/leaf_duration_interface_class/index.html">
 The Abjad <code>_LeafDurationInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/container_duration_interface_class/index.html">
 The Abjad <code>_ContainerDurationInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/measure_duration_interface_class/index.html">
 The Abjad <code>_MeasureDurationInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/tuplet_duration_interface_class/index.html">
 The Abjad <code>_TupletDurationInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/fdtuplet_duration_interface_class/index.html">
 The Abjad <code>_FDTupletDurationInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/fmtuplet_duration_interface_class/index.html">
 The Abjad <code>_FMTupletDurationInterface</code> class
 </a>
+</p>
 </body>
 </toc-section>
 
@@ -232,37 +256,44 @@ The Abjad <code>_FMTupletDurationInterface</code> class
 <body>
 <p> 
 <a href="chapters/chord_class/index.html">The Abjad <code>Chord</code> class</a>
+</p>
 
 <p> 
 <a href="chapters/leaf_class/index.html">The Abjad <code>_Leaf</code> class</a>
+</p>
 
 <p> 
 <a href="chapters/note_class/index.html">The Abjad <code>Note</code> class </a>
+</p>
 
 <p> 
 <a href="chapters/rest_class/index.html">The Abjad <code>Rest</code> class</a>
+</p>
 
 <p> 
 <a href="chapters/skip_class/index.html">The Abjad <code>Skip</code> class</a>
+</p>
 
 <p> 
 Casting 
+</p>
 
 <p> 
 The leaf inheritance hierarchy
+</p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> The Abjad helper classes
 <body>
-<p> <a href="chapters/accidental_class/index.html">The Abjad <code>_Accidental</code> class</a>
+<p><a href="chapters/accidental_class/index.html">The Abjad <code>_Accidental</code> class</a></p>
 
-<p> <a href="chapters/clef_class/index.html">The Abjad <code>_Clef</code> class</a>
+<p><a href="chapters/clef_class/index.html">The Abjad <code>_Clef</code> class</a></p>
 
-<p> <a href="chapters/notehead_class/index.html">The Abjad <code>_Notehead</code> class</a>
+<p><a href="chapters/notehead_class/index.html">The Abjad <code>_Notehead</code> class</a></p>
 
-<p> <a href="chapters/pitch_class/index.html">The Abjad <code>Pitch</code> class</a>
+<p><a href="chapters/pitch_class/index.html">The Abjad <code>Pitch</code> class</a></p>
 </body>
 </toc-section>
 
@@ -274,56 +305,67 @@ The leaf inheritance hierarchy
 <a href="chapters/container_class/index.html">
 The Abjad <code>Container</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/context_class/index.html">
 The Abjad <code>Context</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/fdtuplet_class/index.html">
 The Abjad <code>FixedDurationTuplet</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/fmtuplet_class/index.html">
 The Abjad <code>FixedMultiplierTuplet</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/grace_class/index.html">
 The Abjad <code>Grace</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/measure_class/index.html">
 The Abjad <code>Measure</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/parallel_class/index.html">
 The Abjad <code>Parallel</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/sequential_class/index.html">
 The Abjad <code>Sequential</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/staff_class/index.html">
 The Abjad <code>Staff</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/tuplet_class/index.html">
 The Abjad <code>_Tuplet</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/voice_class/index.html">
 The Abjad <code>Voice</code> class
 </a>
+</p>
 </body>
 </toc-section>
 
@@ -334,51 +376,61 @@ The Abjad <code>Voice</code> class
 <a href="chapters/beam_spanner/index.html">
 The Abjad <code>Beam</code> spanner
 </a>
+</p>
 
 <p> 
 <a href="chapters/complexbeam_spanner/index.html">
 The Abjad <code>ComplexBeam</code> spanner
 </a>
+</p>
 
 <p> 
 <a href="chapters/glissando_spanner/index.html">
 The Abjad <code>Glissando</code> spanner
 </a>
+</p>
 
 <p> 
 <a href="chapters/metricgrid_spanner/index.html">
 The Abjad <code>MetricGrid</code> spanner
 </a>
+</p>
 
 <p> 
 <a href="chapters/octavation_spanner/index.html">
 The Abjad <code>Octavation</code> spanner
 </a>
+</p>
 
 <p> 
 <a href="chapters/override_spanner/index.html">
 The Abjad <code>Override</code> spanner
 </a>
+</p>
 
 <p> 
 <a href="chapters/spanner_class/index.html">
 The Abjad <code>_Spanner</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/tempo_spanner/index.html">
 The Abjad <code>Tempo</code> spanner
 </a>
+</p>
 
 <p> 
 <a href="chapters/tie_spanner/index.html">
 The Abjad <code>Tie</code> spanner
 </a>
+</p>
 
 <p> 
 <a href="chapters/trill_spanner/index.html">
 The Abjad <code>Trill</code> spanner
 </a>
+</p>
 </body>
 </toc-section>
 
@@ -389,171 +441,188 @@ The Abjad <code>Trill</code> spanner
 <a href="chapters/articulations_interface/index.html">
 The Abjad <code>_ArticulationInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/barline_interface/index.html">
 The Abjad <code>_BarlineInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/beam_interface/index.html">
 The Abjad <code>_BeamInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/clef_interface/index.html">
 The Abjad <code>_ClefInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/dots_interface/index.html">
 The Abjad <code>_DotsInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/dynamics_interface/index.html">
 The Abjad <code>_DynamicsInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/glissando_interface/index.html">
 The Abjad <code>_GlissandoInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/grace_interface/index.html">
 The Abjad <code>_GraceInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/harmonic_interface/index.html">
 The Abjad <code>_HarmonicInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/core_interface/index.html">
 The Abjad <code>_Interface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/leaf_spanner_interface/index.html">
 The Abjad <code>_LeafSpannerInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/staff_interface/index.html">
 The Abjad <code>_StaffInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/stem_interface/index.html">
 The Abjad <code>_StemInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/tempo_interface/index.html">
 The Abjad <code>_TempoInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/tie_interface/index.html">
 The Abjad <code>_TieInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/tremolo_interface/index.html">
 The Abjad <code>_TremoloInterface</code> class
 </a>
+</p>
 
 <p> 
 <a href="chapters/trill_interface/index.html">
 The Abjad <code>_TrillInterface</code> class
 </a>
+</p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Abjad helper functions
 <body>
-   <p> <a href="chapters/helpers/instances/index.html"><code>instances( )</code></a>
+   <p><a href="chapters/helpers/instances/index.html"><code>instances( )</code></a></p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Attribute formatting in Abjad
 <body>
-   <p> Understanding LilyPond overrides
-   <p> User attributes in Abjad
+   <p>Understanding LilyPond overrides</p>
+   <p>User attributes in Abjad</p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Structure traversal
 <body>
-   <p> Python looping, comprehension and enumeration
-   <p> Python iterators and generators
-   <p> Abjad iteration & retroiteration by class
-   <p> Enumeration in Abjad
-   <p> The Abjad bead model
-   <p> Bead interfaces
+   <p>Python looping, comprehension and enumeration</p>
+   <p>Python iterators and generators</p>
+   <p>Abjad iteration & retroiteration by class</p>
+   <p>Enumeration in Abjad</p>
+   <p>The Abjad bead model</p>
+   <p>Bead interfaces</p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Structure manipulation
 <body>
-   <p> Leaf fusion
-   <p> Measure concatenation
-   <p> Voice concatenation
-   <p> Staff concatenation
-   <p> <a href="chapters/leaf_splitting/index.html">Leaf splitting</a>
-   <p> Excision
-   <p> Using <code>lcopy( )</code>
-   <p> Using <code>scopy( )</code>
-   <p> Using <code>tcopy( )</code>
-   <p> <a href="chapters/multiplication/index.html">Multiplication</a>
+   <p>Leaf fusion</p>
+   <p>Measure concatenation</p>
+   <p>Voice concatenation</p>
+   <p>Staff concatenation</p>
+   <p><a href="chapters/leaf_splitting/index.html">Leaf splitting</a></p>
+   <p>Excision</p>
+   <p>Using <code>lcopy( )</code></p>
+   <p>Using <code>scopy( )</code></p>
+   <p>Using <code>tcopy( )</code></p>
+   <p><a href="chapters/multiplication/index.html">Multiplication</a></p>
 </body>
 </toc-section>
 
 <toc-section>
 <header>Structure testing
 <body>
-   <p> What is well-formedness testing?
-   <p> Using <code>check( )</code>
-   <p> Checking for overlapping beams
-   <p> Checking for empty containers
-   <p> Checking for misrepresented flags
+   <p>What is well-formedness testing?</p>
+   <p>Using <code>check( )</code></p>
+   <p>Checking for overlapping beams</p>
+   <p>Checking for empty containers</p>
+   <p>Checking for misrepresented flags</p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Materials generation
 <body>
-   <p> Text mapping
-   <p> <a href="chapters/random_values/index.html">Random values generation</a>
-   <p> Xenakis sieves
+   <p>Text mapping</p>
+   <p><a href="chapters/random_values/index.html">Random values generation</a></p>
+   <p>Xenakis sieves</p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Developer concerns
 <body>
-   <p> <a href="chapters/lilypond/index.html">Why LilyPond is right for Abjad</a>
-   <p> <a href="chapters/python/index.html">Why Python is right for Abjad</a>
-   <p> Composer attributes, developer attributes
-   <p> Externalized initialization
-   <p> Python properties in Abjad
-   <p> The Abjad inheritance hierarchy
-   <p> Making contributions
+   <p><a href="chapters/lilypond/index.html">Why LilyPond is right for Abjad</a></p>
+   <p><a href="chapters/python/index.html">Why Python is right for Abjad</a></p>
+   <p>Composer attributes, developer attributes</p>
+   <p>Externalized initialization</p>
+   <p>Python properties in Abjad</p>
+   <p>The Abjad inheritance hierarchy</p>
+   <p>Making contributions</p>
 </body>
 </toc-section>
 
 <toc-section>
 <header> Appendices
 <body>
-   <p> <a href="chapters/pitch_conventions/index.html">Pitch conventions</a>
-   <p> Glossary
-   <p> <a href="chapters/bibliography/index.html">Bibliography</a>
+   <p><a href="chapters/pitch_conventions/index.html">Pitch conventions</a></p>
+   <p>Glossary</p>
+   <p><a href="chapters/bibliography/index.html">Bibliography</a></p>
 </body>
 </toc-section>
 
