@@ -1,3 +1,12 @@
+<!-- NOTE: the HEAD tags here are illegal!
+           the Mako templating system applies a HEAD section
+           immediately before this and so the HEAD section
+           here is redundant and causes the W3 validator to complain.
+
+           We have to figure out how to get either the templating
+           system of raw_parser.py to point this page to abjad.css.
+-->
+
 <head>
 <link rel="stylesheet" href="css/abjad.css" type="text/css"/>
 </head>
