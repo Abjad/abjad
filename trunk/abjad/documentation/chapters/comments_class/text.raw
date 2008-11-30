@@ -1,3 +1,9 @@
-<h1>The Abjad <code>_Comments</code> class</h1>
+<title> The Abjad _Comments class </title>
 
-<p>The Abjad <code>_Comments</code> class encapsulates score component comments.
+<h1>The Abjad <_Comments> class</h1>
+
+<subsection>
+
+<p>The Abjad <_Comments> class encapsulates score component comments.
+
+</subsection>
