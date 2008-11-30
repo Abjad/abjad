@@ -61,8 +61,9 @@ class SUBSECTION(_TagParser):
          if '<subsection>' in line:
             name = line.replace('<subsection>', '')
             name = name.strip( )
-            self.output.append('<div class="subsection">\n')
-            self.output.append('<h2> %s </h2>' % name.capitalize( )) 
+            self.output.append('<div class="subsection">\n\n')
+            if name.capitalize( ):
+               self.output.append('<h2> %s </h2>\n' % name.capitalize( )) 
          elif '</subsection>' in line:
             # HTML will not validate correctly with class spec in close tag
             #self.output.append('< class="subsection">\n')
