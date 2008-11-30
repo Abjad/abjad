@@ -1,0 +1,102 @@
+<title> The Abjad <_FMTupletDurationInterface> class </title>
+
+<h1> The Abjad <_FMTupletDurationInterface> class </h1>
+
+<p>
+The Abjad <_FMTupletDurationInterface> class manages the duration attributes of fixed-multiplier tuplets.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes
+   <p class="interface-attribute"> _duration &mdash; reimplement
+   <p class="interface-attribute-inherited"> augmentation
+   <p class="interface-attribute-inherited"> contents
+   <p class="interface-attribute-inherited"> diminution
+   <p class="interface-attribute-inherited"> multiplier
+   <p class="interface-attribute-inherited"> prolated
+   <p class="interface-attribute-inherited"> prolation
+   <p class="interface-attribute-inherited"> prolations
+</div>
+
+<h2 class="page-section">
+Example
+</h2>
+
+<abjad>
+  abjad> tuplet = FixedMultiplierTuplet((5, 6), Note(0, (1, 16)) * 6)
+  abjad> Beam(tuplet)
+  abjad> outer = FixedMultiplierTuplet((2, 3), [Note(0, (1, 16)), tuplet])
+  abjad> measure = Measure((2, 8), [outer])
+  abjad> staff = RhythmicStaff([measure])
+  abjad> show(staff)
+  <!-- inline -->
+</abjad>
+
+<div class="example">
+<p class="example-header"> multiplier
+<abjad>
+  abjad> tuplet.duration.multiplier
+  Rational(5, 6)
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> augmentation
+<abjad>
+  abjad> tuplet.duration.augmentation
+  False
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> diminution
+<abjad>
+  abjad> tuplet.duration.diminution
+  True
+</abjad>
+</div>
+
+
+<div class="example">
+<p class="example-header"> prolated
+<abjad>
+  abjad> tuplet.duration.prolated
+  Rational(5, 24)
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> prolation
+<abjad>
+  abjad> tuplet.duration.prolation
+  Rational(2, 3)
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> prolations
+<abjad>
+  abjd> tuplet.duration.prolations
+  [Rational(2, 3)]
+</abjad>
+</div>
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comemnt">
+See the <_FMTupletDurationInterface> class in <code>tuplet/fm/duration.py</code> for implementation details.
+</p>
+
+<h2 class="page-section">
+To do
+</h2>
+
+<p class="to-do">
+Reimplement implicit <code>_duration</code> as some explicit attribute, maybe <code>multiplied</code>.
+</p>

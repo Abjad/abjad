@@ -1,0 +1,105 @@
+<title> The Abjad <code><a href="../measure_duration_interface_class/index.html">_MeasureDurationInterface</a></code> class </title>
+
+<h1> The Abjad <code><a href="../measure_duration_interface_class/index.html">_MeasureDurationInterface</a></code> class </h1>
+
+<p>
+The Abjad <code><a href="../measure_duration_interface_class/index.html">_MeasureDurationInterface</a></code> manages measure duration.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes
+   <p class="interface-attribute"> compression
+   <p class="interface-attribute-inherited"> contents
+   <p class="interface-attribute-inherited"> multiplier
+   <p class="interface-attribute"> nonbinary
+   <p class="interface-attribute-inherited"> prolated
+   <p class="interface-attribute-inherited"> prolation
+   <p class="interface-attribute-inherited"> prolations
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
+
+<pre class="abjad">
+abjad> container = Container(Note(0, (1, 8)) * 5)
+abjad> tuplet = FixedDurationTuplet((5, 8), [container, Note(0, (1, 8))])
+abjad> measure = Measure((5, 8), [tuplet])
+abjad> staff = RhythmicStaff([measure])
+abjad> measure
+Measure(5/8, [{@ 6:5 (c'8, c'8, c'8, c'8, c'8), c'8 @}])
+abjad> show(staff)
+</pre>
+<img src="images/1.png">
+
+<div class="example">
+<p class="example-header"> compression
+<pre class="abjad">
+abjad> measure.duration.compression
+Rational(1, 1)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> contents
+<pre class="abjad">
+abjad> measure.duration.contents
+Rational(5, 8)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> multiplier
+<pre class="abjad">
+abjad> measure.duration.multiplier
+Rational(1, 1)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header"> nonbinary
+<pre class="abjad">
+abjad> measure.duration.nonbinary
+False
+</pre>
+</div>   
+
+<div class="example">
+<p class="example-header-inherited"> prolated
+<pre class="abjad">
+abjad> measure.duration.prolated
+Rational(5, 8)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> prolation
+<pre class="abjad">
+abjad> measure.duration.prolation
+Rational(1, 1)
+</pre>
+</div>
+
+<div class="example">
+<p class="example-header-inherited"> prolations
+<pre class="abjad">
+abjad> measure.duration.prolations
+[Rational(1, 1)]
+</pre>
+</div>
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comment">
+The <code>nonbinary</code>, <code>multiplier</code> and <code>prolated</code> attributes handle measures governed by nonbinary meter.
+</p>
+
+<p class="comment">
+See the <code><a href="../measure_duration_interface_class/index.html">_MeasureDurationInterface</a></code> class in <code>measure/duration.py</code> for implementation details.
+</p>

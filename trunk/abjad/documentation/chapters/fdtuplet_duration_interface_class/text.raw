@@ -1,0 +1,158 @@
+<title> The Abjad <_FDTupletDurationInterface> class </title>
+
+<h1>
+The Abjad <_FDTupletDurationInterface> class
+</h1>
+
+
+<p>
+The Abjad <_FDTupletDurationInterface> class manages the duration attributes of fixed-duration tuplets.
+</p>
+
+<h2 class="page-section">
+Public interface
+</h2>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Attributes
+   <p class="interface-attribute"> _duration &mdash; reimplement
+   <p class="interface-attribute-inherited"> augmentation
+   <p class="interface-attribute-inherited"> contents
+   <p class="interface-attribute-inherited"> diminution
+   <p class="interface-attribute-inherited"> multiplier
+   <p class="interface-attribute-inherited"> prolated
+   <p class="interface-attribute-inherited"> prolation
+   <p class="interface-attribute-inherited"> prolations
+</div>
+
+<div class="interface-block">
+   <p class="interface-block-header"> Methods
+   <p class="interface-attribute"> trim( )
+</div>
+
+<h2 class="page-section">
+Examples
+</h2>
+
+<abjad>
+  abjad> tuplet = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
+  abjad> Beam(tuplet)
+  abjad> outer = FixedDurationTuplet((2, 8), [tuplet, Note(0, (1, 16))])
+  abjad> measure = Measure((2, 8), [outer])
+  abjad> staff = RhythmicStaff([measure])
+  abjad> show(staff)
+</abjad>
+
+<div class="example">
+<p class="example-header"> augmentation
+<!--
+<p> Boolean
+<p> True when tuplet multiplier is greater than 1. False otherwise.
+-->
+<abjad>
+  abjad> tuplet.duration.augmentation
+  False
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> contents
+<abjad>
+   abjad> tuplet.duration.contents
+   Rational(3, 8)
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> diminution
+<!--
+<p> Boolean
+<p> True when tuplet multiplier is less than 1. False otherwise.
+-->
+<abjad>
+  abjad> tuplet.duration.diminution
+  True
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> multiplier
+<!--
+<p> positive rational
+<p> Prolation factor tuplet donates to its contents.
+-->
+<abjad>
+  abjad> tuplet.duration.multiplier
+  Rational(2, 3)
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> prolated
+<!--
+<p> nonnegative rational
+<p> See <a href="../prolated_duration/index.html">prolated duration</a>.
+-->
+<abjad>
+  abjad> tuplet.duration.prolated
+  Rational(1, 5)
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> prolation
+<!--
+<p> positive rational
+<p> Prolation tuplet receives from its parents, expressed as a single factor. See <a href="../prolation/index.html">prolation</a>.
+-->
+<abjad>
+  abjad> tuplet.duration.prolation
+  Rational(4, 5)
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> prolations
+<!--
+<p> list of positive rationals.
+<p> Prolation chain tuplet receives from its parents, expressed as a list of factors. See <a href="../prolation/index.html">prolation</a>.
+-->
+<abjad>
+  abjd> tuplet.duration.prolations
+  [Rational(4, 5)]
+</abjad>
+</div>
+
+<div class="example">
+<p class="example-header"> trim( )
+<abjad>
+   abjad> notes = [Note(n, (1, 8)) for n in range(5)]
+   abjad> tuplet = FixedDurationTuplet((4, 8), notes)
+   abjad> Beam(tuplet)
+   abjad> measure = Measure((4, 8), [tuplet])
+   abjad> show(measure)
+   <!-- inline -->
+</abjad>
+<abjad>
+   abjad> notes = [Note(n, (1, 8)) for n in range(5)]
+   abjad> tuplet = FixedDurationTuplet((4, 8), notes)
+   abjad> Beam(tuplet)
+   abjad> measure = Measure((4, 8), [tuplet])
+   abjad> tuplet.trim(0)
+   abjad> show(measure)
+</abjad>
+</div>
+
+<h2 class="page-section">
+Comments
+</h2>
+
+<p class="comemnt">
+See the <code>_FdTupletDurationInterface</code> class in <code>tuplet/fd/duration.py</code> for implementation details.
+</p>
+
+<h2 class="page-section">To do</h2>
+
+<p class="to-do">
+Reimplement implicit <code>_duration</code> as explicit <code>target</code>.
+</p>
