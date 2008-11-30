@@ -64,7 +64,9 @@ class SUBSECTION(_TagParser):
             self.output.append('<div class="subsection">\n')
             self.output.append('<h2> %s </h2>' % name.capitalize( )) 
          elif '</subsection>' in line:
-            self.output.append('</div class="subsection">\n')
+            # HTML will not validate correctly with class spec in close tag
+            #self.output.append('< class="subsection">\n')
+            self.output.append('</div>\n')
          else:
             self.output.append(line)
 
@@ -131,7 +133,7 @@ class INTERFACE(_TagParser):
          print 'ERROR: unmatched </interface>.'
       else:
          self.within = False
-         self.output.append('</div class="interface">\n')
+         self.output.append('< class="interface">\n')
 
    def parse_open_block(self, line):
       if self.within:
@@ -139,14 +141,14 @@ class INTERFACE(_TagParser):
          name = name.strip( )
          name = name.capitalize( )
          self.output.append('<div class="block">\n')
-         output = '<div class="name"> %s </div class="name">\n' % name
+         output = '<div class="name"> %s < class="name">\n' % name
          self.output.append(output)
       else:
          self.output.append(line)
 
    def parse_close_block(self, line):
       if self.within:
-         self.output.append('</div class="block">\n')
+         self.output.append('< class="block">\n')
       else:
          self.output.append(line)
 
@@ -159,8 +161,8 @@ class INTERFACE(_TagParser):
          output += '<a href="#%s"> ' % attribute
          output += '%s ' % attribute
          output += '</a> '
-         output += '</div class="local"> '
-         output += '</div class="attribute">\n'
+         output += '< class="local"> '
+         output += '< class="attribute">\n'
          self.output.append(output)
       else:
          self.output.append(line)
@@ -174,8 +176,8 @@ class INTERFACE(_TagParser):
          output += '<a href="#%s"> ' % attribute
          output += '%s ' % attribute
          output += '</a> '
-         output += '</div class="inherited"> '
-         output += '</div class="attribute">\n'
+         output += '< class="inherited"> '
+         output += '< class="attribute">\n'
          self.output.append(output)
       else:
          self.output.append(line)
@@ -220,7 +222,7 @@ class DEFINITION(_TagParser):
          print 'ERROR: unmatched </definition>.'
       else:
          self.within = False
-         self.output.append('</div class="definition">\n')
+         self.output.append('< class="definition">\n')
 
    def parse_open_header(self, line):
       if self.within:
@@ -230,7 +232,7 @@ class DEFINITION(_TagParser):
 
    def parse_close_header(self, line):
       if self.within:
-         self.output.append('</div class="header">\n')
+         self.output.append('< class="header">\n')
       else:
          self.output.append(line)
    
@@ -242,7 +244,7 @@ class DEFINITION(_TagParser):
 
    def parse_close_body(self, line):
       if self.within:
-         self.output.append('</div class="body">\n')
+         self.output.append('< class="body">\n')
       else:
          self.output.append(line)
 
@@ -255,8 +257,8 @@ class DEFINITION(_TagParser):
          output += '<a name="%s"> ' % attribute
          output += '%s ' % attribute
          output += '</a> '
-         output += '</div class="local"> '
-         output += '</div class="attribute">\n'
+         output += '< class="local"> '
+         output += '< class="attribute">\n'
          self.output.append(output)
       else:
          self.output.append(line)
@@ -270,8 +272,8 @@ class DEFINITION(_TagParser):
          output += '<a name="%s"> ' % attribute
          output += '%s ' % attribute
          output += '</a> '
-         output += '</div class="inherited"> '
-         output += '</div class="attribute">\n'
+         output += '< class="inherited"> '
+         output += '< class="attribute">\n'
          self.output.append(output)
       else:
          self.output.append(line)
@@ -284,7 +286,7 @@ class INTRODUCTION(_TagParser):
          if '<introduction>' in line:
             self.output.append('<div class="introduction">\n')
          elif '</introduction>' in line:
-            self.output.append('</div class="introduction">\n')
+            self.output.append('< class="introduction">\n')
          else:
             self.output.append(line)
 
@@ -302,7 +304,7 @@ class TOC_SECTION(_TagParser):
             self.output.append('<div class="toc-section">\n')
          elif '</toc-section>' in line:
             self.within = False
-            self.output.append('</div class="toc-section">\n')
+            self.output.append('< class="toc-section">\n')
          elif '<header>' in line:
             if self.within:
                name = line.replace('<header>', '').strip( )
@@ -317,7 +319,7 @@ class TOC_SECTION(_TagParser):
                self.output.append(line)
          elif '</body>' in line:
             if self.within:
-               self.output.append('</div class="body">\n')
+               self.output.append('< class="body">\n')
             else:
                self.output.append(line)
          else:
@@ -452,7 +454,7 @@ class COMMENTS(_TagParser):
             self.output.append('\n')
             self.output.append('<div class="comments">\n')
          elif '</comments>' in line:
-            self.output.append('</div class="comments">\n')
+            self.output.append('< class="comments">\n')
          else:
             self.output.append(line)
 
@@ -466,7 +468,7 @@ class TO_DO(_TagParser):
             self.output.append('\n')
             self.output.append('<div class="to-do">\n')
          elif '</to-do>' in line:
-            self.output.append('</div class="to-do">\n')
+            self.output.append('< class="to-do">\n')
          else:
             self.output.append(line)
 
