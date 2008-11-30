@@ -1,149 +1,157 @@
-<title> The Abjad <_LeafDurationInterface> class </title>
+<title> The Abjad _LeafDurationInterface class </title>
 
-<h1>
-The Abjad <_LeafDurationInterface> class
-</h1>
+<h1> The Abjad <_LeafDurationInterface> class </h1>
 
-<p>
-The Abjad <_LeafDurationInterface> class manages note, rest, chord and skip duration.
-</p>
+<subsection>
 
-<h2 class="page-section">
-Public interface
-</h2>
+<p> The Abjad <_LeafDurationInterface> class manages note, rest, chord and skip duration.
 
-<div class="interface-block">
-   <p class="interface-bock-header"> Attributes
-   <p class="interface-attribute"> multiplier
-   <p class="interface-attribute-inherited"> prolated
-   <p class="interface-attribute-inherited"> prolation
-   <p class="interface-attribute-inherited"> prolations
-   <p class="interface-attribute"> written
-</div>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods
-   <p class="interface-attribute"> rewrite( )
-</div>
+<interface>
+<attributes>
+   <local> multiplied
+   <local> multiplier
+   <inherited> prolated
+   <inherited> prolation
+   <inherited> prolations
+   <local> written
+</attributes>
+<methods>
+   <local> rewrite( )
+</methods>
+</interface>
 
-<h2 class="page-section">
-Examples
-</h2>
+<section> Attributes
 
-<pre>
+<subsection>
+
+<abjad>
    abjad> measure = Measure((4, 4), [ ])
    abjad> measure.append(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
    abjad> measure.append(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
-   abjad> show(measure)
    abjad> note = measure.leaves[0]
-</pre>
+   abjad> show(measure)
+</abjad>
 
-<div class="example">
-<p class="example-header">
-multiplier
-</p>
-<pre>
-   abjad> note.duration.multiplier is None
-   True
-</pre>
-<pre>
-   abjad> note.duration.multiplier = (1, 2)
-   abjad> print(note.format)
-   c'4 * 1/2
-</pre>
-<pre>
-   abjad> note.duration.multiplier = None
-   abjad> note.duration.multiplier is None
-   True
-</pre>
-</div>
+</subsection>
 
-<div class="example">
-<p class="example-header-inherited">
-prolated
-</p>
-<pre>
-   abjad> note.duration.prolated
-   Rational(1, 6) 
-</pre>
-</div>
+<definition>
+<header>
+   <local> multiplier
+   <p> Read / write attribute defined here.
+   <p> Optional LilyPond multiplier to attached leaf.
+   <p> Returns Abjad <Rational>.
+   <p> Accepts Abjad <duration token>, <code>None</code>.
+</header>
+<body>
+   <abjad>
+      abjad> note.duration.multiplier is None
+      True
+   </abjad>
+   <abjad>
+      abjad> note.duration.multiplier = (1, 2)
+      abjad> print(note.format)
+      c'4 * 1/2
+   </abjad>
+   <abjad>
+      abjad> note.duration.multiplier = None
+      abjad> note.duration.multiplier is None
+      True
+   </abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited">
-prolation
-</p>
-<pre>
-   abjad> note.duration.prolation
-   Rational(2, 3)
-</pre>
-</div>
+<definition>
+<header>
+   <inherited> preprolated
+   <p> Read-only attribute inherited from <_DurationInterface>.
+   <p> Returns Abjad <Rational>.
+   <p> Represents leaf duration prior to consideration of any tuplet or measure scaling.
+</header>
+<body>
+   <abjad>
+      abjad> note.duration.preprolated
+      Rational(1, 4) 
+   </abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited">
-prolation
-</p>
-<pre>
-   abjad> note.duration.prolations
-   [Rational(2, 3)]
-</pre>
-</div>
+<definition>
+<header>
+   <inherited> prolated
+   <p> Read-only attribute inherited from <_DurationInterface>.
+   <p> Returns Abjad <Rational>.
+   <p> Represents scaled leaf duration accounting for any tuplet or measure scaling.
+</header>
+<body>
+   <abjad>
+      abjad> note.duration.prolated
+      Rational(1, 6) 
+   </abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-written
-</p>
-<pre>
-   abjad> note.duration.written
-   Rational(1, 4)
-</pre>
-<pre>
-   abjad> note.duration.written = (3, 8)
-   abjad> note
-   Note(c', 4.)
-</pre>
-</div>
+<definition>
+<header>
+   <inherited> prolation
+   <p> Read-only attribute inherited from <_DurationInterface>.
+   <p> Returns Abjad <Rational>.
+   <p> Represents scaling factor donated by all tuplets and measures enclosing leaf.
+</header>
+<body>
+   <abjad>
+      abjad> note.duration.prolation
+      Rational(2, 3)
+   </abjad>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header">
-rewrite( )
-</p>
-<pre>
-   abjad> note.duration.written = (1, 4)
-   abjad> note.duration.rewrite((1, 16))
-   abjad> note.duration.written
-   Rational(1, 16)
-   abjad> note.duration.multiplier
-   Rational(4, 1)
-</pre>
-</div>
+<definition>
+<header>
+   <local> written
+   <p> Read / write attribute defined here.
+   <p> Returns Abjad <Rational>.
+   <p> Accepts Abjad <duration token>.
+   <p> Represents the written, face value of leaf without consideration of LilyPond multipliers or tuplet or mesaure scaling.
+   <p> Abjad written duration corresponds most closely to notional intuition of duration.
+</header>
+<body>
+   <abjad>
+      abjad> note.duration.written
+      Rational(1, 4)
+   </abjad>
+   <abjad>
+      abjad> note.duration.written = (3, 8)
+      abjad> note
+      Note(c', 4.)
+   </abjad>
+</body>
+</definition>
 
-<h2 class="page-section">
-Comments
-</h2>
+<section> Methods
 
-<p class="comment">
-See the <_LeafDurationInterface> class in <code>leaf/duration.py</code> for implementation details.
-</p>
+<definition>
+<header>
+   <local> rewrite( )
+   <p> rewrite(<i>arg</i>)
+   <p> Public method defined here.
+   <p> Changes written duration of leaf to arg while leaving preprolated duration of leaf the same through multiplier adjustment.
+</header>
+<body>
+   <abjad>
+      abjad> note.duration.written = (1, 4)
+      abjad> note.duration.rewrite((1, 16))
+      abjad> note.duration.written
+      Rational(1, 16)
+      abjad> note.duration.multiplier
+      Rational(4, 1)
+   </abjad>
+</body>
+</definition>
 
-<h2 class="page-section">
-To do
-</h2>
+<comments>
 
-<p class="to-do">
-The leaf duration interface has a bunch of spurious public attributes.
-All of the attributes here in red are suspect:
-<strong>'clear'</strong>, 'copy', <strong>'first'</strong>, <strong>'last'</strong>, 'multiplier', <strong>'only'</strong>, <strong>'pair'</strong>, 'prolated', 'prolation', 'prolations', 'rewrite', <strong>'spanned'</strong>, <strong>'spanner'</strong>, <strong>'spanners'</strong>, <strong>'unspan'</strong>, 'written'.
-<br>
-<br>
-That is pretty weird. Most of these come from the core _Interface class. Why did we decide to make _DurationInterface inherit from _Interface? _Interface is really mostly about spanners and LilyPond attribute formatting....
-<br>
-<br>
-Correct; I think we developed <code>_Interface</code> originally as a <code>_SpannerInterface</code> and durations have no reason to interact with spanners. So I'd be willing to bet that the duration interfaces inherit all these spanner-oriented attributes merely as a by-product.
-<br>
-<br>
-Amd here's another thought: classes that inherit from <code>_Interface</code> also inherit the magic ability to format arbitrary LilyPond overrides, which is cool; but notice that the duration interfaces don't need that ability; there is no <code>\once \override Duration #'color = #red</code>, for example.
-<br>
-<br>
-All of these things point to breaking the inheritance chain. Should the duration interfaces then inherit from <code>object</code>? Or from a custom Abjad class?
-</p>
+<p> See the <_LeafDurationInterface> class in <code>leaf/duration.py</code> for implementation details.
 
+</comments>

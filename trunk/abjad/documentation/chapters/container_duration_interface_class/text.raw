@@ -1,12 +1,12 @@
-<title> The Abjad <_ContainerDurationInterface> class </title>
+<title> The Abjad _ContainerDurationInterface class </title>
 
-<h1>
-The Abjad <_ContainerDurationInterface> class
-</h1>
+<h1> The Abjad <_ContainerDurationInterface> class </h1>
 
-<p>
-The Abjad <_ContainerDurationInterface> models the functionality that all container duration interfaces share.
-</p>
+<subsection>
+
+<p> The Abjad <_ContainerDurationInterface> models the functionality that all container duration interfaces share.
+
+</subsection>
 
 <h2 class="page-section">
 Public interface

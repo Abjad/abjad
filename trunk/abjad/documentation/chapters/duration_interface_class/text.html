@@ -1,61 +1,38 @@
-<title> The Abjad <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code> class </title>
+<title> The Abjad _DurationInterface class </title>
 
 <h1> The Abjad <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code> class </h1>
 
-<p>
-The Abjad <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code> class implements the functionality that all duration interfaces share.
-</p>
+<div class="subsection">
+<h2>  </h2>
+<p> The Abjad <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code> class implements the functionality that all duration interfaces share.
 
-<h2 class="page-section">
-Public interface
-</h2>
+</div class="subsection">
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes
-   <p class="interface-attribute"> prolated
-   <p class="interface-attribute"> prolation
-   <p class="interface-attribute"> prolations
-</div>
+<h2 class="page-section"> Public interface </h2>
 
-<h2 class="page-section">
-Examples
-</h2>
+<div class="interface">
+<div class="block">
+<div class="name"> Attributes </div class="name">
+<div class="attribute"> <div class="local"> <a href="#preprolated"> preprolated </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#prolated"> prolated </a> </div class="local"> </div class="attribute">
+<div class="attribute"> <div class="local"> <a href="#prolation"> prolation </a> </div class="local"> </div class="attribute">
+</div class="block">
+</div class="interface">
 
-<p>
-The Abjad <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code> class is an abstract class and is not meant to be instantiated by hand.
-</p>
+<h2 class="page-section"> Comments </h2>
 
-<h2 class="page-section">
-Comments
-</h2>
+<div class="comments">
 
-<p class="comment">
-See the <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code> class in <code>core/duration.py</code> for implementation details.
-</p>
+<p> The Abjad <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code> class is an abstract class and is not meant to be instantiated by hand.
 
-<p class="comment">
-The core duration interface inherits from the Abjad <code>Rational</code> class.
-This means that all Abjad duration interfaces afford the standard arithmetic operations, like addition, multiplication, exponentiation and comparison.
-</p>
+<p> See the <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code> class in <code>core/duration.py</code> for implementation details.
 
-<p class="comment">
-The core duration interface currently inherits from both <code>_Interface</code> and <code>Rational</code>.
-Smarter will be to strip the multiple inheritence and leave the core duration interface to inherit from <code>_Interface</code> only.
-This will greatly reduce the number of arithmetic operations which the different duration interfaces can undergo; and this is a good thing.
-We want duration interfaces to afford comparison but not arithmetic.
-This means that we will have to implement comparison on the core duration interface by hand after we remove <code>Rational</code> from the inheritance chain.
-</p>
+</div class="comments">
 
-<!--
-<p class="comment">
-See the chapters on <a href="../prolation/index.html">prolation</a> and <a href="../prolated_duration/index.html">prolated duration</a>.
-</p>
--->
+<h2 class="page-section"> To do </h2>
 
-<h2 class="page-section">
-To do
-</h2>
+<div class="to-do">
 
-<p class="to-do">
-Show <code>t.duration = (3, 8)</code> assignment somewhere.
-</p>
+<p> Show <code>t.duration = (3, 8)</code> assignment somewhere.
+
+</div class="to-do">
