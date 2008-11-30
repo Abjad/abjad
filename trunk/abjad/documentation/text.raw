@@ -561,7 +561,7 @@ The Abjad <code>_TrillInterface</code> class
 <body>
    <p>Python looping, comprehension and enumeration</p>
    <p>Python iterators and generators</p>
-   <p>Abjad iteration & retroiteration by class</p>
+   <p>Abjad iteration &amp; retroiteration by class</p>
    <p>Enumeration in Abjad</p>
    <p>The Abjad bead model</p>
    <p>Bead interfaces</p>
@@ -625,7 +625,3 @@ The Abjad <code>_TrillInterface</code> class
    <p><a href="chapters/bibliography/index.html">Bibliography</a></p>
 </body>
 </toc-section>
-
-</body>
-
-</html>
