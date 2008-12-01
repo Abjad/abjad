@@ -1,14 +1,15 @@
-<title> The Abjad container model </title>
-
-<h1>The Abjad container model </h1>
+<h1>The Abjad container model</h1>
 
 <subsection> 
 
-<p> An Abjad <Container> is an ordered collection (i.e. a <b>list</b> data type) of Abjad <_Component> instances.
+<p>An Abjad <Container> is an ordered collection (i.e. a <b>list</b> data type) of Abjad <_Component> instances.
 Various music structures, such as Staves, Measures or Tuplets, can be adequately modeled as Containers. 
 More flexible musical structures that cannot be strictly contained, such as <code>Beam</code>s, free floating <code>MetricGrid</code>s, <code>Trill</code>s and dozens of others, are best modeled with other data structures. Abjad uses <a href="chapters/spanner_model/index.html"><strong>Spanner</strong>s</a> to model these other structures. 
-<p> An Abjad <Container> can only hold Abjad <_Component>s, and nothing else. An Abjad <_Leaf> is a <_Component>, so a <Container> can hold Leaves.
+</p>
+
+<p>An Abjad <Container> can only hold Abjad <_Component>s, and nothing else. An Abjad <_Leaf> is a <_Component>, so a <Container> can hold Leaves.
 Here is a <Voice> container holding a <Note>, a <Rest> and a <Chord>:
+</p>
 
 <abjad>
    abjad> notes = [Note(0, (1,8)), Rest((1,8)), Chord([2, 14], (1,8))]
@@ -16,8 +17,10 @@ Here is a <Voice> container holding a <Note>, a <Rest> and a <Chord>:
    abjad> show(voice)
 </abjad>
 
-<p> An Abjad <code>Container</code> is also a <code>_Component</code>, so Containers can hold other Containers. 
+<p>
+An Abjad <code>Container</code> is also a <code>_Component</code>, so Containers can hold other Containers. 
 Example: a <code>Staff</code> Container holds two <code>Voice</code> Containers which in turn hold three Leaves each:
+</p>
 
 <abjad>
 abjad> notes = [Note(0, (1,8)), Rest((1,8)), Chord([2, 14], (1,8))]

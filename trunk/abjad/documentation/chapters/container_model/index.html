@@ -1,41 +1,43 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
 
 <body>
 
-<!--
-OK; prefer to leave TOC off of every page for now; 
-keep look simple ... maybe add back in later? TB.
-maybe a
-<div id="toc">
-if we want to have the TOC on every page, we can put it here...
-</div>
--->
-
 <div id="content">
 
-<title> The Abjad container model </title>
-
-<h1>The Abjad container model </h1>
+<h1>The Abjad container model</h1>
 
 <div class="subsection">
-<h2>  </h2>
-<p> An Abjad <Container> is an ordered collection (i.e. a <b>list</b> data type) of Abjad <code><a href="../component_class/index.html">_Component</a></code> instances.
+
+<p>An Abjad <Container> is an ordered collection (i.e. a <b>list</b> data type) of Abjad <code><a href="../component_class/index.html">_Component</a></code> instances.
 Various music structures, such as Staves, Measures or Tuplets, can be adequately modeled as Containers. 
 More flexible musical structures that cannot be strictly contained, such as <code>Beam</code>s, free floating <code>MetricGrid</code>s, <code>Trill</code>s and dozens of others, are best modeled with other data structures. Abjad uses <a href="chapters/spanner_model/index.html"><strong>Spanner</strong>s</a> to model these other structures. 
-<p> An Abjad <Container> can only hold Abjad <code><a href="../component_class/index.html">_Component</a></code>s, and nothing else. An Abjad <code><a href="../leaf_class/index.html">_Leaf</a></code> is a <code><a href="../component_class/index.html">_Component</a></code>, so a <Container> can hold Leaves.
-Here is a <Voice> container holding a <code><a href="../note_class/index.html">Note</a></code>, a <code><a href="../rest_class/index.html">Rest</a></code> and a <code><a href="../chord/index.html">Chord</a></code>:
+</p>
+
+<p>An Abjad <Container> can only hold Abjad <code><a href="../component_class/index.html">_Component</a></code>s, and nothing else. An Abjad <code><a href="../leaf_class/index.html">_Leaf</a></code> is a <code><a href="../component_class/index.html">_Component</a></code>, so a <Container> can hold Leaves.
+Here is a <Voice> container holding a <code><a href="../note_class/index.html">Note</a></code>, a <code><a href="../rest_class/index.html">Rest</a></code> and a <code><a href="../chord_class/index.html">Chord</a></code>:
+</p>
 
 <pre class="abjad">
 abjad> notes = [Note(0, (1,8)), Rest((1,8)), Chord([2, 14], (1,8))]
 abjad> voice = Voice(notes)
 abjad> show(voice)
 </pre>
-<img src="images/1.png">
+<img alt="" src="images/1.png"/>
 
-<p> An Abjad <code>Container</code> is also a <code>_Component</code>, so Containers can hold other Containers. 
+<p>
+An Abjad <code>Container</code> is also a <code>_Component</code>, so Containers can hold other Containers. 
 Example: a <code>Staff</code> Container holds two <code>Voice</code> Containers which in turn hold three Leaves each:
+</p>
 
 <pre class="abjad">
 abjad> notes = [Note(0, (1,8)), Rest((1,8)), Chord([2, 14], (1,8))]
@@ -45,15 +47,15 @@ abjad> voice2= Voice(notes)
 abjad> staff = Staff([voice1, voice2])
 abjad> show(staff)
 </pre>
-<img src="images/2.png">
+<img alt="" src="images/2.png"/>
 
-</div class="subsection">
+</div>
 
-
-<p class="footer"> <a href="../../index.html">Contents</a> </p>
+<p class="footer"><a href="../../index.html">Contents</a></p>
 
 </div>
 
 </body>
 
 </html>
+

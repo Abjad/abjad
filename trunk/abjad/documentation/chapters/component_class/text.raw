@@ -1,13 +1,10 @@
-<title> The Abjad _Component class </title>
-
 <h1>The Abjad <_Component> class</h1>
 
-<introduction>
+<subsection>
 
 <p>The Abjad <_Component> class models the functionality that all leaves and containers share.
 
-</introduction>
-
+</subsection>
 
 <interface>
 <attributes>
@@ -27,22 +24,26 @@
 </overloads>
 </interface>
 
-<section> Attributes
+<section>Attributes
 
 <subsection>
 
-<p>The Abjad <_Component> class is an abstract class not meant to be instantiated by hand.
+<p>
+The Abjad <_Component> class is an abstract class not meant to be instantiated by hand.
+</p>
 
-<p>But we show examples of <_Component> attributes here using notes and staves as concrete examples of the <_Component> class.
+<p>
+But we show examples of <_Component> attributes here using notes and staves as concrete examples of the <_Component> class.
+</p>
 
 </subsection>
 
 <definition>
 <header>
    <local> accidentals
-   <p>Read / write attribute defined here.
-   <p>Returns LilyPond accidentals style string.
-   <p>Accepts LilyPond accidentals style string, <code>None</code>.
+   <p>Read / write attribute defined here.</p>
+   <p>Returns LilyPond accidentals style string.</p>
+   <p>Accepts LilyPond accidentals style string, <code>None</code>.</p>
 </header>
 <body>
 <abjad>
@@ -61,9 +62,9 @@
 <definition>
 <header>
    <local> barline
-   <p>Read / write attribute defined here.
-   <p>Returns LilyPond barline string.
-   <p>Accepts LilyPond barline string, <code>None</code>.
+   <p>Read / write attribute defined here.</p>
+   <p>Returns LilyPond barline string.</p>
+   <p>Accepts LilyPond barline string, <code>None</code>.</p>
 </header>
 <body>
 <abjad>
@@ -82,8 +83,8 @@
 <definition>
 <header>
    <local> comments
-   <p>Read-only attribute defined here.
-   <p>Returns LilyPond <_Comments> object.
+   <p>Read-only attribute defined here.</p>
+   <p>Returns LilyPond <_Comments> object.</p>
 </header>
 <body>
 <abjad>
@@ -107,8 +108,8 @@
 <definition>
 <header>
    <local> format
-   <p>Read-only attribute defined here.
-   <p>Returns LilyPond input string.
+   <p>Read-only attribute defined here.</p>
+   <p>Returns LilyPond input string.</p>
 </header>
 <body>
 <abjad>
@@ -127,9 +128,9 @@
 <definition>
 <header>
    <local> tempo
-   <p>Read / write attribute defined here.
-   <p>Returns LilyPond <_TempoInterface>.
-   <p>Accepts Abjad <tempo token>.
+   <p>Read / write attribute defined here.</p>
+   <p>Returns LilyPond <_TempoInterface>.</p>
+   <p>Accepts Abjad <tempo token>.</p>
 </header>
 <body>
 <abjad>
@@ -147,7 +148,7 @@
 
 
 
-<section> Methods
+<section>Methods
 
 
 <definition>
@@ -201,15 +202,15 @@
 </definition>
 
 
-<section> Overloads
+<section>Overloads
 
 
 <definition>
 <header>
    <local> __mul__
-   <p>Special method implemented here.
-   <p>Implements left-handed multiplication against <code>self</code>.
-   <p>Returns a Python list of <code>n</code> copies of <code>self</code>.
+   <p>Special method implemented here.</p>
+   <p>Implements left-handed multiplication against <code>self</code>.</p>
+   <p>Returns a Python list of <code>n</code> copies of <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -229,9 +230,9 @@
 <definition>
 <header>
    <local> __rmul__
-   <p>Special method implemented here.
-   <p>Implements right-handed multiplication against <code>self</code>.
-   <p>Returns a Python list of <code>n</code> copies of <code>self</code>.
+   <p>Special method implemented here.</p>
+   <p>Implements right-handed multiplication against <code>self</code>.</p>
+   <p>Returns a Python list of <code>n</code> copies of <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -250,6 +251,8 @@
 
 <comments>
 
-<p>See the <_Component> class in <code>core/component.py</code> for implementation details.
+<p>
+See the <_Component> class in <code>core/component.py</code> for implementation details.
+</p>
 
 </comments>
