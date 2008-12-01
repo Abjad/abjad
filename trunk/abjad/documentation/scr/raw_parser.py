@@ -574,6 +574,7 @@ class CLASS_NAMES(_TagParser):
       '<_TremoloInterface>' : 'tremolo_interface',
       '<_TrillInterface>' : 'trill_interface',
       '<_TupletDurationInterface>' : 'tuplet_duration_interface_class',
+      '<Voice>' : 'voice_class',
    }
 
    def parse(self, lines):
