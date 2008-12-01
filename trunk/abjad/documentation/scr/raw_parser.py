@@ -564,6 +564,7 @@ class CLASS_NAMES(_TagParser):
       '<pitch token>' : 'pitch_token',
       '<Rational>' : 'rational_class',
       '<Rest>' : 'rest_class',
+      '<Skip>' : 'skip_class',
       '<_Staff>' : 'staff_class',
       '<_StemInterface>' : 'stem_interface',
       '<_TempoInterface>' : 'tempo_interface',
