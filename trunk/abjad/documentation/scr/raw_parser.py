@@ -540,6 +540,7 @@ class CLASS_NAMES(_TagParser):
       '<_ClefInterface>' : 'clef_interface',
       '<_Comments>' : 'comments_class',
       '<_Component>' : 'component_class',
+      '<Container>' : 'container_class',
       '<_ContainerDurationInterface>' : 'container_duration_interface',
       '<_DotsInterface>' : 'dots_interface',
       '<_DurationInterface>' : 'duration_interface_class',

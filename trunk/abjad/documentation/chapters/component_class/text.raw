@@ -2,7 +2,9 @@
 
 <subsection>
 
-<p>The Abjad <_Component> class models the functionality that all leaves and containers share.
+<p>
+The Abjad <_Component> class models the functionality that all leaves and containers share.
+</p>
 
 </subsection>
 
@@ -15,8 +17,8 @@
    <local> tempo
 </attributes>
 <methods>
-   <local> copy( )
-   <local> kind( )
+   <local> copy
+   <local> kind
 </methods>
 <overloads>
    <local> __mul__
@@ -153,10 +155,10 @@ But we show examples of <_Component> attributes here using notes and staves as c
 
 <definition>
 <header>
-   <local> copy( )
-   <p> Bound method implemented here.
-   <p> Returns a new copy of <code>self</code>.
-   <p> Accepts no input parameters.
+   <local> copy
+   <p>Bound method implemented here.</p>
+   <p>Returns a new copy of <code>self</code>.</p>
+   <p>Accepts no input parameters.</p>
 </header>
 <body>
 <abjad>
@@ -182,10 +184,10 @@ But we show examples of <_Component> attributes here using notes and staves as c
 
 <definition>
 <header>
-   <local> kind( )
-   <p> Bound method implemented here.
-   <p> Return <code>True</code> if <code>classname</code> in class hierarchy of <code>self</code>, and <code>False</code> otherwise.
-   <p> DEPRECATED. Use <code>isinstance( )</code> instead.
+   <local> kind
+   <p>Bound method implemented here.</p>
+   <p>Return <code>True</code> if <code>classname</code> in class hierarchy of <code>self</code>, and <code>False</code> otherwise.</p>
+   <p>DEPRECATED. Use <code>isinstance( )</code> instead.</p>
 </header>
 <body>
 <abjad>
