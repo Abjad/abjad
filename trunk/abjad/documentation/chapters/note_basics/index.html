@@ -19,7 +19,7 @@
 <div class="subsection">
 
 <h2>Creating notes</h2>
-<p> Create notes with a <code><a href="../pitch_token/index.html">pitch token</a></code> and a <code><a href="../duration_token/index.html">duration token</a></code>.
+<p>Create notes with a <code><a href="../pitch_token/index.html">pitch token</a></code> and a <code><a href="../duration_token/index.html">duration token</a></code>.</p>
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
 </pre>
@@ -29,7 +29,7 @@ abjad> note = Note(0, (1, 4))
 <div class="subsection">
 
 <h2>Pitch assignment</h2>
-<p> Change pitch with a number:
+<p>Change pitch with a number:</p>
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
 </pre>
@@ -37,24 +37,24 @@ abjad> note = Note(0, (1, 4))
 abjad> note.pitch = 2
 </pre>
 <img alt="" src="images/2.png"/>
-<p> With a pair:
+<p>With a pair:</p>
 <pre class="abjad">
 abjad> note.pitch = ('e', 4)
 </pre>
 <img alt="" src="images/3.png"/>
-<p> Or with a <code><a href="../pitch_class/index.html">Pitch</a></code> instance:
+<p>Or with a <code><a href="../pitch_class/index.html">Pitch</a></code> instance:</p>
 <pre class="abjad">
 abjad> note.pitch = Pitch('f', 4)
 </pre>
 <img alt="" src="images/4.png"/>
-<p> Any <code><a href="../pitch_token/index.html">pitch token</a></code> will work.
-<p> TODO: document pitch-to-pitch assignment.
+<p>Any <code><a href="../pitch_token/index.html">pitch token</a></code> will work.</p>
+<p>TODO: document pitch-to-pitch assignment.</p>
 </div>
 
 <div class="subsection">
 
 <h2>Pitch comparison</h2>
-<p> Compare pitch to a number:
+<p>Compare pitch to a number:</p>
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
 </pre>
@@ -62,29 +62,29 @@ abjad> note = Note(0, (1, 4))
 abjad> note.pitch == 0
 True
 </pre>
-<p> To a pair:
+<p>To a pair:</p>
 <pre class="abjad">
 abjad> note.pitch == ('c', 4)
 True
 </pre>
-<p> To a <code><a href="../pitch_class/index.html">Pitch</a></code> instance:
+<p>To a <code><a href="../pitch_class/index.html">Pitch</a></code> instance:</p>
 <pre class="abjad">
 abjad> note.pitch == Pitch('c', 4)
 True
 </pre>
-<p> Or to another pitched Abjad object:
+<p>Or to another pitched Abjad object:</p>
 <pre class="abjad">
 abjad> chord = Chord([0, 2, 10], (1, 4))
 abjad> note.pitch == chord.noteheads[0].pitch
 True
 </pre>
-<p> Both <code><a href="../pitch_token/index.html">pitch token</a></code> and pitch-to-pitch tests work.
+<p>Both <code><a href="../pitch_token/index.html">pitch token</a></code> and pitch-to-pitch tests work.</p>
 </div>
 
 <div class="subsection">
 
 <h2>Types of pitch comparison</h2>
-<p> All six Python comparison operators work as expected.
+<p>All six Python comparison operators work as expected.</p>
 <pre class="abjad">
 abjad> n1 = Note(0, (1, 4))
 abjad> n2 = Note(2, (1, 4))
@@ -118,25 +118,25 @@ True
 <div class="subsection">
 
 <h2>Duration initialization</h2>
-<p> Initialize <code><a href="../note_class/index.html">Note</a></code> duration with a <code><a href="../rational_class/index.html">Rational</a></code>.
+<p>Initialize <code><a href="../note_class/index.html">Note</a></code> duration with a <code><a href="../rational_class/index.html">Rational</a></code>.</p>
 <pre class="abjad">
 abjad> note = Note(0, Rational(1, 8))
 </pre>
 <img alt="" src="images/5.png"/>
-<p> You can also use a <code><a href="../duration_token/index.html">duration token</a></code> as a shortcut.
+<p>You can also use a <code><a href="../duration_token/index.html">duration token</a></code> as a shortcut.</p>
 </div>
 
 <div class="subsection">
 
 <h2>Duration attributes</h2>
-<p> <code><a href="../note_class/index.html">Note</a></code> has a <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code>.
+<p><code><a href="../note_class/index.html">Note</a></code> has a <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code>.</p>
 <pre class="abjad">
 abjad> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
 abjad> note = tuplet[0]
 abjad> note.duration
 &lt;abjad.leaf.duration._LeafDurationInterface object at 0x63a30&gt;
 </pre>
-<p> <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> bundles six public attributes.
+<p><code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> bundles six public attributes.</p>
 <pre class="abjad">
 abjad> note.duration.multiplied
 Rational(1, 8)
@@ -161,13 +161,13 @@ Rational(2, 3)
 abjad> note.duration.written
 Rational(1, 8)
 </pre>
-<p> Read more at <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code>.
+<p>Read more at <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code>.</p>
 </div>
 
 <div class="subsection">
 
 <h2>Duration attribute assignment</h2>
-<p> You can reassign <tt>note.duration.written</tt>.
+<p>You can reassign <tt>note.duration.written</tt>.</p>
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
 </pre>
@@ -175,8 +175,8 @@ abjad> note = Note(0, (1, 4))
 abjad> note.duration.written = Rational(3, 16)
 </pre>
 <img alt="" src="images/6.png"/>
-<p> Use must use a <code><a href="../rational_class/index.html">Rational</a></code> which meets <code><a href="../assignability/index.html">assignability</a></code> criteria.
-<p> You can also assign <tt>note.duration.multiplier</tt>.
+<p>Use must use a <code><a href="../rational_class/index.html">Rational</a></code> which meets <code><a href="../assignability/index.html">assignability</a></code> criteria.</p>
+<p>You can also assign <tt>note.duration.multiplier</tt>.</p>
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
 abjad> note.duration.multiplier = Rational(1, 6)
@@ -189,15 +189,15 @@ Rational(1, 6)
 abjad> note.duration.multiplied
 Rational(1, 24)
 </pre>
-<p> Use any positive <code><a href="../rational_class/index.html">Rational</a></code>.
-<p> All other duration attributes are read-only.
+<p>Use any positive <code><a href="../rational_class/index.html">Rational</a></code>.</p>
+<p>All other duration attributes are read-only.</p>
 </div>
 
 <h2 class="page-section">To do</h2>
 
 <div class="to-do">
 
-<p> This currently causes reference problems: <code>n1.pitch = n2.pitch</code>. Can we block directly in the implementation? Or must we teach users never to cross references this way?
+<p>This currently causes reference problems: <code>n1.pitch = n2.pitch</code>. Can we block directly in the implementation? Or must we teach users never to cross references this way?</p>
 
 </div>
 

@@ -1,7 +1,7 @@
 <h1>Working with notes</h1>
 
 <subsection>Creating notes
-<p> Create notes with a <pitch token> and a <duration token>.
+<p>Create notes with a <pitch token> and a <duration token>.</p>
 <abjad>
   abjad> note = Note(0, (1, 4))
   hide> measure = Measure(note.duration.prolated.pair, [note])
@@ -11,7 +11,7 @@
 </subsection>
 
 <subsection>Pitch assignment
-<p> Change pitch with a number:
+<p>Change pitch with a number:</p>
 <abjad>
    abjad> note = Note(0, (1, 4))
 </abjad>
@@ -22,7 +22,7 @@
    hide> measure.meter.transparent = True
    hide> show(measure)
 </abjad>
-<p> With a pair:
+<p>With a pair:</p>
 <abjad>
    hide> note = Note(2, (1, 4))
    abjad> note.pitch = ('e', 4)
@@ -30,7 +30,7 @@
    hide> measure.meter.transparent = True
    hide> show(measure)
 </abjad>
-<p> Or with a <Pitch> instance:
+<p>Or with a <Pitch> instance:</p>
 <abjad>
    hide> note = Note(('e', 4), (1, 4))
    abjad> note.pitch = Pitch('f', 4)
@@ -38,12 +38,12 @@
    hide> measure.meter.transparent = True
    hide> show(measure)
 </abjad>
-<p> Any <pitch token> will work.
-<p> TODO: document pitch-to-pitch assignment.
+<p>Any <pitch token> will work.</p>
+<p>TODO: document pitch-to-pitch assignment.</p>
 </subsection>
 
 <subsection>Pitch comparison
-<p> Compare pitch to a number:
+<p>Compare pitch to a number:</p>
 <abjad>
    abjad> note = Note(0, (1, 4))
 </abjad>
@@ -52,30 +52,30 @@
    abjad> note.pitch == 0
    True
 </abjad>
-<p> To a pair:
+<p>To a pair:</p>
 <abjad>
    hide> note = Note(0, (1, 4))
    abjad> note.pitch == ('c', 4)
    True
 </abjad>
-<p> To a <Pitch> instance:
+<p>To a <Pitch> instance:</p>
 <abjad>
    hide> note = Note(0, (1, 4))
    abjad> note.pitch == Pitch('c', 4)
    True
 </abjad>
-<p> Or to another pitched Abjad object:
+<p>Or to another pitched Abjad object:</p>
 <abjad>
    hide> note = Note(0, (1, 4))
    abjad> chord = Chord([0, 2, 10], (1, 4))
    abjad> note.pitch == chord.noteheads[0].pitch
    True
 </abjad>
-<p> Both <pitch token> and pitch-to-pitch tests work.
+<p>Both <pitch token> and pitch-to-pitch tests work.</p>
 </subsection>
 
 <subsection>Types of pitch comparison
-<p> All six Python comparison operators work as expected.
+<p>All six Python comparison operators work as expected.</p>
 <abjad>
    abjad> n1 = Note(0, (1, 4))
    abjad> n2 = Note(2, (1, 4))
@@ -107,25 +107,25 @@
 </subsection>
 
 <subsection>Duration initialization
-<p> Initialize <Note> duration with a <Rational>.
+<p>Initialize <Note> duration with a <Rational>.</p>
 <abjad>
    abjad> note = Note(0, Rational(1, 8))
    hide> measure = Measure(note.duration.prolated.pair, [note])
    hide> measure.meter.transparent = True
    hide> show(measure)
 </abjad>
-<p> You can also use a <duration token> as a shortcut.
+<p>You can also use a <duration token> as a shortcut.</p>
 </subsection>
 
 <subsection>Duration attributes
-<p> <Note> has a <_LeafDurationInterface>.
+<p><Note> has a <_LeafDurationInterface>.</p>
 <abjad>
    abjad> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    abjad> note = tuplet[0]
    abjad> note.duration
    &lt;abjad.leaf.duration._LeafDurationInterface object at 0x63a30&gt;
 </abjad>
-<p> <_LeafDurationInterface> bundles six public attributes.
+<p><_LeafDurationInterface> bundles six public attributes.</p>
 <abjad>
    hide> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    hide> note = tuplet[0]
@@ -162,11 +162,11 @@
    abjad> note.duration.written
    Rational(1, 8)
 </abjad>
-<p> Read more at <_LeafDurationInterface>.
+<p>Read more at <_LeafDurationInterface>.</p>
 </subsection>
 
 <subsection>Duration attribute assignment
-<p> You can reassign <tt>note.duration.written</tt>.
+<p>You can reassign <tt>note.duration.written</tt>.</p>
 <abjad>
    abjad> note = Note(0, (1, 4))
 </abjad>
@@ -177,8 +177,8 @@
   hide> measure.meter.transparent = True
   hide> show(measure)
 </abjad>
-<p> Use must use a <Rational> which meets <assignability> criteria.
-<p> You can also assign <tt>note.duration.multiplier</tt>.
+<p>Use must use a <Rational> which meets <assignability> criteria.</p>
+<p>You can also assign <tt>note.duration.multiplier</tt>.</p>
 <abjad>
    abjad> note = Note(0, (1, 4))
    abjad> note.duration.multiplier = Rational(1, 6)
@@ -193,12 +193,12 @@
    abjad> note.duration.multiplied
    Rational(1, 24)
 </abjad>
-<p> Use any positive <Rational>.
-<p> All other duration attributes are read-only.
+<p>Use any positive <Rational>.</p>
+<p>All other duration attributes are read-only.</p>
 </subsection>
 
 <to-do>
 
-<p> This currently causes reference problems: <code>n1.pitch = n2.pitch</code>. Can we block directly in the implementation? Or must we teach users never to cross references this way?
+<p>This currently causes reference problems: <code>n1.pitch = n2.pitch</code>. Can we block directly in the implementation? Or must we teach users never to cross references this way?</p>
 
 </to-do>
