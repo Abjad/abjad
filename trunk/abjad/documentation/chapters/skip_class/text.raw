@@ -1,9 +1,9 @@
-<h1>The Abjad <code>Skip</code> class</h1>
+<h1>The Abjad <Skip> class</h1>
 
 <subsection>
 
 <p>
-The Abjad <code>Skip</code> class wraps the LilyPond skip object. LilyPond skips represent unprocessed periods of musical time, somewhat like invisible rests.
+The Abjad <Skip> class wraps the LilyPond skip object. LilyPond skips represent unprocessed periods of musical time, somewhat like invisible rests.
 </p>
 
 </subsection>
@@ -59,7 +59,7 @@ The Abjad <code>Skip</code> class wraps the LilyPond skip object. LilyPond skips
 
 <definition>
 <header>
-   </inherited> articulations
+   <inherited> articulations
 	<p>Read / write attribute inherited from <_Leaf>.
 	<p>Returns Abjad <_ArticulationsInterface>.
 	<p>Accepts Python list of zero or more LilyPond articulation strings, <code>None</code>.
@@ -411,7 +411,7 @@ The Abjad <code>Skip</code> class wraps the LilyPond skip object. LilyPond skips
 <comments>
 
 <p>
-See the <code>Skip</code> class in <code>skip/skip.py</code> for implementation details.
+See the <Skip> class in <code>skip/skip.py</code> for implementation details.
 </p>
 
 </comments>

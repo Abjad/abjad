@@ -1,9 +1,9 @@
-<h1>The Abjad <code>_Leaf</code> class</h1>
+<h1>The Abjad <_Leaf> class</h1>
 
 <subsection>
 
 <p>
-The Abjad <code>_Leaf</code> class models the functionality that all notes, rests, chords and skips share.
+The Abjad <_Leaf> class models the functionality that all notes, rests, chords and skips share.
 </p>
 
 </subsection>
@@ -52,11 +52,11 @@ The Abjad <code>_Leaf</code> class models the functionality that all notes, rest
 <subsection>
 
 <p>
-The Abjad <code>_Leaf</code> class is an abstract class and is not meant to be instantiated by hand.
+The Abjad <_Leaf> class is an abstract class and is not meant to be instantiated by hand.
 </p>
 
 <p>
-But we show examples of <code>_Leaf</code> attributes here using note, rest and chords as concrete examples of the <code>_Leaf</code> class.
+But we show examples of <_Leaf> attributes here using note, rest and chords as concrete examples of the <_Leaf> class.
 </p>
 
 </subsection>
@@ -593,7 +593,7 @@ But we show examples of <code>_Leaf</code> attributes here using note, rest and 
    <local> __init__
    <p>__init__(<i>duration</i>)</p>
 	<p>Special method defined here.</p>
-	<p>Abjad <code>_Leaf</code> class is not meant to be instantiated by hand.</p>
+	<p>Abjad <_Leaf> class is not meant to be instantiated by hand.</p>
 </header>
 </definition>
 
@@ -622,7 +622,7 @@ But we show examples of <code>_Leaf</code> attributes here using note, rest and 
 <comments>
 
 <p>
-See the <code>_Leaf</code> class in <code>leaf/leaf.py</code> for implementation details.
+See the <_Leaf> class in <code>leaf/leaf.py</code> for implementation details.
 </p>
 
 </comments>

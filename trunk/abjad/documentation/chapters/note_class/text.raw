@@ -1,9 +1,9 @@
-<h1>The Abjad <code>Note</code> class</h1>
+<h1>The Abjad <Note> class</h1>
 
 <subsection>
 
 <p>
-The Abjad <code>Note</code> class models notes.
+The Abjad <Note> class models notes.
 </p>
 
 </subsection>
@@ -81,7 +81,7 @@ The Abjad <code>Note</code> class models notes.
 
 <definition>
 <header>
-   <inherted> beam
+   <inherited> beam
 	<p>Read-only attribute inherited from <_Leaf>.</p>
 	<p>Returns Abjad <_BeamInterface>.</p>
 	<p>See <a href="../leaf_class/index.html#beam">example</a>.</p>

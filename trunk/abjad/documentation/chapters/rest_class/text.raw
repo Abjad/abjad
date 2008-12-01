@@ -60,7 +60,7 @@ The Abjad <Rest> class models musical rests.
 
 <definition>
 <header>
-   </inherited> articulations
+   <inherited> articulations
 	<p>Read / write attribute inherited from <_Leaf>.</p>
 	<p>Returns Abjad <_ArticulationsInterface>.</p>
 	<p>Accepts Python list of zero or more LilyPond articulation strings, <code>None</code>.</p>
