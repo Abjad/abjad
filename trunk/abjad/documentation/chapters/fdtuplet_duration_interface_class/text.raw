@@ -95,10 +95,10 @@ The Abjad <_FDTupletDurationInterface> class manages the duration attributes of 
    <p>See <a href="../prolated_duration/index.html">prolated duration</a>.</p>
 </header>
 <body>
-<abjad>
-  abjad> tuplet.duration.prolated
-  Rational(1, 5)
-</abjad>
+   <abjad>
+     abjad> tuplet.duration.prolated
+     Rational(1, 5)
+   </abjad>
 </body>
 </definition>
 

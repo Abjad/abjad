@@ -110,7 +110,7 @@ The Abjad <_MeasureDurationInterface> manages measure duration.
 
 <definition>
 <header>
-   <inerited> prolations
+   <inherited> prolations
 </header>
 <body>
 <abjad>
@@ -120,7 +120,7 @@ The Abjad <_MeasureDurationInterface> manages measure duration.
 </body>
 </definition>
 
-<commens>
+<comments>
 
 <p>
 The <code>nonbinary</code>, <code>multiplier</code> and <code>prolated</code> attributes handle measures governed by nonbinary meter.
