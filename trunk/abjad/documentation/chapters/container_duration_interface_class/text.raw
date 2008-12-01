@@ -1,29 +1,26 @@
-<title> The Abjad _ContainerDurationInterface class </title>
-
-<h1> The Abjad <_ContainerDurationInterface> class </h1>
+<h1>The Abjad <_ContainerDurationInterface> class</h1>
 
 <subsection>
 
-<p> The Abjad <_ContainerDurationInterface> models the functionality that all container duration interfaces share.
+<p>
+The Abjad <_ContainerDurationInterface> models the functionality that all container duration interfaces share.
+</p>
 
 </subsection>
 
-<h2 class="page-section">
-Public interface
-</h2>
+<interface>
+<attributes>
+   <local> contents
+   <local> multiplier
+   <inherited> prolated
+   <inherited> prolation
+   <inherited> prolations
+</attributes>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes
-   <p class="interface-attribute"> contents
-   <p class="interface-attribute"> multiplier
-   <p class="interface-attribute-inherited"> prolated
-   <p class="interface-attribute-inherited"> prolation
-   <p class="interface-attribute-inherited"> prolations
-</div>
+<section>Attributes
 
-<h2 class="page-section">
-Examples
-</h2>
+<subsection>
 
 <abjad>
    abjad> container = Container(Note(0, (1, 8)) * 5)
@@ -35,56 +32,76 @@ Examples
    abjad> show(staff)
 </abjad>
 
-<div class="example">
-<p class="example-header"> contents
-<!-- <p class="attribute-type"> Rational -->
+</subsection>
+
+<definition>
+<header>
+   <local> contents
+</header>
+<body>
 <abjad>
    abjad> container.duration.contents
    Rational(5, 8)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header"> multiplier
-<!-- <p class="attribute-type"> Rational -->
+<definition>
+<header>
+   <local> multiplier
+</header>
+<body>
 <abjad>
    abjad> container.duration.multiplier
    Rational(1, 1)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited"> prolated
+<definition>
+<header>
+   <inherited> prolated
+</header>
+<body>
 <abjad>
    abjad> container.duration.prolated
    Rational(25, 48)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited"> prolation
+<definition>
+<header>
+   <inherited> prolation
+</header>
+<body>
 <abjad>
    abjad> conatiner.duration.prolation
    Rational(5, 6)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited"> prolations
+<definition>
+<header>
+   <inherited> prolations
+</header>
+<body>
 <abjad>
    abjad> conatiner.duration.prolation
    [Rational(5, 6)]
 </abjad>
-</div>
+</body>
+</definition>
 
-<h2 class="page-section">
-Comments
-</h2>
+<comments>
 
-<p class="comment">
+<p>
 The container duration interface implements a trivial read-only <code>multiplier</code> attribute, always equal to 1, to clean up parent-climbing algorithms like <code>excise( )</code>.
 </p>
 
-<p class="comment">
+<p>
 See the <_ContainerDurationInterface> class in <code>containers/duration.py</code> for implementation details.
 </p>
+
+</comments>

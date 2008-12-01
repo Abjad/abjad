@@ -1,27 +1,20 @@
-<title> The Abjad <_TupletDurationInterface> class </title>
-
-<h1>
-The Abjad <_TupletDurationInterface> class
-</h1>
+<h1>The Abjad <_TupletDurationInterface> class</h1>
 
 <p>
 The Abjad <_TupletDurationInterface> class models the functionality that the tuplet duration interfaces share.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
-
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes
-   <p class="interface-attribute"> augmentation
-   <p class="interface-attribute-inherited"> contents
-   <p class="interface-attribute"> diminution
-   <p class="interface-attribute-inherited"> multiplier
-   <p class="interface-attribute-inherited"> prolated
-   <p class="interface-attribute-inherited"> prolation
-   <p class="interface-attribute-inherited"> prolations
-</div>
+<interface>
+<attributes>
+   <local> augmentation
+   <inherited> contents
+   <local> diminution
+   <inherited> multiplier
+   <inherited> prolated
+   <inherited> prolation
+   <inherited> prolations
+</attributes>
+</definition>
 
 <!--
 <p>
@@ -45,18 +38,16 @@ Public interface
 </p>
 -->
 
-<h2 class="page-section">
-Examples
-</h2>
+<section>Attributes
 
 <p>
 The Abjad <_TupletDurationInterface> is an abstract class and is not meant to be instantiated by hand.
 </p>
 
-<h2 class="page-section">
-Comments
-</h2>
+<comments>
 
-<p class="comment">
+<p>
 See the <_TupletDurationInterface> class in <code>tuplet/duration.py</code> for implementation details.
 </p>
+
+</comments>

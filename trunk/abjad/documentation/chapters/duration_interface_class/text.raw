@@ -1,10 +1,10 @@
-<title> The Abjad _DurationInterface class </title>
-
-<h1> The Abjad <_DurationInterface> class </h1>
+<h1>The Abjad <_DurationInterface> class</h1>
 
 <subsection>
 
-<p> The Abjad <_DurationInterface> class implements the functionality that all duration interfaces share.
+<p>
+The Abjad <_DurationInterface> class implements the functionality that all duration interfaces share.
+</p>
 
 </subsection>
 
@@ -18,14 +18,20 @@
 
 <comments>
 
-<p> The Abjad <_DurationInterface> class is an abstract class and is not meant to be instantiated by hand.
+<p>
+The Abjad <_DurationInterface> class is an abstract class and is not meant to be instantiated by hand.
+</p>
 
-<p> See the <_DurationInterface> class in <code>core/duration.py</code> for implementation details.
+<p>
+See the <_DurationInterface> class in <code>core/duration.py</code> for implementation details.
+</p>
 
 </comments>
 
 <to-do>
 
-<p> Show <code>t.duration = (3, 8)</code> assignment somewhere.
+<p>
+Show <code>t.duration = (3, 8)</code> assignment somewhere.
+</p>
 
 </to-do>

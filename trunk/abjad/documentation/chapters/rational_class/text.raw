@@ -1,12 +1,12 @@
-<title> The Abjad Rational class </title>
+<h1>The Abjad <Rational> class</h1>
 
-<h1> The Abjad <Rational> class </h1>
+<subsection>
 
-<introduction>
+<p>
+The Abjad <Rational> class implements exact rational numbers.
+</p>
 
-<p> The Abjad <Rational> class implements exact rational numbers.
-
-</introduction>
+</subsection>
 
 <interface>
 <attributes>
@@ -43,7 +43,7 @@
 <definition>
 <header>
    <local> pair
-   <p> Numerator, denominator pair.
+   <p>Numerator, denominator pair.</p>
 </header>
 <body>
 <abjad>
@@ -59,7 +59,7 @@
 <definition>
 <header>
    <local> __abs__
-   <p> Absolute value.
+   <p>Absolute value.</p>
 </header>
 <body>
 <abjad>
@@ -72,7 +72,7 @@
 <definition>
 <header>
    <local> __add__
-   <p> Left-handed addition.
+   <p>Left-handed addition.</p>
 </header>
 <body>
 <abjad>
@@ -85,7 +85,7 @@
 <definition>
 <header>
    <local> __cmp__
-   <p> Comparison operators.
+   <p>Comparison operators.</p>
 </header>
 <body>
 <abjad>
@@ -98,7 +98,7 @@
 <definition>
 <header>
    <local> __div__
-   <p> Left-handed division.
+   <p>Left-handed division.</p>
 </header>
 <body>
 <abjad>
@@ -111,7 +111,7 @@
 <definition>
 <header>
    <local> __float__
-   <p> Float conversion.
+   <p>Float conversion.</p>
 </header>
 <body>
 <abjad>
@@ -124,7 +124,7 @@
 <definition>
 <header>
    <local> __floordiv__
-   <p> Left-handed floor division.
+   <p>Left-handed floor division.</p>
 </header>
 <body>
 <abjad>
@@ -137,7 +137,7 @@
 <definition>
 <header>
    <local> __int__
-   <p> Integer conversion.
+   <p>Integer conversion.</p>
 </header>
 <body>
 <abjad>
@@ -150,7 +150,7 @@
 <definition>
 <header>
    <local> __invert__
-   <p> Inversion
+   <p>Inversion</p>
 </header>
 <body>
 <abjad>
@@ -163,7 +163,7 @@
 <definition>
 <header>
    <local> __long__
-   <p> Long conversion.
+   <p>Long conversion.</p>
 </header>
 <body>
 <abjad>
@@ -176,7 +176,7 @@
 <definition>
 <header>
    <local> __mod__
-   <p> Left-handed modulus operator.
+   <p>Left-handed modulus operator.</p>
 </header>
 <body>
 <abjad>
@@ -189,7 +189,7 @@
 <definition>
 <header>
    <local> __mul__
-   <p> Left-handed multiplication.
+   <p>Left-handed multiplication.</p>
 </header>
 <body>
 <abjad>
@@ -202,7 +202,7 @@
 <definition>
 <header>
    <local> __neg__
-   <p> Negation.
+   <p>Negation.</p>
 </header>
 <body>
 <abjad>
@@ -215,7 +215,7 @@
 <definition>
 <header>
    <local> __pow__
-   <p> Exponentiation
+   <p>Exponentiation.</p>
 </header>
 <body>
 <abjad>
@@ -228,7 +228,7 @@
 <definition>
 <header>
    <local> __radd__
-   <p> Right-handed addition.
+   <p>Right-handed addition.</p>
 </header>
 <body>
 <abjad>
@@ -241,7 +241,7 @@
 <definition>
 <header>
    <local> __rdiv__
-   <p> Right-handed division.
+   <p>Right-handed division.</p>
 </header>
 <body>
 <abjad>
@@ -254,7 +254,7 @@
 <definition>
 <header>
    <local> __rfloordiv__
-   <p> Right-handed floor division.
+   <p>Right-handed floor division.</p>
 </header>
 <body>
 <abjad>
@@ -267,7 +267,7 @@
 <definition>
 <header>
    <local> __rmod__
-   <p> Right-handed modulus operator.
+   <p>Right-handed modulus operator.</p>
 </header>
 <body>
 <abjad>
@@ -280,7 +280,7 @@
 <definition>
 <header>
    <local> __rmul__
-   <p> Right-handed multiplication.
+   <p>Right-handed multiplication.</p>
 </header>
 <body>
 <abjad>
@@ -293,7 +293,7 @@
 <definition>
 <header>
    <local> __rsub__
-   <p> Right-handed subtraction.
+   <p>Right-handed subtraction.</p>
 </header>
 <body>
 <abjad>
@@ -306,7 +306,7 @@
 <definition>
 <header>
    <local> __rtruediv__
-   <p> Right-handed true division.
+   <p>Right-handed true division.</p>
 </header>
 <body>
 <abjad>
@@ -319,7 +319,7 @@
 <definition>
 <header>
    <local> __sub__
-   <p> Left-handed subtraction.
+   <p>Left-handed subtraction.</p>
 </header>
 <body>
 <abjad>
@@ -332,7 +332,7 @@
 <definition>
 <header>
    <local> __truediv__
-   <p> Left-handed true division.
+   <p>Left-handed true division.</p>
 </header>
 <body>
 <abjad>
@@ -344,6 +344,8 @@
 
 <comments>
 
-<p> See the <Rational> class in <code>duration/rational.py</code> for implementation details.
+<p>
+See the <Rational> class in <code>duration/rational.py</code> for implementation details.
+</p>
 
 </comments>

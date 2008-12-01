@@ -1,60 +1,50 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<!--  This is a hack so that files at two different levels of the doc
-      tree can find the stylesheet;
-      shoudl be specified as an absolute URL instead?
--->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
 <head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<link rel="stylesheet" href="../../../css/abjad.css" type="text/css" />
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
 </head>
 
 <body>
 
-<!--
-OK; prefer to leave TOC off of every page for now; 
-keep look simple ... maybe add back in later? TB.
-maybe a
-<div id="toc">
-if we want to have the TOC on every page, we can put it here...
-</div>
--->
-
 <div id="content">
 
-<title> The Abjad _LeafDurationInterface class </title>
-
-<h1> The Abjad <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> class </h1>
-
+<h1>The Abjad <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> class</h1> 
 <div class="subsection">
-<h2>  </h2>
-<p> The Abjad <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> class manages note, rest, chord and skip duration.
 
-</div class="subsection">
+<p>
+The Abjad <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> class manages note, rest, chord and skip duration.
+</p>
 
-<h2 class="page-section"> Public interface </h2>
+</div>
+
+<h2 class="page-section">Public interface</h2>
 
 <div class="interface">
 <div class="block">
-<div class="name"> Attributes </div class="name">
-<div class="attribute"> <div class="local"> <a href="#multiplied"> multiplied </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#multiplier"> multiplier </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="inherited"> <a href="#prolated"> prolated </a> </div class="inherited"> </div class="attribute">
-<div class="attribute"> <div class="inherited"> <a href="#prolation"> prolation </a> </div class="inherited"> </div class="attribute">
-<div class="attribute"> <div class="inherited"> <a href="#prolations"> prolations </a> </div class="inherited"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#written"> written </a> </div class="local"> </div class="attribute">
-</div class="block">
+<div class="name">Attributes</div>
+<div class="attribute"><div class="local"><a href="#multiplied">multiplied</a></div></div>
+<div class="attribute"><div class="local"><a href="#multiplier">multiplier</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#prolated">prolated</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#prolation">prolation</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#prolations">prolations</a></div></div>
+<div class="attribute"><div class="local"><a href="#written">written</a></div></div>
+</div>
 <div class="block">
-<div class="name"> Methods </div class="name">
-<div class="attribute"> <div class="local"> <a href="#rewrite( )"> rewrite( ) </a> </div class="local"> </div class="attribute">
-</div class="block">
-</div class="interface">
+<div class="name">Methods</div>
+<div class="attribute"><div class="local"><a href="#rewrite">rewrite</a></div></div>
+</div>
+</div>
 
-<h2 class="page-section"> Attributes </h2>
+<h2 class="page-section"> Attributes</h2>
 
 <div class="subsection">
-<h2>  </h2>
+
 <pre class="abjad">
 abjad> measure = Measure((4, 4), [ ])
 abjad> measure.append(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
@@ -62,18 +52,18 @@ abjad> measure.append(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3))
 abjad> note = measure.leaves[0]
 abjad> show(measure)
 </pre>
-<img src="images/1.png">
+<img alt="" src="images/1.png"/>
 
-</div class="subsection">
+</div>
 
 <div class="definition">
 <div class="header">
-<div class="attribute"> <div class="local"> <a name="multiplier"> multiplier </a> </div class="local"> </div class="attribute">
-   <p> Read / write attribute defined here.
-   <p> Optional LilyPond multiplier to attached leaf.
-   <p> Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.
-   <p> Accepts Abjad <code><a href="../duration_token/index.html">duration token</a></code>, <code>None</code>.
-</div class="header">
+<div class="attribute"><div class="local"><a name="multiplier">multiplier</a></div></div>
+   <p>Read / write attribute defined here.</p>
+   <p>Optional LilyPond multiplier to attached leaf.</p>
+   <p>Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.</p>
+   <p>Accepts Abjad <code><a href="../duration_token/index.html">duration token</a></code>, <code>None</code>.</p>
+</div>
 <div class="body">
 <pre class="abjad">
 abjad> note.duration.multiplier is None
@@ -89,63 +79,63 @@ abjad> note.duration.multiplier = None
 abjad> note.duration.multiplier is None
 True
 </pre>
-</div class="body">
-</div class="definition">
+</div>
+</div>
 
 <div class="definition">
 <div class="header">
-<div class="attribute"> <div class="inherited"> <a name="preprolated"> preprolated </a> </div class="inherited"> </div class="attribute">
-   <p> Read-only attribute inherited from <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code>.
-   <p> Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.
-   <p> Represents leaf duration prior to consideration of any tuplet or measure scaling.
-</div class="header">
+<div class="attribute"><div class="inherited"><a name="preprolated">preprolated</a></div></div>
+   <p>Read-only attribute inherited from <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code>.</p>
+   <p>Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.</p>
+   <p>Represents leaf duration prior to consideration of any tuplet or measure scaling.</p>
+</div>
 <div class="body">
 <pre class="abjad">
 abjad> note.duration.preprolated
 Rational(1, 4) 
 </pre>
-</div class="body">
-</div class="definition">
+</div>
+</div>
 
 <div class="definition">
 <div class="header">
-<div class="attribute"> <div class="inherited"> <a name="prolated"> prolated </a> </div class="inherited"> </div class="attribute">
-   <p> Read-only attribute inherited from <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code>.
-   <p> Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.
-   <p> Represents scaled leaf duration accounting for any tuplet or measure scaling.
-</div class="header">
+<div class="attribute"><div class="inherited"><a name="prolated">prolated</a></div></div>
+   <p>Read-only attribute inherited from <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code>.</p>
+   <p>Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.</p>
+   <p>Represents scaled leaf duration accounting for any tuplet or measure scaling.</p>
+</div>
 <div class="body">
 <pre class="abjad">
 abjad> note.duration.prolated
 Rational(1, 6) 
 </pre>
-</div class="body">
-</div class="definition">
+</div>
+</div>
 
 <div class="definition">
 <div class="header">
-<div class="attribute"> <div class="inherited"> <a name="prolation"> prolation </a> </div class="inherited"> </div class="attribute">
-   <p> Read-only attribute inherited from <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code>.
-   <p> Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.
-   <p> Represents scaling factor donated by all tuplets and measures enclosing leaf.
-</div class="header">
+<div class="attribute"><div class="inherited"><a name="prolation">prolation</a></div></div>
+   <p>Read-only attribute inherited from <code><a href="../duration_interface_class/index.html">_DurationInterface</a></code>.</p>
+   <p>Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.</p>
+   <p>Represents scaling factor donated by all tuplets and measures enclosing leaf.</p>
+</div>
 <div class="body">
 <pre class="abjad">
 abjad> note.duration.prolation
 Rational(2, 3)
 </pre>
-</div class="body">
-</div class="definition">
+</div>
+</div>
 
 <div class="definition">
 <div class="header">
-<div class="attribute"> <div class="local"> <a name="written"> written </a> </div class="local"> </div class="attribute">
-   <p> Read / write attribute defined here.
-   <p> Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.
-   <p> Accepts Abjad <code><a href="../duration_token/index.html">duration token</a></code>.
-   <p> Represents the written, face value of leaf without consideration of LilyPond multipliers or tuplet or mesaure scaling.
-   <p> Abjad written duration corresponds most closely to notional intuition of duration.
-</div class="header">
+<div class="attribute"><div class="local"><a name="written">written</a></div></div>
+   <p>Read / write attribute defined here.</p>
+   <p>Returns Abjad <code><a href="../rational_class/index.html">Rational</a></code>.</p>
+   <p>Accepts Abjad <code><a href="../duration_token/index.html">duration token</a></code>.</p>
+   <p>Represents the written, face value of leaf without consideration of LilyPond multipliers or tuplet or mesaure scaling.</p>
+   <p>Abjad written duration corresponds most closely to notional intuition of duration.</p>
+</div>
 <div class="body">
 <pre class="abjad">
 abjad> note.duration.written
@@ -156,18 +146,18 @@ abjad> note.duration.written = (3, 8)
 abjad> note
 Note(c', 4.)
 </pre>
-</div class="body">
-</div class="definition">
+</div>
+</div>
 
-<h2 class="page-section"> Methods </h2>
+<h2 class="page-section"> Methods</h2>
 
 <div class="definition">
 <div class="header">
-<div class="attribute"> <div class="local"> <a name="rewrite( )"> rewrite( ) </a> </div class="local"> </div class="attribute">
-   <p> rewrite(<i>arg</i>)
-   <p> Public method defined here.
-   <p> Changes written duration of leaf to arg while leaving preprolated duration of leaf the same through multiplier adjustment.
-</div class="header">
+<div class="attribute"><div class="local"><a name="rewrite">rewrite</a></div></div>
+   <p>rewrite(<i>arg</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Changes written duration of leaf to arg while leaving preprolated duration of leaf the same through multiplier adjustment.</p>
+</div>
 <div class="body">
 <pre class="abjad">
 abjad> note.duration.written = (1, 4)
@@ -177,17 +167,18 @@ Rational(1, 16)
 abjad> note.duration.multiplier
 Rational(4, 1)
 </pre>
-</div class="body">
-</div class="definition">
+</div>
+</div>
 
-<h2 class="page-section"> Comments </h2>
+<h2 class="page-section">Comments</h2>
 
 <div class="comments">
 
-<p> See the <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> class in <code>leaf/duration.py</code> for implementation details.
+<p>
+See the <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> class in <code>leaf/duration.py</code> for implementation details.
+</p>
 
-</div class="comments">
-
+</div>
 
 <p class="footer"><a href="../../index.html">Contents</a></p>
 
@@ -196,3 +187,4 @@ Rational(4, 1)
 </body>
 
 </html>
+

@@ -1,10 +1,9 @@
-<title> The Abjad _LeafDurationInterface class </title>
-
-<h1> The Abjad <_LeafDurationInterface> class </h1>
-
+<h1>The Abjad <_LeafDurationInterface> class</h1> 
 <subsection>
 
-<p> The Abjad <_LeafDurationInterface> class manages note, rest, chord and skip duration.
+<p>
+The Abjad <_LeafDurationInterface> class manages note, rest, chord and skip duration.
+</p>
 
 </subsection>
 
@@ -18,7 +17,7 @@
    <local> written
 </attributes>
 <methods>
-   <local> rewrite( )
+   <local> rewrite
 </methods>
 </interface>
 
@@ -39,10 +38,10 @@
 <definition>
 <header>
    <local> multiplier
-   <p> Read / write attribute defined here.
-   <p> Optional LilyPond multiplier to attached leaf.
-   <p> Returns Abjad <Rational>.
-   <p> Accepts Abjad <duration token>, <code>None</code>.
+   <p>Read / write attribute defined here.</p>
+   <p>Optional LilyPond multiplier to attached leaf.</p>
+   <p>Returns Abjad <Rational>.</p>
+   <p>Accepts Abjad <duration token>, <code>None</code>.</p>
 </header>
 <body>
    <abjad>
@@ -65,9 +64,9 @@
 <definition>
 <header>
    <inherited> preprolated
-   <p> Read-only attribute inherited from <_DurationInterface>.
-   <p> Returns Abjad <Rational>.
-   <p> Represents leaf duration prior to consideration of any tuplet or measure scaling.
+   <p>Read-only attribute inherited from <_DurationInterface>.</p>
+   <p>Returns Abjad <Rational>.</p>
+   <p>Represents leaf duration prior to consideration of any tuplet or measure scaling.</p>
 </header>
 <body>
    <abjad>
@@ -80,9 +79,9 @@
 <definition>
 <header>
    <inherited> prolated
-   <p> Read-only attribute inherited from <_DurationInterface>.
-   <p> Returns Abjad <Rational>.
-   <p> Represents scaled leaf duration accounting for any tuplet or measure scaling.
+   <p>Read-only attribute inherited from <_DurationInterface>.</p>
+   <p>Returns Abjad <Rational>.</p>
+   <p>Represents scaled leaf duration accounting for any tuplet or measure scaling.</p>
 </header>
 <body>
    <abjad>
@@ -95,9 +94,9 @@
 <definition>
 <header>
    <inherited> prolation
-   <p> Read-only attribute inherited from <_DurationInterface>.
-   <p> Returns Abjad <Rational>.
-   <p> Represents scaling factor donated by all tuplets and measures enclosing leaf.
+   <p>Read-only attribute inherited from <_DurationInterface>.</p>
+   <p>Returns Abjad <Rational>.</p>
+   <p>Represents scaling factor donated by all tuplets and measures enclosing leaf.</p>
 </header>
 <body>
    <abjad>
@@ -110,11 +109,11 @@
 <definition>
 <header>
    <local> written
-   <p> Read / write attribute defined here.
-   <p> Returns Abjad <Rational>.
-   <p> Accepts Abjad <duration token>.
-   <p> Represents the written, face value of leaf without consideration of LilyPond multipliers or tuplet or mesaure scaling.
-   <p> Abjad written duration corresponds most closely to notional intuition of duration.
+   <p>Read / write attribute defined here.</p>
+   <p>Returns Abjad <Rational>.</p>
+   <p>Accepts Abjad <duration token>.</p>
+   <p>Represents the written, face value of leaf without consideration of LilyPond multipliers or tuplet or mesaure scaling.</p>
+   <p>Abjad written duration corresponds most closely to notional intuition of duration.</p>
 </header>
 <body>
    <abjad>
@@ -133,10 +132,10 @@
 
 <definition>
 <header>
-   <local> rewrite( )
-   <p> rewrite(<i>arg</i>)
-   <p> Public method defined here.
-   <p> Changes written duration of leaf to arg while leaving preprolated duration of leaf the same through multiplier adjustment.
+   <local> rewrite
+   <p>rewrite(<i>arg</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Changes written duration of leaf to arg while leaving preprolated duration of leaf the same through multiplier adjustment.</p>
 </header>
 <body>
    <abjad>
@@ -152,6 +151,8 @@
 
 <comments>
 
-<p> See the <_LeafDurationInterface> class in <code>leaf/duration.py</code> for implementation details.
+<p>
+See the <_LeafDurationInterface> class in <code>leaf/duration.py</code> for implementation details.
+</p>
 
 </comments>

@@ -1,29 +1,28 @@
-<title> The Abjad <_MeasureDurationInterface> class </title>
+<h1>The Abjad <_MeasureDurationInterface> class</h1>
 
-<h1> The Abjad <_MeasureDurationInterface> class </h1>
+<subsection>
 
 <p>
 The Abjad <_MeasureDurationInterface> manages measure duration.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes
-   <p class="interface-attribute"> compression
-   <p class="interface-attribute-inherited"> contents
-   <p class="interface-attribute-inherited"> multiplier
-   <p class="interface-attribute"> nonbinary
-   <p class="interface-attribute-inherited"> prolated
-   <p class="interface-attribute-inherited"> prolation
-   <p class="interface-attribute-inherited"> prolations
-</div>
+<interface>
+<attributes>
+   <local> compression
+   <inherited> contents
+   <inherited> multiplier
+   <local> nonbinary
+   <inherited> prolated
+   <inherited> prolation
+   <inherited> prolations
+</attributes>
+</interface>
 
-<h2 class="page-section">
-Examples
-</h2>
+<section>Attributes
+
+<subsection>
 
 <abjad>
    abjad> container = Container(Note(0, (1, 8)) * 5)
@@ -35,70 +34,100 @@ Examples
    abjad> show(staff)
 </abjad>
 
-<div class="example">
-<p class="example-header"> compression
+</subsection>
+
+<definition>
+<header>
+   <local> compression
+</header>
+<body>
 <abjad>
    abjad> measure.duration.compression
    Rational(1, 1)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited"> contents
+<definition>
+<header>
+   <inherited> contents
+</header>
+<body>
 <abjad>
    abjad> measure.duration.contents
    Rational(5, 8)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited"> multiplier
+<definition>
+<header>
+   <inherited> multiplier
+</header>
+<body>
 <abjad>
    abjad> measure.duration.multiplier
    Rational(1, 1)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header"> nonbinary
+<definition>
+<header>
+   <local> nonbinary
+</header>
+<body>
 <abjad>
    abjad> measure.duration.nonbinary
    False
 </abjad>
-</div>   
+</body>
+</definition>   
 
-<div class="example">
-<p class="example-header-inherited"> prolated
+<definition>
+<header>
+   <inherited> prolated
+</header>
+<body>
 <abjad>
    abjad> measure.duration.prolated
    Rational(5, 8)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited"> prolation
+<definition>
+<header>
+   <inherited> prolation
+</header>
+<body>
 <abjad>
    abjad> measure.duration.prolation
    Rational(1, 1)
 </abjad>
-</div>
+</body>
+</definition>
 
-<div class="example">
-<p class="example-header-inherited"> prolations
+<definition>
+<header>
+   <inerited> prolations
+</header>
+<body>
 <abjad>
    abjad> measure.duration.prolations
    [Rational(1, 1)]
 </abjad>
-</div>
+</body>
+</definition>
 
-<h2 class="page-section">
-Comments
-</h2>
+<commens>
 
-<p class="comment">
+<p>
 The <code>nonbinary</code>, <code>multiplier</code> and <code>prolated</code> attributes handle measures governed by nonbinary meter.
 </p>
 
-<p class="comment">
+<p>
 See the <_MeasureDurationInterface> class in <code>measure/duration.py</code> for implementation details.
 </p>
+
+</comments>
