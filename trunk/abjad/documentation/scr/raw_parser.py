@@ -554,6 +554,7 @@ class CLASS_NAMES(_TagParser):
       '<_GlissandoInterface>' : 'glissando_interface',
       '<_GraceInterface>' : 'grace_interface',
       '<_HarmonicInterface>' : 'harmonic_interface',
+      '<_Interface>' : 'interface_class',
       '<_Leaf>' : 'leaf_class',
       '<_LeafDurationInterface>' : 'leaf_duration_interface_class',
       '<_LeafFormatter>' : 'leaf_formatter_class',
