@@ -1,100 +1,102 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
 <head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
 </head>
 
 <body>
 
-<!--
-OK; prefer to leave TOC off of every page for now; 
-keep look simple ... maybe add back in later? TB.
-maybe a
-<div id="toc">
-if we want to have the TOC on every page, we can put it here...
-</div>
--->
-
 <div id="content">
 
-<h1>The Abjad <code>Context</code> class</h1>
+<h1>The Abjad <code><a href="../context_class/index.html">Context</a></code> class</h1>
+
+<div class="subsection">
 
 <p>
-The Abjad <code>Context</code> class models the functionality that all LilyPond contexts share.
+The Abjad <code><a href="../context_class/index.html">Context</a></code> class models the functionality that all LilyPond contexts share.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
-
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute-inherited"> accidentals </p>
-   <p class="interface-attribute-inherited"> barline </p>
-   <p class="interface-attribute-inherited"> brackets </p>
-   <p class="interface-attribute-inherited"> comments </p>
-   <p class="interface-attribute-inherited"> duration </p>
-   <p class="interface-attribute-inherited"> format </p>
-   <p class="interface-attribute-inherited"> formatter </p>
-   <p class="interface-attribute"> invocation </p>
-   <p class="interface-attribute-inherited"> leaves </p>
-   <p class="interface-attribute-inherited"> music </p>
-   <p class="interface-attribute-inherited"> next </p>
-   <p class="interface-attribute-inherited"> parallel </p>
-   <p class="interface-attribute-inherited"> prev </p>
-   <p class="interface-attribute-inherited"> spanners </p>
-   <p class="interface-attribute-inherited"> tempo </p>
 </div>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute-inherited"> append( ) </p>
-   <p class="interface-attribute-inherited"> coalesce( ) </p>
-   <p class="interface-attribute-inherited"> copy( ) </p>
-   <p class="interface-attribute-inherited"> embed( ) </p>
-   <p class="interface-attribute-inherited"> extend( ) </p>
-   <p class="interface-attribute-inherited"> get( ) </p>
-   <p class="interface-attribute-inherited"> index( ) </p>
-   <p class="interface-attribute-inherited"> insert( ) </p>
-   <p class="interface-attribute-inherited"> kind( ) </p>
-   <p class="interface-attribute-inherited"> pop( ) </p>
-   <p class="interface-attribute-inherited"> remove( ) </p>
+<h2 class="page-section">Public interface</h2>
+
+<div class="interface">
+<div class="block">
+<div class="name">Attributes</div>
+<div class="attribute"><div class="inherited"><a href="#accidentals">accidentals</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#barline">barline</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#brackets">brackets</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#comments">comments</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#duration">duration</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#format">format</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#formatter">formatter</a></div></div>
+<div class="attribute"><div class="local"><a href="#invocation">invocation</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#leaves">leaves</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#music">music</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#next">next</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#parallel">parallel</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#prev">prev</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#spanners">spanners</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#tempo">tempo</a></div></div>
+</div>
+<div class="block">
+<div class="name">Methods</div>
+<div class="attribute"><div class="inherited"><a href="#append">append</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#coalesce">coalesce</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#copy">copy</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#embed">embed</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#extend">extend</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#get">get</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#index">index</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#insert">insert</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#kind">kind</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#pop">pop</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#remove">remove</a></div></div>
+</div>
+<div class="block">
+<div class="name">Overloads</div>
+<div class="attribute"><div class="inherited"><a href="#__add__">__add__</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#__contains__">__contains__</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#__delitem__">__delitem__</a></div></div>
+<div class="attribute"><div class="local"><a href="#__eq__">__eq__</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#__getitem__">__getitem__</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#__len__">__len__</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#__mul__">__mul__</a></div></div>
+<div class="attribute"><div class="inherited"><a href="#__setitem__">__setitem__</a></div></div>
+</div>
 </div>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute-inherited"> __add__ </p>
-   <p class="interface-attribute-inherited"> __contains__ </p>
-   <p class="interface-attribute-inherited"> __delitem__ </p>
-   <p class="interface-attribute"> __eq__ </p>
-   <p class="interface-attribute-inherited"> __getitem__ </p>
-   <p class="interface-attribute-inherited"> __len__ </p>
-   <p class="interface-attribute-inherited"> __mul__ </p>
-   <p class="interface-attribute-inherited"> __setitem__ </p>
-</div>
+<h2 class="page-section">Comments</h2>
 
-<h2 class="page-section">
-Comments
-</h2>
+<div class="comments">
 
-<p class="comment">
-See the <code>Context</code> class in <code>context/context.py</code> for implementation details.
+<p>
+See the <code><a href="../context_class/index.html">Context</a></code> class in <code>context/context.py</code> for implementation details.
 </p>
 
-<h2 class="page-section">
-To do
-</h2>
+</div>
 
-<p class="to-do">
+<h2 class="page-section">To do</h2>
+
+<div class="to-do">
+
+<p>
 Add examples.
 </p>
 
+</div>
 
-<p class="footer">
-<a href="../../index.html">Contents</a>
-</p>
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
 </div>
 
 </body>
+
 </html>
+

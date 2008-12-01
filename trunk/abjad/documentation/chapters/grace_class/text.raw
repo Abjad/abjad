@@ -1,70 +1,67 @@
-<h1>The Abjad <code>Grace</code> class</h1>
+<h1>The Abjad <Grace> class</h1>
+
+<subsection>
 
 <p>
-The Abjad <code>Grace</code> class models grace music.
+The Abjad <Grace> class models grace music.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute-inherited"> accidentals </p>
-   <p class="interface-attribute-inherited"> barline </p>
-   <p class="interface-attribute-inherited"> brackets </p>
-   <p class="interface-attribute-inherited"> comments </p>
-   <p class="interface-attribute-inherited"> duration </p>
-   <p class="interface-attribute-inherited"> format </p>
-   <p class="interface-attribute-inherited"> formatter </p>
-   <p class="interface-attribute-inherited"> leaves </p>
-   <p class="interface-attribute-inherited"> music </p>
-   <p class="interface-attribute-inherited"> next </p>
-   <p class="interface-attribute-inherited"> parallel </p>
-   <p class="interface-attribute-inherited"> prev </p>
-   <p class="interface-attribute-inherited"> spanners </p>
-   <p class="interface-attribute-inherited"> tempo </p>
-   <p class="interface-attribute"> type </p>
-</div>
+<interface>
+<attributes>
+   <inherited> accidentals
+   <inherited> barline
+   <inherited> brackets
+   <inherited> comments
+   <inherited> duration
+   <inherited> format
+   <inherited> formatter
+   <inherited> leaves
+   <inherited> music
+   <inherited> next
+   <inherited> parallel
+   <inherited> prev
+   <inherited> spanners
+   <inherited> tempo
+   <local> type
+</attributes>
+<methods>
+   <inherited> append( )
+   <inherited> coalesce( )
+   <inherited> copy( )
+   <inherited> embed( )
+   <inherited> extend( )
+   <inherited> get( )
+   <inherited> index( )
+   <inherited> insert( )
+   <inherited> kind( )
+   <inherited> pop( )
+   <inherited> remove( )
+</methods>
+<overloads>
+   <inherited> __add__
+   <inherited> __contains__
+   <inherited> __delitem__
+   <inherited> __getitem__
+   <inherited> __len__
+   <inherited> __mul__
+   <inherited> __setitem__
+</overloads>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute-inherited"> append( ) </p>
-   <p class="interface-attribute-inherited"> coalesce( ) </p>
-   <p class="interface-attribute-inherited"> copy( ) </p>
-   <p class="interface-attribute-inherited"> embed( ) </p>
-   <p class="interface-attribute-inherited"> extend( ) </p>
-   <p class="interface-attribute-inherited"> get( ) </p>
-   <p class="interface-attribute-inherited"> index( ) </p>
-   <p class="interface-attribute-inherited"> insert( ) </p>
-   <p class="interface-attribute-inherited"> kind( ) </p>
-   <p class="interface-attribute-inherited"> pop( ) </p>
-   <p class="interface-attribute-inherited"> remove( ) </p>
-</div>
+<comments>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute-inherited"> __add__ </p>
-   <p class="interface-attribute-inherited"> __contains__ </p>
-   <p class="interface-attribute-inherited"> __delitem__ </p>
-   <p class="interface-attribute-inherited"> __getitem__ </p>
-   <p class="interface-attribute-inherited"> __len__ </p>
-   <p class="interface-attribute-inherited"> __mul__ </p>
-   <p class="interface-attribute-inherited"> __setitem__ </p>
-</div>
-
-<h2 class="page-section">
-Comments
-</h2>
-
-<p class="comment">
-See the <code>Grace</code> class in <code>grace/grace.py</code> for implementation details.
+<p>
+See the <Grace> class in <code>grace/grace.py</code> for implementation details.
 </p>
 
-<h2 class="page-section">
-To do
-</h2>
+</comments>
 
-<p class="to-do">
+<to-do>
+
+<p>
 Add examples.
 </p>
+
+</to-do>

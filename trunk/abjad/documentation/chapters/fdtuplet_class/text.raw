@@ -1,36 +1,29 @@
-<h1>The Abjad <code>FixedDurationTuplet</code> class</h1>
+<h1>The Abjad <FixedDurationTuplet> class</h1>
 
 <p>
-The Abjad <code>FixedDurationTuplet</code> models tuplets with any amount of music fitting into a fixed duration.
+The Abjad <FixedDurationTuplet> models tuplets with any amount of music fitting into a fixed duration.
 Fixed-duration tuplets calculate their ratios on the fly.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
-
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute-inherited"> accidentals </p>
-   <p class="interface-attribute-inherited"> barline </p>
-   <p class="interface-attribute-inherited"> brackets </p>
-   <p class="interface-attribute-inherited"> comments </p>
-   <p class="interface-attribute"> duration </p>
-   <p class="interface-attribute-inherited"> format </p>
-   <p class="interface-attribute-inherited"> formatter </p>
-   <p class="interface-attribute-inherited"> invisible </p>
-   <p class="interface-attribute-inherited"> ratio </p>
-   <p class="interface-attribute-inherited"> tempo </p>
-</div>
-
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute-inherited"> copy( ) </p>
-   <p class="interface-attribute-inherited"> kind( ) </p>
-   <p class="interface-attribute"> trim( ) </p>
-</div>
-
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute-inherited"> __mul__ </p>
-</div>
+<interface>
+<attributes>
+   <inherited> accidentals </p>
+   <inherited> barline </p>
+   <inherited> brackets </p>
+   <inherited> comments </p>
+   <local> duration </p>
+   <inherited> format </p>
+   <inherited> formatter </p>
+   <inherited> invisible </p>
+   <inherited> ratio </p>
+   <inherited> tempo </p>
+</attributes>
+<methods>
+   <inherited> copy </p>
+   <inherited> kind </p>
+   <local> trim </p>
+</methods>
+<overloads>
+   <inherited> __mul__ </p>
+</overloads>
+</interface>

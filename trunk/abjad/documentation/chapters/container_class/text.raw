@@ -1,1213 +1,994 @@
-<h1>The Abjad <code>Container</code> class</h1>
+<h1>The Abjad <Container> class</h1>
 
-<p>The Abjad <code>Container</code> class models the functionality shared by tuplets, measures, voices, staves and all other types of container.
+<subsection>
 
-<h2 class="page-section">Public interface</h2>
+<p>
+The Abjad <Container> class models the functionality shared by tuplets, measures, voices, staves and all other types of container.
+</p>
 
-<div class="example-block">
-   <p class="example-block-header">Public attributes 
-   <p class="interface-attribute-inherited">
-      <a href="#accidentals" class="interface-attribute-inherited">accidentals</a> 
-   <p class="interface-attribute-inherited">
-      <a href="#barline" class="interface-attribute-inherited">barline</a> 
-   <p class="interface-attribute">
-      <a href="#brackets" class="interface-attribute">brackets</a> 
-   <p class="interface-attribute-inherited">
-      <a href="#comments" class="interface-attribute-inherited">comments</a> 
-   <p class="interface-attribute">
-      <a href="#duration" class="interface-attribute">duration</a> 
-   <p class="interface-attribute-inherited">
-      <a href="#format" class="interface-attribute-inherited">format</a> 
-   <p class="interface-attribute">
-      <a href="#formatter" class="interface-attribute">formatter</a> 
-   <p class="interface-attribute">
-      <a href="#leaves" class="interface-attribute">leaves</a> 
-   <p class="interface-attribute">
-      <a href="#next" class="interface-attribute">next</a> 
-   <p class="interface-attribute">
-      <a href="#parallel" class="interface-attribute">parallel</a> 
-   <p class="interface-attribute">
-      <a href="#prev" class="interface-attribute">prev</a> 
-   <p class="interface-attribute">
-      <a href="#spanners" class="interface-attribute">spanners</a> 
-   <p class="interface-attribute-inherited">
-      <a href="#tempo" class="interface-attribute-inherited">tempo</a> 
-</div> <!-- example block -->
+</subsection>
 
-<div class="example-block">
-   <p class="example-block-header">Public methods
-   <p class="interface-attribute">
-      <a href="#append" class="interface-attribute">append( )</a> 
-   <p class="interface-attribute">
-      <a href="#coalesce" class="interface-attribute">coalesce( )</a> 
-   <p class="interface-attribute-inherited">
-      <a href="#copy" class="interface-attribute-inherited">copy( )</a> 
-   <p class="interface-attribute">
-      <a href="#embed" class="interface-attribute">embed( )</a> 
-   <p class="interface-attribute">
-      <a href="#extend" class="interface-attribute">extend( )</a> 
-   <p class="interface-attribute">
-      <a href="#get" class="interface-attribute">get( )</a> 
-   <p class="interface-attribute">
-      <a href="#index" class="interface-attribute">index( )</a> 
-   <p class="interface-attribute">
-      <a href="#insert" class="interface-attribute">insert( )</a> 
-   <p class="interface-attribute-inherited">
-      <a href="#kind" class="interface-attribute-inherited">kind( )</a> 
-   <p class="interface-attribute">
-      <a href="#pop" class="interface-attribute">pop( )</a> 
-   <p class="interface-attribute">
-      <a href="#remove" class="interface-attribute">remove( )</a> 
-</div> <!-- public methods example block -->
+<interface>
+<attributes>
+   <inherited> accidentals
+   <inherited> barline
+   <local> brackets
+   <inherited> comments
+   <local> duration>
+   <inherited> format
+   <local> formatter
+   <local> leaves
+   <local> next
+   <local> parallel
+   <local> prev
+   <local> spanners
+   <inherited> tempo
+</attributes>
+<methods>
+   <local> append
+   <local> coalesce
+   <inherited> copy
+   <local> embed
+   <local> extend
+   <local> get
+   <local> index
+   <local> insert
+   <inherited> kind
+   <local> pop
+   <local> remove
+</methods>
+<overloads>
+   <local> __add__
+   <local> __contains__
+   <local> __delitem__
+   <local> __getitem__
+   <local> __imul__
+   <local> __len__
+   <inherited> __mul__
+   <local> __radd__
+   <local> __repr__
+   <inherited> __rmul__
+   <local> __setitem__
+</overloads>
+</interface>
 
-<div class="example-block">
-   <p class="example-block-header">Overrides
-   <p class="interface-attribute">
-      <a href="#add" class="interface-attribute">__add__</a> 
-   <p class="interface-attribute">
-      <a href="#contains" class="interface-attribute">__contains__</a> 
-   <p class="interface-attribute">
-      <a href="#delitem" class="interface-attribute">__delitem__</a> 
-   <p class="interface-attribute">
-      <a href="#getitem" class="interface-attribute">__getitem__</a> 
-   <p class="interface-attribute">
-      <a href="#imul" class="interface-attribute">__imul__</a> 
-   <p class="interface-attribute">
-      <a href="#len" class="interface-attribute">__len__</a> 
-   <p class="interface-attribute-inherited">
-      <a href="#mul" class="interface-attribute-inherited">__mul__</a> 
-   <p class="interface-attribute">
-      <a href="#radd" class="interface-attribute">__radd__</a> 
-   <p class="interface-attribute">
-      <a href="#repr" class="interface-attribute">__repr__</a> 
-   <p class="interface-attribute-inherited">
-      <a href="#rmul" class="interface-attribute-inherited">__rmul__</a> 
-   <p class="interface-attribute">
-      <a href="#setitem" class="interface-attribute">__setitem__</a> 
-</div> <!-- special methods example block -->
+<section>Attributes
 
-<h2 class="page-section">Public attributes</h2>
+
+<definition>
+<header>
+   <inherited> accidentals
+   <p>Read / write attribute inherited from <_Component>.</p>
+   <p>Returns LilyPond accidentals style string.</p>
+   <p>Accepts LilyPond accidentals style string, <code>None</code>.</p>
+   <p>See <a href="../component_class/index.html#accidentals">example</a>.</p>
+</header>
+</definition>
 
 
 
-<!-- ### ACCIDENTALS ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited"> 
-<a name="accidentals" class="example-header-inherited">accidentals</a>
-<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Returns LilyPond accidentals style string.
-<p>Accepts LilyPond accidentals style string, <code>None</code>.
-<p>See <a href="../component_class/index.html#accidentals">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
+<definition>
+<header>
+   <inherited> barline
+   <p>Read / write attribute inherited from <_Component>.</p>
+   <p>Returns Abjad <_BarlineInterface>.<p>
+   <p>Assign a LilyPond barline string, <code>None</code>.</p>
+   <p>See <a href="../component_class/index.html#barline">example</a>.</p>
+</header>
+</definition>
 
 
 
-<!-- ### BARLINE ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="barline" class="example-header-inherited">barline</a>
-<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Returns an Abjad <code><a href="../barline_interface/index.html">_BarLineInterface</a></code>.
-<p> Assign a LilyPond barline string, <code>None</code>.
-<p>See <a href="../component_class/index.html#barline">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
-
-
-
-<!-- ### BRACKETS ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="brackets" class="example-header">brackets</a>
-<p>Read / write attribute defined here.
-<p>Returns Abjad <code><a href="../bracket_class/index.html">_Brackets</a></code>.
-<!-- TODO: rename bracket_string to brackets_string in repository -->
-<p>Accepts Abjad <a href="../bracket_string/index.html">bracket string</a>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
+<definition>
+<header>
+   <local> brackets
+   <p>Read / write attribute defined here.</p>
+   <p>Returns Abjad <_Brackets>.</p>
+   <!-- TODO: rename bracket_string to brackets_string in repository -->
+   <p>Accepts Abjad <bracket string>.</p>
+</header>
+<body>
+<abjad>
    abjad> container = Container([ ])
    abjad> container.brackets
    ( )
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
+</abjad>
+<abjad>
    hide> container = Container([ ])
    abjad> container.brackets = 'curly'
    abjad> container.brackets
    { }
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-<!-- ### COMMENTS ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="comments" class="example-header-inherited">comments</a>
-<p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Returns Abjad <code><a href="../comments_class/index.html">_Comments</a></code>.
-<p>See <a href="../component_class/index.html#comments">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
-
-
-
-<!-- ### DURATION ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="duration" class="example-header">duration</a>
-<p>Read-only attribute defined here.
-<p>Returns Abjad <code><a href="../container_duration_interface/index.html">_ContainerDurationInterface</a></code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([ ])
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([ ])
-   abjad> container.duration
-   ContainerDurationInterface(0)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### FORMAT ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="format" class="example-header-inherited">format</a>
-<p>Read-only attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Returns a string of valid LilyPond input.
-<p>See <a href="../component_class/index.html#format">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
-
-
-
-<!-- ### FORMATTER ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="formatter" class="example-header">formatter</a>
-<p>Read-only attribute defined here.
-<p>Returns Abjad <code>_ContainerFormatter</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([ ])
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([ ])
-   abjad> container.formatter
-   _ContainerFormatter( )
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### LEAVES ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="leaves" class="example-header">leaves</a>
-<p>Read-only attribute defined here.
-<p>Returns Python list of leaves in <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container(Note(0, (1, 4)) * 4)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container(Note(0, (1, 4)) * 4)
-   abjad> container.leaves
-   [Note(c', 4), Note(c', 4), Note(c', 4), Note(c', 4)]
-   hide> show(container)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### NEXT ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="next" class="example-header">next</a>
-<p>Read-only attribute defined here.
-<p>Returns reference to next-in-container leaf following <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
-   abjad> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
-   abjad> staff = Staff([t, u])
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
-   hide> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
-   hide> staff = Staff([t, u])
-   hide> measure = Measure((1, 4), staff[0 : 2])
-   hide> measure.meter.transparent = True
-   abjad> t.next
-   Note(e', 4)
-   hide> show(staff)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### PARALLEL ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="parallel" class="example-header">parallel</a>
-<p>Read / write attribute defined here.
-<p>Returns <code>True</code> when contents of <code>self</code> interpret in parallel, ie, at the same musical time, and <code>False</code> otherwise.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([ ])
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([ ])
-   abjad> container.parallel
-   False
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### PREV ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="prev" class="example-header">prev</a>
-<p>Read-only attribute defined here.
-<p>Returns reference to previous-in-container leaf following <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
-   abjad> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
-   abjad> staff = Staff([t, u])
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
-   hide> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
-   hide> staff = Staff([t, u])
-   hide> measure = Measure((1, 4), staff[0 : 2])
-   hide> measure.meter.transparent = True
-   abjad> u.prev
-   Note(d', 4)
-   hide> show(staff)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### SPANNERS ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="spanners" class="example-header">spanners</a>
-<p>Read-only attribute defined here.
-<p>Returns Abjad <code><a href="../container_spanner_interface/index.html">_ContainerSpannerInterface</a></code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([ ])
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([ ])
-   abjad> container.spanners
-   _ContainerSpannerInterface(0)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### TEMPO ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="tempo" class="example-header-inherited">tempo</a>
-<p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Returns Abjad <code><a href="../tempo_interface/index.html">_TempoInterface</a></code>.
-<p>Accepts Abjad <a href="../tempo_token/index.html">tempo token</a>.
-<p>See <a href="../component_class/index.html#tempo">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
-
-
-
-<h2 class="page-section">Public methods</h2>
-
-
-
-<!-- ### APPEND( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="append" class="example-header">append(<i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Appends <code><i>expr</i></code> of type <code> <a href="../component_class/index.html"> _Component</a></code> to <code>self</code>. 
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(0, (1, 4))])
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(0, (1, 4))])
-   abjad> container.append(Note(2, (1, 4)))
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### COALESCE( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="coalesce" class="example-header">coalesce( )</a>
-<p>Public method defined here.
-<p>Fuses sub-containers belonging to the same thread.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> voice1 = Voice(Note(7, (1, 8)) * 2)
-   abjad> voice2 = Voice(Note(0, (1, 8)) * 2)
-   abjad> voice1.invocation.name = 'voice1'
-   abjad> voice2.invocation.name = 'voice2'
-   abjad> staff = Staff([voice1, voice2])
-   abjad> staff.brackets = 'double-angle'
-   abjad> container = Container([staff, staff.copy()])
-   abjad> f(container)
-   \new Staff <<
-		\context Voice = "voice1" {
-			  c'8
-			  c'8
-		}
-		\context Voice = "voice2" {
-			  g'8
-			  g'8
-		}
-   >>
-   \new Staff <<
-		\context Voice = "voice1" {
-			  c'8
-			  c'8
-		}
-		\context Voice = "voice2" {
-			  g'8
-			  g'8
-		}
-   >>
-   abjad> container.coalesce( )
-   abjad> f(container)
-   \new Staff <<
-		\context Voice = "voice1" {
-			  c'8
-			  c'8
-			  c'8
-			  c'8
-		}
-		\context Voice = "voice2" {
-			  g'8
-			  g'8
-			  g'8
-			  g'8
-		}
-   >>
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### COPY( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="copy" class="example-header-inherited">copy( )</a>
-<p>Public method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Returns new copy of <code>self</code>.
-<p>See <a href="../component_class/index.html#copy">example</a>.
-</div> <!-- example header -->
-</div> <!-- example -->
-
-
-
-<!-- ### EMBED( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="embed" class="example-header">embed(<i>i</i>, <i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Inserts <code>expr</code> in <code>self</code> at index <code>i</code>. 
-<p><code><i>expr</i></code> may be either of type <code><a href="../component_class/index.html">_Component</a></code> or a Python list or Python tuple of type <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Does not fracture spanners; for fracturing insert, use <code>insert( )</code> instead.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container(Note(0, (1, 8)) * 4)
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container(Note(0, (1, 8)) * 4)
-   hide> Beam(container)
-   abjad> container.embed(2, Note(2, (1, 8)))
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### EXTEND( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="extend" class="example-header">extend(<i>i</i>, <i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Appends the contents of <code>expr</code> to <code>self</code>.
-<p><code><i>expr</i></code> may be either a Python list or an Abjad <code><a href="../container_class/index.html">Container</a></code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> t = Container(Note(0, (1, 16)) * 4)
-   abjad> Beam(t)
-   hide> measure = Measure(t.duration.pair, [t])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   abjad> u = Container(Note(2, (1, 16)) * 4)
-   abjad> Beam(u)
-   hide> measure = Measure(u.duration.pair, [u])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> t = Container(Note(0, (1, 16)) * 4)
-   hide> Beam(t)
-   abjad> u = Container(Note(2, (1, 16)) * 4)
-   abjad> Beam(u)
-   abjad> t.extend(u)
-   hide> measure = Measure(t.duration.pair, [t])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### GET( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="get" class="example-header">get(<i>name = None</i>, <i>classtype = None</i>)</a>
-<p>Public method defined here.  
-<p>Searches <code>self</code> recursively and returns all score components in <code>self</code> with name equal to <code>name</code> and / or with class name equal to <code>classname</code>.
-<p><code>name</code> will match either an "added attribute" of the type <code>self.name = 'name'</code> or context invocation name of the sort <code>context.invocation.name = 'name'</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> t = Container(Note(0, (1, 16)) * 4)
-   abjad> Beam(t)
-   abjad> t.name = 'first'
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   abjad> u = Container(Note(2, (1, 16)) * 4)
-   abjad> Beam(u)
-   abjad> u.name = 'second'
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> t = Container(Note(0, (1, 16)) * 4)
-   hide> Beam(t)
-   hide> t.name = 'first'
-   hide> u = Container(Note(2, (1, 16)) * 4)
-   hide> Beam(u)
-   hide> u.name = 'second'
-   abjad> container = Container([t, u])
-   abjad> container.get('first')
-   Conatiner(c'16, c'16, c'16, c'16)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### INDEX( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="index" class="example-header">index(<i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Return nonnegative integer index of <code>expr</code> in <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> note = container[2]
-   hide> measure = Measure(note.duration.pair, [note])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> note = container[2]
-   abjad> container.index(note)
-   2
-   hide> measure = Measure(note.duration.pair, [note])
-   hide> measure.meter.transparent = True
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### KIND( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header-inherited">
-<a name="kind" class="example-header-inherited">kind(<i>classname</i>)</a>
-<p>Deprecated public method inherited from <code><a href="../component_class/index.html">_Component</a></code>
-<p>Returnx <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.
-<p>DEPRECATED. Use built-in Python <code>isinstance( )</code> instead.
-</div> <!-- example header -->
-</div> <!-- example -->
-
-
-
-<!-- ### INSERT( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="insert" class="example-header">insert(<i>i</i>, <i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Inserts <code>expr</code> in <code>self</code> at index <code>i</code>. 
-<p><code><i>expr</i></code> must be of type <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Fractures spanners; for nonfracturing insert, use <code><a href="#embed">embed( )</a></code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> note = Note(7, (1, 16))
-   hide> measure = Measure((1, 16), [note])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> note = Note(7, (1, 16))
-   abjad> container.insert(2, note)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### POP( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="pop" class="example-header">pop(<i>i = -1</i>)</a>
-<p>Public method defined here.  
-<p>Removes and returns element at index <code>i</code> from <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> note = container.pop( )
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> note = container.pop( )
-   abjad> note
-   hide> measure = Measure(note.duration.pair, [note])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### REMOVE( ) ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="remove" class="example-header">remove(<i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Remove <code>expr</code> from <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> note = container[1]
-   hide> measure = Measure(note.duration.pair, [note])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> note = container[1]
-   abjad> container.remove(note)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<h2 class="page-section">Overrides</h2>
-
-
-
-<!-- ### __ADD__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="add" class="example-header">__add__(<i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Return new container equal to the concatenation of <code>self</code> followed by <code>expr</code>.
-<p>The operation is noncommutative: the contents of <code>self</code> will be placed before the contents of <code>expr</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> t = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(t)
-   hide> measure = Measure(t.duration.pair, [t])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   abjad> u = Container([Note(x, (1, 16)) for x in [7, 9, 11, 12]])
-   hide> Beam(u)
-   hide> measure = Measure(u.duration.pair, [u])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> t = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(t)
-   hide> u = Container([Note(x, (1, 16)) for x in [7, 9, 11, 12]])
-   hide> Beam(u)
-   abjad> container = t + u 
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __CONTAINS__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="contains" class="example-header">__contains__(<i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Return <code>True</code> when <code>self</code> contains <code>expr</code>, otherwise <code>False</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> note = container[1]
-   hide> measure = Measure(note.duration.pair, [note])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> note = container[1]
-   abjad> note in container
-   True
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __DELITEM__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="delitem" class="example-header">__delitem__(<i>i</i>)</a>
-<p>Public method defined here.  
-<p>Delete elements at index or slice <code>i</code> from <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> del container[1:3]
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __GETITEM__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="getitem" class="example-header">__getitem__(<i>i</i>)</a>
-<p>Public method defined here.  
-<p>Return element at index <code>i</code> in <code>self</code>.
-<p>Works with positive indices, negative indices, and slices.
-<p class="example-header"><a class="example-header">__getitem__(<i>name</i>)</a>
-<p>Public method defined here.  
-<p>Return element in <code>self</code> with name equal to <code>name</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> note = container[0]
-   hide> measure = Measure(note.duration.pair, [note])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> container[-1].name = 'last'
-   abjad> note = container['last']
-   hide> measure = Measure(note.duration.pair, [note])
-   hide> measure.meter.transparent = True
-   hide> show(note)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __IMUL__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="imul" class="example-header">__imul__(<i>n</i>)</a>
-<p>Public method defined here.  
-<p>Create <code>n</code> total copies of the contents of <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> container *= 3
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __LEN__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="len" class="example-header">__len__( )</a>
-<p>Public method defined here.  
-<p>Return the number of elements in <code>self</code> as a nonnegative integer.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> len(container)
-   4
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __MUL__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="mul" class="example-header">__mul__(<i>n</i>)</a>
-<p>Public method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Return Python list of <code>n</code> copies of <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> container * 3
-   [(c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16)]
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __RADD__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="radd" class="example-header">__radd__(<i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Return new container equal to the concatenation of <code>self</code> followed by <code>expr</code>.
-<p>The operation is noncommutative: the contents of <code>self</code> will be placed before the contents of <code>expr</code>.
-<p>See <code><a href="#add">add( )</a></code>.
-</div> <!-- example header -->
-</div> <!-- example -->
-
-
-
-<!-- ### __REPR__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="repr" class="example-header">__repr__( )</a>
-<p>Public method defined here.  
-<p>Return string representation of <code>self</code> fit for interpreter display.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> container
-   (c'16, d'16, e'16, f'16)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __RMUL__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="rmul" class="example-header">__rmul__(<i>n</i>)</a>
-<p>Public method inherited from <code><a href="../component_class/index.html">_Component</a></code>.
-<p>Return Python list of <code>n</code> copies of <code>self</code>.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   abjad> 3 * container
-   [(c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16)]
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- ### __SETITEM__ ### -->
-<div class="example">
-<div class="example-header">
-<p class="example-header">
-<a name="setitem" class="example-header">__setitem__(<i>i</i>, <i>expr</i>)</a>
-<p>Public method defined here.  
-<p>Assign <code>expr</code> to index <code>i</code> in <code>self</code>.
-<p>Works with positive indices, negative indices, and slices.
-</div> <!-- example header -->
-<div class="example-body">
-<div class="example-code">
-<pre>
-   abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   abjad> container[1] = Note(10, (1, 16))
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-<div class="example-code">
-<pre>
-   hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
-   hide> container[1] = Note(10, (1, 16))
-   abjad> container[1:3] = Note(7, (1, 16)) * 4
-   hide> Beam(container)
-   hide> measure = Measure(container.duration.pair, [container])
-   hide> measure.meter.transparent = True
-   hide> show(measure)
-</pre>
-</div> <!-- example code -->
-</div> <!-- example body -->
-</div> <!-- example -->
-
-
-
-<!-- COMMENTS -->
-
-<h2 class="page-section">Comments</h2>
-
-<p class="comment">See the <code>Container</code> class in <code>containers/container.py</code> for implementation details.
+</abjad>
+</body>
+</definition>
+
+
+<definition>
+<header>
+   <inherited> comments
+   <p>Read-only attribute inherited from <_Component>.</p>
+   <p>Returns Abjad <_Comments>.</p>
+   <p>See <a href="../component_class/index.html#comments">example</a>.</p>
+</header>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> duration
+   <p>Read-only attribute defined here.</p>
+   <p>Returns Abjad <_ContainerDurationInterface>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([ ])
+   </abjad>
+   <abjad>
+      hide> container = Container([ ])
+      abjad> container.duration
+      ContainerDurationInterface(0)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <inherited> format
+   <p>Read-only attribute inherited from <_Component>.</p>
+   <p>Returns a string of valid LilyPond input.</p>
+   <p>See <a href="../component_class/index.html#format">example</a>.</p>
+</header>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> formatter
+   <p>Read-only attribute defined here.</p>
+   <p>Returns Abjad <_ContainerFormatter>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([ ])
+   </abjad>
+   <abjad>
+      hide> container = Container([ ])
+      abjad> container.formatter
+      _ContainerFormatter( )
+   </abjad>
+</body>
+</definition>
+
+
+<definition>
+<header>
+   <local> leaves
+   <p>Read-only attribute defined here.</p>
+   <p>Returns Python list of leaves in <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container(Note(0, (1, 4)) * 4)
+   </abjad>
+   <abjad>
+      hide> container = Container(Note(0, (1, 4)) * 4)
+      abjad> container.leaves
+      [Note(c', 4), Note(c', 4), Note(c', 4), Note(c', 4)]
+      hide> show(container)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> next
+   <p>Read-only attribute defined here.</p>
+   <p>Returns reference to next-in-container leaf following <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
+      abjad> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
+      abjad> staff = Staff([t, u])
+   </abjad>
+   <abjad>
+      hide> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
+      hide> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
+      hide> staff = Staff([t, u])
+      hide> measure = Measure((1, 4), staff[0 : 2])
+      hide> measure.meter.transparent = True
+      abjad> t.next
+      Note(e', 4)
+      hide> show(staff)
+   </abjad>
+</body>
+</definition>
+
+
+<definition>
+<header>
+   <local> parallel
+   <p>Read / write attribute defined here.</p>
+   <p>Returns <code>True</code> when contents of <code>self</code> interpret in parallel, ie, at the same musical time, and <code>False</code> otherwise.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([ ])
+   </abjad>
+   <abjad>
+      hide> container = Container([ ])
+      abjad> container.parallel
+      False
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> prev
+   <p>Read-only attribute defined here.</p>
+   <p>Returns reference to previous-in-container leaf following <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
+      abjad> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
+      abjad> staff = Staff([t, u])
+   </abjad>
+   <abjad>
+      hide> t = Container([Note(0, (1, 4)), Note(2, (1, 4))])
+      hide> u = Container([Note(4, (1, 4)), Note(5, (1, 4))])
+      hide> staff = Staff([t, u])
+      hide> measure = Measure((1, 4), staff[0 : 2])
+      hide> measure.meter.transparent = True
+      abjad> u.prev
+      Note(d', 4)
+      hide> show(staff)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> spanners
+   <p>Read-only attribute defined here.</p>
+   <p>Returns Abjad <_ContainerSpannerInterface>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([ ])
+   </abjad>
+   <abjad>
+      hide> container = Container([ ])
+      abjad> container.spanners
+      _ContainerSpannerInterface(0)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <inherited> tempo
+   <p>Read / write attribute inherited from <_Component>.</p>
+   <p>Returns Abjad <_TempoInterface>.</p>
+   <p>Accepts Abjad <tempo token>.</p>
+   <p>See <a href="../component_class/index.html#tempo">example</a>.</p>
+</header>
+</definition>
+
+
+
+<section>Methods
+
+
+
+<definition>
+<header>
+   <local> append
+   <p> append(<i>expr</i>)
+   <p>Public method defined here.</p>
+   <p>Appends <code><i>expr</i></code> of type <_Component> to <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(0, (1, 4))])
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(0, (1, 4))])
+      abjad> container.append(Note(2, (1, 4)))
+      hide> measure = Measure(container.duration.contents.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+<definition>
+<header>
+   <local> coalesce
+   <p>Public method defined here.</p>
+   <p>Fuses subcontainers belonging to the same thread.</p>
+</header>
+<body>
+   <abjad>
+      abjad> voice1 = Voice(Note(7, (1, 8)) * 2)
+      abjad> voice2 = Voice(Note(0, (1, 8)) * 2)
+      abjad> voice1.invocation.name = 'voice1'
+      abjad> voice2.invocation.name = 'voice2'
+      abjad> staff = Staff([voice1, voice2])
+      abjad> staff.brackets = 'double-angle'
+      abjad> container = Container([staff, staff.copy()])
+      abjad> f(container)
+      \new Staff <<
+         \context Voice = "voice1" {
+              c'8
+              c'8
+         }
+         \context Voice = "voice2" {
+              g'8
+              g'8
+         }
+      >>
+      \new Staff <<
+         \context Voice = "voice1" {
+              c'8
+              c'8
+         }
+         \context Voice = "voice2" {
+              g'8
+              g'8
+         }
+      >>
+      abjad> container.coalesce( )
+      abjad> f(container)
+      \new Staff <<
+         \context Voice = "voice1" {
+              c'8
+              c'8
+              c'8
+              c'8
+         }
+         \context Voice = "voice2" {
+              g'8
+              g'8
+              g'8
+              g'8
+         }
+      >>
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <inherited> copy
+   <p>copy( )</p>
+   <p>Public method inherited from <_Component>.
+   <p>Returns new copy of <code>self</code>.</p>
+   <p>See <a href="../component_class/index.html#copy">example</a>.</p>
+</header>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> embed
+   <p>embed(<i>i</i>, <i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Inserts <code>expr</code> in <code>self</code> at index <code>i</code>. </p>
+   <p><code><i>expr</i></code> may be either of type <_Component> or a Python list or Python tuple of type <_Component>.
+   <p>Does not fracture spanners; for fracturing insert, use <code>insert( )</code> instead.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container(Note(0, (1, 8)) * 4)
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.contents.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container(Note(0, (1, 8)) * 4)
+      hide> Beam(container)
+      abjad> container.embed(2, Note(2, (1, 8)))
+      hide> measure = Measure(container.duration.contents.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> extend
+   <p>extend(<i>i</i>, <i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Appends the contents of <code>expr</code> to <code>self</code>.</p>
+   <p><code><i>expr</i></code> may be either a Python list or an Abjad <Container>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> t = Container(Note(0, (1, 16)) * 4)
+      abjad> Beam(t)
+      hide> measure = Measure(t.duration.preprolated.pair, [t])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      abjad> u = Container(Note(2, (1, 16)) * 4)
+      abjad> Beam(u)
+      hide> measure = Measure(u.duration.preprolated.pair, [u])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> t = Container(Note(0, (1, 16)) * 4)
+      hide> Beam(t)
+      abjad> u = Container(Note(2, (1, 16)) * 4)
+      abjad> Beam(u)
+      abjad> t.extend(u)
+      hide> measure = Measure(t.duration.preprolated.pair, [t])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> get
+   <p>get(<i>name = None</i>, <i>classtype = None</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Searches <code>self</code> recursively and returns all score components in <code>self</code> with name equal to <code>name</code> and / or with class name equal to <code>classname</code>.</p>
+   <p><code>name</code> will match either an "added attribute" of the type <code>self.name = 'name'</code> or context invocation name of the sort <code>context.invocation.name = 'name'</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> t = Container(Note(0, (1, 16)) * 4)
+      abjad> Beam(t)
+      abjad> t.name = 'first'
+   </abjad>
+   <abjad>
+      abjad> u = Container(Note(2, (1, 16)) * 4)
+      abjad> Beam(u)
+      abjad> u.name = 'second'
+   </abjad>
+   <abjad>
+      hide> t = Container(Note(0, (1, 16)) * 4)
+      hide> Beam(t)
+      hide> t.name = 'first'
+      hide> u = Container(Note(2, (1, 16)) * 4)
+      hide> Beam(u)
+      hide> u.name = 'second'
+      abjad> container = Container([t, u])
+      abjad> container.get('first')
+      Conatiner(c'16, c'16, c'16, c'16)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> index
+   <p>index(<i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Return nonnegative integer index of <code>expr</code> in <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> note = container[2]
+      hide> measure = Measure(note.duration.preprolated.pair, [note])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> note = container[2]
+      abjad> container.index(note)
+      2
+      hide> measure = Measure(note.duration.preprolated.pair, [note])
+      hide> measure.meter.transparent = True
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <inherited> kind
+   <p>kind(<i>classname</i>)</p>
+   <p>Deprecated public method inherited from <_Component>.
+   <p>Returns <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.</p>
+   <p>DEPRECATED. Use built-in Python <code>isinstance( )</code> instead.</p>
+</header>
+</definition>
+
+
+<definition>
+<header>
+   <local> insert
+   <p>insert(<i>i</i>, <i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Inserts <code>expr</code> in <code>self</code> at index <code>i</code>.</p>
+   <p><code><i>expr</i></code> must be of type <_Component>.</p>
+   <p>Fractures spanners; for nonfracturing insert, use <code><a href="#embed">embed( )</a></code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> note = Note(7, (1, 16))
+      hide> measure = Measure((1, 16), [note])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> note = Note(7, (1, 16))
+      abjad> container.insert(2, note)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+<definition>
+<header>
+   <local> pop
+   <p> pop(<i>i = -1</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Removes and returns element at index <code>i</code> from <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> note = container.pop( )
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> note = container.pop( )
+      abjad> note
+      hide> measure = Measure(note.duration.preprolated.pair, [note])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+<definition>
+<header>
+   <local> remove
+   <p>remove(<i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Remove <code>expr</code> from <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> note = container[1]
+      hide> measure = Measure(note.duration.preprolated.pair, [note])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> note = container[1]
+      abjad> container.remove(note)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+
+<section>Overloads
+
+
+
+<definition>
+<header>
+   <local> __add__
+   <p>__add__(<i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Return new container equal to the concatenation of <code>self</code> followed by <code>expr</code>.</p>
+   <p>The operation is noncommutative: the contents of <code>self</code> will be placed before the contents of <code>expr</code>.</p>
+</header>
+   <abjad>
+      abjad> t = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(t)
+      hide> measure = Measure(t.duration.preprolated.pair, [t])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      abjad> u = Container([Note(x, (1, 16)) for x in [7, 9, 11, 12]])
+      hide> Beam(u)
+      hide> measure = Measure(u.duration.preprolated.pair, [u])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> t = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(t)
+      hide> u = Container([Note(x, (1, 16)) for x in [7, 9, 11, 12]])
+      hide> Beam(u)
+      abjad> container = t + u 
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __contains__
+   <p>__contains__(<i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Return <code>True</code> when <code>self</code> contains <code>expr</code>, otherwise <code>False</code>.</p>
+</header>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> note = container[1]
+      hide> measure = Measure(note.duration.preprolated.pair, [note])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> note = container[1]
+      abjad> note in container
+      True
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __delitem__
+   <p>__delitem__(<i>i</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Delete elements at index or slice <code>i</code> from <code>self</code>.</p>
+</header>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> del container[1:3]
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __getitem__
+   <p>__getitem__(<i>i</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Return element at index <code>i</code> in <code>self</code>.</p>
+   <p>Works with positive indices, negative indices, and slices.</p>
+   <p>__getitem__(<i>name</i>)</p>
+   <p>Public method defined here.</p> 
+   <p>Return element in <code>self</code> with name equal to <code>name</code>.</p>
+</header>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> note = container[0]
+      hide> measure = Measure(note.duration.preprolated.pair, [note])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> container[-1].name = 'last'
+      abjad> note = container['last']
+      hide> measure = Measure(note.duration.preprolated.pair, [note])
+      hide> measure.meter.transparent = True
+      hide> show(note)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __imul__
+   <p>__imul__(<i>n</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Create <code>n</code> total copies of the contents of <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> container *= 3
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __len__
+   <p>__len__( )</p>
+   <p>Public method defined here.</p>
+   <p>Return the number of elements in <code>self</code> as a nonnegative integer.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> len(container)
+      4
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __mul__
+   <p>__mul__(<i>n</i>)</p>
+   <p>Public method inherited from <_Component>.</p>
+   <p>Return Python list of <code>n</code> copies of <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> container * 3
+      [(c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16)]
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __radd__
+   <p>__radd__(<i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Return new container equal to the concatenation of <code>self</code> followed by <code>expr</code>.</p>
+   <p>The operation is noncommutative: the contents of <code>self</code> will be placed before the contents of <code>expr</code>.</p>
+   <p>See <code><a href="#add">add( )</a></code>.</p>
+</header>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __repr__
+   <p>__repr__( )</p>
+   <p>Public method defined here.</p>
+   <p>Return string representation of <code>self</code> fit for interpreter display.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> container
+      (c'16, d'16, e'16, f'16)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __rmul__
+   <p>Public method inherited from <_Component>.</p>
+   <p>Return Python list of <code>n</code> copies of <code>self</code>.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      abjad> 3 * container
+      [(c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16), (c'16, d'16, e'16, f'16)]
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+   </abjad>
+</body>
+</definition>
+
+
+
+<definition>
+<header>
+   <local> __setitem__
+   <p>__setitem__(<i>i</i>, <i>expr</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Assign <code>expr</code> to index <code>i</code> in <code>self</code>.</p>
+   <p>Works with positive indices, negative indices, and slices.</p>
+</header>
+<body>
+   <abjad>
+      abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      abjad> container[1] = Note(10, (1, 16))
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+   <abjad>
+      hide> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
+      hide> container[1] = Note(10, (1, 16))
+      abjad> container[1:3] = Note(7, (1, 16)) * 4
+      hide> Beam(container)
+      hide> measure = Measure(container.duration.preprolated.pair, [container])
+      hide> measure.meter.transparent = True
+      hide> show(measure)
+   </abjad>
+</body>
+</definition>
+
+
+
+<comments>
+
+<p>
+See the <Container> class in <code>containers/container.py</code> for implementation details.
+</p>
+
+</comments>
