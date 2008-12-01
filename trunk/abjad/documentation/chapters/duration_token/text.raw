@@ -1,18 +1,18 @@
-<title> Duration token </title>
-
-<h1> Duration token </h1>
+<h1>Duration token</h1>
 
 <subsection>
 
-<p> Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
+<p>
+Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
+</p>
 
 <ul>
-   <li> Abjad <Rational> instances
-   <li> Python pairs
-   <li> Python <tt>int</tt> and <tt>long</tt> instances
+   <li>Abjad <Rational> instances</li>
+   <li>Python pairs</li>
+   <li>Python <tt>int</tt> and <tt>long</tt> instances</li>
 </ul>
 
-<p> For example:
+<p>For example:</p>
 
 <abjad>
    abjad> note = Note(0, Rational(1, 4))
@@ -22,7 +22,7 @@
    hide> show(staff)
 </abjad>
 
-<p> And:
+<p>And:</p>
 
 <abjad>
    abjad> note = Note(0, (3, 8))
@@ -32,7 +32,7 @@
    hide> show(staff)
 </abjad>
 
-<p> And:
+<p>And:</p>
 
 <abjad>
    abjad> note = Note(0, 1)
@@ -42,14 +42,20 @@
    hide> show(staff)
 </abjad>
 
-<p> The Abjad <strong>duration token</strong> generalizes these different types of input.
+<p>
+The Abjad <strong>duration token</strong> generalizes these different types of input.
+</p>
 
-<p> Examples in the documentation that ask for valid duration token input accept any of the types of input show here.
+<p>
+Examples in the documentation that ask for valid duration token input accept any of the types of input show here.
+</p>
 
 </subsection>
 
 <comments>
 
-<p> Abjad does not count the Python <tt>float</tt> among the valid types of duration token.
+<p>
+Abjad does not count the Python <tt>float</tt> among the valid types of duration token.
+</p>
 
 </comments>

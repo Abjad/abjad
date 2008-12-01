@@ -1,22 +1,40 @@
-<title> Prolation </title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
 
 <h1>Prolation</h1>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Abjad uses <strong>prolation</strong> as a cover term for rhythmic augmentation and diminution.
+
+<p>
+Abjad uses <strong>prolation</strong> as a cover term for rhythmic augmentation and diminution.
 Augmentation increases the duration of notes, rests, chords and tuplets.
 Diminution does the opposite. 
 Western notation employes tuplet brackets and special types of time signature to effect prolation.
+</p>
 
-</div class="subsection">
+</div>
 
-<h2 class="page-section"> Tuplet prolation </h2>
+<h2 class="page-section">Tuplet prolation</h2>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Abjad supports two different types of tuplet.
+
+<p>
+Abjad supports two different types of tuplet.
 Fixed-duration tuplets and fixed-multiplier tuplets both <strong>prolate</strong> their contents.
+</p>
 
 <pre class="abjad">
 abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
@@ -26,7 +44,7 @@ abjad> tuplet.duration.augmentation
 True
 abjad> show(staff)
 </pre>
-<img src="images/1.png">
+<img alt="" src="images/1.png"/>
 
 <pre class="abjad">
 abjad> tuplet.duration.multiplier
@@ -49,19 +67,23 @@ abjad> note.duration.prolated
 Rational(5, 32)
 </pre>
 
-<p> The tuplet here augments its contents and carries a <a href="../tuplet_multipliers/index.html">tuplet multiplier</a> equal to <tt>4/5</tt>.
+<p>
+The tuplet here augments its contents and carries a <a href="../tuplet_multipliers/index.html">tuplet multiplier</a> equal to <tt>4/5</tt>.
 Notes here with <a href="../written_duration/index.html">written duration</a> equal to <tt>1/8</tt> carry <strong>prolation factor</strong> equal to <tt>4/5</tt> and <a href="../prolated_duration/index.html">prolated duration</a> equal to <tt>5/4 * 1/8 = 5/32</tt>.
+</p>
 
-</div class="subsection">
+</div>
 
-<h2 class="page-section"> Meter prolation </h2>
+<h2 class="page-section">Meter prolation</h2>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Time signatures in western notation usually carry a denominator equal to some nonnegative integer power of&nbsp;2. 
+
+<p>
+Time signatures in western notation usually carry a denominator equal to some nonnegative integer power of&nbsp;2. 
 We can call these conventional meters <strong>binary meters</strong>.
 Denominators equal to integers other than integer powers of&nbsp;2 are also possible. 
 Such <strong>nonbinary meters</strong> prolate the music they contain.
+</p>
 
 <pre class="abjad">
 abjad> measure = Measure((4, 10), Note(0, (1, 8)) * 4)
@@ -72,25 +94,31 @@ abjad> note.duration.prolation
 Rational(4, 5)
 abjad> show(staff)
 </pre>
-<img src="images/2.png">
+<img alt="" src="images/2.png"/>
 
 <pre class="abjad">
 abjad> note.duration.prolated
 Rational(1, 10)
 </pre>
 
-<p> The nonbinary <tt>4/10</tt> meter here prolates the contents of the measure it governs by a prolation factor equal to <tt>4/5</tt>.
+<p>
+The nonbinary <tt>4/10</tt> meter here prolates the contents of the measure it governs by a prolation factor equal to <tt>4/5</tt>.
 The notes here with <a href="../written_duration/index.html">written duration</a> of <tt>1/8</tt> carry <a href="../prolated_duration/index.html">prolated duration</a> equal to <tt>4/5 * 1/8 = 1/10</tt>.
+</p>
 
-<p> Nonbinary meters only ever diminish, and never augment, the contents of the measures they govern.
+<p>
+Nonbinary meters only ever diminish, and never augment, the contents of the measures they govern.
+</p>
 
-</div class="subsection">
+</div>
 
-<h2 class="page-section"> The prolation chain </h2>
+<h2 class="page-section">The prolation chain</h2>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Tuplets nest. And tuplet prolation and meter prolation combine freely. When two or more <strong>prolation donors</strong> conspire, the prolation factor they collectively bestow on leaf-level music equals the cumulative product of all prolation factors in the <strong>prolation chain</strong>.
+
+<p>
+Tuplets nest. And tuplet prolation and meter prolation combine freely. When two or more <strong>prolation donors</strong> conspire, the prolation factor they collectively bestow on leaf-level music equals the cumulative product of all prolation factors in the <strong>prolation chain</strong>.
+</p>
 
 <pre class="abjad">
 abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
@@ -101,7 +129,7 @@ abjad> tuplet.duration.multiplier
 Rational(8, 7)
 abjad> show(staff)
 </pre>
-<img src="images/3.png">
+<img alt="" src="images/3.png"/>
 
 <pre class="abjad">
 abjad> measure.duration.compression
@@ -124,38 +152,51 @@ abjad> note.duration.prolated
 Rational(2, 35)
 </pre>
 
-<p> The tuplet here augments the notes it contains by a prolation factor equal to <tt>8/7</tt>.
+<p>
+The tuplet here augments the notes it contains by a prolation factor equal to <tt>8/7</tt>.
 The nonbinary <tt>4/10</tt> meter diminishes the contents of the measure it governs by a prolation factor equal to <tt>4/5</tt>.
 The prolation chains of the notes here equal the cumulative product <tt>8/7 * 4/5</tt> of the prolation factors tied to the tuplet and nonbinary measure inside of which each note nests.
 Each note carries a prolation factor equal to <tt>8/7 * 4/5 = 32/35</tt>.
 And each note with <a href="../written_duration/index.html">written duration</a> equal to <tt>1/16</tt> carries <a href="../prolated_duration/index.html">prolated duration</a> equal to <tt>32/35 * 1/16 = 2/35</tt>.
+</p>
 
-<p> All durated objects everywhere carry a prolation chain. Only the prolation chains of nested objects are interesting.
+<p>
+All durated objects everywhere carry a prolation chain. Only the prolation chains of nested objects are interesting.
+</p>
 
-</div class="subsection">
+</div>
 
-<h2 class="page-section"> Comments </h2>
+<h2 class="page-section">Comments</h2>
 
 <div class="comments">
 
-<p> Western notation does not recognize tuplet brackets carrying one-to-one ratios.
+<p>
+Western notation does not recognize tuplet brackets carrying one-to-one ratios.
 Such <strong>trivial tuplets</strong> may, however, be useful during different stages of composition, and Abjad allows them for that reason.
 Trivial tuplets carry <strong>zero prolation</strong>.
 Zero-prolated tuplets neither augment nor diminish the music they contain.
+</p>
 
-<p> Abjad implements one of two competing nonbinary <strong>meter-interpretation schemes</strong>.
+<p>
+Abjad implements one of two competing nonbinary <strong>meter-interpretation schemes</strong>.
 The first, <strong>implicit meter-interpretation</strong> given here, follows, for example, Ferneyhough, in that nonbinary meters prolate the contents of the measures they govern implicitly, ie, without recourse to tuplet brackets.
 The second, <strong>explicit meter-interpretation</strong>, which we find in, for example, Sciarrino, insists instead on the presence of some tuplet bracket, usually engraved in some broken or incomplete way.
 The implicit meter-interpretation that Abjad implements differs from the explicit meter-interpretation native to LilyPond.
 Abjad will eventually implement both implicit and explicit meter-interpretation, settable on a container-by-container basis.
+</p>
 
-<p> Nonbinary meters <tt>n/d</tt> diminish the contents of the measures they govern by a factor <tt>j/k</tt>, with <tt>k = d</tt>, and with <tt>j</tt> equal to the greatest integer power of <tt>2</tt> less than <tt>d</tt>.
+<p>
+Nonbinary meters <tt>n/d</tt> diminish the contents of the measures they govern by a factor <tt>j/k</tt>, with <tt>k = d</tt>, and with <tt>j</tt> equal to the greatest integer power of <tt>2</tt> less than <tt>d</tt>.
 That is, <tt>j = 2 ** int(log(2, d))</tt>. 
+</p>
 
-<p> The notion of <strong>prolation roles</strong> is just starting to work out of the language introduced here.
+<p>
+The notion of <strong>prolation roles</strong> is just starting to work out of the language introduced here.
 If we identify tuplets and nonbinary measures as <strong>prolation donors</strong> and then identify all durated classes as <strong>prolation recipients</strong> then we have the beginnings of language to explain prolation roles.
+</p>
 
-<p> Prolation roles become particularly interesting when we look at the <strong>direction of giving</strong> which prolation factors undergo. 
+<p>
+Prolation roles become particularly interesting when we look at the <strong>direction of giving</strong> which prolation factors undergo. 
 Tuplets, for example, play the prolation donor and prolation recipient role at once.
 Because of this, tuplets both prolate their contents by a prolation factor equal to <code>tuplet.duration.multiplier</code> and are, in turn, prolated by a prolation factor equal to <code>tuplet.duration.prolation</code>.
 That is, tuplets receive one prolation factor from objects higher up in the score tree and donate a different prolation factor to objects lower in the score tree.
@@ -163,5 +204,14 @@ Nonbinary measures parallel this situation.
 Nonbinary measures receive a prolation factor from objects higher up in the score tree equal to <code>measure.duration.prolation</code>.
 At the same time, nonbinary measures donate a prolation factor to objects lower in the score tree equal to <code>measure.duration.compression</code>.
 Measure compression and tuplet multiplier therefore behave in an analagous way that improvements to our language could help clarify.
+</p>
 
-</div class="comments">
+</div>
+
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
+</div>
+
+</body>
+
+</html>

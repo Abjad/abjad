@@ -1,5 +1,3 @@
-<title> Duration interfaces compared </title>
-
 <h1>Duration interfaces compared</h1>
 
 <subsection>
@@ -93,14 +91,21 @@
 
 <comments>
 
-<p> The table contains a total of only four settable duration attributes, divided among only three classes.
+<p>
+The table contains a total of only four settable duration attributes, divided among only three classes.
 Durated Abjad classes offer up many read-only duration attributes but very few read-write duration attributes.
+</p>
 
-<p> All classes carry all three prolation-related attributes because all classes can nest inside containers.
+<p>
+All classes carry all three prolation-related attributes because all classes can nest inside containers.
 It is possible, for example, to nest an entire voice within a fixed-duration tuplet.
+</p>
 
-<p> Leaf multipliers and tuplet multipliers differ.
+<p>
+Leaf multipliers and tuplet multipliers differ.
+</p>
 
-<p> <_MeasureDurationInterface> implements <code>compression</code> and <code>nonbinary</code> attributes not shown above.
+<p><_MeasureDurationInterface> implements <code>compression</code> and <code>nonbinary</code> attributes not shown above.
+</p>
 
 </comments>

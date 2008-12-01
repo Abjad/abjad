@@ -1,5 +1,3 @@
-<title> Multiplied duration </title>
-
 <h1>Multiplied duration</h1>
 
 <subsection>
@@ -15,12 +13,14 @@ Abjad defines the <strong>multiplied duration</strong> of notes, rests, chords a
 
 <subsection>
 
-<p> The first two notes here carry <a href="../leaf_multipliers/index.html">leaf mulitipliers</a> equal to <tt>2/1</tt>.
+<p>
+The first two notes here carry <a href="../leaf_multipliers/index.html">leaf mulitipliers</a> equal to <tt>2/1</tt>.
+</p>
 
 <abjad>
   abjad> notes = Note(0, (1, 16)) * 4
-  abjad> notes[0].duration.multiplier = (2, 1)
-  abjad> notes[1].duration.multiplier = (2, 1)
+  abjad> notes[0].duration.multiplier = Rational(2, 1)
+  abjad> notes[1].duration.multiplier = Rational(2, 1)
   abjad> measure = Measure((3, 8), notes) 
   abjad> Beam(measure)
   abjad> staff = RhythmicStaff([measure])
@@ -40,26 +40,36 @@ Abjad defines the <strong>multiplied duration</strong> of notes, rests, chords a
   Rational(1, 8)
 </abjad>
 
-<p> The <a href="../written_duration/index.html">written duration</a> of these first two notes equals <tt>1/16</tt> and so the multiplied duration of these first two notes equals <tt>1/16 * 2/1 = 1/8</tt>.
+<p>
+The <a href="../written_duration/index.html">written duration</a> of these first two notes equals <tt>1/16</tt> and so the multiplied duration of these first two notes equals <tt>1/16 * 2/1 = 1/8</tt>.
+</p>
 
 </subsection>
 
 <comments>
 
-<p> Abjad currently implements no explicit <code>duration.multiplied</code> attribute.
+<p>
+Abjad currently implements no explicit <code>duration.multiplied</code> attribute.
 Would be easy to add such an attribute to the <_LeafDurationInterface>.
+</p>
 
-<p> Only leaves carry multiplied duration.
+<p>
+Only leaves carry multiplied duration.
 Tuplets carry a multiplier but no multiplied duration.
 Should we rename tuplet multipliers to something else like tuplet ratios?
+</p>
 
-<p> The chapter here defines multiplied duration equal to <tt>written * multiplier</tt>.
+<p>
+The chapter here defines multiplied duration equal to <tt>written * multiplier</tt>.
 We could define multiplied duration equal to <tt>written * multiplier * prolation</tt> instead.
 But let's not.
+</p>
 
-<p> We have no leaf duration attribute equal to <tt>multiplier * prolation</tt>.
+<p>
+We have no leaf duration attribute equal to <tt>multiplier * prolation</tt>.
 This product shows what we might call the 'composite prolation' or 'total scaling' or 'gestalt scaling' directed towards the leaf in question.
 I don't think we've ever needed such an attribute.
 If we ever do it will be easy to add to <_LeafDurationInterface> once we come up with a one-word name for the attribute.
+</p>
 
 </comments>

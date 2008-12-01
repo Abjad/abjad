@@ -1,17 +1,19 @@
-<title> Contents duration </title>
-
 <h1>Contents duration</h1>
 
 <subsection>
 
-<p> Abjad defines the <strong>contents duration</strong> of tuplets, measures, voices, staves and other containers equal to the sum of the <strong>preprolated duration</strong> of each of the elements in the container.
+<p>
+Abjad defines the <strong>contents duration</strong> of tuplets, measures, voices, staves and other containers equal to the sum of the <strong>preprolated duration</strong> of each of the elements in the container.
+</p>
 
 </subsection>
 
 <subsection>
 
-<p> The measure here contains two eighth notes and tuplet.
+<p>
+The measure here contains two eighth notes and tuplet.
 These elements carry preprolated durations equal to <tt>1/8</tt>, <tt>1/8</tt> and <tt>2/8</tt>, respectively.
+</p>
 
 <abjad>
   abjad> notes = Note(0, (1, 8)) * 2
@@ -25,6 +27,8 @@ These elements carry preprolated durations equal to <tt>1/8</tt>, <tt>1/8</tt> a
   abjad> show(staff)
 </abjad>
 
-<p> The contents duration of the measure here equals <tt>1/8 + 1/8 + 2/8 = 4/8</tt>.
+<p>
+The contents duration of the measure here equals <tt>1/8 + 1/8 + 2/8 = 4/8</tt>.
+</p>
 
 </subsection>

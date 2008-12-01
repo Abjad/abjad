@@ -1,27 +1,26 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
 
 <body>
 
-<!--
-OK; prefer to leave TOC off of every page for now; 
-keep look simple ... maybe add back in later? TB.
-maybe a
-<div id="toc">
-if we want to have the TOC on every page, we can put it here...
-</div>
--->
-
 <div id="content">
-
-<title> Working with leaf durations </title>
 
 <h1>Working with leaf durations</h1>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Abjad <code><a href="../note_class/index.html">Note</a></code>, <code><a href="../rest_class/index.html">Rest</a></code>, <Chord> and <Skip> implement <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code> for access to information about the music duration of these classes.
+
+<p>
+Abjad <code><a href="../note_class/index.html">Note</a></code>, <code><a href="../rest_class/index.html">Rest</a></code>, <code><a href="../chord_class/index.html">Chord</a></code> and <Skip> implement <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> for access to information about the music duration of these classes.
+</p>
 
 <pre class="abjad">
 abjad> note = Note(0, (1, 16))
@@ -29,24 +28,27 @@ abjad> note.duration
 DurationInterface(1/16)
 </pre>
 
-</div class="subsection">
+</div>
 
 <div class="subsection">
-<h2>  </h2>
-<p> The most basic information provided by <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code> is <i>written duration</i>.
+
+<p>The most basic information provided by <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> is <i>written duration</i>.
+</p>
 
 <pre class="abjad">
 abjad> note.duration.written
 Rational(1, 16)
 </pre>
 
-<p> Abjad written duration models the part of a the duration of a music object as contributed by the graphic shape of a music object &mdash; notehead or rest shape, together with any dots, flags or beams. Abjad written duration corresponds most closely to the usual intuitive understanding of music duration.
+<p>Abjad written duration models the part of a the duration of a music object as contributed by the graphic shape of a music object &mdash; notehead or rest shape, together with any dots, flags or beams. Abjad written duration corresponds most closely to the usual intuitive understanding of music duration.
+</p>
 
-</div class="subsection">
+</div>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Abjad <i>prolated duration</i> models music duration with the inclusion of tuplet brackets.
+
+<p>Abjad <i>prolated duration</i> models music duration with the inclusion of tuplet brackets.
+</p>
 
 <pre class="abjad">
 abjad> tuplet = FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3)
@@ -57,20 +59,21 @@ abjad> tuplet_note.duration.prolated
 Rational(1, 24)
 </pre>
 
-<p> Here we build a triplet and name a reference to the first note within in the triplet. We find the written duration of the first note equal to 1/16 and the prolated duration of the first note equal to 1/24. To see why this is the case, consider that the prolation ratio 3:2 acts as a type compression that squeezes three of something into the time of two of something. Three-in-the-time-of-two compression is the same thing multiplying the written duration of all tuplet members by 2/3. We then see that 1/16 * 2/3 = 1/24. The value of the 2/3 multiplier is available as the <code>prolation</code> attribute of <code><a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a></code>.
+<p>Here we build a triplet and name a reference to the first note within in the triplet. We find the written duration of the first note equal to 1/16 and the prolated duration of the first note equal to 1/24. To see why this is the case, consider that the prolation ratio 3:2 acts as a type compression that squeezes three of something into the time of two of something. Three-in-the-time-of-two compression is the same thing multiplying the written duration of all tuplet members by 2/3. We then see that 1/16 * 2/3 = 1/24. The value of the 2/3 multiplier is available as the <code>prolation</code> attribute of <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code>.
+</p>
 
 <pre class="abjad">
 abjad> tuplet_note.duration.prolation
 Rational(2, 3)
 </pre>
 
-</div class="subsection">
+</div>
 
-
-<p class="footer"> <a href="../../index.html">Contents</a> </p>
+<p class="footer"><a href="../../index.html">Contents</a></p>
 
 </div>
 
 </body>
 
 </html>
+

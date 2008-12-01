@@ -1,17 +1,19 @@
-<title> Leaf multipliers </title>
-
-<h1> Leaf multipliers </h1>
+<h1>Leaf multipliers</h1>
 
 <subsection>
 
-<p> LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive rational values.
+<p>
+LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive rational values.
 LilyPond multipliers are inivisible and generate no typographic output of their own. However, while independent from the typographic output, LilyPond multipliers do factor in in calculations of duration and time.
+</p>
 
 </subsection>
 
 <subsection>
 
-<p> Abjad implements LilyPond multpliers as the settable <code>duration.multiplier</code> attribute of notes, rests, chords and skips.
+<p>
+Abjad implements LilyPond multpliers as the settable <code>duration.multiplier</code> attribute of notes, rests, chords and skips.
+</p>
 
 <abjad>
   abjad> note = Note(0, (1, 4))
@@ -28,7 +30,10 @@ LilyPond multipliers are inivisible and generate no typographic output of their 
 </subsection>
 
 <subsection>
-<p> Abjad also implements a <code>duration.multiplied</code> attribute to examine the duration of a note, rest, chord or skip as affected by the multiplier (see <a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a> for all other duration attributes available).
+
+<p>
+Abjad also implements a <code>duration.multiplied</code> attribute to examine the duration of a note, rest, chord or skip as affected by the multiplier (see <_LeafDurationInterface> for all other duration attributes available).
+</p>
 
 <abjad>
   hide> note = Note(0, (1, 4))
@@ -41,7 +46,9 @@ LilyPond multipliers are inivisible and generate no typographic output of their 
 
 <subsection>
 
-<p> LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
+<p>
+LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
+</p>
 
 <abjad>
   abjad> notes = Note(0, (1, 4)) * 4
@@ -58,11 +65,14 @@ LilyPond multipliers are inivisible and generate no typographic output of their 
 
 <comments>
 
-<p> Abjad models <i>multiplication</i> fundamentally differently than <i>prolation</i>. See the <a href="../prolation/text.html">chapter on prolation</a> for more information.
+<p>
+Abjad models <i>multiplication</i> fundamentally differently than <i>prolation</i>. See the <a href="../prolation/text.html">chapter on prolation</a> for more information.
+</p>
 
-<p> The LilyPond multiplication <code>*</code> operator differs from the Abjad multiplication <code>*</code> operator.
+<p>
+The LilyPond multiplication <code>*</code> operator differs from the Abjad multiplication <code>*</code> operator.
 LilyPond multiplication <i>scales duration</i> of LilyPond notes, rests, chords and skips.
 Abjad multiplication <i>copies</i> Abjad containers and leaves.
+</p>
 
 </comments>
-

@@ -1,74 +1,79 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<head> <link rel="stylesheet" href="../../css/abjad.css" type="text/css" /> </head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
 
 <body>
 
-<!--
-OK; prefer to leave TOC off of every page for now; 
-keep look simple ... maybe add back in later? TB.
-maybe a
-<div id="toc">
-if we want to have the TOC on every page, we can put it here...
-</div>
--->
-
 <div id="content">
 
-<title> Duration token </title>
-
-<h1> Duration token </h1>
+<h1>Duration token</h1>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
+
+<p>
+Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
+</p>
 
 <ul>
-   <li> Abjad <code><a href="../rational_class/index.html">Rational</a></code> instances
-   <li> Python pairs
-   <li> Python <tt>int</tt> and <tt>long</tt> instances
+   <li>Abjad <code><a href="../rational_class/index.html">Rational</a></code> instances</li>
+   <li>Python pairs</li>
+   <li>Python <tt>int</tt> and <tt>long</tt> instances</li>
 </ul>
 
-<p> For example:
+<p>For example:</p>
 
 <pre class="abjad">
 abjad> note = Note(0, Rational(1, 4))
 </pre>
-<img src="images/1.png">
+<img alt="" src="images/1.png"/>
 
-<p> And:
+<p>And:</p>
 
 <pre class="abjad">
 abjad> note = Note(0, (3, 8))
 </pre>
-<img src="images/2.png">
+<img alt="" src="images/2.png"/>
 
-<p> And:
+<p>And:</p>
 
 <pre class="abjad">
 abjad> note = Note(0, 1)
 </pre>
-<img src="images/3.png">
+<img alt="" src="images/3.png"/>
 
-<p> The Abjad <strong>duration token</strong> generalizes these different types of input.
+<p>
+The Abjad <strong>duration token</strong> generalizes these different types of input.
+</p>
 
-<p> Examples in the documentation that ask for valid duration token input accept any of the types of input show here.
+<p>
+Examples in the documentation that ask for valid duration token input accept any of the types of input show here.
+</p>
 
-</div class="subsection">
+</div>
 
-<h2 class="page-section"> Comments </h2>
+<h2 class="page-section">Comments</h2>
 
 <div class="comments">
 
-<p> Abjad does not count the Python <tt>float</tt> among the valid types of duration token.
+<p>
+Abjad does not count the Python <tt>float</tt> among the valid types of duration token.
+</p>
 
-</div class="comments">
+</div>
 
-
-<p class="footer"> <a href="../../index.html">Contents</a> </p>
+<p class="footer"><a href="../../index.html">Contents</a></p>
 
 </div>
 
 </body>
 
 </html>
+

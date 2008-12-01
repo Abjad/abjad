@@ -1,16 +1,18 @@
-<title> Written duration </title>
-
 <h1>Written duration</h1>
 
 <subsection>
 
-<p> Abjad uses <strong>written duration</strong> to refer to the face value of notes, rests, chords and skips without prolation. Abjad written duration corresponds to the informal names we use when talking about duration.
+<p>
+Abjad uses <strong>written duration</strong> to refer to the face value of notes, rests, chords and skips without prolation. Abjad written duration corresponds to the informal names we use when talking about duration.
+</p>
 
 </subsection>
 
 <subsection>
 
-<p> The sixteenth notes here are worth exactly a sixteenth of a whole note.
+<p>
+The sixteenth notes here are worth exactly a sixteenth of a whole note.
+</p>
 
 <abjad>
   abjad> measure = Measure((5, 16), Note(0, (1, 16)) * 5)
@@ -26,7 +28,9 @@
 
 <subsection>
 
-<p> The sixteenth notes here are worth more than a sixteenth of a whole note.
+<p>
+The sixteenth notes here are worth more than a sixteenth of a whole note.
+</p>
 
 <abjad>
   abjad> tuplet = FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)
@@ -43,8 +47,10 @@
 
 <subsection>
 
-<p> The notes in these examples carry different durations.
+<p>
+The notes in these examples carry different durations.
 But we probably still call them all sixteenths anyway.
 Abjad written duration captures the fact that these notes write the same way before prolation.
+</p>
 
 </subsection>

@@ -1,17 +1,35 @@
-<title> Leaf multipliers </title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<h1> Leaf multipliers </h1>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
+
+<h1>Leaf multipliers</h1>
 
 <div class="subsection">
-<h2>  </h2>
-<p> LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive rational values.
+
+<p>
+LilyPond provides an asterisk <code>*</code> operator to scale the durations of notes, rests, chords and skips by arbitrarily positive rational values.
 LilyPond multipliers are inivisible and generate no typographic output of their own. However, while independent from the typographic output, LilyPond multipliers do factor in in calculations of duration and time.
+</p>
 
-</div class="subsection">
+</div>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Abjad implements LilyPond multpliers as the settable <code>duration.multiplier</code> attribute of notes, rests, chords and skips.
+
+<p>
+Abjad implements LilyPond multpliers as the settable <code>duration.multiplier</code> attribute of notes, rests, chords and skips.
+</p>
 
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
@@ -25,21 +43,26 @@ abjad> print(note.format)
 c'4 * 1/2
 </pre>
 
-</div class="subsection">
+</div>
 
 <div class="subsection">
-<h2>  </h2><p> Abjad also implements a <code>duration.multiplied</code> attribute to examine the duration of a note, rest, chord or skip as affected by the multiplier (see <a href="../leaf_duration_interface/index.html">_LeafDurationInterface</a> for all other duration attributes available).
+
+<p>
+Abjad also implements a <code>duration.multiplied</code> attribute to examine the duration of a note, rest, chord or skip as affected by the multiplier (see <code><a href="../leaf_duration_interface_class/index.html">_LeafDurationInterface</a></code> for all other duration attributes available).
+</p>
 
 <pre class="abjad">
 abjad> note.duration.multiplied
 Rational(1, 8)
 </pre>
 
-</div class="subsection">
+</div>
 
 <div class="subsection">
-<h2>  </h2>
-<p> LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
+
+<p>
+LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
+</p>
 
 <pre class="abjad">
 abjad> notes = Note(0, (1, 4)) * 4
@@ -51,19 +74,30 @@ abjad> bottom = RhythmicStaff(multiplied_notes)
 abjad> staves = StaffGroup([top, bottom])
 abjad> show(staves)
 </pre>
-<img src="images/1.png">
+<img alt="" src="images/1.png"/>
 
-</div class="subsection">
+</div>
 
-<h2 class="page-section"> Comments </h2>
+<h2 class="page-section">Comments</h2>
 
 <div class="comments">
 
-<p> Abjad models <i>multiplication</i> fundamentally differently than <i>prolation</i>. See the <a href="../prolation/text.html">chapter on prolation</a> for more information.
+<p>
+Abjad models <i>multiplication</i> fundamentally differently than <i>prolation</i>. See the <a href="../prolation/text.html">chapter on prolation</a> for more information.
+</p>
 
-<p> The LilyPond multiplication <code>*</code> operator differs from the Abjad multiplication <code>*</code> operator.
+<p>
+The LilyPond multiplication <code>*</code> operator differs from the Abjad multiplication <code>*</code> operator.
 LilyPond multiplication <i>scales duration</i> of LilyPond notes, rests, chords and skips.
 Abjad multiplication <i>copies</i> Abjad containers and leaves.
+</p>
 
-</div class="comments">
+</div>
 
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
+</div>
+
+</body>
+
+</html>
