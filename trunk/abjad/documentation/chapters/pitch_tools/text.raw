@@ -2,7 +2,7 @@
 
 <subsection>
 
-<p>The Abjad <code>_PitchTools</code> class implements the following public interface.</p>
+<p>The Abjad <_PitchTools> class implements the following public interface.</p>
 
 </subsection>
 
@@ -15,20 +15,20 @@
    <local> pcToPitchNameSharps[ ]
 </dictionaries>
 <methods>
-   <local> addStaffSpaces( )</code>
-   <local> letterPitchNumberToNearestAccidentalString( )</code>
-   <local> letterPitchNumberToOctave( )</code>
-   <local> letterToDiatonicScaleDegree( )</code>
-   <local> letterToPC( )</code>
-   <local> nearestNeighbor( )</code>
-   <local> pitchNumberAdjustmentToOctave( )</code>
-   <local> pitchNumberToOctave( )</code>
+   <local> addStaffSpaces( )
+   <local> letterPitchNumberToNearestAccidentalString( )
+   <local> letterPitchNumberToOctave( )
+   <local> letterToDiatonicScaleDegree( )
+   <local> letterToPC( )
+   <local> nearestNeighbor( )
+   <local> pitchNumberAdjustmentToOctave( )
+   <local> pitchNumberToOctave( )
 </methods>
 </interface>
 
 <comments>
 
-<p>See the <code>_PitchTools</code> class in <code>pitch/tool.py</code> for implementation details.</p>
+<p>See the <_PitchTools> class in <code>pitch/tool.py</code> for implementation details.</p>
 
 </comments>
 

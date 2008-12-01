@@ -583,6 +583,7 @@ class CLASS_NAMES(_TagParser):
       '<_NoteHead>' : 'notehead_class',
       '<notehead token>' : 'notehead_token',
       '<Pitch>' : 'pitch_class',
+      '<_PitchTools>' : 'pitch_tools',
       '<pitch token>' : 'pitch_token',
       '<Rational>' : 'rational_class',
       '<Rest>' : 'rest_class',
