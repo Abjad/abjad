@@ -12,7 +12,7 @@ class FileParser(object):
       self.input = open(filename, 'r').readlines( )
       self.output =  [ ]
       self.tags = [SECTION( ), SUBSECTION( ), INTERFACE( ), DEFINITION( ),
-         COMMENTS( ), TO_DO( ), CLASS_NAMES( ), INTRODUCTION( ),
+         COMMENTS( ), TO_DO( ), CLASS_NAMES( ), 
          TOC_SECTION( ),
          LILY( ), ABJAD( )]
 
@@ -335,16 +335,16 @@ class DEFINITION(_TagParser):
          self.output.append(line)
 
 
-class INTRODUCTION(_TagParser):
-
-   def parse(self, lines):
-      for line in lines:
-         if '<introduction>' in line:
-            self.output.append('<div class="introduction">\n')
-         elif '</introduction>' in line:
-            self.output.append('</div>\n')
-         else:
-            self.output.append(line)
+#class INTRODUCTION(_TagParser):
+#
+#   def parse(self, lines):
+#      for line in lines:
+#         if '<introduction>' in line:
+#            self.output.append('<div class="introduction">\n')
+#         elif '</introduction>' in line:
+#            self.output.append('</div>\n')
+#         else:
+#            self.output.append(line)
 
 
 class TOC_SECTION(_TagParser):
@@ -531,6 +531,7 @@ class TO_DO(_TagParser):
 class CLASS_NAMES(_TagParser):
 
    change = {
+      '<_Accidental>' : 'accidental_class',
       '<assignability>' : 'assignability',
       '<_ArticulationsInterface>' : 'articulations_interface',
       '<_BarlineInterface>' : 'barline_interface',

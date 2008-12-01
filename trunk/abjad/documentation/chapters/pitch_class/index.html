@@ -1,87 +1,87 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
 <head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
 </head>
 
 <body>
 
-<!--
-OK; prefer to leave TOC off of every page for now; 
-keep look simple ... maybe add back in later? TB.
-maybe a
-<div id="toc">
-if we want to have the TOC on every page, we can put it here...
-</div>
--->
-
 <div id="content">
 
-<h1>The Abjad <code>Pitch</code> class</h1>
+<h1>The Abjad <code><a href="../pitch_class/index.html">Pitch</a></code> class</h1>
+
+<div class="subsection">
 
 <p>
-The Abjad <code>Pitch</code> defines the following public interface.
+The Abjad <code><a href="../pitch_class/index.html">Pitch</a></code> defines the following public interface.
 </p>
 
-<dl>
-<dt> attributes
-<dd> <ul>
-   <li> <code>diatonicScaleDegree</code>
-   <li> <code>letter</code>
-   <li> <code>lily</code>
-   <li> <code>name</code>
-   <li> <code>number</code>
-   <li> <code>octave</code>
-   <li> <code>pair</code>
-   <li> <code>pc</code>
-   <li> <code>ticks</code>
-   </ul>
-<dt> predicates
-<dd> <ul>
-   <li> <code>isSet( )</code>
-   </ul>
-<dt> methods
-<dd> <ul>
-   <li> <code>diatonicTranspose( )</code>
-   <li> <code>enharmonicCompare( )</code>
-   <li> <code>staffSpaceTranspose( )</code>
-   </ul>
-<dt> components
-<dd> <ul>
-   <li> <code>accidental</code>
-   <li> <code>tools</code>
-</dl>
+</div>
 
-<h2 class="end-of-page">Comments</h2>
+<h2 class="page-section">Public interface</h2>
 
-<p class="comment">
-See the <code>Pitch</code> class in <code>pitch/pitch.py</code> for the implementation.
+<div class="interface">
+<div class="block">
+<div class="name">Attributes</div>
+<div class="attribute"><div class="local"><a href="#accidental">accidental</a></div></div>
+<div class="attribute"><div class="local"><a href="#degree">degree</a></div></div>
+<div class="attribute"><div class="local"><a href="#letter">letter</a></div></div>
+<div class="attribute"><div class="local"><a href="#lily">lily</a></div></div>
+<div class="attribute"><div class="local"><a href="#name">name</a></div></div>
+<div class="attribute"><div class="local"><a href="#number">number</a></div></div>
+<div class="attribute"><div class="local"><a href="#octave">octave</a></div></div>
+<div class="attribute"><div class="local"><a href="#pair">pair</a></div></div>
+<div class="attribute"><div class="local"><a href="#pc">pc</a></div></div>
+<div class="attribute"><div class="local"><a href="#ticks">ticks</a></div></div>
+<div class="attribute"><div class="local"><a href="#tools">tools</a></div></div>
+</div>
+<div class="block">
+<div class="name">Methods</div>
+<div class="attribute"><div class="local"><a href="#isSet">isSet</a></div></div>
+<div class="attribute"><div class="local"><a href="#diatonicTranspose">diatonicTranspose</a></div></div>
+<div class="attribute"><div class="local"><a href="#staffSpaceTranspose">staffSpaceTranspose</a></div></div>
+</div>
+</div>
+
+<h2 class="page-section">Comments</h2>
+
+<div class="comments">
+
+<p>
+See the <code><a href="../pitch_class/index.html">Pitch</a></code> class in <code>pitch/pitch.py</code> for the implementation.
 </p>
 
-<h2 class="end-of-page">To do</h2>
+</div>
 
-<p class="to-do">
-Rename <code>diatonicScaleDegree</code> to <code>degree</code>.
-</p>
+<h2 class="page-section">To do</h2>
 
-<p class="to-do">
+<div class="to-do">
+
+<p>
 Reimplement <code>tools</code> as helpers.
 </p>
 
-<p class="to-do">
+<p>
 Reimplement the bound methods here as helpers.
 </p>
 
-<p class="to-do">
+<p>
 Reimplement <code>isSet( )</code> as a one-word property.
 </p>
 
+</div>
 
-<p class="footer">
-<a href="../../index.html">Contents</a>
-</p>
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
 </div>
 
 </body>
+
 </html>
+

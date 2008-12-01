@@ -1,12 +1,12 @@
-<title> The Abjad _NoteHead class </title>
+<h1>The Abjad <_NoteHead> class</h1>
 
-<h1>The Abjad <code>_NoteHead</code> class</h1>
+<subsection>
 
-<introduction>
+<p>
+The Abjad <_NoteHead> interface class models noteheads.
+</p>
 
-<p> The Abjad <code>_NoteHead</code> interface class models noteheads.
-
-</introduction>
+</subsection>
 
 <interface>
 <attributes>
@@ -22,8 +22,8 @@
    <local> stylesSupported
 </attributes>
 <methods>
-   <inherited> clear( )
-   <inherited> unspan( )
+   <inherited> clear
+   <inherited> unspan
 </methods>
 <overloads>
    <inherited> __len__
@@ -33,13 +33,13 @@
 </overloads>
 </interface>
 
-<section> Attributes
+<section>Attributes
 
 <definition>
 <header>
    <local> format
-   <p>Read only attribute defined here.
-   <p>Returns LilyPond input string.
+   <p>Read only attribute defined here.</p>
+   <p>Returns LilyPond input string.</p>
 </header>
 <body>
 <abjad>
@@ -54,27 +54,27 @@
 <definition>
 <header>
    <inherited> first
-   <p> Read only attribute inherited from <_Interface>.
-   <p> Returns <tt>True</tt> if caller is the first <code>_Leaf</code> in Spanner.
-   <p>See <a href="../core_interface/index.html#first">example</a>.
+   <p>Read only attribute inherited from <_Interface>.</p>
+   <p>Returns <tt>True</tt> if caller is the first <code>_Leaf</code> in Spanner.</p>
+   <p>See <a href="../core_interface/index.html#first">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> last
-   <p> Read only attribute inherited from <_Interface>.
-   <p> Returns <tt>True</tt> if caller is the last <code>_Leaf</code> in Spanner.
-   <p>See <a href="../core_interface/index.html#last">example</a>.
+   <p>Read only attribute inherited from <_Interface>.</p>
+   <p>Returns <tt>True</tt> if caller is the last <code>_Leaf</code> in Spanner.</p>
+   <p>See <a href="../core_interface/index.html#last">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> only
-   <p> Read only attribute inherited from <_Interface>.
-   <p> Returns <tt>True</tt> if caller is the only <code>_Leaf</code> in Spanner.
-   <p>See <a href="../core_interface/index.html#only">example</a>.
+   <p>Read only attribute inherited from <_Interface>.</p>
+   <p>Returns <tt>True</tt> if caller is the only <code>_Leaf</code> in Spanner.</p>
+   <p>See <a href="../core_interface/index.html#only">example</a>.</p>
 </header>
 </definition>
 
@@ -82,9 +82,9 @@
 <definition>
 <header>
    <local> pitch
-   <p>Read / write attribute defined here.
-   <p>Returns Abjad <code>Pitch</code> class.
-   <p>Accepts Python <tt>int</tt>, <tt>float</tt>, <tt>long</tt>, <tt>None</tt> 
+   <p>Read / write attribute defined here.</p>
+   <p>Returns Abjad <code>Pitch</code> class.</p>
+   <p>Accepts Python <tt>int</tt>, <tt>float</tt>, <tt>long</tt>, <tt>None</tt> </p>
       or Abjad <code>Pitch</code> class.
 </header>
 <body>
@@ -106,9 +106,9 @@
 <definition>
 <header>
    <inherited> spanned
-   <p> Read only attribute inherited from <_Interface>.
-   <p> Returns <tt>True</tt> if client <code>Note</code> is in Spanner.
-   <p>See <a href="../core_interface/index.html#spanned">example</a>.
+   <p>Read only attribute inherited from <_Interface>.</p>
+   <p>Returns <tt>True</tt> if client <code>Note</code> is in Spanner.</p>
+   <p>See <a href="../core_interface/index.html#spanned">example</a>.</p>
 </header>
 </definition>
 
@@ -116,9 +116,9 @@
 <definition>
 <header>
    <inherited> spanner
-   <p> Read only attribute inherited from <_Interface>.
-   <p>Returns first Notehead type Spanner spanning <code>Note</code> client. 
-   <p>See <a href="../core_interface/index.html#spanner">example</a>.
+   <p>Read only attribute inherited from <_Interface>.</p>
+   <p>Returns first Notehead type Spanner spanning <code>Note</code> client.</p>
+   <p>See <a href="../core_interface/index.html#spanner">example</a>.</p>
 </header>
 </definition>
 
@@ -126,9 +126,9 @@
 <definition>
 <header>
    <inherited> spanners
-   <p> Read only attribute inherited from <_Interface>.
-   <p>Returns all Notehead type Spanner spanning <code>Note</code> client. 
-   <p>See <a href="../core_interface/index.html#spanners">example</a>.
+   <p>Read only attribute inherited from <_Interface>.</p>
+   <p>Returns all Notehead type Spanner spanning <code>Note</code> client.</p>
+   <p>See <a href="../core_interface/index.html#spanners">example</a>.</p>
 </header>
 </definition>
 
@@ -136,9 +136,9 @@
 <definition>
 <header>
    <local> style
-   <p>Read / write attribute defined here.
-   <p>Returns Python <tt>string</tt>.
-   <p>Accepts Python <tt>string</tt> or <tt>None</tt>.
+   <p>Read / write attribute defined here.</p>
+   <p>Returns Python <tt>string</tt>.</p>
+   <p>Accepts Python <tt>string</tt> or <tt>None</tt>.</p>
 </header>
 <body>
 <abjad>
@@ -158,8 +158,8 @@
 <definition>
 <header>
    <local> stylesSupported
-   <p>Read only attribute defined here.
-   <p>Returns Python <tt>tuple</tt>.
+   <p>Read only attribute defined here.</p>
+   <p>Returns Python <tt>tuple</tt>.</p>
 </header>
 <body>
 <abjad>
@@ -173,69 +173,69 @@
 </definition>
 
 
-<section> Methods
+<section>Methods
 
 <definition>
 <header>
-   <inherited> clear( )
-   <p> Public method inherited from <_Interface>.
-   <p> Removes all user defined attributes.
-   <p>See <a href="../core_interface/index.html#clear">example</a>.
+   <inherited> clear
+   <p>Public method inherited from <_Interface>.</p>
+   <p>Removes all user defined attributes.</p>
+   <p>See <a href="../core_interface/index.html#clear">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
-   <inherited> unspan( )
-   <p> Public method inherited from <_Interface>.
-   <p> Removes all spanners of type NoteHead spanning client <code>_Leaf</code>.
-   <p>See <a href="../core_interface/index.html#unspan">example</a>.
+   <inherited> unspan
+   <p>Public method inherited from <_Interface>.</p>
+   <p>Removes all spanners of type NoteHead spanning client <code>_Leaf</code>.</p>
+   <p>See <a href="../core_interface/index.html#unspan">example</a>.</p>
 </header>
 </definition>
 
-<section> Overloads
+<section>Overloads
 
 <definition>
 <header>
    <inherited> __len__
-   <p> Special method inherited from <_Interface>.
-   <p> Returns number of user defined attributes.
-   <p>See <a href="../core_interface/index.html#len">example</a>.
+   <p>Special method inherited from <_Interface>.</p>
+   <p>Returns number of user defined attributes.</p>
+   <p>See <a href="../core_interface/index.html#len">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> __repr__
-   <p> Special method inherited from <_Interface>.
-   <p> Returns string summary of <code>self</code> for interpreter display.
-   <p>See <a href="../core_interface/index.html#repr">example</a>.
+   <p>Special method inherited from <_Interface>.</p>
+   <p>Returns string summary of <code>self</code> for interpreter display.</p>
+   <p>See <a href="../core_interface/index.html#repr">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> __setattr__
-   <p> Special method inherited from <_Interface>.
-   <p> Adds arbitrary attribute to  <code>self</code>.
-   <p>See <a href="../core_interface/index.html#setattr">example</a>.
+   <p>Special method inherited from <_Interface>.</p>
+   <p>Adds arbitrary attribute to  <code>self</code>.</p>
+   <p>See <a href="../core_interface/index.html#setattr">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> __str__
-   <p> Special method inherited from <_Interface>.
-   <p> Returns string summary of  <code>self</code>.
-   <p>See <a href="../core_interface/index.html#str">example</a>.
+   <p>Special method inherited from <_Interface>.</p>
+   <p>Returns string summary of  <code>self</code>.</p>
+   <p>See <a href="../core_interface/index.html#str">example</a>.</p>
 </header>
 </definition>
 
-<comments>
-</comments>
-
 <to-do>
-<p> Rename <strong>stylesSupported</strong> to single word? 
-   Remove from public interface? 
+
+<p>
+Rename <strong>stylesSupported</strong> to single word?
+Remove from public interface? 
+</p>
 
 </to-do>

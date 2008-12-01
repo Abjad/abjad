@@ -1,12 +1,12 @@
-<title> The Abjad _Clef class </title>
+<h1>The Abjad <code>_Clef</code> class</h1>
 
-<h1> The Abjad <code>_Clef</code> class </h1>
+<subsection>
 
-<introduction>
+<p>
+The Abjad <code>_Clef</code> class models clefs.
+</p>
 
-<p> The Abjad <code>_Clef</code> class models clefs.
-
-</introduction>
+</subsection>
 
 <interface>
 <attributes>
@@ -15,7 +15,7 @@
    <local> name
 </attributes>
 <dictionaries>
-   <local> clefNameToMiddleCPosition[ ]
+   <local> clefNameToMiddleCPosition
 </dictionaries>
 <overloads>
    <local> __eq__
@@ -25,13 +25,13 @@
 </overloads>
 </interface>
 
-<section> Attributes
+<section>Attributes
 
 <definition>
 <header>
    <local> format
-   <p> Read-only attribute defined here.
-   <p> Returns LilyPond input version of <code>self</code>.
+   <p>Read-only attribute defined here.</p>
+   <p>Returns LilyPond input version of <code>self</code>.</p>
 </header>
 <body>
    <abjad>
@@ -51,8 +51,8 @@
 <definition>
 <header>
    <local> middleCPosition
-   <p> Read-only attribute defined here.
-   <p> Returns LilyPond staffline count of middle C position.
+   <p>Read-only attribute defined here.</p>
+   <p>Returns LilyPond staffline count of middle C position.</p>
 </header>
 <body>
    <abjad>
@@ -72,9 +72,9 @@
 <definition>
 <header>
    <local> name
-   <p> Read / write attribute defined here.
-   <p> Return LilyPond clef name string.
-   <p> Accepts LilyPond clef name string, <code>None</code>.
+   <p>Read / write attribute defined here.</p>
+   <p>Return LilyPond clef name string.</p>
+   <p>Accepts LilyPond clef name string, <code>None</code>.</p>
 </header>
 <body>
    <abjad>
@@ -93,14 +93,14 @@
 </body>
 </definition>
 
-<section> Dictionaries
+<section>Dictionaries
 
 <definition>
 <header>
-   <local> clefNameToMiddleCPosition[ ]
-   <p> Read-only attribute defined here.
-   <p> Returns LilyPond staff line position of middle C for <code>self</code>.
-   <p> Accepts LilyPond clef name string.
+   <local> clefNameToMiddleCPosition
+   <p>Read-only attribute defined here.</p>
+   <p>Returns LilyPond staff line position of middle C for <code>self</code>.</p>
+   <p>Accepts LilyPond clef name string.</p>
 </header>
 <body>
    <abjad>
@@ -113,13 +113,13 @@
 </body>
 </definition>
 
-<section> Overloads
+<section>Overloads
 
 <definition>
 <header>
    <local> __eq__
-   <p> Read-only attribute defined here.
-   <p> Returns <code>True</code> when <code>self.name</code> equals <code>arg.name</code>, otherwise <code>False</code>.
+   <p>Read-only attribute defined here.</p>
+   <p>Returns <code>True</code> when <code>self.name</code> equals <code>arg.name</code>, otherwise <code>False</code>.</p>
 </header>
 <body>
    <abjad>
@@ -142,17 +142,17 @@
 <definition>
 <header>
    <local> __init__
-   <p> Read-only attribute defined here.
-   <p> Initializes <code>self</code>.
-   <p> Accepts LilyPond clef name string.
+   <p>Read-only attribute defined here.</p>
+   <p>Initializes <code>self</code>.</p>
+   <p>Accepts LilyPond clef name string.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> __repr__
-   <p> Read-only attribute defined here.
-   <p> Returns Python interpreter representation.
+   <p>Read-only attribute defined here.</p>
+   <p>Returns Python interpreter representation.</p>
 </header>
 <body>
    <abjad>
@@ -166,8 +166,8 @@
 <definition>
 <header>
    <local> __str__
-   <p> Read-only attribute defined here.
-   <p> Returns string version of <code>self</code> equal to <code>name</code>.
+   <p>Read-only attribute defined here.</p>
+   <p>Returns string version of <code>self</code> equal to <code>name</code>.</p>
 </header>
 <body>
    <abjad>

@@ -1,58 +1,54 @@
-<h1>The Abjad <code>Pitch</code> class</h1>
+<h1>The Abjad <Pitch> class</h1>
+
+<subsection>
 
 <p>
-The Abjad <code>Pitch</code> defines the following public interface.
+The Abjad <Pitch> defines the following public interface.
 </p>
 
-<dl>
-<dt> attributes
-<dd> <ul>
-   <li> <code>diatonicScaleDegree</code>
-   <li> <code>letter</code>
-   <li> <code>lily</code>
-   <li> <code>name</code>
-   <li> <code>number</code>
-   <li> <code>octave</code>
-   <li> <code>pair</code>
-   <li> <code>pc</code>
-   <li> <code>ticks</code>
-   </ul>
-<dt> predicates
-<dd> <ul>
-   <li> <code>isSet( )</code>
-   </ul>
-<dt> methods
-<dd> <ul>
-   <li> <code>diatonicTranspose( )</code>
-   <li> <code>enharmonicCompare( )</code>
-   <li> <code>staffSpaceTranspose( )</code>
-   </ul>
-<dt> components
-<dd> <ul>
-   <li> <code>accidental</code>
-   <li> <code>tools</code>
-</dl>
+</subsection>
 
-<h2 class="end-of-page">Comments</h2>
+<interface>
+<attributes>
+   <local> accidental
+   <local> degree
+   <local> letter
+   <local> lily
+   <local> name
+   <local> number
+   <local> octave
+   <local> pair
+   <local> pc
+   <local> ticks
+   <local> tools
+</attributes>
+<methods>
+   <local> isSet
+   <local> diatonicTranspose
+   <local> staffSpaceTranspose
+</methods>
+</interface>
 
-<p class="comment">
-See the <code>Pitch</code> class in <code>pitch/pitch.py</code> for the implementation.
+<comments>
+
+<p>
+See the <Pitch> class in <code>pitch/pitch.py</code> for the implementation.
 </p>
 
-<h2 class="end-of-page">To do</h2>
+</comments>
 
-<p class="to-do">
-Rename <code>diatonicScaleDegree</code> to <code>degree</code>.
-</p>
+<to-do>
 
-<p class="to-do">
+<p>
 Reimplement <code>tools</code> as helpers.
 </p>
 
-<p class="to-do">
+<p>
 Reimplement the bound methods here as helpers.
 </p>
 
-<p class="to-do">
+<p>
 Reimplement <code>isSet( )</code> as a one-word property.
 </p>
+
+</to-do>
