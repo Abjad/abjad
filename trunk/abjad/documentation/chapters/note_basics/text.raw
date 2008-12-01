@@ -93,7 +93,7 @@
    False
 </abjad>
 <abjad>
-   abjad> n1.pitch < n2.pitch
+   abjad> n1.pitch &lt; n2.pitch
    True
 </abjad>
 <abjad>
@@ -101,7 +101,7 @@
    False
 </abjad>
 <abjad>
-   abjad> n1.pitch <= n2.pitch
+   abjad> n1.pitch &lt;= n2.pitch
    True
 </abjad>
 </subsection>
