@@ -11,23 +11,23 @@ Fixed-duration tuplets calculate their ratios on the fly.
 
 <interface>
 <attributes>
-   <inherited> accidentals </p>
-   <inherited> barline </p>
-   <inherited> brackets </p>
-   <inherited> comments </p>
-   <local> duration </p>
-   <inherited> format </p>
-   <inherited> formatter </p>
-   <inherited> invisible </p>
-   <inherited> ratio </p>
-   <inherited> tempo </p>
+   <inherited> accidentals
+   <inherited> barline
+   <inherited> brackets
+   <inherited> comments
+   <local> duration
+   <inherited> format
+   <inherited> formatter
+   <inherited> invisible
+   <inherited> ratio
+   <inherited> tempo
 </attributes>
 <methods>
-   <inherited> copy </p>
-   <inherited> kind </p>
-   <local> trim </p>
+   <inherited> copy
+   <inherited> kind
+   <local> trim
 </methods>
 <overloads>
-   <inherited> __mul__ </p>
+   <inherited> __mul__
 </overloads>
 </interface>

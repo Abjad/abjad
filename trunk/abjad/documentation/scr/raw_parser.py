@@ -565,6 +565,7 @@ class CLASS_NAMES(_TagParser):
       '<_LeafDurationInterface>' : 'leaf_duration_interface_class',
       '<_LeafFormatter>' : 'leaf_formatter_class',
       '<_LeafSpannerInterface>' : 'leaf_spanner_interface',
+      '<Measure>' : 'measure_class',
       '<_MeasureDurationInterface>' : 'measure_duration_interface_class',
       '<Note>' : 'note_class',
       '<_NoteHead>' : 'notehead_class',

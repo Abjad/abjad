@@ -71,7 +71,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
 <header>
    <inherited> barline
    <p>Read / write attribute inherited from <_Component>.</p>
-   <p>Returns Abjad <_BarlineInterface>.<p>
+   <p>Returns Abjad <_BarlineInterface>.</p>
    <p>Assign a LilyPond barline string, <code>None</code>.</p>
    <p>See <a href="../component_class/index.html#barline">example</a>.</p>
 </header>
@@ -332,7 +332,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
       abjad> staff.brackets = 'double-angle'
       abjad> container = Container([staff, staff.copy()])
       abjad> f(container)
-      \new Staff <<
+      \new Staff &lt;&lt;
          \context Voice = "voice1" {
               c'8
               c'8
@@ -341,8 +341,8 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
               g'8
               g'8
          }
-      >>
-      \new Staff <<
+      &gt;&gt;
+      \new Staff &lt;&lt;
          \context Voice = "voice1" {
               c'8
               c'8
@@ -351,10 +351,10 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
               g'8
               g'8
          }
-      >>
+      &gt;&gt;
       abjad> container.coalesce( )
       abjad> f(container)
-      \new Staff <<
+      \new Staff &lt;&lt;
          \context Voice = "voice1" {
               c'8
               c'8
@@ -367,7 +367,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
               g'8
               g'8
          }
-      >>
+      &gt;&gt;
    </abjad>
 </body>
 </definition>

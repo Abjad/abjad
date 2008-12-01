@@ -92,7 +92,7 @@ The Abjad <code><a href="../container_class/index.html">Container</a></code> cla
 <div class="header">
 <div class="attribute"><div class="inherited"><a name="barline">barline</a></div></div>
    <p>Read / write attribute inherited from <code><a href="../component_class/index.html">_Component</a></code>.</p>
-   <p>Returns Abjad <code><a href="../barline_interface/index.html">_BarlineInterface</a></code>.<p>
+   <p>Returns Abjad <code><a href="../barline_interface/index.html">_BarlineInterface</a></code>.</p>
    <p>Assign a LilyPond barline string, <code>None</code>.</p>
    <p>See <a href="../component_class/index.html#barline">example</a>.</p>
 </div>
@@ -334,7 +334,7 @@ abjad> staff = Staff([voice1, voice2])
 abjad> staff.brackets = 'double-angle'
 abjad> container = Container([staff, staff.copy()])
 abjad> f(container)
-\new Staff <<
+\new Staff &lt;&lt;
 \context Voice = "voice1" {
 c'8
 c'8
@@ -343,8 +343,8 @@ c'8
 g'8
 g'8
 }
->>
-\new Staff <<
+&gt;&gt;
+\new Staff &lt;&lt;
 \context Voice = "voice1" {
 c'8
 c'8
@@ -353,10 +353,10 @@ c'8
 g'8
 g'8
 }
->>
+&gt;&gt;
 abjad> container.coalesce( )
 abjad> f(container)
-\new Staff <<
+\new Staff &lt;&lt;
 \context Voice = "voice1" {
 c'8
 c'8
@@ -369,7 +369,7 @@ g'8
 g'8
 g'8
 }
->>
+&gt;&gt;
 </pre>
 </div>
 </div>
