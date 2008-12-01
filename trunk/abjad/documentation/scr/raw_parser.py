@@ -555,6 +555,7 @@ class CLASS_NAMES(_TagParser):
       '<_HarmonicInterface>' : 'harmonic_interface',
       '<_Leaf>' : 'leaf_class',
       '<_LeafDurationInterface>' : 'leaf_duration_interface_class',
+      '<_LeafFormatter>' : 'leaf_formatter_class',
       '<_LeafSpannerInterface>' : 'leaf_spanner_interface',
       '<_MeasureDurationInterface>' : 'measure_duration_interface_class',
       '<Note>' : 'note_class',
