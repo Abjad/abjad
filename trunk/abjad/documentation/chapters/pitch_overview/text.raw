@@ -1,43 +1,42 @@
-<title> Pitch overview </title>
+<h1>Pitch overview</h1>
 
-<h1> Pitch overview </h1>
+<subsection>
 
-<introduction>
-
-<p> Abjad models pitch with a combination of custom classes and helper functions.
-
-</introduction>
-
-<subsection> Custom classes
-
-<p> Abjad implements custom <code>Note</code>, <code>Chord</code>, <code>_NoteHead</code>, <code>Pitch</code> and <code>_Accidental</code> classes to model the way that notes and pitches work together.
+<p>Abjad models pitch with a combination of custom classes and helper functions.</p>
 
 </subsection>
 
+<subsection>Custom classes
 
-<subsection> Helper functions
-
-<p> Abjad implements a collection of helper functions to operate on pitch.
+<p>Abjad implements custom <code>Note</code>, <code>Chord</code>, <code>_NoteHead</code>, <code>Pitch</code> and <code>_Accidental</code> classes to model the way that notes and pitches work together.</p>
 
 </subsection>
 
-<subsection> Microtonality
+<subsection>Helper functions
 
-<p> Abjad implements quartertones only.
+<p>Abjad implements a collection of helper functions to operate on pitch.</p>
+
+</subsection>
+
+<subsection>Microtonality
+
+<p>Abjad implements quartertones only.</p>
 
 </subsection>
 
 <comments>
 
-<p> The chapters here refer to both object-oriented Abjad classes and to the pitch-classes of American music theory.
+<p>
+The chapters here refer to both object-oriented Abjad classes and to the pitch-classes of American music theory.
 This first use of 'class' refers to instantiable code and the second to the residue classes of a pitch space.
+</p>
 
-<p> For the conventions these chapters follow, refer to the appendix on <a href="../pitch_conventions/index.html">pitch conventions</a>.
+<p>For the conventions these chapters follow, refer to the appendix on <a href="../pitch_conventions/index.html">pitch conventions</a>.</p>
 
 </comments>
 
 <to-do>
 
-<p> Implement support for LilyPond arrowed accidentals.
+<p>Implement support for LilyPond arrowed accidentals.</p>
 
 </to-do>

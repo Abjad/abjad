@@ -1,12 +1,10 @@
-<title> Notehead token input </title>
-
-<h1> Notehead token input </h1>
+<h1>Notehead token input</h1>
 
 <subsection>
 
-<p> Abjad <Note> and <Chord> instances accept both <pitch token> instances and Abjad <_NoteHead> instances as input.
+<p>Abjad <Note> and <Chord> instances accept both <pitch token> instances and Abjad <_NoteHead> instances as input.</p>
 
-<p> For example:
+<p>For example:</p>
 
 <abjad>
    abjad> note = Note(0, (1, 4))
@@ -16,8 +14,8 @@
    hide> show(measure)
 </abjad>
 
-<p> Abjad groups <pitch token> instances and Abjad <_NoteHead> instances together under the heading of <strong>notehead token input</strong>.
+<p>Abjad groups <pitch token> instances and Abjad <_NoteHead> instances together under the heading of <strong>notehead token input</strong>.</p>
 
-<p> Examples in the documentation that ask for notehead token input accept any of the input types shown here.
+<p>Examples in the documentation that ask for notehead token input accept any of the input types shown here.</p>
 
 </subsection>

@@ -1,49 +1,73 @@
-<title> Abjad pitch tools </title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
 
 <h1>Abjad pitch tools</h1>
 
 <div class="subsection">
-<h2>  </h2>
-<p> The Abjad <code>_PitchTools</code> class implements the following public interface.
 
-</div class="subsection">
+<p>The Abjad <code>_PitchTools</code> class implements the following public interface.</p>
 
-<h2 class="page-section"> Public interface </h2>
+</div>
+
+<h2 class="page-section">Public interface</h2>
 
 <div class="interface">
 <div class="block">
-<div class="name"> Dictionaries </div class="name">
-<div class="attribute"> <div class="local"> <a href="#diatonicIntervalToAbsoluteInterval[ ]"> diatonicIntervalToAbsoluteInterval[ ] </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#diatonicIntervalToStaffSpaces[ ]"> diatonicIntervalToStaffSpaces[ ] </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#diatonicScaleDegreeToLetter[ ]"> diatonicScaleDegreeToLetter[ ] </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#pcToPitchName[ ]"> pcToPitchName[ ] </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#pcToPitchNameSharps[ ]"> pcToPitchNameSharps[ ] </a> </div class="local"> </div class="attribute">
-</div class="block">
 <div class="block">
-<div class="name"> Methods </div class="name">
-<div class="attribute"> <div class="local"> <a href="#addStaffSpaces( )</code>"> addStaffSpaces( )</code> </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#letterPitchNumberToNearestAccidentalString( )</code>"> letterPitchNumberToNearestAccidentalString( )</code> </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#letterPitchNumberToOctave( )</code>"> letterPitchNumberToOctave( )</code> </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#letterToDiatonicScaleDegree( )</code>"> letterToDiatonicScaleDegree( )</code> </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#letterToPC( )</code>"> letterToPC( )</code> </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#nearestNeighbor( )</code>"> nearestNeighbor( )</code> </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#pitchNumberAdjustmentToOctave( )</code>"> pitchNumberAdjustmentToOctave( )</code> </a> </div class="local"> </div class="attribute">
-<div class="attribute"> <div class="local"> <a href="#pitchNumberToOctave( )</code>"> pitchNumberToOctave( )</code> </a> </div class="local"> </div class="attribute">
-</div class="block">
-</div class="interface">
+<div class="name"> Dictionaries </div>
+<div class="attribute"> <div class="local"> <a href="#diatonicIntervalToAbsoluteInterval[ ]"> diatonicIntervalToAbsoluteInterval[ ] </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#diatonicIntervalToStaffSpaces[ ]"> diatonicIntervalToStaffSpaces[ ] </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#diatonicScaleDegreeToLetter[ ]"> diatonicScaleDegreeToLetter[ ] </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#pcToPitchName[ ]"> pcToPitchName[ ] </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#pcToPitchNameSharps[ ]"> pcToPitchNameSharps[ ] </a> </div> </div>
+</div>
+<div class="block">
+<div class="block">
+<div class="name"> Methods </div>
+<div class="attribute"> <div class="local"> <a href="#addStaffSpaces( )</code>"> addStaffSpaces( )</code> </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#letterPitchNumberToNearestAccidentalString( )</code>"> letterPitchNumberToNearestAccidentalString( )</code> </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#letterPitchNumberToOctave( )</code>"> letterPitchNumberToOctave( )</code> </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#letterToDiatonicScaleDegree( )</code>"> letterToDiatonicScaleDegree( )</code> </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#letterToPC( )</code>"> letterToPC( )</code> </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#nearestNeighbor( )</code>"> nearestNeighbor( )</code> </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#pitchNumberAdjustmentToOctave( )</code>"> pitchNumberAdjustmentToOctave( )</code> </a> </div> </div>
+<div class="attribute"> <div class="local"> <a href="#pitchNumberToOctave( )</code>"> pitchNumberToOctave( )</code> </a> </div> </div>
+</div>
+</div>
 
-<h2 class="page-section"> Comments </h2>
+<h2 class="page-section">Comments</h2>
 
 <div class="comments">
 
-<p> See the <code>_PitchTools</code> class in <code>pitch/tool.py</code> for implementation details.
+<p>See the <code>_PitchTools</code> class in <code>pitch/tool.py</code> for implementation details.</p>
 
-</div class="comments">
+</div>
 
-<h2 class="page-section"> To do </h2>
+<h2 class="page-section">To do</h2>
 
 <div class="to-do">
 
-<p> Reimplement these tools as helper functions.
+<p>Reimplement these tools as helper functions.</p>
 
-</div class="to-do">
+</div>
+
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
+</div>
+
+</body>
+
+</html>

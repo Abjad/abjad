@@ -1,25 +1,14 @@
-<title> Pitch initialization </title>
-
 <h1>Pitch initialization</h1>
 
 <subsection>
 
-<p> Abjad provides four different ways to initialize <code>Pitch</code> objects.
-
-<!--
-<ul>
-   <li> by integer
-   <li> by float
-   <li> by name, octave
-   <li> by pitch-class, number
-</ul>
--->
+<p>Abjad provides four different ways to initialize <code>Pitch</code> objects.</p>
 
 </subsection>
 
-<subsection> By integer
+<subsection>By integer
 
-<p> The usual way to instantiate <code>Pitch</code> objects is with integers.
+<p>The usual way to instantiate <code>Pitch</code> objects is with integers.</p>
 
 <abjad>
   abjad> Pitch(-10)
@@ -33,9 +22,9 @@
 
 </subsection>
 
-<subsection> By float
+<subsection>By float
 
-<p> For quartertones, you can initialize <code>Pitch</code> with floats.
+<p>For quartertones, you can initialize <code>Pitch</code> with floats.</p>
 
 <abjad>
   abjad> Pitch(12.0)
@@ -49,9 +38,9 @@
 
 </subsection>
 
-<subsection> By name, octave
+<subsection>By name, octave
 
-<p> Initalize <code>Pitch</code> with pitchclass and octave to specify accidentals explicitly.
+<p>Initalize <code>Pitch</code> with pitchclass and octave to specify accidentals explicitly.</p>
 
 <abjad>
    abjad> Pitch('cs', 4)
@@ -65,9 +54,9 @@
 
 </subsection>
 
-<subsection> By number, letter
+<subsection>By number, letter
 
-<p> Abjad will supply the correct accidental for a pitch of a given number if you supply the pitch letter against which to notate.
+<p>Abjad will supply the correct accidental for a pitch of a given number if you supply the pitch letter against which to notate.</p>
 
 <abjad>
    abjad> Pitch(13, 'c')
@@ -83,29 +72,35 @@
 
 <comments>
 
-<p> Abjad implements the initialization schemes documented here as a collection of <strong>initializers</strong>.
+<p>Abjad implements the initialization schemes documented here as a collection of <strong>initializers</strong>.</p>
 
-<p> Initializers are private classes that initialize Abjad classes and do nothing else.
+<p>Initializers are private classes that initialize Abjad classes and do nothing else.</p>
 
-<p> Abjad pitch initializers live in <code>pitch/initializers.py</code>. Add new pitch initializers there.
+<p>Abjad pitch initializers live in <code>pitch/initializers.py</code>. Add new pitch initializers there.</p>
 
-<p> Abjad allows empty pitch initialization with <code>Pitch( )</code>.
-Future implementations of Abjad may deprecate this behavior.
+<p>Abjad allows empty pitch initialization with <code>Pitch( )</code>.
+Future implementations of Abjad may deprecate this behavior.</p>
 
-<p> Abjad allows integer and float pitch arguments only.
+<p>
+Abjad allows integer and float pitch arguments only.
 Abjad does not allow pitch arguments of the form <code>Rational(3, 2)</code> or <code>(3, 2)</code>.
 Use <code>1.5</code> instead.
+</p>
 
-<p> Abjad produces accidentals from pitch numbers according to the table given in the appendix on <a href="../pitch_conventions/index.html">pitch conventions</a>.
+<p>
+Abjad produces accidentals from pitch numbers according to the table given in the appendix on <a href="../pitch_conventions/index.html">pitch conventions</a>.
 Abjad does not yet allow the override of this behavior at pitch-instantiation time.
+</p>
 
 </comments>
 
 <to-do>
 
-<p> Abjad currently generates a <code>KeyError</code> for pitch arguments of the form <code>Rational(0, 2)</code> and <code>0.2</code> but should generate a custom exception instead.
+<p>Abjad currently generates a <code>KeyError</code> for pitch arguments of the form <code>Rational(0, 2)</code> and <code>0.2</code> but should generate a custom exception instead.</p>
 
-<p> Design and implement some way to allow different acciental-assignment behaviors at note-instantiation time. 
+<p>
+Design and implement some way to allow different acciental-assignment behaviors at note-instantiation time. 
 The first strategy that comes to mind is the creation of a new Abjad cfg variable that can change during runtime &mdash; all sharps before instantiating an upward chromatic run, all flats before a downward chromatic run, etc.
+</p>
 
 </to-do>

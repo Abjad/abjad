@@ -1,10 +1,8 @@
-<title> Abjad pitch tools </title>
-
 <h1>Abjad pitch tools</h1>
 
 <subsection>
 
-<p> The Abjad <code>_PitchTools</code> class implements the following public interface.
+<p>The Abjad <code>_PitchTools</code> class implements the following public interface.</p>
 
 </subsection>
 
@@ -30,12 +28,12 @@
 
 <comments>
 
-<p> See the <code>_PitchTools</code> class in <code>pitch/tool.py</code> for implementation details.
+<p>See the <code>_PitchTools</code> class in <code>pitch/tool.py</code> for implementation details.</p>
 
 </comments>
 
 <to-do>
 
-<p> Reimplement these tools as helper functions.
+<p>Reimplement these tools as helper functions.</p>
 
 </to-do>
