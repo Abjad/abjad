@@ -1,49 +1,48 @@
-<h1>The Abjad <code>_Spanner</code> class</h1>
+<h1>The Abjad <_Spanner> class</h1>
+
+<subsection>
 
 <p>
-The Abjad <code>_Spanner</code> class models the functionality that all spanners share.
+The Abjad <_Spanner> class models the functionality that all spanners share.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute"> duration </p>
-</div>
+<interface>
+<attributes>
+   <local> duration
+</attributes>
+<methods>
+   <local> capture
+   <local> copy
+   <local> die
+   <local> fracture
+   <local> fuse
+   <local> index
+   <local> move
+   <local> surrender
+</methods>
+<overloads>
+   <local> __contains__
+   <local> __getitem__
+   <local> __len__
+</overloads>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute"> capture( ) </p>
-   <p class="interface-attribute"> copy( ) </p>
-   <p class="interface-attribute"> die( ) </p>
-   <p class="interface-attribute"> fracture( ) </p>
-   <p class="interface-attribute"> fuse( ) </p>
-   <p class="interface-attribute"> index( ) </p>
-   <p class="interface-attribute"> move( ) </p>
-   <p class="interface-attribute"> surrender( ) </p>
-</div>
+<section>Attributes
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute"> __contains__ </p>
-   <p class="interface-attribute"> __getitem__ </p>
-   <p class="interface-attribute"> __len__ </p>
-</div>
-
-<h2 class="page-section">
-Examples
-</h2>
+<subsection>
 
 <p>
-The Abjad <code>_Spanner</code> class is an abstract class not meant to be instantiated by hand.
+The Abjad <_Spanner> class is an abstract class not meant to be instantiated by hand.
 </p>
 
-<h2 class="page-section">
-Comments
-</h2>
+</subsection>
 
-<p class="comment">
-See the <code>_Spanner</code> class in <code>core/spanner.py</code> for implementation details.
+<comments>
+
+<p>
+See the <_Spanner> class in <code>core/spanner.py</code> for implementation details.
 </p>
+
+</comments>

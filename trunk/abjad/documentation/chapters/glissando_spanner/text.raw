@@ -1,53 +1,50 @@
-<h1>The Abjad <code>Glissando</code> spanner</h1>
+<h1>The Abjad <Glissando> spanner</h1>
+
+<subsection>
 
 <p>
-The Abjad <code>Glissando</code> spanner establishes glissandi between consecutive notes, rests, chords and skips.
+The Abjad <Glissando> spanner establishes glissandi between consecutive notes, rests, chords and skips.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute-inherited"> duration </p>
-</div>
+<interface>
+<attributes>
+   <inherited> duration
+</attributes>
+<methods>
+   <inherited> capture
+   <inherited> copy
+   <inherited> die
+   <inherited> fracture
+   <inherited> fuse
+   <inherited> index
+   <inherited> move
+   <inherited> surrender
+</methods>
+<overloads>
+   <inherited> __contains__
+   <inherited> __getitem__
+   <inherited> __len__
+</overloads>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute-inherited"> capture( ) </p>
-   <p class="interface-attribute-inherited"> copy( ) </p>
-   <p class="interface-attribute-inherited"> die( ) </p>
-   <p class="interface-attribute-inherited"> fracture( ) </p>
-   <p class="interface-attribute-inherited"> fuse( ) </p>
-   <p class="interface-attribute-inherited"> index( ) </p>
-   <p class="interface-attribute-inherited"> move( ) </p>
-   <p class="interface-attribute-inherited"> surrender( ) </p>
-</div>
+<comments>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute-inherited"> __contains__ </p>
-   <p class="interface-attribute-inherited"> __getitem__ </p>
-   <p class="interface-attribute-inherited"> __len__ </p>
-</div>
-
-<h2 class="page-section">
-Comments
-</h2>
-
-<p class="comment">
-See the <code>Glissando</code> class in <code>glissando/spanner.py</code> for implementation details.
+<p>
+See the <Glissando> class in <code>glissando/spanner.py</code> for implementation details.
 </p>
 
-<p class="comment">
-The Abjad <code>Glissando</code> spanner inherits the entirety of its interface from <code>_Spanner</code> and implements no attributes of its own.
+<p>
+The Abjad <Glissando> spanner inherits the entirety of its interface from <_Spanner> and implements no attributes of its own.
 </p>
 
-<h2 class="page-section">
-To do
-</h2>
+</comments>
 
-<p class="to-do">
+<to-do>
+
+<p>
 Add examples.
 </p>
+
+</to-do>
