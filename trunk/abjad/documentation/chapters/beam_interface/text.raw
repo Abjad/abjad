@@ -1,55 +1,52 @@
-<h1>
-The Abjad <code>_BeamInterface</code> class
-</h1>
+<h1>The Abjad <_BeamInterface> class</h1>
+
+<subsection>
 
 <p>
-The Abjad <code>_BeamInterface</code> class manages note, rest and chord beams.
+The Abjad <_BeamInterface> class manages note, rest and chord beams.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute"> beamable </p>
-   <p class="interface-attribute"> closing </p>
-   <p class="interface-attribute"> counts </p>
-   <p class="interface-attribute-inherited"> first </p>
-   <p class="interface-attribute-inherited"> last </p>
-   <p class="interface-attribute-inherited"> only </p>
-   <p class="interface-attribute"> opening </p>
-   <p class="interface-attribute-inherited"> spanned </p>
-   <p class="interface-attribute-inherited"> spanner </p>
-   <p class="interface-attribute-inherited"> spanners </p>
-</div>
+<interface>
+<attributes>
+   <local> beamable
+   <local> closing
+   <local> counts
+   <inherited> first
+   <inherited> last
+   <inherited> only
+   <local> opening
+   <inherited> spanned
+   <inherited> spanner
+   <inherited> spanners
+</attributes>
+<methods>
+   <local> bridge
+   <inherited> clear
+   <inherited> copy
+   <local> subdivide
+   <inherited> unspan
+</methods>
+<overloads>
+   <inherited> __len__
+</overloads>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute"> bridge( ) </p>
-   <p class="interface-attribute-inherited"> clear( ) </p>
-   <p class="interface-attribute-inherited"> copy( ) </p>
-   <p class="interface-attribute"> subdivide( ) </p>
-   <p class="interface-attribute-inherited"> unspan( ) </p>
-</div>
+<section>Attributes
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute-inherited"> __len__ </p>
-</div>
-
-<h2 class="page-section">
-Examples
-</h2>
+<subsection>
 
 <p>
-The Abjad <code>_BeamInterface</code> class instantiates automatically at leaf-initialization time.
+The Abjad <_BeamInterface> class instantiates automatically at leaf-initialization time.
 </p>
 
-<h2 class="page-section">
-Comments
-</h2>
+</subsection>
 
-<p class="comment">
-See the <code>_BeamInterface</code> class in <code>beam/interface.py</code> for implementation details.
+<comment>
+
+<p>
+See the <_BeamInterface> class in <code>beam/interface.py</code> for implementation details.
 </p>
+
+</comments>

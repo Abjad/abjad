@@ -1,54 +1,48 @@
-<h1>
-The Abjad <code>_LeafSpannerInterface</code> class
-</h1>
+<h1>The Abjad <_LeafSpannerInterface> class</h1>
+
+<subsection>
 
 <p>
-The Abjad <code>_LeafSpannerInterface</code> class models the functionality that all leaf interfaces share.
+The Abjad <_LeafSpannerInterface> class models the functionality that all leaf interfaces share.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute"> append( ) </p>
-   <p class="interface-attribute"> die( ) </p>
-   <p class="interface-attribute"> find( ) </p>
-   <p class="interface-attribute"> first( ) </p>
-   <p class="interface-attribute"> fracture( ) </p>
-   <p class="interface-attribute"> fuse( ) </p>
-   <p class="interface-attribute"> get( ) </p>
-   <p class="interface-attribute"> last( ) </p>
-</div>
+<interface>
+<methods>
+   <local> append( )
+   <local> die( )
+   <local> find( )
+   <local> first( )
+   <local> fracture( )
+   <local> fuse( )
+   <local> get( )
+   <local> last( )
+</methods>
+<overloads>
+   <local> __contains__
+   <local> __getitem__
+   <local> __len__
+</overloads>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute"> __contains__ </p>
-   <!--
-   <p class="interface-attribute"> __delitem__ </p>
-   -->
-   <p class="interface-attribute"> __getitem__ </p>
-   <p class="interface-attribute"> __len__ </p>
-</div>
+<comments>
 
 <p>
-The <code>_LeafSpannerInterface</code> gives you access to all the spanners associated with a particular <code>_Leaf</code> instance. 
+The Abajad <_LeafSpannerInterface> class instantiates automatically at leaf-initialization time.
+</p>
+
+<p>
+The <_LeafSpannerInterface> gives you access to all the spanners associated with a particular <code>_Leaf</code> instance. 
 Through this interface one can <code>get</code> spanners, kill (<code>die( )</code>) spanners, split (<code>fracture( )</code>) spanners, <code>fuse</code> spanners and perform queries. 
 </p>
 
-<h2 class="page-section">
-Comments
-</h2>
+</comments>
 
-<p class="comment">
-The Abajad <code>_LeafSpannerInterface</code> class instantiates automatically at leaf-initialization time.
-</p>
+<to-do>
 
-<h2 class="page-section">
-To do
-</h2>
-
-<p class="to-do">
+<p>
 Decide whether <code>append( )</code> should be private.
 </p>
+
+</to-do>

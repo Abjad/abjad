@@ -1,37 +1,43 @@
-<h1>The Abjad <code>_TempoInterface</code> class</h1>
+<h1>The Abjad <_TempoInterface> class</h1>
 
-<p>The Abjad <code>_TempoInterface</code> manages attribute overrides for the LilyPond <code>Tempo</code> grob.
+<subsection>
 
-<h2 class="page-section">Public interface</h2>
+<p>
+The Abjad <_TempoInterface> manages attribute overrides for the LilyPond <code>Tempo</code> grob.
+</p>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes
-   <p class="interface-attribute-inherited"> first
-   <p class="interface-attribute-inherited"> last
-   <p class="interface-attribute-inherited"> only
-   <p class="interface-attribute-inherited"> spanned
-   <p class="interface-attribute-inherited"> spanner
-   <p class="interface-attribute-inherited"> spanners
-</div>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods
-   <p class="interface-attribute"> clear( )
-   <p class="interface-attribute-inherited"> copy( )
-   <p class="interface-attribute-inherited"> unspan( )
-</div>
+<interface>
+<attributes>
+   <inherited> first
+   <inherited> last
+   <inherited> only
+   <inherited> spanned
+   <inherited> spanner
+   <inherited> spanners
+</attributes>
+<methods>
+   <local> clear
+   <inherited> copy
+   <inherited> unspan
+</methods>
+<overloads>
+   <local> __eq__
+   <inherited> __len__
+   <local> __nonzero__
+</overloads>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads
-   <p class="interface-attribute"> __eq__
-   <p class="interface-attribute-inherited"> __len__
-   <p class="interface-attribute"> __nonzero__
-</div>
 
-<h2 class="page-section">Examples</h2>
+<comments>
 
-<p>The Abjad <code>_TempoInterface</code> class instantiates automatically at leaf-initialization time.
+<p>
+The Abjad <_TempoInterface> class instantiates automatically at leaf-initialization time.
+</p>
 
-<h2 class="page-section">Comments</h2>
+<p>
+See the <_TempoInterface> class in <code>tempo/interface.py</code> for implementation details.
+</p>
 
-<p class="comment">See the <code>_TempoInterface</code> class in <code>tempo/interface.py</code> for implementation details.
+</comments>

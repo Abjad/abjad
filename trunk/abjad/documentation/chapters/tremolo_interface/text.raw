@@ -1,49 +1,42 @@
-<h1>The Abjad <code>_TremoloInterface</code> class</h1>
+<h1>The Abjad <_TremoloInterface> class</h1>
+
+<subsection>
 
 <p>
-The Abjad <code>_TremoloInterface</code> class manages note, rest and chord tremolos.
+The Abjad <_TremoloInterface> class manages note, rest and chord tremolos.
 </p>
 
-<h2 class="page-section">
-Public interface
-</h2>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes </p>
-   <p class="interface-attribute"> body </p>
-   <p class="interface-attribute-inherited"> first </p>
-   <p class="interface-attribute-inherited"> last </p>
-   <p class="interface-attribute-inherited"> only </p>
-   <p class="interface-attribute-inherited"> spanned </p>
-   <p class="interface-attribute-inherited"> spanner </p>
-   <p class="interface-attribute-inherited"> spanners </p>
-   <p class="interface-attribute"> subdivision </p>
-</div>
+<interface>
+<attributes>
+   <local> body
+   <inherited> first
+   <inherited> last
+   <inherited> only
+   <inherited> spanned
+   <inherited> spanner
+   <inherited> spanners
+   <local> subdivision
+</attributes>
+<methods>
+   <inherited> clear
+   <inherited> copy
+   <inherited> unspan
+</methods>
+<overloads>
+   <inherited> __len__
+</overloads>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods </p>
-   <p class="interface-attribute-inherited"> clear( ) </p>
-   <p class="interface-attribute-inherited"> copy( ) </p>
-   <p class="interface-attribute-inherited"> unspan( ) </p>
-</div>
-
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads </p>
-   <p class="interface-attribute-inherited"> __len__ </p>
-</div>
-
-<h2 class="page-section">
-Examples
-</h2>
+<comments>
 
 <p>
-The Abjad <code>_TremoloInterface</code> class instantiates automatically at leaf-initialization time.
+The Abjad <_TremoloInterface> class instantiates automatically at leaf-initialization time.
 </p>
 
-<h2 class="page-section">
-Comments
-</h2>
-
-<p class="comment">
-See the <code>_TremoloInterface</code> class in <code>tremolo/interface.py</code> for implementation details.
+<p>
+See the <_TremoloInterface> class in <code>tremolo/interface.py</code> for implementation details.
 </p>
+
+</comments>

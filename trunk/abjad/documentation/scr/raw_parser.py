@@ -586,6 +586,7 @@ class CLASS_NAMES(_TagParser):
       '<Skip>' : 'skip_class',
       '<_Spanner>' : 'spanner_class',
       '<Staff>' : 'staff_class',
+      '<_StaffInterface>' : 'staff_interface',
       '<_StemInterface>' : 'stem_interface',
       '<Tempo>' : 'tempo_spanner',
       '<_TempoInterface>' : 'tempo_interface',

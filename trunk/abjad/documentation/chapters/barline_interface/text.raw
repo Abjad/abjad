@@ -1,36 +1,47 @@
-<h1>The Abjad <code>_BarlineInterface</code> class</h1>
+<h1>The Abjad <_BarlineInterface> class</h1>
 
-<p>The Abjad <code>_BarlineInterface</code> manages attribute overrides for the LilyPond <code>Barline</code> grob.
+<subsection>
 
-<h2 class="page-section">Public interface</h2>
+<p>
+The Abjad <_BarlineInterface> manages attribute overrides for the LilyPond <code>Barline</code> grob.
+</p>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Attributes
-   <p class="interface-attribute-inherited"> first
-   <p class="interface-attribute-inherited"> last
-   <p class="interface-attribute-inherited"> only
-   <p class="interface-attribute-inherited"> spanned
-   <p class="interface-attribute-inherited"> spanner
-   <p class="interface-attribute-inherited"> spanners
-   <p class="interface-attribute"> type
-</div>
+</subsection>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Methods
-   <p class="interface-attribute-inherited"> clear( )
-   <p class="interface-attribute-inherited"> copy( )
-   <p class="interface-attribute-inherited"> unspan( )
-</div>
+<interface>
+<attributes>
+   <inherited> first
+   <inherited> last
+   <inherited> only
+   <inherited> spanned
+   <inherited> spanner
+   <inherited> spanners
+   <local> type
+</attributes>
+<methods>
+   <inherited> clear
+   <inherited> copy
+   <inherited> unspan
+</methods>
+<overloads>
+   <inherited> __len__
+</overloads>
+</interface>
 
-<div class="interface-block">
-   <p class="interface-block-header"> Overloads
-   <p class="interface-attribute-inherited"> __len__
-</div>
+<section>Attributes
 
-<h2 class="page-section">Examples</h2>
+<subsection>
 
-<p>The Abjad <code>_BarlineInterface</code> class instantiates automatically at leaf-initialization time.
+<p>
+The Abjad <_BarlineInterface> class instantiates automatically at leaf-initialization time.
+</p>
 
-<h2 class="page-section">Comments</h2>
+</subsection>
 
-<p class="comment">See the <code>_BarlineInterface</code> class in <code>barline/interface.py</code> for implementation details.
+<comments>
+
+<p>
+See the <_BarlineInterface> class in <code>barline/interface.py</code> for implementation details.
+</p>
+
+</comments>

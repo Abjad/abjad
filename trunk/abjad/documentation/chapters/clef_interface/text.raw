@@ -1,12 +1,14 @@
-<title> The Abjad _ClefInterface class </title>
+<title> The Abjad <_ClefInterface> class </title>
 
-<h1>The Abjad <code>_ClefInterface</code> class</h1>
+<h1>The Abjad <_ClefInterface> class</h1>
 
-<introduction>
+<subsection>
 
-<p>The Abjad <_ClefInterface> publishes information about the clefs of notes, rests and chords.
+<p>
+The Abjad <_ClefInterface> publishes information about the clefs of notes, rests and chords.
+</p>
 
-</introduction>
+</subsection>
 
 <interface>
 <attributes>
@@ -22,9 +24,9 @@
    <inherited> spanners
 </attributes>
 <methods>
-   <inherited> clear( )
-   <inherited> copy( )
-   <inherited> unspan( )
+   <inherited> clear
+   <inherited> copy
+   <inherited> unspan
 </methods>
 <overloads>
    <inherited> __len__
@@ -33,8 +35,12 @@
 
 <comments>
 
-<p> The Abjad <_ClefInterface> class instantiates automatically at leaf-initialization time.
+<p>
+The Abjad <_ClefInterface> class instantiates automatically at leaf-initialization time.
+</p>
 
-<p> See the <_ClefInterface> class in <code>clef/interface.py</code> for implementation details.
+<p>
+See the <_ClefInterface> class in <code>clef/interface.py</code> for implementation details.
+</p>
 
 </comments>
