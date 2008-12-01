@@ -1,12 +1,12 @@
-<title>The Abjad Rest class</title>
+<h1>The Abjad <Rest> class</h1>
 
-<h1>The Abjad <code>Rest</code> class</h1>
+<subsection>
 
-<introduction>
+<p>
+The Abjad <Rest> class models musical rests.
+</p>
 
-<p> The Abjad <code>Rest</code> class models musical rests.
-
-</introduction>
+</subsection>
 
 <interface>
 <attributes>
@@ -38,8 +38,8 @@
    <inherited> trill
 </attributes>
 <methods>
-   <inherited> copy( )
-   <inherited> kind( )
+   <inherited> copy
+   <inherited> kind
 </methods>
 <overloads>
    <local> __init__
@@ -49,106 +49,106 @@
 </overloads>
 </interface>
 
-<section> Attributes
+<section>Attributes
 
 <definition>
 <header>
    <inherited> accidentals
-	<p> NOT IMPLEMENTED
+	<p>NOT IMPLEMENTED.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    </inherited> articulations
-	<p> Read / write attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_ArticulationsInterface>.
-	<p> Accepts Python list of zero or more LilyPond articulation strings, <code>None</code>.
-	<p> See <a href="../leaf_class/index.html#articulations">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_ArticulationsInterface>.</p>
+	<p>Accepts Python list of zero or more LilyPond articulation strings, <code>None</code>.</p>
+	<p>See <a href="../leaf_class/index.html#articulations">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> barline
-	<p> Read / write attribute inherited from <_Component>.
-	<p> Returns Abjad <_BarlineInterface>.
-	<p> Accepts LilyPond barline string, <code>None</code>.
-	<p> See <a href="../leaf_class/index.html#barline">example</a>.
+	<p>Read / write attribute inherited from <_Component>.</p>
+	<p>Returns Abjad <_BarlineInterface>.</p>
+	<p>Accepts LilyPond barline string, <code>None</code>.</p>
+	<p>See <a href="../leaf_class/index.html#barline">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> beam
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_BeamInterface>.
-	<p> See <a href="../leaf_class/index.html#beam">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_BeamInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#beam">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> clef
-	<p> Read / write attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_ClefInterface>.
-	<p> Accepts LilyPond clef string, Abjad <_Clef> instances, <code>None</code>.
-	<p> See <a href="../leaf_class/index.html#clef">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_ClefInterface>.</p>
+	<p>Accepts LilyPond clef string, Abjad <_Clef> instances, <code>None</code>.</p>
+	<p>See <a href="../leaf_class/index.html#clef">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> comments
-	<p> Read-only attribute inherited from <_Component>.
-	<p> Returns Abjad <_Comments>.
-	<p> See <a href="../component_class/index.html#comments">example</a>.
+	<p>Read-only attribute inherited from <_Component>.</p>
+	<p>Returns Abjad <_Comments>.</p>
+	<p>See <a href="../component_class/index.html#comments">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> dots
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_DotsInterface>.
-	<p> See <a href="../leaf_class/index.html#dots">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_DotsInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#dots">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> duration
-	<p> Read / write attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_LeafDurationInterface>.
-	<p> Accepts <a href="../duration_token/index.html">duration token</a>.
-	<p> See <a href="../leaf_class/index.html#duration">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_LeafDurationInterface>.</p>
+	<p>Accepts <a href="../duration_token/index.html">duration token</a>.</p>
+	<p>See <a href="../leaf_class/index.html#duration">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> dynamics
-	<p> Read / write attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_DynamicsInterface>.
-	<p> Accepts LilyPond dynamics string, <code>None</code>.
-	<p> See <a href="../leaf_class/index.html#dynamics">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_DynamicsInterface>.</p>
+	<p>Accepts LilyPond dynamics string, <code>None</code>.</p>
+	<p>See <a href="../leaf_class/index.html#dynamics">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> format
-	<p> Read-only attribute inherited from <_Component>.
-	<p> Returns LilyPond input string.
-	<p> See <a href="../component_class/index.html#format">example</a>.
+	<p>Read-only attribute inherited from <_Component>.</p>
+	<p>Returns LilyPond input string.</p>
+	<p>See <a href="../component_class/index.html#format">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> formatter
-	<p> Read-only attribute defined here.
-	<p> Returns Abjad <code>_LeafFormatter</code>.
+	<p>Read-only attribute defined here.</p>
+	<p>Returns Abjad <code>_LeafFormatter</code>.</p>
 </header>
 <body>
 <abjad>
@@ -157,7 +157,7 @@
 <abjad>
    hide> rest = Rest((1, 4))
    abjad> rest.formatter
-   _LeafFormatter( )
+   _LeafFormatter
 </abjad>
 </body>
 </definition>
@@ -165,74 +165,74 @@
 <definition>
 <header>
    <inherited> glissando
-	<p> Read / write attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_GlissandoInterface>.
-	<p> Accepts <code>True</code>, <code>False</code>.
-	<p> See <a href="../leaf_class/index.html#glissando">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_GlissandoInterface>.</p>
+	<p>Accepts <code>True</code>, <code>False</code>.</p>
+	<p>See <a href="../leaf_class/index.html#glissando">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> grace
-	<p>  Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_GraceInterface>.
-	<p> See <a href="../leaf_class/index.html#grace">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_GraceInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#grace">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> harmonic
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_HarmonicInterface>.
-	<p> Accepts <code>True</code>, <code>False</code>.
-	<p> See <a href="../leaf_class/index.html#harmonic">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_HarmonicInterface>.</p>
+	<p>Accepts <code>True</code>, <code>False</code>.</p>
+	<p>See <a href="../leaf_class/index.html#harmonic">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> leaves
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Python list of all leaves in <code>self</code>.
-	<p> See <a href="../leaf_class/index.html">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Python list of all leaves in <code>self</code>.</p>
+	<p>See <a href="../leaf_class/index.html">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> next
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns reference to next-in-container leaf after <code>self</code>.
-	<p> See <a href="../leaf_class/index.html#next">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns reference to next-in-container leaf after <code>self</code>.</p>
+	<p>See <a href="../leaf_class/index.html#next">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> number
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns nonnegative integer equal to zero-indexed in-governor position of <code>self</code>.
-	<p> See <a href="../leaf_class/index.html#number">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns nonnegative integer equal to zero-indexed in-governor position of <code>self</code>.</p>
+	<p>See <a href="../leaf_class/index.html#number">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> offset
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <code>Rational</code> representing amount of in-governor musical time prior to start of <code>self</code>.
-	<p> See <a href="../leaf_class/index.html">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <code>Rational</code> representing amount of in-governor musical time prior to start of <code>self</code>.</p>
+	<p>See <a href="../leaf_class/index.html">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> pitch
-	<p> Read / write attribute defined here.
-	<p> Returns Abjad <_Pitch> instance attaching to <code>self</code>.
-	<p> Accepts Abjad <a href="../pitch_token/index.html">pitch token</a>.
+	<p>Read / write attribute defined here.</p>
+	<p>Returns Abjad <_Pitch> instance attaching to <code>self</code>.</p>
+	<p>Accepts Abjad <a href="../pitch_token/index.html">pitch token</a>.</p>
 </header>
 <body>
 <abjad>
@@ -251,115 +251,115 @@
 <definition>
 <header>
    <inherited> prev
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns reference to prev-in-container leaf before <code>self</code>.
-	<p> See <a href="../leaf_class/index.html#prev">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns reference to prev-in-container leaf before <code>self</code>.</p>
+	<p>See <a href="../leaf_class/index.html#prev">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> spanners
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_LeafSpannerInterface>.
-	<p> See <a href="../leaf_class/index.html#spanner">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_LeafSpannerInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#spanner">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> staff
-	<p> Read / write attribute inherited from <_Leaf>.
-	<p> Returns reference to Abjad <_Staff>.
-	<p> Accepts Abjad <_Staff>.
-	<p> See <a href="../leaf_class/index.html#staff">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns reference to Abjad <_Staff>.</p>
+	<p>Accepts Abjad <_Staff>.</p>
+	<p>See <a href="../leaf_class/index.html#staff">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> stem
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_StemInterface>.
-	<p> See <a href="../leaf_class/index.html#stem">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_StemInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#stem">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> tempo
-	<p> Read / write attribute inherited from <_Component>.
-	<p> Returns Abjad <_TempoInterface>.
-	<p> Accepts (duration, type) pair.
-	<p> See <a href="../component_class/index.html#tempo">example</a>.
+	<p>Read / write attribute inherited from <_Component>.</p>
+	<p>Returns Abjad <_TempoInterface>.</p>
+	<p>Accepts (duration, type) pair.</p>
+	<p>See <a href="../component_class/index.html#tempo">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> tie
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_TieInterface>.
-	<p> Accepts <code>True</code>, <code>False</code>.
-	<p> See <a href="../leaf_class/index.html#tie">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_TieInterface>.</p>
+	<p>Accepts <code>True</code>, <code>False</code>.</p>
+	<p>See <a href="../leaf_class/index.html#tie">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> tremolo
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_TremoloInterface>.
-	<p> See <a href="../leaf_class/index.html#tremolo">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_TremoloInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#tremolo">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> trill
-	<p> Read-only attribute inherited from <_Leaf>.
-	<p> Returns Abjad <_TrillInterface>.
-	<p> See <a href="../leaf_class/index.html#trill">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_TrillInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#trill">example</a>.</p>
 </header>
 </definition>
 
-<section> Methods
+<section>Methods
 
 <definition>
 <header>
-   <inherited> copy( )
-   <p> copy( )
-	<p> Public method inherited from <_Component>.
-	<p> Returns new copy of <code>self</code>.
-	<p> See <a href="../component_class/index.html#copy">example</a>.
+   <inherited> copy
+   <p>copy( )</p>
+	<p>Public method inherited from <_Component>.</p>
+	<p>Returns new copy of <code>self</code>.</p>
+	<p>See <a href="../component_class/index.html#copy">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
-   <inherited> kind( )
-   <p> kind(<i>classname</i>)
-	<p> Deprecated public method inherited from <_Component>
-	<p> Returnx <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.
-	<p> Use built-in Python <code>isinstance( )</code> instead.
+   <inherited> kind
+   <p>kind(<i>classname</i>)</p>
+	<p>Deprecated public method inherited from <_Component>.</p>
+	<p>Returns <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.</p>
+	<p>Use built-in Python <code>isinstance</code> instead.</p>
 </header>
 </definition>
 
-<section> Overloads
+<section>Overloads
 
 <definition>
 <header>
    <local> __init__
-   <p> __init__(<i>args*</i>)
-	<p> Special method defined here.
-	<p> Initialize <code>self</code> according to one of several input argument patterns:
+   <p>__init__(<i>args*</i>)</p>
+	<p>Special method defined here.</p>
+	<p>Initialize <code>self</code> according to one of several input argument patterns:</p>
 <ul>
-   <li> <code>Rest(<i>dur</i>)
-   <li> <code>Rest(<i>note</i>)
-   <li> <code>Rest(<i>chord</i>)
-   <li> <code>Rest(<i>skip</i>)
+   <li><code>Rest(<i>dur</i>)</li>
+   <li><code>Rest(<i>note</i>)</li>
+   <li><code>Rest(<i>chord</i>)</li>
+   <li><code>Rest(<i>skip</i>)</li>
 </ul>
-	<p> Where <code><i>dur</i></code> is an Abjad <a href="../duration_token/index.html">duration token</a>.
+	<p>Where <code><i>dur</i></code> is an Abjad <a href="../duration_token/index.html">duration token</a>.</p>
 </header>
 <body>
 <abjad>
@@ -374,20 +374,20 @@
 <definition>
 <header>
    <inherited> __mul__
-   <p> __mul__(<i>n</i>)
-	<p> Special method inherited from <_Component>.
-	<p> Implements left-handed multiplication of <code>self</code>.
-	<p> Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.
-	<p> See <a href="../component_class/index.html#mul">example</a>.
+   <p>__mul__(<i>n</i>)</p>
+	<p>Special method inherited from <_Component>.</p>
+	<p>Implements left-handed multiplication of <code>self</code>.</p>
+	<p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.</p>
+	<p>See <a href="../component_class/index.html#mul">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> __repr__
-   <p> __repr__( )
-	<p> Special method defined here.
-	<p> Returns string summary of <code>self</code> for interpreter display.
+   <p>__repr__</p>
+	<p>Special method defined here.</p>
+	<p>Returns string summary of <code>self</code> for interpreter display.</p>
 </header>
 <body>
 <abjad>
@@ -404,20 +404,20 @@
 <definition>
 <header>
    <inherited> __rmul__
-   <p> __rmul__(<i>n</i>)</a>
-	<p> Special method inherited from <_Component>.
-	<p> Implements right-handed multiplication on <code>self</code>. 
-	<p> Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.
-	<p> See <a href="../component_class/index.html#rmul">example</a>.
+   <p>__rmul__(<i>n</i>)</a></p>
+	<p>Special method inherited from <_Component>.</p>
+	<p>Implements right-handed multiplication on <code>self</code>.</p>
+	<p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.</p>
+	<p>See <a href="../component_class/index.html#rmul">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> __str__
-   <p> __str__( )
-	<p> Special method defined here.
-	<p> Returns string summary of <code>self</code>.
+   <p>__str__</p>
+	<p>Special method defined here.</p>
+	<p>Returns string summary of <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -433,12 +433,16 @@
 
 <comments>
 
-<p> See the <code>Rest</code> class in <code>rest/rest.py</code> for implementation details.
+<p>
+See the <Rest> class in <code>rest/rest.py</code> for implementation details.
+</p>
 
 </comments>
 
 <to-do>
 
-<p> Implement <code>accidentals</code> in <code>_LeafFormatter</code>.
+<p>
+Implement <code>accidentals</code> in <_LeafFormatter>.
+</p>
 
 </to-do>

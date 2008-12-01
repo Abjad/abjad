@@ -1,12 +1,12 @@
-<title> The Abjad Chord class </title>
+<h1>The Abjad <Chord> class</h1>
 
-<h1> The Abjad <code>Chord</code> class </h1>
+<subsection>
 
-<introduction>
+<p>
+The Abjad <Chord> class models chords.
+</p>
 
-<p> The Abjad <code>Chord</code> class models chords.
-
-</introduction>
+</subsection>
 
 <interface>
 <attributes>
@@ -40,12 +40,12 @@
    <inherited> trill
 </attributes>
 <methods>
-   <local> append( )
-   <inherited> copy( )
-   <local> extend( )
-   <inherited> kind( )
-   <local> pop( )
-   <local> remove( )
+   <local> append
+   <inherited> copy
+   <local> extend
+   <inherited> kind
+   <local> pop
+   <local> remove
 </methods>
 <overloads>
    <local> __contains__
@@ -61,106 +61,106 @@
 </overloads>
 </interface>
 
-<section> Attributes
+<section>Attributes
 
 <definition>
 <header>
    <inherited> accidentals
-   <p> NOT IMPLEMENTED
+   <p>NOT IMPLEMENTED</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> articulations
-   <p> Read / write attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_ArticulationsInterface>.
-   <p> Accepts Python list of zero or more LilyPond articulation strings, <code>None</code>.
-   <p> See <a href="../leaf_class/index.html#articulations">example</a>.
+   <p>Read / write attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_ArticulationsInterface>.</p>
+   <p>Accepts Python list of zero or more LilyPond articulation strings, <code>None</code>.</p>
+   <p>See <a href="../leaf_class/index.html#articulations">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> barline
-   <p> Read / write attribute inherited from <_Component>.
-   <p> Returns Abjad <_BarlineInterface>.
-   <p> Accepts LilyPond barline string, <code>None</code>.
-   <p> See <a href="../leaf_class/index.html#barline">example</a>.
+   <p>Read / write attribute inherited from <_Component>.</p>
+   <p>Returns Abjad <_BarlineInterface>.</p>
+   <p>Accepts LilyPond barline string, <code>None</code>.</p>
+   <p>See <a href="../leaf_class/index.html#barline">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> beam
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_BeamInterface>.
-   <p> See <a href="../leaf_class/index.html#beam">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_BeamInterface>.</p>
+   <p>See <a href="../leaf_class/index.html#beam">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> clef
-   <p> Read / write attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_ClefInterface>.
-   <p> Accepts LilyPond clef string, Abjad <_Clef> instance, <code>None</code>.
-   <p> See <a href="../leaf_class/index.html#clef">example</a>.
+   <p>Read / write attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_ClefInterface>.</p>
+   <p>Accepts LilyPond clef string, Abjad <_Clef> instance, <code>None</code>.</p>
+   <p>See <a href="../leaf_class/index.html#clef">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> comments
-   <p> Read-only attribute inherited from <_Component>.
-   <p> Returns Abjad <_Comments>.
-   <p> See <a href="../component_class/index.html#comments">example</a>.
+   <p>Read-only attribute inherited from <_Component>.</p>
+   <p>Returns Abjad <_Comments>.</p>
+   <p>See <a href="../component_class/index.html#comments">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> dots
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_DotsInterface>.
-   <p>See <a href="../leaf_class/index.html#dots">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_DotsInterface>.</p>
+   <p>See <a href="../leaf_class/index.html#dots">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> duration
-   <p> Read / write attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_LeafDurationInterface>.
-   <p> Accepts <a href="../duration_token/index.html">duration token</a>.
-   <p> See <a href="../leaf_class/index.html#duration">example</a>.
+   <p>Read / write attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_LeafDurationInterface>.</p>
+   <p>Accepts <a href="../duration_token/index.html">duration token</a>.</p>
+   <p>See <a href="../leaf_class/index.html#duration">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> dynamics
-   <p> Read / write attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_DynamicsInterface>.
-   <p> Accepts LilyPond dynamics string, <code>None</code>.
-   <p> See <a href="../leaf_class/index.html#dynamics">example</a>.
+   <p>Read / write attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_DynamicsInterface>.</p>
+   <p>Accepts LilyPond dynamics string, <code>None</code>.</p>
+   <p>See <a href="../leaf_class/index.html#dynamics">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> format
-   <p> Read-only attribute inherited from <_Component>.
-   <p> Returns LilyPond input string.
-   <p> See <a href="../component_class/index.html#format">example</a>.
+   <p>Read-only attribute inherited from <_Component>.</p>
+   <p>Returns LilyPond input string.</p>
+   <p>See <a href="../component_class/index.html#format">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> formatter
-   <p> Read-only attribute defined here.
-   <p> Returns Abjad <code>_ChordFormatter</code>.
+   <p>Read-only attribute defined here.</p>
+   <p>Returns Abjad <code>_ChordFormatter</code>.</p>
 </header>
 <body>
 <abjad>
@@ -169,7 +169,7 @@
 <abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
    abjad> chord.formatter
-   _ChordFormatter( )
+   _ChordFormatter
 </abjad>
 </body>
 </definition>
@@ -177,57 +177,57 @@
 <definition>
 <header>
    <inherited> glissando
-   <p> Read / write attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_GlissandoInterface>.
-   <p> Accepts <code>True</code>, <code>False</code>.
-   <p> Note that LilyPond does not render glissandi between chords.
-   <p>See <a href="../leaf_class/index.html#glissando">example</a>.
+   <p>Read / write attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_GlissandoInterface>.</p>
+   <p>Accepts <code>True</code>, <code>False</code>.</p>
+   <p>Note that LilyPond does not render glissandi between chords.</p>
+   <p>See <a href="../leaf_class/index.html#glissando">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> grace
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_GraceInterface>.
-   <p> See <a href="../leaf_class/index.html#grace">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_GraceInterface>.</p>
+   <p>See <a href="../leaf_class/index.html#grace">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> harmonic
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_HarmonicInterface>.
-   <p> Accepts <code>True</code>, <code>False</code>.
-   <p> See <a href="../leaf_class/index.html#harmonic">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_HarmonicInterface>.</p>
+   <p>Accepts <code>True</code>, <code>False</code>.</p>
+   <p>See <a href="../leaf_class/index.html#harmonic">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> leaves
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Python list of all leaves in <code>self</code>.
-   <p> See <a href="../leaf_class/index.html">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Python list of all leaves in <code>self</code>.</p>
+   <p>See <a href="../leaf_class/index.html">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> next
-   <p> Read-only attribute inherited from <_Leaf>
-   <p> Returns reference to next-in-container leaf after <code>self</code>.
-   <p> See <a href="../leaf_class/index.html#next">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns reference to next-in-container leaf after <code>self</code>.</p>
+   <p>See <a href="../leaf_class/index.html#next">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> noteheads
-   <p> Read / write attribute defined here.
-   <p> Returns Python list of all noteheads in <code>self</code>.
-   <p> Accepts Python list or Python tuple of <a href="../notehead_token/index.html">notehead token</a> instances.
+   <p>Read / write attribute defined here.</p>
+   <p>Returns Python list of all noteheads in <code>self</code>.</p>
+   <p>Accepts Python list or Python tuple of <a href="../notehead_token/index.html">notehead token</a> instances.</p>
 </header>
 <body>
 <abjad>
@@ -249,27 +249,27 @@
 <definition>
 <header>
    <inherited> number
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns nonnegative integer equal to zero-indexed in-governor position of <code>self</code>.
-   <p> See <a href="../leaf_class/index.html#number">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns nonnegative integer equal to zero-indexed in-governor position of <code>self</code>.</p>
+   <p>See <a href="../leaf_class/index.html#number">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> offset
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <code>Rational</code> representing amount of in-governor musical time prior to start of <code>self</code>.
-   <p> See <a href="../leaf_class/index.html">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <code>Rational</code> representing amount of in-governor musical time prior to start of <code>self</code>.</p>
+   <p>See <a href="../leaf_class/index.html">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> pitches
-   <p> Read / write attribute defined here.
-   <p> Returns Python list of all pitches in <code>self</code>.
-   <p> Accepts Python list or Python tuple of <a href="../notehead_token/index.html">notehead token</a> instances.
+   <p>Read / write attribute defined here.</p>
+   <p>Returns Python list of all pitches in <code>self</code>.</p>
+   <p>Accepts Python list or Python tuple of <a href="../notehead_token/index.html">notehead token</a> instances.</p>
 </header>
 <body>
 <abjad>
@@ -291,86 +291,86 @@
 <definition>
 <header>
    <inherited> prev
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns reference to prev-in-container leaf before <code>self</code>.
-   <p> See <a href="../leaf_class/index.html#prev">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns reference to prev-in-container leaf before <code>self</code>.</p>
+   <p>See <a href="../leaf_class/index.html#prev">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> spanners
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_LeafSpannerInterface>.
-   <p> See <a href="../leaf_class/index.html#spanner">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_LeafSpannerInterface>.</p>
+   <p>See <a href="../leaf_class/index.html#spanner">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> staff
-   <p> Read / write attribute inherited from <_Leaf>.
-   <p> Returns reference to Abjad <_Staff>.
-   <p> Accepts Abjad <_Staff> reference.
-   <p> See <a href="../leaf_class/index.html#staff">example</a>.
+   <p>Read / write attribute inherited from <_Leaf>.</p>
+   <p>Returns reference to Abjad <_Staff>.</p>
+   <p>Accepts Abjad <_Staff> reference.</p>
+   <p>See <a href="../leaf_class/index.html#staff">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> stem
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_StemInterface>.
-   <p> See <a href="../leaf_class/index.html#stem">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_StemInterface>.</p>
+   <p>See <a href="../leaf_class/index.html#stem">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> tempo
-   <p> Read / write attribute inherited from <_Component>.
-   <p> Returns Abjad <_TempoInterface>.
-   <p> Accepts (duration, type) pair.
-   <p> See <a href="../component_class/index.html#tempo">example</a>.
+   <p>Read / write attribute inherited from <_Component>.</p>
+   <p>Returns Abjad <_TempoInterface>.</p>
+   <p>Accepts (duration, type) pair.</p>
+   <p>See <a href="../component_class/index.html#tempo">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> tie
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_TieInterface>.
-   <p> Accepts <code>True</code>, <code>False</code>.
-   <p> See <a href="../leaf_class/index.html#tie">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_TieInterface>.</p>
+   <p>Accepts <code>True</code>, <code>False</code>.</p>
+   <p>See <a href="../leaf_class/index.html#tie">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> tremolo
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_TremoloInterface>.
-   <p> See <a href="../leaf_class/index.html#tremolo">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_TremoloInterface>.</p>
+   <p>See <a href="../leaf_class/index.html#tremolo">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> trill
-   <p> Read-only attribute inherited from <_Leaf>.
-   <p> Returns Abjad <_TrillInterface>.
-   <p> See <a href="../leaf_class/index.html#trill">example</a>.
+   <p>Read-only attribute inherited from <_Leaf>.</p>
+   <p>Returns Abjad <_TrillInterface>.</p>
+   <p>See <a href="../leaf_class/index.html#trill">example</a>.</p>
 </header>
 </definition>
 
-<section> Methods
+<section>Methods
 
 <definition>
 <header>
-   <local> append( )
-   <p> append(<i>nh</i>)
-   <p> Public method defined here.
-   <p> Interprets <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> and appends to <code>self</code>.
+   <local> append
+   <p>append(<i>nh</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Interprets <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> and appends to <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -388,19 +388,19 @@
 
 <definition>
 <header>
-   <inherited> copy( )
-   <p> Public method inherited from <_Component>.
-   <p> Returns new copy of <code>self</code>.
-   <p> See <a href="../component_class/index.html#copy">example</a>.
+   <inherited> copy
+   <p>Public method inherited from <_Component>.</p>
+   <p>Returns new copy of <code>self</code>.</p>
+   <p>See <a href="../component_class/index.html#copy">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
-   <local> extend( )
-   <p> extend(<i>nhs</i>)
-   <p> Public method defined here.
-   <p> Interprets Python list or Python tuple <code><i>nhs</i></code> of <a href="../notehead_token/index.html">notehead token</a> instances and extends <code>self</code>.
+   <local> extend
+   <p>extend(<i>nhs</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Interprets Python list or Python tuple <code><i>nhs</i></code> of <a href="../notehead_token/index.html">notehead token</a> instances and extends <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -418,20 +418,20 @@
 
 <definition>
 <header>
-   <inherited> kind( )
-   <p> kind(<i>classname</i>)
-   <p> Deprecated public method inherited from <_Component>.
-   <p> Returns <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.
-   <p> Use built-in Python <code>isinstance( )</code> instead.
+   <inherited> kind
+   <p>kind(<i>classname</i>)</p>
+   <p>Deprecated public method inherited from <_Component>.</p>
+   <p>Returns <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.</p>
+   <p>Use built-in Python <code>isinstance</code> instead.</p>
 </header>
 </definition>
 
 <definition>
 <header>
-   <local> pop( )
-   <p> pop(<i>i = -1</i>)
-   <p> Public method defined here.
-   <p> Returns and removes notehead at index <code><i>i</i></code> in <code>self</code>.
+   <local> pop
+   <p>pop(<i>i = -1</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Returns and removes notehead at index <code><i>i</i></code> in <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -439,7 +439,7 @@
 </abjad>
 <abjad>
    hide> chord = Chord([0, 2, 10], (1, 4))
-   abjad> chord.pop( )
+   abjad> chord.pop
    _NoteHead(bf')
    hide> measure = Measure((1, 4), [chord])
    hide> measure.meter.transparent = True
@@ -450,11 +450,11 @@
 
 <definition>
 <header>
-   <local> remove( )
-   <p> remove(<i>notehead</i>)
-   <p> Public method defined here.
-   <p> Removes <code><i>notehead</i></code> from <code>self</code>.
-   <p> Note that <code>remove( )</code> works by reference rather than by index.
+   <local> remove
+   <p>remove(<i>notehead</i>)</p>
+   <p>Public method defined here.</p>
+   <p>Removes <code><i>notehead</i></code> from <code>self</code>.</p>
+   <p>Note that <code>remove</code> works by reference rather than by index.</p>
 </header>
 <body>
 <abjad>
@@ -470,15 +470,15 @@
 </body>
 </definition>
 
-<section> Overloads
+<section>Overloads
 
 <definition>
 <header>
 <p class="example-header">
    <local> __contains__
-   <p> __contains__(<i>nh</i>)
-   <p> Special method defined here.
-   <p> Returns <code>True</code> with <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> in <code>self</code>, otherwise <code>False</code>.
+   <p>__contains__(<i>nh</i>)</p>
+   <p>Special method defined here.</p>
+   <p>Returns <code>True</code> with <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> in <code>self</code>, otherwise <code>False</code>.</p>
 </header>
 <body>
 <abjad>
@@ -498,9 +498,9 @@
 <definition>
 <header>
    <local> __delitem__
-   <p> __delitem__(<i>i</i>)
-   <p> Special method defined here.
-   <p> Delete notehead at index <code><i>i</i></code> in  <code>self</code>.
+   <p>__delitem__(<i>i</i>)</p>
+   <p>Special method defined here.</p>
+   <p>Delete notehead at index <code><i>i</i></code> in  <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -520,9 +520,9 @@
 <header>
 <p class="example-header">
    <local> __getitem__
-   <p> __getitem__(<i>i</i>)
-   <p> Special method defined here.
-   <p> Get notehead at index <code><i>i</i></code> in <code>self</code>.
+   <p>__getitem__(<i>i</i>)</p>
+   <p>Special method defined here.</p>
+   <p>Get notehead at index <code><i>i</i></code> in <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -542,16 +542,16 @@
 <definition>
 <header>
    <local> __init__
-   <p> __init__(<i>args*</i>)
-   <p> Special method defined here.
-   <p> Initialize <code>self</code> according to one of several input argument patterns:
+   <p>__init__(<i>args*</i>)</p>
+   <p>Special method defined here.</p>
+   <p>Initialize <code>self</code> according to one of several input argument patterns:</p>
    <ul>
-      <li> <code>Chord(<i>pitches</i>, <i>dur</i>)
-      <li> <code>Chord(<i>note</i>)
-      <li> <code>Chord(<i>rest</i>)
-      <li> <code>Chord(<i>skip</i>)
+      <li><code>Chord(<i>pitches</i>, <i>dur</i>)</li>
+      <li><code>Chord(<i>note</i>)</li>
+      <li><code>Chord(<i>rest</i>)</li>
+      <li><code>Chord(<i>skip</i>)</li>
    </ul>
-   <p> Where <code><i>pitches</i></code> is a Python list or Python tuple of zero or more <a href="../pitch_token/index.html">pitch token</a> instances, and where <code><i>dur</i></code> is a <a href="../duration_token/index.html">duration token</a>.
+   <p>Where <code><i>pitches</i></code> is a Python list or Python tuple of zero or more <a href="../pitch_token/index.html">pitch token</a> instances, and where <code><i>dur</i></code> is a <a href="../duration_token/index.html">duration token</a>.</p>
 </header>
 <body>
 <abjad>
@@ -567,9 +567,9 @@
 <header>
 <p class="example-header">
    <local> __len__
-   <p> __len__( )
-   <p> Special method defined here.
-   <p> Returns nonnegative integer equal to number of noteheads in <code>self</code>.
+   <p>__len__</p>
+   <p>Special method defined here.</p>
+   <p>Returns nonnegative integer equal to number of noteheads in <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -588,20 +588,20 @@
 <definition>
 <header>
    <inherited> __mul__
-   <p> __mul__(<i>n</i>)
-   <p> Special method inherited from <_Component>.
-   <p> Implements left-handed multiplication of <code>self</code>.
-   <p> Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.
-   <p> See <a href="../component_class/index.html#mul">example</a>.
+   <p>__mul__(<i>n</i>)</p>
+   <p>Special method inherited from <_Component>.</p>
+   <p>Implements left-handed multiplication of <code>self</code>.</p>
+   <p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.</p>
+   <p>See <a href="../component_class/index.html#mul">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> __repr__
-   <p> __repr__( )
-   <p> Special method defined here.
-   <p> Returns string summary of <code>self</code> for interpreter display.
+   <p>__repr__</p>
+   <p>Special method defined here.</p>
+   <p>Returns string summary of <code>self</code> for interpreter display.</p>
 </header>
 <body>
 <abjad>
@@ -618,20 +618,20 @@
 <definition>
 <header>
    <inherited> __rmul__
-   <p> __rmul__(<i>n</i>)
-   <p> Special method inherited from <_Component>.
-   <p> Implements right-handed multiplication on <code>self</code>. 
-   <p> Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.
-   <p> See <a href="../component_class/index.html#rmul">example</a>.
+   <p>__rmul__(<i>n</i>)</p>
+   <p>Special method inherited from <_Component>.</p>
+   <p>Implements right-handed multiplication on <code>self</code>.</p>
+   <p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.</p>
+   <p>See <a href="../component_class/index.html#rmul">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <local> __setitem__
-   <p> __setitem__(<i>i</i>, <i>nh</i>)
-   <p> Special method defined here.
-   <p> Set <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> at index <code><i>i</i></code> in <code>self</code>.
+   <p>__setitem__(<i>i</i>, <i>nh</i>)</p>
+   <p>Special method defined here.</p>
+   <p>Set <a href="../notehead_token/index.html">notehead token</a> <code><i>nh</i></code> at index <code><i>i</i></code> in <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -650,9 +650,9 @@
 <definition>
 <header>
    <local> __str__
-   <p> __str__( )
-   <p> Special method defined here.
-   <p> Returns string summary of <code>self</code>.
+   <p>__str__</p>
+   <p>Special method defined here.</p>
+   <p>Returns string summary of <code>self</code>.</p>
 </header>
 <body>
 <abjad>
@@ -671,14 +671,20 @@
 
 <comments>
 
-<p> See the <code>Chord</code> class in <code>chord/chord.py</code> for implementation details.
+<p>
+See the <Chord> class in <code>chord/chord.py</code> for implementation details.
+</p>
 
 </comments>
 
 <to-do>
 
-<p> Implement <code>accidentals</code> in <code>_ChordFormatter</code>.
+<p>
+Implement <code>accidentals</code> in <code>_ChordFormatter</code>.
+</p>
 
-<p> Write and link to chapter on <strong>tempo token input</strong>.
+<p>
+Write and link to chapter on <strong>tempo token input</strong>.
+</p>
 
 </to-do>
