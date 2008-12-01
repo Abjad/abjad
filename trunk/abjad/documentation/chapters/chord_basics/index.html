@@ -180,12 +180,12 @@ abjad> chord = Chord([2, 4, 5], (1, 4))
 abjad> notehead = chord[0]
 abjad> notehead.color = 'red'
 abjad> f(chord)
-<
+&lt;
 \tweak #'color #red
 d'
 e'
 f'
->4
+&gt;4
 </pre>
 <p>This is a handy feature that shows a uniform Abjad syntax neatly covering an usual bit of LilyPond syntax.</p>
 </div>
@@ -195,9 +195,9 @@ f'
 <h2>Chord comparison</h2>
 <p>When are two chords 'equal'? When are two chords 'the same'? We could argue that two chords are equal when they exhibit the same pitch content. Alternatively, we could insistent on durational equivalence. Or on pitch and durational equivalence. And what about articulations, beams and flags, dynamics, glissandi, slurs and other connectors? Or stem direction? Abjad makes it very easy to compare all of these attributes and more. But it seems unwise to elevate any one or two of these potential types of attribute comparison to the position of canonic chord comparison. For this reason, Abjad admits a large number of chord attribute comparison tests but no chord comparison test proper.</p>
 
-<p>Actually, Abjad does not block the built-in Python <code>cmp( )</code> function on chords. This means that statements like <code>chord1 == chord2</code> will evaluate to either true or false. More specifically, two chords will compare as true if and only if the chords share a single reference in the interpreter, ie, <code>id(chord1) == id(chord2)</code>. This type of comparison is fundamentally nonsemantic and, in fact, begs the question of whether <code><a href="../chord_class/index.html">Chord</a></code> and, indeed, all Abjad components should block Python comparison explicitly. This seems to be especially the case when we consider that expressions like <code>chord1 > chord2</code> and <code>chord1 < chord2</code> do unfortunately evaluate in the current implementation. The value of greater-than / less-than comparison on <code><a href="../chord_class/index.html">Chord</a></code> is highly conterintuitive and should qualify as a problem in the model.</p>
+<p>Actually, Abjad does not block the built-in Python <code>cmp( )</code> function on chords. This means that statements like <code>chord1 == chord2</code> will evaluate to either true or false. More specifically, two chords will compare as true if and only if the chords share a single reference in the interpreter, ie, <code>id(chord1) == id(chord2)</code>. This type of comparison is fundamentally nonsemantic and, in fact, begs the question of whether <code><a href="../chord_class/index.html">Chord</a></code> and, indeed, all Abjad components should block Python comparison explicitly. This seems to be especially the case when we consider that expressions like <code>chord1 > chord2</code> and <code>chord1 &lt; chord2</code> do unfortunately evaluate in the current implementation. The value of greater-than / less-than comparison on <code><a href="../chord_class/index.html">Chord</a></code> is highly conterintuitive and should qualify as a problem in the model.</p>
 
-<p> TODO: these changes are DONE in the current commit. <code><a href="../component_class/index.html">_Component</a></code> now blocks Python comparison explicitly with the important exception of <code>__eq__</code> and <code>__ne__</code> which are now implemented as ID-comparison only. This allows, for example, <code>chord1 == chord2</code> for <code>list.index( )</code> to work while blocking <code>chord1 > chord2</code> and <code>chord1 < chord2</code> explicitly. Leave for a couple of days and then adjust this part of the docs in the preceding paragraph to reflect these changes.</p>
+<p> TODO: these changes are DONE in the current commit. <code><a href="../component_class/index.html">_Component</a></code> now blocks Python comparison explicitly with the important exception of <code>__eq__</code> and <code>__ne__</code> which are now implemented as ID-comparison only. This allows, for example, <code>chord1 == chord2</code> for <code>list.index( )</code> to work while blocking <code>chord1 > chord2</code> and <code>chord1 &lt; chord2</code> explicitly. Leave for a couple of days and then adjust this part of the docs in the preceding paragraph to reflect these changes.</p>
 </div>
 
 <h2 class="page-section">Comments</h2>
