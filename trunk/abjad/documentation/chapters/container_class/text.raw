@@ -663,6 +663,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
    <p>Return new container equal to the concatenation of <code>self</code> followed by <code>expr</code>.</p>
    <p>The operation is noncommutative: the contents of <code>self</code> will be placed before the contents of <code>expr</code>.</p>
 </header>
+<body>
    <abjad>
       abjad> t = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
       hide> Beam(t)
@@ -699,6 +700,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
    <p>Public method defined here.</p>
    <p>Return <code>True</code> when <code>self</code> contains <code>expr</code>, otherwise <code>False</code>.</p>
 </header>
+<body>
    <abjad>
       abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
       hide> Beam(container)
@@ -735,6 +737,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
    <p>Public method defined here.</p>
    <p>Delete elements at index or slice <code>i</code> from <code>self</code>.</p>
 </header>
+<body>
    <abjad>
       abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
       hide> Beam(container)
@@ -766,6 +769,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
    <p>Public method defined here.</p> 
    <p>Return element in <code>self</code> with name equal to <code>name</code>.</p>
 </header>
+<body>
    <abjad>
       abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
       hide> Beam(container)

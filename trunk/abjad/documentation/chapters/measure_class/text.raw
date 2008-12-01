@@ -1,9 +1,9 @@
-<h1>The Abjad <code>Measure</code> class</h1>
+<h1>The Abjad <Measure> class</h1>
 
 <subsection>
 
 <p>
-The Abjad <code>Measure</code> class models the measure-as-container understanding of the musical measure.
+The Abjad <Measure> class models the measure-as-container understanding of the musical measure.
 </p>
 
 </subsection>
@@ -49,15 +49,16 @@ The Abjad <code>Measure</code> class models the measure-as-container understandi
    <inherited> __mul__
    <inherited> __setitem__
 </overloads>
+</interface>
 
 <comments>
 
 <p>
-See the <code>Container</code> class in <code>containers/container.py</code> for implementation details.
+See the <Measure> class in <code>measure/measure.py</code> for implementation details.
 </p>
 
 <p>
-The Abjad <code>Measure</code> class implements the <strong>measure-as-container</strong> interpretation of measures, common in Classical and Romantic music.
+The Abjad <Measure> class implements the <strong>measure-as-container</strong> interpretation of measures, common in Classical and Romantic music.
 The competing <strong>measure-as-picket</strong> interpretation understands the sequence of measures in the score not as a series of containers but as a backgrounded sequence of positions of vertical alignment instead.
 This second, measure-as-picket scheme predominates contemporary transcriptions of medieval scores.
 The measure-as-container scheme forbids <strong>barline cross</strong>;

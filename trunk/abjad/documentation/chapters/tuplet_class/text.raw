@@ -3,7 +3,7 @@
 <subsection>
 
 <p>
-The Abjad <_Tuplet> class defines the functionality common to <code>FixedDurationTuplet</code> and <code>FixedMultiplierTuplet</code>.
+The Abjad <_Tuplet> class defines the functionality common to <FixedDurationTuplet> and <FixedMultiplierTuplet>.
 </p>
 
 </subsection>

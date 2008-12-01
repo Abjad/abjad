@@ -594,6 +594,7 @@ abjad> container.remove(note)
    <p>Return new container equal to the concatenation of <code>self</code> followed by <code>expr</code>.</p>
    <p>The operation is noncommutative: the contents of <code>self</code> will be placed before the contents of <code>expr</code>.</p>
 </div>
+<div class="body">
 <pre class="abjad">
 abjad> t = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
 </pre>
@@ -618,6 +619,7 @@ abjad> container = t + u
    <p>Public method defined here.</p>
    <p>Return <code>True</code> when <code>self</code> contains <code>expr</code>, otherwise <code>False</code>.</p>
 </div>
+<div class="body">
 <pre class="abjad">
 abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
 </pre>
@@ -642,6 +644,7 @@ True
    <p>Public method defined here.</p>
    <p>Delete elements at index or slice <code>i</code> from <code>self</code>.</p>
 </div>
+<div class="body">
 <pre class="abjad">
 abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
 </pre>
@@ -666,6 +669,7 @@ abjad> del container[1:3]
    <p>Public method defined here.</p> 
    <p>Return element in <code>self</code> with name equal to <code>name</code>.</p>
 </div>
+<div class="body">
 <pre class="abjad">
 abjad> container = Container([Note(x, (1, 16)) for x in [0, 2, 4, 5]])
 </pre>
