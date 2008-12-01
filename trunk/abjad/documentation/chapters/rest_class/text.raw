@@ -404,7 +404,7 @@ The Abjad <Rest> class models musical rests.
 <definition>
 <header>
    <inherited> __rmul__
-   <p>__rmul__(<i>n</i>)</a></p>
+   <p>__rmul__(<i>n</i>)</p>
 	<p>Special method inherited from <_Component>.</p>
 	<p>Implements right-handed multiplication on <code>self</code>.</p>
 	<p>Returns a Python list of <code><i>n</i></code> copies of <code>self</code>.</p>
