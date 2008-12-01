@@ -251,7 +251,7 @@ The Abjad <Note> class models notes.
 <header>
    <local> pitch
 	<p>Read / write attribute defined here.</p>
-	<p>Returns Abjad <_Pitch> instance attaching to <code>self</code>.</p>
+	<p>Returns Abjad <Pitch> instance attaching to <code>self</code>.</p>
 	<p>Accepts Abjad <a href="../pitch_token/index.html">pitch token</a>.</p>
 </header>
 <body>
@@ -372,10 +372,10 @@ The Abjad <Note> class models notes.
 	<p>Special method defined here.</p>
 	<p>Initialize <code>self</code> according to one of several input argument patterns:</p>
 <ul>
-   <li> <code>Chord(<i>pitch</i>, <i>dur</i>)
-   <li> <code>Chord(<i>rest</i>)
-   <li> <code>Chord(<i>chord</i>)
-   <li> <code>Chord(<i>skip</i>)
+   <li><code>Note(<i>pitch</i>, <i>dur</i>)</code></li>
+   <li><code>Note(<i>rest</i>)</code></li>
+   <li><code>Note(<i>chord</i>)</code></li>
+   <li><code>Note(<i>skip</i>)</code></li>
 </ul>
 	<p>Where <code><i>pitch</i></code> is an Abjad <a href="../pitch_token/index.html">pitch token</a>, and where <code><i>dur</i></code> is an Abjad <a href="../duration_token/index.html">duration token</a>.</p>
 </header>
@@ -450,7 +450,7 @@ The Abjad <Note> class models notes.
 <comments>
 
 <p>
-See the <code>Chord</code> class in <code>chord/chord.py</code> for implementation details.
+See the <Note> class in <code>note/note.py</code> for implementation details.
 </p>
 
 </comments>

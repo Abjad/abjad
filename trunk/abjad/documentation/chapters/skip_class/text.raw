@@ -151,11 +151,11 @@ The Abjad <Skip> class wraps the LilyPond skip object. LilyPond skips represent 
 </header>
 <body>
 <abjad>
-   abjad> rest = Rest((1, 4))
+   abjad> skip = Skip((1, 4))
 </abjad>
 <abjad>
-   hide> rest = Rest((1, 4))
-   abjad> rest.formatter
+   hide> skip = Skip((1, 4))
+   abjad> skip.formatter
    _LeafFormatter
 </abjad>
 </body>
@@ -332,10 +332,10 @@ The Abjad <Skip> class wraps the LilyPond skip object. LilyPond skips represent 
    <p>Special method defined here.</p>
    <p>Initialize <code>self</code> according to one of several input argument patterns:</p>
    <ul>
-      <li> <code>Skip(<i>dur</i>)
-      <li> <code>Skip(<i>note</i>)
-      <li> <code>Skip(<i>chord</i>)
-      <li> <code>Skip(<i>skip</i>)
+      <li><code>Skip(<i>dur</i>)</code></li>
+      <li><code>Skip(<i>note</i>)</code></li>
+      <li><code>Skip(<i>chord</i>)</code></li>
+      <li><code>Skip(<i>skip</i>)</code></li>
    </ul>
    <p>Where <code><i>dur</i></code> is an Abjad <a href="../duration_token/index.html">duration token</a>.</p>
 </header>
