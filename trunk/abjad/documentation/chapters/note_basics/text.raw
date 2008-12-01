@@ -1,8 +1,6 @@
-<title> Working with notes </title>
+<h1>Working with notes</h1>
 
-<h1> Working with notes </h1>
-
-<subsection> Creating notes
+<subsection>Creating notes
 <p> Create notes with a <pitch token> and a <duration token>.
 <abjad>
   abjad> note = Note(0, (1, 4))
@@ -12,7 +10,7 @@
 </abjad>
 </subsection>
 
-<subsection> Pitch assignment
+<subsection>Pitch assignment
 <p> Change pitch with a number:
 <abjad>
    abjad> note = Note(0, (1, 4))
@@ -44,7 +42,7 @@
 <p> TODO: document pitch-to-pitch assignment.
 </subsection>
 
-<subsection> Pitch comparison
+<subsection>Pitch comparison
 <p> Compare pitch to a number:
 <abjad>
    abjad> note = Note(0, (1, 4))
@@ -76,7 +74,7 @@
 <p> Both <pitch token> and pitch-to-pitch tests work.
 </subsection>
 
-<subsection> Types of pitch comparison
+<subsection>Types of pitch comparison
 <p> All six Python comparison operators work as expected.
 <abjad>
    abjad> n1 = Note(0, (1, 4))
@@ -108,7 +106,7 @@
 </abjad>
 </subsection>
 
-<subsection> Duration initialization
+<subsection>Duration initialization
 <p> Initialize <Note> duration with a <Rational>.
 <abjad>
    abjad> note = Note(0, Rational(1, 8))
@@ -119,7 +117,7 @@
 <p> You can also use a <duration token> as a shortcut.
 </subsection>
 
-<subsection> Duration attributes
+<subsection>Duration attributes
 <p> <Note> has a <_LeafDurationInterface>.
 <abjad>
    abjad> tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
@@ -167,7 +165,7 @@
 <p> Read more at <_LeafDurationInterface>.
 </subsection>
 
-<subsection> Duration attribute assignment
+<subsection>Duration attribute assignment
 <p> You can reassign <tt>note.duration.written</tt>.
 <abjad>
    abjad> note = Note(0, (1, 4))

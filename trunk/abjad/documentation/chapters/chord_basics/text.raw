@@ -1,8 +1,6 @@
-<title> Working with chords </title>
+<h1>Working with chords</h1>
 
-<h1> Working with chords </h1>
-
-<subsection> Chord initialization
+<subsection>Chord initialization
 <p> Initialize <Chord> with a list of <Pitch> instances and a <Rational>.
 <abjad>
    abjad> chord = Chord([Pitch(2), Pitch(4), Pitch(5)], Rational(1, 4))
@@ -13,7 +11,7 @@
 <p> You can use a <notehead token> list as shortcut for the first input parameter. And you can use a <duration token> as a shortcut for the second.
 </subsection>
 
-<subsection> Duration attributes
+<subsection>Duration attributes
 <p> <Chord> has a <_LeafDurationInterface>.
 <abjad>
    abjad> tuplet = FixedDurationTuplet((1, 4), Chord([2, 4, 5], (1, 8)) * 3)
@@ -61,7 +59,7 @@
 <p> Read more at <_LeafDurationInterface>.
 </subsection>
 
-<subsection> Duration attribute assignment
+<subsection>Duration attribute assignment
 <p> You can reassign <tt>chord.duration.written</tt>.
 <abjad>
    abjad> chord = Chord([2, 4, 5], (1, 4))
@@ -93,7 +91,7 @@
 <p> All other duration attributes are read-only.
 </subsection>
 
-<subsection> Chord length
+<subsection>Chord length
 <p> <Chord> implements <code>len( )</code> as the number of noteheads in <code>self</code>.
 <abjad>
    abjad> chord = Chord([2, 4, 5], (1, 4))
@@ -102,7 +100,7 @@
 </abjad>
 </subsection>
 
-<subsection> Adding noteheads
+<subsection>Adding noteheads
 <p> <Chord> implements bound <code>append( )</code> and <code>extend( )</code> methods to mimic the built-in Python list.
 <p> Use <code>append( )</code> to add one notehead.
 <abjad>
@@ -124,7 +122,7 @@
 <p> TODO: why isn't <_NoteHead> public? Shouldn't it be possible to instantiate a <_NoteHead> by hand and then assign to a chord with <code>append</code> or <code>extend</code>? This would mean extending <code>append</code> and <code>extend</code> somewhat but would increase composer interface consistency.
 </subsection>
 
-<subsection> Removing noteheads
+<subsection>Removing noteheads
 <p> <Chord> implements <code>remove( )</code> and <code>pop( )</code> methods to mirror the interface of the built-in Python list.
 <p> The <code>remove( )</code> method works by notehead reference.
 <abjad>
@@ -145,7 +143,7 @@
 <p> Note that <code>pop( )</code> defaults to <code>-1</code>.
 </subsection>
 
-<subsection> Listing noteheads
+<subsection>Listing noteheads
 <p> <Chord> gives all noteheads as a list.
 <abjad>
    abjad> chord = Chord([2, 4, 5], (1, 4))
@@ -156,7 +154,7 @@
 <p> Note that <code>chord.noteheads.remove(chord[0])</code>, for example, does nothing because <Chord> generates <code>noteheads</code> as a newly instantiated list on each request. Use <code>chord.remove(chord[0])</code> instead.
 </subsection>
 
-<subsection> Listing pitches
+<subsection>Listing pitches
 <p> <Chord> gives all pitches as a list.
 <abjad>
    abjad> chord = Chord([2, 4, 5], (1, 4))
@@ -167,7 +165,7 @@
 <p> Note that <code>chord.pitches.remove(chord[0].pitch)</code>, for example, does nothing. Use <code>chord.remove(chord[0])</code> instead.
 </subsection>
 
-<subsection> Grob handling
+<subsection>Grob handling
 <p> <Chord> is not a LilyPond grob handler because there is no LilyPond chord grob. This means that assignments such as, for example, <code>chord.color = 'red'</code> carry no special meaning in Abjad.
 <p> Note, however, that, because there is a LilyPond notehead grob, the Abjad <_NoteHead> does act as a grob handler.
 <abjad>
@@ -185,7 +183,7 @@
 <p> This is a handy feature that shows a uniform Abjad syntax neatly covering an usual bit of LilyPond syntax.
 </subsection>
 
-<subsection> Chord comparison
+<subsection>Chord comparison
 <p> When are two chords 'equal'? When are two chords 'the same'? We could argue that two chords are equal when they exhibit the same pitch content. Alternatively, we could insistent on durational equivalence. Or on pitch and durational equivalence. And what about articulations, beams and flags, dynamics, glissandi, slurs and other connectors? Or stem direction? Abjad makes it very easy to compare all of these attributes and more. But it seems unwise to elevate any one or two of these potential types of attribute comparison to the position of canonic chord comparison. For this reason, Abjad admits a large number of chord attribute comparison tests but no chord comparison test proper.
 <p> Actually, Abjad does not block the built-in Python <code>cmp( )</code> function on chords. This means that statements like <code>chord1 == chord2</code> will evaluate to either true or false. More specifically, two chords will compare as true if and only if the chords share a single reference in the interpreter, ie, <code>id(chord1) == id(chord2)</code>. This type of comparison is fundamentally nonsemantic and, in fact, begs the question of whether <Chord> and, indeed, all Abjad components should block Python comparison explicitly. This seems to be especially the case when we consider that expressions like <code>chord1 > chord2</code> and <code>chord1 < chord2</code> do unfortunately evaluate in the current implementation. The value of greater-than / less-than comparison on <Chord> is highly conterintuitive and should qualify as a problem in the model.
 <p> TODO: these changes are DONE in the current commit. <_Component> now blocks Python comparison explicitly with the important exception of <code>__eq__</code> and <code>__ne__</code> which are now implemented as ID-comparison only. This allows, for example, <code>chord1 == chord2</code> for <code>list.index( )</code> to work while blocking <code>chord1 > chord2</code> and <code>chord1 < chord2</code> explicitly. Leave for a couple of days and then adjust this part of the docs in the preceding paragraph to reflect these changes.

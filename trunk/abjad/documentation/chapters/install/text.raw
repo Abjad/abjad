@@ -1,13 +1,11 @@
-<title>Getting and installing the system<title>
-
 <h1>Getting and installing the system</h1>
 
 <introduction>
 
-<p> Abjad is not yet available for public install.
+<p>Abjad is not yet available for public install.</p>
 
-<p> We will eventually package Abjad using <code>setuptools.py</code> just like many other Python-based tools.
+<p>We will eventually package Abjad using <code>setuptools.py</code> just like many other Python-based tools.</p>
 
-<p> Once publicly available, instructions for getting and installing the system will appear here.
+<p>Once publicly available, instructions for getting and installing the system will appear here.</p>
 
 </introduction>

@@ -1,9 +1,11 @@
-<title> The Leaf Container Spanner (LCS) Model </title>
+<h1>The Leaf Container Spanner (LCS) Model</h1>
 
-<h1> The Leaf Container Spanner (LCS) Model </h1>
+<subsection>
 
-<introduction>
+<p>
 
-<p> At the hear of Abjad's Symbolic Score-Control lies a powerful model that we call the Leaf Container Spanner, or LCS, model of the musical score.
+At the heart of Abjad's Symbolic Score-Control lies a powerful model that we call the Leaf Container Spanner, or LCS, model of the musical score.
 
-</introduction>
+</p>
+
+</subsection>

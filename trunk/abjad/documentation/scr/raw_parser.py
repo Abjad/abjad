@@ -105,7 +105,7 @@ class SECTION(_TagParser):
          if '<section>' in line:
             self.output.append(line.replace(
                '<section>', '<h2 class="page-section">').strip('\n')
-               + ' </h2>\n')
+               + '</h2>\n')
          else:
             self.output.append(line)
 
@@ -120,7 +120,7 @@ class SUBSECTION(_TagParser):
             self.output.append('<div class="subsection">\n')
             if name.capitalize( ):
                self.output.append('\n')
-               self.output.append('<h2> %s </h2>\n' % name.capitalize( )) 
+               self.output.append('<h2>%s</h2>\n' % name.capitalize( )) 
          elif '</subsection>' in line:
             # HTML will not validate correctly with class spec in close tag
             #self.output.append('</div class="subsection">\n')
@@ -181,7 +181,7 @@ class INTERFACE(_TagParser):
          print 'ERROR: unmatched <interface>.'
       else:
          self.within = True
-         output = '<h2 class="page-section"> Public interface </h2>\n'
+         output = '<h2 class="page-section">Public interface</h2>\n'
          self.output.append(output)
          self.output.append('\n')
          self.output.append('<div class="interface">\n')
@@ -526,7 +526,7 @@ class COMMENTS(_TagParser):
    def parse(self, lines):
       for line in lines:
          if '<comments>' in line:
-            self.output.append('<h2 class="page-section"> Comments </h2>\n')
+            self.output.append('<h2 class="page-section">Comments</h2>\n')
             self.output.append('\n')
             self.output.append('<div class="comments">\n')
          elif '</comments>' in line:
@@ -541,7 +541,7 @@ class TO_DO(_TagParser):
    def parse(self, lines):
       for line in lines:
          if '<to-do>' in line:
-            self.output.append('<h2 class="page-section"> To do </h2>\n')
+            self.output.append('<h2 class="page-section">To do</h2>\n')
             self.output.append('\n')
             self.output.append('<div class="to-do">\n')
          elif '</to-do>' in line:

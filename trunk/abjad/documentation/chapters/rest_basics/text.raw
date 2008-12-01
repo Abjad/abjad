@@ -1,8 +1,6 @@
-<title> Working with rests </title>
+<h1>Working with rests</h1>
 
-<h1> Working with rests </h1>
-
-<subsection> Rest initialization
+<subsection>Rest initialization
 <p> Initialize <Rest> with a <Rational>.
 <abjad>
    abjad> rest = Rest(Rational(1, 4))
@@ -13,7 +11,7 @@
 <p> You can use any <duration token> as a shortcut.
 </subsection>
 
-<subsection> Duration attributes
+<subsection>Duration attributes
 <p> <Rest> has a <_LeafDurationInterface>.
 <abjad>
    abjad> tuplet = FixedDurationTuplet((1, 4), [Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
@@ -61,7 +59,7 @@
 <p> Read more at <_LeafDurationInterface>.
 </subsection>
 
-<subsection> Duration attribute assignment
+<subsection>Duration attribute assignment
 <p> You can reassign <tt>rest.duration.written</tt>.
 <abjad>
    abjad> rest = Rest(Rational(1, 4))
@@ -93,7 +91,7 @@
 <p> All other duration attributes are read-only.
 </subsection>
 
-<subsection> Using pitch as a vertical positioner
+<subsection>Using pitch as a vertical positioner
 <p> In addition to the attributes inherited from the <_Leaf> class (such as <strong>duration</strong>, <strong>grace</strong>, etc.), the <Rest> class also possesses a <strong>pitch</strong> attribute. 
 This may seem strange given that rests represent the absence of sound. 
 However, as a glyph in a score, rests also necessarily have a vertical position relative to the staff. 
