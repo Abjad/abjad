@@ -23,7 +23,7 @@
 <pre class="abjad">
 abjad> note = Note(0, (1, 4))
 </pre>
-<img src="images/1.png">
+<img alt="" src="images/1.png"/>
 </div>
 
 <div class="subsection">
@@ -36,17 +36,17 @@ abjad> note = Note(0, (1, 4))
 <pre class="abjad">
 abjad> note.pitch = 2
 </pre>
-<img src="images/2.png">
+<img alt="" src="images/2.png"/>
 <p> With a pair:
 <pre class="abjad">
 abjad> note.pitch = ('e', 4)
 </pre>
-<img src="images/3.png">
+<img alt="" src="images/3.png"/>
 <p> Or with a <code><a href="../pitch_class/index.html">Pitch</a></code> instance:
 <pre class="abjad">
 abjad> note.pitch = Pitch('f', 4)
 </pre>
-<img src="images/4.png">
+<img alt="" src="images/4.png"/>
 <p> Any <code><a href="../pitch_token/index.html">pitch token</a></code> will work.
 <p> TODO: document pitch-to-pitch assignment.
 </div>
@@ -122,7 +122,7 @@ True
 <pre class="abjad">
 abjad> note = Note(0, Rational(1, 8))
 </pre>
-<img src="images/5.png">
+<img alt="" src="images/5.png"/>
 <p> You can also use a <code><a href="../duration_token/index.html">duration token</a></code> as a shortcut.
 </div>
 
@@ -174,7 +174,7 @@ abjad> note = Note(0, (1, 4))
 <pre class="abjad">
 abjad> note.duration.written = Rational(3, 16)
 </pre>
-<img src="images/6.png">
+<img alt="" src="images/6.png"/>
 <p> Use must use a <code><a href="../rational_class/index.html">Rational</a></code> which meets <code><a href="../assignability/index.html">assignability</a></code> criteria.
 <p> You can also assign <tt>note.duration.multiplier</tt>.
 <pre class="abjad">

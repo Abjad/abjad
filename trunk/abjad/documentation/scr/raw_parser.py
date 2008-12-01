@@ -457,7 +457,7 @@ class ABJAD(_TagParser):
             self.output.append('</pre>\n')
          if self.found_image_request:
             #image = '<image src="images/%s.png">\n'
-            image = '<img src="images/%s.png">\n'
+            image = '<img alt="" src="images/%s.png"/>\n'
             self.output.append(image % self.cur_image_number)
             self.cur_image_number += 1
          if not self.found_code_request:
