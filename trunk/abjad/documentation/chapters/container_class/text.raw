@@ -297,7 +297,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
 <definition>
 <header>
    <local> append
-   <p> append(<i>expr</i>)
+   <p>append(<i>expr</i>)</p>
    <p>Public method defined here.</p>
    <p>Appends <code><i>expr</i></code> of type <_Component> to <code>self</code>.</p>
 </header>
@@ -378,7 +378,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
 <header>
    <inherited> copy
    <p>copy( )</p>
-   <p>Public method inherited from <_Component>.
+   <p>Public method inherited from <_Component>.</p>
    <p>Returns new copy of <code>self</code>.</p>
    <p>See <a href="../component_class/index.html#copy">example</a>.</p>
 </header>
@@ -392,7 +392,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
    <p>embed(<i>i</i>, <i>expr</i>)</p>
    <p>Public method defined here.</p>
    <p>Inserts <code>expr</code> in <code>self</code> at index <code>i</code>. </p>
-   <p><code><i>expr</i></code> may be either of type <_Component> or a Python list or Python tuple of type <_Component>.
+   <p><code><i>expr</i></code> may be either of type <_Component> or a Python list or Python tuple of type <_Component>.</p>
    <p>Does not fracture spanners; for fracturing insert, use <code>insert( )</code> instead.</p>
 </header>
 <body>
@@ -533,7 +533,7 @@ The Abjad <Container> class models the functionality shared by tuplets, measures
 <header>
    <inherited> kind
    <p>kind(<i>classname</i>)</p>
-   <p>Deprecated public method inherited from <_Component>.
+   <p>Deprecated public method inherited from <_Component>.</p>
    <p>Returns <code>True</code> if <code><i>classname</i></code> in class hierarchy of <code>self</code>, otherwise <code>False</code>.</p>
    <p>DEPRECATED. Use built-in Python <code>isinstance( )</code> instead.</p>
 </header>

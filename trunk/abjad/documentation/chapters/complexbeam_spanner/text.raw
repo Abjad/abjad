@@ -1,7 +1,7 @@
-<h1>The Abjad <code>ComplexBeam</code> class</h1>
+<h1>The Abjad <ComplexBeam> class</h1>
 
 <p>
-The Abjad <code>ComplexBeam</code> class beams notes, rests, chords and skips together in a special way.
+The Abjad <ComplexBeam> class beams notes, rests, chords and skips together in a special way.
 </p>
 
 <h2 class="page-section">
