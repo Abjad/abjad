@@ -231,7 +231,7 @@ The Abjad <Rest> class models musical rests.
 <header>
    <local> pitch
 	<p>Read / write attribute defined here.</p>
-	<p>Returns Abjad <_Pitch> instance attaching to <code>self</code>.</p>
+	<p>Returns Abjad <Pitch> instance attaching to <code>self</code>.</p>
 	<p>Accepts Abjad <a href="../pitch_token/index.html">pitch token</a>.</p>
 </header>
 <body>

@@ -517,7 +517,6 @@ The Abjad <Chord> class models chords.
 
 <definition>
 <header>
-<p class="example-header">
    <local> __getitem__
    <p>__getitem__(<i>i</i>)</p>
    <p>Special method defined here.</p>
@@ -564,7 +563,6 @@ The Abjad <Chord> class models chords.
 
 <definition>
 <header>
-<p class="example-header">
    <local> __len__
    <p>__len__</p>
    <p>Special method defined here.</p>

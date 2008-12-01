@@ -60,94 +60,94 @@ The Abjad <Skip> class wraps the LilyPond skip object. LilyPond skips represent 
 <definition>
 <header>
    <inherited> articulations
-	<p>Read / write attribute inherited from <_Leaf>.
-	<p>Returns Abjad <_ArticulationsInterface>.
-	<p>Accepts Python list of zero or more LilyPond articulation strings, <code>None</code>.
-	<p>See <a href="../leaf_class/index.html#articulations">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_ArticulationsInterface>.</p>
+	<p>Accepts Python list of zero or more LilyPond articulation strings, <code>None</code>.</p>
+	<p>See <a href="../leaf_class/index.html#articulations">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> barline
-	<p>Read / write attribute inherited from <_Component>.
-	<p>Returns Abjad <_BarlineInterface>.
-	<p>Accepts LilyPond barline string, <code>None</code>.
-	<p>See <a href="../leaf_class/index.html#barline">example</a>.
+	<p>Read / write attribute inherited from <_Component>.</p>
+	<p>Returns Abjad <_BarlineInterface>.</p>
+	<p>Accepts LilyPond barline string, <code>None</code>.</p>
+	<p>See <a href="../leaf_class/index.html#barline">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> beam
-	<p>Read-only attribute inherited from <_Leaf>.
-	<p>Returns Abjad <_BeamInterface>.
-	<p>See <a href="../leaf_class/index.html#beam">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_BeamInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#beam">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> clef
-	<p>Read / write attribute inherited from <_Leaf>.
-	<p>Returns Abjad <_ClefInterface>.
-	<p>Accepts LilyPond clef string, Abjad <_Clef> instance, <code>None</code>.
-	<p>See <a href="../leaf_class/index.html#clef">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_ClefInterface>.</p>
+	<p>Accepts LilyPond clef string, Abjad <_Clef> instance, <code>None</code>.</p>
+	<p>See <a href="../leaf_class/index.html#clef">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> comments
-	<p>Read-only attribute inherited from <_Component>.
-	<p>Returns Abjad <_Comments>.
-	<p>See <a href="../component_class/index.html#comments">example</a>.
+	<p>Read-only attribute inherited from <_Component>.</p>
+	<p>Returns Abjad <_Comments>.</p>
+	<p>See <a href="../component_class/index.html#comments">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> dots
-	<p>Read-only attribute inherited from <_Leaf>.
-	<p>Returns Abjad <_DotsInterface>.
-	<p>See <a href="../leaf_class/index.html#dots">example</a>.
+	<p>Read-only attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_DotsInterface>.</p>
+	<p>See <a href="../leaf_class/index.html#dots">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> duration
-	<p>Read / write attribute inherited from <_Leaf>.
-	<p>Returns Abjad <_LeafDurationInterface>.
-	<p>Accepts <a href="../duration_token/index.html">duration token</a>.
-	<p>See <a href="../leaf_class/index.html#duration">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_LeafDurationInterface>.</p>
+	<p>Accepts <a href="../duration_token/index.html">duration token</a>.</p>
+	<p>See <a href="../leaf_class/index.html#duration">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> dynamics
-	<p>Read / write attribute inherited from <_Leaf>.
-	<p>Returns Abjad <_DynamicsInterface>.
-	<p>Accepts LilyPond dynamics string, <code>None</code>.
-	<p>See <a href="../leaf_class/index.html#dynamics">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_DynamicsInterface>.</p>
+	<p>Accepts LilyPond dynamics string, <code>None</code>.</p>
+	<p>See <a href="../leaf_class/index.html#dynamics">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> format
-	<p>Read-only attribute inherited from <_Component>.
-	<p>Returns LilyPond input string.
-	<p>See <a href="../component_class/index.html#format">example</a>.
+	<p>Read-only attribute inherited from <_Component>.</p>
+	<p>Returns LilyPond input string.</p>
+	<p>See <a href="../component_class/index.html#format">example</a>.</p>
 </header>
 </definition>
 
 <definition>
 <header>
    <inherited> formatter
-	<p>Read-only attribute defined here.
-	<p>Returns Abjad <code>_LeafFormatter</code>.
+	<p>Read-only attribute defined here.</p>
+	<p>Returns Abjad <code>_LeafFormatter</code>.</p>
 </header>
 <body>
 <abjad>
@@ -164,10 +164,10 @@ The Abjad <Skip> class wraps the LilyPond skip object. LilyPond skips represent 
 <definition>
 <header>
    <inherited> glissando
-	<p>Read / write attribute inherited from <_Leaf>.
-	<p>Returns Abjad <_GlissandoInterface>.
-	<p>Accepts <code>True</code>, <code>False</code>.
-	<p>See <a href="../leaf_class/index.html#glissando">example</a>.
+	<p>Read / write attribute inherited from <_Leaf>.</p>
+	<p>Returns Abjad <_GlissandoInterface>.</p>
+	<p>Accepts <code>True</code>, <code>False</code>.</p>
+	<p>See <a href="../leaf_class/index.html#glissando">example</a>.</p>
 </header>
 </definition>
 

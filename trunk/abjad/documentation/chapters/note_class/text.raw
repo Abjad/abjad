@@ -130,7 +130,7 @@ The Abjad <Note> class models notes.
 <header>
    <inherited> dynamics
 	<p>Read / write attribute inherited from <_Leaf>.</p>
-	<p>Returns Abjad <_DynamicsInterfae>.</p>
+	<p>Returns Abjad <_DynamicsInterface>.</p>
 	<p>Accepts LilyPond dynamics string, <code>None</code>.</p>
 	<p>See <a href="../leaf_class/index.html#dynamics">example</a>.</p>
 </header>
