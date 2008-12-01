@@ -106,7 +106,7 @@ The Abjad <_FDTupletDurationInterface> class manages the duration attributes of 
 <header>
    <inherited> prolation
    <p>Read-only attribute inherited from <_TupletDurationInterface>.</p>
-   <p>Returns  positive rational
+   <p>Returns  positive rational</p>
    <p>Represents prolation tuplet receives from its parents, expressed as a single factor. See <a href="../prolation/index.html">prolation</a>.</p>
 </header>
 <body>
