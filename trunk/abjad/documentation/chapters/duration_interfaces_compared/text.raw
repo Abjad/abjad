@@ -4,88 +4,96 @@
 
 <table>
 <tr id="abjad-classes">
-   <td width=80px>&nbsp;
-   <td class="abjad-class">core
-   <td class="abjad-class">leaf
-   <td class="abjad-class">container
-   <td class="abjad-class">measure
-   <td class="abjad-class">tuplet
-   <td class="abjad-class">fd tuplet
-   <td class="abjad-class">fm tuplet
+   <td width=80px>&nbsp;</td>
+   <td class="abjad-class">core</td>
+   <td class="abjad-class">leaf</td>
+   <td class="abjad-class">container</td>
+   <td class="abjad-class">measure</td>
+   <td class="abjad-class">tuplet</td>
+   <td class="abjad-class">fd tuplet</td>
+   <td class="abjad-class">fm tuplet</td>
+</tr>
 <tr>
-   <td class="duration-interface-attribute">contents
-   <td>&ndash;
-   <td>&ndash;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
+   <td class="duration-interface-attribute">contents</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+</tr>
 <tr>
-   <td class="duration-interface-attribute">multiplied
-   <td>&ndash;
-   <td>&crarr;
-   <td>&ndash;
-   <td>&ndash;
-   <td>&ndash;
-   <td>&crarr;
-   <td>&crarr;
+   <td class="duration-interface-attribute">multiplied</td>
+   <td>&ndash;</td>
+   <td>&crarr;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+</tr>
 <tr>
-   <td class="duration-interface-attribute">multiplier
-   <td>&ndash;
-   <td>&radic;
-   <td>&ndash;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&radic;
+   <td class="duration-interface-attribute">multiplier</td>
+   <td>&ndash;</td>
+   <td>&radic;</td>
+   <td>&ndash;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&radic;</td>
+</tr>
 <tr>
-   <td class="duration-interface-attribute">preprolated
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
+   <td class="duration-interface-attribute">preprolated</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+</tr>
 <tr>
-   <td class="duration-interface-attribute">prolated
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
+   <td class="duration-interface-attribute">prolated</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+</tr>
 <tr>
-   <td class="duration-interface-attribute">prolation
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
-   <td>&crarr;
+   <td class="duration-interface-attribute">prolation</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+   <td>&crarr;</td>
+</tr>
 <tr>
-   <td class="duration-interface-attribute">target
-   <td>&ndash;
-   <td>&ndash;
-   <td>&ndash;
-   <td>&ndash;
-   <td>&ndash;
-   <td>&radic;
-   <td>&ndash;
+   <td class="duration-interface-attribute">target</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&radic;</td>
+   <td>&ndash;</td>
+</tr>
 <tr>
-   <td class="duration-interface-attribute">written
-   <td>&ndash;
-   <td>&radic;
-   <td>&ndash;
-   <td>&ndash;
-   <td>&ndash;
-   <td>&ndash;
-   <td>&ndash;
+   <td class="duration-interface-attribute">written</td>
+   <td>&ndash;</td>
+   <td>&radic;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+   <td>&ndash;</td>
+</tr>
 </table>
-
 
 </subsection>
 
