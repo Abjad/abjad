@@ -19,7 +19,7 @@ class FileParser(object):
    @property
    def docType(self):
       result =  '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"'
-      result += ' "http://ww.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n\n' 
+      result += ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n\n' 
       result += '<html xmlns="http://www.w3.org/1999/xhtml" '
       result += 'lang="en" xml:lang="en">\n\n'
       return result
