@@ -5,9 +5,9 @@
 <p>Abjad notes and chords accept all of the following as pitch input:</p>
 
 <ul>
-   <li> Python <tt>int</tt> and <tt>long</tt> instances
-   <li> Python <tt>float</tt> instances
-   <li> Abjad <code>Pitch</code> instances
+   <li>Python <tt>int</tt> and <tt>long</tt> instances</li>
+   <li>Python <tt>float</tt> instances</li>
+   <li>Abjad <code>Pitch</code> instances</li>
 </ul>
 
 <p>For example:</p>
