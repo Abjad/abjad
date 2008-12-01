@@ -1,9 +1,11 @@
-<title> instances( ) </title>
+<h1>instances( )</h1>
 
-<h1> instances( ) </h1>
+<subsection>
 
-<introduction>
+<p>
 
 The Abjad <code>instances(expr, classname)</code> helper returns a Python list of all instances of <code>classname</code> within <code>expr</code>, where <code>expr</code> may be a tuple, list or any Abjad <_Component>.
 
-</introduction>
+</p>
+
+</subsection>
