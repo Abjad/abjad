@@ -43,7 +43,7 @@ The Abjad <_BeamInterface> class instantiates automatically at leaf-initializati
 
 </subsection>
 
-<comment>
+<comments>
 
 <p>
 See the <_BeamInterface> class in <code>beam/interface.py</code> for implementation details.

@@ -68,11 +68,13 @@ Analogously, Leaves assigned to the after attribute of the grace interface are p
 
 <p>
 Grace notes placed before the carrier note can have one of three styles or types:
+</p>
 <ul>
    <li>grace</li>
    <li>acciaccatura</li>
    <li>appoggiatura</li>
 </ul>
+</p>
 Set the type by assigning the corresponding string to the before attribute of the grace interface.
 </p>
 

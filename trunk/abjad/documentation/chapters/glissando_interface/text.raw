@@ -36,9 +36,9 @@ Glissandi are managed through the <_GlissandoInterface>. All Leaves posess this 
 </p>
 
 <abjad>
-abjad> note = Note(0, (1, 4))
-abjad> note.glissando
-_GlissandoInterface
+   abjad> note = Note(0, (1, 4))
+   abjad> note.glissando
+   _GlissandoInterface
 </abjad>
 
 </subsection>
@@ -48,7 +48,8 @@ _GlissandoInterface
 <subsection>
 
 <p>
-The <_GlissandoInterface> interface has no attributes particular to it. All its attributes are inherited from the <_Interface> class.
+The <_GlissandoInterface> interface has no attributes particular to it.
+All its attributes are inherited from the <_Interface> class.
 </p>
 
 </subsection>
@@ -60,8 +61,8 @@ The <_GlissandoInterface> interface has no attributes particular to it. All its 
 <p>
 Glissandi can be set in two ways:
 <ol>
-   <li>By "wrapping" an Abjad Component (be it a Container or a Leaf) with the <code>Glissando</code> spanner (Refer to the Spanners section).</li>
-   <li>By setting the glissando attribute of a <code>_Leaf</code> instance to true.</li>
+   <li>By "wrapping" an Abjad Component (be it a Container or a Leaf) with the <Glissando> spanner.</li>
+   <li>By setting the glissando attribute of a <_Leaf> instance to true.</li>
 </ol>
 </p>
 

@@ -83,6 +83,7 @@ Valid strings for placement indication are
 <code>'^'</code>, 
 <code>'_'</code>  and
 <code>'-'</code>. 
+</p>
 
 <p>
 All articulations can we removed by assigning <code>None</code> to the articulations interface.
