@@ -1,34 +1,61 @@
-<title>Why MIDI is not enough</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
 
 <h1>Why MIDI is not enough</h1>
 
 <div class="subsection">
-<h2>  </h2>
-<p> Given that Abjad models written musical score, it might seem odd for MIDI to be even mentioned in this manual. 
-Yet, until fairly recently, MIDI has played a role (sometimes tangential, other times fundamental) in a variety of software tools related to music notation and engraving.
 
-</div class="subsection">
+<p>
+Given that Abjad models written musical score, it might seem odd for MIDI to be even mentioned in this manual. 
+Yet, until fairly recently, MIDI has played a role (sometimes tangential, other times fundamental) in a variety of software tools related to music notation and engraving.
+</p>
+
+</div>
 
 <div class="subsection">
-<h2> A very brief overview of midi </h2>
-<p> MIDI (Musical Instrument Digital Interface) was first introduced in 1981 by Dave Smith, the founder of Sequential Circuits. 
+
+<h2>A very brief overview of midi</h2>
+
+<p>
+MIDI (Musical Instrument Digital Interface) was first introduced in 1981 by Dave Smith, the founder of Sequential Circuits. 
 The original purpose of MIDI was to allow the communication between different electronic musical instruments; more specifically, to allow one device to send <b>control</b> data to another device. Typical messages might be "note On" (play a <em>note</em>) "note Off" (turn off a <em>note</em>). 
 A MIDI "note" message, for example, is composed of three bytes: the first byte (the Status byte) tells the device what kind of message this is (e.g. a Note On message). 
 The second byte encodes key number (which key was pressed) and the third byte, velocity (how hard the key was pressed). 
 It should be clear that a <em>Note</em> in this context means something very different than <em>Note</em> in the context of a traditional printed score. 
 While the bias towards keyboard interfaces is clear in the definition of the MIDI Note control message, one can still give the MIDI note a more general use by reinterpreting "key number" as pitch and "velocity" as loudness, the usual perceptual correlates of these control changes as well as the most meaningful musical parameters in western music. 
+</p>
 
-<p> With the subsequent proliferation of music production software, the SMF (Standard Midi File) was introduced to allow the recording and storage of the control data from a MIDI stream. 
+<p>
+With the subsequent proliferation of music production software, the SMF (Standard Midi File) was introduced to allow the recording and storage of the control data from a MIDI stream. 
 The SMF required a time stamp to keep track of when control messages took place. These are called "delta-times" in the SMF specification:
+</p>
 
-<p>The MTrk chunk type is where actual song data is stored. It is simply a stream of MIDI events (and non-MIDI events), preceded by delta-time values.</q>
+<p>
+The MTrk chunk type is where actual song data is stored. It is simply a stream of MIDI events (and non-MIDI events), preceded by delta-time values.</q>
 In combination with the MIDI Note message, the addition of duration now allowed one to have a minimal but sufficient <b>machine</b> representation--a machine score--of music requiring only these parameters: duration, pitch and loudness. Such is the case of most piano music.  
+</p>
 
-</div class="subsection">
+</div>
 
 <div class="subsection">
-<h2> Limitations of midi from the point of view of score modeling </h2>
-<p> But, alas, there is much more information in a printed score that can not be practically encoded in a SMF. Common musical notions such as meter, clef, key signature, articulation, to name only a few, are ignored. 
+
+<h2>Limitations of midi from the point of view of score modeling</h2>
+
+<p>
+But, alas, there is much more information in a printed score that can not be practically encoded in a SMF. Common musical notions such as meter, clef, key signature, articulation, to name only a few, are ignored. 
 A desire to include some of these concepts in MIDI is evident in the inclusion of some so called <em>meta-events</em>.
 From the SMF specification: <q>< meta-event> specifies non-MIDI information useful to this format or to sequencers...</q>.
 Examples of <em>meta-events</em> are <em>Time Signature</em> and <em>Key Signature</em>. 
@@ -36,34 +63,54 @@ In addition to the semantic elements just mentioned, there are also the typograp
 <!--How could all this information to be represented in MIDI? -->
 However, from the point of view of encoding a printed score, the main limitation of MIDI is not the lack musical features or the absence of typographical data, but the assumption that musical durations, pitches and loudnesses can be each fully and efficiently encoded with integers or even fractions. In a printed score, this is not the case for any of them. 
 MIDI encodes only <em>magnitudes</em>: time interval magnitudes, pitch interval magnitudes, velocity magnitudes. While these may be sufficient attributes for an automated piano performance, they are not all the attributes of notes in a printed score.
+</p>
 
-</div class="subsection">
+</div>
 
 <div class="subsection">
-<h2> Written note durations vs. midi delta-times </h2>
-<p> Assume a fixed tempo has been set.
+
+<h2>Written note durations vs. midi delta-times</h2>
+
+<p>
+Assume a fixed tempo has been set.
 Assume that all magnitudes are represented with (and limited to) rational numbers.
 A time interval magnitude <i>d</i> = 1/4 has an infinity of equivalent representations in terms of magnitude:
 
 <i>d</i> = 1/4 = 1/8 * 2 = 1/8 + 1/16 * 2 ... etc. 
 
 So, for example, while equivalent in magnitude, these are not the same notated durations:
+</p>
 
-<img src="images/1.png">
+<img alt="" src="images/1.png"/>
 
-</div class="subsection">
-
-<div class="subsection">
-<h2> Written note pitch vs. midi note-on </h2>
-<p> A similar thing happens with pitches. In MIDI, key (pitch) number 61 is a half tone above middle C. But how is this pitch to be notated? As a C sharp or a B flat?
-
-<img src="images/2.png">
-
-</div class="subsection">
-
-<h2 class="page-section"> Conclusion </h2>
+</div>
 
 <div class="subsection">
-<h2>  </h2>
-<p> MIDI was not designed for score representation.  MIDI is a simple communication protocol intended for real-time control. As such, it naturally lacks the adequate model to represent the full range of information found in printed scores.  
-</div class="subsection">
+
+<h2>Written note pitch vs. midi note-on</h2>
+
+<p>
+A similar thing happens with pitches. In MIDI, key (pitch) number 61 is a half tone above middle C. But how is this pitch to be notated? As a C sharp or a B flat?
+</p>
+
+<img alt="" src="images/2.png"/>
+
+</div>
+
+<h2 class="page-section">Conclusion</h2>
+
+<div class="subsection">
+
+<p>
+MIDI was not designed for score representation.  MIDI is a simple communication protocol intended for real-time control. As such, it naturally lacks the adequate model to represent the full range of information found in printed scores.  
+</p>
+
+</div>
+
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
+</div>
+
+</body>
+
+</html>
