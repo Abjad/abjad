@@ -54,6 +54,7 @@ class _Leaf(_Component):
    ### OVERLOADS ###
 
    def __and__(self, arg):
+      '''Intersection.'''
       assert isinstance(arg, _Leaf)
       from abjad.chord.chord import Chord
       from abjad.helpers.chord_cast_defective \
@@ -75,6 +76,7 @@ class _Leaf(_Component):
       return chord_cast_defective(chord)
 
    def __or__(self, arg):
+      '''Union.'''
       assert isinstance(arg, _Leaf)
       from abjad.chord.chord import Chord
       from abjad.helpers.chord_cast_defective \
@@ -92,6 +94,50 @@ class _Leaf(_Component):
       else:
          arg_pairs = ( )
       pairs = set(my_pairs) | set(arg_pairs)
+      chord = Chord(pairs, self.duration.written.pair)
+      return chord_cast_defective(chord)
+
+   def __sub__(self, arg):
+      '''Set difference.'''
+      assert isinstance(arg, _Leaf)
+      from abjad.chord.chord import Chord
+      from abjad.helpers.chord_cast_defective \
+         import chord_cast_defective
+      if hasattr(self, 'pairs'):
+         my_pairs = self.pairs
+      elif hasattr(self, 'pair'):
+         my_pairs = (self.pair, )
+      else:
+         my_pairs = ( )
+      if hasattr(arg, 'pairs'):
+         arg_pairs = arg.pairs
+      elif hasattr(arg, 'pair'):
+         arg_pairs = (arg.pair, )
+      else:
+         arg_pairs = ( )
+      pairs = set(my_pairs) - set(arg_pairs)
+      chord = Chord(pairs, self.duration.written.pair)
+      return chord_cast_defective(chord)
+
+   def __xor__(self, arg):
+      '''Symmetric difference.'''
+      assert isinstance(arg, _Leaf)
+      from abjad.chord.chord import Chord
+      from abjad.helpers.chord_cast_defective \
+         import chord_cast_defective
+      if hasattr(self, 'pairs'):
+         my_pairs = self.pairs
+      elif hasattr(self, 'pair'):
+         my_pairs = (self.pair, )
+      else:
+         my_pairs = ( )
+      if hasattr(arg, 'pairs'):
+         arg_pairs = arg.pairs
+      elif hasattr(arg, 'pair'):
+         arg_pairs = (arg.pair, )
+      else:
+         arg_pairs = ( )
+      pairs = set(my_pairs) ^ set(arg_pairs)
       chord = Chord(pairs, self.duration.written.pair)
       return chord_cast_defective(chord)
 
