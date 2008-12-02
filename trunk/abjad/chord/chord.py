@@ -10,7 +10,7 @@ class Chord(_Leaf):
    def __init__(self, *args):
       self._initializer = _ChordInitializer(self, _Leaf, *args)
 
-   ### SPECIAL METHODS ### 
+   ### OVERLOADS ###
 
    def __contains__(self, arg):
       if isinstance(arg, (int, float, long)):
@@ -49,7 +49,6 @@ class Chord(_Leaf):
    ### PRIVATE METHODS ###
 
    def _sort(self):
-      #self._noteheads.sort( )
       def _helper(nh1, nh2):
          altitude_cmp = cmp(nh1.pitch.altitude, nh2.pitch.altitude)
          if altitude_cmp == 0:

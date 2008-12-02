@@ -8,7 +8,7 @@ def test_chord_split_01( ):
    assert isinstance(treble, Chord)
    assert treble.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
    assert isinstance(bass, Skip)
-   assert bass.signature == (1, 4)
+   assert bass.signature == ((1, 4), )
 
 
 def test_chord_split_02( ):
@@ -36,7 +36,7 @@ def test_chord_split_04( ):
    chord = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
    treble, bass = chord_split(chord, Pitch('f', 4), attr = 'number')
    assert isinstance(treble, Skip)
-   assert treble.signature == (1, 4)
+   assert treble.signature == ((1, 4), )
    assert isinstance(bass, Chord)
    assert bass.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
 
@@ -48,7 +48,7 @@ def test_chord_split_05( ):
    assert isinstance(treble, Chord)
    assert treble.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
    assert isinstance(bass, Skip)
-   assert bass.signature == (1, 4)
+   assert bass.signature == ((1, 4), )
    
 
 def test_chord_split_06( ):
@@ -95,7 +95,7 @@ def test_chord_split_10( ):
    note = Note(0, (1, 4))
    treble, bass = chord_split(note, Pitch('f', 4), attr = 'number')
    assert isinstance(treble, Skip)
-   assert treble.signature == (1, 4)
+   assert treble.signature == ((1, 4), )
    assert isinstance(bass, Note)
    assert bass.signature == (('c', 4), (1, 4))
    assert not note is bass
@@ -108,7 +108,7 @@ def test_chord_split_11( ):
    assert isinstance(treble, Note)
    assert treble.signature == (('c', 4), (1, 4))
    assert isinstance(bass, Skip)
-   assert bass.signature == (1, 4)
+   assert bass.signature == ((1, 4), )
    assert not note is treble
 
 
@@ -119,7 +119,7 @@ def test_chord_split_12( ):
    assert isinstance(treble, Note)
    assert treble.signature == (('c', 4), (1, 4))
    assert isinstance(bass, Skip)
-   assert bass.signature == (1, 4)
+   assert bass.signature == ((1, 4), )
    assert not note is treble
 
 

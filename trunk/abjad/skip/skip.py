@@ -25,4 +25,4 @@ class Skip(_Leaf):
 
    @property
    def signature(self):
-      return self.duration.written.pair
+      return (self.duration.written.pair, )

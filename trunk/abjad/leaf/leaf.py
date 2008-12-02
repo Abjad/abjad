@@ -51,6 +51,50 @@ class _Leaf(_Component):
       self._tremolo = _TremoloInterface(self)
       self._trill = _TrillInterface(self)
 
+   ### OVERLOADS ###
+
+   def __and__(self, arg):
+      assert isinstance(arg, _Leaf)
+      from abjad.chord.chord import Chord
+      from abjad.helpers.chord_cast_defective \
+         import chord_cast_defective
+      if hasattr(self, 'pairs'):
+         my_pairs = self.pairs
+      elif hasattr(self, 'pair'):
+         my_pairs = (self.pair, )
+      else:
+         my_pairs = ( )
+      if hasattr(arg, 'pairs'):
+         arg_pairs = arg.pairs
+      elif hasattr(arg, 'pair'):
+         arg_pairs = (arg.pair, )
+      else:
+         arg_pairs = ( )
+      pairs = set(my_pairs) & set(arg_pairs)
+      chord = Chord(pairs, self.duration.written.pair)
+      return chord_cast_defective(chord)
+
+   def __or__(self, arg):
+      assert isinstance(arg, _Leaf)
+      from abjad.chord.chord import Chord
+      from abjad.helpers.chord_cast_defective \
+         import chord_cast_defective
+      if hasattr(self, 'pairs'):
+         my_pairs = self.pairs
+      elif hasattr(self, 'pair'):
+         my_pairs = (self.pair, )
+      else:
+         my_pairs = ( )
+      if hasattr(arg, 'pairs'):
+         arg_pairs = arg.pairs
+      elif hasattr(arg, 'pair'):
+         arg_pairs = (arg.pair, )
+      else:
+         arg_pairs = ( )
+      pairs = set(my_pairs) | set(arg_pairs)
+      chord = Chord(pairs, self.duration.written.pair)
+      return chord_cast_defective(chord)
+
    ### PUBLIC ATTRIBUTES ###
 
    @apply

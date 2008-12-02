@@ -4,7 +4,7 @@ from abjad import *
 def test_skip_signature_01( ):
    '''Skip signature returns a written duration pair.'''
    t = Skip((1, 4))
-   assert t.signature == (1, 4)
+   assert t.signature == ((1, 4), )
 
 
 def test_skip_signature_02( ):
@@ -12,3 +12,4 @@ def test_skip_signature_02( ):
       under signature comparison.'''
    t1 = Skip((1, 4))
    t2 = Skip((1, 4))
+   t1.signature == t2.signature

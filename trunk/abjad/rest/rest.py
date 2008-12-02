@@ -55,4 +55,4 @@ class Rest(_Leaf, _GrobHandler):
 
    @property
    def signature(self):
-      return self.duration.written.pair
+      return (self.duration.written.pair, )
