@@ -35,6 +35,10 @@ class Rest(_Leaf, _GrobHandler):
       return result
 
    ### PUBLIC ATTRIBUTES ###
+  
+   @property
+   def pairs(self):
+      return ( )
 
    @apply
    def pitch( ):
@@ -52,7 +56,3 @@ class Rest(_Leaf, _GrobHandler):
          else:
             raise ValueError('Can not set Rest.pitch from %s' % str(arg))
       return property(**locals( ))
-
-   @property
-   def signature(self):
-      return (self.duration.written.pair, )

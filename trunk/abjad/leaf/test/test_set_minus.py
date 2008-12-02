@@ -22,7 +22,7 @@ def test_difference_02( ):
    u = Chord([1, 2, 3], (1, 4))
    v = t - u
    assert isinstance(v, Note)
-   assert v.signature == (('c', 4), (1, 4))
+   assert v.signature == ((('c', 4), ), (1, 4))
    assert t is not u is not v
 
 
@@ -33,7 +33,7 @@ def test_difference_03( ):
    u = Chord([0, 1, 2], (1, 4))
    v = t - u
    assert isinstance(v, Skip)
-   assert v.signature == ((1, 4), )
+   assert v.signature == (( ), (1, 4))
    assert t is not u is not v
    
 
@@ -45,7 +45,7 @@ def test_difference_04( ):
    u = Chord([0, ('df', 4), 2], (1, 4))
    v = t - u
    assert isinstance(v, Note)
-   assert v.signature == (('cs', 4), (1, 4))
+   assert v.signature == ((('cs', 4), ), (1, 4))
    assert t is not u is not v
 
 
@@ -79,7 +79,7 @@ def test_difference_07( ):
    u = Skip((1, 4))
    v = t - u
    assert isinstance(v, Skip)
-   assert v.signature == ((1, 4), )
+   assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
 
@@ -89,7 +89,7 @@ def test_difference_08( ):
    u = Note(0, (1, 4))
    v = t - u
    assert isinstance(v, Skip)
-   assert v.signature == ((1, 4), )
+   assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
 
@@ -99,7 +99,7 @@ def test_difference_09( ):
    u = Note(0, (1, 4))
    v = t - u
    assert isinstance(v, Skip)
-   assert v.signature == ((1, 4), )
+   assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
 
@@ -109,7 +109,7 @@ def test_difference_10( ):
    u = Note(2, (1, 4))
    v = t - u
    assert isinstance(v, Note)
-   assert v.signature == (('c', 4), (1, 4))
+   assert v.signature == ((('c', 4), ), (1, 4))
    assert t is not u is not v
 
 
@@ -131,5 +131,5 @@ def test_difference_12( ):
    u = Note(0, (1, 4))
    v = t - u
    assert isinstance(v, Note)
-   assert v.signature == ((('d', 4)), (1, 4))
+   assert v.signature == ((('d', 4), ), (1, 4))
    assert t is not u is not v

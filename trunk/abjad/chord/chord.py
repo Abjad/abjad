@@ -115,11 +115,6 @@ class Chord(_Leaf):
          self.noteheads = arglist
       return property(**locals( ))
 
-   @property
-   def signature(self):
-      '''Return immutable pair of pitch pair and written duration.'''
-      return (self.pairs, self.duration.written.pair)
-
    ### PUBLIC METHODS ### 
 
    def append(self, arg):

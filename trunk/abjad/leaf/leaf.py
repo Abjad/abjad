@@ -323,6 +323,10 @@ class _Leaf(_Component):
          offset += cur.duration.prolated
       return offset
 
+   @property
+   def signature(self):
+      return (self.pairs, self.duration.written.pair)
+
    @apply
    def spanners( ):
       def fget(self):

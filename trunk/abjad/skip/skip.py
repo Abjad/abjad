@@ -24,5 +24,5 @@ class Skip(_Leaf):
    ### PUBLIC ATTRIBUTES ###
 
    @property
-   def signature(self):
-      return (self.duration.written.pair, )
+   def pairs(self):
+      return ( )

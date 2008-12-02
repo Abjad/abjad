@@ -78,7 +78,7 @@ def test_union_07( ):
    u = Skip((1, 4))
    v = t | u
    assert isinstance(v, Skip)
-   assert v.signature == ((1, 4), )
+   assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
 
@@ -88,7 +88,7 @@ def test_union_08( ):
    u = Note(0, (1, 4))
    v = t | u
    assert isinstance(v, Note)
-   assert v.signature == (('c', 4), (1, 4))
+   assert v.signature == ((('c', 4), ), (1, 4))
    assert t is not u is not v
 
 
@@ -98,7 +98,7 @@ def test_union_09( ):
    u = Note(0, (1, 4))
    v = t | u
    assert isinstance(v, Note)
-   assert v.signature == (('c', 4), (1, 4))
+   assert v.signature == ((('c', 4), ), (1, 4))
    assert t is not u is not v
 
 

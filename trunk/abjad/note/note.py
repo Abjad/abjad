@@ -50,11 +50,11 @@ class Note(_Leaf):
       return property(**locals( ))
 
    @property
-   def pair(self):
+   def pairs(self):
       if self.pitch:
-         return self.pitch.pair
+         return (self.pitch.pair, )
       else:
-         return None
+         return ( )
 
    @apply
    def pitch( ):
@@ -79,7 +79,3 @@ class Note(_Leaf):
             else:
                raise ValueError('Can not set Note.pitch from %s' % str(arg))
       return property(**locals( ))
-
-   @property
-   def signature(self):
-      return (self.pair, self.duration.written.pair)
