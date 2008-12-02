@@ -69,12 +69,14 @@ Analogously, Leaves assigned to the after attribute of the grace interface are p
 <p>
 Grace notes placed before the carrier note can have one of three styles or types:
 </p>
+
 <ul>
    <li>grace</li>
    <li>acciaccatura</li>
    <li>appoggiatura</li>
 </ul>
-</p>
+
+<p>
 Set the type by assigning the corresponding string to the before attribute of the grace interface.
 </p>
 
@@ -108,7 +110,6 @@ abjad> show(note)
    abjad> note.grace.before = Grace([Note(4, (1, 32)), Note(5, (1, 32))])
    abjad> show(note)
 </abjad>
-
 
 <!--
 <table border="1">

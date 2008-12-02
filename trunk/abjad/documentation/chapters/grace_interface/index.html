@@ -92,12 +92,14 @@ abjad> show(v)
 <p>
 Grace notes placed before the carrier note can have one of three styles or types:
 </p>
+
 <ul>
    <li>grace</li>
    <li>acciaccatura</li>
    <li>appoggiatura</li>
 </ul>
-</p>
+
+<p>
 Set the type by assigning the corresponding string to the before attribute of the grace interface.
 </p>
 
@@ -134,7 +136,6 @@ abjad> note.grace.before = Grace([Note(4, (1, 32)), Note(5, (1, 32))])
 abjad> show(note)
 </pre>
 <img alt="" src="images/5.png"/>
-
 
 <!--
 <table border="1">

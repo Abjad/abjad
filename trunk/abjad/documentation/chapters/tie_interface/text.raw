@@ -83,14 +83,11 @@ To unset the tie attribute simply set it to False or None.
 
 <subsection>
 
-<dl>
-   <dt> read-only
-   <dd> <ul>
-      <li><code>tied</code></li>
-      <li><code>tail</code></li>
-      <li><code>head</code></li>
-      </ul>
-</dl>
+<ul>
+   <li><code>tied</code></li>
+   <li><code>tail</code></li>
+   <li><code>head</code></li>
+</ul>
 
 <p>
 The <code>tied</code> attribute indicates whether the Leaf is being tied to by the Leaf immediately preceding it. 
