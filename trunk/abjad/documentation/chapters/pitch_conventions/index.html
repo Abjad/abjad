@@ -1,28 +1,30 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
 <head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
-<title>Project Abjad - Chapter Name from h1 Goes Here</title>
-<!-- Can we autogenerate title from <h1> info at top of each chatper? -->
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
 </head>
 
 <body>
-
-<!--
-OK; prefer to leave TOC off of every page for now; 
-keep look simple ... maybe add back in later? TB.
-maybe a
-<div id="toc">
-if we want to have the TOC on every page, we can put it here...
-</div>
--->
 
 <div id="content">
 
 <h1>Pitch conventions</h1>
 
+<div class="subsection">
+
 <p>
 Abjad follows the following conventions regarding pitch.
 </p>
+
+</div>
+
+<div class="subsection">
 
 <h2>Names</h2>
 
@@ -36,26 +38,34 @@ Abjad names accidentals according to the table below.
 
 <table>
 <tr>
-   <td class="first-column-accidental"> quarter sharp
-   <td class="accidental-abbreviation"> <tt>'qs'</tt>
-   <td class="second-column-accidental"> quarter flat
-   <td class="accidental-abbreviation"> <tt>'qf'</tt>
+   <td class="first-column-accidental"> quarter sharp</td>
+   <td class="accidental-abbreviation"> <tt>'qs'</tt></td>
+   <td class="second-column-accidental"> quarter flat</td>
+   <td class="accidental-abbreviation"> <tt>'qf'</tt></td>
+</tr>
 <tr>
-   <td class="first-column-accidental"> sharp
-   <td class="accidental-abbreviation"> <tt>'s'</tt>
-   <td class="second-column-accidental"> flat
-   <td class="accidental-abbreviation"> <tt>'f'</tt>
+   <td class="first-column-accidental"> sharp</td>
+   <td class="accidental-abbreviation"> <tt>'s'</tt></td>
+   <td class="second-column-accidental"> flat</td>
+   <td class="accidental-abbreviation"> <tt>'f'</tt></td>
+</tr>
 <tr>
-   <td class="first-column-accidental"> three-quarters sharp
-   <td class="accidental-abbreviation"> <tt>'tqs'</tt>
-   <td class="second-column-accidental"> three-quarters flat
-   <td class="accidental-abbreviation"> <tt>'tqf'</tt>
+   <td class="first-column-accidental"> three-quarters sharp</td>
+   <td class="accidental-abbreviation"> <tt>'tqs'</tt></td>
+   <td class="second-column-accidental"> three-quarters flat</td>
+   <td class="accidental-abbreviation"> <tt>'tqf'</tt></td>
+</tr>
 <tr>
-   <td class="first-column-accidental"> double sharp
-   <td class="accidental-abbreviation"> <tt>'ss'</tt>
-   <td class="second-column-accidental"> double flat
-   <td class="accidental-abbreviation"> <tt>'ff'</tt>
+   <td class="first-column-accidental"> double sharp</td>
+   <td class="accidental-abbreviation"> <tt>'ss'</tt></td>
+   <td class="second-column-accidental"> double flat</td>
+   <td class="accidental-abbreviation"> <tt>'ff'</tt></td>
+</tr>
 </table>
+
+</div>
+
+<div class="subsection">
 
 <h2>Numbers</h2>
 
@@ -68,6 +78,10 @@ This follows the presentation of American pitch-class theory in, for example, Mo
 IRCAM / MIDI pitch numbers equal Abjad pitch numbers plus 60.
 </p>
 
+</div>
+
+<div class="subsection">
+
 <h2>Octaves</h2>
 
 <p>
@@ -76,26 +90,33 @@ Abjad represents octaves with both numbers and ticks.
 
 <table>
 <tr>
-   <td class="us-pitch-name"> C7
-   <td class="euro-pitch-name"> <tt>c''''</tt>
+   <td class="us-pitch-name">C7</td>
+   <td class="euro-pitch-name"><tt>c''''</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C6
-   <td class="euro-pitch-name"> <tt>c'''</tt>
+   <td class="us-pitch-name">C6</td>
+   <td class="euro-pitch-name"><tt>c'''</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C5
-   <td class="euro-pitch-name"> <tt>c''</tt>
+   <td class="us-pitch-name">C5</td>
+   <td class="euro-pitch-name"><tt>c''</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C4
-   <td class="euro-pitch-name"> <tt>c'</tt>
+   <td class="us-pitch-name">C4</td>
+   <td class="euro-pitch-name"><tt>c'</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C3
-   <td class="euro-pitch-name"> <tt>c</tt>
+   <td class="us-pitch-name">C3</td>
+   <td class="euro-pitch-name"><tt>c</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C2
-   <td class="euro-pitch-name"> <tt>c,</tt>
+   <td class="us-pitch-name">C2</td>
+   <td class="euro-pitch-name"><tt>c,</tt></td>`
+</tr>
 <tr>
-   <td class="us-pitch-name"> C1
-   <td class="euro-pitch-name"> <tt>c,,</tt>
+   <td class="us-pitch-name">C1</td>
+   <td class="euro-pitch-name"><tt>c,,</tt></td>
+</tr>
 </table>
 
 <p>
@@ -107,6 +128,10 @@ This follows American usage.
 Abjad uses ticks in LilyPond output only.
 </p>
 
+</div>
+
+<div class="subsection">
+
 <h2>Accidentals</h2>
 
 <p>
@@ -115,61 +140,74 @@ Abjad chooses between enharmonic spellings at pitch-initialization time accordin
 
 <table>
 <tr>
-   <td> <tt>0</tt>
-   <td> &rarr;
-   <td> C
+   <td><tt>0</tt></td>
+   <td>&rarr;</td>
+   <td>C</td>
+</tr>
 <tr>
-   <td> <tt>1</tt>
-   <td> &rarr;
-   <td> C&#9839;
+   <td><tt>1</tt></td>
+   <td>&rarr;</td>
+   <td>C&#9839;</td>
+</tr>
 <tr>
-   <td> <tt>2</tt>
-   <td> &rarr;
-   <td> D
+   <td><tt>2</tt></td>
+   <td>&rarr;</td>
+   <td>D</td>
+</tr>
 <tr>
-   <td> <tt>3</tt>
-   <td> &rarr;
-   <td> E&#9837;
+   <td><tt>3</tt></td>
+   <td>&rarr;</td>
+   <td>E&#9837;</td>
+</tr>
 <tr>
-   <td> <tt>4</tt>
-   <td> &rarr;
-   <td> E
+   <td><tt>4</tt></td>
+   <td>&rarr;</td>
+   <td>E</td>
+</tr>
 <tr>
-   <td> <tt>5</tt>
-   <td> &rarr;
-   <td> F
+   <td><tt>5</tt></td>
+   <td>&rarr;</td>
+   <td>F</td>
 <tr>
-   <td> <tt>6</tt>
-   <td> &rarr;
-   <td> F&#9839;
+   <td><tt>6</tt></td>
+   <td>&rarr;</td>
+   <td>F&#9839;</td>
+</tr>
 <tr>
-   <td> <tt>7</tt>
-   <td> &rarr;
-   <td> G
+   <td><tt>7</tt></td>
+   <td>&rarr;</td>
+   <td>G</td>
+</tr>
 <tr>
-   <td> <tt>8</tt>
-   <td> &rarr;
-   <td> G&#9837;
+   <td><tt>8</tt></td>
+   <td>&rarr;</td>
+   <td>G&#9837;</td>
+</tr>
 <tr>
-   <td> <tt>9</tt>
-   <td> &rarr;
-   <td> A
+   <td><tt>9</tt></td>
+   <td>&rarr;</td>
+   <td>A</td>
+</tr>
 <tr>
-   <td> <tt>10</tt>
-   <td> &rarr;
-   <td> B&#9837;
+   <td><tt>10</tt></td>
+   <td>&rarr;</td>
+   <td>B&#9837;</td>
+</tr>
 <tr>
-   <td> <tt>11</tt>
-   <td> &rarr;
-   <td> B
+   <td><tt>11</tt></td>
+   <td>&rarr;</td>
+   <td>B</td>
+</tr>
 </table>
 
+</div>
 
 
-<p class="footer">
-<a href="../../index.html">Contents</a>
-</p>
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
 </div>
 
 </body>
+
 </html>
+

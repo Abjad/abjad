@@ -1,17 +1,23 @@
-<title>Random values generation</title>
-
 <h1>Random values generation</h1>
 
-<p>You can use Abjad to generate random values.
-This is made particularly easy because of the availability of the Python <code>random</code> module.
+<subsection>
 
-<p>Type <code>import random</code> at the prompt.
+<p>
+You can use Abjad to generate random values.
+This is made particularly easy because of the availability of the Python <code>random</code> module.
+</p>
+
+<p>
+Type <code>import random</code> at the prompt.
+</p>
 
 <abjad>
    abjad> import random
 </abjad>
 
+<p>
 Use <code>dir( )</code> to inspect the contents of <code>random</code>.
+</p>
 
 <abjad>
    abjad> dir(random)
@@ -23,9 +29,14 @@ Use <code>dir( )</code> to inspect the contents of <code>random</code>.
    'random', 'randrange', 'sample', 'seed', 'setstate', 'shuffle', 'uniform', 'vonmisesvariate', 'weibullvariate']
 </abjad>
 
-<h2 class="page-section">Comments</h2>
+</subsection>
 
-<p class="comment">Excellent example of why Abjad extends Python.
+<comments>
+
+<p>
+Excellent example of why Abjad extends Python.
 Abjad blocks none of the built-in functionality of Python.
 Much of the built-in functionality of Python is useful in an ISE-based approach to notation generation.
+</p>
 
+</comments>

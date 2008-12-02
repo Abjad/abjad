@@ -1,19 +1,42 @@
-<title>Why LilyPond is right for Abjad</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
 
 <h1>Why LilyPond is right for Abjad</h1>
 
-<p>It took us several years to settle on LilyPond.
+<div class="subsection">
+
+<p>
+It took us several years to settle on LilyPond.
 Early versions of Abjad wrote out MIDI files for input to Finale and Sibelius.
 Later, more typographhically powerful versions of Abjad wrote out cleartext <tt>.pbx</tt> files for input into Leland Smith's SCORE.
 But over time we found LilyPond superior to Finale, Sibelius and SCORE.
 Here we give some examples to show why.
+</p>
+
+</div>
+
+<div class="subsection">
 
 <h2>Nested tuplets works out of the box</h2>
 
-<p>LilyPond uses just one construct to create tuplets.
+<p>
+LilyPond uses just one construct to create tuplets.
 Nest these recursively to make tuplets as deep as you want.
+</p>
 
-<div class="example-code">
 <pre class="lilypond">
 \new RhythmicStaff {
    \times 4/5 {
@@ -22,24 +45,27 @@ Nest these recursively to make tuplets as deep as you want.
    }
 }
 </pre>
-</div> <!-- example code -->
 
-<div class="example-code">
-<image src="images/1.png">
-</div> <!-- example code -->
+<img alt="" src="images/1.png"/>
 
-<p>We like LilyPond's tuplet input syntax because it works exactly the same way as any other recursive programming structure, such as, for example, any collection of nested attribute or element tags in XML.
+<p>
+We like LilyPond's tuplet input syntax because it works exactly the same way as any other recursive programming structure, such as, for example, any collection of nested attribute or element tags in XML.
 By way of comparison, until the relatively recent appearance of version 5 of the ManuScript scripting language, Sibelius offered no programmatic way to create tuplets at all. 
 (For our guess as to why, see the last section of this page on why measures shouldn't dominate your object model.)
+</p>
 
+</div>
+
+<div class="subsection">
 
 <h2>Broken tuplets work out of the box</h2>
 
-<p>Engraving seven septuplets is easy.
+<p>
+Engraving seven septuplets is easy.
 It's harder to engrave four septuplets, then something else, then three more septuplets.
 In LilyPond, such broken tuplets work out of the box.
+</p>
 
-<div class="example-code">
 <pre class="lilypond">
 \new Staff {
    \times 4/7 { c'16 c'16 c'16 c'16 }
@@ -47,13 +73,11 @@ In LilyPond, such broken tuplets work out of the box.
    \times 4/7 { c'16 c'16 c'16 }
 }
 </pre>
-</div> <!-- example code -->
 
-<div class="example-code">
-<image src="images/2.png">
-</div> <!-- example code -->
+<img alt="" src="images/2.png"/>
 
-<p>We like this because it shows that LilyPond understands tuplets as <strong>carrying a fixed multiplier</strong> rather than <strong>fitting into a fixed duration</strong>.
+<p>
+We like this because it shows that LilyPond understands tuplets as <strong>carrying a fixed multiplier</strong> rather than <strong>fitting into a fixed duration</strong>.
 This means that LilyPond sees each of the first notes above as carrying a duration equal to exactly <tt>1/16 * 4/7 == 1/28</tt> of a whole note.
 How many 1/28th notes you choose to string together is left to the user.
 LilyPond is perfectly happy to string seven 1/28th notes together in the usual way.
@@ -64,12 +88,18 @@ Conversely, when we think of seven septuplets "in the time of" four, we're think
 That is, we're thinking about the total duration <strong>into which</strong> the complete figure will fit.
 But what's important here is this: fixed-multiplier tuplets <strong>generalize</strong> fixed-duration tuplets.
 LilyPond's multiplier-based approach to tuplets lets us create not only the complete tuplets we would expect but many more besides.
+</p>
+
+</div>
+
+<div class="subsection">
 
 <h2>Nonbinary meters work out of the box</h2>
 
-<p>We can rewrite the rhythm above in another way.
+<p>
+We can rewrite the rhythm above in another way.
+</p>
 
-<div class="example-code">
 <pre class="lilypond">
 \new Staff {
    \time 4/28 c'16 c'16 c'16 c'16 |
@@ -77,19 +107,22 @@ LilyPond's multiplier-based approach to tuplets lets us create not only the comp
    \time 3/28 c'16 c'16 c'16 |
 }
 </pre>
-</div> <!-- example code -->
 
-<div class="example-code">
-<image src="images/3.png">
-</div> <!-- example code -->
+<img alt="" src="images/3.png"/>
 
-<p>The time signatures 4/28 and 3/28 here have a denominator not equal to 4, 8, 16 or any other nonnegative integer power of two.
+<p>
+The time signatures 4/28 and 3/28 here have a denominator not equal to 4, 8, 16 or any other nonnegative integer power of two.
 Abjad calls time signatures of this form <strong>nonbinary meters</strong>.
 Nonbinary meters break many engraving programs. But, in LilyPond, nonbinary meters work out of the box.
+</p>
 
+</div>
 
-<h2>LilyPond models the musical measure correctly</h2>
+<div class="subsection">
 
+<h2>Lilypond models the musical measure correctly</h2>
+
+</p>
 Most engraving packages make the concept of the measure out to be far more important than it should be.
 We see evidence of this wherever an engraving package makes it difficult or impossible for a long note cross over a barline (as can happen in Medieval music) or for the notes in a tuplet to cross over a barline (as can happen in New Music).
 Both difficulties come from working the idea of <strong>measure-as-container</strong> deep into engraving package object model.
@@ -99,3 +132,14 @@ Engraving packages that pick out a solidy Classical or Romantic understanding of
 The measure-as-background model fits the concept of the musical measure into the rhythmic model in a more general way.
 LilyPond eschews the measure-as-container model beloved of the common practice in favor of the measure-as-background model characteristic of both the earlier and later uses of the western notation.
 And Abjad agrees.
+</p>
+
+</div>
+
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
+</div>
+
+</body>
+
+</html>

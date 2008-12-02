@@ -1,23 +1,27 @@
 <h1>Leaf Splitting</h1>
-<hr>
-<p class="spacer" />
-An Abjad <code>Leaf</code> with duration <em>d</em> can be split in two Leaves with durations <em>e</em> and <em>f</em> such that <em>e</em> + <em>f</em> = <em>d</em>.
+
+<subsection>
+
+<p>
+An Abjad <_Leaf> with duration <em>d</em> can be split in two Leaves with durations <em>e</em> and <em>f</em> such that <em>e</em> + <em>f</em> = <em>d</em>.
 </p>
+
 <p>
 There are two helper functions for doing this: 
 <code>leaf_split( )</code> 
 and
 <code>leaf_split_binary( )</code>.
 </p>
+
 <p>
-Both functions take two parameters: the duration <code>(n, d)</code> at which the <code>Leaf</code> will be broken, and the <code>Leaf</code> to break.
+Both functions take two parameters: the duration <code>(n, d)</code> at which the <_Leaf> will be broken, and the <code>Leaf</code> to break.
 </p>
+
 <p>
-<code>leaf_split( )</code> will accept any duration smaller than the duration of the <code>Leaf</code> to split. 
+<code>leaf_split( )</code> will accept any duration smaller than the duration of the <_Leaf> to split. 
 <br>
 <code>leaf_split_binary( )</code> will only take durations with a power of 2 as denominator.
 </p>
-
 
 <p>
 Both functions behave the same way when resulting durations <em>e</em> and <em>f</em> are <b>notehead-assignable</b> 
@@ -50,19 +54,15 @@ Both functions behave the same way when resulting durations <em>e</em> and <em>f
 </table>
 
 <p>
-Notice that 
-<code>leaf_split( )</code> 
-returns a list of 2 Leaves, while
-<code>leaf_split_binary( )</code> 
-returns a list of two lists, each with a <code>Leaf</code> in this case.
+Notice that <code>leaf_split( )</code> returns a list of 2 Leaves, while
+<code>leaf_split_binary( )</code> returns a list of two lists, each with a <_Leaf> in this case.
 The reason for this will become clear.
+</p>
+
 <p>
-When the duration attribute is not <b>notehead-assignable</b>,   
-<code>leaf_split( )</code> 
-will wrap the splitted Leaves in a Tuplet;
+When the duration attribute is not <b>notehead-assignable</b>, <code>leaf_split( )</code> will wrap the splitted Leaves in a Tuplet;
 <br>
-<code>leaf_split_binary( )</code>
-will return splitted Leaves.
+<code>leaf_split_binary( )</code> will return splitted Leaves.
 </p>
 
 <table width="100%" >
@@ -87,17 +87,13 @@ will return splitted Leaves.
 </tr>
 </table>
 
+</subsection>
 
-<p class="spacer">
-<h2>Commentary</h2>
-<hr>
 
-<p class="commentary">
+<to-do>
 
-<p class="spacer">
-<h2>To do</h2>
-<hr>
+<p>
 Do we really need <code>leaf_split_binary( )</code> to return a list of two lists? Why not just a flat list of leaves?
-
-<p class="commentary">
 </p>
+
+</to-do>

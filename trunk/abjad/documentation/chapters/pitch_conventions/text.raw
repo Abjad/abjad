@@ -1,10 +1,14 @@
 <h1>Pitch conventions</h1>
 
+<subsection>
+
 <p>
 Abjad follows the following conventions regarding pitch.
 </p>
 
-<h2>Names</h2>
+</subsection>
+
+<subsection>Names
 
 <p>
 Abjad names pitches according to the LilyPond <code>english.ly</code> module.
@@ -16,28 +20,34 @@ Abjad names accidentals according to the table below.
 
 <table>
 <tr>
-   <td class="first-column-accidental"> quarter sharp
-   <td class="accidental-abbreviation"> <tt>'qs'</tt>
-   <td class="second-column-accidental"> quarter flat
-   <td class="accidental-abbreviation"> <tt>'qf'</tt>
+   <td class="first-column-accidental"> quarter sharp</td>
+   <td class="accidental-abbreviation"> <tt>'qs'</tt></td>
+   <td class="second-column-accidental"> quarter flat</td>
+   <td class="accidental-abbreviation"> <tt>'qf'</tt></td>
+</tr>
 <tr>
-   <td class="first-column-accidental"> sharp
-   <td class="accidental-abbreviation"> <tt>'s'</tt>
-   <td class="second-column-accidental"> flat
-   <td class="accidental-abbreviation"> <tt>'f'</tt>
+   <td class="first-column-accidental"> sharp</td>
+   <td class="accidental-abbreviation"> <tt>'s'</tt></td>
+   <td class="second-column-accidental"> flat</td>
+   <td class="accidental-abbreviation"> <tt>'f'</tt></td>
+</tr>
 <tr>
-   <td class="first-column-accidental"> three-quarters sharp
-   <td class="accidental-abbreviation"> <tt>'tqs'</tt>
-   <td class="second-column-accidental"> three-quarters flat
-   <td class="accidental-abbreviation"> <tt>'tqf'</tt>
+   <td class="first-column-accidental"> three-quarters sharp</td>
+   <td class="accidental-abbreviation"> <tt>'tqs'</tt></td>
+   <td class="second-column-accidental"> three-quarters flat</td>
+   <td class="accidental-abbreviation"> <tt>'tqf'</tt></td>
+</tr>
 <tr>
-   <td class="first-column-accidental"> double sharp
-   <td class="accidental-abbreviation"> <tt>'ss'</tt>
-   <td class="second-column-accidental"> double flat
-   <td class="accidental-abbreviation"> <tt>'ff'</tt>
+   <td class="first-column-accidental"> double sharp</td>
+   <td class="accidental-abbreviation"> <tt>'ss'</tt></td>
+   <td class="second-column-accidental"> double flat</td>
+   <td class="accidental-abbreviation"> <tt>'ff'</tt></td>
+</tr>
 </table>
 
-<h2>Numbers</h2>
+</subsection>
+
+<subsection>Numbers
 
 <p>
 Abjad sets middle C equal to 0.
@@ -48,7 +58,9 @@ This follows the presentation of American pitch-class theory in, for example, Mo
 IRCAM / MIDI pitch numbers equal Abjad pitch numbers plus 60.
 </p>
 
-<h2>Octaves</h2>
+</subsection>
+
+<subsection>Octaves
 
 <p>
 Abjad represents octaves with both numbers and ticks.
@@ -56,26 +68,33 @@ Abjad represents octaves with both numbers and ticks.
 
 <table>
 <tr>
-   <td class="us-pitch-name"> C7
-   <td class="euro-pitch-name"> <tt>c''''</tt>
+   <td class="us-pitch-name">C7</td>
+   <td class="euro-pitch-name"><tt>c''''</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C6
-   <td class="euro-pitch-name"> <tt>c'''</tt>
+   <td class="us-pitch-name">C6</td>
+   <td class="euro-pitch-name"><tt>c'''</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C5
-   <td class="euro-pitch-name"> <tt>c''</tt>
+   <td class="us-pitch-name">C5</td>
+   <td class="euro-pitch-name"><tt>c''</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C4
-   <td class="euro-pitch-name"> <tt>c'</tt>
+   <td class="us-pitch-name">C4</td>
+   <td class="euro-pitch-name"><tt>c'</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C3
-   <td class="euro-pitch-name"> <tt>c</tt>
+   <td class="us-pitch-name">C3</td>
+   <td class="euro-pitch-name"><tt>c</tt></td>
+</tr>
 <tr>
-   <td class="us-pitch-name"> C2
-   <td class="euro-pitch-name"> <tt>c,</tt>
+   <td class="us-pitch-name">C2</td>
+   <td class="euro-pitch-name"><tt>c,</tt></td>`
+</tr>
 <tr>
-   <td class="us-pitch-name"> C1
-   <td class="euro-pitch-name"> <tt>c,,</tt>
+   <td class="us-pitch-name">C1</td>
+   <td class="euro-pitch-name"><tt>c,,</tt></td>
+</tr>
 </table>
 
 <p>
@@ -87,7 +106,9 @@ This follows American usage.
 Abjad uses ticks in LilyPond output only.
 </p>
 
-<h2>Accidentals</h2>
+</subsection>
+
+<subsection>Accidentals
 
 <p>
 Abjad chooses between enharmonic spellings at pitch-initialization time according to the following table.
@@ -95,52 +116,65 @@ Abjad chooses between enharmonic spellings at pitch-initialization time accordin
 
 <table>
 <tr>
-   <td> <tt>0</tt>
-   <td> &rarr;
-   <td> C
+   <td><tt>0</tt></td>
+   <td>&rarr;</td>
+   <td>C</td>
+</tr>
 <tr>
-   <td> <tt>1</tt>
-   <td> &rarr;
-   <td> C&#9839;
+   <td><tt>1</tt></td>
+   <td>&rarr;</td>
+   <td>C&#9839;</td>
+</tr>
 <tr>
-   <td> <tt>2</tt>
-   <td> &rarr;
-   <td> D
+   <td><tt>2</tt></td>
+   <td>&rarr;</td>
+   <td>D</td>
+</tr>
 <tr>
-   <td> <tt>3</tt>
-   <td> &rarr;
-   <td> E&#9837;
+   <td><tt>3</tt></td>
+   <td>&rarr;</td>
+   <td>E&#9837;</td>
+</tr>
 <tr>
-   <td> <tt>4</tt>
-   <td> &rarr;
-   <td> E
+   <td><tt>4</tt></td>
+   <td>&rarr;</td>
+   <td>E</td>
+</tr>
 <tr>
-   <td> <tt>5</tt>
-   <td> &rarr;
-   <td> F
+   <td><tt>5</tt></td>
+   <td>&rarr;</td>
+   <td>F</td>
 <tr>
-   <td> <tt>6</tt>
-   <td> &rarr;
-   <td> F&#9839;
+   <td><tt>6</tt></td>
+   <td>&rarr;</td>
+   <td>F&#9839;</td>
+</tr>
 <tr>
-   <td> <tt>7</tt>
-   <td> &rarr;
-   <td> G
+   <td><tt>7</tt></td>
+   <td>&rarr;</td>
+   <td>G</td>
+</tr>
 <tr>
-   <td> <tt>8</tt>
-   <td> &rarr;
-   <td> G&#9837;
+   <td><tt>8</tt></td>
+   <td>&rarr;</td>
+   <td>G&#9837;</td>
+</tr>
 <tr>
-   <td> <tt>9</tt>
-   <td> &rarr;
-   <td> A
+   <td><tt>9</tt></td>
+   <td>&rarr;</td>
+   <td>A</td>
+</tr>
 <tr>
-   <td> <tt>10</tt>
-   <td> &rarr;
-   <td> B&#9837;
+   <td><tt>10</tt></td>
+   <td>&rarr;</td>
+   <td>B&#9837;</td>
+</tr>
 <tr>
-   <td> <tt>11</tt>
-   <td> &rarr;
-   <td> B
+   <td><tt>11</tt></td>
+   <td>&rarr;</td>
+   <td>B</td>
+</tr>
 </table>
+
+</subsection>
 

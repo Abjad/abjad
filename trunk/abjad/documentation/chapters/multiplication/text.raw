@@ -1,12 +1,14 @@
-<title>Multiplication</title>
-
 <h1>Multiplication</h1>
 
 <subsection>
 
-<p> You can multiply all Abjad components.
+<p>
+You can multiply all Abjad components.
+</p>
 
-<p> Here we multiply one note many times.
+<p>
+Here we multiply one note many times.
+</p>
 
 <abjad>
    abjad> note = Note(0, (1, 16))
@@ -17,7 +19,9 @@
    hide> show(staff)
 </abjad>
 
-<p> All notes are different.
+<p>
+All notes are different.
+</p>
 
 <abjad>
    abjad> id(staff[0]) == id(staff[1])
@@ -25,4 +29,3 @@
 </abjad>
 
 </subsection>
-

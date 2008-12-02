@@ -1,35 +1,39 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
 <head>
-<link rel="stylesheet" href="../../css/abjad.css" type="text/css" />
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
 </head>
 
 <body>
 
-<!--
-OK; prefer to leave TOC off of every page for now; 
-keep look simple ... maybe add back in later? TB.
-maybe a
-<div id="toc">
-if we want to have the TOC on every page, we can put it here...
-</div>
--->
-
 <div id="content">
-
-<title>Random values generation</title>
 
 <h1>Random values generation</h1>
 
-<p>You can use Abjad to generate random values.
-This is made particularly easy because of the availability of the Python <code>random</code> module.
+<div class="subsection">
 
-<p>Type <code>import random</code> at the prompt.
+<p>
+You can use Abjad to generate random values.
+This is made particularly easy because of the availability of the Python <code>random</code> module.
+</p>
+
+<p>
+Type <code>import random</code> at the prompt.
+</p>
 
 <pre class="abjad">
 abjad> import random
 </pre>
 
+<p>
 Use <code>dir( )</code> to inspect the contents of <code>random</code>.
+</p>
 
 <pre class="abjad">
 abjad> dir(random)
@@ -41,18 +45,25 @@ abjad> dir(random)
 'random', 'randrange', 'sample', 'seed', 'setstate', 'shuffle', 'uniform', 'vonmisesvariate', 'weibullvariate']
 </pre>
 
+</div>
+
 <h2 class="page-section">Comments</h2>
 
-<p class="comment">Excellent example of why Abjad extends Python.
+<div class="comments">
+
+<p>
+Excellent example of why Abjad extends Python.
 Abjad blocks none of the built-in functionality of Python.
 Much of the built-in functionality of Python is useful in an ISE-based approach to notation generation.
-
-
-
-<p class="footer">
-<a href="../../index.html">Contents</a>
 </p>
+
+</div>
+
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
 </div>
 
 </body>
+
 </html>
+

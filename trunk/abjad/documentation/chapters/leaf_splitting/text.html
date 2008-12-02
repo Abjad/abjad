@@ -1,23 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
+
 <h1>Leaf Splitting</h1>
-<hr>
-<p class="spacer" />
-An Abjad <code>Leaf</code> with duration <em>d</em> can be split in two Leaves with durations <em>e</em> and <em>f</em> such that <em>e</em> + <em>f</em> = <em>d</em>.
+
+<div class="subsection">
+
+<p>
+An Abjad <code><a href="../leaf_class/index.html">_Leaf</a></code> with duration <em>d</em> can be split in two Leaves with durations <em>e</em> and <em>f</em> such that <em>e</em> + <em>f</em> = <em>d</em>.
 </p>
+
 <p>
 There are two helper functions for doing this: 
 <code>leaf_split( )</code> 
 and
 <code>leaf_split_binary( )</code>.
 </p>
+
 <p>
-Both functions take two parameters: the duration <code>(n, d)</code> at which the <code>Leaf</code> will be broken, and the <code>Leaf</code> to break.
+Both functions take two parameters: the duration <code>(n, d)</code> at which the <code><a href="../leaf_class/index.html">_Leaf</a></code> will be broken, and the <code>Leaf</code> to break.
 </p>
+
 <p>
-<code>leaf_split( )</code> will accept any duration smaller than the duration of the <code>Leaf</code> to split. 
+<code>leaf_split( )</code> will accept any duration smaller than the duration of the <code><a href="../leaf_class/index.html">_Leaf</a></code> to split. 
 <br>
 <code>leaf_split_binary( )</code> will only take durations with a power of 2 as denominator.
 </p>
-
 
 <p>
 Both functions behave the same way when resulting durations <em>e</em> and <em>f</em> are <b>notehead-assignable</b> 
@@ -50,19 +70,15 @@ Both functions behave the same way when resulting durations <em>e</em> and <em>f
 </table>
 
 <p>
-Notice that 
-<code>leaf_split( )</code> 
-returns a list of 2 Leaves, while
-<code>leaf_split_binary( )</code> 
-returns a list of two lists, each with a <code>Leaf</code> in this case.
+Notice that <code>leaf_split( )</code> returns a list of 2 Leaves, while
+<code>leaf_split_binary( )</code> returns a list of two lists, each with a <code><a href="../leaf_class/index.html">_Leaf</a></code> in this case.
 The reason for this will become clear.
+</p>
+
 <p>
-When the duration attribute is not <b>notehead-assignable</b>,   
-<code>leaf_split( )</code> 
-will wrap the splitted Leaves in a Tuplet;
+When the duration attribute is not <b>notehead-assignable</b>, <code>leaf_split( )</code> will wrap the splitted Leaves in a Tuplet;
 <br>
-<code>leaf_split_binary( )</code>
-will return splitted Leaves.
+<code>leaf_split_binary( )</code> will return splitted Leaves.
 </p>
 
 <table width="100%" >
@@ -87,17 +103,23 @@ will return splitted Leaves.
 </tr>
 </table>
 
+</div>
 
-<p class="spacer">
-<h2>Commentary</h2>
-<hr>
 
-<p class="commentary">
+<h2 class="page-section">To do</h2>
 
-<p class="spacer">
-<h2>To do</h2>
-<hr>
+<div class="to-do">
+
+<p>
 Do we really need <code>leaf_split_binary( )</code> to return a list of two lists? Why not just a flat list of leaves?
-
-<p class="commentary">
 </p>
+
+</div>
+
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
+</div>
+
+</body>
+
+</html>
