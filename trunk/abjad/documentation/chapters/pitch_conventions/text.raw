@@ -89,7 +89,7 @@ Abjad represents octaves with both numbers and ticks.
 </tr>
 <tr>
    <td class="us-pitch-name">C2</td>
-   <td class="euro-pitch-name"><tt>c,</tt></td>`
+   <td class="euro-pitch-name"><tt>c,</tt></td>
 </tr>
 <tr>
    <td class="us-pitch-name">C1</td>
