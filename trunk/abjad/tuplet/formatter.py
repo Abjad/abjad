@@ -48,7 +48,8 @@ class _TupletFormatter(_ContainerFormatter):
    @property
    def _closing(self):
       result = [ ]
-      result.extend(_ContainerFormatter._closing.fget(self))
+      #result.extend(_ContainerFormatter._closing.fget(self))
+      result.extend(_ContainerFormatter._collectLocation(self, '_closing'))
       if self._client.duration.multiplier:
          if self._client.duration.multiplier != 1:
             result.append(self._client.brackets.close)
