@@ -153,21 +153,19 @@ def test_chord_split_12( ):
    assert treble is not bass
 
 
-#def test_chord_split_13( ):
-#   '''Spanned chord copies spanner to resultant split parts.'''
-#   staff = Staff(Chord([2, 4, 5], (1, 4)) * 3)
-#   Beam(staff)
-#   chord = staff[1]
-#   treble, bass = chord_split(chord, Pitch('e', 4), attr = 'altitude')
-#   assert isinstance(treble, Chord)
-#   assert len(treble.spanners) == 1
-#   assert len(treble.spanners[0]) == 1
-#   assert isinstance(bass, Note)
-#   assert len(bass.spanners) == 1
-#   assert len(bass.spanners[0]) == 1
-#   assert chord is not treble
-#   assert chord is not bass
-#   assert treble is not bass
+def test_chord_split_13( ):
+   '''Spanned chord DOES NOT copy spanner to resultant split parts.'''
+   staff = Staff(Chord([2, 4, 5], (1, 4)) * 3)
+   Beam(staff)
+   chord = staff[1]
+   treble, bass = chord_split(chord, Pitch('e', 4), attr = 'altitude')
+   assert isinstance(treble, Chord)
+   assert len(treble.spanners) == 0
+   assert isinstance(bass, Note)
+   assert len(bass.spanners) == 0
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
 
 
 def test_chord_split_14( ):
