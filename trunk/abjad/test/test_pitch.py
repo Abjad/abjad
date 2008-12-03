@@ -31,19 +31,3 @@ def test_pitch_02( ):
    assert p.pair == ('df', 5)
    assert p.pc == 1
    assert p.ticks == "''"
-
-
-def test_pitch_03( ):
-   '''Empty pitch.'''
-   p = Pitch( )
-   assert repr(p) == 'Pitch( )'
-   assert p.altitude == None
-   assert p.degree == None
-   assert p.letter == None
-   assert p.lily == ''
-   assert p.name == None
-   assert p.number == None
-   assert p.octave == None
-   assert p.pair == None
-   assert p.pc == None
-   assert p.ticks == None

@@ -14,5 +14,4 @@ class _PitchInitializer(object):
          if i.matchSignature(*args):
             i.initialize(client, *args)
             return True
-      print 'Can not initialize Pitch( ).'
-      raise ValueError
+      raise ValueError('can not initialize pitch.')
