@@ -26,3 +26,7 @@ class Skip(_Leaf):
    @property
    def pairs(self):
       return ( )
+
+   @property
+   def pitches(self):
+      return ( )

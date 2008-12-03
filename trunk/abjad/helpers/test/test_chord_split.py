@@ -9,6 +9,9 @@ def test_chord_split_01( ):
    assert treble.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
    assert isinstance(bass, Rest)
    assert bass.signature == (( ), (1, 4))
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
 
 
 def test_chord_split_02( ):
@@ -19,6 +22,9 @@ def test_chord_split_02( ):
    assert treble.signature == ((('ef', 4), ('e', 4)), (1, 4))
    assert isinstance(bass, Note)
    assert bass.signature == ((('d', 4), ), (1, 4))
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
 
 
 def test_chord_split_03( ):
@@ -29,6 +35,9 @@ def test_chord_split_03( ):
    assert treble.signature == ((('e', 4), ), (1, 4))
    assert isinstance(bass, Chord)
    assert bass.signature == ((('d', 4), ('ef', 4)), (1, 4))
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
 
 
 def test_chord_split_04( ):
@@ -39,6 +48,9 @@ def test_chord_split_04( ):
    assert treble.signature == (( ), (1, 4))
    assert isinstance(bass, Chord)
    assert bass.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
 
 
 def test_chord_split_05( ):
@@ -49,6 +61,9 @@ def test_chord_split_05( ):
    assert treble.signature == ((('d', 4), ('ef', 4), ('e', 4)), (1, 4))
    assert isinstance(bass, Rest)
    assert bass.signature == (( ), (1, 4))
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
    
 
 def test_chord_split_06( ):
@@ -59,6 +74,9 @@ def test_chord_split_06( ):
    assert treble.signature == ((('ef', 4), ('e', 4)), (1, 4))
    assert isinstance(bass, Note)
    assert bass.signature == ((('d', 4), ), (1, 4))
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
    
 
 def test_chord_split_07( ):
@@ -78,6 +96,9 @@ def test_chord_split_08( ):
    assert treble.signature == ((('es', 4), ('g', 4)), (1, 4))
    assert isinstance(bass, Chord)
    assert bass.signature == ((('d', 4), ('ff', 4)), (1, 4))
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
    
    
 def test_chord_split_09( ):
@@ -88,6 +109,9 @@ def test_chord_split_09( ):
    assert treble.signature == ((('ff', 4), ('g', 4)), (1, 4))
    assert isinstance(bass, Chord)
    assert bass.signature == ((('d', 4), ('es', 4)), (1, 4))
+   assert chord is not treble
+   assert chord is not bass
+   assert treble is not bass
 
 
 def test_chord_split_10( ):
@@ -98,7 +122,9 @@ def test_chord_split_10( ):
    assert treble.signature == (( ), (1, 4))
    assert isinstance(bass, Note)
    assert bass.signature == ((('c', 4), ), (1, 4))
-   assert not note is bass
+   assert note is not treble
+   assert note is not bass
+   assert treble is not bass
 
 
 def test_chord_split_11( ):
@@ -109,7 +135,9 @@ def test_chord_split_11( ):
    assert treble.signature == ((('c', 4), ), (1, 4))
    assert isinstance(bass, Rest)
    assert bass.signature == (( ), (1, 4))
-   assert not note is treble
+   assert note is not treble
+   assert note is not bass
+   assert treble is not bass
 
 
 def test_chord_split_12( ):
@@ -120,18 +148,36 @@ def test_chord_split_12( ):
    assert treble.signature == ((('c', 4), ), (1, 4))
    assert isinstance(bass, Rest)
    assert bass.signature == (( ), (1, 4))
-   assert not note is treble
+   assert note is not treble
+   assert note is not bass
+   assert treble is not bass
 
 
-def test_chord_split_13( ):
-   '''Spanned chord copies spanner to resultant split parts.'''
-   staff = Staff(Chord([2, 4, 5], (1, 4)) * 3)
-   Beam(staff)
-   chord = staff[1]
-   treble, bass = chord_split(chord, Pitch('e', 4), attr = 'altitude')
-   assert isinstance(treble, Chord)
-   assert len(treble.spanners) == 1
-   assert len(treble.spanners[0]) == 1
-   assert isinstance(bass, Note)
-   assert len(bass.spanners) == 1
-   assert len(bass.spanners[0]) == 1
+#def test_chord_split_13( ):
+#   '''Spanned chord copies spanner to resultant split parts.'''
+#   staff = Staff(Chord([2, 4, 5], (1, 4)) * 3)
+#   Beam(staff)
+#   chord = staff[1]
+#   treble, bass = chord_split(chord, Pitch('e', 4), attr = 'altitude')
+#   assert isinstance(treble, Chord)
+#   assert len(treble.spanners) == 1
+#   assert len(treble.spanners[0]) == 1
+#   assert isinstance(bass, Note)
+#   assert len(bass.spanners) == 1
+#   assert len(bass.spanners[0]) == 1
+#   assert chord is not treble
+#   assert chord is not bass
+#   assert treble is not bass
+
+
+def test_chord_split_14( ):
+   '''Rest splits into two new rests.'''
+   t = Rest((1, 4))
+   treble, bass = chord_split(t)
+   assert isinstance(treble, Rest)
+   assert treble.signature == (( ), (1, 4))
+   assert isinstance(bass, Rest)
+   assert bass.signature == (( ), (1, 4))
+   assert t is not treble
+   assert t is not bass
+   assert treble is not bass

@@ -79,3 +79,10 @@ class Note(_Leaf):
             else:
                raise ValueError('Can not set Note.pitch from %s' % str(arg))
       return property(**locals( ))
+
+   @property
+   def pitches(self):
+      if self.pitch:
+         return (self.pitch, )
+      else:
+         return ( )

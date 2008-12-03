@@ -56,3 +56,7 @@ class Rest(_Leaf, _GrobHandler):
          else:
             raise ValueError('Can not set Rest.pitch from %s' % str(arg))
       return property(**locals( ))
+
+   @property
+   def pitches(self):
+      return ( )
