@@ -1,4 +1,5 @@
 from abjad.barline.interface import _BarLineInterface
+from abjad.breaks.interface import _BreaksInterface
 from abjad.clef.interface import _ClefInterface
 from abjad.core.comments import _Comments
 from abjad.core.navigator import _Navigator
@@ -15,6 +16,7 @@ class _Component(object):
    def __init__(self):
       self._accidentals = None
       self._barline = _BarLineInterface(self)
+      self._breaks = _BreaksInterface(self)
       self._clef = _ClefInterface(self)
       self._comments = _Comments( )
       self._meter = _MeterInterface(self)
@@ -65,6 +67,12 @@ class _Component(object):
          return self._barline
       def fset(self, type):
          self._barline.type = type
+      return property(**locals( ))
+
+   @apply
+   def breaks( ):
+      def fget(self):
+         return self._breaks
       return property(**locals( ))
 
    @apply

@@ -34,4 +34,3 @@ class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def clear(self):
       self._set = None
       _GrobHandler.clear(self)
-

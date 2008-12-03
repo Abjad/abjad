@@ -9,29 +9,6 @@ class _LeafFormatter(_Formatter):
       self.left = [ ]
       self.right = [ ]
 
-#   def _getFormatCarriers(self):
-#      result = [ ]
-#      for value in self._client.__dict__.values( ):
-#         if isinstance(value, _FormatCarrier):
-#            result.append(value)
-#      result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
-#      return result
-
-#   def _collectLocation(self, location):
-#      result = [ ]
-#      for carrier in self._getFormatCarriers( ):
-#         try:
-#            exec('result.extend(carrier.%s)' % location)
-#         except AttributeError:
-#            pass
-#      exec('result.extend(self._client.spanners.%s)' % location)
-#      # add self._client._before, if self._client is a Rest:
-#      try:
-#         exec('result.extend(self._client.%s)' % location)
-#      except:
-#         pass
-#      return result
-
    @property
    def _number(self):
       result = [ ]
@@ -43,14 +20,12 @@ class _LeafFormatter(_Formatter):
    def _grace(self):
       result = [ ]
       grace = self._client.grace.before
-      #if grace > 0:
       if len(grace) > 0:
          result.append(grace.format)
       return result
 
    @property
    def _agrace_opening(self):
-      #if self._client.grace.after:
       if len(self._client.grace.after) > 0:
          return [r'\afterGrace']
       else:
@@ -60,7 +35,6 @@ class _LeafFormatter(_Formatter):
    def _agrace(self):
       result = [ ]
       agrace = self._client.grace.after
-      #if agrace:
       if len(agrace) > 0:
          result.append(agrace.format)
       return result
@@ -103,7 +77,6 @@ class _LeafFormatter(_Formatter):
       result.extend(self._body)
       result.extend(self._agrace)
       result.extend(self._collectLocation('_after'))
-#      result.extend(self._after)
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)
