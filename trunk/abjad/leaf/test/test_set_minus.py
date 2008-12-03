@@ -28,11 +28,11 @@ def test_difference_02( ):
 
 def test_difference_03( ):
    '''Wholly intersecting chords;
-      all pitches removed and skip returns.'''
+      all pitches removed and rest returns.'''
    t = Chord([0, 1, 2], (1, 4))
    u = Chord([0, 1, 2], (1, 4))
    v = t - u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
    
@@ -74,31 +74,31 @@ def test_difference_06( ):
 
 
 def test_difference_07( ):
-   '''Skip from skip produces skip.'''
-   t = Skip((1, 4))
-   u = Skip((1, 4))
+   '''Rest from from produces rest.'''
+   t = Rest((1, 4))
+   u = Rest((1, 4))
    v = t - u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
 
 def test_difference_08( ):
-   '''Note from skip produces skip.'''
-   t = Skip((1, 4))
+   '''Note from rest produces rest.'''
+   t = Rest((1, 4))
    u = Note(0, (1, 4))
    v = t - u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
 
 def test_difference_09( ):
-   '''Note from like pitched note produces skip.'''
+   '''Note from like pitched note produces rest.'''
    t = Note(0, (1, 4))
    u = Note(0, (1, 4))
    v = t - u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 

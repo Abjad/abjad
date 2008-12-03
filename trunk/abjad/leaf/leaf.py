@@ -18,6 +18,7 @@ from abjad.stem.interface import _StemInterface
 from abjad.tie.interface import _TieInterface
 from abjad.tremolo.interface import _TremoloInterface
 from abjad.trill.interface import _TrillInterface
+import operator
 
 
 class _Leaf(_Component):
@@ -54,92 +55,24 @@ class _Leaf(_Component):
    ### OVERLOADS ###
 
    def __and__(self, arg):
-      '''Intersection.'''
-      assert isinstance(arg, _Leaf)
-      from abjad.chord.chord import Chord
-      from abjad.helpers.chord_cast_defective \
-         import chord_cast_defective
-      if hasattr(self, 'pairs'):
-         my_pairs = self.pairs
-      elif hasattr(self, 'pair'):
-         my_pairs = (self.pair, )
-      else:
-         my_pairs = ( )
-      if hasattr(arg, 'pairs'):
-         arg_pairs = arg.pairs
-      elif hasattr(arg, 'pair'):
-         arg_pairs = (arg.pair, )
-      else:
-         arg_pairs = ( )
-      pairs = set(my_pairs) & set(arg_pairs)
-      chord = Chord(pairs, self.duration.written.pair)
-      return chord_cast_defective(chord)
+      return self._operate(arg, operator.__and__)
 
    def __or__(self, arg):
-      '''Union.'''
-      assert isinstance(arg, _Leaf)
-      from abjad.chord.chord import Chord
-      from abjad.helpers.chord_cast_defective \
-         import chord_cast_defective
-      if hasattr(self, 'pairs'):
-         my_pairs = self.pairs
-      elif hasattr(self, 'pair'):
-         my_pairs = (self.pair, )
-      else:
-         my_pairs = ( )
-      if hasattr(arg, 'pairs'):
-         arg_pairs = arg.pairs
-      elif hasattr(arg, 'pair'):
-         arg_pairs = (arg.pair, )
-      else:
-         arg_pairs = ( )
-      pairs = set(my_pairs) | set(arg_pairs)
-      chord = Chord(pairs, self.duration.written.pair)
-      return chord_cast_defective(chord)
+      return self._operate(arg, operator.__or__)
 
    def __sub__(self, arg):
-      '''Set difference.'''
-      assert isinstance(arg, _Leaf)
-      from abjad.chord.chord import Chord
-      from abjad.helpers.chord_cast_defective \
-         import chord_cast_defective
-      if hasattr(self, 'pairs'):
-         my_pairs = self.pairs
-      elif hasattr(self, 'pair'):
-         my_pairs = (self.pair, )
-      else:
-         my_pairs = ( )
-      if hasattr(arg, 'pairs'):
-         arg_pairs = arg.pairs
-      elif hasattr(arg, 'pair'):
-         arg_pairs = (arg.pair, )
-      else:
-         arg_pairs = ( )
-      pairs = set(my_pairs) - set(arg_pairs)
-      chord = Chord(pairs, self.duration.written.pair)
-      return chord_cast_defective(chord)
+      return self._operate(arg, operator.__sub__)
 
    def __xor__(self, arg):
-      '''Symmetric difference.'''
+      return self._operate(arg, operator.__xor__)
+
+   ### PRIVATE METHODS ###
+
+   def _operate(self, arg, operator):
       assert isinstance(arg, _Leaf)
-      from abjad.chord.chord import Chord
-      from abjad.helpers.chord_cast_defective \
-         import chord_cast_defective
-      if hasattr(self, 'pairs'):
-         my_pairs = self.pairs
-      elif hasattr(self, 'pair'):
-         my_pairs = (self.pair, )
-      else:
-         my_pairs = ( )
-      if hasattr(arg, 'pairs'):
-         arg_pairs = arg.pairs
-      elif hasattr(arg, 'pair'):
-         arg_pairs = (arg.pair, )
-      else:
-         arg_pairs = ( )
-      pairs = set(my_pairs) ^ set(arg_pairs)
-      chord = Chord(pairs, self.duration.written.pair)
-      return chord_cast_defective(chord)
+      from abjad.helpers.engender import engender
+      pairs = operator(set(self.pairs), set(arg.pairs))
+      return engender(pairs, self.duration.written.pair)
 
    ### PUBLIC ATTRIBUTES ###
 

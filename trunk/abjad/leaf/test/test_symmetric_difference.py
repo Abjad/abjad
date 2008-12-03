@@ -32,7 +32,7 @@ def test_symmetric_difference_03( ):
    t = Chord([0, 1, 2], (1, 4))
    u = Chord([0, 1, 2], (1, 4))
    v = t ^ u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
    
@@ -73,18 +73,18 @@ def test_symmetric_difference_06( ):
 
 
 def test_symmetric_difference_07( ):
-   '''Skip in symmetric difference with skip produces skip.'''
-   t = Skip((1, 4))
-   u = Skip((1, 4))
+   '''Rest in symmetric difference with rest produces rest.'''
+   t = Rest((1, 4))
+   u = Rest((1, 4))
    v = t ^ u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
 
 def test_symmetric_difference_08( ):
-   '''Skip in symmetric difference with note produces note.'''
-   t = Skip((1, 4))
+   '''Rest in symmetric difference with note produces note.'''
+   t = Rest((1, 4))
    u = Note(0, (1, 4))
    v = t ^ u
    assert isinstance(v, Note)
@@ -94,11 +94,11 @@ def test_symmetric_difference_08( ):
 
 def test_symmetric_difference_09( ):
    '''Note in symmetric difference with like 
-      pitched note produces skip.'''
+      pitched note produces rest.'''
    t = Note(0, (1, 4))
    u = Note(0, (1, 4))
    v = t ^ u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 

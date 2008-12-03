@@ -73,18 +73,18 @@ def test_union_06( ):
 
 
 def test_union_07( ):
-   '''Skip in union with skip produces skip.'''
-   t = Skip((1, 4))
-   u = Skip((1, 4))
+   '''Rest in union with rest produces rest.'''
+   t = Rest((1, 4))
+   u = Rest((1, 4))
    v = t | u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
 
 def test_union_08( ):
-   '''Skip in union with note produces note.'''
-   t = Skip((1, 4))
+   '''Rest in union with note produces note.'''
+   t = Rest((1, 4))
    u = Note(0, (1, 4))
    v = t | u
    assert isinstance(v, Note)

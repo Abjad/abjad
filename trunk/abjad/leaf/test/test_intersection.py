@@ -10,7 +10,7 @@ def test_intersection_01( ):
    t = Chord([0, 1, 2], (1, 4))
    u = Chord([3, 4, 5], (1, 4))
    v = t & u
-   assert isinstance(v, Skip)
+   assert isinstance(v, Rest)
    assert v.signature == (( ), (1, 4))
    assert t is not u is not v
 
