@@ -1,6 +1,6 @@
-from abjad.measure.meter import _Meter
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
+from abjad.meter.meter import _Meter
 
 
 class _MeterInterface(_Interface, _GrobHandler):

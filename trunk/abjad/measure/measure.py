@@ -3,7 +3,7 @@ from abjad.helpers.hasname import hasname
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.measure.duration import _MeasureDurationInterface
 from abjad.measure.formatter import _MeasureFormatter
-from abjad.measure.meter import _Meter
+from abjad.meter.meter import _Meter
 from abjad.rational.rational import Rational
 from math import log
 

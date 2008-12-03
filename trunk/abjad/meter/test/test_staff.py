@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.measure.meter import _Meter
+from abjad.meter.meter import _Meter
 from abjad.meter.interface import _MeterInterface
 
 
