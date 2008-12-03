@@ -2,7 +2,7 @@ from abjad.chord.chord import Chord
 from abjad.helpers.chord_cast_defective import chord_cast_defective
 from abjad.note.note import Note
 from abjad.pitch.pitch import Pitch
-from abjad.skip.skip import Skip
+from abjad.rest.rest import Rest
 import operator
 
 
@@ -62,14 +62,14 @@ def chord_split(chord, pitch = Pitch('b', 3), attr = 'number'):
       treble, bass = note.copy( ), note.copy( )
       if attr == 'number':
          if note.pitch.number >= pitch.number:
-            bass = Skip(bass)
+            bass = Rest(bass)
          else:
-            treble = Skip(treble)
+            treble = Rest(treble)
       elif attr == 'altitude':
          if note.pitch.altitude >= pitch.altitude:
-            bass = Skip(bass)
+            bass = Rest(bass)
          else:
-            treble = Skip(treble)
+            treble = Rest(treble)
       else:
          raise ValueError('unknown attr.')
       print treble, bass

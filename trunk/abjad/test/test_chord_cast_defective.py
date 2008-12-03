@@ -5,7 +5,7 @@ def test_chord_cast_defective_01( ):
    '''Empty chord returns skip.'''
    t = Chord([ ], (1, 4))
    t = chord_cast_defective(t)
-   assert isinstance(t, Skip)
+   assert isinstance(t, Rest)
 
 
 def test_chord_cast_defective_02( ):
