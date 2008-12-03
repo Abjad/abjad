@@ -4,6 +4,7 @@ from abjad.core.comments import _Comments
 from abjad.core.navigator import _Navigator
 from abjad.core.parentage import _Parentage
 from abjad.helpers.hasname import hasname
+from abjad.meter.interface import _MeterInterface
 from abjad.rational.rational import Rational
 from abjad.tempo.interface import _TempoInterface
 from copy import deepcopy
@@ -16,6 +17,7 @@ class _Component(object):
       self._barline = _BarLineInterface(self)
       self._clef = _ClefInterface(self)
       self._comments = _Comments( )
+      self._meter = _MeterInterface(self)
       self._navigator = _Navigator(self)
       self._parentage = _Parentage(self)
       self._tempo = _TempoInterface(self)
@@ -84,6 +86,14 @@ class _Component(object):
    @property
    def format(self):
       return self.formatter.lily
+
+   @apply
+   def meter( ):
+      def fget(self):
+         return self._meter
+      def fset(self, arg):
+         self._meter.forced = arg
+      return property(**locals( ))
 
    @apply
    def tempo( ):

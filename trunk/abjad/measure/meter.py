@@ -2,6 +2,9 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.rational.rational import Rational
 
 
+### TODO: Make Meter public.
+###       There's no reason to have private _Meter, yes?
+
 class _Meter(_GrobHandler):
 
    # NOTE: notice the trickiness with 'Staff.TimeSignature' instead
