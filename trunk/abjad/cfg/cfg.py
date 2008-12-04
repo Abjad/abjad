@@ -1,8 +1,10 @@
-from os import environ
+import os
 
-ABJADPATH = environ.get('ABJADPATH', '/home/abjad/')
-ABJADPERSISTENCE = environ.get('ABJADPERSISTENCE', '/home/abjab/persistence/')
-ABJADOUTPUT = environ.get('ABJADOUTPUT', '/home/abjad/output/')
+
+ABJADPATH = os.environ.get('ABJADPATH', '/home/abjad/')
+ABJADPERSISTENCE = os.environ.get(
+   'ABJADPERSISTENCE', '/home/abjab/persistence/')
+ABJADOUTPUT = os.environ.get('ABJADOUTPUT', '/home/abjad/output/')
 VERSIONFILE = ABJADOUTPUT + '.version'
-PDFVIEWER = environ.get('PDFVIEWER', 'open')
-LILYPONDINCLUDES = environ.get('LILYPONDINCLUDES', None)
+PDFVIEWER = os.environ.get('PDFVIEWER', 'open')
+LILYPONDINCLUDES = os.environ.get('LILYPONDINCLUDES', None)
