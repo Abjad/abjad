@@ -1,7 +1,7 @@
 from abjad.cfg.cfg import LILYPONDINCLUDES
 
 
-def _write_lilypond_includes(outfile):
+def _write_environment_includes(outfile):
    if LILYPONDINCLUDES is not None:
       includes = LILYPONDINCLUDES.split(':')
       for i in includes:
