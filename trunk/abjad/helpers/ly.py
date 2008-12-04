@@ -10,7 +10,7 @@ def ly(target = -1):
       last_lilypond = _get_last_output( )
       if last_lilypond:
          last_number = last_lilypond.replace('.ly', '')
-         target_number = int(last_number) + target
+         target_number = int(last_number) + (target + 1)
          target_ly = '%s%04d.ly' % (ABJADOUTPUT, target_number)
       else:
          print 'Target LilyPond input file does not exist.'

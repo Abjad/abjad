@@ -8,3 +8,4 @@ ABJADOUTPUT = os.environ.get('ABJADOUTPUT', '/home/abjad/output/')
 VERSIONFILE = ABJADOUTPUT + '.version'
 PDFVIEWER = os.environ.get('PDFVIEWER', 'open')
 LILYPONDINCLUDES = os.environ.get('LILYPONDINCLUDES', None)
+LILYPONDLANG = os.environ.get('LILYPONDLANG', 'english')

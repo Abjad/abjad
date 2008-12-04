@@ -1,38 +1,32 @@
-from abjad.cfg.cfg import VERSIONFILE, ABJADOUTPUT, PDFVIEWER, LILYPONDINCLUDES
-from glob import fnmatch
-from os import system, listdir, chdir
+from abjad.cfg.cfg import ABJADOUTPUT
+from abjad.cfg.get_next_output import _get_next_output
+from abjad.cfg.lilypond_version import lilypond_version
+from abjad.cfg.open_pdf import _open_pdf
+from abjad.cfg.run_lilypond import _run_lilypond
+from abjad.cfg.wrap_format import _wrap_format
+from abjad.cfg.write_abjad_header import _write_abjad_header
+from abjad.cfg.write_lilypond_includes import _write_lilypond_includes
+from abjad.cfg.write_lilypond_language import _write_lilypond_language
+from abjad.cfg.write_lilypond_version import _write_lilypond_version
+import os
 
-system('lilypond --version > %s' % VERSIONFILE)
-version = file('%s' % VERSIONFILE, 'r').read().split('\n')[0].split(' ')[-1]
-system('rm %s' % VERSIONFILE)
-
-def _getNextLilyFileName():
-   names = fnmatch.filter(listdir(ABJADOUTPUT), '*.ly')
-   names.sort()
-   if not names:
-      names = ['0.ly']
-   next = str(int(names[-1][:-3]) + 1).zfill(4)
-   return next + '.ly'
 
 def show(ly):
    '''
-   Interprets a complete .ly file in the pictures directory;
-   logs to lily.out;
-   removes the intermediate postscript file;
-   opens the resulting PDF in Preview.
+   Interprets a complete .ly file in ABJADOUTPUT directory.
+   Logs to ABJADOUTPUT/lily.log.
+   Opens the resulting PDF with PDFVIEWER.
    '''
 
-   chdir(ABJADOUTPUT)
-   name = _getNextLilyFileName()
+   os.chdir(ABJADOUTPUT)
+   name = _get_next_output( )
    outfile = file(name, 'w')
-   outfile.write('\\version "%s"\n' % version)
-   outfile.write('\\include "%s"\n' % 'english.ly')
-   if not LILYPONDINCLUDES is None:
-      includes = LILYPONDINCLUDES.split(':')
-      for i in includes:
-         outfile.write('\\include "%s"\n' % i)
-   outfile.write('{\n\t%s\n}' % ly.format)
+   _write_abjad_header(outfile)
+   _write_lilypond_version(outfile)
+   _write_lilypond_language(outfile)
+   _write_lilypond_includes(outfile)
+   outfile.write('\n')
+   outfile.write(_wrap_format(ly.format))
    outfile.close( )
-   system('lilypond %s > lily.out 2>&1' %(name))
-   system('rm ' + name[:-3] + '.ps')
-   system('%s ' % PDFVIEWER  + name[:-3] + '.pdf &')
+   _run_lilypond(name)
+   _open_pdf('%s.pdf' % name[:-3])
