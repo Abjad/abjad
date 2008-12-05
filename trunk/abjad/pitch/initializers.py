@@ -1,5 +1,6 @@
+from abjad.accidentals.accidental import _Accidental
 from abjad.helpers.is_pitch_pair import _is_pitch_pair
-from abjad.pitch.accidental import _Accidental
+#from abjad.pitch.accidental import _Accidental
 from math import floor
 
 

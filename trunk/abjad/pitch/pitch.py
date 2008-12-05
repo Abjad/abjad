@@ -1,4 +1,5 @@
-from abjad.pitch.accidental import _Accidental
+#from abjad.pitch.accidental import _Accidental
+from abjad.accidentals.accidental import _Accidental
 from abjad.pitch.initializer import _PitchInitializer
 from abjad.pitch.tools import _PitchTools
 from math import floor
