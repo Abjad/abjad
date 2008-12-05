@@ -1,4 +1,5 @@
 from abjad.cfg.cfg import ABJADOUTPUT
+from abjad.cfg.cfg import ABJADTEMPLATES
 from abjad.cfg.get_next_output import _get_next_output
 from abjad.cfg.lilypond_version import lilypond_version
 from abjad.cfg.open_pdf import _open_pdf

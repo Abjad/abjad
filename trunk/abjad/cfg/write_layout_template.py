@@ -1,13 +1,14 @@
-from abjad.cfg.cfg import ABJADPATH
+from abjad.cfg.cfg import ABJADTEMPLATES
 import os
 
 
 def _write_layout_template(outfile, template):
    if template:
-      TEMPLATESDIR = ABJADPATH + 'templates/'
-      names  = [template, template + '.ly']
-      names += [TEMPLATESDIR + template, TEMPLATESDIR + template + '.ly']
-      found = False
+      names = [template, template + '.ly']
+      if ABJADTEMPLATES is not None:
+         for path in ABJADTEMPLATES.split(':'):
+            names.append(path + os.sep + template)
+            names.append(path + os.sep + template + '.ly')
       for name in names:
          try:
             os.stat(name)
