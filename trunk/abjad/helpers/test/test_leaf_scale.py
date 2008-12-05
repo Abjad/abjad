@@ -1,5 +1,5 @@
 from abjad import *
-from .. helpers.leaf_scale import leaf_scale
+from abjad.helpers.leaf_scale import leaf_scale
 # 5/16 = 1/4 1/16
 #      = 1/4 ~ 1/16 (4 + 1), (3 + 2), (2 + 3), (1 + 4)
 #      = \times 4/5 { 1/4 }
