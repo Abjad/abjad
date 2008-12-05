@@ -6,9 +6,7 @@ import getopt, sys
 import os
 
 
-#templates_dir = '/home/abjad/abjad/trunk/abjad/documentation/templates'
-#templates_dir = '/Users/trevorbaca/Documents/abjad/trunk/abjad/documentation/templates'
-templates_dir = os.environ['ABJADPATH'] + 'documentation/templates'
+templates_dir = os.environ['ABJADPATH'] + '/documentation/templates'
 
 
 def get_file_directory(filename):

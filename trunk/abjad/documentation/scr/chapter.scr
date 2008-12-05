@@ -4,9 +4,8 @@
 #
 # ../documentation/chapters/note_class> chapter.scr
 
-ABJADDOCSCR=${ABJADPATH}documentation/scr
+ABJADDOCSCR=${ABJADPATH}/documentation/scr
 
 clear
-#${ABJADDOCSCR}/insert_images.py text.raw
 ${ABJADDOCSCR}/raw_parser.py text.raw
 ${ABJADDOCSCR}/wrap_html.py -f text.html

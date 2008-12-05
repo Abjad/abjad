@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 import os
-CHAPTERSDIR = os.environ['ABJADPATH'] + 'documentation/chapters/'
+CHAPTERSDIR = os.environ['ABJADPATH'] + '/documentation/chapters/'
 chapters = os.listdir(CHAPTERSDIR)
 
 # What's a better, nonmanual way to get rid of special directories
