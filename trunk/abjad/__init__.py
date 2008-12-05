@@ -29,6 +29,4 @@ def _remove_modules():
 
 #_load_classes(('svn', 'tools', 'wf', 'test', 'checks'))
 _load_classes(('documentation', 'svn', 'tools', 'test', 'checks'))
-print 'loaded classes'
 _remove_modules()
-print 'removed modules'
