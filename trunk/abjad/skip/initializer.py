@@ -5,9 +5,9 @@ from abjad.helpers.attributes import _transfer_all_attributes
 class _SkipInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
-      from .. note.note import Note
-      from .. rest.rest import Rest
-      from .. chord.chord import Chord
+      from abjad.note.note import Note
+      from abjad.rest.rest import Rest
+      from abjad.chord.chord import Chord
 #      if len(args) == 0:
 #         _Leaf.__init__(client, None, None)
       if len(args) == 1 and isinstance(args[0], _Leaf):

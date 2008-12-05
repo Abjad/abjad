@@ -16,9 +16,9 @@ from abjad.helpers.attributes import _transfer_all_attributes
 class _ChordInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
-      from .. note.note import Note
-      from .. rest.rest import Rest
-      from .. skip.skip import Skip
+      from abjad.note.note import Note
+      from abjad.rest.rest import Rest
+      from abjad.skip.skip import Skip
       client.pitches = [ ]
 #      if len(args) == 0:
 #         _Leaf.__init__(client, None, None)

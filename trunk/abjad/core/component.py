@@ -114,7 +114,7 @@ class _Component(object):
             assert isinstance(expr, tuple)
             assert isinstance(expr[0], (tuple, Rational))
             assert isinstance(expr[1], (int, float, long))
-            from .. note.note import Note
+            from abjad.note.note import Note
             if isinstance(expr[0], tuple):
                self._tempo._metronome = (Note(0, expr[0]), expr[1])
             elif isinstance(expr[0], Rational):

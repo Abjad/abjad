@@ -1,4 +1,4 @@
-from .. context.context import _Context
+from abjad.context.context import _Context
 
 
 class Score(_Context):

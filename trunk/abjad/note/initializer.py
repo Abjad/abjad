@@ -5,9 +5,9 @@ from abjad.helpers.attributes import _transfer_all_attributes
 class _NoteInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
-      from .. rest.rest import Rest
-      from .. chord.chord import Chord
-      from .. skip.skip import Skip
+      from abjad.rest.rest import Rest
+      from abjad.chord.chord import Chord
+      from abjad.skip.skip import Skip
 
       client.notehead = None
       #if len(args) == 0:
