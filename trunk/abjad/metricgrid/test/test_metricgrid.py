@@ -120,6 +120,7 @@ def test_metricgrid_splitting_01( ):
    t = Staff(Note(0, (1,8)) * 8)
    m = MetricGrid(t, [(3, 16)])
    m.splitOnBar( )
+   assert check(t)
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'16 ~\n\tc'16\n\tc'8\n\tc'8\n\tc'16 ~\n\tc'16\n\tc'8\n\tc'8\n\tc'16 ~\n\tc'16\n}"
    '''
    \new Staff {
@@ -251,3 +252,20 @@ def test_metricgrid_splitting_05( ):
            r1
    }
 '''
+
+
+def test_metricgrid_splitting_06( ):
+   '''MetricGrid can split conditionally.'''
+   v = Voice([Note(1, (1, 4)), Rest((1, 4)), Note(1, (1, 4))])
+   def cond(leaf):
+      if not leaf.kind('Rest'): return True
+      else: return False
+   m = MetricGrid(v, [(1, 8)])
+   m.splittingCondition = cond
+   m.splitOnBar( )
+   assert check(v)
+   assert len(v) == 5
+   assert v[0].duration.written == v[1].duration.written == Rational(1, 8)
+   assert v[3].duration.written == v[3].duration.written == Rational(1, 8)
+   assert v[2].duration.written == Rational(1, 4)
+   assert len(v.spanners.get('Tie')) == 2

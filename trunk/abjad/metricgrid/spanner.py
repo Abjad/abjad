@@ -92,7 +92,8 @@ class MetricGrid(_Spanner):
       ### group together leaves in same measure that are tied together.
       for leaves in leaves_in_meter:
          result = [[]]
-         sp = leaves[0].tie.spanner
+         if len(leaves) > 0:
+            sp = leaves[0].tie.spanner
          for l in leaves:
             if l.tie.spanner and l.tie.spanner == sp:
                result[-1].append(l)
