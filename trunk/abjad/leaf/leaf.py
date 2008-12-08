@@ -9,6 +9,7 @@ from abjad.dynamics.interface import _DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
 from abjad.grace.interface import _GraceInterface
 from abjad.harmonic.interface import _HarmonicInterface
+from abjad.markup.interface import _MarkupInterface
 from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
 from abjad.leaf.spannerinterface import _LeafSpannerInterface
@@ -32,19 +33,12 @@ class _Leaf(_Component):
       self._dots = _DotsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._dynamics = _DynamicsInterface(self)
-      # TODO: can't make formatter a read-only property
-      # because of casting between notes and chords;
-      # come up with solution for read-only formatter
-      #self.formatter = _LeafFormatter(self)
       self._formatter = _LeafFormatter(self)
       self._glissando = _GlissandoInterface(self)
       self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
       self._history = { }
-      # TODO: can't make spanners a read-only property
-      # because of /helpers/attributes.py;
-      # come up with solution for read-only spanners
-      #self.spanners = _LeafSpannerInterface(self)
+      self._markup = _MarkupInterface(self)
       self._spanners = _LeafSpannerInterface(self)
       self._staff = _StaffInterface(self)
       self._stem = _StemInterface(self)
@@ -213,6 +207,12 @@ class _Leaf(_Component):
             self._harmonic._set = arg 
          else:
             raise ValueError('must be boolean or None.')
+      return property(**locals( ))
+
+   @apply
+   def markup( ):
+      def fget(self):
+         return self._markup
       return property(**locals( ))
 
    @apply
