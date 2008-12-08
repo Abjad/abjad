@@ -1,12 +1,11 @@
-class _Interface(object):
+from abjad.core.abjadcore import _Abjad
+
+class _Interface(_Abjad):
 
    def __init__(self, client):
       self._client = client
 
    ### OVERLOADS ###
-
-   def __cmp__(self, arg):
-      raise Exception(NotImplemented)
 
    def __repr__(self):
       return '<%s>' % self.__class__.__name__

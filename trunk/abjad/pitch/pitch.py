@@ -1,3 +1,4 @@
+from abjad.core.abjadcore import _Abjad
 #from abjad.pitch.accidental import _Accidental
 from abjad.accidentals.accidental import _Accidental
 from abjad.pitch.initializer import _PitchInitializer
@@ -5,7 +6,7 @@ from abjad.pitch.tools import _PitchTools
 from math import floor
 
 
-class Pitch(object):
+class Pitch(_Abjad):
 
    def __init__(self, *args):
       self.tools = _PitchTools(self)
@@ -13,15 +14,6 @@ class Pitch(object):
       self.initializer.initialize(self, *args)
 
    ### OVERLOADS ###
-
-   def __cmp__(self, arg):
-      raise Exception(NotImplemented)
-
-   def __eq__(self, arg):
-      return id(self) == id(arg)
-
-   def __ne__(self, arg):
-      return id(self) != id(arg)
 
    def __repr__(self):
       if self.name and not self.octave is None:

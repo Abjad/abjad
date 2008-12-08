@@ -1,3 +1,4 @@
+from abjad.core.abjadcore import _Abjad
 from abjad.barline.interface import _BarLineInterface
 from abjad.breaks.interface import _BreaksInterface
 from abjad.clef.interface import _ClefInterface
@@ -11,7 +12,7 @@ from abjad.tempo.interface import _TempoInterface
 from copy import deepcopy
 
 
-class _Component(object):
+class _Component(_Abjad):
 
    def __init__(self):
       self._accidentals = None
@@ -26,23 +27,11 @@ class _Component(object):
 
    ### OVERLOADS ###
 
-   def __cmp__(self, arg):
-      raise Exception(NotImplemented)
-
-   def __eq__(self, arg):
-      return id(self) == id(arg)
-
    def __mul__(self, n):
       result = [ ]
       for i in range(n):
          result.append(self.copy( ))
       return result
-
-   def __ne__(self, arg):
-      return id(self) != id(arg)
-
-   def __nonzero__(self):
-      return True
 
    def __rmul__(self, n):
       return self * n
