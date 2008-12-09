@@ -9,6 +9,7 @@ from abjad.helpers.hasname import hasname
 from abjad.meter.interface import _MeterInterface
 from abjad.rational.rational import Rational
 from abjad.tempo.interface import _TempoInterface
+from abjad.text.interface import _TextInterface
 from copy import deepcopy
 
 
@@ -24,6 +25,7 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
       self._parentage = _Parentage(self)
       self._tempo = _TempoInterface(self)
+      self._text = _TextInterface(self)
 
    ### OVERLOADS ###
 
@@ -108,6 +110,12 @@ class _Component(_Abjad):
                self._tempo._metronome = (Note(0, expr[0]), expr[1])
             elif isinstance(expr[0], Rational):
                self._tempo._metronome = (Note(0, expr[0]), expr[1])
+      return property(**locals( ))
+
+   @apply
+   def text( ):
+      def fget(self):
+         return self._text
       return property(**locals( ))
 
    ### PUBLIC METHODS ###

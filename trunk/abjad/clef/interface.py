@@ -7,7 +7,8 @@ class _ClefInterface(_Interface, _GrobHandler):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _GrobHandler.__init__(self, 'Staff.Clef')
+      #_GrobHandler.__init__(self, 'Staff.Clef')
+      _GrobHandler.__init__(self, 'Clef')
       self._forced = None
 
    ### PRIVATE ATTRIBUTES ###

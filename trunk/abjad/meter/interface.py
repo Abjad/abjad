@@ -7,7 +7,8 @@ class _MeterInterface(_Interface, _GrobHandler):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _GrobHandler.__init__(self, 'Staff.TimeSignature')
+      #_GrobHandler.__init__(self, 'Staff.TimeSignature')
+      _GrobHandler.__init__(self, 'TimeSignature')
       self._forced = None
 
    ### PRIVATE ATTRIBUTES ###

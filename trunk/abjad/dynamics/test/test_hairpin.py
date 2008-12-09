@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.checks import HairpinsIntermarked, HairpinsShort
+from abjad.checks import HairpinsIntermarked
+from abjad.checks import HairpinsShort
 
 
 def test_hairpin_01( ):

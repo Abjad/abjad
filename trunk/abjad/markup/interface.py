@@ -1,17 +1,12 @@
-from abjad.core.grobhandler import _GrobHandler
+from abjad.core.formatcarrier import _FormatCarrier
 from abjad.core.interface import _Interface
 
 
-### TODO: should this be naem _TextScriptInterface instead?
-
-### TODO: or should we remove grob-handling here
-###       and impelement a separate _TextScriptInterface elsewhere?
-
-class _MarkupInterface(_Interface, _GrobHandler):
+class _MarkupInterface(_Interface, _FormatCarrier):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _GrobHandler.__init__(self, 'TextScript')
+      _FormatCarrier.__init__(self)
       self._down = [ ]
       self._up = [ ]
 
