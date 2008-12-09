@@ -7,6 +7,7 @@ from abjad.core.navigator import _Navigator
 from abjad.core.parentage import _Parentage
 from abjad.helpers.hasname import hasname
 from abjad.meter.interface import _MeterInterface
+from abjad.offset.interface import _OffsetInterface
 from abjad.rational.rational import Rational
 from abjad.tempo.interface import _TempoInterface
 from abjad.text.interface import _TextInterface
@@ -23,6 +24,7 @@ class _Component(_Abjad):
       self._comments = _Comments( )
       self._meter = _MeterInterface(self)
       self._navigator = _Navigator(self)
+      self._offset = _OffsetInterface(self)
       self._parentage = _Parentage(self)
       self._tempo = _TempoInterface(self)
       self._text = _TextInterface(self)
@@ -93,6 +95,10 @@ class _Component(_Abjad):
       def fset(self, arg):
          self._meter.forced = arg
       return property(**locals( ))
+
+   @property
+   def offset(self):
+      return self._offset
 
    @apply
    def tempo( ):

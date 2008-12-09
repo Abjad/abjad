@@ -73,8 +73,8 @@ class _LeafSpannerInterface(_Interface):
       classname = None, interface = None, 
       grob = None, attribute = None, value = None):
       spanners = self.get(classname, interface, grob, attribute, value)
-      #spanners.sort(lambda x, y: cmp(y.leaves[0].offset, x.leaves[0].offset))
-      spanners.sort(lambda x, y: cmp(y[0].offset, x[0].offset))
+      #spanners.sort(lambda x, y: cmp(y[0].offset, x[0].offset))
+      spanners.sort(lambda x, y: cmp(y[0].offset.score, x[0].offset.score))
       if spanners:
          return spanners[0]
       else:

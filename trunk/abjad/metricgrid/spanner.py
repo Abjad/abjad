@@ -46,13 +46,16 @@ class MetricGrid(_Spanner):
       meters = self.meters
       meter = meters.next( )
       while leaf:
-         if leaf.offset < meter.offset:
-            if leaf.offset + leaf.duration.prolated > meter.offset and \
+         #if leaf.offset < meter.offset:
+         if leaf.offset.score < meter.offset:
+            #if leaf.offset + leaf.duration.prolated > meter.offset and \
+            if leaf.offset.score + leaf.duration.prolated > meter.offset and \
                self.splittingCondition(leaf):
                ### will split
                if not leaf.tie.spanner:
                   Tie(leaf)
-               splitdur = meter.offset - leaf.offset
+               #splitdur = meter.offset - leaf.offset
+               splitdur = meter.offset - leaf.offset.score
                ### if splitdur not m / 2**n
                if not splitdur._denominator & (splitdur._denominator - 1):
                   leaves_splitted = leaf_split_binary(splitdur, leaf)
@@ -80,7 +83,8 @@ class MetricGrid(_Spanner):
       leaf = self[0]
       ### group leaves by measure.
       while leaf:
-         if leaf.offset < meter.offset + meter.duration:
+         #if leaf.offset < meter.offset + meter.duration:
+         if leaf.offset.score < meter.offset + meter.duration:
             leaves_in_meter[-1].append(leaf)
             leaf = leaf._navigator._nextBead
          else:
@@ -111,8 +115,10 @@ class MetricGrid(_Spanner):
    def _slicingMeters(self, leaf):
       '''Return the MetricStrip(s) that slices leaf, if any.'''
       for m in self.meters:
-         if leaf.offset < m.offset:
-            if leaf.offset + leaf.duration.prolated > m.offset:
+         #if leaf.offset < m.offset:
+         if leaf.offset.score < m.offset:
+            #if leaf.offset + leaf.duration.prolated > m.offset:
+            if leaf.offset.score + leaf.duration.prolated > m.offset:
                yield m 
             else:
                break
@@ -120,7 +126,8 @@ class MetricGrid(_Spanner):
    def _matchingMeter(self, leaf):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''
       for m in self.meters:
-         if leaf.offset == m.offset: 
+         #if leaf.offset == m.offset: 
+         if leaf.offset.score == m.offset: 
             return m
 
 
@@ -141,7 +148,8 @@ class MetricGrid(_Spanner):
             result.append('<<')
             for meter in m:
                s = Skip( 1 )
-               s.duration.multiplier = meter.offset - leaf.offset
+               #s.duration.multiplier = meter.offset - leaf.offset
+               s.duration.multiplier = meter.offset - leaf.offset.score
                s.formatter.right.append(meter.lily)
                #result.append( '<<\n\t%s' % Sequential([s]).format )
                result.append( '{ %s }' % s.format )
