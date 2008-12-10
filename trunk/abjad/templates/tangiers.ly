@@ -19,7 +19,7 @@
       proportionalNotationDuration = #(ly:make-moment 1 64)
       autoBeaming = ##f
       tupletFullLength = ##t
-      \override TupletBracket #'visibility = ##t
+      \override TupletBracket #'bracket-visibility = ##t
       \remove Bar_number_engraver
    }
    \context {
@@ -30,4 +30,3 @@
 }
       
 #(set-global-staff-size 14)
-#(set-accidental-style 'forget)
