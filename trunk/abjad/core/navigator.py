@@ -1,44 +1,11 @@
+from collections import deque
+
+
 ### TODO profile and figure out why _Leaf.next and _Leaf.prev
 ###      are taking so much time
 
-### TODO decide if navigation should work only *within the voice*;
-###      right now it's possible that _Leaf.next will point
-###      point to the next leaf in the following *staff*,
-###      which is not what we want.
 ### TODO should we replace the old next with the new ._navigator._next?
 ###      add other next helpers such as nextLeaf?
-
-### Hmm, this is an interesting one because, considering the use of 
-### \context instead of \new as we've mentioned before, you may have 
-### a sequence of two staffs with the same name (i.e. referencing the 
-### same lily object) with their own voices, which may in turn also 
-### reference the same objects. e.g.
-### {
-###    \context Staff='mystaff' {
-###       <<
-###          \context Voice='v_low' {
-###             c8 d e f % goto @
-###             }
-###          \context Voice='v_high' {
-###             c'8 d' e' f'
-###             }
-###       >>
-###    }
-###    \context Staff='mystaff' {
-###       \context Voice='v_low' {
-###          % @
-###          g a b c'
-###          }
-###    }
-### 
-### }
-###
-### it'd be nice if the next note of the note f in voice 'v_low' 
-### where the note g, as the % goto @ comment suggests. 
-### This is now implemented!!! works great! 
-### Not public yet thought. To navigate, use: Leaf._navigator._nextBead. 
-
-from collections import deque
 
 class _Navigator(object):
 
@@ -46,8 +13,9 @@ class _Navigator(object):
       self._client = client
 
    def _rank(self):
-      '''Returns the index of the caller (its position) in the parent container.
-         If caller has no parent, returns None.'''
+      '''Returns the index of the caller (its position) in 
+         the parent container. If caller has no parent, 
+         returns None.'''
       #if hasattr(self._client, '_parent'):
       if not self._client._parent is None:
          return self._client._parent._music.index(self._client)
@@ -187,11 +155,9 @@ class _Navigator(object):
          This will only return if called on a Leaf.'''
       if not self._client.kind('_Leaf'):
          return None
-
       next = self._next
       if next is None:
          return None
-
       candidates = next._navigator._firstLeaves
       return self._findFellowBead(candidates)
 
@@ -202,15 +168,12 @@ class _Navigator(object):
          This will only return if called on a Leaf.'''
       if not self._client.kind('_Leaf'):
          return None
-
       prev = self._prev
       if prev is None:
          return None
-
       candidates = prev._navigator._lastLeaves
       return self._findFellowBead(candidates)
 
-         
    @property
    def _nextThread(self):
       '''Returns the next threadable Container.'''
@@ -224,9 +187,10 @@ class _Navigator(object):
          if not c is None:
             if self._isThreadable(c):
                return c
+
+   def _isImmediateTemporalSuccessorOf(self, expr):
+      pass
          
-
-
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
       c_thread_parentage = expr._parentage._threadParentage
@@ -241,7 +205,6 @@ class _Navigator(object):
                      match_parent = False
       else:
          match_parent = False
-
       match_self = False
       if self._client.kind('_Leaf') and expr.kind('_Leaf'):
          match_self = True
@@ -254,7 +217,6 @@ class _Navigator(object):
             elif type(self._client) == type(expr):
                match_self =  True
       return match_self and match_parent
-
 
    def _findFellowBead(self, candidates):
       '''Helper method from prevBead and nextBead. 
@@ -281,7 +243,6 @@ class _Navigator(object):
 #
 #         if match:
 #            return candidate
-
 
    # rightwards depth-first traversal:
    # advance rightwards; otherwise ascend; otherwise None.
