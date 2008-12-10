@@ -79,6 +79,26 @@ class _Navigator(object):
          return containers
       else:
          return [None]
+
+   @property
+   def _contemporaneousContents(self):
+      '''Leaf: returns [self].
+         Container: returns list of every component in self
+         that starts at the same moment as self (including self).
+
+         Intuitively: starts at self and then burrows all the way 
+         down the score tree to return a list of everything inside
+         of self starting at the same moment as self.'''
+      result = [ ]
+      client = self._client
+      result.append(client)
+      if client.kind('Container'):
+         if client.parallel:
+            for x in client:
+               result.extend(x._navigator._contemporaneousContents)
+         else:
+            result.extend(client[0]._navigator._contemporaneousContents)
+      return result
    
    @property
    def _nextLeaves(self):
@@ -188,8 +208,18 @@ class _Navigator(object):
             if self._isThreadable(c):
                return c
 
+   def _getImmediateTemporalSuccessors(self):
+      cur = self._client
+      while cur is not None:
+         nextSibling = cur._navigator._nextSibling
+         if nextSibling is None:
+            cur = cur._parent
+         else:
+            return nextSibling._navigator._contemporaneousContents
+      return [ ]
+
    def _isImmediateTemporalSuccessorOf(self, expr):
-      pass
+      return expr in self._getImmediateTemporalSuccessors( )
          
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
