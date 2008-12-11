@@ -6,82 +6,7 @@ class _Parentage(object):
    def __init__(self, client):
       self._client = client
 
-   @property
-   def _parentage(self):
-      result = [ ]
-      parent = self._client._parent
-      while parent is not None:
-         result.append(parent)
-         parent = parent._parent
-      return result
-
-   @property
-   def _threadParentage(self):
-      '''Return thread-pertinent parentage structure.
-         Same as _parentage but with _Tuplets, redundant Sequentials, 
-         Parallels and tautologies (unlikely) removed.'''
-      parentage = self._parentage
-      #if len(parentage) > 1: why was this 1???
-      if len(parentage) > 0:
-      ### remove sequentials
-         for p in parentage[:]:
-            if p.kind('Sequential') or p.kind('_Tuplet'):
-               parentage.remove(p)
-            else:
-               break
-      # remove tautological nesting
-         for i, p in enumerate(parentage[:-1]):
-            if type(p) == type(parentage[i+1]):
-               if p.kind('Parallel') : # or p.kind('Sequential'):
-                  parentage.remove(p)
-               #elif p.kind('Context'):
-               elif p.kind('_Context'):
-                  if p.invocation == parentage[i+1].invocation:
-                     parentage.remove(p)
-      return parentage
-               
-            
-
-   @property
-   def _governor(self):
-      p = self._client._parent
-      if p is None or p.parallel:
-         return None
-      while p._parent is not None and not p._parent.parallel:
-         p = p._parent
-      return p
-
-   def _first(self, classname):
-      p = self._client._parent
-      while p is not None:
-         if p.__class__.__name__ == classname:
-            return p
-         else:
-            p = p._parent
-      return None
-
-   @property
-   def _number(self):
-      p = self._client._parent
-      while p is not None:
-         if p.formatter.number:
-            return True
-         else:
-            p = p._parent
-      return None
-      
-   ### REFERENCE MANAGEMENT ###
-
-   def _removeFromParent(self):
-      '''
-      Parent no longer references self;
-      but self continues to reference parent.
-      '''
-      if hasattr(self._client, '_parent'):
-         try:
-            self._client._parent._music.remove(self._client)
-         except:
-            pass
+   ### PRIVATE METHODS ###
 
    def _cutOutgoingReferenceToParent(self):
       '''
@@ -100,3 +25,117 @@ class _Parentage(object):
       '''
       self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
+
+   def _first(self, classname):
+      p = self._client._parent
+      while p is not None:
+         if p.__class__.__name__ == classname:
+            return p
+         else:
+            p = p._parent
+      return None
+
+   def _removeFromParent(self):
+      '''
+      Parent no longer references self;
+      but self continues to reference parent.
+      '''
+      if hasattr(self._client, '_parent'):
+         try:
+            self._client._parent._music.remove(self._client)
+         except:
+            pass
+
+   def _getFirstSharedParent(self, arg):
+      '''
+      Returns first shared parent between self._client and arg,
+      otherwise None.
+      '''
+
+      shared = set(self._parentage) & set(arg._parentage._parentage)
+      if shared:
+         for parent in self._parentage:
+            if parent in shared:
+               return parent
+      return None
+         
+   def _disjunctParentageBetween(self, arg):
+      '''
+      Returns just those elements in the parentage that do not
+      appear in the parentage of self, together with just those
+      elements in the parentage of self that do not appear in the 
+      parentage of arg.
+      '''
+
+      return set(self._parentage) ^ set(arg._parentage._parentage)
+
+   def _disjunctInclusiveParentageBetween(self, arg):
+      '''
+      Same as _disjunctParentageBetween( ) but including
+      references to self._client and arg.
+      '''
+
+      return self._disjunctParentageBetween(arg) | set((self._client, arg))
+
+   ### PRIVATE ATTRIBUTES ###
+   
+   @property
+   def _enclosingContextName(self):
+      inclusive_parentage = [self._client] + self._parentage
+      for p in inclusive_parentage:
+         invocation = getattr(p, 'invocation', None)
+         if invocation:
+            return invocation.name
+      else:
+         return None
+
+   @property
+   def _governor(self):
+      p = self._client._parent
+      if p is None or p.parallel:
+         return None
+      while p._parent is not None and not p._parent.parallel:
+         p = p._parent
+      return p
+
+   @property
+   def _number(self):
+      p = self._client._parent
+      while p is not None:
+         if p.formatter.number:
+            return True
+         else:
+            p = p._parent
+      return None
+      
+   @property
+   def _parentage(self):
+      result = [ ]
+      parent = self._client._parent
+      while parent is not None:
+         result.append(parent)
+         parent = parent._parent
+      return result
+
+   @property
+   def _threadParentage(self):
+      '''Return thread-pertinent parentage structure.
+         Same as _parentage but with _Tuplets, redundant Sequentials, 
+         Parallels and tautologies (unlikely) removed.'''
+      parentage = self._parentage
+      if len(parentage) > 0:
+      ### remove sequentials
+         for p in parentage[:]:
+            if p.kind('Sequential') or p.kind('_Tuplet'):
+               parentage.remove(p)
+            else:
+               break
+      # remove tautological nesting
+         for i, p in enumerate(parentage[:-1]):
+            if type(p) == type(parentage[i+1]):
+               if p.kind('Parallel'): # or p.kind('Sequential'):
+                  parentage.remove(p)
+               elif p.kind('_Context'):
+                  if p.invocation == parentage[i+1].invocation:
+                     parentage.remove(p)
+      return parentage

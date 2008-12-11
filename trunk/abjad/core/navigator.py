@@ -229,7 +229,6 @@ class _Navigator(object):
       if len(c_thread_parentage) == len(thread_parentage):
          for c, p in zip(c_thread_parentage, thread_parentage):
             if type(c) == type(p):
-               #if c.kind('Context') and p.kind('Context'):
                if c.kind('_Context') and p.kind('_Context'):
                   if c.invocation != p.invocation:
                      match_parent = False
@@ -240,7 +239,6 @@ class _Navigator(object):
          match_self = True
       elif self._client.kind('Container') and expr.kind('Container'):
          if not self._client.parallel and not expr.parallel:
-            #if self._client.kind('Context') and expr.kind('Context'):
             if self._client.kind('_Context') and expr.kind('_Context'):
                if self._client.invocation == expr.invocation:
                   match_self =  True
@@ -248,6 +246,43 @@ class _Navigator(object):
                match_self =  True
       return match_self and match_parent
 
+   def _pathExistsBetween(self, arg):
+      '''Returns True when self._client and arg are ultimately contained
+         in the same expression, when a reference pathway exists between
+         self._client and arg that passes over no \new or \context
+         boundaries, and when a reference path exists between self._client
+         and arg that crosses over no parallel containers.
+         
+         I propose replacing _isThreadable with this method.'''
+      return self._hasGoodSharedParent(arg) and self._hasGoodPath(arg)
+
+   def _hasGoodSharedParent(self, arg):
+      '''Returns True when self._client and arg have at least one
+         element of shared parentage and the first element of shared
+         parentage between self._client and arg is not parallel.'''
+      first_shared = self._client._parentage._getFirstSharedParent(arg)
+      return first_shared and not first_shared.parallel
+
+   def _isInaccessibleToMe(self, arg):
+      return getattr(arg, 'parallel', False) or \
+         (hasattr(arg, 'invocation') and not self._shareContext(arg)) or \
+         (hasattr(arg, 'invocation') and arg.invocation.name is None)
+
+   def _shareContext(self, arg):
+      '''Return True when self._client and arg share the same
+         enclosing context name, otherwise False.'''
+      return self._client._parentage._enclosingContextName == \
+         arg._parentage._enclosingContextName
+
+   def _hasGoodPath(self, arg):
+      '''Returns True when all of the disjunct elements in the parentage
+         of self._client and arg share the same context and when none
+         of the disjunct elements in the parentage of self._client and arg
+         are parallel containers.'''
+      parentage = \
+         self._client._parentage._disjunctInclusiveParentageBetween(arg)
+      return not any([self._isInaccessibleToMe(p) for p in parentage])
+      
    def _findFellowBead(self, candidates):
       '''Helper method from prevBead and nextBead. 
       Given a list of bead candiates of self, find and return the first one
