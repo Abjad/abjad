@@ -1,7 +1,6 @@
-
 class _Abjad(object):
    '''
-   Abjad root class. All (or just public?) Abjad classes inherit from it.
+   Abjad root class. All Abjad classes inherit from _Abjad.
    '''
    
    def __cmp__(self, arg):
@@ -15,3 +14,6 @@ class _Abjad(object):
 
    def __nonzero__(self):
       return True
+
+   def __repr__(self):
+      return '<%s>' % self.__class__.__name__
