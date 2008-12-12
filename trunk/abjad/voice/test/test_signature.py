@@ -445,17 +445,15 @@ def test_signature_15( ):
 
 
 def test_signature_16( ):
-   '''Crazy: LilyPond places the sequential in one (implicit) voice and
-      places the explicit (but anonymous) voice in another voice.
-      The sequential here must carry a different signature than
-      the explicit voice.'''
+   '''Sequential-enclosed notes followed by (anonymous) voice, all enclosed.
+
+      LilyPond does NOT allow a continous beam over all eight notes.'''
 
    s1 = Sequential([Note(n, (1, 8)) for n in range(4)])
    v1 = Voice([Note(n, (1, 8)) for n in range(4, 8)])
    t = Sequential([s1, v1])
 
    ### TODO - write the asserts for this test
-   ###        LilyPond will NOT allow a continuous beam here!
 
    r'''
    {
@@ -476,14 +474,15 @@ def test_signature_16( ):
 
 
 def test_signature_17( ):
-   '''Results.'''
+   '''(Anonymous) voice followed by sequential-enclosed notes, all enclosed.
+
+      LilyPond DOES allow a continous beam over all eight notes.'''
 
    v1 = Voice([Note(n, (1, 8)) for n in range(4)])
    s1 = Sequential([Note(n, (1, 8)) for n in range(4, 8)])
    t = Sequential([v1, s1])
 
    ### TODO - write asserts for this test
-   ###        LilyPond DOES allow a continuous beam here!
 
    r'''
    {
@@ -504,7 +503,9 @@ def test_signature_17( ):
 
    
 def test_signature_18( ):
-   '''Results.'''
+   '''Sequential-enclosed notes follow by (named) voice, all seq-enclosed.
+
+      LilyPond does NOT allow a continous beam over all eight notes.'''
 
    s1 = Sequential([Note(n, (1, 8)) for n in range(4)])
    v1 = Voice([Note(n, (1, 8)) for n in range(4, 8)])
@@ -512,7 +513,6 @@ def test_signature_18( ):
    t = Sequential([s1, v1])
 
    ### TODO - write the asserts for this test
-   ###        LilyPond will NOT allow a continuous beam here!
 
    r'''
    {
@@ -533,7 +533,9 @@ def test_signature_18( ):
 
 
 def test_signature_19( ):
-   '''Results.'''
+   '''(Named) voice followed by sequential-contained notes, all seq-enclosed.
+
+      LilyPond DOES allow a continous note over all eight notes.'''
 
    v1 = Voice([Note(n, (1, 8)) for n in range(4)])
    v1.invocation.name
@@ -541,7 +543,6 @@ def test_signature_19( ):
    t = Sequential([v1, s1])
 
    ### TODO - write asserts for this test
-   ###        LilyPond DOES allow a continuous beam here!
 
    r'''
    {
@@ -562,15 +563,15 @@ def test_signature_19( ):
 
    
 def test_signature_20( ):
-   '''Results.'''
+   '''Sequential-enclosed notes followed by (anonymous) staff, seq-enclosed.
+
+      LilyPond does NOT allow a continous beam over all eight notes.'''
 
    sq1 = Sequential([Note(n, (1, 8)) for n in range(4)])
    st1 = Staff([Note(n, (1, 8)) for n in range(4, 8)])
    t = Sequential([sq1, st1])
 
    ### TODO - write the asserts for this test
-   ###        LilyPond absolutely will NOT allow a continuous beam here!
-   ###        In fact, output renders on two separate staves.
 
    r'''
    {
@@ -591,15 +592,15 @@ def test_signature_20( ):
 
 
 def test_signature_21( ):
-   '''Results.'''
+   '''(Anonymous) staff followed by sequential-enclosed notes.
+
+      LilyPond DOES all a continous beam over all eight notes.'''
 
    st1 = Staff([Note(n, (1, 8)) for n in range(4)])
    sq1 = Sequential([Note(n, (1, 8)) for n in range(4, 8)])
    t = Sequential([st1, sq1])
 
    ### TODO - write asserts for this test
-   ###        LilyPond DOES allow a continuous beam here!
-   ###        Even though output renders on a single staff.
 
    r'''
    {
@@ -619,7 +620,171 @@ def test_signature_21( ):
    '''
 
 
+def test_signature_22( ):
+   '''Naked notes followed by (anonymous) voice, all enclosed.
+   
+      LilyPond: does NOT allow a continuous beam over all eight notes.'''
+
+   notes = [Note(n, (1, 8)) for n in range(4)]
+   v1 = Voice([Note(n, (1, 8)) for n in range(4, 8)])
+   t = Sequential(notes + [v1])
+
+   ### TODO - write the asserts for this test
+
+   r'''
+   {
+      c'8
+      cs'8
+      d'8
+      ef'8
+      \new Voice {
+         e'8
+         f'8
+         fs'8
+         g'8
+      }
+   }
+   '''
+
+
+
+def test_signature_23( ):
+   '''Voice followed by nake notes, all enclosed.
+
+      LilyPond DOES allow a continuous beam over all eight notes.'''
+
+   v1 = Voice([Note(n, (1, 8)) for n in range(4)])
+   notes = [Note(n, (1, 8)) for n in range(4, 8)]
+   t = Sequential([v1] + notes)
+
+   ### TODO - write asserts for this test
+
+   r'''
+   {
+      \new Voice {
+         c'8
+         cs'8
+         d'8
+         ef'8
+      }
+      e'8
+      f'8
+      fs'8
+      g'8
+   }
+   '''
+
+   
+def test_signature_24( ):
+   '''Naked notes followed by (named) voice, all enclosed.
+
+      LilyPond does NOT allow a continous beam over all eight notes.'''
+
+   notes = [Note(n, (1, 8)) for n in range(4)]
+   v1 = Voice([Note(n, (1, 8)) for n in range(4, 8)])
+   v1.invocation.name = 'foo'
+   t = Sequential(notes + [v1])
+
+   ### TODO - write the asserts for this test
+
+   r'''
+   {
+      c'8
+      cs'8
+      d'8
+      ef'8
+      \context Voice = "foo" {
+         e'8
+         f'8
+         fs'8
+         g'8
+      }
+   }
+   '''
+
+
+def test_signature_25( ):
+   '''(Named) voice followed by naked notes, all sequential-enclosed.
+
+      LilyPond DOES allow a continous beam over all eight notes.'''
+
+   v1 = Voice([Note(n, (1, 8)) for n in range(4)])
+   v1.invocation.name = 'foo'
+   notes = [Note(n, (1, 8)) for n in range(4, 8)]
+   t = Sequential([v1] + notes)
+
+   ### TODO - write asserts for this test
+
+   r'''
+   {
+      \context Voice = "foo" {
+         c'8
+         cs'8
+         d'8
+         ef'8
+      }
+      {
+         e'8
+         f'8
+         fs'8
+         g'8
+      }
+   }
+   '''
+
+   
+def test_signature_26( ):
+   '''Naked notes followed by (anonymous) staff, all sequential-enclosed.
+
+      LilyPond does NOT allow a continous beam over all eight notes.'''
+
+   notes = [Note(n, (1, 8)) for n in range(4)]
+   s1 = Staff([Note(n, (1, 8)) for n in range(4, 8)])
+   t = Sequential(notes + [s1])
+
+   ### TODO - write the asserts for this test
+
+   r'''
+   {
+      c'8
+      cs'8
+      d'8
+      ef'8
+      \new Staff {
+         e'8
+         f'8
+         fs'8
+         g'8
+      }
+   }
+   '''
+
+
+def test_signature_27( ):
+   '''(Anonymous) staff followed by naked notes, al sequential-enclosed.
+
+      LilyPond does NOT allow a continous beam over all eight notes.'''
+
+   s1 = Staff([Note(n, (1, 8)) for n in range(4)])
+   notes = [Note(n, (1, 8)) for n in range(4, 8)]
+   t = Sequential([s1] + notes)
+
+   ### TODO - write asserts for this test
+
+   r'''
+   {
+      \new Staff {
+         c'8
+         cs'8
+         d'8
+         ef'8
+      }
+      e'8
+      f'8
+      fs'8
+      g'8
+   }
+   '''
+
 ### TODO - test tautalogical voices
 ### TODO - test tautological staves
-### TODO - (named / anonymous) voice (preceded / followed) by naked notes
-### TODO - (named / anonymous) staff (preceded / followed) by naked notes
