@@ -11,6 +11,7 @@ from abjad.offset.interface import _OffsetInterface
 from abjad.rational.rational import Rational
 from abjad.tempo.interface import _TempoInterface
 from abjad.text.interface import _TextInterface
+from abjad.voice.interface import _VoiceInterface
 from copy import deepcopy
 
 
@@ -28,6 +29,7 @@ class _Component(_Abjad):
       self._parentage = _Parentage(self)
       self._tempo = _TempoInterface(self)
       self._text = _TextInterface(self)
+      self._voice = _VoiceInterface(self)
 
    ### OVERLOADS ###
 
@@ -123,6 +125,10 @@ class _Component(_Abjad):
       def fget(self):
          return self._text
       return property(**locals( ))
+
+   @property
+   def voice(self):
+      return self._voice
 
    ### PUBLIC METHODS ###
 

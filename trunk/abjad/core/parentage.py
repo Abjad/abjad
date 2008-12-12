@@ -29,7 +29,8 @@ class _Parentage(object):
    def _first(self, classname):
       p = self._client._parent
       while p is not None:
-         if p.__class__.__name__ == classname:
+         #if p.__class__.__name__ == classname:
+         if p.kind(classname):
             return p
          else:
             p = p._parent
@@ -97,6 +98,21 @@ class _Parentage(object):
       while p._parent is not None and not p._parent.parallel:
          p = p._parent
       return p
+
+   @property
+   def _iparentage(self):
+      '''
+      'Inclusive' parentage includes self._client.
+      We probably should've defined _parentage this
+      way from the start.
+      Maybe deprecate _parentage and replace with _iparentage later.
+      '''
+      result = [ ]
+      cur = self._client
+      while cur is not None:
+         result.append(cur)
+         cur = cur._parent
+      return result
 
    @property
    def _number(self):
