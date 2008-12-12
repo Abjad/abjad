@@ -1,9 +1,9 @@
-#from abjad.pitch.accidental import _Accidental
 from abjad.accidentals.accidental import _Accidental
+from abjad.core.abjadcore import _Abjad
 from math import floor
 
 
-class _PitchTools(object):
+class _PitchTools(_Abjad):
 
    def __init__(self, _client):
       self._client = _client

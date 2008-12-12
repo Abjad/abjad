@@ -1,7 +1,8 @@
+from abjad.core.abjadcore import _Abjad
 import abjad.pitch.initializers as initializers
 
 
-class _PitchInitializer(object):
+class _PitchInitializer(_Abjad):
    
    def __init__(self): 
       self.initializers = [ ]

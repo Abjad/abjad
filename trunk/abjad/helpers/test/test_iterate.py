@@ -44,7 +44,7 @@ def test_iterate_06( ):
 
 
 def test_iterate_07( ):
-   '''Yield all all python objects.'''
+   '''Yield all python objects.'''
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
    iter = iterate(t, 'object')
    assert len(list(iter)) == 13

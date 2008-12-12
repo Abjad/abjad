@@ -1,14 +1,12 @@
 from abjad.core.abjadcore import _Abjad
 
+
 class _Interface(_Abjad):
 
    def __init__(self, client):
       self._client = client
 
-   ### OVERLOADS ###
-
-   def __repr__(self):
-      return '<%s>' % self.__class__.__name__
+   ### PRIVATE METHODS ###
 
    def _copy(self):
       from copy import copy

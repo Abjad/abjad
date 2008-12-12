@@ -1,5 +1,4 @@
 from abjad.core.abjadcore import _Abjad
-#from abjad.pitch.accidental import _Accidental
 from abjad.accidentals.accidental import _Accidental
 from abjad.pitch.initializer import _PitchInitializer
 from abjad.pitch.tools import _PitchTools

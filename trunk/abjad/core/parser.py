@@ -1,4 +1,22 @@
-class _Parser(object):
+from abjad.core.abjadcore import _Abjad
+
+
+class _Parser(_Abjad):
+
+   ### PRIVATE METHODS ###
+
+   def _isConstant(self, value):
+      if isinstance(value, int) or isinstance(value, float) or \
+          value in ['up', 'down', 'center', 
+         'red', 'blue', 'green', 'black', 'white']:
+         return True
+      else:
+         return False
+
+   def _isLilyFunctionName(self, arg):
+      return isinstance(arg, str) and '::' in arg
+
+   ### PUBLIC METHODS ###
 
    def formatAttribute(self, attribute):
       result = attribute.replace('_', '-')
@@ -20,14 +38,3 @@ class _Parser(object):
          return value
       else:
          return "#'%s" % value
-      
-   def _isConstant(self, value):
-      if isinstance(value, int) or isinstance(value, float) or \
-          value in ['up', 'down', 'center', 
-         'red', 'blue', 'green', 'black', 'white']:
-         return True
-      else:
-         return False
-
-   def _isLilyFunctionName(self, arg):
-      return isinstance(arg, str) and '::' in arg

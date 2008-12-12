@@ -1,4 +1,7 @@
-class _Clef(object):
+from abjad.core.abjadcore import _Abjad
+
+
+class _Clef(_Abjad):
 
    def __init__(self, name = 'treble'):
       self.name = name

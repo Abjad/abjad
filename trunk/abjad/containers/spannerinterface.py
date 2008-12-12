@@ -6,15 +6,10 @@ from abjad.helpers.hasname import hasname
 ###        derive both this _ContainerSpannerInterface and
 ###        also _LeafSpannerInterface from _SpannerInterface;
 
-#class _ContainerSpannerInterface(object):
 class _ContainerSpannerInterface(_Interface):
 
    def __init__(self, client):
-      #self._client = client
       _Interface.__init__(self, client)
-
-#   def __repr__(self):
-#      return '_ContainerSpannerInterface(%s)' % len(self)
 
    ### OVERLOADS ###
 

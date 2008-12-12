@@ -1,10 +1,10 @@
 from abjad.accidentals.accidental import _Accidental
+from abjad.core.abjadcore import _Abjad
 from abjad.helpers.is_pitch_pair import _is_pitch_pair
-#from abjad.pitch.accidental import _Accidental
 from math import floor
 
 
-class _PitchInit(object):
+class _PitchInit(_Abjad):
 
    pass
 

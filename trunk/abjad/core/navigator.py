@@ -1,3 +1,4 @@
+from abjad.core.abjadcore import _Abjad
 from collections import deque
 
 
@@ -7,7 +8,7 @@ from collections import deque
 ### TODO should we replace the old next with the new ._navigator._next?
 ###      add other next helpers such as nextLeaf?
 
-class _Navigator(object):
+class _Navigator(_Abjad):
 
    def __init__(self, client):
       self._client = client

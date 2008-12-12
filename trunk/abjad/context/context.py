@@ -23,7 +23,7 @@ class _Context(Container):
          self.brackets.close)
 
    ### TODO: eliminate this in favor of ID-only equivalence,
-   ###       just like all the other system objects;
+   ###       just like all the other system components;
    ###       if we want to preserve this functionality,
    ###       either test all three attributes by hand,
    ###       or save this functionality off as a different

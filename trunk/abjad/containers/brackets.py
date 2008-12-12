@@ -1,9 +1,12 @@
-class _Brackets(object):
+from abjad.core.abjadcore import _Abjad
+
+
+class _Brackets(_Abjad):
 
    def __init__(self, name = 'round'):
       self.name = name
 
-   ### SPECIAL METHODS ###
+   ### OVERLOADS ###
 
    def __eq__(self, arg):
       if isinstance(arg, str):

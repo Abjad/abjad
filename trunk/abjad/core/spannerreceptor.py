@@ -1,4 +1,7 @@
-class _SpannerReceptor(object):
+from abjad.core.abjadcore import _Abjad
+
+
+class _SpannerReceptor(_Abjad):
 
    def __init__(self, spanners):
       self._spanners = spanners
@@ -18,11 +21,8 @@ class _SpannerReceptor(object):
       return self.spanned and self.spanner._isMyOnlyLeaf(self._client)
 
    @property
-   def spanners(self):
-      result = [ ]
-      for classname in self._spanners:
-         result.extend(self._client.spanners.get(classname = classname))
-      return result
+   def spanned(self):
+      return bool(self.spanners)
 
    @property
    def spanner(self):
@@ -31,8 +31,11 @@ class _SpannerReceptor(object):
          return self.spanners[0]
 
    @property
-   def spanned(self):
-      return bool(self.spanners)
+   def spanners(self):
+      result = [ ]
+      for classname in self._spanners:
+         result.extend(self._client.spanners.get(classname = classname))
+      return result
 
    ### PUBLIC METHODS ###
 

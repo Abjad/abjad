@@ -121,7 +121,7 @@ def test_copy_adjacent_tupletized_notes_02( ):
 ### not sure what the right interface here would be;
 ### it isn't possible to say t.leaves(0, 5) because t.leaves
 ### is merely a (built-in) list.
-### this may motivate a (non-object oriented) copy( ) function;
+### this may motivate a (non-OOP) copy( ) function;
 ### then copy(t, (0, 5), indices = 'leaves') might make sense;
 ### or leafCopy(t, (0, 5)), or something similar.
 

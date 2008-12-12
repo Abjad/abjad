@@ -134,7 +134,7 @@ class _Component(_Abjad):
 
    def copy(self):
       '''
-      Clones a complete Abjad object;
+      Clones a complete Abjad component;
       first fractures and then cuts parent;
       (cut followed by fracture destroys 'next');
       deepcopies reference-pruned version of self;

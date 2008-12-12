@@ -1,4 +1,7 @@
-class _Articulation(object):
+from abjad.core.abjadcore import _Abjad
+
+
+class _Articulation(_Abjad):
 
    def __init__(self, string = None, direction = None):
       self.string = string

@@ -1,7 +1,8 @@
+from abjad.core.abjadcore import _Abjad
 from abjad.rational.rational import Rational
 
 
-class _Parentage(object):
+class _Parentage(_Abjad):
 
    def __init__(self, client):
       self._client = client

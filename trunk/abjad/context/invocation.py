@@ -1,4 +1,7 @@
-class _Invocation(object):
+from abjad.core.abjadcore import _Abjad
+
+
+class _Invocation(_Abjad):
 
    def __init__(self, client, type = None, name = None, modifications = [ ]):
       self._client = client
@@ -8,6 +11,7 @@ class _Invocation(object):
       self.modifications.extend(modifications)
       self.command = r'new'
 
+   ### OVERLOADS ###
 
    def __eq__(self, arg):
       if isinstance(arg, _Invocation):
@@ -23,33 +27,6 @@ class _Invocation(object):
    def __ne__(self, arg):
       return not self.__eq__(arg)
 
-   ### MANAGED ATTRIBUTES ###
-
-   @apply
-   def name( ):
-      def fget(self):
-         return self._name
-      def fset(self, arg):
-         self._name = arg
-         self.command = 'context'
-      return property(**locals( ))
-
-   @apply
-   def command( ):
-      def fget(self):
-         return self._command
-      def fset(self, arg):
-         if isinstance(arg, str):
-            if arg in ('new', 'context'):
-               self._command = '\\' + arg
-            else:
-               raise ValueError('set invocation to "new" or "context" only')
-         else:
-            raise ValueError('set invocation to str only.')
-      return property(**locals( ))
-
-   ### REPR ###
-
    def __repr__(self):
       result = [ ]
       if self.type:
@@ -64,7 +41,13 @@ class _Invocation(object):
       else:
          return '_Invocation( )'
 
-   ### FORMATTING ###
+   ### PRIVATE ATTRIBUTES ###
+
+   @property
+   def _closing(self):
+      result = [ ]
+      result.append(self._client.brackets.close)
+      return result
 
    @property
    def _opening(self):
@@ -85,8 +68,27 @@ class _Invocation(object):
          result.append(self._client.brackets.open)
       return result
 
-   @property
-   def _closing(self):
-      result = [ ]
-      result.append(self._client.brackets.close)
-      return result
+   ### PUBLIC ATTRIBUTES ###
+
+   @apply
+   def command( ):
+      def fget(self):
+         return self._command
+      def fset(self, arg):
+         if isinstance(arg, str):
+            if arg in ('new', 'context'):
+               self._command = '\\' + arg
+            else:
+               raise ValueError('set invocation to "new" or "context" only')
+         else:
+            raise ValueError('set invocation to str only.')
+      return property(**locals( ))
+
+   @apply
+   def name( ):
+      def fget(self):
+         return self._name
+      def fset(self, arg):
+         self._name = arg
+         self.command = 'context'
+      return property(**locals( ))

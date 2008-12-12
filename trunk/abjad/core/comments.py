@@ -1,15 +1,12 @@
-class _Comments(list):
+from abjad.core.abjadcore import _Abjad
+
+
+class _Comments(list, _Abjad):
    
    def __init__(self):
       self.before = [ ]
       self.after = [ ]
       self.right = [ ]
-
-#   def __repr__(self):
-#      if len(self):
-#         return 'Comments(%s)' % ', '.join(self)
-#      else:
-#         return 'Comments( )'
 
    @property
    def _before(self):
