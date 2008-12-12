@@ -390,3 +390,61 @@ class _Navigator(_Abjad):
                queue.extend(node._music)
             else:
                queue.extend(reversed(node._music))
+
+   def _nextNodeDF(self, total):
+      '''
+      If client has unvisited music, 
+      return next unvisited node in client's music.
+
+      If client has no univisited music and has a parent,
+      return client's parent.
+
+      If client has no univisited music and no parent,
+      return None.
+      '''
+
+      client = self._client
+      if hasattr(client, '_music') and len(client) > 0 and \
+         total < len(client):
+         return client[total], 0 
+      else:
+         parent = client._parent
+         if parent is not None:
+            return parent, parent.index(client) + 1
+         else:
+            return None, None
+
+   def _prevNodeDF(self, total = 0):
+      '''
+      If client has unvisited music, 
+      return prev unvisited node in client's music.
+
+      If client has no univisited music and has a parent,
+      return client's parent.
+
+      If client has no univisited music and no parent,
+      return None.
+      '''
+
+      client = self._client
+      if hasattr(client, '_music') and len(client) > 0 and \
+         total < len(client):
+         return client[len(client) - 1 - total], 0
+      else:
+         parent = client._parent
+         if parent is not None:
+            return parent, len(parent) - parent.index(client)
+         else:
+            return None, None
+
+   def _depthFirstLeftToRight(self):
+      node, rank = self._client, 0 
+      while node is not None:
+         yield node
+         node, rank = node._navigator._nextNodeDF(rank)
+
+   def _depthFirstRightToLeft(self):
+      node, total = self._client, 0
+      while node is not None:
+         yield node, total
+         node, total = node._navigator._prevNodeDF(total)
