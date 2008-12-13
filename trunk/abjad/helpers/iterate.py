@@ -13,3 +13,6 @@ def iterate(expr, classname):
          for x in iterate(m, classname):
             yield x
 
+
+def components(expr):
+   return iterate(expr, '_Component')
