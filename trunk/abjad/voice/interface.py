@@ -1,85 +1,74 @@
 from abjad.core.interface import _Interface
-from abjad.helpers.instances import instances
 
 
 class _VoiceInterface(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
+      self._defaultSignature = (0, )
 
-      
    ### PRIVATE ATTRIBUTES ###
 
    @property
-   def _canBeContainedInVoice(self):
-      client = self._client
-      if client.kind('Voice'):
-         return True
-      elif not hasattr(client, 'invocation'):
-         if not getattr(client, 'parallel', False):
-            return True
-      return False
-
-   ### TODO - make instances return a generator
-   @property
-   def _containsVoiceBreaker(self):
-      for x in instances(self._client, '_Component'):
-         if not x.voice._canBeContainedInVoice:
-            return True
-      else:
-         return False
+   def _naiveSignature(self):
+      if hasattr(self._client, 'invocation'):
+         if self._client.invocation.name is not None:
+            return (self._client.invocation.name, )
+      return (id(self._client), )
 
    ### PUBLIC ATTRIBUTES ###
 
    @property
-   def creator(self):
-      client = self._client
-      if not self._canBeContainedInVoice:
-         return None
-      else:
-         parentage = self._client._parentage._iparentage
-         for i, p in enumerate(parentage):
-            if hasattr(p, 'invocation'):
-               return p
-            elif getattr(p, 'parallel', False):
-               return parentage[i - 1]
-         else:
-            return None
-         
-   @property
-   def effective(self):
-      creator = self.creator
-      if creator is not None and creator.kind('Voice'):
-         return creator
-      else:
-         return None
+   def anonymous(self):
+      return not self.named
 
    @property
-   def explicit(self):
-      return bool(self.effective)      
+   def default(self):
+      return self.signature == self._defaultSignature
 
    @property
-   def name(self):
-      effective = self.effective
-      if effective:
-         return effective.invocation.name
-      else:
-         return None
+   def named(self):
+      return isinstance(self.signature[0], str)
+   
+   @property
+   def numeric(self):
+      first = self.signature[0]
+      return isinstance(first, int) and 0 < first
 
    @property
    def signature(self):
-      name = self.name
-      if name:
-         return (name, )
-      else:
-         creator = self.creator
-         if creator:
-            return (id(creator), )
-         elif self._client.kind('Container') and \
-            self._canBeContainedInVoice and not self._containsVoiceBreaker:
-            return (-1, )
-         elif self._client._parentage._first('Container') is not None and \
-            not self._containsVoiceBreaker:
-            return (-1, )
+      parentage = self._client._parentage._iparentage
+      found_lilypond_expression = False
+      signator = None
+      for i, p in enumerate(parentage):
+         #print i, p, '\n'
+         if p.kind('_Leaf'):
+            signator = p
+         elif p.kind('_Context') and not getattr(p, 'parallel', False):
+            found_lilypond_expression = True
+            return p.voice._naiveSignature 
+         elif p.kind('_Context') and getattr(p, 'parallel', False):
+            found_lilypond_expression = True
+            if parentage.index(p) == 0:
+               return p.voice._naiveSignature
+            else:
+               return parentage[i - 1].voice._naiveSignature
+         elif not p.kind('_Conext') and not getattr(p, 'parallel', False):
+            found_lilypond_expression = True
+            signator = p
+         elif not p.kind('_Context') and getattr(p, 'parallel', False):
+            found_lilypond_expression = True
+            if p._parentage._orphan:
+               if parentage.index(p) == 0:
+                  return self._defaultSignature
+               else:
+                  return parentage[i - 1].voice._naiveSignature
+            else:
+               signator = p
          else:
-            return None
+            found_lilypond_expression = True
+            raise ValueError('%s is unknown container.' % p)
+      if found_lilypond_expression:
+         return self._defaultSignature
+      else:
+         return None

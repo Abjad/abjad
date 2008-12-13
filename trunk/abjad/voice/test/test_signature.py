@@ -3,7 +3,9 @@ import py.test
 
 
 def test_signature_01( ):
-   '''Unincorporated leaves carry no voice signature.'''
+   '''
+   Orphan leaves carry no voice signature.
+   '''
 
    assert Note(0, (1, 4)).voice.signature is None
    assert Rest((1, 4)).voice.signature is None
@@ -12,18 +14,14 @@ def test_signature_01( ):
 
 
 def test_signature_02( ):
-   '''Unincorporated sequential container carries 
-      the default -1 voice signature;
-      sequentialized leaves carry the voice signature 
-      of their containing sequential container.'''
+   '''
+   Sequential container carries the signature of the default voice;
+   sequentialized leaves carry the signature of the default voice.
+   '''
 
    t = Sequential([Note(n, (1, 8)) for n in range(4)])
 
-   assert t.voice.signature == (-1, )
-   assert t[0].voice.signature == (-1, )
-   assert t[1].voice.signature == (-1, )
-   assert t[2].voice.signature == (-1, )
-   assert t[3].voice.signature == (-1, )
+   assert all([x.voice.default for x in components(t)])
 
    r'''
    {
@@ -36,15 +34,14 @@ def test_signature_02( ):
 
 
 def test_signature_03( ):
-   '''Unincorporated tuplet carries the default -1 voice signature;
-      tupletted notes carry the voice signature of their containing tuplet.'''
+   '''
+   Tuplet carries the signature of the default voice.
+   Tupletted leaves carry the signature of the default voice.
+   '''
    
    t = FixedDurationTuplet((2, 8), [Note(n, (1, 8)) for n in range(3)])
-
-   assert t.voice.signature == (-1, )
-   assert t[0].voice.signature == (-1, )
-   assert t[1].voice.signature == (-1, )
-   assert t[2].voice.signature == (-1, )
+   
+   assert all([x.voice.default for x in components(t)])
 
    r'''
    \times 2/3 {
@@ -56,12 +53,14 @@ def test_signature_03( ):
 
 
 def test_signature_04( ):
-   '''Parallel container carries no voice signature.
-      Parallelized leaves each carry a different voice signature.'''
+   '''
+   Parallel container carries the signature of the default voice.
+   Parallel leaves each carry a different voice signature.
+   '''
 
    t = Parallel([Note(n, (1, 8)) for n in range(4)])
 
-   assert t.voice.signature is None
+   assert t.voice.default
    assert len(set([x.voice.signature for x in t])) == len(t)
 
    r'''
@@ -94,13 +93,15 @@ def test_signature_05( ):
 
 
 def test_signature_06( ):
-   '''Unincorporated staff carries no voice signature;
-      in-staff leaves each carry the same signature.'''
+   '''
+   Staff creates an implicit voice with a numeric signature.
+   Staff leaves carry the same signature as staff.
+   '''
 
    t = Staff([Note(i, (1, 8)) for i in range(4)])
 
-   assert t.voice.signature is None
-   assert len(set([x.voice.signature for x in t])) == 1
+   assert not t.voice.default
+   assert all([x.voice.signature == t.voice.signature for x in t])
 
    r'''
    \new Staff {
@@ -143,16 +144,16 @@ def test_signature_07( ):
 
 
 def test_signature_08( ):
-   '''Voice creates its own voice signature;
-      all other components here inherit signature from voice.'''
+   '''
+   (Anonymous) voice creates its own (numeric) voice signature.
+   All components here carry the same signature.
+   '''
 
-   t1 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
-   t2 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3, 6)])
-   t = Voice([t1, t2])
+   t = Voice(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2)
+   appictate(t)
 
-   assert t.voice.signature == (id(t), )
-   components = instances(t, '_Component')
-   assert all([x.voice.signature == t.voice.signature for x in components])
+   assert not t.voice.default
+   assert all([x.voice.signature == t.voice.signature for x in components(t)])
 
    r'''
    \new Voice {
@@ -171,18 +172,19 @@ def test_signature_08( ):
 
 
 def test_signature_09( ):
-   '''Staff can not be contained in voice and carries no voice signature;
-      each voice creates its own voice signature;
-      in-voice contents inherit signature from voice.'''
+   '''
+   (Anonymous) staff creates its own (numeric) voice signature.
+   (Anonymous) voices each create their own (numeric) signatures.
+   Voice leaves carry the same signature.
+   '''
 
-   v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-   t = Staff([v1, v2])
+   t = Staff(Voice(Note(0, (1, 8)) * 4) * 2)
+   appictate(t)
 
-   assert t.voice.signature is None
-   assert t[0].voice.signature == (id(t[0]), )
+   assert not t.voice.default
+   assert not t[0].voice.default
    assert all([x.voice.signature == t[0].voice.signature for x in t[0]])
-   assert t[1].voice.signature == (id(t[1]), )
+   assert not t[1].voice.default
    assert all([x.voice.signature == t[1].voice.signature for x in t[1]])
    
    r'''
@@ -204,17 +206,18 @@ def test_signature_09( ):
 
 
 def test_signature_10( ):
-   '''Staff can not be voice-contained and so carries no voice signature;
-      both named voices carry the same signature;
-      in-voice contents inherit signature from voice.'''
+   '''
+   (Anonymous) staff creates its own (numeric) voice signature.
+   Both (named) voices carry the same (named) signature.
+   Voice leaves all carry the same signature.
+   '''
 
-   v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   v1.invocation.name = 'foo'
-   v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-   v2.invocation.name = 'foo'
-   t = Staff([v1, v2])
+   t = Staff(Voice(Note(0, (1, 8)) * 4) * 2)
+   appictate(t)
+   t[0].invocation.name = 'foo'
+   t[1].invocation.name = 'foo'
 
-   assert t.voice.signature is None
+   assert not t.voice.default
    assert t[0].voice.signature == ('foo', )
    assert t[1].voice.signature == ('foo', )
    assert all([x.voice.signature == t[0].voice.signature for x in t.leaves])
@@ -238,21 +241,23 @@ def test_signature_10( ):
 
 
 def test_signature_11( ):
-   '''Staff can not be voice-contained and so carries no voice signature;
-      the differently named voices here carry different signatures;
-      in-voice contents inherit signature from containing voice.'''
+   '''
+   (Anonymous) staff creates its own (numeric) signature.
+   Differently named voices create different (named) signatures.   
+   Voice leaves carry the signature of their containing voice.
+   '''
 
-   v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   v1.invocation.name = 'foo'
-   v2 = Voice([Note(i, (1, 8)) for i in range(4, 88)])
-   v2.invocation.name = 'bar'
-   t = Staff([v1, v2])
+   t = Staff(Voice(Note(0, (1, 8)) * 4) * 2)
+   appictate(t)
+   t[0].invocation.name = 'foo'
+   t[1].invocation.name = 'bar'
 
-   assert t.voice.signature is None
-   assert t[0].voice.signature == ('foo', )
+   assert t.voice.anonymous and t.voice.numeric
+   assert t[0].voice.named
    assert all([x.voice.signature == t[0].voice.signature for x in t[0]])
-   assert t[1].voice.signature == ('bar', )
+   assert t[1].voice.named
    assert all([x.voice.signature == t[1].voice.signature for x in t[1]])
+   assert t.voice.signature != t[0].voice.signature != t[1].voice.signature
 
    r'''
    \new Staff {
@@ -273,23 +278,21 @@ def test_signature_11( ):
 
 
 def test_path_exists_between_11( ):
-   '''Outermost sequential container contains voice-breakers and
-      so carries no voice signature;
-      staves can not be voice-contained and so carry no voice signatures;
-      different anonymous voices carry different numeric voice signatures;
-      in-voice components inherit signature from voice.'''
+   '''
+   Top-level sequential carries the default signature.
+   (Anonymous) staves create two different (numeric) signatures.
+   (Anonymous) voices create two different (numeric) signatures.
+   Voice leaves carry the signature of their containing voice.
+   '''
 
-   v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-   s1 = Staff([v1])
-   s2 = Staff([v2])
-   t = Sequential([s1, s2])
+   t = Sequential(Staff([Voice(Note(0, (1, 8)) * 4)]) * 2)
+   appictate(t)
    
-   assert t.voice.signature is None
-   assert t[0].voice.signature is None
-   assert t[0][0].voice.signature == (id(t[0][0]), )
-   assert t[1].voice.signature is None
-   assert t[1][0].voice.signature == (id(t[1][0]), )
+   assert t.voice.default
+   assert t[0].voice.numeric
+   assert t[0][0].voice.numeric
+   assert t[1].voice.numeric
+   assert t[1][0].voice.numeric
    assert t[0][0].voice.signature != t[1][0].voice.signature
    assert t[0][0][0].voice.signature != t[1][0][0].voice.signature
 
@@ -316,56 +319,58 @@ def test_path_exists_between_11( ):
 
 
 def test_signature_13( ):
-   '''Results.'''
+   '''
+   Top-level sequential carries default signature.
+   (Anonymous) parallel staves carry two different numeric signatures.
+   (Anonymous) voices each carry different numeric signatures.
+   Voice contents carry the signature of their containing voice.
+   Abjad identifies the default voice and six different anonymous voices.
+   '''
 
-   vl1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   vl2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-   vh1 = Voice([Note(i, (1, 8)) for i in range(12, 16)])
-   vh2 = Voice([Note(i, (1, 8)) for i in range(16, 20)])
-   s1 = Staff([vh1, vl1])
-   s1.brackets = 'double-angle'
-   s2 = Staff([vl2, vh2])
-   s2.brackets = 'double-angle'
-   t = Sequential([s1, s2])
+   t = Sequential(Staff(Voice(Note(0, (1, 8)) * 4) * 2) * 2)
+   appictate(t)
+   t[0].brackets = 'double-angle'
+   t[1].brackets = 'double-angle'
 
-   assert t.voice.signature is None
-   assert t[0].voice.signature is None
-   assert t[0][0].voice.signature == (id(t[0][0]), )
-   assert t[0][1].voice.signature == (id(t[0][1]), )
+   assert t.voice.default
+   assert t[0].voice.numeric
+   assert t[0][0].voice.numeric
+   assert t[0][1].voice.numeric
    assert t[0][0].voice.signature != t[0][1].voice.signature
-   assert t[1].voice.signature is None
-   assert t[1][0].voice.signature == (id(t[1][0]), )
-   assert t[1][1].voice.signature == (id(t[1][1]), )
+   assert t[1].voice.numeric
+   assert t[1][0].voice.numeric
+   assert t[1][1].voice.numeric
    assert t[1][0].voice.signature != t[1][1].voice.signature
+   assert t[0].voice.signature != t[1].voice.signature
 
    r'''
    {
       \new Staff <<
-         \new Voice {
-            c''8
-            cs''8
-            d''8
-            ef''8
-         }
          \new Voice {
             c'8
             cs'8
             d'8
             ef'8
          }
-      >>
-      \new Staff <<
          \new Voice {
             e'8
             f'8
             fs'8
             g'8
          }
+      >>
+      \new Staff <<
          \new Voice {
-            e''8
-            f''8
-            fs''8
-            g''8
+            af'8
+            a'8
+            bf'8
+            b'8
+         }
+         \new Voice {
+            c''8
+            cs''8
+            d''8
+            ef''8
          }
       >>
    }
@@ -373,18 +378,17 @@ def test_signature_13( ):
 
 
 def test_signature_14( ):
-   '''The voice creates its own voice signature;
-      all other components here inherit their signature from voice.'''
+   '''
+   The (anonymous) voice creates its own (numeric) signature.
+   All components carry the signature of this (anonymous) voice.
+   Abjad identifies a single voice.
+   '''
 
-   s1 = Sequential([Note(i, (1, 8)) for i in range(4)])
-   s1 = Sequential([s1])
-   s2 = Sequential([Note(i, (1, 8)) for i in range(4, 8)])
-   s2 = Sequential([s2])
-   t = Voice([s1, s2])
+   t = Voice([Sequential(Note(0, (1, 8)) * 4)] * 2)
+   appictate(t)
 
-   assert t.voice.signature == (id(t), )
-   components = instances(t, '_Component')
-   assert all([x.voice.signature == t.voice.signature for x in components])
+   assert t.voice.numeric
+   assert all([x.voice.signature == t.voice.signature for x in components(t)])
 
    r'''
    \new Voice {
@@ -409,22 +413,21 @@ def test_signature_14( ):
 
 
 def test_signature_15( ):
-   '''The topmost sequential here carries no voice signature;
-      the two named staves here carry no voice signature;
-      the contents of each staff derive signature from an implicit voice.'''
+   '''
+   Top-level sequential carries the default signature.
+   Like-named staves carry the same (named) signature.
+   Staff contents carry the same signature as their containing staves.
+   Abjad identifies the default voice and one named voice.
+   '''
 
-   s1 = Staff([Note(n, (1, 8)) for n in range(4)])
-   s1.invocation.name = 'foo'
-   s2 = Staff([Note(n, (1, 8)) for n in range(4, 8)])
-   s2.invocation.name = 'foo'
-   t = Sequential([s1, s2])
+   t = Sequential(Staff(Note(0, (1, 8)) * 4) * 2)
+   appictate(t)
+   t[0].invocation.name = 'foo'
+   t[1].invocation.name = 'foo'
 
-   assert t.voice.signature is None
-   assert t[0].voice.signature is None
-   assert len(set([x.voice.signature for x in t[0]])) == 1
-   assert t[1].voice.signature is None
-   assert len(set([x.voice.signature for x in t[1]])) == 1
-   assert t[0][0].voice.signature != t[1][0].voice.signature
+   assert t.voice.default
+   assert t[0].voice.named
+   assert all([x.voice.signature == t[0].voice.signature for x in t.leaves])
 
    r'''
    {
@@ -445,16 +448,24 @@ def test_signature_15( ):
 
 
 def test_signature_16( ):
-   '''Sequential-enclosed notes followed by (anonymous) voice, all enclosed.
+   '''
+   Sequential-enclosed notes followed by an (anonymous) voice.
+   LilyPond assigns the first four notes to the default voice.
+   The (anonymous) voice creates its own (numeric) signature.
+   Voice notes carry the signature of their voice.
+   LilyPond does NOT allow a continous beam over all eight notes.
+   Abjad identifies the default voice and one anonymous voice.
+   '''
 
-      LilyPond does NOT allow a continous beam over all eight notes.'''
+   t = Sequential([Sequential(Note(0, (1, 8)) * 4), Voice(Note(0, (1, 8)) * 4)])
+   appictate(t)
 
-   s1 = Sequential([Note(n, (1, 8)) for n in range(4)])
-   v1 = Voice([Note(n, (1, 8)) for n in range(4, 8)])
-   t = Sequential([s1, v1])
-
-   ### TODO - write the asserts for this test
-
+   assert t.voice.default
+   assert t[0].voice.default
+   assert all([x.voice.default for x in t[0]])
+   assert t[1].voice.numeric
+   assert all([x.voice.signature == t[1].voice.signature for x in t[1]])
+   
    r'''
    {
       {
@@ -474,16 +485,20 @@ def test_signature_16( ):
 
 
 def test_signature_17( ):
-   '''(Anonymous) voice followed by sequential-enclosed notes, all enclosed.
+   '''
+   (Anonymous) voice followed by sequential notes.
+   LilyPond identifies two voice.
+   LilyPond DOES allow a continous beam over all eight notes.
+   '''
 
-      LilyPond DOES allow a continous beam over all eight notes.'''
+   t = Sequential([Voice(Note(0, (1, 8)) * 4), Sequential(Note(0, (1, 8)) * 4)])
+   appictate(t)
 
-   v1 = Voice([Note(n, (1, 8)) for n in range(4)])
-   s1 = Sequential([Note(n, (1, 8)) for n in range(4, 8)])
-   t = Sequential([v1, s1])
-
-   ### TODO - write asserts for this test
-
+   assert t.voice.default
+   assert t[0].voice.numeric
+   assert all([x.voice.signature == t[0].voice.signature for x in t[0]])
+   assert all([x.voice.default for x in t[1: ]])
+   
    r'''
    {
       \new Voice {
@@ -503,16 +518,23 @@ def test_signature_17( ):
 
    
 def test_signature_18( ):
-   '''Sequential-enclosed notes follow by (named) voice, all seq-enclosed.
+   '''
+   Sequential notes follow by (named) voice.
+   LilyPond identifies two voices.
+   LilyPond does NOT allow a continous beam over all eight notes.
+   Abjad assigns the signature of the default voice to the first four notes.
+   Abjad assigns the signature of the (anonymous) voice to the last four.
+   '''
 
-      LilyPond does NOT allow a continous beam over all eight notes.'''
+   t = Sequential([Sequential(Note(0, (1, 8)) * 4), Voice(Note(0, (1, 8)) * 4)])
+   t[1].invocation.name = 'foo'
+   appictate(t)
 
-   s1 = Sequential([Note(n, (1, 8)) for n in range(4)])
-   v1 = Voice([Note(n, (1, 8)) for n in range(4, 8)])
-   v1.invocation.name = 'foo'
-   t = Sequential([s1, v1])
-
-   ### TODO - write the asserts for this test
+   assert t.voice.default
+   assert t[0].voice.default
+   assert all([x.voice.default for x in t[0]])
+   assert t[1].voice.named
+   assert all([x.voice.named for x in t[1]])
 
    r'''
    {
@@ -537,12 +559,15 @@ def test_signature_19( ):
 
       LilyPond DOES allow a continous note over all eight notes.'''
 
-   v1 = Voice([Note(n, (1, 8)) for n in range(4)])
-   v1.invocation.name
-   s1 = Sequential([Note(n, (1, 8)) for n in range(4, 8)])
-   t = Sequential([v1, s1])
+   t = Sequential([Voice(Note(0, (1, 8)) * 4), Sequential(Note(0, (1, 8)) * 4)])
+   t[0].invocation.name = 'foo'
+   appictate(t)
 
-   ### TODO - write asserts for this test
+   assert t.voice.default
+   assert t[0].voice.named
+   assert all([x.voice.named for x in t[0]])
+   assert t[1].voice.default
+   assert all([x.voice.default for x in t[1]])
 
    r'''
    {
@@ -563,15 +588,20 @@ def test_signature_19( ):
 
    
 def test_signature_20( ):
-   '''Sequential-enclosed notes followed by (anonymous) staff, seq-enclosed.
+   '''
+   Sequential notes followed by (anonymous) staff.
+   LilyPond identifies two separate voices each on a different staff.
+   LilyPond does NOT allow a continous beam over all eight notes.
+   '''
 
-      LilyPond does NOT allow a continous beam over all eight notes.'''
+   t = Sequential([Sequential(Note(0, (1, 8)) * 4), Staff(Note(0, (1, 8)) * 4)])
+   appictate(t)
 
-   sq1 = Sequential([Note(n, (1, 8)) for n in range(4)])
-   st1 = Staff([Note(n, (1, 8)) for n in range(4, 8)])
-   t = Sequential([sq1, st1])
-
-   ### TODO - write the asserts for this test
+   assert t.voice.default
+   assert t[0].voice.default
+   assert all([x.voice.default for x in t[0]])
+   assert t[1].voice.numeric
+   assert all([x.voice.numeric for x in t[1]])
 
    r'''
    {
@@ -592,15 +622,20 @@ def test_signature_20( ):
 
 
 def test_signature_21( ):
-   '''(Anonymous) staff followed by sequential-enclosed notes.
+   '''
+   (Anonymous) staff followed by sequential notes.
+   LilyPond identifies two separate voices each on a different staff.
+   LilyPond DOES all a continous beam over all eight notes.
+   '''
 
-      LilyPond DOES all a continous beam over all eight notes.'''
+   t = Sequential([Staff(Note(0, (1, 8)) * 4), Sequential(Note(0, (1, 8)) * 4)])
+   appictate(t)
 
-   st1 = Staff([Note(n, (1, 8)) for n in range(4)])
-   sq1 = Sequential([Note(n, (1, 8)) for n in range(4, 8)])
-   t = Sequential([st1, sq1])
-
-   ### TODO - write asserts for this test
+   assert t.voice.default
+   assert t[0].voice.numeric
+   assert all([x.voice.numeric for x in t[0]])
+   assert t[1].voice.default
+   assert all([x.voice.default for x in t[1]])
 
    r'''
    {
@@ -621,15 +656,19 @@ def test_signature_21( ):
 
 
 def test_signature_22( ):
-   '''Naked notes followed by (anonymous) voice, all enclosed.
-   
-      LilyPond: does NOT allow a continuous beam over all eight notes.'''
+   '''
+   Naked notes followed by (anonymous) voice.
+   LilyPond renders two different voices on a single staff.
+   LilyPond: does NOT allow a continuous beam over all eight notes.
+   '''
 
-   notes = [Note(n, (1, 8)) for n in range(4)]
-   v1 = Voice([Note(n, (1, 8)) for n in range(4, 8)])
-   t = Sequential(notes + [v1])
+   t = Sequential(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
+   appictate(t)
 
-   ### TODO - write the asserts for this test
+   assert t.voice.default
+   assert all([x.voice.default for x in t[ : 4]])
+   assert t[4].voice.numeric
+   assert all([x.voice.numeric for x in t[4]])
 
    r'''
    {
@@ -649,15 +688,19 @@ def test_signature_22( ):
 
 
 def test_signature_23( ):
-   '''Voice followed by nake notes, all enclosed.
+   '''
+   Voice followed by naked notes.
+   LilyPond renders two different consecutive voices on a single staff.
+   LilyPond DOES allow a continuous beam over all eight notes.
+   '''
 
-      LilyPond DOES allow a continuous beam over all eight notes.'''
+   t = Sequential([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
+   appictate(t)
 
-   v1 = Voice([Note(n, (1, 8)) for n in range(4)])
-   notes = [Note(n, (1, 8)) for n in range(4, 8)]
-   t = Sequential([v1] + notes)
-
-   ### TODO - write asserts for this test
+   assert t.voice.default
+   assert t[0].voice.numeric
+   assert all([x.voice.numeric for x in t[0]])
+   assert all([x.voice.default for x in t[1 : ]])
 
    r'''
    {
@@ -676,16 +719,19 @@ def test_signature_23( ):
 
    
 def test_signature_24( ):
-   '''Naked notes followed by (named) voice, all enclosed.
+   '''
+   Naked notes followed by (named) voice.
+   LilyPond does NOT allow a continous beam over all eight notes.
+   '''
 
-      LilyPond does NOT allow a continous beam over all eight notes.'''
+   t = Sequential(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
+   t[4].invocation.name = 'foo'
+   appictate(t)
 
-   notes = [Note(n, (1, 8)) for n in range(4)]
-   v1 = Voice([Note(n, (1, 8)) for n in range(4, 8)])
-   v1.invocation.name = 'foo'
-   t = Sequential(notes + [v1])
-
-   ### TODO - write the asserts for this test
+   assert t.voice.default
+   assert all([x.voice.default for x in t[ : 4]])
+   assert t[4].voice.named
+   assert all([x.voice.named for x in t[4]])
 
    r'''
    {
@@ -704,9 +750,10 @@ def test_signature_24( ):
 
 
 def test_signature_25( ):
-   '''(Named) voice followed by naked notes, all sequential-enclosed.
-
-      LilyPond DOES allow a continous beam over all eight notes.'''
+   '''
+   (Named) voice followed by naked notes, all sequential-enclosed.
+   LilyPond DOES allow a continous beam over all eight notes.
+   '''
 
    v1 = Voice([Note(n, (1, 8)) for n in range(4)])
    v1.invocation.name = 'foo'
@@ -734,9 +781,10 @@ def test_signature_25( ):
 
    
 def test_signature_26( ):
-   '''Naked notes followed by (anonymous) staff, all sequential-enclosed.
-
-      LilyPond does NOT allow a continous beam over all eight notes.'''
+   '''
+   Naked notes followed by (anonymous) staff, all sequential-enclosed.
+   LilyPond does NOT allow a continous beam over all eight notes.
+   '''
 
    notes = [Note(n, (1, 8)) for n in range(4)]
    s1 = Staff([Note(n, (1, 8)) for n in range(4, 8)])
@@ -761,9 +809,10 @@ def test_signature_26( ):
 
 
 def test_signature_27( ):
-   '''(Anonymous) staff followed by naked notes, al sequential-enclosed.
-
-      LilyPond does NOT allow a continous beam over all eight notes.'''
+   '''
+   (Anonymous) staff followed by naked notes, al sequential-enclosed.
+   LilyPond does NOT allow a continous beam over all eight notes.
+   '''
 
    s1 = Staff([Note(n, (1, 8)) for n in range(4)])
    notes = [Note(n, (1, 8)) for n in range(4, 8)]
@@ -788,3 +837,378 @@ def test_signature_27( ):
 
 ### TODO - test tautalogical voices
 ### TODO - test tautological staves
+
+def test_signature_28( ):
+   '''
+   Voice enclosed in tautological sequential container.
+   LilyPond DOES allow a continuous beam over all eight notes.
+   '''
+
+   v = Voice([Note(n, (1, 8)) for n in range(4)])
+   q = Sequential([v])
+   notes = [Note(n, (1, 8)) for n in range(4, 8)]
+   t = Sequential([q] + notes)
+
+   ### TODO - write asserts
+
+   r'''
+   {
+      {
+         \new Voice {
+            c'8
+            cs'8
+            d'8
+            ef'8
+         }
+      }
+      e'8
+      f'8
+      fs'8
+      g'8
+   }
+   '''
+
+
+def test_signature_29( ):
+   '''
+   (Named) voice enclosed in tautological sequential container.
+   LilyPond DOES allow a continuous beam over all eight notes.
+   '''
+
+   v = Voice([Note(n, (1, 8)) for n in range(4)])
+   v.invocation.name = 'foo'
+   q = Sequential([v])
+   notes = [Note(n, (1, 8)) for n in range(4, 8)]
+   t = Sequential([q] + notes)
+
+   ### TODO - write asserts
+
+   r'''
+   {
+      {
+         \context Voice = "foo" {
+            c'8
+            cs'8
+            d'8
+            ef'8
+         }
+      }
+      e'8
+      f'8
+      fs'8
+      g'8
+   }
+   '''
+
+
+def test_signature_29( ):
+   '''
+   Nested (named) voices.
+   LilyPond does NOT allow a continous beam over all eight notes.
+   '''
+
+   v1 = Voice([Note(n, (1, 8)) for n in range(4)])
+   v1.invocation.name = 'foo'
+   v2 = Voice([v1])
+   v2.invocation.name = 'bar'
+   notes = [Note(n, (1, 8)) for n in range(4, 8)]
+   t = Sequential([v2] + notes)
+
+   r'''
+   {
+      \context Voice = "bar" {
+         \context Voice = "foo" {
+            c'8
+            cs'8
+            d'8
+            ef'8
+         }
+      }
+      e'8
+      f'8
+      fs'8
+      g'8
+   }
+   '''
+
+
+def test_signature_30( ):
+   '''
+   Nested (anonymous) voices.
+   LilyPond does NOT allow a continous beam over all eight notes.
+   '''
+
+   v1 = Voice([Note(n, (1, 8)) for n in range(4)])
+   v2 = Voice([v1])
+   notes = [Note(n, (1, 8)) for n in range(4, 8)]
+   t = Sequential([v2] + notes)
+
+   r'''
+   {
+      \new Voice {
+         \new Voice {
+            c'8
+            cs'8
+            d'8
+            ef'8
+         }
+      }
+      e'8
+      f'8
+      fs'8
+      g'8
+   }
+   '''
+
+
+def test_signature_31( ):
+   '''
+   Naked notes followed by parallel (anonymous) voices.
+
+   LilyPond does NOT allow a continous beam over the first four notes
+   together with either of the other two voices of four notes.
+   '''
+   
+   notes = [Note(n, (1, 8)) for n in range(4)]
+   vtop = Voice(Note(12, (1, 8)) * 4)
+   vbottom = Voice(Note(0, (1, 8)) * 4)
+   p = Parallel([vtop, vbottom])
+   t = Sequential(notes + [p])
+
+   ### TODO - write asserts
+
+   r'''
+   {
+      c'8
+      cs'8
+      d'8
+      ef'8
+      <<
+         \new Voice {
+            af'8
+            a'8
+            bf'8
+            b'8
+         }
+         \new Voice {
+            e'8
+            f'8
+            fs'8
+            g'8
+         }
+      >>
+   }
+   '''
+
+
+def test_signature_32( ):
+   '''
+   Parallel (anonymous) voices followed by naked notes.
+   LilyPond three separate voices on three different staves.
+   LilyPond does NOT allow a continous beam over the first four notes
+   together with either of the other two voices of four notes.
+   '''
+   
+   t = Sequential(
+      [Parallel(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
+   appictate(t)
+
+   assert t.voice.default
+   assert t[0].voice.default
+   assert all([x.voice.default for x in t[1 : ]])
+   assert t[0][0].voice.numeric
+   assert t[0][1].voice.numeric
+
+   r'''
+   {
+      <<
+         \new Voice {
+            c''8
+            c''8
+            c''8
+            c''8
+         }
+         \new Voice {
+            c'8
+            c'8
+            c'8
+            c'8
+         }
+      >>
+      c'8
+      cs'8
+      d'8
+      ef'8
+   }
+   '''
+
+
+def test_signature_33( ):
+   '''
+   LilyPond identifies three separate and strictly nested voices.
+   LilyPond assigns notes (0, 1, 10, 11) to first voice.
+   LilyPond assigns notes (2, 3, 8, 9) to the second voice.
+   LilyPond assigns notes (4, 5, 6, 7) to the third voice.
+   Abjad identifies the same three separate and strictly nested voices.
+   Abjad assigns the default voice to the top-level sequential.
+   Abjad assigns a different numeric signature to each of the two others.
+   '''
+
+   t = Sequential(Note(0, (1, 8)) * 4)
+   a, b = Voice(Note(0, (1, 8)) * 4) * 2
+   a.insert(2, b)
+   t.insert(2, a)
+   appictate(t)
+
+   outer = (0, 1, 10, 11)
+   middle = (2, 3, 8, 9)
+   inner = (4, 5, 6, 7)
+   
+   assert t.voice.default
+   assert all([t.leaves[n].voice.default for n in outer])
+   assert t[2].voice.numeric
+   assert all([t.leaves[n].voice.signature == t[2].voice.signature
+      for n in middle])
+   assert t[2][2].voice.numeric
+   assert all([t.leaves[n].voice.signature == t[2][2].voice.signature
+      for n in inner])
+
+   r'''
+   {
+      c'8
+      cs'8
+      \new Voice {
+         d'8
+         ef'8
+         \new Voice {
+            e'8
+            f'8
+            fs'8
+            g'8
+         }
+         af'8
+         a'8
+      }
+      bf'8
+      b'8
+   }
+   '''
+
+
+def test_siganture_34( ):
+   '''
+   LilyPond identifies three independent and strictly nesting voices.
+   LilyPond renders each of these voices on a separate staff.
+   Abjad identifies these same three voices.
+   '''
+
+   t = Staff(Note(0, (1, 8)) * 4)
+   a, b = t * 2
+   a.insert(2, b)
+   t.insert(2, a)
+   appictate(t)
+
+   assert t.voice.numeric
+   assert all([t.leaves[n].voice.signature == t.voice.signature 
+      for n in (0, 1, 10, 11)])
+   assert t[2].voice.numeric
+   assert all([t.leaves[n].voice.signature == t[2].voice.signature
+      for n in (2, 3, 8, 9)])
+   assert t[2][2].voice.numeric
+   assert all([t.leaves[n].voice.signature == t[2][2].voice.signature
+      for n in (4, 5, 6, 7)])
+
+   r'''
+   \new Staff {
+      c'8
+      cs'8
+      \new Staff {
+         d'8
+         ef'8
+         \new Staff {
+            e'8
+            f'8
+            fs'8
+            g'8
+         }
+         af'8
+         a'8
+      }
+      bf'8
+      b'8
+   }
+   '''
+   
+
+def test_signature_35( ):
+   '''
+   LilyPond voice-identificaation in strictly Nested sequentials.
+   LilyPond identifies only one voice; the sequential nesting
+   has nothing to do with the creation or destruction of voice.
+   '''
+
+   a, b, t = Sequential(Note(0, (1, 8)) * 4) * 3
+   a.insert(2, b)
+   t.insert(2, a)
+   appictate(t)
+
+   assert t.voice.default
+   assert all([x.voice.default for x in components(t)])
+
+   r'''
+   {
+      c'8
+      cs'8
+      {
+         d'8
+         ef'8
+         {
+            e'8
+            f'8
+            fs'8
+            g'8
+         }
+         af'8
+         a'8
+      }
+      bf'8
+      b'8
+   }
+   '''
+
+
+def test_signature_36( ):
+   '''
+   LilyPond identifies only one voice here.
+   Abjad components all carry the signature of the default voice.
+   '''
+
+   a, b, t = FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 4) * 3
+   b.insert(2, a)
+   t.insert(2, b)
+   b.duration.target = Rational(6, 8)
+   t.duration.target = Rational(9, 8)
+   appictate(t)
+
+   assert all([x.voice.default for x in components(t)])
+
+   r'''
+   \fraction \times 9/10 {
+      c'8
+      cs'8
+      \fraction \times 6/7 {
+         d'8
+         ef'8
+         \fraction \times 3/4 {
+            e'8
+            f'8
+            fs'8
+            g'8
+         }
+         af'8
+         a'8
+      }
+      bf'8
+      b'8
+   }
+   '''

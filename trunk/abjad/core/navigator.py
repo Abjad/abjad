@@ -446,5 +446,31 @@ class _Navigator(_Abjad):
    def _depthFirstRightToLeft(self):
       node, total = self._client, 0
       while node is not None:
-         yield node, total
+         yield node
          node, total = node._navigator._prevNodeDF(total)
+
+   def _levelDFRL(self):
+      node, total, level = self._client, 0, 0
+      while node is not None:
+         yield node, level
+         node, total, level = node._navigator._prevNodeLevelDF(total, level)
+
+   def _prevNodeLevelDF(self, total = 0, level = 0):
+      '''
+      Like _prevNodeDF( ) but returns (component, level) pairs
+      where level is an integer describing the level of component
+      in relation to client, with 0 equal to the level of client,
+      -1 equalling the level lower than client, +1 equalling
+      the level higher than client, etc.
+      '''
+
+      client = self._client
+      if hasattr(client, '_music') and len(client) > 0 and \
+         total < len(client):
+         return client[len(client) - 1 - total], 0, level - 1
+      else:
+         parent = client._parent
+         if parent is not None:
+            return parent, len(parent) - parent.index(client), level + 1
+         else:
+            return None, None, None

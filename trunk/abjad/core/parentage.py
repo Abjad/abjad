@@ -124,6 +124,10 @@ class _Parentage(_Abjad):
          else:
             p = p._parent
       return None
+   
+   @property
+   def _orphan(self):
+      return len(self._iparentage) == 1
       
    @property
    def _parentage(self):
