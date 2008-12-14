@@ -68,3 +68,11 @@ class _OffsetInterface(_Interface):
          result = Rational(0, 1)
       return result
 
+   @property
+   def newScore(self):
+      total = Rational(0)
+      g = self._client._navigator._depthFirstRightToLeft( )
+      for x in g:
+         if x.kind('_Leaf'):
+            total += x.duration.prolated
+      return total
