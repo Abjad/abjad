@@ -136,3 +136,24 @@ headless = #(define-music-function (parser location music) (ly:music?)
 	#{ \once \override NoteHead #'transparent = ##t 
       \once \override NoteHead #'no-ledgers = ##t
       $music #})
+
+whichContext = #(define-music-function (parser location) ()
+                (make-music 'ApplyContext
+                 'origin location
+                 'procedure (
+                   lambda (c)
+                   (display
+                    (string-append
+                     "\nCurrent voice is "
+                     (ly:context-id c)
+                     "\n")))))
+
+locationWhichContext = #(define-music-function (parser location) ()
+                (make-music 'ApplyContext
+                 'origin location
+                 'procedure (
+                   lambda (c)
+                   (display
+                    (ly:input-message location
+                     "current voice is ~a"
+                     (ly:context-id c))))))
