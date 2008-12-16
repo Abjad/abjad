@@ -3,10 +3,10 @@ from abjad.barline.interface import _BarLineInterface
 from abjad.breaks.interface import _BreaksInterface
 from abjad.clef.interface import _ClefInterface
 from abjad.core.comments import _Comments
-from abjad.core.navigator import _Navigator
 from abjad.core.parentage import _Parentage
 from abjad.helpers.hasname import hasname
 from abjad.meter.interface import _MeterInterface
+from abjad.navigator.navigator import _Navigator
 from abjad.offset.interface import _OffsetInterface
 from abjad.rational.rational import Rational
 from abjad.tempo.interface import _TempoInterface
