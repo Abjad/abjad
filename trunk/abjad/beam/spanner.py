@@ -1,5 +1,6 @@
 from abjad.core.spanner import _Spanner
 
+
 class Beam(_Spanner):
 
    def __init__(self, music):

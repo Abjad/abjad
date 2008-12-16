@@ -1,3 +1,4 @@
+from abjad.beam.interfacecontainer import _BeamInterfaceContainer
 from abjad.containers.brackets import _Brackets
 from abjad.core.component import _Component
 from abjad.containers.duration import _ContainerDurationInterface
@@ -27,6 +28,7 @@ class Container(_Component):
       self._music = music
       self._establish( )
       _Component.__init__(self)
+      self._beam = _BeamInterfaceContainer(self)
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self.formatter = _ContainerFormatter(self)
@@ -184,6 +186,12 @@ class Container(_Component):
          right.next.spanners.fracture(direction = 'left')
 
    ### PUBLIC ATTRIBUTES ###
+
+   @apply
+   def beam( ):
+      def fget(self):
+         return self._beam
+      return property(**locals( ))
 
    @apply
    def brackets( ):
