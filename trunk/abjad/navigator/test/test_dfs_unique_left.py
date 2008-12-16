@@ -8,7 +8,8 @@ def test_dfs_unique_left_01( ):
    '''
 
    t = Note(0, (1, 8))
-   g = t._navigator._DFSUniqueLeft( )
+   #g = t._navigator._DFSUniqueLeft( )
+   g = t._navigator._DFS( )
 
    r'''
    c'4
@@ -28,7 +29,8 @@ def test_dfs_unique_left_02( ):
    '''
 
    t = Sequential([ ])
-   g = t._navigator._DFSUniqueLeft( )
+   #g = t._navigator._DFSUniqueLeft( )
+   g = t._navigator._DFS( )
 
    r'''
    {
@@ -50,7 +52,8 @@ def test_dfs_unique_left_03( ):
 
    t = Sequential(run(4))
    appictate(t)
-   g = t._navigator._DFSUniqueLeft( )
+   #g = t._navigator._DFSUniqueLeft( )
+   g = t._navigator._DFS( )
    
    r'''
    {
@@ -85,7 +88,8 @@ def test_dfs_unique_left_04( ):
    t = Sequential(run(4))
    t.insert(2, Sequential(run(2)))
    appictate(t)
-   g = t._navigator._DFSUniqueLeft( )
+   #g = t._navigator._DFSUniqueLeft( )
+   g = t._navigator._DFS( )
 
    r'''
    {

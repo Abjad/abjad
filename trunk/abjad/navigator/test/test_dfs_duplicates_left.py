@@ -2,13 +2,12 @@ from abjad import *
 import py.test
 
 
-#def test_dfs_capped_left_01( ):
+#def test_dfs_duplicates_left_01( ):
 #   '''
-#   Capped left-to-right DFS on a single note.
+#   Duplicates-allowed left-to-right DFS on a single note.
 #   '''
 #
 #   t = Note(0, (1, 8))
-#   #g = t._navigator._DFSCappedLeft( )
 #   g = t._navigator._DFS(duplicates = True)
 #
 #   r'''
@@ -23,13 +22,12 @@ import py.test
 #   '''
 #
 #
-#def test_dfs_capped_left_02( ):
+#def test_dfs_duplicates_left_02( ):
 #   '''
-#   Capped left-to-right DFS on an empty container.
+#   Duplicates-allowed left-to-right DFS on an empty container.
 #   '''
 #
 #   t = Sequential([ ])
-#   #g = t._navigator._DFSCappedLeft( )
 #   g = t._navigator._DFS(duplicates = True)
 #
 #   r'''
@@ -45,14 +43,13 @@ import py.test
 #   '''
 #
 #
-#def test_dfs_capped_left_03( ):
+#def test_dfs_duplicates_left_03( ):
 #   '''
-#   Capped left-to-right DFS on a flat container.
+#   Duplicates-allowed left-to-right DFS on a flat container.
 #   '''
 #
 #   t = Sequential(run(4))
 #   appictate(t)
-#   #g = t._navigator._DFSCappedLeft( )
 #   g = t._navigator._DFS(duplicates = True)
 #   
 #   r'''
@@ -88,15 +85,14 @@ import py.test
 #   '''
 #
 #
-#def test_dfs_capped_left_04( ):
+#def test_dfs_duplicates_left_04( ):
 #   '''
-#   Capped left-to-right DFS on nested container.
+#   Duplicates-allowed left-to-right DFS on nested container.
 #   '''
 #
 #   t = Sequential(run(4))
 #   t.insert(2, Sequential(run(2)))
 #   appictate(t)
-#   #g = t._navigator._DFSCappedLeft( )
 #   g = t._navigator._DFS(duplicates = True)
 #
 #   r'''

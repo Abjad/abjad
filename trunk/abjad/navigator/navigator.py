@@ -391,6 +391,9 @@ class _Navigator(_Abjad):
             else:
                queue.extend(reversed(node._music))
 
+   ### DEPTH-FIRST SEARCH STUFF BELOW #######
+   ### TODO - ISOLATED IN SEPARATE MODULE ###
+
    def _nextNodeDF(self, total):
       '''
       If client has unvisited music, 
@@ -437,64 +440,180 @@ class _Navigator(_Abjad):
          else:
             return None, None
 
-   def _depthFirstLeftToRight(self):
-      node, rank = self._client, 0 
-      while node is not None:
-         yield node
-         node, rank = node._navigator._nextNodeDF(rank)
+#   def _DFSUncappedDuplicatesLeft(self):
+#      node, rank = self._client, 0 
+#      while node is not None:
+#         yield node
+#         node, rank = node._navigator._nextNodeDF(rank)
+#
+#   def _DFSUncappedDuplicatesRight(self):
+#      node, total = self._client, 0
+#      while node is not None:
+#         yield node
+#         node, total = node._navigator._prevNodeDF(total)
+#
+#   def _DFSCappedDuplicatesLeft(self):
+#      parent, node, rank = self._client._parent, self._client, 0 
+#      while node is not parent:
+#         yield node
+#         node, rank = node._navigator._nextNodeDF(rank)
+#
+#   def _DFSCappedDuplicatesRight(self):
+#      parent, node, rank = self._client._parent, self._client, 0 
+#      while node is not parent:
+#         yield node
+#         node, rank = node._navigator._prevNodeDF(rank)
+#
+#   def _DFSRestrictedLeft(self, classnames = ( )):
+#      node, rank = self._client, 0
+#      if isinstance(classnames, str):
+#         classnames = (classnames, )
+#      while node is not None:
+#         yield node
+#         if any([node.kind(x) for x in classnames]):
+#            parent = node._parent
+#            if parent is not None:
+#               rank = parent.index(node) + 1
+#               node = parent
+#            else:
+#               node, rank = None, None
+#         else:
+#            node, rank = node._navigator._nextNodeDF(rank)
+#
+#   def _DFSRestrictedRight(self, classnames = None):
+#      node, rank = self._client, 0
+#      if isinstance(classnames, str):
+#         classnames = (classnames, )
+#      while node is not None:
+#         yield node
+#         if any([node.kind(x) for x in classnames]):
+#            parent = node._parent
+#            if parent is not None:
+#               rank = parent.index(node) + 1
+#               node = parent
+#            else:
+#               node, rank = None, None
+#         else:
+#            node, rank = node._navigator._prevNodeDF(rank)
+#
+#   def _DFSUniqueLeft(self):
+#      node, rank = self._client, 0 
+#      queue = deque([ ])
+#      while node is not None:
+#         if hasattr(node, '_music'):
+#            try:
+#               visited = node is queue[-1]
+#            except IndexError:
+#               visited = False
+#            if not visited:
+#               queue.append(node)
+#               yield node
+#            elif rank == len(node):
+#               queue.pop( )
+#         else:
+#            yield node
+#         node, rank = node._navigator._nextNodeDF(rank)
+#      queue.clear( )
+#
+#   def _DFSUniqueRight(self):
+#      node, rank = self._client, 0 
+#      queue = deque([ ])
+#      while node is not None:
+#         if hasattr(node, '_music'):
+#            try:
+#               visited = node is queue[-1]
+#            except IndexError:
+#               visited = False
+#            if not visited:
+#               queue.append(node)
+#               yield node
+#            elif rank == len(node):
+#               queue.pop( )
+#         else:
+#            yield node
+#         node, rank = node._navigator._prevNodeDF(rank)
+#      queue.clear( )
+#
+#   def _DFSUniqueRestrictedLeft(self, classnames = ( )):
+#      node, rank = self._client, 0 
+#      queue = deque([ ])
+#      if isinstance(classnames, str):
+#         classnames = (classnames, )
+#      while node is not None:
+#         if hasattr(node, '_music'):
+#            try:
+#               visited = node is queue[-1]
+#            except IndexError:
+#               visited = False
+#            if not visited:
+#               queue.append(node)
+#               yield node
+#            elif rank == len(node):
+#               queue.pop( )
+#         else:
+#            yield node
+#         if any([node.kind(x) for x in classnames]):
+#            parent = node._parent
+#            if parent is not None:
+#               rank = parent.index(node) + 1
+#               node = parent
+#            else:
+#               node, rank = None, None
+#            queue.pop( )
+#         else:
+#            node, rank = node._navigator._nextNodeDF(rank)
+#      queue.clear( )
 
-   def _depthFirstRightToLeft(self):
-      node, total = self._client, 0
-      while node is not None:
-         yield node
-         node, total = node._navigator._prevNodeDF(total)
-
-   def _DFSCappedLeft(self):
-      parent, node, rank = self._client._parent, self._client, 0 
-      while node is not parent:
-         yield node
-         node, rank = node._navigator._nextNodeDF(rank)
-
-   def _DFSCappedRight(self):
-      parent, node, rank = self._client._parent, self._client, 0 
-      while node is not parent:
-         yield node
-         node, rank = node._navigator._prevNodeDF(rank)
-
-   def _DFSUniqueLeft(self):
-      node, rank = self._client, 0 
+   def _DFS(self, capped = True, unique = True, 
+      forbid = None, direction = 'left'):
+      client_parent, node, rank = self._client._parent, self._client, 0 
       queue = deque([ ])
-      while node is not None:
-         if hasattr(node, '_music'):
-            try:
-               visited = node is queue[-1]
-            except IndexError:
-               visited = False
-            if not visited:
-               queue.append(node)
-               yield node
-            elif rank == len(node):
-               queue.pop( )
+      while node is not None and not (capped and node is client_parent):
+         result = self._findYield(node, rank, queue, unique)
+         if result is not None:
+            yield result
+         if self._isNodeForbidden(node, forbid):
+            node, rank = self._handleForbiddenNode(node, queue)
          else:
-            yield node
-         node, rank = node._navigator._nextNodeDF(rank)
+            node, rank = self._advanceNodeDF(node, rank, direction)
       queue.clear( )
 
-   def _DFSUniqueRight(self):
-      node, rank = self._client, 0 
-      queue = deque([ ])
-      while node is not None:
-         if hasattr(node, '_music'):
-            try:
-               visited = node is queue[-1]
-            except IndexError:
-               visited = False
-            if not visited:
-               queue.append(node)
-               yield node
-            elif rank == len(node):
-               queue.pop( )
-         else:
-            yield node
+   def _handleForbiddenNode(self, node, queue):
+      node_parent = node._parent
+      if node_parent is not None:
+         rank = node_parent.index(node) + 1
+         node = node_parent
+      else:
+         node, rank = None, None
+      queue.pop( )
+      return node, rank
+
+   def _advanceNodeDF(self, node, rank, direction):
+      if direction == 'left':
+         node, rank = node._navigator._nextNodeDF(rank)
+      else:
          node, rank = node._navigator._prevNodeDF(rank)
-      queue.clear( )
+      return node, rank
+
+   def _isNodeForbidden(self, node, forbid):
+      if forbid is None:
+         return False
+      elif isinstance(forbid, str):
+         return node.kind(forbid)
+      else:
+         return any([node.kind(x) for x in forbid])
+
+   def _findYield(self, node, rank, queue, unique):
+      if hasattr(node, '_music'):
+         try:
+            visited = node is queue[-1]
+         except IndexError:
+            visited = False
+         if not visited or unique is not True:
+            queue.append(node)
+            return node
+         elif rank == len(node):
+            queue.pop( )
+            return None
+      else:
+         return node
