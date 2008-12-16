@@ -749,18 +749,30 @@ def test_signature_24( ):
    '''
 
 
-def test_signature_25( ):
+def test_signature_25a( ):
    '''
-   (Named) voice followed by naked notes, all sequential-enclosed.
+   (Named) voice followed by naked notes.
+   ==> LilyPond renders a single voice on a single staff!
    LilyPond DOES allow a continous beam over all eight notes.
+   I think what's going on here is that LilyPond finds its first
+   'music' element in the c'8 and establishes the named 'foo' voice
+   to render that first music element; this means that, because
+   no music element precedes the c'8 that LiyPond has no need
+   to create an implicit voice beforehand.
+
+   Intuitively, there's something very 'special' about the first
+   expression that LilyPond encounters during its interpretation
+   process.
    '''
 
-   v1 = Voice([Note(n, (1, 8)) for n in range(4)])
-   v1.invocation.name = 'foo'
-   notes = [Note(n, (1, 8)) for n in range(4, 8)]
-   t = Sequential([v1] + notes)
+   t = Sequential([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
+   appictate(t)
+   t[0].invocation.name = 'foo'
 
-   ### TODO - write asserts for this test
+   ### TODO - make these asserts work
+
+   #assert all([x.voice.named for x in components(t)])
+   #assert all([x.voice.name == 'foo' for x in components(t)])
 
    r'''
    {
@@ -770,26 +782,25 @@ def test_signature_25( ):
          d'8
          ef'8
       }
-      {
-         e'8
-         f'8
-         fs'8
-         g'8
-      }
+      e'8
+      f'8
+      fs'8
+      g'8
    }
    '''
 
    
 def test_signature_26( ):
    '''
-   Naked notes followed by (anonymous) staff, all sequential-enclosed.
+   Naked notes followed by (anonymous) staff.
    LilyPond does NOT allow a continous beam over all eight notes.
    '''
 
-   notes = [Note(n, (1, 8)) for n in range(4)]
-   s1 = Staff([Note(n, (1, 8)) for n in range(4, 8)])
-   t = Sequential(notes + [s1])
+   t = Sequential(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
+   appictate(t)
 
+   assert t.voice.default
+   assert all([x.voice.default for x in t[ : 4]])
    ### TODO - write the asserts for this test
 
    r'''
@@ -1208,6 +1219,199 @@ def test_signature_36( ):
          af'8
          a'8
       }
+      bf'8
+      b'8
+   }
+   '''
+
+
+def test_signature_37( ):
+   '''
+   Tautologically 'buried' voice in middle of stream of notes.
+   LilyPond renders one voice nested inside another both on a single staff.
+   '''
+
+   t = Sequential(Note(0, (1, 8)) * 4)
+   t.insert(2, Sequential([Sequential([Voice(Note(0, (1, 8)) * 4)])]))
+   t[2][0][0].invocation.name = 'foo'
+   appictate(t)
+
+   assert all([t.leaves[x].voice.default for x in (0, 1, 6, 7)])
+   assert all([t.leaves[x].voice.named for x in (2, 3, 4, 5)])
+
+   r'''
+   {
+      c'8
+      cs'8
+      {
+         {
+            \context Voice = "foo" {
+               d'8
+               ef'8
+               e'8
+               f'8
+            }
+         }
+      }
+      fs'8
+      g'8
+   }
+   '''
+
+
+def test_signature_38( ):
+   '''
+   Tautologically 'buried' voice at the beginning of a stream of notes.
+   LilyPond renders a single voice on a single staff.
+   '''
+
+   t = Sequential(Note(0, (1, 8)) * 4)
+   t.insert(0, Sequential([Sequential([Voice(Note(0, (1, 8)) * 4)])]))
+   t[0][0][0].invocation.name = 'foo'
+   appictate(t)
+
+   ### TODO -- make this assert work
+
+   #assert all([x.voice.named for x in components(t)])
+
+   r'''
+   {
+      {
+         {
+            \context Voice = "foo" {
+               c'8
+               cs'8
+               d'8
+               ef'8
+            }
+         }
+      }
+      e'8
+      f'8
+      fs'8
+      g'8
+   }
+   '''
+
+
+def test_signature_39( ):
+   '''
+   Governing voice with intervening tautological sequentials.
+   LilyPond renders one voice nested inside another, on a single staff.
+   The tautological sequentials do not affect voice resolution.
+   '''
+
+   t = Sequential(Note(0, (1, 8)) * 4)
+   t.insert(2, Voice(Note(0, (1, 8)) * 4))
+   t = Sequential([t])
+   t = Sequential([t])
+   t = Voice([t])
+   appictate(t)
+
+   ### TODO -- make these asserts work
+
+   #assert t.voice.default
+   #assert t[0].voice.default
+   #assert t[0][0].voice.default
+   #assert t[0][0][0].voice.default
+   #assert all([x.voice.numeric for x in components(t[0][0][0][2])])
+  
+   r'''
+   \new Voice {
+      {
+         {
+            {
+               c'8
+               cs'8
+               \new Voice {
+                  d'8
+                  ef'8
+                  e'8
+                  f'8
+               }
+               fs'8
+               g'8
+            }
+         }
+      }
+   }
+   '''
+ 
+def test_signature_40( ):
+   '''
+   Tautological sequentials filled with notes.
+   LilyPond renders one voice nested inside another both on a single staff.
+   The tautological sequentials do not affect voice resolution.
+   '''
+
+   v = Voice(Note(0, (1, 8)) * 4)
+   v.invocation.name = 'bar'
+   q = Sequential(Note(0, (1, 8)) * 4)
+   q.insert(2, v)
+   qq = Sequential(Note(0, (1, 8)) * 4)
+   qq.insert(2, q)
+   t = Voice(Note(0, (1, 8)) * 4)
+   t.insert(2, qq)
+   t.invocation.name = 'foo'
+   appictate(t)
+
+   assert all([x.voice.name == 'bar' for x in components(v)])
+   assert all([x.voice.name == 'foo' 
+      for x in set(components(t)) - set(components(v))])
+
+   r'''
+   \context Voice = "foo" {
+      c'8
+      cs'8
+      {
+         d'8
+         ef'8
+         {
+            e'8
+            f'8
+            \context Voice = "bar" {
+               fs'8
+               g'8
+               af'8
+               a'8
+            }
+            bf'8
+            b'8
+         }
+         c''8
+         cs''8
+      }
+      d''8
+      ef''8
+   }
+   '''
+
+
+def test_signature_41( ):
+   '''
+   Expression-initial voice followed by second explicit voice fb notes.
+   '''
+
+   t = Sequential(Note(0, (1, 8)) * 4)
+   t[0 : 0] = Voice(Note(0, (1, 8)) * 4) * 2
+   appictate(t)
+
+   r'''
+   {
+      \new Voice {
+         c'8
+         cs'8
+         d'8
+         ef'8
+      }
+      \new Voice {
+         e'8
+         f'8
+         fs'8
+         g'8
+      }
+      af'8
+      a'8
       bf'8
       b'8
    }

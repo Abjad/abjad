@@ -25,6 +25,13 @@ class _VoiceInterface(_Interface):
    @property
    def default(self):
       return self.signature == self._defaultSignature
+   
+   @property
+   def name(self):
+      if self.named:
+         return self.signature[0]
+      else:
+         return None
 
    @property
    def named(self):
