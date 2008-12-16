@@ -1,47 +1,48 @@
-# Class: Spanner( )
+# Class: _Spanner( )
 
-# Spanners model one of three things:
-# 1. (grob) overrides such as (Stem, direction, down);
-# 2. (context) settings, such as (Score, currentBarNumber, 32);
-# 3. (start / stop) indicators such as beam [ start and ] stop;
-# LilyPond refers to (grob) overrides and (context) settings;
-# the term 'indicator' to refer to [ ] and ( ) and so on is new here;
-# we call overrides, settings and indicators collectively 'directives'.
+# Spanners stretch over multiple Abjad components taken in sequence.
+#
+# Examples of spanners include:
+#
+#     * Beam spanner
+#     * Glissando spanner
+#     * Octavation spanner
+#     * Override spanner
+#
+# The common element in all cases is the that spanner encompasses
+# multiplie (continguous) leaves, understand which leaves are
+# first, second, ..., last, and can apply patterns structurally.
 
-# This abstract spanner baseclass implements a 'receptors' list;
-# spanner subclasses include Override, _Setting, BeamSpanner, etc.
-
-# _Leaf components include Duration, Beam, Stem, etc.;
-# spanner receptors are a special type of leaf component;
-# spanner receptors include Beam, Stem, etc. but not Duration;
-# receptors reference spanners; other leaf components don't.
-
-# A single receptor may participate in many receptors;
-# l.stem.spanners, for example, may reference two overrides and a setting.
+# How does this abstract _Spanner class track spanned components?
+# Previously, _Spanner tracked spanned components in a _receptors list;
+# _Spanner now tracks components in a _leaves list;
+# With the next couple of revisions, _Spanner will implement _components.
 
 # Arity relationships:
-#     spanners carry exactly one directive
-#     spanners 'have' zero to many (leaf component) receptors
-#     some leaf components 'reference' no spanners
-#     other leaf components 'reference' one or more spanners
-#     (leaf) components 'have' exactly one (leaf) target
-#     leaves 'have' many predefined (leaf) components
+#     * spanners 'have' zero to many (leaf component) receptors
+#     * some leaf _Interfaces 'receive' no spanners
+#     * some leaf _Interface 'receive' one or more spanners
+#     * leaf _Interfaces have exactly one '_client'
+#     * leaves 'have' many leaf _Interfaces
 
 # Spanners reference only contiguous receptors;
 # this criterion engenders a spanner well-formedness test.
+# This has been true for leaf spanners.
+# With the addition of container spanners we're (temporarily)
+# removing a strict contiguity requirement for container spanners.
+# We may implement a new type of component contiguity check later.
 
 # Spanners 'block' incoming references and 'remove' outgoing references;
 # spanners first block and then remove to 'sever' a receptor.
 
 # The abstract spanner baseclass produces no LilyPond input;
-# overrides, settings and indicators know how to format themselves;
-# concrete directives inspect their receptors at format-time;
-# concrete directives build before, after, left, right at format-time;
-# receptors collate directive formatting at format-time;
-# receptors sometimes add additional formatting at format-time;
-# receptors hand over complete formatting to leaf at format-time.
+# concrete spanners inspect their receptors at format-time;
+# concrete spanners  build before, after, left, right at format-time;
+# leaf _SpannerReceptors collate directive formatting at format-time;
+# leaf _SpannerReceptors sometimes add additional formatting at format-time;
+# leaf _SpannerReceptors  hand over complete formatting to leaf at format-time.
 
-# Two spanner 'match' when grobs, attributes and values correspond.
+# Two spanners 'match' when grobs, attributes and values correspond.
 
 # A single spanner may 'fracture' into two new spanners;
 # spanner fracturation generates a 'receipt' triple;
@@ -77,7 +78,6 @@ from copy import copy as python_copy
 class _Spanner(_Abjad):
 
    def __init__(self, music):
-      #self._receptors = [ ]
       self._leaves = [ ]
       self._extend(instances(music, '_Leaf'))
 
@@ -86,7 +86,6 @@ class _Spanner(_Abjad):
    @property
    def _summary(self):
       if len(self) > 0:
-         #return ', '.join([str(x) for x in self.leaves])
          return ', '.join([str(x) for x in self])
       else:
          return ' '
@@ -100,30 +99,18 @@ class _Spanner(_Abjad):
    ### OVERRIDES ###
 
    def __contains__(self, arg):
-      #return arg in self._receptors or arg in self.leaves 
       return arg in self._leaves 
 
    def __getitem__(self, arg):
-#      if isinstance(arg, int):
-#         #return self._receptors[arg]
-#      elif isinstance(arg, slice):
-#         #return self._receptors[arg]
       if isinstance(arg, (int, slice)):
          return self._leaves[arg]
       else:
          raise ValueError('must get int or slice.')
 
    def __len__(self):
-      #return len(self._receptors)
       return len(self._leaves)
 
    def index(self, leaf):
-#      try:
-#         return self._receptors.index(expr)
-#      except:
-#         for receptor in self:
-#            if receptor._client == expr:
-#               return self.index(receptor)
       return self._leaves.index(leaf)
 
    def _before(self, leaf):
@@ -138,26 +125,12 @@ class _Spanner(_Abjad):
    def _right(self, leaf):
       return [ ]
 
-#   ### CONTENTS TESTING (RECEPTOR) ###
-#
-#   def _isMyFirstReceptor(self, receptor):
-#      return len(self) > 0 and receptor == self[0]
-#   
-#   def _isMyLastReceptor(self, receptor):
-#      return len(self) > 0 and receptor == self[-1]
-#
-#   def _isMyOnlyReceptor(self, receptor):
-#      return self._isMyFirstReceptor(receptor) and \
-#         self._isMyLastReceptor(receptor)
-
-   ### CONTENTS TESTING (LEAF) ###
+   ### CONTENTS TESTING ###
 
    def _isMyFirstLeaf(self, leaf):
-      #return len(self) > 0 and leaf == self.leaves[0]
       return len(self) > 0 and leaf == self[0]
    
    def _isMyLastLeaf(self, leaf):
-      #return len(self) > 0 and leaf == self.leaves[-1]
       return len(self) > 0 and leaf == self[-1]
 
    def _isMyOnlyLeaf(self, leaf):
@@ -166,7 +139,6 @@ class _Spanner(_Abjad):
    def _isMyFirst(self, leaf, classname):
       if leaf.kind(classname):
          i = self.index(leaf)
-         #for x in self.leaves[ : i]:
          for x in self[ : i]:
             if x.kind(classname):
                return False
@@ -176,7 +148,6 @@ class _Spanner(_Abjad):
    def _isMyLast(self, leaf, classname):
       if leaf.kind(classname):
          i = self.index(leaf)
-         #for x in self.leaves[i + 1 : ]:
          for x in self[i + 1 : ]:
             if x.kind(classname):
                return False
@@ -190,16 +161,13 @@ class _Spanner(_Abjad):
 
    def _durationOffsetInMe(self, leaf):
       assert leaf in self
-      #prev = self.leaves[ : self.index(leaf)]
       prev = self[ : self.index(leaf)]
-      #return sum([leaf.duration.prolated for leaf in prev], Rational(0))
       return sum([leaf.duration.prolated for leaf in prev])
 
    ### RECEPTOR INSERTS ###
 
    def _insert(self, i, l):
       l.spanners._spanners.append(self)
-      #self._receptors.insert(i, l.spanners)
       self._leaves.insert(i, l)
 
    def _append(self, l):
@@ -208,71 +176,6 @@ class _Spanner(_Abjad):
    def _extend(self, leaves):
       for l in leaves:
          self._append(l)
-
-#   ### DEPRECATED RECEPTOR-ONLY REFERENCE MANAGEMENT ###
-#
-#   def _blockByReference(self, receptor):
-#      receptor._spanners.remove(self)
-#
-#   def _block(self, i = None, j = None):
-#      if i is not None and j is None:
-#         receptor = self[i]
-#         self._blockByReference(receptor)
-#      elif i is not None and j is not None:
-#         for receptor in self[i : j + 1]:
-#            self._blockByReference(receptor)
-#      else:
-#         for receptor in self:
-#            self._blockByReference(receptor)
-#
-#   def _unblockByReference(self, receptor):
-#      if self not in receptor:
-#         receptor.append(self)
-#
-#   def _unblock(self, i = None, j = None):
-#      if i is not None and j is None:
-#         receptor = self[i]
-#         self._unblockByReference(receptor)
-#      elif i is not None and j is not None:
-#         for receptor in self[i : j + 1]:
-#            self._unblockByReference(receptor)
-#      else:
-#         for receptor in self:
-#            self._unblockByReference(receptor)
-#
-#   def _removeByReference(self, receptor):
-#      self._receptors.remove(receptor)
-#
-#   def _remove(self, i = None, j = None):
-#      if i is not None and j is None:
-#         self._removeByReference(self[i])
-#      elif i is not None and j is not None:
-#         for receptor in self[i : j + 1]:
-#            self._removeByReference(receptor)
-#      else:
-#         for receptor in self[ : ]:
-#            self._removeByReference(receptor)
-#            print self._receptors
-#
-#   def _severByReference(self, receptor):
-#      self._blockByReference(receptor)
-#      self._removeByReference(receptor)
-#
-#   def _sever(self, i = None, j = None):
-#      if i is not None and j is None:
-#         receptor = self[i]
-#         self._severByReference(receptor)
-#      elif i is not None and j is not None:
-#         for n in reversed(range(i, j + 1)):
-#            receptor = self[n]
-#            self._severByReference(receptor)
-#      else:
-#         for n in reversed(range(len(self))):
-#            receptor = self[n]
-#            self._severByReference(receptor)
-#
-#   def die(self):
-#      self._sever( )
 
    ### LEAF-ONLY REFERENCE MANAGEMENT ###
 
@@ -347,13 +250,13 @@ class _Spanner(_Abjad):
    ### TODO - figure out if we really need the attribute check or not;
    ###        looks like the attribute check doesn't work right now,
    ###        at least not for two different octavation spanners.
+
    def _matches(self, spanner):
       return self.__class__ == spanner.__class__ and \
          all([getattr(self, attr, None) == getattr(spanner, attr, None)
             for attr in ('_grob', '_attribute', '_value')])
 
    def _follows(self, spanner):
-      #return spanner.leaves[-1].next == self.leaves[0]
       return spanner[-1].next == self[0]
 
    ### TODO - _matchingSpanner( ) functions as a generalization of
@@ -370,9 +273,7 @@ class _Spanner(_Abjad):
          return self._matchingSpannerAfterMe( )
 
    def _matchingSpannerBeforeMe(self):
-      #if self[0]._client.prev:
       if self[0].prev:
-         #matches = self[0]._client.prev.spanners.get(
          matches = self[0].prev.spanners.get(
             interface = getattr(self, '_interface', None),
             grob = getattr(self, '_grob', None),
@@ -382,9 +283,7 @@ class _Spanner(_Abjad):
             return matches[0]
 
    def _matchingSpannerAfterMe(self):
-      #if self[-1]._client.next:
       if self[-1].next:
-         #matches = self[-1]._client.next.spanners.get(
          matches = self[-1].next.spanners.get(
             interface = getattr(self, '_interface', None),
             grob = getattr(self, '_grob', None),
@@ -407,20 +306,6 @@ class _Spanner(_Abjad):
       self._block( )
       return self, left, right
 
-### Crashes on direction = 'both'. Fixed below.
-#   def fracture(self, i, direction = 'both'):
-#      if direction == 'left':
-#         return self._fractureLeft(i)
-#      elif direction == 'right':
-#         return self._fractureRight(i)
-#      elif direction == 'both':
-#         result = [ ]
-#         result.append(self._fractureLeft(i))
-#         result.append(self._fractureRight(i))
-#      else:
-#         raise ValueError(
-#            'direction %s must be left, right or both.' % direction)
-
    def fracture(self, i, direction = 'both'):
       if i < 0:
          i = len(self) + i
@@ -441,7 +326,6 @@ class _Spanner(_Abjad):
    def _fuseByReference(self, spanner):
       if self._matches(spanner) and spanner._follows(self):
          result = self.copy( )
-         #result._extend(spanner.leaves)
          result._extend(spanner)
          self._block( )
          spanner._block( )
@@ -477,7 +361,6 @@ class _Spanner(_Abjad):
       
    def capture(self, n):
       if n > 0:
-         #cur = self.leaves[-1]
          cur = self[-1]
          for i in range(n):
             if cur.next:
@@ -486,7 +369,6 @@ class _Spanner(_Abjad):
             else:
                break
       elif n < 0:
-         #cur = self.leaves[0]
          cur = self[0]
          for i in range(abs(n)):
             if cur.prev:
@@ -517,7 +399,6 @@ class _Spanner(_Abjad):
       move left for negative n;
       always preserve length of self.
       '''
-      #start, stop = self.leaves[0], self.leaves[-1]
       start, stop = self[0], self[-1]
       if n > 0:
          for i in range(n):
@@ -539,19 +420,13 @@ class _Spanner(_Abjad):
    ### SPANNER COPYING ###
 
    def copy(self, start = None, stop = None):
-      #from copy import copy
       result = python_copy(self)
-      #result._receptors = [ ]
       result._leaves = [ ]
       if stop is not None:
-         #for receptor in self[start : stop + 1]:
          for leaf in self[start : stop + 1]:
-            #result._receptors.append(receptor)
             result._leaves.append(leaf)
       else:
-         #for receptor in self:
          for leaf in self:
-            #result._receptors.append(receptor)
             result._leaves.append(leaf)
       result._unblock( )
       return result
@@ -560,5 +435,4 @@ class _Spanner(_Abjad):
 
    @property
    def duration(self):
-      #return sum([l.duration.prolated for l in self.leaves])
       return sum([l.duration.prolated for l in self])
