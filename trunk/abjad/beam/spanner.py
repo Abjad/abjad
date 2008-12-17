@@ -1,10 +1,10 @@
-from abjad.spanner.spanner import _Spanner
+from abjad.spanner.spanner import Spanner
 
 
-class Beam(_Spanner):
+class Beam(Spanner):
 
    def __init__(self, music):
-      _Spanner.__init__(self, music)
+      Spanner.__init__(self, music)
 
    def _right(self, leaf):
       result = [ ]

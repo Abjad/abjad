@@ -3,14 +3,14 @@ from abjad.helpers.leaves_fuse import leaves_fuse_binary
 from abjad.meter.meter import _Meter
 from abjad.rational.rational import Rational
 from abjad.skip.skip import Skip
-from abjad.spanner.spanner import _Spanner
+from abjad.spanner.spanner import Spanner
 from abjad.tie.spanner import Tie
 
 
-class MetricGrid(_Spanner):
+class MetricGrid(Spanner):
    '''MetricGrid is a list of MetricStrips.'''
    def __init__(self, music, meters):
-      _Spanner.__init__(self, music)
+      Spanner.__init__(self, music)
       self._meters = meters
       self.hide = False
 #      self.offset ?

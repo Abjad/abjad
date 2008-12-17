@@ -1,9 +1,9 @@
-from abjad.spanner.spanner import _Spanner
+from abjad.spanner.spanner import Spanner
 
 
 ### TODO: turn this into a real interface. Inactive code presently.
 
-class _Instrument(_Spanner):
+class _Instrument(Spanner):
 
    def __init__(self, long = None, short = None):
       Spanner.__init__(self)

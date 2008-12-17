@@ -1,12 +1,12 @@
 from abjad.core.parser import _Parser
-from abjad.spanner.spanner import _Spanner
+from abjad.spanner.spanner import Spanner
 
 
 ### TODO - revive this Setting class;
 ###        make conform to new pattern;
 ###        copy liberraly from Override.
 
-class _Setting(_Spanner):
+class _Setting(Spanner):
 
    def __init__(self, attribute, value, context = None):
       self.attribute = attribute

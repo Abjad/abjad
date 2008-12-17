@@ -1,11 +1,11 @@
 from abjad.pitch.pitch import Pitch
-from abjad.spanner.spanner import _Spanner
+from abjad.spanner.spanner import Spanner
 
 
-class Trill(_Spanner):
+class Trill(Spanner):
 
    def __init__(self, music):
-      _Spanner.__init__(self, music)
+      Spanner.__init__(self, music)
       self._pitch = None
 
    @apply

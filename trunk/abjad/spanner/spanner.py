@@ -1,4 +1,4 @@
-# Class: _Spanner( )
+# Class: Spanner( )
 
 # Spanners stretch over multiple Abjad components taken in sequence.
 #
@@ -13,10 +13,10 @@
 # multiplie (continguous) leaves, understand which leaves are
 # first, second, ..., last, and can apply patterns structurally.
 
-# How does this abstract _Spanner class track spanned components?
-# Previously, _Spanner tracked spanned components in a _receptors list;
-# _Spanner now tracks components in a _leaves list;
-# With the next couple of revisions, _Spanner will implement _components.
+# How does this abstract Spanner class track spanned components?
+# Previously, Spanner tracked spanned components in a _receptors list;
+# Spanner now tracks components in a _leaves list;
+# With the next couple of revisions, Spanner will implement _components.
 
 # Arity relationships:
 #     * spanners 'have' zero to many (leaf component) receptors
@@ -75,7 +75,7 @@ from abjad.rational.rational import Rational
 from copy import copy as python_copy
 
 
-class _Spanner(_Abjad):
+class Spanner(_Abjad):
 
    def __init__(self, music):
       self._leaves = [ ]

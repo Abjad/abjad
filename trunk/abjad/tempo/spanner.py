@@ -1,7 +1,7 @@
-from abjad.spanner.spanner import _Spanner
+from abjad.spanner.spanner import Spanner
 
 
-class _Tempo(_Spanner):
+class _Tempo(Spanner):
 
    def __init__(self, music):
       _Spanner.__init__(self, music)
