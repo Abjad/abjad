@@ -96,7 +96,7 @@ class _Spanner(_Abjad):
       except:
          return '%s(%s)' % (self.__class__.__name__, self._summary)
 
-   ### OVERRIDES ###
+   ### OVERLOADS ###
 
    def __contains__(self, arg):
       return arg in self._leaves 
@@ -275,7 +275,7 @@ class _Spanner(_Abjad):
    def _matchingSpannerBeforeMe(self):
       if self[0].prev:
          matches = self[0].prev.spanners.get(
-            interface = getattr(self, '_interface', None),
+         #   interface = getattr(self, '_interface', None),
             grob = getattr(self, '_grob', None),
             attribute = getattr(self, '_attribute', None),
             value = getattr(self, '_vallue', None))
@@ -285,7 +285,7 @@ class _Spanner(_Abjad):
    def _matchingSpannerAfterMe(self):
       if self[-1].next:
          matches = self[-1].next.spanners.get(
-            interface = getattr(self, '_interface', None),
+         #   interface = getattr(self, '_interface', None),
             grob = getattr(self, '_grob', None),
             attribute = getattr(self, '_attribute', None),
             value = getattr(self, '_vallue', None))
