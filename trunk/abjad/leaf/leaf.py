@@ -12,8 +12,8 @@ from abjad.harmonic.interface import _HarmonicInterface
 from abjad.markup.interface import _MarkupInterface
 from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
-from abjad.leaf.spannerinterface import _LeafSpannerInterface
 from abjad.rational.rational import Rational
+from abjad.spanner.leaf.interface import _LeafSpannerInterface
 from abjad.staff.interface import _StaffInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tie.interface import _TieInterface
