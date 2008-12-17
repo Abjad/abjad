@@ -1,4 +1,4 @@
-from abjad.core.spanner import _Spanner
+from abjad.spanner.spanner import _Spanner
 
 
 class Octavation(_Spanner):

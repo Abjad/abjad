@@ -1,9 +1,9 @@
-from abjad.core.spanner import _Spanner
 from abjad.helpers.leaf_split import leaf_split_binary, leaf_split
 from abjad.helpers.leaves_fuse import leaves_fuse_binary
 from abjad.meter.meter import _Meter
 from abjad.rational.rational import Rational
 from abjad.skip.skip import Skip
+from abjad.spanner.spanner import _Spanner
 from abjad.tie.spanner import Tie
 
 

@@ -1,5 +1,5 @@
-from abjad.core.spanner import _Spanner
 from abjad.core.parser import _Parser
+from abjad.spanner.spanner import _Spanner
 
 
 class Override(_Spanner):
