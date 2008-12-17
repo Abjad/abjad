@@ -4,10 +4,17 @@ from abjad import *
 ### TODO - add many more tests ###
 
 
-def test_container_spanner_interface_01( ):
-   '''t.spanners.die( ) kills all spanners attaching to container t.'''
-   t = Staff(Note(0, (1, 8)) * 8)
+def test_spanners_01( ):
+   '''
+   t.spanners.die( ) kills all spanners attaching to leaves in container t.
+   '''
+
+   t = Staff(run(8))
+   appictate(t)
    Beam(t)
    assert len(t.spanners) == 1
    t.spanners.die( )
    assert len(t.spanners) == 0
+
+
+
