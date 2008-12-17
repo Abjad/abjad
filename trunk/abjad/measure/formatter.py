@@ -1,4 +1,4 @@
-from abjad.containers.formatter import _ContainerFormatter
+from abjad.container.formatter import _ContainerFormatter
 from abjad.rational.rational import Rational
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet

@@ -1,4 +1,4 @@
-from abjad.containers.container import Container
+from abjad.container.container import Container
 from abjad.helpers.hasname import hasname
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.measure.duration import _MeasureDurationInterface

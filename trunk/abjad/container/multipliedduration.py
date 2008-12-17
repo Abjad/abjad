@@ -1,4 +1,4 @@
-from abjad.containers.duration import _ContainerDurationInterface
+from abjad.container.duration import _ContainerDurationInterface
 from abjad.rational.rational import Rational
 
 

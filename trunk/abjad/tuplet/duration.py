@@ -1,5 +1,5 @@
-#from abjad.containers.duration import _ContainerDurationInterface
-from abjad.containers.multipliedduration import _MultipliedContainerDurationInterface
+#from abjad.container.duration import _ContainerDurationInterface
+from abjad.container.multipliedduration import _MultipliedContainerDurationInterface
 #from abjad.core.interface import _Interface
 #from abjad.helpers.hasname import hasname
 #from abjad.rational.rational import Rational

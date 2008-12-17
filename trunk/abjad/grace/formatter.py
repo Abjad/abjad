@@ -1,4 +1,4 @@
-from abjad.containers.formatter import _ContainerFormatter
+from abjad.container.formatter import _ContainerFormatter
 
 
 class _GraceFormatter(_ContainerFormatter):

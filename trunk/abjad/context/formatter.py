@@ -1,4 +1,4 @@
-from abjad.containers.container import _ContainerFormatter
+from abjad.container.container import _ContainerFormatter
 
 
 class _ContextFormatter(_ContainerFormatter):

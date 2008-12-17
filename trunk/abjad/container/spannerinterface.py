@@ -72,11 +72,13 @@ class _ContainerSpannerInterface(_Interface):
          result.append(spanner.fuse(direction = 'left'))
       return result
 
-   def _fuseRight(self, 
-      interface = None, grob = None, attribute = None, value = None):
+   #def _fuseRight(self, 
+   #   interface = None, grob = None, attribute = None, value = None):
+   def _fuseRight(self, grob = None, attribute = None, value = None):
       result = [ ]
       right = self._client.leaves[-1]
-      spanners = right.spanners.get(interface, grob, attribute, value)
+      #spanners = right.spanners.get(interface, grob, attribute, value)
+      spanners = right.spanners.get(grob, attribute, value)
       for spanner in spanners[ : ]:
          result.append(spanner.fuse(direction = 'right'))
       return result
@@ -86,8 +88,7 @@ class _ContainerSpannerInterface(_Interface):
 #   def die(self, 
 #      classname = None, interface = None, 
 #      grob = None, attribute = None, value = None):
-   def die(self, classname = None, 
-      grob = None, attribute = None, value = None):
+   def die(self, classname = None, grob = None, attribute = None, value = None):
 #      spanners = self.get(classname = classname, interface = interface,
 #         grob = grob, attribute = attribute, value = value)
       spanners = self.get(classname = classname, 
@@ -95,17 +96,23 @@ class _ContainerSpannerInterface(_Interface):
       for spanner in spanners:
          spanner.die( )
 
-   def fracture(self, 
-      interface = None, grob = None, attribute = None, value = None,
+   #def fracture(self, 
+   #   interface = None, grob = None, attribute = None, value = None,
+   #   direction = 'both'):
+   def fracture(self, grob = None, attribute = None, value = None,
       direction = 'both'):
       result = [ ]
       if direction == 'left':
-         result.extend(self._fractureLeft(interface, grob, attribute, value))
+         #result.extend(self._fractureLeft(interface, grob, attribute, value))
+         result.extend(self._fractureLeft(grob, attribute, value))
       elif direction == 'right':
-         result.extend(self._fractureRight(interface, grob, attribute, value))
+         #result.extend(self._fractureRight(interface, grob, attribute, value))
+         result.extend(self._fractureRight(grob, attribute, value))
       elif direction == 'both':
-         result.extend(self._fractureLeft(interface, grob, attribute, value))
-         result.extend(self._fractureRight(interface, grob, attribute, value))
+         #result.extend(self._fractureLeft(interface, grob, attribute, value))
+         #result.extend(self._fractureRight(interface, grob, attribute, value))
+         result.extend(self._fractureLeft(grob, attribute, value))
+         result.extend(self._fractureRight(grob, attribute, value))
       else:
          raise ValueError(
             'direction %s must be left, right or both.' % direction)
@@ -113,22 +120,27 @@ class _ContainerSpannerInterface(_Interface):
       #result.extend(self.fractureRight(interface, grob, attribute, value))
       return result
 
-   def fuse(self, 
-      interface = None, grob = None, attribute = None, value = None,
+   #def fuse(self, 
+   #   interface = None, grob = None, attribute = None, value = None,
+   def fuse(self, grob = None, attribute = None, value = None, 
       direction = 'both'):
       result = [ ]
       left, right = self._client.leaves[0], self._client.leaves[-1]
       if direction == 'left':
-         result.extend(
-            left.spanners.fuse(interface, grob, attribute, value, 'left'))
+         #result.extend(
+         #   left.spanners.fuse(interface, grob, attribute, value, 'left'))
+         result.extend(left.spanners.fuse(grob, attribute, value, 'left'))
       elif direction == 'right':
-         result.extend(
-            right.spanners.fuse(interface, grob, attribute, value, 'right'))
+         #result.extend(
+         #   right.spanners.fuse(interface, grob, attribute, value, 'right'))
+         result.extend(right.spanners.fuse(grob, attribute, value, 'right'))
       elif direction == 'both':
-         result.extend(
-            left.spanners.fuse(interface, grob, attribute, value, 'left'))
-         result.extend(
-            right.spanners.fuse(interface, grob, attribute, value, 'right'))
+         #result.extend(
+         #   left.spanners.fuse(interface, grob, attribute, value, 'left'))
+         result.extend(left.spanners.fuse(grob, attribute, value, 'left'))
+         #result.extend(
+         #   right.spanners.fuse(interface, grob, attribute, value, 'right'))
+         result.extend(right.spanners.fuse(grob, attribute, value, 'right'))
       #result.extend(left.spanners.fuseLeft(interface, grob, attribute, value))
       #result.extend(right.spanners.fuseRight(interface, grob, attribute, value))
       return result
@@ -151,19 +163,19 @@ class _ContainerSpannerInterface(_Interface):
 #            spanner for spanner in result
 #            if hasattr(spanner, '_interface') and 
 #            spanner._interface == interface]
-#      if grob:
-#         result = [
-#            spanner for spanner in result
-#            if hasattr(spanner, '_grob') and
-#            spanner._grob == grob]
-#      if attribute:
-#         result = [
-#            spanner for spanner in result
-#            if hasattr(spanner, '_attribute') and
-#            spanner._attribute == attribute]
-#      if value:
-#         result = [
-#            spanner for spanner in result
-#            if hasattr(spanner, '_value') and
-#            spanner._value == value]
+      if grob:
+         result = [
+            spanner for spanner in result
+            if hasattr(spanner, '_grob') and
+            spanner._grob == grob]
+      if attribute:
+         result = [
+            spanner for spanner in result
+            if hasattr(spanner, '_attribute') and
+            spanner._attribute == attribute]
+      if value:
+         result = [
+            spanner for spanner in result
+            if hasattr(spanner, '_value') and
+            spanner._value == value]
       return result

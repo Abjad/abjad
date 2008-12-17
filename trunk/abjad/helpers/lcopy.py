@@ -1,4 +1,4 @@
-from abjad.containers.container import Container
+from abjad.container.container import Container
 from abjad.helpers.excise import excise
 from abjad.helpers.iterate import iterate
 from abjad.helpers.retroiterate import retroiterate
