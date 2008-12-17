@@ -2,13 +2,13 @@ from abjad.beam.interfacecontainer import _BeamInterfaceContainer
 from abjad.container.brackets import _Brackets
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
-from abjad.container.spannerinterface import _ContainerSpannerInterface
 from abjad.core.component import _Component
 from abjad.helpers.contiguity import _are_atomic_music_elements
 from abjad.helpers.contiguity import _are_contiguous_music_elements
 from abjad.helpers.hasname import hasname
 from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
+from abjad.spanner.container.interface import _ContainerSpannerInterface
 
 
 class Container(_Component):
