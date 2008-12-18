@@ -1,10 +1,10 @@
-from abjad.spanner.spanner import Spanner
+from abjad.spanner.new import NewSpanner
 
 
-class Octavation(Spanner):
+class Octavation(NewSpanner):
 
    def __init__(self, music, start, stop = 0):
-      Spanner.__init__(self, music)
+      NewSpanner.__init__(self, music)
       self.start = start
       self.stop = stop
 

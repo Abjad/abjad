@@ -48,7 +48,8 @@ def test_cast_skip_04( ):
 def test_cast_skip_05( ):
    '''Works fine when note is beamed.'''
    t = Staff(Note(0, (1, 8)) * 3)
-   Beam(t)
+   #Beam(t)
+   Beam(t[ : ])
    Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0]._parent is t

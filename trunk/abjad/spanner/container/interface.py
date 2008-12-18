@@ -35,6 +35,10 @@ class _ContainerSpannerInterface(_Interface):
 
    ### PRIVATE METHODS ###
 
+   def _append(self, spanner):
+      if spanner not in self._spanners:
+         self._spanners.append(spanner)
+
    #def _fractureLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):
    def _fractureLeft(self, grob = None, attribute = None, value = None):
@@ -60,6 +64,18 @@ class _ContainerSpannerInterface(_Interface):
             grob, attribute, value, 'right')
       else:
          return [ ]
+
+   def _fractureContainerSpannersLeft(self):
+      result = [ ]
+      for spanner in self._spanners[ : ]:
+         result.append(spanner.fracture(spanner.index(self._client), 'left'))
+      return result
+
+   def _fractureContainerSpannersRight(self):
+      result = [ ]
+      for spanner in self._spanners[ : ]:
+         result.append(spanner.fracture(spanner.index(self._client), 'right'))
+      return result
 
    #def _fuseLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):
@@ -105,14 +121,18 @@ class _ContainerSpannerInterface(_Interface):
       if direction == 'left':
          #result.extend(self._fractureLeft(interface, grob, attribute, value))
          result.extend(self._fractureLeft(grob, attribute, value))
+         result.extend(self._fractureContainerSpannersLeft( ))
       elif direction == 'right':
          #result.extend(self._fractureRight(interface, grob, attribute, value))
          result.extend(self._fractureRight(grob, attribute, value))
+         result.extend(self._fractureContainerSpannersRight( ))
       elif direction == 'both':
          #result.extend(self._fractureLeft(interface, grob, attribute, value))
          #result.extend(self._fractureRight(interface, grob, attribute, value))
          result.extend(self._fractureLeft(grob, attribute, value))
          result.extend(self._fractureRight(grob, attribute, value))
+         result.extend(self._fractureContainerSpannersLeft( ))
+         result.extend(self._fractureContainerSpannersRight( ))
       else:
          raise ValueError(
             'direction %s must be left, right or both.' % direction)

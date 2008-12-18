@@ -93,7 +93,8 @@ def test_leaf_scale_binary_10( ):
 def test_leaf_scale_binary_11( ):
    '''Tied leaf is not tied again in splitting.'''
    t = Voice([Note(0, (1, 4))])
-   Tie(t)
+   #Tie(t)
+   Tie(t.leaves)
    assert t[0].tie.spanned
    new = leaf_scale_binary((5,16), t[0])
    assert len(t) == 2
@@ -115,7 +116,8 @@ def test_leaf_scale_binary_11( ):
 def test_leaf_scale_binary_12( ):
    '''spanner-Tied leaf is not tied again in splitting.'''
    t = Voice([Note(0, (1, 4))])
-   Tie(t)
+   #Tie(t)
+   Tie(t.leaves)
    assert t[0].tie.spanned
    new = leaf_scale_binary((5,16), t[0])
    assert len(t) == 2

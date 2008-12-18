@@ -2,8 +2,6 @@ from abjad import *
 import py.test
 
 
-py.test.skip('Tests for spanned containers development.')
-
 def test_span_anonymous_01( ):
    '''Spanned empty sequential container;
       container formats no beam indications.'''
@@ -196,11 +194,12 @@ def test_span_anonymous_08( ):
    }
    '''
 
+
 def test_span_anonymous_09( ):
    '''Empty containers at edges are OK.'''
    t = Staff(Sequential([ ]) * 2)
    t.insert(1, Sequential(Note(0, (1, 8)) * 4))
-   p = Beam(t)
+   p = Beam(t[ : ])
    assert len(p) == 3
    for x in p:
       assert isinstance(x, Sequential)
@@ -327,18 +326,18 @@ def test_span_anonymous_11( ):
 
 def test_span_anonymous_12( ):
    '''Docs.'''
-   s1 = Sequential([Note(i, (1,8)) for i in range(2)])
-   s2 = Sequential([Note(i, (1,8)) for i in range(3,5)])
-   v = Voice([s1, Note(2, (1,8)), s2])
+   s1 = Sequential([Note(i, (1, 8)) for i in range(2)])
+   s2 = Sequential([Note(i, (1, 8)) for i in range(3, 5)])
+   v = Voice([s1, Note(2, (1, 8)), s2])
 
    p = Beam(v)
    assert len(p) == 1
-   assert len(p.leaves) == 8
+   assert len(p.leaves) == 5
    p.die( )
 
    p = Beam(v[ : ])
    assert len(p) == 3
-   assert len(p.leaves) == 8
+   assert len(p.leaves) == 5
    p.die( )
 
    r'''
@@ -364,12 +363,12 @@ def test_span_anonymous_13( ):
 
    p = Beam(v)
    assert len(p) == 1
-   assert len(p.leaves) == 8
+   assert len(p.leaves) == 7
    p.die( )
 
    p = Beam(v[ : ])
    assert len(p) == 3
-   assert len(p.leaves) == 8
+   assert len(p.leaves) == 7
    p.die( )
 
    r'''
@@ -416,17 +415,22 @@ def test_span_anonymous_14( ):
    '''
 
 
+### TODO - This is the current behavior but it's probably not
+###        the optimal behavior;
+###        optimal behavior will work on thread or voice signature.
+###        We'll change this test when we change to optimal behavior.
+
 def test_span_anonymous_15( ):
-   '''Parent asymmetric structures refuse to be spanned;
-      TODO: these are tricky and need to be looked at carefully.'''
-   v1 = Voice([Note(i , (1,8)) for i in range(3)])
+   '''
+   Parent asymmetric structures allow spanning,
+   even though LilyPond will not render the beam
+   through two different anonymous voices.
+   '''
+   v1 = Voice([Note(i , (1, 8)) for i in range(3)])
    n = Note(3, (1,8))
-   v2 = Voice([Note(i , (1,8)) for i in range(4,8)])
+   v2 = Voice([Note(i , (1, 8)) for i in range(4, 8)])
    t = Staff([v1, n, v2])
 
-   assert raises(ContiguityError, 'Beam(t)')
-   assert raises(ContiguityError, 'Beam(t[ : ])')
-   
    p = Beam((t[0], t[1]))
    assert len(p) == 2
    assert len(p.leaves) == 4

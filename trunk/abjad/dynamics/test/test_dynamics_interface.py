@@ -199,7 +199,8 @@ def test_dynamics_interface_07( ):
 def test_dynamics_interface_08( ):
    '''Dynamics interface implements first, last, only.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Crescendo(t)
+   #Crescendo(t)
+   Crescendo(t.leaves)
    assert t[0].dynamics.first
    assert t[-1].dynamics.last
    assert not t[0].dynamics.only

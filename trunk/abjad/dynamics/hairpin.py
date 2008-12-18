@@ -1,10 +1,10 @@
-from abjad.spanner.spanner import Spanner
+from abjad.spanner.new import NewSpanner
 
 
-class _Hairpin(Spanner):
+class _Hairpin(NewSpanner):
 
    def __init__(self, music, start = None, stop = None, trim = False):
-      Spanner.__init__(self, music)
+      NewSpanner.__init__(self, music)
       self.start = start
       self.stop = stop
       self.trim = trim

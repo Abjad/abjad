@@ -180,7 +180,8 @@ def test_hairpins_09( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Rest(t[0])
    Rest(t[-1])
-   Hairpin(t, 'p < f', trim = True)
+   #Hairpin(t, 'p < f', trim = True)
+   Hairpin(t.leaves, 'p < f', trim = True)
    assert len(t[0].dynamics.spanner) == len(t)
    assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\pX\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\fX\n\tr8\n}"
    checker = HairpinsIntermarked( )

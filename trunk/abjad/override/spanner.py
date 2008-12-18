@@ -1,11 +1,11 @@
 from abjad.core.parser import _Parser
-from abjad.spanner.spanner import Spanner
+from abjad.spanner.new import NewSpanner
 
 
-class Override(Spanner):
+class Override(NewSpanner):
 
    def __init__(self, music, *args):
-      Spanner.__init__(self, music)
+      NewSpanner.__init__(self, music)
       if len(args) == 3:
          self._context = None
          self._grob, self._attribute, self._value  = args

@@ -1,10 +1,10 @@
-from abjad.spanner.spanner import Spanner
+from abjad.spanner.new import NewSpanner
 
 
-class _Tempo(Spanner):
+class _Tempo(NewSpanner):
 
    def __init__(self, music):
-      _Spanner.__init__(self, music)
+      NewSpanner.__init__(self, music)
       self.tempo = None
 
    def _before(self, leaf):

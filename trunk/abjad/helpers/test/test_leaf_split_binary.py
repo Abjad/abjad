@@ -87,7 +87,8 @@ def test_leaf_split_binary_05( ):
 def test_leaf_split_binary_06( ):
    '''Pre-tied leaves are kept tied after splitting and are not doubly tied.'''
    t = Staff([Note(0, (1, 4))])
-   Tie(t)
+   #Tie(t)
+   Tie(t.leaves)
    new = leaf_split_binary((5, 32), t[0])
    assert isinstance(new, list)
    assert len(new) == 2
@@ -118,7 +119,8 @@ def test_leaf_split_binary_06( ):
 def test_leaf_split_binary_07( ):
    '''Spanners are unaffected by leaf split.'''
    t = Staff([Note(0, (1, 4))])
-   b = Beam(t)
+   #b = Beam(t)
+   b = Beam(t[ : ])
    new = leaf_split_binary((5, 32), t[0])
    for l in t.leaves:
       assert len(l.beam.spanners) == 1

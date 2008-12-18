@@ -151,33 +151,45 @@ class _LeafSpannerInterface(_Interface):
       for spanner in spanners:
          spanner.die( )
 
+   @property
+   def parentage(self):
+      result = [ ]
+      parentage = self._client._parentage._iparentage
+      for component in parentage:
+         result.extend(component.spanners._spanners)
+      return result
+
    ### FORMATTING ###
 
    @property
    def _before(self):
       result = [ ]
-      for spanner in self:
+      #for spanner in self:
+      for spanner in self.parentage:
          result.extend(spanner._before(self._client))
       return result
 
    @property
    def _after(self):
       result = [ ]
-      for spanner in self:
+      #for spanner in self:
+      for spanner in self.parentage:
          result.extend(spanner._after(self._client))
       return result
 
    @property
    def _left(self):
       result = [ ]
-      for spanner in self:
+      #for spanner in self:
+      for spanner in self.parentage:
          result.extend(spanner._left(self._client))   
       return result
 
    @property
    def _right(self):
       result = [ ]
-      for spanner in self:
+      #for spanner in self:
+      for spanner in self.parentage:
          result.extend(spanner._right(self._client))
       return result
 

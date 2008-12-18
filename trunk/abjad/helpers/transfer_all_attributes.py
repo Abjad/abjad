@@ -29,7 +29,8 @@ def _transfer_all_attributes(old, new):
       new._parent._music[new._parent.index(old)] = new
    for spanner in old.spanners:
       #spanner._receptors[spanner.index(old)] = new.spanners
-      spanner._leaves[spanner.index(old)] = new
+      #spanner._leaves[spanner.index(old)] = new
+      spanner._components[spanner.index(old)] = new
       new.spanners._append(spanner)
    new.formatter.before.extend(oldCopy.formatter.before)
    new.formatter.after.extend(oldCopy.formatter.after)

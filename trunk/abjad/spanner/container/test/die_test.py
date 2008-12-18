@@ -11,7 +11,7 @@ def test_spanners_01( ):
 
    t = Staff(run(8))
    appictate(t)
-   Beam(t)
+   Beam(t[ : ])
    assert len(t.spanners) == 1
    t.spanners.die( )
    assert len(t.spanners) == 0

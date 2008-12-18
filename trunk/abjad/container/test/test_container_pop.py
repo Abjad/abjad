@@ -4,7 +4,8 @@ from abjad import *
 def test_pop_01( ):
    '''Components can be poped. Poped components are fractured correctly.'''
    t = Staff(Voice(Note(0, (1,8)) * 8)* 2)
-   Beam(t)
+   #Beam(t)
+   Beam(t[ : ])
    v = t[1]
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t\\new Voice {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}" 
    '''

@@ -51,7 +51,8 @@ def test_chord_cast_04( ):
 def test_chord_cast_05( ):
    '''Cast beamed chord as note.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   Beam(t)
+   #Beam(t)
+   Beam(t[ : ])
    Note(t[0])
    assert isinstance(t[0], Note)
    assert t[0]._parent is t
@@ -107,7 +108,8 @@ def test_chord_cast_09( ):
 def test_chord_cast_10( ):
    '''Cast beamed chord as rest.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   Beam(t)
+   #Beam(t)
+   Beam(t[ : ])
    Rest(t[0])
    assert isinstance(t[0], Rest)
    assert t[0]._parent is t
@@ -163,7 +165,8 @@ def test_chord_cast_14( ):
 def test_chord_cast_15( ):
    '''Cast beamed chord as skip.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   Beam(t)
+   #Beam(t)
+   Beam(t[ : ])
    Skip(t[0])
    assert isinstance(t[0], Skip)
    assert t[0]._parent is t

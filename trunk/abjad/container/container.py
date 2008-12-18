@@ -1,4 +1,4 @@
-from abjad.beam.interfacecontainer import _BeamInterfaceContainer
+#from abjad.beam.interfacecontainer import _BeamInterfaceContainer
 from abjad.container.brackets import _Brackets
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
@@ -28,7 +28,7 @@ class Container(_Component):
       self._music = music
       self._establish( )
       _Component.__init__(self)
-      self._beam = _BeamInterfaceContainer(self)
+      #self._beam = _BeamInterfaceContainer(self)
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self.formatter = _ContainerFormatter(self)
@@ -187,11 +187,11 @@ class Container(_Component):
 
    ### PUBLIC ATTRIBUTES ###
 
-   @apply
-   def beam( ):
-      def fget(self):
-         return self._beam
-      return property(**locals( ))
+#   @apply
+#   def beam( ):
+#      def fget(self):
+#         return self._beam
+#      return property(**locals( ))
 
    @apply
    def brackets( ):
@@ -352,7 +352,7 @@ class Container(_Component):
             self.deleted = False
          def visit(self, node):
             if node is self.expr:
-               node._die()
+               node._die( )
                self.deleted = True
       v = Visitor(expr)
       self._navigator._traverse(v)

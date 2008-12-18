@@ -2,26 +2,52 @@ from abjad import *
 import py.test
 
 
-py.test.skip('Tests for spanned containers development.')
-
 def test_span_differently_named_01( ):
-   '''Spanners refuse differently named containers.'''
-   v1 = Voice([Note(i, (1,8)) for i in range(4)])
-   v1.invocation.name = 'yourvoice'
-   v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   v2.invocation.name = 'myvoice'
+   '''
+   You can span containers however you.
+   LilyPond will render beams correctly through some combinations of container.
+   LilyPond will not render beams correctly through others.
+   Abjad gives you enough rope to hang yourself, so span intelligently.
+   '''
+
+   v1 = Voice(run(4))
+   v1.invocation.name = 'foo'
+   v2 = Voice(run(4))
+   v2.invocation.name = 'bar'
    t = Staff([v1, v2])
-   assert py.test.raises(ContiguityError, 'Beam(t)')
-   assert py.test.raises(ContiguityError, 'Beam(t[ : ])')
+   appictate(t)
+
+   p = Beam(t)
+   assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
    r'''
    \new Staff {
-      \context Voice = "yourvoice" {
-         c'8
+      \context Voice = "foo" {
+         c'8 [
          cs'8
          d'8
          ef'8
       }
-      \context Voice = "myvoice" {
+      \context Voice = "bar" {
+         e'8
+         f'8
+         fs'8
+         g'8 ]
+      }
+   }
+   '''
+   p.die( )
+
+   p = Beam(t[0])
+   assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
+   r'''
+   \new Staff {
+      \context Voice = "foo" {
+         c'8 [
+         cs'8
+         d'8
+         ef'8 ]
+      }
+      \context Voice = "bar" {
          e'8
          f'8
          fs'8
@@ -29,64 +55,93 @@ def test_span_differently_named_01( ):
       }
    }
    '''
+   p.die( )
+
+
 
 
 def test_span_differently_named_02( ):
-   '''Spanners refuse differently named containers.'''
-   vl1 = Voice([Note(i, (1,8)) for i in range(4)])
-   vl1.invocation.name = 'low'
-   vl1.invocation.command = 'context'
-   vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   vl2.invocation.name = 'low'
-   vl2.invocation.command = 'context'
-   vh1 = Voice([Note(i, (1,8)) for i in range(12,16)])
-   vh1.invocation.name = 'high'
-   vh1.invocation.command = 'context'
-   vh2 = Voice([Note(i, (1,8)) for i in range(16,20)])
-   vh2.invocation.name = 'high'
-   vh2.invocation.command = 'context'
-   s1 = Staff([vh1, vl1])
-   s1.invocation.name = 'mystaff'
-   s1.invocation.command = 'context'
-   s1.brackets = 'double-angle'
-   s2 = Staff([vl2, vh2])
-   s2.invocation.name = 'mystaff'
-   s2.invocation.command = 'context'
-   s2.brackets = 'double-angle'
-   seq = Sequential([s1, s2])
-   assert py.test.raises(ContiguityError, 'Beam(seq)')
-   assert py.test.raises(ContiguityError, 'Beam(seq[0])')
-   assert py.test.raises(ContiguityError, 'Beam(seq[1])')
+   '''
+   Abjad lets you span whatever you want.
+   '''
+
+   t = Sequential(Staff(Voice(run(4)) * 2) * 2)
+   t[0].brackets = 'double-angle'
+   t[1].brackets = 'double-angle'
+   t[0].invocation.name, t[1].invocation.name = 'foo', 'foo'
+   t[0][0].invocation.name, t[1][0].invocation.name = 'first', 'first'
+   t[0][1].invocation.name, t[1][1].invocation.name = 'second', 'second'
+   appictate(t)
+
+   p = Beam([t[0][0], t[1][0]])
+   assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\tc\'\'8\n\t\t\tcs\'\'8\n\t\t\td\'\'8\n\t\t\tef\'\'8\n\t\t}\n\t>>\n}'
    r'''
    {
-      \context Staff = "mystaff" <<
-         \context Voice = "high" {
-            c''8
-            cs''8
-            d''8
-            ef''8
-         }
-         \context Voice = "low" {
-            c'8
+      \context Staff = "foo" <<
+         \context Voice = "first" {
+            c'8 [
             cs'8
             d'8
             ef'8
          }
-      >>
-      \context Staff = "mystaff" <<
-         \context Voice = "low" {
+         \context Voice = "second" {
             e'8
             f'8
             fs'8
             g'8
          }
-         \context Voice = "high" {
-            e''8
-            f''8
-            fs''8
-            g''8
+      >>
+      \context Staff = "foo" <<
+         \context Voice = "first" {
+            af'8
+            a'8
+            bf'8
+            b'8 ]
+         }
+         \context Voice = "second" {
+            c''8
+            cs''8
+            d''8
+            ef''8
          }
       >>
    }
    '''
+   p.die( )
 
+
+   p = Beam([t[0][1], t[1][1]])
+   assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8 [\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\tc\'\'8\n\t\t\tcs\'\'8\n\t\t\td\'\'8\n\t\t\tef\'\'8 ]\n\t\t}\n\t>>\n}'
+   r'''
+   {
+      \context Staff = "foo" <<
+         \context Voice = "first" {
+            c'8
+            cs'8
+            d'8
+            ef'8
+         }
+         \context Voice = "second" {
+            e'8 [
+            f'8
+            fs'8
+            g'8
+         }
+      >>
+      \context Staff = "foo" <<
+         \context Voice = "first" {
+            af'8
+            a'8
+            bf'8
+            b'8
+         }
+         \context Voice = "second" {
+            c''8
+            cs''8
+            d''8
+            ef''8 ]
+         }
+      >>
+   }
+   '''
+   p.die( )

@@ -7,12 +7,13 @@ class SpannersDiscontiguous(_Check):
    def _run(self, expr):
       violators = [ ]
       total, bad = 0, 0
-      ### TODO - remove 'interface' from spanners.get ###
       spanners = expr.spanners.get( )
       for spanner in spanners:
          contiguousLeaves = True
-         for i, leaf in enumerate(spanner[:-1]):
-            if leaf.next != spanner[i + 1]:
+         #for i, leaf in enumerate(spanner[ :-1]):
+         leaves = spanner.leaves
+         for i, leaf in enumerate(leaves[ :-1]):
+            if leaf.next != leaves[i + 1]:
                contiguousLeaves = False
          if not contiguousLeaves:
             violators.append(spanner)
