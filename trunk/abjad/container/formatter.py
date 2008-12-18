@@ -67,6 +67,8 @@ class _ContainerFormatter(_Formatter):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)
+      ### TODO: shouldn't the following line be here? and for _after as well?
+      # result.extend(self._collectLocation('_before'))
       result.extend(self._invocation_opening)
       result.extend(self.opening)
       result.extend(self._opening)
