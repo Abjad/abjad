@@ -3,9 +3,9 @@ from abjad.container.brackets import _Brackets
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.core.component import _Component
+from abjad.helpers.coalesce import coalesce
 from abjad.helpers.contiguity import _are_atomic_music_elements
 from abjad.helpers.contiguity import _are_contiguous_music_elements
-from abjad.helpers.hasname import hasname
 from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.spanner.container.interface import _ContainerSpannerInterface
@@ -47,21 +47,19 @@ class Container(_Component):
       for x in self._music:
          x._parent = self
 
-   ### TODO is this the best place for this helper method? 
-   ### should it be in helpers directory? or in navigator?
-   def _fuseRight(self):
-      '''Fuse self with next container if next is threadable with self.'''
-      next = self._navigator._nextThread
-      if next:
-      ### no need to copy here!
-#         self.extend(next.copy( ))
+#   def _fuseRight(self):
+#      '''Fuse self with next container if next is threadable with self.'''
+#      next = self._navigator._nextThread
+#      if next:
+#      ### no need to copy here!
+##         self.extend(next.copy( ))
+##         next._die( )
+#         self.extend(next)
 #         next._die( )
-         self.extend(next)
-         next._die( )
-         return 1
-      else:
-         #print 'Nothing to fuse...'
-         return 0
+#         return 1
+#      else:
+#         #print 'Nothing to fuse...'
+#         return 0
 
    @property
    def _summary(self):
@@ -78,13 +76,7 @@ class Container(_Component):
       the content of both a and b.
       The operation is non-commutative: the content of the first
       operand will be placed before the content of the second operand.'''
-      #from abjad.container.sequential import Sequential
-      s = Container([self.copy( ), expr.copy( )])
-      success = s.coalesce()
-      if success:
-         return s.pop(0)
-      else:
-         raise TypeError('%s and %s cannot be fused.' % (self, expr))
+      return coalesce([self.copy( ), expr.copy( )])
 
    def __contains__(self, expr):
       return expr in self._music
@@ -119,14 +111,8 @@ class Container(_Component):
          return self._music[expr]
             
    def __iadd__(self, expr):
-      '''iadd avoids unnecessary copying of structures.'''
-      #s = Container([self, expr])
-      s = Container([self, expr.copy( )])
-      success = s.coalesce( )
-      if success:
-         return s.pop(0)
-      else:
-         raise TypeError('%s and %s cannot be fused.' % (self, expr))
+      ### iadd avoids unnecessary copying of structures.
+      return coalesce([self, expr.copy( )])
 
    def __imul__(self, n):
       assert isinstance(n, int)
@@ -240,20 +226,20 @@ class Container(_Component):
    def append(self, expr):
       self.insert(len(self), expr)
 
-   def coalesce(self): 
-      '''Fuse all sub-containers in self that follow a thread.'''
-      class Visitor(object):
-         def __init__(self):
-            self.merged = False
-         def visit(self, node):
-            if hasname(node, 'Container'):
-               success = node._fuseRight()
-               if success:
-                  self.merged = True
-      v = Visitor( )
-      self._navigator._traverse(v, depthFirst=False, leftRight=False)
-      _remove_empty_containers(self)
-      return v.merged
+#   def coalesce(self): 
+#      '''Fuse all sub-containers in self that follow a thread.'''
+#      class Visitor(object):
+#         def __init__(self):
+#            self.merged = False
+#         def visit(self, node):
+#            if hasname(node, 'Container'):
+#               success = node._fuseRight()
+#               if success:
+#                  self.merged = True
+#      v = Visitor( )
+#      self._navigator._traverse(v, depthFirst=False, leftRight=False)
+#      _remove_empty_containers(self)
+#      return v.merged
                   
    def embed(self, i, expr):
       '''

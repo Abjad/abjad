@@ -56,7 +56,8 @@ def test_container_add_05( ):
    t1.invocation.name = 1
    t2 = Voice(Note(0, (1, 4))*2)
    t2.invocation.name = 2
-   assert raises(TypeError, 't1 + t2')
+   assert t1 + t2 is None
+   #assert raises(TypeError, 't1 + t2')
 
 def test_container_add_06( ):
    '''Addition works on sequentially nested containers.'''
@@ -76,7 +77,8 @@ def test_container_add_10( ):
    '''Addition raises exception on parallels of notes.'''
    t1 = Parallel(Note(0, (1, 4))*2)
    t2 = Parallel(Note(0, (1, 4))*2)
-   assert raises(TypeError, 't1 + t2')
+   assert t1 + t2 is None
+   #assert raises(TypeError, 't1 + t2')
     
 def test_container_add_11( ):
    '''Addition works on two matching parallel containers each with 
