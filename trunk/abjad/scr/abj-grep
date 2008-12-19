@@ -2,9 +2,9 @@
 
 import os
 import sys
+from abjad.cfg.cfg import ABJADPATH
 
-
-ABJADPATH = os.environ.get('ABJADPATH')
+#ABJADPATH = os.environ.get('ABJADPATH')
 start_directory = os.path.abspath('.')
 os.chdir(ABJADPATH)
 os.system('clear')
