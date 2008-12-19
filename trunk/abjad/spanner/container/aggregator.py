@@ -2,11 +2,11 @@ from abjad.core.interface import _Interface
 from abjad.helpers.hasname import hasname
 
 
-### TODO - create abstract _SpannerInterface class;
-###        derive both this _ContainerSpannerInterface and
-###        also _LeafSpannerInterface from _SpannerInterface;
+### TODO - create abstract _SpannerAggregator class;
+###        derive both this _ContainerSpannerAggregator and
+###        also _LeafSpannerAggregator from _SpannerAggregator;
 
-class _ContainerSpannerInterface(_Interface):
+class _ContainerSpannerAggregator(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client)

@@ -13,7 +13,7 @@ from abjad.markup.interface import _MarkupInterface
 from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
 from abjad.rational.rational import Rational
-from abjad.spanner.leaf.interface import _LeafSpannerInterface
+from abjad.spanner.leaf.aggregator import _LeafSpannerAggregator
 from abjad.staff.interface import _StaffInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tie.interface import _TieInterface
@@ -39,7 +39,7 @@ class _Leaf(_Component):
       self._harmonic = _HarmonicInterface(self)
       self._history = { }
       self._markup = _MarkupInterface(self)
-      self._spanners = _LeafSpannerInterface(self)
+      self._spanners = _LeafSpannerAggregator(self)
       self._staff = _StaffInterface(self)
       self._stem = _StemInterface(self)
       self._tie = _TieInterface(self)
@@ -266,10 +266,10 @@ class _Leaf(_Component):
       def fget(self):
          return self._spanners
       def fset(self, arg):
-         if isinstance(arg, _LeafSpannerInterface):
+         if isinstance(arg, _LeafSpannerAggregator):
             self._spanners = arg
          else:
-            raise ValueError('must be _LeafSpannerInterface')
+            raise ValueError('must be _LeafSpannerAggregator')
       return property(**locals( ))
 
    @apply
