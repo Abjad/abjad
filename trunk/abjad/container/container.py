@@ -1,13 +1,13 @@
 from abjad.container.brackets import _Brackets
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
+from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.core.component import _Component
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.contiguity import _are_atomic_music_elements
 from abjad.helpers.contiguity import _are_contiguous_music_elements
 from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
-from abjad.spanner.container.aggregator import _ContainerSpannerAggregator
 
 
 class Container(_Component):
