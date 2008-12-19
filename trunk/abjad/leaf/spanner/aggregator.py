@@ -48,7 +48,7 @@ class _LeafSpannerAggregator(_Interface):
    def _after(self):
       result = [ ]
       #for spanner in self:
-      for spanner in self.parentage:
+      for spanner in self.total:
          result.extend(spanner._after(self._client))
       return result
 
@@ -56,7 +56,7 @@ class _LeafSpannerAggregator(_Interface):
    def _before(self):
       result = [ ]
       #for spanner in self:
-      for spanner in self.parentage:
+      for spanner in self.total:
          result.extend(spanner._before(self._client))
       return result
 
@@ -64,7 +64,7 @@ class _LeafSpannerAggregator(_Interface):
    def _left(self):
       result = [ ]
       #for spanner in self:
-      for spanner in self.parentage:
+      for spanner in self.total:
          result.extend(spanner._left(self._client))   
       return result
 
@@ -72,14 +72,26 @@ class _LeafSpannerAggregator(_Interface):
    def _right(self):
       result = [ ]
       #for spanner in self:
-      for spanner in self.parentage:
+      for spanner in self.total:
          result.extend(spanner._right(self._client))
       return result
 
    ### PUBLIC ATTRIBUTES ###
 
    @property
-   def parentage(self):
+   def above(self):
+      result = [ ]
+      parentage = self._client._parentage._iparentage[1 : ]
+      for component in parentage:
+         result.extend(component.spanners._spanners)
+      return result
+
+   @property
+   def mine(self):
+      return self._spanners[ : ]
+      
+   @property
+   def total(self):
       result = [ ]
       parentage = self._client._parentage._iparentage
       for component in parentage:

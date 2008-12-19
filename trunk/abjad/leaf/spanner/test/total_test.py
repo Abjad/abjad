@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_parentage_01( ):
+def test_total_01( ):
    '''
    leaf.spanners knows about any spanners that span leaf directly.
    '''
@@ -11,12 +11,12 @@ def test_parentage_01( ):
    p = Beam(t[ : ])
    
    for leaf in t:
-      parentage = leaf.spanners.parentage
-      assert len(parentage) == 1
-      assert parentage[0] is p
+      total = leaf.spanners.total
+      assert len(total) == 1
+      assert total[0] is p
 
 
-def test_parentage_02( ):
+def test_total_02( ):
    '''
    leaf.spanners knows about any spanners that span the container
    which contains leaf.
@@ -27,14 +27,14 @@ def test_parentage_02( ):
    p = Beam(t)
    
    for leaf in t:
-      parentage = leaf.spanners.parentage
-      assert len(parentage) == 1
-      assert parentage[0] is p
+      total = leaf.spanners.total
+      assert len(total) == 1
+      assert total[0] is p
 
 
-def test_parentage_03( ):
+def test_total_03( ):
    '''
-   leaf.spanners knows about spanners high up in the parentage of leaf.
+   leaf.spanners knows about spanners high up in the total of leaf.
    '''
 
    t = Voice(run(4))
@@ -56,6 +56,6 @@ def test_parentage_03( ):
    '''
 
    for leaf in t.leaves:
-      parentage = leaf.spanners.parentage
-      assert len(parentage) == 1
-      assert parentage[0] is p
+      total = leaf.spanners.total
+      assert len(total) == 1
+      assert total[0] is p
