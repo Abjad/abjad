@@ -1,0 +1,48 @@
+Thank you for downloading Abjad!
+
+To install Abjad you must already have Python 2.5 or Python 2.6 installed in your computer. 
+
+
+Installing the official release
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    1. Download the latest release from http://www.projectabjad.org.
+
+    2. Untar the downloaded file (e.g. ``tar xzvf Abjad-NNN.tar.gz``,
+       where ``NNN`` is the version number of the latest release).
+
+    3. Change into the directory created in step 2 (e.g. ``cd Abjad-NNN``).
+
+    4. If you're using Linux, Mac OS X or some other flavor of Unix, enter
+       the command ``sudo python setup.py install`` at the shell prompt.
+       If you're using Windows, start up a command shell with administrator
+       privileges and run the command ``setup.py install``.
+
+These commands will install Abjad in your Python installation's `site-packages` directory. Note that this requires a working internet connection if you don't already have the Python utility "setuptools" installed.
+
+
+Installing the development version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you'd like to be at the cutting edge of the Abjad development use the following alternative:
+
+   1. Install Subversion if you don't have it already installed 
+      (enter 'svn help' to verify this).
+
+   2. Check out Abjad's 'trunck' development like so:
+
+         svn co http://128.59.116.55/abjad/trunk/ abjad-trunk
+
+   3. Make the Python interpreter aware of Abjad. There are two ways to do
+      this:
+         a) Make a symlink in your Python 'site-packages' directory pointing
+            to the abjad-trunk directory previously checked out via Subversion:
+               
+               ln -s 'pwd'/abjad-trunk/abjad SITE-PACKAGES-DIR/abjad
+
+            where SITE-PACKAGES-DIR is the Python 'site-packages' directory.
+            In Linux this is usually in /usr/lib/Python2.x/site-packages.
+
+         b) Alternatively you can include the 'abjad-trunk' directory in 
+            your PYTHONPATH environment variable.             
+
