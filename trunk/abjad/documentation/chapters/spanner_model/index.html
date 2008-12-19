@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
+
+<h1>The Abjad spanner model</h1>
+
+<div class="subsection">
+
+<p>Spanners stretch over multiple Abjad components taken in sequence.</p>
+
+<p>Examples of spanners include:</p>
+
+<ul>
+    <li>Beam spanner</li>
+    <li>Glissando spanner</li>
+    <li>Octavation spanner</li>
+    <li>Override spanner</li>
+</ul>
+
+<p>All spanners ...</p>
+
+<ul>
+    <li>encompass zero to many contiguous components in sequence</li>
+    <li>understand which components are first, ..., last</li>
+    <li>affect components at format-time in a structural way</li>
+</ul>
+
+<p>How does this Spanner class track spanned components?
+Spanner tracks spanned components in a private _components list.
+</p>
+
+<p>Arity relationships:</p>
+
+<ul>
+    <li>spanners have zero to many components</li>
+    <li>some leaf _Interfaces 'receive' no spanners</li>
+    <li>some leaf _Interfaces 'receive' one or more spanners</li>
+    <li>leaf _Interfaces have exactly one '_client'</li>
+</ul>
+
+<p>
+Abjad lets you span whatever you want.
+Your score is well formed when spanners span only contiguous components.
+You can guide any spanner through arbitrarily nested voices.
+You can also create poorly formed structure with noncontiguous spanners.
+Well formedness tests will implement eventually to help you debug.
+</p>
+
+<p>
+Spanners 'block' incoming component references.
+Spanners 'remove' outgoing component references.
+Spanners first block and then remove to 'sever' a component completely.
+</p>
+
+<p>
+The Spanner base class produces no LilyPond input.
+Conrete spanners inspect their components at format-time.
+Conrete spanners  build _before, _after, _left, _right at format-time.
+Leaf _SpannerReceptors collate directive formatting at format-time.
+Leaf _SpannerReceptors sometimes add additional formatting at format-time.
+Leaf _SpannerReceptors hand over complete formatting to leaf at format-time.
+</p>
+
+<p>
+Two spanners 'match' when grobs, attributes and values correspond.
+</p>
+
+<p>
+A single spanner may 'fracture' into two new spanners.
+Spanner fracturation generates a 'receipt' triple.
+Fracturation receipts comprise ((blocking) source, left, right).
+Hold on to the receipt to undo.
+</p>
+
+<p>
+Two spanners may 'fuse' to produce a new spanner.
+Only matching spanners which follow one another may fuse.
+Spanner fusion generates a 'receipt' triple.
+Fusion receipts comprise ((blocking) left, (blocking) right, target).
+Hold on to the receipt to undo.
+</p>
+
+</div>
+
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
+</div>
+
+</body>
+
+</html>
+
