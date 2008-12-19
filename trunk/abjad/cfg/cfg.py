@@ -4,7 +4,8 @@ import os
 ABJADOUTPUT = os.environ.get(
    'ABJADOUTPUT', '/home/abjad/output').rstrip(os.sep)
 ABJADPATH = os.environ.get(
-   'ABJADPATH', '/home/abjad').rstrip(os.sep)
+   'ABJADPATH', os.path.dirname(__file__).rstrip('/cfg')).rstrip(os.sep)
+   #'ABJADPATH', '/home/abjad').rstrip(os.sep)
 ABJADPERSISTENCE = os.environ.get(
    'ABJADPERSISTENCE', '/home/abjab/persistence').rstrip(os.sep)
 ABJADTEMPLATES = os.environ.get(
