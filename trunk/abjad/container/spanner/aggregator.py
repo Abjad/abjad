@@ -2,7 +2,14 @@ from abjad.core.interface import _Interface
 from abjad.helpers.hasname import hasname
 
 
-### TODO - create abstract _SpannerAggregator class;
+### TODO - Make this _ContainerSpannerAggregator stop acting like an iterable.
+###        In other words, take away the ability to say x in t.spanners,
+###        and instead implement explicit read-only lists:
+###
+###        t.spanners.mine, t.spanners.inherited, t.spanners.below,
+###        and t.spanners.total, for example.
+
+### TODO - create abstract _ComponentSpannerAggregator class;
 ###        derive both this _ContainerSpannerAggregator and
 ###        also _LeafSpannerAggregator from _SpannerAggregator;
 
@@ -39,6 +46,18 @@ class _ContainerSpannerAggregator(_Interface):
       if spanner not in self._spanners:
          self._spanners.append(spanner)
 
+   def _fractureContainerSpannersLeft(self):
+      result = [ ]
+      for spanner in self._spanners[ : ]:
+         result.append(spanner.fracture(spanner.index(self._client), 'left'))
+      return result
+
+   def _fractureContainerSpannersRight(self):
+      result = [ ]
+      for spanner in self._spanners[ : ]:
+         result.append(spanner.fracture(spanner.index(self._client), 'right'))
+      return result
+
    #def _fractureLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):
    def _fractureLeft(self, grob = None, attribute = None, value = None):
@@ -64,18 +83,6 @@ class _ContainerSpannerAggregator(_Interface):
             grob, attribute, value, 'right')
       else:
          return [ ]
-
-   def _fractureContainerSpannersLeft(self):
-      result = [ ]
-      for spanner in self._spanners[ : ]:
-         result.append(spanner.fracture(spanner.index(self._client), 'left'))
-      return result
-
-   def _fractureContainerSpannersRight(self):
-      result = [ ]
-      for spanner in self._spanners[ : ]:
-         result.append(spanner.fracture(spanner.index(self._client), 'right'))
-      return result
 
    #def _fuseLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):

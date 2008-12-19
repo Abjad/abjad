@@ -10,6 +10,10 @@ from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 
 
+### TODO - take away the ability to iterate t.spanners and replace
+###        with explicit t.spanners.mine, t.spanners.above,
+###        t.spanners.below, t.spanners.total read-only properties.
+
 class Container(_Component):
 
    def __init__(self, music = None):

@@ -22,6 +22,15 @@ from abjad.trill.interface import _TrillInterface
 import operator
 
 
+### TODO - take away the ability to say for x in t.spanners ...
+###
+###        It's now confusing to remember what t.spanners actually
+###        iterates over: over spanners attaching directly to t?
+###        Or over spanners attaching to the parents of t?
+###
+###        Better to implement some read-only lists like
+###        t.spanners.mine, t.spanners.inherited, t.spanners.total.
+
 class _Leaf(_Component):
 
    def __init__(self, duration):

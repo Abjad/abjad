@@ -2,7 +2,16 @@ from abjad.helpers.hasname import hasname
 from abjad.core.interface import _Interface
 
 
-### TODO - create abstract _SpannerAggregator class;
+### TODO - take away the ability to say for x in t.spanners ...
+###
+###        It's now confusing to remember what t.spanners actually
+###        iterates over: over spanners attaching directly to t?
+###        Or over spanners attaching to the parents of t?
+###
+###        Better to implement some read-only lists like
+###        t.spanners.mine, t.spanners.inherited, t.spanners.total.
+
+### TODO - create _ComponentSpannerAggregator class;
 ###        derive both this _LeafSpannerAggregator and
 ###        also _ContainerSpannerAggregator from _SpannerAggregator.
 
@@ -33,56 +42,97 @@ class _LeafSpannerAggregator(_Interface):
    def __len__(self):
       return len(self._spanners)
 
-   ### HANDLERS ####
+   ### PRIVATE ATTRIBUTES ###
+
+   @property
+   def _after(self):
+      result = [ ]
+      #for spanner in self:
+      for spanner in self.parentage:
+         result.extend(spanner._after(self._client))
+      return result
+
+   @property
+   def _before(self):
+      result = [ ]
+      #for spanner in self:
+      for spanner in self.parentage:
+         result.extend(spanner._before(self._client))
+      return result
+
+   @property
+   def _left(self):
+      result = [ ]
+      #for spanner in self:
+      for spanner in self.parentage:
+         result.extend(spanner._left(self._client))   
+      return result
+
+   @property
+   def _right(self):
+      result = [ ]
+      #for spanner in self:
+      for spanner in self.parentage:
+         result.extend(spanner._right(self._client))
+      return result
+
+   ### PUBLIC ATTRIBUTES ###
+
+   @property
+   def parentage(self):
+      result = [ ]
+      parentage = self._client._parentage._iparentage
+      for component in parentage:
+         result.extend(component.spanners._spanners)
+      return result
+
+   ### PRIVATE METHODS ####
 
    def _append(self, spanner):
       if spanner not in self:
          self._spanners.append(spanner)
 
-   #def get(self, 
-   #   classname = None, interface = None, 
-   #   grob = None, attribute = None, value = None):
-   def get(self, classname = None, grob = None, attribute = None, value = None):
-      result = self[ : ]
-      if classname:
-          result = [
-            spanner for spanner in result
-            if hasname(spanner, classname)]
-      #if interface:
-      #   result = [
-      #      spanner for spanner in result
-      #      if hasattr(spanner, '_interface') and
-      #      spanner._interface == interface]
-      if grob:
-         result = [
-            spanner for spanner in result
-            if hasattr(spanner, '_grob') and
-            spanner._grob == grob]
-      if attribute:
-         result = [
-            spanner for spanner in result
-            if hasattr(spanner, '_attribute') and 
-            spanner._attribute == attribute]
-      if value:
-         result = [
-            spanner for spanner in result
-            if hasattr(spanner, '_value') and
-            spanner._value == value]
+   #def _fractureLeft(self, 
+   #   interface = None, grob = None, attribute = None, value = None):
+   def _fractureLeft(self, grob = None, attribute = None, value = None):
+      result = [ ]
+      #spanners = self.get(interface, grob, attribute, value)
+      spanners = self.get(grob, attribute, value)
+      for spanner in spanners[ : ]:
+         #result.append(spanner.fracture(spanner.index(self), 'left'))
+         result.append(spanner.fracture(spanner.index(self._client), 'left'))
       return result
 
-   #def _getYoungestSpanner(self, 
-   #   classname = None, interface = None, 
-   #   grob = None, attribute = None, value = None):
-   def _getYoungestSpanner(self, 
-      classname = None, grob = None, attribute = None, value = None):
-      #spanners = self.get(classname, interface, grob, attribute, value)
-      spanners = self.get(classname, grob, attribute, value)
-      #spanners.sort(lambda x, y: cmp(y[0].offset, x[0].offset))
-      spanners.sort(lambda x, y: cmp(y[0].offset.score, x[0].offset.score))
-      if spanners:
-         return spanners[0]
-      else:
-         return None
+   #def _fractureRight(self, 
+   #   interface = None, grob = None, attribute = None, value = None):
+   def _fractureRight(self, grob = None, attribute = None, value = None):
+      result = [ ]
+      #spanners = self.get(interface, grob, attribute, value)
+      spanners = self.get(grob, attribute, value)
+      for spanner in spanners[ : ]:
+         #result.append(spanner.fracture(spanner.index(self), 'right'))
+         result.append(spanner.fracture(spanner.index(self._client), 'right'))
+      return result
+
+   #def _fuseLeft(self, 
+   #   interface = None, grob = None, attribute = None, value = None):
+   def _fuseLeft(self, grob = None, attribute = None, value = None):
+      result = [ ]
+      #spanners = self.get(interface, grob, attribute, value)
+      spanners = self.get(grob, attribute, value)
+      for spanner in spanners[ : ]:
+         result.append(spanner.fuse(direction = 'left'))
+      return result
+
+   #def _fuseRight(self, 
+   #   interface = None, grob = None, attribute = None, value = None):
+   def _fuseRight(self, grob = None, attribute = None, value = None):
+      result = [ ]
+      #spanners = self.get(interface, grob, attribute, value)
+      spanners = self.get(grob, attribute, value)
+      for spanner in spanners[ : ]:
+         result.append(spanner.fuse(direction = 'right'))
+      return result
 
    def _getNaiveValue(self, grob, attribute):
       spanner = self._getYoungestSpanner(grob = grob, attribute = attribute)
@@ -119,26 +169,21 @@ class _LeafSpannerAggregator(_Interface):
       else:
          return None
 
-   def find(self, grob, attribute):
-      return self._getSophisticatedValue(grob, attribute)
-
-   def first(self, classname = None, 
-      grob = None, attribute = None, value = None):
-      spanners = self.get(classname = classname, 
-         grob = grob, attribute = attribute, value = value)
+   #def _getYoungestSpanner(self, 
+   #   classname = None, interface = None, 
+   #   grob = None, attribute = None, value = None):
+   def _getYoungestSpanner(self, 
+      classname = None, grob = None, attribute = None, value = None):
+      #spanners = self.get(classname, interface, grob, attribute, value)
+      spanners = self.get(classname, grob, attribute, value)
+      #spanners.sort(lambda x, y: cmp(y[0].offset, x[0].offset))
+      spanners.sort(lambda x, y: cmp(y[0].offset.score, x[0].offset.score))
       if spanners:
          return spanners[0]
       else:
          return None
 
-   def last(self, classname = None, 
-      grob = None, attribute = None, value = None):
-      spanners = self.get(classname = classname, 
-         grob = grob, attribute = attribute, value = value)
-      if spanners:
-         return spanners[-1]
-      else:
-         return None
+   ### PUBLIC METHODS ###
 
    #def die(self, 
    #   classname = None, interface = None, 
@@ -151,71 +196,17 @@ class _LeafSpannerAggregator(_Interface):
       for spanner in spanners:
          spanner.die( )
 
-   @property
-   def parentage(self):
-      result = [ ]
-      parentage = self._client._parentage._iparentage
-      for component in parentage:
-         result.extend(component.spanners._spanners)
-      return result
+   def find(self, grob, attribute):
+      return self._getSophisticatedValue(grob, attribute)
 
-   ### FORMATTING ###
-
-   @property
-   def _before(self):
-      result = [ ]
-      #for spanner in self:
-      for spanner in self.parentage:
-         result.extend(spanner._before(self._client))
-      return result
-
-   @property
-   def _after(self):
-      result = [ ]
-      #for spanner in self:
-      for spanner in self.parentage:
-         result.extend(spanner._after(self._client))
-      return result
-
-   @property
-   def _left(self):
-      result = [ ]
-      #for spanner in self:
-      for spanner in self.parentage:
-         result.extend(spanner._left(self._client))   
-      return result
-
-   @property
-   def _right(self):
-      result = [ ]
-      #for spanner in self:
-      for spanner in self.parentage:
-         result.extend(spanner._right(self._client))
-      return result
-
-   ### SPANNER MANAGEMENT ###
-
-   #def _fractureLeft(self, 
-   #   interface = None, grob = None, attribute = None, value = None):
-   def _fractureLeft(self, grob = None, attribute = None, value = None):
-      result = [ ]
-      #spanners = self.get(interface, grob, attribute, value)
-      spanners = self.get(grob, attribute, value)
-      for spanner in spanners[ : ]:
-         #result.append(spanner.fracture(spanner.index(self), 'left'))
-         result.append(spanner.fracture(spanner.index(self._client), 'left'))
-      return result
-
-   #def _fractureRight(self, 
-   #   interface = None, grob = None, attribute = None, value = None):
-   def _fractureRight(self, grob = None, attribute = None, value = None):
-      result = [ ]
-      #spanners = self.get(interface, grob, attribute, value)
-      spanners = self.get(grob, attribute, value)
-      for spanner in spanners[ : ]:
-         #result.append(spanner.fracture(spanner.index(self), 'right'))
-         result.append(spanner.fracture(spanner.index(self._client), 'right'))
-      return result
+   def first(self, classname = None, 
+      grob = None, attribute = None, value = None):
+      spanners = self.get(classname = classname, 
+         grob = grob, attribute = attribute, value = value)
+      if spanners:
+         return spanners[0]
+      else:
+         return None
 
    #def fracture(self, 
    #   interface = None, grob = None, attribute = None, value = None,
@@ -241,26 +232,6 @@ class _LeafSpannerAggregator(_Interface):
             'direction %s must be left, right or both' % direction)
       return result
          
-   #def _fuseLeft(self, 
-   #   interface = None, grob = None, attribute = None, value = None):
-   def _fuseLeft(self, grob = None, attribute = None, value = None):
-      result = [ ]
-      #spanners = self.get(interface, grob, attribute, value)
-      spanners = self.get(grob, attribute, value)
-      for spanner in spanners[ : ]:
-         result.append(spanner.fuse(direction = 'left'))
-      return result
-
-   #def _fuseRight(self, 
-   #   interface = None, grob = None, attribute = None, value = None):
-   def _fuseRight(self, grob = None, attribute = None, value = None):
-      result = [ ]
-      #spanners = self.get(interface, grob, attribute, value)
-      spanners = self.get(grob, attribute, value)
-      for spanner in spanners[ : ]:
-         result.append(spanner.fuse(direction = 'right'))
-      return result
-
    #def fuse(self, 
    #   interface = None, grob = None, attribute = None, value = None,
    def fuse(self, grob = None, attribute = None, value = None,
@@ -281,3 +252,43 @@ class _LeafSpannerAggregator(_Interface):
          result.extend(self._fuseLeft(grob, attribute, value))
          result.extend(self._fuseRight(grob, attribute, value))
       return result
+
+   #def get(self, 
+   #   classname = None, interface = None, 
+   #   grob = None, attribute = None, value = None):
+   def get(self, classname = None, grob = None, attribute = None, value = None):
+      result = self[ : ]
+      if classname:
+          result = [
+            spanner for spanner in result
+            if hasname(spanner, classname)]
+      #if interface:
+      #   result = [
+      #      spanner for spanner in result
+      #      if hasattr(spanner, '_interface') and
+      #      spanner._interface == interface]
+      if grob:
+         result = [
+            spanner for spanner in result
+            if hasattr(spanner, '_grob') and
+            spanner._grob == grob]
+      if attribute:
+         result = [
+            spanner for spanner in result
+            if hasattr(spanner, '_attribute') and 
+            spanner._attribute == attribute]
+      if value:
+         result = [
+            spanner for spanner in result
+            if hasattr(spanner, '_value') and
+            spanner._value == value]
+      return result
+
+   def last(self, classname = None, 
+      grob = None, attribute = None, value = None):
+      spanners = self.get(classname = classname, 
+         grob = grob, attribute = attribute, value = value)
+      if spanners:
+         return spanners[-1]
+      else:
+         return None
