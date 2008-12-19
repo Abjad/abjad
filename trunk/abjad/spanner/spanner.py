@@ -9,71 +9,59 @@
 #     * Octavation spanner
 #     * Override spanner
 #
-# The common element in all cases is the that spanner encompasses
-# multiplie (continguous) leaves, understand which leaves are
-# first, second, ..., last, and can apply patterns structurally.
+# All spanners ...
+#
+#     * encompass zero to many contiguous components in sequence
+#     * understand which components are first, ..., last
+#     * affect components at format-time in a structural way
 
-# How does this abstract Spanner class track spanned components?
-# Previously, Spanner tracked spanned components in a _receptors list;
-# Spanner now tracks components in a _leaves list;
-# With the next couple of revisions, Spanner will implement _components.
+# How does this Spanner class track spanned components?
+# Spanner tracks spanned components in a private _components list.
 
 # Arity relationships:
-#     * spanners 'have' zero to many (leaf component) receptors
+#     * spanners have zero to many components
 #     * some leaf _Interfaces 'receive' no spanners
-#     * some leaf _Interface 'receive' one or more spanners
+#     * some leaf _Interfaces 'receive' one or more spanners
 #     * leaf _Interfaces have exactly one '_client'
-#     * leaves 'have' many leaf _Interfaces
 
-# Spanners reference only contiguous receptors;
-# this criterion engenders a spanner well-formedness test.
-# This has been true for leaf spanners.
-# With the addition of container spanners we're (temporarily)
-# removing a strict contiguity requirement for container spanners.
-# We may implement a new type of component contiguity check later.
+# Abjad lets you span whatever you want.
+# Your score is well formed when spanners span only contiguous components.
+# You can guide any spanner through arbitrarily nested voices.
+# You can also create poorly formed structure with noncontiguous spanners.
+# Well formedness tests will implement eventually to help you debug.
 
-# Spanners 'block' incoming references and 'remove' outgoing references;
-# spanners first block and then remove to 'sever' a receptor.
+# Spanners 'block' incoming component references.
+# Spanners 'remove' outgoing component references.
+# Spanners first block and then remove to 'sever' a component completely.
 
-# The abstract spanner baseclass produces no LilyPond input;
-# concrete spanners inspect their receptors at format-time;
-# concrete spanners  build before, after, left, right at format-time;
-# leaf _SpannerReceptors collate directive formatting at format-time;
-# leaf _SpannerReceptors sometimes add additional formatting at format-time;
-# leaf _SpannerReceptors  hand over complete formatting to leaf at format-time.
+# The Spanner base class produces no LilyPond input.
+# Conrete spanners inspect their components at format-time.
+# Conrete spanners  build _before, _after, _left, _right at format-time.
+# Leaf _SpannerReceptors collate directive formatting at format-time.
+# Leaf _SpannerReceptors sometimes add additional formatting at format-time.
+# Leaf _SpannerReceptors hand over complete formatting to leaf at format-time.
 
 # Two spanners 'match' when grobs, attributes and values correspond.
 
-# A single spanner may 'fracture' into two new spanners;
-# spanner fracturation generates a 'receipt' triple;
-# fracturation receipts comprise ((blocking) source, left, right);
-# hold on to the receipt to undo.
+# A single spanner may 'fracture' into two new spanners.
+# Spanner fracturation generates a 'receipt' triple.
+# Fracturation receipts comprise ((blocking) source, left, right).
+# Hold on to the receipt to undo.
 
-# Two spanners may 'fuse' to produce a new spanner;
-# only matching spanners which follow one another may fuse;
-# spanner fusion generates a 'receipt' triple;
-# fusion receipts comprise ((blocking) left, (blocking) right, target);
-# hold on to the receipt to undo.
-
-### PUBLIC INTERFACE
-###
-###        duration
-###        leaves
-###
-###        capture( )
-###        copy( )
-###        die( )
-###        fracture( )
-###        fuse( )
-###        index( )
-###        move( )
-###        surrender( )
+# Two spanners may 'fuse' to produce a new spanner.
+# Only matching spanners which follow one another may fuse.
+# Spanner fusion generates a 'receipt' triple.
+# Fusion receipts comprise ((blocking) left, (blocking) right, target).
+# Hold on to the receipt to undo.
 
 from abjad.core.abjadcore import _Abjad
 from abjad.helpers.instances import instances
 from abjad.rational.rational import Rational
 from copy import copy as python_copy
 
+
+### TODO - Take away the ability to take len(p) and to iterate p.
+###        Force explicit len(p.leaves), len(p.components) instead.
 
 class Spanner(_Abjad):
 
@@ -115,16 +103,93 @@ class Spanner(_Abjad):
    def _after(self, component):
       return [ ]
 
+   def _append(self, component):
+      self._insert(len(self), component)
+
    def _before(self, component):
       return [ ]
 
-   def _left(self, component):
-      return [ ]
+   #def _blockByReference(self, leaf):
+   #   leaf.spanners._spanners.remove(self)
+   def _blockByReference(self, component):
+      component.spanners._spanners.remove(self)
 
-   def _right(self, component):
-      return [ ]
+   def _block(self, i = None, j = None):
+      if i is not None and j is None:
+         #leaf = self[i]
+         #self._blockByReference(leaf)
+         component = self.components[i]
+         self._blockByReference(component)
+      elif i is not None and j is not None:
+         #for leaf in self[i : j + 1]:
+         #   self._blockByReference(leaf)
+         for component in self.components[i : j + 1]:
+            self._blockByReference(component)
+      else:
+         #for leaf in self:
+         #   self._blockByReference(leaf)
+         for component in self.components:
+            self._blockByReference(component)
 
-   ### LEAF CONTENTS TESTING ###
+   def _durationOffsetInMe(self, leaf):
+      #assert leaf in self
+      #prev = self[ : self.index(leaf)]
+      #return sum([leaf.duration.prolated for leaf in prev])
+      leaves = self.leaves
+      assert leaf in leaves
+      prev = leaves[ : leaves.index(leaf)]
+      return sum([leaf.duration.prolated for leaf in prev])
+
+   def _extend(self, music):
+      if isinstance(music, (tuple, list)):
+         for component in music:
+            self._append(component)
+      elif music.kind('_Component'):
+         self._append(music)
+      else:
+         raise ValueError('can only span components.')
+
+   def _follows(self, spanner):
+      return spanner[-1].next == self[0]
+
+   def _fractureLeft(self, i):
+      left = self.copy(0, i - 1)
+      right = self.copy(i, len(self))
+      self._block( )
+      return self, left, right
+
+   def _fractureRight(self, i):
+      left = self.copy(0, i)
+      right = self.copy(i + 1, len(self))
+      self._block( )
+      return self, left, right
+
+   def _fuseByReference(self, spanner):
+      if self._matches(spanner) and spanner._follows(self):
+         result = self.copy( )
+         #result._extend(spanner)
+         result._extend(spanner.components)
+         self._block( )
+         spanner._block( )
+         return [(self, spanner, result)]
+      else:
+         return [ ]
+
+   def _fuseRight(self):
+      result = [ ]
+      if self._matchingSpannerAfterMe( ):
+         result.extend(self._fuseByReference(self._matchingSpannerAfterMe( )))
+      return result
+
+   def _fuseLeft(self):
+      result = [ ]
+      if self._matchingSpannerBeforeMe( ):
+         result.extend(self._matchingSpannerBeforeMe( )._fuseByReference(self))
+      return result
+
+   def _insert(self, i, component):
+      component.spanners._spanners.append(self)
+      self._components.insert(i, component)
 
    def _isMyFirstLeaf(self, leaf):
       #return len(self) > 0 and leaf == self[0]
@@ -167,88 +232,59 @@ class Spanner(_Abjad):
       #return leaf.kind(classname) and len(self) == 1
       return leaf.kind(classname) and len(self.leaves) == 1
 
-   ### DERIVED CONTENTS PROPERTIES ###
+   def _left(self, component):
+      return [ ]
 
-   def _durationOffsetInMe(self, leaf):
-      #assert leaf in self
-      #prev = self[ : self.index(leaf)]
-      #return sum([leaf.duration.prolated for leaf in prev])
-      leaves = self.leaves
-      assert leaf in leaves
-      prev = leaves[ : leaves.index(leaf)]
-      return sum([leaf.duration.prolated for leaf in prev])
+   ### TODO - consider implementing a dedicated attribute comparison method
+   ###        to work on any two spanners;
+   ###        such a method would feed into _matches( ), below.
 
-   ### COMPONENT INSERT METHODS ###
+   ### TODO - figure out if we really need the attribute check or not;
+   ###        looks like the attribute check doesn't work right now,
+   ###        at least not for two different octavation spanners.
 
-   def _append(self, component):
-      self._insert(len(self), component)
+   def _matches(self, spanner):
+      return self.__class__ == spanner.__class__ and \
+         all([getattr(self, attr, None) == getattr(spanner, attr, None)
+            for attr in ('_grob', '_attribute', '_value')])
 
-   def _extend(self, music):
-      if isinstance(music, (tuple, list)):
-         for component in music:
-            self._append(component)
-      elif music.kind('_Component'):
-         self._append(music)
+   ### TODO - _matchingSpanner( ) functions as a generalization of
+   ###        _matchingSpannerBeforeMe( ) and _matchingSpannerAfterMe( );
+   ###        cleaner to reimplement _matchingSpanner( ) completely
+   ###        independently of those two functions 
+   ###        and then eliminate those two functions entirely;
+   ###        this will take us from three functions 
+   ###        down to only _matchingSpanner( ).
+
+   def _matchingSpanner(self, direction):
+      assert direction in ('left', 'right')
+      if direction == 'left':
+         return self._matchingSpannerBeforeMe( )
       else:
-         raise ValueError('can only span components.')
+         return self._matchingSpannerAfterMe( )
 
-   def _insert(self, i, component):
-      component.spanners._spanners.append(self)
-      self._components.insert(i, component)
+   def _matchingSpannerAfterMe(self):
+      if self[-1].next:
+         matches = self[-1].next.spanners.get(
+            #interface = getattr(self, '_interface', None),
+            grob = getattr(self, '_grob', None),
+            attribute = getattr(self, '_attribute', None),
+            value = getattr(self, '_vallue', None))
+         if matches:
+            return matches[0]
 
-   ### LEAF-ONLY REFERENCE MANAGEMENT ###
-   ### NOW COMPONENT REFERENCE MANAGEMENT ###
+   def _matchingSpannerBeforeMe(self):
+      if self[0].prev:
+         matches = self[0].prev.spanners.get(
+            #interface = getattr(self, '_interface', None),
+            grob = getattr(self, '_grob', None),
+            attribute = getattr(self, '_attribute', None),
+            value = getattr(self, '_vallue', None))
+         if matches:
+            return matches[0]
 
-   #def _blockByReference(self, leaf):
-   #   leaf.spanners._spanners.remove(self)
-   def _blockByReference(self, component):
-      component.spanners._spanners.remove(self)
-
-   def _block(self, i = None, j = None):
-      if i is not None and j is None:
-         #leaf = self[i]
-         #self._blockByReference(leaf)
-         component = self.components[i]
-         self._blockByReference(component)
-      elif i is not None and j is not None:
-         #for leaf in self[i : j + 1]:
-         #   self._blockByReference(leaf)
-         for component in self.components[i : j + 1]:
-            self._blockByReference(component)
-      else:
-         #for leaf in self:
-         #   self._blockByReference(leaf)
-         for component in self.components:
-            self._blockByReference(component)
-
-   #def _unblockByReference(self, leaf):
-   #   if self not in leaf.spanners:
-   #      leaf.spanners._append(self)
-   def _unblockByReference(self, component):
-      if self not in component.spanners._spanners:
-         component.spanners._append(self)
-
-   def _unblock(self, i = None, j = None):
-      if i is not None and j is None:
-         #leaf = self[i]
-         #self._unblockByReference(leaf)
-         component = self.components[i]
-         self._unblockByReference(component)
-      elif i is not None and j is not None:
-         #for leaf in self[i : j + 1]:
-         #   self._unblockByReference(leaf)
-         for component in self.components[i : j + 1]:
-            self._unblockByReference(component)
-      else:
-         #for leaf in self:
-         #   self._unblockByReference(leaf)
-         for component in self.components:
-            self._unblockByReference(component)
-
-   #def _removeByReference(self, leaf):
-   #   self._components.remove(leaf)
-   def _removeByReference(self, component):
-      self._components.remove(component)
+   def _right(self, component):
+      return [ ]
 
    def _remove(self, i = None, j = None):
       if i is not None and j is None:
@@ -265,12 +301,10 @@ class Spanner(_Abjad):
          for component in self.components[ : ]:
             self._removeByReference(component)
 
-   #def _severByReference(self, leaf):
-   #   self._blockByReference(leaf)
-   #   self._removeByReference(leaf)
-   def _severByReference(self, component):
-      self._blockByReference(component)
-      self._removeByReference(component)
+   #def _removeByReference(self, leaf):
+   #   self._components.remove(leaf)
+   def _removeByReference(self, component):
+      self._components.remove(component)
 
    def _sever(self, i = None, j = None):
       if i is not None and j is None:
@@ -292,56 +326,36 @@ class Spanner(_Abjad):
             component = self.components[n]
             self._severByReference(component)
 
-   ### SPANNER TESTING ###
+   #def _severByReference(self, leaf):
+   #   self._blockByReference(leaf)
+   #   self._removeByReference(leaf)
+   def _severByReference(self, component):
+      self._blockByReference(component)
+      self._removeByReference(component)
 
-   ### TODO - consider implementing a dedicated attribute comparison method
-   ###        to work on any two spanners;
-   ###        such a method would feed into _matches( ), below.
-
-   ### TODO - figure out if we really need the attribute check or not;
-   ###        looks like the attribute check doesn't work right now,
-   ###        at least not for two different octavation spanners.
-
-   def _matches(self, spanner):
-      return self.__class__ == spanner.__class__ and \
-         all([getattr(self, attr, None) == getattr(spanner, attr, None)
-            for attr in ('_grob', '_attribute', '_value')])
-
-   def _follows(self, spanner):
-      return spanner[-1].next == self[0]
-
-   ### TODO - _matchingSpanner( ) functions as a generalization of
-   ###        _matchingSpannerBeforeMe( ) and _matchingSpannerAfterMe( );
-   ###        cleaner to reimplement _matchingSpanner( ) completely
-   ###        independently of those two functions 
-   ###        and then eliminate those two functions entirely;
-   ###        this will take us from three functions down to only _matchingSpanner( ).
-   def _matchingSpanner(self, direction):
-      assert direction in ('left', 'right')
-      if direction == 'left':
-         return self._matchingSpannerBeforeMe( )
+   def _unblock(self, i = None, j = None):
+      if i is not None and j is None:
+         #leaf = self[i]
+         #self._unblockByReference(leaf)
+         component = self.components[i]
+         self._unblockByReference(component)
+      elif i is not None and j is not None:
+         #for leaf in self[i : j + 1]:
+         #   self._unblockByReference(leaf)
+         for component in self.components[i : j + 1]:
+            self._unblockByReference(component)
       else:
-         return self._matchingSpannerAfterMe( )
+         #for leaf in self:
+         #   self._unblockByReference(leaf)
+         for component in self.components:
+            self._unblockByReference(component)
 
-   def _matchingSpannerBeforeMe(self):
-      if self[0].prev:
-         matches = self[0].prev.spanners.get(
-            #interface = getattr(self, '_interface', None),
-            grob = getattr(self, '_grob', None),
-            attribute = getattr(self, '_attribute', None),
-            value = getattr(self, '_vallue', None))
-         if matches:
-            return matches[0]
-
-   def _matchingSpannerAfterMe(self):
-      if self[-1].next:
-         matches = self[-1].next.spanners.get(
-            #interface = getattr(self, '_interface', None),
-            grob = getattr(self, '_grob', None),
-            attribute = getattr(self, '_attribute', None),
-            value = getattr(self, '_vallue', None))
-         if matches:
-            return matches[0]
+   #def _unblockByReference(self, leaf):
+   #   if self not in leaf.spanners:
+   #      leaf.spanners._append(self)
+   def _unblockByReference(self, component):
+      if self not in component.spanners._spanners:
+         component.spanners._append(self)
 
    ### PUBLIC ATTRIBUTES ###
    
@@ -402,18 +416,6 @@ class Spanner(_Abjad):
    def die(self):
       self._sever( )
 
-   def _fractureLeft(self, i):
-      left = self.copy(0, i - 1)
-      right = self.copy(i, len(self))
-      self._block( )
-      return self, left, right
-
-   def _fractureRight(self, i):
-      left = self.copy(0, i)
-      right = self.copy(i + 1, len(self))
-      self._block( )
-      return self, left, right
-
    def fracture(self, i, direction = 'both'):
       if i < 0:
          i = len(self) + i
@@ -430,29 +432,6 @@ class Spanner(_Abjad):
       else:
          raise ValueError(
             'direction %s must be left, right or both.' % direction)
-
-   def _fuseByReference(self, spanner):
-      if self._matches(spanner) and spanner._follows(self):
-         result = self.copy( )
-         #result._extend(spanner)
-         result._extend(spanner.components)
-         self._block( )
-         spanner._block( )
-         return [(self, spanner, result)]
-      else:
-         return [ ]
-
-   def _fuseRight(self):
-      result = [ ]
-      if self._matchingSpannerAfterMe( ):
-         result.extend(self._fuseByReference(self._matchingSpannerAfterMe( )))
-      return result
-
-   def _fuseLeft(self):
-      result = [ ]
-      if self._matchingSpannerBeforeMe( ):
-         result.extend(self._matchingSpannerBeforeMe( )._fuseByReference(self))
-      return result
 
    def fuse(self, direction = 'both'):
       if direction == 'left':
