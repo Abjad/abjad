@@ -57,17 +57,17 @@
 
 ### PUBLIC INTERFACE
 ###
+###        duration
+###        leaves
+###
 ###        capture( )
 ###        copy( )
 ###        die( )
-###        duration( )
 ###        fracture( )
 ###        fuse( )
+###        index( )
 ###        move( )
 ###        surrender( )
-
-###  TODO  make index( ) private.
-###        reimplement capture / surrender to left / right.
 
 from abjad.core.abjadcore import _Abjad
 from abjad.helpers.instances import instances
@@ -78,17 +78,22 @@ from copy import copy as python_copy
 class Spanner(_Abjad):
 
    def __init__(self, music):
-      self._leaves = [ ]
-      self._extend(instances(music, '_Leaf'))
+      self._components = [ ]
+      self._extend(music)
 
-   ### REPR ###
-   
-   @property
-   def _summary(self):
-      if len(self) > 0:
-         return ', '.join([str(x) for x in self])
+   ### OVERLOADS ###
+
+   def __contains__(self, arg):
+      return arg in self._components 
+
+   def __getitem__(self, arg):
+      if isinstance(arg, (int, slice)):
+         return self._components[arg]
       else:
-         return ' '
+         raise TypeError('spanner indices must be integers.')
+
+   def __len__(self):
+      return len(self._components)
 
    def __repr__(self):
       try:
@@ -96,50 +101,51 @@ class Spanner(_Abjad):
       except:
          return '%s(%s)' % (self.__class__.__name__, self._summary)
 
-   ### OVERLOADS ###
+   ### PRIVATE ATTRIBUTES ###
 
-   def __contains__(self, arg):
-      return arg in self._leaves 
-
-   def __getitem__(self, arg):
-      if isinstance(arg, (int, slice)):
-         return self._leaves[arg]
+   @property
+   def _summary(self):
+      if len(self) > 0:
+         return ', '.join([str(x) for x in self])
       else:
-         raise ValueError('must get int or slice.')
+         return ' '
 
-   def __len__(self):
-      return len(self._leaves)
+   ### PRIVATE METHODS ###
 
-   def index(self, leaf):
-      return self._leaves.index(leaf)
-
-   def _before(self, leaf):
+   def _after(self, component):
       return [ ]
 
-   def _after(self, leaf):
+   def _before(self, component):
       return [ ]
 
-   def _left(self, leaf):
+   def _left(self, component):
       return [ ]
 
-   def _right(self, leaf):
+   def _right(self, component):
       return [ ]
 
-   ### CONTENTS TESTING ###
+   ### LEAF CONTENTS TESTING ###
 
    def _isMyFirstLeaf(self, leaf):
-      return len(self) > 0 and leaf == self[0]
+      #return len(self) > 0 and leaf == self[0]
+      leaves = self.leaves
+      return leaves and leaf is leaves[0]
    
    def _isMyLastLeaf(self, leaf):
-      return len(self) > 0 and leaf == self[-1]
+      #return len(self) > 0 and leaf == self[-1]
+      leaves = self.leaves
+      return leaves and leaf is leaves[-1]
 
    def _isMyOnlyLeaf(self, leaf):
       return self._isMyFirstLeaf(leaf) and self._isMyLastLeaf(leaf)
 
    def _isMyFirst(self, leaf, classname):
       if leaf.kind(classname):
-         i = self.index(leaf)
-         for x in self[ : i]:
+         leaves = self.leaves
+         #i = self.index(leaf)
+         i = leaves.index(leaf)
+         #for x in self[ : i]:
+         for x in leaves[ : i]:
             if x.kind(classname):
                return False
          return True
@@ -147,99 +153,144 @@ class Spanner(_Abjad):
 
    def _isMyLast(self, leaf, classname):
       if leaf.kind(classname):
-         i = self.index(leaf)
-         for x in self[i + 1 : ]:
+         leaves = self.leaves
+         #i = self.index(leaf)
+         i = leaves.index(leaf)
+         #for x in self[i + 1 : ]:
+         for x in leaves[i + 1 : ]:
             if x.kind(classname):
                return False
          return True
       return False
 
    def _isMyOnly(self, leaf, classname):
-      return leaf.kind(classname) and len(self) == 1
+      #return leaf.kind(classname) and len(self) == 1
+      return leaf.kind(classname) and len(self.leaves) == 1
 
    ### DERIVED CONTENTS PROPERTIES ###
 
    def _durationOffsetInMe(self, leaf):
-      assert leaf in self
-      prev = self[ : self.index(leaf)]
+      #assert leaf in self
+      #prev = self[ : self.index(leaf)]
+      #return sum([leaf.duration.prolated for leaf in prev])
+      leaves = self.leaves
+      assert leaf in leaves
+      prev = leaves[ : leaves.index(leaf)]
       return sum([leaf.duration.prolated for leaf in prev])
 
-   ### RECEPTOR INSERTS ###
+   ### COMPONENT INSERT METHODS ###
 
-   def _insert(self, i, l):
-      l.spanners._spanners.append(self)
-      self._leaves.insert(i, l)
+   def _append(self, component):
+      self._insert(len(self), component)
 
-   def _append(self, l):
-      self._insert(len(self), l)
+   def _extend(self, music):
+      if isinstance(music, (tuple, list)):
+         for component in music:
+            self._append(component)
+      elif music.kind('_Component'):
+         self._append(music)
+      else:
+         raise ValueError('can only span components.')
 
-   def _extend(self, leaves):
-      for l in leaves:
-         self._append(l)
+   def _insert(self, i, component):
+      component.spanners._spanners.append(self)
+      self._components.insert(i, component)
 
    ### LEAF-ONLY REFERENCE MANAGEMENT ###
+   ### NOW COMPONENT REFERENCE MANAGEMENT ###
 
-   def _blockByReference(self, leaf):
-      leaf.spanners._spanners.remove(self)
+   #def _blockByReference(self, leaf):
+   #   leaf.spanners._spanners.remove(self)
+   def _blockByReference(self, component):
+      component.spanners._spanners.remove(self)
 
    def _block(self, i = None, j = None):
       if i is not None and j is None:
-         leaf = self[i]
-         self._blockByReference(leaf)
+         #leaf = self[i]
+         #self._blockByReference(leaf)
+         component = self.components[i]
+         self._blockByReference(component)
       elif i is not None and j is not None:
-         for leaf in self[i : j + 1]:
-            self._blockByReference(leaf)
+         #for leaf in self[i : j + 1]:
+         #   self._blockByReference(leaf)
+         for component in self.components[i : j + 1]:
+            self._blockByReference(component)
       else:
-         for leaf in self:
-            self._blockByReference(leaf)
+         #for leaf in self:
+         #   self._blockByReference(leaf)
+         for component in self.components:
+            self._blockByReference(component)
 
-   def _unblockByReference(self, leaf):
-      if self not in leaf.spanners:
-         leaf.spanners._append(self)
+   #def _unblockByReference(self, leaf):
+   #   if self not in leaf.spanners:
+   #      leaf.spanners._append(self)
+   def _unblockByReference(self, component):
+      if self not in component.spanners._spanners:
+         component.spanners._append(self)
 
    def _unblock(self, i = None, j = None):
       if i is not None and j is None:
-         leaf = self[i]
-         self._unblockByReference(leaf)
+         #leaf = self[i]
+         #self._unblockByReference(leaf)
+         component = self.components[i]
+         self._unblockByReference(component)
       elif i is not None and j is not None:
-         for leaf in self[i : j + 1]:
-            self._unblockByReference(leaf)
+         #for leaf in self[i : j + 1]:
+         #   self._unblockByReference(leaf)
+         for component in self.components[i : j + 1]:
+            self._unblockByReference(component)
       else:
-         for leaf in self:
-            self._unblockByReference(leaf)
+         #for leaf in self:
+         #   self._unblockByReference(leaf)
+         for component in self.components:
+            self._unblockByReference(component)
 
-   def _removeByReference(self, leaf):
-      self._leaves.remove(leaf)
+   #def _removeByReference(self, leaf):
+   #   self._components.remove(leaf)
+   def _removeByReference(self, component):
+      self._components.remove(component)
 
    def _remove(self, i = None, j = None):
       if i is not None and j is None:
-         self._removeByReference(self[i])
+         #self._removeByReference(self[i])
+         self._removeByReference(self.components[i])
       elif i is not None and j is not None:
-         for leaf in self[i : j + 1]:
-            self._removeByReference(leaf)
+         #for leaf in self[i : j + 1]:
+         #   self._removeByReference(leaf)
+         for component in self.components[i : j + 1]:
+            self._removeByReference(component)
       else:
-         for leaf in self[ : ]:
-            self._removeByReference(leaf)
+         #for leaf in self[ : ]:
+         #   self._removeByReference(leaf)
+         for component in self.components[ : ]:
+            self._removeByReference(component)
 
-   def _severByReference(self, leaf):
-      self._blockByReference(leaf)
-      self._removeByReference(leaf)
+   #def _severByReference(self, leaf):
+   #   self._blockByReference(leaf)
+   #   self._removeByReference(leaf)
+   def _severByReference(self, component):
+      self._blockByReference(component)
+      self._removeByReference(component)
 
    def _sever(self, i = None, j = None):
       if i is not None and j is None:
-         leaf = self[i]
-         self._severByReference(leaf)
+         #leaf = self[i]
+         #self._severByReference(leaf)
+         component = self.components[i]
+         self._severByReference(component)
       elif i is not None and j is not None:
          for n in reversed(range(i, j + 1)):
-            leaf = self[n]
-            self._severByReference(leaf)
+            #leaf = self[n]
+            #self._severByReference(leaf)
+            component = self.components[n]
+            self._severByReference(component)
       else:
-         for n in reversed(range(len(self))):
-            leaf = self[n]
-            self._severByReference(leaf)
-
-   def die(self):
-      self._sever( )
+         #for n in reversed(range(len(self))):
+         #   leaf = self[n]
+         #   self._severByReference(leaf)
+         for n in reversed(range(len(self.components))):
+            component = self.components[n]
+            self._severByReference(component)
 
    ### SPANNER TESTING ###
 
@@ -275,7 +326,7 @@ class Spanner(_Abjad):
    def _matchingSpannerBeforeMe(self):
       if self[0].prev:
          matches = self[0].prev.spanners.get(
-         #   interface = getattr(self, '_interface', None),
+            #interface = getattr(self, '_interface', None),
             grob = getattr(self, '_grob', None),
             attribute = getattr(self, '_attribute', None),
             value = getattr(self, '_vallue', None))
@@ -285,14 +336,71 @@ class Spanner(_Abjad):
    def _matchingSpannerAfterMe(self):
       if self[-1].next:
          matches = self[-1].next.spanners.get(
-         #   interface = getattr(self, '_interface', None),
+            #interface = getattr(self, '_interface', None),
             grob = getattr(self, '_grob', None),
             attribute = getattr(self, '_attribute', None),
             value = getattr(self, '_vallue', None))
          if matches:
             return matches[0]
 
-   ### SPANNER OPERATIONS ###
+   ### PUBLIC ATTRIBUTES ###
+   
+   @property
+   def components(self):
+      return self._components[ : ]
+
+   @property
+   def duration(self):
+      return sum([l.duration.prolated for l in self])
+
+   @property
+   def leaves(self):
+      result = [ ]
+      for component in self._components:
+         for node in component._navigator._DFS(forbid = 'Parallel'):
+            if node.kind('_Leaf'):
+               result.append(node)
+      return result
+
+   ### PUBLIC METHODS ###
+
+   def capture(self, n):
+      if n > 0:
+         cur = self[-1]
+         for i in range(n):
+            if cur.next:
+               self._append(cur.next)
+               cur = cur.next         
+            else:
+               break
+      elif n < 0:
+         cur = self[0]
+         for i in range(abs(n)):
+            if cur.prev:
+               self._insert(0, cur.prev)
+               cur = cur.prev
+            else:
+               break
+
+   def copy(self, start = None, stop = None):
+      result = python_copy(self)
+      #result._leaves = [ ]
+      result._components = [ ]
+      if stop is not None:
+         #for leaf in self[start : stop + 1]:
+         #   result._leaves.append(leaf)
+         for component in self.components[start : stop + 1]:
+            result._components.append(component)
+      else:
+         #for leaf in self:
+         #   result._leaves.append(leaf)
+         for component in self.components:
+            result._components.append(component)
+      result._unblock( )
+      return result
+
+   def die(self):
+      self._sever( )
 
    def _fractureLeft(self, i):
       left = self.copy(0, i - 1)
@@ -326,7 +434,8 @@ class Spanner(_Abjad):
    def _fuseByReference(self, spanner):
       if self._matches(spanner) and spanner._follows(self):
          result = self.copy( )
-         result._extend(spanner)
+         #result._extend(spanner)
+         result._extend(spanner.components)
          self._block( )
          spanner._block( )
          return [(self, spanner, result)]
@@ -359,39 +468,8 @@ class Spanner(_Abjad):
          raise ValueError(
             'direction %s must be left, right or both.' % direction)
       
-   def capture(self, n):
-      if n > 0:
-         cur = self[-1]
-         for i in range(n):
-            if cur.next:
-               self._append(cur.next)
-               cur = cur.next         
-            else:
-               break
-      elif n < 0:
-         cur = self[0]
-         for i in range(abs(n)):
-            if cur.prev:
-               self._insert(0, cur.prev)
-               cur = cur.prev
-            else:
-               break
-
-   def surrender(self, n):
-      '''
-      Surrender from the right for positive n;
-      surrender from the left for negative n;
-      never surrender all references;
-      (surrender never equals death).
-      '''
-      if n > 0:
-         for i in range(n):
-            if len(self) > 1:
-               self._sever(-1)
-      elif n < 0:
-         for i in range(abs(n)):
-            if len(self) > 1:
-               self._sever(0)
+   def index(self, component):
+      return self._components.index(component)
 
    def move(self, n):
       '''
@@ -417,22 +495,18 @@ class Spanner(_Abjad):
             else:
                break
 
-   ### SPANNER COPYING ###
-
-   def copy(self, start = None, stop = None):
-      result = python_copy(self)
-      result._leaves = [ ]
-      if stop is not None:
-         for leaf in self[start : stop + 1]:
-            result._leaves.append(leaf)
-      else:
-         for leaf in self:
-            result._leaves.append(leaf)
-      result._unblock( )
-      return result
-
-   ### DERIVED PROPERTIES ###
-
-   @property
-   def duration(self):
-      return sum([l.duration.prolated for l in self])
+   def surrender(self, n):
+      '''
+      Surrender from the right for positive n;
+      surrender from the left for negative n;
+      never surrender all references;
+      (surrender never equals death).
+      '''
+      if n > 0:
+         for i in range(n):
+            if len(self) > 1:
+               self._sever(-1)
+      elif n < 0:
+         for i in range(abs(n)):
+            if len(self) > 1:
+               self._sever(0)

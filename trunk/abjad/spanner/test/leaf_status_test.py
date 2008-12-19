@@ -8,7 +8,7 @@ def test_leaf_status_01( ):
 
    t = Voice(run(4))
    appictate(t)
-   p = NewSpanner(t)
+   p = Spanner(t)
 
    r'''
    \new Voice {
@@ -37,7 +37,7 @@ def test_leaf_status_02( ):
    t = Voice(run(4))
    t.insert(2, Sequential(run(2)))
    appictate(t)
-   p = NewSpanner(t[ : 3])
+   p = Spanner(t[ : 3])
 
    r'''
    \new Voice {
@@ -64,7 +64,7 @@ def test_leaf_status_03( ):
    t = Voice(run(4))
    t.insert(2, Parallel(Sequential(run(2)) * 2))
    appictate(t)
-   p = NewSpanner(t[ : 3])
+   p = Spanner(t[ : 3])
 
    r'''
    \new Voice {

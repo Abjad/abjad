@@ -9,7 +9,7 @@ def test_spanner_01( ):
 
    t = Voice(run(4))
    appictate(t)
-   p = NewSpanner(t)
+   p = Spanner(t)
 
    assert len(p) == 1
    assert len(p.components) == 1
@@ -28,7 +28,7 @@ def test_spanner_02( ):
 
    t = Voice(run(4))
    appictate(t)
-   p = NewSpanner(t[ : ])
+   p = Spanner(t[ : ])
    
    assert len(p) == 4
    assert len(p.components) == 4
@@ -45,7 +45,7 @@ def test_spanner_03( ):
    '''
 
    t = Voice([ ])
-   p = NewSpanner(t)
+   p = Spanner(t)
 
    assert len(p) == 1
    assert len(p.components) == 1
@@ -63,7 +63,7 @@ def test_spanner_04( ):
    t.insert(1, Sequential(run(2)))
    t.insert(3, Sequential(run(2)))
    appictate(t)
-   p = NewSpanner(t)
+   p = Spanner(t)
 
    r'''
    \new Voice {
@@ -99,7 +99,7 @@ def test_spanner_05( ):
    t.insert(1, Sequential(run(2)))
    t.insert(3, Sequential(run(2)))
    appictate(t)
-   p = NewSpanner(t[0 : 3])
+   p = Spanner(t[0 : 3])
 
    r'''
    \new Voice {
@@ -139,7 +139,7 @@ def test_spanner_06( ):
    t = Staff(run(4))
    t.insert(2, Parallel(Sequential(run(2)) * 2))
    appictate(t)
-   p = NewSpanner(t)
+   p = Spanner(t)
 
    r'''
    \new Staff {
@@ -181,7 +181,7 @@ def test_spanner_07( ):
    t = Staff(run(4))
    t.insert(2, Parallel(Sequential(run(2)) * 2))
    appictate(t)
-   p = NewSpanner(t[ : ])
+   p = Spanner(t[ : ])
 
    r'''
    \new Staff {

@@ -1,10 +1,10 @@
-from abjad.spanner.new import NewSpanner
+from abjad.spanner.spanner import Spanner
 
 
-class Tie(NewSpanner):
+class Tie(Spanner):
 
    def __init__(self, music):
-      NewSpanner.__init__(self, music)
+      Spanner.__init__(self, music)
 
    ### TODO Generalize this to work with other like spanner,
    ###      such as Glissando spanner?

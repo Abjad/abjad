@@ -1,10 +1,10 @@
-from abjad.spanner.new import NewSpanner
+from abjad.spanner.spanner import Spanner
 
 
-class Glissando(NewSpanner):
+class Glissando(Spanner):
 
    def __init__(self, music):
-      NewSpanner.__init__(self, music)
+      Spanner.__init__(self, music)
 
    def _right(self, leaf):
       result = [ ]
