@@ -16,14 +16,23 @@ class _Navigator(_Abjad):
    ### PRIVATE ATTRIBUTES ###
 
    @property
+   def _contemporaneousComponents(self):
+      '''
+      Return a list of all components in either the contents or
+      parentage of client starting at the same moment as client,
+      including client.
+      '''
+      result = [ ]
+      result.extend(self._contemporaneousContents)
+      result.extend(self._contemporaneousParentage)
+      return list(set(result))
+   
+   @property
    def _contemporaneousContents(self):
-      '''Leaf: returns [self].
-         Container: returns list of every component in self
-         that starts at the same moment as self (including self).
-
-         Intuitively: starts at self and then burrows all the way 
-         down the score tree to return a list of everything inside
-         of self starting at the same moment as self.'''
+      '''
+      Return a list of all components in the contents of client
+      beginning at the same moment as client, including client.
+      '''
       result = [ ]
       client = self._client
       result.append(client)
@@ -34,6 +43,24 @@ class _Navigator(_Abjad):
          else:
             result.extend(client[0]._navigator._contemporaneousContents)
       return result
+
+   @property
+   def _contemporaneousParentage(self):
+      '''
+      Return a list of all components in the parentage of client
+      beginning at the same moment as client, including client.
+      '''
+      client = self._client
+      result = [client]
+      prev = client
+      for parent in client._parentage._iparentage[1: ]:
+         if parent.parallel:
+            result.append(parent)
+         elif parent.index(prev) == 0:
+            result.append(parent)
+         prev = parent
+      return result
+
    
    @property
    def _firstContainers(self):
