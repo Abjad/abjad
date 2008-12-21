@@ -11,40 +11,23 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
       if spanner not in self._spanners:
          self._spanners.append(spanner)
 
-   def _fractureContainerSpannersLeft(self):
+   def _fractureMySpanners(self, direction = 'both'):
       result = [ ]
-      for spanner in self._spanners[ : ]:
-         result.append(spanner.fracture(spanner.index(self._client), 'left'))
+      for spanner in self.mine( ):
+         result.append(
+            spanner.fracture(spanner.index(self._client), direction))
       return result
 
-   def _fractureContainerSpannersRight(self):
+   def _fractureLeafSpanners(self, direction = 'both'):
       result = [ ]
-      for spanner in self._spanners[ : ]:
-         result.append(spanner.fracture(spanner.index(self._client), 'right'))
+      if direction in ('left', 'both'):
+         for leaf in self._client._navigator._firstLeaves:
+            result.extend(leaf.spanners.fracture('left'))
+      if direction in ('right', 'both'):
+         for leaf in self._client._navigator._lastLeaves:
+            result.extend(leaf.spanners.fracture('right'))
       return result
-
-   def _fractureLeafSpannersLeft(self):
-#      leaves = self._client.leaves
-#      if leaves:
-#         return leaves[0].spanners.fracture('left')
-#      else:
-#         return [ ]
-      result = [ ]
-      for leaf in self._client._navigator._firstLeaves:
-         result.extend(leaf.spanners.fracture('left'))
-      return result
-
-   def _fractureLeafSpannersRight(self):
-#      leaves = self._client.leaves
-#      if leaves:
-#         return leaves[-1].spanners.fracture('right')
-#      else:
-#         return [ ]
-      result = [ ]
-      for leaf in self._client._navigator._lastLeaves:
-         result.extend(leaf.spanners.fracture('right'))
-      return result
-
+      
    #def _fuseLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):
    def _fuseLeft(self, grob = None, attribute = None, value = None):
@@ -80,28 +63,10 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
       for spanner in spanners:
          spanner.die( )
 
-   #def fracture(self, grob = None, attribute = None, value = None,
-   #   direction = 'both'):
    def fracture(self, direction = 'both'):
       result = [ ]
-      if direction == 'left':
-         #result.extend(self._fractureLeafSpannersLeft(grob, attribute, value))
-         result.extend(self._fractureLeafSpannersLeft( ))
-         result.extend(self._fractureContainerSpannersLeft( ))
-      elif direction == 'right':
-         #result.extend(self._fractureLeafSpannersRight(grob, attribute, value))
-         result.extend(self._fractureLeafSpannersRight( ))
-         result.extend(self._fractureContainerSpannersRight( ))
-      elif direction == 'both':
-         #result.extend(self._fractureLeafSpannersLeft(grob, attribute, value))
-         #result.extend(self._fractureLeafSpannersRight(grob, attribute, value))
-         result.extend(self._fractureLeafSpannersLeft( ))
-         result.extend(self._fractureLeafSpannersRight( ))
-         result.extend(self._fractureContainerSpannersLeft( ))
-         result.extend(self._fractureContainerSpannersRight( ))
-      else:
-         raise ValueError(
-            'direction %s must be left, right or both.' % direction)
+      result.extend(self._fractureMySpanners(direction))
+      result.extend(self._fractureLeafSpanners(direction))
       return result
 
    #def fuse(self, 
