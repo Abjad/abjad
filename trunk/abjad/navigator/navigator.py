@@ -13,26 +13,42 @@ class _Navigator(_Abjad):
    def __init__(self, client):
       self._client = client
 
-   def _rank(self):
-      '''Returns the index of the caller (its position) in 
-         the parent container. If caller has no parent, 
-         returns None.'''
-      #if hasattr(self._client, '_parent'):
-      if not self._client._parent is None:
-         return self._client._parent._music.index(self._client)
-      else:
-         return None
+   ### PRIVATE ATTRIBUTES ###
 
-   # advance to self._client._music[rank], if possible;
-   # otherwise ascend
-   def _advance(self, rank):
-      if hasattr(self._client, '_music'):
-         if rank < len(self._client._music):
-            return self._client._music[rank]
+   @property
+   def _contemporaneousContents(self):
+      '''Leaf: returns [self].
+         Container: returns list of every component in self
+         that starts at the same moment as self (including self).
+
+         Intuitively: starts at self and then burrows all the way 
+         down the score tree to return a list of everything inside
+         of self starting at the same moment as self.'''
+      result = [ ]
+      client = self._client
+      result.append(client)
+      if client.kind('Container'):
+         if client.parallel:
+            for x in client:
+               result.extend(x._navigator._contemporaneousContents)
          else:
-            return self._client._parent
+            result.extend(client[0]._navigator._contemporaneousContents)
+      return result
+   
+   @property
+   def _firstContainers(self):
+      '''Returns the first (leftmost) container or containers 
+         (in case there's a parallel structure) in the calling structure.'''
+      if self._client.kind('Container'):
+         containers = [ ]
+         if self._client.parallel:
+            for e in self._client:
+               containers.extend(e._navigator._firstContainers)
+         else:
+            containers.append(self._client)
+         return containers
       else:
-         return self._client._parent
+         return [None]
 
    @property
    def _firstLeaves(self):
@@ -77,41 +93,6 @@ class _Navigator(_Abjad):
          return leaves
       
    @property
-   def _firstContainers(self):
-      '''Returns the first (leftmost) container or containers 
-         (in case there's a parallel structure) in the calling structure.'''
-      if self._client.kind('Container'):
-         containers = [ ]
-         if self._client.parallel:
-            for e in self._client:
-               containers.extend(e._navigator._firstContainers)
-         else:
-            containers.append(self._client)
-         return containers
-      else:
-         return [None]
-
-   @property
-   def _contemporaneousContents(self):
-      '''Leaf: returns [self].
-         Container: returns list of every component in self
-         that starts at the same moment as self (including self).
-
-         Intuitively: starts at self and then burrows all the way 
-         down the score tree to return a list of everything inside
-         of self starting at the same moment as self.'''
-      result = [ ]
-      client = self._client
-      result.append(client)
-      if client.kind('Container'):
-         if client.parallel:
-            for x in client:
-               result.extend(x._navigator._contemporaneousContents)
-         else:
-            result.extend(client[0]._navigator._contemporaneousContents)
-      return result
-   
-   @property
    def _nextLeaves(self):
       '''Returns list of next leaf/leaves regardless of "thread" or type 
          of caller. If next component is/contains a parallel, return list 
@@ -132,30 +113,6 @@ class _Navigator(_Abjad):
          return lastLeaves
 
    @property
-   def _nextSibling(self):
-      '''Returns the next *sequential* element in the caller's parent; 
-         None otherwise'''
-      rank = self._rank( )
-      if (not rank is None) and (not self._client._parent.parallel): 
-      # (parallels are siameses)
-         if rank + 1 < len(self._client._parent._music):
-            return self._client._parent._music[rank + 1]
-      else:
-         return None
-         
-   @property
-   def _prevSibling(self):
-      '''Returns the previous *sequential* element in the caller's parent; 
-         None otherwise'''
-      rank = self._rank( )
-      if (not rank is None) and (not self._client._parent.parallel): 
-      # (parallels are siameses)
-         if rank - 1 >= 0:
-            return self._client._parent._music[rank - 1]
-      else:
-         return None
-
-   @property
    def _next(self):
       '''Returns next closest non-siamese Component.'''
       next = self._nextSibling
@@ -166,18 +123,6 @@ class _Navigator(_Abjad):
             next = p._navigator._nextSibling
             if next:
                return next
-      
-   @property
-   def _prev(self):
-      '''Returns previous closest non-siamese Component.'''
-      prev = self._prevSibling
-      if prev:
-         return prev
-      else:
-         for p in self._client._parentage._parentage:
-            prev = p._navigator._prevSibling
-            if prev:
-               return prev
       
    @property
    def _nextBead(self):
@@ -193,18 +138,17 @@ class _Navigator(_Abjad):
       return self._findFellowBead(candidates)
 
    @property
-   def _prevBead(self):
-      '''Returns the previous Bead (time threaded Leaf), if such exists. 
-         This method will search the whole (parentage) structure moving back.
-         This will only return if called on a Leaf.'''
-      if not self._client.kind('_Leaf'):
+   def _nextSibling(self):
+      '''Returns the next *sequential* element in the caller's parent; 
+         None otherwise'''
+      rank = self._rank( )
+      if (not rank is None) and (not self._client._parent.parallel): 
+      # (parallels are siameses)
+         if rank + 1 < len(self._client._parent._music):
+            return self._client._parent._music[rank + 1]
+      else:
          return None
-      prev = self._prev
-      if prev is None:
-         return None
-      candidates = prev._navigator._lastLeaves
-      return self._findFellowBead(candidates)
-
+         
    @property
    def _nextThread(self):
       '''Returns the next threadable Container.'''
@@ -219,6 +163,64 @@ class _Navigator(_Abjad):
             if self._isThreadable(c):
                return c
 
+   @property
+   def _prev(self):
+      '''Returns previous closest non-siamese Component.'''
+      prev = self._prevSibling
+      if prev:
+         return prev
+      else:
+         for p in self._client._parentage._parentage:
+            prev = p._navigator._prevSibling
+            if prev:
+               return prev
+      
+   @property
+   def _prevBead(self):
+      '''Returns the previous Bead (time threaded Leaf), if such exists. 
+         This method will search the whole (parentage) structure moving back.
+         This will only return if called on a Leaf.'''
+      if not self._client.kind('_Leaf'):
+         return None
+      prev = self._prev
+      if prev is None:
+         return None
+      candidates = prev._navigator._lastLeaves
+      return self._findFellowBead(candidates)
+
+   @property
+   def _prevSibling(self):
+      '''Returns the previous *sequential* element in the caller's parent; 
+         None otherwise'''
+      rank = self._rank( )
+      if (not rank is None) and (not self._client._parent.parallel): 
+      # (parallels are siameses)
+         if rank - 1 >= 0:
+            return self._client._parent._music[rank - 1]
+      else:
+         return None
+
+   ### PRIVATE METHODS ###
+
+   # advance to self._client._music[rank], if possible;
+   # otherwise ascend
+   def _advance(self, rank):
+      if hasattr(self._client, '_music'):
+         if rank < len(self._client._music):
+            return self._client._music[rank]
+         else:
+            return self._client._parent
+      else:
+         return self._client._parent
+
+   def _findFellowBead(self, candidates):
+      '''Helper method from prevBead and nextBead. 
+      Given a list of bead candiates of self, find and return the first one
+      that matches thread parentage. '''
+      for candidate in candidates:
+         if self._isThreadable(candidate):
+            return candidate
+
    def _getImmediateTemporalSuccessors(self):
       cur = self._client
       while cur is not None:
@@ -229,9 +231,30 @@ class _Navigator(_Abjad):
             return nextSibling._navigator._contemporaneousContents
       return [ ]
 
+   def _hasGoodPath(self, arg):
+      '''Returns True when all of the disjunct elements in the parentage
+         of self._client and arg share the same context and when none
+         of the disjunct elements in the parentage of self._client and arg
+         are parallel containers.'''
+      parentage = \
+         self._client._parentage._disjunctInclusiveParentageBetween(arg)
+      return not any([self._isInaccessibleToMe(p) for p in parentage])
+      
+   def _hasGoodSharedParent(self, arg):
+      '''Returns True when self._client and arg have at least one
+         element of shared parentage and the first element of shared
+         parentage between self._client and arg is not parallel.'''
+      first_shared = self._client._parentage._getFirstSharedParent(arg)
+      return first_shared and not first_shared.parallel
+
    def _isImmediateTemporalSuccessorOf(self, expr):
       return expr in self._getImmediateTemporalSuccessors( )
          
+   def _isInaccessibleToMe(self, arg):
+      return getattr(arg, 'parallel', False) or \
+         (hasattr(arg, 'invocation') and not self._shareContext(arg)) or \
+         (hasattr(arg, 'invocation') and arg.invocation.name is None)
+
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
       c_thread_parentage = expr._parentage._threadParentage
@@ -257,69 +280,6 @@ class _Navigator(_Abjad):
                match_self =  True
       return match_self and match_parent
 
-   def _pathExistsBetween(self, arg):
-      '''Returns True when self._client and arg are ultimately contained
-         in the same expression, when a reference pathway exists between
-         self._client and arg that passes over no \new or \context
-         boundaries, and when a reference path exists between self._client
-         and arg that crosses over no parallel containers.
-         
-         I propose replacing _isThreadable with this method.'''
-      return self._hasGoodSharedParent(arg) and self._hasGoodPath(arg)
-
-   def _hasGoodSharedParent(self, arg):
-      '''Returns True when self._client and arg have at least one
-         element of shared parentage and the first element of shared
-         parentage between self._client and arg is not parallel.'''
-      first_shared = self._client._parentage._getFirstSharedParent(arg)
-      return first_shared and not first_shared.parallel
-
-   def _isInaccessibleToMe(self, arg):
-      return getattr(arg, 'parallel', False) or \
-         (hasattr(arg, 'invocation') and not self._shareContext(arg)) or \
-         (hasattr(arg, 'invocation') and arg.invocation.name is None)
-
-   def _shareContext(self, arg):
-      '''Return True when self._client and arg share the same
-         enclosing context name, otherwise False.'''
-      return self._client._parentage._enclosingContextName == \
-         arg._parentage._enclosingContextName
-
-   def _hasGoodPath(self, arg):
-      '''Returns True when all of the disjunct elements in the parentage
-         of self._client and arg share the same context and when none
-         of the disjunct elements in the parentage of self._client and arg
-         are parallel containers.'''
-      parentage = \
-         self._client._parentage._disjunctInclusiveParentageBetween(arg)
-      return not any([self._isInaccessibleToMe(p) for p in parentage])
-      
-   def _findFellowBead(self, candidates):
-      '''Helper method from prevBead and nextBead. 
-      Given a list of bead candiates of self, find and return the first one
-      that matches thread parentage. '''
-      for candidate in candidates:
-         if self._isThreadable(candidate):
-            return candidate
-#         c_thread_parentage = candidate._parentage._threadParentage
-#         thread_parentage = self._client._parentage._threadParentage
-#         #print thread_parentage
-#         #print c_thread_parentage
-#         ### check that parentages match.
-#         match = True
-#         if len(c_thread_parentage) == len(thread_parentage):
-#            for c, p in zip(c_thread_parentage, thread_parentage):
-#               if type(c) == type(p):
-#                  #if c.kind('Context') and p.kind('Context'):
-#                  if c.kind('_Context') and p.kind('_Context'):
-#                     if c.invocation != p.invocation:
-#                        match = False
-#         else:
-#            match = False
-#
-#         if match:
-#            return candidate
-
    # rightwards depth-first traversal:
    # advance rightwards; otherwise ascend; otherwise None.
    # return next node yet-to-be visited, last rank already visited
@@ -341,6 +301,16 @@ class _Navigator(_Abjad):
          return self._client._parent, self._rank( )
       else:
          return None, None
+
+   def _pathExistsBetween(self, arg):
+      '''Returns True when self._client and arg are ultimately contained
+         in the same expression, when a reference pathway exists between
+         self._client and arg that passes over no \new or \context
+         boundaries, and when a reference path exists between self._client
+         and arg that crosses over no parallel containers.
+         
+         I propose replacing _isThreadable with this method.'''
+      return self._hasGoodSharedParent(arg) and self._hasGoodPath(arg)
 
    # leftwards depth-first traversal;
    # return next node yet-to-be visited, last rank already visited
@@ -368,27 +338,27 @@ class _Navigator(_Abjad):
       else:
          return None, None
 
-#   def _traverse(self, v):
-#      v.visit(self._client)
-#      if hasattr(self._client, '_music'):
-#         for m in self._client._music:
-#            m._navigator._traverse(v)
-#      if hasattr(v, 'unvisit'):
-#         v.unvisit(self._client)
+   def _rank(self):
+      '''Returns the index of the caller (its position) in 
+         the parent container. If caller has no parent, 
+         returns None.'''
+      #if hasattr(self._client, '_parent'):
+      if not self._client._parent is None:
+         return self._client._parent._music.index(self._client)
+      else:
+         return None
+
+   def _shareContext(self, arg):
+      '''Return True when self._client and arg share the same
+         enclosing context name, otherwise False.'''
+      return self._client._parentage._enclosingContextName == \
+         arg._parentage._enclosingContextName
 
    def _traverse(self, v, depthFirst=True, leftRight=True):
       if depthFirst:
          self._traverseDepthFirst(v)
       else:
          self._traverseBreadthFirst(v, leftRight)
-
-   def _traverseDepthFirst(self, v):
-      v.visit(self._client)
-      if hasattr(self._client, '_music'):
-         for m in self._client._music:
-            m._navigator._traverse(v)
-      if hasattr(v, 'unvisit'):
-         v.unvisit(self._client)
 
    def _traverseBreadthFirst(self, v, leftRight = True):
       queue = deque([self._client])
@@ -401,8 +371,16 @@ class _Navigator(_Abjad):
             else:
                queue.extend(reversed(node._music))
 
+   def _traverseDepthFirst(self, v):
+      v.visit(self._client)
+      if hasattr(self._client, '_music'):
+         for m in self._client._music:
+            m._navigator._traverse(v)
+      if hasattr(v, 'unvisit'):
+         v.unvisit(self._client)
+
    ### DEPTH-FIRST SEARCH STUFF BELOW #######
-   ### TODO - ISOLATED IN SEPARATE MODULE ###
+   ### TODO - ISOLATE IN SEPARATE MODULE ####
 
    def _nextNodeDF(self, total):
       '''
