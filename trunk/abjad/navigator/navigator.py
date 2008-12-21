@@ -36,8 +36,10 @@ class _Navigator(_Abjad):
 
    @property
    def _firstLeaves(self):
-      '''Returns the first (leftmost) leaf or leaves 
-         (in case there's a parallel structure) in a tree.'''
+      '''
+      Returns the first (leftmost) leaf or leaves 
+      (in case there's a parallel structure) in a tree.
+      '''
       if self._client.kind('_Leaf'):
          return [self._client]
       elif self._client.kind('Container'):
@@ -45,15 +47,20 @@ class _Navigator(_Abjad):
          if self._client.parallel:
             for e in self._client:
                leaves.extend(e._navigator._firstLeaves)
-         else:
-            #print self._client
+         #else:
+         #   leaves.extend(self._client[0]._navigator._firstLeaves)
+         elif len(self._client) > 0:
             leaves.extend(self._client[0]._navigator._firstLeaves)
+         else:
+            return [ ]
          return leaves
    
    @property
    def _lastLeaves(self):
-      '''Returns the last (rightmost) leaf or leaves
-         (in case there's a parallel structure) in a tree.'''
+      '''
+      Returns the last (rightmost) leaf or leaves
+      (in case there's a parallel structure) in a tree.
+      '''
       if self._client.kind('_Leaf'):
          return [self._client]
       elif self._client.kind('Container'):
@@ -61,9 +68,12 @@ class _Navigator(_Abjad):
          if self._client.parallel:
             for e in self._client:
                leaves.extend(e._navigator._lastLeaves)
-         else:
-            #print self._client
+         #else:
+         #   leaves.extend(self._client[-1]._navigator._lastLeaves)
+         elif len(self._client) > 0:
             leaves.extend(self._client[-1]._navigator._lastLeaves)
+         else:
+            return [ ]
          return leaves
       
    @property

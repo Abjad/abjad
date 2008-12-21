@@ -3,37 +3,7 @@ from abjad.component.spanner.aggregator import _ComponentSpannerAggregator
 from abjad.core.interface import _Interface
 
 
-### TODO - take away the ability to say for x in t.spanners ...
-###
-###        It's now confusing to remember what t.spanners actually
-###        iterates over: over spanners attaching directly to t?
-###        Or over spanners attaching to the parents of t?
-###
-###        Better to implement some read-only lists like
-###        t.spanners.mine, t.spanners.inherited, t.spanners.total.
-
 class _LeafSpannerAggregator(_ComponentSpannerAggregator):
-
-#   ### OVERLOADS ###
-#
-#   def __contains__(self, expr):
-#      return expr in self._spanners
-#
-#   ### TODO - implement slice inside delitem ###
-#
-#   def __delitem__(self, i):
-#      self._spanners[i]._sever( )
-#
-#   def __getitem__(self, i):
-#      return self._spanners[i]
-#
-#   ### TODO - deprecate getslice in favor of getitem ###
-#
-#   def __getslice__(self, i, j):
-#      return self._spanners[i : j]
-#
-#   def __len__(self):
-#      return len(self._spanners)
 
    ### PRIVATE ATTRIBUTES ###
 
