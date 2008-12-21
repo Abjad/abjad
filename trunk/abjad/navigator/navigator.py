@@ -305,7 +305,7 @@ class _Navigator(_Abjad):
          if nextSibling is None:
             cur = cur._parent
          else:
-            return nextSibling._navigator._contemporaneousContents
+            return nextSibling._navigator._contemporaneousStartContents
       return [ ]
 
    def _hasGoodPath(self, arg):
