@@ -3,33 +3,26 @@ from abjad.core.interface import _Interface
 from abjad.helpers.hasname import hasname
 
 
-### TODO - Make this _ContainerSpannerAggregator stop acting like an iterable.
-###        In other words, take away the ability to say x in t.spanners,
-###        and instead implement explicit read-only lists:
-###
-###        t.spanners.mine, t.spanners.inherited, t.spanners.below,
-###        and t.spanners.total, for example.
-
 class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
 
-   ### OVERLOADS ###
-
-   def __contains__(self, expr):
-      return expr in self.get( )
-
-   def __delitem__(self, i):
-      self.get( )[i]._sever( )
-
-   def __getitem__(self, i):
-      return self.get( )[i]
-
-   ### TODO - deprecate getslice ###
-
-   def __getslice__(self, i, j):
-      return self.get( )[i : j]
-
-   def __len__(self):
-      return len(self.get( ))
+#   ### OVERLOADS ###
+#
+#   def __contains__(self, expr):
+#      return expr in self.get( )
+#
+#   def __delitem__(self, i):
+#      self.get( )[i]._sever( )
+#
+#   def __getitem__(self, i):
+#      return self.get( )[i]
+#
+#   ### TODO - deprecate getslice ###
+#
+#   def __getslice__(self, i, j):
+#      return self.get( )[i : j]
+#
+#   def __len__(self):
+#      return len(self.get( ))
 
    ### PRIVATE METHODS ###
 
@@ -169,10 +162,9 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
       #result.extend(right.spanners.fuseRight(interface, grob, attribute, value))
       return result
 
-#   def get(self, classname = None, interface = None, 
-#      grob = None, attribute = None, value = None):
    def get(self, classname = None, grob = None, attribute = None, value = None):
       result = [ ]
+      ### TODO - use set( ) union here ###
       for l in self._client.leaves:
          spanners = l.spanners.get( )
          for spanner in spanners:
@@ -182,11 +174,6 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
          result = [
             spanner for spanner in result
             if hasname(spanner, classname)]
-#      if interface:
-#         result = [
-#            spanner for spanner in result
-#            if hasattr(spanner, '_interface') and 
-#            spanner._interface == interface]
       if grob:
          result = [
             spanner for spanner in result

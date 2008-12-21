@@ -14,26 +14,26 @@ from abjad.core.interface import _Interface
 
 class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 
-   ### OVERLOADS ###
-
-   def __contains__(self, expr):
-      return expr in self._spanners
-
-   ### TODO - implement slice inside delitem ###
-
-   def __delitem__(self, i):
-      self._spanners[i]._sever( )
-
-   def __getitem__(self, i):
-      return self._spanners[i]
-
-   ### TODO - deprecate getslice in favor of getitem ###
-
-   def __getslice__(self, i, j):
-      return self._spanners[i : j]
-
-   def __len__(self):
-      return len(self._spanners)
+#   ### OVERLOADS ###
+#
+#   def __contains__(self, expr):
+#      return expr in self._spanners
+#
+#   ### TODO - implement slice inside delitem ###
+#
+#   def __delitem__(self, i):
+#      self._spanners[i]._sever( )
+#
+#   def __getitem__(self, i):
+#      return self._spanners[i]
+#
+#   ### TODO - deprecate getslice in favor of getitem ###
+#
+#   def __getslice__(self, i, j):
+#      return self._spanners[i : j]
+#
+#   def __len__(self):
+#      return len(self._spanners)
 
    ### PRIVATE ATTRIBUTES ###
 
@@ -72,15 +72,15 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    ### PRIVATE METHODS ####
 
    def _append(self, spanner):
-      if spanner not in self:
+      if spanner not in self._spanners:
          self._spanners.append(spanner)
 
-   def _filter(self, result, classname = None, selector = None):
-      if classname is not None:
-         result = [p for p in result if hasname(p, classname)]
-      if selector is not None:
-         result = filter(selector, result)
-      return result
+#   def _filter(self, result, classname = None, selector = None):
+#      if classname is not None:
+#         result = [p for p in result if hasname(p, classname)]
+#      if selector is not None:
+#         result = filter(selector, result)
+#      return result
 
    #def _fuseLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):
@@ -230,7 +230,8 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    ###        and t.spanners.mine(**kwargs)?
 
    def get(self, classname = None, grob = None, attribute = None, value = None):
-      result = self[ : ]
+      #result = self[ : ]
+      result = self.mine( )
       if classname:
           result = [
             spanner for spanner in result
@@ -260,10 +261,6 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
          return spanners[-1]
       else:
          return None
-
-   def mine(self, classname = None, selector = None):
-      result = self._spanners[ : ]
-      return self._filter(result, classname, selector)
 
    def total(self, classname = None, selector = None):
       result = [ ]

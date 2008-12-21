@@ -5,7 +5,8 @@ def test_beam_spanner_copy_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 4])
    u = t[0].copy( )
-   len(u.spanners) == 1
+   #len(u.spanners) == 1
+   len(u.spanners.mine( )) == 1
    assert u.beam.spanned and u.beam.only
 
 

@@ -12,9 +12,11 @@ def test_spanners_01( ):
    t = Staff(run(8))
    appictate(t)
    Beam(t[ : ])
-   assert len(t.spanners) == 1
+   #assert len(t.spanners) == 1
+   assert len(t.spanners.get( )) == 1
    t.spanners.die( )
-   assert len(t.spanners) == 0
+   #assert len(t.spanners) == 0
+   assert len(t.spanners.get( )) == 0
 
 
 

@@ -252,7 +252,8 @@ class Container(_Component):
       '''
       def _embedComponent(self, i, expr):
          target = self[i]
-         for s in target.spanners:
+         #for s in target.spanners:
+         for s in target.spanners.mine( ):
             for l in expr.leaves:
                s._insert(s.index(target.leaves[0]), l)
          expr._parent = self

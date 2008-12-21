@@ -160,9 +160,11 @@ def test_chord_split_13( ):
    chord = staff[1]
    treble, bass = chord_split(chord, Pitch('e', 4), attr = 'altitude')
    assert isinstance(treble, Chord)
-   assert len(treble.spanners) == 0
+   #assert len(treble.spanners) == 0
+   assert len(treble.spanners.mine( )) == 0
    assert isinstance(bass, Note)
-   assert len(bass.spanners) == 0
+   #assert len(bass.spanners) == 0
+   assert len(bass.spanners.mine( )) == 0
    assert chord is not treble
    assert chord is not bass
    assert treble is not bass
