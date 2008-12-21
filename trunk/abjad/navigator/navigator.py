@@ -16,22 +16,22 @@ class _Navigator(_Abjad):
    ### PRIVATE ATTRIBUTES ###
 
    @property
-   def _contemporaneousComponents(self):
+   def _contemporaneousStartComponents(self):
       '''
       Return a list of all components in either the contents or
       parentage of client starting at the same moment as client,
       including client.
       '''
       result = [ ]
-      result.extend(self._contemporaneousContents)
-      result.extend(self._contemporaneousParentage)
+      result.extend(self._contemporaneousStartContents)
+      result.extend(self._contemporaneousStartParentage)
       return list(set(result))
    
    @property
-   def _contemporaneousContents(self):
+   def _contemporaneousStartContents(self):
       '''
       Return a list of all components in the contents of client
-      beginning at the same moment as client, including client.
+      starting at the same moment as client, including client.
       '''
       result = [ ]
       client = self._client
@@ -39,16 +39,16 @@ class _Navigator(_Abjad):
       if client.kind('Container'):
          if client.parallel:
             for x in client:
-               result.extend(x._navigator._contemporaneousContents)
+               result.extend(x._navigator._contemporaneousStartContents)
          else:
-            result.extend(client[0]._navigator._contemporaneousContents)
+            result.extend(client[0]._navigator._contemporaneousStartContents)
       return result
 
    @property
-   def _contemporaneousParentage(self):
+   def _contemporaneousStartParentage(self):
       '''
       Return a list of all components in the parentage of client
-      beginning at the same moment as client, including client.
+      starting at the same moment as client, including client.
       '''
       client = self._client
       result = [client]
@@ -61,7 +61,57 @@ class _Navigator(_Abjad):
          prev = parent
       return result
 
+   @property
+   def _contemporaneousStopComponents(self):
+      '''
+      Return a list of all components in either the contents or
+      parentage of client stopping at the same moment as client,
+      including client.
+      '''
+      result = [ ]
+      result.extend(self._contemporaneousStopContents)
+      result.extend(self._contemporaneousStopParentage)
+      return list(set(result))
    
+   @property
+   def _contemporaneousStopContents(self):
+      '''
+      Return a list of all components in the contents of client
+      stopping at the same moment as client, including client.
+      '''
+      result = [ ]
+      client = self._client
+      result.append(client)
+      if client.kind('Container'):
+         if client.parallel:
+            client_duration = client.duration.preprolated
+            for x in client:
+               if x.duration.preprolated == client_duration:
+                  result.extend(x._navigator._contemporaneousStopContents)
+         elif len(client) > 0:
+            result.extend(client[-1]._navigator._contemporaneousStopContents)
+      return result
+
+   @property
+   def _contemporaneousStopParentage(self):
+      '''
+      Return a list of all components in the parentage of client
+      stopping at the same moment as client, including client.
+      '''
+      client = self._client
+      result = [client]
+      prev = client
+      for parent in client._parentage._iparentage[1: ]:
+         if parent.parallel:
+            if prev.duration.prolated == parent.duration.prolated:
+               result.append(parent)
+            else:
+               break
+         elif parent.index(prev) == len(parent) - 1:
+            result.append(parent)
+         prev = parent
+      return result
+
    @property
    def _firstContainers(self):
       '''Returns the first (leftmost) container or containers 
