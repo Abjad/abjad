@@ -360,6 +360,9 @@ class Spanner(_Abjad):
    def die(self):
       self._sever( )
 
+   ### TODO - Implement _SpannerFractureReceipt class 
+   ###        to encapsulate return value ###
+
    def fracture(self, i, direction = 'both'):
       if i < 0:
          i = len(self) + i

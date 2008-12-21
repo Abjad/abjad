@@ -61,26 +61,32 @@ class _ContainerSpannerAggregator(_Interface):
    #def _fractureLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):
    def _fractureLeft(self, grob = None, attribute = None, value = None):
-      if len(self._client.leaves) > 0:
+      leaves = self._client.leaves
+      #if len(self._client.leaves) > 0:
+      if leaves:
          #return self._client.leaves[0].spanners.fractureLeft(
          #   interface, grob, attribute, value)
          #return self._client.leaves[0].spanners.fracture(
          #   interface, grob, attribute, value, 'left')
-         return self._client.leaves[0].spanners.fracture(
-            grob, attribute, value, 'left')
+         #return self._client.leaves[0].spanners.fracture(
+         #   grob, attribute, value, 'left')
+         return leaves[0].spanners.fracture('left')
       else:
          return [ ]
 
    #def _fractureRight(self, 
    #   interface = None, grob = None, attribute = None, value = None):
    def _fractureRight(self, grob = None, attribute = None, value = None):
-      if len(self._client.leaves) > 0:
+      leaves = self._client.leaves
+      #if len(self._client.leaves) > 0:
+      if leaves:
          #return self._client.leaves[-1].spanners.fractureRight(
          #   interface, grob, attribute, value)
          #return self._client.leaves[-1].spanners.fracture(
          #   interface, grob, attribute, value, 'right')
-         return self._client.leaves[-1].spanners.fracture(
-            grob, attribute, value, 'right')
+         #return self._client.leaves[-1].spanners.fracture(
+         #   grob, attribute, value, 'right')
+         return leaves[-1].spanners.fracture('right')
       else:
          return [ ]
 

@@ -11,7 +11,7 @@ def test_total_01( ):
    p = Beam(t[ : ])
    
    for leaf in t:
-      total = leaf.spanners.total
+      total = leaf.spanners.total( )
       assert len(total) == 1
       assert total[0] is p
 
@@ -27,7 +27,7 @@ def test_total_02( ):
    p = Beam(t)
    
    for leaf in t:
-      total = leaf.spanners.total
+      total = leaf.spanners.total( )
       assert len(total) == 1
       assert total[0] is p
 
@@ -56,6 +56,6 @@ def test_total_03( ):
    '''
 
    for leaf in t.leaves:
-      total = leaf.spanners.total
+      total = leaf.spanners.total( )
       assert len(total) == 1
       assert total[0] is p
