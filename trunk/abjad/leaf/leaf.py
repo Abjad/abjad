@@ -2,7 +2,7 @@ from abjad.articulations.interface import _ArticulationsInterface
 from abjad.beam.interface import _BeamInterface
 from abjad.clef.clef import _Clef
 from abjad.clef.interface import _ClefInterface
-from abjad.core.component import _Component
+from abjad.component.component import _Component
 from abjad.core.interface import _Interface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface

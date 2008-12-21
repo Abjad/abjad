@@ -1,4 +1,4 @@
-from abjad.core.component import _Component
+from abjad.component.component import _Component
 
 
 def f(expr):

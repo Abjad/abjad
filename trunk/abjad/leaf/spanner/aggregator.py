@@ -1,4 +1,5 @@
 from abjad.helpers.hasname import hasname
+from abjad.component.spanner.aggregator import _ComponentSpannerAggregator
 from abjad.core.interface import _Interface
 
 
@@ -11,15 +12,7 @@ from abjad.core.interface import _Interface
 ###        Better to implement some read-only lists like
 ###        t.spanners.mine, t.spanners.inherited, t.spanners.total.
 
-### TODO - create _ComponentSpannerAggregator class;
-###        derive both this _LeafSpannerAggregator and
-###        also _ContainerSpannerAggregator from _SpannerAggregator.
-
-class _LeafSpannerAggregator(_Interface):
-
-   def __init__(self, client):
-      _Interface.__init__(self, client)
-      self._spanners = [ ]
+class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 
    ### OVERLOADS ###
 

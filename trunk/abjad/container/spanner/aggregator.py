@@ -1,3 +1,4 @@
+from abjad.component.spanner.aggregator import _ComponentSpannerAggregator
 from abjad.core.interface import _Interface
 from abjad.helpers.hasname import hasname
 
@@ -9,17 +10,7 @@ from abjad.helpers.hasname import hasname
 ###        t.spanners.mine, t.spanners.inherited, t.spanners.below,
 ###        and t.spanners.total, for example.
 
-### TODO - create abstract _ComponentSpannerAggregator class;
-###        derive both this _ContainerSpannerAggregator and
-###        also _LeafSpannerAggregator from _SpannerAggregator;
-
-class _ContainerSpannerAggregator(_Interface):
-
-   def __init__(self, client):
-      _Interface.__init__(self, client)
-      # added to hold references to container spanners
-      # as opposed to leaf spanners obtained by self.get( )
-      self._spanners = [ ]
+class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
 
    ### OVERLOADS ###
 
