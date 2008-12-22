@@ -63,59 +63,59 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 #         result.append(spanner.fuse(direction = 'right'))
 #      return result
 
-   def _getNaiveValue(self, grob, attribute):
-      spanner = self._getYoungestSpanner(grob = grob, attribute = attribute)
-      if spanner:
-         return spanner._value
-      else:
-         return None
-
-   def _getSophisticatedValue(self, grob, attribute):
-      '''Get the youngest matching spanner, if any;
-         for every leaf *before me* in the spanner,
-         check and see if that leaf has another matching spanner;
-         if so, check to see if that leaf marks the *end*
-         of a matching spanner;
-         if so, that means that that leaf *before me* carries
-         a \revert and I return no actual value;
-         otherwise, if no leaves before me carry a \revert,
-         return the value of my youngest matching spanner.
-         The restriction against _isMyOnlyLeaf( ) is in there
-         because one-time overrides carry no \revert;
-         see test_override_overlap.py for examples.'''
-      spanner = self._getYoungestSpanner(grob = grob, attribute = attribute)
-      if spanner:
-         for i in reversed(range(spanner.index(self._client))):
-            #cur = spanner.leaves[i]
-            cur = spanner[i]
-            candidates = cur.spanners.get(grob = grob, attribute = attribute)
-            candidates = [x for x in candidates if x is not spanner]
-            for candidate in candidates:
-               if candidate._isMyLastLeaf(cur) and \
-                  not candidate._isMyOnlyLeaf(cur):
-                  return None
-         return spanner._value
-      else:
-         return None
-
-   #def _getYoungestSpanner(self, 
-   #   classname = None, interface = None, 
-   #   grob = None, attribute = None, value = None):
-   def _getYoungestSpanner(self, 
-      classname = None, grob = None, attribute = None, value = None):
-      #spanners = self.get(classname, interface, grob, attribute, value)
-      spanners = self.get(classname, grob, attribute, value)
-      #spanners.sort(lambda x, y: cmp(y[0].offset, x[0].offset))
-      spanners.sort(lambda x, y: cmp(y[0].offset.score, x[0].offset.score))
-      if spanners:
-         return spanners[0]
-      else:
-         return None
+#   def _getNaiveValue(self, grob, attribute):
+#      spanner = self._getYoungestSpanner(grob = grob, attribute = attribute)
+#      if spanner:
+#         return spanner._value
+#      else:
+#         return None
+#
+#   def _getSophisticatedValue(self, grob, attribute):
+#      '''Get the youngest matching spanner, if any;
+#         for every leaf *before me* in the spanner,
+#         check and see if that leaf has another matching spanner;
+#         if so, check to see if that leaf marks the *end*
+#         of a matching spanner;
+#         if so, that means that that leaf *before me* carries
+#         a \revert and I return no actual value;
+#         otherwise, if no leaves before me carry a \revert,
+#         return the value of my youngest matching spanner.
+#         The restriction against _isMyOnlyLeaf( ) is in there
+#         because one-time overrides carry no \revert;
+#         see test_override_overlap.py for examples.'''
+#      spanner = self._getYoungestSpanner(grob = grob, attribute = attribute)
+#      if spanner:
+#         for i in reversed(range(spanner.index(self._client))):
+#            #cur = spanner.leaves[i]
+#            cur = spanner[i]
+#            candidates = cur.spanners.get(grob = grob, attribute = attribute)
+#            candidates = [x for x in candidates if x is not spanner]
+#            for candidate in candidates:
+#               if candidate._isMyLastLeaf(cur) and \
+#                  not candidate._isMyOnlyLeaf(cur):
+#                  return None
+#         return spanner._value
+#      else:
+#         return None
+#
+#   #def _getYoungestSpanner(self, 
+#   #   classname = None, interface = None, 
+#   #   grob = None, attribute = None, value = None):
+#   def _getYoungestSpanner(self, 
+#      classname = None, grob = None, attribute = None, value = None):
+#      #spanners = self.get(classname, interface, grob, attribute, value)
+#      spanners = self.get(classname, grob, attribute, value)
+#      #spanners.sort(lambda x, y: cmp(y[0].offset, x[0].offset))
+#      spanners.sort(lambda x, y: cmp(y[0].offset.score, x[0].offset.score))
+#      if spanners:
+#         return spanners[0]
+#      else:
+#         return None
 
    ### PUBLIC METHODS ###
 
-   def find(self, grob, attribute):
-      return self._getSophisticatedValue(grob, attribute)
+#   def find(self, grob, attribute):
+#      return self._getSophisticatedValue(grob, attribute)
 
    def first(self, classname = None, 
       grob = None, attribute = None, value = None):
@@ -180,10 +180,3 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
          return spanners[-1]
       else:
          return None
-
-#   def total(self, classname = None, selector = None):
-#      result = [ ]
-#      parentage = self._client._parentage._iparentage
-#      for component in parentage:
-#         result.extend(component.spanners._spanners)
-#      return self._filter(result, classname, selector)
