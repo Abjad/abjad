@@ -117,14 +117,14 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 #   def find(self, grob, attribute):
 #      return self._getSophisticatedValue(grob, attribute)
 
-   def first(self, classname = None, 
-      grob = None, attribute = None, value = None):
-      spanners = self.get(classname = classname, 
-         grob = grob, attribute = attribute, value = value)
-      if spanners:
-         return spanners[0]
-      else:
-         return None
+#   def first(self, classname = None, 
+#      grob = None, attribute = None, value = None):
+#      spanners = self.get(classname = classname, 
+#         grob = grob, attribute = attribute, value = value)
+#      if spanners:
+#         return spanners[0]
+#      else:
+#         return None
 
 #   def fracture(self, direction = 'both'):
 #      result = [ ]
@@ -172,11 +172,11 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
             spanner._value == value]
       return result
 
-   def last(self, classname = None, 
-      grob = None, attribute = None, value = None):
-      spanners = self.get(classname = classname, 
-         grob = grob, attribute = attribute, value = value)
-      if spanners:
-         return spanners[-1]
-      else:
-         return None
+#   def last(self, classname = None, 
+#      grob = None, attribute = None, value = None):
+#      spanners = self.get(classname = classname, 
+#         grob = grob, attribute = attribute, value = value)
+#      if spanners:
+#         return spanners[-1]
+#      else:
+#         return None
