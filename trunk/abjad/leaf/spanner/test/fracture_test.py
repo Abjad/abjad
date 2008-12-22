@@ -20,62 +20,31 @@ def test_fracture_01( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   t[0].spanners.fracture('left')
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert check(t)
-
-   receipt = t[0].spanners.fracture('left')[0]
-   source, left, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner( ), Spanner(c'8, d'8, e'8, f'8))"
-
-   assert source is p
-   assert len(source.components) == 4
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p
-   assert len(left.components) == 0
-
-   assert right is not p
-   assert len(right.components) == 4
-   assert right.components[0] is t[0]
-   assert right.components[1] is t[1]
-   assert right.components[2] is t[2]
-   assert right.components[3] is t[3]
-   
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-
-   assert t[0].spanners.mine( )[0] is right
-   assert t[1].spanners.mine( )[0] is right
-   assert t[2].spanners.mine( )[0] is right
-   assert t[3].spanners.mine( )[0] is right
-
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
 def test_fracture_02( ):
@@ -90,53 +59,31 @@ def test_fracture_02( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   t[1].spanners.fracture('left')
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
+   r'''
+   \new Voice {
+      c'8 [ ]
+      d'8 [
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert check(t)
-
-   receipt = t[1].spanners.fracture('left')[0]
-   source, left, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner(c'8), Spanner(d'8, e'8, f'8))"
-
-   assert source is p
-   assert left is not p
-
-   assert len(left.components) == 1
-   assert left.components[0] is t[0]
-   assert len(t[0].spanners.mine( )) == 1
-   assert t[0].spanners.mine( )[0] is left
-
-   assert right is not p
-   assert len(right.components) == 3
-   assert right.components[0] is t[1]
-   assert right.components[1] is t[2]
-   assert right.components[2] is t[3]
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-   assert t[1].spanners.mine( )[0] is right
-   assert t[2].spanners.mine( )[0] is right
-   assert t[3].spanners.mine( )[0] is right
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [ ]\n\td'8 [\n\te'8\n\tf'8 ]\n}"
 
 
 def test_fracture_03( ):
@@ -150,63 +97,31 @@ def test_fracture_03( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   t[-1].spanners.fracture('left')
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8 ]
+      f'8 [ ]
+   }
+   '''
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
-
-   assert check(t)
-
-   receipt = t[-1].spanners.fracture('left')[0]
-   source, left, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner(c'8, d'8, e'8), Spanner(f'8))"
-
-   assert source is p
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p
-
-   assert len(left.components) == 3
-   assert left.components[0] is t[0]
-   assert left.components[1] is t[1]
-   assert left.components[2] is t[2]
-
-   assert right is not p
-   assert len(right.components) == 1
-   assert right.components[0] is t[3]
-
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-
-   assert t[0].spanners.mine( )[0] is left
-   assert t[1].spanners.mine( )[0] is left
-   assert t[2].spanners.mine( )[0] is left
-   assert t[3].spanners.mine( )[0] is right
-
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8 [ ]\n}"
 
 
 def test_fracture_04( ):
@@ -215,64 +130,31 @@ def test_fracture_04( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   t[0].spanners.fracture('right')   
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
+   r'''
+   \new Voice {
+      c'8 [ ]
+      d'8 [
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert check(t)
-
-   receipt = t[0].spanners.fracture('right')[0]
-   source, left, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner(c'8), Spanner(d'8, e'8, f'8))"
-
-   assert source is p
-   assert len(source.components) == 4
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p
-   assert len(left.components) == 1
-
-   assert left.components[0] is t[0]
-
-   assert right is not p
-   assert len(right.components) == 3
-
-   assert right.components[0] is t[1]
-   assert right.components[1] is t[2]
-   assert right.components[2] is t[3]
-   
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-
-   assert t[0].spanners.mine( )[0] is left
-   assert t[1].spanners.mine( )[0] is right
-   assert t[2].spanners.mine( )[0] is right
-   assert t[3].spanners.mine( )[0] is right
-
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [ ]\n\td'8 [\n\te'8\n\tf'8 ]\n}"
 
 
 def test_fracture_05( ):
@@ -281,65 +163,31 @@ def test_fracture_05( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   t[1].spanners.fracture('right')
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   r'''
+   \new Voice {
+      c'8 [
+      d'8 ]
+      e'8 [
+      f'8 ]
+   }
+   '''
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
-
-   assert check(t)
-
-   receipt = t[1].spanners.fracture('right')[0]
-   source, left, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner(c'8, d'8), Spanner(e'8, f'8))"
-
-   assert source is p
-   assert len(source.components) == 4
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p
-   assert len(left.components) == 2
-
-   assert left.components[0] is t[0]
-   assert left.components[1] is t[1]
-
-   assert right is not p
-   assert len(right.components) == 2
-
-   assert right.components[0] is t[2]
-   assert right.components[1] is t[3]
-
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-
-   assert t[0].spanners.mine( )[0] is left
-   assert t[1].spanners.mine( )[0] is left
-   assert t[2].spanners.mine( )[0] is right
-   assert t[3].spanners.mine( )[0] is right
-
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
 
 
 def test_fracture_06( ):
@@ -348,63 +196,31 @@ def test_fracture_06( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   t[-1].spanners.fracture('right')
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
-
-   assert check(t)
-
-   receipt = t[-1].spanners.fracture('right')[0]
-   source, left, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner(c'8, d'8, e'8, f'8), Spanner( ))"
-
-   assert source is p
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p
-   assert len(left.components) == 4
-
-   assert left.components[0] is t[0]
-   assert left.components[1] is t[1]
-   assert left.components[2] is t[2]
-   assert left.components[3] is t[3]
-
-   assert right is not p
-   assert len(right.components) == 0
-
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-
-   assert t[0].spanners.mine( )[0] is left
-   assert t[1].spanners.mine( )[0] is left
-   assert t[2].spanners.mine( )[0] is left
-   assert t[3].spanners.mine( )[0] is left
-
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
 def test_fracture_07( ):
@@ -413,67 +229,31 @@ def test_fracture_07( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   t[0].spanners.fracture( )
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
+   r'''
+   \new Voice {
+      c'8 [ ]
+      d'8 [
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert check(t)
-
-   receipt = t[0].spanners.fracture( )[0]
-   source, left, center, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner( ), Spanner(c'8), Spanner(d'8, e'8, f'8))"
-
-   assert source is p
-   assert len(source.components) == 4
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p
-   assert len(left.components) == 0
-
-   assert center is not p
-   assert len(center.components) == 1
-
-   assert center.components[0] is t[0]
-
-   assert right is not p
-   assert len(right.components) == 3
-
-   assert right.components[0] is t[1]
-   assert right.components[1] is t[2]
-   assert right.components[2] is t[3]
-   
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-
-   assert t[0].spanners.mine( )[0] is center
-   assert t[1].spanners.mine( )[0] is right
-   assert t[2].spanners.mine( )[0] is right
-   assert t[3].spanners.mine( )[0] is right
-
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [ ]\n\td'8 [\n\te'8\n\tf'8 ]\n}"
 
 
 def test_fracture_08( ):
@@ -482,69 +262,31 @@ def test_fracture_08( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   t[1].spanners.fracture( )
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   r'''
+   \new Voice {
+      c'8 [ ]
+      d'8 [ ]
+      e'8 [
+      f'8 ]
+   }
+   '''
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
-
-   assert check(t)
-
-   receipt = t[1].spanners.fracture( )[0]
-   source, left, center, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner(c'8), Spanner(d'8), Spanner(e'8, f'8))"
-
-   assert source is p
-   assert len(source.components) == 4
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p
-   assert len(left.components) == 1
-
-   assert left.components[0] is t[0]
-
-   assert center is not p
-   assert len(center.components) == 1
-   
-   assert center.components[0] is t[1]
-
-   assert right is not p
-   assert len(right.components) == 2
-
-   assert right.components[0] is t[2]
-   assert right.components[1] is t[3]
-
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-
-   assert t[0].spanners.mine( )[0] is left
-   assert t[1].spanners.mine( )[0] is center
-   assert t[2].spanners.mine( )[0] is right
-   assert t[3].spanners.mine( )[0] is right
-
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [ ]\n\td'8 [ ]\n\te'8 [\n\tf'8 ]\n}"
 
 
 def test_fracture_09( ):
@@ -553,67 +295,31 @@ def test_fracture_09( ):
    '''
 
    t = Voice(scale(4))
-   p = Spanner(t[ : ])
+   p = Beam(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
 
-   assert len(p.components) == 4
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
-   assert p.components[0] is t[0]
-   assert p.components[1] is t[1]
-   assert p.components[2] is t[2]
-   assert p.components[3] is t[3]
+   t[-1].spanners.fracture( )
 
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
+   r'''
+   \new Voice {
+      c'8 [
+      d'8
+      e'8 ]
+      f'8 [ ]
+   }
+   '''
 
-   assert t[0].spanners.mine( )[0] is p
-   assert t[1].spanners.mine( )[0] is p
-   assert t[2].spanners.mine( )[0] is p
-   assert t[3].spanners.mine( )[0] is p
-
-   assert check(t)
-
-   receipt = t[-1].spanners.fracture( )[0]
-   source, left, center, right = receipt
-
-   "(Spanner(c'8, d'8, e'8, f'8), Spanner(c'8, d'8, e'8), Spanner(f'8), Spanner( ))"
-
-   assert source is p
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p
-   assert len(left.components) == 3
-
-   assert left.components[0] is t[0]
-   assert left.components[1] is t[1]
-   assert left.components[2] is t[2]
-
-   assert center is not p
-   assert len(center.components) == 1
-
-   assert center.components[0] is t[3]
-
-   assert right is not p
-   assert len(right.components) == 0
-
-   assert len(t[0].spanners.mine( )) == 1
-   assert len(t[1].spanners.mine( )) == 1
-   assert len(t[2].spanners.mine( )) == 1
-   assert len(t[3].spanners.mine( )) == 1
-
-   assert t[0].spanners.mine( )[0] is left
-   assert t[1].spanners.mine( )[0] is left
-   assert t[2].spanners.mine( )[0] is left
-   assert t[3].spanners.mine( )[0] is center
-
-   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8 [ ]\n}"
 
 
 def test_fracture_10( ):
@@ -622,106 +328,80 @@ def test_fracture_10( ):
    '''
 
    t = Voice(scale(4))
-   p1 = Spanner(t[ : ])
-   p2 = Spanner(t[ : ])
+   p1 = Beam(t[ : ])
+   p2 = Trill(t[ : ])
 
-   "Spanner(c'8, d'8, e'8, f'8)"
-   "Spanner(c'8, d'8, e'8, f'8)"
-
-   assert p1 is not p2
-
-   assert len(p1.components) == 4
-   
-   assert p1.components[0] is t[0]
-   assert p1.components[1] is t[1]
-   assert p1.components[2] is t[2]
-   assert p1.components[3] is t[3]
-
-   assert len(p2.components) == 4
-   
-   assert p2.components[0] is t[0]
-   assert p2.components[1] is t[1]
-   assert p2.components[2] is t[2]
-   assert p2.components[3] is t[3]
-
-   assert len(t[0].spanners.mine( )) == 2
-   assert len(t[1].spanners.mine( )) == 2
-   assert len(t[2].spanners.mine( )) == 2
-   assert len(t[3].spanners.mine( )) == 2
-
-   assert p1 in t[0].spanners.mine( )
-   assert p1 in t[1].spanners.mine( )
-   assert p1 in t[2].spanners.mine( )
-   assert p1 in t[3].spanners.mine( )
-
-   assert p2 in t[0].spanners.mine( )
-   assert p2 in t[1].spanners.mine( )
-   assert p2 in t[2].spanners.mine( )
-   assert p2 in t[3].spanners.mine( )
-
-   receipts = t[1].spanners.fracture( )
-
-   '''
-   [(Spanner(c'8, d'8, e'8, f'8), 
-      Spanner(c'8), 
-      Spanner(d'8), 
-      Spanner(e'8, f'8)), 
-   (Spanner(c'8, d'8, e'8, f'8), 
-      Spanner(c'8), 
-      Spanner(d'8), 
-      Spanner(e'8, f'8))]
+   r'''
+   \new Voice {
+      c'8 [ \startTrillSpan
+      d'8
+      e'8
+      f'8 ] \stopTrillSpan
+   }
    '''
 
-   first, second = receipts
+   assert t.format == "\\new Voice {\n\tc'8 [ \\startTrillSpan\n\td'8\n\te'8\n\tf'8 ] \\stopTrillSpan\n}"
 
-   source, left, center, right = first
+   t[1].spanners.fracture( )
 
-   assert source is p1
-   assert len(source.components) == 4
+   r'''
+   \new Voice {
+      c'8 [ ] \startTrillSpan \stopTrillSpan
+      d'8 [ ] \startTrillSpan \stopTrillSpan
+      e'8 [ \startTrillSpan
+      f'8 ] \stopTrillSpan
+   }
+   '''
 
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
+   assert t.format == "\\new Voice {\n\tc'8 [ ] \\startTrillSpan \\stopTrillSpan\n\td'8 [ ] \\startTrillSpan \\stopTrillSpan\n\te'8 [ \\startTrillSpan\n\tf'8 ] \\stopTrillSpan\n}"
 
-   assert left is not p1
-   assert len(left.components) == 1
 
-   assert left.components[0] is t[0]
+def test_fracture_11( ):
+   '''
+   Fracturing left of a leaf doe NOT fracture 'up' into 
+   spanners attaching to any containers in the parentage of leaf.
+   '''
 
-   assert center is not p1
-   assert len(center.components) == 1
+   t = Voice(Sequential(run(2)) * 3)
+   diatonicize(t)
+   p = Beam(t[ : ])
 
-   assert center.components[0] is t[1]
+   r'''
+   \new Voice {
+      {
+         c'8 [
+         d'8
+      }
+      {
+         e'8
+         f'8
+      }
+      {
+         g'8
+         a'8 ]
+      }
+   }
+   '''
 
-   assert right is not p1
-   assert len(right.components) == 2
-   
-   assert right.components[0] is t[2]
-   assert right.components[1] is t[3]
+   assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
-   source, left, center, right = second
+   for leaf in t.leaves:
+      leaf.spanners.fracture( )
+      assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
-   assert source is p2
-   assert len(source.components) == 4
-
-   assert source.components[0] is t[0]
-   assert source.components[1] is t[1]
-   assert source.components[2] is t[2]
-   assert source.components[3] is t[3]
-
-   assert left is not p2
-   assert len(left.components) == 1
-
-   assert left.components[0] is t[0]
-
-   assert center is not p2
-   assert len(center.components) == 1
-
-   assert center.components[0] is t[1]
-
-   assert right is not p2
-   assert len(right.components) == 2
-   
-   assert right.components[0] is t[2]
-   assert right.components[1] is t[3]
+   r'''
+   \new Voice {
+      {
+         c'8 [
+         d'8
+      }
+      {
+         e'8
+         f'8
+      }
+      {
+         g'8
+         a'8 ]
+      }
+   }
+   '''

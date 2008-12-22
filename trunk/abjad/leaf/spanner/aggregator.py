@@ -45,13 +45,6 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       if spanner not in self._spanners:
          self._spanners.append(spanner)
 
-#   def _filter(self, result, classname = None, selector = None):
-#      if classname is not None:
-#         result = [p for p in result if hasname(p, classname)]
-#      if selector is not None:
-#         result = filter(selector, result)
-#      return result
-
    #def _fuseLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):
    def _fuseLeft(self, grob = None, attribute = None, value = None):
@@ -153,11 +146,15 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       else:
          return None
 
-   def fracture(self, direction = 'both', classname = None):
+   def fracture(self, direction = 'both'):
       result = [ ]
       client = self._client
-      for spanner in self.mine(classname):
-         result.append(spanner.fracture(spanner.index(client), direction))
+      if direction in ('left', 'both'):
+         for spanner in self.mine( ):
+            result.append(spanner.fracture(spanner.index(client), 'left'))
+      if direction in ('right', 'both'):
+         for spanner in self.mine( ):
+            result.append(spanner.fracture(spanner.index(client), 'right'))
       return result
          
 #   #def fuse(self, 
