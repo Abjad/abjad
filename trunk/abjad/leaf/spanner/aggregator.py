@@ -149,7 +149,8 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 
    def get(self, classname = None, grob = None, attribute = None, value = None):
       #result = self[ : ]
-      result = self.mine( )
+      #result = self.mine( )
+      result = self.spanners
       if classname:
           result = [
             spanner for spanner in result

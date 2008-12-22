@@ -29,10 +29,12 @@ class _ComponentSpannerAggregator(_Interface):
       result = [ ]
       client = self._client
       for component in client._navigator._contemporaneousStartComponents:
-         for spanner in component.spanners.mine( ):
+         #for spanner in component.spanners.mine( ):
+         for spanner in component.spanners.spanners:
             result.append(spanner.fracture(spanner.index(component), 'left'))
       for component in client._navigator._contemporaneousStopComponents:
-         for spanner in component.spanners.mine( ):
+         #for spanner in component.spanners.mine( ):
+         for spanner in component.spanners.spanners:
             result.append(spanner.fracture(spanner.index(component), 'right'))
       return result
 
@@ -45,16 +47,14 @@ class _ComponentSpannerAggregator(_Interface):
    ### PUBLIC METHODS ###
 
    def die(self):
-      for spanner in self.mine( ):
+      #for spanner in self.mine( ):
+      for spanner in self.spanners:
          spanner.die( )
 
    def fracture(self, direction = 'both'):
       result = [ ]
       client = self._client
-      for spanner in self.mine( ):
+      #for spanner in self.mine( ):
+      for spanner in self.spanners:
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
-
-   def mine(self, classname = None, selector = None):
-      result = self._spanners[ : ]
-      return self._filter(result, classname, selector)
