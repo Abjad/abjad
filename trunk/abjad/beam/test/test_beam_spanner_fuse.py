@@ -8,13 +8,13 @@ def test_beam_spanner_fuse_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 2])
    Beam(t[2 : 4])
-   spanners = t.spanners.get( )
+   spanners = t.spanners.contained
    assert len(spanners) == 2
    left, right = spanners
    assert left[ : ] == t[ : 2]
    assert right[ : ] == t[2 : 4]
    left.fuse(right)
-   spanners = t.spanners.get( )
+   spanners = t.spanners.contained
    assert len(spanners) == 1
    spanner = spanners[0]
    assert spanner[ : ] == t[ : 4]

@@ -375,6 +375,7 @@ class _Leaf(_Component):
    ### TODO - encapsulate somewhere ###
 
    def _die(self):
-      for spanner in self.spanners.get( ):
+      #for spanner in self.spanners.get( ):
+      for spanner in self.spanners.spanners:
          spanner._sever(spanner.index(self))
       self._parentage._detach( )

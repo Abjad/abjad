@@ -2,13 +2,16 @@ from abjad.checks.check import _Check
 
 
 class SpannersDiscontiguous(_Check):
-   '''Spanner leaves must be contiguous.'''
+   '''
+   Spanner leaves must be contiguous.
+   '''
 
    def _run(self, expr):
       violators = [ ]
       total, bad = 0, 0
-      spanners = expr.spanners.get( )
-      for spanner in spanners:
+      #spanners = expr.spanners.get( )
+      #for spanner in spanners:
+      for spanner in expr.spanners.contained:
          contiguousLeaves = True
          #for i, leaf in enumerate(spanner[ :-1]):
          leaves = spanner.leaves

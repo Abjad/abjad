@@ -7,12 +7,12 @@ def test_beam_spanner_fracture_01( ):
       spanner with an identical new spanner.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 4])
-   assert len(t.spanners.get( )) == 1
-   old = t.spanners.get( )[0]
+   assert len(t.spanners.contained) == 1
+   old = list(t.spanners.contained)[0]
    assert old[ : ] == t[ : 4]
    old.fracture(0, 'left')
-   assert len(t.spanners.get( )) == 1
-   new = t.spanners.get( )[0]
+   assert len(t.spanners.contained) == 1
+   new = list(t.spanners.contained)[0]
    assert new[ : ] == old[ : ] == t[ : 4]
    assert new != old
 
@@ -20,12 +20,12 @@ def test_beam_spanner_fracture_01( ):
 def test_beam_spanner_fracture_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 4])
-   assert len(t.spanners.get( )) == 1
-   old = t.spanners.get( )[0]
+   assert len(t.spanners.contained) == 1
+   old = list(t.spanners.contained)[0]
    assert old[ : ] == t[ : 4]
    old.fracture(1, 'left')
-   assert len(t.spanners.get( )) == 2
-   left, right = t.spanners.get( )
+   assert len(t.spanners.contained) == 2
+   left, right = t.spanners.contained
    assert left[ : ] == t[0 : 1]
    assert right[ : ] == t[1 : 4]
 
@@ -36,12 +36,12 @@ def test_beam_spanner_fracture_03( ):
       spanner with an identical new spanner.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 4])
-   assert len(t.spanners.get( )) == 1
-   old = t.spanners.get( )[0]
+   assert len(t.spanners.contained) == 1
+   old = list(t.spanners.contained)[0]
    assert old[ : ] == t[ : 4]
    old.fracture(-1, 'right')
-   assert len(t.spanners.get( )) == 1
-   new = t.spanners.get( )[0]
+   assert len(t.spanners.contained) == 1
+   new = list(t.spanners.contained)[0]
    assert new[ : ] == old[ : ] == t[ : 4]
    assert new != old
 
@@ -49,12 +49,12 @@ def test_beam_spanner_fracture_03( ):
 def test_beam_spanner_fracture_04( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 4])
-   assert len(t.spanners.get( )) == 1
-   old = t.spanners.get( )[0]
+   assert len(t.spanners.contained) == 1
+   old = list(t.spanners.contained)[0]
    assert old[ : ] == t[ : 4]
    old.fracture(1, 'right')
-   assert len(t.spanners.get( )) == 2
-   left, right = t.spanners.get( )
+   assert len(t.spanners.contained) == 2
+   left, right = t.spanners.contained
    assert left[ : ] == t[0 : 2]
    assert right[ : ] == t[2 : 4]
 
@@ -62,10 +62,10 @@ def test_beam_spanner_fracture_05( ):
    '''Fracture "both" fractures around leaf.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 5])
-   old = t.spanners.get( )[0]
+   old = list(t.spanners.contained)[0]
    old.fracture(2, 'both')
-   assert len(t.spanners.get( )) == 3
-   spanners = t.spanners.get( )
+   assert len(t.spanners.contained) == 3
+   spanners = t.spanners.contained
    assert len(spanners[0]) == 2
    assert len(spanners[1]) == 1
    assert len(spanners[2]) == 2
@@ -91,10 +91,10 @@ def test_beam_spanner_fracture_06( ):
    '''Fracture "both" works of first spanned leaf.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 5])
-   old = t.spanners.get( )[0]
+   old = list(t.spanners.contained)[0]
    old.fracture(0, 'both')
-   assert len(t.spanners.get( )) == 2
-   spanners = t.spanners.get( )
+   assert len(t.spanners.contained) == 2
+   spanners = t.spanners.contained
    assert len(spanners[0]) == 1
    assert len(spanners[1]) == 4
    assert spanners[0] != spanners[1] 
@@ -116,10 +116,10 @@ def test_beam_spanner_fracture_06( ):
    '''Fracture "both" works of last spanned leaf.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 5])
-   old = t.spanners.get( )[0]
+   old = list(t.spanners.contained)[0]
    old.fracture(4, 'both')
-   assert len(t.spanners.get( )) == 2
-   spanners = t.spanners.get( )
+   assert len(t.spanners.contained) == 2
+   spanners = t.spanners.contained
    assert len(spanners[0]) == 4
    assert len(spanners[1]) == 1
    assert spanners[0] != spanners[1] 
@@ -143,10 +143,10 @@ def test_beam_spanner_fracture_07( ):
    '''Fracture "both" works with negative indeces.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 5])
-   old = t.spanners.get( )[0]
+   old = list(t.spanners.contained)[0]
    old.fracture(-1, 'both')
-   assert len(t.spanners.get( )) == 2
-   spanners = t.spanners.get( )
+   assert len(t.spanners.contained) == 2
+   spanners = t.spanners.contained
    assert len(spanners[0]) == 4
    assert len(spanners[1]) == 1
    assert spanners[0] != spanners[1] 

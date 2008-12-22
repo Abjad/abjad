@@ -1,4 +1,5 @@
 from abjad.checks.check import _Check
+from abjad.helpers.hasname import hasname
 
 
 class HairpinsShort(_Check):
@@ -7,7 +8,9 @@ class HairpinsShort(_Check):
    def _run(self, expr):
       violators = [ ]
       total, bad = 0, 0
-      for hairpin in expr.spanners.get(classname = '_Hairpin'):
+      #for hairpin in expr.spanners.get(classname = '_Hairpin'):
+      hairpins = [p for p in expr.spanners.contained if hasname(p, '_Hairpin')]
+      for hairpin in hairpins:
          if len(hairpin) <= 1:
             violators.append(hairpin)
          total += 1

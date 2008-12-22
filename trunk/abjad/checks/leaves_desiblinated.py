@@ -1,5 +1,6 @@
 from abjad.checks.check import _Check
 from abjad.helpers.instances import instances
+#from abjad.helpers.iterate import iterate
 
 
 # TODO - make this work in cases where expr contains one or more parallel

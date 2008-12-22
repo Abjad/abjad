@@ -10,7 +10,7 @@ def _traverse(expr, v):
       v.unvisit(expr)
 
 
-### TODO - write reg tests ###
+### TODO - replace with abjad.helpers.iterate ###
 def instances(expr, classname):
    '''Return all class instances with classname in expr;
       works on score components, lists, tuples.'''
