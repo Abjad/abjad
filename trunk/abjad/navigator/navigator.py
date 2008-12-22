@@ -40,7 +40,7 @@ class _Navigator(_Abjad):
          if client.parallel:
             for x in client:
                result.extend(x._navigator._contemporaneousStartContents)
-         else:
+         elif len(client) > 0:
             result.extend(client[0]._navigator._contemporaneousStartContents)
       return result
 

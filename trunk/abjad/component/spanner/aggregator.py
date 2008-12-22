@@ -17,6 +17,25 @@ class _ComponentSpannerAggregator(_Interface):
          result = filter(selector, result)
       return result
 
+   def _fractureContents(self):
+      '''
+      Left-fractures all spanners attaching to t and to any components
+      attaching to t and starting at the same moment as t.
+      Right-fractures all spanners attaching to t and to any components
+      attaching to t and stopping at the same moment as t.
+
+      Used by _Component.copy( ) only.
+      '''
+      result = [ ]
+      client = self._client
+      for component in client._navigator._contemporaneousStartComponents:
+         for spanner in component.spanners.mine( ):
+            result.append(spanner.fracture(spanner.index(component), 'left'))
+      for component in client._navigator._contemporaneousStopComponents:
+         for spanner in component.spanners.mine( ):
+            result.append(spanner.fracture(spanner.index(component), 'right'))
+      return result
+
    ### PUBLIC METHODS ###
 
    def fracture(self, direction = 'both'):

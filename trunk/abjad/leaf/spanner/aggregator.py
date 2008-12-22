@@ -45,9 +45,6 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       if spanner not in self._spanners:
          self._spanners.append(spanner)
 
-   def _fractureContents(self):
-      return self.fracture( )
-
    #def _fuseLeft(self, 
    #   interface = None, grob = None, attribute = None, value = None):
    def _fuseLeft(self, grob = None, attribute = None, value = None):
