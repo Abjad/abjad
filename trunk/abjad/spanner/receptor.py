@@ -52,7 +52,7 @@ class _SpannerReceptor(_Abjad):
       #for classname in self._spanners:
       for classname in self._classnames:
          #result.extend(self._client.spanners.get(classname = classname))
-         spanners = client.spanners.spanners
+         spanners = client.spanners.attached
          result.extend([p for p in spanners if hasname(p, classname)])
       return result
 

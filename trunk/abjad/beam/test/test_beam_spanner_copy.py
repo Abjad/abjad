@@ -7,7 +7,7 @@ def test_beam_spanner_copy_01( ):
    u = t[0].copy( )
    #len(u.spanners) == 1
    #len(u.spanners.mine( )) == 1
-   len(u.spanners.spanners) == 1
+   len(u.spanners.attached) == 1
    assert u.beam.spanned and u.beam.only
 
 

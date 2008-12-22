@@ -250,7 +250,7 @@ class Container(_Component):
          target = self[i]
          #for s in target.spanners:
          #for s in target.spanners.mine( ):
-         for s in target.spanners.spanners:
+         for s in target.spanners.attached:
             for l in expr.leaves:
                s._insert(s.index(target.leaves[0]), l)
          expr._parent = self

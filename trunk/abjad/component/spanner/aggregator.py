@@ -11,12 +11,9 @@ class _ComponentSpannerAggregator(_Interface):
 
    ### PRIVATE METHODS ###
 
-#   def _filter(self, result, classname = None, selector = None):
-#      if classname is not None:
-#         result = [p for p in result if hasname(p, classname)]
-#      if selector is not None:
-#         result = filter(selector, result)
-#      return result
+   def _append(self, spanner):
+      if spanner not in self.attached:
+         self._spanners.append(spanner)
 
    def _fractureContents(self):
       '''
@@ -31,10 +28,10 @@ class _ComponentSpannerAggregator(_Interface):
       result = [ ]
       client = self._client
       for component in client._navigator._contemporaneousStartComponents:
-         for spanner in component.spanners.spanners:
+         for spanner in component.spanners.attached:
             result.append(spanner.fracture(spanner.index(component), 'left'))
       for component in client._navigator._contemporaneousStopComponents:
-         for spanner in component.spanners.spanners:
+         for spanner in component.spanners.attached:
             result.append(spanner.fracture(spanner.index(component), 'right'))
       return result
 
@@ -49,11 +46,11 @@ class _ComponentSpannerAggregator(_Interface):
 
       result = set([ ])
       for component in iterate(self._client, '_Component'):
-         result.update(set(component.spanners.spanners))
+         result.update(set(component.spanners.attached))
       return list(result)
 
    @property
-   def spanners(self):
+   def attached(self):
       '''
       Return all spanners attaching directly to client.
       '''
@@ -63,12 +60,12 @@ class _ComponentSpannerAggregator(_Interface):
    ### PUBLIC METHODS ###
 
    def die(self):
-      for spanner in self.spanners:
+      for spanner in self.attached:
          spanner.die( )
 
    def fracture(self, direction = 'both'):
       result = [ ]
       client = self._client
-      for spanner in self.spanners:
+      for spanner in self.attached:
          result.append(spanner.fracture(spanner.index(client), direction))
       return result

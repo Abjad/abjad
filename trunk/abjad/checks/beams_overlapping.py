@@ -12,7 +12,7 @@ class BeamsOverlapping(_Check):
       violators = [ ]
       for leaf in instances(expr, '_Leaf'):
          #beams = leaf.spanners.get(classname = 'Beam')
-         beams = [p for p in leaf.spanners.spanners
+         beams = [p for p in leaf.spanners.attached
             if hasname(p, 'Beam')]
          if len(beams) > 1:
             for beam in beams:

@@ -29,7 +29,7 @@ def _transfer_all_attributes(old, new):
       new._parent._music[new._parent.index(old)] = new
    #for spanner in old.spanners:
    #for spanner in old.spanners.mine( ):
-   for spanner in old.spanners.spanners:
+   for spanner in old.spanners.attached:
       #spanner._receptors[spanner.index(old)] = new.spanners
       #spanner._leaves[spanner.index(old)] = new
       spanner._components[spanner.index(old)] = new

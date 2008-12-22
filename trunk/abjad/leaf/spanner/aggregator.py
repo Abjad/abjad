@@ -40,36 +40,5 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       result = [ ]
       parentage = self._client._parentage._iparentage
       for component in parentage:
-         result.extend(component.spanners.spanners)
+         result.extend(component.spanners.attached)
       return result
-
-   ### PRIVATE METHODS ####
-
-   def _append(self, spanner):
-      if spanner not in self._spanners:
-         self._spanners.append(spanner)
-
-   ### PUBLIC METHODS ###
-
-#   def get(self, classname = None, grob = None, attribute = None, value = None):
-#      result = self.spanners
-#      if classname:
-#          result = [
-#            spanner for spanner in result
-#            if hasname(spanner, classname)]
-#      if grob:
-#         result = [
-#            spanner for spanner in result
-#            if hasattr(spanner, '_grob') and
-#            spanner._grob == grob]
-#      if attribute:
-#         result = [
-#            spanner for spanner in result
-#            if hasattr(spanner, '_attribute') and 
-#            spanner._attribute == attribute]
-#      if value:
-#         result = [
-#            spanner for spanner in result
-#            if hasattr(spanner, '_value') and
-#            spanner._value == value]
-#      return result
