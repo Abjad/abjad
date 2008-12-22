@@ -8,7 +8,8 @@ class Spanner(_Abjad):
 
    def __init__(self, music):
       self._components = [ ]
-      self._extend(music)
+      #self._extend(music)
+      self.extend(music)
 
    ### OVERLOADS ###
 
@@ -32,8 +33,8 @@ class Spanner(_Abjad):
    def _after(self, component):
       return [ ]
 
-   def _append(self, component):
-      self._insert(len(self.components), component)
+#   def _append(self, component):
+#      self._insert(len(self.components), component)
 
    def _before(self, component):
       return [ ]
@@ -58,17 +59,16 @@ class Spanner(_Abjad):
       prev = leaves[ : leaves.index(leaf)]
       return sum([leaf.duration.prolated for leaf in prev])
 
-   def _extend(self, music):
-      if isinstance(music, (tuple, list)):
-         for component in music:
-            self._append(component)
-      elif music.kind('_Component'):
-         self._append(music)
-      else:
-         raise ValueError('can only span components.')
-
-#   def _follows(self, spanner):
-#      return spanner[-1].next == self[0]
+#   def _extend(self, music):
+#      if isinstance(music, (tuple, list)):
+#         for component in music:
+#            #self._append(component)
+#            self.append(component)
+#      elif music.kind('_Component'):
+#         #self._append(music)
+#         self.append(music)
+#      else:
+#         raise ValueError('can only span components.')
 
    def _fractureLeft(self, i):
       left = self.copy(0, i - 1)
@@ -93,7 +93,8 @@ class Spanner(_Abjad):
 #      else:
 #         return [ ]
       result = self.copy( )
-      result._extend(spanner.components)
+      #result._extend(spanner.components)
+      result.extend(spanner.components)
       self._block( )
       spanner._block( )
       return [(self, spanner, result)]
@@ -150,52 +151,6 @@ class Spanner(_Abjad):
 
    def _left(self, component):
       return [ ]
-
-#   ### TODO - consider implementing a dedicated attribute comparison method
-#   ###        to work on any two spanners;
-#   ###        such a method would feed into _matches( ), below.
-#
-#   ### TODO - figure out if we really need the attribute check or not;
-#   ###        looks like the attribute check doesn't work right now,
-#   ###        at least not for two different octavation spanners.
-#
-#   def _matches(self, spanner):
-#      return self.__class__ == spanner.__class__ and \
-#         all([getattr(self, attr, None) == getattr(spanner, attr, None)
-#            for attr in ('_grob', '_attribute', '_value')])
-#
-#   ### TODO - _matchingSpanner( ) functions as a generalization of
-#   ###        _matchingSpannerBeforeMe( ) and _matchingSpannerAfterMe( );
-#   ###        cleaner to reimplement _matchingSpanner( ) completely
-#   ###        independently of those two functions 
-#   ###        and then eliminate those two functions entirely;
-#   ###        this will take us from three functions 
-#   ###        down to only _matchingSpanner( ).
-#
-#   def _matchingSpanner(self, direction):
-#      assert direction in ('left', 'right')
-#      if direction == 'left':
-#         return self._matchingSpannerBeforeMe( )
-#      else:
-#         return self._matchingSpannerAfterMe( )
-#
-#   def _matchingSpannerAfterMe(self):
-#      if self[-1].next:
-#         matches = self[-1].next.spanners.get(
-#            grob = getattr(self, '_grob', None),
-#            attribute = getattr(self, '_attribute', None),
-#            value = getattr(self, '_vallue', None))
-#         if matches:
-#            return matches[0]
-#
-#   def _matchingSpannerBeforeMe(self):
-#      if self[0].prev:
-#         matches = self[0].prev.spanners.get(
-#            grob = getattr(self, '_grob', None),
-#            attribute = getattr(self, '_attribute', None),
-#            value = getattr(self, '_vallue', None))
-#         if matches:
-#            return matches[0]
 
    def _right(self, component):
       return [ ]
@@ -266,12 +221,16 @@ class Spanner(_Abjad):
 
    ### PUBLIC METHODS ###
 
+   def append(self, component):
+      self._insert(len(self.components), component)
+
    def capture(self, n):
       if n > 0:
          cur = self.components[-1]
          for i in range(n):
             if cur.next:
-               self._append(cur.next)
+               #self._append(cur.next)
+               self.append(cur.next)
                cur = cur.next         
             else:
                break
@@ -298,6 +257,17 @@ class Spanner(_Abjad):
 
    def die(self):
       self._sever( )
+
+   def extend(self, music):
+      if isinstance(music, (tuple, list)):
+         for component in music:
+            #self._append(component)
+            self.append(component)
+      elif music.kind('_Component'):
+         #self._append(music)
+         self.append(music)
+      else:
+         raise ValueError('can only span components.')
 
    def fracture(self, i, direction = 'both'):
       if i < 0:
