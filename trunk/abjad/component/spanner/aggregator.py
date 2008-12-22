@@ -40,8 +40,8 @@ class _ComponentSpannerAggregator(_Interface):
    @property
    def contained(self):
       '''
-      Return an unordered set of all spanners attaching to any
-      components in client, including client.
+      Return an unordered set of all spanners attaching to 
+      any components in client, including client.
       '''
 
       result = set([ ])
@@ -52,10 +52,11 @@ class _ComponentSpannerAggregator(_Interface):
    @property
    def attached(self):
       '''
-      Return all spanners attaching directly to client.
+      Return an unordered set of all spanners attaching 
+      directly to client.
       '''
 
-      return self._spanners[ : ]
+      return set(self._spanners[ : ])
 
    ### PUBLIC METHODS ###
 
