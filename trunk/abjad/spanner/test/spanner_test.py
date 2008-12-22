@@ -11,7 +11,6 @@ def test_spanner_01( ):
    appictate(t)
    p = Spanner(t)
 
-   assert len(p) == 1
    assert len(p.components) == 1
    assert p.components[0] is t
    assert len(p.leaves) == 4
@@ -30,7 +29,6 @@ def test_spanner_02( ):
    appictate(t)
    p = Spanner(t[ : ])
    
-   assert len(p) == 4
    assert len(p.components) == 4
    assert len(p.leaves) == 4
    for i, leaf in enumerate(p.leaves):
@@ -47,7 +45,6 @@ def test_spanner_03( ):
    t = Voice([ ])
    p = Spanner(t)
 
-   assert len(p) == 1
    assert len(p.components) == 1
    assert p.components[0] is t
    assert len(p.leaves) == 0
@@ -82,7 +79,6 @@ def test_spanner_04( ):
    }
    '''
 
-   assert len(p) == 1
    assert len(p.components) == 1
    assert len(p.leaves) == 8
    for i, leaf in enumerate(t.leaves):
@@ -118,7 +114,6 @@ def test_spanner_05( ):
    }
    '''
 
-   assert len(p) == 3
    assert len(p.components) == 3
    assert p.components[0] is t[0]
    assert p.components[1] is t[1]
@@ -160,7 +155,6 @@ def test_spanner_06( ):
    }
    '''
 
-   assert len(p) == 1
    assert len(p.components) == 1
    assert p.components[0] is t
    assert len(p.leaves) == 4
@@ -202,7 +196,6 @@ def test_spanner_07( ):
    }
    '''
 
-   assert len(p) == 5
    for i, component in enumerate(t[ : ]):
       assert component is t[i]
    assert len(p.leaves) == 4

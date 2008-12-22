@@ -7,8 +7,8 @@ def test_span_anonymous_01( ):
       container formats no beam indications.'''
    t = Sequential([ ])
    p = Beam(t)
-   assert len(p) == 1
-   assert isinstance(p[0], Sequential)
+   assert len(p.components) == 1
+   assert isinstance(p.components[0], Sequential)
    assert len(p.leaves) == 0
    assert t.format == '{\n}'
    r'''
@@ -22,8 +22,8 @@ def test_span_anonymous_02( ):
       container formats beam indications on first and last leaves.'''
    t = Sequential(Note(0, (1, 8)) * 8)
    p = Beam(t)
-   assert len(p) == 1
-   assert isinstance(p[0], Sequential)
+   assert len(p.components) == 1
+   assert isinstance(p.components[0], Sequential)
    assert len(p.leaves) == 8
    assert t.format == "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
    r'''
@@ -46,9 +46,9 @@ def test_span_anonymous_03( ):
       beam indications.'''
    t = Staff(Sequential(Note(0, (1, 8)) * 4) * 2)
    p = Beam(t[ : ])
-   assert len(p) == 2
-   assert isinstance(p[0], Sequential)
-   assert isinstance(p[1], Sequential)
+   assert len(p.components) == 2
+   assert isinstance(p.components[0], Sequential)
+   assert isinstance(p.components[1], Sequential)
    assert len(p.leaves) == 8
    "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
    r'''
@@ -75,8 +75,8 @@ def test_span_anonymous_04( ):
       beam indications.'''
    t = Staff([Sequential(Note(0, (1, 8)) * 4), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t)
-   assert len(p) == 1
-   assert isinstance(p[0], Staff)
+   assert len(p.components) == 1
+   assert isinstance(p.components[0], Staff)
    assert len(p.leaves) == 6
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
    r'''
@@ -99,9 +99,9 @@ def test_span_anonymous_05( ):
       first and last leaves in contiguity chain format beam indications.'''
    t = Staff([Sequential(Note(0, (1, 8)) * 4), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t[ : ])
-   assert len(p) == 3
-   assert isinstance(p[0], Sequential)
-   assert isinstance(p[1], Note)
+   assert len(p.components) == 3
+   assert isinstance(p.components[0], Sequential)
+   assert isinstance(p.components[1], Note)
    assert isinstance(t[2], Note)
    assert len(p.leaves) == 6
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
@@ -125,8 +125,8 @@ def test_span_anonymous_06( ):
       first and last leaves in contiguity chain format beam indications.'''
    t = Staff([Sequential(Note(0, (1, 8)) * 4), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t.leaves)
-   assert len(p) == 6
-   for x in p:
+   assert len(p.components) == 6
+   for x in p.components:
       assert isinstance(x, Note)
    assert len(p.leaves) == 6
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
@@ -149,8 +149,8 @@ def test_span_anonymous_07( ):
       no beams appear at format-time.'''
    t = Staff(Sequential([ ]) * 3)
    p = Beam(t[ : ])
-   assert len(p) == 3
-   for x in p:
+   assert len(p.components) == 3
+   for x in p.components:
       assert isinstance(x, Sequential)
    assert len(p.leaves) == 0
    r'''
@@ -170,8 +170,8 @@ def test_span_anonymous_08( ):
    t = Staff(Sequential(Note(0, (1, 8)) * 4) * 2)
    t.insert(1, Sequential([ ]))
    p = Beam(t[ : ])
-   assert len(p) == 3
-   for x in p:
+   assert len(p.components) == 3
+   for x in p.components:
       assert isinstance(x, Sequential)
    assert len(p.leaves) == 8
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
@@ -200,8 +200,8 @@ def test_span_anonymous_09( ):
    t = Staff(Sequential([ ]) * 2)
    t.insert(1, Sequential(Note(0, (1, 8)) * 4))
    p = Beam(t[ : ])
-   assert len(p) == 3
-   for x in p:
+   assert len(p.components) == 3
+   for x in p.components:
       assert isinstance(x, Sequential)
    assert len(p.leaves) == 4
    assert t.format == "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
@@ -233,23 +233,23 @@ def test_span_anonymous_10( ):
    s2 = Sequential([s2])
    t = Voice([s1, s2])
    p = Beam(t)
-   assert len(p) == 1
+   assert len(p.components) == 1
    assert len(p.leaves) == 8
    p.die( )
    p = Beam((t[0], t[1]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.die( )
    p = Beam((t[0][0], t[1][0]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.die( )
    p = Beam((t[0], t[1][0]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.die( )
    p = Beam((t[0][0], t[1]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 8
    r'''
    \new Voice {
@@ -283,22 +283,22 @@ def test_span_anonymous_11( ):
    t = Voice([s1, s2])
 
    p = Beam(t)
-   assert len(p) == 1
+   assert len(p.components) == 1
    assert len(p.leaves) == 8
    p.die( )
 
    p = Beam((t[0], t[1]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.die( )
 
    p = Beam((t[0][0], t[1]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.die( )
 
    p = Beam((t[0][0][0], t[1]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.die( )
 
@@ -331,12 +331,12 @@ def test_span_anonymous_12( ):
    v = Voice([s1, Note(2, (1, 8)), s2])
 
    p = Beam(v)
-   assert len(p) == 1
+   assert len(p.components) == 1
    assert len(p.leaves) == 5
    p.die( )
 
    p = Beam(v[ : ])
-   assert len(p) == 3
+   assert len(p.components) == 3
    assert len(p.leaves) == 5
    p.die( )
 
@@ -362,12 +362,12 @@ def test_span_anonymous_13( ):
    v = Voice([t1, Note(3, (1,8)), t2])
 
    p = Beam(v)
-   assert len(p) == 1
+   assert len(p.components) == 1
    assert len(p.leaves) == 7
    p.die( )
 
    p = Beam(v[ : ])
-   assert len(p) == 3
+   assert len(p.components) == 3
    assert len(p.leaves) == 7
    p.die( )
 
@@ -394,12 +394,12 @@ def test_span_anonymous_14( ):
    t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
 
    p = Beam(t)
-   assert len(p) == 1
+   assert len(p.components) == 1
    assert len(p.leaves) == 5
    p.die( )
 
    p = Beam(t[ : ])
-   assert len(p) == 3
+   assert len(p.components) == 3
    assert len(p.leaves) == 5
 
    r'''
@@ -432,12 +432,12 @@ def test_span_anonymous_15( ):
    t = Staff([v1, n, v2])
 
    p = Beam((t[0], t[1]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 4
    p.die( )
 
    p = Beam((t[1], t[2]))
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 5
    p.die( )
 

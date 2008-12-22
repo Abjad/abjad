@@ -15,17 +15,17 @@ class Spanner(_Abjad):
 
    ### OVERLOADS ###
 
-   def __contains__(self, arg):
-      return arg in self._components 
-
-   def __getitem__(self, arg):
-      if isinstance(arg, (int, slice)):
-         return self._components[arg]
-      else:
-         raise TypeError('spanner indices must be integers.')
-
-   def __len__(self):
-      return len(self._components)
+#   def __contains__(self, arg):
+#      return arg in self._components 
+#
+#   def __getitem__(self, arg):
+#      if isinstance(arg, (int, slice)):
+#         return self._components[arg]
+#      else:
+#         raise TypeError('spanner indices must be integers.')
+#
+#   def __len__(self):
+#      return len(self._components)
 
    def __repr__(self):
       try:
@@ -37,8 +37,10 @@ class Spanner(_Abjad):
 
    @property
    def _summary(self):
-      if len(self) > 0:
-         return ', '.join([str(x) for x in self])
+      #if len(self) > 0:
+      if len(self.components) > 0:
+         #return ', '.join([str(x) for x in self])
+         return ', '.join([str(x) for x in self.components])
       else:
          return ' '
 
@@ -48,7 +50,8 @@ class Spanner(_Abjad):
       return [ ]
 
    def _append(self, component):
-      self._insert(len(self), component)
+      #self._insert(len(self), component)
+      self._insert(len(self.components), component)
 
    def _before(self, component):
       return [ ]
@@ -98,13 +101,15 @@ class Spanner(_Abjad):
 
    def _fractureLeft(self, i):
       left = self.copy(0, i - 1)
-      right = self.copy(i, len(self))
+      #right = self.copy(i, len(self))
+      right = self.copy(i, len(self.components))
       self._block( )
       return self, left, right
 
    def _fractureRight(self, i):
       left = self.copy(0, i)
-      right = self.copy(i + 1, len(self))
+      #right = self.copy(i + 1, len(self))
+      right = self.copy(i + 1, len(self.components))
       self._block( )
       return self, left, right
 
@@ -312,7 +317,7 @@ class Spanner(_Abjad):
 
    @property
    def duration(self):
-      return sum([l.duration.prolated for l in self])
+      return sum([l.duration.prolated for l in self.components])
 
    @property
    def leaves(self):
@@ -327,7 +332,8 @@ class Spanner(_Abjad):
 
    def capture(self, n):
       if n > 0:
-         cur = self[-1]
+         #cur = self[-1]
+         cur = self.components[-1]
          for i in range(n):
             if cur.next:
                self._append(cur.next)
@@ -335,7 +341,8 @@ class Spanner(_Abjad):
             else:
                break
       elif n < 0:
-         cur = self[0]
+         #cur = self[0]
+         cur = self.components[0]
          for i in range(abs(n)):
             if cur.prev:
                self._insert(0, cur.prev)
@@ -365,14 +372,16 @@ class Spanner(_Abjad):
 
    def fracture(self, i, direction = 'both'):
       if i < 0:
-         i = len(self) + i
+         #i = len(self) + i
+         i = len(self.components) + i
       if direction == 'left':
          return self._fractureLeft(i)
       elif direction == 'right':
          return self._fractureRight(i)
       elif direction == 'both':
          left = self.copy(0, i - 1)
-         right = self.copy(i + 1, len(self))
+         #right = self.copy(i + 1, len(self))
+         right = self.copy(i + 1, len(self.components))
          center = self.copy(i, i)
          self._block( )
          return self, left, center, right
@@ -406,7 +415,8 @@ class Spanner(_Abjad):
       move left for negative n;
       always preserve length of self.
       '''
-      start, stop = self[0], self[-1]
+      #start, stop = self[0], self[-1]
+      start, stop = self.components[0], self.components[-1]
       if n > 0:
          for i in range(n):
             if stop.next:
@@ -433,9 +443,11 @@ class Spanner(_Abjad):
       '''
       if n > 0:
          for i in range(n):
-            if len(self) > 1:
+            #if len(self) > 1:
+            if len(self.components) > 1:
                self._sever(-1)
       elif n < 0:
          for i in range(abs(n)):
-            if len(self) > 1:
+            #if len(self) > 1:
+            if len(self.components) > 1:
                self._sever(0)

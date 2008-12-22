@@ -6,7 +6,7 @@ def test_override_public_01( ):
    q = Override(t[0], 'Beam', 'positions', (8, 8))
    assert repr(q) == "Override([c'8], Beam, positions, (8, 8))"
    assert str(q) == repr(q)
-   assert len(q) == 1
+   assert len(q.components) == 1
    assert q.duration == Rational(1, 8)
    assert t.format == "\\new Staff {\n\t\\once \\override Beam #'positions = #'(8 . 8)\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    '''
@@ -29,7 +29,7 @@ def test_override_public_02( ):
    q = Override(t[ : 4], 'Beam', 'positions', (8, 8))
    assert repr(q) == "Override([c'8, cs'8, d'8, ef'8], Beam, positions, (8, 8))"
    assert str(q) == repr(q)
-   assert len(q) == 4
+   assert len(q.components) == 4
    assert q.duration == Rational(1, 2)
    assert t.format == "\\new Staff {\n\t\\override Beam #'positions = #'(8 . 8)\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\revert Beam #'positions\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    '''

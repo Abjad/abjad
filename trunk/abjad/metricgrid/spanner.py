@@ -42,7 +42,8 @@ class MetricGrid(Spanner):
       return True
 
    def splitOnBar(self):
-      leaf = self[0]
+      #leaf = self[0]
+      leaf = self.leaves[0]
       meters = self.meters
       meter = meters.next( )
       while leaf:
@@ -80,7 +81,8 @@ class MetricGrid(Spanner):
       meters = self.meters
       meter = meters.next( )
       leaves_in_meter = [[]]
-      leaf = self[0]
+      #leaf = self[0]
+      leaf = self.leaves[0]
       ### group leaves by measure.
       while leaf:
          #if leaf.offset < meter.offset + meter.duration:

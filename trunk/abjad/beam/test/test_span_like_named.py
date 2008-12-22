@@ -14,15 +14,15 @@ def test_like_named_01( ):
    appictate(t)
 
    p = Beam(t)
-   assert len(p) == 1
-   assert isinstance(p[0], Staff)
+   assert len(p.components) == 1
+   assert isinstance(p.components[0], Staff)
    assert len(p.leaves) == 8
    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
    p.die( )
 
    p = Beam(t[ : ])
-   assert len(p) == 2
-   for x in p:
+   assert len(p.components) == 2
+   for x in p.components:
       assert isinstance(x, Voice)
    assert len(p.leaves) == 8
    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
@@ -57,20 +57,20 @@ def test_span_like_named_02( ):
    appictate(t)
    
    p = Beam(t)
-   assert len(p) == 1
-   assert isinstance(p[0], Sequential)
+   assert len(p.components) == 1
+   assert isinstance(p.components[0], Sequential)
    assert len(p.leaves) == 8
    p.die( )
 
    p = Beam(t[ : ])
-   assert len(p) == 2
-   for x in p:
+   assert len(p.components) == 2
+   for x in p.components:
       assert isinstance(x, Staff)
    assert len(p.leaves) == 8
 
    p = Beam((t[0][0], t[1][0]))
-   assert len(p) == 2
-   for x in p:
+   assert len(p.components) == 2
+   for x in p.components:
       assert isinstance(x, Voice)
    assert len(p.leaves) == 8
 
@@ -110,9 +110,9 @@ def test_span_like_named_03( ):
    appictate(t)
    
    p = Beam((t[0][0], t[1][1]))
-   assert len(p) == 2
-   assert isinstance(p[0], Voice)
-   assert isinstance(p[1], Voice)
+   assert len(p.components) == 2
+   assert isinstance(p.components[0], Voice)
+   assert isinstance(p.components[1], Voice)
    assert len(p.leaves) == 8
    p.die( ) 
 
@@ -166,7 +166,7 @@ def test_span_like_named_04( ):
    appictate(t)
    p = Beam((t[0][0], t[1][0]))
    
-   assert len(p) == 2
+   assert len(p.components) == 2
    assert len(p.leaves) == 8
    assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t>>\n}'
 

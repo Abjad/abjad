@@ -11,13 +11,16 @@ def test_beam_spanner_fuse_01( ):
    spanners = t.spanners.contained
    assert len(spanners) == 2
    left, right = spanners
-   assert left[ : ] == t[ : 2]
-   assert right[ : ] == t[2 : 4]
+   #assert left[ : ] == t[ : 2]
+   assert left.components == t[ : 2]
+   #assert right[ : ] == t[2 : 4]
+   assert right.components == t[2 : 4]
    left.fuse(right)
    spanners = t.spanners.contained
    assert len(spanners) == 1
    spanner = spanners[0]
-   assert spanner[ : ] == t[ : 4]
+   #assert spanner[ : ] == t[ : 4]
+   assert spanner.components == t[ : 4]
 
 
 #def test_beam_spanner_fuse_02( ):

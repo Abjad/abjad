@@ -10,7 +10,8 @@ class Tie(Spanner):
    ###      such as Glissando spanner?
    def _captureLeafTies(self):
       '''Capture leaf ties around this Tie spanner.'''
-      leafL = self[0]
+      #leafL = self[0]
+      leafL = self.leaves[0]
       prev = leafL.prev
       while prev and prev.tie:
          prev.tie = None
@@ -18,7 +19,8 @@ class Tie(Spanner):
          prev = prev.prev
 
       future =[ ]
-      leafR = self[-1]
+      #leafR = self[-1]
+      leafR = self.leaves[-1]
       next = leafR.next
       while next and (next.tie or next.prev.tie):
          future.append(next)
