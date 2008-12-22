@@ -19,6 +19,13 @@ class _ComponentSpannerAggregator(_Interface):
 
    ### PUBLIC METHODS ###
 
+   def fracture(self, direction = 'both'):
+      result = [ ]
+      client = self._client
+      for spanner in self.mine( ):
+         result.append(spanner.fracture(spanner.index(client), direction))
+      return result
+
    def mine(self, classname = None, selector = None):
       result = self._spanners[ : ]
       return self._filter(result, classname, selector)

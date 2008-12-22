@@ -11,6 +11,12 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
       if spanner not in self._spanners:
          self._spanners.append(spanner)
 
+   def _fractureContents(self, direction = 'both'):
+      result = [ ]
+      result.extend(self._fractureMySpanners(direction))
+      result.extend(self._fractureLeafSpanners(direction))
+      return result
+
    def _fractureMySpanners(self, direction = 'both'):
       result = [ ]
       for spanner in self.mine( ):
@@ -63,11 +69,11 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
       for spanner in spanners:
          spanner.die( )
 
-   def fracture(self, direction = 'both'):
-      result = [ ]
-      result.extend(self._fractureMySpanners(direction))
-      result.extend(self._fractureLeafSpanners(direction))
-      return result
+#   def fracture(self, direction = 'both'):
+#      result = [ ]
+#      result.extend(self._fractureMySpanners(direction))
+#      result.extend(self._fractureLeafSpanners(direction))
+#      return result
 
    #def fuse(self, 
    #   interface = None, grob = None, attribute = None, value = None,

@@ -147,14 +147,14 @@ class _Component(_Abjad):
       clientLeaves = set(self.leaves)
       hairpinKillList = [
          not set(hp[ : ]).issubset(clientLeaves) for hp in hairpins]
-      receipts = self.spanners.fracture( )
+      #receipts = self.spanners.fracture( )
+      receipts = self.spanners._fractureContents( )
       parent = self._parentage._cutOutgoingReferenceToParent( )
       result = deepcopy(self)
 #      for source, left, right in reversed(receipt):
 #         source._unblock( )
 #         left._sever( )
 #         right._sever( )
-      ### TODO - implement _SpannerFractureReceipt class ###
       for receipt in reversed(receipts):
          if len(receipt) == 3:
             source, left, right = receipt
