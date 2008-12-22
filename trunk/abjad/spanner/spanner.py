@@ -67,8 +67,8 @@ class Spanner(_Abjad):
       else:
          raise ValueError('can only span components.')
 
-   def _follows(self, spanner):
-      return spanner[-1].next == self[0]
+#   def _follows(self, spanner):
+#      return spanner[-1].next == self[0]
 
    def _fractureLeft(self, i):
       left = self.copy(0, i - 1)
@@ -151,51 +151,51 @@ class Spanner(_Abjad):
    def _left(self, component):
       return [ ]
 
-   ### TODO - consider implementing a dedicated attribute comparison method
-   ###        to work on any two spanners;
-   ###        such a method would feed into _matches( ), below.
-
-   ### TODO - figure out if we really need the attribute check or not;
-   ###        looks like the attribute check doesn't work right now,
-   ###        at least not for two different octavation spanners.
-
-   def _matches(self, spanner):
-      return self.__class__ == spanner.__class__ and \
-         all([getattr(self, attr, None) == getattr(spanner, attr, None)
-            for attr in ('_grob', '_attribute', '_value')])
-
-   ### TODO - _matchingSpanner( ) functions as a generalization of
-   ###        _matchingSpannerBeforeMe( ) and _matchingSpannerAfterMe( );
-   ###        cleaner to reimplement _matchingSpanner( ) completely
-   ###        independently of those two functions 
-   ###        and then eliminate those two functions entirely;
-   ###        this will take us from three functions 
-   ###        down to only _matchingSpanner( ).
-
-   def _matchingSpanner(self, direction):
-      assert direction in ('left', 'right')
-      if direction == 'left':
-         return self._matchingSpannerBeforeMe( )
-      else:
-         return self._matchingSpannerAfterMe( )
-
-   def _matchingSpannerAfterMe(self):
-      if self[-1].next:
-         matches = self[-1].next.spanners.get(
-            grob = getattr(self, '_grob', None),
-            attribute = getattr(self, '_attribute', None),
-            value = getattr(self, '_vallue', None))
-         if matches:
-            return matches[0]
-
-   def _matchingSpannerBeforeMe(self):
-      if self[0].prev:
-         matches = self[0].prev.spanners.get(
-            grob = getattr(self, '_grob', None),
-            attribute = getattr(self, '_attribute', None),
-            value = getattr(self, '_vallue', None))
-         if matches:
-            return matches[0]
+#   ### TODO - consider implementing a dedicated attribute comparison method
+#   ###        to work on any two spanners;
+#   ###        such a method would feed into _matches( ), below.
+#
+#   ### TODO - figure out if we really need the attribute check or not;
+#   ###        looks like the attribute check doesn't work right now,
+#   ###        at least not for two different octavation spanners.
+#
+#   def _matches(self, spanner):
+#      return self.__class__ == spanner.__class__ and \
+#         all([getattr(self, attr, None) == getattr(spanner, attr, None)
+#            for attr in ('_grob', '_attribute', '_value')])
+#
+#   ### TODO - _matchingSpanner( ) functions as a generalization of
+#   ###        _matchingSpannerBeforeMe( ) and _matchingSpannerAfterMe( );
+#   ###        cleaner to reimplement _matchingSpanner( ) completely
+#   ###        independently of those two functions 
+#   ###        and then eliminate those two functions entirely;
+#   ###        this will take us from three functions 
+#   ###        down to only _matchingSpanner( ).
+#
+#   def _matchingSpanner(self, direction):
+#      assert direction in ('left', 'right')
+#      if direction == 'left':
+#         return self._matchingSpannerBeforeMe( )
+#      else:
+#         return self._matchingSpannerAfterMe( )
+#
+#   def _matchingSpannerAfterMe(self):
+#      if self[-1].next:
+#         matches = self[-1].next.spanners.get(
+#            grob = getattr(self, '_grob', None),
+#            attribute = getattr(self, '_attribute', None),
+#            value = getattr(self, '_vallue', None))
+#         if matches:
+#            return matches[0]
+#
+#   def _matchingSpannerBeforeMe(self):
+#      if self[0].prev:
+#         matches = self[0].prev.spanners.get(
+#            grob = getattr(self, '_grob', None),
+#            attribute = getattr(self, '_attribute', None),
+#            value = getattr(self, '_vallue', None))
+#         if matches:
+#            return matches[0]
 
    def _right(self, component):
       return [ ]
