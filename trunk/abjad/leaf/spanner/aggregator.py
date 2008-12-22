@@ -116,24 +116,6 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 
    ### PUBLIC METHODS ###
 
-   def above(self, classname = None, selector = None):
-      result = [ ]
-      parentage = self._client._parentage._iparentage[1 : ]
-      for component in parentage:
-         result.extend(component.spanners._spanners)
-      return self._filter(result, classname, selector)
-
-   #def die(self, 
-   #   classname = None, interface = None, 
-   #   grob = None, attribute = None, value = None):
-   def die(self, classname = None, grob = None, attribute = None, value = None):
-      #spanners = self.get(classname = classname, interface = interface,
-      #   grob = grob, attribute = attribute, value = value)
-      spanners = self.get(classname = classname, 
-         grob = grob, attribute = attribute, value = value)
-      for spanner in spanners:
-         spanner.die( )
-
    def find(self, grob, attribute):
       return self._getSophisticatedValue(grob, attribute)
 

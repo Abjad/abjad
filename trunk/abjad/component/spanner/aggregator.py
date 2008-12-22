@@ -38,6 +38,10 @@ class _ComponentSpannerAggregator(_Interface):
 
    ### PUBLIC METHODS ###
 
+   def die(self):
+      for spanner in self.mine( ):
+         spanner.die( )
+
    def fracture(self, direction = 'both'):
       result = [ ]
       client = self._client

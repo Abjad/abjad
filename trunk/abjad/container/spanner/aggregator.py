@@ -52,23 +52,6 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
 
    ### PUBLIC METHODS ###
 
-#   def die(self, 
-#      classname = None, interface = None, 
-#      grob = None, attribute = None, value = None):
-   def die(self, classname = None, grob = None, attribute = None, value = None):
-#      spanners = self.get(classname = classname, interface = interface,
-#         grob = grob, attribute = attribute, value = value)
-      spanners = self.get(classname = classname, 
-         grob = grob, attribute = attribute, value = value)
-      for spanner in spanners:
-         spanner.die( )
-
-#   def fracture(self, direction = 'both'):
-#      result = [ ]
-#      result.extend(self._fractureMySpanners(direction))
-#      result.extend(self._fractureLeafSpanners(direction))
-#      return result
-
    #def fuse(self, 
    #   interface = None, grob = None, attribute = None, value = None,
    def fuse(self, grob = None, attribute = None, value = None, 
