@@ -8,7 +8,7 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
    ### PRIVATE METHODS ###
 
    def _append(self, spanner):
-      if spanner not in self._spanners:
+      if spanner not in self.spanners:
          self._spanners.append(spanner)
 
 #   def _fractureMySpanners(self, direction = 'both'):
@@ -28,54 +28,36 @@ class _ContainerSpannerAggregator(_ComponentSpannerAggregator):
 #            result.extend(leaf.spanners.fracture('right'))
 #      return result
       
-   #def _fuseLeft(self, 
-   #   interface = None, grob = None, attribute = None, value = None):
-   def _fuseLeft(self, grob = None, attribute = None, value = None):
-      result = [ ]
-      left = self._client.leaves[0]
-      #spanners = left.spanners.get(interface, grob, attribute, value)
-      spanners = left.spanners.get(grob, attribute, value)
-      for spanner in spanners[ : ]:
-         result.append(spanner.fuse(direction = 'left'))
-      return result
-
-   #def _fuseRight(self, 
-   #   interface = None, grob = None, attribute = None, value = None):
-   def _fuseRight(self, grob = None, attribute = None, value = None):
-      result = [ ]
-      right = self._client.leaves[-1]
-      #spanners = right.spanners.get(interface, grob, attribute, value)
-      spanners = right.spanners.get(grob, attribute, value)
-      for spanner in spanners[ : ]:
-         result.append(spanner.fuse(direction = 'right'))
-      return result
+#   def _fuseLeft(self, grob = None, attribute = None, value = None):
+#      result = [ ]
+#      left = self._client.leaves[0]
+#      spanners = left.spanners.get(grob, attribute, value)
+#      for spanner in spanners[ : ]:
+#         result.append(spanner.fuse(direction = 'left'))
+#      return result
+#
+#   def _fuseRight(self, grob = None, attribute = None, value = None):
+#      result = [ ]
+#      right = self._client.leaves[-1]
+#      spanners = right.spanners.get(grob, attribute, value)
+#      for spanner in spanners[ : ]:
+#         result.append(spanner.fuse(direction = 'right'))
+#      return result
 
    ### PUBLIC METHODS ###
 
-   #def fuse(self, 
-   #   interface = None, grob = None, attribute = None, value = None,
-   def fuse(self, grob = None, attribute = None, value = None, 
-      direction = 'both'):
-      result = [ ]
-      left, right = self._client.leaves[0], self._client.leaves[-1]
-      if direction == 'left':
-         #result.extend(
-         #   left.spanners.fuse(interface, grob, attribute, value, 'left'))
-         result.extend(left.spanners.fuse(grob, attribute, value, 'left'))
-      elif direction == 'right':
-         #result.extend(
-         #   right.spanners.fuse(interface, grob, attribute, value, 'right'))
-         result.extend(right.spanners.fuse(grob, attribute, value, 'right'))
-      elif direction == 'both':
-         #result.extend(
-         #   left.spanners.fuse(interface, grob, attribute, value, 'left'))
-         result.extend(left.spanners.fuse(grob, attribute, value, 'left'))
-         #result.extend(
-         #   right.spanners.fuse(interface, grob, attribute, value, 'right'))
-         result.extend(right.spanners.fuse(grob, attribute, value, 'right'))
-      #result.extend(left.spanners.fuseLeft(interface, grob, attribute, value))
-      #result.extend(right.spanners.fuseRight(interface, grob, attribute, value))
-      return result
+#   def fuse(self, grob = None, attribute = None, value = None, 
+#      direction = 'both'):
+#      result = [ ]
+#      left, right = self._client.leaves[0], self._client.leaves[-1]
+#      if direction == 'left':
+#         result.extend(left.spanners.fuse(grob, attribute, value, 'left'))
+#      elif direction == 'right':
+#         result.extend(right.spanners.fuse(grob, attribute, value, 'right'))
+#      elif direction == 'both':
+#         result.extend(left.spanners.fuse(grob, attribute, value, 'left'))
+#         result.extend(right.spanners.fuse(grob, attribute, value, 'right'))
+#      return result
 
    def get(self, classname = None, grob = None, attribute = None, value = None):
       result = [ ]

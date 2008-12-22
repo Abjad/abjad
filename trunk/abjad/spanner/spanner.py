@@ -109,27 +109,32 @@ class Spanner(_Abjad):
       return self, left, right
 
    def _fuseByReference(self, spanner):
-      if self._matches(spanner) and spanner._follows(self):
-         result = self.copy( )
-         #result._extend(spanner)
-         result._extend(spanner.components)
-         self._block( )
-         spanner._block( )
-         return [(self, spanner, result)]
-      else:
-         return [ ]
+#      if self._matches(spanner) and spanner._follows(self):
+#         result = self.copy( )
+#         #result._extend(spanner)
+#         result._extend(spanner.components)
+#         self._block( )
+#         spanner._block( )
+#         return [(self, spanner, result)]
+#      else:
+#         return [ ]
+      result = self.copy( )
+      result._extend(spanner.components)
+      self._block( )
+      spanner._block( )
+      return [(self, spanner, result)]
 
-   def _fuseRight(self):
-      result = [ ]
-      if self._matchingSpannerAfterMe( ):
-         result.extend(self._fuseByReference(self._matchingSpannerAfterMe( )))
-      return result
-
-   def _fuseLeft(self):
-      result = [ ]
-      if self._matchingSpannerBeforeMe( ):
-         result.extend(self._matchingSpannerBeforeMe( )._fuseByReference(self))
-      return result
+#   def _fuseRight(self):
+#      result = [ ]
+#      if self._matchingSpannerAfterMe( ):
+#         result.extend(self._fuseByReference(self._matchingSpannerAfterMe( )))
+#      return result
+#
+#   def _fuseLeft(self):
+#      result = [ ]
+#      if self._matchingSpannerBeforeMe( ):
+#         result.extend(self._matchingSpannerBeforeMe( )._fuseByReference(self))
+#      return result
 
    def _insert(self, i, component):
       component.spanners._spanners.append(self)
@@ -210,7 +215,6 @@ class Spanner(_Abjad):
    def _matchingSpannerAfterMe(self):
       if self[-1].next:
          matches = self[-1].next.spanners.get(
-            #interface = getattr(self, '_interface', None),
             grob = getattr(self, '_grob', None),
             attribute = getattr(self, '_attribute', None),
             value = getattr(self, '_vallue', None))
@@ -220,7 +224,6 @@ class Spanner(_Abjad):
    def _matchingSpannerBeforeMe(self):
       if self[0].prev:
          matches = self[0].prev.spanners.get(
-            #interface = getattr(self, '_interface', None),
             grob = getattr(self, '_grob', None),
             attribute = getattr(self, '_attribute', None),
             value = getattr(self, '_vallue', None))
@@ -360,9 +363,6 @@ class Spanner(_Abjad):
    def die(self):
       self._sever( )
 
-   ### TODO - Implement _SpannerFractureReceipt class 
-   ###        to encapsulate return value ###
-
    def fracture(self, i, direction = 'both'):
       if i < 0:
          i = len(self) + i
@@ -380,19 +380,22 @@ class Spanner(_Abjad):
          raise ValueError(
             'direction %s must be left, right or both.' % direction)
 
-   def fuse(self, direction = 'both'):
-      if direction == 'left':
-         return self._fuseLeft( )
-      elif direction == 'right':
-         return self._fuseRight( )
-      elif direction == 'both':
-         result = [ ]
-         result.append(self._fuseLeft( ))
-         result.append(self._fuseRight( ))
-         return result
-      else:
-         raise ValueError(
-            'direction %s must be left, right or both.' % direction)
+#   def fuse(self, direction = 'both'):
+#      if direction == 'left':
+#         return self._fuseLeft( )
+#      elif direction == 'right':
+#         return self._fuseRight( )
+#      elif direction == 'both':
+#         result = [ ]
+#         result.append(self._fuseLeft( ))
+#         result.append(self._fuseRight( ))
+#         return result
+#      else:
+#         raise ValueError(
+#            'direction %s must be left, right or both.' % direction)
+
+   def fuse(self, spanner):
+      return self._fuseByReference(spanner)
       
    def index(self, component):
       return self._components.index(component)

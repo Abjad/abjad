@@ -142,11 +142,13 @@ class _Component(_Abjad):
       returns the deepcopy;
       leaves self unchanged.
       '''
-      hairpins = self.spanners.get(classname = '_Hairpin')
-      hairpinKillList = [ ]
-      clientLeaves = set(self.leaves)
-      hairpinKillList = [
-         not set(hp[ : ]).issubset(clientLeaves) for hp in hairpins]
+
+#      hairpins = self.spanners.get(classname = '_Hairpin')
+#      hairpinKillList = [ ]
+#      clientLeaves = set(self.leaves)
+#      hairpinKillList = [
+#         not set(hp[ : ]).issubset(clientLeaves) for hp in hairpins]
+
       #receipts = self.spanners.fracture( )
       receipts = self.spanners._fractureContents( )
       parent = self._parentage._cutOutgoingReferenceToParent( )
@@ -168,9 +170,11 @@ class _Component(_Abjad):
             center._sever( )
          right._sever( )
       self._parent = parent
-      for i, hp in enumerate(result.spanners.get(classname = '_Hairpin')):
-         if hairpinKillList[i]:
-            hp.die( )
+
+#      for i, hp in enumerate(result.spanners.get(classname = '_Hairpin')):
+#         if hairpinKillList[i]:
+#            hp.die( )
+
       return result
 
    def kind(self, classname):

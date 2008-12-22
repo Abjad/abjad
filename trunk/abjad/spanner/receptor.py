@@ -11,12 +11,15 @@
 ### except in this comment. 
 
 from abjad.core.abjadcore import _Abjad
+from abjad.helpers.hasname import hasname
 
 
 class _SpannerReceptor(_Abjad):
 
-   def __init__(self, spanners):
-      self._spanners = spanners
+   #def __init__(self, spanners):
+   #   self._spanners = spanners
+   def __init__(self, classnames):
+      self._classnames = classnames
 
    ### PUBLIC ATTRIBUTES ###
 
@@ -45,8 +48,12 @@ class _SpannerReceptor(_Abjad):
    @property
    def spanners(self):
       result = [ ]
-      for classname in self._spanners:
-         result.extend(self._client.spanners.get(classname = classname))
+      client = self._client
+      #for classname in self._spanners:
+      for classname in self._classnames:
+         #result.extend(self._client.spanners.get(classname = classname))
+         spanners = client.spanners.spanners
+         result.extend([p for p in spanners if hasname(p, classname)])
       return result
 
    ### PUBLIC METHODS ###

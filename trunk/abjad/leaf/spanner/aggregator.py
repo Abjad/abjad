@@ -10,33 +10,37 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    @property
    def _after(self):
       result = [ ]
-      #for spanner in self:
-      for spanner in self.total( ):
+      for spanner in self._spannersInParentage:
          result.extend(spanner._after(self._client))
       return result
 
    @property
    def _before(self):
       result = [ ]
-      #for spanner in self:
-      for spanner in self.total( ):
+      for spanner in self._spannersInParentage:
          result.extend(spanner._before(self._client))
       return result
 
    @property
    def _left(self):
       result = [ ]
-      #for spanner in self:
-      for spanner in self.total( ):
+      for spanner in self._spannersInParentage:
          result.extend(spanner._left(self._client))   
       return result
 
    @property
    def _right(self):
       result = [ ]
-      #for spanner in self:
-      for spanner in self.total( ):
+      for spanner in self._spannersInParentage:
          result.extend(spanner._right(self._client))
+      return result
+
+   @property
+   def _spannersInParentage(self):
+      result = [ ]
+      parentage = self._client._parentage._iparentage
+      for component in parentage:
+         result.extend(component.spanners.spanners)
       return result
 
    ### PRIVATE METHODS ####
@@ -45,25 +49,19 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       if spanner not in self._spanners:
          self._spanners.append(spanner)
 
-   #def _fuseLeft(self, 
-   #   interface = None, grob = None, attribute = None, value = None):
-   def _fuseLeft(self, grob = None, attribute = None, value = None):
-      result = [ ]
-      #spanners = self.get(interface, grob, attribute, value)
-      spanners = self.get(grob, attribute, value)
-      for spanner in spanners[ : ]:
-         result.append(spanner.fuse(direction = 'left'))
-      return result
-
-   #def _fuseRight(self, 
-   #   interface = None, grob = None, attribute = None, value = None):
-   def _fuseRight(self, grob = None, attribute = None, value = None):
-      result = [ ]
-      #spanners = self.get(interface, grob, attribute, value)
-      spanners = self.get(grob, attribute, value)
-      for spanner in spanners[ : ]:
-         result.append(spanner.fuse(direction = 'right'))
-      return result
+#   def _fuseLeft(self, grob = None, attribute = None, value = None):
+#      result = [ ]
+#      spanners = self.get(grob, attribute, value)
+#      for spanner in spanners[ : ]:
+#         result.append(spanner.fuse(direction = 'left'))
+#      return result
+#
+#   def _fuseRight(self, grob = None, attribute = None, value = None):
+#      result = [ ]
+#      spanners = self.get(grob, attribute, value)
+#      for spanner in spanners[ : ]:
+#         result.append(spanner.fuse(direction = 'right'))
+#      return result
 
    def _getNaiveValue(self, grob, attribute):
       spanner = self._getYoungestSpanner(grob = grob, attribute = attribute)
@@ -139,44 +137,15 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 #            result.append(spanner.fracture(spanner.index(client), 'right'))
 #      return result
          
-#   #def fuse(self, 
-#   #   interface = None, grob = None, attribute = None, value = None,
-#   def fuse(self, grob = None, attribute = None, value = None,
-#      direction = 'both'):
+#   def fuse(self, direction = 'both', classname = None):
 #      result = [ ]
-#      #if direction == 'left':
-#      #   result.extend(self._fuseLeft(interface, grob, attribute, value))
-#      #elif direction == 'right':
-#      #   result.extend(self._fuseRight(interface, grob, attribute, value))
-#      #elif direction == 'both':
-#      #   result.extend(self._fuseLeft(interface, grob, attribute, value))
-#      #   result.extend(self._fuseRight(interface, grob, attribute, value))
-#      if direction == 'left':
-#         result.extend(self._fuseLeft(grob, attribute, value))
-#      elif direction == 'right':
-#         result.extend(self._fuseRight(grob, attribute, value))
-#      elif direction == 'both':
-#         result.extend(self._fuseLeft(grob, attribute, value))
-#         result.extend(self._fuseRight(grob, attribute, value))
+#      if direction in ('left', 'both'):
+#         for spanner in self.mine(classname):
+#            result.append(spanner.fuse(direction = 'left'))
+#      if direction in ('right', 'both'):
+#         for spanner in self.mine(classname):
+#            result.append(spanner.fuse(direction = 'right'))
 #      return result
-
-   def fuse(self, direction = 'both', klass = None):
-      result = [ ]
-      ### TODO - iterate over my spanners only once
-      if direction in ('left', 'both'):
-         for spanner in self.mine(klass):
-            result.append(spanner.fuse(direction = 'left'))
-      if direction in ('right', 'both'):
-         for spanner in self.mine(klass):
-            result.append(spanner.fuse(direction = 'right'))
-      return result
-
-   ### TODO - remove or reimplement get( )
-   ###        Do we need t.spanners.above.get( ), t.spanners.mine.get( ),
-   ###        etc.?
-
-   ###        Or maybe just t.spanners.above(**kwargs)
-   ###        and t.spanners.mine(**kwargs)?
 
    def get(self, classname = None, grob = None, attribute = None, value = None):
       #result = self[ : ]
@@ -211,9 +180,9 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       else:
          return None
 
-   def total(self, classname = None, selector = None):
-      result = [ ]
-      parentage = self._client._parentage._iparentage
-      for component in parentage:
-         result.extend(component.spanners._spanners)
-      return self._filter(result, classname, selector)
+#   def total(self, classname = None, selector = None):
+#      result = [ ]
+#      parentage = self._client._parentage._iparentage
+#      for component in parentage:
+#         result.extend(component.spanners._spanners)
+#      return self._filter(result, classname, selector)

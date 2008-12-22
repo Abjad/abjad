@@ -36,6 +36,12 @@ class _ComponentSpannerAggregator(_Interface):
             result.append(spanner.fracture(spanner.index(component), 'right'))
       return result
 
+   ### PUBLIC ATTRIBUTES ###
+
+   @property
+   def spanners(self):
+      return self._spanners[ : ]
+
    ### PUBLIC METHODS ###
 
    def die(self):

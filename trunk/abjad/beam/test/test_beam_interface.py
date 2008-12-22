@@ -11,12 +11,12 @@ from abjad import *
 ###      t.beam.last
 ###      t.beam.only
 ###
-###   MANAGED ATTRIBUTES:
+###   PUBLIC ATTRIBUTES:
 ###      t.beam.counts
 ###
-###   EXCITING METHODS:
-###      t.beam.bridge
-###      t.beam.subdivide
+###   PUBLIC METHODS:
+###      t.beam.bridge - DEPRECATED
+###      t.beam.subdivide - DEPRECATED
 
 
 def test_beam_interface_01( ):
@@ -257,115 +257,115 @@ def test_beam_interface_14( ):
    assert t.format == "c'32"
 
 
-def test_beam_interface_15( ):
-   '''bridge( ) fuses adjacent beams towards the right.'''
-   t = Staff([Note(i,(1,16)) for i in range(8)])
-   Beam(t[0:4])
-   Beam(t[4:])
-   t[3].beam.bridge(1,'right')
-   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\t\\set stemRightBeamCount = #1\n\tef'16\n\t\\set stemLeftBeamCount = #1\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
-   '''
-   \new Staff {
-           c'16 [
-           cs'16
-           d'16
-           \set stemRightBeamCount = #1
-           ef'16
-           \set stemLeftBeamCount = #1
-           e'16             
-           f'16
-           fs'16
-           g'16 ]
-   }
-   '''
+#def test_beam_interface_15( ):
+#   '''bridge( ) fuses adjacent beams towards the right.'''
+#   t = Staff([Note(i,(1,16)) for i in range(8)])
+#   Beam(t[0:4])
+#   Beam(t[4:])
+#   t[3].beam.bridge(1,'right')
+#   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\t\\set stemRightBeamCount = #1\n\tef'16\n\t\\set stemLeftBeamCount = #1\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
+#   '''
+#   \new Staff {
+#           c'16 [
+#           cs'16
+#           d'16
+#           \set stemRightBeamCount = #1
+#           ef'16
+#           \set stemLeftBeamCount = #1
+#           e'16             
+#           f'16
+#           fs'16
+#           g'16 ]
+#   }
+#   '''
  
 
-def test_beam_interface_16( ):
-   '''bridge( ) fuses adjacent beams towards the left.'''
-   t = Staff([Note(i,(1,16)) for i in range(8)])
-   Beam(t[0:4])
-   Beam(t[4:])
-   t[4].beam.bridge(1,'left')
-   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\t\\set stemRightBeamCount = #1\n\tef'16\n\t\\set stemLeftBeamCount = #1\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
-   '''
-   \new Staff {
-           c'16 [
-           cs'16
-           d'16
-           \set stemRightBeamCount = #1
-           ef'16
-           \set stemLeftBeamCount = #1
-           e'16             
-           f'16
-           fs'16
-           g'16 ]
-   }
-   '''
+#def test_beam_interface_16( ):
+#   '''bridge( ) fuses adjacent beams towards the left.'''
+#   t = Staff([Note(i,(1,16)) for i in range(8)])
+#   Beam(t[0:4])
+#   Beam(t[4:])
+#   t[4].beam.bridge(1,'left')
+#   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\t\\set stemRightBeamCount = #1\n\tef'16\n\t\\set stemLeftBeamCount = #1\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
+#   '''
+#   \new Staff {
+#           c'16 [
+#           cs'16
+#           d'16
+#           \set stemRightBeamCount = #1
+#           ef'16
+#           \set stemLeftBeamCount = #1
+#           e'16             
+#           f'16
+#           fs'16
+#           g'16 ]
+#   }
+#   '''
 
 
-def test_beam_interface_17( ):
-   '''subdivide( ) works towards the right.'''
-   t = Staff([Note(i,(1,16)) for i in range(8)]) 
-   Beam(t[:])
-   t[4].beam.subdivide(1, 'right')
-   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\tef'16\n\t\\set stemRightBeamCount = #1\n\te'16\n\t\\set stemLeftBeamCount = #1\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
-   '''
-   \new Staff {
-           c'16 [
-           cs'16
-           d'16
-           ef'16
-           \set stemRightBeamCount = #1
-           e'16
-           \set stemLeftBeamCount = #1
-           f'16
-           fs'16
-           g'16 ]
-   }
-   '''
+#def test_beam_interface_17( ):
+#   '''subdivide( ) works towards the right.'''
+#   t = Staff([Note(i,(1,16)) for i in range(8)]) 
+#   Beam(t[:])
+#   t[4].beam.subdivide(1, 'right')
+#   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\tef'16\n\t\\set stemRightBeamCount = #1\n\te'16\n\t\\set stemLeftBeamCount = #1\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
+#   '''
+#   \new Staff {
+#           c'16 [
+#           cs'16
+#           d'16
+#           ef'16
+#           \set stemRightBeamCount = #1
+#           e'16
+#           \set stemLeftBeamCount = #1
+#           f'16
+#           fs'16
+#           g'16 ]
+#   }
+#   '''
 
 
-def test_beam_interface_18( ):
-   '''subdivide( ) works towards the left.'''
-   t = Staff([Note(i,(1,16)) for i in range(8)])
-   Beam(t[:])
-   t[3].beam.subdivide(1, 'left')
-   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\t\\set stemRightBeamCount = #1\n\td'16\n\t\\set stemLeftBeamCount = #1\n\tef'16\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
-   '''
-   \new Staff {
-           c'16 [
-           cs'16
-           \set stemRightBeamCount = #1
-           d'16
-           \set stemLeftBeamCount = #1
-           ef'16
-           e'16
-           f'16
-           fs'16
-           g'16 ]    
-   }
-   '''
+#def test_beam_interface_18( ):
+#   '''subdivide( ) works towards the left.'''
+#   t = Staff([Note(i,(1,16)) for i in range(8)])
+#   Beam(t[:])
+#   t[3].beam.subdivide(1, 'left')
+#   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\t\\set stemRightBeamCount = #1\n\td'16\n\t\\set stemLeftBeamCount = #1\n\tef'16\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
+#   '''
+#   \new Staff {
+#           c'16 [
+#           cs'16
+#           \set stemRightBeamCount = #1
+#           d'16
+#           \set stemLeftBeamCount = #1
+#           ef'16
+#           e'16
+#           f'16
+#           fs'16
+#           g'16 ]    
+#   }
+#   '''
 
 
-def test_beam_interface_19( ):
-   '''None removes the effects of subdivide( ).'''
-   t = Staff([Note(i,(1,16)) for i in range(8)])
-   Beam(t[:])
-   t[3].beam.subdivide(1, 'left')
-   t[3].beam.subdivide(None, 'left')
-   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\tef'16\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
-   '''
-   \new Staff {
-           c'16 [
-           cs'16
-           d'16
-           ef'16
-           e'16
-           f'16
-           fs'16
-           g'16 ]
-   }
-   '''
+#def test_beam_interface_19( ):
+#   '''None removes the effects of subdivide( ).'''
+#   t = Staff([Note(i,(1,16)) for i in range(8)])
+#   Beam(t[:])
+#   t[3].beam.subdivide(1, 'left')
+#   t[3].beam.subdivide(None, 'left')
+#   assert t.format == "\\new Staff {\n\tc'16 [\n\tcs'16\n\td'16\n\tef'16\n\te'16\n\tf'16\n\tfs'16\n\tg'16 ]\n}"
+#   '''
+#   \new Staff {
+#           c'16 [
+#           cs'16
+#           d'16
+#           ef'16
+#           e'16
+#           f'16
+#           fs'16
+#           g'16 ]
+#   }
+#   '''
 
 
 def test_beam_interface_20( ):
