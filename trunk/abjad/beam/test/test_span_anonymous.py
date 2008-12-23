@@ -235,19 +235,19 @@ def test_span_anonymous_10( ):
    p = Beam(t)
    assert len(p.components) == 1
    assert len(p.leaves) == 8
-   p.die( )
+   p.clear( )
    p = Beam((t[0], t[1]))
    assert len(p.components) == 2
    assert len(p.leaves) == 8
-   p.die( )
+   p.clear( )
    p = Beam((t[0][0], t[1][0]))
    assert len(p.components) == 2
    assert len(p.leaves) == 8
-   p.die( )
+   p.clear( )
    p = Beam((t[0], t[1][0]))
    assert len(p.components) == 2
    assert len(p.leaves) == 8
-   p.die( )
+   p.clear( )
    p = Beam((t[0][0], t[1]))
    assert len(p.components) == 2
    assert len(p.leaves) == 8
@@ -285,22 +285,22 @@ def test_span_anonymous_11( ):
    p = Beam(t)
    assert len(p.components) == 1
    assert len(p.leaves) == 8
-   p.die( )
+   p.clear( )
 
    p = Beam((t[0], t[1]))
    assert len(p.components) == 2
    assert len(p.leaves) == 8
-   p.die( )
+   p.clear( )
 
    p = Beam((t[0][0], t[1]))
    assert len(p.components) == 2
    assert len(p.leaves) == 8
-   p.die( )
+   p.clear( )
 
    p = Beam((t[0][0][0], t[1]))
    assert len(p.components) == 2
    assert len(p.leaves) == 8
-   p.die( )
+   p.clear( )
 
    r'''
    \new Voice {
@@ -333,12 +333,12 @@ def test_span_anonymous_12( ):
    p = Beam(v)
    assert len(p.components) == 1
    assert len(p.leaves) == 5
-   p.die( )
+   p.clear( )
 
    p = Beam(v[ : ])
    assert len(p.components) == 3
    assert len(p.leaves) == 5
-   p.die( )
+   p.clear( )
 
    r'''
    \new Voice {
@@ -364,12 +364,12 @@ def test_span_anonymous_13( ):
    p = Beam(v)
    assert len(p.components) == 1
    assert len(p.leaves) == 7
-   p.die( )
+   p.clear( )
 
    p = Beam(v[ : ])
    assert len(p.components) == 3
    assert len(p.leaves) == 7
-   p.die( )
+   p.clear( )
 
    r'''
    \new Voice {
@@ -396,7 +396,7 @@ def test_span_anonymous_14( ):
    p = Beam(t)
    assert len(p.components) == 1
    assert len(p.leaves) == 5
-   p.die( )
+   p.clear( )
 
    p = Beam(t[ : ])
    assert len(p.components) == 3
@@ -434,12 +434,12 @@ def test_span_anonymous_15( ):
    p = Beam((t[0], t[1]))
    assert len(p.components) == 2
    assert len(p.leaves) == 4
-   p.die( )
+   p.clear( )
 
    p = Beam((t[1], t[2]))
    assert len(p.components) == 2
    assert len(p.leaves) == 5
-   p.die( )
+   p.clear( )
 
    r'''
    \new Staff {

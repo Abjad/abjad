@@ -22,7 +22,8 @@ def leaf_split(split_dur, leaf):
       l1 = leaf.copy()
       parent = leaf._parent
       if parent:
-         l1.spanners.die() ### only kill spanners if there's a parent?
+         #l1.spanners.die() ### only kill spanners if there's a parent?
+         l1.spanners.clear() ### only kill spanners if there's a parent?
          indx = parent.index(leaf)
          parent.embed(indx, l1)
 
@@ -52,7 +53,8 @@ def leaf_split_binary(split_dur, leaf):
       leaf.articulations = None
       leaf.dynamics = None
       if parent:
-         l1.spanners.die() 
+         #l1.spanners.die() 
+         l1.spanners.clear() 
          ### if l1 is the only leaf spanned, spanner dies for ever...
          indx = parent.index(leaf)
          parent.embed(indx, l1)

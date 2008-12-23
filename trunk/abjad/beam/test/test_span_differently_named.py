@@ -35,7 +35,7 @@ def test_span_differently_named_01( ):
       }
    }
    '''
-   p.die( )
+   p.clear( )
 
    p = Beam(t[0])
    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
@@ -55,7 +55,7 @@ def test_span_differently_named_01( ):
       }
    }
    '''
-   p.die( )
+   p.clear( )
 
 
 
@@ -107,7 +107,7 @@ def test_span_differently_named_02( ):
       >>
    }
    '''
-   p.die( )
+   p.clear( )
 
 
    p = Beam([t[0][1], t[1][1]])
@@ -144,4 +144,4 @@ def test_span_differently_named_02( ):
       >>
    }
    '''
-   p.die( )
+   p.clear( )

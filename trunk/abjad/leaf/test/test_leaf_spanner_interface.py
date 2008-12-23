@@ -5,11 +5,11 @@ from abjad import *
 
 
 def test_leaf_spanner_interface_01( ):
-   '''t.spanners.die( ) kills all spanners attaching to leaf t.'''
+   '''t.spanners.clear( ) kills all spanners attaching to leaf t.'''
    t = Staff(Note(0, (1, 8)) * 8)
    Beam(t[ : ])
    assert len(t[0].spanners.attached) == 1
-   t[0].spanners.die( )
+   t[0].spanners.clear( )
    assert len(t[0].spanners.attached) == 0
 
 

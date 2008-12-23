@@ -6,9 +6,6 @@ from abjad.rational.rational import Rational
 from copy import copy as python_copy
 
 
-### TODO - Consider implementing self._components ###
-###        as a deque instead of a list.          ###
-
 class Spanner(_Abjad):
 
    def __init__(self, music):
@@ -250,21 +247,17 @@ class Spanner(_Abjad):
 
    ### TODO - possibly rename to clear( ) ###
 
-   def die(self):
+   def clear(self):
       self._sever( )
+
+#   def die(self):
+#      self._sever( )
 
    def extend(self, music):
       assert isinstance(music, (tuple, list))
       for component in music:
          assert isinstance(component, _Component)
          self.append(component)
-#      if isinstance(music, (tuple, list)):
-#         for component in music:
-#            self.append(component)
-#      elif music.kind('_Component'):
-#         self.append(music)
-#      else:
-#         raise ValueError('can only span components.')
 
    ### NOTE - extendleft(music) does NOT reverse the the  ###
    ###        input order of the elements in music.       ###

@@ -58,7 +58,8 @@ def leaf_scale_binary(dur, leaf):
       parent = leaf._parent
       if parent:
          for l in result:
-            l.spanners.die( )
+            #l.spanners.die( )
+            l.spanners.clear( )
          indx = parent.index(leaf)
          parent.embed(indx, result)
          parent.pop(len(result) + indx)

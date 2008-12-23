@@ -3,7 +3,7 @@ from abjad import *
 
 def test_spanners_01( ):
    '''
-   Die one spanner attaching to container.
+   Clear one spanner attaching to container.
    '''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -29,7 +29,7 @@ def test_spanners_01( ):
 
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
-   t[0].spanners.die( )
+   t[0].spanners.clear( )
 
    r'''
    \new Voice {
@@ -51,9 +51,9 @@ def test_spanners_01( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
-def test_die_02( ):
+def test_clear_02( ):
    '''
-   Die multiple spanners attaaching to container.
+   Clear multiple spanners attaaching to container.
    '''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -80,7 +80,7 @@ def test_die_02( ):
 
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\startTrillSpan\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ] \\stopTrillSpan\n\t}\n}"
 
-   t[0].spanners.die( )
+   t[0].spanners.clear( )
 
    r'''
    \new Voice {

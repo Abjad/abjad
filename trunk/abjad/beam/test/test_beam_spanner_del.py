@@ -10,7 +10,8 @@ def test_del_beam_spanner_01( ):
    assert check(t)
    #del(t[0].spanners[0])
    #t[0].spanners.mine( )[0].die( )
-   list(t[0].spanners.attached)[0].die( )
+   #list(t[0].spanners.attached)[0].die( )
+   list(t[0].spanners.attached)[0].clear( )
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    assert check(t)
    Beam(t[0])
@@ -28,7 +29,8 @@ def test_del_beam_spanner_02( ):
    assert check(t)
    #del(t[0].spanners[0])
    #t[0].spanners.mine( )[0].die( )
-   list(t[0].spanners.attached)[0].die( )
+   #list(t[0].spanners.attached)[0].die( )
+   list(t[0].spanners.attached)[0].clear( )
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    assert check(t)
    Beam(t[ : 4])

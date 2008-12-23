@@ -60,9 +60,13 @@ class _ComponentSpannerAggregator(_Interface):
 
    ### PUBLIC METHODS ###
 
-   def die(self):
+#   def die(self):
+#      for spanner in self.attached:
+#         spanner.die( )
+
+   def clear(self):
       for spanner in self.attached:
-         spanner.die( )
+         spanner.clear( )
 
    def fracture(self, direction = 'both'):
       result = [ ]
