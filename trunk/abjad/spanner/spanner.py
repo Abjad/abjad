@@ -1,4 +1,5 @@
 from abjad.core.abjadcore import _Abjad
+from abjad.helpers.hasname import hasname
 from abjad.helpers.instances import instances
 from abjad.rational.rational import Rational
 from copy import copy as python_copy
@@ -8,16 +9,12 @@ class Spanner(_Abjad):
 
    def __init__(self, music):
       self._components = [ ]
-      #self._extend(music)
       self.extend(music)
 
    ### OVERLOADS ###
 
    def __repr__(self):
-      try:
-         return self.before(self.components[0])[0]
-      except IndexError:
-         return '%s(%s)' % (self.__class__.__name__, self._summary)
+      return '%s(%s)' % (self.__class__.__name__, self._summary)
 
    ### PRIVATE ATTRIBUTES ###
 
@@ -32,9 +29,6 @@ class Spanner(_Abjad):
 
    def _after(self, component):
       return [ ]
-
-#   def _append(self, component):
-#      self._insert(len(self.components), component)
 
    def _before(self, component):
       return [ ]
@@ -59,17 +53,6 @@ class Spanner(_Abjad):
       prev = leaves[ : leaves.index(leaf)]
       return sum([leaf.duration.prolated for leaf in prev])
 
-#   def _extend(self, music):
-#      if isinstance(music, (tuple, list)):
-#         for component in music:
-#            #self._append(component)
-#            self.append(component)
-#      elif music.kind('_Component'):
-#         #self._append(music)
-#         self.append(music)
-#      else:
-#         raise ValueError('can only span components.')
-
    def _fractureLeft(self, i):
       left = self.copy(0, i - 1)
       right = self.copy(i, len(self.components))
@@ -93,7 +76,6 @@ class Spanner(_Abjad):
 #      else:
 #         return [ ]
       result = self.copy( )
-      #result._extend(spanner.components)
       result.extend(spanner.components)
       self._block( )
       spanner._block( )
@@ -224,6 +206,9 @@ class Spanner(_Abjad):
    def append(self, component):
       self._insert(len(self.components), component)
 
+   def appendleft(self, component):
+      self._insert(0, component)
+
    def capture(self, n):
       if n > 0:
          cur = self.components[-1]
@@ -258,16 +243,29 @@ class Spanner(_Abjad):
    def die(self):
       self._sever( )
 
+   ### NOTE - There's kinda a weird behavior here where ###
+   ###        extend( ) will accept not only a tuple or ###
+   ###        list of Abjad components but also a lone  ###
+   ###        atomic Abjad component. This means that   ###
+   ###        extend really generalizes append( ) and   ###
+   ###        render append( ) obsolete. But this isn't ###
+   ###        what we want. We want extend( ) to behave ###
+   ###        here just as on lists and deques.         ###
+
    def extend(self, music):
       if isinstance(music, (tuple, list)):
          for component in music:
-            #self._append(component)
             self.append(component)
       elif music.kind('_Component'):
-         #self._append(music)
          self.append(music)
       else:
          raise ValueError('can only span components.')
+
+   def extendleft(self, music):
+      assert isinstance(music, (tuple, list))
+      for component in reversed(music):
+         assert hasname(component, '_Component')
+         self._insert(0, component)
 
    def fracture(self, i, direction = 'both'):
       if i < 0:

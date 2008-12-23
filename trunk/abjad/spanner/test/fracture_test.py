@@ -11,20 +11,17 @@ def test_fracture_01( ):
    p = Beam(t[ : ])
    original, left, right = p.fracture(1, 'right')
 
-   assert len(original) == 3
    assert len(original.components) == 3
    assert original.components[0] is t[0]
    assert original.components[1] is t[1]
    assert original.components[2] is t[2]
    assert len(original.leaves) == 12
 
-   assert len(left) == 2
    assert len(left.components) == 2
    assert left.components[0] is t[0]
    assert left.components[1] is t[1]
    assert len(left.leaves) == 8
 
-   assert len(right) == 1
    assert len(right.components) == 1
    assert right.components[0] is t[2]
    assert len(right.leaves) == 4
