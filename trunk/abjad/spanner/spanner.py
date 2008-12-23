@@ -1,3 +1,4 @@
+from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
 from abjad.helpers.hasname import hasname
 from abjad.helpers.instances import instances
@@ -5,11 +6,17 @@ from abjad.rational.rational import Rational
 from copy import copy as python_copy
 
 
+### TODO - Consider implementing self._components ###
+###        as a deque instead of a list.          ###
+
 class Spanner(_Abjad):
 
    def __init__(self, music):
       self._components = [ ]
-      self.extend(music)
+      if isinstance(music, (tuple, list)):
+         self.extend(music)
+      else:
+         self.append(music)
 
    ### OVERLOADS ###
 
@@ -204,9 +211,11 @@ class Spanner(_Abjad):
    ### PUBLIC METHODS ###
 
    def append(self, component):
+      assert isinstance(component, _Component)
       self._insert(len(self.components), component)
 
    def appendleft(self, component):
+      assert isinstance(component, _Component)
       self._insert(0, component)
 
    def capture(self, n):
@@ -214,7 +223,6 @@ class Spanner(_Abjad):
          cur = self.components[-1]
          for i in range(n):
             if cur.next:
-               #self._append(cur.next)
                self.append(cur.next)
                cur = cur.next         
             else:
@@ -240,26 +248,28 @@ class Spanner(_Abjad):
       result._unblock( )
       return result
 
+   ### TODO - possibly rename to clear( ) ###
+
    def die(self):
       self._sever( )
 
-   ### NOTE - There's kinda a weird behavior here where ###
-   ###        extend( ) will accept not only a tuple or ###
-   ###        list of Abjad components but also a lone  ###
-   ###        atomic Abjad component. This means that   ###
-   ###        extend really generalizes append( ) and   ###
-   ###        render append( ) obsolete. But this isn't ###
-   ###        what we want. We want extend( ) to behave ###
-   ###        here just as on lists and deques.         ###
-
    def extend(self, music):
-      if isinstance(music, (tuple, list)):
-         for component in music:
-            self.append(component)
-      elif music.kind('_Component'):
-         self.append(music)
-      else:
-         raise ValueError('can only span components.')
+      assert isinstance(music, (tuple, list))
+      for component in music:
+         assert isinstance(component, _Component)
+         self.append(component)
+#      if isinstance(music, (tuple, list)):
+#         for component in music:
+#            self.append(component)
+#      elif music.kind('_Component'):
+#         self.append(music)
+#      else:
+#         raise ValueError('can only span components.')
+
+   ### NOTE - extendleft(music) does NOT reverse the the  ###
+   ###        input order of the elements in music.       ###
+   ###        This differs from deque.extendleft( ) which ###
+   ###        does reverse input order.                   ###
 
    def extendleft(self, music):
       assert isinstance(music, (tuple, list))
@@ -310,7 +320,6 @@ class Spanner(_Abjad):
       move left for negative n;
       always preserve length of self.
       '''
-      #start, stop = self[0], self[-1]
       start, stop = self.components[0], self.components[-1]
       if n > 0:
          for i in range(n):
@@ -338,11 +347,9 @@ class Spanner(_Abjad):
       '''
       if n > 0:
          for i in range(n):
-            #if len(self) > 1:
             if len(self.components) > 1:
                self._sever(-1)
       elif n < 0:
          for i in range(abs(n)):
-            #if len(self) > 1:
             if len(self.components) > 1:
                self._sever(0)
