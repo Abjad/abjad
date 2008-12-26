@@ -7,13 +7,14 @@ class _ComponentSpannerAggregator(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
-      self._spanners = [ ]
+      self._spanners = set([ ])
 
    ### PRIVATE METHODS ###
 
-   def _append(self, spanner):
-      if spanner not in self.attached:
-         self._spanners.append(spanner)
+#   def _append(self, spanner):
+#      if spanner not in self.attached:
+#         #self._spanners.append(spanner)
+#         self._spanners.update([spanner])
 
    def _fractureContents(self):
       '''
@@ -34,6 +35,9 @@ class _ComponentSpannerAggregator(_Interface):
          for spanner in component.spanners.attached:
             result.append(spanner.fracture(spanner.index(component), 'right'))
       return result
+
+   def _update(self, spanners):
+      self._spanners.update(spanners)
 
    ### PUBLIC ATTRIBUTES ###
    
@@ -56,16 +60,14 @@ class _ComponentSpannerAggregator(_Interface):
       directly to client.
       '''
 
-      return set(self._spanners[ : ])
+      #return set(self._spanners[ : ])
+      return self._spanners
 
    ### PUBLIC METHODS ###
 
-#   def die(self):
-#      for spanner in self.attached:
-#         spanner.die( )
-
    def clear(self):
-      for spanner in self.attached:
+      #for spanner in self.attached:
+      for spanner in list(self.attached):
          spanner.clear( )
 
    def fracture(self, direction = 'both'):

@@ -376,7 +376,8 @@ class _Leaf(_Component):
 
    def _die(self):
       #for spanner in self.spanners.get( ):
-      for spanner in self.spanners.attached:
+      #for spanner in self.spanners.attached:
+      for spanner in list(self.spanners.attached):
          #spanner._sever(spanner.index(self))
          spanner.remove(self)
       self._parentage._detach( )

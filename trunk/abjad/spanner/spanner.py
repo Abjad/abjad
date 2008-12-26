@@ -156,9 +156,7 @@ class Spanner(_Abjad):
          self._unblockComponent(component)
 
    def _unblockComponent(self, component):
-      #if self not in component.spanners._spanners:
-      if self not in component.spanners.attached:
-         component.spanners._append(self)
+      component.spanners._update([self])
 
    ### PUBLIC ATTRIBUTES ###
    
@@ -230,7 +228,7 @@ class Spanner(_Abjad):
       return self._components.index(component)
 
    def insert(self, i, component):
-      component.spanners._spanners.append(self)
+      component.spanners._update([self])
       self._components.insert(i, component)
 
    def pop(self, i = -1):
