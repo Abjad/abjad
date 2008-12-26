@@ -17,6 +17,36 @@ class Spanner(_Abjad):
 
    ### OVERLOADS ###
 
+   def __contains__(self, expr):
+      return self._components.__contains__(expr)
+
+   def __delitem__(self, expr):
+      if isinstance(expr, int):
+         self.remove(self.components[expr])
+      elif isinstance(expr, slice):
+         start, stop, stride = expr.indices(len(self))
+         for i in reversed(range(start, stop, stride)):
+            del(self[i])
+
+   def __getitem__(self, expr):
+      return self._components.__getitem__(expr)
+
+   def __len__(self):
+      return self._components.__len__( )
+
+   def __setitem__(self, idx, expr):
+      if isinstance(idx, int):
+         if idx < 0:
+            idx = len(self) + idx
+         del(self[idx])
+         self.insert(idx, expr)
+      elif isinstance(idx, slice):
+         assert isinstance(expr, (tuple, list))
+         start, stop, stride = idx.indices(len(self))
+         del(self[start : stop])
+         for component in reversed(expr):
+            self.insert(start, component)
+         
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._summary)
 
