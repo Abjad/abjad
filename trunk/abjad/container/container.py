@@ -252,7 +252,8 @@ class Container(_Component):
          #for s in target.spanners.mine( ):
          for s in target.spanners.attached:
             for l in expr.leaves:
-               s._insert(s.index(target.leaves[0]), l)
+               #s._insert(s.index(target.leaves[0]), l)
+               s.insert(s.index(target.leaves[0]), l)
          expr._parent = self
          self._music.insert(i, expr)
 

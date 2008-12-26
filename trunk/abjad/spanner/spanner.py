@@ -70,36 +70,15 @@ class Spanner(_Abjad):
       return self, left, right
 
    def _fuseByReference(self, spanner):
-#      if self._matches(spanner) and spanner._follows(self):
-#         result = self.copy( )
-#         #result._extend(spanner)
-#         result._extend(spanner.components)
-#         self._block( )
-#         spanner._block( )
-#         return [(self, spanner, result)]
-#      else:
-#         return [ ]
       result = self.copy( )
       result.extend(spanner.components)
       self._block( )
       spanner._block( )
       return [(self, spanner, result)]
 
-#   def _fuseRight(self):
-#      result = [ ]
-#      if self._matchingSpannerAfterMe( ):
-#         result.extend(self._fuseByReference(self._matchingSpannerAfterMe( )))
-#      return result
-#
-#   def _fuseLeft(self):
-#      result = [ ]
-#      if self._matchingSpannerBeforeMe( ):
-#         result.extend(self._matchingSpannerBeforeMe( )._fuseByReference(self))
-#      return result
-
-   def _insert(self, i, component):
-      component.spanners._spanners.append(self)
-      self._components.insert(i, component)
+#   def _insert(self, i, component):
+#      component.spanners._spanners.append(self)
+#      self._components.insert(i, component)
 
    def _isMyFirstLeaf(self, leaf):
       leaves = self.leaves
@@ -209,11 +188,13 @@ class Spanner(_Abjad):
 
    def append(self, component):
       assert isinstance(component, _Component)
-      self._insert(len(self.components), component)
+      #self._insert(len(self.components), component)
+      self.insert(len(self.components), component)
 
    def appendleft(self, component):
       assert isinstance(component, _Component)
-      self._insert(0, component)
+      #self._insert(0, component)
+      self.insert(0, component)
 
    def capture(self, n):
       if n > 0:
@@ -228,7 +209,8 @@ class Spanner(_Abjad):
          cur = self.components[0]
          for i in range(abs(n)):
             if cur.prev:
-               self._insert(0, cur.prev)
+               #self._insert(0, cur.prev)
+               self.insert(0, cur.prev)
                cur = cur.prev
             else:
                break
@@ -245,13 +227,8 @@ class Spanner(_Abjad):
       result._unblock( )
       return result
 
-   ### TODO - possibly rename to clear( ) ###
-
    def clear(self):
       self._sever( )
-
-#   def die(self):
-#      self._sever( )
 
    def extend(self, music):
       assert isinstance(music, (tuple, list))
@@ -268,7 +245,8 @@ class Spanner(_Abjad):
       assert isinstance(music, (tuple, list))
       for component in reversed(music):
          assert hasname(component, '_Component')
-         self._insert(0, component)
+         #self._insert(0, component)
+         self.insert(0, component)
 
    def fracture(self, i, direction = 'both'):
       if i < 0:
@@ -287,25 +265,15 @@ class Spanner(_Abjad):
          raise ValueError(
             'direction %s must be left, right or both.' % direction)
 
-#   def fuse(self, direction = 'both'):
-#      if direction == 'left':
-#         return self._fuseLeft( )
-#      elif direction == 'right':
-#         return self._fuseRight( )
-#      elif direction == 'both':
-#         result = [ ]
-#         result.append(self._fuseLeft( ))
-#         result.append(self._fuseRight( ))
-#         return result
-#      else:
-#         raise ValueError(
-#            'direction %s must be left, right or both.' % direction)
-
    def fuse(self, spanner):
       return self._fuseByReference(spanner)
       
    def index(self, component):
       return self._components.index(component)
+
+   def insert(self, i, component):
+      component.spanners._spanners.append(self)
+      self._components.insert(i, component)
 
    def move(self, n):
       '''
