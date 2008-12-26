@@ -67,23 +67,12 @@ class Spanner(_Abjad):
    def _before(self, component):
       return [ ]
 
-   def _blockByReference(self, component):
-      component.spanners._spanners.remove(self)
-
-#   def _block(self, i = None, j = None):
-#      if i is not None and j is None:
-#         component = self.components[i]
-#         self._blockByReference(component)
-#      elif i is not None and j is not None:
-#         for component in self.components[i : j + 1]:
-#            self._blockByReference(component)
-#      else:
-#         for component in self.components:
-#            self._blockByReference(component)
-
-   def _blockAll(self):
+   def _blockAllComponents(self):
       for component in self.components:
-         self._blockByReference(component)
+         self._blockComponent(component)
+
+   def _blockComponent(self, component):
+      component.spanners._spanners.remove(self)
 
    def _durationOffsetInMe(self, leaf):
       leaves = self.leaves
@@ -94,20 +83,20 @@ class Spanner(_Abjad):
    def _fractureLeft(self, i):
       left = self.copy(0, i - 1)
       right = self.copy(i, len(self.components))
-      self._blockAll( )
+      self._blockAllComponents( )
       return self, left, right
 
    def _fractureRight(self, i):
       left = self.copy(0, i)
       right = self.copy(i + 1, len(self.components))
-      self._blockAll( )
+      self._blockAllComponents( )
       return self, left, right
 
    def _fuseByReference(self, spanner):
       result = self.copy( )
       result.extend(spanner.components)
-      self._blockAll( )
-      spanner._blockAll( )
+      self._blockAllComponents( )
+      spanner._blockAllComponents( )
       return [(self, spanner, result)]
 
    def _isMyFirstLeaf(self, leaf):
@@ -150,57 +139,23 @@ class Spanner(_Abjad):
    def _right(self, component):
       return [ ]
 
-#   def _remove(self, i = None, j = None):
-#      if i is not None and j is None:
-#         self._removeByReference(self.components[i])
-#      elif i is not None and j is not None:
-#         for component in self.components[i : j + 1]:
-#            self._removeByReference(component)
-#      else:
-#         for component in self.components[ : ]:
-#            self._removeByReference(component)
-
-   def _removeByReference(self, component):
+   def _removeComponent(self, component):
       self._components.remove(component)
 
-#   def _sever(self, i = None, j = None):
-#      if i is not None and j is None:
-#         component = self.components[i]
-#         self._severByReference(component)
-#      elif i is not None and j is not None:
-#         for n in reversed(range(i, j + 1)):
-#            component = self.components[n]
-#            self._severByReference(component)
-#      else:
-#         for n in reversed(range(len(self.components))):
-#            component = self.components[n]
-#            self._severByReference(component)
-
-   def _severAll(self):
+   def _severAllComponents(self):
       for n in reversed(range(len(self.components))):
          component = self.components[n]
-         self._severByReference(component)
+         self._severComponent(component)
 
-   def _severByReference(self, component):
-      self._blockByReference(component)
-      self._removeByReference(component)
+   def _severComponent(self, component):
+      self._blockComponent(component)
+      self._removeComponent(component)
 
-#   def _unblock(self, i = None, j = None):
-#      if i is not None and j is None:
-#         component = self.components[i]
-#         self._unblockByReference(component)
-#      elif i is not None and j is not None:
-#         for component in self.components[i : j + 1]:
-#            self._unblockByReference(component)
-#      else:
-#         for component in self.components:
-#            self._unblockByReference(component)
-
-   def _unblockAll(self):
+   def _unblockAllComponents(self):
       for component in self.components:
-         self._unblockByReference(component)
+         self._unblockComponent(component)
 
-   def _unblockByReference(self, component):
+   def _unblockComponent(self, component):
       if self not in component.spanners._spanners:
          component.spanners._append(self)
 
@@ -238,11 +193,11 @@ class Spanner(_Abjad):
       else:
          for component in self.components:
             result._components.append(component)
-      result._unblockAll( )
+      result._unblockAllComponents( )
       return result
 
    def clear(self):
-      self._severAll( )
+      self._severAllComponents( )
 
    def extend(self, music):
       assert isinstance(music, (tuple, list))
@@ -261,7 +216,7 @@ class Spanner(_Abjad):
          left = self.copy(0, i - 1)
          right = self.copy(i + 1, len(self.components))
          center = self.copy(i, i)
-         self._blockAll( )
+         self._blockAllComponents( )
          return self, left, center, right
       else:
          raise ValueError(
@@ -279,8 +234,8 @@ class Spanner(_Abjad):
 
    def pop(self, i = -1):
       component = self.components[i]
-      self._severByReference(component)
+      self._severComponent(component)
       return component
 
    def remove(self, component):
-      self._severByReference(component)
+      self._severComponent(component)

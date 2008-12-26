@@ -166,13 +166,13 @@ class _Component(_Abjad):
          #print 'flamingo: %s, %s, %s, %s' % (source, left, center, right)
          #source._unblock( )
          #left._sever( )
-         source._unblockAll( )
-         left._severAll( )
+         source._unblockAllComponents( )
+         left._severAllComponents( )
          if center is not None:
             #center._sever( )
-            center._severAll( )
+            center._severAllComponents( )
          #right._sever( )
-         right._severAll( )
+         right._severAllComponents( )
       self._parent = parent
 
 #      for i, hp in enumerate(result.spanners.get(classname = '_Hairpin')):
