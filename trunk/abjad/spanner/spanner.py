@@ -22,7 +22,7 @@ class Spanner(_Abjad):
 
    def __delitem__(self, expr):
       if isinstance(expr, int):
-         self.remove(self.components[expr])
+         self.remove(self[expr])
       elif isinstance(expr, slice):
          start, stop, stride = expr.indices(len(self))
          for i in reversed(range(start, stop, stride)):
@@ -54,8 +54,8 @@ class Spanner(_Abjad):
 
    @property
    def _summary(self):
-      if len(self.components) > 0:
-         return ', '.join([str(x) for x in self.components])
+      if len(self) > 0:
+         return ', '.join([str(x) for x in self])
       else:
          return ' '
 
@@ -68,7 +68,7 @@ class Spanner(_Abjad):
       return [ ]
 
    def _blockAllComponents(self):
-      for component in self.components:
+      for component in self:
          self._blockComponent(component)
 
    def _blockComponent(self, component):
@@ -82,13 +82,13 @@ class Spanner(_Abjad):
 
    def _fractureLeft(self, i):
       left = self.copy(0, i - 1)
-      right = self.copy(i, len(self.components))
+      right = self.copy(i, len(self))
       self._blockAllComponents( )
       return self, left, right
 
    def _fractureRight(self, i):
       left = self.copy(0, i)
-      right = self.copy(i + 1, len(self.components))
+      right = self.copy(i + 1, len(self))
       self._blockAllComponents( )
       return self, left, right
 
@@ -143,8 +143,8 @@ class Spanner(_Abjad):
       self._components.remove(component)
 
    def _severAllComponents(self):
-      for n in reversed(range(len(self.components))):
-         component = self.components[n]
+      for n in reversed(range(len(self))):
+         component = self[n]
          self._severComponent(component)
 
    def _severComponent(self, component):
@@ -152,11 +152,12 @@ class Spanner(_Abjad):
       self._removeComponent(component)
 
    def _unblockAllComponents(self):
-      for component in self.components:
+      for component in self:
          self._unblockComponent(component)
 
    def _unblockComponent(self, component):
-      if self not in component.spanners._spanners:
+      #if self not in component.spanners._spanners:
+      if self not in component.spanners.attached:
          component.spanners._append(self)
 
    ### PUBLIC ATTRIBUTES ###
@@ -167,7 +168,7 @@ class Spanner(_Abjad):
 
    @property
    def duration(self):
-      return sum([l.duration.prolated for l in self.components])
+      return sum([l.duration.prolated for l in self])
 
    @property
    def leaves(self):
@@ -182,16 +183,16 @@ class Spanner(_Abjad):
 
    def append(self, component):
       assert isinstance(component, _Component)
-      self.insert(len(self.components), component)
+      self.insert(len(self), component)
 
    def copy(self, start = None, stop = None):
       result = python_copy(self)
       result._components = [ ]
       if stop is not None:
-         for component in self.components[start : stop + 1]:
+         for component in self[start : stop + 1]:
             result._components.append(component)
       else:
-         for component in self.components:
+         for component in self:
             result._components.append(component)
       result._unblockAllComponents( )
       return result
@@ -207,14 +208,14 @@ class Spanner(_Abjad):
 
    def fracture(self, i, direction = 'both'):
       if i < 0:
-         i = len(self.components) + i
+         i = len(self) + i
       if direction == 'left':
          return self._fractureLeft(i)
       elif direction == 'right':
          return self._fractureRight(i)
       elif direction == 'both':
          left = self.copy(0, i - 1)
-         right = self.copy(i + 1, len(self.components))
+         right = self.copy(i + 1, len(self))
          center = self.copy(i, i)
          self._blockAllComponents( )
          return self, left, center, right
@@ -233,7 +234,7 @@ class Spanner(_Abjad):
       self._components.insert(i, component)
 
    def pop(self, i = -1):
-      component = self.components[i]
+      component = self[i]
       self._severComponent(component)
       return component
 
