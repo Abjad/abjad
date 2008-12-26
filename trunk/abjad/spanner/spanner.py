@@ -216,24 +216,6 @@ class Spanner(_Abjad):
       assert isinstance(component, _Component)
       self.insert(len(self.components), component)
 
-#   def capture(self, n):
-#      if n > 0:
-#         cur = self.components[-1]
-#         for i in range(n):
-#            if cur.next:
-#               self.append(cur.next)
-#               cur = cur.next         
-#            else:
-#               break
-#      elif n < 0:
-#         cur = self.components[0]
-#         for i in range(abs(n)):
-#            if cur.prev:
-#               self.insert(0, cur.prev)
-#               cur = cur.prev
-#            else:
-#               break
-
    def copy(self, start = None, stop = None):
       result = python_copy(self)
       result._components = [ ]
@@ -282,30 +264,6 @@ class Spanner(_Abjad):
       component.spanners._spanners.append(self)
       self._components.insert(i, component)
 
-#   def move(self, n):
-#      '''
-#      Move right positive n;
-#      move left for negative n;
-#      always preserve length of self.
-#      '''
-#      start, stop = self.components[0], self.components[-1]
-#      if n > 0:
-#         for i in range(n):
-#            if stop.next:
-#               self.capture(1)
-#               self.surrender(-1)
-#               start, stop = start.next, stop.next
-#            else:
-#               break
-#      elif n < 0:
-#         for i in range(abs(n)):
-#            if start.prev:
-#               self.capture(-1)
-#               self.surrender(1)      
-#               start, stop = start.prev, stop.prev
-#            else:
-#               break
-
    def pop(self, i = -1):
       component = self.components[i]
       self._severByReference(component)
@@ -313,19 +271,3 @@ class Spanner(_Abjad):
 
    def remove(self, component):
       self._severByReference(component)
-
-#   def surrender(self, n):
-#      '''
-#      Surrender from the right for positive n;
-#      surrender from the left for negative n;
-#      never surrender all references;
-#      (surrender never equals death).
-#      '''
-#      if n > 0:
-#         for i in range(n):
-#            if len(self.components) > 1:
-#               self._sever(-1)
-#      elif n < 0:
-#         for i in range(abs(n)):
-#            if len(self.components) > 1:
-#               self._sever(0)
