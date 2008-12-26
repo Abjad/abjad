@@ -11,11 +11,6 @@ class _ComponentSpannerAggregator(_Interface):
 
    ### PRIVATE METHODS ###
 
-#   def _append(self, spanner):
-#      if spanner not in self.attached:
-#         #self._spanners.append(spanner)
-#         self._spanners.update([spanner])
-
    def _fractureContents(self):
       '''
       Left-fractures all spanners attaching to t and to any components
@@ -60,13 +55,11 @@ class _ComponentSpannerAggregator(_Interface):
       directly to client.
       '''
 
-      #return set(self._spanners[ : ])
       return self._spanners
 
    ### PUBLIC METHODS ###
 
    def clear(self):
-      #for spanner in self.attached:
       for spanner in list(self.attached):
          spanner.clear( )
 
