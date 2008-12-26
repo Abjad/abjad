@@ -106,10 +106,6 @@ class Spanner(_Abjad):
       spanner._block( )
       return [(self, spanner, result)]
 
-#   def _insert(self, i, component):
-#      component.spanners._spanners.append(self)
-#      self._components.insert(i, component)
-
    def _isMyFirstLeaf(self, leaf):
       leaves = self.leaves
       return leaves and leaf is leaves[0]
@@ -218,13 +214,12 @@ class Spanner(_Abjad):
 
    def append(self, component):
       assert isinstance(component, _Component)
-      #self._insert(len(self.components), component)
       self.insert(len(self.components), component)
 
-   def appendleft(self, component):
-      assert isinstance(component, _Component)
-      #self._insert(0, component)
-      self.insert(0, component)
+#   def appendleft(self, component):
+#      assert isinstance(component, _Component)
+#      #self._insert(0, component)
+#      self.insert(0, component)
 
    def capture(self, n):
       if n > 0:
@@ -266,17 +261,12 @@ class Spanner(_Abjad):
          assert isinstance(component, _Component)
          self.append(component)
 
-   ### NOTE - extendleft(music) does NOT reverse the the  ###
-   ###        input order of the elements in music.       ###
-   ###        This differs from deque.extendleft( ) which ###
-   ###        does reverse input order.                   ###
-
-   def extendleft(self, music):
-      assert isinstance(music, (tuple, list))
-      for component in reversed(music):
-         assert hasname(component, '_Component')
-         #self._insert(0, component)
-         self.insert(0, component)
+#   def extendleft(self, music):
+#      assert isinstance(music, (tuple, list))
+#      for component in reversed(music):
+#         assert hasname(component, '_Component')
+#         #self._insert(0, component)
+#         self.insert(0, component)
 
    def fracture(self, i, direction = 'both'):
       if i < 0:
