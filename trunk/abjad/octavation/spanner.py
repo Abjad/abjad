@@ -3,7 +3,7 @@ from abjad.spanner.spanner import Spanner
 
 class Octavation(Spanner):
 
-   def __init__(self, music, start, stop = 0):
+   def __init__(self, music = None, start = None, stop = 0):
       Spanner.__init__(self, music)
       self.start = start
       self.stop = stop

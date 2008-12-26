@@ -4,7 +4,7 @@ from abjad.spanner.spanner import Spanner
 
 class Trill(Spanner):
 
-   def __init__(self, music):
+   def __init__(self, music = None):
       Spanner.__init__(self, music)
       self._pitch = None
 

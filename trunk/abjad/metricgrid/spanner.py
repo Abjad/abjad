@@ -9,6 +9,7 @@ from abjad.tie.spanner import Tie
 
 class MetricGrid(Spanner):
    '''MetricGrid is a list of MetricStrips.'''
+
    def __init__(self, music, meters):
       Spanner.__init__(self, music)
       self._meters = meters

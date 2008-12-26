@@ -8,11 +8,11 @@ from copy import copy as python_copy
 
 class Spanner(_Abjad):
 
-   def __init__(self, music):
+   def __init__(self, music = None):
       self._components = [ ]
       if isinstance(music, (tuple, list)):
          self.extend(music)
-      else:
+      elif hasname(music, '_Component'):
          self.append(music)
 
    ### OVERLOADS ###

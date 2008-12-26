@@ -3,7 +3,7 @@ from abjad.spanner.spanner import Spanner
 
 class _Hairpin(Spanner):
 
-   def __init__(self, music, start = None, stop = None, trim = False):
+   def __init__(self, music = None, start = None, stop = None, trim = False):
       Spanner.__init__(self, music)
       self.start = start
       self.stop = stop

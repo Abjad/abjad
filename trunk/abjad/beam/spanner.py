@@ -3,7 +3,7 @@ from abjad.spanner.spanner import Spanner
 
 class Beam(Spanner):
 
-   def __init__(self, music):
+   def __init__(self, music = None):
       Spanner.__init__(self, music)
 
    def _right(self, leaf):

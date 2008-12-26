@@ -3,7 +3,7 @@ from abjad.spanner.spanner import Spanner
 
 class Tie(Spanner):
 
-   def __init__(self, music):
+   def __init__(self, music = None):
       Spanner.__init__(self, music)
 
    ### TODO Generalize this to work with other like spanner,
