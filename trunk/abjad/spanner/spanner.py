@@ -304,6 +304,9 @@ class Spanner(_Abjad):
       self._severByReference(component)
       return component
 
+   def remove(self, component):
+      self._severByReference(component)
+
    def surrender(self, n):
       '''
       Surrender from the right for positive n;
