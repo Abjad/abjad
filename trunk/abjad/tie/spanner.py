@@ -15,7 +15,8 @@ class Tie(Spanner):
       prev = leafL.prev
       while prev and prev.tie:
          prev.tie = None
-         self.capture(-1)
+         #self.capture(-1)
+         self.insert(0, prev)
          prev = prev.prev
 
       future =[ ]
@@ -27,7 +28,8 @@ class Tie(Spanner):
          next = next.next
       for leaf in future:
          leaf.tie = None
-      self.capture(len(future))
+         self.append(leaf)
+      #self.capture(len(future))
          
 
    ### FORMAT ###
