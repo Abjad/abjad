@@ -299,6 +299,11 @@ class Spanner(_Abjad):
             else:
                break
 
+   def pop(self, i = -1):
+      component = self.components[i]
+      self._severByReference(component)
+      return component
+
    def surrender(self, n):
       '''
       Surrender from the right for positive n;
