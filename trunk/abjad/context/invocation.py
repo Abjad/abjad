@@ -3,12 +3,13 @@ from abjad.core.abjadcore import _Abjad
 
 class _Invocation(_Abjad):
 
-   def __init__(self, client, type = None, name = None, modifications = [ ]):
+   #def __init__(self, client, type = None, name = None, modifications = [ ]):
+   def __init__(self, client, type = None, name = None):
       self._client = client
       self.type = type
       self.name = name
-      self.modifications = [ ]
-      self.modifications.extend(modifications)
+      #self.modifications = [ ]
+      #self.modifications.extend(modifications)
       self.command = r'new'
 
    ### OVERLOADS ###
@@ -17,8 +18,8 @@ class _Invocation(_Abjad):
       if isinstance(arg, _Invocation):
          if self.type == arg.type and \
             self.name == arg.name and \
-            self.command == arg.command and \
-            self.modifications == arg.modifications:
+            self.command == arg.command:
+            #self.modifications == arg.modifications:
             return True
          else:
             return False
@@ -27,19 +28,19 @@ class _Invocation(_Abjad):
    def __ne__(self, arg):
       return not self.__eq__(arg)
 
-   def __repr__(self):
-      result = [ ]
-      if self.type:
-         result.append(self.type)
-      if self.name:
-         result.append(self.name)
-      if self.modifications:
-         result.append(self.modifications)
-      result = [str(x) for x in result]
-      if len(result) > 0:
-         return '_Invocation(%s)' % ', '.join(result)
-      else:
-         return '_Invocation( )'
+#   def __repr__(self):
+#      result = [ ]
+#      if self.type:
+#         result.append(self.type)
+#      if self.name:
+#         result.append(self.name)
+#      if self.modifications:
+#         result.append(self.modifications)
+#      result = [str(x) for x in result]
+#      if len(result) > 0:
+#         return '_Invocation(%s)' % ', '.join(result)
+#      else:
+#         return '_Invocation( )'
 
    ### PRIVATE ATTRIBUTES ###
 
@@ -56,14 +57,16 @@ class _Invocation(_Abjad):
          cur = '%s %s' % (self.command, self.type)
          if self.name:
             cur += ' = "%s"' % self.name
-         if len(self.modifications) > 0:
-            cur += r' \with {'
-            result.append(cur)
-            result.extend(['\t' + x for x in self.modifications])
-            result.append('} %s' % self._client.brackets.open)
-         else:
-            cur += ' %s' % self._client.brackets.open
-            result.append(cur)
+#         if len(self.modifications) > 0:
+#            cur += r' \with {'
+#            result.append(cur)
+#            result.extend(['\t' + x for x in self.modifications])
+#            result.append('} %s' % self._client.brackets.open)
+#         else:
+#            cur += ' %s' % self._client.brackets.open
+#            result.append(cur)
+         cur += ' %s' % self._client.brackets.open
+         result.append(cur)
       else:
          result.append(self._client.brackets.open)
       return result

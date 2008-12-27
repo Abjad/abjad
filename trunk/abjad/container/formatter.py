@@ -10,18 +10,6 @@ class _ContainerFormatter(_Formatter):
 
    ### PRIVATE ATTRIBUTES ###
 
-   ### TODO: no need for special definition;
-   ###       use _collectLocation('_closing') instead
-   ###       [TB 2008-12-03]
-#   @property
-#   def _closing(self):
-#      result = [ ]
-#      if hasattr(self._client, 'barline'):
-#         closing = self._client.barline._closing
-#         if closing:
-#            result.extend(closing)
-#      return result
-
    @property
    def _contents(self):
       result = [ ]

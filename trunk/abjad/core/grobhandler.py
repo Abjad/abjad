@@ -41,10 +41,8 @@ class _GrobHandler(_FormatCarrier):
       result = [ ]
       for key, value in self.__dict__.items( ):
          if not key.startswith('_'):
-            #result.append(r'\once \override %s %s = %s' % (
             result.append(r'%s\override %s %s = %s' % (
                self._frequencyIndicator,
-               #self._grob, 
                self._promotedGrob(key),
                self._parser.formatAttribute(key),
                self._parser.formatValue(value)))
@@ -56,6 +54,12 @@ class _GrobHandler(_FormatCarrier):
          return ''
       else:
          return r'\once '
+
+   ### kinda kinky to alias _opening to _before? ###
+
+   @property
+   def _opening(self):
+      return self._before
 
    ### PUBLIC METHODS ###
 

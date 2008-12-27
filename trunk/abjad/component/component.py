@@ -5,6 +5,7 @@ from abjad.clef.interface import _ClefInterface
 from abjad.core.comments import _Comments
 from abjad.core.parentage import _Parentage
 from abjad.helpers.hasname import hasname
+from abjad.glissando.interface import _GlissandoInterface
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.offset.interface import _OffsetInterface
@@ -23,6 +24,7 @@ class _Component(_Abjad):
       self._breaks = _BreaksInterface(self)
       self._clef = _ClefInterface(self)
       self._comments = _Comments( )
+      self._glissando = _GlissandoInterface(self)
       self._meter = _MeterInterface(self)
       self._navigator = _Navigator(self)
       self._offset = _OffsetInterface(self)
@@ -89,6 +91,12 @@ class _Component(_Abjad):
    @property
    def format(self):
       return self.formatter.lily
+
+   @apply
+   def glissando( ):
+      def fget(self):
+         return self._glissando
+      return property(**locals( ))
 
    @apply
    def meter( ):
