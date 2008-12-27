@@ -37,10 +37,25 @@ class _ContainerFormatter(_Formatter):
    @property
    def _opening(self):
       result = [ ]
+      client = self._client
+      if not hasattr(client, 'invocation'):
+         result.extend(self._grobOverrides)
+      ### TODO - this accidentals stuff is a design error;
+      ###        there should be no references to attribute-specific
+      ###        stuff anywhere in any _Formatter
       accidentals = self._client.accidentals
       if accidentals:
          result.append(r"#(set-accidental-style '%s)" % accidentals)
       result.extend(self._collectLocation('_opening'))
+      return ['\t' + x for x in result]
+
+   @property
+   def _closing(self):
+      result = [ ]
+      client = self._client
+      if not hasattr(client, 'invocation'):
+         result.extend(self._grobReverts)
+      result.extend(self._collectLocation('_closing'))
       return ['\t' + x for x in result]
 
    ### PUBLIC ATTRIBUTES ###
@@ -50,16 +65,11 @@ class _ContainerFormatter(_Formatter):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)
-      ### TODO: shouldn't the following line be here? and for _after as well?
-      # result.extend(self._collectLocation('_before'))
       result.extend(self._invocation_opening)
       result.extend(self.opening)
       result.extend(self._opening)
       result.extend(self._contents)
-      ### TODO: this line needs to be replaced with the one below;
-      ###       we should discuss [TB 2008-12-03]
-      #result.extend(self._closing)
-      result.extend(self._collectLocation('_closing'))
+      result.extend(self._closing)
       result.extend(self.closing)
       result.extend(self._invocation_closing)
       result.extend(self.after)

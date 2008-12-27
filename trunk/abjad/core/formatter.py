@@ -40,3 +40,31 @@ class _Formatter(_Interface):
             result.append(value.pitch.accidental)
       result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
+
+   @property
+   def _grobOverrides(self):
+      result = [ ]
+      for carrier in self._getFormatCarriers( ):
+         try:
+            result.extend(carrier._grobOverrides)
+         except AttributeError:
+            pass
+      try:
+         result.extend(self._client.spanners._grobOverrides)
+      except AttributeError:
+         pass
+      return result
+
+   @property
+   def _grobReverts(self):
+      result = [ ]
+      for carrier in self._getFormatCarriers( ):
+         try:
+            result.extend(carrier._grobReverts)
+         except AttributeError:
+            pass
+      try:
+         result.extend(self._client.spanners._grobReverts)
+      except AttributeError:
+         pass
+      return result

@@ -39,6 +39,12 @@ class _GrobHandler(_FormatCarrier):
    @property
    def _before(self):
       result = [ ]
+      return result
+
+   @property
+   #def _before(self):
+   def _grobOverrides(self):
+      result = [ ]
       for key, value in self.__dict__.items( ):
          if not key.startswith('_'):
             result.append(r'%s\override %s %s = %s' % (
@@ -49,17 +55,23 @@ class _GrobHandler(_FormatCarrier):
       return result
 
    @property
+   def _grobReverts(self):
+      result = [ ]
+      for key, value in self.__dict__.items( ):
+         if not key.startswith('_'):
+            result.append(r'%s\revert %s %s' % (
+               self._frequencyIndicator,
+               self._promotedGrob(key),
+               self._parser.formatAttribute(key)))
+      return result
+
+   @property
    def _frequencyIndicator(self):
-      if hasattr(self, '_client') and hasattr(self._client, 'invocation'):
+      #if hasattr(self, '_client') and hasattr(self._client, 'invocation'):
+      if hasattr(self, '_client') and self._client.kind('Container'):
          return ''
       else:
          return r'\once '
-
-   ### kinda kinky to alias _opening to _before? ###
-
-   @property
-   def _opening(self):
-      return self._before
 
    ### PUBLIC METHODS ###
 

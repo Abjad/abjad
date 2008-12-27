@@ -49,7 +49,7 @@ class _BarLineInterface(_Interface, _GrobHandler):
       if self._client.kind('Container'):
          if self.type:
             result.append(self._barlineNameToLilyPondString(self.type))
-      result = ['\t' + x for x in result]
+      #result = ['\t' + x for x in result]
       return result
 
    ### PUBLIC ATTRIBUTES ###

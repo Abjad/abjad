@@ -41,7 +41,7 @@ class _BreaksInterface(_Interface, _FormatCarrier):
             result.append(r'\break')
          if self.page:
             result.append(r'\pageBreak')
-      result = ['\t' + r for r in result]
+      #result = ['\t' + r for r in result]
       return result
 
    ### PUBLIC ATTRIBUTES ###

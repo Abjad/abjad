@@ -111,6 +111,8 @@ def test_set_notehead_transparent_01( ):
    t = Note(13, (1, 4))
    t.notehead.transparent = True
    assert t.notehead.transparent
-   assert t.notehead.format == "\\once \\override NoteHead #'transparent = ##t\ncs''"
+   #assert t.notehead.format == "\\once \\override NoteHead #'transparent = ##t\ncs''"
+   assert t.format == "\\once \\override NoteHead #'transparent = ##t\ncs''4"
    t.notehead.transparent = None
-   assert t.notehead.format == "cs''"
+   #assert t.notehead.format == "cs''"
+   assert t.format == "cs''4"

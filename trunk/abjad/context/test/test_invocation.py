@@ -21,7 +21,8 @@ def test_init_typical_invocation_03( ):
    t = Staff([ ])
    t.invocation = 'Breath', 'flute'
    #assert repr(t.invocation) == '_Invocation(Breath, flute)'
-   assert t.format == '\\new Breath = "flute" {\n}'
+   #assert t.format == '\\new Breath = "flute" {\n}'
+   assert t.format == '\\context Breath = "flute" {\n}'
 
 
 #def test_init_typical_invocation_04( ):
@@ -35,8 +36,9 @@ def test_init_typical_invocation_03( ):
 ### TEST ATTRIBUTE SETTING ###
 
 def test_command_01( ):
-   '''_Invocation.command can be set to 'new' or 'context'.'''
+   '''
+   _Invocation.command is read-only attribute.
+   '''
+
    t = Staff([ ])
-   py.test.raises(ValueError, 't.invocation.command = 3')
-   t.invocation.command = 'context'
-   assert t.format == '\\context Staff {\n}'
+   py.test.raises(AttributeError, 't.invocation.command = 3')

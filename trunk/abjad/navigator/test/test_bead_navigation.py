@@ -334,24 +334,24 @@ def test_bead_navigation_21( ):
       with parallel construct.'''
    vl1 = Voice([Note(i, (1,8)) for i in range(4)])
    vl1.invocation.name = 'low'
-   vl1.invocation.command = 'context'
+   #vl1.invocation.command = 'context'
    vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
    vl2.invocation.name = 'low'
-   vl2.invocation.command = 'context'
+   #vl2.invocation.command = 'context'
    vh1 = Voice([Note(i, (1,8)) for i in range(12,16)])
    vh1.invocation.name = 'high'
-   vh1.invocation.command = 'context'
+   #vh1.invocation.command = 'context'
    vh2 = Voice([Note(i, (1,8)) for i in range(16,20)])
    vh2.invocation.name = 'high'
-   vh2.invocation.command = 'context'
+   #vh2.invocation.command = 'context'
 
    s1 = Staff([vh1, vl1])
    s1.invocation.name = 'mystaff'
-   s1.invocation.command = 'context'
+   #s1.invocation.command = 'context'
    s1.brackets = 'double-angle'
    s2 = Staff([vl2, vh2])
    s2.invocation.name = 'mystaff'
-   s2.invocation.command = 'context'
+   #s2.invocation.command = 'context'
    s2.brackets = 'double-angle'
 
    seq = Sequential([s1, s2])

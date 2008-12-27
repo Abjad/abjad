@@ -48,6 +48,7 @@ class _TupletFormatter(_ContainerFormatter):
    @property
    def _closing(self):
       result = [ ]
+      result.extend(['\t' + x for x in self._grobReverts])
       #result.extend(_ContainerFormatter._closing.fget(self))
       result.extend(_ContainerFormatter._collectLocation(self, '_closing'))
       if self._client.duration.multiplier:
