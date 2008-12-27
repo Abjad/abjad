@@ -49,11 +49,6 @@ class _ContainerFormatter(_Formatter):
    @property
    def _opening(self):
       result = [ ]
-      ### TODO - implement _TempoInterface;
-      ###        following three lines will disappear
-      tempo = self._client.tempo
-      if tempo:
-         result.extend(tempo._before)
       accidentals = self._client.accidentals
       if accidentals:
          result.append(r"#(set-accidental-style '%s)" % accidentals)

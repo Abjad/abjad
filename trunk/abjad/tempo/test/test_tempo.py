@@ -6,7 +6,7 @@ def test_tempo_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    t.tempo = (1, 8), 38
    assert t.format == "\\new Staff {\n\t\\tempo 8=38\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   '''
+   r'''
    \new Staff {
            \tempo 8=38
            c'8
@@ -26,7 +26,7 @@ def test_tempo_02( ):
    t = Staff([ ])
    t.tempo = (1, 8), 38
    assert t.format == '\\new Staff {\n\t\\tempo 8=38\n}'
-   '''
+   r'''
    \new Staff {
            \tempo 8=38
    }
@@ -38,7 +38,7 @@ def test_tempo_03( ):
    t = Container([Note(n, (1, 8)) for n in range(8)])
    t.tempo = (1, 8), 38
    assert t.format == "\t\\tempo 8=38\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8"
-   '''
+   r'''
         \tempo 8=38
         c'8
         cs'8
@@ -56,7 +56,7 @@ def test_tempo_04( ):
    t = Note(0, (1, 4))
    t.tempo = (1, 8), 38
    assert t.format == "\\tempo 8=38\nc'4"
-   '''
+   r'''
    \tempo 8=38
    c'4
    '''
@@ -67,7 +67,7 @@ def test_tempo_05( ):
    t = Chord([2, 3, 4], (1, 4))
    t.tempo = (1, 8), 38
    assert t.format == "\\tempo 8=38\n<d' ef' e'>4"
-   '''
+   r'''
    \tempo 8=38
    <d' ef' e'>4
    '''
@@ -78,7 +78,7 @@ def test_tempo_06( ):
    t = Note(0, (1, 4))
    t.tempo = Rational(1, 8), 38
    assert t.format == "\\tempo 8=38\nc'4"
-   '''
+   r'''
    \tempo 8=38
    c'4
    '''

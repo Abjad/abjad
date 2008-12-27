@@ -31,6 +31,12 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
          result.append(r'\tempo %s=%s' % (note, tempo))
       return result
 
+   ### kinda kinky to alias _opening to _before? ###
+
+   @property
+   def _opening(self):
+      return self._before
+      
    ### PUBLIC METHODS ###
 
    def clear(self):
