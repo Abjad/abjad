@@ -9,27 +9,7 @@ class _LeafFormatter(_Formatter):
       self.left = [ ]
       self.right = [ ]
 
-   @property
-   def _number(self):
-      result = [ ]
-      if self.number or self._client._parentage._number:
-         result.append(r'^ \markup { %s }' % self._client.number)
-      return result
-
-   @property
-   def _grace(self):
-      result = [ ]
-      grace = self._client.grace.before
-      if len(grace) > 0:
-         result.append(grace.format)
-      return result
-
-   @property
-   def _agrace_opening(self):
-      if len(self._client.grace.after) > 0:
-         return [r'\afterGrace']
-      else:
-         return [ ] 
+   ### PRIVATE ATTRIBUTES ###
 
    @property
    def _agrace(self):
@@ -38,6 +18,13 @@ class _LeafFormatter(_Formatter):
       if len(agrace) > 0:
          result.append(agrace.format)
       return result
+
+   @property
+   def _agrace_opening(self):
+      if len(self._client.grace.after) > 0:
+         return [r'\afterGrace']
+      else:
+         return [ ] 
 
    @property
    def _body(self):
@@ -62,6 +49,23 @@ class _LeafFormatter(_Formatter):
       if hasattr(self._client, '_clef'):
          result.append(self._client._clef.format)
       return result
+
+   @property
+   def _grace(self):
+      result = [ ]
+      grace = self._client.grace.before
+      if len(grace) > 0:
+         result.append(grace.format)
+      return result
+
+   @property
+   def _number(self):
+      result = [ ]
+      if self.number or self._client._parentage._number:
+         result.append(r'^ \markup { %s }' % self._client.number)
+      return result
+
+   ### PUBLIC ATTRIBUTES ###
 
    ### NOTE - clef *must* come lexically before set-octavation ###
 

@@ -41,13 +41,25 @@ class _GrobHandler(_FormatCarrier):
       result = [ ]
       return result
 
+   ### TODO - There's an implicit tree hidden in the Abjad score model;
+   ###        accidentals connect to pitches which connect to leaves;
+   ###        so in some sense, accidentals have leaf 'parents';
+   ###        this fact is currently unknown to the Abjad model.
+   ###        If we can render that fact explicit, then the hackish
+   ###        implementation of _frequencyIndicator can clean up.
+
    @property
    def _frequencyIndicator(self):
-      #if hasattr(self, '_client') and hasattr(self._client, 'invocation'):
-      if hasattr(self, '_client') and self._client.kind('Container'):
-         return ''
-      else:
+#      #if hasattr(self, '_client') and hasattr(self._client, 'invocation'):
+#      if hasattr(self, '_client') and self._client.kind('Container'):
+#         return ''
+#      else:
+#         return r'\once '
+      if (hasattr(self, '_client') and self._client.kind('_Leaf')) or \
+         self.__class__.__name__ == '_Accidental':
          return r'\once '
+      else:
+         return ''
 
    @property
    #def _before(self):

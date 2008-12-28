@@ -1,10 +1,13 @@
-from abjad.spanner.spanner import Spanner
+#from abjad.spanner.spanner import Spanner
+from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
 
-class _Hairpin(Spanner):
+#class _Hairpin(Spanner):
+class _Hairpin(_GrobHandlerSpanner):
 
    def __init__(self, music = None, start = None, stop = None, trim = False):
-      Spanner.__init__(self, music)
+      #Spanner.__init__(self, music)
+      _GrobHandlerSpanner.__init__(self, 'DynamicLineSpanner', music)
       self.start = start
       self.stop = stop
       self.trim = trim
@@ -32,6 +35,30 @@ class _Hairpin(Spanner):
             elif not leaf.dynamics:
                result.append('\\!')
       return result
+
+   @apply
+   def start( ):
+      def fget(self):
+         return self._start
+      def fset(self, arg):
+         self._start = arg
+      return property(**locals( ))
+
+   @apply
+   def stop( ):
+      def fget(self):
+         return self._stop
+      def fset(self, arg):
+         self._stop = arg
+      return property(**locals( ))
+
+   @apply
+   def trim( ):
+      def fget(self):
+         return self._trim
+      def fset(self, arg):
+         self._trim = arg
+      return property(**locals( ))
 
 
 def _parse_descriptor(descriptor):

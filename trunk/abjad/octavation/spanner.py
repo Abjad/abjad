@@ -1,10 +1,13 @@
-from abjad.spanner.spanner import Spanner
+#from abjad.spanner.spanner import Spanner
+from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
 
-class Octavation(Spanner):
+#class Octavation(Spanner):
+class Octavation(_GrobHandlerSpanner):
 
    def __init__(self, music = None, start = None, stop = 0):
-      Spanner.__init__(self, music)
+      #Spanner.__init__(self, music)
+      _GrobHandlerSpanner.__init__(self, 'OttavaBracket', music)
       self.start = start
       self.stop = stop
 

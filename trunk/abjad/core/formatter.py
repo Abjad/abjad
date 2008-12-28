@@ -30,7 +30,8 @@ class _Formatter(_Interface):
 
    def _getFormatCarriers(self):
       result = [ ]
-      for value in self._client.__dict__.values( ):
+      client = self._client
+      for value in client.__dict__.values( ):
          if isinstance(value, _FormatCarrier):
             result.append(value)
          # these two lines are a hack:
@@ -38,6 +39,10 @@ class _Formatter(_Interface):
          # so how do we best make this loop find _Accidental?
          if hasattr(value, 'pitch'):
             result.append(value.pitch.accidental)
+#         if client.kind('_Leaf'):
+#            for spanner in client.spanners._spannersInParentage:
+#               if isinstance(spanner, _FormatCarrier):
+#                  result.append(value)
       result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
 
