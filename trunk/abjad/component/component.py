@@ -5,14 +5,20 @@ from abjad.breaks.interface import _BreaksInterface
 from abjad.clef.interface import _ClefInterface
 from abjad.core.comments import _Comments
 from abjad.core.parentage import _Parentage
+from abjad.dots.interface import _DotsInterface
+from abjad.dynamics.interface import _DynamicsInterface
 from abjad.helpers.hasname import hasname
 from abjad.glissando.interface import _GlissandoInterface
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.offset.interface import _OffsetInterface
 from abjad.rational.rational import Rational
+from abjad.stem.interface import _StemInterface
 from abjad.tempo.interface import _TempoInterface
+from abjad.tie.interface import _TieInterface
 from abjad.text.interface import _TextInterface
+from abjad.tremolo.interface import _TremoloInterface
+from abjad.trill.interface import _TrillInterface
 from abjad.voice.interface import _VoiceInterface
 from copy import deepcopy
 
@@ -26,13 +32,19 @@ class _Component(_Abjad):
       self._breaks = _BreaksInterface(self)
       self._clef = _ClefInterface(self)
       self._comments = _Comments( )
+      self._dots = _DotsInterface(self)
+      self._dynamics = _DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)
       self._meter = _MeterInterface(self)
       self._navigator = _Navigator(self)
       self._offset = _OffsetInterface(self)
       self._parentage = _Parentage(self)
+      self._stem = _StemInterface(self)
       self._tempo = _TempoInterface(self)
       self._text = _TextInterface(self)
+      self._tie = _TieInterface(self)
+      self._tremolo = _TremoloInterface(self)
+      self._trill = _TrillInterface(self)
       self._voice = _VoiceInterface(self)
 
    ### OVERLOADS ###
@@ -96,6 +108,18 @@ class _Component(_Abjad):
          raise AttributeError('can not overwrite _Comments.')
       return property(**locals( ))
 
+   @apply
+   def dots( ):
+      def fget(self):
+         return self._dots
+      return property(**locals( ))
+
+   @apply
+   def dynamics( ):
+      def fget(self):
+         return self._dynamics
+      return property(**locals( ))
+
    @property
    def format(self):
       return self.formatter.lily
@@ -119,6 +143,18 @@ class _Component(_Abjad):
       return self._offset
 
    @apply
+   def stem( ):
+      def fget(self):
+         return self._stem
+      return property(**locals( ))
+
+   @apply
+   def tie( ):
+      def fget(self):
+         return self._tie
+      return property(**locals( ))
+
+   @apply
    def tempo( ):
       def fget(self):
          return self._tempo
@@ -140,6 +176,18 @@ class _Component(_Abjad):
    def text( ):
       def fget(self):
          return self._text
+      return property(**locals( ))
+
+   @apply
+   def tremolo( ):
+      def fget(self):
+         return self._tremolo
+      return property(**locals( ))
+
+   @apply
+   def trill( ):
+      def fget(self):
+         return self._trill
       return property(**locals( ))
 
    @property

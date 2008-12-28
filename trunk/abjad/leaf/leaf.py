@@ -1,12 +1,12 @@
 from abjad.articulations.interface import _ArticulationsInterface
-from abjad.beam.interface import _BeamInterface
+#from abjad.beam.interface import _BeamInterface
 from abjad.clef.clef import _Clef
-from abjad.clef.interface import _ClefInterface
+#from abjad.clef.interface import _ClefInterface
 from abjad.component.component import _Component
 from abjad.core.interface import _Interface
-from abjad.dots.interface import _DotsInterface
-from abjad.dynamics.interface import _DynamicsInterface
-from abjad.glissando.interface import _GlissandoInterface
+#from abjad.dots.interface import _DotsInterface
+#from abjad.dynamics.interface import _DynamicsInterface
+#from abjad.glissando.interface import _GlissandoInterface
 from abjad.grace.interface import _GraceInterface
 from abjad.harmonic.interface import _HarmonicInterface
 from abjad.markup.interface import _MarkupInterface
@@ -15,21 +15,12 @@ from abjad.leaf.formatter import _LeafFormatter
 from abjad.leaf.spanner.aggregator import _LeafSpannerAggregator
 from abjad.rational.rational import Rational
 from abjad.staff.interface import _StaffInterface
-from abjad.stem.interface import _StemInterface
-from abjad.tie.interface import _TieInterface
-from abjad.tremolo.interface import _TremoloInterface
-from abjad.trill.interface import _TrillInterface
+#from abjad.stem.interface import _StemInterface
+#from abjad.tie.interface import _TieInterface
+#from abjad.tremolo.interface import _TremoloInterface
+#from abjad.trill.interface import _TrillInterface
 import operator
 
-
-### TODO - take away the ability to say for x in t.spanners ...
-###
-###        It's now confusing to remember what t.spanners actually
-###        iterates over: over spanners attaching directly to t?
-###        Or over spanners attaching to the parents of t?
-###
-###        Better to implement some read-only lists like
-###        t.spanners.mine, t.spanners.inherited, t.spanners.total.
 
 class _Leaf(_Component):
 
@@ -37,23 +28,23 @@ class _Leaf(_Component):
       _Component.__init__(self)
       self._parent = None
       self._articulations = _ArticulationsInterface(self)
-      self._beam = _BeamInterface(self)
-      self._clef = _ClefInterface(self)
-      self._dots = _DotsInterface(self)
+      #self._beam = _BeamInterface(self)
+      #self._clef = _ClefInterface(self)
+      #self._dots = _DotsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
-      self._dynamics = _DynamicsInterface(self)
+      #self._dynamics = _DynamicsInterface(self)
       self._formatter = _LeafFormatter(self)
-      self._glissando = _GlissandoInterface(self)
+      #self._glissando = _GlissandoInterface(self)
       self._grace = _GraceInterface( )
       self._harmonic = _HarmonicInterface(self)
       self._history = { }
       self._markup = _MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
       self._staff = _StaffInterface(self)
-      self._stem = _StemInterface(self)
-      self._tie = _TieInterface(self)
-      self._tremolo = _TremoloInterface(self)
-      self._trill = _TrillInterface(self)
+      #self._stem = _StemInterface(self)
+      #self._tie = _TieInterface(self)
+      #self._tremolo = _TremoloInterface(self)
+      #self._trill = _TrillInterface(self)
 
    ### OVERLOADS ###
 
@@ -100,13 +91,13 @@ class _Leaf(_Component):
             raise ValueError('must be None or list of articulations.')
       return property(**locals( ))
 
-   @apply
-   def beam( ):
-      def fget(self):
-         return self._beam
-      def fset(self, *args):
-         raise ValueError('can not overwrite _BeamInterface.')
-      return property(**locals( ))
+#   @apply
+#   def beam( ):
+#      def fget(self):
+#         return self._beam
+#      def fset(self, *args):
+#         raise ValueError('can not overwrite _BeamInterface.')
+#      return property(**locals( ))
    
 #   @apply
 #   def clef( ):
@@ -141,13 +132,13 @@ class _Leaf(_Component):
 #            raise ValueError('clef %s must be str or clef.' % arg)
 #      return property(**locals( ))
 
-   @apply
-   def dots( ):
-      def fget(self):
-         return self._dots
-      def fset(self, *args):
-         raise ValueError('can not overwrite _DotsInterface.')
-      return property(**locals( ))
+#   @apply
+#   def dots( ):
+#      def fget(self):
+#         return self._dots
+#      def fset(self, *args):
+#         raise ValueError('can not overwrite _DotsInterface.')
+#      return property(**locals( ))
    
    @apply
    def duration( ):
@@ -293,13 +284,13 @@ class _Leaf(_Component):
             self._staff._forced = arg
       return property(**locals( ))
 
-   @apply
-   def stem( ):
-      def fget(self):
-         return self._stem
-      def fset(self, *args):
-         raise ValueError('can not overwrite _StemInterface.')
-      return property(**locals( ))
+#   @apply
+#   def stem( ):
+#      def fget(self):
+#         return self._stem
+#      def fset(self, *args):
+#         raise ValueError('can not overwrite _StemInterface.')
+#      return property(**locals( ))
    
    @apply
    def tie( ):
@@ -314,21 +305,21 @@ class _Leaf(_Component):
             raise ValueError('must be boolean or None.')
       return property(**locals( ))
 
-   @apply
-   def tremolo( ):
-      def fget(self):
-         return self._tremolo
-      def fset(self, *args):
-         raise ValueError('can not overwrite _TremoloInterface.')
-      return property(**locals( ))
+#   @apply
+#   def tremolo( ):
+#      def fget(self):
+#         return self._tremolo
+#      def fset(self, *args):
+#         raise ValueError('can not overwrite _TremoloInterface.')
+#      return property(**locals( ))
    
-   @apply
-   def trill( ):
-      def fget(self):
-         return self._trill
-      def fset(self, *args):
-         raise ValueError('can not overwrite _TrillInterface.')
-      return property(**locals( ))
+#   @apply
+#   def trill( ):
+#      def fget(self):
+#         return self._trill
+#      def fset(self, *args):
+#         raise ValueError('can not overwrite _TrillInterface.')
+#      return property(**locals( ))
    
    ### NAVIGATION ###
    ### TODO: put behind self.navigator?
