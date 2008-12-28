@@ -28,9 +28,9 @@ class _GrobHandler(_FormatCarrier):
       context = self._promotions.get(attribute, None)
       if context:
          return '%s.%s' % (str(context), self._grob)
-      elif hasattr(self, '_client') and hasattr(self._client, 'invocation'):
-         assert hasattr(self._client.invocation, 'type')
-         return '%s.%s' % (self._client.invocation.type, self._grob)
+#      elif hasattr(self, '_client') and hasattr(self._client, 'invocation'):
+#         assert hasattr(self._client.invocation, 'type')
+#         return '%s.%s' % (self._client.invocation.type, self._grob)
       else:
          return '%s' % self._grob
 
@@ -40,6 +40,14 @@ class _GrobHandler(_FormatCarrier):
    def _before(self):
       result = [ ]
       return result
+
+   @property
+   def _frequencyIndicator(self):
+      #if hasattr(self, '_client') and hasattr(self._client, 'invocation'):
+      if hasattr(self, '_client') and self._client.kind('Container'):
+         return ''
+      else:
+         return r'\once '
 
    @property
    #def _before(self):
@@ -64,14 +72,6 @@ class _GrobHandler(_FormatCarrier):
                self._promotedGrob(key),
                self._parser.formatAttribute(key)))
       return result
-
-   @property
-   def _frequencyIndicator(self):
-      #if hasattr(self, '_client') and hasattr(self._client, 'invocation'):
-      if hasattr(self, '_client') and self._client.kind('Container'):
-         return ''
-      else:
-         return r'\once '
 
    ### PUBLIC METHODS ###
 

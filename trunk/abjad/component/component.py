@@ -1,5 +1,6 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.barline.interface import _BarLineInterface
+from abjad.beam.interface import _BeamInterface
 from abjad.breaks.interface import _BreaksInterface
 from abjad.clef.interface import _ClefInterface
 from abjad.core.comments import _Comments
@@ -21,6 +22,7 @@ class _Component(_Abjad):
    def __init__(self):
       self._accidentals = None
       self._barline = _BarLineInterface(self)
+      self._beam = _BeamInterface(self)
       self._breaks = _BreaksInterface(self)
       self._clef = _ClefInterface(self)
       self._comments = _Comments( )
@@ -64,6 +66,12 @@ class _Component(_Abjad):
          return self._barline
       def fset(self, type):
          self._barline.type = type
+      return property(**locals( ))
+   
+   @apply
+   def beam( ):
+      def fget(self):
+         return self._beam
       return property(**locals( ))
 
    @apply

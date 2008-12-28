@@ -5,7 +5,7 @@ def test_grob_override_01( ):
    '''
    Tuplets bracket grob overrides at opening and closing.
    '''
-  
+
    t = FixedDurationTuplet((2, 8), scale(3))
    t.glissando.thickness = 3
 

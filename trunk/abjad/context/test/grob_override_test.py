@@ -11,7 +11,7 @@ def test_grob_override_01( ):
 
    r'''
    \new Voice \with {
-      \override Voice.Glissando #'thickness = #3
+      \override Glissando #'thickness = #3
    } {
       c'8
       d'8
@@ -20,4 +20,4 @@ def test_grob_override_01( ):
    }
    '''
 
-   assert t.format == "\\new Voice \\with {\n\t\\override Voice.Glissando #'thickness = #3\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+   assert t.format == "\\new Voice \\with {\n\t\\override Glissando #'thickness = #3\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
