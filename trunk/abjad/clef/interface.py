@@ -46,7 +46,8 @@ class _ClefInterface(_Interface, _GrobHandler):
          else:
             cur = cur.prev
       #for x in self._client._parentage._parentage:
-      for x in self._client._parentage._iparentage[1:]:
+      #for x in self._client._parentage._iparentage[1:]:
+      for x in self._client._parentage._parentage[1:]:
          if hasattr(x, 'clef') and x.clef._forced:
             return x.clef._forced
       return _Clef('treble')

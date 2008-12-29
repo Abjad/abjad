@@ -38,7 +38,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    @property
    def _spannersInParentage(self):
       result = [ ]
-      parentage = self._client._parentage._iparentage
-      for component in parentage:
+      #parentage = self._client._parentage._iparentage
+      for component in self._client._parentage._parentage:
          result.extend(component.spanners.attached)
       return result
