@@ -196,7 +196,8 @@ class _Navigator(_Abjad):
       if next:
          return next
       else:
-         for p in self._client._parentage._parentage:
+         #for p in self._client._parentage._parentage:
+         for p in self._client._parentage._iparentage[1: ]:
             next = p._navigator._nextSibling
             if next:
                return next
@@ -247,7 +248,8 @@ class _Navigator(_Abjad):
       if prev:
          return prev
       else:
-         for p in self._client._parentage._parentage:
+         #for p in self._client._parentage._parentage:
+         for p in self._client._parentage._iparentage[1: ]:
             prev = p._navigator._prevSibling
             if prev:
                return prev

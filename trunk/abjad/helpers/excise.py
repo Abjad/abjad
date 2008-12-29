@@ -44,7 +44,8 @@ def excise(leaf):
                   x.duration.preprolated * adjusted_prolation, [x])
       parent = parent._parent
       i += 1
-   parentage = leaf._parentage._parentage
+   #parentage = leaf._parentage._parentage
+   parentage = leaf._parentage._iparentage[1: ]
    leaf._die( )
    for x in parentage:
       if not len(x):
