@@ -371,4 +371,5 @@ class _Leaf(_Component):
       for spanner in list(self.spanners.attached):
          #spanner._sever(spanner.index(self))
          spanner.remove(self)
+      self._update._markForUpdateToRoot( )
       self._parentage._detach( )

@@ -1,10 +1,12 @@
 from abjad.core.interface import _Interface
 from abjad.rational.rational import Rational
 
+
 class _OffsetInterface(_Interface):
 
    def __init__(self, _client):
       _Interface.__init__(self, _client)
+      self._special = Rational(0)
 
    ### NOTE: try these tests on the context offsets:
    ###v = Voice(Note(1, (1,1))*900)
@@ -68,11 +70,14 @@ class _OffsetInterface(_Interface):
          result = Rational(0, 1)
       return result
 
+   ### TODO - Change name of 'flamingo' property to 'score'
+   ###        once new _UpdateInterface code settles.
+
    @property
-   def newScore(self):
-      total = Rational(0)
-      g = self._client._navigator._depthFirstRightToLeft( )
-      for x in g:
-         if x.kind('_Leaf'):
-            total += x.duration.prolated
-      return total
+   def flamingo(self):
+      if not self._client._update._currentToRoot:
+         self._client._update._updateAll( )
+      return self._special
+
+   ### TODO - Implement new 'context' property with new
+   ###        _UpdateInterface

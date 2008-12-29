@@ -160,3 +160,7 @@ class _Parentage(_Abjad):
                   if p.invocation == parentage[i+1].invocation:
                      parentage.remove(p)
       return parentage
+
+   @property
+   def _root(self):
+      return self._iparentage[-1]

@@ -27,7 +27,6 @@ class Container(_Component):
       self._music = music
       self._establish( )
       _Component.__init__(self)
-      #self._beam = _BeamInterfaceContainer(self)
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self.formatter = _ContainerFormatter(self)
@@ -40,6 +39,7 @@ class Container(_Component):
       These two steps work even for nested tuplets.
       '''
       self.spanners.fracture( )
+      self._update._markForUpdateToRoot( )
       self._parentage._detach( )
 
    def _establish(self):
@@ -169,6 +169,7 @@ class Container(_Component):
          left.prev.spanners.fracture(direction = 'right')
       if right and right.next:
          right.next.spanners.fracture(direction = 'left')
+      self._update._markForUpdateToRoot( )
 
    ### PUBLIC ATTRIBUTES ###
 
@@ -225,21 +226,6 @@ class Container(_Component):
    def append(self, expr):
       self.insert(len(self), expr)
 
-#   def coalesce(self): 
-#      '''Fuse all sub-containers in self that follow a thread.'''
-#      class Visitor(object):
-#         def __init__(self):
-#            self.merged = False
-#         def visit(self, node):
-#            if hasname(node, 'Container'):
-#               success = node._fuseRight()
-#               if success:
-#                  self.merged = True
-#      v = Visitor( )
-#      self._navigator._traverse(v, depthFirst=False, leftRight=False)
-#      _remove_empty_containers(self)
-#      return v.merged
-                  
    def embed(self, i, expr):
       '''
       Non-fracturing insert.
@@ -264,6 +250,7 @@ class Container(_Component):
          _embedComponent(self, i, expr)
       else:
          raise TypeError("Can only embed _Component or list of _Component")
+      self._update._markForUpdateToRoot( )
 
    def extend(self, expr):
       if len(expr) > 0:
@@ -272,7 +259,9 @@ class Container(_Component):
          elif isinstance(expr, Container):
             self[len(self) : len(self)] = expr[ : ]
          else:
-            raise ValueError('Extend containers with lists and containers only.')
+            raise ValueError(
+               'Extend containers with lists and containers only.')
+         self._update._markForUpdateToRoot( )
 
    def get(self, name = None, classtype = None):
       '''Searches structure recursively for Components with name <name> 
@@ -291,12 +280,14 @@ class Container(_Component):
             if self.name:
                if (hasattr(node, 'name') and self.name == node.name):   
                   pass
-               elif hasattr(node, 'invocation') and node.invocation.name == self.name:
+               elif hasattr(node, 'invocation') and \
+                  node.invocation.name == self.name:
                   pass
                else:
                   namematch = False
             if self.classtype: 
-               if hasattr(node, 'invocation') and node.invocation.type==self.classtype:
+               if hasattr(node, 'invocation') and \
+                  node.invocation.type==self.classtype:
                   pass
                elif node.kind(self.classtype):
                   pass
@@ -324,6 +315,7 @@ class Container(_Component):
          result.extend(expr.prev.spanners.fracture(direction = 'right'))
       if expr.next:
          result.extend(expr.next.spanners.fracture(direction = 'left')) 
+      self._update._markForUpdateToRoot( )
       return result
 
    def pop(self, i = -1):
@@ -331,8 +323,6 @@ class Container(_Component):
       del(self[i])
       return result
 
-#   def remove(self, i):
-#      del(self[i])
    def remove(self, expr):
       class Visitor(object):
          def __init__(self, expr):

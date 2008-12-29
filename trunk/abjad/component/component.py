@@ -19,6 +19,7 @@ from abjad.tie.interface import _TieInterface
 from abjad.text.interface import _TextInterface
 from abjad.tremolo.interface import _TremoloInterface
 from abjad.trill.interface import _TrillInterface
+from abjad.update.interface import _UpdateInterface
 from abjad.voice.interface import _VoiceInterface
 from copy import deepcopy
 
@@ -45,6 +46,7 @@ class _Component(_Abjad):
       self._tie = _TieInterface(self)
       self._tremolo = _TremoloInterface(self)
       self._trill = _TrillInterface(self)
+      self._update = _UpdateInterface(self)
       self._voice = _VoiceInterface(self)
 
    ### OVERLOADS ###
@@ -243,6 +245,7 @@ class _Component(_Abjad):
 #         if hairpinKillList[i]:
 #            hp.die( )
 
+      result._update._markForUpdateToRoot( )
       return result
 
    def kind(self, classname):
