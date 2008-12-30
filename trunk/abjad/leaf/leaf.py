@@ -373,3 +373,20 @@ class _Leaf(_Component):
          spanner.remove(self)
       self._update._markForUpdateToRoot( )
       self._parentage._detach( )
+
+   ### PUBLIC METHODS ###
+
+   def bequeath(self, expr):
+      '''
+      Bequeath my position-in-spanners and my position-in-parent
+      to expr. After bequeathal, self is an unspanned orphan.
+      '''
+
+      for spanner in list(self.spanners.attached):
+         spanner.insert(spanner.index(self), expr)
+         spanner.remove(self)
+
+      parent = self._parent
+      if parent:
+         parent.embed(parent.index(self), expr)
+         parent.remove(self)
