@@ -226,6 +226,39 @@ class Container(_Component):
    def append(self, expr):
       self.insert(len(self), expr)
 
+   def bequeath(self, expr):
+      '''
+      Experimental: Bequeath my music, my position-in-spanners, and 
+      my position-in-parent to empty container expr. 
+
+      After bequeathal, self is an empty unspanned orphan.
+
+      Bequeathal is basically a way of casting one type of container
+      to another; bequeathal is also cleaner than (leaf) casting;
+      bequeathal leaves all container attributes completely in tact.
+      '''
+      assert isinstance(expr, Container)
+      assert not len(expr)
+
+      # give my music to expr
+      expr.extend(self)
+      self._music[ : ] = [ ]
+
+      # for every spanner attached to me ...
+      for spanner in list(self.spanners.attached):
+         # insert expr in spanner just before me ...
+         spanner.insert(spanner.index(self), expr)
+         # ... and then remove me from spanner
+         spanner.remove(self)
+
+      # if i have a parent
+      parent = self._parent
+      if parent:
+         # embed expr in parent just before me ... 
+         parent.embed(parent.index(self), expr)
+         # .. and then remove me from parent
+         parent.remove(self)
+
    def embed(self, i, expr):
       '''
       Non-fracturing insert.
