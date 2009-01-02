@@ -31,7 +31,7 @@ If you'd like to be at the cutting edge of the Abjad development use the followi
 
    2. Check out Abjad's 'trunck' development like so:
 
-         svn co http://128.59.116.55/abjad/trunk/ abjad-trunk
+         svn co svn://128.59.116.55/abjad/trunk/ abjad-trunk
 
    3. Make the Python interpreter aware of Abjad. There are two ways to do
       this:
