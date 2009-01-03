@@ -14,6 +14,9 @@ class Meter(_GrobHandler):
          meter = args[0]
          self.numerator = meter.numerator
          self.denominator = meter.denominator
+      elif len(args) == 1 and isinstance(args[0], Rational):
+         self.numerator = args[0]._n
+         self.denominator = args[0]._d
       elif len(args) == 1 and isinstance(args[0], tuple):
          numerator, denominator = args[0][0], args[0][1]
          self.numerator = numerator

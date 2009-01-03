@@ -27,6 +27,18 @@ def test_meter_init_02( ):
 
 def test_meter_init_03( ):
    '''
+   Meter can initialize from a rational.
+   '''
+
+   t = Meter(Rational(3, 8))
+
+   assert t.numerator == 3
+   assert t.denominator == 8
+   assert t.duration == Rational(3, 8)
+
+
+def test_meter_init_04( ):
+   '''
    Meter can initialize from another meter.
    '''
 
