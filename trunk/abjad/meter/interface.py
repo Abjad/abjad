@@ -1,13 +1,13 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
-from abjad.meter.meter import _Meter
+#from abjad.meter.meter import _Meter
+from abjad.meter.meter import Meter
 
 
 class _MeterInterface(_Interface, _GrobHandler):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
-      #_GrobHandler.__init__(self, 'Staff.TimeSignature')
       _GrobHandler.__init__(self, 'TimeSignature')
       self._forced = None
 
@@ -48,7 +48,8 @@ class _MeterInterface(_Interface, _GrobHandler):
       for x in self._client._parentage._parentage[1:]:
          if hasattr(x, 'meter') and x.meter._forced:
             return x.meter._forced
-      return _Meter(4, 4)
+      #return _Meter(4, 4)
+      return Meter(4, 4)
 
    @apply
    def forced( ):
@@ -58,9 +59,11 @@ class _MeterInterface(_Interface, _GrobHandler):
          if arg is None:
             self._forced = None
          elif isinstance(arg, tuple):
-            meter = _Meter(*arg)
+            #meter = _Meter(*arg)
+            meter = Meter(*arg)
             self._forced = meter
-         elif isinstance(arg, _Meter):
+         #elif isinstance(arg, _Meter):
+         elif isinstance(arg, Meter):
             self._forced = arg
          else:
             raise ValueError('unknown meter specification.')

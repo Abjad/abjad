@@ -2,10 +2,8 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.rational.rational import Rational
 
 
-### TODO: Make Meter public.
-###       There's no reason to have private _Meter, yes?
-
-class _Meter(_GrobHandler):
+#class _Meter(_GrobHandler):
+class Meter(_GrobHandler):
 
    def __init__(self, n, d):
       _GrobHandler.__init__(self, 'TimeSignature')
@@ -15,7 +13,8 @@ class _Meter(_GrobHandler):
    ### OVERLOADS ###
 
    def __eq__(self, arg):
-      if isinstance(arg, _Meter):
+      #if isinstance(arg, _Meter):
+      if isinstance(arg, Meter):
          return self.pair == arg.pair
       elif isinstance(arg, tuple):
          return self.pair == arg
@@ -29,7 +28,8 @@ class _Meter(_GrobHandler):
       return True
    
    def __repr__(self):
-      return '_Meter(%s, %s)' % (self.numerator, self.denominator)
+      #return '_Meter(%s, %s)' % (self.numerator, self.denominator)
+      return 'Meter(%s, %s)' % (self.numerator, self.denominator)
 
    def __str__(self):
       return '%s/%s' % (self.numerator, self.denominator)

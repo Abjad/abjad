@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.meter.meter import _Meter
+#from abjad.meter.meter import _Meter
+from abjad.meter.meter import Meter
 from abjad.meter.interface import _MeterInterface
 
 
@@ -13,7 +14,8 @@ def test_staff_meter_02( ):
    '''Test _MeterInterface public attributes.'''
    t = Staff(Note(0, (1, 4)) * 8)
    assert t.meter.change == False
-   assert isinstance(t.meter.effective, _Meter)
+   #assert isinstance(t.meter.effective, _Meter)
+   assert isinstance(t.meter.effective, Meter)
    assert t.meter.forced is None
 
 
