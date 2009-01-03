@@ -28,9 +28,22 @@ class _Formatter(_Interface):
          pass
       return result
 
+   ### TODO - reimplement _getFormatCarriers( ) in terms of a 
+   ###        special type of 'attribute traversal'. Ie, not
+   ###        a traversal of the score hierarchy (which _Navigator
+   ###        currently implements just fine) but instead a 
+   ###        traversal of all the attributes of client.
+   ###        The loop in _getFormatCarriers( ) which iterates over
+   ###        the attribute dictionary of client is a naive
+   ###        attempt at this type of traversal; we will need
+   ###        to recursively iterate over the attribute dictionary
+   ###        of each attribute in the attribute dictionary.
+
    def _getFormatCarriers(self):
       result = [ ]
       client = self._client
+      if isinstance(client, _FormatCarrier):
+         result.append(client)
       for value in client.__dict__.values( ):
          if isinstance(value, _FormatCarrier):
             result.append(value)

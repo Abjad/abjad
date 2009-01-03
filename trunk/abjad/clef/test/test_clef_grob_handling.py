@@ -1,8 +1,8 @@
 from abjad import *
-from py.test import raises
+import py.test
 
 
-def test_grob_handling_01( ):
+def test_clef_grob_handling_01( ):
    '''Leaf override without context promotion.'''
    t = Note(0, (1, 4))
    t.clef.color = 'red'
@@ -13,7 +13,7 @@ def test_grob_handling_01( ):
    '''
 
 
-def test_grob_handling_02( ):
+def test_clef_grob_handling_02( ):
    '''Leaf override with context promotion.'''
    t = Note(0, (1, 4))
    t.clef.color = 'red'
@@ -25,28 +25,29 @@ def test_grob_handling_02( ):
    '''
 
 
-def test_grob_handling_03( ):
+def test_clef_grob_handling_03( ):
    '''Context promotion before assignment raises an exception.'''
    t = Note(0, (1, 4))
-   assert raises(AttributeError, "t.clef.promote('color', 'Staff')")
+   assert py.test.raises(AttributeError, "t.clef.promote('color', 'Staff')")
 
 
-def test_grob_handling_04( ):
-   '''Context override automatically includes context specification;
-      context override omits \once frequency indicator.'''
-   t = Staff(Note(0, (1, 4)) * 8)
+def test_clef_grob_handling_04( ):
+   '''
+   Clef override on staff.
+   '''
+
+   t = Staff(scale(4))
    t.clef.color = 'red'
-   assert t.format == "\\new Staff {\n\t\\override Staff.Clef #'color = #red\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+
    r'''
-   \new Staff {
-      \override Staff.Clef #'color = #red
-      c'4
-      c'4
-      c'4
-      c'4
-      c'4
-      c'4
-      c'4
-      c'4
+   \new Staff \with {
+           \override Clef #'color = #red
+   } {
+           c'8
+           d'8
+           e'8
+           f'8
    }
    '''
+
+   assert t.format == "\\new Staff \\with {\n\t\\override Clef #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

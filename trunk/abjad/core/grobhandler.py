@@ -55,7 +55,8 @@ class _GrobHandler(_FormatCarrier):
 #         return ''
 #      else:
 #         return r'\once '
-      if (hasattr(self, '_client') and self._client.kind('_Leaf')) or \
+      if (hasattr(self, 'kind') and self.kind('_Leaf')) or \
+         (hasattr(self, '_client') and self._client.kind('_Leaf')) or \
          self.__class__.__name__ == '_Accidental':
          return r'\once '
       else:
