@@ -17,7 +17,7 @@ class Measure(Container):
       self.formatter = _MeasureFormatter(self)
       self.meter = meter
 
-   ### REPR ###
+   ### OVERLOADS ###
 
    def __repr__(self):
       if self.meter and len(self) > 0:
@@ -39,11 +39,11 @@ class Measure(Container):
       else:
          return '| |'
 
+   ### PUBLIC ATTRIBUTES ###
+
    @property
    def duration(self):
       return self._duration
-
-   ### MANAGED ATTRIBUTES ###
 
    @apply
    def meter( ):
@@ -57,7 +57,7 @@ class Measure(Container):
             self._meter = meter
       return property(**locals( ))
    
-   ### BOUND METHODS ###
+   ### PUBLIC METHODS ###
 
    def trim(self, start, stop = 'unused'):
       old_denominator = self.meter.denominator

@@ -23,11 +23,12 @@ class _MeasureFormatter(_ContainerFormatter):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)
-      result.extend(self._meter)
+      #result.extend(self._meter)
       #if self._client.nonbinary:
       #if self._client.duration.nonbinary:
       #if self._client.duration.multiplier != Rational(1, 1):
       if self._client.duration.compression != Rational(1, 1):
+         result.extend(self._meter)
          #multiplier = self._client.duration.multiplier
          compression = self._client.duration.compression
          if len(self._client):
@@ -47,9 +48,11 @@ class _MeasureFormatter(_ContainerFormatter):
       else:
          result.extend(self.opening)
          result.extend(self._opening)
+         result.extend(self._meter)
          result.extend(self._contents)
          #result.extend(self._closing)
-         result.extend(self._collectLocation('_closing'))
+         #result.extend(self._collectLocation('_closing'))
+         result.extend(self._closing)
          result.extend(self.closing)
       result.extend(self.after)
       result.extend(self._client.comments._after)
