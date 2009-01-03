@@ -2,53 +2,68 @@ from abjad import *
 
 
 def test_grob_handling_01( ):
-   '''Grob override on leaf without context promotion.'''
+   '''
+   Text override on leaf without context promotion.
+   '''
+
    t = Note(0, (1, 4))
    t.text.color = 'red'
-   assert t.format == "\\once \\override TextScript #'color = #red\nc'4"
+
    r'''
    \once \override TextScript #'color = #red
    c'4
    '''
 
+   assert t.format == "\\once \\override TextScript #'color = #red\nc'4"
+
 
 def test_grob_handling_02( ):
-   '''Grob override on leaf with context promotion.'''
+   '''
+   Text override on leaf with context promotion.
+   '''
+
    t = Note(0, (1, 4))
    t.text.color = 'red'
    t.text.promote('color', 'Staff')
-   assert t.format == "\\once \\override Staff.TextScript #'color = #red\nc'4"
+
    r'''
    \once \override Staff.TextScript #'color = #red
    c'4
    '''
+   
+   assert t.format == "\\once \\override Staff.TextScript #'color = #red\nc'4"
 
 
 def test_grob_handling_03( ):
-   '''Grob override on context;
-      automatic context inclusion;
-      no \once frequency indicator.'''
-   t = Staff(Note(0, (1, 4)) * 8)
-   t.text.color = 'red'
-   assert t.format == "\\new Staff {\n\t\\override Staff.TextScript #'color = #red\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
-   r'''
-   \new Staff { \override Staff.TextScript #'color = #red
-      c'4
-      c'4
-      c'4
-      c'4
-      c'4
-      c'4
-      c'4
-      c'4
-   }
    '''
-      
+   Override text on context.
+   '''
+
+   t = Staff(scale(4))
+   t.text.color = 'red'
+
+   r'''
+      \new Staff \with {
+           \override TextScript #'color = #red
+   } {
+           c'8
+           d'8
+           e'8
+           f'8
+   }   
+   '''
+
+   assert t.format == "\\new Staff \\with {\n\t\\override TextScript #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+
 
 def test_grob_handling_04( ):
-   '''Clear all overrides.'''
+   '''
+   Clear all overrides.
+   '''
+
    t = Note(0, (1, 4))
    t.text.color = 'red'
    t.text.size = 4
    t.text.clear( )
+
    assert t.format == "c'4"
