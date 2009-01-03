@@ -23,13 +23,11 @@ class _MeasureFormatter(_ContainerFormatter):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)
-      #result.extend(self._meter)
-      #if self._client.nonbinary:
-      #if self._client.duration.nonbinary:
-      #if self._client.duration.multiplier != Rational(1, 1):
+      result.extend(self.opening)
+      result.extend(self._opening)
+      result.extend(self._meter)
       if self._client.duration.compression != Rational(1, 1):
-         result.extend(self._meter)
-         #multiplier = self._client.duration.multiplier
+         #result.extend(self._meter)
          compression = self._client.duration.compression
          if len(self._client):
             ### TODO - may be dangerous; run tests; write tests
@@ -37,23 +35,20 @@ class _MeasureFormatter(_ContainerFormatter):
             for x in measure_music:
                x._parent = None
             tuplet = FixedMultiplierTuplet(
-               #self._client.duration.multiplier, measure_music)
-               #self._client.duration.multiplier, measure_music)
-               #multiplier, measure_music)
                compression, measure_music)
             tuplet.invisible = True
             result.extend(['\t' + x for x in tuplet.formatter._pieces])
             for x in measure_music:
                x._parent = self._client
       else:
-         result.extend(self.opening)
-         result.extend(self._opening)
-         result.extend(self._meter)
+         #result.extend(self.opening)
+         #result.extend(self._opening)
+         #result.extend(self._meter)
          result.extend(self._contents)
          #result.extend(self._closing)
-         #result.extend(self._collectLocation('_closing'))
-         result.extend(self._closing)
-         result.extend(self.closing)
+         #result.extend(self.closing)
+      result.extend(self._closing)
+      result.extend(self.closing)
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)

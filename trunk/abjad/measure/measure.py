@@ -55,7 +55,7 @@ class Measure(Container):
             self._meter = None
          else:
             #meter = _Meter(*arg)
-            meter = Meter(*arg)
+            meter = Meter(arg)
             self._meter = meter
       return property(**locals( ))
    
