@@ -1,5 +1,6 @@
 from abjad import *
-from py.test import raises
+import py.test
+
 
 def test_articulation_01( ):
    '''Articulation formatting.'''
@@ -8,6 +9,7 @@ def test_articulation_01( ):
    a = t.articulations[0]
    assert str(a) == a.lily == r'-\staccato'
    assert repr(a) == r'_Articulation(-\staccato)'
+
 
 def test_articulation_02( ):
    '''Articulations have string and direction.'''
@@ -27,6 +29,7 @@ def test_articulation_03( ):
    assert a.string == None
    assert str(a) == ''
 
+
 def test_articulation_04( ):
    '''Direction can be set to None.'''
    t = Note(0, (1, 4))
@@ -35,6 +38,7 @@ def test_articulation_04( ):
    a.direction = None
    assert a.direction == '-'
    assert str(a) == r'-\staccato'
+
 
 def test_articulation_05( ):
    '''Direction can be set to up.'''
@@ -48,6 +52,7 @@ def test_articulation_05( ):
    assert a.direction == '^'
    assert str(a) == r'^\staccato'
 
+
 def test_articulation_06( ):
    '''Direction can be set to down.'''
    t = Note(0, (1, 4))
@@ -59,6 +64,7 @@ def test_articulation_06( ):
    a.direction = '_'
    assert a.direction == '_'
    assert str(a) == r'_\staccato'
+
 
 def test_articulation_07( ):
    '''Direction can be set to default.'''
@@ -72,13 +78,15 @@ def test_articulation_07( ):
    assert a.direction == '-'
    assert str(a) == r'-\staccato'
 
+
 def test_articulation_08( ):
    '''Direction can not be set to other.'''
    t = Note(0, (1, 4))
    t.articulations.append('staccato')
    a = t.articulations[0]
-   raises(ValueError, "a.direction = 'blah'")
-   raises(ValueError, "a.direction = 123")
+   py.test.raises(ValueError, "a.direction = 'blah'")
+   py.test.raises(ValueError, "a.direction = 123")
+
 
 def test_articulation_09( ):
    '''String can be set to any str.'''
@@ -95,6 +103,7 @@ def test_articulation_09( ):
    assert a.string == 'parangaricutirimicuaro'
    assert str(a) == r'-\parangaricutirimicuaro'
 
+
 def test_articulation_10( ):
    '''Shortcut strings are replaced with full word.'''
    t = Note(0, (1, 4))
@@ -108,4 +117,3 @@ def test_articulation_10( ):
    a.string = '|'
    assert a.string == '|'
    assert str(a) == r'-\staccatissimo'
-

@@ -1,10 +1,9 @@
 from abjad import *
-from py.test import raises
+import py.test
 
 
 def test_articulations_interface_01( ):
    t = Note(0, (1, 4))
-   #assert repr(t.articulations) == 'Articulations( )'
    assert len(t.articulations) == 0
    assert t.format == "c'4"
 
@@ -23,11 +22,13 @@ def test_articulations_interface_02b( ):
    assert len(t.articulations) == 1
    assert t.format == "c'4 ^\\staccato"
 
+
 def test_articulations_interface_03a( ):
    t = Note(0, (1, 4))
    t.articulations = ['staccato', 'marcato']
    assert len(t.articulations) == 2
    assert t.format == "c'4 -\\staccato -\\marcato"
+
 
 def test_articulations_interface_03b( ):
    '''Articulations can be set as list of (string, direction) pairs.'''
@@ -36,12 +37,14 @@ def test_articulations_interface_03b( ):
    assert len(t.articulations) == 2
    assert t.format == "c'4 ^\\staccato _\\marcato"
 
+
 def test_articulations_interface_03c( ):
    '''Articulations can be set as list of (string, direction) pairs.'''
    t = Note(0, (1, 4))
    t.articulations = [('staccato', 'up'), 'marcato']
    assert len(t.articulations) == 2
    assert t.format == "c'4 ^\\staccato -\\marcato"
+
 
 def test_articulations_interface_04( ):
    '''Append.'''
@@ -114,10 +117,9 @@ def test_articulations_interface_11( ):
    assert len(t.articulations) == 2
    t.articulations = None
    assert len(t.articulations) == 0
-   #assert repr(t.articulations) == 'Articulations( )'
+
 
 def test_articulations_interface_12( ):
    '''Articulations can only be directly set with list or tuple.'''
    t = Note(0, (1, 4))
-   assert raises(ValueError, "t.articulations = 'staccato'")
-   
+   assert py.test.raises(ValueError, "t.articulations = 'staccato'")
