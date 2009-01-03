@@ -540,6 +540,7 @@ The Abjad <code>_TrillInterface</code> class
 <toc-section>
 <header> Abjad helper functions
 <body>
+   <p><a href="chapters/helpers/chord_split/index.html"><code>chord_split( )</code></a></p>
    <p><a href="chapters/helpers/instances/index.html"><code>instances( )</code></a></p>
 </body>
 </toc-section>

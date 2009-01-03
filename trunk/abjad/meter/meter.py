@@ -8,7 +8,6 @@ from abjad.rational.rational import Rational
 class _Meter(_GrobHandler):
 
    def __init__(self, n, d):
-      #_GrobHandler.__init__(self, 'Staff.TimeSignature')
       _GrobHandler.__init__(self, 'TimeSignature')
       self.pair = (n, d)
       self.hide = False

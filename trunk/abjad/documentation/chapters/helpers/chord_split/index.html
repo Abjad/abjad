@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../../css/abjad.css" type="text/css"/>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
+
+<h1>chord_split( )</h1>
+
+<div class="subsection">
+
+<p>
+Signature:
+</p>
+
+<ul>
+   <li><code>instances(chord, pitch = Pitch(b, 3), attr = 'number')</code></li>
+</ul>
+
+<p>
+Description:
+</p>
+
+<ul>
+   <li>return disjunct (treble, bass) pair of 'parts' from <code>chord</code></li>
+   <li>treble pitches greater than or equal to <code>pitch</code> <code>attr</code></li>
+   <li>bass pitches less than <code>pitch</code> <code>attr</code></li>
+</ul>
+
+<p>
+Input contstraints:
+</p>
+
+<ul>
+   <li>Input <code>chord</code> is canonically a (many-note) chord</li>
+   <li>Input <code>chord</code> may also be a (one-note) note</li>
+   <li>Input <code>chord</code> may also be a (no-note) rest</li>
+</ul>
+
+<p>
+Valid <code>attr</code> options:
+</p>
+
+<ul>
+   <li><code>'number'</code>
+   <li><code>'altitude'</code>
+</ul>
+
+<p>
+Length treatment:
+</p>
+
+<ul>
+   <li>zero-length parts engender rest</li>
+   <li>length-one parts engender note</li>
+   <li>parts of length greater than one engender chord</li>
+</ul>
+
+<p>
+ID treatment:
+</p>
+
+<ul>
+   <li>Unique return part IDs with input chord left unaltered</li>
+</ul>
+
+<p>
+Spanners treatment:
+</p>
+
+<ul>
+   <li>Helper returns unspanned output only</li>
+   <li>Input <code>chord</code> remains unaltered</li>
+</ul>
+
+</div>
+
+<div class="subsection">
+
+<h2>Examples</h2>
+
+<pre class="abjad">
+abjad> chord = Chord([-24, -10, -2, -1, 4, 5, 7, 9, 15, 18, 20, 25], (1, 4))    
+abjad> treble, bass = chord_split(chord)
+</pre>
+
+</div>
+
+<p class="footer"><a href="../../../index.html">Contents</a></p>
+
+</div>
+
+</body>
+
+</html>
+
