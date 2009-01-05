@@ -4,6 +4,10 @@ import os
 import re
 import sys
 
+### TODO - All calls here to os.popen( ) are deprecated in Python 2.6.
+###        Use the Ptyhon 'subprocess' module instead.
+###        See http://docs.python.org/library/subprocess.html#module-subprocess
+###        See PEP 324 at http://www.python.org/dev/peps/pep-0324/
 
 class FileParser(object):
 
@@ -17,6 +21,20 @@ class FileParser(object):
          LILY( ), ABJAD( )]
 
    @property
+   def depth(self):
+      if 'css' in os.listdir(os.curdir):
+         return 0
+      elif 'css' in os.listdir(os.pardir):
+         return 1
+      elif 'css' in os.listdir(os.pardir + os.sep + os.pardir):
+         return 2
+      elif 'css' in os.listdir(
+         os.pardir + os.sep + os.pardir + os.sep + os.pardir):
+         return 3
+      else:
+         raise ValueError('can not find doc root directory!')
+
+   @property
    def docType(self):
       result =  '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"'
       result += ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n\n' 
@@ -26,17 +44,9 @@ class FileParser(object):
 
    @property
    def footer(self):
-      if 'css' in os.listdir(os.curdir):
-         footer = 'index.html'
-      elif 'css' in os.listdir(os.pardir):
-         footer = '../index.html'
-      elif 'css' in os.listdir(os.pardir + os.sep + os.pardir):
-         footer = '../../index.html'
-      elif 'css' in os.listdir(
-         os.pardir + os.sep + os.pardir + os.sep + os.pardir):
-         footer = '../../../index.html'
-      else:
-         raise ValueError('can not find index.html for footer.')
+      footer = ['..'] * self.depth
+      footer.append('index.html')
+      footer = os.sep.join(footer)
       result = '\n<p class="footer"><a href="%s">Contents</a></p>'
       result %= footer
       result += '\n\n</div>\n\n</body>\n\n</html>\n'
@@ -63,17 +73,9 @@ class FileParser(object):
 
    @property
    def stylesheet(self):
-      if 'css' in os.listdir(os.curdir):
-         stylesheet = 'css/abjad.css'
-      elif 'css' in os.listdir(os.pardir):
-         stylesheet = '../css/abjad.css'
-      elif 'css' in os.listdir(os.pardir + os.sep + os.pardir):
-         stylesheet = '../../css/abjad.css'
-      elif 'css' in os.listdir(
-         os.pardir + os.sep + os.pardir + os.sep + os.pardir):
-         stylesheet = '../../../css/abjad.css'
-      else:
-         raise ValueError('can not find abjad.css stylesheet.')
+      stylesheet = ['..'] * self.depth
+      stylesheet.append('css%sabjad.css' % os.sep)
+      stylesheet = os.sep.join(stylesheet)
       return stylesheet
 
    def writeOutput(self):
@@ -425,6 +427,7 @@ class ABJAD(_TagParser):
          self.within_abjad_block = True
          self.output.append('<pre class="abjad">\n')
          self.last_open_abjad_idx = len(self.output) - 1
+         ### TODO - replace with portable os.tmpfile( )
          self.tmp_aj = open('tmp.aj', 'w')
          self.tmp_aj.write('from abjad import *\n')
 
@@ -466,13 +469,17 @@ class ABJAD(_TagParser):
          self.make_image( )
 
    def write_lily_object(self, tmp_aj, lily_object):
-      tmp_aj.write("tmp_ly = open('%s.ly', 'w')\n" % self.cur_image_number)
-      tmp_aj.write("""tmp_ly.write('\\\\version "2.11.56"\\n')\n""")
+      #tmp_aj.write("tmp_ly = open('%s.ly', 'w')\n" % self.cur_image_number)
+      tmp_aj.write("tmp_ly = open('%s%s%s.ly', 'w')\n" % (
+         CURDIR, os.sep, self.cur_image_number))
+      from abjad.cfg.lilypond_version import lilypond_version
+      tmp_aj.write("""tmp_ly.write('\\\\version "%s"\\n')\n""" % 
+         lilypond_version)
       tmp_aj.write("""tmp_ly.write('\\\\include "english.ly"\\n')\n""")
-      tmp_aj.write(
-         """tmp_ly.write('\\\\include "%s/scm/abjad.scm"\\n')\n""" % ABJADPATH)
-      tmp_aj.write(
-         """tmp_ly.write('\\\\include "%s/layout/web.ly"\\n')\n""" % ABJADPATH)
+      scm = os.sep.join([ABJADPATH, 'scm', 'abjad.scm'])
+      tmp_aj.write("""tmp_ly.write('\\\\include "%s"\\n')\n""" % scm)
+      layout = os.sep.join([ABJADPATH, 'layout', 'web.ly'])
+      tmp_aj.write("""tmp_ly.write('\\\\include "%s"\\n')\n""" % layout)
       tmp_aj.write(
          """tmp_ly.write('\\\\layout { ragged-right = ##t }\\n')\n""")
       tmp_aj.write("""tmp_ly.write('\\n')\n""")
@@ -607,20 +614,31 @@ class CLASS_NAMES(_TagParser):
             if key in line:
                directory_name = self.change[key]
                class_name = key[1 : -1]
-               ### TODO: fix relative URL to work at different level
-               ###       of doc site
-               target = '<code><a href="../%s/index.html">%s</a></code>'
-               target %= (directory_name, class_name)
+               target = '<code><a href="%s/%s/index.html">%s</a></code>'
+               target %= (
+                  os.sep.join(['..'] * (depth - 1)), directory_name, class_name)
                line = line.replace(key, target)
          self.output.append(line)
 
 
 #### EXECUTABLE ####
 
-ABJADPATH = os.environ['ABJADPATH']
+from abjad.cfg.cfg import ABJADPATH
 
 if __name__ == '__main__':
-
-   fileparser = FileParser(sys.argv[1])
-
+   input_file = sys.argv[1]
+   CURDIR = os.path.dirname(input_file)
+   os.chdir(CURDIR)
+   if 'css' in os.listdir(os.curdir):
+      depth = 0
+   elif 'css' in os.listdir(os.pardir):
+      depth = 1
+   elif 'css' in os.listdir(os.pardir + os.sep + os.pardir):
+      depth = 2
+   elif 'css' in os.listdir(
+      os.pardir + os.sep + os.pardir + os.sep + os.pardir):
+      depth = 3
+   else:
+      raise ValueError('can not find doc root directory!')
+   fileparser = FileParser(input_file)
    fileparser.parse( )
