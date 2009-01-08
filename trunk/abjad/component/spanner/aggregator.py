@@ -46,7 +46,8 @@ class _ComponentSpannerAggregator(_Interface):
       result = set([ ])
       for component in iterate(self._client, '_Component'):
          result.update(set(component.spanners.attached))
-      return list(result)
+      #return list(result)
+      return result
 
    @property
    def attached(self):
