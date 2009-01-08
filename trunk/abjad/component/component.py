@@ -1,10 +1,11 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.accidental.interface import _AccidentalInterface
 from abjad.barline.interface import _BarLineInterface
 from abjad.beam.interface import _BeamInterface
 from abjad.breaks.interface import _BreaksInterface
-from abjad.clef.interface import _ClefInterface
+from abjad.core.abjadcore import _Abjad
 from abjad.core.comments import _Comments
 from abjad.core.parentage import _Parentage
+from abjad.clef.interface import _ClefInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
 from abjad.helpers.hasname import hasname
@@ -28,6 +29,7 @@ from copy import deepcopy
 class _Component(_Abjad):
 
    def __init__(self):
+      self._accidental = _AccidentalInterface(self)
       self._accidentals = None
       self._barline = _BarLineInterface(self)
       self._beam = _BeamInterface(self)
@@ -64,16 +66,10 @@ class _Component(_Abjad):
 
    ### PUBLIC ATTRIBUTES ###
 
-   ### TODO - make work for leaves, too    ###
-   ###        add stuff to leaf formatters ###
-
    @apply
-   def accidentals( ):
+   def accidental( ):
       def fget(self):
-         return self._accidentals
-      def fset(self, style):
-         assert isinstance(style, (str, type(None)))
-         self._accidentals = style
+         return self._accidental
       return property(**locals( ))
 
    @apply

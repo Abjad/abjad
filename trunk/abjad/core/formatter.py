@@ -21,41 +21,14 @@ class _Formatter(_Interface):
          exec('result.extend(self._client.spanners.%s)' % location)
       except AttributeError:
          pass
-      # add self._client._before, if self._client is a Rest:
-      try:
-         exec('result.extend(self._client.%s)' % location)
-      except:
-         pass
       return result
-
-   ### TODO - reimplement _getFormatCarriers( ) in terms of a 
-   ###        special type of 'attribute traversal'. Ie, not
-   ###        a traversal of the score hierarchy (which _Navigator
-   ###        currently implements just fine) but instead a 
-   ###        traversal of all the attributes of client.
-   ###        The loop in _getFormatCarriers( ) which iterates over
-   ###        the attribute dictionary of client is a naive
-   ###        attempt at this type of traversal; we will need
-   ###        to recursively iterate over the attribute dictionary
-   ###        of each attribute in the attribute dictionary.
 
    def _getFormatCarriers(self):
       result = [ ]
       client = self._client
-      if isinstance(client, _FormatCarrier):
-         result.append(client)
       for value in client.__dict__.values( ):
          if isinstance(value, _FormatCarrier):
             result.append(value)
-         # these two lines are a hack:
-         # Accidental is a _GrobHandler ... 
-         # so how do we best make this loop find Accidental?
-         if hasattr(value, 'pitch'):
-            result.append(value.pitch.accidental)
-#         if client.kind('_Leaf'):
-#            for spanner in client.spanners._spannersInParentage:
-#               if isinstance(spanner, _FormatCarrier):
-#                  result.append(value)
       result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
 

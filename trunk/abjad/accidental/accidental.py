@@ -1,11 +1,13 @@
-from abjad.core.grobhandler import _GrobHandler
+from abjad.core.abjadcore import _Abjad
+#from abjad.core.grobhandler import _GrobHandler
 
 
 #class _Accidental(_GrobHandler):
-class Accidental(_GrobHandler):
+#class Accidental(_GrobHandler):
+class Accidental(_Abjad):
 
    def __init__(self, string = ''):
-      _GrobHandler.__init__(self, 'Accidental')
+      #_GrobHandler.__init__(self, 'Accidental')
       self._string = string
 
    ### OVERLOADS ###
