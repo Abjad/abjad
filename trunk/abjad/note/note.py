@@ -1,5 +1,6 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.notehead.notehead import _NoteHead
+#from abjad.notehead.notehead import _NoteHead
+from abjad.notehead.notehead import NoteHead
 from abjad.note.initializer import _NoteInitializer
 from abjad.pitch.pitch import Pitch
 
@@ -39,10 +40,15 @@ class Note(_Leaf):
          if isinstance(arg, type(None)):
             self._notehead = None
          elif isinstance(arg, (int, float, long)):
-            self._notehead = _NoteHead(self, pitch = arg)
+            #self._notehead = _NoteHead(self, pitch = arg)
+            self._notehead = NoteHead(pitch = arg)
+            self._notehead._client = self
          elif isinstance(arg, Pitch):
-            self._notehead = _NoteHead(self, pitch = arg)
-         elif isinstance(arg, _NoteHead):
+            #self._notehead = _NoteHead(self, pitch = arg)
+            self._notehead = NoteHead(pitch = arg)
+            self._notehead._client = self
+         #elif isinstance(arg, _NoteHead):
+         elif isinstance(arg, NoteHead):
             self._notehead = arg
             self._notehead._client = self
          else:
@@ -65,11 +71,12 @@ class Note(_Leaf):
             return None
       def fset(self, arg):
          if arg is None:
-            if  self.notehead is not None:
+            if self.notehead is not None:
                self.notehead.pitch = None
          else:
             if self.notehead is None:
-               self.notehead = _NoteHead(self)
+               #self.notehead = _NoteHead(self)
+               self.notehead = NoteHead(pitch = None)
             if isinstance(arg, (int, float, long)):
                self.notehead.pitch = Pitch(arg)
             elif isinstance(arg, tuple):

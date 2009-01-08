@@ -1,7 +1,8 @@
 from abjad.chord.formatter import _ChordFormatter
 from abjad.chord.initializer import _ChordInitializer
 from abjad.leaf.leaf import _Leaf
-from abjad.notehead.notehead import _NoteHead
+#from abjad.notehead.notehead import _NoteHead
+from abjad.notehead.notehead import NoteHead
 from abjad.pitch.pitch import Pitch
 
 
@@ -17,7 +18,8 @@ class Chord(_Leaf):
          return Pitch(arg) in self.pitches
       elif isinstance(arg, Pitch):
          return arg in self.pitches
-      elif isinstance(arg, _NoteHead):
+      #elif isinstance(arg, _NoteHead):
+      elif isinstance(arg, NoteHead):
          return arg in self.noteheads
       else:
          return False
@@ -36,11 +38,18 @@ class Chord(_Leaf):
 
    def __setitem__(self, i, arg):
       if isinstance(arg, (int, long, float)):
-         self._noteheads[i] = _NoteHead(self, pitch = arg)
+         #self._noteheads[i] = _NoteHead(self, pitch = arg)
+         self._noteheads[i] = NoteHead(pitch = arg)
+         self._noteheads[i]._client = self
       elif isinstance(arg, Pitch):
-         self._noteheads[i] = _NoteHead(self, pitch = arg)
-      elif isinstance(arg, _NoteHead):
+         #self._noteheads[i] = _NoteHead(self, pitch = arg)
+         self._noteheads[i] = NoteHead(pitch = arg)
+         self._noteheads[i]._client = self
+      #elif isinstance(arg, _NoteHead):
+      #   self._noteheads[i] = arg
+      elif isinstance(arg, NoteHead):
          self._noteheads[i] = arg
+         self._noteheads[i]._client = self
       self._sort( )
 
    def __str__(self):
@@ -82,18 +91,26 @@ class Chord(_Leaf):
       def fset(self, arglist):
          # TODO: what's the right way to allow *any* sequence here?
          # MAYBE: operator.isSequenceType( )
+         # BETTER: just try iterating with 'in', catch exception
          assert isinstance(arglist, (list, tuple, set))
          self._noteheads = [ ]
          for arg in arglist:
             if isinstance(arg, (int, float, long)):
-               self._noteheads.append(_NoteHead(self, pitch = arg))
+               #self._noteheads.append(_NoteHead(self, pitch = arg))
+               self._noteheads.append(NoteHead(pitch = arg))
+               self._noteheads[-1]._client = self
             elif isinstance(arg, tuple):
-               self._noteheads.append(_NoteHead(self, pitch = arg))   
+               #self._noteheads.append(_NoteHead(self, pitch = arg))   
+               self._noteheads.append(NoteHead(pitch = arg))   
+               self._noteheads[-1]._client = self
             elif isinstance(arg, Pitch):
-               self._noteheads.append(_NoteHead(self, pitch = arg))
-            elif isinstance(arg, _NoteHead):
-               arg._client = self
+               #self._noteheads.append(_NoteHead(self, pitch = arg))
+               self._noteheads.append(NoteHead(pitch = arg))
+               self._noteheads[-1]._client = self
+            #elif isinstance(arg, _NoteHead):
+            elif isinstance(arg, NoteHead):
                self._noteheads.append(arg)
+               self._noteheads[-1]._client = self
             else:
                raise ValueError(
                   'Can not set Chord.noteheads = [..., %s, ...].' % arg)
@@ -127,12 +144,17 @@ class Chord(_Leaf):
 
    def append(self, arg):
       if isinstance(arg, (int, float, long)):
-         self._noteheads.append(_NoteHead(self, pitch = arg))
+         #self._noteheads.append(_NoteHead(self, pitch = arg))
+         self._noteheads.append(NoteHead(pitch = arg))
+         self._noteheads[-1]._client = self
       elif isinstance(arg, Pitch):
-         self._noteheads.append(_NoteHead(self, pitch = arg))
-      elif isinstance(arg, _NoteHead):
-         arg._client = self
+         #self._noteheads.append(_NoteHead(self, pitch = arg))
+         self._noteheads.append(NoteHead(pitch = arg))
+         self._noteheads[-1]._client = self
+      #elif isinstance(arg, _NoteHead):
+      elif isinstance(arg, NoteHead):
          self._noteheads.append(arg)
+         self._noteheads[-1]._client = self
       else:
          print 'Can not append %s to Chord.' % arg
       self._sort( )
@@ -144,7 +166,11 @@ class Chord(_Leaf):
       self._sort( )
 
    def pop(self, i = -1):
-      return self._noteheads.pop(i)
+      #return self._noteheads.pop(i)
+      notehead = self._noteheads.pop(i)
+      notehead._client = None
+      return notehead
 
    def remove(self, notehead):
+      notehead._client = None
       self._noteheads.remove(notehead)
