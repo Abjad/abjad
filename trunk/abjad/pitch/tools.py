@@ -1,5 +1,6 @@
 #from abjad.accidentals.accidental import _Accidental
-from abjad.accidentals.accidental import Accidental
+#from abjad.accidentals.accidental import Accidental
+from abjad.accidental.accidental import Accidental
 from abjad.core.abjadcore import _Abjad
 from math import floor
 
