@@ -13,6 +13,7 @@ from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.offset.interface import _OffsetInterface
 from abjad.rational.rational import Rational
+from abjad.rest.interface import _RestInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tempo.interface import _TempoInterface
 from abjad.tie.interface import _TieInterface
@@ -40,6 +41,7 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
       self._offset = _OffsetInterface(self)
       self._parentage = _Parentage(self)
+      self._rest = _RestInterface(self)
       self._stem = _StemInterface(self)
       self._tempo = _TempoInterface(self)
       self._text = _TextInterface(self)
@@ -143,6 +145,12 @@ class _Component(_Abjad):
    @property
    def offset(self):
       return self._offset
+
+   @apply
+   def rest( ):
+      def fget(self):
+         return self._rest
+      return property(**locals( ))
 
    @apply
    def stem( ):
