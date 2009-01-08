@@ -70,7 +70,8 @@ class _LeafFormatter(_Formatter):
    ### NOTE - clef *must* come lexically before set-octavation ###
 
    @property
-   def lily(self):
+   #def lily(self):
+   def format(self):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)

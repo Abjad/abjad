@@ -61,6 +61,10 @@ class Meter(_GrobHandler):
    def duration(self):
       return Rational(self.numerator, self.denominator)
 
+   @property
+   def format(self):
+      return r'\time %s/%s' % (self.numerator, self.denominator)
+
    @apply
    def hide( ):
       def fget(self):
@@ -72,9 +76,9 @@ class Meter(_GrobHandler):
             raise ValueError('meter hide must be boolean.')
       return property(**locals( ))
 
-   @property
-   def lily(self):
-      return r'\time %s/%s' % (self.numerator, self.denominator)
+#   @property
+#   def lily(self):
+#      return r'\time %s/%s' % (self.numerator, self.denominator)
 
    @apply
    def numerator( ):

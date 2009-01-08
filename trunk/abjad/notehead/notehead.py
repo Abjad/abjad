@@ -91,7 +91,8 @@ class NoteHead(_Interface, _GrobHandler):
 
    @property
    def format(self):
-      return self._formatter.lily
+      #return self._formatter.lily
+      return self._formatter.format
 
    @apply
    def pitch( ):

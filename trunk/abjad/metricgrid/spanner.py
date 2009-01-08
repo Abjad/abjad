@@ -145,7 +145,8 @@ class MetricGrid(Spanner):
       if not self.hide:
          meter = self._matchingMeter(leaf)
          if meter and not meter.hide:
-            result.append(meter.lily)
+            #result.append(meter.lily)
+            result.append(meter.format)
             #return result
          m = self._slicingMeters(leaf)
          m = [meter for meter in m if not meter.hide]
@@ -155,7 +156,8 @@ class MetricGrid(Spanner):
                s = Skip( 1 )
                #s.duration.multiplier = meter.offset - leaf.offset
                s.duration.multiplier = meter.offset - leaf.offset.score
-               s.formatter.right.append(meter.lily)
+               #s.formatter.right.append(meter.lily)
+               s.formatter.right.append(meter.format)
                #result.append( '<<\n\t%s' % Sequential([s]).format )
                result.append( '{ %s }' % s.format )
       return result

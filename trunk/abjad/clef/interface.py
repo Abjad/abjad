@@ -1,4 +1,5 @@
-from abjad.clef.clef import _Clef
+#from abjad.clef.clef import _Clef
+from abjad.clef.clef import Clef
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
@@ -50,7 +51,8 @@ class _ClefInterface(_Interface, _GrobHandler):
       for x in self._client._parentage._parentage[1:]:
          if hasattr(x, 'clef') and x.clef._forced:
             return x.clef._forced
-      return _Clef('treble')
+      #return _Clef('treble')
+      return Clef('treble')
 
    @apply
    def forced( ):
@@ -60,9 +62,11 @@ class _ClefInterface(_Interface, _GrobHandler):
          if arg is None:
             self._forced = None
          elif isinstance(arg, str):
-            clef = _Clef(arg)
+            #clef = _Clef(arg)
+            clef = Clef(arg)
             self._forced = clef
-         elif isinstance(arg, _Clef):
+         #elif isinstance(arg, _Clef):
+         elif isinstance(arg, Clef):
             self._forced = arg
          else:
             raise ValueError('unknown clef specification.')

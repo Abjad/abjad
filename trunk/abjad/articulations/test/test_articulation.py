@@ -7,8 +7,10 @@ def test_articulation_01( ):
    t = Note(0, (1, 4))
    t.articulations.append('staccato')
    a = t.articulations[0]
-   assert str(a) == a.lily == r'-\staccato'
-   assert repr(a) == r'_Articulation(-\staccato)'
+   #assert str(a) == a.lily == r'-\staccato'
+   assert str(a) == a.format == r'-\staccato'
+   #assert repr(a) == r'_Articulation(-\staccato)'
+   assert repr(a) == r'Articulation(-\staccato)'
 
 
 def test_articulation_02( ):

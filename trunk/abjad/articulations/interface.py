@@ -1,4 +1,5 @@
-from abjad.articulations.articulation import _Articulation
+#from abjad.articulations.articulation import _Articulation
+from abjad.articulations.articulation import Articulation
 from abjad.core.formatcarrier import _FormatCarrier
 from abjad.core.interface import _Interface
 
@@ -52,19 +53,24 @@ class _ArticulationsInterface(_Interface, _FormatCarrier):
    ### PRIVATE METHODS ###
 
    def _makeArticulation(self, expr):
-      if isinstance(expr, _Articulation):
+      #if isinstance(expr, _Articulation):
+      if isinstance(expr, Articulation):
          return expr
       elif isinstance(expr, (list, tuple)):
-         return _Articulation(*expr)
+         #return _Articulation(*expr)
+         return Articulation(*expr)
       elif isinstance(expr, str):
-         return _Articulation(expr)
+         #return _Articulation(expr)
+         return Articulation(expr)
       else:
-         raise ValueError('can not create _Articulation.')
+         #raise ValueError('can not create _Articulation.')
+         raise ValueError('can not create Articulation.')
 
    @property
    def _right(self):
       result = [ ]
-      result.extend([x.lily for x in self._articulations])
+      #result.extend([x.lily for x in self._articulations])
+      result.extend([x.format for x in self._articulations])
       return result
 
    ### PUBLIC METHODS ###

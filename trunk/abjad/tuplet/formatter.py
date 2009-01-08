@@ -72,5 +72,6 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   def lily(self):
+   #def lily(self):
+   def format(self):
       return '\n'.join(self._pieces)

@@ -1,11 +1,37 @@
 from abjad.core.abjadcore import _Abjad
 
 
-class _Articulation(_Abjad):
+#class _Articulation(_Abjad):
+class Articulation(_Abjad):
 
    def __init__(self, string = None, direction = None):
       self.string = string
       self.direction = direction
+
+   ### OVERLOADS ###
+
+   def __eq__(self, expr):
+      #assert isinstance(expr, _Articulation)
+      assert isinstance(expr, Articulation)
+      if expr.string == self.string and self.direction == expr.direction:
+         return True
+      else:
+         return False
+
+   def __repr__(self):
+      #return '_Articulation(%s)' % self
+      return 'Articulation(%s)' % self
+
+   def __str__(self):
+      if self.string:
+         string = self._shortcutToWord.get(self.string)
+         if not string:
+            string = self.string
+         return '%s\%s' % (self.direction, string)
+      else:
+         return ''
+
+   ### PRIVATE ATTRIBUTES ###
 
    _articulationsSupported = ('accent', 'marcato', 
         'staccatissimo',      'espressivo'
@@ -28,44 +54,7 @@ class _Articulation(_Abjad):
          '^':'marcato', '+':'stopped', '-':'tenuto', '|':'staccatissimo', 
          '>':'accent', '.':'staccato', '_':'portato' }
 
-
-   ### OVERRIDES ###
-
-   def __eq__(self, expr):
-      assert isinstance(expr, _Articulation)
-      if expr.string == self.string and self.direction == expr.direction:
-         return True
-      else:
-         return False
-
-   ### REPR ###
-
-   def __repr__(self):
-      return '_Articulation(%s)' % self
-
-   def __str__(self):
-      if self.string:
-         string = self._shortcutToWord.get(self.string)
-         if not string:
-            string = self.string
-         return '%s\%s' % (self.direction, string)
-      else:
-         return ''
-
-   ### MANAGED ATTRIBUTES ###
-
-   @apply
-   def string( ):
-      def fget(self):
-         return self._string
-      def fset(self, expr):
-         if expr is None:
-            self._string = None #''
-         elif isinstance(expr, str):
-            self._string = expr
-         else:
-            raise ValueError('can not set articulation string.')
-      return property(**locals( ))
+   ### PUBLIC ATTRIBUTES ###
 
    @apply
    def direction( ):
@@ -87,9 +76,23 @@ class _Articulation(_Abjad):
             raise ValueError('can not set articulation direction.')
       return property(**locals( ))
 
-
-   ### FORMATTING ###
-
    @property
-   def lily(self):
+   def format(self):
       return str(self)
+
+#   @property
+#   def lily(self):
+#      return str(self)
+
+   @apply
+   def string( ):
+      def fget(self):
+         return self._string
+      def fset(self, expr):
+         if expr is None:
+            self._string = None #''
+         elif isinstance(expr, str):
+            self._string = expr
+         else:
+            raise ValueError('can not set articulation string.')
+      return property(**locals( ))

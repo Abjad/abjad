@@ -17,10 +17,12 @@ class _MeterInterface(_Interface, _GrobHandler):
       result = [ ]
       result.extend(_GrobHandler._before.fget(self))
       if self._client.kind('DynamicMeasure'):
-         result.append(self.effective.lily)
+         #result.append(self.effective.lily)
+         result.append(self.effective.format)
       else:
          if self.forced or self.change:
-            result.append(self.effective.lily)
+            #result.append(self.effective.lily)
+            result.append(self.effective.format)
       return result
 
    ### NOTE: this is kinda kinky:

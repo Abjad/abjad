@@ -122,7 +122,8 @@ class _Component(_Abjad):
 
    @property
    def format(self):
-      return self.formatter.lily
+      #return self.formatter.lily
+      return self.formatter.format
 
    @apply
    def glissando( ):

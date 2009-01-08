@@ -7,8 +7,9 @@ def test_pitch_init_01( ):
    assert repr(p) == 'Pitch( )'
    assert p.altitude == None
    assert p.degree == None
+   assert p.format == ''
    assert p.letter == None
-   assert p.lily == ''
+   #assert p.lily == ''
    assert p.name == None
    assert p.number == None
    assert p.octave == None
@@ -23,8 +24,9 @@ def test_pitch_init_02( ):
    assert repr(p) == "Pitch(cs, 5)"
    assert p.altitude == 7
    assert p.degree == 1
+   assert p.format == "cs''"
    assert p.letter == 'c'
-   assert p.lily == "cs''"
+   #assert p.lily == "cs''"
    assert p.name == 'cs'
    assert p.number == 13
    assert p.octave == 5
@@ -39,8 +41,9 @@ def test_pitch_init_03( ):
    assert repr(p) == "Pitch(df, 5)"
    assert p.altitude == 8
    assert p.degree == 2
+   assert p.format == "df''"
    assert p.letter == 'd'
-   assert p.lily == "df''"
+   #assert p.lily == "df''"
    assert p.name == 'df'
    assert p.number == 13
    assert p.octave == 5
@@ -55,8 +58,9 @@ def test_pitch_init_04( ):
    assert repr(p) == "Pitch(df, 5)"
    assert p.altitude == 8
    assert p.degree == 2
+   assert p.format == "df''"
    assert p.letter == 'd'
-   assert p.lily == "df''"
+   #assert p.lily == "df''"
    assert p.name == 'df'
    assert p.number == 13
    assert p.octave == 5
@@ -72,8 +76,9 @@ def test_pitch_init_05( ):
    assert repr(p) == "Pitch(df, 5)"
    assert p.altitude == 8
    assert p.degree == 2
+   assert p.format == "df''"
    assert p.letter == 'd'
-   assert p.lily == "df''"
+   #assert p.lily == "df''"
    assert p.name == 'df'
    assert p.number == 13
    assert p.octave == 5
@@ -88,8 +93,9 @@ def test_pitch_init_06( ):
    assert repr(p) == "Pitch(df, 5)"
    assert p.altitude == 8
    assert p.degree == 2
+   assert p.format == "df''"
    assert p.letter == 'd'
-   assert p.lily == "df''"
+   #assert p.lily == "df''"
    assert p.name == 'df'
    assert p.number == 13
    assert p.octave == 5

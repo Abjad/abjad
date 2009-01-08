@@ -13,11 +13,13 @@ class _ChordFormatter(_LeafFormatter):
       # check if we have notehead overrides
       if any([(len(x) or x.style) for x in self._client.noteheads]):
          for notehead in self._client.noteheads:
-            nucleus.extend(['\t' + x for x in notehead._formatter._lily])
+            #nucleus.extend(['\t' + x for x in notehead._formatter._lily])
+            nucleus.extend(['\t' + x for x in notehead._formatter._format])
          nucleus = ['\n' + '\n'.join(nucleus) + '\n']
       else:
          for notehead in self._client.noteheads:
-            nucleus.extend([x for x in notehead._formatter._lily])
+            #nucleus.extend([x for x in notehead._formatter._lily])
+            nucleus.extend([x for x in notehead._formatter._format])
       result = '<%s>%s' % (
          ' '.join(nucleus), self._client.duration._product)
       if self._client.tremolo.subdivision:

@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.clef.clef import _Clef
+#from abjad.clef.clef import _Clef
+from abjad.clef.clef import Clef
 from abjad.clef.interface import _ClefInterface
 
 
@@ -13,7 +14,8 @@ def test_staff_clef_02( ):
    '''Test _ClefInterface public attributes.'''
    t = Staff(Note(0, (1, 4)) * 8)
    assert t.clef.change == False
-   assert isinstance(t.clef.effective, _Clef)
+   #assert isinstance(t.clef.effective, _Clef)
+   assert isinstance(t.clef.effective, Clef)
    assert t.clef.forced is None
    assert t.clef.name == 'treble'
 

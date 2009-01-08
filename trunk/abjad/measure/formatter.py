@@ -28,7 +28,8 @@ class _MeasureFormatter(_ContainerFormatter):
 #      return result
 
    @property
-   def lily(self):
+   #def lily(self):
+   def format(self):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)

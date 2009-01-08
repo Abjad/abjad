@@ -1,7 +1,8 @@
 from abjad.core.abjadcore import _Abjad
 
 
-class _Clef(_Abjad):
+#class _Clef(_Abjad):
+class Clef(_Abjad):
 
    def __init__(self, name = 'treble'):
       self.name = name
@@ -12,7 +13,8 @@ class _Clef(_Abjad):
       return arg == self.name
    
    def __repr__(self):
-      return '_Clef(%s)' % self.name
+      #return '_Clef(%s)' % self.name
+      return 'Clef(%s)' % self.name
 
    def __str__(self):
       return self.name

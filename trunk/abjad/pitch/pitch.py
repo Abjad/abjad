@@ -71,8 +71,12 @@ class Pitch(_Abjad):
          return None
 
    @property
-   def lily(self):
+   def format(self):
       return str(self)
+
+#   @property
+#   def lily(self):
+#      return str(self)
 
    @property
    def name(self):
