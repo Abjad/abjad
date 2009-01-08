@@ -19,22 +19,45 @@ class _Measure(Container):
    ### OVERLOADS ###
 
    def __repr__(self):
-      if getattr(self, 'meter', None) and len(self) > 0:
-         return 'Measure(%s, [%s])' % (self.meter, self._summary)
-      elif getattr(self, 'meter', None):
-         return 'Measure(%s)' % self.meter
-      elif len(self) > 0:
-         return 'Measure([%s])' % self._summary
+#      if getattr(self, 'meter', None) and len(self) > 0:
+#         return 'Measure(%s, [%s])' % (self.meter, self._summary)
+#      elif getattr(self, 'meter', None):
+#         return 'Measure(%s)' % self.meter
+#      elif len(self) > 0:
+#         return 'Measure([%s])' % self._summary
+#      else:
+#         return 'Measure( )'
+      class_name = self.__class__.__name__
+      forced_meter = self.meter.forced
+      summary = self._summary
+      length = len(self)
+      if forced_meter and length:
+         return '%s(%s, [%s])' % (class_name, forced_meter, summary)
+      elif forced_meter:
+         return '%s(%s)' % (class_name, forced_meter)
+      elif length:
+         return '%s([%s])' % (class_name, summary)
       else:
-         return 'Measure( )'
+         return '%s( )' % class_name
 
    def __str__(self):
-      if self.meter and len(self) > 0:
-         return '|%s, %s|' % (self.meter, self._summary)
-      elif self.meter:
-         return '|%s|' % self.meter
-      elif len(self) > 0:
-         return '|%s|' % self._summary
+#      if self.meter and len(self) > 0:
+#         return '|%s, %s|' % (self.meter, self._summary)
+#      elif self.meter:
+#         return '|%s|' % self.meter
+#      elif len(self) > 0:
+#         return '|%s|' % self._summary
+#      else:
+#         return '| |'
+      forced_meter = self.meter.forced
+      summary = self._summary
+      length = len(self)
+      if forced_meter and length:
+         return '|%s, %s|' % (forced_meter, summary)
+      elif forced_meter:
+         return '|%s|' % forced_meter
+      elif length:
+         return '|%s|' % summary
       else:
          return '| |'
 

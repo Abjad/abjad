@@ -19,7 +19,7 @@
 <div class="subsection">
 
 <p>
-The Abjad <code><a href="../pitch_class/index.html">Pitch</a></code> defines the following public interface.
+The Abjad <code><a href="../pitch_class/index.html">Pitch</a></code> class defines the following public interface.
 </p>
 
 </div>
@@ -43,9 +43,215 @@ The Abjad <code><a href="../pitch_class/index.html">Pitch</a></code> defines the
 </div>
 <div class="block">
 <div class="name">Methods</div>
-<div class="attribute"><div class="local"><a href="#isSet">isSet</a></div></div>
 <div class="attribute"><div class="local"><a href="#diatonicTranspose">diatonicTranspose</a></div></div>
 <div class="attribute"><div class="local"><a href="#staffSpaceTranspose">staffSpaceTranspose</a></div></div>
+</div>
+</div>
+
+<h2 class="page-section">Attributes</h2>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="accidental">accidental</a></div></div>
+   <p>Read / write attribute defined here.
+   <p>Returns Abjad <code><a href="../accidental_class/index.html">Accidental</a></code> reference.
+   <p>Accepts Abjad <code><a href="../accidental_class/index.html">Accidental</a></code> reference, LilyPond accidental string.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.accidental
+Accidental(s)
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="degree">degree</a></div></div>
+   <p>Read-only attribute defined here.
+   <p>Returns integer diatonic scale degree, regardless of accidental.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.degree
+1
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="letter">letter</a></div></div>
+   <p>Read / write attribute defined here.
+   <p>Returns letter name of pitch as string.
+   <p>Accepts letter name of pitch as string.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.letter
+'c'
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="lily">lily</a></div></div>
+   <p>Read-only attribute defined here.
+   <p>Returns LilyPond name and octave of pitch as string.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.lily
+"cs'"
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="name">name</a></div></div>
+   <p>Read-only attribute defined here.
+   <p>Returns LilyPond name of pitch as string.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.lily
+'cs'
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="number">number</a></div></div>
+   <p>Read / write attribute defined here.
+   <p>Returns integer number of pitch.
+   <p>Accepts integer pitch number.
+   <p>Middle C equals 0.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.number
+1
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="octave">octave</a></div></div>
+   <p>Read / write attribute defined here.
+   <p>Returns integer octave number of pitch.
+   <p>Octave of middle C equals 4.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.octave
+4
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="pair">pair</a></div></div>
+   <p>Read-only attribute defined here.
+   <p>Returns string name, integer octave tuple of pitch.
+   <p>Functions as unique signature of pitch.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.pair
+('cs', 4)
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="pc">pc</a></div></div>
+   <p>Read-only attribute defined here.
+   <p>Returns nonnegative equal-tempered integer pitch-class of pitch.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.pc
+1
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="ticks">ticks</a></div></div>
+   <p>Read-only attribute defined here.
+   <p>Returns tick octave indication string.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.ticks
+"'"
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="tools">tools</a></div></div>
+   <p>Read-only attribute defined here.
+   <p>Returns Abjad <code>_PitchTools</code> instance.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.tools
+_PitchTools( )
+</pre>
+</div>
+</div>
+
+<h2 class="page-section">Methods</h2>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="diatonicTranspose">diatonicTranspose</a></div></div>
+   <p>Public method defined here.</p>
+   <p>Returns new Abjad <code><a href="../pitch_class/index.html">Pitch</a></code> instance transposed at interval.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.diatonicTranspose('perfect fourth')
+Pitch(fs, 4)
+</pre>
+</div>
+</div>
+
+<div class="definition">
+<div class="header">
+<div class="attribute"><div class="local"><a name="staffSpaceTranspose">staffSpaceTranspose</a></div></div>
+   <p>Public method defined here.</p>
+   <p>Returns new Abjad <code><a href="../pitch_class/index.html">Pitch</a></code> instance.
+   <p>First argument gives number of staff spaces at which to renotate.
+   <p>Second argument gives accidental alteration at which to transpose.
+</div>
+<div class="body">
+<pre class="abjad">
+abjad> p = Pitch(1)
+abjad> p.staffSpaceTranspose(1, 0.5)
+Pitch(dqf, 4)
+</pre>
 </div>
 </div>
 
@@ -54,7 +260,7 @@ The Abjad <code><a href="../pitch_class/index.html">Pitch</a></code> defines the
 <div class="comments">
 
 <p>
-See the <code><a href="../pitch_class/index.html">Pitch</a></code> class in <code>pitch/pitch.py</code> for the implementation.
+See the <code><a href="../pitch_class/index.html">Pitch</a></code> class in <code>pitch/pitch.py</code> for implementation details.
 </p>
 
 </div>
@@ -72,7 +278,19 @@ Reimplement the bound methods here as helpers.
 </p>
 
 <p>
-Reimplement <code>isSet( )</code> as a one-word property.
+Reimplement <code>degree</code> as read / write.
+</p>
+
+<p>
+Reimplement <code>name</code> as read / write.
+</p>
+
+<p>
+Reimplement <code>number</code> as read / write.
+</p>
+
+<p>
+Make <code><a href="../accidental_class/index.html">Accidental</a></code> class public.
 </p>
 
 </div>

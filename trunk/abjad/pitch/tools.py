@@ -1,4 +1,5 @@
-from abjad.accidentals.accidental import _Accidental
+#from abjad.accidentals.accidental import _Accidental
+from abjad.accidentals.accidental import Accidental
 from abjad.core.abjadcore import _Abjad
 from math import floor
 
@@ -62,7 +63,8 @@ class _PitchTools(_Abjad):
       else:
          adjustment %= 12
       #print adjustment
-      return _Accidental.adjustmentToAccidentalString[adjustment]
+      #return _Accidental.adjustmentToAccidentalString[adjustment]
+      return Accidental.adjustmentToAccidentalString[adjustment]
 
    def nearestNeighbor(self, pitchNumber, pc):
       targetPC = pitchNumber % 12
@@ -83,7 +85,8 @@ class _PitchTools(_Abjad):
       # pitch number 12 notated as letter 'b' with accidentals
       accidentalString = self.letterPitchNumberToNearestAccidentalString(
          letter, pitchNumber)
-      adjustment = _Accidental.accidentalStringToAdjustment[accidentalString]
+      #adjustment = _Accidental.accidentalStringToAdjustment[accidentalString]
+      adjustment = Accidental.accidentalStringToAdjustment[accidentalString]
       adjustedPitchNumber = pitchNumber - adjustment
       return self.pitchNumberToOctave(adjustedPitchNumber)
 

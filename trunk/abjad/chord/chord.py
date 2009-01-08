@@ -63,6 +63,14 @@ class Chord(_Leaf):
 
    ### PUBLIC ATTRIBUTES ### 
 
+   @property
+   def center(self):
+      numbers = self.numbers
+      if numbers:
+         return sum(numbers).__truediv__(len(numbers))
+      else:
+         return None
+
    @apply
    def noteheads( ):
       '''Return immutable tuple of noteheads in self.'''

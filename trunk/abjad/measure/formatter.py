@@ -9,14 +9,23 @@ class _MeasureFormatter(_ContainerFormatter):
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)
 
-   @property
-   def _meter(self):
-      result = [ ]
-      if self._client.meter:
-         result.extend(['\t' + x for x in self._client.meter._before])
-      if self._client.meter and not self._client.meter.hide:
-         result.append('\t' + self._client.meter.lily)
-      return result
+#   @property
+#   def _meter(self):
+#      result = [ ]
+#
+##      if self._client.meter:
+##         result.extend(['\t' + x for x in self._client.meter._before])
+##      if self._client.meter and not self._client.meter.hide:
+##         result.append('\t' + self._client.meter.lily)
+#      
+#      measure = self._client
+#      meter_interface = measure.meter
+#      forced_meter = measure.meter.forced
+#      result.extend(['\t' + x for x in meter_interface._before])
+#      #if forced_meter and not forced_meter.hide:
+#      #   result.append('\t' + forced_meter.lily)
+#
+#      return result
 
    @property
    def lily(self):
@@ -25,7 +34,7 @@ class _MeasureFormatter(_ContainerFormatter):
       result.extend(self.before)
       result.extend(self.opening)
       result.extend(self._opening)
-      result.extend(self._meter)
+      #result.extend(self._meter)
       if self._client.duration.compression != Rational(1, 1):
          #result.extend(self._meter)
          compression = self._client.duration.compression

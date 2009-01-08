@@ -24,11 +24,14 @@ def excise(leaf):
             #parent.duration = candidate_new_parent_dur
             parent.duration.target = candidate_new_parent_dur
       elif isinstance(parent, Measure):
-         old_denominator = parent.meter.denominator
-         naive_meter = parent.meter.duration - prolated_leaf_duration
+         #old_denominator = parent.meter.denominator
+         #naive_meter = parent.meter.duration - prolated_leaf_duration
+         old_denominator = parent.meter.forced.denominator
+         naive_meter = parent.meter.forced.duration - prolated_leaf_duration
          better_meter = _in_terms_of(naive_meter, old_denominator)
          parent.meter = better_meter
-         new_denominator = parent.meter.denominator
+         #new_denominator = parent.meter.denominator
+         new_denominator = parent.meter.forced.denominator
 
          old_prolation = _denominator_to_multiplier(old_denominator)
          new_prolation = _denominator_to_multiplier(new_denominator)

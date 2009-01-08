@@ -1,9 +1,13 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.accidentals.accidental import _Accidental
+#from abjad.accidentals.accidental import _Accidental
+from abjad.accidentals.accidental import Accidental
 from abjad.pitch.initializer import _PitchInitializer
 from abjad.pitch.tools import _PitchTools
 from math import floor
 
+
+### TODO - Implement pitch comparison on
+###        octave, degree, accidental.adjustment
 
 class Pitch(_Abjad):
 
@@ -39,10 +43,13 @@ class Pitch(_Abjad):
          return self._accidental
       def fset(self, expr):
          if expr is None:
-            self._accidental = _Accidental('')
+            #self._accidental = _Accidental('')
+            self._accidental = Accidental('')
          elif isinstance(expr, str):
-            self._accidental = _Accidental(expr)
-         elif isinstance(expr, _Accidental):
+            #self._accidental = _Accidental(expr)
+            self._accidental = Accidental(expr)
+         #elif isinstance(expr, _Accidental):
+         elif isinstance(expr, Accidental):
             self._accidental = expr
          else:
             raise ValueError('can not set accidental.')
@@ -73,13 +80,25 @@ class Pitch(_Abjad):
       else:
          return None
 
-   @property
-   def number(self):
-      if self._isSet( ):
-         return self.tools.letterToPC[self.letter] + \
-            self.accidental.adjustment + (self.octave - 4) * 12
-      else:
-         return None
+#   @property
+#   def number(self):
+#      if self._isSet( ):
+#         return self.tools.letterToPC[self.letter] + \
+#            self.accidental.adjustment + (self.octave - 4) * 12
+#      else:
+#         return None
+
+   @apply
+   def number( ):
+      def fget(self):
+         if self._isSet( ):
+            return self.tools.letterToPC[self.letter] + \
+               self.accidental.adjustment + (self.octave - 4) * 12
+         else:
+            return None
+      def fset(self, arg):
+         self.__init__(arg)
+      return property(**locals( ))
 
    @property
    def pair(self):

@@ -2,13 +2,10 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.rational.rational import Rational
 
 
-#class _Meter(_GrobHandler):
 class Meter(_GrobHandler):
 
-   #def __init__(self, n, d):
    def __init__(self, *args):
       _GrobHandler.__init__(self, 'TimeSignature')
-      #self.pair = (n, d)
       self.hide = False
       if len(args) == 1 and isinstance(args[0], Meter):
          meter = args[0]
@@ -30,7 +27,6 @@ class Meter(_GrobHandler):
    ### OVERLOADS ###
 
    def __eq__(self, arg):
-      #if isinstance(arg, _Meter):
       if isinstance(arg, Meter):
          return self.pair == arg.pair
       elif isinstance(arg, tuple):
@@ -45,20 +41,12 @@ class Meter(_GrobHandler):
       return True
    
    def __repr__(self):
-      #return '_Meter(%s, %s)' % (self.numerator, self.denominator)
       return 'Meter(%s, %s)' % (self.numerator, self.denominator)
 
    def __str__(self):
       return '%s/%s' % (self.numerator, self.denominator)
 
    ### PUBLIC ATTRIBUTES ###
-
-#   @property
-#   def denominator(self):
-#      if self.pair:
-#         return self.pair[-1]
-#      else:
-#         return None
 
    @apply
    def denominator( ):
@@ -88,13 +76,6 @@ class Meter(_GrobHandler):
    def lily(self):
       return r'\time %s/%s' % (self.numerator, self.denominator)
 
-#   @property
-#   def numerator(self):
-#      if self.pair:
-#         return self.pair[0]
-#      else:
-#         return None
-
    @apply
    def numerator( ):
       def fget(self):
@@ -107,13 +88,11 @@ class Meter(_GrobHandler):
    @apply
    def pair( ):
       def fget(self):
-         #return self._pair
          return self.numerator, self.denominator
       def fset(self, arg):
          if isinstance(arg, tuple) and len(arg) == 2 and \
             isinstance(arg[0], (int, float, long)) and \
             isinstance(arg[1], (int, float, long)):
-            #self._pair = arg
             self.numerator = arg[0]
             self.denominator = arg[1]
          else:

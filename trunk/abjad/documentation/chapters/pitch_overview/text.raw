@@ -8,7 +8,7 @@
 
 <subsection>Custom classes
 
-<p>Abjad implements custom <code>Note</code>, <code>Chord</code>, <code>_NoteHead</code>, <code>Pitch</code> and <code>_Accidental</code> classes to model the way that notes and pitches work together.</p>
+<p>Abjad implements custom <Note>, <Chord>, <_NoteHead>, <Pitch> and <Accidental> classes to model the way that notes and pitches work together.</p>
 
 </subsection>
 

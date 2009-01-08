@@ -2,6 +2,10 @@ from abjad import *
 from py.test import raises
 
 
+### TODO - Change all of this.
+###        Pitches can and should order lexicographically by
+###        octave, degree, accidental.adjustment
+
 def test_pitch_compare_01( ):
    '''Pitches referentially equal.'''
    p1 = Pitch('fs', 4)

@@ -48,8 +48,8 @@ class _Formatter(_Interface):
          if isinstance(value, _FormatCarrier):
             result.append(value)
          # these two lines are a hack:
-         # _Accidental is a _GrobHandler ... 
-         # so how do we best make this loop find _Accidental?
+         # Accidental is a _GrobHandler ... 
+         # so how do we best make this loop find Accidental?
          if hasattr(value, 'pitch'):
             result.append(value.pitch.accidental)
 #         if client.kind('_Leaf'):

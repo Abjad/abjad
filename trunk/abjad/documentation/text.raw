@@ -283,7 +283,7 @@ The leaf inheritance hierarchy
 <toc-section>
 <header> The Abjad helper classes
 <body>
-<p><a href="chapters/accidental_class/index.html">The Abjad <code>_Accidental</code> class</a></p>
+<p><a href="chapters/accidental_class/index.html">The Abjad <code>Accidental</code> class</a></p>
 
 <p><a href="chapters/clef_class/index.html">The Abjad <code>_Clef</code> class</a></p>
 

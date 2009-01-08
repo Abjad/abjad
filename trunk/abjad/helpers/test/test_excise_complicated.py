@@ -2,11 +2,15 @@ from abjad import *
 
 
 def test_excise_tuplet_01( ):
-   '''Nested fixed-duration tuplet.'''
+   '''
+   Nested fixed-duration tuplet.
+   '''
+
    t = Measure((4, 4), [
       FixedDurationTuplet((2,2), [Note(0, (1,2)), Note(1, (1,2)), 
       FixedDurationTuplet((2,4), [Note(i, (1,4)) for i in range(2, 5)])])])
-   '''
+
+   r'''
    \time 4/4
    \times 2/3 {
           c'2
@@ -18,10 +22,12 @@ def test_excise_tuplet_01( ):
           }
    }
    '''
+
    excise(t.leaves[-1])
    measure = t
    assert isinstance(measure, Measure)
-   assert measure.meter == (8, 9)
+   #assert measure.meter == (8, 9)
+   assert measure.meter.forced == (8, 9)
    assert len(measure) == 1
    tuplet = t[0]
    assert isinstance(tuplet, FixedDurationTuplet)

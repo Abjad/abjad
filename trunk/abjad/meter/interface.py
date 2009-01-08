@@ -1,6 +1,5 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
-#from abjad.meter.meter import _Meter
 from abjad.meter.meter import Meter
 
 
@@ -17,8 +16,11 @@ class _MeterInterface(_Interface, _GrobHandler):
    def _before(self):
       result = [ ]
       result.extend(_GrobHandler._before.fget(self))
-      if self.forced or self.change:
+      if self._client.kind('DynamicMeasure'):
          result.append(self.effective.lily)
+      else:
+         if self.forced or self.change:
+            result.append(self.effective.lily)
       return result
 
    ### NOTE: this is kinda kinky:
@@ -35,8 +37,13 @@ class _MeterInterface(_Interface, _GrobHandler):
       return bool(self._client.prev and \
          self._client.prev.meter.pair != self.pair)
 
+   ### TODO - the explicit check for DynamicMeasure seems like
+   ###        a (small) hack; is there a better implementation?
+
    @property
    def effective(self):
+      if self._client.kind('DynamicMeasure'):
+         return Meter(self._client.duration.contents)
       cur = self._client
       while cur is not None:
          if cur.meter._forced:
@@ -48,7 +55,6 @@ class _MeterInterface(_Interface, _GrobHandler):
       for x in self._client._parentage._parentage[1:]:
          if hasattr(x, 'meter') and x.meter._forced:
             return x.meter._forced
-      #return _Meter(4, 4)
       return Meter(4, 4)
 
    @apply
@@ -59,10 +65,8 @@ class _MeterInterface(_Interface, _GrobHandler):
          if arg is None:
             self._forced = None
          elif isinstance(arg, tuple):
-            #meter = _Meter(*arg)
             meter = Meter(*arg)
             self._forced = meter
-         #elif isinstance(arg, _Meter):
          elif isinstance(arg, Meter):
             self._forced = arg
          else:

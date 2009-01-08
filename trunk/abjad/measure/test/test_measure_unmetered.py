@@ -9,7 +9,8 @@ def test_measure_unmetered_01( ):
    assert repr(t) == "Measure([c'4, c'4, c'4, c'4])"
    assert str(t) == "|c'4, c'4, c'4, c'4|"
    assert t.format == "\tc'4\n\tc'4\n\tc'4\n\tc'4"
-   assert t.meter == None
+   #assert t.meter == None
+   assert t.meter.forced == None
    assert len(t) == 4
    #assert t.duration == Rational(1)
    assert t.duration.preprolated == Rational(1)
@@ -22,7 +23,8 @@ def test_measure_unmetered_02( ):
    assert repr(t) == "Measure([c'4, c'4, c'4, c'4, c'4, c'4])"
    assert str(t) == "|c'4, c'4, c'4, c'4, c'4, c'4|"
    assert t.format == "\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4"
-   assert t.meter == None
+   #assert t.meter == None
+   assert t.meter.forced == None
    assert len(t) == 6
    #assert t.duration == Rational(6, 4)
    assert t.duration.preprolated == Rational(6, 4)

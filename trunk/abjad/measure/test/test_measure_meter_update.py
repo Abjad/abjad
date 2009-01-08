@@ -17,7 +17,8 @@ def test_measure_meter_update_01( ):
    '''
 
    t.pop( )
-   t.meter.numerator = 3
+   #t.meter.numerator = 3
+   t.meter.forced.numerator = 3
 
    r'''
         \time 3/8

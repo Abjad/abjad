@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_accidental_grob_format_01( ):
-   '''_Accidental formats the LilyPond Accidental grob.'''
+   #'''_Accidental formats the LilyPond Accidental grob.'''
+   '''Accidental formats the LilyPond Accidental grob.'''
    t = Note(0, (1, 4))
    t.pitch.accidental.color = 'red'
    assert t.format == "\\once \\override Accidental #'color = #red\nc'4"
@@ -13,7 +14,8 @@ def test_accidental_grob_format_01( ):
 
 
 def test_accidental_grob_format_02( ):
-   '''_Accidental clear grob overrides with None.'''
+   #'''_Accidental clear grob overrides with None.'''
+   '''Accidental clear grob overrides with None.'''
    t = Note(0, (1, 4))
    t.pitch.accidental.color = 'red'
    t.pitch.accidental.color = None

@@ -9,21 +9,10 @@ class DynamicMeasure(_Measure):
 
    ### PUBLIC ATTRIBUTES ###
 
-   ### TODO - Notice that the dynamic production of Meter
-   ###        here means that we can not use t.meter
-   ###        as a grob handler. It will not work to say
-   ###        t.meter.transparent = True for DyanmicMeasure.
-   ### 
-   ###        Solution is to give all measures, including
-   ###        this DynamicMeasure, a _MeterInterface.
-   ###        This _MeterInterface will both handle 
-   ###        LilyPond TimeSignature grob overrides and also
-   ###        possess an Abjad meter.
-   
    @apply
    def meter( ):
       def fget(self):
-         return Meter(self.duration.contents)
+         return self._meter
       return property(**locals( ))
 
    ### TODO - Implement a 'preferred denominator' attribute somehow;

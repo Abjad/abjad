@@ -126,7 +126,8 @@ def test_lcopy_05( ):
    t = Measure((4, 4), Note(0, (1, 4)) * 4)
    new = lcopy(t, 1, 3)
    assert isinstance(new, Measure)
-   assert new.meter == (2, 4)
+   #assert new.meter == (2, 4)
+   assert new.meter.forced == (2, 4)
    assert len(new) == 2
    assert new.duration.prolated == Rational(2, 4)
 
@@ -146,7 +147,8 @@ def test_lcopy_06( ):
    t = Measure((4, 4), [FixedDurationTuplet((4, 4), Note(0, (1, 4)) * 5)])
    new = lcopy(t, 1, 4)
    assert isinstance(new, Measure)
-   assert new.meter == (3, 5)
+   #assert new.meter == (3, 5)
+   assert new.meter.forced == (3, 5)
    assert len(new) == 1
    tuplet = new[0]
    assert isinstance(tuplet, FixedDurationTuplet)
@@ -172,7 +174,8 @@ def test_lcopy_07( ):
    assert new.duration.prolated == Rational(3, 5)
    measure = new[0]
    assert isinstance(measure, Measure)
-   assert measure.meter == (3, 5)
+   #assert measure.meter == (3, 5)
+   assert measure.meter.forced == (3, 5)
    assert len(measure) == 1
    #assert measure.duration == Rational(3, 5)
    assert measure.duration.preprolated == Rational(3, 5)
@@ -190,7 +193,8 @@ def test_lcopy_08( ):
    t = Measure((4, 4), FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
    new = lcopy(t, 1)
    assert isinstance(new, Measure)
-   assert new.meter == (5, 6)
+   #assert new.meter == (5, 6)
+   assert new.meter.forced == (5, 6)
    assert len(new) == 2
    tuplet = new[0]
    assert isinstance(tuplet, FixedDurationTuplet)
@@ -228,5 +232,6 @@ def test_lcopy_09( ):
    assert len(staff) == 1
    measure = staff[0]
    assert isinstance(measure, Measure)
-   assert measure.meter == (2, 4)
+   #assert measure.meter == (2, 4)
+   assert measure.meter.forced == (2, 4)
    assert len(measure) == 2

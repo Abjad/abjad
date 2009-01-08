@@ -1,4 +1,5 @@
-from abjad.accidentals.accidental import _Accidental
+#from abjad.accidentals.accidental import _Accidental
+from abjad.accidentals.accidental import Accidental
 from abjad.core.abjadcore import _Abjad
 from abjad.helpers.is_pitch_pair import _is_pitch_pair
 from math import floor
@@ -31,7 +32,8 @@ class _InitializeByPitchNumber(_PitchInit):
    def initialize(self, client, pitchNumber):
       pitchName = client.tools.pcToPitchName[pitchNumber % 12]
       client.letter = pitchName[0]
-      client.accidental = _Accidental(pitchName[1:])
+      #client.accidental = _Accidental(pitchName[1:])
+      client.accidental = Accidental(pitchName[1:])
       client.octave = int(floor(pitchNumber / 12)) + 4
 
 
@@ -45,7 +47,8 @@ class _InitializeByPitchReference(_PitchInit):
 
    def initialize(self, client, pitchReference):
       client.letter = pitchReference.letter
-      client.accidental = _Accidental(pitchReference.accidental._string)
+      #client.accidental = _Accidental(pitchReference.accidental._string)
+      client.accidental = Accidental(pitchReference.accidental._string)
       client.octave = pitchReference.octave
 
 
@@ -57,7 +60,8 @@ class _InitializeByPitchPair(_PitchInit):
    def initialize(self, client, pitchPair):
       name, octave = pitchPair
       client.letter = name[0]
-      client.accidental = _Accidental(name[1:])
+      #client.accidental = _Accidental(name[1:])
+      client.accidental = Accidental(name[1:])
       client.octave = octave
 
 
@@ -68,7 +72,8 @@ class _InitializeByPitchNameAndOctave(_PitchInit):
 
    def initialize(self, client, pitchName, octave):
       client.letter = pitchName[0]
-      client.accidental = _Accidental(pitchName[1:])
+      #client.accidental = _Accidental(pitchName[1:])
+      client.accidental = Accidental(pitchName[1:])
       client.octave = octave
 
 
@@ -81,10 +86,12 @@ class _InitializeByPitchNumberAndLetter(_PitchInit):
       pc = client.tools.letterToPC[letter]
       nearestNeighbor = client.tools.nearestNeighbor(pitchNumber, pc)
       adjustment = pitchNumber - nearestNeighbor
-      accidentalString = _Accidental.adjustmentToAccidentalString[adjustment]
+      #accidentalString = _Accidental.adjustmentToAccidentalString[adjustment]
+      accidentalString = Accidental.adjustmentToAccidentalString[adjustment]
       pitchName = letter + accidentalString
       octave = client.tools.pitchNumberAdjustmentToOctave ( 
          pitchNumber, adjustment)
       client.letter = letter
-      client.accidental = _Accidental(pitchName[1:])
+      #client.accidental = _Accidental(pitchName[1:])
+      client.accidental = Accidental(pitchName[1:])
       client.octave = octave

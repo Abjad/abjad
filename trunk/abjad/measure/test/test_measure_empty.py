@@ -10,7 +10,8 @@ def test_measure_empty_01( ):
    assert repr(t) == 'Measure( )'
    assert str(t) == '| |'
    assert t.format == ''
-   assert t.meter == None
+   #assert t.meter == None
+   assert t.meter.forced == None
    assert len(t) == 0
    #assert t.duration == Rational(0)
    assert t.duration.preprolated == Rational(0)

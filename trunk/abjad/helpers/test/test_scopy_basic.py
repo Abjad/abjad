@@ -38,7 +38,8 @@ def test_scopy_02( ):
    t = Measure((3, 8), Note(0, (1, 8)) * 3)
    new = scopy(t, 0, (3, 16))
    assert isinstance(new, Measure)
-   assert new.meter == (3, 16)
+   #assert new.meter == (3, 16)
+   assert new.meter.forced == (3, 16)
    assert len(new) == 2
    #assert new.duration == (3, 16)
    #assert new[0].duration == (1, 8)

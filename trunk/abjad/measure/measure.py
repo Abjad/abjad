@@ -51,23 +51,26 @@ class Measure(_Measure):
 #   def duration(self):
 #      return self._duration
 
-   @apply
-   def meter( ):
-      def fget(self):
-         return self._meter
-      def fset(self, arg):
-         if arg is None:
-            self._meter = None
-         else:
-            #meter = _Meter(*arg)
-            meter = Meter(arg)
-            self._meter = meter
-      return property(**locals( ))
+   ### TODO - get and set meter on _MeterInterface
+
+#   @apply
+#   def meter( ):
+#      def fget(self):
+#         return self._meter
+#      def fset(self, arg):
+#         if arg is None:
+#            self._meter = None
+#         else:
+#            #meter = _Meter(*arg)
+#            meter = Meter(arg)
+#            self._meter = meter
+#      return property(**locals( ))
    
    ### PUBLIC METHODS ###
 
    def trim(self, start, stop = 'unused'):
-      old_denominator = self.meter.denominator
+      #old_denominator = self.meter.denominator
+      old_denominator = self.meter.forced.denominator
       if stop != 'unused':
          assert not (start == 0 and (stop is None or stop >= len(self)))
       if stop == 'unused':

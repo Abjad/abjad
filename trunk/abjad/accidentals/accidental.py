@@ -1,7 +1,8 @@
 from abjad.core.grobhandler import _GrobHandler
 
 
-class _Accidental(_GrobHandler):
+#class _Accidental(_GrobHandler):
+class Accidental(_GrobHandler):
 
    def __init__(self, string = ''):
       _GrobHandler.__init__(self, 'Accidental')
@@ -12,11 +13,13 @@ class _Accidental(_GrobHandler):
    def __eq__(self, arg):
       if arg is None:
          return self._string == ''
-      elif isinstance(arg, _Accidental):
+      #elif isinstance(arg, _Accidental):
+      elif isinstance(arg, Accidental):
          return self._string == arg._string
       elif isinstance(arg, str):
          return self._string == arg
-      return False
+      else:
+         raise ValueError('can not compare to accidental.')
 
    def __ne__(self, arg):
       return not self == arg
@@ -25,7 +28,8 @@ class _Accidental(_GrobHandler):
       return True
 
    def __repr__(self):
-      return '_Accidental(%s)' % self
+      #return '_Accidental(%s)' % self
+      return 'Accidental(%s)' % self
 
    def __str__(self):
       return self._string
