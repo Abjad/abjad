@@ -34,4 +34,7 @@ class _DurationInterface(_Interface):
 
    @property
    def prolation(self):
-      return reduce(mul, self._prolations, Rational(1))
+      result = Rational(1)
+      for x in self._prolations:
+         result *= x
+      return result
