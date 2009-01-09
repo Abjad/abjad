@@ -1,25 +1,24 @@
 from abjad.core.abjadcore import _Abjad
-#from abjad.core.grobhandler import _GrobHandler
+import types
 
 
-#class _Accidental(_GrobHandler):
-#class Accidental(_GrobHandler):
 class Accidental(_Abjad):
 
    def __init__(self, string = ''):
-      #_GrobHandler.__init__(self, 'Accidental')
-      self._string = string
+      self.string = string
 
    ### OVERLOADS ###
 
    def __eq__(self, arg):
       if arg is None:
-         return self._string == ''
-      #elif isinstance(arg, _Accidental):
+         #return self._string == ''
+         return self.string == ''
       elif isinstance(arg, Accidental):
-         return self._string == arg._string
+         #return self._string == arg._string
+         return self.string == arg.string
       elif isinstance(arg, str):
-         return self._string == arg
+         #return self._string == arg
+         return self.string == arg
       else:
          raise ValueError('can not compare to accidental.')
 
@@ -30,17 +29,27 @@ class Accidental(_Abjad):
       return True
 
    def __repr__(self):
-      #return '_Accidental(%s)' % self
       return 'Accidental(%s)' % self
 
    def __str__(self):
-      return self._string
+      #return self._string
+      return self.string
 
    ### PUBLIC ATTRIBUTES ###
 
    @property
    def adjustment(self):
-      return self.accidentalStringToAdjustment[self._string]
+      #return self.accidentalStringToAdjustment[self._string]
+      return self.accidentalStringToAdjustment[self.string]
+
+   @apply
+   def string( ):
+      def fget(self):
+         return self._string
+      def fset(self, arg):
+         assert isinstance(arg, str)
+         self._string = arg
+      return property(**locals( ))
 
    ### DICTIONARIES ###
 
@@ -65,4 +74,5 @@ class Accidental(_Abjad):
    ### PUBLIC METHODS ###
 
    def hasNone(self):
-      return self._string == ''
+      #return self._string == ''
+      return self.string == ''
