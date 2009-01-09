@@ -1,14 +1,9 @@
 from abjad.core.abjadcore import _Abjad
-#from abjad.accidentals.accidental import _Accidental
-#from abjad.accidentals.accidental import Accidental
 from abjad.accidental.accidental import Accidental
 from abjad.pitch.initializer import _PitchInitializer
 from abjad.pitch.tools import _PitchTools
 from math import floor
 
-
-### TODO - Implement pitch comparison on
-###        octave, degree, accidental.adjustment
 
 class Pitch(_Abjad):
 
@@ -18,6 +13,38 @@ class Pitch(_Abjad):
       self.initializer.initialize(self, *args)
 
    ### OVERLOADS ###
+
+   def __eq__(self, arg):
+      assert isinstance(arg, Pitch)
+      return self.altitude == arg.altitude and \
+         self.accidental.adjustment == arg.accidental.adjustment
+
+   def __ge__(self, arg):
+      assert isinstance(arg, Pitch)
+      return self.altitude > arg.altitude or \
+         (self.altitude == arg.altitude and \
+         self.accidental.adjustment >= arg.accidental.adjustment)
+
+   def __gt__(self, arg):
+      assert isinstance(arg, Pitch)
+      return self.altitude > arg.altitude or \
+         (self.altitude == arg.altitude and \
+         self.accidental.adjustment > arg.accidental.adjustment)
+
+   def __le__(self, arg):
+      assert isinstance(arg, Pitch)
+      return self.altitude < arg.altitude or \
+         (self.altitude == arg.altitude and \
+         self.accidental.adjustment <= arg.accidental.adjustment)
+
+   def __lt__(self, arg):
+      assert isinstance(arg, Pitch)
+      return self.altitude < arg.altitude or \
+         (self.altitude == arg.altitude and \
+         self.accidental.adjustment < arg.accidental.adjustment)
+
+   def __ne__(self, arg):
+      return not self == arg
 
    def __repr__(self):
       if self.name and not self.octave is None:
@@ -44,12 +71,9 @@ class Pitch(_Abjad):
          return self._accidental
       def fset(self, expr):
          if expr is None:
-            #self._accidental = _Accidental('')
             self._accidental = Accidental('')
          elif isinstance(expr, str):
-            #self._accidental = _Accidental(expr)
             self._accidental = Accidental(expr)
-         #elif isinstance(expr, _Accidental):
          elif isinstance(expr, Accidental):
             self._accidental = expr
          else:
@@ -74,24 +98,12 @@ class Pitch(_Abjad):
    def format(self):
       return str(self)
 
-#   @property
-#   def lily(self):
-#      return str(self)
-
    @property
    def name(self):
       if self.letter and self.accidental:
          return '%s%s' % (self.letter, self.accidental)
       else:
          return None
-
-#   @property
-#   def number(self):
-#      if self._isSet( ):
-#         return self.tools.letterToPC[self.letter] + \
-#            self.accidental.adjustment + (self.octave - 4) * 12
-#      else:
-#         return None
 
    @apply
    def number( ):
@@ -157,6 +169,7 @@ class Pitch(_Abjad):
 
    # p.staffSpaceTranspose(-1, 0.5)
    def staffSpaceTranspose(self, staffSpaces, absoluteInterval):
+      '''p.staffSpaceTranspose(-1, 0.5)'''
       pitchNumber = self.number + absoluteInterval
       degree = self.tools.addStaffSpaces(staffSpaces)
       letter = self.tools.diatonicScaleDegreeToLetter[degree]
