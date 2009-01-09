@@ -23,7 +23,7 @@ def show(ly, template = None):
 
    os.chdir(ABJADOUTPUT)
    name = _get_next_output( )
-   outfile = file(name, 'w')
+   outfile = open(name, 'w')
    _write_abjad_header(outfile)
    _write_lilypond_version(outfile)
    _write_lilypond_language(outfile)
