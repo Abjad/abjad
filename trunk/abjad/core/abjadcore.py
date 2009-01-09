@@ -3,11 +3,20 @@ class _Abjad(object):
    Abjad root class. All Abjad classes inherit from _Abjad.
    '''
    
-   def __cmp__(self, arg):
-      raise Exception(NotImplemented)
-
    def __eq__(self, arg):
       return id(self) == id(arg)
+
+   def __ge__(self, arg):
+      return Exception(NoteImplemented)
+
+   def __gt__(self, arg):
+      return Exception(NoteImplemented)
+
+   def __le__(self, arg):
+      return Exception(NoteImplemented)
+
+   def __lt__(self, arg):
+      return Exception(NoteImplemented)
 
    def __ne__(self, arg):
       return id(self) != id(arg)

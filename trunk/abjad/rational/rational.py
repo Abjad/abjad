@@ -1,13 +1,6 @@
 class Rational(object):
 
    def __init__(self, *args):
-#   def __init__(self, n, d = 1):
-#      assert isinstance(n, (int, long))
-#      assert isinstance(d, (int, long))
-#      assert d != 0
-#      gcd = self._gcd(n, d)
-#      self._numerator = n / gcd
-#      self._denominator = d / gcd
       if len(args) == 1:
          n = args[0]
          assert isinstance(n, (int, long, Rational))
@@ -26,8 +19,7 @@ class Rational(object):
          self._numerator = n / gcd
          self._denominator = d / gcd
       else:
-         raise TypeError('Rational() must take one or two arguments.')
-
+         raise TypeError('Rational( ) must take one or two arguments.')
 
    ### INIT UTILS ###
 
@@ -72,35 +64,41 @@ class Rational(object):
    def __abs__(self):
       return Rational(abs(self._n), self._d)
 
-   ### TODO: replace these six standard comparison operators
-   ###       with a definition of only __cmp__ instead
-
-   def __cmp__(self, arg):
-      if arg == 0:
-         return cmp(self._n, 0)
+   def __eq__(self, arg):
+      if isinstance(arg, (int, float, Rational)):
+         return self._n == self._d * arg
       else:
-         return cmp(self - arg, 0)
+         return False
 
-#   def __eq__(self, arg):
-#      if isinstance(arg, (int, long, Rational)):
-#         return self._n == self._d * arg
-#      else:
-#         return False
-#
-#   def __ne__(self, arg):
-#      return not self == arg
-#
-#   def __gt__(self, arg):
-#       return self._n > self._d * arg
-#
-#   def __ge__(self, arg):
-#       return self._n >= self._d * arg
-#
-#   def __lt__(self, arg):
-#       return self._n < self._d * arg
-#
-#   def __le__(self, arg):
-#       return self._n <= self._d * arg
+   def __ne__(self, arg):
+      if isinstance(arg, (int, float, Rational)):
+         return not self == arg
+      else:
+         return True
+
+   def __ge__(self, arg):
+      if isinstance(arg, (int, float, Rational)):
+         return self._n >= self._d * arg
+      else:
+         raise TypeError
+
+   def __gt__(self, arg):
+      if isinstance(arg, (int, float, Rational)):
+         return self._n > self._d * arg
+      else:
+         raise TypeError
+
+   def __le__(self, arg):
+      if isinstance(arg, (int, float, Rational)):
+         return self._n <= self._d * arg
+      else:
+         raise TypeError
+
+   def __lt__(self, arg):
+      if isinstance(arg, (int, float, Rational)):
+         return self._n < self._d * arg
+      else:
+         raise TypeError
 
    def  __add__(self, arg):
       if isinstance(arg, Rational):
@@ -149,7 +147,6 @@ class Rational(object):
       if arg == 0:
          return arg
       return ~(self / arg)
-
 
    def __truediv__(self, arg):
       return self / arg
