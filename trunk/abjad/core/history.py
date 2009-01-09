@@ -14,12 +14,12 @@ class _HistoryInterface(_Abjad):
    ### PUBLIC METHODS ###
 
    def clear(self):
-      for item in self.__dict__.iteritems( ):
+      for item in self.__dict__.items( ):
          self.__dict__.pop(item)
 
    def getAttributeNames(self):
       result = [ ]
-      for key in self.__dict__.iterkeys( ):
+      for key in self.__dict__.keys( ):
          if not key.startswith('_'):
             result.append(key)
       return result
