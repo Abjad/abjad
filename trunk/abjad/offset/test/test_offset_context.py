@@ -1,7 +1,6 @@
 from abjad import *
 
 
-
 def test_context_offsets_01( ):
    v1 = Voice(Note(0, (1, 8)) * 15)
    v2 = Voice(Note(0, (1, 8)) * 15)
@@ -20,6 +19,7 @@ def test_context_offset_05( ):
       assert x.offset.context == x.offset.score == offset
       offset += Rational(*d)
 
+
 def test_context_offset_06( ):
    '''Offset works on nested tuplets.'''
    tp = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
@@ -30,9 +30,7 @@ def test_context_offset_06( ):
       offset += Rational(*d)
 
 
-
 ### nested contexts ###
-
 
 def test_context_offset_10( ):
    '''offset on context works in nested contexts.'''
@@ -43,6 +41,7 @@ def test_context_offset_10( ):
       assert x.offset.context == x.offset.score == offset
       offset += Rational(*d)
    
+
 def test_context_offset_11( ):
    '''offset on contexts works in sequential contexts.'''
    v1 = Voice(Note(0, (1, 8)) * 4)
@@ -52,6 +51,7 @@ def test_context_offset_11( ):
    for i, x in enumerate(t):
       assert x.offset.context == x.offset.score == i * Rational(4, 8)
 
+
 def test_context_offset_12( ):
    '''offset on contexts works in nested parallel contexts.'''
    v1 = Voice(Note(0, (1, 8)) * 4)
@@ -60,6 +60,7 @@ def test_context_offset_12( ):
    t.brackets = 'double-angle'
    for x in t:
       assert x.offset.context == x.offset.score == 0
+
 
 def test_context_offset_13( ):
    '''offset on contexts works in nested parallel and sequential contexts.'''
@@ -81,4 +82,3 @@ def test_context_offset_13( ):
    assert v2b.offset.score == Rational(8, 8)
    assert v3b.offset.context == Rational(4, 8)
    assert v3b.offset.score == Rational(12, 8)
-

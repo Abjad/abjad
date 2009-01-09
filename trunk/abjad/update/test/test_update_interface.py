@@ -9,7 +9,7 @@ def test_update_interface_01( ):
    t = Note(0, (1, 4))
    assert not t._update._current
    
-   t.offset.flamingo
+   t.offset.score
    assert t._update._current
    
 
@@ -21,7 +21,7 @@ def test_update_interface_02( ):
    t = Voice(scale(4))
    assert not t._update._current
 
-   t[-1].offset.flamingo
+   t[-1].offset.score
    assert t._update._current
 
 
@@ -31,7 +31,7 @@ def test_update_interface_03( ):
    '''
 
    t = Note(0, (1, 4))
-   t.offset.flamingo
+   t.offset.score
    new = t.copy( )
    assert not new._update._current
 
@@ -42,7 +42,7 @@ def test_update_interface_04( ):
    '''
 
    t = Voice(scale(4))
-   t[-1].offset.flamingo
+   t[-1].offset.score
    new = t.copy( )
    assert not new._update._current
 
@@ -53,7 +53,7 @@ def test_update_interface_05( ):
    '''
 
    t = Voice(scale(4))
-   t[-1].offset.flamingo
+   t[-1].offset.score
    assert t._update._current
 
    del(t[1])
@@ -66,7 +66,7 @@ def test_update_interface_06( ):
    '''
 
    t = Voice(scale(4))
-   t[-1].offset.flamingo
+   t[-1].offset.score
    assert t._update._current
    
    t.insert(1, Note(1, (1, 16)))
@@ -79,7 +79,7 @@ def test_update_interface_07( ):
    '''
 
    t = Voice(scale(4))
-   t[-1].offset.flamingo
+   t[-1].offset.score
    assert t._update._current
 
    t.append(Note(7, (1, 8)))
@@ -92,7 +92,7 @@ def test_update_interface_08( ):
    '''
 
    t = Voice(scale(4))
-   t[-1].offset.flamingo
+   t[-1].offset.score
    assert t._update._current
 
    t.extend([Note(7, (1, 8)), Note(9, (1, 8))])
@@ -105,7 +105,7 @@ def test_update_interface_09( ):
    '''
 
    t = Voice(scale(4))
-   t[-1].offset.flamingo
+   t[-1].offset.score
    assert t._update._current
 
    t.embed(1, [Note(7, (1, 8)), Note(9, (1, 8))])
@@ -118,7 +118,7 @@ def test_update_interface_10( ):
    '''
 
    t = Voice(scale(4))
-   t[-1].offset.flamingo
+   t[-1].offset.score
    assert t._update._current
 
    t.pop( )
@@ -131,7 +131,7 @@ def test_update_interface_11( ):
    '''
 
    t = Voice(scale(4))
-   t[-1].offset.flamingo
+   t[-1].offset.score
    assert t._update._current
 
    t.remove(t[1])
