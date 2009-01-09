@@ -98,12 +98,18 @@ class Pitch(_Abjad):
    def format(self):
       return str(self)
 
-   @property
-   def name(self):
-      if self.letter and self.accidental:
-         return '%s%s' % (self.letter, self.accidental)
-      else:
-         return None
+   @apply
+   def name( ):
+      def fget(self):
+         if self.letter and self.accidental:
+            return '%s%s' % (self.letter, self.accidental)
+         else:
+            return None
+      def fset(self, name):
+         letter, accidental = self.tools.nameToLetterAccidental(name)
+         self.letter = letter
+         self.accidental = accidental
+      return property(**locals( ))
 
    @apply
    def number( ):

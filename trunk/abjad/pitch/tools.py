@@ -1,5 +1,3 @@
-#from abjad.accidentals.accidental import _Accidental
-#from abjad.accidentals.accidental import Accidental
 from abjad.accidental.accidental import Accidental
 from abjad.core.abjadcore import _Abjad
 from math import floor
@@ -10,11 +8,6 @@ class _PitchTools(_Abjad):
    def __init__(self, _client):
       self._client = _client
 
-   ### REPR ###
-
-   def __repr__(self):
-      return '_PitchTools( )'
-      
    ### UTILITIES ###
 
    pcToPitchName = {
@@ -97,3 +90,9 @@ class _PitchTools(_Abjad):
       if scaleDegree == 0:
          scaleDegree = 7
       return scaleDegree
+
+   def nameToLetterAccidental(self, name):
+      if len(name) == 1:
+         return name, ''
+      else:
+         return name[0], name[1:]
