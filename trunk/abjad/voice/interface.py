@@ -40,7 +40,7 @@ class _VoiceInterface(_Interface):
    @property
    def numeric(self):
       first = self.signature[0]
-      return isinstance(first, int) and 0 < first
+      return isinstance(first, (int, long)) 
 
    @property
    def signature(self):
