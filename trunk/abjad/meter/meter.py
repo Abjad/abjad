@@ -33,6 +33,30 @@ class Meter(_GrobHandler):
          return self.pair == arg
       else:
          return False
+
+   def __ge__(self, arg):
+      if isinstance(arg, Meter):
+         return self.duration >= arg.duration
+      else:
+         raise TypeError
+   
+   def __gt__(self, arg):
+      if isinstance(arg, Meter):
+         return self.duration > arg.duration
+      else:
+         raise TypeError
+   
+   def __le__(self, arg):
+      if isinstance(arg, Meter):
+         return self.duration <= arg.duration
+      else:
+         raise TypeError
+   
+   def __lt__(self, arg):
+      if isinstance(arg, Meter):
+         return self.duration < arg.duration
+      else:
+         raise TypeError
    
    def __ne__(self, arg):
       return not self == arg
