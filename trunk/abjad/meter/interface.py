@@ -1,5 +1,6 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
+from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.meter.meter import Meter
 
 
@@ -44,8 +45,13 @@ class _MeterInterface(_Interface, _GrobHandler):
 
    @property
    def effective(self):
-      if self._client.kind('DynamicMeasure'):
-         return Meter(self._client.duration.contents)
+      client = self._client
+      if client.kind('DynamicMeasure'):
+         if client.denominator:
+            return Meter(
+               _in_terms_of(client.duration.contents, client.denominator))
+         else:
+            return Meter(client.duration.contents)
       cur = self._client
       while cur is not None:
          if cur.meter._forced:
