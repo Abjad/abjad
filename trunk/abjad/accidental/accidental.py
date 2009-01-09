@@ -4,20 +4,20 @@ import types
 
 class Accidental(_Abjad):
 
-   def __init__(self, string = ''):
-      self.string = string
+   def __init__(self, arg = ''):
+      if isinstance(arg, str):
+         self.string = arg
+      elif isinstance(arg, Accidental):
+         self.string = arg.string 
 
    ### OVERLOADS ###
 
    def __eq__(self, arg):
       if arg is None:
-         #return self._string == ''
          return self.string == ''
       elif isinstance(arg, Accidental):
-         #return self._string == arg._string
          return self.string == arg.string
       elif isinstance(arg, str):
-         #return self._string == arg
          return self.string == arg
       else:
          raise ValueError('can not compare to accidental.')
@@ -32,14 +32,12 @@ class Accidental(_Abjad):
       return 'Accidental(%s)' % self
 
    def __str__(self):
-      #return self._string
       return self.string
 
    ### PUBLIC ATTRIBUTES ###
 
    @property
    def adjustment(self):
-      #return self.accidentalStringToAdjustment[self._string]
       return self.accidentalStringToAdjustment[self.string]
 
    @apply
@@ -74,5 +72,4 @@ class Accidental(_Abjad):
    ### PUBLIC METHODS ###
 
    def hasNone(self):
-      #return self._string == ''
       return self.string == ''
