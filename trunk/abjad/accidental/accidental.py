@@ -1,5 +1,4 @@
 from abjad.core.abjadcore import _Abjad
-import types
 
 
 class Accidental(_Abjad):
@@ -13,15 +12,20 @@ class Accidental(_Abjad):
    ### OVERLOADS ###
 
    def __eq__(self, arg):
-      if arg is None:
-         return self.string == ''
-      elif isinstance(arg, Accidental):
-         return self.string == arg.string
-      elif isinstance(arg, str):
-         return self.string == arg
-      else:
-         raise ValueError('can not compare to accidental.')
+      return self.string == Accidental(arg).string
 
+   def __ge__(self, arg):
+      return self.adjustment >= arg.adjustment
+
+   def __gt__(self, arg):
+      return self.adjustment > arg.adjustment
+   
+   def __le__(self, arg):
+      return self.adjustment <= arg.adjustment
+
+   def __lt__(self, arg):
+      return self.adjustment < arg.adjustment
+   
    def __ne__(self, arg):
       return not self == arg
 
@@ -39,6 +43,10 @@ class Accidental(_Abjad):
    @property
    def adjustment(self):
       return self.accidentalStringToAdjustment[self.string]
+
+   @property
+   def format(self):
+      return self.string
 
    @apply
    def string( ):
