@@ -1,4 +1,5 @@
 from abjad.core.abjadcore import _Abjad
+from abjad.scm.function import Function
 
 
 class _Parser(_Abjad):
@@ -32,6 +33,8 @@ class _Parser(_Abjad):
          return '#%s' % value
       elif self._isLilyFunctionName(value):
          return '#%s' % value
+      elif isinstance(value, Function):
+         return '#%s' % value.format
       elif isinstance(value, tuple):
          return "#'(%s . %s)" % value
       elif value.__class__.__name__ in ['String', '_Markup']:
