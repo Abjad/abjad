@@ -1,3 +1,4 @@
+from abjad.cfg.cfg import accidental_spelling
 from abjad.core.abjadcore import _Abjad
 from abjad.accidental.accidental import Accidental
 from abjad.pitch.initializer import _PitchInitializer
@@ -6,6 +7,8 @@ from math import floor
 
 
 class Pitch(_Abjad):
+
+   accidental_spelling = accidental_spelling
 
    def __init__(self, *args):
       self.tools = _PitchTools(self)
