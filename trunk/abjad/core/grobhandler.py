@@ -40,7 +40,7 @@ class _GrobHandler(_FormatCarrier):
 
    @property
    def _frequencyIndicator(self):
-      if self._client.kind('_Leaf'):
+      if hasattr(self, '_client') and self._client.kind('_Leaf'):
          return r'\once '
       else:
          return ''

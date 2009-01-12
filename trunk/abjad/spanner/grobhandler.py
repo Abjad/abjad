@@ -1,9 +1,3 @@
-#from abjad.component.component import _Component
-#from abjad.core.abjadcore import _Abjad
-#from abjad.helpers.hasname import hasname
-#from abjad.helpers.instances import instances
-#from abjad.rational.rational import Rational
-#from copy import copy as python_copy
 from abjad.core.grobhandler import _GrobHandler
 from abjad.spanner.spanner import Spanner
 
