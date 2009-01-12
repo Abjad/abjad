@@ -7,7 +7,7 @@ def test_cast_01( ):
    Rest(t[0])
    assert t.format == "\\new Staff {\n\tr8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    assert check(t)
-   '''
+   r'''
    \new Staff {
            r8
            cs'8
@@ -28,7 +28,7 @@ def test_cast_02( ):
    Rest(t[0])
    Note(t[0])
    assert t.format == "\\new Staff {\n\t8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   '''
+   r'''
    \new Staff {
            8
            cs'8
@@ -51,7 +51,7 @@ def test_cast_03( ):
    Rest(t[0])
    Chord(t[0])
    assert t.format == "\\new Staff {\n\t<>8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   '''
+   r'''
    \new Staff {
            <>8
            cs'8
@@ -77,7 +77,7 @@ def test_cast_04( ):
    assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 c'8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    Rest(staff[0])
    assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 r8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   '''
+   r'''
    \new Staff {
            \override NoteHead #'color = #red
            \beam #0 #1 r8 \staccato
@@ -105,7 +105,7 @@ def test_cast_05( ):
    assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 c'8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    Chord(staff[0])
    assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 <c'>8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   '''
+   r'''
    \new Staff {
            \override NoteHead #'color = #red
            \beam #0 #1 <c'>8 \staccato
