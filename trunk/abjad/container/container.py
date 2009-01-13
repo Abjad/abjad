@@ -89,8 +89,9 @@ class Container(_Component):
          for m in self._music[i]:
             m._die( )
 
-   ### TODO should we make this non recursive to distinguish it from get( )
-   ###      and to make the behaviour more list-like?
+   ### TODO Should we make __getitem__ non recursive to distinguish 
+   ###      it from get( ) and to make the behaviour more list-like?
+
    def __getitem__(self, expr):
       if isinstance(expr, str):
          class Visitor(object):
@@ -98,8 +99,10 @@ class Container(_Component):
                self.name = name
                self.result = None
             def visit(self, node):
-               ### this guy will return only the last node with name == self.name. 
-               ### What if there are multiple nodes with the same name? Should it return a list?
+               ### this guy will return only the last node 
+               ### with name == self.name. 
+               ### What if there are multiple nodes with the same name? 
+               ### Should it return a list?
                if hasattr(node, 'name') and \
                   node.name == self.name:
                   self.result = node
@@ -110,7 +113,7 @@ class Container(_Component):
          return self._music[expr]
             
    def __iadd__(self, expr):
-      ### iadd avoids unnecessary copying of structures.
+      '''__iadd__ avoids unnecessary copying of structures.'''
       return coalesce([self, expr.copy( )])
 
    def __imul__(self, n):
@@ -146,6 +149,7 @@ class Container(_Component):
          else:
             j = i
          expr._parent = self
+         #expr._switchParentTo(self)
          self._music[j] = expr
          if expr.leaves:
             left, right = expr.leaves[0], expr.leaves[-1]
@@ -156,6 +160,7 @@ class Container(_Component):
          assert isinstance(expr, list)
          for x in expr:
             x._parent = self
+            #x._switchParentTo(self)
          self._music[i.start : i.stop] = expr
          if expr[0].leaves:
             left = expr[0].leaves[0]
@@ -258,6 +263,18 @@ class Container(_Component):
          parent.embed(parent.index(self), expr)
          # .. and then remove me from parent
          parent.remove(self)
+
+   def clear(self):
+      '''
+      Remove any contents from self.
+      Contents have parent set to None.
+      Leave all spanners untouched.
+      '''
+      result = self._music[ : ]
+      for element in result:
+         element._switchParentTo(None)
+      self._update._markForUpdateToRoot( )
+      return result
 
    def embed(self, i, expr):
       '''

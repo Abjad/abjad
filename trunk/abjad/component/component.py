@@ -65,6 +65,14 @@ class _Component(_Abjad):
    def __rmul__(self, n):
       return self * n
 
+   ### PRIVATE METHODS ###
+
+   def _switchParentTo(self, new_parent):
+      old_parent = self._parent
+      if old_parent is not None:
+         old_parent._music.remove(self)
+      self._parent = new_parent
+
    ### PUBLIC ATTRIBUTES ###
 
    @apply
