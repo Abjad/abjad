@@ -1,6 +1,5 @@
 from abjad.helpers.leaf_split import leaf_split_binary, leaf_split
 from abjad.helpers.leaves_fuse import leaves_fuse_binary
-#from abjad.meter.meter import _Meter
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 from abjad.skip.skip import Skip
@@ -15,7 +14,6 @@ class MetricGrid(Spanner):
       Spanner.__init__(self, music)
       self._meters = meters
       self.hide = False
-#      self.offset ?
 
    @apply
    def meters( ):
@@ -25,7 +23,6 @@ class MetricGrid(Spanner):
          prev_meter = None
          while moffset < self.duration:
             m = self._meters[i % len(self._meters)]
-            #m = _Meter(*m)
             m = Meter(*m)
             ### new attribute
             m.offset = moffset
@@ -45,20 +42,16 @@ class MetricGrid(Spanner):
       return True
 
    def splitOnBar(self):
-      #leaf = self[0]
       leaf = self.leaves[0]
       meters = self.meters
       meter = meters.next( )
       while leaf:
-         #if leaf.offset < meter.offset:
          if leaf.offset.score < meter.offset:
-            #if leaf.offset + leaf.duration.prolated > meter.offset and \
             if leaf.offset.score + leaf.duration.prolated > meter.offset and \
                self.splittingCondition(leaf):
                ### will split
                if not leaf.tie.spanner:
                   Tie(leaf)
-               #splitdur = meter.offset - leaf.offset
                splitdur = meter.offset - leaf.offset.score
                ### if splitdur not m / 2**n
                if not splitdur._denominator & (splitdur._denominator - 1):
@@ -69,7 +62,6 @@ class MetricGrid(Spanner):
                   leaf = leaves_splitted[1].leaves[0]
             else:
                ### only advance if we have not split.
-               ### TODO _nextBead does not seem to play well with tuplets
                leaf = leaf._navigator._nextBead
                #leaf = leaf.next
          else:
@@ -84,11 +76,9 @@ class MetricGrid(Spanner):
       meters = self.meters
       meter = meters.next( )
       leaves_in_meter = [[]]
-      #leaf = self[0]
       leaf = self.leaves[0]
       ### group leaves by measure.
       while leaf:
-         #if leaf.offset < meter.offset + meter.duration:
          if leaf.offset.score < meter.offset + meter.duration:
             leaves_in_meter[-1].append(leaf)
             leaf = leaf._navigator._nextBead
@@ -120,9 +110,7 @@ class MetricGrid(Spanner):
    def _slicingMeters(self, leaf):
       '''Return the MetricStrip(s) that slices leaf, if any.'''
       for m in self.meters:
-         #if leaf.offset < m.offset:
          if leaf.offset.score < m.offset:
-            #if leaf.offset + leaf.duration.prolated > m.offset:
             if leaf.offset.score + leaf.duration.prolated > m.offset:
                yield m 
             else:
@@ -131,7 +119,6 @@ class MetricGrid(Spanner):
    def _matchingMeter(self, leaf):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''
       for m in self.meters:
-         #if leaf.offset == m.offset: 
          if leaf.offset.score == m.offset: 
             return m
 
@@ -140,34 +127,37 @@ class MetricGrid(Spanner):
 
    ###FIXME: formatting is ridiculously slow. 
    ###       find a way to make it faster.
+   ### Tue Jan 13 12:05:43 EST 2009 [VA] using _slicingMetersFound boolean
+   ### flag now to improve performance time. Better but still not perfect. 
+   ### Is metricgrid a good candidate for the UpdateInterface?
    def _before(self, leaf):
       result = [ ]
       if not self.hide:
          meter = self._matchingMeter(leaf)
          if meter and not meter.hide:
-            #result.append(meter.lily)
             result.append(meter.format)
-            #return result
          m = self._slicingMeters(leaf)
          m = [meter for meter in m if not meter.hide]
          if m:
+            ### set self._slicingMetersFound as temporary flag so that 
+            ### self._after does not have to recompute _slicingMeters( )
+            self._slicingMetersFound = True
             result.append('<<')
             for meter in m:
                s = Skip( 1 )
-               #s.duration.multiplier = meter.offset - leaf.offset
                s.duration.multiplier = meter.offset - leaf.offset.score
-               #s.formatter.right.append(meter.lily)
                s.formatter.right.append(meter.format)
-               #result.append( '<<\n\t%s' % Sequential([s]).format )
                result.append( '{ %s }' % s.format )
       return result
 
    def _after(self, leaf):
       result = [ ]
-      if not self.hide:
-         m = self._slicingMeters(leaf)
-         if any([not meter.hide for meter in m]):
-            result.append( '>>' )
+      if hasattr(self, '_slicingMetersFound'):
+         delattr(self, '_slicingMetersFound')
+         result.append('>>')
       return result
-
-
+#      if not self.hide:
+#         m = self._slicingMeters(leaf)
+#         if any([not meter.hide for meter in m]):
+#            result.append( '>>' )
+#      return result
