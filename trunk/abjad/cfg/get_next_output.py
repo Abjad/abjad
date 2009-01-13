@@ -6,6 +6,7 @@ from abjad.cfg.warn_almost_full import _warn_almost_full
 def _get_next_output( ):
    last_output = _get_last_output( )
    if last_output is None:
+      next_number = 0
       next_output = '0000.ly'
    else:
       last_number = int(last_output.split('.')[0])
