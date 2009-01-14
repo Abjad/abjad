@@ -340,8 +340,10 @@ class _Leaf(_Component):
       if nextNode:
          #print nextNode._parentage._staff, self._parentage._staff
          #if nextNode._parentage._staff == self._parentage._staff:
-         if nextNode._parentage._first('Staff') == \
-            self._parentage._first('Staff'):
+         #if nextNode._parentage._first('Staff') == \
+         #   self._parentage._first('Staff'):
+         if nextNode.parentage._first('Staff') == \
+            self.parentage._first('Staff'):
             return nextNode
       return None
 
@@ -359,8 +361,10 @@ class _Leaf(_Component):
       if prevNode:
          #print prevNode._parentage._staff, self._parentage._staff
          #if prevNode._parentage._staff == self._parentage._staff:
-         if prevNode._parentage._first('Staff') == \
-            self._parentage._first('Staff'):
+         #if prevNode._parentage._first('Staff') == \
+         #   self._parentage._first('Staff'):
+         if prevNode.parentage._first('Staff') == \
+            self.parentage._first('Staff'):
             return prevNode
       return None
 
@@ -373,7 +377,8 @@ class _Leaf(_Component):
          #spanner._sever(spanner.index(self))
          spanner.remove(self)
       self._update._markForUpdateToRoot( )
-      self._parentage._detach( )
+      #self._parentage._detach( )
+      self.parentage._detach( )
 
    ### PUBLIC METHODS ###
 

@@ -21,7 +21,8 @@ class _UpdateInterface(_Interface):
 
    @property
    def _currentToRoot(self):
-      for x in self._client._parentage._parentage:
+      #for x in self._client._parentage._parentage:
+      for x in self._client.parentage._parentage:
          if not x._update._current:
             return False
       return True
@@ -29,7 +30,8 @@ class _UpdateInterface(_Interface):
    ### PRIVATE METHODS ### 
 
    def _markForUpdateToRoot(self):
-      for x in self._client._parentage._parentage:
+      #for x in self._client._parentage._parentage:
+      for x in self._client.parentage._parentage:
          x._update._current = False
 
 #   def _updateAll(self):
@@ -42,7 +44,8 @@ class _UpdateInterface(_Interface):
 #         node._update._current = True
 
    def _updateAll(self):
-      g = self._client._parentage._root._navigator._DFS( )
+      #g = self._client._parentage._root._navigator._DFS( )
+      g = self._client.parentage._root._navigator._DFS( )
       for node in g:
          for o in node._update._observers:
             o.update( )

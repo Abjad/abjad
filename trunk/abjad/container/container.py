@@ -40,7 +40,8 @@ class Container(_Component):
       '''
       self.spanners.fracture( )
       self._update._markForUpdateToRoot( )
-      self._parentage._detach( )
+      #self._parentage._detach( )
+      self.parentage._detach( )
 
    def _establish(self):
       for x in self._music:

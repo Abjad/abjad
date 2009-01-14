@@ -54,7 +54,8 @@ class _Navigator(_Abjad):
       result = [client]
       prev = client
       #for parent in client._parentage._iparentage[1: ]:
-      for parent in client._parentage._parentage[1: ]:
+      #for parent in client._parentage._parentage[1: ]:
+      for parent in client.parentage._parentage[1: ]:
          if parent.parallel:
             result.append(parent)
          elif parent.index(prev) == 0:
@@ -103,7 +104,8 @@ class _Navigator(_Abjad):
       result = [client]
       prev = client
       #for parent in client._parentage._iparentage[1: ]:
-      for parent in client._parentage._parentage[1: ]:
+      #for parent in client._parentage._parentage[1: ]:
+      for parent in client.parentage._parentage[1: ]:
          if parent.parallel:
             if prev.duration.prolated == parent.duration.prolated:
                result.append(parent)
@@ -200,7 +202,8 @@ class _Navigator(_Abjad):
       else:
          #for p in self._client._parentage._parentage:
          #for p in self._client._parentage._iparentage[1: ]:
-         for p in self._client._parentage._parentage[1: ]:
+         #for p in self._client._parentage._parentage[1: ]:
+         for p in self._client.parentage._parentage[1: ]:
             next = p._navigator._nextSibling
             if next:
                return next
@@ -253,7 +256,8 @@ class _Navigator(_Abjad):
       else:
          #for p in self._client._parentage._parentage:
          #for p in self._client._parentage._iparentage[1: ]:
-         for p in self._client._parentage._parentage[1: ]:
+         #for p in self._client._parentage._parentage[1: ]:
+         for p in self._client.parentage._parentage[1: ]:
             prev = p._navigator._prevSibling
             if prev:
                return prev
@@ -319,15 +323,18 @@ class _Navigator(_Abjad):
          of self._client and arg share the same context and when none
          of the disjunct elements in the parentage of self._client and arg
          are parallel containers.'''
+      #parentage = \
+      #   self._client._parentage._disjunctInclusiveParentageBetween(arg)
       parentage = \
-         self._client._parentage._disjunctInclusiveParentageBetween(arg)
+         self._client.parentage._disjunctInclusiveParentageBetween(arg)
       return not any([self._isInaccessibleToMe(p) for p in parentage])
       
    def _hasGoodSharedParent(self, arg):
       '''Returns True when self._client and arg have at least one
          element of shared parentage and the first element of shared
          parentage between self._client and arg is not parallel.'''
-      first_shared = self._client._parentage._getFirstSharedParent(arg)
+      #first_shared = self._client._parentage._getFirstSharedParent(arg)
+      first_shared = self._client.parentage._getFirstSharedParent(arg)
       return first_shared and not first_shared.parallel
 
    def _isImmediateTemporalSuccessorOf(self, expr):
@@ -340,8 +347,10 @@ class _Navigator(_Abjad):
 
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
-      c_thread_parentage = expr._parentage._threadParentage
-      thread_parentage = self._client._parentage._threadParentage
+      #c_thread_parentage = expr._parentage._threadParentage
+      c_thread_parentage = expr.parentage._threadParentage
+      #thread_parentage = self._client._parentage._threadParentage
+      thread_parentage = self._client.parentage._threadParentage
       match_parent = True
       if len(c_thread_parentage) == len(thread_parentage):
          for c, p in zip(c_thread_parentage, thread_parentage):
@@ -434,8 +443,10 @@ class _Navigator(_Abjad):
    def _shareContext(self, arg):
       '''Return True when self._client and arg share the same
          enclosing context name, otherwise False.'''
-      return self._client._parentage._enclosingContextName == \
-         arg._parentage._enclosingContextName
+      #return self._client._parentage._enclosingContextName == \
+      #   arg._parentage._enclosingContextName
+      return self._client.parentage._enclosingContextName == \
+         arg.parentage._enclosingContextName
 
    def _traverse(self, v, depthFirst=True, leftRight=True):
       if depthFirst:

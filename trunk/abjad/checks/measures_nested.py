@@ -13,7 +13,8 @@ class MeasuresNested(_Check):
       #for t in instances(expr, 'Measure'):
       total = 0
       for t in iterate(expr, 'Measure'):
-         if t._parentage._first('Measure'):
+         #if t._parentage._first('Measure'):
+         if t.parentage._first('Measure'):
                violators.append(t)
          total += 1
       return violators, total

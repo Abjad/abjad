@@ -61,7 +61,8 @@ class _LeafFormatter(_Formatter):
    @property
    def _number(self):
       result = [ ]
-      if self.number or self._client._parentage._number:
+      #if self.number or self._client._parentage._number:
+      if self.number or self._client.parentage._number:
          result.append(r'^ \markup { %s }' % self._client.number)
       return result
 

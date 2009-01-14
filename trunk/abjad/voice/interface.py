@@ -44,7 +44,8 @@ class _VoiceInterface(_Interface):
 
    @property
    def signature(self):
-      parentage = self._client._parentage._parentage
+      #parentage = self._client._parentage._parentage
+      parentage = self._client.parentage._parentage
       found_lilypond_expression = False
       signator = None
       for i, p in enumerate(parentage):
@@ -65,7 +66,8 @@ class _VoiceInterface(_Interface):
             signator = p
          elif not p.kind('_Context') and getattr(p, 'parallel', False):
             found_lilypond_expression = True
-            if p._parentage._orphan:
+            #if p._parentage._orphan:
+            if p.parentage._orphan:
                if parentage.index(p) == 0:
                   return self._defaultSignature
                else:

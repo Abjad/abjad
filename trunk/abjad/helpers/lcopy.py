@@ -23,7 +23,8 @@ def lcopy(expr, start = 0, stop = None):
    assert stop > start
 
    # find governor
-   governor = leaves[start]._parentage._governor
+   #governor = leaves[start]._parentage._governor
+   governor = leaves[start].parentage._governor
 
    # copy governor
    governor_copy = governor.copy( )

@@ -37,8 +37,10 @@ class _OffsetInterface(_Interface):
    def _updateContext(self):
       offset = Rational(0, 1)
       prev = self._client._navigator._prev
-      self_parentage = self._client._parentage._threadParentage
-      while prev and prev._parentage._threadParentage == self_parentage:
+      #self_parentage = self._client._parentage._threadParentage
+      self_parentage = self._client.parentage._threadParentage
+      #while prev and prev._parentage._threadParentage == self_parentage:
+      while prev and prev.parentage._threadParentage == self_parentage:
          offset += prev.duration.prolated
          prev = prev._navigator._prev
       self._context = offset
