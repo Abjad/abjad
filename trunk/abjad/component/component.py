@@ -262,5 +262,15 @@ class _Component(_Abjad):
       result._update._markForUpdateToRoot( )
       return result
 
+   def detach(self):
+      '''
+      Remove self from any parent.
+      Keep any music contents belonging to self.
+      Leave all spanners untouched.
+      Return self.
+      '''
+      self._switchParentTo(None)
+      return self
+
    def kind(self, classname):
       return hasname(self, classname)
