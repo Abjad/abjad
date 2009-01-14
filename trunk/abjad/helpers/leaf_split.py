@@ -1,4 +1,4 @@
-from abjad.helpers.attributes import _transfer_all_attributes
+from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.leaf_scale import leaf_scale, leaf_scale_binary
 from abjad.leaf.leaf import _Leaf

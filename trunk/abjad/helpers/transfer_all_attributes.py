@@ -1,3 +1,5 @@
+from abjad.helpers.hasname import hasname
+
 ### TODO - decide whether we wanna keep the current way of
 ###        determining which attributes to transfer.
 ###        right now we transfer all attributes except self.caster;
@@ -22,6 +24,10 @@ def _transfer_all_attributes(old, new):
       if key not in _attributes_not_to_copy:
          if hasattr(value, '_client'):
             setattr(value, '_client', new)
+            ### take care of Grace._parent
+            if hasname(value, '_GraceInterface'):
+               setattr(value.after, '_parent', new)
+               setattr(value.before, '_parent', new)
          setattr(new, key, value)
    new._parent = old._parent
    old._parent = None
