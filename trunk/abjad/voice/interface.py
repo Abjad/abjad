@@ -68,7 +68,8 @@ class _VoiceInterface(_Interface):
          elif not p.kind('_Context') and getattr(p, 'parallel', False):
             found_lilypond_expression = True
             #if p._parentage._orphan:
-            if p.parentage._orphan:
+            #if p.parentage._orphan:
+            if p.parentage.orphan:
                if parentage.index(p) == 0:
                   return self._defaultSignature
                else:

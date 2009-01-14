@@ -47,7 +47,8 @@ class _UpdateInterface(_Interface):
 
    def _updateAll(self):
       #g = self._client._parentage._root._navigator._DFS( )
-      g = self._client.parentage._root._navigator._DFS( )
+      #g = self._client.parentage._root._navigator._DFS( )
+      g = self._client.parentage.root._navigator._DFS( )
       for node in g:
          for o in node._update._observers:
             o.update( )

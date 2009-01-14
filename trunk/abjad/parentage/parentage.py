@@ -123,11 +123,6 @@ class _Parentage(_Abjad):
             p = p._parent
       return None
    
-   @property
-   def _orphan(self):
-      #return len(self._parentage) == 1
-      return len(self.parentage) == 1
-      
 #   @property
 #   def _parentage(self):
 #      result = [ ]
@@ -163,13 +158,14 @@ class _Parentage(_Abjad):
                      parentage.remove(p)
       return parentage
 
-   @property
-   def _root(self):
-      #return self._parentage[-1]
-      return self.parentage[-1]
-
    ### PUBLIC ATTRIBUTES ###
 
+   @property
+   #def _orphan(self):
+   def orphan(self):
+      #return len(self._parentage) == 1
+      return len(self.parentage) == 1
+      
    @property
    #def _parentage(self):
    def parentage(self):
@@ -183,3 +179,10 @@ class _Parentage(_Abjad):
          result.append(cur)
          cur = cur._parent
       return result
+
+   @property
+   #def _root(self):
+   def root(self):
+      #return self._parentage[-1]
+      return self.parentage[-1]
+
