@@ -60,4 +60,6 @@ class _SpannerReceptor(_Abjad):
 
    def unspan(self):
       for spanner in self.spanners[ : ]:
-         spanner.die( )
+         #spanner.die( )
+         spanner.clear( )
+      return spanner
