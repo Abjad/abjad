@@ -41,7 +41,8 @@ class Container(_Component):
       self.spanners.fracture( )
       self._update._markForUpdateToRoot( )
       #self._parentage._detach( )
-      self.parentage._detach( )
+      #self.parentage._detach( )
+      self.parentage.detach( )
 
    def _establish(self):
       for x in self._music:
@@ -273,7 +274,8 @@ class Container(_Component):
       '''
       result = self._music[ : ]
       for element in result:
-         element._switchParentTo(None)
+         #element._switchParentTo(None)
+         element.parentage._switchParentTo(None)
       self._update._markForUpdateToRoot( )
       return result
 

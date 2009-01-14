@@ -1,7 +1,71 @@
 from abjad import *
 
 
-def test_container_detach_01( ):
+def test_parentage_detach_01( ):
+   '''
+   Unspanned leaves detach from parent containers.
+   '''
+
+   t = Staff(scale(4))
+   note = t[1]
+   note.parentage.detach( )
+
+   r'''
+   \new Staff {
+           c'8
+           e'8
+           f'8
+   }
+   '''
+
+   assert t.format == "\\new Staff {\n\tc'8\n\te'8\n\tf'8\n}"
+   
+   assert check(t)
+   assert check(note)
+   assert note._parent is None
+
+
+def test_parentage_detach_02( ):
+   '''
+   Spanned leaves detach from parent containers.
+   Spanners continue to attach to detached leaves.
+   '''
+
+   t = Staff([Voice(scale(4))])
+   p = Beam(t.leaves)
+
+   r'''
+   \new Staff {
+           \new Voice {
+                   c'8 [
+                   d'8
+                   e'8
+                   f'8 ]
+           }
+   }
+   '''
+
+   note = t.leaves[0]
+   t.embed(0, note.parentage.detach( ))
+
+   r'''
+   \new Staff {
+           c'8 [
+           \new Voice {
+                   d'8
+                   e'8
+                   f'8 ]
+           }
+   }
+   '''
+
+   assert t.format == "\\new Staff {\n\tc'8 [\n\t\\new Voice {\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+
+   assert check(t)
+   assert check(note)
+
+
+def test_parentage_detach_03( ):
    '''
    Unspanned containers detach from parent containers successfully.
    '''
@@ -26,7 +90,7 @@ def test_container_detach_01( ):
    }
    '''
    
-   result = t[1].detach( )
+   result = t[1].parentage.detach( )
 
    r'''
    \new Staff {
@@ -46,7 +110,7 @@ def test_container_detach_01( ):
    assert check(result)
 
 
-def test_container_detach_02( ):
+def test_parentage_detach_04( ):
    '''
    Spanned containers detach from parent containers successfully.
    Spanners continue to attach to detached containers.
@@ -70,7 +134,7 @@ def test_container_detach_02( ):
    }
    '''
 
-   t.embed(0, t[0][0].detach( ))
+   t.embed(0, t[0][0].parentage.detach( ))
    
    r'''
    \new Staff {

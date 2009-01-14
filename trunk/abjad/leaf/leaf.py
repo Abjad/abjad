@@ -378,7 +378,8 @@ class _Leaf(_Component):
          spanner.remove(self)
       self._update._markForUpdateToRoot( )
       #self._parentage._detach( )
-      self.parentage._detach( )
+      #self.parentage._detach( )
+      self.parentage.detach( )
 
    ### PUBLIC METHODS ###
 

@@ -19,55 +19,6 @@ class _Parentage(_Abjad):
          self._client._parent = None
          return result
 
-   def _detach(self):
-      '''
-      Sever incoming reference from and
-      outgoing reference to parent.
-      '''
-      self._removeFromParent( )
-      self._cutOutgoingReferenceToParent( )
-
-   def _first(self, classname):
-      p = self._client._parent
-      while p is not None:
-         #if p.__class__.__name__ == classname:
-         if p.kind(classname):
-            return p
-         else:
-            p = p._parent
-      return None
-
-   def _removeFromParent(self):
-      '''
-      Parent no longer references self;
-      but self continues to reference parent.
-      '''
-      if hasattr(self._client, '_parent'):
-         try:
-            self._client._parent._music.remove(self._client)
-         except:
-            pass
-
-   def _getFirstSharedParent(self, arg):
-      '''
-      Returns first shared parent between self._client and arg,
-      otherwise None.
-      '''
-
-      #shared = set(self._parentage) & set(arg._parentage._parentage)
-      #shared = set(self._iparentage) & set(arg._parentage._iparentage)
-      #shared = set(self._parentage) & set(arg._parentage._parentage)
-      #shared = set(self._parentage) & set(arg.parentage._parentage)
-      shared = set(self.parentage) & set(arg.parentage.parentage)
-      if shared:
-         #for parent in self._parentage:
-         #for parent in self._iparentage:
-         #for parent in self._parentage:
-         for parent in self.parentage:
-            if parent in shared:
-               return parent
-      return None
-         
 #   def _disjunctParentageBetween(self, arg):
 #      '''
 #      Returns just those elements in the parentage that do not
@@ -89,6 +40,54 @@ class _Parentage(_Abjad):
       #return set(self._parentage) ^ set (arg._parentage._parentage)
       #return set(self._parentage) ^ set (arg.parentage._parentage)
       return set(self.parentage) ^ set (arg.parentage.parentage)
+
+   def _first(self, classname):
+      p = self._client._parent
+      while p is not None:
+         #if p.__class__.__name__ == classname:
+         if p.kind(classname):
+            return p
+         else:
+            p = p._parent
+      return None
+
+   def _getFirstSharedParent(self, arg):
+      '''
+      Returns first shared parent between self._client and arg,
+      otherwise None.
+      '''
+
+      #shared = set(self._parentage) & set(arg._parentage._parentage)
+      #shared = set(self._iparentage) & set(arg._parentage._iparentage)
+      #shared = set(self._parentage) & set(arg._parentage._parentage)
+      #shared = set(self._parentage) & set(arg.parentage._parentage)
+      shared = set(self.parentage) & set(arg.parentage.parentage)
+      if shared:
+         #for parent in self._parentage:
+         #for parent in self._iparentage:
+         #for parent in self._parentage:
+         for parent in self.parentage:
+            if parent in shared:
+               return parent
+      return None
+
+   def _removeFromParent(self):
+      '''
+      Parent no longer references self;
+      but self continues to reference parent.
+      '''
+      if hasattr(self._client, '_parent'):
+         try:
+            self._client._parent._music.remove(self._client)
+         except:
+            pass
+
+   def _switchParentTo(self, new_parent):
+      client = self._client
+      old_parent = client._parent
+      if old_parent is not None:
+         old_parent._music.remove(client)
+      client._parent = new_parent
 
    ### PRIVATE ATTRIBUTES ###
    
@@ -123,15 +122,6 @@ class _Parentage(_Abjad):
             p = p._parent
       return None
    
-#   @property
-#   def _parentage(self):
-#      result = [ ]
-#      parent = self._client._parent
-#      while parent is not None:
-#         result.append(parent)
-#         parent = parent._parent
-#      return result
-
    @property
    def _threadParentage(self):
       '''Return thread-pertinent parentage structure.
@@ -186,3 +176,13 @@ class _Parentage(_Abjad):
       #return self._parentage[-1]
       return self.parentage[-1]
 
+   ### PUBLIC METHODS ###
+
+   def detach(self):
+      '''
+      Sever incoming reference from and
+      outgoing reference to parent.
+      '''
+      self._removeFromParent( )
+      self._cutOutgoingReferenceToParent( )
+      return self._client
