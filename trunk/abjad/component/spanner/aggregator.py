@@ -64,6 +64,12 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in list(self.attached):
          spanner.clear( )
 
+   def detach(self):
+      '''Remove client from all spanners attaching to client.'''
+      client = self._client
+      for spanner in list(self.attached):
+         spanner.remove(client)
+
    def fracture(self, direction = 'both'):
       result = [ ]
       client = self._client
