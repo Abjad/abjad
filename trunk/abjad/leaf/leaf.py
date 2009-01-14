@@ -36,7 +36,7 @@ class _Leaf(_Component):
       #self._dynamics = _DynamicsInterface(self)
       self._formatter = _LeafFormatter(self)
       #self._glissando = _GlissandoInterface(self)
-      self._grace = _GraceInterface( )
+      self._grace = _GraceInterface(self)
       self._harmonic = _HarmonicInterface(self)
       self._history = { }
       self._markup = _MarkupInterface(self)

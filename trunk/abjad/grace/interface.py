@@ -1,14 +1,13 @@
-from abjad.core.abjadcore import _Abjad
+#from abjad.core.abjadcore import _Abjad
+from abjad.core.interface import _Interface
 from abjad.grace.grace import Grace
 from abjad.helpers.hasname import hasname
 
 
-### TODO: decide whether _GraceInterface should inherit from
-###       new, stripped-down _Interface
+class _GraceInterface(_Interface):
 
-class _GraceInterface(_Abjad):
-
-   def __init__(self):
+   def __init__(self, client):
+      _Interface.__init__(self, client)
       self.before = Grace( )
       self.after = Grace( )
 
