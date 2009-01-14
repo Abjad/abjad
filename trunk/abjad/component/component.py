@@ -4,7 +4,6 @@ from abjad.beam.interface import _BeamInterface
 from abjad.breaks.interface import _BreaksInterface
 from abjad.core.abjadcore import _Abjad
 from abjad.core.comments import _Comments
-from abjad.core.parentage import _Parentage
 from abjad.clef.interface import _ClefInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
@@ -13,6 +12,7 @@ from abjad.glissando.interface import _GlissandoInterface
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.offset.interface import _OffsetInterface
+from abjad.parentage.parentage import _Parentage
 from abjad.rational.rational import Rational
 from abjad.rest.interface import _RestInterface
 from abjad.stem.interface import _StemInterface
