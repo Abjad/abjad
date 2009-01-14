@@ -61,7 +61,8 @@ class _MeterInterface(_Interface, _GrobHandler):
       #for x in self._client._parentage._parentage:
       #for x in self._client._parentage._iparentage[1:]:
       #for x in self._client._parentage._parentage[1:]:
-      for x in self._client.parentage._parentage[1:]:
+      #for x in self._client.parentage._parentage[1:]:
+      for x in self._client.parentage.parentage[1:]:
          if hasattr(x, 'meter') and x.meter._forced:
             return x.meter._forced
       return Meter(4, 4)

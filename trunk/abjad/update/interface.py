@@ -22,7 +22,8 @@ class _UpdateInterface(_Interface):
    @property
    def _currentToRoot(self):
       #for x in self._client._parentage._parentage:
-      for x in self._client.parentage._parentage:
+      #for x in self._client.parentage._parentage:
+      for x in self._client.parentage.parentage:
          if not x._update._current:
             return False
       return True
@@ -31,7 +32,8 @@ class _UpdateInterface(_Interface):
 
    def _markForUpdateToRoot(self):
       #for x in self._client._parentage._parentage:
-      for x in self._client.parentage._parentage:
+      #for x in self._client.parentage._parentage:
+      for x in self._client.parentage.parentage:
          x._update._current = False
 
 #   def _updateAll(self):

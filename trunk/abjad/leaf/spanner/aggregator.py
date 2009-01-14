@@ -39,7 +39,8 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    def _spannersInParentage(self):
       result = [ ]
       #for component in self._client._parentage._parentage:
-      for component in self._client.parentage._parentage:
+      #for component in self._client.parentage._parentage:
+      for component in self._client.parentage.parentage:
          result.extend(component.spanners.attached)
       result.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result

@@ -57,11 +57,13 @@ class _Parentage(_Abjad):
       #shared = set(self._parentage) & set(arg._parentage._parentage)
       #shared = set(self._iparentage) & set(arg._parentage._iparentage)
       #shared = set(self._parentage) & set(arg._parentage._parentage)
-      shared = set(self._parentage) & set(arg.parentage._parentage)
+      #shared = set(self._parentage) & set(arg.parentage._parentage)
+      shared = set(self.parentage) & set(arg.parentage.parentage)
       if shared:
          #for parent in self._parentage:
          #for parent in self._iparentage:
-         for parent in self._parentage:
+         #for parent in self._parentage:
+         for parent in self.parentage:
             if parent in shared:
                return parent
       return None
@@ -85,7 +87,8 @@ class _Parentage(_Abjad):
       #return self._disjunctParentageBetween(arg) | set((self._client, arg))
       #return set(self._iparentage) ^ set (arg._parentage._iparentage)
       #return set(self._parentage) ^ set (arg._parentage._parentage)
-      return set(self._parentage) ^ set (arg.parentage._parentage)
+      #return set(self._parentage) ^ set (arg.parentage._parentage)
+      return set(self.parentage) ^ set (arg.parentage.parentage)
 
    ### PRIVATE ATTRIBUTES ###
    
@@ -93,7 +96,8 @@ class _Parentage(_Abjad):
    def _enclosingContextName(self):
       #inclusive_parentage = [self._client] + self._parentage
       #inclusive_parentage = self._iparentage
-      for p in self._parentage:
+      #for p in self._parentage:
+      for p in self.parentage:
          invocation = getattr(p, 'invocation', None)
          if invocation:
             return invocation.name
@@ -121,7 +125,8 @@ class _Parentage(_Abjad):
    
    @property
    def _orphan(self):
-      return len(self._parentage) == 1
+      #return len(self._parentage) == 1
+      return len(self.parentage) == 1
       
 #   @property
 #   def _parentage(self):
@@ -133,28 +138,14 @@ class _Parentage(_Abjad):
 #      return result
 
    @property
-   def _parentage(self):
-      '''
-      'Inclusive' parentage includes self._client.
-      We probably should've defined _parentage this
-      way from the start.
-      Maybe deprecate _parentage and replace with _iparentage later.
-      '''
-      result = [ ]
-      cur = self._client
-      while cur is not None:
-         result.append(cur)
-         cur = cur._parent
-      return result
-
-   @property
    def _threadParentage(self):
       '''Return thread-pertinent parentage structure.
          Same as _parentage but with _Tuplets, redundant Sequentials, 
          Parallels and tautologies (unlikely) removed.'''
       #parentage = self._parentage
       #parentage = self._iparentage[1:]
-      parentage = self._parentage[1:]
+      #parentage = self._parentage[1:]
+      parentage = self.parentage[1:]
       if len(parentage) > 0:
       ### remove sequentials
          for p in parentage[:]:
@@ -174,4 +165,21 @@ class _Parentage(_Abjad):
 
    @property
    def _root(self):
-      return self._parentage[-1]
+      #return self._parentage[-1]
+      return self.parentage[-1]
+
+   ### PUBLIC ATTRIBUTES ###
+
+   @property
+   #def _parentage(self):
+   def parentage(self):
+      '''
+      Return a list of all of elements in the
+      parentage of client, including client.
+      '''
+      result = [ ]
+      cur = self._client
+      while cur is not None:
+         result.append(cur)
+         cur = cur._parent
+      return result
