@@ -22,6 +22,9 @@ class Container(_Component):
             assert _are_contiguous_music_elements(music)
             start_index = music_parent.index(music[0])
             stop_index = music_parent.index(music[-1])
+         ### TODO - Reassess these two lines here and see
+         ###        if they can be made to work with 
+         ###        parentage._switchParentTo( ) in __setitem__
          if music_parent is not None:
             music_parent[start_index : stop_index + 1] = [self]
       self._music = music
@@ -129,40 +132,39 @@ class Container(_Component):
          else:
             j = i
          expr._parent = self
-         #expr._switchParentTo(self)
+         #expr.parentage._switchParentTo(self)
          self._music[j] = expr
-         if expr.leaves:
-            left, right = expr.leaves[0], expr.leaves[-1]
-         else:
-            left = right = None
+
+         #if expr.leaves:
+         #   left, right = expr.leaves[0], expr.leaves[-1]
+         #else:
+         #   left = right = None
+
       # slice assignment
       else:
          assert isinstance(expr, list)
          for x in expr:
             x._parent = self
-            #x._switchParentTo(self)
+            #x.parentage._switchParentTo(self)
          self._music[i.start : i.stop] = expr
-         if expr[0].leaves:
-            left = expr[0].leaves[0]
-         else:
-            left = None
-         if expr[-1].leaves:
-            right = expr[-1].leaves[-1]
-         else:
-            right = None
-      if left and left.prev:
-         left.prev.spanners.fracture(direction = 'right')
-      if right and right.next:
-         right.next.spanners.fracture(direction = 'left')
+
+         #if expr[0].leaves:
+         #   left = expr[0].leaves[0]
+         #else:
+         #   left = None
+         #if expr[-1].leaves:
+         #   right = expr[-1].leaves[-1]
+         #else:
+         #   right = None
+
+      #if left and left.prev:
+      #   left.prev.spanners.fracture(direction = 'right')
+      #if right and right.next:
+      #   right.next.spanners.fracture(direction = 'left')
+
       self._update._markForUpdateToRoot( )
 
    ### PUBLIC ATTRIBUTES ###
-
-#   @apply
-#   def beam( ):
-#      def fget(self):
-#         return self._beam
-#      return property(**locals( ))
 
    @apply
    def brackets( ):
