@@ -52,9 +52,11 @@ def excise(leaf):
    #parentage = leaf._parentage._parentage[1:]
    #parentage = leaf.parentage._parentage[1:]
    parentage = leaf.parentage.parentage[1:]
-   leaf._die( )
+   #leaf._die( )
+   leaf.detach( )
    for x in parentage:
       if not len(x):
-         x._die( )
+         #x._die( )
+         x.detach( )
       else:
          break

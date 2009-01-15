@@ -368,13 +368,6 @@ class _Leaf(_Component):
             return prevNode
       return None
 
-#   ### TODO - encapsulate somewhere ###
-#
-#   def _die(self):
-#      self.spanners.detach( )
-#      self._update._markForUpdateToRoot( )
-#      self.parentage.detach( )
-
    ### PUBLIC METHODS ###
 
    def bequeath(self, expr):

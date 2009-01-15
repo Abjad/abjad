@@ -34,29 +34,9 @@ class Container(_Component):
 
    ### PRIVATE ATTRIBUTES ###
 
-#   def _die(self):
-#      #self.spanners.fracture( )
-#      self.spanners.detach( )
-#      self._update._markForUpdateToRoot( )
-#      self.parentage.detach( )
-
    def _establish(self):
       for x in self._music:
          x._parent = self
-
-#   def _fuseRight(self):
-#      '''Fuse self with next container if next is threadable with self.'''
-#      next = self._navigator._nextThread
-#      if next:
-#      ### no need to copy here!
-##         self.extend(next.copy( ))
-##         next._die( )
-#         self.extend(next)
-#         next._die( )
-#         return 1
-#      else:
-#         #print 'Nothing to fuse...'
-#         return 0
 
    @property
    def _summary(self):
@@ -81,11 +61,13 @@ class Container(_Component):
    def __delitem__(self, i):
       # item deletion
       if isinstance(i, int):
-         self._music[i]._die( )
+         #self._music[i]._die( )
+         self._music[i].detach( )
       # slice deletion
       else:
          for m in self._music[i]:
-            m._die( )
+            #m._die( )
+            m.detach( )
 
    ### TODO Should we make __getitem__ non recursive to distinguish 
    ###      it from get( ) and to make the behaviour more list-like?
@@ -379,7 +361,8 @@ class Container(_Component):
             self.deleted = False
          def visit(self, node):
             if node is self.expr:
-               node._die( )
+               #node._die( )
+               node.detach( )
                self.deleted = True
       v = Visitor(expr)
       self._navigator._traverse(v)

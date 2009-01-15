@@ -180,9 +180,11 @@ class _Parentage(_Abjad):
 
    def detach(self):
       '''
-      Sever incoming reference from and
+      Sever both incoming reference from and
       outgoing reference to parent.
       '''
+      client = self._client
+      client._update._markForUpdateToRoot( )
       self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
-      return self._client
+      return client

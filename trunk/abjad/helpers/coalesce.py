@@ -36,7 +36,8 @@ def _fuse_right(expr):
    next = expr._navigator._nextThread
    if next:
       expr.extend(next)
-      next._die( )
+      #next._die( )
+      next.detach( )
       return True
    else:
       return False

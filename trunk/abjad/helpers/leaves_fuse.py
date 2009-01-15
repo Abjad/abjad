@@ -15,5 +15,6 @@ def leaves_fuse_binary(data):
          dur += l.duration.written
       ### delete all but the first
       for l in leaves[1:]:
-         l._die( )
+         #l._die( )
+         l.detach( )
       return leaf_scale_binary(dur, leaves[0])
