@@ -371,12 +371,12 @@ class Container(_Component):
 
    def slip(self):
       '''
-      Detach self.
       Attach any children my children to my parent.
-      Return self.
+      Detach and return self.
       '''
       parent = self._parent
       if parent is not None:
          i = parent.index(self)
          parent[i:i+1] = self[:]
+      self.detach( )
       return self
