@@ -33,12 +33,17 @@ def tcopy(ll):
    parent._music = parents_music
 
    # populate result with references to input list
-   result.extend(ll)
+   #result.extend(ll)
+   result._music.extend(ll)
 
    # populate result with deepcopy of input list and fracture spanners
    result = result.copy( )
 
-   # give parent back to input list
+   # point elements in result to result as new parent
+   for element in result:
+      element._parent = result
+
+   # point elements in input list back to old parent
    for element in ll:
       element._parent = parent
 

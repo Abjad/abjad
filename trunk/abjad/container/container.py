@@ -16,20 +16,18 @@ class Container(_Component):
       music = music or [ ]
       assert isinstance(music, list)
       self._parent = None
+      _Component.__init__(self)
       if music:
          music_parent = music[0]._parent
          if not _are_atomic_music_elements(music):
             assert _are_contiguous_music_elements(music)
             start_index = music_parent.index(music[0])
             stop_index = music_parent.index(music[-1])
-         ### TODO - Reassess these two lines here and see
-         ###        if they can be made to work with 
-         ###        parentage._switchParentTo( ) in __setitem__
          if music_parent is not None:
             music_parent[start_index : stop_index + 1] = [self]
       self._music = music
       self._establish( )
-      _Component.__init__(self)
+      #_Component.__init__(self)
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self.formatter = _ContainerFormatter(self)
@@ -131,8 +129,8 @@ class Container(_Component):
             j = len(self) + i
          else:
             j = i
-         expr._parent = self
-         #expr.parentage._switchParentTo(self)
+         #expr._parent = self
+         expr.parentage._switchParentTo(self)
          self._music[j] = expr
 
          #if expr.leaves:
@@ -144,8 +142,8 @@ class Container(_Component):
       else:
          assert isinstance(expr, list)
          for x in expr:
-            x._parent = self
-            #x.parentage._switchParentTo(self)
+            #x._parent = self
+            x.parentage._switchParentTo(self)
          self._music[i.start : i.stop] = expr
 
          #if expr[0].leaves:
