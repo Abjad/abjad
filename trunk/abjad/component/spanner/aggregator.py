@@ -37,6 +37,15 @@ class _ComponentSpannerAggregator(_Interface):
    ### PUBLIC ATTRIBUTES ###
    
    @property
+   def attached(self):
+      '''
+      Return an unordered set of all spanners attaching 
+      directly to client.
+      '''
+
+      return self._spanners
+
+   @property
    def contained(self):
       '''
       Return an unordered set of all spanners attaching to 
@@ -50,13 +59,13 @@ class _ComponentSpannerAggregator(_Interface):
       return result
 
    @property
-   def attached(self):
+   def spanned(self):
       '''
-      Return an unordered set of all spanners attaching 
-      directly to client.
+      Return True when any spanners attach to self, 
+      False otherwise.
       '''
-
-      return self._spanners
+      
+      return len(self.attached) > 0
 
    ### PUBLIC METHODS ###
 

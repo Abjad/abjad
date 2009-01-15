@@ -34,15 +34,11 @@ class Container(_Component):
 
    ### PRIVATE ATTRIBUTES ###
 
-   def _die(self):
-      '''
-      These two steps work even for nested tuplets.
-      '''
-      self.spanners.fracture( )
-      self._update._markForUpdateToRoot( )
-      #self._parentage._detach( )
-      #self.parentage._detach( )
-      self.parentage.detach( )
+#   def _die(self):
+#      #self.spanners.fracture( )
+#      self.spanners.detach( )
+#      self._update._markForUpdateToRoot( )
+#      self.parentage.detach( )
 
    def _establish(self):
       for x in self._music:

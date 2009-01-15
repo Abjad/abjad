@@ -65,6 +65,14 @@ class _Component(_Abjad):
    def __rmul__(self, n):
       return self * n
 
+   ### PRIVATE METHODS ###
+
+   def _die(self):
+      '''Detach from both spanners and parentage.'''
+      self.spanners.detach( )
+      self._update._markForUpdateToRoot( )
+      self.parentage.detach( )
+
    ### PUBLIC ATTRIBUTES ###
 
    @apply

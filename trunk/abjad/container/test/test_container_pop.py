@@ -1,81 +1,74 @@
 from abjad import *
 
 
-def test_pop_01( ):
-   '''Components can be poped. Poped components are fractured correctly.'''
-   t = Staff(Voice(Note(0, (1,8)) * 8)* 2)
-   #Beam(t)
-   Beam(t[ : ])
-   v = t[1]
-   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t\\new Voice {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}" 
+def test_container_pop_01( ):
    '''
-   \new Staff {
-           \new Voice {
-                   c'8 [
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-           }
-           \new Voice {
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8 ]
-           }
-   }
+   Containers pop( ) leaves correctly.
+   Popped leaves detach from both parent and spanners.
    '''
-   assert v.format == "\\new Voice {\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
 
-   '''
-   \new Voice {
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8 ]
-   }
-   '''
-   x = t.pop( )
-   assert t.format =="\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
-   '''
-   \new Staff {
-           \new Voice {
-                   c'8 [
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8
-                   c'8 ]
-           }
-   }
-   '''
-   assert v.format == "\\new Voice {\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
-   '''
-   \new Voice {
-           c'8 [
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8 ]
-   }
-   '''
-   assert x.format == v.format
-   assert x == v
-   assert id(x) == id(v)
+   t = Staff(scale(4))
+   p = Beam(t[ : ])
+   note = t.pop(-1)
 
+   r'''
+   \new Staff {
+      c'8 [
+      d'8
+      e'8 ]
+   }
+   '''
+
+   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
+   assert note.format == "f'8" 
+   assert not note.spanners.spanned
+   assert check(t)
+   assert check(note)
+
+
+def test_container_pop_02( ):
+   '''
+   Containers pop( ) nested containers correctly.
+   Popped containers detach from both parent and spanners.
+   '''
+
+   t = Staff(Sequential(run(2)) * 2)
+   diatonicize(t)
+   p = Beam(t[ : ])
+
+   r'''
+   \new Staff {
+      {
+         c'8 [
+         d'8
+      }
+      {
+         e'8
+         f'8 ]
+      }
+   }
+   '''
+
+   sequential = t.pop( )
+
+   r'''
+   \new Staff {
+      {
+         c'8 [
+         d'8 ]
+      }
+   }
+   '''
+
+   assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n}"
+   assert check(t)
+
+   r'''
+   {
+      e'8
+      f'8
+   }
+   '''
+
+   assert sequential.format == "{\n\te'8\n\tf'8\n}"
+   assert check(sequential)
