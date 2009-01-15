@@ -368,3 +368,15 @@ class Container(_Component):
       self._navigator._traverse(v)
       if not v.deleted:
          raise ValueError("%s not in list." % expr)
+
+   def slip(self):
+      '''
+      Detach self.
+      Attach any children my children to my parent.
+      Return self.
+      '''
+      parent = self._parent
+      if parent is not None:
+         i = parent.index(self)
+         parent[i:i+1] = self[:]
+      return self
