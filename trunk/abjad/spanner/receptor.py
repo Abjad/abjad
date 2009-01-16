@@ -40,6 +40,20 @@ class _SpannerReceptor(_Abjad):
       return bool(self.spanners)
 
    @property
+   def spannedAbove(self):
+      '''
+      Returns true is a spanner of this type is attached to self or
+      if it's attached to a parent.
+      '''
+      result =  [ ]
+      parentage = self._client._parentage.parentage
+      for parent in parentage:
+         spanners = parent.spanners.attached
+         for classname in self._classnames:
+            result.extend([p for p in spanners if hasname(p, classname)])
+      return bool(result)
+
+   @property
    def spanner(self):
       spanners = self.spanners
       if spanners:
