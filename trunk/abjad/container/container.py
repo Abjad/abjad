@@ -259,18 +259,16 @@ class Container(_Component):
 
    def embed(self, i, expr):
       '''
-      Non-fracturing insert.
-      Insert but *don't* fracture spanners.
-      For fracturing insert, use insert( ).
+      Insert a _Component or list of _Components in this container without
+      fracturing spanners.
       '''
       def _embedComponent(self, i, expr):
-         target = self[i]
-         #for s in target.spanners:
-         #for s in target.spanners.mine( ):
-         for s in target.spanners.attached:
-            for l in expr.leaves:
-               #s._insert(s.index(target.leaves[0]), l)
-               s.insert(s.index(target.leaves[0]), l)
+         if i != 0:
+            bounding_spanners = \
+               self[i-1].spanners.attached & self[i].spanners.attached
+            if bounding_spanners:
+               for spanner in bounding_spanners:
+                  spanner.insert(spanner.index(self[i]), expr)
          expr._parent = self
          self._music.insert(i, expr)
 
@@ -278,10 +276,36 @@ class Container(_Component):
          for e in reversed(expr):
             _embedComponent(self, i, e)
       elif isinstance(expr, _Component):
-         _embedComponent(self, i, expr)
+            _embedComponent(self, i, expr)
       else:
          raise TypeError("Can only embed _Component or list of _Component")
       self._update._markForUpdateToRoot( )
+
+#   def embed(self, i, expr):
+#      '''
+#      Non-fracturing insert.
+#      Insert but *don't* fracture spanners.
+#      For fracturing insert, use insert( ).
+#      '''
+#      def _embedComponent(self, i, expr):
+#         target = self[i]
+#         #for s in target.spanners:
+#         #for s in target.spanners.mine( ):
+#         for s in target.spanners.attached:
+#            for l in expr.leaves:
+#               #s._insert(s.index(target.leaves[0]), l)
+#               s.insert(s.index(target.leaves[0]), l)
+#         expr._parent = self
+#         self._music.insert(i, expr)
+#
+#      if isinstance(expr, (list, tuple)):
+#         for e in reversed(expr):
+#            _embedComponent(self, i, e)
+#      elif isinstance(expr, _Component):
+#         _embedComponent(self, i, expr)
+#      else:
+#         raise TypeError("Can only embed _Component or list of _Component")
+#      self._update._markForUpdateToRoot( )
 
    def extend(self, expr):
       if len(expr) > 0:

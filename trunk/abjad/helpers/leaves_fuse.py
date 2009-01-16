@@ -8,7 +8,9 @@ def leaves_fuse_binary(data):
    ### are all the leaves in data siblings? do we care.
    ### are they beads of the same thread?
    leaves = instances(data, '_Leaf')
-   if len(leaves) > 0:
+   if len(leaves) == 1:
+      return leaves
+   elif len(leaves) > 1:
       dur = 0
       for l in leaves:
          #dur += l.duration

@@ -45,28 +45,36 @@ def leaf_scale_binary(dur, leaf):
    dur = Rational(*_duration_token_unpack(dur))
    assert dur > 0
    try:
-      #leaf.duration = dur
       leaf.duration.written = dur
       return [leaf]
    except ValueError:
       result = [ ]
       for wd in _duration_token_decompose(dur):
          l = leaf.copy( )
-         #l.duration.written = wd
          l.duration.written = Rational(*wd)
          result.append( l )
+      ### remove duplicate spanners and extend leaf.spanners to include 
+      ### new leaves.
+      for l in result:
+         l.spanners.clear( )
+         for spanner in leaf.spanners.attached:
+            spanner.insert(spanner.index(leaf), l)
+      ### insert new leaves in parent
       parent = leaf._parent
       if parent:
-         for l in result:
-            #l.spanners.die( )
-            l.spanners.clear( )
+#         for l in result:
+#            l.spanners.clear( )
          indx = parent.index(leaf)
-         parent.embed(indx, result)
-         parent.pop(len(result) + indx)
+         #parent.embed(indx, result)
+         for l in reversed(result):
+            parent._music.insert(indx, l)
+            l._parent = parent
+         #parent.pop(len(result) + indx)
+         parent.remove(leaf)
       ### tie leaves
       for l in result:
          l.tie = None
-      if not l.tie.spanner:
+      if not l.tie.spannedAbove:
          Tie(result)
       ### remove dynamics and articulations from tied leaves.
       for n in result[1:]:

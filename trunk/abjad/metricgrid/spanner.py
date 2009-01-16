@@ -50,7 +50,8 @@ class MetricGrid(Spanner):
             if leaf.offset.score + leaf.duration.prolated > meter.offset and \
                self.splittingCondition(leaf):
                ### will split
-               if not leaf.tie.spanner:
+               #if not leaf.tie.spanner:
+               if not leaf.tie.spannedAbove:
                   Tie(leaf)
                splitdur = meter.offset - leaf.offset.score
                ### if splitdur not m / 2**n

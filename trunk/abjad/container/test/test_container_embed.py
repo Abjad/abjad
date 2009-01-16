@@ -2,205 +2,210 @@ from abjad import *
 from py.test import raises
 
 
-### EMBED ### # *insert* without fracturing spanners.
+### SPANNERS ATTACH TO LEAVES ### 
 
 def test_embed_01( ):
-   '''Containers with one spanner can embed a Leaf. '''
-   t = Staff(Note(0, (1, 8)) * 8)
-   #Beam(t)
-   Beam(t[ : ])
-   t.embed(2, Rest((1,8)))
-   assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [\n\tc'8\n\tr8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
    '''
-   \new Staff {
-           c'8 [
-           c'8
-           r8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8 ]
-   }
+   Containers can embed a Leaf to index position 0. 
+   Components embeded at index 0 are not attached to spanners.
    '''
+   t = Staff(run(4))
+   b = Beam(t.leaves)
+   t.embed(0, Note(1, (1, 8)))
+   assert len(t) == 5
+   assert not t[0] in b.components 
+   for child in t:
+      assert child._parent is t
 
+   
 def test_embed_02( ):
-   '''Containers with one spanner can embed a container.'''
-   t = Staff(Note(0, (1, 8)) * 8)
-   #Beam(t)
-   Beam(t[ : ])
-   t.embed(2, Voice(Note(1, (1,16)) * 4))
-   assert check(t)
-   assert t.format =="\\new Staff {\n\tc'8 [\n\tc'8\n\t\\new Voice {\n\t\tcs'16\n\t\tcs'16\n\t\tcs'16\n\t\tcs'16\n\t}\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}" 
    '''
-   \new Staff {
-           c'8 [
-           c'8
-           \new Voice {
-                   cs'16
-                   cs'16
-                   cs'16
-                   cs'16
-           }
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8 ]
-   }
+   Containers can embed with negative indeces.
    '''
+   t = Staff(run(4))
+   b = Beam(t.leaves)
+   t.embed(-1, Note(1, (1, 8)))
+   assert len(t) == 5
+   for child in t:
+      assert child._parent is t
+      assert child.beam.spanner is b
+
 
 def test_embed_03( ):
-   '''Containers with two parallel spanners can embed a Leaf. '''
-   t = Staff(Note(0, (1, 8)) * 8)
-   #Beam(t)
-   Beam(t[ : ])
-   Trill(t)
-   t.embed(2, Rest((1,8)))
-   assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [ \\startTrillSpan\n\tc'8\n\tr8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ] \\stopTrillSpan\n}"
    '''
-   \new Staff {
-           c'8 [ \startTrillSpan
-           c'8
-           r8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8 ] \stopTrillSpan
-   }
+   Containers can embed another Container.
    '''
+   t = Staff(run(4))
+   b = Beam(t.leaves)
+   v = Voice(run(2))
+   t.embed(2, v)
+   assert len(t) == 5
+   for child in t:
+      assert child._parent is t
+      assert child.beam.spanner is b
+
 
 def test_embed_04( ):
-   '''Containers with two parallel spanners can embed a Container.'''
-   t = Staff(Note(0, (1, 8)) * 8)
-   #Beam(t)
-   Beam(t[ : ])
-   Trill(t)
-   t.embed(2, Voice(Note(1, (1,16)) * 4))
-   assert check(t)
-   assert t.format =="\\new Staff {\n\tc'8 [ \\startTrillSpan\n\tc'8\n\t\\new Voice {\n\t\tcs'16\n\t\tcs'16\n\t\tcs'16\n\t\tcs'16\n\t}\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ] \\stopTrillSpan\n}"
    '''
-   \new Staff {
-           c'8 [ \startTrillSpan
-           c'8
-           \new Voice {
-                   cs'16
-                   cs'16
-                   cs'16
-                   cs'16
-           }
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8
-           c'8 ] \stopTrillSpan
-   }
-   ''' 
+   Containers can embed a list of Components.
+   '''
+   t = Staff(run(4))
+   b = Beam(t.leaves)
+   v = Voice(run(2))
+   n = Note(1, (1, 8))
+   t.embed(2, [v, n])
+   assert len(t) == 6
+   for child in t:
+      assert child._parent is t
+      assert child.beam.spanner is b
+   for leaf in v:
+      assert not leaf.spanners.attached
+
 
 def test_embed_05( ):
-   '''Containers with a spanner can embed a list of Components.'''
-   t = Staff(Note(0, (1, 8)) * 8)
-   #Beam(t)
-   Beam(t[ : ])
-   t.embed(2, [Note(i, (1,32)) for i in range(4)])
-   assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [\n\tc'8\n\tc'32\n\tcs'32\n\td'32\n\tef'32\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
    '''
-   \new Staff {
-        c'8 [
-        c'8
-        c'32
-        cs'32
-        d'32
-        ef'32
-        c'8
-        c'8
-        c'8
-        c'8
-        c'8
-        c'8 ]
-   }
-   ''' 
+   Spanners not spanning embedding index are unaffected.
+   '''
+   t = Staff(run(4))
+   b1 = Beam(t.leaves[0:2])
+   b2 = Beam(t.leaves[2:])
+   v = Voice(run(2))
+   t.embed(2, v)
+   assert len(t) == 5
+   assert not v.spanners.attached
+   for leaf in v:
+      assert not leaf.spanners.attached
+   assert b1.components == t[0:2]
+   assert b2.components == t[3:]
+
 
 def test_embed_06( ):
-   '''Containers with two sequential spanners can embed a Leaf.'''
-   t = Staff(Note(0, (1, 8)) * 8)
-   b1 = Beam(t[0:4])
-   b2 = Beam(t[4:])
+   '''
+   Spanners not spanning embedding index are unaffected.
+   Spanners spanning embedding index are affected.
+   '''
+   t = Staff(run(4))
+   b1 = Beam(t.leaves[0:2])
+   b2 = Beam(t.leaves[2:])
+   tr = Trill(t.leaves)
+   v = Voice(run(2))
+   t.embed(2, v)
+   assert len(t) == 5
+   assert v.spanners.attached == set([tr])
+   for child in t:
+      assert child in tr.components
+   for leaf in v:
+      assert not leaf.spanners.attached
+   assert b1.components == t[0:2]
+   assert b2.components == t[3:]
+
+
+def test_embed_07( ):
+   '''Containers with two parallel spanners can embed a Container.'''
+   t = Staff(run(4))
+   b = Beam(t.leaves)
+   tr= Trill(t.leaves)
+   t.embed(2, Voice(run(2)))
+   assert len(t) == 5
+   for child in t:
+      assert child._parent is t
+      assert child.spanners.attached == set([b, tr])
+   assert isinstance(t[2], Voice)
+   for leaf in t[2]:
+      assert not leaf.spanners.attached
+
+
+### SPANNERS ATTACH TO CONTAINERS ### 
+
+def test_embed_10( ):
+   '''
+   Containers can embed a Leaf.
+   '''
+   t = Staff(run(4))
+   b = Beam(t)
+   n = Note(1, (1, 8))
+   t.embed(2, n)
+   assert len(t) == 5
+   assert b.components == [t]
+   for child in t:
+      assert child._parent is t
+      assert not child.spanners.attached 
+
+
+def test_embed_11( ):
+   '''
+   Containers can embed a Container.
+   '''
+   t = Staff(run(4))
+   b = Beam(t)
+   v = Voice(run(2))
+   t.embed(2, v)
+   assert len(t) == 5
+   assert b.components == [t]
+   for child in t:
+      assert child._parent is t
+      assert not child.spanners.attached 
+   for leaf in v:
+      assert not leaf.spanners.attached
+
+
+def test_embed_12( ):
+   '''
+   Containers can embed a list of Components.
+   '''
+   t = Staff(run(4))
+   b = Beam(t)
+   v = Voice(run(2))
+   n = Note(1, (1, 8))
+   t.embed(2, [v, n])
+   assert len(t) == 6
+   for child in t:
+      assert child._parent is t
+      assert not child.spanners.attached
+   for leaf in v:
+      assert not leaf.spanners.attached
+
+
+def test_embed_13( ):
+   '''
+   Spanners not spanning embedding index are unaffected.
+   '''
+   t = Staff(Voice(run(2)) * 2)
+   b1 = Beam(t[0])
+   b2 = Beam(t[1])
+   t.embed(1, Rest((1, 16)))
+   assert len(t) == 3
+   for child in t:
+      assert child._parent is t
+   assert isinstance(t[1], Rest)
+   assert not t[1].spanners.attached 
+   assert b1.components == [t[0]]
+   assert b2.components == [t[2]]
+
+
+### SPANNERS ATTACH TO LEAVES AND CONTAINERS ###
+
+def test_embed_20( ):
+   '''Embedding works on spanners spanning leaves and containers.'''
+   t = Staff(run(4))
+   b = Beam(t.leaves)
+   tr = Trill(t)
    t.embed(2, Rest((1,8)))
-   #assert set(b1._leaves).intersection(b2._leaves) == set([ ])
-   assert set(b1.leaves).intersection(b2.leaves) == set([ ])
-   assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [\n\tc'8\n\tr8\n\tc'8\n\tc'8 ]\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+   assert len(t) == 5
+   for child in t:
+      assert child._parent is t
+   for leaf in t:
+      assert leaf.spanners.attached == set([b])
+   assert tr.components == [t]
+   
 
-   '''
-   \new Staff {
-        c'8 [
-        c'8
-        r8
-        c'8
-        c'8 ]
-        c'8 [
-        c'8
-        c'8
-        c'8 ]
-   }
-   '''
- 
-def test_embed_08( ):
-   '''Containers with two sequential spanners in parallel with a
-   third spanner can embed a Leaf.'''
-   t = FixedDurationTuplet((2, 4), [Note(n, (1, 8)) for n in range(6, 12)])
-   v = Voice([Note(n, (1, 8)) for n in range(6)])
-   v.append(t)
-   #Beam(v)
-   Beam(v[ : ])
-   #v.spanners.get()[0].fracture(4, 'right')
-   list(v.spanners.contained)[0].fracture(4, 'right')
-   Trill(v)
-   v.embed(3, Rest((1,32)))
-   assert check(v)
-   assert v.format =="\\new Voice {\n\tc'8 [ \\startTrillSpan\n\tcs'8\n\td'8\n\tr32\n\tef'8\n\te'8 ]\n\tf'8 [\n\t\\times 2/3 {\n\t\tfs'8\n\t\tg'8\n\t\taf'8\n\t\ta'8\n\t\tbf'8\n\t\tb'8 ] \\stopTrillSpan\n\t}\n}"
- 
-   r'''
-   \new Voice {
-           c'8 [ \startTrillSpan
-           cs'8
-           d'8
-           r32
-           ef'8
-           e'8 ]
-           f'8 [
-           \times 2/3 {
-                   fs'8
-                   g'8
-                   af'8
-                   a'8
-                   bf'8
-                   b'8 ] \stopTrillSpan
-           }
-   }
-'''
 
-def test_embed_09( ):
+### EXCEPTIONS ###
+
+def test_embed_30( ):
    '''Embed complains on out of bounds indeces.'''
    t = Staff(Note(0, (1, 8)) * 8)
    #Beam(t)
    Beam(t[ : ])
    assert raises(IndexError, 't.embed(8, Note(1, (1,4)))')
    assert raises(IndexError, 't.embed(-9, Note(1, (1,4)))')
-
-def test_embed_10( ):
-   '''Embed complains on empty Container.'''
-   t = Staff([ ])
-   #Beam(t)
-   Beam(t[ : ])
-   assert raises(IndexError, 't.embed(0, Note(1, (1,4)))')
-   assert raises(IndexError, 't.embed(-1, Note(1, (1,4)))')

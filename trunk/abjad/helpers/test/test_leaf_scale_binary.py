@@ -178,4 +178,56 @@ def test_leaf_scale_binary_21( ):
    assert len(new[1].grace.after) == 1
 
 
+### SPANNED (LEAF ATTACHMENT) ###
+
+def test_leaf_scale_binary_30( ):
+   t = Staff([Note(0, (1, 4))])
+   s = Tie(t.leaves)
+   new = leaf_scale_binary((1, 16), t[0])
+   assert len(t) == 1
+   assert t[0].spanners.attached == set([s])
+   assert s.components == [t[0]]
+
+
+def test_leaf_scale_binary_31( ):
+   t = Staff(run(4))
+   s = Tie(t.leaves)
+   new = leaf_scale_binary((1, 16), t[0])
+   assert len(t) == 4
+   assert s.components == t.leaves
+   for leaf in t.leaves:
+      assert leaf.spanners.attached == set([s])
+
+
+def test_leaf_scale_binary_32( ):
+   t = Staff([Note(0, (1, 4))])
+   s = Tie(t.leaves)
+   new = leaf_scale_binary((5, 16), t[0])
+   assert len(t) == 2
+   assert s.components == t.leaves
+   for leaf in t.leaves:
+      assert leaf.spanners.attached == set([s])
+
+
+def test_leaf_scale_binary_33( ):
+   t = Staff(run(4))
+   s = Tie(t.leaves)
+   new = leaf_scale_binary((5, 32), t[0])
+   assert len(t) == 5
+   assert s.components == t.leaves
+   for leaf in t.leaves:
+      assert leaf.spanners.attached == set([s])
+
+
+### SPANNED (CONTAINER ATTACHMENT) ###
+
+def test_leaf_scale_binary_40( ):
+   t = Staff(Voice(run(2)) * 2)
+   s = Tie(t[:])
+   new = leaf_scale_binary((5, 32), t[0][0])
+   assert len(t) == 2
+   assert s.components == t[:]
+   for leaf in t.leaves:
+      assert not leaf.spanners.attached
+
 
