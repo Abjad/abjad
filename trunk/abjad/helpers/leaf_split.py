@@ -16,10 +16,6 @@ def leaf_split(split_dur, leaf):
       new_leaf = leaf.copy()
       _update_leaf_spanners(new_leaf, leaf)
       _link_new_leaf_to_parent(new_leaf, leaf)
-#      if parent:
-#         new_leaf.spanners.clear() ### only kill spanners if there's a parent?
-#         indx = parent.index(leaf)
-#         parent.embed(indx, new_leaf)
       l1 = leaf_scale(unprolated_split_dur, new_leaf)
       l2 = leaf_scale(leaf.duration.written - unprolated_split_dur, leaf)
       return [l1, l2]
@@ -44,7 +40,7 @@ def leaf_split_binary(split_dur, leaf):
       _update_leaf_spanners(new_leaf, leaf)
       _link_new_leaf_to_parent(new_leaf, leaf)
       l1 = leaf_scale_binary(unprolated_split_dur, new_leaf)
-      l2 = leaf_scale_binary(leaf.duration.written - unprolated_split_dur, leaf)
+      l2 = leaf_scale_binary(leaf.duration.written-unprolated_split_dur, leaf)
       result = [l1, l2] 
       return result
 
@@ -55,9 +51,12 @@ def _update_leaf_spanners(new_leaf, old_leaf):
       spanner.insert(spanner.index(old_leaf), new_leaf)
 
 def _link_new_leaf_to_parent(new_leaf, old_leaf):
+#   parent = old_leaf._parent
+#   if parent:
+#      indx = parent.index(old_leaf)
+#      parent._music.insert(indx, new_leaf)
+#      new_leaf._parent = parent
    parent = old_leaf._parent
    if parent:
-      indx = parent.index(old_leaf)
-      parent._music.insert(indx, new_leaf)
-      new_leaf._parent = parent
-   
+      i = parent.index(old_leaf)              
+      parent[i:i] = [new_leaf]
