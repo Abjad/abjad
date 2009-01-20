@@ -13,6 +13,7 @@ from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.offset.interface import _OffsetInterface
 from abjad.parentage.parentage import _Parentage
+from abjad.pianopedal.interface import _PianoPedalInterface
 from abjad.rational.rational import Rational
 from abjad.rest.interface import _RestInterface
 from abjad.stem.interface import _StemInterface
@@ -43,6 +44,7 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
 #      self._offset = _OffsetInterface(self)
       self._parentage = _Parentage(self)
+      self._pianopedal = _PianoPedalInterface(self)
       self._rest = _RestInterface(self)
       self._stem = _StemInterface(self)
       self._tempo = _TempoInterface(self)
@@ -147,6 +149,10 @@ class _Component(_Abjad):
    @property
    def parentage(self):
       return self._parentage
+
+   @property
+   def pianopedal(self):
+      return self._pianopedal
 
    @apply
    def rest( ):
