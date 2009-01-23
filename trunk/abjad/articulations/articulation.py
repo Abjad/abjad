@@ -1,7 +1,6 @@
 from abjad.core.abjadcore import _Abjad
 
 
-#class _Articulation(_Abjad):
 class Articulation(_Abjad):
 
    def __init__(self, string = None, direction = None):
@@ -11,7 +10,6 @@ class Articulation(_Abjad):
    ### OVERLOADS ###
 
    def __eq__(self, expr):
-      #assert isinstance(expr, _Articulation)
       assert isinstance(expr, Articulation)
       if expr.string == self.string and self.direction == expr.direction:
          return True
@@ -19,7 +17,6 @@ class Articulation(_Abjad):
          return False
 
    def __repr__(self):
-      #return '_Articulation(%s)' % self
       return 'Articulation(%s)' % self
 
    def __str__(self):
