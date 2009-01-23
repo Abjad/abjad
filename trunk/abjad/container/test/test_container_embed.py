@@ -199,6 +199,35 @@ def test_embed_20( ):
    assert tr.components == [t]
    
 
+#### SPANNERS RUN BELOW EMBEDDING LEVEL ###
+#### TODO do we want this to work? 
+#def test_embed_21( ):
+#   t = Staff(Sequential(run(2)) * 2)
+#   diatonicize(t)
+#   p = Beam(t.leaves)
+#   s = Sequential(run(2))
+#   t.embed(1, s)
+#   assert check(t)
+#   for e in t:
+#      assert e.spanners.attached == set([p])
+#   for n in s:
+#      assert not n.spanners.attached
+#   r'''
+#   \new Staff {
+#           {
+#                   c'8 [
+#                   d'8
+#           }
+#           {
+#                   c'8  
+#                   c'8
+#           }
+#           {
+#                   e'8
+#                   f'8 ]
+#           }
+#   }
+#   '''
 
 ### EXCEPTIONS ###
 
