@@ -20,6 +20,7 @@ class _Parser(_Abjad):
    ### PUBLIC METHODS ###
 
    def formatAttribute(self, attribute):
+      attribute = attribute.replace('__', " #'")
       result = attribute.replace('_', '-')
       result = "#'%s" % result
       return result
