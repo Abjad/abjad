@@ -1,0 +1,15 @@
+#! /usr/bin/env python
+
+import os
+import sys
+from abjad.cfg.cfg import ABJADPATH
+from abjad.cfg.abjad_version import _write_abjad_versionfile
+
+#ABJADPATH = os.environ.get('ABJADPATH')
+start_directory = os.path.abspath('.')
+project_root = ABJADPATH.rstrip('abjad')
+os.chdir(project_root)
+os.system('clear')
+os.system('svn update')
+os.chdir(start_directory)
+_write_abjad_versionfile( )

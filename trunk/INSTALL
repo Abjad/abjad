@@ -1,6 +1,18 @@
 Thank you for downloading Abjad!
 
-To install Abjad you must already have Python 2.5 or Python 2.6 installed in your computer. 
+
+Dependencies
+^^^^^^^^^^^^
+- Python 2.5 or 2.6
+- LilyPond 2.11 or newer.
+
+To install Abjad you must already have Python 2.5 or Python 2.6 and LilyPond installed in your computer. Abjad will not install and/or run properly unless these two requirements are met.
+
+You can find Python here:
+http://www.python.org
+
+and LilyPond here:
+http://www.lilypond.org
 
 
 Installing the official release

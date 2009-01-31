@@ -1,4 +1,4 @@
-from abjad.cfg.cfg import ABJADOUTPUT
+#from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg.get_last_output import _get_last_output
 from abjad.cfg.warn_almost_full import _warn_almost_full
 

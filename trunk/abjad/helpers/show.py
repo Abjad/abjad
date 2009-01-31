@@ -1,9 +1,10 @@
 from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg.cfg import ABJADTEMPLATES
 from abjad.cfg.get_next_output import _get_next_output
-from abjad.cfg.lilypond_version import lilypond_version
+#from abjad.cfg.lilypond_version import lilypond_version
 from abjad.cfg.open_pdf import _open_pdf
 from abjad.cfg.run_lilypond import _run_lilypond
+from abjad.cfg.verify_output_directory import _verify_output_directory
 from abjad.cfg.wrap_format import _wrap_format
 from abjad.cfg.write_abjad_header import _write_abjad_header
 from abjad.cfg.write_abjad_include import _write_abjad_include
@@ -21,6 +22,7 @@ def show(ly, template = None):
    Opens the resulting PDF with PDFVIEWER.
    '''
 
+   _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
    name = _get_next_output( )
    outfile = open(name, 'w')
@@ -35,3 +37,4 @@ def show(ly, template = None):
    outfile.close( )
    _run_lilypond(name)
    _open_pdf('%s.pdf' % name[:-3])
+

@@ -38,8 +38,12 @@
 
       autoBeaming = ##f
       tupletFullLength = ##t
-      \override TupletBracket #'bracket-visibility = ##t
 		\override TupletNumber #'text = #tuplet-number::calc-fraction-text
+      \override TupletBracket #'bracket-visibility = ##t
+      %%% allow tuplet bracket to always be visible, even for short tuplets.
+      \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
+      \override TupletBracket #'minimum-length = #3
+
 
       \remove Bar_number_engraver
       
@@ -49,13 +53,13 @@
 
    \context {
       \Staff
-      %\override TimeSignature #'stencil = ##f
       \consists Timing_translator
       \consists Default_bar_line_engraver
    }
 
    \context {
       \RhythmicStaff
+      \override TimeSignature #'style = #'numbered
       \consists Timing_translator
       \consists Default_bar_line_engraver
       \override VerticalAxisGroup #'minimum-Y-extent = #'(-4 . 2)
