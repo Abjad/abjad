@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 
+from abjad.cfg.cfg import ABJADPATH
 import os
 import re
 import sys
@@ -19,6 +20,21 @@ class FileParser(object):
          COMMENTS( ), TO_DO( ), CLASS_NAMES( ), 
          TOC_SECTION( ),
          LILY( ), ABJAD( )]
+
+#   @property
+#   def analytics(self):
+#      filename = os.path.join(ABJADPATH, 'documentation', 'templates', 'ga.js')
+#      source = open(filename, 'r')
+#      analytics = source.read( )
+#      source.close( )
+#      return analytics
+
+   @property
+   def analytics(self):
+      analytics = ['..'] * self.depth
+      analytics.extend(['templates', 'ga.js'])
+      analytics = os.sep.join(analytics)
+      return analytics
 
    @property
    def depth(self):
@@ -62,6 +78,9 @@ class FileParser(object):
       result += '\n\n'
       result += '<title>The Abjad Doc Site</title>\n\n'
       result += '</head>\n\n'
+      result += '<link href="%s" type="text/javascript"/>'
+      result %= self.analytics
+      result += '\n\n'
       return result
 
    def parse(self):
@@ -632,17 +651,18 @@ from abjad.cfg.cfg import ABJADPATH
 if __name__ == '__main__':
    input_file = sys.argv[1]
    CURDIR = os.path.dirname(input_file)
+   CURDIR = os.path.dirname(os.path.abspath(input_file))
    os.chdir(CURDIR)
-   if 'css' in os.listdir(os.curdir):
-      depth = 0
-   elif 'css' in os.listdir(os.pardir):
-      depth = 1
-   elif 'css' in os.listdir(os.pardir + os.sep + os.pardir):
-      depth = 2
-   elif 'css' in os.listdir(
-      os.pardir + os.sep + os.pardir + os.sep + os.pardir):
-      depth = 3
-   else:
-      raise ValueError('can not find doc root directory!')
+#   if 'css' in os.listdir(os.curdir):
+#      depth = 0
+#   elif 'css' in os.listdir(os.pardir):
+#      depth = 1
+#   elif 'css' in os.listdir(os.pardir + os.sep + os.pardir):
+#      depth = 2
+#   elif 'css' in os.listdir(
+#      os.pardir + os.sep + os.pardir + os.sep + os.pardir):
+#      depth = 3
+#   else:
+#      raise ValueError('can not find doc root directory!')
    fileparser = FileParser(input_file)
    fileparser.parse( )
