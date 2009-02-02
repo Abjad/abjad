@@ -21,20 +21,20 @@ class FileParser(object):
          TOC_SECTION( ),
          LILY( ), ABJAD( )]
 
-   @property
-   def analytics(self):
-      filename = os.path.join(ABJADPATH, 'documentation', 'templates', 'ga.js')
-      source = open(filename, 'r')
-      analytics = source.read( )
-      source.close( )
-      return analytics
-
 #   @property
 #   def analytics(self):
-#      analytics = ['..'] * self.depth
-#      analytics.extend(['templates', 'ga.js'])
-#      analytics = os.sep.join(analytics)
+#      filename = os.path.join(ABJADPATH, 'documentation', 'templates', 'ga.js')
+#      source = open(filename, 'r')
+#      analytics = source.read( )
+#      source.close( )
 #      return analytics
+
+   @property
+   def analytics(self):
+      analytics = ['..'] * self.depth
+      analytics.extend(['templates', 'ga.js'])
+      analytics = os.sep.join(analytics)
+      return analytics
 
    @property
    def depth(self):
@@ -78,10 +78,10 @@ class FileParser(object):
       result += '\n\n'
       result += '<title>The Abjad Doc Site</title>\n\n'
       result += '</head>\n\n'
-#      result += '<link href="%s" type="text/javascript"/>'
-#      result %= self.analytics
-#      result += '\n\n'
-      result += self.analytics + '\n'
+      result += '<link href="%s" type="text/javascript"/>'
+      result %= self.analytics
+      result += '\n\n'
+#      result += self.analytics + '\n'
       return result
 
    def parse(self):
