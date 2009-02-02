@@ -21,18 +21,16 @@ def get_file_directory(filename):
    return filename[0:indx+1]
 
 def process_file(filename):
-   content = open(filename, 'r')
-   content_string = content.read()
+   #content = open(filename, 'r')
+   content = codecs.open(filename, 'r', encoding = 'utf-8')
+   content_string = content.read( )
    content.close( )
-
    tlookup = TemplateLookup(directories=['templates_dir'])
    t = Template(filename=templates_dir + '/template.html', lookup = tlookup)
-   content_string = content_string.decode('utf-8')
    #result =  t.render(content=content_string)
    result =  t.render_unicode(content=content_string)
 
    out_dir = get_file_directory(filename) 
-   #print out_dir
    #out = open(out_dir + 'index.html', 'w')
    out = codecs.open(out_dir + 'index.html', 'w', encoding = 'utf-8')
    out.write(result)
