@@ -2,12 +2,16 @@
 
 from mako.template import Template
 from mako.lookup import TemplateLookup
-import getopt, sys
+import codecs
+import getopt
 import os
+import sys
 
 
 templates_dir = os.environ['ABJADPATH'] + '/documentation/templates'
 
+
+### TODO: make this system-independent using os.path
 
 def get_file_directory(filename):
    try:
@@ -19,18 +23,20 @@ def get_file_directory(filename):
 def process_file(filename):
    content = open(filename, 'r')
    content_string = content.read()
-   content.close()
+   content.close( )
 
    tlookup = TemplateLookup(directories=['templates_dir'])
    t = Template(filename=templates_dir + '/template.html', lookup = tlookup)
-   result =  t.render(content=content_string)
+   content_string = content_string.decode('utf-8')
+   #result =  t.render(content=content_string)
+   result =  t.render_unicode(content=content_string)
 
-   
    out_dir = get_file_directory(filename) 
    #print out_dir
-   out = open(out_dir + 'index.html', 'w')
+   #out = open(out_dir + 'index.html', 'w')
+   out = codecs.open(out_dir + 'index.html', 'w', encoding = 'utf-8')
    out.write(result)
-   out.close()
+   out.close( )
 
 def usage( ):
    print "Pass filename with -f flag."
