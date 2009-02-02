@@ -58,6 +58,8 @@ class FileParser(object):
       result += '<link rel="stylesheet" href="%s" type="text/css"/>'
       result %= self.stylesheet
       result += '\n\n'
+      result += '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'
+      result += '\n\n'
       result += '<title>The Abjad Doc Site</title>\n\n'
       result += '</head>\n\n'
       return result
