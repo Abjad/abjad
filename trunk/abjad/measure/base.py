@@ -67,6 +67,10 @@ class _Measure(Container):
    def duration(self):
       return self._duration
 
+   @property
+   def full(self):
+      return self.meter.effective.duration == self.duration.contents
+
 #   @apply
 #   def meter( ):
 #      def fget(self):
