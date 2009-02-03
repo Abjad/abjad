@@ -9,7 +9,8 @@ ABJADTEMPLATES = os.environ.get('ABJADTEMPLATES', ABJADPATH + 'templates')
 ABJADVERSIONFILE = ABJADPATH + '.version'
 LILYPONDINCLUDES = os.environ.get('LILYPONDINCLUDES', None)
 LILYPONDLANG = os.environ.get('LILYPONDLANG', 'english')
-PDFVIEWER = os.environ.get('PDFVIEWER', 'open')
+#PDFVIEWER = os.environ.get('PDFVIEWER', 'open')
+PDFVIEWER = os.environ.get('PDFVIEWER')
 
 accidental_spelling = 'mixed'
 
