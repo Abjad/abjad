@@ -29,12 +29,20 @@ class FileParser(object):
 #      source.close( )
 #      return analytics
 
+#   @property
+#   def analytics(self):
+#      analytics = ['..'] * self.depth
+#      analytics.extend(['templates', 'ga.js'])
+#      analytics = os.sep.join(analytics)
+#      return analytics
+
    @property
    def analytics(self):
-      analytics = ['..'] * self.depth
-      analytics.extend(['templates', 'ga.js'])
-      analytics = os.sep.join(analytics)
-      return analytics
+      src1   = os.sep.join(['..'] * self.depth + ['templates', 'ga-1.js'])
+      result =  '<script type="text/javascript" src="%s"></script>\n\n' % src1
+      src2   = os.sep.join(['..'] * self.depth + ['templates', 'ga-2.js'])
+      result += '<script type="text/javascript" src="%s"></script>\n\n' % src2
+      return result
 
    @property
    def depth(self):
@@ -65,7 +73,11 @@ class FileParser(object):
       footer = os.sep.join(footer)
       result = '\n<p class="footer"><a href="%s">Contents</a></p>'
       result %= footer
-      result += '\n\n</div>\n\n</body>\n\n</html>\n'
+      result += '\n\n'
+      result += '</div>'
+      result += '\n\n'
+      result += self.analytics
+      result += '</body>\n\n</html>\n'
       return result
 
    @property
@@ -78,10 +90,6 @@ class FileParser(object):
       result += '\n\n'
       result += '<title>The Abjad Doc Site</title>\n\n'
       result += '</head>\n\n'
-      result += '<link href="%s" type="text/javascript"/>'
-      result %= self.analytics
-      result += '\n\n'
-#      result += self.analytics + '\n'
       return result
 
    def parse(self):
