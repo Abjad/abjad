@@ -20,10 +20,10 @@ def test_measure_rigid_01( ):
 
 def test_measure_rigid_02( ):
    '''
-   Rigid measures sometimes UnderfullMeasureException at format
+   Rigid measures raise MisfilledMeasureError at format
    when meter duration and contents duration do not match.
    '''
 
    t = RigidMeasure((4, 8), scale(3))
 
-   assert py.test.raises(UnderfullMeasureException, 't.format') 
+   assert py.test.raises(MisfilledMeasureError, 't.format') 

@@ -1,5 +1,5 @@
 from abjad.container.formatter import _ContainerFormatter
-from abjad.exceptions.underfullmeasure import UnderfullMeasureException
+from abjad.exceptions.misfilledmeasure import MisfilledMeasureError
 from abjad.rational.rational import Rational
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
@@ -34,10 +34,9 @@ class _MeasureFormatter(_ContainerFormatter):
       client = self._client
       if client.duration.compression != Rational(1, 1):
          if client.__class__.__name__ == 'RigidMeasure':
-            ### TODO: rename to WronglyFullMeasureException ###
             msg = 'Meter %s does not equal %s contents duration.'
             msg %= (client.meter.effective, client.duration.contents)
-            raise UnderfullMeasureException(msg)
+            raise MisfilledMeasureError(msg)
          elif client.__class__.__name__ in ('Measure', 'ProlatingMeasure'):
             result.extend(self._compressedContents)
       else:

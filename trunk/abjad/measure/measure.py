@@ -10,7 +10,7 @@ from abjad.meter.meter import Meter
 #from math import log
 
 
-### TODO - rename as _ScalingMeasure, or something similar
+### TODO - rename as _ProlatingMeasure, or something similar
 
 #class Measure(Container):
 class Measure(_Measure):

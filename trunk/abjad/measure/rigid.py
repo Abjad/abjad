@@ -9,6 +9,6 @@ class RigidMeasure(_Measure):
       self.meter = meter
 
    ## NOTE: There's very little going on in this class because
-   ##       _MeasureFormatter enforces the UnderfullMeasure
+   ##       _MeasureFormatter enforces the MisfilledMeasure
    ##       requirement, meaning that RigidMeasure doesn't
    ##       have to.

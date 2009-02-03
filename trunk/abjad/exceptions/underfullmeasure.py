@@ -1,3 +1,0 @@
-class UnderfullMeasureException(Exception):
-
-   pass
