@@ -1,5 +1,3 @@
-#from abjad.cfg.cfg import VERSIONFILE
-#from abjad.cfg.cfg import LILYPONDVERSIONFILE
 import os
 import subprocess
 
@@ -14,13 +12,5 @@ def _get_lilypond_version( ):
       stdout=subprocess.PIPE)
    lilypond_version = proc.stdout.readline( )
    lilypond_version = lilypond_version.split(' ')[-1]
+   lilypond_version = lilypond_version.strip( )
    return lilypond_version
-
-
-##os.system('lilypond --version > %s' % VERSIONFILE)
-##lilypond_version = file(VERSIONFILE, 'r').read( )
-#os.system('lilypond --version > %s' % LILYPONDVERSIONFILE)
-#lilypond_version = file(LILYPONDVERSIONFILE, 'r').read( )
-#lilypond_version = lilypond_version.split('\n')[0].split(' ')[-1]
-#os.remove(LILYPONDVERSIONFILE)
-
