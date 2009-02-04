@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 
 import os
-CHAPTERSDIR = os.environ['ABJADPATH'] + '/documentation/chapters/'
+from abjad.cfg.cfg import ABJADPATH
+
+CHAPTERSDIR = os.path.join(ABJADPATH, 'documentation', 'chapters')
 chapters = os.listdir(CHAPTERSDIR)
 
 # What's a better, nonmanual way to get rid of special directories
@@ -11,8 +13,13 @@ chapters.remove('.svn')
 chapters.sort( )
 print 'Crawling %s chapter directories ...' % len(chapters)
 
-for i, chapter in enumerate(chapters):
-   print 'Chapter %s %s:' % (i, chapter)
-   print os.listdir(CHAPTERSDIR + chapter)
-
-
+for i, chapter in enumerate(chapters[:2]):
+   status = 'Chapter %s %s ...' % (i + 1, chapter)
+   print status,
+   chapter_directory = os.path.join(CHAPTERSDIR, chapter)
+   chapter_files = os.listdir(chapter_directory)
+   if 'text.raw' in chapter_files:
+      os.chdir(chapter_directory)
+      raw_chapter_file = os.path.join(chapter_directory, 'text.raw')
+      os.system('chapter.py %s' % raw_chapter_file)
+      print 'done.'
