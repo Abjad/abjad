@@ -1,3 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<link rel="stylesheet" href="../../css/abjad.css" type="text/css"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+
+<title>The Abjad Doc Site</title>
+
+</head>
+
+<body>
+
+<div id="content">
+
 <h1>The Abjad <code>_Brackets</code> class</h1>
 
 <p>The Abjad <code>_Brackets</code> class manages the simultaneity of score components.
@@ -6,22 +24,22 @@
 
 <div class="interface-block">
 <p class="interface-block-header">Public attributes
-<p class="interface-attribute">
-<a href="#close" class="interface-attribute">close</a>
-<p class="interface-attribute">
-<a href="#name" class="interface-attribute">name</a>
-<p class="interface-attribute">
-<a href="#open" class="interface-attribute">open</a>
+   <p class="interface-attribute">
+      <a href="#close" class="interface-attribute">close</a>
+   <p class="interface-attribute">
+      <a href="#name" class="interface-attribute">name</a>
+   <p class="interface-attribute">
+      <a href="#open" class="interface-attribute">open</a>
 </div> <!-- interface block -->
 
 <div class="interface-block">
 <p class="interface-block-header">Special methods
-<p class="interface-attribute">
-<a href="#eq" class="interface-attribute">__eq__</a>
-<p class="interface-attribute">
-<a href="#ne" class="interface-attribute">__ne__</a>
-<p class="interface-attribute">
-<a href="#repr" class="interface-attribute">__repr__</a>
+   <p class="interface-attribute">
+      <a href="#eq" class="interface-attribute">__eq__</a>
+   <p class="interface-attribute">
+      <a href="#ne" class="interface-attribute">__ne__</a>
+   <p class="interface-attribute">
+      <a href="#repr" class="interface-attribute">__repr__</a>
 </div> <!-- interface block -->
 
 <h2 class="page-section">Public attributes</h2>
@@ -39,13 +57,14 @@
 <div class="example-body">
 <div class="example-code">
 <pre>
-abjad> container = Container([ ])
+   abjad> container = Container([ ])
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> container.brackets.open
-'('
+   hide> container = Container([ ])
+   abjad> container.brackets.open
+   '('
 </pre>
 </div> <!-- example code -->
 </div> <!-- example body -->
@@ -65,16 +84,17 @@ abjad> container.brackets.open
 <div class="example-body">
 <div class="example-code">
 <pre>
-abjad> container = Container([ ])
-abjad> container.brackets.name
-'round'
+   abjad> container = Container([ ])
+   abjad> container.brackets.name
+   'round'
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> container.brackets.name = 'curly'
-abjad> container.brackets.name
-'curly'
+   hide> container = Container([ ])
+   abjad> container.brackets.name = 'curly'
+   abjad> container.brackets.name
+   'curly'
 </pre>
 </div> <!-- example code -->
 </div> <!-- example body -->
@@ -93,13 +113,14 @@ abjad> container.brackets.name
 <div class="example-body">
 <div class="example-code">
 <pre>
-abjad> container = Container([ ])
+   abjad> container = Container([ ])
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> container.brackets.close
-')'
+   hide> container = Container([ ])
+   abjad> container.brackets.close
+   ')'
 </pre>
 </div> <!-- example code -->
 </div> <!-- example body -->
@@ -132,14 +153,16 @@ abjad> container.brackets.close
 <div class="example-body">
 <div class="example-code">
 <pre>
-abjad> t = Container([ ])
-abjad> u = Container([ ])
+   abjad> t = Container([ ])
+   abjad> u = Container([ ])
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> t.brackets == u.brackets
-True
+   hide> t = Container([ ])
+   hide> u = Container([ ])
+   abjad> t.brackets == u.brackets
+   True
 </pre>
 </div> <!-- example code -->
 </div> <!-- example body -->
@@ -158,14 +181,16 @@ True
 <div class="example-body">
 <div class="example-code">
 <pre>
-abjad> t = Container([ ])
-abjad> u = Container([ ])
+   abjad> t = Container([ ])
+   abjad> u = Container([ ])
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> t.brackets != u.brackets
-False
+   hide> t = Container([ ])
+   hide> u = Container([ ])
+   abjad> t.brackets != u.brackets
+   False
 </pre>
 </div> <!-- example code -->
 </div> <!-- example body -->
@@ -184,13 +209,14 @@ False
 <div class="example-body">
 <div class="example-code">
 <pre>
-abjad> container = Container([ ])
+   abjad> container = Container([ ])
 </pre>
 </div> <!-- example code -->
 <div class="example-code">
 <pre>
-abjad> container.brackets
-'( )'
+   hide> container = Container([ ])
+   abjad> container.brackets
+   '( )'
 </pre>
 </div> <!-- example code -->
 </div> <!-- example body -->
@@ -201,3 +227,15 @@ abjad> container.brackets
 <h2 class="page-section">Comments</h2>
 
 <p class="comment">See the <code>_Brackets</code> class in <code>containers/brackets.py</code> for implementation details.
+
+<p class="footer"><a href="../../index.html">Contents</a></p>
+
+</div>
+
+<script type="text/javascript" src="../../templates/ga-1.js"></script>
+
+<script type="text/javascript" src="../../templates/ga-2.js"></script>
+
+</body>
+
+</html>

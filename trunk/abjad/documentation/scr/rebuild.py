@@ -19,8 +19,9 @@ chapters.sort( )
 print 'Rebuilding %s chapters ...\n' % len(chapters)
 
 start_time = time.time( )
-for i, chapter in enumerate(chapters[:2]):
-   status = 'Chapter %s: %s ' % (i + 1, chapter)
+#for i, chapter in enumerate(chapters[:2]):
+for i, chapter in enumerate(chapters):
+   status = 'Chapter %d: %s ' % (i + 1, chapter)
    print status,
    sys.stdout.flush( )
    chapter_directory = os.path.join(CHAPTERSDIR, chapter)
@@ -31,8 +32,9 @@ for i, chapter in enumerate(chapters[:2]):
       p = subprocess.Popen('chapter.py', 
          shell = True, stdout = sys.stdout, stderr = subprocess.PIPE)
       out, error = p.communicate( )
-      if error is not None:
-         print 'ERROR',
+      if error:
+         print '\n'
+         print error,
       print ''
 
 print ''
