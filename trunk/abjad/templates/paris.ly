@@ -1,19 +1,16 @@
 %%% Template: paris.ly
 %%%
+%%% Suitable for rhythmic examples:
+%%%   OFF: first-system indent, bar numbers, automatic beaming
+%%%   ON:  ragged-right, forget-accidentals
 %%%
-%%% Suitable for rhythmic examples because 
-%%% first-sytem indent, bar numbers, automatica beaming are all turned off and
-%%% because ragged-right is turned on and forget-accidentals are turned on.
-%%%
-%%% Suitable for rhythms because tuplets extend the full length
-%%% of the figures they govern.
-%%% Tuplets are always written as fraction.
-%%% Staff and RhythmicStaff have Timing_translators, so each staff can have
-%%% its own meter changes.
-%%%
-%%% Line break are allowed on spanning durations.
-%%% All breakable spanners are set to True.
-%%% Collisions are ignored.
+%%%   * Tuplets extend full length of figures they govern
+%%%   * Tuplets are always written as fraction
+%%%   * Staff and RhythmicStaff have Timing_translators, 
+%%%     so each staff can have its own meter changes
+%%%   * Line break are allowed on spanning durations
+%%%   * All breakable spanners are set to True
+%%%   * Collisions are ignored
 
 
 \layout {
@@ -22,33 +19,41 @@
 
    \context {
       \Score
-      %%% proportional notation
+
+      % proportional notation
       %proportionalNotationDuration = #(ly:make-moment 1 64)
       proportionalNotationDuration = #(ly:make-moment 1 74)
    	\override SpacingSpanner #'strict-note-spacing = ##t  
    	\override SpacingSpanner #'strict-grace-spacing = ##t
 		\override SpacingSpanner #'uniform-stretching = ##t
 
-      %%% breakable spanners
+      % breakable spanners
 		\override Glissando #'breakable = ##t
       \override Beam #'breakable = ##t
       \override TextSpanner #'breakable = ##t
-      %%% collisions
+
+      % collisions
       \override NoteColumn #'ignore-collision = ##t
 
+      % beaming
       autoBeaming = ##f
+
+      % tuplet handling
       tupletFullLength = ##t
 		\override TupletNumber #'text = #tuplet-number::calc-fraction-text
       \override TupletBracket #'bracket-visibility = ##t
-      %%% allow tuplet bracket to always be visible, even for short tuplets.
+      % allow tuplet bracket to always be visible, even for short tuplets.
       \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
       \override TupletBracket #'minimum-length = #3
 
-
+      % bar numbers
       \remove Bar_number_engraver
-      
-      \remove Timing_translator
+
+      % bar lines
       \remove Default_bar_line_engraver
+      
+      % timing administration
+      \remove Timing_translator
    }
 
    \context {
@@ -62,15 +67,20 @@
       \override TimeSignature #'style = #'numbered
       \consists Timing_translator
       \consists Default_bar_line_engraver
+      % VerticalAxisGroup override seems to do nothing
       \override VerticalAxisGroup #'minimum-Y-extent = #'(-4 . 2)
    }
 
-   \context{ \Voice
-      %%% allow line break in spanning durations.
+   \context{
+      \Voice
+      % allow line break in spanning durations.
       \remove "Forbid_line_break_engraver"
     }
 }
       
 #(set-default-paper-size "a4" 'landscape)
-%#(set-default-paper-size "a4")
 #(set-global-staff-size 14)
+
+\paper {
+   between-system-padding = #20
+}
