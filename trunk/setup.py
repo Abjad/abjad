@@ -18,4 +18,5 @@ setup(name = 'Abjad',
       packages = find_packages( ), ### include all packages found in '.'
       scripts = ['ez_setup.py'],
       include_package_data = True, ### include all file types under abjad.
+      entry_points = { 'console_scripts':['abj = abjad.cfg.run_abjad:_run_abjad', ] },
       )
