@@ -1,8 +1,13 @@
 #! /usr/bin/env python
 
-import os
 from abjad.cfg.cfg import ABJADPATH
+import os
+import subprocess
+import sys
+import time
 
+
+os.system('clear')
 CHAPTERSDIR = os.path.join(ABJADPATH, 'documentation', 'chapters')
 chapters = os.listdir(CHAPTERSDIR)
 
@@ -11,15 +16,25 @@ chapters = os.listdir(CHAPTERSDIR)
 chapters.remove('.svn')
 
 chapters.sort( )
-print 'Crawling %s chapter directories ...' % len(chapters)
+print 'Rebuilding %s chapters ...\n' % len(chapters)
 
+start_time = time.time( )
 for i, chapter in enumerate(chapters[:2]):
-   status = 'Chapter %s %s ...' % (i + 1, chapter)
+   status = 'Chapter %s: %s ' % (i + 1, chapter)
    print status,
+   sys.stdout.flush( )
    chapter_directory = os.path.join(CHAPTERSDIR, chapter)
    chapter_files = os.listdir(chapter_directory)
    if 'text.raw' in chapter_files:
       os.chdir(chapter_directory)
       raw_chapter_file = os.path.join(chapter_directory, 'text.raw')
-      os.system('chapter.py %s' % raw_chapter_file)
-      print 'done.'
+      p = subprocess.Popen('chapter.py', 
+         shell = True, stdout = sys.stdout, stderr = subprocess.PIPE)
+      out, error = p.communicate( )
+      if error is not None:
+         print 'ERROR',
+      print ''
+
+print ''
+stop_time = time.time( )
+print 'Total runtime: %d seconds.\n' % (stop_time - start_time)

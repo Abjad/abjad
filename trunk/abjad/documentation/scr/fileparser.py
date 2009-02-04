@@ -84,7 +84,7 @@ class FileParser(object):
    def parse(self):
       partial = self.input
       for tag in self.tags:
-         print "Processing %s tag..." % tag.__class__.__name__
+         #print "Processing %s tag..." % tag.__class__.__name__
          tag.parse(partial)
          partial = tag.output
       self.output = partial

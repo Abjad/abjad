@@ -2,6 +2,8 @@ from abjad.cfg.cfg import ABJADPATH
 from tagparser import _TagParser
 import os
 import re
+import subprocess
+import sys
 
 
 ### TODO - All calls here to os.popen( ) are deprecated in Python 2.6.
@@ -109,12 +111,18 @@ class ABJAD(_TagParser):
    def make_image(self):
       num = self.cur_image_number
       os.popen('python tmp.aj')
-      os.popen('lilypond --png -dresolution=300 %s.ly' % num)
+      #os.popen('lilypond --png -dresolution=300 %s.ly' % num)
+      # NOTE: setting stderr = sys.stderr below will print LilyPond messages
+      p = subprocess.Popen('lilypond --png -dresolution=300 %s.ly' % num,
+         shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+      p.communicate( )
       os.popen('rm %s.ps' % num)
       os.popen('rm %s.ly' % num)
       os.popen('mv %s.png images' % num)
       output = 'convert images/%s.png -trim -resample 40%% images/%s.png'
       os.popen(output % (num, num))
+      # status indicator with no trailing space or newline after
+      sys.stdout.write('.')
 
    def clean_up(self):
       try:
