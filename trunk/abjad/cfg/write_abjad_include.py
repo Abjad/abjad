@@ -1,6 +1,8 @@
 from abjad.cfg.cfg import ABJADPATH
+import os
 
 
 def _write_abjad_include(outfile):
    if ABJADPATH is not None:
-      outfile.write('\\include "%s/scm/abjad.scm"\n' % ABJADPATH)
+      abjad_include = os.path.join(ABJADPATH, 'scm', 'abjad.scm')
+      outfile.write('\\include "%s"\n' % abjad_include)
