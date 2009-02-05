@@ -75,7 +75,7 @@ Assignability
 
 <p> 
 <a href="chapters/duration_token/index.html">
-Duration token
+Duration token input
 </a>
 </p>
 
@@ -171,6 +171,14 @@ The container model
 <p> 
 The container inheritance hierarchy
 </p>
+</body>
+</toc-section>
+
+<toc-section>
+<header> Understanding measures
+<body>
+<p><a href="chapters/measures_overview/index.html">Overview</a></p>
+<p><a href="chapters/meter_token/index.html">Meter token input</a></p>
 </body>
 </toc-section>
 
