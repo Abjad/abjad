@@ -1,7 +1,8 @@
 from abjad import *
+from abjad.tools import construct
 
-def test_notes_make_01( ):
-   t = notes_make(1, (1,4))
+def test_construct_note_01( ):
+   t = construct.note(1, (1,4))
    assert isinstance(t, list)
    assert len(t) == 1
    assert isinstance(t[0], Note)
@@ -10,9 +11,9 @@ def test_notes_make_01( ):
    assert t[0].duration.written == Rational(1, 4)
    assert not t[0].tie.spanned
 
-def test_notes_make_02( ):
+def test_construct_note_02( ):
    '''Tied durations result in more than one tied Note.'''
-   t = notes_make(1, (5, 8))
+   t = construct.note(1, (5, 8))
    assert len(t) == 2
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Note)

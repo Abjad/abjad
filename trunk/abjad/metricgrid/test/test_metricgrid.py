@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import construct
 
 
 def test_metricgrid_01( ):
@@ -270,7 +271,8 @@ def test_metricgrid_splitting_05( ):
    '''MetricGrid split fuses correctly tied leaves in last measure.'''
 
    v = Voice(Note(1, (1, 4))*3)
-   v.extend(rests_make((5, 4)))
+   #v.extend(rests_make((5, 4)))
+   v.extend(construct.rest((5, 4)))
    #m = MetricGrid(v, [(4, 4)])
    m = MetricGrid(v.leaves, [(4, 4)])
    m.splitOnBar( )
