@@ -27,7 +27,7 @@ class MetricGrid(Spanner):
             m = Meter(*m)
             ### new attribute
             m.offset = moffset
-            if prev_meter and prev_meter.pair == m.pair:
+            if prev_meter and prev_meter == m:
                #m.hide = True
                m.suppress = True
             yield m

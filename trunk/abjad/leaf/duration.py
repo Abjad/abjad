@@ -61,7 +61,7 @@ class _LeafDurationInterface(_DurationInterface):
          if self.multiplier:
             return self.written * self.multiplier
          else:
-            return Rational(*self.written.pair)
+            return Rational(self.written)
       else:
          return None
 

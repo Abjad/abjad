@@ -56,7 +56,7 @@ def test_intersection_05( ):
    v = t & u
    assert isinstance(v, Chord)
    assert v.signature == ((('cs', 4), ('d', 4)), (1, 4))
-   assert v.duration.written.pair == t.duration.written.pair
+   assert v.duration.written == t.duration.written
    assert t is not u is not v
 
 
@@ -68,7 +68,7 @@ def test_intersection_06( ):
    v = t & u
    assert isinstance(v, Chord)
    assert v.signature == ((('cs', 4), ('d', 4)), (1, 8))
-   assert v.duration.written.pair == t.duration.written.pair
+   assert v.duration.written == t.duration.written
    assert t is not u is not v
 
 

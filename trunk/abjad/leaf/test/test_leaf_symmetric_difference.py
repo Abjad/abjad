@@ -56,7 +56,7 @@ def test_symmetric_difference_05( ):
    v = t ^ u
    assert isinstance(v, Chord)
    assert v.signature == ((('c', 4), ('cs', 4), ('d', 4), ('ef', 4), ('e', 4), ('f', 4)), (1, 4))
-   assert v.duration.written.pair == t.duration.written.pair
+   assert v.duration.written == t.duration.written
    assert t is not u is not v
 
 
@@ -68,7 +68,7 @@ def test_symmetric_difference_06( ):
    v = t ^ u
    assert isinstance(v, Chord)
    assert v.signature == ((('c', 4), ('cs', 4), ('d', 4), ('ef', 4), ('e', 4), ('f', 4)), (1, 8))
-   assert v.duration.written.pair == t.duration.written.pair
+   assert v.duration.written == t.duration.written
    assert t is not u is not v
 
 
