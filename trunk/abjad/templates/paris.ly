@@ -82,5 +82,7 @@
 #(set-global-staff-size 14)
 
 \paper {
-   between-system-padding = #20
+   between-system-padding = #15
+	bottom-margin = 0.75\in
+	left-margin = 0.75\in
 }
