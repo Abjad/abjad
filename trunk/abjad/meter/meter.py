@@ -30,9 +30,10 @@ class Meter(_GrobHandler):
 
    def __eq__(self, arg):
       if isinstance(arg, Meter):
-         return self.pair == arg.pair
+         return self.numerator == arg.numerator and \
+            self.denominator == arg.denominator
       elif isinstance(arg, tuple):
-         return self.pair == arg
+         return self.numerator == arg[0] and self.denominator == arg[1]
       else:
          return False
 

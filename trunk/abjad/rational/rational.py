@@ -31,7 +31,7 @@ class Rational(object):
    ### REPR ###
 
    def __repr__(self):
-      return 'Rational(%s, %s)' % self.pair
+      return 'Rational(%s, %s)' % (self._n, self._d)
 
    def __str__(self):
       if self._d == 1:
