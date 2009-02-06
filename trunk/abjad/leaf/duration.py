@@ -1,10 +1,13 @@
 from abjad.core.duration import _DurationInterface
 from abjad.core.interface import _Interface
+from abjad.exceptions.assignability import AssignabilityError
 from abjad.helpers.binary import _binary
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.hasname import hasname
+from abjad.helpers.is_assignable import _is_assignable
 from abjad.rational.rational import Rational
-from math import log, floor, ceil
+#from math import log, floor, ceil
+import math
 
 
 class _LeafDurationInterface(_DurationInterface):
@@ -36,13 +39,13 @@ class _LeafDurationInterface(_DurationInterface):
 
    ### PRIVATE ATTRIBUTES ###
 
-   def _assignable(self, q):
+#   def _assignable(self, q):
+##      return (not q._d & (q._d - 1)) and \
+##         (0 < q < 2) and \
+##         (not '01' in _binary(q._n)) 
 #      return (not q._d & (q._d - 1)) and \
-#         (0 < q < 2) and \
+#         (0 < q < 16) and \
 #         (not '01' in _binary(q._n)) 
-      return (not q._d & (q._d - 1)) and \
-         (0 < q < 16) and \
-         (not '01' in _binary(q._n)) 
 
    @property
    def _dots(self):
@@ -66,13 +69,13 @@ class _LeafDurationInterface(_DurationInterface):
 
    @property
    def _flags(self):
-      return max(-int(floor(log(float(self.written._n) / \
+      return max(-int(math.floor(math.log(float(self.written._n) / \
          self.written._d, 2))) - 2, 0)
 
    @property
    def _number(self):
-      #return 2 ** (int(log(self.written._d, 2)) - self._dots)
-      return 2 ** int(ceil(log(1/self.written, 2)))
+      #return 2 ** (int(math.log(self.written._d, 2)) - self._dots)
+      return 2 ** int(math.ceil(math.log(1/self.written, 2)))
 
    @property
    def _product(self):
@@ -132,8 +135,10 @@ class _LeafDurationInterface(_DurationInterface):
             rational = Rational(expr)
          else:
             raise ValueError('can not set written duration.')
-         if not self._assignable(rational):
-            raise ValueError('%s is not notehead-assignable.' % str(rational))
+         #if not self._assignable(rational):
+         #   raise ValueError('%s is not notehead-assignable.' % str(rational))
+         if not _is_assignable(rational):
+            raise AssignabilityError('%s' % str(rational))
          self._written = rational
       return property(**locals( ))
 

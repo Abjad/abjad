@@ -13,4 +13,5 @@ def test_octave_zero_01( ):
 ### ASSERTS ###
 
 def test_assert_duration_is_notehead_assignable_01( ):
-   raises(ValueError, Note, 0, (5, 8))
+   #raises(ValueError, Note, 0, (5, 8))
+   raises(AssignabilityError, 'Note(0, (5, 8))')

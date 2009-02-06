@@ -1,3 +1,4 @@
+from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.helpers.iterate import iterate
 from abjad.measure.base import _Measure
 from abjad.note.note import Note
@@ -28,10 +29,22 @@ def measures_populate(expr, mode):
       _measures_populate_meter_series(expr)
    elif mode == 'skip':
       _measures_populate_skip(expr)
+   elif _is_duration_token(mode):
+      _measures_populate_duration_train(expr, mode)
    elif mode is None:
       _measures_populate_none(expr)
    else:
       raise ValueError('unknown measure population mode "%s".' % mode)
+
+def _measures_populate_duration_train(expr, duration):
+   duration = Rational(duration)
+   ### TODO: pick up here
+   for measure in iterate(expr, '_Measure'):
+      total = measure.meter.effective.duration
+      cur = Rational(0)
+      notes = [ ]
+      while cur + duration <= total:
+         notes.append(Note(0, duration))
 
 def _measures_populate_meter_series(expr):
    for measure in iterate(expr, '_Measure'):

@@ -22,4 +22,5 @@ def test_leaf_duartion_interface_maximum_01( ):
    assert t.format == "cs'\\maxima.."
    t.duration.written = Rational(15)
    assert t.format == "cs'\\maxima..."
-   assert py.test.raises(ValueError, 'Note(1, 16)')
+   #assert py.test.raises(ValueError, 'Note(1, 16)')
+   assert py.test.raises(AssignabilityError, 'Note(1, 16)')

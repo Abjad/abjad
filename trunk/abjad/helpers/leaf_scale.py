@@ -1,3 +1,4 @@
+from abjad.exceptions.assignability import AssignabilityError
 from abjad.helpers.converge_to_power2 import _converge_to_power2
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
@@ -10,7 +11,6 @@ from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 ### - would this be better named leaf_reset_duration( )?... 
 ###   we are not really scaling.
 ### - should multipliers be retained in setting of new duration ?
-### - change ValueError in non notehead-assignable notes to InvalidDurationError?
 
 def leaf_scale(dur, leaf):
    '''
@@ -26,7 +26,8 @@ def leaf_scale(dur, leaf):
       #leaf.duration = dur
       leaf.duration.written = dur
       return leaf
-   except ValueError:
+   #except ValueError:
+   except AssignabilityError:
       #leaf.duration = _converge_to_power2(leaf.duration, dur)
       leaf.duration.written = _converge_to_power2(leaf.duration.written, dur)
       result = FixedDurationTuplet(dur, [leaf])
@@ -47,7 +48,8 @@ def leaf_scale_binary(dur, leaf):
    try:
       leaf.duration.written = dur
       return [leaf]
-   except ValueError:
+   #except ValueError:
+   except AssignabilityError:
       result = [ ]
       for wd in _duration_token_decompose(dur):
          l = leaf.copy( )

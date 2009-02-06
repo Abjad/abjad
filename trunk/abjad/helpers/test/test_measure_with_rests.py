@@ -28,4 +28,5 @@ def test_measure_with_rests_02( ):
 def test_measure_with_rests_03( ):
    '''Doesn't work with nonbinary denominator;
       TODO -- make work with nonbinary denominator.'''
-   assert raises(ValueError, 'measure_with_rests((4, 5))')
+   #assert raises(ValueError, 'measure_with_rests((4, 5))')
+   assert raises(AssignabilityError, 'measure_with_rests((4, 5))')
