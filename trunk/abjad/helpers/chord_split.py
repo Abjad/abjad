@@ -4,16 +4,6 @@ from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
 
 
-#def _prune_notehead(part, notehead, pitch, attr, comparison):
-#   if attr == 'number':
-#      if comparison(notehead.pitch.number, pitch.number):
-#         part.remove(notehead)
-#   elif attr == 'altitude':
-#      if comparison(notehead.pitch.altitude, pitch.altitude):
-#         part.remove(notehead)
-#   else:
-#      raise ValueError('unknown pitch attr.')
-
 def chord_split(chord, pitch = Pitch('b', 3), attr = 'number'):
    '''
    Return disjunct (treble, bass) pair of 'parts' from input chord;
@@ -56,7 +46,7 @@ def chord_split(chord, pitch = Pitch('b', 3), attr = 'number'):
       else:
          treble.append(p.pair)
 
-   treble = engender(treble, chord.duration.written.pair)
-   bass = engender(bass, chord.duration.written.pair)
+   treble = engender(treble, chord.duration.written)
+   bass = engender(bass, chord.duration.written)
 
    return treble, bass
