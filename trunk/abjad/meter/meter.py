@@ -8,7 +8,7 @@ class Meter(_GrobHandler):
 
    def __init__(self, *args):
       _GrobHandler.__init__(self, 'TimeSignature')
-      self.hide = False
+      self.suppress = False
       if len(args) == 1 and isinstance(args[0], Meter):
          meter = args[0]
          self.numerator = meter.numerator
@@ -91,17 +91,6 @@ class Meter(_GrobHandler):
    def format(self):
       return r'\time %s/%s' % (self.numerator, self.denominator)
 
-   @apply
-   def hide( ):
-      def fget(self):
-         return self._hide
-      def fset(self, arg):
-         if isinstance(arg, bool):
-            self._hide = arg
-         else:
-            raise ValueError('meter hide must be boolean.')
-      return property(**locals( ))
-
    @property
    def multiplier(self):
       return _denominator_to_multiplier(self.denominator)
@@ -131,4 +120,16 @@ class Meter(_GrobHandler):
             self.denominator = arg[1]
          else:
             raise ValueError('meter %s must be (m . n) pair.' % str(arg))
+      return property(**locals( ))
+
+   ### TODO: Determine whether this property should implement 
+   ###       here on Meter or on _MeterInterface
+
+   @apply
+   def suppress( ):
+      def fget(self):
+         return self._suppress
+      def fset(self, arg):
+         assert isinstance(arg, bool)
+         self._suppress = arg
       return property(**locals( ))
