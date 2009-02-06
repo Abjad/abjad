@@ -1,5 +1,6 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
+from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.spanner.receptor import _SpannerReceptor
 
 
@@ -19,7 +20,6 @@ class _StemInterface(_Interface, _GrobHandler, _SpannerReceptor):
          if expr == None:
             self._tremolo = None
          else:
-            assert isinstance(expr, (int, long))
-            assert not expr & (expr - 1)
+            assert _is_power_of_two(expr)
             self._tremolo = expr
       return property(**locals( ))

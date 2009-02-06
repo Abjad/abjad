@@ -57,15 +57,8 @@ class _Parentage(_Abjad):
       otherwise None.
       '''
 
-      #shared = set(self._parentage) & set(arg._parentage._parentage)
-      #shared = set(self._iparentage) & set(arg._parentage._iparentage)
-      #shared = set(self._parentage) & set(arg._parentage._parentage)
-      #shared = set(self._parentage) & set(arg.parentage._parentage)
       shared = set(self.parentage) & set(arg.parentage.parentage)
       if shared:
-         #for parent in self._parentage:
-         #for parent in self._iparentage:
-         #for parent in self._parentage:
          for parent in self.parentage:
             if parent in shared:
                return parent

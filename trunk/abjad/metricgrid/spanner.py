@@ -1,3 +1,4 @@
+from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.helpers.leaf_split import leaf_split_binary, leaf_split
 from abjad.helpers.leaves_fuse import leaves_fuse_binary
 from abjad.meter.meter import Meter
@@ -55,7 +56,7 @@ class MetricGrid(Spanner):
                   Tie(leaf)
                splitdur = meter.offset - leaf.offset.score
                ### if splitdur not m / 2**n
-               if not splitdur._denominator & (splitdur._denominator - 1):
+               if _is_power_of_two(splitdur._denominator):
                   leaves_splitted = leaf_split_binary(splitdur, leaf)
                   leaf = leaves_splitted[1][0]
                else:

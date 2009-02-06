@@ -1,28 +1,18 @@
-#from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.multipliedduration import _MultipliedContainerDurationInterface
-#from abjad.core.interface import _Interface
-#from abjad.helpers.hasname import hasname
-#from abjad.rational.rational import Rational
+from abjad.helpers.is_power_of_two import _is_power_of_two
 
 
-#class _TupletDurationInterface(_ContainerDurationInterface):
 class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
    def __init__(self, _client):
-      #_ContainerDurationInterface.__init__(self, _client)
       _MultipliedContainerDurationInterface.__init__(self, _client)
-
-#   ### OVERLOADS ###
-#
-#   def __repr__(self):
-#      return 'TupletDurationInterface( )'
 
    ### PRVIATE ATTRIBUTES ###
 
    @property
    def _binary(self):
       if self.multiplier:
-         return not self.multiplier._n & (self.multiplier._n - 1)
+         return _is_power_of_two(self.multiplier._n)
       else:
          return True
 
