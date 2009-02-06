@@ -28,7 +28,8 @@ class MetricGrid(Spanner):
             ### new attribute
             m.offset = moffset
             if prev_meter and prev_meter.pair == m.pair:
-               m.hide = True
+               #m.hide = True
+               m.suppress = True
             yield m
             moffset += m.duration
             i += 1
@@ -136,10 +137,12 @@ class MetricGrid(Spanner):
       result = [ ]
       if not self.hide:
          meter = self._matchingMeter(leaf)
-         if meter and not meter.hide:
+         #if meter and not meter.hide:
+         if meter and not meter.suppress:
             result.append(meter.format)
          m = self._slicingMeters(leaf)
-         m = [meter for meter in m if not meter.hide]
+         #m = [meter for meter in m if not meter.hide]
+         m = [meter for meter in m if not meter.suppress]
          if m:
             ### set self._slicingMetersFound as temporary flag so that 
             ### self._after does not have to recompute _slicingMeters( )
