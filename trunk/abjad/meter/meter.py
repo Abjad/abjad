@@ -109,20 +109,6 @@ class Meter(_GrobHandler):
          self._numerator = arg
       return property(**locals( ))
 
-   @apply
-   def pair( ):
-      def fget(self):
-         return self.numerator, self.denominator
-      def fset(self, arg):
-         if isinstance(arg, tuple) and len(arg) == 2 and \
-            isinstance(arg[0], (int, float, long)) and \
-            isinstance(arg[1], (int, float, long)):
-            self.numerator = arg[0]
-            self.denominator = arg[1]
-         else:
-            raise ValueError('meter %s must be (m . n) pair.' % str(arg))
-      return property(**locals( ))
-
    ### TODO: Determine whether this property should implement 
    ###       here on Meter or on _MeterInterface
 
