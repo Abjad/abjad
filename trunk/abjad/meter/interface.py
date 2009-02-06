@@ -37,8 +37,9 @@ class _MeterInterface(_Interface, _GrobHandler):
 
    @property
    def change(self):
-      return bool(self._client.prev and \
-         self._client.prev.meter.pair != self.pair)
+      client = self._client
+      return bool(client.prev and \
+         client.prev.meter.effective != self.effective)
 
    ### TODO - the explicit check for DynamicMeasure seems like
    ###        a (small) hack; is there a better implementation?
@@ -82,7 +83,3 @@ class _MeterInterface(_Interface, _GrobHandler):
          else:
             raise ValueError('unknown meter specification.')
       return property(**locals( ))
-
-   @property
-   def pair(self):
-      return self.effective.pair
