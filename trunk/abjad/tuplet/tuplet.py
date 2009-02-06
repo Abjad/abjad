@@ -39,7 +39,7 @@ class _Tuplet(Container):
    @property
    def ratio(self):
       if self.duration.multiplier:
-         return _Ratio(*(~self.duration.multiplier).pair)
+         return _Ratio(self.duration.multiplier)
       else:
          return None
 

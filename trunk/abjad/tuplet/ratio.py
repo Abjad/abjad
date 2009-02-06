@@ -3,10 +3,7 @@ from abjad.rational.rational import Rational
 
 class _Ratio(Rational):
 
-   def __init__(self, p, q = 1):
-      Rational.__init__(self, q, p)
-
-   ### REPR ###
+   ### OVERLOADS ###
 
    def __repr__(self):
       return '_Ratio(%s, %s)' % (self._d, self._n)

@@ -8,11 +8,6 @@ class _FMTupletDurationInterface(_TupletDurationInterface):
       _TupletDurationInterface.__init__(self, _client)
       self.multiplier = multiplier
 
-#   ### REPR ###
-#
-#   def __repr__(self):
-#      return 'FMTupletDurationInterface(%s)' % str(self.multiplier)
-
    ### PRIVATE ATTRIBUTES ###
 
    @property
@@ -38,7 +33,7 @@ class _FMTupletDurationInterface(_TupletDurationInterface):
          elif isinstance(expr, tuple):
             rational = Rational(*expr)
          elif isinstance(expr, Rational):
-            rational = Rational(*expr.pair)
+            rational = Rational(expr)
          else:
             raise ValueError('Can not set tuplet rational from %s.' % 
                str(expr))
