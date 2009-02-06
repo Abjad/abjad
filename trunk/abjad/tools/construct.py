@@ -1,17 +1,23 @@
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
+from abjad.helpers.is_duration_token import _is_duration_token
+from abjad.helpers.is_pitch_token import _is_pitch_token
 from abjad.note.note import Note
 from abjad.tie.spanner import Tie
 
-def note(pitch, dur):
+def _construct_note(pitch, dur, direction='big-endian'):
    '''
-   Make note(s) by splitting dur if necessary. 
-   Ties are automatically added.
-   Returns a list of Note or Notes.
+   Returns a list of notes to fill the given duration. 
+   Notes returned are Tie spanned.
+   direction: may be 'big-endian' or 'little-endian'.
+            'big-endian' returns a list of notes of decreasing duration.
+            'little-endian' returns a list of notes of increasing duration.
    '''
    result = [ ]
    for wd in _duration_token_decompose(dur):
       result.append(Note(pitch, wd))
    if len(result) > 1:
+      if direction == 'little-endian':
+         result.reverse( )
       Tie(result)
    return result
 
@@ -19,19 +25,33 @@ def note(pitch, dur):
 
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 
-def notes(pitches, durations):
+def notes(pitches, durations, direction='big-endian'):
    '''
    Constructs a list of notes of length max(len(pitches), len(durations)).
    The pitches or the durations, whichever is shorter, are cycled around until
    the max length is reached.
+
+   Parameters:
+   pitches:    a single pitch or a list/tuple of pitches.
+   durations:  a sinlge duration or a list of durations.
+   direction:     may be 'big-endian' or 'little-endian'.
+               'big-endian' returns a list of notes of decreasing duration.
+               'little-endian' returns a list of notes of increasing duration.
    '''
+
+   if _is_pitch_token(pitches):
+      pitches = [pitches]
+
+   if _is_duration_token(durations):
+      durations = [durations]
+
    result = [ ]
    max_len = max(len(pitches), len(durations))
    for i in range(max_len):
       d = durations[i % len(durations)]
       d = _duration_token_unpack(d)
       p = pitches[i % len(pitches)]
-      result.extend(note(p, d))
+      result.extend(_construct_note(p, d, direction))
    return result
 
 
