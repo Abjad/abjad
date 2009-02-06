@@ -32,15 +32,15 @@ class _TupletFormatter(_ContainerFormatter):
    def _opening(self):
       '''Allow for no-multiplier and 1-multiplier tuplets.'''
       result = [ ]
-      if self._client.duration.multiplier:
-         if self._client.duration.multiplier != 1:
-            if self._client.invisible:
-               #result.append(r"\compressMusic #'(%s . %s) {" % 
-               result.append(r"\scaleDurations #'(%s . %s) {" % 
-                  self._client.ratio.pair)
+      client = self._client
+      if client.duration.multiplier:
+         if client.duration.multiplier != 1:
+            if client.invisible:
+               result.append(r"\scaleDurations #'(%s . %s) {" % (
+                  client.ratio._n, client.ratio._d))
             else:
                result.append(r'%s\times %s %s' % (self._fraction, 
-                  self._client.duration.multiplier, self._client.brackets.open))
+                  client.duration.multiplier, client.brackets.open))
       inheritence = _ContainerFormatter._opening
       result.extend(inheritence.fget(self))
       return result
@@ -49,7 +49,6 @@ class _TupletFormatter(_ContainerFormatter):
    def _closing(self):
       result = [ ]
       result.extend(['\t' + x for x in self._grobReverts])
-      #result.extend(_ContainerFormatter._closing.fget(self))
       result.extend(_ContainerFormatter._collectLocation(self, '_closing'))
       if self._client.duration.multiplier:
          if self._client.duration.multiplier != 1:
@@ -72,6 +71,5 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   #def lily(self):
    def format(self):
       return '\n'.join(self._pieces)
