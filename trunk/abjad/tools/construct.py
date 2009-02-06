@@ -85,7 +85,6 @@ def rests(durations, direction='big-endian'):
 
    result = [ ]
    for d in durations:
-      print d
       d = _duration_token_unpack(d)
       result.extend(_construct_rest(d, direction))
    return result
