@@ -5,6 +5,9 @@ def _is_duration_pair(arg):
    '''Returns True when arg has the form of a pair
       of integers that initialize a positive Rational,
       otherwise False.'''
+   if isinstance(arg, (list, tuple)) and len(arg) != 2:
+      return False
+
    try:
       arg = Rational(*arg)
    except:

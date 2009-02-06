@@ -67,7 +67,23 @@ def test_construct_notes_05( ):
 #   assert t[0].duration.written == Rational(1, 8)
 #   assert t[1].duration.written == Rational(1, 4)
 
+def test_construct_notes_06( ):
+   '''
+   Durations can be Rationals.
+   '''
+   t = construct.notes(1, Rational(1, 4))
+   assert len(t) == 1
+   assert t[0].duration.written == Rational(1, 4)
+
 def test_construct_notes_07( ):
+   '''
+   Durations can be a list of Rationals.
+   '''
+   t = construct.notes(1, [Rational(1, 4)])
+   assert len(t) == 1
+   assert t[0].duration.written == Rational(1, 4)
+
+def test_construct_notes_10( ):
    '''
    Key word 'direction' == 'big_endian' returns note durations in descending
    order. This is the default.
@@ -77,7 +93,7 @@ def test_construct_notes_07( ):
    assert t[0].duration.written == Rational(4, 16)
    assert t[1].duration.written == Rational(1, 16)
 
-def test_construct_notes_08( ):
+def test_construct_notes_11( ):
    '''
    Key word 'direction' == 'little_endian' returns note durations in ascending
    order. 
