@@ -49,10 +49,6 @@ class Rational(object):
    def _d(self):
       return self._denominator
 
-   @property
-   def pair(self):
-      return self._n, self._d
-
    ### ARITHMETIC OPERATORS ###
 
    def __neg__(self):
