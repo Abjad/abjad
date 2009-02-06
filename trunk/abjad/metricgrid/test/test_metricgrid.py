@@ -272,7 +272,7 @@ def test_metricgrid_splitting_05( ):
 
    v = Voice(Note(1, (1, 4))*3)
    #v.extend(rests_make((5, 4)))
-   v.extend(construct.rest((5, 4)))
+   v.extend(construct.rests((5, 4)))
    #m = MetricGrid(v, [(4, 4)])
    m = MetricGrid(v.leaves, [(4, 4)])
    m.splitOnBar( )

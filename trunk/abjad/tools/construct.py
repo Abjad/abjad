@@ -2,7 +2,24 @@ from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.helpers.is_pitch_token import _is_pitch_token
 from abjad.note.note import Note
+from abjad.rest.rest import Rest
 from abjad.tie.spanner import Tie
+
+
+def _construct_rest(dur, direction='big-endian'):
+   '''
+   Returns a list of rests to fill given duration. 
+   Rests returned are Tie spanned. 
+   '''
+   result = [ ]
+   for wd in _duration_token_decompose(dur):
+      result.append( Rest(wd) )
+   if len(result) > 1:
+      if direction == 'little-endian':
+         result.reverse( )
+      Tie(result)
+   return result
+
 
 def _construct_note(pitch, dur, direction='big-endian'):
    '''
@@ -20,7 +37,6 @@ def _construct_note(pitch, dur, direction='big-endian'):
          result.reverse( )
       Tie(result)
    return result
-
 
 
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
@@ -55,6 +71,26 @@ def notes(pitches, durations, direction='big-endian'):
    return result
 
 
+def rests(durations, direction='big-endian'):
+   '''
+   Constructs a list of rests.
+   Parameters:
+   durations:  a sinlge duration or a list of durations.
+   direction:  may be 'big-endian' or 'little-endian'.
+               'big-endian' returns a list of notes of decreasing duration.
+               'little-endian' returns a list of notes of increasing duration.
+   '''
+   if _is_duration_token(durations):
+      durations = [durations]
+
+   result = [ ]
+   for d in durations:
+      print d
+      d = _duration_token_unpack(d)
+      result.extend(_construct_rest(d, direction))
+   return result
+
+
 from abjad.rational.rational import Rational
 
 def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
@@ -81,10 +117,10 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
    max_note_duration = Rational(*_duration_token_unpack(max_note_duration))
    if total_duration > max_note_duration:
       rest_duration = total_duration - max_note_duration
-      r = rest(rest_duration)
-      n = note(pitch, max_note_duration)
+      r = _construct_rest(rest_duration)
+      n = _construct_note(pitch, max_note_duration)
    else:
-      n = note(pitch, total_duration)
+      n = _construct_note(pitch, total_duration)
       if len(n) > 1:
          for i in range(1, len(n)):
             n[i] = Rest(n[i])
@@ -92,16 +128,3 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
    return n + r
 
 
-from abjad.rest.rest import Rest
-
-def rest(dur, pitch=None):
-   '''Make (pitched) rest(s) by splitting dur if necessary.
-   Returns a list of Rests.'''
-   result = [ ]
-   for wd in _duration_token_decompose(dur):
-      rest =  Rest(wd)
-      rest.pitch = pitch
-      result.append( rest )
-   if len(result) > 1:
-      Tie(result)
-   return result
