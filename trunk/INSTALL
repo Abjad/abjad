@@ -4,9 +4,9 @@ Thank you for downloading Abjad!
 Dependencies
 ^^^^^^^^^^^^
 - Python 2.5 or 2.6
-- LilyPond 2.11 or newer.
+- LilyPond 2.12 or newer.
 
-To install Abjad you must already have Python 2.5 or Python 2.6 and LilyPond installed in your computer. Abjad will not install and/or run properly unless these two requirements are met.
+For Abjad to install and run properly, you must already have both Python 2.5 (or Python 2.6) and LilyPond installed in your computer.
 
 You can find Python here:
 http://www.python.org
@@ -15,8 +15,8 @@ and LilyPond here:
 http://www.lilypond.org
 
 
-Installing the official release
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Installing the official source release
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     1. Download the latest release from http://www.projectabjad.org.
 
@@ -57,4 +57,12 @@ If you'd like to be at the cutting edge of the Abjad development use the followi
 
          b) Alternatively you can include the 'abjad-trunk' directory in 
             your PYTHONPATH environment variable.             
+
+
+
+Note for Linux users
+^^^^^^^^^^^^^^^^^^^
+Abjad makes use of xdg-open to display PDF files using your favorite PDF viewer.
+Most Linux distributions now come with xdg-utils installed. If you do not have xdg-utils installed, download it from www.portland.freedsektop.org and install it. Alternatively you can set the PDFVIEWER environment variable to your favorite PDF viewer. 
+
 

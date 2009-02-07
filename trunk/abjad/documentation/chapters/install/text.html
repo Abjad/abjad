@@ -19,12 +19,42 @@
 <h1>Getting and installing the system</h1>
 
 <div class="subsection">
+<h2>Dependencies</h2>
+<ul>
+<li> Python 2.5 or 2.6
+<li> LilyPond 2.12 or newer.
+</ul>
 
-<p>Abjad is not yet available for public install.</p>
+<p>For Abjad to install and run properly, you must already have both Python 2.5 (or Python 2.6) and LilyPond installed in your computer.  </p>
 
-<p>We will eventually package Abjad using <code>setuptools.py</code> just like many other Python-based tools.</p>
+<p>You can find Python here: <br>
+<a href="http://www.python.org" target="_blank">http://www.python.org</a></p>
 
-<p>Once publicly available, instructions for getting and installing the system will appear here.</p>
+<p>and LilyPond here: <br>
+<a href="http://www.lilypond.org" target="_blank">http://www.lilypond.org</a>
+</p>
+
+<h2>Installing the official source release</h2>
+<ol>
+<li>Download the latest release from <a href="http://www.projectabjad.org">www.projectabjad.org</a>.
+
+<li>Untar the downloaded file (e.g. "tar xzvf Abjad-NNN.tar.gz",
+       where "NNN" is the version number of the latest release).
+
+<li>Change into the directory created in step 2 (e.g. "cd Abjad-NNN").
+
+<li>If you're using Linux, Mac OS X or some other flavor of Unix, enter
+       the command "sudo python setup.py install" at the shell prompt.
+       If you're using Windows, start up a command shell with administrator
+       privileges and run the command "setup.py install".
+<li>
+</ol>
+
+<p>These commands will install Abjad in your Python installation's `site-packages` directory. Note that this requires a working internet connection if you don't already have the Python utility "setuptools" installed.</p>
+
+<h3>Note for Linux users</h3>
+
+<p>Abjad makes use of xdg-open to display PDF files using your favorite PDF viewer. Most Linux distributions now come with xdg-utils installed. If you do not have xdg-utils installed, download it from <a href="http://portland.freedesktop.org/" target="_blank">www.portland.freedsektop.org</a> and install it. Alternatively you can set the PDFVIEWER environment variable to your favorite PDF viewer. </p>
 
 </div>
 
