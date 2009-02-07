@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 
+from abjad.cfg.cfg import ABJADPATH
 from mako.template import Template
 from mako.lookup import TemplateLookup
 import codecs
@@ -7,8 +8,8 @@ import getopt
 import os
 import sys
 
-
-templates_dir = os.environ['ABJADPATH'] + '/documentation/templates'
+#templates_dir = os.environ['ABJADPATH'] + '/documentation/templates'
+templates_dir = ABJADPATH + os.sep.join(['documentation', 'templates'])
 
 
 ### TODO: make this system-independent using os.path
