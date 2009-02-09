@@ -17,7 +17,7 @@ class _RigidMeasureFormatter(_MeasureFormatter):
       result = [ ]
       client = self._client
       if client.duration.nonbinary:
-         result.append("\t\\compressMusic #'(%s . %s) {" % (
+         result.append("\t\\scaleDurations #'(%s . %s) {" % (
             client.duration.multiplier._n,
             client.duration.multiplier._d))
          result.extend(
