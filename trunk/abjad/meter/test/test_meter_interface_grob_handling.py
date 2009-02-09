@@ -28,7 +28,7 @@ def test_meter_grob_handling_02( ):
    (Nonpromoted) transparent meter on measure.
    '''
 
-   t = Measure((4, 8), scale(4))
+   t = RigidMeasure((4, 8), scale(4))
    t.meter.transparent = True
 
    r'''
@@ -49,7 +49,7 @@ def test_meter_grob_handling_03( ):
    Promoted transarent meter on measure.
    '''
 
-   t = Measure((4, 8), scale(4))
+   t = RigidMeasure((4, 8), scale(4))
    t.meter.transparent = True
    t.meter.promote('transparent', 'Staff')
 

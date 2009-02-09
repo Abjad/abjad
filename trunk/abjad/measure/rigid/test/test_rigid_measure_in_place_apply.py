@@ -4,19 +4,16 @@ checker = MeasuresMisdurated( )
 
 
 
-### NEW IN-PLACE APPLICATION SYNTAX ###
-
-
 def test_measure_in_place_apply_01( ):
    t = Voice([Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
-   Measure((4, 8), t[0 : 4])
+   RigidMeasure((4, 8), t[0 : 4])
    leaves_after = t.leaves
    assert len(t) == 5
    assert leaves_before == leaves_after
    for i, x in enumerate(t):
       if i == 0:
-         assert isinstance(x, Measure)
+         assert isinstance(x, RigidMeasure)
       else:
          assert isinstance(x, Note)
    assert checker.check(t)
@@ -25,13 +22,13 @@ def test_measure_in_place_apply_01( ):
 def test_measure_in_place_apply_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
-   Measure((4, 8), t[0 : 4])
+   RigidMeasure((4, 8), t[0 : 4])
    leaves_after = t.leaves
    assert len(t) == 5
    assert leaves_before == leaves_after
    for i, x in enumerate(t):
       if i == 0:
-         assert isinstance(x, Measure)
+         assert isinstance(x, RigidMeasure)
       else:
          assert isinstance(x, Note)
    assert checker.check(t)
@@ -40,27 +37,28 @@ def test_measure_in_place_apply_02( ):
 def test_measure_in_place_apply_03( ):
    t = Staff([Note(n, (1, 1)) for n in range(4)])
    leaves_before = t.leaves
-   Measure((1, 1), t[0 : 1])
+   RigidMeasure((1, 1), t[0 : 1])
    leaves_after = t.leaves
    assert len(t) == 4
    assert leaves_before == leaves_after
    for i, x in enumerate(t):
       if i == 0:
-         assert isinstance(x, Measure)
+         assert isinstance(x, RigidMeasure)
       else:
          assert isinstance(x, Note)
    assert checker.check(t)
 
+
 def test_measure_in_place_apply_04( ):
    t = Staff([Note(n, (1, 1)) for n in range(4)])
    leaves_before = t.leaves
-   Measure((1, 1), t[-1 : ])
+   RigidMeasure((1, 1), t[-1 : ])
    leaves_after = t.leaves
    assert len(t) == 4
    assert leaves_before == leaves_after
    for i, x in enumerate(t):
       if i == len(t) - 1:
-         assert isinstance(x, Measure)
+         assert isinstance(x, RigidMeasure)
       else:
          assert isinstance(x, Note)
    assert checker.check(t)

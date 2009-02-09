@@ -9,10 +9,10 @@ def test_copy_one_containerized_note_01( ):
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], Note)
-   #assert u[0].pitch == t[0].pitch
    assert u[0].pitch.number == t[0].pitch.number
    assert id(u[0]) is not id(t[0])
    assert u[0]._parent == u
+
 
 def test_copy_one_containerized_note_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -20,29 +20,28 @@ def test_copy_one_containerized_note_02( ):
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], Note)
-   #assert u[0].pitch == t[1].pitch
    assert u[0].pitch.number == t[1].pitch.number
    assert id(u[0]) is not id(t[1])
    assert u[0]._parent == u
    
+
 def test_copy_one_containerized_note_03( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    u = tcopy(t[-1 :])
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], Note)
-   #assert u[0].pitch == t[-1].pitch
    assert u[0].pitch.number == t[-1].pitch.number
    assert id(u[0]) is not id(t[-1])
    assert u[0]._parent == u
    
+
 def test_copy_one_containerized_note_04( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    u = tcopy(t[-2:-1])
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], Note)
-   #assert u[0].pitch == t[-2].pitch
    assert u[0].pitch.number == t[-2].pitch.number
    assert id(u[0]) is not id(t[-2])
    assert u[0]._parent == u
@@ -56,10 +55,10 @@ def test_copy_adjacent_containerized_notes_01( ):
    assert isinstance(u, Staff)
    assert len(u) == 3
    for i, x in enumerate(u):
-      #assert x.pitch == t[i].pitch
       assert x.pitch.number == t[i].pitch.number
       assert id(x) is not id(t[i])
    assert check(u)
+
 
 def test_copy_adjacent_containerized_notes_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -68,7 +67,6 @@ def test_copy_adjacent_containerized_notes_02( ):
    assert len(u) == 6
    for i, x in enumerate(u):
       j = i + 1
-      #assert x.pitch == t[j].pitch
       assert x.pitch.number == t[j].pitch.number
       assert id(x) is not id(t[j])
    assert check(u)
@@ -95,10 +93,10 @@ def test_copy_adjacent_tupletized_notes_01( ):
    assert len(u) == 2
    for i, x in enumerate(u):
       j = i + 0
-      #assert x.pitch == t[1][j].pitch
       assert x.pitch.number == t[1][j].pitch.number
       assert id(x) != id(t[1][j])
    assert check(u)
+
 
 def test_copy_adjacent_tupletized_notes_02( ):
    t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
@@ -107,10 +105,10 @@ def test_copy_adjacent_tupletized_notes_02( ):
    assert len(u) == 2
    for i, x in enumerate(u):
       j = i + 1
-      #assert x.pitch == t[1][j].pitch
       assert x.pitch.number == t[1][j].pitch.number
       assert id(x) != id(t[1][j])
    assert check(u)
+
 
 ### TODO - implement some sort of 'crossing' copy.
 ### given t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
@@ -134,32 +132,32 @@ def test_copy_one_containerized_tuplet_01( ):
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], FixedDurationTuplet)
-   #assert u[0].duration == t[0].duration
    assert u[0].duration.preprolated == t[0].duration.preprolated
    assert id(u[0]) is not id(t[0])
    assert u[0]._parent == u
    
+
 def test_copy_one_containerized_tuplet_02( ):
    t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
    u = tcopy(t[1:2])
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], FixedDurationTuplet)
-   #assert u[0].duration == t[1].duration
    assert u[0].duration.preprolated == t[1].duration.preprolated
    assert id(u[0]) is not id(t[1])
    assert u[0]._parent == u
    
+
 def test_copy_one_containerized_tuplet_03( ):
    t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
    u = tcopy(t[-1:])
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], FixedDurationTuplet)
-   #assert u[0].duration == t[-1].duration
    assert u[0].duration.preprolated == t[-1].duration.preprolated
    assert id(u[0]) is not id(t[-1])
    assert u[0]._parent == u
+
 
 def test_copy_one_containerized_tuplet_04( ):
    t = Staff(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 3)
@@ -167,7 +165,6 @@ def test_copy_one_containerized_tuplet_04( ):
    assert isinstance(u, Staff)
    assert len(u) == 1
    assert isinstance(u[0], FixedDurationTuplet)
-   #assert u[0].duration == t[-2].duration
    assert u[0].duration.preprolated == t[-2].duration.preprolated
    assert id(u[0]) is not id(t[-2])
    assert u[0]._parent == u

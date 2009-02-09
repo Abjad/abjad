@@ -6,7 +6,7 @@ def test_excise_tuplet_01( ):
    Nested fixed-duration tuplet.
    '''
 
-   t = Measure((4, 4), [
+   t = RigidMeasure((4, 4), [
       FixedDurationTuplet((2,2), [Note(0, (1,2)), Note(1, (1,2)), 
       FixedDurationTuplet((2,4), [Note(i, (1,4)) for i in range(2, 5)])])])
 
@@ -25,7 +25,7 @@ def test_excise_tuplet_01( ):
 
    excise(t.leaves[-1])
    measure = t
-   assert isinstance(measure, Measure)
+   assert isinstance(measure, RigidMeasure)
    #assert measure.meter == (8, 9)
    assert measure.meter.forced == (8, 9)
    assert len(measure) == 1

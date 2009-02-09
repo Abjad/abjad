@@ -32,15 +32,17 @@ class _MeasureFormatter(_ContainerFormatter):
    def _processedContents(self):
       result = [ ]
       client = self._client
+
       if client.duration.compression != Rational(1, 1):
          if client.__class__.__name__ == 'RigidMeasure':
             msg = 'Meter %s does not equal %s contents duration.'
-            msg %= (client.meter.effective, client.duration.contents)
+            msg %= (client.meter.effective, client.duration.preprolated)
             raise MisfilledMeasureError(msg)
          elif client.__class__.__name__ in ('Measure', 'ProlatingMeasure'):
             result.extend(self._compressedContents)
       else:
          result.extend(self._contents)
+
       return result
    
    ### PUBLIC ATTRIBUTES ###

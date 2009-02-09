@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_excise_01( ):
-   t = Measure((4, 4), FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = RigidMeasure((4, 4), FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
 
    r'''
         \time 4/4
@@ -19,7 +19,7 @@ def test_excise_01( ):
    '''
 
    excise(t.leaves[0])
-   assert isinstance(t, Measure)
+   assert isinstance(t, RigidMeasure)
    assert len(t) == 2
    #assert t.meter == (5, 6)
    assert t.meter.forced == (5, 6)
@@ -49,7 +49,7 @@ def test_excise_01( ):
 
 
 def test_excise_02( ):
-   t = Measure((4, 4), FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
+   t = RigidMeasure((4, 4), FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
 
    r'''
         \time 4/4
@@ -70,7 +70,7 @@ def test_excise_02( ):
    '''
 
    excise(t.leaves[0])
-   assert isinstance(t, Measure)
+   assert isinstance(t, RigidMeasure)
    assert len(t) == 2
    #assert t.meter == (9, 10)
    assert t.meter.forced == (9, 10)
@@ -104,7 +104,7 @@ def test_excise_02( ):
 
 
 def test_excise_03( ):
-   t = Measure((5, 6), [
+   t = RigidMeasure((5, 6), [
       FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
@@ -134,7 +134,7 @@ def test_excise_03( ):
    '''
 
    excise(t.leaves[0])
-   assert isinstance(t, Measure)
+   assert isinstance(t, RigidMeasure)
    #assert t.meter == (11, 15)
    assert t.meter.forced == (11, 15)
    assert len(t) == 2
@@ -183,7 +183,7 @@ def test_excise_03( ):
 
 
 def test_excise_04( ):
-   t = Measure((5, 6), [
+   t = RigidMeasure((5, 6), [
       FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
@@ -213,7 +213,7 @@ def test_excise_04( ):
    '''
 
    excise(t.leaves[-1])
-   assert isinstance(t, Measure)
+   assert isinstance(t, RigidMeasure)
    #assert t.meter == (11, 14)
    assert t.meter.forced == (11, 14)
    assert t.duration.compression == Rational(4, 7)
@@ -263,7 +263,7 @@ def test_excise_04( ):
 
 
 def test_excise_05( ):
-   t = Measure((5, 6), [
+   t = RigidMeasure((5, 6), [
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       Note(0, (1, 4)),
       Note(0, (1, 4)),
@@ -290,7 +290,7 @@ def test_excise_05( ):
    '''
 
    excise(t.leaves[0])
-   assert isinstance(t, Measure)
+   assert isinstance(t, RigidMeasure)
    #assert t.meter == (11, 14)
    assert t.meter.forced == (11, 14)
    assert t.duration.compression == Rational(4, 7)
@@ -342,7 +342,7 @@ def test_excise_05( ):
 
 
 def test_excise_06( ):
-   t = Measure((5, 6), [
+   t = RigidMeasure((5, 6), [
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       Note(0, (1, 4)),
       Note(0, (1, 4)),
@@ -369,7 +369,7 @@ def test_excise_06( ):
    '''
 
    excise(t.leaves[-1])
-   assert isinstance(t, Measure)
+   assert isinstance(t, RigidMeasure)
    #assert t.meter == (4, 6)
    assert t.meter.forced == (4, 6)
    assert t.duration.compression == Rational(2, 3)

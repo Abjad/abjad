@@ -2,11 +2,9 @@ from abjad import *
 
 
 def test_measure_meter_update_01( ):
-   '''
-   Measures allow meter update.
-   '''
+   '''RigidMeasures allow meter update.'''
 
-   t = Measure((4, 8), scale(4))
+   t = RigidMeasure((4, 8), scale(4))
 
    r'''
         \time 4/8
@@ -17,7 +15,6 @@ def test_measure_meter_update_01( ):
    '''
 
    t.pop( )
-   #t.meter.numerator = 3
    t.meter.forced.numerator = 3
 
    r'''

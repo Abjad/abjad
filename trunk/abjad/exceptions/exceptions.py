@@ -1,0 +1,3 @@
+class NonbinaryMeterSuppressionError(Exception):
+
+   pass

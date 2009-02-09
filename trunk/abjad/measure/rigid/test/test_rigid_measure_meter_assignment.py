@@ -2,11 +2,9 @@ from abjad import *
 
 
 def test_measure_meter_reassign_01( ):
-   '''
-   Measures allow meter reassignment.
-   '''
+   '''RigidMeasures allow meter reassignment.'''
 
-   t = Measure((4, 8), scale(4))
+   t = RigidMeasure((4, 8), scale(4))
 
    r'''
         \time 4/8

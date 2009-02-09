@@ -1,5 +1,6 @@
 from abjad.helpers.leaf_list import leaf_list
-from abjad.measure.measure import Measure
+#from abjad.measure.measure import Measure
+from abjad.measure.rigid.measure import RigidMeasure
 from abjad.rest.rest import Rest
 
 
@@ -15,4 +16,4 @@ def measure_with_rests(meter_token):
    assert isinstance(meter_token, tuple)
    assert len(meter_token) == 2
 
-   return Measure(meter_token, leaf_list(Rest, meter_token))
+   return RigidMeasure(meter_token, leaf_list(Rest, meter_token))
