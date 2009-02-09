@@ -1,6 +1,8 @@
 from abjad.helpers.contiguity import _are_contiguous_music_elements
 
 
+### TODO: make tcopy( ) automatically SHINK or TRIM
+
 def tcopy(ll):
    '''
    Clone list ll of contiguous music from some container.
