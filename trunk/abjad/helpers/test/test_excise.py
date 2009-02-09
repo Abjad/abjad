@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_excise_01( ):
-   t = RigidMeasure((4, 4), FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   t = RigidMeasure((4, 4), 
+      FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
 
    r'''
         \time 4/4
@@ -216,7 +217,7 @@ def test_excise_04( ):
    assert isinstance(t, RigidMeasure)
    #assert t.meter == (11, 14)
    assert t.meter.forced == (11, 14)
-   assert t.duration.compression == Rational(4, 7)
+   #assert t.duration.compression == Rational(4, 7)
    assert len(t) == 2
    tuplet = t[0]
    assert isinstance(tuplet, FixedDurationTuplet)
@@ -293,7 +294,7 @@ def test_excise_05( ):
    assert isinstance(t, RigidMeasure)
    #assert t.meter == (11, 14)
    assert t.meter.forced == (11, 14)
-   assert t.duration.compression == Rational(4, 7)
+   #assert t.duration.compression == Rational(4, 7)
    assert len(t) == 4
    tuplet = t[0]
    assert isinstance(tuplet, FixedDurationTuplet)
@@ -372,7 +373,7 @@ def test_excise_06( ):
    assert isinstance(t, RigidMeasure)
    #assert t.meter == (4, 6)
    assert t.meter.forced == (4, 6)
-   assert t.duration.compression == Rational(2, 3)
+   #assert t.duration.compression == Rational(2, 3)
    assert len(t) == 3
    tuplet = t[0]
    assert isinstance(tuplet, FixedDurationTuplet)

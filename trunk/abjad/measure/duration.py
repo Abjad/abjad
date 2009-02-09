@@ -18,36 +18,38 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
 
    ### PUBLIC ATTRIBUTES ###
 
-   @property
-   def compression(self):
-      '''Exists to handle the one exceptional case
-         where a nonbinary measure has a multiplier == 1.'''
-      if self.nonbinary and self.multiplier == Rational(1, 1):
-         denominator = self._client.meter.forced.denominator
-         return _denominator_to_multiplier(denominator)
-      else:
-         return self.multiplier
+#   @property
+#   def compression(self):
+#      '''Exists to handle the one exceptional case
+#         where a nonbinary measure has a multiplier == 1.'''
+#      if self.nonbinary and self.multiplier == Rational(1, 1):
+#         denominator = self._client.meter.forced.denominator
+#         return _denominator_to_multiplier(denominator)
+#      else:
+#         return self.multiplier
 
    @property
    def multiplier(self):
-      forced_meter = self._client.meter.forced
-      if forced_meter and self.contents != Rational(0):
-         return forced_meter.duration / self.contents
-      else:
-         return Rational(1, 1)
+#      forced_meter = self._client.meter.forced
+#      if forced_meter and self.contents != Rational(0):
+#         return forced_meter.duration / self.contents
+#      else:
+#         return Rational(1, 1)
+      return self._client.meter.effective.multiplier
 
    @property
    def nonbinary(self):
-      forced_meter = self._client.meter.forced
-      if forced_meter:
-         return not _is_power_of_two(forced_meter.denominator)
-      else:
-         return False
+#      forced_meter = self._client.meter.forced
+#      if forced_meter:
+#         return not _is_power_of_two(forced_meter.denominator)
+#      else:
+#         return False
+      return self._client.meter.effective.nonbinary
 
-   @property
-   def preprolated(self):
-      forced_meter = self._client.meter.forced
-      if forced_meter:
-         return forced_meter.duration
-      else:
-         return self.contents
+#   @property
+#   def preprolated(self):
+#      forced_meter = self._client.meter.forced
+#      if forced_meter:
+#         return forced_meter.duration
+#      else:
+#         return self.contents

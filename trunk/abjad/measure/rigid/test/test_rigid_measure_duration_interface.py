@@ -27,9 +27,11 @@ def test_rigid_measure_duration_interface_02( ):
 
    r'''
         \time 3/10
-        c'8
-        d'8
-        e'8
+        \compressMusic #'(4 . 5) {
+                c'8
+                d'8
+                e'8
+        }
    '''
 
    assert t.duration.contents == Rational(3, 8)
@@ -37,7 +39,7 @@ def test_rigid_measure_duration_interface_02( ):
    assert t.duration.prolated == Rational(3, 10)
    assert t.duration.prolation == 1
 
-   assert t.format == "\t\\time 3/10\n\tc'8\n\td'8\n\te'8"
+   assert t.format == "\t\\time 3/10\n\t\\compressMusic #'(4 . 5) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}"
 
 
 def test_rigid_measure_duration_interface_03( ):
