@@ -13,7 +13,7 @@ def lcopy(expr, start = 0, stop = None):
    if isinstance(expr, _Leaf):
       return expr.copy( )
 
-   # assert sequential container
+   # copy leaves from sequential containers only.
    if expr.parallel:
       raise ContiguityError('can not lcopy leaves from parallel container.')
    #assert not expr.parallel

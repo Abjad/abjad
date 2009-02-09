@@ -43,10 +43,9 @@ def excise(leaf):
             if isinstance(x, FixedDurationTuplet):
                x.duration.target *= adjusted_prolation
             else:
-               #FixedDurationTuplet(x.duration * adjusted_prolation, [x])
-               # NOTE: not sure about following one line:
-               FixedDurationTuplet(
-                  x.duration.preprolated * adjusted_prolation, [x])
+               if adjusted_prolation != 1:
+                  new_target = x.duration.preprolated * adjusted_prolation
+                  FixedDurationTuplet(new_target, [x])
       parent = parent._parent
       i += 1
    parentage = leaf.parentage.parentage[1:]
