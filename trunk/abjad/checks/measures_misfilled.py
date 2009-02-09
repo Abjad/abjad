@@ -2,10 +2,10 @@ from abjad.checks.check import _Check
 from abjad.helpers.iterate import iterate
 
 
-class MeasuresMisfilled(_Check):
+class MeasuresImproperlyFilled(_Check):
    '''
    For each (rigid) measure, 
-   does effective meter duration equal contents duration?
+   does effective meter duration equal preprolated duration?
    '''
 
    def _run(self, expr):

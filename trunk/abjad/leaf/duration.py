@@ -1,6 +1,6 @@
 from abjad.core.duration import _DurationInterface
 from abjad.core.interface import _Interface
-from abjad.exceptions.assignability import AssignabilityError
+from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.binary import _binary
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.hasname import hasname

@@ -1,4 +1,4 @@
-from abjad.exceptions.assignability import AssignabilityError
+from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.converge_to_power2 import _converge_to_power2
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.duration_token_unpack import _duration_token_unpack

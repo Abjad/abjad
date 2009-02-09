@@ -1,3 +1,0 @@
-class ContiguityError(Exception):
-
-   pass

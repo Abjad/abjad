@@ -1,3 +1,0 @@
-class AssignabilityError(Exception):
-
-   pass

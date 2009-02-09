@@ -44,7 +44,7 @@ def test_rigid_measure_duration_interface_03( ):
    '''Binary meter, improperly filled.'''
    t = RigidMeasure((3, 8), scale(4))
 
-   assert py.test.raises(MisfilledMeasureError, 't.format')
+   assert py.test.raises(OverfullMeasureError, 't.format')
    
    assert t.duration.contents == Rational(4, 8)
    assert t.duration.preprolated == Rational(4, 8)
@@ -56,7 +56,7 @@ def test_rigid_measure_duration_interface_04( ):
    '''Nonbinary meter, improperly filled.'''
    t = RigidMeasure((3, 10), scale(4))
 
-   assert py.test.raises(MisfilledMeasureError, 't.format')
+   assert py.test.raises(OverfullMeasureError, 't.format')
 
    assert t.duration.contents == Rational(4, 8)
    assert t.duration.preprolated == Rational(4, 10)

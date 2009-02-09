@@ -1,3 +1,0 @@
-class MisfilledMeasureError(Exception):
-
-   pass
