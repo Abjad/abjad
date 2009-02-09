@@ -13,8 +13,14 @@ class _MeterInterface(_Interface, _GrobHandler):
 
    ### PRIVATE ATTRIBUTES ###
 
+   ### NOTE: _MeterInterface formats only _opening and not _before.
+   ###       The reason for this is that LilyPond meter indications
+   ###       of the form \time 5/16 need print only once,
+   ###       from the measure, rather than printing twice, once from
+   ###       the measure and once from the first leaf in measure.
+
    @property
-   def _before(self):
+   def _opening(self):
       result = [ ]
       result.extend(_GrobHandler._before.fget(self))
       effective = self.effective
@@ -25,13 +31,6 @@ class _MeterInterface(_Interface, _GrobHandler):
             if self.forced or self.change:
                result.append(self.effective.format)
       return result
-
-   ### NOTE: this is kinda kinky:
-   ###       reusing _before as _opening;
-
-   @property
-   def _opening(self):
-      return self._before
 
    ### PUBLIC ATTRIBUTES ###
 
@@ -59,10 +58,6 @@ class _MeterInterface(_Interface, _GrobHandler):
             return cur.meter._forced
          else:
             cur = cur.prev
-      #for x in self._client._parentage._parentage:
-      #for x in self._client._parentage._iparentage[1:]:
-      #for x in self._client._parentage._parentage[1:]:
-      #for x in self._client.parentage._parentage[1:]:
       for x in self._client.parentage.parentage[1:]:
          if hasattr(x, 'meter') and x.meter._forced:
             return x.meter._forced
