@@ -2,9 +2,6 @@ from abjad import *
 from py.test import raises
 
 
-### TODO: The syntax here is weird.
-###       Change lcopy(expr, i, j) to lcopy(expr.leaves[i:j])?
-
 def test_lcopy_01( ):
    '''Copy consecutive notes across tuplet boundary, in staff.'''
 
@@ -137,113 +134,179 @@ def test_lcopy_04( ):
    assert u.format == "\\new Voice {\n\td'8\n\te'8\n}"
 
 
-### TODO: The copy here winds up with each note in copy
-###       wrapped in a trivial 1:1 tuplet.
-###       Is there a way to NOT increase the depth of u?
-
 def test_lcopy_05( ):
-   '''RigidMeasures withtout tuplet trim fine.'''
+   '''Copy consecutive notes in binary measure.'''
 
    t = RigidMeasure((4, 8), scale(4))
    u = lcopy(t, 1, 3)
 
-   assert isinstance(u, RigidMeasure)
-   assert u.meter.forced == (2, 8)
-   assert len(u) == 2
-   assert u.duration.prolated == Rational(2, 8)
+   r'''
+        \time 2/8
+        d'8
+        e'8
+   '''
+
+   assert check(u)
+   assert u.format == "\t\\time 2/8\n\td'8\n\te'8"
 
 
 def test_lcopy_06( ):
-   '''Score > staff > notes.'''
-   score = Score([Staff(Note(0, (1, 4)) * 4)])
+   '''Copy consecutive notes in staff and score.'''
+
+   score = Score([Staff(scale(4))])
    t = score[0]
    new = lcopy(t, 1, 3)
-   assert isinstance(new, Staff)
-   assert len(new) == 2
-   assert new.duration.prolated == Rational(2, 4)
+
+   r'''
+   \new Staff {
+           d'8
+           e'8
+   }
+   '''
+   
+   assert check(t)
+   assert check(new)
+   assert new.format == "\\new Staff {\n\td'8\n\te'8\n}"
 
 
 def test_lcopy_07( ):
-   '''RigidMeasures with tuplets trim fine, including nonbinary meters.'''
-   t = RigidMeasure((4, 4), [FixedDurationTuplet((4, 4), Note(0, (1, 4)) * 5)])
-   new = lcopy(t, 1, 4)
-   assert isinstance(new, RigidMeasure)
-   assert new.meter.forced == (3, 5)
-   assert len(new) == 1
-   tuplet = new[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 3
-   assert tuplet.duration.target == Rational(3, 4)
-   assert tuplet.duration.prolated == Rational(3, 5)
-   assert tuplet.duration.multiplier == Rational(1)
-   note = tuplet[0]
-   assert isinstance(note, Note)
-   assert note.duration.written == Rational(1, 4)
-   assert note.duration.prolated == Rational(1, 5)
+   '''Copy consecutive leaves from tuplet in binary measure;
+      nonbinary measure results.'''
+
+   t = RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), scale(5))])
+
+   r'''
+        \time 4/8
+        \times 4/5 {
+                c'8
+                d'8
+                e'8
+                f'8
+                g'8
+        }
+   '''
+
+   u = lcopy(t, 1, 4)
+
+   r'''
+        \time 3/10
+        \scaleDurations #'(4 . 5) {
+                        d'8
+                        e'8
+                        f'8
+        } 
+   '''
+
+   assert check(t)
+   assert check(u)
+   assert u.format == "\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t}"
 
 
 def test_lcopy_08( ):
-   '''Voice > measure > tuplet works fine.'''
-   t = Voice([
-      RigidMeasure((4, 4), [FixedDurationTuplet((4, 4), Note(0, (1, 4)) * 5)])])
-   new = lcopy(t, 1, 4)
-   assert isinstance(new, Voice)
-   assert len(new) == 1
-   assert new.duration.prolated == Rational(3, 5)
-   measure = new[0]
-   assert isinstance(measure, RigidMeasure)
-   assert measure.meter.forced == (3, 5)
-   assert len(measure) == 1
-   assert measure.duration.preprolated == Rational(3, 5)
-   assert measure.duration.prolated == Rational(3, 5)
-   tuplet = measure[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 3
-   assert tuplet.duration.target == Rational(3, 4)
-   assert tuplet.duration.prolated == Rational(3, 5)
+   '''Copy consecutive leaves from tuplet in measure and voice;
+      nonbinary measure results.'''
+
+   t = Voice([RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), scale(5))])])
+  
+   r'''
+   \new Voice {
+                   \time 4/8
+                   \times 4/5 {
+                           c'8
+                           d'8
+                           e'8
+                           f'8
+                           g'8
+                   }
+   }
+   '''
+
+   u = lcopy(t, 1, 4)
+
+   r'''
+   \new Voice {
+                   \time 3/10
+                   \scaleDurations #'(4 . 5) {
+                                   d'8
+                                   e'8
+                                   f'8
+                   }
+   }
+   '''
+
+   assert check(t)
+   assert check(u)
+   assert u.format == "\\new Voice {\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t}\n}"
 
 
 def test_lcopy_09( ):
    '''RigidMeasures shrink down when we copy a partial tuplet.'''
-   t = RigidMeasure((4, 4), 
-      FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   new = lcopy(t, 1)
-   assert isinstance(new, RigidMeasure)
-   assert new.meter.forced == (5, 6)
-   assert len(new) == 2
-   tuplet = new[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 2
-   assert tuplet.duration.target == Rational(2, 4)
-   assert tuplet.duration.prolated == Rational(2, 6)
-   assert tuplet.duration.multiplier == Rational(1)
-   tuplet = new[1]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 3
-   assert tuplet.duration.target == Rational(3, 4)
-   assert tuplet.duration.prolated == Rational(3, 6)
-   assert tuplet.duration.multiplier == Rational(1)
+
+   t = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), run(3)) * 2)
+   diatonicize(t)
+
    r'''
-        \time 5/6
-            \times 1/1 {
-                cs'4
-                d'4
-            }
-            \times 1/1 {
-                ef'4
-                e'4
-                f'4
-            }
+        \time 4/8
+        \times 2/3 {
+                c'8
+                d'8
+                e'8
+        }
+        \times 2/3 {
+                f'8
+                g'8
+                a'8
+        }
    '''
+
+   u = lcopy(t, 1)
+
+   r'''
+        \time 5/12
+        \scaleDurations #'(2 . 3) {
+                        d'8
+                        e'8
+                        f'8
+                        g'8
+                        a'8
+        }
+   '''
+
+   assert check(t)
+   assert check(u)
+   assert u.format == "\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t}"
 
 
 def test_lcopy_10( ):
-   '''Yet another test.'''
-   t = Staff(RigidMeasure((4, 4), Note(0, (1, 4)) * 4) * 3)
-   staff = lcopy(t, 5, 7)
-   assert isinstance(staff, Staff)
-   assert len(staff) == 1
-   measure = staff[0]
-   assert isinstance(measure, RigidMeasure)
-   assert measure.meter.forced == (2, 4)
-   assert len(measure) == 2
+   '''Copy consecutive leaves across measure boundary.'''
+
+   t = Staff(RigidMeasure((3, 8), run(3)) * 2)
+   diatonicize(t)
+
+   r'''
+   \new Staff {
+                   \time 3/8
+                   c'8
+                   d'8
+                   e'8
+                   \time 3/8
+                   f'8
+                   g'8
+                   a'8
+   }
+   '''
+
+   u = lcopy(t, 2, 4)
+
+   r'''
+   \new Staff {
+                   \time 1/8
+                   e'8
+                   \time 1/8
+                   f'8
+   }
+   '''
+   
+   assert check(t)
+   assert check(u)
+   assert u.format == "\\new Staff {\n\t\t\\time 1/8\n\t\te'8\n\t\t\\time 1/8\n\t\tf'8\n}"
