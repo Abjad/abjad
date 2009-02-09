@@ -1,4 +1,5 @@
 from abjad.container.container import Container
+from abjad.exceptions.exceptions import ContiguityError
 from abjad.helpers.excise import excise
 from abjad.helpers.iterate import iterate
 from abjad.helpers.retroiterate import retroiterate
@@ -13,7 +14,9 @@ def lcopy(expr, start = 0, stop = None):
       return expr.copy( )
 
    # assert sequential container
-   assert not expr.parallel
+   if expr.parallel:
+      raise ContiguityError('can not lcopy leaves from parallel container.')
+   #assert not expr.parallel
 
    # assert valid start and stop
    leaves = expr.leaves

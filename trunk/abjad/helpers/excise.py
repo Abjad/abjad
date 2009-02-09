@@ -29,8 +29,6 @@ def excise(leaf):
             cur_prolation * leaf.duration.written
          if candidate_new_parent_dur > Rational(0):
             parent.duration.target = candidate_new_parent_dur
-      #elif isinstance(parent, Measure):
-      #elif isinstance(parent, (RigidMeasure, ProlatingMeasure)):
       elif isinstance(parent, RigidMeasure):
          old_denominator = parent.meter.forced.denominator
          naive_meter = parent.meter.forced.duration - prolated_leaf_duration
