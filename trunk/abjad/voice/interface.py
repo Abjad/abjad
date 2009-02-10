@@ -1,13 +1,24 @@
 from abjad.core.interface import _Interface
+from abjad.core.formatcarrier import _FormatCarrier
 
 
-class _VoiceInterface(_Interface):
+class _VoiceInterface(_Interface, _FormatCarrier):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
+      _FormatCarrier.__init__(self)
       self._defaultSignature = (0, )
+      self.number = None
 
    ### PRIVATE ATTRIBUTES ###
+
+   @property
+   def _before(self):
+      result = [ ]
+      voices = {1:r'\voiceOne', 2:r'\voiceTwo', 3:r'\voiceThree', 4:r'\voiceFour'}
+      if self.number:
+         result.append(voices[self.number])
+      return result
 
    @property
    def _naiveSignature(self):
@@ -15,6 +26,13 @@ class _VoiceInterface(_Interface):
          if self._client.invocation.name is not None:
             return (self._client.invocation.name, )
       return (id(self._client), )
+
+   ### this aliasing follows the method found in the TempoInterface 
+   ### and the ClefInterface.
+   @property
+   def _opening(self):
+      return self._before
+
 
    ### PUBLIC ATTRIBUTES ###
 
@@ -32,6 +50,16 @@ class _VoiceInterface(_Interface):
          return self.signature[0]
       else:
          return None
+
+   @apply
+   def number( ):
+      def fget(self):
+         return self._number
+      def fset(self, arg):
+         if not arg in (1, 2, 3, 4, None):
+            raise ValueError('Voice number must be 1, 2, 3, 4 or None.')
+         self._number = arg
+      return property(**locals( ))
 
    @property
    def named(self):
