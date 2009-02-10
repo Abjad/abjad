@@ -28,7 +28,6 @@ def tcopy(ll):
       parent_denominator = parent.meter.effective.denominator
    else:
       parent_denominator = None
-   print 'debug: %s' % parent_denominator
 
    # remember parent's music
    parents_music = ll[0]._parent._music
