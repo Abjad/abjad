@@ -2,7 +2,7 @@ from abjad.helpers.container_set_multiplier import _container_set_multiplier
 from abjad.helpers.measure_set_denominator import _measure_set_denominator
 
 
-def container_hew(container, i):
+def container_hew(container, i, spanners = 'preserve'):
    '''Split container in two just before index i;
       compare with container_split( ).
       Special spanner management to leave all spanners in tact.
@@ -60,6 +60,10 @@ def container_hew(container, i):
 
       # insert left and right in spanner in place of container
       spanner[spanner_index : spanner_index + 1] = [left, right]
+
+   # fracture spanners across newly hewn parts, if requested
+   if spanners == 'fracture':
+      left.spanners.fracture(direction = 'right')
 
    # set left and right multiplier equal to container multiplier, if any
    _container_set_multiplier(left, container_multiplier)
