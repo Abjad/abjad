@@ -8,7 +8,7 @@ def test_tcopy_notes_in_tuplet_01( ):
    u = tcopy(t[:3])
 
    r'''
-   \times 4/3 {
+   \times 4/5 {
            c'8
            d'8
            e'8
@@ -16,7 +16,7 @@ def test_tcopy_notes_in_tuplet_01( ):
    '''
 
    assert isinstance(u, FixedDurationTuplet)
-   assert u.duration.target == Rational(4, 8)
+   assert u.duration.target == Rational(3, 10)
    assert len(u) == 3
 
-   assert u.format == "\\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
+   assert u.format == "\\times 4/5 {\n\tc'8\n\td'8\n\te'8\n}"
