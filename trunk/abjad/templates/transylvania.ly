@@ -11,11 +11,16 @@
 %%%   * Line break are allowed on spanning durations
 %%%   * All breakable spanners are set to True
 %%%   * Collisions are ignored
+%%%   * Differently dotted noteheads are merged
+%%%   * Different notehead types are merged
 
 
 \layout {
    indent = #0
    ragged-right = ##t
+
+   merge-differently-dotted = ##t
+   merge-differently-headed = ##t
 
    \context {
       \Score
@@ -67,6 +72,7 @@
       \consists Timing_translator
       \consists Default_bar_line_engraver
       \override TimeSignature #'style = #'numbered
+      \override VerticalAxisGroup #'minimum-Y-extent = #'(-2 . 4)
    }
 
    \context{

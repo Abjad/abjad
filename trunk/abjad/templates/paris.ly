@@ -59,6 +59,7 @@
    \context {
       \RhythmicStaff
       \override TimeSignature #'style = #'numbered
+      \override VerticalAxisGroup #'minimum-Y-extent = #'(-2 . 4)
    }
 
    \context{
