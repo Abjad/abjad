@@ -48,26 +48,16 @@
       % bar numbers
       \remove Bar_number_engraver
 
-%      % bar lines
-%      \remove Default_bar_line_engraver
-%      
-%      % timing administration
-%      \remove Timing_translator
    }
 
-%   \context {
-%      \Staff
-%      \consists Timing_translator
-%      \consists Default_bar_line_engraver
-%   }
+   \context {
+      \Staff
+      \override TimeSignature #'style = #'numbered
+   }
 
    \context {
       \RhythmicStaff
       \override TimeSignature #'style = #'numbered
-%      \consists Timing_translator
-%      \consists Default_bar_line_engraver
-      % VerticalAxisGroup override seems to do nothing
-      \override VerticalAxisGroup #'minimum-Y-extent = #'(-4 . 2)
    }
 
    \context{

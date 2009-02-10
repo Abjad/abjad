@@ -22,8 +22,8 @@
 
       % proportional notation
       proportionalNotationDuration = #(ly:make-moment 1 12)
-   	\override SpacingSpanner #'strict-note-spacing = ##t  
-   	\override SpacingSpanner #'strict-grace-spacing = ##t
+   	%\override SpacingSpanner #'strict-note-spacing = ##t  
+   	%\override SpacingSpanner #'strict-grace-spacing = ##t
 		\override SpacingSpanner #'uniform-stretching = ##t
 
       % breakable spanners
@@ -59,15 +59,14 @@
       \Staff
       \consists Timing_translator
       \consists Default_bar_line_engraver
+      \override TimeSignature #'style = #'numbered
    }
 
    \context {
       \RhythmicStaff
-      \override TimeSignature #'style = #'numbered
       \consists Timing_translator
       \consists Default_bar_line_engraver
-      % VerticalAxisGroup override seems to do nothing
-      \override VerticalAxisGroup #'minimum-Y-extent = #'(-4 . 2)
+      \override TimeSignature #'style = #'numbered
    }
 
    \context{
