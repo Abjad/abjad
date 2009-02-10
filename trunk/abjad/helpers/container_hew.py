@@ -50,7 +50,7 @@ def container_hew(container, i):
       container_index = container._parent.index(container) 
 
       # insert left and right in place of container in parent
-      container._parent[i:i+1] = [left, right] 
+      container._parent[container_index : container_index + 1] = [left, right] 
 
    # for every spanner attaching to container
    for spanner in list(container.spanners.attached):
