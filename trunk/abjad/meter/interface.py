@@ -2,6 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.meter.meter import Meter
+import types
 
 
 class _MeterInterface(_Interface, _GrobHandler):
@@ -10,6 +11,7 @@ class _MeterInterface(_Interface, _GrobHandler):
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TimeSignature')
       self._forced = None
+      self.suppress = False
 
    ### PRIVATE ATTRIBUTES ###
 
@@ -18,13 +20,17 @@ class _MeterInterface(_Interface, _GrobHandler):
    ###       of the form \time 5/16 need print only once,
    ###       from the measure, rather than printing twice, once from
    ###       the measure and once from the first leaf in measure.
+   ###       There's a larger question here about which component(s)
+   ###       are to be responsible for printing meter indications
+   ###       at format-time.
 
    @property
    def _opening(self):
       result = [ ]
       result.extend(_GrobHandler._before.fget(self))
       effective = self.effective
-      if not effective.suppress:
+      #if not effective.suppress:
+      if not self.suppress and not effective.suppress:
          if self._client.kind('DynamicMeasure'):
             result.append(self.effective.format)
          else:
@@ -77,4 +83,13 @@ class _MeterInterface(_Interface, _GrobHandler):
             self._forced = arg
          else:
             raise ValueError('unknown meter specification.')
+      return property(**locals( ))
+
+   @apply
+   def suppress( ):
+      def fget(self):
+         return self._suppress
+      def fset(self, arg):
+         assert isinstance(arg, (bool, types.NoneType))
+         self._suppress = arg
       return property(**locals( ))

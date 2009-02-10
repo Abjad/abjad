@@ -110,7 +110,9 @@ class Meter(_GrobHandler):
       return property(**locals( ))
 
    ### TODO: Determine whether this property should implement 
-   ###       here on Meter or on _MeterInterface
+   ###       here on Meter or on _MeterInterface;
+   ###       There are now 'suppress' properties both here
+   ###       on Meter and also on _MeterInterface.
 
    @apply
    def suppress( ):
