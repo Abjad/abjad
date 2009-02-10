@@ -16,6 +16,7 @@ from abjad.parentage.parentage import _Parentage
 from abjad.pianopedal.interface import _PianoPedalInterface
 from abjad.rational.rational import Rational
 from abjad.rest.interface import _RestInterface
+from abjad.slur.interface import _SlurInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tempo.interface import _TempoInterface
 from abjad.tie.interface import _TieInterface
@@ -46,6 +47,7 @@ class _Component(_Abjad):
       self._parentage = _Parentage(self)
       self._pianopedal = _PianoPedalInterface(self)
       self._rest = _RestInterface(self)
+      self._slur = _SlurInterface(self)
       self._stem = _StemInterface(self)
       self._tempo = _TempoInterface(self)
       self._text = _TextInterface(self)
@@ -158,6 +160,12 @@ class _Component(_Abjad):
    def rest( ):
       def fget(self):
          return self._rest
+      return property(**locals( ))
+
+   @apply
+   def slur( ):
+      def fget(self):
+         return self._slur
       return property(**locals( ))
 
    @apply
