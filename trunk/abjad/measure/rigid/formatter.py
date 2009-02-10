@@ -33,8 +33,9 @@ class _RigidMeasureFormatter(_MeasureFormatter):
    def format(self):
       client = self._client
       #if client.meter.effective.nonbinary and client.meter.effective.suppress:
-      if client.meter.effective.nonbinary and \
-         (client.meter.suppress or client.meter.effective.suppress):
+      #if client.meter.effective.nonbinary and \
+      #   (client.meter.suppress or client.meter.effective.suppress):
+      if client.meter.effective.nonbinary and client.meter.suppress:
          raise NonbinaryMeterSuppressionError
       if client.duration.preprolated > client.meter.effective.duration:
          raise OverfullMeasureError

@@ -8,7 +8,7 @@ class Meter(_GrobHandler):
 
    def __init__(self, *args):
       _GrobHandler.__init__(self, 'TimeSignature')
-      self.suppress = False
+      #self.suppress = False
       if len(args) == 1 and isinstance(args[0], Meter):
          meter = args[0]
          self.numerator = meter.numerator
@@ -109,16 +109,13 @@ class Meter(_GrobHandler):
          self._numerator = arg
       return property(**locals( ))
 
-   ### TODO: Determine whether this property should implement 
-   ###       here on Meter or on _MeterInterface;
-   ###       There are now 'suppress' properties both here
-   ###       on Meter and also on _MeterInterface.
+   ### DEPRECATED: Use _MeterInterface.suppress instead of Meter.suppress
 
-   @apply
-   def suppress( ):
-      def fget(self):
-         return self._suppress
-      def fset(self, arg):
-         assert isinstance(arg, bool)
-         self._suppress = arg
-      return property(**locals( ))
+#   @apply
+#   def suppress( ):
+#      def fget(self):
+#         return self._suppress
+#      def fset(self, arg):
+#         assert isinstance(arg, bool)
+#         self._suppress = arg
+#      return property(**locals( ))

@@ -30,7 +30,8 @@ class _MeterInterface(_Interface, _GrobHandler):
       result.extend(_GrobHandler._before.fget(self))
       effective = self.effective
       #if not effective.suppress:
-      if not self.suppress and not effective.suppress:
+      #if not self.suppress and not effective.suppress:
+      if not self.suppress:
          if self._client.kind('DynamicMeasure'):
             result.append(self.effective.format)
          else:
