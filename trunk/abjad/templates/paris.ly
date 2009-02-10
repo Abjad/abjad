@@ -41,6 +41,7 @@
       tupletFullLength = ##t
 		\override TupletNumber #'text = #tuplet-number::calc-fraction-text
       \override TupletBracket #'bracket-visibility = ##t
+      \override TupletBracket #'padding = #2
       % allow tuplet bracket to always be visible, even for short tuplets.
       \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
       \override TupletBracket #'minimum-length = #3
