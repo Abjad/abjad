@@ -26,17 +26,15 @@
    Note(c', 4), Note(c', 2), Note(c', 8.)]
 </abjad>
 
-<p>Let us now put these notes inside a RhythicStaff.</p> 
+<p>Let us now put these notes inside a <RhythmicStaff>.</p> 
 
 <abjad>
    hide> durations = [5, 7, 2, 11, 13, 5, 13, 3]
    hide> durations = zip(durations, [16] * len(durations))
    hide> from abjad.tools import construct
    hide> notes = construct.notes(0, durations)
-   abjad> staff = RhythmicStaff(notes)
+   abjad> staff = RhythmicSketchStaff(notes)
    hide> staff.formatter.opening.append(r'\set Score.proportionalNotationDuration = #(ly:make-moment 1 10)')
-   hide> staff.meter.transparent = True
-   hide> staff.barline.transparent = True
    hide> show(staff)
 </abjad>
 
@@ -67,6 +65,8 @@
    abjad> metric_slice(staff, meters)
    hide> show(staff)
 </abjad>
+
+<p>And this gives us our final score. </p>
 
 <p><a name="footnote_1">*</a><small>This example reconstructs the first few measures of <a href="http://www.stevelehman.com/" target="_blank">Stephen Lehman's</a> <i>Rai</i> following the composer's own process: "I basically created a duration row, and then applied a meter to it after the fact. Then, once I started changing the distribution of prime number values over the course of the piece, I tried to make them fit in the same time span.  </small> </p>
 </subsection>
