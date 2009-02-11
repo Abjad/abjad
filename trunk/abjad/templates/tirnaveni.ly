@@ -1,6 +1,6 @@
-%%% Template: transylvania.ly
+%%% Template: tirnaveni.ly
 %%%
-%%% Suitable for poly-metric examples:
+%%% Suitable for poly-metric examples such as Ligeti's piano etude 'Desordre':
 %%%   OFF: first-system indent, bar numbers, automatic beaming
 %%%   ON:  ragged-right, forget-accidentals
 %%%
