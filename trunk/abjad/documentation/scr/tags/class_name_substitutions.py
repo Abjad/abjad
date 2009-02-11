@@ -50,6 +50,8 @@ change = {
    '<pitch token>' : 'pitch_token',
    '<Rational>' : 'rational_class',
    '<Rest>' : 'rest_class',
+   '<RhythmicStaff>' : 'rhythmic_staff_class',
+   '<RhythmicSketchStaff>' : 'rhythmic_sketch_staff_class',
    '<Sequential>' : 'sequential_class',
    '<Skip>' : 'skip_class',
    '<_Spanner>' : 'spanner_class',
