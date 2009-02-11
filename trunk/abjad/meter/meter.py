@@ -1,5 +1,6 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
+from abjad.helpers.factors import _factors
 from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.rational.rational import Rational
 
@@ -8,7 +9,6 @@ class Meter(_GrobHandler):
 
    def __init__(self, *args):
       _GrobHandler.__init__(self, 'TimeSignature')
-      #self.suppress = False
       if len(args) == 1 and isinstance(args[0], Meter):
          meter = args[0]
          self.numerator = meter.numerator
@@ -108,14 +108,3 @@ class Meter(_GrobHandler):
          assert isinstance(arg, int)
          self._numerator = arg
       return property(**locals( ))
-
-   ### DEPRECATED: Use _MeterInterface.suppress instead of Meter.suppress
-
-#   @apply
-#   def suppress( ):
-#      def fget(self):
-#         return self._suppress
-#      def fset(self, arg):
-#         assert isinstance(arg, bool)
-#         self._suppress = arg
-#      return property(**locals( ))
