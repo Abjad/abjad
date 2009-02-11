@@ -72,3 +72,6 @@ def container_hew(container, i, spanners = 'preserve'):
    # set left and right meter denominator, if any
    _measure_set_denominator(left, meter_denominator)
    _measure_set_denominator(right, meter_denominator)
+
+   # return new left and right parts
+   return left, right
