@@ -90,4 +90,5 @@
    between-system-padding = #15
 	bottom-margin = 0.75\in
 	left-margin = 0.75\in
+	line-width = 6.75\in 
 }
