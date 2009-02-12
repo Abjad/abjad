@@ -144,13 +144,16 @@ class _Parentage(_Abjad):
    ### PUBLIC ATTRIBUTES ###
 
    @property
-   #def _orphan(self):
    def orphan(self):
-      #return len(self._parentage) == 1
       return len(self.parentage) == 1
+
+   ## TODO: Reimplement self._client._parent as self._parent
+
+   @property
+   def parent(self):
+      return self._client._parent
       
    @property
-   #def _parentage(self):
    def parentage(self):
       '''
       Return a list of all of elements in the
@@ -164,9 +167,7 @@ class _Parentage(_Abjad):
       return result
 
    @property
-   #def _root(self):
    def root(self):
-      #return self._parentage[-1]
       return self.parentage[-1]
 
    ### PUBLIC METHODS ###
