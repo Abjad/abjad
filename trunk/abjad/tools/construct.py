@@ -157,6 +157,18 @@ def notes_prolated(pitches, durations, direction='big-endian'):
    if _is_duration_token(durations):
       durations = [durations]
 
+   # this block is a hack to allow the function to accept a Rational
+   # as the duration input parameter; better will be to change
+   # the rest of the implementation to allow for Rationals directly.
+
+   temp = [ ]
+   for duration in durations:
+      if isinstance(duration, Rational):
+         temp.append((duration._n, duration._d))
+      else:
+         temp.append(duration)
+   durations = temp
+
    pitches = pitches * int(math.ceil(len(durations) / len(pitches)))
    durations = _agglomerate_durations_by_prolation(durations)
 
@@ -182,3 +194,26 @@ def notes_prolated(pitches, durations, direction='big-endian'):
          result.append(t)
    return result
       
+
+def note_train(pitch, written_duration, total_duration, 
+   prolation = Rational(1)):
+   '''Generate a train of repeating notes, all of the same pitch,
+      equal to total duration total_duration,
+      each with written duration equal to written_duration,
+      under prolation context equal to prolation.
+      Fill any remaining duration at the end of the train
+      with a series of notes with smaller written duration.
+      Set prolation when constructing a note train within
+      a nonbinary measure.'''
+
+   prolated_duration = prolation * written_duration 
+   current_duration = Rational(0)
+   result = [ ]
+   while current_duration + prolated_duration <= total_duration:
+      result.append(Note(pitch, written_duration))
+      current_duration += prolated_duration
+   remainder_duration = total_duration - current_duration
+   if remainder_duration > Rational(0):
+      multiplied_remainder = ~prolation * remainder_duration
+      result.extend(notes_prolated(pitch, [multiplied_remainder]))
+   return result
