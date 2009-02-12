@@ -6,7 +6,7 @@ def test_leaves_multiply_01( ):
 
    t = Voice(scale(3))
    p = Beam(t[:])
-   leaves_multiply(t, n = 1)
+   leaves_multiply(t, total = 2)
 
    r'''
    \new Voice {
@@ -28,7 +28,7 @@ def test_leaves_multiply_02( ):
 
    t = Voice(scale(3))
    Beam(t[:])
-   leaves_multiply(t, n = 2)
+   leaves_multiply(t, total = 3)
 
    r'''
    \new Voice {
