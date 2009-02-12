@@ -23,12 +23,9 @@ def leaf_scale(dur, leaf):
    dur = Rational(*_duration_token_unpack(dur))
    assert dur > 0
    try:
-      #leaf.duration = dur
       leaf.duration.written = dur
       return leaf
-   #except ValueError:
    except AssignabilityError:
-      #leaf.duration = _converge_to_power2(leaf.duration, dur)
       leaf.duration.written = _converge_to_power2(leaf.duration.written, dur)
       result = FixedDurationTuplet(dur, [leaf])
       return result
@@ -48,13 +45,12 @@ def leaf_scale_binary(dur, leaf):
    try:
       leaf.duration.written = dur
       return [leaf]
-   #except ValueError:
    except AssignabilityError:
       result = [ ]
       for wd in _duration_token_decompose(dur):
          l = leaf.copy( )
          l.duration.written = Rational(*wd)
-         result.append( l )
+         result.append(l)
       ### remove duplicate spanners and extend leaf.spanners to include 
       ### new leaves.
       for l in result:
@@ -64,14 +60,10 @@ def leaf_scale_binary(dur, leaf):
       ### insert new leaves in parent
       parent = leaf._parent
       if parent:
-#         for l in result:
-#            l.spanners.clear( )
          indx = parent.index(leaf)
-         #parent.embed(indx, result)
          for l in reversed(result):
             parent._music.insert(indx, l)
             l._parent = parent
-         #parent.pop(len(result) + indx)
          parent.remove(leaf)
       ### tie leaves
       for l in result:

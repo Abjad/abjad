@@ -1,5 +1,6 @@
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.helpers.iterate import iterate
+from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
 from abjad.measure.base import _Measure
 from abjad.note.note import Note
 from abjad.rational.rational import Rational
@@ -25,14 +26,14 @@ def measures_populate(expr, mode):
 
       With mode = 'skip':
          Populate with exactly one skip, such that
-         skip.duration.multiplied == measure.meter.effective.duration.
+         skip.duration.prolated == measure.meter.effective.duration.
+         Remove spanners attaching to measure.
 
       When mode is None:
          Empty the contents of each measure.
 
       TODO: determine behavior when measures are spanned.
-      TODO: make work with nonbinary meters.
-      TODO: add population modes for running sixteenths.'''
+      TODO: make work with nonbinary meters.'''
 
    if mode == 'big-endian':
       _measures_populate_big_endian(expr)
@@ -51,33 +52,30 @@ def measures_populate(expr, mode):
 
 def _measures_populate_big_endian(expr):
    for measure in iterate(expr, '_Measure'):
-      notes = construct.notes(0, measure.meter.effective.duration)
+      notes = construct.notes_prolated(0, measure.meter.effective.duration)
       measure[ : ] = notes
 
 def _measures_populate_little_endian(expr):
    for measure in iterate(expr, '_Measure'):
       duration = measure.meter.effective.duration
-      notes = construct.notes(0, duration, direction = 'little-endian')
+      notes = construct.notes_prolated(0, duration, direction = 'little-endian')
       measure[ : ] = notes
 
-def _measures_populate_duration_train(expr, duration):
-   duration = Rational(duration)
+def _measures_populate_duration_train(expr, written_duration):
+   written_duration = Rational(written_duration)
    for measure in iterate(expr, '_Measure'):
-      total = measure.meter.effective.duration
-      cur = Rational(0)
-      notes = [ ]
-      while cur + duration <= total:
-         notes.append(Note(0, duration))
-         cur += duration
-      remainder = total - cur
-      if remainder > 0:
-         notes.extend(construct.notes(0, remainder))
+      meter = measure.meter.effective
+      total_duration = meter.duration
+      prolation = meter.multiplier
+      notes = construct.note_train(
+         0, written_duration, total_duration, prolation)
       measure[ : ] = notes
 
 def _measures_populate_meter_series(expr):
    for measure in iterate(expr, '_Measure'):
-      denominator = measure.meter.effective.denominator
-      numerator = measure.meter.effective.numerator
+      meter = measure.meter.effective
+      denominator = _next_least_power_of_two(meter.denominator)
+      numerator = meter.numerator
       notes = Note(0, (1, denominator)) * numerator
       measure[ : ] = notes
 
@@ -88,5 +86,7 @@ def _measures_populate_none(expr):
 def _measures_populate_skip(expr):
    for measure in iterate(expr, '_Measure'):
       skip = Skip(1)
-      skip.duration.multiplier = measure.meter.effective.duration
+      meter = measure.meter.effective
+      skip.duration.multiplier = meter.duration * ~meter.multiplier
       measure[ : ] = [skip]
+      measure.spanners.detach( )
