@@ -17,7 +17,7 @@ def test_leaf_aggregator_splice_01( ):
    }
    '''
  
-   t[1].spanners.splice(t[2:])
+   t[1].spanners._splice(t[2:])
 
    r'''
    \new Voice {

@@ -26,7 +26,7 @@ def test_container_aggregator_splice_01( ):
    }
    '''
 
-   t[0].spanners.splice(t[1:])
+   t[0].spanners._splice(t[1:])
 
    r'''
    \new Voice {

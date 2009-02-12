@@ -31,6 +31,16 @@ class _ComponentSpannerAggregator(_Interface):
             result.append(spanner.fracture(spanner.index(component), 'right'))
       return result
 
+   def _splice(self, components):
+      '''Splice components into all spanners attached self.'''
+      client = self._client
+      result = set([ ])
+      for spanner in list(self.attached):
+         index = spanner.index(client) + 1
+         spanner[index:index] = components
+         result.add(spanner)
+      return result
+
    def _update(self, spanners):
       self._spanners.update(spanners)
 
@@ -84,10 +94,3 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in self.attached:
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
-
-   def splice(self, components):
-      '''Splice components into all spanners attached self.'''
-      client = self._client
-      for spanner in list(self.attached):
-         index = spanner.index(client) + 1
-         spanner[index:index] = components
