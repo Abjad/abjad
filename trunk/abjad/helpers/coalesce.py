@@ -5,8 +5,9 @@ from abjad.helpers.remove_empty_containers import _remove_empty_containers
 def coalesce(expr): 
    '''
    Fuse all sub-containers in self that follow a thread.
-   Function returns none if elements in expr are not threadable.
+   Function returns None if elements in expr are not threadable.
    '''
+
    class Visitor(object):
       def __init__(self):
          self.merged = False
@@ -36,7 +37,6 @@ def _fuse_right(expr):
    next = expr._navigator._nextThread
    if next:
       expr.extend(next)
-      #next._die( )
       next.detach( )
       return True
    else:
