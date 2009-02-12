@@ -50,16 +50,23 @@ def measures_populate(expr, mode):
    else:
       raise ValueError('unknown measure population mode "%s".' % mode)
 
+
 def _measures_populate_big_endian(expr):
    for measure in iterate(expr, '_Measure'):
-      notes = construct.notes_prolated(0, measure.meter.effective.duration)
+      meter = measure.meter.effective
+      written_duration = ~meter.multiplier * meter.duration
+      notes = construct.notes_prolated(0, written_duration)
       measure[ : ] = notes
+
 
 def _measures_populate_little_endian(expr):
    for measure in iterate(expr, '_Measure'):
-      duration = measure.meter.effective.duration
-      notes = construct.notes_prolated(0, duration, direction = 'little-endian')
+      meter = measure.meter.effective
+      written_duration = ~meter.multiplier * meter.duration
+      notes = construct.notes_prolated(
+         0, written_duration, direction = 'little-endian')
       measure[ : ] = notes
+
 
 def _measures_populate_duration_train(expr, written_duration):
    written_duration = Rational(written_duration)
@@ -71,6 +78,7 @@ def _measures_populate_duration_train(expr, written_duration):
          0, written_duration, total_duration, prolation)
       measure[ : ] = notes
 
+
 def _measures_populate_meter_series(expr):
    for measure in iterate(expr, '_Measure'):
       meter = measure.meter.effective
@@ -79,9 +87,11 @@ def _measures_populate_meter_series(expr):
       notes = Note(0, (1, denominator)) * numerator
       measure[ : ] = notes
 
+
 def _measures_populate_none(expr):
    for measure in iterate(expr, '_Measure'):
       measure[ : ] = [ ]
+
 
 def _measures_populate_skip(expr):
    for measure in iterate(expr, '_Measure'):
