@@ -55,7 +55,6 @@ class _ComponentSpannerAggregator(_Interface):
       result = set([ ])
       for component in iterate(self._client, '_Component'):
          result.update(set(component.spanners.attached))
-      #return list(result)
       return result
 
    @property
@@ -85,3 +84,10 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in self.attached:
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
+
+   def splice(self, components):
+      '''Splice components into all spanners attached self.'''
+      client = self._client
+      for spanner in list(self.attached):
+         index = spanner.index(client) + 1
+         spanner[index:index] = components
