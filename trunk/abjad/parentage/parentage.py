@@ -19,32 +19,16 @@ class _Parentage(_Abjad):
          self._client._parent = None
          return result
 
-#   def _disjunctParentageBetween(self, arg):
-#      '''
-#      Returns just those elements in the parentage that do not
-#      appear in the parentage of self, together with just those
-#      elements in the parentage of self that do not appear in the 
-#      parentage of arg.
-#      '''
-#
-#      return set(self._parentage) ^ set(arg._parentage._parentage)
-
    def _disjunctInclusiveParentageBetween(self, arg):
       '''
       Same as _disjunctParentageBetween( ) but including
       references to self._client and arg.
       '''
-
-      #return self._disjunctParentageBetween(arg) | set((self._client, arg))
-      #return set(self._iparentage) ^ set (arg._parentage._iparentage)
-      #return set(self._parentage) ^ set (arg._parentage._parentage)
-      #return set(self._parentage) ^ set (arg.parentage._parentage)
       return set(self.parentage) ^ set (arg.parentage.parentage)
 
    def _first(self, classname):
       p = self._client._parent
       while p is not None:
-         #if p.__class__.__name__ == classname:
          if p.kind(classname):
             return p
          else:
@@ -56,7 +40,6 @@ class _Parentage(_Abjad):
       Returns first shared parent between self._client and arg,
       otherwise None.
       '''
-
       shared = set(self.parentage) & set(arg.parentage.parentage)
       if shared:
          for parent in self.parentage:
@@ -75,6 +58,15 @@ class _Parentage(_Abjad):
          except:
             pass
 
+   def _splice(self, components):
+      '''Insert components immediately after self in parent.
+         Do not handle spanners.'''
+      if self.parent is not None:
+         client = self._client
+         index = self.parent.index(client) + 1
+         self.parent[index:index] = components
+         return [client] + components
+
    def _switchParentTo(self, new_parent):
       client = self._client
       old_parent = client._parent
@@ -86,9 +78,6 @@ class _Parentage(_Abjad):
    
    @property
    def _enclosingContextName(self):
-      #inclusive_parentage = [self._client] + self._parentage
-      #inclusive_parentage = self._iparentage
-      #for p in self._parentage:
       for p in self.parentage:
          invocation = getattr(p, 'invocation', None)
          if invocation:
@@ -120,9 +109,6 @@ class _Parentage(_Abjad):
       '''Return thread-pertinent parentage structure.
          Same as _parentage but with _Tuplets, redundant Sequentials, 
          Parallels and tautologies (unlikely) removed.'''
-      #parentage = self._parentage
-      #parentage = self._iparentage[1:]
-      #parentage = self._parentage[1:]
       parentage = self.parentage[1:]
       if len(parentage) > 0:
       ### remove sequentials
