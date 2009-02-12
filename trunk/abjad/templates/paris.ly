@@ -22,7 +22,7 @@
       % proportional notation
       %proportionalNotationDuration = #(ly:make-moment 1 64)
       proportionalNotationDuration = #(ly:make-moment 1 74)
-   	\override SpacingSpanner #'strict-note-spacing = ##t  
+   	%\override SpacingSpanner #'strict-note-spacing = ##t  
    	\override SpacingSpanner #'strict-grace-spacing = ##t
 		\override SpacingSpanner #'uniform-stretching = ##t
 
