@@ -28,5 +28,5 @@ def _remove_modules():
          globals().pop(key)
 
 #_load_classes(('svn', 'tools', 'wf', 'test', 'checks'))
-_load_classes(('documentation', 'svn', 'tools', 'test', 'checks'))
+_load_classes(('checks', 'demos', 'documentation', 'svn', 'tools', 'test'))
 _remove_modules()
