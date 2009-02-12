@@ -1,4 +1,5 @@
 from abjad.helpers.iterate import iterate
+from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.rational.rational import Rational
 from abjad.tuplet.tuplet import _Tuplet
 
@@ -23,4 +24,4 @@ def measures_subsume(expr):
             measure[:] = tuplet[:]
             for leaf in measure.leaves:
                new_written_duration = written_adjustment * leaf.duration.written
-               leaf.duration.written = new_written_duration
+               leaf_duration_change(leaf, new_written_duration)
