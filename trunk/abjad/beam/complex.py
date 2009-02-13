@@ -117,9 +117,11 @@ class ComplexBeam(Beam):
    def _spanPoints(self):
       result = [ ]
       if self.durations is not None:
-         result.append(Rational(*self.durations[0]))
-         for d in self.durations[1 : ]:
-            result.append(result[-1] + Rational(*d))   
+         #result.append(Rational(*self.durations[0]))
+         result.append(self.durations[0])
+         for d in self.durations[1:]:
+            #result.append(result[-1] + Rational(*d))   
+            result.append(result[-1] + d)   
       return result
 
    ## PUBLIC ATTRIBUTES ##
@@ -129,8 +131,17 @@ class ComplexBeam(Beam):
       def fget(self):
          return self._durations
       def fset(self, arg):
-         assert isinstance(arg, (list, tuple, types.NoneType))
-         self._durations = arg 
+         if arg is None:
+            self._durations = None
+         elif isinstance(arg, list):
+            for i, d in enumerate(arg):
+               if isinstance(d, tuple):
+                  arg[i] = Rational(*d)
+               else:
+                  arg[i] = Rational(d)
+            self._durations = arg
+         else:
+            raise ValueError('durations must be list of Rationals, or None.')
       return property(**locals( ))
 
    @apply

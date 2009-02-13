@@ -47,7 +47,7 @@
       \override TupletBracket #'minimum-length = #3
 
       % bar numbers
-      \remove Bar_number_engraver
+      %\remove Bar_number_engraver
 
       % text handling
       \override TextScript #'staff-padding = #4
