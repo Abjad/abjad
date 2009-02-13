@@ -5,11 +5,13 @@ import types
 
 class ComplexBeam(Beam):
 
-   def __init__(self, leaves, durations = None, span = 1, lone = False):
+   def __init__(self, leaves, 
+      durations = None, span = 1, lone = False, nibs = 'neither'):
       Beam.__init__(self, leaves)
       self.durations = durations
-      self.span = span
       self.lone = lone
+      self.nibs = nibs
+      self.span = span
 
    ## PRIVATE ATTRIBUTES ##
       
@@ -19,19 +21,25 @@ class ComplexBeam(Beam):
          left, right = None, None
          # lone
          if self._isMyOnlyLeaf(leaf):
-            if self.lone in (True, False):
-               pass
-            elif self.lone == 'left':
+            #elif self.lone == 'left':
+            if self.nibs == 'left':
                left = leaf.beam._flags
                right = 0
-            elif self.lone == 'right':
+            #elif self.lone == 'right':
+            elif self.nibs == 'right':
                left = 0
                right = leaf.beam._flags
-            elif self.lone == 'both':
+            #elif self.lone == 'both':
+            elif self.nibs == 'both':
                left = leaf.beam._flags
                right = leaf.beam._flags
+            #if self.lone in (True, False):
+            elif self.nibs == 'neither':
+               left = None
+               right = None
             else:
-               raise ValueError('lone must be left, right or both.')
+               #raise ValueError('lone must be left, right or both.')
+               raise ValueError('nibs must be left, right, both or neither.')
          # first
          elif self._isMyFirstLeaf(leaf) or not leaf.prev:
             left = 0
@@ -81,13 +89,27 @@ class ComplexBeam(Beam):
    def _right(self, leaf):
       result = [ ]
       if leaf.beam.beamable:
-         if self._isMyFirstLeaf(leaf) or not leaf.prev or \
-            not leaf.prev.beam.beamable or (self._isMyOnlyLeaf(leaf) and
-            self.lone):
+         #if self._isMyFirstLeaf(leaf) or not leaf.prev or \
+         #   not leaf.prev.beam.beamable or (self._isMyOnlyLeaf(leaf) and
+         #   self.lone):
+         # lone
+         if self._isMyOnlyLeaf(leaf):
+               if self.lone:
+                  result.append('[')
+         # otherwise
+         elif self._isMyFirstLeaf(leaf) or not leaf.prev or \
+            not leaf.prev.beam.beamable:
             result.append('[')
-         if self._isMyLastLeaf(leaf) or not leaf.next or \
-            not leaf.next.beam.beamable or (self._isMyOnlyLeaf(leaf) and
-            self.lone):
+         #if self._isMyLastLeaf(leaf) or not leaf.next or \
+         #   not leaf.next.beam.beamable or (self._isMyOnlyLeaf(leaf) and
+         #   self.lone):
+         # lone
+         if self._isMyOnlyLeaf(leaf):
+            if self.lone:
+               result.append(']')
+         # otherwise
+         elif self._isMyLastLeaf(leaf) or not leaf.next or \
+            not leaf.next.beam.beamable:
             result.append(']')
       return result
 
@@ -116,8 +138,17 @@ class ComplexBeam(Beam):
       def fget(self):
          return self._lone
       def fset(self, arg):
-         assert isinstance(arg, bool)
+         assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
          self._lone = arg 
+      return property(**locals( ))
+
+   @apply
+   def nibs( ):
+      def fget(self):
+         return self._nibs
+      def fset(self, arg):
+         assert arg in ('left', 'rigth', 'both', 'neither')
+         self._nibs = arg 
       return property(**locals( ))
 
    @apply
