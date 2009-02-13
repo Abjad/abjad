@@ -18,7 +18,7 @@ def test_cyclic_extend_01( ):
    }
    '''
 
-   cyclic_extend(t, n = 1, reps = 3)
+   cyclic_extend(t, n = 1, total = 4)
 
    r'''
    \new Voice {
@@ -65,7 +65,7 @@ def test_cyclic_extend_02( ):
    }
    '''
 
-   cyclic_extend(t, 2, 1)
+   cyclic_extend(t, 2, total = 2)
 
    r'''
    \new Voice {

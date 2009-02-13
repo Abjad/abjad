@@ -5,7 +5,7 @@ def test_contents_multiply_01( ):
    '''Multiply notes in voice.'''
 
    t = Voice(scale(3))
-   contents_multiply(t, 2)
+   contents_multiply(t, total = 3)
 
    r'''
    \new Voice {
