@@ -15,10 +15,18 @@ class _MarkupInterface(_Interface, _FormatCarrier):
    @property
    def _right(self):
       result = [ ]
-      for markup in self.up:
-         result.append('^ \markup { %s }' % str(markup))
-      for markup in self.down:
-         result.append('_ \markup { %s }' % str(markup))
+      if len(self.up) == 1:
+         result.append(r'^ \markup { %s }' % str(self.up[0]))
+      elif len(self.up) > 1:
+         column = r'^ \markup { \column { %s } }' 
+         column %= ' '.join([str(x) for x in self.up])
+         result.append(column)
+      if len(self.down) == 1:
+         result.append(r'_ \markup { %s }' % str(self.down[0]))
+      elif len(self.down) > 1:
+         column = r'_ \markup { \column { %s } }' 
+         column %= ' '.join([str(x) for x in self.down])
+         result.append(column)
       return result
 
    ### PUBLIC ATTRIBUTES ###

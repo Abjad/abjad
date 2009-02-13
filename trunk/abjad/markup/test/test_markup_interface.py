@@ -40,3 +40,23 @@ def test_markup_04( ):
    r'''
    c'4 ^ \markup { \italic { attaca! } }
    '''
+
+
+def test_markup_05( ):
+   '''Extend multiple strings below.'''
+   t = Note(0, (1, 4))
+   t.markup.down.extend(['1/4', '1/6'])
+   assert t.format == "c'4 _ \markup { \column { 1/4 1/6 } }"
+   r'''
+   c'4 _ \markup { \column { 1/4 1/6 } }
+   '''
+
+
+def test_markup_06( ):
+   '''Extend multiple strings above.'''
+   t = Note(0, (1, 4))
+   t.markup.up.extend(['1/4', '1/6'])
+   assert t.format == "c'4 ^ \markup { \column { 1/4 1/6 } }"
+   r'''
+   c'4 ^ \markup { \column { 1/4 1/6 } }
+   '''
