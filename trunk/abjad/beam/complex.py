@@ -1,5 +1,7 @@
 from abjad.beam.spanner import Beam
 from abjad.rational.rational import Rational
+import types
+
 
 class ComplexBeam(Beam):
 
@@ -9,28 +11,8 @@ class ComplexBeam(Beam):
       self.span = span
       self.lone = lone
 
-   @property
-   def _spanPoints(self):
-      result = [ ]
-      if self.durations is not None:
-         result.append(Rational(*self.durations[0]))
-         for d in self.durations[1 : ]:
-            result.append(result[-1] + Rational(*d))   
-      return result
-
-   def _right(self, leaf):
-      result = [ ]
-      if leaf.beam.beamable:
-         if self._isMyFirstLeaf(leaf) or not leaf.prev or \
-            not leaf.prev.beam.beamable or (self._isMyOnlyLeaf(leaf) and
-            self.lone):
-            result.append('[')
-         if self._isMyLastLeaf(leaf) or not leaf.next or \
-            not leaf.next.beam.beamable or (self._isMyOnlyLeaf(leaf) and
-            self.lone):
-            result.append(']')
-      return result
-
+   ## PRIVATE ATTRIBUTES ##
+      
    def _before(self, leaf):
       result = [ ]
       if leaf.beam.beamable:
@@ -95,3 +77,54 @@ class ComplexBeam(Beam):
          if right is not None:
             result.append(r'\set stemRightBeamCount = #%s' % right)
       return result
+
+   def _right(self, leaf):
+      result = [ ]
+      if leaf.beam.beamable:
+         if self._isMyFirstLeaf(leaf) or not leaf.prev or \
+            not leaf.prev.beam.beamable or (self._isMyOnlyLeaf(leaf) and
+            self.lone):
+            result.append('[')
+         if self._isMyLastLeaf(leaf) or not leaf.next or \
+            not leaf.next.beam.beamable or (self._isMyOnlyLeaf(leaf) and
+            self.lone):
+            result.append(']')
+      return result
+
+   @property
+   def _spanPoints(self):
+      result = [ ]
+      if self.durations is not None:
+         result.append(Rational(*self.durations[0]))
+         for d in self.durations[1 : ]:
+            result.append(result[-1] + Rational(*d))   
+      return result
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def durations( ):
+      def fget(self):
+         return self._durations
+      def fset(self, arg):
+         assert isinstance(arg, (list, tuple, types.NoneType))
+         self._durations = arg 
+      return property(**locals( ))
+
+   @apply
+   def lone( ):
+      def fget(self):
+         return self._lone
+      def fset(self, arg):
+         assert isinstance(arg, bool)
+         self._lone = arg 
+      return property(**locals( ))
+
+   @apply
+   def span( ):
+      def fget(self):
+         return self._span
+      def fset(self, arg):
+         assert isinstance(arg, (int, types.NoneType))
+         self._span = arg 
+      return property(**locals( ))
