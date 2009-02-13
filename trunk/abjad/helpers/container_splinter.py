@@ -5,4 +5,4 @@ def container_splinter(container, i):
    '''Like container_hew( );
       but fracture spanners across newly hewn parts.'''
 
-   container_hew(container, i, spanners = 'fracture')
+   return container_hew(container, i, spanners = 'fracture')
