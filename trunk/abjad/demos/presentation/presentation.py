@@ -10,20 +10,43 @@ class Presentation(object):
       self.statements = statements
       self.subtitle = subtitle 
       self.title = title
+      self.setup = [ ]
 
 
-   ### PUBLIC METHODS ###
+   ### PRIVATE METHODS ###
 
-   def run(self):
+   def _printHeader(self):
       print "\n\t* * * *    %s    * * * *" % self.title
       print "\n%s" % self.subtitle
       print "\n%s" % self.abstract
+      
+
+   def _isExecutable(self, arg):
+      kwds = ['for', 'while', 'if', 'else']
+      if '=' in arg and not '==' in arg:
+         return True
+      for w in kwds:
+         if w in arg:
+            return True
+      return False
+
+      
+   ### PUBLIC METHODS ###
+
+   def run(self):
+      ## run setup code
+      ### TODO: there must be a better way to insert imports and variables
+      ### into the scope of this function.
+      for expr in self.setup:
+         exec(expr)
+      ##
+      self._printHeader( )
       for i, statement in enumerate(self.statements):
-         raw_input('\n\n\n%d. %s\n' % (i+1, statement.text))
+         raw_input('\n\n%d. %s\n' % (i+1, statement.text))
          for expr in statement.code:
-            #if isinstance(expr, basestring):
             print '   abjad> ' + expr
-            if '=' in expr and not '==' in expr:
+            #if '=' in expr and not '==' in expr:
+            if self._isExecutable(expr):
                exec(expr)
             else:
                result = eval(expr) 
