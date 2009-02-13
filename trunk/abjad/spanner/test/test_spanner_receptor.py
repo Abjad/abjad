@@ -1,5 +1,6 @@
 from abjad import *
 
+
 def test_spanner_receptor_spannedAbove_01( ):
    '''
    Leaves are spannedAbove when spanner is attached to them.
@@ -34,5 +35,3 @@ def test_spanner_receptor_spannedAbove_03( ):
       assert v.beam.spannedAbove
    for leaf in t.leaves:
       assert leaf.beam.spannedAbove
-
-

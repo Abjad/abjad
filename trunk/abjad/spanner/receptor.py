@@ -16,8 +16,6 @@ from abjad.helpers.hasname import hasname
 
 class _SpannerReceptor(_Abjad):
 
-   #def __init__(self, spanners):
-   #   self._spanners = spanners
    def __init__(self, classnames):
       self._classnames = classnames
 
@@ -63,9 +61,7 @@ class _SpannerReceptor(_Abjad):
    def spanners(self):
       result = [ ]
       client = self._client
-      #for classname in self._spanners:
       for classname in self._classnames:
-         #result.extend(self._client.spanners.get(classname = classname))
          spanners = client.spanners.attached
          result.extend([p for p in spanners if hasname(p, classname)])
       return result
@@ -73,7 +69,8 @@ class _SpannerReceptor(_Abjad):
    ### PUBLIC METHODS ###
 
    def unspan(self):
+      result = [ ]
       for spanner in self.spanners[ : ]:
-         #spanner.die( )
          spanner.clear( )
-      return spanner
+         result.append(spanner)
+      return result
