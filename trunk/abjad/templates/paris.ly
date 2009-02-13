@@ -49,6 +49,9 @@
       % bar numbers
       \remove Bar_number_engraver
 
+      % text handling
+      \override TextScript #'staff-padding = #4
+
    }
 
    \context {
