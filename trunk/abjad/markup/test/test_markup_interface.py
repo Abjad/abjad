@@ -60,3 +60,25 @@ def test_markup_06( ):
    r'''
    c'4 ^ \markup { \column { 1/4 1/6 } }
    '''
+
+
+def test_markup_07( ):
+   '''Clear all up-markup.'''
+   t = Note(0, (1, 4))
+   t.markup.up.extend(['A', 'B', 'C'])
+   t.markup.up = [ ]
+   assert t.format == "c'4"
+   r'''
+   c'4
+   '''
+
+
+def test_markup_08( ):
+   '''Clear all down-markup.'''
+   t = Note(0, (1, 4))
+   t.markup.down.extend(['A', 'B', 'C'])
+   t.markup.down = [ ]
+   assert t.format == "c'4"
+   r'''
+   c'4
+   '''

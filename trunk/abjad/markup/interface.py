@@ -35,10 +35,20 @@ class _MarkupInterface(_Interface, _FormatCarrier):
    def down( ):
       def fget(self):
          return self._down
+      def fset(self, arg):
+         if arg is None or arg == [ ]:
+            self._down = [ ]
+         else:
+            raise ValueError('set leaf markup with append( ) and extend( ).')
       return property(**locals( ))
 
    @apply
    def up( ):
       def fget(self):
          return self._up
+      def fset(self, arg):
+         if arg is None or arg == [ ]:
+            self._up = [ ]
+         else:
+            raise ValueError('set leaf markup with append( ) and extend( ).')
       return property(**locals( ))
