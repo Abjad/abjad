@@ -3,31 +3,7 @@ import math
 from abjad.tools import template
 
 
-def load_desordre_pitches(file):
-   result = [ ]
-   f = open(file, 'r')
-   lines = f.read( )
-   lines = lines.splitlines( )
-   f.close( )
-   for line in lines:
-      if len(line) == 0:
-         pass
-      elif line.startswith('###'):
-         hand = [ ]
-         result.append(hand)
-      else:
-         runs = [ ]
-         runs_char = line.split('@')
-         for run in runs_char:
-            run = run.split(',')
-            run = [int(n) for n in run]
-            runs.append(run)
-         hand.append(runs)
-   return result
-
-
 def desordre_build(pitches):
-   #piano = piano_template( )
    piano = template.piano( )
    piano[1].formatter.opening.append(r'\key b \major')
    for i, hand in enumerate(pitches):
@@ -35,12 +11,14 @@ def desordre_build(pitches):
       piano[i].extend(seq)
    return piano
 
+
 def multimeasure_build(pitches):
    result = [ ]
    for seq in pitches:
       measure = measure_build(seq)
       result.append(measure)
    return result
+
 
 def measure_build(pitches):
    result = DynamicMeasure([ ])
@@ -50,6 +28,7 @@ def measure_build(pitches):
    if result.meter.effective.denominator == 1:
       result.denominator = 4
    return result
+
 
 def desordre_run(pitches):
    Pitch.accidental_spelling = 'sharps'
@@ -73,4 +52,28 @@ def desordre_run(pitches):
    for n in v_lower.leaves[:-1]:
       n.barline.type = ''
    return p
+
+
+def load_desordre_pitches(file):
+   result = [ ]
+   f = open(file, 'r')
+   lines = f.read( )
+   lines = lines.splitlines( )
+   f.close( )
+   for line in lines:
+      if len(line) == 0:
+         pass
+      elif line.startswith('###'):
+         hand = [ ]
+         result.append(hand)
+      else:
+         runs = [ ]
+         runs_char = line.split('@')
+         for run in runs_char:
+            run = run.split(',')
+            run = [int(n) for n in run]
+            runs.append(run)
+         hand.append(runs)
+   return result
+
 

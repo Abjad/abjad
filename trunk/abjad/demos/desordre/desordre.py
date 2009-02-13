@@ -1,10 +1,3 @@
-#from abjad import *
-#from abjad.cfg.cfg import  ABJADPATH
-#from abjad.cfg.cfg import  PDFVIEWER
-#from abjad.cfg.open_file import _open_file
-#from abjad.demos.desordre.helpers import *
-#import os
-
 from abjad.demos.presentation.presentation import *
 
 
@@ -15,7 +8,7 @@ statements = [ ]
 
 ### statements
 text = "Let's first see what we are after."
-code = '_open_file(desordre, PDFVIEWER)'
+code = 'open_file(desordre, PDFVIEWER)'
 s = Statement(text, code)
 statements.append(s)
 
@@ -26,7 +19,7 @@ statements.append(s)
 
 
 text = "Let's see the raw pitch data used by Ligeti."
-code = '_open_file(pitches_file)'
+code = 'open_file(pitches_file)'
 s = Statement(text, code)
 statements.append(s)
 
@@ -72,7 +65,7 @@ s = Statement(text, code)
 statements.append(s)
 
 text = "Now that we have 'Desordre' encoded in Abjad, we can play around with the data in the piece. Let's shuffle the sequences around a bit."
-code = 'for run in pitches[0]: run[0].reverse( ); run.reverse( )'
+code = 'for measure in pitches[0]: measure[0].reverse( ); measure.reverse( )'
 s = Statement(text, code)
 statements.append(s)
 
@@ -91,11 +84,12 @@ statements.append(s)
 
 ### presentation
 p = Presentation(title, abstract, statements)
+p.setup.append('from abjad import *')
 p.setup.append('from abjad.cfg.cfg import ABJADPATH')
 p.setup.append('from abjad.cfg.cfg import PDFVIEWER')
+p.setup.append('from abjad.cfg.open_file import _open_file as open_file')
 p.setup.append('from abjad.demos.desordre.helpers import *')
 p.setup.append('import os')
-p.setup.append('from abjad.cfg.open_file import _open_file')
 p.setup.append("desordre = ABJADPATH + \
 os.sep.join(['demos', 'desordre', 'desordre.pdf'])")
 p.setup.append("pitches_file = ABJADPATH +  \
@@ -104,5 +98,11 @@ os.sep.join(['demos', 'desordre', 'desordre_pitches.txt'])")
 
 
 if __name__ == '__main__':
-   p.run( )
-   
+   import sys
+   if len(sys.argv) > 1:
+      p.run(sys.argv[1])
+   else:
+      p.run( )
+else:   
+   for expr in p.setup:
+      exec(expr)

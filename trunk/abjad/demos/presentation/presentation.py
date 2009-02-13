@@ -1,6 +1,4 @@
-from abjad import *
 from abjad.demos.presentation.statement import Statement
-from abjad.tools import *
 
 class Presentation(object):
 
@@ -33,7 +31,12 @@ class Presentation(object):
       
    ### PUBLIC METHODS ###
 
-   def run(self):
+   def run(self, live=False):
+      '''
+      This method runs the presentation. 
+      Set live to True in live presentation. When live is True the commands
+      are not executed, only displayed. 
+      '''
       ## run setup code
       ### TODO: there must be a better way to insert imports and variables
       ### into the scope of this function.
@@ -45,13 +48,13 @@ class Presentation(object):
          raw_input('\n\n%d. %s\n' % (i+1, statement.text))
          for expr in statement.code:
             print '   abjad> ' + expr
-            #if '=' in expr and not '==' in expr:
-            if self._isExecutable(expr):
-               exec(expr)
-            else:
-               result = eval(expr) 
-               if not result is None:
-                  print '   %s' % result
+            if not live:
+               if self._isExecutable(expr):
+                  exec(expr)
+               else:
+                  result = eval(expr) 
+                  if result:
+                     print '   %s' % result
       print "\n\t* * * End of presentation. * * *\n"
 
 
