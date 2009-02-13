@@ -7,7 +7,6 @@ def measures_grouping_beam(measures):
 
    durations = [ ]
    for measure in measures:
-      print measure
       measure.beam.unspan( )
       durations.append(measure.duration.preprolated)
    beam = ComplexBeam(measures, durations = durations, span = 1)
