@@ -11,6 +11,7 @@ from abjad.helpers.hasname import hasname
 from abjad.glissando.interface import _GlissandoInterface
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
+#from abjad.notehead.interface import _NoteHeadInterface
 from abjad.offset.interface import _OffsetInterface
 from abjad.parentage.parentage import _Parentage
 from abjad.pianopedal.interface import _PianoPedalInterface
@@ -43,6 +44,7 @@ class _Component(_Abjad):
       self._glissando = _GlissandoInterface(self)
       self._meter = _MeterInterface(self)
       self._navigator = _Navigator(self)
+      #self._notehead = _NoteHeadInterface(self)
 #      self._offset = _OffsetInterface(self)
       self._parentage = _Parentage(self)
       self._pianopedal = _PianoPedalInterface(self)
@@ -143,6 +145,12 @@ class _Component(_Abjad):
       def fset(self, arg):
          self._meter.forced = arg
       return property(**locals( ))
+
+   ## TODO: Implement _NoteHeadInterface on _Component
+
+#   @property
+#   def notehead(self):
+#      return self._notehead
 
    @property
    def offset(self):

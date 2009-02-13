@@ -8,6 +8,7 @@ from abjad.helpers.contiguity import _are_atomic_music_elements
 from abjad.helpers.contiguity import _are_contiguous_music_elements
 from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
+from abjad.notehead.interface import _NoteHeadInterface
 
 
 class Container(_Component):
@@ -31,6 +32,8 @@ class Container(_Component):
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self.formatter = _ContainerFormatter(self)
+      ## TODO: Reimplement _NoteHeadInterface on _Component
+      self.notehead = _NoteHeadInterface(self)
       self.spanners = _ContainerSpannerAggregator(self)
 
    ### PRIVATE ATTRIBUTES ###
