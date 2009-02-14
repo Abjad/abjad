@@ -1,5 +1,7 @@
+from abjad.helpers.container_contents_scale import container_contents_scale
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.measure.rigid.measure import RigidMeasure
+from abjad.meter.meter import Meter
 
 
 def measures_fuse(left, right):
@@ -26,8 +28,19 @@ def measures_fuse(left, right):
    new_pair = _in_terms_of(new_duration, min(old_denominators))
    if new_pair[1] != min(old_denominators):
       new_pair = _in_terms_of(new_pair, max(old_denominators))
+   new_meter = Meter(new_pair)
 
-   music = left[:] + right[:]
+   left_multiplier = ~new_meter.multiplier * left.meter.effective.multiplier
+   left_music = left[:]
+   container_contents_scale(left_music, left_multiplier)
+
+   right_multiplier = ~new_meter.multiplier * right.meter.effective.multiplier
+   right_music = right[:]
+   container_contents_scale(right_music, right_multiplier)
+
+   #music = left[:] + right[:]
+   music = left_music + right_music
+
    for element in music:
       element.parentage.detach( )
 
