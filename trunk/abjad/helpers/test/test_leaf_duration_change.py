@@ -94,3 +94,70 @@ def test_leaf_duration_change_03( ):
 
    assert check(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8. ]\n\te'8\n\tf'8\n}"
+
+
+def test_change_leaf_duration_04( ):
+   '''Change leaf to tied, nonbinary duration;
+      FixedMultiplierTuplet inserted over new tied notes.'''
+
+   t = Voice(scale(4))
+   Beam(t[:2])
+
+   r'''
+   \new Voice {
+      c'8 [
+      d'8 ]
+      e'8
+      f'8
+   }
+   '''
+
+   leaf_duration_change(t[1], Rational(5, 48))
+
+   r'''
+   \new Voice {
+           c'8 [
+           \times 2/3 {
+                   d'8 ~
+                   d'32 ]
+           }
+           e'8
+           f'8
+   }
+   '''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32 ]\n\t}\n\te'8\n\tf'8\n}"
+
+
+def test_change_leaf_duration_05( ):
+   '''Change leaf to untied, nonbinary duration;
+      FixedMultiplierTuplet inserted over input leaf.'''
+
+   t = Voice(scale(4))
+   Beam(t[:2])
+
+   r'''
+   \new Voice {
+      c'8 [
+      d'8 ]
+      e'8
+      f'8
+   }
+   '''
+
+   leaf_duration_change(t[1], Rational(1, 12))
+
+   r'''
+   \new Voice {
+           c'8 [
+           \times 2/3 {
+                   d'8 ]
+           }
+           e'8
+           f'8
+   }
+   '''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ]\n\t}\n\te'8\n\tf'8\n}" 
