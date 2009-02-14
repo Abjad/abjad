@@ -1,3 +1,4 @@
+from abjad.helpers.container_contents_scale import container_contents_scale
 from abjad.helpers.iterate import iterate
 from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.rational.rational import Rational
@@ -22,6 +23,4 @@ def measures_subsume(expr):
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
             measure[:] = tuplet[:]
-            for leaf in measure.leaves:
-               new_written_duration = written_adjustment * leaf.duration.written
-               leaf_duration_change(leaf, new_written_duration)
+            container_contents_scale(measure, written_adjustment)
