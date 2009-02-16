@@ -1,8 +1,6 @@
 from abjad.core.interface import _Interface
-#from abjad.helpers.hasname import hasname
-#from abjad.helpers.rationalize import _rationalize
+from abjad.helpers.cumulative_products import cumulative_products
 from abjad.rational.rational import Rational
-from operator import mul
 
 
 class _DurationInterface(_Interface):
@@ -17,7 +15,6 @@ class _DurationInterface(_Interface):
       result = [ ]
       parent = self._client._parent
       while parent is not None:
-         #result.append(parent.duration.multiplier)
          result.append(getattr(parent.duration, 'multiplier', Rational(1)))
          parent = parent._parent
       return result
@@ -34,7 +31,5 @@ class _DurationInterface(_Interface):
 
    @property
    def prolation(self):
-      result = Rational(1)
-      for x in self._prolations:
-         result *= x
-      return result
+      products = cumulative_products([Rational(1)] + self._prolations)
+      return products[-1]
