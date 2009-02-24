@@ -48,6 +48,7 @@ Note(c', 4), Note(c', 2), Note(c', 8.)]
 
 <pre class="abjad">
 abjad> staff = RhythmicSketchStaff(notes)
+abjad> show(staff)
 </pre>
 <img alt="" src="images/1.png"/>
 
@@ -57,6 +58,7 @@ abjad> staff = RhythmicSketchStaff(notes)
 abjad> MetricGrid(staff, [(4, 4), (4, 4), (4, 4), (11, 16)])
 abjad> staff.meter.clear( )
 abjad> staff.barline.clear( )
+abjad> show(staff)
 </pre>
 <img alt="" src="images/2.png"/>
 
@@ -65,6 +67,7 @@ abjad> staff.barline.clear( )
 <pre class="abjad">
 abjad> meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
 abjad> metric_slice(staff, meters)
+abjad> show(staff)
 </pre>
 <img alt="" src="images/3.png"/>
 

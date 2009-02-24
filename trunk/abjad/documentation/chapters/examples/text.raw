@@ -35,7 +35,7 @@
    hide> notes = construct.notes(0, durations)
    abjad> staff = RhythmicSketchStaff(notes)
    hide> staff.formatter.opening.append(r'\set Score.proportionalNotationDuration = #(ly:make-moment 1 10)')
-   hide> show(staff)
+   abjad> show(staff)
 </abjad>
 
 <p>As this will become part of a piece for ensemble to be conducted, we would like all the parts to have a common metric (measure) structure. We now apply a <code>MetricGrid</code> spanner with the desired metric sequence to our staff.</p> 
@@ -50,7 +50,7 @@
    abjad> MetricGrid(staff, [(4, 4), (4, 4), (4, 4), (11, 16)])
    abjad> staff.meter.clear( )
    abjad> staff.barline.clear( )
-   hide> show(staff)
+   abjad> show(staff)
 </abjad>
 
 <p>Notice how some notes <b>span</b> more than one measure (i.e. they extend over the bar lines). This is a good thing because it shows that note durations and meter are treated independently. It also shows the flexibility and exactness of LilyPond's internal rhythmic model. We may not want these spanning notes in our final score, however. We may also want to show each beat by splitting notes every quarter or every half note duration. To do this we will slice the music to a second sequence of meters.</p>
@@ -65,7 +65,7 @@
    hide> MetricGrid(staff, [(4, 4), (4, 4), (4, 4), (11, 16)])
    abjad> meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
    abjad> metric_slice(staff, meters)
-   hide> show(staff)
+   abjad> show(staff)
 </abjad>
 
 <p>And this gives us our final score. </p>
