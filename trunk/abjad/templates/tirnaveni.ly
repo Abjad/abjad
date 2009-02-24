@@ -58,6 +58,9 @@
       
       % timing administration
       \remove Timing_translator
+      
+      % markup overrides
+      \override TextScript #'staff-padding = #4
    }
 
    \context {
