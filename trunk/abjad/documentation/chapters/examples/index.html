@@ -44,7 +44,7 @@ Note(c', 4), Note(c', 8), Note(c', 8), Note(c', 8.), Note(c', 16),
 Note(c', 4), Note(c', 2), Note(c', 8.)]
 </pre>
 
-<p>Let us now put these notes inside a <code><a href="../rhythmic_staff_class/index.html">RhythmicStaff</a></code>.</p> 
+<p>Let us now put these notes inside a <code><a href="../rhythmic_sketch_staff_class/index.html">RhythmicSketchStaff</a></code>.</p> 
 
 <pre class="abjad">
 abjad> staff = RhythmicSketchStaff(notes)
@@ -55,6 +55,8 @@ abjad> staff = RhythmicSketchStaff(notes)
 
 <pre class="abjad">
 abjad> MetricGrid(staff, [(4, 4), (4, 4), (4, 4), (11, 16)])
+abjad> staff.meter.clear( )
+abjad> staff.barline.clear( )
 </pre>
 <img alt="" src="images/2.png"/>
 
@@ -68,7 +70,7 @@ abjad> metric_slice(staff, meters)
 
 <p>And this gives us our final score. </p>
 
-<p><a name="footnote_1">*</a><small>This example reconstructs the first few measures of <a href="http://www.stevelehman.com/" target="_blank">Stephen Lehman's</a> <i>Rai</i> following the composer's own process: "I basically created a duration row, and then applied a meter to it after the fact. Then, once I started changing the distribution of prime number values over the course of the piece, I tried to make them fit in the same time span.  </small> </p>
+<p><a name="footnote_1">*</a><small>This example reconstructs the first few measures of Stephen Lehman's <i>Rai</i> following the composer's own process: "I basically created a duration row, and then applied a meter to it after the fact. Then, once I started changing the distribution of prime number values over the course of the piece, I tried to make them fit in the same time span." </small> </p>
 </div>
 
 
