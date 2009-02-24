@@ -18,7 +18,7 @@
 
 <h2>Installing the official source release</h2>
 <ol>
-<li>Download the latest release <a href="http://128.59.116.55/~abjad/Abjad-1.0dev.tar.gz">HERE</a>.
+<li>Download the latest release <a href="http://128.59.116.55/~abjad/Abjad-1.0.1012dev.tar.gz">HERE</a>.
 
 <li>Untar the downloaded file (e.g. "tar xzvf Abjad-NNN.tar.gz",
        where "NNN" is the version number of the latest release).
