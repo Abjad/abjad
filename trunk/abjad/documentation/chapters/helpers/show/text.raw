@@ -1,0 +1,42 @@
+<h1>show( )</h1>
+
+<subsection>
+<p> The <code>show( )</code> helper is one of the most used helpers in Abjad. It is the link between your Abjad code and LilyPond. <code>show(expr)</code> calls LilyPond to render the given Abjad expression <code>expr</code> and immediately displays the score as a PDF. </p>
+
+<p>Here's a simple example: </p>
+
+<abjad>
+   abjad> n = Note(0, (1, 4))
+   abjad> show(n)
+</abjad>
+
+<p>
+Note that <code>show(expr)</code> only works when <code>expr.format</code> exists. 
+All Abjad objects divide into roughly two groups:
+
+<ol>
+   <li> Components
+   <li> Spanners
+</ol>
+
+Components include notes, rests, chords and all other so-called "leaves"; components also include tuplets, measures, voices, staves and scores. 
+Spanners include beams, slurs, ties, pedal mark, trills. Spanners also include <MetricGrid>.  
+Spanners are special in that they do not implement a 'format' string, so they can not be passed to <code>show( )</code> directly.
+Instead, apply a spanner to a Component and then <code>show( )</code> the Component.
+</p>
+<p>Here's an example:</p>
+
+<abjad>
+   abjad> staff = Staff(scale(4))
+   abjad> b = Beam(staff)
+</abjad>
+
+<p><Beam> <code>b</code> is a Spanner, so passing <code>b</code> to <code>show( )</code> will throw and exception. Instead, pass <code>staff</code> to <code>show( )</code> and you will see the notes in the staff with the <Beam> spanner applied. </p>
+
+<abjad>
+   hide> staff = Staff(scale(4))
+   hide> b = Beam(staff)
+   abjad> show(staff)
+</abjad>
+
+</subsection>
