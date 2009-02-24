@@ -34,6 +34,13 @@
 
 <p>These commands will install Abjad in your Python installation's `site-packages` directory. Note that this requires a working internet connection if you don't already have the Python utility "setuptools" installed.</p>
 
+<h3>Note for OS X users </h3>
+<p>In order to be able to run Abjad directly from the terminal via the <code>abj</code> command, you may need to add the python binary installation directory to your PATH. For example, if you have Python 2.6, <code>abj</code> would usually be placed in '/Library/Frameworks/Python.framework/Versions/2.6/bin/abj'. Thus, you would add '/Library/Frameworks/Python.framework/Versions/2.6/bin' to your PATH.  </p>
+
+<h3>Note for Linux users</h3>
+
+<p>Abjad makes use of xdg-open to display PDF files using your favorite PDF viewer. Most Linux distributions now come with xdg-utils installed. If you do not have xdg-utils installed, download it from <a href="http://portland.freedesktop.org/" target="_blank">www.portland.freedsektop.org</a> and install it. Alternatively you can set the PDFVIEWER environment variable to your favorite PDF viewer. </p>
+
 
 <h2>Installing the development version</h2>
 
@@ -67,9 +74,5 @@ If you'd like to be at the cutting edge of the Abjad development use the followi
                PATH in order to be able to run abjad directly with the 'abj' command.
       </ol>
 </ol>
-
-<h3>Note for Linux users</h3>
-
-<p>Abjad makes use of xdg-open to display PDF files using your favorite PDF viewer. Most Linux distributions now come with xdg-utils installed. If you do not have xdg-utils installed, download it from <a href="http://portland.freedesktop.org/" target="_blank">www.portland.freedsektop.org</a> and install it. Alternatively you can set the PDFVIEWER environment variable to your favorite PDF viewer. </p>
 
 </subsection>

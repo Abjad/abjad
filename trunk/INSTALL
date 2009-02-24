@@ -33,6 +33,17 @@ Installing the official source release
 These commands will install Abjad in your Python installation's `site-packages` directory. Note that this requires a working internet connection if you don't already have the Python utility "setuptools" installed.
 
 
+Note for OS X users
+^^^^^^^^^^^^^^^^^^^
+In order to be able to run Abjad directly from the terminal via the 'abj' command, you may need to add the python binary installation directory to your PATH. For example, if you have Python 2.6, 'abj' would usually be placed in '/Library/Frameworks/Python.framework/Versions/2.6/bin/abj'. Thus, you would add '/Library/Frameworks/Python.framework/Versions/2.6/bin' to your PATH.  
+
+Note for Linux users
+^^^^^^^^^^^^^^^^^^^
+Abjad makes use of xdg-open to display PDF files using your favorite PDF viewer.
+Most Linux distributions now come with xdg-utils installed. If you do not have xdg-utils installed, download it from www.portland.freedsektop.org and install it. Alternatively you can set the PDFVIEWER environment variable to your favorite PDF viewer. 
+
+ 
+
 Installing the development version
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -60,11 +71,5 @@ If you'd like to be at the cutting edge of the Abjad development use the followi
 
          c) You will also need to include the abjad-trunk/scr directory in your 
             PATH in order to be able to run abjad directly with the 'abj' command. 
-
-
-Note for Linux users
-^^^^^^^^^^^^^^^^^^^
-Abjad makes use of xdg-open to display PDF files using your favorite PDF viewer.
-Most Linux distributions now come with xdg-utils installed. If you do not have xdg-utils installed, download it from www.portland.freedsektop.org and install it. Alternatively you can set the PDFVIEWER environment variable to your favorite PDF viewer. 
 
 
