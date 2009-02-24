@@ -3,8 +3,8 @@ from abjad.container.brackets import _Brackets
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
+from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.coalesce import coalesce
-from abjad.helpers.contiguity import _are_atomic_music_elements
 from abjad.helpers.contiguity import _are_contiguous_music_elements
 from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
@@ -20,7 +20,7 @@ class Container(_Component):
       _Component.__init__(self)
       if music:
          music_parent = music[0]._parent
-         if not _are_atomic_music_elements(music):
+         if not _are_orphan_components(music):
             assert _are_contiguous_music_elements(music)
             start_index = music_parent.index(music[0])
             stop_index = music_parent.index(music[-1])

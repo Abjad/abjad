@@ -1,15 +1,4 @@
-def _are_atomic_music_elements(ll):
-   '''
-   Return True if each of the elements in the music list ll
-   have no parent.
-   '''
-
-   if ll:
-      for element in ll:
-         if element._parent is not None:
-            return False
-      return True
-   return False
+from abjad.helpers.are_orphan_components import _are_orphan_components
 
 
 def _are_contiguous_music_elements(ll):
@@ -48,25 +37,6 @@ def _are_contiguous_music_elements(ll):
          return False
       if element is not next_in_parent:
          return False
-   return True
-
-
-def _are_orphan_components(ll):
-   '''
-   Return True when ll is a Python list and when 
-   each of the elements in ll is an orphan Abjad component,
-   otherwise False.
-
-   Intended for type-checking helper function input.
-   Companion to _are_contiguous_music_elements.
-   '''
-
-   try:
-      assert isinstance(ll, list)
-      assert all([x.parentage.orphan for x in ll])
-   except (AssertionError, AttributeError):
-      return False
-
    return True
 
 
