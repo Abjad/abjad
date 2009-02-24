@@ -1,31 +1,136 @@
-<h1>A quick tour</h1>
+<h1>Start here</h1>
 
 <subsection>
 
-<p>
-
-Abjad is a Symbolic Score-Control System (SSCS) designed to give composers complete control over almost all aspects of the musical score.
-Because Abjad incorporates GNU LilyPond, one of the most powerful music engraving packages available, Abjad is Full-Spectrum Typographic (FST).
-Abjad helps composers put symbols on the page and then control the placement and appearance of those symbols.
-Thickness, color, size and shape are all supported.
-Take a look.
-
-</p>
+<p>Work through the examples here to learn how to start Abjad and to make notes, rests and chords. After you know the basics you can move on to more advanced examples.</p>
 
 </subsection>
 
-<section>One note
+
+<section>1. Start Abjad
 
 <subsection>
 
-It's easy to create a note.
+<p>To start Abjad, type <code>abj</code> at any shell prompt.<sup><a href="#footnote_1">[1]</a></sup> The Abjad intepreter appears.</p>
+
+<abjad>
+   abjad> 
+</abjad>
+
+<p>That's all there is to starting Abjad! Notice that all you have to type are the three letters <code>abj</code> rather than the full five letters in the name of the system.</p>
+
+<p>What if the Abjad interpreter doesn't start? See the page on making sure Abjad is installed correctly; link to be provided soon.</p>
 
 </subsection>
 
-<section>Many notes
+<section>2. Make one note
 
 <subsection>
 
-It's easy to create many notes.
+To create one note, type code like the following and hit return.
+
+<abjad>
+   abjad> Note(13, (1, 4))
+   Note(c'', 4)
+</abjad>
+
+Abjad responds by showing you the note you have created. Here we've created a C-sharp in the octave just above middle C with a duration of a quarter note. (Abjad pitch numbers are equal to the IRCAM / MIDI pitch numbers minus 60.) It's probably easiest to save the new note that you've created to a variable name. You can do this with the special Python <code>_</code> underscore character.
+
+<abjad>
+   abjad> my_note = _
+</abjad>
+
+Python interpreters the special <code>_</code> underscore character to mean "the last thing just returned from the interpreter". Here the <code>my_note</code> variable now equals the C-sharp we created earlier. Any time we type <code>my_note</code> followed by return, Abjad will show us this note.
+
+<abjad>
+   abjad> my_note
+   Note(cs'', 4)
+</abjad>
+
+Of course you can also combine the two steps we've gone through above into a single step.
+
+<abjad>
+   abjad> my_note = Note(13, (1, 4))
+</abjad>
+
+Abjad instantiates the C-sharp on the right-hand side of the equals sign and then binds the newly-created note to the variable <code>my_note</code> on the left-hand side of the equals sign. The equals sign <code>=</code> is the Python assignment operator. And, as before, any time we type <code>my_note</code> followed by return, Abjad will show us this note.
+
+<abjad>
+   abjad> my_note
+   Note(cs'', 4)
+</abjad>
+
+<p>Why is it useful to assign notes, rests and other Abjad objects that you create to variable names? Because once you have assigned a note, rest or other Abjad object to a variable name, you can inspect the different attributes of that object and use that object to build more complex musical expressions.</p>
+
+<abjad>
+   abjad> my_note.pitch
+   Pitch(cs, 5)
+</abjad>
+
+<p>Here we ask for the pitch of <code>my_note</code> and find out that <code>my_note</code> has a pitch equal to C-sharp in the octave above middle C.</p>
+
+<abjad>
+   abjad> my_note.pitch.accidental
+   Accidental(s)
+</abjad>
+
+<p>Here we ask for the accidental attaching to the pitch of <code>my_note</code>. We find out that the accidental attaching to the pitch of <code>my_note</code> is a sharp sign, here denoted by the string <code>'s'</code>.</p>
+
+<abjad>
+   abjad> my_note.duration.written
+   Rational(1, 4)
+</abjad>
+
+<p>And here we ask for the written duration of <code>my_note</code>. We find out that the written duration of <code>my_note</code> is <tt>1/4</tt>.
+
+<p>In this section we've learned how to create one note and assign that note to a variable name. We've also looked at just a few of the many dozen different structural attributes that Abjad makes available for the different objects in the system. In the next section we'll look at a few ways to make many notes at once.</p>
 
 </subsection>
+
+<section>3. Make many notes
+
+<subsection>
+
+<p>Abjad overloads the Python multiplication <code>*</code> operator to copy notes, rests and other system objects.</p>
+
+<abjad>
+   abjad> my_notes = Note(0, (1, 8)) * 4
+</abjad>
+
+<p>The <code>my_notes</code> variable is now bound to a Python list of four Abjad notes.</p>
+
+<abjad>
+   abjad> my_notes
+   [Note(c', 8), Note(c', 8), Note(c', 8), Note(c', 8)]
+</abjad>
+
+<p>These four notes are all truly different from one another.<sup><a href="#footnote_2">[2]</a></sup></p>
+
+<p>All the usual Python list operations are available.</p>
+
+<abjad>
+   abjad> len(my_notes)
+   4
+</abjad>
+
+<p>And you can use the Abjad <code>f( )</code> helper to look at all four notes formatted as LilyPond input.</p>
+
+<abjad>
+   abjad> f(my_notes)
+   c'8
+   c'8
+   c'8
+   c'8
+</abjad>
+
+<p>You can not, however, use the Abjad <code>show( )</code> helper to show a Python list of notes. Try putting these notes in an Abjad staff first. This is the subject of the next section.</p>
+
+</subsection>
+
+<comments>
+
+<p><a name="footnote_1">1:</a> On Mac OS X you can get a shell prompt using the Terminal application. The terminal application lives at <code>/Applications/Utilities</code>. It's probably a good a idea to drag the Terminal application to your dock so that the application is easy to get to and easy to start. Once you've found the Terminal application, click it and type <code>abj</code> to start Abjad.</p>
+
+<p><a name="footnote_2">2:</a> By "truly different" we mean that each of the four notes in the example above have a separate ID in the Abjad interpreter. You can see this by asking, for example, for <code>id(my_notes[0])</code> and <code>id(my_notes[1])</code>. Different IDs will come back in each case. This is important for two reasons. First, the usual Python multiplication operator acts to multiply references, rather than deep copying instances as happens here. Second, as you build more complex musical expressions, it will be important that notes, rests and all components be unique throughout complex score structure to prevent accidental aliasing of elements.</p>
+
+</comments>
