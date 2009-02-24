@@ -20,6 +20,9 @@ def _are_contiguous_music_elements(ll):
 
    Check for contiguous leaves (which have 'next' and 'prev' handles)
    and also tuplets, measures and other types of input (which don't).
+
+   TODO: This is old code;
+         should probably be replaced by a newer, threading-based check.
    '''
 
    parent = ll[0]._parent
@@ -31,4 +34,23 @@ def _are_contiguous_music_elements(ll):
       index += 1
       if element is not parent[index]:
          return False
+   return True
+
+
+def _are_orphan_components(ll):
+   '''
+   Return True when ll is a Python list and when 
+   each of the elements in ll is an orphan Abjad component,
+   otherwise False.
+
+   Intended for type-checking helper function input.
+   Companion to _are_contiguous_music_elements.
+   '''
+
+   try:
+      assert isinstance(ll, list)
+      assert all([x.parentage.orphan for x in ll])
+   except (AssertionError, AttributeError):
+      return False
+
    return True
