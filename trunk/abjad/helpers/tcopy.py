@@ -1,4 +1,4 @@
-from abjad.helpers.contiguity import _are_contiguous_music_elements
+from abjad.helpers.are_contiguous_components import _are_contiguous_components
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.helpers.total_duration_in_parent import _total_duration_in_parent
 
@@ -13,8 +13,8 @@ def tcopy(ll):
    Shrink result container as necessary to preserve parent multiplier.
    '''
 
-   # assert contiguous elements in ll
-   if not _are_contiguous_music_elements(ll):
+   # assert contiguous components in ll
+   if not _are_contiguous_components(ll):
      raise ValueError('Input must be contiguous music elements.')
 
    # remember parent

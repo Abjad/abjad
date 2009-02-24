@@ -5,7 +5,7 @@ from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.coalesce import coalesce
-from abjad.helpers.contiguity import _are_contiguous_music_elements
+from abjad.helpers.are_contiguous_components import _are_contiguous_components
 from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.notehead.interface import _NoteHeadInterface
@@ -21,7 +21,7 @@ class Container(_Component):
       if music:
          music_parent = music[0]._parent
          if not _are_orphan_components(music):
-            assert _are_contiguous_music_elements(music)
+            assert _are_contiguous_components(music)
             start_index = music_parent.index(music[0])
             stop_index = music_parent.index(music[-1])
          if music_parent is not None:
