@@ -42,7 +42,29 @@ s = Statement(text, code)
 statements.append(s)
 
 
-text = "Let's exploit the pattern further and use higher level constructs. Observe that the 'Ligeti objects' are subsumed in the measures, so let's use a measures builder..."
+text = "Let's exploit the pattern further and use higher level constructs. Observe that the 'Ligeti objects' are subsumed in the measures, so let's use a measure builder..."
+code = 'measure = measure_build(pitches[0][0])'
+s = Statement(text, code)
+statements.append(s)
+
+text = "Let's display what we have created."
+code = "show(Staff([measure]), 'tirnaveni')"
+s = Statement(text, code)
+statements.append(s)
+
+
+text = "The measure builder can make any number of 'Ligeti classes'."
+code = 'measure = measure_build([[0,2], [0,2,0,2], [0,2,0,2,0]])'
+s = Statement(text, code)
+statements.append(s)
+
+text = "Let's display what we have created."
+code = "show(Staff([measure]), 'tirnaveni')"
+s = Statement(text, code)
+statements.append(s)
+
+
+text = "Now let's create several measures at a time using the multimeasure_build..."
 code = 'multimeasures = multimeasure_build(pitches[0])'
 s = Statement(text, code)
 statements.append(s)
