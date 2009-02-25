@@ -6,5 +6,3 @@ def _wrap_format(format):
    else:
       return format
 
-   ### TODO: wrap everything inside \score{ } block?
-   ### return '\\score{\n%s\n}' % '\n'.join(['\t' + line for line in lines])
