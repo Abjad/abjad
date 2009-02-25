@@ -90,3 +90,24 @@ def test_grace_06( ):
            c'8
    }
    '''
+
+
+### APPEND, EXTEND ###
+
+def test_grace_10( ):
+   '''Grace containers can be appended.'''
+   t = Grace(run(2))
+   n = Note(1, (1, 4))
+   t.append(n)
+   assert len(t) == 3
+   assert t[-1] is n
+
+
+def test_grace_11( ):
+   '''Grace containers can be extended.'''
+   t = Grace(run(2))
+   ns = Note(1, (1, 4)) * 2
+   t.extend(ns)
+   assert len(t) == 4
+   assert t[-2:] == ns
+

@@ -5,6 +5,8 @@ from abjad.grace.formatter import _GraceFormatter
 class Grace(Container):
 
    def __init__(self, music = None):
+      ### self._carrier is a reference to the Note carrying the Graces.
+      self._carrier = None
       music = music or None
       Container.__init__(self, music)
       self.formatter = _GraceFormatter(self)

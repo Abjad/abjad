@@ -12,10 +12,18 @@ class _GraceInterface(_Interface):
       self.after = Grace( )
 
    def _establishBefore(self):
-      self.before._parent = self._client
+      ### Replaced _parent with _carrier because the navigation code assumes
+      ### that a _parent is a Container and thus has a _music list.
+      ### This is not the case for Leaves. 
+      ### TODO: how to implement grace note navigation? 
+      ### At this moment it seems cleaner to me to have a parallel naviation
+      ### for grace notes, but I'm not sure about this. 
+      #self.before._parent = self._client
+      self.before._carrier = self._client
 
    def _establishAfter(self):
-      self.after._parent = self._client
+      #self.after._parent = self._client
+      self.after._carrier = self._client
 
 
    ### PUBLIC ATTRIBUTES ###

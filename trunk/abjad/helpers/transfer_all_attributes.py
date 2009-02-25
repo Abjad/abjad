@@ -26,8 +26,10 @@ def _transfer_all_attributes(old, new):
             setattr(value, '_client', new)
             ### take care of Grace._parent
             if hasname(value, '_GraceInterface'):
-               setattr(value.after, '_parent', new)
-               setattr(value.before, '_parent', new)
+               #setattr(value.after, '_parent', new)
+               #setattr(value.before, '_parent', new)
+               setattr(value.after, '_carrier', new)
+               setattr(value.before, '_carrier', new)
          setattr(new, key, value)
    new._parent = old._parent
    old._parent = None
