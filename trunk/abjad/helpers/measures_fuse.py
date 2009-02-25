@@ -1,60 +1,63 @@
 from abjad.helpers.container_contents_scale import container_contents_scale
-from abjad.helpers.in_terms_of import _in_terms_of
+#from abjad.helpers.in_terms_of import _in_terms_of
+from abjad.helpers.is_measure_list import _is_measure_list
+from abjad.helpers.make_best_meter import _make_best_meter
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 
 
-def measures_fuse(left, right):
-   '''Create a new measure equal to left + right;
-      Calculate time signature.
+def measures_fuse(measure_list):
+   '''Fuse measures in measure_list.
+      Calculate best new time signature.
 
-      Handles spanners in naive way.'''
+      Better than naive spanner handling.'''
 
-   assert left.parentage.parent == right.parentage.parent
+   assert _is_measure_list(measure_list)
 
+   if len(measure_list) == 0:
+      return None
+
+   if len(measure_list) == 1:
+      return measure_list[0]
+
+   left = measure_list[0]
+ 
    if not left.parentage.orphan:
       parent = left.parentage.parent
       parent_index = parent.index(left)
    else:
       parent_index = None
 
-   left.parentage.detach( )
-   right.parentage.detach( )
+   for measure in measure_list:
+      measure.parentage.detach( )
 
-   old_denominators = (left.meter.effective.denominator, \
-      right.meter.effective.denominator)
-   new_duration = left.meter.effective.duration + \
-      right.meter.effective.duration
-   new_pair = _in_terms_of(new_duration, min(old_denominators))
-   if new_pair[1] != min(old_denominators):
-      new_pair = _in_terms_of(new_pair, max(old_denominators))
-   new_meter = Meter(new_pair)
+   old_denominators = [x.meter.effective.denominator for x in measure_list]
+   new_duration = sum([x.meter.effective.duration for x in measure_list])
 
-   left_multiplier = ~new_meter.multiplier * left.meter.effective.multiplier
-   left_music = left[:]
-   container_contents_scale(left_music, left_multiplier)
+   new_meter = _make_best_meter(new_duration, old_denominators)
 
-   right_multiplier = ~new_meter.multiplier * right.meter.effective.multiplier
-   right_music = right[:]
-   container_contents_scale(right_music, right_multiplier)
-
-   #music = left[:] + right[:]
-   music = left_music + right_music
+   music = [ ]
+   for measure in measure_list:
+      multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
+      measure_music = measure[:]
+      container_contents_scale(measure_music, multiplier)
+      music += measure_music
 
    for element in music:
       element.parentage.detach( )
 
-   new_measure = RigidMeasure(new_pair, music)
+   new_measure = RigidMeasure(new_meter, music)
    parent.insert(parent_index, new_measure)
 
-   for spanner in list(left.spanners.attached):
-      spanner_index = spanner.index(left)
-      spanner[spanner_index] = new_measure
-      if right in spanner:
-         spanner.remove(right)
+   ## TODO: this is probably pretty good code to encapsulate for later use
 
-   for spanner in list(right.spanners.attached):
-      spanner_index = spanner.index(right)
-      spanner[spanner_index] = new_measure
+   for i, measure in enumerate(measure_list):
+      for spanner in list(measure.spanners.attached):
+         spanner_index = spanner.index(measure)
+         spanner[spanner_index] = new_measure
+         subsequent_measures = measure_list[i:]
+         for subsequent_measure in subsequent_measures:
+            if subsequent_measure in spanner:
+               spanner.remove(subsequent_measure)
 
    return new_measure 
