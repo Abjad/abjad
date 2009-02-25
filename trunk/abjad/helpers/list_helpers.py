@@ -4,7 +4,7 @@ from abjad.cfg.abjad_version import _get_abjad_version
 ## TODO: Would be nice to rename this function helpers( )
 ##       which will mean extending abjad/__init__.py
 
-def list_helpers(start_string = ''):
+def list_helpers(start_string = '', private = False):
    '''List Abjad helpers starting with start_string.
 
    Example:
@@ -19,21 +19,28 @@ def list_helpers(start_string = ''):
 
    import abjad
    helpers = [x for x in dir(abjad) if x.islower( )]
-   helpers = [x for x in helpers if not x.startswith('_')]
+   if private == True:
+      scope_string = 'private '
+      helpers = [x for x in helpers if x.startswith('_')]
+      helpers = [x for x in helpers if not x.startswith('__')]
+   else:
+      scope_string = ''
+      helpers = [x for x in helpers if not x.startswith('_')]
+
    version = _get_abjad_version( )
 
    print ''
 
    if start_string == '':
       total = len(helpers)
-      print 'Abjad r%s implements %s total helpers:' % (
-         version, total)
+      print 'Abjad r%s implements %s total %shelpers:' % (
+         version, total, scope_string)
    else:
       helpers = [x for x in helpers if x.startswith(start_string)]
       total = len(helpers)
       number_suffix = '' if total == 1 else 's'
-      print "Abjad r%s implements %s helper%s starting in '%s':" % (
-         version, total, number_suffix, start_string)
+      print "Abjad r%s implements %s %shelper%s starting in '%s':" % (
+         version, total, scope_string, number_suffix, start_string)
 
    if total > 0:
       print ''
