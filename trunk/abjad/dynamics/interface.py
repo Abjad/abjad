@@ -29,7 +29,8 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def _right(self):
       result = [ ]
       if self.mark:
-         result.append(r'\%sX' % self.mark)
+         #result.append(r'\%sX' % self.mark)
+         result.append(r'\%s' % self.mark)
       return result
 
    @property

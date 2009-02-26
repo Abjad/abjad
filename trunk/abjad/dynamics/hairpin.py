@@ -18,20 +18,24 @@ class _Hairpin(_GrobHandlerSpanner):
          if self._isMyFirstLeaf(leaf):
             result.append('\\%s' % self._shape)
             if self.start:
-               result.append('\\%sX' % self.start)
+               #result.append('\\%sX' % self.start)
+               result.append('\\%s' % self.start)
          if self._isMyLastLeaf(leaf):
             if self.stop:
-               result.append('\\%sX' % self.stop)
+               #result.append('\\%sX' % self.stop)
+               result.append('\\%s' % self.stop)
             elif not leaf.dynamics:
                result.append('\\!')
       else:
          if self._isMyFirst(leaf, ('Note', 'Chord')):
             result.append('\\%s' % self._shape)
             if self.start:
-               result.append('\\%sX' % self.start)
+               #result.append('\\%sX' % self.start)
+               result.append('\\%s' % self.start)
          if self._isMyLast(leaf, ('Note', 'Chord')):
             if self.stop:
-               result.append('\\%sX' % self.stop)
+               #result.append('\\%sX' % self.stop)
+               result.append('\\%s' % self.stop)
             elif not leaf.dynamics:
                result.append('\\!')
       return result
