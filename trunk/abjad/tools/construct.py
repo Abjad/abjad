@@ -175,6 +175,7 @@ def notes_prolated(pitches, durations, direction='big-endian'):
    result = [ ]
    for ds in durations:
       factors = set(_factors(ds[0][1]))
+      factors.discard(1)
       factors.discard(2)
       ps = pitches[0:len(ds)]
       pitches = pitches[len(ds):]
