@@ -1,9 +1,10 @@
 from abjad.helpers.factors import _factors
+from abjad.rational.rational import Rational
 
 
-def _reduce_factors(pair, multiplier):
-   '''Multiply pair by multiplier after having first
-      reduced factors in multiplier from pair.
+def _pair_multiply_reduce_factors(pair, multiplier):
+   '''Multiply Python pair by Rational multiplier.
+      Reduce common cross factors.
 
       Examples:
 
@@ -12,6 +13,9 @@ def _reduce_factors(pair, multiplier):
 
       _reduce_factors((4, 8), Rational(6, 5))
       (12, 20)'''
+
+   assert isinstance(pair, tuple)
+   assert isinstance(multiplier, Rational)
 
    pair_numerator_factors = _factors(pair[0])   
    multiplier_denominator_factors = _factors(multiplier._d)
