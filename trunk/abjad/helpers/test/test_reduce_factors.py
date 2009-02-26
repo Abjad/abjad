@@ -16,3 +16,7 @@ def test_reduce_factors_03( ):
 
 def test_reduce_factors_04( ):
    assert _reduce_factors((4, 8), Rational(6, 5)) == (12, 20)
+
+
+def test_reduce_factors_05( ):
+   assert _reduce_factors((5, 6), Rational(6, 5)) == (1, 1)

@@ -32,12 +32,12 @@ def _reduce_factors(pair, multiplier):
    result_denominator_factors = pair_denominator_factors + \
       multiplier_denominator_factors
 
-   result_numerator = result_numerator_factors[0]
-   for factor in result_numerator_factors[1:]:
+   result_numerator = 1
+   for factor in result_numerator_factors:
       result_numerator *= factor
 
-   result_denominator = result_denominator_factors[0]
-   for factor in result_denominator_factors[1:]:
+   result_denominator = 1
+   for factor in result_denominator_factors:
       result_denominator *= factor
 
    return result_numerator, result_denominator
