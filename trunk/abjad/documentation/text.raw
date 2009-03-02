@@ -193,6 +193,7 @@ The spanner model</a></p>
 </body>
 </toc-section>
 
+<!-- ##############################
 <toc-section>
 <header> The Abjad core classes
 <body>
@@ -547,6 +548,9 @@ The Abjad <code>_TrillInterface</code> class
 </body>
 </toc-section>
 
+############################## -->
+
+
 <toc-section>
 <header> Abjad helper functions
 <body>
@@ -574,6 +578,7 @@ The Abjad <code>_TrillInterface</code> class
    <p>The Abjad bead model</p>
    <p>Bead interfaces</p>
 </body>
+
 </toc-section>
 
 <toc-section>
@@ -611,6 +616,15 @@ The Abjad <code>_TrillInterface</code> class
    <p>Xenakis sieves</p>
 </body>
 </toc-section>
+
+
+<toc-section>
+<header> Abjad internal reference
+<body>
+   <p><a href="chapters/classes/index.html">Internal reference</a></p>
+</body>
+</toc-section>
+
 
 <toc-section>
 <header> Developer concerns
