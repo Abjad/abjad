@@ -267,13 +267,13 @@ class _Leaf(_Component):
    def tie( ):
       def fget(self):
          return self._tie
-      def fset(self, arg):
-         if arg is None:
-            self._tie._set = False
-         elif isinstance(arg, bool):
-            self._tie._set = arg
-         else:
-            raise ValueError('must be boolean or None.')
+#      def fset(self, arg):
+#         if arg is None:
+#            self._tie._set = False
+#         elif isinstance(arg, bool):
+#            self._tie._set = arg
+#         else:
+#            raise ValueError('must be boolean or None.')
       return property(**locals( ))
 
 #   @apply

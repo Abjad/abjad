@@ -51,11 +51,11 @@ def test_leaf_scale_binary_04( ):
    #assert new[0].duration == Rational(4, 16)
    assert new[0].duration.written == Rational(4, 16)
    assert new[0].tie.spanned
-   assert not new[0].tie
+   #assert not new[0].tie
    #assert new[1].duration == Rational(1, 16)
    assert new[1].duration.written == Rational(1, 16)
    assert new[1].tie.spanned
-   assert not new[1].tie
+   #assert not new[1].tie
 
 
 def test_leaf_scale_binary_05( ):
@@ -70,7 +70,7 @@ def test_leaf_scale_binary_05( ):
    assert not new[0].tie.spanned
 
 
-def test_leaf_scale_binary_10( ):
+def test_leaf_scale_binary_06( ):
    '''Target is alone in Voice container.'''
    t = Voice([Note(0, (1, 4))])
    new = leaf_scale_binary((5,16), t[0])
@@ -83,9 +83,9 @@ def test_leaf_scale_binary_10( ):
    #assert t[1].duration == Rational(1, 16)
    assert t[1].duration.written == Rational(1, 16)
    assert t[0].tie.spanned
-   assert not t[0].tie
+   #assert not t[0].tie
    assert t[1].tie.spanned
-   assert not t[1].tie
+   #assert not t[1].tie
 
 
 ### IN CONTEXT ###
@@ -106,10 +106,10 @@ def test_leaf_scale_binary_11( ):
    assert t[0].duration.written == Rational(1, 4)
    assert t[1].duration.written == Rational(1, 16)
    assert t[0].tie.spanned
-   assert not t[0].tie
+   #assert not t[0].tie
    assert len(t[0].tie.spanners) == 1
    assert t[1].tie.spanned
-   assert not t[1].tie
+   #assert not t[1].tie
    assert len(t[1].tie.spanners) == 1
 
 
@@ -129,17 +129,17 @@ def test_leaf_scale_binary_12( ):
    assert t[0].duration.written == Rational(1, 4)
    assert t[1].duration.written == Rational(1, 16)
    assert t[0].tie.spanned
-   assert not t[0].tie
+   #assert not t[0].tie
    assert len(t[0].tie.spanners) == 1
    assert t[1].tie.spanned
-   assert not t[1].tie
+   #assert not t[1].tie
    assert len(t[1].tie.spanners) == 1
 
 
 def test_leaf_scale_binary_13( ):
    '''leaf-Tied leaf is not tied again in splitting.'''
    t = Voice([Note(0, (1, 4))])
-   t[0].tie = True
+   #t[0].tie = True
    new = leaf_scale_binary((5,16), t[0])
    assert len(t) == 2
    assert len(new) == 2
@@ -150,10 +150,10 @@ def test_leaf_scale_binary_13( ):
    assert t[0].duration.written == Rational(1, 4)
    assert t[1].duration.written == Rational(1, 16)
    assert t[0].tie.spanned
-   assert not t[0].tie
+   #assert not t[0].tie
    assert len(t[0].tie.spanners) == 1
    assert t[1].tie.spanned
-   assert not t[1].tie
+   #assert not t[1].tie
    assert len(t[1].tie.spanners) == 1
 
 
@@ -229,5 +229,3 @@ def test_leaf_scale_binary_40( ):
    assert s.components == t[:]
    for leaf in t.leaves:
       assert not leaf.spanners.attached
-
-

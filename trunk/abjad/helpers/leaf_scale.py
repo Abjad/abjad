@@ -66,8 +66,8 @@ def leaf_scale_binary(dur, leaf):
             l._parent = parent
          parent.remove(leaf)
       ### tie leaves
-      for l in result:
-         l.tie = None
+#      for l in result:
+#         l.tie = None
       if not l.tie.parented:
          Tie(result)
       ### remove dynamics and articulations from tied leaves.

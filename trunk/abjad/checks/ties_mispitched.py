@@ -12,7 +12,8 @@ class TiesMispitched(_Check):
       total = 0
       for leaf in iterate(expr, '_Leaf'):
          total += 1
-         if leaf.tie and leaf.next:
+         #if leaf.tie and leaf.next:
+         if leaf.tie.spanned and not leaf.tie.last and leaf.next:
             if leaf.pitch != leaf.next.pitch:
                violators.append(leaf)
       #return violators, len(leaves)
