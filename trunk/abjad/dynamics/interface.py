@@ -49,7 +49,8 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    @property
    def effective(self):
-      if self.spanner:
+      #if self.spanner:
+      if self.spanned:
          return self.spanner
       else:
          if self.mark:
@@ -57,7 +58,8 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
          else:
             cur = self._client.prev
             while cur:
-               if cur.dynamics.spanner:
+               #if cur.dynamics.spanner:
+               if cur.dynamics.spanned:
                   return cur.dynamics.spanner.stop
                elif cur.dynamics.mark:
                   return cur.dynamics.mark

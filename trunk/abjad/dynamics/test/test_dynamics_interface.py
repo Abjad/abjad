@@ -4,11 +4,8 @@ from abjad import *
 def test_dynamics_interface_01( ):
    '''Dynamics default to no mark, no hairpin and no effective dynamic.'''
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   for note in staff:
-      assert note.dynamics.mark is None
-      assert note.dynamics.spanner is None
-      assert note.dynamics.effective is None
-   '''
+
+   r'''
    \new Staff {
            c'8
            cs'8
@@ -21,6 +18,12 @@ def test_dynamics_interface_01( ):
    }
    '''
 
+   for note in staff:
+      assert note.dynamics.mark is None
+      assert note.dynamics.effective is None
+      #assert notnote.dynamics.spanner is None
+      assert not note.dynamics.spanned
+
 
 def test_dynamics_interface_02( ):
    '''Marks grant an effective dynamic to notes following after.'''
@@ -29,13 +32,15 @@ def test_dynamics_interface_02( ):
    for i, note in enumerate(staff):
       if i == 0:
          assert note.dynamics.mark == 'p'
-         assert note.dynamics.spanner is None
+         #assert note.dynamics.spanner is None
+         assert not note.dynamics.spanned
          assert note.dynamics.effective is 'p'
       else:
          assert note.dynamics.mark is None
-         assert note.dynamics.spanner is None
+         #assert note.dynamics.spanner is None
+         assert not note.dynamics.spanned
          assert note.dynamics.effective is 'p'
-   '''
+   r'''
    \new Staff {
            c'8 \pX
            cs'8
@@ -190,7 +195,7 @@ def test_dynamics_interface_07( ):
    t = Note(0, (1, 4))
    t.dynamics.self_alignment_X = -0.5
    assert t.format == "\\once \\override DynamicText #'self-alignment-X = #-0.5\nc'4"
-   '''
+   r'''
    \once \override DynamicText #'self-alignment-X = #-0.5
    c'4
    '''
@@ -204,7 +209,7 @@ def test_dynamics_interface_08( ):
    assert t[0].dynamics.first
    assert t[-1].dynamics.last
    assert not t[0].dynamics.only
-   '''
+   r'''
    \new Staff {
            c'8 \<
            cs'8

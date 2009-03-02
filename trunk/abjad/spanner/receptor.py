@@ -84,9 +84,16 @@ class _SpannerReceptor(_Abjad):
    def spanner(self):
       '''Return first spanner attaching to client.
          TODO: raise MissingSpannerError and ExtraSpannerError.'''
-      spanners = self.spanners
-      if spanners:
+      #spanners = self.spanners
+      #if spanners:
+      #   return self.spanners[0]
+      count = self.count
+      if count == 0:
+         raise MissingSpannerError
+      elif count == 1:
          return self.spanners[0]
+      else:
+         raise ExtraSpannerError
 
    @property
    def spanners(self):

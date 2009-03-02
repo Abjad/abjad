@@ -95,12 +95,19 @@ class MetricGrid(Spanner):
       for leaves in leaves_in_meter:
          result = [[]]
          if len(leaves) > 0:
-            sp = leaves[0].tie.spanner
+            if leaves[0].tie.spanned:
+               sp = leaves[0].tie.spanner
+            else:
+               sp = None
          for l in leaves:
-            if l.tie.spanner and l.tie.spanner == sp:
+            #if l.tie.spanner and l.tie.spanner == sp:
+            if l.tie.spanned and l.tie.spanner == sp:
                result[-1].append(l)
             else:
-               sp = l.tie.spanner
+               if l.tie.spanned:
+                  sp = l.tie.spanner
+               else:
+                  sp = None
                result.append([])
          ### fuse leaves 
          for r in result:
