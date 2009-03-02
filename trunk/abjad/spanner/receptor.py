@@ -21,25 +21,41 @@ class _SpannerReceptor(_Abjad):
    ### PUBLIC ATTRIBUTES ###
 
    @property
+   def chain(self):
+      '''Return tuple of all leaves in spanner, if spanned;
+         otherwise return 1-tuple of client.'''
+      count = self.count
+      if count == 0:
+         return (self._client, )
+      elif count == 1:
+         return tuple(self.spanner.leaves)
+      else:
+         raise ExtraSpannerError
+
+   @property
    def count(self):
+      '''Return number of spanners attaching to client.'''
       return len(self.spanners)
 
    @property
    def first(self):
+      '''True when client is first in spanner, otherwise False.'''
       return self.spanned and self.spanner._isMyFirstLeaf(self._client)
 
    @property
    def last(self):
+      '''True when client is last in spanner, otherwise False.'''
       return self.spanned and self.spanner._isMyLastLeaf(self._client)
 
    @property
    def only(self):
+      '''True when client is only leaf in spanner, otherwise False.'''
       return self.spanned and self.spanner._isMyOnlyLeaf(self._client)
 
    @property
    def parented(self):
-      '''Returns true is a spanner of this type is attached to self or
-      if it's attached to a parent.'''
+      '''True when spanner attached to any component in parentage of client,
+         including client, otherwise False.'''
       result =  [ ]
       parentage = self._client._parentage.parentage
       for parent in parentage:
@@ -50,6 +66,7 @@ class _SpannerReceptor(_Abjad):
 
    @property
    def position(self):
+      '''Return zero-indexed position of client in spanner.'''
       count = self.count
       if count == 0:
          raise MissingSpannerError
@@ -60,16 +77,21 @@ class _SpannerReceptor(_Abjad):
 
    @property
    def spanned(self):
+      '''True when client is spanned.'''
       return bool(self.spanners)
 
    @property
    def spanner(self):
+      '''Return first spanner attaching to client.
+         TODO: raise MissingSpannerError and ExtraSpannerError.'''
       spanners = self.spanners
       if spanners:
          return self.spanners[0]
 
    @property
    def spanners(self):
+      '''Return all spanners attaching to client.
+         TODO: return unordered set.'''
       result = [ ]
       client = self._client
       for classname in self._classnames:
@@ -80,6 +102,7 @@ class _SpannerReceptor(_Abjad):
    ### PUBLIC METHODS ###
 
    def unspan(self):
+      '''Remove all spanners attaching to client.'''
       result = [ ]
       for spanner in self.spanners[ : ]:
          spanner.clear( )
