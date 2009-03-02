@@ -5,12 +5,11 @@
 ### The 'spanners' variable passed in here at initialization is
 ### a list of (usually a single) string, like ['Beam'], that says
 ### to the leaf interface: "please recevie spanners of which the
-### classname is 'Beam'.
-###
-### Note that nowhere in this file is the word 'interface' used,
-### except in this comment. 
+### classname is 'Beam'".
 
 from abjad.core.abjadcore import _Abjad
+from abjad.exceptions.exceptions import ExtraSpannerError
+from abjad.exceptions.exceptions import MissingSpannerError
 from abjad.helpers.hasname import hasname
 
 
@@ -20,6 +19,10 @@ class _SpannerReceptor(_Abjad):
       self._classnames = classnames
 
    ### PUBLIC ATTRIBUTES ###
+
+   @property
+   def count(self):
+      return len(self.spanners)
 
    @property
    def first(self):
@@ -32,6 +35,16 @@ class _SpannerReceptor(_Abjad):
    @property
    def only(self):
       return self.spanned and self.spanner._isMyOnlyLeaf(self._client)
+
+   @property
+   def position(self):
+      count = self.count
+      if count == 0:
+         raise MissingSpannerError
+      elif count == 1:
+         return self.spanner.index(self._client)
+      else:
+         raise ExtraSpannerError
 
    @property
    def spanned(self):
