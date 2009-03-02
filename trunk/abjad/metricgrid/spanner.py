@@ -53,7 +53,7 @@ class MetricGrid(Spanner):
                self.splittingCondition(leaf):
                ### will split
                #if not leaf.tie.spanner:
-               if not leaf.tie.spannedAbove:
+               if not leaf.tie.parented:
                   Tie(leaf)
                splitdur = meter.offset - leaf.offset.score
                ### if splitdur not m / 2**n
