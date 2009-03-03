@@ -2,45 +2,6 @@ from abjad.helpers.are_contiguous_components import _are_contiguous_components
 from abjad.helpers.are_orphan_components import _are_orphan_components
 
 
-#def _are_contiguous_components(ll):
-#   '''
-#   Return True if each of the elements in music list ll 
-#   follow one after the other in some parent container, 
-#   otherwise False.
-#
-#   Check for contiguous leaves (which have 'next' and 'prev' handles)
-#   and also tuplets, measures and other types of input (which don't).
-#
-#   Intended for type-checking helper function input.
-#
-#   TODO: 
-#
-#   This old code should probably be replaced by newer, threading-based check.
-#   '''
-#
-#   try:
-#      parent = ll[0]._parent
-#   except (TypeError, IndexError):
-#      return False
-#
-#   if parent is None:
-#      return False
-#
-#   first = ll[0]
-#   index = parent.index(first)
-#   for element in ll[1 : ]:
-#      index += 1
-#      #if element is not parent[index]:
-#      #   return False
-#      try:
-#         next_in_parent = parent[index]
-#      except IndexError:
-#         return False
-#      if element is not next_in_parent:
-#         return False
-#   return True
-
-
 def _are_successive_components(ll):
    '''Return True when ll is a Python list and when either
    each of the elements in ll is an orphan Abjad component or when

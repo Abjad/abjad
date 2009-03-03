@@ -1,4 +1,4 @@
-from abjad.helpers.contiguity import _are_orphan_components
+from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad import *
 
 

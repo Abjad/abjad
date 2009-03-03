@@ -1,4 +1,4 @@
-from abjad.helpers.contiguity import _are_successive_components
+from abjad.helpers.are_successive_components import _are_successive_components
 from abjad.helpers.is_tie_chain import _is_tie_chain
 
 
