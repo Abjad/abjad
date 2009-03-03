@@ -1,19 +1,18 @@
 from abjad.rational.rational import Rational
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.helpers.is_duration_token import _is_duration_token
 
-def rationalize(duples):
+def rationalize(lst):
    '''
-   Converts a list of duration duples (n, m) into Rationals. 
-   The given list can be a list of lists of ... lists of duples.
+   Converts a list of duration tokens into Rationals. 
+   The given list can be a list of lists of ... lists of duration tokens.
    The list returned will preserve nesting.
    '''
-   assert isinstance(duples, list)
+   assert isinstance(lst, list)
    result = [ ]
-   for element in duples:
-      if isinstance(element, tuple):
+   for element in lst:
+      if _is_duration_token(element):
          r = Rational(*_duration_token_unpack(element))
-      elif isinstance(element, Rational):
-         r = element
       else:
          r = rationalize(element)
       result.append(r)
