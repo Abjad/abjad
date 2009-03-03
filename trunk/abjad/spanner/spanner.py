@@ -164,6 +164,8 @@ class Spanner(_Abjad):
    def components(self):
       return self._components[ : ]
 
+   ## TODO: replace with _SpannerDurationInterface ##
+
    @property
    def duration(self):
       return sum([l.duration.prolated for l in self])
@@ -176,6 +178,12 @@ class Spanner(_Abjad):
             if node.kind('_Leaf'):
                result.append(node)
       return result
+
+   ## TODO: replace with _SpannerDurationInterface ##
+
+   @property
+   def written(self):
+      return sum([l.duration.written for l in self])
 
    ### PUBLIC METHODS ###
 
