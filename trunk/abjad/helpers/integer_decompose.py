@@ -21,7 +21,7 @@ def _integer_decompose(n):
       19 (16, 3)
    '''
 
-   assert isinstance(n, int)
+   assert isinstance(n, (int, long))
 
    if n == 0:
       return (0, )
