@@ -64,3 +64,26 @@ def test_divide_tie_chain_02( ):
 
    assert check(t)
    assert t.format == "\\fraction \\times 5/6 {\n\tc'16 [\n\tc'16\n\tc'16 ]\n}"
+
+
+def test_divide_tie_chain_03( ):
+   '''Divide a trivial (ie, length-one) tie chain.'''
+
+   t = Staff(run(4))
+   divide_tie_chain(t[1].tie.chain, 3)
+
+   r'''
+   \new Staff {
+      c'8
+      \times 2/3 {
+         c'16
+         c'16
+         c'16
+      }
+      c'8
+      c'8
+   }
+   '''
+
+   assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\tc'8\n\tc'8\n}"

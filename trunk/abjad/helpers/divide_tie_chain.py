@@ -1,5 +1,6 @@
 from abjad.note.note import Note
 from abjad.helpers.bequeath_multiple import bequeath_multiple
+from abjad.helpers.get_tie_chain_written import _get_tie_chain_written
 from abjad.helpers.prolated_to_written import _prolated_to_written
 from abjad.helpers.untie_components import untie_components
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
@@ -9,7 +10,7 @@ def divide_tie_chain(tie_chain, divisions = 2, prolation = 'diminution'):
    '''Generalization of divide_leaf.'''
 
    # find target duration of fixed-duration tuplet
-   target_duration = tie_chain[0].tie.spanner.written
+   target_duration = _get_tie_chain_written(tie_chain[0].tie.chain)
 
    # find prolated duration of each note in tuplet
    prolated_duration = target_duration / divisions
