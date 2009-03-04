@@ -35,6 +35,10 @@ class SpannerError(Exception):
    '''General spanner error.'''
    pass
 
+class TieChainError(Exception):
+   '''General tie chain error.'''
+   pass
+
 class UnderfullMeasureError(ImproperlyFilledMeasureError):
    '''Measure contents duration is less than measure meter duration.'''
    pass
