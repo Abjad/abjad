@@ -3,9 +3,30 @@
 <subsection>
 
 <p>
-
 At the heart of Abjad's Symbolic Score-Control lies a powerful model that we call the Leaf Container Spanner, or LCS, model of the musical score.
+Every objects in Abjad is either a Leaf, a Container or a Spanner.  
+The type of each object is determined by it structural relationship within the score model. 
+</p>
 
+<p>
+Leaves include notes, rests, chords and skips. 
+Containers include staves, voices, measures and tuplets.
+Spanners include beams, trills, ties, glissandi, and pedal markings, among others.
+</p>
+
+<p>
+The LCS model can be schematically visualized as a superposition of two complementary and completely independent layers of structure: a <b>tree</b> that includes the Containers and the Leaves, and a layer of free floating "connectors" or Spanners.
+</p>
+
+<p>
+<center>
+<img src="images/container_spanner.png">
+</center>
+</p>
+
+<p>
+There can be any number of Spanners, they may overlap, and they may "connect" to different levels of the tree hierarchy. 
+The spanner attach to the elements of the tree, so a tree structure must exist for spanners to be made manifest.
 </p>
 
 </subsection>
