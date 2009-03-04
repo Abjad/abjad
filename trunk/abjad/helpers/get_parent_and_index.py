@@ -11,7 +11,10 @@ def _get_parent_and_index(component_list):
    if len(component_list) > 0:
       first = component_list[0]
       parent = first.parentage.parent
-      index = parent.index(first)
+      if parent is not None:
+         index = parent.index(first)
+      else:
+         index = None
       return parent, index
    else:
       return None, None
