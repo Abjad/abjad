@@ -3,9 +3,10 @@ from abjad.container.brackets import _Brackets
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
+from abjad.helpers.are_contiguous_components import _are_contiguous_components
 from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.coalesce import coalesce
-from abjad.helpers.are_contiguous_components import _are_contiguous_components
+from abjad.helpers.get_parent_and_index import _get_parent_and_index
 from abjad.helpers.instances import instances
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.notehead.interface import _NoteHeadInterface
@@ -255,7 +256,6 @@ class Container(_Component):
       '''
       result = self._music[ : ]
       for element in result:
-         #element._switchParentTo(None)
          element.parentage._switchParentTo(None)
       self._update._markForUpdateToRoot( )
       return result
@@ -283,32 +283,6 @@ class Container(_Component):
       else:
          raise TypeError("Can only embed _Component or list of _Component")
       self._update._markForUpdateToRoot( )
-
-#   def embed(self, i, expr):
-#      '''
-#      Non-fracturing insert.
-#      Insert but *don't* fracture spanners.
-#      For fracturing insert, use insert( ).
-#      '''
-#      def _embedComponent(self, i, expr):
-#         target = self[i]
-#         #for s in target.spanners:
-#         #for s in target.spanners.mine( ):
-#         for s in target.spanners.attached:
-#            for l in expr.leaves:
-#               #s._insert(s.index(target.leaves[0]), l)
-#               s.insert(s.index(target.leaves[0]), l)
-#         expr._parent = self
-#         self._music.insert(i, expr)
-#
-#      if isinstance(expr, (list, tuple)):
-#         for e in reversed(expr):
-#            _embedComponent(self, i, e)
-#      elif isinstance(expr, _Component):
-#         _embedComponent(self, i, expr)
-#      else:
-#         raise TypeError("Can only embed _Component or list of _Component")
-#      self._update._markForUpdateToRoot( )
 
    def extend(self, expr):
       if len(expr) > 0:
@@ -388,7 +362,6 @@ class Container(_Component):
             self.deleted = False
          def visit(self, node):
             if node is self.expr:
-               #node._die( )
                node.detach( )
                self.deleted = True
       v = Visitor(expr)
@@ -398,12 +371,11 @@ class Container(_Component):
 
    def slip(self):
       '''
-      Attach any children my children to my parent.
-      Detach and return self.
+      Attach my children to my parent.
+      Detach my parent, detach my spanners and return me.
       '''
-      parent = self._parent
+      parent, index = _get_parent_and_index([self])
       if parent is not None:
-         i = parent.index(self)
-         parent[i:i+1] = self[:]
+         parent[index:index+1] = self[:]
       self.detach( )
       return self
