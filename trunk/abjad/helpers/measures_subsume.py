@@ -5,6 +5,8 @@ from abjad.rational.rational import Rational
 from abjad.tuplet.tuplet import _Tuplet
 
 
+## TODO: Make subsumption work with nested tuplets
+
 def measures_subsume(expr):
    '''Subsume all measures in expr containing top-level tuplet;
       measures usually become nonbinary as as result of subsumption.'''
