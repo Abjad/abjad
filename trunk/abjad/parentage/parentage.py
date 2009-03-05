@@ -130,21 +130,36 @@ class _Parentage(_Abjad):
    ### PUBLIC ATTRIBUTES ###
 
    @property
+   def depth(self):
+      '''Absolute depth of component in Abjad expression.'''
+      return len(self.parentage) - 1
+
+   @property
+   def layer(self):
+      '''Layer of leaf in nested tuplet.'''
+      from abjad.tuplet.tuplet import _Tuplet
+      result = 0
+      for parent in self.parentage[1:]:
+         if isinstance(parent, _Tuplet):
+            result += 1
+      return result
+
+   @property
    def orphan(self):
+      '''True when component has no parent, otherwise False.'''
       return len(self.parentage) == 1
 
    ## TODO: Reimplement self._client._parent as self._parent
 
    @property
    def parent(self):
+      '''Return reference to parent of client, else None.'''
       return self._client._parent
       
    @property
    def parentage(self):
-      '''
-      Return a list of all of elements in the
-      parentage of client, including client.
-      '''
+      '''Return a list of all of elements in the
+      parentage of client, including client.'''
       result = [ ]
       cur = self._client
       while cur is not None:
@@ -154,15 +169,14 @@ class _Parentage(_Abjad):
 
    @property
    def root(self):
+      '''Return reference to component at depth 0 of Abjad expression.'''
       return self.parentage[-1]
 
    ### PUBLIC METHODS ###
 
    def detach(self):
-      '''
-      Sever both incoming reference from and
-      outgoing reference to parent.
-      '''
+      '''Sever both incoming reference from and
+      outgoing reference to parent.'''
       client = self._client
       client._update._markForUpdateToRoot( )
       self._removeFromParent( )
