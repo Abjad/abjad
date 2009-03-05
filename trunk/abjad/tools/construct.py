@@ -6,38 +6,83 @@ from abjad.note.note import Note
 from abjad.rest.rest import Rest
 from abjad.tie.spanner import Tie
 
-
-def _construct_rest(dur, direction='big-endian'):
+def _construct_leaf(kind, dur, direction='big-endian', pitches=None):
    '''
-   Returns a list of rests to fill given duration. 
-   Rests returned are Tie spanned. 
-   '''
-   result = [ ]
-   for wd in _duration_token_decompose(dur):
-      result.append( Rest(wd) )
-   if len(result) > 1:
-      if direction == 'little-endian':
-         result.reverse( )
-      Tie(result)
-   return result
-
-
-def _construct_note(pitch, dur, direction='big-endian'):
-   '''
-   Returns a list of notes to fill the given duration. 
-   Notes returned are Tie spanned.
+   Returns a list of Leaves to fill the given duration. 
+   Leaves returned are Tie spanned.
+   dur:  must be of the form m / 2**n for any m integer.
    direction: may be 'big-endian' or 'little-endian'.
             'big-endian' returns a list of notes of decreasing duration.
             'little-endian' returns a list of notes of increasing duration.
    '''
    result = [ ]
    for wd in _duration_token_decompose(dur):
-      result.append(Note(pitch, wd))
+      if not pitches is None:
+         args = (pitches, wd)
+      else:
+         args = (wd, )
+      result.append( kind(*args) )
    if len(result) > 1:
       if direction == 'little-endian':
          result.reverse( )
       Tie(result)
    return result
+
+
+def _construct_chord(pitches, dur, direction='big-endian'):
+   '''
+   Returns a list of chords to fill the given duration. 
+   Chords returned are Tie spanned.
+   '''
+   return _construct_leaf(Chord, dur, direction, pitches)
+
+
+def _construct_rest(dur, direction='big-endian'):
+   '''
+   Returns a list of rests to fill given duration. 
+   Rests returned are Tie spanned. 
+   '''
+   return _construct_leaf(Rest, dur, direction)
+
+
+def _construct_note(pitch, dur, direction='big-endian'):
+   '''
+   Returns a list of notes to fill the given duration. 
+   Notes returned are Tie spanned.
+   '''
+   return _construct_leaf(Note, dur, direction, pitch)
+
+
+#def _construct_rest(dur, direction='big-endian'):
+#   '''
+#   Returns a list of rests to fill given duration. 
+#   Rests returned are Tie spanned. 
+#   '''
+#   result = [ ]
+#   for wd in _duration_token_decompose(dur):
+#      result.append( Rest(wd) )
+#   if len(result) > 1:
+#      if direction == 'little-endian':
+#         result.reverse( )
+#      Tie(result)
+#   return result
+
+#def _construct_note(pitch, dur, direction='big-endian'):
+#   '''
+#   Returns a list of notes to fill the given duration. 
+#   Notes returned are Tie spanned.
+#   direction: may be 'big-endian' or 'little-endian'.
+#            'big-endian' returns a list of notes of decreasing duration.
+#            'little-endian' returns a list of notes of increasing duration.
+#   '''
+#   result = [ ]
+#   for wd in _duration_token_decompose(dur):
+#      result.append(Note(pitch, wd))
+#   if len(result) > 1:
+#      if direction == 'little-endian':
+#         result.reverse( )
+#      Tie(result)
+#   return result
 
 
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
