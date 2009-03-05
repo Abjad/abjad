@@ -28,7 +28,8 @@ class Clef(_Abjad):
 
    @property
    def format(self):
-      return r'\clef %s' % self.name
+      #return r'\clef %s' % self.name
+      return r'\clef "%s"' % self.name
 
    @property
    def middleCPosition(self):

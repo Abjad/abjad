@@ -19,7 +19,8 @@ class _ClefInterface(_Interface, _GrobHandler):
       result = [ ]
       result.extend(_GrobHandler._before.fget(self))
       if self.forced or self.change:
-         result.append(r'\clef %s' % self.name)
+         #result.append(r'\clef %s' % self.name)
+         result.append(self.effective.format)
       return result
 
    ### NOTE: this is kinda kinky:

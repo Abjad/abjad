@@ -62,15 +62,36 @@ def test_clef_07( ):
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
    staff[0].clef = 'treble'
    staff[4].clef = 'treble'
-   assert staff.format == "\\new Staff {\n\t\\clef treble\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef treble\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   assert staff.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "treble"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}'''
    '''
    Staff {
-           \clef treble
+           \clef "treble"
            c'8
            cs'8
            d'8
            ef'8
-           \clef treble
+           \clef "treble"
+           e'8
+           f'8
+           fs'8
+           g'8
+   }
+   '''
+
+def test_clef_08( ):
+   '''Clefs with transposition are allowed and work as expected.'''
+   staff = Staff([Note(n, (1, 8)) for n in range(8)])
+   staff[0].clef = 'treble_8'
+   staff[4].clef = 'treble'
+   assert staff.format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
+   r'''
+   \new Staff {
+           \clef "treble_8"
+           c'8
+           cs'8
+           d'8
+           ef'8
+           \clef "treble"
            e'8
            f'8
            fs'8
