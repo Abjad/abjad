@@ -15,3 +15,18 @@ def test_in_terms_of_01( ):
    assert _in_terms_of((9, 6), 12) == (18, 12)
    assert _in_terms_of((10, 6), 12) == (20, 12)
    assert _in_terms_of((11, 6), 12) == (22, 12)
+
+
+def test_in_terms_of_02( ):
+   assert _in_terms_of((0, 12), 6) == (0, 6)
+   assert _in_terms_of((1, 12), 6) == (1, 12)
+   assert _in_terms_of((2, 12), 6) == (1, 6)
+   assert _in_terms_of((3, 12), 6) == (3, 12)
+   assert _in_terms_of((4, 12), 6) == (2, 6)
+   assert _in_terms_of((5, 12), 6) == (5, 12)
+   assert _in_terms_of((6, 12), 6) == (3, 6)
+   assert _in_terms_of((7, 12), 6) == (7, 12)
+   assert _in_terms_of((8, 12), 6) == (4, 6)
+   assert _in_terms_of((9, 12), 6) == (9, 12)
+   assert _in_terms_of((10, 12), 6) == (5, 6)
+   assert _in_terms_of((11, 12), 6) == (11, 12)

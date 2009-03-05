@@ -1,4 +1,5 @@
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.helpers.is_divisor_of import _is_divisor_of
 from abjad.rational.rational import Rational
 
 
@@ -26,10 +27,17 @@ def _in_terms_of(q, desired_denominator):
 
    assert isinstance(q, (Rational, int, long, tuple))
    n, d = _duration_token_unpack(q)
-   quotient = desired_denominator * 1. / d
-   # desired denominator is a multiple of current denominator d
-   if int(quotient) == quotient:
-      return (n * int(quotient), d * int(quotient))
-   # desired denominator and current denominator are relatively prime
+   # if d divides desired denominator
+   if _is_divisor_of(d, desired_denominator):
+      quotient = desired_denominator / d
+      return (n * quotient, d * quotient)
+   # if desired denominator divides d
+   elif _is_divisor_of(desired_denominator, d):
+      quotient = d / desired_denominator
+      if _is_divisor_of(quotient, n):
+         return (n / quotient, d / quotient)
+      else:
+         return (n, d)
+   # if desired denominator and d are relatively prime
    else:
       return (n, d)
