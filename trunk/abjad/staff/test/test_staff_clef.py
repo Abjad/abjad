@@ -24,10 +24,10 @@ def test_staff_clef_03( ):
    '''Force clef on nonempty staff.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.clef = 'bass'
-   assert t.format == "\\new Staff {\n\t\\clef bass\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+   assert t.format == '''\\new Staff {\n\t\\clef "bass"\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}'''
    '''
    \new Staff {
-      \clef bass
+      \clef "bass"
       c'4
       c'4
       c'4
@@ -44,10 +44,10 @@ def test_staff_clef_04( ):
    '''Force clef on empty staff.'''
    t = Staff([ ])
    t.clef = 'bass'
-   assert t.format == '\\new Staff {\n\t\\clef bass\n}'
+   assert t.format == '\\new Staff {\n\t\\clef "bass"\n}'
    '''
    \new Staff {
-      \clef bass
+      \clef "bass"
    }
    '''
 
