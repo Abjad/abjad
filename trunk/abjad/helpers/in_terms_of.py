@@ -27,17 +27,10 @@ def _in_terms_of(q, desired_denominator):
 
    assert isinstance(q, (Rational, int, long, tuple))
    n, d = _duration_token_unpack(q)
-   # if d divides desired denominator
-   if _is_divisor_of(d, desired_denominator):
-      quotient = desired_denominator / d
-      return (n * quotient, d * quotient)
-   # if desired denominator divides d
-   elif _is_divisor_of(desired_denominator, d):
-      quotient = d / desired_denominator
-      if _is_divisor_of(quotient, n):
-         return (n / quotient, d / quotient)
-      else:
-         return (n, d)
-   # if desired denominator and d are relatively prime
+   multiplier = Rational(desired_denominator, d)
+   new_numerator = multiplier * n
+   new_denominator = multiplier * d
+   if new_numerator._d == 1 and new_denominator._d == 1:
+      return (new_numerator._n, new_denominator._n)
    else:
       return (n, d)
