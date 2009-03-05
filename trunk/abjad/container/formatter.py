@@ -40,12 +40,6 @@ class _ContainerFormatter(_Formatter):
       client = self._client
       if not hasattr(client, 'invocation'):
          result.extend(self._grobOverrides)
-#      ### TODO - this accidentals stuff is a design error;
-#      ###        there should be no references to attribute-specific
-#      ###        stuff anywhere in any _Formatter
-#      accidentals = self._client.accidentals
-#      if accidentals:
-#         result.append(r"#(set-accidental-style '%s)" % accidentals)
       result.extend(self._collectLocation('_opening'))
       return ['\t' + x for x in result]
 
