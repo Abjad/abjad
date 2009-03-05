@@ -55,7 +55,8 @@ def _measures_populate_big_endian(expr):
    for measure in iterate(expr, '_Measure'):
       meter = measure.meter.effective
       written_duration = ~meter.multiplier * meter.duration
-      notes = construct.notes_prolated(0, written_duration)
+      #notes = construct.notes_prolated(0, written_duration)
+      notes = construct.notes(0, written_duration)
       measure[ : ] = notes
 
 
@@ -63,7 +64,9 @@ def _measures_populate_little_endian(expr):
    for measure in iterate(expr, '_Measure'):
       meter = measure.meter.effective
       written_duration = ~meter.multiplier * meter.duration
-      notes = construct.notes_prolated(
+      #notes = construct.notes_prolated(
+      #   0, written_duration, direction = 'little-endian')
+      notes = construct.notes(
          0, written_duration, direction = 'little-endian')
       measure[ : ] = notes
 

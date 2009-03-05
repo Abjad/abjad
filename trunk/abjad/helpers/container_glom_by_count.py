@@ -33,7 +33,8 @@ def container_glom_by_count(container, counts, target = Note(0, (1, 4)),
 
    # construct new notes or rests
    if isinstance(target, Note):
-      new_material = construct.notes_prolated(
+      #new_material = construct.notes_prolated(
+      new_material = construct.notes(
          0, durations, direction = direction)
    elif isinstance(target, Rest):
       new_material = construct.rests(

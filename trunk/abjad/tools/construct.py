@@ -53,67 +53,14 @@ def _construct_note(pitch, dur, direction='big-endian'):
    return _construct_leaf(Note, dur, direction, pitch)
 
 
-#def _construct_rest(dur, direction='big-endian'):
-#   '''
-#   Returns a list of rests to fill given duration. 
-#   Rests returned are Tie spanned. 
-#   '''
-#   result = [ ]
-#   for wd in _duration_token_decompose(dur):
-#      result.append( Rest(wd) )
-#   if len(result) > 1:
-#      if direction == 'little-endian':
-#         result.reverse( )
-#      Tie(result)
-#   return result
-
-#def _construct_note(pitch, dur, direction='big-endian'):
-#   '''
-#   Returns a list of notes to fill the given duration. 
-#   Notes returned are Tie spanned.
-#   direction: may be 'big-endian' or 'little-endian'.
-#            'big-endian' returns a list of notes of decreasing duration.
-#            'little-endian' returns a list of notes of increasing duration.
-#   '''
-#   result = [ ]
-#   for wd in _duration_token_decompose(dur):
-#      result.append(Note(pitch, wd))
-#   if len(result) > 1:
-#      if direction == 'little-endian':
-#         result.reverse( )
-#      Tie(result)
-#   return result
-
-
-from abjad.helpers.duration_token_unpack import _duration_token_unpack
-
-def notes(pitches, durations, direction='big-endian'):
+def _construct_unprolated_notes(pitches, durations, direction='big-endian'):
    '''
-   Constructs a list of notes of length max(len(pitches), len(durations)).
-   The pitches or the durations, whichever is shorter, are cycled around until
-   the max length is reached.
-
-   Parameters:
-   pitches:    a single pitch or a list/tuple of pitches.
-   durations:  a sinlge duration or a list of durations.
-   direction:     may be 'big-endian' or 'little-endian'.
-               'big-endian' returns a list of notes of decreasing duration.
-               'little-endian' returns a list of notes of increasing duration.
+   Private helper returns a list of unprolated notes.
    '''
-
-   if _is_pitch_token(pitches):
-      pitches = [pitches]
-
-   if _is_duration_token(durations):
-      durations = [durations]
-
+   assert len(pitches) == len(durations)
    result = [ ]
-   max_len = max(len(pitches), len(durations))
-   for i in range(max_len):
-      d = durations[i % len(durations)]
-      d = _duration_token_unpack(d)
-      p = pitches[i % len(pitches)]
-      result.extend(_construct_note(p, d, direction))
+   for pitch, dur in zip(pitches, durations):
+      result.extend(_construct_note(pitch, dur, direction))
    return result
 
 
@@ -131,11 +78,12 @@ def rests(durations, direction='big-endian'):
 
    result = [ ]
    for d in durations:
-      d = _duration_token_unpack(d)
+      #d = _duration_token_unpack(d)
       result.extend(_construct_rest(d, direction))
    return result
 
 
+from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.rational.rational import Rational
 
 def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
@@ -175,13 +123,14 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
 from abjad.helpers.agglomerate_durations_by_prolation import \
      _agglomerate_durations_by_prolation
+from abjad.helpers.resize_list import _resize_list
 from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
 from abjad.helpers.factors import _factors
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 import operator
 import math
       
-def notes_prolated(pitches, durations, direction='big-endian'):
+def notes(pitches, durations, direction='big-endian'):
    '''
    Constructs a list of prolated notes of length len(durations).
 
@@ -205,37 +154,38 @@ def notes_prolated(pitches, durations, direction='big-endian'):
    # this block is a hack to allow the function to accept a Rational
    # as the duration input parameter; better will be to change
    # the rest of the implementation to allow for Rationals directly.
+   ### [VA] We don't want to convert to Rationals internally because
+   ### Rationals reduce fractions to their minimum expression. e.g. 
+   ### (3, 3) --> Rational(1, 1), and we sometimes generate duration
+   ### tokens that are not reduced, so we want to preserve the denominator 3.
+   durations = [_duration_token_unpack(dur) for dur in durations]
 
-   temp = [ ]
-   for duration in durations:
-      if isinstance(duration, Rational):
-         temp.append((duration._n, duration._d))
-      else:
-         temp.append(duration)
-   durations = temp
+   ### set lists of pitches and durations to the same length
+   size = max(len(durations), len(pitches))
+   durations = _resize_list(durations, size)
+   pitches = _resize_list(pitches, size)
 
-   pitches = pitches * int(math.ceil(len(durations) / len(pitches)))
    durations = _agglomerate_durations_by_prolation(durations)
 
    result = [ ]
    for ds in durations:
+      ### get factors in denominator of duration group ds other than 1, 2.
       factors = set(_factors(ds[0][1]))
       factors.discard(1)
       factors.discard(2)
       ps = pitches[0:len(ds)]
       pitches = pitches[len(ds):]
       if len(factors) == 0:
-         result.extend(notes(ps, ds, direction))
+         result.extend(_construct_unprolated_notes(ps, ds, direction))
       else:
+         ### compute prolation
          denominator = reduce(operator.mul, factors)
          numerator = _next_least_power_of_two(denominator)
-         #print numerator, denominator
          multiplier = (numerator, denominator)
          ratio = 1 / Rational(*multiplier)
          ds = [ratio * Rational(*d) for d in ds]
-         #print ds
-         ns = notes(ps, ds, direction)
-         #print ns
+         ### make notes
+         ns = _construct_unprolated_notes(ps, ds, direction)
          t = FixedMultiplierTuplet(multiplier, ns)
          result.append(t)
    return result
@@ -261,7 +211,8 @@ def note_train(pitch, written_duration, total_duration,
    remainder_duration = total_duration - current_duration
    if remainder_duration > Rational(0):
       multiplied_remainder = ~prolation * remainder_duration
-      result.extend(notes_prolated(pitch, [multiplied_remainder]))
+      #result.extend(notes_prolated(pitch, [multiplied_remainder]))
+      result.extend(notes(pitch, [multiplied_remainder]))
    return result
 
 
@@ -292,3 +243,67 @@ def notes_curve(pitches, total, start, stop, exp='cosine',
       result.append(note)
    return result
    
+
+### DEPRECATED ###
+
+#def _construct_rest(dur, direction='big-endian'):
+#   '''
+#   Returns a list of rests to fill given duration. 
+#   Rests returned are Tie spanned. 
+#   '''
+#   result = [ ]
+#   for wd in _duration_token_decompose(dur):
+#      result.append( Rest(wd) )
+#   if len(result) > 1:
+#      if direction == 'little-endian':
+#         result.reverse( )
+#      Tie(result)
+#   return result
+
+#def _construct_note(pitch, dur, direction='big-endian'):
+#   '''
+#   Returns a list of notes to fill the given duration. 
+#   Notes returned are Tie spanned.
+#   direction: may be 'big-endian' or 'little-endian'.
+#            'big-endian' returns a list of notes of decreasing duration.
+#            'little-endian' returns a list of notes of increasing duration.
+#   '''
+#   result = [ ]
+#   for wd in _duration_token_decompose(dur):
+#      result.append(Note(pitch, wd))
+#   if len(result) > 1:
+#      if direction == 'little-endian':
+#         result.reverse( )
+#      Tie(result)
+#   return result
+
+
+
+#def notes(pitches, durations, direction='big-endian'):
+#   '''
+#   Constructs a list of notes of length max(len(pitches), len(durations)).
+#   The pitches or the durations, whichever is shorter, are cycled around until
+#   the max length is reached.
+#
+#   Parameters:
+#   pitches:    a single pitch or a list/tuple of pitches.
+#   durations:  a sinlge duration or a list of durations.
+#   direction:     may be 'big-endian' or 'little-endian'.
+#               'big-endian' returns a list of notes of decreasing duration.
+#               'little-endian' returns a list of notes of increasing duration.
+#   '''
+#
+#   if _is_pitch_token(pitches):
+#      pitches = [pitches]
+#
+#   if _is_duration_token(durations):
+#      durations = [durations]
+#
+#   result = [ ]
+#   max_len = max(len(pitches), len(durations))
+#   for i in range(max_len):
+#      d = durations[i % len(durations)]
+#      d = _duration_token_unpack(d)
+#      p = pitches[i % len(pitches)]
+#      result.extend(_construct_note(p, d, direction))
+#   return result
