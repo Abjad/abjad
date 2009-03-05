@@ -90,3 +90,44 @@ def test_measures_subsume_04( ):
 
    assert check(t)
    assert t.format == "\t\\time 30/48\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}"
+
+
+def test_measures_subsume_05( ):
+   '''Subsume nested tuplet.'''
+
+   inner = FixedDurationTuplet((2, 16), run(3, Rational(1, 16)))
+   notes = run(2)
+   outer = FixedDurationTuplet((2, 8), [inner] + notes)
+   t = RigidMeasure((2, 8), [outer])
+   diatonicize(t)
+
+   r'''
+      \time 2/8
+      \times 2/3 {
+         \times 2/3 {
+            c'16
+            d'16
+            e'16
+         }
+         f'8
+         g'8
+      }
+   '''
+
+   measures_subsume(t)
+
+   r'''
+      \time 3/12
+      \scaleDurations #'(2 . 3) {
+         \times 2/3 {
+            c'16
+            d'16
+            e'16
+         }
+         f'8
+         g'8
+      }
+   '''
+
+   assert check(t)
+   assert t.format == "\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}"
