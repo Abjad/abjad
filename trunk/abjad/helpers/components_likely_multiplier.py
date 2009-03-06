@@ -28,5 +28,4 @@ def _components_likely_multiplier(components):
       numerator = chain_duration_numerators[0]
       denominator = _next_least_power_of_two(numerator)
       likely_multiplier = Rational(numerator, denominator)
-      if likely_multiplier != Rational(1):
-         return likely_multiplier
+      return likely_multiplier

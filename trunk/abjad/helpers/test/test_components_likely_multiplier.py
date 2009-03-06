@@ -32,7 +32,7 @@ def test_components_likely_multiplier_04( ):
 
    t = Staff(scale(4))
    container_contents_scale(t, Rational(2)) 
-   assert _components_likely_multiplier(t[:]) is None
+   assert _components_likely_multiplier(t[:]) == Rational(1)
 
 
 def test_components_likely_multiplier_05( ):
@@ -40,7 +40,7 @@ def test_components_likely_multiplier_05( ):
 
    t = Staff(scale(4))
    container_contents_scale(t, Rational(1, 2)) 
-   assert _components_likely_multiplier(t[:]) is None
+   assert _components_likely_multiplier(t[:]) == Rational(1)
 
 
 def test_components_likely_multiplier_06( ):
