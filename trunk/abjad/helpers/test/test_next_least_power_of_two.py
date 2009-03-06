@@ -24,3 +24,21 @@ def test_next_least_power_of_two_02( ):
    '''Gives OverflowError on 0.'''
 
    assert py.test.raises(OverflowError, '_next_least_power_of_two(0)')
+
+
+def test_next_least_power_of_two_03( ):
+   '''Optional offset keyword allows for the next to greatest
+      integer power of two, etc.'''
+
+   assert _next_least_power_of_two(1, 1) == 0.5
+   assert _next_least_power_of_two(2, 1) == 1
+   assert _next_least_power_of_two(3, 1) == 1
+   assert _next_least_power_of_two(4, 1) == 2
+   assert _next_least_power_of_two(5, 1) == 2
+   assert _next_least_power_of_two(6, 1) == 2
+   assert _next_least_power_of_two(7, 1) == 2
+   assert _next_least_power_of_two(8, 1) == 4
+   assert _next_least_power_of_two(9, 1) == 4
+   assert _next_least_power_of_two(10, 1) == 4
+   assert _next_least_power_of_two(11, 1) == 4
+   assert _next_least_power_of_two(12, 1) == 4
