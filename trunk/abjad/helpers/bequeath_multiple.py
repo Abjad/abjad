@@ -31,8 +31,6 @@ def bequeath_multiple(old_components, new_components):
    # check input
    if not _are_successive_components(old_components):
       raise ContiguityError('old_components must be successive.')
-   #if not _are_orphan_components(new_components):
-   #   raise ContiguityError('new_components must be orphan.')
    if not _are_successive_components(new_components):
       raise ContiguityError('new_components must be successive.')
 
