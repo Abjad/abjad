@@ -1,3 +1,5 @@
+from abjad.helpers.components_likely_multiplier import _components_likely_multiplier
+from abjad.helpers.container_contents_scale import container_contents_scale
 from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.helpers.iterate import iterate
@@ -19,7 +21,18 @@ def measures_project(expr):
 
    for measure in iterate(expr, '_Measure'):
       if measure.meter.effective.nonbinary:
-         multiplier = measure.meter.effective.multiplier
-         meter_make_binary(measure.meter.effective)
-         target_duration = multiplier * measure.duration.contents
-         FixedDurationTuplet(target_duration, measure[:])
+
+         # find meter and contents multipliers
+         meter_multiplier = measure.meter.effective.multiplier
+         contents_multiplier = _components_likely_multiplier(measure[:])
+
+         # update nonbinary meter to binary
+         meter_make_binary(measure.meter.effective, contents_multiplier)
+
+         # find target duration and create tuplet
+         target_duration = meter_multiplier * measure.duration.contents
+         tuplet = FixedDurationTuplet(target_duration, measure[:])
+
+         # scale tuplet contents, if helpful
+         if contents_multiplier is not None:
+            container_contents_scale(tuplet, ~contents_multiplier)
