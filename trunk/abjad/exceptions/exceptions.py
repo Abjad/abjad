@@ -21,6 +21,10 @@ class MissingSpannerError(Exception):
        but spanner is missing.'''
    pass
 
+class NonbinaryMeterConversionError(Exception):
+   '''Nonbinary meter has no binary equivalent.'''
+   pass
+
 class NonbinaryMeterSuppressionError(Exception):
    '''Trying to suppress nonbinary meter;
       this will cause prolated duration of measure contents
