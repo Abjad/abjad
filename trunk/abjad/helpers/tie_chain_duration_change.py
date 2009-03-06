@@ -4,9 +4,12 @@ from abjad.helpers.is_tie_chain import _is_tie_chain
 from abjad.helpers.tie_chain_truncate import tie_chain_truncate
 from abjad.helpers.spanners_detach import spanners_detach
 from abjad.helpers.splice_after import splice_after
+from abjad.helpers.tie_chain_written import tie_chain_written
+from abjad.helpers.tie_chain_get_leaves import tie_chain_get_leaves
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
 from abjad.tools import construct
+from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
 def tie_chain_duration_change(tie_chain, new_written_duration):
@@ -41,7 +44,14 @@ def tie_chain_duration_change(tie_chain, new_written_duration):
          if not tie_chain[-1].tie.spanned:
             Tie(list(tie_chain))
          splice_after(tie_chain[-1], extra_leaves)
-   elif isinstance(duration_tokens[0], FixedMultiplierTuplet):
-      raise NotImplemented
+   else:
+      duration_tokens = construct.notes(0, new_written_duration)
+      assert isinstance(duration_tokens[0], FixedMultiplierTuplet)
+      fmtuplet = duration_tokens[0]
+      new_chain_written = tie_chain_written(fmtuplet[0].tie.chain)
+      tie_chain_duration_change(tie_chain, new_chain_written)
+      multiplier = fmtuplet.duration.multiplier
+      #FixedMultiplierTuplet(multiplier, tie_chain[0].tie.spanner.leaves)
+      FixedMultiplierTuplet(multiplier, tie_chain_get_leaves(tie_chain))
       
    return tie_chain[0].tie.chain         
