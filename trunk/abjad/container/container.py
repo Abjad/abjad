@@ -5,6 +5,7 @@ from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.helpers.are_contiguous_components import _are_contiguous_components
 from abjad.helpers.are_orphan_components import _are_orphan_components
+from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
 from abjad.helpers.instances import instances
@@ -370,12 +371,6 @@ class Container(_Component):
          raise ValueError("%s not in list." % expr)
 
    def slip(self):
-      '''
-      Attach my children to my parent.
-      Detach my parent, detach my spanners and return me.
-      '''
-      parent, index = _get_parent_and_index([self])
-      if parent is not None:
-         parent[index:index+1] = self[:]
-      self.detach( )
-      return self
+      '''Bequeath my parent and my spanners to my children.
+         Return me.'''
+      return bequeath_multiple([self], self[:])[0]
