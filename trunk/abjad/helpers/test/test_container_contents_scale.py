@@ -138,3 +138,38 @@ def test_container_contents_scale_05( ):
 
    assert check(t)
    assert t.format == "\\new Voice {\n\tc'8\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n}"
+
+
+def test_container_contents_scale_06( ):
+   '''Undo scale of 5/4 with scale of 4/5.'''
+
+   t = Voice(scale(4))
+   container_contents_scale(t, Rational(5, 4))
+
+   r'''
+   \new Voice {
+      c'8 ~
+      c'32
+      d'8 ~
+      d'32
+      e'8 ~
+      e'32
+      f'8 ~
+      f'32
+   }
+   '''
+   assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
+
+   container_contents_scale(t, Rational(4, 5))
+
+   r'''
+   \new Voice {
+      c'8
+      d'8
+      e'8
+      f'8
+   }
+   '''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
