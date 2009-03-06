@@ -2,6 +2,7 @@ from abjad import *
 
 
 def test_bequeath_multiple_01( ):
+   '''Bequeath parent and spanners of two old notes to five new notes.'''
    
    t = Staff(scale(4))
    b1 = Beam(t[:2])
@@ -37,6 +38,7 @@ def test_bequeath_multiple_01( ):
 
 
 def test_bequeath_multiple_02( ):
+   '''Bequeath parent and spaners of one old note to five new notes.'''
    
    t = Staff(scale(4))
    b1 = Beam(t[:2])
@@ -73,6 +75,7 @@ def test_bequeath_multiple_02( ):
 
 
 def test_bequeath_multiple_03( ):
+   '''Bequeath parent and spanners of two old notes to five new notes.'''
 
    t = Staff(scale(4))
    b1 = Beam(t[:2])
@@ -108,6 +111,7 @@ def test_bequeath_multiple_03( ):
 
 
 def test_bequeath_multiple_04( ):
+   '''Bequeath parent and spanners of three old notes to five new notes.'''
 
    t = Staff(scale(4))
    b1 = Beam(t[:2])
@@ -172,3 +176,39 @@ def test_bequeath_multiple_05( ):
 
    assert check(t)
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 \\!\n}"
+
+
+def test_bequeath_multiple_06( ):
+   '''Bequeath parent and spanners of container to children of container.
+      This is bequeath_multiple generalizing Container.slip( ).'''
+
+   t = Staff([Voice(scale(4))])
+   Beam(t[0])
+
+   r'''
+   \new Staff {
+      \new Voice {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
+      }
+   }
+   '''
+
+   old_components = bequeath_multiple(t[0:1], t[0][:])
+   voice = old_components[0]
+
+   r'''
+   \new Staff {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }
+   '''
+
+   assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+   assert len(old_components) == 1
+   assert len(voice) == 0
