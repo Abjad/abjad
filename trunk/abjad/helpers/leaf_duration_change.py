@@ -21,7 +21,6 @@ def leaf_duration_change(leaf, new_written_duration):
       leaf.duration.written = new_written_duration  
       all_leaves = [leaf]
    except AssignabilityError:
-      #duration_tokens = construct.notes_prolated(0, new_written_duration)
       duration_tokens = construct.notes(0, new_written_duration)
       if isinstance(duration_tokens[0], _Leaf):
          num_tied_leaves = len(duration_tokens) - 1
@@ -48,7 +47,6 @@ def leaf_duration_change(leaf, new_written_duration):
          tuplet_multiplier = fmtuplet.duration.multiplier
          FixedMultiplierTuplet(tuplet_multiplier, all_leaves)
       else:
-         #raise ValueError('unexpected output from construct.notes_prolated.')
          raise ValueError('unexpected output from construct.notes.')
 
    return all_leaves
