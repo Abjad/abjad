@@ -1,4 +1,5 @@
 from abjad.container.formatter import _ContainerFormatter
+from abjad.helpers.rational_as_fraction import _rational_as_fraction
 
 
 class _TupletFormatter(_ContainerFormatter):
@@ -6,6 +7,35 @@ class _TupletFormatter(_ContainerFormatter):
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)
       self.label = None
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _before(self):
+      result = [ ]
+      if self._client.duration.multiplier == 1 and \
+         hasattr(self._client.__class__, 'color'):
+         result.append(r"\tweak #'color #blue")
+      return result
+
+   @property
+   def _closing(self):
+      result = [ ]
+      result.extend(['\t' + x for x in self._grobReverts])
+      result.extend(_ContainerFormatter._collectLocation(self, '_closing'))
+      if self._client.duration.multiplier:
+         if self._client.duration.multiplier != 1 or \
+            hasattr(self._client.__class__, 'color'):
+            result.append(self._client.brackets.close)
+      return result
+
+   @property
+   def _fraction(self):
+      if not self._client.duration._binary:
+         if not self._client.invisible:
+            return r'\fraction '
+      else:
+         return ''
 
    @property
    def _label(self):
@@ -21,38 +51,22 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   def _fraction(self):
-      if not self._client.duration._binary:
-         if not self._client.invisible:
-            return r'\fraction '
-      else:
-         return ''
-
-   @property
    def _opening(self):
       '''Allow for no-multiplier and 1-multiplier tuplets.'''
       result = [ ]
       client = self._client
       if client.duration.multiplier:
-         if client.duration.multiplier != 1:
+         if client.duration.multiplier != 1 or \
+            hasattr(client.__class__, 'color'):
             if client.invisible:
                result.append(r"\scaleDurations #'(%s . %s) {" % (
                   client.ratio._n, client.ratio._d))
             else:
                result.append(r'%s\times %s %s' % (self._fraction, 
-                  client.duration.multiplier, client.brackets.open))
+                  _rational_as_fraction(client.duration.multiplier), 
+                  client.brackets.open))
       inheritence = _ContainerFormatter._opening
       result.extend(inheritence.fget(self))
-      return result
-
-   @property
-   def _closing(self):
-      result = [ ]
-      result.extend(['\t' + x for x in self._grobReverts])
-      result.extend(_ContainerFormatter._collectLocation(self, '_closing'))
-      if self._client.duration.multiplier:
-         if self._client.duration.multiplier != 1:
-            result.append(self._client.brackets.close)
       return result
 
    @property
@@ -60,6 +74,7 @@ class _TupletFormatter(_ContainerFormatter):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)
+      result.extend(self._before)
       result.extend(self._label)
       result.extend(self.opening)
       result.extend(self._opening)
@@ -69,6 +84,8 @@ class _TupletFormatter(_ContainerFormatter):
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return result
+
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def format(self):
