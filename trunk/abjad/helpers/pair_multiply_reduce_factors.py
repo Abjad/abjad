@@ -8,10 +8,10 @@ def _pair_multiply_reduce_factors(pair, multiplier):
 
       Examples:
 
-      _reduce_factors((4, 8), Rational(2, 3))
+      _pair_multiply_reduce_factors((4, 8), Rational(2, 3))
       (4, 12)
 
-      _reduce_factors((4, 8), Rational(6, 5))
+      _pair_multiply_reduce_factors((4, 8), Rational(6, 5))
       (12, 20)'''
 
    assert isinstance(pair, tuple)
