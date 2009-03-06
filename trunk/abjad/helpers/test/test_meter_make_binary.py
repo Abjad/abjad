@@ -22,3 +22,29 @@ def test_meter_make_binary_02( ):
    assert meter_make_binary(Meter(5, 14)) == Meter(5, 14)
    assert meter_make_binary(Meter(6, 14)) == Meter(6, 14)
    assert meter_make_binary(Meter(7, 14)) == Meter(4, 8)
+
+
+def test_meter_make_binary_03( ):
+   '''Make n/24 meters into n/16 meters, where possible.'''
+
+   assert meter_make_binary(Meter(1, 24)) == Meter(1, 24)
+   assert meter_make_binary(Meter(2, 24)) == Meter(2, 24)
+   assert meter_make_binary(Meter(3, 24)) == Meter(2, 16)
+   assert meter_make_binary(Meter(4, 24)) == Meter(4, 24)
+   assert meter_make_binary(Meter(5, 24)) == Meter(5, 24)
+   assert meter_make_binary(Meter(6, 24)) == Meter(4, 16)
+   assert meter_make_binary(Meter(7, 24)) == Meter(7, 24)
+   assert meter_make_binary(Meter(8, 24)) == Meter(8, 24)
+
+
+def test_meter_make_binary_04( ):
+   '''Make n/24 meters into n/8 meters, where possible.'''
+
+   assert meter_make_binary(Meter(1, 24), Rational(99)) == Meter(1, 24)
+   assert meter_make_binary(Meter(2, 24), Rational(99)) == Meter(2, 24)
+   assert meter_make_binary(Meter(3, 24), Rational(99)) == Meter(1, 8)
+   assert meter_make_binary(Meter(4, 24), Rational(99)) == Meter(4, 24)
+   assert meter_make_binary(Meter(5, 24), Rational(99)) == Meter(5, 24)
+   assert meter_make_binary(Meter(6, 24), Rational(99)) == Meter(2, 8)
+   assert meter_make_binary(Meter(7, 24), Rational(99)) == Meter(7, 24)
+   assert meter_make_binary(Meter(8, 24), Rational(99)) == Meter(8, 24)
