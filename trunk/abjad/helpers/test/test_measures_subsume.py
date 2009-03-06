@@ -71,7 +71,7 @@ def test_measures_subsume_04( ):
    measures_subsume(t)
 
    r'''
-   \time 30/48
+      \time 15/24
       \scaleDurations #'(2 . 3) {
          c'8 ~
          c'32
@@ -89,7 +89,7 @@ def test_measures_subsume_04( ):
    '''
 
    assert check(t)
-   assert t.format == "\t\\time 30/48\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}"
+   assert t.format == "\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}"
 
 
 def test_measures_subsume_05( ):
@@ -131,3 +131,36 @@ def test_measures_subsume_05( ):
 
    assert check(t)
    assert t.format == "\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}"
+
+
+def test_measures_subsume_06( ):
+   '''Submsume 6:5. Meter should go from 5/16 to 15/48.'''
+
+   tuplet = FixedDurationTuplet((5, 16), scale(3))
+   t = RigidMeasure((5, 16), [tuplet])
+
+   r'''
+      \time 5/16
+      \fraction \times 5/6 {
+         c'8
+         d'8
+         e'8
+      }
+   '''
+
+   measures_subsume(t)
+
+   r'''
+      \time 15/48
+      \scaleDurations #'(2 . 3) {
+         c'8 ~
+         c'32
+         d'8 ~
+         d'32
+         e'8 ~
+         e'32
+      }
+   '''
+
+   assert check(t)
+   assert t.format == "\t\\time 15/48\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t}"
