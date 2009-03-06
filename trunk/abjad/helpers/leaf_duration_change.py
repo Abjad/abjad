@@ -26,7 +26,7 @@ def leaf_duration_change(leaf, new_written_duration):
       if isinstance(duration_tokens[0], _Leaf):
          num_tied_leaves = len(duration_tokens) - 1
          tied_leaves = leaf * num_tied_leaves
-         spanners_detach(tied_leaves)
+         spanners_detach(tied_leaves, level = 'all')
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
@@ -38,7 +38,7 @@ def leaf_duration_change(leaf, new_written_duration):
          duration_tokens = fmtuplet[:]
          num_tied_leaves = len(duration_tokens) - 1
          tied_leaves = leaf * num_tied_leaves
-         spanners_detach(tied_leaves)
+         spanners_detach(tied_leaves, level = 'all')
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written

@@ -28,7 +28,7 @@ def _leaf_meiose(leaf, n = 2):
    assert n > 0
 
    new_leaves = leaf * (n - 1)
-   spanners_detach(new_leaves)
+   spanners_detach(new_leaves, level = 'all')
    total_leaves = 1 + len(new_leaves)
    adjustment_multiplier = Rational(1, total_leaves)
    leaf.duration.written *= adjustment_multiplier

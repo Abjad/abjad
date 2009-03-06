@@ -20,5 +20,5 @@ def _leaf_multiply(leaf, total = 1):
    assert total > 0
 
    new_leaves = leaf * (total - 1)
-   spanners_detach(new_leaves)
+   spanners_detach(new_leaves, level = 'all')
    splice_after(leaf, new_leaves)
