@@ -218,7 +218,7 @@ def note_train(pitch, written_duration, total_duration,
    return result
 
 
-from abjad.tools import mathtools
+from abjad.tools import interpolate
 
 def notes_curve(pitches, total, start, stop, exp='cosine', 
    written=Rational(1, 8)):
@@ -237,7 +237,7 @@ def notes_curve(pitches, total, start, stop, exp='cosine',
    stop = Rational(*_duration_token_unpack(stop))
    written = Rational(*_duration_token_unpack(written))
 
-   dts = mathtools.interpolate_divide(total, start, stop, exp)
+   dts = interpolate.divide(total, start, stop, exp)
    result = [ ]
    for i, dt in enumerate(dts):
       note = Note(pitches[i % len(pitches)], written)
