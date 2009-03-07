@@ -2,11 +2,12 @@ from __future__ import division
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.helpers.is_pitch_token import _is_pitch_token
+from abjad.chord.chord import Chord
 from abjad.note.note import Note
 from abjad.rest.rest import Rest
 from abjad.tie.spanner import Tie
 
-def _construct_leaf(kind, dur, direction='big-endian', pitches=None):
+def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None):
    '''
    Returns a list of Leaves to fill the given duration. 
    Leaves returned are Tie spanned.
@@ -29,28 +30,28 @@ def _construct_leaf(kind, dur, direction='big-endian', pitches=None):
    return result
 
 
-def _construct_chord(pitches, dur, direction='big-endian'):
+def _construct_tied_chord(pitches, dur, direction='big-endian'):
    '''
    Returns a list of chords to fill the given duration. 
    Chords returned are Tie spanned.
    '''
-   return _construct_leaf(Chord, dur, direction, pitches)
+   return _construct_tied_leaf(Chord, dur, direction, pitches)
 
 
-def _construct_rest(dur, direction='big-endian'):
+def _construct_tied_rest(dur, direction='big-endian'):
    '''
    Returns a list of rests to fill given duration. 
    Rests returned are Tie spanned. 
    '''
-   return _construct_leaf(Rest, dur, direction)
+   return _construct_tied_leaf(Rest, dur, direction)
 
 
-def _construct_note(pitch, dur, direction='big-endian'):
+def _construct_tied_note(pitch, dur, direction='big-endian'):
    '''
    Returns a list of notes to fill the given duration. 
    Notes returned are Tie spanned.
    '''
-   return _construct_leaf(Note, dur, direction, pitch)
+   return _construct_tied_leaf(Note, dur, direction, pitch)
 
 
 def _construct_unprolated_notes(pitches, durations, direction='big-endian'):
@@ -60,7 +61,7 @@ def _construct_unprolated_notes(pitches, durations, direction='big-endian'):
    assert len(pitches) == len(durations)
    result = [ ]
    for pitch, dur in zip(pitches, durations):
-      result.extend(_construct_note(pitch, dur, direction))
+      result.extend(_construct_tied_note(pitch, dur, direction))
    return result
 
 
@@ -79,7 +80,7 @@ def rests(durations, direction='big-endian'):
    result = [ ]
    for d in durations:
       #d = _duration_token_unpack(d)
-      result.extend(_construct_rest(d, direction))
+      result.extend(_construct_tied_rest(d, direction))
    return result
 
 
@@ -110,10 +111,10 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
    max_note_duration = Rational(*_duration_token_unpack(max_note_duration))
    if total_duration > max_note_duration:
       rest_duration = total_duration - max_note_duration
-      r = _construct_rest(rest_duration)
-      n = _construct_note(pitch, max_note_duration)
+      r = _construct_tied_rest(rest_duration)
+      n = _construct_tied_note(pitch, max_note_duration)
    else:
-      n = _construct_note(pitch, total_duration)
+      n = _construct_tied_note(pitch, total_duration)
       if len(n) > 1:
          for i in range(1, len(n)):
             n[i] = Rest(n[i])
@@ -179,7 +180,8 @@ def notes(pitches, durations, direction='big-endian'):
          result.extend(_construct_unprolated_notes(ps, ds, direction))
       else:
          ### compute prolation
-         denominator = reduce(operator.mul, factors)
+         #denominator = reduce(operator.mul, factors)
+         denominator = ds[0][1]
          numerator = _next_least_power_of_two(denominator)
          multiplier = (numerator, denominator)
          ratio = 1 / Rational(*multiplier)
@@ -243,6 +245,83 @@ def notes_curve(pitches, total, start, stop, exp='cosine',
       result.append(note)
    return result
    
+
+def leaves(pitches, durations, direction='big-endian'):
+   '''
+   Constructs a list of prolated and/or unprolated leaves of length 
+   len(durations).
+   The type of the leaves returned depends on the type of the pitches given.
+   Integer pitches create Notes.
+   Tuple pitches create Chords.
+   None pitches create Rests.
+   e.g. pitches = [12, (1,2,3), None, 12]
+   Will create a Note with pitch 12, a Chord with pitches (1,2,3), a
+   Rest and another Note with pitch 12.
+
+   Parameters:
+   pitches:    a single pitch or a list/tuple of pitches. If the list is
+               smaller than that of the durations, the pitches are cycled 
+               through.
+   durations:  a sinlge duration or a list of durations. The durations
+               need not be of the form m / 2**n and may be any rational value.
+   direction:  may be 'big-endian' or 'little-endian'.
+               'big-endian' returns a list of notes of decreasing duration.
+               'little-endian' returns a list of notes of increasing duration.
+   '''
+   def _make_leaf_on_pitch(pitch, ds, direction):
+      if isinstance(pitch, (int, long)):
+         leaves = _construct_tied_note(pitch, ds, direction)
+      elif isinstance(pitch, (tuple, list)):
+         leaves = _construct_tied_chord(pitch, ds, direction)
+      elif pitch is None:
+         leaves = _construct_tied_rest(ds, direction)
+      else:
+         raise ValueError("Unknown pitch token %s." % pitch)
+      return leaves
+
+   if _is_pitch_token(pitches):
+      pitches = [pitches]
+   
+   if _is_duration_token(durations):
+      durations = [durations]
+
+   ### convert Rationals to duration tokens.
+   durations = [_duration_token_unpack(dur) for dur in durations]
+
+   ### set lists of pitches and durations to the same length
+   size = max(len(durations), len(pitches))
+   durations = _resize_list(durations, size)
+   pitches = _resize_list(pitches, size)
+
+   durations = _agglomerate_durations_by_prolation(durations)
+
+   result = [ ]
+   for ds in durations:
+      ### get factors in denominator of duration group ds other than 1, 2.
+      factors = set(_factors(ds[0][1]))
+      factors.discard(1)
+      factors.discard(2)
+      ps = pitches[0:len(ds)]
+      pitches = pitches[len(ds):]
+      if len(factors) == 0:
+         for pitch, dur in zip(ps, ds):
+            leaves = _make_leaf_on_pitch(pitch, dur, direction)
+            result.extend(leaves)
+      else:
+         ### compute prolation
+         denominator = ds[0][1]
+         numerator = _next_least_power_of_two(denominator)
+         multiplier = (numerator, denominator)
+         ratio = 1 / Rational(*multiplier)
+         ds = [ratio * Rational(*d) for d in ds]
+         ### make leaves
+         leaves = [ ]
+         for pitch, dur in zip(ps, ds):
+            leaves.extend( _make_leaf_on_pitch(pitch, dur, direction))
+         t = FixedMultiplierTuplet(multiplier, leaves)
+         result.append(t)
+   return result
+      
 
 ### DEPRECATED ###
 

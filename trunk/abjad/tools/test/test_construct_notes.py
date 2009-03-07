@@ -100,13 +100,13 @@ def test_construct_notes_20( ):
    '''
    notes( ) can take parameters for a single prolated note.
    '''
-   t = construct.notes(1, (1, 12))
+   t = construct.notes(1, (1, 36))
    assert len(t) == 1
    assert isinstance(t[0], FixedMultiplierTuplet)
    assert len(t[0]) == 1
-   assert t[0].duration.prolated == Rational(1, 12)
-   assert t[0][0].duration.prolated == Rational(1, 12)
-   assert t[0][0].duration.written == Rational(1, 8)
+   assert t[0].duration.prolated == Rational(1, 36)
+   assert t[0][0].duration.prolated == Rational(1, 36)
+   assert t[0][0].duration.written == Rational(1, 32)
 
 
 def test_construct_notes_21( ):
