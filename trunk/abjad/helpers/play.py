@@ -24,5 +24,9 @@ def play(ly):
    outfile.write(_wrap_format_in_score_block(ly.format, midi=True))
    outfile.close( )
    _run_lilypond(name)
-   _open_file('%s.midi' % name[:-3], MIDIPLAYER)
+   if os.name == 'nt':
+      extension = 'mid'
+   else:
+      extension = 'midi'
+   _open_file('%s.%s' % (name[:-3], extension), MIDIPLAYER)
 
