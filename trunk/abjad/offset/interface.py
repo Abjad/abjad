@@ -37,20 +37,32 @@ class _OffsetInterface(_Interface):
    ##       'root' of the context in which self._client lives,
    ##       and then performing a single depth-first search (using _DFS)
    ##       to visit each node-in-context only once?
+   ## [VA] improved the algorithm by eliminating unnecessary traversal via
+   ## prev. We now rely on previously computed offsets and use 
+   ## self._client._navigator._prev only once per node. Can this be further
+   ## improved?
    def _updateContext(self):
       offset = Rational(0, 1)
       prev = self._client._navigator._prev
       self_parentage = self._client.parentage._threadParentage
-      while prev and prev.parentage._threadParentage == self_parentage:
-         offset += prev.duration.prolated
-         prev = prev._navigator._prev
+#      while prev and prev.parentage._threadParentage == self_parentage:
+#         offset += prev.duration.prolated
+#         prev = prev._navigator._prev
+#      self._context = offset
+      if prev and prev.parentage._threadParentage == self_parentage:
+         offset += prev.offset.context + prev.duration.prolated
       self._context = offset
+
 
    ## TODO: See comment above about using depth-first search.
    def _updateScore(self):
       offset = Rational(0, 1)
+#      prev = self._client._navigator._prev
+#      while prev:
+#         offset += prev.duration.prolated
+#         prev = prev._navigator._prev
+#      self._score = offset
       prev = self._client._navigator._prev
-      while prev:
-         offset += prev.duration.prolated
-         prev = prev._navigator._prev
+      if prev:
+         offset += prev.offset.score + prev.duration.prolated
       self._score = offset
