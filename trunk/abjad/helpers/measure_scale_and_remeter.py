@@ -11,6 +11,8 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
    r'''Multiply the duration of every element in measure by multiplier.
       Then rewrite the meter of measure as appropriate.
 
+      Return treated measure.
+
       Like magic.
 
       Example:
@@ -52,3 +54,4 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
       remaining_multiplier = multiplier / new_meter.multiplier
       if remaining_multiplier != Rational(1):
          container_contents_scale(measure, remaining_multiplier)
+   return measure
