@@ -160,140 +160,118 @@ def test_container_hew_04( ):
    
 
 def test_container_hew_05( ):
-   '''A single container 'split' at index 0 is unmodified.'''
+   '''A single container 'split' at index 0 gives
+      an empty lefthand part and a complete righthand part.
+      Original container empties contents.'''
 
-   t = Voice(scale(4))
-   t1, t2 = container_hew(t, 0)
+   t = Staff([Voice(scale(4))])
+   v = t[0]
+   left, right = container_hew(v, 0)
 
    r'''
-   \new Voice {
-   }
-   \new Voice {
-      c'8
-      d'8
-      e'8
-      f'8
+   \new Staff {
+           \new Voice {
+           }
+           \new Voice {
+                   c'8
+                   d'8
+                   e'8
+                   f'8
+           }
    }
    '''
 
-   assert check(t2)
-   assert t1.format == '\\new Voice {\n}'
-   assert t2.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+   assert left.format == '\\new Voice {\n}'
+   assert right.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t}\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-## TODO: Update all tests here to work correctly;
-##       make good corner case checks for container_hew( );
-##       after updated, rename container_splinter( ) to container_split( ).
+def test_container_hew_06( ):
+   '''Split container at index > len(container).
+      Lefthand part instantiates with all contents.
+      Righthand part instantiates empty.
+      Original container empties contents.'''
 
-#def test_container_hew_06( ):
-#   '''
-#   A single container 'split' at index > len(container) is unmodified.
-#   '''
-#   t = Voice(run(4))
-#   t1, t2 = container_hew(t, 10)
-#   assert len(t1) == 4
-#   assert t1 is t
-#   assert t2 is None
-#
-#
-#def test_container_hew_07( ):
-#   '''
-#   A single container can be split with negative indeces.
-#   '''
-#   t = Voice(run(4))
-#   t1, t2 = container_hew(t, -2)
-#   assert len(t1) == len(t2) == 2
-#   assert t[0] is t1[0]
-#   assert t1 is t
-#
-#   t = Voice(run(4))
-#   t1, t2 = container_hew(t, -1)
-#   assert len(t1) == 3
-#   assert len(t2) == 1
-#   assert t[0] is t1[0]
-#   assert t1 is t
-#
-#
-#### NESTED CONTAINERS ###
-#
-#def test_conatiner_split_08( ):
-#   '''
-#   Splitting a container with parent results in parented brother
-#   split containers.
-#   '''
-#   t = Staff([Voice(run(4))])
-#   t1, t2 = container_hew(t[0], 2)
-#   assert t1._parent is t
-#   assert t2._parent is t
-#   assert len(t1) == len(t2) == 2
-#   assert len(t) == 2
-#   assert t1 is t[0]
-#   assert t2 is t[1]
-#
-#
-#### SPANNERS ###
-#
-#def test_container_hew_09( ):
-#   '''
-#   Spanners attached to split container are copied. 
-#   '''
-#   t = Staff([Voice(run(4))])
-#   Beam(t[:])
-#   t1, t2 = container_hew(t[0], 2)
-#   assert t1.beam.spanner
-#   assert t2.beam.spanner
-#   assert not t1.beam.spanner is t2.beam.spanner
-#   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\tc'8 ]\n\t}\n\t\\new Voice {\n\t\tc'8 [\n\t\tc'8 ]\n\t}\n}"
-#
-#   '''
-#   \new Staff {
-#           \new Voice {
-#                   c'8 [
-#                   c'8 ]
-#           }
-#           \new Voice {
-#                   c'8 [
-#                   c'8 ]
-#           }
-#   }
-#   '''  
-#
-#
-#def test_container_hew_10( ):
-#   '''
-#   Splitting a container with parent results in parented brother
-#   split containers.
-#   '''
-#   t = Staff([Voice([FixedMultiplierTuplet((4,5), run(5))])])
-#   voice = t[0]
-#   tuplet = voice[0]
-#   Beam(tuplet)
-#   t1, t2 = container_hew(tuplet, 2)
-#   assert t1._parent is voice
-#   assert t2._parent is voice
-#   assert len(t1) == 2
-#   assert len(t2) == 3
-#   assert len(voice) == 2
-#   assert t1 is voice[0]
-#   assert t2 is voice[1]
-#   assert t1.beam.spanner
-#   assert t2.beam.spanner
-#   assert t1.beam.spanner is not t2.beam.spanner
-#   assert check(t)
-#   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\t\\times 4/5 {\n\t\t\tc'8 [\n\t\t\tc'8 ]\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'8 [\n\t\t\tc'8\n\t\t\tc'8 ]\n\t\t}\n\t}\n}"
-#   '''
-#   \new Staff {
-#           \new Voice {
-#                   \times 4/5 {
-#                           c'8 [
-#                           c'8 ]
-#                   }
-#                   \times 4/5 {
-#                           c'8 [
-#                           c'8
-#                           c'8 ]
-#                   }
-#           }
-#   }
-#   '''
+   t = Staff([Voice(scale(4))])
+   v = t[0]
+   left, right = container_hew(v, 10)
 
+   assert left.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+   assert right.format == '\\new Voice {\n}'
+   assert v.format == '\\new Voice {\n}'
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t\\new Voice {\n\t}\n}"
+
+
+def test_container_hew_07( ):
+   '''A single container can be split with negative indeces.'''
+
+   t = Staff([Voice(scale(4))])
+   v = t[0]
+   left, right = container_hew(v, -2)
+
+   assert left.format == "\\new Voice {\n\tc'8\n\td'8\n}"
+   assert right.format == "\\new Voice {\n\te'8\n\tf'8\n}"
+   assert v.format == '\\new Voice {\n}'
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t}\n}"
+
+
+def test_container_hew_08( ):
+   '''Spanners attached to hewn container reattach
+      to all resulting hewn parts.'''
+
+   t = Staff([Voice(scale(4))])
+   v = t[0]
+   Beam(v)
+   left, right = container_hew(v, 2)
+
+   r'''
+   \new Staff {
+           \new Voice {
+                   c'8 [
+                   d'8
+           }
+           \new Voice {
+                   e'8
+                   f'8 ]
+           }
+   }
+   '''
+
+   assert left.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
+   assert right.format == "\\new Voice {\n\te'8\n\tf'8 ]\n}"
+   assert v.format == '\\new Voice {\n}'
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+
+   
+def test_container_hew_09( ):
+   '''Hewing a container with parent results in parented 
+      sibling containers.'''
+
+   t = Staff([Voice([FixedMultiplierTuplet((4, 5), run(5))])])
+   v = t[0]
+   tuplet = v[0]
+   Beam(tuplet)
+   left, right = container_hew(tuplet, 2)
+
+   r'''
+   \new Staff {
+           \new Voice {
+                   \times 4/5 {
+                           c'8 [
+                           c'8
+                   }
+                   \times 4/5 {
+                           c'8
+                           c'8
+                           c'8 ]
+                   }
+           }
+   }
+   '''
+
+   assert check(t)
+   assert left.format == "\\times 4/5 {\n\tc'8 [\n\tc'8\n}"
+   assert right.format == "\\times 4/5 {\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+   assert tuplet.format == '\\times 4/5 {\n}'
+   assert v.format == "\\new Voice {\n\t\\times 4/5 {\n\t\tc'8 [\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\t\\times 4/5 {\n\t\t\tc'8 [\n\t\t\tc'8\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8 ]\n\t\t}\n\t}\n}"
