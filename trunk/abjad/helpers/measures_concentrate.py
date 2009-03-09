@@ -5,12 +5,11 @@ from abjad.rational.rational import Rational
 
 
 def measures_concentrate(expr, concentration_pair):
-   '''Input parameters:
-         expr: any Abjad expression
-         concentration_pair = (spin_count, scalar_denominator)
-      with both spin and scale positive integers.
+   '''Expr may be any Abjad expression.
+      Concentration_pair of the form (spin_count, scalar_denominator).
+      Both spin_count and scalar_denominator must be positive integers.
 
-      Description: Iterate expr. For every measure in expr, 
+      Iterate expr. For every measure in expr, 
       spin measure by the spin_count element in concentration_pair and
       scale measure by 1/scalar_denominator element in concentration_pair.
 
