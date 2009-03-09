@@ -1,4 +1,4 @@
-class _ContextFormatterNumberInterface(object):
+class _ContainerFormatterNumberInterface(object):
 
    def __init__(self, client):
       self._client = client

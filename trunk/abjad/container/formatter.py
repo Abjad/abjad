@@ -1,3 +1,4 @@
+from abjad.container.number import _ContainerFormatterNumberInterface
 from abjad.core.formatter import _Formatter
 
 
@@ -5,10 +6,11 @@ class _ContainerFormatter(_Formatter):
 
    def __init__(self, client):
       _Formatter.__init__(self, client)
-      self.opening = [ ]
       self.closing = [ ]
+      self.opening = [ ]
+      self._number = _ContainerFormatterNumberInterface(self)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _contents(self):
@@ -52,7 +54,7 @@ class _ContainerFormatter(_Formatter):
       result.extend(self._collectLocation('_closing'))
       return ['\t' + x for x in result]
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def format(self):
@@ -69,3 +71,7 @@ class _ContainerFormatter(_Formatter):
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)
+
+   @property
+   def number(self):
+      return self._number

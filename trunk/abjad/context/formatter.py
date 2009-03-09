@@ -1,12 +1,12 @@
 from abjad.container.container import _ContainerFormatter
-from abjad.context.number import _ContextFormatterNumberInterface
+#from abjad.context.number import _ContextFormatterNumberInterface
 
 
 class _ContextFormatter(_ContainerFormatter):
 
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)
-      self._number = _ContextFormatterNumberInterface(self)
+      #self._number = _ContextFormatterNumberInterface(self)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -30,8 +30,8 @@ class _ContextFormatter(_ContainerFormatter):
          result.append(invocation + ' %s' % brackets.open)
       return result
 
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def number(self):
-      return self._number
+#   ## PUBLIC ATTRIBUTES ##
+#
+#   @property
+#   def number(self):
+#      return self._number
