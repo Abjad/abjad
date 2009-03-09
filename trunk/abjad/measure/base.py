@@ -3,11 +3,20 @@ from abjad.measure.duration import _MeasureDurationInterface
 from abjad.measure.formatter import _MeasureFormatter
 
 
+## Set RigidMeasure.block, AnonymousMeasure.block, DynamicMeasure.block, etc
+## to True to print LilyPond start-measure and stop-measure 
+## comments at format-time.
+
+## Set RigidMeasure.block, AnonymousMeasure.block, DynamicMeasure.block, etc
+## to 'number' to print LilyPond start-measure and stop-measure 
+## comments with measure numbers at format-time.
+
 class _Measure(Container):
 
    def __init__(self, music = None):
       music = music or [ ]
       Container.__init__(self, music)
+      self.block  = False
       self._duration = _MeasureDurationInterface(self)
       self.formatter = _MeasureFormatter(self)
 

@@ -55,7 +55,6 @@ class _ContainerFormatter(_Formatter):
    ### PUBLIC ATTRIBUTES ###
 
    @property
-   #def lily(self):
    def format(self):
       result = [ ]
       result.extend(self._client.comments._before)

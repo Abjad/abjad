@@ -6,11 +6,14 @@ class _Formatter(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
+      ## TODO: This 'number' attribute appears to cause *leaf* numbering;
+      ##       Would it be better to implement that behavior on _Leaf?
+      ##       Or possibly on _LeafFormatter?
       self.number = False
       self.before = [ ]
       self.after = [ ]
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
    
    @property
    def _grobOverrides(self):
@@ -46,7 +49,7 @@ class _Formatter(_Interface):
       result = ['_before', '_opening', '_closing', '_after']
       return result
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _collectLocation(self, location):
       '''Collect all format contributions in a single Python list.'''
