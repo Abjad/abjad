@@ -6,7 +6,7 @@ def test_measures_concentrate_01( ):
 
    t = RigidMeasure((3, 8), scale(3))
    Beam(t[:])
-   measures_concentrate(t, (3, 3))
+   measures_concentrate(t, [(3, 3)])
 
    r'''
         \time 9/24
@@ -32,7 +32,7 @@ def test_measures_concentrate_02( ):
 
    t = RigidMeasure((3, 16), scale(3, Rational(1, 16)))
    Beam(t[:])
-   measures_concentrate(t, (4, 5))
+   measures_concentrate(t, [(4, 5)])
 
    r'''
         \time 12/80
