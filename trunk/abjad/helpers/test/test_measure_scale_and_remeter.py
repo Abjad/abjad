@@ -3,7 +3,8 @@ import py.test
 
 
 def test_measure_scale_and_remeter_01( ):
-   '''Scale binary to nonbinary; no notehead rewriting necessary.'''
+   '''Scale binary to nonbinary.
+      No notehead rewriting necessary.'''
 
    t = RigidMeasure((3, 8), scale(3))
    measure_scale_and_remeter(t, Rational(2, 3))
@@ -22,7 +23,8 @@ def test_measure_scale_and_remeter_01( ):
 
 
 def test_measure_scale_and_remeter_02( ):
-   '''Scale nonbinary meter to binary; no notehead rewriting necessary.'''
+   '''Scale nonbinary meter to binary. 
+      No notehead rewriting necessary.'''
   
    t = RigidMeasure((3, 12), scale(3))
    measure_scale_and_remeter(t, Rational(3, 2))
@@ -39,8 +41,8 @@ def test_measure_scale_and_remeter_02( ):
 
 
 def test_measure_scale_and_remeter_03( ):
-   '''Scale binary meter to binary meter; 
-      noteheads rewrite with dots.'''
+   '''Scale binary meter to binary meter. 
+      Noteheads rewrite with dots.'''
 
    t = RigidMeasure((3, 8), scale(3))
    measure_scale_and_remeter(t, Rational(3, 2))
@@ -57,8 +59,8 @@ def test_measure_scale_and_remeter_03( ):
 
 
 def test_measure_scale_and_remeter_04( ):
-   '''Scale binary meter to binary meter;
-      noteheads rewrite without dots.'''
+   '''Scale binary meter to binary meter.
+      Noteheads rewrite without dots.'''
 
    t = RigidMeasure((9, 16), scale(3, Rational(3, 16)))
    measure_scale_and_remeter(t, Rational(2, 3))
@@ -75,8 +77,8 @@ def test_measure_scale_and_remeter_04( ):
 
 
 def test_measure_scale_and_remeter_05( ):
-   '''Scale binary meter to nonbinary meter;
-      no notehead rewriting necessary.'''
+   '''Scale binary meter to nonbinary meter.
+      No notehead rewriting necessary.'''
 
    t = RigidMeasure((9, 16), scale(9, Rational(1, 16)))
    measure_scale_and_remeter(t, Rational(2, 3))
@@ -102,7 +104,7 @@ def test_measure_scale_and_remeter_05( ):
 
 def test_measure_scale_and_remeter_06( ):
    '''Scale nonbinary meter to binary meter.
-      noteheads rewrite with double duration.'''
+      Noteheads rewrite with double duration.'''
 
    t = RigidMeasure((3, 12), scale(3))
    measure_scale_and_remeter(t, Rational(3))
