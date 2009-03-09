@@ -11,16 +11,7 @@ class _Context(Container):
       self.brackets = 'curly'
       self.formatter = _ContextFormatter(self)
 
-   def __repr__(self):
-      if len(self) > 0:
-         summary = str(len(self))
-      else:
-         summary = ' '
-      return '%s%s%s%s' % (
-         self.invocation.type,
-         self.brackets.open,
-         summary,
-         self.brackets.close)
+   ## OVERLOADS ##
 
    ### TODO: eliminate this in favor of ID-only equivalence,
    ###       just like all the other system components;
@@ -41,7 +32,18 @@ class _Context(Container):
    def __ne__(self, arg):
       return not self.__eq__(arg)
 
-   ### MANAGED ATTRIBUTES ###
+   def __repr__(self):
+      if len(self) > 0:
+         summary = str(len(self))
+      else:
+         summary = ' '
+      return '%s%s%s%s' % (
+         self.invocation.type,
+         self.brackets.open,
+         summary,
+         self.brackets.close)
+
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def invocation( ):

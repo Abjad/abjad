@@ -1,6 +1,7 @@
 from abjad.container.formatter import _ContainerFormatter
 from abjad.exceptions.exceptions import OverfullMeasureError
 from abjad.exceptions.exceptions import UnderfullMeasureError
+from abjad.measure.number import _MeasureFormatterNumberInterface
 from abjad.rational.rational import Rational
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
@@ -9,6 +10,7 @@ class _MeasureFormatter(_ContainerFormatter):
 
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)
+      self._number = _MeasureFormatterNumberInterface(self)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -21,12 +23,10 @@ class _MeasureFormatter(_ContainerFormatter):
          Analagous to open brackets for other types of container.
       '''
       result = [ ]
-      block = getattr(self._client.__class__, 'block', None)
-      if block == True:
-         result.append('%% stop measure')
-      elif block == 'number':
-         measure_number = self._client.numbering.measure
-         result.append('%% stop measure %s' % measure_number)
+      client = self._client
+      contribution = self.number._measure_contribution
+      if contribution == 'comment':
+         result.append('%% stop measure %s' % client.numbering.measure)
       return result
 
    @property
@@ -38,12 +38,10 @@ class _MeasureFormatter(_ContainerFormatter):
          Analagous to close brackets for other types of container.
       '''
       result = [ ]
-      block = getattr(self._client.__class__, 'block', None)
-      if block == True:
-         result.append('%% start measure')
-      elif block == 'number':
-         measure_number = self._client.numbering.measure
-         result.append('%% start measure %s' % measure_number)
+      client = self._client
+      contribution = self.number._measure_contribution
+      if contribution == 'comment':
+         result.append('%% start measure %s' % client.numbering.measure)
       return result
 
    ## PUBLIC ATTRIBUTES ##
@@ -63,3 +61,7 @@ class _MeasureFormatter(_ContainerFormatter):
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)
+   
+   @property
+   def number(self):
+      return self._number

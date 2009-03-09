@@ -1,25 +1,26 @@
 from abjad.container.container import _ContainerFormatter
+from abjad.context.number import _ContextFormatterNumberInterface
 
 
 class _ContextFormatter(_ContainerFormatter):
 
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)
+      self._number = _ContextFormatterNumberInterface(self)
 
-#   @property
-#   def _invocation_opening(self):
-#      return self._client.invocation._opening
-#
-#   @property
-#   def _invocation_closing(self):
-#      return self._client.invocation._closing
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _invocation_closing(self):
+      result = [ ]
+      result.append(self._client.brackets.close)
+      return result
 
    @property
    def _invocation_opening(self):
       result = [ ]
       invocation = self._client.invocation._invocation
       brackets = self._client.brackets
-      #grob_overrides = self._collectLocation('_before')
       overrides = self._grobOverrides
       if overrides:
          result.append(invocation + ' \with {')
@@ -29,8 +30,8 @@ class _ContextFormatter(_ContainerFormatter):
          result.append(invocation + ' %s' % brackets.open)
       return result
 
+   ## PUBLIC ATTRIBUTES ##
+
    @property
-   def _invocation_closing(self):
-      result = [ ]
-      result.append(self._client.brackets.close)
-      return result
+   def number(self):
+      return self._number

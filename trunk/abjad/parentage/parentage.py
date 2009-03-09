@@ -94,15 +94,16 @@ class _Parentage(_Abjad):
          p = p._parent
       return p
 
-   @property
-   def _number(self):
-      p = self._client._parent
-      while p is not None:
-         if p.formatter.number:
-            return True
-         else:
-            p = p._parent
-      return None
+#   ## DEPRECATED in favor of formatter number interfaces
+#   @property
+#   def _number(self):
+#      p = self._client._parent
+#      while p is not None:
+#         if p.formatter.number:
+#            return True
+#         else:
+#            p = p._parent
+#      return None
    
    @property
    def _threadParentage(self):

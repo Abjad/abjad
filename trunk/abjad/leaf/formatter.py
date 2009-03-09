@@ -1,5 +1,6 @@
 from abjad.core.formatter import _Formatter
 from abjad.core.formatcarrier import _FormatCarrier
+from abjad.leaf.number import _LeafFormatterNumberInterface
 
 
 class _LeafFormatter(_Formatter):
@@ -7,7 +8,7 @@ class _LeafFormatter(_Formatter):
    def __init__(self, client):
       _Formatter.__init__(self, client)
       self.left = [ ]
-      self._number = False
+      self._number = _LeafFormatterNumberInterface(self)
       self.right = [ ]
 
    ## PRIVATE ATTRIBUTES ##
@@ -33,10 +34,6 @@ class _LeafFormatter(_Formatter):
       client = self._client
       result.extend(self.left)
       result.extend(self._collectLocation('_left'))
-### NOTE: What was this for? VA
-#      if hasattr(self._client, 'notehead') and \
-#         self._client.notehead is not None:
-#         result.extend(self._client.notehead._formatter.left)
       result.append(client._body)
       result.extend(client.tremolo.body)
       result.extend(self._collectLocation('_right'))
@@ -64,22 +61,21 @@ class _LeafFormatter(_Formatter):
    def _number_contribution(self):
       result = [ ]
       client = self._client
-      #if self.number or self._client.parentage._number:
-      #   result.append(r'^ \markup { %s }' % self._client.number)
-      if self.number == True or client.parentage._number == True:
+      contribution = self.number._leaf_contribution
+      if contribution == 'markup':
          result.append(r'^ \markup { %s }' % client.numbering.leaf)
+      elif contribution == 'comment':
+         result.append(r'%% leaf %s' % client.numbering.leaf)
       return result
 
    ## PUBLIC ATTRIBUTES ##
 
-   ## NOTE - clef *must* come lexically before set-octavation ##
    @property
    def format(self):
       result = [ ]
       result.extend(self._client.comments._before)
       result.extend(self.before)
       result.extend(self._grace)
-      #result.extend(self._clef)
       result.extend(self._grobOverrides)
       result.extend(self._collectLocation('_before'))
       result.extend(self._agrace_opening)
@@ -90,11 +86,6 @@ class _LeafFormatter(_Formatter):
       result.extend(self._client.comments._after)
       return '\n'.join(result)
 
-   @apply
-   def number( ):
-      def fget(self):
-         return self._number
-      def fset(self, arg):
-         assert isinstance(arg, bool)
-         self._number = arg
-      return property(**locals( ))
+   @property
+   def number(self):
+      return self._number

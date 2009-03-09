@@ -10,7 +10,7 @@ class _Formatter(_Interface):
       _Interface.__init__(self, client)
       self.after = [ ]
       self.before = [ ]
-      self.number = False
+      #self.number = False
 
    ## PRIVATE ATTRIBUTES ##
    

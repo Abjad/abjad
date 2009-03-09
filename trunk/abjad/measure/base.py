@@ -16,7 +16,7 @@ class _Measure(Container):
    def __init__(self, music = None):
       music = music or [ ]
       Container.__init__(self, music)
-      self.block  = False
+      #self.block  = False
       self._duration = _MeasureDurationInterface(self)
       self.formatter = _MeasureFormatter(self)
 
