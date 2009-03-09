@@ -166,26 +166,6 @@ class _Navigator(_Abjad):
          return leaves
       
    @property
-   def _nextLeaves(self):
-      '''Returns list of next leaf/leaves regardless of "thread" or type 
-         of caller. If next component is/contains a parallel, return list 
-         of simultaneous leaves'''
-      next = self._next
-      if next:
-         firstleaves = next._navigator._firstLeaves
-         return firstleaves
-
-   @property
-   def _prevLeaves(self):
-      '''Returns list of previous leaf/leaves regardless of "thread" or type 
-         of caller. If next component is/contains a parallel, return list 
-         of simultaneous leaves'''
-      prev = self._prev
-      if prev:
-         lastLeaves = prev._navigator._lastLeaves
-         return lastLeaves
-
-   @property
    def _next(self):
       '''Returns next closest non-siamese Component.'''
       next = self._nextSibling
@@ -209,6 +189,16 @@ class _Navigator(_Abjad):
          return None
       candidates = next._navigator._firstLeaves
       return self._findFellowBead(candidates)
+
+   @property
+   def _nextLeaves(self):
+      '''Returns list of next leaf/leaves regardless of "thread" or type 
+         of caller. If next component is/contains a parallel, return list 
+         of simultaneous leaves'''
+      next = self._next
+      if next:
+         firstleaves = next._navigator._firstLeaves
+         return firstleaves
 
    @property
    def _nextSibling(self):
@@ -260,6 +250,16 @@ class _Navigator(_Abjad):
          return None
       candidates = prev._navigator._lastLeaves
       return self._findFellowBead(candidates)
+
+   @property
+   def _prevLeaves(self):
+      '''Returns list of previous leaf/leaves regardless of "thread" or type 
+         of caller. If next component is/contains a parallel, return list 
+         of simultaneous leaves'''
+      prev = self._prev
+      if prev:
+         lastLeaves = prev._navigator._lastLeaves
+         return lastLeaves
 
    @property
    def _prevSibling(self):
