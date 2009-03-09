@@ -28,6 +28,9 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
                    e'8
            }'''
 
+   if multiplier == 0:
+      raise ZeroDivisionError
+
    old_meter = measure.meter.effective
    old_pair = (old_meter.numerator, old_meter.denominator)
    old_multiplier = old_meter.multiplier
@@ -51,8 +54,10 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
       elif multiplier < Rational(0):
          new_pair = _pair_multiply_naive(old_pair, multiplier)
       ## multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
-      elif multiplier >= Rational(0):
+      elif multiplier > Rational(0):
          new_pair = _pair_multiply_constant_numerator(old_pair, multiplier)
+      elif multiplier == Rational(0):
+         raise ZeroDivisionError
       new_meter = Meter(new_pair)
       measure.meter = new_meter
    else:

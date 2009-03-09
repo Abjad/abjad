@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_measure_scale_and_remeter_01( ):
@@ -203,3 +204,10 @@ def test_measure_scale_and_remeter_10( ):
 
    assert check(t)
    assert t.format == "\t\\time 6/4\n\tc'4\n\td'4\n\te'4\n\tf'4\n\tg'4\n\ta'4"
+
+
+def test_measure_scale_and_remeter_11( ):
+   '''Raise ZeroDivisionError when multiplier equals zero.'''
+
+   t = RigidMeasure((6, 16), scale(6, Rational(1, 16)))
+   py.test.raises(ZeroDivisionError, 'measure_scale_and_remeter(t, 0)')
