@@ -11,7 +11,7 @@ from abjad.helpers.hasname import hasname
 from abjad.glissando.interface import _GlissandoInterface
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
-#from abjad.notehead.interface import _NoteHeadInterface
+from abjad.numbering.interface import _NumberingInterface
 from abjad.offset.interface import _OffsetInterface
 from abjad.parentage.parentage import _Parentage
 from abjad.pianopedal.interface import _PianoPedalInterface
@@ -60,7 +60,7 @@ class _Component(_Abjad):
       self._offset = _OffsetInterface(self, self._update)
       self._voice = _VoiceInterface(self)
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __mul__(self, n):
       result = [ ]
@@ -71,7 +71,7 @@ class _Component(_Abjad):
    def __rmul__(self, n):
       return self * n
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def accidental( ):
@@ -129,7 +129,6 @@ class _Component(_Abjad):
 
    @property
    def format(self):
-      #return self.formatter.lily
       return self.formatter.format
 
    @apply
@@ -228,7 +227,7 @@ class _Component(_Abjad):
    def voice(self):
       return self._voice
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def copy(self):
       '''
