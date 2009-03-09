@@ -5,16 +5,41 @@ from abjad.rational.rational import Rational
 
 
 def measures_concentrate(expr, concentration_pair):
-   '''Iterate expr. For every measure in expr,
-      spin measure by the first element in concentration_pair and
-      scale measure by the inverse of the second element in concentration_pair.
+   '''Input parameters:
+         expr: any Abjad expression
+         concentration_pair = (spin_count, scalar_denominator)
+      with both spin and scale positive integers.
+
+      Description: Iterate expr. For every measure in expr, 
+      spin measure by the spin_count element in concentration_pair and
+      scale measure by 1/scalar_denominator element in concentration_pair.
+
+      Return Python list of transformed measures.
+
+      Examples:
+
+      abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
+      abjad> print(measures_concentrate(t, (3, 3)[0])
+      |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
+
+      abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
+      abjad> print(measures_concentrate(t, (3, 2)[0])
+      |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
+      
+      abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
+      abjad> print(measures_concentrate(t, (3, 1)[0])
+      |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
    '''
 
    assert isinstance(concentration_pair, tuple)
    assert len(concentration_pair) == 2
    spin_count, scalar_denominator = concentration_pair
 
+   result = [ ]
    for measure in iterate(expr, '_Measure'):
       measures_spin(measure, spin_count)
       multiplier = Rational(1, scalar_denominator)
       measure_scale_and_remeter(measure, multiplier)
+      result.append(measure)
+
+   return result
