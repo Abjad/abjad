@@ -57,6 +57,7 @@ class _Component(_Abjad):
       self._trill = _TrillInterface(self)
       self._update = _UpdateInterface(self)
       ## Observer interfaces must instantiate lexically after _UpdateInterface
+      self._numbering = _NumberingInterface(self, self._update)
       self._offset = _OffsetInterface(self, self._update)
       self._voice = _VoiceInterface(self)
 
@@ -150,6 +151,10 @@ class _Component(_Abjad):
 #   @property
 #   def notehead(self):
 #      return self._notehead
+
+   @property
+   def numbering(self):
+      return self._numbering
 
    @property
    def offset(self):
