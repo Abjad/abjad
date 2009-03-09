@@ -262,6 +262,17 @@ class _Navigator(_Abjad):
          return lastLeaves
 
    @property
+   def _prevMeasure(self):
+      '''Returns the closest measure enclosing or before self._client.'''
+      from abjad.measure.base import _Measure
+      client = self._client
+      dfs = self._DFS(capped = False, unique = False, direction = 'right')
+      for node in dfs:
+         if isinstance(node, _Measure):
+            if node is not client:
+               return node
+
+   @property
    def _prevSibling(self):
       '''Returns the previous *sequential* element in the caller's parent; 
          None otherwise'''
