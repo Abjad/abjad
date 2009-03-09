@@ -218,14 +218,14 @@ class _Leaf(_Component):
    def leaves(self):
       return [self]
 
-   @property
-   def number(self):
-      cur = self
-      i = 0
-      while cur.prev:
-         cur = cur.prev
-         i += 1
-      return i
+#   @property
+#   def number(self):
+#      cur = self
+#      i = 0
+#      while cur.prev:
+#         cur = cur.prev
+#         i += 1
+#      return i
 
    @property
    def signature(self):

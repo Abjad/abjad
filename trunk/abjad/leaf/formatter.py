@@ -7,9 +7,10 @@ class _LeafFormatter(_Formatter):
    def __init__(self, client):
       _Formatter.__init__(self, client)
       self.left = [ ]
+      self._number = False
       self.right = [ ]
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _agrace(self):
@@ -29,18 +30,19 @@ class _LeafFormatter(_Formatter):
    @property
    def _body(self):
       result = [ ]
+      client = self._client
       result.extend(self.left)
       result.extend(self._collectLocation('_left'))
 ### NOTE: What was this for? VA
 #      if hasattr(self._client, 'notehead') and \
 #         self._client.notehead is not None:
 #         result.extend(self._client.notehead._formatter.left)
-      result.append(self._client._body)
-      result.extend(self._client.tremolo.body)
+      result.append(client._body)
+      result.extend(client.tremolo.body)
       result.extend(self._collectLocation('_right'))
       result.extend(self.right)
-      result.extend(self._number)
-      result.extend(self._client.comments._right)
+      result.extend(self._number_contribution)
+      result.extend(client.comments._right)
       return [' '.join(result)]
 
    @property
@@ -59,19 +61,19 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
-   def _number(self):
+   def _number_contribution(self):
       result = [ ]
-      #if self.number or self._client._parentage._number:
-      if self.number or self._client.parentage._number:
-         result.append(r'^ \markup { %s }' % self._client.number)
+      client = self._client
+      #if self.number or self._client.parentage._number:
+      #   result.append(r'^ \markup { %s }' % self._client.number)
+      if self.number == True or client.parentage._number == True:
+         result.append(r'^ \markup { %s }' % client.numbering.leaf)
       return result
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
-   ### NOTE - clef *must* come lexically before set-octavation ###
-
+   ## NOTE - clef *must* come lexically before set-octavation ##
    @property
-   #def lily(self):
    def format(self):
       result = [ ]
       result.extend(self._client.comments._before)
@@ -87,3 +89,12 @@ class _LeafFormatter(_Formatter):
       result.extend(self.after)
       result.extend(self._client.comments._after)
       return '\n'.join(result)
+
+   @apply
+   def number( ):
+      def fget(self):
+         return self._number
+      def fset(self, arg):
+         assert isinstance(arg, bool)
+         self._number = arg
+      return property(**locals( ))

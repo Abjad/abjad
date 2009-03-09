@@ -4,14 +4,13 @@ from abjad.core.interface import _Interface
 
 class _Formatter(_Interface):
 
+   ## The 'number' attribute causes only leaf numbering but attaches
+   ## to the core _Formatter so that containers can number leaves.
    def __init__(self, client):
       _Interface.__init__(self, client)
-      ## TODO: This 'number' attribute appears to cause *leaf* numbering;
-      ##       Would it be better to implement that behavior on _Leaf?
-      ##       Or possibly on _LeafFormatter?
-      self.number = False
-      self.before = [ ]
       self.after = [ ]
+      self.before = [ ]
+      self.number = False
 
    ## PRIVATE ATTRIBUTES ##
    
