@@ -3,13 +3,44 @@ from abjad.helpers.measure_set_denominator import _measure_set_denominator
 
 
 def container_hew(container, i, spanners = 'preserve'):
-   '''Split container in two just before index i;
-      compare with container_split( ).
+   r'''Split container in two just before index i.
+      Compare with container_split( ).
       Special spanner management to leave all spanners in tact.
-      Preserve parentage, if any;
-      Resize resizable containers;
-      Preserve container multiplier, if any;
-      Preserve meter denominator, if any.'''
+      Preserve parentage, if any.
+      Resize resizable containers.
+      Preserve container multiplier, if any.
+      Preserve meter denominator, if any.
+
+      Example of hewing binary measure:
+
+      t = Voice(RigidMeasure((3, 8), run(3)) * 2)
+      diatonicize(t)
+      p = Beam(t[:])
+
+      \new Voice {
+                      \time 3/8
+                      c'8 [
+                      d'8
+                      e'8
+                      \time 3/8
+                      f'8
+                      g'8
+                      a'8 ]
+      }
+                 
+      container_hew(t[1], 1)
+
+      \new Voice {
+                      \time 3/8
+                      c'8 [
+                      d'8
+                      e'8
+                      \time 1/8
+                      f'8
+                      \time 2/8
+                      g'8
+                      a'8 ]
+      }'''
 
    # remember container multiplier, if any
    container_multiplier = getattr(container.duration, 'multiplier', None)
