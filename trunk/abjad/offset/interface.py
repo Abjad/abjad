@@ -10,14 +10,7 @@ class _OffsetInterface(_Interface):
       self._context = Rational(0)
       updateInterface._observers.append(self)
 
-
-   ### PUBLIC PROPERTIES ###
-
-   @property
-   def score(self):
-      if not self._client._update._currentToRoot:
-         self._client._update._updateAll( )
-      return self._score
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def context(self):
@@ -25,21 +18,24 @@ class _OffsetInterface(_Interface):
          self._client._update._updateAll( )
       return self._context
 
+   @property
+   def score(self):
+      if not self._client._update._currentToRoot:
+         self._client._update._updateAll( )
+      return self._score
 
-   ### OBSERVER PATTERN INTERFACE ###
+   ## OBSERVER PATTERN INTERFACE ##
 
    def update(self):
       self._updateContext( )
       self._updateScore( )
 
-   ### TODO: these work fine now, but the method for computing the offset
-   ### seems suboptimal. For one, Parengate._threadParentage might deprecate. 
+   ## TODO: these work fine now, but the method for computing the offset
+   ## seems suboptimal. For one, Parengate._threadParentage might deprecate. 
    def _updateContext(self):
       offset = Rational(0, 1)
       prev = self._client._navigator._prev
-      #self_parentage = self._client._parentage._threadParentage
       self_parentage = self._client.parentage._threadParentage
-      #while prev and prev._parentage._threadParentage == self_parentage:
       while prev and prev.parentage._threadParentage == self_parentage:
          offset += prev.duration.prolated
          prev = prev._navigator._prev
