@@ -45,7 +45,6 @@ class _Component(_Abjad):
       self._meter = _MeterInterface(self)
       self._navigator = _Navigator(self)
       #self._notehead = _NoteHeadInterface(self)
-#      self._offset = _OffsetInterface(self)
       self._parentage = _Parentage(self)
       self._pianopedal = _PianoPedalInterface(self)
       self._rest = _RestInterface(self)
@@ -57,6 +56,7 @@ class _Component(_Abjad):
       self._tremolo = _TremoloInterface(self)
       self._trill = _TrillInterface(self)
       self._update = _UpdateInterface(self)
+      ## Observer interfaces must instantiate lexically after _UpdateInterface
       self._offset = _OffsetInterface(self, self._update)
       self._voice = _VoiceInterface(self)
 
