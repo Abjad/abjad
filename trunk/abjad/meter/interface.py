@@ -13,7 +13,7 @@ class _MeterInterface(_Interface, _GrobHandler):
       self._forced = None
       self.suppress = False
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _before(self):
@@ -56,7 +56,7 @@ class _MeterInterface(_Interface, _GrobHandler):
             pass
       return False
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def change(self):
@@ -66,8 +66,8 @@ class _MeterInterface(_Interface, _GrobHandler):
       return bool(client.prev and \
          client.prev.meter.effective != self.effective)
 
-   ### TODO - the explicit check for DynamicMeasure seems like
-   ###        a (small) hack; is there a better implementation?
+   ## TODO - the explicit check for DynamicMeasure seems like
+   ##        a (small) hack; is there a better implementation?
 
    @property
    def effective(self):

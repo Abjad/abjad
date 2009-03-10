@@ -4,7 +4,7 @@ from abjad.scm.function import Function
 
 class _Parser(_Abjad):
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _isConstant(self, value):
       if isinstance(value, int) or isinstance(value, float) or \
@@ -17,7 +17,7 @@ class _Parser(_Abjad):
    def _isLilyFunctionName(self, arg):
       return isinstance(arg, str) and '::' in arg
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def formatAttribute(self, attribute):
       attribute = attribute.replace('__', " #'")
@@ -38,10 +38,10 @@ class _Parser(_Abjad):
          return '#%s' % value.format
       elif isinstance(value, tuple):
          return "#'(%s . %s)" % value
-      ### TODO the String class does not seem to exist. What to do with it? Remove, create?
+      ## TODO: The String class does not seem to exist. 
+      ##       What to do with it? Remove, create?
       #elif value.__class__.__name__ in ['String', '_Markup']:
       elif value.__class__.__name__ in ['String', 'Markup']:
-         #return value
          return value.format
       else:
          return "#'%s" % value

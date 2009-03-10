@@ -170,8 +170,3 @@ class MetricGrid(Spanner):
          delattr(self, '_slicingMetersFound')
          result.append('>>')
       return result
-#      if not self.hide:
-#         m = self._slicingMeters(leaf)
-#         if any([not meter.hide for meter in m]):
-#            result.append( '>>' )
-#      return result

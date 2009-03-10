@@ -6,12 +6,12 @@ class _HistoryInterface(_Abjad):
    def __init__(self, client):
       self._client = client
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __len__(self):
       return len(self.getAttributeNames( ))
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def clear(self):
       for item in self.__dict__.items( ):

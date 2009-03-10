@@ -16,7 +16,7 @@ class _LeafDurationInterface(_DurationInterface):
       self.multiplier = None
       self.written = Rational(*_duration_token_unpack(duration))
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _dots(self):
@@ -53,7 +53,7 @@ class _LeafDurationInterface(_DurationInterface):
       else:
          return self._dotted
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def multiplied(self):
@@ -105,7 +105,9 @@ class _LeafDurationInterface(_DurationInterface):
          self._written = rational
       return property(**locals( ))
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
+
+   ## TODO: Externalize to leaf_duration_rewrite(leaf) helper
    
    def rewrite(self, target):
       previous = self.multiplied

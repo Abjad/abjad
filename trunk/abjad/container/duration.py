@@ -7,13 +7,13 @@ class _ContainerDurationInterface(_DurationInterface):
    def __init__(self, _client):
       _DurationInterface.__init__(self, _client)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _duration(self):
       return self.contents
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def contents(self):
@@ -38,14 +38,8 @@ class _ContainerDurationInterface(_DurationInterface):
             duration += x.duration.preprolated
          return duration
 
-#   @property
-#   def multiplier(self):
-#      return Rational(1)
-
    @apply
    def preprolated( ):
       def fget(self):
-         #return self.contents   
-         #return self.multiplier * self.contents   
          return self.contents
       return  property(**locals( ))

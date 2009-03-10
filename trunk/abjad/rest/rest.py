@@ -1,17 +1,14 @@
-#from abjad.core.grobhandler import _GrobHandler
 from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
 from abjad.rest.initializer import _RestInitializer
 
 
-#class Rest(_Leaf, _GrobHandler):
 class Rest(_Leaf):
 
    def __init__(self, *args):
-      #_GrobHandler.__init__(self, 'Rest')
       self._initializer = _RestInitializer(self, _Leaf, *args)
    
-   ### REPR ###
+   ## OVERLOADS ##
 
    def __repr__(self):
       return 'Rest(%s)' % self.duration._product
@@ -19,7 +16,7 @@ class Rest(_Leaf):
    def __str__(self):
       return 'r%s' % self.duration._product
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
   
    @property
    def _body(self):
@@ -35,7 +32,7 @@ class Rest(_Leaf):
          result += ' :%s' % self.stem.tremolo
       return result
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
   
    @property
    def pairs(self):

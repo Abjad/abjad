@@ -1,13 +1,10 @@
 from abjad.pitch.pitch import Pitch
-#from abjad.spanner.spanner import Spanner
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
 
-#class Trill(Spanner):
 class Trill(_GrobHandlerSpanner):
 
    def __init__(self, music = None):
-      #Spanner.__init__(self, music)
       _GrobHandlerSpanner.__init__(self, 'TrillSpanner', music)
       self._pitch = None
 

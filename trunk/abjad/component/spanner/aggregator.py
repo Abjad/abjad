@@ -9,17 +9,15 @@ class _ComponentSpannerAggregator(_Interface):
       _Interface.__init__(self, client)
       self._spanners = set([ ])
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _fractureContents(self):
-      '''
-      Left-fractures all spanners attaching to t and to any components
-      attaching to t and starting at the same moment as t.
-      Right-fractures all spanners attaching to t and to any components
-      attaching to t and stopping at the same moment as t.
+      '''Left-fractures all spanners attaching to t and to any components
+         attaching to t and starting at the same moment as t.
+         Right-fractures all spanners attaching to t and to any components
+         attaching to t and stopping at the same moment as t.
 
-      Used by _Component.copy( ) only.
-      '''
+         Used by _Component.copy( ) only.'''
 
       result = [ ]
       client = self._client
@@ -44,24 +42,18 @@ class _ComponentSpannerAggregator(_Interface):
    def _update(self, spanners):
       self._spanners.update(spanners)
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
    
    @property
    def attached(self):
-      '''
-      Return an unordered set of all spanners attaching 
-      directly to client.
-      '''
-
+      '''Return an unordered set of all spanners attaching 
+         directly to client.'''
       return self._spanners
 
    @property
    def contained(self):
-      '''
-      Return an unordered set of all spanners attaching to 
-      any components in client, including client.
-      '''
-
+      '''Return an unordered set of all spanners attaching to 
+         any components in client, including client.'''
       result = set([ ])
       for component in iterate(self._client, '_Component'):
          result.update(set(component.spanners.attached))
@@ -69,14 +61,11 @@ class _ComponentSpannerAggregator(_Interface):
 
    @property
    def spanned(self):
-      '''
-      Return True when any spanners attach to self, 
-      False otherwise.
-      '''
-      
+      '''Return True when any spanners attach to self, 
+         False otherwise.'''
       return len(self.attached) > 0
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def clear(self):
       for spanner in list(self.attached):

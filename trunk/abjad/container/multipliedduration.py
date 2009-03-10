@@ -7,7 +7,7 @@ class _MultipliedContainerDurationInterface(_ContainerDurationInterface):
    def __init__(self, _client):
       _ContainerDurationInterface.__init__(self, _client)
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def multiplier(self):

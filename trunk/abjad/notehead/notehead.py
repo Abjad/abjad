@@ -14,7 +14,7 @@ class NoteHead(_Interface, _GrobHandler):
       self.pitch = pitch
       self._style = None
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __repr__(self):
       if self.pitch:
@@ -28,7 +28,7 @@ class NoteHead(_Interface, _GrobHandler):
       else:
          return ''
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    _abjadLilyStyles = {
       'triangle' : 'do',         'semicircle' : 're',    'diamond' : 'mi',
@@ -81,7 +81,7 @@ class NoteHead(_Interface, _GrobHandler):
             result.append(r"\%s" % self.style)
       return result
    
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def format(self):
@@ -116,8 +116,6 @@ class NoteHead(_Interface, _GrobHandler):
          else:
             raise ValueError('can not set notehead style.')
       return property(**locals( ))
-
-   ### DICTIONARIES ###
 
    stylesSupported = (
       'cross', 'parallelogram', 'concavetriangle', 'slash', 'xcircle', 

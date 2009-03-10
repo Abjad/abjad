@@ -1,7 +1,7 @@
 from abjad.spanner.spanner import Spanner
 
 
-### TODO: turn this into a real interface. Inactive code presently.
+## TODO: turn this into a real interface. Inactive code presently.
 
 class _Instrument(Spanner):
 
@@ -10,6 +10,8 @@ class _Instrument(Spanner):
       self.long = long
       self.short = short
 
+   ## PUBLIC ATTRIBUTES ##
+
    @property
    def default(self):
       if self.long == None and self.short == None:
@@ -17,8 +19,7 @@ class _Instrument(Spanner):
       else:
          return False
 
-   def cover(self, *args):
-      self.coverHelper('instrument', *args)
+   ## PUBLIC METHODS ##
 
    def attach(self, l):
       self.attachHelper('instrument', l)
@@ -33,3 +34,6 @@ class _Instrument(Spanner):
             result.append(r'\set %s.instrumentName = %s' % (
                l.staff.name, self.short))
       return result
+
+   def cover(self, *args):
+      self.coverHelper('instrument', *args)

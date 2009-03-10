@@ -8,7 +8,7 @@ class _ClusterInterface(_Interface, _GrobHandler):
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'ClusterSpanner')
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _opening(self):

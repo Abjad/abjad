@@ -1,16 +1,15 @@
-#from abjad.spanner.spanner import Spanner
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
 
-#class _Hairpin(Spanner):
 class _Hairpin(_GrobHandlerSpanner):
 
    def __init__(self, music = None, start = None, stop = None, trim = False):
-      #Spanner.__init__(self, music)
       _GrobHandlerSpanner.__init__(self, 'DynamicLineSpanner', music)
       self.start = start
       self.stop = stop
       self.trim = trim
+  
+   ## PRIVATE ATTRIBUTES ##
 
    def _right(self, leaf):
       result = [ ]
@@ -18,11 +17,9 @@ class _Hairpin(_GrobHandlerSpanner):
          if self._isMyFirstLeaf(leaf):
             result.append('\\%s' % self._shape)
             if self.start:
-               #result.append('\\%sX' % self.start)
                result.append('\\%s' % self.start)
          if self._isMyLastLeaf(leaf):
             if self.stop:
-               #result.append('\\%sX' % self.stop)
                result.append('\\%s' % self.stop)
             elif not leaf.dynamics:
                result.append('\\!')
@@ -30,15 +27,15 @@ class _Hairpin(_GrobHandlerSpanner):
          if self._isMyFirst(leaf, ('Note', 'Chord')):
             result.append('\\%s' % self._shape)
             if self.start:
-               #result.append('\\%sX' % self.start)
                result.append('\\%s' % self.start)
          if self._isMyLast(leaf, ('Note', 'Chord')):
             if self.stop:
-               #result.append('\\%sX' % self.stop)
                result.append('\\%s' % self.stop)
             elif not leaf.dynamics:
                result.append('\\!')
       return result
+
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def start( ):
@@ -64,6 +61,7 @@ class _Hairpin(_GrobHandlerSpanner):
          self._trim = arg
       return property(**locals( ))
 
+## TODO: Externalize or attach to class ##
 
 def _parse_descriptor(descriptor):
    '''Example descriptors:
@@ -94,6 +92,7 @@ def _parse_descriptor(descriptor):
    assert shape in ('<', '>')
    return start, shape, stop
 
+## TODO: Externalize to own file ##
 
 def Hairpin(music, descriptor, trim = False):
    start, shape, stop = _parse_descriptor(descriptor)

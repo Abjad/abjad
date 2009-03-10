@@ -6,7 +6,7 @@ from abjad.rational.rational import Rational
 
 class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _duration(self):
@@ -16,7 +16,7 @@ class _MeasureDurationInterface(_MultipliedContainerDurationInterface):
       else:
          return self.contents
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def multiplier(self):

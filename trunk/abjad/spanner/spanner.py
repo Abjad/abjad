@@ -15,7 +15,7 @@ class Spanner(_Abjad):
       elif hasname(music, '_Component'):
          self.append(music)
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __contains__(self, expr):
       return self._components.__contains__(expr)
@@ -50,7 +50,7 @@ class Spanner(_Abjad):
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._summary)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _summary(self):
@@ -59,7 +59,7 @@ class Spanner(_Abjad):
       else:
          return ' '
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _after(self, component):
       return [ ]
@@ -158,7 +158,7 @@ class Spanner(_Abjad):
    def _unblockComponent(self, component):
       component.spanners._update([self])
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
    
    @property
    def components(self):
@@ -185,7 +185,7 @@ class Spanner(_Abjad):
    def written(self):
       return sum([l.duration.written for l in self])
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def append(self, component):
       assert isinstance(component, _Component)

@@ -15,7 +15,7 @@ class Override(Spanner):
          raise ValueError('need 3 or 4 args, not %s.' % len(args))
       self._parser = _Parser( )
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __repr__(self):
       if self._context:
@@ -25,7 +25,7 @@ class Override(Spanner):
          return 'Override([%s], %s, %s, %s)' % (self._summary, 
             self._grob, self._attribute, self._value)
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _after(self, leaf):
       if self._isMyLastLeaf(leaf) and \

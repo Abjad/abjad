@@ -38,7 +38,7 @@ class Container(_Component):
       self.notehead = _NoteHeadInterface(self)
       self.spanners = _ContainerSpannerAggregator(self)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    def _establish(self):
       for x in self._music:
@@ -51,7 +51,7 @@ class Container(_Component):
       else:
          return ' '
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __add__(self, expr):
       '''Concatenate containers self and expr.
@@ -75,8 +75,8 @@ class Container(_Component):
             #m._die( )
             m.detach( )
 
-   ### TODO Should we make __getitem__ non recursive to distinguish 
-   ###      it from get( ) and to make the behaviour more list-like?
+   ## TODO Should we make __getitem__ non recursive to distinguish 
+   ##      it from get( ) and to make the behaviour more list-like?
 
    def __getitem__(self, expr):
       if isinstance(expr, str):
@@ -85,10 +85,10 @@ class Container(_Component):
                self.name = name
                self.result = None
             def visit(self, node):
-               ### this guy will return only the last node 
-               ### with name == self.name. 
-               ### What if there are multiple nodes with the same name? 
-               ### Should it return a list?
+               ## this guy will return only the last node 
+               ## with name == self.name. 
+               ## What if there are multiple nodes with the same name? 
+               ## Should it return a list?
                if hasattr(node, 'name') and \
                   node.name == self.name:
                   self.result = node
@@ -106,11 +106,11 @@ class Container(_Component):
       assert isinstance(n, int)
       assert n >= 0
       if n == 0:
-         ### TODO - implement this to return empty self.
-         ###
-         ### This doesn't work:
-         ###
-         ###   self._music == [ ]
+         ## TODO - implement this to return empty self.
+         ##
+         ## This doesn't work:
+         ##
+         ##   self._music == [ ]
          pass
       else:
          for copy in self * (n - 1):
@@ -167,7 +167,7 @@ class Container(_Component):
 
       self._update._markForUpdateToRoot( )
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def brackets( ):
@@ -193,12 +193,12 @@ class Container(_Component):
       else:
          return None
 
-   ### TODO make this settable?
+   ## TODO make this settable?
    @property
    def parallel(self):
       return self.brackets == 'double-angle'
 
-   #### TODO: i propose this instead. 
+   ### TODO: i propose this instead. 
    # if we want a next Leaf, we can call a nextLeaf explicitly.
    #   @property
    #   def next(self):
@@ -211,7 +211,7 @@ class Container(_Component):
       else:
          return None
 
-   ### PUBLIC METHODS ### 
+   ## PUBLIC METHODS ## 
 
    def append(self, expr):
       self.insert(len(self), expr)
@@ -369,6 +369,8 @@ class Container(_Component):
       self._navigator._traverse(v)
       if not v.deleted:
          raise ValueError("%s not in list." % expr)
+
+   ## TODO: Externalize to container_slip(container) helper
 
    def slip(self):
       '''Bequeath my parent and my spanners to my children.

@@ -11,7 +11,7 @@ class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
       _SpannerReceptor.__init__(self, ['Glissando'])
       self._set = None
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __eq__(self, arg):
       assert isinstance(arg, bool)
@@ -20,7 +20,7 @@ class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __nonzero__(self):
       return bool(self._set)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _right(self):
@@ -29,7 +29,7 @@ class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
          result.append(r'\glissando')
       return result
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def clear(self):
       self._set = None

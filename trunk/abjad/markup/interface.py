@@ -10,7 +10,7 @@ class _MarkupInterface(_Interface, _FormatCarrier):
       self._down = [ ]
       self._up = [ ]
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _right(self):
@@ -29,7 +29,7 @@ class _MarkupInterface(_Interface, _FormatCarrier):
          result.append(column)
       return result
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def down( ):

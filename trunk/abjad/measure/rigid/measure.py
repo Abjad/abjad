@@ -13,7 +13,7 @@ class RigidMeasure(_Measure):
       self.formatter = _RigidMeasureFormatter(self)
       self.meter = meter
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def trim(self, start, stop = 'unused'):
       old_denominator = self.meter.forced.denominator
@@ -23,7 +23,6 @@ class RigidMeasure(_Measure):
          del(self[start])
       else:
          del(self[start : stop])
-      #naive_meter = self.duration.contents
       naive_meter = self.duration.preprolated
       better_meter = _in_terms_of(naive_meter, old_denominator)
       self.meter = better_meter

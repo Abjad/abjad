@@ -8,5 +8,7 @@ class Sequential(Container):
       Container.__init__(self, music)
       self.brackets = 'curly'
 
+   ## OVERLOADS ##
+
    def __repr__(self):
       return 'Sequential(%s)' % self._summary

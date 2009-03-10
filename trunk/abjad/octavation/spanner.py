@@ -1,20 +1,17 @@
-#from abjad.spanner.spanner import Spanner
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
 
-#class Octavation(Spanner):
 class Octavation(_GrobHandlerSpanner):
 
    def __init__(self, music = None, start = 0, stop = 0):
-      #Spanner.__init__(self, music)
       _GrobHandlerSpanner.__init__(self, 'OttavaBracket', music)
       self.start = start
       self.stop = stop
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
-   ### TODO - test the shit out of the middleCPosition stuff, esp
-   ###        clef changes in the middle of an octavation spanner
+   ## TODO - test the shit out of the middleCPosition stuff, esp
+   ##        clef changes in the middle of an octavation spanner
 
    def _after(self, leaf):
       result = [ ]
@@ -37,7 +34,7 @@ class Octavation(_GrobHandlerSpanner):
 #         result.append(r'\set Staff.middleCPosition = #%s' % position)
       return result
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def start( ):

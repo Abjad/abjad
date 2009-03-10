@@ -9,7 +9,9 @@ class Score(_Context):
       self.brackets = 'double-angle'
       self.invocation = 'Score'
 
-   ### TODO - insert measure and breaks voices at format-time ###
+   ## PUBLIC METHODS ##
+
+   ## TODO - insert measure and breaks voices at format-time ##
 
    def insertMeasuresVoice(self, measuresVoice):
       self.voices[0]._parent.add(0, measuresVoice)

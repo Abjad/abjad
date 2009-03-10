@@ -8,7 +8,7 @@ class _DurationInterface(_Interface):
    def __init__(self, _client):
       _Interface.__init__(self, _client)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _prolations(self):
@@ -19,7 +19,7 @@ class _DurationInterface(_Interface):
          parent = parent._parent
       return result
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def preprolated(self):

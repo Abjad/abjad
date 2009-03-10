@@ -1,4 +1,3 @@
-#from abjad.core.abjadcore import _Abjad
 from abjad.core.interface import _Interface
 from abjad.grace.grace import Grace
 from abjad.helpers.hasname import hasname
@@ -10,45 +9,24 @@ class _GraceInterface(_Interface):
       _Interface.__init__(self, client)
       self.before = Grace( )
       self.after = Grace( )
+   
+   ## PRIVATE METHODS ##
 
    def _establishBefore(self):
-      ### Replaced _parent with _carrier because the navigation code assumes
-      ### that a _parent is a Container and thus has a _music list.
-      ### This is not the case for Leaves. 
-      ### TODO: how to implement grace note navigation? 
-      ### At this moment it seems cleaner to me to have a parallel naviation
-      ### for grace notes, but I'm not sure about this. 
-      #self.before._parent = self._client
+      ## Replaced _parent with _carrier because the navigation code assumes
+      ## that a _parent is a Container and thus has a _music list.
+      ## This is not the case for Leaves. 
+      ## TODO: how to implement grace note navigation? 
+      ## At this moment it seems cleaner to me to have a parallel naviation
+      ## for grace notes, but I'm not sure about this. 
       self.before._carrier = self._client
 
    def _establishAfter(self):
-      #self.after._parent = self._client
       self.after._carrier = self._client
 
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
    
-   @apply
-   def before( ):
-      def fget(self):
-         return self._before
-      def fset(self, arg):
-         if arg is None:
-            self._before = Grace( )
-            #self._before.type = 'grace'
-         elif isinstance(arg, Grace):
-            self._before = arg
-         elif hasname(arg, '_Leaf'):
-            self._before = Grace([arg])
-         elif isinstance(arg, list):
-            self._before = Grace(arg)
-         elif arg in ('grace', 'acciaccatura', 'appoggiatura'):
-            self._before.type = arg
-         else:
-            raise ValueError('can not set before.')
-         self._establishBefore( )
-      return property(**locals( ))
-
    @apply
    def after( ):
       def fget(self):
@@ -67,4 +45,24 @@ class _GraceInterface(_Interface):
                raise ValueError('can not set after.')
          self._after.type = 'after'
          self._establishAfter( )
+      return property(**locals( ))
+
+   @apply
+   def before( ):
+      def fget(self):
+         return self._before
+      def fset(self, arg):
+         if arg is None:
+            self._before = Grace( )
+         elif isinstance(arg, Grace):
+            self._before = arg
+         elif hasname(arg, '_Leaf'):
+            self._before = Grace([arg])
+         elif isinstance(arg, list):
+            self._before = Grace(arg)
+         elif arg in ('grace', 'acciaccatura', 'appoggiatura'):
+            self._before.type = arg
+         else:
+            raise ValueError('can not set before.')
+         self._establishBefore( )
       return property(**locals( ))

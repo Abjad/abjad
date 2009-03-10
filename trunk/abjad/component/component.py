@@ -291,5 +291,7 @@ class _Component(_Abjad):
       self.parentage.detach( )
       return self
 
+   ## TODO: Deprecate and use built-in Python isinstance( ) instead ##
+
    def kind(self, classname):
       return hasname(self, classname)

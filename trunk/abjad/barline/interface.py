@@ -9,7 +9,7 @@ class _BarLineInterface(_Interface, _GrobHandler):
       _GrobHandler.__init__(self, 'BarLine')
       self._type = None
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _after(self):
@@ -23,11 +23,11 @@ class _BarLineInterface(_Interface, _GrobHandler):
       LPSymbol = self._barlineNameToLilyPondSymbol[barlineName]
       return r'\bar "%s"' % LPSymbol
 
-   ### TODO: I think we should probably remove this symbol-to-
-   ###       string and string-to-symbol code and instead;
-   ###       point to the LilyPond documentation for the 
-   ###       (possibly evolving) list of acceptable barline symbols.
-   ###       [TB 2008-12-03]
+   ## TODO: I think we should probably remove this symbol-to-
+   ##       string and string-to-symbol code and instead;
+   ##       point to the LilyPond documentation for the 
+   ##       (possibly evolving) list of acceptable barline symbols.
+   ##       [TB 2008-12-03]
 
    _barlineNameToLilyPondSymbol = {
       '|' : '|'   , 'single' : '|',
@@ -49,10 +49,9 @@ class _BarLineInterface(_Interface, _GrobHandler):
       if self._client.kind('Container'):
          if self.type:
             result.append(self._barlineNameToLilyPondString(self.type))
-      #result = ['\t' + x for x in result]
       return result
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def type( ):

@@ -7,8 +7,11 @@ class _ChordFormatter(_LeafFormatter):
    def __init__(self, client):
       _LeafFormatter.__init__(self, client)
 
+   ## PRIVATE ATTRIBUTES ##
+
    @property
    def _chordNucleus(self):
+      '''Return string representation of noteheads in self.'''
       nucleus =  [ ]
       # check if we have notehead overrides
       if any([(len(x) or x.style) for x in self._client.noteheads]):
@@ -26,6 +29,7 @@ class _ChordFormatter(_LeafFormatter):
 
    @property
    def _body(self):
+      '''Return string representation of everything in body of self.'''
       result = [ ]
       result.extend(self.left)
       result.extend(self._collectLocation('_left'))

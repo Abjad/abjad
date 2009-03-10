@@ -11,6 +11,8 @@ class _StemInterface(_Interface, _GrobHandler, _SpannerReceptor):
       _GrobHandler.__init__(self, 'Stem')
       _SpannerReceptor.__init__(self, ['Stem'])
       self._tremolo = None
+   
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def tremolo( ):

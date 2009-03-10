@@ -1,4 +1,3 @@
-#from abjad.articulations.articulation import _Articulation
 from abjad.articulations.articulation import Articulation
 from abjad.core.formatcarrier import _FormatCarrier
 from abjad.core.interface import _Interface
@@ -11,14 +10,7 @@ class _ArticulationsInterface(_Interface, _FormatCarrier):
       _FormatCarrier.__init__(self)
       self._articulations = [ ]
 
-   def __repr__(self):
-      if len(self._articulations):
-         return '<_ArticulationsInterface(%s)>' % ', '.join([str(x) 
-            for x in self._articulations])
-      else:
-         return '<_ArticulationsInterface>'
-
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __contains__(self, expr):
       expr = self._makeArticulation(expr)
@@ -36,6 +28,13 @@ class _ArticulationsInterface(_Interface, _FormatCarrier):
    def __len__(self):
       return len(self._articulations)
 
+   def __repr__(self):
+      if len(self._articulations):
+         return '<_ArticulationsInterface(%s)>' % ', '.join([str(x) 
+            for x in self._articulations])
+      else:
+         return '<_ArticulationsInterface>'
+
    def __setitem__(self, i, expr):
       if isinstance(i, int):
          if i < 0:
@@ -50,30 +49,25 @@ class _ArticulationsInterface(_Interface, _FormatCarrier):
          expr = [self._makeArticulation(x) for x in expr]
          self._articulations[i.start : i.stop] = expr
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _makeArticulation(self, expr):
-      #if isinstance(expr, _Articulation):
       if isinstance(expr, Articulation):
          return expr
       elif isinstance(expr, (list, tuple)):
-         #return _Articulation(*expr)
          return Articulation(*expr)
       elif isinstance(expr, str):
-         #return _Articulation(expr)
          return Articulation(expr)
       else:
-         #raise ValueError('can not create _Articulation.')
          raise ValueError('can not create Articulation.')
 
    @property
    def _right(self):
       result = [ ]
-      #result.extend([x.lily for x in self._articulations])
       result.extend([x.format for x in self._articulations])
       return result
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def append(self, expr):
       expr = self._makeArticulation(expr)

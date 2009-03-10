@@ -1,6 +1,9 @@
 from abjad.container.formatter import _ContainerFormatter
 
+
 class _ClusterFormatter(_ContainerFormatter):
+
+   ## PRIVATE ATTRIBUTES ##
    
    @property
    def _invocation_opening(self):

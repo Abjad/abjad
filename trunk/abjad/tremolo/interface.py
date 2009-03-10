@@ -9,7 +9,7 @@ class _TremoloInterface(_Interface, _FormatCarrier):
       _FormatCarrier.__init__(self)
       self._subdivision = None
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def body(self):

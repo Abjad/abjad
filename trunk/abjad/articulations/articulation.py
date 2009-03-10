@@ -7,7 +7,7 @@ class Articulation(_Abjad):
       self.string = string
       self.direction = direction
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __eq__(self, expr):
       assert isinstance(expr, Articulation)
@@ -28,7 +28,7 @@ class Articulation(_Abjad):
       else:
          return ''
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    _articulationsSupported = ('accent', 'marcato', 
         'staccatissimo',      'espressivo'
@@ -51,7 +51,7 @@ class Articulation(_Abjad):
          '^':'marcato', '+':'stopped', '-':'tenuto', '|':'staccatissimo', 
          '>':'accent', '.':'staccato', '_':'portato' }
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def direction( ):
@@ -76,10 +76,6 @@ class Articulation(_Abjad):
    @property
    def format(self):
       return str(self)
-
-#   @property
-#   def lily(self):
-#      return str(self)
 
    @apply
    def string( ):

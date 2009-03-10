@@ -5,19 +5,19 @@ from abjad.grace.formatter import _GraceFormatter
 class Grace(Container):
 
    def __init__(self, music = None):
-      ### self._carrier is a reference to the Note carrying the Graces.
+      ## self._carrier is a reference to the Note carrying the Graces.
       self._carrier = None
       music = music or None
       Container.__init__(self, music)
       self.formatter = _GraceFormatter(self)
       self.type = 'grace'
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __repr__(self):
       return 'Grace(%s)' % self._summary
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def type( ):

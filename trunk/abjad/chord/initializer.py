@@ -3,15 +3,15 @@ from abjad.core.initializer import _Initializer
 from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
 
 
-### NOTE - order of steps must be 
-###
-###        1. _Leaf.__init__
-###        2. Chord.formatter = _ChordFormatter
-###        3. _transfer_all_attributes
-###
-###        to first set Chord.formatter = _LeafFormatter, and
-###        only then overwrite Chord.formatter = _ChordFormatter, and
-###        only then transfer attributes (if necessary).
+## NOTE - order of steps must be 
+##
+##        1. _Leaf.__init__
+##        2. Chord.formatter = _ChordFormatter
+##        3. _transfer_all_attributes
+##
+##        to first set Chord.formatter = _LeafFormatter, and
+##        only then overwrite Chord.formatter = _ChordFormatter, and
+##        only then transfer attributes (if necessary).
 
 class _ChordInitializer(_Initializer):
    
@@ -20,9 +20,6 @@ class _ChordInitializer(_Initializer):
       from abjad.rest.rest import Rest
       from abjad.skip.skip import Skip
       client.pitches = [ ]
-#      if len(args) == 0:
-#         _Leaf.__init__(client, None, None)
-#         client.formatter = _ChordFormatter(client)
       if len(args) == 1 and isinstance(args[0], _Leaf):
          if args[0].kind('Note'):
             note = args[0]
@@ -36,7 +33,6 @@ class _ChordInitializer(_Initializer):
             _transfer_all_attributes(note, client)
             del client._notehead
             if note.notehead is not None:
-               #copy = note.copy( )
                client.append(copy.notehead)
          if args[0].kind('Rest'):
             rest = args[0]
@@ -54,21 +50,10 @@ class _ChordInitializer(_Initializer):
             _Leaf.__init__(client, skip.duration.written)
             client.formatter = _ChordFormatter(client)
             _transfer_all_attributes(skip, client)
-#      elif len(args) == 1:
-#         _Leaf.__init__(client, None, None)
-#         client.formatter = _ChordFormatter(client)
-#         pitches = args[0]
-#         client.pitches = pitches
       elif len(args) == 2:
          pitches, duration = args
          _Leaf.__init__(client, duration)
          client.formatter = _ChordFormatter(client)
          client.pitches = pitches
-         #client.pitches = sorted(pitches)
-#      elif len(args) == 3:
-#         pitches, duration, multiplier = args
-#         _Leaf.__init__(client, duration, multiplier)
-#         client.formatter = _ChordFormatter(client)
-#         client.pitches = pitches
       else:
          raise ValueError('can not initialize chord.')

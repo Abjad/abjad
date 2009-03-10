@@ -8,7 +8,7 @@ class _GrobHandlerSpanner(Spanner, _GrobHandler):
       Spanner.__init__(self, music)
       _GrobHandler.__init__(self, grob)
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _after(self, component):
       result = [ ]

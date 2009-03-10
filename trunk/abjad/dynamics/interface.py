@@ -3,8 +3,8 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-### TODO - make composer interface decisions about whether to support
-###        _DynamicsInterface.effective or not, and, if so, how.
+## TODO - make composer interface decisions about whether to support
+##        _DynamicsInterface.effective or not, and, if so, how.
 
 class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    
@@ -14,7 +14,7 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
       _SpannerReceptor.__init__(self, ['Crescendo', 'Decrescendo'])
       self._mark = None
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __eq__(self, arg):
       assert isinstance(arg, bool)
@@ -23,13 +23,12 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __nonzero__(self):
       return bool(self._mark)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _right(self):
       result = [ ]
       if self.mark:
-         #result.append(r'\%sX' % self.mark)
          result.append(r'\%s' % self.mark)
       return result
 
@@ -45,11 +44,10 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
       else:
          return ' '
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def effective(self):
-      #if self.spanner:
       if self.spanned:
          return self.spanner
       else:
@@ -58,7 +56,6 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
          else:
             cur = self._client.prev
             while cur:
-               #if cur.dynamics.spanner:
                if cur.dynamics.spanned:
                   return cur.dynamics.spanner.stop
                elif cur.dynamics.mark:

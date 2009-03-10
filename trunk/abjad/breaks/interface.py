@@ -13,21 +13,22 @@ class _BreaksInterface(_Interface, _FormatCarrier):
       self._x = None
       self._y = None
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __nonzero__(self):
       return self.line is True or self.page is True
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
-   ### TODO: Is there a *PATTERN* that will generalize
-   ###       this type of formatting information across
-   ###       leaves and containers?
-   ###       The _client inspection here is hackish.
-   ###       [TB 2008-12-03]
+   ## TODO: Is there a *PATTERN* that will generalize
+   ##       this type of formatting information across
+   ##       leaves and containers?
+   ##       The _client inspection here is hackish.
+   ##       [TB 2008-12-03]
 
    @property
    def _after(self):
+      '''Formatting contributions to appear immediately after component.'''
       result = [ ]
       if self._client.kind('_Leaf'):
          if self.line:
@@ -41,6 +42,7 @@ class _BreaksInterface(_Interface, _FormatCarrier):
 
    @property
    def _closing(self):
+      '''Formatting contributions to appear in closing of component.'''
       result = [ ]
       if self._client.kind('Container'):
          if self.line:
@@ -50,11 +52,12 @@ class _BreaksInterface(_Interface, _FormatCarrier):
          details = self._line_break_system_details
          if details:
             result.append(details)
-      #result = ['\t' + r for r in result]
       return result
 
    @property
    def _line_break_system_details(self):
+      '''LilyPond Score.NonMusicalPaperColumn #'line-break-system-details
+         formatting contribution.'''
       result = ''
       x = self.x
       y = self.y
@@ -70,10 +73,11 @@ class _BreaksInterface(_Interface, _FormatCarrier):
          result += "#'(%s)" % temp_str
       return result
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def line( ):
+      r'''Boolean setting to contribute LilyPond \line break.'''
       def fget(self):
          return self._line
       def fset(self, arg):
@@ -87,6 +91,7 @@ class _BreaksInterface(_Interface, _FormatCarrier):
 
    @apply
    def page( ):
+      r'''Boolean setting to contribute LilyPond \pageBreak.'''
       def fget(self):
          return self._page
       def fset(self, arg):
@@ -100,6 +105,7 @@ class _BreaksInterface(_Interface, _FormatCarrier):
 
    @apply
    def x( ):
+      '''X-value for line-break-system-details contribution.'''
       def fget(self):
          return self._x
       def fset(self, arg):
@@ -109,6 +115,7 @@ class _BreaksInterface(_Interface, _FormatCarrier):
 
    @apply
    def y( ):
+      '''Y-value for line-break-system-details contribution.'''
       def fget(self):
          return self._y
       def fset(self, arg):
@@ -116,8 +123,10 @@ class _BreaksInterface(_Interface, _FormatCarrier):
          self._y = arg
       return property(**locals( ))
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def clear(self):
+      '''Remove any LilyPond \line break contribution.
+         Remove any LilyPond \pageBreak contribution.'''
       self.line = None
       self.page = None

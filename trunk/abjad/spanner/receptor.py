@@ -1,11 +1,11 @@
-### Use this _SpannerReceptor class as a mix-in from which
-### different leaf interfaces can inherit.
-### Having a leaf interface inherit from _SpannerReceptor
-### indicates that you want the leaf interface to be 'spannable'.
-### The 'spanners' variable passed in here at initialization is
-### a list of (usually a single) string, like ['Beam'], that says
-### to the leaf interface: "please recevie spanners of which the
-### classname is 'Beam'".
+## Use this _SpannerReceptor class as a mix-in from which
+## different leaf interfaces can inherit.
+## Having a leaf interface inherit from _SpannerReceptor
+## indicates that you want the leaf interface to be 'spannable'.
+## The 'spanners' variable passed in here at initialization is
+## a list of (usually a single) string, like ['Beam'], that says
+## to the leaf interface: "please recevie spanners of which the
+## classname is 'Beam'".
 
 from abjad.core.abjadcore import _Abjad
 from abjad.exceptions.exceptions import ExtraSpannerError
@@ -18,7 +18,7 @@ class _SpannerReceptor(_Abjad):
    def __init__(self, classnames):
       self._classnames = classnames
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def chain(self):
@@ -82,11 +82,7 @@ class _SpannerReceptor(_Abjad):
 
    @property
    def spanner(self):
-      '''Return first spanner attaching to client.
-         TODO: raise MissingSpannerError and ExtraSpannerError.'''
-      #spanners = self.spanners
-      #if spanners:
-      #   return self.spanners[0]
+      '''Return first spanner attaching to client.'''
       count = self.count
       if count == 0:
          raise MissingSpannerError
@@ -106,7 +102,7 @@ class _SpannerReceptor(_Abjad):
          result.extend([p for p in spanners if hasname(p, classname)])
       return result
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def unspan(self):
       '''Remove all spanners attaching to client.'''

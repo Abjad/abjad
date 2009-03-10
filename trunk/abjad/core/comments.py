@@ -8,17 +8,19 @@ class _Comments(list, _Abjad):
       self.after = [ ]
       self.right = [ ]
 
-   @property
-   def _before(self):
-      result = [ ]
-      result.extend(['% ' + x for x in self.before])
-      result.extend(['% ' + x for x in self])
-      return result
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _after(self):
       result = [ ]
       result.extend(['% ' + x for x in self.after])
+      return result
+
+   @property
+   def _before(self):
+      result = [ ]
+      result.extend(['% ' + x for x in self.before])
+      result.extend(['% ' + x for x in self])
       return result
 
    @property

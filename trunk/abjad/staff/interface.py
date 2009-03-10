@@ -9,7 +9,7 @@ class _StaffInterface(_Interface, _FormatCarrier):
       _FormatCarrier.__init__(self)
       self._forced = None
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _before(self):
@@ -28,7 +28,7 @@ class _StaffInterface(_Interface, _FormatCarrier):
          result.append(r'\change Staff = %s' % self.given.invocation.name)
       return result
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def changed(self):
@@ -41,5 +41,4 @@ class _StaffInterface(_Interface, _FormatCarrier):
 
    @property
    def given(self):
-      #return self._client._parentage._first('Staff')
       return self._client.parentage._first('Staff')

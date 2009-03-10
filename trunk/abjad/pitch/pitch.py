@@ -3,7 +3,6 @@ from abjad.core.abjadcore import _Abjad
 from abjad.accidental.accidental import Accidental
 from abjad.pitch.initializer import _PitchInitializer
 from abjad.pitch.tools import _PitchTools
-from math import floor
 
 
 class Pitch(_Abjad):
@@ -15,7 +14,7 @@ class Pitch(_Abjad):
       self.initializer = _PitchInitializer( )
       self.initializer.initialize(self, *args)
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __eq__(self, arg):
       assert isinstance(arg, Pitch)
@@ -61,12 +60,12 @@ class Pitch(_Abjad):
       else:
          return ''
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _isSet(self):
       return bool(self.letter and self.accidental and not self.octave is None)
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def accidental( ):
@@ -152,7 +151,7 @@ class Pitch(_Abjad):
       else:
          return None
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def diatonicTranspose(self, diatonicInterval):
       quality, interval = diatonicInterval.split()
@@ -167,7 +166,7 @@ class Pitch(_Abjad):
       octave = self.tools.letterPitchNumberToOctave(letter, pitchNumber)
       return Pitch(pitchName, octave) 
 
-   ### DEPRECATED: use p1.altitude == p2.altitude instead
+   ## DEPRECATED: use p1.altitude == p2.altitude instead
 #   def enharmonicCompare(self, arg):
 #      result = cmp(self.number, arg.number)
 #      if result == 0:

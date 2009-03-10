@@ -13,12 +13,12 @@ class _Context(Container):
 
    ## OVERLOADS ##
 
-   ### TODO: eliminate this in favor of ID-only equivalence,
-   ###       just like all the other system components;
-   ###       if we want to preserve this functionality,
-   ###       either test all three attributes by hand,
-   ###       or save this functionality off as a different
-   ###       function in the public interface
+   ## TODO: eliminate this in favor of ID-only equivalence,
+   ##       just like all the other system components;
+   ##       if we want to preserve this functionality,
+   ##       either test all three attributes by hand,
+   ##       or save this functionality off as a different
+   ##       function in the public interface
    def __eq__(self, arg):
       if isinstance(arg, _Context):
          if self.brackets == arg.brackets and \

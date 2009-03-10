@@ -11,7 +11,7 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
       _SpannerReceptor.__init__(self, ['Beam'])
       self._counts = (None, None)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _before(self):
@@ -27,7 +27,7 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def _flags(self):
       return self._client.duration._flags
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def beamable(self):
@@ -56,39 +56,3 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
    @property
    def opening(self):
       return self.spanned and '[' in self.spanner._right(self._client)
-
-#   ### METHODS ###
-#
-#   def bridge(self, n, direction):
-#      assert isinstance(n, int) and n >=0
-#      assert direction in ('left', 'right')
-#      if self.spanned:
-#         if self.spanners[0]._matchingSpanner(direction = direction):
-#            self.spanners[0].fuse(direction = direction)
-#            self.subdivide(n, direction)
-#
-#   def subdivide(self, n, direction):
-#      assert isinstance(n, int) and n >= 0 or n is None
-#      assert direction in ('left', 'right')
-#      prev = self._client.prev
-#      next = self._client.next
-#      if n is None:
-#         if direction == 'left':
-#            self.counts = None, self.counts[1]
-#            if prev:
-#               prev.beam.counts = prev.beam.counts[0], None
-#         else:
-#            self.counts = self.counts[0], None
-#            if next:
-#               next.beam.counts = None, next.beam.counts[1]
-#      else:
-#         if direction == 'left':
-#            self.counts = n, self.counts[1]
-#            prev = self._client.prev
-#            if prev:
-#               prev.beam.counts = prev.beam.counts[0], n 
-#         else:
-#            self.counts = self.counts[0], n
-#            next = self._client.next
-#            if next:
-#               next.beam.counts = n, next.beam.counts[1]

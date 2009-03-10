@@ -7,7 +7,7 @@ class _Parentage(_Abjad):
    def __init__(self, client):
       self._client = client
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _cutOutgoingReferenceToParent(self):
       '''
@@ -74,7 +74,7 @@ class _Parentage(_Abjad):
          old_parent._music.remove(client)
       client._parent = new_parent
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
    
    @property
    def _enclosingContextName(self):
@@ -94,17 +94,6 @@ class _Parentage(_Abjad):
          p = p._parent
       return p
 
-#   ## DEPRECATED in favor of formatter number interfaces
-#   @property
-#   def _number(self):
-#      p = self._client._parent
-#      while p is not None:
-#         if p.formatter.number:
-#            return True
-#         else:
-#            p = p._parent
-#      return None
-   
    @property
    def _threadParentage(self):
       '''Return thread-pertinent parentage structure.
@@ -112,7 +101,7 @@ class _Parentage(_Abjad):
          Parallels and tautologies (unlikely) removed.'''
       parentage = self.parentage[1:]
       if len(parentage) > 0:
-      ### remove sequentials
+      ## remove sequentials
          for p in parentage[:]:
             if p.kind('Sequential') or p.kind('_Tuplet'):
                parentage.remove(p)
@@ -128,7 +117,7 @@ class _Parentage(_Abjad):
                      parentage.remove(p)
       return parentage
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def depth(self):
@@ -173,7 +162,7 @@ class _Parentage(_Abjad):
       '''Return reference to component at depth 0 of Abjad expression.'''
       return self.parentage[-1]
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def detach(self):
       '''Sever both incoming reference from and

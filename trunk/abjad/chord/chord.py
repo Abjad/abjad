@@ -1,7 +1,6 @@
 from abjad.chord.formatter import _ChordFormatter
 from abjad.chord.initializer import _ChordInitializer
 from abjad.leaf.leaf import _Leaf
-#from abjad.notehead.notehead import _NoteHead
 from abjad.notehead.notehead import NoteHead
 from abjad.pitch.pitch import Pitch
 
@@ -11,14 +10,13 @@ class Chord(_Leaf):
    def __init__(self, *args):
       self._initializer = _ChordInitializer(self, _Leaf, *args)
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __contains__(self, arg):
       if isinstance(arg, (int, float, long)):
          return Pitch(arg) in self.pitches
       elif isinstance(arg, Pitch):
          return arg in self.pitches
-      #elif isinstance(arg, _NoteHead):
       elif isinstance(arg, NoteHead):
          return arg in self.noteheads
       else:
@@ -38,15 +36,11 @@ class Chord(_Leaf):
 
    def __setitem__(self, i, arg):
       if isinstance(arg, (int, long, float)):
-         #self._noteheads[i] = _NoteHead(self, pitch = arg)
          self._noteheads[i] = NoteHead(pitch = arg)
          self._noteheads[i]._client = self
       elif isinstance(arg, Pitch):
-         #self._noteheads[i] = _NoteHead(self, pitch = arg)
          self._noteheads[i] = NoteHead(pitch = arg)
          self._noteheads[i]._client = self
-      #elif isinstance(arg, _NoteHead):
-      #   self._noteheads[i] = arg
       elif isinstance(arg, NoteHead):
          self._noteheads[i] = arg
          self._noteheads[i]._client = self
@@ -55,9 +49,10 @@ class Chord(_Leaf):
    def __str__(self):
       return '<%s>%s' % (self._summary, self.duration._product)
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _sort(self):
+      '''Sort noteheads in self by pitch altitude.'''
       def _helper(nh1, nh2):
          altitude_cmp = cmp(nh1.pitch.altitude, nh2.pitch.altitude)
          if altitude_cmp == 0:
@@ -68,12 +63,14 @@ class Chord(_Leaf):
 
    @property
    def _summary(self):
+      '''Return string summary of noteheads in self.'''
       return ' '.join([str(x) for x in self._noteheads])
 
-   ### PUBLIC ATTRIBUTES ### 
+   ## PUBLIC ATTRIBUTES ## 
 
    @property
    def center(self):
+      '''Return arithmetic mean of pitch numbers in self.'''
       numbers = self.numbers
       if numbers:
          return sum(numbers).__truediv__(len(numbers))
@@ -96,18 +93,14 @@ class Chord(_Leaf):
          self._noteheads = [ ]
          for arg in arglist:
             if isinstance(arg, (int, float, long)):
-               #self._noteheads.append(_NoteHead(self, pitch = arg))
                self._noteheads.append(NoteHead(pitch = arg))
                self._noteheads[-1]._client = self
             elif isinstance(arg, tuple):
-               #self._noteheads.append(_NoteHead(self, pitch = arg))   
                self._noteheads.append(NoteHead(pitch = arg))   
                self._noteheads[-1]._client = self
             elif isinstance(arg, Pitch):
-               #self._noteheads.append(_NoteHead(self, pitch = arg))
                self._noteheads.append(NoteHead(pitch = arg))
                self._noteheads[-1]._client = self
-            #elif isinstance(arg, _NoteHead):
             elif isinstance(arg, NoteHead):
                self._noteheads.append(arg)
                self._noteheads[-1]._client = self
@@ -140,18 +133,16 @@ class Chord(_Leaf):
          self.noteheads = arglist
       return property(**locals( ))
 
-   ### PUBLIC METHODS ### 
+   ## PUBLIC METHODS ## 
 
    def append(self, arg):
+      '''Append notehead token to self. Then sort noteheads.'''
       if isinstance(arg, (int, float, long)):
-         #self._noteheads.append(_NoteHead(self, pitch = arg))
          self._noteheads.append(NoteHead(pitch = arg))
          self._noteheads[-1]._client = self
       elif isinstance(arg, Pitch):
-         #self._noteheads.append(_NoteHead(self, pitch = arg))
          self._noteheads.append(NoteHead(pitch = arg))
          self._noteheads[-1]._client = self
-      #elif isinstance(arg, _NoteHead):
       elif isinstance(arg, NoteHead):
          self._noteheads.append(arg)
          self._noteheads[-1]._client = self
@@ -160,17 +151,19 @@ class Chord(_Leaf):
       self._sort( )
 
    def extend(self, arglist):
+      '''Extend notehead tokens to self. Then sort noteheads.'''
       assert isinstance(arglist, list)
       for arg in arglist:
          self.append(arg)
       self._sort( )
 
    def pop(self, i = -1):
-      #return self._noteheads.pop(i)
+      '''Remove last notehead in self. Then return.'''
       notehead = self._noteheads.pop(i)
       notehead._client = None
       return notehead
 
    def remove(self, notehead):
+      '''Remove last notehead in self. Do not return.'''
       notehead._client = None
       self._noteheads.remove(notehead)

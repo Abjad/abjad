@@ -1,7 +1,7 @@
 class _Abjad(object):
-   '''
-   Abjad root class. All Abjad classes inherit from _Abjad.
-   '''
+   '''Abjad root class. All Abjad classes inherit from _Abjad.'''
+
+   ## OVERLOADS ##
    
    def __eq__(self, arg):
       return id(self) == id(arg)

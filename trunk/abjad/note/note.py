@@ -1,5 +1,4 @@
 from abjad.leaf.leaf import _Leaf
-#from abjad.notehead.notehead import _NoteHead
 from abjad.notehead.notehead import NoteHead
 from abjad.note.initializer import _NoteInitializer
 from abjad.pitch.pitch import Pitch
@@ -10,7 +9,7 @@ class Note(_Leaf):
    def __init__(self, *args):
       self._initializer = _NoteInitializer(self, _Leaf, *args)
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __repr__(self):
       return 'Note(%s, %s)' % (self.pitch, self.duration._product)
@@ -18,7 +17,7 @@ class Note(_Leaf):
    def __str__(self):
       return self._body
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _body(self):
@@ -30,7 +29,7 @@ class Note(_Leaf):
          result += ' :%s' % self.stem.tremolo
       return result 
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def notehead( ):
@@ -40,14 +39,11 @@ class Note(_Leaf):
          if isinstance(arg, type(None)):
             self._notehead = None
          elif isinstance(arg, (int, float, long)):
-            #self._notehead = _NoteHead(self, pitch = arg)
             self._notehead = NoteHead(pitch = arg)
             self._notehead._client = self
          elif isinstance(arg, Pitch):
-            #self._notehead = _NoteHead(self, pitch = arg)
             self._notehead = NoteHead(pitch = arg)
             self._notehead._client = self
-         #elif isinstance(arg, _NoteHead):
          elif isinstance(arg, NoteHead):
             self._notehead = arg
             self._notehead._client = self
@@ -75,7 +71,6 @@ class Note(_Leaf):
                self.notehead.pitch = None
          else:
             if self.notehead is None:
-               #self.notehead = _NoteHead(self)
                self.notehead = NoteHead(pitch = None)
             if isinstance(arg, (int, float, long)):
                self.notehead.pitch = Pitch(arg)

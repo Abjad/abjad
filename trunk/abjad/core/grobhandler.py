@@ -10,7 +10,7 @@ class _GrobHandler(_FormatCarrier):
       self._parser = _Parser( )
       self._promotions = { }
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __len__(self):
       return len([kvp for kvp in self.__dict__.items( ) 
@@ -22,7 +22,7 @@ class _GrobHandler(_FormatCarrier):
       else:
          object.__setattr__(self, attr, value)
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _promotedGrob(self, attribute):
       context = self._promotions.get(attribute, None)
@@ -31,7 +31,7 @@ class _GrobHandler(_FormatCarrier):
       else:
          return '%s' % self._grob
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _before(self):
@@ -46,7 +46,6 @@ class _GrobHandler(_FormatCarrier):
          return ''
 
    @property
-   #def _before(self):
    def _grobOverrides(self):
       result = [ ]
       for key, value in self.__dict__.items( ):
@@ -69,7 +68,7 @@ class _GrobHandler(_FormatCarrier):
                self._parser.formatAttribute(key)))
       return result
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def clear(self):
       for key, value in self.__dict__.items( ):

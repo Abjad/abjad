@@ -9,9 +9,9 @@ class _HarmonicInterface(_Interface, _FormatCarrier):
       _FormatCarrier.__init__(self)
       self._set = None
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
-   ### TODO: figure out if these comparison definitions should go away
+   ## TODO: figure out if these comparison definitions should go away
 
    def __eq__(self, arg):
       assert isinstance(arg, bool)
@@ -20,7 +20,7 @@ class _HarmonicInterface(_Interface, _FormatCarrier):
    def __nonzero__(self):
       return bool(self._set)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _right(self):
@@ -29,7 +29,7 @@ class _HarmonicInterface(_Interface, _FormatCarrier):
          result.append(r'\flageolet')
       return result
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def clear(self):
       self._set = None

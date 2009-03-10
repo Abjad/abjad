@@ -11,7 +11,7 @@ class DynamicMeasure(_Measure):
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def denominator( ):

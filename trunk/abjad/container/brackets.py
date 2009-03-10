@@ -6,7 +6,7 @@ class _Brackets(_Abjad):
    def __init__(self, name = 'round'):
       self.name = name
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __eq__(self, arg):
       if isinstance(arg, str):
@@ -22,7 +22,7 @@ class _Brackets(_Abjad):
    def __repr__(self):
       return '%s %s' % (self.open, self.close)
 
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    _bracketNameToOpenClosePair = {
       'round':          ('(', ')'),
@@ -34,7 +34,7 @@ class _Brackets(_Abjad):
       'simultaneous':   ('<<', '>>'),
       }
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def close(self):

@@ -117,10 +117,8 @@ class ComplexBeam(Beam):
    def _spanPoints(self):
       result = [ ]
       if self.durations is not None:
-         #result.append(Rational(*self.durations[0]))
          result.append(self.durations[0])
          for d in self.durations[1:]:
-            #result.append(result[-1] + Rational(*d))   
             result.append(result[-1] + d)   
       return result
 

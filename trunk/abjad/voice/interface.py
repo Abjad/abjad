@@ -10,12 +10,13 @@ class _VoiceInterface(_Interface, _FormatCarrier):
       self._defaultSignature = (0, )
       self.number = None
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _before(self):
       result = [ ]
-      voices = {1:r'\voiceOne', 2:r'\voiceTwo', 3:r'\voiceThree', 4:r'\voiceFour'}
+      voices = {
+         1:r'\voiceOne', 2:r'\voiceTwo', 3:r'\voiceThree', 4:r'\voiceFour'}
       if self.number:
          result.append(voices[self.number])
       return result
@@ -27,14 +28,13 @@ class _VoiceInterface(_Interface, _FormatCarrier):
             return (self._client.invocation.name, )
       return (id(self._client), )
 
-   ### this aliasing follows the method found in the TempoInterface 
-   ### and the ClefInterface.
+   ## this aliasing follows the method found in the TempoInterface 
+   ## and the ClefInterface.
    @property
    def _opening(self):
       return self._before
 
-
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def anonymous(self):
@@ -72,13 +72,10 @@ class _VoiceInterface(_Interface, _FormatCarrier):
 
    @property
    def signature(self):
-      #parentage = self._client._parentage._parentage
-      #parentage = self._client.parentage._parentage
       parentage = self._client.parentage.parentage
       found_lilypond_expression = False
       signator = None
       for i, p in enumerate(parentage):
-         #print i, p, '\n'
          if p.kind('_Leaf'):
             signator = p
          elif p.kind('_Context') and not getattr(p, 'parallel', False):
@@ -95,8 +92,6 @@ class _VoiceInterface(_Interface, _FormatCarrier):
             signator = p
          elif not p.kind('_Context') and getattr(p, 'parallel', False):
             found_lilypond_expression = True
-            #if p._parentage._orphan:
-            #if p.parentage._orphan:
             if p.parentage.orphan:
                if parentage.index(p) == 0:
                   return self._defaultSignature

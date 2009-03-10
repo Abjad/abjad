@@ -7,6 +7,8 @@ class Decrescendo(_Hairpin):
       _Hairpin.__init__(self, music, start = start, stop = stop, trim = trim)
       self._shape = '>'
 
+   ## PRIVATE ATTRIBUTES ##
+
    @property
    def _body(self):
       return '>'

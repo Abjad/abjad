@@ -3,24 +3,15 @@ from abjad.measure.duration import _MeasureDurationInterface
 from abjad.measure.formatter import _MeasureFormatter
 
 
-## Set RigidMeasure.block, AnonymousMeasure.block, DynamicMeasure.block, etc
-## to True to print LilyPond start-measure and stop-measure 
-## comments at format-time.
-
-## Set RigidMeasure.block, AnonymousMeasure.block, DynamicMeasure.block, etc
-## to 'number' to print LilyPond start-measure and stop-measure 
-## comments with measure numbers at format-time.
-
 class _Measure(Container):
 
    def __init__(self, music = None):
       music = music or [ ]
       Container.__init__(self, music)
-      #self.block  = False
       self._duration = _MeasureDurationInterface(self)
       self.formatter = _MeasureFormatter(self)
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __repr__(self):
       class_name = self.__class__.__name__
@@ -49,7 +40,7 @@ class _Measure(Container):
       else:
          return '| |'
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def duration(self):
@@ -57,5 +48,4 @@ class _Measure(Container):
 
    @property
    def full(self):
-      #return self.meter.effective.duration == self.duration.contents
       return self.meter.effective.duration == self.duration.preprolated

@@ -9,7 +9,7 @@ class Accidental(_Abjad):
       elif isinstance(arg, Accidental):
          self.string = arg.string 
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __eq__(self, arg):
       return self.string == Accidental(arg).string
@@ -38,7 +38,7 @@ class Accidental(_Abjad):
    def __str__(self):
       return self.string
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def adjustment(self):
@@ -57,7 +57,7 @@ class Accidental(_Abjad):
          self._string = arg
       return property(**locals( ))
 
-   ### DICTIONARIES ###
+   ## DICTIONARIES ##
 
    accidentalStringToAdjustment = {
         '': 0,      '!': 0,
@@ -66,7 +66,7 @@ class Accidental(_Abjad):
       'ss': 2,    'tqs': 1.5,
        's': 1,     'qs': 0.5  }
 
-   ### TODO - remove -2.5 after Lidercfeny ...
+   ## TODO - remove -2.5 after Lidercfeny ...
 
    adjustmentToAccidentalString = {
        0: '',
@@ -77,7 +77,7 @@ class Accidental(_Abjad):
     -2.5: 'ff'
        }
 
-   ### PUBLIC METHODS ###
+   ## PUBLIC METHODS ##
 
    def hasNone(self):
       return self.string == ''

@@ -26,7 +26,7 @@ class Meter(_GrobHandler):
       else:
          raise ValueError('invalid %s meter initialization.' % str(args))
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __eq__(self, arg):
       if isinstance(arg, Meter):
@@ -73,7 +73,7 @@ class Meter(_GrobHandler):
    def __str__(self):
       return '%s/%s' % (self.numerator, self.denominator)
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def denominator( ):

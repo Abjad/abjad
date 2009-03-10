@@ -11,7 +11,7 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
       _GrobHandler.__init__(self, ['Tempo'])
       self._metronome = None
  
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __eq__(self, arg):
       assert isinstance(arg, bool)
@@ -20,7 +20,7 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __nonzero__(self):
       return bool(self._metronome)
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
    
    @property
    def _before(self):
@@ -31,8 +31,7 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
          result.append(r'\tempo %s=%s' % (note, tempo))
       return result
 
-   ### kinda kinky to alias _opening to _before? ###
-
+   ## kinda kinky to alias _opening to _before? ##
    @property
    def _opening(self):
       return self._before
@@ -42,4 +41,3 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def clear(self):
       self._metronome = None
       _GrobHandler.clear(self)
-

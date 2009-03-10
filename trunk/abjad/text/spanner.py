@@ -7,26 +7,12 @@ class Text(_GrobHandlerSpanner):
       _GrobHandlerSpanner.__init__(self, 'TextSpanner', music)
       self.position = None
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
-   @apply
-   def position( ):
-      def fget(self):
-         return self._position
-      def fset(self, arg):
-         if not arg in self._positions.keys( ):
-            raise ValueError("Position must be one of %s" % self._positions.keys( ))
-         self._position = arg
-      return property(**locals( ))         
-         
+   _positions = {'neutral':r'\textSpannerNeutral', 
+      'up':r'\textSpannerUp', 'down':r'\textSpannerDown', None:None}
 
-   ### PRIVATE ATTRIBUTES ###
-
-   _positions = {'neutral':r'\textSpannerNeutral', 'up':r'\textSpannerUp', 
-                 'down':r'\textSpannerDown', None:None}
-
-
-   ### PRIVATE METHODS ###
+   ## PRIVATE METHODS ##
 
    def _before(self, leaf):
       result = [ ]
@@ -44,3 +30,15 @@ class Text(_GrobHandlerSpanner):
          result.append(r'\stopTextSpan')   
       return result
 
+   ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def position( ):
+      def fget(self):
+         return self._position
+      def fset(self, arg):
+         if not arg in self._positions.keys( ):
+            raise ValueError(
+               "Position must be one of %s" % self._positions.keys( ))
+         self._position = arg
+      return property(**locals( ))         
