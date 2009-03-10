@@ -23,3 +23,26 @@ def test_slur_spanner_02( ):
    for leaf in t.leaves:
       assert leaf.spanners.attached == set([s])
    assert t.format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+
+
+def test_slur_spanner_03( ):
+   '''Position may be set to None, 'neutral', 'up' or 'down'. '''
+   t = Staff(run(4))
+   p = Slur(t[:])
+   p.position = None
+   assert t.format == "\\new Staff {\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
+   p.position = 'up'
+   assert t.format == "\\new Staff {\n\t\\slurUp\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
+   p.position = 'down'
+   assert t.format == "\\new Staff {\n\t\\slurDown\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
+   p.position = 'neutral'
+   assert t.format == "\\new Staff {\n\t\\slurNeutral\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"
+   r'''
+   \new Staff {
+           \slurNeutral
+           c'8 (
+           c'8
+           c'8
+           c'8 )
+   }
+   '''
