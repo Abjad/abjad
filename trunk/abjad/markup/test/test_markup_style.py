@@ -1,16 +1,21 @@
 from abjad import *
 
 
-def test_markup_01( ):
+def test_markup_style_01( ):
    t = Markup('hello')
    assert t.format == r'\markup{hello}'
 
 
-def test_markup_02( ):
+def test_markup_style_02( ):
    t = Markup('"hello"')
    assert t.format == r'\markup{"hello"}'
 
 
-def test_markup_03( ):
+def test_markup_style_03( ):
    t = Markup(r'\upright "hello"')
    assert t.format == r'\markup{\upright "hello"}'
+
+def test_markup_style_03( ):
+   t = Markup("(markup #:draw-line '(0 . -1))")
+   t.style = 'scheme'
+   assert t.format == "#(markup #:draw-line '(0 . -1))"
