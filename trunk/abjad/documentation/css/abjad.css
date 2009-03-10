@@ -61,7 +61,7 @@ H1, H2, H3, H4, H5, H6 {
 
 H1, .end-of-page, .page-section {
    border-bottom: 2px solid grey;
-   padding-bottom: 10px;
+   padding-bottom: 8px;
 }
 
 A {
