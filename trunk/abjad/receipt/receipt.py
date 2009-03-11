@@ -1,4 +1,4 @@
-from abjad.core.coreabjad import _Abjad
+from abjad.core.abjadcore import _Abjad
 from abjad.receipt.parentage import ParentageReceipt
 from abjad.receipt.spanners import SpannersReceipt
 
