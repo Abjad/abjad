@@ -1,6 +1,9 @@
-class SpannersReceipt(object):
-   '''Class to encapsulate spanner and index-in-spanner
-      of any Abjad component.'''
+from abjad.core.abjadcore import _Abjad
+
+
+class SpannersReceipt(_Abjad):
+   '''Class to encapsulate pairs describing the spanners
+      that used to attach to an Abjad component.'''
 
    def __init__(self):
-      pass
+      self._pairs = set([ ])
