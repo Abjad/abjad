@@ -10,23 +10,21 @@ class _Parentage(_Abjad):
    ## PRIVATE METHODS ##
 
    def _cutOutgoingReferenceToParent(self):
-      '''
-      Self no longer references parent;
-      but parent continues to reference self.
-      '''
+      '''Self no longer references parent;
+         but parent continues to reference self.'''
       if hasattr(self._client, '_parent'):
          result = self._client._parent
          self._client._parent = None
          return result
 
    def _disjunctInclusiveParentageBetween(self, arg):
-      '''
-      Same as _disjunctParentageBetween( ) but including
-      references to self._client and arg.
-      '''
+      '''Same as _disjunctParentageBetween( ) but including
+         references to self._client and arg.'''
       return set(self.parentage) ^ set (arg.parentage.parentage)
 
    def _first(self, classname):
+      '''Return first instance of classname 
+         in score tree above client.'''
       p = self._client._parent
       while p is not None:
          if p.kind(classname):
@@ -36,10 +34,8 @@ class _Parentage(_Abjad):
       return None
 
    def _getFirstSharedParent(self, arg):
-      '''
-      Returns first shared parent between self._client and arg,
-      otherwise None.
-      '''
+      '''Returns first shared parent between self._client and arg,
+         otherwise None.'''
       shared = set(self.parentage) & set(arg.parentage.parentage)
       if shared:
          for parent in self.parentage:
@@ -48,10 +44,8 @@ class _Parentage(_Abjad):
       return None
 
    def _removeFromParent(self):
-      '''
-      Parent no longer references self;
-      but self continues to reference parent.
-      '''
+      '''Parent no longer references self;
+         but self continues to reference parent.'''
       if hasattr(self._client, '_parent'):
          try:
             self._client._parent._music.remove(self._client)
@@ -68,6 +62,7 @@ class _Parentage(_Abjad):
          return [client] + components
 
    def _switchParentTo(self, new_parent):
+      '''Remove client from parent and give client to new_parent.'''
       client = self._client
       old_parent = client._parent
       if old_parent is not None:
@@ -78,6 +73,8 @@ class _Parentage(_Abjad):
    
    @property
    def _enclosingContextName(self):
+      '''Return invocation name of context 
+         closest to client in score tree.'''
       for p in self.parentage:
          invocation = getattr(p, 'invocation', None)
          if invocation:
@@ -87,6 +84,8 @@ class _Parentage(_Abjad):
 
    @property
    def _governor(self):
+      '''Return a reference to the first 
+         sequential container enclosing client.'''
       p = self._client._parent
       if p is None or p.parallel:
          return None
@@ -166,7 +165,7 @@ class _Parentage(_Abjad):
 
    def detach(self):
       '''Sever both incoming reference from and
-      outgoing reference to parent.'''
+         outgoing reference to parent.'''
       client = self._client
       client._update._markForUpdateToRoot( )
       self._removeFromParent( )
