@@ -72,6 +72,8 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in list(self.attached):
          spanner.clear( )
 
+   ## TODO: Make this method private.
+   ##       Keep _Component.detach( ) public.
    def detach(self):
       '''Remove client from every spanner attaching to client.'''
       client = self._client
@@ -90,9 +92,13 @@ class _ComponentSpannerAggregator(_Interface):
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
 
+   ## TODO: Make this method private.
+   ##       Keep _Component.reattach( ) public.
    def reattach(self, receipt):
-      '''Reattach spanners to receipt.component.'''
+      '''Reattach spanners described in component to client.
+         Empty receipt and return client.'''
       client = self._client
       for spanner, index in receipt._pairs:
          spanner.insert(index, client)
+      receipt._empty( )
       return client

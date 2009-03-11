@@ -175,6 +175,8 @@ class _Parentage(_Abjad):
 
    ## PUBLIC METHODS ##
 
+   ## TODO: Make this method private. 
+   ##       Keep _Component.detach( ) public.
    def detach(self):
       '''Sever incoming reference from parent to client.
          Sever outgoing reference from client to parent.'''
@@ -185,11 +187,15 @@ class _Parentage(_Abjad):
       receipt = ParentageReceipt(parent, index)
       return receipt
 
+   ## TODO: Make this method private.
+   ##       Keep _Component.reattach( ) public.
    def reattach(self, receipt):
-      '''Reattach client to parent described in receipt.'''
+      '''Reattach client to parent described in receipt.
+         Empty receipt and return client.'''
       client = self._client
       parent = receipt._parent
       index = receipt._index
       parent._music.insert(index, client)
       client._parent = parent
+      receipt._empty( )
       return client

@@ -7,3 +7,8 @@ class SpannersReceipt(_Abjad):
 
    def __init__(self):
       self._pairs = set([ ])
+
+   ## PRIVATE METHODS ##
+
+   def _empty(self):
+      self._pairs.clear( )

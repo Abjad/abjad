@@ -9,3 +9,9 @@ class ParentageReceipt(_Abjad):
    def __init__(self, parent, index):
       self._parent = parent
       self._index = index
+
+   ## PRIVATE METHODS ##
+
+   def _empty(self):
+      self._parent = None
+      self._index = None

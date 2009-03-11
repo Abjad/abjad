@@ -6,12 +6,12 @@ from abjad.receipt.spanners import SpannersReceipt
 class Receipt(_Abjad):
    '''Well structured references attaching to some Abjad component.'''
 
-   def __init__(self, component):
-      self._parent_receipt = _ParentReceipt(component)
-      self._spanners_receipt = _SpannersReceipt(component)
+   def __init__(self, parentage, spanners):
+      self._parentage = parentage
+      self._spanners = spanners
 
    ## PRIVATE METHODS ##
 
-   ## TODO: Reimplement dynamically
-   def _clear_all_references(self):
-      self.__init__(self)
+   def _empty(self):
+      self._parentage = None
+      self._spanners = None
