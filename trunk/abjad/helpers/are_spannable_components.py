@@ -19,4 +19,4 @@ def _are_spannable_components(expr):
       in any function that you want to EVENTUALLY use
       _are_spannable_components( ), as a type of structural to-do.'''
 
-   return _are_successive_components(components)
+   return _are_successive_components(expr)

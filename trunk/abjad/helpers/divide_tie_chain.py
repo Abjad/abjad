@@ -2,7 +2,6 @@ from abjad.note.note import Note
 from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.get_tie_chain_written import _get_tie_chain_written
 from abjad.helpers.prolated_to_written import _prolated_to_written
-from abjad.helpers.untie_components import untie_components
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
