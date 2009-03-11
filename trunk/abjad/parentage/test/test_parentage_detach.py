@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_parentage_detach_01( ):
-   '''Unspanned leaves detach from parent containers.'''
+   '''Unspanned leaves can parentage-detach.'''
 
    t = Staff(scale(4))
    note = t[1]
@@ -24,11 +24,12 @@ def test_parentage_detach_01( ):
 
 
 def test_parentage_detach_02( ):
-   '''Spanned leaves detach from parent containers.
-      Spanners continue to attach to detached leaves.'''
+   '''Spanned leaves can parentage-detach.
+      Spanners continue to attach to parentage-detached leaves.'''
 
    t = Staff([Voice(scale(4))])
    p = Beam(t.leaves)
+   leaf = t.leaves[0]
 
    r'''
    \new Staff {
@@ -41,10 +42,8 @@ def test_parentage_detach_02( ):
    }
    '''
 
-   #note, parent, index = t.leaves[0].parentage.detach( )
-   #t.embed(index, note)
-   receipt = t.leaves[0].parentage.detach( )
-   t.embed(receipt.index, receipt.component)
+   leaf.parentage.detach( )
+   t.embed(0, leaf)
 
    r'''
    \new Staff {
@@ -60,15 +59,15 @@ def test_parentage_detach_02( ):
    assert t.format == "\\new Staff {\n\tc'8 [\n\t\\new Voice {\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
    assert check(t)
-   #assert check(note)
-   assert check(receipt.component)
+   assert check(leaf)
 
 
 def test_parentage_detach_03( ):
-   '''Unspanned containers detach from parent containers successfully.'''
+   '''Unspanned containers can parent-detach.'''
 
    t = Staff(Sequential(run(2)) * 3)
    diatonicize(t)
+   sequential = t[1]
 
    r'''
    \new Staff {
@@ -87,8 +86,7 @@ def test_parentage_detach_03( ):
    }
    '''
    
-   #sequential, parent, index = t[1].parentage.detach( )
-   receipt = t[1].parentage.detach( )
+   sequential.parentage.detach( )
 
    r'''
    \new Staff {
@@ -105,15 +103,15 @@ def test_parentage_detach_03( ):
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
    assert check(t)
-   #assert check(sequential)
-   assert check(receipt.component)
+   assert check(sequential)
 
 
 def test_parentage_detach_04( ):
-   '''Spanned containers detach from parent containers successfully.
-      Spanners continue to attach to detached containers.'''
+   '''Spanned containers parentage-detach successfully.
+      Spanners continue to attach to parentage-detached containers.'''
 
    t = Staff([Voice(Sequential(run(2)) * 2)])
+   sequential = t[0][0]
    p = Beam(t[0][ : ])
 
    r'''
@@ -131,10 +129,12 @@ def test_parentage_detach_04( ):
    }
    '''
 
-   #sequential, parent, index = t[0][0].parentage.detach( )
-   #t.embed(index, sequential)
-   receipt = t[0][0].parentage.detach( )
-   t.embed(receipt.index, receipt.component)
+   #receipt = t[0][0].parentage.detach( )
+   #t.embed(receipt.index, receipt.component)
+
+   sequential.parentage.detach( )
+   t.embed(0, sequential)
+
    
    r'''
    \new Staff {

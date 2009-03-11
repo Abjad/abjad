@@ -182,5 +182,14 @@ class _Parentage(_Abjad):
       client._update._markForUpdateToRoot( )
       parent, index = self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
-      receipt = ParentageReceipt(client, parent, index)
+      receipt = ParentageReceipt(parent, index)
       return receipt
+
+   def reattach(self, receipt):
+      '''Reattach client to parent described in receipt.'''
+      client = self._client
+      parent = receipt._parent
+      index = receipt._index
+      parent._music.insert(index, client)
+      client._parent = parent
+      return client
