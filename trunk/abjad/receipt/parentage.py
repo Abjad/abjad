@@ -1,8 +1,11 @@
-class ParentageReceipt(object):
-   '''Class to encapsulate parent and index-in-parent 
-      of any Abjad component.'''
+from abjad.core.abjadcore import _Abjad
 
-   def __init__(self, component, parent, index):
-      self.component = component
-      self.parent = parent
-      self.index = index
+
+class ParentageReceipt(_Abjad):
+   '''Class to encapsulate parent and index-in-parent of Abjad component.
+      Encapsulated return type of _Parentage.detach( ).
+      Expected input type of _Parentage.reattach( ).'''
+
+   def __init__(self, parent, index):
+      self._parent = parent
+      self._index = index
