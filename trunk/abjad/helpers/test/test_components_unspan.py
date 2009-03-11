@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_unspan_components_01( ):
+def test_components_unspan_01( ):
    t = Staff(scale(4))
    Beam(t[:])
-   unspan_components(t[:])
+   components_unspan(t[:])
 
    r'''
    \new Staff {
@@ -19,10 +19,10 @@ def test_unspan_components_01( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_unspan_components_02( ):
+def test_components_unspan_02( ):
    t = Staff(scale(4))
    Beam(t[:])
-   unspan_components(t[0:2])
+   components_unspan(t[0:2])
 
    r'''
    \new Staff {
@@ -37,6 +37,6 @@ def test_unspan_components_02( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_unspan_components_03( ):
-   t = unspan_components([ ])
+def test_components_unspan_03( ):
+   t = components_unspan([ ])
    assert t == [ ]
