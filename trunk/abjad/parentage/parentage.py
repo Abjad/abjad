@@ -10,12 +10,15 @@ class _Parentage(_Abjad):
    ## PRIVATE METHODS ##
 
    def _cutOutgoingReferenceToParent(self):
-      '''Self no longer references parent;
-         but parent continues to reference self.'''
+      '''Keep incoming reference from parent to client in tact.
+         Sever ougoing reference from parent to client.
+         Parent will continue to reference client.
+         Client will no longer reference parent.
+         Return parent.'''
       if hasattr(self._client, '_parent'):
-         result = self._client._parent
+         parent = self._client._parent
          self._client._parent = None
-         return result
+         return parent
 
    def _disjunctInclusiveParentageBetween(self, arg):
       '''Same as _disjunctParentageBetween( ) but including
@@ -44,13 +47,21 @@ class _Parentage(_Abjad):
       return None
 
    def _removeFromParent(self):
-      '''Parent no longer references self;
-         but self continues to reference parent.'''
-      if hasattr(self._client, '_parent'):
+      '''Sever incoming reference from parent to client.
+         Leave outgoing reference from client to parent in tact.
+         Parent will no longer reference client.
+         Client will continue to reference parent.'''
+      client = self._client
+      if hasattr(client, '_parent'):
          try:
-            self._client._parent._music.remove(self._client)
+            parent = self.parent
+            client_index_in_parent = parent.index(client)
+            parent._music.remove(client)
+            return parent, client_index_in_parent
+         ## TODO: Filter this except
          except:
             pass
+      return None, None
 
    def _splice(self, components):
       '''Insert components immediately after self in parent.
@@ -164,10 +175,10 @@ class _Parentage(_Abjad):
    ## PUBLIC METHODS ##
 
    def detach(self):
-      '''Sever both incoming reference from and
-         outgoing reference to parent.'''
+      '''Sever incoming reference from parent to client.
+         Sever outgoing reference from client to parent.'''
       client = self._client
       client._update._markForUpdateToRoot( )
-      self._removeFromParent( )
+      parent, index = self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
       return client
