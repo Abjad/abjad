@@ -14,5 +14,5 @@ def iterate(expr, classname):
             yield x
 
 
-def components(expr):
-   return iterate(expr, '_Component')
+#def components(expr):
+#   return iterate(expr, '_Component')

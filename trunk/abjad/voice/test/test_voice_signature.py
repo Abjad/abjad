@@ -21,7 +21,8 @@ def test_signature_02( ):
 
    t = Sequential([Note(n, (1, 8)) for n in range(4)])
 
-   assert all([x.voice.default for x in components(t)])
+   #assert all([x.voice.default for x in components(t)])
+   assert all([x.voice.default for x in iterate(t, '_Component')])
 
    r'''
    {
@@ -41,7 +42,8 @@ def test_signature_03( ):
    
    t = FixedDurationTuplet((2, 8), [Note(n, (1, 8)) for n in range(3)])
    
-   assert all([x.voice.default for x in components(t)])
+   #assert all([x.voice.default for x in components(t)])
+   assert all([x.voice.default for x in iterate(t, '_Component')])
 
    r'''
    \times 2/3 {
@@ -122,7 +124,8 @@ def test_signature_07( ):
    t = Voice([s1, s2])
 
    assert t.voice.signature == (id(t), )
-   components = instances(t, '_Component')
+   #components = instances(t, '_Component')
+   components = iterate(t, '_Component')
    assert all([x.voice.signature == t.voice.signature for x in components])
 
    r'''
@@ -153,7 +156,8 @@ def test_signature_08( ):
    appictate(t)
 
    assert not t.voice.default
-   assert all([x.voice.signature == t.voice.signature for x in components(t)])
+   components = iterate(t, '_Component')
+   assert all([x.voice.signature == t.voice.signature for x in components])
 
    r'''
    \new Voice {
@@ -388,7 +392,8 @@ def test_signature_14( ):
    appictate(t)
 
    assert t.voice.numeric
-   assert all([x.voice.signature == t.voice.signature for x in components(t)])
+   components = iterate(t, '_Component')
+   assert all([x.voice.signature == t.voice.signature for x in components])
 
    r'''
    \new Voice {
@@ -1164,7 +1169,7 @@ def test_signature_35( ):
    appictate(t)
 
    assert t.voice.default
-   assert all([x.voice.default for x in components(t)])
+   assert all([x.voice.default for x in iterate(t, '_Component')])
 
    r'''
    {
@@ -1201,7 +1206,7 @@ def test_signature_36( ):
    t.duration.target = Rational(9, 8)
    appictate(t)
 
-   assert all([x.voice.default for x in components(t)])
+   assert all([x.voice.default for x in iterate(t, '_Component')])
 
    r'''
    \fraction \times 9/10 {
@@ -1355,9 +1360,13 @@ def test_signature_40( ):
    t.invocation.name = 'foo'
    appictate(t)
 
-   assert all([x.voice.name == 'bar' for x in components(v)])
+   assert all([x.voice.name == 'bar' for x in iterate(v, '_Component')])
+   components_t = set(list(iterate(t, '_Component')))
+   components_v = set(list(iterate(v, '_Component')))
+   #assert all([x.voice.name == 'foo' 
+   #   for x in set(iterate(t)) - set(components(v))])
    assert all([x.voice.name == 'foo' 
-      for x in set(components(t)) - set(components(v))])
+      for x in components_t - components_v])
 
    r'''
    \context Voice = "foo" {

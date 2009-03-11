@@ -68,7 +68,8 @@ def test_parallel_signature_02( ):
    t.insert(2, p)
    appictate(t)
 
-   assert all([x.voice.default for x in components(t)])
+   #assert all([x.voice.default for x in components(t)])
+   assert all([x.voice.default for x in iterate(t, '_Component')])
 
    r'''
    {
@@ -99,7 +100,8 @@ def test_parallel_signature_03( ):
    t.insert(2, p)
    appictate(t)
 
-   assert all([x.voice.signature == t.voice.signature for x in components(t)])
+   components = iterate(t, '_Component')
+   assert all([x.voice.signature == t.voice.signature for x in components])
 
    r'''
    \new Voice {
@@ -165,7 +167,7 @@ def test_parallel_signature_05( ):
    t.insert(2, p)
    appictate(t)
 
-   assert all([x.voice.default for x in components(t)])
+   assert all([x.voice.default for x in iterate(t, '_Component')])
 
    r'''
    {
