@@ -41,8 +41,10 @@ def test_parentage_detach_02( ):
    }
    '''
 
-   note, parent, index = t.leaves[0].parentage.detach( )
-   t.embed(index, note)
+   #note, parent, index = t.leaves[0].parentage.detach( )
+   #t.embed(index, note)
+   receipt = t.leaves[0].parentage.detach( )
+   t.embed(receipt.index, receipt.component)
 
    r'''
    \new Staff {
@@ -58,7 +60,8 @@ def test_parentage_detach_02( ):
    assert t.format == "\\new Staff {\n\tc'8 [\n\t\\new Voice {\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
    assert check(t)
-   assert check(note)
+   #assert check(note)
+   assert check(receipt.component)
 
 
 def test_parentage_detach_03( ):
@@ -84,7 +87,8 @@ def test_parentage_detach_03( ):
    }
    '''
    
-   sequential, parent, index = t[1].parentage.detach( )
+   #sequential, parent, index = t[1].parentage.detach( )
+   receipt = t[1].parentage.detach( )
 
    r'''
    \new Staff {
@@ -101,7 +105,8 @@ def test_parentage_detach_03( ):
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
    assert check(t)
-   assert check(sequential)
+   #assert check(sequential)
+   assert check(receipt.component)
 
 
 def test_parentage_detach_04( ):
@@ -126,8 +131,10 @@ def test_parentage_detach_04( ):
    }
    '''
 
-   sequential, parent, index = t[0][0].parentage.detach( )
-   t.embed(index, sequential)
+   #sequential, parent, index = t[0][0].parentage.detach( )
+   #t.embed(index, sequential)
+   receipt = t[0][0].parentage.detach( )
+   t.embed(receipt.index, receipt.component)
    
    r'''
    \new Staff {

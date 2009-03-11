@@ -1,8 +1,8 @@
-from abjad.receipt.parent import _ParentReceipt
-from abjad.receipt.spanners import _SpannersReceipt
+from abjad.receipt.parentage import ParentageReceipt
+from abjad.receipt.spanners import SpannersReceipt
 
 
-class _Receipt(object):
+class Receipt(object):
    '''Well structured references attaching to some Abjad component.'''
 
    def __init__(self, component):

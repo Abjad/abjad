@@ -1,5 +1,6 @@
-class _SpannersReceipt(object):
-   '''Class to encapsulate spanner, index pairs of all spanners
-      attaching to component.'''
+class SpannersReceipt(object):
+   '''Class to encapsulate spanner and index-in-spanner
+      of any Abjad component.'''
 
-   pass
+   def __init__(self):
+      pass

@@ -1,5 +1,6 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.rational.rational import Rational
+from abjad.receipt.parentage import ParentageReceipt
 
 
 class _Parentage(_Abjad):
@@ -181,4 +182,5 @@ class _Parentage(_Abjad):
       client._update._markForUpdateToRoot( )
       parent, index = self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
-      return client, parent, index
+      receipt = ParentageReceipt(client, parent, index)
+      return receipt
