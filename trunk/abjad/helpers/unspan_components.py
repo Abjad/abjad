@@ -1,21 +1,28 @@
 from abjad.helpers.are_components import _are_components
 
 
-def unspan_components(component_list):
-   '''Unspan every component in component_list;
-      return component_list.
+def unspan_components(components):
+   '''Input parameter:
 
-      Does not navigate down into component_list;
-      traverses component_list shallowly.
+      component_list should be a Python list of any Abjad components.
+
+      Description:
+      
+      Unspan every component in components.
+      Does not navigate down into components; traverse shallowly.
+      Return components.
 
       Note that you can leave noncontiguous notes spanned
       after apply unspan_components to components in the
       middle of some larger spanner.'''
 
-   if not _are_components(component_list):
-      raise ValueError('component_list must be Abjad components.')
+   # check input
+   if not _are_components(components):
+      raise ValueError('input must be Python list of Abjad components.')
 
-   for component in component_list:
+   # detach spanners
+   for component in components:
       component.spanners.detach( )   
 
-   return component_list
+   # return components
+   return components
