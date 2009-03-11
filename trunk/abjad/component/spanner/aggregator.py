@@ -16,9 +16,7 @@ class _ComponentSpannerAggregator(_Interface):
          attaching to t and starting at the same moment as t.
          Right-fractures all spanners attaching to t and to any components
          attaching to t and stopping at the same moment as t.
-
          Used by _Component.copy( ) only.'''
-
       result = [ ]
       client = self._client
       for component in client._navigator._contemporaneousStartComponents:
@@ -40,14 +38,15 @@ class _ComponentSpannerAggregator(_Interface):
       return result
 
    def _update(self, spanners):
+      '''Added spanners to _spanners.'''
       self._spanners.update(spanners)
 
    ## PUBLIC ATTRIBUTES ##
    
    @property
    def attached(self):
-      '''Return an unordered set of all spanners attaching 
-         directly to client.'''
+      '''Return an unordered set of all spanners 
+         attaching directly to client.'''
       return self._spanners
 
    @property
@@ -68,16 +67,18 @@ class _ComponentSpannerAggregator(_Interface):
    ## PUBLIC METHODS ##
 
    def clear(self):
+      '''Clear every spanner attaching to client.'''
       for spanner in list(self.attached):
          spanner.clear( )
 
    def detach(self):
-      '''Remove client from all spanners attaching to client.'''
+      '''Remove client from every spanner attaching to client.'''
       client = self._client
       for spanner in list(self.attached):
          spanner.remove(client)
 
    def fracture(self, direction = 'both'):
+      '''Fracture every spanner attaching to client.'''
       result = [ ]
       client = self._client
       for spanner in self.attached:
