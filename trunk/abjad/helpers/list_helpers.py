@@ -6,28 +6,52 @@ from abjad.cfg.abjad_version import _get_abjad_version
 
 ## TODO: Figure out how to write tests for this helper.
 
-def list_helpers(search_string = '', private = False):
-   '''List Abjad helpers containing search_string.
+def list_helpers(search_string = '', scope = 'public'):
+   '''Input parameters:
+      
+      search_string should be any Python string.
+      scope should be 'public', 'private' or 'both'.
 
-   Example:
+   List all Abjad helpers containing search_string.
+   When scope is 'public' list only public Abjad helpers.
+   When scope is 'private' list only private Abjad helpers.
+   When scope is 'both' list both public and private Abjad helpers.
 
-   abjad> list_helpers('container')
 
-   Abjad r1027 implements 8 helpers containing 'container':
+   Example with default public scope:
 
-      container_contents_scale, container_glom_by_count, container_hew,
-      container_partition_by_count, container_rest_by_count, 
-      container_rest_half, container_shatter, container_splinter'''
+   abjad> list_helpers('are')   
+
+   Abjad r1185 implements 1 public helper containing the string 'are':
+
+      components_parentage_detach
+
+
+   Example with private scope:
+
+   abjad> list_helpers('are', scope = 'private')
+
+   Abjad r1185 implements 10 private helpers containing the string 'are':
+
+      _are_components, _are_contiguous_components, _are_orphan_components,
+      _are_scalable_components, _are_successive_components,
+      _components_parentage_detach_all, _components_parentage_detach_top,
+      _get_parent_and_index, _link_new_leaf_to_parent, 
+      _total_duration_in_parent'''
 
    import abjad
    helpers = [x for x in dir(abjad) if x.islower( )]
-   if private == True:
+   if scope == 'private':
       scope_string = 'private '
       helpers = [x for x in helpers if x.startswith('_')]
       helpers = [x for x in helpers if not x.startswith('__')]
-   else:
-      scope_string = ''
+   elif scope == 'public':
+      scope_string = 'public '
       helpers = [x for x in helpers if not x.startswith('_')]
+   elif scope == 'both':
+      scope_string = ''
+   else:
+      raise ValueError("scope must be 'public', 'private' or 'both'.")
 
    version = _get_abjad_version( )
 
