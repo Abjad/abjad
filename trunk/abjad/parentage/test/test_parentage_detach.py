@@ -2,9 +2,7 @@ from abjad import *
 
 
 def test_parentage_detach_01( ):
-   '''
-   Unspanned leaves detach from parent containers.
-   '''
+   '''Unspanned leaves detach from parent containers.'''
 
    t = Staff(scale(4))
    note = t[1]
@@ -22,14 +20,12 @@ def test_parentage_detach_01( ):
    
    assert check(t)
    assert check(note)
-   assert note._parent is None
+   assert note.parentage.parent is None
 
 
 def test_parentage_detach_02( ):
-   '''
-   Spanned leaves detach from parent containers.
-   Spanners continue to attach to detached leaves.
-   '''
+   '''Spanned leaves detach from parent containers.
+      Spanners continue to attach to detached leaves.'''
 
    t = Staff([Voice(scale(4))])
    p = Beam(t.leaves)
@@ -45,8 +41,8 @@ def test_parentage_detach_02( ):
    }
    '''
 
-   note = t.leaves[0]
-   t.embed(0, note.parentage.detach( ))
+   note, parent, index = t.leaves[0].parentage.detach( )
+   t.embed(index, note)
 
    r'''
    \new Staff {
@@ -66,9 +62,7 @@ def test_parentage_detach_02( ):
 
 
 def test_parentage_detach_03( ):
-   '''
-   Unspanned containers detach from parent containers successfully.
-   '''
+   '''Unspanned containers detach from parent containers successfully.'''
 
    t = Staff(Sequential(run(2)) * 3)
    diatonicize(t)
@@ -90,7 +84,7 @@ def test_parentage_detach_03( ):
    }
    '''
    
-   result = t[1].parentage.detach( )
+   sequential, parent, index = t[1].parentage.detach( )
 
    r'''
    \new Staff {
@@ -107,14 +101,12 @@ def test_parentage_detach_03( ):
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
    assert check(t)
-   assert check(result)
+   assert check(sequential)
 
 
 def test_parentage_detach_04( ):
-   '''
-   Spanned containers detach from parent containers successfully.
-   Spanners continue to attach to detached containers.
-   '''
+   '''Spanned containers detach from parent containers successfully.
+      Spanners continue to attach to detached containers.'''
 
    t = Staff([Voice(Sequential(run(2)) * 2)])
    p = Beam(t[0][ : ])
@@ -134,7 +126,8 @@ def test_parentage_detach_04( ):
    }
    '''
 
-   t.embed(0, t[0][0].parentage.detach( ))
+   sequential, parent, index = t[0][0].parentage.detach( )
+   t.embed(index, sequential)
    
    r'''
    \new Staff {

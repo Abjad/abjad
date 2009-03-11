@@ -55,9 +55,9 @@ class _Parentage(_Abjad):
       if hasattr(client, '_parent'):
          try:
             parent = self.parent
-            client_index_in_parent = parent.index(client)
+            index = parent.index(client)
             parent._music.remove(client)
-            return parent, client_index_in_parent
+            return parent, index
          ## TODO: Filter this except
          except:
             pass
@@ -181,4 +181,4 @@ class _Parentage(_Abjad):
       client._update._markForUpdateToRoot( )
       parent, index = self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
-      return client
+      return client, parent, index
