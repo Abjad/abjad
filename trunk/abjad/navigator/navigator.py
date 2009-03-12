@@ -29,14 +29,13 @@ class _Navigator(_Abjad):
    
    @property
    def _contemporaneousStartContents(self):
-      '''
-      Return a list of all components in the contents of client
-      starting at the same moment as client, including client.
-      '''
+      '''Return a list of all components in the contents of client
+         starting at the same moment as client, including client.'''
+      from abjad.container.container import Container
       result = [ ]
       client = self._client
       result.append(client)
-      if client.kind('Container'):
+      if isinstance(client, Container):
          if client.parallel:
             for x in client:
                result.extend(x._navigator._contemporaneousStartContents)
@@ -75,14 +74,13 @@ class _Navigator(_Abjad):
    
    @property
    def _contemporaneousStopContents(self):
-      '''
-      Return a list of all components in the contents of client
-      stopping at the same moment as client, including client.
-      '''
+      '''Return a list of all components in the contents of client
+         stopping at the same moment as client, including client.'''
+      from abjad.container.container import Container
       result = [ ]
       client = self._client
       result.append(client)
-      if client.kind('Container'):
+      if isinstance(client, Container):
          if client.parallel:
             client_duration = client.duration.preprolated
             for x in client:
@@ -116,7 +114,9 @@ class _Navigator(_Abjad):
    def _firstContainers(self):
       '''Returns the first (leftmost) container or containers 
          (in case there's a parallel structure) in the calling structure.'''
-      if self._client.kind('Container'):
+      from abjad.container.container import Container
+      client = self._client
+      if isinstance(client, Container):
          containers = [ ]
          if self._client.parallel:
             for e in self._client:
@@ -129,13 +129,15 @@ class _Navigator(_Abjad):
 
    @property
    def _firstLeaves(self):
-      '''
-      Returns the first (leftmost) leaf or leaves 
-      (in case there's a parallel structure) in a tree.
-      '''
-      if self._client.kind('_Leaf'):
-         return [self._client]
-      elif self._client.kind('Container'):
+      '''Returns the first (leftmost) leaf or leaves 
+         (in case there's a parallel structure) in a tree.'''
+      from abjad.container.container import Container
+      from abjad.leaf.leaf import _Leaf
+      client = self._client
+      #   return [self._client]
+      if isinstance(client, _Leaf):
+         return [client]
+      elif isinstance(client, Container):
          leaves = [ ]
          if self._client.parallel:
             for e in self._client:
@@ -148,13 +150,14 @@ class _Navigator(_Abjad):
    
    @property
    def _lastLeaves(self):
-      '''
-      Returns the last (rightmost) leaf or leaves
-      (in case there's a parallel structure) in a tree.
-      '''
-      if self._client.kind('_Leaf'):
-         return [self._client]
-      elif self._client.kind('Container'):
+      '''Returns the last (rightmost) leaf or leaves
+         (in case there's a parallel structure) in a tree.'''
+      from abjad.container.container import Container
+      from abjad.leaf.leaf import _Leaf
+      client = self._client
+      if isinstance(client, _Leaf):
+         return [client]
+      elif isinstance(client, Container):
          leaves = [ ]
          if self._client.parallel:
             for e in self._client:
@@ -182,7 +185,8 @@ class _Navigator(_Abjad):
       '''Returns the next Bead (time threaded Leaf), if such exists. 
          This method will search the whole (parentage) structure moving forward.
          This will only return if called on a Leaf.'''
-      if not self._client.kind('_Leaf'):
+      from abjad.leaf.leaf import _Leaf
+      if not isinstance(self._client, _Leaf):
          return None
       next = self._next
       if next is None:
@@ -215,10 +219,12 @@ class _Navigator(_Abjad):
    @property
    def _nextThread(self):
       '''Returns the next threadable Container.'''
-      if not self._client.kind('Container'):
+      from abjad.container.container import Container
+      from abjad.leaf.leaf import _Leaf
+      if not isinstance(self._client, Container):
          return None
       next = self._next
-      if next is None or next.kind('_Leaf'):
+      if next is None or isinstance(next, _Leaf):
          return None
       containers = next._navigator._firstContainers
       for c in containers:
@@ -243,7 +249,8 @@ class _Navigator(_Abjad):
       '''Returns the previous Bead (time threaded Leaf), if such exists. 
          This method will search the whole (parentage) structure moving back.
          This will only return if called on a Leaf.'''
-      if not self._client.kind('_Leaf'):
+      from abjad.leaf.leaf import _Leaf
+      if not isinstance(self._client, _Leaf):
          return None
       prev = self._prev
       if prev is None:
@@ -341,23 +348,26 @@ class _Navigator(_Abjad):
 
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
+      from abjad.context.context import _Context
+      from abjad.container.container import Container
+      from abjad.leaf.leaf import _Leaf
       c_thread_parentage = expr.parentage._threadParentage
       thread_parentage = self._client.parentage._threadParentage
       match_parent = True
       if len(c_thread_parentage) == len(thread_parentage):
          for c, p in zip(c_thread_parentage, thread_parentage):
             if type(c) == type(p):
-               if c.kind('_Context') and p.kind('_Context'):
+               if isinstance(c, _Context) and isinstance(p, _Context):
                   if c.invocation != p.invocation:
                      match_parent = False
       else:
          match_parent = False
       match_self = False
-      if self._client.kind('_Leaf') and expr.kind('_Leaf'):
+      if isinstance(self._client, _Leaf) and isinstance(expr, _Leaf):
          match_self = True
-      elif self._client.kind('Container') and expr.kind('Container'):
+      elif isinstance(self._client, Container) and isinstance(expr, Container):
          if not self._client.parallel and not expr.parallel:
-            if self._client.kind('_Context') and expr.kind('_Context'):
+            if isinstance(self._client, _Context) and isinstance(expr, _Context):
                if self._client.invocation == expr.invocation:
                   match_self =  True
             elif type(self._client) == type(expr):

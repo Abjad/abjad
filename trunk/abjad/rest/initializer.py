@@ -5,39 +5,32 @@ from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
 class _RestInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
-      from abjad.note.note import Note
       from abjad.chord.chord import Chord
+      from abjad.note.note import Note
+      from abjad.rest.rest import Rest
       from abjad.skip.skip import Skip
-
       client.pitch = None
-
-#      if len(args) == 0:
-#         _Leaf.__init__(client, None, None)
       if len(args) == 1 and isinstance(args[0], _Leaf):
-         if args[0].kind('Note'):
+         if isinstance(args[0], Note):
             note = args[0]
             _Leaf.__init__(client, note.duration.written)
             _transfer_all_attributes(note, client)
             del client._notehead
-         if args[0].kind('Rest'):
+         if isinstance(args[0], Rest):
             rest = args[0]
             _Leaf.__init__(client, rest.duration.written)
             _transfer_all_attributes(rest, client)
-         elif args[0].kind('Chord'):
+         elif isinstance(args[0], Chord):
             chord = args[0]
             _Leaf.__init__(client, chord.duration.written)
             _transfer_all_attributes(chord, client)
             del client._noteheads
-         elif args[0].kind('Skip'):
+         elif isinstance(args[0], Skip):
             skip = args[0]
             _Leaf.__init__(client, skip.duration.written)
             _transfer_all_attributes(skip, client)
       elif len(args) == 1:
          duration = args[0]
          _Leaf.__init__(client, duration)
-         #client.duration = duration
-#      elif len(args) == 2:
-#         duration, multiplier = args
-#         _Leaf.__init__(client, duration, multiplier)
       else:
          raise ValueError('can not initialize rest.')
