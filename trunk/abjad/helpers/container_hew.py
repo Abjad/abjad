@@ -42,11 +42,13 @@ def container_hew(container, i, spanners = 'preserve'):
                       a'8 ]
       }'''
 
+   from abjad.measure.base import _Measure
+
    # remember container multiplier, if any
    container_multiplier = getattr(container.duration, 'multiplier', None)
 
    # remember container meter denominator, if any
-   if container.kind('_Measure'):
+   if isinstance(container, _Measure):
       meter_denominator = container.meter.effective.denominator
    else:
       meter_denominator = None

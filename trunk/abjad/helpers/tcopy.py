@@ -13,6 +13,8 @@ def tcopy(ll):
    Shrink result container as necessary to preserve parent multiplier.
    '''
 
+   from abjad.measure.base import _Measure
+
    # assert contiguous components in ll
    if not _are_contiguous_components(ll):
      raise ValueError('Input must be contiguous music elements.')
@@ -24,7 +26,7 @@ def tcopy(ll):
    parent_multiplier = getattr(parent.duration, 'multiplier', 1)
 
    # new: remember parent denominator, if any
-   if parent.kind('_Measure'):
+   if isinstance(parent, _Measure):
       parent_denominator = parent.meter.effective.denominator
    else:
       parent_denominator = None

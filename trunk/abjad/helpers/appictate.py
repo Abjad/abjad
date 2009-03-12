@@ -1,7 +1,7 @@
 from abjad.helpers.instances import instances
 
 
-### TODO - write tests
+## TODO - write tests
 
 def appictate(expr):
    '''
@@ -9,10 +9,14 @@ def appictate(expr):
    Used primarily in generating test and doc file examples. Coined term.
    '''
 
+   from abjad.chord.chord import Chord
+   from abjad.leaf.leaf import _Leaf
+   from abjad.note.note import Note
+
    for i, x in enumerate(instances(expr, '_Leaf')):
-      if x.kind('Note'):
+      if isinstance(x, Note):
          x.pitch = i
-      elif x.kind('Chord'):
+      elif isinstance(x, Chord):
          x.pitches = [i] 
       else:
          pass
