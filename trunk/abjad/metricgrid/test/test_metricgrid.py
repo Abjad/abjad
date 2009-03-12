@@ -300,7 +300,7 @@ def test_metricgrid_splitting_06( ):
 
    v = Voice([Note(1, (1, 4)), Rest((1, 4)), Note(1, (1, 4))])
    def cond(leaf):
-      if not leaf.kind('Rest'): return True
+      if not isinstance(leaf, Rest): return True
       else: return False
    #m = MetricGrid(v, [(1, 8)])
    m = MetricGrid(v.leaves, [(1, 8)])

@@ -44,9 +44,10 @@ class NoteHead(_Interface, _GrobHandler):
       
    @property
    def _before(self):
+      from abjad.chord.chord import Chord
       result = [ ]
       client = self._client
-      if client and client.kind('Chord'):
+      if client and isinstance(client, Chord):
          result.extend(self._chordFormat)
       else:
          result.extend(_GrobHandler._before.fget(self))

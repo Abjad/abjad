@@ -172,10 +172,11 @@ class Spanner(_Abjad):
 
    @property
    def leaves(self):
+      from abjad.leaf.leaf import _Leaf
       result = [ ]
       for component in self._components:
          for node in component._navigator._DFS(forbid = 'Parallel'):
-            if node.kind('_Leaf'):
+            if isinstance(node, _Leaf):
                result.append(node)
       return result
 

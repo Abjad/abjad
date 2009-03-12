@@ -32,8 +32,9 @@ class _MeterInterface(_Interface, _GrobHandler):
    @property
    def _selfCanContribute(self):
       r'''True when self is able to contribute LilyPond \time.'''
+      from measure.dynamic.measure import DynamicMeasure
       if not self.suppress:
-         if self._client.kind('DynamicMeasure'):
+         if isinstance(self._client, DynamicMeasure):
             return True
          elif self.forced or self.change:
             return True
@@ -72,8 +73,9 @@ class _MeterInterface(_Interface, _GrobHandler):
    @property
    def effective(self):
       '''Return reference to meter effectively governing client.'''
+      from measure.dynamic.measure import DynamicMeasure
       client = self._client
-      if client.kind('DynamicMeasure'):
+      if isinstance(client, DynamicMeasure):
          if client.denominator:
             return Meter(
                _in_terms_of(client.duration.contents, client.denominator))
