@@ -110,28 +110,28 @@ class Spanner(_Abjad):
    def _isMyOnlyLeaf(self, leaf):
       return self._isMyFirstLeaf(leaf) and self._isMyLastLeaf(leaf)
 
-   def _isMyFirst(self, leaf, classname):
-      if leaf.kind(classname):
+   def _isMyFirst(self, leaf, classtoken):
+      if isinstance(leaf, classtoken):
          leaves = self.leaves
          i = leaves.index(leaf)
          for x in leaves[ : i]:
-            if x.kind(classname):
+            if isinstance(x, classtoken):
                return False
          return True
       return False
 
-   def _isMyLast(self, leaf, classname):
-      if leaf.kind(classname):
+   def _isMyLast(self, leaf, classtoken):
+      if isinstance(leaf, classtoken):
          leaves = self.leaves
          i = leaves.index(leaf)
          for x in leaves[i + 1 : ]:
-            if x.kind(classname):
+            if isinstance(x, classtoken):
                return False
          return True
       return False
 
-   def _isMyOnly(self, leaf, classname):
-      return leaf.kind(classname) and len(self.leaves) == 1
+   def _isMyOnly(self, leaf, classtoken):
+      return isinstance(leaf, classtoken) and len(self.leaves) == 1
 
    def _left(self, component):
       return [ ]

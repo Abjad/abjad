@@ -12,6 +12,8 @@ class _Hairpin(_GrobHandlerSpanner):
    ## PRIVATE ATTRIBUTES ##
 
    def _right(self, leaf):
+      from abjad.chord.chord import Chord
+      from abjad.note.note import Note
       result = [ ]
       if not self.trim:
          if self._isMyFirstLeaf(leaf):
@@ -24,11 +26,13 @@ class _Hairpin(_GrobHandlerSpanner):
             elif not leaf.dynamics:
                result.append('\\!')
       else:
-         if self._isMyFirst(leaf, ('Note', 'Chord')):
+         #if self._isMyFirst(leaf, ('Note', 'Chord')):
+         if self._isMyFirst(leaf, (Chord, Note)):
             result.append('\\%s' % self._shape)
             if self.start:
                result.append('\\%s' % self.start)
-         if self._isMyLast(leaf, ('Note', 'Chord')):
+         #if self._isMyLast(leaf, ('Note', 'Chord')):
+         if self._isMyLast(leaf, (Chord, Note)):
             if self.stop:
                result.append('\\%s' % self.stop)
             elif not leaf.dynamics:
