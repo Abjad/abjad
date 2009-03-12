@@ -1,5 +1,4 @@
 from abjad.checks.check import _Check
-#from abjad.helpers.hasname import hasname
 
 
 class HairpinsIntermarked(_Check):
@@ -9,8 +8,6 @@ class HairpinsIntermarked(_Check):
       from abjad.dynamics.hairpin import _Hairpin
       violators = [ ]
       total, bad = 0, 0
-      #for hairpin in expr.spanners.get(classname = '_Hairpin'):
-      #hairpins = [p for p in expr.spanners.contained if hasname(p, '_Hairpin')]
       hairpins = [
          p for p in expr.spanners.contained if isinstance(p, _Hairpin)]
       for hairpin in hairpins:

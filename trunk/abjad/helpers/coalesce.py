@@ -1,4 +1,3 @@
-#from abjad.helpers.hasname import hasname
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 
 
@@ -11,7 +10,6 @@ def coalesce(expr):
       def __init__(self):
          self.merged = False
       def visit(self, node):
-         #if hasname(node, 'Container'):
          if isinstance(node, Container):
             success = _fuse_right(node)
             if success:
@@ -19,7 +17,6 @@ def coalesce(expr):
 
    waslist = False
    if isinstance(expr, (list, tuple)):
-      #from abjad.container.container import Container
       waslist = True
       expr = Container(expr)
    v = Visitor( )

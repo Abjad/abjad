@@ -27,6 +27,5 @@ class GlissandiOverlapping(_Check):
             for glissando in glissandi:
                if glissando not in violators:
                   violators.append(glissando)
-      #total = [p for p in expr.spanners.contained if hasname(p, 'Glissando')]
       total = [p for p in expr.spanners.contained if isinstance(p, Glissando)]
       return violators, len(total)

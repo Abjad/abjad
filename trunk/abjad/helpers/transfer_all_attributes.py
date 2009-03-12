@@ -1,5 +1,3 @@
-#from abjad.helpers.hasname import hasname
-
 ### TODO - decide whether we wanna keep the current way of
 ###        determining which attributes to transfer.
 ###        right now we transfer all attributes except self.caster;
@@ -26,10 +24,7 @@ def _transfer_all_attributes(old, new):
          if hasattr(value, '_client'):
             setattr(value, '_client', new)
             ### take care of Grace._parent
-            #if hasname(value, '_GraceInterface'):
             if isinstance(value, _GraceInterface):
-               #setattr(value.after, '_parent', new)
-               #setattr(value.before, '_parent', new)
                setattr(value.after, '_carrier', new)
                setattr(value.before, '_carrier', new)
          setattr(new, key, value)
@@ -37,13 +32,8 @@ def _transfer_all_attributes(old, new):
    old._parent = None
    if new._parent:
       new._parent._music[new._parent.index(old)] = new
-   #for spanner in old.spanners:
-   #for spanner in old.spanners.mine( ):
    for spanner in old.spanners.attached:
-      #spanner._receptors[spanner.index(old)] = new.spanners
-      #spanner._leaves[spanner.index(old)] = new
       spanner._components[spanner.index(old)] = new
-      #new.spanners._append(spanner)
       # pass in 1-tuple otherwise individual spanner components will update!
       new.spanners._update((spanner, ))
    new.formatter.before.extend(oldCopy.formatter.before)
