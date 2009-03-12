@@ -16,12 +16,13 @@ from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
 class _ChordInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
+      from abjad.chord.chord import Chord
       from abjad.note.note import Note
       from abjad.rest.rest import Rest
       from abjad.skip.skip import Skip
       client.pitches = [ ]
       if len(args) == 1 and isinstance(args[0], _Leaf):
-         if args[0].kind('Note'):
+         if isinstance(args[0], Note):
             note = args[0]
             _Leaf.__init__(client, note.duration.written)
             client.formatter = _ChordFormatter(client)
@@ -34,18 +35,18 @@ class _ChordInitializer(_Initializer):
             del client._notehead
             if note.notehead is not None:
                client.append(copy.notehead)
-         if args[0].kind('Rest'):
+         if isinstance(args[0], Rest):
             rest = args[0]
             _Leaf.__init__(client, rest.duration.written)
             client.formatter = _ChordFormatter(client)
             _transfer_all_attributes(rest, client)
             del client._pitch
-         elif args[0].kind('Chord'):
+         elif isinstance(args[0], Chord):
             chord = args[0]
             _Leaf.__init__(client, chord.duration.written)
             client.formatter = _ChordFormatter(client)
             _transfer_all_attributes(chord, client)
-         elif args[0].kind('Skip'):
+         elif isinstance(args[0], Skip):
             skip = args[0]
             _Leaf.__init__(client, skip.duration.written)
             client.formatter = _ChordFormatter(client)
