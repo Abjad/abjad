@@ -69,7 +69,8 @@ def lcopy(expr, start = 0, stop = None):
    _found_stop_leaf = False
 
    while not _found_stop_leaf:
-      leaf = retroiterate(governor_copy, '_Leaf').next( )
+      #leaf = retroiterate(governor_copy, '_Leaf').next( )
+      leaf = retroiterate(governor_copy, _Leaf).next( )
       if leaf == stop_leaf:
          _found_stop_leaf = True
       else:

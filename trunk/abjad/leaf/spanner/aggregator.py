@@ -1,4 +1,3 @@
-from abjad.helpers.hasname import hasname
 from abjad.component.spanner.aggregator import _ComponentSpannerAggregator
 from abjad.core.interface import _Interface
 

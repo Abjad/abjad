@@ -1,5 +1,4 @@
 from abjad.core.interface import _Interface
-from abjad.helpers.hasname import hasname
 from abjad.helpers.iterate import iterate
 from abjad.receipt.spanner import _SpannerReceipt
 

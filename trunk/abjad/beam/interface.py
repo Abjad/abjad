@@ -6,9 +6,11 @@ from abjad.spanner.receptor import _SpannerReceptor
 class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    def __init__(self, client):
+      from abjad.beam.spanner import Beam
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Beam')
-      _SpannerReceptor.__init__(self, ['Beam'])
+      #_SpannerReceptor.__init__(self, ['Beam'])
+      _SpannerReceptor.__init__(self, (Beam, ))
       self._counts = (None, None)
 
    ## PRIVATE ATTRIBUTES ##

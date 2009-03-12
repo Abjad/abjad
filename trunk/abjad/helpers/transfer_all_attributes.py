@@ -1,4 +1,4 @@
-from abjad.helpers.hasname import hasname
+#from abjad.helpers.hasname import hasname
 
 ### TODO - decide whether we wanna keep the current way of
 ###        determining which attributes to transfer.
@@ -19,13 +19,15 @@ _attributes_not_to_copy = (
    )
    
 def _transfer_all_attributes(old, new):
+   from abjad.grace.interface import _GraceInterface
    oldCopy = old.copy( )
    for key, value in oldCopy.__dict__.items( ):
       if key not in _attributes_not_to_copy:
          if hasattr(value, '_client'):
             setattr(value, '_client', new)
             ### take care of Grace._parent
-            if hasname(value, '_GraceInterface'):
+            #if hasname(value, '_GraceInterface'):
+            if isinstance(value, _GraceInterface):
                #setattr(value.after, '_parent', new)
                #setattr(value.before, '_parent', new)
                setattr(value.after, '_carrier', new)

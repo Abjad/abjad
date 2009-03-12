@@ -1,5 +1,5 @@
 from abjad.checks.check import _Check
-from abjad.helpers.hasname import hasname
+#from abjad.helpers.hasname import hasname
 from abjad.helpers.iterate import iterate
 
 
@@ -8,6 +8,7 @@ class GlissandiOverlapping(_Check):
       Dove-tailed glissandi are OK.'''
 
    def _run(self, expr):
+      from abjad.glissando.spanner import Glissando
       violators = [ ] 
       for leaf in iterate(expr, '_Leaf'):
          glissandi = leaf.glissando.spanners
@@ -26,5 +27,6 @@ class GlissandiOverlapping(_Check):
             for glissando in glissandi:
                if glissando not in violators:
                   violators.append(glissando)
-      total = [p for p in expr.spanners.contained if hasname(p, 'Glissando')]
+      #total = [p for p in expr.spanners.contained if hasname(p, 'Glissando')]
+      total = [p for p in expr.spanners.contained if isinstance(p, Glissando)]
       return violators, len(total)

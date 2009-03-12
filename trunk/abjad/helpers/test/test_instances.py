@@ -11,7 +11,8 @@ def test_instances_01( ):
    notes = instances(t, Note)
    assert isinstance(notes, list)
    assert len(notes) == 5
-   assert all([hasname(x, 'Note') for x in notes])
+   #assert all([hasname(x, 'Note') for x in notes])
+   assert all([isinstance(x, Note) for x in notes])
 
 
 def test_instances_02( ):
@@ -24,4 +25,5 @@ def test_instances_02( ):
    rests = instances(t, Rest)
    assert isinstance(rests, list)
    assert len(rests) == 5
-   assert all([hasname(x, 'Rest') for x in rests])
+   #assert all([hasname(x, 'Rest') for x in rests])
+   assert all([isinstance(x, Rest) for x in rests])

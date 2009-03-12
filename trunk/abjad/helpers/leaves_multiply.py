@@ -8,7 +8,8 @@ def leaves_multiply(expr, total = 1):
    '''Insert n copies of each leaf l_i after l_i in expr.
       preserve parentage and spanners.'''
 
-   for leaf in retroiterate(expr, '_Leaf'):
+   #for leaf in retroiterate(expr, '_Leaf'):
+   for leaf in retroiterate(expr, _Leaf):
       _leaf_multiply(leaf, total)
    
 

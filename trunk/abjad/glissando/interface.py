@@ -6,9 +6,11 @@ from abjad.spanner.receptor import _SpannerReceptor
 class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    def __init__(self, client):
+      from abjad.glissando.spanner import Glissando
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Glissando')
-      _SpannerReceptor.__init__(self, ['Glissando'])
+      #_SpannerReceptor.__init__(self, ['Glissando'])
+      _SpannerReceptor.__init__(self, (Glissando, ))
       self._set = None
 
    ## OVERLOADS ##

@@ -10,13 +10,14 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.exceptions.exceptions import ExtraSpannerError
 from abjad.exceptions.exceptions import MissingSpannerError
-from abjad.helpers.hasname import hasname
 
 
 class _SpannerReceptor(_Abjad):
 
-   def __init__(self, classnames):
-      self._classnames = classnames
+   #def __init__(self, classnames):
+   def __init__(self, classreferences):
+      #self._classnames = classnames
+      self._classreferences = classreferences
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -60,8 +61,11 @@ class _SpannerReceptor(_Abjad):
       parentage = self._client._parentage.parentage
       for parent in parentage:
          spanners = parent.spanners.attached
-         for classname in self._classnames:
-            result.extend([p for p in spanners if hasname(p, classname)])
+         #for classname in self._classnames:
+         #   result.extend([p for p in spanners if hasname(p, classname)])
+         for classreference in self._classreferences:
+            result.extend(
+               [p for p in spanners if isinstance(p, classreference)])
       return bool(result)
 
    @property
@@ -97,9 +101,12 @@ class _SpannerReceptor(_Abjad):
          TODO: return unordered set.'''
       result = [ ]
       client = self._client
-      for classname in self._classnames:
+      #for classname in self._classnames:
+      #   spanners = client.spanners.attached
+      #   result.extend([p for p in spanners if hasname(p, classname)])
+      for classreference in self._classreferences:
          spanners = client.spanners.attached
-         result.extend([p for p in spanners if hasname(p, classname)])
+         result.extend([p for p in spanners if isinstance(p, classreference)])
       return result
 
    ## PUBLIC METHODS ##

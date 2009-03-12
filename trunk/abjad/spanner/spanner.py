@@ -1,6 +1,5 @@
 from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
-from abjad.helpers.hasname import hasname
 from abjad.helpers.instances import instances
 from abjad.rational.rational import Rational
 from copy import copy as python_copy
@@ -9,10 +8,11 @@ from copy import copy as python_copy
 class Spanner(_Abjad):
 
    def __init__(self, music = None):
+      from abjad.component.component import _Component
       self._components = [ ]
       if isinstance(music, (tuple, list)):
          self.extend(music)
-      elif hasname(music, '_Component'):
+      elif isinstance(music, _Component):
          self.append(music)
 
    ## OVERLOADS ##

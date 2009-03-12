@@ -3,6 +3,7 @@ from abjad.helpers.hasname import hasname
 
 def iterate(expr, classname):
    if hasname(expr, classname):
+   #if isinstance(expr, classname):
       yield expr
    if isinstance(expr, (list, tuple)):
       for m in expr:

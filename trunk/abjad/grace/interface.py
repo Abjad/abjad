@@ -1,6 +1,6 @@
 from abjad.core.interface import _Interface
 from abjad.grace.grace import Grace
-from abjad.helpers.hasname import hasname
+#from abjad.helpers.hasname import hasname
 
 
 class _GraceInterface(_Interface):
@@ -32,12 +32,14 @@ class _GraceInterface(_Interface):
       def fget(self):
          return self._after
       def fset(self, arg):
+         from abjad.leaf.leaf import _Leaf
          if arg is None:
             self._after = Grace( )
          else:
             if isinstance(arg, Grace):
                self._after = arg
-            elif hasname(arg, '_Leaf'):
+            #elif hasname(arg, '_Leaf'):
+            elif isinstance(arg, _Leaf):
                self._after = Grace([arg])
             elif isinstance(arg, list):
                self._after = Grace(arg)
@@ -52,11 +54,13 @@ class _GraceInterface(_Interface):
       def fget(self):
          return self._before
       def fset(self, arg):
+         from abjad.leaf.leaf import _Leaf
          if arg is None:
             self._before = Grace( )
          elif isinstance(arg, Grace):
             self._before = arg
-         elif hasname(arg, '_Leaf'):
+         #elif hasname(arg, '_Leaf'):
+         elif isinstance(arg, _Leaf):
             self._before = Grace([arg])
          elif isinstance(arg, list):
             self._before = Grace(arg)

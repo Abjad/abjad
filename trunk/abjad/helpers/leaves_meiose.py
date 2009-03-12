@@ -13,7 +13,8 @@ def leaves_meiose(expr, n = 2):
 
       Returns nothing.'''
 
-   for leaf in retroiterate(expr, '_Leaf'):
+   #for leaf in retroiterate(expr, '_Leaf'):
+   for leaf in retroiterate(expr, _Leaf):
       _leaf_meiose(leaf, n)
       
 

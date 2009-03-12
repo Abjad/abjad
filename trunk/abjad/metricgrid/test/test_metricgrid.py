@@ -4,7 +4,6 @@ from abjad.tools import construct
 
 def test_metricgrid_01( ):
    t = Staff(Note(0, (1, 8)) * 8)
-   #m = MetricGrid(t, [(2, 8)])
    m = MetricGrid(t.leaves, [(2, 8)])
 
    assert t.format == "\\new Staff {\n\t\\time 2/8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
@@ -26,7 +25,6 @@ def test_metricgrid_01( ):
 
 def test_metricgrid_02( ):
    t = Staff(Note(0, (1,8)) * 8)
-   #m = MetricGrid(t, [(3, 16)])
    m = MetricGrid(t.leaves, [(3, 16)])
 
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
@@ -50,7 +48,6 @@ def test_metricgrid_03( ):
    '''MetricGrid cycles throught given meters to cover spanner's duration.''' 
 
    t = Staff(Note(0, (1,8)) * 8)
-   #m = MetricGrid(t, [(1, 8), (1, 4)])
    m = MetricGrid(t.leaves, [(1, 8), (1, 4)])
 
    assert t.format == "\\new Staff {\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n}"
@@ -79,7 +76,6 @@ def test_metricgrid_04( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
 
    t = Staff(Note(0, (1,8)) * 8)
-   #m = MetricGrid(t, [(3, 16), (2, 8)])
    m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
 
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\t<<\n\t{ s1 * 1/16 \\time 2/8 }\n\tc'8\n\t>>\n\tc'8\n\t<<\n\t{ s1 * 1/16 \\time 3/16 }\n\tc'8\n\t>>\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
@@ -111,7 +107,6 @@ def test_metricgrid_05( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
 
    t = Staff(Note(0, (1,2)) * 2)
-   #m = MetricGrid(t, [(1, 8), (1, 4)])
    m = MetricGrid(t.leaves, [(1, 8), (1, 4)])
 
    assert t.format == "\\new Staff {\n\t\\time 1/8\n\t<<\n\t{ s1 * 1/8 \\time 1/4 }\n\t{ s1 * 3/8 \\time 1/8 }\n\tc'2\n\t>>\n\t\\time 1/4\n\t<<\n\t{ s1 * 1/4 \\time 1/8 }\n\t{ s1 * 3/8 \\time 1/4 }\n\tc'2\n\t>>\n}"
@@ -138,7 +133,6 @@ def test_metricgrid_splitting_01( ):
    '''MetricGrid splits notes on bar lines.'''
 
    t = Staff(Note(0, (1,8)) * 8)
-   #m = MetricGrid(t, [(3, 16)])
    m = MetricGrid(t.leaves, [(3, 16)])
    m.splitOnBar( )
 
@@ -167,7 +161,6 @@ def test_metricgrid_splitting_02( ):
    '''MetricGrid splits notes on bar lines.'''
 
    t = Staff(Note(0, (1,8))*8)
-   #m = MetricGrid(t, [(3, 16), (2, 8)])
    m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
    m.splitOnBar( )
 
@@ -197,7 +190,6 @@ def test_metricgrid_splitting_03( ):
    '''MetricGrid split works with tuplets.'''
 
    t = Voice([FixedMultiplierTuplet((2,3), Note(0, (1,8)) * 6)])
-   #m = MetricGrid(t, [(1, 8)])
    m = MetricGrid(t.leaves, [(1, 8)])
    m.splitOnBar( )
    '''MetricGrid splitOnBar works in Tuplets.'''   
@@ -225,7 +217,6 @@ def test_metricgrid_splitting_04( ):
 
    t = Voice([FixedMultiplierTuplet((2,3), [Note(0, (1,8)), 
          FixedMultiplierTuplet((3,2), Note(0, (1,8)) *4)])])
-   #m = MetricGrid(t, [(1, 8)])
    m = MetricGrid(t.leaves, [(1, 8)])
    m.splitOnBar( )
 
@@ -271,9 +262,7 @@ def test_metricgrid_splitting_05( ):
    '''MetricGrid split fuses correctly tied leaves in last measure.'''
 
    v = Voice(Note(1, (1, 4))*3)
-   #v.extend(rests_make((5, 4)))
    v.extend(construct.rests((5, 4)))
-   #m = MetricGrid(v, [(4, 4)])
    m = MetricGrid(v.leaves, [(4, 4)])
    m.splitOnBar( )
 
@@ -302,7 +291,6 @@ def test_metricgrid_splitting_06( ):
    def cond(leaf):
       if not isinstance(leaf, Rest): return True
       else: return False
-   #m = MetricGrid(v, [(1, 8)])
    m = MetricGrid(v.leaves, [(1, 8)])
    m.splittingCondition = cond
    m.splitOnBar( )
@@ -312,5 +300,5 @@ def test_metricgrid_splitting_06( ):
    assert v[0].duration.written == v[1].duration.written == Rational(1, 8)
    assert v[3].duration.written == v[3].duration.written == Rational(1, 8)
    assert v[2].duration.written == Rational(1, 4)
-   #assert len(v.spanners.get('Tie')) == 2
-   ties = len([p for p in v.spanners.contained if hasname(p, 'Tie')]) == 2
+   #ties = len([p for p in v.spanners.contained if hasname(p, 'Tie')]) == 2
+   ties = len([p for p in v.spanners.contained if isinstance(p, Tie)]) == 2

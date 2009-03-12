@@ -6,9 +6,11 @@ from abjad.spanner.receptor import _SpannerReceptor
 class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    
    def __init__(self, client):
+      from abjad.tempo.spanner import Tempo
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'MetronomeMark')
-      _GrobHandler.__init__(self, ['Tempo'])
+      #_GrobHandler.__init__(self, ['Tempo'])
+      _GrobHandler.__init__(self, (Tempo, ))
       self._metronome = None
  
    ## OVERLOADS ##

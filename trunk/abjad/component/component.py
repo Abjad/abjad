@@ -7,7 +7,6 @@ from abjad.core.comments import _Comments
 from abjad.clef.interface import _ClefInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
-from abjad.helpers.hasname import hasname
 from abjad.glissando.interface import _GlissandoInterface
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator

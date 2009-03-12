@@ -3,7 +3,6 @@ from abjad.core.interface import _Interface
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.binary import _binary
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
-from abjad.helpers.hasname import hasname
 from abjad.helpers.is_assignable import _is_assignable
 from abjad.rational.rational import Rational
 import math
