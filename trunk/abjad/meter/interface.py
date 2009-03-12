@@ -32,7 +32,7 @@ class _MeterInterface(_Interface, _GrobHandler):
    @property
    def _selfCanContribute(self):
       r'''True when self is able to contribute LilyPond \time.'''
-      from measure.dynamic.measure import DynamicMeasure
+      from abjad.measure.dynamic.measure import DynamicMeasure
       if not self.suppress:
          if isinstance(self._client, DynamicMeasure):
             return True
@@ -73,7 +73,7 @@ class _MeterInterface(_Interface, _GrobHandler):
    @property
    def effective(self):
       '''Return reference to meter effectively governing client.'''
-      from measure.dynamic.measure import DynamicMeasure
+      from abjad.measure.dynamic.measure import DynamicMeasure
       client = self._client
       if isinstance(client, DynamicMeasure):
          if client.denominator:

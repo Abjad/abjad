@@ -301,7 +301,7 @@ class Container(_Component):
          and/or class name <classtype>.
          The name may be either an added attribute 
          (e.g. Component.name = 'name') or, in the case of Contexts, 
-         the name of the Invocation (e.g. Context.invocation.name = 'name'). '''
+         the name of the Invocation (e.g. Context.invocation.name = 'name').'''
       class Visitor(object):
          def __init__(self, name = name, classtype = classtype):
             self.classtype = classtype
@@ -320,9 +320,10 @@ class Container(_Component):
                   namematch = False
             if self.classtype: 
                if hasattr(node, 'invocation') and \
-                  node.invocation.type==self.classtype:
+                  node.invocation.type == self.classtype:
                   pass
-               elif node.kind(self.classtype):
+               elif not isinstance(self.classtype, str) and \
+                  isinstance(node, classtype):
                   pass
                else:
                   classmatch = False

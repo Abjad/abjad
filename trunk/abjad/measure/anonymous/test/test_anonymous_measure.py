@@ -19,11 +19,11 @@ def test_measure_anonymous_01( ):
       \revert Staff.TimeSignature #'stencil
    '''
 
-   assert t.format == "\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 1/2\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'stencil"
-
    assert t.meter.change == False
    assert t.meter.effective == Meter(1, 2)
    assert t.meter.forced is None
+
+   assert t.format == "\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 1/2\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'stencil"
 
 
 def test_measure_anonymous_02( ):
