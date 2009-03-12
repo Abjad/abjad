@@ -555,10 +555,8 @@ class _Navigator(_Abjad):
    def _isNodeForbidden(self, node, forbid):
       if forbid is None:
          return False
-      elif isinstance(forbid, str):
-         return node.kind(forbid)
       else:
-         return any([node.kind(x) for x in forbid])
+         return isinstance(node, forbid)
 
    def _findYield(self, node, rank, queue, unique):
       if hasattr(node, '_music'):

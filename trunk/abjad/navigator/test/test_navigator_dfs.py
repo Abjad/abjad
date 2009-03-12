@@ -233,7 +233,7 @@ def test_dfs_restricted( ):
 
    ### LEFT-TO-RIGHT ###
 
-   g = t._navigator._DFS(forbid = 'Parallel')
+   g = t._navigator._DFS(forbid = Parallel)
 
    assert g.next( ) is t
    assert g.next( ) is t[0]
@@ -254,7 +254,7 @@ def test_dfs_restricted( ):
    
    ### RIGHT-TO-LEFT ###
 
-   g = t._navigator._DFS(forbid = 'Parallel', direction = 'right')
+   g = t._navigator._DFS(forbid = Parallel, direction = 'right')
    
    assert g.next( ) is t
    assert g.next( ) is t[4]
@@ -378,7 +378,7 @@ def test_dfs_uncapped_and_restricted( ):
 
    ### LEFT-TO-RIGHT ###
 
-   g = t[2]._navigator._DFS(capped = False, forbid = 'Parallel')
+   g = t[2]._navigator._DFS(capped = False, forbid = Parallel)
    
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -395,7 +395,7 @@ def test_dfs_uncapped_and_restricted( ):
    ### RIGHT-TO-LEFT ###
    
    g = t[2]._navigator._DFS(
-      capped = False, forbid = 'Parallel', direction = 'right')
+      capped = False, forbid = Parallel, direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -417,7 +417,7 @@ def test_dfs_restricted_with_duplicates_allowed( ):
 
    ### LEFT-TO-RIGHT
 
-   g = t._navigator._DFS(forbid = 'Parallel', unique = False)
+   g = t._navigator._DFS(forbid = Parallel, unique = False)
 
    assert g.next( ) is t
    assert g.next( ) is t[0]
@@ -449,7 +449,7 @@ def test_dfs_restricted_with_duplicates_allowed( ):
    ### RIGHT-TO-LEFT ###
 
    g = t._navigator._DFS(
-      forbid = 'Parallel', unique = False, direction = 'right')
+      forbid = Parallel, unique = False, direction = 'right')
 
    assert g.next( ) is t
    assert g.next( ) is t[4]
@@ -487,7 +487,7 @@ def test_dfs_uncapped_and_restricted_with_duplicates_allowed( ):
    ### LEFT-TO-RIGHT ###
 
    g = t[2]._navigator._DFS(
-      capped = False, forbid = 'Parallel', unique = False)
+      capped = False, forbid = Parallel, unique = False)
 
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -509,7 +509,7 @@ def test_dfs_uncapped_and_restricted_with_duplicates_allowed( ):
    ### RIGHT-TO-LEFT ###
 
    g = t[2]._navigator._DFS(
-      capped = False, forbid = 'Parallel', unique = False, direction = 'right')
+      capped = False, forbid = Parallel, unique = False, direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t
