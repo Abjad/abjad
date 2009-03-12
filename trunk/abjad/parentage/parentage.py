@@ -37,20 +37,24 @@ class _Parentage(_Abjad):
       '''Return thread-pertinent parentage structure.
          Same as _parentage but with _Tuplets, redundant Sequentials, 
          Parallels and tautologies (unlikely) removed.'''
+      from abjad.container.parallel import Parallel
+      from abjad.container.sequential import Sequential
+      from abjad.context.context import _Context
+      from abjad.tuplet.tuplet import _Tuplet
       parentage = self.parentage[1:]
       if len(parentage) > 0:
       ## remove sequentials
          for p in parentage[:]:
-            if p.kind('Sequential') or p.kind('_Tuplet'):
+            if isinstance(p, (Sequential, _Tuplet)):
                parentage.remove(p)
             else:
                break
       # remove tautological nesting
          for i, p in enumerate(parentage[:-1]):
             if type(p) == type(parentage[i+1]):
-               if p.kind('Parallel'): # or p.kind('Sequential'):
+               if isinstance(p, Parallel):
                   parentage.remove(p)
-               elif p.kind('_Context'):
+               elif isinstance(p, _Context):
                   if p.invocation == parentage[i+1].invocation:
                      parentage.remove(p)
       return parentage
