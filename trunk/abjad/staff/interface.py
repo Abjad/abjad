@@ -41,4 +41,5 @@ class _StaffInterface(_Interface, _FormatCarrier):
 
    @property
    def given(self):
-      return self._client.parentage._first('Staff')
+      from abjad.staff.staff import Staff
+      return self._client.parentage._first(Staff)

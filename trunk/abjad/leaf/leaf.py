@@ -190,6 +190,7 @@ class _Leaf(_Component):
    # next leaf rightwards, if any; otherwise None.
    @property
    def next(self):
+      from abjad.staff.staff import Staff
       nextNode, lastVisitedRank = self._navigator._nextNodeHelper( )
       while nextNode is not None and not isinstance(nextNode, _Leaf):
          nextNode, lastVisitedRank = \
@@ -199,18 +200,15 @@ class _Leaf(_Component):
       ##      what ever container is greatest and shows
       ##      implicit voice
       if nextNode:
-         #print nextNode._parentage._staff, self._parentage._staff
-         #if nextNode._parentage._staff == self._parentage._staff:
-         #if nextNode._parentage._first('Staff') == \
-         #   self._parentage._first('Staff'):
-         if nextNode.parentage._first('Staff') == \
-            self.parentage._first('Staff'):
+         if nextNode.parentage._first(Staff) == \
+            self.parentage._first(Staff):
             return nextNode
       return None
 
    # prev leaf leftwards, if any; otherwise None.
    @property
    def prev(self):
+      from abjad.staff.staff import Staff
       prevNode, lastVisitedRank = self._navigator._prevNodeHelper( )
       while prevNode is not None and not isinstance(prevNode, _Leaf):
          prevNode, lastVisitedRank = \
@@ -220,12 +218,8 @@ class _Leaf(_Component):
       ##      what ever container is greatest and shows
       ##      implicit voice
       if prevNode:
-         #print prevNode._parentage._staff, self._parentage._staff
-         #if prevNode._parentage._staff == self._parentage._staff:
-         #if prevNode._parentage._first('Staff') == \
-         #   self._parentage._first('Staff'):
-         if prevNode.parentage._first('Staff') == \
-            self.parentage._first('Staff'):
+         if prevNode.parentage._first(Staff) == \
+            self.parentage._first(Staff):
             return prevNode
       return None
 

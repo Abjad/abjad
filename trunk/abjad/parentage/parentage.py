@@ -88,12 +88,12 @@ class _Parentage(_Abjad):
          references to self._client and arg.'''
       return set(self.parentage) ^ set (arg.parentage.parentage)
 
-   def _first(self, classname):
-      '''Return first instance of classname 
+   def _first(self, classtoken):
+      '''Return first instance of classtoken 
          in score tree above client.'''
       p = self._client._parent
       while p is not None:
-         if p.kind(classname):
+         if isinstance(p, classtoken):
             return p
          else:
             p = p._parent
