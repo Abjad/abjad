@@ -3,9 +3,7 @@ import py.test
 
 
 def test_signature_01( ):
-   '''
-   Orphan leaves carry no voice signature.
-   '''
+   '''Orphan leaves carry no voice signature.'''
 
    assert Note(0, (1, 4)).voice.signature is None
    assert Rest((1, 4)).voice.signature is None
@@ -14,15 +12,13 @@ def test_signature_01( ):
 
 
 def test_signature_02( ):
-   '''
-   Sequential container carries the signature of the default voice;
-   sequentialized leaves carry the signature of the default voice.
-   '''
+   '''Sequential container carries the signature of the default voice;
+      sequentialized leaves carry the signature of the default voice.'''
 
    t = Sequential([Note(n, (1, 8)) for n in range(4)])
 
-   #assert all([x.voice.default for x in components(t)])
-   assert all([x.voice.default for x in iterate(t, '_Component')])
+   from abjad.component.component import _Component
+   assert all([x.voice.default for x in iterate(t, _Component)])
 
    r'''
    {
@@ -35,15 +31,13 @@ def test_signature_02( ):
 
 
 def test_signature_03( ):
-   '''
-   Tuplet carries the signature of the default voice.
-   Tupletted leaves carry the signature of the default voice.
-   '''
+   '''Tuplet carries the signature of the default voice.
+      Tupletted leaves carry the signature of the default voice.'''
    
    t = FixedDurationTuplet((2, 8), [Note(n, (1, 8)) for n in range(3)])
    
-   #assert all([x.voice.default for x in components(t)])
-   assert all([x.voice.default for x in iterate(t, '_Component')])
+   from abjad.component.component import _Component
+   assert all([x.voice.default for x in iterate(t, _Component)])
 
    r'''
    \times 2/3 {
@@ -55,10 +49,8 @@ def test_signature_03( ):
 
 
 def test_signature_04( ):
-   '''
-   Parallel container carries the signature of the default voice.
-   Parallel leaves each carry a different voice signature.
-   '''
+   '''Parallel container carries the signature of the default voice.
+      Parallel leaves each carry a different voice signature.'''
 
    t = Parallel([Note(n, (1, 8)) for n in range(4)])
 
@@ -123,8 +115,9 @@ def test_signature_07( ):
    s2 = Sequential([Note(i, (1, 8)) for i in range(4, 8)])
    t = Voice([s1, s2])
 
+   from abjad.component.component import _Component
    assert t.voice.signature == (id(t), )
-   components = iterate(t, '_Component')
+   components = iterate(t, _Component)
    assert all([x.voice.signature == t.voice.signature for x in components])
 
    r'''
@@ -154,8 +147,9 @@ def test_signature_08( ):
    t = Voice(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2)
    appictate(t)
 
+   from abjad.component.component import _Component
    assert not t.voice.default
-   components = iterate(t, '_Component')
+   components = iterate(t, _Component)
    assert all([x.voice.signature == t.voice.signature for x in components])
 
    r'''
@@ -390,8 +384,9 @@ def test_signature_14( ):
    t = Voice([Sequential(Note(0, (1, 8)) * 4)] * 2)
    appictate(t)
 
+   from abjad.component.component import _Component
    assert t.voice.numeric
-   components = iterate(t, '_Component')
+   components = iterate(t, _Component)
    assert all([x.voice.signature == t.voice.signature for x in components])
 
    r'''
@@ -1167,8 +1162,9 @@ def test_signature_35( ):
    t.insert(2, a)
    appictate(t)
 
+   from abjad.component.component import _Component
    assert t.voice.default
-   assert all([x.voice.default for x in iterate(t, '_Component')])
+   assert all([x.voice.default for x in iterate(t, _Component)])
 
    r'''
    {
@@ -1205,7 +1201,8 @@ def test_signature_36( ):
    t.duration.target = Rational(9, 8)
    appictate(t)
 
-   assert all([x.voice.default for x in iterate(t, '_Component')])
+   from abjad.component.component import _Component
+   assert all([x.voice.default for x in iterate(t, _Component)])
 
    r'''
    \fraction \times 9/10 {
@@ -1359,11 +1356,10 @@ def test_signature_40( ):
    t.invocation.name = 'foo'
    appictate(t)
 
-   assert all([x.voice.name == 'bar' for x in iterate(v, '_Component')])
-   components_t = set(list(iterate(t, '_Component')))
-   components_v = set(list(iterate(v, '_Component')))
-   #assert all([x.voice.name == 'foo' 
-   #   for x in set(iterate(t)) - set(components(v))])
+   from abjad.component.component import _Component
+   assert all([x.voice.name == 'bar' for x in iterate(v, _Component)])
+   components_t = set(list(iterate(t, _Component)))
+   components_v = set(list(iterate(v, _Component)))
    assert all([x.voice.name == 'foo' 
       for x in components_t - components_v])
 

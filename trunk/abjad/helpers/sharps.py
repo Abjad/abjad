@@ -7,7 +7,8 @@ def sharps(expr):
    if isinstance(expr, Pitch):
       pitch_renotate_sharps(expr)
    else:
-      for leaf in iterate(expr, '_Leaf'):
+      from abjad.leaf.leaf import _Leaf
+      for leaf in iterate(expr, _Leaf):
          if hasattr(leaf, 'pitches'):
             for pitch in leaf.pitches:
                pitch_renotate_sharps(pitch)

@@ -30,7 +30,8 @@ def measures_spin(expr, n):
    assert isinstance(n, int)
    assert n > 0
 
-   for measure in iterate(expr, '_Measure'):
+   from abjad.measure.base import _Measure
+   for measure in iterate(expr, _Measure):
       old_meter = measure.meter.effective
       contents_multiply(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)

@@ -5,7 +5,8 @@ def label_leaf_durations(expr,
    show = ['written', 'prolated'], ties = 'together'):
    '''Iterate expr and label all written and prolated durations.'''
    
-   for leaf in iterate(expr, '_Leaf'):
+   from abjad.leaf.leaf import _Leaf
+   for leaf in iterate(expr, _Leaf):
       if ties == 'together':
          if not leaf.tie.spanned:
             if leaf.duration.multiplier is not None:

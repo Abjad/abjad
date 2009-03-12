@@ -4,12 +4,10 @@ from abjad.helpers.iterate import iterate
 from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.helpers.remove_powers_of_two import _remove_powers_of_two
 from abjad.rational.rational import Rational
-from abjad.tuplet.tuplet import _Tuplet
 
 
 def measures_subsume(expr):
-   r'''
-      Subsume all measures in expr containing only top-level tuplet.
+   r'''Subsume all measures in expr containing only top-level tuplet.
       Measures usually become nonbinary as as result of subsumption.
 
       Returns None because processes potentially many measures.
@@ -25,7 +23,9 @@ def measures_subsume(expr):
       }
    '''
 
-   for measure in iterate(expr, '_Measure'): 
+   from abjad.measure.base import _Measure
+   from abjad.tuplet.tuplet import _Tuplet
+   for measure in iterate(expr, _Measure): 
       if len(measure) == 1:
          if isinstance(measure[0], _Tuplet):
             tuplet = measure[0]

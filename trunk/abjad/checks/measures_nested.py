@@ -9,7 +9,7 @@ class MeasuresNested(_Check):
       from abjad.measure.base import _Measure
       violators = [ ]
       total = 0
-      for t in iterate(expr, '_Measure'):
+      for t in iterate(expr, _Measure):
          if t.parentage._first(_Measure):
                violators.append(t)
          total += 1

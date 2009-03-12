@@ -68,7 +68,8 @@ def _get_lcopy(container, start, stop):
    total_dur = Rational(0)
    start_leaf, stop_leaf = None, None
    first_dif = second_dif = 0
-   for i, leaf in enumerate(iterate(container, '_Leaf')):
+   from abjad.leaf.leaf import _Leaf
+   for i, leaf in enumerate(iterate(container, _Leaf)):
       total_dur += leaf.duration.prolated
       if total_dur == start and start_leaf is None:
          start_leaf = i

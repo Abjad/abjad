@@ -7,8 +7,9 @@ class GlissandiGnashing(_Check):
       only last glissando spanner leaf.'''
 
    def _run(self, expr):
+      from abjad.leaf.leaf import _Leaf
       violators =  [ ]
-      for leaf in iterate(expr, '_Leaf'):
+      for leaf in iterate(expr, _Leaf):
          if leaf.glissando:
             glissandi = leaf.glissando.spanners
             for glissando in glissandi:

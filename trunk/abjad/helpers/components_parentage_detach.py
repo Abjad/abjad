@@ -23,7 +23,8 @@ def components_parentage_detach(components, level = 'top'):
 
 
 def _components_parentage_detach_all(components):
-   for component in list(iterate(components, '_Component')):
+   from abjad.component.component import _Component
+   for component in list(iterate(components, _Component)):
       component.parentage._detach( )
    return components
 

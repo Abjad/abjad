@@ -28,7 +28,8 @@ def spanners_detach(components, level = 'top'):
 
 def _spanners_detach_all(components):
    '''Detach spanners from every Abjad component at all levels of list.'''
-   for component in iterate(components, '_Component'):
+   from abjad.component.component import _Component
+   for component in iterate(components, _Component):
       component.spanners._detach( )
 
 

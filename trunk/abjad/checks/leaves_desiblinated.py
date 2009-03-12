@@ -1,6 +1,5 @@
 from abjad.checks.check import _Check
-from abjad.helpers.instances import instances
-#from abjad.helpers.iterate import iterate
+from abjad.helpers.iterate import iterate
 
 
 # TODO - make this work in cases where expr contains one or more parallel
@@ -16,7 +15,7 @@ class LeavesDesiblinated(_Check):
    def _run(self, expr):
       from abjad.leaf.leaf import _Leaf
       violators = [ ]
-      leaves = instances(expr, _Leaf)
+      leaves = list(iterate(expr, _Leaf))
       total, bad = 0, 0
       if leaves:
          leaves.pop( )

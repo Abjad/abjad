@@ -26,7 +26,8 @@ def measures_tupletize(expr, supplement = None):
 
       No treatment of spanners yet implemented.'''
 
-   for measure in iterate(expr, '_Measure'):
+   from abjad.measure.base import _Measure
+   for measure in iterate(expr, _Measure):
       target_duration = measure.duration.preprolated
       tuplet = FixedDurationTuplet(target_duration, measure[:])
       if supplement:

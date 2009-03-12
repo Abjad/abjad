@@ -18,7 +18,8 @@ def measures_overdraw(expr, source_count = 1, total_reps = 2):
 
    source = [ ]
    result = [ ]
-   for i, measure in enumerate(iterate(expr, '_Measure')):
+   from abjad.measure.base import _Measure
+   for i, measure in enumerate(iterate(expr, _Measure)):
       if i < source_count:
          source.append(measure)   
       elif i == source_count:

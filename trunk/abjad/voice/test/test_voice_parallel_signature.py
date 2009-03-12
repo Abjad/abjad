@@ -68,8 +68,8 @@ def test_parallel_signature_02( ):
    t.insert(2, p)
    appictate(t)
 
-   #assert all([x.voice.default for x in components(t)])
-   assert all([x.voice.default for x in iterate(t, '_Component')])
+   from abjad.component.component import _Component
+   assert all([x.voice.default for x in iterate(t, _Component)])
 
    r'''
    {
@@ -100,7 +100,8 @@ def test_parallel_signature_03( ):
    t.insert(2, p)
    appictate(t)
 
-   components = iterate(t, '_Component')
+   from abjad.component.component import _Component
+   components = iterate(t, _Component)
    assert all([x.voice.signature == t.voice.signature for x in components])
 
    r'''
@@ -167,7 +168,8 @@ def test_parallel_signature_05( ):
    t.insert(2, p)
    appictate(t)
 
-   assert all([x.voice.default for x in iterate(t, '_Component')])
+   from abjad.component.component import _Component
+   assert all([x.voice.default for x in iterate(t, _Component)])
 
    r'''
    {

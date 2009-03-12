@@ -2,10 +2,8 @@ from abjad.checks.check import _Check
 
 
 class ParentsMissing(_Check):
-   '''
-   Each node except the root needs a parent.
-      Each node needs the correct parent.
-   '''
+   '''Each node except the root needs a parent.
+      Each node needs the correct parent.'''
 
    def _run(self, expr):
       class Visitor(object):

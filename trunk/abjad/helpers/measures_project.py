@@ -19,7 +19,8 @@ def measures_project(expr):
 
       TODO: add keyword to allow fixed-multiplier tuplet.'''
 
-   for measure in iterate(expr, '_Measure'):
+   from abjad.measure.base import _Measure
+   for measure in iterate(expr, _Measure):
       if measure.meter.effective.nonbinary:
 
          # find meter and contents multipliers

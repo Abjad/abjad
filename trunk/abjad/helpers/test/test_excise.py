@@ -115,7 +115,9 @@ def test_excise_03( ):
       FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
-   for i, leaf in enumerate(iterate(t, '_Leaf')):
+   
+   from abjad.leaf.leaf import _Leaf
+   for i, leaf in enumerate(iterate(t, _Leaf)):
       leaf.pitch = i
 
    r'''
@@ -193,7 +195,9 @@ def test_excise_04( ):
       FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
-   for i, leaf in enumerate(iterate(t, '_Leaf')):
+
+   from abjad.leaf.leaf import _Leaf
+   for i, leaf in enumerate(iterate(t, _Leaf)):
       leaf.pitch = i
 
    r'''

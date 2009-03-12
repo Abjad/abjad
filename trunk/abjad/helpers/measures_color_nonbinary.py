@@ -7,7 +7,8 @@ def measures_color_nonbinary(expr, color = 'red'):
       
       TODO: Give URL of list of valid LilyPond color names here.'''
 
-   for measure in iterate(expr, '_Measure'):
+   from abjad.measure.base import _Measure
+   for measure in iterate(expr, _Measure):
       if measure.meter.effective.nonbinary:
          measure.beam.color = color
          measure.dots.color = color

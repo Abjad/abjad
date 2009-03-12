@@ -9,5 +9,6 @@ def tuplets_beam(expr):
             or bottom-level tuplets; the current implementation
             will beam nested tuplets in a nested way.'''
 
-   for measure in iterate(expr, '_Tuplet'):
+   from abjad.tuplet.tuplet import _Tuplet
+   for measure in iterate(expr, _Tuplet):
       Beam(measure)

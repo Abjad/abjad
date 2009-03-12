@@ -23,4 +23,5 @@ def test_components_parentage_detach_02( ):
 
    components_parentage_detach([t], level = 'all')
 
-   assert _are_orphan_components(list(iterate(t, '_Component')))
+   from abjad.component.component import _Component
+   assert _are_orphan_components(list(iterate(t, _Component)))
