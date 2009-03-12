@@ -1,6 +1,6 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.rational.rational import Rational
-from abjad.receipt.parentage import ParentageReceipt
+from abjad.receipt.parentage import _ParentageReceipt
 
 
 class _Parentage(_Abjad):
@@ -184,7 +184,7 @@ class _Parentage(_Abjad):
       client._update._markForUpdateToRoot( )
       parent, index = self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
-      receipt = ParentageReceipt(parent, index)
+      receipt = _ParentageReceipt(client, parent, index)
       return receipt
 
    ## TODO: Make this method private.
@@ -193,6 +193,7 @@ class _Parentage(_Abjad):
       '''Reattach client to parent described in receipt.
          Empty receipt and return client.'''
       client = self._client
+      assert client is receipt._component
       parent = receipt._parent
       index = receipt._index
       parent._music.insert(index, client)

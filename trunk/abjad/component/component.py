@@ -16,7 +16,7 @@ from abjad.offset.interface import _OffsetInterface
 from abjad.parentage.parentage import _Parentage
 from abjad.pianopedal.interface import _PianoPedalInterface
 from abjad.rational.rational import Rational
-from abjad.receipt.receipt import Receipt
+from abjad.receipt.component import _ComponentReceipt
 from abjad.rest.interface import _RestInterface
 from abjad.slur.interface import _SlurInterface
 from abjad.stem.interface import _StemInterface
@@ -292,7 +292,7 @@ class _Component(_Abjad):
          Return receipt.'''
       parentage = self.parentage.detach( )
       spanners = self.spanners.detach( )
-      receipt = Receipt(parentage, spanners)
+      receipt = _ComponentReceipt(self, parentage, spanners)
       return receipt
 
    ## TODO: Deprecate and use built-in Python isinstance( ) instead ##
@@ -304,6 +304,7 @@ class _Component(_Abjad):
       '''Reattach component to both parentage in receipt.
          Reattach component to spanners in receipt.
          Empty receipt and return component.'''
+      assert self is receipt._component
       self.parentage.reattach(receipt._parentage)
       self.spanners.reattach(receipt._spanners)
       receipt._empty( )
