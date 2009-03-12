@@ -31,7 +31,9 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    @property
    def beamable(self):
-      return self._client.kind(('Note', 'Chord')) and \
+      from abjad.chord.chord import Chord
+      from abjad.note.note import Note
+      return isinstance(self._client, (Note, Chord)) and \
          self._flags > 0 and not getattr(self, '_refuse', False)
 
    @property

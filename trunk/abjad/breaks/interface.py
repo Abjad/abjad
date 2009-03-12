@@ -29,8 +29,9 @@ class _BreaksInterface(_Interface, _FormatCarrier):
    @property
    def _after(self):
       '''Formatting contributions to appear immediately after component.'''
+      from abjad.leaf.leaf import _Leaf
       result = [ ]
-      if self._client.kind('_Leaf'):
+      if isinstance(self._client, _Leaf):
          if self.line:
             result.append(r'\break')
          if self.page:
@@ -43,8 +44,9 @@ class _BreaksInterface(_Interface, _FormatCarrier):
    @property
    def _closing(self):
       '''Formatting contributions to appear in closing of component.'''
+      from abjad.container.container import Container
       result = [ ]
-      if self._client.kind('Container'):
+      if isinstance(self._client, Container):
          if self.line:
             result.append(r'\break')
          if self.page:

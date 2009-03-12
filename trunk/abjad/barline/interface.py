@@ -13,8 +13,9 @@ class _BarLineInterface(_Interface, _GrobHandler):
 
    @property
    def _after(self):
+      from abjad.leaf.leaf import _Leaf
       result = [ ]
-      if self._client.kind('_Leaf'):
+      if isinstance(self._client, _Leaf):
          if self.type is not None:
             result.append(self._barlineNameToLilyPondString(self.type))
       return result
@@ -45,8 +46,9 @@ class _BarLineInterface(_Interface, _GrobHandler):
 
    @property
    def _closing(self):
+      from abjad.container.container import Container
       result = [ ]
-      if self._client.kind('Container'):
+      if isinstance(self._client, Container):
          if self.type:
             result.append(self._barlineNameToLilyPondString(self.type))
       return result
