@@ -40,7 +40,8 @@ class _GrobHandler(_FormatCarrier):
 
    @property
    def _frequencyIndicator(self):
-      if hasattr(self, '_client') and self._client.kind('_Leaf'):
+      from abjad.leaf.leaf import _Leaf
+      if hasattr(self, '_client') and isinstance(self._client, _Leaf):
          return r'\once '
       else:
          return ''
