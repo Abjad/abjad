@@ -8,79 +8,6 @@ class _Parentage(_Abjad):
    def __init__(self, client):
       self._client = client
 
-   ## PRIVATE METHODS ##
-
-   def _cutOutgoingReferenceToParent(self):
-      '''Keep incoming reference from parent to client in tact.
-         Sever ougoing reference from parent to client.
-         Parent will continue to reference client.
-         Client will no longer reference parent.
-         Return parent.'''
-      if hasattr(self._client, '_parent'):
-         parent = self._client._parent
-         self._client._parent = None
-         return parent
-
-   def _disjunctInclusiveParentageBetween(self, arg):
-      '''Same as _disjunctParentageBetween( ) but including
-         references to self._client and arg.'''
-      return set(self.parentage) ^ set (arg.parentage.parentage)
-
-   def _first(self, classname):
-      '''Return first instance of classname 
-         in score tree above client.'''
-      p = self._client._parent
-      while p is not None:
-         if p.kind(classname):
-            return p
-         else:
-            p = p._parent
-      return None
-
-   def _getFirstSharedParent(self, arg):
-      '''Returns first shared parent between self._client and arg,
-         otherwise None.'''
-      shared = set(self.parentage) & set(arg.parentage.parentage)
-      if shared:
-         for parent in self.parentage:
-            if parent in shared:
-               return parent
-      return None
-
-   def _removeFromParent(self):
-      '''Sever incoming reference from parent to client.
-         Leave outgoing reference from client to parent in tact.
-         Parent will no longer reference client.
-         Client will continue to reference parent.'''
-      client = self._client
-      if hasattr(client, '_parent'):
-         try:
-            parent = self.parent
-            index = parent.index(client)
-            parent._music.remove(client)
-            return parent, index
-         ## TODO: Filter this except
-         except:
-            pass
-      return None, None
-
-   def _splice(self, components):
-      '''Insert components immediately after self in parent.
-         Do not handle spanners.'''
-      if self.parent is not None:
-         client = self._client
-         index = self.parent.index(client) + 1
-         self.parent[index:index] = components
-         return [client] + components
-
-   def _switchParentTo(self, new_parent):
-      '''Remove client from parent and give client to new_parent.'''
-      client = self._client
-      old_parent = client._parent
-      if old_parent is not None:
-         old_parent._music.remove(client)
-      client._parent = new_parent
-
    ## PRIVATE ATTRIBUTES ##
    
    @property
@@ -128,6 +55,102 @@ class _Parentage(_Abjad):
                      parentage.remove(p)
       return parentage
 
+   ## PRIVATE METHODS ##
+
+   def _cutOutgoingReferenceToParent(self):
+      '''Keep incoming reference from parent to client in tact.
+         Sever ougoing reference from parent to client.
+         Parent will continue to reference client.
+         Client will no longer reference parent.
+         Return parent.'''
+      if hasattr(self._client, '_parent'):
+         parent = self._client._parent
+         self._client._parent = None
+         return parent
+
+   def _detach(self):
+      '''Sever incoming reference from parent to client.
+         Sever outgoing reference from client to parent.'''
+      client = self._client
+      client._update._markForUpdateToRoot( )
+      parent, index = self._removeFromParent( )
+      self._cutOutgoingReferenceToParent( )
+      receipt = _ParentageReceipt(client, parent, index)
+      return receipt
+
+
+   def _disjunctInclusiveParentageBetween(self, arg):
+      '''Same as _disjunctParentageBetween( ) but including
+         references to self._client and arg.'''
+      return set(self.parentage) ^ set (arg.parentage.parentage)
+
+   def _first(self, classname):
+      '''Return first instance of classname 
+         in score tree above client.'''
+      p = self._client._parent
+      while p is not None:
+         if p.kind(classname):
+            return p
+         else:
+            p = p._parent
+      return None
+
+   def _getFirstSharedParent(self, arg):
+      '''Returns first shared parent between self._client and arg,
+         otherwise None.'''
+      shared = set(self.parentage) & set(arg.parentage.parentage)
+      if shared:
+         for parent in self.parentage:
+            if parent in shared:
+               return parent
+      return None
+
+   def _reattach(self, receipt):
+      '''Reattach client to parent described in receipt.
+         Empty receipt and return client.'''
+      client = self._client
+      assert client is receipt._component
+      parent = receipt._parent
+      index = receipt._index
+      parent._music.insert(index, client)
+      client._parent = parent
+      receipt._empty( )
+      return client
+
+   def _removeFromParent(self):
+      '''Sever incoming reference from parent to client.
+         Leave outgoing reference from client to parent in tact.
+         Parent will no longer reference client.
+         Client will continue to reference parent.'''
+      client = self._client
+      if hasattr(client, '_parent'):
+         try:
+            parent = self.parent
+            index = parent.index(client)
+            parent._music.remove(client)
+            return parent, index
+         ## TODO: Filter this except
+         except:
+            pass
+      return None, None
+
+   def _splice(self, components):
+      '''Insert components immediately after self in parent.
+         Do not handle spanners.'''
+      if self.parent is not None:
+         client = self._client
+         index = self.parent.index(client) + 1
+         self.parent[index:index] = components
+         return [client] + components
+
+   def _switchParentTo(self, new_parent):
+      '''Remove client from parent and give client to new_parent.'''
+      client = self._client
+      old_parent = client._parent
+      if old_parent is not None:
+         old_parent._music.remove(client)
+      client._parent = new_parent
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -172,31 +195,3 @@ class _Parentage(_Abjad):
    def root(self):
       '''Return reference to component at depth 0 of Abjad expression.'''
       return self.parentage[-1]
-
-   ## PUBLIC METHODS ##
-
-   ## TODO: Make this method private. 
-   ##       Keep _Component.detach( ) public.
-   def detach(self):
-      '''Sever incoming reference from parent to client.
-         Sever outgoing reference from client to parent.'''
-      client = self._client
-      client._update._markForUpdateToRoot( )
-      parent, index = self._removeFromParent( )
-      self._cutOutgoingReferenceToParent( )
-      receipt = _ParentageReceipt(client, parent, index)
-      return receipt
-
-   ## TODO: Make this method private.
-   ##       Keep _Component.reattach( ) public.
-   def reattach(self, receipt):
-      '''Reattach client to parent described in receipt.
-         Empty receipt and return client.'''
-      client = self._client
-      assert client is receipt._component
-      parent = receipt._parent
-      index = receipt._index
-      parent._music.insert(index, client)
-      client._parent = parent
-      receipt._empty( )
-      return client

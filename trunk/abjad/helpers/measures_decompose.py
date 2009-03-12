@@ -25,7 +25,7 @@ def _measure_decompose(measure):
    for element in measure[:]:
       meter = element.duration.prolated
       meter = _in_terms_of(meter, denominator)
-      element.parentage.detach( )
+      element.parentage._detach( )
       new = RigidMeasure(meter, [element])
       new_measures.append(new)
    splice_after(measure, new_measures)

@@ -24,11 +24,11 @@ def components_parentage_detach(components, level = 'top'):
 
 def _components_parentage_detach_all(components):
    for component in list(iterate(components, '_Component')):
-      component.parentage.detach( )
+      component.parentage._detach( )
    return components
 
 
 def _components_parentage_detach_top(components):
    for component in components:
-      component.parentage.detach( )
+      component.parentage._detach( )
    return components

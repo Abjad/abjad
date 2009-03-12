@@ -290,8 +290,8 @@ class _Component(_Abjad):
       '''Detach component from parentage.
          Detach component from spanners.
          Return receipt.'''
-      parentage = self.parentage.detach( )
-      spanners = self.spanners.detach( )
+      parentage = self.parentage._detach( )
+      spanners = self.spanners._detach( )
       receipt = _ComponentReceipt(self, parentage, spanners)
       return receipt
 
@@ -305,7 +305,7 @@ class _Component(_Abjad):
          Reattach component to spanners in receipt.
          Empty receipt and return component.'''
       assert self is receipt._component
-      self.parentage.reattach(receipt._parentage)
-      self.spanners.reattach(receipt._spanners)
+      self.parentage._reattach(receipt._parentage)
+      self.spanners._reattach(receipt._spanners)
       receipt._empty( )
       return self

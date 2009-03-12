@@ -1,5 +1,4 @@
 from abjad.helpers.container_contents_scale import container_contents_scale
-#from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.helpers.is_measure_list import _is_measure_list
 from abjad.helpers.make_best_meter import _make_best_meter
 from abjad.measure.rigid.measure import RigidMeasure
@@ -28,8 +27,9 @@ def measures_fuse(measure_list):
    else:
       parent_index = None
 
+   ## TODO: Implement a components_parentage_detach_shallow( )
    for measure in measure_list:
-      measure.parentage.detach( )
+      measure.parentage._detach( )
 
    old_denominators = [x.meter.effective.denominator for x in measure_list]
    new_duration = sum([x.meter.effective.duration for x in measure_list])
@@ -43,8 +43,9 @@ def measures_fuse(measure_list):
       container_contents_scale(measure_music, multiplier)
       music += measure_music
 
+   ## TODO: Implement components_parentage_detach_shallow( )
    for element in music:
-      element.parentage.detach( )
+      element.parentage._detach( )
 
    new_measure = RigidMeasure(new_meter, music)
    parent.insert(parent_index, new_measure)

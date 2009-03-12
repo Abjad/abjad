@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_leaf_spanner_aggregator_detach_01( ):
-   '''t.spanners.detach( ) detaches all spanners attached to leaf t.'''
+   '''t.spanners._detach( ) detaches all spanners attached to leaf t.'''
 
    t = Staff(scale(4))
    p1 = Beam(t[ : ])
@@ -17,7 +17,7 @@ def test_leaf_spanner_aggregator_detach_01( ):
    }
    '''
 
-   t[0].spanners.detach( )
+   t[0].spanners._detach( )
 
    r'''
    \new Staff {
@@ -33,7 +33,7 @@ def test_leaf_spanner_aggregator_detach_01( ):
 
 
 def test_leaf_spanner_aggregator_detach_02( ):
-   '''t.spanners.detach( ) returns a SpannersReceipt.'''
+   '''t.spanners._detach( ) returns a SpannersReceipt.'''
 
    t = Staff(scale(4))
    beam = Beam(t[ : ])
@@ -48,7 +48,7 @@ def test_leaf_spanner_aggregator_detach_02( ):
    }
    '''
 
-   receipt = t[0].spanners.detach( )
+   receipt = t[0].spanners._detach( )
 
    assert len(receipt._pairs) == 2
    assert (beam, 0) in receipt._pairs

@@ -1,6 +1,8 @@
 from abjad.helpers.are_components import _are_components
 
 
+## TODO: Rename components_spanners_detach_shallow( )
+
 def components_unspan_shallow(components):
    '''Input parameter:
 
@@ -22,7 +24,7 @@ def components_unspan_shallow(components):
 
    # detach spanners
    for component in components:
-      component.spanners.detach( )   
+      component.spanners._detach( )   
 
    # return components
    return components

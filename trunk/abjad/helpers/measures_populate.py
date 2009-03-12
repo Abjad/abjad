@@ -102,4 +102,4 @@ def _measures_populate_skip(expr):
       meter = measure.meter.effective
       skip.duration.multiplier = meter.duration * ~meter.multiplier
       measure[ : ] = [skip]
-      measure.spanners.detach( )
+      measure.spanners._detach( )

@@ -10,7 +10,8 @@ def container_eject_contents(container):
    assert isinstance(container, Container)
 
    contents = container[:]
+   ## TODO: Implement components_parentage_detach_shallow( )
    for component in contents:
-      component.parentage.detach( )
+      component.parentage._detach( )
 
    return contents

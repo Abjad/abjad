@@ -17,7 +17,7 @@ def test_leaf_spanner_aggregator_reattach_01( ):
    }
    '''
 
-   receipt = t[0].spanners.detach( )
+   receipt = t[0].spanners._detach( )
 
    r'''
    \new Staff {
@@ -28,7 +28,7 @@ def test_leaf_spanner_aggregator_reattach_01( ):
    }
    '''
 
-   t[0].spanners.reattach(receipt)
+   t[0].spanners._reattach(receipt)
 
    r'''
    \new Staff {

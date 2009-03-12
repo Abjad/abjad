@@ -3,7 +3,7 @@ from abjad import *
 
 def test_container_spanner_aggregator_detach_01( ):
    '''
-   t.spanners.detach( ) detaches all spanners attaching to container t.
+   t.spanners._detach( ) detaches all spanners attaching to container t.
    '''
 
    t = Staff(Sequential(run(2)) * 2)
@@ -24,7 +24,7 @@ def test_container_spanner_aggregator_detach_01( ):
    }
    '''
 
-   t[0].spanners.detach( )
+   t[0].spanners._detach( )
 
    r'''
    \new Staff {

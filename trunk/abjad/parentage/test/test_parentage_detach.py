@@ -6,7 +6,7 @@ def test_parentage_detach_01( ):
 
    t = Staff(scale(4))
    note = t[1]
-   note.parentage.detach( )
+   note.parentage._detach( )
 
    r'''
    \new Staff {
@@ -42,7 +42,7 @@ def test_parentage_detach_02( ):
    }
    '''
 
-   leaf.parentage.detach( )
+   leaf.parentage._detach( )
    t.embed(0, leaf)
 
    r'''
@@ -86,7 +86,7 @@ def test_parentage_detach_03( ):
    }
    '''
    
-   sequential.parentage.detach( )
+   sequential.parentage._detach( )
 
    r'''
    \new Staff {
@@ -129,12 +129,8 @@ def test_parentage_detach_04( ):
    }
    '''
 
-   #receipt = t[0][0].parentage.detach( )
-   #t.embed(receipt.index, receipt.component)
-
-   sequential.parentage.detach( )
+   sequential.parentage._detach( )
    t.embed(0, sequential)
-
    
    r'''
    \new Staff {

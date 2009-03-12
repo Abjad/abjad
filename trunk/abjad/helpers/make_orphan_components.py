@@ -9,9 +9,9 @@ def _make_orphan_components(component_list):
    if not _are_components(component_list):
       raise ValeError('must be components in list.')
 
-   # detach all components
+   ## TODO: Implement components_parentage_detach_shallow( )
    for component in component_list:
-      component.parentage.detach( )
+      component.parentage._detach( )
 
    # return component list
    return component_list

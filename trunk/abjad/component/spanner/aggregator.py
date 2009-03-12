@@ -12,6 +12,16 @@ class _ComponentSpannerAggregator(_Interface):
 
    ## PRIVATE METHODS ##
 
+   def _detach(self):
+      '''Remove client from every spanner attaching to client.'''
+      client = self._client
+      receipt = _SpannerReceipt(client)
+      for spanner in list(self.attached):
+         index = spanner.index(client)
+         receipt._pairs.add((spanner, index))
+         spanner.remove(client)
+      return receipt
+
    def _fractureContents(self):
       '''Left-fractures all spanners attaching to t and to any components
          attaching to t and starting at the same moment as t.
@@ -27,6 +37,16 @@ class _ComponentSpannerAggregator(_Interface):
          for spanner in component.spanners.attached:
             result.append(spanner.fracture(spanner.index(component), 'right'))
       return result
+
+   def _reattach(self, receipt):
+      '''Reattach spanners described in component to client.
+         Empty receipt and return client.'''
+      client = self._client
+      assert client is receipt._component
+      for spanner, index in receipt._pairs:
+         spanner.insert(index, client)
+      receipt._empty( )
+      return client
 
    def _splice(self, components):
       '''Splice components into all spanners attached self.'''
@@ -72,18 +92,6 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in list(self.attached):
          spanner.clear( )
 
-   ## TODO: Make this method private.
-   ##       Keep _Component.detach( ) public.
-   def detach(self):
-      '''Remove client from every spanner attaching to client.'''
-      client = self._client
-      receipt = _SpannerReceipt(client)
-      for spanner in list(self.attached):
-         index = spanner.index(client)
-         receipt._pairs.add((spanner, index))
-         spanner.remove(client)
-      return receipt
-
    def fracture(self, direction = 'both'):
       '''Fracture every spanner attaching to client.'''
       result = [ ]
@@ -91,15 +99,3 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in self.attached:
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
-
-   ## TODO: Make this method private.
-   ##       Keep _Component.reattach( ) public.
-   def reattach(self, receipt):
-      '''Reattach spanners described in component to client.
-         Empty receipt and return client.'''
-      client = self._client
-      assert client is receipt._component
-      for spanner, index in receipt._pairs:
-         spanner.insert(index, client)
-      receipt._empty( )
-      return client

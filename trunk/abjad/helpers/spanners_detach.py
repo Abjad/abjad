@@ -2,6 +2,8 @@ from abjad.helpers.are_components import _are_components
 from abjad.helpers.iterate import iterate
 
 
+## TODO: Rename as components_spanners_detach( )
+
 def spanners_detach(components, level = 'top'):
    '''With level = 'flat':
          detach spanners from every Abjad component at top level of list.
@@ -27,13 +29,13 @@ def spanners_detach(components, level = 'top'):
 def _spanners_detach_all(components):
    '''Detach spanners from every Abjad component at all levels of list.'''
    for component in iterate(components, '_Component'):
-      component.spanners.detach( )
+      component.spanners._detach( )
 
 
 def _spanners_detach_top(components):
    '''Detach spanners from every Abjad component at top level of list.'''
    for component in components:
       try:
-         component.spanners.detach( )
+         component.spanners._detach( )
       except AttributeError:
          pass

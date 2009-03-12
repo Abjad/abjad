@@ -9,7 +9,7 @@ def test_parentage_reattach_01( ):
 
    t = Staff(scale(4))
    note = t[1]
-   receipt = note.parentage.detach( )
+   receipt = note.parentage._detach( )
 
    r'''
    \new Staff {
@@ -19,7 +19,7 @@ def test_parentage_reattach_01( ):
    }
    '''
 
-   note.parentage.reattach(receipt)
+   note.parentage._reattach(receipt)
 
    r'''
    \new Staff {
@@ -55,7 +55,7 @@ def test_parentage_reattach_02( ):
    }
    '''
 
-   receipt = leaf.parentage.detach( )
+   receipt = leaf.parentage._detach( )
 
    r'''
    \new Staff {
@@ -69,7 +69,7 @@ def test_parentage_reattach_02( ):
 
    assert not check(t)
 
-   leaf.parentage.reattach(receipt)
+   leaf.parentage._reattach(receipt)
 
    r'''
    \new Staff {
@@ -113,7 +113,7 @@ def test_parentage_reattach_03( ):
    }
    '''
    
-   receipt = sequential.parentage.detach( )
+   receipt = sequential.parentage._detach( )
 
    r'''
    \new Staff {
@@ -131,7 +131,7 @@ def test_parentage_reattach_03( ):
    assert check(t)
    assert check(sequential)
 
-   sequential.parentage.reattach(receipt)
+   sequential.parentage._reattach(receipt)
 
    r'''
    \new Staff {
@@ -181,7 +181,7 @@ def test_parentage_reattach_04( ):
    }
    '''
 
-   receipt = sequential.parentage.detach( )
+   receipt = sequential.parentage._detach( )
 
    r'''
    \new Staff {
@@ -197,7 +197,7 @@ def test_parentage_reattach_04( ):
    assert not check(t)
    assert not check(sequential)
 
-   sequential.parentage.reattach(receipt)
+   sequential.parentage._reattach(receipt)
 
    r'''
    \new Staff {
