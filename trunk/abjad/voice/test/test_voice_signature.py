@@ -124,7 +124,6 @@ def test_signature_07( ):
    t = Voice([s1, s2])
 
    assert t.voice.signature == (id(t), )
-   #components = instances(t, '_Component')
    components = iterate(t, '_Component')
    assert all([x.voice.signature == t.voice.signature for x in components])
 

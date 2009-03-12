@@ -8,7 +8,7 @@ def test_instances_01( ):
       Note(0, (1, 8)), Rest((1, 8)),
       Note(0, (1, 8)), Rest((1, 8)),
       Note(0, (1, 8)), Rest((1, 8))])
-   notes = instances(t, 'Note')
+   notes = instances(t, Note)
    assert isinstance(notes, list)
    assert len(notes) == 5
    assert all([hasname(x, 'Note') for x in notes])
@@ -21,7 +21,7 @@ def test_instances_02( ):
       Note(0, (1, 8)), Rest((1, 8)),
       Note(0, (1, 8)), Rest((1, 8)),
       Note(0, (1, 8)), Rest((1, 8))])
-   rests = instances(t, 'Rest')
+   rests = instances(t, Rest)
    assert isinstance(rests, list)
    assert len(rests) == 5
    assert all([hasname(x, 'Rest') for x in rests])

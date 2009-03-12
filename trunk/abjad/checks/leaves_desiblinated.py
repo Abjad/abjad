@@ -14,8 +14,9 @@ from abjad.helpers.instances import instances
 class LeavesDesiblinated(_Check):
 
    def _run(self, expr):
+      from abjad.leaf.leaf import _Leaf
       violators = [ ]
-      leaves = instances(expr, '_Leaf')
+      leaves = instances(expr, _Leaf)
       total, bad = 0, 0
       if leaves:
          leaves.pop( )

@@ -183,7 +183,8 @@ class Container(_Component):
 
    @property
    def leaves(self):
-      return instances(self, '_Leaf')
+      from abjad.leaf.leaf import _Leaf
+      return instances(self, _Leaf)
 
    @property
    def next(self):

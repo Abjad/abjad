@@ -11,16 +11,16 @@ def _traverse(expr, v):
 
 
 ### TODO - replace with abjad.helpers.iterate ###
-def instances(expr, classname):
-   '''Return all class instances with classname in expr;
+def instances(expr, classtoken):
+   '''Return all class instances with classtoken in expr;
       works on score components, lists, tuples.'''
    class Visitor(object):
-      def __init__(self, classname):
-         self.classname = classname
+      def __init__(self, classtoken):
+         self.classtoken = classtoken
          self.result = []
       def visit(self, node): 
-         if hasattr(node, 'kind') and node.kind(classname):
+         if isinstance(node, classtoken):
             self.result.append(node)
-   v = Visitor(classname)
+   v = Visitor(classtoken)
    _traverse(expr, v)
    return v.result 

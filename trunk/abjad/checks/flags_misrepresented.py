@@ -1,14 +1,12 @@
 from abjad.checks.check import _Check
-#from abjad.helpers.instances import instances
 from abjad.helpers.iterate import iterate
 
 
 class FlagsMisrepresented(_Check):
 
    def _run(self, expr):
+      #from abjad.leaf.leaf import _Leaf
       violators = [ ] 
-      #leaves = instances(expr, '_Leaf')
-      #for leaf in leaves:
       total = 0
       for leaf in iterate(expr, '_Leaf'):
          total += 1
@@ -22,5 +20,4 @@ class FlagsMisrepresented(_Check):
             if right > flags or (right < flags and left not in (flags, None)):
                if leaf not in violators:
                   violators.append(leaf)
-      #return violators, len(leaves)
       return violators, total

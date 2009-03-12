@@ -7,7 +7,8 @@ def leaves_fuse_binary(data):
    if possible. Only properties of the first leaf are kept.'''
    ### are all the leaves in data siblings? do we care.
    ### are they beads of the same thread?
-   leaves = instances(data, '_Leaf')
+   from abjad.leaf.leaf import _Leaf
+   leaves = instances(data, _Leaf)
    if len(leaves) == 1:
       return leaves
    elif len(leaves) > 1:

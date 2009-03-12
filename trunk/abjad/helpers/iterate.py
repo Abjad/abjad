@@ -12,7 +12,3 @@ def iterate(expr, classname):
       for m in expr._music:
          for x in iterate(m, classname):
             yield x
-
-
-#def components(expr):
-#   return iterate(expr, '_Component')

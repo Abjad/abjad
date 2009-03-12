@@ -13,7 +13,7 @@ def appictate(expr):
    from abjad.leaf.leaf import _Leaf
    from abjad.note.note import Note
 
-   for i, x in enumerate(instances(expr, '_Leaf')):
+   for i, x in enumerate(instances(expr, _Leaf)):
       if isinstance(x, Note):
          x.pitch = i
       elif isinstance(x, Chord):

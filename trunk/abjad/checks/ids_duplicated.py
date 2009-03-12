@@ -6,8 +6,9 @@ from abjad.helpers.unique import unique
 class IdsDuplicated(_Check):
 
    def _run(self, expr):
+      from abjad.component.component import _Component
       violators = [ ]
-      components = instances(expr, '_Component')
+      components = instances(expr, _Component)
       total_ids = [id(x) for x in components]
       unique_ids = unique(total_ids)
       if len(total_ids) > len(unique_ids):
