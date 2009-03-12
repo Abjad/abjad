@@ -295,11 +295,6 @@ class _Component(_Abjad):
       receipt = _ComponentReceipt(self, parentage, spanners)
       return receipt
 
-   ## TODO: Deprecate and use built-in Python isinstance( ) instead ##
-
-   def kind(self, classname):
-      return hasname(self, classname)
-
    def reattach(self, receipt):
       '''Reattach component to both parentage in receipt.
          Reattach component to spanners in receipt.
