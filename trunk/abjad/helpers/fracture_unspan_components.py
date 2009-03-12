@@ -1,6 +1,5 @@
-from abjad.helpers.components_unspan import components_unspan
+from abjad.helpers.components_unspan_shallow import components_unspan_shallow
 from abjad.helpers.fracture_around_components import fracture_around_components
-#from abjad.helpers.unspan_components import unspan_components
 
 
 def fracture_unspan_components(component_list):
@@ -10,7 +9,6 @@ def fracture_unspan_components(component_list):
       return components in list.'''
 
    fracture_around_components(component_list)
-   #unspan_components(component_list) 
-   components_unspan(component_list)
+   components_unspan_shallow(component_list)
    
    return component_list

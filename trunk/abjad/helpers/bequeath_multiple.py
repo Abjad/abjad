@@ -2,11 +2,10 @@ from abjad.exceptions.exceptions import ContiguityError
 from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.are_successive_components import _are_successive_components
 from abjad.helpers.components_parentage_detach import components_parentage_detach
-from abjad.helpers.components_unspan import components_unspan
+from abjad.helpers.components_unspan_shallow import components_unspan_shallow
 from abjad.helpers.get_dominant_spanners import _get_dominant_spanners
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
 from abjad.helpers.make_orphan_components import _make_orphan_components
-#from abjad.helpers.unspan_components import unspan_components
 
 
 def bequeath_multiple(old_components, new_components):
@@ -51,8 +50,7 @@ def bequeath_multiple(old_components, new_components):
       dominant_spanner[index:index] = new_components
 
    # unspan old components
-   #unspan_components(old_components)
-   components_unspan(old_components)
+   components_unspan_shallow(old_components)
 
    # remember parent and index
    parent, index = _get_parent_and_index(old_components)

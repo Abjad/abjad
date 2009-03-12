@@ -1,7 +1,7 @@
 from abjad.helpers.are_components import _are_components
 
 
-def components_unspan(components):
+def components_unspan_shallow(components):
    '''Input parameter:
 
       component_list should be a Python list of any Abjad components.

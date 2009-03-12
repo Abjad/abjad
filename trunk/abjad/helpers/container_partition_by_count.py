@@ -4,7 +4,9 @@ from abjad.helpers.lcopy import lcopy
 from abjad.helpers.pairwise import pairwise
 
 
-## TODO: Possibly implement this as a generalization of lcopy( )?
+## TODO: Possibly implement this as a generalization of lcopy( )? ##
+
+## TODO: Implement an in-place version that doesn't climb to score root ##
 
 def container_partition_by_count(container, counts):
    r'''container is any Abjad container to partition.
