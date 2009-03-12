@@ -1,5 +1,5 @@
 from abjad.helpers.leaf_scale import leaf_scale_binary
-from abjad.helpers.instances import instances
+from abjad.helpers.iterate import iterate
 
 
 def leaves_fuse_binary(data):
@@ -8,7 +8,7 @@ def leaves_fuse_binary(data):
    ### are all the leaves in data siblings? do we care.
    ### are they beads of the same thread?
    from abjad.leaf.leaf import _Leaf
-   leaves = instances(data, _Leaf)
+   leaves = list(iterate(data, _Leaf))
    if len(leaves) == 1:
       return leaves
    elif len(leaves) > 1:

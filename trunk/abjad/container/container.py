@@ -8,7 +8,7 @@ from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
-from abjad.helpers.instances import instances
+from abjad.helpers.iterate import iterate
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.notehead.interface import _NoteHeadInterface
 
@@ -184,7 +184,7 @@ class Container(_Component):
    @property
    def leaves(self):
       from abjad.leaf.leaf import _Leaf
-      return instances(self, _Leaf)
+      return list(iterate(self, _Leaf))
 
    @property
    def next(self):
