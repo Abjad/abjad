@@ -72,25 +72,27 @@ class _VoiceInterface(_Interface, _FormatCarrier):
 
    @property
    def signature(self):
+      from abjad.leaf.leaf import _Leaf
+      from abjad.context.context import _Context
       parentage = self._client.parentage.parentage
       found_lilypond_expression = False
       signator = None
       for i, p in enumerate(parentage):
-         if p.kind('_Leaf'):
+         if isinstance(p, _Leaf):
             signator = p
-         elif p.kind('_Context') and not getattr(p, 'parallel', False):
+         elif isinstance(p, _Context) and not getattr(p, 'parallel', False):
             found_lilypond_expression = True
             return p.voice._naiveSignature 
-         elif p.kind('_Context') and getattr(p, 'parallel', False):
+         elif isinstance(p, _Context) and getattr(p, 'parallel', False):
             found_lilypond_expression = True
             if parentage.index(p) == 0:
                return p.voice._naiveSignature
             else:
                return parentage[i - 1].voice._naiveSignature
-         elif not p.kind('_Conext') and not getattr(p, 'parallel', False):
+         elif not isinstance(p, _Context) and not getattr(p, 'parallel', False):
             found_lilypond_expression = True
             signator = p
-         elif not p.kind('_Context') and getattr(p, 'parallel', False):
+         elif not isinstance(p, _Context) and getattr(p, 'parallel', False):
             found_lilypond_expression = True
             if p.parentage.orphan:
                if parentage.index(p) == 0:
