@@ -58,12 +58,12 @@ def leaf_scale_binary(dur, leaf):
          for spanner in leaf.spanners.attached:
             spanner.insert(spanner.index(leaf), l)
       ### insert new leaves in parent
-      parent = leaf._parent
+      parent = leaf.parentage.parent
       if parent:
          indx = parent.index(leaf)
          for l in reversed(result):
             parent._music.insert(indx, l)
-            l._parent = parent
+            l.parentage.parent._setParentTo(parent)
          parent.remove(leaf)
       ### tie leaves
 #      for l in result:

@@ -51,12 +51,7 @@ def _update_leaf_spanners(new_leaf, old_leaf):
       spanner.insert(spanner.index(old_leaf), new_leaf)
 
 def _link_new_leaf_to_parent(new_leaf, old_leaf):
-#   parent = old_leaf._parent
-#   if parent:
-#      indx = parent.index(old_leaf)
-#      parent._music.insert(indx, new_leaf)
-#      new_leaf._parent = parent
-   parent = old_leaf._parent
+   parent = old_leaf.parentage.parent
    if parent:
       i = parent.index(old_leaf)              
       parent[i:i] = [new_leaf]

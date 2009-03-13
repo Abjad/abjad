@@ -136,6 +136,10 @@ class _Parentage(_Abjad):
             pass
       return None, None
 
+   def _setParentTo(self, parent):
+      '''Encapsulate parent assignment.'''
+      self._client._parent = parent
+
    def _splice(self, components):
       '''Insert components immediately after self in parent.
          Do not handle spanners.'''
