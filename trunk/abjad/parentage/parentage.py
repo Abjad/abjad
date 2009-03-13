@@ -179,8 +179,6 @@ class _Parentage(_Abjad):
       '''True when component has no parent, otherwise False.'''
       return len(self.parentage) == 1
 
-   ## TODO: Reimplement self._client._parent as self._parent
-
    @property
    def parent(self):
       '''Return reference to parent of client, else None.'''

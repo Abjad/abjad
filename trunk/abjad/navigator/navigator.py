@@ -2,11 +2,11 @@ from abjad.core.abjadcore import _Abjad
 from collections import deque
 
 
-### TODO profile and figure out why _Leaf.next and _Leaf.prev
-###      are taking so much time
+## TODO profile and figure out why _Leaf.next and _Leaf.prev
+##      are taking so much time
 
-### TODO should we replace the old next with the new ._navigator._next?
-###      add other next helpers such as nextLeaf?
+## TODO should we replace the old next with the new ._navigator._next?
+##      add other next helpers such as nextLeaf?
 
 class _Navigator(_Abjad):
 
@@ -134,7 +134,6 @@ class _Navigator(_Abjad):
       from abjad.container.container import Container
       from abjad.leaf.leaf import _Leaf
       client = self._client
-      #   return [self._client]
       if isinstance(client, _Leaf):
          return [client]
       elif isinstance(client, Container):
@@ -209,10 +208,10 @@ class _Navigator(_Abjad):
       '''Returns the next *sequential* element in the caller's parent; 
          None otherwise'''
       rank = self._rank( )
-      if (not rank is None) and (not self._client._parent.parallel): 
+      if (not rank is None) and (not self._client.parentage.parent.parallel): 
       # (parallels are siameses)
-         if rank + 1 < len(self._client._parent._music):
-            return self._client._parent._music[rank + 1]
+         if rank + 1 < len(self._client.parentage.parent._music):
+            return self._client.parentage.parent._music[rank + 1]
       else:
          return None
          
@@ -284,10 +283,10 @@ class _Navigator(_Abjad):
       '''Returns the previous *sequential* element in the caller's parent; 
          None otherwise'''
       rank = self._rank( )
-      if (not rank is None) and (not self._client._parent.parallel): 
+      if (not rank is None) and (not self._client.parentage.parent.parallel): 
       # (parallels are siameses)
          if rank - 1 >= 0:
-            return self._client._parent._music[rank - 1]
+            return self._client.parentage.parent._music[rank - 1]
       else:
          return None
 
@@ -300,9 +299,9 @@ class _Navigator(_Abjad):
          if rank < len(self._client._music):
             return self._client._music[rank]
          else:
-            return self._client._parent
+            return self._client.parentge.parent
       else:
-         return self._client._parent
+         return self._client.parentage.parent
 
    def _findFellowBead(self, candidates):
       '''Helper method from prevBead and nextBead. 
@@ -387,12 +386,12 @@ class _Navigator(_Abjad):
          else:
             if lastVisitedRank + 1 < len(self._client._music):
                return self._client._music[lastVisitedRank + 1], None
-            elif self._client._parent:
-               return self._client._parent, self._rank( )
+            elif self._client.parentage.parent is not None:
+               return self._client.parentage.parent, self._rank( )
             else:
                return None, None
-      elif self._client._parent:
-         return self._client._parent, self._rank( )
+      elif self._client.parentage.parent is not None:
+         return self._client.parentage.parent, self._rank( )
       else:
          return None, None
 
@@ -418,8 +417,8 @@ class _Navigator(_Abjad):
          else:
             if lastVisitedRank > 0:
                return self._client._music[lastVisitedRank - 1], None
-            elif self._client._parent:
-               return  self._client._parent, self._rank( )
+            elif self._client.parentage.parent is not None:
+               return  self._client.parentage.parent, self._rank( )
             else:
                return None, None
       elif not hasattr(self._client, '_parent'):
@@ -427,8 +426,8 @@ class _Navigator(_Abjad):
          print self._client.lily
          print ''
          raise Exception
-      elif self._client._parent:
-         return self._client._parent, self._rank( )
+      elif self._client.parentage.parent is not None:
+         return self._client.parentage.parent, self._rank( )
       else:
          return None, None
 
