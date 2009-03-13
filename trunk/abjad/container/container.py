@@ -21,13 +21,13 @@ class Container(_Component):
       self._parent = None
       _Component.__init__(self)
       if music:
-         music_parent = music[0].parentage.parent
+         parent = music[0].parentage.parent
          if not _are_orphan_components(music):
             assert _are_contiguous_components(music)
-            start_index = music_parent.index(music[0])
-            stop_index = music_parent.index(music[-1])
-         if music_parent is not None:
-            music_parent[start_index : stop_index + 1] = [self]
+            start_index = parent.index(music[0])
+            stop_index = parent.index(music[-1])
+         if parent is not None:
+            parent[start_index : stop_index + 1] = [self]
       self._music = music
       self._establish( )
       #_Component.__init__(self)
@@ -217,12 +217,12 @@ class Container(_Component):
          Return component.'''
       assert isinstance(component, _Component)
       self._music.insert(i, component)
-      component._parent = self
+      component.parentage._setParentTo(self)
       return component
 
    def _establish(self):
       for x in self._music:
-         x._parent = self
+         x.parentage._setParentTo(self)
 
    ## PUBLIC METHODS ## 
 
@@ -283,7 +283,7 @@ class Container(_Component):
             if bounding_spanners:
                for spanner in bounding_spanners:
                   spanner.insert(spanner.index(self[i]), expr)
-         expr._parent = self
+         expr.parentage._setParentTo(self)
          self._music.insert(i, expr)
 
       if isinstance(expr, (list, tuple)):
@@ -354,7 +354,7 @@ class Container(_Component):
          For nonfracturing insert, use embed( ).'''
       assert isinstance(expr, _Component)
       result = [ ]
-      expr._parent = self
+      expr.parentage._setParentTo(self)
       self._music.insert(i, expr)
       if expr.prev:
          result.extend(expr.prev.spanners.fracture(direction = 'right'))
