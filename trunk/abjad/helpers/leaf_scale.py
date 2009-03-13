@@ -63,7 +63,7 @@ def leaf_scale_binary(dur, leaf):
          indx = parent.index(leaf)
          for l in reversed(result):
             parent._music.insert(indx, l)
-            l.parentage.parent._setParentTo(parent)
+            l.parentage._setParentTo(parent)
          parent.remove(leaf)
       ### tie leaves
 #      for l in result:
