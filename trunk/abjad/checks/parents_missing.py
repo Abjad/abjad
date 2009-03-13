@@ -14,10 +14,10 @@ class ParentsMissing(_Check):
             self.violators = [ ]
          def visit(self, node):
             self.total += 1
-            if node._parent != self.parents[-1]:
+            if node.parentage.parent != self.parents[-1]:
                self.bad += 1
                print '%s has parent %s instead of expected %s.\n' % (
-                  node, node._parent, self.parents[-1])
+                  node, node.parentage.parent, self.parents[-1])
                self.violators.append(node)
             if hasattr(node, '_music'):
                self.parents.append(node)
