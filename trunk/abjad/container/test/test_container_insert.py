@@ -116,3 +116,18 @@ def test_container_insert_06( ):
            ef'8 ]
    }
    '''
+
+## PARENTAGE TESTS ##
+
+def test_container_insert_07( ):
+   v = Voice(scale(4))
+   t = Staff(run(8))
+   note = v[0]
+   t.insert(1, v[0])
+   assert check(v)
+   assert check(t)
+   assert not note in v
+   assert note.parentage.parent is t
+   
+
+

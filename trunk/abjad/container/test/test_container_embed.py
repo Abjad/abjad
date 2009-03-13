@@ -4,7 +4,7 @@ import py.test
 
 ### SPANNERS ATTACH TO LEAVES ### 
 
-def test_embed_01( ):
+def test_container_embed_01( ):
    '''
    Containers can embed a Leaf to index position 0. 
    Components embeded at index 0 are not attached to spanners.
@@ -18,7 +18,7 @@ def test_embed_01( ):
       assert child.parentage.parent is t
 
    
-def test_embed_02( ):
+def test_container_embed_02( ):
    '''
    Containers can embed with negative indeces.
    '''
@@ -31,7 +31,7 @@ def test_embed_02( ):
       assert child.beam.spanner is b
 
 
-def test_embed_03( ):
+def test_container_embed_03( ):
    '''
    Containers can embed another Container.
    '''
@@ -45,7 +45,7 @@ def test_embed_03( ):
       assert child.beam.spanner is b
 
 
-def test_embed_04( ):
+def test_container_embed_04( ):
    '''
    Containers can embed a list of Components.
    '''
@@ -62,7 +62,7 @@ def test_embed_04( ):
       assert not leaf.spanners.attached
 
 
-def test_embed_05( ):
+def test_container_embed_05( ):
    '''
    Spanners not spanning embedding index are unaffected.
    '''
@@ -79,7 +79,7 @@ def test_embed_05( ):
    assert b2.components == t[3:]
 
 
-def test_embed_06( ):
+def test_container_embed_06( ):
    '''
    Spanners not spanning embedding index are unaffected.
    Spanners spanning embedding index are affected.
@@ -100,7 +100,7 @@ def test_embed_06( ):
    assert b2.components == t[3:]
 
 
-def test_embed_07( ):
+def test_container_embed_07( ):
    '''Containers with two parallel spanners can embed a Container.'''
    t = Staff(run(4))
    b = Beam(t.leaves)
@@ -117,7 +117,7 @@ def test_embed_07( ):
 
 ### SPANNERS ATTACH TO CONTAINERS ### 
 
-def test_embed_10( ):
+def test_container_embed_10( ):
    '''
    Containers can embed a Leaf.
    '''
@@ -132,7 +132,7 @@ def test_embed_10( ):
       assert not child.spanners.attached 
 
 
-def test_embed_11( ):
+def test_container_embed_11( ):
    '''
    Containers can embed a Container.
    '''
@@ -149,7 +149,7 @@ def test_embed_11( ):
       assert not leaf.spanners.attached
 
 
-def test_embed_12( ):
+def test_container_embed_12( ):
    '''
    Containers can embed a list of Components.
    '''
@@ -166,7 +166,7 @@ def test_embed_12( ):
       assert not leaf.spanners.attached
 
 
-def test_embed_13( ):
+def test_container_embed_13( ):
    '''
    Spanners not spanning embedding index are unaffected.
    '''
@@ -185,7 +185,7 @@ def test_embed_13( ):
 
 ### SPANNERS ATTACH TO LEAVES AND CONTAINERS ###
 
-def test_embed_14( ):
+def test_container_embed_14( ):
    '''Embedding works on spanners spanning leaves and containers.'''
    t = Staff(run(4))
    b = Beam(t.leaves)
@@ -201,7 +201,7 @@ def test_embed_14( ):
 
 ## PARENTAGE TESTS ##
 
-def test_embed_20( ):
+def test_container_embed_20( ):
    v = Voice(scale(4))
    t = Staff(run(8))
    note = v[0]
@@ -215,7 +215,7 @@ def test_embed_20( ):
 
 #### SPANNERS RUN BELOW EMBEDDING LEVEL ###
 #### TODO do we want this to work? 
-#def test_embed_21( ):
+#def test_container_embed_21( ):
 #   t = Staff(Sequential(run(2)) * 2)
 #   diatonicize(t)
 #   p = Beam(t.leaves)
@@ -245,7 +245,7 @@ def test_embed_20( ):
 
 ## EXCEPTIONS ##
 
-def test_embed_30( ):
+def test_container_embed_30( ):
    '''Embed complains on out of bounds indeces.'''
    t = Staff(Note(0, (1, 8)) * 8)
    #Beam(t)

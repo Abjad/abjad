@@ -66,3 +66,16 @@ def test_container_bind_component_02( ):
 
    assert check(t)
    assert t.format == "\tc'8 [\n\td'8\n\te'8 ]\n\tf'8"
+
+
+## PARENTAGE TESTS ##
+
+def test_container_bind_component_03( ):
+   v = Voice(scale(4))
+   t = Staff(run(8))
+   note = v[0]
+   t._bind_component(1, v[0])
+   assert check(v)
+   assert check(t)
+   assert not note in v
+   assert note.parentage.parent is t
