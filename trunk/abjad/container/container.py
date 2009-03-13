@@ -216,12 +216,14 @@ class Container(_Component):
          Return component.'''
       assert isinstance(component, _Component)
       self._music.insert(i, component)
-      component.parentage._setParentTo(self)
+      #component.parentage._setParentTo(self)
+      component.parentage.parent = self
       return component
 
    def _establish(self):
       for x in self._music:
-         x.parentage._setParentTo(self)
+         #x.parentage._setParentTo(self)
+         x.parentage.parent = self
 
    ## PUBLIC METHODS ## 
 
@@ -282,7 +284,8 @@ class Container(_Component):
             if bounding_spanners:
                for spanner in bounding_spanners:
                   spanner.insert(spanner.index(self[i]), expr)
-         expr.parentage._setParentTo(self)
+         #expr.parentage._setParentTo(self)
+         expr.parentage.parent = self
          self._music.insert(i, expr)
 
       if isinstance(expr, (list, tuple)):
@@ -353,7 +356,8 @@ class Container(_Component):
          For nonfracturing insert, use embed( ).'''
       assert isinstance(expr, _Component)
       result = [ ]
-      expr.parentage._setParentTo(self)
+      #expr.parentage._setParentTo(self)
+      expr.parentage.parent = self
       self._music.insert(i, expr)
       if expr.prev:
          result.extend(expr.prev.spanners.fracture(direction = 'right'))

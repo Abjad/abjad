@@ -52,7 +52,8 @@ def tcopy(ll):
 
    # point elements in result to result as new parent
    for element in result:
-      element.parentage._setParentTo(result)
+      #element.parentage._setParentTo(result)
+      element.parentage.parent = result
 
    # new: resize result to match parent_multiplier, if resizable
    if result.__class__.__name__ == 'FixedDurationTuplet':
@@ -70,7 +71,8 @@ def tcopy(ll):
 
    # point elements in input list back to old parent
    for element in ll:
-      element.parentage._setParentTo(parent)
+      #element.parentage._setParentTo(parent)
+      element.parentage.parent = parent
 
    # return copy
    return result

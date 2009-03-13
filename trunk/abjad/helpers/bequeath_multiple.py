@@ -63,7 +63,8 @@ def bequeath_multiple(old_components, new_components):
 
       # insert new components in parent of old components
       for new_component in reversed(new_components):
-         new_component.parentage._setParentTo(parent)
+         #new_component.parentage._setParentTo(parent)
+         new_component.parentage.parent = parent
          parent._music.insert(index, new_component)
 
    # return old components

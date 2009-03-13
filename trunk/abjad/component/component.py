@@ -274,7 +274,8 @@ class _Component(_Abjad):
          #right._sever( )
          right._severAllComponents( )
       #self._parent = parent
-      self.parentage._setParentTo(parent)
+      #self.parentage._setParentTo(parent)
+      self.parentage.parent = parent
 
 #      for i, hp in enumerate(result.spanners.get(classname = '_Hairpin')):
 #         if hairpinKillList[i]:

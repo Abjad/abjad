@@ -1,6 +1,7 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.rational.rational import Rational
 from abjad.receipt.parentage import _ParentageReceipt
+import types
 
 
 class _Parentage(_Abjad):
@@ -70,7 +71,8 @@ class _Parentage(_Abjad):
          Return parent.'''
       parent = self.parent
       if parent is not None:
-         self._setParentTo(None)
+         #self._setParentTo(None)
+         self.parent = None
          return parent
 
    def _detach(self):
@@ -116,7 +118,8 @@ class _Parentage(_Abjad):
       parent = receipt._parent
       index = receipt._index
       parent._music.insert(index, client)
-      self._setParentTo(parent)
+      #self._setParentTo(parent)
+      self.parent = parent
       receipt._empty( )
       return client
 
@@ -133,9 +136,9 @@ class _Parentage(_Abjad):
          return parent, index
       return None, None
 
-   def _setParentTo(self, parent):
-      '''Encapsulate parent assignment.'''
-      self._parent = parent
+#   def _setParentTo(self, parent):
+#      '''Encapsulate parent assignment.'''
+#      self._parent = parent
 
    def _splice(self, components):
       '''Insert components immediately after self in parent.
@@ -152,7 +155,8 @@ class _Parentage(_Abjad):
       cur_parent = self.parent
       if cur_parent is not None:
          cur_parent._music.remove(client)
-      self._setParentTo(new_parent)
+      #self._setParentTo(new_parent)
+      self.parent = new_parent
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -176,10 +180,14 @@ class _Parentage(_Abjad):
       '''True when component has no parent, otherwise False.'''
       return len(self.parentage) == 1
 
-   @property
-   def parent(self):
+   @apply
+   def parent( ):
       '''Return reference to parent of client, else None.'''
-      return self._parent
+      def fget(self):
+         return self._parent
+      def fset(self, arg):
+         ## TODO: Include asserts
+         self._parent = arg
       
    @property
    def parentage(self):
