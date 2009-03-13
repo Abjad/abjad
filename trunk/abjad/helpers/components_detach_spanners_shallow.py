@@ -1,9 +1,7 @@
 from abjad.helpers.are_components import _are_components
 
 
-## TODO: Rename components_spanners_detach_shallow( )
-
-def components_unspan_shallow(components):
+def components_detach_spanners_shallow(components):
    '''Input parameter:
 
       component_list should be a Python list of any Abjad components.

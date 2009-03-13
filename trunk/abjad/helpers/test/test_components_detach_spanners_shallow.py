@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_components_unspan_shallow_01( ):
+def test_components_detach_spanners_shallow_01( ):
    t = Staff(scale(4))
    Beam(t[:])
-   components_unspan_shallow(t[:])
+   components_detach_spanners_shallow(t[:])
 
    r'''
    \new Staff {
@@ -19,10 +19,10 @@ def test_components_unspan_shallow_01( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_components_unspan_shallow_02( ):
+def test_components_detach_spanners_shallow_02( ):
    t = Staff(scale(4))
    Beam(t[:])
-   components_unspan_shallow(t[0:2])
+   components_detach_spanners_shallow(t[0:2])
 
    r'''
    \new Staff {
@@ -37,6 +37,6 @@ def test_components_unspan_shallow_02( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_components_unspan_shallow_03( ):
-   t = components_unspan_shallow([ ])
+def test_components_detach_spanners_shallow_03( ):
+   t = components_detach_spanners_shallow([ ])
    assert t == [ ]
