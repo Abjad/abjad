@@ -9,7 +9,7 @@ def test_cast_note_01( ):
    # check that attributes have not been removed or added.
    assert dir(r) == dir(Rest((1, 4)))
    assert dir(n) == dir(Note(0, (1, 4)))
-   assert n._parent is None
+   assert n.parentage.parent is None
    assert n.duration.written == d
 
 
@@ -18,7 +18,7 @@ def test_cast_note_02( ):
    d = t[0].duration.written
    Note(t[0])
    assert isinstance(t[0], Note)
-   assert t[0]._parent is t
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -27,7 +27,7 @@ def test_cast_note_03( ):
    d = v[0].duration.written
    Note(v[0])
    assert isinstance(v[0], Note)
-   assert v[0]._parent is v
+   assert v[0].parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -36,15 +36,14 @@ def test_cast_note_04( ):
    d = t[0].duration.written
    Note(t[0])
    assert isinstance(t[0], Note)
-   assert t[0]._parent is t
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
 def test_cast_note_05( ):
    '''Works fine when rest is beamed.'''
    t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-   #Beam(t)
    Beam(t[ : ])
    Note(t[1])
    assert isinstance(t[1], Note)
-   assert t[1]._parent is t
+   assert t[1].parentage.parent is t
