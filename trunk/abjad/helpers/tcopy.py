@@ -20,7 +20,7 @@ def tcopy(ll):
      raise ValueError('Input must be contiguous music elements.')
 
    # remember parent
-   parent = ll[0]._parent
+   parent = ll[0].parentage.parent
 
    # new: remember parent multiplier, if any
    parent_multiplier = getattr(parent.duration, 'multiplier', 1)
@@ -32,7 +32,7 @@ def tcopy(ll):
       parent_denominator = None
 
    # remember parent's music
-   parents_music = ll[0]._parent._music
+   parents_music = ll[0].parentage.parent._music
 
    # strip parent of music temporarily
    parent._music = [ ]
