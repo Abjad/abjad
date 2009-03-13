@@ -185,7 +185,7 @@ def test_embed_13( ):
 
 ### SPANNERS ATTACH TO LEAVES AND CONTAINERS ###
 
-def test_embed_20( ):
+def test_embed_14( ):
    '''Embedding works on spanners spanning leaves and containers.'''
    t = Staff(run(4))
    b = Beam(t.leaves)
@@ -198,6 +198,20 @@ def test_embed_20( ):
       assert leaf.spanners.attached == set([b])
    assert tr.components == [t]
    
+
+## PARENTAGE TESTS ##
+
+def test_embed_20( ):
+   v = Voice(scale(4))
+   t = Staff(run(8))
+   note = v[0]
+   t.embed(1, v[0])
+   assert check(v)
+   assert check(t)
+   assert not note in v
+   assert note.parentage.parent is t
+   
+
 
 #### SPANNERS RUN BELOW EMBEDDING LEVEL ###
 #### TODO do we want this to work? 
@@ -229,7 +243,7 @@ def test_embed_20( ):
 #   }
 #   '''
 
-### EXCEPTIONS ###
+## EXCEPTIONS ##
 
 def test_embed_30( ):
    '''Embed complains on out of bounds indeces.'''
