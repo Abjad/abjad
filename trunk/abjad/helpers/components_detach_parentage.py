@@ -2,7 +2,7 @@ from abjad.helpers.are_components import _are_components
 from abjad.helpers.iterate import iterate
 
 
-def components_parentage_detach(components, level = 'top'):
+def components_detach_parentage(components, level = 'top'):
    '''Detach parent from every Abjad component at
       specified level in list.
 
