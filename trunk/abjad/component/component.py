@@ -253,7 +253,6 @@ class _Component(_Abjad):
 
       #receipts = self.spanners.fracture( )
       receipts = self.spanners._fractureContents( )
-      #parent = self._parentage._cutOutgoingReferenceToParent( )
       parent = self.parentage._cutOutgoingReferenceToParent( )
       result = deepcopy(self)
 #      for source, left, right in reversed(receipt):

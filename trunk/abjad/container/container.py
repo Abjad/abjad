@@ -21,7 +21,7 @@ class Container(_Component):
       self._parent = None
       _Component.__init__(self)
       if music:
-         music_parent = music[0]._parent
+         music_parent = music[0].parentage.parent
          if not _are_orphan_components(music):
             assert _are_contiguous_components(music)
             start_index = music_parent.index(music[0])
@@ -121,7 +121,6 @@ class Container(_Component):
             j = len(self) + i
          else:
             j = i
-         #expr._parent = self
          expr.parentage._switchParentTo(self)
          self._music[j] = expr
 
@@ -134,7 +133,6 @@ class Container(_Component):
       else:
          assert isinstance(expr, list)
          for x in expr:
-            #x._parent = self
             x.parentage._switchParentTo(self)
          self._music[i.start : i.stop] = expr
 
@@ -257,7 +255,7 @@ class Container(_Component):
          spanner.remove(self)
 
       # if i have a parent
-      parent = self._parent
+      parent = self.parentage.parent
       if parent:
          # embed expr in parent just before me ... 
          parent.embed(parent.index(self), expr)
