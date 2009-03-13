@@ -82,7 +82,6 @@ class _Parentage(_Abjad):
       receipt = _ParentageReceipt(client, parent, index)
       return receipt
 
-
    def _disjunctInclusiveParentageBetween(self, arg):
       '''Same as _disjunctParentageBetween( ) but including
          references to self._client and arg.'''
@@ -149,9 +148,9 @@ class _Parentage(_Abjad):
    def _switchParentTo(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
       client = self._client
-      old_parent = client._parent
-      if old_parent is not None:
-         old_parent._music.remove(client)
+      cur_parent = self.parent
+      if cur_parent is not None:
+         cur_parent._music.remove(client)
       client._parent = new_parent
 
    ## PUBLIC ATTRIBUTES ##
