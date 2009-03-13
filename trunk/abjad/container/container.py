@@ -218,6 +218,7 @@ class Container(_Component):
       self._music.insert(i, component)
       #component.parentage.parent = self
       component.parentage._switchParentTo(self)
+      self._update._markForUpdateToRoot( )
       return component
 
    def _establish(self):

@@ -79,3 +79,14 @@ def test_container_bind_component_03( ):
    assert check(t)
    assert not note in v
    assert note.parentage.parent is t
+
+
+## UPDATE-INTERFACE TESTS ##
+
+def test_container_bind_component_04( ):
+   v = Voice(scale(4))
+   assert not v._update._currentToRoot
+   v.offset.score ## needed to make update current.
+   v._bind_component(1, Rest((1, 4)))
+   assert not v._update._currentToRoot
+
