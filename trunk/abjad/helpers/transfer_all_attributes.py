@@ -30,8 +30,8 @@ def _transfer_all_attributes(old, new):
          setattr(new, key, value)
    new._parent = old._parent
    old._parent = None
-   if new._parent:
-      new._parent._music[new._parent.index(old)] = new
+   if new.parentage.parent:
+      new.parentage.parent._music[new.parentage.parent.index(old)] = new
    for spanner in old.spanners.attached:
       spanner._components[spanner.index(old)] = new
       # pass in 1-tuple otherwise individual spanner components will update!
