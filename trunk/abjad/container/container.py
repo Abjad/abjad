@@ -215,19 +215,19 @@ class Container(_Component):
    ## PUBLIC METHODS ## 
 
    def append(self, expr):
+      '''Append the end of my music.
+         Fracture spanners.'''
       self.insert(len(self), expr)
 
    def bequeath(self, expr):
-      '''
-      Experimental: Bequeath my music, my position-in-spanners, and 
-      my position-in-parent to empty container expr. 
+      '''Experimental: Bequeath my music, my position-in-spanners, and 
+         my position-in-parent to empty container expr. 
 
-      After bequeathal, self is an empty unspanned orphan.
+         After bequeathal, self is an empty unspanned orphan.
 
-      Bequeathal is basically a way of casting one type of container
-      to another; bequeathal is also cleaner than (leaf) casting;
-      bequeathal leaves all container attributes completely in tact.
-      '''
+         Bequeathal is basically a way of casting one type of container
+         to another; bequeathal is also cleaner than (leaf) casting;
+         bequeathal leaves all container attributes completely in tact.'''
       assert isinstance(expr, Container)
       assert not len(expr)
 
@@ -251,11 +251,9 @@ class Container(_Component):
          parent.remove(self)
 
    def clear(self):
-      '''
-      Remove any contents from self.
-      Contents have parent set to None.
-      Leave all spanners untouched.
-      '''
+      '''Remove any contents from self.
+         Contents have parent set to None.
+         Leave all spanners untouched.'''
       result = self._music[ : ]
       for element in result:
          element.parentage._switchParentTo(None)
@@ -263,14 +261,13 @@ class Container(_Component):
       return result
 
    def embed(self, i, expr):
-      '''
-      Insert a _Component or list of _Components in this container without
-      fracturing spanners.
-      '''
+      '''Insert a _Component or list of _Components 
+         in this container at index i 
+         without fracturing spanners.'''
       def _embedComponent(self, i, expr):
          if i != 0:
             bounding_spanners = \
-               self[i-1].spanners.attached & self[i].spanners.attached
+               self[i - 1].spanners.attached & self[i].spanners.attached
             if bounding_spanners:
                for spanner in bounding_spanners:
                   spanner.insert(spanner.index(self[i]), expr)
@@ -287,6 +284,8 @@ class Container(_Component):
       self._update._markForUpdateToRoot( )
 
    def extend(self, expr):
+      '''Extend my music and fracture spanners.
+         Return None.'''
       if len(expr) > 0:
          if isinstance(expr, list):
             self[len(self) : len(self)] = expr
@@ -335,13 +334,12 @@ class Container(_Component):
       return v.result
 
    def index(self, expr):
+      '''Return nonnegative index index of expr in self.'''
       return self._music.index(expr)
 
    def insert(self, i, expr):
-      '''
-      Insert and *fracture around* the insert;
-      for nonfracturing insert, use embed( ).
-      '''
+      '''Insert and *fracture around* the insert.
+         For nonfracturing insert, use embed( ).'''
       assert isinstance(expr, _Component)
       result = [ ]
       expr._parent = self
@@ -354,11 +352,13 @@ class Container(_Component):
       return result
 
    def pop(self, i = -1):
+      '''Remove and return element at index i in self.'''
       result = self[i]
       del(self[i])
       return result
 
    def remove(self, expr):
+      '''Remove expr from my music.'''
       class Visitor(object):
          def __init__(self, expr):
             self.expr = expr
