@@ -68,10 +68,6 @@ class _Parentage(_Abjad):
          Parent will continue to reference client.
          Client will no longer reference parent.
          Return parent.'''
-      #if hasattr(self._client, '_parent'):
-      #   parent = self._client._parent
-      #   self._client._parent = None
-      #   return parent
       parent = self.parent
       if parent is not None:
          self._setParentTo(None)
@@ -120,7 +116,6 @@ class _Parentage(_Abjad):
       parent = receipt._parent
       index = receipt._index
       parent._music.insert(index, client)
-      #client._parent = parent
       self._setParentTo(parent)
       receipt._empty( )
       return client
@@ -131,14 +126,6 @@ class _Parentage(_Abjad):
          Parent will no longer reference client.
          Client will continue to reference parent.'''
       client = self._client
-      #if hasattr(client, '_parent'):
-      #   try:
-      #      parent = self.parent
-      #      index = parent.index(client)
-      #      parent._music.remove(client)
-      #      return parent, index
-      #   except:
-      #      pass
       parent = self.parent
       if parent is not None:
          index = parent.index(client)
@@ -148,7 +135,6 @@ class _Parentage(_Abjad):
 
    def _setParentTo(self, parent):
       '''Encapsulate parent assignment.'''
-      #self._client._parent = parent
       self._parent = parent
 
    def _splice(self, components):
@@ -166,7 +152,6 @@ class _Parentage(_Abjad):
       cur_parent = self.parent
       if cur_parent is not None:
          cur_parent._music.remove(client)
-      #client._parent = new_parent
       self._setParentTo(new_parent)
 
    ## PUBLIC ATTRIBUTES ##
@@ -194,7 +179,6 @@ class _Parentage(_Abjad):
    @property
    def parent(self):
       '''Return reference to parent of client, else None.'''
-      #return self._client._parent
       return self._parent
       
    @property

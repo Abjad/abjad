@@ -19,7 +19,6 @@ class Container(_Component):
    def __init__(self, music = None):
       music = music or [ ]
       assert isinstance(music, list)
-      #self._parent = None
       self._parentage = _Parentage(self)
       _Component.__init__(self)
       if music:
@@ -56,12 +55,10 @@ class Container(_Component):
    def __delitem__(self, i):
       # item deletion
       if isinstance(i, int):
-         #self._music[i]._die( )
          self._music[i].detach( )
       # slice deletion
       else:
          for m in self._music[i]:
-            #m._die( )
             m.detach( )
 
    ## TODO Should we make __getitem__ non recursive to distinguish 

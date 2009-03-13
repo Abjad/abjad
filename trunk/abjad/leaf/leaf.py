@@ -18,7 +18,6 @@ class _Leaf(_Component):
 
    def __init__(self, duration):
       _Component.__init__(self)
-      #self._parent = None
       self._parentage = _Parentage(self)
       self._articulations = _ArticulationsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
