@@ -1,35 +1,15 @@
 from abjad.helpers.are_components import _are_components
-from abjad.helpers.iterate import iterate
 
 
-def components_detach_parentage(components, level = 'top'):
-   '''Detach parent from every Abjad component at
-      specified level in list.
-
+def components_detach_parentage(components):
+   '''Detach parent from every Abjad component in list.
       Components need not be successive.
+      Return newly orphaned components.
+      Note that components_detach_parentage_deep makes no sense.'''
 
-      Compare with spanners_detach(component, level = 'top').
+   if not _are_components(components):
+      raise ValueError('input must be Abjad components.')
 
-      Return newly orphaned components.'''
-
-   assert _are_components(components) 
-
-   if level == 'all':
-      return _components_parentage_detach_all(components)
-   elif level == 'top':
-      return _components_parentage_detach_top(components)
-   else:
-      raise ValueError("level must be 'top' or 'all'.")
-
-
-def _components_parentage_detach_all(components):
-   from abjad.component.component import _Component
-   for component in list(iterate(components, _Component)):
-      component.parentage._detach( )
-   return components
-
-
-def _components_parentage_detach_top(components):
    for component in components:
       component.parentage._detach( )
    return components

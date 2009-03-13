@@ -3,25 +3,13 @@ from abjad import *
 
 
 def test_components_detach_parentage_01( ):
-   '''Detach parent from Abjad components at top level of list.'''
+   '''Detach parent from Abjad components at top level of list.
+      Traverse shallowly. Do not descend into components.'''
 
    t = Staff([Voice(scale(4))])
    v = t[0]
    notes = v[:]
 
-   components_detach_parentage(v[:], level = 'top')
+   components_detach_parentage(v[:])
 
    assert _are_orphan_components(notes)
-
-
-def test_components_detach_parentage_02( ):
-   '''Detach parent from Abjad components at all levels of list.'''
-
-   t = Staff([Voice(scale(4))])
-   v = t[0]
-   notes = v[:]
-
-   components_detach_parentage([t], level = 'all')
-
-   from abjad.component.component import _Component
-   assert _are_orphan_components(list(iterate(t, _Component)))
