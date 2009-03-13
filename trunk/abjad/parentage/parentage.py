@@ -25,17 +25,17 @@ class _Parentage(_Abjad):
    def _governor(self):
       '''Return a reference to the first 
          sequential container enclosing client.'''
-      p = self._client._parent
+      p = self.parent
       if p is None or p.parallel:
          return None
-      while p._parent is not None and not p._parent.parallel:
-         p = p._parent
+      while p.parentage.parent is not None and not p.parentage.parent.parallel:
+         p = p.parentage.parent
       return p
 
    @property
    def _threadParentage(self):
       '''Return thread-pertinent parentage structure.
-         Same as _parentage but with _Tuplets, redundant Sequentials, 
+         Same as parentage but with _Tuplets, redundant Sequentials, 
          Parallels and tautologies (unlikely) removed.'''
       from abjad.container.parallel import Parallel
       from abjad.container.sequential import Sequential
@@ -88,15 +88,16 @@ class _Parentage(_Abjad):
          references to self._client and arg.'''
       return set(self.parentage) ^ set (arg.parentage.parentage)
 
+   ## TODO: Rename 'classtoken' as 'klass'
    def _first(self, classtoken):
       '''Return first instance of classtoken 
          in score tree above client.'''
-      p = self._client._parent
+      p = self.parent
       while p is not None:
          if isinstance(p, classtoken):
             return p
          else:
-            p = p._parent
+            p = p.parentage.parent
       return None
 
    def _getFirstSharedParent(self, arg):
