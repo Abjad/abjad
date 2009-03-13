@@ -421,9 +421,9 @@ class _Navigator(_Abjad):
                return  self._client.parentage.parent, self._rank( )
             else:
                return None, None
-      elif not hasattr(self._client, '_parent'):
-         print 'WARNING: node without parent!'
-         print self._client.lily
+      elif not hasattr(self._client, 'parentage'):
+         print 'WARNING: node without parentage!'
+         print self._client
          print ''
          raise Exception
       elif self._client.parentage.parent is not None:

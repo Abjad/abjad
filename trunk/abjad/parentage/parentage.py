@@ -7,6 +7,7 @@ class _Parentage(_Abjad):
 
    def __init__(self, client):
       self._client = client
+      self._parent = None
 
    ## PRIVATE ATTRIBUTES ##
    
@@ -67,9 +68,13 @@ class _Parentage(_Abjad):
          Parent will continue to reference client.
          Client will no longer reference parent.
          Return parent.'''
-      if hasattr(self._client, '_parent'):
-         parent = self._client._parent
-         self._client._parent = None
+      #if hasattr(self._client, '_parent'):
+      #   parent = self._client._parent
+      #   self._client._parent = None
+      #   return parent
+      parent = self.parent
+      if parent is not None:
+         self._setParentTo(None)
          return parent
 
    def _detach(self):
@@ -115,7 +120,8 @@ class _Parentage(_Abjad):
       parent = receipt._parent
       index = receipt._index
       parent._music.insert(index, client)
-      client._parent = parent
+      #client._parent = parent
+      self._setParentTo(parent)
       receipt._empty( )
       return client
 
@@ -125,20 +131,25 @@ class _Parentage(_Abjad):
          Parent will no longer reference client.
          Client will continue to reference parent.'''
       client = self._client
-      if hasattr(client, '_parent'):
-         try:
-            parent = self.parent
-            index = parent.index(client)
-            parent._music.remove(client)
-            return parent, index
-         ## TODO: Filter this except
-         except:
-            pass
+      #if hasattr(client, '_parent'):
+      #   try:
+      #      parent = self.parent
+      #      index = parent.index(client)
+      #      parent._music.remove(client)
+      #      return parent, index
+      #   except:
+      #      pass
+      parent = self.parent
+      if parent is not None:
+         index = parent.index(client)
+         parent._music.remove(client)
+         return parent, index
       return None, None
 
    def _setParentTo(self, parent):
       '''Encapsulate parent assignment.'''
-      self._client._parent = parent
+      #self._client._parent = parent
+      self._parent = parent
 
    def _splice(self, components):
       '''Insert components immediately after self in parent.
@@ -155,7 +166,8 @@ class _Parentage(_Abjad):
       cur_parent = self.parent
       if cur_parent is not None:
          cur_parent._music.remove(client)
-      client._parent = new_parent
+      #client._parent = new_parent
+      self._setParentTo(new_parent)
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -182,12 +194,13 @@ class _Parentage(_Abjad):
    @property
    def parent(self):
       '''Return reference to parent of client, else None.'''
-      return self._client._parent
+      #return self._client._parent
+      return self._parent
       
    @property
    def parentage(self):
       '''Return a list of all of elements in the
-      parentage of client, including client.'''
+         parentage of client, including client.'''
       result = [ ]
       cur = self._client
       while cur is not None:

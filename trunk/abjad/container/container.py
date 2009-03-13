@@ -11,6 +11,7 @@ from abjad.helpers.get_parent_and_index import _get_parent_and_index
 from abjad.helpers.iterate import iterate
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.notehead.interface import _NoteHeadInterface
+from abjad.parentage.parentage import _Parentage
 
 
 class Container(_Component):
@@ -18,7 +19,8 @@ class Container(_Component):
    def __init__(self, music = None):
       music = music or [ ]
       assert isinstance(music, list)
-      self._parent = None
+      #self._parent = None
+      self._parentage = _Parentage(self)
       _Component.__init__(self)
       if music:
          parent = music[0].parentage.parent

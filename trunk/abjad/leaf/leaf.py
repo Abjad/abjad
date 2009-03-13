@@ -4,10 +4,11 @@ from abjad.component.component import _Component
 from abjad.core.interface import _Interface
 from abjad.grace.interface import _GraceInterface
 from abjad.harmonic.interface import _HarmonicInterface
-from abjad.markup.interface import _MarkupInterface
 from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
 from abjad.leaf.spanner.aggregator import _LeafSpannerAggregator
+from abjad.markup.interface import _MarkupInterface
+from abjad.parentage.parentage import _Parentage
 from abjad.rational.rational import Rational
 from abjad.staff.interface import _StaffInterface
 import operator
@@ -17,7 +18,8 @@ class _Leaf(_Component):
 
    def __init__(self, duration):
       _Component.__init__(self)
-      self._parent = None
+      #self._parent = None
+      self._parentage = _Parentage(self)
       self._articulations = _ArticulationsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
