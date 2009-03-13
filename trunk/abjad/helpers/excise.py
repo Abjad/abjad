@@ -1,26 +1,22 @@
 from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
 from abjad.helpers.in_terms_of import _in_terms_of
-#from abjad.measure.measure import Measure
-#from abjad.measure.prolating.measure import ProlatingMeasure
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.rational.rational import Rational
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
-### TODO: Rather than branching on each of the different types of container,
-###       does it make more sense to implement a private _excise( ) method
-###       on each of the different container types?
+## TODO: Rather than branching on each of the different types of container,
+##       does it make more sense to implement a private _excise( ) method
+##       on each of the different container types?
 
 def excise(leaf):
-   '''
-   Remove leaf from all sequential containers in leaf's parentage;
-   shrink duration of any enclosing durated containers.
-   '''
+   '''Remove leaf from all sequential containers in leaf's parentage;
+      shrink duration of any enclosing durated containers.'''
 
    prolated_leaf_duration = leaf.duration.prolated
    prolations = leaf.duration._prolations
    cur_prolation, i = Rational(1), 0
-   parent = leaf._parent
+   parent = leaf.parentage.parent
 
    while parent is not None and not parent.parallel:
       cur_prolation *= prolations[i]
@@ -46,7 +42,7 @@ def excise(leaf):
                if adjusted_prolation != 1:
                   new_target = x.duration.preprolated * adjusted_prolation
                   FixedDurationTuplet(new_target, [x])
-      parent = parent._parent
+      parent = parent.parentage.parent
       i += 1
    parentage = leaf.parentage.parentage[1:]
    leaf.detach( )

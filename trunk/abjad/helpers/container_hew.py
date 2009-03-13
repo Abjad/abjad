@@ -80,7 +80,7 @@ def container_hew(container, i, spanners = 'preserve'):
    if container._parent is not None:
 
       # get index of container in parent
-      container_index = container._parent.index(container) 
+      container_index = container.parentage.parent.index(container)
 
       # insert left and right in place of container in parent
       container._parent[container_index : container_index + 1] = [left, right] 

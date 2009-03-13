@@ -13,10 +13,10 @@ class _DurationInterface(_Interface):
    @property
    def _prolations(self):
       result = [ ]
-      parent = self._client._parent
+      parent = self._client.parentage.parent
       while parent is not None:
          result.append(getattr(parent.duration, 'multiplier', Rational(1)))
-         parent = parent._parent
+         parent = parent.parentage.parent
       return result
 
    ## PUBLIC ATTRIBUTES ##

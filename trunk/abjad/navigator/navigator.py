@@ -317,7 +317,7 @@ class _Navigator(_Abjad):
       while cur is not None:
          nextSibling = cur._navigator._nextSibling
          if nextSibling is None:
-            cur = cur._parent
+            cur = cur.parentage.parent
          else:
             return nextSibling._navigator._contemporaneousStartContents
       return [ ]
@@ -492,7 +492,7 @@ class _Navigator(_Abjad):
          total < len(client):
          return client[total], 0 
       else:
-         parent = client._parent
+         parent = client.parentage.parent
          if parent is not None:
             return parent, parent.index(client) + 1
          else:
@@ -515,7 +515,7 @@ class _Navigator(_Abjad):
          total < len(client):
          return client[len(client) - 1 - total], 0
       else:
-         parent = client._parent
+         parent = client.parentage.parent
          if parent is not None:
             return parent, len(parent) - parent.index(client)
          else:
@@ -523,7 +523,7 @@ class _Navigator(_Abjad):
 
    def _DFS(self, capped = True, unique = True, 
       forbid = None, direction = 'left'):
-      client_parent, node, rank = self._client._parent, self._client, 0 
+      client_parent, node, rank = self._client.parentage.parent, self._client, 0 
       queue = deque([ ])
       while node is not None and not (capped and node is client_parent):
          result = self._findYield(node, rank, queue, unique)
@@ -536,7 +536,7 @@ class _Navigator(_Abjad):
       queue.clear( )
 
    def _handleForbiddenNode(self, node, queue):
-      node_parent = node._parent
+      node_parent = node.parentage.parent
       if node_parent is not None:
          rank = node_parent.index(node) + 1
          node = node_parent

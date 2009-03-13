@@ -28,11 +28,8 @@ def _transfer_all_attributes(old, new):
                setattr(value.after, '_carrier', new)
                setattr(value.before, '_carrier', new)
          setattr(new, key, value)
-   new._parent = old._parent
+   new._parent = old.parentage.parent
    old._parent = None
-   ## TODO: Why don't the following two lines work?
-   #new.parentage._switchParentTo(old.parentage.parent)
-   #old.parentage._switchParentTo(None)
    if new.parentage.parent:
       new.parentage.parent._music[new.parentage.parent.index(old)] = new
    for spanner in old.spanners.attached:

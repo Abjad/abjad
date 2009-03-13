@@ -8,7 +8,7 @@ class ParentsMissing(_Check):
    def _run(self, expr):
       class Visitor(object):
          def __init__(self, target):
-            self.parents = [target._parent]
+            self.parents = [target.parentage.parent]
             self.total = 0
             self.bad = 0
             self.violators = [ ]
