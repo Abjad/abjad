@@ -10,8 +10,7 @@ def test_chord_cast_01( ):
    # check that attributes have not been removed or added.
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(n) == dir(Note(0, (1, 4)))
-   assert n._parent is None
-   #assert n.duration == duration
+   assert n.parentage.parent is None
    assert n.duration.written == duration
 
 
@@ -21,8 +20,7 @@ def test_chord_cast_02( ):
    d = t[0].duration.written
    Note(t[0])
    assert isinstance(t[0], Note)
-   assert t[0]._parent is t
-   #assert t[0].duration == d
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -32,8 +30,7 @@ def test_chord_cast_03( ):
    d = v[0].duration.written
    Note(v[0])
    assert isinstance(v[0], Note)
-   assert v[0]._parent is v
-   #assert v[0].duration == d
+   assert v[0].parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -43,19 +40,17 @@ def test_chord_cast_04( ):
    d = t[0].duration.written
    Note(t[0])
    assert isinstance(t[0], Note)
-   assert t[0]._parent is t
-   #assert t[0].duration == d
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
 def test_chord_cast_05( ):
    '''Cast beamed chord as note.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   #Beam(t)
    Beam(t[ : ])
    Note(t[0])
    assert isinstance(t[0], Note)
-   assert t[0]._parent is t
+   assert t[0].parentage.parent is t
 
 
 def test_chord_cast_06( ):
@@ -67,8 +62,7 @@ def test_chord_cast_06( ):
    # check that attributes have not been removed or added.
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(r) == dir(Rest((1, 4)))
-   assert r._parent is None
-   #assert r.duration == duration
+   assert r.parentage.parent is None
    assert r.duration.written == duration
 
 
@@ -78,8 +72,7 @@ def test_chord_cast_07( ):
    d = t[0].duration.written
    Rest(t[0])
    assert isinstance(t[0], Rest)
-   assert t[0]._parent is t
-   #assert t[0].duration == d
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -89,8 +82,7 @@ def test_chord_cast_08( ):
    d = v[0].duration.written
    Rest(v[0])
    assert isinstance(v[0], Rest)
-   assert v[0]._parent is v
-   #assert v[0].duration == d
+   assert v[0].parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -100,19 +92,17 @@ def test_chord_cast_09( ):
    d = t[0].duration.written
    Rest(t[0])
    assert isinstance(t[0], Rest)
-   assert t[0]._parent is t
-   #assert t[0].duration == d
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
 def test_chord_cast_10( ):
    '''Cast beamed chord as rest.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   #Beam(t)
    Beam(t[ : ])
    Rest(t[0])
    assert isinstance(t[0], Rest)
-   assert t[0]._parent is t
+   assert t[0].parentage.parent is t
 
 
 def test_chord_cast_11( ):
@@ -124,8 +114,7 @@ def test_chord_cast_11( ):
    # check that attributes have not been removed or added.
    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
    assert dir(s) == dir(Skip((1, 4)))
-   assert s._parent is None
-   #assert s.duration == duration
+   assert s.parentage.parent is None
    assert s.duration.written == duration
 
 
@@ -135,8 +124,7 @@ def test_chord_cast_12( ):
    d = t[0].duration.written
    Skip(t[0])
    assert isinstance(t[0], Skip)
-   assert t[0]._parent is t
-   #assert t[0].duration == d
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
@@ -146,8 +134,7 @@ def test_chord_cast_13( ):
    d = v[0].duration.written
    Skip(v[0])
    assert isinstance(v[0], Skip)
-   assert v[0]._parent is v
-   #assert v[0].duration == d
+   assert v[0].parentage.parent is v
    assert v[0].duration.written == d
 
 
@@ -157,16 +144,14 @@ def test_chord_cast_14( ):
    d = t[0].duration.written
    Skip(t[0])
    assert isinstance(t[0], Skip)
-   assert t[0]._parent is t
-   #assert t[0].duration == d
+   assert t[0].parentage.parent is t
    assert t[0].duration.written == d
 
 
 def test_chord_cast_15( ):
    '''Cast beamed chord as skip.'''
    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-   #Beam(t)
    Beam(t[ : ])
    Skip(t[0])
    assert isinstance(t[0], Skip)
-   assert t[0]._parent is t
+   assert t[0].parentage.parent is t

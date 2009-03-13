@@ -1,5 +1,5 @@
 from abjad import *
-from py.test import raises
+import py.test
 
 
 ### SPANNERS ATTACH TO LEAVES ### 
@@ -15,7 +15,7 @@ def test_embed_01( ):
    assert len(t) == 5
    assert not t[0] in b.components 
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
 
    
 def test_embed_02( ):
@@ -27,7 +27,7 @@ def test_embed_02( ):
    t.embed(-1, Note(1, (1, 8)))
    assert len(t) == 5
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
       assert child.beam.spanner is b
 
 
@@ -41,7 +41,7 @@ def test_embed_03( ):
    t.embed(2, v)
    assert len(t) == 5
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
       assert child.beam.spanner is b
 
 
@@ -56,7 +56,7 @@ def test_embed_04( ):
    t.embed(2, [v, n])
    assert len(t) == 6
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
       assert child.beam.spanner is b
    for leaf in v:
       assert not leaf.spanners.attached
@@ -108,7 +108,7 @@ def test_embed_07( ):
    t.embed(2, Voice(run(2)))
    assert len(t) == 5
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
       assert child.spanners.attached == set([b, tr])
    assert isinstance(t[2], Voice)
    for leaf in t[2]:
@@ -128,7 +128,7 @@ def test_embed_10( ):
    assert len(t) == 5
    assert b.components == [t]
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
       assert not child.spanners.attached 
 
 
@@ -143,7 +143,7 @@ def test_embed_11( ):
    assert len(t) == 5
    assert b.components == [t]
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
       assert not child.spanners.attached 
    for leaf in v:
       assert not leaf.spanners.attached
@@ -160,7 +160,7 @@ def test_embed_12( ):
    t.embed(2, [v, n])
    assert len(t) == 6
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
       assert not child.spanners.attached
    for leaf in v:
       assert not leaf.spanners.attached
@@ -176,7 +176,7 @@ def test_embed_13( ):
    t.embed(1, Rest((1, 16)))
    assert len(t) == 3
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
    assert isinstance(t[1], Rest)
    assert not t[1].spanners.attached 
    assert b1.components == [t[0]]
@@ -193,7 +193,7 @@ def test_embed_20( ):
    t.embed(2, Rest((1,8)))
    assert len(t) == 5
    for child in t:
-      assert child._parent is t
+      assert child.parentage.parent is t
    for leaf in t:
       assert leaf.spanners.attached == set([b])
    assert tr.components == [t]
@@ -236,5 +236,5 @@ def test_embed_30( ):
    t = Staff(Note(0, (1, 8)) * 8)
    #Beam(t)
    Beam(t[ : ])
-   assert raises(IndexError, 't.embed(8, Note(1, (1,4)))')
-   assert raises(IndexError, 't.embed(-9, Note(1, (1,4)))')
+   assert py.test.raises(IndexError, 't.embed(8, Note(1, (1,4)))')
+   assert py.test.raises(IndexError, 't.embed(-9, Note(1, (1,4)))')

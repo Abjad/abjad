@@ -24,7 +24,7 @@ def test_container_clear_01( ):
    assert len(result) == 4
 
    for x in result:
-      assert x._parent is None
+      assert x.parentage.parent is None
 
 
 def test_container_clear_02( ):
@@ -58,7 +58,7 @@ def test_container_clear_02( ):
    assert len(result) == 4
 
    for x in result:
-      assert x._parent is None
+      assert x.parentage.parent is None
       assert x.beam.spanned
 
   
@@ -109,7 +109,7 @@ def test_container_clear_03( ):
 
    assert result == contents
    for x in result:
-      assert x._parent is None
+      assert x.parentage.parent is None
 
 
 def test_container_clear_04( ):
@@ -160,5 +160,5 @@ def test_container_clear_04( ):
 
    assert result == contents
    for x in result:
-      assert x._parent is None
+      assert x.parentage.parent is None
       assert x.beam.spanned

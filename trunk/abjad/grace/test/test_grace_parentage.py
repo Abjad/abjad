@@ -1,5 +1,6 @@
 from abjad import *
 
+
 def test_grace_carrierage_01( ):
    '''Lone Grace containers _carrier is None.'''
    t = Grace(run(4))

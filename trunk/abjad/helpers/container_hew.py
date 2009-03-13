@@ -77,7 +77,7 @@ def container_hew(container, i, spanners = 'preserve'):
    right[:] = container[:]
 
    # if parent
-   if container._parent is not None:
+   if container.parentage.parent is not None:
 
       # get index of container in parent
       container_index = container.parentage.parent.index(container)

@@ -436,8 +436,9 @@ class _Navigator(_Abjad):
       '''Returns the index of the caller (its position) in 
          the parent container. If caller has no parent, 
          returns None.'''
-      if not self._client._parent is None:
-         return self._client._parent._music.index(self._client)
+      parent = self._client.parentage.parent
+      if parent is not None:
+         return parent._music.index(self._client)
       else:
          return None
 
