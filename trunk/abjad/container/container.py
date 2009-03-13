@@ -38,19 +38,6 @@ class Container(_Component):
       self.notehead = _NoteHeadInterface(self)
       self.spanners = _ContainerSpannerAggregator(self)
 
-   ## PRIVATE ATTRIBUTES ##
-
-   def _establish(self):
-      for x in self._music:
-         x._parent = self
-
-   @property
-   def _summary(self):
-      if len(self) > 0:
-         return ', '.join([str(x) for x in self._music])
-      else:
-         return ' '
-
    ## OVERLOADS ##
 
    def __add__(self, expr):
@@ -167,6 +154,15 @@ class Container(_Component):
 
       self._update._markForUpdateToRoot( )
 
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _summary(self):
+      if len(self) > 0:
+         return ', '.join([str(x) for x in self._music])
+      else:
+         return ' '
+
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -211,6 +207,24 @@ class Container(_Component):
          return self.leaves[0].prev
       else:
          return None
+
+   ## PRIVATE METHODS ##
+
+   ## TODO: Simplify public container methods to use bind ##
+   def _bind_component(self, i, component):
+      '''Insert component in container music at index i.
+         Neither fracture spanners nor insert into spanners.
+         With no spanners, this method is the same as insert.
+         With spanners, use this method together with spanner insertion.
+         Return component.'''
+      assert isinstance(component, _Component)
+      self._music.insert(i, component)
+      component._parent = self
+      return component
+
+   def _establish(self):
+      for x in self._music:
+         x._parent = self
 
    ## PUBLIC METHODS ## 
 
