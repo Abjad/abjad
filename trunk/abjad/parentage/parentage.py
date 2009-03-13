@@ -191,7 +191,7 @@ class _Parentage(_Abjad):
       cur = self._client
       while cur is not None:
          result.append(cur)
-         cur = cur._parent
+         cur = cur.parentage.parent
       return result
 
    @property
