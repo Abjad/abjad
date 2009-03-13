@@ -56,7 +56,7 @@ class _SpannerReceptor(_Abjad):
       '''True when spanner attached to any component in parentage of client,
          including client, otherwise False.'''
       result =  [ ]
-      parentage = self._client._parentage.parentage
+      parentage = self._client.parentage.parentage
       for parent in parentage:
          spanners = parent.spanners.attached
          for classreference in self._classreferences:
