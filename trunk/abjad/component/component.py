@@ -273,8 +273,6 @@ class _Component(_Abjad):
             center._severAllComponents( )
          #right._sever( )
          right._severAllComponents( )
-      #self._parent = parent
-      #self.parentage._setParentTo(parent)
       self.parentage.parent = parent
 
 #      for i, hp in enumerate(result.spanners.get(classname = '_Hairpin')):

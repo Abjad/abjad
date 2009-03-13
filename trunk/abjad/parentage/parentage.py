@@ -71,7 +71,6 @@ class _Parentage(_Abjad):
          Return parent.'''
       parent = self.parent
       if parent is not None:
-         #self._setParentTo(None)
          self.parent = None
          return parent
 
@@ -118,7 +117,6 @@ class _Parentage(_Abjad):
       parent = receipt._parent
       index = receipt._index
       parent._music.insert(index, client)
-      #self._setParentTo(parent)
       self.parent = parent
       receipt._empty( )
       return client
@@ -136,10 +134,6 @@ class _Parentage(_Abjad):
          return parent, index
       return None, None
 
-#   def _setParentTo(self, parent):
-#      '''Encapsulate parent assignment.'''
-#      self._parent = parent
-
    def _splice(self, components):
       '''Insert components immediately after self in parent.
          Do not handle spanners.'''
@@ -155,7 +149,6 @@ class _Parentage(_Abjad):
       cur_parent = self.parent
       if cur_parent is not None:
          cur_parent._music.remove(client)
-      #self._setParentTo(new_parent)
       self.parent = new_parent
 
    ## PUBLIC ATTRIBUTES ##
