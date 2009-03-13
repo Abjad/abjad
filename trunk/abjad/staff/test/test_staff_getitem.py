@@ -1,5 +1,4 @@
 from abjad import *
-from py.test import raises
 
 
 def test_staff_getitem_01( ):
@@ -21,6 +20,7 @@ def test_staff_getitem_01( ):
    assert isinstance(t[-2], Skip)
    assert isinstance(t[-1], FixedDurationTuplet)
 
+
 def test_staff_getitem_02( ):
    t = Staff([Note(0, (1, 4)),
          Rest((1, 4)),
@@ -32,6 +32,7 @@ def test_staff_getitem_02( ):
    slice = t[0 : 0]
    assert len(slice) == 0
    assert check(t)
+
 
 def test_staff_getitem_03( ):
    t = Staff([Note(0, (1, 4)),
@@ -45,8 +46,9 @@ def test_staff_getitem_03( ):
    assert len(slice) == 1
    assert isinstance(slice[0], Note)
    for x in t:
-      assert x._parent == t
+      assert x.parentage.parent == t
    assert check(t)
+
 
 def test_staff_getitem_04( ):
    t = Staff([Note(0, (1, 4)),
@@ -60,8 +62,9 @@ def test_staff_getitem_04( ):
    assert len(slice) == 1
    assert isinstance(slice[0], FixedDurationTuplet)
    for x in slice:
-      assert x._parent == t
+      assert x.parentage.parent == t
    assert check(t)
+
 
 def test_staff_getitem_05( ):
    t = Staff([Note(0, (1, 4)),
@@ -77,8 +80,9 @@ def test_staff_getitem_05( ):
    assert isinstance(slice[1], Chord)
    assert isinstance(slice[2], Skip)
    for x in slice:
-      assert x._parent == t
+      assert x.parentage.parent == t
    assert check(t)
+
 
 def test_staff_getitem_06( ):
    t = Staff([Note(0, (1, 4)),
@@ -94,8 +98,9 @@ def test_staff_getitem_06( ):
    assert isinstance(slice[1], Skip)
    assert isinstance(slice[2], FixedDurationTuplet)
    for x in slice:
-      assert x._parent == t
+      assert x.parentage.parent == t
    assert check(t)
+
 
 def test_staff_getitem_07( ):
    t = Staff([Note(0, (1, 4)),
@@ -111,8 +116,9 @@ def test_staff_getitem_07( ):
    assert isinstance(slice[1], Rest)
    assert isinstance(slice[2], Chord)
    for x in slice:
-      assert x._parent == t
+      assert x.parentage.parent == t
    assert check(t)
+
 
 def test_staff_getitem_08( ):
    t = Staff([Note(0, (1, 4)),
@@ -131,5 +137,5 @@ def test_staff_getitem_08( ):
    assert isinstance(slice[3], Skip)
    assert isinstance(slice[4], FixedDurationTuplet)
    for x in slice:
-      assert x._parent == t
+      assert x.parentage.parent == t
    assert check(t)
