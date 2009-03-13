@@ -226,16 +226,15 @@ class _Leaf(_Component):
    ## PUBLIC METHODS ##
 
    def bequeath(self, expr):
-      '''
-      Bequeath my position-in-spanners and my position-in-parent
-      to expr. After bequeathal, self is an unspanned orphan.
-      '''
+      '''Bequeath my position-in-spanners and my position-in-parent to expr.
+         After bequeathal, self is an unspanned orphan.
+         Return None.'''
 
-      for spanner in list(self.spanners.attached):
-         spanner.insert(spanner.index(self), expr)
-         spanner.remove(self)
+      receipt = self.detach( )
 
-      parent = self._parent
-      if parent:
-         parent.embed(parent.index(self), expr)
-         parent.remove(self)
+      parent = receipt._parentage._parent
+      if parent is not None:
+         parent._bind_component(receipt._parentage._index, expr)
+
+      for spanner, index in list(receipt._spanners._pairs):
+         spanner.insert(index, expr)
