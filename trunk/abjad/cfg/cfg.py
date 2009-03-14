@@ -5,6 +5,7 @@ home_path = os.environ.get('HOME') or os.environ.get('HOMEPATH')
 ABJADPATH = os.path.dirname(__file__).rstrip('cfg')
 ABJADOUTPUT = os.environ.get('ABJADOUTPUT', 
          home_path + os.sep + os.sep.join(['.abjad', 'output']))
+ABJADCONFIG =  home_path + os.sep + os.sep.join(['.abjad', 'config'])
 ABJADTEMPLATES = os.environ.get('ABJADTEMPLATES', ABJADPATH + 'templates')
 ABJADVERSIONFILE = ABJADPATH + '.version'
 LILYPONDINCLUDES = os.environ.get('LILYPONDINCLUDES', None)
