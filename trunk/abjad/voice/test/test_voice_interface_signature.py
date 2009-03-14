@@ -12,29 +12,30 @@ def test_voice_interface_signature_01( ):
 
 
 def test_voice_interface_signature_02( ):
-   '''Sequential container carries the signature of the default voice;
-      sequentialized leaves carry the signature of the default voice.'''
+   '''Sequential container carries the signature of the default voice.
+      Sequentialized leaves carry the signature of the default voice.'''
 
-   t = Sequential([Note(n, (1, 8)) for n in range(4)])
+   t = Sequential(scale(4))
 
-   from abjad.component.component import _Component
-   assert all([x.voice.default for x in iterate(t, _Component)])
+   from abjad.leaf.leaf import _Leaf
+   assert t.voice.default
+   assert all([x.voice.default for x in iterate(t, _Leaf)])
 
    r'''
    {
       c'8
-      cs'8
       d'8
-      ef'8
+      e'8
+      f'8
    }
    '''
 
 
 def test_voice_interface_signature_03( ):
-   '''Tuplet carries the signature of the default voice.
-      Tupletted leaves carry the signature of the default voice.'''
+   '''Unincorporated tuplet carries the signature of the default voice.
+      Leaves in unincorporated tuplet carry the default voice signature.'''
    
-   t = FixedDurationTuplet((2, 8), [Note(n, (1, 8)) for n in range(3)])
+   t = FixedDurationTuplet((2, 8), scale(3))
    
    from abjad.component.component import _Component
    assert all([x.voice.default for x in iterate(t, _Component)])
@@ -42,17 +43,18 @@ def test_voice_interface_signature_03( ):
    r'''
    \times 2/3 {
       c'8
-      cs'8
       d'8
+      e'8
    }
    '''
 
 
 def test_voice_interface_signature_04( ):
-   '''Parallel container carries the signature of the default voice.
-      Parallel leaves each carry a different voice signature.'''
+   '''Unincorporated parallel container carries default voice signature.
+      Leaves in unincorporated parallel container 
+      each carry a different voice signature.'''
 
-   t = Parallel([Note(n, (1, 8)) for n in range(4)])
+   t = Parallel(scale(4))
 
    assert t.voice.default
    assert len(set([x.voice.signature for x in t])) == len(t)
@@ -60,18 +62,19 @@ def test_voice_interface_signature_04( ):
    r'''
    <<
       c'8
-      cs'8
       d'8
-      ef'8
+      e'8
+      f'8
    >>
    '''
 
    
 def test_voice_interface_signature_05( ):
-   '''Anonymous voice creates its own voice signature;
-      voiced leaves each carry the signature of their containing voice.'''
+   '''Anonymous voice creates and carries its own voice signature.
+      Each of the leaves in an anonymous voice carry the signature
+      of the anonymous voice in which they reside.'''
 
-   t = Voice([Note(i, (1, 8)) for i in range(4)])
+   t = Voice(scale(4))
 
    assert t.voice.signature == (id(t), )
    assert all([x.voice.signature == t.voice.signature for x in t])
@@ -79,20 +82,19 @@ def test_voice_interface_signature_05( ):
    r'''
    \new Voice {
       c'8
-      cs'8
       d'8
-      ef'8
+      e'8
+      f'8
    }
    '''
 
 
 def test_voice_interface_signature_06( ):
-   '''
-   Staff creates an implicit voice with a numeric signature.
-   Staff leaves carry the same signature as staff.
-   '''
+   '''The Abjad Staff creates and carries its own voice signature.
+      Each of the leaves in an Abjad Staff carry the voice signature
+      of the Abjad Staff in which they reside.'''
 
-   t = Staff([Note(i, (1, 8)) for i in range(4)])
+   t = Staff(scale(4))
 
    assert not t.voice.default
    assert all([x.voice.signature == t.voice.signature for x in t])
@@ -100,35 +102,90 @@ def test_voice_interface_signature_06( ):
    r'''
    \new Staff {
       c'8
-      cs'8
       d'8
-      ef'8
+      e'8
+      f'8 
    }
    '''
 
 
 def test_voice_interface_signature_07( ):
-   '''Voice creates a voice signature equal to its own id;
-      all other components here inherit signature from voice.'''
+   '''The Abjad Voice creates and carries its own voice signature,
+      which happens to derive from the Python id of the Voice.
+      All other Abjad components carry the signature of the Voice
+      in which they reside.'''
 
-   s1 = Sequential([Note(i, (1, 8)) for i in range(4)])
-   s2 = Sequential([Note(i, (1, 8)) for i in range(4, 8)])
-   t = Voice([s1, s2])
+   t = Voice(Sequential(run(4)) * 2)
+   diatonicize(t)
+
+   r'''
+   \new Voice {
+      {
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+      {
+         g'8
+         a'8
+         b'8
+         c''8
+      }
+   }
+   '''
 
    from abjad.component.component import _Component
    assert t.voice.signature == (id(t), )
    components = iterate(t, _Component)
    assert all([x.voice.signature == t.voice.signature for x in components])
 
+
+def test_voice_interface_signature_08( ):
+   '''(Anonymous) voice creates its own (numeric) voice signature.
+      All components here carry the same signature.'''
+
+   t = Voice(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2)
+   appictate(t)
+
    r'''
    \new Voice {
-      {
+      \times 2/3 {
+         c'8
+         cs'8
+         d'8
+      }
+      \times 2/3 {
+         ef'8
+         e'8
+         f'8
+      }
+   }
+   '''
+
+   from abjad.component.component import _Component
+   assert not t.voice.default
+   components = iterate(t, _Component)
+   assert all([x.voice.signature == t.voice.signature for x in components])
+
+
+def test_voice_interface_signature_09( ):
+   '''(Anonymous) staff creates its own (numeric) voice signature.
+      (Anonymous) voices each create their own (numeric) signatures.
+      Leaves carry the signature of the voice in which they reside.'''
+
+   t = Staff(Voice(Note(0, (1, 8)) * 4) * 2)
+   appictate(t)
+
+   r'''
+   \new Staff {
+      \new Voice {
          c'8
          cs'8
          d'8
          ef'8
       }
-      {
+      \new Voice {
          e'8
          f'8
          fs'8
@@ -136,47 +193,6 @@ def test_voice_interface_signature_07( ):
       }
    }
    '''
-
-
-def test_voice_interface_signature_08( ):
-   '''
-   (Anonymous) voice creates its own (numeric) voice signature.
-   All components here carry the same signature.
-   '''
-
-   t = Voice(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3) * 2)
-   appictate(t)
-
-   from abjad.component.component import _Component
-   assert not t.voice.default
-   components = iterate(t, _Component)
-   assert all([x.voice.signature == t.voice.signature for x in components])
-
-   r'''
-   \new Voice {
-      \times 2/3 {
-         c'8
-         cs'8
-         d'8
-      }
-      \times 2/3 {
-         ef'8
-         e'8
-         f'8
-      }
-   }
-   '''
-
-
-def test_voice_interface_signature_09( ):
-   '''
-   (Anonymous) staff creates its own (numeric) voice signature.
-   (Anonymous) voices each create their own (numeric) signatures.
-   Voice leaves carry the same signature.
-   '''
-
-   t = Staff(Voice(Note(0, (1, 8)) * 4) * 2)
-   appictate(t)
 
    assert not t.voice.default
    assert not t[0].voice.default
@@ -184,41 +200,18 @@ def test_voice_interface_signature_09( ):
    assert not t[1].voice.default
    assert all([x.voice.signature == t[1].voice.signature for x in t[1]])
    
-   r'''
-   \new Staff {
-      \new Voice {
-         c'8
-         cs'8
-         d'8
-         ef'8
-      }
-      \new Voice {
-         e'8
-         f'8
-         fs'8
-         g'8
-      }
-   }
-   '''
-
 
 def test_voice_interface_signature_10( ):
-   '''
-   (Anonymous) staff creates its own (numeric) voice signature.
-   Both (named) voices carry the same (named) signature.
-   Voice leaves all carry the same signature.
-   '''
+   '''(Anonymous) staff creates its own (numeric) voice signature.
+      Both (named) voices carry the same (named) signature.
+      Leaves carry of the signature of the voice in which they reside.
+      Here all leaves carry the voice signature 'foo'.'''
 
    t = Staff(Voice(Note(0, (1, 8)) * 4) * 2)
    appictate(t)
    t[0].invocation.name = 'foo'
    t[1].invocation.name = 'foo'
 
-   assert not t.voice.default
-   assert t[0].voice.signature == ('foo', )
-   assert t[1].voice.signature == ('foo', )
-   assert all([x.voice.signature == t[0].voice.signature for x in t.leaves])
-
    r'''
    \new Staff {
       \context Voice = "foo" {
@@ -236,18 +229,34 @@ def test_voice_interface_signature_10( ):
    }
    '''
 
+   assert not t.voice.default
+   assert t[0].voice.signature == ('foo', )
+   assert t[1].voice.signature == ('foo', )
+   assert all([x.voice.signature == t[0].voice.signature for x in t.leaves])
+
 
 def test_voice_interface_signature_11( ):
-   '''
-   (Anonymous) staff creates its own (numeric) signature.
-   Differently named voices create different (named) signatures.   
-   Voice leaves carry the signature of their containing voice.
-   '''
+   '''(Anonymous) staff creates its own (numeric) signature.
+      Differently named voices create different (named) signatures.   
+      Voice leaves carry the signature of their containing voice.'''
 
-   t = Staff(Voice(Note(0, (1, 8)) * 4) * 2)
-   appictate(t)
+   t = Staff(Voice(run(2)) * 2)
+   diatonicize(t)
    t[0].invocation.name = 'foo'
    t[1].invocation.name = 'bar'
+
+   r'''
+   \new Staff {
+      \context Voice = "foo" {
+         c'8
+         d'8
+      }
+      \context Voice = "bar" {
+         e'8
+         f'8
+      }
+   }
+   '''
 
    assert t.voice.anonymous and t.voice.numeric
    assert t[0].voice.named
@@ -256,35 +265,33 @@ def test_voice_interface_signature_11( ):
    assert all([x.voice.signature == t[1].voice.signature for x in t[1]])
    assert t.voice.signature != t[0].voice.signature != t[1].voice.signature
 
+
+def test_voice_interface_signature_12( ):
+   '''Top-level sequential carries default voice signature.
+      (Anonymous) staves create two different (numeric) signatures.
+      (Anonymous) voices create two different (numeric) signatures.
+      Each leaf carries the signature of the voice in which it resides.'''
+
+   t = Sequential(Staff([Voice(run(2))]) * 2)
+   diatonicize(t)
+   
    r'''
-   \new Staff {
-      \context Voice = "foo" {
-         c'8
-         cs'8
-         d'8
-         ef'8
+   {
+      \new Staff {
+         \new Voice {
+            c'8
+            d'8
+         }
       }
-      \context Voice = "bar" {
-         e'8
-         f'8
-         fs'8
-         g'8
+      \new Staff {
+         \new Voice {
+            e'8
+            f'8
+         }
       }
    }
-   '''
+   '''   
 
-
-def test_path_exists_between_11( ):
-   '''
-   Top-level sequential carries the default signature.
-   (Anonymous) staves create two different (numeric) signatures.
-   (Anonymous) voices create two different (numeric) signatures.
-   Voice leaves carry the signature of their containing voice.
-   '''
-
-   t = Sequential(Staff([Voice(Note(0, (1, 8)) * 4)]) * 2)
-   appictate(t)
-   
    assert t.voice.default
    assert t[0].voice.numeric
    assert t[0][0].voice.numeric
@@ -293,41 +300,44 @@ def test_path_exists_between_11( ):
    assert t[0][0].voice.signature != t[1][0].voice.signature
    assert t[0][0][0].voice.signature != t[1][0][0].voice.signature
 
+
+def test_voice_interface_signature_13( ):
+   '''Top-level sequential carries default voice signature.
+      (Anonymous) parallel staves carry two different numeric signatures.
+      (Anonymous) voices each carry different numeric signatures.
+      Voice contents carry the signature of their containing voice.
+      Abjad identifies the default voice and six different anonymous voices.
+   '''
+
+   t = Sequential(Staff(Voice(run(2)) * 2) * 2)
+   diatonicize(t)
+   t[0].brackets = 'double-angle'
+   t[1].brackets = 'double-angle'
+
    r'''
    {
-      \new Staff {
+      \new Staff <<
          \new Voice {
             c'8
-            cs'8
             d'8
-            ef'8
          }
-      }
-      \new Staff {
          \new Voice {
             e'8
             f'8
-            fs'8
-            g'8
          }
-      }
+      >>
+      \new Staff <<
+         \new Voice {
+            g'8
+            a'8
+         }
+         \new Voice {
+            b'8
+            c''8
+         }
+      >>
    }
-   '''   
-
-
-def test_voice_interface_signature_13( ):
    '''
-   Top-level sequential carries default signature.
-   (Anonymous) parallel staves carry two different numeric signatures.
-   (Anonymous) voices each carry different numeric signatures.
-   Voice contents carry the signature of their containing voice.
-   Abjad identifies the default voice and six different anonymous voices.
-   '''
-
-   t = Sequential(Staff(Voice(Note(0, (1, 8)) * 4) * 2) * 2)
-   appictate(t)
-   t[0].brackets = 'double-angle'
-   t[1].brackets = 'double-angle'
 
    assert t.voice.default
    assert t[0].voice.numeric
@@ -340,75 +350,32 @@ def test_voice_interface_signature_13( ):
    assert t[1][0].voice.signature != t[1][1].voice.signature
    assert t[0].voice.signature != t[1].voice.signature
 
-   r'''
-   {
-      \new Staff <<
-         \new Voice {
-            c'8
-            cs'8
-            d'8
-            ef'8
-         }
-         \new Voice {
-            e'8
-            f'8
-            fs'8
-            g'8
-         }
-      >>
-      \new Staff <<
-         \new Voice {
-            af'8
-            a'8
-            bf'8
-            b'8
-         }
-         \new Voice {
-            c''8
-            cs''8
-            d''8
-            ef''8
-         }
-      >>
-   }
-   '''
-
 
 def test_voice_interface_signature_14( ):
-   '''
-   The (anonymous) voice creates its own (numeric) signature.
-   All components carry the signature of this (anonymous) voice.
-   Abjad identifies a single voice.
-   '''
+   '''The (anonymous) voice creates its own (numeric) signature.
+      All components carry the signature of this (anonymous) voice.
+      Abjad identifies a single voice.'''
 
-   t = Voice([Sequential(Note(0, (1, 8)) * 4)] * 2)
-   appictate(t)
+   t = Voice(Sequential(run(2)) * 2)
+   diatonicize(t)
+
+   r'''
+   \new Voice {
+      {
+         c'8
+         d'8
+      }
+      {
+         e'8
+         f'8
+      }
+   }
+   '''
 
    from abjad.component.component import _Component
    assert t.voice.numeric
    components = iterate(t, _Component)
    assert all([x.voice.signature == t.voice.signature for x in components])
-
-   r'''
-   \new Voice {
-      {
-         {
-            c'8
-            cs'8
-            d'8
-            ef'8
-         }
-      }
-      {
-         {
-            e'8
-            f'8
-            fs'8
-            g'8
-         }
-      }
-   }
-   '''
 
 
 def test_voice_interface_signature_15( ):

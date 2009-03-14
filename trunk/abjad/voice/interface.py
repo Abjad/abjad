@@ -1,6 +1,27 @@
 from abjad.core.interface import _Interface
 from abjad.core.formatcarrier import _FormatCarrier
 
+'''
+   Every Abjad component aggregates a _VoiceInterface.
+   The primary purpose of the _VoiceInterface is to resolve
+   and publish the 'voice signature' of any Abjad component,
+   usually as t.voice.signature for any component t.
+
+   The idea of the 'voice signature' derives from a related
+   idea of a 'governing voice' which, in turn, derives
+   from the idea of 'governing' in general.
+
+   We say that some voice v governs component t if
+   v is the first voice in the parentage of t,
+   as we read the parentage of t from t towards score root.
+
+   There's another idea of the 'signator', too, which will
+   need further explanation later.
+
+   TODO: It might be nice to use the _MarkupInterface to
+         allow for the labelling of voice id in the PDF
+         output of the score.
+'''
 
 class _VoiceInterface(_Interface, _FormatCarrier):
 
@@ -92,7 +113,12 @@ class _VoiceInterface(_Interface, _FormatCarrier):
    def signature(self):
       '''Return unique (id, ) 1-tuple of voice that governs client.
          TODO: Can't the implementation here be greatly simplified?
-         TODO: Shouldn't this implement in _Parentage instead?'''
+         TODO: Shouldn't this implement in _Parentage instead?
+
+         Notes:
+
+            * orphan leaves carry no voice signature
+            * incorporated but noncontext leaves carry default voice'''
       from abjad.leaf.leaf import _Leaf
       from abjad.context.context import _Context
       parentage = self._client.parentage.parentage
