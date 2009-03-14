@@ -7,13 +7,17 @@ class _VoiceInterface(_Interface, _FormatCarrier):
    def __init__(self, client):
       _Interface.__init__(self, client)
       _FormatCarrier.__init__(self)
+      ## TODO: Is _VoiceInterface._defaultSignature dead code?
       self._defaultSignature = (0, )
       self.number = None
 
    ## PRIVATE ATTRIBUTES ##
 
+   ## TODO: Combine _opening and _before in many interfaces
    @property
    def _before(self):
+      '''String content, if any, this voice will write to the 
+         'before' slot of its first leaf at format-time.'''
       result = [ ]
       voices = {
          1:r'\voiceOne', 2:r'\voiceTwo', 3:r'\voiceThree', 4:r'\voiceFour'}
@@ -23,29 +27,38 @@ class _VoiceInterface(_Interface, _FormatCarrier):
 
    @property
    def _naiveSignature(self):
-      if hasattr(self._client, 'invocation'):
-         if self._client.invocation.name is not None:
-            return (self._client.invocation.name, )
-      return (id(self._client), )
+      '''Naive signature of this voice used to distinguish
+         this voice from all other runtime objects.'''
+      client = self._client
+      if hasattr(client, 'invocation'):
+         name = client.invocation.name
+         if name is not None:
+            return (name, )
+      return (id(client), )
 
-   ## this aliasing follows the method found in the TempoInterface 
-   ## and the ClefInterface.
+   ## TODO: Combine _opening and _before in many interfaces
    @property
    def _opening(self):
+      '''String content, if any, this voice will write to its own
+         'opening' slot at format-time.'''
       return self._before
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def anonymous(self):
+      '''True when this voice is not named, otherwise False.'''
       return not self.named
 
    @property
    def default(self):
+      '''TODO: Is _VoiceInterface.default dead code?'''
       return self.signature == self._defaultSignature
    
    @property
    def name(self):
+      '''String name of context from which client voice signature derives,
+         otherwise None.'''
       if self.named:
          return self.signature[0]
       else:
@@ -53,6 +66,7 @@ class _VoiceInterface(_Interface, _FormatCarrier):
 
    @apply
    def number( ):
+      '''LilyPond voice number 1 - 4 of this voice, or None.'''
       def fget(self):
          return self._number
       def fset(self, arg):
@@ -63,15 +77,22 @@ class _VoiceInterface(_Interface, _FormatCarrier):
 
    @property
    def named(self):
+      '''True when voice signature first is string,
+         otherwise False.'''
       return isinstance(self.signature[0], str)
    
    @property
    def numeric(self):
+      '''True when voice signature fist element is numeric, 
+         otherwise False.'''
       first = self.signature[0]
       return isinstance(first, (int, long)) 
 
    @property
    def signature(self):
+      '''Return unique (id, ) 1-tuple of voice that governs client.
+         TODO: Can't the implementation here be greatly simplified?
+         TODO: Shouldn't this implement in _Parentage instead?'''
       from abjad.leaf.leaf import _Leaf
       from abjad.context.context import _Context
       parentage = self._client.parentage.parentage
