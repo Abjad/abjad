@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_signature_01( ):
+def test_voice_interface_signature_01( ):
    '''Orphan leaves carry no voice signature.'''
 
    assert Note(0, (1, 4)).voice.signature is None
@@ -11,7 +11,7 @@ def test_signature_01( ):
    assert Skip((1, 4)).voice.signature is None
 
 
-def test_signature_02( ):
+def test_voice_interface_signature_02( ):
    '''Sequential container carries the signature of the default voice;
       sequentialized leaves carry the signature of the default voice.'''
 
@@ -30,7 +30,7 @@ def test_signature_02( ):
    '''
 
 
-def test_signature_03( ):
+def test_voice_interface_signature_03( ):
    '''Tuplet carries the signature of the default voice.
       Tupletted leaves carry the signature of the default voice.'''
    
@@ -48,7 +48,7 @@ def test_signature_03( ):
    '''
 
 
-def test_signature_04( ):
+def test_voice_interface_signature_04( ):
    '''Parallel container carries the signature of the default voice.
       Parallel leaves each carry a different voice signature.'''
 
@@ -67,7 +67,7 @@ def test_signature_04( ):
    '''
 
    
-def test_signature_05( ):
+def test_voice_interface_signature_05( ):
    '''Anonymous voice creates its own voice signature;
       voiced leaves each carry the signature of their containing voice.'''
 
@@ -86,7 +86,7 @@ def test_signature_05( ):
    '''
 
 
-def test_signature_06( ):
+def test_voice_interface_signature_06( ):
    '''
    Staff creates an implicit voice with a numeric signature.
    Staff leaves carry the same signature as staff.
@@ -107,7 +107,7 @@ def test_signature_06( ):
    '''
 
 
-def test_signature_07( ):
+def test_voice_interface_signature_07( ):
    '''Voice creates a voice signature equal to its own id;
       all other components here inherit signature from voice.'''
 
@@ -138,7 +138,7 @@ def test_signature_07( ):
    '''
 
 
-def test_signature_08( ):
+def test_voice_interface_signature_08( ):
    '''
    (Anonymous) voice creates its own (numeric) voice signature.
    All components here carry the same signature.
@@ -168,7 +168,7 @@ def test_signature_08( ):
    '''
 
 
-def test_signature_09( ):
+def test_voice_interface_signature_09( ):
    '''
    (Anonymous) staff creates its own (numeric) voice signature.
    (Anonymous) voices each create their own (numeric) signatures.
@@ -202,7 +202,7 @@ def test_signature_09( ):
    '''
 
 
-def test_signature_10( ):
+def test_voice_interface_signature_10( ):
    '''
    (Anonymous) staff creates its own (numeric) voice signature.
    Both (named) voices carry the same (named) signature.
@@ -237,7 +237,7 @@ def test_signature_10( ):
    '''
 
 
-def test_signature_11( ):
+def test_voice_interface_signature_11( ):
    '''
    (Anonymous) staff creates its own (numeric) signature.
    Differently named voices create different (named) signatures.   
@@ -315,7 +315,7 @@ def test_path_exists_between_11( ):
    '''   
 
 
-def test_signature_13( ):
+def test_voice_interface_signature_13( ):
    '''
    Top-level sequential carries default signature.
    (Anonymous) parallel staves carry two different numeric signatures.
@@ -374,7 +374,7 @@ def test_signature_13( ):
    '''
 
 
-def test_signature_14( ):
+def test_voice_interface_signature_14( ):
    '''
    The (anonymous) voice creates its own (numeric) signature.
    All components carry the signature of this (anonymous) voice.
@@ -411,7 +411,7 @@ def test_signature_14( ):
    '''
 
 
-def test_signature_15( ):
+def test_voice_interface_signature_15( ):
    '''
    Top-level sequential carries the default signature.
    Like-named staves carry the same (named) signature.
@@ -446,7 +446,7 @@ def test_signature_15( ):
    '''
 
 
-def test_signature_16( ):
+def test_voice_interface_signature_16( ):
    '''
    Sequential-enclosed notes followed by an (anonymous) voice.
    LilyPond assigns the first four notes to the default voice.
@@ -483,7 +483,7 @@ def test_signature_16( ):
    '''
 
 
-def test_signature_17( ):
+def test_voice_interface_signature_17( ):
    '''
    (Anonymous) voice followed by sequential notes.
    LilyPond identifies two voice.
@@ -516,7 +516,7 @@ def test_signature_17( ):
    '''
 
    
-def test_signature_18( ):
+def test_voice_interface_signature_18( ):
    '''
    Sequential notes follow by (named) voice.
    LilyPond identifies two voices.
@@ -553,7 +553,7 @@ def test_signature_18( ):
    '''
 
 
-def test_signature_19( ):
+def test_voice_interface_signature_19( ):
    '''(Named) voice followed by sequential-contained notes, all seq-enclosed.
 
       LilyPond DOES allow a continous note over all eight notes.'''
@@ -586,7 +586,7 @@ def test_signature_19( ):
    '''
 
    
-def test_signature_20( ):
+def test_voice_interface_signature_20( ):
    '''
    Sequential notes followed by (anonymous) staff.
    LilyPond identifies two separate voices each on a different staff.
@@ -620,7 +620,7 @@ def test_signature_20( ):
    '''
 
 
-def test_signature_21( ):
+def test_voice_interface_signature_21( ):
    '''
    (Anonymous) staff followed by sequential notes.
    LilyPond identifies two separate voices each on a different staff.
@@ -654,7 +654,7 @@ def test_signature_21( ):
    '''
 
 
-def test_signature_22( ):
+def test_voice_interface_signature_22( ):
    '''
    Naked notes followed by (anonymous) voice.
    LilyPond renders two different voices on a single staff.
@@ -686,7 +686,7 @@ def test_signature_22( ):
 
 
 
-def test_signature_23( ):
+def test_voice_interface_signature_23( ):
    '''
    Voice followed by naked notes.
    LilyPond renders two different consecutive voices on a single staff.
@@ -717,7 +717,7 @@ def test_signature_23( ):
    '''
 
    
-def test_signature_24( ):
+def test_voice_interface_signature_24( ):
    '''
    Naked notes followed by (named) voice.
    LilyPond does NOT allow a continous beam over all eight notes.
@@ -748,7 +748,7 @@ def test_signature_24( ):
    '''
 
 
-def test_signature_25a( ):
+def test_voice_interface_signature_25a( ):
    '''
    (Named) voice followed by naked notes.
    ==> LilyPond renders a single voice on a single staff!
@@ -789,7 +789,7 @@ def test_signature_25a( ):
    '''
 
    
-def test_signature_26( ):
+def test_voice_interface_signature_26( ):
    '''
    Naked notes followed by (anonymous) staff.
    LilyPond does NOT allow a continous beam over all eight notes.
@@ -818,7 +818,7 @@ def test_signature_26( ):
    '''
 
 
-def test_signature_27( ):
+def test_voice_interface_signature_27( ):
    '''
    (Anonymous) staff followed by naked notes, al sequential-enclosed.
    LilyPond does NOT allow a continous beam over all eight notes.
@@ -848,7 +848,7 @@ def test_signature_27( ):
 ### TODO - test tautalogical voices
 ### TODO - test tautological staves
 
-def test_signature_28( ):
+def test_voice_interface_signature_28( ):
    '''
    Voice enclosed in tautological sequential container.
    LilyPond DOES allow a continuous beam over all eight notes.
@@ -879,7 +879,7 @@ def test_signature_28( ):
    '''
 
 
-def test_signature_29( ):
+def test_voice_interface_signature_29( ):
    '''
    (Named) voice enclosed in tautological sequential container.
    LilyPond DOES allow a continuous beam over all eight notes.
@@ -911,7 +911,7 @@ def test_signature_29( ):
    '''
 
 
-def test_signature_29( ):
+def test_voice_interface_signature_29( ):
    '''
    Nested (named) voices.
    LilyPond does NOT allow a continous beam over all eight notes.
@@ -942,7 +942,7 @@ def test_signature_29( ):
    '''
 
 
-def test_signature_30( ):
+def test_voice_interface_signature_30( ):
    '''
    Nested (anonymous) voices.
    LilyPond does NOT allow a continous beam over all eight notes.
@@ -971,7 +971,7 @@ def test_signature_30( ):
    '''
 
 
-def test_signature_31( ):
+def test_voice_interface_signature_31( ):
    '''
    Naked notes followed by parallel (anonymous) voices.
 
@@ -1011,7 +1011,7 @@ def test_signature_31( ):
    '''
 
 
-def test_signature_32( ):
+def test_voice_interface_signature_32( ):
    '''
    Parallel (anonymous) voices followed by naked notes.
    LilyPond three separate voices on three different staves.
@@ -1053,7 +1053,7 @@ def test_signature_32( ):
    '''
 
 
-def test_signature_33( ):
+def test_voice_interface_signature_33( ):
    '''
    LilyPond identifies three separate and strictly nested voices.
    LilyPond assigns notes (0, 1, 10, 11) to first voice.
@@ -1150,7 +1150,7 @@ def test_siganture_34( ):
    '''
    
 
-def test_signature_35( ):
+def test_voice_interface_signature_35( ):
    '''
    LilyPond voice-identificaation in strictly Nested sequentials.
    LilyPond identifies only one voice; the sequential nesting
@@ -1188,7 +1188,7 @@ def test_signature_35( ):
    '''
 
 
-def test_signature_36( ):
+def test_voice_interface_signature_36( ):
    '''
    LilyPond identifies only one voice here.
    Abjad components all carry the signature of the default voice.
@@ -1226,7 +1226,7 @@ def test_signature_36( ):
    '''
 
 
-def test_signature_37( ):
+def test_voice_interface_signature_37( ):
    '''
    Tautologically 'buried' voice in middle of stream of notes.
    LilyPond renders one voice nested inside another both on a single staff.
@@ -1260,7 +1260,7 @@ def test_signature_37( ):
    '''
 
 
-def test_signature_38( ):
+def test_voice_interface_signature_38( ):
    '''
    Tautologically 'buried' voice at the beginning of a stream of notes.
    LilyPond renders a single voice on a single staff.
@@ -1295,7 +1295,7 @@ def test_signature_38( ):
    '''
 
 
-def test_signature_39( ):
+def test_voice_interface_signature_39( ):
    '''
    Governing voice with intervening tautological sequentials.
    LilyPond renders one voice nested inside another, on a single staff.
@@ -1338,7 +1338,7 @@ def test_signature_39( ):
    }
    '''
  
-def test_signature_40( ):
+def test_voice_interface_signature_40( ):
    '''
    Tautological sequentials filled with notes.
    LilyPond renders one voice nested inside another both on a single staff.
@@ -1391,7 +1391,7 @@ def test_signature_40( ):
    '''
 
 
-def test_signature_41( ):
+def test_voice_interface_signature_41( ):
    '''
    Expression-initial voice followed by second explicit voice fb notes.
    '''
