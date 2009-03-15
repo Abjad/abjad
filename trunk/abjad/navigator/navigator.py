@@ -396,7 +396,7 @@ class _Navigator(_Abjad):
          return None, None
 
    def _pathExistsBetween(self, arg):
-      '''Returns True when self._client and arg are ultimately contained
+      r'''Returns True when self._client and arg are ultimately contained
          in the same expression, when a reference pathway exists between
          self._client and arg that passes over no \new or \context
          boundaries, and when a reference path exists between self._client

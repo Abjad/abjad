@@ -5,7 +5,7 @@ import py.test
 def test_path_exists_between_01( ):
    '''Paths exist between all leaves in a voice.'''
 
-   t = Voice([Note(i, (1, 8)) for i in range(4)])
+   t = Voice(scale(4))
 
    assert t[0]._navigator._pathExistsBetween(t[1])
    assert t[1]._navigator._pathExistsBetween(t[2])
@@ -14,9 +14,9 @@ def test_path_exists_between_01( ):
    r'''
    \new Voice {
       c'8
-      cs'8
       d'8
-      ef'8
+      e'8
+      f'8
    }
    '''
 
@@ -24,7 +24,7 @@ def test_path_exists_between_01( ):
 def test_path_exists_between_02( ):
    '''Paths exist between all notes in a staff.'''
 
-   t = Staff([Note(i, (1, 8)) for i in range(4)])
+   t = Staff(scale(4))
 
    assert t[0]._navigator._pathExistsBetween(t[1])
    assert t[1]._navigator._pathExistsBetween(t[2])
@@ -33,9 +33,9 @@ def test_path_exists_between_02( ):
    r'''
    \new Staff {
       c'8
-      cs'8
       d'8
-      ef'8
+      e'8
+      f'8
    }
    '''
 
@@ -43,7 +43,7 @@ def test_path_exists_between_02( ):
 def test_path_exists_between_03( ):
    '''Paths exist between all notes in a sequential.'''
 
-   t = Sequential([Note(i, (1, 8)) for i in range(4)])
+   t = Sequential(scale(4))
 
    assert t[0]._navigator._pathExistsBetween(t[1])
    assert t[1]._navigator._pathExistsBetween(t[2])
@@ -52,9 +52,9 @@ def test_path_exists_between_03( ):
    r'''
    {
       c'8
-      cs'8
       d'8
-      ef'8
+      e'8
+      f'8
    }
    '''
 
@@ -62,7 +62,7 @@ def test_path_exists_between_03( ):
 def test_path_exists_between_04( ):
    '''Paths exist between none of the leaves in a parallel container.'''
 
-   t = Parallel([Note(i, (1,8)) for i in range(4)])
+   t = Parallel(scale(4))
 
    assert not t[0]._navigator._pathExistsBetween(t[1])
    assert not t[1]._navigator._pathExistsBetween(t[2])
@@ -71,9 +71,9 @@ def test_path_exists_between_04( ):
    r'''
    <<
       c'8
-      cs'8
       d'8
-      ef'8
+      e'8
+      f'8
    >>
    '''
 
@@ -81,7 +81,7 @@ def test_path_exists_between_04( ):
 def test_path_exists_between_05( ):
    '''Paths exist between tuplet leaves.'''
 
-   t = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
+   t = FixedDurationTuplet((2, 8), scale(3))
 
    assert t[0]._navigator._pathExistsBetween(t[1])
    assert t[1]._navigator._pathExistsBetween(t[0])
@@ -92,8 +92,8 @@ def test_path_exists_between_05( ):
    r'''
    \times 2/3 {
       c'8
-      cs'8
       d'8
+      e'8
    }
    '''
 
@@ -101,9 +101,25 @@ def test_path_exists_between_05( ):
 def test_path_exists_between_06( ):
    '''Paths exist between all components here.'''
 
-   s1 = Sequential([Note(i, (1, 8)) for i in range(4)])
-   s2 = Sequential([Note(i, (1, 8)) for i in range(4, 8)])
-   t = Voice([s1, s2])
+   t = Voice(Sequential(run(4)) * 2)
+   diatonicize(t)
+
+   r'''
+   \new Voice {
+      {
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+      {
+         g'8
+         a'8
+         b'8
+         c''8
+      }
+   }
+   '''
 
    ### paths exist between sequential containers
    assert t[0]._navigator._pathExistsBetween(t[1])
@@ -118,23 +134,6 @@ def test_path_exists_between_06( ):
    assert t[1]._navigator._pathExistsBetween(t[0][1])
    assert t[1]._navigator._pathExistsBetween(t[0][2])
    assert t[1]._navigator._pathExistsBetween(t[0][3])
-
-   r'''
-   \new Voice {
-      {
-         c'8
-         cs'8
-         d'8
-         ef'8
-      }
-      {
-         e'8
-         f'8
-         fs'8
-         g'8
-      }
-   }
-   '''
 
 
 def test_path_exists_between_07( ):
@@ -201,8 +200,8 @@ def test_path_exists_between_08( ):
 
 
 def test_path_exists_between_09( ):
-   '''Paths exist between all components here;
-      paths can cross the \context-boundary because
+   r'''Paths exist between all components here.
+      Paths can cross the \context-boundary because
       contexts share the same name.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -404,18 +403,6 @@ def test_path_exists_betwee_13( ):
    s2 = Sequential([s2])
    t = Voice([s1, s2])
 
-   assert t[0]._navigator._pathExistsBetween(t[1])
-   assert t[0]._navigator._pathExistsBetween(t[1][0])
-   assert t[0]._navigator._pathExistsBetween(t[1][0][0])
-   
-   assert t[0][0]._navigator._pathExistsBetween(t[1])
-   assert t[0][0]._navigator._pathExistsBetween(t[1][0])
-   assert t[0][0]._navigator._pathExistsBetween(t[1][0][0])
-   
-   assert t[0][0][-1]._navigator._pathExistsBetween(t[1])
-   assert t[0][0][-1]._navigator._pathExistsBetween(t[1][0])
-   assert t[0][0][-1]._navigator._pathExistsBetween(t[1][0][0])
-   
    r'''
    \new Voice {
       {
@@ -437,42 +424,90 @@ def test_path_exists_betwee_13( ):
    }
    '''
 
+   assert t[0]._navigator._pathExistsBetween(t[1])
+   assert t[0]._navigator._pathExistsBetween(t[1][0])
+   assert t[0]._navigator._pathExistsBetween(t[1][0][0])
+   
+   assert t[0][0]._navigator._pathExistsBetween(t[1])
+   assert t[0][0]._navigator._pathExistsBetween(t[1][0])
+   assert t[0][0]._navigator._pathExistsBetween(t[1][0][0])
+   
+   assert t[0][0][-1]._navigator._pathExistsBetween(t[1])
+   assert t[0][0][-1]._navigator._pathExistsBetween(t[1][0])
+   assert t[0][0][-1]._navigator._pathExistsBetween(t[1][0][0])
+   
 
-### TODO - this test doesn't work yet;
-###        it's quite surprising that LilyPond DOES ALLOW
-###        DOES ALLOW a path between consecutive like-named *voices*
-###        BUT DOES NOT ALLOW between consecutive like-named *staves*.
+
+## TODO - this test doesn't work yet;
+##        it's quite surprising that LilyPond
+##        DOES ALLOW a path between consecutive like-named *voices*
+##        BUT DOES NOT ALLOW between consecutive like-named *staves*.
 def test_path_exists_between_14( ):
-   '''Path does NOT exist between consecutive like-named staves.'''
+   '''Path DOES NOT exist between consecutive like-named staves.'''
 
-   s1 = Staff([Note(n, (1, 8)) for n in range(4)])
-   s1.invocation.name = 'foo'
-   s2 = Staff([Note(n, (1, 8)) for n in range(4, 8)])
-   s2.invocation.name = 'foo'
-   seq = Sequential([s1, s2])
-
-   ### TODO - make both of these calls return False
-   #assert not seq[0]._navigator._pathExistsBetween(seq[1])
-   #assert not seq[1]._navigator._pathExistsBetween(seq[0])
+   t = Sequential(Staff(run(4)) * 2)
+   t[0].invocation.name = 'foo'
+   t[1].invocation.name = 'foo'
+   diatonicize(t)
 
    r'''
    {
       \context Staff = "foo" {
          c'8
-         cs'8
          d'8
-         ef'8
-      }
-      \context Staff = "foo" {
          e'8
          f'8
-         fs'8
+      }
+      \context Staff = "foo" {
          g'8
+         a'8
+         b'8
+         c''8
       }
    }
    '''
 
+   ## TODO - make all four of these asserts work correctly
+   #assert not t[0]._navigator._pathExistsBetween(t[1])
+   #assert not t[1]._navigator._pathExistsBetween(t[0])
 
-### TODO - two more tests to cover:
-###        a (named / anonymous) voice followed by naked notes;
-###        a (named / anonymous) staff followed by naked notes;
+   #assert not t[0][0]._navigator._pathExistsBetween(t[1][0])
+   #assert not t[1][0]._navigator._pathExistsBetween(t[0][1])
+
+
+def test_path_exists_between_15( ):
+   '''Path DOES exist between consecutive like-named voices.'''
+
+   t = Sequential(Voice(run(4)) * 2)
+   t[0].invocation.name = 'foo'
+   t[1].invocation.name = 'foo'
+   diatonicize(t)
+
+   r'''
+   {
+      \context Voice = "foo" {
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+      \context Voice = "foo" {
+         g'8
+         a'8
+         b'8
+         c''8
+      }
+   }
+   '''
+
+   assert t[0]._navigator._pathExistsBetween(t[1])
+   assert t[1]._navigator._pathExistsBetween(t[0])
+
+   assert t[0][0]._navigator._pathExistsBetween(t[1][0])
+   assert t[1][0]._navigator._pathExistsBetween(t[0][1])
+
+
+
+## TODO - two more tests to cover:
+##        a (named / anonymous) voice followed by naked notes;
+##        a (named / anonymous) staff followed by naked notes;
