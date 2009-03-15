@@ -1,6 +1,7 @@
 from abjad import *
 import py.test
 
+py.test.skip('Deprecating _VoiceInterface')
 
 def test_voice_interface_number_01( ):
    '''Voice number defaults to None.'''

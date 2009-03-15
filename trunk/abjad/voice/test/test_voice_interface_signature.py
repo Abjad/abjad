@@ -1,6 +1,7 @@
 from abjad import *
 import py.test
 
+py.test.skip('Deprecating _VoiceInterface.')
 
 def test_voice_interface_signature_01( ):
    '''Orphan leaves carry no voice signature.'''

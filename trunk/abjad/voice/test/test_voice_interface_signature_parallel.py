@@ -1,5 +1,8 @@
 from abjad import *
+import py.test
 
+
+py.test.skip('Deprecating _VoiceInterface.')
 
 def test_voice_interface_signature_parallel_01( ):
    '''Top-level parallel containing only notes.
