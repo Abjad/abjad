@@ -367,8 +367,7 @@ class Container(_Component):
       self._update._markForUpdateToRoot( )
       return result
 
-   #@debug( )
-   ## BUG: setting @debug( ) here causes pop( ) to return None!
+   @debug( )
    def pop(self, i = -1):
       '''Remove and return element at index i in self.'''
       result = self[i]

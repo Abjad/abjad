@@ -37,10 +37,11 @@ class debug(_Abjad):
       def wrapper(*args, **kwargs):
          #print 'Degug wrapping starts...'
          #print '"%s( )" executed.' % f.__name__
-         f(*args, **kwargs)
+         result = f(*args, **kwargs)
          if DEBUG:
             print 'Debugger running...'
             component = args[0]
             print 'check gives:', check(component)
          #print 'Debug wrapping ends.'
+         return result
       return wrapper 
