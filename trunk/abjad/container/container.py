@@ -3,6 +3,7 @@ from abjad.container.brackets import _Brackets
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
+from abjad.debug.debug import debug
 from abjad.helpers.are_contiguous_components import _are_contiguous_components
 from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.bequeath_multiple import bequeath_multiple
@@ -366,6 +367,7 @@ class Container(_Component):
       self._update._markForUpdateToRoot( )
       return result
 
+   @debug( )
    def pop(self, i = -1):
       '''Remove and return element at index i in self.'''
       result = self[i]
