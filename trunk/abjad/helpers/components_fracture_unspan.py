@@ -1,4 +1,4 @@
-from abjad.helpers.components_unspan_shallow import components_unspan_shallow
+from abjad.helpers.components_detach_spanners_shallow import components_detach_spanners_shallow
 from abjad.helpers.components_fracture_shallow import components_fracture_shallow
 
 
