@@ -39,7 +39,7 @@ def bequeath_multiple(old_components, new_components):
       return old_components
 
    # detach new components from parentage
-   components_detach_parentage(new_components, level = 'top')
+   components_detach_parentage(new_components)
 
    # get dominant spanners
    dominant_spanners = _get_dominant_spanners(old_components)
@@ -50,7 +50,7 @@ def bequeath_multiple(old_components, new_components):
       dominant_spanner[index:index] = new_components
 
    # unspan old components
-   components_unspan_shallow(old_components)
+   components_detach_spanners_shallow(old_components)
 
    # remember parent and index
    parent, index = _get_parent_and_index(old_components)

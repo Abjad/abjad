@@ -12,7 +12,7 @@ def components_fracture_unspan(component_list):
    components_fracture_shallow(component_list)
 
    # unspan all components at top level of list
-   components_unspan_shallow(component_list)
+   components_detach_spanners_shallow(component_list)
    
    # return input list
    return component_list
