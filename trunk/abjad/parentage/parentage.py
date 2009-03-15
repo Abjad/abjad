@@ -14,8 +14,9 @@ class _Parentage(_Abjad):
    
    @property
    def _enclosingContextName(self):
-      '''Return invocation name of context 
-         closest to client in score tree.'''
+      '''Return string equal to the invocation name 
+         of closest enclosing context of client in score tree.
+         If no context encloses client, return None.'''
       for p in self.parentage:
          invocation = getattr(p, 'invocation', None)
          if invocation:
@@ -25,15 +26,20 @@ class _Parentage(_Abjad):
 
    @property
    def _governor(self):
-      '''Return a reference to the first 
-         sequential container enclosing client.'''
-      p = self.parent
-      if p is None or p.parallel:
-         return None
-      while p.parentage.parent is not None and not p.parentage.parent.parallel:
-         p = p.parentage.parent
-      return p
-
+      '''Return reference to first sequential container Q 
+         in the parentage of client such that 
+         the parent of Q is either a parallel container or None.
+         In the case that no such sequential container exists
+         in the parentage of client, return None.'''
+      from abjad.container.container import Container
+      for component in self.parentage:
+         if isinstance(component, Container) and not component.parallel:
+            parent = component.parentage.parent
+            if parent is None:
+               return component
+            if isinstance(parent, Container) and parent.parallel:
+               return component
+            
    @property
    def _threadParentage(self):
       '''Return thread-pertinent parentage structure.
