@@ -191,7 +191,7 @@ class Container(_Component):
    ## TODO make this settable?
    @property
    def parallel(self):
-      return self.brackets == 'double-angle'
+      return self.brackets in ('double-angle', 'simultaneous')
 
    ### TODO: i propose this instead. 
    # if we want a next Leaf, we can call a nextLeaf explicitly.
