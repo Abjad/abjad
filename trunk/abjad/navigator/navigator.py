@@ -403,7 +403,8 @@ class _Navigator(_Abjad):
          and arg that crosses over no parallel containers.
          
          I propose replacing _isThreadable with this method.'''
-      return self._hasGoodSharedParent(arg) and self._hasGoodPath(arg)
+      #return self._hasGoodSharedParent(arg) and self._hasGoodPath(arg)
+      return self._client.parentage._containment == arg.parentage._containment
 
    # leftwards depth-first traversal;
    # return next node yet-to-be visited, last rank already visited
