@@ -24,12 +24,14 @@ class _Parentage(_Abjad):
       else:
          return None
 
-   @property
-   def _firstEnclosingVoice(self):
-      from abjad.staff.staff import Staff
-      from abjad.voice.voice import Voice
-      for component in self.parentage:
-         pass
+#   @property
+#   def _firstEnclosingVoice(self):
+#      #from abjad.score.score import Score
+#      #from abjad.staffgroup.staffgroup import StaffGroup
+#      from abjad.voice.voice import Voice
+#      for component in self.parentage:
+#         if isinstance(component, Voice):
+#            return component
          
    @property
    def _governor(self):
@@ -104,13 +106,9 @@ class _Parentage(_Abjad):
 
    def _first(self, klass):
       '''Return first instance of klass in score tree above client.'''
-      p = self.parent
-      while p is not None:
-         if isinstance(p, klass):
-            return p
-         else:
-            p = p.parentage.parent
-      return None
+      for component in self.parentage[1:]:
+         if isinstance(component, klass):
+            return component
 
    def _getFirstSharedParent(self, arg):
       '''Returns first shared parent between self._client and arg,
