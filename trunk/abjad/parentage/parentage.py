@@ -1,4 +1,5 @@
 from abjad.core.abjadcore import _Abjad
+from abjad.parentage.containment import _ContextContainmentSignature
 from abjad.rational.rational import Rational
 from abjad.receipt.parentage import _ParentageReceipt
 import types
@@ -12,6 +13,29 @@ class _Parentage(_Abjad):
 
    ## PRIVATE ATTRIBUTES ##
    
+   @property
+   def _containment(self):
+      '''Return _ContextContainmentSignature giving the root and
+         first voice, staff and score in parentage of component.'''
+      from abjad.score.score import Score
+      from abjad.staff.staff import Staff
+      from abjad.voice.voice import Voice
+      containment = _ContextContainmentSignature( )
+      found_voice, found_staff, found_score = False, False, False
+      for component in self.parentage:
+         if isinstance(component, Voice) and not found_voice:
+            containment.voice = component._ID
+            found_voice = True
+         if isinstance(component, Staff) and not found_staff:
+            containment.staff = component._ID
+            found_staff = True
+         if isinstance(component, Score) and not found_score:
+            containment.score = component._ID
+            found_score = True
+      else:
+         containment.root = id(component)
+      return containment
+
    @property
    def _enclosingContextName(self):
       '''Return string equal to the invocation name 
