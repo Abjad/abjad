@@ -3,10 +3,8 @@ import py.test
 
 
 def test_is_threadable_01( ):
-   r'''
-   Threading leaves across non-\new and 
-   non-\context boundaries works fine
-   '''
+   r'''Threading leaves across non-\new and 
+      non-\context boundaries works fine.'''
 
    t = Sequential(Sequential(run(4)) * 2)
    appictate(t)
@@ -14,8 +12,7 @@ def test_is_threadable_01( ):
    assert t[0][-1]._navigator._isThreadable(t[1][0])
    assert t[1][0]._navigator._isThreadable(t[0][-1])
 
-   r'''
-   {
+   r'''{
       {
          c'8
          cs'8
@@ -28,26 +25,22 @@ def test_is_threadable_01( ):
          fs'8
          g'8
       }
-   }
-   '''
+   }'''
 
    
 def test_is_threadable_02( ):
-   r'''
-   LilyPond DOES NOT allow threading across different anonymous voices.
-   _isThreadable( ) DOES allows threading across anonymous voices.
-   '''
+   r'''LilyPond DOES NOT allow threading across different anonymous voices.
+      _isThreadable( ) DOES allows threading across anonymous voices.'''
 
    t = Sequential(Voice(run(4)) * 2)
    appictate(t)
 
-   ### TODO - make these asserts work
+   ## TODO - make these asserts work
 
-   #assert not t[0][-1]._navigator._isThreadable(t[1][0])
-   #assert not t[1][0]._navigator._isThreadable(t[0][-1])
+   assert not t[0][-1]._navigator._isThreadable(t[1][0])
+   assert not t[1][0]._navigator._isThreadable(t[0][-1])
 
-   r'''
-   {
+   r'''{
       \new Voice {
          c'8
          cs'8
@@ -60,34 +53,30 @@ def test_is_threadable_02( ):
          fs'8
          g'8
       }
-   }
-   '''
+   }'''
 
 
 def test_is_threadable_03( ):
-   r'''
-   LilyPond forbids threading across anonymous staves.
-   LilyPond forbids threading across anonymous voices.
-   _isThreadable( ) allows threading across anonymous staves.
-   _isThreadable( ) allows threading across anonymous voices.
-   '''
+   r'''LilyPond forbids threading across anonymous staves.
+      LilyPond forbids threading across anonymous voices.
+      _isThreadable( ) allows threading across anonymous staves.
+      _isThreadable( ) allows threading across anonymous voices.''' 
 
    t = Sequential(Staff([Voice(run(4))]) * 2)
    appictate(t)
    
-   ### TODO - make these asserts work
+   ## TODO - make these asserts work
 
-   #assert not t[0][0][-1]._navigator._isThreadable(t[1][0][0])
-   #assert not t[1][0][0]._navigator._isThreadable(t[0][0][-1])
+   assert not t[0][0][-1]._navigator._isThreadable(t[1][0][0])
+   assert not t[1][0][0]._navigator._isThreadable(t[0][0][-1])
 
-   #assert not t[0][0]._navigator._isThreadable(t[1][0])
-   #assert not t[1][0]._navigator._isThreadable(t[0][0])
+   assert not t[0][0]._navigator._isThreadable(t[1][0])
+   assert not t[1][0]._navigator._isThreadable(t[0][0])
 
-   #assert not t[0]._navigator._isThreadable(t[1])
-   #assert not t[0]._navigator._isThreadable(t[0])
+   assert not t[0]._navigator._isThreadable(t[1])
+   assert t[0]._navigator._isThreadable(t[0])
 
-   r'''
-   {
+   r'''{
       \new Staff {
          \new Voice {
             c'8
@@ -104,5 +93,4 @@ def test_is_threadable_03( ):
             g'8
          }
       }
-   }
-   '''
+   }'''

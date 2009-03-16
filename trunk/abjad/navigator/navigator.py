@@ -321,31 +321,43 @@ class _Navigator(_Abjad):
          
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
-      from abjad.context.context import _Context
-      from abjad.container.container import Container
-      from abjad.leaf.leaf import _Leaf
-      c_thread_parentage = expr.parentage._threadParentage
-      thread_parentage = self._client.parentage._threadParentage
-      match_parent = True
-      if len(c_thread_parentage) == len(thread_parentage):
-         for c, p in zip(c_thread_parentage, thread_parentage):
-            if type(c) == type(p):
-               if isinstance(c, _Context) and isinstance(p, _Context):
-                  if c.invocation != p.invocation:
-                     match_parent = False
-      else:
-         match_parent = False
-      match_self = False
-      if isinstance(self._client, _Leaf) and isinstance(expr, _Leaf):
-         match_self = True
-      elif isinstance(self._client, Container) and isinstance(expr, Container):
-         if not self._client.parallel and not expr.parallel:
-            if isinstance(self._client, _Context) and isinstance(expr, _Context):
-               if self._client.invocation == expr.invocation:
-                  match_self =  True
-            elif type(self._client) == type(expr):
-               match_self =  True
-      return match_self and match_parent
+#      from abjad.context.context import _Context
+#      from abjad.container.container import Container
+#      from abjad.leaf.leaf import _Leaf
+#      c_thread_parentage = expr.parentage._threadParentage
+#      thread_parentage = self._client.parentage._threadParentage
+#      match_parent = True
+#      if len(c_thread_parentage) == len(thread_parentage):
+#         for c, p in zip(c_thread_parentage, thread_parentage):
+#            if type(c) == type(p):
+#               if isinstance(c, _Context) and isinstance(p, _Context):
+#                  if c.invocation != p.invocation:
+#                     match_parent = False
+#      else:
+#         match_parent = False
+#      match_self = False
+#      if isinstance(self._client, _Leaf) and isinstance(expr, _Leaf):
+#         match_self = True
+#      elif isinstance(self._client, Container) and \
+#         isinstance(expr, Container):
+#         if not self._client.parallel and not expr.parallel:
+#            if isinstance(self._client, _Context) and \
+#               isinstance(expr, _Context):
+#               if self._client.invocation == expr.invocation:
+#                  match_self =  True
+#            elif type(self._client) == type(expr):
+#               match_self =  True
+#      return match_self and match_parent
+
+      ## TODO: I think we're very close to replacing all of the above.
+      ##       However, when I do this, three navigator tests break.
+      ##       All are in test_navigator_bead_navigation.py:
+      ##
+      ##          test_bead_navigation_12
+      ##          test_bead_navigation_50a
+      ##          test_bead_navigation_50b
+
+      return self._pathExistsBetween(expr)
 
    def _nextNodeHelper(self, lastVisitedRank = None):
       '''Rightwards depth-first traversal.
