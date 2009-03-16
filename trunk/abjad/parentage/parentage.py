@@ -25,6 +25,13 @@ class _Parentage(_Abjad):
          return None
 
    @property
+   def _firstEnclosingVoice(self):
+      from abjad.staff.staff import Staff
+      from abjad.voice.voice import Voice
+      for component in self.parentage:
+         pass
+         
+   @property
    def _governor(self):
       '''Return reference to first sequential container Q 
          in the parentage of client such that 
