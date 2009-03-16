@@ -3,6 +3,11 @@ class AssignabilityError(Exception):
       to a single, untied note, rest or chord.'''
    pass
 
+class ContextContainmentError(Exception):
+   '''Only certain types of context should contain
+      other types of context.'''
+   pass
+
 class ContiguityError(Exception):
    '''Input is not contiguous.'''
    pass
@@ -39,10 +44,22 @@ class SpannerError(Exception):
    '''General spanner error.'''
    pass
 
+class StaffContainmentError(ContextContainmentError):
+   '''Staves must contain only voices and lower-level components.
+      Staves must not contain staff groups, scores or other staves.'''
+   pass
+
 class TieChainError(Exception):
    '''General tie chain error.'''
    pass
 
 class UnderfullMeasureError(ImproperlyFilledMeasureError):
    '''Measure contents duration is less than measure meter duration.'''
+   pass
+
+class VoiceContainmentError(ContextContainmentError):
+   '''Voice must contain only lower-level components.
+      Lower-level components include leaves, tuplets, measures, etc.
+      Voice must not contain higher-level components.
+      Higher-level components import stave, staff groups, scores, etc.'''
    pass
