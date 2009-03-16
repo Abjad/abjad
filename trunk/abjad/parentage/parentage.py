@@ -40,27 +40,6 @@ class _Parentage(_Abjad):
          containment.root = id(component)
       return containment
 
-#   @property
-#   def _enclosingContextName(self):
-#      '''Return string equal to the invocation name 
-#         of closest enclosing context of client in score tree.
-#         If no context encloses client, return None.'''
-#      for p in self.parentage:
-#         invocation = getattr(p, 'invocation', None)
-#         if invocation:
-#            return invocation.name
-#      else:
-#         return None
-
-#   @property
-#   def _firstEnclosingVoice(self):
-#      #from abjad.score.score import Score
-#      #from abjad.staffgroup.staffgroup import StaffGroup
-#      from abjad.voice.voice import Voice
-#      for component in self.parentage:
-#         if isinstance(component, Voice):
-#            return component
-         
    @property
    def _governor(self):
       '''Return reference to first sequential container Q 
@@ -127,26 +106,11 @@ class _Parentage(_Abjad):
       receipt = _ParentageReceipt(client, parent, index)
       return receipt
 
-#   def _disjunctInclusiveParentageBetween(self, arg):
-#      '''Same as _disjunctParentageBetween( ) but including
-#         references to self._client and arg.'''
-#      return set(self.parentage) ^ set (arg.parentage.parentage)
-
    def _first(self, klass):
       '''Return first instance of klass in score tree above client.'''
       for component in self.parentage[1:]:
          if isinstance(component, klass):
             return component
-
-#   def _getFirstSharedParent(self, arg):
-#      '''Returns first shared parent between self._client and arg,
-#         otherwise None.'''
-#      shared = set(self.parentage) & set(arg.parentage.parentage)
-#      if shared:
-#         for parent in self.parentage:
-#            if parent in shared:
-#               return parent
-#      return None
 
    def _reattach(self, receipt):
       '''Reattach client to parent described in receipt.

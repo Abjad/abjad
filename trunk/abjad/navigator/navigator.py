@@ -314,32 +314,11 @@ class _Navigator(_Abjad):
             return nextSibling._navigator._contemporaneousStartContents
       return [ ]
 
-#   def _hasGoodPath(self, arg):
-#      '''Returns True when all of the disjunct elements in the parentage
-#         of self._client and arg share the same context and when none
-#         of the disjunct elements in the parentage of self._client and arg
-#         are parallel containers.'''
-#      parentage = \
-#         self._client.parentage._disjunctInclusiveParentageBetween(arg)
-#      return not any([self._isInaccessibleToMe(p) for p in parentage])
-      
-#   def _hasGoodSharedParent(self, arg):
-#      '''Returns True when self._client and arg have at least one
-#         element of shared parentage and the first element of shared
-#         parentage between self._client and arg is not parallel.'''
-#      first_shared = self._client.parentage._getFirstSharedParent(arg)
-#      return first_shared and not first_shared.parallel
-
    def _isImmediateTemporalSuccessorOf(self, expr):
       '''True when client follows immediately after expr,
          otherwise False.'''
       return expr in self._getImmediateTemporalSuccessors( )
          
-#   def _isInaccessibleToMe(self, arg):
-#      return getattr(arg, 'parallel', False) or \
-#         (hasattr(arg, 'invocation') and not self._shareContext(arg)) or \
-#         (hasattr(arg, 'invocation') and arg.invocation.name is None)
-
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
       from abjad.context.context import _Context
@@ -397,11 +376,8 @@ class _Navigator(_Abjad):
          boundaries, and when a reference path exists between self._client
          and arg that crosses over no parallel containers.
          I propose replacing _isThreadable with this method.'''
-      #return self._hasGoodSharedParent(arg) and self._hasGoodPath(arg)
       return self._client.parentage._containment == arg.parentage._containment
 
-   # leftwards depth-first traversal;
-   # return next node yet-to-be visited, last rank already visited
    def _prevNodeHelper(self, lastVisitedRank = None):
       '''Leftwards depth-first traversal.
          Return next node yet-to-be visited, last rank already visited.'''
@@ -437,12 +413,6 @@ class _Navigator(_Abjad):
          return parent._music.index(self._client)
       else:
          return None
-
-#   def _shareContext(self, arg):
-#      '''Return True when self._client and arg share the same
-#         enclosing context name, otherwise False.'''
-#      return self._client.parentage._enclosingContextName == \
-#         arg.parentage._enclosingContextName
 
    def _traverse(self, v, depthFirst=True, leftRight=True):
       '''Traverse with visitor visiting each node in turn.'''
