@@ -104,13 +104,6 @@ class _Parentage(_Abjad):
                      parentage.remove(p)
       return parentage
 
-   @property
-   def _voiceController(self):
-      '''Return reference to first context in parentage of client,
-         otherwise None.'''
-      from abjad.context.context import _Context
-      return self._first(_Context)
-
    ## PRIVATE METHODS ##
 
    def _cutOutgoingReferenceToParent(self):
