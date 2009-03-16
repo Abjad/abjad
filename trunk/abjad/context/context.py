@@ -43,15 +43,15 @@ class _Context(Container):
          summary,
          self.brackets.close)
 
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _ID(self):
-      name = getattr(self.invocation, 'name', False)
-      if name:
-         return name
-      else:
-         return id(self)
+#   ## PRIVATE ATTRIBUTES ##
+#
+#   @property
+#   def _ID(self):
+#      name = getattr(self.invocation, 'name', False)
+#      if name:
+#         return name
+#      else:
+#         return id(self)
 
    ## PUBLIC ATTRIBUTES ##
 

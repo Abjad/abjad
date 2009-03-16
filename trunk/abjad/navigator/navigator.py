@@ -376,7 +376,8 @@ class _Navigator(_Abjad):
          boundaries, and when a reference path exists between self._client
          and arg that crosses over no parallel containers.
          I propose replacing _isThreadable with this method.'''
-      return self._client.parentage._containment == arg.parentage._containment
+      return self._client.parentage._containmentSignature == \
+         arg.parentage._containmentSignature
 
    def _prevNodeHelper(self, lastVisitedRank = None):
       '''Leftwards depth-first traversal.

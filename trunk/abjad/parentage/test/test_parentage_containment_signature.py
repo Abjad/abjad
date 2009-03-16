@@ -2,7 +2,7 @@ from abjad.component.component import _Component
 from abjad import *
 
 
-def test_parentage_containment_01( ):
+def test_parentage_containment_signature_01( ):
    '''Return _ContextContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -32,13 +32,13 @@ def test_parentage_containment_01( ):
 
    '''All components here carry the exact same containment signature.'''
 
-   containment = t.parentage._containment
+   signature = t.parentage._containmentSignature
 
    for component in iterate(t, _Component):
-      assert component.parentage._containment == containment
+      assert component.parentage._containmentSignature == signature
 
 
-def test_parentage_containment_02( ):
+def test_parentage_containment_signature_02( ):
    '''Return _ContextContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -69,13 +69,13 @@ def test_parentage_containment_02( ):
 
    '''Again, all components here carry the exact same containment signature.'''
 
-   containment = t.parentage._containment
+   signature = t.parentage._containmentSignature
 
    for component in iterate(t, _Component):
-      assert component.parentage._containment == containment
+      assert component.parentage._containmentSignature == signature
 
 
-def test_parentage_containment_03( ):
+def test_parentage_containment_signature_03( ):
    '''Return _ContextContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -105,13 +105,13 @@ def test_parentage_containment_03( ):
 
    '''Again, all components here carry the exact same containment signature.'''
 
-   containment = t.parentage._containment
+   containment = t.parentage._containmentSignature
 
    for component in iterate(t, _Component):
-      assert component.parentage._containment == containment
+      assert component.parentage._containmentSignature == containment
 
 
-def test_parentage_containment_04( ):
+def test_parentage_containment_signature_04( ):
    '''Return _ContextContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -139,7 +139,7 @@ def test_parentage_containment_04( ):
            c''8
    }'''
 
-   signatures = [leaf.parentage._containment for leaf in t.leaves]
+   signatures = [leaf.parentage._containmentSignature for leaf in t.leaves]
 
    assert signatures[0] == signatures[1]
    assert signatures[0] != signatures[2]
@@ -150,7 +150,7 @@ def test_parentage_containment_04( ):
    assert signatures[2] != signatures[4]
 
       
-def test_parentage_containment_05( ):
+def test_parentage_containment_signature_05( ):
    '''Return _ContextContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -181,7 +181,7 @@ def test_parentage_containment_05( ):
    }
    '''
 
-   signatures = [leaf.parentage._containment for leaf in t.leaves]
+   signatures = [leaf.parentage._containmentSignature for leaf in t.leaves]
 
    signatures[0] == signatures[1]
    signatures[0] == signatures[2]
@@ -199,7 +199,7 @@ def test_parentage_containment_05( ):
    signatures[4] == signatures[6]
 
 
-def test_parentage_containment_06( ):
+def test_parentage_containment_signature_06( ):
    '''Return _ContextContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -226,7 +226,7 @@ def test_parentage_containment_06( ):
            }
    }'''
 
-   signatures = [leaf.parentage._containment for leaf in t.leaves]
+   signatures = [leaf.parentage._containmentSignature for leaf in t.leaves]
 
    signatures[0] == signatures[1]
    signatures[0] != signatures[2]
@@ -235,7 +235,7 @@ def test_parentage_containment_06( ):
    signatures[2] == signatures[3]
 
    
-def test_parentage_containment_07( ):
+def test_parentage_containment_signature_07( ):
    '''Return _ContextContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -273,7 +273,7 @@ def test_parentage_containment_07( ):
       a'8
    }'''
    
-   signatures = [leaf.parentage._containment for leaf in t.leaves]
+   signatures = [leaf.parentage._containmentSignature for leaf in t.leaves]
 
    signatures[0] != signatures[1]
    signatures[0] != signatures[2]
@@ -294,16 +294,16 @@ def test_parentage_containment_07( ):
    signatures[2] != signatures[5]
 
 
-def test_parentage_containment_08( ):
+def test_parentage_containment_signature_08( ):
    '''Unicorporated leaves carry different containment signatures.'''
 
    t1 = Note(0, (1, 8))
    t2 = Note(0, (1, 8))
   
-   assert t1.parentage._containment != t2.parentage._containment
+   assert t1.parentage._containmentSignature != t2.parentage._containmentSignature
 
 
-def test_parentage_containment_09( ):
+def test_parentage_containment_signature_09( ):
    '''Components here carry the same containment signature EXCEPT FOR root.
       Component containment signatures do not compare True.'''
 
@@ -315,6 +315,6 @@ def test_parentage_containment_09( ):
    t2.invocation.name = 'staff'
    t2[0].invocation.name = 'voice'
 
-   t1_leaf_signature = t1.leaves[0].parentage._containment
-   t2_leaf_signature = t2.leaves[0].parentage._containment
+   t1_leaf_signature = t1.leaves[0].parentage._containmentSignature
+   t2_leaf_signature = t2.leaves[0].parentage._containmentSignature
    assert t1_leaf_signature != t2_leaf_signature

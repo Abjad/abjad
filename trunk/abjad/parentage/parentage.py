@@ -14,31 +14,43 @@ class _Parentage(_Abjad):
    ## PRIVATE ATTRIBUTES ##
    
    @property
-   def _containment(self):
+   def _containmentSignature(self):
       '''Return _ContextContainmentSignature giving the root and
          first voice, staff and score in parentage of component.'''
       from abjad.score.score import Score
       from abjad.staff.staff import Staff
       from abjad.voice.voice import Voice
-      containment = _ContextContainmentSignature( )
+      signature = _ContextContainmentSignature( )
       found_voice, found_staff, found_score = False, False, False
+      signature._self = self._client._ID
       for component in self.parentage:
-         '''Voices can be named the same to compare equally.'''
          if isinstance(component, Voice) and not found_voice:
-            containment.voice = component._ID
+            signature._voice = component._ID
             found_voice = True
-         '''Staves must be manifestly equal to compare True.'''
-         if isinstance(component, Staff) and not found_staff:
-            containment.staff = id(component)
-            found_staff = True
-         '''Scores must be manifestly equal to compare True.'''
+         if isinstance(component, Staff):
+            if not found_voice:
+               numeric_id = '%s-%s' % (
+                  component.__class__.__name__, id(component))
+               signature._voice = numeric_id
+               found_voice = True
+            if not found_staff:
+               signature._staff = component._ID
+               found_staff = True
          if isinstance(component, Score) and not found_score:
-            containment.score = id(component)
-            found_score = True
+            if not found_voice:
+               signature._voice = component._ID
+               found_voice = True
+            if not found_staff:
+               signature._staff = component._ID
+               found_staff = True
+            if not found_score:
+               signature._score = component._ID
+               found_score = True
       else:
          '''Root components must be manifestly equal to compare True.'''
-         containment.root = id(component)
-      return containment
+         signature._root = id(component)
+         signature._root_str = component._ID
+      return signature
 
    @property
    def _governor(self):
