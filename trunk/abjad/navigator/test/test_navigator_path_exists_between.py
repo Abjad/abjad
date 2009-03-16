@@ -473,6 +473,87 @@ def test_path_exists_between_14( ):
 
 
 def test_path_exists_between_15( ):
+   '''LilyPond puts leaves in like-named voices which 
+      in turn reside in like-named staves in the same voice.'''
+
+   t = Sequential(Staff([Voice(run(4))]) * 2)
+   t[0].invocation.name = 'staff'
+   t[0][0].invocation.name = 'voice'
+   t[1].invocation.name = 'staff'
+   t[1][0].invocation.name = 'voice'
+   diatonicize(t)
+
+   r'''{
+           \context Staff = "staff" {
+                   \context Voice = "voice" {
+                           c'8
+                           d'8
+                           e'8
+                           f'8
+                   }
+           }
+           \context Staff = "staff" {
+                   \context Voice = "voice" {
+                           g'8
+                           a'8
+                           b'8
+                           c''8
+                   }
+           }
+   }'''
+
+   leaves = t.leaves
+
+   ## TODO: All four of these asserts should pass
+   ##       because LilyPond identifies one continuous voice.
+
+   assert leaves[0]._navigator._pathExistsBetween(leaves[1])
+   assert leaves[0]._navigator._pathExistsBetween(leaves[4])
+
+   assert leaves[4]._navigator._pathExistsBetween(leaves[0])
+   assert leaves[4]._navigator._pathExistsBetween(leaves[7])
+
+
+def test_path_exists_between_16( ):
+   '''LilyPond puts the leaves here in different voices.
+      LilyPond puts leaves in like-named voices that reside,
+      however, in differently named (anonymous) staves
+      into separate voices.'''
+
+   t = Sequential(Staff([Voice(run(4))]) * 2)
+   t[0][0].invocation.name = 'voice'
+   t[1][0].invocation.name = 'voice'
+   diatonicize(t)
+
+   r'''{
+           \new Staff {
+                   \context Voice = "voice" {
+                           c'8
+                           d'8
+                           e'8
+                           f'8
+                   }
+           }
+           \new Staff {
+                   \context Voice = "voice" {
+                           g'8
+                           a'8
+                           b'8
+                           c''8
+                   }
+           }
+   }'''
+
+   leaves = t.leaves
+
+   assert leaves[0]._navigator._pathExistsBetween(leaves[1])
+   assert not leaves[0]._navigator._pathExistsBetween(leaves[4])
+
+   assert not leaves[4]._navigator._pathExistsBetween(leaves[0])
+   assert leaves[4]._navigator._pathExistsBetween(leaves[7])
+
+
+def test_path_exists_between_17( ):
    '''Path DOES exist between consecutive like-named voices.'''
 
    t = Sequential(Voice(run(4)) * 2)
@@ -504,7 +585,7 @@ def test_path_exists_between_15( ):
    assert t[1][0]._navigator._pathExistsBetween(t[0][1])
 
 
-def test_path_exists_between_16( ):
+def test_path_exists_between_18( ):
    '''Path does not exist from anonymous voice to naked notes.'''
 
    t = Staff(run(4))
