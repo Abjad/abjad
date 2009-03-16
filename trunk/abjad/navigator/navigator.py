@@ -17,11 +17,9 @@ class _Navigator(_Abjad):
 
    @property
    def _contemporaneousStartComponents(self):
-      '''
-      Return a list of all components in either the contents or
-      parentage of client starting at the same moment as client,
-      including client.
-      '''
+      '''Return a list of all components in either the contents or
+         parentage of client starting at the same moment as client,
+         including client.'''
       result = [ ]
       result.extend(self._contemporaneousStartContents)
       result.extend(self._contemporaneousStartParentage)
@@ -45,10 +43,8 @@ class _Navigator(_Abjad):
 
    @property
    def _contemporaneousStartParentage(self):
-      '''
-      Return a list of all components in the parentage of client
-      starting at the same moment as client, including client.
-      '''
+      '''Return a list of all components in the parentage of client
+         starting at the same moment as client, including client.'''
       client = self._client
       result = [client]
       prev = client
@@ -62,11 +58,9 @@ class _Navigator(_Abjad):
 
    @property
    def _contemporaneousStopComponents(self):
-      '''
-      Return a list of all components in either the contents or
-      parentage of client stopping at the same moment as client,
-      including client.
-      '''
+      '''Return a list of all components in either the contents or
+         parentage of client stopping at the same moment as client,
+         including client.'''
       result = [ ]
       result.extend(self._contemporaneousStopContents)
       result.extend(self._contemporaneousStopParentage)
@@ -92,10 +86,8 @@ class _Navigator(_Abjad):
 
    @property
    def _contemporaneousStopParentage(self):
-      '''
-      Return a list of all components in the parentage of client
-      stopping at the same moment as client, including client.
-      '''
+      '''Return a list of all components in the parentage of client
+         stopping at the same moment as client, including client.'''
       client = self._client
       result = [client]
       prev = client
@@ -292,9 +284,9 @@ class _Navigator(_Abjad):
 
    ## PRIVATE METHODS ##
 
-   # advance to self._client._music[rank], if possible;
-   # otherwise ascend
    def _advance(self, rank):
+      '''Advance to self._client._music[rank], if possible,
+         otherwise ascend.'''
       if hasattr(self._client, '_music'):
          if rank < len(self._client._music):
             return self._client._music[rank]
@@ -305,13 +297,14 @@ class _Navigator(_Abjad):
 
    def _findFellowBead(self, candidates):
       '''Helper method from prevBead and nextBead. 
-      Given a list of bead candiates of self, find and return the first one
-      that matches thread parentage. '''
+         Given a list of bead candiates of self, find and return the first one
+         that matches thread parentage. '''
       for candidate in candidates:
          if self._isThreadable(candidate):
             return candidate
 
    def _getImmediateTemporalSuccessors(self):
+      '''Return Python list of components immediately after self._client.'''
       cur = self._client
       while cur is not None:
          nextSibling = cur._navigator._nextSibling
@@ -321,29 +314,31 @@ class _Navigator(_Abjad):
             return nextSibling._navigator._contemporaneousStartContents
       return [ ]
 
-   def _hasGoodPath(self, arg):
-      '''Returns True when all of the disjunct elements in the parentage
-         of self._client and arg share the same context and when none
-         of the disjunct elements in the parentage of self._client and arg
-         are parallel containers.'''
-      parentage = \
-         self._client.parentage._disjunctInclusiveParentageBetween(arg)
-      return not any([self._isInaccessibleToMe(p) for p in parentage])
+#   def _hasGoodPath(self, arg):
+#      '''Returns True when all of the disjunct elements in the parentage
+#         of self._client and arg share the same context and when none
+#         of the disjunct elements in the parentage of self._client and arg
+#         are parallel containers.'''
+#      parentage = \
+#         self._client.parentage._disjunctInclusiveParentageBetween(arg)
+#      return not any([self._isInaccessibleToMe(p) for p in parentage])
       
-   def _hasGoodSharedParent(self, arg):
-      '''Returns True when self._client and arg have at least one
-         element of shared parentage and the first element of shared
-         parentage between self._client and arg is not parallel.'''
-      first_shared = self._client.parentage._getFirstSharedParent(arg)
-      return first_shared and not first_shared.parallel
+#   def _hasGoodSharedParent(self, arg):
+#      '''Returns True when self._client and arg have at least one
+#         element of shared parentage and the first element of shared
+#         parentage between self._client and arg is not parallel.'''
+#      first_shared = self._client.parentage._getFirstSharedParent(arg)
+#      return first_shared and not first_shared.parallel
 
    def _isImmediateTemporalSuccessorOf(self, expr):
+      '''True when client follows immediately after expr,
+         otherwise False.'''
       return expr in self._getImmediateTemporalSuccessors( )
          
-   def _isInaccessibleToMe(self, arg):
-      return getattr(arg, 'parallel', False) or \
-         (hasattr(arg, 'invocation') and not self._shareContext(arg)) or \
-         (hasattr(arg, 'invocation') and arg.invocation.name is None)
+#   def _isInaccessibleToMe(self, arg):
+#      return getattr(arg, 'parallel', False) or \
+#         (hasattr(arg, 'invocation') and not self._shareContext(arg)) or \
+#         (hasattr(arg, 'invocation') and arg.invocation.name is None)
 
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
@@ -373,10 +368,10 @@ class _Navigator(_Abjad):
                match_self =  True
       return match_self and match_parent
 
-   # rightwards depth-first traversal:
-   # advance rightwards; otherwise ascend; otherwise None.
-   # return next node yet-to-be visited, last rank already visited
    def _nextNodeHelper(self, lastVisitedRank = None):
+      '''Rightwards depth-first traversal.
+         Advance rightwards; otherwise ascend; otherwise None.
+         Return next node yet-to-be visited, last rank already visited.'''
       if hasattr(self._client, '_music'):
          if lastVisitedRank is None:
             if len(self._client._music) > 0:
@@ -401,7 +396,6 @@ class _Navigator(_Abjad):
          self._client and arg that passes over no \new or \context
          boundaries, and when a reference path exists between self._client
          and arg that crosses over no parallel containers.
-         
          I propose replacing _isThreadable with this method.'''
       #return self._hasGoodSharedParent(arg) and self._hasGoodPath(arg)
       return self._client.parentage._containment == arg.parentage._containment
@@ -409,6 +403,8 @@ class _Navigator(_Abjad):
    # leftwards depth-first traversal;
    # return next node yet-to-be visited, last rank already visited
    def _prevNodeHelper(self, lastVisitedRank = None):
+      '''Leftwards depth-first traversal.
+         Return next node yet-to-be visited, last rank already visited.'''
       if hasattr(self._client, '_music'):
          if lastVisitedRank == None:
             if len(self._client._music) > 0:
@@ -442,19 +438,21 @@ class _Navigator(_Abjad):
       else:
          return None
 
-   def _shareContext(self, arg):
-      '''Return True when self._client and arg share the same
-         enclosing context name, otherwise False.'''
-      return self._client.parentage._enclosingContextName == \
-         arg.parentage._enclosingContextName
+#   def _shareContext(self, arg):
+#      '''Return True when self._client and arg share the same
+#         enclosing context name, otherwise False.'''
+#      return self._client.parentage._enclosingContextName == \
+#         arg.parentage._enclosingContextName
 
    def _traverse(self, v, depthFirst=True, leftRight=True):
+      '''Traverse with visitor visiting each node in turn.'''
       if depthFirst:
          self._traverseDepthFirst(v)
       else:
          self._traverseBreadthFirst(v, leftRight)
 
    def _traverseBreadthFirst(self, v, leftRight = True):
+      '''Traverse breadth-first with visitor visiting each node.'''
       queue = deque([self._client])
       while queue:
          node = queue.popleft( )
@@ -466,6 +464,7 @@ class _Navigator(_Abjad):
                queue.extend(reversed(node._music))
 
    def _traverseDepthFirst(self, v):
+      '''Traverse depth-frist with visitor visiting each node.'''
       v.visit(self._client)
       if hasattr(self._client, '_music'):
          for m in self._client._music:
