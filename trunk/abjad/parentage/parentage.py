@@ -23,16 +23,20 @@ class _Parentage(_Abjad):
       containment = _ContextContainmentSignature( )
       found_voice, found_staff, found_score = False, False, False
       for component in self.parentage:
+         '''Voices can be named the same to compare equally.'''
          if isinstance(component, Voice) and not found_voice:
             containment.voice = component._ID
             found_voice = True
+         '''Staves must be manifestly equal to compare True.'''
          if isinstance(component, Staff) and not found_staff:
-            containment.staff = component._ID
+            containment.staff = id(component)
             found_staff = True
+         '''Scores must be manifestly equal to compare True.'''
          if isinstance(component, Score) and not found_score:
-            containment.score = component._ID
+            containment.score = id(component)
             found_score = True
       else:
+         '''Root components must be manifestly equal to compare True.'''
          containment.root = id(component)
       return containment
 
