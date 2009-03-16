@@ -1,8 +1,7 @@
-from abjad.staff.staff import Staff
+from abjad.staffgroup.staffgroup import StaffGroup
 
 
 def PianoStaff(music):
-   result = Staff(music)
+   result = StaffGroup(music)
    result.invocation.type = 'PianoStaff'
-   result.brackets = 'simultaneous'
    return result
