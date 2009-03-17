@@ -20,6 +20,9 @@ class _ContainmentSignature(_Abjad):
          self._score == arg._score and \
          self._root == arg._root
 
+   def __ne__(self, arg):
+      return not self == arg
+
    def __str__(self):
       result = [ ]
       result.append(' root: %s (%s)' % (self._root_str, self._root))
