@@ -1130,3 +1130,166 @@ def test_are_threadable_components_41( ):
    assert not _are_threadable_components(t.leaves[:8])
    assert not _are_threadable_components(t.leaves[4:])
    assert not _are_threadable_components(t.leaves)
+
+
+def test_are_threadable_components_42( ):
+   '''Staff and leaves all thread.'''
+
+   t = Staff(scale(4))
+   t.brackets = 'double-angle'
+
+   r'''\new Staff <<
+      c'8
+      d'8
+      e'8
+      f'8
+   >>'''
+
+   assert _are_threadable_components(list(iterate(t, _Component)))
+ 
+
+def test_are_threadable_components_43( ):
+   '''Parallel and sequential containers, and leaves, all thead.'''
+
+   t = Sequential(Note(0, (1, 8)) * 4)
+   p = Parallel(Note(0, (1, 8)) * 4)
+   t.insert(2, p)
+   appictate(t)
+
+   r'''{
+      c'8
+      cs'8
+      <<
+         d'8
+         ef'8
+         e'8
+         f'8
+      >>
+      fs'8
+      g'8
+   }'''
+
+   assert _are_threadable_components(list(iterate(t, _Component)))
+ 
+
+def test_are_threadable_components_44( ):
+   '''Voice, containers and leaves all thread.'''
+
+   t = Voice(Note(0, (1, 8)) * 4)
+   p = Parallel(Note(0, (1, 8)) * 4)
+   t.insert(2, p)
+   appictate(t)
+
+   r'''\new Voice {
+      c'8
+      cs'8
+      <<
+         d'8
+         ef'8
+         e'8
+         f'8
+      >>
+      fs'8
+      g'8
+   }'''
+
+   assert _are_threadable_components(list(iterate(t, _Component)))
+
+
+def test_are_threadable_components_45( ):
+   '''Containers and leaves all thread.
+      TODO: We probably want to change this.
+            LilyPond shoves all these things into a single voice.
+            But Abjad threading turns out to be subtly different
+            than LilyPond voice resolution.
+      Abjad will probably be fine with a spanner restriction:
+      spanners can span no more than one element from any paralllel.'''
+
+   t = Parallel(Sequential(Note(0, (1, 8)) * 4) * 2)
+   appictate(t)
+
+   r'''<<
+      {
+         c'8
+         cs'8
+         d'8
+         ef'8
+      }
+      {
+         e'8
+         f'8
+         fs'8
+         g'8
+      }
+   >>'''
+
+
+def test_are_threadable_components_46( ):
+   '''Everything threads.
+      TODO: Implement one-element parallel spanner restriction.'''
+
+   p = Parallel(Sequential(Note(0, (1, 8)) * 4) * 2)
+   t = Sequential(Note(0, (1, 8)) * 4)
+   t.insert(2, p)
+   appictate(t)
+
+   r'''{
+      c'8
+      cs'8
+      <<
+         {
+            d'8
+            ef'8
+            e'8
+            f'8
+         }
+         {
+            fs'8
+            g'8
+            af'8
+            a'8
+         }
+      >>
+      bf'8
+      b'8
+   }'''
+
+   assert _are_threadable_components(list(iterate(t, _Component)))
+
+
+def test_are_threadable_components_47( ):
+   '''Can not thread across differently named anonymous voices.'''
+
+   p = Parallel(Voice(Note(0, (1, 8)) * 4) * 2)
+   t = Sequential(Note(0, (1, 8)) * 4)
+   t.insert(2, p)
+   appictate(t)
+
+   r'''{
+      c'8
+      cs'8
+      <<
+         \new Voice {
+            d'8
+            ef'8
+            e'8
+            f'8
+         }
+         \new Voice {
+            fs'8
+            g'8
+            af'8
+            a'8
+         }
+      >>
+      bf'8
+      b'8
+   }'''
+
+   outer = (0, 1, 10, 11)
+
+   assert _are_threadable_components([t.leaves[i] for i in outer])
+   assert _are_threadable_components(t.leaves[2:6])
+   assert _are_threadable_components(t.leaves[6:10])
+   assert not _are_threadable_components(t.leaves[:6])
+   assert not _are_threadable_components(t.leaves)
