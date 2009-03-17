@@ -82,7 +82,6 @@ class _Parentage(_Abjad):
          signature._root_str = component._ID
       return signature
 
-
    @property
    def _governor(self):
       '''Return reference to first sequential container Q 

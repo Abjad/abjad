@@ -321,36 +321,9 @@ class _Navigator(_Abjad):
          
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
-#      from abjad.context.context import _Context
-#      from abjad.container.container import Container
-#      from abjad.leaf.leaf import _Leaf
-#      c_thread_parentage = expr.parentage._threadParentage
-#      thread_parentage = self._client.parentage._threadParentage
-#      match_parent = True
-#      if len(c_thread_parentage) == len(thread_parentage):
-#         for c, p in zip(c_thread_parentage, thread_parentage):
-#            if type(c) == type(p):
-#               if isinstance(c, _Context) and isinstance(p, _Context):
-#                  if c.invocation != p.invocation:
-#                     match_parent = False
-#      else:
-#         match_parent = False
-#      match_self = False
-#      if isinstance(self._client, _Leaf) and isinstance(expr, _Leaf):
-#         match_self = True
-#      elif isinstance(self._client, Container) and \
-#         isinstance(expr, Container):
-#         if not self._client.parallel and not expr.parallel:
-#            if isinstance(self._client, _Context) and \
-#               isinstance(expr, _Context):
-#               if self._client.invocation == expr.invocation:
-#                  match_self =  True
-#            elif type(self._client) == type(expr):
-#               match_self =  True
-#      return match_self and match_parent
-
-      return self._pathExistsBetween(expr)
-
+      from abjad.helpers.are_threadable_components import \
+         _are_threadable_components
+      return _are_threadable_components([self._client, expr])
 
    def _nextNodeHelper(self, lastVisitedRank = None):
       '''Rightwards depth-first traversal.
@@ -373,16 +346,6 @@ class _Navigator(_Abjad):
          return self._client.parentage.parent, self._rank( )
       else:
          return None, None
-
-   def _pathExistsBetween(self, arg):
-      r'''Returns True when self._client and arg are ultimately contained
-         in the same expression, when a reference pathway exists between
-         self._client and arg that passes over no \new or \context
-         boundaries, and when a reference path exists between self._client
-         and arg that crosses over no parallel containers.
-         I propose replacing _isThreadable with this method.'''
-      return self._client.parentage._containmentSignature == \
-         arg.parentage._containmentSignature
 
    def _prevNodeHelper(self, lastVisitedRank = None):
       '''Leftwards depth-first traversal.

@@ -70,7 +70,7 @@ def test_are_threadable_components_05( ):
 
    assert _are_threadable_components(list(iterate(t, _Component)))
 
-import py.test
+
 def test_are_threadable_components_06_trev( ):
    '''Anonymous staff and leaves all thread.'''
 
@@ -85,6 +85,7 @@ def test_are_threadable_components_06_trev( ):
    }'''
 
    assert _are_threadable_components(list(iterate(t, _Component)))
+
 
 def test_are_threadable_components_06( ):
    '''Leaves inside anonymous staff thread.'''
