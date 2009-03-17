@@ -1,5 +1,5 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.parentage.containment import _ContextContainmentSignature
+from abjad.parentage.containment import _ContainmentSignature
 from abjad.rational.rational import Rational
 from abjad.receipt.parentage import _ParentageReceipt
 import types
@@ -15,12 +15,12 @@ class _Parentage(_Abjad):
    
    @property
    def _containmentSignature(self):
-      '''Return _ContextContainmentSignature giving the root and
+      '''Return _ContainmentSignature giving the root and
          first voice, staff and score in parentage of component.'''
       from abjad.score.score import Score
       from abjad.staff.staff import Staff
       from abjad.voice.voice import Voice
-      signature = _ContextContainmentSignature( )
+      signature = _ContainmentSignature( )
       found_voice, found_staff, found_score = False, False, False
       signature._self = self._client._ID
       for component in self.parentage:

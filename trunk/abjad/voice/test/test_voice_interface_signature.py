@@ -4,7 +4,7 @@ import py.test
 py.test.skip('Deprecating _VoiceInterface.')
 
 def test_voice_interface_signature_01( ):
-   '''Orphan leaves carry no voice signature.'''
+   '''Unincorporated leaves thread.'''
 
    assert Note(0, (1, 4)).voice.signature is None
    assert Rest((1, 4)).voice.signature is None

@@ -1,7 +1,7 @@
 from abjad.core.abjadcore import _Abjad
 
 
-class _ContextContainmentSignature(_Abjad):
+class _ContainmentSignature(_Abjad):
 
    def __init__(self):
       self._root = None
@@ -14,7 +14,7 @@ class _ContextContainmentSignature(_Abjad):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      return isinstance(arg, _ContextContainmentSignature) and \
+      return isinstance(arg, _ContainmentSignature) and \
          self._voice == arg._voice and \
          self._staff == arg._staff and \
          self._score == arg._score and \

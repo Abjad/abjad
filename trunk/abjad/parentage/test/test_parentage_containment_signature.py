@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_parentage_containment_signature_01( ):
-   '''Return _ContextContainmentSignature giving the root and
+   '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
    t = Sequential(run(4))
@@ -39,7 +39,7 @@ def test_parentage_containment_signature_01( ):
 
 
 def test_parentage_containment_signature_02( ):
-   '''Return _ContextContainmentSignature giving the root and
+   '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
@@ -76,7 +76,7 @@ def test_parentage_containment_signature_02( ):
 
 
 def test_parentage_containment_signature_03( ):
-   '''Return _ContextContainmentSignature giving the root and
+   '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
@@ -112,7 +112,7 @@ def test_parentage_containment_signature_03( ):
 
 
 def test_parentage_containment_signature_04( ):
-   '''Return _ContextContainmentSignature giving the root and
+   '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
@@ -151,7 +151,7 @@ def test_parentage_containment_signature_04( ):
 
       
 def test_parentage_containment_signature_05( ):
-   '''Return _ContextContainmentSignature giving the root and
+   '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
    t = Voice(run(4))
@@ -200,7 +200,7 @@ def test_parentage_containment_signature_05( ):
 
 
 def test_parentage_containment_signature_06( ):
-   '''Return _ContextContainmentSignature giving the root and
+   '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
    t = Sequential(Staff([Voice(scale(2))]) * 2)
@@ -236,7 +236,7 @@ def test_parentage_containment_signature_06( ):
 
    
 def test_parentage_containment_signature_07( ):
-   '''Return _ContextContainmentSignature giving the root and
+   '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
    t = Sequential(run(2))
