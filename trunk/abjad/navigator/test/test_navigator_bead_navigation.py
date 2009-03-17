@@ -180,20 +180,15 @@ def test_bead_navigation_11( ):
 
 
 def test_bead_navigation_12( ):
-   '''NextBead and prevBead work on contiguous anonymous Voices 
-   inside a Staff.'''
+   '''
+   NextBead and prevBead do not go across contiguous anonymous Voices 
+   inside a Staff.
+   '''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
    v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
    t = Staff([v1, v2])
-   assert v1[0]._navigator._nextBead is v1[1]
-   assert v1[1]._navigator._nextBead is v1[2]
-   assert v1[2]._navigator._nextBead is v1[3]
-   assert v1[3]._navigator._nextBead is v2[0]
-
-   assert v1[1]._navigator._prevBead is v1[0]
-   assert v1[2]._navigator._prevBead is v1[1]
-   assert v1[3]._navigator._prevBead is v1[2]
-   assert v2[0]._navigator._prevBead is v1[3]
+   assert v1[3]._navigator._nextBead is None
+   assert v2[0]._navigator._prevBead is None
 
    r'''
    \new Staff {
@@ -727,16 +722,18 @@ def test_bead_navigation_40( ):
 ### TAUTOLOGICAL NESTING ###
 
 def test_bead_navigation_50a( ):
-   '''nextBead and prevBead work on nested anonymous Voices.'''
+   '''
+   nextBead and prevBead do not work on nested anonymous Voices.
+   '''
    vin = Voice([Note(i, (1,8)) for i in range(3)])
    vout = Voice([vin, Note(3, (1,8))])
    assert vin[0]._navigator._nextBead is vin[1]
    assert vin[1]._navigator._nextBead is vin[2]
-   assert vin[2]._navigator._nextBead is vout[1]
+   assert vin[2]._navigator._nextBead is None
 
    assert vin[1]._navigator._prevBead is vin[0]
    assert vin[2]._navigator._prevBead is vin[1]
-   assert vout[1]._navigator._prevBead is vin[-1]
+   assert vout[1]._navigator._prevBead is None
 
    r'''
    \new Voice {
@@ -751,16 +748,16 @@ def test_bead_navigation_50a( ):
 
 
 def test_bead_navigation_50b( ):
-   '''nextBead and prevBead work on nested anonymous Voices.'''
+   '''nextBead and prevBead do not work on nested anonymous Voices.'''
    vin = Voice([Note(i, (1,8)) for i in range(1,4)])
    vout = Voice([Note(0, (1,8)), vin])
    assert vin[0]._navigator._nextBead is vin[1]
    assert vin[1]._navigator._nextBead is vin[2]
-   assert vout[0]._navigator._nextBead is vin[0]
+   assert vout[0]._navigator._nextBead is None
 
    assert vin[1]._navigator._prevBead is vin[0]
    assert vin[2]._navigator._prevBead is vin[1]
-   assert vin[0]._navigator._prevBead is vout[0]
+   assert vin[0]._navigator._prevBead is None
 
    r'''
    \new Voice {

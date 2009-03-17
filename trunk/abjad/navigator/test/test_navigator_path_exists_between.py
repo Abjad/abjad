@@ -63,6 +63,7 @@ def test_path_exists_between_04( ):
    '''TODO: Determine the correct behavior here.
             Should paths exist between NONE of the leaves in a parallel?
             Should paths exist between ALL of the leaves in a parallel?'''
+   ## [VA] None... i think. 
   
    t = Parallel(scale(4))
 
@@ -182,6 +183,16 @@ def test_path_exists_between_08( ):
 
    assert not t[0]._navigator._pathExistsBetween(t[1])
    assert not t[1]._navigator._pathExistsBetween(t[0])
+   assert not t[0][0]._navigator._pathExistsBetween(t[1][0])
+   assert not t[1][0]._navigator._pathExistsBetween(t[0][-1])
+
+   assert v1[0]._navigator._pathExistsBetween(v1[1])
+   assert v1[1]._navigator._pathExistsBetween(v1[2])
+   assert v1[2]._navigator._pathExistsBetween(v1[3])
+
+   assert v2[0]._navigator._pathExistsBetween(v2[1])
+   assert v2[1]._navigator._pathExistsBetween(v2[2])
+   assert v2[2]._navigator._pathExistsBetween(v2[3])
 
    r'''
    \new Staff {
@@ -440,8 +451,32 @@ def test_path_exists_between_13( ):
 
 
 def test_path_exists_between_14( ):
-   '''Path DOES NOT exist between consecutive like-named staves.
-      Path exists only WITHIN a single staff.'''
+   '''
+   Path exists between consecutive like-named staves.
+      '''
+
+   t = Sequential(Staff([ ]) * 2)
+   t[0].invocation.name = 'foo'
+   t[1].invocation.name = 'foo'
+
+   r'''
+   {
+      \context Staff = "foo" {
+      }
+      \context Staff = "foo" {
+      }
+   }
+   '''
+
+   assert t[0]._navigator._pathExistsBetween(t[1])
+   assert t[1]._navigator._pathExistsBetween(t[0])
+
+
+def test_path_exists_between_15( ):
+   '''
+   Path DOES NOT exist between unvoice leaves contained in staves 
+   where path does exist.
+   '''
 
    t = Sequential(Staff(run(4)) * 2)
    t[0].invocation.name = 'foo'
@@ -465,14 +500,14 @@ def test_path_exists_between_14( ):
    }
    '''
 
-   assert not t[0]._navigator._pathExistsBetween(t[1])
-   assert not t[1]._navigator._pathExistsBetween(t[0])
+   assert t[0]._navigator._pathExistsBetween(t[1])
+   assert t[1]._navigator._pathExistsBetween(t[0])
 
    assert not t[0][0]._navigator._pathExistsBetween(t[1][0])
    assert not t[1][0]._navigator._pathExistsBetween(t[0][1])
 
 
-def test_path_exists_between_15( ):
+def test_path_exists_between_16( ):
    '''LilyPond puts leaves in like-named voices which 
       in turn reside in like-named staves in the same voice.'''
 
@@ -504,9 +539,6 @@ def test_path_exists_between_15( ):
 
    leaves = t.leaves
 
-   ## TODO: All four of these asserts should pass
-   ##       because LilyPond identifies one continuous voice.
-
    assert leaves[0]._navigator._pathExistsBetween(leaves[1])
    assert leaves[0]._navigator._pathExistsBetween(leaves[4])
 
@@ -514,9 +546,8 @@ def test_path_exists_between_15( ):
    assert leaves[4]._navigator._pathExistsBetween(leaves[7])
 
 
-def test_path_exists_between_16( ):
-   '''LilyPond puts the leaves here in different voices.
-      LilyPond puts leaves in like-named voices that reside,
+def test_path_exists_between_17( ):
+   '''LilyPond puts leaves in like-named voices that reside,
       however, in differently named (anonymous) staves
       into separate voices.'''
 
@@ -553,7 +584,7 @@ def test_path_exists_between_16( ):
    assert leaves[4]._navigator._pathExistsBetween(leaves[7])
 
 
-def test_path_exists_between_17( ):
+def test_path_exists_between_18( ):
    '''Path DOES exist between consecutive like-named voices.'''
 
    t = Sequential(Voice(run(4)) * 2)
@@ -585,7 +616,7 @@ def test_path_exists_between_17( ):
    assert t[1][0]._navigator._pathExistsBetween(t[0][1])
 
 
-def test_path_exists_between_18( ):
+def test_path_exists_between_19( ):
    '''Path does not exist from anonymous voice to naked notes.'''
 
    t = Staff(run(4))
@@ -610,3 +641,125 @@ def test_path_exists_between_18( ):
    assert not t[2][0]._navigator._pathExistsBetween(t[0])
    assert t[2][0]._navigator._pathExistsBetween(t[2][1])
    assert not t[2][0]._navigator._pathExistsBetween(t[3])
+
+
+def test_path_exists_between_20( ):
+   '''
+   Path exist between sequential equally named voices inside a 
+   parallel container and between all notes contained in the voices.
+   '''
+   v1 = Voice(run(4))
+   v2 = Voice(run(4))
+   v1.invocation.name = v2.invocation.name = 'voiceOne'
+   t = Parallel([Sequential([v1, v2])])
+   diatonicize(t)
+   r'''
+   <<
+           {
+                   \context Voice = "voiceOne" {
+                           c'8
+                           d'8
+                           e'8
+                           f'8
+                   }
+                   \context Voice = "voiceOne" {
+                           g'8
+                           a'8
+                           b'8
+                           c''8
+                   }
+           }
+   >>
+   '''
+   assert v1._navigator._pathExistsBetween(v2)
+   for n1, n2 in zip(t.leaves[0:-1], t.leaves[1:]):
+      assert n1._navigator._pathExistsBetween(n2)
+
+
+def test_path_exists_between_21( ):
+   '''
+   Path exists between equally named voices contained in different
+   parallel containers.
+   '''
+   v1 = Voice(run(4))
+   v2 = Voice(run(4))
+   v1.invocation.name = v2.invocation.name = 'voiceOne'
+   t = Sequential([Parallel([v1]), Parallel([v2])])
+   diatonicize(t)
+   r'''
+   {
+           <<
+                   \context Voice = "voiceOne" {
+                           c'8
+                           d'8
+                           e'8
+                           f'8
+                   }
+           >>
+           <<
+                   \context Voice = "voiceOne" {
+                           g'8
+                           a'8
+                           b'8
+                           c''8
+                   }
+           >>
+   }
+   '''
+   assert v1._navigator._pathExistsBetween(v2)
+   for n1, n2 in zip(t.leaves[0:-1], t.leaves[1:]):
+      assert n1._navigator._pathExistsBetween(n2)
+
+
+def test_path_exists_between_22( ):
+   '''
+   Path exists between equally named parallel and sequential containers.
+   '''
+   v1 = Voice(run(4))
+   v2 = Voice(run(4))
+   v1.invocation.name = v2.invocation.name = 'voiceOne'
+   s1 = Staff([v1])
+   s2 = Staff([v2])
+   s1.invocation.name = s2.invocation.name = 'staffOne'
+   s1.brackets = 'double-angle'
+   s2.brackets = 'double-angle'
+   t = Sequential([s1, s2])
+   diatonicize(t)
+   r'''
+   {
+           \context Staff = "staffOne" <<
+                   \context Voice = "voiceOne" {
+                           c'8
+                           d'8
+                           e'8
+                           f'8
+                   }
+           >>
+           \context Staff = "staffOne" <<
+                   \context Voice = "voiceOne" {
+                           g'8
+                           a'8
+                           b'8
+                           c''8
+                   }
+           >>
+   }
+   '''
+   assert v1._navigator._pathExistsBetween(v2)
+   assert s1._navigator._pathExistsBetween(s2)
+   for n1, n2 in zip(t.leaves[0:-1], t.leaves[1:]):
+      assert n1._navigator._pathExistsBetween(n2)
+
+
+def test_path_exists_between_23( ):
+   '''Path exists between equally named StaffGroups.'''
+   t = Sequential([StaffGroup([ ]), StaffGroup([ ])])
+   t[0].invocation.name = t[1].invocation.name = 'staffGroup'
+   r'''{
+           \context StaffGroup = "staffGroup" <<
+           >>
+           \context StaffGroup = "staffGroup" <<
+           >>
+   }
+   '''
+   assert t[0]._navigator._pathExistsBetween(t[1])

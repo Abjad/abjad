@@ -349,15 +349,8 @@ class _Navigator(_Abjad):
 #               match_self =  True
 #      return match_self and match_parent
 
-      ## TODO: I think we're very close to replacing all of the above.
-      ##       However, when I do this, three navigator tests break.
-      ##       All are in test_navigator_bead_navigation.py:
-      ##
-      ##          test_bead_navigation_12
-      ##          test_bead_navigation_50a
-      ##          test_bead_navigation_50b
-
       return self._pathExistsBetween(expr)
+
 
    def _nextNodeHelper(self, lastVisitedRank = None):
       '''Rightwards depth-first traversal.

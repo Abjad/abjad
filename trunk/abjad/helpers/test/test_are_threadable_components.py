@@ -70,10 +70,11 @@ def test_are_threadable_components_05( ):
 
    assert _are_threadable_components(list(iterate(t, _Component)))
 
-
-def test_are_threadable_components_06( ):
+import py.test
+def test_are_threadable_components_06_trev( ):
    '''Anonymous staff and leaves all thread.'''
 
+   py.test.skip('Unvoiced notes inside Staff do not thread with Staff. Does it make sense for a Leaf to thread with a non leaf? For a Voice to thread with a Staff, etc.? See the next test.')
    t = Staff(scale(4))
 
    r'''\new Staff {
@@ -84,6 +85,20 @@ def test_are_threadable_components_06( ):
    }'''
 
    assert _are_threadable_components(list(iterate(t, _Component)))
+
+def test_are_threadable_components_06( ):
+   '''Leaves inside anonymous staff thread.'''
+
+   t = Staff(scale(4))
+
+   r'''\new Staff {
+      c'8
+      d'8
+      e'8
+      f'8 
+   }'''
+
+   assert _are_threadable_components(t.leaves)
 
 
 def test_are_threadable_components_07( ):
@@ -1132,9 +1147,10 @@ def test_are_threadable_components_41( ):
    assert not _are_threadable_components(t.leaves)
 
 
-def test_are_threadable_components_42( ):
+def test_are_threadable_components_42_trev( ):
    '''Staff and leaves all thread.'''
 
+   py.test.skip("Unvoiced leaves inside Staff do not thread with Staff.")
    t = Staff(scale(4))
    t.brackets = 'double-angle'
 
@@ -1146,6 +1162,21 @@ def test_are_threadable_components_42( ):
    >>'''
 
    assert _are_threadable_components(list(iterate(t, _Component)))
+ 
+def test_are_threadable_components_42( ):
+   '''Leaves inside anonymous parallel Staff thread.'''
+
+   t = Staff(scale(4))
+   t.brackets = 'double-angle'
+
+   r'''\new Staff <<
+      c'8
+      d'8
+      e'8
+      f'8
+   >>'''
+
+   assert _are_threadable_components(t.leaves)
  
 
 def test_are_threadable_components_43( ):
