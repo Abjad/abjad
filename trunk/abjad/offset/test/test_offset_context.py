@@ -1,76 +1,83 @@
 from abjad import *
 
 
-def test_context_offsets_01( ):
-   v1 = Voice(Note(0, (1, 8)) * 15)
-   v2 = Voice(Note(0, (1, 8)) * 15)
-   t = Staff([v1, v2])
-   for i, x in enumerate(t):
-      assert x.offset.context == x.offset.score == i * Rational(15, 8)
-
-
-### tuplets ###
-
-def test_context_offset_05( ):
-   tp = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-   t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
-   offset = 0
-   for x, d in zip(t, [(1, 8), (3, 12)]):
-      assert x.offset.context == x.offset.score == offset
-      offset += Rational(*d)
-
-
-def test_context_offset_06( ):
-   '''Offset works on nested tuplets.'''
-   tp = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
-   t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
-   offset = 0
-   for x, d in zip(t, [(1, 6), (3, 18)]):
-      assert x.offset.context == x.offset.score == offset
-      offset += Rational(*d)
-
-
-### nested contexts ###
-
-def test_context_offset_10( ):
-   '''offset on context works in nested contexts.'''
-   v = Voice(Note(0, (1, 8)) * 4)
-   t = Staff([Note(0, (1, 8)), v, Note(0, (1, 8))])
-   offset = 0
-   for x, d in zip(t, [(1, 8), (4, 8)]):
-      assert x.offset.context == x.offset.score == offset
-      offset += Rational(*d)
-   
-
-def test_context_offset_11( ):
-   '''offset on contexts works in sequential contexts.'''
-   v1 = Voice(Note(0, (1, 8)) * 4)
-   v2 = Voice(Note(0, (1, 8)) * 4)
-   v3 = Voice(Note(0, (1, 8)) * 4)
-   t = Staff([v1, v2, v3])
+def test_offset_containers_01( ):
+   '''context and score offsets works on sequential voices.'''
+   t = Staff([Voice(run(4)), Voice(run(4))])
    for i, x in enumerate(t):
       assert x.offset.context == x.offset.score == i * Rational(4, 8)
 
 
-def test_context_offset_12( ):
-   '''offset on contexts works in nested parallel contexts.'''
-   v1 = Voice(Note(0, (1, 8)) * 4)
-   v2 = Voice(Note(0, (1, 8)) * 4)
+def test_offset_containers_02( ):
+   '''context and score offsets works on sequential staves.'''
+   t = Sequential([Staff(run(4)), Staff(run(4))])
+   for i, x in enumerate(t):
+      assert x.offset.context == x.offset.score == i * Rational(4, 8)
+
+
+def test_offset_containers_03( ):
+   '''context and score offsets works on sequential staves.'''
+   t = Sequential([Staff(run(4)), Staff(run(4))])
+   for i, x in enumerate(t):
+      assert x.offset.context == x.offset.score == i * Rational(4, 8)
+
+
+def test_offset_containers_04( ):
+   '''context and score offsets works on sequential staves.'''
+   t = Voice(FixedDurationTuplet((1, 4), run(3)) * 3)
+   assert t[0].offset.context == t[0].offset.score == 0
+   assert t[1].offset.context == t[1].offset.score == Rational(1, 4)
+   assert t[2].offset.context == t[2].offset.score == 2 * Rational(1, 4)
+
+
+def test_offset_containers_05( ):
+   '''context and score offsets work on tuplets between notes.'''
+   tp = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+   t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
+   assert t[0].offset.context == t[0].offset.score == 0
+   assert t[1].offset.context == t[1].offset.score == Rational(1, 8)
+   assert t[2].offset.context == t[2].offset.score == Rational(3, 8)
+
+
+def test_offset_containers_06( ):
+   '''context and score offsets work on nested tuplets.'''
+   tp = FixedDurationTuplet((1, 4), run(3))
+   t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
+   assert t[0].offset.context == t[0].offset.score == 0
+   assert t[1].offset.context == t[1].offset.score == Rational(1, 6)
+   assert t[2].offset.context == t[2].offset.score == Rational(2, 6)
+
+
+### nested contexts ###
+
+def test_offset_containers_10( ):
+   '''context and score offsets work on nested contexts.'''
+   v = Voice(run(4))
+   t = Staff([Note(0, (1, 8)), v, Note(0, (1, 8))])
+   assert t[0].offset.context == t[0].offset.score == 0
+   assert t[1].offset.context == t[1].offset.score == Rational(1, 8)
+   assert t[2].offset.context == t[2].offset.score == Rational(5, 8)
+   
+
+def test_offset_containers_12( ):
+   '''context and score offsets work on nested parallel contexts.'''
+   v1 = Voice(run(4))
+   v2 = Voice(run(4))
    t = Staff([v1, v2])
    t.brackets = 'double-angle'
-   for x in t:
-      assert x.offset.context == x.offset.score == 0
+   assert t[0].offset.context == t[0].offset.score == 0
+   assert t[1].offset.context == t[1].offset.score == 0
 
 
 import py.test 
-def test_context_offset_13( ):
+def test_offset_containers_13( ):
    '''offset on contexts works in nested parallel and sequential contexts.'''
-   v1 = Voice(Note(0, (1, 8)) * 4)
-   v2 = Voice(Note(0, (1, 8)) * 4)
-   v3 = Voice(Note(0, (1, 8)) * 4)
-   v1b = Voice(Note(0, (1, 8)) * 4)
-   v2b = Voice(Note(0, (1, 8)) * 4)
-   v3b = Voice(Note(0, (1, 8)) * 4)
+   v1 = Voice(run(4))
+   v2 = Voice(run(4))
+   v3 = Voice(run(4))
+   v1b= Voice(run(4))
+   v2b= Voice(run(4))
+   v3b= Voice(run(4))
    s1 = Staff([Parallel([v1, v2]), v3])
    s2 = Staff([Parallel([v1b, v2b]), v3b])
    gs = GrandStaff([s1, s2])
