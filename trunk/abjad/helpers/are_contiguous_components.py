@@ -1,36 +1,33 @@
+from abjad.helpers.are_threadable_components import _are_threadable_components
 from abjad.component.component import _Component
 
 
-def _are_contiguous_components(component_list):
-   '''
-   True when component_list is a Python list and when
-   each of the elements in component_list:
+def _are_contiguous_components(expr):
+   '''True when expr is a Python list and when
+         
+         1. every element in list is an Abjad component,
+         2. all components are threadable, and
+         3. all components are temporally successive.
 
-      1. is an Abjad component
-      2. has the same parent
-      3. appears -- in order -- in parent.
+      Otherwise False.
 
-   Otherwise False.
-
-   Intended for type-checking helper function input.
-
-   TODO: 
-
-   Replace with newer, threading-based check.
-   '''
-
-   try:
-      assert isinstance(component_list, list)
-      if len(component_list) == 0:
+      BY DEFINITION 'contiguous' means 'threadable and successive'.'''
+   
+   if isinstance(expr, list):
+      if len(expr) == 0:
          return True
-      else:
-         first_component = component_list[0]
-         assert isinstance(first_component, _Component)
-         assert first_component.parentage.parent is not None
-         first_parent = first_component.parentage.parent
-         first_index_in_parent = first_parent.index(first_component)
-      for i, element in enumerate(component_list):
-         assert element is first_parent[first_index_in_parent + i]
-      return True
-   except (AssertionError, IndexError):
-      return False
+      first = expr[0]
+      if isinstance(first, _Component):
+         first_signature = first.parentage._containmentSignature
+         prev = first
+         for cur in expr[1:]:
+            if not isinstance(cur, _Component):
+               return False
+            cur_signature = cur.parentage._containmentSignature
+            if not cur_signature == first_signature:
+               return False
+            if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
+               return False
+            prev = cur
+         return True
+   return False
