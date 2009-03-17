@@ -13,6 +13,45 @@ class _Parentage(_Abjad):
 
    ## PRIVATE ATTRIBUTES ##
    
+#   @property
+#   def _containmentSignature(self):
+#      '''Return _ContainmentSignature giving the root and
+#         first voice, staff and score in parentage of component.'''
+#      from abjad.score.score import Score
+#      from abjad.staff.staff import Staff
+#      from abjad.voice.voice import Voice
+#      signature = _ContainmentSignature( )
+#      found_voice, found_staff, found_score = False, False, False
+#      signature._self = self._client._ID
+#      for component in self.parentage:
+#         if isinstance(component, Voice) and not found_voice:
+#            signature._voice = component._ID
+#            found_voice = True
+#         if isinstance(component, Staff):
+#            if not found_voice:
+#               numeric_id = '%s-%s' % (
+#                  component.__class__.__name__, id(component))
+#               signature._voice = numeric_id
+#               found_voice = True
+#            if not found_staff:
+#               signature._staff = component._ID
+#               found_staff = True
+#         if isinstance(component, Score) and not found_score:
+#            if not found_voice:
+#               signature._voice = component._ID
+#               found_voice = True
+#            if not found_staff:
+#               signature._staff = component._ID
+#               found_staff = True
+#            if not found_score:
+#               signature._score = component._ID
+#               found_score = True
+#      else:
+#         '''Root components must be manifestly equal to compare True.'''
+#         signature._root = id(component)
+#         signature._root_str = component._ID
+#      return signature
+
    @property
    def _containmentSignature(self):
       '''Return _ContainmentSignature giving the root and
@@ -20,37 +59,29 @@ class _Parentage(_Abjad):
       from abjad.score.score import Score
       from abjad.staff.staff import Staff
       from abjad.voice.voice import Voice
+      from abjad.leaf.leaf import _Leaf
       signature = _ContainmentSignature( )
-      found_voice, found_staff, found_score = False, False, False
       signature._self = self._client._ID
+      found_leaf = False
       for component in self.parentage:
-         if isinstance(component, Voice) and not found_voice:
+         if isinstance(component, _Leaf):
+            found_leaf = True
+         if isinstance(component, Voice) and not signature._voice:
             signature._voice = component._ID
-            found_voice = True
-         if isinstance(component, Staff):
-            if not found_voice:
+         if isinstance(component, Staff) and not signature._staff:
+            signature._staff = component._ID
+            if found_leaf and not signature._voice:
                numeric_id = '%s-%s' % (
                   component.__class__.__name__, id(component))
                signature._voice = numeric_id
-               found_voice = True
-            if not found_staff:
-               signature._staff = component._ID
-               found_staff = True
-         if isinstance(component, Score) and not found_score:
-            if not found_voice:
-               signature._voice = component._ID
-               found_voice = True
-            if not found_staff:
-               signature._staff = component._ID
-               found_staff = True
-            if not found_score:
-               signature._score = component._ID
-               found_score = True
+         if isinstance(component, Score) and not signature._score:
+            signature._score = component._ID
       else:
          '''Root components must be manifestly equal to compare True.'''
          signature._root = id(component)
          signature._root_str = component._ID
       return signature
+
 
    @property
    def _governor(self):
