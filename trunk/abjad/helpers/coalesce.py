@@ -15,24 +15,25 @@ def coalesce(expr):
             if success:
                self.merged = True
 
-   waslist = False
-   if isinstance(expr, (list, tuple)):
-      waslist = True
-      expr = Container(expr)
+   if not isinstance(expr, (list, tuple)):
+      expr = [expr]
+   expr = Container(expr)
+
    v = Visitor( )
    expr._navigator._traverse(v, depthFirst=False, leftRight=False)
    _remove_empty_containers(expr)
    if v.merged:
-      if waslist:
-         return expr.pop(0)
-      else:
-         return expr
+      return expr.pop(0)
+   else:
+      print 'WARNING: nothing to coalesce.'
+      return None
                   
 
 def _fuse_right(expr):
    '''Fuse expr with next container if next is threadable with self.'''
+   from abjad.tuplet.tuplet import _Tuplet
    next = expr._navigator._nextThread
-   if next:
+   if next and not isinstance(next, _Tuplet):
       expr.extend(next)
       next.detach( )
       return True

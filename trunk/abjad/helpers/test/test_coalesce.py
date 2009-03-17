@@ -4,16 +4,16 @@ def test_coalesce_01( ):
    '''coalesce does nothing and returns None on Leaves.'''
    t = Note(1, (1, 4))
    result = coalesce(t)
-   assert result  is None
+   assert result is None
    assert isinstance(t, Note)
    
+
 def test_coalesce_02( ):
-   '''coalesce fuses unnamed voices.'''
+   '''coalesce will not fuse unnamed voices.'''
    t = Staff([Voice(run(2)), Voice(run(2))])
    result = coalesce(t) 
-   assert result is t
-   assert len(result) == 1
-   assert len(t.leaves) == 4
+   assert result is None
+
 
 def test_coalesce_03( ):
    '''coalesce does not fuse non-threads.'''
@@ -23,17 +23,91 @@ def test_coalesce_03( ):
    result = coalesce(t) 
    assert result is None
 
+
 def test_coalesce_04( ):
-   '''coalesce fuses tuplets. is this the behaviour we want?'''
+   '''coalesce DOES NOT fuse tuplets. '''
    t = Voice([FixedMultiplierTuplet((2, 3), run(3)), 
               FixedMultiplierTuplet((2, 3), run(3))])
    result = coalesce(t)
-   assert len(t) == 1
-   assert len(t[0]) == 6
-   assert result is t
+   assert result is None
+   assert len(t) == 2
    
 
-### NESTED PARALLEL STRUCTURES ###
+def test_coalesce_05( ):
+   '''Coalesce can take a list of components.'''
+   t = Voice(run(4)) * 2
+   t[0].invocation.name = t[1].invocation.name = 'voiceOne'
+   result = coalesce(t)
+   assert isinstance(result, Voice)  
+   assert len(result) == 8
+
+
+def test_coalesce_06( ):
+   '''Coalesce works on equally named Staves.'''
+   t = Staff(run(4)) * 2
+   t[0].invocation.name = t[1].invocation.name = 'staffOne'
+   result = coalesce(t)
+   assert isinstance(result, Staff)  
+   assert len(result) == 8
+
+
+def test_coalesce_07( ):
+   '''Coalesce works on equally named Staves but not on differently named
+   Voices.'''
+   t = Sequential(Staff([Voice(run(4))]) * 2)
+   t[0].invocation.name = t[1].invocation.name = 'staffOne'
+   r'''
+   {
+           \context Staff = "staffOne" {
+                   \new Voice {
+                           c'8
+                           c'8
+                           c'8
+                           c'8
+                   }
+           }
+           \context Staff = "staffOne" {
+                   \new Voice {
+                           c'8
+                           c'8
+                           c'8
+                           c'8
+                   }
+           }
+   }
+   '''
+   result = coalesce(t)
+   assert isinstance(result, Sequential)  
+   assert len(result) == 1
+   assert isinstance(result[0], Staff)
+   assert len(result[0]) == 2
+   assert isinstance(result[0][0], Voice)
+   assert isinstance(result[0][1], Voice)
+   assert len(result[0][0]) == 4
+   assert len(result[0][1]) == 4
+   assert result.format == '{\n\t\\context Staff = "staffOne" {\n\t\t\\new Voice {\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t}\n\t\t\\new Voice {\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t}\n\t}\n}'
+
+   r'''
+   {
+           \context Staff = "staffOne" {
+                   \new Voice {
+                           c'8
+                           c'8
+                           c'8
+                           c'8
+                   }
+                   \new Voice {
+                           c'8
+                           c'8
+                           c'8
+                           c'8
+                   }
+           }
+   }
+'''
+
+
+## NESTED PARALLEL STRUCTURES ##
 
 def test_coalesce_10( ):
    '''Parallel Voices within parallel Staves within parallel
@@ -132,17 +206,17 @@ def test_coalesce_10( ):
 
 def test_coalesce_11( ):
    '''Nested Parallel structures in sequence coalesce correctly.'''
-   v1 = Voice(Note(0, (1,4))*2)
-   v1.invocation.name = 'voiceOne'
-   v2 = Voice(Note(0, (1,4))*2)
-   v2.invocation.name = 'voiceOne'
-   v3 = Voice(Note(12, (1,4))*2)
-   v3.invocation.name = 'voiceTwo'
-   v4 = Voice(Note(12, (1,4))*2)
-   v4.invocation.name = 'voiceTwo'
-   s1 = Staff([v1, v2])
+   v1a = Voice(Note(0, (1,4))*2)
+   v1a.invocation.name = 'voiceOne'
+   v1b = Voice(Note(0, (1,4))*2)
+   v1b.invocation.name = 'voiceOne'
+   v2a = Voice(Note(12, (1,4))*2)
+   v2a.invocation.name = 'voiceTwo'
+   v2b = Voice(Note(12, (1,4))*2)
+   v2b.invocation.name = 'voiceTwo'
+   s1 = Staff([v1a, v1b])
    s1.invocation.name ='staffOne'
-   s2 = Staff([v3, v4])
+   s2 = Staff([v2a, v2b])
    s2.invocation.name ='staffTwo'
 
    sg1 = StaffGroup([s1, s2])
@@ -151,8 +225,6 @@ def test_coalesce_11( ):
    sg2.invocation.name ='groupTwo'
    sg_g = StaffGroup([sg1, sg2])
    sg_g.invocation.name = 'topGroup'
-   #seq = Sequential([sg_g, sg_g.copy( )])
-   #coalesce(seq)
    seq = coalesce([sg_g, sg_g.copy( )])
    assert seq.format == '\\context StaffGroup = "topGroup" <<\n\t\\context StaffGroup = "groupOne" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n\t\\context StaffGroup = "groupTwo" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n>>'
 
