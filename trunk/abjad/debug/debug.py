@@ -30,18 +30,22 @@ class debug(_Abjad):
       ...
    '''
 
-   def __init__(self):
-      pass
+   def __init__(self, check_function=check, verbose=False):
+      self.check_function = check_function
+      self.verbose = verbose
 
    def __call__(self, f):
       def wrapper(*args, **kwargs):
-         #print 'Degug wrapping starts...'
-         #print '"%s( )" executed.' % f.__name__
          result = f(*args, **kwargs)
          if DEBUG:
-            print 'Debugger running...'
+            if self.verbose:
+               print '---- Debugger verbose ----'
+               print '"%s( )" executed.' % f.__name__
+               print '--------------------------'
+               
             component = args[0]
-            print 'check gives:', check(component)
-         #print 'Debug wrapping ends.'
+            if not self.check_function(component):
+               raise Warning("check( ) not passed in %s" % f.__name__)
          return result
+
       return wrapper 
