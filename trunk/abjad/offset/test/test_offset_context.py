@@ -61,10 +61,10 @@ def test_context_offset_12( ):
    for x in t:
       assert x.offset.context == x.offset.score == 0
 
+
 import py.test 
 def test_context_offset_13( ):
    '''offset on contexts works in nested parallel and sequential contexts.'''
-   py.test.skip('Offset is computed base on thread, which is not what we want now since unnamed voices do not thread and yet they always have a position in time.')
    v1 = Voice(Note(0, (1, 8)) * 4)
    v2 = Voice(Note(0, (1, 8)) * 4)
    v3 = Voice(Note(0, (1, 8)) * 4)
@@ -77,9 +77,7 @@ def test_context_offset_13( ):
    assert v1.offset.context == v1.offset.score == 0
    assert v2.offset.context == v2.offset.score == 0
    assert v3.offset.context == v3.offset.score == Rational(4, 8)
-   assert v1b.offset.context == Rational(0, 8)
-   assert v1b.offset.score == Rational(8, 8)
-   assert v2b.offset.context == Rational(0, 8)
-   assert v2b.offset.score == Rational(8, 8)
+   assert v1b.offset.context == v1b.offset.score == 0
+   assert v2b.offset.context == v2b.offset.score == 0
    assert v3b.offset.context == Rational(4, 8)
-   assert v3b.offset.score == Rational(12, 8)
+   assert v3b.offset.context == v3b.offset.score == Rational(4, 8)
