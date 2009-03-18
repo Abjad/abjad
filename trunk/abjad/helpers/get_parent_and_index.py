@@ -1,20 +1,25 @@
-from abjad.helpers.are_successive_components import _are_successive_components
+from abjad.helpers.are_orphan_components import _are_orphan_components
+from abjad.helpers.are_strictly_contiguous_components_in_same_thread import _are_strictly_contiguous_components_in_same_thread
 
 
-def _get_parent_and_index(component_list):
-   '''Return parent and index of first component in list;
-      otherwise return None, None.'''
+def _get_parent_and_index(components):
+   '''Return parent and index of first component in list.
+      Otherwise return None, None.'''
 
-   if not _are_successive_components(component_list):
-      raise ContiguityError('components must be successive.')
+   ## check input
+   if not _are_orphan_components(components) and \
+      not _are_strictly_contiguous_components_in_same_thread(components):
+      raise ContiguityError(
+         'Input must either be orphan components or else '
+         'be strictly contiguous components in same thread.')
 
-   if len(component_list) > 0:
-      first = component_list[0]
-      parent = first.parentage.parent
-      if parent is not None:
-         index = parent.index(first)
+   if len(components) > 0:
+      first = components[0]
+      first_parent = first.parentage.parent
+      if first_parent is not None:
+         index = first_parent.index(first)
       else:
          index = None
-      return parent, index
+      return first_parent, index
    else:
       return None, None
