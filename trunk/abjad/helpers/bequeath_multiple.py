@@ -1,6 +1,6 @@
 from abjad.exceptions.exceptions import ContiguityError
 from abjad.helpers.are_orphan_components import _are_orphan_components
-from abjad.helpers.are_successive_components import _are_successive_components
+from abjad.helpers.are_strictly_contiguous_components_in_same_parent import _are_strictly_contiguous_components_in_same_parent
 from abjad.helpers.components_detach_parentage import components_detach_parentage
 from abjad.helpers.components_detach_spanners_shallow import components_detach_spanners_shallow
 from abjad.helpers.get_dominant_spanners import _get_dominant_spanners
@@ -14,8 +14,9 @@ def bequeath_multiple(old_components, new_components):
 
       Prior to bequeathal both
 
-         * old components must be successive, and
-         * new components must be successive.
+         * old components must be strictly contiguous and in same parent,
+         * new components must be either orphan or strictly contiguous
+           and in same parent.
 
       After bequeathal
 
@@ -29,10 +30,14 @@ def bequeath_multiple(old_components, new_components):
       For example, swap out three successive leaves with a tuplet.'''
 
    # check input
-   if not _are_successive_components(old_components):
-      raise ContiguityError('old_components must be successive.')
-   if not _are_successive_components(new_components):
-      raise ContiguityError('new_components must be successive.')
+   if not _are_strictly_contiguous_components_in_same_parent(old_components):
+      raise ContiguityError(
+         'old_components must be strictly contiguous and in same parent.')
+   if not _are_orphan_components(new_components) and \
+      not _are_strictly_contiguous_components_in_same_parent(new_components):
+      raise ContiguityError(
+         'new_components must be either orphan or be '
+         'strictly contiguous and in same parent.')
 
    # handle empty input
    if len(old_components) == 0:
