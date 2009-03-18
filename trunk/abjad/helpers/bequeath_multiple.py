@@ -30,9 +30,11 @@ def bequeath_multiple(old_components, new_components):
       For example, swap out three successive leaves with a tuplet.'''
 
    # check input
-   if not _are_strictly_contiguous_components_in_same_parent(old_components):
+   if not _are_orphan_components(old_components) and \
+      not _are_strictly_contiguous_components_in_same_parent(old_components):
       raise ContiguityError(
-         'old_components must be strictly contiguous and in same parent.')
+         'old_components must be either orphan or be '
+         'strictly contiguous and in same parent.')
    if not _are_orphan_components(new_components) and \
       not _are_strictly_contiguous_components_in_same_parent(new_components):
       raise ContiguityError(
