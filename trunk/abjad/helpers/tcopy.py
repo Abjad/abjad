@@ -1,6 +1,5 @@
-from abjad.helpers.are_contiguous_components import _are_contiguous_components
+from abjad.helpers.are_strictly_contiguous_components_in_same_thread import _are_strictly_contiguous_components_in_same_thread
 from abjad.helpers.in_terms_of import _in_terms_of
-from abjad.helpers.total_duration_in_parent import _total_duration_in_parent
 
 
 def tcopy(ll):
@@ -15,9 +14,9 @@ def tcopy(ll):
 
    from abjad.measure.base import _Measure
 
-   # assert contiguous components in ll
-   if not _are_contiguous_components(ll):
-     raise ValueError('Input must be contiguous music elements.')
+   # assert strictly contiguous components in same thread
+   if not _are_strictly_contiguous_components_in_same_thread:
+     raise ValueError('Must be strictly contiguous components in same thread.')
 
    # remember parent
    parent = ll[0].parentage.parent

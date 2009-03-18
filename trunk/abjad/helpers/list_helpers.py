@@ -31,13 +31,16 @@ def list_helpers(search_string = '', scope = 'public'):
 
    abjad> list_helpers('are', scope = 'private')
 
-   Abjad r1185 implements 10 private helpers containing the string 'are':
+   Abjad r1321 implements 14 private helpers containing the string 'are':
 
-      _are_components, _are_contiguous_components, _are_orphan_components,
-      _are_scalable_components, _are_successive_components,
-      _components_parentage_detach_all, _components_parentage_detach_top,
-      _get_parent_and_index, _link_new_leaf_to_parent, 
-      _total_duration_in_parent'''
+      _are_components, _are_components_in_same_parent,
+      _are_components_in_same_score, _are_orphan_components,
+      _are_scalable_components, _are_spannable_components,
+      _are_strictly_contiguous_components_in_same_parent,
+      _are_strictly_contiguous_components_in_same_thread,
+      _are_successive_components, _are_threadable_components,
+      _get_parent_and_index, _is_tie_chain_in_same_parent,
+      _link_new_leaf_to_parent, _total_duration_in_parent'''
 
    import abjad
    helpers = [x for x in dir(abjad) if x.islower( )]

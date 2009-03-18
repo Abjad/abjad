@@ -4,8 +4,8 @@ from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.debug.debug import debug
-from abjad.helpers.are_contiguous_components import _are_contiguous_components
 from abjad.helpers.are_orphan_components import _are_orphan_components
+from abjad.helpers.are_strictly_contiguous_components_in_same_thread import _are_strictly_contiguous_components_in_same_thread
 from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
@@ -25,7 +25,7 @@ class Container(_Component):
       if music:
          parent = music[0].parentage.parent
          if not _are_orphan_components(music):
-            assert _are_contiguous_components(music)
+            assert _are_strictly_contiguous_components_in_same_thread(music)
             start_index = parent.index(music[0])
             stop_index = parent.index(music[-1])
          if parent is not None:

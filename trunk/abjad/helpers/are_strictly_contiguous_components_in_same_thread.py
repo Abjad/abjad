@@ -1,17 +1,13 @@
-from abjad.helpers.are_threadable_components import _are_threadable_components
 from abjad.component.component import _Component
 
 
-def _are_contiguous_components(expr):
-   '''True when expr is a Python list and when
+def _are_strictly_contiguous_components_in_same_thread(expr):
+   '''True when expr is a Python list of Abjad components such that
          
-         1. every element in list is an Abjad component,
-         2. all components are threadable, and
-         3. all components are temporally successive.
+         1. all components in list are strictly contiguous, and
+         2. all components in list are in the same thread.
 
-      Otherwise False.
-
-      BY DEFINITION 'contiguous' means 'threadable and successive'.'''
+      Otherwise False.'''
    
    if isinstance(expr, list):
       if len(expr) == 0:
