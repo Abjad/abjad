@@ -1,4 +1,3 @@
-from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.are_strictly_contiguous_components_in_same_parent import _are_strictly_contiguous_components_in_same_parent
 from abjad.measure.base import _Measure
 
@@ -14,8 +13,7 @@ def _is_measure_list(measure_list):
       Intended to type-check helper function input.'''
 
    try:
-      assert _are_orphan_components(measure_list) or \
-         _are_strictly_contiguous_components_in_same_parent(measure_list)
+      assert _are_strictly_contiguous_components_in_same_parent(measure_list)
       assert all([isinstance(x, _Measure) for x in measure_list])
    except AssertionError:
       return False
