@@ -10,7 +10,8 @@ def _get_attached_spanners(components):
    if not _are_orphan_components(components) and \
       not _are_strictly_contiguous_components_in_same_thread(components):
       raise ContiguityError(
-         'Input must be strictly contiguous components in same thread.')
+         'Input must either be orphan components or else '
+         'be strictly contiguous components in same thread.')
    
    ## accumulate spanners
    spanners = set([ ])

@@ -1,21 +1,21 @@
-from abjad.helpers.are_successive_components import _are_successive_components
+from abjad.helpers.are_orphan_components import _are_orphan_components
+from abjad.helpers.are_strictly_contiguous_components_in_same_parent import _are_strictly_contiguous_components_in_same_parent
 from abjad.measure.base import _Measure
 
 
 def _is_measure_list(measure_list):
-   '''True when
+   '''True when measure_list is a Python list of Abjad measures, and either
 
-         1. measure_list is a Python list and either
-
-         2. all elements in measure_list are orphan Abjad measures, or
-         3. all elements in measure_list are containerized Abjad measures.
+         1. all measures in list are orphans, or
+         2. all measures in list have the same parent.
 
       Otherwise False.
 
       Intended to type-check helper function input.'''
 
    try:
-      assert _are_successive_components(measure_list)
+      assert _are_orphan_components(measure_list) or \
+         _are_strictly_contiguous_components_in_same_parent(measure_list)
       assert all([isinstance(x, _Measure) for x in measure_list])
    except AssertionError:
       return False
