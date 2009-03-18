@@ -23,6 +23,10 @@ class _ContainmentSignature(_Abjad):
    def __ne__(self, arg):
       return not self == arg
 
+   def __repr__(self):
+      str = self.__str__( )
+      return '<' + ' * '.join(str.split('\n')) + ' >'
+
    def __str__(self):
       result = [ ]
       result.append(' root: %s (%s)' % (self._root_str, self._root))
