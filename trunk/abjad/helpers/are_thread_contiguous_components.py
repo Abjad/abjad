@@ -38,12 +38,15 @@ def _are_thread_contiguous_components(expr):
       assert _are_thread_contiguous_components(t[0][:] + t[-1][:])'''
 
    if not isinstance(expr, list):
-      return False
+      raise TypeError('Must be list of Abjad components.')
+
    if len(expr) == 0:
       return True 
+
    first = expr[0]
    if not isinstance(first, _Component):
       return False
+
    first_thread = first.parentage._threadSignature
    prev = first
    for cur in expr[1:]:
@@ -56,6 +59,7 @@ def _are_thread_contiguous_components(expr):
          if not _are_thread_proper(prev, cur):
             return False
       prev = cur
+
    return True
 
 

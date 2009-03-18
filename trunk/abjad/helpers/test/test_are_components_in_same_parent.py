@@ -1,6 +1,7 @@
 from abjad.component.component import _Component
 from abjad.helpers.are_components_in_same_parent import _are_components_in_same_parent
 from abjad import *
+import py.test
 
 
 def test_are_components_in_same_parent_01( ):
@@ -44,9 +45,10 @@ def test_are_components_in_same_parent_02( ):
 
 
 def test_are_components_in_same_parent_03( ):
-   '''Unincorporated component returns False.'''
+   '''Nonlist input raises TypeError.'''
 
-   assert not _are_components_in_same_parent(Note(0, (1, 8)))
+   assert py.test.raises(TypeError, 
+      '_are_components_in_same_parent(Note(0, (1, 8)))')
 
 
 def test_are_components_in_same_parent_04( ):

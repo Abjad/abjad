@@ -9,20 +9,25 @@ def _are_strictly_contiguous_components_in_same_score(expr):
 
       Otherwise False.'''
 
-   if isinstance(expr, list):
-      if len(expr) == 0:
-         return True
-      first = expr[0]
-      if isinstance(first, _Component):
-         first_score = first.parentage.root
-         prev = first
-         for cur in expr[1:]:
-            if not isinstance(cur, _Component):
-               return False
-            if not cur.parentage.root is first_score:
-               return False
-            if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
-               return False
-            prev = cur
-         return True
-   return False
+   if not isinstance(expr, list):
+      raise TypeError('Must be list of Abjad components.')
+
+   if len(expr) == 0:
+      return True
+
+   first = expr[0]
+   if not isinstance(first, _Component):
+      return False
+
+   first_score = first.parentage.root
+   prev = first
+   for cur in expr[1:]:
+      if not isinstance(cur, _Component):
+         return False
+      if not cur.parentage.root is first_score:
+         return False
+      if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
+         return False
+      prev = cur
+
+   return True

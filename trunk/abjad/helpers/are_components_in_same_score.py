@@ -6,15 +6,18 @@ def _are_components_in_same_score(expr):
       and when all components have the same score root.
       Otherwise False.'''
 
-   if isinstance(expr, list):
-      if len(expr) == 0:
-         return True 
-      first = expr[0]
-      first_score = first.parentage.root
-      for element in expr[1:]:
-         if not isinstance(element, _Component):
-            return False
-         if element.parentage.root is not first_score:
-            return False
-      return True
-   return False
+   if not isinstance(expr, list):
+      raise TypeError('Must be list of Abjad components.')
+      
+   if len(expr) == 0:
+      return True 
+
+   first = expr[0]
+   first_score = first.parentage.root
+   for element in expr[1:]:
+      if not isinstance(element, _Component):
+         return False
+      if element.parentage.root is not first_score:
+         return False
+
+   return True

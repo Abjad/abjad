@@ -1,5 +1,6 @@
 from abjad.helpers.is_measure_list import _is_measure_list
 from abjad import *
+import py.test
 
 
 def test_is_measure_list_01( ):
@@ -18,9 +19,10 @@ def test_is_measure_list_02( ):
 
 
 def test_is_measure_list_03( ):
-   '''False on lone measure.'''
+   '''Nonlist input raises TypeError.'''
 
-   assert not _is_measure_list(RigidMeasure((3, 8), scale(3)))
+   assert py.test.raises(TypeError, 
+      '_is_measure_list(RigidMeasure((3, 8), scale(3)))')
 
 
 def test_is_measure_list_04( ):
