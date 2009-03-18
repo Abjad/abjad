@@ -13,47 +13,8 @@ class _Parentage(_Abjad):
 
    ## PRIVATE ATTRIBUTES ##
    
-#   @property
-#   def _containmentSignature(self):
-#      '''Return _ContainmentSignature giving the root and
-#         first voice, staff and score in parentage of component.'''
-#      from abjad.score.score import Score
-#      from abjad.staff.staff import Staff
-#      from abjad.voice.voice import Voice
-#      signature = _ContainmentSignature( )
-#      found_voice, found_staff, found_score = False, False, False
-#      signature._self = self._client._ID
-#      for component in self.parentage:
-#         if isinstance(component, Voice) and not found_voice:
-#            signature._voice = component._ID
-#            found_voice = True
-#         if isinstance(component, Staff):
-#            if not found_voice:
-#               numeric_id = '%s-%s' % (
-#                  component.__class__.__name__, id(component))
-#               signature._voice = numeric_id
-#               found_voice = True
-#            if not found_staff:
-#               signature._staff = component._ID
-#               found_staff = True
-#         if isinstance(component, Score) and not found_score:
-#            if not found_voice:
-#               signature._voice = component._ID
-#               found_voice = True
-#            if not found_staff:
-#               signature._staff = component._ID
-#               found_staff = True
-#            if not found_score:
-#               signature._score = component._ID
-#               found_score = True
-#      else:
-#         '''Root components must be manifestly equal to compare True.'''
-#         signature._root = id(component)
-#         signature._root_str = component._ID
-#      return signature
-
    @property
-   def _containmentSignature(self):
+   def _threadSignature(self):
       '''Return _ContainmentSignature giving the root and
          first voice, staff and score in parentage of component.'''
       from abjad.score.score import Score

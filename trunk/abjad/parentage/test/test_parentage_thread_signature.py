@@ -2,10 +2,9 @@ from abjad.component.component import _Component
 from abjad import *
 
 
-def test_parentage_containment_signature_str_01( ):
-   '''Containment signature of leaf 2.
-      Signature contains no explicit voice, staff or score.
-      Outermost sequentials acts as signature root.'''
+def test_parentage_thread_signature_01( ):
+   '''Return _ContainmentSignature giving the root and
+      first voice, staff and score in the parentage of component.'''
 
    t = Sequential(run(4))
    t.insert(2, Parallel(Sequential(run(2)) * 2))
@@ -31,20 +30,17 @@ def test_parentage_containment_signature_str_01( ):
            \revert NoteHead #'color
    }'''
 
-   '''abjad> print t.leaves[2].parentage._containmentSignature
+   '''All components here carry the exact same containment signature.'''
 
-       root: Sequential-4274576 (4274576)
-      score: 
-      staff: 
-      voice: 
-       self: Note-5358192'''
+   signature = t.parentage._threadSignature
+
+   for component in iterate(t, _Component):
+      assert component.parentage._threadSignature == signature
 
 
-def test_parentage_containment_signature_str_02( ):
-   '''Containment signature of leaf 2.
-      Signature contains named voice 'foo'.
-      Signature contains neither staff nor score.
-      Named voice 'foo' acts as signature root.'''
+def test_parentage_thread_signature_02( ):
+   '''Return _ContainmentSignature giving the root and
+      first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
    t.invocation.name = 'foo'
@@ -71,20 +67,17 @@ def test_parentage_containment_signature_str_02( ):
            c''8
    }'''
 
-   '''abjad> print t.leaves[2].parentage._containmentSignature
+   '''Again, all components here carry the exact same containment signature.'''
 
-       root: Voice-foo (4274608)
-      score: 
-      staff: 
-      voice: Voice-foo
-       self: Note-5358256'''
+   signature = t.parentage._threadSignature
+
+   for component in iterate(t, _Component):
+      assert component.parentage._threadSignature == signature
 
 
-def test_parentage_containment_signature_str_03( ):
-   '''Containment signature of leaf 2.
-      Signature contains anonymous voice.
-      Signature contains neither staff nor score.
-      Anonymous voice acts as signature root.'''
+def test_parentage_thread_signature_03( ):
+   '''Return _ContainmentSignature giving the root and
+      first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
    t.insert(2, Parallel(Sequential(run(2)) * 2))
@@ -110,20 +103,17 @@ def test_parentage_containment_signature_str_03( ):
            c''8
    }'''
 
-   '''abjad> print t.leaves[2].parentage._containmentSignature
+   '''Again, all components here carry the exact same containment signature.'''
 
-       root: Voice-4274576 (4274576)
-      score: 
-      staff: 
-      voice: Voice-4274576
-       self: Note-5358224'''
+   containment = t.parentage._threadSignature
+
+   for component in iterate(t, _Component):
+      assert component.parentage._threadSignature == containment
 
 
-def test_parentage_containment_signature_str_04( ):
-   '''Containment signature for leaf 2.
-      Signature contains innermost anonymous voice.
-      Signature contains neither staff nor score.
-      Outermost anonymous voice acts as signature root.'''
+def test_parentage_thread_signature_04( ):
+   '''Return _ContainmentSignature giving the root and
+      first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
    t.insert(2, Parallel(Voice(run(2)) * 2))
@@ -149,20 +139,20 @@ def test_parentage_containment_signature_str_04( ):
            c''8
    }'''
 
-   '''abjad> print t.leaves[2].parentage._containmentSignature
+   signatures = [leaf.parentage._threadSignature for leaf in t.leaves]
 
-       root: Voice-4274576 (4274576)
-      score: 
-      staff: 
-      voice: Voice-5357872
-       self: Note-5358320'''
+   assert signatures[0] == signatures[1]
+   assert signatures[0] != signatures[2]
+   assert signatures[0] != signatures[4]
+   assert signatures[0] == signatures[6]
+   
+   assert signatures[2] == signatures[3]
+   assert signatures[2] != signatures[4]
 
       
-def test_parentage_containment_signature_str_05( ):
-   '''Containment signature for leaf 2.
-      Signature contains named voice 'foo'.
-      Signature contains neither staff nor score.
-      Outermost instance of named voice 'foo' acts as signature root.'''
+def test_parentage_thread_signature_05( ):
+   '''Return _ContainmentSignature giving the root and
+      first voice, staff and score in parentage of component.'''
 
    t = Voice(run(4))
    t.invocation.name = 'foo'
@@ -191,20 +181,27 @@ def test_parentage_containment_signature_str_05( ):
    }
    '''
 
-   '''abjad> print t.leaves[0].parentage._containmentSignature
+   signatures = [leaf.parentage._threadSignature for leaf in t.leaves]
 
-       root: Voice-foo (4274640)
-      score: 
-      staff: 
-      voice: Voice-foo
-       self: Note-5362480'''
+   signatures[0] == signatures[1]
+   signatures[0] == signatures[2]
+   signatures[0] != signatures[4]
+   signatures[0] == signatures[6]
+
+   signatures[2] == signatures[0]
+   signatures[2] == signatures[3]
+   signatures[2] == signatures[4]
+   signatures[2] == signatures[6]
+
+   signatures[4] != signatures[0]
+   signatures[4] != signatures[2]
+   signatures[4] == signatures[5]
+   signatures[4] == signatures[6]
 
 
-def test_parentage_containment_signature_str_06( ):
-   '''Containment signature of leaf 2.
-      Signature contains named 'voicefoo' and 'staff1'.
-      Signature contains no score.
-      Outermost sequential acts as signature root.'''
+def test_parentage_thread_signature_06( ):
+   '''Return _ContainmentSignature giving the root and
+      first voice, staff and score in parentage of component.'''
 
    t = Sequential(Staff([Voice(scale(2))]) * 2)
    t[0].invocation.name = 'staff1'
@@ -229,16 +226,18 @@ def test_parentage_containment_signature_str_06( ):
            }
    }'''
 
-   '''abjad> print t.leaves[2].parentage._containmentSignature
+   signatures = [leaf.parentage._threadSignature for leaf in t.leaves]
 
-       root: Sequential-4393200 (4393200)
-      score: 
-      staff: Staff-staff2
-      voice: Voice-voicefoo
-       self: Note-5334832'''
+   signatures[0] == signatures[1]
+   signatures[0] != signatures[2]
+
+   signatures[2] != signatures[2]
+   signatures[2] == signatures[3]
 
    
-def test_parentage_containment_signature_str_07( ):
+def test_parentage_thread_signature_07( ):
+   '''Return _ContainmentSignature giving the root and
+      first voice, staff and score in parentage of component.'''
 
    t = Sequential(run(2))
    t[1:1] = Parallel(Voice(run(1)) * 2) * 2
@@ -274,39 +273,48 @@ def test_parentage_containment_signature_str_07( ):
       a'8
    }'''
    
-   '''abjad> print t.leaves[2].parentage._containmentSignature
+   signatures = [leaf.parentage._threadSignature for leaf in t.leaves]
 
-       root: Sequential-4274704 (4274704)
-      score: 
-      staff: 
-      voice: Voice-soprano
-       self: Note-4370288'''
+   signatures[0] != signatures[1]
+   signatures[0] != signatures[2]
+   signatures[0] != signatures[3]
+   signatures[0] != signatures[4]
+   signatures[0] == signatures[5]
+   
+   signatures[1] != signatures[0]
+   signatures[1] != signatures[2]
+   signatures[1] == signatures[3]
+   signatures[1] != signatures[4]
+   signatures[1] != signatures[5]
+   
+   signatures[2] != signatures[0]
+   signatures[2] != signatures[1]
+   signatures[2] != signatures[3]
+   signatures[2] == signatures[4]
+   signatures[2] != signatures[5]
 
 
-def test_parentage_containment_signature_str_08( ):
+def test_parentage_thread_signature_08( ):
    '''Unicorporated leaves carry different containment signatures.'''
 
-   t = Note(0, (1, 8))
+   t1 = Note(0, (1, 8))
+   t2 = Note(0, (1, 8))
   
-   '''abjad> print t.parentage._containmentSignature
-
-       root: Note-5494544 (5494544)
-      score: 
-      staff: 
-      voice: 
-       self: Note-5494544'''
+   assert t1.parentage._threadSignature != t2.parentage._threadSignature
 
 
-def test_parentage_containment_signature_str_09( ):
+def test_parentage_thread_signature_09( ):
+   '''Components here carry the same containment signature EXCEPT FOR root.
+      Component containment signatures do not compare True.'''
 
-   t = Staff([Voice([Note(0, (1, 8))])])
-   t.invocation.name = 'staff'
-   t[0].invocation.name = 'voice'
+   t1 = Staff([Voice([Note(0, (1, 8))])])
+   t1.invocation.name = 'staff'
+   t1[0].invocation.name = 'voice'
 
-   '''abjad> print t.leaves[0].parentage._containmentSignature
+   t2 = Staff([Voice([Note(0, (1, 8))])])
+   t2.invocation.name = 'staff'
+   t2[0].invocation.name = 'voice'
 
-    root: Staff-staff (4297200)
-   score: 
-   staff: Staff-staff
-   voice: Voice-voice
-    self: Note-4247440'''
+   t1_leaf_signature = t1.leaves[0].parentage._threadSignature
+   t2_leaf_signature = t2.leaves[0].parentage._threadSignature
+   assert t1_leaf_signature != t2_leaf_signature

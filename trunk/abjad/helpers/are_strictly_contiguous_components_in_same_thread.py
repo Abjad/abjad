@@ -14,12 +14,12 @@ def _are_strictly_contiguous_components_in_same_thread(expr):
          return True
       first = expr[0]
       if isinstance(first, _Component):
-         first_signature = first.parentage._containmentSignature
+         first_signature = first.parentage._threadSignature
          prev = first
          for cur in expr[1:]:
             if not isinstance(cur, _Component):
                return False
-            cur_signature = cur.parentage._containmentSignature
+            cur_signature = cur.parentage._threadSignature
             if not cur_signature == first_signature:
                return False
             if not prev._navigator._isImmediateTemporalSuccessorOf(cur):

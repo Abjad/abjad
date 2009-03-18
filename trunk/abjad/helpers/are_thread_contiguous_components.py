@@ -44,13 +44,13 @@ def _are_thread_contiguous_components(expr):
    first = expr[0]
    if not isinstance(first, _Component):
       return False
-   first_thread = first.parentage._containmentSignature
+   first_thread = first.parentage._threadSignature
    prev = first
    for cur in expr[1:]:
       print prev, cur
       if not isinstance(cur, _Component):
          return False
-      if not cur.parentage._containmentSignature == first_thread:
+      if not cur.parentage._threadSignature == first_thread:
          return False
       if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
          if not _are_thread_proper(prev, cur):
@@ -78,8 +78,8 @@ def _are_thread_proper(component_1, component_2):
       return False
 
    ## if component_1 and component_2 do not share a thread
-   first_thread = component_1.parentage._containmentSignature
-   if not first_thread == component_2.parentage._containmentSignature:
+   first_thread = component_1.parentage._threadSignature
+   if not first_thread == component_2.parentage._threadSignature:
       #print 'not same thread!'
       return False
 
@@ -97,7 +97,7 @@ def _are_thread_proper(component_1, component_2):
    for node in dfs:
       if node is component_2:
          break
-      node_thread = node.parentage._containmentSignature
+      node_thread = node.parentage._threadSignature
       if node_thread == first_thread:
          node_begin = node.offset.score
          if first_end <= node_begin < second_begin:
