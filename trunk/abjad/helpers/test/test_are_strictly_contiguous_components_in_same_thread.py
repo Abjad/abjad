@@ -11,9 +11,12 @@ def test_are_strictly_contiguous_components_in_same_thread_01( ):
 
 
 def test_are_strictly_contiguous_components_in_same_thread_02( ):
-   '''False for unincorporated components.'''
+   '''True for orphan components when allow_orphans is True.
+      False for orphan components when allow_orphans is False.'''
 
-   assert not _are_strictly_contiguous_components_in_same_thread(scale(4))
+   assert _are_strictly_contiguous_components_in_same_thread(scale(4))
+   assert not _are_strictly_contiguous_components_in_same_thread(
+      scale(4), allow_orphans = False)
 
 
 def test_are_strictly_contiguous_components_in_same_thread_03( ):

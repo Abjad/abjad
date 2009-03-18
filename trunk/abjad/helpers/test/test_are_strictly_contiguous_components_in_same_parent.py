@@ -21,9 +21,8 @@ def test_are_strictly_contiguous_components_in_same_parent_01( ):
 
 
 def test_are_strictly_contiguous_components_in_same_parent_02( ):
-   '''False for unincorporated components.
-      False across container boundaries.
-      False for noncontiguous components.'''
+   '''True for unincorporated components when orphans allowed.
+      False to unincorporated components when orphans not allowed.'''
 
    t = Voice(Sequential(run(2)) * 2)
    diatonicize(t)
@@ -39,7 +38,9 @@ def test_are_strictly_contiguous_components_in_same_parent_02( ):
            }
    }'''
 
-   assert not _are_strictly_contiguous_components_in_same_parent([t])
+   assert _are_strictly_contiguous_components_in_same_parent([t])
+   assert not _are_strictly_contiguous_components_in_same_parent(
+      [t], allow_orphans = False)
 
    assert _are_strictly_contiguous_components_in_same_parent(t[:])
 
@@ -50,11 +51,14 @@ def test_are_strictly_contiguous_components_in_same_parent_02( ):
 
 
 def test_are_strictly_contiguous_components_in_same_parent_03( ):
-   '''Unicorporated leaves can not be evaluated for contiguity.'''
+   '''True for orphan leaves when allow_orphans is True.
+      False for orphan leaves when allow_orphans is False.'''
 
    t = scale(4)
 
-   assert not _are_strictly_contiguous_components_in_same_parent(t)
+   assert _are_strictly_contiguous_components_in_same_parent(t)
+   assert not _are_strictly_contiguous_components_in_same_parent(
+      t, allow_orphans = False)
 
 
 def test_are_strictly_contiguous_components_in_same_parent_04( ):

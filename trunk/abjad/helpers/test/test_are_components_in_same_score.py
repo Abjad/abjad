@@ -40,7 +40,9 @@ def test_are_components_in_same_score_02( ):
    assert _are_components_in_same_score([t2])
    assert _are_components_in_same_score(t2.leaves)
 
-   assert not _are_components_in_same_score([t1, t2])
+   assert _are_components_in_same_score([t1, t2])
+   assert not _are_components_in_same_score([t1, t2], allow_orphans = False)
+
    assert not _are_components_in_same_score(t1.leaves + t2.leaves)
 
 

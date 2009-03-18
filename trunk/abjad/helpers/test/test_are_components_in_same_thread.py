@@ -6,9 +6,11 @@ import py.test
 
 def test_are_components_in_same_thread_01( ):
    '''Unincorporated leaves do not thread.
-      Unicorporated leaves do not share a root component.'''
+      Unicorporated leaves do not share a root component.
+      False if not allow orphans; True if allow orphans.'''
 
-   assert not _are_components_in_same_thread(scale(4))
+   assert _are_components_in_same_thread(scale(4))
+   assert not _are_components_in_same_thread(scale(4), allow_orphans = False)
 
 
 def test_are_components_in_same_thread_02( ):

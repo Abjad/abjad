@@ -25,7 +25,9 @@ def test_are_components_in_same_parent_01( ):
    assert _are_components_in_same_parent(t.leaves[:2])
    assert _are_components_in_same_parent(t.leaves[2:])
 
-   assert not _are_components_in_same_parent([t])
+   assert _are_components_in_same_parent([t])
+   assert not _are_components_in_same_parent([t], allow_orphans = False)
+
    assert not _are_components_in_same_parent(t.leaves)
    assert not _are_components_in_same_parent(list(iterate(t, _Component)))
 
@@ -38,9 +40,15 @@ def test_are_components_in_same_parent_02( ):
    assert _are_components_in_same_parent(t1.leaves)
    assert _are_components_in_same_parent(t2.leaves)
 
-   assert not _are_components_in_same_parent([t1])
-   assert not _are_components_in_same_parent([t2])
-   assert not _are_components_in_same_parent([t1, t2])
+   assert _are_components_in_same_parent([t1])
+   assert not _are_components_in_same_parent([t1], allow_orphans = False)
+
+   assert _are_components_in_same_parent([t2])
+   assert not _are_components_in_same_parent([t2], allow_orphans = False)
+
+   assert _are_components_in_same_parent([t1, t2])
+   assert not _are_components_in_same_parent([t1, t2], allow_orphans = False)
+
    assert not _are_components_in_same_parent(t1.leaves + t2.leaves)
 
 

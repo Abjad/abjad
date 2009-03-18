@@ -51,7 +51,8 @@ def test_are_strictly_contiguous_components_03( ):
 
    t = scale(4)
 
-   assert not _are_strictly_contiguous_components(t)
+   assert _are_strictly_contiguous_components(t)
+   assert not _are_strictly_contiguous_components(t, allow_orphans = False)
 
 
 def test_are_strictly_contiguous_components_04( ):

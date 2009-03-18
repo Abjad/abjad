@@ -46,11 +46,14 @@ def test_are_strictly_contiguous_components_in_same_score_02( ):
 
 
 def test_are_strictly_contiguous_components_in_same_score_03( ):
-   '''False for more than one unincorporated component.'''
+   '''True for orphan components when allow_orphans is True.
+      False for orphan components when allow_orphans is False.'''
 
    t = scale(4)
 
-   assert not _are_strictly_contiguous_components_in_same_score(t)
+   assert _are_strictly_contiguous_components_in_same_score(t)
+   assert not _are_strictly_contiguous_components_in_same_score(
+      t, allow_orphans = False)
 
 
 def test_are_strictly_contiguous_components_in_same_score_04( ):

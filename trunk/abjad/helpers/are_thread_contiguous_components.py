@@ -2,7 +2,7 @@ from abjad.component.component import _Component
 from abjad.helpers.iterate import iterate
 
 
-def _are_thread_contiguous_components(expr):
+def _are_thread_contiguous_components(expr, allow_orphans = True):
    r'''True when expr is a Python list of Abjad components, and
       when there exists no foreign component C_f not in list such that
       C_f occurs temporally between any of the components in list.
@@ -47,17 +47,31 @@ def _are_thread_contiguous_components(expr):
    if not isinstance(first, _Component):
       return False
 
+   orphan_components = True
+   if not first.parentage.orphan:
+      orphan_components = False
+
+   same_thread = True
+   thread_proper = True
+
    first_thread = first.parentage._threadSignature
    prev = first
    for cur in expr[1:]:
       print prev, cur
       if not isinstance(cur, _Component):
          return False
+      if not cur.parentage.orphan:
+         orphan_components = False
       if not cur.parentage._threadSignature == first_thread:
-         return False
+         #return False
+         same_thread = False
       if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
          if not _are_thread_proper(prev, cur):
-            return False
+            #return False
+            thread_proper = False
+      if (not allow_orphans or (allow_orphans and not orphan_components)) and \
+         (not same_thread or not thread_proper):
+         return False
       prev = cur
 
    return True

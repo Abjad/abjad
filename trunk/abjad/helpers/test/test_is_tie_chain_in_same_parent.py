@@ -8,7 +8,7 @@ def test_is_tie_chain_in_same_parent_01( ):
    t = run(4)
    Tie(t[:])
 
-   assert not _is_tie_chain_in_same_parent(t[0].tie.chain)
+   assert _is_tie_chain_in_same_parent(t[0].tie.chain)
 
 
 def test_is_tie_chain_in_same_parent_02( ):

@@ -96,9 +96,12 @@ def test_are_thread_contiguous_components_04( ):
 
 
 def test_are_thread_contiguous_components_05( ):
-   '''False for unincorporated components.'''
+   '''True for orphan components when allow_orphans is True.
+      False for orphan components when allow_orphans is False.'''
 
-   assert not _are_thread_contiguous_components(scale(4))
+   assert _are_thread_contiguous_components(scale(4))
+   assert not _are_thread_contiguous_components(
+      scale(4), allow_orphans = False)
 
 
 def test_are_thread_contiguous_components_06( ):
