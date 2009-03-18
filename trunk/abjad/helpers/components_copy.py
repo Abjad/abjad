@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import ContiguityError
-from abjad.helpers.are_strictly_contiguous_components_in_same_score import _are_strictly_contiguous_components_in_same_score
+from abjad.helpers.assert_components import _assert_are_strictly_contiguous_components_in_same_score
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
 
 
@@ -14,9 +14,7 @@ def components_copy(components):
       Example:'''
 
    # check input
-   if not _are_strictly_contiguous_components_in_same_score(components):
-      raise ContiguityError(
-         'Input must be strictly contiguous components in same score.')
+   _assert_are_strictly_contiguous_components_in_same_score(components)
 
    for component in components:
 
