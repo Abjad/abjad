@@ -1,7 +1,7 @@
 from abjad.component.component import _Component
 
 
-def _are_threadable_components(component_list):
+def _are_components_in_same_thread(component_list):
    if isinstance(component_list, list):
       if len(component_list) == 0:
          return True

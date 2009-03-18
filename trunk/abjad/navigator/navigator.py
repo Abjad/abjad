@@ -321,9 +321,9 @@ class _Navigator(_Abjad):
          
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
-      from abjad.helpers.are_threadable_components import \
-         _are_threadable_components
-      return _are_threadable_components([self._client, expr])
+      from abjad.helpers.are_components_in_same_thread import \
+         _are_components_in_same_thread
+      return _are_components_in_same_thread([self._client, expr])
 
    def _nextNodeHelper(self, lastVisitedRank = None):
       '''Rightwards depth-first traversal.
