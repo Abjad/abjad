@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_lily_voice_resolution_01( ):
@@ -193,7 +194,7 @@ def test_lily_voice_resolution_06( ):
    t[0][0].invocation.name = 'voicefoo'
    t[1][0].invocation.name = 'voicefoo'
    diatonicize(t)
-   Beam(t.leaves)
+   py.test.raises(ContiguityError, 'Beam(t.leaves)')
 
    '''LilyPond gives unterminated beam warnings.
       LilyPond gives grob direction programming errors.

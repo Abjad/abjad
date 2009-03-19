@@ -1,38 +1,39 @@
 from abjad import *
 
 def test_retrograde_01( ):
-   '''
-   Retrograde works on a depth-0 Container with no spanners and no parent.
-   '''
+   '''Retrograde works on a depth-0 Container with no spanners and no parent.'''
+
    t = Staff(scale(8))
    leaves_rev = reversed(t.leaves)
    retrograde(t)
+
    assert list(leaves_rev) == t.leaves
    assert check(t)
 
 
 def test_retrograde_02( ):
-   '''
-   Retrograde works on a depth-0 Container with one spanner attached and no parent.
-   '''
+   '''Retrograde works on a depth-0 Container with 
+      one spanner attached and no parent.'''
+
    t = Staff(scale(8))
    beam = Beam(t)
    leaves_rev = reversed(t.leaves)
    retrograde(t)
+
    assert list(leaves_rev) == t.leaves
    assert beam.components == [t]
    assert check(t)
 
 
 def test_retrograde_03( ):
-   '''
-   Retrograde works on a depth-0 Container with one spanner attached to its leaves
-   and with no parent.
-   '''
+   '''Retrograde works on a depth-0 Container 
+      with one spanner attached to its leaves and with no parent.'''
+
    t = Staff(scale(8))
    beam = Beam(t.leaves)
    leaves_rev = reversed(t.leaves)
    retrograde(t)
+
    assert list(leaves_rev) == t.leaves
    assert beam.components == t.leaves
    assert check(t)
@@ -96,15 +97,15 @@ def test_retrograde_06( ):
 
 
 def test_retrograde_07( ):
-   '''
-   Retrograde works on a depth-1 Container with one spanner attached to its contents
-   and with no parent.
-   '''
+   '''Retrograde works on a depth-1 Container 
+      with one spanner attached to its contents and with no parent.'''
+
    notes = scale(2)
    measure = DynamicMeasure(scale(8))
    t = Staff([measure] + notes)
    beam = Beam(t[:])
    retrograde(t)
+
    assert beam.components[0] == notes[1]
    assert beam.components[1] == notes[0]
    assert beam.components[2] == measure

@@ -1,5 +1,6 @@
 from abjad.component.component import _Component
 from abjad import *
+import py.test
 
 
 def test_parentage_thread_signature_str_01( ):
@@ -212,18 +213,20 @@ def test_parentage_thread_signature_str_06( ):
    t[0][0].invocation.name = 'voicefoo'
    t[1][0].invocation.name = 'voicefoo'
    diatonicize(t)
-   Beam(t.leaves)
+   py.test.raises(ContiguityError, 'Beam(t.leaves)')
+   Beam(t.leaves[:2])
+   Beam(t.leaves[2:])
 
    r'''{
            \context Staff = "staff1" {
                    \context Voice = "voicefoo" {
                            c'8 [
-                           d'8
+                           d'8 ]
                    }
            }
            \context Staff = "staff2" {
                    \context Voice = "voicefoo" {
-                           e'8
+                           e'8 [
                            f'8 ]
                    }
            }

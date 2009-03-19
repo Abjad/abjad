@@ -72,6 +72,11 @@ class Spanner(_Abjad):
 
    def _blockComponent(self, component):
       component.spanners._spanners.remove(self)
+   
+   def _checkNewComponent(self, component):
+      from abjad.helpers.assert_components import _assert_components
+      if len(self) > 0:
+         _assert_components([self[-1], component], contiguity = 'thread')
 
    def _durationOffsetInMe(self, leaf):
       leaves = self.leaves
@@ -189,7 +194,8 @@ class Spanner(_Abjad):
    ## PUBLIC METHODS ##
 
    def append(self, component):
-      assert isinstance(component, _Component)
+      #assert isinstance(component, _Component)
+      self._checkNewComponent(component)
       self.insert(len(self), component)
 
    def copy(self, start = None, stop = None):
