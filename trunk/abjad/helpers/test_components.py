@@ -42,16 +42,16 @@ def _test_components(expr,
    if contiguity is None:
       
       if share is None:
-         _are_components(expr)
+         return _are_components(expr)
 
       elif share == 'parent':
-         _are_components_in_same_parent(expr, allow_orphans)
+         return _are_components_in_same_parent(expr, allow_orphans)
 
       elif share == 'score':
-         _are_components_in_same_score(expr, allow_orphans)
+         return _are_components_in_same_score(expr, allow_orphans)
 
       elif share == 'thread':
-         _are_components_in_same_thread(expr, allow_orphans)
+         return _are_components_in_same_thread(expr, allow_orphans)
 
       else:
          raise ValueError(
@@ -60,18 +60,18 @@ def _test_components(expr,
    elif contiguity == 'strict':
    
       if share is None:
-         _are_strictly_contiguous_components(expr, allow_orphans)
+         return _are_strictly_contiguous_components(expr, allow_orphans)
 
       elif share == 'parent':
-         _are_strictly_contiguous_components_in_same_parent(
+         return _are_strictly_contiguous_components_in_same_parent(
             expr, allow_orphans)
 
       elif share == 'score':
-         _are_strictly_contiguous_components_in_same_score(
+         return _are_strictly_contiguous_components_in_same_score(
             expr, allow_orphans)
 
       elif share == 'thread':
-         _are_strictly_contiguous_components_in_same_thread(
+         return _are_strictly_contiguous_components_in_same_thread(
             expr, allow_orphans)
 
       else:
@@ -85,7 +85,7 @@ def _test_components(expr,
             " the 'share' keyword should not be set.")
 
       else:
-         _are_thread_contiguous_components(expr, allow_orphans)
+         return _are_thread_contiguous_components(expr, allow_orphans)
 
    else:
       raise ValueError("'contiguity' must be 'strict', 'thread' or None.")
