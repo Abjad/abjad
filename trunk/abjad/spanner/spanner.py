@@ -39,7 +39,7 @@ class Spanner(_Abjad):
          _assert_components([expr])
          self[index].bequeath(expr)
       elif isinstance(index, slice):
-         assert isinstance(expr, (tuple, list))
+         assert isinstance(expr, list)
          start, stop, stride = index.indices(len(self))
          del(self[start : stop])
          for component in reversed(expr):

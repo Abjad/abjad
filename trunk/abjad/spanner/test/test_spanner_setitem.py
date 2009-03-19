@@ -23,7 +23,7 @@ def test_spanner_setitem_01( ):
       }
    }'''
 
-   p[0:0] = (t[0], )
+   p[0:0] = [t[0]]
 
    r'''\new Voice {
       {
