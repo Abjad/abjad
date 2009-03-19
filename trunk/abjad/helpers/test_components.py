@@ -1,20 +1,4 @@
 from abjad.component.component import _Component
-#from abjad.helpers.are_components_in_same_parent import \
-#   _are_components_in_same_parent
-#from abjad.helpers.are_components_in_same_score import \
-#   _are_components_in_same_score
-#from abjad.helpers.are_components_in_same_thread import \
-#   _are_components_in_same_thread
-#from abjad.helpers.are_strictly_contiguous_components import \
-#   _are_strictly_contiguous_components
-#from abjad.helpers.are_strictly_contiguous_components_in_same_parent import \
-#   _are_strictly_contiguous_components_in_same_parent
-#from abjad.helpers.are_strictly_contiguous_components_in_same_score import \
-#   _are_strictly_contiguous_components_in_same_score
-#from abjad.helpers.are_strictly_contiguous_components_in_same_thread import \
-#   _are_strictly_contiguous_components_in_same_thread
-#from abjad.helpers.are_thread_contiguous_components import \
-#   _are_thread_contiguous_components
 from abjad.helpers.iterate import iterate
 
 
