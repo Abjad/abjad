@@ -1,9 +1,9 @@
-from abjad.helpers.are_thread_contiguous_components import _are_thread_contiguous_components
+from abjad.helpers.test_components import _test_components
 from abjad import *
 import py.test
 
 
-def test_are_thread_contiguous_components_01( ):
+def test_test_components_thread_contiguous_01( ):
    '''True for thread contiguous components even when
       components are not strictly contiguous.'''
 
@@ -23,10 +23,10 @@ def test_are_thread_contiguous_components_01( ):
    }'''
 
    outer = (0, 1, 4, 5)
-   assert _are_thread_contiguous_components([t.leaves[i] for i in outer])
+   assert _test_components([t.leaves[i] for i in outer], contiguity = 'thread')
 
 
-def test_are_thread_contiguous_components_02( ):
+def test_test_components_thread_contiguous_02( ):
    '''Temporal gaps between components are OK.
       So long as gaps are filled with foreign components
       that do not belong to thread.'''
@@ -52,13 +52,13 @@ def test_are_thread_contiguous_components_02( ):
       }
    }'''
    
-   assert _are_thread_contiguous_components(t[0:1] + t[-1:])
-   assert _are_thread_contiguous_components(t[0][:] + t[-1:])
-   assert _are_thread_contiguous_components(t[0:1] + t[-1][:])
-   assert _are_thread_contiguous_components(t[0][:] + t[-1][:])
+   assert _test_components(t[0:1] + t[-1:], contiguity = 'thread')
+   assert _test_components(t[0][:] + t[-1:], contiguity = 'thread')
+   assert _test_components(t[0:1] + t[-1][:], contiguity = 'thread')
+   assert _test_components(t[0][:] + t[-1][:], contiguity = 'thread')
 
 
-def test_are_thread_contiguous_components_03( ):
+def test_test_components_thread_contiguous_03( ):
    '''Components that start at the same moment are bad.
       Even if components are all part of the same thread.'''
 
@@ -83,43 +83,42 @@ def test_are_thread_contiguous_components_03( ):
       }
    }'''
    
-   assert not _are_thread_contiguous_components([t, t[0]])
-   assert not _are_thread_contiguous_components(t[0:1] + t[0][:])
-   assert not _are_thread_contiguous_components(t[-1:] + t[-1][:])
+   assert not _test_components([t, t[0]], contiguity = 'thread')
+   assert not _test_components(t[0:1] + t[0][:], contiguity = 'thread')
+   assert not _test_components(t[-1:] + t[-1][:], contiguity = 'thread')
 
 
-def test_are_thread_contiguous_components_04( ):
+def test_test_components_thread_contiguous_04( ):
    '''True for strictly contiguous leaves in same staff.'''
 
    t = Staff(scale(4))
-   assert _are_thread_contiguous_components(t[:])
+   assert _test_components(t[:], contiguity = 'thread')
 
 
-def test_are_thread_contiguous_components_05( ):
+def test_test_components_thread_contiguous_05( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
-   assert _are_thread_contiguous_components(scale(4))
-   assert not _are_thread_contiguous_components(
-      scale(4), allow_orphans = False)
+   assert _test_components(scale(4), contiguity = 'thread')
+   assert not _test_components(scale(4), 
+      contiguity = 'thread', allow_orphans = False)
 
 
-def test_are_thread_contiguous_components_06( ):
+def test_test_components_thread_contiguous_06( ):
    '''False for time reordered leaves in staff.'''
 
    t = Staff(scale(4))
-   assert not _are_thread_contiguous_components(t[2:] + t[:2])
+   assert not _test_components(t[2:] + t[:2], contiguity = 'thread')
 
 
-def test_are_thread_contiguous_components_07( ):
+def test_test_components_thread_contiguous_07( ):
    '''False for unincorporated component.'''
 
    py.test.skip('TODO: Active proposal that staves and staff groups should not thread. Outcome of that proposal will determine the behavior of this test.')
-   assert not _are_thread_contiguous_components(
-      [Staff(scale(4))])
+   assert not _test_components([Staff(scale(4))], contiguity = 'thread')
 
 
-def test_are_thread_contiguous_components_08( ):
+def test_test_components_thread_contiguous_08( ):
    '''True for empty list.'''
 
-   assert _are_thread_contiguous_components([ ])
+   assert _test_components([ ], contiguity = 'thread')
