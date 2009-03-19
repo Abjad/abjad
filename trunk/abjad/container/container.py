@@ -235,19 +235,22 @@ class Container(_Component):
 
    def bequeath(self, expr):
       '''Experimental: Bequeath my music, my position-in-spanners, and 
-         my position-in-parent to empty container expr. 
+         my position-in-parent to some other Abjad component.
 
          After bequeathal, self is an empty unspanned orphan.
 
          Bequeathal is basically a way of casting one type of container
          to another; bequeathal is also cleaner than (leaf) casting;
          bequeathal leaves all container attributes completely in tact.'''
-      assert isinstance(expr, Container)
-      assert not len(expr)
 
-      # give my music to expr
-      expr.extend(self)
-      self._music[ : ] = [ ]
+      ## if I have contents, can only bequeath to empty container
+      if len(self) > 0:
+         assert isinstance(expr, Container)
+         assert not len(expr)
+
+         # give my music to expr
+         expr.extend(self)
+         self._music[ : ] = [ ]
 
       # for every spanner attached to me ...
       for spanner in list(self.spanners.attached):
