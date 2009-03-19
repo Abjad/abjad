@@ -78,6 +78,33 @@ class Spanner(_Abjad):
       if len(self) > 0:
          _assert_components([self[-1], component], contiguity = 'thread')
 
+   def _componentsFlankingIndex(self, index, component):
+      flanking_components = [ ]
+      left = self._componentToLeftOfIndex(index)
+      if left is not None:
+         flanking_components.append(left)
+      flanking_components.append(component)
+      right = self._componentToRightOfIndex(index)
+      if right is not None:
+         flanking_components.append(right)
+      return flanking_components
+
+   def _componentToLeftOfIndex(self, index):
+      if len(self) == 0:
+         return None
+      if index == 0:
+         return None
+      if index >= len(self):
+         return self[-1]
+      return self[index - 1]
+
+   def _componentToRightOfIndex(self, index):
+      if len(self) == 0:
+         return None
+      if index >= len(self):
+         return None
+      return self[index]
+
    def _durationOffsetInMe(self, leaf):
       leaves = self.leaves
       assert leaf in leaves
@@ -243,6 +270,10 @@ class Spanner(_Abjad):
       return self._components.index(component)
 
    def insert(self, i, component):
+      #from abjad.helpers.assert_components import _assert_components
+      #components_to_check = self._componentsFlankingIndex(i, component)
+      #print 'to check: %s' % str(components_to_check)
+      #_assert_components(components_to_check, contiguity = 'thread')
       component.spanners._update([self])
       self._components.insert(i, component)
 
