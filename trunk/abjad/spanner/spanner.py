@@ -41,7 +41,9 @@ class Spanner(_Abjad):
       elif isinstance(index, slice):
          assert isinstance(expr, list)
          start, stop, stride = index.indices(len(self))
-         del(self[start : stop])
+         _assert_components(self[start:stop], 
+            contiguity = 'strict', share = 'parent')
+         del(self[start:stop])
          for component in reversed(expr):
             self.insert(start, component)
          
