@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import ContiguityError
-from abjad.helpers.are_components import _are_components
+#from abjad.helpers.are_components import _are_components
 from abjad.helpers.are_components_in_same_parent import _are_components_in_same_parent
 from abjad.helpers.are_components_in_same_score import _are_components_in_same_score
 from abjad.helpers.are_components_in_same_thread import _are_components_in_same_thread
@@ -8,6 +8,8 @@ from abjad.helpers.are_strictly_contiguous_components_in_same_parent import _are
 from abjad.helpers.are_strictly_contiguous_components_in_same_score import _are_strictly_contiguous_components_in_same_score
 from abjad.helpers.are_strictly_contiguous_components_in_same_thread import _are_strictly_contiguous_components_in_same_thread
 from abjad.helpers.are_thread_contiguous_components import _are_thread_contiguous_components
+
+from abjad.helpers.test_components import _test_components
 
 
 
@@ -35,7 +37,10 @@ def _assert_components(expr,
    if contiguity is None:
       
       if share is None:
-         _assert_are_components(expr)
+         #_assert_are_components(expr)
+         if not _test_components(expr):
+            raise TypeError('Must be Python list of Abjad components.')
+      
 
       elif share == 'parent':
          _assert_are_components_in_same_parent(expr, allow_orphans)
@@ -84,9 +89,9 @@ def _assert_components(expr,
       raise ValueError("'contiguity' must be 'strict', 'thread' or None.")
 
 
-def _assert_are_components(expr):
-   if not _are_components(expr):
-      raise TypeError('Must be list of Abjad components.')
+#def _assert_are_components(expr):
+#   if not _are_components(expr):
+#      raise TypeError('Must be list of Abjad components.')
 
 def _assert_are_components_in_same_parent(expr, allow_orphans = True):
    if not _are_components_in_same_parent(expr, allow_orphans):
