@@ -1,4 +1,4 @@
-from abjad.helpers.are_components import _are_components
+from abjad.helpers.assert_components import _assert_components
 from abjad.helpers.iterate import iterate
 
 
@@ -10,12 +10,10 @@ def spanners_detach(components, level = 'top'):
       With level = 'all':
          detach spanners from every Abjad component at all levels of list.
 
-      Return None.
-   '''
+      Return None.'''
 
    # check input
-   if not _are_components(components):
-      raise ValueError('input must be Python list of components.')
+   _assert_components(components)
 
    # delegate
    if level == 'top':

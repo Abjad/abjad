@@ -1,4 +1,4 @@
-from abjad.helpers.are_components import _are_components
+from abjad.helpers.assert_components import _assert_components
 
 
 def components_detach_spanners_shallow(components):
@@ -17,8 +17,7 @@ def components_detach_spanners_shallow(components):
       middle of some larger spanner.'''
 
    # check input
-   if not _are_components(components):
-      raise ValueError('input must be Python list of Abjad components.')
+   _assert_components(components)
 
    # detach spanners
    for component in components:

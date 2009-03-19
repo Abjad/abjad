@@ -1,5 +1,5 @@
-from abjad.helpers.are_components_in_same_parent import _are_components_in_same_parent
 from abjad.helpers.is_tie_chain import _is_tie_chain
+from abjad.helpers.test_components import _test_components
 
 
 def _is_tie_chain_in_same_parent(expr):
@@ -26,4 +26,5 @@ def _is_tie_chain_in_same_parent(expr):
       assert not _is_tie_chain_in_same_parent(t.leaves[2].tie.chain)
       assert _is_tie_chain_in_same_parent(t.leaves[3].tie.chain)'''
 
-   return _is_tie_chain(expr) and _are_components_in_same_parent(list(expr))
+   return _is_tie_chain(expr) and \
+      _test_components(list(expr), share = 'parent')
