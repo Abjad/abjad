@@ -1,5 +1,6 @@
 from abjad.component.component import _Component
 from abjad import *
+import py.test
 
 
 def test_parentage_thread_signature_01( ):
@@ -209,18 +210,20 @@ def test_parentage_thread_signature_06( ):
    t[0][0].invocation.name = 'voicefoo'
    t[1][0].invocation.name = 'voicefoo'
    diatonicize(t)
-   Beam(t.leaves)
+   assert py.test.raises(ContiguityError, 'Beam(t.leaves)')
+   Beam(t.leaves[:2])
+   Beam(t.leaves[2:])
 
    r'''{
            \context Staff = "staff1" {
                    \context Voice = "voicefoo" {
                            c'8 [
-                           d'8
+                           d'8 ]
                    }
            }
            \context Staff = "staff2" {
                    \context Voice = "voicefoo" {
-                           e'8
+                           e'8 [
                            f'8 ]
                    }
            }
@@ -318,3 +321,22 @@ def test_parentage_thread_signature_09( ):
    t1_leaf_signature = t1.leaves[0].parentage._threadSignature
    t2_leaf_signature = t2.leaves[0].parentage._threadSignature
    assert t1_leaf_signature != t2_leaf_signature
+
+
+def test_parentage_thread_signature_10( ):
+   '''Measure and leaves must carry same thread signature.'''
+
+   t = Staff([DynamicMeasure(scale(2))] + run(2))
+   diatonicize(t)
+
+   r'''\new Staff {
+         \time 1/4
+         c'8
+         d'8
+      e'8
+      f'8
+   }'''
+
+   assert t[0].parentage._threadSignature == t[-1].parentage._threadSignature
+   assert t[0].parentage._threadSignature == t[0][0].parentage._threadSignature
+   assert t[0][0].parentage._threadSignature == t[-1].parentage._threadSignature
