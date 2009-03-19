@@ -36,11 +36,6 @@ class Spanner(_Abjad):
    def __setitem__(self, index, expr):
       from abjad.helpers.assert_components import _assert_components
       if isinstance(index, int):
-         ## TODO: Are these two lines necessary?
-         #if index < 0:
-         #   index = len(self) + index
-         #del(self[index])
-         #self.insert(index, expr)
          _assert_components([expr])
          self[index].bequeath(expr)
       elif isinstance(index, slice):
