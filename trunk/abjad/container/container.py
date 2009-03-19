@@ -25,8 +25,7 @@ class Container(_Component):
       if music:
          parent = music[0].parentage.parent
          if not _are_orphan_components(music):
-            _assert_components(
-               components, contiguity = 'strict', share = 'thread')
+            _assert_components(music, 'strict', share = 'thread')
             start_index = parent.index(music[0])
             stop_index = parent.index(music[-1])
          if parent is not None:
