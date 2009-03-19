@@ -66,3 +66,48 @@ def bequeath_multiple(old_components, new_components):
 
    # return old components
    return old_components
+
+
+def new_bequeath_multiple(old_components, new_components):
+
+   _assert_components(old_components, contiguity = 'strict', share = 'parent')
+   _assert_components(new_components, contiguity = 'strict', share = 'parent')
+
+   ## handle empty input
+   if len(old_components) == 0:
+      return old_components
+
+   ## detach new components from parentage, if any
+   components_detach_parentage(new_components)
+
+   ## remember old components parent and index, if any
+   parent, index = _get_parent_and_index(old_components)
+
+   ## move old components out of parent, if any
+   _make_orphan_components(old_components)
+
+   ## if there was old parent
+   if parent is not None:
+
+      ## insert new components into old components parent
+      for new_component in reversed(new_components):
+         new_component.parentage.parent = parent
+         parent._music.insert(index, new_component)
+   
+   ## find spanners dominating old components, if any
+   dominant_spanners = _get_dominant_spanners(old_components)
+
+   for dominant_spanner in dominant_spanners:
+      print dominant_spanner
+   print '*****'
+
+   ## insert new components into dominant spanners, if any
+   for dominant_spanner in dominant_spanners:
+      index = dominant_spanner.index(old_components[0])
+      dominant_spanner[index:index] = new_components
+
+   ## unspan old components
+   components_detach_spanners_shallow(old_components)
+
+   ## return old components
+   return old_components

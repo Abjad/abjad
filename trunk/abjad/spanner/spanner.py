@@ -33,15 +33,19 @@ class Spanner(_Abjad):
    def __len__(self):
       return self._components.__len__( )
 
-   def __setitem__(self, idx, expr):
-      if isinstance(idx, int):
-         if idx < 0:
-            idx = len(self) + idx
-         del(self[idx])
-         self.insert(idx, expr)
-      elif isinstance(idx, slice):
+   def __setitem__(self, index, expr):
+      from abjad.helpers.assert_components import _assert_components
+      if isinstance(index, int):
+         ## TODO: Are these two lines necessary?
+         if index < 0:
+            index = len(self) + index
+         del(self[index])
+         self.insert(index, expr)
+         #_assert_components([expr])
+         #self[index].bequeath(expr)
+      elif isinstance(index, slice):
          assert isinstance(expr, (tuple, list))
-         start, stop, stride = idx.indices(len(self))
+         start, stop, stride = index.indices(len(self))
          del(self[start : stop])
          for component in reversed(expr):
             self.insert(start, component)
@@ -78,12 +82,12 @@ class Spanner(_Abjad):
       if len(self) > 0:
          _assert_components([self[-1], component], contiguity = 'thread')
 
-   def _componentsFlankingIndex(self, index, component):
+   def _componentsFlankingIndex(self, index, components):
       flanking_components = [ ]
       left = self._componentToLeftOfIndex(index)
       if left is not None:
          flanking_components.append(left)
-      flanking_components.append(component)
+      flanking_components.extend(component)
       right = self._componentToRightOfIndex(index)
       if right is not None:
          flanking_components.append(right)
@@ -271,7 +275,7 @@ class Spanner(_Abjad):
 
    def insert(self, i, component):
       #from abjad.helpers.assert_components import _assert_components
-      #components_to_check = self._componentsFlankingIndex(i, component)
+      #components_to_check = self._componentsFlankingIndex(i, [component])
       #print 'to check: %s' % str(components_to_check)
       #_assert_components(components_to_check, contiguity = 'thread')
       component.spanners._update([self])
