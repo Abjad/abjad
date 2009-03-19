@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_are_strictly_contiguous_components_in_same_thread
+from abjad.helpers.assert_components import _assert_components
 
 
 def _get_attached_spanners(components):
@@ -6,7 +6,7 @@ def _get_attached_spanners(components):
       TODO: Include example.'''
 
    ## check input
-   _assert_are_strictly_contiguous_components_in_same_thread(components)
+   _assert_components(components, contiguity = 'strict', share = 'thread')
    
    ## accumulate spanners
    spanners = set([ ])

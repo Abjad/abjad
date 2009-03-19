@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_are_strictly_contiguous_components_in_same_thread
+from abjad.helpers.assert_components import _assert_components
 from abjad.spanner.spanner import Spanner
 
 
@@ -8,7 +8,7 @@ def _is_dominant_spanner(spanner, components):
 
    ## check input
    assert isinstance(spanner, Spanner)
-   _assert_are_strictly_contiguous_components_in_same_thread(components)
+   _assert_components(components, contiguity = 'strict', share = 'thread')
 
    if len(components) == 0:
       return False
