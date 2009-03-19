@@ -1,22 +1,19 @@
-from abjad.helpers.are_strictly_contiguous_components_in_same_thread import _are_strictly_contiguous_components_in_same_thread
+from abjad.helpers.assert_components import _assert_components
 from abjad.helpers.in_terms_of import _in_terms_of
 
 
 def tcopy(ll):
-   '''
-   Copy list ll of contiguous music from some container.
+   '''Copy list ll of contiguous music from some container.
    
      tcopy(t[37 : 39 + 1])
 
    Return in container equal to type of first element in ll.
-   Shrink result container as necessary to preserve parent multiplier.
-   '''
+   Shrink result container as necessary to preserve parent multiplier.'''
 
    from abjad.measure.base import _Measure
 
    # assert strictly contiguous components in same thread
-   if not _are_strictly_contiguous_components_in_same_thread:
-     raise ValueError('Must be strictly contiguous components in same thread.')
+   _assert_components(ll, contiguity = 'strict', share = 'thread')
 
    # remember parent
    parent = ll[0].parentage.parent
