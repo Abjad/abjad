@@ -64,32 +64,33 @@ class _Parentage(_Abjad):
             if isinstance(parent, Container) and parent.parallel:
                return component
             
-   @property
-   def _threadParentage(self):
-      '''Return thread-pertinent parentage structure.
-         Same as parentage but with _Tuplets, redundant Sequentials, 
-         Parallels and tautologies (unlikely) removed.'''
-      from abjad.container.parallel import Parallel
-      from abjad.container.sequential import Sequential
-      from abjad.context.context import _Context
-      from abjad.tuplet.tuplet import _Tuplet
-      parentage = self.parentage[1:]
-      if len(parentage) > 0:
-      ## remove sequentials
-         for p in parentage[:]:
-            if isinstance(p, (Sequential, _Tuplet)):
-               parentage.remove(p)
-            else:
-               break
-      # remove tautological nesting
-         for i, p in enumerate(parentage[:-1]):
-            if type(p) == type(parentage[i+1]):
-               if isinstance(p, Parallel):
-                  parentage.remove(p)
-               elif isinstance(p, _Context):
-                  if p.invocation == parentage[i+1].invocation:
-                     parentage.remove(p)
-      return parentage
+## TODO: Deprecated. safe to delete now!            
+#   @property
+#   def _threadParentage(self):
+#      '''Return thread-pertinent parentage structure.
+#         Same as parentage but with _Tuplets, redundant Sequentials, 
+#         Parallels and tautologies (unlikely) removed.'''
+#      from abjad.container.parallel import Parallel
+#      from abjad.container.sequential import Sequential
+#      from abjad.context.context import _Context
+#      from abjad.tuplet.tuplet import _Tuplet
+#      parentage = self.parentage[1:]
+#      if len(parentage) > 0:
+#      ## remove sequentials
+#         for p in parentage[:]:
+#            if isinstance(p, (Sequential, _Tuplet)):
+#               parentage.remove(p)
+#            else:
+#               break
+#      # remove tautological nesting
+#         for i, p in enumerate(parentage[:-1]):
+#            if type(p) == type(parentage[i+1]):
+#               if isinstance(p, Parallel):
+#                  parentage.remove(p)
+#               elif isinstance(p, _Context):
+#                  if p.invocation == parentage[i+1].invocation:
+#                     parentage.remove(p)
+#      return parentage
 
    ## PRIVATE METHODS ##
 
