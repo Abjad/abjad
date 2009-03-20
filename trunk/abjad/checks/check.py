@@ -7,15 +7,15 @@ class _Check(_Abjad):
    def __init__(self):
       pass
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _message(self):
       name = self.__class__.__name__
       parts = findall("[A-Z][a-z]*", name)
-      return ' '.join([p.lower() for p in parts])
+      return ' '.join([p.lower( ) for p in parts])
 
-   ### PUBLIC ATTRIBUTES ###
+   ## PUBLIC ATTRIBUTES ##
 
    def check(self, expr):
       return not self.violators(expr)
