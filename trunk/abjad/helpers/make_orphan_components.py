@@ -1,16 +1,16 @@
 from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.components_detach_parentage import components_detach_parentage
 
 
 def _make_orphan_components(components):
    '''Detach all components in list from parentage.
       Return list of orphan components.'''
 
-   # check input
+   ## check input
    _assert_components(components)
 
-   ## TODO: Implement components_parentage_detach_shallow( )
-   for component in components:
-      component.parentage._detach( )
+   ## detach from parentage
+   components_detach_parentage(components)
 
-   # return component list
+   ## return component list
    return components

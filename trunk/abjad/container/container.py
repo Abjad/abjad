@@ -7,10 +7,13 @@ from abjad.debug.debug import debug
 from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.assert_components import _assert_components
 from abjad.helpers.bequeath_multiple import bequeath_multiple
+from abjad.helpers.components_detach_parentage import components_detach_parentage
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
 from abjad.helpers.iterate import iterate
+from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
+from abjad.helpers.test_components import _test_components
 from abjad.notehead.interface import _NoteHeadInterface
 from abjad.parentage.parentage import _Parentage
 
@@ -93,9 +96,12 @@ class Container(_Component):
       return '(%s)' % self._summary
 
    def __setitem__(self, i, expr):
+
       # item assignment
       if isinstance(i, int):
-         assert isinstance(expr, _Component)
+         if not isinstance(expr, _Component):
+            raise TypeError('Must be Abjad component.')
+         _make_orphan_components([expr])
          if i < 0:
             j = len(self) + i
          else:
@@ -103,31 +109,14 @@ class Container(_Component):
          expr.parentage._switchParentTo(self)
          self._music[j] = expr
 
-         #if expr.leaves:
-         #   left, right = expr.leaves[0], expr.leaves[-1]
-         #else:
-         #   left = right = None
-
       # slice assignment
       else:
-         assert isinstance(expr, list)
+         if not _test_components(expr):
+            raise TypeError('Must be list of Abjad components.')
+         _make_orphan_components(expr)
          for x in expr:
             x.parentage._switchParentTo(self)
          self._music[i.start : i.stop] = expr
-
-         #if expr[0].leaves:
-         #   left = expr[0].leaves[0]
-         #else:
-         #   left = None
-         #if expr[-1].leaves:
-         #   right = expr[-1].leaves[-1]
-         #else:
-         #   right = None
-
-      #if left and left.prev:
-      #   left.prev.spanners.fracture(direction = 'right')
-      #if right and right.next:
-      #   right.next.spanners.fracture(direction = 'left')
 
       self._update._markForUpdateToRoot( )
 
@@ -289,9 +278,14 @@ class Container(_Component):
          Return None.'''
       if len(expr) > 0:
          if isinstance(expr, list):
-            self[len(self) : len(self)] = expr
+            length = len(self)
+            self[length:length] = expr
          elif isinstance(expr, Container):
-            self[len(self) : len(self)] = expr[ : ]
+            components = expr[:]
+            components = components_detach_parentage(components) 
+            length = len(self)
+            #self[length:length] = expr[ : ]
+            self[length:length] = components
          else:
             raise ValueError(
                'Extend containers with lists and containers only.')

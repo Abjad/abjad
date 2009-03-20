@@ -1,6 +1,7 @@
 from abjad import *
 from py.test import raises
 
+
 def test_container_add_01( ):
    '''Addition DOES NOT works on unnamed voices.'''
    t1 = Voice(Note(0, (1, 4))*2)
