@@ -1,16 +1,13 @@
 from abjad import *
 
 
-def test_contents_multiply_01( ):
-   '''Multiply notes in voice.'''
+def test_container_imul_01( ):
 
    t = Voice(scale(2))
    Beam(t[:])
-   contents_multiply(t, total = 3)
+   t *= 2
 
    r'''\new Voice {
-           c'8 [
-           d'8 ]
            c'8 [
            d'8 ]
            c'8 [
@@ -18,15 +15,14 @@ def test_contents_multiply_01( ):
    }'''
 
    assert check(t)
-   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_contents_multiply_02( ):
-   '''Multiplication by one leaves contents unchanged.'''
+def test_container_imul_02( ):
 
    t = Voice(scale(2))
    Beam(t[:])
-   contents_multiply(t, total = 1)
+   t *= 1
 
    r'''\new Voice {
            c'8 [
@@ -37,15 +33,14 @@ def test_contents_multiply_02( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_contents_multiply_03( ):
-   '''Multiplication by zero empties container.'''
-   
+def test_container_imul_03( ):
+
    t = Voice(scale(2))
    Beam(t[:])
-   contents_multiply(t, total = 0)
+   t *= 0
 
    r'''\new Voice {
    }'''
-
+   
    assert check(t)
    assert t.format == '\\new Voice {\n}'

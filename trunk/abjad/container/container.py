@@ -50,9 +50,13 @@ class Container(_Component):
       return coalesce([self.copy( ), expr.copy( )])
 
    def __contains__(self, expr):
+      '''True if expr is in container, otherwise False.'''
       return expr in self._music
 
    def __delitem__(self, i):
+      '''Remove component at index i in container from container.
+         Remove comopnent at index i in container from spanners.
+         Return None.'''
       if isinstance(i, int):
          self[i].detach( )
       elif isinstance(i, slice):
@@ -70,28 +74,22 @@ class Container(_Component):
       '''__iadd__ avoids unnecessary copying of structures.'''
       return coalesce([self, expr.copy( )])
 
-   def __imul__(self, n):
-      assert isinstance(n, int)
-      assert n >= 0
-      if n == 0:
-         ## TODO - implement this to return empty self.
-         ##
-         ## This doesn't work:
-         ##
-         ##   self._music == [ ]
-         pass
-      else:
-         for copy in self * (n - 1):
-            self.extend(copy)
-      return self
+   def __imul__(self, total):
+      '''Multiply contents of container 'total' times.
+         Return multiplied container.'''
+      from abjad.helpers.contents_multiply import contents_multiply
+      return contents_multiply(self, total = total)
 
    def __len__(self):
+      '''Return nonnegative integer number of components in container.'''
       return len(self._music)
 
    def __radd__(self, expr):
+      '''Extend container by contents of expr to the right.'''
       return self + expr
 
    def __repr__(self):
+      '''String format of container for interpreter display.'''
       return '(%s)' % self._summary
 
    def __setitem__(self, i, expr):
