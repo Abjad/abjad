@@ -300,13 +300,14 @@ class _Component(_Abjad):
    def detach(self):
       '''Detach component from parentage.
          Detach component from spanners.
+         Detach children of component from spanners.
          Return receipt.'''
-      #from abjad.helpers.detach_subtree import detach_subtree
-      parentage = self.parentage._detach( )
-      spanners = self.spanners._detach( )
-      receipt = _ComponentReceipt(self, parentage, spanners)
+      from abjad.helpers.detach_subtree import detach_subtree
+      parent = self.parentage.parent
+      receipt = detach_subtree(self)
+      if parent is not None:
+         parent._update._markForUpdateToRoot( )
       return receipt
-      #detach_subtree(self)
 
    def slip(self):
       '''Detach component from parentage.
@@ -325,6 +326,8 @@ class _Component(_Abjad):
       for child in reversed(children):
          child.parentage._switchParentTo(parent)
          parent._music.insert(index, child)
+      if parent is not None:
+         parent._update._markForUpdateToRoot( )
       return receipt
 
    ## TODO: Implement unslip( ) to reinsert component

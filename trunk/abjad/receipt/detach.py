@@ -1,8 +1,11 @@
 from abjad.core.abjadcore import _Abjad
 
 
-class _ComponentReceipt(_Abjad):
-   '''Well structured references attaching to some Abjad component.'''
+class _DetachReceipt(_Abjad):
+   '''Well structured references attaching to some Abjad component.
+      Hand over after entire subtree detaches from score.
+
+      TODO: Implement dictionary of children and their spanners.'''
 
    def __init__(self, component, parentage, spanners):
       self._component = component

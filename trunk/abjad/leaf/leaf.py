@@ -227,7 +227,8 @@ class _Leaf(_Component):
    ## PUBLIC METHODS ##
 
    def bequeath(self, expr):
-      '''Bequeath my position-in-spanners and my position-in-parent to expr.
+      '''Bequeath my position-in-parent to expr.
+         Bequeath my position-in-spanners to expr.
          After bequeathal, self is an unspanned orphan.
          Return None.'''
 
