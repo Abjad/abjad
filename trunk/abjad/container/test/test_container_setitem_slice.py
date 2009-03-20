@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_container_setitem_01( ):
+def test_container_setitem_slice_01( ):
    '''Containers set single leaves correctly in an unspanned structure.'''
 
    t = Staff(scale(4))
@@ -20,7 +20,7 @@ def test_container_setitem_01( ):
    assert check(t)
 
 
-def test_container_setitem_02( ):
+def test_container_setitem_slice_02( ):
    '''Containers set single leaves correctly in a spanned structure.
       You must spanned newly set leaves by hand, if desired.'''
 
@@ -44,7 +44,7 @@ def test_container_setitem_02( ):
    assert check(t)
    
 
-def test_container_setitem_03( ):
+def test_container_setitem_slice_03( ):
    '''Containers set sequences of notes correctly.
       Spanners set sequences of notes correctly.'''
 
@@ -81,7 +81,7 @@ def test_container_setitem_03( ):
    assert check(t)
 
 
-def test_container_setitem_04( ):
+def test_container_setitem_slice_04( ):
    '''Containers set a single leaf over a sequence of leaves correctly.
       Spanners set a single leaf over a sequence of leaves correctly.'''
 
@@ -103,7 +103,7 @@ def test_container_setitem_04( ):
    assert check(t)
 
 
-def test_container_setitem_05( ):
+def test_container_setitem_slice_05( ):
    '''Containers set a sequence of leaves over a sequence of leaves correctly.
       Spanners set a sequence of leaves over a sequence of leaves correctly.
    '''
@@ -128,7 +128,7 @@ def test_container_setitem_05( ):
    assert check(t)
 
 
-def test_container_setitem_06( ):
+def test_container_setitem_slice_06( ):
    '''Container magic.'''
    
    t = Staff(Sequential(run(2)) * 2)
@@ -163,15 +163,14 @@ def test_container_setitem_06( ):
    assert len(sequential) == 0
 
 
-def test_container_setitem_07( ):
+def test_container_setitem_slice_07( ):
    '''Container magic.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            {
                    c'8 [
                    d'8
@@ -180,13 +179,11 @@ def test_container_setitem_07( ):
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    t[0:0] = [t[0][0]]
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8 [
            {
                    d'8
@@ -195,22 +192,20 @@ def test_container_setitem_07( ):
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
    assert check(t)
 
 
-def test_container_setitem_08( ):
+def test_container_setitem_slice_08( ):
    '''Container magic.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            {
                    c'8 [
                    d'8
@@ -219,13 +214,11 @@ def test_container_setitem_08( ):
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    t[0:0] = t[0][:]
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8 [
            d'8
            {
@@ -234,21 +227,19 @@ def test_container_setitem_08( ):
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_container_setitem_09( ):
+def test_container_setitem_slice_09( ):
    '''Container magic.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            {
                    c'8 [
                    d'8
@@ -257,15 +248,13 @@ def test_container_setitem_09( ):
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    sequential = t[0]
    t[0:0] = sequential[:]
    sequential[0:0] = t[-1][0:1]
    
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8 [
            d'8
            {
@@ -274,22 +263,20 @@ def test_container_setitem_09( ):
            {
                    f'8 ]
            }
-   }
-   '''
+   }'''
    
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 ]\n\t}\n}"
    assert check(t)
 
 
-def test_container_setitem_10( ):
+def test_container_setitem_slice_10( ):
    '''Container magic.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            {
                    c'8 [
                    d'8
@@ -298,8 +285,7 @@ def test_container_setitem_10( ):
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    t[0:0] = [t[0][0]]
    t[len(t):len(t)] = [t[-1][-1]]
@@ -314,8 +300,7 @@ def test_container_setitem_10( ):
                    e'8
            }
            f'8 ]
-   }
-   '''
+   }'''
 
    assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t}\n\tf'8 ]\n}"
    assert check(t)

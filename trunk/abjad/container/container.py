@@ -10,6 +10,8 @@ from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.components_detach_parentage import components_detach_parentage
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
+from abjad.helpers.get_subtree_dominant_spanners_receipt import \
+   _get_subtree_dominant_spanners_receipt
 from abjad.helpers.iterate import iterate
 from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
@@ -96,18 +98,25 @@ class Container(_Component):
       return '(%s)' % self._summary
 
    def __setitem__(self, i, expr):
+      '''Set expr in self at nonnegative integer index i.
+         Give spanners attaching to the current node at i to expr.
+         Same with spanners attaching to children of current node at i.
+         Operation leaves all score trees always in tact.
+
+         Note that slice-valued i will implement soon.'''
 
       # item assignment
       if isinstance(i, int):
          if not isinstance(expr, _Component):
             raise TypeError('Must be Abjad component.')
-         _make_orphan_components([expr])
-         if i < 0:
-            j = len(self) + i
-         else:
-            j = i
+         old = self[i]
+         spanners_receipt = _get_subtree_dominant_spanners_receipt(old)
          expr.parentage._switchParentTo(self)
-         self._music[j] = expr
+         self._music.insert(i, expr)
+         detach_receipt = old.detach( )
+         for spanner, index in spanners_receipt:
+            spanner._insert(index, expr)
+            expr.spanners._update([spanner])
 
       # slice assignment
       else:
