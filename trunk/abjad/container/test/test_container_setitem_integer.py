@@ -196,3 +196,41 @@ def test_container_setitem_integer_06( ):
 
    assert check(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
+
+
+def test_container_setitem_integer_07( ):
+   '''Indirectly HALF-spanned containers hand over correctly to a 
+   single leaf. WOW!'''
+
+   t = Voice(Sequential(run(4)) * 2)
+   diatonicize(t)   
+   Beam(t.leaves[0:6])
+   r'''\new Voice {
+        {
+                c'8 [
+                d'8
+                e'8
+                f'8
+        }
+        {
+                g'8
+                a'8 ]
+                b'8
+                c''8
+        }
+   }'''
+
+   t[1] = Rest((1, 2))
+
+   r'''\new Voice {
+        {
+                c'8 [
+                d'8
+                e'8
+                f'8 ]
+        }
+        r2
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n\tr2\n}"
