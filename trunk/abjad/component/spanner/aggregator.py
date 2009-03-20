@@ -79,6 +79,19 @@ class _ComponentSpannerAggregator(_Interface):
       return self._spanners
 
    @property
+   def children(self):
+      '''Return unordered set of all spanners
+         attaching to any children of self.
+         Do not include spanners attaching directly to self.'''
+      from abjad.component.component import _Component
+      result = set([ ])
+      components = iterate(self._client, _Component)
+      components.next( )
+      for component in components:
+         result.update(set(component.spanners.attached))
+      return result
+
+   @property
    def contained(self):
       '''Return an unordered set of all spanners attaching to 
          any components in client, including client.'''
