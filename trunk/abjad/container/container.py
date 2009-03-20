@@ -32,7 +32,6 @@ class Container(_Component):
             parent[start_index : stop_index + 1] = [self]
       self._music = music
       self._establish( )
-      #_Component.__init__(self)
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self.formatter = _ContainerFormatter(self)
@@ -44,46 +43,28 @@ class Container(_Component):
 
    def __add__(self, expr):
       '''Concatenate containers self and expr.
-      The operation c = a + b returns a new Container c with
-      the content of both a and b.
-      The operation is non-commutative: the content of the first
-      operand will be placed before the content of the second operand.'''
+         The operation c = a + b returns a new Container c with
+         the content of both a and b.
+         The operation is non-commutative: the content of the first
+         operand will be placed before the content of the second operand.'''
       return coalesce([self.copy( ), expr.copy( )])
 
    def __contains__(self, expr):
       return expr in self._music
 
    def __delitem__(self, i):
-      # item deletion
       if isinstance(i, int):
          self[i].detach( )
-      # slice deletion
-      else:
+      elif isinstance(i, slice):
          for m in self[i]:
             m.detach( )
 
-   ## TODO Should we make __getitem__ non recursive to distinguish 
-   ##      it from get( ) and to make the behaviour more list-like?
-
-   def __getitem__(self, expr):
-      if isinstance(expr, str):
-         class Visitor(object):
-            def __init__(self, name):
-               self.name = name
-               self.result = None
-            def visit(self, node):
-               ## this guy will return only the last node 
-               ## with name == self.name. 
-               ## What if there are multiple nodes with the same name? 
-               ## Should it return a list?
-               if hasattr(node, 'name') and \
-                  node.name == self.name:
-                  self.result = node
-         v = Visitor(expr)
-         self._navigator._traverse(v)
-         return v.result
-      else:
-         return self._music[expr]
+   def __getitem__(self, i):
+      '''Return component at index i in container.
+         Shallow traversal of container for numeric indices only..
+         For deep, recursive traversal of container for named indices,
+         use Container.get(expr).'''
+      return self._music[i]
             
    def __iadd__(self, expr):
       '''__iadd__ avoids unnecessary copying of structures.'''
@@ -318,12 +299,16 @@ class Container(_Component):
                'Extend containers with lists and containers only.')
          self._update._markForUpdateToRoot( )
 
+   ## TODO: Externalize Container.get( )? ##
+
    def get(self, name = None, classtype = None):
       '''Searches structure recursively for Components with name <name> 
          and/or class name <classtype>.
          The name may be either an added attribute 
          (e.g. Component.name = 'name') or, in the case of Contexts, 
-         the name of the Invocation (e.g. Context.invocation.name = 'name').'''
+         the name of the Invocation (e.g. Context.invocation.name = 'name').
+         For shallow traversal of container for numeric indices,
+         use Conainer.__getitem__(i) instead.'''
       class Visitor(object):
          def __init__(self, name = name, classtype = classtype):
             self.classtype = classtype
