@@ -3,10 +3,8 @@ import py.test
 
 
 def test_like_named_01( ):
-   '''
-   Abjad lets you span whatever you want.
-   With like-named containers this poses no problem for LilyPond.
-   '''
+   '''Abjad lets you span whatever you want.
+      With like-named containers this poses no problem for LilyPond.'''
 
    t = Staff(Voice(run(4)) * 2)
    t[0].invocation.name = 'foo'
@@ -68,7 +66,7 @@ def test_span_like_named_02( ):
       assert isinstance(x, Staff)
    assert len(p.leaves) == 8
 
-   p = Beam((t[0][0], t[1][0]))
+   p = Beam([t[0][0], t[1][0]])
    assert len(p.components) == 2
    for x in p.components:
       assert isinstance(x, Voice)
@@ -109,7 +107,7 @@ def test_span_like_named_03( ):
    t[0][1].invocation.name, t[1][0].invocation.name = 'second', 'second'
    appictate(t)
    
-   p = Beam((t[0][0], t[1][1]))
+   p = Beam([t[0][0], t[1][1]])
    assert len(p.components) == 2
    assert isinstance(p.components[0], Voice)
    assert isinstance(p.components[1], Voice)
@@ -164,7 +162,7 @@ def test_span_like_named_04( ):
    t[0][1].invocation.name, t[1][1].invocation.name = 'second', 'second'
    del(t[1][1])
    appictate(t)
-   p = Beam((t[0][0], t[1][0]))
+   p = Beam([t[0][0], t[1][0]])
    
    assert len(p.components) == 2
    assert len(p.leaves) == 8

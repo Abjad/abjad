@@ -19,12 +19,16 @@ def flip(expr):
    expr_spanners = { }
    for spanner in list(expr.spanners.attached):
       expr_spanners[spanner] = spanner.index(expr)
-      spanner.remove(expr)
+      #spanner.remove(expr)
+      spanner._severComponent(expr)
    next_spanners = { }
    for spanner in list(next.spanners.attached):
       next_spanners[spanner] = spanner.index(next)
-      spanner.remove(next)
+      #spanner.remove(next)
+      spanner._severComponent(next)
    for key, value in next_spanners.items( ):
-      key.insert(value, expr)
+      #key.insert(value, expr)
+      key._insert(value, expr)
    for key, value in expr_spanners.items( ):
-      key.insert(value, next)
+      #key.insert(value, next)
+      key._insert(value, next)

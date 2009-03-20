@@ -48,7 +48,9 @@ def measures_fuse(measure_list):
    for i, measure in enumerate(measure_list):
       for spanner in list(measure.spanners.attached):
          spanner_index = spanner.index(measure)
-         spanner[spanner_index] = new_measure
+         #spanner[spanner_index] = new_measure
+         spanner._components[spanner_index] = new_measure
+         new_measure.spanners._update([spanner])
          subsequent_measures = measure_list[i:]
          for subsequent_measure in subsequent_measures:
             if subsequent_measure in spanner:

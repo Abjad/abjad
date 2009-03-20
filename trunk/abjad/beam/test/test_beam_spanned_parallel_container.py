@@ -161,7 +161,7 @@ def test_spanned_parallel_container_06( ):
    t[1][0].invocation.name = 'foo'
    t[1][1].invocation.name = 'bar'
    appictate(t)
-   p = Beam((t[0], t[1][0], t[2]))
+   p = Beam([t[0], t[1][0], t[2]])
 
    assert len(p.components) == 3
    assert p.components[0] is t[0]

@@ -1,5 +1,6 @@
 from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
+from abjad.helpers.assert_components import _assert_components
 from abjad.rational.rational import Rational
 from copy import copy as python_copy
 
@@ -19,13 +20,13 @@ class Spanner(_Abjad):
    def __contains__(self, expr):
       return self._components.__contains__(expr)
 
-   def __delitem__(self, expr):
-      if isinstance(expr, int):
-         self.remove(self[expr])
-      elif isinstance(expr, slice):
-         start, stop, stride = expr.indices(len(self))
-         for i in reversed(range(start, stop, stride)):
-            del(self[i])
+#   def __delitem__(self, expr):
+#      if isinstance(expr, int):
+#         self.remove(self[expr])
+#      elif isinstance(expr, slice):
+#         start, stop, stride = expr.indices(len(self))
+#         for i in reversed(range(start, stop, stride)):
+#            del(self[i])
 
    def __getitem__(self, expr):
       return self._components.__getitem__(expr)
@@ -33,19 +34,19 @@ class Spanner(_Abjad):
    def __len__(self):
       return self._components.__len__( )
 
-   def __setitem__(self, index, expr):
-      from abjad.helpers.assert_components import _assert_components
-      if isinstance(index, int):
-         _assert_components([expr])
-         self[index].bequeath(expr)
-      elif isinstance(index, slice):
-         assert isinstance(expr, list)
-         start, stop, stride = index.indices(len(self))
-         _assert_components(self[start:stop], 
-            contiguity = 'strict', share = 'parent')
-         del(self[start:stop])
-         for component in reversed(expr):
-            self.insert(start, component)
+#   def __setitem__(self, index, expr):
+#      from abjad.helpers.assert_components import _assert_components
+#      if isinstance(index, int):
+#         _assert_components([expr])
+#         self[index].bequeath(expr)
+#      elif isinstance(index, slice):
+#         assert isinstance(expr, list)
+#         start, stop, stride = index.indices(len(self))
+#         _assert_components(self[start:stop], 
+#            contiguity = 'strict', share = 'parent')
+#         del(self[start:stop])
+#         for component in reversed(expr):
+#            self.insert(start, component)
          
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._summary)
@@ -74,37 +75,37 @@ class Spanner(_Abjad):
    def _blockComponent(self, component):
       component.spanners._spanners.remove(self)
    
-   def _checkNewComponent(self, component):
-      from abjad.helpers.assert_components import _assert_components
-      if len(self) > 0:
-         _assert_components([self[-1], component], contiguity = 'thread')
-
-   def _componentsFlankingIndex(self, index, components):
-      flanking_components = [ ]
-      left = self._componentToLeftOfIndex(index)
-      if left is not None:
-         flanking_components.append(left)
-      flanking_components.extend(component)
-      right = self._componentToRightOfIndex(index)
-      if right is not None:
-         flanking_components.append(right)
-      return flanking_components
-
-   def _componentToLeftOfIndex(self, index):
-      if len(self) == 0:
-         return None
-      if index == 0:
-         return None
-      if index >= len(self):
-         return self[-1]
-      return self[index - 1]
-
-   def _componentToRightOfIndex(self, index):
-      if len(self) == 0:
-         return None
-      if index >= len(self):
-         return None
-      return self[index]
+#   def _checkNewComponent(self, component):
+#      from abjad.helpers.assert_components import _assert_components
+#      if len(self) > 0:
+#         _assert_components([self[-1], component], contiguity = 'thread')
+#
+#   def _componentsFlankingIndex(self, index, components):
+#      flanking_components = [ ]
+#      left = self._componentToLeftOfIndex(index)
+#      if left is not None:
+#         flanking_components.append(left)
+#      flanking_components.extend(component)
+#      right = self._componentToRightOfIndex(index)
+#      if right is not None:
+#         flanking_components.append(right)
+#      return flanking_components
+#
+#   def _componentToLeftOfIndex(self, index):
+#      if len(self) == 0:
+#         return None
+#      if index == 0:
+#         return None
+#      if index >= len(self):
+#         return self[-1]
+#      return self[index - 1]
+#
+#   def _componentToRightOfIndex(self, index):
+#      if len(self) == 0:
+#         return None
+#      if index >= len(self):
+#         return None
+#      return self[index]
 
    def _durationOffsetInMe(self, leaf):
       leaves = self.leaves
@@ -130,6 +131,14 @@ class Spanner(_Abjad):
       self._blockAllComponents( )
       spanner._blockAllComponents( )
       return [(self, spanner, result)]
+
+   def _insert(self, i, component):
+      #from abjad.helpers.assert_components import _assert_components
+      #components_to_check = self._componentsFlankingIndex(i, [component])
+      #print 'to check: %s' % str(components_to_check)
+      #_assert_components(components_to_check, contiguity = 'thread')
+      component.spanners._update([self])
+      self._components.insert(i, component)
 
    def _isMyFirstLeaf(self, leaf):
       leaves = self.leaves
@@ -194,7 +203,7 @@ class Spanner(_Abjad):
    
    @property
    def components(self):
-      return self._components[ : ]
+      return self._components[:]
 
    ## TODO: replace with _SpannerDurationInterface ##
 
@@ -222,9 +231,16 @@ class Spanner(_Abjad):
    ## PUBLIC METHODS ##
 
    def append(self, component):
-      #assert isinstance(component, _Component)
-      self._checkNewComponent(component)
-      self.insert(len(self), component)
+      components = self[-1:] + [component]
+      _assert_components(components, contiguity = 'thread')
+      component.spanners._update([self])
+      self._components.append(component)
+
+   def append_left(self, component):
+      components = [component] + self[:1] 
+      _assert_components(components, contiguity = 'thread')
+      component.spanners._update([self])
+      self._components.insert(0, component)
 
    def copy(self, start = None, stop = None):
       result = python_copy(self)
@@ -241,11 +257,17 @@ class Spanner(_Abjad):
    def clear(self):
       self._severAllComponents( )
 
-   def extend(self, music):
-      assert isinstance(music, (tuple, list))
-      for component in music:
-         assert isinstance(component, _Component)
+   def extend(self, components):
+      input = self[-1:] + components
+      _assert_components(input, contiguity = 'thread')
+      for component in components:
          self.append(component)
+
+   def extend_left(self, components):
+      input = components + self[:1]
+      _assert_components(input, contiguity = 'thread')
+      for component in reversed(components):
+         self.append_left(component)
 
    def fracture(self, i, direction = 'both'):
       if i < 0:
@@ -270,18 +292,29 @@ class Spanner(_Abjad):
    def index(self, component):
       return self._components.index(component)
 
-   def insert(self, i, component):
-      #from abjad.helpers.assert_components import _assert_components
-      #components_to_check = self._componentsFlankingIndex(i, [component])
-      #print 'to check: %s' % str(components_to_check)
-      #_assert_components(components_to_check, contiguity = 'thread')
-      component.spanners._update([self])
-      self._components.insert(i, component)
-
-   def pop(self, i = -1):
-      component = self[i]
+   def pop(self):
+      component = self[-1]
       self._severComponent(component)
       return component
 
-   def remove(self, component):
+   def pop_left(self):
+      component = self[0]
       self._severComponent(component)
+      return component
+
+#   def remove(self, component):
+#      self._severComponent(component)
+
+   def trim(self, component):
+      assert component in self
+      result = [ ]
+      while not result[:1] == [component]:
+         result.insert(0, self.pop( ))
+      return result 
+
+   def trim_left(self, component):
+      assert component in self
+      result = [ ]
+      while not result[-1:] == [component]:
+         result.append(self.pop( ))
+      return result 

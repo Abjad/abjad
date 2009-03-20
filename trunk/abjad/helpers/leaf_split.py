@@ -48,7 +48,8 @@ def leaf_split_binary(split_dur, leaf):
 def _update_leaf_spanners(new_leaf, old_leaf):
    new_leaf.spanners.clear() 
    for spanner in old_leaf.spanners.attached:
-      spanner.insert(spanner.index(old_leaf), new_leaf)
+      #spanner.insert(spanner.index(old_leaf), new_leaf)
+      spanner._insert(spanner.index(old_leaf), new_leaf)
 
 def _link_new_leaf_to_parent(new_leaf, old_leaf):
    parent = old_leaf.parentage.parent

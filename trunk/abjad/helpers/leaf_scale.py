@@ -56,7 +56,8 @@ def leaf_scale_binary(dur, leaf):
       for l in result:
          l.spanners.clear( )
          for spanner in leaf.spanners.attached:
-            spanner.insert(spanner.index(leaf), l)
+            #spanner.insert(spanner.index(leaf), l)
+            spanner._insert(spanner.index(leaf), l)
       ### insert new leaves in parent
       parent = leaf.parentage.parent
       if parent:

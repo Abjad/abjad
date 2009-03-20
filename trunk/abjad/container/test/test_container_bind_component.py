@@ -1,5 +1,10 @@
 from abjad import *
+import py.test
 
+
+py.test.skip('Deprecate Container._bind( )')
+
+## TODO: Deprecate Container._bind( ) entirely
 
 def test_container_bind_component_01( ):
    '''Insert component in container music at index i.

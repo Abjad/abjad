@@ -254,22 +254,22 @@ def test_beam_span_anonymous_10( ):
    assert len(p.leaves) == 8
 
    p.clear( )
-   p = Beam((t[0], t[1]))
+   p = Beam([t[0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
 
    p.clear( )
-   p = Beam((t[0][0], t[1][0]))
+   p = Beam([t[0][0], t[1][0]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
 
    p.clear( )
-   p = Beam((t[0], t[1][0]))
+   p = Beam([t[0], t[1][0]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
 
    p.clear( )
-   p = Beam((t[0][0], t[1]))
+   p = Beam([t[0][0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
 
@@ -310,17 +310,17 @@ def test_beam_span_anonymous_11( ):
    assert len(p.leaves) == 8
    p.clear( )
 
-   p = Beam((t[0], t[1]))
+   p = Beam([t[0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.clear( )
 
-   p = Beam((t[0][0], t[1]))
+   p = Beam([t[0][0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.clear( )
 
-   p = Beam((t[0][0][0], t[1]))
+   p = Beam([t[0][0][0], t[1]])
    assert len(p.components) == 2
    assert len(p.leaves) == 8
    p.clear( )
@@ -462,5 +462,5 @@ def test_beam_span_anonymous_15( ):
       }
    }'''
 
-   assert py.test.raises(ContiguityError, 'p = Beam((t[0], t[1]))')
-   assert py.test.raises(ContiguityError, 'p = Beam((t[1], t[2]))')
+   assert py.test.raises(ContiguityError, 'p = Beam([t[0], t[1]])')
+   assert py.test.raises(ContiguityError, 'p = Beam([t[1], t[2]])')

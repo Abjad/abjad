@@ -93,7 +93,10 @@ def container_hew(container, i, spanners = 'preserve'):
       spanner_index = spanner.index(container)
 
       # insert left and right in spanner in place of container
-      spanner[spanner_index : spanner_index + 1] = [left, right]
+      #spanner[spanner_index : spanner_index + 1] = [left, right]
+      spanner._components[spanner_index:spanner_index+1] = [left, right]
+   left.spanners._update(list(container.spanners.attached))
+   right.spanners._update(list(container.spanners.attached))
 
    # fracture spanners across newly hewn parts, if requested
    if spanners == 'fracture':

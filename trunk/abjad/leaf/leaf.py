@@ -238,4 +238,5 @@ class _Leaf(_Component):
          parent._bind_component(receipt._parentage._index, expr)
 
       for spanner, index in list(receipt._spanners._pairs):
-         spanner.insert(index, expr)
+         #spanner.insert(index, expr)
+         spanner._insert(index, expr)

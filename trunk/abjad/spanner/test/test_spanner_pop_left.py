@@ -1,8 +1,8 @@
 from abjad import *
 
 
-def test_pop_01( ):
-   '''Remove and return rightmost component in spanner.'''
+def test_pop_left_01( ):
+   '''Remove and return leftmost component in spanner.'''
 
    t = Voice(Sequential(run(2)) * 3)
    diatonicize(t)
@@ -23,22 +23,22 @@ def test_pop_01( ):
       }
    }'''
 
-   result = p.pop( )
+   result = p.pop_left( )
 
    r'''\new Voice {
       {
-         c'8 [
+         c'8
          d'8
       }
       {
-         e'8
-         f'8 ]
+         e'8 [
+         f'8
       }
       {
          g'8
-         a'8
+         a'8 ]
       }
    }'''
 
-   assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
-   assert result is t[-1]
+   assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
+   assert result is t[0]

@@ -255,9 +255,12 @@ class Container(_Component):
       # for every spanner attached to me ...
       for spanner in list(self.spanners.attached):
          # insert expr in spanner just before me ...
-         spanner.insert(spanner.index(self), expr)
+         #spanner.insert(spanner.index(self), expr)
+         spanner._components.insert(spanner.index(self), expr)
+         expr.spanners._update([spanner])
          # ... and then remove me from spanner
-         spanner.remove(self)
+         #spanner.remove(self)
+         spanner._severComponent(self)
 
       # if i have a parent
       parent = self.parentage.parent
@@ -287,7 +290,8 @@ class Container(_Component):
                self[i - 1].spanners.attached & self[i].spanners.attached
             if bounding_spanners:
                for spanner in bounding_spanners:
-                  spanner.insert(spanner.index(self[i]), expr)
+                  #spanner.insert(spanner.index(self[i]), expr)
+                  spanner._insert(spanner.index(self[i]), expr)
          #expr.parentage.parent = self
          expr.parentage._switchParentTo(self)
          self._music.insert(i, expr)

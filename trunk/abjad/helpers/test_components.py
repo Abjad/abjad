@@ -425,7 +425,7 @@ def __are_thread_contiguous_components(expr, allow_orphans = True):
    first_thread = first.parentage._threadSignature
    prev = first
    for cur in expr[1:]:
-      print prev, cur
+      #print prev, cur
       if not isinstance(cur, _Component):
          return False
       if not cur.parentage.orphan:

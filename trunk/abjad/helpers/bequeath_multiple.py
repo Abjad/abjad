@@ -45,7 +45,10 @@ def bequeath_multiple(old_components, new_components):
    # insert new components in dominant spanners
    for dominant_spanner in dominant_spanners:
       index = dominant_spanner.index(old_components[0])
-      dominant_spanner[index:index] = new_components
+      #dominant_spanner[index:index] = new_components
+      dominant_spanner._components[index:index] = new_components
+   for component in new_components:
+      component.spanners._update(dominant_spanners)
 
    # unspan old components
    components_detach_spanners_shallow(old_components)

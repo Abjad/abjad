@@ -18,7 +18,8 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in list(self.attached):
          index = spanner.index(client)
          receipt._pairs.add((spanner, index))
-         spanner.remove(client)
+         #spanner.remove(client)
+         spanner._severComponent(client)
       return receipt
 
    def _fractureContents(self):
@@ -43,18 +44,26 @@ class _ComponentSpannerAggregator(_Interface):
       client = self._client
       assert client is receipt._component
       for spanner, index in receipt._pairs:
-         spanner.insert(index, client)
+         #spanner.insert(index, client)
+         spanner._insert(index, client)
       receipt._empty( )
       return client
 
+   ## TODO: Maybe this should be deprecated in favor of 
+   ##       externazlied splice(component, components) and
+   ##       splice_left(component, components) helpers.
+
    def _splice(self, components):
-      '''Splice components into all spanners attached self.'''
+      '''Splice components into all spanners attached self,
+         at the index immediately following self.'''
       client = self._client
       result = set([ ])
       for spanner in list(self.attached):
          index = spanner.index(client) + 1
-         spanner[index:index] = components
+         spanner._components[index:index] = components
          result.add(spanner)
+      for component in components:
+         component.spanners._update(list(self.attached))
       return result
 
    def _update(self, spanners):
