@@ -3,6 +3,10 @@ from abjad.helpers.get_attached_spanners import _get_attached_spanners
 from abjad.helpers.is_dominant_spanner import _is_dominant_spanner
 
 
+## TODO: Deprecate entirely in favor of _get_dominant_spanners_receipt( ).
+##       After deprecation, rename _get_dominant_spanners_receipt( )
+##       to simply _get_dominant_spanners.
+
 def _get_dominant_spanners(components):
    '''Return list of all spanners that include all components in list.'''
    

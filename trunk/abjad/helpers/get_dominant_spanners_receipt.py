@@ -3,22 +3,22 @@ from abjad.helpers.assert_components import _assert_components
 from abjad.helpers.iterate import iterate
 
 
-def _get_subtree_dominant_spanners_receipt(subtrees):
+def _get_dominant_spanners_receipt(components):
    '''Return Python list of (spanner, index) pairs.
       Each (spanner, index) pair gives a spanner which dominates
-      all components in 'subtrees' together with the start-index
-      at which spanner first encounters 'subtrees'.
+      all components in 'components' together with the start-index
+      at which spanner first encounters 'components'.
 
       Use this helper to 'lift' any and all spanners temporarily
-      from 'subtrees', perform some action to the underlying
+      from 'components', perform some action to the underlying
       score tree, and then reattach all spanners to new
       score components.
  
       TODO: Return custom _MultispannerReceipt instance.'''
 
-   _assert_components(subtrees, contiguity = 'thread')
+   _assert_components(components, contiguity = 'thread')
 
-   first, last = subtrees[0], subtrees[-1]
+   first, last = components[0], components[-1]
    subtree_begin = first.offset.score
    subtree_end = last.offset.score + last.duration.prolated
 
