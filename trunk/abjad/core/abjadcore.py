@@ -7,16 +7,16 @@ class _Abjad(object):
       return id(self) == id(arg)
 
    def __ge__(self, arg):
-      return Exception(NoteImplemented)
+      return Exception(NotImplemented)
 
    def __gt__(self, arg):
-      return Exception(NoteImplemented)
+      return Exception(NotImplemented)
 
    def __le__(self, arg):
-      return Exception(NoteImplemented)
+      return Exception(NotImplemented)
 
    def __lt__(self, arg):
-      return Exception(NoteImplemented)
+      return Exception(NotImplemented)
 
    def __ne__(self, arg):
       return id(self) != id(arg)
