@@ -39,6 +39,8 @@ def bequeath_multiple(old_components, new_components):
    # detach new components from parentage
    components_detach_parentage(new_components)
 
+   ## TODO: Replace with call to _get_comonents_dominant_spanners_receipt( )
+
    # get dominant spanners
    dominant_spanners = _get_dominant_spanners(old_components)
    

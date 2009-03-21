@@ -122,7 +122,9 @@ class Container(_Component):
       else:
          if not _test_components(expr):
             raise TypeError('Must be list of Abjad components.')
+         #old = self[i.start:i.stop] 
          _make_orphan_components(expr)
+         #spanners_receipt = _get_components_dominant_spanners_receipt(old)
          for x in expr:
             x.parentage._switchParentTo(self)
          self._music[i.start : i.stop] = expr
