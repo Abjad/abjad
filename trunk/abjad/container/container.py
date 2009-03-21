@@ -10,12 +10,15 @@ from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.components_detach_parentage import components_detach_parentage
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
+from abjad.helpers.get_dominant_spanners_between import \
+   _get_dominant_spanners_between
 from abjad.helpers.get_dominant_spanners_receipt import \
    _get_dominant_spanners_receipt
 from abjad.helpers.iterate import iterate
 from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.helpers.test_components import _test_components
+from abjad.helpers.widen_zero_length_slice import _widen_zero_length_slice
 from abjad.notehead.interface import _NoteHeadInterface
 from abjad.parentage.parentage import _Parentage
 
@@ -25,7 +28,11 @@ class Container(_Component):
    def __init__(self, music = None):
       music = music or [ ]
       assert isinstance(music, list)
+      ## Parentage and spanners must aggregate early.
+      ## Reason is so that music can be passed around here
+      ## and still respect parentage and spanners.
       self._parentage = _Parentage(self)
+      self.spanners = _ContainerSpannerAggregator(self)
       _Component.__init__(self)
       if music:
          parent = music[0].parentage.parent
@@ -42,7 +49,7 @@ class Container(_Component):
       self.formatter = _ContainerFormatter(self)
       ## TODO: Reimplement _NoteHeadInterface on _Component
       self.notehead = _NoteHeadInterface(self)
-      self.spanners = _ContainerSpannerAggregator(self)
+      #self.spanners = _ContainerSpannerAggregator(self)
 
    ## OVERLOADS ##
 
@@ -101,16 +108,15 @@ class Container(_Component):
       '''Set expr in self at nonnegative integer index i.
          Give spanners attaching to the current node at i to expr.
          Same with spanners attaching to children of current node at i.
-         Operation leaves all score trees always in tact.
-
-         Note that slice-valued i will implement soon.'''
+         Operation leaves all score trees always in tact.'''
 
       # item assignment
       if isinstance(i, int):
          if not isinstance(expr, _Component):
             raise TypeError('Must be Abjad component.')
          old = self[i]
-         spanners_receipt = _get_dominant_spanners_receipt(old)
+         #spanners_receipt = _get_dominant_spanners_receipt(old)
+         spanners_receipt = _get_dominant_spanners_receipt([old])
          expr.parentage._switchParentTo(self)
          self._music.insert(i, expr)
          detach_receipt = old.detach( )
@@ -122,12 +128,30 @@ class Container(_Component):
       else:
          if not _test_components(expr):
             raise TypeError('Must be list of Abjad components.')
-         #old = self[i.start:i.stop] 
-         _make_orphan_components(expr)
-         #spanners_receipt = _get_components_dominant_spanners_receipt(old)
-         for x in expr:
-            x.parentage._switchParentTo(self)
-         self._music[i.start : i.stop] = expr
+         start, stop, stride = i.indices(len(self))
+         old = self[start:stop]
+         if start == stop:
+            if start == 0:
+               left = None
+            else:
+               left = self[start - 1]
+            if len(self) <= stop:
+               right = None
+            else:
+               right = self[stop]
+            print left, right
+            spanners_receipt = _get_dominant_spanners_between(left, right)
+         else:   
+            spanners_receipt = _get_dominant_spanners_receipt(old)
+         for component in old:
+            component.detach( )
+         self._music[start:start] = expr
+         for component in expr:
+            component.parentage._switchParentTo(self)
+         for spanner, index in spanners_receipt:
+            for component in reversed(expr):
+               spanner._insert(index, component)
+               component.spanners._update([spanner])
 
       self._update._markForUpdateToRoot( )
 

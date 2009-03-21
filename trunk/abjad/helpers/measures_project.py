@@ -1,4 +1,5 @@
-from abjad.helpers.components_likely_multiplier import _components_likely_multiplier
+from abjad.helpers.components_likely_multiplier import \
+   _components_likely_multiplier
 from abjad.helpers.container_contents_scale import container_contents_scale
 from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
 from abjad.helpers.in_terms_of import _in_terms_of

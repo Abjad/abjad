@@ -18,6 +18,9 @@ def _get_dominant_spanners_receipt(components):
 
    _assert_components(components, contiguity = 'thread')
 
+   if len(components) == 0:
+      return [ ]
+
    first, last = components[0], components[-1]
    subtree_begin = first.offset.score
    subtree_end = last.offset.score + last.duration.prolated

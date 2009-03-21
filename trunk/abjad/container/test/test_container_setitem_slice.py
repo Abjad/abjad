@@ -16,21 +16,17 @@ def test_container_setitem_slice_01( ):
            f'8
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\tg'8\n\te'8\n\tf'8\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\tg'8\n\te'8\n\tf'8\n}"
 
 
 def test_container_setitem_slice_02( ):
-   '''Containers set single leaves correctly in a spanned structure.
-      You must spanned newly set leaves by hand, if desired.'''
-
-   py.test.skip('TODO: Make container handle spanners automatically.')
+   '''Set single leaf between spanned components.'''
 
    t = Staff(scale(4))
-   p = Beam(t[ : ])
+   p = Beam(t[:])
    note = Note(7, (1, 8))
    t[2:2] = [note]
-   p[2:2] = [note]
 
    r'''\new Staff {
            c'8 [
@@ -40,15 +36,13 @@ def test_container_setitem_slice_02( ):
            f'8 ]
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\tg'8\n\te'8\n\tf'8 ]\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\tg'8\n\te'8\n\tf'8 ]\n}"
    
 
 def test_container_setitem_slice_03( ):
-   '''Containers set sequences of notes correctly.
-      Spanners set sequences of notes correctly.'''
-
-   py.test.skip('TODO: Make container handle spanners automatically.')
+   '''Containers set sequence of leaves 
+      between spanned components.'''
 
    notes = scale(6)
    beginning = notes[:2]
@@ -56,7 +50,7 @@ def test_container_setitem_slice_03( ):
    end = notes[4:]
 
    t = Staff(beginning + end)
-   p = Beam(t[ : ])
+   p = Beam(t[:])
 
    r'''\new Staff {
            c'8 [
@@ -66,7 +60,6 @@ def test_container_setitem_slice_03( ):
    }'''
 
    t[2:2] = middle
-   p[2:2] = middle
 
    r'''\new Staff {
            c'8 [
@@ -77,20 +70,16 @@ def test_container_setitem_slice_03( ):
            a'8 ]
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8 ]\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8 ]\n}"
 
 
 def test_container_setitem_slice_04( ):
-   '''Containers set a single leaf over a sequence of leaves correctly.
-      Spanners set a single leaf over a sequence of leaves correctly.'''
-
-   py.test.skip('TODO: Make container handle spanners automatically.')
+   '''Replace sequence of spanned components with a single leaf.'''
 
    t = Staff(scale(4))
-   p = Beam(t[ : ])
+   p = Beam(t[:])
    note = Note(12, (1, 8))
-   p[1:3] = [note]
    t[1:3] = [note]
 
    r'''\new Staff {
@@ -99,21 +88,17 @@ def test_container_setitem_slice_04( ):
            f'8 ]
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8 [\n\tc''8\n\tf'8 ]\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\tc''8\n\tf'8 ]\n}"
 
 
 def test_container_setitem_slice_05( ):
-   '''Containers set a sequence of leaves over a sequence of leaves correctly.
-      Spanners set a sequence of leaves over a sequence of leaves correctly.
-   '''
-
-   py.test.skip('TODO: Make container handle spanners automatically.')
+   '''Replace a sequence of multiple components with
+      a different sequence of multiple components.'''
 
    t = Staff(scale(4))
-   p = Beam(t[ : ])
+   p = Beam(t[:])
    notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
-   p[1:3] = notes
    t[1:3] = notes
 
    r'''\new Staff {
@@ -124,8 +109,8 @@ def test_container_setitem_slice_05( ):
            f'8 ]
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8 [\n\tb'8\n\ta'8\n\tg'8\n\tf'8 ]\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\tb'8\n\ta'8\n\tg'8\n\tf'8 ]\n}"
 
 
 def test_container_setitem_slice_06( ):
@@ -158,9 +143,9 @@ def test_container_setitem_slice_06( ):
            }
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
    assert check(t)
    assert len(sequential) == 0
+   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_container_setitem_slice_07( ):
@@ -194,8 +179,8 @@ def test_container_setitem_slice_07( ):
            }
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_container_setitem_slice_08( ):
@@ -265,8 +250,8 @@ def test_container_setitem_slice_09( ):
            }
    }'''
    
-   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 ]\n\t}\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_container_setitem_slice_10( ):
@@ -302,5 +287,5 @@ def test_container_setitem_slice_10( ):
            f'8 ]
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t}\n\tf'8 ]\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t}\n\tf'8 ]\n}"

@@ -1,4 +1,5 @@
 from abjad.exceptions.exceptions import AssignabilityError
+from abjad.helpers.check import check
 from abjad.helpers.spanners_detach import spanners_detach
 from abjad.helpers.splice_after import splice_after
 from abjad.leaf.leaf import _Leaf

@@ -9,6 +9,7 @@ def leaves_multiply(expr, total = 1):
       preserve parentage and spanners.'''
 
    for leaf in retroiterate(expr, _Leaf):
+      print 'debug: leaf %s' % leaf
       _leaf_multiply(leaf, total)
    
 

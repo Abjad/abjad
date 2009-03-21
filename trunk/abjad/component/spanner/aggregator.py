@@ -49,22 +49,18 @@ class _ComponentSpannerAggregator(_Interface):
       receipt._empty( )
       return client
 
-   ## TODO: Maybe this should be deprecated in favor of 
-   ##       externazlied splice(component, components) and
-   ##       splice_left(component, components) helpers.
-
-   def _splice(self, components):
-      '''Splice components into all spanners attached self,
-         at the index immediately following self.'''
-      client = self._client
-      result = set([ ])
-      for spanner in list(self.attached):
-         index = spanner.index(client) + 1
-         spanner._components[index:index] = components
-         result.add(spanner)
-      for component in components:
-         component.spanners._update(list(self.attached))
-      return result
+#   def _splice(self, components):
+#      '''Splice components into all spanners attached self,
+#         at the index immediately following self.'''
+#      client = self._client
+#      result = set([ ])
+#      for spanner in list(self.attached):
+#         index = spanner.index(client) + 1
+#         spanner._components[index:index] = components
+#         result.add(spanner)
+#      for component in components:
+#         component.spanners._update(list(self.attached))
+#      return result
 
    def _update(self, spanners):
       '''Added spanners to _spanners.'''
