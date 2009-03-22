@@ -14,8 +14,9 @@ def leaf_split(split_dur, leaf):
       return [leaf]
    else:
       new_leaf = leaf.copy()
-      _update_leaf_spanners(new_leaf, leaf)
+      new_leaf.spanners.clear( )
       _link_new_leaf_to_parent(new_leaf, leaf)
+      _update_leaf_spanners(new_leaf, leaf)
       l1 = leaf_scale(unprolated_split_dur, new_leaf)
       l2 = leaf_scale(leaf.duration.written - unprolated_split_dur, leaf)
       return [l1, l2]
@@ -37,8 +38,9 @@ def leaf_split_binary(split_dur, leaf):
       ### remove articulations and dynamics
       leaf.articulations = None
       leaf.dynamics = None
-      _update_leaf_spanners(new_leaf, leaf)
+      new_leaf.spanners.clear( )
       _link_new_leaf_to_parent(new_leaf, leaf)
+      _update_leaf_spanners(new_leaf, leaf)
       l1 = leaf_scale_binary(unprolated_split_dur, new_leaf)
       l2 = leaf_scale_binary(leaf.duration.written-unprolated_split_dur, leaf)
       result = [l1, l2] 
@@ -46,10 +48,12 @@ def leaf_split_binary(split_dur, leaf):
 
 
 def _update_leaf_spanners(new_leaf, old_leaf):
-   new_leaf.spanners.clear() 
+#   new_leaf.spanners.clear() 
+#   for spanner in old_leaf.spanners.attached:
+#      spanner._insert(spanner.index(old_leaf), new_leaf)
    for spanner in old_leaf.spanners.attached:
-      #spanner.insert(spanner.index(old_leaf), new_leaf)
-      spanner._insert(spanner.index(old_leaf), new_leaf)
+      if spanner[0] is old_leaf:
+         spanner.append_left(new_leaf)
 
 def _link_new_leaf_to_parent(new_leaf, old_leaf):
    parent = old_leaf.parentage.parent
