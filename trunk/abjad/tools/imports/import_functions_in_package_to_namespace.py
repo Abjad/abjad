@@ -1,4 +1,4 @@
-from abjad.tools.imports.import_functions_from_module import _get_functions_in_module
+from abjad.tools.imports.get_functions_in_module import _get_functions_in_module
 import os
 
 
