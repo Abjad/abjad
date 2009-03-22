@@ -18,7 +18,7 @@ from abjad.helpers.iterate import iterate
 from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.helpers.test_components import _test_components
-from abjad.helpers.widen_zero_length_slice import _widen_zero_length_slice
+#from abjad.helpers.widen_zero_length_slice import _widen_zero_length_slice
 from abjad.notehead.interface import _NoteHeadInterface
 from abjad.parentage.parentage import _Parentage
 
