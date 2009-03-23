@@ -27,20 +27,8 @@ class Container(_Component):
    def __init__(self, music = None):
       '''Initialize container with music list of length zero or grater.'''
       _Component.__init__(self)
-      ## Container spanner aggregator must attach early.
-      ## Reason is so that music can be passed around here
-      ## and still respect parentage and spanners.
       self.spanners = _ContainerSpannerAggregator(self)
-      music = music or [ ]
-      _assert_components(music, 'strict', share = 'thread')
-      if music:
-         parent = music[0].parentage.parent
-         if parent is not None:
-            start_index = parent.index(music[0])
-            stop_index = parent.index(music[-1])
-            parent[start_index:stop_index+1] = [self]
-      self._music = music
-      self._establish( )
+      self._initializeMusic(music)
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self.formatter = _ContainerFormatter(self)
@@ -214,10 +202,17 @@ class Container(_Component):
       self._update._markForUpdateToRoot( )
       return component
 
-   def _establish(self):
-      '''Set all parent of all components in container to container.'''
+   def _initializeMusic(self, music):
+      music = music or [ ]
+      _assert_components(music, 'strict', share = 'thread')
+      if music:
+         parent = music[0].parentage.parent
+         if parent is not None:
+            start_index = parent.index(music[0])
+            stop_index = parent.index(music[-1])
+            parent[start_index:stop_index+1] = [self]
+      self._music = music
       for component in self._music:
-         #component.parentage.parent = self
          component.parentage._switchParentTo(self)
 
    ## PUBLIC METHODS ## 
