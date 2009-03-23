@@ -165,13 +165,19 @@ class Container(_Component):
       else:
          return None
 
-   ## TODO: Make Container.parallel settable. ##
-
-   @property
-   def parallel(self):
-      '''True when container is parallel, otherwise False.'''
-      return self.brackets in ('double-angle', 'simultaneous')
-
+   @apply
+   def parallel( ):
+      '''Read / write boolean for paralle / sequential containers.'''
+      def fget(self):
+         return self.brackets in ('double-angle', 'simultaneous')
+      def fset(self, arg):
+         assert isinstance(arg, bool)
+         if arg == True:
+            self.brackets = 'simultaneous'
+         else:
+            self.brackets = 'sequential'
+      return property(**locals( ))
+              
    ### TODO: i propose this instead. 
    # if we want a next Leaf, we can call a nextLeaf explicitly.
    #   @property

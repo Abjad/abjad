@@ -31,3 +31,13 @@ def test_container_parallel_02( ):
    t = Container([ ])
    t.brackets = 'simultaneous'
    assert t.parallel
+
+
+def test_container_parallel_03( ):
+   '''Container 'parallel' is settable.'''
+
+   t = Container([ ])
+   assert not t.parallel
+
+   t.parallel = True
+   assert t.parallel
