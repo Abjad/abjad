@@ -8,8 +8,7 @@ def test_lcopy_01( ):
    t = Staff(FixedDurationTuplet((2, 8), run(3)) * 2)
    diatonicize(t)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \times 2/3 {
                    c'8
                    d'8
@@ -20,13 +19,11 @@ def test_lcopy_01( ):
                    g'8
                    a'8
            }
-   }
-   '''
+   }'''
 
    u = lcopy(t, 1, 5)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \times 2/3 {
                    d'8
                    e'8
@@ -35,8 +32,7 @@ def test_lcopy_01( ):
                    f'8
                    g'8
            }
-   }
-   '''
+   }'''
 
    assert check(t)
    assert check(u)
@@ -49,8 +45,7 @@ def test_lcopy_02( ):
    t = Staff([Voice(FixedDurationTuplet((2, 8), run(3)) * 2)])
    diatonicize(t)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \new Voice {
                    \times 2/3 {
                            c'8
@@ -63,13 +58,11 @@ def test_lcopy_02( ):
                            a'8
                    }
            }
-   }
-   '''
+   }'''
    
    u = lcopy(t, 1, 5)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \times 2/3 {
                    d'8
                    e'8
@@ -78,8 +71,7 @@ def test_lcopy_02( ):
                    f'8
                    g'8
            }
-   }
-   '''
+   }'''
 
    assert check(t)
    assert check(u)
@@ -103,8 +95,7 @@ def test_lcopy_04( ):
    t.brackets = 'double-angle'
    diatonicize(t)
 
-   r'''
-   \new Staff <<
+   r'''\new Staff <<
            \new Voice {
                    c'8
                    d'8
@@ -117,19 +108,14 @@ def test_lcopy_04( ):
                    b'8
                    c''8
            }
-   >>
-   '''
+   >>'''
 
    u = lcopy(t[0], 1, 3)
 
-   r'''
-   \new Voice {
+   r'''\new Voice {
            d'8
            e'8
-   }
-   '''
-
-   py.test.skip('TODO: Make work with new next and prev navigation.')
+   }'''
 
    assert check(t)
    assert check(u)
@@ -142,11 +128,9 @@ def test_lcopy_05( ):
    t = RigidMeasure((4, 8), scale(4))
    u = lcopy(t, 1, 3)
 
-   r'''
-        \time 2/8
+   r'''\time 2/8
         d'8
-        e'8
-   '''
+        e'8'''
 
    assert check(u)
    assert u.format == "\t\\time 2/8\n\td'8\n\te'8"
@@ -159,12 +143,10 @@ def test_lcopy_06( ):
    t = score[0]
    new = lcopy(t, 1, 3)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            d'8
            e'8
-   }
-   '''
+   }'''
    
    assert check(t)
    assert check(new)
@@ -177,27 +159,23 @@ def test_lcopy_07( ):
 
    t = RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), scale(5))])
 
-   r'''
-        \time 4/8
+   r'''\time 4/8
         \times 4/5 {
                 c'8
                 d'8
                 e'8
                 f'8
                 g'8
-        }
-   '''
+        }'''
 
    u = lcopy(t, 1, 4)
 
-   r'''
-        \time 3/10
+   r'''\time 3/10
         \scaleDurations #'(4 . 5) {
                         d'8
                         e'8
                         f'8
-        } 
-   '''
+        }'''
 
    assert check(t)
    assert check(u)
@@ -210,8 +188,7 @@ def test_lcopy_08( ):
 
    t = Voice([RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), scale(5))])])
   
-   r'''
-   \new Voice {
+   r'''\new Voice {
                    \time 4/8
                    \times 4/5 {
                            c'8
@@ -220,21 +197,18 @@ def test_lcopy_08( ):
                            f'8
                            g'8
                    }
-   }
-   '''
+   }'''
 
    u = lcopy(t, 1, 4)
 
-   r'''
-   \new Voice {
+   r'''\new Voice {
                    \time 3/10
                    \scaleDurations #'(4 . 5) {
                                    d'8
                                    e'8
                                    f'8
                    }
-   }
-   '''
+   }'''
 
    assert check(t)
    assert check(u)
@@ -247,8 +221,7 @@ def test_lcopy_09( ):
    t = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), run(3)) * 2)
    diatonicize(t)
 
-   r'''
-        \time 4/8
+   r'''\time 4/8
         \times 2/3 {
                 c'8
                 d'8
@@ -258,21 +231,18 @@ def test_lcopy_09( ):
                 f'8
                 g'8
                 a'8
-        }
-   '''
+        }'''
 
    u = lcopy(t, 1)
 
-   r'''
-        \time 5/12
+   r'''\time 5/12
         \scaleDurations #'(2 . 3) {
                         d'8
                         e'8
                         f'8
                         g'8
                         a'8
-        }
-   '''
+        }'''
 
    assert check(t)
    assert check(u)
@@ -285,8 +255,7 @@ def test_lcopy_10( ):
    t = Staff(RigidMeasure((3, 8), run(3)) * 2)
    diatonicize(t)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
                    \time 3/8
                    c'8
                    d'8
@@ -295,19 +264,16 @@ def test_lcopy_10( ):
                    f'8
                    g'8
                    a'8
-   }
-   '''
+   }'''
 
    u = lcopy(t, 2, 4)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
                    \time 1/8
                    e'8
                    \time 1/8
                    f'8
-   }
-   '''
+   }'''
    
    assert check(t)
    assert check(u)

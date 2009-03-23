@@ -8,10 +8,10 @@ def test_container_bequeath_01( ):
    t = Voice(Sequential(run(2)) * 3)
    t.invocation.name = 'foo'
    diatonicize(t)
-   Glissando(t[ : ])
+   Glissando(t[:])
    Beam(t.leaves)
    
-   r'''\new Voice {
+   r'''\context Voice = "foo" {
       {
          c'8 [ \glissando
          d'8 \glissando
@@ -34,15 +34,12 @@ def test_container_bequeath_01( ):
    }'''
 
    new = Voice( )
-   new.invocation.voice = 'foo'
+   new.invocation.name = 'foo'
    old.bequeath(new)
 
-   py.test.skip('TODO: Make this work with new foo voice name.')
-
-   #assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t\\new Voice {\n\t\te'8 \\glissando\n\t\tf'8 \\glissando\n\t}\n\t{\n\t\tg'8 \\glissando\n\t\ta'8 ]\n\t}\n}"
    assert t.format == '\\context Voice = "foo" {\n\t{\n\t\tc\'8 [ \\glissando\n\t\td\'8 \\glissando\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8 \\glissando\n\t\tf\'8 \\glissando\n\t}\n\t{\n\t\tg\'8 \\glissando\n\t\ta\'8 ]\n\t}\n}'
 
-   r'''\new Voice {
+   r'''\context Voice = "foo" {
       {
          c'8 [ \glissando
          d'8 \glissando
@@ -64,9 +61,9 @@ def test_container_bequeath_01( ):
    r'''{
    }'''
 
-   assert new.format == "\\new Voice {\n\te'8 \\glissando\n\tf'8 \\glissando\n}"
+   assert new.format == '\\context Voice = "foo" {\n\te\'8 \\glissando\n\tf\'8 \\glissando\n}'
 
-   r'''\new Voice {
+   r'''\context Voice = "foo" {
       e'8 \glissando
       f'8 \glissando
    }'''
@@ -79,7 +76,7 @@ def test_container_bequeath_02( ):
 
    t = Voice(Sequential(run(2)) * 3)
    diatonicize(t)
-   Glissando(t[ : ])
+   Glissando(t[:])
    Beam(t.leaves)
    
    r'''\new Voice {

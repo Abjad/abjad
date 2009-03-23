@@ -28,41 +28,37 @@ def test_parentage_detach_02( ):
    '''Spanned leaves can parentage-detach.
       Spanners continue to attach to parentage-detached leaves.'''
 
-   t = Staff([Voice(scale(4))])
+   t = Voice([Sequential(scale(4))])
    p = Beam(t.leaves)
    leaf = t.leaves[0]
 
-   r'''
-   \new Staff {
-           \new Voice {
-                   c'8 [
-                   d'8
-                   e'8
-                   f'8 ]
-           }
-   }
-   '''
+   r'''\new Voice {
+      {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
+      }
+   }'''
 
    leaf.parentage._detach( )
+   assert not check(t)
+   assert not check(leaf)
+
    t.embed(0, leaf)
 
-   r'''
-   \new Staff {
+   r'''\new Voice {
            c'8 [
-           \new Voice {
+           {
                    d'8
                    e'8
                    f'8 ]
            }
-   }
-   '''
-
-   assert t.format == "\\new Staff {\n\tc'8 [\n\t\\new Voice {\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
-
-   py.test.skip('TODO: Make work with new next and prev navigation.')
+   }'''
 
    assert check(t)
    assert check(leaf)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\t{\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_parentage_detach_03( ):
@@ -113,45 +109,45 @@ def test_parentage_detach_04( ):
    '''Spanned containers parentage-detach successfully.
       Spanners continue to attach to parentage-detached containers.'''
 
-   t = Staff([Voice(Sequential(run(2)) * 2)])
-   sequential = t[0][0]
-   p = Beam(t[0][ : ])
+   t = Voice([Sequential(FixedDurationTuplet((2, 8), scale(3)) * 2)])
+   tuplet = t[0][0]
+   p = Beam(t[0][:])
 
-   r'''
-   \new Staff {
-           \new Voice {
-                   {
-                           c'8 [
-                           c'8
-                   }
-                   {
-                           c'8
-                           c'8 ]
-                   }
-           }
-   }
-   '''
+   r'''\new Voice {
+      {
+         \times 2/3 {
+            c'8 [
+            d'8
+            e'8
+         }
+         \times 2/3 {
+            c'8
+            d'8
+            e'8 ]
+         }
+      }
+   }'''
 
-   sequential.parentage._detach( )
-   t.embed(0, sequential)
+   tuplet.parentage._detach( )
+   assert not check(t)
+   assert not check(tuplet)
+
+   t.embed(0, tuplet)
    
-   r'''
-   \new Staff {
-           {
-                   c'8 [
-                   c'8
-           }
-           \new Voice {
-                   {
-                           c'8
-                           c'8 ]
-                   }
-           }
-   }
-   '''
-
-   assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t}\n\t\\new Voice {\n\t\t{\n\t\t\tc'8\n\t\t\tc'8 ]\n\t\t}\n\t}\n}"
-   
-   py.test.skip('TODO: Make work with new next and prev leaf navigation.')
+   r'''\new Voice {
+      \times 2/3 {
+         c'8 [
+         d'8
+         e'8
+      }
+      {
+         \times 2/3 {
+            c'8
+            d'8
+            e'8 ]
+         }
+      }
+   }'''
 
    assert check(t)
+   assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\times 2/3 {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8 ]\n\t\t}\n\t}\n}"
