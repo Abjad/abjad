@@ -19,6 +19,8 @@ def _import_functions_in_package_to_namespace(package, namespace):
    '''
    functions = [ ]
    for root, dirs, files in os.walk(package):
+      if root.endswith('test'):
+         continue
       for file in files:
          if file.endswith('py') and not file.startswith(('_', '.')):
             module = os.sep.join([root, file[:-3]])
