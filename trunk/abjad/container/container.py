@@ -11,8 +11,6 @@ from abjad.helpers.components_detach_parentage import \
    components_detach_parentage
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
-#from abjad.helpers.get_dominant_spanners_between import \
-#   _get_dominant_spanners_between
 from abjad.helpers.get_dominant_spanners_receipt import \
    _get_dominant_spanners_receipt
 from abjad.helpers.get_dominant_spanners_slice import \
@@ -28,6 +26,7 @@ from abjad.parentage.parentage import _Parentage
 class Container(_Component):
 
    def __init__(self, music = None):
+      '''Initialize container with music list of length zero or grater.'''
       music = music or [ ]
       assert isinstance(music, list)
       ## Parentage and spanners must aggregate early.
@@ -106,11 +105,12 @@ class Container(_Component):
       return '(%s)' % self._summary
 
    def __setitem__(self, i, expr):
-      '''Set expr in self at nonnegative integer index i.
-         Give spanners attaching to the current node at i to expr.
-         Same with spanners attaching to children of current node at i.
-         Operation leaves all score trees always in tact.'''
-
+      '''Set 'expr' in self at nonnegative integer index i.
+         Or, set 'expr' in self at slice i.
+         Find spanners that dominate self[i] and children of self[i].
+         Replace contents at self[i] with 'expr'.
+         Reattach spanners to new contents.
+         This operation leaves all score trees always in tact.'''
       # item assignment
       if isinstance(i, int):
          if not isinstance(expr, _Component):
@@ -123,7 +123,6 @@ class Container(_Component):
          for spanner, index in spanners_receipt:
             spanner._insert(index, expr)
             expr.spanners._update([spanner])
-
       # slice assignment
       else:
          if not _test_components(expr):
@@ -140,13 +139,13 @@ class Container(_Component):
             for component in reversed(expr):
                spanner._insert(index, component)
                component.spanners._update([spanner])
-
       self._update._markForUpdateToRoot( )
 
    ## PRIVATE ATTRIBUTES ##
 
    @property
    def _summary(self):
+      '''Formatted summary of container contents for repr output.'''
       if len(self) > 0:
          return ', '.join([str(x) for x in self._music])
       else:
@@ -156,6 +155,7 @@ class Container(_Component):
 
    @apply
    def brackets( ):
+      '''Read / write parallel or sequential brackets of container.'''
       def fget(self):
          return self._brackets
       def fset(self, name):
@@ -164,24 +164,28 @@ class Container(_Component):
 
    @property
    def duration(self):
+      '''Read-only reference to container duration interface.'''
       return self._duration
 
    @property
    def leaves(self):
+      '''Python list of all leaves in container.'''
       from abjad.leaf.leaf import _Leaf
       return list(iterate(self, _Leaf))
 
    @property
    def next(self):
-      '''Next leaf righwards, otherwise None.'''
+      '''Naive next leaf righwards, otherwise None.'''
       if len(self.leaves) > 0:
          return self.leaves[-1].next
       else:
          return None
 
-   ## TODO make this settable?
+   ## TODO: Make Container.parallel settable. ##
+
    @property
    def parallel(self):
+      '''True when container is parallel, otherwise False.'''
       return self.brackets in ('double-angle', 'simultaneous')
 
    ### TODO: i propose this instead. 
@@ -189,9 +193,10 @@ class Container(_Component):
    #   @property
    #   def next(self):
    #      return self._navigator._nextSibling
+
    @property
    def prev(self):
-      '''Prev leaf leftwards, otherwise None.'''
+      '''Naive prev leaf leftwards, otherwise None.'''
       if len(self.leaves) > 0:
          return self.leaves[0].prev
       else:
@@ -199,7 +204,8 @@ class Container(_Component):
 
    ## PRIVATE METHODS ##
 
-   ## TODO: Simplify public container methods to use bind ##
+   ## TODO: Deprecate _bind_component. ##
+
    def _bind_component(self, i, component):
       '''Insert component in container music at index i.
          Neither fracture spanners nor insert into spanners.
@@ -208,12 +214,12 @@ class Container(_Component):
          Return component.'''
       assert isinstance(component, _Component)
       self._music.insert(i, component)
-      #component.parentage.parent = self
       component.parentage._switchParentTo(self)
       self._update._markForUpdateToRoot( )
       return component
 
    def _establish(self):
+      '''Set all parent of all components in container to container.'''
       for x in self._music:
          x.parentage.parent = self
 
@@ -281,9 +287,7 @@ class Container(_Component):
                self[i - 1].spanners.attached & self[i].spanners.attached
             if bounding_spanners:
                for spanner in bounding_spanners:
-                  #spanner.insert(spanner.index(self[i]), expr)
                   spanner._insert(spanner.index(self[i]), expr)
-         #expr.parentage.parent = self
          expr.parentage._switchParentTo(self)
          self._music.insert(i, expr)
 
@@ -307,7 +311,6 @@ class Container(_Component):
             components = expr[:]
             components = components_detach_parentage(components) 
             length = len(self)
-            #self[length:length] = expr[ : ]
             self[length:length] = components
          else:
             raise ValueError(
@@ -323,7 +326,6 @@ class Container(_Component):
          For nonfracturing insert, use embed( ).'''
       assert isinstance(expr, _Component)
       result = [ ]
-      #expr.parentage.parent = self
       expr.parentage._switchParentTo(self)
       self._music.insert(i, expr)
       if expr.prev:
