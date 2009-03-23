@@ -111,7 +111,13 @@ class Container(_Component):
       else:
          if not _test_components(expr):
             raise TypeError('Must be list of Abjad components.')
-         start, stop, stride = i.indices(len(self))
+         print i, i.start, i.stop
+         if i.start == i.stop and i.start is not None \
+            and i.stop is not None and i.start <= -len(self):
+            start, stop = 0, 0
+         else:
+            start, stop, stride = i.indices(len(self))
+         print start, stop
          old = self[start:stop]
          spanners_receipt = _get_dominant_spanners_slice(self, start, stop)
          for component in old:
@@ -319,19 +325,26 @@ class Container(_Component):
       '''Return nonnegative index index of expr in self.'''
       return self._music.index(expr)
 
-   def insert(self, i, expr):
-      '''Insert and *fracture around* the insert.
-         For nonfracturing insert, use embed( ).'''
-      assert isinstance(expr, _Component)
-      result = [ ]
-      expr.parentage._switchParentTo(self)
-      self._music.insert(i, expr)
-      if expr.prev:
-         result.extend(expr.prev.spanners.fracture(direction = 'right'))
-      if expr.next:
-         result.extend(expr.next.spanners.fracture(direction = 'left')) 
-      self._update._markForUpdateToRoot( )
-      return result
+#   def insert(self, i, expr):
+#      '''Insert and *fracture around* the insert.
+#         For nonfracturing insert, use embed( ).'''
+#      assert isinstance(expr, _Component)
+#      result = [ ]
+#      expr.parentage._switchParentTo(self)
+#      self._music.insert(i, expr)
+#      if expr.prev:
+#         result.extend(expr.prev.spanners.fracture(direction = 'right'))
+#      if expr.next:
+#         result.extend(expr.next.spanners.fracture(direction = 'left')) 
+#      self._update._markForUpdateToRoot( )
+#      return result
+
+   def insert(self, i, component):
+      '''Insert component 'component' at index 'i' in container.
+         Keep spanners in tact.
+         This operation always leaves all Abjad expressions in tact.
+         Note that Contianer.insert( ) previously fracture spanners.'''
+      self[i:i] = [component]
 
    def pop(self, i = -1):
       '''Remove and return element at index i in self.'''

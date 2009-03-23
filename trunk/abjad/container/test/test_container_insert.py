@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_container_insert_01( ):
@@ -9,39 +10,40 @@ def test_container_insert_01( ):
 
    "Insert works just before a spanner."
 
-   t = Staff([Note(n, (1, 8)) for n in range(4)])
+   t = Voice(scale(4))
    Beam(t[:])
-   t.insert(0, Rest((1, 4)))
+   t.insert(0, Rest((1, 8)))
 
-   r'''\new Staff {
-           r4
+   r'''\new Voice {
+           r8
            c'8 [
-           cs'8
            d'8
-           ef'8 ]
+           e'8
+           f'8 ]
    }'''
 
    assert check(t)
-   assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"   
-   
+   assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
+   
 def test_container_insert_02( ):
    '''Insert works inside a spanner.'''
 
-   t = Staff([Note(n, (1, 8)) for n in range(4)])
+   t = Voice(scale(4))
    Beam(t[:])
-   t.insert(1, Rest((1, 4)))
+   t.insert(1, Note(1, (1, 8)))
 
-   r'''\new Staff {
-           c'8 [ ]
-           r4
-           cs'8 [
-           d'8
-           ef'8 ]
+   r'''\new Voice {
+      c'8 [
+      cs'8
+      d'8
+      e'8
+      f'8 ]
    }'''
 
    assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
+   assert t.format == "\\new Voice {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
+
 
 
 def test_container_insert_03( ):
@@ -85,39 +87,39 @@ def test_container_insert_04( ):
 def test_container_insert_05( ):
    '''Insert works with negative values.'''
 
-   t = Staff([Note(n, (1, 8)) for n in range(4)])
+   t = Voice(scale(4))
    Beam(t[:])
-   t.insert(-1, Rest((1, 4)))
+   t.insert(-1, Note(4.5, (1, 8)))
 
-   r'''\new Staff {
-           c'8 [
-           cs'8
-           d'8 ]
-           r4
-           ef'8 [ ]
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8
+      eqs'8
+      f'8 ]
    }'''
 
    assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\teqs'8\n\tf'8 ]\n}"
 
 
 def test_container_insert_06( ):
    '''Insert works with really big negative values.'''
 
-   t = Staff([Note(n, (1, 8)) for n in range(4)])
+   t = Voice(scale(4))
    Beam(t[:])
-   t.insert(-1000, Rest((1, 4)))
+   t.insert(-1000, Rest((1, 8)))
 
-   r'''\new Staff {
-           r4
-           c'8 [
-           cs'8
-           d'8
-           ef'8 ]
+   r'''\new Voice {
+      r8
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
    }'''
 
    assert check(t)
-   assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
+   assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
 def test_container_insert_07( ):
