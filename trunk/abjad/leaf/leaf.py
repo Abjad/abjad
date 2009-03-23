@@ -150,6 +150,14 @@ class _Leaf(_Component):
       return [self]
 
    @property
+   def next(self):
+      return self._navigator._nextBead
+
+   @property
+   def prev(self):
+      return self._navigator._prevBead
+
+   @property
    def signature(self):
       return (self.pairs, 
          (self.duration.written._n, self.duration.written._d))
@@ -182,53 +190,6 @@ class _Leaf(_Component):
       def fget(self):
          return self._tie
       return property(**locals( ))
-
-#   ## TODO: put behind self.navigator?
-#   ##       so self.navigator.next and self.navigator.prev?
-#
-#   # next leaf rightwards, if any; otherwise None.
-#   @property
-#   def next(self):
-#      from abjad.staff.staff import Staff
-#      nextNode, lastVisitedRank = self._navigator._nextNodeHelper( )
-#      while nextNode is not None and not isinstance(nextNode, _Leaf):
-#         nextNode, lastVisitedRank = \
-#            nextNode._navigator._nextNodeHelper(lastVisitedRank)
-#      ## TODO fix this; it's not a staff comparison we need
-#      ##      but instead a 'governor' comparison ... ie,
-#      ##      what ever container is greatest and shows
-#      ##      implicit voice
-#      if nextNode:
-#         if nextNode.parentage._first(Staff) == \
-#            self.parentage._first(Staff):
-#            return nextNode
-#      return None
-#
-#   # prev leaf leftwards, if any; otherwise None.
-#   @property
-#   def prev(self):
-#      from abjad.staff.staff import Staff
-#      prevNode, lastVisitedRank = self._navigator._prevNodeHelper( )
-#      while prevNode is not None and not isinstance(prevNode, _Leaf):
-#         prevNode, lastVisitedRank = \
-#            prevNode._navigator._prevNodeHelper(lastVisitedRank)
-#      ## TODO fix this; it's not a staff comparison we need
-#      ##      but instead a 'governor' comparison ... ie,
-#      ##      what ever container is greatest and shows
-#      ##      implicit voice
-#      if prevNode:
-#         if prevNode.parentage._first(Staff) == \
-#            self.parentage._first(Staff):
-#            return prevNode
-#      return None
-
-   @property
-   def next(self):
-      return self._navigator._nextBead
-
-   @property
-   def prev(self):
-      return self._navigator._prevBead
 
    ## PUBLIC METHODS ##
 

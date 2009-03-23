@@ -5,9 +5,6 @@ from collections import deque
 ## TODO profile and figure out why _Leaf.next and _Leaf.prev
 ##      are taking so much time
 
-## TODO should we replace the old next with the new ._navigator._next?
-##      add other next helpers such as nextLeaf?
-
 class _Navigator(_Abjad):
 
    def __init__(self, client):
@@ -323,54 +320,6 @@ class _Navigator(_Abjad):
       '''Check if expr is threadable with respect to self.'''
       from abjad.helpers.test_components import _test_components
       return _test_components([self._client, expr], share = 'thread')
-
-   def _nextNodeHelper(self, lastVisitedRank = None):
-      '''Rightwards depth-first traversal.
-         Advance rightwards; otherwise ascend; otherwise None.
-         Return next node yet-to-be visited, last rank already visited.'''
-      if hasattr(self._client, '_music'):
-         if lastVisitedRank is None:
-            if len(self._client._music) > 0:
-               return self._client._music[0], None
-            else:
-               return None, None
-         else:
-            if lastVisitedRank + 1 < len(self._client._music):
-               return self._client._music[lastVisitedRank + 1], None
-            elif self._client.parentage.parent is not None:
-               return self._client.parentage.parent, self._rank( )
-            else:
-               return None, None
-      elif self._client.parentage.parent is not None:
-         return self._client.parentage.parent, self._rank( )
-      else:
-         return None, None
-
-   def _prevNodeHelper(self, lastVisitedRank = None):
-      '''Leftwards depth-first traversal.
-         Return next node yet-to-be visited, last rank already visited.'''
-      if hasattr(self._client, '_music'):
-         if lastVisitedRank == None:
-            if len(self._client._music) > 0:
-               return self._client._music[-1], None
-            else:
-               return None, None
-         else:
-            if lastVisitedRank > 0:
-               return self._client._music[lastVisitedRank - 1], None
-            elif self._client.parentage.parent is not None:
-               return  self._client.parentage.parent, self._rank( )
-            else:
-               return None, None
-      elif not hasattr(self._client, 'parentage'):
-         print 'WARNING: node without parentage!'
-         print self._client
-         print ''
-         raise Exception
-      elif self._client.parentage.parent is not None:
-         return self._client.parentage.parent, self._rank( )
-      else:
-         return None, None
 
    def _rank(self):
       '''Returns the index of the caller (its position) in 
