@@ -28,7 +28,7 @@ class Container(_Component):
    def __init__(self, music = None):
       '''Initialize container with music list of length zero or grater.'''
       music = music or [ ]
-      assert isinstance(music, list)
+      _assert_components(music, 'strict', share = 'thread')
       ## Parentage and spanners must aggregate early.
       ## Reason is so that music can be passed around here
       ## and still respect parentage and spanners.
@@ -37,12 +37,10 @@ class Container(_Component):
       _Component.__init__(self)
       if music:
          parent = music[0].parentage.parent
-         if not _are_orphan_components(music):
-            _assert_components(music, 'strict', share = 'thread')
+         if parent is not None:
             start_index = parent.index(music[0])
             stop_index = parent.index(music[-1])
-         if parent is not None:
-            parent[start_index : stop_index + 1] = [self]
+            parent[start_index:stop_index+1] = [self]
       self._music = music
       self._establish( )
       self._brackets = _Brackets( )
@@ -220,8 +218,9 @@ class Container(_Component):
 
    def _establish(self):
       '''Set all parent of all components in container to container.'''
-      for x in self._music:
-         x.parentage.parent = self
+      for component in self._music:
+         #component.parentage.parent = self
+         component.parentage._switchParentTo(self)
 
    ## PUBLIC METHODS ## 
 
