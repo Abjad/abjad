@@ -289,3 +289,41 @@ def test_container_setitem_slice_10( ):
 
    assert check(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t}\n\tf'8 ]\n}"
+
+
+def test_container_setitem_slice_11( ):
+   '''Extremely small coequal indices act as zero.'''
+
+   t = Voice(scale(4))
+   Beam(t[:])
+   t[-1000:-1000] = [Rest((1, 8))]
+
+   r'''\new Voice {
+      r8
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+
+
+def test_container_setitem_slice_12( ):
+   '''Extremely large, coequal indices work correctly.'''
+
+   t = Voice(scale(4))
+   Beam(t[:])
+   t[1000:1000] = [Rest((1, 8))]
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+      r'8
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tr8\n}"
