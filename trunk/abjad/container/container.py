@@ -26,13 +26,13 @@ class Container(_Component):
 
    def __init__(self, music = None):
       '''Initialize container with music list of length zero or grater.'''
-      music = music or [ ]
-      _assert_components(music, 'strict', share = 'thread')
+      _Component.__init__(self)
       ## Container spanner aggregator must attach early.
       ## Reason is so that music can be passed around here
       ## and still respect parentage and spanners.
       self.spanners = _ContainerSpannerAggregator(self)
-      _Component.__init__(self)
+      music = music or [ ]
+      _assert_components(music, 'strict', share = 'thread')
       if music:
          parent = music[0].parentage.parent
          if parent is not None:
