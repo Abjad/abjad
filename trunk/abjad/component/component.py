@@ -12,7 +12,7 @@ from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.numbering.interface import _NumberingInterface
 from abjad.offset.interface import _OffsetInterface
-#from abjad.parentage.parentage import _Parentage
+from abjad.parentage.parentage import _Parentage
 from abjad.pianopedal.interface import _PianoPedalInterface
 from abjad.rational.rational import Rational
 from abjad.receipt.component import _ComponentReceipt
@@ -45,7 +45,7 @@ class _Component(_Abjad):
       self._meter = _MeterInterface(self)
       self._navigator = _Navigator(self)
       #self._notehead = _NoteHeadInterface(self)
-      #self._parentage = _Parentage(self)
+      self._parentage = _Parentage(self)
       self._pianopedal = _PianoPedalInterface(self)
       self._rest = _RestInterface(self)
       self._slur = _SlurInterface(self)

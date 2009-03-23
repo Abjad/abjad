@@ -20,7 +20,6 @@ from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.helpers.test_components import _test_components
 from abjad.notehead.interface import _NoteHeadInterface
-from abjad.parentage.parentage import _Parentage
 
 
 class Container(_Component):
@@ -29,10 +28,9 @@ class Container(_Component):
       '''Initialize container with music list of length zero or grater.'''
       music = music or [ ]
       _assert_components(music, 'strict', share = 'thread')
-      ## Parentage and spanners must aggregate early.
+      ## Container spanner aggregator must attach early.
       ## Reason is so that music can be passed around here
       ## and still respect parentage and spanners.
-      self._parentage = _Parentage(self)
       self.spanners = _ContainerSpannerAggregator(self)
       _Component.__init__(self)
       if music:
