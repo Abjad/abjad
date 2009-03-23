@@ -19,6 +19,7 @@ def _import_functions_in_package_to_namespace(package, namespace):
    '''
    functions = [ ]
    for root, dirs, files in os.walk(package):
+      root = root[root.rindex('abjad'):]
       if root.endswith('test'):
          continue
       for file in files:
