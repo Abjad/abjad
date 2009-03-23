@@ -166,7 +166,9 @@ def test_span_like_named_04( ):
    
    assert len(p.components) == 2
    assert len(p.leaves) == 8
-   assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t>>\n}'
+
+   #assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t>>\n}'
+   assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\t\\change Staff = foo\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t>>\n}'
 
    r'''
    {
