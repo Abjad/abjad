@@ -1,8 +1,7 @@
-#from abjad.tools import mathtools
+from abjad.tools import mathtools
 import py.test
 
 
-py.test.skip('New imports module raises ImportError.')
 
 def test_truncate_to_sum_01( ):
    '''truncate_to_sum can take a list.'''
@@ -38,6 +37,7 @@ def test_truncate_to_sum_03( ):
 
 def test_truncate_to_sum_10( ):
    '''The desired total must be positive.'''
-   assert py.test.raises(AssertionError, 't = mathtools.truncate_to_sum([2,2,2], -1)')
+   assert py.test.raises(AssertionError, 
+      't = mathtools.truncate_to_sum([2,2,2], -1)')
 
 
