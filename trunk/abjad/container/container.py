@@ -17,6 +17,7 @@ from abjad.helpers.get_dominant_spanners_receipt import \
    _get_dominant_spanners_receipt
 from abjad.helpers.get_dominant_spanners_slice import \
    _get_dominant_spanners_slice
+from abjad.helpers.give_spanned_music_to import _give_spanned_music_to
 from abjad.helpers.iterate import iterate
 from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
@@ -256,14 +257,8 @@ class Container(_Component):
          to another; bequeathal is also cleaner than (leaf) casting;
          bequeathal leaves all container attributes completely in tact.'''
 
-      ## if I have contents, can only bequeath to empty container
-      if len(self):
-         if not isinstance(component, Container) or len(component):
-            raise TypeError('Must be empty Abjad container.')
-
-         ## give my music to component ... but keep spanners on my music!
-         component._music.extend(self[:])
-         _components_switch_parent_to(component[:], component)
+      ## if I have music, give my contents to component, with spanners
+      _give_spanned_music_to(self, component)
 
       ## for every spanner attached to me ...
       for spanner in list(self.spanners.attached):

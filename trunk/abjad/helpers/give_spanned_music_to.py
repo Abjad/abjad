@@ -1,5 +1,4 @@
 from abjad.component.component import _Component
-from abjad.container.container import Container
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
 
@@ -19,6 +18,8 @@ def _give_spanned_music_to(donor_component, recipient_component):
       Return 'donor_component'.
 
       Helper is not composer-safe and may cause discontiguous spanners.'''
+
+   from abjad.container.container import Container
 
    if not isinstance(donor_component, _Component):
       raise TypeError('Donor component must be Abjad component.')
