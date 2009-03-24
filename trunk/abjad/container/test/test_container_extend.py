@@ -1,26 +1,105 @@
 from abjad import *
+import py.test
+
 
 def test_container_extend_01( ):
-   '''Filled Container can extend from list of Leafs.'''
-   t = Voice(Note(1, (1, 4))*4)
-   t.extend(Note(1, (1, 4))*4)
-   assert len(t) == 8
+   '''Extend container with list of leaves.'''
+
+   t = Voice(scale(2))
+   Beam(t[:])
+
+   r'''\new Voice {
+           c'8 [
+           d'8 ]
+   }'''
+
+   t.extend(scale(2))
+
+   r'''\new Voice {
+           c'8 [
+           d'8 ]
+           c'8
+           d'8
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8\n\td'8\n}"
+
 
 def test_container_extend_02( ):
-   '''Filled Container can extend from another filled Container of Leafs.'''
-   t = Voice(Note(1, (1, 4))*4)
-   t.extend(Voice(Note(1, (1, 4))*4))
-   assert len(t) == 8
+   '''Extend container with contents of other container.'''
+
+   t = Voice(scale(2))
+   Beam(t[:])
+
+   r'''\new Voice {
+           c'8 [
+           d'8 ]
+   }'''
+
+   u = Voice([Note(4, (1, 8)), Note(5, (1, 8))])
+   Beam(u[:])
+   t.extend(u)
+
+   r'''\new Voice {
+           c'8 [
+           d'8 ]
+           e'8 [
+           f'8 ]
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
+
 
 def test_container_extend_03( ):
-   '''Filled Container can extend from an empty list.'''
-   t = Voice(Note(1, (1, 4))*4)
+   '''Extending container with empty list leaves container unchanged.'''
+
+   t = Voice(scale(2))
+   Beam(t[:])
    t.extend([ ])
-   assert len(t) == 4
+
+   r'''\new Voice {
+           c'8 [
+           d'8 ]
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+
 
 def test_container_extend_04( ):
-   '''Filled Container can extend from an empty Container.'''
-   t = Voice(Note(1, (1, 4))*4)
-   t.extend(Voice([ ]))
-   assert len(t) == 4
+   '''Extending one container with empty second container 
+      leaves both containers unchanged.'''
 
+   t = Voice(scale(2))
+   Beam(t[:])
+   t.extend(Voice([ ]))
+
+   r'''\new Voice {
+           c'8 [
+           d'8 ]
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+
+
+def test_container_extend_05( ):
+   '''Trying to extend container with noncomponent raises TypeError.'''
+
+   t = Voice(scale(2))
+   Beam(t[:])
+
+   assert py.test.raises(TypeError, 't.extend(7)')
+   assert py.test.raises(TypeError, "t.extend('foo')")
+
+
+def test_container_extend_06( ):
+   '''Trying to extend container with noncontainer raises TypeError.'''
+
+   t = Voice(scale(2))
+   Beam(t[:])
+
+   assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
+   assert py.test.raises(TypeError, "t.extend(Chord([2, 3, 5], (1, 4)))")

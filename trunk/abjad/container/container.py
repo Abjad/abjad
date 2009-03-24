@@ -305,7 +305,9 @@ class Container(_Component):
       self._update._markForUpdateToRoot( )
 
    def extend(self, expr):
-      '''Extend my music and fracture spanners.
+      '''Extend container with expr.
+         Spanners attaching to, or contained in, container remain unchanged.
+         No new spanners attach to expr.
          Return None.'''
       if len(expr) > 0:
          if isinstance(expr, list):
@@ -317,8 +319,8 @@ class Container(_Component):
             length = len(self)
             self[length:length] = components
          else:
-            raise ValueError(
-               'Extend containers with lists and containers only.')
+            raise TypeError(
+               'Must be container or list of Abjad components.')
          self._update._markForUpdateToRoot( )
 
    def index(self, expr):
