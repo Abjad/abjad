@@ -21,7 +21,6 @@ def _withdraw_from_crossing_spanners(components):
    components_including_children = list(iterate(components, _Component))
 
    for crossing_spanner in list(crossing_spanners):
-      print crossing_spanner
       spanner_components = crossing_spanner._components[:]
       for component in components_including_children:
          if component in spanner_components:

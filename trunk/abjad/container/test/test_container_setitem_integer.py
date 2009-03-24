@@ -234,3 +234,109 @@ def test_container_setitem_integer_07( ):
 
    assert check(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n\tr2\n}"
+
+
+def test_container_setitem_integer_08( ):
+   '''Take spanned leaf from donor container 
+      and insert into recipient container.
+      Both donor and recipient check after set item.'''
+
+   notes = scale(6)
+
+   t = Voice(notes[:3])
+   Beam(t[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8 ]
+   }'''
+
+   u = Voice(notes[3:])
+   Beam(u[:])
+
+   r'''\new Voice {
+      f'8 [
+      g'8
+      a'8 ]
+   }'''
+
+   t[1] = u[1]
+
+   "Modified t:"
+
+   r'''\new Voice {
+      c'8 [
+      g'8
+      e'8 ]
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\tg'8\n\te'8 ]\n}"
+
+   "Modified u:"
+
+   r'''\new Voice {
+      f'8 [
+      a'8 ]
+   }'''
+
+   assert check(u)
+   assert u.format == "\\new Voice {\n\tf'8 [\n\ta'8 ]\n}"
+
+
+def test_container_setitem_integer_09( ):
+   '''Take down-spanned container with completely covered spanner 
+      from donor container and insert into recipient container.
+      Both donor and recipient check after set item.'''
+
+   notes = scale(7)
+
+   t = Voice(notes[:3])
+   Beam(t[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8 ]
+   }'''
+
+   u = Voice(notes[3:])
+   Sequential(u[1:3])
+   Glissando(u.leaves)
+   Slur(u[1].leaves)
+
+   r'''\new Voice {
+      f'8 \glissando
+      {
+         g'8 \glissando (
+         a'8 \glissando )
+      }
+      b'8
+   }'''
+
+   t[1] = u[1]
+
+   "Voice t is now ..."
+
+   r'''\new Voice {
+      c'8 [
+      {
+         g'8 (
+         a'8 )
+      }
+      e'8 ]
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\t{\n\t\tg'8 (\n\t\ta'8 )\n\t}\n\te'8 ]\n}"
+
+   "Voice u is now ..."
+
+   r'''\new Voice {
+      f'8 \glissando
+      b'8
+   }'''
+
+   assert check(u)
+   assert u.format == "\\new Voice {\n\tf'8 \\glissando\n\tb'8\n}"

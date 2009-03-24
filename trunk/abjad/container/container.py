@@ -19,6 +19,8 @@ from abjad.helpers.iterate import iterate
 from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.helpers.test_components import _test_components
+from abjad.helpers.withdraw_from_crossing_spanners import \
+   _withdraw_from_crossing_spanners
 from abjad.notehead.interface import _NoteHeadInterface
 
 
@@ -101,6 +103,9 @@ class Container(_Component):
             raise TypeError('Must be Abjad component.')
          old = self[i]
          spanners_receipt = _get_dominant_spanners_receipt([old])
+         ## must withdraw from spanners before parentage!
+         ## otherwise begin / end assessments don't work!
+         _withdraw_from_crossing_spanners([expr])
          expr.parentage._switchParentTo(self)
          self._music.insert(i, expr)
          detach_receipt = old.detach( )
