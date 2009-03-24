@@ -1,0 +1,29 @@
+from abjad import *
+from abjad.helpers.give_my_position_in_parent_to import \
+   _give_my_position_in_parent_to
+
+
+def test_give_my_position_in_parent_to_01( ):
+   '''Not composer-safe.'''
+
+   t = Voice(scale(4))
+   Beam(t[:])
+   notes = scale(2, Rational(1, 16))
+
+   _give_my_position_in_parent_to(t[0], notes)
+
+   "Container t is now ..."
+
+   r'''\new Voice {
+      c'16
+      d'16
+      d'8
+      e'8
+      f'8 ]
+   }'''
+
+   assert t.format == "\\new Voice {\n\tc'16\n\td'16\n\td'8\n\te'8\n\tf'8 ]\n}"
+
+   "Container t now carries a discontiguous spanner."
+
+   assert not check(t)
