@@ -3,7 +3,7 @@ from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
 
 
-def _give_spanned_music_to(donor_component, recipient_component):
+def _give_my_spanned_music_to(donor_component, recipient_component):
    '''If 'donor_component' has music and 'recipient_component'
       is an empty container, give music 'donor_component' to
       'recipient_component', leaving any spanners attaching

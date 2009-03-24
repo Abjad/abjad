@@ -21,7 +21,7 @@ from abjad.helpers.give_my_attached_spanners_to import \
    _give_my_attached_spanners_to
 from abjad.helpers.give_my_position_in_parent_to import \
    _give_my_position_in_parent_to
-from abjad.helpers.give_spanned_music_to import _give_spanned_music_to
+from abjad.helpers.give_my_spanned_music_to import _give_my_spanned_music_to
 from abjad.helpers.iterate import iterate
 from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
@@ -253,21 +253,14 @@ class Container(_Component):
       self[len(self):len(self)] = [component]
 
    def bequeath(self, component):
-      '''Bequeath my music, my position-in-spanners, and 
-         my position-in-parent to some other Abjad component.
+      '''Give my music to recipient component.
+         Give my attached spanners to recipient component.
+         Give my position in parent to recipient component.
          After bequeathal, self is an empty unspanned orphan.
-
-         Bequeathal is basically a way of casting one type of container
-         to another; bequeathal is also cleaner than (leaf) casting;
-         bequeathal leaves all container attributes completely in tact.'''
-
-      ## give donor component contents to recipient component
-      _give_spanned_music_to(self, component)
-
-      ## give donor component spanners to recipient component
+         Bequeath swaps out one type of container for another.
+         Return None.''' 
+      _give_my_spanned_music_to(self, component)
       _give_my_attached_spanners_to(self, [component])
-
-      ## give donor component position in parent to recipient component
       _give_my_position_in_parent_to(self, [component])
 
    def clear(self):
