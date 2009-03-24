@@ -111,13 +111,11 @@ class Container(_Component):
       else:
          if not _test_components(expr):
             raise TypeError('Must be list of Abjad components.')
-         print i, i.start, i.stop
          if i.start == i.stop and i.start is not None \
             and i.stop is not None and i.start <= -len(self):
             start, stop = 0, 0
          else:
             start, stop, stride = i.indices(len(self))
-         print start, stop
          old = self[start:stop]
          spanners_receipt = _get_dominant_spanners_slice(self, start, stop)
          for component in old:
@@ -229,10 +227,12 @@ class Container(_Component):
 
    ## PUBLIC METHODS ## 
 
-   def append(self, expr):
-      '''Append the end of my music.
-         Fracture spanners.'''
-      self.insert(len(self), expr)
+   def append(self, component):
+      '''Append component to the end of container.
+         Preserve any spanners attaching to, or contained in, container.
+         Attach no new spanners to component.
+         This operation leaves all score trees always in tact.'''
+      self.insert(len(self), component)
 
    def bequeath(self, expr):
       '''Experimental: Bequeath my music, my position-in-spanners, and 

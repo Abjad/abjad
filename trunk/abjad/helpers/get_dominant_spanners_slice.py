@@ -24,7 +24,6 @@ def _get_dominant_spanners_slice(container, start, stop):
          right = None
       else:
          right = container[stop]
-      print left, right
       spanners_receipt = _get_dominant_spanners_between(left, right)
    else:
       spanners_receipt = _get_dominant_spanners_receipt(
