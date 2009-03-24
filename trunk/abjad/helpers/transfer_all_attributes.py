@@ -35,7 +35,8 @@ def _transfer_all_attributes(old, new):
    for spanner in old.spanners.attached:
       spanner._components[spanner.index(old)] = new
       # pass in 1-tuple otherwise individual spanner components will update!
-      new.spanners._update((spanner, ))
+      #new.spanners._update((spanner, ))
+      new.spanners._add(spanner)
    new.formatter.before.extend(oldCopy.formatter.before)
    new.formatter.after.extend(oldCopy.formatter.after)
    new.formatter.left.extend(oldCopy.formatter.left)

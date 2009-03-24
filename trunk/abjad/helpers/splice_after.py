@@ -23,6 +23,6 @@ def splice_after(component, new_components):
    for spanner, index in receipt:
       for new_component in reversed(new_components):
          spanner._insert(index + 1, new_component)
-         new_component.spanners._update([spanner])
+         new_component.spanners._add(spanner)
 
    return [component] + new_components

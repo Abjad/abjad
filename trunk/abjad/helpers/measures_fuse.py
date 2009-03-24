@@ -50,7 +50,7 @@ def measures_fuse(measure_list):
          spanner_index = spanner.index(measure)
          #spanner[spanner_index] = new_measure
          spanner._components[spanner_index] = new_measure
-         new_measure.spanners._update([spanner])
+         new_measure.spanners._add(spanner)
          subsequent_measures = measure_list[i:]
          for subsequent_measure in subsequent_measures:
             if subsequent_measure in spanner:

@@ -113,7 +113,7 @@ class Container(_Component):
          detach_receipt = old.detach( )
          for spanner, index in spanners_receipt:
             spanner._insert(index, expr)
-            expr.spanners._update([spanner])
+            expr.spanners._add(spanner)
       # slice assignment
       else:
          if not _test_components(expr):
@@ -136,7 +136,7 @@ class Container(_Component):
          for spanner, index in spanners_receipt:
             for component in reversed(expr):
                spanner._insert(index, component)
-               component.spanners._update([spanner])
+               component.spanners._add(spanner)
       self._update._markForUpdateToRoot( )
 
    ## PRIVATE ATTRIBUTES ##
@@ -271,7 +271,7 @@ class Container(_Component):
          # insert component in spanner just before me ...
          #spanner.insert(spanner.index(self), component)
          spanner._components.insert(spanner.index(self), component)
-         component.spanners._update([spanner])
+         component.spanners._add(spanner)
          # ... and then remove me from spanner
          #spanner.remove(self)
          spanner._severComponent(self)

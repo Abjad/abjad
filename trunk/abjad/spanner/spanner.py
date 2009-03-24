@@ -137,7 +137,8 @@ class Spanner(_Abjad):
       #components_to_check = self._componentsFlankingIndex(i, [component])
       #print 'to check: %s' % str(components_to_check)
       #_assert_components(components_to_check, contiguity = 'thread')
-      component.spanners._update([self])
+
+      component.spanners._add(self)
       self._components.insert(i, component)
 
    def _isMyFirstLeaf(self, leaf):
@@ -197,7 +198,7 @@ class Spanner(_Abjad):
          self._unblockComponent(component)
 
    def _unblockComponent(self, component):
-      component.spanners._update([self])
+      component.spanners._add(self)
 
    ## PUBLIC ATTRIBUTES ##
    
@@ -245,13 +246,13 @@ class Spanner(_Abjad):
    def append(self, component):
       components = self[-1:] + [component]
       _assert_components(components, contiguity = 'thread')
-      component.spanners._update([self])
+      component.spanners._add(self)
       self._components.append(component)
 
    def append_left(self, component):
       components = [component] + self[:1] 
       _assert_components(components, contiguity = 'thread')
-      component.spanners._update([self])
+      component.spanners._add(self)
       self._components.insert(0, component)
 
    def copy(self, start = None, stop = None):
