@@ -268,20 +268,21 @@ class Container(_Component):
       ## for every spanner attached to me ...
       for spanner in list(self.spanners.attached):
 
-         # insert component in spanner just before me ...
-         #spanner.insert(spanner.index(self), component)
-         spanner._components.insert(spanner.index(self), component)
-         component.spanners._add(spanner)
-         # ... and then remove me from spanner
-         #spanner.remove(self)
-         spanner._severComponent(self)
+         ## insert component in spanner just before me ...
+         spanner._insert(spanner.index(self), component)
 
-      # if i have a parent
-      parent = self.parentage.parent
+         ## ... and then remove me from spanner
+         spanner._remove(self)
+
+      parent, index = _get_parent_and_index([self])
+
+      ## if i have a parent
       if parent:
-         # embed component in parent just before me ... 
-         parent.embed(parent.index(self), component)
-         # .. and then remove me from parent
+
+         ## embed component in parent just before me ... 
+         parent.embed(index, component)
+
+         ## ... and then remove me from parent
          parent.remove(self)
 
    def clear(self):

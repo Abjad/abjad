@@ -75,38 +75,6 @@ class Spanner(_Abjad):
    def _blockComponent(self, component):
       component.spanners._spanners.remove(self)
    
-#   def _checkNewComponent(self, component):
-#      from abjad.helpers.assert_components import _assert_components
-#      if len(self) > 0:
-#         _assert_components([self[-1], component], contiguity = 'thread')
-#
-#   def _componentsFlankingIndex(self, index, components):
-#      flanking_components = [ ]
-#      left = self._componentToLeftOfIndex(index)
-#      if left is not None:
-#         flanking_components.append(left)
-#      flanking_components.extend(component)
-#      right = self._componentToRightOfIndex(index)
-#      if right is not None:
-#         flanking_components.append(right)
-#      return flanking_components
-#
-#   def _componentToLeftOfIndex(self, index):
-#      if len(self) == 0:
-#         return None
-#      if index == 0:
-#         return None
-#      if index >= len(self):
-#         return self[-1]
-#      return self[index - 1]
-#
-#   def _componentToRightOfIndex(self, index):
-#      if len(self) == 0:
-#         return None
-#      if index >= len(self):
-#         return None
-#      return self[index]
-
    def _durationOffsetInMe(self, leaf):
       leaves = self.leaves
       assert leaf in leaves
@@ -133,11 +101,8 @@ class Spanner(_Abjad):
       return [(self, spanner, result)]
 
    def _insert(self, i, component):
-      #from abjad.helpers.assert_components import _assert_components
-      #components_to_check = self._componentsFlankingIndex(i, [component])
-      #print 'to check: %s' % str(components_to_check)
-      #_assert_components(components_to_check, contiguity = 'thread')
-
+      '''Insert component in spanner at index i.
+         Not composer-safe and may mangle spanners.'''
       component.spanners._add(self)
       self._components.insert(i, component)
 
@@ -180,6 +145,12 @@ class Spanner(_Abjad):
 
    def _right(self, component):
       return [ ]
+
+   def _remove(self, component):
+      '''Remove component from me.
+         Remove me from component's aggregator.
+         Not composer-safe and may leave discontiguous spanners.'''
+      self._severComponent(component)
 
    def _removeComponent(self, component):
       self._components.remove(component)
@@ -314,9 +285,6 @@ class Spanner(_Abjad):
       component = self[0]
       self._severComponent(component)
       return component
-
-#   def remove(self, component):
-#      self._severComponent(component)
 
    def trim(self, component):
       assert component in self
