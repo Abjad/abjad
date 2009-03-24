@@ -273,29 +273,6 @@ class Container(_Component):
       self._update._markForUpdateToRoot( )
       return result
 
-   def embed(self, i, expr):
-      '''Insert a _Component or list of _Components 
-         in this container at index i 
-         without fracturing spanners.'''
-      def _embedComponent(self, i, expr):
-         if i != 0:
-            bounding_spanners = \
-               self[i - 1].spanners.attached & self[i].spanners.attached
-            if bounding_spanners:
-               for spanner in bounding_spanners:
-                  spanner._insert(spanner.index(self[i]), expr)
-         expr.parentage._switchParentTo(self)
-         self._music.insert(i, expr)
-
-      if isinstance(expr, (list, tuple)):
-         for e in reversed(expr):
-            _embedComponent(self, i, e)
-      elif isinstance(expr, _Component):
-            _embedComponent(self, i, expr)
-      else:
-         raise TypeError("Can only embed _Component or list of _Component")
-      self._update._markForUpdateToRoot( )
-
    def extend(self, expr):
       '''Extend container with expr.
          Spanners attaching to, or contained in, container remain unchanged.
@@ -323,7 +300,7 @@ class Container(_Component):
       '''Insert component 'component' at index 'i' in container.
          Keep spanners in tact.
          This operation always leaves all Abjad expressions in tact.
-         Note that Contianer.insert( ) previously fracture spanners.'''
+         Note that Container.insert( ) previously fracture spanners.'''
       self[i:i] = [component]
 
    def pop(self, i = -1):
