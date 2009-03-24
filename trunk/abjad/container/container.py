@@ -259,10 +259,10 @@ class Container(_Component):
          to another; bequeathal is also cleaner than (leaf) casting;
          bequeathal leaves all container attributes completely in tact.'''
 
-      ## give my spanned contents to component
+      ## give my contents to receipient component with spanners attached
       _give_spanned_music_to(self, component)
 
-      ## give my attached spanners to recipient component
+      ## give spanners directly attached to me to receipient component
       _give_my_attached_spanners_to(self, [component])
 
       parent, index = _get_parent_and_index([self])
@@ -270,8 +270,9 @@ class Container(_Component):
       ## if i have a parent
       if parent:
 
-         ## embed component in parent just before me ... 
-         parent.embed(index, component)
+         ## insert recipient component in parent just before me ... 
+         parent._music.insert(index, component)
+         component.parentage._switchParentTo(parent)
 
          ## ... and then remove me from parent
          parent.remove(self)
@@ -331,20 +332,6 @@ class Container(_Component):
    def index(self, expr):
       '''Return nonnegative index index of expr in self.'''
       return self._music.index(expr)
-
-#   def insert(self, i, expr):
-#      '''Insert and *fracture around* the insert.
-#         For nonfracturing insert, use embed( ).'''
-#      assert isinstance(expr, _Component)
-#      result = [ ]
-#      expr.parentage._switchParentTo(self)
-#      self._music.insert(i, expr)
-#      if expr.prev:
-#         result.extend(expr.prev.spanners.fracture(direction = 'right'))
-#      if expr.next:
-#         result.extend(expr.next.spanners.fracture(direction = 'left')) 
-#      self._update._markForUpdateToRoot( )
-#      return result
 
    def insert(self, i, component):
       '''Insert component 'component' at index 'i' in container.
