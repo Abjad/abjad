@@ -232,7 +232,7 @@ class Container(_Component):
          Preserve any spanners attaching to, or contained in, container.
          Attach no new spanners to component.
          This operation leaves all score trees always in tact.'''
-      self.insert(len(self), component)
+      self[len(self):len(self)] = [component]
 
    def bequeath(self, expr):
       '''Experimental: Bequeath my music, my position-in-spanners, and 
