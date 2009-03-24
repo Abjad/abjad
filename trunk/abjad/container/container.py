@@ -10,6 +10,8 @@ from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.components_detach_parentage import \
    components_detach_parentage
 from abjad.helpers.coalesce import coalesce
+from abjad.helpers.components_switch_parent_to import \
+   _components_switch_parent_to
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
 from abjad.helpers.get_dominant_spanners_receipt import \
    _get_dominant_spanners_receipt
@@ -254,27 +256,18 @@ class Container(_Component):
          to another; bequeathal is also cleaner than (leaf) casting;
          bequeathal leaves all container attributes completely in tact.'''
 
-      #print 'debug: self.spanners.attached is %s' % self.spanners.attached
-      #print 'debug: self[0].spanners.attached is %s' % self[0].spanners.attached
-
       ## if I have contents, can only bequeath to empty container
       if len(self):
          if not isinstance(component, Container) or len(component):
             raise TypeError('Must be empty Abjad container.')
 
          ## give my music to component ... but keep spanners on my music!
-         #component.extend(self)
-         #self._music[:] = [ ]
          component._music.extend(self[:])
-         for child in component._music:
-            child.parentage._switchParentTo(component)
-
-      #print 'debug: self.spanners.attached is now %s' % self.spanners.attached
-      #print 'debug: component is now %s' % component.format
-      #print 'debug: component[0].spanners.attached is now %s' % component[0].spanners.attached
+         _components_switch_parent_to(component[:], component)
 
       ## for every spanner attached to me ...
       for spanner in list(self.spanners.attached):
+
          # insert component in spanner just before me ...
          #spanner.insert(spanner.index(self), component)
          spanner._components.insert(spanner.index(self), component)
