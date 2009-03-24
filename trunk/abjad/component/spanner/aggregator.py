@@ -11,6 +11,10 @@ class _ComponentSpannerAggregator(_Interface):
 
    ## PRIVATE METHODS ##
 
+   def _add(self, spanner):
+      '''Add spanner to _spanners set.'''
+      self._spanners.add(spanner)
+
    def _detach(self):
       '''Remove client from every spanner attaching to client.'''
       client = self._client
@@ -49,21 +53,8 @@ class _ComponentSpannerAggregator(_Interface):
       receipt._empty( )
       return client
 
-#   def _splice(self, components):
-#      '''Splice components into all spanners attached self,
-#         at the index immediately following self.'''
-#      client = self._client
-#      result = set([ ])
-#      for spanner in list(self.attached):
-#         index = spanner.index(client) + 1
-#         spanner._components[index:index] = components
-#         result.add(spanner)
-#      for component in components:
-#         component.spanners._update(list(self.attached))
-#      return result
-
    def _update(self, spanners):
-      '''Added spanners to _spanners.'''
+      '''Add list of spanners to _spanners set.'''
       self._spanners.update(spanners)
 
    ## PUBLIC ATTRIBUTES ##
