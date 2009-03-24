@@ -19,6 +19,8 @@ from abjad.helpers.get_dominant_spanners_slice import \
    _get_dominant_spanners_slice
 from abjad.helpers.give_my_attached_spanners_to import \
    _give_my_attached_spanners_to
+from abjad.helpers.give_my_position_in_parent_to import \
+   _give_my_position_in_parent_to
 from abjad.helpers.give_spanned_music_to import _give_spanned_music_to
 from abjad.helpers.iterate import iterate
 from abjad.helpers.make_orphan_components import _make_orphan_components
@@ -259,23 +261,14 @@ class Container(_Component):
          to another; bequeathal is also cleaner than (leaf) casting;
          bequeathal leaves all container attributes completely in tact.'''
 
-      ## give my contents to receipient component with spanners attached
+      ## give donor component contents to recipient component
       _give_spanned_music_to(self, component)
 
-      ## give spanners directly attached to me to receipient component
+      ## give donor component spanners to recipient component
       _give_my_attached_spanners_to(self, [component])
 
-      parent, index = _get_parent_and_index([self])
-
-      ## if i have a parent
-      if parent:
-
-         ## insert recipient component in parent just before me ... 
-         parent._music.insert(index, component)
-         component.parentage._switchParentTo(parent)
-
-         ## ... and then remove me from parent
-         parent.remove(self)
+      ## give donor component position in parent to recipient component
+      _give_my_position_in_parent_to(self, [component])
 
    def clear(self):
       '''Remove any contents from self.
