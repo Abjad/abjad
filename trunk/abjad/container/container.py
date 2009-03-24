@@ -231,13 +231,13 @@ class Container(_Component):
       '''Append component to the end of container.
          Preserve any spanners attaching to, or contained in, container.
          Attach no new spanners to component.
+         Return None.
          This operation leaves all score trees always in tact.'''
       self[len(self):len(self)] = [component]
 
-   def bequeath(self, expr):
-      '''Experimental: Bequeath my music, my position-in-spanners, and 
+   def bequeath(self, component):
+      '''Bequeath my music, my position-in-spanners, and 
          my position-in-parent to some other Abjad component.
-
          After bequeathal, self is an empty unspanned orphan.
 
          Bequeathal is basically a way of casting one type of container
@@ -245,20 +245,20 @@ class Container(_Component):
          bequeathal leaves all container attributes completely in tact.'''
 
       ## if I have contents, can only bequeath to empty container
-      if len(self) > 0:
-         assert isinstance(expr, Container)
-         assert not len(expr)
+      if len(self):
+         if not isinstance(component, Container) or len(component):
+            raise TypeError('Must be empty Abjad container.')
 
-         # give my music to expr
-         expr.extend(self)
-         self._music[ : ] = [ ]
+         ## give my music to component
+         component.extend(self)
+         self._music[:] = [ ]
 
-      # for every spanner attached to me ...
+      ## for every spanner attached to me ...
       for spanner in list(self.spanners.attached):
-         # insert expr in spanner just before me ...
-         #spanner.insert(spanner.index(self), expr)
-         spanner._components.insert(spanner.index(self), expr)
-         expr.spanners._update([spanner])
+         # insert component in spanner just before me ...
+         #spanner.insert(spanner.index(self), component)
+         spanner._components.insert(spanner.index(self), component)
+         component.spanners._update([spanner])
          # ... and then remove me from spanner
          #spanner.remove(self)
          spanner._severComponent(self)
@@ -266,8 +266,8 @@ class Container(_Component):
       # if i have a parent
       parent = self.parentage.parent
       if parent:
-         # embed expr in parent just before me ... 
-         parent.embed(parent.index(self), expr)
+         # embed component in parent just before me ... 
+         parent.embed(parent.index(self), component)
          # .. and then remove me from parent
          parent.remove(self)
 

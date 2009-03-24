@@ -178,3 +178,26 @@ def test_container_bequeath_04( ):
 
    assert check(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t{\n\t\te'8 \\glissando\n\t\tf'8 ]\n\t}\n}"
+
+
+def test_container_bequeath_05( ):
+   '''Trying to bequeath from nonempty container 
+      to leaf raises TypeError.'''
+
+   t = Voice(Sequential(run(2)) * 2)
+   Beam(t[:])
+   diatonicize(t)
+
+   assert py.test.raises(TypeError, 't[1].bequeath(Note(4, (1, 4)))')
+
+
+def test_container_bequeath_06( ):
+   '''Trying to bequeath from nonempty container to 
+      nonempty container raises TypeError.'''
+   
+   t = Voice(Sequential(run(2)) * 2)
+   Beam(t[:])
+   diatonicize(t)
+
+   tuplet = FixedDurationTuplet((2, 8), scale(3))
+   assert py.test.raises(TypeError, 't[1].bequeath(tuplet)') 
