@@ -160,7 +160,8 @@ class _Parentage(_Abjad):
       client = self._client
       cur_parent = self.parent
       if cur_parent is not None:
-         cur_parent._music.remove(client)
+         if client in cur_parent:
+            cur_parent._music.remove(client)
       self.parent = new_parent
 
    ## PUBLIC ATTRIBUTES ##

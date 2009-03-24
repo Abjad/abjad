@@ -103,3 +103,99 @@ def test_container_extend_06( ):
 
    assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
    assert py.test.raises(TypeError, "t.extend(Chord([2, 3, 5], (1, 4)))")
+
+
+def test_container_extend_07( ):
+   '''Extend container with partial and 
+      spanned contents of other container.'''
+
+   t = Voice(scale(2))
+   Beam(t[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8 ]
+   }'''
+
+   u = Voice(scale(4))
+   Beam(u[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }'''
+
+   t.extend(u[-2:]) 
+
+   "Container t is now ..."
+
+   r'''\new Voice {
+      c'8 [
+      d'8 ]
+      e'8
+      f'8
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8\n\tf'8\n}"
+
+   "Container u is now ..."
+
+   r'''\new Voice {
+      c'8 [
+      d'8 ]
+   }'''
+
+   assert check(u)
+   assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+
+
+def test_container_extend_08( ):
+   '''Extend container with partial and 
+      spanned contents of other container.
+      Covered span comes with components from donor container.'''
+
+   t = Voice(scale(2))
+   Beam(t[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8 ]
+   }'''
+
+   u = Voice(scale(4))
+   Beam(u[:])
+   Slur(u[-2:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8 (
+      f'8 ] )
+   }'''
+
+   t.extend(u[-2:]) 
+
+   "Container t is now ..."
+
+   r'''\new Voice {
+      c'8 [
+      d'8 ]
+      e'8 (
+      f'8 )
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 (\n\tf'8 )\n}"
+
+   "Container u is now ..."
+
+   r'''\new Voice {
+      c'8 [
+      d'8 ]
+   }'''
+  
+   assert check(u)
+   assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"

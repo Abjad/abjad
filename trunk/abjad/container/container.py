@@ -125,6 +125,9 @@ class Container(_Component):
          spanners_receipt = _get_dominant_spanners_slice(self, start, stop)
          for component in old:
             component.detach( )
+         ## must withdraw before setting in self!
+         ## otherwise circular withdraw ensues!
+         _withdraw_from_crossing_spanners(expr)
          self._music[start:start] = expr
          for component in expr:
             component.parentage._switchParentTo(self)
@@ -225,7 +228,9 @@ class Container(_Component):
          if parent is not None:
             start_index = parent.index(music[0])
             stop_index = parent.index(music[-1])
-            parent[start_index:stop_index+1] = [self]
+            #parent[start_index:stop_index+1] = [self]
+            parent._music[start_index:stop_index+1] = [self]
+            self.parentage._switchParentTo(parent)
       self._music = music
       for component in self._music:
          component.parentage._switchParentTo(self)
@@ -249,14 +254,24 @@ class Container(_Component):
          to another; bequeathal is also cleaner than (leaf) casting;
          bequeathal leaves all container attributes completely in tact.'''
 
+      #print 'debug: self.spanners.attached is %s' % self.spanners.attached
+      #print 'debug: self[0].spanners.attached is %s' % self[0].spanners.attached
+
       ## if I have contents, can only bequeath to empty container
       if len(self):
          if not isinstance(component, Container) or len(component):
             raise TypeError('Must be empty Abjad container.')
 
-         ## give my music to component
-         component.extend(self)
-         self._music[:] = [ ]
+         ## give my music to component ... but keep spanners on my music!
+         #component.extend(self)
+         #self._music[:] = [ ]
+         component._music.extend(self[:])
+         for child in component._music:
+            child.parentage._switchParentTo(component)
+
+      #print 'debug: self.spanners.attached is now %s' % self.spanners.attached
+      #print 'debug: component is now %s' % component.format
+      #print 'debug: component[0].spanners.attached is now %s' % component[0].spanners.attached
 
       ## for every spanner attached to me ...
       for spanner in list(self.spanners.attached):

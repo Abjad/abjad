@@ -44,7 +44,7 @@ def test_container_bequeath_01( ):
          c'8 [ \glissando
          d'8 \glissando
       }
-      \new Voice {
+      \context Voice = "foo" {
          e'8 \glissando
          f'8 \glissando
       }

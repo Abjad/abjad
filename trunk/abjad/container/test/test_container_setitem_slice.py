@@ -114,7 +114,7 @@ def test_container_setitem_slice_05( ):
 
 
 def test_container_setitem_slice_06( ):
-   '''Container magic.'''
+   '''Donor and recipient container are the same.'''
    
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
@@ -149,13 +149,14 @@ def test_container_setitem_slice_06( ):
 
 
 def test_container_setitem_slice_07( ):
-   '''Container magic.'''
+   '''Donor and recipient container are the same.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Staff {
+           
            {
                    c'8 [
                    d'8
@@ -166,12 +167,12 @@ def test_container_setitem_slice_07( ):
            }
    }'''
 
-   t[0:0] = [t[0][0]]
+   t[0:0] = t[0][:1]
 
    r'''\new Staff {
-           c'8 [
+           c'8
            {
-                   d'8
+                   d'8 [
            }
            {
                    e'8
@@ -180,11 +181,11 @@ def test_container_setitem_slice_07( ):
    }'''
 
    assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+   assert t.format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_container_setitem_slice_08( ):
-   '''Container magic.'''
+   '''Donor and recipient container are the same.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
@@ -204,21 +205,21 @@ def test_container_setitem_slice_08( ):
    t[0:0] = t[0][:]
 
    r'''\new Staff {
-           c'8 [
+           c'8 
            d'8
            {
            }
            {
-                   e'8
+                   e'8 [
                    f'8 ]
            }
    }'''
 
-   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+   assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\t{\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_container_setitem_slice_09( ):
-   '''Container magic.'''
+   '''Donor and recipient container are the same.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
@@ -237,25 +238,25 @@ def test_container_setitem_slice_09( ):
 
    sequential = t[0]
    t[0:0] = sequential[:]
-   sequential[0:0] = t[-1][0:1]
+   sequential[0:0] = t[-1][:1]
    
    r'''\new Staff {
-           c'8 [
+           c'8 
            d'8
            {
                    e'8
            }
            {
-                   f'8 ]
+                   f'8 [ ]
            }
    }'''
    
    assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 ]\n\t}\n}"
+   assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 [ ]\n\t}\n}"
 
 
 def test_container_setitem_slice_10( ):
-   '''Container magic.'''
+   '''Donor and recipient container are the same.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
@@ -272,23 +273,22 @@ def test_container_setitem_slice_10( ):
            }
    }'''
 
-   t[0:0] = [t[0][0]]
-   t[len(t):len(t)] = [t[-1][-1]]
+   t[0:0] = t[0][:1]
+   t[len(t):len(t)] = t[-1][-1:]
    
-   r'''
-   \new Staff {
-           c'8 [
+   r'''\new Staff {
+           c'8
            {
-                   d'8
+                   d'8 [
            }
            {
-                   e'8
+                   e'8 ]
            }
-           f'8 ]
+           f'8
    }'''
 
    assert check(t)
-   assert t.format == "\\new Staff {\n\tc'8 [\n\t{\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t}\n\tf'8 ]\n}"
+   assert t.format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8 ]\n\t}\n\tf'8\n}"
 
 
 def test_container_setitem_slice_11( ):

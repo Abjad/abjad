@@ -52,3 +52,78 @@ def test_container_append_03( ):
    assert py.test.raises(TypeError, "t.append(99)")
    assert py.test.raises(TypeError, "t.append([ ])")
    assert py.test.raises(TypeError, "t.append([Note(0, (1, 8))])")
+
+
+def test_container_append_04( ):
+   '''Append spanned leaf from donor container to recipient container.'''
+
+   t = Voice(scale(3))
+   Beam(t[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8 ]
+   }'''
+
+   u = Voice(scale(4))
+   Beam(u[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }'''
+
+   t.append(u[-1])
+
+   "Container t is now ..."
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8 ]
+      f'8
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8\n}"
+
+   "Container u is now ..."
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8 ]
+   }'''
+
+   assert check(u)
+   assert u.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
+
+
+def test_container_append_05( ):
+   '''Append spanned leaf from donor container to recipient container.
+      Donor and recipient containers are the same.'''
+
+   t = Voice(scale(4))
+   Beam(t[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8 ]
+   }'''
+
+   t.append(t[1])
+
+   r'''\new Voice {
+      c'8 [
+      e'8
+      f'8 ]
+      d'8
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n\td'8\n}"
