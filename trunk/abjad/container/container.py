@@ -52,9 +52,10 @@ class Container(_Component):
       return expr in self._music
 
    def __delitem__(self, i):
-      '''Remove component at index i in container from container.
-         Remove comopnent at index i in container from crossing spanners.
-         Return None.'''
+      '''Find component(s) at index 'i' in container.
+         Detach component(s) from parentage.
+         Withdraw component(s) from crossing spanners.
+         Preserve spanners that component(s) cover(s).'''
       from abjad.helpers.withdraw_from_crossing_spanners import \
          _withdraw_from_crossing_spanners
       from abjad.helpers.components_detach_parentage import \
@@ -251,10 +252,17 @@ class Container(_Component):
       self[i:i] = [component]
 
    def pop(self, i = -1):
-      '''Remove and return element at index i in self.'''
-      result = self[i]
+      '''Find component at index 'i' in container.
+         Detach component from parentage.
+         Withdraw component from crossing spanners.
+         Preserve spanners that component covers.
+         Return component.'''
+      component = self[i]
       del(self[i])
-      return result
+      return component
+
+   ## TODO: Write remove( ) tests for covered spanners. ##
+   ## TODO: Reimplement remove( ) without visitor. ###
 
    def remove(self, expr):
       '''Remove expr from my music.'''
