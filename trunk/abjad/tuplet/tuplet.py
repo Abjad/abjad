@@ -11,7 +11,6 @@ class _Tuplet(Container):
       Container.__init__(self, music)
       self.brackets = 'curly'
       self._duration = _TupletDurationInterface(self)
-      #self.formatter = _TupletFormatter(self) 
       self._formatter = _TupletFormatter(self) 
       self._invisible = False
 

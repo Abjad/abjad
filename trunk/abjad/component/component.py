@@ -148,6 +148,10 @@ class _Component(_Abjad):
    def format(self):
       return self.formatter.format
 
+   @property
+   def formatter(self):
+      return self._formatter
+
    @apply
    def glissando( ):
       def fget(self):

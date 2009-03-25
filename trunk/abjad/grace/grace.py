@@ -9,7 +9,6 @@ class Grace(Container):
       self._carrier = None
       music = music or None
       Container.__init__(self, music)
-      #self.formatter = _GraceFormatter(self)
       self._formatter = _GraceFormatter(self)
       self.type = 'grace'
 

@@ -9,7 +9,6 @@ class _Measure(Container):
       music = music or [ ]
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
-      #self.formatter = _MeasureFormatter(self)
       self._formatter = _MeasureFormatter(self)
 
    ## OVERLOADS ##
