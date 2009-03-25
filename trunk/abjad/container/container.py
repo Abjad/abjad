@@ -4,14 +4,12 @@ from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.debug.debug import debug
-from abjad.helpers.are_orphan_components import _are_orphan_components
 from abjad.helpers.assert_components import _assert_components
-from abjad.helpers.bequeath_multiple import bequeath_multiple
+from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_detach_parentage import \
-   components_detach_parentage
+   _components_detach_parentage
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
-from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
@@ -20,8 +18,6 @@ from abjad.helpers.get_dominant_spanners_receipt import \
 from abjad.helpers.get_dominant_spanners_slice import \
    _get_dominant_spanners_slice
 from abjad.helpers.iterate import iterate
-from abjad.helpers.make_orphan_components import _make_orphan_components
-from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.helpers.test_components import _test_components
 from abjad.helpers.withdraw_from_crossing_spanners import \
    _withdraw_from_crossing_spanners
@@ -58,15 +54,11 @@ class Container(_Component):
          Detach component(s) from parentage.
          Withdraw component(s) from crossing spanners.
          Preserve spanners that component(s) cover(s).'''
-      from abjad.helpers.withdraw_from_crossing_spanners import \
-         _withdraw_from_crossing_spanners
-      from abjad.helpers.components_detach_parentage import \
-         components_detach_parentage
       components = self[i]
       if not isinstance(components, list):
          components = [components]
       _withdraw_from_crossing_spanners(components)
-      components_detach_parentage(components)
+      _components_detach_parentage(components)
       self._update._markForUpdateToRoot( )
 
    def __getitem__(self, i):

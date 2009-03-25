@@ -1,4 +1,6 @@
 from abjad.helpers.are_orphan_components import _are_orphan_components
+from abjad.helpers.components_detach_parentage import \
+   _components_detach_parentage
 from abjad import *
 
 
@@ -10,6 +12,6 @@ def test_components_detach_parentage_01( ):
    v = t[0]
    notes = v[:]
 
-   components_detach_parentage(v[:])
+   _components_detach_parentage(v[:])
 
    assert _are_orphan_components(notes)
