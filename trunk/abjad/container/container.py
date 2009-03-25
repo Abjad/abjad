@@ -9,6 +9,8 @@ from abjad.helpers.assert_components import _assert_components
 from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.components_detach_parentage import \
    components_detach_parentage
+from abjad.helpers.components_switch_parent_to import \
+   _components_switch_parent_to
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
@@ -195,16 +197,12 @@ class Container(_Component):
          Set parent of components in 'music' to container.'''
       music = music or [ ]
       _assert_components(music, 'strict', share = 'thread')
-      if music:
-         parent = music[0].parentage.parent
-         if parent is not None:
-            start_index = parent.index(music[0])
-            stop_index = parent.index(music[-1])
-            parent._music[start_index:stop_index+1] = [self]
-            self.parentage._switchParentTo(parent)
+      parent, index = _get_parent_and_index(music)
       self._music = music
-      for component in self._music:
-         component.parentage._switchParentTo(self)
+      _components_switch_parent_to(self._music, self)
+      if parent is not None:
+         parent._music.insert(index, self)
+         self.parentage._switchParentTo(parent)
 
    ## PUBLIC METHODS ## 
 
