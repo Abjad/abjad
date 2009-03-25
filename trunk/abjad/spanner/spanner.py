@@ -1,6 +1,7 @@
 from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
 from abjad.helpers.assert_components import _assert_components
+from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.rational.rational import Rational
 from copy import copy as python_copy
 
@@ -10,6 +11,7 @@ class Spanner(_Abjad):
    def __init__(self, music = None):
       from abjad.component.component import _Component
       self._components = [ ]
+      self._duration = _SpannerDurationInterface(self)
       if isinstance(music, (tuple, list)):
          self.extend(music)
       elif isinstance(music, _Component):
@@ -161,11 +163,9 @@ class Spanner(_Abjad):
    def components(self):
       return self._components[:]
 
-   ## TODO: replace with _SpannerDurationInterface ##
-
    @property
    def duration(self):
-      return sum([l.duration.prolated for l in self])
+      return self._duration
    
    @property
    def end(self):
@@ -183,12 +183,6 @@ class Spanner(_Abjad):
             if isinstance(node, _Leaf):
                result.append(node)
       return result
-
-   ## TODO: replace with _SpannerDurationInterface ##
-
-   @property
-   def written(self):
-      return sum([l.duration.written for l in self])
 
    ## PUBLIC METHODS ##
 

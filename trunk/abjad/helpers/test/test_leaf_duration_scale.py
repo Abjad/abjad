@@ -16,7 +16,7 @@ def test_leaf_duration_scale_02( ):
 def test_leaf_duration_scale_03( ):
    t = Note(0, (1, 4))
    leaf_duration_scale(t, Rational(5, 4))
-   assert t.tie.spanner.written == Rational(5, 16)
+   assert t.tie.spanner.duration.written == Rational(5, 16)
 
 
 def test_leaf_duration_scale_04( ):
@@ -24,4 +24,3 @@ def test_leaf_duration_scale_04( ):
    leaf_duration_scale(t, Rational(2, 3))
    assert t.duration.written == Rational(1, 4)
    assert t.duration.prolated == Rational(1, 6)
-

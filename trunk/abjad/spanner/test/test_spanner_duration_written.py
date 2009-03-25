@@ -7,7 +7,6 @@ def test_spanner_duration_written_01( ):
    crescendo = Crescendo(t[0][:])
    decrescendo = Decrescendo(t[1][:])
 
-   assert beam.written == Rational(4, 8)
-   assert crescendo.written == Rational(2, 8)
-   assert decrescendo.written == Rational(2, 8)
-   
+   assert beam.duration.written == Rational(4, 8)
+   assert crescendo.duration.written == Rational(2, 8)
+   assert decrescendo.duration.written == Rational(2, 8)

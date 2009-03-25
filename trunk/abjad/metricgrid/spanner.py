@@ -22,7 +22,8 @@ class MetricGrid(Spanner):
          i = 0
          moffset = 0
          prev_meter = None
-         while moffset < self.duration:
+         #while moffset < self.duration:
+         while moffset < self.duration.prolated:
             m = self._meters[i % len(self._meters)]
             m = Meter(*m)
             ### new attribute
