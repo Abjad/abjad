@@ -40,8 +40,8 @@ class Container(_Component):
       self._initializeMusic(music)
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
-      self.formatter = _ContainerFormatter(self)
-      #self.notehead = _NoteHeadInterface(self)
+      #self.formatter = _ContainerFormatter(self)
+      self._formatter = _ContainerFormatter(self)
 
    ## OVERLOADS ##
 
@@ -168,6 +168,11 @@ class Container(_Component):
    def duration(self):
       '''Read-only reference to container duration interface.'''
       return self._duration
+
+   @property
+   def formatter(self):
+      '''Read-only reference to container formatter.'''
+      return self._formatter
 
    @property
    def leaves(self):

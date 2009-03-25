@@ -10,7 +10,8 @@ class RigidMeasure(_Measure):
    def __init__(self, meter, music = None):
       _Measure.__init__(self, music)
       self._duration = _RigidMeasureDurationInterface(self)
-      self.formatter = _RigidMeasureFormatter(self)
+      #self.formatter = _RigidMeasureFormatter(self)
+      self._formatter = _RigidMeasureFormatter(self)
       self.meter = meter
 
    ## PUBLIC METHODS ##

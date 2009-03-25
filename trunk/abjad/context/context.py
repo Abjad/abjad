@@ -9,7 +9,8 @@ class _Context(Container):
       music = music or [ ]
       Container.__init__(self, music)
       self.brackets = 'curly'
-      self.formatter = _ContextFormatter(self)
+      #self.formatter = _ContextFormatter(self)
+      self._formatter = _ContextFormatter(self)
 
    ## OVERLOADS ##
 
