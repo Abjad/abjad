@@ -32,8 +32,11 @@ class _ClefInterface(_Interface, _GrobHandler):
 
    @property
    def change(self):
-      return bool(self._client.prev and \
-         self._client.prev.clef.name != self.name)
+      client = self._client
+      #return bool(self._client.prev and \
+      #   self._client.prev.clef.name != self.name)
+      return bool(client._navigator._prevBead and \
+         client._navigator._prevBead.clef.name != self.name)
 
    @property
    def effective(self):
@@ -42,7 +45,8 @@ class _ClefInterface(_Interface, _GrobHandler):
          if cur.clef._forced:
             return cur.clef._forced
          else:
-            cur = cur.prev
+            #cur = cur.prev
+            cur = cur._navigator._prevBead
       for x in self._client.parentage.parentage[1:]:
          if hasattr(x, 'clef') and x.clef._forced:
             return x.clef._forced

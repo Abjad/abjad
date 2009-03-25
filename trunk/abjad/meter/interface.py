@@ -64,8 +64,11 @@ class _MeterInterface(_Interface, _GrobHandler):
       '''True if meter of client differs from 
          meter of component previous to client.'''
       client = self._client
-      return bool(client.prev and \
-         client.prev.meter.effective != self.effective)
+      #return bool(client.prev and \
+      #   client.prev.meter.effective != self.effective)
+      ## should there be explicit measure-navigation in navigator?
+      return bool(client._navigator._prevBead and \
+         client._navigator._prevBead.meter.effective != self.effective)
 
    ## TODO - the explicit check for DynamicMeasure seems like
    ##        a (small) hack; is there a better implementation?
@@ -86,7 +89,9 @@ class _MeterInterface(_Interface, _GrobHandler):
          if cur.meter._forced:
             return cur.meter._forced
          else:
-            cur = cur.prev
+            #cur = cur.prev
+            ## should there be explicit measure-navigation in navigator?
+            cur = cur._navigator._prevBead
       for x in self._client.parentage.parentage[1:]:
          if hasattr(x, 'meter') and x.meter._forced:
             return x.meter._forced

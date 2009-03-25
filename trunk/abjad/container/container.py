@@ -176,14 +176,6 @@ class Container(_Component):
       from abjad.leaf.leaf import _Leaf
       return list(iterate(self, _Leaf))
 
-   @property
-   def next(self):
-      '''Naive next leaf righwards, otherwise None.'''
-      if len(self.leaves) > 0:
-         return self.leaves[-1].next
-      else:
-         return None
-
    @apply
    def parallel( ):
       '''Read / write boolean for paralle / sequential containers.'''
@@ -197,20 +189,6 @@ class Container(_Component):
             self.brackets = 'sequential'
       return property(**locals( ))
               
-   ### TODO: i propose this instead. 
-   # if we want a next Leaf, we can call a nextLeaf explicitly.
-   #   @property
-   #   def next(self):
-   #      return self._navigator._nextSibling
-
-   @property
-   def prev(self):
-      '''Naive prev leaf leftwards, otherwise None.'''
-      if len(self.leaves) > 0:
-         return self.leaves[0].prev
-      else:
-         return None
-
    ## PRIVATE METHODS ##
 
    ## TODO: Deprecate _bind_component. ##
