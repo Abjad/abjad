@@ -214,11 +214,11 @@ class Container(_Component):
          This operation leaves all score trees always in tact.'''
       self[len(self):len(self)] = [component]
 
-   def clear(self):
-      '''Delete container contents.
-         Container contents withdraw from crossing spanners.
-         Container contents carry covered spanners forward.'''
-      del(self[:])
+#   def clear(self):
+#      '''Delete container contents.
+#         Container contents withdraw from crossing spanners.
+#         Container contents carry covered spanners forward.'''
+#      del(self[:])
 
    def extend(self, expr):
       '''Extend container with expr.

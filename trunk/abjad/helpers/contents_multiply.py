@@ -16,5 +16,6 @@ def contents_multiply(container, total = 2):
    if 0 < total:
       return cyclic_extend(container, n = len(container), total = total)
    else:
-      container.clear( )
+      #container.clear( )
+      del(container[:])
       return container
