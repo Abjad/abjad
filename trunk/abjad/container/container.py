@@ -55,11 +55,6 @@ class Container(_Component):
       '''Remove component at index i in container from container.
          Remove comopnent at index i in container from crossing spanners.
          Return None.'''
-#      if isinstance(i, int):
-#         self[i].detach( )
-#      elif isinstance(i, slice):
-#         for m in self[i]:
-#            m.detach( )
       from abjad.helpers.withdraw_from_crossing_spanners import \
          _withdraw_from_crossing_spanners
       from abjad.helpers.components_detach_parentage import \
@@ -69,6 +64,7 @@ class Container(_Component):
          components = [components]
       _withdraw_from_crossing_spanners(components)
       components_detach_parentage(components)
+      self._update._markForUpdateToRoot( )
 
    def __getitem__(self, i):
       '''Return component at index i in container.
@@ -219,15 +215,10 @@ class Container(_Component):
       self[len(self):len(self)] = [component]
 
    def clear(self):
-      '''Remove any contents from self.
-         Contents have parent set to None.
-         Leave all spanners untouched.'''
-      result = self._music[ : ]
-      for element in result:
-         element.parentage._switchParentTo(None)
-      self._update._markForUpdateToRoot( )
-      return result
-      #self[:] = [ ]
+      '''Delete container contents.
+         Container contents withdraw from crossing spanners.
+         Container contents carry covered spanners forward.'''
+      del(self[:])
 
    def extend(self, expr):
       '''Extend container with expr.
