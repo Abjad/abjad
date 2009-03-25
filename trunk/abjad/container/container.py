@@ -214,23 +214,11 @@ class Container(_Component):
       self[len(self):len(self)] = [component]
 
    def extend(self, expr):
-      '''Extend container with expr.
-         Spanners attaching to, or contained in, container remain unchanged.
-         No new spanners attach to expr.
-         Return None.'''
-      if len(expr) > 0:
-         if isinstance(expr, list):
-            length = len(self)
-            self[length:length] = expr
-         elif isinstance(expr, Container):
-            components = expr[:]
-            components = components_detach_parentage(components) 
-            length = len(self)
-            self[length:length] = components
-         else:
-            raise TypeError(
-               'Must be container or list of Abjad components.')
-         self._update._markForUpdateToRoot( )
+      '''Extend container with components in 'expr'.
+         Change no container spanners.
+         Return container.'''
+      self[len(self):len(self)] = expr[:]
+      return self
 
    def index(self, component):
       '''Return nonnegative integer index of component in container.'''
