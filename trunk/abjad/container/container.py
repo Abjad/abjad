@@ -191,6 +191,8 @@ class Container(_Component):
    ## PRIVATE METHODS ##
 
    def _initializeMusic(self, music):
+      '''Insert components in 'music' in container.
+         Set parent of components in 'music' to container.'''
       music = music or [ ]
       _assert_components(music, 'strict', share = 'thread')
       if music:
@@ -198,7 +200,6 @@ class Container(_Component):
          if parent is not None:
             start_index = parent.index(music[0])
             stop_index = parent.index(music[-1])
-            #parent[start_index:stop_index+1] = [self]
             parent._music[start_index:stop_index+1] = [self]
             self.parentage._switchParentTo(parent)
       self._music = music
@@ -209,17 +210,8 @@ class Container(_Component):
 
    def append(self, component):
       '''Append component to the end of container.
-         Preserve any spanners attaching to, or contained in, container.
-         Attach no new spanners to component.
-         Return None.
-         This operation leaves all score trees always in tact.'''
+         Attach no new spanners to component.'''
       self[len(self):len(self)] = [component]
-
-#   def clear(self):
-#      '''Delete container contents.
-#         Container contents withdraw from crossing spanners.
-#         Container contents carry covered spanners forward.'''
-#      del(self[:])
 
    def extend(self, expr):
       '''Extend container with expr.
@@ -240,15 +232,13 @@ class Container(_Component):
                'Must be container or list of Abjad components.')
          self._update._markForUpdateToRoot( )
 
-   def index(self, expr):
-      '''Return nonnegative index index of expr in self.'''
-      return self._music.index(expr)
+   def index(self, component):
+      '''Return nonnegative integer index of component in container.'''
+      return self._music.index(component)
 
    def insert(self, i, component):
       '''Insert component 'component' at index 'i' in container.
-         Keep spanners in tact.
-         This operation always leaves all Abjad expressions in tact.
-         Note that Container.insert( ) previously fracture spanners.'''
+         Attach spanners that dominate index 'i' to 'component'.'''
       self[i:i] = [component]
 
    def pop(self, i = -1):
@@ -261,20 +251,12 @@ class Container(_Component):
       del(self[i])
       return component
 
-   ## TODO: Write remove( ) tests for covered spanners. ##
-   ## TODO: Reimplement remove( ) without visitor. ###
-
-   def remove(self, expr):
-      '''Remove expr from my music.'''
-      class Visitor(object):
-         def __init__(self, expr):
-            self.expr = expr
-            self.deleted = False
-         def visit(self, node):
-            if node is self.expr:
-               node.detach( )
-               self.deleted = True
-      v = Visitor(expr)
-      self._navigator._traverse(v)
-      if not v.deleted:
-         raise ValueError("%s not in list." % expr)
+   def remove(self, component):
+      '''Assert 'component' in container.
+         Detach 'component' from parentage.
+         Withdraw 'component' from crossing spanners.
+         Carry covered spanners forward on 'component'.
+         Return 'component'.'''
+      i = self.index(component)
+      del(self[i])
+      return component

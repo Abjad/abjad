@@ -2,44 +2,53 @@ from abjad import *
 
 
 def test_container_remove_01( ):
-   '''
-   Containers remove( ) leaves correctly.
-   Removed leaves detach from btoh parent and spanners.
-   '''
+   '''Containers remove leaves correctly.
+      Leaf detaches from parentage.
+      Leaf withdraws from crossing spanners.
+      Leaf carries covered spanners forward.
+      Leaf returns after removal.'''
 
-   t = Staff(scale(4))
-   p = Beam(t[ : ])
-   note = t[0]
-   t.remove(note)
+   t = Voice(scale(4))
+   Slur(t[:])
+   Beam(t[1])
 
-   r'''
-   \new Staff {
-      d'8 [
+   r'''\new Voice {
+      c'8 (
+      d'8 [ ]
       e'8
-      f'8 ]
-   }
-   '''
+      f'8 )
+   }'''
 
-   assert t.format == "\\new Staff {\n\td'8 [\n\te'8\n\tf'8 ]\n}"
+   result = t.remove(t[1])
+
+   r''' \new Voice {
+      c'8 (
+      e'8
+      f'8 )
+   }'''
+
    assert check(t)
-   
-   assert note.format == "c'8"
-   assert check(note)
+   assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
+
+   "Result is now d'8 [ ]"
+
+   assert check(result)
+   assert result.format == "d'8 [ ]"
 
 
 def test_container_remove_02( ):
-   '''
-   Containers remove( ) nested containers correctly.
-   Removed containers detach from both parent and spanners.
-   '''
+   '''Containers remove nested containers correctly.
+      Container detaches from parentage.
+      Container withdraws from crossing spanners.
+      Container carries covered spanners forward.
+      Container returns after removal.'''
 
    t = Staff(Sequential(run(2)) * 2)
    diatonicize(t)
    sequential = t[0]
-   p = Beam(t[ : ])
+   p = Beam(t[:])
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       {
          c'8 [
          d'8
@@ -48,29 +57,25 @@ def test_container_remove_02( ):
          e'8
          f'8 ]
       }
-   }
-   '''
+   }'''
 
    t.remove(sequential)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       {
          e'8 [
          f'8 ]
       }
-   }
-   '''
+   }'''
  
-   assert t.format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
    assert check(t)
+   assert t.format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
-   r'''
-   {
+   r'''{
       c'8
       d'8
    }
    '''
    
-   assert sequential.format == "{\n\tc'8\n\td'8\n}"
    assert check(sequential)
+   assert sequential.format == "{\n\tc'8\n\td'8\n}"
