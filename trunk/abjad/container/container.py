@@ -17,11 +17,6 @@ from abjad.helpers.get_dominant_spanners_receipt import \
    _get_dominant_spanners_receipt
 from abjad.helpers.get_dominant_spanners_slice import \
    _get_dominant_spanners_slice
-from abjad.helpers.give_my_attached_spanners_to import \
-   _give_my_attached_spanners_to
-from abjad.helpers.give_my_position_in_parent_to import \
-   _give_my_position_in_parent_to
-from abjad.helpers.give_my_spanned_music_to import _give_my_spanned_music_to
 from abjad.helpers.iterate import iterate
 from abjad.helpers.make_orphan_components import _make_orphan_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
@@ -36,7 +31,7 @@ class Container(_Component):
    def __init__(self, music = None):
       '''Initialize container with music list of length zero or grater.'''
       _Component.__init__(self)
-      self.spanners = _ContainerSpannerAggregator(self)
+      self._spanners = _ContainerSpannerAggregator(self)
       self._initializeMusic(music)
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
@@ -58,13 +53,22 @@ class Container(_Component):
 
    def __delitem__(self, i):
       '''Remove component at index i in container from container.
-         Remove comopnent at index i in container from spanners.
+         Remove comopnent at index i in container from crossing spanners.
          Return None.'''
-      if isinstance(i, int):
-         self[i].detach( )
-      elif isinstance(i, slice):
-         for m in self[i]:
-            m.detach( )
+#      if isinstance(i, int):
+#         self[i].detach( )
+#      elif isinstance(i, slice):
+#         for m in self[i]:
+#            m.detach( )
+      from abjad.helpers.withdraw_from_crossing_spanners import \
+         _withdraw_from_crossing_spanners
+      from abjad.helpers.components_detach_parentage import \
+         components_detach_parentage
+      components = self[i]
+      if not isinstance(components, list):
+         components = [components]
+      _withdraw_from_crossing_spanners(components)
+      components_detach_parentage(components)
 
    def __getitem__(self, i):
       '''Return component at index i in container.
@@ -186,22 +190,8 @@ class Container(_Component):
          else:
             self.brackets = 'sequential'
       return property(**locals( ))
-              
+
    ## PRIVATE METHODS ##
-
-   ## TODO: Deprecate _bind_component. ##
-
-   def _bind_component(self, i, component):
-      '''Insert component in container music at index i.
-         Neither fracture spanners nor insert into spanners.
-         With no spanners, this method is the same as insert.
-         With spanners, use this method together with spanner insertion.
-         Return component.'''
-      assert isinstance(component, _Component)
-      self._music.insert(i, component)
-      component.parentage._switchParentTo(self)
-      self._update._markForUpdateToRoot( )
-      return component
 
    def _initializeMusic(self, music):
       music = music or [ ]
@@ -228,17 +218,6 @@ class Container(_Component):
          This operation leaves all score trees always in tact.'''
       self[len(self):len(self)] = [component]
 
-   def bequeath(self, component):
-      '''Give my music to recipient component.
-         Give my attached spanners to recipient component.
-         Give my position in parent to recipient component.
-         After bequeathal, self is an empty unspanned orphan.
-         Bequeath swaps out one type of container for another.
-         Return None.''' 
-      _give_my_spanned_music_to(self, component)
-      _give_my_attached_spanners_to(self, [component])
-      _give_my_position_in_parent_to(self, [component])
-
    def clear(self):
       '''Remove any contents from self.
          Contents have parent set to None.
@@ -248,6 +227,7 @@ class Container(_Component):
          element.parentage._switchParentTo(None)
       self._update._markForUpdateToRoot( )
       return result
+      #self[:] = [ ]
 
    def extend(self, expr):
       '''Extend container with expr.

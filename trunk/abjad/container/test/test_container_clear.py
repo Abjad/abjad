@@ -2,13 +2,12 @@ from abjad import *
 
 
 def test_container_clear_01( ):
-   '''
-   Containers clear unspanned child leaves.
-   '''
+   '''Containers clear unspanned child leaves.'''
 
    t = Staff(scale(4))
    contents = t[ : ]
-   result = t.clear( )
+   #result = t.clear( )
+   t.clear( )
 
    r'''
    \new Staff {
@@ -20,22 +19,19 @@ def test_container_clear_01( ):
 
    "[Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8)]"
 
-   assert contents == result
-   assert len(result) == 4
-
-   for x in result:
+   #for x in result:
+   for x in contents:
       assert x.parentage.parent is None
 
 
 def test_container_clear_02( ):
-   '''
-   Containers clear spanned child leaves.
-   '''
+   '''Containers clear spanned child leaves.'''
 
    t = Staff(scale(4))
    p = Beam(t[ : ])
    contents = t[ : ]
-   result = t.clear( )
+   #result = t.clear( )
+   t.clear( )
 
    r'''
    \new Staff {
@@ -54,18 +50,17 @@ def test_container_clear_02( ):
    f'8 ]
    '''
 
-   assert contents == result
-   assert len(result) == 4
+   #assert contents == result
+   #assert len(result) == 4
 
-   for x in result:
+   #for x in result:
+   for x in contents:
       assert x.parentage.parent is None
       assert x.beam.spanned
 
   
 def test_container_clear_03( ):
-   '''
-   Containers clear unspanned child containers.
-   '''
+   '''Containers clear unspanned child containers.'''
 
    t = Staff(Sequential(run(2)) * 3)
    diatonicize(t)
@@ -88,9 +83,10 @@ def test_container_clear_03( ):
    }
    '''
 
-   result = t.clear( )
+   #result = t.clear( )
+   t.clear( )
    assert len(t) == 0
-   assert len(result) == 3
+   #assert len(result) == 3
 
    '''
    {
@@ -107,23 +103,21 @@ def test_container_clear_03( ):
    }
    '''
 
-   assert result == contents
-   for x in result:
+   #assert result == contents
+   #for x in result:
+   for x in contents:
       assert x.parentage.parent is None
 
 
 def test_container_clear_04( ):
-   '''
-   Containers clear spanned child containers.
-   '''
+   '''Containers clear spanned child containers.'''
 
    t = Staff(Sequential(run(2)) * 3)
-   p = Beam(t[ : ])
+   p = Beam(t[:])
    diatonicize(t)
-   contents = t[ : ]
+   contents = t[:]
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       {
          c'8 [
          d'8
@@ -136,15 +130,14 @@ def test_container_clear_04( ):
          g'8
          a'8 ]
       }
-   }
-   '''
+   }'''
 
-   result = t.clear( )
+   #result = t.clear( )
+   t.clear( )
    assert len(t) == 0
-   assert len(result) == 3
+   #assert len(result) == 3
 
-   '''
-   {
+   '''{
       c'8 [
       d'8
    }
@@ -155,10 +148,10 @@ def test_container_clear_04( ):
    {
       g'8
       a'8 ]
-   }
-   '''
+   }'''
 
-   assert result == contents
-   for x in result:
+   #assert result == contents
+   #for x in result:
+   for x in contents:
       assert x.parentage.parent is None
       assert x.beam.spanned

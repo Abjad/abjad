@@ -190,21 +190,3 @@ class _Leaf(_Component):
       def fget(self):
          return self._tie
       return property(**locals( ))
-
-   ## PUBLIC METHODS ##
-
-   def bequeath(self, expr):
-      '''Bequeath my position-in-parent to expr.
-         Bequeath my position-in-spanners to expr.
-         After bequeathal, self is an unspanned orphan.
-         Return None.'''
-
-      receipt = self.detach( )
-
-      parent = receipt._parentage._parent
-      if parent is not None:
-         parent._bind_component(receipt._parentage._index, expr)
-
-      for spanner, index in list(receipt._spanners._pairs):
-         #spanner.insert(index, expr)
-         spanner._insert(index, expr)

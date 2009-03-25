@@ -198,6 +198,10 @@ class _Component(_Abjad):
          return self._slur
       return property(**locals( ))
 
+   @property
+   def spanners(self):
+      return self._spanners
+
    @apply
    def stem( ):
       def fget(self):
@@ -251,6 +255,23 @@ class _Component(_Abjad):
       return self._voice
 
    ## PUBLIC METHODS ##
+
+   def bequeath(self, component):
+      '''Give my music to recipient component.
+         Give my attached spanners to recipient component.
+         Give my position in parent to recipient component.
+         After bequeathal, self is an empty unspanned orphan.
+         Bequeath swaps out one type of container for another.
+         Return None.'''
+      from abjad.helpers.give_my_attached_spanners_to import \
+         _give_my_attached_spanners_to
+      from abjad.helpers.give_my_position_in_parent_to import \
+         _give_my_position_in_parent_to
+      from abjad.helpers.give_my_spanned_music_to import \
+         _give_my_spanned_music_to
+      _give_my_spanned_music_to(self, component)
+      _give_my_attached_spanners_to(self, [component])
+      _give_my_position_in_parent_to(self, [component])
 
    def copy(self):
       '''Clones a complete Abjad component;
