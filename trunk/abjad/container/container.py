@@ -41,8 +41,7 @@ class Container(_Component):
       self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self.formatter = _ContainerFormatter(self)
-      ## TODO: Reimplement _NoteHeadInterface on _Component
-      self.notehead = _NoteHeadInterface(self)
+      #self.notehead = _NoteHeadInterface(self)
 
    ## OVERLOADS ##
 

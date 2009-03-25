@@ -36,14 +36,17 @@ class Chord(_Leaf):
 
    def __setitem__(self, i, arg):
       if isinstance(arg, (int, long, float)):
-         self._noteheads[i] = NoteHead(pitch = arg)
-         self._noteheads[i]._client = self
+         #self._noteheads[i] = NoteHead(pitch = arg)
+         #self._noteheads[i]._client = self
+         self._noteheads[i] = NoteHead(self, pitch = arg)
       elif isinstance(arg, Pitch):
-         self._noteheads[i] = NoteHead(pitch = arg)
-         self._noteheads[i]._client = self
+         #self._noteheads[i] = NoteHead(pitch = arg)
+         #self._noteheads[i]._client = self
+         self._noteheads[i] = NoteHead(self, pitch = arg)
       elif isinstance(arg, NoteHead):
+         #self._noteheads[i] = arg
+         #self._noteheads[i]._client = self
          self._noteheads[i] = arg
-         self._noteheads[i]._client = self
       self._sort( )
 
    def __str__(self):
@@ -93,17 +96,21 @@ class Chord(_Leaf):
          self._noteheads = [ ]
          for arg in arglist:
             if isinstance(arg, (int, float, long)):
-               self._noteheads.append(NoteHead(pitch = arg))
-               self._noteheads[-1]._client = self
+               #self._noteheads.append(NoteHead(pitch = arg))
+               #self._noteheads[-1]._client = self
+               self._noteheads.append(NoteHead(self, pitch = arg))
             elif isinstance(arg, tuple):
-               self._noteheads.append(NoteHead(pitch = arg))   
-               self._noteheads[-1]._client = self
+               #self._noteheads.append(NoteHead(pitch = arg))   
+               #self._noteheads[-1]._client = self
+               self._noteheads.append(NoteHead(self, pitch = arg))   
             elif isinstance(arg, Pitch):
-               self._noteheads.append(NoteHead(pitch = arg))
-               self._noteheads[-1]._client = self
+               #self._noteheads.append(NoteHead(pitch = arg))
+               #self._noteheads[-1]._client = self
+               self._noteheads.append(NoteHead(self, pitch = arg))
             elif isinstance(arg, NoteHead):
+               #self._noteheads.append(arg)
+               #self._noteheads[-1]._client = self
                self._noteheads.append(arg)
-               self._noteheads[-1]._client = self
             else:
                raise ValueError(
                   'Can not set Chord.noteheads = [..., %s, ...].' % arg)
@@ -138,14 +145,17 @@ class Chord(_Leaf):
    def append(self, arg):
       '''Append notehead token to self. Then sort noteheads.'''
       if isinstance(arg, (int, float, long)):
-         self._noteheads.append(NoteHead(pitch = arg))
-         self._noteheads[-1]._client = self
+         #self._noteheads.append(NoteHead(pitch = arg))
+         #self._noteheads[-1]._client = self
+         self._noteheads.append(NoteHead(self, pitch = arg))
       elif isinstance(arg, Pitch):
-         self._noteheads.append(NoteHead(pitch = arg))
-         self._noteheads[-1]._client = self
+         #self._noteheads.append(NoteHead(pitch = arg))
+         #self._noteheads[-1]._client = self
+         self._noteheads.append(NoteHead(self, pitch = arg))
       elif isinstance(arg, NoteHead):
+         #self._noteheads.append(arg)
+         #self._noteheads[-1]._client = self
          self._noteheads.append(arg)
-         self._noteheads[-1]._client = self
       else:
          print 'Can not append %s to Chord.' % arg
       self._sort( )

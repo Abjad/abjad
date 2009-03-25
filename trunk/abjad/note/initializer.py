@@ -1,5 +1,6 @@
 from abjad.core.initializer import _Initializer
 from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
+from abjad.notehead.notehead import NoteHead
 
 
 class _NoteInitializer(_Initializer):
@@ -37,7 +38,9 @@ class _NoteInitializer(_Initializer):
             _transfer_all_attributes(skip, client)
       elif len(args) == 2:
          pitch, duration = args
+         #print pitch, duration, type(pitch)
          _Leaf.__init__(client, duration)
-         client.pitch = pitch
+         client.notehead = pitch
+         #client.pitch = pitch
       else:
          raise ValueError('can not initialize note.')

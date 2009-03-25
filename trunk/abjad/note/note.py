@@ -39,14 +39,20 @@ class Note(_Leaf):
          if isinstance(arg, type(None)):
             self._notehead = None
          elif isinstance(arg, (int, float, long)):
-            self._notehead = NoteHead(pitch = arg)
-            self._notehead._client = self
+            #self._notehead = NoteHead(pitch = arg)
+            #self._notehead._client = self
+            self._notehead = NoteHead(self, pitch = arg)
+         elif isinstance(arg, tuple) and len(arg) == 2:
+            pitch = Pitch(*arg)
+            self._notehead = NoteHead(self, pitch = pitch)
          elif isinstance(arg, Pitch):
-            self._notehead = NoteHead(pitch = arg)
-            self._notehead._client = self
+            #self._notehead = NoteHead(pitch = arg)
+            #self._notehead._client = self
+            self._notehead = NoteHead(self, pitch = arg)
          elif isinstance(arg, NoteHead):
+            #self._notehead = arg
+            #self._notehead._client = self
             self._notehead = arg
-            self._notehead._client = self
          else:
             print 'Can not bind %s to Note.notehead.' % arg
       return property(**locals( ))
@@ -61,7 +67,8 @@ class Note(_Leaf):
    @apply
    def pitch( ):
       def fget(self):
-         if self.notehead is not None:
+         #if self.notehead is not None:
+         if self.notehead is not None and hasattr(self.notehead, 'pitch'):
             return self._notehead.pitch
          else:
             return None
@@ -71,7 +78,8 @@ class Note(_Leaf):
                self.notehead.pitch = None
          else:
             if self.notehead is None:
-               self.notehead = NoteHead(pitch = None)
+               #self.notehead = NoteHead(pitch = None)
+               self.notehead = NoteHead(self, pitch = None)
             if isinstance(arg, (int, float, long)):
                self.notehead.pitch = Pitch(arg)
             elif isinstance(arg, tuple):

@@ -1,15 +1,19 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.notehead.formatter import _NoteHeadFormatter
+from abjad.notehead.interface import _NoteHeadInterface
 from abjad.pitch.pitch import Pitch
 
 
-class NoteHead(_Interface, _GrobHandler):
+#class NoteHead(_Interface, _GrobHandler):
+class NoteHead(_NoteHeadInterface):
 
-   def __init__(self, pitch = None):
+   #def __init__(self, pitch = None):
+   def __init__(self, client, pitch = None):
       # NOTE: no client initialization here
-      _Interface.__init__(self, None)
-      _GrobHandler.__init__(self, 'NoteHead')
+      #_Interface.__init__(self, None)
+      #_GrobHandler.__init__(self, 'NoteHead')
+      _NoteHeadInterface.__init__(self, client)
       self._formatter = _NoteHeadFormatter(self)
       self.pitch = pitch
       self._style = None

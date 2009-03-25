@@ -1,5 +1,6 @@
 from abjad.core.initializer import _Initializer
 from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
+from abjad.notehead.interface import _NoteHeadInterface
 
 
 class _SkipInitializer(_Initializer):
@@ -14,7 +15,8 @@ class _SkipInitializer(_Initializer):
             note = args[0]
             _Leaf.__init__(client, note.duration.written)
             _transfer_all_attributes(note, client)
-            del client._notehead
+            #del client._notehead
+            client._notehead = _NoteHeadInterface(client)
          if isinstance(args[0], Rest):
             rest = args[0]
             _Leaf.__init__(client, rest.duration.written)
