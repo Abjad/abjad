@@ -20,34 +20,12 @@ class Spanner(_Abjad):
    def __contains__(self, expr):
       return self._components.__contains__(expr)
 
-#   def __delitem__(self, expr):
-#      if isinstance(expr, int):
-#         self.remove(self[expr])
-#      elif isinstance(expr, slice):
-#         start, stop, stride = expr.indices(len(self))
-#         for i in reversed(range(start, stop, stride)):
-#            del(self[i])
-
    def __getitem__(self, expr):
       return self._components.__getitem__(expr)
 
    def __len__(self):
       return self._components.__len__( )
 
-#   def __setitem__(self, index, expr):
-#      from abjad.helpers.assert_components import _assert_components
-#      if isinstance(index, int):
-#         _assert_components([expr])
-#         self[index].bequeath(expr)
-#      elif isinstance(index, slice):
-#         assert isinstance(expr, list)
-#         start, stop, stride = index.indices(len(self))
-#         _assert_components(self[start:stop], 
-#            contiguity = 'strict', share = 'parent')
-#         del(self[start:stop])
-#         for component in reversed(expr):
-#            self.insert(start, component)
-         
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._summary)
 
