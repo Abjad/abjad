@@ -147,8 +147,8 @@ class Spanner(_Abjad):
       return [ ]
 
    def _remove(self, component):
-      '''Remove component from me.
-         Remove me from component's aggregator.
+      '''Remove 'component' from spanner.
+         Remove spanner from component's aggregator.
          Not composer-safe and may leave discontiguous spanners.'''
       self._severComponent(component)
 
