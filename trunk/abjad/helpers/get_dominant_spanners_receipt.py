@@ -3,7 +3,7 @@ from abjad.helpers.assert_components import _assert_components
 from abjad.helpers.iterate import iterate
 
 
-def _get_dominant_spanners_receipt(components):
+def get_dominant_spanners_receipt(components):
    '''Return Python list of (spanner, index) pairs.
       Each (spanner, index) pair gives a spanner which dominates
       all components in 'components' together with the start-index
@@ -13,6 +13,8 @@ def _get_dominant_spanners_receipt(components):
       from 'components', perform some action to the underlying
       score tree, and then reattach all spanners to new
       score components.
+
+      This operation always leaves all expressions in tact.
  
       TODO: Return custom _MultispannerReceipt instance.'''
 
