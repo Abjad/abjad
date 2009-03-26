@@ -1,4 +1,3 @@
-from abjad.helpers.get_attached_spanners import _get_attached_spanners
 from abjad import *
 
 
@@ -19,7 +18,7 @@ def test_get_attached_spanners_01( ):
    }
    '''
 
-   spanners = _get_attached_spanners(t[:])
+   spanners = get_attached_spanners(t[:])
 
    assert b1 in spanners
    assert b2 in spanners
@@ -29,7 +28,7 @@ def test_get_attached_spanners_01( ):
 def test_get_attached_spanners_02( ):
    '''Accept empty component list.'''
 
-   spanners = _get_attached_spanners([ ])
+   spanners = get_attached_spanners([ ])
    
    assert spanners == set([ ])
 
@@ -38,6 +37,6 @@ def test_get_attached_spanners_03( ):
    '''Return empty set when no spanners.'''
 
    t = Staff(scale(4))
-   spanners = _get_attached_spanners(t[:])
+   spanners = get_attached_spanners(t[:])
 
    assert spanners == set([ ])

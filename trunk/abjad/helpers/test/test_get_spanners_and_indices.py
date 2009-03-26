@@ -1,6 +1,9 @@
-from abjad.helpers.get_spanners_and_indices import _get_spanners_and_indices
+#from abjad.helpers.get_spanners_and_indices import _get_spanners_and_indices
 from abjad import *
+import py.test
 
+
+py.test.skip('Deprecating _get_spanners_and_indices.')
 
 def test_get_spanners_and_indices_01( ):
    '''Return unordered set of spanner, index pairs.

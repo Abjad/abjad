@@ -1,5 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_attached_spanners import _get_attached_spanners
+from abjad.helpers.get_attached_spanners import get_attached_spanners
 from abjad.helpers.is_dominant_spanner import _is_dominant_spanner
 
 
@@ -14,7 +14,7 @@ def get_dominant_spanners(components):
    assert_components(components, contiguity = 'strict', share = 'thread')
 
    # get attached spanners
-   attached_spanners = _get_attached_spanners(components)
+   attached_spanners = get_attached_spanners(components)
 
    # get dominant spanners
    dominant_spanners = [

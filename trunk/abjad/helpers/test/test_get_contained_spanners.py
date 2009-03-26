@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.helpers.get_contained_spanners import _get_contained_spanners
 import py.test
 
 
@@ -24,24 +23,24 @@ def test_get_contained_spanners_01( ):
            }
    }'''
 
-   spanners = _get_contained_spanners([t])
+   spanners = get_contained_spanners([t])
    assert len(spanners) == 3
    assert beam in spanners
    assert slur in spanners
    assert trill in spanners
 
-   spanners = _get_contained_spanners(t.leaves)
+   spanners = get_contained_spanners(t.leaves)
    assert len(spanners) == 3
    assert beam in spanners
    assert slur in spanners
    assert trill in spanners
 
-   spanners = _get_contained_spanners(t[0:1])
+   spanners = get_contained_spanners(t[0:1])
    assert len(spanners) == 2
    assert beam in spanners
    assert trill in spanners
 
-   spanners = _get_contained_spanners(t.leaves[0:1])
+   spanners = get_contained_spanners(t.leaves[0:1])
    assert len(spanners) == 2
    assert beam in spanners
    assert trill in spanners
@@ -67,4 +66,4 @@ def test_get_contained_spanners_02( ):
            }
    }'''
    
-   assert py.test.raises(ContiguityError, '_get_contained_spanners(t.leaves)')
+   assert py.test.raises(ContiguityError, 'get_contained_spanners(t.leaves)')

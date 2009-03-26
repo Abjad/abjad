@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.helpers.get_crossing_spanners import _get_crossing_spanners
 import py.test
 
 
@@ -24,17 +23,17 @@ def test_get_crossing_spanners_01( ):
            }
    }'''
 
-   spanners = _get_crossing_spanners([t])
+   spanners = get_crossing_spanners([t])
    assert spanners == set([ ])
 
-   spanners = _get_crossing_spanners(t.leaves)
+   spanners = get_crossing_spanners(t.leaves)
    assert spanners == set([ ])
 
-   spanners = _get_crossing_spanners(t[0:1])
+   spanners = get_crossing_spanners(t[0:1])
    assert len(spanners) == 1
    assert trill in spanners
 
-   spanners = _get_crossing_spanners(t.leaves[0:1])
+   spanners = get_crossing_spanners(t.leaves[0:1])
    assert len(spanners) == 2
    assert beam in spanners
    assert trill in spanners
@@ -60,4 +59,4 @@ def test_get_crossing_spanners_02( ):
            }
    }'''
    
-   assert py.test.raises(ContiguityError, '_get_crossing_spanners(t.leaves)')
+   assert py.test.raises(ContiguityError, 'get_crossing_spanners(t.leaves)')

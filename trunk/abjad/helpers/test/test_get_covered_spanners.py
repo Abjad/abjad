@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.helpers.get_covered_spanners import _get_covered_spanners
 import py.test
 
 
@@ -24,23 +23,23 @@ def test_get_covered_spanners_01( ):
            }
    }'''
 
-   spanners = _get_covered_spanners([t])
+   spanners = get_covered_spanners([t])
    assert len(spanners) == 3
    assert beam in spanners
    assert slur in spanners
    assert trill in spanners
 
-   spanners = _get_covered_spanners(t.leaves)
+   spanners = get_covered_spanners(t.leaves)
    assert len(spanners) == 3
    assert beam in spanners
    assert slur in spanners
    assert trill in spanners
 
-   spanners = _get_covered_spanners(t[0:1])
+   spanners = get_covered_spanners(t[0:1])
    assert len(spanners) == 1
    assert beam in spanners
 
-   spanners = _get_covered_spanners(t.leaves[0:1])
+   spanners = get_covered_spanners(t.leaves[0:1])
    assert spanners == set([ ])
 
 
@@ -64,4 +63,4 @@ def test_get_covered_spanners_02( ):
            }
    }'''
    
-   assert py.test.raises(ContiguityError, '_get_covered_spanners(t.leaves)')
+   assert py.test.raises(ContiguityError, 'get_covered_spanners(t.leaves)')

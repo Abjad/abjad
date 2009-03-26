@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def _get_contained_spanners(components):
+def get_contained_spanners(components):
    '''Return unordered set of spanners contained within
       any component in list of thread-contiguous components.
       Getter for t.spanners.contained across thread-contiguous components.'''

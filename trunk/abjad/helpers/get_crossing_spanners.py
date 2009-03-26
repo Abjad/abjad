@@ -1,9 +1,9 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_contained_spanners import _get_contained_spanners
-from abjad.helpers.get_covered_spanners import _get_covered_spanners
+from abjad.helpers.get_contained_spanners import get_contained_spanners
+from abjad.helpers.get_covered_spanners import get_covered_spanners
 
 
-def _get_crossing_spanners(components):
+def get_crossing_spanners(components):
    '''Assert thread-contiguous components.
       Collect spanners that attach to any of the components,
       or component music, in 'components' but that are *not*
@@ -17,7 +17,7 @@ def _get_crossing_spanners(components):
 
    assert_components(components, contiguity = 'thread')
 
-   result = _get_contained_spanners(components) - \
-      _get_covered_spanners(components)
+   result = get_contained_spanners(components) - \
+      get_covered_spanners(components)
 
    return result

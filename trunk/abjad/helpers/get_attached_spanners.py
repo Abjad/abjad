@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def _get_attached_spanners(components):
+def get_attached_spanners(components):
    '''TODO: Write doc string.
       TODO: Include example.'''
 
