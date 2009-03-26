@@ -6,7 +6,6 @@ from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
 from abjad.helpers.get_dominant_spanners import _get_dominant_spanners
 from abjad.helpers.get_parent_and_index import get_parent_and_index
-from abjad.helpers.make_orphan_components import _make_orphan_components
 
 
 def bequeath_multiple(old_components, new_components):
@@ -61,7 +60,7 @@ def bequeath_multiple(old_components, new_components):
    parent, index = get_parent_and_index(old_components)
 
    # orphan old components
-   _make_orphan_components(old_components)
+   _components_switch_parent_to(old_components, None)
 
    # if parent
    if parent is not None:
@@ -91,7 +90,7 @@ def new_bequeath_multiple(old_components, new_components):
    parent, index = get_parent_and_index(old_components)
 
    ## move old components out of parent, if any
-   _make_orphan_components(old_components)
+   _components_switch_parent_to(old_components, None)
 
    ## if there was old parent
    if parent is not None:
