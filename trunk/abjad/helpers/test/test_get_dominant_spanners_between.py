@@ -1,9 +1,9 @@
 from abjad import *
 from abjad.helpers.get_dominant_spanners_between import \
-   _get_dominant_spanners_between
+   get_dominant_spanners_between
 
 
-def test_get_dominant_spanners_between_01( ):
+def testget_dominant_spanners_between_01( ):
    '''Return Python list of (spanner, index) pairs.
       Each spanner dominates a *crack* between components.'''
 
@@ -30,13 +30,13 @@ def test_get_dominant_spanners_between_01( ):
 
    "No spanners dominate t[0:0]"
 
-   receipt = _get_dominant_spanners_between(None, t[0])
+   receipt = get_dominant_spanners_between(None, t[0])
 
    assert len(receipt) == 0
    assert receipt == set([ ])
 
 
-def test_get_dominant_spanners_between_02( ):
+def testget_dominant_spanners_between_02( ):
    '''Beam and trill both dominate crack at t[1:1].'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -45,14 +45,14 @@ def test_get_dominant_spanners_between_02( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = _get_dominant_spanners_between(t[0], t[1])
+   receipt = get_dominant_spanners_between(t[0], t[1])
 
    assert len(receipt) == 2
    assert (beam, 1) in receipt
    assert (trill, 2) in receipt
 
 
-def test_get_dominant_spanners_between_03( ):
+def testget_dominant_spanners_between_03( ):
    '''Glissando and trill both dominate crack at t[2:2].'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -61,14 +61,14 @@ def test_get_dominant_spanners_between_03( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = _get_dominant_spanners_between(t[1], t[2])
+   receipt = get_dominant_spanners_between(t[1], t[2])
    
    assert len(receipt) == 2
    assert (glissando, 1) in receipt
    assert (trill, 4) in receipt
 
 
-def test_get_dominant_spanners_between_04( ):
+def testget_dominant_spanners_between_04( ):
    '''No spanners dominate 'crack' following voice.'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -77,7 +77,7 @@ def test_get_dominant_spanners_between_04( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = _get_dominant_spanners_between(t[2], None)
+   receipt = get_dominant_spanners_between(t[2], None)
   
    assert len(receipt) == 0
    assert receipt == set([ ])

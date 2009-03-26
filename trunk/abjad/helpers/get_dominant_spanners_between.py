@@ -2,7 +2,7 @@ from abjad.component.component import _Component
 from abjad.helpers.assert_components import _assert_components
 
 
-def _get_dominant_spanners_between(left, right):
+def get_dominant_spanners_between(left, right):
    '''Return Python list of (spanner, index) pairs.
       'left' must be either an Abjad component or None.
       'right' must be either an Abjad component or None.

@@ -14,7 +14,7 @@ from abjad.helpers.get_parent_and_index import _get_parent_and_index
 from abjad.helpers.get_dominant_spanners_receipt import \
    get_dominant_spanners_receipt
 from abjad.helpers.get_dominant_spanners_slice import \
-   _get_dominant_spanners_slice
+   get_dominant_spanners_slice
 from abjad.helpers.iterate import iterate
 from abjad.helpers.test_components import _test_components
 from abjad.helpers.withdraw_from_crossing_spanners import \
@@ -120,7 +120,7 @@ class Container(_Component):
          else:
             start, stop, stride = i.indices(len(self))
          old = self[start:stop]
-         spanners_receipt = _get_dominant_spanners_slice(self, start, stop)
+         spanners_receipt = get_dominant_spanners_slice(self, start, stop)
          for component in old:
             component.detach( )
          ## must withdraw before setting in self!
