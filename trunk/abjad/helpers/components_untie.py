@@ -1,4 +1,4 @@
-from abjad.helpers.are_spannable_components import _are_spannable_components
+from abjad.helpers.assert_components import assert_components
 
 
 def components_untie(spannable_components):
@@ -12,8 +12,7 @@ def components_untie(spannable_components):
       Return spannable_components.'''
 
    # check input
-   if not _are_spannable_components(spannable_components):
-      raise ContiguityError('input must be spannable components.')
+   assert_components(spannable_components, contiguity = 'thread')
 
    # untie components
    for component in spannable_components:

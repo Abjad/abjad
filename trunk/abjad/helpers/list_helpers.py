@@ -33,7 +33,6 @@ def list_helpers(search_string = '', scope = 'public'):
 
    Abjad r1330 implements 14 private helpers containing the string 'are':
 
-      _are_components, _are_spannable_components,
       _is_tie_chain_in_same_parent, _link_new_leaf_to_parent,
       _total_preprolated_duration_in_same_parent'''
 

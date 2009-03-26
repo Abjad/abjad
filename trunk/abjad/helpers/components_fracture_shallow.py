@@ -1,5 +1,4 @@
-from abjad.exceptions.exceptions import ContiguityError
-from abjad.helpers.are_spannable_components import _are_spannable_components
+from abjad.helpers.assert_components import assert_components
 
 
 def components_fracture_shallow(spannable_components):
@@ -52,8 +51,7 @@ def components_fracture_shallow(spannable_components):
          }
       }'''
 
-   if not _are_spannable_components(spannable_components):
-      raise ContiguityError('input must be spannable components.')
+   assert_components(spannable_components, contiguity = 'thread')
 
    if len(spannable_components) > 0:
 
