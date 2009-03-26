@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def _get_parent_and_index(components):
+def get_parent_and_index(components):
    '''Return parent and index of first component in list.
       Otherwise return None, None.'''
 

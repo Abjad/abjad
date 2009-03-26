@@ -39,7 +39,7 @@ def list_helpers(search_string = '', scope = 'public'):
       _are_spannable_components,
       _are_strictly_contiguous_components_in_same_parent,
       _are_strictly_contiguous_components_in_same_score,
-      _are_strictly_contiguous_components_in_same_thread, _get_parent_and_index,
+      _are_strictly_contiguous_components_in_same_thread, get_parent_and_index,
       _is_tie_chain_in_same_parent, _link_new_leaf_to_parent,
       _total_preprolated_duration_in_same_parent'''
 

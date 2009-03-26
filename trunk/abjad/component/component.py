@@ -340,8 +340,8 @@ class _Component(_Abjad):
          Return receipt.'''
       from abjad.receipt.slip import _SlipReceipt
       from abjad.helpers.get_parent_and_index import \
-         _get_parent_and_index
-      parent, index = _get_parent_and_index([self])
+         get_parent_and_index
+      parent, index = get_parent_and_index([self])
       children = getattr(self, '_music', [ ])
       parentage = self.parentage._detach( )
       spanners = self.spanners._detach( )

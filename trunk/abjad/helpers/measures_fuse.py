@@ -1,7 +1,7 @@
 from abjad.helpers.components_detach_parentage import \
    _components_detach_parentage
 from abjad.helpers.container_contents_scale import container_contents_scale
-from abjad.helpers.get_parent_and_index import _get_parent_and_index
+from abjad.helpers.get_parent_and_index import get_parent_and_index
 from abjad.helpers.is_measure_list import _is_measure_list
 from abjad.helpers.make_best_meter import _make_best_meter
 from abjad.measure.rigid.measure import RigidMeasure
@@ -22,7 +22,7 @@ def measures_fuse(measure_list):
    if len(measure_list) == 1:
       return measure_list[0]
 
-   parent, parent_index = _get_parent_and_index(measure_list)
+   parent, parent_index = get_parent_and_index(measure_list)
 
    _components_detach_parentage(measure_list)
 

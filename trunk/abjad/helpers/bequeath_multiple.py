@@ -5,7 +5,7 @@ from abjad.helpers.components_detach_parentage import \
 from abjad.helpers.components_detach_spanners_shallow import \
    components_detach_spanners_shallow
 from abjad.helpers.get_dominant_spanners import _get_dominant_spanners
-from abjad.helpers.get_parent_and_index import _get_parent_and_index
+from abjad.helpers.get_parent_and_index import get_parent_and_index
 from abjad.helpers.make_orphan_components import _make_orphan_components
 
 
@@ -58,7 +58,7 @@ def bequeath_multiple(old_components, new_components):
    components_detach_spanners_shallow(old_components)
 
    # remember parent and index
-   parent, index = _get_parent_and_index(old_components)
+   parent, index = get_parent_and_index(old_components)
 
    # orphan old components
    _make_orphan_components(old_components)
@@ -88,7 +88,7 @@ def new_bequeath_multiple(old_components, new_components):
    _components_detach_parentage(new_components)
 
    ## remember old components parent and index, if any
-   parent, index = _get_parent_and_index(old_components)
+   parent, index = get_parent_and_index(old_components)
 
    ## move old components out of parent, if any
    _make_orphan_components(old_components)

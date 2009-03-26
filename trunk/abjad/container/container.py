@@ -11,7 +11,7 @@ from abjad.helpers.components_detach_parentage import \
    _components_detach_parentage
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
-from abjad.helpers.get_parent_and_index import _get_parent_and_index
+from abjad.helpers.get_parent_and_index import get_parent_and_index
 from abjad.helpers.get_dominant_spanners_receipt import \
    get_dominant_spanners_receipt
 from abjad.helpers.get_dominant_spanners_slice import \
@@ -188,7 +188,7 @@ class Container(_Component):
          Set parent of components in 'music' to container.'''
       music = music or [ ]
       assert_components(music, 'strict', share = 'thread')
-      parent, index = _get_parent_and_index(music)
+      parent, index = get_parent_and_index(music)
       self._music = music
       _components_switch_parent_to(self._music, self)
       if parent is not None:
