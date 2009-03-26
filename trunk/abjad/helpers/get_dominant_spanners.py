@@ -5,9 +5,9 @@ from abjad.helpers.is_dominant_spanner import _is_dominant_spanner
 
 ## TODO: Deprecate entirely in favor of get_dominant_spanners_receipt( ).
 ##       After deprecation, rename get_dominant_spanners_receipt( )
-##       to simply _get_dominant_spanners.
+##       to simply get_dominant_spanners.
 
-def _get_dominant_spanners(components):
+def get_dominant_spanners(components):
    '''Return list of all spanners that include all components in list.'''
    
    # check input

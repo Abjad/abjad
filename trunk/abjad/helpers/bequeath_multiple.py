@@ -4,7 +4,7 @@ from abjad.helpers.components_detach_spanners_shallow import \
    _components_detach_spanners_shallow
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
-from abjad.helpers.get_dominant_spanners import _get_dominant_spanners
+from abjad.helpers.get_dominant_spanners import get_dominant_spanners
 from abjad.helpers.get_parent_and_index import get_parent_and_index
 
 
@@ -43,7 +43,7 @@ def bequeath_multiple(old_components, new_components):
    ## TODO: Replace with call to _get_comonents_dominant_spanners_receipt( )
 
    # get dominant spanners
-   dominant_spanners = _get_dominant_spanners(old_components)
+   dominant_spanners = get_dominant_spanners(old_components)
    
    # insert new components in dominant spanners
    for dominant_spanner in dominant_spanners:
@@ -101,7 +101,7 @@ def new_bequeath_multiple(old_components, new_components):
          parent._music.insert(index, new_component)
    
    ## find spanners dominating old components, if any
-   dominant_spanners = _get_dominant_spanners(old_components)
+   dominant_spanners = get_dominant_spanners(old_components)
 
    for dominant_spanner in dominant_spanners:
       print dominant_spanner
