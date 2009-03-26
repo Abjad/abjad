@@ -2,7 +2,7 @@ from abjad.exceptions.exceptions import ContiguityError
 from abjad.helpers.assess_components import assess_components
 
 
-def _assert_components(expr, 
+def assert_components(expr, 
    contiguity = None, share = None, allow_orphans = True):
    '''Assert expr is a Python list of Abjad components.
       Set _contiguity_ to None, 'strict' or 'thread'.

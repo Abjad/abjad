@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_dominant_spanners_receipt import \
    get_dominant_spanners_receipt
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
@@ -8,8 +8,8 @@ def splice_after(component, new_components):
    '''Splice new_components after component.
       Return list of [component] + new_components.'''
 
-   _assert_components([component])
-   _assert_components(new_components)
+   assert_components([component])
+   assert_components(new_components)
 
    parent, index = _get_parent_and_index([component])
 

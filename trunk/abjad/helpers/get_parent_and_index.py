@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 
 
 def _get_parent_and_index(components):
@@ -6,7 +6,7 @@ def _get_parent_and_index(components):
       Otherwise return None, None.'''
 
    ## check input
-   _assert_components(components, contiguity = 'strict', share = 'thread')
+   assert_components(components, contiguity = 'strict', share = 'thread')
 
    if len(components) > 0:
       first = components[0]

@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.is_tie_chain import _is_tie_chain
 from abjad.helpers.iterate_chained_contents import iterate_chained_contents
 from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
@@ -16,7 +16,7 @@ def _components_likely_multiplier(components):
 
       Implemented to help reverse measure subsumption.'''
 
-   _assert_components(components)
+   assert_components(components)
 
    chain_duration_numerators = [ ]
    for expr in iterate_chained_contents(components):

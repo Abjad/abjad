@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.iterate import iterate
 
 
@@ -10,7 +10,7 @@ def components_detach_spanners_deep(components):
       Return components.'''
 
    # check input
-   _assert_components(components)
+   assert_components(components)
 
    # detach spanners
    from abjad.component.component import _Component

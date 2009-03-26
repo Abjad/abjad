@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_parent_and_index import _get_parent_and_index
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
@@ -17,8 +17,8 @@ def _give_my_position_in_parent_to(donor_component, recipient_components):
       Helper implements no spanner-handling at all.
       Helper is not composer-safe and may cause discontiguous spanners.'''
 
-   _assert_components([donor_component])
-   _assert_components(recipient_components)
+   assert_components([donor_component])
+   assert_components(recipient_components)
 
    parent, index = _get_parent_and_index([donor_component])
 

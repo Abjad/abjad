@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import ContiguityError
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 
 
 def _total_preprolated_duration_in_same_parent(components):
@@ -8,7 +8,7 @@ def _total_preprolated_duration_in_same_parent(components):
       Return sum of preprolated duration of all components in list.'''
 
    ## check input
-   _assert_components(components, contiguity = 'strict', share = 'parent')
+   assert_components(components, contiguity = 'strict', share = 'parent')
 
    ## sum preprolated durations
    result = sum([component.duration.preprolated for component in components])

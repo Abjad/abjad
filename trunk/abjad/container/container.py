@@ -4,7 +4,7 @@ from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.debug.debug import debug
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.assess_components import assess_components
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_detach_parentage import \
@@ -187,7 +187,7 @@ class Container(_Component):
       '''Insert components in 'music' in container.
          Set parent of components in 'music' to container.'''
       music = music or [ ]
-      _assert_components(music, 'strict', share = 'thread')
+      assert_components(music, 'strict', share = 'thread')
       parent, index = _get_parent_and_index(music)
       self._music = music
       _components_switch_parent_to(self._music, self)

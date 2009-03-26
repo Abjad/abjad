@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 
 
 def _components_detach_parentage(components):
@@ -9,7 +9,7 @@ def _components_detach_parentage(components):
       Not composer-safe.
       Preceed with a function that withdraws from spanners.'''
 
-   _assert_components(components)
+   assert_components(components)
 
    for component in components:
       component.parentage._detach( )

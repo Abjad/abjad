@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 
 
 def _get_attached_spanners(components):
@@ -6,7 +6,7 @@ def _get_attached_spanners(components):
       TODO: Include example.'''
 
    ## check input
-   _assert_components(components, contiguity = 'strict', share = 'thread')
+   assert_components(components, contiguity = 'strict', share = 'thread')
    
    ## accumulate spanners
    spanners = set([ ])

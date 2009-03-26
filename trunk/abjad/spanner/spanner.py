@@ -1,6 +1,6 @@
 from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.rational.rational import Rational
 from copy import copy as python_copy
@@ -188,13 +188,13 @@ class Spanner(_Abjad):
 
    def append(self, component):
       components = self[-1:] + [component]
-      _assert_components(components, contiguity = 'thread')
+      assert_components(components, contiguity = 'thread')
       component.spanners._add(self)
       self._components.append(component)
 
    def append_left(self, component):
       components = [component] + self[:1] 
-      _assert_components(components, contiguity = 'thread')
+      assert_components(components, contiguity = 'thread')
       component.spanners._add(self)
       self._components.insert(0, component)
 
@@ -215,13 +215,13 @@ class Spanner(_Abjad):
 
    def extend(self, components):
       input = self[-1:] + components
-      _assert_components(input, contiguity = 'thread')
+      assert_components(input, contiguity = 'thread')
       for component in components:
          self.append(component)
 
    def extend_left(self, components):
       input = components + self[:1]
-      _assert_components(input, contiguity = 'thread')
+      assert_components(input, contiguity = 'thread')
       for component in reversed(components):
          self.append_left(component)
 

@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import ContiguityError
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.components_detach_parentage import \
    _components_detach_parentage
 from abjad.helpers.components_detach_spanners_shallow import \
@@ -31,8 +31,8 @@ def bequeath_multiple(old_components, new_components):
       For example, swap out three successive leaves with a tuplet.'''
 
    # check input
-   _assert_components(old_components, contiguity = 'strict', share = 'parent')
-   _assert_components(new_components, contiguity = 'strict', share = 'parent')
+   assert_components(old_components, contiguity = 'strict', share = 'parent')
+   assert_components(new_components, contiguity = 'strict', share = 'parent')
 
    # handle empty input
    if len(old_components) == 0:
@@ -77,8 +77,8 @@ def bequeath_multiple(old_components, new_components):
 
 def new_bequeath_multiple(old_components, new_components):
 
-   _assert_components(old_components, contiguity = 'strict', share = 'parent')
-   _assert_components(new_components, contiguity = 'strict', share = 'parent')
+   assert_components(old_components, contiguity = 'strict', share = 'parent')
+   assert_components(new_components, contiguity = 'strict', share = 'parent')
 
    ## handle empty input
    if len(old_components) == 0:

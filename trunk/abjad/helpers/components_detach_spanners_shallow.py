@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 
 
 def components_detach_spanners_shallow(components):
@@ -17,7 +17,7 @@ def components_detach_spanners_shallow(components):
       middle of some larger spanner.'''
 
    # check input
-   _assert_components(components)
+   assert_components(components)
 
    # detach spanners
    for component in components:

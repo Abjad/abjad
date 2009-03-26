@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.iterate import iterate
 
 
@@ -13,7 +13,7 @@ def spanners_detach(components, level = 'top'):
       Return None.'''
 
    # check input
-   _assert_components(components)
+   assert_components(components)
 
    # delegate
    if level == 'top':

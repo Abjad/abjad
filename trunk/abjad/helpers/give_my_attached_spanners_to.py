@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 
 
 def _give_my_attached_spanners_to(donor_component, recipient_components):
@@ -10,8 +10,8 @@ def _give_my_attached_spanners_to(donor_component, recipient_components):
 
       Not composer-safe.'''
 
-   _assert_components([donor_component])
-   _assert_components(recipient_components, contiguity = 'thread')
+   assert_components([donor_component])
+   assert_components(recipient_components, contiguity = 'thread')
    
    attached_spanners = list(donor_component.spanners.attached)
    for attached_spanner in attached_spanners:

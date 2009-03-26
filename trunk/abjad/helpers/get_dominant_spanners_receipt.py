@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.iterate import iterate
 
 
@@ -18,7 +18,7 @@ def get_dominant_spanners_receipt(components):
  
       TODO: Return custom _MultispannerReceipt instance.'''
 
-   _assert_components(components, contiguity = 'thread')
+   assert_components(components, contiguity = 'thread')
 
    if len(components) == 0:
       return [ ]

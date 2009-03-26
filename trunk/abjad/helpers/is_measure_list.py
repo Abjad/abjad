@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assert_components import assert_components
 from abjad.measure.base import _Measure
 
 
@@ -13,7 +13,7 @@ def _is_measure_list(measure_list):
       Intended to type-check helper function input.'''
 
    try:
-      _assert_components(measure_list, contiguity = 'strict', share = 'parent')
+      assert_components(measure_list, contiguity = 'strict', share = 'parent')
       assert all([isinstance(x, _Measure) for x in measure_list])
    except AssertionError:
       return False
