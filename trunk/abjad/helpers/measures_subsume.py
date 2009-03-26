@@ -1,6 +1,5 @@
-#from abjad.helpers.bequeath_multiple import bequeath_multiple
+from abjad.helpers.bequeath_multiple import bequeath_multiple
 from abjad.helpers.container_contents_scale import container_contents_scale
-from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 from abjad.helpers.iterate import iterate
 from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.helpers.remove_powers_of_two import _remove_powers_of_two
@@ -40,7 +39,5 @@ def measures_subsume(expr):
             measure.meter = (numerator, denominator)
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
-            #bequeath_multiple([tuplet], tuplet[:])
-            parent, index, stop_index = get_parent_and_indices([tuplet])
-            parent[index:index+1] = tuplet[:]
+            bequeath_multiple([tuplet], tuplet[:])
             container_contents_scale(measure, written_adjustment)

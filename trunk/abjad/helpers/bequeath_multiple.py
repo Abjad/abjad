@@ -1,118 +1,43 @@
-from abjad.exceptions.exceptions import ContiguityError
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.components_detach_spanners_shallow import \
-   _components_detach_spanners_shallow
-from abjad.helpers.components_switch_parent_to import \
-   _components_switch_parent_to
-from abjad.helpers.get_dominant_spanners import get_dominant_spanners
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+from abjad.helpers.give_dominant_spanners_to import \
+   _give_dominant_spanners_to
+from abjad.helpers.withdraw_from_crossing_spanners import \
+   _withdraw_from_crossing_spanners
 
 
-#def bequeath_multiple(old_components, new_components):
-#   '''Bequeath position-in-spanners and position-in-parent of
-#      old_components to new_components.
-#
-#      Prior to bequeathal both
-#
-#         * old components must be strictly contiguous and in same parent,
-#         * new components must be either orphan or strictly contiguous
-#           and in same parent.
-#
-#      After bequeathal
-#
-#         * old components are unspanned orphans, and
-#         * new components are (possibly) spanned and parented.
-#
-#      Return orphan, unspanned old components.
-#
-#      Intended to let you swap an arbitrary list of successive
-#      components with some other arbitrary list of orphan components.
-#      For example, swap out three successive leaves with a tuplet.'''
-#
-#   ## check input
-#   assert_components(old_components, contiguity = 'strict', share = 'parent')
-#   assert_components(new_components, contiguity = 'strict', share = 'parent')
-#
-#   ## handle empty input
-#   if len(old_components) == 0:
-#      return old_components
-#
-#   ## detach new components from parentage
-#   _components_switch_parent_to(new_components, None)
-#
-#   ## get dominant spanners
-#   dominant_spanners = get_dominant_spanners(old_components)
-#   print dominant_spanners
-#   
-#   ## insert new components in dominant spanners
-#   for dominant_spanner, index in dominant_spanners:
-#      print dominant_spanner, index
-#      dominant_spanner._components[index:index] = new_components
-#   for component in new_components:
-#      component.spanners._update([x[0] for x in dominant_spanners])
-#
-#   ## unspan old components
-#   _components_detach_spanners_shallow(old_components)
-#
-#   ## remember parent and index
-#   parent, index, stop_index = get_parent_and_indices(old_components)
-#
-#   ## orphan old components
-#   _components_switch_parent_to(old_components, None)
-#
-#   ## if parent
-#   if parent is not None:
-#
-#      ## insert new components in parent of old components
-#      for new_component in reversed(new_components):
-#         new_component.parentage.parent = parent
-#         parent._music.insert(index, new_component)
-#
-#   ## return old components
-#   return old_components
+def bequeath_multiple(donor_components, recipient_components):
+   '''Give everything from donor_components to recipient_components.
+      Almost exactly the same as container setitem logic.
+      This helper works with orphan donor_components.
+      Container setitem logic can not work with orphan donor_components.
+      Return donor_components.'''
 
+   ## check input
+   assert_components(donor_components, contiguity = 'strict', share = 'parent')
+   assert_components(
+      recipient_components, contiguity = 'strict', share = 'parent')
 
-#def bequeath_multiple(old_components, new_components):
-#   '''Give everything from old_components to new_components.'''
-#
-#   ## check input
-#   assert_components(old_components, contiguity = 'strict', share = 'parent')
-#   assert_components(new_components, contiguity = 'strict', share = 'parent')
-#
-#   ## handle empty input
-#   if len(old_components) == 0:
-#      return old_components
-#
-#   ## get parent and index of old components
-#   parent, index, stop_index = get_parent_and_indices(old_components)
-#
-#   ## if old components have a parent, use setitem logic
-#   if parent:
-#      #stop_index
-#      pass
-#
-#   ## give spanners that dominate old components to new components
-#   _give_dominant_spanners_to(old_components, new_components)
-#
-#   ## detach new components from parentage
-#   _components_switch_parent_to(new_components, None)
-#
-#   ## unspan old components
-#   _components_detach_spanners_shallow(old_components)
-#
-#   ## remember parent and index
-#   parent, index, stop_index = get_parent_and_indices(old_components)
-#
-#   ## orphan old components
-#   _components_switch_parent_to(old_components, None)
-#
-#   ## if parent
-#   if parent is not None:
-#
-#      ## insert new components in parent of old components
-#      for new_component in reversed(new_components):
-#         new_component.parentage.parent = parent
-#         parent._music.insert(index, new_component)
-#
-#   ## return old components
-#   return old_components
+   ## handle empty input
+   if len(donor_components) == 0:
+      return donor_components
+
+   ## get parent of donor components and indices of donor components in parent
+   parent, start, stop = get_parent_and_indices(donor_components)
+
+   ## if donor components have a parent, use setitem logic
+   if parent:
+      parent[start:stop+1] = recipient_components
+      return donor_components
+
+   ## otherwise
+   else:
+
+      ## give spanners that dominate donor components to recipient components
+      _give_dominant_spanners_to(donor_components, recipient_components)
+
+      ## withdraw donor components from crossing spanners
+      _withdraw_from_crossing_spanners(donor_components)
+
+   ## return donor components
+   return donor_components
