@@ -1,7 +1,7 @@
-from abjad.helpers.iterate import iterate
+from abjad.chord.chord import Chord
+from abjad.helpers.iterate_tie_chains import iterate_tie_chains
+from abjad.note.note import Note
 
-
-## TODO - write tests
 
 def appictate(expr):
    '''Apply ascending chromatic pitches from zero 
@@ -9,14 +9,13 @@ def appictate(expr):
       Used primarily in generating test and doc file examples. 
       Coined term.'''
 
-   from abjad.chord.chord import Chord
-   from abjad.leaf.leaf import _Leaf
-   from abjad.note.note import Note
-
-   for i, x in enumerate(iterate(expr, _Leaf)):
-      if isinstance(x, Note):
-         x.pitch = i
-      elif isinstance(x, Chord):
-         x.pitches = [i] 
+   for i, x in enumerate(iterate_tie_chains(expr)):
+      pitch = i
+      if isinstance(x[0], Note):
+         for note in x:
+            note.pitch = pitch
+      elif isinstance(x[0], Chord):
+         for chord in x:
+            chord.pitches = [pitch]
       else:
          pass
