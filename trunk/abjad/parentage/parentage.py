@@ -20,22 +20,17 @@ class _Parentage(_Abjad):
       from abjad.score.score import Score
       from abjad.staff.staff import Staff
       from abjad.voice.voice import Voice
-      #from abjad.leaf.leaf import _Leaf
       from abjad.helpers.is_less_than_voice import _is_less_than_voice
       signature = _ContainmentSignature( )
       signature._self = self._client._ID
-      #found_leaf = False
       found_less_than_voice = False
       for component in self.parentage:
-         #if isinstance(component, _Leaf):
-         #   found_leaf = True
          if _is_less_than_voice(component):
             found_less_than_voice = True 
          if isinstance(component, Voice) and not signature._voice:
             signature._voice = component._ID
          if isinstance(component, Staff) and not signature._staff:
             signature._staff = component._ID
-            #if found_leaf and not signature._voice:
             if found_less_than_voice and not signature._voice:
                numeric_id = '%s-%s' % (
                   component.__class__.__name__, id(component))
@@ -64,34 +59,6 @@ class _Parentage(_Abjad):
             if isinstance(parent, Container) and parent.parallel:
                return component
             
-## TODO: Deprecated. safe to delete now!            
-#   @property
-#   def _threadParentage(self):
-#      '''Return thread-pertinent parentage structure.
-#         Same as parentage but with _Tuplets, redundant Sequentials, 
-#         Parallels and tautologies (unlikely) removed.'''
-#      from abjad.container.parallel import Parallel
-#      from abjad.container.sequential import Sequential
-#      from abjad.context.context import _Context
-#      from abjad.tuplet.tuplet import _Tuplet
-#      parentage = self.parentage[1:]
-#      if len(parentage) > 0:
-#      ## remove sequentials
-#         for p in parentage[:]:
-#            if isinstance(p, (Sequential, _Tuplet)):
-#               parentage.remove(p)
-#            else:
-#               break
-#      # remove tautological nesting
-#         for i, p in enumerate(parentage[:-1]):
-#            if type(p) == type(parentage[i+1]):
-#               if isinstance(p, Parallel):
-#                  parentage.remove(p)
-#               elif isinstance(p, _Context):
-#                  if p.invocation == parentage[i+1].invocation:
-#                     parentage.remove(p)
-#      return parentage
-
    ## PRIVATE METHODS ##
 
    def _cutOutgoingReferenceToParent(self):
