@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def components_detach_spanners_shallow(components):
+def _components_detach_spanners_shallow(components):
    '''Input parameter:
 
       component_list should be a Python list of any Abjad components.

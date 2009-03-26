@@ -1,10 +1,12 @@
 from abjad import *
+from abjad.helpers.components_detach_spanners_shallow import \
+   _components_detach_spanners_shallow
 
 
 def test_components_detach_spanners_shallow_01( ):
    t = Staff(scale(4))
    Beam(t[:])
-   components_detach_spanners_shallow(t[:])
+   _components_detach_spanners_shallow(t[:])
 
    r'''
    \new Staff {
@@ -22,7 +24,7 @@ def test_components_detach_spanners_shallow_01( ):
 def test_components_detach_spanners_shallow_02( ):
    t = Staff(scale(4))
    Beam(t[:])
-   components_detach_spanners_shallow(t[0:2])
+   _components_detach_spanners_shallow(t[0:2])
 
    r'''
    \new Staff {
@@ -38,5 +40,5 @@ def test_components_detach_spanners_shallow_02( ):
 
 
 def test_components_detach_spanners_shallow_03( ):
-   t = components_detach_spanners_shallow([ ])
+   t = _components_detach_spanners_shallow([ ])
    assert t == [ ]

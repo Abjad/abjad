@@ -1,4 +1,6 @@
 from abjad import *
+from abjad.helpers.components_detach_spanners_deep import \
+   _components_detach_spanners_deep
 
 
 def test_components_detach_spanners_deep_01( ):
@@ -9,7 +11,7 @@ def test_components_detach_spanners_deep_01( ):
    Beam(t)
    Crescendo(t[:])
 
-   components_detach_spanners_deep([t])
+   _components_detach_spanners_deep([t])
 
    r'''
    \new Staff {
@@ -49,7 +51,7 @@ def test_components_detach_spanners_deep_02( ):
    }
    '''
 
-   components_detach_spanners_deep([t[1]])
+   _components_detach_spanners_deep([t[1]])
 
    r'''
    \new Staff {
