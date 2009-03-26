@@ -18,7 +18,6 @@ class _ContainerDurationInterface(_DurationInterface):
    @property
    def contents(self):
       client = self._client
-      #if self._client.brackets == 'double-angle':
       if client.parallel: 
          return max(
             [Rational(0)] + [x.duration.preprolated for x in client])

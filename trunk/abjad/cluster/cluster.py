@@ -7,7 +7,6 @@ class Cluster(Container):
 
    def __init__(self, music = None):
       Container.__init__(self, music)
-      #self.brackets = 'curly'
       self.parallel = False
       self._formatter = _ClusterFormatter(self)
       self._cluster = _ClusterInterface(self)

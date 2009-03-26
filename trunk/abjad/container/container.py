@@ -1,5 +1,4 @@
 from abjad.component.component import _Component
-from abjad.container.brackets import _Brackets
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
@@ -26,9 +25,9 @@ class Container(_Component):
       _Component.__init__(self)
       self._spanners = _ContainerSpannerAggregator(self)
       self._initializeMusic(music)
-      self._brackets = _Brackets( )
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
+      self._parallel = False
 
    ## OVERLOADS ##
 
@@ -142,15 +141,6 @@ class Container(_Component):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @apply
-   def brackets( ):
-      '''Read / write parallel or sequential brackets of container.'''
-      def fget(self):
-         return self._brackets
-      def fset(self, name):
-         self._brackets.name = name
-      return property(**locals( ))
-
    @property
    def duration(self):
       '''Read-only reference to container duration interface.'''
@@ -164,15 +154,12 @@ class Container(_Component):
 
    @apply
    def parallel( ):
-      '''Read / write boolean for paralle / sequential containers.'''
+      '''Read / write boollean for paralllel / sequential containers.'''
       def fget(self):
-         return self.brackets in ('double-angle', 'simultaneous')
+         return self._parallel
       def fset(self, arg):
          assert isinstance(arg, bool)
-         if arg == True:
-            self.brackets = 'simultaneous'
-         else:
-            self.brackets = 'sequential'
+         self._parallel = arg
       return property(**locals( ))
 
    ## PRIVATE METHODS ##

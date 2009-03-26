@@ -106,11 +106,9 @@ def test_find_10( ):
 
    s1 = Staff([vh1, vl1])
    s1.invocation.name = 'mystaff'
-   #s1.brackets = 'double-angle'
    s1.parallel = True
    s2 = Staff([vh2, vl2])
    s2.invocation.name = 'mystaff'
-   #s2.brackets = 'double-angle'
    s2.parallel = True
 
    fn = vl1[0]

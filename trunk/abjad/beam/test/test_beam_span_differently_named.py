@@ -62,8 +62,6 @@ def test_beam_span_differently_named_02( ):
    '''Abjad lets you span whatever you want.'''
 
    t = Sequential(Staff(Voice(run(4)) * 2) * 2)
-   #t[0].brackets = 'double-angle'
-   #t[1].brackets = 'double-angle'
    t[0].parallel = True
    t[1].parallel = True
    t[0].invocation.name, t[1].invocation.name = 'foo', 'foo'

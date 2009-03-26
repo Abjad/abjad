@@ -23,9 +23,6 @@ class _ContainerFormatter(_Formatter):
    @property
    def _invocation_closing(self):
       result = [ ]
-      #close = self._client.brackets.close
-      #if close != ')':
-      #   result.append(close)
       if self._client.parallel:
          result.append('>>')
       else:
@@ -35,9 +32,6 @@ class _ContainerFormatter(_Formatter):
    @property
    def _invocation_opening(self):
       result = [ ]
-      #open = self._client.brackets.open
-      #if open != '(':
-      #   result.append(open)
       if self._client.parallel:
          result.append('<<')
       else:

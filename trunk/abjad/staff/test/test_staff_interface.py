@@ -7,7 +7,6 @@ def test_staff_interface_01( ):
    '''
 
    piano = PianoStaff(Staff(scale(4)) * 2)
-   #piano.brackets = 'double-angle'
    piano.parallel = True
    piano[0].invocation.name = 'RH'
    piano[1].invocation.name = 'LH'
@@ -41,7 +40,6 @@ def test_staff_interface_02( ):
    '''
 
    piano = PianoStaff(Staff(scale(4)) * 2)
-   #piano.brackets = 'double-angle'
    piano.parallel = True
    piano[0].invocation.name = 'RH'
    piano[1].invocation.name = 'LH'
@@ -75,7 +73,6 @@ def test_staff_interface_03( ):
    '''
 
    piano = PianoStaff(Staff(scale(4)) * 2)
-   #piano.brackets = 'double-angle'
    piano.parallel = True
    piano[0].invocation.name = 'RH'
    piano[1].invocation.name = 'LH'
@@ -109,7 +106,6 @@ def test_staff_interface_04( ):
    '''
 
    piano = PianoStaff(Staff(scale(4)) * 2)
-   #piano.brackets = 'double-angle'
    piano.parallel = True
    piano[0].invocation.name = 'RH'
    piano[1].invocation.name = 'LH'

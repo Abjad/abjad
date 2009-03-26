@@ -8,9 +8,6 @@ class _ClusterFormatter(_ContainerFormatter):
    @property
    def _invocation_opening(self):
       result = [r'\makeClusters ']
-      #open = self._client.brackets.open
-      #if open != '(':
-      #   result[0] += open
       if self._client.parallel:
          result[0] += '<<'
       else:

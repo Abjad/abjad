@@ -5,6 +5,5 @@ class StaffGroup(_Context):
 
    def __init__(self, music = [ ]):
       _Context.__init__(self, music)
-      #self.brackets = 'double-angle'
       self.parallel = True
       self.invocation = 'StaffGroup'

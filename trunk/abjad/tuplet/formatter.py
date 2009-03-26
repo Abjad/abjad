@@ -26,7 +26,6 @@ class _TupletFormatter(_ContainerFormatter):
       if self._client.duration.multiplier:
          if self._client.duration.multiplier != 1 or \
             hasattr(self._client.__class__, 'color'):
-            #result.append(self._client.brackets.close)
             if self._client.parallel:
                result.append('>>')
             else:
@@ -70,9 +69,6 @@ class _TupletFormatter(_ContainerFormatter):
                   brackets_open = '<<'
                else:
                   brackets_open = '{'
-               #result.append(r'%s\times %s %s' % (self._fraction, 
-               #   _rational_as_fraction(client.duration.multiplier), 
-               #   client.brackets.open))
                result.append(r'%s\times %s %s' % (self._fraction, 
                   _rational_as_fraction(client.duration.multiplier), 
                   brackets_open))
