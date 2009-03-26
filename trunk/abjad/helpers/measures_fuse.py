@@ -1,6 +1,6 @@
 from abjad.helpers.assess_components import assess_components
-from abjad.helpers.components_detach_parentage import \
-   _components_detach_parentage
+from abjad.helpers.components_switch_parent_to import \
+   _components_switch_parent_to
 from abjad.helpers.container_contents_scale import container_contents_scale
 from abjad.helpers.get_parent_and_index import get_parent_and_index
 from abjad.helpers.is_measure_list import _is_measure_list
@@ -37,9 +37,9 @@ def measures_fuse(measure_list):
       container_contents_scale(measure_music, multiplier)
       music += measure_music
 
-   _components_detach_parentage(music)
+   _components_switch_parent_to(music, None)
    new_measure = RigidMeasure(new_meter, music)
-   _components_detach_parentage(measure_list)
+   _components_switch_parent_to(measure_list, None)
    parent.insert(parent_index, new_measure)
 
    ## TODO: this is probably pretty good code to encapsulate for later use

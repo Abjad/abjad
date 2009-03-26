@@ -1,6 +1,6 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.components_detach_parentage import \
-   _components_detach_parentage
+from abjad.helpers.components_switch_parent_to import \
+   _components_switch_parent_to
 
 
 def _make_orphan_components(components):
@@ -11,7 +11,7 @@ def _make_orphan_components(components):
    assert_components(components)
 
    ## detach from parentage
-   _components_detach_parentage(components)
+   _components_switch_parent_to(components, None)
 
    ## return component list
    return components
