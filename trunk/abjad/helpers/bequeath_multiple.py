@@ -5,7 +5,7 @@ from abjad.helpers.components_detach_spanners_shallow import \
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
 from abjad.helpers.get_dominant_spanners import get_dominant_spanners
-from abjad.helpers.get_parent_and_index import get_parent_and_index
+from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 
 
 #def bequeath_multiple(old_components, new_components):
@@ -55,7 +55,53 @@ from abjad.helpers.get_parent_and_index import get_parent_and_index
 #   _components_detach_spanners_shallow(old_components)
 #
 #   ## remember parent and index
-#   parent, index = get_parent_and_index(old_components)
+#   parent, index, stop_index = get_parent_and_indices(old_components)
+#
+#   ## orphan old components
+#   _components_switch_parent_to(old_components, None)
+#
+#   ## if parent
+#   if parent is not None:
+#
+#      ## insert new components in parent of old components
+#      for new_component in reversed(new_components):
+#         new_component.parentage.parent = parent
+#         parent._music.insert(index, new_component)
+#
+#   ## return old components
+#   return old_components
+
+
+#def bequeath_multiple(old_components, new_components):
+#   '''Give everything from old_components to new_components.'''
+#
+#   ## check input
+#   assert_components(old_components, contiguity = 'strict', share = 'parent')
+#   assert_components(new_components, contiguity = 'strict', share = 'parent')
+#
+#   ## handle empty input
+#   if len(old_components) == 0:
+#      return old_components
+#
+#   ## get parent and index of old components
+#   parent, index, stop_index = get_parent_and_indices(old_components)
+#
+#   ## if old components have a parent, use setitem logic
+#   if parent:
+#      #stop_index
+#      pass
+#
+#   ## give spanners that dominate old components to new components
+#   _give_dominant_spanners_to(old_components, new_components)
+#
+#   ## detach new components from parentage
+#   _components_switch_parent_to(new_components, None)
+#
+#   ## unspan old components
+#   _components_detach_spanners_shallow(old_components)
+#
+#   ## remember parent and index
+#   parent, index, stop_index = get_parent_and_indices(old_components)
 #
 #   ## orphan old components
 #   _components_switch_parent_to(old_components, None)

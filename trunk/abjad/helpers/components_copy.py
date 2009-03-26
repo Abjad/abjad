@@ -1,6 +1,6 @@
 from abjad.exceptions.exceptions import ContiguityError
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_parent_and_index import get_parent_and_index
+from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 
 
 ## TODO: Finish implementation
@@ -18,4 +18,4 @@ def components_copy(components):
 
    for component in components:
 
-      parent, index = get_parent_and_index(component) 
+      parent, start, stop = get_parent_and_indices(component) 

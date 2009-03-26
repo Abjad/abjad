@@ -2,7 +2,7 @@ from abjad.helpers.assess_components import assess_components
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
 from abjad.helpers.container_contents_scale import container_contents_scale
-from abjad.helpers.get_parent_and_index import get_parent_and_index
+from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 from abjad.helpers.is_measure_list import _is_measure_list
 from abjad.helpers.make_best_meter import _make_best_meter
 from abjad.measure.rigid.measure import RigidMeasure
@@ -23,7 +23,7 @@ def measures_fuse(measure_list):
    if len(measure_list) == 1:
       return measure_list[0]
 
-   parent, parent_index = get_parent_and_index(measure_list)
+   parent, parent_index, stop_index = get_parent_and_indices(measure_list)
 
    old_denominators = [x.meter.effective.denominator for x in measure_list]
    new_duration = sum([x.meter.effective.duration for x in measure_list])

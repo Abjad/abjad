@@ -1,6 +1,6 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_dominant_spanners import get_dominant_spanners
-from abjad.helpers.get_parent_and_index import get_parent_and_index
+from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 
 
 def splice_after(component, new_components):
@@ -10,7 +10,7 @@ def splice_after(component, new_components):
    assert_components([component])
    assert_components(new_components)
 
-   parent, index = get_parent_and_index([component])
+   parent, index, stop_index = get_parent_and_indices([component])
 
    if parent is not None:
       for new_component in reversed(new_components):

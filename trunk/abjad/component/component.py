@@ -339,9 +339,9 @@ class _Component(_Abjad):
          Splice any children of component to parent of component.
          Return receipt.'''
       from abjad.receipt.slip import _SlipReceipt
-      from abjad.helpers.get_parent_and_index import \
-         get_parent_and_index
-      parent, index = get_parent_and_index([self])
+      from abjad.helpers.get_parent_and_indices import \
+         get_parent_and_indices
+      parent, index, stop_index = get_parent_and_indices([self])
       children = getattr(self, '_music', [ ])
       parentage = self.parentage._detach( )
       spanners = self.spanners._detach( )
