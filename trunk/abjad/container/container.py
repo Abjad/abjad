@@ -5,7 +5,6 @@ from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.debug.debug import debug
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.assess_components import assess_components
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_detach_parentage import \
    _components_detach_parentage
@@ -97,8 +96,7 @@ class Container(_Component):
          This operation leaves all score trees always in tact.'''
       # item assignment
       if isinstance(i, int):
-         if not isinstance(expr, _Component):
-            raise TypeError('Must be Abjad component.')
+         assert_components([expr])
          old = self[i]
          spanners_receipt = get_dominant_spanners_receipt([old])
          ## must withdraw from spanners before parentage!
@@ -112,9 +110,7 @@ class Container(_Component):
             expr.spanners._add(spanner)
       # slice assignment
       else:
-         ## TODO: Why not assert_components? ##
-         if not assess_components(expr):
-            raise TypeError('Must be list of Abjad components.')
+         assert_components(expr)
          if i.start == i.stop and i.start is not None \
             and i.stop is not None and i.start <= -len(self):
             start, stop = 0, 0
