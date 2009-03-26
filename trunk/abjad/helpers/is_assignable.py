@@ -3,7 +3,7 @@ from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.rational.rational import Rational
 
 
-def _is_assignable(rational):
+def is_assignable(rational):
    '''Return True when 'rational' p/q is of a form
       acceptable for assignment as written duration
       to a note, rest, chord or skip, otherwise False.'''

@@ -1,5 +1,5 @@
 from abjad.helpers.leaf_duration_scale import leaf_duration_scale
-from abjad.helpers.is_assignable import _is_assignable
+from abjad.helpers.is_assignable import is_assignable
 from abjad.helpers.is_tuplet_multiplier import _is_tuplet_multiplier
 from abjad.helpers.tuplet_contents_fix import tuplet_contents_fix
 from abjad.leaf.leaf import _Leaf
@@ -28,7 +28,7 @@ def tuplet_scale(tuplet, multiplier):
    tuplet.duration.target = new_target_duration
 
    # if multiplier is notehead assignable, scale contents graphically
-   if _is_assignable(multiplier):
+   if is_assignable(multiplier):
       for component in tuplet[:]:
          if isinstance(component, _Leaf):
             leaf_duration_scale(component, multiplier)

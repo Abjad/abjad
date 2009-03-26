@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.binary import _binary
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
-from abjad.helpers.is_assignable import _is_assignable
+from abjad.helpers.is_assignable import is_assignable
 from abjad.rational.rational import Rational
 import math
 
@@ -99,7 +99,7 @@ class _LeafDurationInterface(_DurationInterface):
             rational = Rational(expr)
          else:
             raise ValueError('can not set written duration.')
-         if not _is_assignable(rational):
+         if not is_assignable(rational):
             raise AssignabilityError('%s' % str(rational))
          self._written = rational
       return property(**locals( ))

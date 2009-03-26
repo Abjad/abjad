@@ -1,4 +1,4 @@
-from abjad.helpers.is_assignable import _is_assignable
+from abjad.helpers.is_assignable import is_assignable
 from abjad.helpers.is_binary_rational import _is_binary_rational
 from abjad.helpers.is_tie_chain import _is_tie_chain
 from abjad.helpers.tie_chain_truncate import tie_chain_truncate
@@ -21,7 +21,7 @@ def tie_chain_duration_change(tie_chain, new_written_duration):
    assert _is_tie_chain(tie_chain)
    assert isinstance(new_written_duration, Rational)
 
-   if _is_assignable(new_written_duration):
+   if is_assignable(new_written_duration):
       tie_chain[0].duration.written = new_written_duration
       tie_chain_truncate(tie_chain)
    elif _is_binary_rational(new_written_duration):
