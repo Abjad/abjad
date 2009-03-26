@@ -35,7 +35,7 @@ def list_helpers(search_string = '', scope = 'public'):
 
       _are_components, _are_components_in_same_parent,
       _are_components_in_same_score, _are_components_in_same_thread,
-      _are_orphan_components, _are_scalable_components,
+      _are_scalable_components,
       _are_spannable_components,
       _are_strictly_contiguous_components_in_same_parent,
       _are_strictly_contiguous_components_in_same_score,
