@@ -2,9 +2,6 @@ from abjad.core.abjadcore import _Abjad
 from collections import deque
 
 
-## TODO profile and figure out why _Leaf.next and _Leaf.prev
-##      are taking so much time
-
 class _Navigator(_Abjad):
 
    def __init__(self, client):
@@ -318,8 +315,8 @@ class _Navigator(_Abjad):
          
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
-      from abjad.helpers.test_components import _test_components
-      return _test_components([self._client, expr], share = 'thread')
+      from abjad.helpers.assess_components import assess_components
+      return assess_components([self._client, expr], share = 'thread')
 
    def _rank(self):
       '''Returns the index of the caller (its position) in 

@@ -5,6 +5,7 @@ from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.debug.debug import debug
 from abjad.helpers.assert_components import _assert_components
+from abjad.helpers.assess_components import assess_components
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_detach_parentage import \
    _components_detach_parentage
@@ -16,7 +17,6 @@ from abjad.helpers.get_dominant_spanners_receipt import \
 from abjad.helpers.get_dominant_spanners_slice import \
    get_dominant_spanners_slice
 from abjad.helpers.iterate import iterate
-from abjad.helpers.test_components import _test_components
 from abjad.helpers.withdraw_from_crossing_spanners import \
    _withdraw_from_crossing_spanners
 from abjad.notehead.interface import _NoteHeadInterface
@@ -112,7 +112,8 @@ class Container(_Component):
             expr.spanners._add(spanner)
       # slice assignment
       else:
-         if not _test_components(expr):
+         ## TODO: Why not assert_components? ##
+         if not assess_components(expr):
             raise TypeError('Must be list of Abjad components.')
          if i.start == i.stop and i.start is not None \
             and i.stop is not None and i.start <= -len(self):

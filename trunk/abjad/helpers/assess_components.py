@@ -2,7 +2,7 @@ from abjad.component.component import _Component
 from abjad.helpers.iterate import iterate
 
 
-def _test_components(expr, 
+def assess_components(expr, 
    contiguity = None, share = None, allow_orphans = True):
    '''Assert expr is a Python list of Abjad components.
       Set _contiguity_ to None, 'strict' or 'thread'.

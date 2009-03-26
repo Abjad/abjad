@@ -1,4 +1,4 @@
-from abjad.helpers.test_components import _test_components
+from abjad.helpers.assess_components import assess_components
 
 
 def _are_spannable_components(expr):
@@ -9,4 +9,4 @@ def _are_spannable_components(expr):
       This function is a one-line wrapper around
       _are_thread_contiguous_components( ).'''
 
-   return _test_components(expr, contiguity = 'thread')
+   return assess_components(expr, contiguity = 'thread')

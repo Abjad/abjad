@@ -31,12 +31,12 @@ class _OffsetInterface(_Interface):
       self._updateScore( )
 
    def _updateThread(self):
-      from abjad.helpers.test_components import _test_components
+      from abjad.helpers.assess_components import assess_components
       offset = Rational(0, 1)
       prev = self._client._navigator._prev
       #self_parentage = self._client.parentage._threadParentage
       #if prev and prev.parentage._threadParentage == self_parentage:
-      if prev and _test_components([prev, self._client], 
+      if prev and assess_components([prev, self._client], 
          'strict', 'thread', False):
          offset += prev.offset.thread + prev.duration.prolated
       self._thread = offset
