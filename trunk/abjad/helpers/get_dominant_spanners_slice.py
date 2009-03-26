@@ -1,7 +1,6 @@
 from abjad.helpers.get_dominant_spanners_between import \
    get_dominant_spanners_between
-from abjad.helpers.get_dominant_spanners_receipt import \
-   get_dominant_spanners_receipt
+from abjad.helpers.get_dominant_spanners import get_dominant_spanners
 
 
 def get_dominant_spanners_slice(container, start, stop):
@@ -26,7 +25,7 @@ def get_dominant_spanners_slice(container, start, stop):
          right = container[stop]
       spanners_receipt = get_dominant_spanners_between(left, right)
    else:
-      spanners_receipt = get_dominant_spanners_receipt(
+      spanners_receipt = get_dominant_spanners(
          container[start:stop])
 
    return spanners_receipt

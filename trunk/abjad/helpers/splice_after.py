@@ -1,6 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_dominant_spanners_receipt import \
-   get_dominant_spanners_receipt
+from abjad.helpers.get_dominant_spanners import get_dominant_spanners
 from abjad.helpers.get_parent_and_index import get_parent_and_index
 
 
@@ -18,7 +17,7 @@ def splice_after(component, new_components):
          new_component.parentage._switchParentTo(parent)
          parent._music.insert(index + 1, new_component)
 
-   receipt = get_dominant_spanners_receipt([component])
+   receipt = get_dominant_spanners([component])
 
    for spanner, index in receipt:
       for new_component in reversed(new_components):

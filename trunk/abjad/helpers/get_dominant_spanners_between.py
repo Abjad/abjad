@@ -10,7 +10,7 @@ def get_dominant_spanners_between(left, right):
       If both 'left' and 'right' are components,
       then 'left' and 'right' must be thread-contiguous.
 
-      This is a special version of get_dominant_spanners_receipt( ).
+      This is a special version of get_dominant_spanners( ).
       This version is useful for finding spanners that dominant
       a zero-length 'crack' between components, as in t[2:2].
 

@@ -8,8 +8,7 @@ from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
 from abjad.helpers.get_parent_and_index import get_parent_and_index
-from abjad.helpers.get_dominant_spanners_receipt import \
-   get_dominant_spanners_receipt
+from abjad.helpers.get_dominant_spanners import get_dominant_spanners
 from abjad.helpers.get_dominant_spanners_slice import \
    get_dominant_spanners_slice
 from abjad.helpers.iterate import iterate
@@ -95,7 +94,7 @@ class Container(_Component):
       if isinstance(i, int):
          assert_components([expr])
          old = self[i]
-         spanners_receipt = get_dominant_spanners_receipt([old])
+         spanners_receipt = get_dominant_spanners([old])
          ## must withdraw from spanners before parentage!
          ## otherwise begin / end assessments don't work!
          _withdraw_from_crossing_spanners([expr])

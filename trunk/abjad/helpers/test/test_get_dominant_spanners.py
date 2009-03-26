@@ -1,9 +1,7 @@
 from abjad import *
-from abjad.helpers.get_dominant_spanners_receipt import \
-   get_dominant_spanners_receipt
 
 
-def testget_dominant_spanners_receipt_01( ):
+def testget_dominant_spanners_01( ):
    '''Return Python list of (spanner, index) pairs.
       Each (spanner, index) pair gives a spanner which dominates
       all components in list, together with the start-index
@@ -31,7 +29,7 @@ def testget_dominant_spanners_receipt_01( ):
       }
    }'''
 
-   receipt = get_dominant_spanners_receipt(t[:1])
+   receipt = get_dominant_spanners(t[:1])
 
    "Beam and trill dominate first sequential."
 
@@ -40,7 +38,7 @@ def testget_dominant_spanners_receipt_01( ):
    assert (trill, 0) in receipt
 
 
-def testget_dominant_spanners_receipt_02( ):
+def testget_dominant_spanners_02( ):
    '''Beam, glissando and trill all dominante second sequential.'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -49,7 +47,7 @@ def testget_dominant_spanners_receipt_02( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = get_dominant_spanners_receipt(t[1:2])
+   receipt = get_dominant_spanners(t[1:2])
 
    assert len(receipt) == 3
    assert (beam, 1) in receipt
@@ -57,7 +55,7 @@ def testget_dominant_spanners_receipt_02( ):
    assert (trill, 2) in receipt
 
 
-def testget_dominant_spanners_receipt_03( ):
+def testget_dominant_spanners_03( ):
    '''Glissando and trill dominate last sequential.'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -66,14 +64,14 @@ def testget_dominant_spanners_receipt_03( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = get_dominant_spanners_receipt(t[-1:])
+   receipt = get_dominant_spanners(t[-1:])
 
    assert len(receipt) == 2
    assert (glissando, 1) in receipt
    assert (trill, 4) in receipt
 
 
-def testget_dominant_spanners_receipt_04( ):
+def testget_dominant_spanners_04( ):
    '''Beam and trill dominate first two sequentials.'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -82,14 +80,14 @@ def testget_dominant_spanners_receipt_04( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = get_dominant_spanners_receipt(t[:2])
+   receipt = get_dominant_spanners(t[:2])
 
    assert len(receipt) == 2
    assert (beam, 0) in receipt
    assert (trill, 0) in receipt
 
 
-def testget_dominant_spanners_receipt_05( ):
+def testget_dominant_spanners_05( ):
    '''Glissando and trill dominate last two sequentials.'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -98,14 +96,14 @@ def testget_dominant_spanners_receipt_05( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = get_dominant_spanners_receipt(t[-2:])
+   receipt = get_dominant_spanners(t[-2:])
 
    assert len(receipt) == 2
    assert (glissando, 0) in receipt
    assert (trill, 2) in receipt
 
 
-def testget_dominant_spanners_receipt_06( ):
+def testget_dominant_spanners_06( ):
    '''Only trill dominates all three sequentials.'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -114,13 +112,13 @@ def testget_dominant_spanners_receipt_06( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = get_dominant_spanners_receipt(t[:])
+   receipt = get_dominant_spanners(t[:])
 
    assert len(receipt) == 1
    assert (trill, 0) in receipt
 
 
-def testget_dominant_spanners_receipt_07( ):
+def testget_dominant_spanners_07( ):
    '''Only trill dominates voice.'''
 
    t = Voice(Sequential(run(2)) * 3)
@@ -129,13 +127,13 @@ def testget_dominant_spanners_receipt_07( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = get_dominant_spanners_receipt([t])
+   receipt = get_dominant_spanners([t])
 
    assert len(receipt) == 1
    assert (trill, 0) in receipt
 
 
-def testget_dominant_spanners_receipt_08( ):
+def testget_dominant_spanners_08( ):
    '''Only trill dominates first two notes.
       Note that trill attaches to notes.
       Note that beam and glissando attach to sequentials.'''
@@ -146,7 +144,7 @@ def testget_dominant_spanners_receipt_08( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   receipt = get_dominant_spanners_receipt(t.leaves[:2])
+   receipt = get_dominant_spanners(t.leaves[:2])
 
    assert len(receipt) == 1
    assert (trill, 0) in receipt
