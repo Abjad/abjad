@@ -6,8 +6,6 @@ from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.debug.debug import debug
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.coalesce import coalesce
-from abjad.helpers.components_detach_parentage import \
-   _components_detach_parentage
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
 from abjad.helpers.get_parent_and_index import get_parent_and_index
@@ -55,7 +53,7 @@ class Container(_Component):
       if not isinstance(components, list):
          components = [components]
       _withdraw_from_crossing_spanners(components)
-      _components_detach_parentage(components)
+      _components_switch_parent_to(components, None)
       self._update._markForUpdateToRoot( )
 
    def __getitem__(self, i):
