@@ -260,8 +260,10 @@ def test_assess_components_none_thread_13( ):
 
    t = Sequential(Staff(Voice(run(2)) * 2) * 2)
    diatonicize(t)
-   t[0].brackets = 'double-angle'
-   t[1].brackets = 'double-angle'
+   #t[0].brackets = 'double-angle'
+   #t[1].brackets = 'double-angle'
+   t[0].parallel = True
+   t[1].parallel = True
 
    r'''{
       \new Staff <<
@@ -1155,7 +1157,8 @@ def test_assess_components_none_thread_42_trev( ):
 
    py.test.skip("Unvoiced leaves inside Staff do not thread with Staff.")
    t = Staff(scale(4))
-   t.brackets = 'double-angle'
+   #t.brackets = 'double-angle'
+   t.parallel = True
 
    r'''\new Staff <<
       c'8
@@ -1166,11 +1169,13 @@ def test_assess_components_none_thread_42_trev( ):
 
    assert assess_components(list(iterate(t, _Component)), share = 'thread')
  
+
 def test_assess_components_none_thread_42( ):
    '''Leaves inside anonymous parallel Staff thread.'''
 
    t = Staff(scale(4))
-   t.brackets = 'double-angle'
+   #t.brackets = 'double-angle'
+   t.parallel = True
 
    r'''\new Staff <<
       c'8

@@ -8,7 +8,8 @@ class _Context(Container):
    def __init__(self, music = None):
       music = music or [ ]
       Container.__init__(self, music)
-      self.brackets = 'curly'
+      #self.brackets = 'curly'
+      self.parallel = False
       self._formatter = _ContextFormatter(self)
 
    ## OVERLOADS ##
@@ -21,7 +22,8 @@ class _Context(Container):
    ##       function in the public interface
    def __eq__(self, arg):
       if isinstance(arg, _Context):
-         if self.brackets == arg.brackets and \
+         #if self.brackets == arg.brackets and \
+         if self.parallel == arg.parallel and \
             self.invocation == arg.invocation and\
             self._music == arg._music:
             return True
@@ -37,11 +39,16 @@ class _Context(Container):
          summary = str(len(self))
       else:
          summary = ' '
-      return '%s%s%s%s' % (
-         self.invocation.type,
-         self.brackets.open,
-         summary,
-         self.brackets.close)
+      if self.parallel:
+         open, close = '<<', '>>'
+      else:
+         open, close = '{', '}'
+      #return '%s%s%s%s' % (
+      #   self.invocation.type,
+      #   self.brackets.open,
+      #   summary,
+      #   self.brackets.close)
+      return '%s%s%s%s' % (self.invocation.type, open, summary, close)
 
 #   ## PRIVATE ATTRIBUTES ##
 #

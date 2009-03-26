@@ -17,24 +17,14 @@ class _ContainerDurationInterface(_DurationInterface):
 
    @property
    def contents(self):
-      if self._client.brackets == 'double-angle':
-         # FIXME: the x.duration is now illegal
-         # must be x.duration.something instead
-         #return max([Rational(0)] + [x.duration for x in self._client])
+      client = self._client
+      #if self._client.brackets == 'double-angle':
+      if client.parallel: 
          return max(
-            [Rational(0)] + [x.duration.preprolated for x in self._client])
+            [Rational(0)] + [x.duration.preprolated for x in client])
       else:
          duration = Rational(0)
          for x in self._client:
-            # TODO: some sort of x.duration.preprolated
-            # would elminiate the isinstance( ) here
-            #duration += x.duration
-
-            #if hasattr(x.duration, 'target'):
-            #   duration += x.duration.target
-            #else:
-            #   duration += x.duration
-            
             duration += x.duration.preprolated
          return duration
 

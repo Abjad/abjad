@@ -71,7 +71,8 @@ def test_offset_containers_12( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    t = Staff([v1, v2])
-   t.brackets = 'double-angle'
+   #t.brackets = 'double-angle'
+   t.parallel = True
    assert t[0].offset.thread == t[0].offset.score == 0
    assert t[1].offset.thread == t[1].offset.score == 0
 

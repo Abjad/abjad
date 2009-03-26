@@ -149,9 +149,11 @@ def test_nextLeaves_navigation_21( ):
    vh2 = Voice([Note(i, (1,8)) for i in range(16,20)])
 
    s1 = Staff([vh1, vl1])
-   s1.brackets = 'double-angle'
+   #s1.brackets = 'double-angle'
+   s1.parallel = True
    s2 = Staff([vl2, vh2])
-   s2.brackets = 'double-angle'
+   #s2.brackets = 'double-angle'
+   s2.parallel = True
 
    seq = Sequential([s1, s2])
 
@@ -342,9 +344,11 @@ def test_prevLeaves_navigation_21( ):
    vh2 = Voice([Note(i, (1,8)) for i in range(16,20)])
 
    s1 = Staff([vh1, vl1])
-   s1.brackets = 'double-angle'
+   #s1.brackets = 'double-angle'
+   s1.parallel = True
    s2 = Staff([vl2, vh2])
-   s2.brackets = 'double-angle'
+   #s2.brackets = 'double-angle'
+   s2.parallel = True
 
    seq = Sequential([s1, s2])
 

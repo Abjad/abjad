@@ -11,19 +11,29 @@ class _ContextFormatter(_ContainerFormatter):
    @property
    def _invocation_closing(self):
       result = [ ]
-      result.append(self._client.brackets.close)
+      #result.append(self._client.brackets.close)
+      if self._client.parallel:
+         result.append('>>')
+      else:
+         result.append('}')
       return result
 
    @property
    def _invocation_opening(self):
       result = [ ]
       invocation = self._client.invocation._invocation
-      brackets = self._client.brackets
+      #brackets = self._client.brackets
+      if self._client.parallel:
+         brackets_open = '<<'
+      else:
+         brackets_open = '{'
       overrides = self._grobOverrides
       if overrides:
          result.append(invocation + ' \with {')
          result.extend(['\t' + x for x in overrides])
-         result.append('} %s' % brackets.open)
+         #result.append('} %s' % brackets.open)
+         result.append('} %s' % brackets_open)
       else:
-         result.append(invocation + ' %s' % brackets.open)
+         #result.append(invocation + ' %s' % brackets.open)
+         result.append(invocation + ' %s' % brackets_open)
       return result

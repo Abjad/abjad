@@ -9,7 +9,8 @@ class _Tuplet(Container):
    def __init__(self, music = None):
       music = music or [ ]
       Container.__init__(self, music)
-      self.brackets = 'curly'
+      #self.brackets = 'curly'
+      self.parallel = False
       self._duration = _TupletDurationInterface(self)
       self._formatter = _TupletFormatter(self) 
       self._invisible = False

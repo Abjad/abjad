@@ -25,11 +25,13 @@ def test_container_parallel_02( ):
       otherwise False.'''
 
    t = Container([ ])
-   t.brackets = 'double-angle'
+   #t.brackets = 'double-angle'
+   t.parallel = True
    assert t.parallel
 
    t = Container([ ])
-   t.brackets = 'simultaneous'
+   #t.brackets = 'simultaneous'
+   t.parallel = True
    assert t.parallel
 
 

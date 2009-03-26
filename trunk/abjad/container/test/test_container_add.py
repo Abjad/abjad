@@ -113,9 +113,11 @@ def test_container_add_13( ):
    v4 = Voice(Note(1, (1, 4))*2)
    v4.invocation.name = 2
    t1 = Staff([v1, v2])
-   t1.brackets = 'double-angle'
+   #t1.brackets = 'double-angle'
+   t1.parallel = True
    t2 = Staff([v3, v4])
-   t2.brackets = 'double-angle'
+   #t2.brackets = 'double-angle'
+   t2.parallel = True
    t1.invocation.name = t2.invocation.name = 'staffOne'
    tadd = t1 + t2
    assert isinstance(tadd, Staff)

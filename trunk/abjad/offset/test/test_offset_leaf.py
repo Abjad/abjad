@@ -78,7 +78,8 @@ def test_offset_leaves_13( ):
    v1 = Voice(run(16))
    v2 = Voice(run(16))
    t = Staff([v1, v2])
-   t.brackets = 'double-angle'
+   #t.brackets = 'double-angle'
+   t.parallel = True
    for i, x in enumerate(v1):
       assert x.offset.thread == x.offset.score == i * Rational(1, 8)
    for i, x in enumerate(v2):
@@ -115,7 +116,8 @@ def test_offset_leaves_16( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    t = Staff([v1, v2])
-   t.brackets = 'double-angle'
+   #t.brackets = 'double-angle'
+   t.parallel = True
    for i, x in enumerate(v1.leaves):
       assert x.offset.thread == x.offset.score == i * Rational(1, 8)
    for i, x in enumerate(v2.leaves):

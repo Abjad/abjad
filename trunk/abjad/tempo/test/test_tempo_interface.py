@@ -39,23 +39,23 @@ def test_tempo_interface_02( ):
    assert t.format == '\\new Staff {\n\t\\tempo 8=38\n}'
 
 
-def test_tempo_interface_03( ):
-   '''
-   Tempo interface works on pure containers.
-   '''
-
-   t = Container(scale(4))
-   t.tempo = (1, 8), 38
-
-   r'''
-        \tempo 8=38
-        c'8
-        d'8
-        e'8
-        f'8
-   '''
-
-   assert t.format == "\t\\tempo 8=38\n\tc'8\n\td'8\n\te'8\n\tf'8"
+#def test_tempo_interface_03( ):
+#   '''
+#   Tempo interface works on pure containers.
+#   '''
+#
+#   t = Container(scale(4))
+#   t.tempo = (1, 8), 38
+#
+#   r'''
+#        \tempo 8=38
+#        c'8
+#        d'8
+#        e'8
+#        f'8
+#   '''
+#
+#   assert t.format == "\t\\tempo 8=38\n\tc'8\n\td'8\n\te'8\n\tf'8"
 
 
 def test_tempo_interface_04( ):

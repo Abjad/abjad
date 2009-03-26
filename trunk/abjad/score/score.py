@@ -6,7 +6,8 @@ class Score(_Context):
    def __init__(self, music = None):
       music = music or [ ]
       _Context.__init__(self, music)
-      self.brackets = 'double-angle'
+      #self.brackets = 'double-angle'
+      self.parallel = True
       self.invocation = 'Score'
 
    ## PUBLIC METHODS ##

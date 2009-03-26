@@ -83,7 +83,8 @@ def test_lcopy_03( ):
 
    t = Staff(Voice(run(4)) * 2)
    diatonicize(t)
-   t.brackets = 'double-angle'
+   #t.brackets = 'double-angle'
+   t.parallel = True
 
    assert py.test.raises(ContiguityError, 'lcopy(t, 1, 5)')
 
@@ -92,7 +93,8 @@ def test_lcopy_04( ):
    '''Works fine on voices nested inside parallel context.'''
 
    t = Staff(Voice(run(4)) * 2)
-   t.brackets = 'double-angle'
+   #t.brackets = 'double-angle'
+   t.parallel = True
    diatonicize(t)
 
    r'''\new Staff <<

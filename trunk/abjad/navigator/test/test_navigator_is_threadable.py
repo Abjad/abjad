@@ -330,9 +330,11 @@ def test_navigator_is_threadable_12( ):
    vh1 = Voice([Note(i, (1, 8)) for i in range(12, 16)])
    vh2 = Voice([Note(i, (1, 8)) for i in range(16, 20)])
    s1 = Staff([vh1, vl1])
-   s1.brackets = 'double-angle'
+   #s1.brackets = 'double-angle'
+   s1.parallel = True
    s2 = Staff([vl2, vh2])
-   s2.brackets = 'double-angle'
+   #s2.brackets = 'double-angle'
+   s2.parallel = True
    seq = Sequential([s1, s2])
 
    assert not seq[0]._navigator._isThreadable(seq[1])
@@ -706,8 +708,10 @@ def test_navigator_is_threadable_22( ):
    s1 = Staff([v1])
    s2 = Staff([v2])
    s1.invocation.name = s2.invocation.name = 'staffOne'
-   s1.brackets = 'double-angle'
-   s2.brackets = 'double-angle'
+   #s1.brackets = 'double-angle'
+   #s2.brackets = 'double-angle'
+   s1.parallel = True
+   s2.parallel = True
    t = Sequential([s1, s2])
    diatonicize(t)
 

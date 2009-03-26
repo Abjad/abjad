@@ -62,15 +62,16 @@ def test_beam_span_differently_named_02( ):
    '''Abjad lets you span whatever you want.'''
 
    t = Sequential(Staff(Voice(run(4)) * 2) * 2)
-   t[0].brackets = 'double-angle'
-   t[1].brackets = 'double-angle'
+   #t[0].brackets = 'double-angle'
+   #t[1].brackets = 'double-angle'
+   t[0].parallel = True
+   t[1].parallel = True
    t[0].invocation.name, t[1].invocation.name = 'foo', 'foo'
    t[0][0].invocation.name, t[1][0].invocation.name = 'first', 'first'
    t[0][1].invocation.name, t[1][1].invocation.name = 'second', 'second'
    appictate(t)
 
    p = Beam([t[0][0], t[1][0]])
-   #assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\tc\'\'8\n\t\t\tcs\'\'8\n\t\t\td\'\'8\n\t\t\tef\'\'8\n\t\t}\n\t>>\n}'
    assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\t\\change Staff = foo\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\t\\change Staff = foo\n\t\t\tc\'\'8\n\t\t\tcs\'\'8\n\t\t\td\'\'8\n\t\t\tef\'\'8\n\t\t}\n\t>>\n}'
 
    r'''{
@@ -107,7 +108,6 @@ def test_beam_span_differently_named_02( ):
 
 
    p = Beam([t[0][1], t[1][1]])
-   #assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8 [\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\tc\'\'8\n\t\t\tcs\'\'8\n\t\t\td\'\'8\n\t\t\tef\'\'8 ]\n\t\t}\n\t>>\n}'
    assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8 [\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\t\\change Staff = foo\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\t\\change Staff = foo\n\t\t\tc\'\'8\n\t\t\tcs\'\'8\n\t\t\td\'\'8\n\t\t\tef\'\'8 ]\n\t\t}\n\t>>\n}'
 
    r'''{
