@@ -263,14 +263,14 @@ class _Component(_Abjad):
          After bequeathal, self is an empty unspanned orphan.
          Bequeath swaps out one type of container for another.
          Return None.'''
-      from abjad.helpers.give_my_attached_spanners_to import \
-         _give_my_attached_spanners_to
+      from abjad.helpers.give_dominant_spanners_to import \
+         _give_dominant_spanners_to
       from abjad.helpers.give_my_position_in_parent_to import \
          _give_my_position_in_parent_to
       from abjad.helpers.give_my_spanned_music_to import \
          _give_my_spanned_music_to
       _give_my_spanned_music_to(self, component)
-      _give_my_attached_spanners_to(self, [component])
+      _give_dominant_spanners_to([self], [component])
       _give_my_position_in_parent_to(self, [component])
 
    def copy(self):

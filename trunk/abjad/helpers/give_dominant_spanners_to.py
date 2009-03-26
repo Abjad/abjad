@@ -2,8 +2,6 @@ from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_dominant_spanners import get_dominant_spanners
 
 
-## TODO: Replace _give_my_attached_spanners_to with this helper. ##
-
 def _give_dominant_spanners_to(donor_components, recipient_components):
    '''Find all spanners dominating 'donor_components'.
       Insert each component in 'recipient_components' into
