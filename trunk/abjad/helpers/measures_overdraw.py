@@ -1,6 +1,8 @@
-from abjad.helpers.components_copy import components_copy
+from abjad.helpers.copy_fractured import copy_fractured
 from abjad.helpers.iterate import iterate
 
+
+## TODO: Finish implementation ##
 
 def measures_overdraw(expr, source_count = 1, total_reps = 2):
    '''Input parameters:
@@ -23,7 +25,7 @@ def measures_overdraw(expr, source_count = 1, total_reps = 2):
       if i < source_count:
          source.append(measure)   
       elif i == source_count:
-         components_copy(source)
+         copy_fractured(source)
       else:
          pass
       
