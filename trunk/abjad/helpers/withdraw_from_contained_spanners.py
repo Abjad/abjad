@@ -1,21 +1,20 @@
+from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.iterate import iterate
 
 
 def _withdraw_from_contained_spanners(components):
-   '''components should be a Python list of Abjad components.
+   '''Find every spanner contained in 'components'.
+      Withdraw all components in 'components' from spanners.
+      Return 'components'.
+      The operation may leave discontiguous spanners.'''
 
-      Unspan every component in components.
-      Navigate down into components and traverse deeply.
-      Return components.'''
+   ## check components
+   assert_components(components, contiguity = 'thread')
 
-   # check input
-   assert_components(components)
-
-   # detach spanners
-   from abjad.component.component import _Component
+   ## withdraw from contained spanners
    for component in iterate(components, _Component):
       component.spanners._detach( )
 
-   # return components
+   ## return components
    return components
