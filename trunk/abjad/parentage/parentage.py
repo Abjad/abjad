@@ -63,9 +63,9 @@ class _Parentage(_Abjad):
 
    def _cutOutgoingReferenceToParent(self):
       '''Keep incoming reference from parent to client in tact.
-         Sever ougoing reference from parent to client.
-         Parent will continue to reference client.
-         Client will no longer reference parent.
+         Sever outgoing reference from client to parent.
+         Parent continues to reference client.
+         Client no longer references parent.
          Return parent.'''
       parent = self.parent
       if parent is not None:

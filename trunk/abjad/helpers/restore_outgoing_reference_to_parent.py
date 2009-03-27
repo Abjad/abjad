@@ -1,0 +1,8 @@
+def restore_outgoing_reference_to_parent(receipt):
+   '''Use to restore parentage.
+      Use after call to _cut_outgoing_reference_to_parent(components).
+      Return None.'''
+
+   for component, parent in receipt:
+      assert component.parentage.parent is None
+      component.parentage.parent = parent
