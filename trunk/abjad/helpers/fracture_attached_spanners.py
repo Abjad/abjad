@@ -1,14 +1,14 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def components_fracture_shallow(spannable_components):
+def fracture_attached_spanners(components):
    r'''Fracture to the left of the leftmost component.
       Fracture to the right of the rightmost component.
       Do not fracture spanners of any components at higher levels of score.
       Do not fracture spanners of any components at lower levels of score.
-      Return spannable_components.
+      Return components.
       
-      Components in list must be successive.
+      Components must be thread-contiguous.
       Some spanners may copy during fracture.
       This helper is public-safe.
 
@@ -34,7 +34,7 @@ def components_fracture_shallow(spannable_components):
             a'8 ] \! \stopTrillSpan
          }   }
 
-      components_fracture_shallow(t[1:2])
+      fracture_attached_spanners(t[1:2])
 
       \new Staff {
          {
@@ -51,14 +51,14 @@ def components_fracture_shallow(spannable_components):
          }
       }'''
 
-   assert_components(spannable_components, contiguity = 'thread')
+   assert_components(components, contiguity = 'thread')
 
-   if len(spannable_components) > 0:
+   if len(components) > 0:
 
-      leftmost_component = spannable_components[0]
+      leftmost_component = components[0]
       leftmost_component.spanners.fracture(direction = 'left')
 
-      rightmost_component = spannable_components[-1]
+      rightmost_component = components[-1]
       rightmost_component.spanners.fracture(direction = 'right')
 
-   return spannable_components
+   return components
