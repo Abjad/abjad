@@ -1,5 +1,5 @@
-from abjad.helpers.fracture_attached_spanners import \
-   fracture_attached_spanners
+from abjad.helpers.fracture_crossing_spanners import \
+   fracture_crossing_spanners
 from abjad.helpers.withdraw_from_attached_spanners import \
    _withdraw_from_attached_spanners
 
@@ -11,7 +11,7 @@ def components_fracture_unspan(components):
       Return components.'''
 
    ## fracture to the left and right of first and last components at top level
-   fracture_attached_spanners(components)
+   fracture_crossing_spanners(components)
 
    ## unspan all components at top level of list
    _withdraw_from_attached_spanners(components)
