@@ -1,7 +1,7 @@
 from __future__ import division
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.is_duration_token import _is_duration_token
-from abjad.helpers.is_pitch_token import _is_pitch_token
+from abjad.helpers.is_pitch_token import is_pitch_token
 from abjad.chord.chord import Chord
 from abjad.note.note import Note
 from abjad.rest.rest import Rest
@@ -146,7 +146,7 @@ def notes(pitches, durations, direction='big-endian'):
                'little-endian' returns a list of notes of increasing duration.
    '''
 
-   if _is_pitch_token(pitches):
+   if is_pitch_token(pitches):
       pitches = [pitches]
    
    if _is_duration_token(durations):
@@ -279,7 +279,7 @@ def leaves(pitches, durations, direction='big-endian'):
          raise ValueError("Unknown pitch token %s." % pitch)
       return leaves
 
-   if _is_pitch_token(pitches):
+   if is_pitch_token(pitches):
       pitches = [pitches]
    
    if _is_duration_token(durations):
@@ -372,7 +372,7 @@ def leaves(pitches, durations, direction='big-endian'):
 #               'little-endian' returns a list of notes of increasing duration.
 #   '''
 #
-#   if _is_pitch_token(pitches):
+#   if is_pitch_token(pitches):
 #      pitches = [pitches]
 #
 #   if _is_duration_token(durations):

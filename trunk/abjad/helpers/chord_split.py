@@ -1,39 +1,37 @@
 from abjad.helpers.engender import engender
-from abjad.helpers.is_pitch_token import _is_pitch_token
+from abjad.helpers.is_pitch_token import is_pitch_token
 from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
 
 
 def chord_split(chord, pitch = Pitch('b', 3), attr = 'number'):
-   '''
-   Return disjunct (treble, bass) pair of 'parts' from input chord;
-   treble pitches greater than or equal to pitch attr;
-   bass pitches all less than pitch attr.
+   '''Return disjunct (treble, bass) pair of 'parts' from input chord;
+      treble pitches greater than or equal to pitch attr;
+      bass pitches all less than pitch attr.
 
-   Input constraints:
-      Input is canonically a (many-note) chord;
-      input may also be a (one-note) note;
-      input may also be a (no-note) rest.
+      Input constraints:
+         Input is canonically a (many-note) chord;
+         input may also be a (one-note) note;
+         input may also be a (no-note) rest.
 
-   Attr options:
-      'number'
-      'altitude'
+      Attr options:
+         'number'
+         'altitude'
 
-   Length treatment:
-      Zero-length parts engender rest;
-      length-one parts engender note;
-      Return parts of length greater than one engender chord.
+      Length treatment:
+         Zero-length parts engender rest;
+         length-one parts engender note;
+         Return parts of length greater than one engender chord.
 
-   ID treatment:
-      Unique 'return part' IDs with input chord left unaltered.
-      That is: id(chord) != id(treble) != (bass).
-   
-   Spanners treatment:
-      Helper engenders only unspanned output.
-   '''
+      ID treatment:
+         Unique 'return part' IDs with input chord left unaltered.
+         That is: id(chord) != id(treble) != (bass).
+      
+      Spanners treatment:
+         Helper engenders only unspanned output.'''
 
    assert isinstance(chord, _Leaf)
-   assert _is_pitch_token(pitch)
+   assert is_pitch_token(pitch)
    assert attr in ('number', 'altitude')
 
    pitch = Pitch(pitch)
