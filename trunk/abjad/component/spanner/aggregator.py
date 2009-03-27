@@ -22,8 +22,7 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in list(self.attached):
          index = spanner.index(client)
          receipt._pairs.add((spanner, index))
-         #spanner.remove(client)
-         spanner._severComponent(client)
+         spanner._remove(client)
       return receipt
 
    def _fractureContents(self):

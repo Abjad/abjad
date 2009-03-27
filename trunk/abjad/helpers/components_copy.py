@@ -1,4 +1,3 @@
-from abjad.exceptions.exceptions import ContiguityError
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 

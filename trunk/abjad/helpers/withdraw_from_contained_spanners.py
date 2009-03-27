@@ -2,7 +2,7 @@ from abjad.helpers.assert_components import assert_components
 from abjad.helpers.iterate import iterate
 
 
-def _components_detach_spanners_deep(components):
+def _withdraw_from_contained_spanners(components):
    '''components should be a Python list of Abjad components.
 
       Unspan every component in components.

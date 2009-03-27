@@ -1,6 +1,6 @@
 from abjad.component.component import _Component
-from abjad.helpers.components_detach_spanners_deep import \
-   _components_detach_spanners_deep
+from abjad.helpers.withdraw_from_contained_spanners import \
+   _withdraw_from_contained_spanners
 from abjad.receipt.detach import _DetachReceipt
 
 
@@ -18,7 +18,7 @@ def detach_subtree(component):
 
    parentage = component.parentage._detach( )
    spanners = component.spanners._detach( )
-   _components_detach_spanners_deep([component])
+   _withdraw_from_contained_spanners([component])
 
    receipt = _DetachReceipt(component, parentage, spanners)
    return receipt

@@ -1,5 +1,5 @@
-from abjad.helpers.components_detach_spanners_shallow import \
-   _components_detach_spanners_shallow
+from abjad.helpers.withdraw_from_attached_spanners import \
+   _withdraw_from_attached_spanners
 from abjad.helpers.components_fracture_shallow import \
    components_fracture_shallow
 
@@ -14,7 +14,7 @@ def components_fracture_unspan(component_list):
    components_fracture_shallow(component_list)
 
    # unspan all components at top level of list
-   _components_detach_spanners_shallow(component_list)
+   _withdraw_from_attached_spanners(component_list)
    
    # return input list
    return component_list
