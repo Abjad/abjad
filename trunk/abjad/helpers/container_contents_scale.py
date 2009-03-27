@@ -12,7 +12,8 @@ def container_contents_scale(container, multiplier):
    '''Change all leaves in measure by multiplier.
       Return measure.
 
-      TODO: generalize this helper to work on tuplets, too.'''
+      TODO: generalize this helper to work on tuplets, too.
+      TODO: generalize to work with rigid measures, too.'''
 
    for expr in iterate_chained_contents(container[:]):
       if _is_tie_chain(expr):
