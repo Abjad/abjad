@@ -1,4 +1,4 @@
-from abjad.helpers.binary import _binary
+from abjad.helpers.binary_string import binary_string
 
 
 def _integer_decompose(n):
@@ -28,7 +28,7 @@ def _integer_decompose(n):
    
    result = [ ]
    prev_empty = True
-   binary_n = _binary(n)
+   binary_n = binary_string(n)
    binary_length = len(binary_n)
 
    for i, x in enumerate(binary_n):

@@ -1,4 +1,5 @@
-from abjad.container.multipliedduration import _MultipliedContainerDurationInterface
+from abjad.container.multipliedduration import \
+   _MultipliedContainerDurationInterface
 from abjad.helpers.is_power_of_two import _is_power_of_two
 
 

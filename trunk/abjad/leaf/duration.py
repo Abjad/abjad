@@ -1,7 +1,7 @@
 from abjad.core.duration import _DurationInterface
 from abjad.core.interface import _Interface
 from abjad.exceptions.exceptions import AssignabilityError
-from abjad.helpers.binary import _binary
+from abjad.helpers.binary_string import binary_string
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.is_assignable import is_assignable
 from abjad.rational.rational import Rational
@@ -19,7 +19,7 @@ class _LeafDurationInterface(_DurationInterface):
 
    @property
    def _dots(self):
-      return sum([int(x) for x in list(_binary(self.written._n))]) - 1
+      return sum([int(x) for x in list(binary_string(self.written._n))]) - 1
 
    @property
    def _dotted(self):
