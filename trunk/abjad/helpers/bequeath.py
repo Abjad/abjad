@@ -6,7 +6,7 @@ from abjad.helpers.withdraw_from_crossing_spanners import \
    _withdraw_from_crossing_spanners
 
 
-def bequeath_multiple(donor_components, recipient_components):
+def bequeath(donor_components, recipient_components):
    '''Give everything from donor_components to recipient_components.
       Almost exactly the same as container setitem logic.
       This helper works with orphan donor_components.

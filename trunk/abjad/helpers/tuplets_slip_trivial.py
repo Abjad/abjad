@@ -1,4 +1,4 @@
-from abjad.helpers.bequeath_multiple import bequeath_multiple
+from abjad.helpers.bequeath import bequeath
 from abjad.helpers.iterate import iterate
 
 
@@ -9,4 +9,4 @@ def tuplets_slip_trivial(expr):
    from abjad.tuplet.tuplet import _Tuplet
    for tuplet in list(iterate(expr, _Tuplet)):
       if tuplet.trivial:
-         bequeath_multiple([tuplet], tuplet[:])
+         bequeath([tuplet], tuplet[:])

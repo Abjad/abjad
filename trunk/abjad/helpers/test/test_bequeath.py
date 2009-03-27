@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_bequeath_multiple_01( ):
+def test_bequeath_01( ):
    '''Bequeath parent and spanners of two old notes to five new notes.'''
    
    t = Staff(scale(4))
@@ -17,7 +17,7 @@ def test_bequeath_multiple_01( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath_multiple(t[1:3], new_notes)
+   bequeath(t[1:3], new_notes)
 
    "Equivalent to t[1:3] = new_notes"
 
@@ -35,7 +35,7 @@ def test_bequeath_multiple_01( ):
    assert t.format == "\\new Staff {\n\tc'8 [ ] \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
-def test_bequeath_multiple_02( ):
+def test_bequeath_02( ):
    '''Bequeath parent and spaners of one old note to five new notes.'''
    
    t = Staff(scale(4))
@@ -51,7 +51,7 @@ def test_bequeath_multiple_02( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath_multiple(t[:1], new_notes)
+   bequeath(t[:1], new_notes)
 
    "Equivalent to t[:1] = new_notes."
 
@@ -70,7 +70,7 @@ def test_bequeath_multiple_02( ):
    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\td'8 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
-def test_bequeath_multiple_03( ):
+def test_bequeath_03( ):
    '''Bequeath parent and spanners of two old notes to five new notes.'''
 
    t = Staff(scale(4))
@@ -86,7 +86,7 @@ def test_bequeath_multiple_03( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath_multiple(t[:2], new_notes)
+   bequeath(t[:2], new_notes)
 
    "Equivalent to t[:2] = new_notes."
 
@@ -104,7 +104,7 @@ def test_bequeath_multiple_03( ):
    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
-def test_bequeath_multiple_04( ):
+def test_bequeath_04( ):
    '''Bequeath parent and spanners of three old notes to five new notes.'''
 
    t = Staff(scale(4))
@@ -120,7 +120,7 @@ def test_bequeath_multiple_04( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath_multiple(t[:3], new_notes)
+   bequeath(t[:3], new_notes)
 
    "Equivalent to t[:3] = new_notes."
 
@@ -137,7 +137,7 @@ def test_bequeath_multiple_04( ):
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
-def test_bequeath_multiple_05( ):
+def test_bequeath_05( ):
 
    t = Staff(scale(4))
    b1 = Beam(t[:2])
@@ -152,7 +152,7 @@ def test_bequeath_multiple_05( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath_multiple(t[:], new_notes)
+   bequeath(t[:], new_notes)
 
    "Equivalent to t[:] = new_notes."
 
@@ -168,9 +168,9 @@ def test_bequeath_multiple_05( ):
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 \\!\n}"
 
 
-def test_bequeath_multiple_06( ):
+def test_bequeath_06( ):
    '''Bequeath parent and spanners of container to children of container.
-      This is bequeath_multiple generalizing Container.slip( ).'''
+      This is bequeath generalizing Container.slip( ).'''
 
    t = Staff([Voice(scale(4))])
    Beam(t[0])
@@ -184,7 +184,7 @@ def test_bequeath_multiple_06( ):
       }
    }'''
 
-   old_components = bequeath_multiple(t[0:1], t[0][:])
+   old_components = bequeath(t[0:1], t[0][:])
    voice = old_components[0]
 
    "Equivalent to t[:1] = t[0][:]."
