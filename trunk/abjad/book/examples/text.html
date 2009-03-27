@@ -1,0 +1,24 @@
+<p>
+This is <b>paragraph 1</b>.
+Now comes some Abjad code
+</p>
+
+<abjad>
+   abjad> v = Voice(run(8))
+   abjad> Beam(v)
+   hide> write_lilypond(v, 'example1')
+   abjad> show(v)
+</abjad>
+
+<p>Here is <b>paragraph</b> 2, and more Abjad code.  Notice that in the second block of abjad code I can reference objects and variables crated in previous blocks:
+</p>
+
+<abjad>
+   abjad> diatonicize(v)
+   abjad> Trill(v[2:])
+   hide> write_lilypond(v, 'example2')
+   abjad> show(v)
+</abjad>
+
+<p>And a final paragraph.</p>
+
