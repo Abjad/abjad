@@ -60,3 +60,28 @@ def test_get_crossing_spanners_02( ):
    }'''
    
    assert py.test.raises(ContiguityError, 'get_crossing_spanners(t.leaves)')
+
+
+def test_get_crossing_spanners_03( ):
+   '''Helper gets spanners that cross in from above.'''
+
+   t = Voice(RigidMeasure((2, 8), run(2)) * 3)
+   diatonicize(t)
+   beam = Beam(t[1:2] + t[2][0:1])
+
+   r'''\new Voice {
+         \time 2/8
+         c'8
+         d'8
+         \time 2/8
+         e'8 [
+         f'8
+         \time 2/8
+         g'8 ]
+         a'8
+   }'''
+
+   spanners = get_crossing_spanners(t.leaves)
+
+   assert len(spanners) == 1
+   assert beam in spanners
