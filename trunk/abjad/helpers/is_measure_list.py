@@ -1,5 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.measure.base import _Measure
+from abjad.measure.measure import _Measure
 
 
 def _is_measure_list(measure_list):

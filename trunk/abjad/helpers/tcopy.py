@@ -10,7 +10,7 @@ def tcopy(ll):
    Return in container equal to type of first element in ll.
    Shrink result container as necessary to preserve parent multiplier.'''
 
-   from abjad.measure.base import _Measure
+   from abjad.measure.measure import _Measure
 
    # assert strictly contiguous components in same thread
    assert_components(ll, contiguity = 'strict', share = 'thread')

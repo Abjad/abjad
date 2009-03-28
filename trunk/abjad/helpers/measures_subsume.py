@@ -23,7 +23,7 @@ def measures_subsume(expr):
       }
    '''
 
-   from abjad.measure.base import _Measure
+   from abjad.measure.measure import _Measure
    from abjad.tuplet.tuplet import _Tuplet
    for measure in iterate(expr, _Measure): 
       if len(measure) == 1:

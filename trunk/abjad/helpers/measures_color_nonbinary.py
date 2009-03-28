@@ -2,12 +2,19 @@ from abjad.helpers.iterate import iterate
 
 
 def measures_color_nonbinary(expr, color = 'red'):
-   '''Color all nonbinary mesures in expr.
+   '''Color all nonbinary mesures in 'expr'.
       Useful when giving presentations or explaining transforms.
-      
-      TODO: Give URL of list of valid LilyPond color names here.'''
 
-   from abjad.measure.base import _Measure
+      The usual LilyPond color names are these:
+
+      black       white          red         green
+      blue        cyan           magenta     yellow
+      grey        darkred        darkgreen   darkblue
+      darkcyan    darkmagenta    darkyellow 
+   
+      Additional color names appear in appendix B.5 of the LilyPond LM.'''
+
+   from abjad.measure.measure import _Measure
    for measure in iterate(expr, _Measure):
       if measure.meter.effective.nonbinary:
          measure.beam.color = color

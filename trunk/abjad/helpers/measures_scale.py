@@ -19,7 +19,7 @@ def measures_scale(expr, multiplier = Rational(1)):
    ## TODO: Make better meter when multiplying by 2, 4, 8 etc
    ## Rational(2, 2), Rational(3, 3), etc should do nothing
 
-   from abjad.measure.base import _Measure
+   from abjad.measure.measure import _Measure
    for measure in iterate(expr, _Measure):
       old_meter = measure.meter.effective
       old_denominator = old_meter.denominator

@@ -20,7 +20,7 @@ def measures_project(expr):
 
       TODO: add keyword to allow fixed-multiplier tuplet.'''
 
-   from abjad.measure.base import _Measure
+   from abjad.measure.measure import _Measure
    for measure in iterate(expr, _Measure):
       if measure.meter.effective.nonbinary:
 

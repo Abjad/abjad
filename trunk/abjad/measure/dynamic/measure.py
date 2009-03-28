@@ -1,4 +1,4 @@
-from abjad.measure.base import _Measure
+from abjad.measure.measure import _Measure
 from abjad.measure.dynamic.duration import _DynamicMeasureDurationInterface
 from abjad.meter.meter import Meter
 import types

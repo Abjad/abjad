@@ -51,7 +51,7 @@ class _NumberingInterface(_Interface):
    ## TODO: Can't this method eliminate all internal navigation?
    def _updateAllNumbers(self):
       from abjad.leaf.leaf import _Leaf
-      from abjad.measure.base import _Measure
+      from abjad.measure.measure import _Measure
       leaf = 0
       measure = 0
       rightwards_dfs = self._client._navigator._DFS(

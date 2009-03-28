@@ -36,7 +36,7 @@ def measures_concentrate(expr, concentration_pairs, cyclic = True):
 
    result = [ ]
    num_pairs = len(concentration_pairs)
-   from abjad.measure.base import _Measure
+   from abjad.measure.measure import _Measure
    for i, measure in enumerate(iterate(expr, _Measure)):
       concentration_pair = concentration_pairs[i % num_pairs]
       assert isinstance(concentration_pair, tuple)

@@ -10,7 +10,7 @@ def measures_decompose(expr):
    result = [ ]
 
    # manifest list to avoid change-while-iterate recursion problem
-   from abjad.measure.base import _Measure
+   from abjad.measure.measure import _Measure
    for measure in list(iterate(expr, _Measure)):
       result.append(_measure_decompose(measure))
    return tuple(result)

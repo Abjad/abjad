@@ -4,7 +4,7 @@ from abjad.helpers.in_terms_of import _in_terms_of
 ## TODO: Write tests.
 
 def _measure_set_denominator(measure, denominator):
-   from abjad.measure.base import _Measure
+   from abjad.measure.measure import _Measure
    if isinstance(measure, _Measure):
       old_meter = measure.meter.effective
       old_meter_pair = (old_meter.numerator, old_meter.denominator)

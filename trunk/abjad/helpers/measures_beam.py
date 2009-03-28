@@ -14,7 +14,7 @@ def measures_beam(expr, style = 'complex'):
       Return list of measures treated.'''
 
    measures_treated = [ ]
-   from abjad.measure.base import _Measure
+   from abjad.measure.measure import _Measure
    for measure in iterate(expr, _Measure):
       if style == 'complex':
          ComplexBeam(measure)

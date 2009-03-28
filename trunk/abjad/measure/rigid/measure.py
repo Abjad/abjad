@@ -1,5 +1,5 @@
 from abjad.helpers.in_terms_of import _in_terms_of
-from abjad.measure.base import _Measure
+from abjad.measure.measure import _Measure
 from abjad.measure.rigid.duration import _RigidMeasureDurationInterface
 from abjad.measure.rigid.formatter import _RigidMeasureFormatter
 from abjad.meter.meter import Meter

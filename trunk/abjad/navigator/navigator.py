@@ -256,7 +256,7 @@ class _Navigator(_Abjad):
    @property
    def _prevMeasure(self):
       '''Returns the closest measure enclosing or before self._client.'''
-      from abjad.measure.base import _Measure
+      from abjad.measure.measure import _Measure
       client = self._client
       dfs = self._DFS(capped = False, unique = False, direction = 'right')
       for node in dfs:
