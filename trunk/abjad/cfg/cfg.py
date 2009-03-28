@@ -1,36 +1,29 @@
 import os
 
-home_path = os.environ.get('HOME') or os.environ.get('HOMEPATH')
 
-ABJADPATH = os.path.dirname(__file__).rstrip('cfg')
-ABJADOUTPUT = os.environ.get('ABJADOUTPUT', 
-         home_path + os.sep + os.sep.join(['.abjad', 'output']))
-ABJADCONFIG =  home_path + os.sep + os.sep.join(['.abjad', 'config'])
-ABJADTEMPLATES = os.environ.get('ABJADTEMPLATES', ABJADPATH + 'templates')
-ABJADVERSIONFILE = ABJADPATH + '.version'
-LILYPONDINCLUDES = os.environ.get('LILYPONDINCLUDES', None)
-LILYPONDLANG = os.environ.get('LILYPONDLANG', 'english')
-PDFVIEWER = os.environ.get('PDFVIEWER')
-MIDIPLAYER = os.environ.get('MIDIPLAYER')
+## TODO: Implement list_settings( ) helper to print all of these
+##       settings at the interpreter in a friendly way
+##       to allow composers who are not reading the soruce
+##       code to inspect these settings.
 
 accidental_spelling = 'mixed'
+home_path = os.environ.get('HOME') or os.environ.get('HOMEPATH')
 
+ABJADCONFIG = os.path.join(home_path, '.abjad', 'config')
+ABJADOUTPUT = os.environ.get('ABJADOUTPUT', 
+         os.path.join(home_path, '.abjad', 'output'))
+ABJADPATH = os.path.dirname(__file__).rstrip('cfg')
 
-#### we don't need ABJADPATH defined as environment variable any more.
-##ABJADPATH = os.environ.get(
-##   'ABJADPATH', os.path.dirname(__file__).rstrip('/cfg')).rstrip(os.sep)
-#ABJADPATH = os.path.dirname(__file__).rstrip('cfg').rstrip(os.sep)
-#ABJADOUTPUT = os.environ.get(
-#   'ABJADOUTPUT', ABJADPATH + '/.abjad/output').rstrip(os.sep)
-#ABJADPERSISTENCE = os.environ.get(
-#   'ABJADPERSISTENCE', ABJADPATH + '/persistence').rstrip(os.sep)
-#ABJADTEMPLATES = os.environ.get(
-#   'ABJADTEMPLATES', ABJADPATH + '/templates').rstrip(os.sep)
-#LILYPONDINCLUDES = os.environ.get('LILYPONDINCLUDES', None)
-#LILYPONDLANG = os.environ.get('LILYPONDLANG', 'english')
-#PDFVIEWER = os.environ.get('PDFVIEWER', 'open')
-##VERSIONFILE = ABJADOUTPUT + '.version'
-#ABJADVERSIONFILE = ABJADPATH + '/.version'
-##LILYPONDVERSIONFILE = ABJADOUTPUT + '/.version'
-#
-#accidental_spelling = 'mixed'
+ABJADTEMPLATES = [ ]
+user = os.environ.get('ABJADTEMPLATES', None)
+if user is not None:
+   ABJADTEMPLATES.extend(user.split(os.path.pathsep))
+ABJADTEMPLATES.append(ABJADPATH + 'templates')
+ABJADTEMPLATES = os.path.join(ABJADTEMPLATES)
+
+ABJADVERSIONFILE = ABJADPATH + '.version'
+ABJADVERSIONFILE = os.path.join(ABJADPATH, '.version')
+LILYPONDINCLUDES = os.environ.get('LILYPONDINCLUDES', None)
+LILYPONDLANG = os.environ.get('LILYPONDLANG', 'english')
+MIDIPLAYER = os.environ.get('MIDIPLAYER')
+PDFVIEWER = os.environ.get('PDFVIEWER')

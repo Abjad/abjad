@@ -6,7 +6,8 @@ def _write_layout_template(outfile, template):
    if template:
       names = [template, template + '.ly']
       if ABJADTEMPLATES is not None:
-         for path in ABJADTEMPLATES.split(':'):
+         #for path in ABJADTEMPLATES.split(':'):
+         for path in ABJADTEMPLATES:
             names.append(path + os.sep + template)
             names.append(path + os.sep + template + '.ly')
       for name in names:

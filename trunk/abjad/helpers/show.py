@@ -1,5 +1,4 @@
 from abjad.cfg.cfg import ABJADOUTPUT
-from abjad.cfg.cfg import ABJADTEMPLATES
 from abjad.cfg.cfg import PDFVIEWER
 from abjad.cfg.get_next_output import _get_next_output
 from abjad.cfg.open_file import _open_file
@@ -11,10 +10,14 @@ from abjad.cfg.write_title import _write_title
 import os
 
 
-def show(ly, template = None, title = None):
-   '''Interprets a complete .ly file in ABJADOUTPUT directory.
-      Logs to ABJADOUTPUT/lily.log.
-      Opens the resulting PDF with PDFVIEWER.'''
+def show(expr, template = None, title = None):
+   '''Create a new LilyPond .ly file in the ABJADOUTPUT directory.
+      Assign a four-digit numeric name to the new LilyPond .ly file.
+      Write template, title and other header information to .ly file.
+      Format Abjad expression 'expr' as LilyPond code.
+      Write the LilyPond version of 'expr' to .ly file.
+      Process .ly file with LilyPond and log to ABJADOUTPUT/lily.log.
+      Open the PDF output by LilyPond with PDFVIEWER.'''
 
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
@@ -22,7 +25,7 @@ def show(ly, template = None, title = None):
    outfile = open(name, 'w')
    _write_preamble(outfile, template)
    _write_title(outfile, title)
-   outfile.write(_wrap_format(ly.format))
+   outfile.write(_wrap_format(expr.format))
    outfile.close( )
    _run_lilypond(name)
    _open_file('%s.pdf' % name[:-3], PDFVIEWER)
