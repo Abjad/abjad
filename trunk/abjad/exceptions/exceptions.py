@@ -1,4 +1,12 @@
-class AssignabilityError(Exception):
+class DurationError(Exception):
+   '''Any type of duration error.'''
+   pass
+
+class ImproperlyFilledMeasureError(Exception):
+   '''Measure contents duration does not equal measure meter duration.'''
+   pass
+
+class AssignabilityError(DurationError):
    '''Fraction like 5/16 or 9/16 can not be assigned
       to a single, untied note, rest or chord.'''
    pass
@@ -17,13 +25,13 @@ class ExtraSpannerError(Exception):
       but more than one spanner is present.'''
    pass
 
-class ImproperlyFilledMeasureError(Exception):
-   '''Measure contents duration does not equal measure meter duration.'''
-   pass
-
 class MissingSpannerError(Exception):
    '''Operation assumes presence of spanner,
        but spanner is missing.'''
+   pass
+
+class NegativeDurationError(DurationError):
+   '''Component durations must be positive.'''
    pass
 
 class NonbinaryMeterConversionError(Exception):
