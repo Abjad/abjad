@@ -1,6 +1,11 @@
 from abjad.component.component import _Component
 from abjad.helpers.iterate import iterate
+import types
 
+
+## TODO: Make assess_components( ) work with generators 
+##       This will prevent needing to manifest large lists
+##       of leaves for checking wiht assess_components( ).
 
 def assess_components(expr, 
    contiguity = None, share = None, allow_orphans = True):
@@ -81,7 +86,7 @@ def __are_components(expr):
    '''True when expr is a Python list of Abjad components.
       otherwise False.'''
 
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('expr must be a list of Abjad components.')
 
    for element in expr:
@@ -97,7 +102,7 @@ def __are_components_in_same_parent(expr, allow_orphans = True):
       and when all components have a parent and have the same parent.
       Otherwise False.'''
 
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
 
    if len(expr) == 0:
@@ -126,7 +131,7 @@ def __are_components_in_same_score(expr, allow_orphans = True):
       and when all components have the same score root.
       Otherwise False.'''
 
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
       
    if len(expr) == 0:
@@ -155,7 +160,7 @@ def __are_components_in_same_thread(expr, allow_orphans = True):
 
       Otherwise False.'''
 
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
 
    if len(expr) == 0:
@@ -190,7 +195,7 @@ def __are_strictly_contiguous_components(expr, allow_orphans = True):
    '''True expr is a Python list of strictly contiguous components.
       Otherwise False.'''
 
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
 
    if len(expr) == 0:
@@ -232,7 +237,7 @@ def __are_strictly_contiguous_components_in_same_parent(
 
       Otherwise False.'''
 
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
 
    if len(expr) == 0:
@@ -282,7 +287,7 @@ def __are_strictly_contiguous_components_in_same_score(
 
       Otherwise False.'''
 
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
 
    if len(expr) == 0:
@@ -329,7 +334,7 @@ def __are_strictly_contiguous_components_in_same_thread(
 
       Otherwise False.'''
    
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
 
    if len(expr) == 0:
@@ -405,7 +410,7 @@ def __are_thread_contiguous_components(expr, allow_orphans = True):
       assert _are_thread_contiguous_components(t[0:1] + t[-1][:])
       assert _are_thread_contiguous_components(t[0][:] + t[-1][:])'''
 
-   if not isinstance(expr, list):
+   if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
 
    if len(expr) == 0:

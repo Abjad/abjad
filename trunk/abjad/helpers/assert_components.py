@@ -26,13 +26,11 @@ def assert_components(expr,
    if contiguity is None:
       
       if share is None:
-         #_assert_are_components(expr)
          if not assess_components(expr):
             raise TypeError('Must be Python list'
                ' of Abjad components.')
 
       elif share == 'parent':
-         #_assert_are_components_in_same_parent(expr, allow_orphans)
          if not assess_components(expr, share = 'parent', 
             allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
@@ -40,7 +38,6 @@ def assert_components(expr,
                ' all in same parent.')
 
       elif share == 'score':
-         #_assert_are_components_in_same_score(expr, allow_orphans)
          if not assess_components(expr, share = 'score', 
             allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
@@ -48,7 +45,6 @@ def assert_components(expr,
                ' all in same score.')
 
       elif share == 'thread':
-         #_assert_are_components_in_same_thread(expr, allow_orphans)
          if not assess_components(expr, share = 'thread', 
             allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
@@ -62,15 +58,12 @@ def assert_components(expr,
    elif contiguity == 'strict':
    
       if share is None:
-         #_assert_are_strictly_contiguous_components(expr, allow_orphans)
          if not assess_components(expr, contiguity = 'strict', 
             allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
                ' of strictly contiguous Abjad components.')
 
       elif share == 'parent':
-         #_assert_are_strictly_contiguous_components_in_same_parent(
-         #   expr, allow_orphans)
          if not assess_components(expr, contiguity = 'strict', 
             share = 'parent', allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
@@ -78,8 +71,6 @@ def assert_components(expr,
                ' all in same parent.')
    
       elif share == 'score':
-         #_assert_are_strictly_contiguous_components_in_same_score(
-         #   expr, allow_orphans)
          if not assess_components(expr, contiguity = 'strict', 
             share = 'score', allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
@@ -87,8 +78,6 @@ def assert_components(expr,
                ' all in same score.')
    
       elif share == 'thread':
-         #_assert_are_strictly_contiguous_components_in_same_thread(
-         #   expr, allow_orphans)
          if not assess_components(expr, contiguity = 'strict', 
             share = 'thread', allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
@@ -106,7 +95,6 @@ def assert_components(expr,
             " the 'share' keyword should not be set.")
 
       else:
-         #_assert_are_thread_contiguous_components(expr, allow_orphans)
          if not assess_components(expr, 
             contiguity = 'thread', allow_orphans = allow_orphans):
             raise ContiguityError('Must by Python list'

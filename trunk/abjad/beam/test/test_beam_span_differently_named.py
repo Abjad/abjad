@@ -8,8 +8,6 @@ def test_beam_span_differently_named_01( ):
       LilyPond will not render beams correctly through others.
       Abjad gives you enough rope to hang yourself, so span intelligently.'''
 
-   ## TODO: Raise ContiguityError or forbid staff spanning. ##
-
    v1 = Voice(run(4))
    v1.invocation.name = 'foo'
    v2 = Voice(run(4))
@@ -17,28 +15,42 @@ def test_beam_span_differently_named_01( ):
    t = Staff([v1, v2])
    appictate(t)
 
-   p = Beam(t)
-   assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
-
    r'''\new Staff {
-      \context Voice = "foo" {
-         c'8 [
-         cs'8
-         d'8
-         ef'8
-      }
-      \context Voice = "bar" {
-         e'8
-         f'8
-         fs'8
-         g'8 ]
-      }
+           \context Voice = "foo" {
+                   c'8
+                   cs'8
+                   d'8
+                   ef'8
+           }
+           \context Voice = "bar" {
+                   e'8
+                   f'8
+                   fs'8
+                   g'8
+           }
    }'''
 
-   p.clear( )
+   assert py.test.raises(ContiguityError, 'p = Beam(t)')
+
+#   r'''\new Staff {
+#      \context Voice = "foo" {
+#         c'8 [
+#         cs'8
+#         d'8
+#         ef'8
+#      }
+#      \context Voice = "bar" {
+#         e'8
+#         f'8
+#         fs'8
+#         g'8 ]
+#      }
+#   }'''
+#
+#   assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
+#   p.clear( )
 
    p = Beam(t[0])
-   assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
 
    r'''\new Staff {
       \context Voice = "foo" {
@@ -54,6 +66,9 @@ def test_beam_span_differently_named_01( ):
          g'8
       }
    }'''
+
+   assert check(t)
+   assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
 
    p.clear( )
 

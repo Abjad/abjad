@@ -66,8 +66,6 @@ class Accidental(_Abjad):
       'ss': 2,    'tqs': 1.5,
        's': 1,     'qs': 0.5  }
 
-   ## TODO - remove -2.5 after Lidercfeny ...
-
    adjustmentToAccidentalString = {
        0: '',
       -2: 'ff',   -1.5: 'tqf',   

@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_spanner_leaves_01( ):
@@ -118,7 +119,6 @@ def test_spanner_leaves_06( ):
    t = Staff(run(4))
    t.insert(2, Parallel(Sequential(run(2)) * 2))
    appictate(t)
-   p = Spanner(t)
 
    r'''\new Staff {
       c'8
@@ -137,14 +137,15 @@ def test_spanner_leaves_06( ):
       g'8
    }'''
 
-   assert len(p.components) == 1
-   assert p.components[0] is t
-   assert len(p.leaves) == 4
-   assert p.leaves[0] is t[0]
-   assert p.leaves[1] is t[1]
-   assert p.leaves[2] is t[3]
-   assert p.leaves[3] is t[4]
-   assert p.duration.prolated == Rational(6, 8)
+   assert py.test.raises(ContiguityError, 'p = Spanner(t)')
+#   assert len(p.components) == 1
+#   assert p.components[0] is t
+#   assert len(p.leaves) == 4
+#   assert p.leaves[0] is t[0]
+#   assert p.leaves[1] is t[1]
+#   assert p.leaves[2] is t[3]
+#   assert p.leaves[3] is t[4]
+#   assert p.duration.prolated == Rational(6, 8)
 
 
 def test_spanner_leaves_07( ):
@@ -155,7 +156,6 @@ def test_spanner_leaves_07( ):
    t = Staff(run(4))
    t.insert(2, Parallel(Sequential(run(2)) * 2))
    appictate(t)
-   p = Spanner(t[:])
 
    r'''\new Staff {
       c'8
@@ -174,11 +174,12 @@ def test_spanner_leaves_07( ):
       g'8
    }'''
 
-   for i, component in enumerate(t[:]):
-      assert component is t[i]
-   assert len(p.leaves) == 4
-   assert p.leaves[0] is t[0]
-   assert p.leaves[1] is t[1]
-   assert p.leaves[2] is t[3]
-   assert p.leaves[3] is t[4]
-   assert p.duration.prolated == Rational(6, 8)
+   assert py.test.raises(ContiguityError, 'p = Spanner(t[:])')
+#   for i, component in enumerate(t[:]):
+#      assert component is t[i]
+#   assert len(p.leaves) == 4
+#   assert p.leaves[0] is t[0]
+#   assert p.leaves[1] is t[1]
+#   assert p.leaves[2] is t[3]
+#   assert p.leaves[3] is t[4]
+#   assert p.duration.prolated == Rational(6, 8)

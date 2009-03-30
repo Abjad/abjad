@@ -1,6 +1,8 @@
 from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
 from abjad.helpers.assert_components import assert_components
+from abjad.helpers.iterate import iterate
+from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.rational.rational import Rational
 from copy import copy as python_copy
@@ -12,10 +14,7 @@ class Spanner(_Abjad):
       from abjad.component.component import _Component
       self._components = [ ]
       self._duration = _SpannerDurationInterface(self)
-      if isinstance(music, (tuple, list)):
-         self.extend(music)
-      elif isinstance(music, _Component):
-         self.append(music)
+      self._initializeMusic(music)
 
    ## OVERLOADS ##
 
@@ -79,6 +78,14 @@ class Spanner(_Abjad):
       self._blockAllComponents( )
       spanner._blockAllComponents( )
       return [(self, spanner, result)]
+  
+   def _initializeMusic(self, music):
+      music = music or [ ]
+      if isinstance(music, _Component):
+         music = [music]
+      leaves = list(iterate(music, _Leaf))
+      assert_components(leaves, contiguity = 'thread')
+      self.extend(music)
 
    def _insert(self, i, component):
       '''Insert component in spanner at index i.
