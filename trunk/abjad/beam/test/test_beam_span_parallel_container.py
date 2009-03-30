@@ -2,9 +2,8 @@ from abjad import *
 import py.test
 
 
-def test_beam_spanned_parallel_container_01( ):
-   '''Abjad lets you span whatever you want.
-      Abjad spanners will not inspect the contents of parallel containers.'''
+def test_beam_span_parallel_container_01( ):
+   '''Abjad spanners will not inspect the contents of parallel containers.'''
 
    t = Parallel([ ])
    p = Beam(t)
@@ -15,7 +14,7 @@ def test_beam_spanned_parallel_container_01( ):
    assert t.format == '<<\n>>'
 
 
-def test_beam_spanned_parallel_container_02( ):
+def test_beam_span_parallel_container_02( ):
    '''Nonempty spanned parallel container.'''
 
    t = Parallel(Sequential(run(4)) * 2)
@@ -44,9 +43,8 @@ def test_beam_spanned_parallel_container_02( ):
 #   >>'''
 
 
-def test_beam_spanned_parallel_container_03( ):
-   '''Abjad lets you span whatever you want.
-      Sequential container accepts spanner,
+def test_beam_span_parallel_container_03( ):
+   '''Sequential container accepts spanner,
       even lodged within parallel parent container.'''
 
    t = Parallel(Sequential(run(4)) * 2)
@@ -73,9 +71,8 @@ def test_beam_spanned_parallel_container_03( ):
    >>'''
 
 
-def test_beam_spanned_parallel_container_04( ):
-   '''Abjad ignores intervening parallel container.
-      LilyPond is happy here.'''
+def test_beam_span_parallel_container_04( ):
+   '''Abjad forbids but LilyPond is happy.'''
 
    t = Staff(run(4))
    t.insert(2, Parallel(Sequential(run(4)) * 2))
@@ -109,8 +106,8 @@ def test_beam_spanned_parallel_container_04( ):
 #   }'''
 
 
-def test_beam_spanned_parallel_container_05( ):
-   '''Abjad ignores intervening empty parallel containers.
+def test_beam_span_parallel_container_05( ):
+   '''Abjad ignores empty parallel containers with no leaves.
       LilyPond is happy here.'''
 
    t = Staff(run(4))
@@ -132,9 +129,8 @@ def test_beam_spanned_parallel_container_05( ):
    }'''
 
 
-def test_beam_spanned_parallel_container_06( ):
-   '''Abjad lets you span whatever you want.
-      You can select through parallel and sequential structures.
+def test_beam_span_parallel_container_06( ):
+   '''This is the proper way to 'thread through' parallel containers.
       LilyPond is happy here again.'''
 
    t = Staff(Voice(run(4)) * 2)
