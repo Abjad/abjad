@@ -76,30 +76,19 @@ class Chord(_Leaf):
 
    @apply
    def noteheads( ):
-      '''Return immutable tuple of noteheads in self.'''
+      '''Set noteheads from any iterable.
+         Get immutable tuple of noteheads in chord.'''
       def fget(self):
          result = [ ]
          for notehead in self._noteheads:
             result.append(notehead)
          return tuple(result)
       def fset(self, arglist):
-         # TODO: what's the right way to allow *any* sequence here?
-         # MAYBE: operator.isSequenceType( )
-         # BETTER: just try iterating with 'in', catch exception
          assert isinstance(arglist, (list, tuple, set))
          self._noteheads = [ ]
          for arg in arglist:
-            if isinstance(arg, (int, float, long)):
-               self._noteheads.append(NoteHead(self, pitch = arg))
-            elif isinstance(arg, tuple):
-               self._noteheads.append(NoteHead(self, pitch = arg))   
-            elif isinstance(arg, Pitch):
-               self._noteheads.append(NoteHead(self, pitch = arg))
-            elif isinstance(arg, NoteHead):
-               self._noteheads.append(arg)
-            else:
-               raise ValueError(
-                  'Can not set Chord.noteheads = [..., %s, ...].' % arg)
+            notehead = NoteHead(self, pitch = arg)
+            self._noteheads.append(notehead)
          self._sort( )
       return property(**locals( ))
 
