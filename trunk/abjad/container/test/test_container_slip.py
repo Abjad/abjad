@@ -20,7 +20,7 @@ def test_container_slip_01( ):
    }'''
 
    sequential = t[0]
-   receipt = t[0].slip( )
+   t[0].slip( )
 
    r'''\new Staff {
            c'8 [
@@ -31,6 +31,6 @@ def test_container_slip_01( ):
            }
    }'''
    
-   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
    assert check(t)
    assert len(sequential) == 0
+   assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"

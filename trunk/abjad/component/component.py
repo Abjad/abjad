@@ -167,6 +167,13 @@ class _Component(_Abjad):
       return property(**locals( ))
 
    @property
+   def music(self):
+      if hasattr(self, '_music'):
+         return tuple(self._music)
+      else:
+         return tuple( )
+
+   @property
    def notehead(self):
       return self._notehead
 
@@ -333,30 +340,6 @@ class _Component(_Abjad):
          parent._update._markForUpdateToRoot( )
       return receipt
 
-   def slip(self):
-      '''Detach component from parentage.
-         Detach component from spanners.
-         Splice any children of component to parent of component.
-         Return receipt.'''
-      from abjad.receipt.slip import _SlipReceipt
-      from abjad.helpers.get_parent_and_indices import \
-         get_parent_and_indices
-      parent, index, stop_index = get_parent_and_indices([self])
-      children = getattr(self, '_music', [ ])
-      parentage = self.parentage._detach( )
-      spanners = self.spanners._detach( )
-      print children
-      receipt = _SlipReceipt(self, parentage, children, spanners)
-      for child in reversed(children):
-         child.parentage._switchParentTo(parent)
-         parent._music.insert(index, child)
-      if parent is not None:
-         parent._update._markForUpdateToRoot( )
-      return receipt
-
-   ## TODO: Implement unslip( ) to reinsert component
-   ##       into tree and spanners.
-
    def reattach(self, receipt):
       '''Reattach component to both parentage in receipt.
          Reattach component to spanners in receipt.
@@ -365,4 +348,14 @@ class _Component(_Abjad):
       self.parentage._reattach(receipt._parentage)
       self.spanners._reattach(receipt._spanners)
       receipt._empty( )
+      return self
+
+   def slip(self):
+      '''Give spanners attached directly to container to children.
+         Give children to parent.
+         Return empty, childless container.'''
+      from abjad.helpers.get_parent_and_indices import \
+         get_parent_and_indices
+      parent, start, stop = get_parent_and_indices([self])
+      result = parent[start:stop+1] = list(self.music)
       return self
