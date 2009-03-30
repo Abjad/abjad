@@ -105,6 +105,8 @@ class NoteHead(_NoteHeadInterface):
             self._pitch = Pitch(*arg) 
          elif isinstance(arg, Pitch):
             self._pitch = arg
+         elif isinstance(arg, NoteHead):
+            self._pitch = arg.pitch
          else:
             raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
