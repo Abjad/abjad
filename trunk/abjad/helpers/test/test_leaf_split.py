@@ -38,8 +38,6 @@ def test_leaf_split_03( ):
 
 def test_leaf_split_04( ):
    '''Split returns two FixedDurationTuplets.'''
-   ### TODO: I think this should return a single tuplet. 
-   ### i.e. these two tuplets should be fused into one. 
    t = Note(0, (1, 4))
    new = leaf_split((1, 12), t)
    assert isinstance(new, list)
