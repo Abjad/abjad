@@ -45,6 +45,15 @@ class _Context(Container):
    ## PUBLIC ATTRIBUTES ##
 
    @apply
+   def context( ):
+      def fget(self):
+         return self._context
+      def fset(self, arg):
+         assert isinstance(arg, str)
+         self._context = arg
+      return property(**locals( ))
+
+   @apply
    def invocation( ):
       def fget(self):
          return self._invocation

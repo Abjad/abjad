@@ -69,3 +69,13 @@ class _Invocation(_Abjad):
          self._name = arg
          self._client._name = arg
       return property(**locals( ))
+
+   @apply
+   def type( ):
+      def fget(self):
+         return self._type
+      def fset(self, arg):
+         assert isinstance(arg, str)
+         self._type = arg
+         self._client.context = arg
+      return property(**locals( ))
