@@ -1,8 +1,6 @@
 from abjad import *
 
 
-## TODO: Add tests for (fd / fm) tuplets sitting inside voice. ##
-
 def test_container_contents_scale_01( ):
    '''Scale leaves in voice by 3/2; ie, dot leaves.'''
 
@@ -173,3 +171,65 @@ def test_container_contents_scale_06( ):
 
    assert check(t)
    assert t.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+
+
+def test_container_contents_scale_07( ):
+   '''Double all contents, including measure.'''
+
+   t = Voice(run(2))
+   t.append(RigidMeasure((2, 8), run(2)))
+   diatonicize(t)
+
+   r'''\new Voice {
+      c'8
+      d'8
+         \time 2/8
+         e'8
+         f'8
+   }'''
+
+   container_contents_scale(t, Rational(2))
+
+   r'''\new Voice {
+      c'4
+      d'4
+         \time 2/4
+         e'4
+         f'4
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'4\n\td'4\n\t\t\\time 2/4\n\t\te'4\n\t\tf'4\n}"
+
+
+def test_container_contents_scale_08( ):
+   '''Multiply all contents by 5/4, including measure.'''
+
+   t = Voice(run(2))
+   t.append(RigidMeasure((2, 8), run(2)))
+   diatonicize(t)
+
+   r'''\new Voice {
+      c'8
+      d'8
+         \time 2/8
+         e'8
+         f'8
+   }'''
+
+   container_contents_scale(t, Rational(5, 4))
+
+   r'''\new Voice {
+      c'8 ~
+      c'32
+      d'8 ~
+      d'32
+         \time 20/64
+         e'8 ~
+         e'32
+         f'8 ~
+         f'32
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\t\t\\time 20/64\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n}"

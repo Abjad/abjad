@@ -111,10 +111,9 @@ def test_assess_components_thread_contiguous_06( ):
 
 
 def test_assess_components_thread_contiguous_07( ):
-   '''False for unincorporated component.'''
+   '''True for unincorporated component.'''
 
-   py.test.skip('TODO: Active proposal that staves and staff groups should not thread. Outcome of that proposal will determine the behavior of this test.')
-   assert not assess_components([Staff(scale(4))], contiguity = 'thread')
+   assert assess_components([Staff(scale(4))], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_08( ):

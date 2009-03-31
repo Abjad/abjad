@@ -26,8 +26,8 @@ def measures_scale(expr, multiplier = Rational(1)):
          continue
 
       if _is_power_of_two(multiplier) and 1 <= multiplier:
-         old_numerator = measure.meter.effective.duration._n
-         old_denominator = measure.meter.effective.duration._d
+         old_numerator = measure.meter.effective.numerator
+         old_denominator = measure.meter.effective.denominator
          new_denominator = old_denominator / multiplier._n
          new_meter = Meter(old_numerator, new_denominator)
       else:

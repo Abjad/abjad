@@ -1,5 +1,5 @@
-from abjad.component.component import _Component
 from abjad import *
+from abjad.component.component import _Component
 import py.test
 
 
@@ -43,8 +43,10 @@ def test_assess_components_none_thread_03( ):
 
 
 def test_assess_components_none_thread_04( ):
-   '''Parallel and leaves all currently thread.
-      TODO: What the hell is the right behavior here?'''
+   '''LilyPond assigns each leaf here to not only
+      a different voice but a different staff.
+      Abjad doesn't bother and assigns all four leaves
+      to the same thread.'''
 
    t = Parallel(scale(4))
 
@@ -1233,12 +1235,8 @@ def test_assess_components_none_thread_44( ):
 
 def test_assess_components_none_thread_45( ):
    '''Containers and leaves all thread.
-      TODO: We probably want to change this.
-            LilyPond shoves all these things into a single voice.
-            But Abjad threading turns out to be subtly different
-            than LilyPond voice resolution.
-      Abjad will probably be fine with a spanner restriction:
-      spanners can span no more than one element from any paralllel.'''
+      Iterating through here will be a little tricky.
+      But all components do belong to the same thread.'''
 
    t = Parallel(Sequential(Note(0, (1, 8)) * 4) * 2)
    appictate(t)
@@ -1260,8 +1258,7 @@ def test_assess_components_none_thread_45( ):
 
 
 def test_assess_components_none_thread_46( ):
-   '''Everything threads.
-      TODO: Implement one-element parallel spanner restriction.'''
+   '''Everything threads.'''
 
    p = Parallel(Sequential(Note(0, (1, 8)) * 4) * 2)
    t = Sequential(Note(0, (1, 8)) * 4)
