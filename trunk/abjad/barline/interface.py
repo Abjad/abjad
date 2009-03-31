@@ -17,32 +17,8 @@ class _BarLineInterface(_Interface, _GrobHandler):
       result = [ ]
       if isinstance(self._client, _Leaf):
          if self.type is not None:
-            result.append(self._barlineNameToLilyPondString(self.type))
+            result.append(r'\bar "%s"' % self.type)
       return result
-
-   def _barlineNameToLilyPondString(self, barlineName):
-      LPSymbol = self._barlineNameToLilyPondSymbol[barlineName]
-      return r'\bar "%s"' % LPSymbol
-
-   ## TODO: I think we should probably remove this symbol-to-
-   ##       string and string-to-symbol code and instead;
-   ##       point to the LilyPond documentation for the 
-   ##       (possibly evolving) list of acceptable barline symbols.
-   ##       [TB 2008-12-03]
-
-   _barlineNameToLilyPondSymbol = {
-      '|' : '|'   , 'single' : '|',
-      '||' : '||' , 'double' : '||',
-      '.|' :'.|'  , 'thickthin' : '.|',
-      '.|.':'.|.' , 'doublethick' : '.|.',
-      '|.' : '|.' , 'final'  : '|.',
-      ':' : ':'   , 'dotted' : ':',
-      'dashed':'dashed',
-      '|:' : '|:' , 'repeatopen' : '|:',
-      ':|:':':|:' , 'repeatopenclose' : ':|:',
-      ':|' : ':|' , 'repeatclose' : ':|',
-      '' : ''     , 'invisible' : '',
-   }
 
    @property
    def _closing(self):
@@ -50,7 +26,7 @@ class _BarLineInterface(_Interface, _GrobHandler):
       result = [ ]
       if isinstance(self._client, Container):
          if self.type:
-            result.append(self._barlineNameToLilyPondString(self.type))
+            result.append(r'\bar "%s"' % self.type)
       return result
 
    ## PUBLIC ATTRIBUTES ##

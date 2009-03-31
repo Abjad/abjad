@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplet_formatter_reveal_format_locations_01( ):
    t = FixedDurationTuplet((2, 8), scale(3))
    t.accidental.style = 'forget'
-   t.barline.type = 'final'
+   t.barline.type = '|.'
    t.clef.forced = 'treble'
 
    r'''
