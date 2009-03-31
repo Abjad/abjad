@@ -2,8 +2,9 @@ from abjad.helpers.assert_components import assert_components
 
 
 def get_attached_spanners(components):
-   '''TODO: Write doc string.
-      TODO: Include example.'''
+   '''Return unordered set of all spanners attaching to any
+      component in 'components' or attaching to any of the children
+      of any of the components in 'components'.'''
 
    ## check input
    assert_components(components, contiguity = 'strict', share = 'thread')

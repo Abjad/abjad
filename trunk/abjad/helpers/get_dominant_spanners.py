@@ -14,9 +14,7 @@ def get_dominant_spanners(components):
       score tree, and then reattach all spanners to new
       score components.
 
-      This operation always leaves all expressions in tact.
- 
-      TODO: Return custom _MultispannerReceipt instance.'''
+      This operation always leaves all expressions in tact.'''
 
    assert_components(components, contiguity = 'thread')
 
@@ -27,14 +25,14 @@ def get_dominant_spanners(components):
    subtree_begin = first.offset.score
    subtree_end = last.offset.score + last.duration.prolated
 
-   receipt = [ ]
+   receipt = set([ ])
    for component in iterate(first, _Component):
       if component.offset.score == subtree_begin:
          for spanner in component.spanners.attached:
             if spanner.begin <= subtree_begin:
                if subtree_end <= spanner.end:
                   index = spanner.index(component)
-                  receipt.append((spanner, index))
+                  receipt.add((spanner, index))
       elif subtree_begin < component.offset.score:
          break
 
