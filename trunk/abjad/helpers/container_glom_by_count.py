@@ -8,8 +8,6 @@ from abjad.tools import construct
 
 ## TODO: Implement container_glom_by_duration(container, durations, ...)
 
-## TODO: Make work with spanners.
-
 def container_glom_by_count(container, counts, target = Note(0, (1, 4)), 
    direction = 'big-endian'):
    '''Glom elements of container together rhythmically.
@@ -23,17 +21,16 @@ def container_glom_by_count(container, counts, target = Note(0, (1, 4)),
                [first, 2, 3]
       TODO: implement a cyclicity interface.'''
 
-   # assert input types
+   ## assert input types
    assert isinstance(container, Container)
    assert sum(counts) == len(container)
 
-   # find preprolated durations of glommed parts of container
+   ## find preprolated durations of glommed parts of container
    tokens = container_partition_by_count(container, counts)
    durations = [sum([x.duration.preprolated for x in part]) for part in tokens]
 
-   # construct new notes or rests
+   ## construct new notes or rests
    if isinstance(target, Note):
-      #new_material = construct.notes_prolated(
       new_material = construct.notes(
          0, durations, direction = direction)
    elif isinstance(target, Rest):
@@ -42,8 +39,8 @@ def container_glom_by_count(container, counts, target = Note(0, (1, 4)),
    else:
       raise ValueError('unknown type of material to construct.')
 
-   # insert new material in container
+   ## insert new material in container
    container[:] = new_material
 
-   # return container
+   ## return container
    return container

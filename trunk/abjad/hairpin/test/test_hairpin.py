@@ -12,8 +12,7 @@ def test_hairpin_01( ):
    assert check(t)
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8 \<
            cs'8
            d'8
@@ -22,8 +21,7 @@ def test_hairpin_01( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
 
 
 def test_hairpins_02( ):
@@ -36,8 +34,7 @@ def test_hairpins_02( ):
    assert not checker.check(t)
    assert t.format == "\\new Staff {\n\tc'8 \\< \\!\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8 \< \!
            cs'8
            d'8
@@ -46,8 +43,7 @@ def test_hairpins_02( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
 
 
 def test_hairpins_03( ):
@@ -59,11 +55,9 @@ def test_hairpins_03( ):
    t[3].dynamics = 'f'
 
    assert check(t)
-   #assert t.format == "\\new Staff {\n\tc'8 \\pX \\<\n\tcs'8\n\td'8\n\tef'8 \\fX\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8 \p \<
            cs'8
            d'8
@@ -72,8 +66,7 @@ def test_hairpins_03( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
 
 
 def test_hairpins_04( ):
@@ -85,7 +78,6 @@ def test_hairpins_04( ):
    checker = HairpinsIntermarked( )
 
    assert not checker.check(t)
-   #assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8 \\pX\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8 \\p\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    r'''
@@ -114,12 +106,10 @@ def test_hairpins_05( ):
    Crescendo(t[4 : 7])
    t[6].dynamics = 'f'
 
-   #assert t.format == "\\new Staff {\n\tc'8 \\pX \\<\n\tcs'8\n\td'8 \\fX \\>\n\tef'8\n\te'8 \\pX \\<\n\tf'8\n\tfs'8 \\fX\n\tg'8\n}"
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
    assert check(t)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8 \p \<
            cs'8
            d'8 \f \>
@@ -128,8 +118,7 @@ def test_hairpins_05( ):
            f'8
            fs'8 \f
            g'8
-   }
-   '''
+   }'''
 
 
 def test_hairpins_06( ):
@@ -141,8 +130,7 @@ def test_hairpins_06( ):
    assert t.format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
    assert check(t)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            r8 \<
            r8
            r8
@@ -151,8 +139,7 @@ def test_hairpins_06( ):
            f'8
            fs'8
            g'8 \!
-   }
-   '''
+   }'''
 
 
 def test_hairpins_07( ):
@@ -164,8 +151,7 @@ def test_hairpins_07( ):
    assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
    assert check(t)
 
-   '''
-   r\new Staff {
+   r'''\new Staff {
            r8
            r8
            r8
@@ -174,8 +160,7 @@ def test_hairpins_07( ):
            f'8
            fs'8
            g'8 \!
-   }
-   '''
+   }'''
 
 
 def test_hairpins_08( ):
@@ -187,8 +172,7 @@ def test_hairpins_08( ):
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"
    assert check(t)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8 \<
            cs'8
            d'8
@@ -202,25 +186,19 @@ def test_hairpins_08( ):
 
 
 def test_hairpins_09( ):
-   '''
-   Trim hairpins with dynamic marks behave as expected;
-   TODO change testIntermarkedHairpins to account for trims.
-   '''
+   '''Trim hairpins with dynamic marks behave as expected.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Rest(t[0])
    Rest(t[-1])
-   #Hairpin(t, 'p < f', trim = True)
    Hairpin(t.leaves, 'p < f', trim = True)
 
    assert len(t[0].dynamics.spanner.components) == len(t)
-   #assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\pX\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\fX\n\tr8\n}"
    assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\p\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\f\n\tr8\n}"
    checker = HairpinsIntermarked( )
    assert checker.check(t)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            r8
            cs'8 \< \p
            d'8
@@ -229,5 +207,4 @@ def test_hairpins_09( ):
            f'8
            fs'8 \f
            r8
-   }
-   '''
+   }'''
