@@ -53,8 +53,6 @@ class _GrobHandler(_FormatCarrier):
    def _grobOverrides(self):
       result = [ ]
       for key, value in self.__dict__.items( ):
-         #print 'debug key %s value %s' % (key, value)
-         #if not key.startswith('_'):
          if not key.startswith('_') and not key == 'pitch':
             result.append(r'%s\override %s %s = %s' % (
                self._frequencyIndicator,
