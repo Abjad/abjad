@@ -1,6 +1,7 @@
 from abjad.helpers.retroiterate import retroiterate
-from abjad.helpers.spanners_detach import spanners_detach
 from abjad.helpers.splice_after import splice_after
+from abjad.helpers.withdraw_from_attached_spanners import \
+   _withdraw_from_attached_spanners
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 import math
@@ -28,7 +29,7 @@ def _leaf_meiose(leaf, n = 2):
    assert n > 0
 
    new_leaves = leaf * (n - 1)
-   spanners_detach(new_leaves, level = 'all')
+   _withdraw_from_attached_spanners(new_leaves)
    total_leaves = 1 + len(new_leaves)
    adjustment_multiplier = Rational(1, total_leaves)
    leaf.duration.written *= adjustment_multiplier

@@ -2,10 +2,11 @@ from abjad.helpers.is_assignable import is_assignable
 from abjad.helpers.is_binary_rational import _is_binary_rational
 from abjad.helpers.is_tie_chain import _is_tie_chain
 from abjad.helpers.tie_chain_truncate import tie_chain_truncate
-from abjad.helpers.spanners_detach import spanners_detach
 from abjad.helpers.splice_after import splice_after
 from abjad.helpers.tie_chain_written import tie_chain_written
 from abjad.helpers.tie_chain_get_leaves import tie_chain_get_leaves
+from abjad.helpers.withdraw_from_attached_spanners import \
+   _withdraw_from_attached_spanners
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
 from abjad.tools import construct
@@ -37,7 +38,7 @@ def tie_chain_duration_change(tie_chain, new_written_duration):
          tie_chain[0].tie.unspan( )
          difference = len(duration_tokens) - len(tie_chain)
          extra_leaves = tie_chain[0] * difference
-         spanners_detach(extra_leaves)
+         _withdraw_from_attached_spanners(extra_leaves)
          extra_tokens = duration_tokens[len(tie_chain):]
          for leaf, token in zip(extra_leaves, extra_tokens):
             leaf.duration.written = token.duration.written

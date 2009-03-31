@@ -1,6 +1,7 @@
 from abjad.helpers.retroiterate import retroiterate
-from abjad.helpers.spanners_detach import spanners_detach
 from abjad.helpers.splice_after import splice_after
+from abjad.helpers.withdraw_from_attached_spanners import \
+   _withdraw_from_attached_spanners
 from abjad.leaf.leaf import _Leaf
 
 
@@ -21,5 +22,5 @@ def _leaf_multiply(leaf, total = 1):
    assert total > 0
 
    new_leaves = leaf * (total - 1)
-   spanners_detach(new_leaves, level = 'all')
+   _withdraw_from_attached_spanners(new_leaves)
    splice_after(leaf, new_leaves)
