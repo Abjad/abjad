@@ -6,7 +6,6 @@ def test_voice_invocation_01( ):
 
    t = Voice(scale(4))
 
-   assert t.invocation.command == r'\new'
    assert t.invocation.name is None
    assert t.invocation.type == 'Voice'
 
@@ -17,6 +16,5 @@ def test_voice_invocation_02( ):
    t = Voice(scale(4))
    t.invocation.name = 'foo'
 
-   assert t.invocation.command == '\\context'
    assert t.invocation.name == 'foo'
    assert t.invocation.type == 'Voice'
