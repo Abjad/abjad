@@ -13,28 +13,18 @@ class _ClefInterface(_Interface, _GrobHandler):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _before(self):
+   def _opening(self):
       result = [ ]
       result.extend(_GrobHandler._before.fget(self))
       if self.forced or self.change:
          result.append(self.effective.format)
       return result
 
-   ## NOTE: this is kinda kinky:
-   ##       reusing _before as _opening;
-   ##       reason: Leaf._ClefInterface._before make sense
-   ##       analogously as Container._ClefInterface._opening.
-   @property
-   def _opening(self):
-      return self._before
-
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def change(self):
       client = self._client
-      #return bool(self._client.prev and \
-      #   self._client.prev.clef.name != self.name)
       return bool(client._navigator._prevBead and \
          client._navigator._prevBead.clef.name != self.name)
 
@@ -45,7 +35,6 @@ class _ClefInterface(_Interface, _GrobHandler):
          if cur.clef._forced:
             return cur.clef._forced
          else:
-            #cur = cur.prev
             cur = cur._navigator._prevBead
       for x in self._client.parentage.parentage[1:]:
          if hasattr(x, 'clef') and x.clef._forced:

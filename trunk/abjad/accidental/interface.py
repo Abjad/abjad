@@ -13,10 +13,6 @@ class _AccidentalInterface(_Interface, _GrobHandler):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _before(self):
-      return self._opening
-
-   @property
    def _opening(self):
       result = [ ]
       style = self.style

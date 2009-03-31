@@ -9,7 +9,6 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
       from abjad.tempo.spanner import Tempo
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'MetronomeMark')
-      #_GrobHandler.__init__(self, ['Tempo'])
       _GrobHandler.__init__(self, (Tempo, ))
       self._metronome = None
  
@@ -25,7 +24,7 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    ## PRIVATE ATTRIBUTES ##
    
    @property
-   def _before(self):
+   def _opening(self):
       result =  [ ] 
       if self._metronome:
          note = self._metronome[0].duration._dotted 
@@ -33,11 +32,6 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
          result.append(r'\tempo %s=%s' % (note, tempo))
       return result
 
-   ## kinda kinky to alias _opening to _before? ##
-   @property
-   def _opening(self):
-      return self._before
-      
    ### PUBLIC METHODS ###
 
    def clear(self):
