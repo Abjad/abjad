@@ -7,4 +7,3 @@ class StaffGroup(_Context):
       _Context.__init__(self, music)
       self.parallel = True
       self.context = 'StaffGroup'
-      self.invocation = 'StaffGroup'

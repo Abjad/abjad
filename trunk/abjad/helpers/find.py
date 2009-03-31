@@ -2,13 +2,13 @@ from abjad.component.component import _Component
 from abjad.helpers.iterate import iterate
 
 
-def find(expr, name = None, klass = None, type = None):
+def find(expr, name = None, klass = None, context = None):
    '''Iterate expr. 
       Find and return a Python list of all components in expr, such that:
 
-         * component.name == name OR component.invocation.name == name
+         * component.name == name
          * isinstance(component, klass)
-         * component.invocation.type == type
+         * component.context == context
 
       Do not run tests where keyword is None.
 
@@ -18,12 +18,10 @@ def find(expr, name = None, klass = None, type = None):
    result = [ ]
 
    for component in iterate(expr, _Component):
-      if name is None or component.name == name or hasattr(component,
-         'invocation') and component.invocation.name == name:
+      if name is None or component.name == name:
          if klass is None or isinstance(component, klass):
-            if type is None or getattr(component, 'context', None) == type or \
-               hasattr(component, 'invocation') and \
-               component.invocation.type == type:
+            if context is None or \
+               getattr(component, 'context', None) == context:
                result.append(component)
 
    return result

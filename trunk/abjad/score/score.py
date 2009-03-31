@@ -8,7 +8,6 @@ class Score(_Context):
       _Context.__init__(self, music)
       self.parallel = True
       self.context = 'Score'
-      self.invocation = 'Score'
 
    ## PUBLIC METHODS ##
 

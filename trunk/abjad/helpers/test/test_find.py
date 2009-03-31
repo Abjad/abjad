@@ -67,7 +67,7 @@ def test_find_07( ):
    v.context = 'MyStrangeVoice'
    t = Staff([v])
 
-   assert find(t, type = 'MyStrangeVoice') == [v]
+   assert find(t, context = 'MyStrangeVoice') == [v]
 
 
 def test_find_08( ):
@@ -78,7 +78,7 @@ def test_find_08( ):
    v.name = 'voice_1'
    t = Staff([v])
 
-   assert find(t, name = 'voice_1', type = 'MyStrangeVoice') == [v]
+   assert find(t, name = 'voice_1', context = 'MyStrangeVoice') == [v]
 
 
 def test_find_09( ):
@@ -89,7 +89,7 @@ def test_find_09( ):
    v.name = 'voice_1'
    t = Staff([v])
 
-   assert find(t, name = 'voice_200', type = 'MyStrangeVoice') == [ ]
+   assert find(t, name = 'voice_200', context = 'MyStrangeVoice') == [ ]
 
 
 def test_find_10( ):

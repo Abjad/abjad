@@ -7,4 +7,3 @@ class Voice(_Context):
       music = music or [ ]
       _Context.__init__(self, music)
       self.context = 'Voice'
-      self.invocation = 'Voice'

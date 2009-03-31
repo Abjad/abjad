@@ -7,4 +7,3 @@ class Staff(_Context):
       music = music or [ ]
       _Context.__init__(self, music)
       self.context = 'Staff'
-      self.invocation = 'Staff'
