@@ -1,9 +1,6 @@
 from abjad import *
 
 
-### TODO: decide what happens when one or the other chord is *spanned*;
-###       then write some tests to lock in that behavior.
-
 def test_intersection_01( ):
    '''Chords completely disjunct;
       empty set returned as skip.'''
@@ -81,5 +78,3 @@ def test_intersection_07( ):
    assert isinstance(v, Note)
    assert v.signature == ((('d', 4), ), (1, 4))
    assert t is not u is not v
-
-

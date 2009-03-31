@@ -1,9 +1,6 @@
 from abjad import *
 
 
-### TODO: decide what happens when one or the other chord is *spanned*;
-###       then write some tests to lock in that behavior.
-
 def test_difference_01( ):
    '''Chords completely disjunct;
       all RH pitches preserved.'''
