@@ -9,11 +9,10 @@ from abjad.spanner.receptor import _SpannerReceptor
 class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    
    def __init__(self, client):
-      from abjad.dynamics.crescendo import Crescendo
-      from abjad.dynamics.decrescendo import Decrescendo
+      from abjad.hairpin.crescendo import Crescendo
+      from abjad.hairpin.decrescendo import Decrescendo
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'DynamicText')
-      #_SpannerReceptor.__init__(self, ['Crescendo', 'Decrescendo'])
       _SpannerReceptor.__init__(self, (Crescendo, Decrescendo))
       self._mark = None
 
