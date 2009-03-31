@@ -12,9 +12,7 @@ def get_dominant_spanners_between(left, right):
 
       This is a special version of get_dominant_spanners( ).
       This version is useful for finding spanners that dominant
-      a zero-length 'crack' between components, as in t[2:2].
-
-      TODO: Return custom _MultispannerReceipt instance.'''
+      a zero-length 'crack' between components, as in t[2:2].'''
       
    if left is None or right is None:
       return set([ ])
