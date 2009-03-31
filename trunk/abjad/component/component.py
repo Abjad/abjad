@@ -27,7 +27,8 @@ from abjad.tremolo.interface import _TremoloInterface
 from abjad.trill.interface import _TrillInterface
 from abjad.update.interface import _UpdateInterface
 from abjad.voice.interface import _VoiceInterface
-from copy import deepcopy
+import copy
+import types
 
 
 class _Component(_Abjad):
@@ -44,6 +45,7 @@ class _Component(_Abjad):
       self._dynamics = _DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)
       self._meter = _MeterInterface(self)
+      self._name = None
       self._navigator = _Navigator(self)
       self._notehead = _NoteHeadInterface(self)
       self._parentage = _Parentage(self)
@@ -173,6 +175,15 @@ class _Component(_Abjad):
       else:
          return tuple( )
 
+   @apply
+   def name( ):
+      def fget(self):
+         return self._name
+      def fset(self, arg):
+         assert isinstance(arg, (str, types.NoneType))
+         self._name = arg
+      return property(**locals( ))
+
    @property
    def notehead(self):
       return self._notehead
@@ -298,7 +309,7 @@ class _Component(_Abjad):
       #receipts = self.spanners.fracture( )
       receipts = self.spanners._fractureContents( )
       parent = self.parentage._cutOutgoingReferenceToParent( )
-      result = deepcopy(self)
+      result = copy.deepcopy(self)
 #      for source, left, right in reversed(receipt):
 #         source._unblock( )
 #         left._sever( )

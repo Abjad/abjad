@@ -42,8 +42,8 @@ def test_find_04( ):
 def test_find_05( ):
    '''Find all class instances.'''
 
-   v1 = Voice([Note(i, (1,4)) for i in range(2)])
-   v2 = Voice([Note(i, (1,4)) for i in range(2,4)])
+   v1 = Voice([Note(i, (1, 4)) for i in range(2)])
+   v2 = Voice([Note(i, (1, 4)) for i in range(2, 4)])
    t = Staff([v1, v2])
 
    assert find(t, klass = Voice) == [v1, v2]
@@ -52,8 +52,8 @@ def test_find_05( ):
 def test_find_06( ):
    '''Find by invocation name.'''
 
-   v1 = Voice([Note(i, (1,4)) for i in range(2)])
-   v2 = Voice([Note(i, (1,4)) for i in range(2,4)])
+   v1 = Voice([Note(i, (1, 4)) for i in range(2)])
+   v2 = Voice([Note(i, (1, 4)) for i in range(2, 4)])
    v1.invocation.name = 'voiceOne'
    t = Staff([v1, v2])
 
