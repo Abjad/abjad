@@ -1,11 +1,6 @@
 from abjad.cfg.abjad_version import _get_abjad_version
 
 
-## TODO: Would be nice to rename this function helpers( )
-##       which will mean extending abjad/__init__.py
-
-## TODO: Figure out how to write tests for this helper.
-
 def list_helpers(search_string = '', scope = 'public'):
    '''Input parameters:
       
