@@ -41,24 +41,24 @@ class _Invocation(_Abjad):
    def __ne__(self, arg):
       return not self.__eq__(arg)
 
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _invocation(self):
-      if self.type:
-         result = '%s %s' % (self.command, self.type)
-         if self.name:
-            result += ' = "%s"' % self.name
-         return result
+#   ## PRIVATE ATTRIBUTES ##
+#
+#   @property
+#   def _invocation(self):
+#      if self.type:
+#         result = '%s %s' % (self.command, self.type)
+#         if self.name:
+#            result += ' = "%s"' % self.name
+#         return result
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def command(self):
-      if self.name:
-         return r'\context'
-      else:
-         return r'\new'
+#   @property
+#   def command(self):
+#      if self.name:
+#         return r'\context'
+#      else:
+#         return r'\new'
 
    @apply
    def name( ):
