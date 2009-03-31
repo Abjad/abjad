@@ -1,4 +1,4 @@
-from abjad.helpers.container_set_multiplier import _container_set_multiplier
+from abjad.helpers.container_set_multiplier import container_set_multiplier
 from abjad.helpers.measure_set_denominator import _measure_set_denominator
 
 
@@ -111,8 +111,8 @@ def container_hew(container, i, spanners = 'preserve'):
       left.spanners.fracture(direction = 'right')
 
    # set left and right multiplier equal to container multiplier, if any
-   _container_set_multiplier(left, container_multiplier)
-   _container_set_multiplier(right, container_multiplier)
+   container_set_multiplier(left, container_multiplier)
+   container_set_multiplier(right, container_multiplier)
 
    # set left and right meter denominator, if any
    _measure_set_denominator(left, meter_denominator)

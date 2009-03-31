@@ -1,6 +1,4 @@
-### TODO: Write tests.
-
-def _container_set_multiplier(container, multiplier):
+def container_set_multiplier(container, multiplier):
    '''Fiddle with other container duration attributes to
       set container.duration.multiplier equal to multiplier.'''
 
