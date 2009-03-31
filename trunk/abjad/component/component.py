@@ -79,13 +79,9 @@ class _Component(_Abjad):
 
    @property
    def _ID(self):
-      rhs = None
-      invocation = getattr(self, 'invocation', False)
-      if invocation:
-         name = getattr(self.invocation, 'name', False)
-         if name:
-            rhs = name
-      if rhs is None:
+      if self.name is not None:
+         rhs = self.name
+      else:
          rhs = id(self)
       lhs = self.__class__.__name__
       return '%s-%s' % (lhs, rhs)

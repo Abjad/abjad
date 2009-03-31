@@ -15,8 +15,7 @@ class _StaffInterface(_Interface, _FormatCarrier):
    def _before(self):
       result = [ ]
       if self.changed or (not self._client.prev and self._forced):
-         assert self.effective.invocation.name
-         result.append(r'\change Staff = %s' % self.effective.invocation.name)
+         result.append(r'\change Staff = %s' % self.effective.name)
       return result
 
    @property
@@ -25,7 +24,7 @@ class _StaffInterface(_Interface, _FormatCarrier):
       result = [ ]
       if (self.changed or (not self._client.prev and self._forced)) and \
          not self._client.next:
-         result.append(r'\change Staff = %s' % self.given.invocation.name)
+         result.append(r'\change Staff = %s' % self.given.name)
       return result
 
    ## PUBLIC ATTRIBUTES ##
