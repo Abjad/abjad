@@ -20,40 +20,18 @@ class _BreaksInterface(_Interface, _FormatCarrier):
 
    ## PRIVATE ATTRIBUTES ##
 
-   ## TODO: Is there a *PATTERN* that will generalize
-   ##       this type of formatting information across
-   ##       leaves and containers?
-   ##       The _client inspection here is hackish.
-   ##       [TB 2008-12-03]
-
-   @property
-   def _after(self):
-      '''Formatting contributions to appear immediately after component.'''
-      from abjad.leaf.leaf import _Leaf
-      result = [ ]
-      if isinstance(self._client, _Leaf):
-         if self.line:
-            result.append(r'\break')
-         if self.page:
-            result.append(r'\pageBreak')
-         details = self._line_break_system_details
-         if details:
-            result.append(details)
-      return result
-
    @property
    def _closing(self):
-      '''Formatting contributions to appear in closing of component.'''
-      from abjad.container.container import Container
+      '''Formatting contributions to appear immediately after leaf
+         or at closing of container.'''
       result = [ ]
-      if isinstance(self._client, Container):
-         if self.line:
-            result.append(r'\break')
-         if self.page:
-            result.append(r'\pageBreak')
-         details = self._line_break_system_details
-         if details:
-            result.append(details)
+      if self.line:
+         result.append(r'\break')
+      if self.page:
+         result.append(r'\pageBreak')
+      details = self._line_break_system_details
+      if details:
+         result.append(details)
       return result
 
    @property

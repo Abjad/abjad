@@ -81,6 +81,7 @@ class _LeafFormatter(_Formatter):
       result.extend(self._agrace_opening)
       result.extend(self._body)
       result.extend(self._agrace)
+      result.extend(self._collectLocation('_closing'))
       result.extend(self._collectLocation('_after'))
       result.extend(self.after)
       result.extend(self._client.comments._after)
