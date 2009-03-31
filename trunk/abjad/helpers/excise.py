@@ -5,10 +5,6 @@ from abjad.rational.rational import Rational
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
-## TODO: Rather than branching on each of the different types of container,
-##       does it make more sense to implement a private _excise( ) method
-##       on each of the different container types?
-
 def excise(leaf):
    '''Remove leaf from all sequential containers in leaf's parentage;
       shrink duration of any enclosing durated containers.'''
