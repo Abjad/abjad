@@ -1,4 +1,5 @@
 from abjad.core.abjadcore import _Abjad
+import types
 
 
 ## NOTE: rename _Invocation to _ContextSpecification to better
@@ -64,5 +65,7 @@ class _Invocation(_Abjad):
       def fget(self):
          return self._name
       def fset(self, arg):
+         assert isinstance(arg, (str, types.NoneType))
          self._name = arg
+         self._client._name = arg
       return property(**locals( ))
