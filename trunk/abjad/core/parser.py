@@ -38,10 +38,7 @@ class _Parser(_Abjad):
          return '#%s' % value.format
       elif isinstance(value, tuple):
          return "#'(%s . %s)" % value
-      ## TODO: The String class does not seem to exist. 
-      ##       What to do with it? Remove, create?
-      #elif value.__class__.__name__ in ['String', '_Markup']:
-      elif value.__class__.__name__ in ['String', 'Markup']:
+      elif value.__class__.__name__ in ['Markup']:
          return value.format
       else:
          return "#'%s" % value

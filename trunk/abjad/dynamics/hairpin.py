@@ -26,18 +26,47 @@ class _Hairpin(_GrobHandlerSpanner):
             elif not leaf.dynamics:
                result.append('\\!')
       else:
-         #if self._isMyFirst(leaf, ('Note', 'Chord')):
          if self._isMyFirst(leaf, (Chord, Note)):
             result.append('\\%s' % self._shape)
             if self.start:
                result.append('\\%s' % self.start)
-         #if self._isMyLast(leaf, ('Note', 'Chord')):
          if self._isMyLast(leaf, (Chord, Note)):
             if self.stop:
                result.append('\\%s' % self.stop)
             elif not leaf.dynamics:
                result.append('\\!')
       return result
+   
+   ## PRIVATE METHODS ##
+
+   def _parse_descriptor(self, descriptor):
+      '''Example descriptors:
+         '<'
+         'p <'
+         'p < f'
+      '''
+      assert isinstance(descriptor, str)
+      parts = descriptor.split( )
+      num_parts = len(parts)
+      start, shape, stop = None, None, None
+      if parts[0] in ('<', '>'):
+         assert 1 <= num_parts <= 2
+         if num_parts == 1:
+            shape = parts[0]
+         else:
+            shape = parts[0]
+            stop = parts[1]
+      else:
+         assert 2 <= num_parts <= 3
+         if num_parts == 2:
+            start = parts[0]
+            shape = parts[1]
+         else:
+            start = parts[0]
+            shape = parts[1]
+            stop = parts[2]
+      assert shape in ('<', '>')
+      return start, shape, stop
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -65,41 +94,12 @@ class _Hairpin(_GrobHandlerSpanner):
          self._trim = arg
       return property(**locals( ))
 
-## TODO: Externalize or attach to class ##
-
-def _parse_descriptor(descriptor):
-   '''Example descriptors:
-      '<'
-      'p <'
-      'p < f'
-   '''
-   assert isinstance(descriptor, str)
-   parts = descriptor.split( )
-   num_parts = len(parts)
-   start, shape, stop = None, None, None
-   if parts[0] in ('<', '>'):
-      assert 1 <= num_parts <= 2
-      if num_parts == 1:
-         shape = parts[0]
-      else:
-         shape = parts[0]
-         stop = parts[1]
-   else:
-      assert 2 <= num_parts <= 3
-      if num_parts == 2:
-         start = parts[0]
-         shape = parts[1]
-      else:
-         start = parts[0]
-         shape = parts[1]
-         stop = parts[2]
-   assert shape in ('<', '>')
-   return start, shape, stop
-
 ## TODO: Externalize to own file ##
 
 def Hairpin(music, descriptor, trim = False):
-   start, shape, stop = _parse_descriptor(descriptor)
+   #start, shape, stop = _parse_descriptor(descriptor)
+   hp = _Hairpin( )
+   start, shape, stop = hp._parse_descriptor(descriptor)
    if shape == '<':
       from crescendo import Crescendo
       result = Crescendo(music, start = start, stop = stop, trim = trim)
