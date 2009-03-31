@@ -7,6 +7,7 @@ class Score(_Context):
       music = music or [ ]
       _Context.__init__(self, music)
       self.parallel = True
+      self.context = 'Score'
       self.invocation = 'Score'
 
    ## PUBLIC METHODS ##

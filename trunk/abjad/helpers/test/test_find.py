@@ -50,36 +50,34 @@ def test_find_05( ):
 
 
 def test_find_06( ):
-   '''Find by invocation name.'''
+   '''Find by name.'''
 
    v1 = Voice([Note(i, (1, 4)) for i in range(2)])
    v2 = Voice([Note(i, (1, 4)) for i in range(2, 4)])
-   v1.invocation.name = 'voiceOne'
+   v1.name = 'voiceOne'
    t = Staff([v1, v2])
 
    assert find(t, name = 'voiceOne') == [v1]
 
 
 def test_find_07( ):
-   '''Find by invocation type.'''
+   '''Find by context.'''
 
    v = Voice(scale(4))
-   v.invocation.type = 'MyStrangeVoice'
+   v.context = 'MyStrangeVoice'
    t = Staff([v])
 
-   #assert find(t, klass = 'MyStrangeVoice') == [v]
    assert find(t, type = 'MyStrangeVoice') == [v]
 
 
 def test_find_08( ):
-   '''Find by both invocation name and invocation type.'''
+   '''Find by both name and context.'''
 
    v = Voice(scale(4))
-   v.invocation.type = 'MyStrangeVoice'
-   v.invocation.name = 'voice_1'
+   v.context = 'MyStrangeVoice'
+   v.name = 'voice_1'
    t = Staff([v])
 
-   #assert find(t, name = 'voice_1', klass = 'MyStrangeVoice') == [v]
    assert find(t, name = 'voice_1', type = 'MyStrangeVoice') == [v]
 
 
@@ -87,11 +85,10 @@ def test_find_09( ):
    '''Return empty list on no match.'''
 
    v = Voice(scale(4))
-   v.invocation.type = 'MyStrangeVoice'
-   v.invocation.name = 'voice_1'
+   v.context = 'MyStrangeVoice'
+   v.name = 'voice_1'
    t = Staff([v])
 
-   #assert find(t, name = 'voice_200', klass = 'MyStrangeVoice') == [ ]
    assert find(t, name = 'voice_200', type = 'MyStrangeVoice') == [ ]
 
 
@@ -99,19 +96,19 @@ def test_find_10( ):
    '''Full test.'''
 
    vl1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   vl1.invocation.name = 'low'
+   vl1.name = 'low'
    vl2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-   vl2.invocation.name = 'low'
+   vl2.name = 'low'
    vh1 = Voice([Note(i, (1, 8)) for i in range(12, 16)])
-   vh1.invocation.name = 'high'
+   vh1.name = 'high'
    vh2 = Voice([Note(i, (1, 8)) for i in range(16, 20)])
-   vh2.invocation.name = 'high'
+   vh2.name = 'high'
 
    s1 = Staff([vh1, vl1])
-   s1.invocation.name = 'mystaff'
+   s1.name = 'mystaff'
    s1.parallel = True
    s2 = Staff([vh2, vl2])
-   s2.invocation.name = 'mystaff'
+   s2.name = 'mystaff'
    s2.parallel = True
 
    fn = vl1[0]

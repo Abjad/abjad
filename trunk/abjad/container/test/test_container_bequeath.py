@@ -6,7 +6,7 @@ def test_container_bequeath_01( ):
    '''Bequeath from sequential to voice.'''
 
    t = Voice(Sequential(run(2)) * 3)
-   t.invocation.name = 'foo'
+   t.name = 'foo'
    diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)
@@ -34,7 +34,7 @@ def test_container_bequeath_01( ):
    }'''
 
    new = Voice( )
-   new.invocation.name = 'foo'
+   new.name = 'foo'
    old.bequeath(new)
 
    assert t.format == '\\context Voice = "foo" {\n\t{\n\t\tc\'8 [ \\glissando\n\t\td\'8 \\glissando\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8 \\glissando\n\t\tf\'8 \\glissando\n\t}\n\t{\n\t\tg\'8 \\glissando\n\t\ta\'8 ]\n\t}\n}'

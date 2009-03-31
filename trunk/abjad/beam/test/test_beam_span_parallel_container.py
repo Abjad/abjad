@@ -134,10 +134,10 @@ def test_beam_span_parallel_container_06( ):
       LilyPond is happy here again.'''
 
    t = Staff(Voice(run(4)) * 2)
-   t[0].invocation.name, t[1].invocation.name = 'foo', 'foo'
+   t[0].name, t[1].name = 'foo', 'foo'
    t.insert(1, Parallel(Voice(run(4)) * 2))
-   t[1][0].invocation.name = 'foo'
-   t[1][1].invocation.name = 'bar'
+   t[1][0].name = 'foo'
+   t[1][1].name = 'bar'
    appictate(t)
    p = Beam([t[0], t[1][0], t[2]])
 

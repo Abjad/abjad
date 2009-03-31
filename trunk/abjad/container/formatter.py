@@ -42,7 +42,7 @@ class _ContainerFormatter(_Formatter):
    def _opening(self):
       result = [ ]
       client = self._client
-      if not hasattr(client, 'invocation'):
+      if not hasattr(client, 'context'):
          result.extend(self._grobOverrides)
       result.extend(self._collectLocation('_opening'))
       return ['\t' + x for x in result]
@@ -51,7 +51,7 @@ class _ContainerFormatter(_Formatter):
    def _closing(self):
       result = [ ]
       client = self._client
-      if not hasattr(client, 'invocation'):
+      if not hasattr(client, 'context'):
          result.extend(self._grobReverts)
       result.extend(self._collectLocation('_closing'))
       return ['\t' + x for x in result]

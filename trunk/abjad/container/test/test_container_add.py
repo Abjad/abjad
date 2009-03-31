@@ -31,21 +31,21 @@ def test_container_add_03( ):
 def test_container_add_04( ):
    '''Addition works on equally named voices.'''
    t1 = Voice(Note(0, (1, 4))*2)
-   t1.invocation.name = '1'
+   t1.name = '1'
    t2 = Voice(Note(0, (1, 4))*2)
-   t2.invocation.name = '1'
+   t2.name = '1'
    tadd = t1 + t2
    assert len(tadd) == len(t1) + len(t2)
-   assert tadd.invocation.name == '1'
+   assert tadd.name == '1'
    assert tadd.format == "\\context Voice = \"1\" {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 
 
 def test_container_add_05( ):
    '''Addition raises exception on differently named voices.'''
    t1 = Voice(Note(0, (1, 4))*2)
-   t1.invocation.name = '1'
+   t1.name = '1'
    t2 = Voice(Note(0, (1, 4))*2)
-   t2.invocation.name = '2'
+   t2.name = '2'
    assert t1 + t2 is None
    #assert raises(TypeError, 't1 + t2')
 
@@ -54,8 +54,8 @@ def test_container_add_06( ):
    '''Addition works on sequentially nested equally named containers.'''
    t1 = Staff([Voice(Note(0, (1, 4))*2)])
    t2 = Staff([Voice(Note(0, (1, 4))*2)])
-   t1[0].invocation.name = t2[0].invocation.name = 'voiceOne'
-   t1.invocation.name = t2.invocation.name = 'staffOne'
+   t1[0].name = t2[0].name = 'voiceOne'
+   t1.name = t2.name = 'staffOne'
    tadd = t1 + t2
    assert isinstance(tadd, Staff)
    assert len(tadd) == 1
@@ -90,7 +90,7 @@ def test_container_add_11( ):
    a single threadable Voice child.'''
    t1 = Parallel([Voice(Note(0, (1, 4))*2)])
    t2 = Parallel([Voice(Note(0, (1, 4))*2)])
-   t1[0].invocation.name = t2[0].invocation.name = 'voiceOne'
+   t1[0].name = t2[0].name = 'voiceOne'
    tadd = t1 + t2
    assert check(tadd)
    assert check(t1)
@@ -105,18 +105,18 @@ def test_container_add_13( ):
    '''Addition works on matching parallel containers each 
    with two named threadable Voice children.'''
    v1 = Voice(Note(0, (1, 4))*2)
-   v1.invocation.name = '1'
+   v1.name = '1'
    v2 = Voice(Note(1, (1, 4))*2)
-   v2.invocation.name = '2'
+   v2.name = '2'
    v3 = Voice(Note(0, (1, 4))*2)
-   v3.invocation.name = '1'
+   v3.name = '1'
    v4 = Voice(Note(1, (1, 4))*2)
-   v4.invocation.name = '2'
+   v4.name = '2'
    t1 = Staff([v1, v2])
    t1.parallel = True
    t2 = Staff([v3, v4])
    t2.parallel = True
-   t1.invocation.name = t2.invocation.name = 'staffOne'
+   t1.name = t2.name = 'staffOne'
    tadd = t1 + t2
    assert isinstance(tadd, Staff)
    assert tadd.parallel
@@ -125,9 +125,9 @@ def test_container_add_13( ):
    assert isinstance(tadd[1], Voice)
    assert len(tadd[0]) == 4
    assert len(tadd[1]) == 4
-   assert tadd[0].invocation.name == '1'
-   assert tadd[1].invocation.name == '2'
-   assert tadd.invocation.name == 'staffOne'
+   assert tadd[0].name == '1'
+   assert tadd[1].name == '2'
+   assert tadd.name == 'staffOne'
 
 
 ### iadd ###
@@ -136,7 +136,7 @@ def test_container_iadd_01( ):
    '''In place add makes a copy of right hand operand only.'''
    v1 = Voice(Note(1, (1, 4))*4)
    v2 = Voice(Note(2, (1, 4))*4)
-   v1.invocation.name = v2.invocation.name = 'voiceOne'
+   v1.name = v2.name = 'voiceOne'
    v1_id = id(v1)
    v2_id = id(v2)
 
@@ -145,6 +145,6 @@ def test_container_iadd_01( ):
    assert check(v2)
    assert len(v1) == 8
    assert len(v2) == 4
-   assert v1.invocation.name == 'voiceOne'
+   assert v1.name == 'voiceOne'
    assert v1_id == id(v1)
    assert v2_id == id(v2)

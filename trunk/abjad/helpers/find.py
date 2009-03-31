@@ -21,7 +21,8 @@ def find(expr, name = None, klass = None, type = None):
       if name is None or component.name == name or hasattr(component,
          'invocation') and component.invocation.name == name:
          if klass is None or isinstance(component, klass):
-            if type is None or hasattr(component, 'invocation') and \
+            if type is None or getattr(component, 'context', None) == type or \
+               hasattr(component, 'invocation') and \
                component.invocation.type == type:
                result.append(component)
 

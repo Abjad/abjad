@@ -212,9 +212,9 @@ def test_bead_navigation_13( ):
    '''NextBead and prevBead work on contiguous equally named Voices 
    inside a Staff.'''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
-   v1.invocation.name = 'myvoice'
+   v1.name = 'myvoice'
    v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   v2.invocation.name = 'myvoice'
+   v2.name = 'myvoice'
    t = Staff([v1, v2])
    assert v1[0]._navigator._nextBead is v1[1]
    assert v1[1]._navigator._nextBead is v1[2]
@@ -248,15 +248,15 @@ def test_bead_navigation_14( ):
    '''Beads do not connect through contiguous unequally named Voices; 
    these are, by definition, two different "threads".'''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
-   v1.invocation.name = 'yourvoice'
+   v1.name = 'yourvoice'
    v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   v2.invocation.name = 'myvoice'
+   v2.name = 'myvoice'
    t = Staff([v1, v2])
    assert v1[0]._navigator._nextBead is v1[1]
    assert v1[1]._navigator._nextBead is v1[2]
    assert v1[2]._navigator._nextBead is v1[3]
    assert v1[3]._navigator._nextBead is None
-   v2.invocation.name = None
+   v2.name = None
    assert v1[3]._navigator._nextBead is None
 
    assert v2[1]._navigator._prevBead is v2[0]
@@ -288,14 +288,14 @@ def test_bead_navigation_20( ):
    '''Beads connect through simple symmetric depth 2 strutures. 
       Corresponding Voices and Staves are equally named.'''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
-   v1.invocation.name = 'low'
+   v1.name = 'low'
    v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   v2.invocation.name = 'low'
+   v2.name = 'low'
 
    s1 = Staff([v1])
-   s1.invocation.name = 'mystaff'
+   s1.name = 'mystaff'
    s2 = Staff([v2])
-   s2.invocation.name = 'mystaff'
+   s2.name = 'mystaff'
 
    seq = Sequential([s1, s2])
 
@@ -328,19 +328,19 @@ def test_bead_navigation_21( ):
    '''Beads connect through a symmetric depth 2 structure 
       with parallel construct.'''
    vl1 = Voice([Note(i, (1,8)) for i in range(4)])
-   vl1.invocation.name = 'low'
+   vl1.name = 'low'
    vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   vl2.invocation.name = 'low'
+   vl2.name = 'low'
    vh1 = Voice([Note(i, (1,8)) for i in range(12,16)])
-   vh1.invocation.name = 'high'
+   vh1.name = 'high'
    vh2 = Voice([Note(i, (1,8)) for i in range(16,20)])
-   vh2.invocation.name = 'high'
+   vh2.name = 'high'
 
    s1 = Staff([vh1, vl1])
-   s1.invocation.name = 'mystaff'
+   s1.name = 'mystaff'
    s1.parallel = True
    s2 = Staff([vl2, vh2])
-   s2.invocation.name = 'mystaff'
+   s2.name = 'mystaff'
    s2.parallel = True
 
    seq = Sequential([s1, s2])
@@ -389,17 +389,17 @@ def test_bead_navigation_22( ):
    '''Beads connect through a symmetrical depth 2 structure 
       with a parallel Staff and a sequential Staff constructs.'''
    vl1 = Voice([Note(i, (1,8)) for i in range(4)])
-   vl1.invocation.name = 'low'
+   vl1.name = 'low'
    vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   vl2.invocation.name = 'low'
+   vl2.name = 'low'
    vh = Voice([Note(i, (1,8)) for i in range(12,16)])
-   vh.invocation.name = 'high'
+   vh.name = 'high'
 
    s1 = Staff([vh, vl1])
-   s1.invocation.name = 'mystaff'
+   s1.name = 'mystaff'
    s1.parallel = True
    s2 = Staff([vl2])
-   s2.invocation.name = 'mystaff'
+   s2.name = 'mystaff'
 
    seq = Sequential([s1, s2])
 
@@ -674,16 +674,16 @@ def test_bead_navigation_40( ):
    ### do we want them to connect? probably not...
    ###
    v1 = Voice([Note(i , (1,8)) for i in range(3)])
-   v1.invocation.name = 'myvoice'
+   v1.name = 'myvoice'
    v2 = Voice([Note(i , (1,8)) for i in range(4,8)])
-   v2.invocation.name = 'yourvoice'
+   v2.name = 'yourvoice'
    v3 = Voice([Note(i , (1,8)) for i in range(4,8)])
-   v3.invocation.name = 'myvoice'
+   v3.name = 'myvoice'
    t = Staff([v1, v2, v3])
 
    assert v1[-1]._navigator._nextBead is None
    assert v2[-1]._navigator._nextBead is None
-   v2.invocation.name = None
+   v2.name = None
    assert v1[-1]._navigator._nextBead is None
    assert v2[-1]._navigator._nextBead is None
 
@@ -769,9 +769,9 @@ def test_bead_navigation_50b( ):
 def test_bead_navigation_51a( ):
    '''nextBead and prevBead work on nested equally named Voices.'''
    vin = Voice([Note(i, (1,8)) for i in range(3)])
-   vin.invocation.name = 'myvoice'
+   vin.name = 'myvoice'
    vout = Voice([vin, Note(3, (1,8))])
-   vout.invocation.name = 'myvoice'
+   vout.name = 'myvoice'
    assert vin[0]._navigator._nextBead is vin[1]
    assert vin[1]._navigator._nextBead is vin[2]
    assert vin[2]._navigator._nextBead is vout[1]
@@ -795,9 +795,9 @@ def test_bead_navigation_51a( ):
 def test_bead_navigation_51b( ):
    '''nextBead and prevBead work on nested equally named Voices.'''
    vin = Voice([Note(i, (1,8)) for i in range(1,4)])
-   vin.invocation.name = 'myvoice'
+   vin.name = 'myvoice'
    vout = Voice([Note(0, (1,8)), vin])
-   vout.invocation.name = 'myvoice'
+   vout.name = 'myvoice'
    assert vin[0]._navigator._nextBead is vin[1]
    assert vin[1]._navigator._nextBead is vin[2]
    assert vout[0]._navigator._nextBead is vin[0]
@@ -822,9 +822,9 @@ def test_bead_navigation_52a( ):
    '''NextBead return None on nested *differently* named Voices.
       This is what we want because these are NOT tautologies.''' 
    vin = Voice([Note(i, (1,8)) for i in range(3)])
-   vin.invocation.name = 'yourvoice'
+   vin.name = 'yourvoice'
    vout = Voice([vin, Note(3, (1,8))])
-   vout.invocation.name = 'myvoice'
+   vout.name = 'myvoice'
    assert vin[0]._navigator._nextBead is vin[1]
    assert vin[1]._navigator._nextBead is vin[2]
    assert vin[2]._navigator._nextBead is None
@@ -849,9 +849,9 @@ def test_bead_navigation_52b( ):
    '''NextBead return None on nested *differently* named Voices.
       This is what we want because these are NOT tautologies.''' 
    vin = Voice([Note(i, (1,8)) for i in range(1, 4)])
-   vin.invocation.name = 'yourvoice'
+   vin.name = 'yourvoice'
    vout = Voice([Note(0, (1,8)), vin])
-   vout.invocation.name = 'myvoice'
+   vout.name = 'myvoice'
    assert vin[0]._navigator._nextBead is vin[1]
    assert vin[1]._navigator._nextBead is vin[2]
    assert vout[0]._navigator._nextBead is None

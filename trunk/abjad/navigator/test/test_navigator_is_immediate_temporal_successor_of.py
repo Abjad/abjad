@@ -202,9 +202,9 @@ def test_is_immediate_temporal_successor_of_10( ):
       first (like-named) voice immediately.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   v1.invocation.name = 'foo'
+   v1.name = 'foo'
    v2 = Voice([Note(i, (1, 8)) for i in range(4, 88)])
-   v2.invocation.name = 'foo'
+   v2.name = 'foo'
    t = Staff([v1, v2])
 
    assert t[0]._navigator._isImmediateTemporalSuccessorOf(t[1])
@@ -236,9 +236,9 @@ def test_is_immediate_temporal_successor_of_11( ):
       first (differently named) voice immediately.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   v1.invocation.name = 'foo'
+   v1.name = 'foo'
    v2 = Voice([Note(i, (1, 8)) for i in range(4, 88)])
-   v2.invocation.name = 'bar'
+   v2.name = 'bar'
    t = Staff([v1, v2])
 
    assert t[0]._navigator._isImmediateTemporalSuccessorOf(t[1])

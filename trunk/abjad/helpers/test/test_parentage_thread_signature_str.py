@@ -48,7 +48,7 @@ def test_parentage_thread_signature_str_02( ):
       Named voice 'foo' acts as signature root.'''
 
    t = Voice(run(4))
-   t.invocation.name = 'foo'
+   t.name = 'foo'
    t.insert(2, Parallel(Sequential(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
@@ -166,9 +166,9 @@ def test_parentage_thread_signature_str_05( ):
       Outermost instance of named voice 'foo' acts as signature root.'''
 
    t = Voice(run(4))
-   t.invocation.name = 'foo'
+   t.name = 'foo'
    t.insert(2, Parallel(Voice(run(2)) * 2))
-   t[2][0].invocation.name = 'foo'
+   t[2][0].name = 'foo'
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -208,10 +208,10 @@ def test_parentage_thread_signature_str_06( ):
       Outermost sequential acts as signature root.'''
 
    t = Sequential(Staff([Voice(scale(2))]) * 2)
-   t[0].invocation.name = 'staff1'
-   t[1].invocation.name = 'staff2'
-   t[0][0].invocation.name = 'voicefoo'
-   t[1][0].invocation.name = 'voicefoo'
+   t[0].name = 'staff1'
+   t[1].name = 'staff2'
+   t[0][0].name = 'voicefoo'
+   t[1][0].name = 'voicefoo'
    diatonicize(t)
    py.test.raises(ContiguityError, 'Beam(t.leaves)')
    Beam(t.leaves[:2])
@@ -245,10 +245,10 @@ def test_parentage_thread_signature_str_07( ):
 
    t = Sequential(run(2))
    t[1:1] = Parallel(Voice(run(1)) * 2) * 2
-   t[1][0].invocation.name = 'alto'
-   t[1][1].invocation.name = 'soprano'
-   t[2][0].invocation.name = 'alto'
-   t[2][1].invocation.name = 'soprano'
+   t[1][0].name = 'alto'
+   t[1][1].name = 'soprano'
+   t[2][0].name = 'alto'
+   t[2][1].name = 'soprano'
    diatonicize(t)
 
    t[1][1][0].formatter.before.append(r"\override NoteHead #'color = #red")
@@ -303,8 +303,8 @@ def test_parentage_thread_signature_str_08( ):
 def test_parentage_thread_signature_str_09( ):
 
    t = Staff([Voice([Note(0, (1, 8))])])
-   t.invocation.name = 'staff'
-   t[0].invocation.name = 'voice'
+   t.name = 'staff'
+   t[0].name = 'voice'
 
    '''abjad> print t.leaves[0].parentage._threadSignature
 

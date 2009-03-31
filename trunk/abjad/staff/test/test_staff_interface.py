@@ -8,8 +8,8 @@ def test_staff_interface_01( ):
 
    piano = PianoStaff(Staff(scale(4)) * 2)
    piano.parallel = True
-   piano[0].invocation.name = 'RH'
-   piano[1].invocation.name = 'LH'
+   piano[0].name = 'RH'
+   piano[1].name = 'LH'
    piano[0][0].staff = piano[1]
 
    r'''
@@ -41,8 +41,8 @@ def test_staff_interface_02( ):
 
    piano = PianoStaff(Staff(scale(4)) * 2)
    piano.parallel = True
-   piano[0].invocation.name = 'RH'
-   piano[1].invocation.name = 'LH'
+   piano[0].name = 'RH'
+   piano[1].name = 'LH'
    piano[0][1].staff = piano[1]
 
    r'''
@@ -74,8 +74,8 @@ def test_staff_interface_03( ):
 
    piano = PianoStaff(Staff(scale(4)) * 2)
    piano.parallel = True
-   piano[0].invocation.name = 'RH'
-   piano[1].invocation.name = 'LH'
+   piano[0].name = 'RH'
+   piano[1].name = 'LH'
    piano[0][-1].staff = piano[1]
 
    r'''
@@ -107,8 +107,8 @@ def test_staff_interface_04( ):
 
    piano = PianoStaff(Staff(scale(4)) * 2)
    piano.parallel = True
-   piano[0].invocation.name = 'RH'
-   piano[1].invocation.name = 'LH'
+   piano[0].name = 'RH'
+   piano[1].name = 'LH'
    for note in piano[0][ : 2]:
       note.staff = piano[1]
 

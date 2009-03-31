@@ -10,12 +10,12 @@ def piano( ):
    Bass clef is also added to the bass staff.
    '''
    ps = PianoStaff([ ])
-   ps.invocation.name = 'PianoStaff'
+   ps.name = 'PianoStaff'
    bass = Staff([ ])
-   bass.invocation.name = 'PianoBass'
+   bass.name = 'PianoBass'
    bass.clef = 'bass'
    treble = Staff([ ])
-   treble.invocation.name = 'PianoTreble'
+   treble.name = 'PianoTreble'
    ps.append(treble)
    ps.append(bass)
    return ps

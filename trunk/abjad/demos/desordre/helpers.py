@@ -38,14 +38,14 @@ def desordre_run(pitches):
    notes[0].dynamics = 'f'
    notes[1].dynamics = 'p'
    v_lower = Voice(notes)
-   v_lower.invocation.name = 'rh_lower'
+   v_lower.name = 'rh_lower'
    v_lower.voice.number = 2
 
    n = int(math.ceil(len(pitches) / 2.))
    chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
    chord.articulations.append('>')
    v_higher = Voice([chord])
-   v_higher.invocation.name = 'rh_higher'
+   v_higher.name = 'rh_higher'
    v_higher.voice.number = 1
    p = Parallel([v_lower, v_higher])
    ### make all 1/8 beats breakable

@@ -7,8 +7,8 @@ def test_like_named_01( ):
       With like-named containers this poses no problem for LilyPond.'''
 
    t = Staff(Voice(run(4)) * 2)
-   t[0].invocation.name = 'foo'
-   t[1].invocation.name = 'foo'
+   t[0].name = 'foo'
+   t[1].name = 'foo'
    appictate(t)
 
    p = Beam(t)
@@ -50,8 +50,8 @@ def test_span_like_named_02( ):
    '''
 
    t = Sequential(Staff([Voice(run(4))]) * 2)
-   t[0].invocation.name, t[1].invocation.name = 'foo', 'foo'
-   t[0][0].invocation.name, t[1][0].invocation.name = 'bar', 'bar'
+   t[0].name, t[1].name = 'foo', 'foo'
+   t[0][0].name, t[1][0].name = 'bar', 'bar'
    appictate(t)
    
    p = Beam(t)
@@ -100,11 +100,11 @@ def test_span_like_named_03( ):
    '''
 
    t = Sequential(Staff(Voice(run(4)) * 2) * 2)
-   t[0].invocation.name, t[1].invocation.name = 'foo', 'foo'
+   t[0].name, t[1].name = 'foo', 'foo'
    t[0].parallel = True
    t[1].parallel = True
-   t[0][0].invocation.name, t[1][1].invocation.name = 'first', 'first'
-   t[0][1].invocation.name, t[1][0].invocation.name = 'second', 'second'
+   t[0][0].name, t[1][1].name = 'first', 'first'
+   t[0][1].name, t[1][0].name = 'second', 'second'
    appictate(t)
    
    p = Beam([t[0][0], t[1][1]])
@@ -155,11 +155,11 @@ def test_span_like_named_04( ):
    '''
 
    t = Sequential(Staff(Voice(run(4)) * 2) * 2)
-   t[0].invocation.name, t[1].invocation.name = 'foo', 'foo'
+   t[0].name, t[1].name = 'foo', 'foo'
    t[0].parallel = True
    t[1].parallel = True
-   t[0][0].invocation.name, t[1][0].invocation.name = 'first', 'first'
-   t[0][1].invocation.name, t[1][1].invocation.name = 'second', 'second'
+   t[0][0].name, t[1][0].name = 'first', 'first'
+   t[0][1].name, t[1][1].name = 'second', 'second'
    del(t[1][1])
    appictate(t)
    p = Beam([t[0][0], t[1][0]])

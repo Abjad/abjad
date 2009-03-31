@@ -4,7 +4,7 @@ from abjad import *
 def test_offset_containers_01( ):
    '''thread and score offsets works on threaded sequential voices.'''
    t = Staff([Voice(run(4)), Voice(run(4))])
-   t[0].invocation.name = t[1].invocation.name = 'voice'
+   t[0].name = t[1].name = 'voice'
    for i, x in enumerate(t):
       assert x.offset.thread == x.offset.score == i * Rational(4, 8)
 
@@ -12,7 +12,7 @@ def test_offset_containers_01( ):
 def test_offset_containers_02( ):
    '''thread and score offsets works on threaded sequential staves.'''
    t = Sequential([Staff(run(4)), Staff(run(4))])
-   t[0].invocation.name = t[1].invocation.name = 'staff'
+   t[0].name = t[1].name = 'staff'
    for i, x in enumerate(t):
       assert x.offset.thread == x.offset.score == i * Rational(4, 8)
 
@@ -58,7 +58,7 @@ def test_offset_containers_10( ):
    '''thread and score offsets work on nested contexts.'''
    vin = Voice(run(4))
    vout = Voice([Note(0, (1, 8)), vin])
-   vin.invocation.name = vout.invocation.name = 'voice'
+   vin.name = vout.name = 'voice'
    t = Staff([Note(1, (1, 8)), vout])
    assert vin.offset.thread == Rational(1, 8)
    assert vin.offset.score == Rational(2, 8)
@@ -84,7 +84,7 @@ def test_offset_containers_13( ):
    v2 = Voice(run(4))
    v1b= Voice(run(4))
    v2b= Voice(run(4))
-   v1.invocation.name = v1b.invocation.name = 'voiceOne'
+   v1.name = v1b.name = 'voiceOne'
    s1 = Staff([v1, v1b])
    s2 = Staff([v2, v2b])
    gs = GrandStaff([s1, s2])

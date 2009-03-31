@@ -44,7 +44,7 @@ def test_parentage_thread_signature_02( ):
       first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
-   t.invocation.name = 'foo'
+   t.name = 'foo'
    t.insert(2, Parallel(Sequential(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
@@ -156,9 +156,9 @@ def test_parentage_thread_signature_05( ):
       first voice, staff and score in parentage of component.'''
 
    t = Voice(run(4))
-   t.invocation.name = 'foo'
+   t.name = 'foo'
    t.insert(2, Parallel(Voice(run(2)) * 2))
-   t[2][0].invocation.name = 'foo'
+   t[2][0].name = 'foo'
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -205,10 +205,10 @@ def test_parentage_thread_signature_06( ):
       first voice, staff and score in parentage of component.'''
 
    t = Sequential(Staff([Voice(scale(2))]) * 2)
-   t[0].invocation.name = 'staff1'
-   t[1].invocation.name = 'staff2'
-   t[0][0].invocation.name = 'voicefoo'
-   t[1][0].invocation.name = 'voicefoo'
+   t[0].name = 'staff1'
+   t[1].name = 'staff2'
+   t[0][0].name = 'voicefoo'
+   t[1][0].name = 'voicefoo'
    diatonicize(t)
    assert py.test.raises(ContiguityError, 'Beam(t.leaves)')
    Beam(t.leaves[:2])
@@ -244,10 +244,10 @@ def test_parentage_thread_signature_07( ):
 
    t = Sequential(run(2))
    t[1:1] = Parallel(Voice(run(1)) * 2) * 2
-   t[1][0].invocation.name = 'alto'
-   t[1][1].invocation.name = 'soprano'
-   t[2][0].invocation.name = 'alto'
-   t[2][1].invocation.name = 'soprano'
+   t[1][0].name = 'alto'
+   t[1][1].name = 'soprano'
+   t[2][0].name = 'alto'
+   t[2][1].name = 'soprano'
    diatonicize(t)
 
    t[1][1][0].formatter.before.append(r"\override NoteHead #'color = #red")
@@ -311,12 +311,12 @@ def test_parentage_thread_signature_09( ):
       Component containment signatures do not compare True.'''
 
    t1 = Staff([Voice([Note(0, (1, 8))])])
-   t1.invocation.name = 'staff'
-   t1[0].invocation.name = 'voice'
+   t1.name = 'staff'
+   t1[0].name = 'voice'
 
    t2 = Staff([Voice([Note(0, (1, 8))])])
-   t2.invocation.name = 'staff'
-   t2[0].invocation.name = 'voice'
+   t2.name = 'staff'
+   t2[0].name = 'voice'
 
    t1_leaf_signature = t1.leaves[0].parentage._threadSignature
    t2_leaf_signature = t2.leaves[0].parentage._threadSignature

@@ -6,15 +6,15 @@ def test_voice_invocation_01( ):
 
    t = Voice(scale(4))
 
-   assert t.invocation.name is None
-   assert t.invocation.type == 'Voice'
+   assert t.name is None
+   assert t.context == 'Voice'
 
 
 def test_voice_invocation_02( ):
    r''' Named voices invoke with \context Voice = "name".'''
 
    t = Voice(scale(4))
-   t.invocation.name = 'foo'
+   t.name = 'foo'
 
-   assert t.invocation.name == 'foo'
-   assert t.invocation.type == 'Voice'
+   assert t.name == 'foo'
+   assert t.context == 'Voice'

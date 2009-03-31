@@ -215,9 +215,9 @@ def test_navigator_is_threadable_09( ):
    '''Can thread across like-named voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   v1.invocation.name = 'foo'
+   v1.name = 'foo'
    v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-   v2.invocation.name = 'foo'
+   v2.name = 'foo'
    t = Staff([v1, v2])
 
    assert t[0]._navigator._isThreadable(t[1])
@@ -254,9 +254,9 @@ def test_navigator_is_threadable_10( ):
    '''Can not thread across differently named voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-   v1.invocation.name = 'foo'
+   v1.name = 'foo'
    v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-   v2.invocation.name = 'bar'
+   v2.name = 'bar'
    t = Staff([v1, v2])
 
    assert not t[0]._navigator._isThreadable(t[1])
@@ -446,8 +446,8 @@ def test_navigator_is_threadable_14( ):
    '''Like-named staves thread.'''
 
    t = Sequential(Staff([ ]) * 2)
-   t[0].invocation.name = 'foo'
-   t[1].invocation.name = 'foo'
+   t[0].name = 'foo'
+   t[1].name = 'foo'
 
    r'''
    {
@@ -467,8 +467,8 @@ def test_navigator_is_threadable_15( ):
       Leaves in differently IMPLICIT voices do not thread.'''
 
    t = Sequential(Staff(run(4)) * 2)
-   t[0].invocation.name = 'foo'
-   t[1].invocation.name = 'foo'
+   t[0].name = 'foo'
+   t[1].name = 'foo'
    diatonicize(t)
 
    r'''
@@ -499,10 +499,10 @@ def test_navigator_is_threadable_16( ):
    '''Can thread across like-named voices in like-named staves.'''
 
    t = Sequential(Staff([Voice(run(4))]) * 2)
-   t[0].invocation.name = 'staff'
-   t[0][0].invocation.name = 'voice'
-   t[1].invocation.name = 'staff'
-   t[1][0].invocation.name = 'voice'
+   t[0].name = 'staff'
+   t[0][0].name = 'voice'
+   t[1].name = 'staff'
+   t[1][0].name = 'voice'
    diatonicize(t)
 
    r'''{
@@ -538,8 +538,8 @@ def test_navigator_is_threadable_17( ):
       But can NOT thread across differently identified anonymous staves.'''
 
    t = Sequential(Staff([Voice(run(4))]) * 2)
-   t[0][0].invocation.name = 'voice'
-   t[1][0].invocation.name = 'voice'
+   t[0][0].name = 'voice'
+   t[1][0].name = 'voice'
    diatonicize(t)
 
    r'''{
@@ -574,8 +574,8 @@ def test_navigator_is_threadable_18( ):
    '''Like-named voices thread.'''
 
    t = Sequential(Voice(run(4)) * 2)
-   t[0].invocation.name = 'foo'
-   t[1].invocation.name = 'foo'
+   t[0].name = 'foo'
+   t[1].name = 'foo'
    diatonicize(t)
 
    r'''
@@ -635,7 +635,7 @@ def test_navigator_is_threadable_20( ):
 
    v1 = Voice(run(4))
    v2 = Voice(run(4))
-   v1.invocation.name = v2.invocation.name = 'voiceOne'
+   v1.name = v2.name = 'voiceOne'
    t = Parallel([Sequential([v1, v2])])
    diatonicize(t)
 
@@ -667,7 +667,7 @@ def test_navigator_is_threadable_21( ):
 
    v1 = Voice(run(4))
    v2 = Voice(run(4))
-   v1.invocation.name = v2.invocation.name = 'voiceOne'
+   v1.name = v2.name = 'voiceOne'
    t = Sequential([Parallel([v1]), Parallel([v2])])
    diatonicize(t)
 
@@ -702,10 +702,10 @@ def test_navigator_is_threadable_22( ):
 
    v1 = Voice(run(4))
    v2 = Voice(run(4))
-   v1.invocation.name = v2.invocation.name = 'voiceOne'
+   v1.name = v2.name = 'voiceOne'
    s1 = Staff([v1])
    s2 = Staff([v2])
-   s1.invocation.name = s2.invocation.name = 'staffOne'
+   s1.name = s2.name = 'staffOne'
    s1.parallel = True
    s2.parallel = True
    t = Sequential([s1, s2])
@@ -742,7 +742,7 @@ def test_navigator_is_threadable_23( ):
    '''Like-name staff groups thread.'''
 
    t = Sequential([StaffGroup([ ]), StaffGroup([ ])])
-   t[0].invocation.name = t[1].invocation.name = 'staffGroup'
+   t[0].name = t[1].name = 'staffGroup'
 
    r'''{
            \context StaffGroup = "staffGroup" <<

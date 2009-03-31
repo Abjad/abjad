@@ -43,7 +43,7 @@ def test_lily_voice_resolution_02( ):
       How does LilyPond resolve voices?'''
 
    t = Voice(run(4))
-   t.invocation.name = 'foo'
+   t.name = 'foo'
    t.insert(2, Parallel(Sequential(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
@@ -155,9 +155,9 @@ def test_lily_voice_resolution_05( ):
       How does LilyPond resolve voices?'''
 
    t = Voice(run(4))
-   t.invocation.name = 'foo'
+   t.name = 'foo'
    t.insert(2, Parallel(Voice(run(2)) * 2))
-   t[2][0].invocation.name = 'foo'
+   t[2][0].name = 'foo'
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -189,10 +189,10 @@ def test_lily_voice_resolution_06( ):
    '''Two like-named voices in two differently named staves.'''
 
    t = Sequential(Staff([Voice(scale(2))]) * 2)
-   t[0].invocation.name = 'staff1'
-   t[1].invocation.name = 'staff2'
-   t[0][0].invocation.name = 'voicefoo'
-   t[1][0].invocation.name = 'voicefoo'
+   t[0].name = 'staff1'
+   t[1].name = 'staff2'
+   t[0][0].name = 'voicefoo'
+   t[1][0].name = 'voicefoo'
    diatonicize(t)
    py.test.raises(ContiguityError, 'Beam(t.leaves)')
 
@@ -208,10 +208,10 @@ def test_lily_voice_resolution_07( ):
 
    t = Sequential(run(2))
    t[1:1] = Parallel(Voice(run(2)) * 2) * 2
-   t[1][0].invocation.name = 'alto'
-   t[1][1].invocation.name = 'soprano'
-   t[2][0].invocation.name = 'alto'
-   t[2][1].invocation.name = 'soprano'
+   t[1][0].name = 'alto'
+   t[1][1].name = 'soprano'
+   t[2][0].name = 'alto'
+   t[2][1].name = 'soprano'
    diatonicize(t)
 
    t[1][1][0].formatter.before.append(r"\override NoteHead #'color = #red")

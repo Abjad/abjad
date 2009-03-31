@@ -8,8 +8,8 @@ def test_parentage_governor_01( ):
 
    t = Voice([Parallel(Voice(run(2)) * 2)])
    diatonicize(t)
-   t[0][0].invocation.name = 'voice 1'
-   t[0][1].invocation.name = 'voice 2'
+   t[0][0].name = 'voice 1'
+   t[0][1].name = 'voice 2'
 
    r'''
    \new Voice {

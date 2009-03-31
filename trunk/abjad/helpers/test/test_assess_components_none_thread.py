@@ -182,8 +182,8 @@ def test_assess_components_none_thread_10( ):
 
    t = Staff(Voice(run(4)) * 2)
    diatonicize(t)
-   t[0].invocation.name = 'foo'
-   t[1].invocation.name = 'foo'
+   t[0].name = 'foo'
+   t[1].name = 'foo'
 
    r'''\new Staff {
            \context Voice = "foo" {
@@ -208,8 +208,8 @@ def test_assess_components_none_thread_11( ):
 
    t = Staff(Voice(run(2)) * 2)
    diatonicize(t)
-   t[0].invocation.name = 'foo'
-   t[1].invocation.name = 'bar'
+   t[0].name = 'foo'
+   t[1].name = 'bar'
 
    r'''
    \new Staff {
@@ -315,8 +315,8 @@ def test_assess_components_none_thread_15( ):
 
    t = Sequential(Staff(Note(0, (1, 8)) * 4) * 2)
    appictate(t)
-   t[0].invocation.name = 'foo'
-   t[1].invocation.name = 'foo'
+   t[0].name = 'foo'
+   t[1].name = 'foo'
 
    r'''{
       \context Staff = "foo" {
@@ -393,7 +393,7 @@ def test_assess_components_none_thread_18( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Sequential([Sequential(run(4)), Voice(run(4))])
-   t[1].invocation.name = 'foo'
+   t[1].name = 'foo'
    diatonicize(t)
 
    r'''{
@@ -420,7 +420,7 @@ def test_assess_components_none_thread_19( ):
    '''Can not thread over differently named IMPLICIT voices.'''
 
    t = Sequential([Voice(run(4)), Sequential(run(4))])
-   t[0].invocation.name = 'foo'
+   t[0].name = 'foo'
    diatonicize(t)
 
    r'''{
@@ -548,7 +548,7 @@ def test_assess_components_none_thread_24( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Sequential(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-   t[4].invocation.name = 'foo'
+   t[4].name = 'foo'
    appictate(t)
 
    r'''{
@@ -577,7 +577,7 @@ def test_assess_components_none_thread_25( ):
 
    t = Sequential([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
    appictate(t)
-   t[0].invocation.name = 'foo'
+   t[0].name = 'foo'
 
    r'''{
       \context Voice = "foo" {
@@ -678,7 +678,7 @@ def test_assess_components_none_thread_29( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    v = Voice([Note(n, (1, 8)) for n in range(4)])
-   v.invocation.name = 'foo'
+   v.name = 'foo'
    q = Sequential([v])
    notes = [Note(n, (1, 8)) for n in range(4, 8)]
    t = Sequential([q] + notes)
@@ -707,9 +707,9 @@ def test_assess_components_none_thread_29( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    v1 = Voice([Note(n, (1, 8)) for n in range(4)])
-   v1.invocation.name = 'foo'
+   v1.name = 'foo'
    v2 = Voice([v1])
-   v2.invocation.name = 'bar'
+   v2.name = 'bar'
    notes = [Note(n, (1, 8)) for n in range(4, 8)]
    t = Sequential([v2] + notes)
 
@@ -974,7 +974,7 @@ def test_assess_components_none_thread_37( ):
 
    t = Sequential(Note(0, (1, 8)) * 4)
    t.insert(2, Sequential([Sequential([Voice(Note(0, (1, 8)) * 4)])]))
-   t[2][0][0].invocation.name = 'foo'
+   t[2][0][0].name = 'foo'
    appictate(t)
 
    r'''{
@@ -1007,7 +1007,7 @@ def test_assess_components_none_thread_38( ):
 
    t = Sequential(Note(0, (1, 8)) * 4)
    t.insert(0, Sequential([Sequential([Voice(Note(0, (1, 8)) * 4)])]))
-   t[0][0][0].invocation.name = 'foo'
+   t[0][0][0].name = 'foo'
    appictate(t)
 
    r'''{
@@ -1073,14 +1073,14 @@ def test_assess_components_none_thread_40( ):
    '''Can not thread across differently named voices.'''
 
    v = Voice(Note(0, (1, 8)) * 4)
-   v.invocation.name = 'bar'
+   v.name = 'bar'
    q = Sequential(Note(0, (1, 8)) * 4)
    q.insert(2, v)
    qq = Sequential(Note(0, (1, 8)) * 4)
    qq.insert(2, q)
    t = Voice(Note(0, (1, 8)) * 4)
    t.insert(2, qq)
-   t.invocation.name = 'foo'
+   t.name = 'foo'
    appictate(t)
 
    r'''\context Voice = "foo" {
