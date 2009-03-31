@@ -2,14 +2,14 @@ from abjad import *
 import py.test
 
 
-def test_fracture_topmost_crossing_spanners_01( ):
+def test_fracture_crossing_spanners_01( ):
    '''Fracture all spanners to the left of the leftmost component in list;
       fracture all spanners to the right of the rightmost component in list.
    '''
 
    t = Staff(scale(4))
    Beam(t[:])
-   fracture_topmost_crossing_spanners(t[1:3])
+   fracture_crossing_spanners(t[1:3])
 
    r'''\new Staff {
       c'8 [ ]
@@ -22,13 +22,13 @@ def test_fracture_topmost_crossing_spanners_01( ):
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [\n\te'8 ]\n\tf'8 [ ]\n}"
    
 
-def test_fracture_topmost_crossing_spanners_02( ):
+def test_fracture_crossing_spanners_02( ):
    '''Fracture to the left of leftmost component;
       fracture to the right of rightmost component.'''
 
    t = Staff(scale(4))
    Beam(t[:])
-   fracture_topmost_crossing_spanners(t[1:2])
+   fracture_crossing_spanners(t[1:2])
 
    r'''\new Staff {
       c'8 [ ]
@@ -41,23 +41,23 @@ def test_fracture_topmost_crossing_spanners_02( ):
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [ ]\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_fracture_topmost_crossing_spanners_03( ):
+def test_fracture_crossing_spanners_03( ):
    '''Empty list raises no exception.'''
 
-   result = fracture_topmost_crossing_spanners([ ])
+   result = fracture_crossing_spanners([ ])
    assert result == [ ]
 
 
-def test_fracture_topmost_crossing_spanners_04( ):
+def test_fracture_crossing_spanners_04( ):
    '''Nonsuccessive components raise ContiguityError.'''
 
    t1 = Staff(scale(4))
    t2 = Staff(scale(4))
    assert py.test.raises(
-      ContiguityError, 'fracture_topmost_crossing_spanners(t1[:] + t2[:])')
+      ContiguityError, 'fracture_crossing_spanners(t1[:] + t2[:])')
 
 
-def test_fracture_topmost_crossing_spanners_05( ):
+def test_fracture_crossing_spanners_05( ):
    '''Fractures around components at only top level of list.'''
 
    t = Staff(Sequential(run(2)) * 3)
@@ -80,7 +80,7 @@ def test_fracture_topmost_crossing_spanners_05( ):
       }
    }'''
 
-   fracture_topmost_crossing_spanners(t[1:2])
+   fracture_crossing_spanners(t[1:2])
 
    r'''\new Staff {
       {
@@ -101,7 +101,7 @@ def test_fracture_topmost_crossing_spanners_05( ):
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [ \\<\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\!\n\t}\n}"
 
 
-def test_fracture_topmost_crossing_spanners_06( ):
+def test_fracture_crossing_spanners_06( ):
    '''Fractures around components at only top level of list.'''
 
    t = Staff(Sequential(run(2)) * 3)
@@ -125,7 +125,7 @@ def test_fracture_topmost_crossing_spanners_06( ):
       }
    }'''
 
-   fracture_topmost_crossing_spanners(t[1:2])
+   fracture_crossing_spanners(t[1:2])
 
    r'''\new Staff {
       {
