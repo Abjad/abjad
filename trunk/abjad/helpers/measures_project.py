@@ -16,9 +16,7 @@ def measures_project(expr):
 
       Note that not all nonbinary measures can be made binary.
 
-      Returns None because processes potentially many measures.
-
-      TODO: add keyword to allow fixed-multiplier tuplet.'''
+      Returns None because processes potentially many measures.'''
 
    from abjad.measure.measure import _Measure
    for measure in iterate(expr, _Measure):

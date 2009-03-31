@@ -30,10 +30,7 @@ def measures_populate(expr, mode):
          Remove spanners attaching to measure.
 
       When mode is None:
-         Empty the contents of each measure.
-
-      TODO: determine behavior when measures are spanned.
-      TODO: make work with nonbinary meters.'''
+         Empty the contents of each measure.'''
 
    if mode == 'big-endian':
       _measures_populate_big_endian(expr)
