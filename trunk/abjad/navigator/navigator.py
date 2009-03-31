@@ -1,5 +1,6 @@
 from abjad.core.abjadcore import _Abjad
-from collections import deque
+from abjad.navigator.dfs import depth_first_search
+import collections
 
 
 class _Navigator(_Abjad):
@@ -289,6 +290,11 @@ class _Navigator(_Abjad):
       else:
          return self._client.parentage.parent
 
+   def _DFS(self, capped = True, unique = True, 
+      forbid = None, direction = 'left'):
+      return depth_first_search(
+         self._client, capped, unique, forbid, direction)
+
    def _findFellowBead(self, candidates):
       '''Helper method from prevBead and nextBead. 
          Given a list of bead candiates of self, find and return the first one
@@ -337,7 +343,7 @@ class _Navigator(_Abjad):
 
    def _traverseBreadthFirst(self, v, leftRight = True):
       '''Traverse breadth-first with visitor visiting each node.'''
-      queue = deque([self._client])
+      queue = collections.deque([self._client])
       while queue:
          node = queue.popleft( )
          v.visit(node)
@@ -355,104 +361,3 @@ class _Navigator(_Abjad):
             m._navigator._traverse(v)
       if hasattr(v, 'unvisit'):
          v.unvisit(self._client)
-
-   ## DEPTH-FIRST SEARCH STUFF BELOW #####
-   ## TODO - ISOLATE IN SEPARATE MODULE ##
-
-   def _nextNodeDF(self, total):
-      '''
-      If client has unvisited music, 
-      return next unvisited node in client's music.
-
-      If client has no univisited music and has a parent,
-      return client's parent.
-
-      If client has no univisited music and no parent,
-      return None.
-      '''
-
-      client = self._client
-      if hasattr(client, '_music') and len(client) > 0 and \
-         total < len(client):
-         return client[total], 0 
-      else:
-         parent = client.parentage.parent
-         if parent is not None:
-            return parent, parent.index(client) + 1
-         else:
-            return None, None
-
-   def _prevNodeDF(self, total = 0):
-      '''
-      If client has unvisited music, 
-      return prev unvisited node in client's music.
-
-      If client has no univisited music and has a parent,
-      return client's parent.
-
-      If client has no univisited music and no parent,
-      return None.
-      '''
-
-      client = self._client
-      if hasattr(client, '_music') and len(client) > 0 and \
-         total < len(client):
-         return client[len(client) - 1 - total], 0
-      else:
-         parent = client.parentage.parent
-         if parent is not None:
-            return parent, len(parent) - parent.index(client)
-         else:
-            return None, None
-
-   def _DFS(self, capped = True, unique = True, 
-      forbid = None, direction = 'left'):
-      client_parent, node, rank = self._client.parentage.parent, self._client, 0 
-      queue = deque([ ])
-      while node is not None and not (capped and node is client_parent):
-         result = self._findYield(node, rank, queue, unique)
-         if result is not None:
-            yield result
-         if self._isNodeForbidden(node, forbid):
-            node, rank = self._handleForbiddenNode(node, queue)
-         else:
-            node, rank = self._advanceNodeDF(node, rank, direction)
-      queue.clear( )
-
-   def _handleForbiddenNode(self, node, queue):
-      node_parent = node.parentage.parent
-      if node_parent is not None:
-         rank = node_parent.index(node) + 1
-         node = node_parent
-      else:
-         node, rank = None, None
-      queue.pop( )
-      return node, rank
-
-   def _advanceNodeDF(self, node, rank, direction):
-      if direction == 'left':
-         node, rank = node._navigator._nextNodeDF(rank)
-      else:
-         node, rank = node._navigator._prevNodeDF(rank)
-      return node, rank
-
-   def _isNodeForbidden(self, node, forbid):
-      if forbid is None:
-         return False
-      else:
-         return isinstance(node, forbid)
-
-   def _findYield(self, node, rank, queue, unique):
-      if hasattr(node, '_music'):
-         try:
-            visited = node is queue[-1]
-         except IndexError:
-            visited = False
-         if not visited or unique is not True:
-            queue.append(node)
-            return node
-         elif rank == len(node):
-            queue.pop( )
-            return None
-      else:
-         return node
