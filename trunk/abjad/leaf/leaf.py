@@ -118,18 +118,9 @@ class _Leaf(_Component):
          raise ValueError('can not overwrite _GraceInterface.')
       return property(**locals( ))
    
-   @apply
-   def harmonic( ):
-      def fget(self):
-         return self._harmonic   
-      def fset(self, arg):
-         if arg is None:
-            self._harmonic._set = False
-         elif isinstance(arg, bool):
-            self._harmonic._set = arg 
-         else:
-            raise ValueError('must be boolean or None.')
-      return property(**locals( ))
+   @property
+   def harmonic(self):
+      return self._harmonic
 
    @apply
    def markup( ):
