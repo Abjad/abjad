@@ -67,7 +67,8 @@ def test_find_07( ):
    v.invocation.type = 'MyStrangeVoice'
    t = Staff([v])
 
-   assert find(t, klass = 'MyStrangeVoice') == [v]
+   #assert find(t, klass = 'MyStrangeVoice') == [v]
+   assert find(t, type = 'MyStrangeVoice') == [v]
 
 
 def test_find_08( ):
@@ -78,7 +79,8 @@ def test_find_08( ):
    v.invocation.name = 'voice_1'
    t = Staff([v])
 
-   assert find(t, name = 'voice_1', klass = 'MyStrangeVoice') == [v]
+   #assert find(t, name = 'voice_1', klass = 'MyStrangeVoice') == [v]
+   assert find(t, name = 'voice_1', type = 'MyStrangeVoice') == [v]
 
 
 def test_find_09( ):
@@ -89,7 +91,8 @@ def test_find_09( ):
    v.invocation.name = 'voice_1'
    t = Staff([v])
 
-   assert find(t, name = 'voice_200', klass = 'MyStrangeVoice') == [ ]
+   #assert find(t, name = 'voice_200', klass = 'MyStrangeVoice') == [ ]
+   assert find(t, name = 'voice_200', type = 'MyStrangeVoice') == [ ]
 
 
 def test_find_10( ):

@@ -1,45 +1,28 @@
-def find(expr, name = None, klass = None):
-   '''Search expr recursively for components with 
-      name equal to 'name' and / or class name 'klass'.
+from abjad.component.component import _Component
+from abjad.helpers.iterate import iterate
 
-      Return list of zero or more matching components in expr.
 
-      'name' may be either an added attribute 
-      (e.g. Component.name = 'name') or, in the case of contexts, 
-      the name of the invocation (e.g. Context.invocation.name = 'name').
+def find(expr, name = None, klass = None, type = None):
+   '''Iterate expr. 
+      Find and return a Python list of all components in expr, such that:
+
+         * component.name == name OR component.invocation.name == name
+         * isinstance(component, klass)
+         * component.invocation.type == type
+
+      Do not run tests where keyword is None.
 
       For shallow traversal of container for numeric indices,
       use Container.__getitem__(i) instead.'''
 
-   class Visitor(object):
-      def __init__(self, name = name, klass = klass):
-         self.klass = klass
-         self.name = name
-         self.result = [ ]
-      def visit(self, node):
-         namematch = True
-         classmatch = True
-         if self.name:
-            if (hasattr(node, 'name') and self.name == node.name):   
-               pass
-            elif hasattr(node, 'invocation') and \
-               node.invocation.name == self.name:
-               pass
-            else:
-               namematch = False
-         if self.klass: 
-            if hasattr(node, 'invocation') and \
-               node.invocation.type == self.klass:
-               pass
-            elif not isinstance(self.klass, str) and \
-               isinstance(node, klass):
-               pass
-            else:
-               classmatch = False
-         if namematch and classmatch:
-            self.result.append(node)
+   result = [ ]
 
-   v = Visitor(name, klass)
-   expr._navigator._traverse(v)
+   for component in iterate(expr, _Component):
+      if name is None or component.name == name or hasattr(component,
+         'invocation') and component.invocation.name == name:
+         if klass is None or isinstance(component, klass):
+            if type is None or hasattr(component, 'invocation') and \
+               component.invocation.type == type:
+               result.append(component)
 
-   return v.result
+   return result
