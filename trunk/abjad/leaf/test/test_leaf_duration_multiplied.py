@@ -18,11 +18,11 @@ def test_leaf_duration_multiplied_02( ):
 def test_leaf_duration_multiplied_03( ):
    '''Mulplied leaf duration can be set and then unset.'''
    t = Note(0, (1, 4))
-   t.duration.rewrite((3, 8))
+   leaf_duration_rewrite(t, Rational(3, 8))
    assert t.duration.written == Rational(3, 8)
    assert t.duration.multiplier == Rational(2, 3)
    assert t.duration.multiplied == Rational(1, 4)
-   t.duration.rewrite((1, 4))
+   leaf_duration_rewrite(t, Rational(1, 4))
    assert t.duration.written == Rational(1, 4)
    assert t.duration.multiplier is None
    assert t.duration.multiplied == Rational(1, 4)

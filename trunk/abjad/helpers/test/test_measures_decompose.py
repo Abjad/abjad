@@ -1,8 +1,6 @@
 from abjad import *
 
 
-### TODO: write tests with tuplets inside measures
-
 def test_measures_decompose_01( ):
    '''Decompose binary measures in voice.'''
 

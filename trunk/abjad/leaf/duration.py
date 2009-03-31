@@ -103,15 +103,3 @@ class _LeafDurationInterface(_DurationInterface):
             raise AssignabilityError('%s' % str(rational))
          self._written = rational
       return property(**locals( ))
-
-   ## PUBLIC METHODS ##
-
-   ## TODO: Externalize to leaf_duration_rewrite(leaf) helper
-   
-   def rewrite(self, target):
-      previous = self.multiplied
-      self.written = Rational(*_duration_token_unpack(target))
-      self.multiplier = None
-      multiplier = previous / self.written
-      if multiplier != 1:
-         self.multiplier = multiplier
