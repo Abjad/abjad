@@ -9,10 +9,8 @@ class _SlurInterface(_Interface, _GrobHandler, _SpannerReceptor):
       from abjad.slur.spanner import Slur
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Slur')
-      #_SpannerReceptor.__init__(self, ['Slur'])
       _SpannerReceptor.__init__(self, (Slur, ))
       self._counts = (None, None)
-
 
    ### PUBLIC ATTRIBUTES ###
 

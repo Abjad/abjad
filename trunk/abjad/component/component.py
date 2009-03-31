@@ -8,6 +8,7 @@ from abjad.clef.interface import _ClefInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
+from abjad.instrument.interface import _InstrumentInterface
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.notehead.interface import _NoteHeadInterface
@@ -44,6 +45,7 @@ class _Component(_Abjad):
       self._dots = _DotsInterface(self)
       self._dynamics = _DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)
+      self._instrument = _InstrumentInterface(self)
       self._meter = _MeterInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
@@ -155,6 +157,10 @@ class _Component(_Abjad):
       def fget(self):
          return self._glissando
       return property(**locals( ))
+
+   @property
+   def instrument(self):
+      return self._instrument
 
    @apply
    def meter( ):
