@@ -11,9 +11,8 @@ class _VoiceInterface(_Interface, _FormatCarrier):
 
    ## PRIVATE ATTRIBUTES ##
 
-   ## TODO: Combine _opening and _before in many interfaces
    @property
-   def _before(self):
+   def _opening(self):
       '''String content, if any, this voice will write to the 
          'before' slot of its first leaf at format-time.'''
       result = [ ]
@@ -22,13 +21,6 @@ class _VoiceInterface(_Interface, _FormatCarrier):
       if self.number:
          result.append(voices[self.number])
       return result
-
-   ## TODO: Combine _opening and _before in many interfaces
-   @property
-   def _opening(self):
-      '''String content, if any, this voice will write to its own
-         'opening' slot at format-time.'''
-      return self._before
 
    ## PUBLIC ATTRIBUTES ##
 
