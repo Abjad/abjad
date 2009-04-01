@@ -1,30 +1,12 @@
 from abjad import *
 
-### _BeamInterface
-###
-###   SPANNER ACCESSOR:
-###      t.beam.spanners
-###
-###   POSITION PREDICATES:
-###      t.beam.spanned
-###      t.beam.first
-###      t.beam.last
-###      t.beam.only
-###
-###   PUBLIC ATTRIBUTES:
-###      t.beam.counts
-###
-###   PUBLIC METHODS:
-###      t.beam.bridge - DEPRECATED
-###      t.beam.subdivide - DEPRECATED
-
 
 def test_beam_interface_01( ):
    '''Beam interface attributes on a lone note.'''
    t = Note(0, (3, 64))
    assert t.beam.counts == (None, None)
    assert not t.beam.spanned
-   assert t.beam.spanners == [ ]
+   assert t.beam.spanners == set([ ])
    assert t.beam.beamable
    assert not t.beam.first
    assert not t.beam.last
@@ -39,7 +21,7 @@ def test_beam_interface_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    assert t[0].beam.counts == (None, None)
    assert not t[0].beam.spanned
-   assert t[0].beam.spanners == [ ]
+   assert t[0].beam.spanners == set([ ])
    assert t[0].beam.beamable
    assert not t[0].beam.first
    assert not t[0].beam.last

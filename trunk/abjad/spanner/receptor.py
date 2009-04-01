@@ -87,19 +87,18 @@ class _SpannerReceptor(_Abjad):
       if count == 0:
          raise MissingSpannerError
       elif count == 1:
-         return self.spanners[0]
+         return list(self.spanners)[0]
       else:
          raise ExtraSpannerError
 
    @property
    def spanners(self):
-      '''Return all spanners attaching to client.
-         TODO: return unordered set.'''
-      result = [ ]
+      '''Return all spanners attaching to client.'''
+      result = set([ ])
       client = self._client
       for classreference in self._classreferences:
          spanners = client.spanners.attached
-         result.extend([p for p in spanners if isinstance(p, classreference)])
+         result.update([p for p in spanners if isinstance(p, classreference)])
       return result
 
    ## PUBLIC METHODS ##
@@ -107,7 +106,7 @@ class _SpannerReceptor(_Abjad):
    def unspan(self):
       '''Remove all spanners attaching to client.'''
       result = [ ]
-      for spanner in self.spanners[ : ]:
+      for spanner in list(self.spanners):
          spanner.clear( )
          result.append(spanner)
       return result

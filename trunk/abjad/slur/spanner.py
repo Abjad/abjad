@@ -13,13 +13,15 @@ class Slur(_GrobHandlerSpanner):
    ## spanners such as TextSpanner. Should we have a shared parent class
    ## for these? An abstract _PositionalGrobHandlerSpanner that inherits
    ## from _GrobHandlerSpanner?
+
    @apply
    def position( ):
       def fget(self):
          return self._position
       def fset(self, arg):
          if not arg in self._positions.keys( ):
-            raise ValueError("Position must be one of %s" % self._positions.keys( ))
+            raise ValueError(
+               "Position must be one of %s" % self._positions.keys( ))
          self._position = arg
       return property(**locals( ))         
          
