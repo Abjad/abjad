@@ -262,7 +262,7 @@ def test_metricgrid_splitting_05( ):
    '''MetricGrid split fuses correctly tied leaves in last measure.'''
 
    v = Voice(Note(1, (1, 4))*3)
-   v.extend(construct.rests((5, 4)))
+   v.extend(construct.rests((5, 4), tied=True))
    m = MetricGrid(v.leaves, [(4, 4)])
    m.splitOnBar( )
 
