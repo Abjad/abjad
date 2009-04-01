@@ -7,7 +7,7 @@ def test_container_append_01( ):
 
    t = Voice(run(2))
    Beam(t[:])
-   t.append(Sequential(run(2)))
+   t.append(Container(run(2)))
    diatonicize(t)
 
    r'''\new Voice {

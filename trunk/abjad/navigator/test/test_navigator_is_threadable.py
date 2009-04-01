@@ -11,14 +11,12 @@ def test_navigator_is_threadable_01( ):
    assert t[1]._navigator._isThreadable(t[2])
    assert t[2]._navigator._isThreadable(t[3])
 
-   r'''
-   \new Voice {
+   r'''\new Voice {
       c'8
       d'8
       e'8
       f'8
-   }
-   '''
+   }'''
 
 
 def test_navigator_is_threadable_02( ):
@@ -30,33 +28,29 @@ def test_navigator_is_threadable_02( ):
    assert t[1]._navigator._isThreadable(t[2])
    assert t[2]._navigator._isThreadable(t[3])
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       c'8
       d'8
       e'8
       f'8
-   }
-   '''
+   }'''
 
 
 def test_navigator_is_threadable_03( ):
    '''Paths exist between all notes in a sequential.'''
 
-   t = Sequential(scale(4))
+   t = Container(scale(4))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[2])
    assert t[2]._navigator._isThreadable(t[3])
 
-   r'''
-   {
+   r'''{
       c'8
       d'8
       e'8
       f'8
-   }
-   '''
+   }'''
 
 
 def test_navigator_is_threadable_04( ):
@@ -74,14 +68,12 @@ def test_navigator_is_threadable_04( ):
    assert not t[1]._navigator._isThreadable(t[2])
    assert not t[2]._navigator._isThreadable(t[3])
 
-   r'''
-   <<
+   r'''<<
       c'8
       d'8
       e'8
       f'8
-   >>
-   '''
+   >>'''
 
 
 def test_navigator_is_threadable_05( ):
@@ -95,19 +87,17 @@ def test_navigator_is_threadable_05( ):
    assert t[1]._navigator._isThreadable(t[2])
    assert t[2]._navigator._isThreadable(t[1])
 
-   r'''
-   \times 2/3 {
+   r'''\times 2/3 {
       c'8
       d'8
       e'8
-   }
-   '''
+   }'''
 
 
 def test_navigator_is_threadable_06( ):
    '''Voice and its noncontext contents all thread.'''
 
-   t = Voice(Sequential(run(4)) * 2)
+   t = Voice(Container(run(4)) * 2)
    diatonicize(t)
 
    r'''
@@ -287,7 +277,7 @@ def test_navigator_is_threadable_11( ):
    v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
    s1 = Staff([v1])
    s2 = Staff([v2])
-   seq = Sequential([s1, s2])
+   seq = Container([s1, s2])
    
    assert not seq[0]._navigator._isThreadable(seq[1])
    assert not seq[1]._navigator._isThreadable(seq[0])
@@ -333,7 +323,7 @@ def test_navigator_is_threadable_12( ):
    s1.parallel = True
    s2 = Staff([vl2, vh2])
    s2.parallel = True
-   seq = Sequential([s1, s2])
+   seq = Container([s1, s2])
 
    assert not seq[0]._navigator._isThreadable(seq[1])
    assert not seq[0]._navigator._isThreadable(seq[1][0])
@@ -402,10 +392,10 @@ def test_navigator_is_threadable_12( ):
 def test_navigator_is_threadable_13( ):
    '''Voice threads its noncontext contents.'''
 
-   s1 = Sequential([Note(i, (1, 8)) for i in range(4)])
-   s1 = Sequential([s1])
-   s2 = Sequential([Note(i, (1, 8)) for i in range(4, 8)])
-   s2 = Sequential([s2])
+   s1 = Container([Note(i, (1, 8)) for i in range(4)])
+   s1 = Container([s1])
+   s2 = Container([Note(i, (1, 8)) for i in range(4, 8)])
+   s2 = Container([s2])
    t = Voice([s1, s2])
 
    r'''
@@ -445,7 +435,7 @@ def test_navigator_is_threadable_13( ):
 def test_navigator_is_threadable_14( ):
    '''Like-named staves thread.'''
 
-   t = Sequential(Staff([ ]) * 2)
+   t = Container(Staff([ ]) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
 
@@ -466,7 +456,7 @@ def test_navigator_is_threadable_15( ):
    '''Like-named staves thread.
       Leaves in differently IMPLICIT voices do not thread.'''
 
-   t = Sequential(Staff(run(4)) * 2)
+   t = Container(Staff(run(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
    diatonicize(t)
@@ -498,7 +488,7 @@ def test_navigator_is_threadable_15( ):
 def test_navigator_is_threadable_16( ):
    '''Can thread across like-named voices in like-named staves.'''
 
-   t = Sequential(Staff([Voice(run(4))]) * 2)
+   t = Container(Staff([Voice(run(4))]) * 2)
    t[0].name = 'staff'
    t[0][0].name = 'voice'
    t[1].name = 'staff'
@@ -537,7 +527,7 @@ def test_navigator_is_threadable_17( ):
    '''Can thread across like-named voices.
       But can NOT thread across differently identified anonymous staves.'''
 
-   t = Sequential(Staff([Voice(run(4))]) * 2)
+   t = Container(Staff([Voice(run(4))]) * 2)
    t[0][0].name = 'voice'
    t[1][0].name = 'voice'
    diatonicize(t)
@@ -573,7 +563,7 @@ def test_navigator_is_threadable_17( ):
 def test_navigator_is_threadable_18( ):
    '''Like-named voices thread.'''
 
-   t = Sequential(Voice(run(4)) * 2)
+   t = Container(Voice(run(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
    diatonicize(t)
@@ -636,7 +626,7 @@ def test_navigator_is_threadable_20( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    v1.name = v2.name = 'voiceOne'
-   t = Parallel([Sequential([v1, v2])])
+   t = Parallel([Container([v1, v2])])
    diatonicize(t)
 
    r'''
@@ -668,7 +658,7 @@ def test_navigator_is_threadable_21( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    v1.name = v2.name = 'voiceOne'
-   t = Sequential([Parallel([v1]), Parallel([v2])])
+   t = Container([Parallel([v1]), Parallel([v2])])
    diatonicize(t)
 
    r'''
@@ -708,7 +698,7 @@ def test_navigator_is_threadable_22( ):
    s1.name = s2.name = 'staffOne'
    s1.parallel = True
    s2.parallel = True
-   t = Sequential([s1, s2])
+   t = Container([s1, s2])
    diatonicize(t)
 
    r'''
@@ -741,7 +731,7 @@ def test_navigator_is_threadable_22( ):
 def test_navigator_is_threadable_23( ):
    '''Like-name staff groups thread.'''
 
-   t = Sequential([StaffGroup([ ]), StaffGroup([ ])])
+   t = Container([StaffGroup([ ]), StaffGroup([ ])])
    t[0].name = t[1].name = 'staffGroup'
 
    r'''{
@@ -756,10 +746,10 @@ def test_navigator_is_threadable_23( ):
 
 
 def test_navigator_is_threadable_24( ):
-   r'''Sequentials and leaves here all inhabit the same implicit voice.
+   r'''Containers and leaves here all inhabit the same implicit voice.
       All components thread.'''
 
-   t = Sequential(Sequential(run(4)) * 2)
+   t = Container(Container(run(4)) * 2)
    appictate(t)
 
    assert t[0][-1]._navigator._isThreadable(t[1][0])
@@ -784,7 +774,7 @@ def test_navigator_is_threadable_24( ):
 def test_navigator_is_threadable_25( ):
    '''Differently identified anonymous voices do not thread.'''
 
-   t = Sequential(Voice(run(4)) * 2)
+   t = Container(Voice(run(4)) * 2)
    appictate(t)
 
    assert not t[0][-1]._navigator._isThreadable(t[1][0])
@@ -810,7 +800,7 @@ def test_navigator_is_threadable_26( ):
    '''Differently identified anonymous voices do not thread.
       Differently identified anonymous staves do not thread.'''
 
-   t = Sequential(Staff([Voice(run(4))]) * 2)
+   t = Container(Staff([Voice(run(4))]) * 2)
    appictate(t)
    
    assert not t[0][0][-1]._navigator._isThreadable(t[1][0][0])

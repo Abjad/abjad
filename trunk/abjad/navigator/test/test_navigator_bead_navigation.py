@@ -50,8 +50,8 @@ def test_bead_navigation_02( ):
 
 
 def test_bead_navigation_04( ):
-   '''NextBead and prevBead work on simple Sequential.'''
-   t = Sequential([Note(i, (1,8)) for i in range(4)])
+   '''NextBead and prevBead work on simple Container.'''
+   t = Container([Note(i, (1,8)) for i in range(4)])
    assert t[0]._navigator._nextBead is t[1]
    assert t[1]._navigator._nextBead is t[2]
    assert t[2]._navigator._nextBead is t[3]
@@ -118,9 +118,9 @@ def test_bead_navigation_06( ):
 ### LEVEL 1 NESTING ###
 
 def test_bead_navigation_10( ):
-   '''NextBead and prevBead work on contiguous Sequentials inside a Voice.'''
-   s1 = Sequential([Note(i, (1,8)) for i in range(4)])
-   s2 = Sequential([Note(i, (1,8)) for i in range(4,8)])
+   '''NextBead and prevBead work on contiguous Containers inside a Voice.'''
+   s1 = Container([Note(i, (1,8)) for i in range(4)])
+   s2 = Container([Note(i, (1,8)) for i in range(4,8)])
    t = Voice([s1, s2])
    assert s1[0]._navigator._nextBead is s1[1]
    assert s1[1]._navigator._nextBead is s1[2]
@@ -297,7 +297,7 @@ def test_bead_navigation_20( ):
    s2 = Staff([v2])
    s2.name = 'mystaff'
 
-   seq = Sequential([s1, s2])
+   seq = Container([s1, s2])
 
    assert v1[3]._navigator._nextBead is v2[0]
    assert v2[0]._navigator._prevBead is v1[3]
@@ -343,7 +343,7 @@ def test_bead_navigation_21( ):
    s2.name = 'mystaff'
    s2.parallel = True
 
-   seq = Sequential([s1, s2])
+   seq = Container([s1, s2])
 
    assert vl1[3]._navigator._nextBead is vl2[0]
    assert vh1[3]._navigator._nextBead is vh2[0]
@@ -401,7 +401,7 @@ def test_bead_navigation_22( ):
    s2 = Staff([vl2])
    s2.name = 'mystaff'
 
-   seq = Sequential([s1, s2])
+   seq = Container([s1, s2])
 
    assert vl1[3]._navigator._nextBead is vl2[0]
    assert vl2[0]._navigator._prevBead is vl1[3]
@@ -439,11 +439,11 @@ def test_bead_navigation_22( ):
 
 def test_bead_navigation_30( ):
    '''nextBead and prevBead work on symmetrical 
-      nested Sequentials in a Voice.'''
-   s1 = Sequential([Note(i, (1,8)) for i in range(4)])
-   s1 = Sequential([s1])
-   s2 = Sequential([Note(i, (1,8)) for i in range(4,8)])
-   s2 = Sequential([s2])
+      nested Containers in a Voice.'''
+   s1 = Container([Note(i, (1,8)) for i in range(4)])
+   s1 = Container([s1])
+   s2 = Container([Note(i, (1,8)) for i in range(4,8)])
+   s2 = Container([s2])
    t = Voice([s1, s2])
    assert s1[0][0]._navigator._nextBead is s1[0][1]
    assert s1[0][1]._navigator._nextBead is s1[0][2]
@@ -480,10 +480,10 @@ def test_bead_navigation_30( ):
 def test_bead_navigation_31( ):
    '''Tautological parentage asymmetries result in symmetric (balanced) 
       threaded parentage.  These work well.'''
-   s1 = Sequential([Note(i, (1,8)) for i in range(4)])
-   s2 = Sequential([Note(i, (1,8)) for i in range(4,8)])
-   s2 = Sequential([s2])
-   s2 = Sequential([s2])
+   s1 = Container([Note(i, (1,8)) for i in range(4)])
+   s2 = Container([Note(i, (1,8)) for i in range(4,8)])
+   s2 = Container([s2])
+   s2 = Container([s2])
    t = Voice([s1, s2])
    assert s1[0]._navigator._nextBead is s1[1]
    assert s1[1]._navigator._nextBead is s1[2]
@@ -520,10 +520,10 @@ def test_bead_navigation_31( ):
 def test_bead_navigation_32( ):
    '''Tautological parentage asymmetries result in symmetric (balanced) 
       threaded parentage.  These work well.'''
-   s1 = Sequential([Note(i, (1,8)) for i in range(4)])
-   s1 = Sequential([s1])
-   s1 = Sequential([s1])
-   s2 = Sequential([Note(i, (1,8)) for i in range(4,8)])
+   s1 = Container([Note(i, (1,8)) for i in range(4)])
+   s1 = Container([s1])
+   s1 = Container([s1])
+   s2 = Container([Note(i, (1,8)) for i in range(4,8)])
    t = Voice([s1, s2])
    assert s1[0][0][0]._navigator._nextBead is s1[0][0][1]
    assert s1[0][0][1]._navigator._nextBead is s1[0][0][2]
@@ -559,9 +559,9 @@ def test_bead_navigation_32( ):
 
 def test_bead_navigation_33( ):
    '''nextBead and prevBead DO work in sequence of alternating 
-   Sequentials and Note.'''
-   s1 = Sequential([Note(i, (1,8)) for i in range(2)])
-   s2 = Sequential([Note(i, (1,8)) for i in range(3,5)])
+   Containers and Note.'''
+   s1 = Container([Note(i, (1,8)) for i in range(2)])
+   s2 = Container([Note(i, (1,8)) for i in range(3,5)])
    v = Voice([s1, Note(2, (1,8)), s2])
    assert s1[1]._navigator._nextBead is v[1]
    assert v[1]._navigator._nextBead is s2[0]

@@ -50,8 +50,8 @@ def test_spanner_leaves_04( ):
    '''Spanner attaching to container with multidimensional contents.'''
 
    t = Voice(run(4))
-   t.insert(1, Sequential(run(2)))
-   t.insert(3, Sequential(run(2)))
+   t.insert(1, Container(run(2)))
+   t.insert(3, Container(run(2)))
    appictate(t)
    p = Spanner(t)
 
@@ -81,8 +81,8 @@ def test_spanner_leaves_05( ):
    '''Spanner spanning a mixture of containers and leaves.'''
    
    t = Voice(run(4))
-   t.insert(1, Sequential(run(2)))
-   t.insert(3, Sequential(run(2)))
+   t.insert(1, Container(run(2)))
+   t.insert(3, Container(run(2)))
    appictate(t)
    p = Spanner(t[0:3])
 
@@ -117,7 +117,7 @@ def test_spanner_leaves_06( ):
       Spanner duration does, however, account for parallel duration.'''
 
    t = Staff(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    appictate(t)
 
    r'''\new Staff {
@@ -154,7 +154,7 @@ def test_spanner_leaves_07( ):
       Spanner duration does, however, account for parallel duration.'''
 
    t = Staff(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    appictate(t)
 
    r'''\new Staff {

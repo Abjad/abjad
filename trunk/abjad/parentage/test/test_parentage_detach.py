@@ -28,7 +28,7 @@ def test_parentage_detach_02( ):
    '''Spanned leaves can parentage-detach.
       Spanners continue to attach to parentage-detached leaves.'''
 
-   t = Voice([Sequential(scale(4))])
+   t = Voice([Container(scale(4))])
    p = Beam(t.leaves)
    leaf = t.leaves[0]
 
@@ -65,7 +65,7 @@ def test_parentage_detach_02( ):
 def test_parentage_detach_03( ):
    '''Unspanned containers can parent-detach.'''
 
-   t = Staff(Sequential(run(2)) * 3)
+   t = Staff(Container(run(2)) * 3)
    diatonicize(t)
    sequential = t[1]
 
@@ -110,7 +110,7 @@ def test_parentage_detach_04( ):
    '''Spanned containers parentage-detach successfully.
       Spanners continue to attach to parentage-detached containers.'''
 
-   t = Voice([Sequential(FixedDurationTuplet((2, 8), scale(3)) * 2)])
+   t = Voice([Container(FixedDurationTuplet((2, 8), scale(3)) * 2)])
    tuplet = t[0][0]
    p = Beam(t[0][:])
 

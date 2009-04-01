@@ -39,7 +39,7 @@ def test_offset_leaves_06( ):
    v1 = Voice(run(16))
    v2 = Voice(run(16))
    v1.name = v2.name = 'voice'
-   t = Sequential([v1, v2])
+   t = Container([v1, v2])
    for i, x in enumerate(t.leaves):
       assert x.offset.thread == x.offset.score == i * Rational(1, 8)
 

@@ -6,14 +6,14 @@ def test_beam_span_anonymous_01( ):
    '''Spanned empty sequential container;
       container formats no beam indications.'''
 
-   t = Sequential([ ])
+   t = Container([ ])
    p = Beam(t)
 
    r'''{
    }'''
 
    assert len(p.components) == 1
-   assert isinstance(p.components[0], Sequential)
+   assert isinstance(p.components[0], Container)
    assert len(p.leaves) == 0
    assert t.format == '{\n}'
 
@@ -22,7 +22,7 @@ def test_beam_span_anonymous_02( ):
    '''Nonempty spanned sequential container;
       container formats beam indications on first and last leaves.'''
 
-   t = Sequential(Note(0, (1, 8)) * 8)
+   t = Container(Note(0, (1, 8)) * 8)
    p = Beam(t)
 
    r'''{
@@ -37,7 +37,7 @@ def test_beam_span_anonymous_02( ):
    }'''
 
    assert len(p.components) == 1
-   assert isinstance(p.components[0], Sequential)
+   assert isinstance(p.components[0], Container)
    assert len(p.leaves) == 8
    assert t.format == "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
 
@@ -47,7 +47,7 @@ def test_beam_span_anonymous_03( ):
       first and last leaves in contiguity chain format
       beam indications.'''
 
-   t = Staff(Sequential(Note(0, (1, 8)) * 4) * 2)
+   t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
    p = Beam(t[ : ])
 
    r'''\new Staff {
@@ -66,8 +66,8 @@ def test_beam_span_anonymous_03( ):
    }'''
 
    assert len(p.components) == 2
-   assert isinstance(p.components[0], Sequential)
-   assert isinstance(p.components[1], Sequential)
+   assert isinstance(p.components[0], Container)
+   assert isinstance(p.components[1], Container)
    assert len(p.leaves) == 8
    "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
 
@@ -78,7 +78,7 @@ def test_beam_span_anonymous_04( ):
       first and last leaves in contiguity chain format
       beam indications.'''
 
-   t = Staff([Sequential(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t)
 
    r'''\new Staff {
@@ -103,7 +103,7 @@ def test_beam_span_anonymous_05( ):
       intermediate attachment;
       first and last leaves in contiguity chain format beam indications.'''
 
-   t = Staff([Sequential(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t[ : ])
 
    r'''\new Staff {
@@ -118,7 +118,7 @@ def test_beam_span_anonymous_05( ):
    }'''
 
    assert len(p.components) == 3
-   assert isinstance(p.components[0], Sequential)
+   assert isinstance(p.components[0], Container)
    assert isinstance(p.components[1], Note)
    assert isinstance(t[2], Note)
    assert len(p.leaves) == 6
@@ -130,7 +130,7 @@ def test_beam_span_anonymous_06( ):
       leaf-level attachment;
       first and last leaves in contiguity chain format beam indications.'''
 
-   t = Staff([Sequential(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t.leaves)
 
    r'''\new Staff {
@@ -155,12 +155,12 @@ def test_beam_span_anonymous_07( ):
    '''Contiguous empty containers are OK;
       no beams appear at format-time.'''
 
-   t = Staff(Sequential([ ]) * 3)
+   t = Staff(Container([ ]) * 3)
    p = Beam(t[ : ])
 
    assert len(p.components) == 3
    for x in p.components:
-      assert isinstance(x, Sequential)
+      assert isinstance(x, Container)
    assert len(p.leaves) == 0
 
    r'''
@@ -178,13 +178,13 @@ def test_beam_span_anonymous_07( ):
 def test_beam_span_anonymous_08( ):
    '''Intervening empty containers are OK.'''
 
-   t = Staff(Sequential(Note(0, (1, 8)) * 4) * 2)
-   t.insert(1, Sequential([ ]))
+   t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
+   t.insert(1, Container([ ]))
    p = Beam(t[ : ])
 
    assert len(p.components) == 3
    for x in p.components:
-      assert isinstance(x, Sequential)
+      assert isinstance(x, Container)
    assert len(p.leaves) == 8
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
 
@@ -211,13 +211,13 @@ def test_beam_span_anonymous_08( ):
 def test_beam_span_anonymous_09( ):
    '''Empty containers at edges are OK.'''
 
-   t = Staff(Sequential([ ]) * 2)
-   t.insert(1, Sequential(Note(0, (1, 8)) * 4))
+   t = Staff(Container([ ]) * 2)
+   t.insert(1, Container(Note(0, (1, 8)) * 4))
    p = Beam(t[ : ])
 
    assert len(p.components) == 3
    for x in p.components:
-      assert isinstance(x, Sequential)
+      assert isinstance(x, Container)
    assert len(p.leaves) == 4
    assert t.format == "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
 
@@ -244,10 +244,10 @@ def test_beam_span_anonymous_10( ):
       arguments passed to Beam( ) be *temporarly contiguous*.
       Ie, there's a *leaf temporal contiguity* requirement.'''
 
-   s1 = Sequential([Note(i, (1,8)) for i in range(4)])
-   s1 = Sequential([s1])
-   s2 = Sequential([Note(i, (1,8)) for i in range(4,8)])
-   s2 = Sequential([s2])
+   s1 = Container([Note(i, (1,8)) for i in range(4)])
+   s1 = Container([s1])
+   s2 = Container([Note(i, (1,8)) for i in range(4,8)])
+   s2 = Container([s2])
    t = Voice([s1, s2])
    p = Beam(t)
    assert len(p.components) == 1
@@ -299,10 +299,10 @@ def test_beam_span_anonymous_11( ):
    '''Asymmetric structure;
       but otherwise same as immediately above.'''
 
-   s1 = Sequential([Note(i, (1,8)) for i in range(4)])
-   s1 = Sequential([s1])
-   s1 = Sequential([s1])
-   s2 = Sequential([Note(i, (1,8)) for i in range(4,8)])
+   s1 = Container([Note(i, (1,8)) for i in range(4)])
+   s1 = Container([s1])
+   s1 = Container([s1])
+   s2 = Container([Note(i, (1,8)) for i in range(4,8)])
    t = Voice([s1, s2])
 
    p = Beam(t)
@@ -350,8 +350,8 @@ def test_beam_span_anonymous_11( ):
 def test_beam_span_anonymous_12( ):
    '''Docs.'''
 
-   s1 = Sequential([Note(i, (1, 8)) for i in range(2)])
-   s2 = Sequential([Note(i, (1, 8)) for i in range(3, 5)])
+   s1 = Container([Note(i, (1, 8)) for i in range(2)])
+   s2 = Container([Note(i, (1, 8)) for i in range(3, 5)])
    v = Voice([s1, Note(2, (1, 8)), s2])
 
    p = Beam(v)

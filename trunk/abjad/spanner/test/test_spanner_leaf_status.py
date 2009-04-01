@@ -30,7 +30,7 @@ def test_spanner_leaf_status_02( ):
    '''Spanner attached to container with nested contents.'''
 
    t = Voice(run(4))
-   t.insert(2, Sequential(run(2)))
+   t.insert(2, Container(run(2)))
    appictate(t)
    p = Spanner(t[ : 3])
 
@@ -53,7 +53,7 @@ def test_spanner_leaf_status_03( ):
    '''Spanner attached to container with parallel nested contents.'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    appictate(t)
 
    r'''\new Voice {

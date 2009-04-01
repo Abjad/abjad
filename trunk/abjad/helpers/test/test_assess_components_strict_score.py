@@ -23,7 +23,7 @@ def test_assess_components_strict_score_02( ):
    '''True for unincorporated components.
       True across container boundaries.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)
 
    r'''\new Voice {

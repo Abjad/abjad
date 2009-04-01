@@ -5,7 +5,7 @@ import py.test
 def test_container_bequeath_01( ):
    '''Bequeath from sequential to voice.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    t.name = 'foo'
    diatonicize(t)
    Glissando(t[:])
@@ -74,7 +74,7 @@ def test_container_bequeath_01( ):
 def test_container_bequeath_02( ):
    '''Bequeath from sequential to tuplet.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)
@@ -119,7 +119,7 @@ def test_container_bequeath_02( ):
 def test_container_bequeath_03( ):
    '''Bequeath from empty container to leaf.'''
 
-   t = Voice([Sequential(scale(2)), Sequential([ ])])
+   t = Voice([Container(scale(2)), Container([ ])])
    Glissando(t[:])
    Beam(t[:])
 
@@ -149,7 +149,7 @@ def test_container_bequeath_03( ):
 def test_container_bequeath_04( ):
    '''Bequeath from empty container to nonempty container.'''
 
-   t = Voice([Sequential(scale(2)), Sequential([ ])])
+   t = Voice([Container(scale(2)), Container([ ])])
    Glissando(t[:])
    Beam(t[:])
 
@@ -162,7 +162,7 @@ def test_container_bequeath_04( ):
       }
    }'''
 
-   sequential = Sequential([Note(4, (1, 8)), Note(5, (1, 8))])
+   sequential = Container([Note(4, (1, 8)), Note(5, (1, 8))])
    t[1].bequeath(sequential)
 
    r'''\new Voice {
@@ -184,7 +184,7 @@ def test_container_bequeath_05( ):
    '''Trying to bequeath from nonempty container 
       to leaf raises TypeError.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    Beam(t[:])
    diatonicize(t)
 
@@ -195,7 +195,7 @@ def test_container_bequeath_06( ):
    '''Trying to bequeath from nonempty container to 
       nonempty container raises TypeError.'''
    
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    Beam(t[:])
    diatonicize(t)
 

@@ -14,7 +14,7 @@ def fracture_crossing_spanners(components):
 
       Example:
 
-      t = Staff(Sequential(run(2)) * 3)
+      t = Staff(Container(run(2)) * 3)
       diatonicize(t)
       Crescendo(t)
       Beam(t[:])

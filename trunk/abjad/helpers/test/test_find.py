@@ -114,7 +114,7 @@ def test_find_10( ):
    fn = vl1[0]
    fn.name = 'parangaricutirimicuaro'
 
-   seq = Sequential([s1, s2])
+   seq = Container([s1, s2])
 
    assert find(seq, 'parangaricutirimicuaro') == [fn]
    assert find(seq, name = 'parangaricutirimicuaro') == [fn]

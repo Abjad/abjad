@@ -27,7 +27,7 @@ def test_withdraw_from_contained_spanners_01( ):
 def test_withdraw_from_contained_spanners_02( ):
    '''Docs.'''
 
-   t = Staff(Sequential(run(2)) * 3)
+   t = Staff(Container(run(2)) * 3)
    diatonicize(t)
    Beam(t.leaves[:3])
    Beam(t.leaves[3:])

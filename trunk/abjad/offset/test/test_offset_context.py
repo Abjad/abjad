@@ -11,7 +11,7 @@ def test_offset_containers_01( ):
 
 def test_offset_containers_02( ):
    '''thread and score offsets works on threaded sequential staves.'''
-   t = Sequential([Staff(run(4)), Staff(run(4))])
+   t = Container([Staff(run(4)), Staff(run(4))])
    t[0].name = t[1].name = 'staff'
    for i, x in enumerate(t):
       assert x.offset.thread == x.offset.score == i * Rational(4, 8)

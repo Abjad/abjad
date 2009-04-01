@@ -116,7 +116,7 @@ def test_container_setitem_slice_05( ):
 def test_container_setitem_slice_06( ):
    '''Donor and recipient container are the same.'''
    
-   t = Staff(Sequential(run(2)) * 2)
+   t = Staff(Container(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
@@ -151,7 +151,7 @@ def test_container_setitem_slice_06( ):
 def test_container_setitem_slice_07( ):
    '''Donor and recipient container are the same.'''
 
-   t = Staff(Sequential(run(2)) * 2)
+   t = Staff(Container(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
@@ -187,7 +187,7 @@ def test_container_setitem_slice_07( ):
 def test_container_setitem_slice_08( ):
    '''Donor and recipient container are the same.'''
 
-   t = Staff(Sequential(run(2)) * 2)
+   t = Staff(Container(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
@@ -221,7 +221,7 @@ def test_container_setitem_slice_08( ):
 def test_container_setitem_slice_09( ):
    '''Donor and recipient container are the same.'''
 
-   t = Staff(Sequential(run(2)) * 2)
+   t = Staff(Container(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 
@@ -258,7 +258,7 @@ def test_container_setitem_slice_09( ):
 def test_container_setitem_slice_10( ):
    '''Donor and recipient container are the same.'''
 
-   t = Staff(Sequential(run(2)) * 2)
+   t = Staff(Container(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves)
 

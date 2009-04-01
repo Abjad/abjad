@@ -43,7 +43,7 @@ def test_container_remove_02( ):
       Container carries covered spanners forward.
       Container returns after removal.'''
 
-   t = Staff(Sequential(run(2)) * 2)
+   t = Staff(Container(run(2)) * 2)
    diatonicize(t)
    sequential = t[0]
    p = Beam(t[:])

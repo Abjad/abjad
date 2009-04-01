@@ -11,24 +11,20 @@ def test_parentage_reattach_01( ):
    note = t[1]
    receipt = note.parentage._detach( )
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8
            e'8
            f'8
-   }
-   '''
+   }'''
 
    note.parentage._reattach(receipt)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            c'8
            d'8
            e'8
            f'8
-   }
-   '''
+   }'''
    
    assert check(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
@@ -44,43 +40,37 @@ def test_parentage_reattach_02( ):
    p = Beam(t.leaves)
    leaf = t.leaves[0]
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \new Voice {
                    c'8 [
                    d'8
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    receipt = leaf.parentage._detach( )
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \new Voice {
                    d'8
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    assert not check(t)
 
    leaf.parentage._reattach(receipt)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \new Voice {
                    c'8 [
                    d'8
                    e'8
                    f'8 ]
            }
-   }
-   '''
+   }'''
 
    assert check(t)
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
@@ -92,12 +82,11 @@ def test_parentage_reattach_03( ):
       Unspanned containers can reattach to parentage.
       Unspanend containers that reattach are still well formed.'''
 
-   t = Staff(Sequential(run(2)) * 3)
+   t = Staff(Container(run(2)) * 3)
    diatonicize(t)
    sequential = t[1]
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            {
                    c'8
                    d'8
@@ -110,13 +99,11 @@ def test_parentage_reattach_03( ):
                    g'8
                    a'8
            }
-   }
-   '''
+   }'''
    
    receipt = sequential.parentage._detach( )
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            {
                    c'8
                    d'8
@@ -125,16 +112,14 @@ def test_parentage_reattach_03( ):
                    g'8
                    a'8
            }
-   }
-   '''
+   }'''
 
    assert check(t)
    assert check(sequential)
 
    sequential.parentage._reattach(receipt)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            {
                    c'8
                    d'8
@@ -147,8 +132,7 @@ def test_parentage_reattach_03( ):
                    g'8
                    a'8
            }
-   }
-   '''
+   }'''
 
    assert check(t)
    assert check(sequential)
@@ -161,13 +145,12 @@ def test_parentage_reattach_04( ):
       Spanned containers can reattach to parentage.
       Spanned containers that reattach to parentage are again well formed.'''
 
-   t = Staff([Voice(Sequential(run(2)) * 2)])
+   t = Staff([Voice(Container(run(2)) * 2)])
    sequential = t[0][0]
    diatonicize(t)
-   p = Beam(t[0][ : ])
+   p = Beam(t[0][:])
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \new Voice {
                    {
                            c'8 [
@@ -178,29 +161,25 @@ def test_parentage_reattach_04( ):
                            f'8 ]
                    }
            }
-   }
-   '''
+   }'''
 
    receipt = sequential.parentage._detach( )
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \new Voice {
                    {
                            e'8
                            f'8 ]
                    }
            }
-   }
-   '''
+   }'''
 
    assert not check(t)
    assert not check(sequential)
 
    sequential.parentage._reattach(receipt)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
            \new Voice {
                    {
                            c'8 [
@@ -211,8 +190,7 @@ def test_parentage_reattach_04( ):
                            f'8 ]
                    }
            }
-   }
-   '''
+   }'''
 
    assert check(t)
    assert check(sequential)

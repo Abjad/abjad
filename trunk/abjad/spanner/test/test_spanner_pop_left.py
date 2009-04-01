@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_pop_left_01( ):
+def test_spanner_pop_left_01( ):
    '''Remove and return leftmost component in spanner.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    p = Beam(t[:])
    

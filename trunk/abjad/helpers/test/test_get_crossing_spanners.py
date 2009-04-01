@@ -6,7 +6,7 @@ def test_get_crossing_spanners_01( ):
    '''Return unordered set of spanners crossing
       over the begin- or end-bounds of thread-contiguous components.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
@@ -43,7 +43,7 @@ def test_get_crossing_spanners_02( ):
    '''Trying to get crossing spanners across 
       non-thread-contiguous components raises ContiguityError.'''
 
-   t = Sequential(Voice(run(2)) * 2)
+   t = Container(Voice(run(2)) * 2)
    diatonicize(t)
    Beam(t.leaves[:2])
    Slur(t.leaves[2:])

@@ -8,7 +8,7 @@ def testget_dominant_spanners_01( ):
       at which spanner attaches to subelement of first
       component in list.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -41,7 +41,7 @@ def testget_dominant_spanners_01( ):
 def testget_dominant_spanners_02( ):
    '''Beam, glissando and trill all dominante second sequential.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -58,7 +58,7 @@ def testget_dominant_spanners_02( ):
 def testget_dominant_spanners_03( ):
    '''Glissando and trill dominate last sequential.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -74,7 +74,7 @@ def testget_dominant_spanners_03( ):
 def testget_dominant_spanners_04( ):
    '''Beam and trill dominate first two sequentials.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -90,7 +90,7 @@ def testget_dominant_spanners_04( ):
 def testget_dominant_spanners_05( ):
    '''Glissando and trill dominate last two sequentials.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -106,7 +106,7 @@ def testget_dominant_spanners_05( ):
 def testget_dominant_spanners_06( ):
    '''Only trill dominates all three sequentials.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -121,7 +121,7 @@ def testget_dominant_spanners_06( ):
 def testget_dominant_spanners_07( ):
    '''Only trill dominates voice.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -138,7 +138,7 @@ def testget_dominant_spanners_08( ):
       Note that trill attaches to notes.
       Note that beam and glissando attach to sequentials.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])

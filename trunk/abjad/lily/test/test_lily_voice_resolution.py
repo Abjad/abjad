@@ -3,12 +3,12 @@ import py.test
 
 
 def test_lily_voice_resolution_01( ):
-   '''Sequential with a sequence of leaves,
+   '''Container with a sequence of leaves,
       in the middle of which there is a parallel.
       How does LilyPond resolve voices?'''
 
-   t = Sequential(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t = Container(run(4))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -44,7 +44,7 @@ def test_lily_voice_resolution_02( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -80,7 +80,7 @@ def test_lily_voice_resolution_03( ):
       How does LilyPond resolve voices?'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -188,7 +188,7 @@ def test_lily_voice_resolution_05( ):
 def test_lily_voice_resolution_06( ):
    '''Two like-named voices in two differently named staves.'''
 
-   t = Sequential(Staff([Voice(scale(2))]) * 2)
+   t = Container(Staff([Voice(scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
@@ -203,10 +203,10 @@ def test_lily_voice_resolution_06( ):
 
 
 def test_lily_voice_resolution_07( ):
-   '''Sequential containing a run of leaves.
+   '''Container containing a run of leaves.
       Two like-structured parallels in the middle of the run.'''
 
-   t = Sequential(run(2))
+   t = Container(run(2))
    t[1:1] = Parallel(Voice(run(2)) * 2) * 2
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'

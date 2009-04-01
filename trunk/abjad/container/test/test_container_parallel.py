@@ -14,7 +14,7 @@ def test_container_parallel_01( ):
    assert not RhythmicStaff([ ]).parallel
    assert not RigidMeasure((4, 8), [ ]).parallel
    assert Score([ ]).parallel
-   assert not Sequential([ ]).parallel
+   assert not Container([ ]).parallel
    assert not Staff([ ]).parallel
    assert StaffGroup([ ]).parallel
    assert not Voice([ ]).parallel

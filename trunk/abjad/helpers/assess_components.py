@@ -386,8 +386,8 @@ def __are_thread_contiguous_components(expr, allow_orphans = True):
 
       t = Voice(run(4))
       t.insert(2, Voice(run(2)))
-      Sequential(t[:2])
-      Sequential(t[-2:])
+      Container(t[:2])
+      Container(t[-2:])
       diatonicize(t)
 
       \new Voice {

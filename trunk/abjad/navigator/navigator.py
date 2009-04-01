@@ -180,6 +180,7 @@ class _Navigator(_Abjad):
       candidates = next._navigator._firstLeaves
       return self._findFellowBead(candidates)
 
+   ## TODO: Can _Navigator._nextLeaves deprecate? ##
    @property
    def _nextLeaves(self):
       '''Returns list of next leaf/leaves regardless of "thread" or type 
@@ -244,6 +245,7 @@ class _Navigator(_Abjad):
       candidates = prev._navigator._lastLeaves
       return self._findFellowBead(candidates)
 
+   ## TODO: Can _Navigator._prevLeaves deprecate? ##
    @property
    def _prevLeaves(self):
       '''Returns list of previous leaf/leaves regardless of "thread" or type 

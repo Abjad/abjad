@@ -49,14 +49,14 @@ def test_span_like_named_02( ):
    No LilyPond problem for like-named containers.
    '''
 
-   t = Sequential(Staff([Voice(run(4))]) * 2)
+   t = Container(Staff([Voice(run(4))]) * 2)
    t[0].name, t[1].name = 'foo', 'foo'
    t[0][0].name, t[1][0].name = 'bar', 'bar'
    appictate(t)
    
    p = Beam(t)
    assert len(p.components) == 1
-   assert isinstance(p.components[0], Sequential)
+   assert isinstance(p.components[0], Container)
    assert len(p.leaves) == 8
    p.clear( )
 
@@ -99,7 +99,7 @@ def test_span_like_named_03( ):
    Like-named containers need not be lexically contiguous.
    '''
 
-   t = Sequential(Staff(Voice(run(4)) * 2) * 2)
+   t = Container(Staff(Voice(run(4)) * 2) * 2)
    t[0].name, t[1].name = 'foo', 'foo'
    t[0].parallel = True
    t[1].parallel = True
@@ -154,7 +154,7 @@ def test_span_like_named_04( ):
    Asymmetric structures are no problem.
    '''
 
-   t = Sequential(Staff(Voice(run(4)) * 2) * 2)
+   t = Container(Staff(Voice(run(4)) * 2) * 2)
    t[0].name, t[1].name = 'foo', 'foo'
    t[0].parallel = True
    t[1].parallel = True

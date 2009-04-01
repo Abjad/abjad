@@ -19,9 +19,9 @@ def test_container_add_02( ):
 
 
 def test_container_add_03( ):
-   '''Addition works on simple Sequentials.'''
-   t1 = Sequential(Note(0, (1, 4))*2)
-   t2 = Sequential(Note(0, (1, 4))*2)
+   '''Addition works on simple Containers.'''
+   t1 = Container(Note(0, (1, 4))*2)
+   t2 = Container(Note(0, (1, 4))*2)
    tadd = t1 + t2
    assert len(tadd) == len(t1) + len(t2)
    assert tadd.format == "{\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"

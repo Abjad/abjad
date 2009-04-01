@@ -7,7 +7,7 @@ import py.test
 def test_withdraw_from_crossing_spanners_01( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
@@ -40,7 +40,7 @@ def test_withdraw_from_crossing_spanners_01( ):
 def test_withdraw_from_crossing_spanners_02( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
@@ -85,7 +85,7 @@ def test_withdraw_from_crossing_spanners_02( ):
 def test_withdraw_from_crossing_spanners_03( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])

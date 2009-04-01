@@ -7,8 +7,8 @@ def test_parentage_thread_signature_01( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
-   t = Sequential(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t = Container(run(4))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -45,7 +45,7 @@ def test_parentage_thread_signature_02( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -81,7 +81,7 @@ def test_parentage_thread_signature_03( ):
       first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -204,7 +204,7 @@ def test_parentage_thread_signature_06( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Sequential(Staff([Voice(scale(2))]) * 2)
+   t = Container(Staff([Voice(scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
@@ -242,7 +242,7 @@ def test_parentage_thread_signature_07( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Sequential(run(2))
+   t = Container(run(2))
    t[1:1] = Parallel(Voice(run(1)) * 2) * 2
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'

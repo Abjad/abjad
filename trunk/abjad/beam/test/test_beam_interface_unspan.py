@@ -2,32 +2,26 @@ from abjad import *
 
 
 def test_beam_interface_unspan_01( ):
-   '''
-   _BeamInterface unspan( ) clears any beam spanner attaching to leaf t.
-   '''
+   '''_BeamInterface unspan( ) clears any beam spanner attaching to leaf t.'''
 
    t = Staff(scale(4))
    p = Beam(t[ : ])
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       c'8 [
       d'8
       e'8
       f'8 ]
-   }
-   '''
+   }'''
 
    t[0].beam.unspan( )
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       c'8
       d'8
       e'8
       f'8
-   }
-   '''
+   }'''
 
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
@@ -39,16 +33,13 @@ def test_beam_interface_unspan_01( ):
 
 
 def test_beam_interface_unspan_02( ):
-   '''
-   t.beam.unspan( ) clears any beam spanner attaching to container t.
-   '''
+   '''t.beam.unspan( ) clears any beam spanner attaching to container t.'''
 
-   t = Staff(Sequential(run(2)) * 2)
+   t = Staff(Container(run(2)) * 2)
    diatonicize(t)
    p = Beam(t[ : ]) 
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       {
          c'8 [
          d'8
@@ -57,13 +48,11 @@ def test_beam_interface_unspan_02( ):
          e'8
          f'8 ]
       }
-   }
-   '''
+   }'''
    
    t[0].beam.unspan( )
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       {
          c'8
          d'8
@@ -72,8 +61,7 @@ def test_beam_interface_unspan_02( ):
          e'8
          f'8
       }
-   }
-   '''
+   }'''
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n}"
 

@@ -32,8 +32,8 @@ def test_assess_components_thread_contiguous_02( ):
 
    t = Voice(run(4))
    t.insert(2, Voice(run(2)))
-   Sequential(t[:2])
-   Sequential(t[-2:])
+   Container(t[:2])
+   Container(t[-2:])
    diatonicize(t)
 
    r'''\new Voice {
@@ -63,8 +63,8 @@ def test_assess_components_thread_contiguous_03( ):
 
    t = Voice(run(4))
    t.insert(2, Voice(run(2)))
-   Sequential(t[:2])
-   Sequential(t[-2:])
+   Container(t[:2])
+   Container(t[-2:])
    diatonicize(t)
 
    r'''\new Voice {

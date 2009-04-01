@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_remove_01( ):
+def test_spanner_remove_01( ):
    '''Remove interior component from spanner.
       Remove spanner from component's aggregator.
       Spanner is left discontiguous and score no longer checks.
@@ -34,7 +34,7 @@ def test_remove_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
    
 
-def test_remove_02( ):
+def test_spanner_remove_02( ):
    '''Remove last component from spanner.
       Remove spanner from component's aggregator.
       Here an end element removes from spanner.
@@ -42,7 +42,7 @@ def test_remove_02( ):
       Still not composer-safe.
       Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    p = Beam(t[:])
    

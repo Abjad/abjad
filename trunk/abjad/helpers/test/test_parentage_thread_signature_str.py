@@ -8,8 +8,8 @@ def test_parentage_thread_signature_str_01( ):
       Signature contains no explicit voice, staff or score.
       Outermost sequentials acts as signature root.'''
 
-   t = Sequential(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t = Container(run(4))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -34,7 +34,7 @@ def test_parentage_thread_signature_str_01( ):
 
    '''abjad> print t.leaves[2].parentage._threadSignature
 
-       root: Sequential-4274576 (4274576)
+       root: Container-4274576 (4274576)
       score: 
       staff: 
       voice: 
@@ -49,7 +49,7 @@ def test_parentage_thread_signature_str_02( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -88,7 +88,7 @@ def test_parentage_thread_signature_str_03( ):
       Anonymous voice acts as signature root.'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Sequential(run(2)) * 2))
+   t.insert(2, Parallel(Container(run(2)) * 2))
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -207,7 +207,7 @@ def test_parentage_thread_signature_str_06( ):
       Signature contains no score.
       Outermost sequential acts as signature root.'''
 
-   t = Sequential(Staff([Voice(scale(2))]) * 2)
+   t = Container(Staff([Voice(scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
@@ -234,7 +234,7 @@ def test_parentage_thread_signature_str_06( ):
 
    '''abjad> print t.leaves[2].parentage._threadSignature
 
-       root: Sequential-4393200 (4393200)
+       root: Container-4393200 (4393200)
       score: 
       staff: Staff-staff2
       voice: Voice-voicefoo
@@ -243,7 +243,7 @@ def test_parentage_thread_signature_str_06( ):
    
 def test_parentage_thread_signature_str_07( ):
 
-   t = Sequential(run(2))
+   t = Container(run(2))
    t[1:1] = Parallel(Voice(run(1)) * 2) * 2
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'
@@ -279,7 +279,7 @@ def test_parentage_thread_signature_str_07( ):
    
    '''abjad> print t.leaves[2].parentage._threadSignature
 
-       root: Sequential-4274704 (4274704)
+       root: Container-4274704 (4274704)
       score: 
       staff: 
       voice: Voice-soprano

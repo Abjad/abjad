@@ -54,7 +54,7 @@ def test_coalesce_06( ):
 def test_coalesce_07( ):
    '''Coalesce works on equally named Staves but not on differently named
    Voices.'''
-   t = Sequential(Staff([Voice(run(4))]) * 2)
+   t = Container(Staff([Voice(run(4))]) * 2)
    t[0].name = t[1].name = 'staffOne'
    r'''
    {
@@ -77,7 +77,7 @@ def test_coalesce_07( ):
    }
    '''
    result = coalesce(t)
-   assert isinstance(result, Sequential)  
+   assert isinstance(result, Container)  
    assert len(result) == 1
    assert isinstance(result[0], Staff)
    assert len(result[0]) == 2
@@ -111,7 +111,7 @@ def test_coalesce_07( ):
 
 def test_coalesce_10( ):
    '''Parallel Voices within parallel Staves within parallel
-   StaffGroups within a single Sequential coalesce correctly.'''
+   StaffGroups within a single Container coalesce correctly.'''
    v1 = Voice(Note(0, (1, 4))*2)
    v1.name = '1'
    v2 = Voice(Note(2, (1, 4))*2)
@@ -131,7 +131,7 @@ def test_coalesce_10( ):
    s1.name = 'sg'
    s2 = s1.copy( )
    s2.name = 'sg'
-   s = Sequential([s1, s2])
+   s = Container([s1, s2])
 
    coalesce(s)
    assert len(s) == 1

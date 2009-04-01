@@ -177,7 +177,7 @@ def test_leaf_split_binary_21( ):
    '''Split leaf is not tied again when a Container containing it is 
       already Tie-spanned.'''
 
-   t = Staff(Sequential(run(4)) * 2)
+   t = Staff(Container(run(4)) * 2)
    s = Tie(t[:])
    new = leaf_split_binary((5, 64), t[0][0])
 

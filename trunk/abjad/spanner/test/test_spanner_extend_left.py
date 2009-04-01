@@ -4,7 +4,7 @@ from abjad import *
 def test_spanner_extend_left_01( ):
    '''Extend spanner to the left.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    p = Beam(t[1])
 
@@ -47,7 +47,7 @@ def test_spanner_extend_left_01( ):
 def test_spanner_extend_left_02( ):
    '''Extend spanner to the left.'''
    
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    p = Beam(t[1])
 

@@ -20,7 +20,7 @@ def test_assess_components_strict_none_01( ):
 def test_assess_components_strict_none_02( ):
    '''True for strictly contiguous components.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)
 
    r'''\new Voice {

@@ -64,7 +64,7 @@ def test_give_dominant_spanners_to_01( ):
 def test_give_dominant_spanners_to_02( ):
    '''Not composer-safe.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)
    Beam(t[:])
 

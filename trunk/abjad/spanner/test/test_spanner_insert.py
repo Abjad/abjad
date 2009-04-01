@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_insert_01( ):
+def test_spanner_insert_01( ):
    '''Insert component in spanner at index i.
       Add spanner to component's aggregator.
       Component then knows about spanner and vice versa.
@@ -25,13 +25,13 @@ def test_insert_01( ):
    assert not check(t)
 
 
-def test_insert_02( ):
+def test_spanner_insert_02( ):
    '''Insert component at index zero in spanner.
       This operation does not mangle spanner.
       Operation is still not composer-safe, however.
       Note that p.append( ) and p.append_left( ) are composer-safe.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    p = Beam(t[1])
 

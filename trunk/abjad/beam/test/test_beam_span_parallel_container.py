@@ -17,7 +17,7 @@ def test_beam_span_parallel_container_01( ):
 def test_beam_span_parallel_container_02( ):
    '''Nonempty spanned parallel container.'''
 
-   t = Parallel(Sequential(run(4)) * 2)
+   t = Parallel(Container(run(4)) * 2)
    appictate(t)
 
    assert py.test.raises(ContiguityError, 'p = Beam(t)')
@@ -44,15 +44,15 @@ def test_beam_span_parallel_container_02( ):
 
 
 def test_beam_span_parallel_container_03( ):
-   '''Sequential container accepts spanner,
+   '''Container container accepts spanner,
       even lodged within parallel parent container.'''
 
-   t = Parallel(Sequential(run(4)) * 2)
+   t = Parallel(Container(run(4)) * 2)
    appictate(t)
    p = Beam(t[0])
 
    assert len(p.components) == 1
-   assert isinstance(p.components[0], Sequential)
+   assert isinstance(p.components[0], Container)
    assert t.format == "<<\n\t{\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8 ]\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
 
    r'''<<
@@ -75,7 +75,7 @@ def test_beam_span_parallel_container_04( ):
    '''Abjad forbids but LilyPond is happy.'''
 
    t = Staff(run(4))
-   t.insert(2, Parallel(Sequential(run(4)) * 2))
+   t.insert(2, Parallel(Container(run(4)) * 2))
    appictate(t)
 
    assert py.test.raises(ContiguityError, 'p = Beam(t)')

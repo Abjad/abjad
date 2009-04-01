@@ -43,7 +43,7 @@ def test_container_setitem_integer_02( ):
       f'8
    }'''
 
-   t[1] = Sequential(run(3, Rational(1, 16)))
+   t[1] = Container(run(3, Rational(1, 16)))
 
    r'''\new Voice {
       c'8 [ \glissando
@@ -64,7 +64,7 @@ def test_container_setitem_integer_03( ):
    '''Directly spanned contains hand over correctly to a single leaf.
       Note here that only the sequentials are initially spanned.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)   
    Beam(t[:])
    Glissando(t[:])
@@ -98,7 +98,7 @@ def test_container_setitem_integer_04( ):
    '''Indirectly spanned containers hand over correctly to a single leaf.
       Notice here that only LEAVES are initially spanned.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)   
    Beam(t.leaves)
    Glissando(t.leaves)
@@ -131,7 +131,7 @@ def test_container_setitem_integer_04( ):
 def test_container_setitem_integer_05( ):
    '''Directly spanned containers hand over to other containers correctly.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)   
    Beam(t[:])
    Glissando(t[:])
@@ -168,7 +168,7 @@ def test_container_setitem_integer_05( ):
 def test_container_setitem_integer_06( ):
    '''Indirectly spanned containers hand over correctly to a single leaf.'''
 
-   t = Voice(Sequential(run(2)) * 2)
+   t = Voice(Container(run(2)) * 2)
    diatonicize(t)   
    Beam(t.leaves)
    Glissando(t.leaves)
@@ -202,7 +202,7 @@ def test_container_setitem_integer_07( ):
    '''Indirectly HALF-spanned containers hand over correctly to a 
    single leaf. WOW!'''
 
-   t = Voice(Sequential(run(4)) * 2)
+   t = Voice(Container(run(4)) * 2)
    diatonicize(t)   
    Beam(t.leaves[0:6])
    r'''\new Voice {
@@ -302,7 +302,7 @@ def test_container_setitem_integer_09( ):
    }'''
 
    u = Voice(notes[3:])
-   Sequential(u[1:3])
+   Container(u[1:3])
    Glissando(u.leaves)
    Slur(u[1].leaves)
 

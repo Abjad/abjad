@@ -7,7 +7,7 @@ def testget_dominant_spanners_between_01( ):
    '''Return Python list of (spanner, index) pairs.
       Each spanner dominates a *crack* between components.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -39,7 +39,7 @@ def testget_dominant_spanners_between_01( ):
 def testget_dominant_spanners_between_02( ):
    '''Beam and trill both dominate crack at t[1:1].'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -55,7 +55,7 @@ def testget_dominant_spanners_between_02( ):
 def testget_dominant_spanners_between_03( ):
    '''Glissando and trill both dominate crack at t[2:2].'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -71,7 +71,7 @@ def testget_dominant_spanners_between_03( ):
 def testget_dominant_spanners_between_04( ):
    '''No spanners dominate 'crack' following voice.'''
 
-   t = Voice(Sequential(run(2)) * 3)
+   t = Voice(Container(run(2)) * 3)
    diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])

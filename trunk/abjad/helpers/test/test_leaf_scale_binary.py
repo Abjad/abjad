@@ -229,7 +229,7 @@ def test_leaf_scale_binary_40( ):
 
    t = Staff(Voice(run(2)) * 2)
    s = py.test.raises(ContiguityError, 'Tie(t[:])')
-   t = Staff(Sequential(run(2)) * 2)
+   t = Staff(Container(run(2)) * 2)
    s = Tie(t[:])
    new = leaf_scale_binary((5, 32), t[0][0])
 

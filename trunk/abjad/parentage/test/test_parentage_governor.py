@@ -11,8 +11,7 @@ def test_parentage_governor_01( ):
    t[0][0].name = 'voice 1'
    t[0][1].name = 'voice 2'
 
-   r'''
-   \new Voice {
+   r'''\new Voice {
       <<
          \context Voice = "voice 1" {
             c'8
@@ -23,8 +22,7 @@ def test_parentage_governor_01( ):
             f'8
          }
       >>
-   }
-   '''
+   }'''
 
    assert t.leaves[0].parentage._governor is t[0][0]
    assert t.leaves[1].parentage._governor is t[0][0]
@@ -44,10 +42,9 @@ def test_parentage_governor_03( ):
       such that the next element in the parentage of client is
       either a parallel container or None.'''
 
-   t = Staff([Voice([Sequential(scale(4))])])
+   t = Staff([Voice([Container(scale(4))])])
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       \new Voice {
          {
             c'8
@@ -56,8 +53,7 @@ def test_parentage_governor_03( ):
             f'8
          }
       }
-   }
-   '''
+   }'''
    
    assert t.leaves[0].parentage._governor is t
    assert t.leaves[1].parentage._governor is t
@@ -70,10 +66,9 @@ def test_parentage_governor_04( ):
       such that the next element in the parentage of client is
       either a parallel container or None.'''
 
-   t = Staff([Voice([Sequential(scale(4))])])
+   t = Staff([Voice([Container(scale(4))])])
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       \new Voice {
          {
             c'8
@@ -82,8 +77,7 @@ def test_parentage_governor_04( ):
             f'8
          }
       }
-   }
-   '''
+   } '''
 
    assert t[0][0].parentage._governor is t
    assert t[0].parentage._governor is t
