@@ -26,6 +26,8 @@ from abjad.tie.interface import _TieInterface
 from abjad.text.interface import _TextInterface
 from abjad.tremolo.interface import _TremoloInterface
 from abjad.trill.interface import _TrillInterface
+from abjad.tuplet.bracket import _TupletBracketInterface
+from abjad.tuplet.number import _TupletNumberInterface
 from abjad.update.interface import _UpdateInterface
 from abjad.voice.interface import _VoiceInterface
 import copy
@@ -60,6 +62,8 @@ class _Component(_Abjad):
       self._tie = _TieInterface(self)
       self._tremolo = _TremoloInterface(self)
       self._trill = _TrillInterface(self)
+      self._tupletbracket = _TupletBracketInterface(self)
+      self._tupletnumber = _TupletNumberInterface(self)
       self._update = _UpdateInterface(self)
       ## Observer interfaces must instantiate lexically after _UpdateInterface
       self._numbering = _NumberingInterface(self, self._update)
@@ -269,6 +273,14 @@ class _Component(_Abjad):
       def fget(self):
          return self._trill
       return property(**locals( ))
+   
+   @property
+   def tupletbracket(self):
+      return self._tupletbracket
+
+   @property
+   def tupletnumber(self):
+      return self._tupletnumber
 
    @property
    def voice(self):
