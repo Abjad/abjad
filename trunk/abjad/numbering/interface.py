@@ -1,4 +1,5 @@
-from abjad.core.interface import _Interface
+#from abjad.core.interface import _Interface
+from abjad.core.observer import _Observer
 from abjad.rational.rational import Rational
 
 
@@ -16,13 +17,15 @@ from abjad.rational.rational import Rational
 ##       Our more usual way of doing things is to navigate to a single
 ##       component and ask for attributes there.
 
-class _NumberingInterface(_Interface):
+#class _NumberingInterface(_Interface):
+class _NumberingInterface(_Observer):
 
    def __init__(self, _client, updateInterface):
-      _Interface.__init__(self, _client)
+      #_Interface.__init__(self, _client)
+      _Observer.__init__(self, _client, updateInterface)
       self._leaf = 0
       self._measure = 0
-      updateInterface._observers.append(self)
+      #updateInterface._observers.append(self)
 
    ## PRIVATE METHODS ##
 
@@ -50,16 +53,10 @@ class _NumberingInterface(_Interface):
 
    @property
    def leaf(self):
-      ## TODO: Can't these first three lines be abstracted out?
-      update = self._client._update
-      if not update._currentToRoot:
-         update._updateAll( )
+      self._makeSubjectUpdateIfNecessary( )
       return self._leaf
    
    @property
    def measure(self):
-      ## TODO: Can't these first three lines be abstracted out?
-      update = self._client._update
-      if not update._currentToRoot:
-         update._updateAll( )
+      self._makeSubjectUpdateIfNecessary( )
       return self._measure

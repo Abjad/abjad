@@ -1,14 +1,17 @@
-from abjad.core.interface import _Interface
+#from abjad.core.interface import _Interface
+from abjad.core.observer import _Observer
 from abjad.rational.rational import Rational
 
 
-class _OffsetInterface(_Interface):
+#class _OffsetInterface(_Interface):
+class _OffsetInterface(_Observer):
 
    def __init__(self, _client, updateInterface):
-      _Interface.__init__(self, _client)
+      #_Interface.__init__(self, _client)
+      _Observer.__init__(self, _client, updateInterface)
       self._score = Rational(0)
       self._thread = Rational(0)
-      updateInterface._observers.append(self)
+      #updateInterface._observers.append(self)
 
    ## PRIVATE METHODS ##
 
@@ -36,12 +39,10 @@ class _OffsetInterface(_Interface):
 
    @property
    def score(self):
-      if not self._client._update._currentToRoot:
-         self._client._update._updateAll( )
+      self._makeSubjectUpdateIfNecessary( )
       return self._score
 
    @property
    def thread(self):
-      if not self._client._update._currentToRoot:
-         self._client._update._updateAll( )
+      self._makeSubjectUpdateIfNecessary( )
       return self._thread
