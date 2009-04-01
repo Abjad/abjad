@@ -28,7 +28,8 @@ def test_container_formatter_01( ):
 def test_container_formatter_02( ):
    '''before, after, opening, closing format correctly on Parallel.'''
 
-   t = Parallel(Note(1, (1, 4))*4)
+   t = Container(Note(1, (1, 4))*4)
+   t.parallel = True
    t.formatter.before.append('before')
    t.formatter.after.append('after')
    t.formatter.opening.append('opening')

@@ -1,5 +1,6 @@
 from abjad import *
 
+
 def test_coalesce_01( ):
    '''coalesce does nothing and returns None on Leaves.'''
    t = Note(1, (1, 4))

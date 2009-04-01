@@ -127,7 +127,8 @@ def test_offset_leaves_17( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    v3 = Voice(run(4))
-   t = Staff([Parallel([v1, v2]), v3])
+   t = Staff([Container([v1, v2]), v3])
+   t[0].parallel = True
    for i, x in enumerate(v3.leaves):
       assert x.offset.thread == i * Rational(1, 8)
       assert x.offset.score == i * Rational(1, 8) + Rational(4, 8)
@@ -138,7 +139,8 @@ def test_offset_leaves_18( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    v3 = Voice(run(4))
-   t = Staff([v3, Parallel([v1, v2])])
+   t = Staff([v3, Container([v1, v2])])
+   t[1].parallel = True
    for i, x in enumerate(v1.leaves):
       assert x.offset.thread == i * Rational(1, 8)
       assert x.offset.score == i * Rational(1, 8) + Rational(4, 8)

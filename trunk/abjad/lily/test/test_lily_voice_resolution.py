@@ -8,7 +8,8 @@ def test_lily_voice_resolution_01( ):
       How does LilyPond resolve voices?'''
 
    t = Container(run(4))
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -44,7 +45,8 @@ def test_lily_voice_resolution_02( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -80,7 +82,8 @@ def test_lily_voice_resolution_03( ):
       How does LilyPond resolve voices?'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -118,7 +121,8 @@ def test_lily_voice_resolution_04( ):
       How does LilyPond resolve voices?'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -156,7 +160,8 @@ def test_lily_voice_resolution_05( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(run(2)) * 2))
+   t[2].parallel = True
    t[2][0].name = 'foo'
    diatonicize(t)
    t.notehead.color = 'red'
@@ -207,7 +212,8 @@ def test_lily_voice_resolution_07( ):
       Two like-structured parallels in the middle of the run.'''
 
    t = Container(run(2))
-   t[1:1] = Parallel(Voice(run(2)) * 2) * 2
+   t[1:1] = Container(Voice(run(2)) * 2) * 2
+   t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'

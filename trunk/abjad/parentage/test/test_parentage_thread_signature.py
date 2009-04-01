@@ -8,7 +8,8 @@ def test_parentage_thread_signature_01( ):
       first voice, staff and score in the parentage of component.'''
 
    t = Container(run(4))
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -45,7 +46,8 @@ def test_parentage_thread_signature_02( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -81,7 +83,8 @@ def test_parentage_thread_signature_03( ):
       first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -117,7 +120,8 @@ def test_parentage_thread_signature_04( ):
       first voice, staff and score in the parentage of component.'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -157,7 +161,8 @@ def test_parentage_thread_signature_05( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(run(2)) * 2))
+   t[2].parallel = True
    t[2][0].name = 'foo'
    diatonicize(t)
    t.notehead.color = 'red'
@@ -243,7 +248,8 @@ def test_parentage_thread_signature_07( ):
       first voice, staff and score in parentage of component.'''
 
    t = Container(run(2))
-   t[1:1] = Parallel(Voice(run(1)) * 2) * 2
+   t[1:1] = Container(Voice(run(1)) * 2) * 2
+   t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'

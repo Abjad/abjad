@@ -74,7 +74,8 @@ def test_bead_navigation_04( ):
 
 def test_bead_navigation_05( ):
    '''NextBead and prevBead work on simple Parallel.'''
-   t = Parallel([Note(i, (1,8)) for i in range(4)])
+   t = Container([Note(i, (1,8)) for i in range(4)])
+   t.parallel = True
    assert t[0]._navigator._nextBead is None
    assert t[1]._navigator._nextBead is None
    assert t[2]._navigator._nextBead is None

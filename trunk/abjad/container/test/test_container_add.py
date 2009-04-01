@@ -79,23 +79,27 @@ def test_container_add_06( ):
 
 def test_container_add_10( ):
    '''Addition raises exception on parallels of notes.'''
-   t1 = Parallel(Note(0, (1, 4))*2)
-   t2 = Parallel(Note(0, (1, 4))*2)
+   t1 = Container(Note(0, (1, 4))*2)
+   t1.parallel = True
+   t2 = Container(Note(0, (1, 4))*2)
+   t2.parallel = True
    assert t1 + t2 is None
-   #assert raises(TypeError, 't1 + t2')
     
 
 def test_container_add_11( ):
    '''Addition works on two matching parallel containers each with 
    a single threadable Voice child.'''
-   t1 = Parallel([Voice(Note(0, (1, 4))*2)])
-   t2 = Parallel([Voice(Note(0, (1, 4))*2)])
+   t1 = Container([Voice(Note(0, (1, 4))*2)])
+   t1.parallel = True
+   t2 = Container([Voice(Note(0, (1, 4))*2)])
+   t2.parallel = True
    t1[0].name = t2[0].name = 'voiceOne'
    tadd = t1 + t2
    assert check(tadd)
    assert check(t1)
    assert check(t2)
-   assert isinstance(tadd, Parallel)  
+   assert isinstance(tadd, Container)  
+   assert tadd.parallel
    assert len(tadd) == 1
    assert isinstance(tadd[0], Voice)
    assert len(tadd[0]) == 4

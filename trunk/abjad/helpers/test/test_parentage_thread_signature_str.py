@@ -9,7 +9,8 @@ def test_parentage_thread_signature_str_01( ):
       Outermost sequentials acts as signature root.'''
 
    t = Container(run(4))
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -49,7 +50,8 @@ def test_parentage_thread_signature_str_02( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -88,7 +90,8 @@ def test_parentage_thread_signature_str_03( ):
       Anonymous voice acts as signature root.'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -127,7 +130,8 @@ def test_parentage_thread_signature_str_04( ):
       Outermost anonymous voice acts as signature root.'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(run(2)) * 2))
+   t[2].parallel = True
    diatonicize(t)
    t.notehead.color = 'red'
 
@@ -167,7 +171,8 @@ def test_parentage_thread_signature_str_05( ):
 
    t = Voice(run(4))
    t.name = 'foo'
-   t.insert(2, Parallel(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(run(2)) * 2))
+   t[2].parallel = True
    t[2][0].name = 'foo'
    diatonicize(t)
    t.notehead.color = 'red'
@@ -244,7 +249,8 @@ def test_parentage_thread_signature_str_06( ):
 def test_parentage_thread_signature_str_07( ):
 
    t = Container(run(2))
-   t[1:1] = Parallel(Voice(run(1)) * 2) * 2
+   t[1:1] = Container(Voice(run(1)) * 2) * 2
+   t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'

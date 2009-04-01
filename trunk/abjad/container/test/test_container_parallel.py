@@ -9,7 +9,6 @@ def test_container_parallel_01( ):
    assert not FixedDurationTuplet((2, 8), [ ]).parallel
    assert not FixedMultiplierTuplet((2, 3), [ ]).parallel
    assert GrandStaff([ ]).parallel
-   assert Parallel([ ]).parallel
    assert not RhythmicSketchStaff([ ]).parallel
    assert not RhythmicStaff([ ]).parallel
    assert not RigidMeasure((4, 8), [ ]).parallel

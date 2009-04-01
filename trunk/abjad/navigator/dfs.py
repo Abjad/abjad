@@ -78,6 +78,8 @@ def _advanceNodeDF(node, rank, direction):
 def _isNodeForbidden(node, forbid):
    if forbid is None:
       return False
+   elif forbid == 'parallel':
+      return getattr(node, 'parallel', False)
    else:
       return isinstance(node, forbid)
 

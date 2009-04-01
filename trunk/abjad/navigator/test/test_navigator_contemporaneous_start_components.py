@@ -55,7 +55,8 @@ def test_navigator_contemporaneous_start_components_01( ):
 def test_navigator_contemporaneous_start_components_02( ):
    '''With parallel containers.'''
 
-   t = Voice([Parallel(Container(run(2)) * 2)] + run(2))
+   t = Voice([Container(Container(run(2)) * 2)] + run(2))
+   t[0].parallel = True
    diatonicize(t)
 
    r'''\new Voice {
@@ -77,7 +78,7 @@ def test_navigator_contemporaneous_start_components_02( ):
 
    result = t._navigator._contemporaneousStartComponents
 
-   "[Parallel(Container(c'8, d'8), Container(e'8, f'8)), Note(e', 8), Container(c'8, d'8), Voice{3}, Note(c', 8), Container(e'8, f'8)]"
+   "[Container(Container(c'8, d'8), Container(e'8, f'8)), Note(e', 8), Container(c'8, d'8), Voice{3}, Note(c', 8), Container(e'8, f'8)]"
 
    assert len(result) == 6
    assert t in result

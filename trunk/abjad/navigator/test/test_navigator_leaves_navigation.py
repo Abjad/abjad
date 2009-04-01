@@ -37,7 +37,8 @@ def test_navigator_next_leaves_02( ):
 
 def test_navigator_next_leaves_03( ):
    '''NextLeaf works on simple Parallel.'''
-   t = Parallel([Note(i, (1,8)) for i in range(4)])
+   t = Container([Note(i, (1,8)) for i in range(4)])
+   t.parallel = True
    assert t[0]._navigator._nextLeaves is None
    assert t[1]._navigator._nextLeaves is None
    assert t[2]._navigator._nextLeaves is None
@@ -230,7 +231,8 @@ def test_prevLeaves_navigation_02( ):
 
 def test_prevLeaves_navigation_03( ):
    '''prevLeaves works on simple Parallel.'''
-   t = Parallel([Note(i, (1,8)) for i in range(4)])
+   t = Container([Note(i, (1,8)) for i in range(4)])
+   t.parallel = True
    assert t[0]._navigator._prevLeaves is None
    assert t[1]._navigator._prevLeaves is None
    assert t[2]._navigator._prevLeaves is None

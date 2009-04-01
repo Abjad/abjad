@@ -24,7 +24,7 @@ def measure_build(pitches):
    result = DynamicMeasure([ ])
    for seq in pitches:
       result.append(desordre_run(seq))
-   ### make denominator 4
+   ## make denominator 4
    if result.meter.effective.denominator == 1:
       result.denominator = 4
    return result
@@ -47,8 +47,9 @@ def desordre_run(pitches):
    v_higher = Voice([chord])
    v_higher.name = 'rh_higher'
    v_higher.voice.number = 1
-   p = Parallel([v_lower, v_higher])
-   ### make all 1/8 beats breakable
+   p = Container([v_lower, v_higher])
+   p.parallel = True
+   ## make all 1/8 beats breakable
    for n in v_lower.leaves[:-1]:
       n.barline.type = ''
    return p
@@ -63,7 +64,7 @@ def load_desordre_pitches(file):
    for line in lines:
       if len(line) == 0:
          pass
-      elif line.startswith('###'):
+      elif line.startswith('##'):
          hand = [ ]
          result.append(hand)
       else:

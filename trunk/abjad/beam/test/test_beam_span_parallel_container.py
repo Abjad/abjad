@@ -5,7 +5,8 @@ import py.test
 def test_beam_span_parallel_container_01( ):
    '''Abjad spanners will not inspect the contents of parallel containers.'''
 
-   t = Parallel([ ])
+   t = Container([ ])
+   t.parallel = True
    p = Beam(t)
 
    assert len(p.components) == 1
@@ -17,7 +18,8 @@ def test_beam_span_parallel_container_01( ):
 def test_beam_span_parallel_container_02( ):
    '''Nonempty spanned parallel container.'''
 
-   t = Parallel(Container(run(4)) * 2)
+   t = Container(Container(run(4)) * 2)
+   t.parallel = True
    appictate(t)
 
    assert py.test.raises(ContiguityError, 'p = Beam(t)')
@@ -47,7 +49,8 @@ def test_beam_span_parallel_container_03( ):
    '''Container container accepts spanner,
       even lodged within parallel parent container.'''
 
-   t = Parallel(Container(run(4)) * 2)
+   t = Container(Container(run(4)) * 2)
+   t.parallel = True
    appictate(t)
    p = Beam(t[0])
 
@@ -75,7 +78,9 @@ def test_beam_span_parallel_container_04( ):
    '''Abjad forbids but LilyPond is happy.'''
 
    t = Staff(run(4))
-   t.insert(2, Parallel(Container(run(4)) * 2))
+   new = Container(Container(run(4)) * 2)
+   new.parallel = True
+   t.insert(2, new)
    appictate(t)
 
    assert py.test.raises(ContiguityError, 'p = Beam(t)')
@@ -111,7 +116,9 @@ def test_beam_span_parallel_container_05( ):
       LilyPond is happy here.'''
 
    t = Staff(run(4))
-   t.insert(2, Parallel([ ]))
+   new = Container([ ])
+   new.parallel = True
+   t.insert(2, new)
    appictate(t)
    p = Beam(t)
 
@@ -135,7 +142,9 @@ def test_beam_span_parallel_container_06( ):
 
    t = Staff(Voice(run(4)) * 2)
    t[0].name, t[1].name = 'foo', 'foo'
-   t.insert(1, Parallel(Voice(run(4)) * 2))
+   new = Container(Voice(run(4)) * 2)
+   new.parallel = True
+   t.insert(1, new)
    t[1][0].name = 'foo'
    t[1][1].name = 'bar'
    appictate(t)

@@ -48,7 +48,8 @@ def test_assess_components_none_thread_04( ):
       Abjad doesn't bother and assigns all four leaves
       to the same thread.'''
 
-   t = Parallel(scale(4))
+   t = Container(scale(4))
+   t.parallel = True
 
    r'''<<
       c'8
@@ -769,7 +770,8 @@ def test_assess_components_none_thread_31( ):
    notes = [Note(n, (1, 8)) for n in range(4)]
    vtop = Voice(Note(12, (1, 8)) * 4)
    vbottom = Voice(Note(0, (1, 8)) * 4)
-   p = Parallel([vtop, vbottom])
+   p = Container([vtop, vbottom])
+   p.parallel = True
    t = Container(notes + [p])
 
    r'''{
@@ -801,7 +803,8 @@ def test_assess_components_none_thread_32( ):
    '''Can not thread across differently named IMPLICIT voices.'''
    
    t = Container(
-      [Parallel(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
+      [Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
+   t[0].parallel = True
    appictate(t)
 
    r'''
@@ -1189,7 +1192,8 @@ def test_assess_components_none_thread_43( ):
    '''Parallel and sequential containers, and leaves, all thead.'''
 
    t = Container(Note(0, (1, 8)) * 4)
-   p = Parallel(Note(0, (1, 8)) * 4)
+   p = Container(Note(0, (1, 8)) * 4)
+   p.parallel = True
    t.insert(2, p)
    appictate(t)
 
@@ -1213,7 +1217,8 @@ def test_assess_components_none_thread_44( ):
    '''Voice, containers and leaves all thread.'''
 
    t = Voice(Note(0, (1, 8)) * 4)
-   p = Parallel(Note(0, (1, 8)) * 4)
+   p = Container(Note(0, (1, 8)) * 4)
+   p.parallel = True
    t.insert(2, p)
    appictate(t)
 
@@ -1238,7 +1243,8 @@ def test_assess_components_none_thread_45( ):
       Iterating through here will be a little tricky.
       But all components do belong to the same thread.'''
 
-   t = Parallel(Container(Note(0, (1, 8)) * 4) * 2)
+   t = Container(Container(Note(0, (1, 8)) * 4) * 2)
+   t.parallel = True
    appictate(t)
 
    r'''<<
@@ -1260,7 +1266,8 @@ def test_assess_components_none_thread_45( ):
 def test_assess_components_none_thread_46( ):
    '''Everything threads.'''
 
-   p = Parallel(Container(Note(0, (1, 8)) * 4) * 2)
+   p = Container(Container(Note(0, (1, 8)) * 4) * 2)
+   p.parallel = True
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(2, p)
    appictate(t)
@@ -1292,7 +1299,8 @@ def test_assess_components_none_thread_46( ):
 def test_assess_components_none_thread_47( ):
    '''Can not thread across differently named anonymous voices.'''
 
-   p = Parallel(Voice(Note(0, (1, 8)) * 4) * 2)
+   p = Container(Voice(Note(0, (1, 8)) * 4) * 2)
+   p.parallel = True
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(2, p)
    appictate(t)

@@ -5,7 +5,8 @@ import py.test
 ### NOTE: all tests operate on the following expression ###
 
 t = Voice(run(4))
-t.insert(2, Parallel(Container(run(2)) * 2))
+t.insert(2, Container(Container(run(2)) * 2))
+t[2].parallel = True
 appictate(t)
 
 r'''
@@ -50,7 +51,7 @@ def test_dfs_default( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(d'8, ef'8)
    d'8
    ef'8
@@ -73,7 +74,7 @@ def test_dfs_default( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(e'8, f'8)
    f'8
    e'8
@@ -106,7 +107,7 @@ def test_dfs_uncapped( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(d'8, ef'8)
    d'8
    ef'8
@@ -135,7 +136,7 @@ def test_dfs_uncapped( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(e'8, f'8)
    f'8
    e'8
@@ -174,19 +175,19 @@ def test_dfs_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(d'8, ef'8)
    d'8
    Container(d'8, ef'8)
    ef'8
    Container(d'8, ef'8)
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(e'8, f'8)
    e'8
    Container(e'8, f'8)
    f'8
    Container(e'8, f'8)
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    '''
    
    ### RIGHT-TO-LEFT ###
@@ -209,19 +210,19 @@ def test_dfs_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(e'8, f'8)
    f'8
    Container(e'8, f'8)
    e'8
    Container(e'8, f'8)
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(d'8, ef'8)
    ef'8
    Container(d'8, ef'8)
    d'8
    Container(d'8, ef'8)
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    '''
 
 
@@ -233,7 +234,7 @@ def test_dfs_restricted( ):
 
    ### LEFT-TO-RIGHT ###
 
-   g = t._navigator._DFS(forbid = Parallel)
+   g = t._navigator._DFS(forbid = 'parallel')
 
    assert g.next( ) is t
    assert g.next( ) is t[0]
@@ -247,14 +248,14 @@ def test_dfs_restricted( ):
    Voice{5}
    c'8
    cs'8
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    fs'8
    g'8
    '''
    
    ### RIGHT-TO-LEFT ###
 
-   g = t._navigator._DFS(forbid = Parallel, direction = 'right')
+   g = t._navigator._DFS(forbid = 'parallel', direction = 'right')
    
    assert g.next( ) is t
    assert g.next( ) is t[4]
@@ -268,7 +269,7 @@ def test_dfs_restricted( ):
    Voice{5}
    g'8
    fs'8
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    cs'8
    c'8
    '''
@@ -304,19 +305,19 @@ def test_dfs_uncapped_and_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(d'8, ef'8)
    d'8
    Container(d'8, ef'8)
    ef'8
    Container(d'8, ef'8)
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(e'8, f'8)
    e'8
    Container(e'8, f'8)
    f'8
    Container(e'8, f'8)
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Voice{5}
    fs'8
    Voice{5}
@@ -350,19 +351,19 @@ def test_dfs_uncapped_and_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(e'8, f'8)
    f'8
    Container(e'8, f'8)
    e'8
    Container(e'8, f'8)
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Container(d'8, ef'8)
    ef'8
    Container(d'8, ef'8)
    d'8
    Container(d'8, ef'8)
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Voice{5}
    cs'8
    Voice{5}
@@ -378,7 +379,7 @@ def test_dfs_uncapped_and_restricted( ):
 
    ### LEFT-TO-RIGHT ###
 
-   g = t[2]._navigator._DFS(capped = False, forbid = Parallel)
+   g = t[2]._navigator._DFS(capped = False, forbid = 'parallel')
    
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -386,7 +387,7 @@ def test_dfs_uncapped_and_restricted( ):
    assert g.next( ) is t[4]
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Voice{5}
    fs'8
    g'8
@@ -395,7 +396,7 @@ def test_dfs_uncapped_and_restricted( ):
    ### RIGHT-TO-LEFT ###
    
    g = t[2]._navigator._DFS(
-      capped = False, forbid = Parallel, direction = 'right')
+      capped = False, forbid = 'parallel', direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -403,7 +404,7 @@ def test_dfs_uncapped_and_restricted( ):
    assert g.next( ) is t[0]
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Voice{5}
    cs'8
    c'8
@@ -417,7 +418,7 @@ def test_dfs_restricted_with_duplicates_allowed( ):
 
    ### LEFT-TO-RIGHT
 
-   g = t._navigator._DFS(forbid = Parallel, unique = False)
+   g = t._navigator._DFS(forbid = 'parallel', unique = False)
 
    assert g.next( ) is t
    assert g.next( ) is t[0]
@@ -438,7 +439,7 @@ def test_dfs_restricted_with_duplicates_allowed( ):
    Voice{5}
    cs'8
    Voice{5}
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Voice{5}
    fs'8
    Voice{5}
@@ -449,7 +450,7 @@ def test_dfs_restricted_with_duplicates_allowed( ):
    ### RIGHT-TO-LEFT ###
 
    g = t._navigator._DFS(
-      forbid = Parallel, unique = False, direction = 'right')
+      forbid = 'parallel', unique = False, direction = 'right')
 
    assert g.next( ) is t
    assert g.next( ) is t[4]
@@ -470,7 +471,7 @@ def test_dfs_restricted_with_duplicates_allowed( ):
    Voice{5}
    fs'8
    Voice{5}
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Voice{5}
    cs'8
    Voice{5}
@@ -487,7 +488,7 @@ def test_dfs_uncapped_and_restricted_with_duplicates_allowed( ):
    ### LEFT-TO-RIGHT ###
 
    g = t[2]._navigator._DFS(
-      capped = False, forbid = Parallel, unique = False)
+      capped = False, forbid = 'parallel', unique = False)
 
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -498,7 +499,7 @@ def test_dfs_uncapped_and_restricted_with_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Voice{5}
    fs'8
    Voice{5}
@@ -509,7 +510,7 @@ def test_dfs_uncapped_and_restricted_with_duplicates_allowed( ):
    ### RIGHT-TO-LEFT ###
 
    g = t[2]._navigator._DFS(
-      capped = False, forbid = Parallel, unique = False, direction = 'right')
+      capped = False, forbid = 'parallel', unique = False, direction = 'right')
 
    assert g.next( ) is t[2]
    assert g.next( ) is t
@@ -520,7 +521,7 @@ def test_dfs_uncapped_and_restricted_with_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Parallel(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Container(d'8, ef'8), Container(e'8, f'8))
    Voice{5}
    cs'8
    Voice{5}

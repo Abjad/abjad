@@ -62,7 +62,8 @@ def test_navigator_is_threadable_04( ):
   
    py.test.skip("Need to figure out what it means for the contents of parallel containers to be 'threadable', 'contiguous' or 'spannable'. Come back to the test case when we're discussing parallel containers.")
 
-   t = Parallel(scale(4))
+   t = Container(scale(4))
+   t.parallel = True
 
    assert not t[0]._navigator._isThreadable(t[1])
    assert not t[1]._navigator._isThreadable(t[2])
@@ -626,7 +627,8 @@ def test_navigator_is_threadable_20( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    v1.name = v2.name = 'voiceOne'
-   t = Parallel([Container([v1, v2])])
+   t = Container([Container([v1, v2])])
+   t.parallel = True
    diatonicize(t)
 
    r'''
@@ -658,7 +660,9 @@ def test_navigator_is_threadable_21( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    v1.name = v2.name = 'voiceOne'
-   t = Container([Parallel([v1]), Parallel([v2])])
+   t = Container([Container([v1]), Container([v2])])
+   t[0].parallel = True
+   t[1].parallel = True
    diatonicize(t)
 
    r'''

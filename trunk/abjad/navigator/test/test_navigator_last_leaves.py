@@ -14,7 +14,8 @@ def test_navigator_last_leaves_01( ):
 def test_navigator_last_leaves_02( ):
    '''Return last leaves from parallel containers.'''
 
-   t = Parallel(Container(run(2)) * 2)
+   t = Container(Container(run(2)) * 2)
+   t.parallel = True
    diatonicize(t)
    leaves = t._navigator._lastLeaves
 
@@ -48,7 +49,8 @@ def test_navigator_last_leaves_03( ):
 def test_navigator_last_leaves_04( ):
    '''Return last leaves from empty parallel containes.'''
 
-   t = Parallel(Container([ ]) * 2)
+   t = Container(Container([ ]) * 2)
+   t.parallel = True
    leaves = t._navigator._lastLeaves
 
    assert len(leaves) == 0

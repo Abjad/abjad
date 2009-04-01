@@ -53,7 +53,8 @@ def test_spanner_leaf_status_03( ):
    '''Spanner attached to container with parallel nested contents.'''
 
    t = Voice(run(4))
-   t.insert(2, Parallel(Container(run(2)) * 2))
+   t.insert(2, Container(Container(run(2)) * 2))
+   t[2].parallel = True
    appictate(t)
 
    r'''\new Voice {
