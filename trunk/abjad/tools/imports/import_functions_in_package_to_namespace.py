@@ -1,4 +1,6 @@
 from abjad.tools.imports.get_functions_in_module import _get_functions_in_module
+from abjad.tools.imports.remove_modules_from_namespace import \
+   _remove_modules_from_namespace
 import os
 
 
@@ -29,3 +31,8 @@ def _import_functions_in_package_to_namespace(package, namespace):
    for func in functions:
       #print func.__name__
       namespace[func.__name__] = func 
+   
+   ## remove modules
+   _remove_modules_from_namespace(namespace)
+   ## remove myself
+   del(namespace['_import_functions_in_package_to_namespace'])
