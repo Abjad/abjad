@@ -1,8 +1,11 @@
 from abjad.exceptions.exceptions import AssignabilityError
+from abjad.helpers.bequeath import bequeath
 from abjad.helpers.converge_to_power2 import _converge_to_power2
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.iterate import iterate
+from abjad.helpers.withdraw_from_attached_spanners import \
+   _withdraw_from_attached_spanners
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
@@ -47,25 +50,16 @@ def leaf_scale_binary(dur, leaf):
       return [leaf]
    except AssignabilityError:
       result = [ ]
+      ## TODO: Replace leaf.copy( ) with copy_unspanned(leaf)
+      ##       Then eliminate _withdraw_from_attached_spanners, below.
       for wd in _duration_token_decompose(dur):
          l = leaf.copy( )
          l.duration.written = Rational(*wd)
          result.append(l)
-      ## TODO: Replace everything below with splice( )? ##
-      ## remove duplicate spanners and extend leaf.spanners to include 
-      ## new leaves.
-      for l in result:
-         l.spanners.clear( )
-         for spanner in leaf.spanners.attached:
-            spanner._insert(spanner.index(leaf), l)
-      ## insert new leaves in parent
-      parent = leaf.parentage.parent
-      if parent:
-         indx = parent.index(leaf)
-         for l in reversed(result):
-            parent._music.insert(indx, l)
-            l.parentage.parent = parent
-         parent.remove(leaf)
+
+      _withdraw_from_attached_spanners(result)
+      bequeath([leaf], result)
+
       ## tie leaves
       if not l.tie.parented:
          Tie(result)
