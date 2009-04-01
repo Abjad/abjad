@@ -41,19 +41,6 @@ class _TupletFormatter(_ContainerFormatter):
          return ''
 
    @property
-   def _label(self):
-      result = [ ]
-      if self.label:
-         if len(self.label) == 1:
-            label = str(self.label[0])
-         else:
-            label = '%s:%s' % self.label
-         directive = """\once \override TupletNumber #'text = """
-         directive += """\markup { "%s" }""" % label
-         result.append(directive)
-      return result
-
-   @property
    def _opening(self):
       '''Allow for no-multiplier and 1-multiplier tuplets.'''
       result = [ ]
@@ -62,8 +49,6 @@ class _TupletFormatter(_ContainerFormatter):
          if client.duration.multiplier != 1 or \
             hasattr(client.__class__, 'color'):
             if client.invisible:
-               #result.append(r"\scaleDurations #'(%s . %s) {" % (
-               #   client.ratio._n, client.ratio._d))
                multiplier = client.duration.multiplier
                n, d = multiplier._n, multiplier._d
                result.append(r"\scaleDurations #'(%s . %s) {" % (n, d))
@@ -85,7 +70,6 @@ class _TupletFormatter(_ContainerFormatter):
       result.extend(self._client.comments._before)
       result.extend(self.before)
       result.extend(self._before)
-      result.extend(self._label)
       result.extend(self.opening)
       result.extend(self._opening)
       result.extend(self._contents)

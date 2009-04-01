@@ -30,7 +30,7 @@ class Markup(_Abjad):
    @property
    def format(self):
       if self.style == 'backslash':
-         return r'\markup{%s}' % self.contents
+         return r'\markup { %s }' % self.contents
       elif self.style == 'scheme':
          return '#%s' % self.contents
       else:

@@ -62,26 +62,6 @@ def test_1_mutliplier_tuplet_02( ):
    assert t.format == "\tc'8\n\tc'8"
 
 
-## TEST TUPLET LABEL ##
-
-def test_tuplet_label_01( ):
-   t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
-   assert t.formatter.label is None
-   t.formatter.label = (6, 4)
-   assert t.formatter.label == (6, 4)
-   r'''
-   \once \override TupletNumber #'text = \markup { "6:4" }
-   \times 2/3 {
-      c'8
-      c'8
-      c'8
-   }
-   '''
-   assert t.format == '\\once \\override TupletNumber #\'text = \\markup { "6:4" }\n\\times 2/3 {\n\tc\'8\n\tc\'8\n\tc\'8\n}'
-   t.formatter.label = None
-   assert t.format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
-
-
 def test_invisible_tuplet( ):
    '''Tuplet.invisible formats compressed music.'''
    t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
