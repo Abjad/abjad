@@ -1,6 +1,5 @@
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.helpers.iterate import iterate
-from abjad.helpers.splice_after import splice_after
 from abjad.measure.rigid.measure import RigidMeasure
 
 
@@ -29,7 +28,7 @@ def _measure_decompose(measure):
       element.parentage._detach( )
       new = RigidMeasure(meter, [element])
       new_measures.append(new)
-   splice_after(measure, new_measures)
+   measure.splice(new_measures)
    measure.detach( )
    measure[:] = [ ]
    return new_measures

@@ -2,7 +2,6 @@ from abjad.helpers.is_assignable import is_assignable
 from abjad.helpers.is_binary_rational import _is_binary_rational
 from abjad.helpers.is_tie_chain import _is_tie_chain
 from abjad.helpers.tie_chain_truncate import tie_chain_truncate
-from abjad.helpers.splice_after import splice_after
 from abjad.helpers.tie_chain_written import tie_chain_written
 from abjad.helpers.tie_chain_get_leaves import tie_chain_get_leaves
 from abjad.helpers.withdraw_from_attached_spanners import \
@@ -44,7 +43,7 @@ def tie_chain_duration_change(tie_chain, new_written_duration):
             leaf.duration.written = token.duration.written
          if not tie_chain[-1].tie.spanned:
             Tie(list(tie_chain))
-         splice_after(tie_chain[-1], extra_leaves)
+         tie_chain[-1].splice(extra_leaves)
    else:
       duration_tokens = construct.notes(0, new_written_duration)
       assert isinstance(duration_tokens[0], FixedMultiplierTuplet)
@@ -52,7 +51,6 @@ def tie_chain_duration_change(tie_chain, new_written_duration):
       new_chain_written = tie_chain_written(fmtuplet[0].tie.chain)
       tie_chain_duration_change(tie_chain, new_chain_written)
       multiplier = fmtuplet.duration.multiplier
-      #FixedMultiplierTuplet(multiplier, tie_chain[0].tie.spanner.leaves)
       FixedMultiplierTuplet(multiplier, tie_chain_get_leaves(tie_chain))
       
    return tie_chain[0].tie.chain         

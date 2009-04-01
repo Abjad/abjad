@@ -1,6 +1,5 @@
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.check import check
-from abjad.helpers.splice_after import splice_after
 from abjad.helpers.withdraw_from_contained_spanners import \
    _withdraw_from_contained_spanners
 from abjad.leaf.leaf import _Leaf
@@ -31,7 +30,7 @@ def leaf_duration_change(leaf, new_written_duration):
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
-         splice_after(leaf, tied_leaves)
+         leaf.splice(tied_leaves)
          if not leaf.tie.spanned:
             Tie(all_leaves)
       elif isinstance(duration_tokens[0], FixedMultiplierTuplet):
@@ -43,7 +42,7 @@ def leaf_duration_change(leaf, new_written_duration):
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
-         splice_after(leaf, tied_leaves)
+         leaf.splice(tied_leaves)
          if not leaf.tie.spanned:
             Tie(all_leaves) 
          tuplet_multiplier = fmtuplet.duration.multiplier

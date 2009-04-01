@@ -1,5 +1,4 @@
 from abjad.helpers.retroiterate import retroiterate
-from abjad.helpers.splice_after import splice_after
 from abjad.helpers.withdraw_from_attached_spanners import \
    _withdraw_from_attached_spanners
 from abjad.leaf.leaf import _Leaf
@@ -31,7 +30,7 @@ def _leaf_meiose(leaf, n = 2):
    ## TODO: Replace with copy_unspanned(leaf, n - 1)
    new_leaves = leaf * (n - 1)
    _withdraw_from_attached_spanners(new_leaves)
-   splice_after(leaf, new_leaves)
+   leaf.splice(new_leaves)
    adjustment_multiplier = Rational(1, n)
    leaf.duration.written *= adjustment_multiplier
    for new_leaf in new_leaves:
