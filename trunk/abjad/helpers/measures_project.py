@@ -1,6 +1,6 @@
 from abjad.helpers.components_likely_multiplier import \
    _components_likely_multiplier
-from abjad.helpers.container_contents_scale import container_contents_scale
+from abjad.helpers.container_scale import container_scale
 from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.helpers.iterate import iterate
@@ -35,4 +35,4 @@ def measures_project(expr):
 
          # scale tuplet contents, if helpful
          if contents_multiplier is not None:
-            container_contents_scale(tuplet, ~contents_multiplier)
+            container_scale(tuplet, ~contents_multiplier)

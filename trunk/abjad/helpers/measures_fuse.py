@@ -1,7 +1,7 @@
 from abjad.helpers.assess_components import assess_components
 from abjad.helpers.components_switch_parent_to import \
    _components_switch_parent_to
-from abjad.helpers.container_contents_scale import container_contents_scale
+from abjad.helpers.container_scale import container_scale
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 from abjad.helpers.give_dominant_spanners_to import _give_dominant_spanners_to
 from abjad.helpers.is_measure_list import _is_measure_list
@@ -33,7 +33,7 @@ def measures_fuse(measure_list):
    for measure in measure_list:
       multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
       measure_music = measure[:]
-      container_contents_scale(measure_music, multiplier)
+      container_scale(measure_music, multiplier)
       music += measure_music
 
    _components_switch_parent_to(music, None)

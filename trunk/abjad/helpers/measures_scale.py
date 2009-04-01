@@ -1,5 +1,5 @@
 from abjad.helpers.iterate import iterate
-from abjad.helpers.container_contents_scale import container_contents_scale
+from abjad.helpers.container_scale import container_scale
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.helpers.make_best_meter import _make_best_meter
@@ -15,7 +15,7 @@ def measures_scale(expr, multiplier = Rational(1)):
          1. multiply measure's meter by multiplier
          2. scale measure's contents to fit new meter
 
-      Extends container_contents_scale( ).
+      Extends container_scale( ).
       Returns None because iterates possibly many measures.
 
       This might best be a bound method on RigidMeasure.'''
@@ -42,4 +42,4 @@ def measures_scale(expr, multiplier = Rational(1)):
       contents_multiplier_denominator = _next_least_power_of_two(multiplier._d)
       contents_multiplier = Rational(
          multiplier._n, contents_multiplier_denominator)
-      container_contents_scale(measure, contents_multiplier)
+      container_scale(measure, contents_multiplier)

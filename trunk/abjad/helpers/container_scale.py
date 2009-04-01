@@ -9,7 +9,7 @@ from abjad.measure.measure import _Measure
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
-def container_contents_scale(container, multiplier):
+def container_scale(container, multiplier):
    '''Change all leaves in measure by multiplier.
       Return measure.'''
 
