@@ -1,5 +1,5 @@
-from abjad.helpers.factors import _factors
 from abjad.rational.rational import Rational
+from abjad.tools import mathtools
 
 
 def _pair_multiply_reduce_factors(pair, multiplier):
@@ -17,15 +17,15 @@ def _pair_multiply_reduce_factors(pair, multiplier):
    assert isinstance(pair, tuple)
    assert isinstance(multiplier, Rational)
 
-   pair_numerator_factors = _factors(pair[0])   
-   multiplier_denominator_factors = _factors(multiplier._d)
+   pair_numerator_factors = mathtools.factors(pair[0])   
+   multiplier_denominator_factors = mathtools.factors(multiplier._d)
    for factor in multiplier_denominator_factors[:]:
       if factor in pair_numerator_factors:
          pair_numerator_factors.remove(factor)
          multiplier_denominator_factors.remove(factor)
    
-   pair_denominator_factors = _factors(pair[1])
-   multiplier_numerator_factors = _factors(multiplier._n)
+   pair_denominator_factors = mathtools.factors(pair[1])
+   multiplier_numerator_factors = mathtools.factors(multiplier._n)
    for factor in multiplier_numerator_factors[:]:
       if factor in pair_denominator_factors:
          pair_denominator_factors.remove(factor)

@@ -114,8 +114,8 @@ from abjad.helpers.agglomerate_durations_by_prolation import \
      _agglomerate_durations_by_prolation
 from abjad.helpers.resize_list import _resize_list
 from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
-from abjad.helpers.factors import _factors
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tools import mathtools
 import operator
 import math
       
@@ -159,7 +159,7 @@ def notes(pitches, durations, direction='big-endian'):
    result = [ ]
    for ds in durations:
       ## get factors in denominator of duration group ds other than 1, 2.
-      factors = set(_factors(ds[0][1]))
+      factors = set(mathtools.factors(ds[0][1]))
       factors.discard(1)
       factors.discard(2)
       ps = pitches[0:len(ds)]
@@ -285,7 +285,7 @@ def leaves(pitches, durations, direction='big-endian'):
    result = [ ]
    for ds in durations:
       ## get factors in denominator of duration group ds other than 1, 2.
-      factors = set(_factors(ds[0][1]))
+      factors = set(mathtools.factors(ds[0][1]))
       factors.discard(1)
       factors.discard(2)
       ps = pitches[0:len(ds)]

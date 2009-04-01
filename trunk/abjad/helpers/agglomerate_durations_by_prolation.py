@@ -1,5 +1,5 @@
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
-from abjad.helpers.factors import _factors
+from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 
 
@@ -21,9 +21,9 @@ def _agglomerate_durations_by_prolation(durations):
    group = [durations[0]]
    result = [group]
    for d in durations[1:]:
-      d_f = set(_factors(d[1]))
+      d_f = set(mathtools.factors(d[1]))
       d_f.discard(2) 
-      gd_f = set(_factors(group[0][1]))
+      gd_f = set(mathtools.factors(group[0][1]))
       gd_f.discard(2)
       if d_f == gd_f:
          group.append(d)
