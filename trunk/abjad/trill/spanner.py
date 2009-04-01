@@ -8,20 +8,7 @@ class Trill(_GrobHandlerSpanner):
       _GrobHandlerSpanner.__init__(self, 'TrillSpanner', music)
       self._pitch = None
 
-   @apply
-   def pitch( ):
-      def fget(self):
-         return self._pitch
-      def fset(self, expr):
-         if expr == None:
-            self._pitch = None
-         elif isinstance(expr, (int, float, long)):
-            self._pitch = Pitch(expr)
-         elif isinstance(expr, Pitch):
-            self._pitch = Pitch
-         else:
-            raise ValueError('can not set trill pitch.')
-      return property(**locals( ))
+   ## PRIVATE ATTRIBUTES ##
 
    def _left(self, leaf):
       result = [ ]
@@ -39,3 +26,20 @@ class Trill(_GrobHandlerSpanner):
       if self._isMyLastLeaf(leaf):
          result.append(r'\stopTrillSpan')
       return result
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def pitch( ):
+      def fget(self):
+         return self._pitch
+      def fset(self, expr):
+         if expr == None:
+            self._pitch = None
+         elif isinstance(expr, (int, float, long)):
+            self._pitch = Pitch(expr)
+         elif isinstance(expr, Pitch):
+            self._pitch = Pitch
+         else:
+            raise ValueError('can not set trill pitch.')
+      return property(**locals( ))

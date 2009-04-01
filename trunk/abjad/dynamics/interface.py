@@ -3,29 +3,18 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-## TODO - make composer interface decisions about whether to support
-##        _DynamicsInterface.effective or not, and, if so, how.
+## TODO: Dynamics by spanner only? ##
+## TODO: Multistage dynamic spanner? ##
 
 class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    
    def __init__(self, client):
-      #from abjad.hairpin.crescendo import Crescendo
-      #from abjad.hairpin.decrescendo import Decrescendo
+      from abjad.dynamics.spanner import Dynamic
       from abjad.hairpin.hairpin import Hairpin
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'DynamicText')
-      #_SpannerReceptor.__init__(self, (Crescendo, Decrescendo, _Hairpin))
-      _SpannerReceptor.__init__(self, [Hairpin])
+      _SpannerReceptor.__init__(self, (Dynamic, Hairpin))
       self._mark = None
-
-   ## OVERLOADS ##
-
-   def __eq__(self, arg):
-      assert isinstance(arg, bool)
-      return bool(self._mark) == arg
-
-   def __nonzero__(self):
-      return bool(self._mark)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -52,31 +41,28 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    @property
    def effective(self):
+      from abjad.dynamics.spanner import Dynamic
+      from abjad.hairpin.hairpin import Hairpin
+      if self.mark:
+         return self.mark
       if self.spanned:
-         return self.spanner
-      else:
-         if self.mark:
-            return self.mark
+         spanner = self.spanner
+         if isinstance(spanner, Dynamic):
+            return spanner.mark
+         elif isinstance(spanner, Hairpin):
+            return spanner.shape
          else:
-            cur = self._client.prev
-            while cur:
-               if cur.dynamics.spanned:
-                  return cur.dynamics.spanner.stop
-               elif cur.dynamics.mark:
-                  return cur.dynamics.mark
-               else:
-                  cur = cur.prev
-            return None
+            raise Exception
+      prev = self._client.prev
+      if prev is not None:
+         return prev.dynamics.effective
+      return None
 
    @apply
    def mark( ):
       def fget(self):
          return self._mark
       def fset(self, arg):
-         if arg is None:
-            self._mark = arg
-         elif isinstance(arg, str):
-            self._mark = arg
-         else:
-            raise ValueError('dynamics %s must be str or None.' % str(arg))
+         assert arg is None or isinstance(arg, str)
+         self._mark = arg
       return property(**locals( ))

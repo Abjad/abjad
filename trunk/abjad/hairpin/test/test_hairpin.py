@@ -7,7 +7,7 @@ def test_hairpin_01( ):
    '''Hairpins span adjacent leaves.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   Crescendo(t[ : 4])
+   Crescendo(t[:4])
 
    assert check(t)
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -24,7 +24,7 @@ def test_hairpin_01( ):
    }'''
 
 
-def test_hairpins_02( ):
+def test_hairpin_02( ):
    '''Hairpins spanning a single leaf are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -46,7 +46,7 @@ def test_hairpins_02( ):
    }'''
 
 
-def test_hairpins_03( ):
+def test_hairpin_03( ):
    '''Hairpins and dynamics apply separately.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -69,7 +69,7 @@ def test_hairpins_03( ):
    }'''
 
 
-def test_hairpins_04( ):
+def test_hairpin_04( ):
    '''Internal marks are allowed but not well-formed.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -94,7 +94,7 @@ def test_hairpins_04( ):
    '''
 
 
-def test_hairpins_05( ):
+def test_hairpin_05( ):
    '''Apply back-to-back hairpins separately.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -121,7 +121,7 @@ def test_hairpins_05( ):
    }'''
 
 
-def test_hairpins_06( ):
+def test_hairpin_06( ):
    '''Hairpins format rests.'''
 
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
@@ -142,14 +142,11 @@ def test_hairpins_06( ):
    }'''
 
 
-def test_hairpins_07( ):
+def test_hairpin_07( ):
    '''Trim hairpins format only notes and chords.'''
 
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-   Crescendo(t[ : ], trim = True)
-
-   assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
-   assert check(t)
+   Crescendo(t[:], trim = True)
 
    r'''\new Staff {
            r8
@@ -162,8 +159,11 @@ def test_hairpins_07( ):
            g'8 \!
    }'''
 
+   assert check(t)
+   assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
 
-def test_hairpins_08( ):
+
+def test_hairpin_08( ):
    '''Trim hairpins format only notes and chords.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
@@ -185,7 +185,7 @@ def test_hairpins_08( ):
    '''
 
 
-def test_hairpins_09( ):
+def test_hairpin_09( ):
    '''Trim hairpins with dynamic marks behave as expected.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])

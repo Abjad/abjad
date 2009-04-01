@@ -1,14 +1,12 @@
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
 
-#class _Hairpin(_GrobHandlerSpanner):
 class Hairpin(_GrobHandlerSpanner):
 
-   #def __init__(self, music = None, start = None, stop = None, trim = False):
    def __init__(self, music, descriptor, trim = False):
       _GrobHandlerSpanner.__init__(self, 'DynamicLineSpanner', music)
       start, shape, stop = self._parse_descriptor(descriptor)
-      self._shape = shape
+      self.shape = shape
       self.start = start
       self.stop = stop
       self.trim = trim
@@ -25,9 +23,10 @@ class Hairpin(_GrobHandlerSpanner):
             if self.start:
                result.append('\\%s' % self.start)
          if self._isMyLastLeaf(leaf):
+            print 'debug last leaf'
             if self.stop:
                result.append('\\%s' % self.stop)
-            elif not leaf.dynamics:
+            elif not leaf.dynamics.mark:
                result.append('\\!')
       else:
          if self._isMyFirst(leaf, (Chord, Note)):
@@ -37,7 +36,7 @@ class Hairpin(_GrobHandlerSpanner):
          if self._isMyLast(leaf, (Chord, Note)):
             if self.stop:
                result.append('\\%s' % self.stop)
-            elif not leaf.dynamics:
+            elif not leaf.dynamics.mark:
                result.append('\\!')
       return result
    
@@ -75,6 +74,15 @@ class Hairpin(_GrobHandlerSpanner):
    ## PUBLIC ATTRIBUTES ##
 
    @apply
+   def shape( ):
+      def fget(self):
+         return self._shape
+      def fset(self, arg):
+         assert arg in ('<', '>')
+         self._shape = arg
+      return property(**locals( ))
+
+   @apply
    def start( ):
       def fget(self):
          return self._start
@@ -97,16 +105,3 @@ class Hairpin(_GrobHandlerSpanner):
       def fset(self, arg):
          self._trim = arg
       return property(**locals( ))
-
-
-#def Hairpin(music, descriptor, trim = False):
-#   #start, shape, stop = _parse_descriptor(descriptor)
-#   hp = _Hairpin( )
-#   start, shape, stop = hp._parse_descriptor(descriptor)
-#   if shape == '<':
-#      from crescendo import Crescendo
-#      result = Crescendo(music, start = start, stop = stop, trim = trim)
-#   elif shape == '>':
-#      from decrescendo import Decrescendo
-#      result = Decrescendo(music, start = start, stop = stop, trim = trim)
-#   return result
