@@ -390,3 +390,16 @@ class _Component(_Abjad):
             component.parentage._switchParentTo(parent)
             parent._music.insert(start + 1, component)
       return [self] + components
+
+   ## TODO: Finish _Component.splice_left( ) implementation. ##
+
+   def splice_left(self, components):
+      '''Splice 'components' before self.
+         Extend spanners leftwards to attach 
+         to all components in 'components'.'''
+      from abjad.helpers.assert_components import assert_components
+      from abjad.helpers.get_dominant_spanners import get_dominant_spanners
+      from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+      from abjad.helpers.spanner_get_component_at_score_offset import \
+         spanner_get_component_at_score_offset
+      pass
