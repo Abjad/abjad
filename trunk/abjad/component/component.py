@@ -313,43 +313,21 @@ class _Component(_Abjad):
          reestablishes parent and spanner references;
          returns the deepcopy;
          leaves self unchanged.'''
-
-#      hairpins = self.spanners.get(classname = '_Hairpin')
-#      hairpinKillList = [ ]
-#      clientLeaves = set(self.leaves)
-#      hairpinKillList = [
-#         not set(hp[ : ]).issubset(clientLeaves) for hp in hairpins]
-
-      #receipts = self.spanners.fracture( )
       receipts = self.spanners._fractureContents( )
       parent = self.parentage._cutOutgoingReferenceToParent( )
       result = copy.deepcopy(self)
-#      for source, left, right in reversed(receipt):
-#         source._unblock( )
-#         left._sever( )
-#         right._sever( )
       for receipt in reversed(receipts):
          if len(receipt) == 3:
             source, left, right = receipt
             center = None
          else:
             source, left, center, right = receipt
-         #print 'flamingo: %s, %s, %s, %s' % (source, left, center, right)
-         #source._unblock( )
-         #left._sever( )
          source._unblockAllComponents( )
          left._severAllComponents( )
          if center is not None:
-            #center._sever( )
             center._severAllComponents( )
-         #right._sever( )
          right._severAllComponents( )
       self.parentage.parent = parent
-
-#      for i, hp in enumerate(result.spanners.get(classname = '_Hairpin')):
-#         if hairpinKillList[i]:
-#            hp.die( )
-
       result._update._markForUpdateToRoot( )
       return result
 
@@ -384,3 +362,31 @@ class _Component(_Abjad):
       parent, start, stop = get_parent_and_indices([self])
       result = parent[start:stop+1] = list(self.music)
       return self
+
+   def splice(self, components):
+      '''Splice 'components' after self.
+         Extend spanners to attached to all components in list.'''
+      from abjad.helpers.assert_components import assert_components
+      from abjad.helpers.get_dominant_spanners import get_dominant_spanners
+      from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+      from abjad.helpers.spanner_get_component_at_score_offset import \
+         spanner_get_component_at_score_offset
+      assert_components(components)
+      insert_offset = self.offset.score + self.duration.prolated
+      receipt = get_dominant_spanners([self])
+      for spanner, index in receipt:
+         insert_component = spanner_get_component_at_score_offset(
+            spanner, insert_offset)
+         if insert_component is not None:
+            insert_index = spanner.index(insert_component)
+         else:
+            insert_index = len(spanner)
+         for component in reversed(components):
+            spanner._insert(insert_index, component)
+            component.spanners._add(spanner)
+      parent, start, stop = get_parent_and_indices([self])
+      if parent is not None:
+         for component in reversed(components):
+            component.parentage._switchParentTo(parent)
+            parent._music.insert(start + 1, component)
+      return [self] + components

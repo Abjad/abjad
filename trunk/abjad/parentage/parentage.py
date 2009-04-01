@@ -113,15 +113,6 @@ class _Parentage(_Abjad):
          return parent, index
       return None, None
 
-#   def _splice(self, components):
-#      '''Insert components immediately after self in parent.
-#         Do not handle spanners.'''
-#      if self.parent is not None:
-#         client = self._client
-#         index = self.parent.index(client) + 1
-#         self.parent[index:index] = components
-#         return [client] + components
-
    def _switchParentTo(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
       client = self._client

@@ -1,5 +1,8 @@
 from abjad import *
+import py.test
 
+
+py.test.skip('Deprecating splice_after( ).')
 
 def test_splice_after_01( ):
    '''Splice leaves after leaf.'''
