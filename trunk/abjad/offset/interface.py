@@ -1,6 +1,7 @@
 from abjad.core.interface import _Interface
 from abjad.rational.rational import Rational
 
+
 class _OffsetInterface(_Interface):
 
    def __init__(self, _client, updateInterface):
@@ -9,37 +10,11 @@ class _OffsetInterface(_Interface):
       self._thread = Rational(0)
       updateInterface._observers.append(self)
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE METHODS ##
 
-   @property
-   def thread(self):
-      if not self._client._update._currentToRoot:
-         self._client._update._updateAll( )
-      return self._thread
-
-   @property
-   def score(self):
-      if not self._client._update._currentToRoot:
-         self._client._update._updateAll( )
-      return self._score
-
-   ## OBSERVER PATTERN INTERFACE ##
-
-   ## TODO: Should this method be private?
-   def update(self):
+   def _update(self):
       self._updateThread( )
       self._updateScore( )
-
-   def _updateThread(self):
-      from abjad.helpers.assess_components import assess_components
-      offset = Rational(0, 1)
-      prev = self._client._navigator._prev
-      #self_parentage = self._client.parentage._threadParentage
-      #if prev and prev.parentage._threadParentage == self_parentage:
-      if prev and assess_components([prev, self._client], 
-         'strict', 'thread', False):
-         offset += prev.offset.thread + prev.duration.prolated
-      self._thread = offset
 
    def _updateScore(self):
       offset = Rational(0, 1)
@@ -47,3 +22,26 @@ class _OffsetInterface(_Interface):
       if prev:
          offset += prev.offset.score + prev.duration.prolated
       self._score = offset
+
+   def _updateThread(self):
+      from abjad.helpers.assess_components import assess_components
+      offset = Rational(0, 1)
+      prev = self._client._navigator._prev
+      if prev and assess_components([prev, self._client], 
+         'strict', 'thread', False):
+         offset += prev.offset.thread + prev.duration.prolated
+      self._thread = offset
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def score(self):
+      if not self._client._update._currentToRoot:
+         self._client._update._updateAll( )
+      return self._score
+
+   @property
+   def thread(self):
+      if not self._client._update._currentToRoot:
+         self._client._update._updateAll( )
+      return self._thread

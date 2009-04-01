@@ -1,15 +1,14 @@
 from abjad.core.interface import _Interface
 
 
-## UpdateInterface and OffsetInterface implement the Observer pattern. 
-## UpdateInterface holds and updates the state of the branch.
-## UpdateInterface holds a list of all the observers.
-## UpdateInterface calls ("notifies") all observers to update themselves
-## when requested by any observer.
-## Observers "pull" the state of the tree from the "subject"
-## (UpdateInterface) and tell it to updateAll( ) if tree has changed.
-
 class _UpdateInterface(_Interface):
+   '''UpdateInterface and OffsetInterface implement the Observer pattern. 
+      UpdateInterface holds and updates the state of the branch.
+      UpdateInterface holds a list of all the observers.
+      UpdateInterface calls ("notifies") all observers to update themselves
+      when requested by any observer.
+      Observers "pull" the state of the tree from the "subject"
+      (UpdateInterface) and tell it to _updateAll( ) if tree has changed.'''
 
    def __init__(self, client):
       _Interface.__init__(self, client)
@@ -35,5 +34,5 @@ class _UpdateInterface(_Interface):
       g = self._client.parentage.root._navigator._DFS( )
       for node in g:
          for o in node._update._observers:
-            o.update( )
+            o._update( )
          node._update._current = True

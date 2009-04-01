@@ -24,28 +24,9 @@ class _NumberingInterface(_Interface):
       self._measure = 0
       updateInterface._observers.append(self)
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE METHODS ##
 
-   @property
-   def leaf(self):
-      ## TODO: Can't these first three lines be abstracted out?
-      update = self._client._update
-      if not update._currentToRoot:
-         update._updateAll( )
-      return self._leaf
-   
-   @property
-   def measure(self):
-      ## TODO: Can't these first three lines be abstracted out?
-      update = self._client._update
-      if not update._currentToRoot:
-         update._updateAll( )
-      return self._measure
-
-   ## OBSERVER PATTERN INTERFACE ##
-
-   ## TODO: Should this method be private?
-   def update(self):
+   def _update(self):
       self._updateAllNumbers( )
 
    ## TODO: Can't this method eliminate all internal navigation?
@@ -64,3 +45,21 @@ class _NumberingInterface(_Interface):
             measure += 1
       self._leaf = leaf
       self._measure = measure
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def leaf(self):
+      ## TODO: Can't these first three lines be abstracted out?
+      update = self._client._update
+      if not update._currentToRoot:
+         update._updateAll( )
+      return self._leaf
+   
+   @property
+   def measure(self):
+      ## TODO: Can't these first three lines be abstracted out?
+      update = self._client._update
+      if not update._currentToRoot:
+         update._updateAll( )
+      return self._measure
