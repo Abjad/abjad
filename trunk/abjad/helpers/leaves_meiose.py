@@ -28,11 +28,11 @@ def _leaf_meiose(leaf, n = 2):
    assert int(math.log(n, 2)) == math.log(n, 2)
    assert n > 0
 
+   ## TODO: Replace with copy_unspanned(leaf, n - 1)
    new_leaves = leaf * (n - 1)
    _withdraw_from_attached_spanners(new_leaves)
-   total_leaves = 1 + len(new_leaves)
-   adjustment_multiplier = Rational(1, total_leaves)
+   splice_after(leaf, new_leaves)
+   adjustment_multiplier = Rational(1, n)
    leaf.duration.written *= adjustment_multiplier
    for new_leaf in new_leaves:
       new_leaf.duration.written *= adjustment_multiplier
-   return splice_after(leaf, new_leaves)

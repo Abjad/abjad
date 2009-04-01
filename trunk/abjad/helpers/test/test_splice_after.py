@@ -63,3 +63,26 @@ def test_splice_after_03( ):
 
    assert check(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
+
+
+def test_splice_after_04( ):
+   '''Splice after container with underspanners.'''
+
+   t = Voice(Container(run(2)) * 2)
+   Beam(t.leaves)
+   splice_after(t[0], [Note(2.5, (1, 8))])
+
+   r'''\new Voice {
+      {
+         c'8 [
+         c'8
+      }
+      dqs'8
+      {
+         c'8
+         c'8 ]
+      }
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t}\n\tdqs'8\n\t{\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"

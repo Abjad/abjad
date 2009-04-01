@@ -1,7 +1,7 @@
 from abjad.cfg.abjad_version import _get_abjad_version
 
 
-def list_helpers(search_string = '', scope = 'public'):
+def list_helpers(search_string = '', scope = 'both'):
    '''Input parameters:
       
       search_string should be any Python string.
