@@ -46,14 +46,12 @@ class _GrobHandler(_FormatCarrier):
       else:
          return ''
 
-   ## TODO: Explicit reference to 'pitch' is a hack.
-   ##       Replace with structural solution.
-
    @property
    def _grobOverrides(self):
       result = [ ]
       for key, value in self.__dict__.items( ):
-         if not key.startswith('_') and not key == 'pitch':
+         #if not key.startswith('_') and not key == 'pitch':
+         if not key.startswith('_'):
             result.append(r'%s\override %s %s = %s' % (
                self._frequencyIndicator,
                self._promotedGrob(key),
