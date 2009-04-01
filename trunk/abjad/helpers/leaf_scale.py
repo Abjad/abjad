@@ -2,15 +2,16 @@ from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.converge_to_power2 import _converge_to_power2
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.helpers.iterate import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
-### NOTE: (or rather questions) 
-### - would this be better named leaf_reset_duration( )?... 
-###   we are not really scaling.
-### - should multipliers be retained in setting of new duration ?
+## NOTE: (or rather questions) 
+## - would this be better named leaf_reset_duration( )?... 
+##   we are not really scaling.
+## - should multipliers be retained in setting of new duration ?
 
 def leaf_scale(dur, leaf):
    '''
@@ -33,12 +34,11 @@ def leaf_scale(dur, leaf):
 
 from abjad.tie.spanner import Tie
 def leaf_scale_binary(dur, leaf):
-   '''
-      Example:
+   '''Example:
       
       >>> leaf_scale_binary((5, 16), Note(0, (1, 8)))
-      [Note(0, (1, 4), Note(0, (1,16)]
-   '''
+      [Note(0, (1, 4), Note(0, (1,16)]'''
+
    assert isinstance(leaf, _Leaf)
    dur = Rational(*_duration_token_unpack(dur))
    assert dur > 0
@@ -51,14 +51,14 @@ def leaf_scale_binary(dur, leaf):
          l = leaf.copy( )
          l.duration.written = Rational(*wd)
          result.append(l)
-      ### remove duplicate spanners and extend leaf.spanners to include 
-      ### new leaves.
+      ## TODO: Replace everything below with splice( )? ##
+      ## remove duplicate spanners and extend leaf.spanners to include 
+      ## new leaves.
       for l in result:
          l.spanners.clear( )
          for spanner in leaf.spanners.attached:
-            #spanner.insert(spanner.index(leaf), l)
             spanner._insert(spanner.index(leaf), l)
-      ### insert new leaves in parent
+      ## insert new leaves in parent
       parent = leaf.parentage.parent
       if parent:
          indx = parent.index(leaf)
@@ -66,17 +66,15 @@ def leaf_scale_binary(dur, leaf):
             parent._music.insert(indx, l)
             l.parentage.parent = parent
          parent.remove(leaf)
-      ### tie leaves
-#      for l in result:
-#         l.tie = None
+      ## tie leaves
       if not l.tie.parented:
          Tie(result)
-      ### remove dynamics and articulations from tied leaves.
+      ## remove dynamics and articulations from tied leaves.
       for n in result[1:]:
          n.dynamics = None
          n.articulations = None
-      ### remove afterGrace from all but the last leaf
-      ### and Grace all but the first leaf
+      ## remove afterGrace from all but the last leaf
+      ## and Grace all but the first leaf
       for n in result[:-1]:
          n.grace.after = None
       for n in result[1:]:
