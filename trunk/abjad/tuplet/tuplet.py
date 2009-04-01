@@ -1,7 +1,6 @@
 from abjad.container.container import Container
 from abjad.tuplet.duration import _TupletDurationInterface
 from abjad.tuplet.formatter import _TupletFormatter
-from abjad.tuplet.ratio import _Ratio
 
 
 class _Tuplet(Container):
@@ -13,7 +12,7 @@ class _Tuplet(Container):
       self._formatter = _TupletFormatter(self) 
       self._invisible = False
 
-   ### OVERLOADS ###
+   ## OVERLOADS ##
 
    def __repr__(self):
       if len(self) > 0:
@@ -21,7 +20,7 @@ class _Tuplet(Container):
       else:
          return '_Tuplet( )'
 
-   ### PRIVATE ATTRIBUTES ###
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _summary(self):
@@ -42,20 +41,16 @@ class _Tuplet(Container):
          self._invisible = arg
       return property(**locals())
 
-   ## TODO - replace either with managed attribute OR
-   ##        even better, a TupletNumber grob for
-   ##        LilyPond \override TupletNumber #'fraction = True
-   ##        type of dynamic overrides.
-
    @property
    def ratio(self):
-      '''Read-only reference to tuplet ratio as a Rational.'''
-      if self.duration.multiplier:
-         return _Ratio(self.duration.multiplier)
+      '''Tuplet multiplier formatted with colon as ratio.'''
+      multiplier = self.duration.multiplier
+      if multiplier is not None:
+         return '%s:%s' % (multiplier._d, multiplier._n)
       else:
          return None
 
    @property
    def trivial(self):
-      '''True when tuplet ratio is one, otherwise False.'''
-      return self.ratio == 1
+      '''True when tuplet multiplier is one, otherwise False.'''
+      return self.duration.multiplier == 1

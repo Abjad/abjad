@@ -62,8 +62,11 @@ class _TupletFormatter(_ContainerFormatter):
          if client.duration.multiplier != 1 or \
             hasattr(client.__class__, 'color'):
             if client.invisible:
-               result.append(r"\scaleDurations #'(%s . %s) {" % (
-                  client.ratio._n, client.ratio._d))
+               #result.append(r"\scaleDurations #'(%s . %s) {" % (
+               #   client.ratio._n, client.ratio._d))
+               multiplier = client.duration.multiplier
+               n, d = multiplier._n, multiplier._d
+               result.append(r"\scaleDurations #'(%s . %s) {" % (n, d))
             else:
                if client.parallel:
                   brackets_open = '<<'
