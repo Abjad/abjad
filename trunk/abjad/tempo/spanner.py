@@ -1,34 +1,38 @@
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
+from abjad.tempo.indication import TempoIndication
 
-
-## TODO - Implement a TempoIndication class to take pair
-##        of (Rational, tempo).
 
 class Tempo(_GrobHandlerSpanner):
 
-   def __init__(self, music = None, tempo = None):
+   def __init__(self, music = None, indication = None):
       _GrobHandlerSpanner.__init__(self, 'MetronomeMark', music)
-      self.tempo = tempo
+      self.indication = indication
 
    ## PRIVATE METHODS ##
 
-   ## TODO - Should we define an _after( ) method to indicate
-   ##        where the effect of a tempo *ends*?
+   def _after(self, leaf):
+      result = [ ]
+      result.extend(_GrobHandlerSpanner._after(self, leaf))
+      if self._isMyLastLeaf(leaf):
+         if self.indication:
+            result.append(r'%%%% %s ends here' % self.indication.format[1:])
+      return result
 
    def _before(self, leaf):
       result = [ ]
       result.extend(_GrobHandlerSpanner._before(self, leaf))
       if self._isMyFirstLeaf(leaf):
-         if self.tempo:
-            result.append(r'\tempo %s=%s' % self.tempo)
+         if self.indication:
+            result.append(self.indication.format)
       return result
 
    ## PUBLIC ATTRIBUTES ##
 
    @apply
-   def tempo( ):
+   def indication( ):
       def fget(self):
-         return self._tempo
+         return self._indication
       def fset(self, arg):
-         self._tempo = arg 
+         assert isinstance(arg, TempoIndication)
+         self._indication = arg 
       return property(**locals( ))
