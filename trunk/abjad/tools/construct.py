@@ -8,13 +8,16 @@ from abjad.rest.rest import Rest
 from abjad.tie.spanner import Tie
 
 
-def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None):
+def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None,
+      tied=True):
    '''Returns a list of Leaves to fill the given duration. 
       Leaves returned are Tie spanned.
       dur:  must be of the form m / 2**n for any m integer.
       direction: may be 'big-endian' or 'little-endian'.
             'big-endian' returns a list of notes of decreasing duration.
-            'little-endian' returns a list of notes of increasing duration.'''
+            'little-endian' returns a list of notes of increasing duration.
+      pitches: a pitch or list of pitch tokens.
+      tied: True to return tied leaves, False otherwise. Defaults to True.'''
 
    result = [ ]
    for wd in _duration_token_decompose(dur):
@@ -26,7 +29,8 @@ def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None):
    if len(result) > 1:
       if direction == 'little-endian':
          result.reverse( )
-      Tie(result)
+      if tied:
+         Tie(result)
    return result
 
 
@@ -36,10 +40,10 @@ def _construct_tied_chord(pitches, dur, direction='big-endian'):
    return _construct_tied_leaf(Chord, dur, direction, pitches)
 
 
-def _construct_tied_rest(dur, direction='big-endian'):
+def _construct_tied_rest(dur, direction='big-endian', tied=False):
    '''Returns a list of rests to fill given duration. 
       Rests returned are Tie spanned.'''
-   return _construct_tied_leaf(Rest, dur, direction)
+   return _construct_tied_leaf(Rest, dur, direction, None, tied)
 
 
 def _construct_tied_note(pitch, dur, direction='big-endian'):
@@ -57,20 +61,21 @@ def _construct_unprolated_notes(pitches, durations, direction='big-endian'):
    return result
 
 
-def rests(durations, direction='big-endian'):
+def rests(durations, direction='big-endian', tied=False):
    '''Constructs a list of rests.
       Parameters:
       durations:  a sinlge duration or a list of durations.
       direction:  may be 'big-endian' or 'little-endian'.
             'big-endian' returns a list of notes of decreasing duration.
-            'little-endian' returns a list of notes of increasing duration.'''
+            'little-endian' returns a list of notes of increasing duration.
+      tied: Set to True to return tied rests. False otherwise.  '''
 
    if _is_duration_token(durations):
       durations = [durations]
 
    result = [ ]
    for d in durations:
-      result.extend(_construct_tied_rest(d, direction))
+      result.extend(_construct_tied_rest(d, direction, tied))
    return result
 
 
@@ -233,7 +238,7 @@ def notes_curve(pitches, total, start, stop, exp='cosine',
    return result
    
 
-def leaves(pitches, durations, direction='big-endian'):
+def leaves(pitches, durations, direction='big-endian', tied_rests=False):
    '''Constructs a list of prolated and/or unprolated leaves of length 
       len(durations).
       The type of the leaves returned depends on the type of the pitches given.
@@ -253,6 +258,7 @@ def leaves(pitches, durations, direction='big-endian'):
       direction:  may be 'big-endian' or 'little-endian'.
                   'big-endian' returns list of notes of decreasing duration.
                   'little-endian' returns list of notes of increasing duration.
+      tied_rests: Set to True to return Tied rests. False otherwise.
    '''
 
    def _make_leaf_on_pitch(pitch, ds, direction):
@@ -261,7 +267,7 @@ def leaves(pitches, durations, direction='big-endian'):
       elif isinstance(pitch, (tuple, list)):
          leaves = _construct_tied_chord(pitch, ds, direction)
       elif pitch is None:
-         leaves = _construct_tied_rest(ds, direction)
+         leaves = _construct_tied_rest(ds, direction, tied_rests)
       else:
          raise ValueError("Unknown pitch token %s." % pitch)
       return leaves

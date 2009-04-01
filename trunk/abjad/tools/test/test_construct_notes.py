@@ -9,8 +9,6 @@ def test_construct_notes_01( ):
    assert isinstance(t, list)
    assert len(t) == 1
    assert isinstance(t[0], Note)
-   #assert t[0] == Note(1, (1,4)) this SHOULD work... __eq__ problem. 
-   # check attributes independently instead.
    assert t[0].duration.written == Rational(1, 4)
    assert not t[0].tie.spanned
 

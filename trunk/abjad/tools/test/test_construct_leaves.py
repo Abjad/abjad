@@ -55,3 +55,21 @@ def test_construct_leaves_03( ):
    assert tuplet2.duration.multiplier == Rational(4, 5)
    assert isinstance(tuplet2[0], Rest) 
 
+
+def test_construct_leaves_04( ):
+   '''Leaves constructor can take an optional 'tied_rests' keyword argument.'''
+   leaves = construct.leaves([None], [(5, 32), (5, 32)], tied_rests=True)
+   assert len(leaves) == 4
+   for l in leaves:
+      assert isinstance(l, Rest)
+   assert leaves[0].tie.spanner is leaves[1].tie.spanner
+   assert leaves[2].tie.spanner is leaves[3].tie.spanner
+
+
+def test_construct_leaves_05( ):
+   ''''tied_rests' is False by default.'''
+   leaves = construct.leaves([None], [(5, 32), (5, 32)])
+   assert len(leaves) == 4
+   for l in leaves:
+      assert isinstance(l, Rest)
+      assert l.tie.spanned == False
