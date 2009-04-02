@@ -4,7 +4,8 @@ from abjad.tools.imports.remove_modules_from_namespace import \
 import os
 
 
-def _import_functions_in_package_to_namespace(package, namespace):
+def _import_functions_in_package_to_namespace(package, namespace, 
+   skip_dirs=['test']):
    '''Import all the functions defined in the modules of the package given 
    as a string path into the given namespace.
    Example:
@@ -22,12 +23,21 @@ def _import_functions_in_package_to_namespace(package, namespace):
    functions = [ ]
    for root, dirs, files in os.walk(package):
       root = root[root.rindex('abjad'):]
-      if root.endswith('test'):
-         continue
+
+#      if root.endswith('test'):
+#         continue
+      ## remove directories of modules to skip
+      for mod in skip_dirs:
+         if mod in dirs:
+            dirs.remove(mod)
+
+      ## get functions from module files
       for file in files:
          if file.endswith('py') and not file.startswith(('_', '.')):
             module = os.sep.join([root, file[:-3]])
             functions.extend(_get_functions_in_module(module))
+
+   ## put functions retrieved into namespace
    for func in functions:
       #print func.__name__
       namespace[func.__name__] = func 

@@ -1,4 +1,5 @@
-from abjad import *
+from abjad.staff.staff import Staff
+from abjad.staffgroup.pianostaff import PianoStaff
 
 ### this module houses all score 'skeleton' templates.
 
