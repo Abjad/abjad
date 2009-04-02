@@ -50,3 +50,36 @@ def test_leaf_split_04( ):
    assert new[1].duration.target == Rational(1, 6)
    assert isinstance(new[1][0], Note)
    assert new[1][0].duration.written == Rational(1, 4)
+
+
+def test_leaf_split_05( ):
+   '''Split spanned leaf with spanner 
+      crossing container boundaries.'''
+
+   t = Voice(run(1) + [FixedDurationTuplet((2, 8), run(3))])
+   diatonicize(t)
+   Beam(t.leaves)
+
+   r'''\new Voice {
+      c'8 [
+      \times 2/3 {
+         d'8
+         e'8
+         f'8 ]
+      }
+   }'''
+
+   leaf_split(Rational(1, 24), t.leaves[1])
+
+   r'''\new Voice {
+      c'8 [
+      \times 2/3 {
+         d'16
+         d'16
+         e'8
+         f'8 ]
+      }
+   }'''
+
+   assert check(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"

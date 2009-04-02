@@ -298,23 +298,9 @@ class _Component(_Abjad):
          reestablishes parent and spanner references;
          returns the deepcopy;
          leaves self unchanged.'''
-      receipts = self.spanners._fractureContents( )
-      parent = self.parentage._cutOutgoingReferenceToParent( )
-      result = copy.deepcopy(self)
-      for receipt in reversed(receipts):
-         if len(receipt) == 3:
-            source, left, right = receipt
-            center = None
-         else:
-            source, left, center, right = receipt
-         source._unblockAllComponents( )
-         left._severAllComponents( )
-         if center is not None:
-            center._severAllComponents( )
-         right._severAllComponents( )
-      self.parentage.parent = parent
-      result._update._markForUpdateToRoot( )
-      return result
+      from abjad.helpers.copy_fracture import copy_fracture
+      result = copy_fracture([self])
+      return result[0]
 
    def detach(self):
       '''Detach component from parentage.

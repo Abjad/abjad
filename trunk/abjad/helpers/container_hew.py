@@ -1,4 +1,5 @@
 from abjad.helpers.container_set_multiplier import container_set_multiplier
+from abjad.helpers.copy_unspan import copy_unspan
 from abjad.helpers.measure_set_denominator import measure_set_denominator
 
 
@@ -60,11 +61,13 @@ def container_hew(container, i, spanners = 'preserve'):
    container._music = [ ]
 
    # create empty lefthand container
-   left = container.copy( )
+   #left = container.copy( ) # old
+   left = copy_unspan([container])[0] # new
    left.spanners.clear( )
 
    # create empty righthand container
-   right = container.copy( )
+   #right = container.copy( ) # old
+   right = copy_unspan([container])[0] # new
    right.spanners.clear( )
 
    # give music back to container

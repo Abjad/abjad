@@ -17,12 +17,11 @@ from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 ## - should multipliers be retained in setting of new duration ?
 
 def leaf_scale(dur, leaf):
-   '''
-      Example:
+   '''Example:
       
       >>> leaf_scale((5, 13), Note(0, (1, 8)))
-      FixedDurationTuplet((5, 13), [Note(0, (1, 4))])
-   '''
+      FixedDurationTuplet((5, 13), [Note(0, (1, 4))])'''
+
    assert isinstance(leaf, _Leaf) 
    dur = Rational(*_duration_token_unpack(dur))
    assert dur > 0

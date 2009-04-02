@@ -38,6 +38,8 @@ def copy_fracture(components):
    restore_outgoing_reference_to_parent(receipt)
 
    for spanner, contents in spanner_map:
+      print 'debug spanner, contents: %s, %s' % (spanner, contents)
+      print contents[0].parentage.root.format
       spanner.clear( )
       spanner.extend(list(contents))
 
