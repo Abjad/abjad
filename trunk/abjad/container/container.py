@@ -81,7 +81,10 @@ class Container(_Component):
 
    def __repr__(self):
       '''String format of container for interpreter display.'''
-      return '(%s)' % self._summary
+      if not self.parallel:
+         return '{%s}' % self._summary
+      else:
+         return '<<%s>>' % self._summary
 
    def __setitem__(self, i, expr):
       '''Set 'expr' in self at nonnegative integer index i.
