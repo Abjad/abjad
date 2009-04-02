@@ -1,6 +1,7 @@
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.bequeath import bequeath
 from abjad.helpers.converge_to_power2 import _converge_to_power2
+from abjad.helpers.copy_unspan import copy_unspan
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.iterate import iterate
@@ -49,16 +50,11 @@ def leaf_scale_binary(dur, leaf):
       return [leaf]
    except AssignabilityError:
       result = [ ]
-      ## TODO: Replace leaf.copy( ) with copy_unspanned(leaf)
-      ##       Then eliminate _withdraw_from_attached_spanners, below.
       for wd in _duration_token_decompose(dur):
-         l = leaf.copy( )
+         l = copy_unspan([leaf])[0]
          l.duration.written = Rational(*wd)
          result.append(l)
-
-      _withdraw_from_attached_spanners(result)
       bequeath([leaf], result)
-
       ## tie leaves
       if not l.tie.parented:
          Tie(result)
