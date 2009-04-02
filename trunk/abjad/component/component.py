@@ -302,12 +302,12 @@ class _Component(_Abjad):
       from abjad.helpers.give_dominant_spanners_to import \
          _give_dominant_spanners_to
       from abjad.helpers.give_my_position_in_parent_to import \
-         _give_my_position_in_parent_to
+         _give_position_in_parent_from_to
       from abjad.helpers.give_spanned_music_from_to import \
          _give_spanned_music_from_to
       _give_spanned_music_from_to([self], component)
       _give_dominant_spanners_to([self], [component])
-      _give_my_position_in_parent_to(self, [component])
+      _give_position_in_parent_from_to([self], [component])
 
    def copy(self):
       '''Clones a complete Abjad component;

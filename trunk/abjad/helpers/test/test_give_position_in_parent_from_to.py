@@ -1,16 +1,16 @@
 from abjad import *
-from abjad.helpers.give_my_position_in_parent_to import \
-   _give_my_position_in_parent_to
+from abjad.helpers.give_position_in_parent_from_to import \
+   _give_position_in_parent_from_to
 
 
-def test_give_my_position_in_parent_to_01( ):
+def test_give_position_in_parent_from_to_01( ):
    '''Not composer-safe.'''
 
    t = Voice(scale(4))
    Beam(t[:])
    notes = scale(2, Rational(1, 16))
 
-   _give_my_position_in_parent_to(t[0], notes)
+   _give_position_in_parent_from_to(t[0:1], notes)
 
    "Container t is now ..."
 
