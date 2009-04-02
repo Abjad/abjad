@@ -3,7 +3,7 @@ from abjad.helpers.assert_components import assert_components
 
 def _components_switch_parent_to(components, parent):
    '''NOT composer-safe.
-      Helper assigns to parent to component.
+      Helper assigns parent to component.
       Some other action should happen immediately afterwards.
       Because it's still necessary to assign components to parent.'''
 

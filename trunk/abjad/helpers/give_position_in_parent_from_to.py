@@ -25,7 +25,7 @@ def _give_position_in_parent_from_to(donors, recipients):
    if parent is None:
       return donors
 
-   parent._music[start:stop+1] = recipients
+   parent._music[start:start] = recipients
    _components_switch_parent_to(recipients, parent)
    _components_switch_parent_to(donors, None)
 

@@ -120,3 +120,46 @@ def test_assess_components_thread_contiguous_08( ):
    '''True for empty list.'''
 
    assert assess_components([ ], contiguity = 'thread')
+
+
+def test_assess_components_thread_contiguous_09( ):
+   '''False when components belonging to same thread are ommitted.'''
+
+   t = Voice(scale(6))
+   Beam(t[:])
+
+   r'''\new Voice {
+      c'8 [
+      d'8
+      e'8
+      f'8
+      g'8
+      a'8 ]
+   }'''
+
+   assert not assess_components(t[:2] + t[-2:], contiguity = 'thread')
+
+
+def test_assess_components_thread_contiguous_10( ):
+   '''False when components belonging to same thread are ommitted.'''
+
+   t = Voice(Container(run(2)) * 3)
+   diatonicize(t)
+   Beam(t.leaves)
+
+   r'''\new Voice {
+      {
+         c'8 [
+         d'8
+      }
+      {
+         e'8
+         f'8
+      }
+      {
+         g'8
+         a'8 ]
+      }
+   }'''
+
+   assert not assess_components(t[:1] + t[-1:], contiguity = 'thread')
