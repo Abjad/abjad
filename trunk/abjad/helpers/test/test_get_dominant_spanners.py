@@ -1,7 +1,8 @@
 from abjad import *
+import py.test
 
 
-def testget_dominant_spanners_01( ):
+def test_get_dominant_spanners_01( ):
    '''Return Python list of (spanner, index) pairs.
       Each (spanner, index) pair gives a spanner which dominates
       all components in list, together with the start-index
@@ -38,7 +39,7 @@ def testget_dominant_spanners_01( ):
    assert (trill, 0) in receipt
 
 
-def testget_dominant_spanners_02( ):
+def test_get_dominant_spanners_02( ):
    '''Beam, glissando and trill all dominante second sequential.'''
 
    t = Voice(Container(run(2)) * 3)
@@ -55,7 +56,7 @@ def testget_dominant_spanners_02( ):
    assert (trill, 2) in receipt
 
 
-def testget_dominant_spanners_03( ):
+def test_get_dominant_spanners_03( ):
    '''Glissando and trill dominate last sequential.'''
 
    t = Voice(Container(run(2)) * 3)
@@ -71,7 +72,7 @@ def testget_dominant_spanners_03( ):
    assert (trill, 4) in receipt
 
 
-def testget_dominant_spanners_04( ):
+def test_get_dominant_spanners_04( ):
    '''Beam and trill dominate first two sequentials.'''
 
    t = Voice(Container(run(2)) * 3)
@@ -87,7 +88,7 @@ def testget_dominant_spanners_04( ):
    assert (trill, 0) in receipt
 
 
-def testget_dominant_spanners_05( ):
+def test_get_dominant_spanners_05( ):
    '''Glissando and trill dominate last two sequentials.'''
 
    t = Voice(Container(run(2)) * 3)
@@ -103,7 +104,7 @@ def testget_dominant_spanners_05( ):
    assert (trill, 2) in receipt
 
 
-def testget_dominant_spanners_06( ):
+def test_get_dominant_spanners_06( ):
    '''Only trill dominates all three sequentials.'''
 
    t = Voice(Container(run(2)) * 3)
@@ -118,7 +119,7 @@ def testget_dominant_spanners_06( ):
    assert (trill, 0) in receipt
 
 
-def testget_dominant_spanners_07( ):
+def test_get_dominant_spanners_07( ):
    '''Only trill dominates voice.'''
 
    t = Voice(Container(run(2)) * 3)
@@ -133,7 +134,7 @@ def testget_dominant_spanners_07( ):
    assert (trill, 0) in receipt
 
 
-def testget_dominant_spanners_08( ):
+def test_get_dominant_spanners_08( ):
    '''Only trill dominates first two notes.
       Note that trill attaches to notes.
       Note that beam and glissando attach to sequentials.'''
@@ -148,3 +149,14 @@ def testget_dominant_spanners_08( ):
 
    assert len(receipt) == 1
    assert (trill, 0) in receipt
+
+
+def test_get_dominant_spanners_09( ):
+   '''Lone components raise ContiguityError.'''
+
+   notes = scale(4)
+   b1 = Beam(notes[:2])
+   b2 = Beam(notes[2:])
+   crescendo = Crescendo(notes)
+
+   assert py.test.raises(ContiguityError, 'get_dominant_spanners(notes[1:3])')

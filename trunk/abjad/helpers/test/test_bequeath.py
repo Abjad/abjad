@@ -16,8 +16,9 @@ def test_bequeath_01( ):
       f'8 ] \!
    }'''
 
+   old_notes = t[1:3]
    new_notes = Note(12, (1, 16)) * 5
-   bequeath(t[1:3], new_notes)
+   bequeath(old_notes, new_notes)
 
    "Equivalent to t[1:3] = new_notes"
 
@@ -51,7 +52,8 @@ def test_bequeath_02( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath(t[:1], new_notes)
+   #bequeath(t[:1], new_notes)
+   t[:1] = new_notes
 
    "Equivalent to t[:1] = new_notes."
 
@@ -86,7 +88,8 @@ def test_bequeath_03( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath(t[:2], new_notes)
+   #bequeath(t[:2], new_notes)
+   t[:2] = new_notes
 
    "Equivalent to t[:2] = new_notes."
 
@@ -120,7 +123,8 @@ def test_bequeath_04( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath(t[:3], new_notes)
+   #bequeath(t[:3], new_notes)
+   t[:3] = new_notes
 
    "Equivalent to t[:3] = new_notes."
 
@@ -152,7 +156,8 @@ def test_bequeath_05( ):
    }'''
 
    new_notes = Note(12, (1, 16)) * 5
-   bequeath(t[:], new_notes)
+   #bequeath(t[:], new_notes)
+   t[:] = new_notes
 
    "Equivalent to t[:] = new_notes."
 
@@ -184,8 +189,11 @@ def test_bequeath_06( ):
       }
    }'''
 
-   old_components = bequeath(t[0:1], t[0][:])
-   voice = old_components[0]
+   #old_components = bequeath(t[0:1], t[0][:])
+   #voice = old_components[0]
+
+   voice = t[0]
+   t[:1] = t[0][:]
 
    "Equivalent to t[:1] = t[0][:]."
 
@@ -198,5 +206,4 @@ def test_bequeath_06( ):
 
    assert check(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
-   assert len(old_components) == 1
    assert len(voice) == 0

@@ -1,5 +1,6 @@
 from abjad import *
 from abjad.tools import construct
+import py.test
 
 
 def test_divide_tie_chain_01( ):
@@ -41,29 +42,13 @@ def test_divide_tie_chain_01( ):
 
 
 def test_divide_tie_chain_02( ):
-   '''You can divide an orphan tie chain, 
+   '''You can NOT divide an orphan tie chain, 
       ie, not within a staff or voice.'''
 
    notes = construct.notes(0, [(5, 32)])
    Beam(notes)
-
-   r'''
-   c'8 [ ~
-   c'32 ]
-   '''
-
-   t = divide_tie_chain(notes, divisions = 3)
-
-   r'''
-   \fraction \times 5/6 {
-      c'16 [
-      c'16
-      c'16 ]
-   }
-   '''
-
-   assert check(t)
-   assert t.format == "\\fraction \\times 5/6 {\n\tc'16 [\n\tc'16\n\tc'16 ]\n}"
+   assert py.test.raises(ContiguityError, 
+      'divide_tie_chain(notes, divisions = 3)')
 
 
 def test_divide_tie_chain_03( ):

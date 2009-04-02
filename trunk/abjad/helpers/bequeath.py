@@ -6,8 +6,7 @@ from abjad.helpers.withdraw_from_crossing_spanners import \
    _withdraw_from_crossing_spanners
 
 
-## TODO: Helper bequeath( ) does NOT hand over children.   ##
-##       Rename to bequeath_without_children( ), or other. ##
+## TODO: Rename bequeath(donors, recipients) to replace(donors, recipients). ##
 
 def bequeath(donor_components, recipient_components):
    '''Give everything from donor_components to recipient_components.

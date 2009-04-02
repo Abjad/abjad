@@ -23,7 +23,6 @@ class Hairpin(_GrobHandlerSpanner):
             if self.start:
                result.append('\\%s' % self.start)
          if self._isMyLastLeaf(leaf):
-            print 'debug last leaf'
             if self.stop:
                result.append('\\%s' % self.stop)
             elif not leaf.dynamics.mark:

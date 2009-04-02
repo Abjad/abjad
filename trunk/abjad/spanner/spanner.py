@@ -4,6 +4,7 @@ from abjad.helpers.assert_components import assert_components
 from abjad.helpers.iterate import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
+from abjad.spanner.offset import _SpannerOffsetInterface
 from abjad.rational.rational import Rational
 from copy import copy as python_copy
 
@@ -14,6 +15,7 @@ class Spanner(_Abjad):
       from abjad.component.component import _Component
       self._components = [ ]
       self._duration = _SpannerDurationInterface(self)
+      self._offset = _SpannerOffsetInterface(self)
       self._initializeMusic(music)
 
    ## OVERLOADS ##
@@ -189,6 +191,10 @@ class Spanner(_Abjad):
             if isinstance(node, _Leaf):
                result.append(node)
       return result
+
+   @property
+   def offset(self):
+      return self._offset
 
    ## PUBLIC METHODS ##
 
