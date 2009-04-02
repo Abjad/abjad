@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_navigator_last_leaves_01( ):

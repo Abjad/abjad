@@ -180,17 +180,6 @@ class _Navigator(_Abjad):
       candidates = next._navigator._firstLeaves
       return self._findFellowBead(candidates)
 
-   ## TODO: Can _Navigator._nextLeaves deprecate? ##
-   @property
-   def _nextLeaves(self):
-      '''Returns list of next leaf/leaves regardless of "thread" or type 
-         of caller. If next component is/contains a parallel, return list 
-         of simultaneous leaves'''
-      next = self._next
-      if next:
-         firstleaves = next._navigator._firstLeaves
-         return firstleaves
-
    @property
    def _nextSibling(self):
       '''Returns the next *sequential* element in the caller's parent; 
@@ -244,17 +233,6 @@ class _Navigator(_Abjad):
          return None
       candidates = prev._navigator._lastLeaves
       return self._findFellowBead(candidates)
-
-   ## TODO: Can _Navigator._prevLeaves deprecate? ##
-   @property
-   def _prevLeaves(self):
-      '''Returns list of previous leaf/leaves regardless of "thread" or type 
-         of caller. If next component is/contains a parallel, return list 
-         of simultaneous leaves'''
-      prev = self._prev
-      if prev:
-         lastLeaves = prev._navigator._lastLeaves
-         return lastLeaves
 
    @property
    def _prevMeasure(self):
