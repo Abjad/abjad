@@ -47,7 +47,7 @@ def test_divide_tie_chain_02( ):
 
    notes = construct.notes(0, [(5, 32)])
    Beam(notes)
-   assert py.test.raises(ContiguityError, 
+   assert py.test.raises(Exception, 
       'divide_tie_chain(notes, divisions = 3)')
 
 

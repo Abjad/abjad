@@ -9,7 +9,7 @@ from abjad.helpers.restore_outgoing_reference_to_parent import \
 import copy
 
 
-def copy_fractured(components):
+def copy_fracture(components):
    '''Deep copy components in 'components'.
       Deep copy spanners that attach to any component in 'components'.
       Fracture spanners that attach to components not in 'components'.

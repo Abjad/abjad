@@ -7,7 +7,7 @@ from abjad.helpers.restore_outgoing_reference_to_parent import \
 import copy
 
 
-def copy_unspanned(components):
+def copy_unspan(components):
    '''Withdraw all components at any level in 'components' from spanners.
       Deep copy unspanned components in 'components'.
       Reapply spanners to all components at any level in 'components'.
