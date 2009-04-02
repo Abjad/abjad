@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.helpers.give_my_spanned_music_to import \
+from abjad.helpers.give_spanned_music_from_to import \
    _give_spanned_music_from_to
 import py.test
 
@@ -56,7 +56,7 @@ def test_give_spanend_music_to_01( ):
    assert recipient.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
 
 
-def give_spanned_music_from_to_02( ):
+def test_give_spanned_music_from_to_02( ):
    '''When donor is leaf, do nothing.'''
 
    donor = Note(0, (1, 8))
@@ -71,7 +71,7 @@ def give_spanned_music_from_to_02( ):
    assert recipient.format == '\\new Voice {\n}'
 
 
-def give_spanned_music_from_to_03( ):
+def test_give_spanned_music_from_to_03( ):
    '''When recipient is unable to accept donated music,
       raise MusicContentsError.'''
 
