@@ -72,15 +72,9 @@ class _Component(_Abjad):
 
    ## OVERLOADS ##
 
-   ## TODO: Consider defaulting to copy_unspan( ) for component multiplication
-
    def __mul__(self, n):
-      from abjad.helpers.copy_fracture import copy_fracture
-#      result = [ ]
-#      for i in range(n):
-#         result.append(self.copy( ))
-#      return result
-      return copy_fracture([self], n)
+      from abjad.helpers.copy_unspan import copy_unspan
+      return copy_unspan([self], n)
 
    def __rmul__(self, n):
       return self * n
