@@ -1,7 +1,6 @@
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.check import check
-from abjad.helpers.withdraw_from_contained_spanners import \
-   _withdraw_from_contained_spanners
+from abjad.helpers.copy_unspan import copy_unspan
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
@@ -25,8 +24,7 @@ def leaf_duration_change(leaf, new_written_duration):
       duration_tokens = construct.notes(0, new_written_duration)
       if isinstance(duration_tokens[0], _Leaf):
          num_tied_leaves = len(duration_tokens) - 1
-         tied_leaves = leaf * num_tied_leaves
-         _withdraw_from_contained_spanners(tied_leaves)
+         tied_leaves = copy_unspan([leaf], num_tied_leaves)
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
@@ -34,11 +32,11 @@ def leaf_duration_change(leaf, new_written_duration):
          if not leaf.tie.spanned:
             Tie(all_leaves)
       elif isinstance(duration_tokens[0], FixedMultiplierTuplet):
+         print 'debug duration_tokens %s' % duration_tokens
          fmtuplet = duration_tokens[0]
          duration_tokens = fmtuplet[:]
          num_tied_leaves = len(duration_tokens) - 1
-         tied_leaves = leaf * num_tied_leaves
-         _withdraw_from_contained_spanners(tied_leaves)
+         tied_leaves = copy_unspan([leaf], num_tied_leaves)
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written

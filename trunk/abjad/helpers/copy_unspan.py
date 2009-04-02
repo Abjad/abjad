@@ -13,6 +13,9 @@ def copy_unspan(components, n = 1):
       Reapply spanners to all components at any level in 'components'.
       The 'components' must be thread-contiguous.'''
 
+   if n < 1:
+      return [ ]
+
    assert_components(components, contiguity = 'thread')
 
    spanners = get_contained_spanners(components) 

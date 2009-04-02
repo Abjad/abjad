@@ -15,6 +15,9 @@ def copy_fracture(components, n = 1):
       Fracture spanners that attach to components not in 'components'.
       Return Python list of copied components.'''
 
+   if n < 1:
+      return [ ]
+
    assert_components(components, contiguity = 'thread')
 
    selection_components = set(iterate(components, _Component))

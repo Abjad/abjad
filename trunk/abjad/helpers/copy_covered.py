@@ -14,6 +14,9 @@ def copy_covered(components, n = 1):
       Reapply crossing spanners to 'components'.
       Return copy of 'components' with covered spanners.
       The 'components' must be thread-contiguous.'''
+   
+   if n < 1:
+      return [ ]
 
    assert_components(components, contiguity = 'thread')
 
