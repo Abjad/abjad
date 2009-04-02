@@ -24,6 +24,8 @@ def copy_unspan(components):
    receipt = _cut_outgoing_reference_to_parent(components)
 
    result = copy.deepcopy(components)
+   for component in result:
+      component._update._markForUpdateToRoot( )
 
    restore_outgoing_reference_to_parent(receipt)
 
