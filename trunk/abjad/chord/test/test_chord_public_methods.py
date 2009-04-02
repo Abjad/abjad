@@ -15,11 +15,9 @@ def test_chord_append_01( ):
 def test_chord_copy_01( ):
    '''Chords can be copied. Python ids differ.'''
    t = Chord([2, 4], (1, 4))
-   new = t.copy( )
+   new = copy_fracture([t])[0]
    assert isinstance(new, Chord)
    assert len(t) == len(new)
-   #assert t.pitches[0] == new.pitches[0]
-   #assert t.pitches[1] == new.pitches[1]
    assert t.pitches[0].number == new.pitches[0].number
    assert t.pitches[1].number == new.pitches[1].number
    assert id(t) != id(new)
@@ -40,10 +38,8 @@ def test_chord_pop_01( ):
    '''Lone chords can pop noteheads by index.'''
    t = Chord([2, 4], (1, 4))
    notehead = t.pop( )
-   #assert notehead.pitch == 4
    assert notehead.pitch.number == 4
    assert len(t) == 1
-   #assert t.pitches[0] == 2
    assert t.pitches[0].number == 2
    
 
@@ -52,7 +48,6 @@ def test_chord_remove_01( ):
    t = Chord([2, 4], (1, 4))
    t.remove(t[0])
    assert len(t) == 1
-   #assert t.pitches[0] == 4
    assert t.pitches[0].number == 4
 
 
@@ -61,5 +56,4 @@ def test_chord_remove_02( ):
    t = Chord([2, 4], (1, 4))
    t.remove(t[1])
    assert len(t) == 1
-   #assert t.pitches[0] == 2
    assert t.pitches[0].number == 2

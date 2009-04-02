@@ -210,6 +210,8 @@ class Spanner(_Abjad):
       component.spanners._add(self)
       self._components.insert(0, component)
 
+   ## TODO: Consider deprecating Spanner.copy( ) bc unused. ##
+
    def copy(self, start = None, stop = None):
       result = python_copy(self)
       result._components = [ ]

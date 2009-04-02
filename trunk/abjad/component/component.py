@@ -72,11 +72,15 @@ class _Component(_Abjad):
 
    ## OVERLOADS ##
 
+   ## TODO: Consider defaulting to copy_unspan( ) for component multiplication
+
    def __mul__(self, n):
-      result = [ ]
-      for i in range(n):
-         result.append(self.copy( ))
-      return result
+      from abjad.helpers.copy_fracture import copy_fracture
+#      result = [ ]
+#      for i in range(n):
+#         result.append(self.copy( ))
+#      return result
+      return copy_fracture([self], n)
 
    def __rmul__(self, n):
       return self * n
@@ -288,19 +292,17 @@ class _Component(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   ## TODO: Externalize _Component.copy( ). ##
-
-   def copy(self):
-      '''Clones a complete Abjad component;
-         first fractures and then cuts parent;
-         (cut followed by fracture destroys 'next');
-         deepcopies reference-pruned version of self;
-         reestablishes parent and spanner references;
-         returns the deepcopy;
-         leaves self unchanged.'''
-      from abjad.helpers.copy_fracture import copy_fracture
-      result = copy_fracture([self])
-      return result[0]
+#   def copy(self):
+#      '''Clones a complete Abjad component;
+#         first fractures and then cuts parent;
+#         (cut followed by fracture destroys 'next');
+#         deepcopies reference-pruned version of self;
+#         reestablishes parent and spanner references;
+#         returns the deepcopy;
+#         leaves self unchanged.'''
+#      from abjad.helpers.copy_fracture import copy_fracture
+#      result = copy_fracture([self])
+#      return result[0]
 
    def detach(self):
       '''Detach component from parentage.

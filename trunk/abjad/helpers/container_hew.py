@@ -61,13 +61,11 @@ def container_hew(container, i, spanners = 'preserve'):
    container._music = [ ]
 
    # create empty lefthand container
-   #left = container.copy( ) # old
-   left = copy_unspan([container])[0] # new
+   left = copy_unspan([container])[0]
    left.spanners.clear( )
 
    # create empty righthand container
-   #right = container.copy( ) # old
-   right = copy_unspan([container])[0] # new
+   right = copy_unspan([container])[0]
    right.spanners.clear( )
 
    # give music back to container

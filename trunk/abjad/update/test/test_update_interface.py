@@ -26,7 +26,7 @@ def test_update_interface_03( ):
 
    t = Note(0, (1, 4))
    t.offset.score
-   new = t.copy( )
+   new = copy_unspan([t])[0]
    assert not new._update._current
 
 
@@ -35,7 +35,7 @@ def test_update_interface_04( ):
 
    t = Voice(scale(4))
    t[-1].offset.score
-   new = t.copy( )
+   new = copy_unspan([t])[0]
    assert not new._update._current
 
 
