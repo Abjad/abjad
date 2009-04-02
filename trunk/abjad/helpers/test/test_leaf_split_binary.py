@@ -5,7 +5,7 @@ def test_leaf_split_binary_01( ):
    '''Split duration equals 0. Leaf is left unmodified.'''
 
    t = Note(0, (1, 4))
-   new = leaf_split_binary(Rational(0), t)
+   new = leaf_split_binary(t, Rational(0))
 
    assert isinstance(new, list)
    assert len(new) == 1
@@ -19,7 +19,7 @@ def test_leaf_split_binary_02( ):
    '''Split duration >= Leaf duration. Leaf is left unmodified.'''
 
    t = Note(0, (1, 4))
-   new = leaf_split_binary(Rational(3, 4), t)
+   new = leaf_split_binary(t, Rational(3, 4))
 
    assert isinstance(new, list)
    assert len(new) == 1
@@ -32,7 +32,7 @@ def test_leaf_split_binary_03( ):
    '''Split returns two lists of Leaves.'''
 
    t = Note(0, (1, 4))
-   new = leaf_split_binary(Rational(1, 8), t)
+   new = leaf_split_binary(t, Rational(1, 8))
 
    assert isinstance(new, list)
    assert len(new) == 2
@@ -52,7 +52,7 @@ def test_leaf_split_binary_04( ):
    '''Split returns two lists of Leaves.'''
 
    t = Note(0, (1, 4))
-   new = leaf_split_binary(Rational(1, 16), t)
+   new = leaf_split_binary(t, Rational(1, 16))
 
    assert isinstance(new, list)
    assert len(new) == 2
@@ -69,7 +69,7 @@ def test_leaf_split_binary_05( ):
    two are tied.'''
 
    t = Note(0, (1, 4))
-   new = leaf_split_binary(Rational(5, 32), t)
+   new = leaf_split_binary(t, Rational(5, 32))
 
    assert isinstance(new, list)
    assert len(new) == 2
@@ -96,7 +96,7 @@ def test_leaf_split_binary_06( ):
    spanner are also spanned. '''
    t = Voice(run(4))
    b = Beam(t.leaves)
-   leaf_split_binary(Rational(1, 32), t[0])
+   leaf_split_binary(t[0], Rational(1, 32))
    for l in t.leaves:
       assert l.spanners.attached == set([b])
 
@@ -106,7 +106,7 @@ def test_leaf_split_binary_07( ):
    spanner are also spanned. '''
    t = Voice(run(4))
    b = Beam(t.leaves)
-   leaf_split_binary(Rational(1, 32), t[-1])
+   leaf_split_binary(t[-1], Rational(1, 32))
    for l in t.leaves:
       assert l.spanners.attached == set([b])
 
@@ -116,7 +116,7 @@ def test_leaf_split_binary_10( ):
 
    t = Staff([Note(0, (1, 4))])
    s = Tie(t.leaves)
-   new = leaf_split_binary(Rational(1, 8), t[0])
+   new = leaf_split_binary(t[0], Rational(1, 8))
 
    assert len(t) == 2
    for leaf in t.leaves:
@@ -130,7 +130,7 @@ def test_leaf_split_binary_11( ):
 
    t = Staff(run(4))
    b = Beam(t.leaves)
-   new = leaf_split_binary(Rational(1, 16), t[0])
+   new = leaf_split_binary(t[0], Rational(1, 16))
 
    assert len(t) == 5
    for l in t.leaves:
@@ -145,7 +145,7 @@ def test_leaf_split_binary_12( ):
 
    t = Staff([Note(0, (1, 4))])
    s = Tie(t.leaves)
-   new = leaf_split_binary(Rational(5, 32), t[0])
+   new = leaf_split_binary(t[0], Rational(5, 32))
 
    assert len(new) == 2
    assert len(new[0]) == 2
@@ -164,7 +164,7 @@ def test_leaf_split_binary_20( ):
 
    t = Staff(run(4))
    s = Tie(t)
-   new = leaf_split_binary(Rational(5, 64), t[0])
+   new = leaf_split_binary(t[0], Rational(5, 64))
 
    assert t.tie.spanner is s
    assert s.components == [t]
@@ -179,7 +179,7 @@ def test_leaf_split_binary_21( ):
 
    t = Staff(Container(run(4)) * 2)
    s = Tie(t[:])
-   new = leaf_split_binary(Rational(5, 64), t[0][0])
+   new = leaf_split_binary(t[0][0], Rational(5, 64))
 
    assert s.components == t[:]
    for v in t:
@@ -197,7 +197,7 @@ def test_leaf_split_binary_30( ):
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
-   new = leaf_split_binary(Rational(1, 8), t)
+   new = leaf_split_binary(t, Rational(1, 8))
 
    assert len(new[0][0].grace.after) == 0
    assert len(new[1][0].grace.after) == 1
@@ -208,7 +208,7 @@ def test_leaf_split_binary_31( ):
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
-   new = leaf_split_binary(Rational(5, 32), t)
+   new = leaf_split_binary(t, Rational(5, 32))
 
    assert len(new[0]) == 2
    assert len(new[0][0].grace.after) == 0
@@ -222,7 +222,7 @@ def test_leaf_split_binary_32( ):
 
    t = Note(0, (1, 4))
    t.grace.before = Note(0, (1, 32))
-   new = leaf_split_binary(Rational(1, 8), t)
+   new = leaf_split_binary(t, Rational(1, 8))
 
    assert len(new[0]) == 1
    assert len(new[1]) == 1

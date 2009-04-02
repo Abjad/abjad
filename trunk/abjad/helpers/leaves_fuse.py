@@ -20,4 +20,5 @@ def leaves_fuse_binary(data):
       for l in leaves[1:]:
          #l._die( )
          l.detach( )
-      return leaf_scale_binary(dur, leaves[0])
+      #return leaf_scale_binary(dur, leaves[0])
+      return leaf_scale_binary(leaves[0], dur)

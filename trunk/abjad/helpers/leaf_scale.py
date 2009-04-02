@@ -17,10 +17,11 @@ from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 ##   we are not really scaling.
 ## - should multipliers be retained in setting of new duration ?
 
-def leaf_scale(dur, leaf):
+#def leaf_scale(dur, leaf):
+def leaf_scale(leaf, dur):
    '''Example:
       
-      >>> leaf_scale((5, 13), Note(0, (1, 8)))
+      >>> leaf_scale(Note(0, (1, 8)), Rational(5, 13))
       FixedDurationTuplet((5, 13), [Note(0, (1, 4))])'''
 
    assert isinstance(leaf, _Leaf) 
@@ -36,10 +37,11 @@ def leaf_scale(dur, leaf):
 
 
 from abjad.tie.spanner import Tie
-def leaf_scale_binary(dur, leaf):
+#def leaf_scale_binary(dur, leaf):
+def leaf_scale_binary(leaf, dur):
    '''Example:
       
-      >>> leaf_scale_binary((5, 16), Note(0, (1, 8)))
+      >>> leaf_scale_binary(Note(0, (1, 8)), Rational(5, 16))
       [Note(0, (1, 4), Note(0, (1,16)]'''
 
    assert isinstance(leaf, _Leaf)

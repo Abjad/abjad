@@ -38,7 +38,8 @@ def _scopy_leaf(leaf, start, stop):
    if total == 0:
       return None
    new = leaf.copy( )
-   new = leaf_scale(total, new)
+   #new = leaf_scale(total, new)
+   new = leaf_scale(new, total)
    return new
 
 
@@ -54,11 +55,13 @@ def _scopy_container(container, start, stop):
    leaf_start = container.leaves[0]
    leaf_end = container.leaves[-1]
    # split first leaf
-   leaf_start_splitted = leaf_split(first_dif, leaf_start)
+   #leaf_start_splitted = leaf_split(first_dif, leaf_start)
+   leaf_start_splitted = leaf_split(leaf_start, first_dif)
    if len(leaf_start_splitted) == 2:
       excise(leaf_start_splitted[0])
    # split second leaf
-   leaf_end_splitted = leaf_split(second_dif, leaf_end)
+   #leaf_end_splitted = leaf_split(second_dif, leaf_end)
+   leaf_end_splitted = leaf_split(leaf_end, second_dif)
    if len(leaf_end_splitted) == 2:
       excise(leaf_end_splitted[1])
    return container

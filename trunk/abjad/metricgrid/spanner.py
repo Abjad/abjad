@@ -60,10 +60,10 @@ class MetricGrid(Spanner):
                splitdur = meter.offset - leaf.offset.score
                ### if splitdur not m / 2**n
                if _is_power_of_two(splitdur._denominator):
-                  leaves_splitted = leaf_split_binary(splitdur, leaf)
+                  leaves_splitted = leaf_split_binary(leaf, splitdur)
                   leaf = leaves_splitted[1][0]
                else:
-                  leaves_splitted = leaf_split(splitdur, leaf)
+                  leaves_splitted = leaf_split(leaf, splitdur)
                   leaf = leaves_splitted[1].leaves[0]
             else:
                ### only advance if we have not split.
