@@ -52,6 +52,12 @@ class SpannerError(Exception):
    '''General spanner error.'''
    pass
 
+class SpannerPopulationError(SpannerError):
+   '''Assumption about contents of spanner is incorrect.
+      Spanner may be missing component it is assumed to have.
+      Spanner may have a component it is assumed not to have.'''
+   pass
+
 class StaffContainmentError(ContextContainmentError):
    '''Staves must contain only voices and lower-level components.
       Staves must not contain staff groups, scores or other staves.'''
