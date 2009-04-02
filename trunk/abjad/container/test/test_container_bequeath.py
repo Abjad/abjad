@@ -26,18 +26,9 @@ def test_container_bequeath_01( ):
       }
    }'''
 
-   old = t[1]
-
-   r'''{
-      e'8 \glissando
-      f'8 \glissando
-   }'''
-
    new = Voice( )
    new.name = 'foo'
-   old.bequeath(new)
-
-   assert t.format == '\\context Voice = "foo" {\n\t{\n\t\tc\'8 [ \\glissando\n\t\td\'8 \\glissando\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8 \\glissando\n\t\tf\'8 \\glissando\n\t}\n\t{\n\t\tg\'8 \\glissando\n\t\ta\'8 ]\n\t}\n}'
+   t[1].bequeath(new)
 
    r'''\context Voice = "foo" {
       {
@@ -55,20 +46,7 @@ def test_container_bequeath_01( ):
    }'''
 
    assert check(t)
-
-   assert old.format == '{\n}'
-
-   r'''{
-   }'''
-
-   assert new.format == '\\context Voice = "foo" {\n\te\'8 \\glissando\n\tf\'8 \\glissando\n}'
-
-   r'''\context Voice = "foo" {
-      e'8 \glissando
-      f'8 \glissando
-   }'''
-
-   assert check(new)
+   assert t.format == '\\context Voice = "foo" {\n\t{\n\t\tc\'8 [ \\glissando\n\t\td\'8 \\glissando\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8 \\glissando\n\t\tf\'8 \\glissando\n\t}\n\t{\n\t\tg\'8 \\glissando\n\t\ta\'8 ]\n\t}\n}'
 
 
 def test_container_bequeath_02( ):
@@ -182,22 +160,22 @@ def test_container_bequeath_04( ):
 
 def test_container_bequeath_05( ):
    '''Trying to bequeath from nonempty container 
-      to leaf raises TypeError.'''
+      to leaf raises MusicContentsError.'''
 
    t = Voice(Container(run(2)) * 2)
    Beam(t[:])
    diatonicize(t)
 
-   assert py.test.raises(TypeError, 't[1].bequeath(Note(4, (1, 4)))')
+   assert py.test.raises(MusicContentsError, 't[1].bequeath(Note(4, (1, 4)))')
 
 
 def test_container_bequeath_06( ):
    '''Trying to bequeath from nonempty container to 
-      nonempty container raises TypeError.'''
+      nonempty container raises MusicContentsError.'''
    
    t = Voice(Container(run(2)) * 2)
    Beam(t[:])
    diatonicize(t)
 
    tuplet = FixedDurationTuplet((2, 8), scale(3))
-   assert py.test.raises(TypeError, 't[1].bequeath(tuplet)') 
+   assert py.test.raises(MusicContentsError, 't[1].bequeath(tuplet)') 

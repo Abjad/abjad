@@ -288,6 +288,10 @@ class _Component(_Abjad):
 
    ## PUBLIC METHODS ##
 
+   ## TODO: _Component.bequeath( ) hands over children, where possible. ##
+   ##       Preserve this behavior and preserve bequeath( ) name.       ##
+   ##       Also, externalize bequeath( ) to work on many components.   ##
+
    def bequeath(self, component):
       '''Give my music to recipient component.
          Give my attached spanners to recipient component.
@@ -299,9 +303,9 @@ class _Component(_Abjad):
          _give_dominant_spanners_to
       from abjad.helpers.give_my_position_in_parent_to import \
          _give_my_position_in_parent_to
-      from abjad.helpers.give_my_spanned_music_to import \
-         _give_my_spanned_music_to
-      _give_my_spanned_music_to(self, component)
+      from abjad.helpers.give_spanned_music_from_to import \
+         _give_spanned_music_from_to
+      _give_spanned_music_from_to([self], component)
       _give_dominant_spanners_to([self], [component])
       _give_my_position_in_parent_to(self, [component])
 

@@ -30,6 +30,11 @@ class MissingSpannerError(Exception):
        but spanner is missing.'''
    pass
 
+class MusicContentsError(Exception):
+   '''Operation assumes presence of music content when none is there.
+      Or operation assumes absences of music content when some is there.'''
+   pass
+
 class NegativeDurationError(DurationError):
    '''Component durations must be positive.'''
    pass
