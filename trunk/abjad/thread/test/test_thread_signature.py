@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_parentage_thread_signature_01( ):
+def test_thread_signature_01( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -34,13 +34,13 @@ def test_parentage_thread_signature_01( ):
 
    '''All components here carry the exact same containment signature.'''
 
-   signature = t.parentage._threadSignature
+   signature = t.thread.signature
 
    for component in iterate(t, _Component):
-      assert component.parentage._threadSignature == signature
+      assert component.thread.signature == signature
 
 
-def test_parentage_thread_signature_02( ):
+def test_thread_signature_02( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -72,13 +72,13 @@ def test_parentage_thread_signature_02( ):
 
    '''Again, all components here carry the exact same containment signature.'''
 
-   signature = t.parentage._threadSignature
+   signature = t.thread.signature
 
    for component in iterate(t, _Component):
-      assert component.parentage._threadSignature == signature
+      assert component.thread.signature == signature
 
 
-def test_parentage_thread_signature_03( ):
+def test_thread_signature_03( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -109,13 +109,13 @@ def test_parentage_thread_signature_03( ):
 
    '''Again, all components here carry the exact same containment signature.'''
 
-   containment = t.parentage._threadSignature
+   containment = t.thread.signature
 
    for component in iterate(t, _Component):
-      assert component.parentage._threadSignature == containment
+      assert component.thread.signature == containment
 
 
-def test_parentage_thread_signature_04( ):
+def test_thread_signature_04( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
@@ -144,7 +144,7 @@ def test_parentage_thread_signature_04( ):
            c''8
    }'''
 
-   signatures = [leaf.parentage._threadSignature for leaf in t.leaves]
+   signatures = [leaf.thread.signature for leaf in t.leaves]
 
    assert signatures[0] == signatures[1]
    assert signatures[0] != signatures[2]
@@ -155,7 +155,7 @@ def test_parentage_thread_signature_04( ):
    assert signatures[2] != signatures[4]
 
       
-def test_parentage_thread_signature_05( ):
+def test_thread_signature_05( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -187,7 +187,7 @@ def test_parentage_thread_signature_05( ):
    }
    '''
 
-   signatures = [leaf.parentage._threadSignature for leaf in t.leaves]
+   signatures = [leaf.thread.signature for leaf in t.leaves]
 
    signatures[0] == signatures[1]
    signatures[0] == signatures[2]
@@ -205,7 +205,7 @@ def test_parentage_thread_signature_05( ):
    signatures[4] == signatures[6]
 
 
-def test_parentage_thread_signature_06( ):
+def test_thread_signature_06( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -234,7 +234,7 @@ def test_parentage_thread_signature_06( ):
            }
    }'''
 
-   signatures = [leaf.parentage._threadSignature for leaf in t.leaves]
+   signatures = [leaf.thread.signature for leaf in t.leaves]
 
    signatures[0] == signatures[1]
    signatures[0] != signatures[2]
@@ -243,7 +243,7 @@ def test_parentage_thread_signature_06( ):
    signatures[2] == signatures[3]
 
    
-def test_parentage_thread_signature_07( ):
+def test_thread_signature_07( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
@@ -282,7 +282,7 @@ def test_parentage_thread_signature_07( ):
       a'8
    }'''
    
-   signatures = [leaf.parentage._threadSignature for leaf in t.leaves]
+   signatures = [leaf.thread.signature for leaf in t.leaves]
 
    signatures[0] != signatures[1]
    signatures[0] != signatures[2]
@@ -303,16 +303,16 @@ def test_parentage_thread_signature_07( ):
    signatures[2] != signatures[5]
 
 
-def test_parentage_thread_signature_08( ):
+def test_thread_signature_08( ):
    '''Unicorporated leaves carry different containment signatures.'''
 
    t1 = Note(0, (1, 8))
    t2 = Note(0, (1, 8))
   
-   assert t1.parentage._threadSignature != t2.parentage._threadSignature
+   assert t1.thread.signature != t2.thread.signature
 
 
-def test_parentage_thread_signature_09( ):
+def test_thread_signature_09( ):
    '''Components here carry the same containment signature EXCEPT FOR root.
       Component containment signatures do not compare True.'''
 
@@ -324,12 +324,12 @@ def test_parentage_thread_signature_09( ):
    t2.name = 'staff'
    t2[0].name = 'voice'
 
-   t1_leaf_signature = t1.leaves[0].parentage._threadSignature
-   t2_leaf_signature = t2.leaves[0].parentage._threadSignature
+   t1_leaf_signature = t1.leaves[0].thread.signature
+   t2_leaf_signature = t2.leaves[0].thread.signature
    assert t1_leaf_signature != t2_leaf_signature
 
 
-def test_parentage_thread_signature_10( ):
+def test_thread_signature_10( ):
    '''Measure and leaves must carry same thread signature.'''
 
    t = Staff([DynamicMeasure(scale(2))] + run(2))
@@ -343,6 +343,6 @@ def test_parentage_thread_signature_10( ):
       f'8
    }'''
 
-   assert t[0].parentage._threadSignature == t[-1].parentage._threadSignature
-   assert t[0].parentage._threadSignature == t[0][0].parentage._threadSignature
-   assert t[0][0].parentage._threadSignature == t[-1].parentage._threadSignature
+   assert t[0].thread.signature == t[-1].thread.signature
+   assert t[0].thread.signature == t[0][0].thread.signature
+   assert t[0][0].thread.signature == t[-1].thread.signature

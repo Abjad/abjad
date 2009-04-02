@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_parentage_thread_signature_str_01( ):
+def test_thread_report_01( ):
    '''Containment signature of leaf 2.
       Signature contains no explicit voice, staff or score.
       Outermost sequentials acts as signature root.'''
@@ -33,7 +33,7 @@ def test_parentage_thread_signature_str_01( ):
            \revert NoteHead #'color
    }'''
 
-   '''abjad> print t.leaves[2].parentage._threadSignature
+   '''abjad> print t.leaves[2].thread.report
 
        root: Container-4274576 (4274576)
       score: 
@@ -42,7 +42,7 @@ def test_parentage_thread_signature_str_01( ):
        self: Note-5358192'''
 
 
-def test_parentage_thread_signature_str_02( ):
+def test_thread_report_02( ):
    '''Containment signature of leaf 2.
       Signature contains named voice 'foo'.
       Signature contains neither staff nor score.
@@ -74,7 +74,7 @@ def test_parentage_thread_signature_str_02( ):
            c''8
    }'''
 
-   '''abjad> print t.leaves[2].parentage._threadSignature
+   '''abjad> print t.leaves[2].thread.report
 
        root: Voice-foo (4274608)
       score: 
@@ -83,7 +83,7 @@ def test_parentage_thread_signature_str_02( ):
        self: Note-5358256'''
 
 
-def test_parentage_thread_signature_str_03( ):
+def test_thread_report_03( ):
    '''Containment signature of leaf 2.
       Signature contains anonymous voice.
       Signature contains neither staff nor score.
@@ -114,7 +114,7 @@ def test_parentage_thread_signature_str_03( ):
            c''8
    }'''
 
-   '''abjad> print t.leaves[2].parentage._threadSignature
+   '''abjad> print t.leaves[2].thread.report
 
        root: Voice-4274576 (4274576)
       score: 
@@ -123,7 +123,7 @@ def test_parentage_thread_signature_str_03( ):
        self: Note-5358224'''
 
 
-def test_parentage_thread_signature_str_04( ):
+def test_thread_report_04( ):
    '''Containment signature for leaf 2.
       Signature contains innermost anonymous voice.
       Signature contains neither staff nor score.
@@ -154,7 +154,7 @@ def test_parentage_thread_signature_str_04( ):
            c''8
    }'''
 
-   '''abjad> print t.leaves[2].parentage._threadSignature
+   '''abjad> print t.leaves[2].thread.report
 
        root: Voice-4274576 (4274576)
       score: 
@@ -163,7 +163,7 @@ def test_parentage_thread_signature_str_04( ):
        self: Note-5358320'''
 
       
-def test_parentage_thread_signature_str_05( ):
+def test_thread_report_05( ):
    '''Containment signature for leaf 2.
       Signature contains named voice 'foo'.
       Signature contains neither staff nor score.
@@ -197,7 +197,7 @@ def test_parentage_thread_signature_str_05( ):
    }
    '''
 
-   '''abjad> print t.leaves[0].parentage._threadSignature
+   '''abjad> print t.leaves[0].thread.report
 
        root: Voice-foo (4274640)
       score: 
@@ -206,7 +206,7 @@ def test_parentage_thread_signature_str_05( ):
        self: Note-5362480'''
 
 
-def test_parentage_thread_signature_str_06( ):
+def test_thread_report_06( ):
    '''Containment signature of leaf 2.
       Signature contains named 'voicefoo' and 'staff1'.
       Signature contains no score.
@@ -237,7 +237,7 @@ def test_parentage_thread_signature_str_06( ):
            }
    }'''
 
-   '''abjad> print t.leaves[2].parentage._threadSignature
+   '''abjad> print t.leaves[2].thread.report
 
        root: Container-4393200 (4393200)
       score: 
@@ -246,7 +246,7 @@ def test_parentage_thread_signature_str_06( ):
        self: Note-5334832'''
 
    
-def test_parentage_thread_signature_str_07( ):
+def test_thread_report_07( ):
 
    t = Container(run(2))
    t[1:1] = Container(Voice(run(1)) * 2) * 2
@@ -283,7 +283,7 @@ def test_parentage_thread_signature_str_07( ):
       a'8
    }'''
    
-   '''abjad> print t.leaves[2].parentage._threadSignature
+   '''abjad> print t.leaves[2].thread.report
 
        root: Container-4274704 (4274704)
       score: 
@@ -292,12 +292,12 @@ def test_parentage_thread_signature_str_07( ):
        self: Note-4370288'''
 
 
-def test_parentage_thread_signature_str_08( ):
+def test_thread_report_08( ):
    '''Unicorporated leaves carry different containment signatures.'''
 
    t = Note(0, (1, 8))
   
-   '''abjad> print t.parentage._threadSignature
+   '''abjad> print t.thread.report
 
        root: Note-5494544 (5494544)
       score: 
@@ -306,13 +306,13 @@ def test_parentage_thread_signature_str_08( ):
        self: Note-5494544'''
 
 
-def test_parentage_thread_signature_str_09( ):
+def test_thread_report_09( ):
 
    t = Staff([Voice([Note(0, (1, 8))])])
    t.name = 'staff'
    t[0].name = 'voice'
 
-   '''abjad> print t.leaves[0].parentage._threadSignature
+   '''abjad> print t.leaves[0].thread.report
 
     root: Staff-staff (4297200)
    score: 
