@@ -1,6 +1,5 @@
 from abjad.tools import construct
 from abjad import *
-import py.test
 
 
 def test_measures_project_01( ):
@@ -45,8 +44,6 @@ def test_measures_project_01( ):
 
 def test_measures_project_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
-
-   py.test.skip('TODO: FIXME')
 
    t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), scale(6))])
    measures_subsume(t)

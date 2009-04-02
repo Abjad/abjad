@@ -27,7 +27,7 @@ class MetricGrid(Spanner):
          while moffset < self.duration.prolated:
             m = self._meters[i % len(self._meters)]
             m = Meter(*m)
-            ### new attribute
+            ## new attribute
             m.offset = moffset
             if prev_meter and prev_meter == m:
                #m.hide = True
@@ -53,12 +53,12 @@ class MetricGrid(Spanner):
          if leaf.offset.score < meter.offset:
             if leaf.offset.score + leaf.duration.prolated > meter.offset and \
                self.splittingCondition(leaf):
-               ### will split
+               ## will split
                #if not leaf.tie.spanner:
                if not leaf.tie.parented:
                   Tie(leaf)
                splitdur = meter.offset - leaf.offset.score
-               ### if splitdur not m / 2**n
+               ## if splitdur not m / 2**n
                if _is_power_of_two(splitdur._denominator):
                   leaves_splitted = leaf_split_binary(leaf, splitdur)
                   leaf = leaves_splitted[1][0]
@@ -66,7 +66,7 @@ class MetricGrid(Spanner):
                   leaves_splitted = leaf_split(leaf, splitdur)
                   leaf = leaves_splitted[1].leaves[0]
             else:
-               ### only advance if we have not split.
+               ## only advance if we have not split.
                leaf = leaf._navigator._nextBead
                #leaf = leaf.next
          else:
@@ -77,12 +77,12 @@ class MetricGrid(Spanner):
       self._fuseTiedLeavesWithinMeasures( )
 
    def _fuseTiedLeavesWithinMeasures(self):
-      ### fuse tied notes
+      ## fuse tied notes
       meters = self.meters
       meter = meters.next( )
       leaves_in_meter = [[]]
       leaf = self.leaves[0]
-      ### group leaves by measure.
+      ## group leaves by measure.
       while leaf:
          if leaf.offset.score < meter.offset + meter.duration:
             leaves_in_meter[-1].append(leaf)
@@ -93,7 +93,7 @@ class MetricGrid(Spanner):
                leaves_in_meter.append([])
             except StopIteration:
                break
-      ### group together leaves in same measure that are tied together.
+      ## group together leaves in same measure that are tied together.
       for leaves in leaves_in_meter:
          result = [[]]
          if len(leaves) > 0:
@@ -111,10 +111,10 @@ class MetricGrid(Spanner):
                else:
                   sp = None
                result.append([])
-         ### fuse leaves 
+         ## fuse leaves 
          for r in result:
-            ### keep last after graces, if any
-            ### TODO: this is very hacky. Find better solution
+            ## keep last after graces, if any
+            ## TODO: this is very hacky. Find better solution
             if len(r) > 0:
                r[0].grace.after = r[-1].grace.after
             leaves_fuse_binary(r)
@@ -135,13 +135,13 @@ class MetricGrid(Spanner):
             return m
 
 
-   ### FORMATTING ### 
+   ## FORMATTING ## 
 
-   ###FIXME: formatting is ridiculously slow. 
-   ###       find a way to make it faster.
-   ### Tue Jan 13 12:05:43 EST 2009 [VA] using _slicingMetersFound boolean
-   ### flag now to improve performance time. Better but still not perfect. 
-   ### Is metricgrid a good candidate for the UpdateInterface?
+   ##FIXME: formatting is ridiculously slow. 
+   ##       find a way to make it faster.
+   ## Tue Jan 13 12:05:43 EST 2009 [VA] using _slicingMetersFound boolean
+   ## flag now to improve performance time. Better but still not perfect. 
+   ## Is metricgrid a good candidate for the UpdateInterface?
    def _before(self, leaf):
       result = [ ]
       if not self.hide:
@@ -155,8 +155,8 @@ class MetricGrid(Spanner):
          #m = [meter for meter in m if not meter._temp_hide]
          m = [meter for meter in m if not getattr(meter, '_temp_hide', False)]
          if m:
-            ### set self._slicingMetersFound as temporary flag so that 
-            ### self._after does not have to recompute _slicingMeters( )
+            ## set self._slicingMetersFound as temporary flag so that 
+            ## self._after does not have to recompute _slicingMeters( )
             self._slicingMetersFound = True
             result.append('<<')
             for meter in m:
