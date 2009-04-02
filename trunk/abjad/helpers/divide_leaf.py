@@ -1,5 +1,6 @@
-from abjad.note.note import Note
+from abjad.helpers.donate import donate
 from abjad.helpers.prolated_to_written import _prolated_to_written
+from abjad.note.note import Note
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
@@ -22,8 +23,8 @@ def divide_leaf(leaf, divisions = 2, prolation = 'diminution'):
    # make tuplet
    tuplet = FixedDurationTuplet(target_duration, notes)
 
-   # bequeath leaf position in score structure to tuplet
-   leaf.bequeath(tuplet) 
+   # give leaf position in score structure to tuplet
+   donate([leaf], tuplet)
 
    # return tuplet
    return tuplet

@@ -9,7 +9,6 @@ from abjad.helpers.give_spanned_music_from_to import \
 
 def donate(donors, recipient):
    '''Docs.
-      This was previously _Component.bequeath( ).
       This helper hands over music, if any.'''
 
    assert_components(donors, contiguity = 'strict', share = 'parent')

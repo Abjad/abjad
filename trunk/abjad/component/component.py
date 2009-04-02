@@ -288,24 +288,7 @@ class _Component(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   ## TODO: Deprecate _Component.bequeath( ) in favor of donate( ). ##
-
-   def bequeath(self, component):
-      '''Give my music to recipient component.
-         Give my attached spanners to recipient component.
-         Give my position in parent to recipient component.
-         After bequeathal, self is an empty unspanned orphan.
-         Bequeath swaps out one type of container for another.
-         Return None.'''
-      from abjad.helpers.give_dominant_spanners_to import \
-         _give_dominant_spanners_to
-      from abjad.helpers.give_position_in_parent_from_to import \
-         _give_position_in_parent_from_to
-      from abjad.helpers.give_spanned_music_from_to import \
-         _give_spanned_music_from_to
-      _give_spanned_music_from_to([self], component)
-      _give_dominant_spanners_to([self], [component])
-      _give_position_in_parent_from_to([self], [component])
+   ## TODO: Externalize _Component.copy( ). ##
 
    def copy(self):
       '''Clones a complete Abjad component;
