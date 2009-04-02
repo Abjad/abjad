@@ -22,6 +22,7 @@ from abjad.rest.interface import _RestInterface
 from abjad.slur.interface import _SlurInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tempo.interface import _TempoInterface
+from abjad.thread.interface import _ThreadInterface
 from abjad.tie.interface import _TieInterface
 from abjad.text.interface import _TextInterface
 from abjad.tremolo.interface import _TremoloInterface
@@ -59,6 +60,7 @@ class _Component(_Abjad):
       self._stem = _StemInterface(self)
       self._tempo = _TempoInterface(self)
       self._text = _TextInterface(self)
+      self._thread = _ThreadInterface(self)
       self._tie = _TieInterface(self)
       self._tremolo = _TremoloInterface(self)
       self._trill = _TrillInterface(self)
@@ -229,6 +231,10 @@ class _Component(_Abjad):
       def fget(self):
          return self._stem
       return property(**locals( ))
+
+   @property
+   def thread(self):
+      return self._thread
 
    @apply
    def tie( ):
