@@ -23,7 +23,7 @@ def leaf_scale(dur, leaf):
       FixedDurationTuplet((5, 13), [Note(0, (1, 4))])'''
 
    assert isinstance(leaf, _Leaf) 
-   dur = Rational(*_duration_token_unpack(dur))
+   assert isinstance(dur, Rational)
    assert dur > 0
    try:
       leaf.duration.written = dur
@@ -42,7 +42,7 @@ def leaf_scale_binary(dur, leaf):
       [Note(0, (1, 4), Note(0, (1,16)]'''
 
    assert isinstance(leaf, _Leaf)
-   dur = Rational(*_duration_token_unpack(dur))
+   assert isinstance(dur, Rational)
    assert dur > 0
    try:
       leaf.duration.written = dur

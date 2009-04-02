@@ -9,7 +9,7 @@ from abjad.rational.rational import Rational
 
 def leaf_split(split_dur, leaf):
    assert isinstance(leaf, _Leaf)
-   split_dur = Rational(*_duration_token_unpack(split_dur))
+   assert isinstance(split_dur, Rational)
    unprolated_split_dur = split_dur / leaf.duration.prolation
    if unprolated_split_dur == 0 or \
       leaf.duration.written <= unprolated_split_dur:
@@ -23,17 +23,15 @@ def leaf_split(split_dur, leaf):
 
 def leaf_split_binary(split_dur, leaf):
    assert isinstance(leaf, _Leaf)
-   #assert isinstance(split_dur, Rational)
-   split_dur = Rational(*_duration_token_unpack(split_dur))
+   assert isinstance(split_dur, Rational)
    unprolated_split_dur = split_dur / leaf.duration.prolation
    denominator = unprolated_split_dur._d
    assert _is_power_of_two(denominator)
    if unprolated_split_dur == 0 or \
       leaf.duration.written <= unprolated_split_dur:
       return [leaf]
-
    new_leaf = copy_unspan([leaf])[0]
-   leaf.splice_left([new_leaf])
+   leaf.splice([new_leaf])
    ## remove afterGrace from new_leaf and Grace from leaf (l2)
    new_leaf.grace.after = None
    leaf.grace.before = None

@@ -1,5 +1,6 @@
 from abjad.helpers.is_power_of_two import _is_power_of_two
-from abjad.helpers.leaf_split import leaf_split_binary, leaf_split
+from abjad.helpers.leaf_split import leaf_split
+from abjad.helpers.leaf_split import leaf_split_binary
 from abjad.helpers.leaves_fuse import leaves_fuse_binary
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
@@ -62,7 +63,6 @@ class MetricGrid(Spanner):
                   leaves_splitted = leaf_split_binary(splitdur, leaf)
                   leaf = leaves_splitted[1][0]
                else:
-                  print 'debug mg leaf, splitdue: %s, %s' % (leaf, splitdur)
                   leaves_splitted = leaf_split(splitdur, leaf)
                   leaf = leaves_splitted[1].leaves[0]
             else:
