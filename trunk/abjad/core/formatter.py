@@ -91,8 +91,10 @@ class _Formatter(_Interface):
          lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
 
-   def _revealFormatContributions(self):
-      '''Return string comprising indented list of all format contributions.
+   ## PUBLIC METHODS ##
+
+   def report(self, stdout = True):
+      '''Print string comprising indented list of all format contributions.
          Contributions order first by location and then by interface.
          Debugging tool to find sources of different format contributions.'''
       result = ''
@@ -107,4 +109,7 @@ class _Formatter(_Interface):
                result += '\t%s\n' % interface 
                for string in strings:
                   result += '\t\t%s\n' % string
-      return result
+      if stdout:
+         print result
+      else:
+         return result
