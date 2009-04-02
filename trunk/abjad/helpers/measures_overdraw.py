@@ -1,4 +1,4 @@
-from abjad.helpers.copy_fractured import copy_fractured
+from abjad.helpers.copy_fracture import copy_fracture
 from abjad.helpers.iterate import iterate
 
 
