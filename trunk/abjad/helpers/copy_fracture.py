@@ -9,7 +9,7 @@ from abjad.helpers.restore_outgoing_reference_to_parent import \
 import copy
 
 
-def copy_fracture(components):
+def copy_fracture(components, n = 1):
    '''Deep copy components in 'components'.
       Deep copy spanners that attach to any component in 'components'.
       Fracture spanners that attach to components not in 'components'.
@@ -38,9 +38,10 @@ def copy_fracture(components):
    restore_outgoing_reference_to_parent(receipt)
 
    for spanner, contents in spanner_map:
-      print 'debug spanner, contents: %s, %s' % (spanner, contents)
-      print contents[0].parentage.root.format
       spanner.clear( )
       spanner.extend(list(contents))
+
+   for i in range(n - 1):
+      result += copy_fracture(components)
 
    return result

@@ -7,13 +7,11 @@ from abjad.helpers.restore_outgoing_reference_to_parent import \
 import copy
 
 
-def copy_unspan(components):
+def copy_unspan(components, n = 1):
    '''Withdraw all components at any level in 'components' from spanners.
       Deep copy unspanned components in 'components'.
       Reapply spanners to all components at any level in 'components'.
       The 'components' must be thread-contiguous.'''
-
-   ## TODO: Remove thread-contiguity requirement. ##
 
    assert_components(components, contiguity = 'thread')
 
@@ -31,5 +29,8 @@ def copy_unspan(components):
 
    for spanner in spanners:
       spanner._unblockAllComponents( )
+
+   for i in range(n - 1):
+      result += copy_unspan(components)
       
    return result

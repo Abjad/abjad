@@ -7,7 +7,7 @@ from abjad.helpers.restore_outgoing_reference_to_parent import \
 import copy
 
 
-def copy_covered(components):
+def copy_covered(components, n = 1):
    '''Withdraw components in 'components' from crossing spanners.
       Preserve spanners that 'components' cover.
       Deep copy components in 'components'.
@@ -31,5 +31,8 @@ def copy_covered(components):
 
    for spanner in spanners:
       spanner._unblockAllComponents( )
+
+   for i in range(n - 1):
+      result += copy_covered(components)
       
    return result
