@@ -24,7 +24,8 @@ def test_leaf_bequeath_01( ):
    }'''
 
    old = t.leaves[2]
-   old.bequeath(Rest((1, 8)))
+   #old.bequeath(Rest((1, 8)))
+   donate(t.leaves[2:3], Rest((1, 8)))
 
    r'''\new Voice {
       {
@@ -68,7 +69,8 @@ def test_leaf_bequeath_02( ):
       }
    }'''
    
-   t[1][0].bequeath(FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3))
+   #t[1][0].bequeath(FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3))
+   donate(t[1][:1], FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3))
 
    r'''\new Voice {
       {

@@ -28,7 +28,8 @@ def test_container_bequeath_01( ):
 
    new = Voice( )
    new.name = 'foo'
-   t[1].bequeath(new)
+   #t[1].bequeath(new)
+   donate(t[1:2], new)
 
    r'''\context Voice = "foo" {
       {
@@ -72,7 +73,8 @@ def test_container_bequeath_02( ):
       }
    }'''
 
-   t[1].bequeath(FixedDurationTuplet((3, 16), [ ]))
+   #t[1].bequeath(FixedDurationTuplet((3, 16), [ ]))
+   donate(t[1:2], FixedDurationTuplet((3, 16), [ ]))
 
    r'''\new Voice {
       {
@@ -110,7 +112,8 @@ def test_container_bequeath_03( ):
       }
    }'''
 
-   t[1].bequeath(Note(4, (1, 8)))
+   #t[1].bequeath(Note(4, (1, 8)))
+   donate(t[1:2], Note(4, (1, 8)))
 
    r'''\new Voice {
       {
@@ -141,7 +144,8 @@ def test_container_bequeath_04( ):
    }'''
 
    sequential = Container([Note(4, (1, 8)), Note(5, (1, 8))])
-   t[1].bequeath(sequential)
+   #t[1].bequeath(sequential)
+   donate(t[1:2], sequential)
 
    r'''\new Voice {
       {
@@ -166,7 +170,8 @@ def test_container_bequeath_05( ):
    Beam(t[:])
    diatonicize(t)
 
-   assert py.test.raises(MusicContentsError, 't[1].bequeath(Note(4, (1, 4)))')
+   #assert py.test.raises(MusicContentsError, 't[1].bequeath(Note(4, (1, 4)))')
+   assert py.test.raises(MusicContentsError, 'donate(t[1:2], Note(4, (1, 4)))')
 
 
 def test_container_bequeath_06( ):
@@ -178,4 +183,5 @@ def test_container_bequeath_06( ):
    diatonicize(t)
 
    tuplet = FixedDurationTuplet((2, 8), scale(3))
-   assert py.test.raises(MusicContentsError, 't[1].bequeath(tuplet)') 
+   #assert py.test.raises(MusicContentsError, 't[1].bequeath(tuplet)') 
+   assert py.test.raises(MusicContentsError, 'donate(t[1:2], tuplet)')
