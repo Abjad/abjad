@@ -1,7 +1,7 @@
 from abjad.core.abjadcore import _Abjad
 
 
-class _Comments(list, _Abjad):
+class _Comments(_Abjad):
    
    def __init__(self):
       self.before = [ ]
@@ -20,7 +20,6 @@ class _Comments(list, _Abjad):
    def _before(self):
       result = [ ]
       result.extend(['% ' + x for x in self.before])
-      result.extend(['% ' + x for x in self])
       return result
 
    @property
