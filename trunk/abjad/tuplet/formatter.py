@@ -66,17 +66,24 @@ class _TupletFormatter(_ContainerFormatter):
 
    @property
    def _pieces(self):
+      client = self._client
+      annotations = client.annotations
+      comments = client.comments
       result = [ ]
-      result.extend(self._client.comments._before)
-      result.extend(self.before)
+      result.extend(comments._before)
+      #result.extend(self.before)
+      #result.extend(self.opening)
+      result.extend(annotations.before)
       result.extend(self._before)
-      result.extend(self.opening)
+      result.extend(annotations.opening)
       result.extend(self._opening)
       result.extend(self._contents)
       result.extend(self._closing)
-      result.extend(self.closing)
-      result.extend(self.after)
-      result.extend(self._client.comments._after)
+      #result.extend(self.closing)
+      #result.extend(self.after)
+      result.extend(annotations.closing)
+      result.extend(annotations.after)
+      result.extend(comments._after)
       return result
 
    ## PUBLIC ATTRIBUTES ##

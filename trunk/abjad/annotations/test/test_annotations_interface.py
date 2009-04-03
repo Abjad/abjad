@@ -26,10 +26,79 @@ def test_annotations_interface_02( ):
    assert t.format == "before1\nbefore2\nleft1 left2 cs'4 right1 right2\nafter1\nafter2"
 
 
-#def test_annotations_interface_03( ):
-#   '''Note.formatter does not have opening or closing.'''
-#   t = Note(1, (1, 4))
-#   assert py.test.raises(
-#      AttributeError, "t.annotations.opening.append('open')")
-#   assert py.test.raises(
-#      AttributeError, "t.annotations.closing.append('closing')")
+def test_annotations_interface_03( ):
+   '''before, after, opening, closing format correctly on Container.'''
+
+   t = Container(Note(1, (1, 4))*4)
+   t.annotations.before.append('before')
+   t.annotations.after.append('after')
+   t.annotations.opening.append('opening')
+   t.annotations.closing.append('closing')
+
+   r'''before
+   {
+   opening
+           cs'4
+           cs'4
+           cs'4
+           cs'4
+   closing
+   }
+   after'''
+
+   assert t.format == "before\n{\nopening\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\nclosing\n}\nafter"
+
+
+def test_annotations_interface_04( ):
+   '''before, after, opening, closing format correctly on Parallel.'''
+
+   t = Container(Note(1, (1, 4))*4)
+   t.parallel = True
+   t.annotations.before.append('before')
+   t.annotations.after.append('after')
+   t.annotations.opening.append('opening')
+   t.annotations.closing.append('closing')
+
+   r'''before
+   <<
+   opening
+           cs'4
+           cs'4
+           cs'4
+           cs'4
+   closing
+   >>
+   after'''
+
+   assert t.format == "before\n<<\nopening\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\nclosing\n>>\nafter"
+
+
+def test_annotations_interface_05( ):
+   '''Multiple before, after, opening, closing format correctly on Container.'''
+
+   t = Container(Note(1, (1, 4))*4)
+   t.annotations.before.append('before1')
+   t.annotations.before.append('before2')
+   t.annotations.after.append('after1')
+   t.annotations.after.append('after2')
+   t.annotations.opening.append('opening1')
+   t.annotations.opening.append('opening2')
+   t.annotations.closing.append('closing1')
+   t.annotations.closing.append('closing2')
+
+   r'''before1
+   before2
+   {
+   opening1
+   opening2
+           cs'4
+           cs'4
+           cs'4
+           cs'4
+   closing1
+   closing2
+   }
+   after1
+   after2'''
+
+   assert t.format == "before1\nbefore2\n{\nopening1\nopening2\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\nclosing1\nclosing2\n}\nafter1\nafter2"
