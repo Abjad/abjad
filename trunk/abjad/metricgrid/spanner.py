@@ -46,9 +46,10 @@ class MetricGrid(Spanner):
             self._slicingMetersFound = True
             result.append('<<')
             for meter in m:
-               s = Skip( 1 )
+               s = Skip(Rational(1))
                s.duration.multiplier = meter.offset - leaf.offset.score
-               s.formatter.right.append(meter.format)
+               ## TODO: Avoid _AnnotationsInterface in _MetricGrid ##
+               s.annotations.right.append(meter.format)
                result.append( '{ %s }' % s.format )
       return result
 
@@ -64,7 +65,7 @@ class MetricGrid(Spanner):
       while leaf:
          if leaf.offset.score < meter.offset + meter.duration:
             leaves_in_meter[-1].append(leaf)
-            leaf = leaf._navigator._nextBead
+            leaf = leaf.next
          else:
             try:
                meter = meters.next( )
@@ -73,7 +74,7 @@ class MetricGrid(Spanner):
                break
       ## group together leaves in same measure that are tied together.
       for leaves in leaves_in_meter:
-         result = [[]]
+         result = [[ ]]
          if len(leaves) > 0:
             if leaves[0].tie.spanned:
                sp = leaves[0].tie.spanner
@@ -87,7 +88,7 @@ class MetricGrid(Spanner):
                   sp = l.tie.spanner
                else:
                   sp = None
-               result.append([])
+               result.append([ ])
          ## fuse leaves 
          for r in result:
             ## keep last after graces, if any
@@ -152,7 +153,6 @@ class MetricGrid(Spanner):
             if leaf.offset.score + leaf.duration.prolated > meter.offset and \
                self.splittingCondition(leaf):
                ## will split
-               #if not leaf.tie.spanner:
                if not leaf.tie.parented:
                   Tie(leaf)
                splitdur = meter.offset - leaf.offset.score
@@ -165,8 +165,7 @@ class MetricGrid(Spanner):
                   leaf = leaves_splitted[1].leaves[0]
             else:
                ## only advance if we have not split.
-               leaf = leaf._navigator._nextBead
-               #leaf = leaf.next
+               leaf = leaf.next
          else:
             try:
                meter = meters.next( )

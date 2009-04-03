@@ -7,9 +7,9 @@ class _LeafFormatter(_Formatter):
 
    def __init__(self, client):
       _Formatter.__init__(self, client)
-      self.left = [ ]
+      #self.left = [ ]
       self._number = _LeafFormatterNumberInterface(self)
-      self.right = [ ]
+      #self.right = [ ]
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -32,12 +32,15 @@ class _LeafFormatter(_Formatter):
    def _body(self):
       result = [ ]
       client = self._client
-      result.extend(self.left)
+      annotations = client.annotations
+      #result.extend(self.left)
+      result.extend(annotations.left)
       result.extend(self._collectLocation('_left'))
       result.append(client._body)
       result.extend(client.tremolo.body)
       result.extend(self._collectLocation('_right'))
-      result.extend(self.right)
+      #result.extend(self.right)
+      result.extend(annotations.right)
       result.extend(self._number_contribution)
       result.extend(client.comments._right)
       return [' '.join(result)]
@@ -72,9 +75,13 @@ class _LeafFormatter(_Formatter):
 
    @property
    def format(self):
+      client = self._client
+      annotations = client.annotations
+      comments = client.comments
       result = [ ]
-      result.extend(self._client.comments._before)
-      result.extend(self.before)
+      result.extend(comments._before)
+      #result.extend(self.before)
+      result.extend(annotations.before) 
       result.extend(self._grace)
       result.extend(self._grobOverrides)
       result.extend(self._collectLocation('_before'))
@@ -84,8 +91,9 @@ class _LeafFormatter(_Formatter):
       result.extend(self._agrace)
       result.extend(self._collectLocation('_closing'))
       result.extend(self._collectLocation('_after'))
-      result.extend(self.after)
-      result.extend(self._client.comments._after)
+      #result.extend(self.after)
+      result.extend(annotations.after)
+      result.extend(comments._after)
       return '\n'.join(result)
 
    @property

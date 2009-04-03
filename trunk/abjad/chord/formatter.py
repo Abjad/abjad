@@ -30,12 +30,17 @@ class _ChordFormatter(_LeafFormatter):
    @property
    def _body(self):
       '''Return string representation of everything in body of self.'''
+      client = self._client
+      annotations = client.annotations
+      comments = client.comments
       result = [ ]
-      result.extend(self.left)
+      #result.extend(self.left)
+      result.extend(annotations.left)
       result.extend(self._collectLocation('_left'))
       result.append(self._chordNucleus)
       result.extend(self._collectLocation('_right'))
-      result.extend(self.right)
+      #result.extend(self.right)
+      result.extend(annotations.right)
       result.extend(self._number_contribution)
-      result.extend(self._client.comments._right)
+      result.extend(client.comments._right)
       return [' '.join(result)]
