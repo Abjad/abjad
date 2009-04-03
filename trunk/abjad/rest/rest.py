@@ -16,10 +16,10 @@ class Rest(_Leaf):
    def __str__(self):
       return 'r%s' % self.duration._product
 
-   ## PRIVATE ATTRIBUTES ##
-  
+   ## PUBLIC ATTRIBUTES ##
+
    @property
-   def _body(self):
+   def body(self):
       result = ''
       if self.pitch:
          result += str(self.pitch)
@@ -31,8 +31,6 @@ class Rest(_Leaf):
       if self.stem.tremolo:
          result += ' :%s' % self.stem.tremolo
       return result
-
-   ## PUBLIC ATTRIBUTES ##
   
    @property
    def pairs(self):

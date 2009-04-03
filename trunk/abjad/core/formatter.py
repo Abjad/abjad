@@ -15,9 +15,9 @@ class _Formatter(_Interface):
    def _knownFormatLocations(self):
       '''Output-ordered list of known format locations.'''
       result = [
-         '_grace', '_before', '_opening', '_agrace_opening', 
-         '_left', '_body', '_right',
-         '_agrace', '_closing', '_after']
+         'grace', 'before', 'opening', 'agrace_opening', 
+         'left', 'body', 'right',
+         'agrace', 'closing', 'after']
       return result
 
    ## PRIVATE METHODS ##

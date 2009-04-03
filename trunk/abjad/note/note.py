@@ -15,12 +15,12 @@ class Note(_Leaf):
       return 'Note(%s, %s)' % (self.pitch, self.duration._product)
 
    def __str__(self):
-      return self._body
+      return self.body
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
 
    @property
-   def _body(self):
+   def body(self):
       result = ''
       if self.pitch:
          result += str(self.pitch)
@@ -28,8 +28,6 @@ class Note(_Leaf):
       if self.stem.tremolo:
          result += ' :%s' % self.stem.tremolo
       return result 
-
-   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def notehead( ):

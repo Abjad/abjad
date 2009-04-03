@@ -15,13 +15,11 @@ class Skip(_Leaf):
    def __str__(self):
       return 's%s' % self.duration._product
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
   
    @property
-   def _body(self):
+   def body(self):
       return 's%s' % self.duration._product
-
-   ## PUBLIC ATTRIBUTES ##
 
    @property
    def pairs(self):
