@@ -10,6 +10,7 @@ from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
 from abjad.instrument.interface import _InstrumentInterface
+from abjad.interfaces.aggregator import _InterfaceAggregator
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.notehead.interface import _NoteHeadInterface
@@ -50,6 +51,7 @@ class _Component(_Abjad):
       self._dynamics = _DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)
       self._instrument = _InstrumentInterface(self)
+      self._interfaces = _InterfaceAggregator(self)
       self._meter = _MeterInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
@@ -170,6 +172,10 @@ class _Component(_Abjad):
    @property
    def instrument(self):
       return self._instrument
+
+   @property
+   def interfaces(self):
+      return self._interfaces
 
    @apply
    def meter( ):
