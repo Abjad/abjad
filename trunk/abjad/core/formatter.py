@@ -15,7 +15,7 @@ class _Formatter(_Interface):
    @property
    def _grobOverrides(self):
       result = [ ]
-      for carrier in self._getFormatCarriers( ):
+      for carrier in self._client.interfaces.contributors:
          try:
             result.extend(carrier._grobOverrides)
          except AttributeError:
@@ -29,7 +29,7 @@ class _Formatter(_Interface):
    @property
    def _grobReverts(self):
       result = [ ]
-      for carrier in self._getFormatCarriers( ):
+      for carrier in self._client.interfaces.contributors:
          try:
             result.extend(carrier._grobReverts)
          except AttributeError:
@@ -54,7 +54,7 @@ class _Formatter(_Interface):
    def _collectLocation(self, location):
       '''Collect all format contributions in a single Python list.'''
       result = [ ]
-      for carrier in self._getFormatCarriers( ):
+      for carrier in self._client.interfaces.contributors:
          try:
             exec('result.extend(carrier.%s)' % location)
          except AttributeError:
@@ -68,7 +68,7 @@ class _Formatter(_Interface):
    def _collectLocationVerbose(self, location):
       '''Collect all format contributions as (interface, strings) pairs.'''
       result = [ ]
-      for carrier in self._getFormatCarriers( ):
+      for carrier in self._client.interfaces.contributors:
          try:
             exec('result.append((carrier, carrier.%s))' % location)
          except AttributeError:
@@ -79,17 +79,6 @@ class _Formatter(_Interface):
             % location)
       except AttributeError:
          pass
-      return result
-
-   def _getFormatCarriers(self):
-      '''Get all format carriers attaching to client.'''
-      result = [ ]
-      client = self._client
-      for value in client.__dict__.values( ):
-         if isinstance(value, _FormatCarrier):
-            result.append(value)
-      result.sort(
-         lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
       return result
 
    ## PUBLIC METHODS ##
