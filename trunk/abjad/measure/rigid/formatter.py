@@ -13,7 +13,7 @@ class _RigidMeasureFormatter(_MeasureFormatter):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _contents(self):
+   def contents(self):
       result = [ ]
       client = self._client
       if client.duration.nonbinary:
@@ -21,10 +21,10 @@ class _RigidMeasureFormatter(_MeasureFormatter):
             client.duration.multiplier._n,
             client.duration.multiplier._d))
          result.extend(
-            ['\t' + x for x in _MeasureFormatter._contents.fget(self)])
+            ['\t' + x for x in _MeasureFormatter.contents.fget(self)])
          result.append('\t}')
       else:
-         result.extend(_MeasureFormatter._contents.fget(self))
+         result.extend(_MeasureFormatter.contents.fget(self))
       return result
          
    ## PUBLIC ATTRIBUTES ##
@@ -32,9 +32,6 @@ class _RigidMeasureFormatter(_MeasureFormatter):
    @property
    def format(self):
       client = self._client
-      #if client.meter.effective.nonbinary and client.meter.effective.suppress:
-      #if client.meter.effective.nonbinary and \
-      #   (client.meter.suppress or client.meter.effective.suppress):
       if client.meter.effective.nonbinary and client.meter.suppress:
          raise NonbinaryMeterSuppressionError
       if client.duration.preprolated > client.meter.effective.duration:

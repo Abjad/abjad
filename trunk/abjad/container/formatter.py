@@ -11,7 +11,7 @@ class _ContainerFormatter(_Formatter):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _closing(self):
+   def closing(self):
       result = [ ]
       client = self._client
       interfaces = client.interfaces
@@ -21,7 +21,7 @@ class _ContainerFormatter(_Formatter):
       return ['\t' + x for x in result]
 
    @property
-   def _contents(self):
+   def contents(self):
       result = [ ]
       for m in self._client._music:
          result.extend(m.format.split('\n'))
@@ -29,7 +29,7 @@ class _ContainerFormatter(_Formatter):
       return result
    
    @property
-   def _invocation_closing(self):
+   def invocation_closing(self):
       result = [ ]
       if self._client.parallel:
          result.append('>>')
@@ -38,7 +38,7 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
-   def _invocation_opening(self):
+   def invocation_opening(self):
       result = [ ]
       if self._client.parallel:
          result.append('<<')
@@ -47,7 +47,7 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
-   def _opening(self):
+   def opening(self):
       result = [ ]
       client = self._client
       interfaces = client.interfaces
@@ -55,7 +55,6 @@ class _ContainerFormatter(_Formatter):
          result.extend(interfaces.overrides)
       result.extend(interfaces.opening)
       return ['\t' + x for x in result]
-
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -68,13 +67,13 @@ class _ContainerFormatter(_Formatter):
       result = [ ]
       result.extend(comments._before)
       result.extend(annotations.before)
-      result.extend(self._invocation_opening)
+      result.extend(self.invocation_opening)
       result.extend(annotations.opening)
-      result.extend(self._opening)
-      result.extend(self._contents)
-      result.extend(self._closing)
+      result.extend(self.opening)
+      result.extend(self.contents)
+      result.extend(self.closing)
       result.extend(annotations.closing)
-      result.extend(self._invocation_closing)
+      result.extend(self.invocation_closing)
       result.extend(annotations.after)
       result.extend(comments._after)
       return '\n'.join(result)

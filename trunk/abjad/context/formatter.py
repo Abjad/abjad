@@ -9,7 +9,7 @@ class _ContextFormatter(_ContainerFormatter):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _INVOCATION(self):
+   def INVOCATION(self):
       client = self._client
       if client.name is not None:
          return r'\context %s = "%s"' % (client.context, client.name)
@@ -17,7 +17,7 @@ class _ContextFormatter(_ContainerFormatter):
           return r'\new %s' % client.context
 
    @property
-   def _invocation_closing(self):
+   def invocation_closing(self):
       result = [ ]
       if self._client.parallel:
          result.append('>>')
@@ -26,7 +26,7 @@ class _ContextFormatter(_ContainerFormatter):
       return result
 
    @property
-   def _invocation_opening(self):
+   def invocation_opening(self):
       result = [ ]
       if self._client.parallel:
          brackets_open = '<<'
@@ -34,9 +34,9 @@ class _ContextFormatter(_ContainerFormatter):
          brackets_open = '{'
       overrides = self._client.interfaces.overrides
       if overrides:
-         result.append(self._INVOCATION + ' \with {')
+         result.append(self.INVOCATION + ' \with {')
          result.extend(['\t' + x for x in overrides])
          result.append('} %s' % brackets_open)
       else:
-         result.append(self._INVOCATION + ' %s' % brackets_open)
+         result.append(self.INVOCATION + ' %s' % brackets_open)
       return result

@@ -9,13 +9,13 @@ class _GraceFormatter(_ContainerFormatter):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _invocation_closing(self):
+   def invocation_closing(self):
       result = [ ]
       result.append('}')
       return result
 
    @property
-   def _invocation_opening(self):
+   def invocation_opening(self):
       result = [ ]
       if self._client.type == 'after':
          result.append('{')

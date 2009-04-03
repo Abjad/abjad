@@ -15,7 +15,7 @@ class _MeasureFormatter(_ContainerFormatter):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _invocation_closing(self):
+   def invocation_closing(self):
       '''Optional class-level stop comments in LilyPond output.
          Let client_class = self._client.__class__.
          Set client_class.block to True to print unnumbered stop comments.
@@ -30,7 +30,7 @@ class _MeasureFormatter(_ContainerFormatter):
       return result
 
    @property
-   def _invocation_opening(self):
+   def invocation_opening(self):
       '''Optional class-level start comments in LilyPond output.
          Let client_class = self._client.__class__.
          Set client_class.block to True to print unnumbered start comments.
@@ -54,13 +54,13 @@ class _MeasureFormatter(_ContainerFormatter):
       result = [ ]
       result.extend(comments._before)
       result.extend(annotations.before)
-      result.extend(self._invocation_opening)
+      result.extend(self.invocation_opening)
       result.extend(annotations.opening)
-      result.extend(self._opening)
-      result.extend(self._contents)
-      result.extend(self._closing)
+      result.extend(self.opening)
+      result.extend(self.contents)
+      result.extend(self.closing)
       result.extend(annotations.closing)
-      result.extend(self._invocation_closing)
+      result.extend(self.invocation_closing)
       result.extend(annotations.after)
       result.extend(comments._after)
       return '\n'.join(result)

@@ -11,7 +11,7 @@ class _TupletFormatter(_ContainerFormatter):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _before(self):
+   def before(self):
       result = [ ]
       if self._client.duration.multiplier == 1 and \
          hasattr(self._client.__class__, 'color'):
@@ -19,7 +19,7 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   def _closing(self):
+   def closing(self):
       client = self._client
       interfaces = client.interfaces
       result = [ ]
@@ -43,7 +43,7 @@ class _TupletFormatter(_ContainerFormatter):
          return ''
 
    @property
-   def _opening(self):
+   def opening(self):
       '''Allow for no-multiplier and 1-multiplier tuplets.'''
       result = [ ]
       client = self._client
@@ -62,7 +62,7 @@ class _TupletFormatter(_ContainerFormatter):
                result.append(r'%s\times %s %s' % (self._fraction, 
                   _rational_as_fraction(client.duration.multiplier), 
                   brackets_open))
-      inheritence = _ContainerFormatter._opening
+      inheritence = _ContainerFormatter.opening
       result.extend(inheritence.fget(self))
       return result
 
@@ -74,11 +74,11 @@ class _TupletFormatter(_ContainerFormatter):
       result = [ ]
       result.extend(comments._before)
       result.extend(annotations.before)
-      result.extend(self._before)
+      result.extend(self.before)
       result.extend(annotations.opening)
-      result.extend(self._opening)
-      result.extend(self._contents)
-      result.extend(self._closing)
+      result.extend(self.opening)
+      result.extend(self.contents)
+      result.extend(self.closing)
       result.extend(annotations.closing)
       result.extend(annotations.after)
       result.extend(comments._after)
