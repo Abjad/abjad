@@ -32,7 +32,7 @@ class _ContextFormatter(_ContainerFormatter):
          brackets_open = '<<'
       else:
          brackets_open = '{'
-      overrides = self._grobOverrides
+      overrides = self._client.interfaces.overrides
       if overrides:
          result.append(self._INVOCATION + ' \with {')
          result.extend(['\t' + x for x in overrides])

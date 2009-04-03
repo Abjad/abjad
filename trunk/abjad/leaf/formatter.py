@@ -74,11 +74,12 @@ class _LeafFormatter(_Formatter):
       client = self._client
       annotations = client.annotations
       comments = client.comments
+      interfaces = client.interfaces
       result = [ ]
       result.extend(comments._before)
       result.extend(annotations.before) 
       result.extend(self._grace)
-      result.extend(self._grobOverrides)
+      result.extend(interfaces.overrides)
       result.extend(self._collectLocation('_before'))
       result.extend(self._collectLocation('_opening'))
       result.extend(self._agrace_opening)

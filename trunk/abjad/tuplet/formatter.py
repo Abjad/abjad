@@ -21,7 +21,8 @@ class _TupletFormatter(_ContainerFormatter):
    @property
    def _closing(self):
       result = [ ]
-      result.extend(['\t' + x for x in self._grobReverts])
+      #result.extend(['\t' + x for x in self._grobReverts])
+      result.extend(['\t' + x for x in self._client.interfaces.reverts])
       result.extend(_ContainerFormatter._collectLocation(self, '_closing'))
       if self._client.duration.multiplier:
          if self._client.duration.multiplier != 1 or \

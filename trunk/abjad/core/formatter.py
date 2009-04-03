@@ -13,28 +13,6 @@ class _Formatter(_Interface):
    ## PRIVATE ATTRIBUTES ##
    
    @property
-   def _grobOverrides(self):
-      client = self._client
-      result = [ ]
-      result.extend(client.interfaces.overrides)
-      try:
-         result.extend(self._client.spanners._grobOverrides)
-      except AttributeError:
-         pass
-      return result
-
-   @property
-   def _grobReverts(self):
-      client = self._client
-      result = [ ]
-      result.extend(client.interfaces.reverts)
-      try:
-         result.extend(self._client.spanners._grobReverts)
-      except AttributeError:
-         pass
-      return result
-
-   @property
    def _knownFormatLocations(self):
       '''Output-ordered list of known format locations.'''
       result = [
