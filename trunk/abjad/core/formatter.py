@@ -45,7 +45,10 @@ class _Formatter(_Interface):
    @property
    def _knownFormatLocations(self):
       '''Output-ordered list of known format locations.'''
-      result = ['_before', '_opening', '_closing', '_after']
+      result = [
+         '_grace', '_before', '_opening', '_agrace_opening', 
+         '_left', '_body', '_right',
+         '_agrace', '_closing', '_after']
       return result
 
    ## PRIVATE METHODS ##
@@ -93,23 +96,22 @@ class _Formatter(_Interface):
 
    ## PUBLIC METHODS ##
 
-   def report(self, stdout = True):
-      '''Print string comprising indented list of all format contributions.
-         Contributions order first by location and then by interface.
-         Debugging tool to find sources of different format contributions.'''
-      result = ''
-      formatLocations = self._knownFormatLocations
-      for location in formatLocations:
+   def report(self, delivery = 'screen'):
+      '''Deliver report of format-time contributions.
+         Contributions order first by location and then by interface.'''
+      result = '%s\n' % self
+      locations = self._knownFormatLocations
+      for location in locations:
          contributions = self._collectLocationVerbose(location)
          contributions = [x for x in contributions if x[1]]
          if contributions:
-            result += location + '\n'
+            result += '\t%s\n' % location
             for contribution in contributions:
-               interface, strings = contribution
-               result += '\t%s\n' % interface 
-               for string in strings:
-                  result += '\t\t%s\n' % string
-      if stdout:
+               interface, directives = contribution
+               result += '\t\t%s\n' % interface 
+               for directive in directives:
+                  result += '\t\t\t%s\n' % directive
+      if delivery == 'screen':
          print result
       else:
          return result

@@ -15,6 +15,19 @@ class _ComponentSpannerAggregator(_Interface):
       '''Add spanner to _spanners set.'''
       self._spanners.add(spanner)
 
+   def _collectContribution(self, location):
+      '''Return unordered set of format-time contributions for location.'''
+      result = set([ ])
+      assert isinstance(location, str)
+      assert not location.startswith('_')
+      without_underscore = getattr(self, location, None)
+      if without_underscore is not None:
+         result.update(without_underscore)
+      with_underscore = getattr(self, '_' + location, None)
+      if with_underscore:
+         result.update(with_underscore)
+      return result
+
    def _detach(self):
       '''Remove client from every spanner attaching to client.'''
       client = self._client
@@ -90,3 +103,19 @@ class _ComponentSpannerAggregator(_Interface):
       for spanner in self.attached:
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
+
+   def report(self, delivery = 'screen'):
+      '''Deliver report of format-time contributions.
+         Order contributions first by location then by something else.'''
+      result = '%s\n' % self
+      locations = self._client.formatter._knownFormatLocations
+      for location in locations:
+         contribution = self._collectContribution(location.strip('_'))
+         if contribution:
+            result += '\t%s\n' % location
+            for directive in contribution:
+               result += '\t\t%s\n' % directive
+      if delivery == 'screen':
+         print result
+      else:
+         return result
