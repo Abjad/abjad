@@ -12,7 +12,9 @@ class Slur(_PositionalGrobHandlerSpanner):
    _positions = {'neutral':r'\slurNeutral', 'up':r'\slurUp', 
                  'down':r'\slurDown', None:None}
 
-   def _right(self, leaf):
+   ## PUBLIC METHODS ##
+
+   def right(self, leaf):
       result = [ ]
       if self._isMyFirstLeaf(leaf):
          result.append('(')

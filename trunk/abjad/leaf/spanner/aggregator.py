@@ -4,7 +4,7 @@ from abjad.core.interface import _Interface
 
 class _LeafSpannerAggregator(_ComponentSpannerAggregator):
 
-#   ## PRIVATE ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _spannersInParentage(self):
@@ -21,26 +21,26 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    def after(self):
       result = [ ]
       for spanner in self._spannersInParentage:
-         result.extend(spanner._after(self._client))
+         result.extend(spanner.after(self._client))
       return result
 
    @property
    def before(self):
       result = [ ]
       for spanner in self._spannersInParentage:
-         result.extend(spanner._before(self._client))
+         result.extend(spanner.before(self._client))
       return result
 
    @property
    def left(self):
       result = [ ]
       for spanner in self._spannersInParentage:
-         result.extend(spanner._left(self._client))   
+         result.extend(spanner.left(self._client))   
       return result
 
    @property
    def right(self):
       result = [ ]
       for spanner in self._spannersInParentage:
-         result.extend(spanner._right(self._client))
+         result.extend(spanner.right(self._client))
       return result

@@ -30,7 +30,7 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
    @property
    def before(self):
       result = [ ]
-      result.extend(_GrobHandler._before.fget(self))
+      result.extend(_GrobHandler.before.fget(self))
       if self.counts[0] is not None:
          result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
       if self.counts[1] is not None:

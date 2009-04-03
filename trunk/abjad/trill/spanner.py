@@ -8,25 +8,6 @@ class Trill(_GrobHandlerSpanner):
       _GrobHandlerSpanner.__init__(self, 'TrillSpanner', music)
       self._pitch = None
 
-   ## PRIVATE ATTRIBUTES ##
-
-   def _left(self, leaf):
-      result = [ ]
-      if self.pitch is not None:
-         if self._isMyFirstLeaf(leaf):
-            result.append(r'\pitchedTrill')
-      return result
-
-   def _right(self, leaf):
-      result = [ ]
-      if self._isMyFirstLeaf(leaf):
-         result.append(r'\startTrillSpan')
-         if self.pitch is not None:
-            result.append(str(self.pitch))
-      if self._isMyLastLeaf(leaf):
-         result.append(r'\stopTrillSpan')
-      return result
-
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -43,3 +24,22 @@ class Trill(_GrobHandlerSpanner):
          else:
             raise ValueError('can not set trill pitch.')
       return property(**locals( ))
+
+   ## PUBLIC METHODS ##
+
+   def left(self, leaf):
+      result = [ ]
+      if self.pitch is not None:
+         if self._isMyFirstLeaf(leaf):
+            result.append(r'\pitchedTrill')
+      return result
+
+   def right(self, leaf):
+      result = [ ]
+      if self._isMyFirstLeaf(leaf):
+         result.append(r'\startTrillSpan')
+         if self.pitch is not None:
+            result.append(str(self.pitch))
+      if self._isMyLastLeaf(leaf):
+         result.append(r'\stopTrillSpan')
+      return result

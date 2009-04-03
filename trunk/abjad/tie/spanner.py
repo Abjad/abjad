@@ -6,9 +6,9 @@ class Tie(_GrobHandlerSpanner):
    def __init__(self, music = None):
       _GrobHandlerSpanner.__init__(self, 'Tie', music)
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC METHODS ##
 
-   def _right(self, leaf):
+   def right(self, leaf):
       result = [ ]
       if not self._isMyLastLeaf(leaf):
          result.append('~')

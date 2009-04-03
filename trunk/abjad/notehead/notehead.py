@@ -50,7 +50,7 @@ class NoteHead(_NoteHeadInterface):
       if client and isinstance(client, Chord):
          result.extend(self._chordFormat)
       else:
-         result.extend(_GrobHandler._before.fget(self))
+         result.extend(_GrobHandler.before.fget(self))
          result.extend(self._noteFormat)
       return result
 

@@ -6,16 +6,6 @@ class _PositionalGrobHandlerSpanner(_GrobHandlerSpanner):
    def __init__(self, grob, music = None):
       _GrobHandlerSpanner.__init__(self, grob, music)
 
-   ## PRIVATE ATTRIBUTES ##
-
-   def _before(self, leaf):
-      result = [ ]
-      result.extend(_GrobHandlerSpanner._before(self, leaf))
-      if self._isMyFirstLeaf(leaf):
-         if not self.position is None:
-            result.append(self._positions[self.position])
-      return result
-
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -28,3 +18,14 @@ class _PositionalGrobHandlerSpanner(_GrobHandlerSpanner):
                "Position must be one of %s" % self._positions.keys( ))
          self._position = arg
       return property(**locals( ))
+
+   ## PUBLIC METHODS ##
+
+   def before(self, leaf):
+      result = [ ]
+      result.extend(_GrobHandlerSpanner.before(self, leaf))
+      if self._isMyFirstLeaf(leaf):
+         if not self.position is None:
+            result.append(self._positions[self.position])
+      return result
+

@@ -54,7 +54,7 @@ class _ClefInterface(_Interface, _GrobHandler):
    @property
    def opening(self):
       result = [ ]
-      result.extend(_GrobHandler._before.fget(self))
+      result.extend(_GrobHandler.before.fget(self))
       if self.forced or self.change:
          result.append(self.effective.format)
       return result

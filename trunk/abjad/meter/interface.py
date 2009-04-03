@@ -111,7 +111,7 @@ class _MeterInterface(_Interface, _GrobHandler):
    def opening(self):
       '''List of formatting contributions at _opening location.'''
       result = [ ]
-      result.extend(_GrobHandler._before.fget(self))
+      result.extend(_GrobHandler.before.fget(self))
       if self._selfShouldContribute:
          result.append(self.effective.format)
       return result

@@ -43,12 +43,6 @@ class Spanner(_Abjad):
 
    ## PRIVATE METHODS ##
 
-   def _after(self, component):
-      return [ ]
-
-   def _before(self, component):
-      return [ ]
-
    def _blockAllComponents(self):
       for component in self:
          self._blockComponent(component)
@@ -129,12 +123,6 @@ class Spanner(_Abjad):
    def _isMyOnly(self, leaf, klass):
       return isinstance(leaf, klass) and len(self.leaves) == 1
 
-   def _left(self, component):
-      return [ ]
-
-   def _right(self, component):
-      return [ ]
-
    def _remove(self, component):
       '''Remove 'component' from spanner.
          Remove spanner from component's aggregator.
@@ -198,6 +186,10 @@ class Spanner(_Abjad):
 
    ## PUBLIC METHODS ##
 
+   def after(self, leaf):
+      result = [ ]
+      return result
+
    def append(self, component):
       components = self[-1:] + [component]
       assert_components(components, contiguity = 'thread')
@@ -209,6 +201,10 @@ class Spanner(_Abjad):
       assert_components(components, contiguity = 'thread')
       component.spanners._add(self)
       self._components.insert(0, component)
+
+   def before(self, leaf):
+      result = [ ]
+      return result
 
    def copy(self, start = None, stop = None):
       result = python_copy(self)
@@ -260,6 +256,10 @@ class Spanner(_Abjad):
    def index(self, component):
       return self._components.index(component)
 
+   def left(self, leaf):
+      result = [ ]
+      return result
+
    def pop(self):
       component = self[-1]
       self._severComponent(component)
@@ -269,6 +269,10 @@ class Spanner(_Abjad):
       component = self[0]
       self._severComponent(component)
       return component
+
+   def right(self, leaf):
+      result = [ ]
+      return result
 
    def trim(self, component):
       assert component in self

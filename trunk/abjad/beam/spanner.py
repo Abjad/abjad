@@ -6,9 +6,9 @@ class Beam(_GrobHandlerSpanner):
    def __init__(self, music = None):
       _GrobHandlerSpanner.__init__(self, 'Beam', music)
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC METHODS ##
 
-   def _right(self, leaf):
+   def right(self, leaf):
       '''LilyPond formatting contribution to appear just right of leaf.'''
       result = [ ]
       if self._isMyFirstLeaf(leaf):

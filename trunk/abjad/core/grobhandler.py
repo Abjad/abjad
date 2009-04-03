@@ -34,11 +34,6 @@ class _GrobHandler(_FormatCarrier):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _before(self):
-      result = [ ]
-      return result
-
-   @property
    def _frequencyIndicator(self):
       from abjad.leaf.leaf import _Leaf
       if hasattr(self, '_client') and isinstance(self._client, _Leaf):
@@ -67,6 +62,13 @@ class _GrobHandler(_FormatCarrier):
                self._frequencyIndicator,
                self._promotedGrob(key),
                self._parser.formatAttribute(key)))
+      return result
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def before(self):
+      result = [ ]
       return result
 
    ## PUBLIC METHODS ##

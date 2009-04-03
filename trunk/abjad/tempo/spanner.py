@@ -8,24 +8,6 @@ class Tempo(_GrobHandlerSpanner):
       _GrobHandlerSpanner.__init__(self, 'MetronomeMark', music)
       self.indication = indication
 
-   ## PRIVATE METHODS ##
-
-   def _after(self, leaf):
-      result = [ ]
-      result.extend(_GrobHandlerSpanner._after(self, leaf))
-      if self._isMyLastLeaf(leaf):
-         if self.indication:
-            result.append(r'%%%% %s ends here' % self.indication.format[1:])
-      return result
-
-   def _before(self, leaf):
-      result = [ ]
-      result.extend(_GrobHandlerSpanner._before(self, leaf))
-      if self._isMyFirstLeaf(leaf):
-         if self.indication:
-            result.append(self.indication.format)
-      return result
-
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -36,3 +18,21 @@ class Tempo(_GrobHandlerSpanner):
          assert isinstance(arg, TempoIndication)
          self._indication = arg 
       return property(**locals( ))
+
+   ## PUBLIC METHODS ##
+
+   def after(self, leaf):
+      result = [ ]
+      result.extend(_GrobHandlerSpanner.after(self, leaf))
+      if self._isMyLastLeaf(leaf):
+         if self.indication:
+            result.append(r'%%%% %s ends here' % self.indication.format[1:])
+      return result
+
+   def before(self, leaf):
+      result = [ ]
+      result.extend(_GrobHandlerSpanner.before(self, leaf))
+      if self._isMyFirstLeaf(leaf):
+         if self.indication:
+            result.append(self.indication.format)
+      return result

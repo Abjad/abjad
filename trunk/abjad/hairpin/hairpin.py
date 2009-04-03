@@ -10,34 +10,6 @@ class Hairpin(_GrobHandlerSpanner):
       self.start = start
       self.stop = stop
       self.trim = trim
-  
-   ## PRIVATE ATTRIBUTES ##
-
-   def _right(self, leaf):
-      from abjad.chord.chord import Chord
-      from abjad.note.note import Note
-      result = [ ]
-      if not self.trim:
-         if self._isMyFirstLeaf(leaf):
-            result.append('\\%s' % self._shape)
-            if self.start:
-               result.append('\\%s' % self.start)
-         if self._isMyLastLeaf(leaf):
-            if self.stop:
-               result.append('\\%s' % self.stop)
-            elif not leaf.dynamics.mark:
-               result.append('\\!')
-      else:
-         if self._isMyFirst(leaf, (Chord, Note)):
-            result.append('\\%s' % self._shape)
-            if self.start:
-               result.append('\\%s' % self.start)
-         if self._isMyLast(leaf, (Chord, Note)):
-            if self.stop:
-               result.append('\\%s' % self.stop)
-            elif not leaf.dynamics.mark:
-               result.append('\\!')
-      return result
    
    ## PRIVATE METHODS ##
 
@@ -104,3 +76,31 @@ class Hairpin(_GrobHandlerSpanner):
       def fset(self, arg):
          self._trim = arg
       return property(**locals( ))
+
+   ## PUBLIC METHODS ##
+
+   def right(self, leaf):
+      from abjad.chord.chord import Chord
+      from abjad.note.note import Note
+      result = [ ]
+      if not self.trim:
+         if self._isMyFirstLeaf(leaf):
+            result.append('\\%s' % self._shape)
+            if self.start:
+               result.append('\\%s' % self.start)
+         if self._isMyLastLeaf(leaf):
+            if self.stop:
+               result.append('\\%s' % self.stop)
+            elif not leaf.dynamics.mark:
+               result.append('\\!')
+      else:
+         if self._isMyFirst(leaf, (Chord, Note)):
+            result.append('\\%s' % self._shape)
+            if self.start:
+               result.append('\\%s' % self.start)
+         if self._isMyLast(leaf, (Chord, Note)):
+            if self.stop:
+               result.append('\\%s' % self.stop)
+            elif not leaf.dynamics.mark:
+               result.append('\\!')
+      return result
