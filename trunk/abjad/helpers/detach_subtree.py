@@ -4,6 +4,8 @@ from abjad.helpers.withdraw_from_contained_spanners import \
 from abjad.receipt.detach import _DetachReceipt
 
 
+## TODO: Internalize detach_subtree( ) into _Container.__setitem__ ##
+
 def detach_subtree(component):
    '''Detach component from parentage.
       Detach component from spanners.

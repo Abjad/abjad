@@ -292,17 +292,7 @@ class _Component(_Abjad):
 
    ## PUBLIC METHODS ##
 
-#   def copy(self):
-#      '''Clones a complete Abjad component;
-#         first fractures and then cuts parent;
-#         (cut followed by fracture destroys 'next');
-#         deepcopies reference-pruned version of self;
-#         reestablishes parent and spanner references;
-#         returns the deepcopy;
-#         leaves self unchanged.'''
-#      from abjad.helpers.copy_fracture import copy_fracture
-#      result = copy_fracture([self])
-#      return result[0]
+   ## TODO: Externalized _Component.detach( ) ##
 
    def detach(self):
       '''Detach component from parentage.
@@ -316,6 +306,8 @@ class _Component(_Abjad):
          parent._update._markForUpdateToRoot( )
       return receipt
 
+   ## TODO: Externalize or eliminate _Component.reattach( ) ##
+
    def reattach(self, receipt):
       '''Reattach component to both parentage in receipt.
          Reattach component to spanners in receipt.
@@ -325,6 +317,8 @@ class _Component(_Abjad):
       self.spanners._reattach(receipt._spanners)
       receipt._empty( )
       return self
+
+   ## TODO: Externalize _Component.slip( ) ##
 
    def slip(self):
       '''Give spanners attached directly to container to children.
