@@ -41,8 +41,15 @@ class _GrobHandler(_FormatCarrier):
       else:
          return ''
 
+   ## PUBLIC ATTRIBUTES ##
+
    @property
-   def _grobOverrides(self):
+   def before(self):
+      result = [ ]
+      return result
+
+   @property
+   def overrides(self):
       result = [ ]
       for key, value in self.__dict__.items( ):
          if not key.startswith('_'):
@@ -54,7 +61,7 @@ class _GrobHandler(_FormatCarrier):
       return result
 
    @property
-   def _grobReverts(self):
+   def reverts(self):
       result = [ ]
       for key, value in self.__dict__.items( ):
          if not key.startswith('_'):
@@ -62,13 +69,6 @@ class _GrobHandler(_FormatCarrier):
                self._frequencyIndicator,
                self._promotedGrob(key),
                self._parser.formatAttribute(key)))
-      return result
-
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def before(self):
-      result = [ ]
       return result
 
    ## PUBLIC METHODS ##

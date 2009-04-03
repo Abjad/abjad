@@ -13,11 +13,11 @@ class _GrobHandlerSpanner(Spanner, _GrobHandler):
    def after(self, component):
       result = [ ]
       if self._isMyLastLeaf(component):
-         result.extend(self._grobReverts)
+         result.extend(self.reverts)
       return result
 
    def before(self, component):
       result = [ ]
       if self._isMyFirstLeaf(component):
-         result.extend(self._grobOverrides)
+         result.extend(self.overrides)
       return result

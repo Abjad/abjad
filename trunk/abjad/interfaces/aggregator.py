@@ -46,6 +46,19 @@ class _InterfaceAggregator(_Interface):
       result.sort(lambda x, y: 
          cmp(x.__class__.__name__, y.__class__.__name__))
       return result
+
+   @property
+   def contributions(self):
+      '''Returns an ordered list of contribution triples.'''
+      result = [ ]
+      locations = self._client.formatter._knownFormatLocations
+      for contributor in self.contributors:
+         for location in locations:
+            print contributor, location
+            contributions = getattr(contributor, location, None)
+            if contributions:
+               result.append((contributor, location, contributions))
+      return result
    
    @property
    def left(self):
@@ -68,7 +81,7 @@ class _InterfaceAggregator(_Interface):
       '''Ordered data structure of format-time grob overrides.'''
       result = [ ]
       for contributor in self.contributors:
-         result.extend(getattr(contributor, '_grobOverrides', [ ]))
+         result.extend(getattr(contributor, 'overrides', [ ]))
       return result
 
    @property
@@ -76,7 +89,7 @@ class _InterfaceAggregator(_Interface):
       '''Ordered data structure of format-time grob reverts.'''
       result = [ ]
       for contributor in self.contributors:
-         result.extend(getattr(contributor, '_grobReverts', [ ]))
+         result.extend(getattr(contributor, 'reverts', [ ]))
       return result
 
    @property

@@ -45,12 +45,22 @@ class _MeterInterface(_Interface, _GrobHandler):
 
    ## PUBLIC ATTRIBUTES ##
 
-   ## TODO: Deprecate _MeterInterface._before in favor of _opening. ##
+   ## TODO: Deprecate _MeterInterface.opening in favor of .before ##
+   ## TODO: Use .opening in only VERY special cases ##
 
    @property
    def before(self):
       '''List of formatting contributions at _before location.'''
       return self._opening
+
+   @property
+   def opening(self):
+      '''List of formatting contributions at _opening location.'''
+      result = [ ]
+      result.extend(_GrobHandler.before.fget(self))
+      if self._selfShouldContribute:
+         result.append(self.effective.format)
+      return result
 
    @property
    def change(self):
@@ -106,15 +116,6 @@ class _MeterInterface(_Interface, _GrobHandler):
          else:
             raise ValueError('unknown meter specification.')
       return property(**locals( ))
-
-   @property
-   def opening(self):
-      '''List of formatting contributions at _opening location.'''
-      result = [ ]
-      result.extend(_GrobHandler.before.fget(self))
-      if self._selfShouldContribute:
-         result.append(self.effective.format)
-      return result
 
    @apply
    def suppress( ):
