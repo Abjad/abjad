@@ -53,18 +53,14 @@ class _MeasureFormatter(_ContainerFormatter):
       comments = client.comments
       result = [ ]
       result.extend(comments._before)
-      #result.extend(self.before)
       result.extend(annotations.before)
       result.extend(self._invocation_opening)
-      #result.extend(self.opening)
       result.extend(annotations.opening)
       result.extend(self._opening)
       result.extend(self._contents)
       result.extend(self._closing)
-      #result.extend(self.closing)
       result.extend(annotations.closing)
       result.extend(self._invocation_closing)
-      #result.extend(self.after)
       result.extend(annotations.after)
       result.extend(comments._after)
       return '\n'.join(result)

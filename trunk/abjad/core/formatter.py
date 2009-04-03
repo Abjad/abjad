@@ -8,8 +8,6 @@ class _Formatter(_Interface):
    ## to the core _Formatter so that containers can number leaves.
    def __init__(self, client):
       _Interface.__init__(self, client)
-      #self.after = [ ]
-      #self.before = [ ]
       #self.number = False
 
    ## PRIVATE ATTRIBUTES ##
