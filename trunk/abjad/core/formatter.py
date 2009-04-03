@@ -14,12 +14,9 @@ class _Formatter(_Interface):
    
    @property
    def _grobOverrides(self):
+      client = self._client
       result = [ ]
-      for carrier in self._client.interfaces.contributors:
-         try:
-            result.extend(carrier._grobOverrides)
-         except AttributeError:
-            pass
+      result.extend(client.interfaces.overrides)
       try:
          result.extend(self._client.spanners._grobOverrides)
       except AttributeError:
@@ -28,12 +25,9 @@ class _Formatter(_Interface):
 
    @property
    def _grobReverts(self):
+      client = self._client
       result = [ ]
-      for carrier in self._client.interfaces.contributors:
-         try:
-            result.extend(carrier._grobReverts)
-         except AttributeError:
-            pass
+      result.extend(client.interfaces.reverts)
       try:
          result.extend(self._client.spanners._grobReverts)
       except AttributeError:
@@ -54,9 +48,9 @@ class _Formatter(_Interface):
    def _collectLocation(self, location):
       '''Collect all format contributions in a single Python list.'''
       result = [ ]
-      for carrier in self._client.interfaces.contributors:
+      for contributor in self._client.interfaces.contributors:
          try:
-            exec('result.extend(carrier.%s)' % location)
+            exec('result.extend(contributor.%s)' % location)
          except AttributeError:
             pass
       try:
@@ -68,9 +62,9 @@ class _Formatter(_Interface):
    def _collectLocationVerbose(self, location):
       '''Collect all format contributions as (interface, strings) pairs.'''
       result = [ ]
-      for carrier in self._client.interfaces.contributors:
+      for contributor in self._client.interfaces.contributors:
          try:
-            exec('result.append((carrier, carrier.%s))' % location)
+            exec('result.append((contributor, contributor.%s))' % location)
          except AttributeError:
             pass
       try:

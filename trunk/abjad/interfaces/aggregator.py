@@ -9,14 +9,6 @@ class _InterfaceAggregator(_Interface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def contributions(self):
-      '''Ordered data structure of format-time contributions.'''
-      result = [ ]
-      for contributor in self.contributors:
-         result.extend(getattr(contributor, '_grobOverrides', [ ]))
-      return result
-
-   @property
    def contributors(self):
       '''Return alphabetized list of interface format contributors.
          Does not include spanner format contributors.'''
@@ -29,6 +21,22 @@ class _InterfaceAggregator(_Interface):
             result.append(value)
       result.sort(lambda x, y: 
          cmp(x.__class__.__name__, y.__class__.__name__))
+      return result
+
+   @property
+   def overrides(self):
+      '''Ordered data structure of format-time grob overrides.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, '_grobOverrides', [ ]))
+      return result
+
+   @property
+   def reverts(self):
+      '''Ordered data structure of format-time grob reverts.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, '_grobReverts', [ ]))
       return result
 
    ## PUBLIC METHODS ##
