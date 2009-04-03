@@ -20,10 +20,11 @@ class _TupletFormatter(_ContainerFormatter):
 
    @property
    def _closing(self):
+      client = self._client
+      interfaces = client.interfaces
       result = [ ]
-      #result.extend(['\t' + x for x in self._grobReverts])
-      result.extend(['\t' + x for x in self._client.interfaces.reverts])
-      result.extend(_ContainerFormatter._collectLocation(self, '_closing'))
+      result.extend(['\t' + x for x in interfaces.reverts])
+      result.extend(interfaces.closing)
       if self._client.duration.multiplier:
          if self._client.duration.multiplier != 1 or \
             hasattr(self._client.__class__, 'color'):

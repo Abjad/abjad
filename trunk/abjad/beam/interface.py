@@ -15,16 +15,6 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _before(self):
-      result = [ ]
-      result.extend(_GrobHandler._before.fget(self))
-      if self.counts[0] is not None:
-         result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
-      if self.counts[1] is not None:
-         result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
-      return result
-
-   @property
    def _flags(self):
       return self._client.duration._flags
 
@@ -38,7 +28,17 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
          self._flags > 0 and not getattr(self, '_refuse', False)
 
    @property
-   def closing(self):
+   def before(self):
+      result = [ ]
+      result.extend(_GrobHandler._before.fget(self))
+      if self.counts[0] is not None:
+         result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
+      if self.counts[1] is not None:
+         result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
+      return result
+
+   @property
+   def is_closing(self):
       return self.spanned and ']' in self.spanner._right(self._client)
 
    @apply
@@ -57,5 +57,5 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
       return property(**locals( ))
 
    @property
-   def opening(self):
+   def is_opening(self):
       return self.spanned and '[' in self.spanner._right(self._client)

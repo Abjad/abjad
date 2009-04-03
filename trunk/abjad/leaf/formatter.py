@@ -28,17 +28,22 @@ class _LeafFormatter(_Formatter):
 
    @property
    def _body(self):
-      result = [ ]
       client = self._client
       annotations = client.annotations
+      comments = client.comments
+      interfaces = client.interfaces
+      spanners = client.spanners
+      result = [ ]
       result.extend(annotations.left)
-      result.extend(self._collectLocation('_left'))
+      result.extend(spanners.left)
+      result.extend(interfaces.left)
       result.append(client._body)
       result.extend(client.tremolo.body)
-      result.extend(self._collectLocation('_right'))
+      result.extend(interfaces.right)
+      result.extend(spanners.right)
       result.extend(annotations.right)
       result.extend(self._number_contribution)
-      result.extend(client.comments._right)
+      result.extend(comments._right)
       return [' '.join(result)]
 
    @property
@@ -75,18 +80,21 @@ class _LeafFormatter(_Formatter):
       annotations = client.annotations
       comments = client.comments
       interfaces = client.interfaces
+      spanners = client.spanners
       result = [ ]
       result.extend(comments._before)
       result.extend(annotations.before) 
       result.extend(self._grace)
       result.extend(interfaces.overrides)
-      result.extend(self._collectLocation('_before'))
-      result.extend(self._collectLocation('_opening'))
+      result.extend(spanners.before)
+      result.extend(interfaces.before)
+      result.extend(interfaces.opening)
       result.extend(self._agrace_opening)
       result.extend(self._body)
       result.extend(self._agrace)
-      result.extend(self._collectLocation('_closing'))
-      result.extend(self._collectLocation('_after'))
+      result.extend(interfaces.closing)
+      result.extend(interfaces.after)
+      result.extend(spanners.after)
       result.extend(annotations.after)
       result.extend(comments._after)
       return '\n'.join(result)

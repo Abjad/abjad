@@ -9,6 +9,30 @@ class _InterfaceAggregator(_Interface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def after(self):
+      '''Ordered list of format-time contributions for after format slot.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, 'after', [ ]))
+      return result
+
+   @property
+   def before(self):
+      '''Ordered list of format-time contributions for before format slot.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, 'before', [ ]))
+      return result
+
+   @property
+   def closing(self):
+      '''Ordered list of format-time contributions for closing format slot.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, 'closing', [ ]))
+      return result
+
+   @property
    def contributors(self):
       '''Return alphabetized list of interface format contributors.
          Does not include spanner format contributors.'''
@@ -21,6 +45,22 @@ class _InterfaceAggregator(_Interface):
             result.append(value)
       result.sort(lambda x, y: 
          cmp(x.__class__.__name__, y.__class__.__name__))
+      return result
+   
+   @property
+   def left(self):
+      '''Ordered list of format-time contributions for left format slot.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, 'left', [ ]))
+      return result
+
+   @property
+   def opening(self):
+      '''Ordered list of format-time contributions for opening format slot.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, 'opening', [ ]))
       return result
 
    @property
@@ -37,6 +77,14 @@ class _InterfaceAggregator(_Interface):
       result = [ ]
       for contributor in self.contributors:
          result.extend(getattr(contributor, '_grobReverts', [ ]))
+      return result
+
+   @property
+   def right(self):
+      '''Ordered list of format-time contributions for right format slot.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, 'right', [ ]))
       return result
 
    ## PUBLIC METHODS ##

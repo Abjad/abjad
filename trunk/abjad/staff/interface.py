@@ -9,17 +9,10 @@ class _StaffInterface(_Interface, _FormatCarrier):
       _FormatCarrier.__init__(self)
       self._forced = None
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
 
    @property
-   def _before(self):
-      result = [ ]
-      if self.changed or (not self._client.prev and self._forced):
-         result.append(r'\change Staff = %s' % self.effective.name)
-      return result
-
-   @property
-   def _after(self):
+   def after(self):
       '''Used only when very last note in staff is staff changed.'''
       result = [ ]
       if (self.changed or (not self._client.prev and self._forced)) and \
@@ -27,7 +20,12 @@ class _StaffInterface(_Interface, _FormatCarrier):
          result.append(r'\change Staff = %s' % self.given.name)
       return result
 
-   ## PUBLIC ATTRIBUTES ##
+   @property
+   def before(self):
+      result = [ ]
+      if self.changed or (not self._client.prev and self._forced):
+         result.append(r'\change Staff = %s' % self.effective.name)
+      return result
 
    @property
    def changed(self):

@@ -21,10 +21,14 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __nonzero__(self):
       return bool(self._metronome)
 
-   ## PRIVATE ATTRIBUTES ##
-   
+   ### PUBLIC METHODS ###
+
+   def clear(self):
+      self._metronome = None
+      _GrobHandler.clear(self)
+
    @property
-   def _opening(self):
+   def opening(self):
       result =  [ ] 
       if self._metronome:
          note = self._metronome[0].duration._dotted 
@@ -32,8 +36,3 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
          result.append(r'\tempo %s=%s' % (note, tempo))
       return result
 
-   ### PUBLIC METHODS ###
-
-   def clear(self):
-      self._metronome = None
-      _GrobHandler.clear(self)

@@ -15,9 +15,9 @@ class _SlurInterface(_Interface, _GrobHandler, _SpannerReceptor):
    ### PUBLIC ATTRIBUTES ###
 
    @property
-   def closing(self):
+   def is_closing(self):
       return self.spanned and ')' in self.spanner._right(self._client)
 
    @property
-   def opening(self):
+   def is_opening(self):
       return self.spanned and '(' in self.spanner._right(self._client)

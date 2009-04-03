@@ -10,16 +10,6 @@ class _ClefInterface(_Interface, _GrobHandler):
       _GrobHandler.__init__(self, 'Clef')
       self._forced = None
 
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _opening(self):
-      result = [ ]
-      result.extend(_GrobHandler._before.fget(self))
-      if self.forced or self.change:
-         result.append(self.effective.format)
-      return result
-
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -60,3 +50,12 @@ class _ClefInterface(_Interface, _GrobHandler):
    @property
    def name(self):
       return self.effective.name
+
+   @property
+   def opening(self):
+      result = [ ]
+      result.extend(_GrobHandler._before.fget(self))
+      if self.forced or self.change:
+         result.append(self.effective.format)
+      return result
+

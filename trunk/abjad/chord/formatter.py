@@ -33,11 +33,15 @@ class _ChordFormatter(_LeafFormatter):
       client = self._client
       annotations = client.annotations
       comments = client.comments
+      interfaces = client.interfaces
+      spanners = client.spanners
       result = [ ]
       result.extend(annotations.left)
-      result.extend(self._collectLocation('_left'))
+      result.extend(spanners.left)
+      result.extend(interfaces.left)
       result.append(self._chordNucleus)
-      result.extend(self._collectLocation('_right'))
+      result.extend(interfaces.right)
+      result.extend(spanners.right)
       result.extend(annotations.right)
       result.extend(self._number_contribution)
       result.extend(client.comments._right)

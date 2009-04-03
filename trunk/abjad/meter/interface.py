@@ -16,20 +16,6 @@ class _MeterInterface(_Interface, _GrobHandler):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _before(self):
-      '''List of formatting contributions at _before location.'''
-      return self._opening
-
-   @property
-   def _opening(self):
-      '''List of formatting contributions at _opening location.'''
-      result = [ ]
-      result.extend(_GrobHandler._before.fget(self))
-      if self._selfShouldContribute:
-         result.append(self.effective.format)
-      return result
-
-   @property
    def _selfCanContribute(self):
       r'''True when self is able to contribute LilyPond \time.'''
       from abjad.measure.dynamic.measure import DynamicMeasure
@@ -58,6 +44,13 @@ class _MeterInterface(_Interface, _GrobHandler):
       return False
 
    ## PUBLIC ATTRIBUTES ##
+
+   ## TODO: Deprecate _MeterInterface._before in favor of _opening. ##
+
+   @property
+   def before(self):
+      '''List of formatting contributions at _before location.'''
+      return self._opening
 
    @property
    def change(self):
@@ -113,6 +106,15 @@ class _MeterInterface(_Interface, _GrobHandler):
          else:
             raise ValueError('unknown meter specification.')
       return property(**locals( ))
+
+   @property
+   def opening(self):
+      '''List of formatting contributions at _opening location.'''
+      result = [ ]
+      result.extend(_GrobHandler._before.fget(self))
+      if self._selfShouldContribute:
+         result.append(self.effective.format)
+      return result
 
    @apply
    def suppress( ):

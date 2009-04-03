@@ -1,4 +1,3 @@
-from abjad.core.formatcarrier import _FormatCarrier
 from abjad.core.interface import _Interface
 
 
@@ -22,20 +21,6 @@ class _Formatter(_Interface):
       return result
 
    ## PRIVATE METHODS ##
-
-   def _collectLocation(self, location):
-      '''Collect all format contributions in a single Python list.'''
-      result = [ ]
-      for contributor in self._client.interfaces.contributors:
-         try:
-            exec('result.extend(contributor.%s)' % location)
-         except AttributeError:
-            pass
-      try:
-         exec('result.extend(self._client.spanners.%s)' % location)
-      except AttributeError:
-         pass
-      return result
 
    def _collectLocationVerbose(self, location):
       '''Collect all format contributions as (interface, strings) pairs.'''

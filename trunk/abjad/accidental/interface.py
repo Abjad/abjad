@@ -10,17 +10,15 @@ class _AccidentalInterface(_Interface, _GrobHandler):
       _GrobHandler.__init__(self, 'Accidental')
       self._style = None
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
 
    @property
-   def _opening(self):
+   def opening(self):
       result = [ ]
       style = self.style
       if style:
          result.append(r"#(set-accidental-style '%s)" % style)
       return result
-
-   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def style( ):

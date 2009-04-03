@@ -9,19 +9,6 @@ class _VoiceInterface(_Interface, _FormatCarrier):
       _FormatCarrier.__init__(self)
       self.number = None
 
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _opening(self):
-      '''String content, if any, this voice will write to the 
-         'before' slot of its first leaf at format-time.'''
-      result = [ ]
-      voices = {
-         1:r'\voiceOne', 2:r'\voiceTwo', 3:r'\voiceThree', 4:r'\voiceFour'}
-      if self.number:
-         result.append(voices[self.number])
-      return result
-
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -34,3 +21,15 @@ class _VoiceInterface(_Interface, _FormatCarrier):
             raise ValueError('Voice number must be 1, 2, 3, 4 or None.')
          self._number = arg
       return property(**locals( ))
+
+   @property
+   def opening(self):
+      '''String content, if any, this voice will write to the 
+         'before' slot of its first leaf at format-time.'''
+      result = [ ]
+      voices = {
+         1:r'\voiceOne', 2:r'\voiceTwo', 3:r'\voiceThree', 4:r'\voiceFour'}
+      if self.number:
+         result.append(voices[self.number])
+      return result
+

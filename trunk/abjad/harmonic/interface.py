@@ -9,15 +9,6 @@ class _HarmonicInterface(_Interface, _FormatCarrier):
       _FormatCarrier.__init__(self)
       self.natural = False
 
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _right(self):
-      result = [ ]
-      if self.natural:
-         result.append(r'\flageolet')
-      return result
-
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -28,3 +19,11 @@ class _HarmonicInterface(_Interface, _FormatCarrier):
          assert isinstance(arg, bool)
          self._natural = arg
       return property(**locals( ))
+
+   @property
+   def right(self):
+      result = [ ]
+      if self.natural:
+         result.append(r'\flageolet')
+      return result
+

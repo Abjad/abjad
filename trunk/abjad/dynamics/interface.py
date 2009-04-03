@@ -19,13 +19,6 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _right(self):
-      result = [ ]
-      if self.mark:
-         result.append(r'\%s' % self.mark)
-      return result
-
-   @property
    def _summary(self):
       result = [ ]
       if self.mark:
@@ -66,3 +59,11 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
          assert arg is None or isinstance(arg, str)
          self._mark = arg
       return property(**locals( ))
+
+   @property
+   def right(self):
+      result = [ ]
+      if self.mark:
+         result.append(r'\%s' % self.mark)
+      return result
+

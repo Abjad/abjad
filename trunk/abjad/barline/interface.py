@@ -9,10 +9,13 @@ class _BarLineInterface(_Interface, _GrobHandler):
       _GrobHandler.__init__(self, 'BarLine')
       self._type = None
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
+
+   ## TODO: Eliminate _BarlineInterface.after infavor of .closing ##
+   ##       Train _LeafFormatter to look for .closing ##
 
    @property
-   def _after(self):
+   def after(self):
       from abjad.leaf.leaf import _Leaf
       result = [ ]
       if isinstance(self._client, _Leaf):
@@ -21,15 +24,13 @@ class _BarLineInterface(_Interface, _GrobHandler):
       return result
 
    @property
-   def _closing(self):
+   def closing(self):
       from abjad.container.container import Container
       result = [ ]
       if isinstance(self._client, Container):
          if self.type:
             result.append(r'\bar "%s"' % self.type)
       return result
-
-   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def type( ):

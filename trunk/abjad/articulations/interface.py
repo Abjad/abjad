@@ -61,8 +61,10 @@ class _ArticulationsInterface(_Interface, _FormatCarrier):
       else:
          raise ValueError('can not create Articulation.')
 
+   ## PUBLIC ATTRIBUTES ##
+
    @property
-   def _right(self):
+   def right(self):
       result = [ ]
       result.extend([x.format for x in self._articulations])
       return result

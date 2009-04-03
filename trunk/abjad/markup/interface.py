@@ -10,10 +10,21 @@ class _MarkupInterface(_Interface, _FormatCarrier):
       self._down = [ ]
       self._up = [ ]
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def down( ):
+      def fget(self):
+         return self._down
+      def fset(self, arg):
+         if arg is None or arg == [ ]:
+            self._down = [ ]
+         else:
+            raise ValueError('set leaf markup with append( ) and extend( ).')
+      return property(**locals( ))
 
    @property
-   def _right(self):
+   def right(self):
       result = [ ]
       if len(self.up) == 1:
          result.append(r'^ \markup { %s }' % str(self.up[0]))
@@ -28,19 +39,6 @@ class _MarkupInterface(_Interface, _FormatCarrier):
          column %= ' '.join([str(x) for x in self.down])
          result.append(column)
       return result
-
-   ## PUBLIC ATTRIBUTES ##
-
-   @apply
-   def down( ):
-      def fget(self):
-         return self._down
-      def fset(self, arg):
-         if arg is None or arg == [ ]:
-            self._down = [ ]
-         else:
-            raise ValueError('set leaf markup with append( ) and extend( ).')
-      return property(**locals( ))
 
    @apply
    def up( ):

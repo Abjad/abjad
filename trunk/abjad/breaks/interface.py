@@ -21,20 +21,6 @@ class _BreaksInterface(_Interface, _FormatCarrier):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _closing(self):
-      '''Formatting contributions to appear immediately after leaf
-         or at closing of container.'''
-      result = [ ]
-      if self.line:
-         result.append(r'\break')
-      if self.page:
-         result.append(r'\pageBreak')
-      details = self._line_break_system_details
-      if details:
-         result.append(details)
-      return result
-
-   @property
    def _line_break_system_details(self):
       '''LilyPond Score.NonMusicalPaperColumn #'line-break-system-details
          formatting contribution.'''
@@ -54,6 +40,20 @@ class _BreaksInterface(_Interface, _FormatCarrier):
       return result
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def closing(self):
+      '''Formatting contributions to appear immediately after leaf
+         or at closing of container.'''
+      result = [ ]
+      if self.line:
+         result.append(r'\break')
+      if self.page:
+         result.append(r'\pageBreak')
+      details = self._line_break_system_details
+      if details:
+         result.append(details)
+      return result
 
    @apply
    def line( ):

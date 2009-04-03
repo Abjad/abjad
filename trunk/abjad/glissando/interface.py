@@ -9,7 +9,6 @@ class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
       from abjad.glissando.spanner import Glissando
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Glissando')
-      #_SpannerReceptor.__init__(self, ['Glissando'])
       _SpannerReceptor.__init__(self, (Glissando, ))
       self._set = None
 
@@ -22,10 +21,10 @@ class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __nonzero__(self):
       return bool(self._set)
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
 
    @property
-   def _right(self):
+   def right(self):
       result = [ ]
       if self._set:
          result.append(r'\glissando')

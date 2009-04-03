@@ -11,6 +11,16 @@ class _ContainerFormatter(_Formatter):
    ## PRIVATE ATTRIBUTES ##
 
    @property
+   def _closing(self):
+      result = [ ]
+      client = self._client
+      interfaces = client.interfaces
+      if not hasattr(client, 'context'):
+         result.extend(interfaces.reverts)
+      result.extend(interfaces.closing)
+      return ['\t' + x for x in result]
+
+   @property
    def _contents(self):
       result = [ ]
       for m in self._client._music:
@@ -43,18 +53,9 @@ class _ContainerFormatter(_Formatter):
       interfaces = client.interfaces
       if not hasattr(client, 'context'):
          result.extend(interfaces.overrides)
-      result.extend(self._collectLocation('_opening'))
+      result.extend(interfaces.opening)
       return ['\t' + x for x in result]
 
-   @property
-   def _closing(self):
-      result = [ ]
-      client = self._client
-      interfaces = client.interfaces
-      if not hasattr(client, 'context'):
-         result.extend(interfaces.reverts)
-      result.extend(self._collectLocation('_closing'))
-      return ['\t' + x for x in result]
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -63,6 +64,7 @@ class _ContainerFormatter(_Formatter):
       client = self._client
       annotations = client.annotations
       comments = client.comments
+      interfaces = client.interfaces
       result = [ ]
       result.extend(comments._before)
       result.extend(annotations.before)
