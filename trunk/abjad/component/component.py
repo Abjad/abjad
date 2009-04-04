@@ -1,11 +1,11 @@
 from abjad.accidental.interface import _AccidentalInterface
-from abjad.annotations.interface import _AnnotationsInterface
 from abjad.barline.interface import _BarLineInterface
 from abjad.beam.interface import _BeamInterface
 from abjad.breaks.interface import _BreaksInterface
 from abjad.core.abjadcore import _Abjad
 from abjad.core.comments import _UserComments
 from abjad.clef.interface import _ClefInterface
+from abjad.directives.interface import _UserDirectivesInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
@@ -41,12 +41,12 @@ class _Component(_Abjad):
 
    def __init__(self):
       self._accidental = _AccidentalInterface(self)
-      self._annotations = _AnnotationsInterface(self)
       self._barline = _BarLineInterface(self)
       self._beam = _BeamInterface(self)
       self._breaks = _BreaksInterface(self)
       self._clef = _ClefInterface(self)
       self._comments = _UserComments( )
+      self._directives = _UserDirectivesInterface(self)
       self._dots = _DotsInterface(self)
       self._dynamics = _DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)
@@ -103,10 +103,6 @@ class _Component(_Abjad):
          return self._accidental
       return property(**locals( ))
    
-   @property
-   def annotations(self):
-      return self._annotations
-
    @apply
    def barline( ):
       def fget(self):
@@ -142,6 +138,10 @@ class _Component(_Abjad):
       def fset(self, type):
          raise AttributeError('can not overwrite _Comments.')
       return property(**locals( ))
+
+   @property
+   def directives(self):
+      return self._directives
 
    @apply
    def dots( ):

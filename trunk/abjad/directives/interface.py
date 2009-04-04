@@ -1,7 +1,7 @@
 from abjad.core.interface import _Interface
 
 
-class _AnnotationsInterface(_Interface):
+class _UserDirectivesInterface(_Interface):
 
    def __init__(self, client):
       self._client = client

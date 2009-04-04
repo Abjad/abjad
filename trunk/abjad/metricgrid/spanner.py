@@ -134,7 +134,7 @@ class MetricGrid(Spanner):
                s = Skip(Rational(1))
                s.duration.multiplier = meter.offset - leaf.offset.score
                ## TODO: Avoid _AnnotationsInterface in _MetricGrid ##
-               s.annotations.right.append(meter.format)
+               s.directives.right.append(meter.format)
                result.append( '{ %s }' % s.format )
       return result
 

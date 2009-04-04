@@ -22,7 +22,7 @@ class _ContainerFormatter(_Formatter):
    def flamingo_after(self):
       result = [ ]
       client = self._client
-      result.extend(client.annotations.after)
+      result.extend(client.directives.after)
       result.extend(['% ' + x for x in client.comments.after])
       return result
 
@@ -31,7 +31,7 @@ class _ContainerFormatter(_Formatter):
       result = [ ]
       client = self._client
       result.extend(['% ' + x for x in client.comments.before])
-      result.extend(client.annotations.before)
+      result.extend(client.directives.before)
       return result
 
    @property
@@ -40,14 +40,14 @@ class _ContainerFormatter(_Formatter):
       client = self._client
       result.extend(client.interfaces.closing)
       result.extend(client.interfaces.reverts)
-      result.extend(client.annotations.closing)
+      result.extend(client.directives.closing)
       return ['\t' + x for x in result]
 
    @property
    def flamingo_opening(self):
       result = [ ]
       client = self._client
-      result.extend(client.annotations.opening)
+      result.extend(client.directives.opening)
       result.extend(client.interfaces.overrides)
       result.extend(client.interfaces.opening)
       return ['\t' + x for x in result]

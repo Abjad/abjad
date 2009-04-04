@@ -74,10 +74,10 @@ def test_leaf_cast_04( ):
       Works casting to note / rest / skip.'''
 
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].annotations.before.append(r"\override NoteHead #'color = #red")
-   staff[0].annotations.after.append(r"\revert NoteHead #'color")
-   staff[0].annotations.left.append(r'\beam #0 #1')
-   staff[0].annotations.right.append(r'\staccato')
+   staff[0].directives.before.append(r"\override NoteHead #'color = #red")
+   staff[0].directives.after.append(r"\revert NoteHead #'color")
+   staff[0].directives.left.append(r'\beam #0 #1')
+   staff[0].directives.right.append(r'\staccato')
 
    assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 c'8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
@@ -105,10 +105,10 @@ def test_leaf_cast_05( ):
       Works casting to chord.'''
 
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].annotations.before.append(r"\override NoteHead #'color = #red")
-   staff[0].annotations.after.append(r"\revert NoteHead #'color")
-   staff[0].annotations.left.append(r'\beam #0 #1')
-   staff[0].annotations.right.append(r'\staccato')
+   staff[0].directives.before.append(r"\override NoteHead #'color = #red")
+   staff[0].directives.after.append(r"\revert NoteHead #'color")
+   staff[0].directives.left.append(r'\beam #0 #1')
+   staff[0].directives.right.append(r'\staccato')
 
    assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 c'8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 

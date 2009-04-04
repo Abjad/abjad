@@ -257,8 +257,8 @@ def test_thread_report_07( ):
    t[2][1].name = 'soprano'
    diatonicize(t)
 
-   t[1][1][0].annotations.before.append(r"\override NoteHead #'color = #red")
-   t[2][1][-1].annotations.after.append(r"\revert NoteHead #'color")
+   t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
+   t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")
 
    r'''{
       c'8

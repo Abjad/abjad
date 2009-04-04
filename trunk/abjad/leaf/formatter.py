@@ -39,7 +39,7 @@ class _LeafFormatter(_Formatter):
       client = self._client
       result.extend(client.interfaces.after)
       result.extend(client.spanners.after)
-      result.extend(client.annotations.after)
+      result.extend(client.directives.after)
       result.extend(['% ' + x for x in client.comments.after])
       return result
 
@@ -49,7 +49,7 @@ class _LeafFormatter(_Formatter):
       client = self._client
       result.extend(self.grace)
       result.extend(['% ' + x for x in client.comments.before])
-      result.extend(client.annotations.before)
+      result.extend(client.directives.before)
       result.extend(client.interfaces.overrides)
       result.extend(client.spanners.before)
       result.extend(client.interfaces.before)
@@ -60,7 +60,7 @@ class _LeafFormatter(_Formatter):
       result = [ ]
       client = self._client
       result.extend(self.agrace)
-      result.extend(client.annotations.closing)
+      result.extend(client.directives.closing)
       result.extend(client.interfaces.closing)
       return result
 
@@ -68,7 +68,7 @@ class _LeafFormatter(_Formatter):
    def flamingo_opening(self):
       result = [ ]
       client = self._client
-      result.extend(client.annotations.opening)
+      result.extend(client.directives.opening)
       result.extend(client.interfaces.opening)
       result.extend(self.agrace_opening)
       return result
@@ -89,17 +89,17 @@ class _LeafFormatter(_Formatter):
    def leaf_body(self):
       result = [ ]
       client = self._client
-      annotations = client.annotations
+      directives = client.directives
       interfaces = client.interfaces
       spanners = client.spanners
-      result.extend(annotations.left)
+      result.extend(directives.left)
       result.extend(spanners.left)
       result.extend(interfaces.left)
       result.extend(self.nucleus)
       result.extend(self.tremolo)
       result.extend(interfaces.right)
       result.extend(spanners.right)
-      result.extend(annotations.right)
+      result.extend(directives.right)
       result.extend(self.number_contribution)
       result.extend(['% ' + x for x in client.comments.right])
       return [' '.join(result)]
