@@ -13,10 +13,8 @@ class _ContainerFormatter(_Formatter):
    @property
    def closing(self):
       result = [ ]
-      client = self._client
-      interfaces = client.interfaces
-      if not hasattr(client, 'context'):
-         result.extend(interfaces.reverts)
+      interfaces = self._client.interfaces
+      result.extend(interfaces.reverts)
       result.extend(interfaces.closing)
       return ['\t' + x for x in result]
 
@@ -27,7 +25,17 @@ class _ContainerFormatter(_Formatter):
          result.extend(m.format.split('\n'))
       result = ['\t' + x for x in result]
       return result
-   
+
+   @property
+   def flamingo_after(self):
+      result = [ ]
+      return result
+
+   @property
+   def flamingo_before(self):
+      result = [ ]
+      return result
+
    @property
    def format(self):
       client = self._client
@@ -37,6 +45,7 @@ class _ContainerFormatter(_Formatter):
       result = [ ]
       result.extend(['% ' + x for x in comments.before])
       result.extend(annotations.before)
+      result.extend(self.flamingo_before)
       result.extend(self.invocation_opening)
       result.extend(annotations.opening)
       result.extend(self.opening)
@@ -44,6 +53,7 @@ class _ContainerFormatter(_Formatter):
       result.extend(self.closing)
       result.extend(annotations.closing)
       result.extend(self.invocation_closing)
+      result.extend(self.flamingo_after)
       result.extend(annotations.after)
       result.extend(['% ' + x for x in comments.after])
       return '\n'.join(result)
@@ -73,9 +83,7 @@ class _ContainerFormatter(_Formatter):
    @property
    def opening(self):
       result = [ ]
-      client = self._client
-      interfaces = client.interfaces
-      if not hasattr(client, 'context'):
-         result.extend(interfaces.overrides)
+      interfaces = self._client.interfaces
+      result.extend(interfaces.overrides)
       result.extend(interfaces.opening)
       return ['\t' + x for x in result]
