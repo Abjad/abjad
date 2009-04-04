@@ -10,26 +10,6 @@ class _ChordFormatter(_LeafFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def body(self):
-      '''Return string representation of everything in body of self.'''
-      client = self._client
-      annotations = client.annotations
-      comments = client.comments
-      interfaces = client.interfaces
-      spanners = client.spanners
-      result = [ ]
-      result.extend(annotations.left)
-      result.extend(spanners.left)
-      result.extend(interfaces.left)
-      result.extend(self.nucleus)
-      result.extend(interfaces.right)
-      result.extend(spanners.right)
-      result.extend(annotations.right)
-      result.extend(self.number_contribution)
-      result.extend(client.comments._right)
-      return [' '.join(result)]
-
-   @property
    def nucleus(self):
       '''String representation of noteheads in chord.
          Return list like all other format-time contributions.'''
@@ -45,7 +25,4 @@ class _ChordFormatter(_LeafFormatter):
             nucleus.extend([x for x in notehead.format.split('\n')])
       result = '<%s>%s' % (
          ' '.join(nucleus), client.duration._product)
-      subdivision = client.tremolo.subdivision
-      if subdivision:
-         result += ' %s' % self.tremolo[0]
       return [result]

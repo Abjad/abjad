@@ -30,21 +30,20 @@ class _LeafFormatter(_Formatter):
    def body(self):
       client = self._client
       annotations = client.annotations
-      #comments = client.comments
       interfaces = client.interfaces
       spanners = client.spanners
       result = [ ]
+
       result.extend(annotations.left)
       result.extend(spanners.left)
       result.extend(interfaces.left)
-      result.extend(client.body)
-      #result.extend(client.tremolo.body)
+      #result.extend(client.body)
+      result.extend(self.nucleus)
       result.extend(self.tremolo)
       result.extend(interfaces.right)
       result.extend(spanners.right)
       result.extend(annotations.right)
       result.extend(self.number_contribution)
-      #result.extend(['% ' + x for x in comments.right])
       result.extend(self.comments_right)
       return [' '.join(result)]
 
@@ -65,11 +64,9 @@ class _LeafFormatter(_Formatter):
    def format(self):
       client = self._client
       annotations = client.annotations
-      #comments = client.comments
       interfaces = client.interfaces
       spanners = client.spanners
       result = [ ]
-      #result.extend(['% ' + x for x in comments.before])
       result.extend(self.comments_before)
       result.extend(annotations.before) 
       result.extend(self.grace)
@@ -84,7 +81,6 @@ class _LeafFormatter(_Formatter):
       result.extend(interfaces.after)
       result.extend(spanners.after)
       result.extend(annotations.after)
-      #result.extend(['% ' + x for x in comments.after])
       result.extend(self.comments_after)
       return '\n'.join(result)
 
@@ -95,6 +91,10 @@ class _LeafFormatter(_Formatter):
       if len(grace) > 0:
          result.append(grace.format)
       return result
+
+   @property
+   def nucleus(self):
+      return self._client.body
 
    @property
    def number(self):
