@@ -11,7 +11,11 @@ class AssignabilityError(DurationError):
       to a single, untied note, rest or chord.'''
    pass
 
-class ContextContainmentError(Exception):
+class ContainmentError(Exception):
+   '''General containment error.'''
+   pass
+
+class ContextContainmentError(ContainmentError):
    '''Only certain types of context should contain
       other types of context.'''
    pass
@@ -51,6 +55,12 @@ class NonbinaryMeterSuppressionError(Exception):
 
 class OverfullMeasureError(ImproperlyFilledMeasureError):
    '''Measure contents duration is greater than measure meter duration.'''
+   pass
+
+class ParallelError(ContainmentError):
+   '''Parallel containers must contain Contexts only. 
+   Leaves and other non-Context containers can not be contained directly
+   inside a parallel container.'''
    pass
 
 class SpannerError(Exception):
