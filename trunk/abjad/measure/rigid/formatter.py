@@ -10,7 +10,7 @@ class _RigidMeasureFormatter(_MeasureFormatter):
    def __init__(self, client):
       _MeasureFormatter.__init__(self, client)
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def contents(self):
@@ -27,8 +27,6 @@ class _RigidMeasureFormatter(_MeasureFormatter):
          result.extend(_MeasureFormatter.contents.fget(self))
       return result
          
-   ## PUBLIC ATTRIBUTES ##
-
    @property
    def format(self):
       client = self._client
