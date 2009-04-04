@@ -15,17 +15,17 @@ def test_navigator_first_leaves_01( ):
 def test_navigator_first_leaves_02( ):
    '''Return first leaves from parallel containers.'''
 
-   t = Container(Container(run(2)) * 2)
+   t = Container(Voice(run(2)) * 2)
    t.parallel = True
    diatonicize(t)
    leaves = t._navigator._firstLeaves
 
    r'''<<
-      {
+      \new Voice {
          c'8
          d'8
       }
-      {
+      \new Voice {
          e'8
          f'8
       }
@@ -49,7 +49,7 @@ def test_navigator_first_leaves_03( ):
 def test_navigator_first_leaves_04( ):
    '''Return first leaves from empty parallel containes.'''
 
-   t = Container(Container([ ]) * 2)
+   t = Container(Voice([ ]) * 2)
    t.parallel = True
    leaves = t._navigator._firstLeaves
    assert len(leaves) == 0

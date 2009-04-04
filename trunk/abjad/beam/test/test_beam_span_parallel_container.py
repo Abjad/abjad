@@ -18,7 +18,7 @@ def test_beam_span_parallel_container_01( ):
 def test_beam_span_parallel_container_02( ):
    '''Nonempty spanned parallel container.'''
 
-   t = Container(Container(run(4)) * 2)
+   t = Container(Voice(run(4)) * 2)
    t.parallel = True
    appictate(t)
 
@@ -46,69 +46,44 @@ def test_beam_span_parallel_container_02( ):
 
 
 def test_beam_span_parallel_container_03( ):
-   '''Container container accepts spanner,
+   '''Voice accepts spanner,
       even lodged within parallel parent container.'''
 
-   t = Container(Container(run(4)) * 2)
+   t = Container(Voice(run(4)) * 2)
    t.parallel = True
    appictate(t)
    p = Beam(t[0])
 
    assert len(p.components) == 1
    assert isinstance(p.components[0], Container)
-   assert t.format == "<<\n\t{\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8 ]\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
+   assert t.format == "<<\n\t\\new Voice {\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8 ]\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
 
    r'''<<
-      {
-         c'8 [
-         cs'8
-         d'8
-         ef'8 ]
-      }
-      {
-         e'8
-         f'8
-         fs'8
-         g'8
-      }
-   >>'''
-
+           \new Voice {
+                   c'8 [
+                   cs'8
+                   d'8
+                   ef'8 ]
+           }
+           \new Voice {
+                   e'8
+                   f'8
+                   fs'8
+                   g'8
+           }
+   >>
+   '''
 
 def test_beam_span_parallel_container_04( ):
    '''Abjad forbids but LilyPond is happy.'''
 
    t = Staff(run(4))
-   new = Container(Container(run(4)) * 2)
+   new = Container(Voice(run(4)) * 2)
    new.parallel = True
    t.insert(2, new)
    appictate(t)
 
    assert py.test.raises(ContiguityError, 'p = Beam(t)')
-
-#   assert len(p.components) == 1
-#   assert len(p.leaves) == 4
-#   assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\t<<\n\t\t{\n\t\t\td'8\n\t\t\tef'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t\t{\n\t\t\tfs'8\n\t\t\tg'8\n\t\t\taf'8\n\t\t\ta'8\n\t\t}\n\t>>\n\tbf'8\n\tb'8 ]\n}"
-#
-#   r'''\new Staff {
-#      c'8 [
-#      cs'8
-#      <<
-#         {
-#            d'8
-#            ef'8
-#            e'8
-#            f'8
-#         }
-#         {
-#            fs'8
-#            g'8
-#            af'8
-#            a'8
-#         }
-#      >>
-#      bf'8
-#      b'8 ]
-#   }'''
 
 
 def test_beam_span_parallel_container_05( ):

@@ -26,7 +26,7 @@ class Container(_Component):
       self._initializeMusic(music)
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
-      self._parallel = False
+      self.parallel = False
 
    ## OVERLOADS ##
 
@@ -165,6 +165,10 @@ class Container(_Component):
          return self._parallel
       def fset(self, arg):
          assert isinstance(arg, bool)
+         if arg == True:
+            from abjad.helpers.assert_are_contexts import \
+               assert_are_contexts
+            assert_are_contexts(self._music)
          self._parallel = arg
       return property(**locals( ))
 

@@ -2,125 +2,127 @@ from abjad.component.component import _Component
 from abjad import *
 import py.test
 
-
-def test_thread_report_01( ):
-   '''Containment signature of leaf 2.
-      Signature contains no explicit voice, staff or score.
-      Outermost sequentials acts as signature root.'''
-
-   t = Container(run(4))
-   t.insert(2, Container(Container(run(2)) * 2))
-   t[2].parallel = True
-   diatonicize(t)
-   t.notehead.color = 'red'
-
-   r'''{
-           \override NoteHead #'color = #red
-           c'8
-           d'8
-           <<
-                   {
-                           e'8
-                           f'8
-                   }
-                   {
-                           g'8
-                           a'8
-                   }
-           >>
-           b'8
-           c''8
-           \revert NoteHead #'color
-   }'''
-
-   '''abjad> print t.leaves[2].thread.report
-
-       root: Container-4274576 (4274576)
-      score: 
-      staff: 
-      voice: 
-       self: Note-5358192'''
-
-
-def test_thread_report_02( ):
-   '''Containment signature of leaf 2.
-      Signature contains named voice 'foo'.
-      Signature contains neither staff nor score.
-      Named voice 'foo' acts as signature root.'''
-
-   t = Voice(run(4))
-   t.name = 'foo'
-   t.insert(2, Container(Container(run(2)) * 2))
-   t[2].parallel = True
-   diatonicize(t)
-   t.notehead.color = 'red'
-
-   r'''\context Voice = "foo" \with {
-           \override NoteHead #'color = #red
-   } {
-           c'8
-           d'8
-           <<
-                   {
-                           e'8
-                           f'8
-                   }
-                   {
-                           g'8
-                           a'8
-                   }
-           >>
-           b'8
-           c''8
-   }'''
-
-   '''abjad> print t.leaves[2].thread.report
-
-       root: Voice-foo (4274608)
-      score: 
-      staff: 
-      voice: Voice-foo
-       self: Note-5358256'''
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_thread_report_01( ):
+#   '''Containment signature of leaf 2.
+#      Signature contains no explicit voice, staff or score.
+#      Outermost sequentials acts as signature root.'''
+#
+#   t = Container(run(4))
+#   t.insert(2, Container(Container(run(2)) * 2))
+#   t[2].parallel = True
+#   diatonicize(t)
+#   t.notehead.color = 'red'
+#
+#   r'''{
+#           \override NoteHead #'color = #red
+#           c'8
+#           d'8
+#           <<
+#                   {
+#                           e'8
+#                           f'8
+#                   }
+#                   {
+#                           g'8
+#                           a'8
+#                   }
+#           >>
+#           b'8
+#           c''8
+#           \revert NoteHead #'color
+#   }'''
+#
+#   '''abjad> print t.leaves[2].thread.report
+#
+#       root: Container-4274576 (4274576)
+#      score: 
+#      staff: 
+#      voice: 
+#       self: Note-5358192'''
 
 
-def test_thread_report_03( ):
-   '''Containment signature of leaf 2.
-      Signature contains anonymous voice.
-      Signature contains neither staff nor score.
-      Anonymous voice acts as signature root.'''
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_thread_report_02( ):
+#   '''Containment signature of leaf 2.
+#      Signature contains named voice 'foo'.
+#      Signature contains neither staff nor score.
+#      Named voice 'foo' acts as signature root.'''
+#
+#   t = Voice(run(4))
+#   t.name = 'foo'
+#   t.insert(2, Container(Container(run(2)) * 2))
+#   t[2].parallel = True
+#   diatonicize(t)
+#   t.notehead.color = 'red'
+#
+#   r'''\context Voice = "foo" \with {
+#           \override NoteHead #'color = #red
+#   } {
+#           c'8
+#           d'8
+#           <<
+#                   {
+#                           e'8
+#                           f'8
+#                   }
+#                   {
+#                           g'8
+#                           a'8
+#                   }
+#           >>
+#           b'8
+#           c''8
+#   }'''
+#
+#   '''abjad> print t.leaves[2].thread.report
+#
+#       root: Voice-foo (4274608)
+#      score: 
+#      staff: 
+#      voice: Voice-foo
+#       self: Note-5358256'''
 
-   t = Voice(run(4))
-   t.insert(2, Container(Container(run(2)) * 2))
-   t[2].parallel = True
-   diatonicize(t)
-   t.notehead.color = 'red'
 
-   r'''\new Voice \with {
-           \override NoteHead #'color = #red
-   } {
-           c'8
-           d'8
-           <<
-                   {
-                           e'8
-                           f'8
-                   }
-                   {
-                           g'8
-                           a'8
-                   }
-           >>
-           b'8
-           c''8
-   }'''
-
-   '''abjad> print t.leaves[2].thread.report
-
-       root: Voice-4274576 (4274576)
-      score: 
-      staff: 
-      voice: Voice-4274576
-       self: Note-5358224'''
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_thread_report_03( ):
+#   '''Containment signature of leaf 2.
+#      Signature contains anonymous voice.
+#      Signature contains neither staff nor score.
+#      Anonymous voice acts as signature root.'''
+#
+#   t = Voice(run(4))
+#   t.insert(2, Container(Container(run(2)) * 2))
+#   t[2].parallel = True
+#   diatonicize(t)
+#   t.notehead.color = 'red'
+#
+#   r'''\new Voice \with {
+#           \override NoteHead #'color = #red
+#   } {
+#           c'8
+#           d'8
+#           <<
+#                   {
+#                           e'8
+#                           f'8
+#                   }
+#                   {
+#                           g'8
+#                           a'8
+#                   }
+#           >>
+#           b'8
+#           c''8
+#   }'''
+#
+#   '''abjad> print t.leaves[2].thread.report
+#
+#       root: Voice-4274576 (4274576)
+#      score: 
+#      staff: 
+#      voice: Voice-4274576
+#       self: Note-5358224'''
 
 
 def test_thread_report_04( ):

@@ -77,13 +77,14 @@ def test_container_add_06( ):
 
 ### PARALLEL STRUCTURES ###
 
-def test_container_add_10( ):
-   '''Addition raises exception on parallels of notes.'''
-   t1 = Container(Note(0, (1, 4))*2)
-   t1.parallel = True
-   t2 = Container(Note(0, (1, 4))*2)
-   t2.parallel = True
-   assert t1 + t2 is None
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_container_add_10( ):
+#   '''Addition raises exception on parallels of notes.'''
+#   t1 = Container(Note(0, (1, 4))*2)
+#   t1.parallel = True
+#   t2 = Container(Note(0, (1, 4))*2)
+#   t2.parallel = True
+#   assert t1 + t2 is None
     
 
 def test_container_add_11( ):

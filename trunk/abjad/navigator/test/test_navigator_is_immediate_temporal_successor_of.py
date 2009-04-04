@@ -56,23 +56,24 @@ def test_is_immediate_temporal_successor_of_03( ):
    }'''
 
 
-def test_is_immediate_temporal_successor_of_04( ):
-   '''None of the leaves in the same parallel follow
-      any of the others temporally.'''
-
-   t = Container([Note(i, (1, 8)) for i in range(4)])
-   t.parallel = True
-
-   assert not t[0]._navigator._isImmediateTemporalSuccessorOf(t[1])
-   assert not t[1]._navigator._isImmediateTemporalSuccessorOf(t[2])
-   assert not t[2]._navigator._isImmediateTemporalSuccessorOf(t[3])
-
-   r'''<<
-      c'8
-      cs'8
-      d'8
-      ef'8
-   >>'''
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_is_immediate_temporal_successor_of_04( ):
+#   '''None of the leaves in the same parallel follow
+#      any of the others temporally.'''
+#
+#   t = Container([Note(i, (1, 8)) for i in range(4)])
+#   t.parallel = True
+#
+#   assert not t[0]._navigator._isImmediateTemporalSuccessorOf(t[1])
+#   assert not t[1]._navigator._isImmediateTemporalSuccessorOf(t[2])
+#   assert not t[2]._navigator._isImmediateTemporalSuccessorOf(t[3])
+#
+#   r'''<<
+#      c'8
+#      cs'8
+#      d'8
+#      ef'8
+#   >>'''
 
 
 def test_is_immediate_temporal_successor_of_05( ):

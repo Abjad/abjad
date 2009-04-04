@@ -52,60 +52,61 @@ def test_navigator_is_threadable_03( ):
       f'8
    }'''
 
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_navigator_is_threadable_04_a( ):
+#   '''A path does NOT exist between leaves with a parent parallel container
+#   not contained inside a Voice (an explicit thread).
+#   This parallels LilyPonds behavior of creating a separate Staff for each
+#   leaf in this particular case. See the next test.'''
+#   ## [VA] None... i think. 
+#   ## [Baca] I tend to agree. It certainly doesn't make sense to *span* more than one component within a parallel container. But it occurs to me that _threadale_ means something subtly different than _spannable_. Without thinking through all the cases yes, I'm pretty sure that 'threadability' is a necessary (but not sufficient) condition for 'spanability'. That is, 'spanability' is a special, rarer cases of 'threadability'; or, said the other way around, 'threadability' is a more general phenomenon and 'spanability' is a more specific phenomenon. We should discuss more soon.
+#   ## [VA] I think the behavior is as follows:
+#   ## -- No thread exists between leaves with a parallel parent NOT contained 
+#   ## inside a sequential container (implicit thread) or a 
+#   ## Voice (explicit thread). LilyPond interprets this as four 
+#   ## separate Staves, thus four threads.
+#   ## -- A thread DOES exist between leaves with a parallel parent contained 
+#   ## inside a Voices, because these are interpreted as chords by lilypond. 
+#   ## this is the current implementation behavior as of Apr. 3, 2009.
+#   ## See the next test. 
+#
+#   t = Container(scale(4))
+#   t.parallel = True
+#
+#   assert not t[0]._navigator._isThreadable(t[1])
+#   assert not t[1]._navigator._isThreadable(t[2])
+#   assert not t[2]._navigator._isThreadable(t[3])
+#
+#   r'''<<
+#      c'8
+#      d'8
+#      e'8
+#      f'8
+#   >>'''
 
-def test_navigator_is_threadable_04_a( ):
-   '''A path does NOT exist between leaves with a parent parallel container
-   not contained inside a Voice (an explicit thread).
-   This parallels LilyPonds behavior of creating a separate Staff for each
-   leaf in this particular case. See the next test.'''
-   ## [VA] None... i think. 
-   ## [Baca] I tend to agree. It certainly doesn't make sense to *span* more than one component within a parallel container. But it occurs to me that _threadale_ means something subtly different than _spannable_. Without thinking through all the cases yes, I'm pretty sure that 'threadability' is a necessary (but not sufficient) condition for 'spanability'. That is, 'spanability' is a special, rarer cases of 'threadability'; or, said the other way around, 'threadability' is a more general phenomenon and 'spanability' is a more specific phenomenon. We should discuss more soon.
-   ## [VA] I think the behavior is as follows:
-   ## -- No thread exists between leaves with a parallel parent NOT contained 
-   ## inside a sequential container (implicit thread) or a 
-   ## Voice (explicit thread). LilyPond interprets this as four 
-   ## separate Staves, thus four threads.
-   ## -- A thread DOES exist between leaves with a parallel parent contained 
-   ## inside a Voices, because these are interpreted as chords by lilypond. 
-   ## this is the current implementation behavior as of Apr. 3, 2009.
-   ## See the next test. 
 
-   t = Container(scale(4))
-   t.parallel = True
-
-   assert not t[0]._navigator._isThreadable(t[1])
-   assert not t[1]._navigator._isThreadable(t[2])
-   assert not t[2]._navigator._isThreadable(t[3])
-
-   r'''<<
-      c'8
-      d'8
-      e'8
-      f'8
-   >>'''
-
-
-def test_navigator_is_threadable_04_b( ):
-   '''A path DOES exist between leaves with a parent parallel container
-   contained inside a Voice (an explicit thread).
-   This parallels LilyPonds behavior of creating chords.'''
-
-   t = Container(scale(4))
-   t.parallel = True
-   v = Voice([t])
-
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[2])
-   assert t[2]._navigator._isThreadable(t[3])
-
-   r'''\new Voice {
-            <<
-               c'8
-               d'8
-               e'8
-               f'8
-            >>
-      }'''
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_navigator_is_threadable_04_b( ):
+#   '''A path DOES exist between leaves with a parent parallel container
+#   contained inside a Voice (an explicit thread).
+#   This parallels LilyPonds behavior of creating chords.'''
+#
+#   t = Container(scale(4))
+#   t.parallel = True
+#   v = Voice([t])
+#
+#   assert t[0]._navigator._isThreadable(t[1])
+#   assert t[1]._navigator._isThreadable(t[2])
+#   assert t[2]._navigator._isThreadable(t[3])
+#
+#   r'''\new Voice {
+#            <<
+#               c'8
+#               d'8
+#               e'8
+#               f'8
+#            >>
+#      }'''
 
 
 def test_navigator_is_threadable_05( ):
@@ -658,27 +659,24 @@ def test_navigator_is_threadable_20( ):
    v1 = Voice(run(4))
    v2 = Voice(run(4))
    v1.name = v2.name = 'voiceOne'
-   t = Container([Container([v1, v2])])
-   t.parallel = True
+   t = Container([v1, v2])
    diatonicize(t)
 
    r'''
-   <<
-           {
-                   \context Voice = "voiceOne" {
-                           c'8
-                           d'8
-                           e'8
-                           f'8
-                   }
-                   \context Voice = "voiceOne" {
-                           g'8
-                           a'8
-                           b'8
-                           c''8
-                   }
-           }
-   >>
+     {
+             \context Voice = "voiceOne" {
+                     c'8
+                     d'8
+                     e'8
+                     f'8
+             }
+             \context Voice = "voiceOne" {
+                     g'8
+                     a'8
+                     b'8
+                     c''8
+             }
+     }
    '''
    assert v1._navigator._isThreadable(v2)
    for n1, n2 in zip(t.leaves[0:-1], t.leaves[1:]):

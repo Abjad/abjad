@@ -1,5 +1,5 @@
 from abjad import *
-
+import py.test
 
 def test_container_parallel_01( ):
    '''True when container encloses contents in LilyPond << >> brackets,
@@ -27,10 +27,6 @@ def test_container_parallel_02( ):
    t.parallel = True
    assert t.parallel
 
-   t = Container([ ])
-   t.parallel = True
-   assert t.parallel
-
 
 def test_container_parallel_03( ):
    '''Container 'parallel' is settable.'''
@@ -40,3 +36,39 @@ def test_container_parallel_03( ):
 
    t.parallel = True
    assert t.parallel
+
+
+def test_container_parallel_04( ):
+   '''A parallel container can hold Contexts.'''
+   t = Container(Voice(run(2)) * 2)
+   appictate(t)
+   t.parallel = True
+   assert t.format == "<<\n\t\\new Voice {\n\t\tc'8\n\t\tcs'8\n\t}\n\t\\new Voice {\n\t\td'8\n\t\tef'8\n\t}\n>>"
+
+   r'''<<
+           \new Voice {
+                   c'8
+                   cs'8
+           }
+           \new Voice {
+                   d'8
+                   ef'8
+           }
+   >>'''
+
+
+## Parallel Errors ##
+
+def test_container_parallel_10( ):
+   '''Parallel containers must contain only Contexts.
+   It cannot take leaves.'''
+   t = Container(run(4))
+   py.test.raises(ParallelError, 't.parallel = True')
+
+
+def test_container_parallel_11( ):
+   '''Parallel containers must contain only Contexts.
+   It cannot take Containers.'''
+   t = Container(Container(run(4)) * 2)
+   py.test.raises(ParallelError, 't.parallel = True')
+

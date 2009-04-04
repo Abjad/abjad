@@ -1,6 +1,8 @@
 from abjad import *
 import py.test
 
+py.test.skip('TODO: This whole test file is based on a construct that is no \
+longer allowed in Abjad. Must rewrite.')
 
 ### NOTE: all tests operate on the following expression ###
 

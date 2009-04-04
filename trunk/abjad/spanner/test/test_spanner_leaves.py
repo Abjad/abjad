@@ -117,7 +117,7 @@ def test_spanner_leaves_06( ):
       Spanner duration does, however, account for parallel duration.'''
 
    t = Staff(run(4))
-   t.insert(2, Container(Container(run(2)) * 2))
+   t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
    appictate(t)
 
@@ -125,11 +125,11 @@ def test_spanner_leaves_06( ):
       c'8
       cs'8
       <<
-         {
+         \new Voice {
             d'8
             ef'8
          }
-         {
+         \new Voice {
             e'8
             f'8
          }
@@ -155,7 +155,7 @@ def test_spanner_leaves_07( ):
       Spanner duration does, however, account for parallel duration.'''
 
    t = Staff(run(4))
-   t.insert(2, Container(Container(run(2)) * 2))
+   t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
    appictate(t)
 
@@ -163,11 +163,11 @@ def test_spanner_leaves_07( ):
       c'8
       cs'8
       <<
-         {
+         \new Voice {
             d'8
             ef'8
          }
-         {
+         \new Voice {
             e'8
             f'8
          }

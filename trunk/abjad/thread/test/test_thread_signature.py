@@ -3,116 +3,119 @@ from abjad import *
 import py.test
 
 
-def test_thread_signature_01( ):
-   '''Return _ContainmentSignature giving the root and
-      first voice, staff and score in the parentage of component.'''
-
-   t = Container(run(4))
-   t.insert(2, Container(Container(run(2)) * 2))
-   t[2].parallel = True
-   diatonicize(t)
-   t.notehead.color = 'red'
-
-   r'''{
-           \override NoteHead #'color = #red
-           c'8
-           d'8
-           <<
-                   {
-                           e'8
-                           f'8
-                   }
-                   {
-                           g'8
-                           a'8
-                   }
-           >>
-           b'8
-           c''8
-           \revert NoteHead #'color
-   }'''
-
-   '''All components here carry the exact same containment signature.'''
-
-   signature = t.thread.signature
-
-   for component in iterate(t, _Component):
-      assert component.thread.signature == signature
-
-
-def test_thread_signature_02( ):
-   '''Return _ContainmentSignature giving the root and
-      first voice, staff and score in the parentage of component.'''
-
-   t = Voice(run(4))
-   t.name = 'foo'
-   t.insert(2, Container(Container(run(2)) * 2))
-   t[2].parallel = True
-   diatonicize(t)
-   t.notehead.color = 'red'
-
-   r'''\context Voice = "foo" \with {
-           \override NoteHead #'color = #red
-   } {
-           c'8
-           d'8
-           <<
-                   {
-                           e'8
-                           f'8
-                   }
-                   {
-                           g'8
-                           a'8
-                   }
-           >>
-           b'8
-           c''8
-   }'''
-
-   '''Again, all components here carry the exact same containment signature.'''
-
-   signature = t.thread.signature
-
-   for component in iterate(t, _Component):
-      assert component.thread.signature == signature
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_thread_signature_01( ):
+#   '''Return _ContainmentSignature giving the root and
+#      first voice, staff and score in the parentage of component.'''
+#
+#   t = Container(run(4))
+#   t.insert(2, Container(Container(run(2)) * 2))
+#   t[2].parallel = True
+#   diatonicize(t)
+#   t.notehead.color = 'red'
+#
+#   r'''{
+#           \override NoteHead #'color = #red
+#           c'8
+#           d'8
+#           <<
+#                   {
+#                           e'8
+#                           f'8
+#                   }
+#                   {
+#                           g'8
+#                           a'8
+#                   }
+#           >>
+#           b'8
+#           c''8
+#           \revert NoteHead #'color
+#   }'''
+#
+#   '''All components here carry the exact same containment signature.'''
+#
+#   signature = t.thread.signature
+#
+#   for component in iterate(t, _Component):
+#      assert component.thread.signature == signature
 
 
-def test_thread_signature_03( ):
-   '''Return _ContainmentSignature giving the root and
-      first voice, staff and score in the parentage of component.'''
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_thread_signature_02( ):
+#   '''Return _ContainmentSignature giving the root and
+#      first voice, staff and score in the parentage of component.'''
+#
+#   t = Voice(run(4))
+#   t.name = 'foo'
+#   t.insert(2, Container(Container(run(2)) * 2))
+#   t[2].parallel = True
+#   diatonicize(t)
+#   t.notehead.color = 'red'
+#
+#   r'''\context Voice = "foo" \with {
+#           \override NoteHead #'color = #red
+#   } {
+#           c'8
+#           d'8
+#           <<
+#                   {
+#                           e'8
+#                           f'8
+#                   }
+#                   {
+#                           g'8
+#                           a'8
+#                   }
+#           >>
+#           b'8
+#           c''8
+#   }'''
+#
+#   '''Again, all components here carry the exact same containment signature.'''
+#
+#   signature = t.thread.signature
+#
+#   for component in iterate(t, _Component):
+#      assert component.thread.signature == signature
 
-   t = Voice(run(4))
-   t.insert(2, Container(Container(run(2)) * 2))
-   t[2].parallel = True
-   diatonicize(t)
-   t.notehead.color = 'red'
 
-   r'''\new Voice \with {
-           \override NoteHead #'color = #red
-   } {
-           c'8
-           d'8
-           <<
-                   {
-                           e'8
-                           f'8
-                   }
-                   {
-                           g'8
-                           a'8
-                   }
-           >>
-           b'8
-           c''8
-   }'''
-
-   '''Again, all components here carry the exact same containment signature.'''
-
-   containment = t.thread.signature
-
-   for component in iterate(t, _Component):
-      assert component.thread.signature == containment
+## NONSTRUCTURAL in new parallel --> context model.
+#def test_thread_signature_03( ):
+#   '''Return _ContainmentSignature giving the root and
+#      first voice, staff and score in the parentage of component.'''
+#
+#   t = Voice(run(4))
+#   t.insert(2, Container(Container(run(2)) * 2))
+#   t[2].parallel = True
+#   diatonicize(t)
+#   t.notehead.color = 'red'
+#
+#   r'''\new Voice \with {
+#           \override NoteHead #'color = #red
+#   } {
+#           c'8
+#           d'8
+#           <<
+#                   {
+#                           e'8
+#                           f'8
+#                   }
+#                   {
+#                           g'8
+#                           a'8
+#                   }
+#           >>
+#           b'8
+#           c''8
+#   }'''
+#
+#   '''Again, all components here carry the exact same containment signature.'''
+#
+#   containment = t.thread.signature
+#
+#   for component in iterate(t, _Component):
+#      assert component.thread.signature == containment
 
 
 def test_thread_signature_04( ):
