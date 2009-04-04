@@ -21,11 +21,15 @@ class _ContainerFormatter(_Formatter):
    @property
    def flamingo_after(self):
       result = [ ]
+      result.extend(self.annotations_after)
+      result.extend(self.comments_after)
       return result
 
    @property
    def flamingo_before(self):
       result = [ ]
+      result.extend(self.comments_before)
+      result.extend(self.annotations_before)
       return result
 
    @property
@@ -45,24 +49,6 @@ class _ContainerFormatter(_Formatter):
       result.extend(client.interfaces.overrides)
       result.extend(client.interfaces.opening)
       return ['\t' + x for x in result]
-
-   @property
-   def format(self):
-      client = self._client
-      interfaces = client.interfaces
-      result = [ ]
-      result.extend(self.comments_before)
-      result.extend(self.annotations_before)
-      result.extend(self.flamingo_before)
-      result.extend(self.invocation_opening)
-      result.extend(self.flamingo_opening)
-      result.extend(self.heart)
-      result.extend(self.flamingo_closing)
-      result.extend(self.invocation_closing)
-      result.extend(self.flamingo_after)
-      result.extend(self.annotations_after)
-      result.extend(self.comments_after)
-      return '\n'.join(result)
 
    @property
    def heart(self):

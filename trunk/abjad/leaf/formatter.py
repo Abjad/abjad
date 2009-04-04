@@ -45,6 +45,8 @@ class _LeafFormatter(_Formatter):
       client = self._client
       result.extend(client.interfaces.after)
       result.extend(client.spanners.after)
+      result.extend(self.annotations_after)
+      result.extend(self.comments_after)
       return result
 
    @property
@@ -52,6 +54,8 @@ class _LeafFormatter(_Formatter):
       result = [ ]
       client = self._client
       result.extend(self.grace)
+      result.extend(self.comments_before)
+      result.extend(self.annotations_before)
       result.extend(client.interfaces.overrides)
       result.extend(client.spanners.before)
       result.extend(client.interfaces.before)
@@ -74,23 +78,6 @@ class _LeafFormatter(_Formatter):
       result.extend(client.interfaces.opening)
       result.extend(self.agrace_opening)
       return result
-
-   @property
-   def format(self):
-      client = self._client
-      interfaces = client.interfaces
-      spanners = client.spanners
-      result = [ ]
-      result.extend(self.comments_before)
-      result.extend(self.annotations_before)
-      result.extend(self.flamingo_before)
-      result.extend(self.flamingo_opening)
-      result.extend(self.heart)
-      result.extend(self.flamingo_closing)
-      result.extend(self.flamingo_after)
-      result.extend(self.annotations_after)
-      result.extend(self.comments_after)
-      return '\n'.join(result)
 
    @property
    def grace(self):

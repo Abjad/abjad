@@ -84,6 +84,18 @@ class _Formatter(_Interface):
       return result
 
    @property
+   def format(self):
+      result = [ ]
+      result.extend(self.flamingo_before)
+      result.extend(self.invocation_opening)
+      result.extend(self.flamingo_opening)
+      result.extend(self.heart)
+      result.extend(self.flamingo_closing)
+      result.extend(self.invocation_closing)
+      result.extend(self.flamingo_after)
+      return '\n'.join(result)
+
+   @property
    def invocation_closing(self):
       result = [ ]
       return result
