@@ -19,7 +19,7 @@ class _ContainerFormatter(_Formatter):
       return ['\t' + x for x in result]
 
    @property
-   def container_contents(self):
+   def contents(self):
       result = [ ]
       for m in self._client._music:
          result.extend(m.format.split('\n'))
@@ -59,7 +59,7 @@ class _ContainerFormatter(_Formatter):
 
    @property
    def heart(self):
-      return self.container_contents
+      return self.contents
 
    @property
    def invocation_closing(self):

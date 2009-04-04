@@ -58,6 +58,18 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
+   def flamingo_closing(self):
+      result = [ ]
+      return result
+
+   @property
+   def flamingo_opening(self):
+      result = [ ]
+      result.extend(interfaces.opening)
+      result.extend(self.agrace_opening)
+      return result
+
+   @property
    def format(self):
       client = self._client
       interfaces = client.interfaces
@@ -70,7 +82,9 @@ class _LeafFormatter(_Formatter):
       result.extend(self.invocation_opening)
       result.extend(interfaces.opening)
       result.extend(self.agrace_opening)
+      #result.extend(self.flamingo_opening)
       result.extend(self.heart)
+      #result.extend(self.flamingo_closing)
       result.extend(self.agrace)
       result.extend(interfaces.closing)
       result.extend(self.invocation_closing)

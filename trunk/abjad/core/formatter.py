@@ -69,6 +69,16 @@ class _Formatter(_Interface):
       return result
 
    @property
+   def flamingo_closing(self):
+      result = [ ]
+      return result
+
+   @property
+   def flamingo_opening(self):
+      result = [ ]
+      return result
+
+   @property
    def heart(self):
       result = [ ]
       return result
