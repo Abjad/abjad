@@ -34,19 +34,13 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
-   def comments_right(self):
-      result = [ ]
-      result.extend(['% ' + x for x in self._client.comments.right])
-      return result
-
-   @property
    def flamingo_after(self):
       result = [ ]
       client = self._client
       result.extend(client.interfaces.after)
       result.extend(client.spanners.after)
-      result.extend(self.annotations_after)
-      result.extend(self.comments_after)
+      result.extend(client.annotations.after)
+      result.extend(['% ' + x for x in client.comments.after])
       return result
 
    @property
@@ -54,8 +48,8 @@ class _LeafFormatter(_Formatter):
       result = [ ]
       client = self._client
       result.extend(self.grace)
-      result.extend(self.comments_before)
-      result.extend(self.annotations_before)
+      result.extend(['% ' + x for x in client.comments.before])
+      result.extend(client.annotations.before)
       result.extend(client.interfaces.overrides)
       result.extend(client.spanners.before)
       result.extend(client.interfaces.before)
@@ -93,11 +87,11 @@ class _LeafFormatter(_Formatter):
 
    @property
    def leaf_body(self):
+      result = [ ]
       client = self._client
       annotations = client.annotations
       interfaces = client.interfaces
       spanners = client.spanners
-      result = [ ]
       result.extend(annotations.left)
       result.extend(spanners.left)
       result.extend(interfaces.left)
@@ -107,7 +101,7 @@ class _LeafFormatter(_Formatter):
       result.extend(spanners.right)
       result.extend(annotations.right)
       result.extend(self.number_contribution)
-      result.extend(self.comments_right)
+      result.extend(['% ' + x for x in client.comments.right])
       return [' '.join(result)]
 
    @property
