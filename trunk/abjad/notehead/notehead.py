@@ -43,7 +43,7 @@ class NoteHead(_NoteHeadInterface):
          return self.style
       
    @property
-   def _before(self):
+   def before(self):
       from abjad.chord.chord import Chord
       result = [ ]
       client = self._client
@@ -87,6 +87,10 @@ class NoteHead(_NoteHeadInterface):
    @property
    def format(self):
       return self._formatter.format
+
+   @property
+   def formatter(self):
+      return self._formatter
 
    @apply
    def pitch( ):

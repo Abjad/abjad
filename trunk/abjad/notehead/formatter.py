@@ -6,18 +6,13 @@ class _NoteHeadFormatter(_Formatter):
    def __init__(self, client):
       _Formatter.__init__(self, client)
 
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _format(self):
-      assert self._client.pitch
-      result = [ ]
-      result.extend(self._client._before)
-      result.append(self._client.pitch.format)
-      return result
-
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def format(self):
-      return '\n'.join(self._format)
+      client = self._client
+      assert client.pitch
+      result = [ ]
+      result.extend(client.before)
+      result.append(client.pitch.format)
+      return '\n'.join(result)

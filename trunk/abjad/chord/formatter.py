@@ -33,16 +33,18 @@ class _ChordFormatter(_LeafFormatter):
    def nucleus(self):
       '''Return string representation of noteheads in self.'''
       nucleus =  [ ]
-      # check if we have notehead overrides
-      if any([(len(x) or x.style) for x in self._client.noteheads]):
-         for notehead in self._client.noteheads:
-            nucleus.extend(['\t' + x for x in notehead._formatter._format])
+      client = self._client
+      noteheads = client.noteheads
+      if any([(len(x) or x.style) for x in noteheads]):
+         for notehead in noteheads:
+            nucleus.extend(['\t' + x for x in notehead.format.split('\n')])
          nucleus = ['\n' + '\n'.join(nucleus) + '\n']
       else:
-         for notehead in self._client.noteheads:
-            nucleus.extend([x for x in notehead._formatter._format])
+         for notehead in noteheads:
+            nucleus.extend([x for x in notehead.format.split('\n')])
       result = '<%s>%s' % (
-         ' '.join(nucleus), self._client.duration._product)
-      if self._client.tremolo.subdivision:
-         result += ' %s' % ''.join(self._client.tremolo.body)
+         ' '.join(nucleus), client.duration._product)
+      tremolo = client.tremolo
+      if tremolo.subdivision:
+         result += ' %s' % ''.join(tremolo.body)
       return result
