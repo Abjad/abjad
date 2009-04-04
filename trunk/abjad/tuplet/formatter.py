@@ -11,13 +11,6 @@ class _TupletFormatter(_ContainerFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def closing(self):
-      interfaces = self._client.interfaces
-      result = [ ]
-      result.extend(['\t' + x for x in interfaces.closing])
-      return result
-
-   @property
    def flamingo_after(self):
       result = [ ]
       result.extend(self._client.interfaces.reverts)
@@ -31,6 +24,20 @@ class _TupletFormatter(_ContainerFormatter):
       if client.duration.multiplier == 1 and \
          hasattr(client.__class__, 'color'):
          result.append(r"\tweak #'color #blue")
+      return result
+
+   @property
+   def flamingo_closing(self):
+      result = [ ]
+      client = self._client
+      result.extend(['\t' + x for x in client.interfaces.closing])
+      return result
+
+   @property
+   def flamingo_opening(self):
+      result = [ ]
+      client = self._client
+      result.extend(['\t' + x for x in client.interfaces.opening])
       return result
 
    @property
@@ -73,10 +80,4 @@ class _TupletFormatter(_ContainerFormatter):
                result.append(r'%s\times %s %s' % (self.fraction, 
                   _rational_as_fraction(client.duration.multiplier), 
                   brackets_open))
-      return result
-
-   @property
-   def opening(self):
-      result = [ ]
-      result.extend(['\t' + x for x in self._client.interfaces.opening])
       return result

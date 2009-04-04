@@ -11,14 +11,6 @@ class _ContainerFormatter(_Formatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def closing(self):
-      result = [ ]
-      interfaces = self._client.interfaces
-      result.extend(interfaces.reverts)
-      result.extend(interfaces.closing)
-      return ['\t' + x for x in result]
-
-   @property
    def contents(self):
       result = [ ]
       for m in self._client._music:
@@ -37,20 +29,35 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
+   def flamingo_closing(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.interfaces.closing)
+      result.extend(client.interfaces.reverts)
+      result.extend(self.annotations_closing)
+      return ['\t' + x for x in result]
+
+   @property
+   def flamingo_opening(self):
+      result = [ ]
+      client = self._client
+      result.extend(self.annotations_opening)
+      result.extend(client.interfaces.overrides)
+      result.extend(client.interfaces.opening)
+      return ['\t' + x for x in result]
+
+   @property
    def format(self):
       client = self._client
       interfaces = client.interfaces
       result = [ ]
-
       result.extend(self.comments_before)
       result.extend(self.annotations_before)
       result.extend(self.flamingo_before)
       result.extend(self.invocation_opening)
-      result.extend(self.annotations_opening)
-      result.extend(self.opening)
+      result.extend(self.flamingo_opening)
       result.extend(self.heart)
-      result.extend(self.closing)
-      result.extend(self.annotations_closing)
+      result.extend(self.flamingo_closing)
       result.extend(self.invocation_closing)
       result.extend(self.flamingo_after)
       result.extend(self.annotations_after)
@@ -82,11 +89,3 @@ class _ContainerFormatter(_Formatter):
    @property
    def number(self):
       return self._number
-
-   @property
-   def opening(self):
-      result = [ ]
-      interfaces = self._client.interfaces
-      result.extend(interfaces.overrides)
-      result.extend(interfaces.opening)
-      return ['\t' + x for x in result]

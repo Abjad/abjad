@@ -54,7 +54,6 @@ class _InterfaceAggregator(_Interface):
       locations = self._client.formatter._knownFormatLocations
       for contributor in self.contributors:
          for location in locations:
-            print contributor, location
             contributions = getattr(contributor, location, None)
             if contributions:
                result.append((contributor, location, contributions))
