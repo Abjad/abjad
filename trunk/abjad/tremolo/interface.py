@@ -1,5 +1,6 @@
 from abjad.core.formatcarrier import _FormatCarrier
 from abjad.core.interface import _Interface
+from abjad.helpers.is_power_of_two import _is_power_of_two
 
 
 class _TremoloInterface(_Interface, _FormatCarrier):
@@ -11,17 +12,11 @@ class _TremoloInterface(_Interface, _FormatCarrier):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def body(self):
-      if self.subdivision:
-         return [':' + str(self.subdivision)]
-      else:
-         return [ ]
-
    @apply
    def subdivision( ):
       def fget(self):
          return self._subdivision
-      def fset(self, expr):
-         self._subdivision = expr
+      def fset(self, arg):
+         assert arg is None or _is_power_of_two(arg)
+         self._subdivision = arg
       return property(**locals())

@@ -27,8 +27,6 @@ class Note(_Leaf):
       if self.pitch:
          result += str(self.pitch)
       result += str(self.duration._product)
-      if self.stem.tremolo:
-         result += ' :%s' % self.stem.tremolo
       return [result] 
 
    @apply

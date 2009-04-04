@@ -38,7 +38,8 @@ class _LeafFormatter(_Formatter):
       result.extend(spanners.left)
       result.extend(interfaces.left)
       result.extend(client.body)
-      result.extend(client.tremolo.body)
+      #result.extend(client.tremolo.body)
+      result.extend(self.tremolo)
       result.extend(interfaces.right)
       result.extend(spanners.right)
       result.extend(annotations.right)
@@ -99,4 +100,12 @@ class _LeafFormatter(_Formatter):
          result.append(r'^ \markup { %s }' % client.numbering.leaf)
       elif contribution == 'comment':
          result.append(r'%% leaf %s' % client.numbering.leaf)
+      return result
+
+   @property
+   def tremolo(self):
+      result = [ ]
+      subdivision = self._client.tremolo.subdivision
+      if subdivision:
+         result.append(':%s' % subdivision) 
       return result

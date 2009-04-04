@@ -30,8 +30,6 @@ class Rest(_Leaf):
       result += str(self.duration._product)
       if self.pitch:
          result += r' \rest'
-      if self.stem.tremolo:
-         result += ' :%s' % self.stem.tremolo
       return [result]
   
    @property

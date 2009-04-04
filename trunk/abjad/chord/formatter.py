@@ -45,7 +45,7 @@ class _ChordFormatter(_LeafFormatter):
             nucleus.extend([x for x in notehead.format.split('\n')])
       result = '<%s>%s' % (
          ' '.join(nucleus), client.duration._product)
-      tremolo = client.tremolo
-      if tremolo.subdivision:
-         result += ' %s' % ''.join(tremolo.body)
+      subdivision = client.tremolo.subdivision
+      if subdivision:
+         result += ' %s' % self.tremolo[0]
       return [result]
