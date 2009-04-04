@@ -70,7 +70,7 @@ class _LeafFormatter(_Formatter):
       result.extend(self.invocation_opening)
       result.extend(interfaces.opening)
       result.extend(self.agrace_opening)
-      result.extend(self.leaf_body)
+      result.extend(self.heart)
       result.extend(self.agrace)
       result.extend(interfaces.closing)
       result.extend(self.invocation_closing)
@@ -86,6 +86,10 @@ class _LeafFormatter(_Formatter):
       if len(grace) > 0:
          result.append(grace.format)
       return result
+
+   @property
+   def heart(self):
+      return self.leaf_body
 
    @property
    def leaf_body(self):

@@ -19,7 +19,7 @@ class _ContainerFormatter(_Formatter):
       return ['\t' + x for x in result]
 
    @property
-   def contents(self):
+   def container_contents(self):
       result = [ ]
       for m in self._client._music:
          result.extend(m.format.split('\n'))
@@ -48,7 +48,7 @@ class _ContainerFormatter(_Formatter):
       result.extend(self.invocation_opening)
       result.extend(self.annotations_opening)
       result.extend(self.opening)
-      result.extend(self.contents)
+      result.extend(self.heart)
       result.extend(self.closing)
       result.extend(self.annotations_closing)
       result.extend(self.invocation_closing)
@@ -56,6 +56,10 @@ class _ContainerFormatter(_Formatter):
       result.extend(self.annotations_after)
       result.extend(self.comments_after)
       return '\n'.join(result)
+
+   @property
+   def heart(self):
+      return self.container_contents
 
    @property
    def invocation_closing(self):

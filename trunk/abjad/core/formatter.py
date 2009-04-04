@@ -69,6 +69,11 @@ class _Formatter(_Interface):
       return result
 
    @property
+   def heart(self):
+      result = [ ]
+      return result
+
+   @property
    def invocation_closing(self):
       result = [ ]
       return result
