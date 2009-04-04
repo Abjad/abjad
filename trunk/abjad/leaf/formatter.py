@@ -37,13 +37,13 @@ class _LeafFormatter(_Formatter):
       result.extend(annotations.left)
       result.extend(spanners.left)
       result.extend(interfaces.left)
-      result.append(client.body)
+      result.extend(client.body)
       result.extend(client.tremolo.body)
       result.extend(interfaces.right)
       result.extend(spanners.right)
       result.extend(annotations.right)
       result.extend(self.number_contribution)
-      result.extend(comments._right)
+      result.extend(['% ' + x for x in comments.right])
       return [' '.join(result)]
 
    @property

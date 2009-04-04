@@ -15,19 +15,21 @@ class Note(_Leaf):
       return 'Note(%s, %s)' % (self.pitch, self.duration._product)
 
    def __str__(self):
-      return self.body
+      return self.body[0]
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def body(self):
+      '''String representation of body of note at format-time.
+         Return list like all other format-time contributions.'''
       result = ''
       if self.pitch:
          result += str(self.pitch)
       result += str(self.duration._product)
       if self.stem.tremolo:
          result += ' :%s' % self.stem.tremolo
-      return result 
+      return [result] 
 
    @apply
    def notehead( ):

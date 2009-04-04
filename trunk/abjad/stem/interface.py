@@ -1,17 +1,13 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.helpers.is_power_of_two import _is_power_of_two
-#from abjad.spanner.receptor import _SpannerReceptor
 
  
-#class _StemInterface(_Interface, _GrobHandler, _SpannerReceptor):
 class _StemInterface(_Interface, _GrobHandler):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Stem')
-      #_SpannerReceptor.__init__(self, ['Stem'])
-      #_SpannerReceptor.__init__(self, (Stem, ))
       self._tremolo = None
    
    ## PUBLIC ATTRIBUTES ##

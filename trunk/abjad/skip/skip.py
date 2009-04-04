@@ -19,7 +19,11 @@ class Skip(_Leaf):
   
    @property
    def body(self):
-      return 's%s' % self.duration._product
+      '''String representation of body of skip at format-time.
+         Return list like all other format-time contributions.'''
+      result = [ ]
+      result.append('s%s' % self.duration._product)
+      return result
 
    @property
    def pairs(self):

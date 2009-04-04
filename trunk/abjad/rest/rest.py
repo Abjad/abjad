@@ -20,6 +20,8 @@ class Rest(_Leaf):
 
    @property
    def body(self):
+      '''String representation of body of rest at format-time.
+         Return list like all other format-time contributions.'''
       result = ''
       if self.pitch:
          result += str(self.pitch)
@@ -30,7 +32,7 @@ class Rest(_Leaf):
          result += r' \rest'
       if self.stem.tremolo:
          result += ' :%s' % self.stem.tremolo
-      return result
+      return [result]
   
    @property
    def pairs(self):

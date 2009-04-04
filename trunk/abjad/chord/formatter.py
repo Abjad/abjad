@@ -21,7 +21,7 @@ class _ChordFormatter(_LeafFormatter):
       result.extend(annotations.left)
       result.extend(spanners.left)
       result.extend(interfaces.left)
-      result.append(self.nucleus)
+      result.extend(self.nucleus)
       result.extend(interfaces.right)
       result.extend(spanners.right)
       result.extend(annotations.right)
@@ -31,7 +31,8 @@ class _ChordFormatter(_LeafFormatter):
 
    @property
    def nucleus(self):
-      '''Return string representation of noteheads in self.'''
+      '''String representation of noteheads in chord.
+         Return list like all other format-time contributions.'''
       nucleus =  [ ]
       client = self._client
       noteheads = client.noteheads
@@ -47,4 +48,4 @@ class _ChordFormatter(_LeafFormatter):
       tremolo = client.tremolo
       if tremolo.subdivision:
          result += ' %s' % ''.join(tremolo.body)
-      return result
+      return [result]
