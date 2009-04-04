@@ -8,7 +8,7 @@ class _ContainerFormatter(_Formatter):
       _Formatter.__init__(self, client)
       self._number = _ContainerFormatterNumberInterface(self)
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def closing(self):
@@ -29,6 +29,26 @@ class _ContainerFormatter(_Formatter):
       return result
    
    @property
+   def format(self):
+      client = self._client
+      annotations = client.annotations
+      comments = client.comments
+      interfaces = client.interfaces
+      result = [ ]
+      result.extend(['% ' + x for x in comments.before])
+      result.extend(annotations.before)
+      result.extend(self.invocation_opening)
+      result.extend(annotations.opening)
+      result.extend(self.opening)
+      result.extend(self.contents)
+      result.extend(self.closing)
+      result.extend(annotations.closing)
+      result.extend(self.invocation_closing)
+      result.extend(annotations.after)
+      result.extend(['% ' + x for x in comments.after])
+      return '\n'.join(result)
+
+   @property
    def invocation_closing(self):
       result = [ ]
       if self._client.parallel:
@@ -47,6 +67,10 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
+   def number(self):
+      return self._number
+
+   @property
    def opening(self):
       result = [ ]
       client = self._client
@@ -55,29 +79,3 @@ class _ContainerFormatter(_Formatter):
          result.extend(interfaces.overrides)
       result.extend(interfaces.opening)
       return ['\t' + x for x in result]
-
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def format(self):
-      client = self._client
-      annotations = client.annotations
-      comments = client.comments
-      interfaces = client.interfaces
-      result = [ ]
-      result.extend(comments._before)
-      result.extend(annotations.before)
-      result.extend(self.invocation_opening)
-      result.extend(annotations.opening)
-      result.extend(self.opening)
-      result.extend(self.contents)
-      result.extend(self.closing)
-      result.extend(annotations.closing)
-      result.extend(self.invocation_closing)
-      result.extend(annotations.after)
-      result.extend(comments._after)
-      return '\n'.join(result)
-
-   @property
-   def number(self):
-      return self._number
