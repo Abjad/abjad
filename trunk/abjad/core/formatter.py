@@ -41,6 +41,22 @@ class _Formatter(_Interface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def annotations_after(self):
+      return self._client.annotations.after
+
+   @property
+   def annotations_before(self):
+      return self._client.annotations.before
+
+   @property
+   def annotations_closing(self):
+      return self._client.annotations.closing
+
+   @property
+   def annotations_opening(self):
+      return self._client.annotations.opening
+
+   @property
    def comments_after(self):
       result = [ ]
       result.extend(['% ' + x for x in self._client.comments.after])
@@ -50,6 +66,16 @@ class _Formatter(_Interface):
    def comments_before(self):
       result = [ ]
       result.extend(['% ' + x for x in self._client.comments.before])
+      return result
+
+   @property
+   def invocation_closing(self):
+      result = [ ]
+      return result
+
+   @property
+   def invocation_opening(self):
+      result = [ ]
       return result
 
    ## PUBLIC METHODS ##

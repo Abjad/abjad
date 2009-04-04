@@ -27,27 +27,6 @@ class _LeafFormatter(_Formatter):
          return [ ] 
 
    @property
-   def body(self):
-      client = self._client
-      annotations = client.annotations
-      interfaces = client.interfaces
-      spanners = client.spanners
-      result = [ ]
-
-      result.extend(annotations.left)
-      result.extend(spanners.left)
-      result.extend(interfaces.left)
-      #result.extend(client.body)
-      result.extend(self.nucleus)
-      result.extend(self.tremolo)
-      result.extend(interfaces.right)
-      result.extend(spanners.right)
-      result.extend(annotations.right)
-      result.extend(self.number_contribution)
-      result.extend(self.comments_right)
-      return [' '.join(result)]
-
-   @property
    def clef(self):
       result = [ ]
       if hasattr(self._client, '_clef'):
@@ -61,26 +40,42 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
+   def flamingo_after(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.interfaces.after)
+      result.extend(client.spanners.after)
+      return result
+
+   @property
+   def flamingo_before(self):
+      result = [ ]
+      client = self._client
+      result.extend(self.grace)
+      result.extend(client.interfaces.overrides)
+      result.extend(client.spanners.before)
+      result.extend(client.interfaces.before)
+      return result
+
+   @property
    def format(self):
       client = self._client
-      annotations = client.annotations
       interfaces = client.interfaces
       spanners = client.spanners
       result = [ ]
+
       result.extend(self.comments_before)
-      result.extend(annotations.before) 
-      result.extend(self.grace)
-      result.extend(interfaces.overrides)
-      result.extend(spanners.before)
-      result.extend(interfaces.before)
+      result.extend(self.annotations_before)
+      result.extend(self.flamingo_before)
+      result.extend(self.invocation_opening)
       result.extend(interfaces.opening)
       result.extend(self.agrace_opening)
-      result.extend(self.body)
+      result.extend(self.leaf_body)
       result.extend(self.agrace)
       result.extend(interfaces.closing)
-      result.extend(interfaces.after)
-      result.extend(spanners.after)
-      result.extend(annotations.after)
+      result.extend(self.invocation_closing)
+      result.extend(self.flamingo_after)
+      result.extend(self.annotations_after)
       result.extend(self.comments_after)
       return '\n'.join(result)
 
@@ -91,6 +86,25 @@ class _LeafFormatter(_Formatter):
       if len(grace) > 0:
          result.append(grace.format)
       return result
+
+   @property
+   def leaf_body(self):
+      client = self._client
+      annotations = client.annotations
+      interfaces = client.interfaces
+      spanners = client.spanners
+      result = [ ]
+      result.extend(annotations.left)
+      result.extend(spanners.left)
+      result.extend(interfaces.left)
+      result.extend(self.nucleus)
+      result.extend(self.tremolo)
+      result.extend(interfaces.right)
+      result.extend(spanners.right)
+      result.extend(annotations.right)
+      result.extend(self.number_contribution)
+      result.extend(self.comments_right)
+      return [' '.join(result)]
 
    @property
    def nucleus(self):
