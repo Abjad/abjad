@@ -6,7 +6,7 @@ class _GraceFormatter(_ContainerFormatter):
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def invocation_closing(self):
@@ -17,8 +17,9 @@ class _GraceFormatter(_ContainerFormatter):
    @property
    def invocation_opening(self):
       result = [ ]
-      if self._client.type == 'after':
+      type = self._client.type
+      if type == 'after':
          result.append('{')
       else:
-         result.append(r'\%s {' % self._client.type)
+         result.append(r'\%s {' % type)
       return result

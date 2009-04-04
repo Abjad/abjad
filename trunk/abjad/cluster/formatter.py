@@ -3,7 +3,7 @@ from abjad.container.formatter import _ContainerFormatter
 
 class _ClusterFormatter(_ContainerFormatter):
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
    
    @property
    def invocation_opening(self):
