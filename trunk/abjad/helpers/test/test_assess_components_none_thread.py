@@ -45,8 +45,8 @@ def test_assess_components_none_thread_03( ):
 def test_assess_components_none_thread_04( ):
    '''LilyPond assigns each leaf here to not only
       a different voice but a different staff.
-      Abjad doesn't bother and assigns all four leaves
-      to the same thread.'''
+      Abjad mimics this behavior and assigns each leaf 
+      to a different thread.'''
 
    t = Container(scale(4))
    t.parallel = True
@@ -58,7 +58,7 @@ def test_assess_components_none_thread_04( ):
       f'8
    >>'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert not assess_components(list(iterate(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_05( ):
@@ -1156,9 +1156,8 @@ def test_assess_components_none_thread_41( ):
 
 
 def test_assess_components_none_thread_42_trev( ):
-   '''Staff and leaves all thread.'''
+   '''A parallel Staff and only leaves as it's content DO NOT thread.'''
 
-   py.test.skip("Unvoiced leaves inside Staff do not thread with Staff.")
    t = Staff(scale(4))
    t.parallel = True
 
@@ -1169,11 +1168,13 @@ def test_assess_components_none_thread_42_trev( ):
       f'8
    >>'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert not assess_components(list(iterate(t, _Component)), share = 'thread')
  
 
 def test_assess_components_none_thread_42( ):
-   '''Leaves inside anonymous parallel Staff thread.'''
+   '''Leaves inside anonymous parallel Staff DO NOT thread.
+   This mimics LilyPond's behavior of not collapsing then notes into
+   a chord. '''
 
    t = Staff(scale(4))
    t.parallel = True
@@ -1185,7 +1186,7 @@ def test_assess_components_none_thread_42( ):
       f'8
    >>'''
 
-   assert assess_components(t.leaves, share = 'thread')
+   assert not assess_components(t.leaves, share = 'thread')
  
 
 def test_assess_components_none_thread_43( ):
