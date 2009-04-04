@@ -8,34 +8,33 @@ class _TupletFormatter(_ContainerFormatter):
       _ContainerFormatter.__init__(self, client)
       self.label = None
 
-   ## PRIVATE ATTRIBUTES ##
+   ## PUBLIC ATTRIBUTES ##
 
    @property
-   def before(self):
+   def closing(self):
+      interfaces = self._client.interfaces
       result = [ ]
-      if self._client.duration.multiplier == 1 and \
-         hasattr(self._client.__class__, 'color'):
+      result.extend(['\t' + x for x in interfaces.closing])
+      return result
+
+   @property
+   def flamingo_after(self):
+      result = [ ]
+      result.extend(self._client.interfaces.reverts)
+      return result
+
+   @property
+   def flamingo_before(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.interfaces.overrides)
+      if client.duration.multiplier == 1 and \
+         hasattr(client.__class__, 'color'):
          result.append(r"\tweak #'color #blue")
       return result
 
    @property
-   def closing(self):
-      client = self._client
-      interfaces = client.interfaces
-      result = [ ]
-      result.extend(['\t' + x for x in interfaces.reverts])
-      result.extend(interfaces.closing)
-      if self._client.duration.multiplier:
-         if self._client.duration.multiplier != 1 or \
-            hasattr(self._client.__class__, 'color'):
-            if self._client.parallel:
-               result.append('>>')
-            else:
-               result.append('}')
-      return result
-
-   @property
-   def _fraction(self):
+   def fraction(self):
       if not self._client.duration._binary:
          if not self._client.invisible:
             return r'\fraction '
@@ -43,8 +42,20 @@ class _TupletFormatter(_ContainerFormatter):
          return ''
 
    @property
-   def opening(self):
-      '''Allow for no-multiplier and 1-multiplier tuplets.'''
+   def invocation_closing(self):
+      client = self._client
+      result = [ ]
+      if client.duration.multiplier:
+         if client.duration.multiplier != 1 or \
+            hasattr(client.__class__, 'color'):
+            if client.parallel:
+               result.append('>>')
+            else:
+               result.append('}')
+      return result
+
+   @property
+   def invocation_opening(self):
       result = [ ]
       client = self._client
       if client.duration.multiplier:
@@ -59,33 +70,13 @@ class _TupletFormatter(_ContainerFormatter):
                   brackets_open = '<<'
                else:
                   brackets_open = '{'
-               result.append(r'%s\times %s %s' % (self._fraction, 
+               result.append(r'%s\times %s %s' % (self.fraction, 
                   _rational_as_fraction(client.duration.multiplier), 
                   brackets_open))
-      inheritence = _ContainerFormatter.opening
-      result.extend(inheritence.fget(self))
       return result
 
    @property
-   def _pieces(self):
-      client = self._client
-      annotations = client.annotations
-      comments = client.comments
+   def opening(self):
       result = [ ]
-      result.extend(comments._before)
-      result.extend(annotations.before)
-      result.extend(self.before)
-      result.extend(annotations.opening)
-      result.extend(self.opening)
-      result.extend(self.contents)
-      result.extend(self.closing)
-      result.extend(annotations.closing)
-      result.extend(annotations.after)
-      result.extend(comments._after)
+      result.extend(['\t' + x for x in self._client.interfaces.opening])
       return result
-
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def format(self):
-      return '\n'.join(self._pieces)
