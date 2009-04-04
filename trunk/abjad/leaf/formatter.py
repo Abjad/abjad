@@ -30,7 +30,7 @@ class _LeafFormatter(_Formatter):
    def body(self):
       client = self._client
       annotations = client.annotations
-      comments = client.comments
+      #comments = client.comments
       interfaces = client.interfaces
       spanners = client.spanners
       result = [ ]
@@ -44,7 +44,8 @@ class _LeafFormatter(_Formatter):
       result.extend(spanners.right)
       result.extend(annotations.right)
       result.extend(self.number_contribution)
-      result.extend(['% ' + x for x in comments.right])
+      #result.extend(['% ' + x for x in comments.right])
+      result.extend(self.comments_right)
       return [' '.join(result)]
 
    @property
@@ -55,14 +56,21 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
+   def comments_right(self):
+      result = [ ]
+      result.extend(['% ' + x for x in self._client.comments.right])
+      return result
+
+   @property
    def format(self):
       client = self._client
       annotations = client.annotations
-      comments = client.comments
+      #comments = client.comments
       interfaces = client.interfaces
       spanners = client.spanners
       result = [ ]
-      result.extend(comments._before)
+      #result.extend(['% ' + x for x in comments.before])
+      result.extend(self.comments_before)
       result.extend(annotations.before) 
       result.extend(self.grace)
       result.extend(interfaces.overrides)
@@ -76,7 +84,8 @@ class _LeafFormatter(_Formatter):
       result.extend(interfaces.after)
       result.extend(spanners.after)
       result.extend(annotations.after)
-      result.extend(comments._after)
+      #result.extend(['% ' + x for x in comments.after])
+      result.extend(self.comments_after)
       return '\n'.join(result)
 
    @property

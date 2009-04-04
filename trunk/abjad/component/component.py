@@ -4,7 +4,7 @@ from abjad.barline.interface import _BarLineInterface
 from abjad.beam.interface import _BeamInterface
 from abjad.breaks.interface import _BreaksInterface
 from abjad.core.abjadcore import _Abjad
-from abjad.core.comments import _Comments
+from abjad.core.comments import _UserComments
 from abjad.clef.interface import _ClefInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
@@ -46,7 +46,7 @@ class _Component(_Abjad):
       self._beam = _BeamInterface(self)
       self._breaks = _BreaksInterface(self)
       self._clef = _ClefInterface(self)
-      self._comments = _Comments( )
+      self._comments = _UserComments( )
       self._dots = _DotsInterface(self)
       self._dynamics = _DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)

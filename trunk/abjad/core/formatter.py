@@ -38,6 +38,20 @@ class _Formatter(_Interface):
          pass
       return result
 
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def comments_after(self):
+      result = [ ]
+      result.extend(['% ' + x for x in self._client.comments.after])
+      return result
+
+   @property
+   def comments_before(self):
+      result = [ ]
+      result.extend(['% ' + x for x in self._client.comments.before])
+      return result
+
    ## PUBLIC METHODS ##
 
    def report(self, delivery = 'screen'):

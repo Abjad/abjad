@@ -40,10 +40,11 @@ class _ContainerFormatter(_Formatter):
    def format(self):
       client = self._client
       annotations = client.annotations
-      comments = client.comments
+      #comments = client.comments
       interfaces = client.interfaces
       result = [ ]
-      result.extend(['% ' + x for x in comments.before])
+      #result.extend(['% ' + x for x in comments.before])
+      result.extend(self.comments_before)
       result.extend(annotations.before)
       result.extend(self.flamingo_before)
       result.extend(self.invocation_opening)
@@ -55,7 +56,8 @@ class _ContainerFormatter(_Formatter):
       result.extend(self.invocation_closing)
       result.extend(self.flamingo_after)
       result.extend(annotations.after)
-      result.extend(['% ' + x for x in comments.after])
+      #result.extend(['% ' + x for x in comments.after])
+      result.extend(self.comments_after)
       return '\n'.join(result)
 
    @property

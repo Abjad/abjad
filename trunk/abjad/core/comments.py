@@ -1,29 +1,23 @@
 from abjad.core.abjadcore import _Abjad
 
 
-class _Comments(_Abjad):
+class _UserComments(_Abjad):
    
    def __init__(self):
-      self.before = [ ]
-      self.after = [ ]
-      self.right = [ ]
+      self._after = [ ]
+      self._before = [ ]
+      self._right = [ ]
 
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _after(self):
-      result = [ ]
-      result.extend(['% ' + x for x in self.after])
-      return result
+   ## PUBLIC ATTRIBUTES ##
 
    @property
-   def _before(self):
-      result = [ ]
-      result.extend(['% ' + x for x in self.before])
-      return result
+   def after(self):
+      return self._after
 
    @property
-   def _right(self):
-      result = [ ]
-      result.extend(['% ' + x for x in self.right])
-      return result
+   def before(self):
+      return self._before
+
+   @property
+   def right(self):
+      return self._right
