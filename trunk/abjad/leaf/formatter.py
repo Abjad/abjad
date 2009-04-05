@@ -1,6 +1,7 @@
 from abjad.core.formatcarrier import _FormatCarrier
 from abjad.formatter.formatter import _Formatter
 from abjad.leaf.number import _LeafFormatterNumberInterface
+from abjad.leaf.slots import _LeafFormatterSlotsInterface
 
 
 class _LeafFormatter(_Formatter):
@@ -8,6 +9,7 @@ class _LeafFormatter(_Formatter):
    def __init__(self, client):
       _Formatter.__init__(self, client)
       self._number = _LeafFormatterNumberInterface(self)
+      self._slots = _LeafFormatterSlotsInterface(self)
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -87,46 +89,46 @@ class _LeafFormatter(_Formatter):
          result.append(':%s' % subdivision) 
       return result
 
-   @property
-   def slot_1(self):
-      result = [ ]
-      client = self._client
-      result.extend(self.grace)
-      result.extend(['% ' + x for x in client.comments.before])
-      result.extend(client.directives.before)
-      result.extend(client.interfaces.overrides)
-      result.extend(client.spanners.before)
-      result.extend(client.interfaces.before)
-      return result
-
-   @property
-   def slot_3(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.directives.opening)
-      result.extend(client.interfaces.opening)
-      result.extend(self.agrace_opening)
-      return result
-
-   @property
-   def slot_4(self):
-      return self.leaf_body
-
-   @property
-   def slot_5(self):
-      result = [ ]
-      client = self._client
-      result.extend(self.agrace)
-      result.extend(client.directives.closing)
-      result.extend(client.interfaces.closing)
-      return result
-
-   @property
-   def slot_7(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.interfaces.after)
-      result.extend(client.spanners.after)
-      result.extend(client.directives.after)
-      result.extend(['% ' + x for x in client.comments.after])
-      return result
+#   @property
+#   def slot_1(self):
+#      result = [ ]
+#      client = self._client
+#      result.extend(self.grace)
+#      result.extend(['% ' + x for x in client.comments.before])
+#      result.extend(client.directives.before)
+#      result.extend(client.interfaces.overrides)
+#      result.extend(client.spanners.before)
+#      result.extend(client.interfaces.before)
+#      return result
+#
+#   @property
+#   def slot_3(self):
+#      result = [ ]
+#      client = self._client
+#      result.extend(client.directives.opening)
+#      result.extend(client.interfaces.opening)
+#      result.extend(self.agrace_opening)
+#      return result
+#
+#   @property
+#   def slot_4(self):
+#      return self.leaf_body
+#
+#   @property
+#   def slot_5(self):
+#      result = [ ]
+#      client = self._client
+#      result.extend(self.agrace)
+#      result.extend(client.directives.closing)
+#      result.extend(client.interfaces.closing)
+#      return result
+#
+#   @property
+#   def slot_7(self):
+#      result = [ ]
+#      client = self._client
+#      result.extend(client.interfaces.after)
+#      result.extend(client.spanners.after)
+#      result.extend(client.directives.after)
+#      result.extend(['% ' + x for x in client.comments.after])
+#      return result

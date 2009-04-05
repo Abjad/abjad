@@ -1,4 +1,5 @@
 from abjad.core.interface import _Interface
+from abjad.formatter.slots import _FormatterSlotsInterface
 
 
 class _Formatter(_Interface):
@@ -7,6 +8,7 @@ class _Formatter(_Interface):
    ## to the core _Formatter so that containers can number leaves.
    def __init__(self, client):
       _Interface.__init__(self, client)
+      self._slots = _FormatterSlotsInterface(self)
       #self.number = False
 
    ## PRIVATE ATTRIBUTES ##
@@ -43,49 +45,60 @@ class _Formatter(_Interface):
    @property
    def format(self):
       result = [ ]
-      result.extend(self.slot_1)
-      result.extend(self.slot_2)
-      result.extend(self.slot_3)
-      result.extend(self.slot_4)
-      result.extend(self.slot_5)
-      result.extend(self.slot_6)
-      result.extend(self.slot_7)
+#      result.extend(self.slot_1)
+#      result.extend(self.slot_2)
+#      result.extend(self.slot_3)
+#      result.extend(self.slot_4)
+#      result.extend(self.slot_5)
+#      result.extend(self.slot_6)
+#      result.extend(self.slot_7)
+      result.extend(self.slots.slot_1)
+      result.extend(self.slots.slot_2)
+      result.extend(self.slots.slot_3)
+      result.extend(self.slots.slot_4)
+      result.extend(self.slots.slot_5)
+      result.extend(self.slots.slot_6)
+      result.extend(self.slots.slot_7)
       return '\n'.join(result)
 
    @property
-   def slot_1(self):
-      '''Format contributions immediately before open brackets.'''
-      return [ ]
+   def slots(self):
+      return self._slots
 
-   @property
-   def slot_2(self):
-      '''Open brackets, possibly including with-block.'''
-      return [ ]
-
-   @property
-   def slot_3(self):
-      '''Format contributions immediately after open brackets.'''
-      return [ ]
-
-   @property
-   def slot_4(self):
-      '''Formatted container contents or formatted leaf body.'''
-      return [ ]
-
-   @property
-   def slot_5(self):
-      '''Format contributions immediately before close brackets.'''
-      return [ ]
-
-   @property
-   def slot_6(self):
-      '''Close brackets.'''
-      return [ ]
-
-   @property
-   def slot_7(self):
-      '''Format contributions immediately after close brackets.'''
-      return [ ]
+#   @property
+#   def slot_1(self):
+#      '''Format contributions immediately before open brackets.'''
+#      return [ ]
+#
+#   @property
+#   def slot_2(self):
+#      '''Open brackets, possibly including with-block.'''
+#      return [ ]
+#
+#   @property
+#   def slot_3(self):
+#      '''Format contributions immediately after open brackets.'''
+#      return [ ]
+#
+#   @property
+#   def slot_4(self):
+#      '''Formatted container contents or formatted leaf body.'''
+#      return [ ]
+#
+#   @property
+#   def slot_5(self):
+#      '''Format contributions immediately before close brackets.'''
+#      return [ ]
+#
+#   @property
+#   def slot_6(self):
+#      '''Close brackets.'''
+#      return [ ]
+#
+#   @property
+#   def slot_7(self):
+#      '''Format contributions immediately after close brackets.'''
+#      return [ ]
 
    ## PUBLIC METHODS ##
 
