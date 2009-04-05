@@ -9,20 +9,6 @@ class _ContextFormatter(_ContainerFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def flamingo_closing(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.interfaces.closing)
-      return ['\t' + x for x in result]
-
-   @property
-   def flamingo_opening(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.interfaces.opening)
-      return ['\t' + x for x in result]
-
-   @property
    def INVOCATION(self):
       client = self._client
       if client.name is not None:
@@ -31,7 +17,8 @@ class _ContextFormatter(_ContainerFormatter):
           return r'\new %s' % client.context
 
    @property
-   def invocation_opening(self):
+   #def invocation_opening(self):
+   def slot_2(self):
       client = self._client
       result = [ ]
       if client.parallel:
@@ -46,3 +33,19 @@ class _ContextFormatter(_ContainerFormatter):
       else:
          result.append(self.INVOCATION + ' %s' % brackets_open)
       return result
+
+   @property
+   #def flamingo_opening(self):
+   def slot_3(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.interfaces.opening)
+      return ['\t' + x for x in result]
+
+   @property
+   #def flamingo_closing(self):
+   def slot_5(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.interfaces.closing)
+      return ['\t' + x for x in result]

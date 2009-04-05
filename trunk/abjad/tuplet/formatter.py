@@ -11,13 +11,16 @@ class _TupletFormatter(_ContainerFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def flamingo_after(self):
-      result = [ ]
-      result.extend(self._client.interfaces.reverts)
-      return result
+   def fraction(self):
+      if not self._client.duration._binary:
+         if not self._client.invisible:
+            return r'\fraction '
+      else:
+         return ''
 
    @property
-   def flamingo_before(self):
+   #def flamingo_before(self):
+   def slot_1(self):
       result = [ ]
       client = self._client
       result.extend(client.interfaces.overrides)
@@ -27,42 +30,8 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   def flamingo_closing(self):
-      result = [ ]
-      client = self._client
-      result.extend(['\t' + x for x in client.interfaces.closing])
-      return result
-
-   @property
-   def flamingo_opening(self):
-      result = [ ]
-      client = self._client
-      result.extend(['\t' + x for x in client.interfaces.opening])
-      return result
-
-   @property
-   def fraction(self):
-      if not self._client.duration._binary:
-         if not self._client.invisible:
-            return r'\fraction '
-      else:
-         return ''
-
-   @property
-   def invocation_closing(self):
-      client = self._client
-      result = [ ]
-      if client.duration.multiplier:
-         if client.duration.multiplier != 1 or \
-            hasattr(client.__class__, 'color'):
-            if client.parallel:
-               result.append('>>')
-            else:
-               result.append('}')
-      return result
-
-   @property
-   def invocation_opening(self):
+   #def invocation_opening(self):
+   def slot_2(self):
       result = [ ]
       client = self._client
       if client.duration.multiplier:
@@ -80,4 +49,41 @@ class _TupletFormatter(_ContainerFormatter):
                result.append(r'%s\times %s %s' % (self.fraction, 
                   _rational_as_fraction(client.duration.multiplier), 
                   brackets_open))
+      return result
+
+   @property
+   #def flamingo_opening(self):
+   def slot_3(self):
+      result = [ ]
+      client = self._client
+      result.extend(['\t' + x for x in client.interfaces.opening])
+      return result
+
+   @property
+   #def flamingo_closing(self):
+   def slot_5(self):
+      result = [ ]
+      client = self._client
+      result.extend(['\t' + x for x in client.interfaces.closing])
+      return result
+
+   @property
+   #def invocation_closing(self):
+   def slot_6(self):
+      client = self._client
+      result = [ ]
+      if client.duration.multiplier:
+         if client.duration.multiplier != 1 or \
+            hasattr(client.__class__, 'color'):
+            if client.parallel:
+               result.append('>>')
+            else:
+               result.append('}')
+      return result
+
+   @property
+   #def flamingo_after(self):
+   def slot_7(self):
+      result = [ ]
+      result.extend(self._client.interfaces.reverts)
       return result

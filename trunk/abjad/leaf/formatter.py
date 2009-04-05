@@ -34,56 +34,12 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
-   def flamingo_after(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.interfaces.after)
-      result.extend(client.spanners.after)
-      result.extend(client.directives.after)
-      result.extend(['% ' + x for x in client.comments.after])
-      return result
-
-   @property
-   def flamingo_before(self):
-      result = [ ]
-      client = self._client
-      result.extend(self.grace)
-      result.extend(['% ' + x for x in client.comments.before])
-      result.extend(client.directives.before)
-      result.extend(client.interfaces.overrides)
-      result.extend(client.spanners.before)
-      result.extend(client.interfaces.before)
-      return result
-
-   @property
-   def flamingo_closing(self):
-      result = [ ]
-      client = self._client
-      result.extend(self.agrace)
-      result.extend(client.directives.closing)
-      result.extend(client.interfaces.closing)
-      return result
-
-   @property
-   def flamingo_opening(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.directives.opening)
-      result.extend(client.interfaces.opening)
-      result.extend(self.agrace_opening)
-      return result
-
-   @property
    def grace(self):
       result = [ ]
       grace = self._client.grace.before
       if len(grace) > 0:
          result.append(grace.format)
       return result
-
-   @property
-   def heart(self):
-      return self.leaf_body
 
    @property
    def leaf_body(self):
@@ -129,4 +85,53 @@ class _LeafFormatter(_Formatter):
       subdivision = self._client.tremolo.subdivision
       if subdivision:
          result.append(':%s' % subdivision) 
+      return result
+
+   @property
+   #def flamingo_before(self):
+   def slot_1(self):
+      result = [ ]
+      client = self._client
+      result.extend(self.grace)
+      result.extend(['% ' + x for x in client.comments.before])
+      result.extend(client.directives.before)
+      result.extend(client.interfaces.overrides)
+      result.extend(client.spanners.before)
+      result.extend(client.interfaces.before)
+      return result
+
+   @property
+   #def flamingo_opening(self):
+   def slot_3(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.directives.opening)
+      result.extend(client.interfaces.opening)
+      result.extend(self.agrace_opening)
+      return result
+
+   @property
+   #def heart(self):
+   def slot_4(self):
+      return self.leaf_body
+
+   @property
+   #def flamingo_closing(self):
+   def slot_5(self):
+      result = [ ]
+      client = self._client
+      result.extend(self.agrace)
+      result.extend(client.directives.closing)
+      result.extend(client.interfaces.closing)
+      return result
+
+   @property
+   #def flamingo_after(self):
+   def slot_7(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.interfaces.after)
+      result.extend(client.spanners.after)
+      result.extend(client.directives.after)
+      result.extend(['% ' + x for x in client.comments.after])
       return result

@@ -19,15 +19,12 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
-   def flamingo_after(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.directives.after)
-      result.extend(['% ' + x for x in client.comments.after])
-      return result
+   def number(self):
+      return self._number
 
    @property
-   def flamingo_before(self):
+   #def flamingo_before(self):
+   def slot_1(self):
       result = [ ]
       client = self._client
       result.extend(['% ' + x for x in client.comments.before])
@@ -35,38 +32,8 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
-   def flamingo_closing(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.interfaces.closing)
-      result.extend(client.interfaces.reverts)
-      result.extend(client.directives.closing)
-      return ['\t' + x for x in result]
-
-   @property
-   def flamingo_opening(self):
-      result = [ ]
-      client = self._client
-      result.extend(client.directives.opening)
-      result.extend(client.interfaces.overrides)
-      result.extend(client.interfaces.opening)
-      return ['\t' + x for x in result]
-
-   @property
-   def heart(self):
-      return self.contents
-
-   @property
-   def invocation_closing(self):
-      result = [ ]
-      if self._client.parallel:
-         result.append('>>')
-      else:
-         result.append('}')
-      return result
-
-   @property
-   def invocation_opening(self):
+   #def invocation_opening(self):
+   def slot_2(self):
       result = [ ]
       if self._client.parallel:
          result.append('<<')
@@ -75,5 +42,45 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
-   def number(self):
-      return self._number
+   #def flamingo_opening(self):
+   def slot_3(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.directives.opening)
+      result.extend(client.interfaces.overrides)
+      result.extend(client.interfaces.opening)
+      return ['\t' + x for x in result]
+
+   @property
+   #def heart(self):
+   def slot_4(self):
+      return self.contents
+
+   @property
+   #def flamingo_closing(self):
+   def slot_5(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.interfaces.closing)
+      result.extend(client.interfaces.reverts)
+      result.extend(client.directives.closing)
+      return ['\t' + x for x in result]
+
+   @property
+   #def invocation_closing(self):
+   def slot_6(self):
+      result = [ ]
+      if self._client.parallel:
+         result.append('>>')
+      else:
+         result.append('}')
+      return result
+
+   @property
+   #def flamingo_after(self):
+   def slot_7(self):
+      result = [ ]
+      client = self._client
+      result.extend(client.directives.after)
+      result.extend(['% ' + x for x in client.comments.after])
+      return result

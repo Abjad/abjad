@@ -9,13 +9,8 @@ class _GraceFormatter(_ContainerFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def invocation_closing(self):
-      result = [ ]
-      result.append('}')
-      return result
-
-   @property
-   def invocation_opening(self):
+   #def invocation_opening(self):
+   def slot_2(self):
       result = [ ]
       type = self._client.type
       if type == 'after':
@@ -23,3 +18,10 @@ class _GraceFormatter(_ContainerFormatter):
       else:
          result.append(r'\%s {' % type)
       return result
+
+#   @property
+#   #def invocation_closing(self):
+#   def slot_6(self):
+#      result = [ ]
+#      result.append('}')
+#      return result

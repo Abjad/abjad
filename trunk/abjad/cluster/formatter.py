@@ -6,7 +6,8 @@ class _ClusterFormatter(_ContainerFormatter):
    ## PUBLIC ATTRIBUTES ##
    
    @property
-   def invocation_opening(self):
+   #def invocation_opening(self):
+   def slot_2(self):
       result = [r'\makeClusters ']
       if self._client.parallel:
          result[0] += '<<'
