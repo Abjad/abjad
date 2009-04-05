@@ -1,11 +1,11 @@
-from abjad.core.formatcarrier import _FormatCarrier
+from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.parser import _Parser
 
 
-class _GrobHandler(_FormatCarrier):
+class _GrobHandler(_FormatContributor):
 
    def __init__(self, grob):
-      _FormatCarrier.__init__(self)
+      _FormatContributor.__init__(self)
       self._grob = grob
       self._parser = _Parser( )
       self._promotions = { }

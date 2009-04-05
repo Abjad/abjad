@@ -1,4 +1,3 @@
-from abjad.core.formatcarrier import _FormatCarrier
 from abjad.formatter.formatter import _Formatter
 from abjad.leaf.number import _LeafFormatterNumberInterface
 from abjad.leaf.slots import _LeafFormatterSlotsInterface

@@ -36,12 +36,12 @@ class _InterfaceAggregator(_Interface):
    def contributors(self):
       '''Return alphabetized list of interface format contributors.
          Does not include spanner format contributors.'''
-      from abjad.core.formatcarrier import _FormatCarrier
+      from abjad.core.formatcontributor import _FormatContributor
       result = [ ]
       client = self._client
       for value in client.__dict__.values( ):
          if isinstance(value, _Interface) and \
-            isinstance(value, _FormatCarrier):
+            isinstance(value, _FormatContributor):
             result.append(value)
       result.sort(lambda x, y: 
          cmp(x.__class__.__name__, y.__class__.__name__))

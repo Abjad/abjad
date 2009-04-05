@@ -1,13 +1,13 @@
-from abjad.core.formatcarrier import _FormatCarrier
+from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
 import types
 
 
-class _BreaksInterface(_Interface, _FormatCarrier):
+class _BreaksInterface(_Interface, _FormatContributor):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _FormatCarrier.__init__(self)
+      _FormatContributor.__init__(self)
       self._line = None
       self._page = None
       self._x = None
