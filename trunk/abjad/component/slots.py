@@ -1,7 +1,7 @@
 from abjad.core.interface import _Interface
 
 
-class _FormatterSlotsInterface(_Interface):
+class _ComponentFormatterSlotsInterface(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client)

@@ -1,10 +1,10 @@
-from abjad.formatter.slots import _FormatterSlotsInterface
+from abjad.component.slots import _ComponentFormatterSlotsInterface
 
 
-class _ContainerFormatterSlotsInterface(_FormatterSlotsInterface):
+class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    def __init__(self, client):
-      _FormatterSlotsInterface.__init__(self, client)
+      _ComponentFormatterSlotsInterface.__init__(self, client)
       
    ## PUBLIC ATTRIBUTES ##
 

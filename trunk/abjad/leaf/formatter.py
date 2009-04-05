@@ -1,12 +1,12 @@
-from abjad.formatter.formatter import _Formatter
+from abjad.component.formatter import _ComponentFormatter
 from abjad.leaf.number import _LeafFormatterNumberInterface
 from abjad.leaf.slots import _LeafFormatterSlotsInterface
 
 
-class _LeafFormatter(_Formatter):
+class _LeafFormatter(_ComponentFormatter):
 
    def __init__(self, client):
-      _Formatter.__init__(self, client)
+      _ComponentFormatter.__init__(self, client)
       self._number = _LeafFormatterNumberInterface(self)
       self._slots = _LeafFormatterSlotsInterface(self)
 

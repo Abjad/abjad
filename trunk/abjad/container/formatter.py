@@ -1,12 +1,12 @@
 from abjad.container.number import _ContainerFormatterNumberInterface
 from abjad.container.slots import _ContainerFormatterSlotsInterface
-from abjad.formatter.formatter import _Formatter
+from abjad.component.formatter import _ComponentFormatter
 
 
-class _ContainerFormatter(_Formatter):
+class _ContainerFormatter(_ComponentFormatter):
 
    def __init__(self, client):
-      _Formatter.__init__(self, client)
+      _ComponentFormatter.__init__(self, client)
       self._number = _ContainerFormatterNumberInterface(self)
       self._slots = _ContainerFormatterSlotsInterface(self)
 

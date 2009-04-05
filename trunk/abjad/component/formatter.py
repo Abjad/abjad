@@ -1,14 +1,14 @@
 from abjad.core.interface import _Interface
-from abjad.formatter.slots import _FormatterSlotsInterface
+from abjad.component.slots import _ComponentFormatterSlotsInterface
 
 
-class _Formatter(_Interface):
+class _ComponentFormatter(_Interface):
 
    ## The 'number' attribute causes only leaf numbering but attaches
-   ## to the core _Formatter so that containers can number leaves.
+   ## to _ComponentFormatter so that containers can number leaves.
    def __init__(self, client):
       _Interface.__init__(self, client)
-      self._slots = _FormatterSlotsInterface(self)
+      self._slots = _ComponentFormatterSlotsInterface(self)
       #self.number = False
 
    ## PRIVATE ATTRIBUTES ##
