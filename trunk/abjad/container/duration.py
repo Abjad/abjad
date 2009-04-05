@@ -1,11 +1,11 @@
-from abjad.core.duration import _DurationInterface
+from abjad.component.duration import _ComponentDurationInterface
 from abjad.rational.rational import Rational
 
 
-class _ContainerDurationInterface(_DurationInterface):
+class _ContainerDurationInterface(_ComponentDurationInterface):
 
    def __init__(self, _client):
-      _DurationInterface.__init__(self, _client)
+      _ComponentDurationInterface.__init__(self, _client)
 
    ## PRIVATE ATTRIBUTES ##
 

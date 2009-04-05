@@ -3,7 +3,7 @@ from abjad.helpers.cumulative_products import cumulative_products
 from abjad.rational.rational import Rational
 
 
-class _DurationInterface(_Interface):
+class _ComponentDurationInterface(_Interface):
 
    def __init__(self, _client):
       _Interface.__init__(self, _client)

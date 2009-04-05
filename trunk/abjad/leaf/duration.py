@@ -1,4 +1,4 @@
-from abjad.core.duration import _DurationInterface
+from abjad.component.duration import _ComponentDurationInterface
 from abjad.core.interface import _Interface
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.binary_string import binary_string
@@ -8,10 +8,10 @@ from abjad.rational.rational import Rational
 import math
 
 
-class _LeafDurationInterface(_DurationInterface):
+class _LeafDurationInterface(_ComponentDurationInterface):
 
    def __init__(self, _client, duration):
-      _DurationInterface.__init__(self, _client)
+      _ComponentDurationInterface.__init__(self, _client)
       self.multiplier = None
       self.written = Rational(*_duration_token_unpack(duration))
 
