@@ -26,6 +26,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result = [ ]
       formatter = self._client
       leaf = formatter._client
+      result.extend(['% ' + x for x in leaf.comments.opening])
       result.extend(leaf.directives.opening)
       result.extend(leaf.interfaces.opening)
       result.extend(formatter._agrace_opening)
@@ -43,6 +44,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.extend(formatter._agrace_body)
       result.extend(leaf.directives.closing)
       result.extend(leaf.interfaces.closing)
+      result.extend(['% ' + x for x in leaf.comments.closing])
       return tuple(result)
 
    @property

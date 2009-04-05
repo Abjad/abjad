@@ -29,6 +29,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_3(self):
       result = [ ]
       container = self._client._client
+      result.extend(['% ' + x for x in container.comments.opening])
       result.extend(container.directives.opening)
       result.extend(container.interfaces.overrides)
       result.extend(container.interfaces.opening)
@@ -46,6 +47,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.extend(container.interfaces.closing)
       result.extend(container.interfaces.reverts)
       result.extend(container.directives.closing)
+      result.extend(['% ' + x for x in container.comments.closing])
       result = ['\t' + x for x in result]
       return tuple(result)
 

@@ -29,13 +29,17 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_3(self):
       result = [ ]
-      result.extend(self._client._client.interfaces.opening)
+      context = self._client._client
+      result.extend(['% ' + x for x in context.comments.opening])
+      result.extend(context.interfaces.opening)
       result = ['\t' + x for x in result]
       return tuple(result)
 
    @property
    def slot_5(self):
       result = [ ]
-      result.extend(self._client._client.interfaces.closing)
+      context = self._client._client
+      result.extend(context.interfaces.closing)
+      result.extend(['% ' + x for x in context.comments.closing])
       result = ['\t' + x for x in result]
       return tuple(result)
