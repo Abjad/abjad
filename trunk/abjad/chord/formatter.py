@@ -10,12 +10,12 @@ class _ChordFormatter(_LeafFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def nucleus(self):
+   def _nucleus(self):
       '''String representation of noteheads in chord.
          Return list like all other format-time contributions.'''
       nucleus =  [ ]
-      client = self._client
-      noteheads = client.noteheads
+      chord = self._client
+      noteheads = chord.noteheads
       if any([(len(x) or x.style) for x in noteheads]):
          for notehead in noteheads:
             nucleus.extend(['\t' + x for x in notehead.format.split('\n')])
@@ -24,5 +24,5 @@ class _ChordFormatter(_LeafFormatter):
          for notehead in noteheads:
             nucleus.extend([x for x in notehead.format.split('\n')])
       result = '<%s>%s' % (
-         ' '.join(nucleus), client.duration._product)
+         ' '.join(nucleus), chord.duration._product)
       return [result]

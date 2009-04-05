@@ -11,40 +11,43 @@ class _LeafFormatter(_Formatter):
       self._number = _LeafFormatterNumberInterface(self)
       self._slots = _LeafFormatterSlotsInterface(self)
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
-   def agrace(self):
+   def _agrace_body(self):
       result = [ ]
       agrace = self._client.grace.after
-      if len(agrace) > 0:
+      if len(agrace):
          result.append(agrace.format)
       return result
 
    @property
-   def agrace_opening(self):
-      if len(self._client.grace.after) > 0:
-         return [r'\afterGrace']
-      else:
-         return [ ] 
-
-   @property
-   def clef(self):
+   def _agrace_opening(self):
       result = [ ]
-      if hasattr(self._client, '_clef'):
-         result.append(self._client._clef.format)
+      if len(self._client.grace.after):
+         result.append(r'\afterGrace')
       return result
 
+   ## TODO: Remove _LeafFormatter._clef_contribution bc unused? ##
+
+#   @property
+#   def _clef_contribution(self):
+#      result = [ ]
+#      leaf = self._client
+#      if hasattr(leaf, '_clef'):
+#         result.append(leaf._clef.format)
+#      return result
+
    @property
-   def grace(self):
+   def _grace_body(self):
       result = [ ]
       grace = self._client.grace.before
-      if len(grace) > 0:
+      if len(grace):
          result.append(grace.format)
       return result
 
    @property
-   def leaf_body(self):
+   def _leaf_body(self):
       result = [ ]
       client = self._client
       directives = client.directives
@@ -53,38 +56,44 @@ class _LeafFormatter(_Formatter):
       result.extend(directives.left)
       result.extend(spanners.left)
       result.extend(interfaces.left)
-      result.extend(self.nucleus)
-      result.extend(self.tremolo)
+      result.extend(self._nucleus)
+      result.extend(self._tremolo_subdivision_contribution)
       result.extend(interfaces.right)
       result.extend(spanners.right)
       result.extend(directives.right)
-      result.extend(self.number_contribution)
+      result.extend(self._number_contribution)
       result.extend(['% ' + x for x in client.comments.right])
       return [' '.join(result)]
 
    @property
-   def nucleus(self):
+   def _nucleus(self):
       return self._client.body
+
+   @property
+   def _number_contribution(self):
+      result = [ ]
+      leaf = self._client
+      contribution = self.number._leaf_contribution
+      if contribution == 'markup':
+         result.append(r'^ \markup { %s }' % leaf.numbering.leaf)
+      elif contribution == 'comment':
+         result.append(r'%% leaf %s' % leaf.numbering.leaf)
+      return result
+
+   @property
+   def _tremolo_subdivision_contribution(self):
+      result = [ ]
+      subdivision = self._client.tremolo.subdivision
+      if subdivision:
+         result.append(':%s' % subdivision) 
+      return result
+
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def number(self):
       return self._number
 
    @property
-   def number_contribution(self):
-      result = [ ]
-      client = self._client
-      contribution = self.number._leaf_contribution
-      if contribution == 'markup':
-         result.append(r'^ \markup { %s }' % client.numbering.leaf)
-      elif contribution == 'comment':
-         result.append(r'%% leaf %s' % client.numbering.leaf)
-      return result
-
-   @property
-   def tremolo(self):
-      result = [ ]
-      subdivision = self._client.tremolo.subdivision
-      if subdivision:
-         result.append(':%s' % subdivision) 
-      return result
+   def slots(self):
+      return self._slots
