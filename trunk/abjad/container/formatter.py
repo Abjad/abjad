@@ -10,15 +10,17 @@ class _ContainerFormatter(_Formatter):
       self._number = _ContainerFormatterNumberInterface(self)
       self._slots = _ContainerFormatterSlotsInterface(self)
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
-   def contents(self):
+   def _contents(self):
       result = [ ]
       for m in self._client._music:
          result.extend(m.format.split('\n'))
       result = ['\t' + x for x in result]
       return result
+
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def number(self):

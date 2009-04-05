@@ -36,7 +36,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                   brackets_open = '<<'
                else:
                   brackets_open = '{'
-               result.append(r'%s\times %s %s' % (formatter.fraction, 
+               result.append(r'%s\times %s %s' % (formatter._fraction, 
                   _rational_as_fraction(tuplet.duration.multiplier), 
                   brackets_open))
       return result

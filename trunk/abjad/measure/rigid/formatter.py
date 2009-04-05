@@ -10,10 +10,10 @@ class _RigidMeasureFormatter(_MeasureFormatter):
    def __init__(self, client):
       _MeasureFormatter.__init__(self, client)
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
-   def contents(self):
+   def _contents(self):
       result = [ ]
       client = self._client
       if client.duration.nonbinary:
@@ -21,11 +21,13 @@ class _RigidMeasureFormatter(_MeasureFormatter):
             client.duration.multiplier._n,
             client.duration.multiplier._d))
          result.extend(
-            ['\t' + x for x in _MeasureFormatter.contents.fget(self)])
+            ['\t' + x for x in _MeasureFormatter._contents.fget(self)])
          result.append('\t}')
       else:
-         result.extend(_MeasureFormatter.contents.fget(self))
+         result.extend(_MeasureFormatter._contents.fget(self))
       return result
+
+   ## PUBLIC ATTRIBUTES ##
          
    @property
    def format(self):

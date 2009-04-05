@@ -36,7 +36,7 @@ class _ContainerFormatterSlotsInterface(_FormatterSlotsInterface):
 
    @property
    def slot_4(self):
-      return self._client.contents
+      return self._client._contents
 
    @property
    def slot_5(self):

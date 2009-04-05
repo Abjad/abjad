@@ -1,5 +1,4 @@
 from abjad.container.formatter import _ContainerFormatter
-#from abjad.helpers.rational_as_fraction import _rational_as_fraction
 from abjad.tuplet.slots import _TupletFormatterSlotsInterface
 
 
@@ -10,15 +9,18 @@ class _TupletFormatter(_ContainerFormatter):
       self.label = None
       self._slots = _TupletFormatterSlotsInterface(self)
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
-   def fraction(self):
-      if not self._client.duration._binary:
-         if not self._client.invisible:
+   def _fraction(self):
+      tuplet = self._client
+      if not tuplet.duration._binary:
+         if not tuplet.invisible:
             return r'\fraction '
       else:
          return ''
+
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def slots(self):
