@@ -1,4 +1,4 @@
-from abjad.hairpin.hairpin import Hairpin
+from abjad.hairpin.spanner import Hairpin
 
 
 def Decrescendo(music, trim = False):

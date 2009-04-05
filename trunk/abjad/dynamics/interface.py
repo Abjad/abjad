@@ -10,7 +10,7 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    
    def __init__(self, client):
       from abjad.dynamics.spanner import Dynamic
-      from abjad.hairpin.hairpin import Hairpin
+      from abjad.hairpin.spanner import Hairpin
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'DynamicText')
       _SpannerReceptor.__init__(self, (Dynamic, Hairpin))
@@ -35,7 +35,7 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    @property
    def effective(self):
       from abjad.dynamics.spanner import Dynamic
-      from abjad.hairpin.hairpin import Hairpin
+      from abjad.hairpin.spanner import Hairpin
       if self.mark:
          return self.mark
       if self.spanned:
