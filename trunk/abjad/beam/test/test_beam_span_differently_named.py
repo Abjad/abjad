@@ -3,10 +3,7 @@ import py.test
 
 
 def test_beam_span_differently_named_01( ):
-   '''You can span containers however you.
-      LilyPond will render beams correctly through some containers.
-      LilyPond will not render beams correctly through others.
-      Abjad gives you enough rope to hang yourself, so span intelligently.'''
+   '''Abjad does NOT let you span across differently named Voices.'''
 
    v1 = Voice(run(4))
    v1.name = 'foo'
@@ -52,11 +49,10 @@ def test_beam_span_differently_named_01( ):
    assert check(t)
    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
 
-   p.clear( )
-
 
 def test_beam_span_differently_named_02( ):
-   '''Abjad lets you span whatever you want.'''
+   '''Abjad does NOT let you span across Staves, even if they and
+   all its sub-contexts are equally named.'''
 
    t = Container(Staff(Voice(run(4)) * 2) * 2)
    t[0].parallel = True
@@ -97,75 +93,5 @@ def test_beam_span_differently_named_02( ):
       >>
    }'''
 
-   p = Beam([t[0][0], t[1][0]])
+   assert py.test.raises(ContiguityError, 'p = Beam([t[0][0], t[1][0]])')
 
-   r'''{
-      \context Staff = "foo" <<
-         \context Voice = "first" {
-            c'8 [
-            cs'8
-            d'8
-            ef'8
-         }
-         \context Voice = "second" {
-            e'8
-            f'8
-            fs'8
-            g'8
-         }
-      >>
-      \context Staff = "foo" <<
-         \context Voice = "first" {
-            af'8
-            a'8
-            bf'8
-            b'8 ]
-         }
-         \context Voice = "second" {
-            c''8
-            cs''8
-            d''8
-            ef''8
-         }
-      >>
-   }'''
-
-   assert check(t)
-   assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\t\\change Staff = foo\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\t\\change Staff = foo\n\t\t\tc\'\'8\n\t\t\tcs\'\'8\n\t\t\td\'\'8\n\t\t\tef\'\'8\n\t\t}\n\t>>\n}'
-
-   p.clear( )
-   p = Beam([t[0][1], t[1][1]])
-
-   r'''{
-      \context Staff = "foo" <<
-         \context Voice = "first" {
-            c'8
-            cs'8
-            d'8
-            ef'8
-         }
-         \context Voice = "second" {
-            e'8 [
-            f'8
-            fs'8
-            g'8
-         }
-      >>
-      \context Staff = "foo" <<
-         \context Voice = "first" {
-            af'8
-            a'8
-            bf'8
-            b'8
-         }
-         \context Voice = "second" {
-            c''8
-            cs''8
-            d''8
-            ef''8 ]
-         }
-      >>
-   }'''
-
-   assert check(t)
-   assert t.format == '{\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8 [\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t\\context Staff = "foo" <<\n\t\t\\context Voice = "first" {\n\t\t\t\\change Staff = foo\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\t\\change Staff = foo\n\t\t\tc\'\'8\n\t\t\tcs\'\'8\n\t\t\td\'\'8\n\t\t\tef\'\'8 ]\n\t\t}\n\t>>\n}'

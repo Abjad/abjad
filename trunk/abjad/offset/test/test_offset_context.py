@@ -10,11 +10,13 @@ def test_offset_containers_01( ):
 
 
 def test_offset_containers_02( ):
-   '''thread and score offsets works on threaded sequential staves.'''
+   '''thread offsets does NOT go across sequential staves.'''
    t = Container([Staff(run(4)), Staff(run(4))])
    t[0].name = t[1].name = 'staff'
-   for i, x in enumerate(t):
-      assert x.offset.thread == x.offset.score == i * Rational(4, 8)
+   assert t[0].offset.thread == Rational(0)
+   assert t[1].offset.thread == Rational(0)
+   assert t[0].offset.score == Rational(0)
+   assert t[1].offset.score == Rational(1, 2)
 
 
 def test_offset_containers_03( ):
@@ -76,7 +78,6 @@ def test_offset_containers_12( ):
    assert t[1].offset.thread == t[1].offset.score == 0
 
 
-import py.test 
 def test_offset_containers_13( ):
    '''threads and score offsets works in nested parallel and sequential 
    contexts.'''

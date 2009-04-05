@@ -117,6 +117,40 @@ import py.test
 #   for component in iterate(t, _Component):
 #      assert component.thread.signature == containment
 
+def test_thread_signature_01( ):
+   '''An anonymous  Staff and it's contained unvoiced leaves share the 
+   same signature.'''
+   t = Staff(scale(4))
+
+   containment = t.thread.signature
+   for component in iterate(t, _Component):
+      assert component.thread.signature == containment
+
+
+def test_thread_signature_02( ):
+   '''A named Staff and it's contained unvoiced leaves share the 
+   same signature.'''
+
+   t = Staff(scale(4))
+   t.name = 'foo'
+
+   containment = t.thread.signature
+   for component in iterate(t, _Component):
+      assert component.thread.signature == containment
+
+
+def test_thread_signature_03( ):
+   '''Leaves inside equally named sequential voices inside a Staff 
+   share the same signature.'''
+
+   t = Staff(Voice(scale(4)) * 2)
+   t[0].name = 'foo'
+   t[1].name = 'foo'
+
+   containment = t[0][0].thread.signature
+   for leaf in t.leaves:
+      assert leaf.thread.signature == containment
+
 
 def test_thread_signature_04( ):
    '''Return _ContainmentSignature giving the root and

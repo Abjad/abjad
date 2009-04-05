@@ -76,10 +76,9 @@ def test_assess_components_none_thread_05( ):
    assert assess_components(list(iterate(t, _Component)), share = 'thread')
 
 
-def test_assess_components_none_thread_06_trev( ):
+def test_assess_components_none_thread_06( ):
    '''Anonymous staff and leaves all thread.'''
 
-   py.test.skip('Unvoiced notes inside Staff do not thread with Staff. Does it make sense for a Leaf to thread with a non leaf? For a Voice to thread with a Staff, etc.? See the next test.')
    t = Staff(scale(4))
 
    r'''\new Staff {
@@ -90,21 +89,6 @@ def test_assess_components_none_thread_06_trev( ):
    }'''
 
    assert assess_components(list(iterate(t, _Component)), share = 'thread')
-
-
-def test_assess_components_none_thread_06( ):
-   '''Leaves inside anonymous staff thread.'''
-
-   t = Staff(scale(4))
-
-   r'''\new Staff {
-      c'8
-      d'8
-      e'8
-      f'8 
-   }'''
-
-   assert assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_07( ):

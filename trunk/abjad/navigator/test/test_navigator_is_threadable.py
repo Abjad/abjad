@@ -466,7 +466,7 @@ def test_navigator_is_threadable_13( ):
 
 
 def test_navigator_is_threadable_14( ):
-   '''Like-named staves thread.'''
+   '''Like-named staves do NOT thread.'''
 
    t = Container(Staff([ ]) * 2)
    t[0].name = 'foo'
@@ -481,45 +481,12 @@ def test_navigator_is_threadable_14( ):
    }
    '''
 
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[0])
-
-
-def test_navigator_is_threadable_15( ):
-   '''Like-named staves thread.
-      Leaves in differently IMPLICIT voices do not thread.'''
-
-   t = Container(Staff(run(4)) * 2)
-   t[0].name = 'foo'
-   t[1].name = 'foo'
-   diatonicize(t)
-
-   r'''
-   {
-      \context Staff = "foo" {
-         c'8
-         d'8
-         e'8
-         f'8
-      }
-      \context Staff = "foo" {
-         g'8
-         a'8
-         b'8
-         c''8
-      }
-   }
-   '''
-
-   assert t[0]._navigator._isThreadable(t[1])
-   assert t[1]._navigator._isThreadable(t[0])
-
-   assert not t[0][0]._navigator._isThreadable(t[1][0])
-   assert not t[1][0]._navigator._isThreadable(t[0][1])
+   assert not t[0]._navigator._isThreadable(t[1])
+   assert not t[1]._navigator._isThreadable(t[0])
 
 
 def test_navigator_is_threadable_16( ):
-   '''Can thread across like-named voices in like-named staves.'''
+   '''Can NOT thread across like-named voices in like-named staves.'''
 
    t = Container(Staff([Voice(run(4))]) * 2)
    t[0].name = 'staff'
@@ -550,10 +517,9 @@ def test_navigator_is_threadable_16( ):
    leaves = t.leaves
 
    assert leaves[0]._navigator._isThreadable(leaves[1])
-   assert leaves[0]._navigator._isThreadable(leaves[4])
-
-   assert leaves[4]._navigator._isThreadable(leaves[0])
    assert leaves[4]._navigator._isThreadable(leaves[7])
+   assert not leaves[0]._navigator._isThreadable(leaves[4])
+   assert not leaves[4]._navigator._isThreadable(leaves[0])
 
 
 def test_navigator_is_threadable_17( ):
@@ -721,7 +687,7 @@ def test_navigator_is_threadable_21( ):
 
 
 def test_navigator_is_threadable_22( ):
-   '''Like-named voices in like-named staves thread.'''
+   '''Like-named voices in like-named staves do NOT thread.'''
 
    v1 = Voice(run(4))
    v2 = Voice(run(4))
@@ -755,10 +721,8 @@ def test_navigator_is_threadable_22( ):
    }
    '''
 
-   assert v1._navigator._isThreadable(v2)
-   assert s1._navigator._isThreadable(s2)
-   for n1, n2 in zip(t.leaves[0:-1], t.leaves[1:]):
-      assert n1._navigator._isThreadable(n2)
+   assert not v1._navigator._isThreadable(v2)
+   assert not s1._navigator._isThreadable(s2)
 
 
 def test_navigator_is_threadable_23( ):

@@ -287,8 +287,8 @@ def test_bead_navigation_14( ):
 ### LEVEL 2 NESTING ###
 
 def test_bead_navigation_20( ):
-   '''Beads connect through simple symmetric depth 2 strutures. 
-      Corresponding Voices and Staves are equally named.'''
+   '''Beads do NOT connect through equally named staves. '''
+
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
    v1.name = 'low'
    v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
@@ -301,8 +301,8 @@ def test_bead_navigation_20( ):
 
    seq = Container([s1, s2])
 
-   assert v1[3]._navigator._nextBead is v2[0]
-   assert v2[0]._navigator._prevBead is v1[3]
+   assert not v1[3]._navigator._nextBead is v2[0]
+   assert not v2[0]._navigator._prevBead is v1[3]
 
    r'''
    {
@@ -327,8 +327,8 @@ def test_bead_navigation_20( ):
 
 
 def test_bead_navigation_21( ):
-   '''Beads connect through a symmetric depth 2 structure 
-      with parallel construct.'''
+   '''Beads do NOT connect through equally named Staves.''' 
+
    vl1 = Voice([Note(i, (1,8)) for i in range(4)])
    vl1.name = 'low'
    vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
@@ -347,11 +347,11 @@ def test_bead_navigation_21( ):
 
    seq = Container([s1, s2])
 
-   assert vl1[3]._navigator._nextBead is vl2[0]
-   assert vh1[3]._navigator._nextBead is vh2[0]
+   assert not vl1[3]._navigator._nextBead is vl2[0]
+   assert not vh1[3]._navigator._nextBead is vh2[0]
 
-   assert vl2[0]._navigator._prevBead is vl1[3]
-   assert vh2[0]._navigator._prevBead is vh1[3]
+   assert not vl2[0]._navigator._prevBead is vl1[3]
+   assert not vh2[0]._navigator._prevBead is vh1[3]
 
    r'''
    {
@@ -386,54 +386,6 @@ def test_bead_navigation_21( ):
    }
    '''
 
-
-def test_bead_navigation_22( ):
-   '''Beads connect through a symmetrical depth 2 structure 
-      with a parallel Staff and a sequential Staff constructs.'''
-   vl1 = Voice([Note(i, (1,8)) for i in range(4)])
-   vl1.name = 'low'
-   vl2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-   vl2.name = 'low'
-   vh = Voice([Note(i, (1,8)) for i in range(12,16)])
-   vh.name = 'high'
-
-   s1 = Staff([vh, vl1])
-   s1.name = 'mystaff'
-   s1.parallel = True
-   s2 = Staff([vl2])
-   s2.name = 'mystaff'
-
-   seq = Container([s1, s2])
-
-   assert vl1[3]._navigator._nextBead is vl2[0]
-   assert vl2[0]._navigator._prevBead is vl1[3]
-
-   r'''
-   {
-      \context Staff = "mystaff" <<
-         \context Voice = "high" {
-            c''8
-            cs''8
-            d''8
-            ef''8
-         }
-         \context Voice = "low" {
-            c'8
-            cs'8
-            d'8
-            ef'8
-         }
-      >>
-      \context Staff = "mystaff" {
-         \context Voice = "low" {
-            e'8
-            f'8
-            fs'8
-            g'8
-         }
-      }
-   }
-   '''
 
 
 ### DEPTH ASYMMETRICAL STRUCTURES ###
