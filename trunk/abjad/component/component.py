@@ -2,8 +2,8 @@ from abjad.accidental.interface import _AccidentalInterface
 from abjad.barline.interface import _BarLineInterface
 from abjad.beam.interface import _BeamInterface
 from abjad.breaks.interface import _BreaksInterface
+from abjad.comments.comments import _UserComments
 from abjad.core.abjadcore import _Abjad
-from abjad.core.comments import _UserComments
 from abjad.clef.interface import _ClefInterface
 from abjad.directives.interface import _UserDirectivesInterface
 from abjad.dots.interface import _DotsInterface
