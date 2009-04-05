@@ -11,7 +11,6 @@ class _ContainerFormatterSlotsInterface(_FormatterSlotsInterface):
    @property
    def slot_1(self):
       result = [ ]
-      #client = self._client
       container = self._client._client
       result.extend(['% ' + x for x in container.comments.before])
       result.extend(container.directives.before)
@@ -29,7 +28,6 @@ class _ContainerFormatterSlotsInterface(_FormatterSlotsInterface):
    @property
    def slot_3(self):
       result = [ ]
-      #client = self._client
       container = self._client._client
       result.extend(container.directives.opening)
       result.extend(container.interfaces.overrides)
@@ -43,7 +41,6 @@ class _ContainerFormatterSlotsInterface(_FormatterSlotsInterface):
    @property
    def slot_5(self):
       result = [ ]
-      #client = self._client
       container = self._client._client
       result.extend(container.interfaces.closing)
       result.extend(container.interfaces.reverts)
@@ -53,7 +50,6 @@ class _ContainerFormatterSlotsInterface(_FormatterSlotsInterface):
    @property
    def slot_6(self):
       result = [ ]
-      #if self._client.parallel:
       if self._client._client.parallel:
          result.append('>>')
       else:
@@ -63,7 +59,6 @@ class _ContainerFormatterSlotsInterface(_FormatterSlotsInterface):
    @property
    def slot_7(self):
       result = [ ]
-      #client = self._client
       container = self._client._client
       result.extend(container.directives.after)
       result.extend(['% ' + x for x in container.comments.after])

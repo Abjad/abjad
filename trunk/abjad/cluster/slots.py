@@ -9,7 +9,6 @@ class _ClusterFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   #def invocation_opening(self):
    def slot_2(self):
       result = [r'\makeClusters ']
       if self._client._client.parallel:

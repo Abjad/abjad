@@ -38,7 +38,6 @@ class _LeafFormatterSlotsInterface(_FormatterSlotsInterface):
    @property
    def slot_5(self):
       result = [ ]
-      #client = self._client._client
       formatter = self._client
       leaf = formatter._client
       result.extend(formatter.agrace)
@@ -49,7 +48,6 @@ class _LeafFormatterSlotsInterface(_FormatterSlotsInterface):
    @property
    def slot_7(self):
       result = [ ]
-      #client = self._client._client
       formatter = self._client
       leaf = formatter._client
       result.extend(leaf.interfaces.after)

@@ -11,7 +11,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_2(self):
       result = [ ]
-      #client = self._client
       formatter = self._client
       context = formatter._client
       if context.parallel:

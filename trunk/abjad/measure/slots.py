@@ -16,7 +16,6 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          Set client_class.block to 'number' to print numbered start comments.
          Analagous to close brackets for other types of container.'''
       result = [ ]
-      #client = self._client
       formatter = self._client
       measure = formatter._client
       contribution = formatter.number._measure_contribution
@@ -32,7 +31,6 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          Set client_class.block to 'number' to print numbered stop comments.
          Analagous to open brackets for other types of container.'''
       result = [ ]
-      #client = self._client
       formatter = self._client
       measure = formatter._client
       contribution = formatter.number._measure_contribution

@@ -13,13 +13,3 @@ class _GraceFormatter(_ContainerFormatter):
    @property
    def slots(self):
       return self._slots
-
-#   @property
-#   def slot_2(self):
-#      result = [ ]
-#      type = self._client.type
-#      if type == 'after':
-#         result.append('{')
-#      else:
-#         result.append(r'\%s {' % type)
-#      return result

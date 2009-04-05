@@ -12,7 +12,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_1(self):
       result = [ ]
-      #client = self._client
       tuplet = self._client._client
       result.extend(tuplet.interfaces.overrides)
       if tuplet.duration.multiplier == 1 and \
@@ -23,7 +22,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_2(self):
       result = [ ]
-      #client = self._client
       formatter = self._client
       tuplet = formatter._client
       if tuplet.duration.multiplier:
@@ -60,7 +58,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_6(self):
       result = [ ]
-      #client = self._client
       tuplet = self._client._client
       if tuplet.duration.multiplier:
          if tuplet.duration.multiplier != 1 or \
