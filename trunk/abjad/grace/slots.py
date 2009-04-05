@@ -16,4 +16,4 @@ class _GraceFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          result.append('{')
       else:
          result.append(r'\%s {' % type)
-      return result
+      return tuple(result)

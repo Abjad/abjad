@@ -17,7 +17,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       if tuplet.duration.multiplier == 1 and \
          hasattr(tuplet.__class__, 'color'):
          result.append(r"\tweak #'color #blue")
-      return result
+      return tuple(result)
 
    @property
    def slot_2(self):
@@ -39,21 +39,21 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                result.append(r'%s\times %s %s' % (formatter._fraction, 
                   _rational_as_fraction(tuplet.duration.multiplier), 
                   brackets_open))
-      return result
+      return tuple(result)
 
    @property
    def slot_3(self):
       result = [ ]
       result.extend([
          '\t' + x for x in self._client._client.interfaces.opening])
-      return result
+      return tuple(result)
 
    @property
    def slot_5(self):
       result = [ ]
       result.extend([
          '\t' + x for x in self._client._client.interfaces.closing])
-      return result
+      return tuple(result)
 
    @property
    def slot_6(self):
@@ -66,10 +66,10 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                result.append('>>')
             else:
                result.append('}')
-      return result
+      return tuple(result)
 
    @property
    def slot_7(self):
       result = [ ]
       result.extend(self._client._client.interfaces.reverts)
-      return result
+      return tuple(result)

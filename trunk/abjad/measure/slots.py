@@ -21,7 +21,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       contribution = formatter.number._measure_contribution
       if contribution == 'comment':
          result.append('%% start measure %s' % measure.numbering.measure)
-      return result
+      return tuple(result)
 
    @property
    def slot_6(self):
@@ -36,4 +36,4 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       contribution = formatter.number._measure_contribution
       if contribution == 'comment':
          result.append('%% stop measure %s' % measure.numbering.measure)
-      return result
+      return tuple(result)

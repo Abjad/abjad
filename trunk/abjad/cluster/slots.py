@@ -15,4 +15,4 @@ class _ClusterFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          result[0] += '<<'
       else:
          result[0] += '{'
-      return result
+      return tuple(result)

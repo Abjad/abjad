@@ -27,16 +27,6 @@ class _LeafFormatter(_Formatter):
          result.append(r'\afterGrace')
       return result
 
-   ## TODO: Remove _LeafFormatter._clef_contribution bc unused? ##
-
-#   @property
-#   def _clef_contribution(self):
-#      result = [ ]
-#      leaf = self._client
-#      if hasattr(leaf, '_clef'):
-#         result.append(leaf._clef.format)
-#      return result
-
    @property
    def _grace_body(self):
       result = [ ]

@@ -24,16 +24,18 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          result.append('} %s' % brackets_open)
       else:
          result.append(formatter.INVOCATION + ' %s' % brackets_open)
-      return result
+      return tuple(result)
 
    @property
    def slot_3(self):
       result = [ ]
       result.extend(self._client._client.interfaces.opening)
-      return ['\t' + x for x in result]
+      result = ['\t' + x for x in result]
+      return tuple(result)
 
    @property
    def slot_5(self):
       result = [ ]
       result.extend(self._client._client.interfaces.closing)
-      return ['\t' + x for x in result]
+      result = ['\t' + x for x in result]
+      return tuple(result)

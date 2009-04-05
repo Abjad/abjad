@@ -11,37 +11,37 @@ class _FormatterSlotsInterface(_Interface):
    @property
    def slot_1(self):
       '''Format contributions immediately before open brackets.'''
-      return [ ]
+      return ( )
 
    @property
    def slot_2(self):
       '''Open brackets, possibly including with-block.'''
-      return [ ]
+      return ( )
 
    @property
    def slot_3(self):
       '''Format contributions immediately after open brackets.'''
-      return [ ]
+      return ( )
 
    @property
    def slot_4(self):
       '''Formatted container contents or formatted leaf body.'''
-      return [ ]
+      return ( )
 
    @property
    def slot_5(self):
       '''Format contributions immediately before close brackets.'''
-      return [ ]
+      return ( )
 
    @property
    def slot_6(self):
       '''Close brackets.'''
-      return [ ]
+      return ( )
 
    @property
    def slot_7(self):
       '''Format contributions immediately after close brackets.'''
-      return [ ]
+      return ( )
 
    ## PUBLIC METHODS ##
 
