@@ -8,16 +8,16 @@ class _GrobHandlerSpanner(Spanner, _GrobHandler):
       Spanner.__init__(self, music)
       _GrobHandler.__init__(self, grob)
 
-   ## PUBLIC METHODS ##
-
-   def after(self, component):
-      result = [ ]
-      if self._isMyLastLeaf(component):
-         result.extend(self.reverts)
-      return result
-
-   def before(self, component):
-      result = [ ]
-      if self._isMyFirstLeaf(component):
-         result.extend(self.overrides)
-      return result
+#   ## PUBLIC METHODS ##
+#
+#   def after(self, component):
+#      result = [ ]
+#      if self._isMyLastLeaf(component):
+#         result.extend(self.reverts)
+#      return result
+#
+#   def before(self, component):
+#      result = [ ]
+#      if self._isMyFirstLeaf(component):
+#         result.extend(self.overrides)
+#      return result

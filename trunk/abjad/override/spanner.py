@@ -1,4 +1,5 @@
 from abjad.core.parser import _Parser
+from abjad.override.format import _OverrideSpannerFormatInterface
 from abjad.spanner.spanner import Spanner
 
 
@@ -13,6 +14,7 @@ class Override(Spanner):
          self._context, self._grob, self._attribute, self._value  = args
       else:
          raise ValueError('need 3 or 4 args, not %s.' % len(args))
+      self._format = _OverrideSpannerFormatInterface(self)
       self._parser = _Parser( )
 
    ## OVERLOADS ##
@@ -39,25 +41,25 @@ class Override(Spanner):
       else:
          return expr
 
-   ## PUBLIC METHODS ##
-
-   def after(self, leaf):
-      if self._isMyLastLeaf(leaf) and \
-         not self._isMyOnlyLeaf(leaf) and self._attribute:
-         grob = self._prependContext(self._grob)
-         attribute = self._parser.formatAttribute(self._attribute)
-         result = r'\revert %s %s' % (grob, attribute)
-         return [result]
-      else:
-         return [ ]
-
-   def before(self, leaf):
-      if self._isMyFirstLeaf(leaf) and self._attribute and self._value:
-         grob = self._prependContext(self._grob)
-         attribute = self._parser.formatAttribute(self._attribute)
-         value = self._parser.formatValue(self._value)
-         result = r'\override %s %s = %s' % (grob, attribute, value)
-         result = self._prependCounter(result)
-         return [result]
-      else:
-         return [ ]
+#   ## PUBLIC METHODS ##
+#
+#   def after(self, leaf):
+#      if self._isMyLastLeaf(leaf) and \
+#         not self._isMyOnlyLeaf(leaf) and self._attribute:
+#         grob = self._prependContext(self._grob)
+#         attribute = self._parser.formatAttribute(self._attribute)
+#         result = r'\revert %s %s' % (grob, attribute)
+#         return [result]
+#      else:
+#         return [ ]
+#
+#   def before(self, leaf):
+#      if self._isMyFirstLeaf(leaf) and self._attribute and self._value:
+#         grob = self._prependContext(self._grob)
+#         attribute = self._parser.formatAttribute(self._attribute)
+#         value = self._parser.formatValue(self._value)
+#         result = r'\override %s %s = %s' % (grob, attribute, value)
+#         result = self._prependCounter(result)
+#         return [result]
+#      else:
+#         return [ ]

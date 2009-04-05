@@ -1,10 +1,14 @@
+from abjad.hairpin.format import _HairpinSpannerFormatInterface
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
+
+## TODO: Renamed hairpin/hairpin.py to hairpin/spanner.py for consistency. ##
 
 class Hairpin(_GrobHandlerSpanner):
 
    def __init__(self, music, descriptor, trim = False):
       _GrobHandlerSpanner.__init__(self, 'DynamicLineSpanner', music)
+      self._format = _HairpinSpannerFormatInterface(self)
       start, shape, stop = self._parse_descriptor(descriptor)
       self.shape = shape
       self.start = start
@@ -77,30 +81,30 @@ class Hairpin(_GrobHandlerSpanner):
          self._trim = arg
       return property(**locals( ))
 
-   ## PUBLIC METHODS ##
-
-   def right(self, leaf):
-      from abjad.chord.chord import Chord
-      from abjad.note.note import Note
-      result = [ ]
-      if not self.trim:
-         if self._isMyFirstLeaf(leaf):
-            result.append('\\%s' % self._shape)
-            if self.start:
-               result.append('\\%s' % self.start)
-         if self._isMyLastLeaf(leaf):
-            if self.stop:
-               result.append('\\%s' % self.stop)
-            elif not leaf.dynamics.mark:
-               result.append('\\!')
-      else:
-         if self._isMyFirst(leaf, (Chord, Note)):
-            result.append('\\%s' % self._shape)
-            if self.start:
-               result.append('\\%s' % self.start)
-         if self._isMyLast(leaf, (Chord, Note)):
-            if self.stop:
-               result.append('\\%s' % self.stop)
-            elif not leaf.dynamics.mark:
-               result.append('\\!')
-      return result
+#   ## PUBLIC METHODS ##
+#
+#   def right(self, leaf):
+#      from abjad.chord.chord import Chord
+#      from abjad.note.note import Note
+#      result = [ ]
+#      if not self.trim:
+#         if self._isMyFirstLeaf(leaf):
+#            result.append('\\%s' % self._shape)
+#            if self.start:
+#               result.append('\\%s' % self.start)
+#         if self._isMyLastLeaf(leaf):
+#            if self.stop:
+#               result.append('\\%s' % self.stop)
+#            elif not leaf.dynamics.mark:
+#               result.append('\\!')
+#      else:
+#         if self._isMyFirst(leaf, (Chord, Note)):
+#            result.append('\\%s' % self._shape)
+#            if self.start:
+#               result.append('\\%s' % self.start)
+#         if self._isMyLast(leaf, (Chord, Note)):
+#            if self.stop:
+#               result.append('\\%s' % self.stop)
+#            elif not leaf.dynamics.mark:
+#               result.append('\\!')
+#      return result

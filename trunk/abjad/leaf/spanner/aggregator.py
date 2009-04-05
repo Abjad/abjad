@@ -20,27 +20,35 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    @property
    def after(self):
       result = [ ]
+      leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.after(self._client))
+         result.extend(spanner.format.after(leaf))
       return result
 
    @property
    def before(self):
       result = [ ]
+      leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.before(self._client))
+         result.extend(spanner.format.before(leaf))
       return result
+
+   @property
+   def leaf(self):
+      return self._client
 
    @property
    def left(self):
       result = [ ]
+      leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.left(self._client))   
+         result.extend(spanner.format.left(leaf))   
       return result
 
    @property
    def right(self):
       result = [ ]
+      leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.right(self._client))
+         result.extend(spanner.format.right(leaf))
       return result

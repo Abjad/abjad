@@ -1,3 +1,4 @@
+from abjad.dynamics.format import _DynamicSpannerFormatInterface
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
 
@@ -5,6 +6,7 @@ class Dynamic(_GrobHandlerSpanner):
 
    def __init__(self, music, mark):
       _GrobHandlerSpanner.__init__(self, 'DynamicText', music)
+      self._format = _DynamicSpannerFormatInterface(self)
       self.mark = mark
 
    ## PUBLIC ATTRIBUTES ##
@@ -18,10 +20,10 @@ class Dynamic(_GrobHandlerSpanner):
          self._mark = arg
       return property(**locals( ))
 
-   ## PUBLIC METHODS ##
-
-   def right(self, leaf):
-      result = [ ]
-      if self._isMyFirstLeaf(leaf):
-         result.append(r'\%s' % self.mark)
-      return result
+#   ## PUBLIC METHODS ##
+#
+#   def right(self, leaf):
+#      result = [ ]
+#      if self._isMyFirstLeaf(leaf):
+#         result.append(r'\%s' % self.mark)
+#      return result

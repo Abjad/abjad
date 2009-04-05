@@ -1,3 +1,4 @@
+from abjad.instrument.format import _InstrumentSpannerFormatInterface
 from abjad.spanner.spanner import Spanner
 
 
@@ -5,6 +6,7 @@ class Instrument(Spanner):
 
    def __init__(self, music = None, long = None, short = None):
       Spanner.__init__(self, music)
+      self._format = _InstrumentSpannerFormatInterface(self)
       self.long = long
       self.short = short
 
@@ -28,31 +30,30 @@ class Instrument(Spanner):
          self._short = arg
       return property(**locals( ))
 
-   ## PUBLIC METHODS ##
-
-   def after(self, leaf):
-      result = [ ]
-      result.extend(Spanner.after(self, leaf))
-      if self._isMyLastLeaf(leaf):
-         #staff = leaf.staff.context
-         staff = 'Staff'
-         if self.long is not None:
-            result.append(r'\unset %s.instrumentName' % staff)
-         if self.short is not None:
-            result.append(r'\unset %s.shortInstrumentName' % staff)
-      return result
-
-   def before(self, leaf):
-      result = [ ]
-      result.extend(Spanner.before(self, leaf))
-      if self._isMyFirstLeaf(leaf):
-         #staff = leaf.staff.context
-         staff = 'Staff'
-         if self.long is not None:
-            result.append(r'\set %s.instrumentName = %s' % (
-               staff, self.long))
-         if self.short is not None:
-            result.append(r'\set %s.shortInstrumentName = %s' % (
-               staff, self.short))
-      return result
-
+#   ## PUBLIC METHODS ##
+#
+#   def after(self, leaf):
+#      result = [ ]
+#      result.extend(Spanner.after(self, leaf))
+#      if self._isMyLastLeaf(leaf):
+#         #staff = leaf.staff.context
+#         staff = 'Staff'
+#         if self.long is not None:
+#            result.append(r'\unset %s.instrumentName' % staff)
+#         if self.short is not None:
+#            result.append(r'\unset %s.shortInstrumentName' % staff)
+#      return result
+#
+#   def before(self, leaf):
+#      result = [ ]
+#      result.extend(Spanner.before(self, leaf))
+#      if self._isMyFirstLeaf(leaf):
+#         #staff = leaf.staff.context
+#         staff = 'Staff'
+#         if self.long is not None:
+#            result.append(r'\set %s.instrumentName = %s' % (
+#               staff, self.long))
+#         if self.short is not None:
+#            result.append(r'\set %s.shortInstrumentName = %s' % (
+#               staff, self.short))
+#      return result

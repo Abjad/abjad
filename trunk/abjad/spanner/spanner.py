@@ -6,7 +6,8 @@ from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.spanner.offset import _SpannerOffsetInterface
 from abjad.rational.rational import Rational
-from copy import copy as python_copy
+#from copy import copy as python_copy
+from copy import deepcopy as python_deepcopy
 
 
 class Spanner(_Abjad):
@@ -171,6 +172,10 @@ class Spanner(_Abjad):
          return last.offset.score + last.duration.prolated
 
    @property
+   def format(self):
+      return self._format
+
+   @property
    def leaves(self):
       from abjad.leaf.leaf import _Leaf
       result = [ ]
@@ -186,9 +191,9 @@ class Spanner(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   def after(self, leaf):
-      result = [ ]
-      return result
+#   def after(self, leaf):
+#      result = [ ]
+#      return result
 
    def append(self, component):
       components = self[-1:] + [component]
@@ -202,13 +207,17 @@ class Spanner(_Abjad):
       component.spanners._add(self)
       self._components.insert(0, component)
 
-   def before(self, leaf):
-      result = [ ]
-      return result
+#   def before(self, leaf):
+#      result = [ ]
+#      return result
 
    def copy(self, start = None, stop = None):
-      result = python_copy(self)
-      result._components = [ ]
+      #result = python_copy(self)
+      #result._components = [ ]
+      my_components = self._components[:]
+      self._components = [ ]
+      result = python_deepcopy(self)
+      self._components = my_components
       if stop is not None:
          for component in self[start : stop + 1]:
             result._components.append(component)
@@ -256,9 +265,9 @@ class Spanner(_Abjad):
    def index(self, component):
       return self._components.index(component)
 
-   def left(self, leaf):
-      result = [ ]
-      return result
+#   def left(self, leaf):
+#      result = [ ]
+#      return result
 
    def pop(self):
       component = self[-1]
@@ -270,9 +279,9 @@ class Spanner(_Abjad):
       self._severComponent(component)
       return component
 
-   def right(self, leaf):
-      result = [ ]
-      return result
+#   def right(self, leaf):
+#      result = [ ]
+#      return result
 
    def trim(self, component):
       assert component in self

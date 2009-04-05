@@ -1,3 +1,4 @@
+from abjad.bracket.format import _BracketSpannerFormatInterface
 from abjad.markup.markup import Markup
 from abjad.text.spanner import Text
 
@@ -8,6 +9,7 @@ class Bracket(Text):
 
    def __init__(self, music = None):
       Text.__init__(self, music)
+      self._format = _BracketSpannerFormatInterface(self)
       self.bound_details__left__text = \
          Markup("(markup #:draw-line '(0 . -1))")
       self.bound_details__left__text.style = 'scheme'

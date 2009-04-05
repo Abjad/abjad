@@ -1,11 +1,13 @@
 from abjad.pitch.pitch import Pitch
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
+from abjad.trill.format import _TrillSpannerFormatInterface
 
 
 class Trill(_GrobHandlerSpanner):
 
    def __init__(self, music = None):
       _GrobHandlerSpanner.__init__(self, 'TrillSpanner', music)
+      self._format = _TrillSpannerFormatInterface(self)
       self._pitch = None
 
    ## PUBLIC ATTRIBUTES ##
@@ -25,21 +27,21 @@ class Trill(_GrobHandlerSpanner):
             raise ValueError('can not set trill pitch.')
       return property(**locals( ))
 
-   ## PUBLIC METHODS ##
-
-   def left(self, leaf):
-      result = [ ]
-      if self.pitch is not None:
-         if self._isMyFirstLeaf(leaf):
-            result.append(r'\pitchedTrill')
-      return result
-
-   def right(self, leaf):
-      result = [ ]
-      if self._isMyFirstLeaf(leaf):
-         result.append(r'\startTrillSpan')
-         if self.pitch is not None:
-            result.append(str(self.pitch))
-      if self._isMyLastLeaf(leaf):
-         result.append(r'\stopTrillSpan')
-      return result
+#   ## PUBLIC METHODS ##
+#
+#   def left(self, leaf):
+#      result = [ ]
+#      if self.pitch is not None:
+#         if self._isMyFirstLeaf(leaf):
+#            result.append(r'\pitchedTrill')
+#      return result
+#
+#   def right(self, leaf):
+#      result = [ ]
+#      if self._isMyFirstLeaf(leaf):
+#         result.append(r'\startTrillSpan')
+#         if self.pitch is not None:
+#            result.append(str(self.pitch))
+#      if self._isMyLastLeaf(leaf):
+#         result.append(r'\stopTrillSpan')
+#      return result

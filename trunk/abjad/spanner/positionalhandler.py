@@ -19,13 +19,12 @@ class _PositionalGrobHandlerSpanner(_GrobHandlerSpanner):
          self._position = arg
       return property(**locals( ))
 
-   ## PUBLIC METHODS ##
-
-   def before(self, leaf):
-      result = [ ]
-      result.extend(_GrobHandlerSpanner.before(self, leaf))
-      if self._isMyFirstLeaf(leaf):
-         if not self.position is None:
-            result.append(self._positions[self.position])
-      return result
-
+#   ## PUBLIC METHODS ##
+#
+#   def before(self, leaf):
+#      result = [ ]
+#      result.extend(_GrobHandlerSpanner.before(self, leaf))
+#      if self._isMyFirstLeaf(leaf):
+#         if not self.position is None:
+#            result.append(self._positions[self.position])
+#      return result

@@ -1,3 +1,4 @@
+from abjad.pianopedal.format import _PianoPedalSpannerFormatInterface
 from abjad.spanner.spanner import Spanner
 
 
@@ -5,6 +6,7 @@ class PianoPedal(Spanner):
 
    def __init__(self, music = None):
       Spanner.__init__(self, music)
+      self._format = _PianoPedalSpannerFormatInterface(self)
       self.type = 'sustain'
       self.style = 'mixed'
 
@@ -38,18 +40,18 @@ class PianoPedal(Spanner):
          self._type = arg
       return property(**locals( ))         
 
-   ## PUBLIC METHODS ##
-
-   def before(self, leaf):
-      result = [ ]
-      if self._isMyFirstLeaf(leaf):
-         result.append(r"\set Staff.pedalSustainStyle = #'%s" % self.style)
-      return result
-
-   def right(self, leaf):
-      result = [ ]
-      if self._isMyFirstLeaf(leaf):
-         result.append(self._types[self.type][0])
-      if self._isMyLastLeaf(leaf):
-         result.append(self._types[self.type][1])
-      return result
+#   ## PUBLIC METHODS ##
+#
+#   def before(self, leaf):
+#      result = [ ]
+#      if self._isMyFirstLeaf(leaf):
+#         result.append(r"\set Staff.pedalSustainStyle = #'%s" % self.style)
+#      return result
+#
+#   def right(self, leaf):
+#      result = [ ]
+#      if self._isMyFirstLeaf(leaf):
+#         result.append(self._types[self.type][0])
+#      if self._isMyLastLeaf(leaf):
+#         result.append(self._types[self.type][1])
+#      return result
