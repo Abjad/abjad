@@ -88,7 +88,6 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
-   #def flamingo_before(self):
    def slot_1(self):
       result = [ ]
       client = self._client
@@ -101,7 +100,6 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
-   #def flamingo_opening(self):
    def slot_3(self):
       result = [ ]
       client = self._client
@@ -111,12 +109,10 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
-   #def heart(self):
    def slot_4(self):
       return self.leaf_body
 
    @property
-   #def flamingo_closing(self):
    def slot_5(self):
       result = [ ]
       client = self._client
@@ -126,7 +122,6 @@ class _LeafFormatter(_Formatter):
       return result
 
    @property
-   #def flamingo_after(self):
    def slot_7(self):
       result = [ ]
       client = self._client

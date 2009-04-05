@@ -19,7 +19,6 @@ class _TupletFormatter(_ContainerFormatter):
          return ''
 
    @property
-   #def flamingo_before(self):
    def slot_1(self):
       result = [ ]
       client = self._client
@@ -30,7 +29,6 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   #def invocation_opening(self):
    def slot_2(self):
       result = [ ]
       client = self._client
@@ -52,7 +50,6 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   #def flamingo_opening(self):
    def slot_3(self):
       result = [ ]
       client = self._client
@@ -60,7 +57,6 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   #def flamingo_closing(self):
    def slot_5(self):
       result = [ ]
       client = self._client
@@ -68,7 +64,6 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   #def invocation_closing(self):
    def slot_6(self):
       client = self._client
       result = [ ]
@@ -82,7 +77,6 @@ class _TupletFormatter(_ContainerFormatter):
       return result
 
    @property
-   #def flamingo_after(self):
    def slot_7(self):
       result = [ ]
       result.extend(self._client.interfaces.reverts)

@@ -17,7 +17,6 @@ class _ContextFormatter(_ContainerFormatter):
           return r'\new %s' % client.context
 
    @property
-   #def invocation_opening(self):
    def slot_2(self):
       client = self._client
       result = [ ]
@@ -35,7 +34,6 @@ class _ContextFormatter(_ContainerFormatter):
       return result
 
    @property
-   #def flamingo_opening(self):
    def slot_3(self):
       result = [ ]
       client = self._client
@@ -43,7 +41,6 @@ class _ContextFormatter(_ContainerFormatter):
       return ['\t' + x for x in result]
 
    @property
-   #def flamingo_closing(self):
    def slot_5(self):
       result = [ ]
       client = self._client

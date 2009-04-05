@@ -15,7 +15,6 @@ class _MeasureFormatter(_ContainerFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   #def invocation_opening(self):
    def slot_2(self):
       '''Optional class-level start comments in LilyPond output.
          Let client_class = self._client.__class__.
@@ -30,7 +29,6 @@ class _MeasureFormatter(_ContainerFormatter):
       return result
 
    @property
-   #def invocation_closing(self):
    def slot_6(self):
       '''Optional class-level stop comments in LilyPond output.
          Let client_class = self._client.__class__.

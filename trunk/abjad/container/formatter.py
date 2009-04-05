@@ -23,7 +23,6 @@ class _ContainerFormatter(_Formatter):
       return self._number
 
    @property
-   #def flamingo_before(self):
    def slot_1(self):
       result = [ ]
       client = self._client
@@ -32,7 +31,6 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
-   #def invocation_opening(self):
    def slot_2(self):
       result = [ ]
       if self._client.parallel:
@@ -42,7 +40,6 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
-   #def flamingo_opening(self):
    def slot_3(self):
       result = [ ]
       client = self._client
@@ -52,12 +49,10 @@ class _ContainerFormatter(_Formatter):
       return ['\t' + x for x in result]
 
    @property
-   #def heart(self):
    def slot_4(self):
       return self.contents
 
    @property
-   #def flamingo_closing(self):
    def slot_5(self):
       result = [ ]
       client = self._client
@@ -67,7 +62,6 @@ class _ContainerFormatter(_Formatter):
       return ['\t' + x for x in result]
 
    @property
-   #def invocation_closing(self):
    def slot_6(self):
       result = [ ]
       if self._client.parallel:
@@ -77,7 +71,6 @@ class _ContainerFormatter(_Formatter):
       return result
 
    @property
-   #def flamingo_after(self):
    def slot_7(self):
       result = [ ]
       client = self._client
