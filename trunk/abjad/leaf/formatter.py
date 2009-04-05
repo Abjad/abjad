@@ -1,5 +1,5 @@
-from abjad.core.formatter import _Formatter
 from abjad.core.formatcarrier import _FormatCarrier
+from abjad.formatter.formatter import _Formatter
 from abjad.leaf.number import _LeafFormatterNumberInterface
 
 
