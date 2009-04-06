@@ -1,4 +1,5 @@
 from abjad.core.abjadcore import _Abjad
+from abjad.parentage.containment import _ContainmentSignature
 from abjad.rational.rational import Rational
 from abjad.receipt.parentage import _ParentageReceipt
 import types
@@ -137,3 +138,25 @@ class _Parentage(_Abjad):
    def root(self):
       '''Return reference to component at depth 0 of Abjad expression.'''
       return self.parentage[-1]
+
+   @property
+   def signature(self):
+      '''Return _ContainmentSignature giving the root and
+         first voice, staff and score in parentage of component.'''
+      from abjad.score.score import Score
+      from abjad.staff.staff import Staff
+      from abjad.voice.voice import Voice
+      signature = _ContainmentSignature( )
+      signature._self = self._client._ID
+      for component in self._client.parentage.parentage:
+         if isinstance(component, Voice) and not signature._voice:
+            signature._voice = component._ID
+         elif isinstance(component, Staff) and not signature._staff:
+            signature._staff = component._ID
+         elif isinstance(component, Score) and not signature._score:
+            signature._score = component._ID
+      else:
+         '''Root components must be manifestly equal to compare True.'''
+         signature._root = id(component)
+         signature._root_str = component._ID
+      return signature
