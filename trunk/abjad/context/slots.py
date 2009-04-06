@@ -26,7 +26,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_3(self):
       result = [ ]
-      context = self._client._client
+      context = self.formatter.context
       result.extend(['% ' + x for x in context.comments.opening])
       result.extend(context.directives.opening)
       result.extend(context.interfaces.opening)
@@ -36,7 +36,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_5(self):
       result = [ ]
-      context = self._client._client
+      context = self.formatter.context
       result.extend(context.interfaces.closing)
       result.extend(context.directives.closing)
       result.extend(['% ' + x for x in context.comments.closing])

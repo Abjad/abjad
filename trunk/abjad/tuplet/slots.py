@@ -12,7 +12,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_1(self):
       result = [ ]
-      tuplet = self._client._client
+      tuplet = self.formatter.tuplet
       result.extend(['% ' + x for x in tuplet.comments.before])
       result.extend(tuplet.directives.before)
       result.extend(tuplet.interfaces.overrides)
@@ -43,7 +43,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_3(self):
       result = [ ]
-      tuplet = self._client._client
+      tuplet = self.formatter.tuplet
       result.extend(['\t% ' + x for x in tuplet.comments.opening])
       result.extend(['\t' + x for x in tuplet.directives.opening])
       result.extend(['\t' + x for x in tuplet.interfaces.opening])
@@ -52,7 +52,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_5(self):
       result = [ ]
-      tuplet = self._client._client
+      tuplet = self.formatter.tuplet
       result.extend(['\t' + x for x in tuplet.interfaces.closing])
       result.extend(['\t' + x for x in tuplet.directives.closing])
       result.extend(['\t% ' + x for x in tuplet.comments.closing])
@@ -71,7 +71,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_7(self):
       result = [ ]
-      tuplet = self._client._client
+      tuplet = self.formatter.tuplet
       result.extend(tuplet.directives.after)
       result.extend(tuplet.interfaces.reverts)
       result.extend(['% ' + x for x in tuplet.comments.after])

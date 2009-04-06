@@ -80,6 +80,10 @@ class _LeafFormatter(_ComponentFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def leaf(self):
+      return self._client
+
+   @property
    def number(self):
       return self._number
 

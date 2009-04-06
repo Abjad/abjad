@@ -11,8 +11,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_1(self):
       result = [ ]
-      formatter = self._client
-      leaf = formatter._client
+      formatter = self.formatter
+      leaf = formatter.leaf
       result.extend(formatter._grace_body)
       result.extend(['% ' + x for x in leaf.comments.before])
       result.extend(leaf.directives.before)
@@ -24,8 +24,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_3(self):
       result = [ ]
-      formatter = self._client
-      leaf = formatter._client
+      formatter = self.formatter
+      leaf = formatter.leaf
       result.extend(['% ' + x for x in leaf.comments.opening])
       result.extend(leaf.directives.opening)
       result.extend(leaf.interfaces.opening)
@@ -34,13 +34,13 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_4(self):
-      return tuple(self._client._leaf_body)
+      return tuple(self.formatter._leaf_body)
 
    @property
    def slot_5(self):
       result = [ ]
-      formatter = self._client
-      leaf = formatter._client
+      formatter = self.formatter
+      leaf = formatter.leaf
       result.extend(formatter._agrace_body)
       result.extend(leaf.directives.closing)
       result.extend(leaf.interfaces.closing)
@@ -50,8 +50,8 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_7(self):
       result = [ ]
-      formatter = self._client
-      leaf = formatter._client
+      formatter = self.formatter
+      leaf = formatter.leaf
       result.extend(leaf.interfaces.after)
       result.extend(leaf.spanners.after)
       result.extend(leaf.directives.after)

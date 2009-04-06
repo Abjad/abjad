@@ -14,7 +14,7 @@ class _ChordFormatter(_LeafFormatter):
       '''String representation of noteheads in chord.
          Return list like all other format-time contributions.'''
       result =  [ ]
-      chord = self._client
+      chord = self.leaf
       noteheads = chord.noteheads
       if any([(len(x) or x.style) for x in noteheads]):
          for notehead in noteheads:

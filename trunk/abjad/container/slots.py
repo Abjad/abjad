@@ -11,7 +11,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_1(self):
       result = [ ]
-      container = self._client._client
+      container = self.formatter.container
       result.extend(['% ' + x for x in container.comments.before])
       result.extend(container.directives.before)
       return tuple(result)
@@ -25,7 +25,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_3(self):
       result = [ ]
-      container = self._client._client
+      container = self.formatter.container
       result.extend(['% ' + x for x in container.comments.opening])
       result.extend(container.directives.opening)
       result.extend(container.interfaces.overrides)
@@ -35,12 +35,12 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
    @property
    def slot_4(self):
-      return tuple(self._client._contents)
+      return tuple(self.formatter._contents)
 
    @property
    def slot_5(self):
       result = [ ]
-      container = self._client._client
+      container = self.formatter.container
       result.extend(container.interfaces.closing)
       result.extend(container.interfaces.reverts)
       result.extend(container.directives.closing)
@@ -57,7 +57,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_7(self):
       result = [ ]
-      container = self._client._client
+      container = self.formatter.container
       result.extend(container.directives.after)
       result.extend(['% ' + x for x in container.comments.after])
       return tuple(result)
