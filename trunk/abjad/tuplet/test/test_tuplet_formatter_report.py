@@ -18,16 +18,27 @@ def test_tuplet_formatter_report_01( ):
            \bar "|."
    }'''
 
-   result = t.formatter.report('string')
+   result = t.formatter.report(output = 'string')
 
-   r'''<_TupletFormatter>
-           opening
-                   <_AccidentalInterface>
-                           #(set-accidental-style 'forget)
-                   <_ClefInterface>
-                           \clef "treble"
-           closing
-                   <_BarLineInterface>
-                           \bar "|."'''
+   r'''slot_1
+   slot_2
+      _BracketsInterface.open
+         \times 2/3 {
+   slot_3
+      _InterfaceAggregator.opening
+            #(set-accidental-style 'forget)
+            \clef "treble"
+   slot_4
+      _TupletFormatter._contents
+            c'8
+            d'8
+            e'8
+   slot_5
+      _InterfaceAggregator.closing
+            \bar "|."
+   slot_6
+      _BracketsInterface.close
+         }
+   slot_7'''
 
-   assert result == '<_TupletFormatter>\n\topening\n\t\t<_AccidentalInterface>\n\t\t\t#(set-accidental-style \'forget)\n\t\t<_ClefInterface>\n\t\t\t\\clef "treble"\n\tclosing\n\t\t<_BarLineInterface>\n\t\t\t\\bar "|."\n'
+   assert result == 'slot_1\nslot_2\n\t_BracketsInterface.open\n\t\t\\times 2/3 {\nslot_3\n\t_InterfaceAggregator.opening\n\t\t\t#(set-accidental-style \'forget)\n\t\t\t\\clef "treble"\nslot_4\n\t_TupletFormatter._contents\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\nslot_5\n\t_InterfaceAggregator.closing\n\t\t\t\\bar "|."\nslot_6\n\t_BracketsInterface.close\n\t\t}\nslot_7\n'
