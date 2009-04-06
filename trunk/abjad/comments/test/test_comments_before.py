@@ -23,3 +23,21 @@ def test_comments_before_01( ):
 
    assert check(t)
    assert t.format == "% Voice before comments here.\n% More voice before comments.\n\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}"
+
+
+def test_comments_before_02( ):
+   '''Leaf comments before.'''
+
+   t = Note(0, (1, 8))
+   t.beam.thickness = 3
+   t.comments.before.append('Leaf comments before here.')
+   t.comments.before.append('More comments before.')
+   
+   r'''% Leaf comments before here.
+   % More comments before.
+   \once \override Beam #'thickness = #3
+   c'8'''
+
+   assert check(t)
+   assert t.format == "% Leaf comments before here.\n% More comments before.\n\\once \\override Beam #'thickness = #3\nc'8"
+
