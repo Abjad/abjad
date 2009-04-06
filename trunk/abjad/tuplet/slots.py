@@ -13,7 +13,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_1(self):
       result = [ ]
       tuplet = self._client._client
-      result.extend(tuplet.comments.before)
+      result.extend(['% ' + x for x in tuplet.comments.before])
       result.extend(tuplet.interfaces.overrides)
       if tuplet.duration.multiplier == 1 and \
          hasattr(tuplet.__class__, 'color'):
@@ -76,5 +76,5 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       tuplet = self._client._client
       result.extend(tuplet.interfaces.reverts)
-      result.extend(tuplet.comments.after)
+      result.extend(['% ' + x for x in tuplet.comments.after])
       return tuple(result)
