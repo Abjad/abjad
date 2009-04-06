@@ -51,12 +51,13 @@ class _InterfaceAggregator(_Interface):
    def contributions(self):
       '''Returns an ordered list of contribution triples.'''
       result = [ ]
-      locations = self._client.formatter._knownFormatLocations
+      locations = ('before', 'overrides', 'opening', 'left', 
+         'right', 'closing', 'reverts', 'after')
       for contributor in self.contributors:
          for location in locations:
             contributions = getattr(contributor, location, None)
             if contributions:
-               result.append((contributor, location, contributions))
+               result.append(((contributor, location), contributions))
       return result
    
    @property
@@ -101,6 +102,16 @@ class _InterfaceAggregator(_Interface):
 
    ## PUBLIC METHODS ##
 
-   def report(self, delivery = 'screen'):
-      '''Docs.'''
-      pass
+   def report(self, output = 'screen'):
+      '''Deliver report of format-time contributions.
+         Order by interface, location, contribution.'''
+      result = ''
+      for ((contributor, location), contributions) in self.contributions:
+         result += '%s\n' % contributor.__class__.__name__
+         result += '\t%s\n' % location
+         for contribution in contributions:
+            result += '\t\t%s\n' % contribution
+      if output == 'screen':
+         print result
+      else:
+         return result

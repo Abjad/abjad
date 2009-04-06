@@ -11,35 +11,6 @@ class _ComponentFormatter(_Interface):
       self._slots = _ComponentFormatterSlotsInterface(self)
       #self.number = False
 
-   ## PRIVATE ATTRIBUTES ##
-   
-   @property
-   def _knownFormatLocations(self):
-      '''Output-ordered list of known format locations.'''
-      result = [
-         'grace', 'before', 'opening', 'agrace_opening', 
-         'left', 'body', 'right',
-         'agrace', 'closing', 'after']
-      return result
-
-#   ## PRIVATE METHODS ##
-#
-#   def _collectLocationVerbose(self, location):
-#      '''Collect all format contributions as (interface, strings) pairs.'''
-#      result = [ ]
-#      for contributor in self._client.interfaces.contributors:
-#         try:
-#            exec('result.append((contributor, contributor.%s))' % location)
-#         except AttributeError:
-#            pass
-#      try:
-#         exec(
-#            'result.append((self._client.spanners, self._client.spanners.%s))' 
-#            % location)
-#      except AttributeError:
-#         pass
-#      return result
-
    ## PUBLIC ATTRIBUTES ##
 
    @property

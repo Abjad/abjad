@@ -104,18 +104,24 @@ class _ComponentSpannerAggregator(_Interface):
          result.append(spanner.fracture(spanner.index(client), direction))
       return result
 
-   def report(self, delivery = 'screen'):
+   def report(self, output = 'screen'):
       '''Deliver report of format-time contributions.
          Order contributions first by location then by something else.'''
-      result = '%s\n' % self
-      locations = self._client.formatter._knownFormatLocations
-      for location in locations:
-         contribution = self._collectContribution(location.strip('_'))
-         if contribution:
-            result += '\t%s\n' % location
-            for directive in contribution:
-               result += '\t\t%s\n' % directive
-      if delivery == 'screen':
+      result = ''
+      leaf = self._client
+      locations = ('before', 'left', 'right', 'after')
+      spanners = list(self._spannersInParentage)
+      spanners.sort(lambda x, y:
+         cmp(x.__class__.__name__, y.__class__.__name__))
+      for spanner in spanners:
+         result += '%s\n' % spanner.__class__.__name__
+         for location in locations:
+            contributions = getattr(spanner.format, location)(leaf)
+            if contributions:
+               result += '\t%s\n' % location
+               for contribution in contributions:
+                  result += '\t\t%s\n' % contribution
+      if output == 'screen':
          print result
       else:
          return result
