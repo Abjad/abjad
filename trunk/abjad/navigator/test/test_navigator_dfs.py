@@ -1,26 +1,28 @@
 from abjad import *
 import py.test
 
-py.test.skip('TODO: This whole test file is based on a construct that is no \
-longer allowed in Abjad. Must rewrite.')
 
 ### NOTE: all tests operate on the following expression ###
 
-t = Voice(run(4))
-t.insert(2, Container(Container(run(2)) * 2))
+#t = Voice(run(4))
+#t.insert(2, Container(Container(run(2)) * 2))
+#t[2].parallel = True
+#appictate(t)
+t = Staff(run(4))
+t.insert(2, Container(Voice(run(2)) * 2))
 t[2].parallel = True
 appictate(t)
 
 r'''
-   \new Voice {
+   \new Staff {
       c'8
       cs'8
       <<
-         {
+         \new Voice {
             d'8
             ef'8
          }
-         {
+         \new Voice {
             e'8
             f'8
          }
@@ -53,11 +55,11 @@ def test_dfs_default( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(d'8, ef'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(d'8, ef'8)
    d'8
    ef'8
-   Container(e'8, f'8)
+   Voice(e'8, f'8)
    e'8
    f'8
    '''
@@ -76,11 +78,11 @@ def test_dfs_default( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(e'8, f'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(e'8, f'8)
    f'8
    e'8
-   Container(d'8, ef'8)
+   Voice(d'8, ef'8)
    ef'8
    d'8
    '''
@@ -109,14 +111,14 @@ def test_dfs_uncapped( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(d'8, ef'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(d'8, ef'8)
    d'8
    ef'8
-   Container(e'8, f'8)
+   Voice(e'8, f'8)
    e'8
    f'8
-   Voice{5}
+   Staff{5}
    fs'8
    g'8
    '''
@@ -138,14 +140,14 @@ def test_dfs_uncapped( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(e'8, f'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(e'8, f'8)
    f'8
    e'8
-   Container(d'8, ef'8)
+   Voice(d'8, ef'8)
    ef'8
    d'8
-   Voice{5}
+   Staff{5}
    cs'8
    c'8
    '''
@@ -177,19 +179,19 @@ def test_dfs_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(d'8, ef'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(d'8, ef'8)
    d'8
-   Container(d'8, ef'8)
+   Voice(d'8, ef'8)
    ef'8
-   Container(d'8, ef'8)
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(e'8, f'8)
+   Voice(d'8, ef'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(e'8, f'8)
    e'8
-   Container(e'8, f'8)
+   Voice(e'8, f'8)
    f'8
-   Container(e'8, f'8)
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
+   Voice(e'8, f'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
    '''
    
    ### RIGHT-TO-LEFT ###
@@ -212,19 +214,19 @@ def test_dfs_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(e'8, f'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(e'8, f'8)
    f'8
-   Container(e'8, f'8)
+   Voice(e'8, f'8)
    e'8
-   Container(e'8, f'8)
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(d'8, ef'8)
+   Voice(e'8, f'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(d'8, ef'8)
    ef'8
-   Container(d'8, ef'8)
+   Voice(d'8, ef'8)
    d'8
-   Container(d'8, ef'8)
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
+   Voice(d'8, ef'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
    '''
 
 
@@ -247,10 +249,10 @@ def test_dfs_restricted( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Voice{5}
+   Staff{5}
    c'8
    cs'8
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
    fs'8
    g'8
    '''
@@ -268,10 +270,10 @@ def test_dfs_restricted( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Voice{5}
+   Staff{5}
    g'8
    fs'8
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
    cs'8
    c'8
    '''
@@ -307,24 +309,24 @@ def test_dfs_uncapped_and_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(d'8, ef'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(d'8, ef'8)
    d'8
-   Container(d'8, ef'8)
+   Voice(d'8, ef'8)
    ef'8
-   Container(d'8, ef'8)
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(e'8, f'8)
+   Voice(d'8, ef'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(e'8, f'8)
    e'8
-   Container(e'8, f'8)
+   Voice(e'8, f'8)
    f'8
-   Container(e'8, f'8)
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Voice{5}
+   Voice(e'8, f'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Staff{5}
    fs'8
-   Voice{5}
+   Staff{5}
    g'8
-   Voice{5}
+   Staff{5}
    '''
 
    ### RIGHT-TO-LEFT ###
@@ -353,24 +355,24 @@ def test_dfs_uncapped_and_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(e'8, f'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(e'8, f'8)
    f'8
-   Container(e'8, f'8)
+   Voice(e'8, f'8)
    e'8
-   Container(e'8, f'8)
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Container(d'8, ef'8)
+   Voice(e'8, f'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Voice(d'8, ef'8)
    ef'8
-   Container(d'8, ef'8)
+   Voice(d'8, ef'8)
    d'8
-   Container(d'8, ef'8)
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Voice{5}
+   Voice(d'8, ef'8)
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Staff{5}
    cs'8
-   Voice{5}
+   Staff{5}
    c'8
-   Voice{5}
+   Staff{5}
    '''
 
 
@@ -389,8 +391,8 @@ def test_dfs_uncapped_and_restricted( ):
    assert g.next( ) is t[4]
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Voice{5}
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Staff{5}
    fs'8
    g'8
    '''
@@ -406,8 +408,8 @@ def test_dfs_uncapped_and_restricted( ):
    assert g.next( ) is t[0]
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Voice{5}
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Staff{5}
    cs'8
    c'8
    '''
@@ -436,17 +438,17 @@ def test_dfs_restricted_with_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Voice{5}
+   Staff{5}
    c'8
-   Voice{5}
+   Staff{5}
    cs'8
-   Voice{5}
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Voice{5}
+   Staff{5}
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Staff{5}
    fs'8
-   Voice{5}
+   Staff{5}
    g'8
-   Voice{5}
+   Staff{5}
    '''
 
    ### RIGHT-TO-LEFT ###
@@ -468,17 +470,17 @@ def test_dfs_restricted_with_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Voice{5}
+   Staff{5}
    g'8
-   Voice{5}
+   Staff{5}
    fs'8
-   Voice{5}
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Voice{5}
+   Staff{5}
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Staff{5}
    cs'8
-   Voice{5}
+   Staff{5}
    c'8
-   Voice{5}
+   Staff{5}
    '''
 
 
@@ -501,12 +503,12 @@ def test_dfs_uncapped_and_restricted_with_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Voice{5}
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Staff{5}
    fs'8
-   Voice{5}
+   Staff{5}
    g'8
-   Voice{5}
+   Staff{5}
    '''
 
    ### RIGHT-TO-LEFT ###
@@ -523,10 +525,10 @@ def test_dfs_uncapped_and_restricted_with_duplicates_allowed( ):
    assert py.test.raises(StopIteration, 'g.next( )')
 
    r'''
-   Container(Container(d'8, ef'8), Container(e'8, f'8))
-   Voice{5}
+   Container(Voice(d'8, ef'8), Voice(e'8, f'8))
+   Staff{5}
    cs'8
-   Voice{5}
+   Staff{5}
    c'8
-   Voice{5}
+   Staff{5}
    '''
