@@ -156,7 +156,7 @@ class _Navigator(_Abjad):
       
    @property
    def _next(self):
-      '''Returns next closest non-siamese Component.'''
+      '''Returns next closest non-parallel Component.'''
       next = self._nextSibling
       if next:
          return next
@@ -169,7 +169,8 @@ class _Navigator(_Abjad):
    @property
    def _nextBead(self):
       '''Returns the next Bead (time threaded Leaf), if such exists. 
-         This method will search the whole (parentage) structure moving forward.
+         This method will search the whole (parentage) structure 
+         moving forward.
          This will only return if called on a Leaf.'''
       from abjad.leaf.leaf import _Leaf
       if not isinstance(self._client, _Leaf):
@@ -181,12 +182,23 @@ class _Navigator(_Abjad):
       return self._findFellowBead(candidates)
 
    @property
+   def _nextNamesake(self):
+      '''Find the next Component having both the same type and the same
+      name as client.'''
+      if self._client.name is None:
+         return None
+      for node in self._DFS(capped=False):
+         if not node is self._client:
+            if node.name == self._client.name and \
+               type(node) == type(self._client): 
+               return node
+
+   @property
    def _nextSibling(self):
       '''Returns the next *sequential* element in the caller's parent; 
          None otherwise'''
       rank = self._rank( )
       if (not rank is None) and (not self._client.parentage.parent.parallel): 
-      # (parallels are siameses)
          if rank + 1 < len(self._client.parentage.parent._music):
             return self._client.parentage.parent._music[rank + 1]
       else:
@@ -210,7 +222,7 @@ class _Navigator(_Abjad):
 
    @property
    def _prev(self):
-      '''Returns previous closest non-siamese Component.'''
+      '''Returns previous closest non-parallel Component.'''
       prev = self._prevSibling
       if prev:
          return prev
@@ -251,7 +263,6 @@ class _Navigator(_Abjad):
          None otherwise'''
       rank = self._rank( )
       if (not rank is None) and (not self._client.parentage.parent.parallel): 
-      # (parallels are siameses)
          if rank - 1 >= 0:
             return self._client.parentage.parent._music[rank - 1]
       else:
