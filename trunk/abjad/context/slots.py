@@ -31,6 +31,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       context = self._client._client
       result.extend(['% ' + x for x in context.comments.opening])
+      result.extend(context.directives.opening)
       result.extend(context.interfaces.opening)
       result = ['\t' + x for x in result]
       return tuple(result)
@@ -40,6 +41,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       context = self._client._client
       result.extend(context.interfaces.closing)
+      result.extend(context.directives.closing)
       result.extend(['% ' + x for x in context.comments.closing])
       result = ['\t' + x for x in result]
       return tuple(result)
