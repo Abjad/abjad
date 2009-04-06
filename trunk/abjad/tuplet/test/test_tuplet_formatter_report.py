@@ -1,8 +1,5 @@
 from abjad import *
-import py.test
 
-
-py.test.skip('TODO: Make tuplet formatter report test work after formatter changes.')
 
 def test_tuplet_formatter_report_01( ):
    '''Report format-time contributions.'''
@@ -12,15 +9,25 @@ def test_tuplet_formatter_report_01( ):
    t.barline.type = '|.'
    t.clef.forced = 'treble'
 
+   r'''\times 2/3 {
+           #(set-accidental-style 'forget)
+           \clef "treble"
+           c'8
+           d'8
+           e'8
+           \bar "|."
+   }'''
+
+   result = t.formatter.report('string')
+
    r'''<_TupletFormatter>
-           _opening
+           opening
                    <_AccidentalInterface>
                            #(set-accidental-style 'forget)
                    <_ClefInterface>
                            \clef "treble"
-           _closing
+           closing
                    <_BarLineInterface>
                            \bar "|."'''
 
-   report = t.formatter.report('string') 
-   assert report == '<_TupletFormatter>\n\t_opening\n\t\t<_AccidentalInterface>\n\t\t\t#(set-accidental-style \'forget)\n\t\t<_ClefInterface>\n\t\t\t\\clef "treble"\n\t_closing\n\t\t<_BarLineInterface>\n\t\t\t\\bar "|."\n'
+   assert result == '<_TupletFormatter>\n\topening\n\t\t<_AccidentalInterface>\n\t\t\t#(set-accidental-style \'forget)\n\t\t<_ClefInterface>\n\t\t\t\\clef "treble"\n\tclosing\n\t\t<_BarLineInterface>\n\t\t\t\\bar "|."\n'
