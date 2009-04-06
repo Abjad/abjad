@@ -106,22 +106,20 @@ def test_pianopedal_spanner_06( ):
    PianoPedal(t[3:])
 
    r'''\new Staff {
-        \set Staff.pedalSustainStyle = #'mixed
-        c'8 \sustainOn
-        c'8
-        c'8
-        \set Staff.pedalSustainStyle = #'mixed
-        c'8 \sustainOn \sustainOff
-        c'8
-        c'8
-        c'8
-        c'8 \sustainOff
+      \set Staff.pedalSustainStyle = #'mixed
+      c'8 \sustainOn
+      c'8
+      c'8
+      \set Staff.pedalSustainStyle = #'mixed
+      c'8 \sustainOff \sustainOn
+      c'8
+      c'8
+      c'8
+      c'8 \sustainOff
    }'''
 
-   py.test.skip('TODO: Make this test work by fixing spanner format order.')
-
    assert check(t)
-   assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn \\sustainOff\n\tc'8\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
+   assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOff \\sustainOn\n\tc'8\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
 
 def test_pianopedal_spanner_07( ):
