@@ -30,6 +30,8 @@ class PianoPedal(Spanner):
          self._style = arg
       return property(**locals( ))         
 
+   ## TODO: Rename PianoPedal 'type' to non-reserve word. ##
+
    @apply
    def type( ):
       def fget(self):
@@ -39,19 +41,3 @@ class PianoPedal(Spanner):
             raise ValueError("Type must be in %s" % self._types.keys( ))
          self._type = arg
       return property(**locals( ))         
-
-#   ## PUBLIC METHODS ##
-#
-#   def before(self, leaf):
-#      result = [ ]
-#      if self._isMyFirstLeaf(leaf):
-#         result.append(r"\set Staff.pedalSustainStyle = #'%s" % self.style)
-#      return result
-#
-#   def right(self, leaf):
-#      result = [ ]
-#      if self._isMyFirstLeaf(leaf):
-#         result.append(self._types[self.type][0])
-#      if self._isMyLastLeaf(leaf):
-#         result.append(self._types[self.type][1])
-#      return result

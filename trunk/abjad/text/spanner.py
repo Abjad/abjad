@@ -13,13 +13,3 @@ class Text(_PositionalGrobHandlerSpanner):
 
    _positions = {'neutral':r'\textSpannerNeutral', 
       'up':r'\textSpannerUp', 'down':r'\textSpannerDown', None:None}
-
-#   ## PUBLIC METHODS ##
-#
-#   def right(self, leaf):
-#      result = [ ]
-#      if self._isMyFirstLeaf(leaf):
-#         result.append(r'\startTextSpan')
-#      if self._isMyLastLeaf(leaf):
-#         result.append(r'\stopTextSpan')   
-#      return result

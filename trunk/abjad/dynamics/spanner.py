@@ -19,11 +19,3 @@ class Dynamic(_GrobHandlerSpanner):
          assert isinstance(arg, str)
          self._mark = arg
       return property(**locals( ))
-
-#   ## PUBLIC METHODS ##
-#
-#   def right(self, leaf):
-#      result = [ ]
-#      if self._isMyFirstLeaf(leaf):
-#         result.append(r'\%s' % self.mark)
-#      return result

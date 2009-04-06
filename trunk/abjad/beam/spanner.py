@@ -7,14 +7,3 @@ class Beam(_GrobHandlerSpanner):
    def __init__(self, music = None):
       _GrobHandlerSpanner.__init__(self, 'Beam', music)
       self._format = _BeamSpannerFormatInterface(self)
-
-#   ## PUBLIC METHODS ##
-#
-#   def right(self, leaf):
-#      '''LilyPond formatting contribution to appear just right of leaf.'''
-#      result = [ ]
-#      if self._isMyFirstLeaf(leaf):
-#         result.append('[')
-#      if self._isMyLastLeaf(leaf):
-#         result.append(']')   
-#      return result

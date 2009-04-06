@@ -4,8 +4,6 @@ from abjad.helpers.leaf_split_binary import leaf_split_binary
 from abjad.helpers.leaves_fuse_binary import leaves_fuse_binary
 from abjad.meter.meter import Meter
 from abjad.metricgrid.format import _MetricGridSpannerFormatInterface
-#from abjad.rational.rational import Rational
-#from abjad.skip.skip import Skip
 from abjad.spanner.spanner import Spanner
 from abjad.tie.spanner import Tie
 
@@ -106,40 +104,6 @@ class MetricGrid(Spanner):
 
    ## PUBLIC METHODS ##
          
-#   def after(self, leaf):
-#      result = [ ]
-#      if hasattr(self, '_slicingMetersFound'):
-#         delattr(self, '_slicingMetersFound')
-#         result.append('>>')
-#      return result
-#
-#   ##FIXME: formatting is ridiculously slow. 
-#   ##       find a way to make it faster.
-#   ## Tue Jan 13 12:05:43 EST 2009 [VA] using _slicingMetersFound boolean
-#   ## flag now to improve performance time. Better but still not perfect. 
-#   ## Is metricgrid a good candidate for the UpdateInterface?
-#
-#   def before(self, leaf):
-#      result = [ ]
-#      if not self.hide:
-#         meter = self._matchingMeter(leaf)
-#         if meter and not getattr(meter, '_temp_hide', False):
-#            result.append(meter.format)
-#         m = self._slicingMeters(leaf)
-#         m = [meter for meter in m if not getattr(meter, '_temp_hide', False)]
-#         if m:
-#            ## set self._slicingMetersFound as temporary flag so that 
-#            ## self._after does not have to recompute _slicingMeters( )
-#            self._slicingMetersFound = True
-#            result.append('<<')
-#            for meter in m:
-#               s = Skip(Rational(1))
-#               s.duration.multiplier = meter.offset - leaf.offset.score
-#               ## TODO: Avoid _AnnotationsInterface in _MetricGrid ##
-#               s.directives.right.append(meter.format)
-#               result.append( '{ %s }' % s.format )
-#      return result
-
    def splittingCondition(self, leaf):
       '''User definable conditioning function.'''
       return True

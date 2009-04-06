@@ -6,7 +6,6 @@ from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.spanner.offset import _SpannerOffsetInterface
 from abjad.rational.rational import Rational
-#from copy import copy as python_copy
 from copy import deepcopy as python_deepcopy
 
 
@@ -191,10 +190,6 @@ class Spanner(_Abjad):
 
    ## PUBLIC METHODS ##
 
-#   def after(self, leaf):
-#      result = [ ]
-#      return result
-
    def append(self, component):
       components = self[-1:] + [component]
       assert_components(components, contiguity = 'thread')
@@ -207,13 +202,10 @@ class Spanner(_Abjad):
       component.spanners._add(self)
       self._components.insert(0, component)
 
-#   def before(self, leaf):
-#      result = [ ]
-#      return result
+   ## TODO: Deprecate ghetto start / stop interface in Spanner.copy( ) ##
+   ##       Pass explicit slice to Spanner.copy( ) instead.            ##
 
    def copy(self, start = None, stop = None):
-      #result = python_copy(self)
-      #result._components = [ ]
       my_components = self._components[:]
       self._components = [ ]
       result = python_deepcopy(self)
@@ -265,10 +257,6 @@ class Spanner(_Abjad):
    def index(self, component):
       return self._components.index(component)
 
-#   def left(self, leaf):
-#      result = [ ]
-#      return result
-
    def pop(self):
       component = self[-1]
       self._severComponent(component)
@@ -278,10 +266,6 @@ class Spanner(_Abjad):
       component = self[0]
       self._severComponent(component)
       return component
-
-#   def right(self, leaf):
-#      result = [ ]
-#      return result
 
    def trim(self, component):
       assert component in self
