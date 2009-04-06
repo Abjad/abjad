@@ -19,10 +19,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_2(self):
       result = [ ]
-      if self._client._client.parallel:
-         result.append('<<')
-      else:
-         result.append('{')
+      result.append(self.formatter.container.brackets.open)
       return tuple(result)
 
    @property
@@ -54,10 +51,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    @property
    def slot_6(self):
       result = [ ]
-      if self._client._client.parallel:
-         result.append('>>')
-      else:
-         result.append('}')
+      result.append(self.formatter.container.brackets.close)
       return tuple(result)
 
    @property

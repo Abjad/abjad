@@ -8,12 +8,15 @@ class _GraceFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       
    ## PUBLIC ATTRIBUTES ##
 
+   ## TODO: Rename Grace.type to a non-Python reserved word. ##
+
    @property
    def slot_2(self):
       result = [ ]
-      type = self._client._client.type
+      grace = self.formatter.grace
+      type = grace.type
       if type == 'after':
-         result.append('{')
+         result.append(grace.brackets.open)
       else:
-         result.append(r'\%s {' % type)
+         result.append(r'\%s %s' % (type, grace.brackets.open))
       return tuple(result)

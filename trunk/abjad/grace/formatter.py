@@ -11,5 +11,9 @@ class _GraceFormatter(_ContainerFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def grace(self):
+      return self._client
+
+   @property
    def slots(self):
       return self._slots

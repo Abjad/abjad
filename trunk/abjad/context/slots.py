@@ -11,12 +11,9 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_2(self):
       result = [ ]
-      formatter = self._client
-      context = formatter._client
-      if context.parallel:
-         brackets_open = '<<'
-      else:
-         brackets_open = '{'
+      formatter = self.formatter
+      context = formatter.context
+      brackets_open = context.brackets.open
       overrides = context.interfaces.overrides
       if overrides:
          result.append(formatter.INVOCATION + ' \with {')

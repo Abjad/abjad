@@ -11,6 +11,13 @@ class _ContextFormatter(_ContainerFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def context(self):
+      return self._client
+
+   ## TODO: Make _ContextFormatter.INVOCATION private ##
+   ## TODO: Rename _ContextFormatter.INVOCATION ##
+
+   @property
    def INVOCATION(self):
       client = self._client
       if client.name is not None:

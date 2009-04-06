@@ -1,3 +1,4 @@
+from abjad.brackets.interface import _BracketsInterface
 from abjad.component.component import _Component
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
@@ -24,6 +25,7 @@ class Container(_Component):
       _Component.__init__(self)
       self._spanners = _ContainerSpannerAggregator(self)
       self._initializeMusic(music)
+      self._brackets = _BracketsInterface(self)
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
       self.parallel = False
@@ -146,6 +148,11 @@ class Container(_Component):
          return ' '
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def brackets(self):
+      '''Read-only reference to brackets interface.'''
+      return self._brackets
 
    @property
    def duration(self):

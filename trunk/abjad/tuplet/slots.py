@@ -24,8 +24,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_2(self):
       result = [ ]
-      formatter = self._client
-      tuplet = formatter._client
+      formatter = self.formatter
+      tuplet = formatter.tuplet
       if tuplet.duration.multiplier:
          if tuplet.duration.multiplier != 1 or \
             hasattr(tuplet.__class__, 'color'):
@@ -34,13 +34,10 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                n, d = multiplier._n, multiplier._d
                result.append(r"\scaleDurations #'(%s . %s) {" % (n, d))
             else:
-               if tuplet.parallel:
-                  brackets_open = '<<'
-               else:
-                  brackets_open = '{'
-               result.append(r'%s\times %s %s' % (formatter._fraction, 
+               result.append(r'%s\times %s %s' % (
+                  formatter._fraction, 
                   _rational_as_fraction(tuplet.duration.multiplier), 
-                  brackets_open))
+                  tuplet.brackets.open))
       return tuple(result)
 
    @property
@@ -64,14 +61,11 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_6(self):
       result = [ ]
-      tuplet = self._client._client
+      tuplet = self.formatter.tuplet
       if tuplet.duration.multiplier:
          if tuplet.duration.multiplier != 1 or \
             hasattr(tuplet.__class__, 'color'):
-            if tuplet.parallel:
-               result.append('>>')
-            else:
-               result.append('}')
+            result.append(tuplet.brackets.close)
       return tuple(result)
 
    @property

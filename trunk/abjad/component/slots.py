@@ -9,6 +9,10 @@ class _ComponentFormatterSlotsInterface(_Interface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def formatter(self):
+      return self._client
+
+   @property
    def slot_1(self):
       '''Format contributions immediately before open brackets.'''
       return ( )

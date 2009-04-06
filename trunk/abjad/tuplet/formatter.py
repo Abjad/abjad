@@ -25,3 +25,7 @@ class _TupletFormatter(_ContainerFormatter):
    @property
    def slots(self):
       return self._slots
+
+   @property
+   def tuplet(self):
+      return self._client

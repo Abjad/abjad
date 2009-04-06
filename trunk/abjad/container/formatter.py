@@ -23,6 +23,10 @@ class _ContainerFormatter(_ComponentFormatter):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def container(self):
+      return self._client
+
+   @property
    def number(self):
       return self._number
 

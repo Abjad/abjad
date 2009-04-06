@@ -11,8 +11,5 @@ class _ClusterFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_2(self):
       result = [r'\makeClusters ']
-      if self._client._client.parallel:
-         result[0] += '<<'
-      else:
-         result[0] += '{'
+      result[0] += self.formatter.cluster.brackets.open
       return tuple(result)
