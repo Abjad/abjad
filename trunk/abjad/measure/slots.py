@@ -20,7 +20,6 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       measure = formatter._client
       contribution = formatter.number._measure_contribution
       if contribution == 'comment':
-         #result.append('%% start measure %s' % measure.numbering.measure)
          contributor = (formatter.number, '_measure_contribution')
          contributions = ['%% start measure %s' % measure.numbering.measure]
          result.append([contributor, contributions])
@@ -38,7 +37,6 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       measure = formatter._client
       contribution = formatter.number._measure_contribution
       if contribution == 'comment':
-         #result.append('%% stop measure %s' % measure.numbering.measure)
          contributor = (formatter.number, '_measure_contribution')
          contributions = ['%% stop measure %s' % measure.numbering.measure]
          result.append([contributor, contributions])

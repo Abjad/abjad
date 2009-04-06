@@ -84,28 +84,6 @@ class _ComponentFormatterSlotsInterface(_Interface):
          result.extend(contributions)
       return result
 
-#   def report(self):
-#      print '%s: %s' % ('slot_1', self.slot_1)
-#      print '%s: %s' % ('slot_2', self.slot_2)
-#      print '%s: %s' % ('slot_3', self.slot_3)
-#      print '%s: %s' % ('slot_4', self.slot_4)
-#      print '%s: %s' % ('slot_5', self.slot_5)
-#      print '%s: %s' % ('slot_6', self.slot_6)
-#      print '%s: %s' % ('slot_7', self.slot_7)
-
-#   def report(self, verbose = False, output = 'screen'):
-#      '''Report format contributions.'''
-#      result = ''
-#      for i in range(1, 7 + 1):
-#         label = 'slot_%s' % i
-#         attr = label
-#         result += self._format_slot(
-#            label, getattr(self, attr), verbose, output = 'string')
-#      if output == 'screen':
-#         print result
-#      else:
-#         return result
-
    def wrap(self, contributor, attr):
       '''Wrap format contribution with format source.'''
       if isinstance(contributor, _UserComments) and \

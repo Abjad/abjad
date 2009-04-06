@@ -13,15 +13,11 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_1(self):
       result = [ ]
       tuplet = self.formatter.tuplet
-      #result.extend(['% ' + x for x in tuplet.comments.before])
-      #result.extend(tuplet.directives.before)
-      #result.extend(tuplet.interfaces.overrides)
       result.append(self.wrap(tuplet.comments, 'before'))
       result.append(self.wrap(tuplet.directives, 'before'))
       result.append(self.wrap(tuplet.interfaces, 'overrides'))
       if tuplet.duration.multiplier == 1 and \
          hasattr(tuplet.__class__, 'color'):
-         #result.append(r"\tweak #'color #blue")
          contributor = (tuplet.__class__, 'color')
          contributions = [r"\tweak #'color #blue"]
          result.append([contributor, contributions])
@@ -38,15 +34,10 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
             if tuplet.invisible:
                multiplier = tuplet.duration.multiplier
                n, d = multiplier._n, multiplier._d
-               #result.append(r"\scaleDurations #'(%s . %s) {" % (n, d))
                contributor = (tuplet, 'invisible')
                contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
                result.append([contributor, contributions])
             else:
-#               result.append(r'%s\times %s %s' % (
-#                  formatter._fraction, 
-#                  _rational_as_fraction(tuplet.duration.multiplier), 
-#                  tuplet.brackets.open))
                contributor = (tuplet.brackets, 'open')
                contributions = [r'%s\times %s %s' % (
                   formatter._fraction, 
@@ -59,9 +50,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_3(self):
       result = [ ]
       tuplet = self.formatter.tuplet
-      #result.extend(['\t% ' + x for x in tuplet.comments.opening])
-      #result.extend(['\t' + x for x in tuplet.directives.opening])
-      #result.extend(['\t' + x for x in tuplet.interfaces.opening])
       result.append(self.wrap(tuplet.comments, 'opening'))
       result.append(self.wrap(tuplet.directives, 'opening'))
       result.append(self.wrap(tuplet.interfaces, 'opening'))
@@ -72,9 +60,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_5(self):
       result = [ ]
       tuplet = self.formatter.tuplet
-      #result.extend(['\t' + x for x in tuplet.interfaces.closing])
-      #result.extend(['\t' + x for x in tuplet.directives.closing])
-      #result.extend(['\t% ' + x for x in tuplet.comments.closing])
       result.append(self.wrap(tuplet.interfaces, 'closing'))
       result.append(self.wrap(tuplet.directives, 'closing'))
       result.append(self.wrap(tuplet.comments, 'closing'))
@@ -88,7 +73,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       if tuplet.duration.multiplier:
          if tuplet.duration.multiplier != 1 or \
             hasattr(tuplet.__class__, 'color'):
-            #result.append(tuplet.brackets.close)
             result.append(self.wrap(tuplet.brackets, 'close'))
       return tuple(result)
 
@@ -96,9 +80,6 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_7(self):
       result = [ ]
       tuplet = self.formatter.tuplet
-      #result.extend(tuplet.directives.after)
-      #result.extend(tuplet.interfaces.reverts)
-      #result.extend(['% ' + x for x in tuplet.comments.after])
       result.append(self.wrap(tuplet.directives, 'after'))
       result.append(self.wrap(tuplet.interfaces, 'reverts'))
       result.append(self.wrap(tuplet.comments, 'after'))

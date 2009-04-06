@@ -15,12 +15,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       context = formatter.context
       brackets_open = context.brackets.open
       overrides = context.interfaces.overrides
-#      if overrides:
-#         result.append(formatter.INVOCATION + ' \with {')
-#         result.extend(['\t' + x for x in overrides])
-#         result.append('} %s' % brackets_open)
-#      else:
-#         result.append(formatter.INVOCATION + ' %s' % brackets_open)
       if overrides:
          contributions = [formatter.INVOCATION + r' \with {']
          result.append([(self.formatter, 'INVOCATION'), contributions])
@@ -38,10 +32,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_3(self):
       result = [ ]
       context = self.formatter.context
-      #result.extend(['% ' + x for x in context.comments.opening])
-      #result.extend(context.directives.opening)
-      #result.extend(context.interfaces.opening)
-      #result = ['\t' + x for x in result]
       result.append(self.wrap(context.comments, 'opening'))
       result.append(self.wrap(context.directives, 'opening'))
       result.append(self.wrap(context.interfaces, 'opening'))
@@ -52,10 +42,6 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_5(self):
       result = [ ]
       context = self.formatter.context
-      #result.extend(context.interfaces.closing)
-      #result.extend(context.directives.closing)
-      #result.extend(['% ' + x for x in context.comments.closing])
-      #result = ['\t' + x for x in result]
       result.append(self.wrap(context.interfaces, 'closing'))
       result.append(self.wrap(context.directives, 'closing'))
       result.append(self.wrap(context.comments, 'closing'))
