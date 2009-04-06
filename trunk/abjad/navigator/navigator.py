@@ -97,22 +97,22 @@ class _Navigator(_Abjad):
          prev = parent
       return result
 
-   @property
-   def _firstContainers(self):
-      '''Returns the first (leftmost) container or containers 
-         (in case there's a parallel structure) in the calling structure.'''
-      from abjad.container.container import Container
-      client = self._client
-      if isinstance(client, Container):
-         containers = [ ]
-         if self._client.parallel:
-            for e in self._client:
-               containers.extend(e._navigator._firstContainers)
-         else:
-            containers.append(self._client)
-         return containers
-      else:
-         return [None]
+#   @property
+#   def _firstContainers(self):
+#      '''Returns the first (leftmost) container or containers 
+#         (in case there's a parallel structure) in the calling structure.'''
+#      from abjad.container.container import Container
+#      client = self._client
+#      if isinstance(client, Container):
+#         containers = [ ]
+#         if self._client.parallel:
+#            for e in self._client:
+#               containers.extend(e._navigator._firstContainers)
+#         else:
+#            containers.append(self._client)
+#         return containers
+#      else:
+#         return [None]
 
    @property
    def _firstLeaves(self):
@@ -214,11 +214,10 @@ class _Navigator(_Abjad):
       next = self._next
       if next is None or isinstance(next, _Leaf):
          return None
-      containers = next._navigator._firstContainers
+      containers = next._navigator._contemporaneousStartComponents
       for c in containers:
-         if not c is None:
-            if self._isThreadable(c):
-               return c
+         if self._isThreadable(c):
+            return c
 
    @property
    def _prev(self):
