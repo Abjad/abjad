@@ -29,3 +29,18 @@ class _ContainerFormatter(_ComponentFormatter):
    @property
    def slots(self):
       return self._slots
+
+   @property
+   def wrapper(self):
+      result = [ ]
+      result.extend(self.slots.slot_1)
+      result.extend(self.slots.slot_2)
+      result.extend(self.slots.slot_3)
+      component = self._client
+      heart = '\t%%%%%% %s components omitted %%%%%%' % len(component)
+      result.extend(['', heart, ''])
+      result.extend(self.slots.slot_5)
+      result.extend(self.slots.slot_6)
+      result.extend(self.slots.slot_7)
+      result = '\n'.join(result)
+      return result

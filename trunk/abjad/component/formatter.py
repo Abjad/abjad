@@ -52,7 +52,8 @@ class _ComponentFormatter(_Interface):
       result.extend(self.slots.slot_5)
       result.extend(self.slots.slot_6)
       result.extend(self.slots.slot_7)
-      return '\n'.join(result)
+      result = '\n'.join(result)
+      return result
 
    @property
    def slots(self):
