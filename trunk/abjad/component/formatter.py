@@ -45,15 +45,28 @@ class _ComponentFormatter(_Interface):
    @property
    def format(self):
       result = [ ]
-      result.extend(self.slots.slot_1)
-      result.extend(self.slots.slot_2)
-      result.extend(self.slots.slot_3)
-      result.extend(self.slots.slot_4)
-      result.extend(self.slots.slot_5)
-      result.extend(self.slots.slot_6)
-      result.extend(self.slots.slot_7)
+      result.extend(self.slots.contributions('slot_1'))
+      result.extend(self.slots.contributions('slot_2'))
+      result.extend(self.slots.contributions('slot_3'))
+      result.extend(self.slots.contributions('slot_4'))
+      result.extend(self.slots.contributions('slot_5'))
+      result.extend(self.slots.contributions('slot_6'))
+      result.extend(self.slots.contributions('slot_7'))
       result = '\n'.join(result)
       return result
+
+#   @property
+#   def format(self):
+#      result = [ ]
+#      result.extend(self.slots.slot_1)
+#      result.extend(self.slots.slot_2)
+#      result.extend(self.slots.slot_3)
+#      result.extend(self.slots.slot_4)
+#      result.extend(self.slots.slot_5)
+#      result.extend(self.slots.slot_6)
+#      result.extend(self.slots.slot_7)
+#      result = '\n'.join(result)
+#      return result
 
    @property
    def slots(self):
@@ -61,22 +74,36 @@ class _ComponentFormatter(_Interface):
 
    ## PUBLIC METHODS ##
 
-   def report(self, delivery = 'screen'):
-      '''Deliver report of format-time contributions.
-         Contributions order first by location and then by interface.'''
-      result = '%s\n' % self
-      locations = self._knownFormatLocations
-      for location in locations:
-         contributions = self._collectLocationVerbose(location)
-         contributions = [x for x in contributions if x[1]]
-         if contributions:
-            result += '\t%s\n' % location
-            for contribution in contributions:
-               interface, directives = contribution
-               result += '\t\t%s\n' % interface 
-               for directive in directives:
-                  result += '\t\t\t%s\n' % directive
-      if delivery == 'screen':
+#   def report(self, delivery = 'screen'):
+#      '''Deliver report of format-time contributions.
+#         Contributions order first by location and then by interface.'''
+#      result = '%s\n' % self
+#      locations = self._knownFormatLocations
+#      for location in locations:
+#         contributions = self._collectLocationVerbose(location)
+#         contributions = [x for x in contributions if x[1]]
+#         if contributions:
+#            result += '\t%s\n' % location
+#            for contribution in contributions:
+#               interface, directives = contribution
+#               result += '\t\t%s\n' % interface 
+#               for directive in directives:
+#                  result += '\t\t\t%s\n' % directive
+#      if delivery == 'screen':
+#         print result
+#      else:
+#         return result
+
+   def report(self, verbose = False, output = 'screen'):
+      '''Report format contributions.'''
+      result = ''
+      slots = self.slots
+      for i in range(1, 7 + 1):
+         label = 'slot_%s' % i
+         attr = label
+         result += slots._format_slot(
+            label, getattr(slots, attr), verbose, output = 'string')
+      if output == 'screen':
          print result
       else:
          return result

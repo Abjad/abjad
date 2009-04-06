@@ -7,11 +7,11 @@ class _BracketsInterface(_Interface):
 
    @property
    def close(self):
-      '''Close bracket symbol.'''
+      '''Format contribution list with close bracket symbol.'''
       if self.container.parallel:
-         return '>>'
+         return ['>>']
       else:
-         return '}'
+         return ['}']
 
    @property
    def container(self):
@@ -20,8 +20,8 @@ class _BracketsInterface(_Interface):
 
    @property
    def open(self):
-      '''Open bracket symbol.'''
+      '''Format contribution list with open bracket symbol.'''
       if self.container.parallel:
-         return '<<'
+         return ['<<']
       else:
-         return '{'
+         return ['{']

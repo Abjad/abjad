@@ -16,7 +16,11 @@ class _GraceFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       grace = self.formatter.grace
       type = grace.type
       if type == 'after':
-         result.append(grace.brackets.open)
+         #result.append(grace.brackets.open)
+         result.append(self.wrap(grace.brackets, 'open'))
       else:
-         result.append(r'\%s %s' % (type, grace.brackets.open))
+         #result.append(r'\%s %s' % (type, grace.brackets.open))
+         contributor = (grace.brackets, 'open')
+         contributions = [r'\%s %s' % (type, grace.brackets.open[0])]
+         result.append([contributor, contributions])
       return tuple(result)

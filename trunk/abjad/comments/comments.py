@@ -31,6 +31,10 @@ class _UserComments(_Abjad):
          self._before = [ ]
       return property(**locals( ))
 
+   @property
+   def component(self):
+      return self._client
+
    @apply
    def closing( ):
       def fget(self):

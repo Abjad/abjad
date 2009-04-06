@@ -37,14 +37,13 @@ class _ContainerFormatter(_ComponentFormatter):
    @property
    def wrapper(self):
       result = [ ]
-      result.extend(self.slots.slot_1)
-      result.extend(self.slots.slot_2)
-      result.extend(self.slots.slot_3)
-      component = self._client
-      heart = '\t%%%%%% %s components omitted %%%%%%' % len(component)
+      result.extend(self.slots.contributions('slot_1'))
+      result.extend(self.slots.contributions('slot_2'))
+      result.extend(self.slots.contributions('slot_3'))
+      heart = '\t%%%%%% %s components omitted %%%%%%' % len(self.container)
       result.extend(['', heart, ''])
-      result.extend(self.slots.slot_5)
-      result.extend(self.slots.slot_6)
-      result.extend(self.slots.slot_7)
+      result.extend(self.slots.contributions('slot_5'))
+      result.extend(self.slots.contributions('slot_6'))
+      result.extend(self.slots.contributions('slot_7'))
       result = '\n'.join(result)
       return result

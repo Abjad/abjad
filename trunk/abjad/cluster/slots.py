@@ -10,6 +10,11 @@ class _ClusterFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_2(self):
-      result = [r'\makeClusters ']
-      result[0] += self.formatter.cluster.brackets.open
+      #result = [r'\makeClusters ']
+      #result[0] += self.formatter.cluster.brackets.open
+      result = [ ]
+      cluster = self.formatter.cluster
+      contributor = (cluster.brackets, 'open')
+      contributions = [r'\makeClusters %s' % cluster.brackets.open[0]]
+      result.append([contributor, contributions])
       return tuple(result)
