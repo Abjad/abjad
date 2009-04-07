@@ -10,7 +10,7 @@ class Grace(Container):
       music = music or None
       Container.__init__(self, music)
       self._formatter = _GraceFormatter(self)
-      self.type = 'grace'
+      self.kind = 'grace'
 
    ## OVERLOADS ##
 
@@ -20,10 +20,10 @@ class Grace(Container):
    ## PUBLIC ATTRIBUTES ##
 
    @apply
-   def type( ):
+   def kind( ):
       def fget(self):
-         return self._type
+         return self._kind
       def fset(self, arg):
          assert arg in ('after', 'grace', 'acciaccatura', 'appoggiatura')
-         self._type = arg
+         self._kind = arg
       return property(**locals( ))

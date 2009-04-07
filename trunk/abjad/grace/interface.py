@@ -40,7 +40,7 @@ class _GraceInterface(_Interface):
                self._after = Grace(arg)
             else:
                raise ValueError('can not set after.')
-         self._after.type = 'after'
+         self._after.kind = 'after'
          self._establishAfter( )
       return property(**locals( ))
 
@@ -59,7 +59,7 @@ class _GraceInterface(_Interface):
          elif isinstance(arg, list):
             self._before = Grace(arg)
          elif arg in ('grace', 'acciaccatura', 'appoggiatura'):
-            self._before.type = arg
+            self._before.kind = arg
          else:
             raise ValueError('can not set before.')
          self._establishBefore( )
