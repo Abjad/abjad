@@ -8,22 +8,21 @@ class _ContextFormatter(_ContainerFormatter):
       _ContainerFormatter.__init__(self, client)
       self._slots = _ContextFormatterSlotsInterface(self)
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
-   def context(self):
-      return self._client
-
-   ## TODO: Make _ContextFormatter.INVOCATION private ##
-   ## TODO: Rename _ContextFormatter.INVOCATION ##
-
-   @property
-   def INVOCATION(self):
+   def _invocation(self):
       client = self._client
       if client.name is not None:
          return r'\context %s = "%s"' % (client.context, client.name)
       else:
           return r'\new %s' % client.context
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def context(self):
+      return self._client
 
    @property
    def slots(self):
