@@ -1,5 +1,6 @@
 from abjad.measure.measure import _Measure
 from abjad.measure.dynamic.duration import _DynamicMeasureDurationInterface
+from abjad.measure.dynamic.meter import _DynamicMeasureMeterInterface
 from abjad.meter.meter import Meter
 import types
 
@@ -10,6 +11,7 @@ class DynamicMeasure(_Measure):
       _Measure.__init__(self, music)
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
+      self._meter = _DynamicMeasureMeterInterface(self)
 
    ## PUBLIC ATTRIBUTES ##
 
