@@ -50,7 +50,7 @@ def test_tuplet_in_place_apply_04( ):
    t = RigidMeasure((8, 8), [Note(n, (1, 8)) for n in range(8)])
    leaves_before = t.leaves
    FixedDurationTuplet((2, 8), t[0 : 3])
-   t.meter.forced = (7, 8)
+   t.meter.forced = Meter(7, 8)
    leaves_after = t.leaves
    assert leaves_before == leaves_after
    assert len(t) == 6

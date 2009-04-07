@@ -43,7 +43,7 @@ def test_meter_interface_self_should_contribute_02( ):
       indication at format-time.'''
 
    t = Note(0, (1, 4))
-   t.meter.forced = (1, 4)
+   t.meter.forced = Meter(1, 4)
 
    r'''
    \time 1/4
@@ -60,7 +60,7 @@ def test_meter_interface_self_should_contribute_03( ):
       The parent tuplet neither can nor should contribute LilyPond \time.'''
 
    t = FixedDurationTuplet((2, 8), scale(3))
-   t[0].meter.forced = (2, 8)
+   t[0].meter.forced = Meter(2, 8)
 
    r'''
    \times 2/3 {
@@ -84,7 +84,7 @@ def test_meter_interface_self_should_contribute_04( ):
       The parent tuplet both can and should contribute LilyPond \time.'''
 
    t = FixedDurationTuplet((2, 8), scale(3))
-   t.meter.forced = (2, 8)
+   t.meter.forced = Meter(2, 8)
 
    r'''
    \times 2/3 {

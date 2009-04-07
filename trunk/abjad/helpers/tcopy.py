@@ -1,6 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.copy_fracture import copy_fracture
 from abjad.helpers.in_terms_of import _in_terms_of
+from abjad.meter.meter import Meter
 
 
 def tcopy(ll):
@@ -56,14 +57,14 @@ def tcopy(ll):
       result.duration.target = parent_multiplier * result.duration.contents
    elif result.__class__.__name__ == 'RigidMeasure':
       new_duration = parent_multiplier * result.duration.contents
-      result.meter.forced = new_duration._n, new_duration._d
+      result.meter.forced = Meter(new_duration._n, new_duration._d)
 
    # new: rewrite result denominator, if available
    if parent_denominator is not None:
       old_meter = result.meter.effective
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = _in_terms_of(old_meter_pair, parent_denominator)
-      result.meter.forced = new_meter
+      result.meter.forced = Meter(new_meter)
 
    # point elements in input list back to old parent
    for element in ll:

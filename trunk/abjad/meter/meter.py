@@ -23,7 +23,7 @@ class Meter(_GrobHandler):
          self.numerator = args[0]
          self.denominator = args[1]
       else:
-         raise ValueError('invalid %s meter initialization.' % str(args))
+         raise TypeError('invalid %s meter initialization.' % str(args))
 
    ## OVERLOADS ##
 

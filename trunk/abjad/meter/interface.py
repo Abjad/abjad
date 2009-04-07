@@ -114,15 +114,17 @@ class _MeterInterface(_Interface, _GrobHandler):
          #if isinstance(self.client, DynamicMeasure):
          if self.client.__class__.__name__ == 'DynamicMeasure':
             raise MeterAssignmentError
-         if arg is None:
-            self._forced = None
-         elif isinstance(arg, tuple):
-            meter = Meter(*arg)
-            self._forced = meter
-         elif isinstance(arg, Meter):
-            self._forced = arg
-         else:
-            raise ValueError('unknown meter specification.')
+#         if arg is None:
+#            self._forced = None
+#         elif isinstance(arg, tuple):
+#            meter = Meter(*arg)
+#            self._forced = meter
+#         elif isinstance(arg, Meter):
+#            self._forced = arg
+#         else:
+#            raise ValueError('unknown meter specification.')
+         assert isinstance(arg, (Meter, types.NoneType))
+         self._forced = arg
       return property(**locals( ))
 
    @apply
