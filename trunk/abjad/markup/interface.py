@@ -3,8 +3,11 @@ from abjad.core.interface import _Interface
 
 
 class _MarkupInterface(_Interface, _FormatContributor):
+   '''Manage LilyPond markup.
+      Handles no LilyPond grob.'''
 
    def __init__(self, client):
+      '''Bind to client and set up and down to empty lists.'''
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
       self._down = [ ]
@@ -14,6 +17,7 @@ class _MarkupInterface(_Interface, _FormatContributor):
 
    @apply
    def down( ):
+      '''List of markup to position below staff.'''
       def fget(self):
          return self._down
       def fset(self, arg):
@@ -25,6 +29,7 @@ class _MarkupInterface(_Interface, _FormatContributor):
 
    @property
    def right(self):
+      '''Format contribution to right of leaf.'''
       result = [ ]
       if len(self.up) == 1:
          result.append(r'^ \markup { %s }' % str(self.up[0]))
@@ -42,6 +47,7 @@ class _MarkupInterface(_Interface, _FormatContributor):
 
    @apply
    def up( ):
+      '''List of markup to position above staff.'''
       def fget(self):
          return self._up
       def fset(self, arg):

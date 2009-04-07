@@ -89,17 +89,6 @@ class _Leaf(_Component):
          (self.duration.written._n, self.duration.written._d))
 
    @apply
-   def spanners( ):
-      def fget(self):
-         return self._spanners
-      def fset(self, arg):
-         if isinstance(arg, _LeafSpannerAggregator):
-            self._spanners = arg
-         else:
-            raise ValueError('must be _LeafSpannerAggregator')
-      return property(**locals( ))
-
-   @apply
    def staff( ):
       def fget(self):
          return self._staff.effective

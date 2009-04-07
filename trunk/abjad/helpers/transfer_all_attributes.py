@@ -48,6 +48,6 @@ def _transfer_all_attributes(old, new):
       new.formatter.right.extend(oldCopy.formatter.right)
    except AttributeError:
       pass
-   old.spanners = oldCopy.spanners
+   old._spanners = oldCopy.spanners
    old.spanners._client = old
    del oldCopy

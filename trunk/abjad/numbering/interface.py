@@ -1,4 +1,3 @@
-#from abjad.core.interface import _Interface
 from abjad.core.observer import _Observer
 from abjad.rational.rational import Rational
 
@@ -17,15 +16,12 @@ from abjad.rational.rational import Rational
 ##       Our more usual way of doing things is to navigate to a single
 ##       component and ask for attributes there.
 
-#class _NumberingInterface(_Interface):
 class _NumberingInterface(_Observer):
 
    def __init__(self, _client, updateInterface):
-      #_Interface.__init__(self, _client)
       _Observer.__init__(self, _client, updateInterface)
       self._leaf = 0
       self._measure = 0
-      #updateInterface._observers.append(self)
 
    ## PRIVATE METHODS ##
 
@@ -33,6 +29,7 @@ class _NumberingInterface(_Observer):
       self._updateAllNumbers( )
 
    ## TODO: Can't this method eliminate all internal navigation?
+
    def _updateAllNumbers(self):
       from abjad.leaf.leaf import _Leaf
       from abjad.measure.measure import _Measure
