@@ -31,10 +31,6 @@ class _UserComments(_Abjad):
          self._before = [ ]
       return property(**locals( ))
 
-   @property
-   def component(self):
-      return self._client
-
    @apply
    def closing( ):
       def fget(self):
@@ -43,6 +39,8 @@ class _UserComments(_Abjad):
          assert arg is None
          self._closing = [ ]
       return property(**locals( ))
+   
+   ## TODO: Clean up _UserComments.contributions ##
 
    @property
    def contributions(self):
@@ -53,6 +51,13 @@ class _UserComments(_Abjad):
       result.append(('closing', tuple(self.closing)))
       result.append(('after', tuple(self.after)))
       return tuple(result)
+      #result = [ ]
+      #for location in self.locations:
+      #   result.append((location, tuple(getattr(self, location))))
+
+   @property
+   def locations(self):
+      return ('before', 'opening', 'right', 'closing', 'after')
 
    @apply
    def opening( ):
@@ -76,12 +81,13 @@ class _UserComments(_Abjad):
 
    def clear(self):
       '''Remove all comments.'''
-      self.after = None
-      self.before = None
-      self.closing = None
-      self.opening = None
-      self.right = None
+      for location in self.locations:
+         setattr(self, location, None)
+
+   ## TODO: Add _UserComments.report( ) 'output' keyword. ##
+   ## TODO: Add _UserComments.report( ) tests. ##
 
    def report(self):
       '''Report all comments.'''
-      pprint.pprint(self.contributions)
+      for location in self.locations:
+         print '%s: %s' % (location, getattr(self, location))
