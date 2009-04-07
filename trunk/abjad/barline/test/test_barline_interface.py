@@ -5,7 +5,7 @@ def test_barline_interface_01( ):
    '''Barline after leaf.'''
 
    t = Note(0, (1, 4))
-   t.barline = '|.'
+   t.barline.kind = '|.'
 
    r'''c'4
       \bar "|."
@@ -18,7 +18,7 @@ def test_barline_interface_02( ):
    '''Barline at container closing.'''
 
    t = Staff( )
-   t.barline = '|.'
+   t.barline.kind = '|.'
 
    r'''\new Staff {
            \bar "|."

@@ -101,13 +101,9 @@ class _Component(_Abjad):
    def accidental(self):
       return self._accidental
    
-   @apply
-   def barline( ):
-      def fget(self):
-         return self._barline
-      def fset(self, arg):
-         self._barline.kind = arg
-      return property(**locals( ))
+   @property
+   def barline(self):
+      return self._barline
    
    @property
    def beam(self):
