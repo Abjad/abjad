@@ -21,7 +21,7 @@ class _PianoPedalSpannerFormatInterface(_SpannerFormatInterface):
       result = [ ]
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
-         result.append(spanner._types[spanner.type][0])
+         result.append(spanner._kinds[spanner.kind][0])
       if spanner._isMyLastLeaf(leaf):
-         result.append(spanner._types[spanner.type][1])
+         result.append(spanner._kinds[spanner.kind][1])
       return result

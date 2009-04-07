@@ -15,7 +15,7 @@ def test_pianopedal_spanner_01( ):
    }'''
 
    assert check(t)
-   assert p.type == 'sustain'
+   assert p.kind == 'sustain'
    assert p.style == 'mixed'
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
@@ -25,7 +25,7 @@ def test_pianopedal_spanner_02( ):
 
    t = Staff(run(4))
    p = PianoPedal(t[:])
-   p.type = 'sostenuto'
+   p.kind = 'sostenuto'
 
    r'''\new Staff {
         \set Staff.pedalSustainStyle = #'mixed
@@ -44,7 +44,7 @@ def test_pianopedal_spanner_03( ):
 
    t = Staff(run(4))
    p = PianoPedal(t[:])
-   p.type = 'corda'
+   p.kind = 'corda'
 
    r'''\new Staff {
         \set Staff.pedalSustainStyle = #'mixed
@@ -63,7 +63,7 @@ def test_pianopedal_spanner_04( ):
 
    t = Staff(run(4))
    p = PianoPedal(t[:])
-   assert p.type == 'sustain'
+   assert p.kind == 'sustain'
    p.style = 'text'
 
    r'''\new Staff {
@@ -83,7 +83,7 @@ def test_pianopedal_spanner_05( ):
 
    t = Staff(run(4))
    p = PianoPedal(t[:])
-   assert p.type == 'sustain'
+   assert p.kind == 'sustain'
    p.style = 'bracket'
 
    r'''\new Staff {
@@ -123,10 +123,10 @@ def test_pianopedal_spanner_06( ):
 
 
 def test_pianopedal_spanner_07( ):
-   '''The 'type' and 'style' attributes raise ValueError as needed.'''
+   '''The 'kind' and 'style' attributes raise ValueError as needed.'''
 
    t = Staff(run(4))
    p = PianoPedal(t)
 
-   assert py.test.raises(ValueError, 'p.type = "abc"')
+   assert py.test.raises(ValueError, 'p.kind = "abc"')
    assert py.test.raises(ValueError, 'p.style = "abc"')
