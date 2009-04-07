@@ -117,13 +117,9 @@ class _Component(_Abjad):
    def breaks(self):
       return self._breaks
 
-   @apply
-   def clef( ):
-      def fget(self):
-         return self._clef
-      def fset(self, arg):
-         self._clef.forced = arg
-      return property(**locals( ))
+   @property
+   def clef(self):
+      return self._clef
 
    @property
    def comments(self):

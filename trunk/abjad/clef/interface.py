@@ -29,15 +29,11 @@ class _ClefInterface(_Interface, _GrobHandler):
       '''Return effective clef or else treble.'''
       cur = self.client
       while cur is not None:
-         #if cur.clef._forced:
-         #   return cur.clef._forced
          if cur.clef.forced:
             return cur.clef.forced
          else:
             cur = getattr(cur, 'prev', None)
       for x in self.client.parentage.parentage[1:]:
-         #if hasattr(x, 'clef') and x.clef._forced:
-         #   return x.clef._forced
          if hasattr(x, 'clef') and x.clef.forced:
             return x.clef.forced
       return Clef('treble')
@@ -48,12 +44,6 @@ class _ClefInterface(_Interface, _GrobHandler):
       def fget(self):
          return self._forced
       def fset(self, arg):
-#         if isinstance(arg, (Clef, types.NoneType)):
-#            self._forced = arg
-#         elif isinstance(arg, str):
-#            self._forced = Clef(arg)
-#         else:
-#            raise ValueError('unknown clef specification.')
          assert isinstance(arg, (Clef, types.NoneType))
          self._forced = arg
       return property(**locals( ))
