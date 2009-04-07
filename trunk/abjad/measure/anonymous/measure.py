@@ -1,22 +1,16 @@
 from abjad.measure.dynamic.measure import DynamicMeasure
 
 
-## TODO - The staff promotion here is naive.
-##        The promotion assumes that the anonymous measure
-##        sits inside an unmodified LilyPond Staff context.
-##        In the case that the measure sits inside, say,
-##        a LilyPond RhythmicStaff context, then the promotion
-##        will be ineffectual.
-##
-##        What's needed is a type of 'symoblic' promotion
-##        that can look into the Abjad score structure and
-##        derive the enclosing staff context dynamically.
-##        This will be a good extension of _StaffInterface.
-##        Probably t.staff.effective should implement this.
+## Staff promotion works here even on new staff types.     ##
+## So long as your .ly \layout { } specification           ##
+## causes new staff types to inherit from Staff somewhere. ##
  
 class AnonymousMeasure(DynamicMeasure):
+   '''Measure that dynamically grows and shrinks.
+      Measure that also always hides TimeSignature stencil.'''
 
    def __init__(self, music = None):
+      '''Initialize music and hide TimeSignature stencil.'''
       DynamicMeasure.__init__(self, music = music)
       self.meter.stencil = False
       self.meter.promote('stencil', 'Staff')
