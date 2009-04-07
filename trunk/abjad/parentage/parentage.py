@@ -42,14 +42,14 @@ class _Parentage(_Interface):
          Return parent.'''
       parent = self.parent
       if parent is not None:
+         self.client._update._markForUpdateToRoot( )
          self.parent = None
          return parent
 
    def _detach(self):
       '''Sever incoming reference from parent to client.
          Sever outgoing reference from client to parent.'''
-      client = self._client
-      client._update._markForUpdateToRoot( )
+      client = self.client
       parent, index = self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
       receipt = _ParentageReceipt(client, parent, index)
@@ -60,6 +60,8 @@ class _Parentage(_Interface):
       for component in self.parentage[1:]:
          if isinstance(component, klass):
             return component
+
+   ## TODO: Deprecate _Parentage._reattach( ) ##
 
    def _reattach(self, receipt):
       '''Reattach client to parent described in receipt.
@@ -78,9 +80,10 @@ class _Parentage(_Interface):
          Leave outgoing reference from client to parent in tact.
          Parent will no longer reference client.
          Client will continue to reference parent.'''
-      client = self._client
+      client = self.client
       parent = self.parent
       if parent is not None:
+         client._update._markForUpdateToRoot( )
          index = parent.index(client)
          parent._music.remove(client)
          return parent, index
@@ -92,8 +95,10 @@ class _Parentage(_Interface):
       cur_parent = self.parent
       if cur_parent is not None:
          if client in cur_parent:
+            cur_parent._update._markForUpdateToRoot( )
             cur_parent._music.remove(client)
       self.parent = new_parent
+      self.client._update._markForUpdateToRoot( )
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -117,14 +122,17 @@ class _Parentage(_Interface):
       '''True when component has no parent, otherwise False.'''
       return len(self.parentage) == 1
 
+   ## TODO: Make _Parentage.parent read-only ...          ##
+   ##       ... spanner-blind operation can mangle score! ##
+
    @apply
    def parent( ):
       '''Return reference to parent of client, else None.'''
       def fget(self):
          return self.__parent
       def fset(self, arg):
-         ## TODO: Call _markUpdateToRoot in _Parentage.parent.fset( ) ##
-         self._parent = arg
+         self.__parent = arg
+      return property(**locals( ))
       
    @property
    def parentage(self):

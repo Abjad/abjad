@@ -273,8 +273,6 @@ class _Component(_Abjad):
       from abjad.helpers.detach_subtree import detach_subtree
       parent = self.parentage.parent
       receipt = detach_subtree(self)
-      if parent is not None:
-         parent._update._markForUpdateToRoot( )
       return receipt
 
    ## TODO: Externalize or eliminate _Component.reattach( ) ##

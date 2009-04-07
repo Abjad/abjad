@@ -56,7 +56,6 @@ class Container(_Component):
          components = [components]
       _withdraw_from_crossing_spanners(components)
       _components_switch_parent_to(components, None)
-      self._update._markForUpdateToRoot( )
 
    def __getitem__(self, i):
       '''Return component at index i in container.
@@ -134,7 +133,6 @@ class Container(_Component):
             for component in reversed(expr):
                spanner._insert(index, component)
                component.spanners._add(spanner)
-      self._update._markForUpdateToRoot( )
 
    ## PRIVATE ATTRIBUTES ##
 

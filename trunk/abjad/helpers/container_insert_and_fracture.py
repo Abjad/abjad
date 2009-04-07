@@ -35,6 +35,5 @@ def container_insert_and_fracture(container, i, component):
       result.extend(component.prev.spanners.fracture(direction = 'right'))
    if component.next:
       result.extend(component.next.spanners.fracture(direction = 'left')) 
-   container._update._markForUpdateToRoot( )
 
    return result
