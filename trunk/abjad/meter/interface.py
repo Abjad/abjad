@@ -1,10 +1,11 @@
+from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.meter.meter import Meter
 import types
 
 
-class _MeterInterface(_Interface, _GrobHandler):
+class _MeterInterface(_Interface, _GrobHandler, _BacktrackingInterface):
    '''Handle LilyPond TimeSignature grob.
       Publish information about effective and forced meter.'''
    
@@ -12,6 +13,7 @@ class _MeterInterface(_Interface, _GrobHandler):
       '''Bind client, set forced to None and suppress to False.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TimeSignature')
+      _BacktrackingInterface.__init__(self, 'meter.effective')
       self._forced = None
       self._suppress = False
 
@@ -47,15 +49,6 @@ class _MeterInterface(_Interface, _GrobHandler):
       if self._selfShouldContribute:
          result.append(self.effective.format)
       return result
-
-   ## TODO: Generalize meter and clef interfaces to _BacktrackingInterface ##
-   ##       Include definition of 'change' ##
-
-   @property
-   def change(self):
-      '''True if meter changes here, otherwise False.'''
-      return bool(getattr(self.client, 'prev', None) and \
-         self.client.prev.meter.effective != self.effective)
 
    @property
    def effective(self):

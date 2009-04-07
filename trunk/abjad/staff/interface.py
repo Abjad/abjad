@@ -1,13 +1,15 @@
+from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
 import types
 
 
-class _StaffInterface(_Interface, _FormatContributor):
+class _StaffInterface(_Interface, _FormatContributor, _BacktrackingInterface):
    
    def __init__(self, client):
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
+      _BacktrackingInterface.__init__(self, 'staff.effective')
       self._forced = None
 
    ## PUBLIC ATTRIBUTES ##
@@ -29,12 +31,6 @@ class _StaffInterface(_Interface, _FormatContributor):
       if self.change or (not self.client.prev and self.forced):
          result.append(r'\change Staff = %s' % self.effective.name)
       return result
-
-   @property
-   def change(self):
-      '''True when staff changes here, otherwise False.'''
-      return bool(getattr(self.client, 'prev', None) and \
-         self.client.prev.staff.effective != self.effective)
 
    @property
    def effective(self):

@@ -1,10 +1,11 @@
 from abjad.clef.clef import Clef
+from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 import types
 
 
-class _ClefInterface(_Interface, _GrobHandler):
+class _ClefInterface(_Interface, _GrobHandler, _BacktrackingInterface):
    '''Handle LilyPond Clef grob.
       Interface to find effective clef.
       Interface to force clef changes.'''
@@ -14,18 +15,10 @@ class _ClefInterface(_Interface, _GrobHandler):
          Set forced to None.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Clef')
+      _BacktrackingInterface.__init__(self, 'clef.name')
       self._forced = None
 
    ## PUBLIC ATTRIBUTES ##
-
-   ## TODO: Generalize meter and clef interfaces to _BacktrackingInterface ##
-   ##       Include definition of 'change' ##
-
-   @property
-   def change(self):
-      '''True if clef changes here, otherwise False.'''
-      return bool(getattr(self.client, 'prev', None) and \
-         self.client.prev.clef.name != self.name)
 
    @property
    def effective(self):
