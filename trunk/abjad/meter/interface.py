@@ -15,7 +15,7 @@ class _MeterInterface(_Interface, _GrobHandler):
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TimeSignature')
       self._forced = None
-      self.suppress = False
+      self._suppress = False
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -24,7 +24,8 @@ class _MeterInterface(_Interface, _GrobHandler):
       r'''True when self is able to contribute LilyPond \time.'''
       from abjad.measure.dynamic.measure import DynamicMeasure
       if not self.suppress:
-         if isinstance(self._client, DynamicMeasure):
+         #if isinstance(self._client, DynamicMeasure):
+         if isinstance(self.client, DynamicMeasure):
             return True
          elif self.forced or self.change:
             return True
@@ -56,13 +57,14 @@ class _MeterInterface(_Interface, _GrobHandler):
          result.append(self.effective.format)
       return result
 
+   ## TODO: Generalize meter and clef interfaces to _BacktrackingInterface ##
+   ##       Include definition of 'change' ##
+
    @property
    def change(self):
-      '''True if meter of client differs from 
-         meter of component previous to client.'''
-      client = self._client
-      return bool(client._navigator._prevBead and \
-         client._navigator._prevBead.meter.effective != self.effective)
+      '''True if meter changes here, otherwise False.'''
+      return bool(getattr(self.client, 'prev', None) and \
+         self.client.prev.meter.effective != self.effective)
 
    ## TODO - the explicit check for DynamicMeasure seems like
    ##        a (small) hack; is there a better implementation?
@@ -72,24 +74,32 @@ class _MeterInterface(_Interface, _GrobHandler):
    def effective(self):
       '''Return reference to meter effectively governing client.'''
       from abjad.measure.dynamic.measure import DynamicMeasure
-      client = self._client
+      #client = self._client
+      client = self.client
       if isinstance(client, DynamicMeasure):
          if client.denominator:
             return Meter(
                _in_terms_of(client.duration.contents, client.denominator))
          else:
             return Meter(client.duration.contents)
-      cur = self._client
+      #cur = self._client
+      cur = self.client
       while cur is not None:
-         if cur.meter._forced:
-            return cur.meter._forced
+         #if cur.meter._forced:
+         #   return cur.meter._forced
+         if cur.meter.forced:
+            return cur.meter.forced
          else:
             #cur = cur.prev
             ## should there be explicit measure-navigation in navigator?
-            cur = cur._navigator._prevBead
-      for x in self._client.parentage.parentage[1:]:
-         if hasattr(x, 'meter') and x.meter._forced:
-            return x.meter._forced
+            #cur = cur._navigator._prevBead
+            cur = getattr(cur, 'prev', None)
+      #for x in self._client.parentage.parentage[1:]:
+      #   if hasattr(x, 'meter') and x.meter._forced:
+      #      return x.meter._forced
+      for x in self.client.parentage.parentage[1:]:
+         if hasattr(x, 'meter') and x.meter.forced:
+            return x.meter.forced
       return Meter(4, 4)
 
    ## TODO: _MeterInterface instance-checking suggests _DynamicMeasureMeterInterface is needed. ##

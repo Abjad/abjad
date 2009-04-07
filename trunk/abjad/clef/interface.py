@@ -18,10 +18,13 @@ class _ClefInterface(_Interface, _GrobHandler):
 
    ## PUBLIC ATTRIBUTES ##
 
+   ## TODO: Generalize meter and clef interfaces to _BacktrackingInterface ##
+   ##       Include definition of 'change' ##
+
    @property
    def change(self):
       '''True if clef changes here, otherwise False.'''
-      return bool(hasattr(self.client, 'prev') and \
+      return bool(getattr(self.client, 'prev', None) and \
          self.client.prev.clef.name != self.name)
 
    @property
