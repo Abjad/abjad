@@ -1,5 +1,4 @@
 from abjad.core.abjadcore import _Abjad
-import pprint
 
 
 class _UserComments(_Abjad):
@@ -40,20 +39,12 @@ class _UserComments(_Abjad):
          self._closing = [ ]
       return property(**locals( ))
    
-   ## TODO: Clean up _UserComments.contributions ##
-
    @property
    def contributions(self):
       result = [ ]
-      result.append(('before', tuple(self.before)))
-      result.append(('opening', tuple(self.opening)))
-      result.append(('right', tuple(self.right)))
-      result.append(('closing', tuple(self.closing)))
-      result.append(('after', tuple(self.after)))
+      for location in self.locations:
+         result.append((location, tuple(getattr(self, location))))
       return tuple(result)
-      #result = [ ]
-      #for location in self.locations:
-      #   result.append((location, tuple(getattr(self, location))))
 
    @property
    def locations(self):
@@ -84,10 +75,18 @@ class _UserComments(_Abjad):
       for location in self.locations:
          setattr(self, location, None)
 
-   ## TODO: Add _UserComments.report( ) 'output' keyword. ##
-   ## TODO: Add _UserComments.report( ) tests. ##
-
-   def report(self):
-      '''Report all comments.'''
+   def report(self, verbose = False, output = 'screen'):
+      '''Print comment fields and comment contributions to screen.
+         Set verbose = True to include all comment fields.
+         Set output = 'string' to return report as string.'''
+      result = ''
       for location in self.locations:
-         print '%s: %s' % (location, getattr(self, location))
+         contributions = getattr(self, location)
+         if contributions or verbose:
+            result += '%s\n' % location
+            for contribution in contributions:
+               result += '\t%% %s\n' % contribution
+      if output == 'screen':
+         print result
+      else:
+         return result
