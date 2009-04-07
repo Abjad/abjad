@@ -1,7 +1,6 @@
 from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg.cfg import PDFVIEWER
 from abjad.cfg.get_last_output import _get_last_output
-#from abjad.cfg.open_pdf import _open_pdf
 from abjad.cfg.open_file import _open_file
 import os
 
@@ -25,7 +24,6 @@ def pdf(target = -1):
       raise ValueError('can not get target pdf name from %s.' % target)
 
    if os.stat(target_pdf):
-      #_open_pdf(target_pdf)
       _open_file(target_pdf, PDFVIEWER)
    else:
       print 'Target PDF %s does not exist.' % target_pdf
