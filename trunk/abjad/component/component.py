@@ -97,11 +97,9 @@ class _Component(_Abjad):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @apply
-   def accidental( ):
-      def fget(self):
-         return self._accidental
-      return property(**locals( ))
+   @property
+   def accidental(self):
+      return self._accidental
    
    @apply
    def barline( ):
@@ -111,17 +109,13 @@ class _Component(_Abjad):
          self._barline.kind = arg
       return property(**locals( ))
    
-   @apply
-   def beam( ):
-      def fget(self):
-         return self._beam
-      return property(**locals( ))
+   @property
+   def beam(self):
+      return self._beam
 
-   @apply
-   def breaks( ):
-      def fget(self):
-         return self._breaks
-      return property(**locals( ))
+   @property
+   def breaks(self):
+      return self._breaks
 
    @apply
    def clef( ):
@@ -131,29 +125,21 @@ class _Component(_Abjad):
          self._clef.forced = arg
       return property(**locals( ))
 
-   @apply
-   def comments( ):
-      def fget(self):
-         return self._comments
-      def fset(self, type):
-         raise AttributeError('can not overwrite _Comments.')
-      return property(**locals( ))
+   @property
+   def comments(self):
+      return self._comments
 
    @property
    def directives(self):
       return self._directives
 
-   @apply
-   def dots( ):
-      def fget(self):
-         return self._dots
-      return property(**locals( ))
+   @property
+   def dots(self):
+      return self._dots
 
-   @apply
-   def dynamics( ):
-      def fget(self):
-         return self._dynamics
-      return property(**locals( ))
+   @property
+   def dynamics(self):
+      return self._dynamics
 
    @property
    def format(self):
@@ -163,11 +149,9 @@ class _Component(_Abjad):
    def formatter(self):
       return self._formatter
 
-   @apply
-   def glissando( ):
-      def fget(self):
-         return self._glissando
-      return property(**locals( ))
+   @property
+   def glissando(self):
+      return self._glissando
 
    @property
    def instrument(self):
@@ -221,37 +205,29 @@ class _Component(_Abjad):
    def pianopedal(self):
       return self._pianopedal
 
-   @apply
-   def rest( ):
-      def fget(self):
-         return self._rest
-      return property(**locals( ))
+   @property
+   def rest(self):
+      return self._rest
 
-   @apply
-   def slur( ):
-      def fget(self):
-         return self._slur
-      return property(**locals( ))
+   @property
+   def slur(self):
+      return self._slur
 
    @property
    def spanners(self):
       return self._spanners
 
-   @apply
-   def stem( ):
-      def fget(self):
-         return self._stem
-      return property(**locals( ))
+   @property
+   def stem(self):
+      return self._stem
 
    @property
    def thread(self):
       return self._thread
 
-   @apply
-   def tie( ):
-      def fget(self):
-         return self._tie
-      return property(**locals( ))
+   @property
+   def tie(self):
+      return self._tie
 
    @apply
    def tempo( ):
@@ -271,23 +247,17 @@ class _Component(_Abjad):
                self._tempo._metronome = (Note(0, expr[0]), expr[1])
       return property(**locals( ))
 
-   @apply
-   def text( ):
-      def fget(self):
-         return self._text
-      return property(**locals( ))
+   @property
+   def text(self):
+      return self._text
 
-   @apply
-   def tremolo( ):
-      def fget(self):
-         return self._tremolo
-      return property(**locals( ))
+   @property
+   def tremolo(self):
+      return self._tremolo
 
-   @apply
-   def trill( ):
-      def fget(self):
-         return self._trill
-      return property(**locals( ))
+   @property
+   def trill(self):
+      return self._trill
    
    @property
    def tupletbracket(self):
@@ -303,7 +273,7 @@ class _Component(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   ## TODO: Externalized _Component.detach( ) ##
+   ## TODO: Externalize _Component.detach( ) ##
 
    def detach(self):
       '''Detach component from parentage.

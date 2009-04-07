@@ -51,6 +51,8 @@ class _Leaf(_Component):
 
    ## PUBLIC ATTRIBUTES ##
 
+   ## TODO: Implement _Leaf.accidentals ##
+
    @apply
    def accidentals( ):
       def fget(self):
@@ -72,11 +74,9 @@ class _Leaf(_Component):
             raise ValueError('must be None or list of articulations.')
       return property(**locals( ))
 
-   @apply
-   def duration( ):
-      def fget(self):
-         return self._duration
-      return property(**locals( ))
+   @property
+   def duration(self):
+      return self._duration
 
    @apply
    def dynamics( ):
@@ -110,31 +110,21 @@ class _Leaf(_Component):
             raise ValueError('must be _LeafFormatter.')
       return property(**locals( ))
 
-   @apply
-   def grace( ):
-      def fget(self):
-         return self._grace
-      def fset(self, *args):
-         raise ValueError('can not overwrite _GraceInterface.')
-      return property(**locals( ))
+   @property
+   def grace(self):
+      return self._grace
    
    @property
    def harmonic(self):
       return self._harmonic
 
-   @apply
-   def markup( ):
-      def fget(self):
-         return self._markup
-      return property(**locals( ))
+   @property
+   def markup(self):
+      return self._markup
 
-   @apply
-   def history( ):
-      def fget(self):
-         return self._history
-      def fset(self, *args):
-         raise ValueError('history is read-only.')
-      return property(**locals( ))
+   @property
+   def history(self):
+      return self._history
    
    @property
    def leaves(self):
@@ -176,8 +166,6 @@ class _Leaf(_Component):
             self._staff._forced = arg
       return property(**locals( ))
 
-   @apply
-   def tie( ):
-      def fget(self):
-         return self._tie
-      return property(**locals( ))
+   @property
+   def tie(self):
+      return self._tie
