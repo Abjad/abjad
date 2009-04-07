@@ -5,4 +5,4 @@ def restore_outgoing_reference_to_parent(receipt):
 
    for component, parent in receipt:
       assert component.parentage.parent is None
-      component.parentage.parent = parent
+      component.parentage._switchParentTo(parent)

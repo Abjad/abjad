@@ -1,4 +1,5 @@
 from abjad.helpers.copy_fracture import copy_fracture
+from abjad.helpers.donate import donate
 
 
 ## TODO - decide whether we wanna keep the current way of
@@ -31,13 +32,7 @@ def _transfer_all_attributes(old, new):
                setattr(value.after, '_carrier', new)
                setattr(value.before, '_carrier', new)
          setattr(new, key, value)
-   new.parentage.parent = old.parentage.parent
-   old.parentage.parent = None
-   if new.parentage.parent:
-      new.parentage.parent._music[new.parentage.parent.index(old)] = new
-   for spanner in old.spanners.attached:
-      spanner._components[spanner.index(old)] = new
-      new.spanners._add(spanner)
+   donate([old], new)
    try:
       new.formatter.before.extend(oldCopy.formatter.before)
       new.formatter.after.extend(oldCopy.formatter.after)
