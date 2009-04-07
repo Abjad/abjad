@@ -14,31 +14,36 @@ class _StaffInterface(_Interface, _FormatContributor):
 
    @property
    def after(self):
-      '''Used only when very last note in staff is staff changed.'''
+      '''Format contribution after leaf.
+         Used only when very last note in staff is staff changed.'''
       result = [ ]
-      if (self.changed or (not self.client.prev and self.forced)) and \
+      if (self.change or (not self.client.prev and self.forced)) and \
          not self.client.next:
          result.append(r'\change Staff = %s' % self.given.name)
       return result
 
    @property
    def before(self):
+      '''Format contribution before leaf.'''
       result = [ ]
-      if self.changed or (not self.client.prev and self.forced):
+      if self.change or (not self.client.prev and self.forced):
          result.append(r'\change Staff = %s' % self.effective.name)
       return result
 
    @property
-   def changed(self):
-      return self.client.prev and \
-         self.client.prev.staff.effective != self.client.staff.effective
+   def change(self):
+      '''True when staff changes here, otherwise False.'''
+      return bool(getattr(self.client, 'prev', None) and \
+         self.client.prev.staff.effective != self.effective)
 
    @property
    def effective(self):
+      '''Effective staff of client.'''
       return self.forced if self.forced else self.given
 
    @apply
    def forced( ):
+      '''Read / write value to force staff change here.'''
       from abjad.staff.staff import Staff
       def fget(self):
          return self._forced
@@ -48,5 +53,6 @@ class _StaffInterface(_Interface, _FormatContributor):
 
    @property
    def given(self):
+      '''First staff in score parentage of client.'''
       from abjad.staff.staff import Staff
       return self.client.parentage._first(Staff)
