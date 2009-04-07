@@ -19,7 +19,7 @@ def leaf_split_binary(leaf, split_dur):
    new_leaf.grace.after = None
    leaf.grace.before = None
    leaf.articulations = None
-   leaf.dynamics = None
+   leaf.dynamics.mark = None
    l1 = leaf_scale_binary(new_leaf, unprolated_split_dur)
    l2 = leaf_scale_binary(leaf, leaf.duration.written-unprolated_split_dur)
    result = [l1, l2] 

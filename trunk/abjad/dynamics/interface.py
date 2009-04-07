@@ -7,8 +7,14 @@ from abjad.spanner.receptor import _SpannerReceptor
 ## TODO: Multistage dynamic spanner? ##
 
 class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
+   '''Handle LilyPond DynamicText grob.
+      Receive Abjad Dynamic and Hairpin spanners.
+      Implement read / write 'mark' attribute.'''
    
    def __init__(self, client):
+      '''Bind client, LilyPond DynamicText grob.
+         Receive Abjad Dynamic and Hairpin spanners.
+         Set 'mark' to None.'''
       from abjad.dynamics.spanner import Dynamic
       from abjad.hairpin.spanner import Hairpin
       _Interface.__init__(self, client)
@@ -20,6 +26,7 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    @property
    def _summary(self):
+      '''Summary of contents as string.'''
       result = [ ]
       if self.mark:
          result.append(self.mark)
@@ -34,6 +41,7 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    @property
    def effective(self):
+      '''Effective dynamic.'''
       from abjad.dynamics.spanner import Dynamic
       from abjad.hairpin.spanner import Hairpin
       if self.mark:
@@ -46,13 +54,14 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
             return spanner.shape
          else:
             raise Exception
-      prev = self._client.prev
+      prev = self.client.prev
       if prev is not None:
          return prev.dynamics.effective
       return None
 
    @apply
    def mark( ):
+      '''Read / write dynamic mark attaching to client.'''
       def fget(self):
          return self._mark
       def fset(self, arg):
@@ -62,8 +71,8 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    @property
    def right(self):
+      '''Format contribution to right of leaf.'''
       result = [ ]
       if self.mark:
          result.append(r'\%s' % self.mark)
       return result
-

@@ -51,8 +51,8 @@ def test_hairpin_03( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Crescendo(t[ : 4])
-   t[0].dynamics = 'p'
-   t[3].dynamics = 'f'
+   t[0].dynamics.mark = 'p'
+   t[3].dynamics.mark = 'f'
 
    assert check(t)
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -74,7 +74,7 @@ def test_hairpin_04( ):
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Crescendo(t[ : 4])
-   t[2].dynamics = 'p'
+   t[2].dynamics.mark = 'p'
    checker = HairpinsIntermarked( )
 
    assert not checker.check(t)
@@ -98,13 +98,13 @@ def test_hairpin_05( ):
    '''Apply back-to-back hairpins separately.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   t[0].dynamics = 'p'
+   t[0].dynamics.mark = 'p'
    Crescendo(t[0 : 3])
-   t[2].dynamics = 'f'
+   t[2].dynamics.mark = 'f'
    Decrescendo(t[2 : 5])
-   t[4].dynamics = 'p'
+   t[4].dynamics.mark = 'p'
    Crescendo(t[4 : 7])
-   t[6].dynamics = 'f'
+   t[6].dynamics.mark = 'f'
 
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
    assert check(t)

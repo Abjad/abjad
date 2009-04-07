@@ -37,7 +37,7 @@ def leaf_scale_binary(leaf, dur):
          Tie(result)
       ## remove dynamics and articulations from tied leaves.
       for n in result[1:]:
-         n.dynamics = None
+         n.dynamics.mark = None
          n.articulations = None
       ## remove afterGrace from all but the last leaf
       ## and Grace all but the first leaf

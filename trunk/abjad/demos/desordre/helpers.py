@@ -35,8 +35,8 @@ def desordre_run(pitches):
    notes = [Note(p, (1, 8)) for p in pitches]
    Beam(notes)
    Slur(notes)
-   notes[0].dynamics = 'f'
-   notes[1].dynamics = 'p'
+   notes[0].dynamics.mark = 'f'
+   notes[1].dynamics.mark = 'p'
    v_lower = Voice(notes)
    v_lower.name = 'rh_lower'
    v_lower.voice.number = 2

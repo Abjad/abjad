@@ -28,7 +28,7 @@ def test_dynamics_interface_01( ):
 def test_dynamics_interface_02( ):
    '''Marks grant an effective dynamic to notes following after.'''
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].dynamics = 'p'
+   staff[0].dynamics.mark = 'p'
    for i, note in enumerate(staff):
       if i == 0:
          assert note.dynamics.mark == 'p'
@@ -60,8 +60,8 @@ def test_dynamics_interface_02( ):
 #      as a string representation of the hairpin.'''
 #   staff = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Crescendo(staff[ : 4])
-#   staff[0].dynamics = 'p'
-#   staff[3].dynamics = 'f'
+#   staff[0].dynamics.mark = 'p'
+#   staff[3].dynamics.mark = 'f'
 #   for i, note in enumerate(staff):
 #      if i == 0:
 #         assert note.dynamics.mark == 'p'
@@ -127,7 +127,7 @@ def test_dynamics_interface_02( ):
 #      grant no effective dynamic to notes following after.'''
 #   staff = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Crescendo(staff[ : 4])
-#   staff[0].dynamics = 'p'
+#   staff[0].dynamics.mark = 'p'
 #   assert staff.format == "\\new Staff {\n\tc'8 \\pX \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 #   for i, note in enumerate(staff):
 #      if i == 0:
@@ -161,7 +161,7 @@ def test_dynamics_interface_02( ):
 #      to notes following after.'''
 #   staff = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Crescendo(staff[ : 4])
-#   staff[3].dynamics = 'f'
+#   staff[3].dynamics.mark = 'f'
 #   assert staff.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\fX\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 #   for i, note in enumerate(staff):
 #      if i in (0, 1, 2):

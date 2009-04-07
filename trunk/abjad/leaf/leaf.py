@@ -69,14 +69,6 @@ class _Leaf(_Component):
       return self._duration
 
    @apply
-   def dynamics( ):
-      def fget(self):
-         return self._dynamics
-      def fset(self, arg):
-         self._dynamics.mark = arg
-      return property(**locals( ))
-
-   @apply
    def glissando( ):
       def fget(self):
          return self._glissando   
