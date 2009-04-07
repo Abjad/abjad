@@ -53,30 +53,30 @@ def test_one_note_chord_02( ):
 
 ## TEST CHORD FORMAT RIGHT ##
 
-def test_chord_format_right_01( ):
-   '''Untweaked chords format right.'''
-   t = Chord([2, 3, 4], (1, 4))
-   t.glissando.set = True
-   assert t.format == "<d' ef' e'>4 \\glissando"
-   '''
-   <d' ef' e'>4 \glissando
-   '''
-
-
-def test_chord_format_right_02( ):
-   '''Tweaked chords format right.'''
-   t = Chord([2, 3, 4], (1, 4))
-   t[0].color = 'red'
-   t.glissando.set = True
-   assert t.format == "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
-   '''
-   <
-           \tweak #'color #red
-           d'
-           ef'
-           e'
-   >4 \glissando
-   '''
+#def test_chord_format_right_01( ):
+#   '''Untweaked chords format right.'''
+#   t = Chord([2, 3, 4], (1, 4))
+#   t.glissando.set = True
+#   assert t.format == "<d' ef' e'>4 \\glissando"
+#   '''
+#   <d' ef' e'>4 \glissando
+#   '''
+#
+#
+#def test_chord_format_right_02( ):
+#   '''Tweaked chords format right.'''
+#   t = Chord([2, 3, 4], (1, 4))
+#   t[0].color = 'red'
+#   t.glissando.set = True
+#   assert t.format == "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
+#   '''
+#   <
+#           \tweak #'color #red
+#           d'
+#           ef'
+#           e'
+#   >4 \glissando
+#   '''
 
 
 ## TEST MANAGED ATTRIBUTES ##
