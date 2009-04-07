@@ -12,7 +12,7 @@ class _Parentage(_Interface):
    def __init__(self, _client):
       '''Bind to client and set parent to None.'''
       _Interface.__init__(self, _client)
-      self._parent = None
+      self.__parent = None
 
    ## PRIVATE ATTRIBUTES ##
    
@@ -121,7 +121,7 @@ class _Parentage(_Interface):
    def parent( ):
       '''Return reference to parent of client, else None.'''
       def fget(self):
-         return self._parent
+         return self.__parent
       def fset(self, arg):
          ## TODO: Call _markUpdateToRoot in _Parentage.parent.fset( ) ##
          self._parent = arg
