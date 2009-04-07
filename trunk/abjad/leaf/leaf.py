@@ -51,25 +51,15 @@ class _Leaf(_Component):
 
    ## PUBLIC ATTRIBUTES ##
 
-   ## TODO: Implement _Leaf.accidentals ##
-
-   @apply
-   def accidentals( ):
-      def fget(self):
-         raise Exception(NotImplemented)
-      def fset(self, arglist):
-         raise Exception(NotImplemented)
-      return property(**locals( ))
-
    @apply
    def articulations( ):
       def fget(self):
          return self._articulations
       def fset(self, arg):
          if arg is None:
-            self._articulations[ : ] = [ ]
+            self._articulations[:] = [ ]
          elif isinstance(arg, list):
-            self._articulations[ : ] = arg
+            self._articulations[:] = arg
          else:
             raise ValueError('must be None or list of articulations.')
       return property(**locals( ))
