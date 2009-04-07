@@ -1,7 +1,7 @@
 from abjad.cfg.cfg import ABJADOUTPUT
-from abjad.cfg.cfg import MIDIPLAYER
 from abjad.cfg.get_next_output import _get_next_output
 from abjad.cfg.open_file import _open_file
+from abjad.cfg.read_config_value import _read_config_value
 from abjad.cfg.run_lilypond import _run_lilypond
 from abjad.cfg.verify_output_directory import _verify_output_directory
 from abjad.cfg.wrap_format_in_score_block import _wrap_format_in_score_block
@@ -28,5 +28,6 @@ def play(ly):
       extension = 'mid'
    else:
       extension = 'midi'
-   _open_file('%s.%s' % (name[:-3], extension), MIDIPLAYER)
+   midiplayer = _read_config_value('midiplayer')
+   _open_file('%s.%s' % (name[:-3], extension), midiplayer)
 
