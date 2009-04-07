@@ -68,17 +68,6 @@ class _Leaf(_Component):
    def duration(self):
       return self._duration
 
-   @apply
-   def formatter( ):
-      def fget(self):
-         return self._formatter
-      def fset(self, arg):
-         if isinstance(arg, _LeafFormatter):
-            self._formatter = arg
-         else:
-            raise ValueError('must be _LeafFormatter.')
-      return property(**locals( ))
-
    @property
    def grace(self):
       return self._grace

@@ -27,7 +27,7 @@ class _ChordInitializer(_Initializer):
          if isinstance(args[0], Note):
             note = args[0]
             _Leaf.__init__(client, note.duration.written)
-            client.formatter = _ChordFormatter(client)
+            client._formatter = _ChordFormatter(client)
             # must copy notehead (if required) BEFORE
             # _transfer_all_attributes;
             # otherwise note copy will fail to fracture spanners
@@ -41,23 +41,23 @@ class _ChordInitializer(_Initializer):
          if isinstance(args[0], Rest):
             rest = args[0]
             _Leaf.__init__(client, rest.duration.written)
-            client.formatter = _ChordFormatter(client)
+            client._formatter = _ChordFormatter(client)
             _transfer_all_attributes(rest, client)
             del client._pitch
          elif isinstance(args[0], Chord):
             chord = args[0]
             _Leaf.__init__(client, chord.duration.written)
-            client.formatter = _ChordFormatter(client)
+            client._formatter = _ChordFormatter(client)
             _transfer_all_attributes(chord, client)
          elif isinstance(args[0], Skip):
             skip = args[0]
             _Leaf.__init__(client, skip.duration.written)
-            client.formatter = _ChordFormatter(client)
+            client._formatter = _ChordFormatter(client)
             _transfer_all_attributes(skip, client)
       elif len(args) == 2:
          pitches, duration = args
          _Leaf.__init__(client, duration)
-         client.formatter = _ChordFormatter(client)
+         client._formatter = _ChordFormatter(client)
          client.pitches = pitches
       else:
          raise ValueError('can not initialize chord.')
