@@ -37,7 +37,7 @@ def measures_scale(expr, multiplier = Rational(1)):
          new_duration = multiplier * old_duration
          new_meter = _make_best_meter(
             new_duration, [old_denominator], multiplier._d)
-      measure.meter = new_meter
+      measure.meter.forced = new_meter
 
       contents_multiplier_denominator = _next_least_power_of_two(multiplier._d)
       contents_multiplier = Rational(

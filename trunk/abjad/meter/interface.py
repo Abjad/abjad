@@ -1,5 +1,6 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
+from abjad.exceptions.exceptions import MeterAssignmentError
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.meter.meter import Meter
 import types
@@ -100,12 +101,19 @@ class _MeterInterface(_Interface, _GrobHandler):
             return x.meter._forced
       return Meter(4, 4)
 
+   ## TODO: _MeterInterface instance-checking suggests _DynamicMeasureMeterInterface is needed. ##
+
    @apply
    def forced( ):
       '''Read / write attribute to set meter explicitly.'''
       def fget(self):
          return self._forced
       def fset(self, arg):
+         ## TODO: Figure out why DynamicMeasure testing doesn't work ##
+         #from measure.dynamic.measure import DynamicMeasure
+         #if isinstance(self.client, DynamicMeasure):
+         if self.client.__class__.__name__ == 'DynamicMeasure':
+            raise MeterAssignmentError
          if arg is None:
             self._forced = None
          elif isinstance(arg, tuple):

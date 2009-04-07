@@ -36,7 +36,7 @@ def measures_subsume(expr):
             meter_rational = Rational(meter.numerator, meter.denominator)
             numerator = meter_rational._n * reduced_denominator
             denominator = meter_rational._d * reduced_denominator
-            measure.meter = (numerator, denominator)
+            measure.meter.forced = (numerator, denominator)
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
             bequeath([tuplet], tuplet[:])

@@ -42,7 +42,7 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
    if reduced_pair != multiplied_pair:
       new_pair = _pair_multiply_constant_numerator(old_pair, multiplier)      
       new_meter = Meter(new_pair)
-      measure.meter = new_meter
+      measure.meter.forced = new_meter
       remaining_multiplier = Rational(*reduced_pair)
       if remaining_multiplier != Rational(1):
          container_scale(measure, remaining_multiplier)
@@ -59,11 +59,11 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
       elif multiplier == Rational(0):
          raise ZeroDivisionError
       new_meter = Meter(new_pair)
-      measure.meter = new_meter
+      measure.meter.forced = new_meter
    else:
       new_pair = _pair_multiply_constant_numerator(old_pair, multiplier)
       new_meter = Meter(new_pair)
-      measure.meter = new_meter
+      measure.meter.forced = new_meter
       remaining_multiplier = multiplier / new_meter.multiplier
       if remaining_multiplier != Rational(1):
          container_scale(measure, remaining_multiplier)

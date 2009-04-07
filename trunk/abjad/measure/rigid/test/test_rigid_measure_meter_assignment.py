@@ -15,7 +15,7 @@ def test_measure_meter_reassign_01( ):
    '''
 
    t.pop( )
-   t.meter = Meter(3, 8)
+   t.meter.forced = Meter(3, 8)
 
    r'''
         \time 3/8

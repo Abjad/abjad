@@ -63,10 +63,6 @@ class _Leaf(_Component):
             raise ValueError('must be None or list of articulations.')
       return property(**locals( ))
 
-#   @property
-#   def duration(self):
-#      return self._duration
-
    @property
    def grace(self):
       return self._grace

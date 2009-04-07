@@ -169,13 +169,9 @@ class _Component(_Abjad):
       from abjad.leaf.leaf import _Leaf
       return list(iterate(self, _Leaf))
 
-   @apply
-   def meter( ):
-      def fget(self):
-         return self._meter
-      def fset(self, arg):
-         self._meter.forced = arg
-      return property(**locals( ))
+   @property
+   def meter(self):
+      return self._meter
 
    @property
    def music(self):

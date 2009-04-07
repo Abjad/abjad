@@ -11,6 +11,6 @@ def measure_set_denominator(measure, denominator):
       old_meter = measure.meter.effective
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = _in_terms_of(old_meter_pair, denominator)
-      measure.meter = new_meter
+      measure.meter.forced = new_meter
 
    return measure

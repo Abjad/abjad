@@ -29,6 +29,14 @@ class ExtraSpannerError(Exception):
       but more than one spanner is present.'''
    pass
 
+class MeterError(Exception):
+   '''Any meter error.'''
+   pass
+
+class MeterAssignmentError(MeterError):
+   '''Can not assign meter to DynamicMeasure.'''
+   pass
+
 class MissingSpannerError(Exception):
    '''Operation assumes presence of spanner,
        but spanner is missing.'''

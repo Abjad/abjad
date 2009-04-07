@@ -26,7 +26,6 @@ def test_excise_tuplet_01( ):
    excise(t.leaves[-1])
    measure = t
    assert isinstance(measure, RigidMeasure)
-   #assert measure.meter == (8, 9)
    assert measure.meter.forced == (8, 9)
    assert len(measure) == 1
    tuplet = t[0]

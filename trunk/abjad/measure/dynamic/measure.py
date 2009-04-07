@@ -21,9 +21,3 @@ class DynamicMeasure(_Measure):
          assert isinstance(arg, (int, long, types.NoneType))
          self._denominator = arg
       return property(**locals( ))
-
-   @apply
-   def meter( ):
-      def fget(self):
-         return self._meter
-      return property(**locals( ))

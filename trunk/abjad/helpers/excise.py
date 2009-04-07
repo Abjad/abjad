@@ -25,7 +25,7 @@ def excise(leaf):
          old_denominator = parent.meter.forced.denominator
          naive_meter = parent.meter.forced.duration - prolated_leaf_duration
          better_meter = _in_terms_of(naive_meter, old_denominator)
-         parent.meter = better_meter
+         parent.meter.forced = better_meter
          new_denominator = parent.meter.forced.denominator
 
          old_prolation = _denominator_to_multiplier(old_denominator)

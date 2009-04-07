@@ -37,4 +37,4 @@ def measures_spin(expr, n):
       old_pair = (old_meter.numerator, old_meter.denominator)
       new_pair = _pair_multiply_naive(old_pair, Rational(n))
       new_meter = Meter(new_pair)
-      measure.meter = new_meter
+      measure.meter.forced = new_meter
