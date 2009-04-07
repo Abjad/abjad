@@ -52,7 +52,6 @@ def test_container_add_05( ):
 def test_container_add_06( ):
    '''Addition works on sequentially nested equally named containers.'''
 
-   py.test.skip('Staff addition does not work due to new signature definition.')
 
    t1 = Staff([Voice(Note(0, (1, 4))*2)])
    t2 = Staff([Voice(Note(0, (1, 4))*2)])
@@ -112,7 +111,6 @@ def test_container_add_13( ):
    '''Addition works on matching parallel containers each 
    with two named threadable Voice children.'''
 
-   py.test.skip('Staff addition does not work due to new signature definition.')
 
    v1 = Voice(Note(0, (1, 4))*2)
    v1.name = '1'
