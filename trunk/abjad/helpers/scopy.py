@@ -1,3 +1,4 @@
+from abjad.component.component import _Component
 from abjad.container.container import Container
 from abjad.helpers.copy_fracture import copy_fracture
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
@@ -14,6 +15,7 @@ def scopy(expr, start = 0, stop = None):
    '''Copy expr from start duration stop up to
       and including stop duration stop;
       slice all layers of structure as required.'''
+   assert isinstance(expr, _Component)
    start = Rational(*_duration_token_unpack(start))
    if start < 0:
       start = Rational(0)
@@ -21,7 +23,7 @@ def scopy(expr, start = 0, stop = None):
       stop = expr.duration.prolated
    else:
       stop = Rational(*_duration_token_unpack(stop))
-   assert stop >= start
+   assert start <= stop
    if isinstance(expr, _Leaf):
       return _scopy_leaf(expr, start, stop)
    elif isinstance(expr, Container):
@@ -43,24 +45,16 @@ def _scopy_leaf(leaf, start, stop):
    return new
 
 
-# TODO - calculate start and stop durations relative to the 
-#        prolation of leaves up to (but not beyond) container;
-#        these start and stop durations will differ from the
-#        prolated durations of leaves ... which sometimes extend
-#        upwards beyond container;
-#        this first version uses prolated durations as a first version.
 def _scopy_container(container, start, stop):
    container, first_dif, second_dif = _get_lcopy(container, start, stop)
    #print first_dif, second_dif
    leaf_start = container.leaves[0]
    leaf_end = container.leaves[-1]
    # split first leaf
-   #leaf_start_splitted = leaf_split(first_dif, leaf_start)
    leaf_start_splitted = leaf_split(leaf_start, first_dif)
    if len(leaf_start_splitted) == 2:
       excise(leaf_start_splitted[0])
    # split second leaf
-   #leaf_end_splitted = leaf_split(second_dif, leaf_end)
    leaf_end_splitted = leaf_split(leaf_end, second_dif)
    if len(leaf_end_splitted) == 2:
       excise(leaf_end_splitted[1])

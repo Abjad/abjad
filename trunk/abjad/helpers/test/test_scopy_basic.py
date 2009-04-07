@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_scopy_01( ):
+def test_scopy_basic_01( ):
    '''Container.'''
    t = Container(Note(0, (1, 8)) * 3)
    new = scopy(t, 0, (3, 16))
@@ -13,7 +13,7 @@ def test_scopy_01( ):
    assert check(new)
 
 
-def test_scopy_01b( ):
+def test_scopy_basic_01b( ):
    '''Container with rest.'''
    t = Container([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
    new = scopy(t, 0, (3, 16))
@@ -27,7 +27,7 @@ def test_scopy_01b( ):
    assert check(new)
 
 
-def test_scopy_02( ):
+def test_scopy_basic_02( ):
    '''RigidMeasure.'''
    t = RigidMeasure((3, 8), Note(0, (1, 8)) * 3)
    new = scopy(t, 0, (3, 16))
@@ -40,7 +40,7 @@ def test_scopy_02( ):
    assert check(new)
 
 
-def test_scopy_03( ):
+def test_scopy_basic_03( ):
    '''Fixed duration tuplet.'''
    t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    new = scopy(t, 0, (1, 8))
@@ -54,7 +54,7 @@ def test_scopy_03( ):
    assert check(new)
 
 
-def test_scopy_04( ):
+def test_scopy_basic_04( ):
    '''Fixed multiplier tuplet.'''
    t = FixedMultiplierTuplet((2, 3), Note(0, (1, 8)) * 3)
    new = scopy(t, 0, (1, 8))
@@ -68,7 +68,7 @@ def test_scopy_04( ):
    assert check(new)
 
 
-def test_scopy_05( ):
+def test_scopy_basic_05( ):
    '''Voice.'''
    t = Voice(Note(0, (1, 8)) * 3)
    new = scopy(t, 0, (3, 16))
@@ -80,7 +80,7 @@ def test_scopy_05( ):
    assert check(new)
 
 
-def test_scopy_06( ):
+def test_scopy_basic_06( ):
    '''Staff.'''
    t = Staff(Note(0, (1, 8)) * 3)
    new = scopy(t, 0, (3, 16))
