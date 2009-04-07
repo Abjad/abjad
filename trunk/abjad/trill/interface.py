@@ -4,10 +4,12 @@ from abjad.spanner.receptor import _SpannerReceptor
 
 
 class _TrillInterface(_Interface, _GrobHandler, _SpannerReceptor):
+   '''Handle LilyPond TrillSpanner grob and Abjad Trill spanner.'''
 
    def __init__(self, client):
+      '''Bind to client and LilyPond TrillSpanner grob.
+         Receive Abjad Trill spanner.'''
       from abjad.trill.spanner import Trill
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TrillSpanner')
       _SpannerReceptor.__init__(self, (Trill, ))
-      self._set = None

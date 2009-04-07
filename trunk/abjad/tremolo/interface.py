@@ -4,8 +4,11 @@ from abjad.helpers.is_power_of_two import _is_power_of_two
 
 
 class _TremoloInterface(_Interface, _FormatContributor):
+   '''Publish tremolo subdivision settings.
+      Handle no LilyPond grob.'''
 
    def __init__(self, client):
+      '''Bind to client and set subdivision to None.'''
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
       self._subdivision = None
@@ -14,6 +17,7 @@ class _TremoloInterface(_Interface, _FormatContributor):
 
    @apply
    def subdivision( ):
+      '''Read / write positive power-of-two tremolo subdivision.'''
       def fget(self):
          return self._subdivision
       def fset(self, arg):

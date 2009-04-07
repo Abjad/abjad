@@ -3,8 +3,11 @@ from abjad.core.interface import _Interface
 
 
 class _VoiceInterface(_Interface, _FormatContributor):
+   '''Publish LilyPond voice-number settings.
+      Handle no LilyPond grob.'''
 
    def __init__(self, client):
+      '''Bind to client and set voice number to None.'''
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
       self.number = None
@@ -24,12 +27,10 @@ class _VoiceInterface(_Interface, _FormatContributor):
 
    @property
    def opening(self):
-      '''String content, if any, this voice will write to the 
-         'before' slot of its first leaf at format-time.'''
+      '''Format contribution at container opening or before leaf.'''
       result = [ ]
       voices = {
          1:r'\voiceOne', 2:r'\voiceTwo', 3:r'\voiceThree', 4:r'\voiceFour'}
       if self.number:
          result.append(voices[self.number])
       return result
-

@@ -1,5 +1,4 @@
 from abjad.articulations.interface import _ArticulationsInterface
-from abjad.clef.clef import Clef
 from abjad.component.component import _Component
 from abjad.core.interface import _Interface
 from abjad.grace.interface import _GraceInterface
