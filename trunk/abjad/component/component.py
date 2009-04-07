@@ -107,8 +107,8 @@ class _Component(_Abjad):
    def barline( ):
       def fget(self):
          return self._barline
-      def fset(self, type):
-         self._barline.type = type
+      def fset(self, arg):
+         self._barline.kind = arg
       return property(**locals( ))
    
    @apply

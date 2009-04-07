@@ -3,39 +3,31 @@ from abjad.core.interface import _Interface
 
 
 class _BarLineInterface(_Interface, _GrobHandler):
+   '''Abjad _BarLineInterface manages the LilyPond BarLine grob.
+      One public read / write 'kind' attribute.
+      Makes format contribution at container closing or after leaf.'''
    
    def __init__(self, client):
+      '''Establish client and set kind to None.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'BarLine')
-      self._type = None
+      self._kind = None
 
    ## PUBLIC ATTRIBUTES ##
 
-   ## TODO: Eliminate _BarlineInterface.after infavor of .closing ##
-   ##       Train _LeafFormatter to look for .closing ##
-
-   @property
-   def after(self):
-      from abjad.leaf.leaf import _Leaf
-      result = [ ]
-      if isinstance(self._client, _Leaf):
-         if self.type is not None:
-            result.append(r'\bar "%s"' % self.type)
-      return result
-
    @property
    def closing(self):
-      from abjad.container.container import Container
+      '''Format contribution at container closing or after leaf.'''
       result = [ ]
-      if isinstance(self._client, Container):
-         if self.type:
-            result.append(r'\bar "%s"' % self.type)
+      if self.kind:
+         result.append(r'\bar "%s"' % self.kind)
       return result
 
    @apply
-   def type( ):
+   def kind( ):
+      '''Kind of barline, from LilyPond documentation.'''
       def fget(self):
-         return self._type
+         return self._kind
       def fset(self, expr):
-         self._type = expr
-      return property(**locals())
+         self._kind = expr
+      return property(**locals( ))

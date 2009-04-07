@@ -15,7 +15,7 @@ def test_barline_interface_01( ):
 
 
 def test_barline_interface_02( ):
-   '''Barline at end of container.'''
+   '''Barline at container closing.'''
 
    t = Staff( )
    t.barline = '|.'

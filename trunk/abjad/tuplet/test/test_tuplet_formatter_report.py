@@ -6,7 +6,7 @@ def test_tuplet_formatter_report_01( ):
 
    t = FixedDurationTuplet((2, 8), scale(3))
    t.accidental.style = 'forget'
-   t.barline.type = '|.'
+   t.barline.kind = '|.'
    t.clef.forced = 'treble'
 
    r'''\times 2/3 {
