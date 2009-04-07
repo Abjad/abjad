@@ -4,13 +4,14 @@ from abjad.spanner.receptor import _SpannerReceptor
 
 
 class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
+   '''Handle LilyPond Glissando grob.'''
 
    def __init__(self, client):
       from abjad.glissando.spanner import Glissando
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Glissando')
       _SpannerReceptor.__init__(self, (Glissando, ))
-      self._set = None
+      self._set = False
 
    ## OVERLOADS ##
 
@@ -29,6 +30,14 @@ class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
       if self._set:
          result.append(r'\glissando')
       return result
+
+   @apply
+   def set( ):
+      def fget(self):
+         return self._set
+      def fset(self, arg):
+         self._set = arg
+      return property(**locals( ))
 
    ## PUBLIC METHODS ##
 

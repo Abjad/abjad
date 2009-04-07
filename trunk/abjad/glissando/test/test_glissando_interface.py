@@ -5,16 +5,16 @@ def test_glissando_interface_01( ):
    '''Glissando interface tests nonzero.'''
    t = Note(0, (3, 64))
    assert not t.glissando
-   t.glissando = True
+   t.glissando.set = True
    assert t.glissando
 
 
 def test_glissando_interface_02( ):
    '''Glissando interface tests eq.'''
    t = Note(0, (3, 64))
-   assert t.glissando == False
-   t.glissando = True
-   assert t.glissando == True
+   assert t.glissando.set == False
+   t.glissando.set = True
+   assert t.glissando.set == True
 
 
 def test_glissando_interface_03( ):

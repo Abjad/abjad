@@ -69,19 +69,6 @@ class _Leaf(_Component):
       return self._duration
 
    @apply
-   def glissando( ):
-      def fget(self):
-         return self._glissando   
-      def fset(self, arg):
-         if arg is None:
-            self._glissando._set = False
-         elif isinstance(arg, bool):
-            self._glissando._set = arg 
-         else:
-            raise ValueError('must be boolean or None.')
-      return property(**locals( ))
-
-   @apply
    def formatter( ):
       def fget(self):
          return self._formatter
