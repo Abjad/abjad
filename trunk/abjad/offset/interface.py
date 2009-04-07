@@ -1,17 +1,17 @@
-#from abjad.core.interface import _Interface
 from abjad.core.observer import _Observer
 from abjad.rational.rational import Rational
 
 
-#class _OffsetInterface(_Interface):
 class _OffsetInterface(_Observer):
+   '''Serve rational rhythmic offset values.
+      Handle no LilyPond grob.'''
 
    def __init__(self, _client, updateInterface):
-      #_Interface.__init__(self, _client)
+      '''Bind to client and observer
+         Set score and thread offsets to Rational(0).'''
       _Observer.__init__(self, _client, updateInterface)
       self._score = Rational(0)
       self._thread = Rational(0)
-      #updateInterface._observers.append(self)
 
    ## PRIVATE METHODS ##
 
@@ -21,7 +21,7 @@ class _OffsetInterface(_Observer):
 
    def _updateScore(self):
       offset = Rational(0, 1)
-      prev = self._client._navigator._prev
+      prev = self.client._navigator._prev
       if prev:
          offset += prev.offset.score + prev.duration.prolated
       self._score = offset
@@ -29,8 +29,8 @@ class _OffsetInterface(_Observer):
    def _updateThread(self):
       from abjad.helpers.assess_components import assess_components
       offset = Rational(0, 1)
-      prev = self._client._navigator._prev
-      if prev and assess_components([prev, self._client], 
+      prev = self.client._navigator._prev
+      if prev and assess_components([prev, self.client], 
          'strict', 'thread', False):
          offset += prev.offset.thread + prev.duration.prolated
       self._thread = offset
@@ -39,10 +39,12 @@ class _OffsetInterface(_Observer):
 
    @property
    def score(self):
+      '''Rational-valued rhythmic offset from beginning of score.'''
       self._makeSubjectUpdateIfNecessary( )
       return self._score
 
    @property
    def thread(self):
+      '''Rational-valued rhythmic offset from beginning of thread.'''
       self._makeSubjectUpdateIfNecessary( )
       return self._thread

@@ -3,8 +3,11 @@ from abjad.parentage.containment import _ContainmentSignature
 
 
 class _ThreadInterface(_Interface):
+   '''Serve thread parentage information about component.
+      Handle no LilyPond grob.'''
 
    def __init__(self, client):
+      '''Bind to client.'''
       _Interface.__init__(self, client)
 
    ## PUBLIC ATTRIBUTES ##

@@ -6,8 +6,11 @@ import types
 
 
 class _Parentage(_Abjad):
+   '''Serve literal score parentage information about component.
+      Handle no LilyPond grob.'''
 
    def __init__(self, client):
+      '''Bind to client and set parent to None.'''
       self._client = client
       self._parent = None
 
@@ -120,7 +123,7 @@ class _Parentage(_Abjad):
       def fget(self):
          return self._parent
       def fset(self, arg):
-         ## TODO: Include asserts
+         ## TODO: Call _markUpdateToRoot in _Parentage.parent.fset( ) ##
          self._parent = arg
       
    @property

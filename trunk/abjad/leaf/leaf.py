@@ -88,22 +88,6 @@ class _Leaf(_Component):
       return (self.pairs, 
          (self.duration.written._n, self.duration.written._d))
 
-#   @apply
-#   def staff( ):
-#      def fget(self):
-#         return self._staff.effective
-#      def fset(self, arg):
-#         if arg is None:
-#            self._staff._forced = arg
-#         else:
-#            assert arg.__class__.__name__ == 'Staff'
-#            self._staff._forced = arg
-#      return property(**locals( ))
-
    @property
    def staff(self):
       return self._staff
-
-   @property
-   def tie(self):
-      return self._tie

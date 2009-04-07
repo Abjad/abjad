@@ -4,8 +4,10 @@ from abjad.receipt.spanner import _SpannerReceipt
 
 
 class _ComponentSpannerAggregator(_Interface):
+   '''Aggregate information about all spanners affecting client.'''
 
    def __init__(self, client):
+      '''Bind to client and set spanners to empty set.'''
       _Interface.__init__(self, client)
       self._spanners = set([ ])
 

@@ -3,8 +3,12 @@ from abjad.spanner.receptor import _SpannerReceptor
 
 
 class _PianoPedalInterface(_Interface, _SpannerReceptor):
+   '''Handle LilyPond PianoPedal grob.
+      Receive Abjad PianoPedal spanner.'''
 
    def __init__(self, client):
+      '''Bind to client and LilyPond PianoPedal grob.
+         Receive Abjad PianoPedal spanner.'''
       from abjad.pianopedal.spanner import PianoPedal
       _Interface.__init__(self, client)
       _SpannerReceptor.__init__(self, (PianoPedal, ))
