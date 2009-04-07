@@ -4,8 +4,12 @@ import types
 
 
 class _BreaksInterface(_Interface, _FormatContributor):
+   r'''Handle no LilyPond grob.
+      Interface to LilyPond \break and \pageBreak commands.
+      Interface to LilyPond x- and y- system positioning.'''
    
    def __init__(self, client):
+      '''Bind to client and set line, page, x and y to None.'''
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
       self._line = None
@@ -16,6 +20,7 @@ class _BreaksInterface(_Interface, _FormatContributor):
    ## OVERLOADS ##
 
    def __nonzero__(self):
+      '''True when line or page are set to True.'''
       return self.line is True or self.page is True
 
    ## PRIVATE ATTRIBUTES ##
@@ -43,8 +48,7 @@ class _BreaksInterface(_Interface, _FormatContributor):
 
    @property
    def closing(self):
-      '''Formatting contributions to appear immediately after leaf
-         or at closing of container.'''
+      '''Format contribution at container closing or after leaf.'''
       result = [ ]
       if self.line:
          result.append(r'\break')
@@ -61,12 +65,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
       def fget(self):
          return self._line
       def fset(self, arg):
-         if arg is None:
-            self._line = arg
-         elif isinstance(arg, bool):
-            self._line = arg
-         else:
-            raise ValueError('can not set line breaks.')
+         assert isinstance(arg, bool) or arg is None
+         self._line = arg
       return property(**locals( ))
 
    @apply
@@ -75,12 +75,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
       def fget(self):
          return self._page
       def fset(self, arg):
-         if arg is None:
-            self._page = arg
-         elif isinstance(arg, bool):
-            self._page = arg
-         else:
-            raise ValueError('can not set page breaks.')
+         assert isinstance(arg, bool) or arg is None
+         self._page = arg
       return property(**locals( ))
 
    @apply
@@ -106,7 +102,7 @@ class _BreaksInterface(_Interface, _FormatContributor):
    ## PUBLIC METHODS ##
 
    def clear(self):
-      '''Remove any LilyPond \line break contribution.
+      r'''Remove any LilyPond \line break contribution.
          Remove any LilyPond \pageBreak contribution.'''
       self.line = None
       self.page = None
