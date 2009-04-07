@@ -181,22 +181,24 @@ class _Navigator(_Abjad):
       candidates = next._navigator._firstLeaves
       return self._findFellowBead(candidates)
 
+
    @property
    def _nextNamesake(self):
-      '''Find the next Component having both the same type and the same
-      name as client.'''
-      if self._client.name is None:
+      '''Find the next Component of the same type and with the same 
+      parentage signature.'''
+      next = self._next
+      if next is None:
          return None
-      for node in self._DFS(capped=False):
-         if not node is self._client:
-            if node.name == self._client.name and \
-               type(node) == type(self._client): 
-               return node
+      for node in next._navigator._DFS(capped = False):
+         if type(node) == type(self._client) and \
+            node.parentage.signature == self._client.parentage.signature:
+            return node
+
 
    @property
    def _nextSibling(self):
       '''Returns the next *sequential* element in the caller's parent; 
-         None otherwise'''
+      None otherwise'''
       rank = self._rank( )
       if (not rank is None) and (not self._client.parentage.parent.parallel): 
          if rank + 1 < len(self._client.parentage.parent._music):
