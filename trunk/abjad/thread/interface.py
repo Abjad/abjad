@@ -14,6 +14,7 @@ class _ThreadInterface(_Interface):
       '''Return _ContainmentSignature giving the root and
          first voice, staff and score in parentage of component.'''
       from abjad.score.score import Score
+      from abjad.staffgroup.staffgroup import StaffGroup
       from abjad.staff.staff import Staff
       from abjad.voice.voice import Voice
       signature = _ContainmentSignature( )
@@ -25,6 +26,8 @@ class _ThreadInterface(_Interface):
             numeric_id = '%s-%s' % (
                component.__class__.__name__, id(component))
             signature._staff = numeric_id
+         elif isinstance(component, StaffGroup) and not signature._staffgroup:
+            signature._staffgroup = component._ID
          elif isinstance(component, Score) and not signature._score:
             signature._score = component._ID
       else:

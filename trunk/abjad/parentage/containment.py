@@ -9,6 +9,7 @@ class _ContainmentSignature(_Abjad):
       self._self = None
       self._score = None
       self._staff = None
+      self._staffgroup = None
       self._voice = None 
 
    ## OVERLOADS ##
@@ -17,6 +18,7 @@ class _ContainmentSignature(_Abjad):
       return isinstance(arg, _ContainmentSignature) and \
          self._voice == arg._voice and \
          self._staff == arg._staff and \
+         self._staffgroup == arg._staffgroup and \
          self._score == arg._score and \
          self._root == arg._root
 
@@ -29,18 +31,10 @@ class _ContainmentSignature(_Abjad):
 
    def __str__(self):
       result = [ ]
-      result.append(' root: %s (%s)' % (self._root_str, self._root))
-      if self._score is not None:
-         result.append('score: %s' % self._score)
-      else:
-         result.append('score: ')
-      if self._staff is not None:
-         result.append('staff: %s' % self._staff)
-      else:
-         result.append('staff: ')
-      if self._voice is not None:
-         result.append('voice: %s' % self._voice)
-      else:
-         result.append('voice: ')
-      result.append(' self: %s' % self._self)
+      result.append('      root: %s (%s)' % (self._root_str, self._root))
+      result.append('     score: %s' % (self._score or ''))
+      result.append('staffgroup: %s' % (self._staffgroup or ''))
+      result.append('     staff: %s' % (self._staff or ''))
+      result.append('     voice: %s' % (self._voice or ''))
+      result.append('      self: %s' % self._self)
       return '\n'.join(result)

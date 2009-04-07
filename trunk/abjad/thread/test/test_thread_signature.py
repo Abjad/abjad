@@ -383,3 +383,26 @@ def test_thread_signature_10( ):
    assert t[0].thread.signature == t[-1].thread.signature
    assert t[0].thread.signature == t[0][0].thread.signature
    assert t[0][0].thread.signature == t[-1].thread.signature
+
+
+def test_thread_signature_11( ):
+   '''Leaves inside different Staves have different thread signatures,
+   even when the staves have the same name.'''
+   t = Container(Staff(run(2)) * 2)
+   t[0].name = t[1].name = 'staff'
+
+   r'''{
+           \context Staff = "staff" {
+                   c'8
+                   c'8
+           }
+           \context Staff = "staff" {
+                   c'8
+                   c'8
+           }
+   }'''
+
+   assert t.leaves[0].thread.signature == t.leaves[1].thread.signature
+   assert t.leaves[0].thread.signature != t.leaves[2].thread.signature
+   assert t.leaves[2].thread.signature == t.leaves[3].thread.signature
+   assert t.leaves[2].thread.signature != t.leaves[0].thread.signature
