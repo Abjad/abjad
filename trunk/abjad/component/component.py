@@ -9,6 +9,7 @@ from abjad.directives.interface import _UserDirectivesInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
+from abjad.helpers.iterate import iterate
 from abjad.instrument.interface import _InstrumentInterface
 from abjad.interfaces.aggregator import _InterfaceAggregator
 from abjad.meter.interface import _MeterInterface
@@ -130,6 +131,10 @@ class _Component(_Abjad):
       return self._dots
 
    @property
+   def duration(self):
+      return self._duration
+
+   @property
    def dynamics(self):
       return self._dynamics
 
@@ -152,6 +157,12 @@ class _Component(_Abjad):
    @property
    def interfaces(self):
       return self._interfaces
+
+   @property
+   def leaves(self):
+      '''Python list of all leaves in container.'''
+      from abjad.leaf.leaf import _Leaf
+      return list(iterate(self, _Leaf))
 
    @apply
    def meter( ):

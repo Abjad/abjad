@@ -64,9 +64,9 @@ class _Leaf(_Component):
             raise ValueError('must be None or list of articulations.')
       return property(**locals( ))
 
-   @property
-   def duration(self):
-      return self._duration
+#   @property
+#   def duration(self):
+#      return self._duration
 
    @property
    def grace(self):
@@ -84,10 +84,6 @@ class _Leaf(_Component):
    def history(self):
       return self._history
    
-   @property
-   def leaves(self):
-      return [self]
-
    @property
    def next(self):
       return self._navigator._nextBead

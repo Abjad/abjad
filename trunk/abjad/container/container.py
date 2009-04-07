@@ -12,7 +12,6 @@ from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 from abjad.helpers.get_dominant_spanners import get_dominant_spanners
 from abjad.helpers.get_dominant_spanners_slice import \
    get_dominant_spanners_slice
-from abjad.helpers.iterate import iterate
 from abjad.helpers.withdraw_from_crossing_spanners import \
    _withdraw_from_crossing_spanners
 from abjad.notehead.interface import _NoteHeadInterface
@@ -153,17 +152,6 @@ class Container(_Component):
    def brackets(self):
       '''Read-only reference to brackets interface.'''
       return self._brackets
-
-   @property
-   def duration(self):
-      '''Read-only reference to container duration interface.'''
-      return self._duration
-
-   @property
-   def leaves(self):
-      '''Python list of all leaves in container.'''
-      from abjad.leaf.leaf import _Leaf
-      return list(iterate(self, _Leaf))
 
    @apply
    def parallel( ):
