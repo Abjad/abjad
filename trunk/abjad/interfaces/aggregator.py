@@ -2,8 +2,10 @@ from abjad.core.interface import _Interface
 
 
 class _InterfaceAggregator(_Interface):
+   '''Aggregates information about all format contributing interfaces.'''
 
    def __init__(self, client):
+      '''Bind to client.'''
       _Interface.__init__(self, client)
 
    ## PUBLIC ATTRIBUTES ##

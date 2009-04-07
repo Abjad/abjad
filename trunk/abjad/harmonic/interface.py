@@ -3,8 +3,10 @@ from abjad.core.interface import _Interface
 
 
 class _HarmonicInterface(_Interface, _FormatContributor):
+   r'''Interface to LilyPond \flageolet command.'''
 
    def __init__(self, client):
+      '''Bind client and set natural to False.'''
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
       self.natural = False
@@ -13,6 +15,7 @@ class _HarmonicInterface(_Interface, _FormatContributor):
 
    @apply
    def natural( ):
+      '''Set True to add natural harmonic to leaf.'''
       def fget(self):
          return self._natural
       def fset(self, arg):
@@ -22,8 +25,8 @@ class _HarmonicInterface(_Interface, _FormatContributor):
 
    @property
    def right(self):
+      '''Format contribution right of leaf.'''
       result = [ ]
       if self.natural:
          result.append(r'\flageolet')
       return result
-

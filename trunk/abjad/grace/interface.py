@@ -25,6 +25,7 @@ class _GraceInterface(_Interface):
    
    @apply
    def after( ):
+      '''Grace before after leaf.'''
       def fget(self):
          return self._after
       def fset(self, arg):
@@ -46,6 +47,7 @@ class _GraceInterface(_Interface):
 
    @apply
    def before( ):
+      '''Grace music before leaf.'''
       def fget(self):
          return self._before
       def fset(self, arg):

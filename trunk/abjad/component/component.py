@@ -51,6 +51,7 @@ class _Component(_Abjad):
       self._dots = _DotsInterface(self)
       self._dynamics = _DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)
+      self._history = { }
       self._instrument = _InstrumentInterface(self)
       self._interfaces = _InterfaceAggregator(self)
       self._meter = _MeterInterface(self)
@@ -149,6 +150,10 @@ class _Component(_Abjad):
    @property
    def glissando(self):
       return self._glissando
+
+   @property
+   def history(self):
+      return self._history
 
    @property
    def instrument(self):

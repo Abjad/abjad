@@ -3,6 +3,7 @@ from abjad.spanner.receptor import _SpannerReceptor
 
 
 class _InstrumentInterface(_Interface, _SpannerReceptor):
+   '''Receives Abjad Instrument spanner.'''
 
    def __init__(self, client):
       from abjad.instrument.spanner import Instrument

@@ -22,7 +22,6 @@ class _Leaf(_Component):
       self._formatter = _LeafFormatter(self)
       self._grace = _GraceInterface(self)
       self._harmonic = _HarmonicInterface(self)
-      self._history = { }
       self._markup = _MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
       self._staff = _StaffInterface(self)
@@ -80,10 +79,6 @@ class _Leaf(_Component):
    def markup(self):
       return self._markup
 
-   @property
-   def history(self):
-      return self._history
-   
    @property
    def next(self):
       return self._navigator._nextBead

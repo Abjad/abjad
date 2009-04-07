@@ -65,6 +65,7 @@ class _ArticulationsInterface(_Interface, _FormatContributor):
 
    @property
    def right(self):
+      '''Format contribution to right of leaf.'''
       result = [ ]
       result.extend([x.format for x in self._articulations])
       return result
