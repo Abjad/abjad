@@ -1,7 +1,7 @@
 from abjad.cfg.cfg import ABJADOUTPUT
-from abjad.cfg.cfg import PDFVIEWER
 from abjad.cfg.get_next_output import _get_next_output
 from abjad.cfg.open_file import _open_file
+from abjad.cfg.read_config_value import _read_config_value
 from abjad.cfg.run_lilypond import _run_lilypond
 from abjad.cfg.verify_output_directory import _verify_output_directory
 from abjad.cfg.wrap_format import _wrap_format
@@ -17,7 +17,8 @@ def show(expr, template = None, title = None):
       Format Abjad expression 'expr' as LilyPond code.
       Write the LilyPond version of 'expr' to .ly file.
       Process .ly file with LilyPond and log to ABJADOUTPUT/lily.log.
-      Open the PDF output by LilyPond with PDFVIEWER.'''
+      Open the PDF output by LilyPond with the PDF viewer defined in
+      the config file..'''
 
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
@@ -28,4 +29,5 @@ def show(expr, template = None, title = None):
    outfile.write(_wrap_format(expr.format))
    outfile.close( )
    _run_lilypond(name)
-   _open_file('%s.pdf' % name[:-3], PDFVIEWER)
+   pdfviewer = _read_config_value('pdfviewer')
+   _open_file('%s.pdf' % name[:-3], pdfviewer)

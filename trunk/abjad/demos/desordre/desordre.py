@@ -8,7 +8,7 @@ statements = [ ]
 
 ### statements
 text = "Let's first see what we are after."
-code = 'open_file(desordre, PDFVIEWER)'
+code = 'open_file(desordre)'
 s = Statement(text, code)
 statements.append(s)
 
@@ -108,7 +108,6 @@ statements.append(s)
 p = Presentation(title, abstract, statements)
 p.setup.append('from abjad import *')
 p.setup.append('from abjad.cfg.cfg import ABJADPATH')
-p.setup.append('from abjad.cfg.cfg import PDFVIEWER')
 p.setup.append('from abjad.cfg.open_file import _open_file as open_file')
 p.setup.append('from abjad.demos.desordre.helpers import *')
 p.setup.append('import os')
