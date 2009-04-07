@@ -5,7 +5,7 @@ def test_tempo_interface_01( ):
    '''Tempo interface works on nonempty staves.'''
 
    t = Staff(scale(4))
-   t.tempo.indication = (1, 8), 38
+   t.tempo.indication = TempoIndication(Rational(1, 8), 38)
 
    r'''\new Staff {
            \tempo 8=38
@@ -22,7 +22,7 @@ def test_tempo_interface_02( ):
    '''Tempo interface works on empty staves.'''
 
    t = Staff([ ])
-   t.tempo.indication = (1, 8), 38
+   t.tempo.indication = TempoIndication(Rational(1, 8), 38)
 
    r'''\new Staff {
            \tempo 8=38
@@ -36,7 +36,7 @@ def test_tempo_interface_03( ):
    '''Tempo interface works on pure containers.'''
 
    t = Container(scale(4))
-   t.tempo.indication = (1, 8), 38
+   t.tempo.indication = TempoIndication(Rational(1, 8), 38)
 
    r'''{
       \tempo 8=38
@@ -53,7 +53,7 @@ def test_tempo_interface_04( ):
    '''Tempo interface works on notes.'''
 
    t = Note(0, (1, 4))
-   t.tempo.indication = (1, 8), 38
+   t.tempo.indication = TempoIndication(Rational(1, 8), 38)
 
    r'''\tempo 8=38
    c'4'''
@@ -65,7 +65,7 @@ def test_tempo_interface_05( ):
    '''Tempo interface works on chords.'''
 
    t = Chord([2, 3, 4], (1, 4))
-   t.tempo.indication = (1, 8), 38
+   t.tempo.indication = TempoIndication(Rational(1, 8), 38)
 
    r'''\tempo 8=38
       <d' ef' e'>4'''
@@ -77,7 +77,7 @@ def test_tempo_interface_06( ):
    '''Tempo interface accepts durations.'''
 
    t = Note(0, (1, 4))
-   t.tempo.indication = Rational(1, 8), 38
+   t.tempo.indication = TempoIndication(Rational(1, 8), 38)
 
    r'''\tempo 8=38
       c'4'''
@@ -89,7 +89,7 @@ def test_tempo_interface_07( ):
    '''None clears tempo.'''
 
    t = Note(0, (1, 4))
-   t.tempo.indication = Rational(1, 8), 38
+   t.tempo.indication = TempoIndication(Rational(1, 8), 38)
    t.tempo.indication = None
 
    '''

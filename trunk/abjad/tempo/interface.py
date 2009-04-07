@@ -1,7 +1,8 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
-from abjad.rational.rational import Rational
 from abjad.spanner.receptor import _SpannerReceptor
+from abjad.tempo.indication import TempoIndication
+import types
 
 
 class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
@@ -24,17 +25,8 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
       def fget(self):
          return self._indication
       def fset(self, arg):
-         if arg is None:
-            self._indication = arg
-         elif isinstance(arg, (tuple)):
-            assert isinstance(arg, tuple)
-            assert isinstance(arg[0], (tuple, Rational))
-            assert isinstance(arg[1], (int, float, long))
-            from abjad.note.note import Note
-            if isinstance(arg[0], tuple):
-               self._indication = (Note(0, arg[0]), arg[1])
-            elif isinstance(arg[0], Rational):
-               self._indication = (Note(0, arg[0]), arg[1])
+         assert isinstance(arg, (TempoIndication, types.NoneType))
+         self._indication = arg
       return property(**locals( ))
 
    ## PUBLIC METHODS ##
@@ -49,8 +41,7 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def opening(self):
       '''Format contribution at container opening or before leaf.'''
       result =  [ ] 
-      if self.indication:
-         note = self.indication[0].duration._dotted 
-         tempo = self.indication[1]
-         result.append(r'\tempo %s=%s' % (note, tempo))
+      if self.indication is not None:
+         result.append(
+            r'\tempo %s=%s' % (self.indication.dotted, self.indication.mark))
       return result

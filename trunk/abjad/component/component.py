@@ -233,24 +233,6 @@ class _Component(_Abjad):
    def tie(self):
       return self._tie
 
-#   @apply
-#   def tempo( ):
-#      def fget(self):
-#         return self._tempo
-#      def fset(self, expr):
-#         if expr is None:
-#            self._tempo._metronome = None
-#         elif isinstance(expr, (tuple)):
-#            assert isinstance(expr, tuple)
-#            assert isinstance(expr[0], (tuple, Rational))
-#            assert isinstance(expr[1], (int, float, long))
-#            from abjad.note.note import Note
-#            if isinstance(expr[0], tuple):
-#               self._tempo._metronome = (Note(0, expr[0]), expr[1])
-#            elif isinstance(expr[0], Rational):
-#               self._tempo._metronome = (Note(0, expr[0]), expr[1])
-#      return property(**locals( ))
-
    @property
    def tempo(self):
       return self._tempo
