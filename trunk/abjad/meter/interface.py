@@ -7,8 +7,11 @@ import types
 
 
 class _MeterInterface(_Interface, _GrobHandler):
+   '''Handle LilyPond TimeSignature grob.
+      Publish information about effective and forced meter.'''
    
    def __init__(self, client):
+      '''Bind client, set forced to None and suppress to False.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TimeSignature')
       self._forced = None
@@ -35,8 +38,7 @@ class _MeterInterface(_Interface, _GrobHandler):
    @property
    def _parentCanContribute(self):
       r'''True when any parent, other than self, can contribute LP \time.'''
-      parentage = self._client.parentage.parentage[1:]
-      for parent in parentage:
+      for parent in self.client.parentage.parentage[1:]:
          try:
             if parent.meter._selfCanContribute:
                return True
@@ -51,12 +53,12 @@ class _MeterInterface(_Interface, _GrobHandler):
 
    @property
    def before(self):
-      '''List of formatting contributions at _before location.'''
+      '''Format contributions before leaf.'''
       return self._opening
 
    @property
    def opening(self):
-      '''List of formatting contributions at _opening location.'''
+      '''Format contributions at container opening or before leaf.'''
       result = [ ]
       result.extend(_GrobHandler.before.fget(self))
       if self._selfShouldContribute:
@@ -68,14 +70,12 @@ class _MeterInterface(_Interface, _GrobHandler):
       '''True if meter of client differs from 
          meter of component previous to client.'''
       client = self._client
-      #return bool(client.prev and \
-      #   client.prev.meter.effective != self.effective)
-      ## should there be explicit measure-navigation in navigator?
       return bool(client._navigator._prevBead and \
          client._navigator._prevBead.meter.effective != self.effective)
 
    ## TODO - the explicit check for DynamicMeasure seems like
    ##        a (small) hack; is there a better implementation?
+   ##        Maybe this also suggests _DynamicMeasureMeterInterface
 
    @property
    def effective(self):
@@ -114,15 +114,6 @@ class _MeterInterface(_Interface, _GrobHandler):
          #if isinstance(self.client, DynamicMeasure):
          if self.client.__class__.__name__ == 'DynamicMeasure':
             raise MeterAssignmentError
-#         if arg is None:
-#            self._forced = None
-#         elif isinstance(arg, tuple):
-#            meter = Meter(*arg)
-#            self._forced = meter
-#         elif isinstance(arg, Meter):
-#            self._forced = arg
-#         else:
-#            raise ValueError('unknown meter specification.')
          assert isinstance(arg, (Meter, types.NoneType))
          self._forced = arg
       return property(**locals( ))
