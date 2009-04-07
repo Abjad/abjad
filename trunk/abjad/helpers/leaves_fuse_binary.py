@@ -1,23 +1,17 @@
+from abjad.helpers.assert_components import assert_components
 from abjad.helpers.leaf_scale_binary import leaf_scale_binary
-from abjad.helpers.iterate import iterate
 
 
-def leaves_fuse_binary(data):
-   '''Fuse duration of all leaves in <data> into a single leaf, 
-      if possible. Only properties of the first leaf are kept.'''
+def leaves_fuse_binary(leaves):
+   '''Fuse duration of all leaves in leaves.
+      Rewrite duration of first leaf in leaf equal to sum.
+      Detach all leaves other than first from score.
+      Return list holding first leaf only.'''
 
-   ## are all the leaves in data siblings? do we care.
-   ## are they beads of the same thread?
-   ## TODO: Change naive iteration in leaves_fuse_binary( ) to bead nav. ##
-   from abjad.leaf.leaf import _Leaf
-   leaves = list(iterate(data, _Leaf))
-   if len(leaves) == 1:
+   assert_components(leaves, contiguity = 'thread')
+   if len(leaves) <= 1:
       return leaves
-   elif len(leaves) > 1:
-      dur = 0
-      for l in leaves:
-         dur += l.duration.written
-      ## delete all but the first
-      for l in leaves[1:]:
-         l.detach( )
-      return leaf_scale_binary(leaves[0], dur)
+   total_written = sum([leaf.duration.written for leaf in leaves])
+   for leaf in leaves[1:]:
+      leaf.detach( )
+   return leaf_scale_binary(leaves[0], total_written)
