@@ -48,19 +48,10 @@ class _MeterInterface(_Interface, _GrobHandler):
 
    ## PUBLIC ATTRIBUTES ##
 
-   ## TODO: Deprecate _MeterInterface.opening in favor of .before ##
-   ## TODO: Use .opening in only VERY special cases ##
-
-   @property
-   def before(self):
-      '''Format contributions before leaf.'''
-      return self._opening
-
    @property
    def opening(self):
       '''Format contributions at container opening or before leaf.'''
       result = [ ]
-      result.extend(_GrobHandler.before.fget(self))
       if self._selfShouldContribute:
          result.append(self.effective.format)
       return result
