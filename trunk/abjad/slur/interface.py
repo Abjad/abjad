@@ -10,14 +10,3 @@ class _SlurInterface(_Interface, _GrobHandler, _SpannerReceptor):
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Slur')
       _SpannerReceptor.__init__(self, (Slur, ))
-      self._counts = (None, None)
-
-   ### PUBLIC ATTRIBUTES ###
-
-   @property
-   def is_closing(self):
-      return self.spanned and ')' in self.spanner._right(self._client)
-
-   @property
-   def is_opening(self):
-      return self.spanned and '(' in self.spanner._right(self._client)

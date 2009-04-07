@@ -10,7 +10,7 @@ class FlagsMisrepresented(_Check):
       total = 0
       for leaf in iterate(expr, _Leaf):
          total += 1
-         flags = leaf.beam._flags
+         flags = leaf.duration._flags
          left, right = leaf.beam.counts
          if left is not None:
             if left > flags or (left < flags and right not in (flags, None)):

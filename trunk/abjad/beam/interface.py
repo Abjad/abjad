@@ -4,31 +4,32 @@ from abjad.spanner.receptor import _SpannerReceptor
 
 
 class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
+   '''Handle LilyPond Beam grob.
+      Interface to LilyPond \setStemLeftBeamCount, \setStemRightBeamCount.'''
 
    def __init__(self, client):
+      '''Bind to client, LilyPond Beam grob and Abjad Beam spanner.
+         Set 'counts' to (None, None).'''
       from abjad.beam.spanner import Beam
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Beam')
       _SpannerReceptor.__init__(self, (Beam, ))
       self._counts = (None, None)
 
-   ## PRIVATE ATTRIBUTES ##
-
-   @property
-   def _flags(self):
-      return self._client.duration._flags
-
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def beamable(self):
+      '''True when client is beamable, otherwise False.'''
       from abjad.chord.chord import Chord
       from abjad.note.note import Note
-      return isinstance(self._client, (Note, Chord)) and \
-         self._flags > 0 and not getattr(self, '_refuse', False)
+      client = self.client
+      flags = client.duration._flags
+      return isinstance(client, (Note, Chord)) and 0 < flags
 
    @property
    def before(self):
+      '''Format contribution before leaf.'''
       result = [ ]
       result.extend(_GrobHandler.before.fget(self))
       if self.counts[0] is not None:
@@ -37,12 +38,10 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
          result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
       return result
 
-   @property
-   def is_closing(self):
-      return self.spanned and ']' in self.spanner._right(self._client)
-
    @apply
    def counts( ):
+      '''Interface to LilyPond \setStemLeftBeamCount, \setStemRightBeamCount.
+         Set to nonzero integer, pair or None.'''
       def fget(self):
          return self._counts
       def fset(self, expr):
@@ -55,7 +54,3 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
          else:
             raise ValueError('must be nonzero integer, pair or None.')
       return property(**locals( ))
-
-   @property
-   def is_opening(self):
-      return self.spanned and '[' in self.spanner._right(self._client)

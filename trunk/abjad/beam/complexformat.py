@@ -19,16 +19,16 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
          if spanner._isMyOnlyLeaf(leaf):
             #elif spanner.lone == 'left':
             if spanner.nibs == 'left':
-               left = leaf.beam._flags
+               left = leaf.duration._flags
                right = 0
             #elif spanner.lone == 'right':
             elif spanner.nibs == 'right':
                left = 0
-               right = leaf.beam._flags
+               right = leaf.duration._flags
             #elif spanner.lone == 'both':
             elif spanner.nibs == 'both':
-               left = leaf.beam._flags
-               right = leaf.beam._flags
+               left = leaf.duration._flags
+               right = leaf.duration._flags
             #if spanner.lone in (True, False):
             elif spanner.nibs == 'neither':
                left = None
@@ -39,10 +39,10 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
          # first
          elif spanner._isMyFirstLeaf(leaf) or not leaf.prev:
             left = 0
-            right = leaf.beam._flags
+            right = leaf.duration._flags
          # last
          elif spanner._isMyLastLeaf(leaf) or not leaf.next:
-            left = leaf.beam._flags
+            left = leaf.duration._flags
             right = 0
          # just right of span gap
          elif spanner._durationOffsetInMe(leaf) in spanner._spanPoints and not \
@@ -50,32 +50,32 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
             spanner._spanPoints):
             assert isinstance(spanner.span, int)
             left = spanner.span
-            right = leaf.beam._flags
+            right = leaf.duration._flags
          # just left of span gap
          elif spanner._durationOffsetInMe(leaf) + leaf.duration.prolated in \
             spanner._spanPoints and not spanner._durationOffsetInMe(leaf) in \
             spanner._spanPoints:
             assert isinstance(spanner.span, int)
-            left = leaf.beam._flags
+            left = leaf.duration._flags
             right = spanner.span
          # [unbeamable leaf beamable]
          elif not leaf.prev.beam.beamable and leaf.next.beam.beamable:
-            left = leaf.beam._flags
-            right = min(leaf.beam._flags, leaf.next.beam._flags)
+            left = leaf.duration._flags
+            right = min(leaf.duration._flags, leaf.next.duration._flags)
          # [beamable leaf unbeamable]
          elif leaf.prev.beam.beamable and not leaf.next.beam.beamable:
-            left = min(leaf.beam._flags, leaf.prev.beam._flags)
-            right = leaf.beam._flags
+            left = min(leaf.duration._flags, leaf.prev.duration._flags)
+            right = leaf.duration._flags
          # [unbeamable leaf unbeamable]
          elif not leaf.prev.beam.beamable and not leaf.next.beam.beamable:
-            left = leaf.beam._flags
-            right = leaf.beam._flags
+            left = leaf.duration._flags
+            right = leaf.duration._flags
          # [beamable leaf beamable]
          else:
-            left = min(leaf.beam._flags, leaf.prev.beam._flags)
-            right = min(leaf.beam._flags, leaf.next.beam._flags)
-            if left != leaf.beam._flags and right != leaf.beam._flags:
-               left = leaf.beam._flags
+            left = min(leaf.duration._flags, leaf.prev.duration._flags)
+            right = min(leaf.duration._flags, leaf.next.duration._flags)
+            if left != leaf.duration._flags and right != leaf.duration._flags:
+               left = leaf.duration._flags
          if left is not None:
             result.append(r'\set stemLeftBeamCount = #%s' % left)
          if right is not None:

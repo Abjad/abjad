@@ -14,6 +14,6 @@ class QuartersBeamed(_Check):
             if leaf.beam.spanned:
                beam = leaf.beam.spanner
                if not beam.__class__.__name__ == 'ComplexBeam':
-                  if leaf.beam._flags < 1:
+                  if leaf.duration._flags < 1:
                      violators.append(leaf)
       return violators, total
