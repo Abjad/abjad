@@ -1,17 +1,17 @@
-from abjad.core.abjadcore import _Abjad
+from abjad.core.interface import _Interface
 from abjad.parentage.containment import _ContainmentSignature
 from abjad.rational.rational import Rational
 from abjad.receipt.parentage import _ParentageReceipt
 import types
 
 
-class _Parentage(_Abjad):
+class _Parentage(_Interface):
    '''Serve literal score parentage information about component.
       Handle no LilyPond grob.'''
 
-   def __init__(self, client):
+   def __init__(self, _client):
       '''Bind to client and set parent to None.'''
-      self._client = client
+      _Interface.__init__(self, _client)
       self._parent = None
 
    ## PRIVATE ATTRIBUTES ##
