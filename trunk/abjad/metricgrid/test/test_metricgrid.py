@@ -72,27 +72,33 @@ def test_metricgrid_04( ):
    t = Staff(run(8))
    m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
 
-   assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\t<<\n\t{ s1 * 1/16 \\time 2/8 }\n\tc'8\n\t>>\n\tc'8\n\t<<\n\t{ s1 * 1/16 \\time 3/16 }\n\tc'8\n\t>>\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
-
    r'''\new Staff {
-        \time 3/16
-        c'8
-        <<
-        { s1 * 1/16 \time 2/8 }
-        c'8
-        >>
-        c'8
-        <<
-        { s1 * 1/16 \time 3/16 }
-        c'8
-        >>
-        c'8
-        \time 2/8
-        c'8
-        c'8
-        \time 3/16
-        c'8
+      \time 3/16
+      c'8
+      <<
+      {
+         \time 2/8
+         s1 * 1/16
+      }
+      c'8
+      >>
+      c'8
+      <<
+      {
+         \time 3/16
+         s1 * 1/16
+      }
+      c'8
+      >>
+      c'8
+      \time 2/8
+      c'8
+      c'8
+      \time 3/16
+      c'8
    }'''
+
+   assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\t<<\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t<<\n\t{\n\t\t\\time 3/16\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
 
 
 def test_metricgrid_05( ):
@@ -101,22 +107,35 @@ def test_metricgrid_05( ):
    t = Staff(Note(0, (1,2)) * 2)
    m = MetricGrid(t.leaves, [(1, 8), (1, 4)])
 
-   assert t.format == "\\new Staff {\n\t\\time 1/8\n\t<<\n\t{ s1 * 1/8 \\time 1/4 }\n\t{ s1 * 3/8 \\time 1/8 }\n\tc'2\n\t>>\n\t\\time 1/4\n\t<<\n\t{ s1 * 1/4 \\time 1/8 }\n\t{ s1 * 3/8 \\time 1/4 }\n\tc'2\n\t>>\n}"
-
    r'''\new Staff {
-           \time 1/8
-           <<
-           { s1 * 1/8 \time 1/4 }
-           { s1 * 3/8 \time 1/8 }
-           c'2
-           >>
-           \time 1/4
-           <<
-           { s1 * 1/4 \time 1/8 }
-           { s1 * 3/8 \time 1/4 }
-           c'2
-           >>
+      \time 1/8
+      <<
+      {
+         \time 1/4
+         s1 * 1/8
+      }
+      {
+         \time 1/8
+         s1 * 3/8
+      }
+      c'2
+      >>
+      \time 1/4
+      <<
+      {
+         \time 1/8
+         s1 * 1/4
+      }
+      {
+         \time 1/4
+         s1 * 3/8
+      }
+      c'2
+      >>
    }'''
+
+
+   assert t.format == "\\new Staff {\n\t\\time 1/8\n\t<<\n\t{\n\t\t\\time 1/4\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 1/8\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n\t\\time 1/4\n\t<<\n\t{\n\t\t\\time 1/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 1/4\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n}"
 
 
 def test_metricgrid_splitting_01( ):

@@ -44,11 +44,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
             for meter in m:
                s = Skip(Rational(1))
                s.duration.multiplier = meter.offset - leaf.offset.score
-               ## TODO: Avoid _UserDirectives in _MetricGrid ##
-               s.directives.right.append(meter.format)
-               result.append('{ %s }' % s.format)
-               ## BETTER: ##
-               #s.meter.forced = meter
-               #container = Container([s])
-               #result.append(container.format)
+               s.meter.forced = meter
+               container = Container([s])
+               result.append(container.format)
       return result
