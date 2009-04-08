@@ -1,9 +1,9 @@
 from abjad import *
-from abjad.helpers.cut_outgoing_reference_to_parent import \
-   _cut_outgoing_reference_to_parent
+from abjad.helpers.ignore_parent import \
+   _ignore_parent
 
 
-def test_cut_outgoing_reference_to_parent_01( ):
+def test_ignore_parent_01( ):
 
    t = Voice(scale(4))
    Beam(t[:])
@@ -15,7 +15,7 @@ def test_cut_outgoing_reference_to_parent_01( ):
       f'8 ]
    }'''
 
-   receipt = _cut_outgoing_reference_to_parent(t[:])
+   receipt = _ignore_parent(t[:])
 
    assert not check(t)
 

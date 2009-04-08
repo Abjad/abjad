@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def _cut_outgoing_reference_to_parent(components):
+def _ignore_parent(components):
    '''No contiguity requirements.
       Use to temporarily 'lift' parent references.
       Return receipt of unordered set of (component, parent) pairs.

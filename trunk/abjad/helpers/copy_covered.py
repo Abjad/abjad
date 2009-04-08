@@ -1,6 +1,6 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.cut_outgoing_reference_to_parent import \
-   _cut_outgoing_reference_to_parent
+from abjad.helpers.ignore_parent import \
+   _ignore_parent
 from abjad.helpers.get_crossing_spanners import get_crossing_spanners
 from abjad.helpers.restore_outgoing_reference_to_parent import \
    restore_outgoing_reference_to_parent
@@ -24,7 +24,7 @@ def copy_covered(components, n = 1):
    for spanner in spanners:
       spanner._blockAllComponents( )
 
-   receipt = _cut_outgoing_reference_to_parent(components)
+   receipt = _ignore_parent(components)
 
    result = copy.deepcopy(components)
    for component in result:

@@ -1,7 +1,7 @@
 from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.cut_outgoing_reference_to_parent import \
-   _cut_outgoing_reference_to_parent
+from abjad.helpers.ignore_parent import \
+   _ignore_parent
 from abjad.helpers.get_crossing_spanners import get_crossing_spanners
 from abjad.helpers.iterate import iterate
 from abjad.helpers.restore_outgoing_reference_to_parent import \
@@ -31,7 +31,7 @@ def copy_fracture(components, n = 1):
          if component not in selection_components:
             spanner._removeComponent(component)
 
-   receipt = _cut_outgoing_reference_to_parent(components)
+   receipt = _ignore_parent(components)
    
    result = copy.deepcopy(components)
 
