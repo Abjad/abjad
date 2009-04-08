@@ -1,20 +1,20 @@
 def pairwise(iter, mode = None):
    '''Iterate adjacent pairs of elements in 'iter'.
 
-   Options for 'mode':
-         None: return len(iter) - 1 pairs from iter only.
-       'wrap': include (iter[-1], iter[0]) at end.
-      'cycle': return indefinitely with no StopIteration.
-          int: return exactly int pairs from iter.
+      Options for 'mode':
+            None: return len(iter) - 1 pairs from iter only.
+          'wrap': include (iter[-1], iter[0]) at end.
+         'cycle': return indefinitely with no StopIteration.
+             int: return exactly int pairs from iter.
 
-   abjad> list(pairwise(range(6)))
-   [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+      abjad> list(listtools.pairwise(range(6)))
+      [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
 
-   abjad> list(pairwise(range(6), 'wrap'))
-   [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]
+      abjad> list(listtools.pairwise(range(6), 'wrap'))
+      [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]
 
-   abjad> list(pairwise(range(6), 9))
-   [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0), (0, 1), (1, 2), (2, 3)]
+      abjad> list(listtools.pairwise(range(6), 9))
+      [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0), (0, 1), (1, 2), (2, 3)]
    '''
 
    if mode is None:

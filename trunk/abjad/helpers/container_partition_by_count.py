@@ -1,7 +1,7 @@
 from abjad.container.container import Container
 from abjad.tools import mathtools
 from abjad.helpers.lcopy import lcopy
-from abjad.helpers.pairwise import pairwise
+from abjad.tools import listtools
 
 
 ## TODO: Possibly implement this as a generalization of lcopy( )? ##
@@ -48,7 +48,7 @@ def container_partition_by_count(container, counts):
 
    result = [ ]
    sums = [0] + mathtools.sums(counts)
-   for start, stop in pairwise(sums):
+   for start, stop in listtools.pairwise(sums):
       result.append(lcopy(container, start, stop))
 
    return result

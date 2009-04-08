@@ -4,9 +4,9 @@ from abjad.tools import duration
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.helpers.is_pitch_token import is_pitch_token
 from abjad.tools import mathtools
-from abjad.helpers.resize_list import _resize_list
 from abjad.rational.rational import Rational
 from abjad.tools.construct.helpers import _construct_unprolated_notes
+from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 import operator
@@ -45,8 +45,8 @@ def notes(pitches, durations, direction='big-endian'):
 
    ## set lists of pitches and durations to the same length
    size = max(len(durations), len(pitches))
-   durations = _resize_list(durations, size)
-   pitches = _resize_list(pitches, size)
+   durations = listtools.resize(durations, size)
+   pitches = listtools.resize(pitches, size)
 
    durations = _agglomerate_durations_by_prolation(durations)
 

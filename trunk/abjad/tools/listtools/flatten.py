@@ -1,8 +1,7 @@
 def flatten(l, ltypes=(list, tuple)):
-   '''
-   Flatten nested lists. Returns a 0-depth list or tuple.
-   Based on Mike C. Fletcher's flatten.
-   '''
+   '''Flatten nested lists. Returns a 0-depth list or tuple.
+      Based on Mike C. Fletcher's flatten.'''
+
    assert isinstance(l, ltypes)
    ltype = type(l)
    l = list(l)

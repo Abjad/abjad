@@ -17,7 +17,7 @@ statements.append(s)
 
 text = "Let's set our duration 'quatum' to one sixteenth and create \
 duration tokens."
-code = ['durations = zip_cycle(durations, 16)', 'durations']
+code = ['durations = listtools.zip_cyclic(durations, 16)', 'durations']
 s = Statement(text, code)
 statements.append(s)
 

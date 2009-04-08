@@ -1,35 +1,33 @@
 from abjad.container.container import Container
 from abjad.tools import mathtools
-from abjad.helpers.weight import weight
 from abjad.note.note import Note
 from abjad.rest.rest import Rest
+from abjad.tools import listtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
 def divide(l, (n, d), together = False):
-   '''
-   Divide duration (n, d) according to list l.
-   Note that denominator d is interpreter as the basic tuplet unit;
-   this explains why the function accepts a pair rather than a Rational.
+   '''Divide duration (n, d) according to list l.
+      Note that denominator d is interpreter as the basic tuplet unit;
+      this explains why the function accepts a pair rather than a Rational.
 
-   >>> divide([1], 7, 16)
-   (c'4..)
+      >>> divide([1], 7, 16)
+      (c'4..)
 
-   >>> divide([1, 2], 7, 16)
-   (6:7, c'8, c'4)
+      >>> divide([1, 2], 7, 16)
+      (6:7, c'8, c'4)
 
-   >>> divide([1, 2, 4], 7, 16)
-   (c'16, c'8, c'4)
+      >>> divide([1, 2, 4], 7, 16)
+      (c'16, c'8, c'4)
 
-   >>> divide([1, 2, 4, 1], 7, 16)
-   (8:7, c'16, c'8, c'4, c'16)
+      >>> divide([1, 2, 4, 1], 7, 16)
+      (8:7, c'16, c'8, c'4, c'16)
 
-   >>> divide([1, 2, 4, 1, 2], 7, 16)
-   (10:7, c'16, c'8, c'4, c'16, c'8)
+      >>> divide([1, 2, 4, 1, 2], 7, 16)
+      (10:7, c'16, c'8, c'4, c'16, c'8)
 
-   >>> divide([1, 2, 4, 1, 2, 4], 7, 16)
-   (c'32, c'16, c'8, c'32, c'16, c'8)
-   '''
+      >>> divide([1, 2, 4, 1, 2, 4], 7, 16)
+      (c'32, c'16, c'8, c'32, c'16, c'8)'''
 
    from abjad.exceptions.exceptions import AssignabilityError
    from abjad.tools import construct
@@ -55,7 +53,7 @@ def divide(l, (n, d), together = False):
          raise ValueError('no divide zero values.')
 
    if len(l) > 1:
-      exponent = mathtools.chop(log(weight(l), 2) - log(n, 2))
+      exponent = mathtools.chop(log(listtools.weight(l), 2) - log(n, 2))
       denominator = int(d * 2 ** exponent)
       music = [ ]
       for x in l:
