@@ -38,21 +38,18 @@ class _Parentage(_Interface):
       '''Keep incoming reference from parent to client in tact.
          Sever outgoing reference from client to parent.
          Parent continues to reference client.
-         Client no longer references parent.
-         Return parent.'''
-      parent = self.parent
-      if parent is not None:
-         self.client._update._markForUpdateToRoot( )
-         self.__parent = None
-         return parent
+         Client no longer references parent.'''
+      self.client._update._markForUpdateToRoot( )
+      self.__parent = None
+
+   ## TODO: Deprecate _Parentage._detach( ) receipt. Unnecessary. ##
 
    def _detach(self):
       '''Sever incoming reference from parent to client.
          Sever outgoing reference from client to parent.'''
-      client = self.client
       parent, index = self._removeFromParent( )
       self._cutOutgoingReferenceToParent( )
-      receipt = _ParentageReceipt(client, parent, index)
+      receipt = _ParentageReceipt(self.client, parent, index)
       return receipt
 
    def _first(self, klass):
@@ -91,12 +88,13 @@ class _Parentage(_Interface):
 
    def _switchParentTo(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
-      client = self._client
-      cur_parent = self.parent
-      if cur_parent is not None:
-         if client in cur_parent:
-            cur_parent._update._markForUpdateToRoot( )
-            cur_parent._music.remove(client)
+#      client = self._client
+#      cur_parent = self.parent
+#      if cur_parent is not None:
+#         if client in cur_parent:
+#            cur_parent._update._markForUpdateToRoot( )
+#            cur_parent._music.remove(client)
+      self._detach( )
       self.__parent = new_parent
       self.client._update._markForUpdateToRoot( )
 
