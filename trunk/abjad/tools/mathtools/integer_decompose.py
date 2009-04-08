@@ -1,13 +1,13 @@
-from abjad.helpers.binary_string import binary_string
+from abjad.tools.mathtools.binary_string import binary_string
 
 
-def _integer_decompose(n):
+def integer_decompose(n):
    '''Return big-ending tuple of n.
 
       Example:
 
       >>> for i in range(10, 20):
-      ...     print i, _integer_decompose(i)
+      ...     print i, mathtools.integer_decompose(i)
       ... 
       10 (8, 2)
       11 (8, 3)
@@ -18,8 +18,7 @@ def _integer_decompose(n):
       16 (16,)
       17 (16, 1)
       18 (16, 2)
-      19 (16, 3)
-   '''
+      19 (16, 3)'''
 
    assert isinstance(n, (int, long))
 

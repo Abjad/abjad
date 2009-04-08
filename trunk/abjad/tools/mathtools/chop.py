@@ -1,3 +1,5 @@
+## TODO: Reimplement as simply int(x)? ##
+
 def chop(x):
    '''Return the integer part of x.'''
 

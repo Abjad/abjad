@@ -1,9 +1,9 @@
 from abjad.helpers.iterate import iterate
 from abjad.helpers.container_scale import container_scale
-from abjad.helpers.in_terms_of import _in_terms_of
+from abjad.tools import mathtools
 from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.helpers.make_best_meter import _make_best_meter
-from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
+from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
@@ -39,7 +39,7 @@ def measures_scale(expr, multiplier = Rational(1)):
             new_duration, [old_denominator], multiplier._d)
       measure.meter.forced = new_meter
 
-      contents_multiplier_denominator = _next_least_power_of_two(multiplier._d)
+      contents_multiplier_denominator = mathtools.next_least_power_of_two(multiplier._d)
       contents_multiplier = Rational(
          multiplier._n, contents_multiplier_denominator)
       container_scale(measure, contents_multiplier)

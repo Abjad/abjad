@@ -1,8 +1,8 @@
 from abjad.helpers.components_likely_multiplier import \
    _components_likely_multiplier
 from abjad.helpers.container_scale import container_scale
-from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
-from abjad.helpers.in_terms_of import _in_terms_of
+from abjad.tools import mathtools
+from abjad.tools import mathtools
 from abjad.helpers.iterate import iterate
 from abjad.helpers.meter_make_binary import meter_make_binary
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet

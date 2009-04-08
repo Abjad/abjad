@@ -4,7 +4,7 @@ from abjad.helpers.agglomerate_durations_by_prolation import \
 from abjad.tools import duration
 from abjad.helpers.is_pitch_token import is_pitch_token
 from abjad.helpers.is_duration_token import _is_duration_token
-from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
+from abjad.tools import mathtools
 from abjad.helpers.resize_list import _resize_list
 from abjad.rational.rational import Rational
 from abjad.tools.construct.helpers import _construct_tied_chord, \
@@ -78,7 +78,7 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
       else:
          ## compute prolation
          denominator = ds[0][1]
-         numerator = _next_least_power_of_two(denominator)
+         numerator = mathtools.next_least_power_of_two(denominator)
          multiplier = (numerator, denominator)
          ratio = 1 / Rational(*multiplier)
          ds = [ratio * Rational(*d) for d in ds]

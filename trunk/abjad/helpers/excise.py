@@ -1,5 +1,5 @@
 from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
-from abjad.helpers.in_terms_of import _in_terms_of
+from abjad.tools import mathtools
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
@@ -25,7 +25,7 @@ def excise(leaf):
       elif isinstance(parent, RigidMeasure):
          old_denominator = parent.meter.forced.denominator
          naive_meter = parent.meter.forced.duration - prolated_leaf_duration
-         better_meter = _in_terms_of(naive_meter, old_denominator)
+         better_meter = mathtools.in_terms_of(naive_meter, old_denominator)
          parent.meter.forced = Meter(better_meter)
          new_denominator = parent.meter.forced.denominator
 

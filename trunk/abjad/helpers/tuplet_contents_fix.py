@@ -1,4 +1,4 @@
-from abjad.helpers.chop import chop
+from abjad.tools import mathtools
 from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
@@ -20,7 +20,7 @@ def tuplet_contents_fix(tuplet):
       raise ValueError('must be tuplet.')
 
    # find tuplet multiplier
-   integer_exponent = chop(math.log(tuplet.duration.multiplier, 2))
+   integer_exponent = mathtools.chop(math.log(tuplet.duration.multiplier, 2))
    leaf_multiplier = Rational(2) ** integer_exponent
 
    # scale leaves in tuplet by power of two

@@ -1,4 +1,4 @@
-from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
+from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 
 
@@ -21,4 +21,4 @@ def _denominator_to_multiplier(d):
    See helpers/test/test_denominator_to_multiplier.py for examples.
    '''
 
-   return Rational(_next_least_power_of_two(d), d)
+   return Rational(mathtools.next_least_power_of_two(d), d)

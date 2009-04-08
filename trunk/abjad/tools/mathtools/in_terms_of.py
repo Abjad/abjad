@@ -3,13 +3,13 @@ from abjad.helpers.is_divisor_of import _is_divisor_of
 from abjad.rational.rational import Rational
 
 
-def _in_terms_of(q, desired_denominator):
+def in_terms_of(q, desired_denominator):
    '''Rewrite q in terms of desired denominator.
 
    Example:
 
    >>> for pair in [(n, 6) for n in range(12)]:
-   ...     print pair, _in_terms_of(pair, 12)
+   ...     print pair, in_terms_of(pair, 12)
    ... 
    (0, 6) (0, 12)
    (1, 6) (2, 12)

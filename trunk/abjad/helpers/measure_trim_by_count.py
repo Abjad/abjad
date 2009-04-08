@@ -1,6 +1,6 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
-from abjad.helpers.in_terms_of import _in_terms_of
+from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
 
@@ -27,7 +27,7 @@ def measure_trim_by_count(components):
 
    try:
       naive_meter = parent.duration.preprolated
-      better_meter = _in_terms_of(naive_meter, old_denominator)
+      better_meter = mathtools.in_terms_of(naive_meter, old_denominator)
       parent.meter.forced = Meter(better_meter)
    except (AttributeError, UnboundLocalError):
       pass

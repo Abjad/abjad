@@ -1,8 +1,8 @@
-def _divisors(n):
+def divisors(n):
    '''Return a Python list of the integer divisors of n in increasing order.
 
       >>> for x in range(10, 20):
-      ...     print x, _divisors(x)
+      ...     print x, mathtools.divisors(x)
       ... 
       10 [1, 2, 5, 10]
       11 [1, 11]

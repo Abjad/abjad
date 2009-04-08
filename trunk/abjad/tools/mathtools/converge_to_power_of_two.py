@@ -2,7 +2,7 @@ from abjad.rational.rational import Rational
 import math
 
 
-def _converge_to_power2(source, target):
+def converge_to_power_of_two(source, target):
    '''Returns the number 2**n closest to target i.e. min(2**n - target)
       "coming from the direction of source". i.e. if source < target
       the function returns 2**n < target. If source > target, it returns
@@ -11,7 +11,7 @@ def _converge_to_power2(source, target):
       Example:
 
       abjad> for x in range(1, 20):
-      ...     print x, _converge_to_power2(0, x), _converge_to_power2(10000, x)
+      ...     print x, mathtools.converge_to_power_of_two(0, x), mathtools.converge_to_power_of_two(10000, x)
       ...
       1 1 1
       2 2 2

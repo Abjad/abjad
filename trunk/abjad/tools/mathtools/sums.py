@@ -1,4 +1,4 @@
-def cumulative_sums(l):
+def sums(l):
    '''Return a list of the cumulative sums of the integer elements in l.'''
 
    result = [l[0]]

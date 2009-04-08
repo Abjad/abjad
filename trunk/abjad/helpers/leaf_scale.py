@@ -1,6 +1,6 @@
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.bequeath import bequeath
-from abjad.helpers.converge_to_power2 import _converge_to_power2
+from abjad.tools import mathtools
 from abjad.tools import clone
 from abjad.helpers.iterate import iterate
 from abjad.leaf.leaf import _Leaf
@@ -26,6 +26,6 @@ def leaf_scale(leaf, dur):
       leaf.duration.written = dur
       return leaf
    except AssignabilityError:
-      leaf.duration.written = _converge_to_power2(leaf.duration.written, dur)
+      leaf.duration.written = mathtools.converge_to_power_of_two(leaf.duration.written, dur)
       result = FixedDurationTuplet(dur, [leaf])
       return result

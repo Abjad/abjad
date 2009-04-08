@@ -1,5 +1,5 @@
 from abjad.container.container import Container
-from abjad.helpers.chop import chop
+from abjad.tools import mathtools
 from abjad.helpers.weight import weight
 from abjad.note.note import Note
 from abjad.rest.rest import Rest
@@ -55,7 +55,7 @@ def divide(l, (n, d), together = False):
          raise ValueError('no divide zero values.')
 
    if len(l) > 1:
-      exponent = chop(log(weight(l), 2) - log(n, 2))
+      exponent = mathtools.chop(log(weight(l), 2) - log(n, 2))
       denominator = int(d * 2 ** exponent)
       music = [ ]
       for x in l:

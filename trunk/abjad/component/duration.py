@@ -1,5 +1,5 @@
 from abjad.core.interface import _Interface
-from abjad.helpers.cumulative_products import cumulative_products
+from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 
 
@@ -31,5 +31,5 @@ class _ComponentDurationInterface(_Interface):
 
    @property
    def prolation(self):
-      products = cumulative_products([Rational(1)] + self._prolations)
+      products = mathtools.products([Rational(1)] + self._prolations)
       return products[-1]

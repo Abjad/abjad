@@ -1,4 +1,4 @@
-def cumulative_products(l):
+def products(l):
    '''Return a list of the cumulative products of the elements in l.'''
 
    result = [l[0]]

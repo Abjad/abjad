@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.is_tie_chain import _is_tie_chain
 from abjad.helpers.iterate_chained_contents import iterate_chained_contents
-from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
+from abjad.tools import mathtools
 from abjad.helpers.tie_chain_written import tie_chain_written
 from abjad.helpers.unique import unique
 from abjad.rational.rational import Rational
@@ -26,6 +26,6 @@ def _components_likely_multiplier(components):
        
    if len(unique(chain_duration_numerators)) == 1:
       numerator = chain_duration_numerators[0]
-      denominator = _next_least_power_of_two(numerator)
+      denominator = mathtools.next_least_power_of_two(numerator)
       likely_multiplier = Rational(numerator, denominator)
       return likely_multiplier

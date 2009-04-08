@@ -1,4 +1,4 @@
-from abjad.helpers.binary_string import binary_string
+from abjad.tools import mathtools
 from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.rational.rational import Rational
 
@@ -19,4 +19,4 @@ def is_assignable(duration):
    duration = Rational(duration)
    return _is_power_of_two(duration._d) and \
       (0 < duration < 16) and \
-      (not '01' in binary_string(duration._n))
+      (not '01' in mathtools.binary_string(duration._n))

@@ -1,6 +1,6 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.tools import clone
-from abjad.helpers.in_terms_of import _in_terms_of
+from abjad.tools import mathtools
 from abjad.meter.meter import Meter
 
 
@@ -62,7 +62,7 @@ def tcopy(ll):
    if parent_denominator is not None:
       old_meter = result.meter.effective
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
-      new_meter = _in_terms_of(old_meter_pair, parent_denominator)
+      new_meter = mathtools.in_terms_of(old_meter_pair, parent_denominator)
       result.meter.forced = Meter(new_meter)
 
    # return copy

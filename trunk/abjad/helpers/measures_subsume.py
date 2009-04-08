@@ -2,7 +2,7 @@ from abjad.helpers.bequeath import bequeath
 from abjad.helpers.container_scale import container_scale
 from abjad.helpers.iterate import iterate
 from abjad.helpers.leaf_duration_change import leaf_duration_change
-from abjad.helpers.remove_powers_of_two import _remove_powers_of_two
+from abjad.tools import mathtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 
@@ -32,7 +32,7 @@ def measures_subsume(expr):
             tuplet = measure[0]
             tuplet_multiplier = tuplet.duration.multiplier
             tuplet_denominator = tuplet_multiplier._d
-            reduced_denominator = _remove_powers_of_two(tuplet_denominator)
+            reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
             meter = measure.meter.effective
             meter_rational = Rational(meter.numerator, meter.denominator)
             numerator = meter_rational._n * reduced_denominator

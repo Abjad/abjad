@@ -1,7 +1,7 @@
 import math
 
 
-def _next_least_power_of_two(n, i = 0):
+def next_least_power_of_two(n, i = 0):
    '''Return greatest integer power of two 
       less than or equal to n.
 

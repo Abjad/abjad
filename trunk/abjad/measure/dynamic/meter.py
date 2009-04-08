@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import MeterAssignmentError
-from abjad.helpers.in_terms_of import _in_terms_of
+from abjad.tools import mathtools
 from abjad.meter.meter import Meter
 from abjad.meter.interface import _MeterInterface
 
@@ -27,7 +27,7 @@ class _DynamicMeasureMeterInterface(_MeterInterface):
       client = self.client
       if client.denominator:
          return Meter(
-            _in_terms_of(client.duration.contents, client.denominator))
+            mathtools.in_terms_of(client.duration.contents, client.denominator))
       else:
          return Meter(client.duration.contents)
 

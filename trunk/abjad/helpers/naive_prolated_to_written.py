@@ -1,5 +1,3 @@
-from abjad.helpers.greatest_multiple_less import _greatest_multiple_less
-from abjad.helpers.least_multiple_greater import _least_multiple_greater
 from abjad.rational.rational import Rational
 import math
 

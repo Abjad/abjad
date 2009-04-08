@@ -1,5 +1,5 @@
-from abjad.helpers.integer_decompose import _integer_decompose
 from abjad.tools.duration.token_unpack import token_unpack
+from abjad.tools.mathtools.integer_decompose import integer_decompose
 
 
 def token_decompose(duration_token):
@@ -18,9 +18,8 @@ def token_decompose(duration_token):
       (16, 16) ((16, 16),)
       (17, 16) ((16, 16), (1, 16))
       (18, 16) ((16, 16), (2, 16))
-      (19, 16) ((16, 16), (3, 16))
-   '''
+      (19, 16) ((16, 16), (3, 16))'''
 
    numerator, denominator = token_unpack(duration_token)
-   result = [(n, denominator) for n in _integer_decompose(numerator)]
+   result = [(n, denominator) for n in integer_decompose(numerator)]
    return tuple(result)

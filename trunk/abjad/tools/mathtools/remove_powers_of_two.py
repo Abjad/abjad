@@ -1,4 +1,4 @@
-def _remove_powers_of_two(n):
+def remove_powers_of_two(n):
    '''Remove powers of two from integer n.'''
 
    assert isinstance(n, int)

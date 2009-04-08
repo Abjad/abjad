@@ -1,6 +1,6 @@
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.helpers.iterate import iterate
-from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
+from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
 from abjad.note.note import Note
 from abjad.rational.rational import Rational
@@ -83,7 +83,7 @@ def _measures_populate_meter_series(expr):
    from abjad.measure.measure import _Measure
    for measure in iterate(expr, _Measure):
       meter = measure.meter.effective
-      denominator = _next_least_power_of_two(meter.denominator)
+      denominator = mathtools.next_least_power_of_two(meter.denominator)
       numerator = meter.numerator
       notes = Note(0, (1, denominator)) * numerator
       measure[ : ] = notes
