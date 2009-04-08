@@ -1,7 +1,7 @@
 from __future__ import division
 from abjad.helpers.agglomerate_durations_by_prolation import \
      _agglomerate_durations_by_prolation
-from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.tools import duration
 from abjad.helpers.is_pitch_token import is_pitch_token
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.helpers.next_least_power_of_two import _next_least_power_of_two
@@ -54,7 +54,7 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
       durations = [durations]
 
    ## convert Rationals to duration tokens.
-   durations = [_duration_token_unpack(dur) for dur in durations]
+   durations = [duration.token_unpack(dur) for dur in durations]
 
    ## set lists of pitches and durations to the same length
    size = max(len(durations), len(pitches))

@@ -1,4 +1,4 @@
-from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.tools import duration
 from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 

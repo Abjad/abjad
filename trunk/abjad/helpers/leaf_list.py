@@ -1,5 +1,5 @@
 from abjad.chord.chord import Chord
-from abjad.helpers.duration_token_decompose import _duration_token_decompose
+from abjad.tools import duration
 from abjad.leaf.leaf import _Leaf
 from abjad.note.note import Note
 from abjad.rational.rational import Rational
@@ -17,7 +17,7 @@ def leaf_list(leaf_token, duration_token):
 
       See /test/leaf_list_test.py for more examples.'''
 
-   duration_tokens = _duration_token_decompose(duration_token)
+   duration_tokens = duration.token_decompose(duration_token)
 
    if isinstance(leaf_token, _Leaf):
       leaves = leaf_token * len(duration_tokens)

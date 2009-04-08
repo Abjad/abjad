@@ -1,4 +1,4 @@
-from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.tools import duration
 from abjad.rational.rational import Rational
 from abjad.tools.construct.helpers import _construct_tied_note, \
    _construct_tied_rest
@@ -22,8 +22,8 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
       >>> percussion_note(2, (5, 4), (1, 8))
       [Note(d', 8), Rest(1), Rest(8)]'''
 
-   total_duration = Rational(*_duration_token_unpack(total_duration))
-   max_note_duration = Rational(*_duration_token_unpack(max_note_duration))
+   total_duration = Rational(*duration.token_unpack(total_duration))
+   max_note_duration = Rational(*duration.token_unpack(max_note_duration))
    if total_duration > max_note_duration:
       rest_duration = total_duration - max_note_duration
       r = _construct_tied_rest(rest_duration)

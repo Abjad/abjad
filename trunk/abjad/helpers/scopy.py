@@ -1,7 +1,7 @@
 from abjad.component.component import _Component
 from abjad.container.container import Container
 from abjad.tools import clone
-from abjad.helpers.duration_token_unpack import _duration_token_unpack
+from abjad.tools import duration
 from abjad.helpers.excise import excise
 from abjad.helpers.iterate import iterate
 from abjad.helpers.lcopy import lcopy
@@ -16,13 +16,13 @@ def scopy(expr, start = 0, stop = None):
       and including stop duration stop;
       slice all layers of structure as required.'''
    assert isinstance(expr, _Component)
-   start = Rational(*_duration_token_unpack(start))
+   start = Rational(*duration.token_unpack(start))
    if start < 0:
       start = Rational(0)
    if stop is None:
       stop = expr.duration.prolated
    else:
-      stop = Rational(*_duration_token_unpack(stop))
+      stop = Rational(*duration.token_unpack(stop))
    assert start <= stop
    if isinstance(expr, _Leaf):
       return _scopy_leaf(expr, start, stop)
