@@ -14,7 +14,7 @@ def _cut_outgoing_reference_to_parent(components):
    receipt = set([ ])
    for component in components:
       parent = component.parentage.parent
-      component.parentage._cutOutgoingReferenceToParent( )
+      component.parentage._ignore( )
       receipt.add((component, parent))
 
    return receipt

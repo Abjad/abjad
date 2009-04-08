@@ -34,17 +34,14 @@ class _Parentage(_Interface):
             
    ## PRIVATE METHODS ##
 
-   ## TODO: Rename _cutOutgoingReferenceToParent( ) to simply _ignore( ) ##
-
-   def _cutOutgoingReferenceToParent(self):
-      '''Client forgets parent but parent remembers client.'''
+   def _ignore(self):
+      '''Client forgets parent (but parent remembers client).'''
       self.client._update._markForUpdateToRoot( )
       self.__parent = None
 
-   ## TODO: Rename _Parentage._detach( ) to _Parentage._cut( ).   ##
-   ## TODO: Deprecate _Parentage._detach( ) receipt. Unnecessary. ##
+   ## TODO: Deprecate _Parentage._cut( ) receipt. Unnecessary. ##
 
-   def _detach(self):
+   def _cut(self):
       '''Client and parent cut completely.'''
       client, parent = self.client, self.parent
       if parent is not None:
@@ -52,7 +49,7 @@ class _Parentage(_Interface):
          parent._music.remove(client)
       else:
          index = None
-      self._cutOutgoingReferenceToParent( )
+      self._ignore( )
       receipt = _ParentageReceipt(client, parent, index)
       return receipt
 
@@ -80,7 +77,7 @@ class _Parentage(_Interface):
 
    def _switchParentTo(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
-      self._detach( )
+      self._cut( )
       self.__parent = new_parent
       self.client._update._markForUpdateToRoot( )
 

@@ -2,12 +2,12 @@ from abjad import *
 import py.test
 
 
-def test_parentage_detach_01( ):
-   '''Unspanned leaves can parentage-detach.'''
+def test_parentage_cut_01( ):
+   '''Unspanned leaves can parentage-cut.'''
 
    t = Staff(scale(4))
    note = t[1]
-   note.parentage._detach( )
+   note.parentage._cut( )
 
    r'''
    \new Staff {
@@ -24,9 +24,9 @@ def test_parentage_detach_01( ):
    assert note.parentage.parent is None
 
 
-def test_parentage_detach_02( ):
-   '''Spanned leaves can parentage-detach.
-      Spanners continue to attach to parentage-detached leaves.'''
+def test_parentage_cut_02( ):
+   '''Spanned leaves can parentage-cut.
+      Spanners continue to attach to parentage-cut leaves.'''
 
    t = Voice([Container(scale(4))])
    p = Beam(t.leaves)
@@ -41,7 +41,7 @@ def test_parentage_detach_02( ):
       }
    }'''
 
-   leaf.parentage._detach( )
+   leaf.parentage._cut( )
    assert not check(t)
    assert not check(leaf)
 
@@ -62,8 +62,8 @@ def test_parentage_detach_02( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\t{\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_parentage_detach_03( ):
-   '''Unspanned containers can parent-detach.'''
+def test_parentage_cut_03( ):
+   '''Unspanned containers can parent-cut.'''
 
    t = Staff(Container(run(2)) * 3)
    diatonicize(t)
@@ -86,7 +86,7 @@ def test_parentage_detach_03( ):
    }
    '''
    
-   sequential.parentage._detach( )
+   sequential.parentage._cut( )
 
    r'''
    \new Staff {
@@ -106,9 +106,9 @@ def test_parentage_detach_03( ):
    assert check(sequential)
 
 
-def test_parentage_detach_04( ):
-   '''Spanned containers parentage-detach successfully.
-      Spanners continue to attach to parentage-detached containers.'''
+def test_parentage_cut_04( ):
+   '''Spanned containers parentage-cut successfully.
+      Spanners continue to attach to parentage-cut containers.'''
 
    t = Voice([Container(FixedDurationTuplet((2, 8), scale(3)) * 2)])
    tuplet = t[0][0]
@@ -129,7 +129,7 @@ def test_parentage_detach_04( ):
       }
    }'''
 
-   tuplet.parentage._detach( )
+   tuplet.parentage._cut( )
    assert not check(t)
    assert not check(tuplet)
 

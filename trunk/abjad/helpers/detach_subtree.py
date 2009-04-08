@@ -18,7 +18,7 @@ def detach_subtree(component):
    if not isinstance(component, _Component):
       raise TypeError('Must be Abjad component.')
 
-   parentage = component.parentage._detach( )
+   parentage = component.parentage._cut( )
    spanners = component.spanners._detach( )
    _withdraw_from_contained_spanners([component])
 

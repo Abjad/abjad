@@ -2,14 +2,14 @@ from abjad import *
 
 
 def test_parentage_reattach_01( ):
-   '''Unspanned leaves can detach from parentage.
-      Unspanned, detached leaves are well formed.
-      Unspanned, detached leaves can reattach to parentage.
+   '''Unspanned leaves can cut parentage.
+      Unspanned, cut leaves are well formed.
+      Unspanned, cut leaves can reattach to parentage.
       Unspanned, reattached leaves are well formed.'''
 
    t = Staff(scale(4))
    note = t[1]
-   receipt = note.parentage._detach( )
+   receipt = note.parentage._cut( )
 
    r'''\new Staff {
            c'8
@@ -31,9 +31,9 @@ def test_parentage_reattach_01( ):
 
 
 def test_parentage_reattach_02( ):
-   '''Spanned leaves can detach from parentage.
-      Spanned, detached leaves are not well formed.
-      Spanned, detached leaves can reattach to parentage.
+   '''Spanned leaves can cut parentage.
+      Spanned, cut leaves are not well formed.
+      Spanned, cut leaves can reattach to parentage.
       Spanned, reattached leaves are once again well formed.'''
 
    t = Staff([Voice(scale(4))])
@@ -49,7 +49,7 @@ def test_parentage_reattach_02( ):
            }
    }'''
 
-   receipt = leaf.parentage._detach( )
+   receipt = leaf.parentage._cut( )
 
    r'''\new Staff {
            \new Voice {
@@ -77,8 +77,8 @@ def test_parentage_reattach_02( ):
 
 
 def test_parentage_reattach_03( ):
-   '''Unspanned containers can detach from parentage.
-      Unspanned containers that detach are still well formed.
+   '''Unspanned containers can cut parentage.
+      Unspanned containers that cut are still well formed.
       Unspanned containers can reattach to parentage.
       Unspanend containers that reattach are still well formed.'''
 
@@ -101,7 +101,7 @@ def test_parentage_reattach_03( ):
            }
    }'''
    
-   receipt = sequential.parentage._detach( )
+   receipt = sequential.parentage._cut( )
 
    r'''\new Staff {
            {
@@ -140,8 +140,8 @@ def test_parentage_reattach_03( ):
    
 
 def test_parentage_reattach_04( ):
-   '''Spanned containers can detach from parentage.
-      Spanned containers detached from parentage are not well formed.
+   '''Spanned containers can cut parentage.
+      Spanned containers cut from parentage are not well formed.
       Spanned containers can reattach to parentage.
       Spanned containers that reattach to parentage are again well formed.'''
 
@@ -163,7 +163,7 @@ def test_parentage_reattach_04( ):
            }
    }'''
 
-   receipt = sequential.parentage._detach( )
+   receipt = sequential.parentage._cut( )
 
    r'''\new Staff {
            \new Voice {
