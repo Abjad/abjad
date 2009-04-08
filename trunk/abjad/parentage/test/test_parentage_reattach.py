@@ -83,7 +83,7 @@ def test_parentage_reattach_03( ):
       Unspanend containers that reattach are still well formed.'''
 
    t = Staff(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    sequential = t[1]
 
    r'''\new Staff {
@@ -147,7 +147,7 @@ def test_parentage_reattach_04( ):
 
    t = Staff([Voice(Container(run(2)) * 2)])
    sequential = t[0][0]
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[0][:])
 
    r'''\new Staff {

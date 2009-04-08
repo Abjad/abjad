@@ -5,7 +5,7 @@ def test_container_slip_01( ):
    '''Containers can 'slip out' of score structure.'''
 
    t = Staff(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t.leaves)
 
    r'''\new Staff {

@@ -6,7 +6,7 @@ def test_parentage_parentage_01( ):
       in the parentage of leaf t, including t.'''
 
    t = Score([Staff(Container(run(2)) * 2)])
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Score <<
       \new Staff {
@@ -37,7 +37,7 @@ def test_parentage_parentage_02( ):
       in the parentage of container t, including t.'''
 
    t = Score([Staff(Container(run(2)) * 2)])
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Score <<
       \new Staff {

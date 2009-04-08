@@ -5,7 +5,7 @@ def test_metric_slice_01( ):
    '''Slice leaves in voice according to metric grid.'''
 
    t = Voice(Note(0, (3, 8)) * 4)
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    metric_slice(t, [(1, 4)])
 

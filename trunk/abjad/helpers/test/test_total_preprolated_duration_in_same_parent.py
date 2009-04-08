@@ -21,7 +21,7 @@ def test_total_preprolated_duration_in_same_parent_03( ):
    '''Raise ContiguityError for components not in same parent.'''
 
    t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Voice {
            \times 2/3 {

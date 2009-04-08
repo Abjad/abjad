@@ -57,7 +57,7 @@ def test_leaf_split_05( ):
       crossing container boundaries.'''
 
    t = Voice(run(1) + [FixedDurationTuplet((2, 8), run(3))])
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Voice {

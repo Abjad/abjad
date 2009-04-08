@@ -17,7 +17,7 @@ def test_navigator_last_leaves_02( ):
 
    t = Container(Voice(run(2)) * 2)
    t.parallel = True
-   diatonicize(t)
+   pitches.diatonicize(t)
    leaves = t._navigator._lastLeaves
 
    r'''<<

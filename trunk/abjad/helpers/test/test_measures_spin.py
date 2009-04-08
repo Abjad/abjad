@@ -28,7 +28,7 @@ def test_spin_measures_02( ):
    '''Spin multiples measures out twice each.'''
 
    t = Staff(RigidMeasure((2, 8), run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    
    r'''
    \new Staff {

@@ -5,7 +5,7 @@ def test_spanner_len_01( ):
    '''Spanner length equals length of components.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[1])
 
    r'''\new Voice {
@@ -32,7 +32,7 @@ def test_spanner_len_02( ):
    '''Spanner length equals length of components.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {

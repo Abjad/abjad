@@ -40,7 +40,7 @@ def test_container_pop_02( ):
       Popped containers detach from both parent and spanners.'''
 
    t = Staff(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Staff {

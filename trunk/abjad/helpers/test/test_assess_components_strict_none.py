@@ -21,7 +21,7 @@ def test_assess_components_strict_none_02( ):
    '''True for strictly contiguous components.'''
 
    t = Voice(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Voice {
            {

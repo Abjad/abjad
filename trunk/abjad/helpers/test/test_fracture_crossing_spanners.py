@@ -61,7 +61,7 @@ def test_fracture_crossing_spanners_05( ):
    '''Fractures around components at only top level of list.'''
 
    t = Staff(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    Crescendo(t)
    Beam(t[:])
    
@@ -105,7 +105,7 @@ def test_fracture_crossing_spanners_06( ):
    '''Fractures around components at only top level of list.'''
 
    t = Staff(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    Crescendo(t)
    Beam(t[:])
    Trill(t.leaves)

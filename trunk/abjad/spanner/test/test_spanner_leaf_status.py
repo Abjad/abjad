@@ -6,7 +6,7 @@ def test_spanner_leaf_status_01( ):
    '''Spanner attached to flat container.'''
 
    t = Voice(run(4))
-   appictate(t)
+   pitches.chromaticize(t)
    p = Spanner(t)
 
    r'''\new Voice {
@@ -31,7 +31,7 @@ def test_spanner_leaf_status_02( ):
 
    t = Voice(run(4))
    t.insert(2, Container(run(2)))
-   appictate(t)
+   pitches.chromaticize(t)
    p = Spanner(t[ : 3])
 
    r'''\new Voice {
@@ -55,7 +55,7 @@ def test_spanner_leaf_status_02( ):
 #   t = Voice(run(4))
 #   t.insert(2, Container(Container(run(2)) * 2))
 #   t[2].parallel = True
-#   appictate(t)
+#   pitches.chromaticize(t)
 #
 #   r'''\new Voice {
 #      c'8

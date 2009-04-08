@@ -5,7 +5,7 @@ def test_container_spanner_aggregator_detach_01( ):
    '''t.spanners._detach( ) detaches all spanners attaching to container t.'''
 
    t = Staff(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p1 = Beam(t[:])
    p2 = Glissando(t[:])
 

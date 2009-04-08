@@ -9,7 +9,7 @@ def test_give_spanend_music_to_01( ):
       Helper is not composer-safe and results here in bad spanners.'''
 
    t = Voice(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Voice {

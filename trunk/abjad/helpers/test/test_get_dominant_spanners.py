@@ -10,7 +10,7 @@ def test_get_dominant_spanners_01( ):
       component in list.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -43,7 +43,7 @@ def test_get_dominant_spanners_02( ):
    '''Beam, glissando and trill all dominante second sequential.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -60,7 +60,7 @@ def test_get_dominant_spanners_03( ):
    '''Glissando and trill dominate last sequential.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -76,7 +76,7 @@ def test_get_dominant_spanners_04( ):
    '''Beam and trill dominate first two sequentials.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -92,7 +92,7 @@ def test_get_dominant_spanners_05( ):
    '''Glissando and trill dominate last two sequentials.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -108,7 +108,7 @@ def test_get_dominant_spanners_06( ):
    '''Only trill dominates all three sequentials.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -123,7 +123,7 @@ def test_get_dominant_spanners_07( ):
    '''Only trill dominates voice.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
@@ -140,7 +140,7 @@ def test_get_dominant_spanners_08( ):
       Note that beam and glissando attach to sequentials.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)

@@ -6,7 +6,7 @@ import py.test
 def test_assess_components_none_parent_01( ):
    
    t = Voice(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Voice {
       {

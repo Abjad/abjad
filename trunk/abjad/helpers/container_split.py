@@ -18,7 +18,7 @@ def container_split(container, index):
 
       t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
       tuplet = t[1]
-      diatonicize(t)
+      pitches.diatonicize(t)
       Beam(t[:])
 
       \new Voice {

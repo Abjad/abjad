@@ -15,7 +15,7 @@ def container_hew(container, i, spanners = 'preserve'):
       Example of hewing binary measure:
 
       t = Voice(RigidMeasure((3, 8), run(3)) * 2)
-      diatonicize(t)
+      pitches.diatonicize(t)
       p = Beam(t[:])
 
       \new Voice {

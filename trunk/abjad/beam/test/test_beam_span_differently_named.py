@@ -10,7 +10,7 @@ def test_beam_span_differently_named_01( ):
    v2 = Voice(run(4))
    v2.name = 'bar'
    t = Staff([v1, v2])
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''\new Staff {
            \context Voice = "foo" {
@@ -60,7 +60,7 @@ def test_beam_span_differently_named_02( ):
    t[0].name, t[1].name = 'foo', 'foo'
    t[0][0].name, t[1][0].name = 'first', 'first'
    t[0][1].name, t[1][1].name = 'second', 'second'
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       \context Staff = "foo" <<

@@ -11,7 +11,7 @@ import py.test
 #   t = Container(run(4))
 #   t.insert(2, Container(Container(run(2)) * 2))
 #   t[2].parallel = True
-#   diatonicize(t)
+#   pitches.diatonicize(t)
 #   t.notehead.color = 'red'
 #
 #   r'''{
@@ -50,7 +50,7 @@ import py.test
 #   t.name = 'foo'
 #   t.insert(2, Container(Container(run(2)) * 2))
 #   t[2].parallel = True
-#   diatonicize(t)
+#   pitches.diatonicize(t)
 #   t.notehead.color = 'red'
 #
 #   r'''\context Voice = "foo" \with {
@@ -88,7 +88,7 @@ import py.test
 #   t = Voice(run(4))
 #   t.insert(2, Container(Container(run(2)) * 2))
 #   t[2].parallel = True
-#   diatonicize(t)
+#   pitches.diatonicize(t)
 #   t.notehead.color = 'red'
 #
 #   r'''\new Voice \with {
@@ -159,7 +159,7 @@ def test_thread_signature_04( ):
    t = Voice(run(4))
    t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
-   diatonicize(t)
+   pitches.diatonicize(t)
    t.notehead.color = 'red'
 
    r'''\new Voice \with {
@@ -201,7 +201,7 @@ def test_thread_signature_05( ):
    t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
-   diatonicize(t)
+   pitches.diatonicize(t)
    t.notehead.color = 'red'
 
    r'''\context Voice = "foo" \with {
@@ -251,7 +251,7 @@ def test_thread_signature_06( ):
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
-   diatonicize(t)
+   pitches.diatonicize(t)
    assert py.test.raises(ContiguityError, 'Beam(t.leaves)')
    Beam(t.leaves[:2])
    Beam(t.leaves[2:])
@@ -291,7 +291,7 @@ def test_thread_signature_07( ):
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'
    t[2][1].name = 'soprano'
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
    t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")
@@ -370,7 +370,7 @@ def test_thread_signature_10( ):
    '''Measure and leaves must carry same thread signature.'''
 
    t = Staff([DynamicMeasure(scale(2))] + run(2))
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Staff {
          \time 1/4

@@ -7,7 +7,7 @@ def test_get_contained_spanners_01( ):
       within any of the list of thread-contiguous components.'''
 
    t = Voice(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
@@ -51,7 +51,7 @@ def test_get_contained_spanners_02( ):
       non-thread-contiguous components raises ContiguityError.'''
 
    t = Container(Voice(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t.leaves[:2])
    Slur(t.leaves[2:])
    

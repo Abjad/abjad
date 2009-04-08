@@ -6,7 +6,7 @@ def test_detach_subtree_01( ):
 
    t = Voice(run(2))
    t.insert(1, Container(run(2)))
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t.leaves)
    Glissando(t.leaves)
 
@@ -37,7 +37,7 @@ def test_detach_subtree_02( ):
 
    t = Voice(run(2))
    t.insert(1, Container(run(2)))
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t.leaves)
    Glissando(t.leaves)
 

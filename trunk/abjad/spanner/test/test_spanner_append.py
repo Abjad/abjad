@@ -5,7 +5,7 @@ def test_append_01( ):
    '''Append one container to the right.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[1])
 
    r'''\new Voice {
@@ -49,7 +49,7 @@ def test_append_02( ):
    '''Append one leaf to the right.'''
    
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[1])
 
    r'''\new Voice {

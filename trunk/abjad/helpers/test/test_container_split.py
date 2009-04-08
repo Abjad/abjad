@@ -7,7 +7,7 @@ def test_container_split_01( ):
 
    t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
    tuplet = t[1]
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t[:])
 
    r'''
@@ -57,7 +57,7 @@ def test_container_split_02( ):
    t = Voice(RigidMeasure((3, 8), run(3)) * 2)
    m = t[1]
    Beam(t[:])
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''
    \new Voice {
@@ -101,7 +101,7 @@ def test_container_split_03( ):
    t = Voice(RigidMeasure((3, 9), run(3)) * 2)
    m = t[1]
    Beam(t[:])
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''
    \new Voice {

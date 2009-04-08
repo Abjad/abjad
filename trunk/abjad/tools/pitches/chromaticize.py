@@ -3,11 +3,11 @@ from abjad.helpers.iterate_tie_chains import iterate_tie_chains
 from abjad.note.note import Note
 
 
-def appictate(expr):
+def chromaticize(expr):
    '''Apply ascending chromatic pitches from zero 
       to the notes and chords in expr.
       Used primarily in generating test and doc file examples. 
-      Coined term.'''
+      Compare with pitches.diatonicize( ).'''
 
    for i, x in enumerate(iterate_tie_chains(expr)):
       pitch = i

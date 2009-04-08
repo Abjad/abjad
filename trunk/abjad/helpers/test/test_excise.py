@@ -273,7 +273,7 @@ def test_excise_05( ):
 
    t = RigidMeasure((5, 6), 
       [FixedDurationTuplet((4, 8), run(7))] + run(3, (1, 4)))
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''
         \time 5/6
@@ -346,7 +346,7 @@ def test_excise_06( ):
 
    t = RigidMeasure((5, 6), 
       [FixedDurationTuplet((4, 8), run(7))] + run(3, (1, 4)))
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''
         \time 5/6

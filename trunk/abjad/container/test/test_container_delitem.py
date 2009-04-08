@@ -9,7 +9,7 @@ def test_container_delitem_00( ):
       Operation always leaves all expressions in tact.'''
 
    t = Voice(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t[:])
    Slur(t[0][:])
    Slur(t[1][:])

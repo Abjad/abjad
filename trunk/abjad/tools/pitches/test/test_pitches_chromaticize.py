@@ -2,11 +2,11 @@ from abjad import *
 from abjad.tools import construct
 
 
-def test_appictate_01( ):
+def test_pitches_chromaticize_01( ):
    '''Appictation works on tie chains.'''
 
    t = Voice(construct.notes(0, [(5, 32)] * 4))
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''\new Voice {
            c'8 ~

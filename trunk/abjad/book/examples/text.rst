@@ -12,7 +12,7 @@ Here is **paragraph 2**, and more Abjad code.
 Notice that in the second block of abjad code I can reference objects and variables crated in previous blocks:
 
 <abjad>
-   abjad> diatonicize(v)
+   abjad> pitches.diatonicize(v)
    abjad> Trill(v[4:])
    hide> write_lilypond(v, 'example2')
    abjad> show(v)

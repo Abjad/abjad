@@ -25,7 +25,7 @@ def test_sharps_03( ):
 def test_sharps_04( ):
    '''The sharps( ) helper renotates all pitches in any arbirary expression.'''
    t = Staff(run(12))
-   appictate(t)
+   pitches.chromaticize(t)
    sharps(t)
 
    r'''

@@ -36,7 +36,7 @@ def test_beam_interface_unspan_02( ):
    '''t.beam.unspan( ) clears any beam spanner attaching to container t.'''
 
    t = Staff(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[ : ]) 
 
    r'''\new Staff {

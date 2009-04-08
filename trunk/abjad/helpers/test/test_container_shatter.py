@@ -53,7 +53,7 @@ def test_container_shatter_03( ):
    t = FixedDurationTuplet((2, 8), run(3))
    Beam(t[:])
    donate(t[-1:], FixedDurationTuplet((1, 8), scale(3, (1, 16))))
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\times 2/3 {
       c'8 [

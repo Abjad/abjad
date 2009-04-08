@@ -4,17 +4,12 @@ import py.test
 
 ### NOTE: all tests operate on the following expression ###
 
-#t = Voice(run(4))
-#t.insert(2, Container(Container(run(2)) * 2))
-#t[2].parallel = True
-#appictate(t)
 t = Staff(run(4))
 t.insert(2, Container(Voice(run(2)) * 2))
 t[2].parallel = True
-appictate(t)
+pitches.chromaticize(t)
 
-r'''
-   \new Staff {
+r'''\new Staff {
       c'8
       cs'8
       <<
@@ -29,8 +24,7 @@ r'''
       >>
       fs'8
       g'8
-   }
-'''
+   }'''
 
 
 def test_dfs_default( ):

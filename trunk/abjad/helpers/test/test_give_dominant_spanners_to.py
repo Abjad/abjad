@@ -65,7 +65,7 @@ def test_give_dominant_spanners_to_02( ):
    '''Not composer-safe.'''
 
    t = Voice(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t[:])
 
    r'''\new Voice {

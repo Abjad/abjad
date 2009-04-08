@@ -32,7 +32,7 @@ def test_spanner_insert_02( ):
       Note that p.append( ) and p.append_left( ) are composer-safe.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[1])
 
    r'''\new Voice {

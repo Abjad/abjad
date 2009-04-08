@@ -95,7 +95,7 @@ def test_assess_components_none_thread_07( ):
    '''Voice, sequential and leaves all thread.'''
 
    t = Voice(Container(run(4)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Voice {
       {
@@ -119,7 +119,7 @@ def test_assess_components_none_thread_08( ):
    '''Anonymous voice, tuplets and leaves all thread.'''
 
    t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Voice {
            \times 2/3 {
@@ -141,7 +141,7 @@ def test_assess_components_none_thread_09( ):
    '''Can not thread across anonymous voices.'''
 
    t = Staff(Voice(run(4)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Staff {
            \new Voice {
@@ -168,7 +168,7 @@ def test_assess_components_none_thread_10( ):
    '''Can thread across like-named voices.'''
 
    t = Staff(Voice(run(4)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    t[0].name = 'foo'
    t[1].name = 'foo'
 
@@ -194,7 +194,7 @@ def test_assess_components_none_thread_11( ):
    '''Can not thread across differently named voices.'''
 
    t = Staff(Voice(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    t[0].name = 'foo'
    t[1].name = 'bar'
 
@@ -219,7 +219,7 @@ def test_assess_components_none_thread_12( ):
       Can not thread across anonymous staves.'''
 
    t = Container(Staff([Voice(run(2))]) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    
    r'''
    {
@@ -246,7 +246,7 @@ def test_assess_components_none_thread_13( ):
       Can not thread across anonymous staves.'''
 
    t = Container(Staff(Voice(run(2)) * 2) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    t[0].parallel = True
    t[1].parallel = True
 
@@ -280,7 +280,7 @@ def test_assess_components_none_thread_14( ):
    '''Anonymous voice, sequentials and leaves all thread.'''
 
    t = Voice(Container(run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Voice {
       {
@@ -301,7 +301,7 @@ def test_assess_components_none_thread_15( ):
       Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Staff(Note(0, (1, 8)) * 4) * 2)
-   appictate(t)
+   pitches.chromaticize(t)
    t[0].name = 'foo'
    t[1].name = 'foo'
 
@@ -328,7 +328,7 @@ def test_assess_components_none_thread_16( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Container(run(4)), Voice(run(4))])
-   diatonicize(t)
+   pitches.diatonicize(t)
    
    r'''{
            {
@@ -354,7 +354,7 @@ def test_assess_components_none_thread_17( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Voice(run(4)), Container(run(4))])
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''{
            \new Voice {
@@ -381,7 +381,7 @@ def test_assess_components_none_thread_18( ):
 
    t = Container([Container(run(4)), Voice(run(4))])
    t[1].name = 'foo'
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''{
            {
@@ -408,7 +408,7 @@ def test_assess_components_none_thread_19( ):
 
    t = Container([Voice(run(4)), Container(run(4))])
    t[0].name = 'foo'
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''{
            \context Voice = "foo" {
@@ -434,7 +434,7 @@ def test_assess_components_none_thread_20( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Container(run(4)), Staff(run(4))])
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''{
            {
@@ -460,7 +460,7 @@ def test_assess_components_none_thread_21( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       \new Staff {
@@ -486,7 +486,7 @@ def test_assess_components_none_thread_22( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       c'8
@@ -510,7 +510,7 @@ def test_assess_components_none_thread_23( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-   appictate(t)
+   pitches.chromaticize(t)
 
 
    r'''{
@@ -536,7 +536,7 @@ def test_assess_components_none_thread_24( ):
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
    t[4].name = 'foo'
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       c'8
@@ -563,7 +563,7 @@ def test_assess_components_none_thread_25( ):
       Abjad does not.'''
 
    t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-   appictate(t)
+   pitches.chromaticize(t)
    t[0].name = 'foo'
 
    r'''{
@@ -588,7 +588,7 @@ def test_assess_components_none_thread_26( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       c'8
@@ -613,7 +613,7 @@ def test_assess_components_none_thread_27( ):
 
    t = Container(run(4))
    t.insert(0, Staff(run(4)))
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''{
            \new Staff {
@@ -789,7 +789,7 @@ def test_assess_components_none_thread_32( ):
    t = Container(
       [Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
    t[0].parallel = True
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''
    {
@@ -826,7 +826,7 @@ def test_assess_components_none_thread_33( ):
    a, b = Voice(Note(0, (1, 8)) * 4) * 2
    a.insert(2, b)
    t.insert(2, a)
-   appictate(t)
+   pitches.chromaticize(t)
 
    outer = (0, 1, 10, 11)
    middle = (2, 3, 8, 9)
@@ -865,7 +865,7 @@ def test_assess_components_none_thread_34( ):
    a, b = t * 2
    a.insert(2, b)
    t.insert(2, a)
-   appictate(t)
+   pitches.chromaticize(t)
 
    outer = (0, 1, 10, 11)
    middle = (2, 3, 8, 9)
@@ -902,7 +902,7 @@ def test_assess_components_none_thread_35( ):
    a, b, t = Container(Note(0, (1, 8)) * 4) * 3
    a.insert(2, b)
    t.insert(2, a)
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       c'8
@@ -934,7 +934,7 @@ def test_assess_components_none_thread_36( ):
    t.insert(2, b)
    b.duration.target = Rational(6, 8)
    t.duration.target = Rational(9, 8)
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''\fraction \times 9/10 {
       c'8
@@ -964,7 +964,7 @@ def test_assess_components_none_thread_37( ):
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(2, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
    t[2][0][0].name = 'foo'
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       c'8
@@ -997,7 +997,7 @@ def test_assess_components_none_thread_38( ):
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(0, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
    t[0][0][0].name = 'foo'
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       {
@@ -1029,7 +1029,7 @@ def test_assess_components_none_thread_39( ):
    t = Container([t])
    t = Container([t])
    t = Voice([t])
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''\new Voice {
       {
@@ -1070,7 +1070,7 @@ def test_assess_components_none_thread_40( ):
    t = Voice(Note(0, (1, 8)) * 4)
    t.insert(2, qq)
    t.name = 'foo'
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''\context Voice = "foo" {
       c'8
@@ -1110,7 +1110,7 @@ def test_assess_components_none_thread_41( ):
 
    t = Container(run(4))
    t[0:0] = Voice(run(4)) * 2
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       \new Voice {
@@ -1182,7 +1182,7 @@ def test_assess_components_none_thread_41( ):
 #   p = Container(Note(0, (1, 8)) * 4)
 #   p.parallel = True
 #   t.insert(2, p)
-#   appictate(t)
+#   pitches.chromaticize(t)
 #
 #   r'''{
 #      c'8
@@ -1208,7 +1208,7 @@ def test_assess_components_none_thread_41( ):
 #   p = Container(Note(0, (1, 8)) * 4)
 #   p.parallel = True
 #   t.insert(2, p)
-#   appictate(t)
+#   pitches.chromaticize(t)
 #
 #   r'''\new Voice {
 #      c'8
@@ -1234,7 +1234,7 @@ def test_assess_components_none_thread_41( ):
 #
 #   t = Container(Container(Note(0, (1, 8)) * 4) * 2)
 #   t.parallel = True
-#   appictate(t)
+#   pitches.chromaticize(t)
 #
 #   r'''<<
 #      {
@@ -1260,7 +1260,7 @@ def test_assess_components_none_thread_41( ):
 #   p.parallel = True
 #   t = Container(Note(0, (1, 8)) * 4)
 #   t.insert(2, p)
-#   appictate(t)
+#   pitches.chromaticize(t)
 #
 #   r'''{
 #      c'8
@@ -1293,7 +1293,7 @@ def test_assess_components_none_thread_47( ):
    p.parallel = True
    t = Container(Note(0, (1, 8)) * 4)
    t.insert(2, p)
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''{
       c'8

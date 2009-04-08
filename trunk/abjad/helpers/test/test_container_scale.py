@@ -108,7 +108,7 @@ def test_container_scale_05( ):
 
    t = Voice([Note(0, (3, 16)),
       FixedDurationTuplet((3, 8), run(4))])
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''
    \new Voice {
@@ -178,7 +178,7 @@ def test_container_scale_07( ):
 
    t = Voice(run(2))
    t.append(RigidMeasure((2, 8), run(2)))
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Voice {
       c'8
@@ -207,7 +207,7 @@ def test_container_scale_08( ):
 
    t = Voice(run(2))
    t.append(RigidMeasure((2, 8), run(2)))
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''\new Voice {
       c'8

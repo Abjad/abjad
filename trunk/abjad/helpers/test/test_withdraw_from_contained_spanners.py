@@ -28,7 +28,7 @@ def test_withdraw_from_contained_spanners_02( ):
    '''Docs.'''
 
    t = Staff(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    Beam(t.leaves[:3])
    Beam(t.leaves[3:])
 

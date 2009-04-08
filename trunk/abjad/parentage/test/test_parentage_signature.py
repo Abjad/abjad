@@ -44,7 +44,7 @@ def test_parentage_signature_04( ):
    t = Voice(run(4))
    t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
-   diatonicize(t)
+   pitches.diatonicize(t)
    t.notehead.color = 'red'
 
    r'''\new Voice \with {

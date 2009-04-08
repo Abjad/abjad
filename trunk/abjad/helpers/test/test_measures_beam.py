@@ -5,7 +5,7 @@ def test_measures_beam_01( ):
    '''Beam all measures in expr with plain old Beam spanner.'''
 
    t = Staff(RigidMeasure((2, 8), run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    measures_beam(t, style = None)
 
    r'''
@@ -30,7 +30,7 @@ def test_measures_beam_02( ):
    '''Beam all measures in expr with ComplexBeam.'''
 
    t = Staff(RigidMeasure((2, 8), run(2)) * 2)
-   diatonicize(t)
+   pitches.diatonicize(t)
    measures_beam(t, style = 'complex')
 
    r'''

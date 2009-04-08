@@ -99,7 +99,7 @@ def test_measures_subsume_05( ):
    notes = run(2)
    outer = FixedDurationTuplet((2, 8), [inner] + notes)
    t = RigidMeasure((2, 8), [outer])
-   diatonicize(t)
+   pitches.diatonicize(t)
 
    r'''
       \time 2/8

@@ -5,7 +5,7 @@ def test_spanner_extend_left_01( ):
    '''Extend spanner to the left.'''
 
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[1])
 
    r'''\new Voice {
@@ -48,7 +48,7 @@ def test_spanner_extend_left_02( ):
    '''Extend spanner to the left.'''
    
    t = Voice(Container(run(2)) * 3)
-   diatonicize(t)
+   pitches.diatonicize(t)
    p = Beam(t[1])
 
    r'''\new Voice {

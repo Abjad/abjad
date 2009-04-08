@@ -7,7 +7,7 @@ def test_spanner_leaves_01( ):
       also leaves in container.'''
 
    t = Voice(run(4))
-   appictate(t)
+   pitches.chromaticize(t)
    p = Spanner(t)
 
    assert len(p.components) == 1
@@ -23,7 +23,7 @@ def test_spanner_leaves_02( ):
       hold the same references.'''
 
    t = Voice(run(4))
-   appictate(t)
+   pitches.chromaticize(t)
    p = Spanner(t[:])
    
    assert len(p.components) == 4
@@ -52,7 +52,7 @@ def test_spanner_leaves_04( ):
    t = Voice(run(4))
    t.insert(1, Container(run(2)))
    t.insert(3, Container(run(2)))
-   appictate(t)
+   pitches.chromaticize(t)
    p = Spanner(t)
 
    r'''\new Voice {
@@ -83,7 +83,7 @@ def test_spanner_leaves_05( ):
    t = Voice(run(4))
    t.insert(1, Container(run(2)))
    t.insert(3, Container(run(2)))
-   appictate(t)
+   pitches.chromaticize(t)
    p = Spanner(t[0:3])
 
    r'''\new Voice {
@@ -119,7 +119,7 @@ def test_spanner_leaves_06( ):
    t = Staff(run(4))
    t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''\new Staff {
       c'8
@@ -157,7 +157,7 @@ def test_spanner_leaves_07( ):
    t = Staff(run(4))
    t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
-   appictate(t)
+   pitches.chromaticize(t)
 
    r'''\new Staff {
       c'8
