@@ -3,7 +3,7 @@ from abjad.note.note import Note
 from abjad.rest.rest import Rest
 
 
-def chord_cast_defective(chord):
+def cast_defective(chord):
    '''Cast zero-length chord to rest.
       Cast length-one chord to note.
       Return chords with length greater than one unchanged.'''

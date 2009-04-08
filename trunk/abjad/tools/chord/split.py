@@ -4,7 +4,7 @@ from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
 
 
-def chord_split(chord, pitch = Pitch('b', 3), attr = 'number'):
+def split(chord, pitch = Pitch('b', 3), attr = 'number'):
    '''Return disjunct (treble, bass) pair of 'parts' from input chord;
       treble pitches greater than or equal to pitch attr;
       bass pitches all less than pitch attr.
