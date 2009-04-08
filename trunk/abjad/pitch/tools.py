@@ -8,7 +8,7 @@ class _PitchTools(_Abjad):
    def __init__(self, _client):
       self._client = _client
 
-   ### UTILITIES ###
+   ## UTILITIES ##
 
    pcToPitchName = {
       0:  'c',     0.5: 'cqs',    1: 'cs',    1.5:  'dqf',
@@ -64,8 +64,6 @@ class _PitchTools(_Abjad):
          adjustment %= -12
       else:
          adjustment %= 12
-      #print adjustment
-      #return _Accidental.adjustmentToAccidentalString[adjustment]
       return Accidental.adjustmentToAccidentalString[adjustment]
 
    def nearestNeighbor(self, pitchNumber, pc):
@@ -87,13 +85,11 @@ class _PitchTools(_Abjad):
       # pitch number 12 notated as letter 'b' with accidentals
       accidentalString = self.letterPitchNumberToNearestAccidentalString(
          letter, pitchNumber)
-      #adjustment = _Accidental.accidentalStringToAdjustment[accidentalString]
       adjustment = Accidental.accidentalStringToAdjustment[accidentalString]
       adjustedPitchNumber = pitchNumber - adjustment
       return self.pitchNumberToOctave(adjustedPitchNumber)
 
    def addStaffSpaces(self, staffSpaces):
-      #scaleDegree = (self._client.diatonicScaleDegree + staffSpaces) % 7
       scaleDegree = (self._client.degree + staffSpaces) % 7
       if scaleDegree == 0:
          scaleDegree = 7
