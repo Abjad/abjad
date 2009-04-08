@@ -34,22 +34,26 @@ class _Parentage(_Interface):
             
    ## PRIVATE METHODS ##
 
+   ## TODO: Rename _cutOutgoingReferenceToParent( ) to simply _ignore( ) ##
+
    def _cutOutgoingReferenceToParent(self):
-      '''Keep incoming reference from parent to client in tact.
-         Sever outgoing reference from client to parent.
-         Parent continues to reference client.
-         Client no longer references parent.'''
+      '''Client forgets parent but parent remembers client.'''
       self.client._update._markForUpdateToRoot( )
       self.__parent = None
 
+   ## TODO: Rename _Parentage._detach( ) to _Parentage._cut( ).   ##
    ## TODO: Deprecate _Parentage._detach( ) receipt. Unnecessary. ##
 
    def _detach(self):
-      '''Sever incoming reference from parent to client.
-         Sever outgoing reference from client to parent.'''
-      parent, index = self._removeFromParent( )
+      '''Client and parent cut completely.'''
+      client, parent = self.client, self.parent
+      if parent is not None:
+         index = parent.index(client)
+         parent._music.remove(client)
+      else:
+         index = None
       self._cutOutgoingReferenceToParent( )
-      receipt = _ParentageReceipt(self.client, parent, index)
+      receipt = _ParentageReceipt(client, parent, index)
       return receipt
 
    def _first(self, klass):
@@ -72,28 +76,10 @@ class _Parentage(_Interface):
       receipt._empty( )
       return client
 
-   def _removeFromParent(self):
-      '''Sever incoming reference from parent to client.
-         Leave outgoing reference from client to parent in tact.
-         Parent will no longer reference client.
-         Client will continue to reference parent.'''
-      client = self.client
-      parent = self.parent
-      if parent is not None:
-         client._update._markForUpdateToRoot( )
-         index = parent.index(client)
-         parent._music.remove(client)
-         return parent, index
-      return None, None
+   ## TODO: Rename _switchParentTo( ) to simply _Parentage._switch( ). ##
 
    def _switchParentTo(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
-#      client = self._client
-#      cur_parent = self.parent
-#      if cur_parent is not None:
-#         if client in cur_parent:
-#            cur_parent._update._markForUpdateToRoot( )
-#            cur_parent._music.remove(client)
       self._detach( )
       self.__parent = new_parent
       self.client._update._markForUpdateToRoot( )
