@@ -3,7 +3,7 @@ from abjad.helpers.is_tie_chain import _is_tie_chain
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.helpers.tie_chain_written import tie_chain_written
-from abjad.helpers.unique import unique
+from abjad.tools import listtools
 from abjad.rational.rational import Rational
 
 
@@ -24,7 +24,7 @@ def _components_likely_multiplier(components):
          chain_duration = tie_chain_written(expr)   
          chain_duration_numerators.append(chain_duration._n)
        
-   if len(unique(chain_duration_numerators)) == 1:
+   if len(listtools.unique(chain_duration_numerators)) == 1:
       numerator = chain_duration_numerators[0]
       denominator = mathtools.next_least_power_of_two(numerator)
       likely_multiplier = Rational(numerator, denominator)

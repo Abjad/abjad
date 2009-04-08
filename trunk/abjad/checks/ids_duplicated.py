@@ -1,6 +1,6 @@
 from abjad.checks.check import _Check
 from abjad.tools import iterate
-from abjad.helpers.unique import unique
+from abjad.tools import listtools
 
 
 class IdsDuplicated(_Check):
@@ -10,7 +10,7 @@ class IdsDuplicated(_Check):
       violators = [ ]
       components = iterate.naive(expr, _Component)
       total_ids = [id(x) for x in components]
-      unique_ids = unique(total_ids)
+      unique_ids = listtools.unique(total_ids)
       if len(total_ids) > len(unique_ids):
          for cur_id in unique_ids:
             if total_ids.count(cur_id) > 1:
