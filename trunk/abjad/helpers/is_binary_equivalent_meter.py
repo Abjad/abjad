@@ -1,4 +1,4 @@
-from abjad.helpers.is_power_of_two import _is_power_of_two
+from abjad.tools import mathtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 
@@ -15,4 +15,4 @@ def _is_binary_equivalent_meter(meter):
    meter_as_rational = Rational(meter.numerator, meter.denominator)
 
    # return True if reduced meter denominator is power of two
-   return _is_power_of_two(meter_as_rational._d)
+   return mathtools.is_power_of_two(meter_as_rational._d)

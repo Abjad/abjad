@@ -1,4 +1,4 @@
-def tripartition(n, smallest = 'middle', biggest = 'middle'):
+def integer_tripartition(n, smallest = 'middle', biggest = 'middle'):
    '''Partition integer n into three parts, returned as a tuple.'''
 
    assert isinstance(n, int)

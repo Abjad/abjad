@@ -1,6 +1,6 @@
 from abjad.container.multipliedduration import \
    _MultipliedContainerDurationInterface
-from abjad.helpers.is_power_of_two import _is_power_of_two
+from abjad.tools import mathtools
 
 
 class _TupletDurationInterface(_MultipliedContainerDurationInterface):
@@ -13,7 +13,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    @property
    def _binary(self):
       if self.multiplier:
-         return _is_power_of_two(self.multiplier._n)
+         return mathtools.is_power_of_two(self.multiplier._n)
       else:
          return True
 

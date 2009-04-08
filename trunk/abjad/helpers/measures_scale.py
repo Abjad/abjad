@@ -1,7 +1,7 @@
 from abjad.tools import iterate
 from abjad.helpers.container_scale import container_scale
 from abjad.tools import mathtools
-from abjad.helpers.is_power_of_two import _is_power_of_two
+from abjad.tools import mathtools
 from abjad.helpers.make_best_meter import _make_best_meter
 from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
@@ -25,7 +25,7 @@ def measures_scale(expr, multiplier = Rational(1)):
       if multiplier == Rational(1):
          continue
 
-      if _is_power_of_two(multiplier) and 1 <= multiplier:
+      if mathtools.is_power_of_two(multiplier) and 1 <= multiplier:
          old_numerator = measure.meter.effective.numerator
          old_denominator = measure.meter.effective.denominator
          new_denominator = old_denominator / multiplier._n

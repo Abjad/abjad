@@ -1,5 +1,5 @@
-from abjad.helpers.halve import halve
 from abjad.helpers.container_rest_by_count import container_rest_by_count
+from abjad.tools import mathtools
 
 
 def container_rest_half(container, rested_half, bigger_half, 
@@ -34,7 +34,7 @@ def container_rest_half(container, rested_half, bigger_half,
       return container
 
    ## determine split index
-   halves = halve(len(container), bigger = bigger_half)
+   halves = mathtools.integer_halve(len(container), bigger = bigger_half)
    i = halves[0]
 
    ## rest container in place at split index

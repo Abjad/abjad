@@ -1,5 +1,5 @@
 from abjad.tools import clone
-from abjad.helpers.is_power_of_two import _is_power_of_two
+from abjad.tools import mathtools
 from abjad.tools import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
@@ -23,7 +23,7 @@ def _leaf_meiose(leaf, n = 2):
       Preserve parentage and spanners.'''
 
    assert isinstance(leaf, _Leaf)
-   assert _is_power_of_two(n)
+   assert mathtools.is_power_of_two(n)
    assert 0 < n
 
    new_leaves = clone.unspan([leaf], n - 1)

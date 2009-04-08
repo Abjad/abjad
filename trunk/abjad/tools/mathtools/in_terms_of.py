@@ -1,5 +1,4 @@
 from abjad.tools import duration
-from abjad.helpers.is_divisor_of import _is_divisor_of
 from abjad.rational.rational import Rational
 
 

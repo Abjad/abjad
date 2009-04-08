@@ -1,6 +1,6 @@
 from abjad.helpers.are_scalable_components import are_scalable_components
 from abjad.helpers.container_scale import container_scale
-from abjad.helpers.is_power_of_two import _is_power_of_two
+from abjad.tools import mathtools
 from abjad.helpers.pair_multiply_naive import _pair_multiply_naive
 from abjad.helpers.pair_multiply_constant_numerator import _pair_multiply_constant_numerator
 from abjad.helpers.pair_multiply_reduce_factors import _pair_multiply_reduce_factors
@@ -48,7 +48,7 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
          container_scale(measure, remaining_multiplier)
    elif are_scalable_components(measure[:], multiplier):
       container_scale(measure, multiplier)
-      if old_meter.nonbinary or not _is_power_of_two(multiplier):
+      if old_meter.nonbinary or not mathtools.is_power_of_two(multiplier):
          new_pair = _pair_multiply_reduce_factors(old_pair, multiplier)
       ## multiplier is a negative power of two, like 1/2, 1/4, etc.
       elif multiplier < Rational(0):
