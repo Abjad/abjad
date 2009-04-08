@@ -1,14 +1,21 @@
-from abjad.tools import iterate
-from abjad.helpers.pitch_renotate_sharps import pitch_renotate_sharps
 from abjad.pitch.pitch import Pitch
+from abjad.tools import iterate
 
 
 def make_sharp(expr):
    if isinstance(expr, Pitch):
-      pitch_renotate_sharps(expr)
+      _pitch_renotate_sharps(expr)
    else:
       from abjad.leaf.leaf import _Leaf
       for leaf in iterate.naive(expr, _Leaf):
          if hasattr(leaf, 'pitches'):
             for pitch in leaf.pitches:
-               pitch_renotate_sharps(pitch)
+               _pitch_renotate_sharps(pitch)
+
+
+def _pitch_renotate_sharps(pitch):
+   octave = pitch.tools.pitchNumberToOctave(pitch.number)
+   name = pitch.tools.pcToPitchNameSharps[pitch.pc]
+   pitch.octave = octave
+   pitch.name = name
+

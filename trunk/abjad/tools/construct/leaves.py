@@ -2,7 +2,6 @@ from __future__ import division
 from abjad.helpers.agglomerate_durations_by_prolation import \
      _agglomerate_durations_by_prolation
 from abjad.tools import duration
-from abjad.helpers.is_pitch_token import is_pitch_token
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.tools import mathtools
 from abjad.rational.rational import Rational
@@ -10,6 +9,7 @@ from abjad.tools.construct.helpers import _construct_tied_chord, \
    _construct_tied_note, _construct_tied_rest
 from abjad.tools import listtools
 from abjad.tools import mathtools
+from abjad.tools import pitch
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
@@ -36,18 +36,18 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
       tied_rests: Set to True to return Tied rests. False otherwise.
    '''
 
-   def _make_leaf_on_pitch(pitch, ds, direction):
-      if isinstance(pitch, (int, long)):
-         leaves = _construct_tied_note(pitch, ds, direction)
-      elif isinstance(pitch, (tuple, list)):
-         leaves = _construct_tied_chord(pitch, ds, direction)
-      elif pitch is None:
+   def _make_leaf_on_pitch(pch, ds, direction):
+      if isinstance(pch, (int, long)):
+         leaves = _construct_tied_note(pch, ds, direction)
+      elif isinstance(pch, (tuple, list)):
+         leaves = _construct_tied_chord(pch, ds, direction)
+      elif pch is None:
          leaves = _construct_tied_rest(ds, direction, tied_rests)
       else:
-         raise ValueError("Unknown pitch token %s." % pitch)
+         raise ValueError("Unknown pitch token %s." % pch)
       return leaves
 
-   if is_pitch_token(pitches):
+   if pitch.is_token(pitches):
       pitches = [pitches]
    
    if _is_duration_token(durations):
@@ -72,8 +72,8 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
       ps = pitches[0:len(ds)]
       pitches = pitches[len(ds):]
       if len(factors) == 0:
-         for pitch, dur in zip(ps, ds):
-            leaves = _make_leaf_on_pitch(pitch, dur, direction)
+         for pch, dur in zip(ps, ds):
+            leaves = _make_leaf_on_pitch(pch, dur, direction)
             result.extend(leaves)
       else:
          ## compute prolation
@@ -84,8 +84,8 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
          ds = [ratio * Rational(*d) for d in ds]
          ## make leaves
          leaves = [ ]
-         for pitch, dur in zip(ps, ds):
-            leaves.extend( _make_leaf_on_pitch(pitch, dur, direction))
+         for pch, dur in zip(ps, ds):
+            leaves.extend( _make_leaf_on_pitch(pch, dur, direction))
          t = FixedMultiplierTuplet(multiplier, leaves)
          result.append(t)
    return result

@@ -1,12 +1,12 @@
-from abjad.helpers.is_pitch_token import is_pitch_token
+from abjad.tools.pitch.is_token import is_token
 
 
-def _is_pitch_token_collection(arg):
+def is_token_collection(arg):
    '''Returns True when arg has the form of a list,
       tuple or set of Abjad pitch tokens,
       otherwise False.'''
 
    if isinstance(arg, (list, tuple, set)):
-      if all([is_pitch_token(x) for x in arg]):
+      if all([is_token(x) for x in arg]):
          return True
    return False

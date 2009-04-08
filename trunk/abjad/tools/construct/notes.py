@@ -2,12 +2,12 @@ from abjad.helpers.agglomerate_durations_by_prolation import \
      _agglomerate_durations_by_prolation
 from abjad.tools import duration
 from abjad.helpers.is_duration_token import _is_duration_token
-from abjad.helpers.is_pitch_token import is_pitch_token
 from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 from abjad.tools.construct.helpers import _construct_unprolated_notes
 from abjad.tools import listtools
 from abjad.tools import mathtools
+from abjad.tools import pitch
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 import operator
 import math
@@ -28,7 +28,7 @@ def notes(pitches, durations, direction='big-endian'):
                   'little-endian' returns list of notes of increasing duration.
    '''
 
-   if is_pitch_token(pitches):
+   if pitch.is_token(pitches):
       pitches = [pitches]
    
    if _is_duration_token(durations):

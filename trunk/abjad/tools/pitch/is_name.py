@@ -6,7 +6,8 @@ for _dn in _diatonic_names:
    for _an in _accidental_names:
       _pitch_names.append(_dn + _an)
 
-def _is_pitch_name(arg):
+def is_name(arg):
    '''Returns True when arg has the form of a
       LilyPond pitch name in English, otherwise False.'''
+
    return arg in _pitch_names

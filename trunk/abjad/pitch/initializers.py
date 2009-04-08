@@ -1,8 +1,9 @@
 from abjad.accidental.accidental import Accidental
 from abjad.cfg.cfg import accidental_spelling
 from abjad.core.abjadcore import _Abjad
-from abjad.helpers.is_pitch_pair import _is_pitch_pair
+from abjad.tools import pitch
 from math import floor
+
 
 
 class _PitchInit(_Abjad):
@@ -60,7 +61,7 @@ class _InitializeByPitchReference(_PitchInit):
 class _InitializeByPitchPair(_PitchInit):
     
    def matchSignature(self, *args):
-      return len(args) == 1 and _is_pitch_pair(args[0])
+      return len(args) == 1 and pitch.is_pair(args[0])
 
    def initialize(self, client, pitchPair):
       name, octave = pitchPair

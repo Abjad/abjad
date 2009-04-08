@@ -1,10 +1,10 @@
 from abjad.helpers.engender import engender
-from abjad.helpers.is_pitch_token import is_pitch_token
 from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
+from abjad.tools import pitch
 
 
-def split(chord, pitch = Pitch('b', 3), attr = 'number'):
+def split(chord, pch = Pitch('b', 3), attr = 'number'):
    '''Return disjunct (treble, bass) pair of 'parts' from input chord;
       treble pitches greater than or equal to pitch attr;
       bass pitches all less than pitch attr.
@@ -31,15 +31,15 @@ def split(chord, pitch = Pitch('b', 3), attr = 'number'):
          Helper engenders only unspanned output.'''
 
    assert isinstance(chord, _Leaf)
-   assert is_pitch_token(pitch)
+   assert pitch.is_token(pch)
    assert attr in ('number', 'altitude')
 
-   pitch = Pitch(pitch)
+   pch = Pitch(pch)
    treble = [ ]
    bass = [ ]
 
    for p in chord.pitches:
-      if getattr(p, attr) < getattr(pitch, attr):
+      if getattr(p, attr) < getattr(pch, attr):
          bass.append(p.pair)   
       else:
          treble.append(p.pair)
