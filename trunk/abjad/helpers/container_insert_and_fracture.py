@@ -29,7 +29,7 @@ def container_insert_and_fracture(container, i, component):
    assert isinstance(component, _Component)
 
    result = [ ]
-   component.parentage._switchParentTo(container)
+   component.parentage._switch(container)
    container._music.insert(i, component)
    if component.prev:
       result.extend(component.prev.spanners.fracture(direction = 'right'))

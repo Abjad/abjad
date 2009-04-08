@@ -10,6 +10,6 @@ def _components_switch_parent_to(components, parent):
    assert_components(components, contiguity = 'thread')
 
    for component in components:
-      component.parentage._switchParentTo(parent)
+      component.parentage._switch(parent)
 
    return components

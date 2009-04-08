@@ -73,9 +73,7 @@ class _Parentage(_Interface):
       receipt._empty( )
       return client
 
-   ## TODO: Rename _switchParentTo( ) to simply _Parentage._switch( ). ##
-
-   def _switchParentTo(self, new_parent):
+   def _switch(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
       self._cut( )
       self.__parent = new_parent

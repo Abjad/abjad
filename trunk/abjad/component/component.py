@@ -323,7 +323,7 @@ class _Component(_Abjad):
       parent, start, stop = get_parent_and_indices([self])
       if parent is not None:
          for component in reversed(components):
-            component.parentage._switchParentTo(parent)
+            component.parentage._switch(parent)
             parent._music.insert(start + 1, component)
       return [self] + components
 
@@ -347,6 +347,6 @@ class _Component(_Abjad):
       parent, start, stop = get_parent_and_indices([self])
       if parent is not None:
          for component in reversed(components):
-            component.parentage._switchParentTo(parent)
+            component.parentage._switch(parent)
             parent._music.insert(start, component)
       return components + [self] 

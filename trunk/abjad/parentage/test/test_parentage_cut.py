@@ -46,7 +46,7 @@ def test_parentage_cut_02( ):
    assert not check(leaf)
 
    t._music.insert(0, leaf)
-   leaf.parentage._switchParentTo(t)
+   leaf.parentage._switch(t)
 
    r'''\new Voice {
            c'8 [
@@ -134,7 +134,7 @@ def test_parentage_cut_04( ):
    assert not check(tuplet)
 
    t._music.insert(0, tuplet)
-   tuplet.parentage._switchParentTo(t)
+   tuplet.parentage._switch(t)
    
    r'''\new Voice {
       \times 2/3 {

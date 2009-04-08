@@ -76,14 +76,14 @@ def container_hew(container, i, spanners = 'preserve'):
    #left[:] = container[:i]
    left._music[:] = container[:i]
    for component in left:
-      component.parentage._switchParentTo(left)
+      component.parentage._switch(left)
 
    # reassign remaining music from container to right ...
    # ... and do not withdraw from spanners!
    #right[:] = container[:]
    right._music[:] = container[:]
    for component in right:
-      component.parentage._switchParentTo(right)
+      component.parentage._switch(right)
 
    # if parent
    if container.parentage.parent is not None:

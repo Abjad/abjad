@@ -49,7 +49,7 @@ def tcopy(ll):
 
    # point elements in result to result as new parent
    for element in result:
-      element.parentage._switchParentTo(result)
+      element.parentage._switch(result)
 
    # new: resize result to match parent_multiplier, if resizable
    if result.__class__.__name__ == 'FixedDurationTuplet':
