@@ -42,7 +42,6 @@ def tcopy(ll):
    parent._music = parents_music
 
    # populate result with references to input list
-   #result.extend(ll)
    result._music.extend(ll)
 
    # populate result with deepcopy of input list and fracture spanners
@@ -50,8 +49,7 @@ def tcopy(ll):
 
    # point elements in result to result as new parent
    for element in result:
-      element.parentage.parent = result
-      #element.parentage._switchParentTo(result)
+      element.parentage._switchParentTo(result)
 
    # new: resize result to match parent_multiplier, if resizable
    if result.__class__.__name__ == 'FixedDurationTuplet':
@@ -66,11 +64,6 @@ def tcopy(ll):
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
       new_meter = _in_terms_of(old_meter_pair, parent_denominator)
       result.meter.forced = Meter(new_meter)
-
-   # point elements in input list back to old parent
-   for element in ll:
-      element.parentage.parent = parent
-      #element.parentage._switchParentTo(parent)
 
    # return copy
    return result
