@@ -7,7 +7,7 @@ from abjad.helpers.restore_outgoing_reference_to_parent import \
 import copy
 
 
-def clone_unspan(components, n = 1):
+def unspan(components, n = 1):
    '''Withdraw all components at any level in 'components' from spanners.
       Deep copy unspanned components in 'components'.
       Reapply spanners to all components at any level in 'components'.
@@ -34,6 +34,6 @@ def clone_unspan(components, n = 1):
       spanner._unblockAllComponents( )
 
    for i in range(n - 1):
-      result += clone_unspan(components)
+      result += unspan(components)
       
    return result

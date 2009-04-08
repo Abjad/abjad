@@ -25,7 +25,7 @@ def test_clone_fracture_01( ):
          a'8 ] ) \stopTrillSpan
    }'''
 
-   result = clone_fracture(t.leaves[2:4])
+   result = clone.fracture(t.leaves[2:4])
    new = Voice(result)
 
    r'''\new Voice {
@@ -59,7 +59,7 @@ def test_clone_fracture_02( ):
          a'8 ] ) \stopTrillSpan
    }'''
 
-   result = clone_fracture(t[1:2])
+   result = clone.fracture(t[1:2])
    new = Voice(result)
 
    r'''\new Voice {
@@ -94,7 +94,7 @@ def test_clone_fracture_03( ):
          a'8 ] ) \stopTrillSpan
    }'''
 
-   result = clone_fracture(t.leaves[-3:])
+   result = clone.fracture(t.leaves[-3:])
    new = Voice(result)
 
    r'''\new Voice {
@@ -129,7 +129,7 @@ def test_clone_fracture_04( ):
          a'8 ] ) \stopTrillSpan
    }'''
 
-   result = clone_fracture(t[1:2], 3)
+   result = clone.fracture(t[1:2], 3)
    new = Voice(result)
 
    r'''\new Voice {

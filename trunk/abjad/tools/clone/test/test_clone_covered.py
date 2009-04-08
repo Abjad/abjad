@@ -28,7 +28,7 @@ def test_clone_covered_01( ):
          c''8 )
    }'''
 
-   result = clone.clone_covered(t.leaves)
+   result = clone.covered(t.leaves)
    new = Voice(result)
 
    r'''\new Voice {
@@ -69,7 +69,7 @@ def test_clone_covered_02( ):
          c''8 )
    }'''
 
-   result = clone.clone_covered(t[-3:])
+   result = clone.covered(t[-3:])
    new = Voice(result)
 
    r'''\new Voice {
@@ -112,7 +112,7 @@ def test_clone_covered_03( ):
          c''8 )
    }'''
 
-   result = clone.clone_covered(t[-3:], 2)
+   result = clone.covered(t[-3:], 2)
    new = Voice(result)
 
    r'''\new Voice {

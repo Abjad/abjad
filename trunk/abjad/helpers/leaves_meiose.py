@@ -1,4 +1,4 @@
-from abjad.helpers.clone_unspan import clone_unspan
+from abjad.tools import clone
 from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.helpers.retroiterate import retroiterate
 from abjad.leaf.leaf import _Leaf
@@ -26,7 +26,7 @@ def _leaf_meiose(leaf, n = 2):
    assert _is_power_of_two(n)
    assert 0 < n
 
-   new_leaves = clone_unspan([leaf], n - 1)
+   new_leaves = clone.unspan([leaf], n - 1)
    leaf.splice(new_leaves)
    adjustment_multiplier = Rational(1, n)
    leaf.duration.written *= adjustment_multiplier

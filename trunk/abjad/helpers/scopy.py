@@ -1,6 +1,6 @@
 from abjad.component.component import _Component
 from abjad.container.container import Container
-from abjad.helpers.clone_fracture import clone_fracture
+from abjad.tools import clone
 from abjad.helpers.duration_token_unpack import _duration_token_unpack
 from abjad.helpers.excise import excise
 from abjad.helpers.iterate import iterate
@@ -40,7 +40,7 @@ def _scopy_leaf(leaf, start, stop):
    total = stop - start
    if total == 0:
       return None
-   new = clone_fracture([leaf])[0]
+   new = clone.fracture([leaf])[0]
    new = leaf_scale(new, total)
    return new
 

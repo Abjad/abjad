@@ -1,6 +1,6 @@
 from abjad.container.container import Container
 from abjad.exceptions.exceptions import ContiguityError
-from abjad.helpers.clone_fracture import clone_fracture
+from abjad.tools import clone
 from abjad.helpers.excise import excise
 from abjad.helpers.iterate import iterate
 from abjad.helpers.retroiterate import retroiterate
@@ -17,7 +17,7 @@ def lcopy(expr, start = 0, stop = None):
 
    # trivial leaf lcopy
    if isinstance(expr, _Leaf):
-      return clone_fracture([expr])[0]
+      return clone.fracture([expr])[0]
 
    # copy leaves from sequential containers only.
    if expr.parallel:
@@ -43,7 +43,7 @@ def lcopy(expr, start = 0, stop = None):
    stop_index_in_governor = governor_leaves.index(stop_leaf_in_expr)
 
    # copy governor
-   governor_copy = clone_fracture([governor])[0]
+   governor_copy = clone.fracture([governor])[0]
    copy_leaves = governor_copy.leaves
 
    # new: find start and stop leaves in copy of governor

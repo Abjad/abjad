@@ -80,8 +80,8 @@ class _Component(_Abjad):
    ## OVERLOADS ##
 
    def __mul__(self, n):
-      from abjad.helpers.clone_unspan import clone_unspan
-      return clone_unspan([self], n)
+      from abjad.tools import clone
+      return clone.unspan([self], n)
 
    def __rmul__(self, n):
       return self * n

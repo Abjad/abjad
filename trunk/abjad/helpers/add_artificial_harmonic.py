@@ -1,5 +1,4 @@
 from abjad.chord.chord import Chord
-from abjad.tools.clone import clone_covered # debug
 
 
 def add_artificial_harmonic(note, diatonicInterval = 'perfect fourth'):

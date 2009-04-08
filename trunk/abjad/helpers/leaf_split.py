@@ -1,4 +1,4 @@
-from abjad.helpers.clone_unspan import clone_unspan
+from abjad.tools import clone
 from abjad.helpers.leaf_scale import leaf_scale
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
@@ -11,7 +11,7 @@ def leaf_split(leaf, split_dur):
    if unprolated_split_dur == 0 or \
       leaf.duration.written <= unprolated_split_dur:
       return [leaf]
-   new_leaf = clone_unspan([leaf])[0]
+   new_leaf = clone.unspan([leaf])[0]
    leaf.splice_left([new_leaf])
    l1 = leaf_scale(new_leaf, unprolated_split_dur)
    l2 = leaf_scale(leaf, leaf.duration.written - unprolated_split_dur)

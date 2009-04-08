@@ -27,7 +27,7 @@ def test_clone_unspan_01( ):
          c''8 ] )
    }'''
 
-   result = clone_unspan([t])
+   result = clone.unspan([t])
    voice = result[0]
 
    r'''
@@ -77,7 +77,7 @@ def test_clone_unspan_02( ):
          c''8 ] )
    }'''
 
-   result = clone_unspan(t[1:])
+   result = clone.unspan(t[1:])
    new = Voice(result)
 
    r'''\new Voice {
@@ -123,7 +123,7 @@ def test_clone_unspan_03( ):
          c''8 ] )
    }'''
 
-   result = clone_unspan(t.leaves[:6])
+   result = clone.unspan(t.leaves[:6])
    new = Voice(result)
 
    r'''\new Voice {
@@ -166,7 +166,7 @@ def test_clone_unspan_04( ):
          c''8 ] )
    }'''
 
-   result = clone_unspan(t[2][:] + t[-1:])
+   result = clone.unspan(t[2][:] + t[-1:])
    new = Voice(result)
 
    r'''\new Voice {
@@ -209,7 +209,7 @@ def test_clone_unspan_05( ):
          c''8 ] )
    }'''
 
-   result = clone_unspan(t[-2:], 3)
+   result = clone.unspan(t[-2:], 3)
    new = Voice(result)
 
    r'''\new Voice {

@@ -1,5 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.clone_fracture import clone_fracture
+from abjad.tools import clone
 from abjad.helpers.in_terms_of import _in_terms_of
 from abjad.meter.meter import Meter
 
@@ -36,7 +36,7 @@ def tcopy(ll):
    parent._music = [ ]
 
    # copy parent without music
-   result = clone_fracture([parent])[0]
+   result = clone.fracture([parent])[0]
 
    # give music back to parent
    parent._music = parents_music
@@ -45,7 +45,7 @@ def tcopy(ll):
    result._music.extend(ll)
 
    # populate result with deepcopy of input list and fracture spanners
-   result = clone_fracture([result])[0]
+   result = clone.fracture([result])[0]
 
    # point elements in result to result as new parent
    for element in result:

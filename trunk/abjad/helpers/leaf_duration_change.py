@@ -1,6 +1,6 @@
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.check import check
-from abjad.helpers.clone_unspan import clone_unspan
+from abjad.tools import clone
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
@@ -24,7 +24,7 @@ def leaf_duration_change(leaf, new_written_duration):
       duration_tokens = construct.notes(0, new_written_duration)
       if isinstance(duration_tokens[0], _Leaf):
          num_tied_leaves = len(duration_tokens) - 1
-         tied_leaves = clone_unspan([leaf], num_tied_leaves)
+         tied_leaves = clone.unspan([leaf], num_tied_leaves)
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
@@ -36,7 +36,7 @@ def leaf_duration_change(leaf, new_written_duration):
          fmtuplet = duration_tokens[0]
          duration_tokens = fmtuplet[:]
          num_tied_leaves = len(duration_tokens) - 1
-         tied_leaves = clone_unspan([leaf], num_tied_leaves)
+         tied_leaves = clone.unspan([leaf], num_tied_leaves)
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
