@@ -3,6 +3,7 @@ from abjad.note.note import Note
 from abjad.rational.rational import Rational
 from abjad.tools import interpolate
 
+
 def notes_curve(pitches, total, start, stop, exp='cosine', 
    written=Rational(1, 8)):
    '''Returns a train of notes with 'continuously' changing effective durations
@@ -26,4 +27,3 @@ def notes_curve(pitches, total, start, stop, exp='cosine',
       note.duration.multiplier = dt / written 
       result.append(note)
    return result
-   

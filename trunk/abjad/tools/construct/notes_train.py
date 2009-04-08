@@ -2,6 +2,7 @@ from abjad.note.note import Note
 from abjad.rational.rational import Rational
 from abjad.tools.construct.notes import notes as construct_notes
 
+
 def note_train(pitch, written_duration, total_duration, 
    prolation = Rational(1)):
    '''Generate a train of repeating notes, all of the same pitch,
@@ -22,6 +23,5 @@ def note_train(pitch, written_duration, total_duration,
    remainder_duration = total_duration - current_duration
    if remainder_duration > Rational(0):
       multiplied_remainder = ~prolation * remainder_duration
-      #result.extend(notes_prolated(pitch, [multiplied_remainder]))
       result.extend(construct_notes(pitch, [multiplied_remainder]))
    return result

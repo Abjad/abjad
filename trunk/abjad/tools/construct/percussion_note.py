@@ -3,6 +3,7 @@ from abjad.rational.rational import Rational
 from abjad.tools.construct.helpers import _construct_tied_note, \
    _construct_tied_rest
 
+
 def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
    '''Returns a list containing a single Note and a succession or Rests.
       The total duration of the Rests is the difference of the total_duration
@@ -34,5 +35,3 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
             n[i] = Rest(n[i])
       r = [ ]
    return n + r
-
-

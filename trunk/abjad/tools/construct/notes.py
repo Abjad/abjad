@@ -12,6 +12,7 @@ from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 import operator
 import math
       
+
 def notes(pitches, durations, direction='big-endian'):
    '''Constructs a list of prolated notes of length len(durations).
 
@@ -72,5 +73,3 @@ def notes(pitches, durations, direction='big-endian'):
          t = FixedMultiplierTuplet(multiplier, ns)
          result.append(t)
    return result
-      
-

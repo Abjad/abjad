@@ -12,6 +12,7 @@ from abjad.tools.construct.helpers import _construct_tied_chord, \
 from abjad.tools import mathtools
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
+
 def leaves(pitches, durations, direction='big-endian', tied_rests=False):
    '''Constructs a list of prolated and/or unprolated leaves of length 
       len(durations).

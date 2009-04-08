@@ -1,6 +1,7 @@
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.tools.construct.helpers import _construct_tied_rest
 
+
 def rests(durations, direction='big-endian', tied=False):
    '''Constructs a list of rests.
       Parameters:
@@ -17,6 +18,3 @@ def rests(durations, direction='big-endian', tied=False):
    for d in durations:
       result.extend(_construct_tied_rest(d, direction, tied))
    return result
-
-
-

@@ -1,7 +1,8 @@
-from types import ModuleType
+#from types import ModuleType
+import types
+
 
 def _remove_modules_from_namespace(namespace):
    for key, value in namespace.items( ):
-      if isinstance(value, ModuleType) and not key.startswith('_'):
-         #namespace.pop(key)
+      if isinstance(value, types.ModuleType) and not key.startswith('_'):
          del(namespace[key])
