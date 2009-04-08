@@ -22,7 +22,11 @@ def _import_functions_in_package_to_namespace(package, namespace,
          package.mod3_func1( )'''
 
    functions = [ ]
+   print 'debug package %s' % package
    for root, dirs, files in os.walk(package):
+      ## TODO: Remove these two debug lines later. ##
+      if '.svn' not in root:
+         print 'debug root %s' % root
       root = root[root.rindex('abjad'):]
 
 #      if root.endswith('test'):
