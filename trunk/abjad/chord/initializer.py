@@ -1,6 +1,6 @@
 from abjad.chord.formatter import _ChordFormatter
 from abjad.core.initializer import _Initializer
-from abjad.helpers.copy_fracture import copy_fracture
+from abjad.helpers.clone_fracture import clone_fracture
 from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
 from abjad.notehead.interface import _NoteHeadInterface
 
@@ -32,7 +32,7 @@ class _ChordInitializer(_Initializer):
             # _transfer_all_attributes;
             # otherwise note copy will fail to fracture spanners
             if note.notehead is not None:
-               copy = copy_fracture([note])[0]
+               copy = clone_fracture([note])[0]
             _transfer_all_attributes(note, client)
             #del client._notehead
             client._notehead = _NoteHeadInterface(client)

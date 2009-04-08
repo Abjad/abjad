@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_copy_fracture_01( ):
+def test_clone_fracture_01( ):
    '''Deep copy components in 'components'.
       Deep copy spanners that attach to any component in 'components'.
       Fracture spanners that attach to components not in 'components'.
@@ -25,7 +25,7 @@ def test_copy_fracture_01( ):
          a'8 ] ) \stopTrillSpan
    }'''
 
-   result = copy_fracture(t.leaves[2:4])
+   result = clone_fracture(t.leaves[2:4])
    new = Voice(result)
 
    r'''\new Voice {
@@ -38,7 +38,7 @@ def test_copy_fracture_01( ):
    assert new.format == "\\new Voice {\n\te'8 \\startTrillSpan\n\tf'8 \\stopTrillSpan\n}"
    
 
-def test_copy_fracture_02( ):
+def test_clone_fracture_02( ):
    '''Copy one measure and fracture spanners.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 3)
@@ -59,7 +59,7 @@ def test_copy_fracture_02( ):
          a'8 ] ) \stopTrillSpan
    }'''
 
-   result = copy_fracture(t[1:2])
+   result = clone_fracture(t[1:2])
    new = Voice(result)
 
    r'''\new Voice {
@@ -73,7 +73,7 @@ def test_copy_fracture_02( ):
    assert new.format == "\\new Voice {\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n}"
 
 
-def test_copy_fracture_03( ):
+def test_clone_fracture_03( ):
    '''Three notes crossing measure boundaries.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 3)
@@ -94,7 +94,7 @@ def test_copy_fracture_03( ):
          a'8 ] ) \stopTrillSpan
    }'''
 
-   result = copy_fracture(t.leaves[-3:])
+   result = clone_fracture(t.leaves[-3:])
    new = Voice(result)
 
    r'''\new Voice {
@@ -108,7 +108,7 @@ def test_copy_fracture_03( ):
    assert new.format == "\\new Voice {\n\tf'8 \\startTrillSpan\n\tg'8 [\n\ta'8 ] \\stopTrillSpan\n}"
 
 
-def test_copy_fracture_04( ):
+def test_clone_fracture_04( ):
    '''Optional 'n' argument for multiple copies.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 3)
@@ -129,7 +129,7 @@ def test_copy_fracture_04( ):
          a'8 ] ) \stopTrillSpan
    }'''
 
-   result = copy_fracture(t[1:2], 3)
+   result = clone_fracture(t[1:2], 3)
    new = Voice(result)
 
    r'''\new Voice {

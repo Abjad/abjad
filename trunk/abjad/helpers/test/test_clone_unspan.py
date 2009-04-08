@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_copy_unspan_01( ):
+def test_clone_unspan_01( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -27,7 +27,7 @@ def test_copy_unspan_01( ):
          c''8 ] )
    }'''
 
-   result = copy_unspan([t])
+   result = clone_unspan([t])
    voice = result[0]
 
    r'''
@@ -51,7 +51,7 @@ def test_copy_unspan_01( ):
    assert voice.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n}"
    
 
-def test_copy_unspan_02( ):
+def test_clone_unspan_02( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -77,7 +77,7 @@ def test_copy_unspan_02( ):
          c''8 ] )
    }'''
 
-   result = copy_unspan(t[1:])
+   result = clone_unspan(t[1:])
    new = Voice(result)
 
    r'''\new Voice {
@@ -97,7 +97,7 @@ def test_copy_unspan_02( ):
    assert new.format == "\\new Voice {\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n}"
 
 
-def test_copy_unspan_03( ):
+def test_clone_unspan_03( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -123,7 +123,7 @@ def test_copy_unspan_03( ):
          c''8 ] )
    }'''
 
-   result = copy_unspan(t.leaves[:6])
+   result = clone_unspan(t.leaves[:6])
    new = Voice(result)
 
    r'''\new Voice {
@@ -140,7 +140,7 @@ def test_copy_unspan_03( ):
    assert new.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
 
 
-def test_copy_unspan_04( ):
+def test_clone_unspan_04( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -166,7 +166,7 @@ def test_copy_unspan_04( ):
          c''8 ] )
    }'''
 
-   result = copy_unspan(t[2][:] + t[-1:])
+   result = clone_unspan(t[2][:] + t[-1:])
    new = Voice(result)
 
    r'''\new Voice {
@@ -182,7 +182,7 @@ def test_copy_unspan_04( ):
    assert new.format == "\\new Voice {\n\tg'8\n\ta'8\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n}"
 
 
-def test_copy_unspan_05( ):
+def test_clone_unspan_05( ):
    '''Withdraw components from spanners.
       Deepcopy unspanned components.
       Reapply spanners to components.
@@ -209,7 +209,7 @@ def test_copy_unspan_05( ):
          c''8 ] )
    }'''
 
-   result = copy_unspan(t[-2:], 3)
+   result = clone_unspan(t[-2:], 3)
    new = Voice(result)
 
    r'''\new Voice {

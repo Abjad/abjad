@@ -1,6 +1,6 @@
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.bequeath import bequeath
-from abjad.helpers.copy_unspan import copy_unspan
+from abjad.helpers.clone_unspan import clone_unspan
 from abjad.helpers.duration_token_decompose import _duration_token_decompose
 from abjad.helpers.iterate import iterate
 from abjad.leaf.leaf import _Leaf
@@ -28,7 +28,7 @@ def leaf_scale_binary(leaf, dur):
    except AssignabilityError:
       result = [ ]
       for wd in _duration_token_decompose(dur):
-         l = copy_unspan([leaf])[0]
+         l = clone_unspan([leaf])[0]
          l.duration.written = Rational(*wd)
          result.append(l)
       bequeath([leaf], result)

@@ -1,5 +1,5 @@
 from abjad.core.initializer import _Initializer
-from abjad.helpers.copy_fracture import copy_fracture
+from abjad.helpers.clone_fracture import clone_fracture
 from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
 from abjad.notehead.notehead import NoteHead
 
@@ -27,7 +27,7 @@ class _NoteInitializer(_Initializer):
             _Leaf.__init__(client, chord.duration.written)
             # must copy chord BEFORE _transfer_all_attributes
             if len(chord) > 0:
-               copy = copy_fracture([chord])[0]
+               copy = clone_fracture([chord])[0]
             _transfer_all_attributes(chord, client)
             del client._noteheads
             if len(chord) > 0:

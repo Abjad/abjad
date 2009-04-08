@@ -15,7 +15,7 @@ def test_chord_append_01( ):
 def test_chord_copy_01( ):
    '''Chords can be copied. Python ids differ.'''
    t = Chord([2, 4], (1, 4))
-   new = copy_fracture([t])[0]
+   new = clone_fracture([t])[0]
    assert isinstance(new, Chord)
    assert len(t) == len(new)
    assert t.pitches[0].number == new.pitches[0].number

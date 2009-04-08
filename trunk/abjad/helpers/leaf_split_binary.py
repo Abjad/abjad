@@ -1,4 +1,4 @@
-from abjad.helpers.copy_unspan import copy_unspan
+from abjad.helpers.clone_unspan import clone_unspan
 from abjad.helpers.is_power_of_two import _is_power_of_two
 from abjad.helpers.leaf_scale_binary import leaf_scale_binary
 from abjad.leaf.leaf import _Leaf
@@ -14,7 +14,7 @@ def leaf_split_binary(leaf, split_dur):
    if unprolated_split_dur == 0 or \
       leaf.duration.written <= unprolated_split_dur:
       return [leaf]
-   new_leaf = copy_unspan([leaf])[0]
+   new_leaf = clone_unspan([leaf])[0]
    leaf.splice([new_leaf])
    new_leaf.grace.after = None
    leaf.grace.before = None

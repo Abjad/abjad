@@ -1,4 +1,4 @@
-from abjad.helpers.copy_fracture import copy_fracture
+from abjad.helpers.clone_fracture import clone_fracture
 from abjad.helpers.donate import donate
 
 
@@ -22,7 +22,7 @@ _attributes_not_to_copy = (
    
 def _transfer_all_attributes(old, new):
    from abjad.grace.interface import _GraceInterface
-   oldCopy = copy_fracture([old])[0]
+   oldCopy = clone_fracture([old])[0]
    for key, value in oldCopy.__dict__.items( ):
       if key not in _attributes_not_to_copy:
          if hasattr(value, '_client'):
