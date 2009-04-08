@@ -1,4 +1,4 @@
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 def measures_color_nonbinary(expr, color = 'red'):
@@ -15,7 +15,7 @@ def measures_color_nonbinary(expr, color = 'red'):
       Additional color names appear in appendix B.5 of the LilyPond LM.'''
 
    from abjad.measure.measure import _Measure
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       if measure.meter.effective.nonbinary:
          measure.beam.color = color
          measure.dots.color = color

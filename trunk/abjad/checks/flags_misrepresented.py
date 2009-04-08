@@ -1,5 +1,5 @@
 from abjad.checks.check import _Check
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 class FlagsMisrepresented(_Check):
@@ -8,7 +8,7 @@ class FlagsMisrepresented(_Check):
       from abjad.leaf.leaf import _Leaf
       violators = [ ] 
       total = 0
-      for leaf in iterate(expr, _Leaf):
+      for leaf in iterate.naive(expr, _Leaf):
          total += 1
          flags = leaf.duration._flags
          left, right = leaf.beam.counts

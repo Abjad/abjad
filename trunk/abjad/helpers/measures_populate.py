@@ -1,5 +1,5 @@
 from abjad.helpers.is_duration_token import _is_duration_token
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
 from abjad.note.note import Note
@@ -50,7 +50,7 @@ def measures_populate(expr, mode):
 
 def _measures_populate_big_endian(expr):
    from abjad.measure.measure import _Measure
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       meter = measure.meter.effective
       written_duration = ~meter.multiplier * meter.duration
       notes = construct.notes(0, written_duration)
@@ -59,7 +59,7 @@ def _measures_populate_big_endian(expr):
 
 def _measures_populate_little_endian(expr):
    from abjad.measure.measure import _Measure
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       meter = measure.meter.effective
       written_duration = ~meter.multiplier * meter.duration
       notes = construct.notes(
@@ -70,7 +70,7 @@ def _measures_populate_little_endian(expr):
 def _measures_populate_duration_train(expr, written_duration):
    from abjad.measure.measure import _Measure
    written_duration = Rational(written_duration)
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       meter = measure.meter.effective
       total_duration = meter.duration
       prolation = meter.multiplier
@@ -81,7 +81,7 @@ def _measures_populate_duration_train(expr, written_duration):
 
 def _measures_populate_meter_series(expr):
    from abjad.measure.measure import _Measure
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       meter = measure.meter.effective
       denominator = mathtools.next_least_power_of_two(meter.denominator)
       numerator = meter.numerator
@@ -91,13 +91,13 @@ def _measures_populate_meter_series(expr):
 
 def _measures_populate_none(expr):
    from abjad.measure.measure import _Measure
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       measure[ : ] = [ ]
 
 
 def _measures_populate_skip(expr):
    from abjad.measure.measure import _Measure
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       skip = Skip(1)
       meter = measure.meter.effective
       skip.duration.multiplier = meter.duration * ~meter.multiplier

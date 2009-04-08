@@ -1,5 +1,5 @@
 from abjad.core.interface import _Interface
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.receipt.spanner import _SpannerReceipt
 
 
@@ -69,7 +69,7 @@ class _ComponentSpannerAggregator(_Interface):
          Do not include spanners attaching directly to self.'''
       from abjad.component.component import _Component
       result = set([ ])
-      components = iterate(self._client, _Component)
+      components = iterate.naive(self._client, _Component)
       components.next( )
       for component in components:
          result.update(set(component.spanners.attached))
@@ -81,7 +81,7 @@ class _ComponentSpannerAggregator(_Interface):
          components in client, including client.'''
       from abjad.component.component import _Component
       result = set([ ])
-      for component in iterate(self._client, _Component):
+      for component in iterate.naive(self._client, _Component):
          result.update(set(component.spanners.attached))
       return result
 

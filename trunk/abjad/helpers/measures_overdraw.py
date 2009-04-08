@@ -1,5 +1,5 @@
 from abjad.tools import clone
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 ## TODO: Finish implementation ##
@@ -21,7 +21,7 @@ def measures_overdraw(expr, source_count = 1, total_reps = 2):
    source = [ ]
    result = [ ]
    from abjad.measure.measure import _Measure
-   for i, measure in enumerate(iterate(expr, _Measure)):
+   for i, measure in enumerate(iterate.naive(expr, _Measure)):
       if i < source_count:
          source.append(measure)   
       elif i == source_count:

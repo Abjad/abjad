@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 def find(expr, name = None, klass = None, context = None):
@@ -17,7 +17,7 @@ def find(expr, name = None, klass = None, context = None):
 
    result = [ ]
 
-   for component in iterate(expr, _Component):
+   for component in iterate.naive(expr, _Component):
       if name is None or component.name == name:
          if klass is None or isinstance(component, klass):
             if context is None or \

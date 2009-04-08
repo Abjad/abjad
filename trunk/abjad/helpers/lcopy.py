@@ -2,8 +2,8 @@ from abjad.container.container import Container
 from abjad.exceptions.exceptions import ContiguityError
 from abjad.tools import clone
 from abjad.helpers.excise import excise
-from abjad.helpers.iterate import iterate
-from abjad.helpers.retroiterate import retroiterate
+from abjad.tools import iterate
+from abjad.tools import iterate
 
 
 def lcopy(expr, start = 0, stop = None):
@@ -55,7 +55,7 @@ def lcopy(expr, start = 0, stop = None):
 
    while not _found_start_leaf:
       from abjad.leaf.leaf import _Leaf
-      leaf = iterate(governor_copy, _Leaf).next( )
+      leaf = iterate.naive(governor_copy, _Leaf).next( )
       if leaf == start_leaf:
          _found_start_leaf = True
       else:
@@ -67,7 +67,7 @@ def lcopy(expr, start = 0, stop = None):
    _found_stop_leaf = False
 
    while not _found_stop_leaf:
-      leaf = retroiterate(governor_copy, _Leaf).next( )
+      leaf = iterate.backwards(governor_copy, _Leaf).next( )
       if leaf == stop_leaf:
          _found_stop_leaf = True
       else:

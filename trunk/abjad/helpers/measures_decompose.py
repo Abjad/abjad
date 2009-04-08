@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.measure.rigid.measure import RigidMeasure
 
 
@@ -10,7 +10,7 @@ def measures_decompose(expr):
 
    # manifest list to avoid change-while-iterate recursion problem
    from abjad.measure.measure import _Measure
-   for measure in list(iterate(expr, _Measure)):
+   for measure in list(iterate.naive(expr, _Measure)):
       result.append(_measure_decompose(measure))
    return tuple(result)
 

@@ -1,6 +1,6 @@
 from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 def _withdraw_from_contained_spanners(components):
@@ -13,7 +13,7 @@ def _withdraw_from_contained_spanners(components):
    assert_components(components, contiguity = 'thread')
 
    ## withdraw from contained spanners
-   for component in iterate(components, _Component):
+   for component in iterate.naive(components, _Component):
       component.spanners._detach( )
 
    ## return components

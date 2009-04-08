@@ -1,5 +1,5 @@
 from abjad.checks.check import _Check
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 class MeasuresImproperlyFilled(_Check):
@@ -10,7 +10,7 @@ class MeasuresImproperlyFilled(_Check):
       from abjad.measure.rigid.measure import RigidMeasure
       violators = [ ]
       total, bad = 0, 0
-      for t in iterate(expr, RigidMeasure):
+      for t in iterate.naive(expr, RigidMeasure):
          if not t.full:
             violators.append(t)
             bad += 1

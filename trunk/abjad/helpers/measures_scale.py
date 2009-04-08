@@ -1,4 +1,4 @@
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.helpers.container_scale import container_scale
 from abjad.tools import mathtools
 from abjad.helpers.is_power_of_two import _is_power_of_two
@@ -20,7 +20,7 @@ def measures_scale(expr, multiplier = Rational(1)):
 
       This might best be a bound method on RigidMeasure.'''
 
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
 
       if multiplier == Rational(1):
          continue

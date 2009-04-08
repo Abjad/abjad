@@ -17,7 +17,7 @@ def test_iterate_tie_chains_01( ):
    }
    '''
 
-   chains = list(iterate_tie_chains(t))
+   chains = list(iterate.tie_chains(t))
 
    assert chains[0] == (t[0], t[1])
    assert chains[1] == (t[2], t[3])
@@ -37,7 +37,7 @@ def test_iterate_tie_chains_02( ):
    }
    '''
 
-   chains = list(iterate_tie_chains(t))
+   chains = list(iterate.tie_chains(t))
 
    assert chains[0] == (t[0], )
    assert chains[1] == (t[1], )

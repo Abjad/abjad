@@ -1,5 +1,5 @@
 from abjad.helpers.bequeath import bequeath
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 def tuplets_slip_trivial(expr):
@@ -7,6 +7,6 @@ def tuplets_slip_trivial(expr):
       Return None because processes potentially many trivial tuplets.'''
    
    from abjad.tuplet.tuplet import _Tuplet
-   for tuplet in list(iterate(expr, _Tuplet)):
+   for tuplet in list(iterate.naive(expr, _Tuplet)):
       if tuplet.trivial:
          bequeath([tuplet], tuplet[:])

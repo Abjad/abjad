@@ -3,7 +3,7 @@ from abjad.helpers.components_likely_multiplier import \
 from abjad.helpers.container_scale import container_scale
 from abjad.tools import mathtools
 from abjad.tools import mathtools
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.helpers.meter_make_binary import meter_make_binary
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
@@ -19,7 +19,7 @@ def measures_project(expr):
       Returns None because processes potentially many measures.'''
 
    from abjad.measure.measure import _Measure
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       if measure.meter.effective.nonbinary:
 
          # find meter and contents multipliers

@@ -1,5 +1,5 @@
 from abjad.chord.chord import Chord
-from abjad.helpers.iterate_tie_chains import iterate_tie_chains
+from abjad.tools import iterate
 from abjad.note.note import Note
 
 
@@ -9,7 +9,7 @@ def chromaticize(expr):
       Used primarily in generating test and doc file examples. 
       Compare with pitches.diatonicize( ).'''
 
-   for i, x in enumerate(iterate_tie_chains(expr)):
+   for i, x in enumerate(iterate.tie_chains(expr)):
       pitch = i
       if isinstance(x[0], Note):
          for note in x:

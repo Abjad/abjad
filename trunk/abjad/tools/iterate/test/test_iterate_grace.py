@@ -26,7 +26,7 @@ def test_iterate_grace_01( ):
       f'8 ]
    }'''
 
-   notes = list(iterate_grace(t, Note))
+   notes = list(iterate.grace(t, Note))
 
    "[Note(c', 8), Note(c', 16), Note(d', 16), Note(d', 8), Note(e', 16), Note(f', 16), Note(e', 8), Note(f', 8)]"
 

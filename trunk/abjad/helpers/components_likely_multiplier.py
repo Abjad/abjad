@@ -1,6 +1,6 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.is_tie_chain import _is_tie_chain
-from abjad.helpers.iterate_chained_contents import iterate_chained_contents
+from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.helpers.tie_chain_written import tie_chain_written
 from abjad.helpers.unique import unique
@@ -19,7 +19,7 @@ def _components_likely_multiplier(components):
    assert_components(components)
 
    chain_duration_numerators = [ ]
-   for expr in iterate_chained_contents(components):
+   for expr in iterate.chained_contents(components):
       if _is_tie_chain(expr):
          chain_duration = tie_chain_written(expr)   
          chain_duration_numerators.append(chain_duration._n)

@@ -1,5 +1,5 @@
 from abjad.helpers.contents_multiply import contents_multiply
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.helpers.pair_multiply_naive import _pair_multiply_naive
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
@@ -31,7 +31,7 @@ def measures_spin(expr, n):
    assert n > 0
 
    from abjad.measure.measure import _Measure
-   for measure in iterate(expr, _Measure):
+   for measure in iterate.naive(expr, _Measure):
       old_meter = measure.meter.effective
       contents_multiply(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)

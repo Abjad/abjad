@@ -28,7 +28,7 @@ def test_assess_components_none_parent_01( ):
    assert not assess_components([t], share = 'parent', allow_orphans = False)
 
    assert not assess_components(t.leaves, share = 'parent')
-   assert not assess_components(list(iterate(t, _Component)), share = 'parent')
+   assert not assess_components(list(iterate.naive(t, _Component)), share = 'parent')
 
 
 def test_assess_components_none_parent_02( ):

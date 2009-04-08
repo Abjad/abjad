@@ -2,7 +2,7 @@ from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.bequeath import bequeath
 from abjad.tools import clone
 from abjad.tools import duration 
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie

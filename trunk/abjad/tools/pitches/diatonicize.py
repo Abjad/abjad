@@ -1,5 +1,5 @@
 from abjad.chord.chord import Chord
-from abjad.helpers.iterate_tie_chains import iterate_tie_chains
+from abjad.tools import iterate
 from abjad.note.note import Note
 
 
@@ -12,7 +12,7 @@ def diatonicize(expr):
    diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
    length = len(diatonic_residues)
 
-   for i, tie_chain in enumerate(iterate_tie_chains(expr)):
+   for i, tie_chain in enumerate(iterate.tie_chains(expr)):
       pitch = int(i / length) * 12 + diatonic_residues[i % length] 
       if isinstance(tie_chain[0], Note):
          for note in tie_chain:

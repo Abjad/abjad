@@ -1,6 +1,6 @@
 from abjad.helpers.bequeath import bequeath
 from abjad.helpers.container_scale import container_scale
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.tools import mathtools
 from abjad.meter.meter import Meter
@@ -26,7 +26,7 @@ def measures_subsume(expr):
 
    from abjad.measure.measure import _Measure
    from abjad.tuplet.tuplet import _Tuplet
-   for measure in iterate(expr, _Measure): 
+   for measure in iterate.naive(expr, _Measure): 
       if len(measure) == 1:
          if isinstance(measure[0], _Tuplet):
             tuplet = measure[0]

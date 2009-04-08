@@ -8,7 +8,7 @@ def test_parentage_signature_01( ):
    t = Staff(scale(4))
 
    containment = t.parentage.signature
-   for component in iterate(t, _Component):
+   for component in iterate.naive(t, _Component):
       assert component.parentage.signature == containment
 
 
@@ -20,7 +20,7 @@ def test_parentage_signature_02( ):
    t.name = 'foo'
 
    containment = t.parentage.signature
-   for component in iterate(t, _Component):
+   for component in iterate.naive(t, _Component):
       assert component.parentage.signature == containment
 
 

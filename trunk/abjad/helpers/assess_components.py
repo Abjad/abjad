@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 import types
 
 

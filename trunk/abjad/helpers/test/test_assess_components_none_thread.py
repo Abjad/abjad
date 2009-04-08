@@ -25,7 +25,7 @@ def test_assess_components_none_thread_02( ):
       f'8
    }'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_03( ):
@@ -39,7 +39,7 @@ def test_assess_components_none_thread_03( ):
       e'8
    }'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 ## nonstructural in new parallel --> context model.
 #def test_assess_components_none_thread_04( ):
@@ -58,7 +58,7 @@ def test_assess_components_none_thread_03( ):
 #      f'8
 #   >>'''
 #
-#   assert not assess_components(list(iterate(t, _Component)), share = 'thread')
+#   assert not assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_05( ):
@@ -73,7 +73,7 @@ def test_assess_components_none_thread_05( ):
       f'8
    }'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_06( ):
@@ -88,7 +88,7 @@ def test_assess_components_none_thread_06( ):
       f'8 
    }'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_07( ):
@@ -112,7 +112,7 @@ def test_assess_components_none_thread_07( ):
       }
    }'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_08( ):
@@ -134,7 +134,7 @@ def test_assess_components_none_thread_08( ):
            }
    }'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_09( ):
@@ -923,7 +923,7 @@ def test_assess_components_none_thread_35( ):
       b'8
    }'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_36( ):
@@ -955,7 +955,7 @@ def test_assess_components_none_thread_36( ):
       b'8
    }'''
 
-   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_37( ):
@@ -1152,7 +1152,7 @@ def test_assess_components_none_thread_41( ):
 #      f'8
 #   >>'''
 #
-#   assert not assess_components(list(iterate(t, _Component)), share = 'thread')
+#   assert not assess_components(list(iterate.naive(t, _Component)), share = 'thread')
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1197,7 +1197,7 @@ def test_assess_components_none_thread_41( ):
 #      g'8
 #   }'''
 #
-#   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+#   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1223,7 +1223,7 @@ def test_assess_components_none_thread_41( ):
 #      g'8
 #   }'''
 #
-#   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+#   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1283,7 +1283,7 @@ def test_assess_components_none_thread_41( ):
 #      b'8
 #   }'''
 #
-#   assert assess_components(list(iterate(t, _Component)), share = 'thread')
+#   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_47( ):

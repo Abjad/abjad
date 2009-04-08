@@ -1,4 +1,4 @@
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.helpers.measure_scale_and_remeter import measure_scale_and_remeter
 from abjad.helpers.measures_spin import measures_spin
 from abjad.rational.rational import Rational
@@ -37,7 +37,7 @@ def measures_concentrate(expr, concentration_pairs, cyclic = True):
    result = [ ]
    num_pairs = len(concentration_pairs)
    from abjad.measure.measure import _Measure
-   for i, measure in enumerate(iterate(expr, _Measure)):
+   for i, measure in enumerate(iterate.naive(expr, _Measure)):
       concentration_pair = concentration_pairs[i % num_pairs]
       assert isinstance(concentration_pair, tuple)
       spin_count, scalar_denominator = concentration_pair

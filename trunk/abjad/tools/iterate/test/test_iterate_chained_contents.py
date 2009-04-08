@@ -27,7 +27,7 @@ def test_iterate_chained_contents_01( ):
    }
    '''
 
-   chained_contents = list(iterate_chained_contents(t))
+   chained_contents = list(iterate.chained_contents(t))
 
    assert chained_contents[0] == t[0].tie.chain
    assert chained_contents[1] == t[2].tie.chain

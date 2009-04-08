@@ -1,6 +1,6 @@
 from abjad.tools import clone
 from abjad.helpers.is_power_of_two import _is_power_of_two
-from abjad.helpers.retroiterate import retroiterate
+from abjad.tools import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 import math
@@ -12,7 +12,7 @@ def leaves_meiose(expr, n = 2):
       Preserve parentage and spanners.
       Returns nothing.'''
 
-   for leaf in retroiterate(expr, _Leaf):
+   for leaf in iterate.backwards(expr, _Leaf):
       _leaf_meiose(leaf, n)
       
 

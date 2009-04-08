@@ -1,7 +1,7 @@
 from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.spanner.offset import _SpannerOffsetInterface
@@ -79,7 +79,7 @@ class Spanner(_Abjad):
       music = music or [ ]
       if isinstance(music, _Component):
          music = [music]
-      leaves = list(iterate(music, _Leaf))
+      leaves = list(iterate.naive(music, _Leaf))
       assert_components(leaves, contiguity = 'thread')
       self.extend(music)
 

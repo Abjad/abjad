@@ -1,7 +1,7 @@
 from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_crossing_spanners import get_crossing_spanners
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 def _withdraw_from_crossing_spanners(components):
@@ -18,7 +18,7 @@ def _withdraw_from_crossing_spanners(components):
 
    crossing_spanners = get_crossing_spanners(components) 
 
-   components_including_children = list(iterate(components, _Component))
+   components_including_children = list(iterate.naive(components, _Component))
 
    for crossing_spanner in list(crossing_spanners):
       spanner_components = crossing_spanner._components[:]

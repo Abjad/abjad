@@ -2,7 +2,7 @@ from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_contained_spanners import get_contained_spanners
 from abjad.helpers.get_covered_spanners import get_covered_spanners
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 
 def get_crossing_spanners(components):
@@ -25,7 +25,7 @@ def get_crossing_spanners(components):
 #   result = get_contained_spanners(components) - \
 #      get_covered_spanners(components)
 
-   all_components = set(iterate(components, _Component))
+   all_components = set(iterate.naive(components, _Component))
    contained_spanners = get_contained_spanners(components)
    crossing_spanners = set([ ])
    for spanner in contained_spanners:

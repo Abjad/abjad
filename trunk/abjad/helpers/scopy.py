@@ -3,7 +3,7 @@ from abjad.container.container import Container
 from abjad.tools import clone
 from abjad.tools import duration
 from abjad.helpers.excise import excise
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 from abjad.helpers.lcopy import lcopy
 from abjad.helpers.leaf_scale import leaf_scale
 from abjad.helpers.leaf_split import leaf_split
@@ -66,7 +66,7 @@ def _get_lcopy(container, start, stop):
    start_leaf, stop_leaf = None, None
    first_dif = second_dif = 0
    from abjad.leaf.leaf import _Leaf
-   for i, leaf in enumerate(iterate(container, _Leaf)):
+   for i, leaf in enumerate(iterate.naive(container, _Leaf)):
       total_dur += leaf.duration.prolated
       if total_dur == start and start_leaf is None:
          start_leaf = i

@@ -1,7 +1,7 @@
 from abjad.helpers.assess_components import assess_components
 from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.navigator.dfs import depth_first_search
-from abjad.helpers.iterate import iterate
+from abjad.tools import iterate
 
 def coalesce(expr):
    '''Fuse containers in self that are strictly contiguous and have

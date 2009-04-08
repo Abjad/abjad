@@ -1,10 +1,10 @@
-from abjad.helpers.iterate import iterate
+from abjad.tools.iterate.naive import naive
 
 
-def iterate_tie_chains(expr):
+def tie_chains(expr):
    '''Yield successive tie chains in expr.'''
 
    from abjad.leaf.leaf import _Leaf
-   for leaf in iterate(expr, _Leaf):
+   for leaf in naive(expr, _Leaf):
       if not leaf.tie.spanned or leaf.tie.last:
          yield leaf.tie.chain
