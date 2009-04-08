@@ -1,31 +1,31 @@
 from abjad import *
 
 
-def test_flats_01( ):
-   '''The flats( ) helper renotates an individual pitch.'''
+def test_pitches_make_flat_01( ):
+   '''The pitches.make_flat( ) helper renotates an individual pitch.'''
    t = Pitch('cs', 4)
-   flats(t)
+   pitches.make_flat(t)
    assert t == Pitch('df', 4)
 
 
-def test_flats_02( ):
-   '''The flats( ) helper renotates the pitch of one note.'''
+def test_pitches_make_flat_02( ):
+   '''The pitches.make_flat( ) helper renotates the pitch of one note.'''
    t = Note(('cs', 4), 4)
-   flats(t)
+   pitches.make_flat(t)
    assert t.pitch == Pitch('df', 4)
 
 
-def test_flats_03( ):
-   '''The flats( ) helper renotates the pitches of all notes in a chord.'''
+def test_pitches_make_flat_03( ):
+   '''The pitches.make_flat( ) helper renotates the pitches of all notes in a chord.'''
    t = Chord([('cs', 4), ('f', 4), ('as', 4)], (1, 4))
-   flats(t)
+   pitches.make_flat(t)
    assert t.pitches == (Pitch('df', 4), Pitch('f', 4), Pitch('bf', 4)) 
 
 
-def test_flats_04( ):
-   '''The flats( ) helper renotates all pitches in any arbirary expression.'''
+def test_pitches_make_flat_04( ):
+   '''The pitches.make_flat( ) helper renotates all pitches in any arbirary expression.'''
    t = Staff([Note(n, (1, 8)) for n in range(12, 0, -1)])
-   flats(t)
+   pitches.make_flat(t)
 
    r'''
    \new Staff {

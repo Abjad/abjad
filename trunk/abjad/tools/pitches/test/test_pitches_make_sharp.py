@@ -1,32 +1,32 @@
 from abjad import *
 
 
-def test_sharps_01( ):
-   '''The sharps( ) helper renotates an individual pitch.'''
+def test_pitches_make_sharp_01( ):
+   '''The pitches.make_sharp( ) helper renotates an individual pitch.'''
    t = Pitch('df', 4)
-   sharps(t)
+   pitches.make_sharp(t)
    assert t == Pitch('cs', 4)
 
 
-def test_sharps_02( ):
-   '''The sharps( ) helper renotates the pitch of one note.'''
+def test_pitches_make_sharp_02( ):
+   '''The pitches.make_sharp( ) helper renotates the pitch of one note.'''
    t = Note(('df', 4), 4)
-   sharps(t)
+   pitches.make_sharp(t)
    assert t.pitch == Pitch('cs', 4)
 
 
-def test_sharps_03( ):
-   '''The sharps( ) helper renotates the pitches of all notes in a chord.'''
+def test_pitches_make_sharp_03( ):
+   '''The pitches.make_sharp( ) helper renotates the pitches of all notes in a chord.'''
    t = Chord([('df', 4), ('f', 4), ('af', 4)], (1, 4))
-   sharps(t)
+   pitches.make_sharp(t)
    assert t.pitches == (Pitch('cs', 4), Pitch('f', 4), Pitch('gs', 4)) 
 
 
-def test_sharps_04( ):
-   '''The sharps( ) helper renotates all pitches in any arbirary expression.'''
+def test_pitches_make_sharp_04( ):
+   '''The pitches.make_sharp( ) helper renotates all pitches in any arbirary expression.'''
    t = Staff(run(12))
    pitches.chromaticize(t)
-   sharps(t)
+   pitches.make_sharp(t)
 
    r'''
    \new Staff {

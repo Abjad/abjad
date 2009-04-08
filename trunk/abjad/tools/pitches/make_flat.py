@@ -3,7 +3,7 @@ from abjad.helpers.pitch_renotate_flats import pitch_renotate_flats
 from abjad.pitch.pitch import Pitch
 
 
-def flats(expr):
+def make_flat(expr):
    from abjad.leaf.leaf import _Leaf
    if isinstance(expr, Pitch):
       pitch_renotate_flats(expr)

@@ -3,7 +3,7 @@ from abjad.helpers.pitch_renotate_sharps import pitch_renotate_sharps
 from abjad.pitch.pitch import Pitch
 
 
-def sharps(expr):
+def make_sharp(expr):
    if isinstance(expr, Pitch):
       pitch_renotate_sharps(expr)
    else:
