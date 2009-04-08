@@ -1,5 +1,4 @@
-from abjad.tools import interpolate
-from abjad.rational.rational import Rational
+from abjad import *
 
 
 def test_interpolate_divide_01( ):
@@ -40,5 +39,3 @@ def test_interpolate_divide_06( ):
    t = interpolate.divide(Rational(1, 2), Rational(1, 16), Rational(1, 8), 2)
    assert t[0] == Rational(1, 16)
    assert t[0] < t[-2]
-
-
