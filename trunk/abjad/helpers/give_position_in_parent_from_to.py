@@ -1,6 +1,6 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.components_switch_parent_to import \
-   _components_switch_parent_to
+from abjad.helpers.components_switch_parent import \
+   _components_switch_parent
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 
 
@@ -26,7 +26,7 @@ def _give_position_in_parent_from_to(donors, recipients):
       return donors
 
    parent._music[start:start] = recipients
-   _components_switch_parent_to(recipients, parent)
-   _components_switch_parent_to(donors, None)
+   _components_switch_parent(recipients, parent)
+   _components_switch_parent(donors, None)
 
    return donors
