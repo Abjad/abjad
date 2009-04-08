@@ -43,7 +43,7 @@ class _Parentage(_Interface):
       parent = self.parent
       if parent is not None:
          self.client._update._markForUpdateToRoot( )
-         self.parent = None
+         self.__parent = None
          return parent
 
    def _detach(self):
@@ -71,7 +71,7 @@ class _Parentage(_Interface):
       parent = receipt._parent
       index = receipt._index
       parent._music.insert(index, client)
-      self.parent = parent
+      self.__parent = parent
       receipt._empty( )
       return client
 
@@ -97,7 +97,7 @@ class _Parentage(_Interface):
          if client in cur_parent:
             cur_parent._update._markForUpdateToRoot( )
             cur_parent._music.remove(client)
-      self.parent = new_parent
+      self.__parent = new_parent
       self.client._update._markForUpdateToRoot( )
 
    ## PUBLIC ATTRIBUTES ##
@@ -122,17 +122,10 @@ class _Parentage(_Interface):
       '''True when component has no parent, otherwise False.'''
       return len(self.parentage) == 1
 
-   ## TODO: Make _Parentage.parent read-only ...          ##
-   ##       ... spanner-blind operation can mangle score! ##
-
-   @apply
-   def parent( ):
-      '''Return reference to parent of client, else None.'''
-      def fget(self):
-         return self.__parent
-      def fset(self, arg):
-         self.__parent = arg
-      return property(**locals( ))
+   @property
+   def parent(self):
+      '''Read-only reference to parent of client.'''
+      return self.__parent
       
    @property
    def parentage(self):
