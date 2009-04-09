@@ -1,5 +1,5 @@
 from abjad.rational.rational import Rational
-from abjad.helpers.is_duration_token import _is_duration_token
+from abjad.tools import durtools
 from abjad.tools import durtools
 
 
@@ -11,7 +11,7 @@ def rationalize(lst):
    assert isinstance(lst, list)
    result = [ ]
    for element in lst:
-      if _is_duration_token(element):
+      if durtools.is_token(element):
          r = Rational(*durtools.token_unpack(element))
       else:
          r = rationalize(element)

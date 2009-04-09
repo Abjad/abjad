@@ -1,10 +1,11 @@
 from abjad.rational.rational import Rational
 
 
-def _is_duration_pair(arg):
+def is_pair(arg):
    '''Returns True when arg has the form of a pair
       of integers that initialize a positive Rational,
       otherwise False.'''
+
    if isinstance(arg, (list, tuple)) and len(arg) != 2:
       return False
 

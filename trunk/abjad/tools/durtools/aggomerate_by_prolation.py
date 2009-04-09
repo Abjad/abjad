@@ -1,9 +1,8 @@
-from abjad.tools import durtools
-from abjad.tools import mathtools
-from abjad.rational.rational import Rational
+#from abjad.tools import mathtools
+from abjad.tools.mathtools.factors import factors
 
 
-def _agglomerate_durations_by_prolation(durations):
+def agglomerate_by_prolation(durations):
    '''Given a list of tuplet duration tokens L =  [d1, d2, d3, ..., dn], 
       this function returns a list 
       L' = [[d1, ..., dp], [dp+1, ..., dq], ..., [dq+1, ..., dn]] of sublists 
@@ -21,9 +20,11 @@ def _agglomerate_durations_by_prolation(durations):
    group = [durations[0]]
    result = [group]
    for d in durations[1:]:
-      d_f = set(mathtools.factors(d[1]))
+      #d_f = set(mathtools.factors(d[1]))
+      d_f = set(factors(d[1]))
       d_f.discard(2) 
-      gd_f = set(mathtools.factors(group[0][1]))
+      #gd_f = set(mathtools.factors(group[0][1]))
+      gd_f = set(factors(group[0][1]))
       gd_f.discard(2)
       if d_f == gd_f:
          group.append(d)

@@ -1,7 +1,5 @@
-from abjad.container.multipliedduration import _MultipliedContainerDurationInterface
-from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
-from abjad.tools import mathtools
-from abjad.rational.rational import Rational
+from abjad.container.multipliedduration import \
+   _MultipliedContainerDurationInterface
 
 
 class _MeasureDurationInterface(_MultipliedContainerDurationInterface):

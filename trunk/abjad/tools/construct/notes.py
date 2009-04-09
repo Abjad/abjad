@@ -1,10 +1,9 @@
-from abjad.helpers.agglomerate_durations_by_prolation import \
-     _agglomerate_durations_by_prolation
 from abjad.tools import durtools
-from abjad.helpers.is_duration_token import _is_duration_token
+from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 from abjad.tools.construct.helpers import _construct_unprolated_notes
+from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tools import pitch
@@ -31,7 +30,7 @@ def notes(pitches, durations, direction='big-endian'):
    if pitch.is_token(pitches):
       pitches = [pitches]
    
-   if _is_duration_token(durations):
+   if durtools.is_token(durations):
       durations = [durations]
 
    # this block is a hack to allow the function to accept a Rational
@@ -48,7 +47,7 @@ def notes(pitches, durations, direction='big-endian'):
    durations = listtools.resize(durations, size)
    pitches = listtools.resize(pitches, size)
 
-   durations = _agglomerate_durations_by_prolation(durations)
+   durations = durtools.agglomerate_by_prolation(durations)
 
    result = [ ]
    for ds in durations:

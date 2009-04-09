@@ -1,11 +1,12 @@
-from abjad.helpers.is_duration_pair import _is_duration_pair
 from abjad.rational.rational import Rational
+from abjad.tools.durtools.is_pair import is_pair
 
 
-def _is_duration_token(arg):
+def is_token(arg):
    '''Returns True when arg meets the criteria 
       for an Abjad duration token, otherwise False.'''
-   if _is_duration_pair(arg):
+
+   if is_pair(arg):
       return True
    elif isinstance(arg, Rational) and arg > 0:
       return True

@@ -1,12 +1,11 @@
 from __future__ import division
-from abjad.helpers.agglomerate_durations_by_prolation import \
-     _agglomerate_durations_by_prolation
 from abjad.tools import durtools
-from abjad.helpers.is_duration_token import _is_duration_token
+from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 from abjad.tools.construct.helpers import _construct_tied_chord, \
    _construct_tied_note, _construct_tied_rest
+from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tools import pitch
@@ -50,7 +49,7 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
    if pitch.is_token(pitches):
       pitches = [pitches]
    
-   if _is_duration_token(durations):
+   if durtools.is_token(durations):
       durations = [durations]
 
    ## convert Rationals to duration tokens.
@@ -61,7 +60,7 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
    durations = listtools.resize(durations, size)
    pitches = listtools.resize(pitches, size)
 
-   durations = _agglomerate_durations_by_prolation(durations)
+   durations = durtools.agglomerate_by_prolation(durations)
 
    result = [ ]
    for ds in durations:

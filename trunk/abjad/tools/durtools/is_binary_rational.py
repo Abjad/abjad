@@ -2,7 +2,7 @@ from abjad.rational.rational import Rational
 import math
 
 
-def _is_binary_rational(rational):
+def is_binary_rational(rational):
    '''True when rational is of the form 1/2**n, otherwise False.
 
    for i in range(1, 12 + 1):

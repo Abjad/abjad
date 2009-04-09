@@ -1,4 +1,4 @@
-from abjad.helpers.is_duration_token import _is_duration_token
+from abjad.tools import durtools
 from abjad.tools.construct.helpers import _construct_tied_rest
 
 
@@ -11,7 +11,7 @@ def rests(durations, direction='big-endian', tied=False):
             'little-endian' returns a list of notes of increasing duration.
       tied: Set to True to return tied rests. False otherwise.  '''
 
-   if _is_duration_token(durations):
+   if durtools.is_token(durations):
       durations = [durations]
 
    result = [ ]

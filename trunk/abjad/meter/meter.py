@@ -1,5 +1,5 @@
 from abjad.core.grobhandler import _GrobHandler
-from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
+from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 
@@ -93,7 +93,7 @@ class Meter(_GrobHandler):
 
    @property
    def multiplier(self):
-      return _denominator_to_multiplier(self.denominator)
+      return durtools.denominator_to_multiplier(self.denominator)
 
    @property
    def nonbinary(self):

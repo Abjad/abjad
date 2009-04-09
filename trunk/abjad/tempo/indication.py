@@ -1,5 +1,5 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.helpers.is_assignable import is_assignable
+from abjad.tools import durtools
 from abjad.rational.rational import Rational
 
 
@@ -26,7 +26,7 @@ class TempoIndication(_Abjad):
       def fget(self):
          return self._duration
       def fset(self, arg):
-         assert is_assignable(arg)
+         assert durtools.is_assignable(arg)
          self._duration = arg
       return property(**locals( ))
 

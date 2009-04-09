@@ -1,5 +1,4 @@
 from abjad.tools import mathtools
-from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 
 

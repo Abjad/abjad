@@ -1,4 +1,4 @@
-from abjad.helpers.is_duration_token import _is_duration_token
+from abjad.tools import durtools
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
@@ -40,7 +40,7 @@ def measures_populate(expr, mode):
       _measures_populate_meter_series(expr)
    elif mode == 'skip':
       _measures_populate_skip(expr)
-   elif _is_duration_token(mode):
+   elif durtools.is_token(mode):
       _measures_populate_duration_train(expr, mode)
    elif mode is None:
       _measures_populate_none(expr)

@@ -1,7 +1,7 @@
 from abjad.note.note import Note
 from abjad.helpers.bequeath import bequeath
 from abjad.helpers.get_tie_chain_written import _get_tie_chain_written
-from abjad.helpers.prolated_to_written import _prolated_to_written
+from abjad.tools import durtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
@@ -15,7 +15,7 @@ def divide_tie_chain(tie_chain, divisions = 2, prolation = 'diminution'):
    prolated_duration = target_duration / divisions
 
    # find written duration of each notes in tuplet
-   written_duration = _prolated_to_written(prolated_duration, prolation)
+   written_duration = durtools.prolated_to_written(prolated_duration, prolation)
    
    # make tuplet notes
    notes = Note(0, written_duration) * divisions

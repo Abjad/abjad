@@ -2,16 +2,16 @@ from abjad.rational.rational import Rational
 import math
 
 
-def _naive_prolated_to_written(prolated_duration, prolation = 'diminution'):
+def naive_prolated_to_written(prolated_duration, prolation = 'diminution'):
    '''Return number of the form 1/2**n that is either just greater, 
       or just less, than prolated_duration, according to 'prolation'.
 
       Intended to find written duration of notes inside tuplet.
 
-      _naive_prolated_to_written(Rational(3, 80), 'diminution')
+      durtools.naive_prolated_to_writtenRational(3, 80), 'diminution')
       Rational(1, 32)
 
-      _naive_prolated_to_written(Rational(3, 80), 'augmentation')
+      durtools.naive_prolated_to_writtenRational(3, 80), 'augmentation')
       Rational(1, 16)'''
 
    # find exponent of denominator

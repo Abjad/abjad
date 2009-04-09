@@ -1,8 +1,8 @@
-from abjad.helpers.denominator_to_multiplier import _denominator_to_multiplier
 from abjad.tools import mathtools
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
+from abjad.tools import durtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
@@ -29,8 +29,8 @@ def excise(leaf):
          parent.meter.forced = Meter(better_meter)
          new_denominator = parent.meter.forced.denominator
 
-         old_prolation = _denominator_to_multiplier(old_denominator)
-         new_prolation = _denominator_to_multiplier(new_denominator)
+         old_prolation = durtools.denominator_to_multiplier(old_denominator)
+         new_prolation = durtools.denominator_to_multiplier(new_denominator)
          adjusted_prolation = old_prolation / new_prolation
          for x in parent:
             if isinstance(x, FixedDurationTuplet):
