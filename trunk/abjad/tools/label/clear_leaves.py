@@ -1,7 +1,7 @@
 from abjad.tools import iterate
 
 
-def clear_leaf_markup(expr):
+def clear_leaves(expr):
    '''Empty t.markup.up and t.markup.down for all leaves in expr.'''
 
    from abjad.leaf.leaf import _Leaf
