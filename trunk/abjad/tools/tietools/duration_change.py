@@ -5,7 +5,7 @@ from abjad.helpers.withdraw_from_attached_spanners import \
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
 from abjad.tools import construct
-from abjad.tools.tietools.is_tie_chain import is_tie_chain
+from abjad.tools.tietools.is_chain import is_chain
 from abjad.tools.tietools.truncate import truncate
 from abjad.tools.tietools.duration_written import duration_written
 from abjad.tools.tietools.get_leaves import get_leaves
@@ -18,7 +18,7 @@ def duration_change(tie_chain, new_written_duration):
 
       Return newly modified tie chain.'''
 
-   assert is_tie_chain(tie_chain)
+   assert is_chain(tie_chain)
    assert isinstance(new_written_duration, Rational)
 
    if durtools.is_assignable(new_written_duration):

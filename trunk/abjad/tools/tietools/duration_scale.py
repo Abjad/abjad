@@ -1,5 +1,5 @@
 from abjad.rational.rational import Rational
-from abjad.tools.tietools.is_tie_chain import is_tie_chain
+from abjad.tools.tietools.is_chain import is_chain
 from abjad.tools.tietools.duration_change import duration_change
 from abjad.tools.tietools.duration_written import duration_written
 

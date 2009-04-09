@@ -14,7 +14,7 @@ def container_scale(container, multiplier):
       Return measure.'''
 
    for expr in iterate.chained_contents(container[:]):
-      if tietools.is_tie_chain(expr):
+      if tietools.is_chain(expr):
          tietools.duration_scale(expr, multiplier)
       elif isinstance(expr, FixedDurationTuplet):
          tuplet_scale(expr, multiplier)
