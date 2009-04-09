@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def retrograde(container):
+def container_reverse_contents(container):
    '''Retrograde in place the contents of container.
       Container and any of its children may be spanned.'''
 
