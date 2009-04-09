@@ -1,14 +1,13 @@
-from abjad.tools import mathtools
-from abjad.tools import mathtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
+from abjad.tools import mathtools
 
 
-def meter_make_binary(nonbinary_meter, contents_multiplier = Rational(1)):
+def make_binary(nonbinary_meter, contents_multiplier = Rational(1)):
    '''Change nonbinary meter to binary.
       Return meter.
 
-      meter_make_binary(Meter(3, 12))
+      metertools.make_binary(Meter(3, 12))
       Meter(2, 8)'''
    
    # check input

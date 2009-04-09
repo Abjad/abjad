@@ -1,9 +1,9 @@
-from abjad.tools import mathtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
+from abjad.tools import mathtools
 
 
-def _is_binary_equivalent_meter(meter):
+def is_binary_equivalent(meter):
    '''True when meter is binary or when meter is nonbinary
       but mathematically equivalent to some binary meter,
       otherwise False.'''

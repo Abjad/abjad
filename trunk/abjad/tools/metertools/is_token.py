@@ -1,9 +1,9 @@
-from abjad.tools import durtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
+from abjad.tools import durtools
 
 
-def _is_meter_token(arg):
+def is_token(arg):
    '''Return True when arg has the form of an
       Abjad meter token, otherwise False.'''
 

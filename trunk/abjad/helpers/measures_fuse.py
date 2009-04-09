@@ -5,7 +5,7 @@ from abjad.helpers.container_scale import container_scale
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 from abjad.helpers.give_dominant_spanners_to import _give_dominant_spanners_to
 from abjad.helpers.is_measure_list import _is_measure_list
-from abjad.helpers.make_best_meter import _make_best_meter
+from abjad.tools import metertools
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 
@@ -27,7 +27,7 @@ def measures_fuse(measure_list):
    old_denominators = [x.meter.effective.denominator for x in measure_list]
    new_duration = sum([x.meter.effective.duration for x in measure_list])
 
-   new_meter = _make_best_meter(new_duration, old_denominators)
+   new_meter = metertools.make_best(new_duration, old_denominators)
 
    music = [ ]
    for measure in measure_list:

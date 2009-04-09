@@ -2,7 +2,7 @@ from abjad.tools import iterate
 from abjad.helpers.container_scale import container_scale
 from abjad.tools import mathtools
 from abjad.tools import mathtools
-from abjad.helpers.make_best_meter import _make_best_meter
+from abjad.tools import metertools
 from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
@@ -35,7 +35,7 @@ def measures_scale(expr, multiplier = Rational(1)):
          old_denominator = old_meter.denominator
          old_duration = old_meter.duration
          new_duration = multiplier * old_duration
-         new_meter = _make_best_meter(
+         new_meter = metertools.make_best(
             new_duration, [old_denominator], multiplier._d)
       measure.meter.forced = new_meter
 

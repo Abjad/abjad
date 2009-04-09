@@ -4,7 +4,7 @@ from abjad.helpers.container_scale import container_scale
 from abjad.tools import mathtools
 from abjad.tools import mathtools
 from abjad.tools import iterate
-from abjad.helpers.meter_make_binary import meter_make_binary
+from abjad.tools import metertools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
@@ -27,7 +27,7 @@ def measures_project(expr):
          contents_multiplier = _components_likely_multiplier(measure[:])
 
          # update nonbinary meter to binary
-         meter_make_binary(measure.meter.effective, contents_multiplier)
+         metertools.make_binary(measure.meter.effective, contents_multiplier)
 
          # find target duration and create tuplet
          target_duration = meter_multiplier * measure.duration.contents
