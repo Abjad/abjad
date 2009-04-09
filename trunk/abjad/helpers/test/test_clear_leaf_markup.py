@@ -5,7 +5,7 @@ def test_clear_leaf_markup_01( ):
    '''Clear multiple pieces of down-markup.'''
 
    t = FixedDurationTuplet((2, 8), scale(3))
-   label_leaf_durations(t)
+   label.leaf_durations(t)
 
    r'''
    \times 2/3 {

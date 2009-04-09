@@ -1,7 +1,7 @@
 from abjad.tools import iterate
 
 
-def label_leaf_durations(expr, 
+def leaf_durations(expr, 
    show = ['written', 'prolated'], ties = 'together'):
    '''Iterate expr and label all written and prolated durations.'''
    
