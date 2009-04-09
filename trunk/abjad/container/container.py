@@ -9,11 +9,10 @@ from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_switch_parent import \
    _components_switch_parent
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
-from abjad.tools import spannertools
-from abjad.helpers.withdraw_from_crossing_spanners import \
-   _withdraw_from_crossing_spanners
 from abjad.notehead.interface import _NoteHeadInterface
 from abjad.tools import spannertools
+from abjad.tools.spannertools.withdraw_from_crossing import \
+   _withdraw_from_crossing
 
 
 class Container(_Component):
@@ -53,7 +52,7 @@ class Container(_Component):
       components = self[i]
       if not isinstance(components, list):
          components = [components]
-      _withdraw_from_crossing_spanners(components)
+      _withdraw_from_crossing(components)
       _components_switch_parent(components, None)
 
    def __getitem__(self, i):
@@ -103,7 +102,7 @@ class Container(_Component):
          spanners_receipt = spannertools.get_dominant([old])
          ## must withdraw from spanners before parentage!
          ## otherwise begin / end assessments don't work!
-         _withdraw_from_crossing_spanners([expr])
+         _withdraw_from_crossing([expr])
          expr.parentage._switch(self)
          self._music.insert(i, expr)
          detach_receipt = old.detach( )
@@ -124,7 +123,7 @@ class Container(_Component):
             component.detach( )
          ## must withdraw before setting in self!
          ## otherwise circular withdraw ensues!
-         _withdraw_from_crossing_spanners(expr)
+         _withdraw_from_crossing(expr)
          self._music[start:start] = expr
          for component in expr:
             component.parentage._switch(self)

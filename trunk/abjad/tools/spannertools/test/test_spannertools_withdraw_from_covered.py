@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_withdraw_from_covered_spanners_01( ):
+def test_spannertools_withdraw_from_covered_01( ):
    '''Withdraw from all spanners covered by components.'''
 
    t = Voice(scale(4))
@@ -15,7 +15,7 @@ def test_withdraw_from_covered_spanners_01( ):
            f'8 )
    }'''
 
-   withdraw_from_covered_spanners(t[:2])
+   spannertools.withdraw_from_covered(t[:2])
 
    r'''\new Voice {
            c'8 (

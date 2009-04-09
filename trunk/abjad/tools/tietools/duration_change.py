@@ -1,14 +1,13 @@
-from abjad.tools import durtools
-from abjad.tools import durtools
-from abjad.helpers.withdraw_from_attached_spanners import \
-   _withdraw_from_attached_spanners
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
 from abjad.tools import construct
-from abjad.tools.tietools.is_chain import is_chain
-from abjad.tools.tietools.truncate import truncate
+from abjad.tools import durtools
+from abjad.tools.spannertools.withdraw_from_attached import \
+   _withdraw_from_attached
 from abjad.tools.tietools.duration_written import duration_written
 from abjad.tools.tietools.get_leaves import get_leaves
+from abjad.tools.tietools.is_chain import is_chain
+from abjad.tools.tietools.truncate import truncate
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
@@ -37,7 +36,7 @@ def duration_change(tie_chain, new_written_duration):
          tie_chain[0].tie.unspan( )
          difference = len(duration_tokens) - len(tie_chain)
          extra_leaves = tie_chain[0] * difference
-         _withdraw_from_attached_spanners(extra_leaves)
+         _withdraw_from_attached(extra_leaves)
          extra_tokens = duration_tokens[len(tie_chain):]
          for leaf, token in zip(extra_leaves, extra_tokens):
             leaf.duration.written = token.duration.written

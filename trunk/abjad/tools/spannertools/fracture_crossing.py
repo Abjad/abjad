@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def fracture_crossing_spanners(components):
+def fracture_crossing(components):
    r'''Fracture to the left of the leftmost component.
       Fracture to the right of the rightmost component.
       Do not fracture spanners of any components at higher levels of score.
@@ -34,7 +34,7 @@ def fracture_crossing_spanners(components):
             a'8 ] \! \stopTrillSpan
          }   }
 
-      fracture_crossing_spanners(t[1:2])
+      spannertools.fracture_crossing(t[1:2])
 
       \new Staff {
          {

@@ -3,7 +3,7 @@ from abjad.helpers.assert_components import assert_components
 from abjad.tools import iterate
 
 
-def _withdraw_from_contained_spanners(components):
+def _withdraw_from_contained(components):
    '''Find every spanner contained in 'components'.
       Withdraw all components in 'components' from spanners.
       Return 'components'.

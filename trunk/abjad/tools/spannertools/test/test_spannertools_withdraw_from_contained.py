@@ -1,9 +1,9 @@
 from abjad import *
-from abjad.helpers.withdraw_from_contained_spanners import \
-   _withdraw_from_contained_spanners
+from abjad.tools.spannertools.withdraw_from_contained import \
+   _withdraw_from_contained
 
 
-def test_withdraw_from_contained_spanners_01( ):
+def test_spannertools_withdraw_from_contained_01( ):
    '''Unspan every component in components.
       Navigate down into components and traverse deeply.'''
 
@@ -11,7 +11,7 @@ def test_withdraw_from_contained_spanners_01( ):
    Beam(t)
    Crescendo(t[:])
 
-   _withdraw_from_contained_spanners([t])
+   _withdraw_from_contained([t])
 
    r'''\new Staff {
       c'8
@@ -24,7 +24,7 @@ def test_withdraw_from_contained_spanners_01( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_withdraw_from_contained_spanners_02( ):
+def test_spannertools_withdraw_from_contained_02( ):
    '''Docs.'''
 
    t = Staff(Container(run(2)) * 3)
@@ -47,7 +47,7 @@ def test_withdraw_from_contained_spanners_02( ):
       }
    }'''
 
-   _withdraw_from_contained_spanners([t[1]])
+   _withdraw_from_contained([t[1]])
 
    r'''\new Staff {
       {

@@ -303,15 +303,13 @@ class _Component(_Abjad):
       '''Splice 'components' after self.
          Extend spanners to attached to all components in list.'''
       from abjad.helpers.assert_components import assert_components
-      from abjad.tools import spannertools
       from abjad.helpers.get_parent_and_indices import get_parent_and_indices
-      from abjad.helpers.spanner_get_component_at_score_offset import \
-         spanner_get_component_at_score_offset
+      from abjad.tools import spannertools
       assert_components(components)
       insert_offset = self.offset.score + self.duration.prolated
       receipt = spannertools.get_dominant([self])
       for spanner, index in receipt:
-         insert_component = spanner_get_component_at_score_offset(
+         insert_component = spannertools.find_component_at_score_offset(
             spanner, insert_offset)
          if insert_component is not None:
             insert_index = spanner.index(insert_component)
@@ -332,15 +330,13 @@ class _Component(_Abjad):
          Extend spanners leftwards to attach 
          to all components in 'components'.'''
       from abjad.helpers.assert_components import assert_components
-      from abjad.tools import spannertools
       from abjad.helpers.get_parent_and_indices import get_parent_and_indices
-      from abjad.helpers.spanner_get_index_at_score_offset import \
-         spanner_get_index_at_score_offset
+      from abjad.tools import spannertools
       assert_components(components)
       offset = self.offset.score
       receipt = spannertools.get_dominant([self])
       for spanner, x in receipt:
-         index = spanner_get_index_at_score_offset(spanner, offset)
+         index = spannertools.find_index_at_score_offset(spanner, offset)
          for component in reversed(components):
             spanner._insert(index, component)
             component.spanners._add(spanner)

@@ -1,10 +1,10 @@
 from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
-from abjad.tools import spannertools
 from abjad.tools import iterate
+from abjad.tools.spannertools.get_crossing import get_crossing
 
 
-def _withdraw_from_crossing_spanners(components):
+def _withdraw_from_crossing(components):
    '''This operation can leave score trees in a weird state.
       Operation should only be used in the middle of some other operation.
       Intended purpose is to strip components of crosssing spanners.
@@ -16,7 +16,7 @@ def _withdraw_from_crossing_spanners(components):
 
    assert_components(components, contiguity = 'thread')
 
-   crossing_spanners = spannertools.get_crossing(components) 
+   crossing_spanners = get_crossing(components) 
 
    components_including_children = list(iterate.naive(components, _Component))
 

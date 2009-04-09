@@ -1,10 +1,10 @@
 from abjad import *
-from abjad.helpers.withdraw_from_crossing_spanners import \
-   _withdraw_from_crossing_spanners
+from abjad.tools.spannertools.withdraw_from_crossing import \
+   _withdraw_from_crossing
 import py.test
 
 
-def test_withdraw_from_crossing_spanners_01( ):
+def test_spannertools_withdraw_from_crossing_01( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(run(2)) * 2)
@@ -30,14 +30,14 @@ def test_withdraw_from_crossing_spanners_01( ):
    assert slur in spanners
    assert trill in spanners
 
-   _withdraw_from_crossing_spanners([t])
+   _withdraw_from_crossing([t])
    assert len(spanners) == 3
    assert beam in spanners
    assert slur in spanners
    assert trill in spanners
 
 
-def test_withdraw_from_crossing_spanners_02( ):
+def test_spannertools_withdraw_from_crossing_02( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(run(2)) * 2)
@@ -62,7 +62,7 @@ def test_withdraw_from_crossing_spanners_02( ):
    assert beam in spanners
    assert trill in spanners
 
-   _withdraw_from_crossing_spanners(t[0:1])
+   _withdraw_from_crossing(t[0:1])
 
    r'''\new Voice {
            {
@@ -82,7 +82,7 @@ def test_withdraw_from_crossing_spanners_02( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 ( \\startTrillSpan\n\t\tf'8 ) \\stopTrillSpan\n\t}\n}"
 
 
-def test_withdraw_from_crossing_spanners_03( ):
+def test_spannertools_withdraw_from_crossing_03( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(run(2)) * 2)
@@ -107,7 +107,7 @@ def test_withdraw_from_crossing_spanners_03( ):
    assert slur in spanners
    assert trill in spanners
 
-   _withdraw_from_crossing_spanners(t.leaves[2:3])
+   _withdraw_from_crossing(t.leaves[2:3])
 
    spanners = spannertools.get_contained(t.leaves[2:3])
    assert spanners == set([ ])

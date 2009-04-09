@@ -1,9 +1,8 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
-from abjad.helpers.give_dominant_spanners_to import \
-   _give_dominant_spanners_to
-from abjad.helpers.withdraw_from_crossing_spanners import \
-   _withdraw_from_crossing_spanners
+from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
+from abjad.tools.spannertools.withdraw_from_crossing import \
+   _withdraw_from_crossing
 
 
 def bequeath(donors, recipients):
@@ -24,7 +23,7 @@ def bequeath(donors, recipients):
       parent[start:stop+1] = recipients
       return donors
    else:
-      _give_dominant_spanners_to(donors, recipients)
-      _withdraw_from_crossing_spanners(donors)
+      _give_dominant_to(donors, recipients)
+      _withdraw_from_crossing(donors)
 
    return donors
