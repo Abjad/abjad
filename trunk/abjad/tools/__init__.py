@@ -1,4 +1,4 @@
-from abjad.tools import chord
+from abjad.tools import chordtools
 from abjad.tools import clone
 from abjad.tools import interpolate
 from abjad.tools import iterate

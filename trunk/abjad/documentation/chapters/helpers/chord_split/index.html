@@ -14,7 +14,7 @@
 
 <div id="content">
 
-<h1>chord.split( )</h1>
+<h1>chordtools.split( )</h1>
 
 <div class="subsection">
 
@@ -90,7 +90,7 @@ Spanners treatment:
 
 <pre class="abjad">
 abjad> chord = Chord([-24, -10, -2, -1, 4, 5, 7, 9, 15, 18, 20, 25], (1, 4))    
-abjad> treble, bass = chord.split(chord)
+abjad> treble, bass = chordtools.split(chord)
 abjad> group = PianoStaff([Staff([DynamicMeasure([treble])]), Staff([DynamicMeasure([bass])])])
 abjad> group[1].clef = 'bass'
 abjad> show(group)
