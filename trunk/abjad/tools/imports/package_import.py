@@ -23,7 +23,6 @@ def _package_import(path, namespace):
          if not element in ('.svn', 'test'):
             #exec('from %s import %s' % (module, element))
             submod = '.'.join([module, element])
-            print submod
             namespace[element] = __import__(submod, fromlist =['*'])
       else:
          print 'Not a dir, not a file, what is %s?' % element
