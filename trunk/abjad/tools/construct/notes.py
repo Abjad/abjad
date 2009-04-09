@@ -1,6 +1,6 @@
 from abjad.helpers.agglomerate_durations_by_prolation import \
      _agglomerate_durations_by_prolation
-from abjad.tools import duration
+from abjad.tools import durtools
 from abjad.helpers.is_duration_token import _is_duration_token
 from abjad.tools import mathtools
 from abjad.rational.rational import Rational
@@ -41,7 +41,7 @@ def notes(pitches, durations, direction='big-endian'):
    ## Rationals reduce fractions to their minimum expression. e.g. 
    ## (3, 3) --> Rational(1, 1), and we sometimes generate duration
    ## tokens that are not reduced, so we want to preserve the denominator 3.
-   durations = [duration.token_unpack(dur) for dur in durations]
+   durations = [durtools.token_unpack(dur) for dur in durations]
 
    ## set lists of pitches and durations to the same length
    size = max(len(durations), len(pitches))

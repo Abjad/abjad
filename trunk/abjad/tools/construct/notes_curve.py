@@ -1,4 +1,4 @@
-from abjad.tools import duration
+from abjad.tools import durtools
 from abjad.note.note import Note
 from abjad.rational.rational import Rational
 from abjad.tools import interpolate
@@ -15,10 +15,10 @@ def notes_curve(pitches, total, start, stop, exp='cosine',
       fill the total duration requested.
       The pitches of the notes are set cyclically from the pitches list.'''
 
-   total = Rational(*duration.token_unpack(total))
-   start = Rational(*duration.token_unpack(start))
-   stop = Rational(*duration.token_unpack(stop))
-   written = Rational(*duration.token_unpack(written))
+   total = Rational(*durtools.token_unpack(total))
+   start = Rational(*durtools.token_unpack(start))
+   stop = Rational(*durtools.token_unpack(stop))
+   written = Rational(*durtools.token_unpack(written))
 
    dts = interpolate.divide(total, start, stop, exp)
    result = [ ]

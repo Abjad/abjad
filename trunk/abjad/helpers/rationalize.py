@@ -1,6 +1,6 @@
 from abjad.rational.rational import Rational
 from abjad.helpers.is_duration_token import _is_duration_token
-from abjad.tools import duration
+from abjad.tools import durtools
 
 
 def rationalize(lst):
@@ -12,7 +12,7 @@ def rationalize(lst):
    result = [ ]
    for element in lst:
       if _is_duration_token(element):
-         r = Rational(*duration.token_unpack(element))
+         r = Rational(*durtools.token_unpack(element))
       else:
          r = rationalize(element)
       result.append(r)

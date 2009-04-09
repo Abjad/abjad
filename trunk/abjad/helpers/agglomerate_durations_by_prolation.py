@@ -1,4 +1,4 @@
-from abjad.tools import duration
+from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.rational.rational import Rational
 

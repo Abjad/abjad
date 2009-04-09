@@ -1,4 +1,4 @@
-from abjad.tools import duration
+from abjad.tools import durtools
 from abjad.rational.rational import Rational
 
 
@@ -25,7 +25,7 @@ def in_terms_of(q, desired_denominator):
    '''
 
    assert isinstance(q, (Rational, int, long, tuple))
-   n, d = duration.token_unpack(q)
+   n, d = durtools.token_unpack(q)
    multiplier = Rational(desired_denominator, d)
    new_numerator = multiplier * n
    new_denominator = multiplier * d

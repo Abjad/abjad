@@ -1,4 +1,4 @@
-from abjad.tools.duration.token_unpack import token_unpack
+from abjad.tools.durtools.token_unpack import token_unpack
 from abjad.tools.mathtools.integer_decompose import integer_decompose
 
 
@@ -7,7 +7,7 @@ def token_decompose(duration_token):
 
       >>> duration_tokens = [(n, 16) for n in range(10, 20)]
       >>> for duration_token in duration_tokens:
-      ...     print duration_token, duration.token_decompose(duration_token)
+      ...     print duration_token, durtools.token_decompose(duration_token)
       ... 
       (10, 16) ((8, 16), (2, 16))
       (11, 16) ((8, 16), (3, 16))

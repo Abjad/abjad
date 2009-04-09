@@ -4,7 +4,7 @@ from abjad.exceptions.exceptions import AssignabilityError
 from abjad.tools import mathtools
 from abjad.helpers.is_assignable import is_assignable
 from abjad.rational.rational import Rational
-from abjad.tools import duration
+from abjad.tools import durtools
 import math
 
 
@@ -13,7 +13,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    def __init__(self, _client, duration_token):
       _ComponentDurationInterface.__init__(self, _client)
       self.multiplier = None
-      self.written = Rational(*duration.token_unpack(duration_token))
+      self.written = Rational(*durtools.token_unpack(duration_token))
 
    ## PRIVATE ATTRIBUTES ##
 

@@ -1,4 +1,4 @@
-from abjad.tools import duration
+from abjad.tools import durtools
 from abjad.chord.chord import Chord
 from abjad.note.note import Note
 from abjad.rest.rest import Rest
@@ -17,7 +17,7 @@ def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None,
       tied: True to return tied leaves, False otherwise. Defaults to True.'''
 
    result = [ ]
-   for wd in duration.token_decompose(dur):
+   for wd in durtools.token_decompose(dur):
       if not pitches is None:
          args = (pitches, wd)
       else:
