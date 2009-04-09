@@ -1,5 +1,5 @@
 from abjad.helpers.assess_components import assess_components
-from abjad.tools.tiechaintools.is_tie_chain import is_tie_chain
+from abjad.tools.tietools.is_tie_chain import is_tie_chain
 
 
 def is_in_same_parent(expr):
@@ -21,10 +21,10 @@ def is_in_same_parent(expr):
             c'8
       }
 
-      assert tiechaintools.is_in_same_parent(t.leaves[0].tie.chain)
-      assert not tiechaintools.is_in_same_parent(t.leaves[1].tie.chain)
-      assert not tiechaintools.is_in_same_parent(t.leaves[2].tie.chain)
-      assert tiechaintools.is_in_same_parent(t.leaves[3].tie.chain)'''
+      assert tietools.is_in_same_parent(t.leaves[0].tie.chain)
+      assert not tietools.is_in_same_parent(t.leaves[1].tie.chain)
+      assert not tietools.is_in_same_parent(t.leaves[2].tie.chain)
+      assert tietools.is_in_same_parent(t.leaves[3].tie.chain)'''
 
    return is_tie_chain(expr) and \
       assess_components(list(expr), share = 'parent')

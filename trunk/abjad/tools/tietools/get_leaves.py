@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import MissingSpannerError
-from abjad.tools.tiechaintools.is_tie_chain import is_tie_chain
+from abjad.tools.tietools.is_tie_chain import is_tie_chain
 
 
 def get_leaves(tie_chain):

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import construct
 
 
-def test_tiechaintools_truncate_01( ):
+def test_tietools_truncate_01( ):
    '''Keep and unspan first note in tie chain only.'''
 
    t = Staff(construct.notes(0, [(5, 16)]))
@@ -12,7 +12,7 @@ def test_tiechaintools_truncate_01( ):
       c'16
    }'''
    
-   tiechaintools.truncate(t[0].tie.chain)
+   tietools.truncate(t[0].tie.chain)
 
    r'''\new Staff {
       c'4
@@ -22,12 +22,12 @@ def test_tiechaintools_truncate_01( ):
    assert t.format == "\\new Staff {\n\tc'4\n}"
 
 
-def test_tiechaintools_truncate_02( ):
+def test_tietools_truncate_02( ):
    '''No effect on length-1 tie chains.'''
 
    t = Staff(run(1))
 
-   tiechaintools.truncate(t[0].tie.chain)
+   tietools.truncate(t[0].tie.chain)
 
    r'''\new Staff {
       c'8

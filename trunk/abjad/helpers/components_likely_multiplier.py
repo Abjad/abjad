@@ -1,9 +1,9 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.tools import tiechaintools
+from abjad.tools import tietools
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import listtools
-from abjad.tools import tiechaintools
+from abjad.tools import tietools
 from abjad.rational.rational import Rational
 
 
@@ -20,8 +20,8 @@ def _components_likely_multiplier(components):
 
    chain_duration_numerators = [ ]
    for expr in iterate.chained_contents(components):
-      if tiechaintools.is_tie_chain(expr):
-         chain_duration = tiechaintools.duration_written(expr)   
+      if tietools.is_tie_chain(expr):
+         chain_duration = tietools.duration_written(expr)   
          chain_duration_numerators.append(chain_duration._n)
        
    if len(listtools.unique(chain_duration_numerators)) == 1:
