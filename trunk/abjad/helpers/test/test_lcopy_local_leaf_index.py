@@ -6,7 +6,7 @@ def test_lcopy_local_leaf_index_01( ):
       pass start and stop indices local to tuplet.'''
 
    t = Staff(FixedDurationTuplet((2, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    \new Staff {
@@ -44,7 +44,7 @@ def test_lcopy_local_leaf_index_02( ):
       pass start and stop indices local to measure.'''
 
    t = Staff(RigidMeasure((3, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    \new Staff {
@@ -79,7 +79,7 @@ def test_lcopy_local_leaf_index_03( ):
       pass start and stop indices local to measure.'''
 
    t = Staff(RigidMeasure((3, 9), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    \new Staff {

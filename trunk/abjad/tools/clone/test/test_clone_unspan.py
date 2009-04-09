@@ -8,7 +8,7 @@ def test_clone_unspan_01( ):
       Return unspanned copy.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 4)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
 
@@ -58,7 +58,7 @@ def test_clone_unspan_02( ):
       Return unspanned copy.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 4)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
 
@@ -104,7 +104,7 @@ def test_clone_unspan_03( ):
       Return unspanned copy.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 4)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
 
@@ -147,7 +147,7 @@ def test_clone_unspan_04( ):
       Return unspanned copy.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 4)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
 
@@ -190,7 +190,7 @@ def test_clone_unspan_05( ):
       Use optional 'n' argument for multiple copies.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 4)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
 

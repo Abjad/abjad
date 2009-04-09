@@ -8,7 +8,7 @@ def test_parentage_governor_01( ):
 
    t = Voice([Container(Voice(run(2)) * 2)])
    t[0].parallel = True
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    t[0][0].name = 'voice 1'
    t[0][1].name = 'voice 2'
 

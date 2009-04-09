@@ -6,7 +6,7 @@ def test_diatonicize_01( ):
    '''Diatonicize notes in staff.'''
 
    t = Staff(run(4))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Staff {
       c'8
@@ -23,7 +23,7 @@ def test_diatonicize_02( ):
    '''Diatonicize tie chains in staff.'''
 
    t = Staff(construct.notes(0, [(5, 32)] * 4))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Staff {
       c'8 ~

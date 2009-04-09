@@ -1,31 +1,31 @@
 from abjad import *
 
 
-def test_pitches_make_flat_01( ):
-   '''The pitches.make_flat( ) helper renotates an individual pitch.'''
+def test_pitchtools_make_flat_01( ):
+   '''The pitchtools.make_flat( ) helper renotates an individual pitch.'''
    t = Pitch('cs', 4)
-   pitches.make_flat(t)
+   pitchtools.make_flat(t)
    assert t == Pitch('df', 4)
 
 
-def test_pitches_make_flat_02( ):
-   '''The pitches.make_flat( ) helper renotates the pitch of one note.'''
+def test_pitchtools_make_flat_02( ):
+   '''The pitchtools.make_flat( ) helper renotates the pitch of one note.'''
    t = Note(('cs', 4), 4)
-   pitches.make_flat(t)
+   pitchtools.make_flat(t)
    assert t.pitch == Pitch('df', 4)
 
 
-def test_pitches_make_flat_03( ):
-   '''The pitches.make_flat( ) helper renotates the pitches of all notes in a chord.'''
+def test_pitchtools_make_flat_03( ):
+   '''The pitchtools.make_flat( ) helper renotates the pitches of all notes in a chord.'''
    t = Chord([('cs', 4), ('f', 4), ('as', 4)], (1, 4))
-   pitches.make_flat(t)
+   pitchtools.make_flat(t)
    assert t.pitches == (Pitch('df', 4), Pitch('f', 4), Pitch('bf', 4)) 
 
 
-def test_pitches_make_flat_04( ):
-   '''The pitches.make_flat( ) helper renotates all pitches in any arbirary expression.'''
+def test_pitchtools_make_flat_04( ):
+   '''The pitchtools.make_flat( ) helper renotates all pitches in any arbirary expression.'''
    t = Staff([Note(n, (1, 8)) for n in range(12, 0, -1)])
-   pitches.make_flat(t)
+   pitchtools.make_flat(t)
 
    r'''
    \new Staff {

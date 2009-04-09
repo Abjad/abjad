@@ -1,4 +1,4 @@
-from abjad.tools.pitch.is_token import is_token
+from abjad.tools.pitchtools.is_token import is_token
 
 
 def is_token_collection(arg):

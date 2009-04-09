@@ -10,7 +10,7 @@ import py.test
 #   t = Container(run(4))
 #   t.insert(2, Container(Container(run(2)) * 2))
 #   t[2].parallel = True
-#   pitches.diatonicize(t)
+#   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
 #
 #   r'''{
@@ -48,7 +48,7 @@ import py.test
 #   t.name = 'foo'
 #   t.insert(2, Container(Container(run(2)) * 2))
 #   t[2].parallel = True
-#   pitches.diatonicize(t)
+#   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
 #
 #   r'''\context Voice = "foo" \with {
@@ -86,7 +86,7 @@ import py.test
 #   t = Voice(run(4))
 #   t.insert(2, Container(Container(run(2)) * 2))
 #   t[2].parallel = True
-#   pitches.diatonicize(t)
+#   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
 #
 #   r'''\new Voice \with {
@@ -125,7 +125,7 @@ def test_lily_voice_resolution_04( ):
    t = Voice(run(4))
    t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    t.notehead.color = 'red'
 
    r'''\new Voice \with {
@@ -165,7 +165,7 @@ def test_lily_voice_resolution_05( ):
    t.insert(2, Container(Voice(run(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    t.notehead.color = 'red'
 
    r'''\context Voice = "foo" \with {
@@ -200,7 +200,7 @@ def test_lily_voice_resolution_06( ):
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    py.test.raises(ContiguityError, 'Beam(t.leaves)')
 
    '''LilyPond gives unterminated beam warnings.
@@ -220,7 +220,7 @@ def test_lily_voice_resolution_07( ):
    t[1][1].name = 'soprano'
    t[2][0].name = 'alto'
    t[2][1].name = 'soprano'
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
    t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")

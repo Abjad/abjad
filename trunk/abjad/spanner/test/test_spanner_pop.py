@@ -5,7 +5,7 @@ def test_spanner_pop_01( ):
    '''Remove and return rightmost component in spanner.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
    
    r'''\new Voice {

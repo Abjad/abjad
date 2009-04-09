@@ -8,7 +8,7 @@ from abjad.tools.construct.helpers import _construct_tied_chord, \
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
-from abjad.tools import pitch
+from abjad.tools import pitchtools
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
@@ -46,7 +46,7 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
          raise ValueError("Unknown pitch token %s." % pch)
       return leaves
 
-   if pitch.is_token(pitches):
+   if pitchtools.is_token(pitches):
       pitches = [pitches]
    
    if durtools.is_token(durations):

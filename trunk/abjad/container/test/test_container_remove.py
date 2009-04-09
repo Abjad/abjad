@@ -44,7 +44,7 @@ def test_container_remove_02( ):
       Container returns after removal.'''
 
    t = Staff(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    sequential = t[0]
    p = Beam(t[:])
 

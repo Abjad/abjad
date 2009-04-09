@@ -5,7 +5,7 @@ def test_tcopy_tuplets_in_staff_02( ):
    '''Copy adjacent, whole tuplets from staff.'''
 
    t = Staff(FixedDurationTuplet((2, 8), run(3)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    u = tcopy(t[1:])
 
    r'''

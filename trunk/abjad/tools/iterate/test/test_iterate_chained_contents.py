@@ -7,7 +7,7 @@ def test_iterate_chained_contents_01( ):
 
    t = Staff(construct.notes(0, [(5, 32)] * 4))
    t.insert(4, FixedDurationTuplet((2, 8), run(3)))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    \new Staff {

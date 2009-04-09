@@ -5,7 +5,7 @@ def test_container_spanner_fracture_01( ):
    '''Fracture spanner either side of container.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {
@@ -48,7 +48,7 @@ def test_container_spanner_fracture_02( ):
    '''Fracture spanner to the left of container.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {
@@ -94,7 +94,7 @@ def test_container_spanner_fracture_03( ):
    '''Fracture spanner to the right of container.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {
@@ -140,7 +140,7 @@ def test_container_spanner_fracture_04( ):
    '''Fracturing nothing does nothing.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Voice {
       {

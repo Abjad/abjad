@@ -1,4 +1,4 @@
-from abjad.tools.pitch.is_pair import is_pair
+from abjad.tools.pitchtools.is_pair import is_pair
 
 
 def is_token(arg):

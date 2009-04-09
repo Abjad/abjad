@@ -66,7 +66,7 @@ def test_parentage_cut_03( ):
    '''Unspanned containers can parent-cut.'''
 
    t = Staff(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    sequential = t[1]
 
    r'''

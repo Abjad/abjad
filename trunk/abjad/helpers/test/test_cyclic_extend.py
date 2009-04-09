@@ -5,7 +5,7 @@ def test_cyclic_extend_01( ):
    '''Cyclic extend measures in voice.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    \new Voice {
@@ -48,7 +48,7 @@ def test_cyclic_extend_02( ):
    '''Cyclic extend tuplets in voice.'''
    
    t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    \new Voice {

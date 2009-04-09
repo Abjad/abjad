@@ -8,7 +8,7 @@ def test_measures_fuse_01( ):
 
    t = Voice(measures_make([(1, 8), (2, 16)]))
    measures_populate(t, Rational(1, 16))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''
@@ -47,7 +47,7 @@ def test_measures_fuse_02( ):
 
    t = Voice(measures_make([(1, 8), (2, 16)]))
    measures_populate(t, Rational(1, 16))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t[0])
 
    r'''
@@ -86,7 +86,7 @@ def test_measures_fuse_03( ):
    m1 = RigidMeasure((1, 8), run(1))
    m2 = RigidMeasure((1, 12), run(1))
    t = Voice([m1, m2])
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''
@@ -138,7 +138,7 @@ def test_measures_fuse_06( ):
 
    t = Voice(measures_make([(1, 8), (1, 8), (1, 8)]))
    measures_populate(t, Rational(1, 16))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''

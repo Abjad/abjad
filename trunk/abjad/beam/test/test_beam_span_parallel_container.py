@@ -20,7 +20,7 @@ def test_beam_span_parallel_container_02( ):
 
    t = Container(Voice(run(4)) * 2)
    t.parallel = True
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
 
    assert py.test.raises(ContiguityError, 'p = Beam(t)')
 
@@ -51,7 +51,7 @@ def test_beam_span_parallel_container_03( ):
 
    t = Container(Voice(run(4)) * 2)
    t.parallel = True
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
    p = Beam(t[0])
 
    assert len(p.components) == 1
@@ -81,7 +81,7 @@ def test_beam_span_parallel_container_04( ):
    new = Container(Voice(run(4)) * 2)
    new.parallel = True
    t.insert(2, new)
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
 
    assert py.test.raises(ContiguityError, 'p = Beam(t)')
 
@@ -94,7 +94,7 @@ def test_beam_span_parallel_container_05( ):
    new = Container([ ])
    new.parallel = True
    t.insert(2, new)
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
    p = Beam(t)
 
    assert len(p.components) == 1
@@ -122,7 +122,7 @@ def test_beam_span_parallel_container_06( ):
    t.insert(1, new)
    t[1][0].name = 'foo'
    t[1][1].name = 'bar'
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
    p = Beam([t[0], t[1][0], t[2]])
 
    assert len(p.components) == 3

@@ -131,7 +131,7 @@ def test_navigator_is_threadable_06( ):
    '''Voice and its noncontext contents all thread.'''
 
    t = Voice(Container(run(4)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    \new Voice {
@@ -493,7 +493,7 @@ def test_navigator_is_threadable_16( ):
    t[0][0].name = 'voice'
    t[1].name = 'staff'
    t[1][0].name = 'voice'
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''{
            \context Staff = "staff" {
@@ -529,7 +529,7 @@ def test_navigator_is_threadable_17( ):
    t = Container(Staff([Voice(run(4))]) * 2)
    t[0][0].name = 'voice'
    t[1][0].name = 'voice'
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''{
            \new Staff {
@@ -565,7 +565,7 @@ def test_navigator_is_threadable_18( ):
    t = Container(Voice(run(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    {
@@ -597,7 +597,7 @@ def test_navigator_is_threadable_19( ):
 
    t = Staff(run(4))
    t.insert(2, Voice(run(2)))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Staff {
       c'8
@@ -626,7 +626,7 @@ def test_navigator_is_threadable_20( ):
    v2 = Voice(run(4))
    v1.name = v2.name = 'voiceOne'
    t = Container([v1, v2])
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
      {
@@ -658,7 +658,7 @@ def test_navigator_is_threadable_21( ):
    t = Container([Container([v1]), Container([v2])])
    t[0].parallel = True
    t[1].parallel = True
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    {
@@ -698,7 +698,7 @@ def test_navigator_is_threadable_22( ):
    s1.parallel = True
    s2.parallel = True
    t = Container([s1, s2])
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    {
@@ -747,7 +747,7 @@ def test_navigator_is_threadable_24( ):
       All components thread.'''
 
    t = Container(Container(run(4)) * 2)
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
 
    assert t[0][-1]._navigator._isThreadable(t[1][0])
    assert t[1][0]._navigator._isThreadable(t[0][-1])
@@ -772,7 +772,7 @@ def test_navigator_is_threadable_25( ):
    '''Differently identified anonymous voices do not thread.'''
 
    t = Container(Voice(run(4)) * 2)
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
 
    assert not t[0][-1]._navigator._isThreadable(t[1][0])
    assert not t[1][0]._navigator._isThreadable(t[0][-1])
@@ -798,7 +798,7 @@ def test_navigator_is_threadable_26( ):
       Differently identified anonymous staves do not thread.'''
 
    t = Container(Staff([Voice(run(4))]) * 2)
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
    
    assert not t[0][0][-1]._navigator._isThreadable(t[1][0][0])
    assert not t[1][0][0]._navigator._isThreadable(t[0][0][-1])

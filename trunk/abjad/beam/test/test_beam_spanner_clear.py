@@ -5,7 +5,7 @@ def test_beam_spanner_clear_01( ):
    '''Clear length-one spanner.'''
 
    t = Staff(run(8))
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
    Beam(t[0])
 
    r'''\new Staff {
@@ -40,7 +40,7 @@ def test_beam_spanner_clear_02( ):
    '''Clear length-four spanner.'''
 
    t = Staff(run(8))
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
    Beam(t[:4])
 
    r'''\new Staff {

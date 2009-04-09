@@ -363,7 +363,7 @@ def test_leaf_aggregator_fracture_11( ):
    '''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[ : ])
 
    r'''

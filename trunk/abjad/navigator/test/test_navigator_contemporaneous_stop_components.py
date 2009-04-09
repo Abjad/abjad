@@ -5,7 +5,7 @@ def test_navigator_contemporaneous_stop_components_01( ):
    '''Notes.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Voice {
       {
@@ -58,7 +58,7 @@ def test_navigator_contemporaneous_stop_components_01( ):
 #
 #   t = Voice([Container(Container(run(2)) * 2)] + run(2))
 #   t[0].parallel = True
-#   pitches.diatonicize(t)
+#   pitchtools.diatonicize(t)
 #
 #   r'''\new Voice {
 #      <<

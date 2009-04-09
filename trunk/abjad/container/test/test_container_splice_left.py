@@ -30,7 +30,7 @@ def test_container_splice_02( ):
    '''Splice left of container with underspanners.'''
 
    t = Voice(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
    result = t[1].splice_left([Note(2.5, (1, 8))])
 

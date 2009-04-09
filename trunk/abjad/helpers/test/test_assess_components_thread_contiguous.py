@@ -8,7 +8,7 @@ def test_assess_components_thread_contiguous_01( ):
 
    t = Voice(run(4))
    t.insert(2, Voice(run(2)))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Voice {
       c'8
@@ -34,7 +34,7 @@ def test_assess_components_thread_contiguous_02( ):
    t.insert(2, Voice(run(2)))
    Container(t[:2])
    Container(t[-2:])
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Voice {
       {
@@ -65,7 +65,7 @@ def test_assess_components_thread_contiguous_03( ):
    t.insert(2, Voice(run(2)))
    Container(t[:2])
    Container(t[-2:])
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Voice {
       {
@@ -144,7 +144,7 @@ def test_assess_components_thread_contiguous_10( ):
    '''False when components belonging to same thread are ommitted.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Voice {

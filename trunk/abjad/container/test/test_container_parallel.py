@@ -41,7 +41,7 @@ def test_container_parallel_03( ):
 def test_container_parallel_04( ):
    '''A parallel container can hold Contexts.'''
    t = Container(Voice(run(2)) * 2)
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
    t.parallel = True
    assert t.format == "<<\n\t\\new Voice {\n\t\tc'8\n\t\tcs'8\n\t}\n\t\\new Voice {\n\t\td'8\n\t\tef'8\n\t}\n>>"
 

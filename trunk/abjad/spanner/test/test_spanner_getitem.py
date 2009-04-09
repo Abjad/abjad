@@ -5,7 +5,7 @@ def test_spanner_getitem_01( ):
    '''Get at nonnegative index in spanner.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {
@@ -30,7 +30,7 @@ def test_spanner_getitem_02( ):
    '''Get at negative index in spanner.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {
@@ -55,7 +55,7 @@ def test_spanner_getitem_03( ):
    '''Get slice from spanner.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {
@@ -81,7 +81,7 @@ def test_spanner_getitem_04( ):
       Equivalent to p.clear( ).'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {

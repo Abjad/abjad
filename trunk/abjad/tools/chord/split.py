@@ -1,7 +1,7 @@
 from abjad.helpers.engender import engender
 from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
-from abjad.tools import pitch
+from abjad.tools import pitchtools
 
 
 def split(chord, pch = Pitch('b', 3), attr = 'number'):
@@ -31,7 +31,7 @@ def split(chord, pch = Pitch('b', 3), attr = 'number'):
          Helper engenders only unspanned output.'''
 
    assert isinstance(chord, _Leaf)
-   assert pitch.is_token(pch)
+   assert pitchtools.is_token(pch)
    assert attr in ('number', 'altitude')
 
    pch = Pitch(pch)

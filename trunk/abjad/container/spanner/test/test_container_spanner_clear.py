@@ -5,7 +5,7 @@ def test_spanners_01( ):
    '''Clear one spanner attaching to container.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''\new Voice {
@@ -50,7 +50,7 @@ def test_clear_02( ):
    '''Clear multiple spanners attaaching to container.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p1 = Beam(t[:])
    p2 = Trill(t[ : ])
    

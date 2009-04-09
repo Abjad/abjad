@@ -24,7 +24,7 @@ def test_assess_components_strict_score_02( ):
       True across container boundaries.'''
 
    t = Voice(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Voice {
            {

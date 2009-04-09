@@ -5,7 +5,7 @@ def test_tuplets_beam_bottommost_01( ):
    '''Beam nonnested tuplets.'''
 
    t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    tuplets_beam_bottommost(t)
 
    r'''\new Voice {
@@ -32,7 +32,7 @@ def test_tuplets_beam_bottommost_02( ):
    inner = FixedDurationTuplet((2, 16), run(3, Rational(1, 16)))
    outer = FixedDurationTuplet((3, 16), inner * 2)
    t = Voice(outer * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    
    r'''\new Voice {
       \fraction \times 3/4 {

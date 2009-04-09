@@ -7,7 +7,7 @@ def test_get_crossing_spanners_01( ):
       over the begin- or end-bounds of thread-contiguous components.'''
 
    t = Voice(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
@@ -44,7 +44,7 @@ def test_get_crossing_spanners_02( ):
       non-thread-contiguous components raises ContiguityError.'''
 
    t = Container(Voice(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves[:2])
    Slur(t.leaves[2:])
    
@@ -66,7 +66,7 @@ def test_get_crossing_spanners_03( ):
    '''Helper gets spanners that cross in from above.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[1:2] + t[2][0:1])
 
    r'''\new Voice {

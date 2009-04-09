@@ -15,7 +15,7 @@ def fracture_crossing_spanners(components):
       Example:
 
       t = Staff(Container(run(2)) * 3)
-      pitches.diatonicize(t)
+      pitchtools.diatonicize(t)
       Crescendo(t)
       Beam(t[:])
       Trill(t.leaves)

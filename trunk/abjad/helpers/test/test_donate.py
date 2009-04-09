@@ -6,7 +6,7 @@ def test_donate_09( ):
    '''Donate from multiple containers to tuplet.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Voice {
@@ -49,7 +49,7 @@ def test_donate_02( ):
 
    t = Voice(Container(run(2)) * 3)
    t.name = 'foo'
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)
    
@@ -95,7 +95,7 @@ def test_donate_03( ):
    '''Donate from container to tuplet.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)
    
@@ -206,7 +206,7 @@ def test_donate_06( ):
 
    t = Voice(Container(run(2)) * 2)
    Beam(t[:])
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    assert py.test.raises(MusicContentsError, 'donate(t[1:2], Note(4, (1, 4)))')
 
@@ -217,7 +217,7 @@ def test_donate_07( ):
    
    t = Voice(Container(run(2)) * 2)
    Beam(t[:])
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    tuplet = FixedDurationTuplet((2, 8), scale(3))
    assert py.test.raises(MusicContentsError, 'donate(t[1:2], tuplet)')
@@ -227,7 +227,7 @@ def test_donate_08( ):
    '''Donate from note to rest.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)   
 
    r'''\new Voice {
@@ -271,7 +271,7 @@ def test_donate_09( ):
    '''Donate from note to tuplet.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)   
 
@@ -319,7 +319,7 @@ def test_donate_10( ):
    '''Donors that are not parent-contiguous raise ContiguityError.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Voice {

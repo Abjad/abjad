@@ -5,7 +5,7 @@ def test_append_left_01( ):
    '''Append container to the left.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[1])
 
    r'''\new Voice {
@@ -48,7 +48,7 @@ def test_append_left_02( ):
    '''Spanner appends one leaf to the right.'''
    
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[1])
 
    r'''\new Voice {

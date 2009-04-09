@@ -8,7 +8,7 @@ def test_withdraw_from_crossing_spanners_01( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
@@ -41,7 +41,7 @@ def test_withdraw_from_crossing_spanners_02( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
@@ -86,7 +86,7 @@ def test_withdraw_from_crossing_spanners_03( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
    t = Voice(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)

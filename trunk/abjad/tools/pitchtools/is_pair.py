@@ -1,4 +1,4 @@
-from abjad.tools.pitch.is_name import is_name
+from abjad.tools.pitchtools.is_name import is_name
 
 
 def is_pair(arg):

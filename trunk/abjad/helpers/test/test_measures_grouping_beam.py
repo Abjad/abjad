@@ -6,7 +6,7 @@ def test_measures_grouping_beam_01( ):
       set p.durations equal to preprolated measure durations.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    measures_grouping_beam(t[:])
 
    r'''

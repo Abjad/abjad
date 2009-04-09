@@ -1,13 +1,13 @@
-from abjad.chord.chord import Chord
 from abjad.tools import iterate
-from abjad.note.note import Note
 
 
 def chromaticize(expr):
    '''Apply ascending chromatic pitches from zero 
       to the notes and chords in expr.
       Used primarily in generating test and doc file examples. 
-      Compare with pitches.diatonicize( ).'''
+      Compare with pitchtools.diatonicize( ).'''
+   from abjad.chord.chord import Chord
+   from abjad.note.note import Note
 
    for i, x in enumerate(iterate.tie_chains(expr)):
       pitch = i

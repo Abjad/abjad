@@ -5,7 +5,7 @@ def test_container_detach_01( ):
    '''t.detach( ) detaches container t from both spanners and parentage.'''
 
    t = Staff(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[ : ])
    sequential = t[0]
 

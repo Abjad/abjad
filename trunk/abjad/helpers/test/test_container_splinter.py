@@ -5,7 +5,7 @@ def test_container_splinter_01( ):
    '''Splinter triplet.'''
 
    t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''
@@ -49,7 +49,7 @@ def test_container_splinter_02( ):
    '''Hew binary measure.'''
 
    t = Voice(RigidMeasure((3, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''
@@ -89,7 +89,7 @@ def test_container_splinter_03( ):
    '''Hew nonbinary measure.'''
 
    t = Voice(RigidMeasure((3, 9), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
 
    r'''

@@ -388,7 +388,7 @@ def __are_thread_contiguous_components(expr, allow_orphans = True):
       t.insert(2, Voice(run(2)))
       Container(t[:2])
       Container(t[-2:])
-      pitches.diatonicize(t)
+      pitchtools.diatonicize(t)
 
       \new Voice {
          {

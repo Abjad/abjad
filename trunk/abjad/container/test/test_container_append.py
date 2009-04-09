@@ -8,7 +8,7 @@ def test_container_append_01( ):
    t = Voice(run(2))
    Beam(t[:])
    t.append(Container(run(2)))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Voice {
            c'8 [

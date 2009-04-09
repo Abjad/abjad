@@ -5,7 +5,7 @@ def test_fracture_01( ):
    '''Fracture container spanner to the right of index 1.'''
 
    t = Staff(Container(run(4)) * 3)
-   pitches.chromaticize(t)
+   pitchtools.chromaticize(t)
    p = Beam(t[ : ])
    original, left, right = p.fracture(1, 'right')
 

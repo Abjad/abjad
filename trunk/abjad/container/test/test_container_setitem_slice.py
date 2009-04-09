@@ -117,7 +117,7 @@ def test_container_setitem_slice_06( ):
    '''Donor and recipient container are the same.'''
    
    t = Staff(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Staff {
@@ -152,7 +152,7 @@ def test_container_setitem_slice_07( ):
    '''Donor and recipient container are the same.'''
 
    t = Staff(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Staff {
@@ -188,7 +188,7 @@ def test_container_setitem_slice_08( ):
    '''Donor and recipient container are the same.'''
 
    t = Staff(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Staff {
@@ -222,7 +222,7 @@ def test_container_setitem_slice_09( ):
    '''Donor and recipient container are the same.'''
 
    t = Staff(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Staff {
@@ -259,7 +259,7 @@ def test_container_setitem_slice_10( ):
    '''Donor and recipient container are the same.'''
 
    t = Staff(Container(run(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    Beam(t.leaves)
 
    r'''\new Staff {

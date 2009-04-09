@@ -9,7 +9,7 @@ def test_spanner_remove_01( ):
       Follow immediately with operation to remove component from score.'''
 
    t = Voice(scale(4))
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
    
    r'''\new Voice {
@@ -43,7 +43,7 @@ def test_spanner_remove_02( ):
       Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.'''
 
    t = Voice(Container(run(2)) * 3)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    p = Beam(t[:])
    
    r'''\new Voice {

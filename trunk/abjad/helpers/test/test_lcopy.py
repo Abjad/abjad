@@ -6,7 +6,7 @@ def test_lcopy_01( ):
    '''Copy consecutive notes across tuplet boundary, in staff.'''
 
    t = Staff(FixedDurationTuplet((2, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Staff {
            \times 2/3 {
@@ -43,7 +43,7 @@ def test_lcopy_02( ):
    '''Copy consecutive notes across tuplet boundary, in voice and staff.'''
 
    t = Staff([Voice(FixedDurationTuplet((2, 8), run(3)) * 2)])
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Staff {
            \new Voice {
@@ -82,7 +82,7 @@ def test_lcopy_03( ):
    '''Copy leaves from sequential containers only.'''
 
    t = Staff(Voice(run(4)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
    t.parallel = True
 
    assert py.test.raises(ContiguityError, 'lcopy(t, 1, 5)')
@@ -93,7 +93,7 @@ def test_lcopy_04( ):
 
    t = Staff(Voice(run(4)) * 2)
    t.parallel = True
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Staff <<
            \new Voice {
@@ -219,7 +219,7 @@ def test_lcopy_09( ):
    '''RigidMeasures shrink down when we copy a partial tuplet.'''
 
    t = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\time 4/8
         \times 2/3 {
@@ -253,7 +253,7 @@ def test_lcopy_10( ):
    '''Copy consecutive leaves across measure boundary.'''
 
    t = Staff(RigidMeasure((3, 8), run(3)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''\new Staff {
                    \time 3/8

@@ -27,7 +27,7 @@ def test_tuplet_fd_color_02( ):
 
    FixedDurationTuplet.color = True
    t = FixedDurationTuplet((3, 8), FixedDurationTuplet((2, 8), scale(2)) * 2)
-   pitches.diatonicize(t)
+   pitchtools.diatonicize(t)
 
    r'''
    \fraction \times 3/4 {

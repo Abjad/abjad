@@ -6,7 +6,7 @@ from abjad.tools.construct.helpers import _construct_unprolated_notes
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
-from abjad.tools import pitch
+from abjad.tools import pitchtools
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 import operator
 import math
@@ -27,7 +27,7 @@ def notes(pitches, durations, direction='big-endian'):
                   'little-endian' returns list of notes of increasing duration.
    '''
 
-   if pitch.is_token(pitches):
+   if pitchtools.is_token(pitches):
       pitches = [pitches]
    
    if durtools.is_token(durations):
