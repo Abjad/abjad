@@ -1,9 +1,7 @@
 from abjad import *
-from abjad.helpers.get_dominant_spanners_slice import \
-   get_dominant_spanners_slice
 
 
-def testget_dominant_spanners_slice_01( ):
+def test_spannertools_get_dominant_slice_01( ):
    '''Get dominant spanners over zero-length 'crack'.'''
 
    t = Voice(scale(4))
@@ -17,13 +15,13 @@ def testget_dominant_spanners_slice_01( ):
            f'8
    }'''
 
-   receipt = get_dominant_spanners_slice(t, 2, 2)
+   receipt = spannertools.get_dominant_slice(t, 2, 2)
 
    assert len(receipt) == 1
    assert (glissando, 2) in receipt
 
 
-def testget_dominant_spanners_slice_02( ):
+def test_spannertools_get_dominant_slice_02( ):
    '''Get dominant spanners over one-component slice.'''
 
    t = Voice(scale(4))
@@ -37,14 +35,14 @@ def testget_dominant_spanners_slice_02( ):
            f'8
    }'''
 
-   receipt = get_dominant_spanners_slice(t, 1, 2)
+   receipt = spannertools.get_dominant_slice(t, 1, 2)
 
    assert len(receipt) == 2
    assert (beam, 1) in receipt
    assert (glissando, 1) in receipt
 
 
-def testget_dominant_spanners_slice_03( ):
+def test_spannertools_get_dominant_slice_03( ):
    '''Get dominant spanners over four-component slice.'''
 
    t = Voice(scale(4))
@@ -58,7 +56,7 @@ def testget_dominant_spanners_slice_03( ):
            f'8
    }'''
 
-   receipt = get_dominant_spanners_slice(t, 0, 4)
+   receipt = spannertools.get_dominant_slice(t, 0, 4)
 
    assert len(receipt) == 1
    assert (glissando, 0) in receipt

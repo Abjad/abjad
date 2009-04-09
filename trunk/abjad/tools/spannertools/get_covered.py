@@ -1,8 +1,8 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_contained_spanners import get_contained_spanners
+from abjad.tools.spannertools.get_contained import get_contained
 
 
-def get_covered_spanners(components):
+def get_covered(components):
    '''Return unordered set of  spanners completely contained
       within the time bounds of thread-contiguous components.
 
@@ -18,7 +18,7 @@ def get_covered_spanners(components):
    components_begin = first.offset.score
    components_end = last.offset.score + last.duration.prolated
 
-   result = get_contained_spanners(components)
+   result = get_contained(components)
    for spanner in list(result):
       if spanner.begin < components_begin or \
          components_end < spanner.end:

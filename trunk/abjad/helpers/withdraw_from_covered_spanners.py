@@ -1,5 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_covered_spanners import get_covered_spanners
+from abjad.tools import spannertools
 
 
 def withdraw_from_covered_spanners(components):
@@ -12,7 +12,7 @@ def withdraw_from_covered_spanners(components):
    assert_components(components, contiguity = 'thread')
 
    ## withdraw from covered spanners
-   for spanner in get_covered_spanners(components):
+   for spanner in spannertools.get_covered(components):
       spanner.clear( )
 
    ## return components

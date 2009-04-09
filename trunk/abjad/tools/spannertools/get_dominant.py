@@ -4,7 +4,7 @@ from abjad.helpers.get_parent_and_indices import get_parent_and_indices
 from abjad.tools import iterate
 
 
-def get_dominant_spanners(components):
+def get_dominant(components):
    '''Return Python list of (spanner, index) pairs.
       Each (spanner, index) pair gives a spanner which dominates
       all components in 'components' together with the start-index

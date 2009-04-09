@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.ignore_parent import \
    _ignore_parent
-from abjad.helpers.get_crossing_spanners import get_crossing_spanners
+from abjad.tools import spannertools
 from abjad.helpers.restore_outgoing_reference_to_parent import \
    restore_outgoing_reference_to_parent
 import copy
@@ -20,7 +20,7 @@ def covered(components, n = 1):
 
    assert_components(components, contiguity = 'thread')
 
-   spanners = get_crossing_spanners(components) 
+   spanners = spannertools.get_crossing(components) 
    for spanner in spanners:
       spanner._blockAllComponents( )
 

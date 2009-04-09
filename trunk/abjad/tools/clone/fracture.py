@@ -2,7 +2,7 @@ from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.ignore_parent import \
    _ignore_parent
-from abjad.helpers.get_crossing_spanners import get_crossing_spanners
+from abjad.tools import spannertools
 from abjad.tools import iterate
 from abjad.helpers.restore_outgoing_reference_to_parent import \
    restore_outgoing_reference_to_parent
@@ -22,7 +22,7 @@ def fracture(components, n = 1):
 
    selection_components = set(iterate.naive(components, _Component))
 
-   spanners = get_crossing_spanners(components) 
+   spanners = spannertools.get_crossing(components) 
 
    spanner_map = set([ ])
    for spanner in spanners:

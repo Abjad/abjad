@@ -1,5 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_dominant_spanners import get_dominant_spanners
+from abjad.tools import spannertools
 
 
 def _give_dominant_spanners_to(donor_components, recipient_components):
@@ -14,7 +14,7 @@ def _give_dominant_spanners_to(donor_components, recipient_components):
    assert_components(donor_components, contiguity = 'thread')
    assert_components(recipient_components, contiguity = 'thread')
    
-   receipt = get_dominant_spanners(donor_components)
+   receipt = spannertools.get_dominant(donor_components)
    for spanner, index in receipt:
       for recipient_component in reversed(recipient_components):
          spanner._insert(index, recipient_component)

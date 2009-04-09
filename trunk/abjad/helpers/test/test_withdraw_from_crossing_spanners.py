@@ -24,7 +24,7 @@ def test_withdraw_from_crossing_spanners_01( ):
            }
    }'''
 
-   spanners = get_contained_spanners([t])
+   spanners = spannertools.get_contained([t])
    assert len(spanners) == 3
    assert beam in spanners
    assert slur in spanners
@@ -57,7 +57,7 @@ def test_withdraw_from_crossing_spanners_02( ):
            }
    }'''
 
-   spanners = get_contained_spanners(t[0:1])
+   spanners = spannertools.get_contained(t[0:1])
    assert len(spanners) == 2
    assert beam in spanners
    assert trill in spanners
@@ -75,7 +75,7 @@ def test_withdraw_from_crossing_spanners_02( ):
            }
    }'''
 
-   spanners = get_contained_spanners(t[0:1])
+   spanners = spannertools.get_contained(t[0:1])
    assert len(spanners) == 1
    assert beam in spanners
 
@@ -102,14 +102,14 @@ def test_withdraw_from_crossing_spanners_03( ):
            }
    }'''
 
-   spanners = get_contained_spanners(t.leaves[2:3])
+   spanners = spannertools.get_contained(t.leaves[2:3])
    assert len(spanners) == 2
    assert slur in spanners
    assert trill in spanners
 
    _withdraw_from_crossing_spanners(t.leaves[2:3])
 
-   spanners = get_contained_spanners(t.leaves[2:3])
+   spanners = spannertools.get_contained(t.leaves[2:3])
    assert spanners == set([ ])
 
    "Operation leaves score tree in weird state."

@@ -9,12 +9,11 @@ from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_switch_parent import \
    _components_switch_parent
 from abjad.helpers.get_parent_and_indices import get_parent_and_indices
-from abjad.helpers.get_dominant_spanners import get_dominant_spanners
-from abjad.helpers.get_dominant_spanners_slice import \
-   get_dominant_spanners_slice
+from abjad.tools import spannertools
 from abjad.helpers.withdraw_from_crossing_spanners import \
    _withdraw_from_crossing_spanners
 from abjad.notehead.interface import _NoteHeadInterface
+from abjad.tools import spannertools
 
 
 class Container(_Component):
@@ -101,7 +100,7 @@ class Container(_Component):
       if isinstance(i, int):
          assert_components([expr])
          old = self[i]
-         spanners_receipt = get_dominant_spanners([old])
+         spanners_receipt = spannertools.get_dominant([old])
          ## must withdraw from spanners before parentage!
          ## otherwise begin / end assessments don't work!
          _withdraw_from_crossing_spanners([expr])
@@ -120,7 +119,7 @@ class Container(_Component):
          else:
             start, stop, stride = i.indices(len(self))
          old = self[start:stop]
-         spanners_receipt = get_dominant_spanners_slice(self, start, stop)
+         spanners_receipt = spannertools.get_dominant_slice(self, start, stop)
          for component in old:
             component.detach( )
          ## must withdraw before setting in self!

@@ -1,11 +1,11 @@
 from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_contained_spanners import get_contained_spanners
-from abjad.helpers.get_covered_spanners import get_covered_spanners
 from abjad.tools import iterate
+from abjad.tools.spannertools.get_contained import get_contained
+from abjad.tools.spannertools.get_covered import get_covered
 
 
-def get_crossing_spanners(components):
+def get_crossing(components):
    '''Assert thread-contiguous components.
       Collect spanners that attach to any component in 'components'.
       Return unordered set of crossing spanners.
@@ -22,11 +22,11 @@ def get_crossing_spanners(components):
 
    assert_components(components, contiguity = 'thread')
 
-#   result = get_contained_spanners(components) - \
-#      get_covered_spanners(components)
+#   result = get_contained(components) - \
+#      get_covered(components)
 
    all_components = set(iterate.naive(components, _Component))
-   contained_spanners = get_contained_spanners(components)
+   contained_spanners = get_contained(components)
    crossing_spanners = set([ ])
    for spanner in contained_spanners:
       spanner_components = set(spanner[:])

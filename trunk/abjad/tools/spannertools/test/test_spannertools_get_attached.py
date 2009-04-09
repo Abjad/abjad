@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_get_attached_spanners_01( ):
+def test_spannertools_get_attached_01( ):
    '''Get all spanners attaching directly to any component in list.'''
 
    t = Staff(scale(4))
@@ -18,25 +18,25 @@ def test_get_attached_spanners_01( ):
    }
    '''
 
-   spanners = get_attached_spanners(t[:])
+   spanners = spannertools.get_attached(t[:])
 
    assert b1 in spanners
    assert b2 in spanners
    assert crescendo not in spanners
 
    
-def test_get_attached_spanners_02( ):
+def test_spannertools_get_attached_02( ):
    '''Accept empty component list.'''
 
-   spanners = get_attached_spanners([ ])
+   spanners = spannertools.get_attached([ ])
    
    assert spanners == set([ ])
 
 
-def test_get_attached_spanners_03( ):
+def test_spannertools_get_attached_03( ):
    '''Return empty set when no spanners.'''
 
    t = Staff(scale(4))
-   spanners = get_attached_spanners(t[:])
+   spanners = spannertools.get_attached(t[:])
 
    assert spanners == set([ ])

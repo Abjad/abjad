@@ -1,9 +1,8 @@
-from abjad.helpers.get_dominant_spanners_between import \
-   get_dominant_spanners_between
-from abjad.helpers.get_dominant_spanners import get_dominant_spanners
+from abjad.tools.spannertools.get_dominant_between import get_dominant_between
+from abjad.tools.spannertools.get_dominant import get_dominant
 
 
-def get_dominant_spanners_slice(container, start, stop):
+def get_dominant_slice(container, start, stop):
    '''Return Python list of (spanner, index) pairs.
       Each spanner dominates the components specified by slice 
       with start index 'start' and stop index 'stop'.
@@ -23,9 +22,8 @@ def get_dominant_spanners_slice(container, start, stop):
          right = None
       else:
          right = container[stop]
-      spanners_receipt = get_dominant_spanners_between(left, right)
+      spanners_receipt = get_dominant_between(left, right)
    else:
-      spanners_receipt = get_dominant_spanners(
-         container[start:stop])
+      spanners_receipt = get_dominant(container[start:stop])
 
    return spanners_receipt

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_get_crossing_spanners_01( ):
+def test_spannertools_get_crossing_01( ):
    '''Return unordered set of spanners crossing
       over the begin- or end-bounds of thread-contiguous components.'''
 
@@ -23,23 +23,23 @@ def test_get_crossing_spanners_01( ):
            }
    }'''
 
-   spanners = get_crossing_spanners([t])
+   spanners = spannertools.get_crossing([t])
    assert spanners == set([ ])
 
-   spanners = get_crossing_spanners(t.leaves)
+   spanners = spannertools.get_crossing(t.leaves)
    assert spanners == set([ ])
 
-   spanners = get_crossing_spanners(t[0:1])
+   spanners = spannertools.get_crossing(t[0:1])
    assert len(spanners) == 1
    assert trill in spanners
 
-   spanners = get_crossing_spanners(t.leaves[0:1])
+   spanners = spannertools.get_crossing(t.leaves[0:1])
    assert len(spanners) == 2
    assert beam in spanners
    assert trill in spanners
 
 
-def test_get_crossing_spanners_02( ):
+def test_spannertools_get_crossing_02( ):
    '''Trying to get crossing spanners across 
       non-thread-contiguous components raises ContiguityError.'''
 
@@ -59,10 +59,10 @@ def test_get_crossing_spanners_02( ):
            }
    }'''
    
-   assert py.test.raises(ContiguityError, 'get_crossing_spanners(t.leaves)')
+   assert py.test.raises(ContiguityError, 'spannertools.get_crossing(t.leaves)')
 
 
-def test_get_crossing_spanners_03( ):
+def test_spannertools_get_crossing_03( ):
    '''Helper gets spanners that cross in from above.'''
 
    t = Voice(RigidMeasure((2, 8), run(2)) * 3)
@@ -81,7 +81,7 @@ def test_get_crossing_spanners_03( ):
          a'8
    }'''
 
-   spanners = get_crossing_spanners(t.leaves)
+   spanners = spannertools.get_crossing(t.leaves)
 
    assert len(spanners) == 1
    assert beam in spanners
