@@ -1,29 +1,29 @@
 from abjad.tools import durtools
 from abjad.tools import durtools
-from abjad.helpers.is_tie_chain import _is_tie_chain
-from abjad.helpers.tie_chain_truncate import tie_chain_truncate
-from abjad.helpers.tie_chain_written import tie_chain_written
-from abjad.helpers.tie_chain_get_leaves import tie_chain_get_leaves
 from abjad.helpers.withdraw_from_attached_spanners import \
    _withdraw_from_attached_spanners
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
 from abjad.tools import construct
+from abjad.tools.tiechaintools.is_tie_chain import is_tie_chain
+from abjad.tools.tiechaintools.truncate import truncate
+from abjad.tools.tiechaintools.duration_written import duration_written
+from abjad.tools.tiechaintools.get_leaves import get_leaves
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
-def tie_chain_duration_change(tie_chain, new_written_duration):
+def duration_change(tie_chain, new_written_duration):
    '''Change the written duration of tie chain,
       adding and subtracting notes as necessary.
 
       Return newly modified tie chain.'''
 
-   assert _is_tie_chain(tie_chain)
+   assert is_tie_chain(tie_chain)
    assert isinstance(new_written_duration, Rational)
 
    if durtools.is_assignable(new_written_duration):
       tie_chain[0].duration.written = new_written_duration
-      tie_chain_truncate(tie_chain)
+      truncate(tie_chain)
    elif durtools.is_binary_rational(new_written_duration):
       duration_tokens = construct.notes(0, [new_written_duration])
       for leaf, token in zip(tie_chain, duration_tokens):
@@ -48,9 +48,9 @@ def tie_chain_duration_change(tie_chain, new_written_duration):
       duration_tokens = construct.notes(0, new_written_duration)
       assert isinstance(duration_tokens[0], FixedMultiplierTuplet)
       fmtuplet = duration_tokens[0]
-      new_chain_written = tie_chain_written(fmtuplet[0].tie.chain)
-      tie_chain_duration_change(tie_chain, new_chain_written)
+      new_chain_written = duration_written(fmtuplet[0].tie.chain)
+      duration_change(tie_chain, new_chain_written)
       multiplier = fmtuplet.duration.multiplier
-      FixedMultiplierTuplet(multiplier, tie_chain_get_leaves(tie_chain))
+      FixedMultiplierTuplet(multiplier, get_leaves(tie_chain))
       
    return tie_chain[0].tie.chain         

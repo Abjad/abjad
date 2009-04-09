@@ -6,3 +6,4 @@ from abjad.tools import label
 from abjad.tools import metertools
 from abjad.tools import pitch
 from abjad.tools import pitches
+from abjad.tools import tiechaintools

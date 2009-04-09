@@ -1,8 +1,8 @@
-from abjad.helpers.is_tie_chain import _is_tie_chain
+from abjad.tools import tiechaintools
 from abjad.tools import iterate
 from abjad.tools import iterate
 from abjad.helpers.leaf_duration_scale import leaf_duration_scale
-from abjad.helpers.tie_chain_duration_scale import tie_chain_duration_scale
+from abjad.tools import tiechaintools
 from abjad.helpers.tuplet_scale import tuplet_scale
 from abjad.leaf.leaf import _Leaf
 from abjad.measure.measure import _Measure
@@ -14,8 +14,8 @@ def container_scale(container, multiplier):
       Return measure.'''
 
    for expr in iterate.chained_contents(container[:]):
-      if _is_tie_chain(expr):
-         tie_chain_duration_scale(expr, multiplier)
+      if tiechaintools.is_tie_chain(expr):
+         tiechaintools.duration_scale(expr, multiplier)
       elif isinstance(expr, FixedDurationTuplet):
          tuplet_scale(expr, multiplier)
       elif isinstance(expr, _Measure):

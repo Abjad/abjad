@@ -1,7 +1,7 @@
 from abjad.leaf.leaf import _Leaf
 
 
-def _is_tie_chain(expr):
+def is_tie_chain(expr):
    '''True when expr is a tie chain, otherwise False.'''
 
    if isinstance(expr, tuple):

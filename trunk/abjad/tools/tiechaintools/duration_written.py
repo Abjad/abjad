@@ -1,9 +1,9 @@
 from abjad.exceptions.exceptions import MissingSpannerError
-from abjad.helpers.is_tie_chain import _is_tie_chain
+from abjad.tools.tiechaintools.is_tie_chain import is_tie_chain
 
 
-def tie_chain_written(tie_chain):
-   assert _is_tie_chain(tie_chain)
+def duration_written(tie_chain):
+   assert is_tie_chain(tie_chain)
    try:
       return tie_chain[0].tie.spanner.duration.written
    except MissingSpannerError:

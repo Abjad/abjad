@@ -1,8 +1,8 @@
-from abjad.helpers.is_tie_chain import _is_tie_chain
 from abjad.helpers.assess_components import assess_components
+from abjad.tools.tiechaintools.is_tie_chain import is_tie_chain
 
 
-def _is_tie_chain_in_same_parent(expr):
+def is_in_same_parent(expr):
    r'''True when expr is a tie chain with all leaves in same parent.
       IE, True when tie chain crosses no container boundaries.
       Otherwise False.
@@ -21,10 +21,10 @@ def _is_tie_chain_in_same_parent(expr):
             c'8
       }
 
-      assert _is_tie_chain_in_same_parent(t.leaves[0].tie.chain)
-      assert not _is_tie_chain_in_same_parent(t.leaves[1].tie.chain)
-      assert not _is_tie_chain_in_same_parent(t.leaves[2].tie.chain)
-      assert _is_tie_chain_in_same_parent(t.leaves[3].tie.chain)'''
+      assert tiechaintools.is_in_same_parent(t.leaves[0].tie.chain)
+      assert not tiechaintools.is_in_same_parent(t.leaves[1].tie.chain)
+      assert not tiechaintools.is_in_same_parent(t.leaves[2].tie.chain)
+      assert tiechaintools.is_in_same_parent(t.leaves[3].tie.chain)'''
 
-   return _is_tie_chain(expr) and \
+   return is_tie_chain(expr) and \
       assess_components(list(expr), share = 'parent')
