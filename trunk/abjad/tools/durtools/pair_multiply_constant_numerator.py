@@ -1,7 +1,7 @@
 from abjad.rational.rational import Rational
 
 
-def _pair_multiply_constant_numerator(pair, multiplier):
+def pair_multiply_constant_numerator(pair, multiplier):
    '''Multiply Python pair by Rational multiplier.
       Hold pair numerator constant, if possible.
       Return new Python pair representing product.
@@ -10,13 +10,13 @@ def _pair_multiply_constant_numerator(pair, multiplier):
 
       Examples:
 
-      _pair_multiply_constant_numerator((9, 16), Rational(2, 3))
+      durtools.pair_multiply_constant_numerator(9, 16), Rational(2, 3))
       (9, 24)
 
-      _pair_multiply_constant_numerator((9, 16), Rational(1, 2))
+      durtools.pair_multiply_constant_numerator(9, 16), Rational(1, 2))
       (9, 32)
 
-      _pair_multiply_constant_numerator((9, 16), Rational(5, 6))
+      durtools.pair_multiply_constant_numerator(9, 16), Rational(5, 6))
       (45, 96)'''
 
    assert isinstance(pair, tuple)

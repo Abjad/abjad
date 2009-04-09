@@ -1,5 +1,5 @@
 from abjad.container.slots import _ContainerFormatterSlotsInterface
-from abjad.helpers.rational_as_fraction import _rational_as_fraction
+from abjad.tools import durtools
 
 
 class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
@@ -41,7 +41,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                contributor = (tuplet.brackets, 'open')
                contributions = [r'%s\times %s %s' % (
                   formatter._fraction, 
-                  _rational_as_fraction(tuplet.duration.multiplier), 
+                  durtools.to_fraction(tuplet.duration.multiplier), 
                   tuplet.brackets.open[0])]
                result.append([contributor, contributions])
       return tuple(result)

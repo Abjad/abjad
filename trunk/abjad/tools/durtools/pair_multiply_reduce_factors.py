@@ -2,16 +2,16 @@ from abjad.rational.rational import Rational
 from abjad.tools import mathtools
 
 
-def _pair_multiply_reduce_factors(pair, multiplier):
+def pair_multiply_reduce_factors(pair, multiplier):
    '''Multiply Python pair by Rational multiplier.
       Reduce common cross factors.
 
       Examples:
 
-      _pair_multiply_reduce_factors((4, 8), Rational(2, 3))
+      durtools.pair_multiply_reduce_factors(4, 8), Rational(2, 3))
       (4, 12)
 
-      _pair_multiply_reduce_factors((4, 8), Rational(6, 5))
+      durtools.pair_multiply_reduce_factors(4, 8), Rational(6, 5))
       (12, 20)'''
 
    assert isinstance(pair, tuple)

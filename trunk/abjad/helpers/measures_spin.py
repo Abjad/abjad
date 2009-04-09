@@ -1,6 +1,6 @@
 from abjad.helpers.contents_multiply import contents_multiply
 from abjad.tools import iterate
-from abjad.helpers.pair_multiply_naive import _pair_multiply_naive
+from abjad.tools import durtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 
@@ -35,6 +35,6 @@ def measures_spin(expr, n):
       old_meter = measure.meter.effective
       contents_multiply(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)
-      new_pair = _pair_multiply_naive(old_pair, Rational(n))
+      new_pair = durtools.pair_multiply_naive(old_pair, Rational(n))
       new_meter = Meter(new_pair)
       measure.meter.forced = new_meter
