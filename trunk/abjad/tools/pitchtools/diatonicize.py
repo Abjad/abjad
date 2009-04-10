@@ -1,3 +1,5 @@
+from abjad.chord.chord import Chord
+from abjad.note.note import Note
 from abjad.tools import iterate
 
 
@@ -6,8 +8,6 @@ def diatonicize(expr):
       Apply to notes and chords in expr.
       Used primarily in generating test and doc file examples. 
       Compare with pitchtools.chromaticize( ).'''
-   from abjad.chord.chord import Chord
-   from abjad.note.note import Note
 
    diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
    length = len(diatonic_residues)

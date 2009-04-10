@@ -1,13 +1,13 @@
+from abjad.leaf.leaf import _Leaf
+from abjad.pitch.pitch import Pitch
 from abjad.tools import iterate
 
 
 def make_sharp(expr):
 
-   from abjad.pitch.pitch import Pitch
    if isinstance(expr, Pitch):
       _pitch_renotate_sharps(expr)
    else:
-      from abjad.leaf.leaf import _Leaf
       for leaf in iterate.naive(expr, _Leaf):
          if hasattr(leaf, 'pitches'):
             for pitch in leaf.pitches:

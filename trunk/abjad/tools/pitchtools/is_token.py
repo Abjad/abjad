@@ -1,3 +1,4 @@
+from abjad.pitch.pitch import Pitch
 from abjad.tools.pitchtools.is_pair import is_pair
 
 
@@ -5,7 +6,6 @@ def is_token(arg):
    '''True when arg has the form of an Abjad pitch token.
       Otherwise False.'''
 
-   from abjad.pitch.pitch import Pitch
    if isinstance(arg, Pitch):
       return True
    elif is_pair(arg):

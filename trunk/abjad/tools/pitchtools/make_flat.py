@@ -1,9 +1,9 @@
+from abjad.leaf.leaf import _Leaf
+from abjad.pitch.pitch import Pitch
 from abjad.tools import iterate
 
 
 def make_flat(expr):
-   from abjad.leaf.leaf import _Leaf
-   from abjad.pitch.pitch import Pitch
 
    if isinstance(expr, Pitch):
       _pitch_renotate_flats(expr)

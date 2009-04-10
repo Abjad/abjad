@@ -1,3 +1,5 @@
+from abjad.chord.chord import Chord
+from abjad.note.note import Note
 from abjad.tools import iterate
 
 
@@ -6,8 +8,6 @@ def chromaticize(expr):
       to the notes and chords in expr.
       Used primarily in generating test and doc file examples. 
       Compare with pitchtools.diatonicize( ).'''
-   from abjad.chord.chord import Chord
-   from abjad.note.note import Note
 
    for i, x in enumerate(iterate.tie_chains(expr)):
       pitch = i
