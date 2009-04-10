@@ -1,5 +1,6 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.tools import parenttools
+from abjad.tools.parenttools.ignore import _ignore
+from abjad.tools.parenttools.restore import _restore
 from abjad.tools import spannertools
 import copy
 
@@ -19,13 +20,13 @@ def unspan(components, n = 1):
    for spanner in spanners:
       spanner._blockAllComponents( )
 
-   receipt = parenttools.ignore_parent(components)
+   receipt = _ignore(components)
 
    result = copy.deepcopy(components)
    for component in result:
       component._update._markForUpdateToRoot( )
 
-   parenttools.restore(receipt)
+   _restore(receipt)
 
    for spanner in spanners:
       spanner._unblockAllComponents( )

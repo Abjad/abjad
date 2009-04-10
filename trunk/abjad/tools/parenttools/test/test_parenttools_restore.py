@@ -1,4 +1,6 @@
 from abjad import *
+from abjad.tools.parenttools.ignore import _ignore
+from abjad.tools.parenttools.restore import _restore
 
 
 def test_parenttools_restore_01( ):
@@ -13,11 +15,11 @@ def test_parenttools_restore_01( ):
       f'8 ]
    }'''
 
-   receipt = parenttools.ignore_parent(t[:])
+   receipt = _ignore(t[:])
 
    assert not check(t)
 
-   parenttools.restore(receipt)
+   _restore(receipt)
 
    r'''\new Voice {
       c'8 [

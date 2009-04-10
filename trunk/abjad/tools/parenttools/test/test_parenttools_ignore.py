@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools.parenttools.ignore import _ignore
 
 
 def test_parenttools_ignore_01( ):
@@ -13,7 +14,7 @@ def test_parenttools_ignore_01( ):
       f'8 ]
    }'''
 
-   receipt = parenttools.ignore_parent(t[:])
+   receipt = _ignore(t[:])
 
    assert not check(t)
 
@@ -22,4 +23,4 @@ def test_parenttools_ignore_01( ):
    assert (t[2], t) in receipt
    assert (t[3], t) in receipt
 
-   "Follow soon after with _parenttools.restore(receipt)."
+   "Follow soon after with parenttools.restore(receipt)."
