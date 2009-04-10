@@ -1,6 +1,6 @@
 from abjad.exceptions.exceptions import MusicContentsError
 from abjad.helpers.assert_components import assert_components
-from abjad.tools import parenttools
+from abjad.tools.parenttools.switch import _switch
 
 
 def _give_spanned_music_from_to(donors, recipient):
@@ -38,7 +38,7 @@ def _give_spanned_music_from_to(donors, recipient):
 
    ## give music from donor components to recipient component
    recipient._music.extend(donor_music)
-   parenttools.switch(recipient[:], recipient)
+   _switch(recipient[:], recipient)
 
    ## return donor components
    return donors

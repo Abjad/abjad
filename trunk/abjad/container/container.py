@@ -3,13 +3,7 @@ from abjad.component.component import _Component
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
-#from abjad.helpers.assert_components import assert_components
-#from abjad.helpers.coalesce import coalesce
-#from abjad.tools import parenttools
 from abjad.notehead.interface import _NoteHeadInterface
-#from abjad.tools import spannertools
-#from abjad.tools.spannertools.withdraw_from_crossing import \
-#   _withdraw_from_crossing
 
 
 class Container(_Component):
@@ -47,14 +41,14 @@ class Container(_Component):
          Detach component(s) from parentage.
          Withdraw component(s) from crossing spanners.
          Preserve spanners that component(s) cover(s).'''
-      from abjad.tools import parenttools
+      from abjad.tools.parenttools.switch import _switch
       from abjad.tools.spannertools.withdraw_from_crossing import \
          _withdraw_from_crossing
       components = self[i]
       if not isinstance(components, list):
          components = [components]
       _withdraw_from_crossing(components)
-      parenttools.switch(components, None)
+      _switch(components, None)
 
    def __getitem__(self, i):
       '''Return component at index i in container.
@@ -176,11 +170,12 @@ class Container(_Component):
          Set parent of components in 'music' to container.'''
       from abjad.helpers.assert_components import assert_components
       from abjad.tools import parenttools
+      from abjad.tools.parenttools.switch import _switch
       music = music or [ ]
       assert_components(music, 'strict', share = 'thread')
       parent, index, stop_index = parenttools.get_with_indices(music)
       self._music = music
-      parenttools.switch(self._music, self)
+      _switch(self._music, self)
       if parent is not None:
          parent._music.insert(index, self)
          self.parentage._switch(parent)
