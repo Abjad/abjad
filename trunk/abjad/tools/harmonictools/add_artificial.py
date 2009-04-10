@@ -1,9 +1,9 @@
 from abjad.chord.chord import Chord
 
 
-def add_artificial_harmonic(note, diatonicInterval = 'perfect fourth'):
+def add_artificial(note, diatonicInterval = 'perfect fourth'):
    '''>>> t = Note(0, (1, 4))
-      >>> add_artificial_harmonic(t, 'perfect fourth')
+      >>> harmonictools.add_artificial(t, 'perfect fourth')
       >>> f(t)
       <
               c'
