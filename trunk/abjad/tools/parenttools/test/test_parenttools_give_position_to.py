@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools.parenttools.give_position_to import _give_position_to
 
 
 def test_parenttools_give_position_to_01( ):
@@ -8,7 +9,7 @@ def test_parenttools_give_position_to_01( ):
    Beam(t[:])
    notes = scale(2, Rational(1, 16))
 
-   parenttools.give_position_to(t[0:1], notes)
+   _give_position_to(t[0:1], notes)
 
    "Container t is now ..."
 

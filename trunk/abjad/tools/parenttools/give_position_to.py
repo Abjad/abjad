@@ -3,9 +3,7 @@ from abjad.tools.parenttools.get_with_indices import get_with_indices
 from abjad.tools.parenttools.switch import switch
 
 
-## TODO: Make parenttools.give_position_to private. ##
-
-def give_position_to(donors, recipients):
+def _give_position_to(donors, recipients):
    '''When 'donors' has a parent, find parent.
       Then insert all components in 'recipients'
       in parent immediately before 'donors'.
