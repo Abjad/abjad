@@ -31,8 +31,8 @@ def converge_to_power_of_two(source, target):
       16 16 16
       17 16 32
       18 16 32
-      19 16 32
-      '''
+      19 16 32'''
+
    if source < target:
       return Rational(2) ** int(math.floor(math.log(target, 2)))
    elif source > target:

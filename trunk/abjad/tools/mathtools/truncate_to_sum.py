@@ -1,19 +1,17 @@
-
 def truncate_to_sum(ls, total):
-   '''
-   Truncate the given numeric list ls so that sum(ls) == total.
-   Example:
-   >>> for i in range(7):
-   ...    truncate_to_sum([2,2,2], i)
-   [0]
-   [1]
-   [2]
-   [2, 1]
-   [2, 2]
-   [2, 2, 1]
-   [2, 2, 2]
-   '''
-   assert total >= 0
+   '''Truncate the given numeric list ls so that sum(ls) == total.
+      Example:
+      >>> for i in range(7):
+      ...    truncate_to_sum([2,2,2], i)
+      [0]
+      [1]
+      [2]
+      [2, 1]
+      [2, 2]
+      [2, 2, 1]
+      [2, 2, 2]'''
+
+   assert 0 <= total
    result = [ ]
    kind = type(ls)
    accumulation = 0
@@ -25,5 +23,3 @@ def truncate_to_sum(ls, total):
          result.append(total - sum(result))
          break
    return kind(result)
-      
-

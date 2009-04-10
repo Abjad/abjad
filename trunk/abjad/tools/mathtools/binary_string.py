@@ -4,8 +4,7 @@ def binary_string(n):
       mathtools.binary_string(1) == '1'
       mathtools.binary_string(2) == '10'
       mathtools.binary_string(3) == '11'
-      mathtools.binary_string(4) == '100'
-   '''
+      mathtools.binary_string(4) == '100' '''
 
    result = ''
    while n > 0:

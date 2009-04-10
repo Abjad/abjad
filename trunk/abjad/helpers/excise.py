@@ -25,7 +25,7 @@ def excise(leaf):
       elif isinstance(parent, RigidMeasure):
          old_denominator = parent.meter.forced.denominator
          naive_meter = parent.meter.forced.duration - prolated_leaf_duration
-         better_meter = mathtools.in_terms_of(naive_meter, old_denominator)
+         better_meter = durtools.in_terms_of(naive_meter, old_denominator)
          parent.meter.forced = Meter(better_meter)
          new_denominator = parent.meter.forced.denominator
 

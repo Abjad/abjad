@@ -1,5 +1,7 @@
 from abjad.meter.meter import Meter
-from abjad.tools import mathtools as mt
+#from abjad.tools import mathtools as mt
+from abjad.tools import mathtools
+from abjad.tools import durtools
 
 
 def make_best(duration, denominators = None, factor = None):
@@ -20,14 +22,16 @@ def make_best(duration, denominators = None, factor = None):
 
    if denominators is not None:
       if factor is not None:
-         denominators = [d for d in denominators if factor in mt.factors(d)]
+         #denominators = [d for d in denominators if factor in mt.factors(d)]
+         denominators = [d for d in denominators if factor in mathtools.factors(d)]
       for desired_denominator in sorted(denominators):
-         candidate_pair = mt.in_terms_of(duration, desired_denominator)
+         candidate_pair = durtools.in_terms_of(duration, desired_denominator)
          if candidate_pair[-1] == desired_denominator:
             return Meter(candidate_pair)
 
    if factor is not None:
-      if factor in mt.factors(duration._d):
+      #if factor in mt.factors(duration._d):
+      if factor in mathtools.factors(duration._d):
          return Meter(duration)
       else:
          meter_numerator = factor * duration._n

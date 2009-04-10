@@ -1,4 +1,4 @@
-from abjad.tools import mathtools
+from abjad.tools import durtools
 from abjad.tools import iterate
 from abjad.measure.rigid.measure import RigidMeasure
 
@@ -24,7 +24,7 @@ def _measure_decompose(measure):
    new_measures = [ ]
    for element in measure[:]:
       meter = element.duration.prolated
-      meter = mathtools.in_terms_of(meter, denominator)
+      meter = durtools.in_terms_of(meter, denominator)
       element.parentage._cut( )
       new = RigidMeasure(meter, [element])
       new_measures.append(new)
