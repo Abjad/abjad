@@ -1,5 +1,4 @@
 from abjad.tools.durtools.token_unpack import token_unpack
-#from abjad.tools.mathtools.integer_decompose import integer_decompose
 from abjad.tools import mathtools
 
 
