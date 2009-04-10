@@ -1,9 +1,7 @@
-from abjad.helpers.components_likely_multiplier import \
-   _components_likely_multiplier
 from abjad.helpers.container_scale import container_scale
-from abjad.tools import mathtools
-from abjad.tools import mathtools
+from abjad.tools import durtools
 from abjad.tools import iterate
+from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
@@ -24,7 +22,7 @@ def measures_project(expr):
 
          # find meter and contents multipliers
          meter_multiplier = measure.meter.effective.multiplier
-         contents_multiplier = _components_likely_multiplier(measure[:])
+         contents_multiplier = durtools.get_likely_multiplier(measure[:])
 
          # update nonbinary meter to binary
          metertools.make_binary(measure.meter.effective, contents_multiplier)

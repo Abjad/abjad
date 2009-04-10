@@ -1,13 +1,12 @@
-from abjad.helpers.assert_components import assert_components
-from abjad.tools import tietools
-from abjad.tools import iterate
-from abjad.tools import mathtools
-from abjad.tools import listtools
-from abjad.tools import tietools
 from abjad.rational.rational import Rational
+from abjad.tools import iterate
+from abjad.tools import listtools
+from abjad.tools import mathtools
 
 
-def _components_likely_multiplier(components):
+## TODO: Maybe move get_likely_multiplier( ) from durtools to measuretools? ##
+
+def get_likely_multiplier(components):
    '''Heuristic function to guess at a likely multiplier
       that may have been applied to the components in list
       at some point during a previous composition-time transform.
@@ -16,6 +15,8 @@ def _components_likely_multiplier(components):
 
       Implemented to help reverse measure subsumption.'''
 
+   from abjad.helpers.assert_components import assert_components
+   from abjad.tools import tietools
    assert_components(components)
 
    chain_duration_numerators = [ ]
