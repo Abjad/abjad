@@ -20,6 +20,6 @@ def token_unpack(duration_token):
    elif isinstance(duration_token, Rational):
       numerator, denominator = duration_token._n, duration_token._d
    else:
-      raise ValueError('duration token must be of type tuple, list, int or Rational.')
+      raise ValueError('token must be of tuple, list, int or Rational.')
 
    return numerator, denominator 

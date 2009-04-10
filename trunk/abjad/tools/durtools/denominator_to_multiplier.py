@@ -1,6 +1,5 @@
 from abjad.rational.rational import Rational
-from abjad.tools.mathtools.next_least_power_of_two import \
-   next_least_power_of_two
+from abjad.tools import mathtools
 
 
 def denominator_to_multiplier(d):
@@ -18,4 +17,4 @@ def denominator_to_multiplier(d):
       7 4/7
       8 1'''
 
-   return Rational(next_least_power_of_two(d), d)
+   return Rational(mathtools.next_least_power_of_two(d), d)
