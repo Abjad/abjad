@@ -1,8 +1,11 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.tools import parenttools
+from abjad.tools.parenttools.get_with_indices import get_with_indices
+from abjad.tools.parenttools.switch import switch
 
 
-def _give_position_in_parent_from_to(donors, recipients):
+## TODO: Make parenttools.give_position_to private. ##
+
+def give_position_to(donors, recipients):
    '''When 'donors' has a parent, find parent.
       Then insert all components in 'recipients'
       in parent immediately before 'donors'.
@@ -18,13 +21,13 @@ def _give_position_in_parent_from_to(donors, recipients):
    assert_components(donors, contiguity = 'strict', share = 'parent')
    assert_components(recipients)
 
-   parent, start, stop = parenttools.get_with_indices(donors)
+   parent, start, stop = get_with_indices(donors)
 
    if parent is None:
       return donors
 
    parent._music[start:start] = recipients
-   parenttools.switch(recipients, parent)
-   parenttools.switch(donors, None)
+   switch(recipients, parent)
+   switch(donors, None)
 
    return donors
