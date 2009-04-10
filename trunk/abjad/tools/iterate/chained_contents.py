@@ -1,11 +1,11 @@
+from abjad.container.container import Container
 from abjad.exceptions.exceptions import TieChainError
+from abjad.leaf.leaf import _Leaf
 
 
 def chained_contents(expr):
    '''Iterate expr but return tie chains in place of leaves.
       Crossing ties raise TieChainError.'''
-   from abjad.container.container import Container
-   from abjad.leaf.leaf import _Leaf
 
    if isinstance(expr, _Leaf):
       if len(expr.tie.chain) == 1:

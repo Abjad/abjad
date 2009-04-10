@@ -3,14 +3,13 @@ from abjad.component.component import _Component
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
-from abjad.debug.debug import debug
-from abjad.helpers.assert_components import assert_components
-from abjad.helpers.coalesce import coalesce
-from abjad.tools import parenttools
+#from abjad.helpers.assert_components import assert_components
+#from abjad.helpers.coalesce import coalesce
+#from abjad.tools import parenttools
 from abjad.notehead.interface import _NoteHeadInterface
-from abjad.tools import spannertools
-from abjad.tools.spannertools.withdraw_from_crossing import \
-   _withdraw_from_crossing
+#from abjad.tools import spannertools
+#from abjad.tools.spannertools.withdraw_from_crossing import \
+#   _withdraw_from_crossing
 
 
 class Container(_Component):
@@ -33,6 +32,7 @@ class Container(_Component):
          the content of both a and b.
          The operation is non-commutative: the content of the first
          operand will be placed before the content of the second operand.'''
+      from abjad.helpers.coalesce import coalesce
       from abjad.tools import clone
       left = clone.fracture([self])[0]
       right = clone.fracture([expr])[0]
@@ -47,6 +47,9 @@ class Container(_Component):
          Detach component(s) from parentage.
          Withdraw component(s) from crossing spanners.
          Preserve spanners that component(s) cover(s).'''
+      from abjad.tools import parenttools
+      from abjad.tools.spannertools.withdraw_from_crossing import \
+         _withdraw_from_crossing
       components = self[i]
       if not isinstance(components, list):
          components = [components]
@@ -62,6 +65,7 @@ class Container(_Component):
             
    def __iadd__(self, expr):
       '''__iadd__ avoids unnecessary copying of structures.'''
+      from abjad.helpers.coalesce import coalesce
       from abjad.tools import clone
       return coalesce([self, clone.fracture([expr])[0]])
 
@@ -93,6 +97,10 @@ class Container(_Component):
          Replace contents at self[i] with 'expr'.
          Reattach spanners to new contents.
          This operation leaves all score trees always in tact.'''
+      from abjad.helpers.assert_components import assert_components
+      from abjad.tools import spannertools
+      from abjad.tools.spannertools.withdraw_from_crossing import \
+         _withdraw_from_crossing
       # item assignment
       if isinstance(i, int):
          assert_components([expr])
@@ -166,6 +174,8 @@ class Container(_Component):
    def _initializeMusic(self, music):
       '''Insert components in 'music' in container.
          Set parent of components in 'music' to container.'''
+      from abjad.helpers.assert_components import assert_components
+      from abjad.tools import parenttools
       music = music or [ ]
       assert_components(music, 'strict', share = 'thread')
       parent, index, stop_index = parenttools.get_with_indices(music)

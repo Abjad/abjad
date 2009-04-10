@@ -1,5 +1,4 @@
 from abjad.core.interface import _Interface
-from abjad.tools import iterate
 from abjad.receipt.spanner import _SpannerReceipt
 
 
@@ -68,6 +67,7 @@ class _ComponentSpannerAggregator(_Interface):
          attaching to any children of self.
          Do not include spanners attaching directly to self.'''
       from abjad.component.component import _Component
+      from abjad.tools import iterate
       result = set([ ])
       components = iterate.naive(self._client, _Component)
       components.next( )
@@ -80,6 +80,7 @@ class _ComponentSpannerAggregator(_Interface):
       '''Return unordered set of all spanners attaching to 
          components in client, including client.'''
       from abjad.component.component import _Component
+      from abjad.tools import iterate
       result = set([ ])
       for component in iterate.naive(self._client, _Component):
          result.update(set(component.spanners.attached))
