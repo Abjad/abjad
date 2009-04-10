@@ -16,4 +16,3 @@ def flatten(l, ltypes=(list, tuple)):
             l[i:i + 1] = l[i]
       i += 1
    return ltype(l)
-

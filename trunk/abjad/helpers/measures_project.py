@@ -1,5 +1,5 @@
 from abjad.helpers.container_scale import container_scale
-from abjad.tools import durtools
+from abjad.tools import componenttools
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import metertools
@@ -22,7 +22,7 @@ def measures_project(expr):
 
          # find meter and contents multipliers
          meter_multiplier = measure.meter.effective.multiplier
-         contents_multiplier = durtools.get_likely_multiplier(measure[:])
+         contents_multiplier = componenttools.get_likely_multiplier(measure[:])
 
          # update nonbinary meter to binary
          metertools.make_binary(measure.meter.effective, contents_multiplier)
