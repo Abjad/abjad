@@ -3,6 +3,8 @@ from abjad.rational.rational import Rational
 from abjad.tools.construct.notes import notes as construct_notes
 
 
+## This is one of the only uses of 'import blah as'; do we need? ##
+
 def note_train(pitch, written_duration, total_duration, 
    prolation = Rational(1)):
    '''Generate a train of repeating notes, all of the same pitch,

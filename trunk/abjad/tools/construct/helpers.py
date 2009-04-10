@@ -1,8 +1,8 @@
-from abjad.tools import durtools
 from abjad.chord.chord import Chord
 from abjad.note.note import Note
 from abjad.rest.rest import Rest
 from abjad.tie.spanner import Tie
+from abjad.tools import durtools
 
 
 def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None,

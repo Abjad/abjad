@@ -1,14 +1,12 @@
 from __future__ import division
-from abjad.tools import durtools
-from abjad.tools import durtools
-from abjad.tools import mathtools
 from abjad.rational.rational import Rational
-from abjad.tools.construct.helpers import _construct_tied_chord, \
-   _construct_tied_note, _construct_tied_rest
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
+from abjad.tools.construct.helpers import _construct_tied_chord
+from abjad.tools.construct.helpers import _construct_tied_note
+from abjad.tools.construct.helpers import _construct_tied_rest
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 

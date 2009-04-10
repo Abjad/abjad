@@ -9,7 +9,6 @@ from abjad.directives.interface import _UserDirectivesInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
-from abjad.tools import iterate
 from abjad.instrument.interface import _InstrumentInterface
 from abjad.interfaces.aggregator import _InterfaceAggregator
 from abjad.meter.interface import _MeterInterface
@@ -167,6 +166,7 @@ class _Component(_Abjad):
    def leaves(self):
       '''Python list of all leaves in container.'''
       from abjad.leaf.leaf import _Leaf
+      from abjad.tools import iterate
       return list(iterate.naive(self, _Leaf))
 
    @property

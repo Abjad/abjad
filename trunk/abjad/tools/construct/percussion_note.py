@@ -1,7 +1,7 @@
-from abjad.tools import durtools
 from abjad.rational.rational import Rational
-from abjad.tools.construct.helpers import _construct_tied_note, \
-   _construct_tied_rest
+from abjad.tools import durtools
+from abjad.tools.construct.helpers import _construct_tied_note
+from abjad.tools.construct.helpers import  _construct_tied_rest
 
 
 def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):

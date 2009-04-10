@@ -1,6 +1,6 @@
-from abjad.tools import durtools
 from abjad.note.note import Note
 from abjad.rational.rational import Rational
+from abjad.tools import durtools
 from abjad.tools import interpolate
 
 
