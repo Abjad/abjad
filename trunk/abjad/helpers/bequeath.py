@@ -1,5 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+from abjad.tools import parenttools
 from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 from abjad.tools.spannertools.withdraw_from_crossing import \
    _withdraw_from_crossing
@@ -18,7 +18,7 @@ def bequeath(donors, recipients):
    if len(donors) == 0:
       return donors
 
-   parent, start, stop = get_parent_and_indices(donors)
+   parent, start, stop = parenttools.get_with_indices(donors)
    if parent:
       parent[start:stop+1] = recipients
       return donors

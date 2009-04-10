@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def get_parent_and_indices(components):
+def get_with_indices(components):
    '''Return parent of components in list.
       Return index of first component in list in parent.
       Return inex of last component in list in parent.

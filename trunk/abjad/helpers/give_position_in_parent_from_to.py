@@ -1,7 +1,7 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.components_switch_parent import \
    _components_switch_parent
-from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+from abjad.tools import parenttools
 
 
 def _give_position_in_parent_from_to(donors, recipients):
@@ -20,7 +20,7 @@ def _give_position_in_parent_from_to(donors, recipients):
    assert_components(donors, contiguity = 'strict', share = 'parent')
    assert_components(recipients)
 
-   parent, start, stop = get_parent_and_indices(donors)
+   parent, start, stop = parenttools.get_with_indices(donors)
 
    if parent is None:
       return donors

@@ -1,6 +1,6 @@
 from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+from abjad.tools import parenttools
 from abjad.tools import iterate
 
 

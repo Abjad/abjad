@@ -8,7 +8,7 @@ from abjad.helpers.assert_components import assert_components
 from abjad.helpers.coalesce import coalesce
 from abjad.helpers.components_switch_parent import \
    _components_switch_parent
-from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+from abjad.tools import parenttools
 from abjad.notehead.interface import _NoteHeadInterface
 from abjad.tools import spannertools
 from abjad.tools.spannertools.withdraw_from_crossing import \
@@ -170,7 +170,7 @@ class Container(_Component):
          Set parent of components in 'music' to container.'''
       music = music or [ ]
       assert_components(music, 'strict', share = 'thread')
-      parent, index, stop_index = get_parent_and_indices(music)
+      parent, index, stop_index = parenttools.get_with_indices(music)
       self._music = music
       _components_switch_parent(self._music, self)
       if parent is not None:

@@ -1,5 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+from abjad.tools import parenttools
 from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
@@ -15,7 +15,7 @@ def measure_trim_by_count(components):
       RigidMeasure(1/8, [e'8])'''
 
    assert_components(components, contiguity = 'strict', share = 'parent')
-   parent, start, stop = get_parent_and_indices(components)
+   parent, start, stop = parenttools.get_with_indices(components)
    assert isinstance(parent, _Measure) 
 
    try:

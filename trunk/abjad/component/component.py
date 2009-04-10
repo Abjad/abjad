@@ -295,7 +295,7 @@ class _Component(_Abjad):
          Return empty, childless container.'''
       from abjad.helpers.get_parent_and_indices import \
          get_parent_and_indices
-      parent, start, stop = get_parent_and_indices([self])
+      parent, start, stop = parenttools.get_with_indices([self])
       result = parent[start:stop+1] = list(self.music)
       return self
 
@@ -303,7 +303,7 @@ class _Component(_Abjad):
       '''Splice 'components' after self.
          Extend spanners to attached to all components in list.'''
       from abjad.helpers.assert_components import assert_components
-      from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+      from abjad.tools import parenttools
       from abjad.tools import spannertools
       assert_components(components)
       insert_offset = self.offset.score + self.duration.prolated
@@ -318,7 +318,7 @@ class _Component(_Abjad):
          for component in reversed(components):
             spanner._insert(insert_index, component)
             component.spanners._add(spanner)
-      parent, start, stop = get_parent_and_indices([self])
+      parent, start, stop = parenttools.get_with_indices([self])
       if parent is not None:
          for component in reversed(components):
             component.parentage._switch(parent)
@@ -330,7 +330,7 @@ class _Component(_Abjad):
          Extend spanners leftwards to attach 
          to all components in 'components'.'''
       from abjad.helpers.assert_components import assert_components
-      from abjad.helpers.get_parent_and_indices import get_parent_and_indices
+      from abjad.tools import parenttools
       from abjad.tools import spannertools
       assert_components(components)
       offset = self.offset.score
@@ -340,7 +340,7 @@ class _Component(_Abjad):
          for component in reversed(components):
             spanner._insert(index, component)
             component.spanners._add(spanner)
-      parent, start, stop = get_parent_and_indices([self])
+      parent, start, stop = parenttools.get_with_indices([self])
       if parent is not None:
          for component in reversed(components):
             component.parentage._switch(parent)
