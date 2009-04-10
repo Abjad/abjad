@@ -1,14 +1,10 @@
-#from abjad.helpers.assert_components import assert_components
+from abjad.helpers.assert_components import assert_components
 
 
-## TODO: Maybe move durtools.sum_preprolated to component-centered module? ##
-
-def sum_preprolated(components):
+def get_duration_preprolated(components):
    '''Components must be strictly contiguous and in same parent.
 
       Return sum of preprolated duration of all components in list.'''
-
-   from abjad.helpers.assert_components import assert_components
 
    ## check input
    assert_components(components, contiguity = 'strict', share = 'parent')
