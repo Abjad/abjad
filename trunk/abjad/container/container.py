@@ -6,8 +6,6 @@ from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 from abjad.debug.debug import debug
 from abjad.helpers.assert_components import assert_components
 from abjad.helpers.coalesce import coalesce
-from abjad.helpers.components_switch_parent import \
-   _components_switch_parent
 from abjad.tools import parenttools
 from abjad.notehead.interface import _NoteHeadInterface
 from abjad.tools import spannertools
@@ -53,7 +51,7 @@ class Container(_Component):
       if not isinstance(components, list):
          components = [components]
       _withdraw_from_crossing(components)
-      _components_switch_parent(components, None)
+      parenttools.switch(components, None)
 
    def __getitem__(self, i):
       '''Return component at index i in container.
@@ -172,7 +170,7 @@ class Container(_Component):
       assert_components(music, 'strict', share = 'thread')
       parent, index, stop_index = parenttools.get_with_indices(music)
       self._music = music
-      _components_switch_parent(self._music, self)
+      parenttools.switch(self._music, self)
       if parent is not None:
          parent._music.insert(index, self)
          self.parentage._switch(parent)

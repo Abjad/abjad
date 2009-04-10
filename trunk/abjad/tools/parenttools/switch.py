@@ -1,7 +1,9 @@
 from abjad.helpers.assert_components import assert_components
 
 
-def _components_switch_parent(components, parent):
+## TODO: Make parenttools.switch private because score-mangling. ##
+
+def switch(components, parent):
    '''NOT composer-safe.
       Helper assigns parent to component.
       Some other action should happen immediately afterwards.

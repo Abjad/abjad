@@ -1,15 +1,13 @@
 from abjad import *
-from abjad.helpers.components_switch_parent import \
-   _components_switch_parent
 
 
-def test_components_switch_parent_01( ):
+def test_parenttools_switch_01( ):
 
    t = Voice([ ])
    u = Voice(scale(4))
 
    components = u[:]
-   _components_switch_parent(components, t)
+   parenttools.switch(components, t)
 
    assert check(u)
    assert len(u) == 0
