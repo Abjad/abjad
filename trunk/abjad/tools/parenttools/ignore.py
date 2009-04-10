@@ -7,7 +7,7 @@ def ignore_parent(components):
       Return receipt of unordered set of (component, parent) pairs.
       Then do some other operation, probably copy.
       Then reapply parent references.
-      Call _restore_outgoing_reference_to_parent(receipt).'''
+      Call _parenttools.restore(receipt).'''
 
    assert_components(components)
 

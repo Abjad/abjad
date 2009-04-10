@@ -22,4 +22,4 @@ def test_parenttools_ignore_01( ):
    assert (t[2], t) in receipt
    assert (t[3], t) in receipt
 
-   "Follow soon after with _restore_outgoing_reference_to_parent(receipt)."
+   "Follow soon after with _parenttools.restore(receipt)."

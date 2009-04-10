@@ -1,8 +1,6 @@
 from abjad.helpers.assert_components import assert_components
 from abjad.tools import parenttools
 from abjad.tools import spannertools
-from abjad.helpers.restore_outgoing_reference_to_parent import \
-   restore_outgoing_reference_to_parent
 import copy
 
 
@@ -29,7 +27,7 @@ def covered(components, n = 1):
    for component in result:
       component._update._markForUpdateToRoot( )
 
-   restore_outgoing_reference_to_parent(receipt)
+   parenttools.restore(receipt)
 
    for spanner in spanners:
       spanner._unblockAllComponents( )

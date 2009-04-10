@@ -293,8 +293,7 @@ class _Component(_Abjad):
       '''Give spanners attached directly to container to children.
          Give children to parent.
          Return empty, childless container.'''
-      from abjad.helpers.get_parent_and_indices import \
-         get_parent_and_indices
+      from abjad.tools import parenttools
       parent, start, stop = parenttools.get_with_indices([self])
       result = parent[start:stop+1] = list(self.music)
       return self

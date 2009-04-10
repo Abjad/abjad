@@ -1,9 +1,7 @@
 from abjad import *
-from abjad.helpers.restore_outgoing_reference_to_parent import \
-   restore_outgoing_reference_to_parent
 
 
-def test_restore_outgoing_reference_to_parent_01( ):
+def test_parenttools_restore_01( ):
 
    t = Voice(scale(4))
    Beam(t[:])
@@ -19,7 +17,7 @@ def test_restore_outgoing_reference_to_parent_01( ):
 
    assert not check(t)
 
-   restore_outgoing_reference_to_parent(receipt)
+   parenttools.restore(receipt)
 
    r'''\new Voice {
       c'8 [

@@ -1,4 +1,4 @@
-def restore_outgoing_reference_to_parent(receipt):
+def restore(receipt):
    '''Use to restore parentage.
       Use after call to parenttools.ignore_parent(components).
       Return None.'''
