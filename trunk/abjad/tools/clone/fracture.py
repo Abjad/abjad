@@ -1,9 +1,8 @@
 from abjad.component.component import _Component
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.ignore_parent import \
-   _ignore_parent
-from abjad.tools import spannertools
 from abjad.tools import iterate
+from abjad.tools import parenttools
+from abjad.tools import spannertools
 from abjad.helpers.restore_outgoing_reference_to_parent import \
    restore_outgoing_reference_to_parent
 import copy
@@ -31,7 +30,7 @@ def fracture(components, n = 1):
          if component not in selection_components:
             spanner._removeComponent(component)
 
-   receipt = _ignore_parent(components)
+   receipt = parenttools.ignore_parent(components)
    
    result = copy.deepcopy(components)
 

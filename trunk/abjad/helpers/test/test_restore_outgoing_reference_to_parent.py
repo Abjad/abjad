@@ -1,6 +1,4 @@
 from abjad import *
-from abjad.helpers.ignore_parent import \
-   _ignore_parent
 from abjad.helpers.restore_outgoing_reference_to_parent import \
    restore_outgoing_reference_to_parent
 
@@ -17,7 +15,7 @@ def test_restore_outgoing_reference_to_parent_01( ):
       f'8 ]
    }'''
 
-   receipt = _ignore_parent(t[:])
+   receipt = parenttools.ignore_parent(t[:])
 
    assert not check(t)
 

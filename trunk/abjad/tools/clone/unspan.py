@@ -1,6 +1,5 @@
 from abjad.helpers.assert_components import assert_components
-from abjad.helpers.ignore_parent import \
-   _ignore_parent
+from abjad.tools import parenttools
 from abjad.tools import spannertools
 from abjad.helpers.restore_outgoing_reference_to_parent import \
    restore_outgoing_reference_to_parent
@@ -22,7 +21,7 @@ def unspan(components, n = 1):
    for spanner in spanners:
       spanner._blockAllComponents( )
 
-   receipt = _ignore_parent(components)
+   receipt = parenttools.ignore_parent(components)
 
    result = copy.deepcopy(components)
    for component in result:
