@@ -1,7 +1,7 @@
 from abjad import checks as _checks
 
 
-def wf(expr, runtime = 'composition'):
+def wf(expr, delivery = 'boolean', runtime = 'composition'):
    '''Run every check in the 'check' module against expr.
 
       Set the 'runtime' keyword to 'composition' to run
@@ -22,6 +22,11 @@ def wf(expr, runtime = 'composition'):
 
    results = [ ]
 
+   if delivery == 'report':
+      return _report(expr)
+   if delivery == 'violators':
+      return _violators(expr)
+
    ## TODO: Redo _checks dict iteration with proper package init. ##
 
    for key, value in sorted(_checks.__dict__.items( )):
@@ -31,3 +36,19 @@ def wf(expr, runtime = 'composition'):
             continue
       results.append(checker.check(expr))
    return all(results) 
+
+
+def _report(expr):
+   '''Print list of badly formed components to screen.'''
+   for key, value in sorted(_checks.__dict__.items( )):
+      checker = value( )
+      checker.report(expr)
+
+
+def _violators(expr):
+   '''Deliver list of badly formed components as list.'''
+   violators = [ ]
+   for key, value in sorted(_checks.__dict__.items( )):
+      checker = value( )
+      violators.extend(checker.violators(expr))
+   return violators
