@@ -313,8 +313,8 @@ class _Navigator(_Abjad):
          
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
-      from abjad.helpers.assess_components import assess_components
-      return assess_components([self._client, expr], share = 'thread')
+      from abjad.tools import check
+      return check.assess_components([self._client, expr], share = 'thread')
 
    def _rank(self):
       '''Returns the index of the caller (its position) in 

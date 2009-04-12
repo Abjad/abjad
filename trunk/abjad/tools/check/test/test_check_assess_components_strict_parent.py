@@ -7,16 +7,16 @@ def test_assess_components_strict_parent_01( ):
 
    t = Voice(scale(4))
    
-   assert assess_components(t.leaves, 
+   assert check.assess_components(t.leaves, 
       contiguity = 'strict', share = 'parent')
 
-   assert not assess_components(list(reversed(t.leaves)), 
+   assert not check.assess_components(list(reversed(t.leaves)), 
       contiguity = 'strict', share = 'parent')
-   assert not assess_components(t.leaves[2:] + t.leaves[:2], 
+   assert not check.assess_components(t.leaves[2:] + t.leaves[:2], 
       contiguity = 'strict', share = 'parent')
-   assert not assess_components(t[3:4] + t[0:1], 
+   assert not check.assess_components(t[3:4] + t[0:1], 
       contiguity = 'strict', share = 'parent')
-   assert not assess_components([t] + t.leaves, 
+   assert not check.assess_components([t] + t.leaves, 
       contiguity = 'strict', share = 'parent')
 
 
@@ -38,16 +38,16 @@ def test_assess_components_strict_parent_02( ):
            }
    }'''
 
-   assert assess_components([t], contiguity = 'strict', share = 'parent')
-   assert not assess_components([t], allow_orphans = False, 
+   assert check.assess_components([t], contiguity = 'strict', share = 'parent')
+   assert not check.assess_components([t], allow_orphans = False, 
       contiguity = 'strict', share = 'parent')
 
-   assert assess_components(t[:], contiguity = 'strict', share = 'parent')
+   assert check.assess_components(t[:], contiguity = 'strict', share = 'parent')
 
-   assert assess_components(t[0][:], contiguity = 'strict', share = 'parent')
-   assert assess_components(t[1][:], contiguity = 'strict', share = 'parent')
+   assert check.assess_components(t[0][:], contiguity = 'strict', share = 'parent')
+   assert check.assess_components(t[1][:], contiguity = 'strict', share = 'parent')
 
-   assert not assess_components(t.leaves, 
+   assert not check.assess_components(t.leaves, 
       contiguity = 'strict', share = 'parent')
 
 
@@ -57,8 +57,8 @@ def test_assess_components_strict_parent_03( ):
 
    t = scale(4)
 
-   assert assess_components(t, contiguity = 'strict', share = 'parent')
-   assert not assess_components(t, allow_orphans = False, 
+   assert check.assess_components(t, contiguity = 'strict', share = 'parent')
+   assert not check.assess_components(t, allow_orphans = False, 
       contiguity = 'strict', share = 'parent')
 
 
@@ -67,4 +67,4 @@ def test_assess_components_strict_parent_04( ):
 
    t = [ ]
 
-   assert assess_components(t, contiguity = 'strict', share = 'parent')
+   assert check.assess_components(t, contiguity = 'strict', share = 'parent')

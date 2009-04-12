@@ -1,4 +1,3 @@
-from abjad.helpers.assess_components import assess_components
 from abjad.helpers.container_scale import container_scale
 from abjad.helpers.is_measure_list import _is_measure_list
 from abjad.measure.rigid.measure import RigidMeasure

@@ -1,5 +1,5 @@
 from abjad.checks.check import _Check
-from abjad.helpers.assess_components import assess_components
+from abjad.tools.check.assess_components import assess_components
 
 
 class SpannersDiscontiguous(_Check):

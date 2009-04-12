@@ -3,9 +3,9 @@ from abjad.tools import iterate
 import types
 
 
-## TODO: Make assess_components( ) work with generators 
+## TODO: Make check.assess_components( ) work with generators 
 ##       This will prevent needing to manifest large lists
-##       of leaves for checking wiht assess_components( ).
+##       of leaves for checking wiht check.assess_components( ).
 
 def assess_components(expr, 
    contiguity = None, share = None, allow_orphans = True):

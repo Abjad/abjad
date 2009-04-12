@@ -8,8 +8,8 @@ def test_assess_components_none_thread_01( ):
       Unicorporated leaves do not share a root component.
       False if not allow orphans; True if allow orphans.'''
 
-   assert assess_components(scale(4), share = 'thread')
-   assert not assess_components(scale(4), share = 'thread', 
+   assert check.assess_components(scale(4), share = 'thread')
+   assert not check.assess_components(scale(4), share = 'thread', 
       allow_orphans = False)
 
 
@@ -25,7 +25,7 @@ def test_assess_components_none_thread_02( ):
       f'8
    }'''
 
-   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_03( ):
@@ -39,7 +39,7 @@ def test_assess_components_none_thread_03( ):
       e'8
    }'''
 
-   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 ## nonstructural in new parallel --> context model.
 #def test_assess_components_none_thread_04( ):
@@ -58,7 +58,7 @@ def test_assess_components_none_thread_03( ):
 #      f'8
 #   >>'''
 #
-#   assert not assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+#   assert not check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_05( ):
@@ -73,7 +73,7 @@ def test_assess_components_none_thread_05( ):
       f'8
    }'''
 
-   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_06( ):
@@ -88,7 +88,7 @@ def test_assess_components_none_thread_06( ):
       f'8 
    }'''
 
-   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_07( ):
@@ -112,7 +112,7 @@ def test_assess_components_none_thread_07( ):
       }
    }'''
 
-   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_08( ):
@@ -134,7 +134,7 @@ def test_assess_components_none_thread_08( ):
            }
    }'''
 
-   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_09( ):
@@ -158,10 +158,10 @@ def test_assess_components_none_thread_09( ):
            }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
-   assert not assess_components(t[:], share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
+   assert not check.assess_components(t[:], share = 'thread')
    
 
 def test_assess_components_none_thread_10( ):
@@ -187,7 +187,7 @@ def test_assess_components_none_thread_10( ):
            }
    }'''
 
-   assert assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_11( ):
@@ -211,7 +211,7 @@ def test_assess_components_none_thread_11( ):
    }
    '''
 
-   assert not assess_components(t.leaves, share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_12( ):
@@ -238,7 +238,7 @@ def test_assess_components_none_thread_12( ):
    }
    '''   
 
-   assert not assess_components(t.leaves, share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_13( ):
@@ -273,7 +273,7 @@ def test_assess_components_none_thread_13( ):
       >>
    }'''
 
-   assert not assess_components(t.leaves[:4], share = 'thread')
+   assert not check.assess_components(t.leaves[:4], share = 'thread')
 
 
 def test_assess_components_none_thread_14( ):
@@ -293,7 +293,7 @@ def test_assess_components_none_thread_14( ):
       }
    }'''
 
-   assert assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_15( ):
@@ -320,8 +320,8 @@ def test_assess_components_none_thread_15( ):
       }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_16( ):
@@ -345,9 +345,9 @@ def test_assess_components_none_thread_16( ):
            }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_17( ):
@@ -371,9 +371,9 @@ def test_assess_components_none_thread_17( ):
            }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
    
 def test_assess_components_none_thread_18( ):
@@ -398,9 +398,9 @@ def test_assess_components_none_thread_18( ):
            }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_19( ):
@@ -425,9 +425,9 @@ def test_assess_components_none_thread_19( ):
            }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
    
 
 def test_assess_components_none_thread_20( ):
@@ -451,9 +451,9 @@ def test_assess_components_none_thread_20( ):
            }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_21( ):
@@ -477,9 +477,9 @@ def test_assess_components_none_thread_21( ):
       }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_22( ):
@@ -501,9 +501,9 @@ def test_assess_components_none_thread_22( ):
       }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_23( ):
@@ -526,9 +526,9 @@ def test_assess_components_none_thread_23( ):
       g'8
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
    
 def test_assess_components_none_thread_24( ):
@@ -551,9 +551,9 @@ def test_assess_components_none_thread_24( ):
       }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_25( ):
@@ -579,9 +579,9 @@ def test_assess_components_none_thread_25( ):
       g'8
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
    
 
 def test_assess_components_none_thread_26( ):
@@ -603,9 +603,9 @@ def test_assess_components_none_thread_26( ):
       }
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_27( ):
@@ -628,9 +628,9 @@ def test_assess_components_none_thread_27( ):
            c''8
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_28( ):
@@ -656,9 +656,9 @@ def test_assess_components_none_thread_28( ):
       g'8
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_29( ):
@@ -685,9 +685,9 @@ def test_assess_components_none_thread_29( ):
       g'8
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_29( ):
@@ -715,9 +715,9 @@ def test_assess_components_none_thread_29( ):
       g'8
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_30( ):
@@ -743,9 +743,9 @@ def test_assess_components_none_thread_30( ):
       g'8
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_31( ):
@@ -779,8 +779,8 @@ def test_assess_components_none_thread_31( ):
       >>
    }'''
 
-   assert not assess_components(t.leaves[:8], share = 'thread')
-   assert not assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves[:8], share = 'thread')
+   assert not check.assess_components(t.leaves[4:], share = 'thread')
 
 
 def test_assess_components_none_thread_32( ):
@@ -814,8 +814,8 @@ def test_assess_components_none_thread_32( ):
    }
    '''
 
-   assert not assess_components(t.leaves[:8], share = 'thread')
-   assert not assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves[:8], share = 'thread')
+   assert not check.assess_components(t.leaves[4:], share = 'thread')
 
 
 def test_assess_components_none_thread_33( ):
@@ -851,10 +851,10 @@ def test_assess_components_none_thread_33( ):
       b'8
    }'''
 
-   assert assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert assess_components([t.leaves[i] for i in middle], share = 'thread')
-   assert assess_components([t.leaves[i] for i in inner], share = 'thread')
-   assert not assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in middle], share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in inner], share = 'thread')
+   assert not check.assess_components(t.leaves[:4], share = 'thread')
 
 
 def test_assess_components_none_thread_34( ):
@@ -890,10 +890,10 @@ def test_assess_components_none_thread_34( ):
       b'8
    }'''
    
-   assert assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert assess_components([t.leaves[i] for i in middle], share = 'thread')
-   assert assess_components([t.leaves[i] for i in inner], share = 'thread')
-   assert not assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in middle], share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in inner], share = 'thread')
+   assert not check.assess_components(t.leaves[:4], share = 'thread')
 
 
 def test_assess_components_none_thread_35( ):
@@ -923,7 +923,7 @@ def test_assess_components_none_thread_35( ):
       b'8
    }'''
 
-   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_36( ):
@@ -955,7 +955,7 @@ def test_assess_components_none_thread_36( ):
       b'8
    }'''
 
-   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_37( ):
@@ -986,9 +986,9 @@ def test_assess_components_none_thread_37( ):
    outer = (0, 1, 6, 7)
    inner = (2, 3, 4, 5)
 
-   assert assess_components([t.leaves[i] for i in outer]) 
-   assert assess_components([t.leaves[i] for i in inner]) 
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in outer]) 
+   assert check.assess_components([t.leaves[i] for i in inner]) 
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_38( ):
@@ -1016,9 +1016,9 @@ def test_assess_components_none_thread_38( ):
       g'8
    }'''
   
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_39( ):
@@ -1053,9 +1053,9 @@ def test_assess_components_none_thread_39( ):
    outer = (0, 1, 6, 7)
    inner = (2, 3, 4, 5)
 
-   assert assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert assess_components([t.leaves[i] for i in inner], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in inner], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
  
 def test_assess_components_none_thread_40( ):
@@ -1100,9 +1100,9 @@ def test_assess_components_none_thread_40( ):
    outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
    inner = (6, 7, 8, 9)
 
-   assert assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert assess_components([t.leaves[i] for i in inner], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in inner], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 
 def test_assess_components_none_thread_41( ):
@@ -1131,12 +1131,12 @@ def test_assess_components_none_thread_41( ):
       b'8
    }'''
 
-   assert assess_components(t.leaves[:4], share = 'thread')
-   assert assess_components(t.leaves[4:8], share = 'thread')
-   assert assess_components(t.leaves[8:], share = 'thread')
-   assert not assess_components(t.leaves[:8], share = 'thread')
-   assert not assess_components(t.leaves[4:], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components(t.leaves[:4], share = 'thread')
+   assert check.assess_components(t.leaves[4:8], share = 'thread')
+   assert check.assess_components(t.leaves[8:], share = 'thread')
+   assert not check.assess_components(t.leaves[:8], share = 'thread')
+   assert not check.assess_components(t.leaves[4:], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')
 
 ## NONSTRUCTURAL  in new parallel --> context model.
 #def test_assess_components_none_thread_42_trev( ):
@@ -1152,7 +1152,7 @@ def test_assess_components_none_thread_41( ):
 #      f'8
 #   >>'''
 #
-#   assert not assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+#   assert not check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1171,7 +1171,7 @@ def test_assess_components_none_thread_41( ):
 #      f'8
 #   >>'''
 #
-#   assert not assess_components(t.leaves, share = 'thread')
+#   assert not check.assess_components(t.leaves, share = 'thread')
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1197,7 +1197,7 @@ def test_assess_components_none_thread_41( ):
 #      g'8
 #   }'''
 #
-#   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+#   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1223,7 +1223,7 @@ def test_assess_components_none_thread_41( ):
 #      g'8
 #   }'''
 #
-#   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+#   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 ## NONSTRUCTURAL  in new parallel --> context model.
@@ -1283,7 +1283,7 @@ def test_assess_components_none_thread_41( ):
 #      b'8
 #   }'''
 #
-#   assert assess_components(list(iterate.naive(t, _Component)), share = 'thread')
+#   assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 
 def test_assess_components_none_thread_47( ):
@@ -1318,8 +1318,8 @@ def test_assess_components_none_thread_47( ):
 
    outer = (0, 1, 10, 11)
 
-   assert assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert assess_components(t.leaves[2:6], share = 'thread')
-   assert assess_components(t.leaves[6:10], share = 'thread')
-   assert not assess_components(t.leaves[:6], share = 'thread')
-   assert not assess_components(t.leaves, share = 'thread')
+   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
+   assert check.assess_components(t.leaves[2:6], share = 'thread')
+   assert check.assess_components(t.leaves[6:10], share = 'thread')
+   assert not check.assess_components(t.leaves[:6], share = 'thread')
+   assert not check.assess_components(t.leaves, share = 'thread')

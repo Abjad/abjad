@@ -22,7 +22,7 @@ def test_assess_components_thread_contiguous_01( ):
    }'''
 
    outer = (0, 1, 4, 5)
-   assert assess_components([t.leaves[i] for i in outer], contiguity = 'thread')
+   assert check.assess_components([t.leaves[i] for i in outer], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_02( ):
@@ -51,10 +51,10 @@ def test_assess_components_thread_contiguous_02( ):
       }
    }'''
    
-   assert assess_components(t[0:1] + t[-1:], contiguity = 'thread')
-   assert assess_components(t[0][:] + t[-1:], contiguity = 'thread')
-   assert assess_components(t[0:1] + t[-1][:], contiguity = 'thread')
-   assert assess_components(t[0][:] + t[-1][:], contiguity = 'thread')
+   assert check.assess_components(t[0:1] + t[-1:], contiguity = 'thread')
+   assert check.assess_components(t[0][:] + t[-1:], contiguity = 'thread')
+   assert check.assess_components(t[0:1] + t[-1][:], contiguity = 'thread')
+   assert check.assess_components(t[0][:] + t[-1][:], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_03( ):
@@ -82,24 +82,24 @@ def test_assess_components_thread_contiguous_03( ):
       }
    }'''
    
-   assert not assess_components([t, t[0]], contiguity = 'thread')
-   assert not assess_components(t[0:1] + t[0][:], contiguity = 'thread')
-   assert not assess_components(t[-1:] + t[-1][:], contiguity = 'thread')
+   assert not check.assess_components([t, t[0]], contiguity = 'thread')
+   assert not check.assess_components(t[0:1] + t[0][:], contiguity = 'thread')
+   assert not check.assess_components(t[-1:] + t[-1][:], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_04( ):
    '''True for strictly contiguous leaves in same staff.'''
 
    t = Staff(scale(4))
-   assert assess_components(t[:], contiguity = 'thread')
+   assert check.assess_components(t[:], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_05( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
-   assert assess_components(scale(4), contiguity = 'thread')
-   assert not assess_components(scale(4), 
+   assert check.assess_components(scale(4), contiguity = 'thread')
+   assert not check.assess_components(scale(4), 
       contiguity = 'thread', allow_orphans = False)
 
 
@@ -107,19 +107,19 @@ def test_assess_components_thread_contiguous_06( ):
    '''False for time reordered leaves in staff.'''
 
    t = Staff(scale(4))
-   assert not assess_components(t[2:] + t[:2], contiguity = 'thread')
+   assert not check.assess_components(t[2:] + t[:2], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_07( ):
    '''True for unincorporated component.'''
 
-   assert assess_components([Staff(scale(4))], contiguity = 'thread')
+   assert check.assess_components([Staff(scale(4))], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_08( ):
    '''True for empty list.'''
 
-   assert assess_components([ ], contiguity = 'thread')
+   assert check.assess_components([ ], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_09( ):
@@ -137,7 +137,7 @@ def test_assess_components_thread_contiguous_09( ):
       a'8 ]
    }'''
 
-   assert not assess_components(t[:2] + t[-2:], contiguity = 'thread')
+   assert not check.assess_components(t[:2] + t[-2:], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_10( ):
@@ -162,4 +162,4 @@ def test_assess_components_thread_contiguous_10( ):
       }
    }'''
 
-   assert not assess_components(t[:1] + t[-1:], contiguity = 'thread')
+   assert not check.assess_components(t[:1] + t[-1:], contiguity = 'thread')
