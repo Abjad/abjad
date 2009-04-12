@@ -15,7 +15,7 @@ def test_diatonicize_01( ):
       f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -36,5 +36,5 @@ def test_diatonicize_02( ):
       f'32
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"

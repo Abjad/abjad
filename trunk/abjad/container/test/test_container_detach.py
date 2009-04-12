@@ -29,7 +29,7 @@ def test_container_detach_01( ):
            }
    }'''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
    r'''{
@@ -37,5 +37,5 @@ def test_container_detach_01( ):
            d'8
    }'''
    
-   assert check(sequential)
+   assert check.wf(sequential)
    assert sequential.format == "{\n\tc'8\n\td'8\n}"

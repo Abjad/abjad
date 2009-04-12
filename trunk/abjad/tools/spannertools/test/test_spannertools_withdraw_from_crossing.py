@@ -115,4 +115,4 @@ def test_spannertools_withdraw_from_crossing_03( ):
    "Operation leaves score tree in weird state."
    "Both slur and trill are now discontiguous."
 
-   assert not check(t)
+   assert not check.wf(t)

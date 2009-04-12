@@ -40,7 +40,7 @@ def test_give_spanend_music_to_01( ):
 
    "Container t carries discontiguous spanners."
  
-   assert not check(t)
+   assert not check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
    "Recipient container is now ..."
@@ -52,7 +52,7 @@ def test_give_spanend_music_to_01( ):
 
    "Recipient container carries discontiguous spanners."
 
-   assert not check(recipient)
+   assert not check.wf(recipient)
    assert recipient.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
 
 
@@ -64,10 +64,10 @@ def test_give_spanned_music_from_to_02( ):
   
    _give_spanned_music_from_to([donor], recipient)
 
-   assert check(donor)
+   assert check.wf(donor)
    assert donor.format == "c'8"
 
-   assert check(recipient)
+   assert check.wf(recipient)
    assert recipient.format == '\\new Voice {\n}'
 
 

@@ -18,5 +18,5 @@ def test_notehead_interface_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice \\with {\n\t\\override NoteHead #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

@@ -17,7 +17,7 @@ def test_tuplet_number_grob_handling_01( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice \\with {\n\t\\override TupletNumber #'fraction = ##t\n} {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -36,7 +36,7 @@ def test_tuplet_number_grob_handling_02( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\once \\override TupletNumber #'fraction = ##t\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -56,5 +56,5 @@ def test_tuplet_number_grob_handling_03( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == '\\new Voice \\with {\n\t\\override TupletNumber #\'text = \\markup { "6:4" }\n} {\n\tc\'8 [\n\td\'8\n\te\'8\n\tf\'8 ]\n}'

@@ -7,7 +7,7 @@ def test_measure_trim_by_count_01( ):
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
    measure_trim_by_count(t[:1])
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8"
 
 
@@ -17,7 +17,7 @@ def test_measure_trim_by_count_02( ):
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
    measure_trim_by_count(t[-1:])
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8"
    
 
@@ -27,7 +27,7 @@ def test_measure_trim_by_count_03( ):
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
    measure_trim_by_count(t[:2])
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 2/8\n\tc'8\n\tc'8"
 
 
@@ -37,7 +37,7 @@ def test_measure_trim_by_count_04( ):
    t = RigidMeasure((4, 8), Note(0, (1, 16)) * 2 + Note(0, (1, 8)) * 3)
    measure_trim_by_count(t[:1])
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8"
 
 
@@ -54,7 +54,7 @@ def test_measure_trim_by_count_05( ):
                 f'8
         }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}"
 
 
@@ -83,5 +83,5 @@ def tet_rigid_measure_trim_06( ):
                 f'8
         }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\td'16\n\t\te'8\n\t\tf'8\n\t}"

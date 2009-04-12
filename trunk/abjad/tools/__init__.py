@@ -1,3 +1,4 @@
+from abjad.tools import check
 from abjad.tools import chordtools
 from abjad.tools import clone
 from abjad.tools import componenttools

@@ -122,7 +122,7 @@ def test_leaf_split_binary_10( ):
    for leaf in t.leaves:
       assert leaf.spanners.attached == set([s])
       assert leaf.tie.spanner is s
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_leaf_split_binary_11( ):
@@ -136,7 +136,7 @@ def test_leaf_split_binary_11( ):
    for l in t.leaves:
       assert l.spanners.attached == set([b])
       assert l.beam.spanner is b
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_leaf_split_binary_12( ):
@@ -153,7 +153,7 @@ def test_leaf_split_binary_12( ):
    for l in t.leaves:
       assert l.spanners.attached == set([s])
       assert l.tie.spanner is s
-   assert check(t)
+   assert check.wf(t)
    
 
 ## CONTAINER SPANNED ##
@@ -170,7 +170,7 @@ def test_leaf_split_binary_20( ):
    assert s.components == [t]
    for l in t.leaves:
       assert not l.spanners.attached 
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_leaf_split_binary_21( ):
@@ -187,7 +187,7 @@ def test_leaf_split_binary_21( ):
       for l in v.leaves:
          assert not l.spanners.attached 
          assert l.parentage.parent is v
-   assert check(t)
+   assert check.wf(t)
 
 
 ## GRACE NOTES ##

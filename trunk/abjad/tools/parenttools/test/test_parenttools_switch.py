@@ -10,7 +10,7 @@ def test__switch_01( ):
    components = u[:]
    _switch(components, t)
 
-   assert check(u)
+   assert check.wf(u)
    assert len(u) == 0
 
    "Container t now assigned to components."
@@ -23,6 +23,6 @@ def test__switch_01( ):
 
    "Components now in container t."
 
-   assert check(t)
+   assert check.wf(t)
    assert components[0].parentage.parent is t
    assert components[0] in t

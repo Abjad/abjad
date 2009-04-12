@@ -37,7 +37,7 @@ def test_container_delitem_00( ):
       }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
 
    "Deleted component is now ..."
@@ -47,7 +47,7 @@ def test_container_delitem_00( ):
       d'8 )
    }'''
 
-   assert check(old)
+   assert check.wf(old)
    assert old.format == "{\n\tc'8 (\n\td'8 )\n}"
 
 
@@ -66,7 +66,7 @@ def test_container_delitem_01( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n}"
 
 
@@ -83,7 +83,7 @@ def test_container_delitem_02( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\tf'8 ]\n}"
 
 
@@ -100,7 +100,7 @@ def test_container_delitem_03( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\te'8 [\n\tf'8 ]\n}"
 
 
@@ -117,7 +117,7 @@ def test_container_delitem_04( ):
            d'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -132,7 +132,7 @@ def test_container_delitem_05( ):
    r'''\new Voice {
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == '\\new Voice {\n}'
 
 
@@ -147,5 +147,5 @@ def test_container_delitem_06( ):
    r'''c'8 [
      e'8 ]'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\tc'8 [\n\te'8 ]"

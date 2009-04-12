@@ -17,7 +17,7 @@ def test_tuplet_bracket_grob_handling_01( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice \\with {\n\t\\override TupletBracket #'direction = #down\n} {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -36,5 +36,5 @@ def test_tuplet_bracket_grob_handling_02( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\once \\override TupletBracket #'direction = #down\n\td'8\n\te'8\n\tf'8 ]\n}"

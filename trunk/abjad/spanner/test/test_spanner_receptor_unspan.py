@@ -12,7 +12,7 @@ def test_spanner_receptor_unspan_01( ):
    c'8
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "c'8"
 
 
@@ -26,5 +26,5 @@ def test_spanner_receptor_unspan_02( ):
    c'8
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "c'8"

@@ -13,7 +13,7 @@ def test_label_leaf_durations_01( ):
       e'8 _ \markup { \small 1/8 }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'8 _ \\markup { \\small 1/8 }\n\td'8 _ \\markup { \\small 1/8 }\n\te'8 _ \\markup { \\small 1/8 }\n}"
 
 
@@ -29,7 +29,7 @@ def test_label_leaf_durations_02( ):
       e'8 _ \markup { \small 1/12 }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'8 _ \\markup { \\small 1/12 }\n\td'8 _ \\markup { \\small 1/12 }\n\te'8 _ \\markup { \\small 1/12 }\n}"
 
 
@@ -45,5 +45,5 @@ def test_label_leaf_durations_03( ):
       e'8 _ \markup { \column { \small 1/8 \small 1/12 } }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n\td'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n\te'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n}"

@@ -27,7 +27,7 @@ def test_flip_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\td'8\n\tf'8 ]\n}"
 
 
@@ -58,7 +58,7 @@ def test_flip_02( ):
    }
    '''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8 [\n\tf'8 ]\n}"
 
 
@@ -88,5 +88,5 @@ def test_flip_03( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8\n\tf'8\n}"

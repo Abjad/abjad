@@ -85,7 +85,7 @@ def test_beam_spanner_fracture_05( ):
    #assert len(spanners[1].components) == 1
    #assert len(spanners[2].components) == 2
    #assert spanners[0] != spanners[1] != spanners[2]
-   check(t) ### check for Beam overlaps
+   check.wf(t) ### check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8 ]\n\td'8 [ ]\n\tef'8 [\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    r'''
@@ -115,7 +115,7 @@ def test_beam_spanner_fracture_06( ):
    assert len(spanners[0]) == 1
    assert len(spanners[1]) == 4
    assert spanners[0] != spanners[1] 
-   check(t) ### check for Beam overlaps
+   check.wf(t) ### check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tcs'8 [\n\td'8\n\tef'8\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
    r'''
    \new Staff {
@@ -142,7 +142,7 @@ def test_beam_spanner_fracture_06( ):
    #assert len(spanners[0].components) == 4
    #assert len(spanners[1].components) == 1
    #assert spanners[0] != spanners[1] 
-   check(t) ### check for Beam overlaps
+   check.wf(t) ### check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    r'''
@@ -173,7 +173,7 @@ def test_beam_spanner_fracture_07( ):
    #assert len(spanners[0].components) == 4
    #assert len(spanners[1].components) == 1
    #assert spanners[0] != spanners[1] 
-   check(t) ### check for Beam overlaps
+   check.wf(t) ### check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    r'''

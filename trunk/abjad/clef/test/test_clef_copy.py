@@ -7,7 +7,7 @@ def test_clef_copy_01( ):
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
    t.extend(tcopy(t[0 : 2]))
-   assert check(t)
+   assert check.wf(t)
    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef "treble"\n\tc'8\n\tcs'8\n}'''
    assert [note.clef.name for note in t] == [
       'treble', 'treble', 'treble', 'treble',
@@ -38,7 +38,7 @@ def test_clef_copy_02( ):
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
    t.extend(tcopy(t[2 : 4]))
-   assert check(t)
+   assert check.wf(t)
    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\td'8\n\tef'8\n}'''
    assert [note.clef.name for note in t] == [
       'treble', 'treble', 'treble', 'treble',

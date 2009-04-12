@@ -18,7 +18,7 @@ def test_measure_scale_and_remeter_01( ):
         }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}"
 
 
@@ -36,7 +36,7 @@ def test_measure_scale_and_remeter_02( ):
         e'8
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/8\n\tc'8\n\td'8\n\te'8"
 
 
@@ -54,7 +54,7 @@ def test_measure_scale_and_remeter_03( ):
         e'8.
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 9/16\n\tc'8.\n\td'8.\n\te'8."
 
 
@@ -72,7 +72,7 @@ def test_measure_scale_and_remeter_04( ):
         e'8
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/8\n\tc'8\n\td'8\n\te'8"
 
 
@@ -98,7 +98,7 @@ def test_measure_scale_and_remeter_05( ):
         }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16\n\t\tb'16\n\t\tc''16\n\t\td''16\n\t}"
 
 
@@ -116,7 +116,7 @@ def test_measure_scale_and_remeter_06( ):
         e'4
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/4\n\tc'4\n\td'4\n\te'4"
 
 
@@ -138,7 +138,7 @@ def test_measure_scale_and_remeter_07( ):
            a'32
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 6/32\n\tc'32\n\td'32\n\te'32\n\tf'32\n\tg'32\n\ta'32"
 
 
@@ -160,7 +160,7 @@ def test_measure_scale_and_remeter_08( ):
            a'64
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 6/64\n\tc'64\n\td'64\n\te'64\n\tf'64\n\tg'64\n\ta'64"
 
 
@@ -182,7 +182,7 @@ def test_measure_scale_and_remeter_09( ):
         a'8
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 6/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8"
 
 
@@ -204,7 +204,7 @@ def test_measure_scale_and_remeter_10( ):
         a'4
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 6/4\n\tc'4\n\td'4\n\te'4\n\tf'4\n\tg'4\n\ta'4"
 
 

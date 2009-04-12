@@ -15,7 +15,7 @@ def test_dynamic_spanner_01( ):
       f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [ \\f\n\td'8\n\te'8 \\p\n\tf'8 ]\n}"
    assert t[0].dynamics.effective == 'f'
    assert t[1].dynamics.effective == 'f'

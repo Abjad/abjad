@@ -47,7 +47,7 @@ def test_excise_01( ):
    assert len(tuplet) == 3
    assert tuplet.duration.preprolated == Rational(3, 4)
    assert tuplet.duration.prolated == Rational(3, 6)
-   check(t)
+   check.wf(t)
 
 
 def test_excise_02( ):
@@ -104,7 +104,7 @@ def test_excise_02( ):
    assert len(tuplet) == 5
    assert tuplet.duration.preprolated == Rational(5, 8)
    assert tuplet.duration.prolated == Rational(5, 10)
-   check(t)
+   check.wf(t)
 
 
 def test_excise_03( ):
@@ -184,7 +184,7 @@ def test_excise_03( ):
    note = t[1][0]
    assert note.duration.written == Rational(1, 8)
    assert note.duration.prolated == Rational(1, 21)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_04( ):
@@ -264,7 +264,7 @@ def test_excise_04( ):
    note = t[1][0]
    assert note.duration.written == Rational(1, 8)
    assert note.duration.prolated == Rational(1, 21)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_05( ):
@@ -337,7 +337,7 @@ def test_excise_05( ):
    note = t[1][0]
    assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_06( ):
@@ -399,4 +399,4 @@ def test_excise_06( ):
    note = t[1]
    assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)

@@ -38,7 +38,7 @@ def test_measures_project_01( ):
          g'8
       }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}"
 
 
@@ -78,5 +78,5 @@ def test_measures_project_02( ):
          a'8
       }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 5/8\n\t\\fraction \\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}"

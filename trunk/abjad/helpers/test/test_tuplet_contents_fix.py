@@ -26,7 +26,7 @@ def test_tuplet_contents_fix_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert _is_tuplet_multiplier(t.duration.multiplier)
    assert t.format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
@@ -55,7 +55,7 @@ def test_tuplet_contents_fix_02( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert _is_tuplet_multiplier(t.duration.multiplier)
    assert t.format == "\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
@@ -84,6 +84,6 @@ def test_tuplet_contents_fix_03( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert _is_tuplet_multiplier(t.duration.multiplier)
    assert t.format == "\\fraction \\times 5/6 {\n\tc'8\n\td'8\n\te'8\n}"

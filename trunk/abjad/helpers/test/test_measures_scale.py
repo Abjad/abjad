@@ -15,7 +15,7 @@ def test_measures_scale_01( ):
       d'8
       e'8 ]'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/8\n\tc'8 [\n\td'8\n\te'8 ]"
 
 
@@ -32,7 +32,7 @@ def test_measures_scale_02( ):
       d'16.
       e'16. ]'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 9/32\n\tc'16. [\n\td'16.\n\te'16. ]"
 
 
@@ -51,5 +51,5 @@ def test_measures_scale_03( ):
          e'8 ]
       }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t}"

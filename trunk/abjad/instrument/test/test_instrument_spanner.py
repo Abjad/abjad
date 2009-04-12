@@ -18,5 +18,5 @@ def test_instrument_spanner_01( ):
       \unset Staff.shortInstrumentName
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\set Staff.instrumentName = Alto Flute in G\n\t\\set Staff.shortInstrumentName = Fl. G\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\unset Staff.instrumentName\n\t\\unset Staff.shortInstrumentName\n}"

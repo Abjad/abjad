@@ -26,12 +26,12 @@ def test_container_pop_01( ):
       f'8 )
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
    "Result is now d'8 [ ]"
 
-   assert check(result)
+   assert check.wf(result)
    assert result.format == "d'8 [ ]"
 
 
@@ -64,7 +64,7 @@ def test_container_pop_02( ):
    }'''
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n}"
-   assert check(t)
+   assert check.wf(t)
 
    r'''{
       e'8
@@ -72,4 +72,4 @@ def test_container_pop_02( ):
    }'''
 
    assert sequential.format == "{\n\te'8\n\tf'8\n}"
-   assert check(sequential)
+   assert check.wf(sequential)

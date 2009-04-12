@@ -12,7 +12,7 @@ def test_excise_container_01( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 4)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_02( ):
@@ -26,7 +26,7 @@ def test_excise_container_02( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 4)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_03( ):
@@ -40,7 +40,7 @@ def test_excise_container_03( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 4)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_04( ):
@@ -54,7 +54,7 @@ def test_excise_container_04( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 4)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_05( ):
@@ -71,7 +71,7 @@ def test_excise_container_05( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_06( ):
@@ -88,7 +88,7 @@ def test_excise_container_06( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_07( ):
@@ -105,7 +105,7 @@ def test_excise_container_07( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_08( ):
@@ -122,7 +122,7 @@ def test_excise_container_08( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_09( ):
@@ -139,7 +139,7 @@ def test_excise_container_09( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_10( ):
@@ -156,7 +156,7 @@ def test_excise_container_10( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_11( ):
@@ -173,7 +173,7 @@ def test_excise_container_11( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_excise_container_12( ):
@@ -190,4 +190,4 @@ def test_excise_container_12( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check(t)
+   assert check.wf(t)

@@ -27,8 +27,8 @@ def test_detach_subtree_01( ):
       f'8 ]
    }'''
 
-   assert check(t)
-   assert check(sequential)
+   assert check.wf(t)
+   assert check.wf(sequential)
    assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\tf'8 ]\n}"
 
 
@@ -61,6 +61,6 @@ def test_detach_subtree_02( ):
       f'8 ]
    }'''
 
-   assert check(t)
-   assert check(leaf)
+   assert check.wf(t)
+   assert check.wf(leaf)
    assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\t{\n\t\te'8 \\glissando\n\t}\n\tf'8 ]\n}"

@@ -26,7 +26,7 @@ def test_parentage_reattach_01( ):
            f'8
    }'''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -59,7 +59,7 @@ def test_parentage_reattach_02( ):
            }
    }'''
 
-   assert not check(t)
+   assert not check.wf(t)
 
    leaf.parentage._reattach(receipt)
 
@@ -72,7 +72,7 @@ def test_parentage_reattach_02( ):
            }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
@@ -114,8 +114,8 @@ def test_parentage_reattach_03( ):
            }
    }'''
 
-   assert check(t)
-   assert check(sequential)
+   assert check.wf(t)
+   assert check.wf(sequential)
 
    sequential.parentage._reattach(receipt)
 
@@ -134,8 +134,8 @@ def test_parentage_reattach_03( ):
            }
    }'''
 
-   assert check(t)
-   assert check(sequential)
+   assert check.wf(t)
+   assert check.wf(sequential)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
    
 
@@ -174,8 +174,8 @@ def test_parentage_reattach_04( ):
            }
    }'''
 
-   assert not check(t)
-   assert not check(sequential)
+   assert not check.wf(t)
+   assert not check.wf(sequential)
 
    sequential.parentage._reattach(receipt)
 
@@ -192,5 +192,5 @@ def test_parentage_reattach_04( ):
            }
    }'''
 
-   assert check(t)
-   assert check(sequential)
+   assert check.wf(t)
+   assert check.wf(sequential)

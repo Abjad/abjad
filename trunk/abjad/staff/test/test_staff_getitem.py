@@ -8,7 +8,7 @@ def test_staff_getitem_01( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
    assert isinstance(t[2], Chord)
@@ -28,10 +28,10 @@ def test_staff_getitem_02( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    slice = t[0 : 0]
    assert len(slice) == 0
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_getitem_03( ):
@@ -41,13 +41,13 @@ def test_staff_getitem_03( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    slice = t[0 : 1]
    assert len(slice) == 1
    assert isinstance(slice[0], Note)
    for x in t:
       assert x.parentage.parent == t
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_getitem_04( ):
@@ -57,13 +57,13 @@ def test_staff_getitem_04( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    slice = t[-1 : ]
    assert len(slice) == 1
    assert isinstance(slice[0], FixedDurationTuplet)
    for x in slice:
       assert x.parentage.parent == t
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_getitem_05( ):
@@ -73,7 +73,7 @@ def test_staff_getitem_05( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    slice = t[1 : -1]
    assert len(slice) == 3
    assert isinstance(slice[0], Rest)
@@ -81,7 +81,7 @@ def test_staff_getitem_05( ):
    assert isinstance(slice[2], Skip)
    for x in slice:
       assert x.parentage.parent == t
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_getitem_06( ):
@@ -91,7 +91,7 @@ def test_staff_getitem_06( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    slice = t[2 : ]
    assert len(slice) == 3
    assert isinstance(slice[0], Chord)
@@ -99,7 +99,7 @@ def test_staff_getitem_06( ):
    assert isinstance(slice[2], FixedDurationTuplet)
    for x in slice:
       assert x.parentage.parent == t
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_getitem_07( ):
@@ -109,7 +109,7 @@ def test_staff_getitem_07( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    slice = t[ : -2]
    assert len(slice) == 3
    assert isinstance(slice[0], Note)
@@ -117,7 +117,7 @@ def test_staff_getitem_07( ):
    assert isinstance(slice[2], Chord)
    for x in slice:
       assert x.parentage.parent == t
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_getitem_08( ):
@@ -127,7 +127,7 @@ def test_staff_getitem_08( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    slice = t[ : ]
    assert len(slice) == 5
    assert isinstance(slice, list)
@@ -138,4 +138,4 @@ def test_staff_getitem_08( ):
    assert isinstance(slice[4], FixedDurationTuplet)
    for x in slice:
       assert x.parentage.parent == t
-   assert check(t)
+   assert check.wf(t)

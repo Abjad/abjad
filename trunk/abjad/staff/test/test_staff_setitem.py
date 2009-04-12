@@ -9,7 +9,7 @@ def test_staff_setitem_01( ):
          Skip((1, 4)),
          FixedDurationTuplet((5, 16), Note(0, (1, 16)) * 4)])
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
    assert isinstance(t[2], Chord)
@@ -17,7 +17,7 @@ def test_staff_setitem_01( ):
    assert isinstance(t[4], FixedDurationTuplet)
    t[1] = Chord([12, 13, 15], (1, 4))
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Chord)
@@ -25,7 +25,7 @@ def test_staff_setitem_01( ):
    assert isinstance(t[4], FixedDurationTuplet)
    t[0] = Rest((1, 4))
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    assert isinstance(t[0], Rest)
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Chord)
@@ -33,7 +33,7 @@ def test_staff_setitem_01( ):
    assert isinstance(t[4], FixedDurationTuplet)
    t[-2] = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    assert isinstance(t[0], Rest)
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Chord)
@@ -41,7 +41,7 @@ def test_staff_setitem_01( ):
    assert isinstance(t[4], FixedDurationTuplet)
    t[-1] = Note(13, (1, 4))
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    assert isinstance(t[0], Rest)
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Chord)
@@ -49,7 +49,7 @@ def test_staff_setitem_01( ):
    assert isinstance(t[4], Note)
    t[-3] = Skip((1, 4))
    assert len(t) == 5
-   assert check(t)
+   assert check.wf(t)
    assert isinstance(t[0], Rest)
    assert isinstance(t[1], Chord)
    assert isinstance(t[2], Skip)
@@ -98,7 +98,7 @@ def test_staff_setitem_07( ):
       assert x.pitch.number == 2
    for x in t[4 : 8]:
       assert x.pitch.number == 0
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_setitem_08( ):
@@ -110,7 +110,7 @@ def test_staff_setitem_08( ):
       assert x.duration.written == Rational(1, 4)
    for x in t[4 : 8]:
       assert x.duration.written == Rational(1, 8)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_setitem_09( ):
@@ -123,7 +123,7 @@ def test_staff_setitem_09( ):
          assert isinstance(x, FixedDurationTuplet)
       else:
          assert isinstance(x, Note)
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_staff_setitem_10( ):
@@ -136,4 +136,4 @@ def test_staff_setitem_10( ):
          assert isinstance(x, RigidMeasure)
       else:
          assert isinstance(x, Note)
-   assert check(t)
+   assert check.wf(t)

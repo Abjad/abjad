@@ -21,7 +21,7 @@ def test_measure_empty_02( ):
    assert len(t) == 0
    assert t.duration.preprolated == 0
    assert t.duration.prolated == 0
-   assert not check(t)
+   assert not check.wf(t)
 
 
 def test_measure_empty_03( ):
@@ -32,4 +32,4 @@ def test_measure_empty_03( ):
    assert len(t) == 0
    assert t.duration.preprolated == 0
    assert t.duration.prolated == 0
-   assert not check(t)
+   assert not check.wf(t)

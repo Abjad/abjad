@@ -15,5 +15,5 @@ def test_dynamic_measure_meter_suppress_01( ):
       f'8
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\tc'8\n\td'8\n\te'8\n\tf'8"

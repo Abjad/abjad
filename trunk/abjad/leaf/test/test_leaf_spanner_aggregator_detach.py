@@ -29,7 +29,7 @@ def test_leaf_spanner_aggregator_detach_01( ):
    '''
 
    assert t.format == "\\new Staff {\n\tc'8\n\td'8 [ \\glissando\n\te'8 \\glissando\n\tf'8 ]\n}"
-   assert check(t)
+   assert check.wf(t)
 
 
 def test_leaf_spanner_aggregator_detach_02( ):

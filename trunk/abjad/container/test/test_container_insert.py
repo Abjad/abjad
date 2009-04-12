@@ -22,7 +22,7 @@ def test_container_insert_01( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
    
@@ -41,7 +41,7 @@ def test_container_insert_02( ):
       f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -61,7 +61,7 @@ def test_container_insert_03( ):
            r4
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -80,7 +80,7 @@ def test_container_insert_04( ):
         r4
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -99,7 +99,7 @@ def test_container_insert_05( ):
       f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\teqs'8\n\tf'8 ]\n}"
 
 
@@ -118,7 +118,7 @@ def test_container_insert_06( ):
       f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -131,7 +131,7 @@ def test_container_insert_07( ):
    note = v[0]
    t.insert(1, v[0])
 
-   assert check(v)
-   assert check(t)
+   assert check.wf(v)
+   assert check.wf(t)
    assert not note in v
    assert note.parentage.parent is t

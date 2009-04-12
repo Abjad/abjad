@@ -46,8 +46,8 @@ def test_clone_unspan_01( ):
          c''8
    }'''
 
-   assert check(t)
-   assert check(voice)
+   assert check.wf(t)
+   assert check.wf(voice)
    assert voice.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n}"
    
 
@@ -92,8 +92,8 @@ def test_clone_unspan_02( ):
          c''8
    }'''
 
-   assert check(t)
-   assert check(new)
+   assert check.wf(t)
+   assert check.wf(new)
    assert new.format == "\\new Voice {\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n}"
 
 
@@ -135,8 +135,8 @@ def test_clone_unspan_03( ):
       a'8
    }'''
 
-   assert check(t)
-   assert check(new)
+   assert check.wf(t)
+   assert check.wf(new)
    assert new.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
 
 
@@ -177,8 +177,8 @@ def test_clone_unspan_04( ):
          c''8
    }'''
 
-   assert check(t)
-   assert check(new)
+   assert check.wf(t)
+   assert check.wf(new)
    assert new.format == "\\new Voice {\n\tg'8\n\ta'8\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n}"
 
 
@@ -233,5 +233,5 @@ def test_clone_unspan_05( ):
          c''8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8 ] )\n}"

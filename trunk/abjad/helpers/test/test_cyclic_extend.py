@@ -40,7 +40,7 @@ def test_cyclic_extend_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n}"
 
 
@@ -92,5 +92,5 @@ def test_cyclic_extend_02( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"

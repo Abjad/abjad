@@ -21,5 +21,5 @@ def test_clear_leaves_01( ):
       e'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"

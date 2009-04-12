@@ -16,7 +16,7 @@ def test_parenttools_ignore_01( ):
 
    receipt = _ignore(t[:])
 
-   assert not check(t)
+   assert not check.wf(t)
 
    assert (t[0], t) in receipt
    assert (t[1], t) in receipt

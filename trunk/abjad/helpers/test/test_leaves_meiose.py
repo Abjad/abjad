@@ -19,7 +19,7 @@ def test_leaves_meiose_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'16 [\n\tc'16\n\td'16\n\td'16\n\te'16\n\te'16 ]\n}"
 
 
@@ -41,5 +41,5 @@ def test_leaves_meiose_02( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'32 [\n\tc'32\n\tc'32\n\tc'32\n\td'8\n\te'8 ]\n}"

@@ -17,7 +17,7 @@ def test_parenttools_restore_01( ):
 
    receipt = _ignore(t[:])
 
-   assert not check(t)
+   assert not check.wf(t)
 
    _restore(receipt)
 
@@ -28,5 +28,5 @@ def test_parenttools_restore_01( ):
       f'8 ]
    }'''
   
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"

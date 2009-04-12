@@ -17,5 +17,5 @@ def test_dynamic_spanner_grob_handling_01( ):
       \revert DynamicText #'thickness
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\override DynamicText #'thickness = #3\n\tc'8 [ \\f\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert DynamicText #'thickness\n}"

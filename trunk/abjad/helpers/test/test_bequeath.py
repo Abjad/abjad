@@ -32,7 +32,7 @@ def test_bequeath_01( ):
       f'8 [ ] \!
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ] \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
@@ -68,7 +68,7 @@ def test_bequeath_02( ):
       f'8 ] \!
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\td'8 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
@@ -103,7 +103,7 @@ def test_bequeath_03( ):
       f'8 ] \!
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
@@ -137,7 +137,7 @@ def test_bequeath_04( ):
       f'8 [ ] \!
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
@@ -169,7 +169,7 @@ def test_bequeath_05( ):
       c''16 \!
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 \\!\n}"
 
 
@@ -204,6 +204,6 @@ def test_bequeath_06( ):
       f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
    assert len(voice) == 0

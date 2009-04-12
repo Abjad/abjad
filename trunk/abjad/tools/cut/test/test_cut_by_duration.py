@@ -20,7 +20,7 @@ def test_cut_by_duration_01( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\times 4/5 {\n\t\td'16. [\n\t}\n\te'8\n\tf'8 ]\n}"
 
 
@@ -37,5 +37,5 @@ def test_cut_by_duration_02( ):
            f'8 ]
    }'''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\td'16 [\n\te'8\n\tf'8 ]\n}"

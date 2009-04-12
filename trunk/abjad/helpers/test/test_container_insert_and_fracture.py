@@ -21,7 +21,7 @@ def test_container_insert_and_fracture_01( ):
            ef'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"   
    
 
@@ -40,7 +40,7 @@ def test_container_insert_and_fracture_02( ):
            ef'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
 
 
@@ -59,7 +59,7 @@ def test_container_insert_and_fracture_03( ):
            r4
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -78,7 +78,7 @@ def test_container_insert_and_fracture_04( ):
         r4
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -97,7 +97,7 @@ def test_container_insert_and_fracture_05( ):
            ef'8 [ ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
 
 
@@ -116,7 +116,7 @@ def test_container_insert_and_fracture_06( ):
            ef'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
 
 
@@ -129,7 +129,7 @@ def test_container_insert_and_fracture_07( ):
    note = v[0]
    container_insert_and_fracture(t, 1, v[0])
 
-   assert check(v)
-   assert check(t)
+   assert check.wf(v)
+   assert check.wf(t)
    assert not note in v
    assert note.parentage.parent is t

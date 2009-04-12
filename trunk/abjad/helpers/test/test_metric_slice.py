@@ -20,7 +20,7 @@ def test_metric_slice_01( ):
       f'4
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert len(t) == 8
    assert len(t.spanners.attached) == 0
    assert t[0].duration.prolated == Rational(1, 4)

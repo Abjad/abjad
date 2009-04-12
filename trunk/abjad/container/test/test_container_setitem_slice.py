@@ -16,7 +16,7 @@ def test_container_setitem_slice_01( ):
            f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\tg'8\n\te'8\n\tf'8\n}"
 
 
@@ -36,7 +36,7 @@ def test_container_setitem_slice_02( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\tg'8\n\te'8\n\tf'8 ]\n}"
    
 
@@ -70,7 +70,7 @@ def test_container_setitem_slice_03( ):
            a'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8 ]\n}"
 
 
@@ -88,7 +88,7 @@ def test_container_setitem_slice_04( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tc''8\n\tf'8 ]\n}"
 
 
@@ -109,7 +109,7 @@ def test_container_setitem_slice_05( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tb'8\n\ta'8\n\tg'8\n\tf'8 ]\n}"
 
 
@@ -143,7 +143,7 @@ def test_container_setitem_slice_06( ):
            }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert len(sequential) == 0
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
@@ -180,7 +180,7 @@ def test_container_setitem_slice_07( ):
            }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
@@ -251,7 +251,7 @@ def test_container_setitem_slice_09( ):
            }
    }'''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 [ ]\n\t}\n}"
 
 
@@ -287,7 +287,7 @@ def test_container_setitem_slice_10( ):
            f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8 ]\n\t}\n\tf'8\n}"
 
 
@@ -306,7 +306,7 @@ def test_container_setitem_slice_11( ):
       f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -325,5 +325,5 @@ def test_container_setitem_slice_12( ):
       r'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tr8\n}"

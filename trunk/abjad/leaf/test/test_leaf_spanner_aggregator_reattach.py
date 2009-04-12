@@ -38,5 +38,5 @@ def test_leaf_spanner_aggregator_reattach_01( ):
       f'8 ]
    }
    '''
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ \\glissando\n\td'8 \\glissando\n\te'8 \\glissando\n\tf'8 ]\n}"

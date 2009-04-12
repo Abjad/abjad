@@ -21,7 +21,7 @@ def test_comments_right_01( ):
            \revert Beam #'thickness
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}"
 
 
@@ -36,5 +36,5 @@ def test_comments_right_02( ):
    r'''\once \override Beam #'thickness = #3
    c'8 % Leaf comments right here. % More comments right.'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\once \\override Beam #'thickness = #3\nc'8 % Leaf comments right here. % More comments right."

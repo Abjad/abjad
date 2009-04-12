@@ -15,7 +15,7 @@ def test_breaks_interface_01( ):
            \break
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\break\n}"
 
 
@@ -33,7 +33,7 @@ def test_breaks_interface_02( ):
            \pageBreak
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\pageBreak\n}"
 
 
@@ -53,7 +53,7 @@ def test_breaks_interface_03( ):
       \pageBreak
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\t\\break\n\t\\pageBreak\n}"
 
 
@@ -68,7 +68,7 @@ def test_breaks_interface_04( ):
    \break
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "c'4\n\\break"
 
 
@@ -83,7 +83,7 @@ def test_breaks_interface_05( ):
    \pageBreak
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "c'4\n\\pageBreak"
 
 
@@ -100,7 +100,7 @@ def test_breaks_interface_06( ):
    \pageBreak
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "c'4\n\\break\n\\pageBreak"
 
 
@@ -120,7 +120,7 @@ def test_breaks_interface_07( ):
       c'4
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 
 def test_breaks_interface_08( ):

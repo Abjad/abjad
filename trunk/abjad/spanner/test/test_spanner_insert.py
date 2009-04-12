@@ -22,7 +22,7 @@ def test_spanner_insert_01( ):
 
    "Interior insert leaves discontiguous spanner: Beam(c'8, f'8, d'8)."
 
-   assert not check(t)
+   assert not check.wf(t)
 
 
 def test_spanner_insert_02( ):

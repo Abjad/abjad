@@ -1,6 +1,6 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.helpers.check import check
 from abjad.cfg.read_config_value import _read_config_value
+from abjad.tools import check
 
 if _read_config_value('DEBUG').lower( ) == 'false':
    DEBUG = False
@@ -30,7 +30,7 @@ class debug(_Abjad):
       ...
    '''
 
-   def __init__(self, check_function=check, verbose=False):
+   def __init__(self, check_function=check.wf, verbose=False):
       self.check_function = check_function
       self.verbose = verbose
 

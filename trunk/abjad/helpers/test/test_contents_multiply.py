@@ -17,7 +17,7 @@ def test_contents_multiply_01( ):
            d'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -33,7 +33,7 @@ def test_contents_multiply_02( ):
            d'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -47,5 +47,5 @@ def test_contents_multiply_03( ):
    r'''\new Voice {
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == '\\new Voice {\n}'

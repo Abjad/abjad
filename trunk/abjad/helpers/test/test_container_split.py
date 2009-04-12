@@ -44,7 +44,7 @@ def test_container_split_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert left.format == "\\times 2/3 {\n\tf'8 ]\n}"
    assert right.format == "\\times 2/3 {\n\tg'8 [\n\ta'8 ]\n}"
    assert tuplet.format == ''
@@ -88,7 +88,7 @@ def test_container_split_02( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert left.format == "\t\\time 1/8\n\tf'8 ]"
    assert right.format == "\t\\time 2/8\n\tg'8 [\n\ta'8 ]"
    assert py.test.raises(UnderfullMeasureError, 'm.format')
@@ -142,7 +142,7 @@ def test_container_split_03( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert left.format == "\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}"
    assert right.format == "\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}"
    assert py.test.raises(UnderfullMeasureError, 'm.format')

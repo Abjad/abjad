@@ -25,7 +25,7 @@ def test_container_add_03( ):
    tadd = t1 + t2
    assert len(tadd) == len(t1) + len(t2)
    assert tadd.format == "{\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
-   assert check(tadd)
+   assert check.wf(tadd)
 
 
 def test_container_add_04( ):
@@ -97,9 +97,9 @@ def test_container_add_11( ):
    t2.parallel = True
    t1[0].name = t2[0].name = 'voiceOne'
    tadd = t1 + t2
-   assert check(tadd)
-   assert check(t1)
-   assert check(t2)
+   assert check.wf(tadd)
+   assert check.wf(t1)
+   assert check.wf(t2)
    assert isinstance(tadd, Container)  
    assert tadd.parallel
    assert len(tadd) == 1
@@ -149,8 +149,8 @@ def test_container_iadd_01( ):
    v2_id = id(v2)
 
    v1 += v2
-   assert check(v1)
-   assert check(v2)
+   assert check.wf(v1)
+   assert check.wf(v2)
    assert len(v1) == 8
    assert len(v2) == 4
    assert v1.name == 'voiceOne'

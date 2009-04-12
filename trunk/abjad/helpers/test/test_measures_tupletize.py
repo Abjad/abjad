@@ -18,7 +18,7 @@ def test_measures_tupletize_01( ):
       }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 4/8\n\t\\times 4/5 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}"
 
 
@@ -39,5 +39,5 @@ def test_measures_tupletize_02( ):
       }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 4/8\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tr4\n\t}"

@@ -30,7 +30,7 @@ def test_spanner_remove_01( ):
            f'8 ]
    }'''
 
-   assert not check(t)
+   assert not check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
    
 
@@ -78,5 +78,5 @@ def test_spanner_remove_02( ):
       }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"

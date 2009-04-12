@@ -16,7 +16,7 @@ def test_construct_note_train_01( ):
    }
    '''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
 
 
@@ -35,7 +35,7 @@ def test_construct_note_train_02( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'32\n}"
 
 
@@ -50,7 +50,7 @@ def test_construct_note_train_03( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'128\n}"
 
 
@@ -73,7 +73,7 @@ def test_construct_note_train_04( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\t\\times 4/5 {\n\t\tc'32\n\t}\n}"
 
 
@@ -94,5 +94,5 @@ def test_construct_note_train_04( ):
       }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}"

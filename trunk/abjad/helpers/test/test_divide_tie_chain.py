@@ -37,7 +37,7 @@ def test_divide_tie_chain_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\fraction \\times 5/6 {\n\t\tc'32 [ \\<\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32 ]\n\t}\n\tc'8 [ ~\n\tc'32 ] \\!\n}"
 
 
@@ -70,5 +70,5 @@ def test_divide_tie_chain_03( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\tc'8\n\tc'8\n}"

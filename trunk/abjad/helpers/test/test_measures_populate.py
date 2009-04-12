@@ -18,7 +18,7 @@ def test_measures_populate_02( ):
          c'16
       }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'4 ~\n\t\tc'16\n\t}"
 
 
@@ -34,7 +34,7 @@ def test_measures_populate_03( ):
          c'4
       }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16 ~\n\t\tc'4\n\t}"
 
 
@@ -49,7 +49,7 @@ def test_measures_populate_04( ):
          s1 * 5/16
       }'''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\ts1 * 5/16\n\t}"
 
 
@@ -68,5 +68,5 @@ def test_measures_populate_05( ):
          c'16
       }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}"

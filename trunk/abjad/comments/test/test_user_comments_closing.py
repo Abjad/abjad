@@ -18,7 +18,7 @@ def test_comments_closing_01( ):
            % More voice closing comments.
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t% Voice closing comments here.\n\t% More voice closing comments.\n}"
 
 
@@ -35,5 +35,5 @@ def test_comments_closing_02( ):
    % Leaf closing comments here.
    % More leaf closing comments.'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\once \\override Beam #'thickness = #3\nc'8\n% Leaf closing comments here.\n% More leaf closing comments."

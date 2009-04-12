@@ -25,4 +25,4 @@ def test_parenttools_give_position_to_01( ):
 
    "Container t now carries a discontiguous spanner."
 
-   assert not check(t)
+   assert not check.wf(t)

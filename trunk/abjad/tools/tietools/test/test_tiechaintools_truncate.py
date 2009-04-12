@@ -18,7 +18,7 @@ def test_tietools_truncate_01( ):
       c'4
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'4\n}"
 
 
@@ -33,5 +33,5 @@ def test_tietools_truncate_02( ):
       c'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n}"

@@ -27,12 +27,12 @@ def test_container_remove_01( ):
       f'8 )
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
    "Result is now d'8 [ ]"
 
-   assert check(result)
+   assert check.wf(result)
    assert result.format == "d'8 [ ]"
 
 
@@ -68,7 +68,7 @@ def test_container_remove_02( ):
       }
    }'''
  
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
    r'''{
@@ -77,5 +77,5 @@ def test_container_remove_02( ):
    }
    '''
    
-   assert check(sequential)
+   assert check.wf(sequential)
    assert sequential.format == "{\n\tc'8\n\td'8\n}"

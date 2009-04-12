@@ -19,5 +19,5 @@ def test_pitchtools_chromaticize_01( ):
            ef'32
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\tcs'8 ~\n\tcs'32\n\td'8 ~\n\td'32\n\tef'8 ~\n\tef'32\n}"

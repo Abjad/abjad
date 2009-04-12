@@ -30,7 +30,7 @@ def test_measures_decompose_01( ):
          f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\t\\time 1/8\n\t\tc'8 [\n\t\t\\time 1/8\n\t\td'8\n\t\t\\time 1/8\n\t\te'8\n\t\t\\time 1/8\n\t\tf'8 ]\n}"
 
 
@@ -75,7 +75,7 @@ def test_measures_decompose_02( ):
          }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\t\\time 1/12\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8 [\n\t\t}\n\t\t\\time 1/12\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8\n\t\t}\n\t\t\\time 1/12\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\te'8\n\t\t}\n\t\t\\time 1/12\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tf'8 ]\n\t\t}\n}"
 
 
@@ -125,5 +125,5 @@ def test_measures_decompose_03( ):
          c''8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\t\\times 2/3 {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t\\time 1/8\n\t\tf'8\n\t\t\\time 2/8\n\t\t\\times 2/3 {\n\t\t\tg'8\n\t\t\ta'8\n\t\t\tb'8\n\t\t}\n\t\t\\time 1/8\n\t\tc''8 ]\n}"

@@ -15,7 +15,7 @@ def test_spannertools_withdraw_from_attached_01( ):
       f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -31,7 +31,7 @@ def test_spannertools_withdraw_from_attached_02( ):
       f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8 [\n\tf'8 ]\n}"
 
 

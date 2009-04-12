@@ -22,7 +22,7 @@ def test_container_extend_01( ):
            d'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8\n\td'8\n}"
 
 
@@ -48,7 +48,7 @@ def test_container_extend_02( ):
            f'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
 
 
@@ -64,7 +64,7 @@ def test_container_extend_03( ):
            d'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -81,7 +81,7 @@ def test_container_extend_04( ):
            d'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -138,7 +138,7 @@ def test_container_extend_07( ):
       f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8\n\tf'8\n}"
 
    "Container u is now ..."
@@ -148,7 +148,7 @@ def test_container_extend_07( ):
       d'8 ]
    }'''
 
-   assert check(u)
+   assert check.wf(u)
    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -187,7 +187,7 @@ def test_container_extend_08( ):
       f'8 )
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 (\n\tf'8 )\n}"
 
    "Container u is now ..."
@@ -197,5 +197,5 @@ def test_container_extend_08( ):
       d'8 ]
    }'''
   
-   assert check(u)
+   assert check.wf(u)
    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"

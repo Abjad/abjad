@@ -30,8 +30,8 @@ def test_leaf_reattach_01( ):
    }
    '''
 
-   assert check(t)
-   assert check(note) 
+   assert check.wf(t)
+   assert check.wf(note) 
 
    note.reattach(receipt)
 
@@ -44,6 +44,6 @@ def test_leaf_reattach_01( ):
    }
    '''
 
-   assert check(t)
-   assert check(note)
+   assert check.wf(t)
+   assert check.wf(note)
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"

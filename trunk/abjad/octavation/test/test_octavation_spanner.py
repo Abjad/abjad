@@ -23,7 +23,7 @@ def test_octavation_01( ):
 def test_octavation_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[ : 4], 1)
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    r'''
    \new Staff {
@@ -44,7 +44,7 @@ def test_octavation_02( ):
 def test_octavation_03( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[ : 4], 1, 2)
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #2\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    r'''
    \new Staff {
@@ -66,7 +66,7 @@ def test_octavation_04( ):
    '''One-note octavation changes are allowed.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[0], 1)
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    r'''
    \new Staff {
@@ -91,7 +91,7 @@ def test_octavation_05( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[0], 1)
    Octavation(t[1], 2)
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\t\\ottava #2\n\tcs'8\n\t\\ottava #0\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    r'''
    \new Staff {
@@ -139,7 +139,7 @@ def test_octavation_06( ):
 #def test_octavation_01( ):
 #   t = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Octavation(t[ : 4], 1)
-#   assert check(t)
+#   assert check.wf(t)
 #   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\t\\set Staff.middleCPosition = #-13\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t#(set-octavation 0)\n\t\\set Staff.middleCPosition = #-6\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 #   '''
 #   \new Staff {
@@ -162,7 +162,7 @@ def test_octavation_06( ):
 #def test_octavation_02( ):
 #   t = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Octavation(t[ : 4], 1, 2)
-#   assert check(t)
+#   assert check.wf(t)
 #   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\t\\set Staff.middleCPosition = #-13\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t#(set-octavation 2)\n\t\\set Staff.middleCPosition = #-20\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 #   '''
 #   \new Staff {
@@ -187,7 +187,7 @@ def test_octavation_06( ):
 #   t = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Octavation(t[0], 1)
 #   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\t\\set Staff.middleCPosition = #-13\n\tc'8\n\t#(set-octavation 0)\n\t\\set Staff.middleCPosition = #-6\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-#   assert check(t)
+#   assert check.wf(t)
 #   '''
 #   \new Staff {
 #           #(set-octavation 1)
@@ -214,7 +214,7 @@ def test_octavation_06( ):
 #   Octavation(t[0], 1)
 #   Octavation(t[1], 2)
 #   assert t.format == "\\new Staff {\n\t#(set-octavation 1)\n\t\\set Staff.middleCPosition = #-13\n\tc'8\n\t#(set-octavation 0)\n\t\\set Staff.middleCPosition = #-6\n\t#(set-octavation 2)\n\t\\set Staff.middleCPosition = #-20\n\tcs'8\n\t#(set-octavation 0)\n\t\\set Staff.middleCPosition = #-6\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-#   assert check(t)
+#   assert check.wf(t)
 #   '''
 #   \new Staff {
 #           #(set-octavation 1)

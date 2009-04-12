@@ -50,8 +50,8 @@ def test_copy_complete_container_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    u = clone.fracture([t])[0]
    id(u) is not id(t)
-   check(t)
-   check(u)
+   check.wf(t)
+   check.wf(u)
 
 
 ### TEST COPY ONE TUPLETIZED NOTE ###

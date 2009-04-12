@@ -34,8 +34,8 @@ def test_lcopy_local_leaf_index_01( ):
    }
    '''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Staff {\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
@@ -69,8 +69,8 @@ def test_lcopy_local_leaf_index_02( ):
    }
    '''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n}"   
 
 
@@ -110,6 +110,6 @@ def test_lcopy_local_leaf_index_03( ):
    }
    '''
    
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Staff {\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n}"

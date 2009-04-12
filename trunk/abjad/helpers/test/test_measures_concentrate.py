@@ -25,7 +25,7 @@ def test_measures_concentrate_01( ):
         }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t}"
 
 
@@ -56,7 +56,7 @@ def test_measures_concentrate_02( ):
         }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 12/80\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t}"
 
 
@@ -85,7 +85,7 @@ def test_measures_concentrate_03( ):
         e'64 ]
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 12/64\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]"
 
 
@@ -108,5 +108,5 @@ def test_measures_concentrate_04( ):
         e'64 ]
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 6/64\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]"

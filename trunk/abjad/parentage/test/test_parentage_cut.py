@@ -19,8 +19,8 @@ def test_parentage_cut_01( ):
 
    assert t.format == "\\new Staff {\n\tc'8\n\te'8\n\tf'8\n}"
    
-   assert check(t)
-   assert check(note)
+   assert check.wf(t)
+   assert check.wf(note)
    assert note.parentage.parent is None
 
 
@@ -42,8 +42,8 @@ def test_parentage_cut_02( ):
    }'''
 
    leaf.parentage._cut( )
-   assert not check(t)
-   assert not check(leaf)
+   assert not check.wf(t)
+   assert not check.wf(leaf)
 
    t._music.insert(0, leaf)
    leaf.parentage._switch(t)
@@ -57,8 +57,8 @@ def test_parentage_cut_02( ):
            }
    }'''
 
-   assert check(t)
-   assert check(leaf)
+   assert check.wf(t)
+   assert check.wf(leaf)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t{\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
@@ -102,8 +102,8 @@ def test_parentage_cut_03( ):
    '''
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
-   assert check(t)
-   assert check(sequential)
+   assert check.wf(t)
+   assert check.wf(sequential)
 
 
 def test_parentage_cut_04( ):
@@ -130,8 +130,8 @@ def test_parentage_cut_04( ):
    }'''
 
    tuplet.parentage._cut( )
-   assert not check(t)
-   assert not check(tuplet)
+   assert not check.wf(t)
+   assert not check.wf(tuplet)
 
    t._music.insert(0, tuplet)
    tuplet.parentage._switch(t)
@@ -151,5 +151,5 @@ def test_parentage_cut_04( ):
       }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\times 2/3 {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8 ]\n\t\t}\n\t}\n}"

@@ -10,7 +10,7 @@ def test_scopy_basic_01( ):
    assert new.duration.contents == Rational(3, 16)
    assert new[0].duration.preprolated == Rational(1, 8)
    assert new[1].duration.preprolated == Rational(1, 16)
-   assert check(new)
+   assert check.wf(new)
 
 
 def test_scopy_basic_01b( ):
@@ -24,7 +24,7 @@ def test_scopy_basic_01b( ):
    assert isinstance(new[1], Rest)
    assert new[0].duration.preprolated == Rational(1, 8)
    assert new[1].duration.preprolated == Rational(1, 16)
-   assert check(new)
+   assert check.wf(new)
 
 
 def test_scopy_basic_02( ):
@@ -37,7 +37,7 @@ def test_scopy_basic_02( ):
    assert new.duration.contents == Rational(3, 16)
    assert new[0].duration.preprolated == Rational(1, 8)
    assert new[1].duration.preprolated == Rational(1, 16)
-   assert check(new)
+   assert check.wf(new)
 
 
 def test_scopy_basic_03( ):
@@ -51,7 +51,7 @@ def test_scopy_basic_03( ):
    assert new[0].duration.prolated == Rational(1, 12)
    assert new[1].duration.preprolated == Rational(1, 16)
    assert new[1].duration.prolated == Rational(1, 24)
-   assert check(new)
+   assert check.wf(new)
 
 
 def test_scopy_basic_04( ):
@@ -65,7 +65,7 @@ def test_scopy_basic_04( ):
    assert new[0].duration.prolated == Rational(1, 12)
    assert new[1].duration.preprolated == Rational(1, 16)
    assert new[1].duration.prolated == Rational(1, 24)
-   assert check(new)
+   assert check.wf(new)
 
 
 def test_scopy_basic_05( ):
@@ -77,7 +77,7 @@ def test_scopy_basic_05( ):
    assert new.duration.contents == Rational(3, 16)
    assert new[0].duration.preprolated == Rational(1, 8)
    assert new[1].duration.preprolated == Rational(1, 16)
-   assert check(new)
+   assert check.wf(new)
 
 
 def test_scopy_basic_06( ):
@@ -89,4 +89,4 @@ def test_scopy_basic_06( ):
    assert new.duration.contents == Rational(3, 16)
    assert new[0].duration.preprolated == Rational(1, 8)
    assert new[1].duration.preprolated == Rational(1, 16)
-   assert check(new)
+   assert check.wf(new)

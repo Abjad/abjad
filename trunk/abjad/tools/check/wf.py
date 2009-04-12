@@ -1,7 +1,7 @@
 from abjad import checks as _checks
 
 
-def check(expr, runtime = 'composition'):
+def wf(expr, runtime = 'composition'):
    '''Run every check in the 'check' module against expr.
 
       Set the 'runtime' keyword to 'composition' to run
@@ -9,7 +9,7 @@ def check(expr, runtime = 'composition'):
       Abjad allow empty containers at composition-time.
       Empty container checks will NOT run.
 
-      abjad> check(Voice([ ]), runtime = 'composition')
+      abjad> check.wf(Voice([ ]), runtime = 'composition')
       True
 
       Set the 'runtime' keyword to 'format' to run the 
@@ -17,10 +17,13 @@ def check(expr, runtime = 'composition'):
       LilyPond does NOT allow empty containers at format-time.
       Empty container check WILL run.
 
-      abjad> check(Voice([ ]), runtime = 'format')
+      abjad> check.wf(Voice([ ]), runtime = 'format')
       False'''
 
    results = [ ]
+
+   ## TODO: Redo _checks dict iteration with proper package init. ##
+
    for key, value in sorted(_checks.__dict__.items( )):
       checker = value( )
       if runtime == 'composition':

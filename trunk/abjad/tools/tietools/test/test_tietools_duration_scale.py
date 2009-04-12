@@ -14,7 +14,7 @@ def test_tietools_duration_scale_01( ):
       c'32 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ~\n\tc'32 ]\n}"
 
 
@@ -29,5 +29,5 @@ def test_tietools_duration_chnage_02( ):
       c'8 [ ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n}"

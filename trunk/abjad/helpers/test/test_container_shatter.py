@@ -17,7 +17,7 @@ def test_container_shatter_01( ):
          e'8 [ ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\t\\time 1/8\n\t\tc'8 [ ]\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t\t\\time 1/8\n\t\te'8 [ ]\n}"
 
 
@@ -43,7 +43,7 @@ def test_container_shatter_02( ):
          }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\t\\time 1/12\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8 [ ]\n\t\t}\n\t\t\\time 1/12\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8 [ ]\n\t\t}\n\t\t\\time 1/12\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\te'8 [ ]\n\t\t}\n}"
 
 
@@ -81,5 +81,5 @@ def test_container_shatter_03( ):
       }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'8 [\n\td'8\n\t\\times 2/3 {\n\t\te'16 ]\n\t}\n\t\\times 2/3 {\n\t\tf'16 [ ]\n\t}\n\t\\times 2/3 {\n\t\tg'16 [ ]\n\t}\n}"

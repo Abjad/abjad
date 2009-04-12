@@ -21,7 +21,7 @@ def test_container_splice_01( ):
       }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert result == t[:]
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8 ]\n\t}\n}"
 
@@ -46,6 +46,6 @@ def test_container_splice_02( ):
            }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\tdqs'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
    assert result == t[1:]

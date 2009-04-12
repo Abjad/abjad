@@ -31,7 +31,7 @@ def test_staff_formatter_number_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t% start measure 0\n\t\t\\time 2/16\n\t\tc'16\n\t\tc'16\n\t% stop measure 0\n\t% start measure 1\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t% stop measure 1\n\t% start measure 2\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t% stop measure 2\n}"
 
 
@@ -59,7 +59,7 @@ def test_staff_formatter_number_02( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\t\\time 2/16\n\t\tc'16 ^ \\markup { 0 }\n\t\tc'16 ^ \\markup { 1 }\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 2 }\n\t\tc'16 ^ \\markup { 3 }\n\t\tc'16 ^ \\markup { 4 }\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 5 }\n\t\tc'16 ^ \\markup { 6 }\n\t\tc'16 ^ \\markup { 7 }\n}"
 
 
@@ -94,5 +94,5 @@ def test_staff_formatter_number_03( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t% start measure 0\n\t\t\\time 2/16\n\t\tc'16 ^ \\markup { 0 }\n\t\tc'16 ^ \\markup { 1 }\n\t% stop measure 0\n\t% start measure 1\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 2 }\n\t\tc'16 ^ \\markup { 3 }\n\t\tc'16 ^ \\markup { 4 }\n\t% stop measure 1\n\t% start measure 2\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 5 }\n\t\tc'16 ^ \\markup { 6 }\n\t\tc'16 ^ \\markup { 7 }\n\t% stop measure 2\n}"

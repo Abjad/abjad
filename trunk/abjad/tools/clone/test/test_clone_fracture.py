@@ -33,8 +33,8 @@ def test_clone_fracture_01( ):
       f'8 \stopTrillSpan
    }'''
 
-   assert check(t)
-   assert check(new)
+   assert check.wf(t)
+   assert check.wf(new)
    assert new.format == "\\new Voice {\n\te'8 \\startTrillSpan\n\tf'8 \\stopTrillSpan\n}"
    
 
@@ -68,8 +68,8 @@ def test_clone_fracture_02( ):
          f'8 ] ) \stopTrillSpan
    }'''
 
-   assert check(t)
-   assert check(new)
+   assert check.wf(t)
+   assert check.wf(new)
    assert new.format == "\\new Voice {\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n}"
 
 
@@ -103,8 +103,8 @@ def test_clone_fracture_03( ):
       a'8 ] \stopTrillSpan
    }'''
 
-   assert check(t)
-   assert check(new)
+   assert check.wf(t)
+   assert check.wf(new)
    assert new.format == "\\new Voice {\n\tf'8 \\startTrillSpan\n\tg'8 [\n\ta'8 ] \\stopTrillSpan\n}"
 
 
@@ -144,5 +144,5 @@ def test_clone_fracture_04( ):
          f'8 ] ) \stopTrillSpan
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'8 [ ( \\startTrillSpan\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8 ] ) \\stopTrillSpan\n}"

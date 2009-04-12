@@ -145,7 +145,7 @@ def test_metricgrid_splitting_01( ):
    m = MetricGrid(t.leaves, [(3, 16)])
    m.splitOnBar( )
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'16 ~\n\tc'16\n\tc'8\n\tc'8\n\tc'16 ~\n\tc'16\n\tc'8\n\tc'8\n\tc'16 ~\n\tc'16\n}"
 
    r'''\new Staff {
@@ -296,7 +296,7 @@ def test_metricgrid_splitting_06( ):
    m.splittingCondition = cond
    m.splitOnBar( )
 
-   assert check(v)
+   assert check.wf(v)
    assert len(v) == 5
    assert v[0].duration.written == v[1].duration.written == Rational(1, 8)
    assert v[3].duration.written == v[3].duration.written == Rational(1, 8)

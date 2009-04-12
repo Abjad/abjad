@@ -27,7 +27,7 @@ def test_rigid_measure_block_01( ):
    }
    '''
   
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t% start measure 0\n\t\t\\time 2/16\n\t\tc'16\n\t\tc'16\n\t% stop measure 0\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n}"
 
 
@@ -55,7 +55,7 @@ def test_rigid_measure_block_02( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\t\\time 2/16\n\t\tc'16 ^ \\markup { 0 }\n\t\tc'16 ^ \\markup { 1 }\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n}"
 
 
@@ -87,5 +87,5 @@ def test_rigid_measure_block_03( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t% start measure 0\n\t\t\\time 2/16\n\t\tc'16 ^ \\markup { 0 }\n\t\tc'16 ^ \\markup { 1 }\n\t% stop measure 0\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n}"

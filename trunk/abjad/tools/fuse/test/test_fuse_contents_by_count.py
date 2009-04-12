@@ -14,7 +14,7 @@ def test_fuse_contents_by_count_01( ):
       c'8 )
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'16 (\n\tc'8\n\tc'8 )\n}"
 
 
@@ -30,7 +30,7 @@ def test_fuse_contents_by_count_02( ):
       c'8 )
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'2 ( ~\n\tc'8 )\n}"
 
 
@@ -46,7 +46,7 @@ def test_fuse_contents_by_count_03( ):
       c'2 )
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 ( ~\n\tc'2 )\n}"
 
 
@@ -62,5 +62,5 @@ def test_fuse_contents_by_count_04( ):
       r4
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == '\\new Voice {\n\tr8\n\tr4\n\tr4\n}'

@@ -34,8 +34,8 @@ def test_lcopy_01( ):
            }
    }'''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Staff {\n\t\\times 2/3 {\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t}\n}"
 
 
@@ -73,8 +73,8 @@ def test_lcopy_02( ):
            }
    }'''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Staff {\n\t\\new Voice {\n\t\t\\times 2/3 {\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t\\times 2/3 {\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t}\n}"
 
 
@@ -117,8 +117,8 @@ def test_lcopy_04( ):
            e'8
    }'''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Voice {\n\td'8\n\te'8\n}"
 
 
@@ -132,7 +132,7 @@ def test_lcopy_05( ):
         d'8
         e'8'''
 
-   assert check(u)
+   assert check.wf(u)
    assert u.format == "\t\\time 2/8\n\td'8\n\te'8"
 
 
@@ -148,8 +148,8 @@ def test_lcopy_06( ):
            e'8
    }'''
    
-   assert check(t)
-   assert check(new)
+   assert check.wf(t)
+   assert check.wf(new)
    assert new.format == "\\new Staff {\n\td'8\n\te'8\n}"
 
 
@@ -177,8 +177,8 @@ def test_lcopy_07( ):
                         f'8
         }'''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t}"
 
 
@@ -210,8 +210,8 @@ def test_lcopy_08( ):
                    }
    }'''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Voice {\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t}\n}"
 
 
@@ -244,8 +244,8 @@ def test_lcopy_09( ):
                         a'8
         }'''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t}"
 
 
@@ -275,6 +275,6 @@ def test_lcopy_10( ):
                    f'8
    }'''
    
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Staff {\n\t\t\\time 1/8\n\t\te'8\n\t\t\\time 1/8\n\t\tf'8\n}"

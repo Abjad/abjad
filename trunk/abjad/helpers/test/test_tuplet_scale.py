@@ -15,7 +15,7 @@ def test_tuplet_scale_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
 
 
@@ -33,7 +33,7 @@ def test_tuplet_scale_02( ):
    }
    '''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
@@ -51,7 +51,7 @@ def test_tuplet_scale_03( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'2\n\td'2\n\te'2\n}"
 
 
@@ -69,7 +69,7 @@ def test_tuplet_scale_04( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 2/3 {\n\tc'32\n\td'32\n\te'32\n}"
 
 
@@ -85,7 +85,7 @@ def test_tuplet_scale_05( ):
       e'8
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\tc'8\n\td'8\n\te'8"
 
 
@@ -103,7 +103,7 @@ def test_tuplet_scale_05( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 8/9 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
@@ -121,7 +121,7 @@ def test_tuplet_scale_06( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 4/5 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
@@ -138,7 +138,7 @@ def test_tuplet_scale_07( ):
       e'8.
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\tc'8.\n\td'8.\n\te'8."
 
 
@@ -163,7 +163,7 @@ def test_tuplet_scale_08( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 4/5 {\n\tc'8\n\tc'8.\n}"
 
 
@@ -188,6 +188,6 @@ def test_tuplet_scale_09( ):
    }
    '''
  
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 8/15 {\n\tc'4\n\tc'4.\n}"
 

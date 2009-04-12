@@ -19,7 +19,7 @@ def test_container_partition_by_count_01( ):
    } 
    '''
 
-   assert check(left)
+   assert check.wf(left)
    assert left.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [ ]\n\t}\n}"
 
    r'''
@@ -31,7 +31,7 @@ def test_container_partition_by_count_01( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert right.format == "\\new Voice {\n\t\\times 2/3 {\n\t\td'8 [\n\t\te'8 ]\n\t}\n}"
 
 
@@ -50,7 +50,7 @@ def test_container_partition_by_count_02( ):
    }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
    r'''
@@ -59,7 +59,7 @@ def test_container_partition_by_count_02( ):
    }
    '''
 
-   assert check(result[0])
+   assert check.wf(result[0])
    assert result[0].format == "\\new Voice {\n\tc'8 [ ]\n}"
 
    r'''
@@ -69,7 +69,7 @@ def test_container_partition_by_count_02( ):
    }
    '''
 
-   assert check(result[-1])
+   assert check.wf(result[-1])
    assert result[-1].format == "\\new Voice {\n\td'8 [\n\te'8 ]\n}"
 
 

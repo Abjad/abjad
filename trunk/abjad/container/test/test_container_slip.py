@@ -31,6 +31,6 @@ def test_container_slip_01( ):
            }
    }'''
    
-   assert check(t)
+   assert check.wf(t)
    assert len(sequential) == 0
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"

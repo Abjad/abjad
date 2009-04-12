@@ -19,7 +19,7 @@ def test_container_append_01( ):
            }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\t{\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
@@ -37,7 +37,7 @@ def test_container_append_02( ):
            f'16
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\times 4/7 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'16\n}"
 
 
@@ -87,7 +87,7 @@ def test_container_append_04( ):
       f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8\n}"
 
    "Container u is now ..."
@@ -98,7 +98,7 @@ def test_container_append_04( ):
       e'8 ]
    }'''
 
-   assert check(u)
+   assert check.wf(u)
    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
 
@@ -125,5 +125,5 @@ def test_container_append_05( ):
       d'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n\td'8\n}"

@@ -7,7 +7,7 @@ def test_override_overlap_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Override(t[ : ], 'NoteHead', 'color', 'red')
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
 
 #   for note in t:
@@ -34,7 +34,7 @@ def test_override_overlap_02( ):
    Override(t[ : ], 'NoteHead', 'color', 'red')
    Override(t[2 : 6], 'NoteHead', 'color', 'blue')
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\t\\override NoteHead #'color = #blue\n\td'8\n\tef'8\n\te'8\n\tf'8\n\t\\revert NoteHead #'color\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
 
    #assert [leaf.spanners.find('NoteHead', 'color') for leaf in t] == \
@@ -63,7 +63,7 @@ def test_override_overlap_03( ):
    Override(t[ : ], 'NoteHead', 'color', 'red')
    Override(t[4], 'NoteHead', 'color', 'blue')
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\once \\override NoteHead #'color = #blue\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\revert NoteHead #'color\n}"
 
 #   assert [leaf.spanners.find('NoteHead', 'color') for leaf in t] == \

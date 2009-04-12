@@ -24,7 +24,7 @@ def test_leaf_duration_change_01( ):
       f'8
    }'''
 
-   assert check(t) 
+   assert check.wf(t) 
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ~\n\td'32 ]\n\te'8\n\tf'8\n}"
    
 
@@ -53,7 +53,7 @@ def test_leaf_duration_change_02( ):
       c'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert "\\new Voice {\n\tc'8 [ ~\n\tc'8 ~\n\tc'32 ]\n\tc'8\n\tc'8\n}"
 
 
@@ -80,7 +80,7 @@ def test_leaf_duration_change_03( ):
       f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8. ]\n\te'8\n\tf'8\n}"
 
 
@@ -110,7 +110,7 @@ def test_change_leaf_duration_04( ):
            f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32 ]\n\t}\n\te'8\n\tf'8\n}"
 
 
@@ -139,5 +139,5 @@ def test_change_leaf_duration_05( ):
            f'8
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ]\n\t}\n\te'8\n\tf'8\n}" 

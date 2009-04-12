@@ -11,7 +11,7 @@ def test_measure_set_denominator_01( ):
       d'8
       e'8'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 6/16\n\tc'8\n\td'8\n\te'8"
 
    measure_set_denominator(t, 8)
@@ -21,5 +21,5 @@ def test_measure_set_denominator_01( ):
       d'8
       e'8'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/8\n\tc'8\n\td'8\n\te'8"

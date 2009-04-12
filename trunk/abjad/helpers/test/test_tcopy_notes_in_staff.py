@@ -14,8 +14,8 @@ def test_tcopy_notes_in_staff_01( ):
    }
    '''
 
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Staff {\n\tc'8\n\td'8\n}"
 
 
@@ -32,6 +32,6 @@ def test_tcopy_notes_in_staff_02( ):
    }
    '''
    
-   assert check(t)
-   assert check(u)
+   assert check.wf(t)
+   assert check.wf(u)
    assert u.format == "\\new Staff {\n\te'8\n\tf'8\n}"

@@ -16,7 +16,7 @@ def test_measures_subsume_01( ):
       }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}"
 
 
@@ -37,7 +37,7 @@ def test_measures_subsume_02( ):
       }
    '''
    
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 15/80\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'32.\n\t\td'32.\n\t\te'32.\n\t\tf'32.\n\t\tg'32.\n\t}"
 
 
@@ -60,7 +60,7 @@ def test_measures_subsume_03( ):
       }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 21/28\n\t\\scaleDurations #'(4 . 7) {\n\t\tc'8.\n\t\td'8.\n\t\te'8.\n\t\tf'8.\n\t\tg'8.\n\t\ta'8.\n\t\tb'8.\n\t}"
 
 
@@ -88,7 +88,7 @@ def test_measures_subsume_04( ):
       }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}"
 
 
@@ -129,7 +129,7 @@ def test_measures_subsume_05( ):
       }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}"
 
 
@@ -162,5 +162,5 @@ def test_measures_subsume_06( ):
       }
    '''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\t\\time 15/48\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t}"

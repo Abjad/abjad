@@ -21,7 +21,7 @@ def test_comments_after_01( ):
    % Voice after comments here.
    % More voice after comments.'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}\n% Voice after comments here.\n% More voice after comments."
 
 
@@ -38,5 +38,5 @@ def test_comments_after_02( ):
    % Leaf comments after here.
    % More comments after.'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\once \\override Beam #'thickness = #3\nc'8\n% Leaf comments after here.\n% More comments after." 

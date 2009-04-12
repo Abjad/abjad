@@ -17,7 +17,7 @@ def test_leaf_splice_left_01( ):
            e'8 ]
    }'''
    
-   assert check(t)
+   assert check.wf(t)
    assert result == t[:4]
    assert t.format == "\\new Voice {\n\tc'16 [\n\td'16\n\te'16\n\tc'8\n\td'8\n\te'8 ]\n}"
 
@@ -36,6 +36,6 @@ def test_leaf_splice_left_02( ):
            e'8 ]
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\tdqf'8\n\td'8\n\te'8 ]\n}"
    assert result == t[1:3]

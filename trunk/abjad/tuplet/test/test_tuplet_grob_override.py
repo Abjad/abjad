@@ -15,5 +15,5 @@ def test_tuplet_grob_override_01( ):
    }
    \revert TupletNumber #'fraction'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\override TupletNumber #'fraction = ##t\n\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}\n\\revert TupletNumber #'fraction"

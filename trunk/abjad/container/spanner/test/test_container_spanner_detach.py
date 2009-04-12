@@ -33,5 +33,5 @@ def test_container_spanner_aggregator_detach_01( ):
       }
    }'''
 
-   assert check(t)
+   assert check.wf(t)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [ \\glissando\n\t\tf'8 ]\n\t}\n}"
