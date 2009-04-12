@@ -39,8 +39,6 @@ class _ThreadInterface(_Interface):
          signature._root_str = component._ID
       return signature
 
-
-
    ## PUBLIC METHODS ##
 
    def report(self):
