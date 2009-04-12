@@ -2,6 +2,8 @@ from abjad.tools import chordtools
 from abjad.tools import clone
 from abjad.tools import componenttools
 from abjad.tools import containertools
+from abjad.tools import cut
+from abjad.tools import fuse
 from abjad.tools import harmonictools
 from abjad.tools import interpolate
 from abjad.tools import iterate

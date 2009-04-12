@@ -6,9 +6,11 @@ from abjad.rest.rest import Rest
 from abjad.tools import construct
 
 
-## TODO: Implement container_glom_by_duration(container, durations, ...)
+## TODO: Implement fuse.contents_by_duration(container, durations, ...)
+## TODO: Implement fuse.components_by_duration(container, durations, ...)
+## TODO: Implement fuse.comopnents_by_count(container, durations, ...)
 
-def container_glom_by_count(container, counts, target = Note(0, (1, 4)), 
+def contents_by_count(container, counts, target = Note(0, (1, 4)), 
    direction = 'big-endian'):
    '''Glom elements of container together rhythmically.
       Sum(counts) should equal len(countainer).

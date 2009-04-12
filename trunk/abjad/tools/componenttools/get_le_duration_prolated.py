@@ -2,7 +2,7 @@ from abjad.helpers.assert_components import assert_components
 from abjad.rational.rational import Rational
 
 
-def get_components_le_prolated_duration(components, prolated_duration):
+def get_le_duration_prolated(components, prolated_duration):
    '''Assert thread-contiguous Python list of Abjad components.
       Accumulate components from list.
       Stop when total prolated duration *just* <= 'prolated_duration'.
