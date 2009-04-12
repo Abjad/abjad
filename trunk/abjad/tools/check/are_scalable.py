@@ -2,7 +2,7 @@ from abjad.tools import durtools
 from abjad.leaf.leaf import _Leaf
 
 
-def are_scalable_components(component_list, multiplier):
+def are_scalable(component_list, multiplier):
    '''True when all components in component_list can 
       rewrite according to multiplier with no ad hoc tuplets.'''
 

@@ -1,7 +1,7 @@
-from abjad.helpers.are_scalable_components import are_scalable_components
 from abjad.helpers.container_scale import container_scale
-from abjad.tools import mathtools
+from abjad.tools import check
 from abjad.tools import durtools
+from abjad.tools import mathtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 
@@ -47,7 +47,7 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
       remaining_multiplier = Rational(*reduced_pair)
       if remaining_multiplier != Rational(1):
          container_scale(measure, remaining_multiplier)
-   elif are_scalable_components(measure[:], multiplier):
+   elif check.are_scalable(measure[:], multiplier):
       container_scale(measure, multiplier)
       if old_meter.nonbinary or not mathtools.is_power_of_two(multiplier):
          new_pair = durtools.pair_multiply_reduce_factors(
