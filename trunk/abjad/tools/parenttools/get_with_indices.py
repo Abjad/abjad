@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 
 
 def get_with_indices(components):
@@ -7,7 +7,7 @@ def get_with_indices(components):
       Return inex of last component in list in parent.
       Otherwise None, None, None.'''
 
-   assert_components(components, contiguity = 'strict', share = 'thread')
+   check.assert_components(components, contiguity = 'strict', share = 'thread')
 
    if len(components) > 0:
       first, last = components[0], components[-1]

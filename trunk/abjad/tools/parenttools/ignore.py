@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 
 
 def _ignore(components):
@@ -9,7 +9,7 @@ def _ignore(components):
       Then reapply parent references.
       Call _parenttools.restore(receipt).'''
 
-   assert_components(components)
+   check.assert_components(components)
 
    receipt = set([ ])
    for component in components:

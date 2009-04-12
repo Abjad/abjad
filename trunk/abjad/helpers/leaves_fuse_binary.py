@@ -1,5 +1,5 @@
-from abjad.helpers.assert_components import assert_components
 from abjad.helpers.leaf_scale_binary import leaf_scale_binary
+from abjad.tools import check
 
 
 def leaves_fuse_binary(leaves):
@@ -8,7 +8,7 @@ def leaves_fuse_binary(leaves):
       Detach all leaves other than first from score.
       Return list holding first leaf only.'''
 
-   assert_components(leaves, contiguity = 'thread')
+   check.assert_components(leaves, contiguity = 'thread')
    if len(leaves) <= 1:
       return leaves
    total_written = sum([leaf.duration.written for leaf in leaves])

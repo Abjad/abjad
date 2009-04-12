@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 from abjad.tools import iterate
 from abjad.tools.parenttools.ignore import _ignore
 from abjad.tools.parenttools.restore import _restore
@@ -16,7 +16,7 @@ def fracture(components, n = 1):
    if n < 1:
       return [ ]
 
-   assert_components(components, contiguity = 'thread')
+   check.assert_components(components, contiguity = 'thread')
 
    selection_components = set(iterate.naive(components, _Component))
 

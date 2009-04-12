@@ -1,6 +1,5 @@
 from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
-from abjad.helpers.assert_components import assert_components
 from abjad.tools import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
@@ -76,11 +75,12 @@ class Spanner(_Abjad):
       return [(self, spanner, result)]
   
    def _initializeMusic(self, music):
+      from abjad.tools import check
       music = music or [ ]
       if isinstance(music, _Component):
          music = [music]
       leaves = list(iterate.naive(music, _Leaf))
-      assert_components(leaves, contiguity = 'thread')
+      check.assert_components(leaves, contiguity = 'thread')
       self.extend(music)
 
    def _insert(self, i, component):
@@ -191,14 +191,16 @@ class Spanner(_Abjad):
    ## PUBLIC METHODS ##
 
    def append(self, component):
+      from abjad.tools import check
       components = self[-1:] + [component]
-      assert_components(components, contiguity = 'thread')
+      check.assert_components(components, contiguity = 'thread')
       component.spanners._add(self)
       self._components.append(component)
 
    def append_left(self, component):
+      from abjad.tools import check
       components = [component] + self[:1] 
-      assert_components(components, contiguity = 'thread')
+      check.assert_components(components, contiguity = 'thread')
       component.spanners._add(self)
       self._components.insert(0, component)
 
@@ -223,14 +225,16 @@ class Spanner(_Abjad):
       self._severAllComponents( )
 
    def extend(self, components):
+      from abjad.tools import check
       input = self[-1:] + components
-      assert_components(input, contiguity = 'thread')
+      check.assert_components(input, contiguity = 'thread')
       for component in components:
          self.append(component)
 
    def extend_left(self, components):
+      from abjad.tools import check
       input = components + self[:1]
-      assert_components(input, contiguity = 'thread')
+      check.assert_components(input, contiguity = 'thread')
       for component in reversed(components):
          self.append_left(component)
 

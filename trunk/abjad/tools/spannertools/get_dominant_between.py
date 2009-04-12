@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 
 
 def get_dominant_between(left, right):
@@ -17,7 +17,7 @@ def get_dominant_between(left, right):
    if left is None or right is None:
       return set([ ])
 
-   assert_components([left, right], contiguity = 'thread')
+   check.assert_components([left, right], contiguity = 'thread')
 
    dominant_spanners = left.spanners.contained & right.spanners.contained
    components_after_gap = right._navigator._contemporaneousStartComponents

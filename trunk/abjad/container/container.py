@@ -91,13 +91,13 @@ class Container(_Component):
          Replace contents at self[i] with 'expr'.
          Reattach spanners to new contents.
          This operation leaves all score trees always in tact.'''
-      from abjad.helpers.assert_components import assert_components
+      from abjad.tools import check
       from abjad.tools import spannertools
       from abjad.tools.spannertools.withdraw_from_crossing import \
          _withdraw_from_crossing
       # item assignment
       if isinstance(i, int):
-         assert_components([expr])
+         check.assert_components([expr])
          old = self[i]
          spanners_receipt = spannertools.get_dominant([old])
          ## must withdraw from spanners before parentage!
@@ -111,7 +111,7 @@ class Container(_Component):
             expr.spanners._add(spanner)
       # slice assignment
       else:
-         assert_components(expr)
+         check.assert_components(expr)
          if i.start == i.stop and i.start is not None \
             and i.stop is not None and i.start <= -len(self):
             start, stop = 0, 0
@@ -167,11 +167,11 @@ class Container(_Component):
    def _initializeMusic(self, music):
       '''Insert components in 'music' in container.
          Set parent of components in 'music' to container.'''
-      from abjad.helpers.assert_components import assert_components
+      from abjad.tools import check
       from abjad.tools import parenttools
       from abjad.tools.parenttools.switch import _switch
       music = music or [ ]
-      assert_components(music, 'strict', share = 'thread')
+      check.assert_components(music, 'strict', share = 'thread')
       parent, index, stop_index = parenttools.get_with_indices(music)
       self._music = music
       _switch(self._music, self)

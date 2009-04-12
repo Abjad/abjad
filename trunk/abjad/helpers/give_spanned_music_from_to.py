@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import MusicContentsError
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 from abjad.tools.parenttools.switch import _switch
 
 
@@ -19,7 +19,7 @@ def _give_spanned_music_from_to(donors, recipient):
 
    from abjad.container.container import Container
    from abjad.leaf.leaf import _Leaf
-   assert_components(donors, contiguity = 'strict', share = 'parent')
+   check.assert_components(donors, contiguity = 'strict', share = 'parent')
 
    ## if recipient is leaf or nonempty container, 
    ## make sure there's no music in donor components to hand over

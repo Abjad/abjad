@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 
 
 def fracture_crossing(components):
@@ -51,7 +51,7 @@ def fracture_crossing(components):
          }
       }'''
 
-   assert_components(components, contiguity = 'thread')
+   check.assert_components(components, contiguity = 'thread')
 
    if len(components) > 0:
 

@@ -1,8 +1,8 @@
-from abjad.helpers.assert_components import assert_components
-from abjad.tools import parenttools
-from abjad.tools import durtools
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
+from abjad.tools import check
+from abjad.tools import durtools
+from abjad.tools import parenttools
 
 
 def measure_trim_by_count(components):
@@ -14,7 +14,7 @@ def measure_trim_by_count(components):
       abjad> t
       RigidMeasure(1/8, [e'8])'''
 
-   assert_components(components, contiguity = 'strict', share = 'parent')
+   check.assert_components(components, contiguity = 'strict', share = 'parent')
    parent, start, stop = parenttools.get_with_indices(components)
    assert isinstance(parent, _Measure) 
 

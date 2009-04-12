@@ -301,10 +301,10 @@ class _Component(_Abjad):
    def splice(self, components):
       '''Splice 'components' after self.
          Extend spanners to attached to all components in list.'''
-      from abjad.helpers.assert_components import assert_components
+      from abjad.tools import check
       from abjad.tools import parenttools
       from abjad.tools import spannertools
-      assert_components(components)
+      check.assert_components(components)
       insert_offset = self.offset.score + self.duration.prolated
       receipt = spannertools.get_dominant([self])
       for spanner, index in receipt:
@@ -328,10 +328,10 @@ class _Component(_Abjad):
       '''Splice 'components' before self.
          Extend spanners leftwards to attach 
          to all components in 'components'.'''
-      from abjad.helpers.assert_components import assert_components
+      from abjad.tools import check
       from abjad.tools import parenttools
       from abjad.tools import spannertools
-      assert_components(components)
+      check.assert_components(components)
       offset = self.offset.score
       receipt = spannertools.get_dominant([self])
       for spanner, x in receipt:

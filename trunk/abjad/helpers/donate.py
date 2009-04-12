@@ -1,6 +1,6 @@
-from abjad.helpers.assert_components import assert_components
 from abjad.helpers.give_spanned_music_from_to import \
    _give_spanned_music_from_to
+from abjad.tools import check
 from abjad.tools.parenttools.give_position_to import _give_position_to
 from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 
@@ -8,7 +8,7 @@ from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 def donate(donors, recipient):
    '''This helper hands over music, if any.'''
 
-   assert_components(donors, contiguity = 'strict', share = 'parent')
+   check.assert_components(donors, contiguity = 'strict', share = 'parent')
 
    _give_spanned_music_from_to(donors, recipient)
    _give_dominant_to(donors, [recipient])

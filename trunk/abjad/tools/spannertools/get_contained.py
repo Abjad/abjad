@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 
 
 def get_contained(components):
@@ -6,7 +6,7 @@ def get_contained(components):
       any component in list of thread-contiguous components.
       Getter for t.spanners.contained across thread-contiguous components.'''
 
-   assert_components(components, contiguity = 'thread')
+   check.assert_components(components, contiguity = 'thread')
 
    result = set([ ]) 
    for component in components:

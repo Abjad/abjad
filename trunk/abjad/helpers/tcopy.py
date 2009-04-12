@@ -1,7 +1,7 @@
-from abjad.helpers.assert_components import assert_components
-from abjad.tools import clone
-from abjad.tools import durtools
 from abjad.meter.meter import Meter
+from abjad.tools import check
+from abjad.tools import durtools
+from abjad.tools import clone
 
 
 def tcopy(ll):
@@ -15,7 +15,7 @@ def tcopy(ll):
    from abjad.measure.measure import _Measure
 
    # assert strictly contiguous components in same thread
-   assert_components(ll, contiguity = 'strict', share = 'thread')
+   check.assert_components(ll, contiguity = 'strict', share = 'thread')
 
    # remember parent
    parent = ll[0].parentage.parent

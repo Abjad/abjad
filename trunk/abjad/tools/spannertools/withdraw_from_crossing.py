@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 from abjad.tools import iterate
 from abjad.tools.spannertools.get_crossing import get_crossing
 
@@ -14,7 +14,7 @@ def _withdraw_from_crossing(components):
       Container setitem is probably primary consumer of this operation.
       Return None.'''
 
-   assert_components(components, contiguity = 'thread')
+   check.assert_components(components, contiguity = 'thread')
 
    crossing_spanners = get_crossing(components) 
 

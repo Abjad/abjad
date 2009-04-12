@@ -1,4 +1,5 @@
 from abjad.rational.rational import Rational
+from abjad.tools import check
 from abjad.tools import iterate
 from abjad.tools import listtools
 from abjad.tools import mathtools
@@ -15,9 +16,8 @@ def get_likely_multiplier(components):
 
       Implemented to help reverse measure subsumption.'''
 
-   from abjad.helpers.assert_components import assert_components
    from abjad.tools import tietools
-   assert_components(components)
+   check.assert_components(components)
 
    chain_duration_numerators = [ ]
    for expr in iterate.chained_contents(components):

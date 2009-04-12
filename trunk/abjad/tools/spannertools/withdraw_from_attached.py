@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 
 
 def _withdraw_from_attached(components):
@@ -17,7 +17,7 @@ def _withdraw_from_attached(components):
       middle of some larger spanner.'''
 
    # check input
-   assert_components(components)
+   check.assert_components(components)
 
    # detach spanners
    for component in components:

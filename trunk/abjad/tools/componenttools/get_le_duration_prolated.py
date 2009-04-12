@@ -1,5 +1,5 @@
-from abjad.helpers.assert_components import assert_components
 from abjad.rational.rational import Rational
+from abjad.tools import check
 
 
 def get_le_duration_prolated(components, prolated_duration):
@@ -8,7 +8,7 @@ def get_le_duration_prolated(components, prolated_duration):
       Stop when total prolated duration *just* <= 'prolated_duration'.
       Return (accumulated components, accumulated duration).'''
 
-   assert_components(components, contiguity = 'thread')
+   check.assert_components(components, contiguity = 'thread')
 
    total_duration = Rational(0)
    result = [ ]

@@ -1,4 +1,4 @@
-from abjad.helpers.assert_components import assert_components
+from abjad.tools import check
 from abjad.tools.spannertools.get_dominant import get_dominant
 
 
@@ -11,8 +11,8 @@ def _give_dominant_to(donor_components, recipient_components):
 
       Not composer-safe.'''
 
-   assert_components(donor_components, contiguity = 'thread')
-   assert_components(recipient_components, contiguity = 'thread')
+   check.assert_components(donor_components, contiguity = 'thread')
+   check.assert_components(recipient_components, contiguity = 'thread')
    
    receipt = get_dominant(donor_components)
    for spanner, index in receipt:
