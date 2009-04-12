@@ -1,10 +1,10 @@
 from abjad.helpers.container_scale import container_scale
-from abjad.helpers.is_measure_list import _is_measure_list
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
-from abjad.tools.parenttools.switch import _switch
+from abjad.tools import check
 from abjad.tools import metertools
 from abjad.tools import parenttools
+from abjad.tools.parenttools.switch import _switch
 from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 
 
@@ -12,7 +12,7 @@ def measures_fuse(measure_list):
    '''Fuse measures in measure_list.
       Calculate best new time signature.'''
 
-   assert _is_measure_list(measure_list)
+   assert check.is_measure_list(measure_list)
 
    if len(measure_list) == 0:
       return None

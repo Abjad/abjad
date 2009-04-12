@@ -1,8 +1,10 @@
 from abjad.measure.measure import _Measure
-from abjad.tools import check
+from abjad.tools.check.assert_components import assert_components
 
 
-def _is_measure_list(measure_list):
+## TODO: Replace check.is_measure_list( ) with check.assert_components( ) ##
+
+def is_measure_list(measure_list):
    '''True when measure_list is a Python list of Abjad measures, and either
 
          1. all measures in list are orphans, or
@@ -13,7 +15,7 @@ def _is_measure_list(measure_list):
       Intended to type-check helper function input.'''
 
    try:
-      check.assert_components(measure_list, contiguity = 'strict', share = 'parent')
+      assert_components(measure_list, contiguity = 'strict', share = 'parent')
       assert all([isinstance(x, _Measure) for x in measure_list])
    except AssertionError:
       return False
