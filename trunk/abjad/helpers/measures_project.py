@@ -1,5 +1,5 @@
-from abjad.helpers.container_scale import container_scale
 from abjad.tools import componenttools
+from abjad.tools import containertools
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import metertools
@@ -33,4 +33,4 @@ def measures_project(expr):
 
          # scale tuplet contents, if helpful
          if contents_multiplier is not None:
-            container_scale(tuplet, ~contents_multiplier)
+            containertools.contents_scale(tuplet, ~contents_multiplier)

@@ -1,5 +1,5 @@
 from abjad.container.container import Container
-from abjad.helpers.cyclic_extend import cyclic_extend
+from abjad.tools.containertools.extend_cyclic import extend_cyclic
 
 
 def contents_multiply(container, total = 2):
@@ -11,10 +11,10 @@ def contents_multiply(container, total = 2):
 
    assert isinstance(container, Container)
    assert isinstance(total, int)
-   assert total >= 0
+   assert 0 <= total
 
    if 0 < total:
-      return cyclic_extend(container, n = len(container), total = total)
+      return extend_cyclic(container, n = len(container), total = total)
    else:
       #container.clear( )
       del(container[:])

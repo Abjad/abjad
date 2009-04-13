@@ -2,7 +2,7 @@ from abjad.rational.rational import Rational
 from abjad.tools import construct
 
 
-def container_rest_by_count(container, i, rested_half, direction = 'automatic'):
+def rest_by_count(container, i, rested_half, direction = 'automatic'):
    '''Glom element on rested_half of index i in container.
       Transform glommed duration into rests.
       Return container.'''

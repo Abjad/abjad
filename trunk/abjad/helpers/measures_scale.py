@@ -1,12 +1,10 @@
-from abjad.tools import iterate
-from abjad.helpers.container_scale import container_scale
-from abjad.tools import mathtools
-from abjad.tools import mathtools
-from abjad.tools import metertools
-from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
+from abjad.tools import containertools
+from abjad.tools import iterate
+from abjad.tools import mathtools
+from abjad.tools import metertools
 
 
 def measures_scale(expr, multiplier = Rational(1)):
@@ -15,7 +13,7 @@ def measures_scale(expr, multiplier = Rational(1)):
          1. multiply measure's meter by multiplier
          2. scale measure's contents to fit new meter
 
-      Extends container_scale( ).
+      Extends containertools.contents_scale( ).
       Returns None because iterates possibly many measures.
 
       This might best be a bound method on RigidMeasure.'''
@@ -42,4 +40,4 @@ def measures_scale(expr, multiplier = Rational(1)):
       contents_multiplier_denominator = mathtools.next_least_power_of_two(multiplier._d)
       contents_multiplier = Rational(
          multiplier._n, contents_multiplier_denominator)
-      container_scale(measure, contents_multiplier)
+      containertools.contents_scale(measure, contents_multiplier)

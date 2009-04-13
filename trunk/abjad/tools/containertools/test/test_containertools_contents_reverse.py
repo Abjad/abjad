@@ -1,84 +1,85 @@
 from abjad import *
 
-def test_container_reverse_contents_01( ):
+
+def test_containertools_contents_reverse_01( ):
    '''Retrograde works on a depth-0 Container with no spanners and no parent.'''
 
    t = Staff(scale(8))
    leaves_rev = reversed(t.leaves)
-   container_reverse_contents(t)
+   containertools.contents_reverse(t)
 
    assert list(leaves_rev) == t.leaves
    assert check.wf(t)
 
 
-def test_container_reverse_contents_02( ):
+def test_containertools_contents_reverse_02( ):
    '''Retrograde works on a depth-0 Container with 
       one spanner attached and no parent.'''
 
    t = Staff(scale(8))
    beam = Beam(t)
    leaves_rev = reversed(t.leaves)
-   container_reverse_contents(t)
+   containertools.contents_reverse(t)
 
    assert list(leaves_rev) == t.leaves
    assert beam.components == [t]
    assert check.wf(t)
 
 
-def test_container_reverse_contents_03( ):
+def test_containertools_contents_reverse_03( ):
    '''Retrograde works on a depth-0 Container 
       with one spanner attached to its leaves and with no parent.'''
 
    t = Staff(scale(8))
    beam = Beam(t.leaves)
    leaves_rev = reversed(t.leaves)
-   container_reverse_contents(t)
+   containertools.contents_reverse(t)
 
    assert list(leaves_rev) == t.leaves
    assert beam.components == t.leaves
    assert check.wf(t)
 
 
-def test_container_reverse_contents_04( ):
+def test_containertools_contents_reverse_04( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to itself and with a parent.'''
 
    t = Staff([DynamicMeasure(scale(8))] + run(2))
    beam = Beam(t[0])
    leaves_rev = reversed(t[0].leaves)
-   container_reverse_contents(t[0])
+   containertools.contents_reverse(t[0])
    assert list(leaves_rev) == t[0].leaves
    assert beam.components == [t[0]]
    assert check.wf(t)
 
 
-def test_container_reverse_contents_05( ):
+def test_containertools_contents_reverse_05( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to its leaves and with a parent.'''
 
    t = Staff([DynamicMeasure(scale(8))] + run(2))
    beam = Beam(t[0].leaves)
    leaves_rev = reversed(t[0].leaves)
-   container_reverse_contents(t[0])
+   containertools.contents_reverse(t[0])
    assert list(leaves_rev) == t[0].leaves
    assert beam.components == t[0].leaves
    assert check.wf(t)
 
 
-def test_container_reverse_contents_06( ):
+def test_containertools_contents_reverse_06( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to its parent.'''
 
    t = Staff([DynamicMeasure(scale(8))] + scale(2))
    beam = Beam(t)
    leaves_rev = reversed(t[0].leaves)
-   container_reverse_contents(t[0])
+   containertools.contents_reverse(t[0])
    assert list(leaves_rev) == t[0].leaves
    assert beam.components == [t]
    assert check.wf(t)
 
 
-def test_container_reverse_contents_06( ):
+def test_containertools_contents_reverse_06( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to its parent's contents.'''
 
@@ -87,13 +88,13 @@ def test_container_reverse_contents_06( ):
    t = Staff([measure] + notes)
    beam = Beam(t[:])
    leaves_rev = reversed(t[0].leaves)
-   container_reverse_contents(t[0])
+   containertools.contents_reverse(t[0])
    assert list(leaves_rev) == t[0].leaves
    assert beam.components == [measure] + notes
    assert check.wf(t)
 
 
-def test_container_reverse_contents_07( ):
+def test_containertools_contents_reverse_07( ):
    '''Retrograde works on a depth-1 Container 
       with one spanner attached to its contents and with no parent.'''
 
@@ -101,7 +102,7 @@ def test_container_reverse_contents_07( ):
    measure = DynamicMeasure(scale(8))
    t = Staff([measure] + notes)
    beam = Beam(t[:])
-   container_reverse_contents(t)
+   containertools.contents_reverse(t)
 
    assert beam.components[0] == notes[1]
    assert beam.components[1] == notes[0]
@@ -109,7 +110,7 @@ def test_container_reverse_contents_07( ):
    assert check.wf(t)
 
 
-def test_container_reverse_contents_10( ):
+def test_containertools_contents_reverse_10( ):
    '''Retrograde works on a depth-2 Container with 
       no parent and with spanners at all levels.'''
 
@@ -121,7 +122,7 @@ def test_container_reverse_contents_10( ):
    beam1 = Beam(staff[0])
    beam2 = Beam(staff[1])
    gliss = Glissando(staff.leaves)
-   container_reverse_contents(staff)
+   containertools.contents_reverse(staff)
    assert staff[0] is m2
    assert staff[1] is m1
    assert len(m2) == 3

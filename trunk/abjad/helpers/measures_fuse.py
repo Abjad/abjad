@@ -1,8 +1,8 @@
-from abjad.helpers.container_scale import container_scale
 from abjad.measure.measure import _Measure
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 from abjad.tools import check
+from abjad.tools import containertools
 from abjad.tools import metertools
 from abjad.tools import parenttools
 from abjad.tools.parenttools.switch import _switch
@@ -33,7 +33,7 @@ def measures_fuse(measure_list):
    for measure in measure_list:
       multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
       measure_music = measure[:]
-      container_scale(measure_music, multiplier)
+      containertools.contents_scale(measure_music, multiplier)
       music += measure_music
 
    _switch(music, None)

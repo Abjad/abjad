@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_contents_multiply_01( ):
+def test_containertools_contents_multiply_01( ):
    '''Multiply notes in voice.'''
 
    t = Voice(scale(2))
    Beam(t[:])
-   contents_multiply(t, total = 3)
+   containertools.contents_multiply(t, total = 3)
 
    r'''\new Voice {
            c'8 [
@@ -21,12 +21,12 @@ def test_contents_multiply_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_contents_multiply_02( ):
+def test_containertools_contents_multiply_02( ):
    '''Multiplication by one leaves contents unchanged.'''
 
    t = Voice(scale(2))
    Beam(t[:])
-   contents_multiply(t, total = 1)
+   containertools.contents_multiply(t, total = 1)
 
    r'''\new Voice {
            c'8 [
@@ -37,12 +37,12 @@ def test_contents_multiply_02( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_contents_multiply_03( ):
+def test_containertools_contents_multiply_03( ):
    '''Multiplication by zero empties container.'''
    
    t = Voice(scale(2))
    Beam(t[:])
-   contents_multiply(t, total = 0)
+   containertools.contents_multiply(t, total = 0)
 
    r'''\new Voice {
    }'''

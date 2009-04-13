@@ -8,7 +8,7 @@ from abjad.tools import listtools
 
 ## TODO: Implement an in-place version that doesn't climb to score root ##
 
-def container_partition_by_count(container, counts):
+def partition_by_count(container, counts):
    r'''container is any Abjad container to partition.
       counts is a Python list of zero or more positive integers.
 
@@ -24,7 +24,7 @@ def container_partition_by_count(container, counts):
 
       t = Voice([FixedDurationTuplet((2, 8), scale(3))])
       Beam(t[0][:])
-      left, right = container_partition_by_count(t[0], [1, 2])
+      left, right = containertools.partition_by_count(t[0], [1, 2])
 
       left:
 

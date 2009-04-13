@@ -2,7 +2,7 @@ from abjad.component.component import _Component
 from abjad.container.container import Container
 
 
-def container_insert_and_fracture(container, i, component):
+def insert_and_fracture(container, i, component):
    r'''Insert component into container at index i.
       Fracture spanners to the left of index i.
       Fracture spanners to the right of index i.
@@ -14,7 +14,7 @@ def container_insert_and_fracture(container, i, component):
 
       t = Voice(scale(4))
       Beam(t[:])
-      container_insert_and_fracture(t, 1, Rest((1, 4)))
+      containertools.insert_and_fracture(t, 1, Rest((1, 4)))
 
       \new Voice {
               c'8 [ ]

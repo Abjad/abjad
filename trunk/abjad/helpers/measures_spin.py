@@ -1,15 +1,15 @@
-from abjad.helpers.contents_multiply import contents_multiply
-from abjad.tools import iterate
-from abjad.tools import durtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
+from abjad.tools import containertools
+from abjad.tools import iterate
+from abjad.tools import durtools
 
 
 def measures_spin(expr, n):
    r'''Iterate expr. For each measure in expr,
       multiply contents of measure by n.
 
-      Extends contents_multiply( ) with meter-handling.
+      Extends containertools.contents_multiply( ) with meter-handling.
 
       Example:
 
@@ -33,7 +33,7 @@ def measures_spin(expr, n):
    from abjad.measure.measure import _Measure
    for measure in iterate.naive(expr, _Measure):
       old_meter = measure.meter.effective
-      contents_multiply(measure, n)
+      containertools.contents_multiply(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)
       new_pair = durtools.pair_multiply_naive(old_pair, Rational(n))
       new_meter = Meter(new_pair)

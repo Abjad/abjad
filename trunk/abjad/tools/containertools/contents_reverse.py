@@ -1,11 +1,9 @@
-from abjad import *
+from abjad.container.container import Container
 
 
-def container_reverse_contents(container):
+def contents_reverse(container):
    '''Retrograde in place the contents of container.
       Container and any of its children may be spanned.'''
-
-   from abjad.container.container import Container
 
    def offset(x, y):
       if x.offset.score < y.offset.score:

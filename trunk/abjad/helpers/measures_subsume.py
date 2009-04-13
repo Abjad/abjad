@@ -1,10 +1,10 @@
 from abjad.helpers.bequeath import bequeath
-from abjad.helpers.container_scale import container_scale
-from abjad.tools import iterate
 from abjad.helpers.leaf_duration_change import leaf_duration_change
-from abjad.tools import mathtools
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
+from abjad.tools import containertools
+from abjad.tools import iterate
+from abjad.tools import mathtools
 
 
 def measures_subsume(expr):
@@ -41,4 +41,4 @@ def measures_subsume(expr):
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
             bequeath([tuplet], tuplet[:])
-            container_scale(measure, written_adjustment)
+            containertools.contents_scale(measure, written_adjustment)

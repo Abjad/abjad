@@ -181,7 +181,6 @@ def __are_components_in_same_thread(expr, klasses = (_Component, ),
 
    first = expr[0]
    #if not isinstance(first, _Component):
-   print 'debug klasses is %s' % klasses
    if not isinstance(first, klasses):
       return False
 

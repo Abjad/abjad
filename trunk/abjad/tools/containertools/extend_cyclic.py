@@ -1,7 +1,7 @@
 from abjad.helpers.tcopy import tcopy
 
 
-def cyclic_extend(expr, n = 1, total = 2):
+def extend_cyclic(expr, n = 1, total = 2):
    '''Copy the last n elements in expr;
       then extend expr with addendum to a total of total copies.'''
 

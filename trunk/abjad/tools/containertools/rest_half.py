@@ -1,8 +1,8 @@
-from abjad.helpers.container_rest_by_count import container_rest_by_count
 from abjad.tools import mathtools
+from abjad.tools.containertools.rest_by_count import rest_by_count
 
 
-def container_rest_half(container, rested_half, bigger_half, 
+def rest_half(container, rested_half, bigger_half, 
    rest_direction = 'automatic'):
    '''Turn half of the elements in container into rests.
       Function works by the *number of* elements in container,
@@ -38,7 +38,7 @@ def container_rest_half(container, rested_half, bigger_half,
    i = halves[0]
 
    ## rest container in place at split index
-   container_rest_by_count(
+   rest_by_count(
       container, i, rested_half, direction = rest_direction)
 
    ## return rested container
