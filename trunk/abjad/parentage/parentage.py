@@ -1,7 +1,7 @@
 from abjad.core.interface import _Interface
 from abjad.parentage.containment import _ContainmentSignature
 from abjad.rational.rational import Rational
-from abjad.receipt.parentage import _ParentageReceipt
+#from abjad.receipt.parentage import _ParentageReceipt
 import types
 
 
@@ -39,19 +39,13 @@ class _Parentage(_Interface):
       self.client._update._markForUpdateToRoot( )
       self.__parent = None
 
-   ## TODO: Deprecate _Parentage._cut( ) receipt. Unnecessary. ##
-
    def _cut(self):
       '''Client and parent cut completely.'''
       client, parent = self.client, self.parent
       if parent is not None:
          index = parent.index(client)
          parent._music.remove(client)
-      else:
-         index = None
       self._ignore( )
-      receipt = _ParentageReceipt(client, parent, index)
-      return receipt
 
    def _first(self, klass):
       '''Return first instance of klass in score tree above client.'''
