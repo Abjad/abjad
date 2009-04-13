@@ -1,10 +1,8 @@
-from abjad.helpers.engender import engender
 from abjad.leaf.leaf import _Leaf
 from abjad.pitch.pitch import Pitch
+from abjad.tools import construct
 from abjad.tools import pitchtools
 
-
-## Is chordtools.split( ) really higher-level than engender( )? ##
 
 def split(chord, pch = Pitch('b', 3), attr = 'number'):
    '''Return disjunct (treble, bass) pair of 'parts' from input chord;
@@ -46,7 +44,7 @@ def split(chord, pch = Pitch('b', 3), attr = 'number'):
       else:
          treble.append(p.pair)
 
-   treble = engender(treble, chord.duration.written)
-   bass = engender(bass, chord.duration.written)
+   treble = construct.engender(treble, chord.duration.written)
+   bass = construct.engender(bass, chord.duration.written)
 
    return treble, bass

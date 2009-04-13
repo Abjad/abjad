@@ -10,6 +10,16 @@ from abjad.tools.construct.helpers import _construct_tied_rest
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
+## TODO: Change construct.leaves( ) signature to allow ('c', 4) named pairs 
+##       This will allow the creation of enharmonica equivalents.
+##       Examples: construct.leaves([('c', 4), ('cs', 4)], [(1, 4)])
+
+## TODO: Extend construct.leaves( ) to accept Abjad Pitch instances. Ex:
+##       Example: construct.leaves([Pitch('cs', 4)], [(1, 4)])
+
+## TODO: Deprecate construct.engender( ) in favor of construct.leaves( );
+##       Only possible after the two extensions to construct.leaves( ), above.
+
 def leaves(pitches, durations, direction='big-endian', tied_rests=False):
    '''Constructs a list of prolated and/or unprolated leaves of length 
       len(durations).
