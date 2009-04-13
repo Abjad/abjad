@@ -1,13 +1,13 @@
-from abjad.helpers.container_hew import container_hew
+from abjad.tools.containertools.hew import hew
 
 
-def container_split(container, index):
+def split(container, index):
    r'''Splits container in two at given index position.
-      Compare with container_hew(container, index).
+      Compare with container.hew(container, index).
 
       Both helpers break container just before index.
-      However, container_hew( ) *preserves* spanners.
-      And container_split( ) *fractures* spanners.
+      However, container.hew( ) *preserves* spanners.
+      And container.split( ) *fractures* spanners.
 
       Both helpers create two new copies of container.
       Both helpers empty original container of contents.
@@ -34,7 +34,7 @@ def container_split(container, index):
               }
       }
 
-      left, right = container_split(tuplet, 1)
+      left, right = container.split(tuplet, 1)
 
       \new Voice {
               \times 2/3 {
@@ -51,4 +51,4 @@ def container_split(container, index):
               }
       }'''
 
-   return container_hew(container, index, spanners = 'fracture')
+   return hew(container, index, spanners = 'fracture')

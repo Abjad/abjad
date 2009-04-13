@@ -1,9 +1,9 @@
-from abjad.tools import durtools
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
+from abjad.tools import durtools
 
 
-def measure_set_denominator(measure, denominator):
+def denominator_set(measure, denominator):
    '''Rewrite the denominator of the meter of 'measure'.
       Keep all contents of 'measure' unchanged.
       Return 'measure'.'''

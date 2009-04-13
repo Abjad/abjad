@@ -1,7 +1,7 @@
 from abjad.container.container import Container
 
 
-def container_eject_contents(container):
+def contents_delete(container):
    '''Remove contents from container.
       Return list of container contents.'''
    
