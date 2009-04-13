@@ -1,3 +1,4 @@
+from abjad.tools import componenttools
 from abjad.tools.tietools.is_chain import is_chain
 
 
@@ -8,7 +9,7 @@ def truncate(tie_chain):
    assert is_chain(tie_chain)
 
    for leaf in tie_chain[1:]:
-      leaf.detach( )
+      componenttools.detach(leaf)
 
    first = tie_chain[0]
 

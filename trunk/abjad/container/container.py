@@ -92,6 +92,7 @@ class Container(_Component):
          Reattach spanners to new contents.
          This operation leaves all score trees always in tact.'''
       from abjad.tools import check
+      from abjad.tools import componenttools
       from abjad.tools import spannertools
       from abjad.tools.spannertools.withdraw_from_crossing import \
          _withdraw_from_crossing
@@ -105,7 +106,8 @@ class Container(_Component):
          _withdraw_from_crossing([expr])
          expr.parentage._switch(self)
          self._music.insert(i, expr)
-         detach_receipt = old.detach( )
+         ## TODO: Can this _DetachReceipt be eliminated? ##
+         detach_receipt = componenttools.detach(old)
          for spanner, index in spanners_receipt:
             spanner._insert(index, expr)
             expr.spanners._add(spanner)
@@ -119,8 +121,9 @@ class Container(_Component):
             start, stop, stride = i.indices(len(self))
          old = self[start:stop]
          spanners_receipt = spannertools.get_dominant_slice(self, start, stop)
+         ## TODO: replace loop with componenttools.detach( ) on list ##
          for component in old:
-            component.detach( )
+            componenttools.detach(component)
          ## must withdraw before setting in self!
          ## otherwise circular withdraw ensues!
          _withdraw_from_crossing(expr)

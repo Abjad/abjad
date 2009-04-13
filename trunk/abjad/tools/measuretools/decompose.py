@@ -1,5 +1,6 @@
 from abjad.measure.measure import _Measure
 from abjad.measure.rigid.measure import RigidMeasure
+from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import iterate
 
@@ -29,6 +30,6 @@ def _measure_decompose(measure):
       new = RigidMeasure(meter, [element])
       new_measures.append(new)
    measure.splice(new_measures)
-   measure.detach( )
+   componenttools.detach(measure)
    measure[:] = [ ]
    return new_measures

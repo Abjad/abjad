@@ -1,4 +1,5 @@
 from abjad.tools import check
+from abjad.tools import componenttools
 from abjad.tools.leaftools.scale_binary import scale_binary
 
 
@@ -12,6 +13,7 @@ def fuse_binary(leaves):
    if len(leaves) <= 1:
       return leaves
    total_written = sum([leaf.duration.written for leaf in leaves])
+   ## TODO: Replace with iterable componenttools.detach( ) ##
    for leaf in leaves[1:]:
-      leaf.detach( )
+      componenttools.detach(leaf)
    return scale_binary(leaves[0], total_written)

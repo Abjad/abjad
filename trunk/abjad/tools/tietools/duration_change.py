@@ -1,5 +1,6 @@
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
+from abjad.tools import componenttools
 from abjad.tools import construct
 from abjad.tools import durtools
 from abjad.tools.spannertools.withdraw_from_attached import \
@@ -31,7 +32,7 @@ def duration_change(tie_chain, new_written_duration):
          pass
       elif len(tie_chain) > len(duration_tokens):
          for leaf in tie_chain[len(duration_tokens):]:
-            leaf.detach( )
+            componenttools.detach(leaf)
       elif len(tie_chain) < len(duration_tokens):
          tie_chain[0].tie.unspan( )
          difference = len(duration_tokens) - len(tie_chain)

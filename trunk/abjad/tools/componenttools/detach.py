@@ -6,6 +6,7 @@ from abjad.tools.spannertools.withdraw_from_contained import \
 
 ## TODO: Deprecate _DetachReceipt ##
 ## TODO: Deprecate all receipts. ##
+## TODO: Extend componenttools.detach( ) to take a component list ##
 
 def detach(component):
    '''Detach component from parentage.
@@ -13,7 +14,6 @@ def detach(component):
       Detach children of component from spanners.
       Return receipt.
 
-      This helper is a drop-in replacement for _Component.detach( ).
       This helper leaves all score trees always in tact.'''
 
    if not isinstance(component, _Component):
