@@ -1,7 +1,7 @@
-from abjad.tools import mathtools
 from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
+from abjad.tools import mathtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 import math
