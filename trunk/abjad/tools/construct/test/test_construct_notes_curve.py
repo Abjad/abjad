@@ -1,5 +1,6 @@
 from abjad.tools.construct import notes_curve
 from abjad.rational.rational import Rational
+import py.test
 
 def test_construct_notes_curve_01( ):
    '''Pitches can be a list of any length > 1.'''
@@ -21,12 +22,9 @@ def test_construct_notes_curve_02( ):
 
 
 def test_construct_notes_curve_03( ):
-   '''
-   notes_curve( ) returns a single note of length total_dur if 
-   start_dt > total_dur.
-   '''
-   t = notes_curve([1, 2], Rational(2), Rational(4), Rational(1, 2))
-   assert len(t) == 1
+   '''Start and stop fractions must be smaller than durations.'''
+   code = 't = notes_curve([1, 2], Rational(2), Rational(4), Rational(1, 2))'
+   assert py.test.raises(ValueError, code)
 
 
 def test_construct_notes_curve_04( ):
