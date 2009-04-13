@@ -1,9 +1,9 @@
 from abjad.container.container import Container
 from abjad.exceptions.exceptions import ContiguityError
-from abjad.helpers.excise import excise
 from abjad.leaf.leaf import _Leaf
 from abjad.tools import clone
 from abjad.tools import iterate
+from abjad.tools.leaftools.excise import excise
 
 
 ## TODO: Remove ghetto slicing interface here with start & stop; ##

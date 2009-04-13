@@ -1,6 +1,5 @@
 from abjad.component.component import _Component
 from abjad.container.container import Container
-from abjad.helpers.excise import excise
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tools import clone
@@ -51,11 +50,11 @@ def _scopy_container(container, start, stop):
    # split first leaf
    leaf_start_splitted = leaftools.split(leaf_start, first_dif)
    if len(leaf_start_splitted) == 2:
-      excise(leaf_start_splitted[0])
+      leaftools.excise(leaf_start_splitted[0])
    # split second leaf
    leaf_end_splitted = leaftools.split(leaf_end, second_dif)
    if len(leaf_end_splitted) == 2:
-      excise(leaf_end_splitted[1])
+      leaftools.excise(leaf_end_splitted[1])
    return container
 
 
