@@ -1,7 +1,7 @@
 from abjad.tools import check
 
 
-def components_untie(components):
+def untie_shallow(components):
    '''Untie every component in 'components'.
       Return 'components'.'''
 
