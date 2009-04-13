@@ -1,5 +1,8 @@
 from abjad import *
+import py.test
 
+
+py.test.skip('Deprecating _Component.slip( ).')
 
 def test_leaf_slip_01( ):
    '''Slip leaf from parentage and spanners.'''

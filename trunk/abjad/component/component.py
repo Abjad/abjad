@@ -263,17 +263,6 @@ class _Component(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   ## TODO: Externalize _Component.slip( ) ##
-
-   def slip(self):
-      '''Give spanners attached directly to container to children.
-         Give children to parent.
-         Return empty, childless container.'''
-      from abjad.tools import parenttools
-      parent, start, stop = parenttools.get_with_indices([self])
-      result = parent[start:stop+1] = list(self.music)
-      return self
-
    def splice(self, components):
       '''Splice 'components' after self.
          Extend spanners to attached to all components in list.'''
