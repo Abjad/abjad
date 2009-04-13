@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplet_contents_fix_01( ):
+def test_tuplettools_contents_fix_01( ):
    '''Halve note durations.'''
 
    t = FixedDurationTuplet((2, 8), scale(3, Rational(1, 4)))
@@ -13,7 +13,7 @@ def test_tuplet_contents_fix_01( ):
       e'4
    }'''
    
-   tuplet_contents_fix(t)
+   tuplettools.contents_fix(t)
 
    r'''\times 2/3 {
       c'8
@@ -26,7 +26,7 @@ def test_tuplet_contents_fix_01( ):
    assert t.format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_tuplet_contents_fix_02( ):
+def test_tuplettools_contents_fix_02( ):
    '''Double note duration.'''
 
    t = FixedDurationTuplet((2, 8), scale(3, Rational(1, 32)))
@@ -38,7 +38,7 @@ def test_tuplet_contents_fix_02( ):
       e'32
    }'''
 
-   tuplet_contents_fix(t)
+   tuplettools.contents_fix(t)
 
    r'''\times 4/3 {
       c'16
@@ -51,7 +51,7 @@ def test_tuplet_contents_fix_02( ):
    assert t.format == "\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplet_contents_fix_03( ):
+def test_tuplettools_contents_fix_03( ):
    '''Halve note durations.'''
 
    t = FixedDurationTuplet((5, 16), scale(3, Rational(1, 4)))
@@ -63,7 +63,7 @@ def test_tuplet_contents_fix_03( ):
       e'4
    }'''
 
-   tuplet_contents_fix(t)
+   tuplettools.contents_fix(t)
 
    r'''\fraction \times 5/6 {
       c'8

@@ -1,13 +1,13 @@
-from abjad.helpers.tuplet_contents_fix import tuplet_contents_fix
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import leaftools
+from abjad.tools.tuplettools.contents_fix import contents_fix
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
-def tuplet_scale(tuplet, multiplier):
+def contents_scale(tuplet, multiplier):
    '''Scale fixed-duration tuplet by multiplier.
       Preserve tuplet multiplier.
       Return tuplet.'''
@@ -34,7 +34,7 @@ def tuplet_scale(tuplet, multiplier):
 
    # otherwise doctor up tuplet multiplier, if necessary
    elif not durtools.is_tuplet_multiplier(tuplet.duration.multiplier):
-         tuplet_contents_fix(tuplet)
+         contents_fix(tuplet)
 
    # return tuplet
    return tuplet 

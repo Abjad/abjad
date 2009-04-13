@@ -7,7 +7,7 @@ from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 import math
 
 
-def tuplet_contents_fix(tuplet):
+def contents_fix(tuplet):
    '''Scale tuplet contents by power of two
       if tuplet multiplier less than 1/2 or greater than 2.
    

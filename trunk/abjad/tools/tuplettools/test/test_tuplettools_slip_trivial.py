@@ -1,30 +1,26 @@
 from abjad import *
 
 
-def test_tuplets_slip_trivial_01( ):
+def test_tuplettools_slip_trivial_01( ):
    t = Staff(FixedDurationTuplet((2, 8), run(2)) * 2)
    pitchtools.diatonicize(t)
    assert len(t) == 2
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
          c'8
          d'8
          e'8
          f'8
-   }
-   '''
+   }'''
 
-   tuplets_slip_trivial(t)
+   tuplettools.slip_trivial(t)
 
-   r'''
-   \new Staff {
+   r'''\new Staff {
       c'8
       d'8
       e'8
       f'8
-   }
-   '''
+   }'''
    
    assert check.wf(t)
    assert len(t) == 4

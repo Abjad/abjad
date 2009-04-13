@@ -1,8 +1,8 @@
-from abjad.helpers.tuplet_scale import tuplet_scale
 from abjad.leaf.leaf import _Leaf
 from abjad.measure.measure import _Measure
 from abjad.tools import iterate
 from abjad.tools import tietools
+from abjad.tools import tuplettools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
@@ -14,7 +14,7 @@ def contents_scale(container, multiplier):
       if tietools.is_chain(expr):
          tietools.duration_scale(expr, multiplier)
       elif isinstance(expr, FixedDurationTuplet):
-         tuplet_scale(expr, multiplier)
+         tuplettools.contents_scale(expr, multiplier)
       elif isinstance(expr, _Measure):
          ## TODO: Move import to higher level of scope? ##
          from abjad.helpers.measures_scale import measures_scale
