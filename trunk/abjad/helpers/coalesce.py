@@ -1,6 +1,6 @@
-from abjad.helpers.remove_empty_containers import _remove_empty_containers
 from abjad.navigator.dfs import depth_first_search
 from abjad.tools import check
+from abjad.tools import containertools
 from abjad.tools import iterate
 
 
@@ -26,7 +26,7 @@ def coalesce(expr):
          merged = True
    if merged:
       print expr
-      _remove_empty_containers(expr)
+      containertools.remove_empty(expr)
       return expr.pop(0)
    else:
       return None
