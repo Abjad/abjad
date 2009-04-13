@@ -1,7 +1,6 @@
 from abjad.component.component import _Component
 from abjad.container.container import Container
 from abjad.helpers.excise import excise
-from abjad.helpers.lcopy import lcopy
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tools import clone
@@ -84,5 +83,6 @@ def _get_lcopy(container, start, stop):
          #print 'breaking after stop'
          break
    #print start_leaf, stop_leaf
-   untrimmed_copy = lcopy(container, start_leaf, stop_leaf)
+   untrimmed_copy = leaftools.copy_with_parentage(
+      container, start_leaf, stop_leaf)
    return untrimmed_copy, first_dif, second_dif

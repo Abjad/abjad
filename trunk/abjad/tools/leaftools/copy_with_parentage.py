@@ -1,19 +1,19 @@
 from abjad.container.container import Container
 from abjad.exceptions.exceptions import ContiguityError
-from abjad.tools import clone
 from abjad.helpers.excise import excise
-from abjad.tools import iterate
+from abjad.leaf.leaf import _Leaf
+from abjad.tools import clone
 from abjad.tools import iterate
 
 
-def lcopy(expr, start = 0, stop = None):
-   '''Copy consecutive leaves from start to stop in expr;
-      copy all structure in the parentage of copied leaves,
-      trimming and shrinking containers as necessary.
-      
+## TODO: Remove ghetto slicing interface here with start & stop; ##
+##       Pass a leaf list to this function instead.              ##
+
+def copy_with_parentage(expr, start = 0, stop = None):
+   '''Copy consecutive leaves from start to stop in expr.
+      Copy all structure in the parentage of copied leaves.
+      Trim and shrink parent containers as necessary.
       When stop is None, copy all leaves from start in expr.'''
-
-   from abjad.leaf.leaf import _Leaf
 
    # trivial leaf lcopy
    if isinstance(expr, _Leaf):
@@ -54,7 +54,6 @@ def lcopy(expr, start = 0, stop = None):
    _found_start_leaf = False
 
    while not _found_start_leaf:
-      from abjad.leaf.leaf import _Leaf
       leaf = iterate.naive(governor_copy, _Leaf).next( )
       if leaf == start_leaf:
          _found_start_leaf = True

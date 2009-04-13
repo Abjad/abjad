@@ -21,7 +21,7 @@ def test_lcopy_01( ):
            }
    }'''
 
-   u = lcopy(t, 1, 5)
+   u = leaftools.copy_with_parentage(t, 1, 5)
 
    r'''\new Staff {
            \times 2/3 {
@@ -60,7 +60,7 @@ def test_lcopy_02( ):
            }
    }'''
    
-   u = lcopy(t, 1, 5)
+   u = leaftools.copy_with_parentage(t, 1, 5)
 
    r'''\new Staff {
            \times 2/3 {
@@ -85,7 +85,7 @@ def test_lcopy_03( ):
    pitchtools.diatonicize(t)
    t.parallel = True
 
-   assert py.test.raises(ContiguityError, 'lcopy(t, 1, 5)')
+   assert py.test.raises(ContiguityError, 'leaftools.copy_with_parentage(t, 1, 5)')
 
 
 def test_lcopy_04( ):
@@ -110,7 +110,7 @@ def test_lcopy_04( ):
            }
    >>'''
 
-   u = lcopy(t[0], 1, 3)
+   u = leaftools.copy_with_parentage(t[0], 1, 3)
 
    r'''\new Voice {
            d'8
@@ -126,7 +126,7 @@ def test_lcopy_05( ):
    '''Copy consecutive notes in binary measure.'''
 
    t = RigidMeasure((4, 8), construct.scale(4))
-   u = lcopy(t, 1, 3)
+   u = leaftools.copy_with_parentage(t, 1, 3)
 
    r'''\time 2/8
         d'8
@@ -141,7 +141,7 @@ def test_lcopy_06( ):
 
    score = Score([Staff(construct.scale(4))])
    t = score[0]
-   new = lcopy(t, 1, 3)
+   new = leaftools.copy_with_parentage(t, 1, 3)
 
    r'''\new Staff {
            d'8
@@ -168,7 +168,7 @@ def test_lcopy_07( ):
                 g'8
         }'''
 
-   u = lcopy(t, 1, 4)
+   u = leaftools.copy_with_parentage(t, 1, 4)
 
    r'''\time 3/10
         \scaleDurations #'(4 . 5) {
@@ -199,7 +199,7 @@ def test_lcopy_08( ):
                    }
    }'''
 
-   u = lcopy(t, 1, 4)
+   u = leaftools.copy_with_parentage(t, 1, 4)
 
    r'''\new Voice {
                    \time 3/10
@@ -233,7 +233,7 @@ def test_lcopy_09( ):
                 a'8
         }'''
 
-   u = lcopy(t, 1)
+   u = leaftools.copy_with_parentage(t, 1)
 
    r'''\time 5/12
         \scaleDurations #'(2 . 3) {
@@ -266,7 +266,7 @@ def test_lcopy_10( ):
                    a'8
    }'''
 
-   u = lcopy(t, 2, 4)
+   u = leaftools.copy_with_parentage(t, 2, 4)
 
    r'''\new Staff {
                    \time 1/8
@@ -278,3 +278,105 @@ def test_lcopy_10( ):
    assert check.wf(t)
    assert check.wf(u)
    assert u.format == "\\new Staff {\n\t\t\\time 1/8\n\t\te'8\n\t\t\\time 1/8\n\t\tf'8\n}"
+
+
+def test_lcopy_local_leaf_index_11( ):
+   '''Copy consecutive leaves from tuplet in staff;
+      pass start and stop indices local to tuplet.'''
+
+   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   pitchtools.diatonicize(t)
+
+   r'''\new Staff {
+           \times 2/3 {
+                   c'8
+                   d'8
+                   e'8
+           }
+           \times 2/3 {
+                   f'8
+                   g'8
+                   a'8
+           }
+   }'''
+
+   u = leaftools.copy_with_parentage(t[1], 1, 3)
+
+   r'''\new Staff {
+           \times 2/3 {
+                   g'8
+                   a'8
+           }
+   }'''
+
+   assert check.wf(t)
+   assert check.wf(u)
+   assert u.format == "\\new Staff {\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8\n\t}\n}"
+
+
+def test_lcopy_local_leaf_index_12( ):
+   '''Copy consecutive leaves from measure in staff;
+      pass start and stop indices local to measure.'''
+
+   t = Staff(RigidMeasure((3, 8), construct.run(3)) * 2)
+   pitchtools.diatonicize(t)
+
+   r'''\new Staff {
+                   \time 3/8
+                   c'8
+                   d'8
+                   e'8
+                   \time 3/8
+                   f'8
+                   g'8
+                   a'8
+   }'''
+
+   u = leaftools.copy_with_parentage(t[1], 1, 3)
+
+   r'''\new Staff {
+                   \time 2/8
+                   g'8
+                   a'8
+   }'''
+
+   assert check.wf(t)
+   assert check.wf(u)
+   assert u.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n}"   
+
+
+def test_lcopy_local_leaf_index_13( ):
+   '''Copy consecutive leaves from nonbinary measure in staff;
+      pass start and stop indices local to measure.'''
+
+   t = Staff(RigidMeasure((3, 9), construct.run(3)) * 2)
+   pitchtools.diatonicize(t)
+
+   r'''\new Staff {
+                   \time 3/9
+                   \scaleDurations #'(8 . 9) {
+                           c'8
+                           d'8
+                           e'8
+                   }
+                   \time 3/9
+                   \scaleDurations #'(8 . 9) {
+                           f'8
+                           g'8
+                           a'8
+                   }
+   }'''
+
+   u = leaftools.copy_with_parentage(t[1], 1, 3)
+
+   r'''\new Staff {
+                   \time 2/9
+                   \scaleDurations #'(8 . 9) {
+                           g'8
+                           a'8
+                   }
+   }'''
+   
+   assert check.wf(t)
+   assert check.wf(u)
+   assert u.format == "\\new Staff {\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n}"
