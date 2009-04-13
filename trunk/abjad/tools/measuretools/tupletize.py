@@ -1,10 +1,10 @@
-from abjad.tools import iterate
 from abjad.measure.measure import _Measure
+from abjad.tools import iterate
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 import copy
 
 
-def measures_tupletize(expr, supplement = None):
+def tupletize(expr, supplement = None):
    '''Tupletize the contents of every measure in expr.
       When supplement is not None, extend newly created
       FixedDurationTuplet by copy of supplement.

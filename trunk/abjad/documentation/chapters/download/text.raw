@@ -16,7 +16,7 @@ Changes to the public interface:
 <p>
 New public helpers:
 <ul>
-<li> iterate.tie_chains ), list_helpers( ), measures_concentrate( ), measures_spin( ), measure_scale_and_remeter( ), play( ), durtools.rationalize( ) 
+<li> iterate.tie_chains ), list_helpers( ), measuretools.concentrate( ), measuretools.spin( ), measuretools.scale_and_remeter( ), play( ), durtools.rationalize( ) 
 </ul>
 </p>
 

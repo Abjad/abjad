@@ -5,8 +5,8 @@ def test_staff_formatter_number_01( ):
    '''Staff formatter number interface can contribute
       LilyPond comments to many measures at once.'''
 
-   t = Staff(measures_make([(2, 16), (3, 16), (3, 16)]))
-   measures_populate(t, Rational(1, 16))
+   t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
+   measuretools.populate(t, Rational(1, 16))
    t.formatter.number.measures = 'comment'
 
    r'''
@@ -39,8 +39,8 @@ def test_staff_formatter_number_02( ):
    '''Staff formatter number interface can contribute
       markup to many leaves at once.'''
 
-   t = Staff(measures_make([(2, 16), (3, 16), (3, 16)]))
-   measures_populate(t, Rational(1, 16))
+   t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
+   measuretools.populate(t, Rational(1, 16))
    t.formatter.number.leaves = 'markup'
 
    r'''
@@ -67,8 +67,8 @@ def test_staff_formatter_number_03( ):
    '''Staff formatter number interface can contribute
       both measure comments and leaf markup at format-time.'''
 
-   t = Staff(measures_make([(2, 16), (3, 16), (3, 16)]))
-   measures_populate(t, Rational(1, 16))
+   t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
+   measuretools.populate(t, Rational(1, 16))
    t.formatter.number.measures = 'comment'
    t.formatter.number.leaves = 'markup'
 

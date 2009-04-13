@@ -2,17 +2,17 @@ from abjad.measure.measure import _Measure
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 from abjad.tools import check
-from abjad.tools import containertools
 from abjad.tools import metertools
 from abjad.tools import parenttools
 from abjad.tools.parenttools.switch import _switch
 from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 
 
-def measures_fuse(measure_list):
+def fuse(measure_list):
    '''Fuse measures in measure_list.
       Calculate best new time signature.'''
 
+   from abjad.tools import containertools
    check.assert_components(measure_list, klasses = (_Measure, ), 
       contiguity = 'strict', share = 'parent')
 

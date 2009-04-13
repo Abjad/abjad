@@ -1,11 +1,11 @@
+from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
-from abjad.tools import containertools
-from abjad.tools import iterate
 from abjad.tools import durtools
+from abjad.tools import iterate
 
 
-def measures_spin(expr, n):
+def spin(expr, n):
    r'''Iterate expr. For each measure in expr,
       multiply contents of measure by n.
 
@@ -14,7 +14,7 @@ def measures_spin(expr, n):
       Example:
 
       t = RigidMeasure((3, 8), scale(3))
-      measures_spin(t, 3)
+      measuretools.spin(t, 3)
 
            \time 9/8
            c'8
@@ -27,10 +27,10 @@ def measures_spin(expr, n):
            d'8
            e'8'''
 
+   from abjad.tools import containertools
    assert isinstance(n, int)
    assert n > 0
 
-   from abjad.measure.measure import _Measure
    for measure in iterate.naive(expr, _Measure):
       old_meter = measure.meter.effective
       containertools.contents_multiply(measure, n)

@@ -1,8 +1,7 @@
-from abjad.tools import construct
 from abjad import *
 
 
-def test_measures_project_01( ):
+def test_measuretools_project_01( ):
    '''Project 3/12 meter onto measure contents.'''
 
    inner = FixedDurationTuplet((2, 16), run(3, Rational(1, 16)))
@@ -10,7 +9,7 @@ def test_measures_project_01( ):
    outer = FixedDurationTuplet((2, 8), [inner] + notes)
    t = RigidMeasure((2, 8), [outer])
    pitchtools.diatonicize(t)
-   measures_subsume(t)
+   measuretools.subsume(t)
 
    r'''\time 3/12
       \scaleDurations #'(2 . 3) {
@@ -25,7 +24,7 @@ def test_measures_project_01( ):
 
    assert t.format == "\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}"
 
-   measures_project(t)
+   measuretools.project(t)
 
    r'''\time 2/8
       \times 2/3 {
@@ -42,11 +41,11 @@ def test_measures_project_01( ):
    assert t.format == "\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}"
 
 
-def test_measures_project_02( ):
+def test_measuretools_project_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
 
    t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), scale(6))])
-   measures_subsume(t)
+   measuretools.subsume(t)
 
    r'''\time 15/24
       \scaleDurations #'(2 . 3) {
@@ -66,7 +65,7 @@ def test_measures_project_02( ):
 
    assert t.format == "\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}"
 
-   measures_project(t)
+   measuretools.project(t)
 
    r'''\time 5/8
       \fraction \times 5/6 {

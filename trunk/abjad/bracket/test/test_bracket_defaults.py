@@ -4,8 +4,8 @@ from abjad import *
 def test_bracket_defaults_01( ):
    '''Bracket defaults to solid red line with left and right nibs.'''
 
-   t = Staff(measures_make([(2, 16), (3, 16), (5, 16)]))
-   measures_populate(t, Rational(1, 16))
+   t = Staff(measuretools.make([(2, 16), (3, 16), (5, 16)]))
+   measuretools.populate(t, Rational(1, 16))
    Bracket(t[0])
    Bracket(t[1])
    Bracket(t[2])

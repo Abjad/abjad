@@ -1,14 +1,14 @@
-from abjad.tools import durtools
-from abjad.tools import iterate
-from abjad.tools import mathtools
 from abjad.measure.measure import _Measure
 from abjad.note.note import Note
 from abjad.rational.rational import Rational
 from abjad.skip.skip import Skip
 from abjad.tools import construct
+from abjad.tools import durtools
+from abjad.tools import iterate
+from abjad.tools import mathtools
 
 
-def measures_populate(expr, mode):
+def populate(expr, mode):
    '''Populate each measure in 'expr' according to 'mode'.
 
       With mode = 'big-endian':

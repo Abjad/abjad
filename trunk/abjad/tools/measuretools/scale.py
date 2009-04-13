@@ -1,13 +1,12 @@
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
-from abjad.tools import containertools
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import metertools
 
 
-def measures_scale(expr, multiplier = Rational(1)):
+def scale(expr, multiplier = Rational(1)):
    '''Iterate expr. For every measure in expr:
 
          1. multiply measure's meter by multiplier
@@ -18,6 +17,7 @@ def measures_scale(expr, multiplier = Rational(1)):
 
       This might best be a bound method on RigidMeasure.'''
 
+   from abjad.tools import containertools
    for measure in iterate.naive(expr, _Measure):
 
       if multiplier == Rational(1):
@@ -37,7 +37,8 @@ def measures_scale(expr, multiplier = Rational(1)):
             new_duration, [old_denominator], multiplier._d)
       measure.meter.forced = new_meter
 
-      contents_multiplier_denominator = mathtools.next_least_power_of_two(multiplier._d)
+      contents_multiplier_denominator = \
+         mathtools.next_least_power_of_two(multiplier._d)
       contents_multiplier = Rational(
          multiplier._n, contents_multiplier_denominator)
       containertools.contents_scale(measure, contents_multiplier)

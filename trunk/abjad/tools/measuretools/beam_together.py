@@ -1,7 +1,7 @@
 from abjad.beam.complex import ComplexBeam
 
 
-def measures_grouping_beam(measures):
+def beam_together(measures):
    '''Apply ComplexBeam to all measures in measures;
       set p.durations equal to preprolated measure durations.'''
 

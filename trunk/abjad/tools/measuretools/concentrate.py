@@ -1,10 +1,10 @@
-from abjad.tools import iterate
-from abjad.helpers.measure_scale_and_remeter import measure_scale_and_remeter
-from abjad.helpers.measures_spin import measures_spin
 from abjad.rational.rational import Rational
+from abjad.tools import iterate
+from abjad.tools.measuretools.scale_and_remeter import scale_and_remeter
+from abjad.tools.measuretools.spin import spin
 
 
-def measures_concentrate(expr, concentration_pairs, cyclic = True):
+def concentrate(expr, concentration_pairs, cyclic = True):
    '''Expr may be any Abjad expression.
       Concentration_pairs a Python list of pairs,
       each of the form (spin_count, scalar_denominator).
@@ -19,15 +19,15 @@ def measures_concentrate(expr, concentration_pairs, cyclic = True):
       Examples:
 
       abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
-      abjad> print(measures_concentrate(t, [(3, 3)])[0])
+      abjad> print(measuretools.concentrate(t, [(3, 3)])[0])
       |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
       abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
-      abjad> print(measures_concentrate(t, [(3, 2)])[0])
+      abjad> print(measuretools.concentrate(t, [(3, 2)])[0])
       |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
       
       abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
-      abjad> print(measures_concentrate(t, [(3, 1)])[0])
+      abjad> print(measuretools.concentrate(t, [(3, 1)])[0])
       |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
    '''
 
@@ -41,9 +41,9 @@ def measures_concentrate(expr, concentration_pairs, cyclic = True):
       concentration_pair = concentration_pairs[i % num_pairs]
       assert isinstance(concentration_pair, tuple)
       spin_count, scalar_denominator = concentration_pair
-      measures_spin(measure, spin_count)
+      spin(measure, spin_count)
       multiplier = Rational(1, scalar_denominator)
-      measure_scale_and_remeter(measure, multiplier)
+      scale_and_remeter(measure, multiplier)
       result.append(measure)
 
    return result

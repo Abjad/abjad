@@ -5,12 +5,12 @@ from abjad.tools import durtools
 from abjad.tools import parenttools
 
 
-def measure_trim_by_count(components):
+def trim_by_count(components):
    '''Remove components in 'components' from parent measure.
       Adjust meter of containing measure as necessary.
 
       abjad> t = RigidMeasure((3, 8), scale(3))
-      abjad> measure_trim_by_count(t[:2])
+      abjad> measuretools.trim_by_count(t[:2])
       abjad> t
       RigidMeasure(1/8, [e'8])'''
 

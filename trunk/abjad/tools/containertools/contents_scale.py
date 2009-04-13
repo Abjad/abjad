@@ -17,7 +17,7 @@ def contents_scale(container, multiplier):
          tuplettools.contents_scale(expr, multiplier)
       elif isinstance(expr, _Measure):
          ## TODO: Move import to higher level of scope? ##
-         from abjad.helpers.measures_scale import measures_scale
-         measures_scale(expr, multiplier)
+         from abjad.tools import measuretools
+         measuretools.scale(expr, multiplier)
       else:
          raise Exception(NotImplemented)

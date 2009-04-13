@@ -1,16 +1,16 @@
 from abjad import *
 
 
-def test_measures_populate_01( ):
+def test_measuretools_populate_01( ):
    '''Populate nonbinary measure with note train.'''
 
 
 
-def test_measures_populate_02( ):
+def test_measuretools_populate_02( ):
    '''Populate nonbinary measure with big-endian tie chain.'''
 
    t = RigidMeasure((5, 18), [ ])
-   measures_populate(t, 'big-endian')
+   measuretools.populate(t, 'big-endian')
 
    r'''\time 5/18
       \scaleDurations #'(8 . 9) {
@@ -22,11 +22,11 @@ def test_measures_populate_02( ):
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'4 ~\n\t\tc'16\n\t}"
 
 
-def test_measures_populate_03( ):
+def test_measuretools_populate_03( ):
    '''Populate nonbinary measure with little-endian tie chain.'''
 
    t = RigidMeasure((5, 18), [ ])
-   measures_populate(t, 'little-endian')
+   measuretools.populate(t, 'little-endian')
 
    r'''\time 5/18
       \scaleDurations #'(8 . 9) {
@@ -38,11 +38,11 @@ def test_measures_populate_03( ):
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16 ~\n\t\tc'4\n\t}"
 
 
-def test_measures_populate_04( ):
+def test_measuretools_populate_04( ):
    '''Populate nonbinary measure with time-scaled skip.'''
 
    t = RigidMeasure((5, 18), [ ])
-   measures_populate(t, 'skip')
+   measuretools.populate(t, 'skip')
 
    r'''\time 5/18
       \scaleDurations #'(8 . 9) {
@@ -53,11 +53,11 @@ def test_measures_populate_04( ):
    assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\ts1 * 5/16\n\t}"
 
 
-def test_measures_populate_05( ):
+def test_measuretools_populate_05( ):
    '''Populate nonbinary measure with meter series.'''
 
    t = RigidMeasure((5, 18), [ ])
-   measures_populate(t, 'meter series')
+   measuretools.populate(t, 'meter series')
 
    r'''\time 5/18
       \scaleDurations #'(8 . 9) {

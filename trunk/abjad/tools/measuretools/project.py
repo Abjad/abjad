@@ -1,22 +1,22 @@
+from abjad.measure.measure import _Measure
 from abjad.tools import componenttools
-from abjad.tools import containertools
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
-def measures_project(expr):
+def project(expr):
    '''Turn nonbinary measures into binary measures 
       containing a single fixed-duration tuplet.
 
-      This is the inverse of measures_subsume( ).
+      This is the inverse of measuretools.subsume( ).
 
       Note that not all nonbinary measures can be made binary.
 
       Returns None because processes potentially many measures.'''
 
-   from abjad.measure.measure import _Measure
+   from abjad.tools import containertools
    for measure in iterate.naive(expr, _Measure):
       if measure.meter.effective.nonbinary:
 

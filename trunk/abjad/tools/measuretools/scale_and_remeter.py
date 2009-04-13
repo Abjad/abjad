@@ -1,12 +1,11 @@
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 from abjad.tools import check
-from abjad.tools import containertools
 from abjad.tools import durtools
 from abjad.tools import mathtools
 
 
-def measure_scale_and_remeter(measure, multiplier = Rational(1)):
+def scale_and_remeter(measure, multiplier = Rational(1)):
    r'''Multiply the duration of every element in measure by multiplier.
       Then rewrite the meter of measure as appropriate.
 
@@ -17,7 +16,7 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
       Example:
 
       t = RigidMeasure((3, 8), scale(3))
-      measure_scale_and_remeter(t, Rational(2, 3))
+      measuretools.scale_and_remeter(t, Rational(2, 3))
 
            \time 3/12
            \scaleDurations #'(2 . 3) {
@@ -25,6 +24,8 @@ def measure_scale_and_remeter(measure, multiplier = Rational(1)):
                    d'8
                    e'8
            }'''
+
+   from abjad.tools import containertools
 
    if multiplier == 0:
       raise ZeroDivisionError

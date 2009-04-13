@@ -1,51 +1,51 @@
 from abjad import *
 
 
-def test_measure_trim_by_count_01( ):
+def test_measuretools_trim_by_count_01( ):
    '''Nonnegative indices work.'''
 
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
-   measure_trim_by_count(t[:1])
+   measuretools.trim_by_count(t[:1])
 
    assert check.wf(t)
    assert t.format == "\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8"
 
 
-def test_measure_trim_by_count_02( ):
+def test_measuretools_trim_by_count_02( ):
    '''Negative indices work.'''
 
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
-   measure_trim_by_count(t[-1:])
+   measuretools.trim_by_count(t[-1:])
 
    assert check.wf(t)
    assert t.format == "\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8"
    
 
-def test_measure_trim_by_count_03( ):
+def test_measuretools_trim_by_count_03( ):
    '''Denominator preservation in meter.'''
 
    t = RigidMeasure((4, 8), Note(0, (1, 8)) * 4)
-   measure_trim_by_count(t[:2])
+   measuretools.trim_by_count(t[:2])
 
    assert check.wf(t)
    assert t.format == "\t\\time 2/8\n\tc'8\n\tc'8"
 
 
-def test_measure_trim_by_count_04( ):
+def test_measuretools_trim_by_count_04( ):
    '''Denominator changes from 8 to 16.'''
 
    t = RigidMeasure((4, 8), Note(0, (1, 16)) * 2 + Note(0, (1, 8)) * 3)
-   measure_trim_by_count(t[:1])
+   measuretools.trim_by_count(t[:1])
 
    assert check.wf(t)
    assert t.format == "\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8"
 
 
-def test_measure_trim_by_count_05( ):
+def test_measuretools_trim_by_count_05( ):
    '''Trim nonbinary measure.'''
 
    t = RigidMeasure((4, 9), scale(4))
-   measure_trim_by_count(t[:1])
+   measuretools.trim_by_count(t[:1])
 
    r'''\time 3/9
         \scaleDurations #'(8 . 9) {
@@ -74,7 +74,7 @@ def tet_rigid_measure_trim_06( ):
                 f'8
         }'''
 
-   measure_trim_by_count(t[:1])
+   measuretools.trim_by_count(t[:1])
 
    r'''\time 5/18
         \scaleDurations #'(8 . 9) {

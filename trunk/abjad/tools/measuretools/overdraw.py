@@ -1,10 +1,11 @@
+from abjad.measure.measure import _Measure
 from abjad.tools import clone
 from abjad.tools import iterate
 
 
 ## TODO: Finish implementation ##
 
-def measures_overdraw(expr, source_count = 1, total_reps = 2):
+def overdraw(expr, source_count = 1, total_reps = 2):
    '''Input parameters:
 
       source_count gives the number of measures to copy.
@@ -20,7 +21,6 @@ def measures_overdraw(expr, source_count = 1, total_reps = 2):
 
    source = [ ]
    result = [ ]
-   from abjad.measure.measure import _Measure
    for i, measure in enumerate(iterate.naive(expr, _Measure)):
       if i < source_count:
          source.append(measure)   
@@ -29,5 +29,3 @@ def measures_overdraw(expr, source_count = 1, total_reps = 2):
       else:
          pass
       
-          
-   
