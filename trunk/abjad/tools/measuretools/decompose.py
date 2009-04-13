@@ -30,6 +30,6 @@ def _measure_decompose(measure):
       new = RigidMeasure(meter, [element])
       new_measures.append(new)
    measure.splice(new_measures)
-   componenttools.detach(measure)
+   componenttools.detach([measure])
    measure[:] = [ ]
    return new_measures

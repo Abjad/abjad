@@ -32,7 +32,7 @@ def duration_change(tie_chain, new_written_duration):
          pass
       elif len(tie_chain) > len(duration_tokens):
          for leaf in tie_chain[len(duration_tokens):]:
-            componenttools.detach(leaf)
+            componenttools.detach([leaf])
       elif len(tie_chain) < len(duration_tokens):
          tie_chain[0].tie.unspan( )
          difference = len(duration_tokens) - len(tie_chain)

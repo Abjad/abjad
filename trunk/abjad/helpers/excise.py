@@ -43,9 +43,9 @@ def excise(leaf):
       parent = parent.parentage.parent
       i += 1
    parentage = leaf.parentage.parentage[1:]
-   componenttools.detach(leaf)
+   componenttools.detach([leaf])
    for x in parentage:
       if not len(x):
-         componenttools.detach(x)
+         componenttools.detach([x])
       else:
          break

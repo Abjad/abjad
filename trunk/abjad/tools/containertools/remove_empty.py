@@ -8,7 +8,7 @@ def remove_empty(expr):
    class Visitor(object):
       def visit(self, node):
          if isinstance(node, Container) and len(node.leaves) == 0:
-            componenttools.detach(node)
+            componenttools.detach([node])
 
    v = Visitor( )
    expr._navigator._traverse(v, depthFirst = False)

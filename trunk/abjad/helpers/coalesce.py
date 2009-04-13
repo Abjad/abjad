@@ -24,7 +24,7 @@ def coalesce(expr):
          check.assess_components([cmp, next], contiguity = 'strict', 
             share = 'score', allow_orphans = False):
          cmp.extend(next)
-         componenttools.detach(next)
+         componenttools.detach([next])
          merged = True
    if merged:
       print expr

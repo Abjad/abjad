@@ -9,7 +9,7 @@ def truncate(tie_chain):
    assert is_chain(tie_chain)
 
    for leaf in tie_chain[1:]:
-      componenttools.detach(leaf)
+      componenttools.detach([leaf])
 
    first = tie_chain[0]
 

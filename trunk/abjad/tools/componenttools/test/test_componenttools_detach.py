@@ -20,7 +20,7 @@ def test_componenttools_detach_01( ):
    }'''
 
    sequential = t[1]
-   componenttools.detach(t[1])
+   componenttools.detach(t[1:2])
 
    r'''\new Voice {
       c'8 [ \glissando
@@ -51,7 +51,7 @@ def test_componenttools_detach_02( ):
    }'''
 
    leaf = t.leaves[1]
-   componenttools.detach(leaf)
+   componenttools.detach([leaf])
 
    r'''\new Voice {
       c'8 [ \glissando

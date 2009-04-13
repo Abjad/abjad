@@ -13,7 +13,5 @@ def fuse_binary(leaves):
    if len(leaves) <= 1:
       return leaves
    total_written = sum([leaf.duration.written for leaf in leaves])
-   ## TODO: Replace with iterable componenttools.detach( ) ##
-   for leaf in leaves[1:]:
-      componenttools.detach(leaf)
+   componenttools.detach(leaves[1:])
    return scale_binary(leaves[0], total_written)
