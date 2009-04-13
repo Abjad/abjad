@@ -43,7 +43,7 @@ statements.append(s)
    
 
 code = ['meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + \
-[(3, 16)]', 'metric_slice(s, meters)']
+[(3, 16)]', 'containertools.slice_by_duration(s, meters)']
 text = "Notice how some notes span more than one measure (i.e. they extend over the bar lines). This is a good thing because it shows that note durations and meter are treated independently. We do not want these spanning notes in our final score, however. We also want to give the performer a visual reference of where the beats are, so we will split the notes accordingly. To do this we will slice the music to a second sequence of meters."
 s = Statement(text, code)
 statements.append(s)

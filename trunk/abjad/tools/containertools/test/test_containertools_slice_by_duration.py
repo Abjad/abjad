@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_metric_slice_01( ):
+def test_containertools_slice_by_duration_01( ):
    '''Slice leaves in voice according to metric grid.'''
 
    t = Voice(Note(0, (3, 8)) * 4)
    pitchtools.diatonicize(t)
 
-   metric_slice(t, [(1, 4)])
+   containertools.slice_by_duration(t, [(1, 4)])
 
    r'''\new Voice {
       c'4 ~
