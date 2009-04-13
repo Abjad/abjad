@@ -1,11 +1,11 @@
 from abjad import *
+import py.test
 
 
 def test_interpolate_divide_01( ):
    '''interpolate_divide returns Rationals.'''
-   t = interpolate.divide(1, 2, 0.5)
+   t = interpolate.divide(2, 2, 0.5)
    assert isinstance(t[0], Rational)
-   assert t == [1]
 
 
 def test_interpolate_divide_02( ):
@@ -15,9 +15,8 @@ def test_interpolate_divide_02( ):
 
 
 def test_interpolate_divide_03( ):
-   '''interpolate_divide returns the total interval if start_frac > total.'''
-   t = interpolate.divide(1, 2, 0.5)
-   assert t == [1]
+   '''start_frac and stop_frac musb be < total.'''
+   assert py.test.raises(ValueError, 't = interpolate.divide(1, 2, 0.5)')
 
 
 def test_interpolate_divide_04( ):
