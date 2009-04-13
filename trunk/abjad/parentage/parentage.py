@@ -1,7 +1,6 @@
 from abjad.core.interface import _Interface
 from abjad.parentage.containment import _ContainmentSignature
 from abjad.rational.rational import Rational
-#from abjad.receipt.parentage import _ParentageReceipt
 import types
 
 
@@ -14,30 +13,7 @@ class _Parentage(_Interface):
       _Interface.__init__(self, _client)
       self.__parent = None
 
-   ## PRIVATE ATTRIBUTES ##
-   
-   @property
-   def _governor(self):
-      '''Return reference to first sequential container Q 
-         in the parentage of client such that 
-         the parent of Q is either a parallel container or None.
-         In the case that no such sequential container exists
-         in the parentage of client, return None.'''
-      from abjad.container.container import Container
-      for component in self.parentage:
-         if isinstance(component, Container) and not component.parallel:
-            parent = component.parentage.parent
-            if parent is None:
-               return component
-            if isinstance(parent, Container) and parent.parallel:
-               return component
-            
    ## PRIVATE METHODS ##
-
-   def _ignore(self):
-      '''Client forgets parent (but parent remembers client).'''
-      self.client._update._markForUpdateToRoot( )
-      self.__parent = None
 
    def _cut(self):
       '''Client and parent cut completely.'''
@@ -47,11 +23,10 @@ class _Parentage(_Interface):
          parent._music.remove(client)
       self._ignore( )
 
-   def _first(self, klass):
-      '''Return first instance of klass in score tree above client.'''
-      for component in self.parentage[1:]:
-         if isinstance(component, klass):
-            return component
+   def _ignore(self):
+      '''Client forgets parent (but parent remembers client).'''
+      self.client._update._markForUpdateToRoot( )
+      self.__parent = None
 
    def _switch(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
@@ -66,6 +41,22 @@ class _Parentage(_Interface):
       '''Absolute depth of component in Abjad expression.'''
       return len(self.parentage) - 1
 
+   @property
+   def governor(self):
+      '''Return reference to first sequential container Q 
+         in the parentage of client such that 
+         the parent of Q is either a parallel container or None.
+         In the case that no such sequential container exists
+         in the parentage of client, return None.'''
+      from abjad.container.container import Container
+      for component in self.parentage:
+         if isinstance(component, Container) and not component.parallel:
+            parent = component.parentage.parent
+            if parent is None:
+               return component
+            if isinstance(parent, Container) and parent.parallel:
+               return component
+            
    @property
    def layer(self):
       '''Layer of leaf in nested tuplet.'''
@@ -126,3 +117,11 @@ class _Parentage(_Interface):
          signature._root = id(component)
          signature._root_str = component._ID
       return signature
+
+   ## PUBLIC METHODS ##
+
+   def first(self, klass):
+      '''Return first instance of klass in score tree above client.'''
+      for component in self.parentage[1:]:
+         if isinstance(component, klass):
+            return component

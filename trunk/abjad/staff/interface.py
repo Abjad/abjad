@@ -51,4 +51,4 @@ class _StaffInterface(_Interface, _FormatContributor, _BacktrackingInterface):
    def given(self):
       '''First staff in score parentage of client.'''
       from abjad.staff.staff import Staff
-      return self.client.parentage._first(Staff)
+      return self.client.parentage.first(Staff)

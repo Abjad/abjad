@@ -10,7 +10,7 @@ class MeasuresNested(_Check):
       violators = [ ]
       total = 0
       for t in iterate.naive(expr, _Measure):
-         if t.parentage._first(_Measure):
+         if t.parentage.first(_Measure):
                violators.append(t)
          total += 1
       return violators, total

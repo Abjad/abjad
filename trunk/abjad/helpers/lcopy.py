@@ -35,7 +35,7 @@ def lcopy(expr, start = 0, stop = None):
    stop_leaf_in_expr = leaves[stop - 1]
 
    # find governor
-   governor = leaves[start].parentage._governor
+   governor = leaves[start].parentage.governor
 
    # new: find start and stop leaves in governor
    governor_leaves = governor.leaves
