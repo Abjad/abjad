@@ -155,10 +155,11 @@ class Container(_Component):
       def fget(self):
          return self._parallel
       def fset(self, arg):
+         from abjad.context.context import _Context
          from abjad.tools import check
          assert isinstance(arg, bool)
          if arg == True:
-            check.assert_are_contexts(self._music)
+            check.assert_components(self._music, klasses = (_Context, ))
          self._parallel = arg
       return property(**locals( ))
 

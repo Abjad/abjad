@@ -1,6 +1,7 @@
 from abjad import *
 import py.test
 
+
 def test_container_parallel_01( ):
    '''True when container encloses contents in LilyPond << >> brackets,
       otherwise False.'''
@@ -62,13 +63,14 @@ def test_container_parallel_04( ):
 def test_container_parallel_10( ):
    '''Parallel containers must contain only Contexts.
    It cannot take leaves.'''
+
    t = Container(run(4))
-   py.test.raises(ParallelError, 't.parallel = True')
+   py.test.raises(TypeError, 't.parallel = True')
 
 
 def test_container_parallel_11( ):
    '''Parallel containers must contain only Contexts.
    It cannot take Containers.'''
-   t = Container(Container(run(4)) * 2)
-   py.test.raises(ParallelError, 't.parallel = True')
 
+   t = Container(Container(run(4)) * 2)
+   py.test.raises(TypeError, 't.parallel = True')
