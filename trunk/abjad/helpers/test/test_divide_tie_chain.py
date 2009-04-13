@@ -54,7 +54,7 @@ def test_divide_tie_chain_02( ):
 def test_divide_tie_chain_03( ):
    '''Divide a trivial (ie, length-one) tie chain.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    divide_tie_chain(t[1].tie.chain, 3)
 
    r'''

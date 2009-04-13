@@ -6,7 +6,7 @@ def test_spanner_leaves_01( ):
    '''Spanner attaching to container knows about both container and 
       also leaves in container.'''
 
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    pitchtools.chromaticize(t)
    p = Spanner(t)
 
@@ -22,7 +22,7 @@ def test_spanner_leaves_02( ):
    '''Spanner attaching only to leaves makes p.components and p.leaves
       hold the same references.'''
 
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    pitchtools.chromaticize(t)
    p = Spanner(t[:])
    
@@ -49,9 +49,9 @@ def test_spanner_leaves_03( ):
 def test_spanner_leaves_04( ):
    '''Spanner attaching to container with multidimensional contents.'''
 
-   t = Voice(run(4))
-   t.insert(1, Container(run(2)))
-   t.insert(3, Container(run(2)))
+   t = Voice(construct.run(4))
+   t.insert(1, Container(construct.run(2)))
+   t.insert(3, Container(construct.run(2)))
    pitchtools.chromaticize(t)
    p = Spanner(t)
 
@@ -80,9 +80,9 @@ def test_spanner_leaves_04( ):
 def test_spanner_leaves_05( ):
    '''Spanner spanning a mixture of containers and leaves.'''
    
-   t = Voice(run(4))
-   t.insert(1, Container(run(2)))
-   t.insert(3, Container(run(2)))
+   t = Voice(construct.run(4))
+   t.insert(1, Container(construct.run(2)))
+   t.insert(3, Container(construct.run(2)))
    pitchtools.chromaticize(t)
    p = Spanner(t[0:3])
 
@@ -116,8 +116,8 @@ def test_spanner_leaves_06( ):
       Spanner absolutely does not descend into parallel container.
       Spanner duration does, however, account for parallel duration.'''
 
-   t = Staff(run(4))
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t = Staff(construct.run(4))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.chromaticize(t)
 
@@ -154,8 +154,8 @@ def test_spanner_leaves_07( ):
       Spanner absolutely does not descend into parallel container.
       Spanner duration does, however, account for parallel duration.'''
 
-   t = Staff(run(4))
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t = Staff(construct.run(4))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.chromaticize(t)
 

@@ -6,7 +6,7 @@ def test_tie_spanner_grob_handling_01( ):
    The Abjad Tie spanner handles the LilyPond Tie grob.
    '''
 
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    p = Tie(t[ : ])
    p.thickness = 3
 

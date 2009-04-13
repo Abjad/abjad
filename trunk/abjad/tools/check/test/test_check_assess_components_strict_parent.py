@@ -24,7 +24,7 @@ def test_assess_components_strict_parent_02( ):
    '''True for unincorporated components when orphans allowed.
       False to unincorporated components when orphans not allowed.'''
 
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {

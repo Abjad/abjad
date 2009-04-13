@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_splinter_01( ):
    '''Splinter triplet.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -45,7 +45,7 @@ def test_containertools_splinter_01( ):
 def test_containertools_splinter_02( ):
    '''Splinter binary measure.'''
 
-   t = Voice(RigidMeasure((3, 8), run(3)) * 2)
+   t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -81,7 +81,7 @@ def test_containertools_splinter_02( ):
 def test_containertools_splinter_03( ):
    '''Hew nonbinary measure.'''
 
-   t = Voice(RigidMeasure((3, 9), run(3)) * 2)
+   t = Voice(RigidMeasure((3, 9), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 

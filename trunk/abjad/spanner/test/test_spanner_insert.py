@@ -31,7 +31,7 @@ def test_spanner_insert_02( ):
       Operation is still not composer-safe, however.
       Note that p.append( ) and p.append_left( ) are composer-safe.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 

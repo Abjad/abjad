@@ -4,7 +4,7 @@ from abjad import *
 def test_contains_01( ):
    '''Spanner containment tests components.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 
@@ -31,7 +31,7 @@ def test_contains_01( ):
 def test_contains_02( ):
    '''Spanner containment tests components.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 

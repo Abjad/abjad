@@ -8,7 +8,7 @@ def test_container_delitem_00( ):
       Component carries covered spanners forward.
       Operation always leaves all expressions in tact.'''
 
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[:])
    Slur(t[0][:])

@@ -7,7 +7,7 @@ def test_clone_fracture_01( ):
       Fracture spanners that attach to components not in 'components'.
       Return Python list of copied components.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    slur = Slur(t[:])
    trill = Trill(t.leaves)
@@ -41,7 +41,7 @@ def test_clone_fracture_01( ):
 def test_clone_fracture_02( ):
    '''Copy one measure and fracture spanners.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    slur = Slur(t[:])
    trill = Trill(t.leaves)
@@ -76,7 +76,7 @@ def test_clone_fracture_02( ):
 def test_clone_fracture_03( ):
    '''Three notes crossing measure boundaries.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    slur = Slur(t[:])
    trill = Trill(t.leaves)
@@ -111,7 +111,7 @@ def test_clone_fracture_03( ):
 def test_clone_fracture_04( ):
    '''Optional 'n' argument for multiple copies.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    slur = Slur(t[:])
    trill = Trill(t.leaves)

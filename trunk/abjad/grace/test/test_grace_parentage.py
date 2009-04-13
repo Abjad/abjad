@@ -3,7 +3,7 @@ from abjad import *
 
 def test_grace_carrierage_01( ):
    '''Lone Grace containers _carrier is None.'''
-   t = Grace(run(4))
+   t = Grace(construct.run(4))
    assert t._carrier is None
 
 
@@ -60,7 +60,7 @@ def test_grace_carrierage_04( ):
 
 #def test_grace_parentage_01( ):
 #   '''Lone Grace containers _parent is None.'''
-#   t = Grace(run(4))
+#   t = Grace(construct.run(4))
 #   assert t._parent is None
 #
 #

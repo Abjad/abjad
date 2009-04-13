@@ -4,7 +4,7 @@ from abjad import *
 def test_tcopy_tuplets_in_staff_02( ):
    '''Copy adjacent, whole tuplets from staff.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), run(3)) * 3)
+   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 3)
    pitchtools.diatonicize(t)
    u = tcopy(t[1:])
 

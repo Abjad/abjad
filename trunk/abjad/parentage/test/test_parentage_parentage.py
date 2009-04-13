@@ -5,7 +5,7 @@ def test_parentage_parentage_01( ):
    '''t.parentage.parentage return a list of the elements
       in the parentage of leaf t, including t.'''
 
-   t = Score([Staff(Container(run(2)) * 2)])
+   t = Score([Staff(Container(construct.run(2)) * 2)])
    pitchtools.diatonicize(t)
 
    r'''\new Score <<
@@ -36,7 +36,7 @@ def test_parentage_parentage_02( ):
    '''t.parentage.parentage returns a list of the elements
       in the parentage of container t, including t.'''
 
-   t = Score([Staff(Container(run(2)) * 2)])
+   t = Score([Staff(Container(construct.run(2)) * 2)])
    pitchtools.diatonicize(t)
 
    r'''\new Score <<

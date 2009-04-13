@@ -3,7 +3,7 @@ import py.test
 
 
 def test_pianopedal_spanner_01( ):
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    p = PianoPedal(t[:])
 
    r'''\new Staff {
@@ -23,7 +23,7 @@ def test_pianopedal_spanner_01( ):
 def test_pianopedal_spanner_02( ):
    '''PianoPedal spanner supports sostenuto pedal.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    p = PianoPedal(t[:])
    p.kind = 'sostenuto'
 
@@ -42,7 +42,7 @@ def test_pianopedal_spanner_02( ):
 def test_pianopedal_spanner_03( ):
    '''PianoPedal spanner supports una corda pedal.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    p = PianoPedal(t[:])
    p.kind = 'corda'
 
@@ -61,7 +61,7 @@ def test_pianopedal_spanner_03( ):
 def test_pianopedal_spanner_04( ):
    '''PianoPedal spanner supports text style.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    p = PianoPedal(t[:])
    assert p.kind == 'sustain'
    p.style = 'text'
@@ -81,7 +81,7 @@ def test_pianopedal_spanner_04( ):
 def test_pianopedal_spanner_05( ):
    '''PianoPedal spanner supports bracket style.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    p = PianoPedal(t[:])
    assert p.kind == 'sustain'
    p.style = 'bracket'
@@ -101,7 +101,7 @@ def test_pianopedal_spanner_05( ):
 def test_pianopedal_spanner_06( ):
    '''Consecutive dovetailing PianoPedal spanners format correctly.'''
 
-   t = Staff(run(8))
+   t = Staff(construct.run(8))
    PianoPedal(t[:4])
    PianoPedal(t[3:])
 
@@ -125,7 +125,7 @@ def test_pianopedal_spanner_06( ):
 def test_pianopedal_spanner_07( ):
    '''The 'kind' and 'style' attributes raise ValueError as needed.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    p = PianoPedal(t)
 
    assert py.test.raises(ValueError, 'p.kind = "abc"')

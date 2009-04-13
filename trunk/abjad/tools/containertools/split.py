@@ -16,7 +16,7 @@ def split(container, index):
       
       Example of splitting a beamed triplet in voice:
 
-      t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
+      t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
       tuplet = t[1]
       pitchtools.diatonicize(t)
       Beam(t[:])

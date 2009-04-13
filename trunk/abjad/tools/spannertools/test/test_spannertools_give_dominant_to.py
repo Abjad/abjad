@@ -21,7 +21,7 @@ def test_spannertools_give_dominant_to_01( ):
       f'8 \!
    }'''
 
-   recipient = Voice(run(3, Rational(1, 16)))
+   recipient = Voice(construct.run(3, Rational(1, 16)))
    Beam(recipient)
 
    r'''\new Voice {
@@ -63,7 +63,7 @@ def test_spannertools_give_dominant_to_01( ):
 def test_spannertools_give_dominant_to_02( ):
    '''Not composer-safe.'''
 
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[:])
 

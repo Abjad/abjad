@@ -5,7 +5,7 @@ from abjad.tools import construct
 def test_diatonicize_01( ):
    '''Diatonicize notes in staff.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    pitchtools.diatonicize(t)
 
    r'''\new Staff {

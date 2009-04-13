@@ -41,8 +41,8 @@ def test_parentage_signature_04( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
-   t = Voice(run(4))
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t = Voice(construct.run(4))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.diatonicize(t)
    t.notehead.color = 'red'
@@ -89,7 +89,7 @@ def test_parentage_signature_05( ):
 def test_parentage_signature_06( ):
    '''Leaves inside different Staves with the same name have the same
    parentage signature.'''
-   t = Container(Staff(run(2)) * 2)
+   t = Container(Staff(construct.run(2)) * 2)
    t[0].name = t[1].name = 'staff'
 
    r'''{

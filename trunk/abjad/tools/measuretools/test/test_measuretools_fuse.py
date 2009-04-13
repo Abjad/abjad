@@ -73,8 +73,8 @@ def test_measuretools_fuse_03( ):
       Helpers selects least common multiple of denominators.
       Beams are OK because they attach to leaves rather than containers.'''
 
-   m1 = RigidMeasure((1, 8), run(1))
-   m2 = RigidMeasure((1, 12), run(1))
+   m1 = RigidMeasure((1, 8), construct.run(1))
+   m2 = RigidMeasure((1, 12), construct.run(1))
    t = Voice([m1, m2])
    pitchtools.diatonicize(t)
    Beam(t.leaves)

@@ -24,7 +24,7 @@ def test_pitchtools_make_sharp_03( ):
 
 def test_pitchtools_make_sharp_04( ):
    '''The pitchtools.make_sharp( ) helper renotates all pitches in any arbirary expression.'''
-   t = Staff(run(12))
+   t = Staff(construct.run(12))
    pitchtools.chromaticize(t)
    pitchtools.make_sharp(t)
 

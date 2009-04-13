@@ -56,7 +56,7 @@ def test_leaftools_split_05( ):
    '''Split spanned leaf with spanner 
       crossing container boundaries.'''
 
-   t = Voice(run(1) + [FixedDurationTuplet((2, 8), run(3))])
+   t = Voice(construct.run(1) + [FixedDurationTuplet((2, 8), construct.run(3))])
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 

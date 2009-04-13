@@ -39,7 +39,7 @@ def test_container_pop_02( ):
    '''Containers pop nested containers correctly.
       Popped containers detach from both parent and spanners.'''
 
-   t = Staff(Container(run(2)) * 2)
+   t = Staff(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 

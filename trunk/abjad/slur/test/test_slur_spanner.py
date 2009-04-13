@@ -27,7 +27,7 @@ def test_slur_spanner_02( ):
 
 def test_slur_spanner_03( ):
    '''Position may be set to None, 'neutral', 'up' or 'down'. '''
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    p = Slur(t[:])
    p.position = None
    assert t.format == "\\new Staff {\n\tc'8 (\n\tc'8\n\tc'8\n\tc'8 )\n}"

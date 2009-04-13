@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_beam_01( ):
    '''Beam all measures in expr with plain old Beam spanner.'''
 
-   t = Staff(RigidMeasure((2, 8), run(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    measuretools.beam(t, style = None)
 
@@ -27,7 +27,7 @@ def test_measuretools_beam_01( ):
 def test_measuretools_beam_02( ):
    '''Beam all measures in expr with ComplexBeam.'''
 
-   t = Staff(RigidMeasure((2, 8), run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    measuretools.beam(t, style = 'complex')
 

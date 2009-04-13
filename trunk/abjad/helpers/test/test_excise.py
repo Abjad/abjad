@@ -272,7 +272,7 @@ def test_excise_05( ):
       trigger tuplet insertion.'''
 
    t = RigidMeasure((5, 6), 
-      [FixedDurationTuplet((4, 8), run(7))] + run(3, (1, 4)))
+      [FixedDurationTuplet((4, 8), construct.run(7))] + construct.run(3, (1, 4)))
    pitchtools.chromaticize(t)
 
    r'''
@@ -345,7 +345,7 @@ def test_excise_06( ):
       does not trigger trivial 1:1 tuplet insertion.'''
 
    t = RigidMeasure((5, 6), 
-      [FixedDurationTuplet((4, 8), run(7))] + run(3, (1, 4)))
+      [FixedDurationTuplet((4, 8), construct.run(7))] + construct.run(3, (1, 4)))
    pitchtools.chromaticize(t)
 
    r'''

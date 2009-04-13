@@ -188,7 +188,7 @@ def test_leaftools_scale_binary_30( ):
 
 def test_leaftools_scale_binary_31( ):
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    s = Tie(t.leaves)
    new = leaftools.scale_binary(t[0], Rational(1, 16))
 
@@ -212,7 +212,7 @@ def test_leaftools_scale_binary_32( ):
 
 def test_leaftools_scale_binary_33( ):
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    s = Tie(t.leaves)
    new = leaftools.scale_binary(t[0], Rational(5, 32))
 
@@ -226,9 +226,9 @@ def test_leaftools_scale_binary_33( ):
 
 def test_leaftools_scale_binary_40( ):
 
-   t = Staff(Voice(run(2)) * 2)
+   t = Staff(Voice(construct.run(2)) * 2)
    s = py.test.raises(ContiguityError, 'Tie(t[:])')
-   t = Staff(Container(run(2)) * 2)
+   t = Staff(Container(construct.run(2)) * 2)
    s = Tie(t[:])
    new = leaftools.scale_binary(t[0][0], Rational(5, 32))
 

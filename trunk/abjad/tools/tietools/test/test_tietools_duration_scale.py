@@ -5,7 +5,7 @@ from abjad.tools import construct
 def test_tietools_duration_scale_01( ):
    '''Scale trivial tie chain to nontrivial tie chain.'''
 
-   t = Staff(run(1))
+   t = Staff(construct.run(1))
    Beam(t[:])
    tietools.duration_scale(t[0].tie.chain, Rational(5, 4))
 

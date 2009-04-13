@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_fuse_binary_01( ):
    '''Wokrs with list of leaves.'''
-   fused = leaftools.fuse_binary(run(8, Rational(1, 4)))
+   fused = leaftools.fuse_binary(construct.run(8, Rational(1, 4)))
    assert len(fused) == 1 
    assert fused[0].duration.written == Rational(2)
 

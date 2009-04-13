@@ -5,7 +5,7 @@ import py.test
 def test_containertools_split_01( ):
    '''Split beamed triplet.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    tuplet = t[1]
    pitchtools.diatonicize(t)
    Beam(t[:])
@@ -50,7 +50,7 @@ def test_containertools_split_01( ):
 def test_containertools_split_02( ):
    '''Split binary measure.'''
 
-   t = Voice(RigidMeasure((3, 8), run(3)) * 2)
+   t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
    m = t[1]
    Beam(t[:])
    pitchtools.diatonicize(t)
@@ -90,7 +90,7 @@ def test_containertools_split_02( ):
 def test_containertools_split_03( ):
    '''Split nonbinary measure.'''
 
-   t = Voice(RigidMeasure((3, 9), run(3)) * 2)
+   t = Voice(RigidMeasure((3, 9), construct.run(3)) * 2)
    m = t[1]
    Beam(t[:])
    pitchtools.diatonicize(t)

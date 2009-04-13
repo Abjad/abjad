@@ -9,7 +9,7 @@ def test_spannertools_get_dominant_01( ):
       at which spanner attaches to subelement of first
       component in list.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -42,7 +42,7 @@ def test_spannertools_get_dominant_01( ):
 def test_spannertools_get_dominant_02( ):
    '''Beam, glissando and trill all dominante second sequential.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -59,7 +59,7 @@ def test_spannertools_get_dominant_02( ):
 def test_spannertools_get_dominant_03( ):
    '''Glissando and trill dominate last sequential.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -75,7 +75,7 @@ def test_spannertools_get_dominant_03( ):
 def test_spannertools_get_dominant_04( ):
    '''Beam and trill dominate first two sequentials.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -91,7 +91,7 @@ def test_spannertools_get_dominant_04( ):
 def test_spannertools_get_dominant_05( ):
    '''Glissando and trill dominate last two sequentials.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -107,7 +107,7 @@ def test_spannertools_get_dominant_05( ):
 def test_spannertools_get_dominant_06( ):
    '''Only trill dominates all three sequentials.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -122,7 +122,7 @@ def test_spannertools_get_dominant_06( ):
 def test_spannertools_get_dominant_07( ):
    '''Only trill dominates voice.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])
@@ -139,7 +139,7 @@ def test_spannertools_get_dominant_08( ):
       Note that trill attaches to notes.
       Note that beam and glissando attach to sequentials.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[1:])

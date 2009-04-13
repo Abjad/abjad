@@ -4,7 +4,7 @@ from abjad.checks import OctavationsOverlapping
 
 def test_octavation_01( ):
    '''Octavation has default start and stop arguments set to 0.'''
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    o = Octavation(t[ : ])
    assert o.start == o.stop == 0
    assert t.format == "\\new Staff {\n\t\\ottava #0\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\t\\ottava #0\n}"

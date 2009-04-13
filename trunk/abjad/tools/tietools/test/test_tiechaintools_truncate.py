@@ -25,7 +25,7 @@ def test_tietools_truncate_01( ):
 def test_tietools_truncate_02( ):
    '''No effect on length-1 tie chains.'''
 
-   t = Staff(run(1))
+   t = Staff(construct.run(1))
 
    tietools.truncate(t[0].tie.chain)
 

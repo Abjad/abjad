@@ -50,7 +50,7 @@ def test_containertools_shatter_02( ):
 def test_containertools_shatter_03( ):
    '''Shatter nested tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), run(3))
+   t = FixedDurationTuplet((2, 8), construct.run(3))
    Beam(t[:])
    donate(t[-1:], FixedDurationTuplet((1, 8), scale(3, (1, 16))))
    pitchtools.diatonicize(t)

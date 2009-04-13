@@ -4,8 +4,8 @@ from abjad import *
 def test_measuretools_project_01( ):
    '''Project 3/12 meter onto measure contents.'''
 
-   inner = FixedDurationTuplet((2, 16), run(3, Rational(1, 16)))
-   notes = run(2)
+   inner = FixedDurationTuplet((2, 16), construct.run(3, Rational(1, 16)))
+   notes = construct.run(2)
    outer = FixedDurationTuplet((2, 8), [inner] + notes)
    t = RigidMeasure((2, 8), [outer])
    pitchtools.diatonicize(t)

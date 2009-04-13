@@ -362,7 +362,7 @@ def test_leaf_aggregator_fracture_11( ):
    spanners attaching to any containers in the parentage of leaf.
    '''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[ : ])
 

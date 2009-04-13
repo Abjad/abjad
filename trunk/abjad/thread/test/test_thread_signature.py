@@ -8,8 +8,8 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Container(run(4))
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t = Container(construct.run(4))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -46,9 +46,9 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Voice(run(4))
+#   t = Voice(construct.run(4))
 #   t.name = 'foo'
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -85,8 +85,8 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Voice(run(4))
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t = Voice(construct.run(4))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -156,8 +156,8 @@ def test_thread_signature_04( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
-   t = Voice(run(4))
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t = Voice(construct.run(4))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.diatonicize(t)
    t.notehead.color = 'red'
@@ -196,9 +196,9 @@ def test_thread_signature_05( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    t.name = 'foo'
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.diatonicize(t)
@@ -284,8 +284,8 @@ def test_thread_signature_07( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Container(run(2))
-   t[1:1] = Container(Voice(run(1)) * 2) * 2
+   t = Container(construct.run(2))
+   t[1:1] = Container(Voice(construct.run(1)) * 2) * 2
    t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'
@@ -369,7 +369,7 @@ def test_thread_signature_09( ):
 def test_thread_signature_10( ):
    '''Measure and leaves must carry same thread signature.'''
 
-   t = Staff([DynamicMeasure(scale(2))] + run(2))
+   t = Staff([DynamicMeasure(scale(2))] + construct.run(2))
    pitchtools.diatonicize(t)
 
    r'''\new Staff {
@@ -388,7 +388,7 @@ def test_thread_signature_10( ):
 def test_thread_signature_11( ):
    '''Leaves inside different Staves have different thread signatures,
    even when the staves have the same name.'''
-   t = Container(Staff(run(2)) * 2)
+   t = Container(Staff(construct.run(2)) * 2)
    t[0].name = t[1].name = 'staff'
 
    r'''{

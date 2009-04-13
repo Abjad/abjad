@@ -4,7 +4,7 @@ from abjad import *
 def test_container_spanner_aggregator_detach_01( ):
    '''t.spanners._detach( ) detaches all spanners attaching to container t.'''
 
-   t = Staff(Container(run(2)) * 2)
+   t = Staff(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    p1 = Beam(t[:])
    p2 = Glissando(t[:])

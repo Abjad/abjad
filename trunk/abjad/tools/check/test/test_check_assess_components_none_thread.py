@@ -94,7 +94,7 @@ def test_assess_components_none_thread_06( ):
 def test_assess_components_none_thread_07( ):
    '''Voice, sequential and leaves all thread.'''
 
-   t = Voice(Container(run(4)) * 2)
+   t = Voice(Container(construct.run(4)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {
@@ -118,7 +118,7 @@ def test_assess_components_none_thread_07( ):
 def test_assess_components_none_thread_08( ):
    '''Anonymous voice, tuplets and leaves all thread.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {
@@ -140,7 +140,7 @@ def test_assess_components_none_thread_08( ):
 def test_assess_components_none_thread_09( ):
    '''Can not thread across anonymous voices.'''
 
-   t = Staff(Voice(run(4)) * 2)
+   t = Staff(Voice(construct.run(4)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Staff {
@@ -167,7 +167,7 @@ def test_assess_components_none_thread_09( ):
 def test_assess_components_none_thread_10( ):
    '''Can thread across like-named voices.'''
 
-   t = Staff(Voice(run(4)) * 2)
+   t = Staff(Voice(construct.run(4)) * 2)
    pitchtools.diatonicize(t)
    t[0].name = 'foo'
    t[1].name = 'foo'
@@ -193,7 +193,7 @@ def test_assess_components_none_thread_10( ):
 def test_assess_components_none_thread_11( ):
    '''Can not thread across differently named voices.'''
 
-   t = Staff(Voice(run(2)) * 2)
+   t = Staff(Voice(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    t[0].name = 'foo'
    t[1].name = 'bar'
@@ -218,7 +218,7 @@ def test_assess_components_none_thread_12( ):
    '''Can not thread across anonymous voices.
       Can not thread across anonymous staves.'''
 
-   t = Container(Staff([Voice(run(2))]) * 2)
+   t = Container(Staff([Voice(construct.run(2))]) * 2)
    pitchtools.diatonicize(t)
    
    r'''
@@ -245,7 +245,7 @@ def test_assess_components_none_thread_13( ):
    '''Can not thread across anonymous voices.
       Can not thread across anonymous staves.'''
 
-   t = Container(Staff(Voice(run(2)) * 2) * 2)
+   t = Container(Staff(Voice(construct.run(2)) * 2) * 2)
    pitchtools.diatonicize(t)
    t[0].parallel = True
    t[1].parallel = True
@@ -279,7 +279,7 @@ def test_assess_components_none_thread_13( ):
 def test_assess_components_none_thread_14( ):
    '''Anonymous voice, sequentials and leaves all thread.'''
 
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {
@@ -327,7 +327,7 @@ def test_assess_components_none_thread_15( ):
 def test_assess_components_none_thread_16( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(run(4)), Voice(run(4))])
+   t = Container([Container(construct.run(4)), Voice(construct.run(4))])
    pitchtools.diatonicize(t)
    
    r'''{
@@ -353,7 +353,7 @@ def test_assess_components_none_thread_16( ):
 def test_assess_components_none_thread_17( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Voice(run(4)), Container(run(4))])
+   t = Container([Voice(construct.run(4)), Container(construct.run(4))])
    pitchtools.diatonicize(t)
 
    r'''{
@@ -379,7 +379,7 @@ def test_assess_components_none_thread_17( ):
 def test_assess_components_none_thread_18( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(run(4)), Voice(run(4))])
+   t = Container([Container(construct.run(4)), Voice(construct.run(4))])
    t[1].name = 'foo'
    pitchtools.diatonicize(t)
 
@@ -406,7 +406,7 @@ def test_assess_components_none_thread_18( ):
 def test_assess_components_none_thread_19( ):
    '''Can not thread over differently named IMPLICIT voices.'''
 
-   t = Container([Voice(run(4)), Container(run(4))])
+   t = Container([Voice(construct.run(4)), Container(construct.run(4))])
    t[0].name = 'foo'
    pitchtools.diatonicize(t)
 
@@ -433,7 +433,7 @@ def test_assess_components_none_thread_19( ):
 def test_assess_components_none_thread_20( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(run(4)), Staff(run(4))])
+   t = Container([Container(construct.run(4)), Staff(construct.run(4))])
    pitchtools.diatonicize(t)
 
    r'''{
@@ -611,8 +611,8 @@ def test_assess_components_none_thread_26( ):
 def test_assess_components_none_thread_27( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container(run(4))
-   t.insert(0, Staff(run(4)))
+   t = Container(construct.run(4))
+   t.insert(0, Staff(construct.run(4)))
    pitchtools.diatonicize(t)
 
    r'''{
@@ -1108,8 +1108,8 @@ def test_assess_components_none_thread_40( ):
 def test_assess_components_none_thread_41( ):
    '''Can not thread across differently named anonymous voices.'''
 
-   t = Container(run(4))
-   t[0:0] = Voice(run(4)) * 2
+   t = Container(construct.run(4))
+   t[0:0] = Voice(construct.run(4)) * 2
    pitchtools.chromaticize(t)
 
    r'''{

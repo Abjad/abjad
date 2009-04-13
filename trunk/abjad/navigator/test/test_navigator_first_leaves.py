@@ -15,7 +15,7 @@ def test_navigator_first_leaves_01( ):
 def test_navigator_first_leaves_02( ):
    '''Return first leaves from parallel containers.'''
 
-   t = Container(Voice(run(2)) * 2)
+   t = Container(Voice(construct.run(2)) * 2)
    t.parallel = True
    pitchtools.diatonicize(t)
    leaves = t._navigator._firstLeaves

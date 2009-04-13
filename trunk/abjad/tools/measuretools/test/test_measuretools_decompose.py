@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_decompose_01( ):
    '''Decompose binary measures in voice.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 2)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[:])
 
@@ -37,7 +37,7 @@ def test_measuretools_decompose_01( ):
 def test_measuretools_decompose_02( ):
    '''Decompose nonbinary measures in voice.'''
 
-   t = Voice(RigidMeasure((2, 12), run(2)) * 2)
+   t = Voice(RigidMeasure((2, 12), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[:])
 
@@ -83,7 +83,7 @@ def test_measuretools_decompose_03( ):
    '''Decompose binary measure containing tuplets.'''
 
    t = Voice(RigidMeasure((3, 8), [
-      FixedDurationTuplet((2, 8), run(3)), Note(0, (1, 8))]) * 2)
+      FixedDurationTuplet((2, 8), construct.run(3)), Note(0, (1, 8))]) * 2)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 

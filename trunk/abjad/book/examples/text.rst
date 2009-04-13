@@ -2,7 +2,7 @@ This is **paragraph 1**.
 Now comes some Abjad code
 
 <abjad>
-   abjad> v = Voice(run(3))
+   abjad> v = Voice(construct.run(3))
    abjad> Beam(v)
    hide> write_lilypond(v, 'example1')
    abjad> show(v)

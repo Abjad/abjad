@@ -4,7 +4,7 @@ from abjad import *
 def test_spanners_01( ):
    '''Clear one spanner attaching to container.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -49,7 +49,7 @@ def test_spanners_01( ):
 def test_clear_02( ):
    '''Clear multiple spanners attaaching to container.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p1 = Beam(t[:])
    p2 = Trill(t[ : ])

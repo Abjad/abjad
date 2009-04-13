@@ -5,7 +5,7 @@ def test_measuretools_beam_together_01( ):
    '''Apply ComplexBeam to all measures in measures;
       set p.durations equal to preprolated measure durations.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 2)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    measuretools.beam_together(t[:])
 

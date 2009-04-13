@@ -11,7 +11,7 @@ def test_tietools_is_chain_02( ):
 
 
 def test_tietools_is_chain_03( ):
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    Tie(t[:2])
    assert tietools.is_chain(t[0].tie.chain)
    assert tietools.is_chain(t[1].tie.chain)
@@ -20,7 +20,7 @@ def test_tietools_is_chain_03( ):
 
 
 def test_tietools_is_chain_04( ):
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    Tie(t[:])
    assert tietools.is_chain(t[0].tie.chain)
    assert tietools.is_chain(t[1].tie.chain)

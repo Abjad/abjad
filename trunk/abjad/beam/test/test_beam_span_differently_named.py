@@ -5,9 +5,9 @@ import py.test
 def test_beam_span_differently_named_01( ):
    '''Abjad does NOT let you span across differently named Voices.'''
 
-   v1 = Voice(run(4))
+   v1 = Voice(construct.run(4))
    v1.name = 'foo'
-   v2 = Voice(run(4))
+   v2 = Voice(construct.run(4))
    v2.name = 'bar'
    t = Staff([v1, v2])
    pitchtools.chromaticize(t)
@@ -54,7 +54,7 @@ def test_beam_span_differently_named_02( ):
    '''Abjad does NOT let you span across Staves, even if they and
    all its sub-contexts are equally named.'''
 
-   t = Container(Staff(Voice(run(4)) * 2) * 2)
+   t = Container(Staff(Voice(construct.run(4)) * 2) * 2)
    t[0].parallel = True
    t[1].parallel = True
    t[0].name, t[1].name = 'foo', 'foo'

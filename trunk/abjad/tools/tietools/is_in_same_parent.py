@@ -9,7 +9,7 @@ def is_in_same_parent(expr):
 
       Example:
 
-      t = Staff(RigidMeasure((2, 8), run(2)) * 2)
+      t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
       Tie(t.leaves[1:3])
 
       \new Staff {

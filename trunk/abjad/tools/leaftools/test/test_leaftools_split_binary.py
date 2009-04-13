@@ -94,7 +94,7 @@ def test_leaftools_split_binary_05( ):
 def test_leaftools_split_binary_06( ):
    '''New leaves resulting from the splitting of the first leaf of a
    spanner are also spanned. '''
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    b = Beam(t.leaves)
    leaftools.split_binary(t[0], Rational(1, 32))
    for l in t.leaves:
@@ -104,7 +104,7 @@ def test_leaftools_split_binary_06( ):
 def test_leaftools_split_binary_07( ):
    '''New leaves resulting from the splitting of the last leaf of a
    spanner are also spanned. '''
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    b = Beam(t.leaves)
    leaftools.split_binary(t[-1], Rational(1, 32))
    for l in t.leaves:
@@ -128,7 +128,7 @@ def test_leaftools_split_binary_10( ):
 def test_leaftools_split_binary_11( ):
    '''Spanners are unaffected by leaf split.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    b = Beam(t.leaves)
    new = leaftools.split_binary(t[0], Rational(1, 16))
 
@@ -162,7 +162,7 @@ def test_leaftools_split_binary_20( ):
    '''Split leaf is not tied again when a Container 
       containing it is already Tie-spanned.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    s = Tie(t)
    new = leaftools.split_binary(t[0], Rational(5, 64))
 
@@ -177,7 +177,7 @@ def test_leaftools_split_binary_21( ):
    '''Split leaf is not tied again when a Container containing it is 
       already Tie-spanned.'''
 
-   t = Staff(Container(run(4)) * 2)
+   t = Staff(Container(construct.run(4)) * 2)
    s = Tie(t[:])
    new = leaftools.split_binary(t[0][0], Rational(5, 64))
 

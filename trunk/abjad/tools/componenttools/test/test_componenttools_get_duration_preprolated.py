@@ -19,7 +19,7 @@ def test_componenttools_get_duration_preprolated_02( ):
 def test_componenttools_get_duration_preprolated_03( ):
    '''Raise ContiguityError for components not in same parent.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {

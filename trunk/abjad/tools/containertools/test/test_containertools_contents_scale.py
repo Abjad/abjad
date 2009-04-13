@@ -99,7 +99,7 @@ def test_containertools_contents_scale_05( ):
    '''Scale mixed notes and tuplets.'''
 
    t = Voice([Note(0, (3, 16)),
-      FixedDurationTuplet((3, 8), run(4))])
+      FixedDurationTuplet((3, 8), construct.run(4))])
    pitchtools.diatonicize(t)
 
    r'''\new Voice {
@@ -160,8 +160,8 @@ def test_containertools_contents_scale_06( ):
 def test_containertools_contents_scale_07( ):
    '''Double all contents, including measure.'''
 
-   t = Voice(run(2))
-   t.append(RigidMeasure((2, 8), run(2)))
+   t = Voice(construct.run(2))
+   t.append(RigidMeasure((2, 8), construct.run(2)))
    pitchtools.diatonicize(t)
 
    r'''\new Voice {
@@ -189,8 +189,8 @@ def test_containertools_contents_scale_07( ):
 def test_containertools_contents_scale_08( ):
    '''Multiply all contents by 5/4, including measure.'''
 
-   t = Voice(run(2))
-   t.append(RigidMeasure((2, 8), run(2)))
+   t = Voice(construct.run(2))
+   t.append(RigidMeasure((2, 8), construct.run(2)))
    pitchtools.diatonicize(t)
 
    r'''\new Voice {

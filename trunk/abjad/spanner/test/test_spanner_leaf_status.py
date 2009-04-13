@@ -5,7 +5,7 @@ import py.test
 def test_spanner_leaf_status_01( ):
    '''Spanner attached to flat container.'''
 
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    pitchtools.chromaticize(t)
    p = Spanner(t)
 
@@ -29,8 +29,8 @@ def test_spanner_leaf_status_01( ):
 def test_spanner_leaf_status_02( ):
    '''Spanner attached to container with nested contents.'''
 
-   t = Voice(run(4))
-   t.insert(2, Container(run(2)))
+   t = Voice(construct.run(4))
+   t.insert(2, Container(construct.run(2)))
    pitchtools.chromaticize(t)
    p = Spanner(t[ : 3])
 
@@ -52,8 +52,8 @@ def test_spanner_leaf_status_02( ):
 #def test_spanner_leaf_status_03( ):
 #   '''Spanner attached to container with parallel nested contents.'''
 #
-#   t = Voice(run(4))
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t = Voice(construct.run(4))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.chromaticize(t)
 #

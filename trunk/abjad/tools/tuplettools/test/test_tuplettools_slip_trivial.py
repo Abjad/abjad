@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_tuplettools_slip_trivial_01( ):
-   t = Staff(FixedDurationTuplet((2, 8), run(2)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    assert len(t) == 2
 

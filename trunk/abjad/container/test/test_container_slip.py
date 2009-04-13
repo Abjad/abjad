@@ -4,7 +4,7 @@ from abjad import *
 def test_container_slip_01( ):
    '''Containers can 'slip out' of score structure.'''
 
-   t = Staff(Container(run(2)) * 2)
+   t = Staff(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t.leaves)
 

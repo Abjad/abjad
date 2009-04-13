@@ -42,7 +42,7 @@ def test_spanner_remove_02( ):
       Still not composer-safe.
       Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
    

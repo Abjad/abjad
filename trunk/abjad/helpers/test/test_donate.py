@@ -5,7 +5,7 @@ import py.test
 def test_donate_09( ):
    '''Donate from multiple containers to tuplet.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
@@ -47,7 +47,7 @@ def test_donate_09( ):
 def test_donate_02( ):
    '''Donate from container to voice.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    t.name = 'foo'
    pitchtools.diatonicize(t)
    Glissando(t[:])
@@ -94,7 +94,7 @@ def test_donate_02( ):
 def test_donate_03( ):
    '''Donate from container to tuplet.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)
@@ -204,7 +204,7 @@ def test_donate_06( ):
    '''Trying to bequeath from nonempty container 
       to leaf raises MusicContentsError.'''
 
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    Beam(t[:])
    pitchtools.diatonicize(t)
 
@@ -215,7 +215,7 @@ def test_donate_07( ):
    '''Trying to bequeath from nonempty container to 
       nonempty container raises MusicContentsError.'''
    
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    Beam(t[:])
    pitchtools.diatonicize(t)
 
@@ -226,7 +226,7 @@ def test_donate_07( ):
 def test_donate_08( ):
    '''Donate from note to rest.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)   
 
@@ -270,7 +270,7 @@ def test_donate_08( ):
 def test_donate_09( ):
    '''Donate from note to tuplet.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)   
@@ -318,7 +318,7 @@ def test_donate_09( ):
 def test_donate_10( ):
    '''Donors that are not parent-contiguous raise ContiguityError.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 

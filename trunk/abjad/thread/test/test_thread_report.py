@@ -8,8 +8,8 @@ import py.test
 #      Signature contains no explicit voice, staff or score.
 #      Outermost sequentials acts as signature root.'''
 #
-#   t = Container(run(4))
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t = Container(construct.run(4))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -49,9 +49,9 @@ import py.test
 #      Signature contains neither staff nor score.
 #      Named voice 'foo' acts as signature root.'''
 #
-#   t = Voice(run(4))
+#   t = Voice(construct.run(4))
 #   t.name = 'foo'
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -91,8 +91,8 @@ import py.test
 #      Signature contains neither staff nor score.
 #      Anonymous voice acts as signature root.'''
 #
-#   t = Voice(run(4))
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t = Voice(construct.run(4))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -131,8 +131,8 @@ def test_thread_report_04( ):
       Signature contains neither staff nor score.
       Outermost anonymous voice acts as signature root.'''
 
-   t = Voice(run(4))
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t = Voice(construct.run(4))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.diatonicize(t)
    t.notehead.color = 'red'
@@ -171,9 +171,9 @@ def test_thread_report_05( ):
       Signature contains neither staff nor score.
       Outermost instance of named voice 'foo' acts as signature root.'''
 
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    t.name = 'foo'
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.diatonicize(t)
@@ -250,8 +250,8 @@ def test_thread_report_06( ):
    
 def test_thread_report_07( ):
 
-   t = Container(run(2))
-   t[1:1] = Container(Voice(run(1)) * 2) * 2
+   t = Container(construct.run(2))
+   t[1:1] = Container(Voice(construct.run(1)) * 2) * 2
    t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'

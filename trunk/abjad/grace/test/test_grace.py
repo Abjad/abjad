@@ -38,7 +38,7 @@ def test_grace_02( ):
 def test_grace_03( ):
    '''Grace formats correctly as grace.'''
 
-   t = Grace(run(3))
+   t = Grace(construct.run(3))
    t.kind = 'grace'
    assert t.format == "\\grace {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -52,7 +52,7 @@ def test_grace_03( ):
 def test_grace_04( ):
    '''Grace formats correctly as acciaccatura.'''
 
-   t = Grace(run(3))
+   t = Grace(construct.run(3))
    t.kind = 'acciaccatura'
    assert t.format == "\\acciaccatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -66,7 +66,7 @@ def test_grace_04( ):
 def test_grace_05( ):
    '''Grace formats correctly as appoggiatura.'''
 
-   t = Grace(run(3))
+   t = Grace(construct.run(3))
    t.kind = 'appoggiatura'
    assert t.format == "\\appoggiatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -80,7 +80,7 @@ def test_grace_05( ):
 def test_grace_06( ):
    '''Grace formats correctly as after grace.'''
 
-   t = Grace(run(3))
+   t = Grace(construct.run(3))
    t.kind = 'after'
    assert t.format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -94,7 +94,7 @@ def test_grace_06( ):
 def test_grace_10( ):
    '''Grace containers can be appended.'''
 
-   t = Grace(run(2))
+   t = Grace(construct.run(2))
    n = Note(1, (1, 4))
    t.append(n)
    assert len(t) == 3
@@ -104,7 +104,7 @@ def test_grace_10( ):
 def test_grace_11( ):
    '''Grace containers can be extended.'''
 
-   t = Grace(run(2))
+   t = Grace(construct.run(2))
    ns = Note(1, (1, 4)) * 2
    t.extend(ns)
    assert len(t) == 4

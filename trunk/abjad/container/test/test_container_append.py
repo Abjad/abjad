@@ -5,9 +5,9 @@ import py.test
 def test_container_append_01( ):
    '''Append sequential to voice.'''
 
-   t = Voice(run(2))
+   t = Voice(construct.run(2))
    Beam(t[:])
-   t.append(Container(run(2)))
+   t.append(Container(construct.run(2)))
    pitchtools.diatonicize(t)
 
    r'''\new Voice {

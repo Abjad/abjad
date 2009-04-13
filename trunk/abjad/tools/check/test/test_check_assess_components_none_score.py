@@ -5,7 +5,7 @@ from abjad import *
 def test_assess_components_none_score_01( ):
    '''All components here in the same score.'''
    
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {

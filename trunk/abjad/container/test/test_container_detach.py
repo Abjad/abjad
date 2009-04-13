@@ -4,7 +4,7 @@ from abjad import *
 def test_container_detach_01( ):
    '''t.detach( ) detaches container t from both spanners and parentage.'''
 
-   t = Staff(Container(run(2)) * 2)
+   t = Staff(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[ : ])
    sequential = t[0]

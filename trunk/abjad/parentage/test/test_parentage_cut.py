@@ -65,7 +65,7 @@ def test_parentage_cut_02( ):
 def test_parentage_cut_03( ):
    '''Unspanned containers can parent-cut.'''
 
-   t = Staff(Container(run(2)) * 3)
+   t = Staff(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    sequential = t[1]
 

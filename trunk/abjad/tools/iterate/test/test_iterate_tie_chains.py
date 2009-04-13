@@ -4,7 +4,7 @@ from abjad import *
 def test_iterate_tie_chains_01( ):
    '''Yield successive tie chains.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
    Tie(t[:2])
    Tie(t[2:])
 
@@ -26,7 +26,7 @@ def test_iterate_tie_chains_01( ):
 def test_iterate_tie_chains_02( ):
    '''Yield successive tie chains.'''
 
-   t = Staff(run(4))
+   t = Staff(construct.run(4))
 
    r'''
    \new Staff {

@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_hew_01( ):
    '''Hew triplet.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -45,7 +45,7 @@ def test_containertools_hew_01( ):
 def test_containertools_hew_02( ):
    '''Hew binary measure.'''
 
-   t = Voice(RigidMeasure((3, 8), run(3)) * 2)
+   t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -81,7 +81,7 @@ def test_containertools_hew_02( ):
 def test_containertools_hew_03( ):
    '''Hew nonbinary measure.'''
 
-   t = Voice(RigidMeasure((3, 9), run(3)) * 2)
+   t = Voice(RigidMeasure((3, 9), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -230,7 +230,7 @@ def test_containertools_hew_09( ):
    '''Hewing a container with parent results in parented 
       sibling containers.'''
 
-   t = Staff([Voice([FixedMultiplierTuplet((4, 5), run(5))])])
+   t = Staff([Voice([FixedMultiplierTuplet((4, 5), construct.run(5))])])
    v = t[0]
    tuplet = v[0]
    Beam(tuplet)

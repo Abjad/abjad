@@ -82,7 +82,7 @@ def test_parentage_reattach_03( ):
       Unspanned containers can reattach to parentage.
       Unspanend containers that reattach are still well formed.'''
 
-   t = Staff(Container(run(2)) * 3)
+   t = Staff(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    sequential = t[1]
 
@@ -145,7 +145,7 @@ def test_parentage_reattach_04( ):
       Spanned containers can reattach to parentage.
       Spanned containers that reattach to parentage are again well formed.'''
 
-   t = Staff([Voice(Container(run(2)) * 2)])
+   t = Staff([Voice(Container(construct.run(2)) * 2)])
    sequential = t[0][0]
    pitchtools.diatonicize(t)
    p = Beam(t[0][:])

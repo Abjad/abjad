@@ -4,7 +4,7 @@ from abjad import *
 def test_spanner_getitem_01( ):
    '''Get at nonnegative index in spanner.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -29,7 +29,7 @@ def test_spanner_getitem_01( ):
 def test_spanner_getitem_02( ):
    '''Get at negative index in spanner.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -54,7 +54,7 @@ def test_spanner_getitem_02( ):
 def test_spanner_getitem_03( ):
    '''Get slice from spanner.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -80,7 +80,7 @@ def test_spanner_getitem_04( ):
    '''Get all spanner components.
       Equivalent to p.clear( ).'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 

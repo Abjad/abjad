@@ -7,7 +7,7 @@ def test_clone_unspan_01( ):
       Reapply spanners to components.
       Return unspanned copy.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 4)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
@@ -57,7 +57,7 @@ def test_clone_unspan_02( ):
       Reapply spanners to components.
       Return unspanned copy.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 4)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
@@ -103,7 +103,7 @@ def test_clone_unspan_03( ):
       Reapply spanners to components.
       Return unspanned copy.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 4)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
@@ -146,7 +146,7 @@ def test_clone_unspan_04( ):
       Reapply spanners to components.
       Return unspanned copy.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 4)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])
@@ -189,7 +189,7 @@ def test_clone_unspan_05( ):
       Return unspanned copy.
       Use optional 'n' argument for multiple copies.'''
 
-   t = Voice(RigidMeasure((2, 8), run(2)) * 4)
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    beam = Beam(t[:2] + t[2][:] + t[3][:])
    slur = Slur(t[0][:] + t[1][:] + t[2:])

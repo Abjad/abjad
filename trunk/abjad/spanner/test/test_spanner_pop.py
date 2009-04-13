@@ -4,7 +4,7 @@ from abjad import *
 def test_spanner_pop_01( ):
    '''Remove and return rightmost component in spanner.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
    

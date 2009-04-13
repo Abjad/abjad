@@ -18,15 +18,15 @@ def concentrate(expr, concentration_pairs, cyclic = True):
 
       Examples:
 
-      abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
+      abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
       abjad> print(measuretools.concentrate(t, [(3, 3)])[0])
       |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
-      abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
+      abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
       abjad> print(measuretools.concentrate(t, [(3, 2)])[0])
       |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
       
-      abjad> t = RigidMeasure((3, 16), run(3, Rational(1, 16)))
+      abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
       abjad> print(measuretools.concentrate(t, [(3, 1)])[0])
       |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
    '''

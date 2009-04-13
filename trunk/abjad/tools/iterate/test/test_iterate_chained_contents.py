@@ -6,7 +6,7 @@ def test_iterate_chained_contents_01( ):
    '''Iterate toplevel contents with tie chains in place of leaves.'''
 
    t = Staff(construct.notes(0, [(5, 32)] * 4))
-   t.insert(4, FixedDurationTuplet((2, 8), run(3)))
+   t.insert(4, FixedDurationTuplet((2, 8), construct.run(3)))
    pitchtools.diatonicize(t)
 
    r'''

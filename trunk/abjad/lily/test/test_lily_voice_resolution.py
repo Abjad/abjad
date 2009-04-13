@@ -7,8 +7,8 @@ import py.test
 #      in the middle of which there is a parallel.
 #      How does LilyPond resolve voices?'''
 #
-#   t = Container(run(4))
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t = Container(construct.run(4))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -44,9 +44,9 @@ import py.test
 #      in the middle of which there is a parallel.
 #      How does LilyPond resolve voices?'''
 #
-#   t = Voice(run(4))
+#   t = Voice(construct.run(4))
 #   t.name = 'foo'
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -83,8 +83,8 @@ import py.test
 #      in the middle of which there is a parallel.
 #      How does LilyPond resolve voices?'''
 #
-#   t = Voice(run(4))
-#   t.insert(2, Container(Container(run(2)) * 2))
+#   t = Voice(construct.run(4))
+#   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.notehead.color = 'red'
@@ -122,8 +122,8 @@ def test_lily_voice_resolution_04( ):
       which in turn contains two anonymous voices.
       How does LilyPond resolve voices?'''
 
-   t = Voice(run(4))
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t = Voice(construct.run(4))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.diatonicize(t)
    t.notehead.color = 'red'
@@ -160,9 +160,9 @@ def test_lily_voice_resolution_05( ):
       which in turn contains one like-named and one differently named voice.
       How does LilyPond resolve voices?'''
 
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    t.name = 'foo'
-   t.insert(2, Container(Voice(run(2)) * 2))
+   t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.diatonicize(t)
@@ -213,8 +213,8 @@ def test_lily_voice_resolution_07( ):
    '''Container containing a run of leaves.
       Two like-structured parallels in the middle of the run.'''
 
-   t = Container(run(2))
-   t[1:1] = Container(Voice(run(2)) * 2) * 2
+   t = Container(construct.run(2))
+   t[1:1] = Container(Voice(construct.run(2)) * 2) * 2
    t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'

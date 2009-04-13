@@ -27,7 +27,7 @@ def test_spannertools_withdraw_from_contained_01( ):
 def test_spannertools_withdraw_from_contained_02( ):
    '''Docs.'''
 
-   t = Staff(Container(run(2)) * 3)
+   t = Staff(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves[:3])
    Beam(t.leaves[3:])

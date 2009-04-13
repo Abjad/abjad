@@ -5,7 +5,7 @@ import py.test
 
 def test_assess_components_none_parent_01( ):
    
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {

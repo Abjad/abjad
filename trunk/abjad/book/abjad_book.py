@@ -30,7 +30,7 @@ Example (HTML document):
 
    This is an <b>HTML</b> document. Here is Abjad code:
    <abjad>
-      abjad> v = Voice(run(8))
+      abjad> v = Voice(construct.run(8))
       abjad> Beam(v)
       hide> write_lilypond(v, 'example1') ## this will insert an image here.
       abjad> show( )

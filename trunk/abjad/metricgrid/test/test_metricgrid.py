@@ -69,7 +69,7 @@ def test_metricgrid_03( ):
 def test_metricgrid_04( ):
    '''MetricGrid knows how to draw itself in the middle of a note. '''
 
-   t = Staff(run(8))
+   t = Staff(construct.run(8))
    m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
 
    r'''\new Staff {

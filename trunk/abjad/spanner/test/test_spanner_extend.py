@@ -4,7 +4,7 @@ from abjad import *
 def test_spanner_extend_01( ):
    '''Extend spanner to the right.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 
@@ -47,7 +47,7 @@ def test_spanner_extend_01( ):
 def test_spanner_extend_02( ):
    '''Extend spanner to the right.'''
    
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 

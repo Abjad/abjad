@@ -44,7 +44,7 @@ def test_containertools_contents_reverse_04( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to itself and with a parent.'''
 
-   t = Staff([DynamicMeasure(scale(8))] + run(2))
+   t = Staff([DynamicMeasure(scale(8))] + construct.run(2))
    beam = Beam(t[0])
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
@@ -57,7 +57,7 @@ def test_containertools_contents_reverse_05( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to its leaves and with a parent.'''
 
-   t = Staff([DynamicMeasure(scale(8))] + run(2))
+   t = Staff([DynamicMeasure(scale(8))] + construct.run(2))
    beam = Beam(t[0].leaves)
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])

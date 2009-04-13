@@ -6,8 +6,8 @@ def test_assess_components_thread_contiguous_01( ):
    '''True for thread contiguous components even when
       components are not strictly contiguous.'''
 
-   t = Voice(run(4))
-   t.insert(2, Voice(run(2)))
+   t = Voice(construct.run(4))
+   t.insert(2, Voice(construct.run(2)))
    pitchtools.diatonicize(t)
 
    r'''\new Voice {
@@ -30,8 +30,8 @@ def test_assess_components_thread_contiguous_02( ):
       So long as gaps are filled with foreign components
       that do not belong to thread.'''
 
-   t = Voice(run(4))
-   t.insert(2, Voice(run(2)))
+   t = Voice(construct.run(4))
+   t.insert(2, Voice(construct.run(2)))
    Container(t[:2])
    Container(t[-2:])
    pitchtools.diatonicize(t)
@@ -61,8 +61,8 @@ def test_assess_components_thread_contiguous_03( ):
    '''Components that start at the same moment are bad.
       Even if components are all part of the same thread.'''
 
-   t = Voice(run(4))
-   t.insert(2, Voice(run(2)))
+   t = Voice(construct.run(4))
+   t.insert(2, Voice(construct.run(2)))
    Container(t[:2])
    Container(t[-2:])
    pitchtools.diatonicize(t)
@@ -143,7 +143,7 @@ def test_assess_components_thread_contiguous_09( ):
 def test_assess_components_thread_contiguous_10( ):
    '''False when components belonging to same thread are ommitted.'''
 
-   t = Voice(Container(run(2)) * 3)
+   t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 

@@ -12,14 +12,14 @@ def test_coalesce_01( ):
 
 def test_coalesce_02( ):
    '''coalesce will not fuse unnamed voices.'''
-   t = Staff([Voice(run(2)), Voice(run(2))])
+   t = Staff([Voice(construct.run(2)), Voice(construct.run(2))])
    result = coalesce(t) 
    assert result is None
 
 
 def test_coalesce_03( ):
    '''coalesce does not fuse non-threads.'''
-   t = Staff([Voice(run(2)), Voice(run(2))])
+   t = Staff([Voice(construct.run(2)), Voice(construct.run(2))])
    t[0].name = 'one'
    t[1].name = 'two'
    result = coalesce(t) 
@@ -28,8 +28,8 @@ def test_coalesce_03( ):
 
 def test_coalesce_04( ):
    '''coalesce DOES NOT fuse tuplets. '''
-   t = Voice([FixedMultiplierTuplet((2, 3), run(3)), 
-              FixedMultiplierTuplet((2, 3), run(3))])
+   t = Voice([FixedMultiplierTuplet((2, 3), construct.run(3)), 
+              FixedMultiplierTuplet((2, 3), construct.run(3))])
    result = coalesce(t)
    assert result is None
    assert len(t) == 2
@@ -37,7 +37,7 @@ def test_coalesce_04( ):
 
 def test_coalesce_05( ):
    '''Coalesce can take a list of components.'''
-   t = Voice(run(4)) * 2
+   t = Voice(construct.run(4)) * 2
    t[0].name = t[1].name = 'voiceOne'
    result = coalesce(t)
    assert isinstance(result, Voice)  
@@ -48,7 +48,7 @@ def test_coalesce_06( ):
    '''Coalesce works on equally named Staves.'''
 
 
-   t = Staff(run(4)) * 2
+   t = Staff(construct.run(4)) * 2
    t[0].name = t[1].name = 'staffOne'
    result = coalesce(t)
    assert isinstance(result, Staff)  
@@ -58,7 +58,7 @@ def test_coalesce_06( ):
 def test_coalesce_07( ):
    '''Coalesce works on equally named Staves but not on differently named
    Voices.'''
-   t = Container(Staff([Voice(run(4))]) * 2)
+   t = Container(Staff([Voice(construct.run(4))]) * 2)
    t[0].name = t[1].name = 'staffOne'
    r'''
    {

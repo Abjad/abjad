@@ -78,7 +78,7 @@ def test_beam_span_anonymous_04( ):
       first and last leaves in contiguity chain format
       beam indications.'''
 
-   t = Staff([Container(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(construct.run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t)
 
    r'''\new Staff {
@@ -103,7 +103,7 @@ def test_beam_span_anonymous_05( ):
       intermediate attachment;
       first and last leaves in contiguity chain format beam indications.'''
 
-   t = Staff([Container(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(construct.run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t[ : ])
 
    r'''\new Staff {
@@ -130,7 +130,7 @@ def test_beam_span_anonymous_06( ):
       leaf-level attachment;
       first and last leaves in contiguity chain format beam indications.'''
 
-   t = Staff([Container(run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
+   t = Staff([Container(construct.run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t.leaves)
 
    r'''\new Staff {

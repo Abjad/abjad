@@ -6,7 +6,7 @@ def test_spannertools_get_contained_01( ):
    '''Return unordered set of spanners contained
       within any of the list of thread-contiguous components.'''
 
-   t = Voice(Container(run(2)) * 2)
+   t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
@@ -50,7 +50,7 @@ def test_spannertools_get_contained_02( ):
    '''Trying to get contained spanners across 
       non-thread-contiguous components raises ContiguityError.'''
 
-   t = Container(Voice(run(2)) * 2)
+   t = Container(Voice(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t.leaves[:2])
    Slur(t.leaves[2:])

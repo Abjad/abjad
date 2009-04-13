@@ -408,8 +408,8 @@ def __are_thread_contiguous_components(expr, klasses = (_Component),
 
       Example:
 
-      t = Voice(run(4))
-      t.insert(2, Voice(run(2)))
+      t = Voice(construct.run(4))
+      t.insert(2, Voice(construct.run(2)))
       Container(t[:2])
       Container(t[-2:])
       pitchtools.diatonicize(t)

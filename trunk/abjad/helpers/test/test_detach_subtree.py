@@ -4,8 +4,8 @@ from abjad import *
 def test_detach_subtree_01( ):
    '''Detach sequential from score tree.'''
 
-   t = Voice(run(2))
-   t.insert(1, Container(run(2)))
+   t = Voice(construct.run(2))
+   t.insert(1, Container(construct.run(2)))
    pitchtools.diatonicize(t)
    Beam(t.leaves)
    Glissando(t.leaves)
@@ -35,8 +35,8 @@ def test_detach_subtree_01( ):
 def test_detach_subtree_02( ):
    '''Detach leaf from score tree.'''
 
-   t = Voice(run(2))
-   t.insert(1, Container(run(2)))
+   t = Voice(construct.run(2))
+   t.insert(1, Container(construct.run(2)))
    pitchtools.diatonicize(t)
    Beam(t.leaves)
    Glissando(t.leaves)

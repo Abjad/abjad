@@ -32,7 +32,7 @@ def test_leaftools_duration_change_02( ):
    '''Change leaf tied leaf to tied value.
       Duplicate ties are not created.'''
 
-   t = Voice(run(4))
+   t = Voice(construct.run(4))
    Tie(t[:2])
    Beam(t[:2])
 

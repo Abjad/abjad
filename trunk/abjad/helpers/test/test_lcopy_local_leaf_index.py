@@ -5,7 +5,7 @@ def test_lcopy_local_leaf_index_01( ):
    '''Copy consecutive leaves from tuplet in staff;
       pass start and stop indices local to tuplet.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), run(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -43,7 +43,7 @@ def test_lcopy_local_leaf_index_02( ):
    '''Copy consecutive leaves from measure in staff;
       pass start and stop indices local to measure.'''
 
-   t = Staff(RigidMeasure((3, 8), run(3)) * 2)
+   t = Staff(RigidMeasure((3, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -78,7 +78,7 @@ def test_lcopy_local_leaf_index_03( ):
    '''Copy consecutive leaves from nonbinary measure in staff;
       pass start and stop indices local to measure.'''
 
-   t = Staff(RigidMeasure((3, 9), run(3)) * 2)
+   t = Staff(RigidMeasure((3, 9), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
