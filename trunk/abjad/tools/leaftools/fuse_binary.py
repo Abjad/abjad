@@ -1,8 +1,8 @@
-from abjad.helpers.leaf_scale_binary import leaf_scale_binary
 from abjad.tools import check
+from abjad.tools.leaftools.scale_binary import scale_binary
 
 
-def leaves_fuse_binary(leaves):
+def fuse_binary(leaves):
    '''Fuse duration of all leaves in leaves.
       Rewrite duration of first leaf in leaf equal to sum.
       Detach all leaves other than first from score.
@@ -14,4 +14,4 @@ def leaves_fuse_binary(leaves):
    total_written = sum([leaf.duration.written for leaf in leaves])
    for leaf in leaves[1:]:
       leaf.detach( )
-   return leaf_scale_binary(leaves[0], total_written)
+   return scale_binary(leaves[0], total_written)

@@ -1,5 +1,4 @@
 from abjad.helpers.bequeath import bequeath
-from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 from abjad.tools import containertools

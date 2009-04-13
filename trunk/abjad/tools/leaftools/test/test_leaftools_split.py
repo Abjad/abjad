@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_leaf_split_01( ):
+def test_leaftools_split_01( ):
    '''Split duration equals 0. 
       Leaf is not split and is left unmodified.'''
    t = Note(0, (1, 4))
-   new = leaf_split(t, Rational(0))
+   new = leaftools.split(t, Rational(0))
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
@@ -13,11 +13,11 @@ def test_leaf_split_01( ):
    assert new[0] == t
 
 
-def test_leaf_split_02( ):
+def test_leaftools_split_02( ):
    '''Split duration >= Leaf duration. 
       Leaf is not split and is left unmodified.'''
    t = Note(0, (1, 4))
-   new = leaf_split(t, Rational(3, 4))
+   new = leaftools.split(t, Rational(3, 4))
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
@@ -25,10 +25,10 @@ def test_leaf_split_02( ):
    assert new[0] == t
 
 
-def test_leaf_split_03( ):
+def test_leaftools_split_03( ):
    '''Split returns two Leaves.'''
    t = Note(0, (1, 4))
-   new = leaf_split(t, Rational(1, 8))
+   new = leaftools.split(t, Rational(1, 8))
    assert isinstance(new, list)
    assert len(new) == 2
    assert isinstance(new[0], Note)
@@ -36,10 +36,10 @@ def test_leaf_split_03( ):
    assert new[1].duration.written == Rational(1, 8)
 
 
-def test_leaf_split_04( ):
+def test_leaftools_split_04( ):
    '''Split returns two FixedDurationTuplets.'''
    t = Note(0, (1, 4))
-   new = leaf_split(t, Rational(1, 12))
+   new = leaftools.split(t, Rational(1, 12))
    assert isinstance(new, list)
    assert len(new) == 2
    assert isinstance(new[0], FixedDurationTuplet)
@@ -52,7 +52,7 @@ def test_leaf_split_04( ):
    assert new[1][0].duration.written == Rational(1, 4)
 
 
-def test_leaf_split_05( ):
+def test_leaftools_split_05( ):
    '''Split spanned leaf with spanner 
       crossing container boundaries.'''
 
@@ -69,7 +69,7 @@ def test_leaf_split_05( ):
       }
    }'''
 
-   leaf_split(t.leaves[1], Rational(1, 24))
+   leaftools.split(t.leaves[1], Rational(1, 24))
 
    r'''\new Voice {
       c'8 [

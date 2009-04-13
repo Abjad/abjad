@@ -8,9 +8,9 @@ An Abjad <_Leaf> with duration <em>d</em> can be split in two Leaves with durati
 
 <p>
 There are two helper functions for doing this: 
-<code>leaf_split( )</code> 
+<code>leaftools.split( )</code> 
 and
-<code>leaf_split_binary( )</code>.
+<code>leaftools.split_binary( )</code>.
 </p>
 
 <p>
@@ -18,11 +18,11 @@ Both functions take two parameters: the duration <code>(n, d)</code> at which th
 </p>
 
 <p>
-<code>leaf_split( )</code> will accept any duration smaller than the duration of the <_Leaf> to split. 
+<code>leaftools.split( )</code> will accept any duration smaller than the duration of the <_Leaf> to split. 
 </p>
 
 <p>
-<code>leaf_split_binary( )</code> will only take durations with a power of 2 as denominator.
+<code>leaftools.split_binary( )</code> will only take durations with a power of 2 as denominator.
 </p>
 
 <p>
@@ -35,21 +35,21 @@ Both functions behave the same way when resulting durations <em>e</em> and <em>f
 
 <table width="100%">
 <tr>
-   <th><code>leaf_split( )</code></th>
-   <th><code>leaf_split_binary( )</code></th>
+   <th><code>leaftools.split( )</code></th>
+   <th><code>leaftools.split_binary( )</code></th>
 </tr>
 <tr>
    <td>
       <pre>
          abjad> n = Note(0, (1, 4))
-         abjad> leaf_split((1, 8), n)
+         abjad> leaftools.split((1, 8), n)
          [Note(c', 8), Note(c', 8)]
       </pre>
    </td>
    <td>
       <pre>
          abjad> n = Note(0, (1, 4))
-         abjad> leaf_split_binary((1, 8), n)
+         abjad> leaftools.split_binary((1, 8), n)
          [[Note(c', 8)], [Note(c', 8)]]
       </pre>
    </td>
@@ -57,36 +57,36 @@ Both functions behave the same way when resulting durations <em>e</em> and <em>f
 </table>
 
 <p>
-Notice that <code>leaf_split( )</code> returns a list of 2 Leaves, while
-<code>leaf_split_binary( )</code> returns a list of two lists, each with a <_Leaf> in this case.
+Notice that <code>leaftools.split( )</code> returns a list of 2 Leaves, while
+<code>leaftools.split_binary( )</code> returns a list of two lists, each with a <_Leaf> in this case.
 The reason for this will become clear.
 </p>
 
 <p>
-When the duration attribute is not <b>notehead-assignable</b>, <code>leaf_split( )</code> will wrap the splitted Leaves in a Tuplet;
+When the duration attribute is not <b>notehead-assignable</b>, <code>leaftools.split( )</code> will wrap the splitted Leaves in a Tuplet;
 </p>
 
 <p>
-<code>leaf_split_binary( )</code> will return splitted Leaves.
+<code>leaftools.split_binary( )</code> will return splitted Leaves.
 </p>
 
 <table width="100%">
 <tr>
-   <th><code>leaf_split( )</code></th>
-   <th><code>leaf_split_binary( )</code></th>
+   <th><code>leaftools.split( )</code></th>
+   <th><code>leaftools.split_binary( )</code></th>
 </tr>
 <tr>
    <td>
       <pre>
          abjad> n = Note(0, (1, 4))
-         abjad> leaf_split((5, 32), n)
+         abjad> leaftools.split((5, 32), n)
          [FixedDurationTuplet(5/32, [c'4]), Note(c', 16.)]
       </pre>
    </td>
    <td>
       <pre>
          abjad> n = Note(0, (1, 4))
-         abjad> leaf_split_binary((5, 32), n)
+         abjad> leaftools.split_binary((5, 32), n)
          [[Note(c', 8), Note(c', 32)], [Note(c', 16.)]]
       </pre>
    </td>
@@ -99,7 +99,7 @@ When the duration attribute is not <b>notehead-assignable</b>, <code>leaf_split(
 <to-do>
 
 <p>
-Do we really need <code>leaf_split_binary( )</code> to return a list of two lists? Why not just a flat list of leaves?
+Do we really need <code>leaftools.split_binary( )</code> to return a list of two lists? Why not just a flat list of leaves?
 </p>
 
 </to-do>

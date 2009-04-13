@@ -1,13 +1,13 @@
 from abjad.exceptions.exceptions import AssignabilityError
-from abjad.tools import clone
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
+from abjad.tools import clone
 from abjad.tools import construct
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
    
-def leaf_duration_change(leaf, new_written_duration):
+def duration_change(leaf, new_written_duration):
    '''Change the written duration of leaf, splicing tied notes
       for nonassignable durations like 5/16.
 

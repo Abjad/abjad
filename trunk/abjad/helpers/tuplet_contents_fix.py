@@ -1,6 +1,6 @@
-from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
+from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
@@ -28,6 +28,6 @@ def tuplet_contents_fix(tuplet):
       if isinstance(component, _Leaf):
          old_written_duration = component.duration.written
          new_written_duration = leaf_multiplier * old_written_duration
-         leaf_duration_change(component, new_written_duration)
+         leaftools.duration_change(component, new_written_duration)
 
    return tuplet

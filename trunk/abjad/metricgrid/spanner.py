@@ -1,11 +1,9 @@
-from abjad.tools import mathtools
-from abjad.helpers.leaf_split import leaf_split
-from abjad.helpers.leaf_split_binary import leaf_split_binary
-from abjad.helpers.leaves_fuse_binary import leaves_fuse_binary
 from abjad.meter.meter import Meter
 from abjad.metricgrid.format import _MetricGridSpannerFormatInterface
 from abjad.spanner.spanner import Spanner
 from abjad.tie.spanner import Tie
+from abjad.tools import leaftools
+from abjad.tools import mathtools
 
 
 class MetricGrid(Spanner):
@@ -59,7 +57,7 @@ class MetricGrid(Spanner):
             ## TODO: this is very hacky. Find better solution
             if len(r) > 0:
                r[0].grace.after = r[-1].grace.after
-            leaves_fuse_binary(r)
+            leaftools.fuse_binary(r)
          
    def _matchingMeter(self, leaf):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''
@@ -122,10 +120,10 @@ class MetricGrid(Spanner):
                splitdur = meter.offset - leaf.offset.score
                ## if splitdur not m / 2**n
                if mathtools.is_power_of_two(splitdur._denominator):
-                  leaves_splitted = leaf_split_binary(leaf, splitdur)
+                  leaves_splitted = leaftools.split_binary(leaf, splitdur)
                   leaf = leaves_splitted[1][0]
                else:
-                  leaves_splitted = leaf_split(leaf, splitdur)
+                  leaves_splitted = leaftools.split(leaf, splitdur)
                   leaf = leaves_splitted[1].leaves[0]
             else:
                ## only advance if we have not split.

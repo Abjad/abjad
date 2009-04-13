@@ -1,14 +1,13 @@
 from abjad.component.component import _Component
 from abjad.container.container import Container
-from abjad.tools import clone
-from abjad.tools import durtools
 from abjad.helpers.excise import excise
-from abjad.tools import iterate
 from abjad.helpers.lcopy import lcopy
-from abjad.helpers.leaf_scale import leaf_scale
-from abjad.helpers.leaf_split import leaf_split
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
+from abjad.tools import clone
+from abjad.tools import durtools
+from abjad.tools import iterate
+from abjad.tools import leaftools
 
 
 def scopy(expr, start = 0, stop = None):
@@ -41,7 +40,7 @@ def _scopy_leaf(leaf, start, stop):
    if total == 0:
       return None
    new = clone.fracture([leaf])[0]
-   new = leaf_scale(new, total)
+   new = leaftools.scale(new, total)
    return new
 
 
@@ -51,11 +50,11 @@ def _scopy_container(container, start, stop):
    leaf_start = container.leaves[0]
    leaf_end = container.leaves[-1]
    # split first leaf
-   leaf_start_splitted = leaf_split(leaf_start, first_dif)
+   leaf_start_splitted = leaftools.split(leaf_start, first_dif)
    if len(leaf_start_splitted) == 2:
       excise(leaf_start_splitted[0])
    # split second leaf
-   leaf_end_splitted = leaf_split(leaf_end, second_dif)
+   leaf_end_splitted = leaftools.split(leaf_end, second_dif)
    if len(leaf_end_splitted) == 2:
       excise(leaf_end_splitted[1])
    return container

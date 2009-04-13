@@ -1,9 +1,9 @@
 from abjad.component.component import _Component
 from abjad.exceptions.exceptions import NegativeDurationError
-from abjad.helpers.leaf_duration_change import leaf_duration_change
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tools import componenttools
+from abjad.tools import leaftools
 
 
 ## TODO: Generalize to cut( ) on either left or right edge. ##
@@ -29,7 +29,7 @@ def by_duration(component, duration):
       new_prolated_duration = component.duration.prolated - duration
       prolation = component.duration.prolation
       new_written_duration = new_prolated_duration / prolation
-      result = leaf_duration_change(component, new_written_duration)
+      result = leaftools.duration_change(component, new_written_duration)
    else:
       container = component
       components, accumulated_duration = \

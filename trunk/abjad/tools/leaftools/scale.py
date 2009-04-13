@@ -1,10 +1,10 @@
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.bequeath import bequeath
-from abjad.tools import mathtools
-from abjad.tools import clone
-from abjad.tools import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
+from abjad.tools import clone
+from abjad.tools import iterate
+from abjad.tools import mathtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
@@ -13,10 +13,10 @@ from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 ##   we are not really scaling.
 ## - should multipliers be retained in setting of new duration ?
 
-def leaf_scale(leaf, dur):
+def scale(leaf, dur):
    '''Example:
       
-      >>> leaf_scale(Note(0, (1, 8)), Rational(5, 13))
+      >>> leaftools.scale(Note(0, (1, 8)), Rational(5, 13))
       FixedDurationTuplet((5, 13), [Note(0, (1, 4))])'''
 
    assert isinstance(leaf, _Leaf) 

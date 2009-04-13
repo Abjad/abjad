@@ -1,11 +1,11 @@
 from abjad.exceptions.exceptions import AssignabilityError
 from abjad.helpers.bequeath import bequeath
-from abjad.tools import clone
-from abjad.tools import durtools 
-from abjad.tools import iterate
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
+from abjad.tools import clone
+from abjad.tools import durtools 
+from abjad.tools import iterate
 
 
 ## NOTE: (or rather questions) 
@@ -13,10 +13,10 @@ from abjad.tie.spanner import Tie
 ##   we are not really scaling.
 ## - should multipliers be retained in setting of new duration ?
 
-def leaf_scale_binary(leaf, dur):
+def scale_binary(leaf, dur):
    '''Example:
       
-      >>> leaf_scale_binary(Note(0, (1, 8)), Rational(5, 16))
+      >>> leaftools.scale_binary(Note(0, (1, 8)), Rational(5, 16))
       [Note(0, (1, 4), Note(0, (1,16)]'''
 
    assert isinstance(leaf, _Leaf)

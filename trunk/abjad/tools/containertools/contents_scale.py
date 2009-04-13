@@ -1,4 +1,3 @@
-from abjad.helpers.leaf_duration_scale import leaf_duration_scale
 from abjad.helpers.tuplet_scale import tuplet_scale
 from abjad.leaf.leaf import _Leaf
 from abjad.measure.measure import _Measure

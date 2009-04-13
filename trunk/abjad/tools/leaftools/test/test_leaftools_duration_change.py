@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_duration_change_01( ):
+def test_leaftools_duration_change_01( ):
    '''Change leaf to tied duration.'''
 
    t = Voice(scale(4))
@@ -14,7 +14,7 @@ def test_leaf_duration_change_01( ):
       f'8
    }'''
 
-   leaf_duration_change(t[1], Rational(5, 32))
+   leaftools.duration_change(t[1], Rational(5, 32))
 
    r'''\new Voice {
       c'8 [
@@ -28,7 +28,7 @@ def test_leaf_duration_change_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ~\n\td'32 ]\n\te'8\n\tf'8\n}"
    
 
-def test_leaf_duration_change_02( ):
+def test_leaftools_duration_change_02( ):
    '''Change leaf tied leaf to tied value.
       Duplicate ties are not created.'''
 
@@ -43,7 +43,7 @@ def test_leaf_duration_change_02( ):
       c'8
    }'''
 
-   leaf_duration_change(t[1], Rational(5, 32))
+   leaftools.duration_change(t[1], Rational(5, 32))
 
    r'''\new Voice {
       c'8 [ ~
@@ -57,7 +57,7 @@ def test_leaf_duration_change_02( ):
    assert "\\new Voice {\n\tc'8 [ ~\n\tc'8 ~\n\tc'32 ]\n\tc'8\n\tc'8\n}"
 
 
-def test_leaf_duration_change_03( ):
+def test_leaftools_duration_change_03( ):
    '''Change leaf to nontied duration.
       Same as t.duration.written = Rational(3, 16).'''
 
@@ -71,7 +71,7 @@ def test_leaf_duration_change_03( ):
       f'8
    }'''
 
-   leaf_duration_change(t[1], Rational(3, 16))
+   leaftools.duration_change(t[1], Rational(3, 16))
 
    r'''\new Voice {
       c'8 [
@@ -98,7 +98,7 @@ def test_change_leaf_duration_04( ):
       f'8
    }'''
 
-   leaf_duration_change(t[1], Rational(5, 48))
+   leaftools.duration_change(t[1], Rational(5, 48))
 
    r'''\new Voice {
            c'8 [
@@ -128,7 +128,7 @@ def test_change_leaf_duration_05( ):
       f'8
    }'''
 
-   leaf_duration_change(t[1], Rational(1, 12))
+   leaftools.duration_change(t[1], Rational(1, 12))
 
    r'''\new Voice {
            c'8 [

@@ -1,8 +1,8 @@
-from abjad.helpers.leaf_duration_scale import leaf_duration_scale
-from abjad.tools import durtools
 from abjad.helpers.tuplet_contents_fix import tuplet_contents_fix
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
+from abjad.tools import durtools
+from abjad.tools import leaftools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
@@ -30,7 +30,7 @@ def tuplet_scale(tuplet, multiplier):
    if durtools.is_assignable(multiplier):
       for component in tuplet[:]:
          if isinstance(component, _Leaf):
-            leaf_duration_scale(component, multiplier)
+            leaftools.duration_scale(component, multiplier)
 
    # otherwise doctor up tuplet multiplier, if necessary
    elif not durtools.is_tuplet_multiplier(tuplet.duration.multiplier):

@@ -2,7 +2,7 @@ from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 
 
-def leaf_duration_rewrite(leaf, target):
+def duration_rewrite(leaf, target):
    '''Externalization of t.duration.rewrite( ).
       Return leaf.'''
 
