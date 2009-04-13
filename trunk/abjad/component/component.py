@@ -263,17 +263,6 @@ class _Component(_Abjad):
 
    ## PUBLIC METHODS ##
 
-#   ## TODO: Externalize _Component.detach( ) ##
-#
-#   def detach(self):
-#      '''Detach component from parentage.
-#         Detach component from spanners.
-#         Detach children of component from spanners.
-#         Return receipt.'''
-#      from abjad.tools import componenttools
-#      receipt = componenttools.detach(self)
-#      return receipt
-
    ## TODO: Externalize _Component.slip( ) ##
 
    def slip(self):

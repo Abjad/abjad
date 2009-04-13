@@ -1,5 +1,4 @@
 from abjad.component.component import _Component
-from abjad.receipt.detach import _DetachReceipt
 from abjad.tools.spannertools.withdraw_from_contained import \
    _withdraw_from_contained
 
@@ -23,5 +22,4 @@ def detach(component):
    spanners = component.spanners._detach( )
    _withdraw_from_contained([component])
 
-   receipt = _DetachReceipt(component, parentage, spanners)
-   return receipt
+   return component

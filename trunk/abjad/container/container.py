@@ -106,8 +106,7 @@ class Container(_Component):
          _withdraw_from_crossing([expr])
          expr.parentage._switch(self)
          self._music.insert(i, expr)
-         ## TODO: Can this _DetachReceipt be eliminated? ##
-         detach_receipt = componenttools.detach(old)
+         componenttools.detach(old)
          for spanner, index in spanners_receipt:
             spanner._insert(index, expr)
             expr.spanners._add(spanner)
