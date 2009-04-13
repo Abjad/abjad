@@ -1,6 +1,5 @@
 from abjad import *
-from abjad.tools.componenttools.give_spanned_music_to import \
-   _give_spanned_music_to
+from abjad.tools.componenttools.give_music_to import _give_music_to
 import py.test
 
 
@@ -25,7 +24,7 @@ def test_componenttools_give_spanend_music_to_01( ):
 
    donor = t[0]
    recipient = Voice([ ])
-   _give_spanned_music_to([donor], recipient)
+   _give_music_to([donor], recipient)
 
    "Container t is now ..."
    
@@ -56,13 +55,13 @@ def test_componenttools_give_spanend_music_to_01( ):
    assert recipient.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
 
 
-def test_componenttools_give_spanned_music_to_02( ):
+def test_componenttools_give_music_to_02( ):
    '''When donor is leaf, do nothing.'''
 
    donor = Note(0, (1, 8))
    recipient = Voice([ ])
   
-   _give_spanned_music_to([donor], recipient)
+   _give_music_to([donor], recipient)
 
    assert check.wf(donor)
    assert donor.format == "c'8"
@@ -71,7 +70,7 @@ def test_componenttools_give_spanned_music_to_02( ):
    assert recipient.format == '\\new Voice {\n}'
 
 
-def test_componenttools_give_spanned_music_to_03( ):
+def test_componenttools_give_music_to_03( ):
    '''When recipient is unable to accept donated music,
       raise MusicContentsError.'''
 
@@ -79,4 +78,4 @@ def test_componenttools_give_spanned_music_to_03( ):
    recipient = Voice(construct.scale(4))
 
    assert py.test.raises(
-      MusicContentsError, '_give_spanned_music_to([donor], recipient)')
+      MusicContentsError, '_give_music_to([donor], recipient)')

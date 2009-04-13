@@ -1,11 +1,11 @@
+from abjad.container.container import Container
 from abjad.exceptions.exceptions import MusicContentsError
+from abjad.leaf.leaf import _Leaf
 from abjad.tools import check
 from abjad.tools.parenttools.switch import _switch
 
 
-## TODO: Rename to _give_music_to( ) ##
-
-def _give_spanned_music_to(donors, recipient):
+def _give_music_to(donors, recipient):
    '''Give any music belong to donor components 'donors'
       to recipient component 'recipient'.
       Works great when 'recipient' is an empty container.
@@ -19,8 +19,6 @@ def _give_spanned_music_to(donors, recipient):
 
       Helper is not composer-safe and may cause discontiguous spanners.'''
 
-   from abjad.container.container import Container
-   from abjad.leaf.leaf import _Leaf
    check.assert_components(donors, contiguity = 'strict', share = 'parent')
 
    ## if recipient is leaf or nonempty container, 
