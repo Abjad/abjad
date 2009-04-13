@@ -4,6 +4,9 @@ from abjad.tools.spannertools.withdraw_from_contained import \
    _withdraw_from_contained
 
 
+## TODO: Deprecate _DetachReceipt ##
+## TODO: Deprecate all receipts. ##
+
 def detach(component):
    '''Detach component from parentage.
       Detach component from spanners.

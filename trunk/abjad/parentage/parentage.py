@@ -59,20 +59,6 @@ class _Parentage(_Interface):
          if isinstance(component, klass):
             return component
 
-   ## TODO: Deprecate _Parentage._reattach( ) ##
-
-   def _reattach(self, receipt):
-      '''Reattach client to parent described in receipt.
-         Empty receipt and return client.'''
-      client = self._client
-      assert client is receipt._component
-      parent = receipt._parent
-      index = receipt._index
-      parent._music.insert(index, client)
-      self.__parent = parent
-      receipt._empty( )
-      return client
-
    def _switch(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
       self._cut( )

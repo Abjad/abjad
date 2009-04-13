@@ -274,18 +274,6 @@ class _Component(_Abjad):
       receipt = componenttools.detach(self)
       return receipt
 
-   ## TODO: Externalize or eliminate _Component.reattach( ) ##
-
-   def reattach(self, receipt):
-      '''Reattach component to both parentage in receipt.
-         Reattach component to spanners in receipt.
-         Empty receipt and return component.'''
-      assert self is receipt._component
-      self.parentage._reattach(receipt._parentage)
-      self.spanners._reattach(receipt._spanners)
-      receipt._empty( )
-      return self
-
    ## TODO: Externalize _Component.slip( ) ##
 
    def slip(self):
