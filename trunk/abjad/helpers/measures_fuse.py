@@ -1,4 +1,5 @@
 from abjad.helpers.container_scale import container_scale
+from abjad.measure.measure import _Measure
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 from abjad.tools import check
@@ -12,7 +13,8 @@ def measures_fuse(measure_list):
    '''Fuse measures in measure_list.
       Calculate best new time signature.'''
 
-   assert check.is_measure_list(measure_list)
+   check.assert_components(measure_list, klasses = (_Measure, ), 
+      contiguity = 'strict', share = 'parent')
 
    if len(measure_list) == 0:
       return None

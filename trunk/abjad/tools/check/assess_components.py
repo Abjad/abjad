@@ -7,7 +7,7 @@ import types
 ##       This will prevent needing to manifest large lists
 ##       of leaves for checking wiht check.assess_components( ).
 
-def assess_components(expr, 
+def assess_components(expr, klasses = (_Component, ), 
    contiguity = None, share = None, allow_orphans = True):
    '''Assert expr is a Python list of Abjad components.
       Set _contiguity_ to None, 'strict' or 'thread'.
@@ -31,16 +31,19 @@ def assess_components(expr,
    if contiguity is None:
       
       if share is None:
-         return __are_components(expr)
+         return __are_components(expr, klasses = klasses)
 
       elif share == 'parent':
-         return __are_components_in_same_parent(expr, allow_orphans)
+         return __are_components_in_same_parent(expr, 
+            klasses = klasses, allow_orphans = allow_orphans)
 
       elif share == 'score':
-         return __are_components_in_same_score(expr, allow_orphans)
+         return __are_components_in_same_score(expr, 
+            klasses = klasses, allow_orphans = allow_orphans)
 
       elif share == 'thread':
-         return __are_components_in_same_thread(expr, allow_orphans)
+         return __are_components_in_same_thread(expr, 
+            klasses = klasses, allow_orphans = allow_orphans)
 
       else:
          raise ValueError(
@@ -49,19 +52,20 @@ def assess_components(expr,
    elif contiguity == 'strict':
    
       if share is None:
-         return __are_strictly_contiguous_components(expr, allow_orphans)
+         return __are_strictly_contiguous_components(
+            expr, klasses = klasses, allow_orphans = allow_orphans)
 
       elif share == 'parent':
          return __are_strictly_contiguous_components_in_same_parent(
-            expr, allow_orphans)
+            expr, klasses = klasses, allow_orphans = allow_orphans)
 
       elif share == 'score':
          return __are_strictly_contiguous_components_in_same_score(
-            expr, allow_orphans)
+            expr, klasses = klasses, allow_orphans = allow_orphans)
 
       elif share == 'thread':
          return __are_strictly_contiguous_components_in_same_thread(
-            expr, allow_orphans)
+            expr, klasses = klasses, allow_orphans = allow_orphans)
 
       else:
          raise ValueError(
@@ -74,7 +78,8 @@ def assess_components(expr,
             " the 'share' keyword should not be set.")
 
       else:
-         return __are_thread_contiguous_components(expr, allow_orphans)
+         return __are_thread_contiguous_components(
+            expr, klasses = klasses, allow_orphans = allow_orphans)
 
    else:
       raise ValueError("'contiguity' must be 'strict', 'thread' or None.")
@@ -82,7 +87,7 @@ def assess_components(expr,
 
 ## MANGLED MODULE FUNCTIONS BELOW ##
 
-def __are_components(expr):
+def __are_components(expr, klasses = (_Component, )):
    '''True when expr is a Python list of Abjad components.
       otherwise False.'''
 
@@ -90,14 +95,16 @@ def __are_components(expr):
       raise TypeError('expr must be a list of Abjad components.')
 
    for element in expr:
-      if not isinstance(element, _Component):
+      #if not isinstance(element, _Component):
+      if not isinstance(element, klasses):
          return False
 
    return True
 
 
 
-def __are_components_in_same_parent(expr, allow_orphans = True):
+def __are_components_in_same_parent(expr, klasses = (_Component, ), 
+   allow_orphans = True):
    '''True when expr is a Python list of Abjad components,
       and when all components have a parent and have the same parent.
       Otherwise False.'''
@@ -109,7 +116,8 @@ def __are_components_in_same_parent(expr, allow_orphans = True):
       return True 
 
    first = expr[0]
-   if not isinstance(first, _Component):
+   #if not isinstance(first, _Component):
+   if not isinstance(first, klasses):
       return False
 
    first_parent = first.parentage.parent
@@ -117,7 +125,8 @@ def __are_components_in_same_parent(expr, allow_orphans = True):
       return False
 
    for element in expr[1:]:
-      if not isinstance(element, _Component):
+      #if not isinstance(element, _Component):
+      if not isinstance(element, klasses):
          return False
       if element.parentage.parent is not first_parent:
          return False
@@ -126,7 +135,8 @@ def __are_components_in_same_parent(expr, allow_orphans = True):
 
 
 
-def __are_components_in_same_score(expr, allow_orphans = True):
+def __are_components_in_same_score(expr, klasses = (_Component, ), 
+   allow_orphans = True):
    '''True when expr is a Python list of Abjad components,
       and when all components have the same score root.
       Otherwise False.'''
@@ -138,13 +148,15 @@ def __are_components_in_same_score(expr, allow_orphans = True):
       return True 
 
    first = expr[0]
-   if not isinstance(first, _Component):
+   #if not isinstance(first, _Component):
+   if not isinstance(first, klasses):
       return False
 
    first_parent = first.parentage.parent
    first_score = first.parentage.root
    for element in expr[1:]:
-      if not isinstance(element, _Component):
+      #if not isinstance(element, _Component):
+      if not isinstance(element, klasses):
          return False
       if element.parentage.root is not first_score:
          if not (allow_orphans and element.parentage.orphan):
@@ -154,7 +166,8 @@ def __are_components_in_same_score(expr, allow_orphans = True):
 
 
 
-def __are_components_in_same_thread(expr, allow_orphans = True):
+def __are_components_in_same_thread(expr, klasses = (_Component, ), 
+   allow_orphans = True):
    '''True when expr is a Python list of Abjad components such
       that all components in list carry the same thread signature.
 
@@ -167,7 +180,9 @@ def __are_components_in_same_thread(expr, allow_orphans = True):
       return True
 
    first = expr[0]
-   if not isinstance(first, _Component):
+   #if not isinstance(first, _Component):
+   print 'debug klasses is %s' % klasses
+   if not isinstance(first, klasses):
       return False
 
    orphan_components = True
@@ -191,7 +206,8 @@ def __are_components_in_same_thread(expr, allow_orphans = True):
 
 
 
-def __are_strictly_contiguous_components(expr, allow_orphans = True):
+def __are_strictly_contiguous_components(expr, klasses = (_Component, ), 
+   allow_orphans = True):
    '''True expr is a Python list of strictly contiguous components.
       Otherwise False.'''
 
@@ -202,7 +218,8 @@ def __are_strictly_contiguous_components(expr, allow_orphans = True):
       return True
 
    first = expr[0]
-   if not isinstance(first, _Component):
+   #if not isinstance(first, _Component):
+   if not isinstance(first, klasses):
       return False
 
    orphan_components = True
@@ -213,7 +230,8 @@ def __are_strictly_contiguous_components(expr, allow_orphans = True):
 
    prev = first
    for cur in expr[1:]:
-      if not isinstance(cur, _Component):
+      #if not isinstance(cur, _Component):
+      if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
@@ -229,7 +247,7 @@ def __are_strictly_contiguous_components(expr, allow_orphans = True):
 
 
 def __are_strictly_contiguous_components_in_same_parent(
-   expr, allow_orphans = True):
+   expr, klasses = (_Component, ), allow_orphans = True):
    '''True when expr is a Python list of Abjad components such that
 
          1. all components in list are strictly contiguous, and
@@ -244,7 +262,8 @@ def __are_strictly_contiguous_components_in_same_parent(
       return True
 
    first = expr[0]
-   if not isinstance(first, _Component):
+   #if not isinstance(first, _Component):
+   if not isinstance(first, klasses):
       return False
 
    first_parent = first.parentage.parent
@@ -259,7 +278,8 @@ def __are_strictly_contiguous_components_in_same_parent(
 
    prev = first
    for cur in expr[1:]:
-      if not isinstance(cur, _Component):
+      #if not isinstance(cur, _Component):
+      if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
@@ -279,7 +299,7 @@ def __are_strictly_contiguous_components_in_same_parent(
 
 
 def __are_strictly_contiguous_components_in_same_score(
-   expr, allow_orphans = True):
+   expr, klasses = (_Component), allow_orphans = True):
    '''True when expr is a Python list of Abjad components such that
 
          1. all components in list are strictly contiguous, and
@@ -294,7 +314,8 @@ def __are_strictly_contiguous_components_in_same_score(
       return True
 
    first = expr[0]
-   if not isinstance(first, _Component):
+   #if not isinstance(first, _Component):
+   if not isinstance(first, klasses):
       return False
 
    orphan_components = True   
@@ -307,7 +328,8 @@ def __are_strictly_contiguous_components_in_same_score(
    first_score = first.parentage.root
    prev = first
    for cur in expr[1:]:
-      if not isinstance(cur, _Component):
+      #if not isinstance(cur, _Component):
+      if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
@@ -326,7 +348,7 @@ def __are_strictly_contiguous_components_in_same_score(
 
 
 def __are_strictly_contiguous_components_in_same_thread(
-   expr, allow_orphans = True):
+   expr, klasses = (_Component), allow_orphans = True):
    '''True when expr is a Python list of Abjad components such that
          
          1. all components in list are strictly contiguous, and
@@ -341,7 +363,8 @@ def __are_strictly_contiguous_components_in_same_thread(
       return True
 
    first = expr[0]
-   if not isinstance(first, _Component):
+   #if not isinstance(first, _Component):
+   if not isinstance(first, klasses):
       return False
 
    orphan_components = True
@@ -354,7 +377,8 @@ def __are_strictly_contiguous_components_in_same_thread(
    first_signature = first.thread.signature
    prev = first
    for cur in expr[1:]:
-      if not isinstance(cur, _Component):
+      #if not isinstance(cur, _Component):
+      if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
@@ -375,7 +399,8 @@ def __are_strictly_contiguous_components_in_same_thread(
 
 
 
-def __are_thread_contiguous_components(expr, allow_orphans = True):
+def __are_thread_contiguous_components(expr, klasses = (_Component), 
+   allow_orphans = True):
    r'''True when expr is a Python list of Abjad components, and
       when there exists no foreign component C_f not in list such that
       C_f occurs temporally between any of the components in list.
@@ -417,7 +442,8 @@ def __are_thread_contiguous_components(expr, allow_orphans = True):
       return True 
 
    first = expr[0]
-   if not isinstance(first, _Component):
+   #if not isinstance(first, _Component):
+   if not isinstance(first, klasses):
       return False
 
    orphan_components = True
@@ -431,7 +457,8 @@ def __are_thread_contiguous_components(expr, allow_orphans = True):
    prev = first
    for cur in expr[1:]:
       #print prev, cur
-      if not isinstance(cur, _Component):
+      #if not isinstance(cur, _Component):
+      if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
@@ -450,7 +477,7 @@ def __are_thread_contiguous_components(expr, allow_orphans = True):
    return True
 
 
-def _are_thread_proper(component_1, component_2):
+def _are_thread_proper(component_1, component_2, klasses = (_Component)):
    '''True when
 
          1. component_1 and component_2 are both Abjad components,
@@ -463,9 +490,10 @@ def _are_thread_proper(component_1, component_2):
       Otherwise False.'''
 
    ## if either input parameter are not Abjad tokens
-   if not isinstance(component_1, _Component) or \
-      not isinstance(component_2, _Component):
-      #print 'not components!'
+   #if not isinstance(component_1, _Component) or \
+   #   not isinstance(component_2, _Component):
+   if not isinstance(component_1, klasses) or \
+      not isinstance(component_2, klasses):
       return False
 
    ## if component_1 and component_2 do not share a thread

@@ -1,8 +1,9 @@
+from abjad.component.component import _Component
 from abjad.exceptions.exceptions import ContiguityError
 from abjad.tools.check.assess_components import assess_components
 
 
-def assert_components(expr, 
+def assert_components(expr, klasses = (_Component, ),
    contiguity = None, share = None, allow_orphans = True):
    '''Assert expr is a Python list of Abjad components.
       Set _contiguity_ to None, 'strict' or 'thread'.
@@ -26,26 +27,26 @@ def assert_components(expr,
    if contiguity is None:
       
       if share is None:
-         if not assess_components(expr):
+         if not assess_components(expr, klasses = klasses):
             raise TypeError('Must be Python list'
                ' of Abjad components.')
 
       elif share == 'parent':
-         if not assess_components(expr, share = 'parent', 
+         if not assess_components(expr, klasses = klasses, share = 'parent', 
             allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
                ' of Abjad components'
                ' all in same parent.')
 
       elif share == 'score':
-         if not assess_components(expr, share = 'score', 
+         if not assess_components(expr, klasses = klasses, share = 'score', 
             allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
                ' of Abjad components'
                ' all in same score.')
 
       elif share == 'thread':
-         if not assess_components(expr, share = 'thread', 
+         if not assess_components(expr, klasses = klasses, share = 'thread', 
             allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
                ' of Abjad components'
@@ -58,27 +59,27 @@ def assert_components(expr,
    elif contiguity == 'strict':
    
       if share is None:
-         if not assess_components(expr, contiguity = 'strict', 
+         if not assess_components(expr, klasses = klasses, contiguity = 'strict', 
             allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
                ' of strictly contiguous Abjad components.')
 
       elif share == 'parent':
-         if not assess_components(expr, contiguity = 'strict', 
+         if not assess_components(expr, klasses = klasses, contiguity = 'strict', 
             share = 'parent', allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
                ' of strictly contiguous Abjad components'
                ' all in same parent.')
    
       elif share == 'score':
-         if not assess_components(expr, contiguity = 'strict', 
+         if not assess_components(expr, klasses = klasses, contiguity = 'strict', 
             share = 'score', allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
                ' of strictly contiguous Abjad components'
                ' all in same score.')
    
       elif share == 'thread':
-         if not assess_components(expr, contiguity = 'strict', 
+         if not assess_components(expr, klasses = klasses, contiguity = 'strict', 
             share = 'thread', allow_orphans = allow_orphans):
             raise ContiguityError('Must be Python list'
                ' of strictly contiguous Abjad components'
@@ -95,7 +96,7 @@ def assert_components(expr,
             " the 'share' keyword should not be set.")
 
       else:
-         if not assess_components(expr, 
+         if not assess_components(expr, klasses = klasses,
             contiguity = 'thread', allow_orphans = allow_orphans):
             raise ContiguityError('Must by Python list'
                ' of thread-contiguous Abjad components.')

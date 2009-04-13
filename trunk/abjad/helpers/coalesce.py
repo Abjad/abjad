@@ -19,7 +19,8 @@ def coalesce(expr):
       next = cmp._navigator._nextNamesake
       if isinstance(next, Container) and not next.parallel and \
          not isinstance(next, _Tuplet) and \
-         check.assess_components([cmp, next], 'strict', 'score', False):
+         check.assess_components([cmp, next], contiguity = 'strict', 
+            share = 'score', allow_orphans = False):
          cmp.extend(next)
          next.detach( )
          merged = True

@@ -171,7 +171,7 @@ class Container(_Component):
       from abjad.tools import parenttools
       from abjad.tools.parenttools.switch import _switch
       music = music or [ ]
-      check.assert_components(music, 'strict', share = 'thread')
+      check.assert_components(music, contiguity = 'strict', share = 'thread')
       parent, index, stop_index = parenttools.get_with_indices(music)
       self._music = music
       _switch(self._music, self)

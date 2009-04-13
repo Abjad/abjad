@@ -31,7 +31,7 @@ class _OffsetInterface(_Observer):
       offset = Rational(0, 1)
       prev = self.client._navigator._prev
       if prev and check.assess_components([prev, self.client], 
-         'strict', 'thread', False):
+         contiguity = 'strict', share = 'thread', allow_orphans = False):
          offset += prev.offset.thread + prev.duration.prolated
       self._thread = offset
 
