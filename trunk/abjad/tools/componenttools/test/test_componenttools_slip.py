@@ -20,7 +20,7 @@ def test_componenttools_slip_01( ):
    }'''
 
    sequential = t[0]
-   componenttools.slip(t[0])
+   componenttools.slip(t[0:1])
 
    r'''\new Staff {
            c'8 [
@@ -44,7 +44,7 @@ def test_componenttools_slip_02( ):
    Glissando(t[:])
   
    note = t[1]
-   componenttools.slip(note)
+   componenttools.slip([note])
 
    r'''\new Voice {
       c'8 [ \glissando
@@ -54,3 +54,68 @@ def test_componenttools_slip_02( ):
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\te'8 \\glissando\n\tf'8 ]\n}"
+
+
+def test_componenttools_slip_03( ):
+   '''Slip multiple leaves.'''
+
+   t = Voice(construct.scale(4))
+   Beam(t[:])
+   Glissando(t[:])
+
+   r'''\new Voice {
+      c'8 [ \glissando
+      d'8 \glissando
+      e'8 \glissando
+      f'8 ]
+   }'''
+
+   componenttools.slip(t[:2])
+
+   r'''\new Voice {
+      e'8 [ \glissando
+      f'8 ]
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Voice {\n\te'8 [ \\glissando\n\tf'8 ]\n}"
+
+
+def test_componenttools_slip_04( ):
+   '''Slip multiple containers.'''
+
+   t = Voice(Container(construct.run(2)) * 3)
+   pitchtools.diatonicize(t)
+   Beam(t.leaves)
+   Glissando(t.leaves)
+   
+   r'''\new Voice {
+      {
+         c'8 [ \glissando
+         d'8 \glissando
+      }
+      {
+         e'8 \glissando
+         f'8 \glissando
+      }
+      {
+         g'8 \glissando
+         a'8 ]
+      }
+   }'''
+
+   componenttools.slip(t[:2])
+
+   r'''\new Voice {
+      c'8 [ \glissando
+      d'8 \glissando
+      e'8 \glissando
+      f'8 \glissando
+      {
+         g'8 \glissando
+         a'8 ]
+      }
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\td'8 \\glissando\n\te'8 \\glissando\n\tf'8 \\glissando\n\t{\n\t\tg'8 \\glissando\n\t\ta'8 ]\n\t}\n}"
