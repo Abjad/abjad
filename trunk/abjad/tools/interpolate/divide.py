@@ -10,20 +10,18 @@ def divide(total, start_frac, stop_frac, exp='cosine'):
       to a numeric value, the interpolation is exponential and exp is the 
       exponent.'''
 
-   if stop_frac > total or start_frac > total:
+   if stop_frac >= total or start_frac >= total:
       raise ValueError('Both dividing fractions must be smaller than total.')
 
-   result =  [ ]
-   cumulative = 0
-   while cumulative <= (total - stop_frac):
+   result = [ ]
+   while sum(result) <= (total - stop_frac):
       if exp == 'cosine':
-         ip = cosine(start_frac, stop_frac, cumulative / total)
+         ip = cosine(start_frac, stop_frac, sum(result) / total)
       else:
-         ip = exponential(start_frac, stop_frac, cumulative / total, exp)
+         ip = exponential(start_frac, stop_frac, sum(result) / total, exp)
       ip = int(round(ip * 10000, 5))
       ip = Rational(ip, 10000)
       result.append(ip)
-      cumulative += ip
-   residue = total - cumulative
-   result[-1] += residue
+   result[-1] += total - sum(result)
    return result
+

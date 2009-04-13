@@ -4,7 +4,7 @@ import py.test
 
 def test_interpolate_divide_01( ):
    '''interpolate_divide returns Rationals.'''
-   t = interpolate.divide(2, 2, 0.5)
+   t = interpolate.divide(2, 1, 0.5)
    assert isinstance(t[0], Rational)
 
 
