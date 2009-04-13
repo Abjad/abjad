@@ -4,9 +4,7 @@ from abjad.tools.spannertools.withdraw_from_contained import \
    _withdraw_from_contained
 
 
-## TODO: Internalize detach_subtree( ) into _Container.__setitem__ ##
-
-def detach_subtree(component):
+def detach(component):
    '''Detach component from parentage.
       Detach component from spanners.
       Detach children of component from spanners.

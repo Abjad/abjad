@@ -270,9 +270,8 @@ class _Component(_Abjad):
          Detach component from spanners.
          Detach children of component from spanners.
          Return receipt.'''
-      from abjad.helpers.detach_subtree import detach_subtree
-      parent = self.parentage.parent
-      receipt = detach_subtree(self)
+      from abjad.tools import componenttools
+      receipt = componenttools.detach(self)
       return receipt
 
    ## TODO: Externalize or eliminate _Component.reattach( ) ##
