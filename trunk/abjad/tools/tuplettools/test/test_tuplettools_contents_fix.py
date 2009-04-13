@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplettools_contents_fix_01( ):
    '''Halve note durations.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3, Rational(1, 4)))
+   t = FixedDurationTuplet((2, 8), construct.scale(3, Rational(1, 4)))
    assert not durtools.is_tuplet_multiplier(t.duration.multiplier)
 
    r'''\times 1/3 {
@@ -29,7 +29,7 @@ def test_tuplettools_contents_fix_01( ):
 def test_tuplettools_contents_fix_02( ):
    '''Double note duration.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3, Rational(1, 32)))
+   t = FixedDurationTuplet((2, 8), construct.scale(3, Rational(1, 32)))
    assert not durtools.is_tuplet_multiplier(t.duration.multiplier)
 
    r'''\times 8/3 {
@@ -54,7 +54,7 @@ def test_tuplettools_contents_fix_02( ):
 def test_tuplettools_contents_fix_03( ):
    '''Halve note durations.'''
 
-   t = FixedDurationTuplet((5, 16), scale(3, Rational(1, 4)))
+   t = FixedDurationTuplet((5, 16), construct.scale(3, Rational(1, 4)))
    assert not durtools.is_tuplet_multiplier(t.duration.multiplier)
 
    r'''\fraction \times 5/12 {

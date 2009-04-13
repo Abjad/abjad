@@ -5,7 +5,7 @@ import py.test
 def test_dynamic_measure_bequeath_01( ):
    '''Bequeath DynamicMeasure contents to RigidMeasure.'''
 
-   t = DynamicMeasure(scale(4))
+   t = DynamicMeasure(construct.scale(4))
 
    r'''\time 1/2
         c'8

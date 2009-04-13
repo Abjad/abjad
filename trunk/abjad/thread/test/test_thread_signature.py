@@ -120,7 +120,7 @@ import py.test
 def test_thread_signature_01( ):
    '''An anonymous  Staff and it's contained unvoiced leaves share the 
    same signature.'''
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
 
    containment = t.thread.signature
    for component in iterate.naive(t, _Component):
@@ -131,7 +131,7 @@ def test_thread_signature_02( ):
    '''A named Staff and it's contained unvoiced leaves share the 
    same signature.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.name = 'foo'
 
    containment = t.thread.signature
@@ -143,7 +143,7 @@ def test_thread_signature_03( ):
    '''Leaves inside equally named sequential voices inside a Staff 
    share the same signature.'''
 
-   t = Staff(Voice(scale(4)) * 2)
+   t = Staff(Voice(construct.scale(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
 
@@ -246,7 +246,7 @@ def test_thread_signature_06( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Container(Staff([Voice(scale(2))]) * 2)
+   t = Container(Staff([Voice(construct.scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
@@ -369,7 +369,7 @@ def test_thread_signature_09( ):
 def test_thread_signature_10( ):
    '''Measure and leaves must carry same thread signature.'''
 
-   t = Staff([DynamicMeasure(scale(2))] + construct.run(2))
+   t = Staff([DynamicMeasure(construct.scale(2))] + construct.run(2))
    pitchtools.diatonicize(t)
 
    r'''\new Staff {

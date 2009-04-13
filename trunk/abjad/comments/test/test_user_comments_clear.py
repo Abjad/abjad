@@ -4,7 +4,7 @@ from abjad import *
 def test_comments_clear_01( ):
    '''Clear context comments.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    beam = Beam(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')

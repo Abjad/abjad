@@ -4,7 +4,7 @@ from abjad import *
 def test_measure_meter_reassign_01( ):
    '''RigidMeasures allow meter reassignment.'''
 
-   t = RigidMeasure((4, 8), scale(4))
+   t = RigidMeasure((4, 8), construct.scale(4))
 
    r'''
         \time 4/8

@@ -139,7 +139,7 @@ def test_donate_03( ):
 def test_donate_04( ):
    '''Donate from empty container to leaf.'''
 
-   t = Voice([Container(scale(2)), Container([ ])])
+   t = Voice([Container(construct.scale(2)), Container([ ])])
    Glissando(t[:])
    Beam(t[:])
 
@@ -169,7 +169,7 @@ def test_donate_04( ):
 def test_donate_05( ):
    '''Donate from empty container to nonempty container.'''
 
-   t = Voice([Container(scale(2)), Container([ ])])
+   t = Voice([Container(construct.scale(2)), Container([ ])])
    Glissando(t[:])
    Beam(t[:])
 
@@ -219,7 +219,7 @@ def test_donate_07( ):
    Beam(t[:])
    pitchtools.diatonicize(t)
 
-   tuplet = FixedDurationTuplet((2, 8), scale(3))
+   tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
    assert py.test.raises(MusicContentsError, 'donate(t[1:2], tuplet)')
 
 

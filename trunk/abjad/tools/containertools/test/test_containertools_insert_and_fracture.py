@@ -123,7 +123,7 @@ def test_containertools_insert_and_fracture_07( ):
    '''Inserting a note from one container into another container
       switches note parent from first container to second.'''
 
-   v = Voice(scale(4))
+   v = Voice(construct.scale(4))
    t = Staff(construct.run(8))
    note = v[0]
    containertools.insert_and_fracture(t, 1, v[0])

@@ -4,7 +4,7 @@ from abjad import *
 def test_comments_before_01( ):
    '''Test context comments before.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    beam = Beam(t[:])
    beam.thickness = 3
    t.comments.before.append('Voice before comments here.')

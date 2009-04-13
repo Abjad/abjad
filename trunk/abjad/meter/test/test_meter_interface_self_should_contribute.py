@@ -9,7 +9,7 @@ def test_meter_interface_self_should_contribute_01( ):
       The exception is the measure, which both can and should
       contribute LilyPond \time indication at format-time.'''
 
-   notes = scale(3)
+   notes = construct.scale(3)
    tuplet = FixedDurationTuplet((2, 8), notes)
    measure = RigidMeasure((2, 8), [tuplet])
    staff = Staff([measure])
@@ -59,7 +59,7 @@ def test_meter_interface_self_should_contribute_03( ):
       The note now both can and should contribute LilyPond \time.
       The parent tuplet neither can nor should contribute LilyPond \time.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    t[0].meter.forced = Meter(2, 8)
 
    r'''
@@ -83,7 +83,7 @@ def test_meter_interface_self_should_contribute_04( ):
       The note neither can nor should contribute LilyPond \time.
       The parent tuplet both can and should contribute LilyPond \time.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    t.meter.forced = Meter(2, 8)
 
    r'''

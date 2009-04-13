@@ -7,7 +7,7 @@ def test_cut_by_duration_01( ):
       When 'component' is a container, remove contents from container.
       Add ties or duration-modification tuplets as necessary.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
 
    cut.by_duration(t, Rational(1, 8) + Rational(1, 20))
@@ -26,7 +26,7 @@ def test_cut_by_duration_01( ):
 
 def test_cut_by_duration_02( ):
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
 
    cut.by_duration(t, Rational(3, 16))

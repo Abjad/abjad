@@ -6,7 +6,7 @@ def test_grob_override_01( ):
    Contexts override grobs in their with block.
    '''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t.glissando.thickness = 3
 
    r'''

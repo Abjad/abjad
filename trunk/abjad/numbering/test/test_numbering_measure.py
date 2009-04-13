@@ -13,5 +13,5 @@ def test_numbering_measures_01( ):
 def test_numbering_measures_02( ):
    '''Orphan measures number correctly.'''
 
-   t = RigidMeasure((3, 8), scale(3))
+   t = RigidMeasure((3, 8), construct.scale(3))
    assert t.numbering.measure == 0

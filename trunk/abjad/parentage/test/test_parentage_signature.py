@@ -5,7 +5,7 @@ import py.test
 def test_parentage_signature_01( ):
    '''An anonymous Staff and it's contained unvoiced leaves share the 
    same parentage signature.'''
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
 
    containment = t.parentage.signature
    for component in iterate.naive(t, _Component):
@@ -16,7 +16,7 @@ def test_parentage_signature_02( ):
    '''A named Staff and it's contained unvoiced leaves share the 
    same parentage signature.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.name = 'foo'
 
    containment = t.parentage.signature
@@ -28,7 +28,7 @@ def test_parentage_signature_03( ):
    '''Leaves inside equally named sequential voices inside a Staff 
    share the same parentage signature.'''
 
-   t = Staff(Voice(scale(4)) * 2)
+   t = Staff(Voice(construct.scale(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
 

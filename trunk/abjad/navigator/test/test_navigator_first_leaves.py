@@ -5,7 +5,7 @@ import py.test
 def test_navigator_first_leaves_01( ):
    '''Return first leaf from sequential container.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    leaves = t._navigator._firstLeaves
 
    assert len(leaves) == 1

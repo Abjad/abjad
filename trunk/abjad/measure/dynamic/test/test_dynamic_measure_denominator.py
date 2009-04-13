@@ -4,7 +4,7 @@ from abjad import *
 def test_measure_dynamic_denominator_01( ):
    '''You can control the denominator of dynamic measures.'''
 
-   t = DynamicMeasure(scale(4))
+   t = DynamicMeasure(construct.scale(4))
    t.denominator = 32
    
    r'''
@@ -21,7 +21,7 @@ def test_measure_dynamic_denominator_01( ):
 def test_measure_dynamic_denominator_02( ):
    '''Bad denominator values have no effect.'''
 
-   t = DynamicMeasure(scale(4))
+   t = DynamicMeasure(construct.scale(4))
    t.denominator = 117
 
    r'''

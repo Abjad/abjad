@@ -7,7 +7,7 @@ def test_spannertools_withdraw_from_contained_01( ):
    '''Unspan every component in components.
       Navigate down into components and traverse deeply.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    Beam(t)
    Crescendo(t[:])
 

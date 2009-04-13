@@ -44,7 +44,7 @@ def test_measuretools_project_01( ):
 def test_measuretools_project_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
 
-   t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), scale(6))])
+   t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), construct.scale(6))])
    measuretools.subsume(t)
 
    r'''\time 15/24

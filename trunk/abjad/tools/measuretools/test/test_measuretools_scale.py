@@ -5,7 +5,7 @@ def test_measuretools_scale_01( ):
    '''Quadruple binary meter.
       Meter denominator adjust appropriately.'''
 
-   t = RigidMeasure((3, 32), scale(3, Rational(1, 32)))
+   t = RigidMeasure((3, 32), construct.scale(3, Rational(1, 32)))
    Beam(t[:])
 
    measuretools.scale(t, Rational(4))
@@ -22,7 +22,7 @@ def test_measuretools_scale_01( ):
 def test_measuretools_scale_02( ):
    '''Triple binary meter.'''
 
-   t = RigidMeasure((3, 32), scale(3, Rational(1, 32)))
+   t = RigidMeasure((3, 32), construct.scale(3, Rational(1, 32)))
    Beam(t[:])
 
    measuretools.scale(t, Rational(3))
@@ -39,7 +39,7 @@ def test_measuretools_scale_02( ):
 def test_measuretools_scale_03( ):
    '''Multiply binary measure by 2/3.'''
 
-   t = RigidMeasure((3, 8), scale(3))
+   t = RigidMeasure((3, 8), construct.scale(3))
    Beam(t[:])
 
    measuretools.scale(t, Rational(2, 3))

@@ -27,14 +27,14 @@ Instead, apply a spanner to a Component and then <code>show( )</code> the Compon
 <p>Here's an example:</p>
 
 <abjad>
-   abjad> staff = Staff(scale(4))
+   abjad> staff = Staff(construct.scale(4))
    abjad> b = Beam(staff)
 </abjad>
 
 <p><Beam> <code>b</code> is a Spanner, so passing <code>b</code> to <code>show( )</code> will throw and exception. Instead, pass <code>staff</code> to <code>show( )</code> and you will see the notes in the staff with the <Beam> spanner applied. </p>
 
 <abjad>
-   hide> staff = Staff(scale(4))
+   hide> staff = Staff(construct.scale(4))
    hide> b = Beam(staff)
    abjad> show(staff)
 </abjad>

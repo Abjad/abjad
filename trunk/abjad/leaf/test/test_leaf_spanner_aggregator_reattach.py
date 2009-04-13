@@ -4,7 +4,7 @@ from abjad import *
 def test_leaf_spanner_aggregator_reattach_01( ):
    '''Reattach with receipt.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    p1 = Beam(t[ : ])
    p2 = Glissando(t[ : ])
 

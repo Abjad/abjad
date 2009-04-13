@@ -125,7 +125,7 @@ def test_lcopy_04( ):
 def test_lcopy_05( ):
    '''Copy consecutive notes in binary measure.'''
 
-   t = RigidMeasure((4, 8), scale(4))
+   t = RigidMeasure((4, 8), construct.scale(4))
    u = lcopy(t, 1, 3)
 
    r'''\time 2/8
@@ -139,7 +139,7 @@ def test_lcopy_05( ):
 def test_lcopy_06( ):
    '''Copy consecutive notes in staff and score.'''
 
-   score = Score([Staff(scale(4))])
+   score = Score([Staff(construct.scale(4))])
    t = score[0]
    new = lcopy(t, 1, 3)
 
@@ -157,7 +157,7 @@ def test_lcopy_07( ):
    '''Copy consecutive leaves from tuplet in binary measure;
       nonbinary measure results.'''
 
-   t = RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), scale(5))])
+   t = RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), construct.scale(5))])
 
    r'''\time 4/8
         \times 4/5 {
@@ -186,7 +186,7 @@ def test_lcopy_08( ):
    '''Copy consecutive leaves from tuplet in measure and voice;
       nonbinary measure results.'''
 
-   t = Voice([RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), scale(5))])])
+   t = Voice([RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), construct.scale(5))])])
   
    r'''\new Voice {
                    \time 4/8

@@ -6,7 +6,7 @@ def test_componenttools_get_le_duration_prolated_01( ):
       Stop when total prolated duration *just* <= 'prolated_duration'.
       Return (accumulated components, accumulated duration).'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    components, duration = componenttools.get_le_duration_prolated(
       t[:], Rational(1, 4))
 
@@ -16,7 +16,7 @@ def test_componenttools_get_le_duration_prolated_01( ):
 
 def test_componenttools_get_le_duration_prolated_02( ):
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    components, duration = componenttools.get_le_duration_prolated(
       t[:], Rational(99))
 
@@ -26,7 +26,7 @@ def test_componenttools_get_le_duration_prolated_02( ):
 
 def test_componenttools_get_le_duration_prolated_03( ):
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    components, duration = componenttools.get_le_duration_prolated(
       t[:], Rational(0))
 
@@ -36,7 +36,7 @@ def test_componenttools_get_le_duration_prolated_03( ):
 
 def test_componenttools_get_le_duration_prolated_04( ):
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    components, duration = componenttools.get_le_duration_prolated(
       t[:], Rational(3, 16))
 

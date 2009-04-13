@@ -6,7 +6,7 @@ def test_accidental_interface_style_01( ):
    _AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.accidental.style = 'forget'
 
    r'''
@@ -27,7 +27,7 @@ def test_accidental_interface_style_02( ):
    _AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t[1].accidental.style = 'forget'
 
    r'''

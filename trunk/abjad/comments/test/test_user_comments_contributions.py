@@ -4,7 +4,7 @@ from abjad import *
 def test_comments_contributions_01( ):
    '''Context comments contributions.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    beam = Beam(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')
@@ -71,7 +71,7 @@ def test_comments_contributions_02( ):
 def test_comments_contributions_03( ):
    '''Tuplet comments contributions.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    beam = Beam(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')
@@ -106,7 +106,7 @@ def test_comments_contributions_03( ):
 def test_comments_contributions_04( ):
    '''Measure comments contributions.'''
 
-   t = RigidMeasure((3, 8), scale(3))
+   t = RigidMeasure((3, 8), construct.scale(3))
    beam = Beam(t[:])
    beam.thickness = 3
    t.comments.before.append('Comments before.')

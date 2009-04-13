@@ -8,7 +8,7 @@ def test_octavation_spanner_grob_handling_01( ):
    LilyPond Staff context.
    '''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p = Octavation(t[ : ], 1)
    p.staff_position = 4
    p.promote('staff_position', 'Staff')
@@ -35,7 +35,7 @@ def test_octavation_spanner_grob_handling_01( ):
 #   LilyPond Staff context.
 #   '''
 #
-#   t = Voice(scale(4))
+#   t = Voice(construct.scale(4))
 #   p = Octavation(t[ : ], 1)
 #   p.staff_position = 4
 #   p.promote('staff_position', 'Staff')

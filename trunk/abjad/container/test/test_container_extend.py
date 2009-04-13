@@ -5,7 +5,7 @@ import py.test
 def test_container_extend_01( ):
    '''Extend container with list of leaves.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
 
    r'''\new Voice {
@@ -13,7 +13,7 @@ def test_container_extend_01( ):
            d'8 ]
    }'''
 
-   t.extend(scale(2))
+   t.extend(construct.scale(2))
 
    r'''\new Voice {
            c'8 [
@@ -29,7 +29,7 @@ def test_container_extend_01( ):
 def test_container_extend_02( ):
    '''Extend container with contents of other container.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
 
    r'''\new Voice {
@@ -55,7 +55,7 @@ def test_container_extend_02( ):
 def test_container_extend_03( ):
    '''Extending container with empty list leaves container unchanged.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
    t.extend([ ])
 
@@ -72,7 +72,7 @@ def test_container_extend_04( ):
    '''Extending one container with empty second container 
       leaves both containers unchanged.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
    t.extend(Voice([ ]))
 
@@ -88,7 +88,7 @@ def test_container_extend_04( ):
 def test_container_extend_05( ):
    '''Trying to extend container with noncomponent raises TypeError.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
 
    assert py.test.raises(TypeError, 't.extend(7)')
@@ -98,7 +98,7 @@ def test_container_extend_05( ):
 def test_container_extend_06( ):
    '''Trying to extend container with noncontainer raises TypeError.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
 
    assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
@@ -109,7 +109,7 @@ def test_container_extend_07( ):
    '''Extend container with partial and 
       spanned contents of other container.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
 
    r'''\new Voice {
@@ -117,7 +117,7 @@ def test_container_extend_07( ):
       d'8 ]
    }'''
 
-   u = Voice(scale(4))
+   u = Voice(construct.scale(4))
    Beam(u[:])
 
    r'''\new Voice {
@@ -157,7 +157,7 @@ def test_container_extend_08( ):
       spanned contents of other container.
       Covered span comes with components from donor container.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
 
    r'''\new Voice {
@@ -165,7 +165,7 @@ def test_container_extend_08( ):
       d'8 ]
    }'''
 
-   u = Voice(scale(4))
+   u = Voice(construct.scale(4))
    Beam(u[:])
    Slur(u[-2:])
 

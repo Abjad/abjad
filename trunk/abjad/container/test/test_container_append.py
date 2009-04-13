@@ -26,7 +26,7 @@ def test_container_append_01( ):
 def test_container_append_02( ):
    '''Append leaf to tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    Beam(t[:])
    t.append(Note(5, (1, 16)))
 
@@ -45,7 +45,7 @@ def test_container_append_03( ):
    '''Trying to append noncomponent to container
       raises TypeError.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    Beam(t[:])
 
    assert py.test.raises(TypeError, "t.append('foo')")
@@ -57,7 +57,7 @@ def test_container_append_03( ):
 def test_container_append_04( ):
    '''Append spanned leaf from donor container to recipient container.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    Beam(t[:])
 
    r'''\new Voice {
@@ -66,7 +66,7 @@ def test_container_append_04( ):
       e'8 ]
    }'''
 
-   u = Voice(scale(4))
+   u = Voice(construct.scale(4))
    Beam(u[:])
 
    r'''\new Voice {
@@ -106,7 +106,7 @@ def test_container_append_05( ):
    '''Append spanned leaf from donor container to recipient container.
       Donor and recipient containers are the same.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
 
    r'''\new Voice {

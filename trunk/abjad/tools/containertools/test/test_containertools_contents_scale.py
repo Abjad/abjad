@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_contents_scale_01( ):
    '''Scale leaves in voice by 3/2; ie, dot leaves.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(3, 2))
 
    r'''\new Voice {
@@ -21,7 +21,7 @@ def test_containertools_contents_scale_01( ):
 def test_containertools_contents_scale_02( ):
    '''Scale leaves in voice by 5/4; ie, quarter-tie leaves.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(5, 4))
 
    r'''\new Voice {
@@ -43,7 +43,7 @@ def test_containertools_contents_scale_03( ):
    '''Scale leaves in voice by untied nonbinary 4/3;
        ie, tupletize notes.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(4, 3))
 
    r'''\new Voice {
@@ -69,7 +69,7 @@ def test_containertools_contents_scale_04( ):
    '''Scale leaves in voice by tied nonbinary 5/4;
        ie, tupletize notes.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(5, 6))
 
    r'''\new Voice {
@@ -129,7 +129,7 @@ def test_containertools_contents_scale_05( ):
 def test_containertools_contents_scale_06( ):
    '''Undo scale of 5/4 with scale of 4/5.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(5, 4))
 
    r'''\new Voice {

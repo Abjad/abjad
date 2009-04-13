@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_meiose_01( ):
    '''Meiose each leaf in two.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    Beam(t[:])
    leaftools.meiose(t)
 
@@ -24,7 +24,7 @@ def test_leaftools_meiose_01( ):
 def test_leaftools_meiose_02( ):
    '''Meiose one leaf in four.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    Beam(t[:])
    leaftools.meiose(t[0], 4)
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_contents_multiply_01( ):
    '''Multiply notes in voice.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
    containertools.contents_multiply(t, total = 3)
 
@@ -24,7 +24,7 @@ def test_containertools_contents_multiply_01( ):
 def test_containertools_contents_multiply_02( ):
    '''Multiplication by one leaves contents unchanged.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
    containertools.contents_multiply(t, total = 1)
 
@@ -40,7 +40,7 @@ def test_containertools_contents_multiply_02( ):
 def test_containertools_contents_multiply_03( ):
    '''Multiplication by zero empties container.'''
    
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    Beam(t[:])
    containertools.contents_multiply(t, total = 0)
 

@@ -13,7 +13,7 @@ def spin(expr, n):
 
       Example:
 
-      t = RigidMeasure((3, 8), scale(3))
+      t = RigidMeasure((3, 8), construct.scale(3))
       measuretools.spin(t, 3)
 
            \time 9/8

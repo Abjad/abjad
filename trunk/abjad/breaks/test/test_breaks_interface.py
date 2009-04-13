@@ -4,7 +4,7 @@ from abjad import *
 def test_breaks_interface_01( ):
    '''Line break at closing of nonempty container.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.breaks.line = True
 
    r'''\new Staff {
@@ -22,7 +22,7 @@ def test_breaks_interface_01( ):
 def test_breaks_interface_02( ):
    '''Page break at closing of nonempty container.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.breaks.page = True
 
    r'''\new Staff {

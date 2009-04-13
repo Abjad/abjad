@@ -128,7 +128,7 @@ def test_containertools_hew_04( ):
    '''A single container can be split in two by the middle;
       no parent.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t1, t2 = containertools.hew(t, 2)
 
    r'''\new Voice {
@@ -151,7 +151,7 @@ def test_containertools_hew_05( ):
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
 
-   t = Staff([Voice(scale(4))])
+   t = Staff([Voice(construct.scale(4))])
    v = t[0]
    left, right = containertools.hew(v, 0)
 
@@ -177,7 +177,7 @@ def test_containertools_hew_06( ):
       Righthand part instantiates empty.
       Original container empties contents.'''
 
-   t = Staff([Voice(scale(4))])
+   t = Staff([Voice(construct.scale(4))])
    v = t[0]
    left, right = containertools.hew(v, 10)
 
@@ -190,7 +190,7 @@ def test_containertools_hew_06( ):
 def test_containertools_hew_07( ):
    '''A single container can be split with negative indeces.'''
 
-   t = Staff([Voice(scale(4))])
+   t = Staff([Voice(construct.scale(4))])
    v = t[0]
    left, right = containertools.hew(v, -2)
 
@@ -204,7 +204,7 @@ def test_containertools_hew_08( ):
    '''Spanners attached to hewn container reattach
       to all resulting hewn parts.'''
 
-   t = Staff([Voice(scale(4))])
+   t = Staff([Voice(construct.scale(4))])
    v = t[0]
    Beam(v)
    left, right = containertools.hew(v, 2)

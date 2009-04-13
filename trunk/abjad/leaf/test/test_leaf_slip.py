@@ -4,7 +4,7 @@ from abjad import *
 def test_leaf_slip_01( ):
    '''Slip leaf from parentage and spanners.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    Glissando(t[:])
   

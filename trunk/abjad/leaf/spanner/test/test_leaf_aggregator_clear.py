@@ -4,7 +4,7 @@ from abjad import *
 def test_clear_01( ):
    '''Clear a single spanner.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p = Beam(t[ : ])
 
    r'''\new Voice {
@@ -31,7 +31,7 @@ def test_clear_01( ):
 def test_clear_02( ):
    '''Clear multiple spanners.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p1 = Beam(t[:])
    p2 = Trill(t[:])
 

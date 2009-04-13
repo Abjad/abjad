@@ -4,9 +4,9 @@ from abjad import *
 def test_leaf_splice_left_01( ):
    '''Splice leaves left of leaf.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    Beam(t[:])
-   result = t[0].splice_left(scale(3, Rational(1, 16)))
+   result = t[0].splice_left(construct.scale(3, Rational(1, 16)))
 
    r'''\new Voice {
            c'16 [
@@ -25,7 +25,7 @@ def test_leaf_splice_left_01( ):
 def test_leaf_splice_left_02( ):
    '''Splice leaf left of interior leaf.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    Beam(t[:])
    result = t[1].splice_left([Note(1.5, (1, 8))])
 

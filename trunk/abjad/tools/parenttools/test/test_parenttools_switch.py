@@ -5,7 +5,7 @@ from abjad.tools.parenttools.switch import _switch
 def test__switch_01( ):
 
    t = Voice([ ])
-   u = Voice(scale(4))
+   u = Voice(construct.scale(4))
 
    components = u[:]
    _switch(components, t)

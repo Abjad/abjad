@@ -5,7 +5,7 @@ def test_assess_components_strict_none_01( ):
    '''True for strictly contiguous leaves in voice.
       False for other time orderings of leaves in voice.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    
    assert check.assess_components(t.leaves, contiguity = 'strict')
 
@@ -46,7 +46,7 @@ def test_assess_components_strict_none_02( ):
 def test_assess_components_strict_none_03( ):
    '''Unicorporated leaves can not be evaluated for contiguity.'''
 
-   t = scale(4)
+   t = construct.scale(4)
 
    assert check.assess_components(t, contiguity = 'strict')
    assert not check.assess_components(t, contiguity = 'strict', 

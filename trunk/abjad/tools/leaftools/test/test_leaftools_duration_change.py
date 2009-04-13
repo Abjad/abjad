@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_duration_change_01( ):
    '''Change leaf to tied duration.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:2])
 
    r'''\new Voice {
@@ -61,7 +61,7 @@ def test_leaftools_duration_change_03( ):
    '''Change leaf to nontied duration.
       Same as t.duration.written = Rational(3, 16).'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:2])
 
    r'''\new Voice {
@@ -88,7 +88,7 @@ def test_change_leaf_duration_04( ):
    '''Change leaf to tied, nonbinary duration.
       FixedMultiplierTuplet inserted over new tied notes.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:2])
 
    r'''\new Voice {
@@ -118,7 +118,7 @@ def test_change_leaf_duration_05( ):
    '''Change leaf to untied, nonbinary duration.
       FixedMultiplierTuplet inserted over input leaf.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:2])
 
    r'''\new Voice {

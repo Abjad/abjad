@@ -12,7 +12,7 @@ def test_spanner_init_01( ):
 def test_spanner_init_02( ):
    '''Init nonempty spanner.'''
 
-   t = Container(scale(4))
+   t = Container(construct.scale(4))
    p = Beam(t[:])
 
    r'''{

@@ -7,7 +7,7 @@ def test_parentage_reattach_01( ):
       Unspanned, cut leaves can reattach to parentage.
       Unspanned, reattached leaves are well formed.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    note = t[1]
    receipt = note.parentage._cut( )
 
@@ -36,7 +36,7 @@ def test_parentage_reattach_02( ):
       Spanned, cut leaves can reattach to parentage.
       Spanned, reattached leaves are once again well formed.'''
 
-   t = Staff([Voice(scale(4))])
+   t = Staff([Voice(construct.scale(4))])
    p = Beam(t.leaves)
    leaf = t.leaves[0]
 

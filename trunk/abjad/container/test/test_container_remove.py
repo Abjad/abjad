@@ -8,7 +8,7 @@ def test_container_remove_01( ):
       Leaf carries covered spanners forward.
       Leaf returns after removal.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Slur(t[:])
    Beam(t[1])
 

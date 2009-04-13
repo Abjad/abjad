@@ -4,7 +4,7 @@ from abjad import *
 def test_notehead_interface_01( ):
    '''Override LilyPond NoteHead grob on voice.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t.notehead.color = 'red'
 
    r'''

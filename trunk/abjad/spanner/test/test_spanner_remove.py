@@ -8,7 +8,7 @@ def test_spanner_remove_01( ):
       Not composer-safe. 
       Follow immediately with operation to remove component from score.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    pitchtools.diatonicize(t)
    p = Beam(t[:])
    

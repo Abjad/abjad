@@ -12,7 +12,7 @@ def insert_and_fracture(container, i, component):
 
       Example:
 
-      t = Voice(scale(4))
+      t = Voice(construct.scale(4))
       Beam(t[:])
       containertools.insert_and_fracture(t, 1, Rest((1, 4)))
 

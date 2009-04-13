@@ -4,7 +4,7 @@ from abjad import *
 def test_leaf_spanner_aggregator_detach_01( ):
    '''t.spanners._detach( ) detaches all spanners attached to leaf t.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    p1 = Beam(t[ : ])
    p2 = Glissando(t[ : ])
 
@@ -35,7 +35,7 @@ def test_leaf_spanner_aggregator_detach_01( ):
 def test_leaf_spanner_aggregator_detach_02( ):
    '''t.spanners._detach( ) returns a SpannersReceipt.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    beam = Beam(t[ : ])
    glissando = Glissando(t[ : ])
 

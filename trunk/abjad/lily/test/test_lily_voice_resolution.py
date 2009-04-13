@@ -195,7 +195,7 @@ def test_lily_voice_resolution_05( ):
 def test_lily_voice_resolution_06( ):
    '''Two like-named voices in two differently named staves.'''
 
-   t = Container(Staff([Voice(scale(2))]) * 2)
+   t = Container(Staff([Voice(construct.scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'

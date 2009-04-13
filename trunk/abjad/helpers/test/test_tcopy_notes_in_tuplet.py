@@ -4,7 +4,7 @@ from abjad import *
 def test_tcopy_notes_in_tuplet_01( ):
    '''Copy notes from tuplet and preserve tuplet target duration.'''
 
-   t = FixedDurationTuplet((4, 8), scale(5))
+   t = FixedDurationTuplet((4, 8), construct.scale(5))
    u = tcopy(t[:3])
 
    r'''

@@ -4,7 +4,7 @@ from abjad import *
 def test_measures_spin_01( ):
    '''Spin one measure out three times.'''
 
-   t = RigidMeasure((3, 8), scale(3))
+   t = RigidMeasure((3, 8), construct.scale(3))
    measuretools.spin(t, 3)
 
    r'''

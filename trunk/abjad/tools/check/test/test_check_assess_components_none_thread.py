@@ -8,15 +8,15 @@ def test_assess_components_none_thread_01( ):
       Unicorporated leaves do not share a root component.
       False if not allow orphans; True if allow orphans.'''
 
-   assert check.assess_components(scale(4), share = 'thread')
-   assert not check.assess_components(scale(4), share = 'thread', 
+   assert check.assess_components(construct.scale(4), share = 'thread')
+   assert not check.assess_components(construct.scale(4), share = 'thread', 
       allow_orphans = False)
 
 
 def test_assess_components_none_thread_02( ):
    '''Container and leaves all thread.'''
 
-   t = Container(scale(4))
+   t = Container(construct.scale(4))
 
    r'''{
       c'8
@@ -31,7 +31,7 @@ def test_assess_components_none_thread_02( ):
 def test_assess_components_none_thread_03( ):
    '''Tuplet and leaves all thread.'''
    
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    
    r'''\times 2/3 {
       c'8
@@ -48,7 +48,7 @@ def test_assess_components_none_thread_03( ):
 #      Abjad mimics this behavior and assigns each leaf 
 #      to a different thread.'''
 #
-#   t = Container(scale(4))
+#   t = Container(construct.scale(4))
 #   t.parallel = True
 #
 #   r'''<<
@@ -64,7 +64,7 @@ def test_assess_components_none_thread_03( ):
 def test_assess_components_none_thread_05( ):
    '''Voice and leaves all thread.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
 
    r'''\new Voice {
       c'8
@@ -79,7 +79,7 @@ def test_assess_components_none_thread_05( ):
 def test_assess_components_none_thread_06( ):
    '''Anonymous staff and leaves all thread.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
 
    r'''\new Staff {
       c'8
@@ -1142,7 +1142,7 @@ def test_assess_components_none_thread_41( ):
 #def test_assess_components_none_thread_42_trev( ):
 #   '''A parallel Staff and only leaves as it's content DO NOT thread.'''
 #
-#   t = Staff(scale(4))
+#   t = Staff(construct.scale(4))
 #   t.parallel = True
 #
 #   r'''\new Staff <<
@@ -1161,7 +1161,7 @@ def test_assess_components_none_thread_41( ):
 #   This mimics LilyPond's behavior of not collapsing then notes into
 #   a chord. '''
 #
-#   t = Staff(scale(4))
+#   t = Staff(construct.scale(4))
 #   t.parallel = True
 #
 #   r'''\new Staff <<

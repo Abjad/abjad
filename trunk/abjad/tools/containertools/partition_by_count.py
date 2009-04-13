@@ -22,7 +22,7 @@ def partition_by_count(container, counts):
    
       Example:
 
-      t = Voice([FixedDurationTuplet((2, 8), scale(3))])
+      t = Voice([FixedDurationTuplet((2, 8), construct.scale(3))])
       Beam(t[0][:])
       left, right = containertools.partition_by_count(t[0], [1, 2])
 

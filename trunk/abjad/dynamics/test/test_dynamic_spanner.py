@@ -3,7 +3,7 @@ from abjad import *
 
 def test_dynamic_spanner_01( ):
    
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    Dynamic(t[:2], 'f')
    Dynamic(t[2:], 'p')

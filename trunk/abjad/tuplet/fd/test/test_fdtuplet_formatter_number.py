@@ -5,7 +5,7 @@ def test_fdtuplet_formatter_number_01( ):
    '''Tuplet formatter number interface can contribute
       markup to many notes at format-time at once.'''
 
-   t = FixedDurationTuplet((4, 8), scale(5))
+   t = FixedDurationTuplet((4, 8), construct.scale(5))
    t.formatter.number.leaves = 'markup'
 
    r'''
@@ -26,7 +26,7 @@ def test_fdtuplet_formatter_number_02( ):
    '''Tuplet formatter number interface can contribute
       LilyPond comments to many notes at format-time at once.'''
 
-   t = FixedDurationTuplet((4, 8), scale(5))
+   t = FixedDurationTuplet((4, 8), construct.scale(5))
    t.formatter.number.leaves = 'comment'
 
    r'''

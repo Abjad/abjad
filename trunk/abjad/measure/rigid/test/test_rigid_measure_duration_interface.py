@@ -4,7 +4,7 @@ import py.test
 
 def test_rigid_measure_duration_interface_01( ):
    '''Binary meter, properly filled.'''
-   t = RigidMeasure((3, 8), scale(3))
+   t = RigidMeasure((3, 8), construct.scale(3))
 
    r'''
         \time 3/8
@@ -23,7 +23,7 @@ def test_rigid_measure_duration_interface_01( ):
 
 def test_rigid_measure_duration_interface_02( ):
    '''Nonbinary meter, properly filled.'''
-   t = RigidMeasure((3, 10), scale(3))
+   t = RigidMeasure((3, 10), construct.scale(3))
 
    r'''
         \time 3/10
@@ -44,7 +44,7 @@ def test_rigid_measure_duration_interface_02( ):
 
 def test_rigid_measure_duration_interface_03( ):
    '''Binary meter, improperly filled.'''
-   t = RigidMeasure((3, 8), scale(4))
+   t = RigidMeasure((3, 8), construct.scale(4))
 
    assert py.test.raises(OverfullMeasureError, 't.format')
    
@@ -56,7 +56,7 @@ def test_rigid_measure_duration_interface_03( ):
 
 def test_rigid_measure_duration_interface_04( ):
    '''Nonbinary meter, improperly filled.'''
-   t = RigidMeasure((3, 10), scale(4))
+   t = RigidMeasure((3, 10), construct.scale(4))
 
    assert py.test.raises(OverfullMeasureError, 't.format')
 

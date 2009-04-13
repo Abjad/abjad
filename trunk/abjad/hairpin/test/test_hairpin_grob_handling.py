@@ -6,7 +6,7 @@ def test_hairpin_grob_handling_01( ):
    The Abjad Hairpin handles the LilyPond DynamicLineSpanner grob.
    '''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p = Hairpin(t[ : ], 'p < f')
    p.staff_padding = 4
 

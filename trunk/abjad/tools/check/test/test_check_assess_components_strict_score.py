@@ -5,7 +5,7 @@ def test_assess_components_strict_score_01( ):
    '''True for strictly contiguous leaves in voice.
       False for other time orderings of leaves in voice.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    
    assert check.assess_components(t.leaves, contiguity = 'strict', share = 'score')
 
@@ -48,7 +48,7 @@ def test_assess_components_strict_score_03( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
-   t = scale(4)
+   t = construct.scale(4)
 
    assert check.assess_components(t, contiguity = 'strict', share = 'score')
    assert not check.assess_components(t, allow_orphans = False, 

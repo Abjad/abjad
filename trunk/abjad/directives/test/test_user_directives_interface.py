@@ -45,7 +45,7 @@ def test_user_directives_interface_02( ):
 def test_user_directives_interface_03( ):
    '''before, after, opening, closing format correctly on Container.'''
 
-   t = Container(scale(4))
+   t = Container(construct.scale(4))
    t.directives.before.append('before')
    t.directives.after.append('after')
    t.directives.opening.append('opening')
@@ -68,7 +68,7 @@ def test_user_directives_interface_03( ):
 def test_user_directives_interface_05( ):
    '''Multiple before, after, opening, closing format correctly on Container.'''
 
-   t = Container(scale(4))
+   t = Container(construct.scale(4))
    t.directives.before.append('before1')
    t.directives.before.append('before2')
    t.directives.after.append('after1')

@@ -5,9 +5,9 @@ from abjad.tools.parenttools.give_position_to import _give_position_to
 def test_parenttools_give_position_to_01( ):
    '''Not composer-safe.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
-   notes = scale(2, Rational(1, 16))
+   notes = construct.scale(2, Rational(1, 16))
 
    _give_position_to(t[0:1], notes)
 

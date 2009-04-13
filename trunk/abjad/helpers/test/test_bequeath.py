@@ -4,7 +4,7 @@ from abjad import *
 def test_bequeath_01( ):
    '''Bequeath parent and spanners of two old notes to five new notes.'''
    
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -39,7 +39,7 @@ def test_bequeath_01( ):
 def test_bequeath_02( ):
    '''Bequeath parent and spaners of one old note to five new notes.'''
    
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -75,7 +75,7 @@ def test_bequeath_02( ):
 def test_bequeath_03( ):
    '''Bequeath parent and spanners of two old notes to five new notes.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -110,7 +110,7 @@ def test_bequeath_03( ):
 def test_bequeath_04( ):
    '''Bequeath parent and spanners of three old notes to five new notes.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -143,7 +143,7 @@ def test_bequeath_04( ):
 
 def test_bequeath_05( ):
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -177,7 +177,7 @@ def test_bequeath_06( ):
    '''Bequeath parent and spanners of container to children of container.
       This is bequeath generalizing Container.slip( ).'''
 
-   t = Staff([Voice(scale(4))])
+   t = Staff([Voice(construct.scale(4))])
    Beam(t[0])
 
    r'''\new Staff {

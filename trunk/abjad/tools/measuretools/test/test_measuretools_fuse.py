@@ -112,7 +112,7 @@ def test_measuretools_fuse_04( ):
 def test_measuretools_fuse_05( ):
    '''Fusing list of only one measure returns measure unaltered.'''
 
-   t = RigidMeasure((3, 8), scale(3))
+   t = RigidMeasure((3, 8), construct.scale(3))
    new = measuretools.fuse([t])
 
    assert new is t

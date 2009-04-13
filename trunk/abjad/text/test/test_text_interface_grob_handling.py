@@ -39,7 +39,7 @@ def test_grob_handling_03( ):
    Override text on context.
    '''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.text.color = 'red'
 
    r'''

@@ -7,7 +7,7 @@ def test_containertools_partition_by_count_01( ):
       This means that the original structure remains unchanged.
       Also that resulting parts cut all the way up into voice.'''
 
-   t = Voice([FixedDurationTuplet((2, 8), scale(3))])
+   t = Voice([FixedDurationTuplet((2, 8), construct.scale(3))])
    Beam(t[0][:])
    left, right = containertools.partition_by_count(t[0], [1, 2])
 
@@ -34,7 +34,7 @@ def test_containertools_partition_by_count_01( ):
 def test_containertools_partition_by_count_02( ):
    '''Partition voice.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    Beam(t[:])
    result = containertools.partition_by_count(t, [1, 2])
 

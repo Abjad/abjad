@@ -10,7 +10,7 @@ def test_container_insert_01( ):
 
    "Insert works just before a spanner."
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t.insert(0, Rest((1, 8)))
 
@@ -29,7 +29,7 @@ def test_container_insert_01( ):
 def test_container_insert_02( ):
    '''Insert works inside a spanner.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t.insert(1, Note(1, (1, 8)))
 
@@ -87,7 +87,7 @@ def test_container_insert_04( ):
 def test_container_insert_05( ):
    '''Insert works with negative values.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t.insert(-1, Note(4.5, (1, 8)))
 
@@ -106,7 +106,7 @@ def test_container_insert_05( ):
 def test_container_insert_06( ):
    '''Insert works with really big negative values.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t.insert(-1000, Rest((1, 8)))
 
@@ -126,7 +126,7 @@ def test_container_insert_07( ):
    '''Inserting a note from one container into another container
       switches note parent from first container to second.'''
 
-   v = Voice(scale(4))
+   v = Voice(construct.scale(4))
    t = Staff(construct.run(8))
    note = v[0]
    t.insert(1, v[0])

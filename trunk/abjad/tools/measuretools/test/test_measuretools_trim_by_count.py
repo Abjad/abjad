@@ -44,7 +44,7 @@ def test_measuretools_trim_by_count_04( ):
 def test_measuretools_trim_by_count_05( ):
    '''Trim nonbinary measure.'''
 
-   t = RigidMeasure((4, 9), scale(4))
+   t = RigidMeasure((4, 9), construct.scale(4))
    measuretools.trim_by_count(t[:1])
 
    r'''\time 3/9
@@ -61,7 +61,7 @@ def test_measuretools_trim_by_count_05( ):
 def tet_rigid_measure_trim_06( ):
    '''Trim nonbinary measure, with denominator change.'''
 
-   notes = scale(4)
+   notes = construct.scale(4)
    notes[0].duration.written = Rational(1, 16)
    notes[1].duration.written = Rational(1, 16)
    t = RigidMeasure((3, 9), notes)

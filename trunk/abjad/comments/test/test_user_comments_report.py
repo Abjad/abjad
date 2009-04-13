@@ -4,7 +4,7 @@ from abjad import *
 def test_user_comments_report_01( ):
    '''Report container comments.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t.comments.before.append('Comments before.')
    t.comments.before.append('More comments before.')

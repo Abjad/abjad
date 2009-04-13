@@ -4,7 +4,7 @@ from abjad import *
 def test_label_leaf_durations_01( ):
    '''Label written duration of every leaf.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    label.leaf_durations(t, ['written'])
 
    r'''\times 2/3 {
@@ -20,7 +20,7 @@ def test_label_leaf_durations_01( ):
 def test_label_leaf_durations_02( ):
    '''Label prolated duration of every leaf.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    label.leaf_durations(t, ['prolated'])
 
    r'''\times 2/3 {
@@ -36,7 +36,7 @@ def test_label_leaf_durations_02( ):
 def test_label_leaf_durations_03( ):
    ''''Label written and prolated duration of every leaf.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    label.leaf_durations(t, ['written', 'prolated'])
 
    r'''\times 2/3 {

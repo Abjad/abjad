@@ -9,7 +9,7 @@ def trim_by_count(components):
    '''Remove components in 'components' from parent measure.
       Adjust meter of containing measure as necessary.
 
-      abjad> t = RigidMeasure((3, 8), scale(3))
+      abjad> t = RigidMeasure((3, 8), construct.scale(3))
       abjad> measuretools.trim_by_count(t[:2])
       abjad> t
       RigidMeasure(1/8, [e'8])'''

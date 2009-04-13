@@ -6,7 +6,7 @@ def test_measuretools_concentrate_01( ):
       Meter 3/8 goes to 9/24.
       Numerator and denominator both triple.'''
 
-   t = RigidMeasure((3, 8), scale(3))
+   t = RigidMeasure((3, 8), construct.scale(3))
    Beam(t[:])
    measuretools.concentrate(t, [(3, 3)])
 
@@ -32,7 +32,7 @@ def test_measuretools_concentrate_02( ):
       Meter 3/16 goes to 12/80.
       Numerator quadruples and denominator quintuples.'''
 
-   t = RigidMeasure((3, 16), scale(3, Rational(1, 16)))
+   t = RigidMeasure((3, 16), construct.scale(3, Rational(1, 16)))
    Beam(t[:])
    measuretools.concentrate(t, [(4, 5)])
 
@@ -61,7 +61,7 @@ def test_measuretools_concentrate_03( ):
       Meter 3/16 goes to 12/64.
       Numerator and denominator both quadruple.'''
 
-   t = RigidMeasure((3, 16), scale(3, Rational(1, 16)))
+   t = RigidMeasure((3, 16), construct.scale(3, Rational(1, 16)))
    Beam(t[:])
    measuretools.concentrate(t, [(4, 4)])
 
@@ -88,7 +88,7 @@ def test_measuretools_concentrate_04( ):
       Meter 3/16 goes to 6/64.
       Numerator doubles and denominator quadruples.'''
 
-   t = RigidMeasure((3, 16), scale(3, Rational(1, 16)))
+   t = RigidMeasure((3, 16), construct.scale(3, Rational(1, 16)))
    Beam(t[:])
    measuretools.concentrate(t, [(2, 4)])
 

@@ -6,7 +6,7 @@ def test_tuplet_fd_color_01( ):
       both prints and colors trivial tuplets at format-time.'''
 
    FixedDurationTuplet.color = True
-   t = FixedDurationTuplet((3, 8), scale(3))
+   t = FixedDurationTuplet((3, 8), construct.scale(3))
 
    r'''
    \tweak #'color #blue
@@ -26,7 +26,7 @@ def test_tuplet_fd_color_02( ):
       handle nested tuplets correctly.'''
 
    FixedDurationTuplet.color = True
-   t = FixedDurationTuplet((3, 8), FixedDurationTuplet((2, 8), scale(2)) * 2)
+   t = FixedDurationTuplet((3, 8), FixedDurationTuplet((2, 8), construct.scale(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''

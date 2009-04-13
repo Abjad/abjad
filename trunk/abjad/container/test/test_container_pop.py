@@ -7,7 +7,7 @@ def test_container_pop_01( ):
       Popped leaves withdraw from crossing spanners.
       Popped leaves carry covered spanners forward.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Slur(t[:])
    Beam(t[1])
 

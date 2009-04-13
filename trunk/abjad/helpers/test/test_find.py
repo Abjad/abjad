@@ -4,7 +4,7 @@ from abjad import *
 def test_find_01( ):
    '''Find components by name.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    n = t[0]
    n.name = 'notename'
 
@@ -14,7 +14,7 @@ def test_find_01( ):
 def test_find_02( ):
    '''Find components by class.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
 
    assert find(t, klass = Note) == t[:]
 
@@ -22,7 +22,7 @@ def test_find_02( ):
 def test_find_03( ):
    '''Find components by both name and class.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    n = t[0]
    n.name = 'notename'
 
@@ -63,7 +63,7 @@ def test_find_06( ):
 def test_find_07( ):
    '''Find by context.'''
 
-   v = Voice(scale(4))
+   v = Voice(construct.scale(4))
    v.context = 'MyStrangeVoice'
    t = Staff([v])
 
@@ -73,7 +73,7 @@ def test_find_07( ):
 def test_find_08( ):
    '''Find by both name and context.'''
 
-   v = Voice(scale(4))
+   v = Voice(construct.scale(4))
    v.context = 'MyStrangeVoice'
    v.name = 'voice_1'
    t = Staff([v])
@@ -84,7 +84,7 @@ def test_find_08( ):
 def test_find_09( ):
    '''Return empty list on no match.'''
 
-   v = Voice(scale(4))
+   v = Voice(construct.scale(4))
    v.context = 'MyStrangeVoice'
    v.name = 'voice_1'
    t = Staff([v])

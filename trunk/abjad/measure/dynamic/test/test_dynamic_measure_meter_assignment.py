@@ -5,7 +5,7 @@ import py.test
 def test_dynamic_measure_meter_assignment_01( ):
    '''Dynamic measures block meter assignment.'''
 
-   t = DynamicMeasure(scale(4))
+   t = DynamicMeasure(construct.scale(4))
 
    r'''\time 1/2
         c'8

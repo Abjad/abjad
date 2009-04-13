@@ -6,7 +6,7 @@ def test_component_spanner_aggregator_children_01( ):
       attaching to any children of self.
       Do not include spaners attaching directly to self.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    trill = Trill(t)
    beam = Beam(t[:2])
    glissando = Glissando(t[2:])
@@ -26,6 +26,6 @@ def test_component_spanner_aggregator_children_01( ):
 def test_component_spanner_aggregator_children_02( ):
    '''Return empty set when no spanners attach to children.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
 
    assert t.spanners.children == set([ ])

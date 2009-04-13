@@ -3,7 +3,7 @@ import py.test
 
 
 def test_measure_empty_01( ):
-   assert py.test.raises(TypeError, 't = RigidMeasure(None, scale(4))')
+   assert py.test.raises(TypeError, 't = RigidMeasure(None, construct.scale(4))')
 #   assert repr(t) == 'RigidMeasure( )'
 #   assert str(t) == '| |'
 #   assert py.test.raises(UnderfullMeasureError, 't.format')

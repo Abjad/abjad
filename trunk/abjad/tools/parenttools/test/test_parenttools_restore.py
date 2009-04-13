@@ -5,7 +5,7 @@ from abjad.tools.parenttools.restore import _restore
 
 def test_parenttools_restore_01( ):
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
 
    r'''\new Voice {

@@ -75,8 +75,8 @@ def test_componenttools_give_spanned_music_to_03( ):
    '''When recipient is unable to accept donated music,
       raise MusicContentsError.'''
 
-   donor = Voice(scale(4))
-   recipient = Voice(scale(4))
+   donor = Voice(construct.scale(4))
+   recipient = Voice(construct.scale(4))
 
    assert py.test.raises(
       MusicContentsError, '_give_spanned_music_to([donor], recipient)')

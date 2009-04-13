@@ -5,7 +5,7 @@ import py.test
 def test_container_getitem_01( ):
    '''Get one container component with positive index.'''
 
-   notes = scale(4)
+   notes = construct.scale(4)
    t = Voice(notes)
 
    assert t[0] is notes[0]
@@ -17,7 +17,7 @@ def test_container_getitem_01( ):
 def test_container_getitem_02( ):
    '''Get one container component with negative index.'''
 
-   notes = scale(4)
+   notes = construct.scale(4)
    t = Voice(notes)
    
    assert t[-1] is notes[3]
@@ -29,7 +29,7 @@ def test_container_getitem_02( ):
 def test_container_getitem_03( ):
    '''Get slice from container.'''
 
-   notes = scale(4)
+   notes = construct.scale(4)
    t = Voice(notes)
 
    assert t[:1] == notes[:1]
@@ -41,6 +41,6 @@ def test_container_getitem_03( ):
 def test_container_getitem_04( ):
    '''Bad index raises IndexError.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
 
    assert py.test.raises(IndexError, 't[99]')

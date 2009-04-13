@@ -4,7 +4,7 @@ from abjad import *
 def test_staff_interface_01( ):
    '''Staff changes work on the first note of a staff.'''
 
-   piano = PianoStaff(Staff(scale(4)) * 2)
+   piano = PianoStaff(Staff(construct.scale(4)) * 2)
    piano.parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
@@ -33,7 +33,7 @@ def test_staff_interface_01( ):
 def test_staff_interface_02( ):
    '''Staff changes work on middle notes of a staff.'''
 
-   piano = PianoStaff(Staff(scale(4)) * 2)
+   piano = PianoStaff(Staff(construct.scale(4)) * 2)
    piano.parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
@@ -62,7 +62,7 @@ def test_staff_interface_02( ):
 def test_staff_interface_03( ):
    '''Staff changes work on the last note of a staff.'''
 
-   piano = PianoStaff(Staff(scale(4)) * 2)
+   piano = PianoStaff(Staff(construct.scale(4)) * 2)
    piano.parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'
@@ -91,7 +91,7 @@ def test_staff_interface_03( ):
 def test_staff_interface_04( ):
    '''Adjacent staff-changed notes format nicely.'''
 
-   piano = PianoStaff(Staff(scale(4)) * 2)
+   piano = PianoStaff(Staff(construct.scale(4)) * 2)
    piano.parallel = True
    piano[0].name = 'RH'
    piano[1].name = 'LH'

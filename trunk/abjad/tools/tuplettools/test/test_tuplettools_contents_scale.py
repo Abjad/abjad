@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplettools_contents_scale_01( ):
    '''Double tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(2))
 
    r'''\times 2/3 {
@@ -20,7 +20,7 @@ def test_tuplettools_contents_scale_01( ):
 def test_tuplettools_contents_scale_02( ):
    '''Halve tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(1, 2))
 
    r'''\times 2/3 {
@@ -36,7 +36,7 @@ def test_tuplettools_contents_scale_02( ):
 def test_tuplettools_contents_scale_03( ):
    '''Quadruple tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(4))
 
    r'''\times 2/3 {
@@ -52,7 +52,7 @@ def test_tuplettools_contents_scale_03( ):
 def test_tuplettools_contents_scale_04( ):
    '''Quarter tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(1, 4))
 
    r'''\times 2/3 {
@@ -68,7 +68,7 @@ def test_tuplettools_contents_scale_04( ):
 def test_tuplettools_contents_scale_05( ):
    '''Multiply tuplet by 3/2.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(3, 2))
 
    r'''c'8
@@ -82,7 +82,7 @@ def test_tuplettools_contents_scale_05( ):
 def test_tuplettools_contents_scale_05( ):
    '''Multiply tuplet by 2/3.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(2, 3))
 
    r'''\times 8/9 {
@@ -98,7 +98,7 @@ def test_tuplettools_contents_scale_05( ):
 def test_tuplettools_contents_scale_06( ):
    '''Multiply tuplet by 3/5.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(3, 5))
 
    r'''\times 4/5 {
@@ -115,7 +115,7 @@ def test_tuplettools_contents_scale_07( ):
    '''Multiply undotted, unbracketted notes by 3/2;
       ie, add a single dot.'''
 
-   t = FixedDurationTuplet((3, 8), scale(3))
+   t = FixedDurationTuplet((3, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(3, 2))
 
    r'''c'8.

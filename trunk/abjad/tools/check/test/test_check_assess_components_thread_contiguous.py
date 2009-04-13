@@ -90,7 +90,7 @@ def test_assess_components_thread_contiguous_03( ):
 def test_assess_components_thread_contiguous_04( ):
    '''True for strictly contiguous leaves in same staff.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    assert check.assess_components(t[:], contiguity = 'thread')
 
 
@@ -98,22 +98,22 @@ def test_assess_components_thread_contiguous_05( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
-   assert check.assess_components(scale(4), contiguity = 'thread')
-   assert not check.assess_components(scale(4), 
+   assert check.assess_components(construct.scale(4), contiguity = 'thread')
+   assert not check.assess_components(construct.scale(4), 
       contiguity = 'thread', allow_orphans = False)
 
 
 def test_assess_components_thread_contiguous_06( ):
    '''False for time reordered leaves in staff.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    assert not check.assess_components(t[2:] + t[:2], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_07( ):
    '''True for unincorporated component.'''
 
-   assert check.assess_components([Staff(scale(4))], contiguity = 'thread')
+   assert check.assess_components([Staff(construct.scale(4))], contiguity = 'thread')
 
 
 def test_assess_components_thread_contiguous_08( ):
@@ -125,7 +125,7 @@ def test_assess_components_thread_contiguous_08( ):
 def test_assess_components_thread_contiguous_09( ):
    '''False when components belonging to same thread are ommitted.'''
 
-   t = Voice(scale(6))
+   t = Voice(construct.scale(6))
    Beam(t[:])
 
    r'''\new Voice {

@@ -6,7 +6,7 @@ def test_spanner_receptor_position_01( ):
    '''Return position in spanner, if spanned;
       otherwise, raise MissingSpannerError.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    Beam(t[2:])
 
    r'''

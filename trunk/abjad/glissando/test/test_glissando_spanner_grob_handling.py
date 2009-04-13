@@ -6,7 +6,7 @@ def test_glissando_spanner_grob_handling_01( ):
    The Abjad Glissando spanner handles the LilyPond Glissando grob.
    '''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p = Glissando(t[ : ])
    p.thickness = 3
 

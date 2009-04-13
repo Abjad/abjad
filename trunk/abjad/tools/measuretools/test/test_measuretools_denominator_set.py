@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_denominator_set_01( ):
 
-   t = RigidMeasure((3, 8), scale(3))
+   t = RigidMeasure((3, 8), construct.scale(3))
    measuretools.denominator_set(t, 16)
 
    r'''\time 6/16

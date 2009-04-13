@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplet_formatter_report_01( ):
    '''Report format-time contributions.'''
 
-   t = FixedDurationTuplet((2, 8), scale(3))
+   t = FixedDurationTuplet((2, 8), construct.scale(3))
    t.accidental.style = 'forget'
    t.barline.kind = '|.'
    t.clef.forced = Clef('treble')

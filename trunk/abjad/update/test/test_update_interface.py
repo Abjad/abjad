@@ -14,7 +14,7 @@ def test_update_interface_01( ):
 def test_update_interface_02( ):
    '''Newly instantiated containers are not current.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    assert not t._update._current
 
    t[-1].offset.score
@@ -33,7 +33,7 @@ def test_update_interface_03( ):
 def test_update_interface_04( ):
    '''Copied containers are not current.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t[-1].offset.score
    new = clone.unspan([t])[0]
    assert not new._update._current
@@ -42,7 +42,7 @@ def test_update_interface_04( ):
 def test_update_interface_05( ):
    '''Container deletion marks all components in parentage for update.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t[-1].offset.score
    assert t._update._current
 
@@ -53,7 +53,7 @@ def test_update_interface_05( ):
 def test_update_interface_06( ):
    '''Container insert marks all components in parentage for update.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t[-1].offset.score
    assert t._update._current
    
@@ -64,7 +64,7 @@ def test_update_interface_06( ):
 def test_update_interface_07( ):
    '''Container append marks components in parentage for update.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t[-1].offset.score
    assert t._update._current
 
@@ -75,7 +75,7 @@ def test_update_interface_07( ):
 def test_update_interface_08( ):
    '''Container extend marks components in parentage for update.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t[-1].offset.score
    assert t._update._current
 
@@ -86,7 +86,7 @@ def test_update_interface_08( ):
 def test_update_interface_09( ):
    '''Container pop marks components in parentage for update.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t[-1].offset.score
    assert t._update._current
 
@@ -97,7 +97,7 @@ def test_update_interface_09( ):
 def test_update_interface_10( ):
    '''Container remove marks components in parentage for update.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t[-1].offset.score
    assert t._update._current
 

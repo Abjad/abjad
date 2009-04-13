@@ -33,8 +33,8 @@ def test_assess_components_none_parent_01( ):
 
 def test_assess_components_none_parent_02( ):
 
-   t1 = Voice(scale(4))
-   t2 = Voice(scale(4))
+   t1 = Voice(construct.scale(4))
+   t2 = Voice(construct.scale(4))
 
    assert check.assess_components(t1.leaves, share = 'parent')
    assert check.assess_components(t2.leaves, share = 'parent')

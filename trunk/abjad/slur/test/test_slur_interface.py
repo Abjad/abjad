@@ -3,13 +3,13 @@ from abjad.slur.interface import _SlurInterface
 
 def test_slur_interface_01( ):
    '''The slur interface exists.'''
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    assert isinstance(t.slur, _SlurInterface)
 
 
 def test_slur_interface_02( ):
    '''Slur interface GrobHandles 'Slur'.'''
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    t.slur.color = 'red'
    assert t.format == "\\new Voice \\with {\n\t\\override Slur #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
    r'''

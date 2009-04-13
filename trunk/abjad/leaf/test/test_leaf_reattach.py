@@ -7,7 +7,7 @@ def test_leaf_reattach_01( ):
       Leaf can reattach to both parentage and spanners at once.
       Fully reattached leaf is well formed.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    p = Beam(t[ : ])
    note = t[1]
 

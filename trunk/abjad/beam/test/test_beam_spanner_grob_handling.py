@@ -6,7 +6,7 @@ def test_beam_spanner_grob_handling_01( ):
    Abjad Beam spanners handle the LilyPond Beam grob.
    '''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p = Beam(t[ : ])
    p.positions = (4, 4)
 

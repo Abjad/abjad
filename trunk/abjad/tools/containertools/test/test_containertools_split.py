@@ -141,7 +141,7 @@ def test_containertools_split_04( ):
    '''A single container can be split in two by the middle.
       No parent.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
 
    r'''\new Voice {
@@ -173,7 +173,7 @@ def test_containertools_split_05( ):
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
 
-   t = Staff([Voice(scale(4))])
+   t = Staff([Voice(construct.scale(4))])
    v = t[0]
    Beam(v)
 
@@ -211,7 +211,7 @@ def test_containertools_split_06( ):
       Righthand part instantiates empty.
       Original container empties contents.'''
 
-   t = Staff([Voice(scale(4))])
+   t = Staff([Voice(construct.scale(4))])
    v = t[0]
    Beam(v)
 

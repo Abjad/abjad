@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_multiply_01( ):
    '''Multiply each leaf in voice by 1.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    p = Beam(t[:])
    leaftools.multiply(t, total = 2)
 
@@ -24,7 +24,7 @@ def test_leaftools_multiply_01( ):
 def test_leaftools_multiply_02( ):
    '''Multiply each leaf in voice by 2.'''
 
-   t = Voice(scale(3))
+   t = Voice(construct.scale(3))
    Beam(t[:])
    leaftools.multiply(t, total = 3)
 

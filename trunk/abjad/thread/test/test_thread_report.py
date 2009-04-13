@@ -214,7 +214,7 @@ def test_thread_report_06( ):
       Signature contains no score.
       Outermost sequential acts as signature root.'''
 
-   t = Container(Staff([Voice(scale(2))]) * 2)
+   t = Container(Staff([Voice(construct.scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'

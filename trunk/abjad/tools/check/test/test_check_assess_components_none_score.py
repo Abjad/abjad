@@ -30,8 +30,8 @@ def test_assess_components_none_score_01( ):
 def test_assess_components_none_score_02( ):
    '''Components here divide between two different scores.'''
 
-   t1 = Voice(scale(4))
-   t2 = Voice(scale(4))
+   t1 = Voice(construct.scale(4))
+   t2 = Voice(construct.scale(4))
 
    assert check.assess_components([t1], share = 'score')
    assert check.assess_components(t1.leaves, share = 'score')

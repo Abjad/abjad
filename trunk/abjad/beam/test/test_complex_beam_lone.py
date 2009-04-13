@@ -5,7 +5,7 @@ def test_complex_beam_lone_01( ):
    '''ComplexBeam with lone = True applies beam 
       to a lone note at format-time.'''
 
-   t = Voice(scale(1))
+   t = Voice(construct.scale(1))
    ComplexBeam(t, lone = True)
 
    r'''
@@ -22,7 +22,7 @@ def test_complex_beam_lone_02( ):
    '''ComplexBeam with lone = False does not apply beam
       to a lone note at format-time.'''
 
-   t = Voice(scale(1))
+   t = Voice(construct.scale(1))
    ComplexBeam(t, lone = False)
 
    r'''
@@ -38,7 +38,7 @@ def test_complex_beam_lone_02( ):
 def test_complex_beam_lone_03( ):
    '''ComplexBeam with multiple leaves ignores 'lone' setting.'''
 
-   t = Voice(scale(2))
+   t = Voice(construct.scale(2))
    ComplexBeam(t, lone = False)
 
    r'''

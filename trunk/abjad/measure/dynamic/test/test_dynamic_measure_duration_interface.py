@@ -3,7 +3,7 @@ from abjad import *
 
 def test_dynamic_measure_duration_interface_01( ):
    '''Notes as contents.'''
-   t = DynamicMeasure(scale(4))
+   t = DynamicMeasure(construct.scale(4))
    t.denominator = 8
 
    r'''
@@ -24,7 +24,7 @@ def test_dynamic_measure_duration_interface_01( ):
 
 def test_dynamic_measure_duration_interface_02( ):
    '''Binary tuplet as contents.'''
-   t = DynamicMeasure([FixedDurationTuplet((2, 8), scale(3))])
+   t = DynamicMeasure([FixedDurationTuplet((2, 8), construct.scale(3))])
    t.denominator = 8
 
    r'''
@@ -46,7 +46,7 @@ def test_dynamic_measure_duration_interface_02( ):
 
 def test_dynamic_measure_duration_interface_03( ):
    '''Nonbinary tuplet as contents.'''
-   t = DynamicMeasure([FixedMultiplierTuplet((2, 3), scale(4))])
+   t = DynamicMeasure([FixedMultiplierTuplet((2, 3), construct.scale(4))])
    t.denominator = 12
 
    r'''

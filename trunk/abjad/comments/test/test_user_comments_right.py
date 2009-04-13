@@ -4,7 +4,7 @@ from abjad import *
 def test_comments_right_01( ):
    '''Context comments right.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    beam = Beam(t[:])
    beam.thickness = 3
    t.comments.right.append('Voice right comments here.')

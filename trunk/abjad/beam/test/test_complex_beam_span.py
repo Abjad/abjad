@@ -4,7 +4,7 @@ from abjad import *
 def test_complex_beam_span_01( ):
    '''1-beam span between adjacent groups of 1/16th notes.'''
 
-   t = Voice(scale(4, (1, 16)))
+   t = Voice(construct.scale(4, (1, 16)))
    ComplexBeam(t, durations = [(1, 8), (1, 8)], span = 1)
 
    r'''
@@ -32,7 +32,7 @@ def test_complex_beam_span_01( ):
 def test_complex_beam_span_02( ):
    '''2-beam span between adjacent groups of 1/16th notes.'''
 
-   t = Voice(scale(4, (1, 16)))
+   t = Voice(construct.scale(4, (1, 16)))
    ComplexBeam(t, durations = [(1, 8), (1, 8)], span = 2)
 
    r'''

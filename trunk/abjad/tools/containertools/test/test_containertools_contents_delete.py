@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_contents_delete_01( ):
    '''Eject container contents.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    Beam(t)
 
    contents = containertools.contents_delete(t)

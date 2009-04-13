@@ -4,7 +4,7 @@ from abjad import *
 def test_instrument_spanner_01( ):
    '''Instrument spanner with long and short names.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p = Instrument(t, 'Alto Flute in G', 'Fl. G')
 
    r'''\new Voice {

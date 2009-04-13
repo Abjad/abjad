@@ -4,7 +4,7 @@ from abjad import *
 def test_leaf_formatter_number_self_01( ):
    '''_LeafFormatterNumberInterface can contribution markup.'''
 
-   t = Staff(scale(8))
+   t = Staff(construct.scale(8))
    t[0].formatter.number.self = 'markup'
 
    r'''
@@ -26,7 +26,7 @@ def test_leaf_formatter_number_self_01( ):
 def test_leaf_formatter_number_self_02( ):
    '''_LeafFormatterNumberInterface can contribute LilyPond comments.'''
 
-   t = Staff(scale(8))
+   t = Staff(construct.scale(8))
    t[0].formatter.number.self = 'comment'
 
    r'''

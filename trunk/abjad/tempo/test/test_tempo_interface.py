@@ -4,7 +4,7 @@ from abjad import *
 def test_tempo_interface_01( ):
    '''Tempo interface works on nonempty staves.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.tempo.indication = TempoIndication(Rational(1, 8), 38)
 
    r'''\new Staff {
@@ -35,7 +35,7 @@ def test_tempo_interface_02( ):
 def test_tempo_interface_03( ):
    '''Tempo interface works on pure containers.'''
 
-   t = Container(scale(4))
+   t = Container(construct.scale(4))
    t.tempo.indication = TempoIndication(Rational(1, 8), 38)
 
    r'''{

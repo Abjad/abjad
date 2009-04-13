@@ -36,7 +36,7 @@ def test_clef_grob_handling_04( ):
    Clef override on staff.
    '''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.clef.color = 'red'
 
    r'''

@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplet_number_grob_handling_01( ):
    '''Override LilyPond TupletNumber grob on Abjad voice.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t.tupletnumber.fraction = True
 
@@ -24,7 +24,7 @@ def test_tuplet_number_grob_handling_01( ):
 def test_tuplet_number_grob_handling_02( ):
    '''Override LilyPond TupletNumber grob on Abjad leaf.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t[1].tupletnumber.fraction = True
 
@@ -43,7 +43,7 @@ def test_tuplet_number_grob_handling_02( ):
 def test_tuplet_number_grob_handling_03( ):
    '''Override LilyPond TupletNumber text attribute.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t.tupletnumber.text = Markup('"6:4"')
 

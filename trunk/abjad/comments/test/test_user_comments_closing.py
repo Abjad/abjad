@@ -4,7 +4,7 @@ from abjad import *
 def test_comments_closing_01( ):
    '''Test container comments closing.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
    t.comments.closing.append('Voice closing comments here.')
    t.comments.closing.append('More voice closing comments.')

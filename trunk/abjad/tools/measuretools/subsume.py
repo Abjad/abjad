@@ -13,7 +13,7 @@ def subsume(expr):
 
       Returns None because processes potentially many measures.
 
-      t = RigidMeasure((2, 8), [FixedDurationTuplet((2, 8), scale(3))])
+      t = RigidMeasure((2, 8), [FixedDurationTuplet((2, 8), construct.scale(3))])
       measuretools.subsume(t)
 
       \time 3/12

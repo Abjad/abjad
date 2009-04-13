@@ -4,7 +4,7 @@ from abjad.tools.parenttools.ignore import _ignore
 
 def test_parenttools_ignore_01( ):
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:])
 
    r'''\new Voice {

@@ -3,7 +3,7 @@ from abjad import *
 
 def test_scm_function_01( ):
    '''Scheme functions known to LilyPond format with no apostrophe.'''
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    t.meter.break_visibility = Function('end-of-line-invisible')
 
    r'''

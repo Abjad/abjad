@@ -7,7 +7,7 @@ def test_measure_anonymous_01( ):
    Anonymous measures print no meter.
    '''
 
-   t = AnonymousMeasure(scale(4))
+   t = AnonymousMeasure(construct.scale(4))
    
    r'''
       \override Staff.TimeSignature #'stencil = ##f
@@ -32,7 +32,7 @@ def test_measure_anonymous_02( ):
    Anonymous measures print no meter.
    '''
 
-   t = AnonymousMeasure(scale(3))
+   t = AnonymousMeasure(construct.scale(3))
    
    r'''
       \override Staff.TimeSignature #'stencil = ##f

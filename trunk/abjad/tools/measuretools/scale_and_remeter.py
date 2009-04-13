@@ -15,7 +15,7 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
 
       Example:
 
-      t = RigidMeasure((3, 8), scale(3))
+      t = RigidMeasure((3, 8), construct.scale(3))
       measuretools.scale_and_remeter(t, Rational(2, 3))
 
            \time 3/12

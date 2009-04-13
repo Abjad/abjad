@@ -5,7 +5,7 @@ def test_tempo_spanner_grob_handling_01( ):
    '''The Abjad Tempo spanner handles the LilyPond MetronomeMark grob.
       Note context promotion.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p = Tempo(t[:], TempoIndication(Rational(1, 4), 58))
    p.color = 'red'
    p.promote('color', 'Staff')

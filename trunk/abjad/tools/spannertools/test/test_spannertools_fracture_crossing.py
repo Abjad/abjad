@@ -7,7 +7,7 @@ def test_spannertools_fracture_crossing_01( ):
       fracture all spanners to the right of the rightmost component in list.
    '''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    Beam(t[:])
    spannertools.fracture_crossing(t[1:3])
 
@@ -26,7 +26,7 @@ def test_spannertools_fracture_crossing_02( ):
    '''Fracture to the left of leftmost component;
       fracture to the right of rightmost component.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    Beam(t[:])
    spannertools.fracture_crossing(t[1:2])
 
@@ -51,8 +51,8 @@ def test_spannertools_fracture_crossing_03( ):
 def test_spannertools_fracture_crossing_04( ):
    '''Nonsuccessive components raise ContiguityError.'''
 
-   t1 = Staff(scale(4))
-   t2 = Staff(scale(4))
+   t1 = Staff(construct.scale(4))
+   t2 = Staff(construct.scale(4))
    assert py.test.raises(
       ContiguityError, 'spannertools.fracture_crossing(t1[:] + t2[:])')
 

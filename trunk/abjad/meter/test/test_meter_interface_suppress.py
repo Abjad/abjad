@@ -5,7 +5,7 @@ import py.test
 def test_meter_interface_suppress_01( ):
    '''Suppress binary meter at format-time.'''
 
-   t = RigidMeasure((7, 8), scale(7))
+   t = RigidMeasure((7, 8), construct.scale(7))
    t.meter.suppress = True
 
    r'''
@@ -24,7 +24,7 @@ def test_meter_interface_suppress_01( ):
 def test_meter_interface_suppress_02( ):
    '''Nonbinary meter suppression at format-time raises custom exception.'''
 
-   t = RigidMeasure((8, 9), scale(8))
+   t = RigidMeasure((8, 9), construct.scale(8))
    t.meter.suppress = True
 
    assert py.test.raises(NonbinaryMeterSuppressionError, 't.format')

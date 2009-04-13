@@ -8,7 +8,7 @@ def test_spanner_insert_01( ):
       Not composer-safe.
       Inserting into middle of spanner may leave discontiguous spanner.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    p = Beam(t[:2])
 
    r'''\new Voice {

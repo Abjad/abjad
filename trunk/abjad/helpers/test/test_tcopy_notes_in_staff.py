@@ -4,7 +4,7 @@ from abjad import *
 def test_tcopy_notes_in_staff_01( ):
    '''Copy adjacent notes in staff.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    u = tcopy(t[:2])
 
    r'''
@@ -22,7 +22,7 @@ def test_tcopy_notes_in_staff_01( ):
 def test_tcopy_notes_in_staff_02( ):
    '''Copy adjacent notes in staff.'''
 
-   t = Staff(scale(4))
+   t = Staff(construct.scale(4))
    u = tcopy(t[-2:])
 
    r'''

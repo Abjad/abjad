@@ -5,7 +5,7 @@ import py.test
 def test_container_setitem_integer_01( ):
    '''Spanned leaves exchange correctly.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:2])
    Glissando(t.leaves)
 
@@ -32,7 +32,7 @@ def test_container_setitem_integer_01( ):
 def test_container_setitem_integer_02( ):
    '''Spanned leaf hands position over to container correctly.'''
 
-   t = Voice(scale(4))
+   t = Voice(construct.scale(4))
    Beam(t[:2])
    Glissando(t.leaves)
 
@@ -147,7 +147,7 @@ def test_container_setitem_integer_05( ):
       }
    }'''
 
-   t[1] = FixedDurationTuplet((2, 8), scale(3))
+   t[1] = FixedDurationTuplet((2, 8), construct.scale(3))
 
    r'''\new Voice {
       {
@@ -241,7 +241,7 @@ def test_container_setitem_integer_08( ):
       and insert into recipient container.
       Both donor and recipient check after set item.'''
 
-   notes = scale(6)
+   notes = construct.scale(6)
 
    t = Voice(notes[:3])
    Beam(t[:])
@@ -290,7 +290,7 @@ def test_container_setitem_integer_09( ):
       from donor container and insert into recipient container.
       Both donor and recipient check after set item.'''
 
-   notes = scale(7)
+   notes = construct.scale(7)
 
    t = Voice(notes[:3])
    Beam(t[:])

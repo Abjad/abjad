@@ -154,7 +154,7 @@ def test_spannertools_get_dominant_08( ):
 def test_spannertools_get_dominant_09( ):
    '''Lone components raise ContiguityError.'''
 
-   notes = scale(4)
+   notes = construct.scale(4)
    b1 = Beam(notes[:2])
    b2 = Beam(notes[2:])
    crescendo = Crescendo(notes)

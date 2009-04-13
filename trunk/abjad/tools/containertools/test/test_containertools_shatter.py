@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_shatter_01( ):
    '''Shatter binary measure in voice.'''
 
-   t = Voice([RigidMeasure((3, 8), scale(3))])
+   t = Voice([RigidMeasure((3, 8), construct.scale(3))])
    Beam(t[0])
    containertools.shatter(t[0])
 
@@ -24,7 +24,7 @@ def test_containertools_shatter_01( ):
 def test_containertools_shatter_02( ):
    '''Shatter nonbinary measure in voice.'''
 
-   t = Voice([RigidMeasure((3, 12), scale(3))])
+   t = Voice([RigidMeasure((3, 12), construct.scale(3))])
    Beam(t[0])
    containertools.shatter(t[0])
 
@@ -52,7 +52,7 @@ def test_containertools_shatter_03( ):
 
    t = FixedDurationTuplet((2, 8), construct.run(3))
    Beam(t[:])
-   donate(t[-1:], FixedDurationTuplet((1, 8), scale(3, (1, 16))))
+   donate(t[-1:], FixedDurationTuplet((1, 8), construct.scale(3, (1, 16))))
    pitchtools.diatonicize(t)
 
    r'''\times 2/3 {
