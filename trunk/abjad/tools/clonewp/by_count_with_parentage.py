@@ -1,7 +1,8 @@
 from abjad.container.container import Container
 from abjad.exceptions.exceptions import ContiguityError
 from abjad.leaf.leaf import _Leaf
-from abjad.tools import componenttools
+#from abjad.tools import componenttools
+from abjad.tools import leaftools
 from abjad.tools import iterate
 from abjad.tools.clone.fracture import fracture
 
@@ -58,7 +59,7 @@ def by_count_with_parentage(expr, start = 0, stop = None):
       if leaf == start_leaf:
          _found_start_leaf = True
       else:
-         componenttools.excise(leaf)
+         leaftools.excise(leaf)
 
    #print 'moved on to trimming backwards ...'
 
@@ -70,7 +71,7 @@ def by_count_with_parentage(expr, start = 0, stop = None):
       if leaf == stop_leaf:
          _found_stop_leaf = True
       else:
-         componenttools.excise(leaf)
+         leaftools.excise(leaf)
 
    # return trimmed governor copy
    return governor_copy
