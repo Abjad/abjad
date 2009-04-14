@@ -1,9 +1,12 @@
 from abjad.container.container import Container
+from abjad.exceptions.exceptions import AssignabilityError
 from abjad.note.note import Note
 from abjad.rest.rest import Rest
+from abjad.tools import construct
 from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
+import math
 
 
 def pair(l, (n, d), together = False):
@@ -29,9 +32,6 @@ def pair(l, (n, d), together = False):
       >>> divide.pair([1, 2, 4, 1, 2, 4], (7, 16))
       (c'32, c'16, c'8, c'32, c'16, c'8)'''
 
-   from abjad.exceptions.exceptions import AssignabilityError
-   from abjad.tools import construct
-   from math import log
 
    duration = (n, d)
 
@@ -53,7 +53,8 @@ def pair(l, (n, d), together = False):
          raise ValueError('no divide zero values.')
 
    if len(l) > 1:
-      exponent = mathtools.chop(log(listtools.weight(l), 2) - log(n, 2))
+      exponent = mathtools.chop(
+         math.log(listtools.weight(l), 2) - math.log(n, 2))
       denominator = int(d * 2 ** exponent)
       music = [ ]
       for x in l:

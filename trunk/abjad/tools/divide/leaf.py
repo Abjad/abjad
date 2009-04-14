@@ -1,15 +1,15 @@
 from abjad.helpers.donate import donate
-from abjad.tools import durtools
 from abjad.note.note import Note
+from abjad.tools import durtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
-def divide_leaf(leaf, divisions = 2, prolation = 'diminution'):
+def leaf(l, divisions = 2, prolation = 'diminution'):
    '''Newer and better tuplet-maker.
-      Compare with divide( ) helper.'''
+      Compare with divide.pair( ) tuplet-maker.'''
 
    # find target duration of fixed-duration tuplet
-   target_duration = leaf.duration.written
+   target_duration = l.duration.written
 
    # find prolated duration of each note in tuplet
    prolated_duration = target_duration / divisions
@@ -24,7 +24,7 @@ def divide_leaf(leaf, divisions = 2, prolation = 'diminution'):
    tuplet = FixedDurationTuplet(target_duration, notes)
 
    # give leaf position in score structure to tuplet
-   donate([leaf], tuplet)
+   donate([l], tuplet)
 
    # return tuplet
    return tuplet

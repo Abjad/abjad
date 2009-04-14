@@ -1,15 +1,15 @@
-from abjad.note.note import Note
 from abjad.helpers.bequeath import bequeath
+from abjad.note.note import Note
 from abjad.tools import durtools
 from abjad.tools import tietools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
-def divide_tie_chain(tie_chain, divisions = 2, prolation = 'diminution'):
-   '''Generalization of divide_leaf.'''
+def tie_chain(chain, divisions = 2, prolation = 'diminution'):
+   '''Generalization of divide.leaf( ) function.'''
 
    # find target duration of fixed-duration tuplet
-   target_duration = tietools.duration_written(tie_chain[0].tie.chain)
+   target_duration = tietools.duration_written(chain[0].tie.chain)
 
    # find prolated duration of each note in tuplet
    prolated_duration = target_duration / divisions
@@ -24,7 +24,7 @@ def divide_tie_chain(tie_chain, divisions = 2, prolation = 'diminution'):
    tuplet = FixedDurationTuplet(target_duration, notes)
 
    # bequeath tie chain position in score structure to tuplet
-   bequeath(list(tie_chain), [tuplet])
+   bequeath(list(chain), [tuplet])
 
    # untie tuplet
    tuplet.tie.unspan( )
