@@ -14,7 +14,7 @@ def test_dynamic_measure_bequeath_01( ):
         f'8'''
 
    u = RigidMeasure((4, 8), [ ])
-   donate([t], u)
+   scoretools.donate([t], u)
 
    r'''\time 4/8
         c'8

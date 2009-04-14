@@ -52,7 +52,8 @@ def test_containertools_shatter_03( ):
 
    t = FixedDurationTuplet((2, 8), construct.run(3))
    Beam(t[:])
-   donate(t[-1:], FixedDurationTuplet((1, 8), construct.scale(3, (1, 16))))
+   scoretools.donate(
+      t[-1:], FixedDurationTuplet((1, 8), construct.scale(3, (1, 16))))
    pitchtools.diatonicize(t)
 
    r'''\times 2/3 {

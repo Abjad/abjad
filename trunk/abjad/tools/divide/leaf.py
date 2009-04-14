@@ -1,6 +1,6 @@
-from abjad.helpers.donate import donate
 from abjad.note.note import Note
 from abjad.tools import durtools
+from abjad.tools import scoretools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
@@ -24,7 +24,7 @@ def leaf(l, divisions = 2, prolation = 'diminution'):
    tuplet = FixedDurationTuplet(target_duration, notes)
 
    # give leaf position in score structure to tuplet
-   donate([l], tuplet)
+   scoretools.donate([l], tuplet)
 
    # return tuplet
    return tuplet

@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_donate_09( ):
+def test_scoretools_donate_09( ):
    '''Donate from multiple containers to tuplet.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -25,7 +25,7 @@ def test_donate_09( ):
    }'''
 
    tuplet = FixedDurationTuplet((3, 8), [ ])
-   donate(t[:2], tuplet)
+   scoretools.donate(t[:2], tuplet)
 
    r'''\new Voice {
       \fraction \times 3/4 {
@@ -44,7 +44,7 @@ def test_donate_09( ):
    assert t.format == "\\new Voice {\n\t\\fraction \\times 3/4 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_donate_02( ):
+def test_scoretools_donate_02( ):
    '''Donate from container to voice.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -70,7 +70,7 @@ def test_donate_02( ):
 
    new = Voice( )
    new.name = 'foo'
-   donate(t[1:2], new)
+   scoretools.donate(t[1:2], new)
 
    r'''\context Voice = "foo" {
       {
@@ -91,7 +91,7 @@ def test_donate_02( ):
    assert t.format == '\\context Voice = "foo" {\n\t{\n\t\tc\'8 [ \\glissando\n\t\td\'8 \\glissando\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8 \\glissando\n\t\tf\'8 \\glissando\n\t}\n\t{\n\t\tg\'8 \\glissando\n\t\ta\'8 ]\n\t}\n}'
 
 
-def test_donate_03( ):
+def test_scoretools_donate_03( ):
    '''Donate from container to tuplet.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -114,7 +114,7 @@ def test_donate_03( ):
       }
    }'''
 
-   donate(t[1:2], FixedDurationTuplet((3, 16), [ ]))
+   scoretools.donate(t[1:2], FixedDurationTuplet((3, 16), [ ]))
 
    r'''\new Voice {
       {
@@ -136,7 +136,7 @@ def test_donate_03( ):
    assert check.wf(t)
 
 
-def test_donate_04( ):
+def test_scoretools_donate_04( ):
    '''Donate from empty container to leaf.'''
 
    t = Voice([Container(construct.scale(2)), Container([ ])])
@@ -152,7 +152,7 @@ def test_donate_04( ):
       }
    }'''
 
-   donate(t[1:2], Note(4, (1, 8)))
+   scoretools.donate(t[1:2], Note(4, (1, 8)))
 
    r'''\new Voice {
       {
@@ -166,7 +166,7 @@ def test_donate_04( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\te'8 ]\n}"
 
 
-def test_donate_05( ):
+def test_scoretools_donate_05( ):
    '''Donate from empty container to nonempty container.'''
 
    t = Voice([Container(construct.scale(2)), Container([ ])])
@@ -183,7 +183,7 @@ def test_donate_05( ):
    }'''
 
    container = Container([Note(4, (1, 8)), Note(5, (1, 8))])
-   donate(t[1:2], container)
+   scoretools.donate(t[1:2], container)
 
    r'''\new Voice {
       {
@@ -200,7 +200,7 @@ def test_donate_05( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t{\n\t\te'8 \\glissando\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_donate_06( ):
+def test_scoretools_donate_06( ):
    '''Trying to bequeath from nonempty container 
       to leaf raises MusicContentsError.'''
 
@@ -208,10 +208,10 @@ def test_donate_06( ):
    Beam(t[:])
    pitchtools.diatonicize(t)
 
-   assert py.test.raises(MusicContentsError, 'donate(t[1:2], Note(4, (1, 4)))')
+   assert py.test.raises(MusicContentsError, 'scoretools.donate(t[1:2], Note(4, (1, 4)))')
 
 
-def test_donate_07( ):
+def test_scoretools_donate_07( ):
    '''Trying to bequeath from nonempty container to 
       nonempty container raises MusicContentsError.'''
    
@@ -220,10 +220,10 @@ def test_donate_07( ):
    pitchtools.diatonicize(t)
 
    tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
-   assert py.test.raises(MusicContentsError, 'donate(t[1:2], tuplet)')
+   assert py.test.raises(MusicContentsError, 'scoretools.donate(t[1:2], tuplet)')
 
 
-def test_donate_08( ):
+def test_scoretools_donate_08( ):
    '''Donate from note to rest.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -246,7 +246,7 @@ def test_donate_08( ):
    }'''
 
    old = t.leaves[2]
-   donate(t.leaves[2:3], Rest((1, 8)))
+   scoretools.donate(t.leaves[2:3], Rest((1, 8)))
 
    r'''\new Voice {
       {
@@ -267,7 +267,7 @@ def test_donate_08( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\tr8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_donate_09( ):
+def test_scoretools_donate_09( ):
    '''Donate from note to tuplet.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -290,7 +290,7 @@ def test_donate_09( ):
       }
    }'''
    
-   donate(t[1][:1], FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3))
+   scoretools.donate(t[1][:1], FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3))
 
    r'''\new Voice {
       {
@@ -315,7 +315,7 @@ def test_donate_09( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t{\n\t\t\\times 2/3 {\n\t\t\tc'16 \\glissando\n\t\t\tc'16 \\glissando\n\t\t\tc'16 \\glissando\n\t\t}\n\t\tf'8 \\glissando\n\t}\n\t{\n\t\tg'8 \\glissando\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_donate_10( ):
+def test_scoretools_donate_10( ):
    '''Donors that are not parent-contiguous raise ContiguityError.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -338,4 +338,4 @@ def test_donate_10( ):
    }'''
 
    tuplet = FixedDurationTuplet((3, 8), [ ])
-   assert py.test.raises(ContiguityError, 'donate([t[0], t[2]], tuplet)')
+   assert py.test.raises(ContiguityError, 'scoretools.donate([t[0], t[2]], tuplet)')
