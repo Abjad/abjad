@@ -1,5 +1,5 @@
 from abjad.tools import clone
-from abjad.tools import scoretools
+from abjad.tools.scoretools.donate import donate
 
 
 ## TODO - decide whether we wanna keep the current way of
@@ -32,5 +32,5 @@ def _transfer_all_attributes(old, new):
                setattr(value.after, '_carrier', new)
                setattr(value.before, '_carrier', new)
          setattr(new, key, value)
-   scoretools.donate([old], new)
+   donate([old], new)
    del oldCopy
