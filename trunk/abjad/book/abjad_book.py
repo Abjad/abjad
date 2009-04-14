@@ -22,7 +22,7 @@ abjad> and hide> are also reserved.
 Anything following the abjad> tag will be preserved in the document.
 Anything follwing the hide> tag will be interpreted by Abjad but will not 
 be displayed in the final document. 
-Use the write_lilypond(expr, name, template, title) function to have a 
+Use the write(expr, name, template, title) function to have a 
 LilyPond rendering of an Abjad snipped appear in the document. 
 show( ) will do nothing.
 
@@ -32,7 +32,7 @@ Example (HTML document):
    <abjad>
       abjad> v = Voice(construct.run(8))
       abjad> Beam(v)
-      hide> write_lilypond(v, 'example1') ## this will insert an image here.
+      hide> write(v, 'example1') ## this will insert an image here.
       abjad> show( )
    </abjad>
    More ordinary <b>HTML</b> text here.

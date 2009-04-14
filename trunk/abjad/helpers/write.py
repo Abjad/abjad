@@ -3,10 +3,11 @@ from abjad.cfg.write_preamble import _write_preamble
 from abjad.cfg.write_title import _write_title
 import os
 
-def write_lilypond(expr, name, template = None, title = None):
-   '''Writes a given Abjad expression `expr` out to a LilyPond input file
-   with the given `name`.
-   '''
+
+def write(expr, name, template = None, title = None):
+   '''Writes a given Abjad expression `expr` out to a 
+      LilyPond input file with the given `name`.'''
+
    name = os.path.expanduser(name)
    if not name.endswith('.ly'):
       name += '.ly'

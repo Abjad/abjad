@@ -4,7 +4,7 @@ Now comes some Abjad code
 <abjad>
    abjad> v = Voice(construct.run(3))
    abjad> Beam(v)
-   hide> write_lilypond(v, 'example1')
+   hide> write(v, 'example1')
    abjad> show(v)
 </abjad>
 
@@ -14,7 +14,7 @@ Notice that in the second block of abjad code I can reference objects and variab
 <abjad>
    abjad> pitchtools.diatonicize(v)
    abjad> Trill(v[4:])
-   hide> write_lilypond(v, 'example2')
+   hide> write(v, 'example2')
    abjad> show(v)
 </abjad>
 
