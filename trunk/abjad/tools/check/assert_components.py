@@ -12,14 +12,14 @@ def assert_components(expr, klasses = (_Component, ),
       The allow_orphans keyword works as a type of bypass.
       If allow_orphans is set to True (which it is by default),
       and if expr is a Python list of orphan components,
-      then the helper will always evaluate to True, regardless
+      then the function will always evaluate to True, regardless
       of the checks specified by the other keywords.
 
       On the other hand, if the allow_orphans keyword is set
       to False, then expr must meet the checks specified by the
-      other keywords in other for the helper to evaluate to True.
+      other keywords in other for the function to evaluate to True.
 
-      Calls to this function appear at the beginning of many helpers.
+      Calls to this function appear at the beginning of many functions.
       Calls to this function also iterate all elements in expr.
       For this reason, you can turn off all calls to this function.
       Set something in cfg.'''

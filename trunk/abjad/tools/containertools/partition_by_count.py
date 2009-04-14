@@ -16,7 +16,7 @@ def partition_by_count(container, counts):
       Do not act in place.
       Instead, return list of parts equal in number to len(counts).
 
-      The helpers wraps lcopy( ).
+      The function wraps lcopy( ).
       This means that the original structure remains unchanged.
       Also that resulting parts cut all the way up into voice.
    

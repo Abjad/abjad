@@ -5,12 +5,12 @@ def split(container, index):
    r'''Splits container in two at given index position.
       Compare with container.hew(container, index).
 
-      Both helpers break container just before index.
+      Both functions break container just before index.
       However, container.hew( ) *preserves* spanners.
       And container.split( ) *fractures* spanners.
 
-      Both helpers create two new copies of container.
-      Both helpers empty original container of contents.
+      Both functions create two new copies of container.
+      Both functions empty original container of contents.
 
       Return split parts.
       
