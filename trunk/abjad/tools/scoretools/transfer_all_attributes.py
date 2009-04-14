@@ -1,4 +1,3 @@
-from abjad.tools import clone
 from abjad.tools.scoretools.donate import donate
 
 
@@ -16,14 +15,15 @@ _attributes_not_to_copy = (
    '_formatter', 
    '_grob', 
    '_parser', 
+   '_parentage',
    '_promotions', 
    '_spanners',
    )
    
 def _transfer_all_attributes(old, new):
    from abjad.grace.interface import _GraceInterface
-   oldCopy = clone.fracture([old])[0]
-   for key, value in oldCopy.__dict__.items( ):
+   donate([old], new)
+   for key, value in sorted(vars(old).items( )):
       if key not in _attributes_not_to_copy:
          if hasattr(value, '_client'):
             setattr(value, '_client', new)
@@ -32,5 +32,3 @@ def _transfer_all_attributes(old, new):
                setattr(value.after, '_carrier', new)
                setattr(value.before, '_carrier', new)
          setattr(new, key, value)
-   donate([old], new)
-   del oldCopy
