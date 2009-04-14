@@ -33,16 +33,4 @@ def _transfer_all_attributes(old, new):
                setattr(value.before, '_carrier', new)
          setattr(new, key, value)
    scoretools.donate([old], new)
-   try:
-      new.formatter.before.extend(oldCopy.formatter.before)
-      new.formatter.after.extend(oldCopy.formatter.after)
-   except AttributeError:
-      pass
-   try:
-      new.formatter.left.extend(oldCopy.formatter.left)
-      new.formatter.right.extend(oldCopy.formatter.right)
-   except AttributeError:
-      pass
-   old._spanners = oldCopy.spanners
-   old.spanners._client = old
    del oldCopy
