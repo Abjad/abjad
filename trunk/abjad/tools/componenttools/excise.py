@@ -1,9 +1,9 @@
-from abjad.tools import mathtools
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 from abjad.tools import durtools
-from abjad.tools import componenttools
+from abjad.tools import mathtools
+from abjad.tools.componenttools.detach import detach
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
@@ -43,9 +43,9 @@ def excise(leaf):
       parent = parent.parentage.parent
       i += 1
    parentage = leaf.parentage.parentage[1:]
-   componenttools.detach([leaf])
+   detach([leaf])
    for x in parentage:
       if not len(x):
-         componenttools.detach([x])
+         detach([x])
       else:
          break

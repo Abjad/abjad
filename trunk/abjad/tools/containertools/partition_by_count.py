@@ -1,5 +1,5 @@
 from abjad.container.container import Container
-from abjad.tools import leaftools
+from abjad.tools import clonewp
 from abjad.tools import listtools
 from abjad.tools import mathtools
 
@@ -49,6 +49,6 @@ def partition_by_count(container, counts):
    result = [ ]
    sums = [0] + mathtools.sums(counts)
    for start, stop in listtools.pairwise(sums):
-      result.append(leaftools.copy_with_parentage(container, start, stop))
+      result.append(clonewp.by_count_with_parentage(container, start, stop))
 
    return result

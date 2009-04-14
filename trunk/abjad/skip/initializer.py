@@ -1,5 +1,4 @@
 from abjad.core.initializer import _Initializer
-from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
 from abjad.notehead.interface import _NoteHeadInterface
 
 
@@ -7,6 +6,7 @@ class _SkipInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
       from abjad.chord.chord import Chord
+      from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
       from abjad.note.note import Note
       from abjad.rest.rest import Rest
       from abjad.skip.skip import Skip

@@ -1,6 +1,7 @@
 from abjad.tools import check
 from abjad.tools import chordtools
 from abjad.tools import clone
+from abjad.tools import clonewp
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import cut

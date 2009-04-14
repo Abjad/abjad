@@ -1,16 +1,16 @@
 from abjad.core.initializer import _Initializer
-from abjad.tools import clone
-from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
 from abjad.notehead.notehead import NoteHead
 
 
 class _NoteInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
+      from abjad.helpers.transfer_all_attributes import _transfer_all_attributes
       from abjad.rest.rest import Rest
       from abjad.chord.chord import Chord
       from abjad.note.note import Note
       from abjad.skip.skip import Skip
+      from abjad.tools import clone
       client.notehead = None
       if len(args) == 1 and isinstance(args[0], _Leaf):
          if isinstance(args[0], Note):
