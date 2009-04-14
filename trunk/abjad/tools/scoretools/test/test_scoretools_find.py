@@ -1,55 +1,55 @@
 from abjad import *
 
 
-def test_find_01( ):
+def test_scoretools_find_01( ):
    '''Find components by name.'''
 
    t = Staff(construct.scale(4))
    n = t[0]
    n.name = 'notename'
 
-   assert find(t, 'notename') == [n]
+   assert scoretools.find(t, 'notename') == [n]
 
 
-def test_find_02( ):
+def test_scoretools_find_02( ):
    '''Find components by class.'''
 
    t = Staff(construct.scale(4))
 
-   assert find(t, klass = Note) == t[:]
+   assert scoretools.find(t, klass = Note) == t[:]
 
 
-def test_find_03( ):
+def test_scoretools_find_03( ):
    '''Find components by both name and class.'''
 
    t = Staff(construct.scale(4))
    n = t[0]
    n.name = 'notename'
 
-   assert find(t, 'notename', Note) == [n]
+   assert scoretools.find(t, 'notename', Note) == [n]
 
 
-def test_find_04( ):
+def test_scoretools_find_04( ):
    '''Return all nodes, including start node.'''
 
    v1 = Voice([Note(i, (1, 4)) for i in range(2)])
    v2 = Voice([Note(i, (1, 4)) for i in range(2, 4)])
    t = Staff([v1, v2])
 
-   assert find(t) == [t, v1, v1[0], v1[1], v2, v2[0], v2[1]]
+   assert scoretools.find(t) == [t, v1, v1[0], v1[1], v2, v2[0], v2[1]]
 
 
-def test_find_05( ):
+def test_scoretools_find_05( ):
    '''Find all class instances.'''
 
    v1 = Voice([Note(i, (1, 4)) for i in range(2)])
    v2 = Voice([Note(i, (1, 4)) for i in range(2, 4)])
    t = Staff([v1, v2])
 
-   assert find(t, klass = Voice) == [v1, v2]
+   assert scoretools.find(t, klass = Voice) == [v1, v2]
 
 
-def test_find_06( ):
+def test_scoretools_find_06( ):
    '''Find by name.'''
 
    v1 = Voice([Note(i, (1, 4)) for i in range(2)])
@@ -57,20 +57,20 @@ def test_find_06( ):
    v1.name = 'voiceOne'
    t = Staff([v1, v2])
 
-   assert find(t, name = 'voiceOne') == [v1]
+   assert scoretools.find(t, name = 'voiceOne') == [v1]
 
 
-def test_find_07( ):
+def test_scoretools_find_07( ):
    '''Find by context.'''
 
    v = Voice(construct.scale(4))
    v.context = 'MyStrangeVoice'
    t = Staff([v])
 
-   assert find(t, context = 'MyStrangeVoice') == [v]
+   assert scoretools.find(t, context = 'MyStrangeVoice') == [v]
 
 
-def test_find_08( ):
+def test_scoretools_find_08( ):
    '''Find by both name and context.'''
 
    v = Voice(construct.scale(4))
@@ -78,10 +78,10 @@ def test_find_08( ):
    v.name = 'voice_1'
    t = Staff([v])
 
-   assert find(t, name = 'voice_1', context = 'MyStrangeVoice') == [v]
+   assert scoretools.find(t, name = 'voice_1', context = 'MyStrangeVoice') == [v]
 
 
-def test_find_09( ):
+def test_scoretools_find_09( ):
    '''Return empty list on no match.'''
 
    v = Voice(construct.scale(4))
@@ -89,10 +89,10 @@ def test_find_09( ):
    v.name = 'voice_1'
    t = Staff([v])
 
-   assert find(t, name = 'voice_200', context = 'MyStrangeVoice') == [ ]
+   assert scoretools.find(t, name = 'voice_200', context = 'MyStrangeVoice') == [ ]
 
 
-def test_find_10( ):
+def test_scoretools_find_10( ):
    '''Full test.'''
 
    vl1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -116,11 +116,11 @@ def test_find_10( ):
 
    seq = Container([s1, s2])
 
-   assert find(seq, 'parangaricutirimicuaro') == [fn]
-   assert find(seq, name = 'parangaricutirimicuaro') == [fn]
-   assert find(seq, 'mystaff') == [s1, s2]
-   assert find(seq, 'low') == [vl1, vl2]
-   assert find(seq, 'high') == [vh1, vh2]
-   assert find(seq, klass = Voice) == [vh1, vl1, vh2, vl2]
-   assert find(seq, klass = Voice, name = 'low') == [vl1, vl2]
-   assert find(seq, 'nonexistent') == [ ]
+   assert scoretools.find(seq, 'parangaricutirimicuaro') == [fn]
+   assert scoretools.find(seq, name = 'parangaricutirimicuaro') == [fn]
+   assert scoretools.find(seq, 'mystaff') == [s1, s2]
+   assert scoretools.find(seq, 'low') == [vl1, vl2]
+   assert scoretools.find(seq, 'high') == [vh1, vh2]
+   assert scoretools.find(seq, klass = Voice) == [vh1, vl1, vh2, vl2]
+   assert scoretools.find(seq, klass = Voice, name = 'low') == [vl1, vl2]
+   assert scoretools.find(seq, 'nonexistent') == [ ]
