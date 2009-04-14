@@ -1,5 +1,4 @@
 from abjad.exceptions.exceptions import AssignabilityError
-from abjad.helpers.bequeath import bequeath
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tools import clone

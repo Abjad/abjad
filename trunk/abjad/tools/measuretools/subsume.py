@@ -1,9 +1,9 @@
-from abjad.helpers.bequeath import bequeath
 from abjad.measure.measure import _Measure
 from abjad.meter.meter import Meter
 from abjad.rational.rational import Rational
 from abjad.tools import iterate
 from abjad.tools import mathtools
+from abjad.tools import scoretools
 from abjad.tuplet.tuplet import _Tuplet
 
 
@@ -13,7 +13,8 @@ def subsume(expr):
 
       Returns None because processes potentially many measures.
 
-      t = RigidMeasure((2, 8), [FixedDurationTuplet((2, 8), construct.scale(3))])
+      t = RigidMeasure((2, 8), [
+         FixedDurationTuplet((2, 8), construct.scale(3))])
       measuretools.subsume(t)
 
       \time 3/12
@@ -39,5 +40,5 @@ def subsume(expr):
             measure.meter.forced = Meter(numerator, denominator)
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
-            bequeath([tuplet], tuplet[:])
+            scoretools.bequeath([tuplet], tuplet[:])
             containertools.contents_scale(measure, written_adjustment)

@@ -7,7 +7,7 @@
       * tools/listtools
       * tools/construct
       * tools/tietools
-      * bequeath( )'''
+      * tools/scoretools'''
 
 from abjad.tools.imports.package_import import _package_import
 

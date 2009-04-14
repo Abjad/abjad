@@ -1,11 +1,11 @@
 from abjad.exceptions.exceptions import AssignabilityError
-from abjad.helpers.bequeath import bequeath
 from abjad.leaf.leaf import _Leaf
 from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
 from abjad.tools import clone
 from abjad.tools import durtools 
 from abjad.tools import iterate
+from abjad.tools import scoretools
 
 
 ## NOTE: (or rather questions) 
@@ -31,7 +31,7 @@ def scale_binary(leaf, dur):
          l = clone.unspan([leaf])[0]
          l.duration.written = Rational(*wd)
          result.append(l)
-      bequeath([leaf], result)
+      scoretools.bequeath([leaf], result)
       ## tie leaves
       if not l.tie.parented:
          Tie(result)

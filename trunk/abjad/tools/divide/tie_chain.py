@@ -1,6 +1,6 @@
-from abjad.helpers.bequeath import bequeath
 from abjad.note.note import Note
 from abjad.tools import durtools
+from abjad.tools import scoretools
 from abjad.tools import tietools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
@@ -24,7 +24,7 @@ def tie_chain(chain, divisions = 2, prolation = 'diminution'):
    tuplet = FixedDurationTuplet(target_duration, notes)
 
    # bequeath tie chain position in score structure to tuplet
-   bequeath(list(chain), [tuplet])
+   scoretools.bequeath(list(chain), [tuplet])
 
    # untie tuplet
    tuplet.tie.unspan( )

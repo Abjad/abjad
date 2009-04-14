@@ -1,5 +1,5 @@
-from abjad.helpers.bequeath import bequeath
 from abjad.tools import iterate
+from abjad.tools import scoretools
 from abjad.tuplet.tuplet import _Tuplet
 
 
@@ -9,4 +9,4 @@ def slip_trivial(expr):
    
    for tuplet in list(iterate.naive(expr, _Tuplet)):
       if tuplet.trivial:
-         bequeath([tuplet], tuplet[:])
+         scoretools.bequeath([tuplet], tuplet[:])
