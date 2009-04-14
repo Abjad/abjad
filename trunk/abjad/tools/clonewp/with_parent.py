@@ -4,10 +4,10 @@ from abjad.tools import durtools
 from abjad.tools import clone
 
 
-def tcopy(ll):
+def with_parent(ll):
    '''Copy list ll of contiguous music from some container.
    
-     tcopy(t[37 : 39 + 1])
+     clonewp.with_parent(t[37 : 39 + 1])
 
    Return in container equal to type of first element in ll.
    Shrink result container as necessary to preserve parent multiplier.'''

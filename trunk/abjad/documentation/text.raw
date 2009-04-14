@@ -596,7 +596,7 @@ The Abjad <code>_TrillInterface</code> class
    <p>Excision</p>
    <p>Using <code>lcopy( )</code></p>
    <p>Using <code>scopy( )</code></p>
-   <p>Using <code>tcopy( )</code></p>
+   <p>Using <code>clonewp.with_parent( )</code></p>
    <p><a href="chapters/multiplication/index.html">Multiplication</a></p>
 </body>
 </toc-section>
