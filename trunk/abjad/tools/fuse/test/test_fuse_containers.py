@@ -2,66 +2,71 @@ from abjad import *
 import py.test
 
 
-def test_coalesce_01( ):
-   '''coalesce does nothing and returns None on Leaves.'''
+def test_fuse_containers_01( ):
+   '''fuse.containers( ) does nothing and returns None on Leaves.'''
+
    t = Note(1, (1, 4))
-   result = coalesce(t)
+   result = fuse.containers(t)
    assert result is None
    assert isinstance(t, Note)
    
 
-def test_coalesce_02( ):
-   '''coalesce will not fuse unnamed voices.'''
+def test_fuse_containers_02( ):
+   '''fuse.containers( ) will not fuse unnamed voices.'''
+
    t = Staff([Voice(construct.run(2)), Voice(construct.run(2))])
-   result = coalesce(t) 
+   result = fuse.containers(t) 
    assert result is None
 
 
-def test_coalesce_03( ):
-   '''coalesce does not fuse non-threads.'''
+def test_fuse_containers_03( ):
+   '''fuse.containers( ) does not fuse non-threads.'''
+
    t = Staff([Voice(construct.run(2)), Voice(construct.run(2))])
    t[0].name = 'one'
    t[1].name = 'two'
-   result = coalesce(t) 
+   result = fuse.containers(t) 
    assert result is None
 
 
-def test_coalesce_04( ):
-   '''coalesce DOES NOT fuse tuplets. '''
+def test_fuse_containers_04( ):
+   '''fuse.containers( ) DOES NOT fuse tuplets. '''
+
    t = Voice([FixedMultiplierTuplet((2, 3), construct.run(3)), 
               FixedMultiplierTuplet((2, 3), construct.run(3))])
-   result = coalesce(t)
+   result = fuse.containers(t)
    assert result is None
    assert len(t) == 2
    
 
-def test_coalesce_05( ):
-   '''Coalesce can take a list of components.'''
+def test_fuse_containers_05( ):
+   '''fuse.containers( ) can take a list of components.'''
+
    t = Voice(construct.run(4)) * 2
    t[0].name = t[1].name = 'voiceOne'
-   result = coalesce(t)
+   result = fuse.containers(t)
    assert isinstance(result, Voice)  
    assert len(result) == 8
 
 
-def test_coalesce_06( ):
-   '''Coalesce works on equally named Staves.'''
-
+def test_fuse_containers_06( ):
+   '''fuse.containers( ) works on equally named staves.'''
 
    t = Staff(construct.run(4)) * 2
    t[0].name = t[1].name = 'staffOne'
-   result = coalesce(t)
+   result = fuse.containers(t)
    assert isinstance(result, Staff)  
    assert len(result) == 8
 
 
-def test_coalesce_07( ):
-   '''Coalesce works on equally named Staves but not on differently named
-   Voices.'''
+def test_fuse_containers_07( ):
+   '''fuse.containers( ) works on equally named staves 
+      but not on differently named Voices.'''
+
    t = Container(Staff([Voice(construct.run(4))]) * 2)
    t[0].name = t[1].name = 'staffOne'
-   r'''
-   {
+
+   r'''{
            \context Staff = "staffOne" {
                    \new Voice {
                            c'8
@@ -78,9 +83,9 @@ def test_coalesce_07( ):
                            c'8
                    }
            }
-   }
-   '''
-   result = coalesce(t)
+   }'''
+
+   result = fuse.containers(t)
    assert isinstance(result, Container)  
    assert len(result) == 1
    assert isinstance(result[0], Staff)
@@ -91,8 +96,7 @@ def test_coalesce_07( ):
    assert len(result[0][1]) == 4
    assert result.format == '{\n\t\\context Staff = "staffOne" {\n\t\t\\new Voice {\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t}\n\t\t\\new Voice {\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t}\n\t}\n}'
 
-   r'''
-   {
+   r'''{
            \context Staff = "staffOne" {
                    \new Voice {
                            c'8
@@ -107,15 +111,15 @@ def test_coalesce_07( ):
                            c'8
                    }
            }
-   }
-'''
+   }'''
 
 
 ## NESTED PARALLEL STRUCTURES ##
 
-def test_coalesce_10( ):
-   '''Parallel Voices within parallel Staves within parallel
-   StaffGroups within a single Container coalesce correctly.'''
+def test_fuse_containers_10( ):
+   '''Parallel voices within parallel staves within parallel
+      staff groups within a single container fuse.containers( ) correctly.'''
+
    v1 = Voice(Note(0, (1, 4))*2)
    v1.name = '1'
    v2 = Voice(Note(2, (1, 4))*2)
@@ -137,12 +141,11 @@ def test_coalesce_10( ):
    s2.name = 'sg'
    s = Container([s1, s2])
 
-   coalesce(s)
+   fuse.containers(s)
    assert len(s) == 1
    assert s.format == '{\n\t\\context StaffGroup = "sg" <<\n\t\t\\context Staff = "staff1" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t\t\\context Staff = "staff2" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t\t\\context Staff = "staff3" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t>>\n}'
  
-   '''
-   {
+   '''{
         \context StaffGroup = "sg" <<
                 \context Staff = "staff1" <<
                         \context Voice = "1" {
@@ -205,11 +208,11 @@ def test_coalesce_10( ):
                         }
                 >>
         >>
-   }
-   '''
+   }'''
 
-def test_coalesce_11( ):
-   '''Nested Parallel structures in sequence coalesce correctly.'''
+def test_fuse_containers_11( ):
+   '''Nested parallel structures in sequence fuse.containers( ) correctly.'''
+
    v1a = Voice(Note(0, (1,4))*2)
    v1a.name = 'voiceOne'
    v1b = Voice(Note(0, (1,4))*2)
@@ -229,12 +232,11 @@ def test_coalesce_11( ):
    sg2.name ='groupTwo'
    sg_g = StaffGroup([sg1, sg2])
    sg_g.name = 'topGroup'
-   seq = coalesce([sg_g, clone.fracture([sg_g])[0]])
+   seq = fuse.containers([sg_g, clone.fracture([sg_g])[0]])
 
    assert seq.format == '\\context StaffGroup = "topGroup" <<\n\t\\context StaffGroup = "groupOne" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n\t\\context StaffGroup = "groupTwo" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n>>'
 
-   '''
-   \context StaffGroup = "topGroup" <<
+   '''\context StaffGroup = "topGroup" <<
            \context StaffGroup = "groupOne" <<
                    \context Staff = "staffOne" {
                            \context Voice = "voiceOne" {
@@ -287,5 +289,4 @@ def test_coalesce_11( ):
                            }
                    }
            >>
-   >>
-   '''
+   >>'''

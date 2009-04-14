@@ -26,11 +26,11 @@ class Container(_Component):
          the content of both a and b.
          The operation is non-commutative: the content of the first
          operand will be placed before the content of the second operand.'''
-      from abjad.helpers.coalesce import coalesce
       from abjad.tools import clone
+      from abjad.tools import fuse
       left = clone.fracture([self])[0]
       right = clone.fracture([expr])[0]
-      return coalesce([left, right])
+      return fuse.containers([left, right])
 
    def __contains__(self, expr):
       '''True if expr is in container, otherwise False.'''
@@ -59,9 +59,9 @@ class Container(_Component):
             
    def __iadd__(self, expr):
       '''__iadd__ avoids unnecessary copying of structures.'''
-      from abjad.helpers.coalesce import coalesce
       from abjad.tools import clone
-      return coalesce([self, clone.fracture([expr])[0]])
+      from abjad.tools import fuse
+      return fuse.containers([self, clone.fracture([expr])[0]])
 
    def __imul__(self, total):
       '''Multiply contents of container 'total' times.
