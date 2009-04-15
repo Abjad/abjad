@@ -20,6 +20,10 @@ class _ClefInterface(_Interface, _GrobHandler, _BacktrackingInterface):
 
    ## PUBLIC ATTRIBUTES ##
 
+   ## TODO: _ClefInterface.effective backtracking WAAAY inefficient.
+   ##       Reimplement with a smart pattern.
+   ##       Possibly observer pattern.
+
    @property
    def effective(self):
       '''Return effective clef or else treble.'''

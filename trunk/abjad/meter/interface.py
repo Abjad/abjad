@@ -50,20 +50,33 @@ class _MeterInterface(_Interface, _GrobHandler, _BacktrackingInterface):
          result.append(self.effective.format)
       return result
 
+   ## TODO: _MeterInterface.effective taking way too long.
+   ## PROPOSAL: Derive _MeterInterface.effective from measure
+   ## in parentage (if any) or metric grid (if any), otherwise
+   ## return default 4/4 meter.
+   ## ALTERNATIVE: Reimplement meter derivation with observer pattern.
+
    @property
    def effective(self):
       '''Return reference to meter effectively governing client.'''
-      cur = self.client
-      while cur is not None:
-         if cur.meter.forced:
-            return cur.meter.forced
-         else:
-            ## should there be explicit measure-navigation in navigator?
-            cur = getattr(cur, 'prev', None)
-      for x in self.client.parentage.parentage[1:]:
+
+      for x in self.client.parentage.parentage:
          if hasattr(x, 'meter') and x.meter.forced:
             return x.meter.forced
-      return Meter(4, 4)
+      else:
+         return Meter(4, 4)
+
+#      cur = self.client
+#      while cur is not None:
+#         if cur.meter.forced:
+#            return cur.meter.forced
+#         else:
+#            ## should there be explicit measure-navigation in navigator?
+#            cur = getattr(cur, 'prev', None)
+#      for x in self.client.parentage.parentage[1:]:
+#         if hasattr(x, 'meter') and x.meter.forced:
+#            return x.meter.forced
+#      return Meter(4, 4)
 
    @apply
    def forced( ):

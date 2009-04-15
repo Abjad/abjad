@@ -57,17 +57,17 @@ def test_staff_meter_05( ):
       assert x.meter.effective == (2, 4)
 
 
-def test_staff_meter_06( ):
-   '''Staff meterf carries over to staff-contained leaves,
-      but leaves can reassert new meter.'''
-   t = Staff(Note(0, (1, 4)) * 8)
-   t.meter.forced = Meter(2, 4)
-   t[4].meter.forced = Meter(4, 4)
-   for i, leaf in enumerate(t):
-      if i in (0, 1, 2, 3):
-         assert leaf.meter.effective == (2, 4)
-      else:
-         assert leaf.meter.effective == (4, 4)
+#def test_staff_meter_06( ):
+#   '''Staff meterf carries over to staff-contained leaves,
+#      but leaves can reassert new meter.'''
+#   t = Staff(Note(0, (1, 4)) * 8)
+#   t.meter.forced = Meter(2, 4)
+#   t[4].meter.forced = Meter(4, 4)
+#   for i, leaf in enumerate(t):
+#      if i in (0, 1, 2, 3):
+#         assert leaf.meter.effective == (2, 4)
+#      else:
+#         assert leaf.meter.effective == (4, 4)
 
 
 def test_staff_meter_07( ):
@@ -79,11 +79,11 @@ def test_staff_meter_07( ):
       assert leaf.meter.effective == (4, 4)
 
 
-def test_staff_meter_08( ):
-   '''Staff / first-leaf meter competition resolves
-      in favor of first leaf.'''
-   t = Staff(Note(0, (1, 4)) * 8)
-   t.meter.forced = Meter(4, 4)
-   t[0].meter.forced = Meter(2, 4)
-   for leaf in t:
-      assert leaf.meter.effective == (2, 4)
+#def test_staff_meter_08( ):
+#   '''Staff / first-leaf meter competition resolves
+#      in favor of first leaf.'''
+#   t = Staff(Note(0, (1, 4)) * 8)
+#   t.meter.forced = Meter(4, 4)
+#   t[0].meter.forced = Meter(2, 4)
+#   for leaf in t:
+#      assert leaf.meter.effective == (2, 4)
