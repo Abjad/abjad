@@ -14,7 +14,7 @@ class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
       from abjad.tempo.spanner import Tempo
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'MetronomeMark')
-      _GrobHandler.__init__(self, (Tempo, ))
+      _SpannerReceptor.__init__(self, (Tempo, ))
       self._indication = None
  
    ## PUBLIC ATTRIBUTES ##
