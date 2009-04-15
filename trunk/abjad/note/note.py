@@ -8,8 +8,6 @@ class Note(_Leaf):
    
    def __init__(self, *args):
       self._initializer = _NoteInitializer(self, _Leaf, *args)
-      ## opt: calculate contributors only on init. ##
-      self._calculate_format_contributors( )
 
    ## OVERLOADS ##
 

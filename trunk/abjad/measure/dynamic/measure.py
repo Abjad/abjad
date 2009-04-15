@@ -12,8 +12,6 @@ class DynamicMeasure(_Measure):
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
       self._meter = _DynamicMeasureMeterInterface(self)
-      ## opt: calculate contributors only on init. ##
-      self._calculate_format_contributors( )
 
    ## PUBLIC ATTRIBUTES ##
 

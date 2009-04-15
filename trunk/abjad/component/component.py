@@ -40,6 +40,7 @@ import types
 class _Component(_Abjad):
 
    def __init__(self):
+      self._interfaces = _InterfaceAggregator(self)
       self._accidental = _AccidentalInterface(self)
       self._barline = _BarLineInterface(self)
       self._beam = _BeamInterface(self)
@@ -52,7 +53,6 @@ class _Component(_Abjad):
       self._glissando = _GlissandoInterface(self)
       self._history = { }
       self._instrument = _InstrumentInterface(self)
-      self._interfaces = _InterfaceAggregator(self)
       self._meter = _MeterInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
@@ -75,8 +75,6 @@ class _Component(_Abjad):
       self._numbering = _NumberingInterface(self, self._update)
       self._offset = _OffsetInterface(self, self._update)
       self._voice = _VoiceInterface(self)
-      ## optimization: calculate contributors only on init. ##
-      self._calculate_format_contributors( )
 
    ## OVERLOADS ##
 
@@ -262,20 +260,6 @@ class _Component(_Abjad):
    @property
    def voice(self):
       return self._voice
-
-   ## PRIVATE METHODS ##
-
-   def _calculate_format_contributors(self):
-      from abjad.core.formatcontributor import _FormatContributor
-      from abjad.core.interface import _Interface
-      result = [ ]
-      for value in self.__dict__.values( ):
-         if isinstance(value, _Interface) and \
-            isinstance(value, _FormatContributor):
-            result.append(value)
-      result.sort(lambda x, y:
-         cmp(x.__class__.__name__, y.__class__.__name__))
-      self.interfaces.contributors = result
 
    ## PUBLIC METHODS ##
 

@@ -24,8 +24,6 @@ class _Leaf(_Component):
       self._markup = _MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
       self._staff = _StaffInterface(self)
-      ## optimization: calculate contributors only on init. ##
-      self._calculate_format_contributors( )
 
    ## OVERLOADS ##
 

@@ -10,6 +10,7 @@ class NoteHead(_NoteHeadInterface):
       self._formatter = _NoteHeadFormatInterface(self)
       self._style = None
       self.pitch = pitch
+      self._unregister_if_necessary( )
 
    ## OVERLOADS ##
 
@@ -24,6 +25,17 @@ class NoteHead(_NoteHeadInterface):
          return str(self.pitch)
       else:
          return ''
+
+   ## PRIVATE METHODS ##
+
+   def _unregister_if_necessary(self):
+      '''Note noteheads should register as format contributors.
+         Chord noteheads should not register as format contributors.'''
+      from abjad.chord.chord import Chord
+      client = getattr(self, '_client', None)
+      if client is not None:
+         if isinstance(client, Chord):
+            client.interfaces._contributors.remove(self)
 
    ## PUBLIC ATTRIBUTES ##
 

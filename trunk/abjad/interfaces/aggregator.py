@@ -7,6 +7,8 @@ class _InterfaceAggregator(_Interface):
    def __init__(self, client):
       '''Bind to client.'''
       _Interface.__init__(self, client)
+      self._contributors = [ ]
+      self._contributors_sorted = False
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -34,10 +36,6 @@ class _InterfaceAggregator(_Interface):
          result.extend(getattr(contributor, 'closing', [ ]))
       return result
 
-#   ## TODO OPTIMIZATION: Maybe better NO dynamic format contributors. ##
-#   ##       Maybe better to assemble at component *initialization*.   ##
-#   ##       Maybe better NOT to assemble at format-time.              ##
-#
 #   @property
 #   def contributors(self):
 #      '''Return alphabetized list of interface format contributors.
@@ -52,6 +50,14 @@ class _InterfaceAggregator(_Interface):
 #      result.sort(lambda x, y: 
 #         cmp(x.__class__.__name__, y.__class__.__name__))
 #      return result
+
+   @property
+   def contributors(self):
+      if not self._contributors_sorted:
+         self._contributors.sort(lambda x, y:
+            cmp(x.__class__.__name__, y.__class__.__name__))
+         self._contributors_sorted = True
+      return self._contributors
 
    @property
    def contributions(self):

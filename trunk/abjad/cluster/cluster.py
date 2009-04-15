@@ -10,8 +10,6 @@ class Cluster(Container):
       self.parallel = False
       self._formatter = _ClusterFormatter(self)
       self._cluster = _ClusterInterface(self)
-      ## opt: calculate contributors only on init. ##
-      self._calculate_format_contributors( )
    
    ## OVERLOADS ##
 
