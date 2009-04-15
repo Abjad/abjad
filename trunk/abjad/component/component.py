@@ -75,6 +75,8 @@ class _Component(_Abjad):
       self._numbering = _NumberingInterface(self, self._update)
       self._offset = _OffsetInterface(self, self._update)
       self._voice = _VoiceInterface(self)
+      ## optimization: calculate contributors only on init. ##
+      self._calculate_format_contributors( )
 
    ## OVERLOADS ##
 
@@ -260,6 +262,20 @@ class _Component(_Abjad):
    @property
    def voice(self):
       return self._voice
+
+   ## PRIVATE METHODS ##
+
+   def _calculate_format_contributors(self):
+      from abjad.core.formatcontributor import _FormatContributor
+      from abjad.core.interface import _Interface
+      result = [ ]
+      for value in self.__dict__.values( ):
+         if isinstance(value, _Interface) and \
+            isinstance(value, _FormatContributor):
+            result.append(value)
+      result.sort(lambda x, y:
+         cmp(x.__class__.__name__, y.__class__.__name__))
+      self.interfaces.contributors = result
 
    ## PUBLIC METHODS ##
 

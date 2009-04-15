@@ -34,20 +34,24 @@ class _InterfaceAggregator(_Interface):
          result.extend(getattr(contributor, 'closing', [ ]))
       return result
 
-   @property
-   def contributors(self):
-      '''Return alphabetized list of interface format contributors.
-         Does not include spanner format contributors.'''
-      from abjad.core.formatcontributor import _FormatContributor
-      result = [ ]
-      client = self._client
-      for value in client.__dict__.values( ):
-         if isinstance(value, _Interface) and \
-            isinstance(value, _FormatContributor):
-            result.append(value)
-      result.sort(lambda x, y: 
-         cmp(x.__class__.__name__, y.__class__.__name__))
-      return result
+#   ## TODO OPTIMIZATION: Maybe better NO dynamic format contributors. ##
+#   ##       Maybe better to assemble at component *initialization*.   ##
+#   ##       Maybe better NOT to assemble at format-time.              ##
+#
+#   @property
+#   def contributors(self):
+#      '''Return alphabetized list of interface format contributors.
+#         Does not include spanner format contributors.'''
+#      from abjad.core.formatcontributor import _FormatContributor
+#      result = [ ]
+#      client = self._client
+#      for value in client.__dict__.values( ):
+#         if isinstance(value, _Interface) and \
+#            isinstance(value, _FormatContributor):
+#            result.append(value)
+#      result.sort(lambda x, y: 
+#         cmp(x.__class__.__name__, y.__class__.__name__))
+#      return result
 
    @property
    def contributions(self):
@@ -78,6 +82,8 @@ class _InterfaceAggregator(_Interface):
          result.extend(getattr(contributor, 'opening', [ ]))
       return result
 
+   ## OPTIMIZATION: Maybe better to derive at attr assignment time. ##
+
    @property
    def overrides(self):
       '''Ordered data structure of format-time grob overrides.'''
@@ -85,6 +91,8 @@ class _InterfaceAggregator(_Interface):
       for contributor in self.contributors:
          result.extend(getattr(contributor, 'overrides', [ ]))
       return result
+
+   ## OPTIMIZATION: Maybe better to derive at attr assignment time. ##
 
    @property
    def reverts(self):

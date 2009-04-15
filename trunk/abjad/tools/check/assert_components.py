@@ -2,6 +2,7 @@ from abjad.component.component import _Component
 from abjad.exceptions.exceptions import ContiguityError
 from abjad.tools.check.assess_components import assess_components
 
+#visits = 0
 
 def assert_components(expr, klasses = (_Component, ),
    contiguity = None, share = None, allow_orphans = True):
@@ -23,6 +24,10 @@ def assert_components(expr, klasses = (_Component, ),
       Calls to this function also iterate all elements in expr.
       For this reason, you can turn off all calls to this function.
       Set something in cfg.'''
+
+   #global visits
+   #visits += 1
+   #print 'debug: in assert_components %s ...' % visits
 
    if contiguity is None:
       

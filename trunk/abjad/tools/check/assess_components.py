@@ -7,6 +7,8 @@ import types
 ##       This will prevent needing to manifest large lists
 ##       of leaves for checking wiht check.assess_components( ).
 
+#visits = 0
+
 def assess_components(expr, klasses = (_Component, ), 
    contiguity = None, share = None, allow_orphans = True):
    '''Assert expr is a Python list of Abjad components.
@@ -27,6 +29,10 @@ def assess_components(expr, klasses = (_Component, ),
       Calls to this function also iterate all elements in expr.
       For this reason, you can turn off all calls to this function.
       Set something in cfg.'''
+
+   #global visits
+   #visits += 1
+   #print 'debug: in assess components %s ...' % visits
 
    if contiguity is None:
       
