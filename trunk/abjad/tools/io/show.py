@@ -8,9 +8,10 @@ from abjad.cfg.wrap_format import _wrap_format
 from abjad.cfg.write_preamble import _write_preamble
 from abjad.cfg.write_title import _write_title
 import os
+import time
 
 
-def show(expr, template = None, title = None):
+def show(expr, template = None, title = None, lilytime = 10):
    '''Create a new LilyPond .ly file in the ABJADOUTPUT directory.
       Assign a four-digit numeric name to the new LilyPond .ly file.
       Write template, title and other header information to .ly file.
@@ -28,6 +29,11 @@ def show(expr, template = None, title = None):
    _write_title(outfile, title)
    outfile.write(_wrap_format(expr.format))
    outfile.close( )
+   start_time = time.time( )
    _run_lilypond(name)
+   stop_time = time.time( )
+   total_time = int(stop_time - start_time)
    pdfviewer = _read_config_value('pdfviewer')
    _open_file('%s.pdf' % name[:-3], pdfviewer)
+   if lilytime <= total_time:
+      print 'LilyPond processing time equal to %s sec.' % total_time
