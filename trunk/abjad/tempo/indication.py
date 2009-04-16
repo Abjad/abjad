@@ -12,13 +12,27 @@ class TempoIndication(_Abjad):
       self.duration = duration
       self.mark = mark
 
-   ## PUBLIC ATTRIBUTES ##
+   ## OVERLOADS ##
+
+   def __eq__(self, expr):
+      if isinstance(expr, TempoIndication):
+         if self.duration == expr.duration:
+            if self.mark == expr.mark:
+               return True
+      return False
+
+   def __ne__(self, expr):
+      return not self == expr
+
+   ## PRIVATE ATTRIBUTES ##
 
    @property
-   def dotted(self):
+   def _dotted(self):
       '''Dotted numeral representation of duration.'''
       from abjad.note.note import Note
       return Note(0, self.duration).duration._dotted
+
+   ## PUBLIC ATTRIBUTES ##
 
    @apply
    def duration( ):
@@ -33,7 +47,7 @@ class TempoIndication(_Abjad):
    @property
    def format(self):
       '''Tempo indication as string.'''
-      return r'\tempo %s=%s' % (self.dotted, self.mark)
+      return r'\tempo %s=%s' % (self._dotted, self.mark)
 
    @apply
    def mark( ):

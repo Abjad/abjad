@@ -1,47 +1,34 @@
+from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.core.observer import _Observer
 from abjad.spanner.receptor import _SpannerReceptor
 from abjad.tempo.indication import TempoIndication
 import types
 
 
-class _TempoInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class _TempoInterface(_Observer, _GrobHandler, 
+   _BacktrackingInterface, _SpannerReceptor):
    '''Handle LilyPond MetronomeMark grob and Abjad Tempo spanner.'''
    
-   def __init__(self, client):
+   def __init__(self, _client, _updateInterface):
       '''Bind to client and LilyPond MetronomMark grob.
          Receive Abjad Tempo spanner.'''
       from abjad.tempo.spanner import Tempo
-      _Interface.__init__(self, client)
+      _Observer.__init__(self, _client, _updateInterface)
       _GrobHandler.__init__(self, 'MetronomeMark')
+      _BacktrackingInterface.__init__(self, 'tempo')
       _SpannerReceptor.__init__(self, (Tempo, ))
-      self._indication = None
+      self._acceptableTypes = (TempoIndication, types.NoneType)
+      self._effective = None
+      self._forced = None
  
    ## PUBLIC ATTRIBUTES ##
-
-   @apply
-   def indication( ):
-      '''Read / write tempo indication.'''
-      def fget(self):
-         return self._indication
-      def fset(self, arg):
-         assert isinstance(arg, (TempoIndication, types.NoneType))
-         self._indication = arg
-      return property(**locals( ))
-
-   ## PUBLIC METHODS ##
-
-   ## TODO: Replace interface clear( ) method with override interface ##
-
-   def clear(self):
-      self.indication = None
-      _GrobHandler.clear(self)
 
    @property
    def opening(self):
       '''Format contribution at container opening or before leaf.'''
       result =  [ ] 
-      if self.indication is not None:
+      if self.forced or self.change:
          result.append(
-            r'\tempo %s=%s' % (self.indication.dotted, self.indication.mark))
+            r'\tempo %s=%s' % (self.effective._dotted, self.effective.mark))
       return result

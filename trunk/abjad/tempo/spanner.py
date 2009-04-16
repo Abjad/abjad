@@ -1,6 +1,7 @@
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 from abjad.tempo.format import _TempoSpannerFormatInterface
 from abjad.tempo.indication import TempoIndication
+import types
 
 
 class Tempo(_GrobHandlerSpanner):
@@ -17,6 +18,6 @@ class Tempo(_GrobHandlerSpanner):
       def fget(self):
          return self._indication
       def fset(self, arg):
-         assert isinstance(arg, TempoIndication)
+         assert isinstance(arg, (TempoIndication, types.NoneType))
          self._indication = arg 
       return property(**locals( ))

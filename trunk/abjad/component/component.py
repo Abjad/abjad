@@ -60,7 +60,6 @@ class _Component(_Abjad):
       self._rest = _RestInterface(self)
       self._slur = _SlurInterface(self)
       self._stem = _StemInterface(self)
-      self._tempo = _TempoInterface(self)
       self._text = _TextInterface(self)
       self._thread = _ThreadInterface(self)
       self._tie = _TieInterface(self)
@@ -74,6 +73,7 @@ class _Component(_Abjad):
       self._meter = _MeterInterface(self, self._update)
       self._numbering = _NumberingInterface(self, self._update)
       self._offset = _OffsetInterface(self, self._update)
+      self._tempo = _TempoInterface(self, self._update)
       self._voice = _VoiceInterface(self)
 
    ## OVERLOADS ##
