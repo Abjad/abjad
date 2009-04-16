@@ -160,30 +160,32 @@ def test_containertools_contents_scale_06( ):
 def test_containertools_contents_scale_07( ):
    '''Double all contents, including measure.'''
 
-   t = Voice(construct.run(2))
-   t.append(RigidMeasure((2, 8), construct.run(2)))
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {
-      c'8
-      d'8
+         \time 2/8
+         c'8
+         d'8
          \time 2/8
          e'8
          f'8
    }'''
 
+
    containertools.contents_scale(t, Rational(2))
 
    r'''\new Voice {
-      c'4
-      d'4
+         \time 2/4
+         c'4
+         d'4
          \time 2/4
          e'4
          f'4
    }'''
 
    assert check.wf(t)
-   assert t.format == "\\new Voice {\n\tc'4\n\td'4\n\t\t\\time 2/4\n\t\te'4\n\t\tf'4\n}"
+   assert t.format == "\\new Voice {\n\t\t\\time 2/4\n\t\tc'4\n\t\td'4\n\t\t\\time 2/4\n\t\te'4\n\t\tf'4\n}"
 
 
 def test_containertools_contents_scale_08( ):

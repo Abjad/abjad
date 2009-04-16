@@ -52,7 +52,6 @@ class _Component(_Abjad):
       self._glissando = _GlissandoInterface(self)
       self._history = { }
       self._instrument = _InstrumentInterface(self)
-      self._meter = _MeterInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
       self._notehead = _NoteHeadInterface(self)
@@ -72,6 +71,7 @@ class _Component(_Abjad):
       self._update = _UpdateInterface(self)
       ## Observer interfaces must instantiate lexically after _UpdateInterface
       self._clef = _ClefInterface(self, self._update)
+      self._meter = _MeterInterface(self, self._update)
       self._numbering = _NumberingInterface(self, self._update)
       self._offset = _OffsetInterface(self, self._update)
       self._voice = _VoiceInterface(self)

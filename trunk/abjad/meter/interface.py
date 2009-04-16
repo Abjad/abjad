@@ -1,19 +1,21 @@
 from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.core.observer import _Observer
 from abjad.meter.meter import Meter
 import types
 
 
-class _MeterInterface(_Interface, _GrobHandler, _BacktrackingInterface):
+class _MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    '''Handle LilyPond TimeSignature grob.
       Publish information about effective and forced meter.'''
    
-   def __init__(self, client):
+   def __init__(self, _client, _updateInterface):
       '''Bind client, set forced to None and suppress to False.'''
-      _Interface.__init__(self, client)
+      _Observer.__init__(self, _client, _updateInterface)
       _GrobHandler.__init__(self, 'TimeSignature')
-      _BacktrackingInterface.__init__(self, 'meter.effective')
+      _BacktrackingInterface.__init__(self, 'meter')
+      self._acceptableTypes = (Meter, types.NoneType)
+      self._effective = Meter(4, 4)
       self._forced = None
       self._suppress = False
 
@@ -49,44 +51,6 @@ class _MeterInterface(_Interface, _GrobHandler, _BacktrackingInterface):
       if self._selfShouldContribute:
          result.append(self.effective.format)
       return result
-
-   ## TODO: _MeterInterface.effective taking way too long.
-   ## PROPOSAL: Derive _MeterInterface.effective from measure
-   ## in parentage (if any) or metric grid (if any), otherwise
-   ## return default 4/4 meter.
-   ## ALTERNATIVE: Reimplement meter derivation with observer pattern.
-
-   @property
-   def effective(self):
-      '''Return reference to meter effectively governing client.'''
-
-      for x in self.client.parentage.parentage:
-         if hasattr(x, 'meter') and x.meter.forced:
-            return x.meter.forced
-      else:
-         return Meter(4, 4)
-
-#      cur = self.client
-#      while cur is not None:
-#         if cur.meter.forced:
-#            return cur.meter.forced
-#         else:
-#            ## should there be explicit measure-navigation in navigator?
-#            cur = getattr(cur, 'prev', None)
-#      for x in self.client.parentage.parentage[1:]:
-#         if hasattr(x, 'meter') and x.meter.forced:
-#            return x.meter.forced
-#      return Meter(4, 4)
-
-   @apply
-   def forced( ):
-      '''Read / write attribute to set meter explicitly.'''
-      def fget(self):
-         return self._forced
-      def fset(self, arg):
-         assert isinstance(arg, (Meter, types.NoneType))
-         self._forced = arg
-      return property(**locals( ))
 
    @apply
    def suppress( ):

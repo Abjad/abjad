@@ -23,7 +23,7 @@ class _Leaf(_Component):
       self._harmonic = _HarmonicInterface(self)
       self._markup = _MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
-      self._staff = _StaffInterface(self)
+      self._staff = _StaffInterface(self, self._update)
 
    ## OVERLOADS ##
 

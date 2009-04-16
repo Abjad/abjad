@@ -8,9 +8,9 @@ class _DynamicMeasureMeterInterface(_MeterInterface):
    '''Handle LilyPond TimeSignature grob for DynamicMeasure.
       Publish information about effective and forced meter.'''
    
-   def __init__(self, _client):
+   def __init__(self, _client, _updateInterface):
       '''Initialize parent class.'''
-      _MeterInterface.__init__(self, _client)
+      _MeterInterface.__init__(self, _client, _updateInterface)
 
    ## PRIVATE ATTRIBUTES ##
 

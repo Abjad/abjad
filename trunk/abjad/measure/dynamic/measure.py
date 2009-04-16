@@ -11,7 +11,7 @@ class DynamicMeasure(_Measure):
       _Measure.__init__(self, music)
       self._denominator = None
       self._duration = _DynamicMeasureDurationInterface(self)
-      self._meter = _DynamicMeasureMeterInterface(self)
+      self._meter = _DynamicMeasureMeterInterface(self, self._update)
 
    ## PUBLIC ATTRIBUTES ##
 
