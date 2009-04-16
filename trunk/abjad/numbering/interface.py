@@ -17,8 +17,11 @@ from abjad.rational.rational import Rational
 ##       component and ask for attributes there.
 
 class _NumberingInterface(_Observer):
+   '''Number score components and handle no LilyPond grob.'''
 
    def __init__(self, _client, updateInterface):
+      '''Bind to client and register self as observer.
+         Init leaf and measure numbers to zero.'''
       _Observer.__init__(self, _client, updateInterface)
       self._leaf = 0
       self._measure = 0
@@ -50,10 +53,12 @@ class _NumberingInterface(_Observer):
 
    @property
    def leaf(self):
+      '''Zero-indexed number of leaf in score.'''
       self._makeSubjectUpdateIfNecessary( )
       return self._leaf
    
    @property
    def measure(self):
+      '''One-indexed number of measure in score.'''
       self._makeSubjectUpdateIfNecessary( )
       return self._measure

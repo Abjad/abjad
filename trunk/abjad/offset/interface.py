@@ -7,8 +7,8 @@ class _OffsetInterface(_Observer):
       Handle no LilyPond grob.'''
 
    def __init__(self, _client, updateInterface):
-      '''Bind to client and observer
-         Set score and thread offsets to Rational(0).'''
+      '''Bind to client and register self as observer.
+         Init score and thread offsets to zero.'''
       _Observer.__init__(self, _client, updateInterface)
       self._score = Rational(0)
       self._thread = Rational(0)
@@ -16,24 +16,27 @@ class _OffsetInterface(_Observer):
    ## PRIVATE METHODS ##
 
    def _update(self):
+      '''Update offset values of any one node in score.'''
       self._updateThread( )
       self._updateScore( )
 
    def _updateScore(self):
-      offset = Rational(0, 1)
+      '''Update score offset of any one node in score.'''
       prev = self.client._navigator._prev
       if prev:
-         offset += prev.offset.score + prev.duration.prolated
-      self._score = offset
+         self._score = prev.offset.score + prev.duration.prolated
+      else:
+         self._score = Rational(0)
 
    def _updateThread(self):
+      '''Update thread offset of any one node in score.'''
       from abjad.tools import check
-      offset = Rational(0, 1)
       prev = self.client._navigator._prev
       if prev and check.assess_components([prev, self.client], 
          contiguity = 'strict', share = 'thread', allow_orphans = False):
-         offset += prev.offset.thread + prev.duration.prolated
-      self._thread = offset
+         self._thread = prev.offset.thread + prev.duration.prolated
+      else:
+         self._thread = Rational(0)
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -42,6 +45,9 @@ class _OffsetInterface(_Observer):
       '''Rational-valued rhythmic offset from beginning of score.'''
       self._makeSubjectUpdateIfNecessary( )
       return self._score
+
+   ## TODO: Possibly remove _OffsetInterface.thread? ##
+   ## TODO: Possibly t.offset.start and t.offset.stop? ##
 
    @property
    def thread(self):
