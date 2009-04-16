@@ -1,6 +1,7 @@
 from abjad.component.duration import _ComponentDurationInterface
 from abjad.core.interface import _Interface
 from abjad.exceptions.exceptions import AssignabilityError
+from abjad.exceptions.exceptions import UndefinedTempoError
 from abjad.tools import mathtools
 from abjad.tools import durtools
 from abjad.rational.rational import Rational
@@ -19,7 +20,8 @@ class _LeafDurationInterface(_ComponentDurationInterface):
 
    @property
    def _dots(self):
-      return sum([int(x) for x in list(mathtools.binary_string(self.written._n))]) - 1
+      return sum([int(x) for x in 
+         list(mathtools.binary_string(self.written._n))]) - 1
 
    @property
    def _dotted(self):
@@ -53,6 +55,13 @@ class _LeafDurationInterface(_ComponentDurationInterface):
          return self._dotted
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def clock(self):
+      tempo = self._client.tempo.effective
+      if tempo is not None:
+         return self.prolated / tempo.duration / tempo.mark
+      raise UndefinedTempoError
 
    @property
    def multiplied(self):

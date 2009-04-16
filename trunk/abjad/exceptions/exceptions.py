@@ -95,6 +95,14 @@ class TieChainError(Exception):
    '''General tie chain error.'''
    pass
 
+class TempoError(Exception):
+   '''General tempo error.'''
+   pass
+
+class UndefinedTempoError(TempoError):
+   '''Tempo required for calculation but not yet defined.'''
+   pass
+
 class UnderfullMeasureError(ImproperlyFilledMeasureError):
    '''Measure contents duration is less than measure meter duration.'''
    pass

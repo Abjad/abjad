@@ -16,6 +16,18 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def clock(self):
+      client = self._client
+      if client.parallel:
+         return max(
+            [Rational(0)] + [x.duration.clock for x in client])
+      else:
+         duration = Rational(0)
+         for leaf in client.leaves:
+            duration += leaf.duration.clock
+         return duration
+
+   @property
    def contents(self):
       client = self._client
       if client.parallel: 
@@ -23,7 +35,7 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
             [Rational(0)] + [x.duration.preprolated for x in client])
       else:
          duration = Rational(0)
-         for x in self._client:
+         for x in client:
             duration += x.duration.preprolated
          return duration
 
