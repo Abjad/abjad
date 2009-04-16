@@ -24,6 +24,11 @@ class ContiguityError(Exception):
    '''Input is not contiguous.'''
    pass
 
+class MeasureContiguityError(ContiguityError):
+   '''Measures must be back to back.
+      Should not separated by intervening, noncontained leaves.'''
+   pass
+
 class ExtraSpannerError(Exception):
    '''Operation assumes presence of a single spanner,
       but more than one spanner is present.'''

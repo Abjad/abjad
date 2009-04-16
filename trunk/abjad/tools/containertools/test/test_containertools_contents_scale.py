@@ -189,13 +189,13 @@ def test_containertools_contents_scale_07( ):
 def test_containertools_contents_scale_08( ):
    '''Multiply all contents by 5/4, including measure.'''
 
-   t = Voice(construct.run(2))
-   t.append(RigidMeasure((2, 8), construct.run(2)))
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''\new Voice {
-      c'8
-      d'8
+         \time 2/8
+         c'8
+         d'8
          \time 2/8
          e'8
          f'8
@@ -204,16 +204,17 @@ def test_containertools_contents_scale_08( ):
    containertools.contents_scale(t, Rational(5, 4))
 
    r'''\new Voice {
-      c'8 ~
-      c'32
-      d'8 ~
-      d'32
-         \time 20/64
-         e'8 ~
-         e'32
-         f'8 ~
-         f'32
+                   \time 20/64
+                   c'8 ~
+                   c'32
+                   d'8 ~
+                   d'32
+                   \time 20/64
+                   e'8 ~
+                   e'32
+                   f'8 ~
+                   f'32
    }'''
 
    assert check.wf(t)
-   assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\t\t\\time 20/64\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n}"
+   assert t.format == "\\new Voice {\n\t\t\\time 20/64\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\t\\time 20/64\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n}"

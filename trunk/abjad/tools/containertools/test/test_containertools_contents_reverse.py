@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_containertools_contents_reverse_01( ):
@@ -95,19 +96,13 @@ def test_containertools_contents_reverse_06( ):
 
 
 def test_containertools_contents_reverse_07( ):
-   '''Retrograde works on a depth-1 Container 
-      with one spanner attached to its contents and with no parent.'''
+   '''Retrograde unable to apply because of measure contiguity.'''
 
    notes = construct.scale(2)
    measure = DynamicMeasure(construct.scale(8))
    t = Staff([measure] + notes)
    beam = Beam(t[:])
-   containertools.contents_reverse(t)
-
-   assert beam.components[0] == notes[1]
-   assert beam.components[1] == notes[0]
-   assert beam.components[2] == measure
-   assert check.wf(t)
+   py.test.raises(MeasureContiguityError, 'containertools.contents_reverse(t)')
 
 
 def test_containertools_contents_reverse_10( ):

@@ -1,4 +1,5 @@
 from abjad.core.observer import _Observer
+from abjad.exceptions.exceptions import MeasureContiguityError
 from abjad.rational.rational import Rational
 
 
@@ -24,41 +25,48 @@ class _NumberingInterface(_Observer):
          Init leaf and measure numbers to zero.'''
       _Observer.__init__(self, _client, updateInterface)
       self._leaf = 0
-      self._measure = 0
+      self._measure = 1
 
    ## PRIVATE METHODS ##
 
    def _update(self):
-      self._updateAllNumbers( )
-
-   ## TODO: Can't this method eliminate all internal navigation?
-
-   def _updateAllNumbers(self):
+      '''Update number of any one node in score.'''
       from abjad.leaf.leaf import _Leaf
       from abjad.measure.measure import _Measure
-      leaf = 0
-      measure = 0
-      rightwards_dfs = self._client._navigator._DFS(
-         direction = 'right', capped = False)
-      client = rightwards_dfs.next( )
-      for prev in rightwards_dfs:
-         if isinstance(prev, _Leaf):
-            leaf += 1
-         elif isinstance(prev, _Measure):
-            measure += 1
-      self._leaf = leaf
-      self._measure = measure
+      client = self._client
+      if isinstance(client, _Leaf):
+         self._updateLeafNumber( )
+      elif isinstance(client, _Measure):
+         self._updateMeasureNumber( )
+
+   def _updateLeafNumber(self):
+      '''Update (zero-indexed) number of any one leaf in score.'''
+      from abjad.leaf.leaf import _Leaf
+      prevLeaf = self.client.prev
+      if prevLeaf:
+         assert isinstance(prevLeaf, _Leaf)
+         self._leaf = prevLeaf.numbering.leaf + 1
+
+   def _updateMeasureNumber(self):
+      '''Update (one-indexed) number of any one measure in score.'''
+      from abjad.measure.measure import _Measure
+      prevMeasure = self._client._navigator._prev
+      if prevMeasure:
+         if not isinstance(prevMeasure, _Measure):
+            raise MeasureContiguityError(
+               'measures must be back-to-back.')
+         self._measure = prevMeasure.numbering.measure + 1
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def leaf(self):
-      '''Zero-indexed number of leaf in score.'''
+      '''(Zero-indexed) number of leaf in score.'''
       self._makeSubjectUpdateIfNecessary( )
       return self._leaf
    
    @property
    def measure(self):
-      '''One-indexed number of measure in score.'''
+      '''(One-indexed) number of measure in score.'''
       self._makeSubjectUpdateIfNecessary( )
       return self._measure
