@@ -10,25 +10,25 @@ def split(chord, pch = Pitch('b', 3), attr = 'number'):
       bass pitches all less than pitch attr.
 
       Input constraints:
-         Input is canonically a (many-note) chord;
-         input may also be a (one-note) note;
-         input may also be a (no-note) rest.
+         * Input is canonically a (many-note) chord;
+         * Input may also be a (one-note) note;
+         * Input may also be a (no-note) rest.
 
       Attr options:
-         'number'
-         'altitude'
+         `number`
+         `altitude`
 
       Length treatment:
-         Zero-length parts engender rest;
-         length-one parts engender note;
-         Return parts of length greater than one engender chord.
+         * Zero-length parts engender rest;
+         * length-one parts engender note;
+         * Return parts of length greater than one engender chord.
 
       ID treatment:
-         Unique 'return part' IDs with input chord left unaltered.
-         That is: id(chord) != id(treble) != (bass).
+         * Unique 'return part' IDs with input chord left unaltered.
+         * That is: id(chord) != id(treble) != (bass).
       
-      Spanners treatment:
-         Helper engenders only unspanned output.'''
+      Spanners  treatment:
+         * Helper engenders only unspanned output.'''
 
    assert isinstance(chord, _Leaf)
    assert pitchtools.is_token(pch)
