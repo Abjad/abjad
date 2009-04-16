@@ -1,42 +1,58 @@
 from abjad.clef.clef import Clef
 from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.core.observer import _Observer
 import types
 
 
-class _ClefInterface(_Interface, _GrobHandler, _BacktrackingInterface):
+class _ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    '''Handle LilyPond Clef grob.
-      Interface to find effective clef.
-      Interface to force clef changes.'''
+      Observe score structure to find effective clef.
+      Manage forced clef changes.'''
    
-   def __init__(self, client):
+   def __init__(self, _client, updateInterface):
       '''Bind client and LilyPond Clef grob.
          Set forced to None.'''
-      _Interface.__init__(self, client)
+      _Observer.__init__(self, _client, updateInterface)
       _GrobHandler.__init__(self, 'Clef')
       _BacktrackingInterface.__init__(self, 'clef.name')
+      self._effectiveName = 'treble'
       self._forced = None
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE METHODS ##
 
-   ## TODO: _ClefInterface.effective backtracking WAAAY inefficient.
-   ##       Reimplement with a smart pattern.
-   ##       Possibly observer pattern.
+   def _update(self):
+      '''Update my score-dependent clef attributes.'''
+      self._updateEffectiveClefName( )
+
+   def _updateEffectiveClefName(self):
+      '''Update my effective clef.'''
+      myForced = self.forced
+      if myForced is not None:
+         self._effectiveName = myForced.name
+      elif self._client._navigator._prev is not None:
+         prevComponent = self._client._navigator._prev
+         if prevComponent:
+            prevForced = prevComponent.clef.forced
+            if prevForced:
+               self._effectiveName = prevForced.name
+            else:
+               prevEffectiveName = prevComponent.clef._effectiveName
+               self._effectiveName = prevEffectiveName
+      else:
+         for parent in self._client.parentage.parentage[1:]:
+            parentForced = parent.clef.forced
+            if parentForced is not None:
+               self._effectiveName = parentForced.name
+               break
+
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def effective(self):
       '''Return effective clef or else treble.'''
-      cur = self.client
-      while cur is not None:
-         if cur.clef.forced:
-            return cur.clef.forced
-         else:
-            cur = getattr(cur, 'prev', None)
-      for x in self.client.parentage.parentage[1:]:
-         if hasattr(x, 'clef') and x.clef.forced:
-            return x.clef.forced
-      return Clef('treble')
+      self._makeSubjectUpdateIfNecessary( )
+      return Clef(self._effectiveName)
 
    @apply
    def forced( ):
@@ -47,11 +63,6 @@ class _ClefInterface(_Interface, _GrobHandler, _BacktrackingInterface):
          assert isinstance(arg, (Clef, types.NoneType))
          self._forced = arg
       return property(**locals( ))
-
-   @property
-   def name(self):
-      '''Name of effective clef as string.'''
-      return self.effective.name
 
    @property
    def opening(self):

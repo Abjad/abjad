@@ -3,68 +3,69 @@ from abjad import *
 
 def test_clef_01( ):
    '''Clef defaults to treble.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   for note in staff:
-      assert note.clef.name == 'treble'
+   t = Staff(construct.scale(8))
+   for note in t:
+      assert note.clef.effective == Clef('treble')
    
 
 def test_clef_02( ):
    '''Clefs carry over to notes following.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].clef.forced = Clef('treble')
-   for note in staff:
-      assert note.clef.name == 'treble'
+   t = Staff(construct.scale(8))
+   t[0].clef.forced = Clef('treble')
+   for note in t:
+      assert note.clef.effective == Clef('treble')
 
 
 def test_clef_03( ):
    '''Clef defaults to treble;
       clefs carry over to notes following.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[4].clef.forced = Clef('bass')
-   for i, note in enumerate(staff):
+   t = Staff(construct.scale(8))
+   t[4].clef.forced = Clef('bass')
+   for i, note in enumerate(t):
       if i in (0, 1, 2, 3):
-         note.clef.name == 'treble'
+         note.clef.effective == Clef('treble')
       else:
-         note.clef.name == 'bass'
+         note.clef.effective == Clef('bass')
 
 
 def test_clef_04( ):
    '''Clefs carry over to notes following.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].clef.forced = Clef('treble')
-   staff[4].clef.forced = Clef('bass')
-   assert [note.clef.name for note in staff] == \
-      ['treble', 'treble', 'treble', 'treble', 
-      'bass', 'bass', 'bass', 'bass']
+   t = Staff(construct.scale(8))
+   t[0].clef.forced = Clef('treble')
+   t[4].clef.forced = Clef('bass')
+   assert [note.clef.effective for note in t] == \
+      [Clef(name) for name in ['treble', 'treble', 'treble', 'treble', 
+      'bass', 'bass', 'bass', 'bass']]
 
 
 def test_clef_05( ):
    '''None cancels an explicit clef.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].clef.forced = Clef('treble')
-   staff[4].clef.forced = Clef('bass')
-   staff[4].clef.forced = None
-   for note in staff:
-      assert note.clef.name == 'treble'
+   t = Staff(construct.scale(8))
+   t[0].clef.forced = Clef('treble')
+   t[4].clef.forced = Clef('bass')
+   t[4].clef.forced = None
+   for note in t:
+      assert note.clef.effective == Clef('treble')
       
 
 def test_clef_06( ):
    '''None has no effect on an unassigned clef.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   for note in staff:
+   t = Staff(construct.scale(8))
+   for note in t:
       note.clef.forced = None
-   for note in staff:
-      assert note.clef.name == 'treble'
+   for note in t:
+      assert note.clef.effective == Clef('treble')
 
 
 def test_clef_07( ):
    '''Redudant clefs are allowed.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].clef.forced = Clef('treble')
-   staff[4].clef.forced = Clef('treble')
-   assert staff.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "treble"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}'''
-   '''
-   Staff {
+
+   t = Staff(construct.run(8))
+   pitchtools.chromaticize(t)
+   t[0].clef.forced = Clef('treble')
+   t[4].clef.forced = Clef('treble')
+
+   r'''Staff {
            \clef "treble"
            c'8
            cs'8
@@ -75,17 +76,21 @@ def test_clef_07( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
+
+   assert check.wf(t)
+   assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "treble"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}'''
+
 
 def test_clef_08( ):
    '''Clefs with transposition are allowed and work as expected.'''
-   staff = Staff([Note(n, (1, 8)) for n in range(8)])
-   staff[0].clef.forced = Clef('treble_8')
-   staff[4].clef.forced = Clef('treble')
-   assert staff.format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
-   r'''
-   \new Staff {
+
+   t = Staff(construct.run(8))
+   pitchtools.chromaticize(t)
+   t[0].clef.forced = Clef('treble_8')
+   t[4].clef.forced = Clef('treble')
+
+   r'''\new Staff {
            \clef "treble_8"
            c'8
            cs'8
@@ -96,5 +101,7 @@ def test_clef_08( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
+
+   assert check.wf(t)
+   assert t.format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'

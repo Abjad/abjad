@@ -7,7 +7,7 @@ def test_staff_clef_02( ):
    assert t.clef.change == False
    assert isinstance(t.clef.effective, Clef)
    assert t.clef.forced is None
-   assert t.clef.name == 'treble'
+   assert t.clef.effective == Clef('treble')
 
 
 def test_staff_clef_03( ):
@@ -47,7 +47,7 @@ def test_staff_clef_05( ):
    t = Staff(Note(0, (1, 4)) * 8)
    t.clef.forced = Clef('bass')
    for x in t:
-      assert x.clef.name == 'bass'
+      assert x.clef.effective == Clef('bass')
 
 
 def test_staff_clef_06( ):
@@ -58,9 +58,9 @@ def test_staff_clef_06( ):
    t[4].clef.forced = Clef('treble')
    for i, leaf in enumerate(t):
       if i in (0, 1, 2, 3):
-         assert leaf.clef.name == 'bass'
+         assert leaf.clef.effective == Clef('bass')
       else:
-         assert leaf.clef.name == 'treble'
+         assert leaf.clef.effective == Clef('treble')
 
 
 def test_staff_clef_07( ):
@@ -69,7 +69,7 @@ def test_staff_clef_07( ):
    t.clef.forced = Clef('bass')
    t.clef.forced = None
    for leaf in t:
-      assert leaf.clef.name == 'treble'
+      assert leaf.clef.effective == Clef('treble')
 
 
 def test_staff_clef_08( ):
@@ -79,4 +79,4 @@ def test_staff_clef_08( ):
    t.clef.forced = Clef('treble')
    t[0].clef.forced = Clef('bass')
    for leaf in t:
-      assert leaf.clef.name == 'bass'
+      assert leaf.clef.effective == Clef('bass')

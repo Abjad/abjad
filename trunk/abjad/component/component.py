@@ -45,7 +45,6 @@ class _Component(_Abjad):
       self._barline = _BarLineInterface(self)
       self._beam = _BeamInterface(self)
       self._breaks = _BreaksInterface(self)
-      self._clef = _ClefInterface(self)
       self._comments = _UserComments( )
       self._directives = _UserDirectivesInterface(self)
       self._dots = _DotsInterface(self)
@@ -72,6 +71,7 @@ class _Component(_Abjad):
       self._tupletnumber = _TupletNumberInterface(self)
       self._update = _UpdateInterface(self)
       ## Observer interfaces must instantiate lexically after _UpdateInterface
+      self._clef = _ClefInterface(self, self._update)
       self._numbering = _NumberingInterface(self, self._update)
       self._offset = _OffsetInterface(self, self._update)
       self._voice = _VoiceInterface(self)
