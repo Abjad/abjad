@@ -14,6 +14,7 @@ class _UpdateInterface(_Interface):
       '''Bind to client and initialize client as needing update.
          Init empty list of observers.'''
       _Interface.__init__(self, client)
+      self._allow = True
       self._current = False
       self._observers = [ ]
 
@@ -26,8 +27,24 @@ class _UpdateInterface(_Interface):
          if not x._update._current:
             return False
       return True
+
+   @property
+   def _allowToRoot(self):
+      '''True is all components in parent of client currently allow update.'''
+      for x in self._client.parentage.parentage:
+         if not x._update._allow:
+            return False
+      return True
       
    ## PRIVATE METHODS ## 
+
+   def _allowUpdate(self):
+      '''Allow update again after having previously forbidden update.'''
+      self._allow = True
+
+   def _forbidUpdate(self):
+      '''Forbid update until later explicitly allowing update again.'''
+      self._allow = False
 
    def _markForUpdateToRoot(self):
       '''Mark all components in parentage of client as needing update.'''
@@ -36,8 +53,9 @@ class _UpdateInterface(_Interface):
 
    def _updateAll(self):
       '''Iterate score and call each observer update on each score node.'''
-      score = self._client.parentage.root._navigator._DFS( )
-      for node in score:
-         for observer in node._update._observers:
-            observer._update( )
-         node._update._current = True
+      if self._allowToRoot:
+         score = self._client.parentage.root._navigator._DFS( )
+         for node in score:
+            for observer in node._update._observers:
+               observer._update( )
+            node._update._current = True

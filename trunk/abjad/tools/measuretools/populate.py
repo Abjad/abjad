@@ -81,12 +81,17 @@ def _measures_populate_duration_train(expr, written_duration):
 
 def _measures_populate_meter_series(expr):
    from abjad.measure.measure import _Measure
+   root = expr.parentage.root
+   if not root._update._current:
+      root._update._updateAll( )
+   root._update._forbidUpdate( )
    for measure in iterate.naive(expr, _Measure):
       meter = measure.meter.effective
       denominator = mathtools.next_least_power_of_two(meter.denominator)
       numerator = meter.numerator
       notes = Note(0, (1, denominator)) * numerator
       measure[ : ] = notes
+   root._update._allowUpdate( )
 
 
 def _measures_populate_none(expr):
