@@ -1,3 +1,4 @@
+from abjad.cfg.session import _CFG
 from abjad.core.interface import _Interface
 
 
@@ -12,4 +13,5 @@ class _Observer(_Interface):
    def _makeSubjectUpdateIfNecessary(self):
       observerSubject = self._client._update
       if not observerSubject._currentToRoot:
-         observerSubject._updateAll( )
+         if getattr(_CFG, 'update', True):
+            observerSubject._updateAll( )
