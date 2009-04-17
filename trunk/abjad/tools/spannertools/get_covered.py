@@ -20,8 +20,8 @@ def get_covered(components):
 
    result = get_contained(components)
    for spanner in list(result):
-      if spanner.begin < components_begin or \
-         components_end < spanner.end:
+      if spanner.offset.start < components_begin or \
+         components_end < spanner.offset.stop:
          result.discard(spanner)
    
    return result  

@@ -17,7 +17,9 @@ def get_dominant(components):
 
       This operation always leaves all expressions in tact.'''
 
-   check.assert_components(components, contiguity = 'thread', allow_orphans = False)
+   check.assert_components(
+      components, contiguity = 'thread', allow_orphans = False)
+
    receipt = set([ ])
 
    if len(components) == 0:
@@ -30,8 +32,8 @@ def get_dominant(components):
    for component in iterate.naive(first, _Component):
       if component.offset.score == subtree_begin:
          for spanner in component.spanners.attached:
-            if spanner.begin <= subtree_begin:
-               if subtree_end <= spanner.end:
+            if spanner.offset.start <= subtree_begin:
+               if subtree_end <= spanner.offset.stop:
                   index = spanner.index(component)
                   receipt.add((spanner, index))
       elif subtree_begin < component.offset.score:

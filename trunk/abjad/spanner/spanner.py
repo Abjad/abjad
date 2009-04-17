@@ -151,12 +151,6 @@ class Spanner(_Abjad):
    ## PUBLIC ATTRIBUTES ##
    
    @property
-   def begin(self):
-      '''Start time of first component in spanner.'''
-      if len(self) > 0:
-         return self[0].offset.score
-
-   @property
    def components(self):
       return self._components[:]
 
@@ -164,12 +158,6 @@ class Spanner(_Abjad):
    def duration(self):
       return self._duration
    
-   @property
-   def end(self):
-      if len(self) > 0:
-         last = self[-1]
-         return last.offset.score + last.duration.prolated
-
    @property
    def format(self):
       return self._format

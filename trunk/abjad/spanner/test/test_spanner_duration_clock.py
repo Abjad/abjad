@@ -4,6 +4,7 @@ from abjad import *
 def test_spanner_duration_written_01( ):
    t = Voice([RigidMeasure((2, 12), construct.scale(2)), 
       RigidMeasure((2, 8), construct.scale(2))])
+   t.tempo.forced = TempoIndication(Rational(1, 8), 42)
    beam = Beam(t.leaves)
    crescendo = Crescendo(t[0][:])
    decrescendo = Decrescendo(t[1][:])
@@ -19,6 +20,6 @@ def test_spanner_duration_written_01( ):
                    d'8 ] \!
    }'''
 
-   assert beam.duration.written == Rational(4, 8)
-   assert crescendo.duration.written == Rational(2, 8)
-   assert decrescendo.duration.written == Rational(2, 8)
+   assert beam.duration.clock == Rational(5, 63)
+   assert crescendo.duration.clock == Rational(2, 63)
+   assert decrescendo.duration.clock == Rational(1, 21)
