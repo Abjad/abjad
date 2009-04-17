@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+
+tools_path = os.path.join(ABJADPATH, 'tools')
+tools_doc_path = os.path.join(ABJADPATH, 'documentation', 'doc_sphinx', 
+   'chapters', 'api')
+
+def make_sphinx_listing(package, files):
+   result = 'Abjad %s Tools\n' %  package.title( )
+   result += '=' * (len(result) - 1)
+   result += '\n\n'
+   result += '.. automodule:: abjad.tools.%s\n\n' % package
+   for file in files:
+      file = file.split('.')[0]
+      result += '.. autofunction:: abjad.tools.%s.%s\n' % (package, file)
+   return result
+
+def _filter_directories(dirs):
+   ## remove .svn and test directories
+   try:
+      dirs.remove('.svn')
+      dirs.remove('test')
+   except ValueError:
+      pass
+
+def _filter_files(files):
+   ## remove keep only *.py files.
+   for f in files[:]:
+      if not f.endswith('.py') or f.startswith('_'):
+         files.remove(f)
+
+
+for current_root, dirs, files in os.walk(tools_path):
+   _filter_directories(dirs)
+   _filter_files(files)
+
+   ## make subdirectories in docs if needed
+   tools_subdir = current_root[current_root.index('tools'):]
+   print 'tools subdir', tools_subdir
+   for dir in dirs:
+      new_dir = os.path.join(tools_doc_path, tools_subdir, dir)
+      if not os.path.exists(new_dir):
+         msg = 'Will create new directory "%s". Proceed? [y/n]: ' % new_dir
+         input = raw_input(msg)
+         if input.lower( ) == 'y':
+            os.mkdir(new_dir)
+
+   ## make shinx listing of methods in modules
+   package =  os.path.basename(current_root)
+   listing = make_sphinx_listing(package, files)
+   print listing
+      
+   ## write listing to file
+   index = os.path.join(tools_doc_path, tools_subdir, 'index.rst')
+   msg = 'Will write file "%s". Proceed? [y/n]:' % index
+   input = raw_input(msg)
+   if input.lower( ) == 'y':
+      listing_file = open(index, 'w')
+      listing_file.write(listing)
+      listing_file.close( )
