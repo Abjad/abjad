@@ -3,16 +3,16 @@ from abjad.tools import check
 
 def fracture_crossing(components):
    r'''Fracture to the left of the leftmost component.
-      Fracture to the right of the rightmost component.
-      Do not fracture spanners of any components at higher levels of score.
-      Do not fracture spanners of any components at lower levels of score.
-      Return components.
-      
-      Components must be thread-contiguous.
-      Some spanners may copy during fracture.
-      This helper is public-safe.
+   Fracture to the right of the rightmost component.
+   Do not fracture spanners of any components at higher levels of score.
+   Do not fracture spanners of any components at lower levels of score.
+   Return components.
+   
+   Components must be thread-contiguous.
+   Some spanners may copy during fracture.
+   This helper is public-safe.
 
-      Example:
+   Example::
 
       t = Staff(Container(construct.run(2)) * 3)
       pitchtools.diatonicize(t)
