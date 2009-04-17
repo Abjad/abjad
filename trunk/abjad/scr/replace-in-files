@@ -24,7 +24,8 @@ def _remove_dirs(skip_dirs, dirs):
 
 def _remove_files(skip_files, files):
    for x in skip_files: 
-      for file in files:   
+      #for file in files:   
+      for file in files[:]:   
          if file.endswith(x):
             files.remove(file)
 
