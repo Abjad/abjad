@@ -13,9 +13,11 @@ class Bracket(Text):
       self.bound_details__left__text = \
          Markup("(markup #:draw-line '(0 . -1))")
       self.bound_details__left__text.style = 'scheme'
+      self.bound_details__left_broken__text = False
       self.bound_details__right__text = \
          Markup("(markup #:draw-line '(0 . -1))")
       self.bound_details__right__text.style = 'scheme'
+      self.bound_details__right_broken__text = False
       self.color = 'red'
       self.dash_fraction = 1
       self.staff_padding = 2
