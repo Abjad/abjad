@@ -14,14 +14,25 @@ def divide(total, start_frac, stop_frac, exp='cosine'):
       raise ValueError('Both dividing fractions must be smaller than total.')
 
    result = [ ]
-   while sum(result) <= (total - stop_frac):
+   total = float(total)
+   while sum(result) < total:
       if exp == 'cosine':
          ip = cosine(start_frac, stop_frac, sum(result) / total)
       else:
          ip = exponential(start_frac, stop_frac, sum(result) / total, exp)
-      ip = int(round(ip * 10000, 5))
-      ip = Rational(ip, 10000)
       result.append(ip)
-   result[-1] += total - sum(result)
+   result = [x * total / sum(result) for x in result]
+   result = [Rational(int(round(x * 10000, 5)), 10000) for x in result]
    return result
+
+#   while sum(result) <= (total - stop_frac):
+#      if exp == 'cosine':
+#         ip = cosine(start_frac, stop_frac, sum(result) / total)
+#      else:
+#         ip = exponential(start_frac, stop_frac, sum(result) / total, exp)
+#      ip = int(round(ip * 10000, 5))
+#      ip = Rational(ip, 10000)
+#      result.append(ip)
+#   result[-1] += total - sum(result)
+#   return result
 
