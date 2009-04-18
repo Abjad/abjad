@@ -6,11 +6,12 @@ abstract = "A reconstruction of the first measures of Ligeti's 'Desordre'"
 
 statements = [ ]
 
-### statements
+## statements
 text = "Let's first see what we are after."
 code = 'open_file(desordre)'
 s = Statement(text, code)
 statements.append(s)
+
 
 text = "Notice how the first several bars of the piece are made up of a single pattern, a two voice nucleus comprised of an octave in the upper voice and a run of 1/8th notes in the lower voice. Let's call this a 'Ligeti class'. The pitch sequences in the piece, however, are less redundant."
 code = [ ]
@@ -47,6 +48,7 @@ code = 'measure = measure_build(pitches[0][0])'
 s = Statement(text, code)
 statements.append(s)
 
+
 text = "Let's display what we have created."
 code = "show(Staff([measure]), 'tirnaveni')"
 s = Statement(text, code)
@@ -58,6 +60,7 @@ code = 'measure = measure_build([[0,2], [0,2,0,2], [0,2,0,2,0]])'
 s = Statement(text, code)
 statements.append(s)
 
+
 text = "Let's display what we have created."
 code = "show(Staff([measure]), 'tirnaveni')"
 s = Statement(text, code)
@@ -68,6 +71,7 @@ text = "Now let's create several measures at a time using the multimeasure_build
 code = 'multimeasures = multimeasure_build(pitches[0])'
 s = Statement(text, code)
 statements.append(s)
+
 
 text = "Let's display what we have created."
 code = "show(Staff(multimeasures), 'tirnaveni')"
@@ -85,6 +89,7 @@ text = "Let's display what we have created."
 code = "show(desordre, 'tirnaveni')"
 s = Statement(text, code)
 statements.append(s)
+
 
 text = "Now that we have 'Desordre' encoded in Abjad, we can play around with the data in the piece. Let's shuffle the sequences around a bit."
 code = 'for measure in pitches[0]: measure[0].reverse( ); measure.reverse( )'
@@ -104,7 +109,7 @@ s = Statement(text, code)
 statements.append(s)
 
 
-### presentation
+## presentation
 p = Presentation(title, abstract, statements)
 p.setup.append('from abjad import *')
 p.setup.append('from abjad.cfg.cfg import ABJADPATH')
@@ -112,10 +117,9 @@ p.setup.append('from abjad.cfg.open_file import _open_file as open_file')
 p.setup.append('from abjad.demos.desordre.helpers import *')
 p.setup.append('import os')
 p.setup.append("desordre = ABJADPATH + \
-os.sep.join(['demos', 'desordre', 'desordre.pdf'])")
+os.path.join('demos', 'desordre', 'desordre.pdf')")
 p.setup.append("pitches_file = ABJADPATH +  \
-os.sep.join(['demos', 'desordre', 'desordre_pitches.txt'])")
-
+os.path.join('demos', 'desordre', 'desordre_pitches.txt')")
 
 
 if __name__ == '__main__':

@@ -37,7 +37,7 @@ def replace_in_files(dir, old, new, skip_dirs=['.svn'], confirm=True):
       _remove_files(skip_files, files)
       ## replace old with new
       for file in files:
-         file = os.sep.join([root, file])
+         file = os.path.join(root, file)
          pf = open(file, 'r')
          print "Working on file: %s" % file
          new_text = [ ]

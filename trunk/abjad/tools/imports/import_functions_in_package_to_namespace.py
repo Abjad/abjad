@@ -5,11 +5,13 @@ from abjad.tools.imports.remove_modules_from_namespace import \
 import os
 
 
-def _import_functions_in_package_to_namespace(package, namespace, 
-   skip_dirs=['test']):
+def _import_functions_in_package_to_namespace(
+   package, namespace, skip_dirs=['test']):
    '''Import all the functions defined in the modules of the package given 
       as a string path into the given namespace.
+
       Example:
+
       A package structure like so:
          package.mod1.mod1_func1( )
          package.mod2.mod2_func1( )
@@ -22,15 +24,9 @@ def _import_functions_in_package_to_namespace(package, namespace,
          package.mod3_func1( )'''
 
    functions = [ ]
-   #print 'debug package %s' % package
    for root, dirs, files in os.walk(package):
-      ## TODO: Remove these two debug lines later. ##
-      #if '.svn' not in root:
-      #   print 'debug root %s' % root
       root = root[root.rindex('abjad'):]
 
-#      if root.endswith('test'):
-#         continue
       ## remove directories of modules to skip
       for mod in skip_dirs:
          if mod in dirs:
@@ -39,16 +35,15 @@ def _import_functions_in_package_to_namespace(package, namespace,
       ## get functions from module files
       for file in files:
          if file.endswith('py') and not file.startswith(('_', '.')):
-            ## TODO: Global search and replace os.sep.join with os.path.join ##
-            module = os.sep.join([root, file[:-3]])
+            module = os.path.join(root, file[:-3])
             functions.extend(_get_functions_in_module(module))
 
    ## put functions retrieved into namespace
    for func in functions:
-      #print func.__name__
       namespace[func.__name__] = func 
    
    ## remove modules
    _remove_modules_from_namespace(namespace)
+
    ## remove myself
    del(namespace['_import_functions_in_package_to_namespace'])
