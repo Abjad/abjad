@@ -29,19 +29,23 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def _line_break_system_details(self):
       '''LilyPond Score.NonMusicalPaperColumn #'line-break-system-details
          formatting contribution.'''
-      result = ''
+      #result = ''
+      result = [ ]
       x = self.x
       y = self.y
       if x is not None or y is not None:
-         result += '\\overrideProperty #"Score.NonMusicalPaperColumn"\n'
-         result += "#'line-break-system-details\n"
+         #result += '\\overrideProperty #"Score.NonMusicalPaperColumn"\n'
+         #result += "#'line-break-system-details\n"
+         result.append('\\overrideProperty #"Score.NonMusicalPaperColumn"')
+         result.append("#'line-break-system-details")
          temp = [ ]
          if x is not None:
             temp.append('(X-offset . %s)' % x)
          if y is not None:
             temp.append('(Y-offset . %s)' % y)
          temp_str = ' '.join(temp)
-         result += "#'(%s)" % temp_str
+         #result += "#'(%s)" % temp_str
+         result.append("#'(%s)" % temp_str)
       return result
 
    ## PUBLIC ATTRIBUTES ##
@@ -54,9 +58,10 @@ class _BreaksInterface(_Interface, _FormatContributor):
          result.append(r'\break')
       if self.page:
          result.append(r'\pageBreak')
-      details = self._line_break_system_details
-      if details:
-         result.append(details)
+#      details = self._line_break_system_details
+#      if details:
+#         #result.append(details)
+#         result.extend(details)
       return result
 
    @apply
@@ -68,6 +73,15 @@ class _BreaksInterface(_Interface, _FormatContributor):
          assert isinstance(arg, bool) or arg is None
          self._line = arg
       return property(**locals( ))
+
+   @property
+   def opening(self):
+      '''Format contribution at container opening or before leaf.'''
+      result = [ ]
+      details = self._line_break_system_details
+      if details:
+         result.extend(details)
+      return result
 
    @apply
    def page( ):
