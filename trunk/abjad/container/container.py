@@ -180,6 +180,12 @@ class Container(_Component):
          parent._music.insert(index, self)
          self.parentage._switch(parent)
 
+   def _isOneOfMyFirstLeaves(self, leaf):
+      return leaf in self._navigator._contemporaneousStartContents
+
+   def _isOneOfMyLastLeaves(self, leaf):
+      return leaf in self._navigator._contemporaneousStopContents
+
    ## PUBLIC METHODS ## 
 
    def append(self, component):
