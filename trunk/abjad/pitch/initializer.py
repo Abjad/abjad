@@ -6,7 +6,7 @@ class _PitchInitializer(_Abjad):
    
    def __init__(self): 
       self.initializers = [ ]
-      for value in initializers.__dict__.itervalues( ):
+      for value in vars(initializers).itervalues( ):
          if hasattr(value, 'matchSignature'):
             self.initializers.append(value( ))
 

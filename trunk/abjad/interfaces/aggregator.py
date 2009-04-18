@@ -43,7 +43,7 @@ class _InterfaceAggregator(_Interface):
 #      from abjad.core.formatcontributor import _FormatContributor
 #      result = [ ]
 #      client = self._client
-#      for value in client.__dict__.values( ):
+#      for value in vars(client).values( ):
 #         if isinstance(value, _Interface) and \
 #            isinstance(value, _FormatContributor):
 #            result.append(value)

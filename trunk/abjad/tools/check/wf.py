@@ -29,7 +29,7 @@ def wf(expr, delivery = 'boolean', runtime = 'composition'):
 
    ## TODO: Redo _checks dict iteration with proper package init. ##
 
-   for key, value in sorted(_checks.__dict__.items( )):
+   for key, value in sorted(vars(_checks).items( )):
       checker = value( )
       if runtime == 'composition':
          if getattr(checker, 'runtime', False) == 'composition':
@@ -40,7 +40,7 @@ def wf(expr, delivery = 'boolean', runtime = 'composition'):
 
 def _report(expr):
    '''Print list of badly formed components to screen.'''
-   for key, value in sorted(_checks.__dict__.items( )):
+   for key, value in sorted(vars(_checks).items( )):
       checker = value( )
       checker.report(expr)
 
@@ -48,7 +48,7 @@ def _report(expr):
 def _violators(expr):
    '''Deliver list of badly formed components as list.'''
    violators = [ ]
-   for key, value in sorted(_checks.__dict__.items( )):
+   for key, value in sorted(vars(_checks).items( )):
       checker = value( )
       violators.extend(checker.violators(expr))
    return violators

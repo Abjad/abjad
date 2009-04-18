@@ -13,11 +13,11 @@ class _GrobHandler(_FormatContributor):
    ## OVERLOADS ##
 
    def __len__(self):
-      return len([kvp for kvp in self.__dict__.items( ) 
+      return len([kvp for kvp in vars(self).items( ) 
          if not kvp[0].startswith('_')])
 
    def __setattr__(self, attr, value):
-      if not attr.startswith('_') and value is None and attr in self.__dict__:
+      if not attr.startswith('_') and value is None and attr in vars(self):
          delattr(self, attr) 
       else:
          object.__setattr__(self, attr, value)
@@ -51,7 +51,7 @@ class _GrobHandler(_FormatContributor):
    @property
    def overrides(self):
       result = [ ]
-      for key, value in self.__dict__.items( ):
+      for key, value in vars(self).items( ):
          if not key.startswith('_'):
             result.append(r'%s\override %s %s = %s' % (
                self._frequencyIndicator,
@@ -63,7 +63,7 @@ class _GrobHandler(_FormatContributor):
    @property
    def reverts(self):
       result = [ ]
-      for key, value in self.__dict__.items( ):
+      for key, value in vars(self).items( ):
          if not key.startswith('_'):
             result.append(r'%s\revert %s %s' % (
                self._frequencyIndicator,
@@ -74,7 +74,7 @@ class _GrobHandler(_FormatContributor):
    ## PUBLIC METHODS ##
 
    def clear(self):
-      for key, value in self.__dict__.items( ):
+      for key, value in vars(self).items( ):
          if not key.startswith('_'):
             delattr(self, key)
 
