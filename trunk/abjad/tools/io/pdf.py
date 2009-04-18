@@ -13,13 +13,15 @@ def pdf(target = -1):
       if last_lilypond:
          last_number = last_lilypond.replace('.ly', '')
          target_number = int(last_number) + (target + 1)
-         target_pdf = '%s%s%04d.pdf' % (ABJADOUTPUT, os.sep, target_number)
+         target_str = '%04d' % target_number
+         target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
       else:
          print 'Target PDF does not exist.'
-   elif isinstance(target, int) and target >= 0:
-      target_pdf = '%s%s%04d.pdf' % (ABJADOUTPUT, os.sep, target)
+   elif isinstance(target, int) and 0 <= target:
+      target_str = '%04d' % target
+      target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
    elif isinstance(target, str):
-      target_pdf = ABJADOUTPUT + os.sep + target
+      target_pdf = os.path.join(ABJADOUPUT, target)
    else:
       raise ValueError('can not get target pdf name from %s.' % target)
 

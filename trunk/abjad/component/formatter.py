@@ -4,6 +4,7 @@ from abjad.component.slots import _ComponentFormatterSlotsInterface
 
 class _ComponentFormatter(_Interface):
 
+   ## TODO: Implement _ComponentFormattNumberInterface ##
    ## The 'number' attribute causes only leaf numbering but attaches
    ## to _ComponentFormatter so that containers can number leaves.
    def __init__(self, client):

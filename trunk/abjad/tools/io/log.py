@@ -3,4 +3,4 @@ import os
 
 
 def log( ):
-   os.system('vi %s%slily.log' % (ABJADOUTPUT, os.sep))
+   os.system('vi %s' % os.path.join(ABJADOUTPUT, 'lily.log'))

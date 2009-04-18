@@ -11,13 +11,15 @@ def ly(target = -1):
       if last_lilypond:
          last_number = last_lilypond.replace('.ly', '')
          target_number = int(last_number) + (target + 1)
-         target_ly = '%s%s%04d.ly' % (ABJADOUTPUT, os.sep, target_number)
+         target_str = '%04d' % target_number
+         target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
       else:
          print 'Target LilyPond input file does not exist.'
-   elif isinstance(target, int) and target >= 0:
-      target_ly = '%s%s%04d.ly' % (ABJADOUTPUT, os.sep, target)
+   elif isinstance(target, int) and 0 <= target:
+      target_str = '%04d' % target
+      target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
    elif isinstance(target, str):
-      target_ly = ABJADOUTPUT + os.sep + target
+      target_ly = os.path.join(ABJADOUTPUT, target)
    else:
       raise ValueError('can not get target LilyPond input from %s.' % target)
 
