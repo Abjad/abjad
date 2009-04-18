@@ -19,15 +19,13 @@ def wf(expr, delivery = 'boolean', runtime = 'composition'):
 
       abjad> check.wf(Voice([ ]), runtime = 'format')
       False'''
-
+   
    results = [ ]
 
    if delivery == 'report':
       return _report(expr)
    if delivery == 'violators':
       return _violators(expr)
-
-   ## TODO: Redo _checks dict iteration with proper package init. ##
 
    for key, value in sorted(vars(_checks).items( )):
       checker = value( )

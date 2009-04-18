@@ -1,5 +1,7 @@
-from abjad.tools.imports.get_functions_in_module import _get_functions_in_module
+from abjad.tools.imports.get_functions_in_module import \
+   _get_functions_in_module
 import os
+
 
 def _package_import(path, namespace):
    '''Non-recursive import helper. 
