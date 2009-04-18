@@ -1,4 +1,3 @@
-#from abjad.beam.complexformat import _BeamComplexDuratedSpannerFormatInterface
 from abjad.beam.complex.durated.format import _BeamComplexDuratedFormatInterface
 from abjad.beam.complex.spanner import BeamComplex
 from abjad.rational.rational import Rational
@@ -7,12 +6,9 @@ import types
 
 class BeamComplexDurated(BeamComplex):
 
-   ## TODO: Change order of keyword arguments in BeamComplexDurated init. ##
-
    def __init__(self, leaves, 
       durations = None, span = 1, lone = False, nibs = 'neither'):
       BeamComplex.__init__(self, leaves)
-      #self._format = _BeamComplexDuratedSpannerFormatInterface(self)
       self._format = _BeamComplexDuratedFormatInterface(self)
       self.durations = durations
       self.lone = lone
@@ -49,24 +45,6 @@ class BeamComplexDurated(BeamComplex):
          else:
             raise ValueError('durations must be list of Rationals, or None.')
       return property(**locals( ))
-
-#   @apply
-#   def lone( ):
-#      def fget(self):
-#         return self._lone
-#      def fset(self, arg):
-#         assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
-#         self._lone = arg 
-#      return property(**locals( ))
-#
-#   @apply
-#   def nibs( ):
-#      def fget(self):
-#         return self._nibs
-#      def fset(self, arg):
-#         assert arg in ('left', 'rigth', 'both', 'neither')
-#         self._nibs = arg 
-#      return property(**locals( ))
 
    @apply
    def span( ):
