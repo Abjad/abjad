@@ -88,6 +88,21 @@ class Spanner(_Abjad):
          Not composer-safe and may mangle spanners.'''
       component.spanners._add(self)
       self._components.insert(i, component)
+   
+   ## TODO: Add Spanner._isExteriorLeaf( ) tests. ##
+
+   def _isExteriorLeaf(self, leaf):
+      '''True if leaf is first or last in spanner.
+         True leaf.next or leaf.prev is None.
+         False otherwise.'''
+      if self._isMyFirstLeaf(leaf):
+         return True
+      elif self._isMyLastLeaf(leaf):
+         return True
+      elif not leaf.prev or not leaf.next:
+         return True
+      else:
+         return False
 
    def _isMyFirstLeaf(self, leaf):
       leaves = self.leaves
