@@ -1,9 +1,9 @@
-<h1>The Abjad <ComplexBeam> class</h1>
+<h1>The Abjad <BeamComplex> class</h1>
 
 <subsection>
 
 <p>
-The Abjad <ComplexBeam> class beams notes, rests, chords and skips together in a special way.
+The Abjad <BeamComplex> class beams notes, rests, chords and skips together in a special way.
 </p>
 
 </subsection>
@@ -35,7 +35,7 @@ The Abjad <ComplexBeam> class beams notes, rests, chords and skips together in a
 <comments>
 
 <p>
-See the <ComplexBeam> class in <code>beam/complex.py</code> for implementation details.
+See the <BeamComplex> class in <code>beam/complex.py</code> for implementation details.
 </p>
 
 </comments>

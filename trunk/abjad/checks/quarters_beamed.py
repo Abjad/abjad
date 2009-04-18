@@ -13,7 +13,7 @@ class QuartersBeamed(_Check):
          if hasattr(leaf, 'beam'):
             if leaf.beam.spanned:
                beam = leaf.beam.spanner
-               if not beam.__class__.__name__ == 'ComplexBeam':
+               if not beam.__class__.__name__ == 'BeamComplex':
                   if leaf.duration._flags < 1:
                      violators.append(leaf)
       return violators, total

@@ -11,7 +11,7 @@ change = {
    '<_Clef>' : 'clef_class', 
    '<_ClefInterface>' : 'clef_interface',
    '<_Comments>' : 'comments_class',
-   '<ComplexBeam>' : 'complex_beam_spanner',
+   '<BeamComplex>' : 'complex_beam_spanner',
    '<_Component>' : 'component_class',
    '<Container>' : 'container_class',
    '<_ContainerDurationInterface>' : 'container_duration_interface',

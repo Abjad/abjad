@@ -25,7 +25,7 @@ def test_measuretools_beam_01( ):
 
 
 def test_measuretools_beam_02( ):
-   '''Beam all measures in expr with ComplexBeam.'''
+   '''Beam all measures in expr with BeamComplex.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)

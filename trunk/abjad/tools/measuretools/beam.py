@@ -1,5 +1,5 @@
 from abjad.beam.spanner import Beam
-from abjad.beam.complex import ComplexBeam
+from abjad.beam.complex import BeamComplex
 from abjad.measure.measure import _Measure
 from abjad.tools import iterate
 
@@ -9,7 +9,7 @@ def beam(expr, style = 'complex'):
       Style must be 'complex' or None.
 
       Iterate expr. For every measure in expr,
-      apply ComplexBeam, Beam for style set
+      apply BeamComplex, Beam for style set
       equal to 'complex', None, respectively.
 
       Return list of measures treated.'''
@@ -17,7 +17,7 @@ def beam(expr, style = 'complex'):
    measures_treated = [ ]
    for measure in iterate.naive(expr, _Measure):
       if style == 'complex':
-         ComplexBeam(measure)
+         BeamComplex(measure)
       elif style is None:
          Beam(measure)
       else:

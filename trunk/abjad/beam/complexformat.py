@@ -1,7 +1,7 @@
 from abjad.beam.format import _BeamSpannerFormatInterface
 
 
-class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
+class _BeamComplexSpannerFormatInterface(_BeamSpannerFormatInterface):
 
    def __init__(self, spanner):
       _BeamSpannerFormatInterface.__init__(self, spanner)
