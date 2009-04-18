@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_beam_complex_span_01( ):
+def test_beam_complex_durated_span_01( ):
    '''1-beam span between adjacent groups of 1/16th notes.'''
 
    t = Voice(construct.scale(4, (1, 16)))
-   BeamComplex(t, durations = [(1, 8), (1, 8)], span = 1)
+   BeamComplexDurated(t, durations = [(1, 8), (1, 8)], span = 1)
 
    r'''\new Voice {
       \set stemLeftBeamCount = #0
@@ -27,11 +27,11 @@ def test_beam_complex_span_01( ):
 
 
 
-def test_beam_complex_span_02( ):
+def test_beam_complex_durated_span_02( ):
    '''2-beam span between adjacent groups of 1/16th notes.'''
 
    t = Voice(construct.scale(4, (1, 16)))
-   BeamComplex(t, durations = [(1, 8), (1, 8)], span = 2)
+   BeamComplexDurated(t, durations = [(1, 8), (1, 8)], span = 2)
 
    r'''\new Voice {
       \set stemLeftBeamCount = #0

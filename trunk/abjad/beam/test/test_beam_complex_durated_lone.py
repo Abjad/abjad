@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_beam_complex_lone_01( ):
-   '''BeamComplex with lone = True applies beam 
+def test_beam_complex_durated_lone_01( ):
+   '''BeamComplexDurated with lone = True applies beam 
       to a lone note at format-time.'''
 
    t = Voice(construct.scale(1))
-   BeamComplex(t, lone = True)
+   BeamComplexDurated(t, lone = True)
 
    r'''\new Voice {
       c'8 [ ]
@@ -16,12 +16,12 @@ def test_beam_complex_lone_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [ ]\n}"
 
 
-def test_beam_complex_lone_02( ):
-   '''BeamComplex with lone = False does not apply beam
+def test_beam_complex_durated_lone_02( ):
+   '''BeamComplexDurated with lone = False does not apply beam
       to a lone note at format-time.'''
 
    t = Voice(construct.scale(1))
-   BeamComplex(t, lone = False)
+   BeamComplexDurated(t, lone = False)
 
    r'''\new Voice {
       c'8
@@ -31,11 +31,11 @@ def test_beam_complex_lone_02( ):
    assert t.format == "\\new Voice {\n\tc'8\n}"
 
 
-def test_beam_complex_lone_03( ):
-   '''BeamComplex with multiple leaves ignores 'lone' setting.'''
+def test_beam_complex_durated_lone_03( ):
+   '''BeamComplexDurated with multiple leaves ignores 'lone' setting.'''
 
    t = Voice(construct.scale(2))
-   BeamComplex(t, lone = False)
+   BeamComplexDurated(t, lone = False)
 
    r'''\new Voice {
       \set stemLeftBeamCount = #0

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_beam_together_01( ):
-   '''Apply BeamComplex to all measures in measures;
+   '''Apply BeamComplexDurated to all measures in measures;
       set p.durations equal to preprolated measure durations.'''
 
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
