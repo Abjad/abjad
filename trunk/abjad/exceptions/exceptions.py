@@ -2,7 +2,15 @@ class DurationError(Exception):
    '''Any type of duration error.'''
    pass
 
-class ImproperlyFilledMeasureError(Exception):
+class MeasureError(Exception):
+   '''General measure error.'''
+   pass
+
+class MissingMeasureError(MeasureError):
+   '''Operation assumes presence of measure when no measure found.'''
+   pass
+
+class ImproperlyFilledMeasureError(MeasureError):
    '''Measure contents duration does not equal measure meter duration.'''
    pass
 

@@ -49,13 +49,12 @@ class _NumberingInterface(_Observer):
 
    def _updateMeasureNumber(self):
       '''Update (one-indexed) number of any one measure in score.'''
-      from abjad.measure.measure import _Measure
-      prevMeasure = self._client._navigator._prev
-      if prevMeasure:
-         if not isinstance(prevMeasure, _Measure):
-            raise MeasureContiguityError(
-               'measures must be back-to-back.')
-         self._measure = prevMeasure.numbering.measure + 1
+      from abjad.tools import iterate
+      try:
+         prev = iterate.measure_prev(self._client)
+         self._measure = prev.numbering.measure + 1
+      except StopIteration:
+         pass
 
    ## PUBLIC ATTRIBUTES ##
 

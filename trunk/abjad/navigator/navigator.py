@@ -32,7 +32,8 @@ class _Navigator(_Abjad):
          if client.parallel:
             for x in client:
                result.extend(x._navigator._contemporaneousStartContents)
-         elif len(client) > 0:
+         #elif len(client) > 0:
+         elif len(client):
             result.extend(client[0]._navigator._contemporaneousStartContents)
       return result
 
@@ -43,7 +44,7 @@ class _Navigator(_Abjad):
       client = self._client
       result = [client]
       prev = client
-      for parent in client.parentage.parentage[1: ]:
+      for parent in client.parentage.parentage[1:]:
          if parent.parallel:
             result.append(parent)
          elif parent.index(prev) == 0:
@@ -75,7 +76,8 @@ class _Navigator(_Abjad):
             for x in client:
                if x.duration.preprolated == client_duration:
                   result.extend(x._navigator._contemporaneousStopContents)
-         elif len(client) > 0:
+         #elif len(client) > 0:
+         elif len(client):
             result.extend(client[-1]._navigator._contemporaneousStopContents)
       return result
 
@@ -86,7 +88,7 @@ class _Navigator(_Abjad):
       client = self._client
       result = [client]
       prev = client
-      for parent in client.parentage.parentage[1: ]:
+      for parent in client.parentage.parentage[1:]:
          if parent.parallel:
             if prev.duration.prolated == parent.duration.prolated:
                result.append(parent)
@@ -128,7 +130,8 @@ class _Navigator(_Abjad):
          if self._client.parallel:
             for e in self._client:
                leaves.extend(e._navigator._firstLeaves)
-         elif len(self._client) > 0:
+         #elif len(self._client) > 0:
+         elif len(self._client):
             leaves.extend(self._client[0]._navigator._firstLeaves)
          else:
             return [ ]
@@ -148,7 +151,8 @@ class _Navigator(_Abjad):
          if self._client.parallel:
             for e in self._client:
                leaves.extend(e._navigator._lastLeaves)
-         elif len(self._client) > 0:
+         #elif len(self._client) > 0:
+         elif len(self._client):
             leaves.extend(self._client[-1]._navigator._lastLeaves)
          else:
             return [ ]
@@ -156,12 +160,12 @@ class _Navigator(_Abjad):
       
    @property
    def _next(self):
-      '''Returns next closest non-parallel Component.'''
+      '''Returns next closest nonparallel Component.'''
       next = self._nextSibling
       if next:
          return next
       else:
-         for p in self._client.parentage.parentage[1: ]:
+         for p in self._client.parentage.parentage[1:]:
             next = p._navigator._nextSibling
             if next:
                return next
@@ -181,7 +185,6 @@ class _Navigator(_Abjad):
       candidates = next._navigator._firstLeaves
       return self._findFellowBead(candidates)
 
-
    @property
    def _nextNamesake(self):
       '''Find the next Component of the same type and with the same 
@@ -193,7 +196,6 @@ class _Navigator(_Abjad):
          if type(node) == type(self._client) and \
             node.parentage.signature == self._client.parentage.signature:
             return node
-
 
    @property
    def _nextSibling(self):
@@ -223,12 +225,12 @@ class _Navigator(_Abjad):
 
    @property
    def _prev(self):
-      '''Returns previous closest non-parallel Component.'''
+      '''Returns previous closest nonparallel Component.'''
       prev = self._prevSibling
       if prev:
          return prev
       else:
-         for p in self._client.parentage.parentage[1: ]:
+         for p in self._client.parentage.parentage[1:]:
             prev = p._navigator._prevSibling
             if prev:
                return prev
@@ -246,17 +248,6 @@ class _Navigator(_Abjad):
          return None
       candidates = prev._navigator._lastLeaves
       return self._findFellowBead(candidates)
-
-   @property
-   def _prevMeasure(self):
-      '''Returns the closest measure enclosing or before self._client.'''
-      from abjad.measure.measure import _Measure
-      client = self._client
-      dfs = self._DFS(capped = False, unique = False, direction = 'right')
-      for node in dfs:
-         if isinstance(node, _Measure):
-            if node is not client:
-               return node
 
    @property
    def _prevSibling(self):
@@ -315,6 +306,8 @@ class _Navigator(_Abjad):
       '''Check if expr is threadable with respect to self.'''
       from abjad.tools import check
       return check.assess_components([self._client, expr], share = 'thread')
+
+   ## TODO: Move _Navigator._rank to _Parentage._rank ##
 
    def _rank(self):
       '''Returns the index of the caller (its position) in 

@@ -95,6 +95,8 @@ def test_containertools_contents_reverse_06( ):
    assert check.wf(t)
 
 
+## TODO: Added check.wf( ) check for measure contiguity. ##
+
 def test_containertools_contents_reverse_07( ):
    '''Retrograde unable to apply because of measure contiguity.'''
 
@@ -102,7 +104,23 @@ def test_containertools_contents_reverse_07( ):
    measure = DynamicMeasure(construct.scale(8))
    t = Staff([measure] + notes)
    beam = Beam(t[:])
-   py.test.raises(MeasureContiguityError, 'containertools.contents_reverse(t)')
+
+   r'''\new Staff {
+                   \time 1/1
+                   c'8 [
+                   d'8
+                   e'8
+                   f'8
+                   g'8
+                   a'8
+                   b'8
+                   c''8
+           c'8
+           d'8 ]
+   }'''
+
+   assert py.test.raises(MeasureContiguityError, 
+      'containertools.contents_reverse(t)')
 
 
 def test_containertools_contents_reverse_10( ):
