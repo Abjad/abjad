@@ -1,20 +1,23 @@
 #from abjad.beam.complexformat import _BeamComplexDuratedSpannerFormatInterface
-#from abjad.beam.spanner import Beam
-#from abjad.rational.rational import Rational
-#import types
-#
-#
-#class BeamComplexDurated(Beam):
-#
-#   def __init__(self, leaves, 
-#      durations = None, span = 1, lone = False, nibs = 'neither'):
-#      Beam.__init__(self, leaves)
-#      self._format = _BeamComplexDuratedSpannerFormatInterface(self)
-#      self.durations = durations
-#      self.lone = lone
-#      self.nibs = nibs
-#      self.span = span
-#
+from abjad.beam.complex.format import _BeamComplexFormatInterface
+from abjad.beam.spanner import Beam
+from abjad.rational.rational import Rational
+import types
+
+
+class BeamComplex(Beam):
+
+   #def __init__(self, leaves, 
+   #   durations = None, span = 1, lone = False, nibs = 'neither'):
+   def __init__(self, leaves, lone = False, nibs = 'neither'):
+      Beam.__init__(self, leaves)
+      #self._format = _BeamComplexDuratedSpannerFormatInterface(self)
+      self._format = _BeamComplexFormatInterface(self)
+      #self.durations = durations
+      self.lone = lone
+      self.nibs = nibs
+      #self.span = span
+
 #   ## PRIVATE ATTRIBUTES ##
 #
 #   @property
@@ -25,9 +28,9 @@
 #         for d in self.durations[1:]:
 #            result.append(result[-1] + d)   
 #      return result
-#
-#   ## PUBLIC ATTRIBUTES ##
-#      
+
+   ## PUBLIC ATTRIBUTES ##
+      
 #   @apply
 #   def durations( ):
 #      def fget(self):
@@ -45,25 +48,25 @@
 #         else:
 #            raise ValueError('durations must be list of Rationals, or None.')
 #      return property(**locals( ))
-#
-#   @apply
-#   def lone( ):
-#      def fget(self):
-#         return self._lone
-#      def fset(self, arg):
-#         assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
-#         self._lone = arg 
-#      return property(**locals( ))
-#
-#   @apply
-#   def nibs( ):
-#      def fget(self):
-#         return self._nibs
-#      def fset(self, arg):
-#         assert arg in ('left', 'rigth', 'both', 'neither')
-#         self._nibs = arg 
-#      return property(**locals( ))
-#
+
+   @apply
+   def lone( ):
+      def fget(self):
+         return self._lone
+      def fset(self, arg):
+         assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
+         self._lone = arg 
+      return property(**locals( ))
+
+   @apply
+   def nibs( ):
+      def fget(self):
+         return self._nibs
+      def fset(self, arg):
+         assert arg in ('left', 'rigth', 'both', 'neither')
+         self._nibs = arg 
+      return property(**locals( ))
+
 #   @apply
 #   def span( ):
 #      def fget(self):

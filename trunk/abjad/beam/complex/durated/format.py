@@ -1,13 +1,13 @@
-#from abjad.beam.format import _BeamSpannerFormatInterface
-#
-#
-#class _BeamComplexDuratedSpannerFormatInterface(_BeamSpannerFormatInterface):
-#
+from abjad.beam.complex.format import _BeamComplexFormatInterface
+
+
+class _BeamComplexDuratedFormatInterface(_BeamComplexFormatInterface):
+
 #   def __init__(self, spanner):
-#      _BeamSpannerFormatInterface.__init__(self, spanner)
-#
-#   ## PRIVATE METHODS ##
-#
+#      _BeamComplexFormatInterface.__init__(self, spanner)
+
+   ## PRIVATE METHODS ##
+
 #   def _getLeftRightForExteriorLeaf(self, leaf):
 #      '''Get left and right flag counts for exterior leaf in spanner.'''
 #      spanner = self.spanner
@@ -70,39 +70,38 @@
 #      else:
 #         raise ValueError('nibs must be left, right, both or neither.')
 #      return left, right
-#
-#   ## PUBLIC METHODS ##
-#
-#   def before(self, leaf):
-#      '''Spanner format contribution to output before leaf.'''
-#      result = [ ]
-#      result.extend(_BeamSpannerFormatInterface.before(self, leaf))
-#      spanner = self.spanner
-#      if leaf.beam.beamable:
-#         if spanner._isExteriorLeaf(leaf):
-#            left, right = self._getLeftRightForExteriorLeaf(leaf)
-#         # just right of span gap
-#         elif spanner._durationOffsetInMe(leaf) in spanner._spanPoints and not \
-#            (spanner._durationOffsetInMe(leaf) + leaf.duration.prolated in \
-#            spanner._spanPoints):
-#            assert isinstance(spanner.span, int)
-#            left = spanner.span
-#            right = leaf.duration._flags
-#         # just left of span gap
-#         elif spanner._durationOffsetInMe(leaf) + leaf.duration.prolated in \
-#            spanner._spanPoints and not spanner._durationOffsetInMe(leaf) in \
-#            spanner._spanPoints:
-#            assert isinstance(spanner.span, int)
-#            left = leaf.duration._flags
-#            right = spanner.span
-#         else:
-#            left, right = self._getLeftRightForInteriorLeaf(leaf)
-#         if left is not None:
-#            result.append(r'\set stemLeftBeamCount = #%s' % left)
-#         if right is not None:
-#            result.append(r'\set stemRightBeamCount = #%s' % right)
-#      return result
-#
+
+   ## PUBLIC METHODS ##
+
+   def before(self, leaf):
+      '''Spanner format contribution to output before leaf.'''
+      result = [ ]
+      spanner = self.spanner
+      if leaf.beam.beamable:
+         if spanner._isExteriorLeaf(leaf):
+            left, right = self._getLeftRightForExteriorLeaf(leaf)
+         # just right of span gap
+         elif spanner._durationOffsetInMe(leaf) in spanner._spanPoints and not \
+            (spanner._durationOffsetInMe(leaf) + leaf.duration.prolated in \
+            spanner._spanPoints):
+            assert isinstance(spanner.span, int)
+            left = spanner.span
+            right = leaf.duration._flags
+         # just left of span gap
+         elif spanner._durationOffsetInMe(leaf) + leaf.duration.prolated in \
+            spanner._spanPoints and not spanner._durationOffsetInMe(leaf) in \
+            spanner._spanPoints:
+            assert isinstance(spanner.span, int)
+            left = leaf.duration._flags
+            right = spanner.span
+         else:
+            left, right = self._getLeftRightForInteriorLeaf(leaf)
+         if left is not None:
+            result.append(r'\set stemLeftBeamCount = #%s' % left)
+         if right is not None:
+            result.append(r'\set stemRightBeamCount = #%s' % right)
+      return result
+
 #   def right(self, leaf):
 #      '''Spanner format contribution to output right of leaf.'''
 #      result = [ ]

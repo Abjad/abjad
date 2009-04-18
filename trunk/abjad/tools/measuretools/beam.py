@@ -1,5 +1,5 @@
 from abjad.beam.spanner import Beam
-from abjad.beam.complex import BeamComplexDurated
+from abjad.beam.complex.durated.spanner import BeamComplexDurated
 from abjad.measure.measure import _Measure
 from abjad.tools import iterate
 
