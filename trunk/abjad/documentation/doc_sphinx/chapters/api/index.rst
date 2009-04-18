@@ -21,6 +21,7 @@ Abjad API
    tools/io/index
    tools/iterate/index
    tools/label/index
+   tools/layout/index
    tools/leaftools/index
    tools/listtools/index
    tools/mathtools/index
