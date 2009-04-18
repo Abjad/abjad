@@ -1,7 +1,10 @@
-class _ContainerFormatterNumberInterface(object):
+from abjad.core.abjadcore import _Abjad
 
-   def __init__(self, client):
-      self._client = client
+
+class _ContainerFormatterNumberInterface(_Abjad):
+
+   def __init__(self, _client):
+      self._client = _client
       self._leaves = None
       self._measures = None
 
