@@ -10,11 +10,16 @@ from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 
 
 def measures_by_reference(measures):
-   '''Fuse measures in measures.
-      Calculate best new time signature.'''
+   '''Measures in 'measures' must be strictly parent-contiguous.
+      Measure fusion across intervening container boundaries is undefined.
+      Calculate best new time signature and instantiate new measure.
+      Give contents of 'measures' to new measure.
+      Give dominant spanners of 'measures' to new measure.
+      Give parentage of 'measures' to new measure.
+      'Measures' end up empty, orphaned and spannerless.'''
 
-   check.assert_components(
-      measures, klasses = (_Measure), contiguity = 'thread')
+   check.assert_components(measures, 
+      klasses = (_Measure), contiguity = 'strict', share = 'parent')
 
    if len(measures) == 0:
       return None
@@ -22,7 +27,7 @@ def measures_by_reference(measures):
    if len(measures) == 1:
       return measures[0]
 
-   parent, parent_index, stop_index = parenttools.get_with_indices(measures)
+   parent, start, stop = parenttools.get_with_indices(measures)
 
    old_denominators = [x.meter.effective.denominator for x in measures]
    new_duration = sum([x.meter.effective.duration for x in measures])
@@ -39,7 +44,7 @@ def measures_by_reference(measures):
    _switch(music, None)
    new_measure = RigidMeasure(new_meter, music)
    _switch(measures, None)
-   parent.insert(parent_index, new_measure)
+   parent.insert(start, new_measure)
 
    for measure in measures:
       _give_dominant_to([measure], [new_measure])
