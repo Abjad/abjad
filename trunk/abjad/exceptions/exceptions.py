@@ -107,6 +107,15 @@ class TempoError(Exception):
    '''General tempo error.'''
    pass
 
+class TupletError(Exception):
+   '''Geneal tuplet error.'''
+   pass
+
+class TupletFuseError(Exception):
+   '''Error trying to fuse two tuplets.
+      Tuplets must carry same multiplier and be same type.'''
+   pass
+
 class UndefinedTempoError(TempoError):
    '''Tempo required for calculation but not yet defined.'''
    pass

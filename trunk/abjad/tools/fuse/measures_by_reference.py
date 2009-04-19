@@ -26,6 +26,8 @@ def measures_by_reference(measures):
    if len(measures) == 0:
       return None
 
+   ## TODO: Instantiate a new measure, even length is 1 ##
+
    if len(measures) == 1:
       return measures[0]
 
@@ -44,17 +46,17 @@ def measures_by_reference(measures):
    for measure in measures:
       multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
       measure_music = measure[:]
-      _switch(measure_music, None) # new
+      _switch(measure_music, None)
       containertools.contents_scale(measure_music, multiplier)
       music += measure_music
 
-   #_switch(music, None)
    new_measure = RigidMeasure(new_meter, music)
-   _switch(measures, None)
-   if parent is not None:  # new
-      parent.insert(start, new_measure)
 
-   for measure in measures:
-      _give_dominant_to([measure], [new_measure])
+   if parent is not None:
+      _give_dominant_to(measures, [new_measure])
+
+   _switch(measures, None)
+   if parent is not None:
+      parent.insert(start, new_measure)
 
    return new_measure 

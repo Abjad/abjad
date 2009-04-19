@@ -70,7 +70,7 @@ def test_fuse_measures_by_reference_01( ):
 def test_fuse_measures_by_reference_02( ):
    '''Fuse binary measures with different denominators.
       Helpers selects minimum of two denominators.
-      Beams are OK because they attach to leaves rather than containers.'''
+      Beam attaches to container rather than leaves.'''
 
    t = Voice(measuretools.make([(1, 8), (2, 16)]))
    measuretools.populate(t, Rational(1, 16))
@@ -90,14 +90,14 @@ def test_fuse_measures_by_reference_02( ):
 
    r'''\new Voice {
          \time 2/8
-         c'16 [
+         c'16 
          d'16
          e'16
-         f'16 ]
+         f'16 
    }'''
 
    assert check.wf(t)
-   assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16 ]\n}"
+   assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n}"
 
 
 def test_fuse_measures_by_reference_03( ):
