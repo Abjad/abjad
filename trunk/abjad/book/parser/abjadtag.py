@@ -59,10 +59,13 @@ class _AbjadTag(_TagParser):
             self._abjad_code.append(abjad_directive)
 
          if abjad_directive.startswith('write'):
-            image_name = abjad_directive.split(',')[1]
-            image_name = image_name.strip(' ').rstrip(')').strip("'")
-            image = self._image_tag % image_name
-            self._images_collected.append(image)
+            try:
+               image_name = abjad_directive.split(',')[1]
+               image_name = image_name.strip(' ').rstrip(')').strip("'")
+               image = self._image_tag % image_name
+               self._images_collected.append(image)
+            except IndexError:
+               print "write( ) function must be given a file name!"
 
 
    def _makeImages(self):
