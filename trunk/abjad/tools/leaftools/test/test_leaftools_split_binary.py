@@ -38,8 +38,8 @@ def test_leaftools_split_binary_03( ):
    assert len(new) == 2
    assert len(new[0]) == 1
    assert len(new[1]) == 1
-   assert not new[0][0] is t
-   assert new[1][0] is t  ## hmmm, is this what we want? does it matter?
+   assert new[0][0] is t
+   assert new[1][0] is not t
    assert isinstance(new[0][0], Note)
    assert isinstance(new[1][0], Note)
    assert new[0][0].duration.written == Rational(1, 8)
@@ -210,19 +210,24 @@ def test_leaftools_split_binary_31( ):
    t.grace.after = Note(0, (1, 32))
    new = leaftools.split_binary(t, Rational(5, 32))
 
-   assert len(new[0]) == 2
+#   assert len(new[0]) == 2
+#   assert len(new[0][0].grace.after) == 0
+#   assert len(new[0][1].grace.after) == 0
+#   assert len(new[1]) == 1
+#   assert len(new[1][0].grace.after) == 1
+
+   assert len(new) == 2
    assert len(new[0][0].grace.after) == 0
    assert len(new[0][1].grace.after) == 0
    assert len(new[1]) == 1
    assert len(new[1][0].grace.after) == 1
-
 
 def test_leaftools_split_binary_32( ):
    '''Grace notes are removed from second leaf in bipartition.'''
 
    t = Note(0, (1, 4))
    t.grace.before = Note(0, (1, 32))
-   new = leaftools.split_binary(t, Rational(1, 8))
+   new = leaftools.split_binary(t, Rational(1, 16))
 
    assert len(new[0]) == 1
    assert len(new[1]) == 1
