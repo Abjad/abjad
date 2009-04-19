@@ -1,12 +1,13 @@
-Thank you for downloading Abjad!
+Getting and Installing Abjad
+============================
 
 
 Dependencies
-^^^^^^^^^^^^
-- Python 2.5 or 2.6
-- LilyPond 2.12 or newer.
+------------
+* Python 2.5 or 2.6
+* LilyPond 2.12 or newer.
 
-For Abjad to install and run properly, you must already have both Python 2.5 (or Python 2.6) and LilyPond installed in your computer. Also, make sure that both LilyPond and Python are in your PATH. To test this simply type 'lilypond' and 'python' in your command prompt. If both programs run then you are good to go. Otherwise you'll have to add the location of the executables to your PATH.
+For Abjad to install and run properly, you must already have both Python 2.5 (or Python 2.6) and LilyPond installed in your computer. Also, make sure that both LilyPond and Python are in your *PATH*. To test this simply type ``lilypond`` and ``python`` in your command prompt. If both programs run then you are good to go. Otherwise you'll have to add the location of the executables to your *PATH*.
 
 You can find Python here:
 http://www.python.org
@@ -16,7 +17,7 @@ http://www.lilypond.org
 
 
 Installing the official source release
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------
 
     1. Download the latest release from http://www.projectabjad.org.
 
@@ -30,46 +31,47 @@ Installing the official source release
        If you're using Windows, start up a command shell with administrator
        privileges and run the command ``setup.py install``.
 
-These commands will install Abjad in your Python installation's `site-packages` directory. Note that this requires a working internet connection if you don't already have the Python utility "setuptools" installed.
+These commands will install Abjad in your Python installation's `site-packages` directory. Note that this requires a working internet connection if you don't already have the Python utility `setuptools` installed.
 
 
 Note for OS X users
 ^^^^^^^^^^^^^^^^^^^
-In order to be able to run Abjad directly from the terminal via the 'abj' command, you may need to add the python binary installation directory to your PATH. For example, if you have Python 2.6, 'abj' would usually be placed in '/Library/Frameworks/Python.framework/Versions/2.6/bin/abj'. Thus, you would add '/Library/Frameworks/Python.framework/Versions/2.6/bin' to your PATH.  
+In order to be able to run Abjad directly from the terminal via the ``abj`` command, you may need to add the python binary installation directory to your *PATH*. For example, if you have Python 2.6, ``abj`` would usually be placed in `/Library/Frameworks/Python.framework/Versions/2.6/bin/abj`. Thus, you would add `/Library/Frameworks/Python.framework/Versions/2.6/bin` to your *PATH*.  
 
 Note for Linux users
-^^^^^^^^^^^^^^^^^^^
-Abjad makes use of xdg-open to display PDF files using your favorite PDF viewer.
-Most Linux distributions now come with xdg-utils installed. If you do not have xdg-utils installed, download it from www.portland.freedsektop.org and install it. Alternatively you can set the PDFVIEWER environment variable to your favorite PDF viewer. 
+^^^^^^^^^^^^^^^^^^^^
+Abjad makes use of ``xdg-open`` to display PDF files using your favorite PDF viewer.
+Most Linux distributions now come with `xdg-utils` installed. If you do not have `xdg-utils` installed, download it from http://www.portland.freedsektop.org and install it. Alternatively you can set the *pdfviewer* variable in the `$HOME/.abjad/config` file your favorite PDF viewer. 
 
  
 
 Installing the development version
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 If you'd like to be at the cutting edge of the Abjad development use the following alternative:
 
    1. Install Subversion if you don't have it already installed 
-      (enter 'svn help' to verify this).
+      (enter ``svn help`` to verify this).
 
-   2. Check out Abjad's 'trunck' development like so:
+   2. Check out Abjad's `trunk` development like so::
 
          svn co svn://128.59.116.55/abjad/trunk/ abjad-trunk
 
    3. Make the Python interpreter aware of Abjad. There are two ways to do
       this:
-         a) Make a symlink in your Python 'site-packages' directory pointing
-            to the abjad-trunk directory previously checked out via Subversion:
+
+         a) Make a symlink in your Python `site-packages` directory pointing
+            to the abjad-trunk directory previously checked out via Subversion::
                
                ln -s 'pwd'/abjad-trunk/abjad SITE-PACKAGES-DIR/abjad
 
-            where SITE-PACKAGES-DIR is the Python 'site-packages' directory.
+            where *SITE-PACKAGES-DIR* is the Python `site-packages` directory.
             In Linux this is usually in /usr/lib/Python2.x/site-packages.
 
-         b) Alternatively you can include the 'abjad-trunk' directory in 
-            your PYTHONPATH environment variable.             
+         b) Alternatively you can include the `abjad-trunk` directory in 
+            your *PYTHONPATH* environment variable.             
 
-         c) You will also need to include the abjad-trunk/scr directory in your 
-            PATH in order to be able to run abjad directly with the 'abj' command. 
+         c) You will also need to include the `abjad-trunk/scr` directory in your 
+            *PATH* in order to be able to run Abjad directly with the ``abj`` command. 
 
 
