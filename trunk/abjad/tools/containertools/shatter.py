@@ -1,4 +1,4 @@
-from abjad.tools.containertools.splinter import splinter
+from abjad.tools.containertools.split import split
 
 
 def shatter(container):
@@ -6,4 +6,4 @@ def shatter(container):
 
    right = container
    while 1 < len(right):
-      left, right = splinter(right, 1)
+      left, right = split(right, 1)
