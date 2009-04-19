@@ -1,9 +1,7 @@
+from abjad.container.container import Container
 from abjad.exceptions.exceptions import TupletFuseError
 from abjad.rational.rational import Rational
 from abjad.tools import check
-from abjad.tools import parenttools
-from abjad.tools.parenttools.switch import _switch
-from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 from abjad.tuplet.tuplet import _Tuplet
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
@@ -16,13 +14,13 @@ def tuplets_by_reference(tuplets):
       Works on in-score and outside-of-score tuplets.
       Returns newly instantiated, fused tuplet.'''
 
+   from abjad.tools import scoretools
+
    check.assert_components(tuplets,
       klasses = (_Tuplet), contiguity = 'strict', share = 'parent')
 
    if len(tuplets) == 0:
       return None
-
-   parent, start, stop = parenttools.get_with_indices(tuplets)
 
    first = tuplets[0]
    first_multiplier = first.duration.multiplier
@@ -33,27 +31,21 @@ def tuplets_by_reference(tuplets):
       if type(tuplet) != first_type:
          raise TupletFuseError('tuplets must be same type.')
 
-   new_music = [ ]
-   total_contents_duration = Rational(0)
-   for tuplet in tuplets:
-      total_contents_duration += tuplet.duration.contents
-      tuplet_music = tuplet[:]
-      _switch(tuplet_music, None)
-      new_music += tuplet_music
-
    if isinstance(first, FixedDurationTuplet):
+      total_contents_duration = sum([x.duration.contents for x in tuplets])
       new_target_duration = first_multiplier * total_contents_duration
-      new_tuplet = FixedDurationTuplet(new_target_duration, new_music)
+      new_tuplet = FixedDurationTuplet(new_target_duration, [ ])
    elif isinstance(first, FixedMultiplierTuplet):
-      new_tuplet = FixedMultiplierTuplet(first_multiplier, new_music)
+      new_tuplet = FixedMultiplierTuplet(first_multiplier, [ ])
    else:
       raise TypeError('unknown tuplet type.')
 
-   if parent is not None:
-      _give_dominant_to(tuplets, [new_tuplet])
-
-   _switch(tuplets, None)
-   if parent is not None:
-      parent.insert(start, new_tuplet)
-
+   wrapped = False
+   if tuplets[0].parentage.root is not tuplets[-1].parentage.root:
+      dummy_container = Container(tuplets) 
+      wrapped = True
+   scoretools.donate(tuplets, new_tuplet)
+   if wrapped:
+      dummy_container[:] = [ ]
+   
    return new_tuplet
