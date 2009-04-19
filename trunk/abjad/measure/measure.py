@@ -13,6 +13,14 @@ class _Measure(Container):
 
    ## OVERLOADS ##
 
+   def __add__(self, arg):
+      '''Add two measures together in-score or outside-of-score.
+         Wrapper around fuse.measures_by_reference.'''
+      assert isinstance(arg, _Measure)
+      from abjad.tools import fuse
+      new = fuse.measures_by_reference([self, arg])
+      return new
+
    def __repr__(self):
       class_name = self.__class__.__name__
       forced_meter = self.meter.forced
@@ -42,9 +50,9 @@ class _Measure(Container):
 
    ## PUBLIC ATTRIBUTES ##
 
-   @property
-   def duration(self):
-      return self._duration
+#   @property
+#   def duration(self):
+#      return self._duration
 
    @property
    def full(self):
