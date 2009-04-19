@@ -52,7 +52,7 @@ def _abjad_book( ):
    ## parse file name
    fn_dir = os.path.dirname(os.path.abspath(fn))
    fn = os.path.basename(fn)
-   fn_extension = fn.split('.')[-1]
+   #fn_extension = fn.split('.')[-1]
    fn_root = fn.split('.')[0]
    
    ## chage to file dir and read input file
@@ -62,18 +62,24 @@ def _abjad_book( ):
    file.close( )
 
    ## create Abjad tag parser type based on file extension
-   if 'htm' in fn_extension:
+   #if 'htm' in fn_extension:
+   if '.htm' in fn:
       a = AbjadHTMLTag(lines)
-   elif 'tex' in fn_extension:
+      fn_extension = '.html'
+   #elif 'tex' in fn_extension:
+   elif '.tex' in fn:
       a = AbjadLatexTag(lines)
-   elif 'rst' in fn_extension:
+      fn_extension = '.tex'
+   #elif 'rst' in fn_extension:
+   elif '.rst' in fn:
       a = AbjadReSTTag(lines)
+      fn_extension = '.rst'
 
    ## open and write to output file
    if out_fn:
       file = open(out_fn, 'w')
    else:
-      file = open('%s_ab.%s' % (fn_root, fn_extension), 'w')
+      file = open('%s_abj.%s' % (fn_root, fn_extension), 'w')
 
    file.writelines(a.process( ))
    file.close( )
