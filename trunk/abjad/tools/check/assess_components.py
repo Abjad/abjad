@@ -101,7 +101,6 @@ def __are_components(expr, klasses = (_Component, )):
       raise TypeError('expr must be a list of Abjad components.')
 
    for element in expr:
-      #if not isinstance(element, _Component):
       if not isinstance(element, klasses):
          return False
 
@@ -122,7 +121,6 @@ def __are_components_in_same_parent(expr, klasses = (_Component, ),
       return True 
 
    first = expr[0]
-   #if not isinstance(first, _Component):
    if not isinstance(first, klasses):
       return False
 
@@ -131,7 +129,6 @@ def __are_components_in_same_parent(expr, klasses = (_Component, ),
       return False
 
    for element in expr[1:]:
-      #if not isinstance(element, _Component):
       if not isinstance(element, klasses):
          return False
       if element.parentage.parent is not first_parent:
@@ -154,14 +151,12 @@ def __are_components_in_same_score(expr, klasses = (_Component, ),
       return True 
 
    first = expr[0]
-   #if not isinstance(first, _Component):
    if not isinstance(first, klasses):
       return False
 
    first_parent = first.parentage.parent
    first_score = first.parentage.root
    for element in expr[1:]:
-      #if not isinstance(element, _Component):
       if not isinstance(element, klasses):
          return False
       if element.parentage.root is not first_score:
@@ -186,7 +181,6 @@ def __are_components_in_same_thread(expr, klasses = (_Component, ),
       return True
 
    first = expr[0]
-   #if not isinstance(first, _Component):
    if not isinstance(first, klasses):
       return False
 
@@ -223,7 +217,6 @@ def __are_strictly_contiguous_components(expr, klasses = (_Component, ),
       return True
 
    first = expr[0]
-   #if not isinstance(first, _Component):
    if not isinstance(first, klasses):
       return False
 
@@ -235,7 +228,6 @@ def __are_strictly_contiguous_components(expr, klasses = (_Component, ),
 
    prev = first
    for cur in expr[1:]:
-      #if not isinstance(cur, _Component):
       if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
@@ -267,7 +259,6 @@ def __are_strictly_contiguous_components_in_same_parent(
       return True
 
    first = expr[0]
-   #if not isinstance(first, _Component):
    if not isinstance(first, klasses):
       return False
 
@@ -283,16 +274,13 @@ def __are_strictly_contiguous_components_in_same_parent(
 
    prev = first
    for cur in expr[1:]:
-      #if not isinstance(cur, _Component):
       if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
       if not cur.parentage.parent is first_parent:
-         #return False
          same_parent = False
       if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
-         #return False
          strictly_contiguous = False
       if (not allow_orphans or (allow_orphans and not orphan_components)) and \
          (not same_parent or not strictly_contiguous):
@@ -319,7 +307,6 @@ def __are_strictly_contiguous_components_in_same_score(
       return True
 
    first = expr[0]
-   #if not isinstance(first, _Component):
    if not isinstance(first, klasses):
       return False
 
@@ -333,16 +320,13 @@ def __are_strictly_contiguous_components_in_same_score(
    first_score = first.parentage.root
    prev = first
    for cur in expr[1:]:
-      #if not isinstance(cur, _Component):
       if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
       if not cur.parentage.root is first_score:
-         #return False
          same_score = False
       if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
-         #return False
          strictly_contiguous = False
       if (not allow_orphans or (allow_orphans and not orphan_components)) and \
          (not same_score or not strictly_contiguous):
@@ -368,7 +352,6 @@ def __are_strictly_contiguous_components_in_same_thread(
       return True
 
    first = expr[0]
-   #if not isinstance(first, _Component):
    if not isinstance(first, klasses):
       return False
 
@@ -382,18 +365,14 @@ def __are_strictly_contiguous_components_in_same_thread(
    first_signature = first.thread.signature
    prev = first
    for cur in expr[1:]:
-      #if not isinstance(cur, _Component):
       if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
       cur_signature = cur.thread.signature
       if not cur_signature == first_signature:
-         #return False
          same_thread = False
       if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
-         #print 'here return!'
-         #return False
          strictly_contiguous = False
       if (not allow_orphans or (allow_orphans and not orphan_components)) and \
          (not same_thread or not strictly_contiguous):
@@ -447,7 +426,6 @@ def __are_thread_contiguous_components(expr, klasses = (_Component),
       return True 
 
    first = expr[0]
-   #if not isinstance(first, _Component):
    if not isinstance(first, klasses):
       return False
 
@@ -461,18 +439,14 @@ def __are_thread_contiguous_components(expr, klasses = (_Component),
    first_thread = first.thread.signature
    prev = first
    for cur in expr[1:]:
-      #print prev, cur
-      #if not isinstance(cur, _Component):
       if not isinstance(cur, klasses):
          return False
       if not cur.parentage.orphan:
          orphan_components = False
       if not cur.thread.signature == first_thread:
-         #return False
          same_thread = False
       if not prev._navigator._isImmediateTemporalSuccessorOf(cur):
          if not _are_thread_proper(prev, cur):
-            #return False
             thread_proper = False
       if (not allow_orphans or (allow_orphans and not orphan_components)) and \
          (not same_thread or not thread_proper):
@@ -495,8 +469,6 @@ def _are_thread_proper(component_1, component_2, klasses = (_Component)):
       Otherwise False.'''
 
    ## if either input parameter are not Abjad tokens
-   #if not isinstance(component_1, _Component) or \
-   #   not isinstance(component_2, _Component):
    if not isinstance(component_1, klasses) or \
       not isinstance(component_2, klasses):
       return False

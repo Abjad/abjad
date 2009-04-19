@@ -31,4 +31,5 @@ def containers_by_reference(expr):
       containertools.remove_empty(expr)
       return expr.pop(0)
    else:
+      print 'debug did not merge'
       return None
