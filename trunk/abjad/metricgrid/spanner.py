@@ -2,7 +2,6 @@ from abjad.meter.meter import Meter
 from abjad.metricgrid.format import _MetricGridSpannerFormatInterface
 from abjad.spanner.spanner import Spanner
 from abjad.tie.spanner import Tie
-from abjad.tools import leaftools
 from abjad.tools import mathtools
 
 
@@ -18,6 +17,7 @@ class MetricGrid(Spanner):
    ## PRIVATE METHODS ##
 
    def _fuseTiedLeavesWithinMeasures(self):
+      from abjad.tools import fuse
       ## fuse tied notes
       meters = self.meters
       meter = meters.next( )
@@ -57,7 +57,8 @@ class MetricGrid(Spanner):
             ## TODO: this is very hacky. Find better solution
             if len(r) > 0:
                r[0].grace.after = r[-1].grace.after
-            leaftools.fuse_binary(r)
+            #leaftools.fuse_binary(r)
+            fuse.leaves_by_reference(r)
          
    def _matchingMeter(self, leaf):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''
@@ -107,6 +108,7 @@ class MetricGrid(Spanner):
       return True
 
    def splitOnBar(self):
+      from abjad.tools import leaftools
       leaf = self.leaves[0]
       meters = self.meters
       meter = meters.next( )

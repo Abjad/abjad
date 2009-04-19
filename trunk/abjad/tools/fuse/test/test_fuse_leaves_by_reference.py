@@ -1,33 +1,33 @@
 from abjad import *
 
 
-def test_leaftools_fuse_binary_01( ):
+def test_fuse_leaves_by_reference_01( ):
    '''Wokrs with list of leaves.'''
-   fused = leaftools.fuse_binary(construct.run(8, Rational(1, 4)))
+   fused = fuse.leaves_by_reference(construct.run(8, Rational(1, 4)))
    assert len(fused) == 1 
    assert fused[0].duration.written == Rational(2)
 
 
-def test_leaftools_fuse_binary_02( ):
+def test_fuse_leaves_by_reference_02( ):
    '''Works with Leaf component.'''
-   fused = leaftools.fuse_binary([Note(0, (1, 4))])
+   fused = fuse.leaves_by_reference([Note(0, (1, 4))])
    assert len(fused) == 1 
    assert fused[0].duration.written == Rational(1, 4) 
 
 
-def test_leaftools_fuse_binary_03( ):
+def test_fuse_leaves_by_reference_03( ):
    '''Works with containers.'''
    t = Voice(Note(0, (1, 4)) * 8)
-   fused = leaftools.fuse_binary(t[:])
+   fused = fuse.leaves_by_reference(t[:])
    assert len(fused) == 1 
    assert fused[0].duration.written == 2 
    assert t[0] is fused[0]
 
 
-def test_leaftools_fuse_binary_04( ):
+def test_fuse_leaves_by_reference_04( ):
    '''Fusion results in tied notes.'''
    t = Voice([Note(0, (2, 16)), Note(9, (3, 16))])
-   fused = leaftools.fuse_binary(t[:])
+   fused = fuse.leaves_by_reference(t[:])
    assert len(fused) == 2 
    assert fused[0].duration.written == Rational(1, 4) 
    assert fused[1].duration.written == Rational(1, 16) 

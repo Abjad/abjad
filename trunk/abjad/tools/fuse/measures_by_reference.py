@@ -2,18 +2,17 @@ from abjad.measure.measure import _Measure
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
 from abjad.tools import check
+from abjad.tools import containertools
 from abjad.tools import metertools
 from abjad.tools import parenttools
-from abjad.tools.containertools.contents_scale import contents_scale
 from abjad.tools.parenttools.switch import _switch
 from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 
 
-def measures(measure_list):
+def measures_by_reference(measure_list):
    '''Fuse measures in measure_list.
       Calculate best new time signature.'''
 
-   #from abjad.tools import containertools
    check.assert_components(measure_list, klasses = (_Measure, ), 
       contiguity = 'strict', share = 'parent')
 
@@ -34,8 +33,7 @@ def measures(measure_list):
    for measure in measure_list:
       multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
       measure_music = measure[:]
-      #containertools.contents_scale(measure_music, multiplier)
-      contents_scale(measure_music, multiplier)
+      containertools.contents_scale(measure_music, multiplier)
       music += measure_music
 
    _switch(music, None)

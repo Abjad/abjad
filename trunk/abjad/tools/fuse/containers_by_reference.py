@@ -7,7 +7,7 @@ from abjad.tools import iterate
 from abjad.tuplet.tuplet import _Tuplet
 
 
-def containers(expr):
+def containers_by_reference(expr):
    '''Fuse containers in self that are strictly contiguous 
       and that have the same name.'''
 

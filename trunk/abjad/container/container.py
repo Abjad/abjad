@@ -30,7 +30,7 @@ class Container(_Component):
       from abjad.tools import fuse
       left = clone.fracture([self])[0]
       right = clone.fracture([expr])[0]
-      return fuse.containers([left, right])
+      return fuse.containers_by_reference([left, right])
 
    def __contains__(self, expr):
       '''True if expr is in container, otherwise False.'''
@@ -61,7 +61,7 @@ class Container(_Component):
       '''__iadd__ avoids unnecessary copying of structures.'''
       from abjad.tools import clone
       from abjad.tools import fuse
-      return fuse.containers([self, clone.fracture([expr])[0]])
+      return fuse.containers_by_reference([self, clone.fracture([expr])[0]])
 
    def __imul__(self, total):
       '''Multiply contents of container 'total' times.

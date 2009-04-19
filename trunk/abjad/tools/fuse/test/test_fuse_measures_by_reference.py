@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fuse_measures_01( ):
+def test_fuse_measures_by_reference_01( ):
    '''Fuse binary measures with different denominators.
       Helpers selects minimum of two denominators.
       Beams are OK because they attach to leaves rather than containers.'''
@@ -20,7 +20,7 @@ def test_fuse_measures_01( ):
          f'16 ]
    }'''
 
-   fuse.measures(t[:])
+   fuse.measures_by_reference(t[:])
 
    r'''\new Voice {
          \time 2/8
@@ -35,7 +35,7 @@ def test_fuse_measures_01( ):
 
 
  
-def test_fuse_measures_02( ):
+def test_fuse_measures_by_reference_02( ):
    '''Fuse binary measures with different denominators.
       Helpers selects minimum of two denominators.
       Beams are OK because they attach to leaves rather than containers.'''
@@ -54,7 +54,7 @@ def test_fuse_measures_02( ):
          f'16
    }'''
 
-   fuse.measures(t[:])
+   fuse.measures_by_reference(t[:])
 
    r'''\new Voice {
          \time 2/8
@@ -68,7 +68,7 @@ def test_fuse_measures_02( ):
    assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16 ]\n}"
 
 
-def test_fuse_measures_03( ):
+def test_fuse_measures_by_reference_03( ):
    '''Fuse binary and nonbinary measures.
       Helpers selects least common multiple of denominators.
       Beams are OK because they attach to leaves rather than containers.'''
@@ -88,7 +88,7 @@ def test_fuse_measures_03( ):
                    }
    }'''
 
-   fuse.measures(t[:])
+   fuse.measures_by_reference(t[:])
 
    r'''\new Voice {
                    \time 5/24
@@ -102,23 +102,23 @@ def test_fuse_measures_03( ):
    assert t.format == "\\new Voice {\n\t\t\\time 5/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [\n\t\t\td'8 ]\n\t\t}\n}"
 
 
-def test_fuse_measures_04( ):
+def test_fuse_measures_by_reference_04( ):
    '''Fusing empty list raises no excpetion but returns None.'''
 
-   result = fuse.measures([ ])
+   result = fuse.measures_by_reference([ ])
    assert result is None
 
 
-def test_fuse_measures_05( ):
+def test_fuse_measures_by_reference_05( ):
    '''Fusing list of only one measure returns measure unaltered.'''
 
    t = RigidMeasure((3, 8), construct.scale(3))
-   new = fuse.measures([t])
+   new = fuse.measures_by_reference([t])
 
    assert new is t
 
 
-def test_fuse_measures_06( ):
+def test_fuse_measures_by_reference_06( ):
    '''Fuse three measures.'''
 
    t = Voice(measuretools.make([(1, 8), (1, 8), (1, 8)]))
@@ -138,7 +138,7 @@ def test_fuse_measures_06( ):
                    a'16 ]
    }'''
 
-   fuse.measures(t[:])
+   fuse.measures_by_reference(t[:])
 
    r'''\new Voice {
                    \time 3/8

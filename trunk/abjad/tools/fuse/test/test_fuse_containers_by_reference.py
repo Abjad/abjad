@@ -2,65 +2,65 @@ from abjad import *
 import py.test
 
 
-def test_fuse_containers_01( ):
-   '''fuse.containers( ) does nothing and returns None on Leaves.'''
+def test_fuse_containers_by_reference_01( ):
+   '''fuse.containers_by_reference( ) does nothing and returns None on Leaves.'''
 
    t = Note(1, (1, 4))
-   result = fuse.containers(t)
+   result = fuse.containers_by_reference(t)
    assert result is None
    assert isinstance(t, Note)
    
 
-def test_fuse_containers_02( ):
-   '''fuse.containers( ) will not fuse unnamed voices.'''
+def test_fuse_containers_by_reference_02( ):
+   '''fuse.containers_by_reference( ) will not fuse unnamed voices.'''
 
    t = Staff([Voice(construct.run(2)), Voice(construct.run(2))])
-   result = fuse.containers(t) 
+   result = fuse.containers_by_reference(t) 
    assert result is None
 
 
-def test_fuse_containers_03( ):
-   '''fuse.containers( ) does not fuse non-threads.'''
+def test_fuse_containers_by_reference_03( ):
+   '''fuse.containers_by_reference( ) does not fuse non-threads.'''
 
    t = Staff([Voice(construct.run(2)), Voice(construct.run(2))])
    t[0].name = 'one'
    t[1].name = 'two'
-   result = fuse.containers(t) 
+   result = fuse.containers_by_reference(t) 
    assert result is None
 
 
-def test_fuse_containers_04( ):
-   '''fuse.containers( ) DOES NOT fuse tuplets. '''
+def test_fuse_containers_by_reference_04( ):
+   '''fuse.containers_by_reference( ) DOES NOT fuse tuplets. '''
 
    t = Voice([FixedMultiplierTuplet((2, 3), construct.run(3)), 
               FixedMultiplierTuplet((2, 3), construct.run(3))])
-   result = fuse.containers(t)
+   result = fuse.containers_by_reference(t)
    assert result is None
    assert len(t) == 2
    
 
-def test_fuse_containers_05( ):
-   '''fuse.containers( ) can take a list of components.'''
+def test_fuse_containers_by_reference_05( ):
+   '''fuse.containers_by_reference( ) can take a list of components.'''
 
    t = Voice(construct.run(4)) * 2
    t[0].name = t[1].name = 'voiceOne'
-   result = fuse.containers(t)
+   result = fuse.containers_by_reference(t)
    assert isinstance(result, Voice)  
    assert len(result) == 8
 
 
-def test_fuse_containers_06( ):
-   '''fuse.containers( ) works on equally named staves.'''
+def test_fuse_containers_by_reference_06( ):
+   '''fuse.containers_by_reference( ) works on equally named staves.'''
 
    t = Staff(construct.run(4)) * 2
    t[0].name = t[1].name = 'staffOne'
-   result = fuse.containers(t)
+   result = fuse.containers_by_reference(t)
    assert isinstance(result, Staff)  
    assert len(result) == 8
 
 
-def test_fuse_containers_07( ):
-   '''fuse.containers( ) works on equally named staves 
+def test_fuse_containers_by_reference_07( ):
+   '''fuse.containers_by_reference( ) works on equally named staves 
       but not on differently named Voices.'''
 
    t = Container(Staff([Voice(construct.run(4))]) * 2)
@@ -85,7 +85,7 @@ def test_fuse_containers_07( ):
            }
    }'''
 
-   result = fuse.containers(t)
+   result = fuse.containers_by_reference(t)
    assert isinstance(result, Container)  
    assert len(result) == 1
    assert isinstance(result[0], Staff)
@@ -116,9 +116,9 @@ def test_fuse_containers_07( ):
 
 ## NESTED PARALLEL STRUCTURES ##
 
-def test_fuse_containers_10( ):
+def test_fuse_containers_by_reference_10( ):
    '''Parallel voices within parallel staves within parallel
-      staff groups within a single container fuse.containers( ) correctly.'''
+      staff groups within a single container fuse.containers_by_reference( ) correctly.'''
 
    v1 = Voice(Note(0, (1, 4))*2)
    v1.name = '1'
@@ -141,7 +141,7 @@ def test_fuse_containers_10( ):
    s2.name = 'sg'
    s = Container([s1, s2])
 
-   fuse.containers(s)
+   fuse.containers_by_reference(s)
    assert len(s) == 1
    assert s.format == '{\n\t\\context StaffGroup = "sg" <<\n\t\t\\context Staff = "staff1" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t\t\\context Staff = "staff2" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t\t\\context Staff = "staff3" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t>>\n}'
  
@@ -210,8 +210,8 @@ def test_fuse_containers_10( ):
         >>
    }'''
 
-def test_fuse_containers_11( ):
-   '''Nested parallel structures in sequence fuse.containers( ) correctly.'''
+def test_fuse_containers_by_reference_11( ):
+   '''Nested parallel structures in sequence fuse.containers_by_reference( ) correctly.'''
 
    v1a = Voice(Note(0, (1,4))*2)
    v1a.name = 'voiceOne'
@@ -232,7 +232,7 @@ def test_fuse_containers_11( ):
    sg2.name ='groupTwo'
    sg_g = StaffGroup([sg1, sg2])
    sg_g.name = 'topGroup'
-   seq = fuse.containers([sg_g, clone.fracture([sg_g])[0]])
+   seq = fuse.containers_by_reference([sg_g, clone.fracture([sg_g])[0]])
 
    assert seq.format == '\\context StaffGroup = "topGroup" <<\n\t\\context StaffGroup = "groupOne" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n\t\\context StaffGroup = "groupTwo" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n>>'
 
