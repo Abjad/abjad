@@ -13,6 +13,7 @@ Contents:
 
    chapters/introduction/index
    chapters/tour/index
+   chapters/examples/index
    chapters/install
    chapters/whatnext/index
    chapters/lcs/index
