@@ -14,6 +14,13 @@ class _Tuplet(Container):
 
    ## OVERLOADS ##
 
+   def __add__(self, arg):
+      '''Add two tuplets of same type and with same multiplier.'''
+      from abjad.tools import fuse
+      assert isinstance(arg, type(self))
+      new = fuse.tuplets_by_reference([self, arg])
+      return new
+      
    def __repr__(self):
       if len(self) > 0:
          return '_Tuplet(%s)' % self._summary
