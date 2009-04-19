@@ -1,6 +1,3 @@
-
-
-
 The Leaf Container Spanner (LCS) Model
 ======================================
 
@@ -9,9 +6,8 @@ The LCS by example
 ------------------
 
 
-
 Example 1
----------
+^^^^^^^^^
 
 At the heart of Abjad's Symbolic Score-Control lies a powerful model
 that we call the Leaf Container Spanner, or LCS, model of the musical
@@ -45,12 +41,16 @@ just described it has two important properties:
 What we are describing here is a tree, and it is the structure of
 Abjad **Containers**.
 
-TREE FIGURE HERE.
+.. image:: images/1.png
 
 While this tree structure seem like the right way to represent the
 relationships between the elements of a score, it is not enough.
 Consider the tuplet example again with the following beaming
 alternatives:
+
+.. image:: images/2.png
+.. image:: images/3.png
+.. image:: images/4.png
 
 Clearly the beaming of notes can be totally independent from the
 tuplet groupings. Beaming across tuplet groups implies beaming across
@@ -62,18 +62,19 @@ complementary structure. These are the Abjad **Spanners**.
 Below we have the score of our tuplet example with alternative beaming
 and its the Leaf-Container-Spanner graph.
 
-
+.. image:: images/5.png
 
 
 
 Example 2
----------
+^^^^^^^^^
 
 As a second example let's look at the last five measures of Bartók's
 Wandering from Mikrokosmos vol. III. As simple as it may seem, these
 five measures carry with them a lot of information pertaining to
 musical notation.
 
+.. images:: images/bartok_wandering.png
 
 
 There are many musical signs of different types on the pages: notes,
@@ -127,6 +128,7 @@ two complementary and completely independent layers of structure: a
 **tree** that includes the Containers and the Leaves, and a layer of
 free floating "connectors" or Spanners.
 
+.. image:: images/container_spanner.png
 
 
 There can be any number of Spanners, they may overlap, and they may
