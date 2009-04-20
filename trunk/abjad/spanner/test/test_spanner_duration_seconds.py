@@ -1,7 +1,10 @@
 from abjad import *
 
 
-def test_spanner_duration_written_01( ):
+def test_spanner_duration_seconds_01( ):
+   '''Spanner duration in seconds equals sum of duration
+      of all leaves in spanner, in seconds.'''
+
    t = Voice([RigidMeasure((2, 12), construct.scale(2)), 
       RigidMeasure((2, 8), construct.scale(2))])
    t.tempo.forced = TempoIndication(Rational(1, 8), 42)
@@ -10,6 +13,7 @@ def test_spanner_duration_written_01( ):
    decrescendo = Decrescendo(t[1][:])
 
    r'''\new Voice {
+            \tempo 8=42
                    \time 2/12
                    \scaleDurations #'(2 . 3) {
                            c'8 [ \<
@@ -20,6 +24,6 @@ def test_spanner_duration_written_01( ):
                    d'8 ] \!
    }'''
 
-   assert beam.duration.clock == Rational(5, 63)
-   assert crescendo.duration.clock == Rational(2, 63)
-   assert decrescendo.duration.clock == Rational(1, 21)
+   assert beam.duration.seconds == Rational(100, 21)
+   assert crescendo.duration.seconds == Rational(40, 21)
+   assert decrescendo.duration.seconds == Rational(20, 7)

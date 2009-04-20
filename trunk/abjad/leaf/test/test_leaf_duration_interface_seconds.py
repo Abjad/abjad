@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_leaf_duration_interface_clock_01( ):
+def test_leaf_duration_interface_seconds_01( ):
    '''Clock duration equals prolated duration divide by effective tempo.'''
 
    t = Container(construct.scale(4))
@@ -10,22 +10,22 @@ def test_leaf_duration_interface_clock_01( ):
    t[2].tempo.forced = TempoIndication(Rational(1, 4), 42)
 
    r'''{
-      \tempo 8=38
+      \tempo 4=38
       c'8
       d'8
-      \tempo 8=42
+      \tempo 4=42
       e'8
       f'8
    }'''
 
-   assert t[0].duration.clock == Rational(1, 76)
-   assert t[1].duration.clock == Rational(1, 76)
-   assert t[2].duration.clock == Rational(1, 84)
-   assert t[3].duration.clock == Rational(1, 84)
+   assert t[0].duration.seconds == Rational(15, 19)
+   assert t[1].duration.seconds == Rational(15, 19)
+   assert t[2].duration.seconds == Rational(5, 7)
+   assert t[3].duration.seconds == Rational(5, 7)
 
 
-def test_leaf_duration_interface_clock_02( ):
+def test_leaf_duration_interface_seconds_02( ):
    '''Clock duration can not calculate without tempo.'''
 
    t = Note(0, (1, 4))
-   assert py.test.raises(UndefinedTempoError, 't.duration.clock')
+   assert py.test.raises(UndefinedTempoError, 't.duration.seconds')

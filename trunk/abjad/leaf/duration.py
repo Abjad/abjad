@@ -57,13 +57,6 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def clock(self):
-      tempo = self._client.tempo.effective
-      if tempo is not None:
-         return self.prolated / tempo.duration / tempo.mark
-      raise UndefinedTempoError
-
-   @property
    def multiplied(self):
       if self.written:
          if self.multiplier:
@@ -96,6 +89,13 @@ class _LeafDurationInterface(_ComponentDurationInterface):
       def fget(self):
          return self.multiplied
       return property(**locals( ))
+
+   @property
+   def seconds(self):
+      tempo = self._client.tempo.effective
+      if tempo is not None:
+         return self.prolated / tempo.duration / tempo.mark * 60
+      raise UndefinedTempoError
 
    @apply
    def written( ):

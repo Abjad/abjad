@@ -11,18 +11,18 @@ class _SpannerDurationInterface(_Abjad):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def clock(self):
-      '''Sum of clock duration of all leaves in spanner.'''
-      duration = Rational(0)
-      for leaf in self._client.leaves:
-         duration += leaf.duration.clock
-      return duration
-
-   @property
    def prolated(self):
       '''Sum of prolated duration of all components in spanner.'''
       client = self._client
       return sum([component.duration.prolated for component in client])
+
+   @property
+   def seconds(self):
+      '''Sum of duration of all leaves in spanner, in seconds.'''
+      duration = Rational(0)
+      for leaf in self._client.leaves:
+         duration += leaf.duration.seconds
+      return duration
 
    @property
    def written(self):

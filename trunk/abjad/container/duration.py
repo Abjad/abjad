@@ -16,18 +16,6 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def clock(self):
-      client = self._client
-      if client.parallel:
-         return max(
-            [Rational(0)] + [x.duration.clock for x in client])
-      else:
-         duration = Rational(0)
-         for leaf in client.leaves:
-            duration += leaf.duration.clock
-         return duration
-
-   @property
    def contents(self):
       client = self._client
       if client.parallel: 
@@ -44,3 +32,16 @@ class _ContainerDurationInterface(_ComponentDurationInterface):
       def fget(self):
          return self.contents
       return  property(**locals( ))
+
+   @property
+   def seconds(self):
+      client = self._client
+      if client.parallel:
+         return max(
+            [Rational(0)] + [x.duration.seconds for x in client])
+      else:
+         duration = Rational(0)
+         for leaf in client.leaves:
+            duration += leaf.duration.seconds
+         return duration
+
