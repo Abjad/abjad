@@ -37,7 +37,7 @@ class Container(_Component):
       return expr in self._music
 
    def __delitem__(self, i):
-      '''Find component(s) at index 'i' in container.
+      '''Find component(s) at index or slice 'i' in container.
          Detach component(s) from parentage.
          Withdraw component(s) from crossing spanners.
          Preserve spanners that component(s) cover(s).'''

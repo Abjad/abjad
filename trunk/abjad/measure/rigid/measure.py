@@ -2,6 +2,7 @@ from abjad.measure.measure import _Measure
 from abjad.measure.rigid.duration import _RigidMeasureDurationInterface
 from abjad.measure.rigid.formatter import _RigidMeasureFormatter
 from abjad.meter.meter import Meter
+from abjad.tools import durtools
 
 
 class RigidMeasure(_Measure):
@@ -11,3 +12,19 @@ class RigidMeasure(_Measure):
       self._duration = _RigidMeasureDurationInterface(self)
       self._formatter = _RigidMeasureFormatter(self)
       self.meter.forced = Meter(meter)
+
+   ## OVERLOADS ##
+
+   def __delitem__(self, i):
+      '''Container deletion with meter adjustment.'''
+      try:
+         old_denominator = self.meter.forced.denominator
+      except AttributeError:
+         pass
+      _Measure.__delitem__(self, i)
+      try:
+         naive_meter = self.duration.preprolated
+         better_meter = durtools.in_terms_of(naive_meter, old_denominator)
+         self.meter.forced = Meter(better_meter)
+      except (AttributeError, UnboundLocalError):
+         pass
