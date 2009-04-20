@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_split_container_leaves_by_durations_cyclic_01( ):
+def test_split_container_leaves_cyclic_by_durations_01( ):
    '''Split leaves contained at any level of depth in container.
       Take split points cyclically from Python durations list.
       Do not fracture spanners.'''
@@ -19,7 +19,7 @@ def test_split_container_leaves_by_durations_cyclic_01( ):
          f'8 ]
    }'''
 
-   split.container_leaves_by_durations_cyclic(t, [(1, 16)])
+   split.container_leaves_cyclic_by_durations(t, [(1, 16)])
 
    r'''\new Voice {
          \time 2/8
@@ -38,14 +38,14 @@ def test_split_container_leaves_by_durations_cyclic_01( ):
    assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'16 [ ~\n\t\tc'16\n\t\td'16 ~\n\t\td'16\n\t\t\\time 2/8\n\t\te'16 ~\n\t\te'16\n\t\tf'16 ~\n\t\tf'16 ]\n}"
 
 
-def test_split_container_leaves_by_durations_cyclic_02( ):
+def test_split_container_leaves_cyclic_by_durations_02( ):
    '''Split leaves contained at any level of depth in container.
       Take split points cyclically from Python durations list.'''
 
    t = Voice(Note(0, (3, 8)) * 4)
    pitchtools.diatonicize(t)
 
-   split.container_leaves_by_durations_cyclic(t, [(1, 4)])
+   split.container_leaves_cyclic_by_durations(t, [(1, 4)])
 
    r'''\new Voice {
       c'4 ~
