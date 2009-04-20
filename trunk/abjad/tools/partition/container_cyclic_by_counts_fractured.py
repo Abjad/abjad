@@ -17,7 +17,7 @@ def container_cyclic_by_counts_fractured(container, counts):
    left, right = None, container
    i = 0
    len_counts = len(counts)
-   while len(right):
+   while 1 < len(right):
       count = counts[i % len_counts]
       left, right = split.container_fractured(right, count)
       result.append(left)
