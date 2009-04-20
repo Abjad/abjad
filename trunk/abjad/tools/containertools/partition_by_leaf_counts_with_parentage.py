@@ -8,13 +8,13 @@ from abjad.tools import mathtools
 
 ## TODO: Implement an in-place version that doesn't climb to score root ##
 
-def partition_by_count(container, counts):
+def partition_by_leaf_counts_with_parentage(container, leaf_counts):
    r'''container is any Abjad container to partition.
-      counts is a Python list of zero or more positive integers.
+      leaf_counts is a Python list of zero or more positive integers.
 
-      Partition container and all parents of container.
+      Partition container and all components in parentage of container.
       Do not act in place.
-      Instead, return list of parts equal in number to len(counts).
+      Instead, return list of parts equal in number to len(leaf_counts).
 
       The function wraps lcopy( ).
       This means that the original structure remains unchanged.
@@ -24,7 +24,7 @@ def partition_by_count(container, counts):
 
       t = Voice([FixedDurationTuplet((2, 8), construct.scale(3))])
       Beam(t[0][:])
-      left, right = containertools.partition_by_count(t[0], [1, 2])
+      left, right = containertools.partition_by_leaf_counts_with_parentage(t[0], [1, 2])
 
       left:
 
@@ -44,11 +44,12 @@ def partition_by_count(container, counts):
       }'''
    
    assert isinstance(container, Container)
-   assert all([isinstance(x, int) for x in counts])
+   assert all([isinstance(x, int) for x in leaf_counts])
 
    result = [ ]
-   sums = [0] + mathtools.sums(counts)
+   sums = [0] + mathtools.sums(leaf_counts)
    for start, stop in listtools.pairwise(sums):
-      result.append(clonewp.by_count_with_parentage(container, start, stop))
+      result.append(
+         clonewp.by_leaf_count_with_parentage(container, start, stop))
 
    return result

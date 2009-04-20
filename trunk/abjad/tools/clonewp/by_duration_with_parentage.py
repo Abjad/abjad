@@ -7,7 +7,8 @@ from abjad.tools import iterate
 from abjad.tools import leaftools
 from abjad.tools import split
 from abjad.tools.clone.fracture import fracture
-from abjad.tools.clonewp.by_count_with_parentage import by_count_with_parentage
+from abjad.tools.clonewp.by_leaf_count_with_parentage import \
+   by_leaf_count_with_parentage
 
 
 def by_duration_with_parentage(expr, start = 0, stop = None):
@@ -85,5 +86,6 @@ def _get_lcopy(container, start, stop):
          #print 'breaking after stop'
          break
    #print start_leaf, stop_leaf
-   untrimmed_copy = by_count_with_parentage(container, start_leaf, stop_leaf)
+   untrimmed_copy = by_leaf_count_with_parentage(
+      container, start_leaf, stop_leaf)
    return untrimmed_copy, first_dif, second_dif

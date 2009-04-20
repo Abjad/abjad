@@ -9,7 +9,7 @@ from abjad.tools.clone.fracture import fracture
 ## TODO: Remove ghetto slicing interface here with start & stop; ##
 ##       Pass a leaf list to this function instead.              ##
 
-def by_count_with_parentage(expr, start = 0, stop = None):
+def by_leaf_count_with_parentage(expr, start = 0, stop = None):
    '''Copy consecutive leaves from start to stop in expr.
       Copy all structure in the parentage of copied leaves.
       Trim and shrink parent containers as necessary.
@@ -28,7 +28,7 @@ def by_count_with_parentage(expr, start = 0, stop = None):
    assert start <= len(leaves)
    if stop is None:
       stop = len(leaves)
-   assert stop > start
+   assert start < stop
 
    # new: find start and stop leaves in expr
    start_leaf_in_expr = leaves[start]
