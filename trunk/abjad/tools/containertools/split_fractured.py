@@ -1,13 +1,13 @@
-from abjad.tools.containertools.hew import hew
+from abjad.tools.containertools._split_general import _split_general
 
 
-def split(container, index):
+def split_fractured(container, i):
    r'''Splits container in two at given index position.
-      Compare with :func:`hew`.
+      Compare with :func:`split_fractured( )`.
 
       Both functions break container just before index.
-      However, ``container.hew( )`` *preserves* spanners.
-      And ``container.split( )`` *fractures* spanners.
+      However, ``containertools.split_unfractured( )`` *preserves* spanners.
+      And ``containertools.split_fractured( )`` *fractures* spanners.
 
       Both functions create two new copies of container.
       Both functions empty original container of contents.
@@ -34,7 +34,7 @@ def split(container, index):
                  }
          }
 
-         left, right = container.split(tuplet, 1)
+         left, right = containertools.split_fractured(tuplet, 1)
 
          \new Voice {
                  \times 2/3 {
@@ -51,4 +51,4 @@ def split(container, index):
                  }
          }'''
 
-   return hew(container, index, spanners = 'fracture')
+   return _split_general(container, i, spanners = 'fractured')

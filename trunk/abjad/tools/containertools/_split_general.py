@@ -3,45 +3,12 @@ from abjad.tools import measuretools
 from abjad.tools.containertools.multiplier_set import multiplier_set
 
 
-def hew(container, i, spanners = 'preserve'):
-   r'''Split container in two just before index i.
-      Compare with container_split( ).
-      Special spanner management to leave all spanners in tact.
-      Preserve parentage, if any.
-      Resize resizable containers.
-      Preserve container multiplier, if any.
-      Preserve meter denominator, if any.
-
-      Example of hewing binary measure:
-
-      t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
-      pitchtools.diatonicize(t)
-      p = Beam(t[:])
-
-      \new Voice {
-                      \time 3/8
-                      c'8 [
-                      d'8
-                      e'8
-                      \time 3/8
-                      f'8
-                      g'8
-                      a'8 ]
-      }
-                 
-      containertools.hew(t[1], 1)
-
-      \new Voice {
-                      \time 3/8
-                      c'8 [
-                      d'8
-                      e'8
-                      \time 1/8
-                      f'8
-                      \time 2/8
-                      g'8
-                      a'8 ]
-      }'''
+def _split_general(container, i, spanners = 'unfractured'):
+   '''General container split algorithm.
+      Works on tuplets, measures, contexts and unqualified containers.
+      Keyword controls spanner behavior at split time.
+      Use containertools.split_fractured( ) to fracture spanners.
+      Use containertools.split_unfractured( ) to leave spanners unchanged.'''
 
    from abjad.measure.measure import _Measure
 
@@ -108,7 +75,7 @@ def hew(container, i, spanners = 'preserve'):
    right.spanners._update(list(container.spanners.attached))
 
    # fracture spanners across newly hewn parts, if requested
-   if spanners == 'fracture':
+   if spanners == 'fractured':
       left.spanners.fracture(direction = 'right')
 
    # set left and right multiplier equal to container multiplier, if any
