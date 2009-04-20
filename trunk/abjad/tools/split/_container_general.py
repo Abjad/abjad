@@ -3,6 +3,7 @@ from abjad.tools import containertools
 from abjad.tools import measuretools
 from abjad.tools import parenttools
 from abjad.tools import spannertools
+from abjad.tools.parenttools.switch import _switch
 from abjad.tuplet.tuplet import _Tuplet
 
 
@@ -38,21 +39,18 @@ def _container_general(container, i, spanners = 'unfractured'):
    
    ## save left and right parts together for iteration
    parts = [left, right]
+   nonempty_parts = [part for part in parts if len(part)]
 
-   ## handle spanners and parentage manually
+   ## give attached spanners to children
+   spannertools.give_attached_to_children(container)
+
+   ## incorporate left and right parents in score, if possible
    parent, start, stop = parenttools.get_with_indices([container])
    if parent is not None:
-      nonempty = [part for part in parts if len(part)]
-      parent._music[start:stop+1] = nonempty
-      for part in nonempty:
+      parent._music[start:stop+1] = nonempty_parts
+      for part in nonempty_parts:
          part.parentage._switch(parent)
-      for spanner in list(container.spanners.attached):
-         i = spanner.index(container)
-         spanner._components[i:i+1] = nonempty
-         for part in nonempty:
-            part.spanners._add(spanner)
    else:
-      spannertools.give_attached_to_children(container)
       left.parentage._switch(None)
       right.parentage._switch(None)
 
