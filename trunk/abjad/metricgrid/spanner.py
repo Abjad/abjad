@@ -120,18 +120,8 @@ class MetricGrid(Spanner):
                if not leaf.tie.parented:
                   Tie(leaf)
                splitdur = meter.offset - leaf.offset.score
-
-#               ## if splitdur not m / 2**n
-#               if mathtools.is_power_of_two(splitdur._denominator):
-#                  leaves_splitted = leaftools.split_binary(leaf, splitdur)
-#                  leaf = leaves_splitted[1][0]
-#               else:
-#                  leaves_splitted = leaftools.split(leaf, splitdur)
-#                  leaf = leaves_splitted[1].leaves[0]
-
                leaves_splitted = leaftools.split_general(leaf, splitdur)
                leaf = leaves_splitted[0][0]
-
             else:
                ## only advance if we have not split.
                leaf = leaf.next
