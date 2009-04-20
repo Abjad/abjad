@@ -1,4 +1,4 @@
-from abjad.tools import clonewp
+from abjad.tools.clonewp.with_parent import with_parent
 
 
 def extend_cyclic(expr, n = 1, total = 2):
@@ -13,7 +13,7 @@ def extend_cyclic(expr, n = 1, total = 2):
    for x in range(total - 1):
 
       # copy last n elements of expr
-      addendum = clonewp.with_parent(expr[start:stop])
+      addendum = with_parent(expr[start:stop])
 
       # extend expr with addendum
       expr.extend(addendum)

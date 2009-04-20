@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_containertools_split_unfractured_01( ):
+def test_split_container_unfractured_01( ):
    '''Hew triplet.'''
 
    t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
@@ -21,7 +21,7 @@ def test_containertools_split_unfractured_01( ):
            }
    }'''
 
-   containertools.split_unfractured(t[1], 1)
+   split.container_unfractured(t[1], 1)
 
    r'''\new Voice {
            \times 2/3 {
@@ -42,7 +42,7 @@ def test_containertools_split_unfractured_01( ):
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t}\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_containertools_split_unfractured_02( ):
+def test_split_container_unfractured_02( ):
    '''Hew binary measure.'''
 
    t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
@@ -60,7 +60,7 @@ def test_containertools_split_unfractured_02( ):
                    a'8 ]
    }'''
 
-   containertools.split_unfractured(t[1], 1)
+   split.container_unfractured(t[1], 1)
 
    r'''\new Voice {
                    \time 3/8
@@ -78,7 +78,7 @@ def test_containertools_split_unfractured_02( ):
    assert t.format == "\\new Voice {\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\t\\time 1/8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8 ]\n}"
 
 
-def test_containertools_split_unfractured_03( ):
+def test_split_container_unfractured_03( ):
    '''Hew nonbinary measure.'''
 
    t = Voice(RigidMeasure((3, 9), construct.run(3)) * 2)
@@ -100,7 +100,7 @@ def test_containertools_split_unfractured_03( ):
                    }
    }'''
 
-   containertools.split_unfractured(t[1], 1)
+   split.container_unfractured(t[1], 1)
 
    r'''\new Voice {
                    \time 3/9
@@ -124,12 +124,12 @@ def test_containertools_split_unfractured_03( ):
    assert t.format == "\\new Voice {\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8\n\t\t}\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8 ]\n\t\t}\n}"
 
 
-def test_containertools_split_unfractured_04( ):
+def test_split_container_unfractured_04( ):
    '''A single container can be split in two by the middle;
       no parent.'''
 
    t = Voice(construct.scale(4))
-   t1, t2 = containertools.split_unfractured(t, 2)
+   t1, t2 = split.container_unfractured(t, 2)
 
    r'''\new Voice {
       c'8
@@ -146,14 +146,14 @@ def test_containertools_split_unfractured_04( ):
    assert t2.format == "\\new Voice {\n\te'8\n\tf'8\n}"
    
 
-def test_containertools_split_unfractured_05( ):
+def test_split_container_unfractured_05( ):
    '''A single container 'split' at index 0 gives
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
 
    t = Staff([Voice(construct.scale(4))])
    v = t[0]
-   left, right = containertools.split_unfractured(v, 0)
+   left, right = split.container_unfractured(v, 0)
 
    r'''\new Staff {
            \new Voice {
@@ -171,7 +171,7 @@ def test_containertools_split_unfractured_05( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t}\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-def test_containertools_split_unfractured_06( ):
+def test_split_container_unfractured_06( ):
    '''Split container at index > len(container).
       Lefthand part instantiates with all contents.
       Righthand part instantiates empty.
@@ -179,7 +179,7 @@ def test_containertools_split_unfractured_06( ):
 
    t = Staff([Voice(construct.scale(4))])
    v = t[0]
-   left, right = containertools.split_unfractured(v, 10)
+   left, right = split.container_unfractured(v, 10)
 
    assert left.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
    assert right.format == '\\new Voice {\n}'
@@ -187,12 +187,12 @@ def test_containertools_split_unfractured_06( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t\\new Voice {\n\t}\n}"
 
 
-def test_containertools_split_unfractured_07( ):
+def test_split_container_unfractured_07( ):
    '''A single container can be split with negative indeces.'''
 
    t = Staff([Voice(construct.scale(4))])
    v = t[0]
-   left, right = containertools.split_unfractured(v, -2)
+   left, right = split.container_unfractured(v, -2)
 
    assert left.format == "\\new Voice {\n\tc'8\n\td'8\n}"
    assert right.format == "\\new Voice {\n\te'8\n\tf'8\n}"
@@ -200,14 +200,14 @@ def test_containertools_split_unfractured_07( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-def test_containertools_split_unfractured_08( ):
+def test_split_container_unfractured_08( ):
    '''Spanners attached to hewn container reattach
       to all resulting hewn parts.'''
 
    t = Staff([Voice(construct.scale(4))])
    v = t[0]
    Beam(v)
-   left, right = containertools.split_unfractured(v, 2)
+   left, right = split.container_unfractured(v, 2)
 
    r'''\new Staff {
            \new Voice {
@@ -226,7 +226,7 @@ def test_containertools_split_unfractured_08( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
    
-def test_containertools_split_unfractured_09( ):
+def test_split_container_unfractured_09( ):
    '''Hewing a container with parent results in parented 
       sibling containers.'''
 
@@ -234,7 +234,7 @@ def test_containertools_split_unfractured_09( ):
    v = t[0]
    tuplet = v[0]
    Beam(tuplet)
-   left, right = containertools.split_unfractured(tuplet, 2)
+   left, right = split.container_unfractured(tuplet, 2)
 
    r'''\new Staff {
            \new Voice {

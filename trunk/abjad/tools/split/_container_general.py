@@ -1,16 +1,16 @@
+from abjad.measure.measure import _Measure
 from abjad.tools import clone
+from abjad.tools import containertools
 from abjad.tools import measuretools
-from abjad.tools.containertools.multiplier_set import multiplier_set
 
 
-def _split_general(container, i, spanners = 'unfractured'):
+def _container_general(container, i, spanners = 'unfractured'):
    '''General container split algorithm.
       Works on tuplets, measures, contexts and unqualified containers.
       Keyword controls spanner behavior at split time.
-      Use containertools.split_fractured( ) to fracture spanners.
-      Use containertools.split_unfractured( ) to leave spanners unchanged.'''
+      Use split.container_fractured( ) to fracture spanners.
+      Use split.container_unfractured( ) to leave spanners unchanged.'''
 
-   from abjad.measure.measure import _Measure
 
    # remember container multiplier, if any
    container_multiplier = getattr(container.duration, 'multiplier', None)
@@ -40,14 +40,12 @@ def _split_general(container, i, spanners = 'unfractured'):
 
    # apportion music from container to left ...
    # ... and do not withdraw from spanners!
-   #left[:] = container[:i]
    left._music[:] = container[:i]
    for component in left:
       component.parentage._switch(left)
 
    # reassign remaining music from container to right ...
    # ... and do not withdraw from spanners!
-   #right[:] = container[:]
    right._music[:] = container[:]
    for component in right:
       component.parentage._switch(right)
@@ -69,7 +67,6 @@ def _split_general(container, i, spanners = 'unfractured'):
       spanner_index = spanner.index(container)
 
       # insert left and right in spanner in place of container
-      #spanner[spanner_index : spanner_index + 1] = [left, right]
       spanner._components[spanner_index:spanner_index+1] = [left, right]
    left.spanners._update(list(container.spanners.attached))
    right.spanners._update(list(container.spanners.attached))
@@ -79,8 +76,8 @@ def _split_general(container, i, spanners = 'unfractured'):
       left.spanners.fracture(direction = 'right')
 
    # set left and right multiplier equal to container multiplier, if any
-   multiplier_set(left, container_multiplier)
-   multiplier_set(right, container_multiplier)
+   containertools.multiplier_set(left, container_multiplier)
+   containertools.multiplier_set(right, container_multiplier)
 
    # set left and right meter denominator, if any
    measuretools.denominator_set(left, meter_denominator)

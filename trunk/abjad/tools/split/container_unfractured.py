@@ -1,9 +1,9 @@
-from abjad.tools.containertools._split_general import _split_general
+from abjad.tools.split._container_general import _container_general
 
 
-def split_unfractured(container, i):
+def container_unfractured(container, i):
    r'''Split container in two just before index i.
-      Compare with containertools.split_fractured( ).
+      Compare with split.container_fractured( ).
       Special spanner management to leave all spanners in tact.
       Preserve parentage, if any.
       Resize resizable containers.
@@ -27,7 +27,7 @@ def split_unfractured(container, i):
                       a'8 ]
       }
                  
-      containertools.split_unfractured(t[1], 1)
+      split.container_unfractured(t[1], 1)
 
       \new Voice {
                       \time 3/8
@@ -41,4 +41,4 @@ def split_unfractured(container, i):
                       a'8 ]
       }'''
 
-   return _split_general(container, i, spanners = 'unfractured')
+   return _container_general(container, i, spanners = 'unfractured')

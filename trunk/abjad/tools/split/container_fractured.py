@@ -1,13 +1,13 @@
-from abjad.tools.containertools._split_general import _split_general
+from abjad.tools.split._container_general import _container_general
 
 
-def split_fractured(container, i):
+def container_fractured(container, i):
    r'''Splits container in two at given index position.
-      Compare with :func:`split_fractured( )`.
+      Compare with :func:`split.container_fractured( )`.
 
       Both functions break container just before index.
-      However, ``containertools.split_unfractured( )`` *preserves* spanners.
-      And ``containertools.split_fractured( )`` *fractures* spanners.
+      However, ``split.container_unfractured( )`` *preserves* spanners.
+      And ``split.container_fractured( )`` *fractures* spanners.
 
       Both functions create two new copies of container.
       Both functions empty original container of contents.
@@ -34,7 +34,7 @@ def split_fractured(container, i):
                  }
          }
 
-         left, right = containertools.split_fractured(tuplet, 1)
+         left, right = split.container_fractured(tuplet, 1)
 
          \new Voice {
                  \times 2/3 {
@@ -51,4 +51,4 @@ def split_fractured(container, i):
                  }
          }'''
 
-   return _split_general(container, i, spanners = 'fractured')
+   return _container_general(container, i, spanners = 'fractured')
