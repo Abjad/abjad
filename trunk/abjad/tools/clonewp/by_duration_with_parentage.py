@@ -40,7 +40,8 @@ def _scopy_leaf(leaf, start, stop):
    if total == 0:
       return None
    new = fracture([leaf])[0]
-   new = leaftools.scale(new, total)
+   #new = leaftools.scale(new, total)
+   leaftools.duration_change(new, total)
    return new
 
 
@@ -50,13 +51,17 @@ def _scopy_container(container, start, stop):
    leaf_start = container.leaves[0]
    leaf_end = container.leaves[-1]
    # split first leaf
-   leaf_start_splitted = leaftools.split(leaf_start, first_dif)
+   #leaf_start_splitted = leaftools.split(leaf_start, first_dif)
+   leaf_start_splitted = leaftools.split_general(leaf_start, first_dif)
    if len(leaf_start_splitted) == 2:
-      leaftools.excise(leaf_start_splitted[0])
+      #leaftools.excise(leaf_start_splitted[0])
+      leaftools.excise(leaf_start_splitted[0][0])
    # split second leaf
-   leaf_end_splitted = leaftools.split(leaf_end, second_dif)
+   #leaf_end_splitted = leaftools.split(leaf_end, second_dif)
+   leaf_end_splitted = leaftools.split_general(leaf_end, second_dif)
    if len(leaf_end_splitted) == 2:
-      leaftools.excise(leaf_end_splitted[1])
+      #leaftools.excise(leaf_end_splitted[1])
+      leaftools.excise(leaf_end_splitted[1][0])
    return container
 
 

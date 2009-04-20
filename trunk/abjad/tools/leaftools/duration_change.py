@@ -28,7 +28,7 @@ def duration_change(leaf, new_written_duration):
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
          leaf.splice(tied_leaves)
-         if not leaf.tie.spanned:
+         if not leaf.tie.parented:
             Tie(all_leaves)
       elif isinstance(duration_tokens[0], FixedMultiplierTuplet):
          print 'debug duration_tokens %s' % duration_tokens

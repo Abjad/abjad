@@ -1,5 +1,7 @@
 from abjad import *
+import py.test
 
+py.test.skip('leaftools.scale( ) deprecated; use leaftools.duration_change( ).')
 
 def test_leaftools_scale_01( ):
    '''Identity.'''

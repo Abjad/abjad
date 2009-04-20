@@ -1,6 +1,7 @@
 from abjad import *
 import py.test
 
+py.test.skip('leaftools.scale_binary( ) deprecated. Use leaftools.duration_change( ).')
 
 def test_leaftools_scale_binary_01( ):
    '''Identity.'''

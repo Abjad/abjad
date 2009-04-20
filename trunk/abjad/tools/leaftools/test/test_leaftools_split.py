@@ -1,5 +1,8 @@
 from abjad import *
+import py.test
 
+
+py.test.skip('leaftools.split( ) deprecated; use leaftools.split_general( ).')
 
 def test_leaftools_split_01( ):
    '''Split duration equals 0. 

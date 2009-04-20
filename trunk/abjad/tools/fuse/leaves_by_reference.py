@@ -1,7 +1,6 @@
 from abjad.tools import check
 from abjad.tools import componenttools
 from abjad.tools import leaftools
-#from abjad.tools.leaftools.scale_binary import scale_binary
 
 
 def leaves_by_reference(leaves):
@@ -15,4 +14,5 @@ def leaves_by_reference(leaves):
       return leaves
    total_written = sum([leaf.duration.written for leaf in leaves])
    componenttools.detach(leaves[1:])
-   return leaftools.scale_binary(leaves[0], total_written)
+   #return leaftools.scale_binary(leaves[0], total_written)
+   return leaftools.duration_change(leaves[0], total_written)

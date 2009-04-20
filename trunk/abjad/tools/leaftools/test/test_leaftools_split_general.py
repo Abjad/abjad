@@ -1,26 +1,110 @@
 from abjad import *
 
 
-def test_leaftools_split_binary_01( ):
-   '''Split duration equals 0. Leaf is left unmodified.'''
+def test_leaftools_split_general_01( ):
+   '''Notehead-assignable split duration produces two notes.'''
+
+   t = Staff(construct.scale(3))
+   Beam(t[:])
+
+   r'''\new Staff {
+        c'8 [
+        d'8
+        e'8 ]
+   }'''
+
+   leaftools.split_general(t[1], Rational(1, 32))
+
+   r'''\new Staff {
+           c'8 [
+           d'32
+           d'16.
+           e'8 ]
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
+
+
+def test_leaftools_split_general_02( ):
+   '''Nonbinary denominator produces two one-note tuplets.'''
+
+   t = Staff(construct.scale(3))
+   Beam(t[:])
+
+   r'''\new Staff {
+        c'8 [
+        d'8
+        e'8 ]
+   }'''
+
+   leaftools.split_general(t[1], Rational(1, 24))
+
+   r'''\new Staff {
+        c'8 [
+        \times 2/3 {
+                d'16
+        }
+        \times 2/3 {
+                d'8
+        }
+        e'8 ]
+   }'''
+   
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
+
+
+def test_leaftools_split_general_03( ):
+   '''Notehead-assignable duration produces two notes.
+      This test comes from a container-crossing spanner bug.'''
+
+   t = Voice(construct.run(1) + [FixedDurationTuplet((2, 8), construct.run(3))])
+   pitchtools.diatonicize(t)
+   Beam(t.leaves)
+
+   r'''\new Voice {
+      c'8 [
+      \times 2/3 {
+         d'8
+         e'8
+         f'8 ]
+      }
+   }'''
+
+   leaftools.split_general(t.leaves[1], Rational(1, 24))
+
+   r'''\new Voice {
+      c'8 [
+      \times 2/3 {
+         d'16
+         d'16
+         e'8
+         f'8 ]
+      }
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+
+
+def test_leaftools_split_general_04( ):
+   '''Split duration equal to zero produces no change.'''
 
    t = Note(0, (1, 4))
    new = leaftools.split_general(t, Rational(0))
-
    assert isinstance(new, list)
    assert len(new) == 1
-   assert new[0] is t
    assert isinstance(new[0], Note)
    assert new[0].duration.written == Rational(1, 4)
    assert new[0] == t
 
 
-def test_leaftools_split_binary_02( ):
-   '''Split duration >= Leaf duration. Leaf is left unmodified.'''
+def test_leaftools_split_general_05( ):
+   '''Leaf duration less than split duration produces no change.'''
 
    t = Note(0, (1, 4))
    new = leaftools.split_general(t, Rational(3, 4))
-
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
@@ -28,7 +112,7 @@ def test_leaftools_split_binary_02( ):
    assert new[0] == t
 
 
-def test_leaftools_split_binary_03( ):
+def test_leaftools_split_general_06( ):
    '''Split returns two lists of Leaves.'''
 
    t = Note(0, (1, 4))
@@ -48,7 +132,7 @@ def test_leaftools_split_binary_03( ):
    assert not new[1][0].tie.spanned
 
 
-def test_leaftools_split_binary_04( ):
+def test_leaftools_split_general_07( ):
    '''Split returns two lists of Leaves.'''
 
    t = Note(0, (1, 4))
@@ -64,9 +148,10 @@ def test_leaftools_split_binary_04( ):
    assert new[1][0].duration.written == Rational(3, 16)
 
 
-def test_leaftools_split_binary_05( ):
-   '''On non-assignable durations, split returns three Leaves, 
-   two are tied.'''
+def test_leaftools_split_general_08( ):
+   '''Nonassignable binary split duration produces two lists.
+      Left list contains two notes tied together.
+      Right list contains only one note.'''
 
    t = Note(0, (1, 4))
    new = leaftools.split_general(t, Rational(5, 32))
@@ -87,31 +172,7 @@ def test_leaftools_split_binary_05( ):
    assert not new[1][0].tie.spanned
 
 
-## IN CONTEXT ##
-
-## LEAF SPANNED ##
-
-def test_leaftools_split_binary_06( ):
-   '''New leaves resulting from the splitting of the first leaf of a
-   spanner are also spanned. '''
-   t = Voice(construct.run(4))
-   b = Beam(t.leaves)
-   leaftools.split_general(t[0], Rational(1, 32))
-   for l in t.leaves:
-      assert l.spanners.attached == set([b])
-
-
-def test_leaftools_split_binary_07( ):
-   '''New leaves resulting from the splitting of the last leaf of a
-   spanner are also spanned. '''
-   t = Voice(construct.run(4))
-   b = Beam(t.leaves)
-   leaftools.split_general(t[-1], Rational(1, 32))
-   for l in t.leaves:
-      assert l.spanners.attached == set([b])
-
-
-def test_leaftools_split_binary_10( ):
+def test_leaftools_split_general_09( ):
    '''Lone spanned Leaf results in two spanned leaves.'''
 
    t = Staff([Note(0, (1, 4))])
@@ -125,7 +186,7 @@ def test_leaftools_split_binary_10( ):
    assert check.wf(t)
 
 
-def test_leaftools_split_binary_11( ):
+def test_leaftools_split_general_10( ):
    '''Spanners are unaffected by leaf split.'''
 
    t = Staff(construct.run(4))
@@ -139,7 +200,7 @@ def test_leaftools_split_binary_11( ):
    assert check.wf(t)
 
 
-def test_leaftools_split_binary_12( ):
+def test_leaftools_split_general_11( ):
    '''Split returns three Leaves, two are tied.
       Spanner is shared by all 3 leaves.'''
 
@@ -156,9 +217,7 @@ def test_leaftools_split_binary_12( ):
    assert check.wf(t)
    
 
-## CONTAINER SPANNED ##
-
-def test_leaftools_split_binary_20( ):
+def test_leaftools_split_general_12( ):
    '''Split leaf is not tied again when a Container 
       containing it is already Tie-spanned.'''
 
@@ -173,7 +232,7 @@ def test_leaftools_split_binary_20( ):
    assert check.wf(t)
 
 
-def test_leaftools_split_binary_21( ):
+def test_leaftools_split_general_13( ):
    '''Split leaf is not tied again when a Container containing it is 
       already Tie-spanned.'''
 
@@ -190,9 +249,7 @@ def test_leaftools_split_binary_21( ):
    assert check.wf(t)
 
 
-## GRACE NOTES ##
-
-def test_leaftools_split_binary_30( ):
+def test_leaftools_split_general_14( ):
    '''After grace notes are removed from first leaf in bipartition.'''
 
    t = Note(0, (1, 4))
@@ -203,18 +260,12 @@ def test_leaftools_split_binary_30( ):
    assert len(new[1][0].grace.after) == 1
 
 
-def test_leaftools_split_binary_31( ):
+def test_leaftools_split_general_15( ):
    '''After grace notes are removed from first tied leaves in bipartition.'''
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
    new = leaftools.split_general(t, Rational(5, 32))
-
-#   assert len(new[0]) == 2
-#   assert len(new[0][0].grace.after) == 0
-#   assert len(new[0][1].grace.after) == 0
-#   assert len(new[1]) == 1
-#   assert len(new[1][0].grace.after) == 1
 
    assert len(new) == 2
    assert len(new[0][0].grace.after) == 0
@@ -222,7 +273,8 @@ def test_leaftools_split_binary_31( ):
    assert len(new[1]) == 1
    assert len(new[1][0].grace.after) == 1
 
-def test_leaftools_split_binary_32( ):
+
+def test_leaftools_split_general_16( ):
    '''Grace notes are removed from second leaf in bipartition.'''
 
    t = Note(0, (1, 4))
