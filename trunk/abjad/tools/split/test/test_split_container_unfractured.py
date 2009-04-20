@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_split_container_unfractured_01( ):
@@ -153,22 +154,22 @@ def test_split_container_unfractured_05( ):
 
    t = Staff([Voice(construct.scale(4))])
    v = t[0]
+   Beam(v)
    left, right = split.container_unfractured(v, 0)
 
    r'''\new Staff {
            \new Voice {
-           }
-           \new Voice {
-                   c'8
+                   c'8 [
                    d'8
                    e'8
-                   f'8
+                   f'8 ]
            }
    }'''
 
+   assert check.wf(t)
    assert left.format == '\\new Voice {\n}'
-   assert right.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
-   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t}\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
+   assert right.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_split_container_unfractured_06( ):
@@ -181,19 +182,23 @@ def test_split_container_unfractured_06( ):
    v = t[0]
    left, right = split.container_unfractured(v, 10)
 
+   assert check.wf(t)
    assert left.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
    assert right.format == '\\new Voice {\n}'
    assert v.format == '\\new Voice {\n}'
-   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t\\new Voice {\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
 def test_split_container_unfractured_07( ):
-   '''A single container can be split with negative indeces.'''
+   '''Voice can be split but automatic reinsertion to parent
+      raises ContiguityError.'''
 
    t = Staff([Voice(construct.scale(4))])
    v = t[0]
-   left, right = split.container_unfractured(v, -2)
+   #assert py.test.raises(ContiguityError, 'split.container_unfractured(v, -2)')
 
+   left, right = split.container_unfractured(v, -2)
+   assert check.wf(t)
    assert left.format == "\\new Voice {\n\tc'8\n\td'8\n}"
    assert right.format == "\\new Voice {\n\te'8\n\tf'8\n}"
    assert v.format == '\\new Voice {\n}'
@@ -204,26 +209,28 @@ def test_split_container_unfractured_08( ):
    '''Spanners attached to hewn container reattach
       to all resulting hewn parts.'''
 
-   t = Staff([Voice(construct.scale(4))])
+   t = Staff([Container(construct.scale(4))])
    v = t[0]
    Beam(v)
    left, right = split.container_unfractured(v, 2)
 
    r'''\new Staff {
-           \new Voice {
-                   c'8 [
-                   d'8
-           }
-           \new Voice {
-                   e'8
-                   f'8 ]
-           }
+      {
+         c'8 [
+         d'8
+      }
+      {
+         e'8
+         f'8 ]
+      }
    }'''
 
-   assert left.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
-   assert right.format == "\\new Voice {\n\te'8\n\tf'8 ]\n}"
-   assert v.format == '\\new Voice {\n}'
-   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+   assert check.wf(t)
+   assert left.format == "{\n\tc'8 [\n\td'8\n}"
+   assert right.format == "{\n\te'8\n\tf'8 ]\n}"
+   assert v.format == '{\n}'
+   assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+
 
    
 def test_split_container_unfractured_09( ):

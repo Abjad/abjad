@@ -1,7 +1,8 @@
 from abjad.measure.measure import _Measure
-from abjad.tools import clone
 from abjad.tools import containertools
 from abjad.tools import measuretools
+from abjad.tools import parenttools
+from abjad.tuplet.tuplet import _Tuplet
 
 
 def _container_general(container, i, spanners = 'unfractured'):
@@ -10,7 +11,6 @@ def _container_general(container, i, spanners = 'unfractured'):
       Keyword controls spanner behavior at split time.
       Use split.container_fractured( ) to fracture spanners.
       Use split.container_unfractured( ) to leave spanners unchanged.'''
-
 
    # remember container multiplier, if any
    container_multiplier = getattr(container.duration, 'multiplier', None)
@@ -21,60 +21,66 @@ def _container_general(container, i, spanners = 'unfractured'):
    else:
       meter_denominator = None
 
-   # remember container music
-   container_music = container._music
+   left_music = container[:i]
+   right_music = container[i:]
 
-   # temporarily remove music from container
-   container._music = [ ]
-
-   # create empty lefthand container
-   left = clone.unspan([container])[0]
-   left.spanners.clear( )
-
-   # create empty righthand container
-   right = clone.unspan([container])[0]
-   right.spanners.clear( )
-
-   # give music back to container
-   container._music = container_music
-
-   # apportion music from container to left ...
-   # ... and do not withdraw from spanners!
-   left._music[:] = container[:i]
-   for component in left:
-      component.parentage._switch(left)
-
-   # reassign remaining music from container to right ...
-   # ... and do not withdraw from spanners!
-   right._music[:] = container[:]
-   for component in right:
-      component.parentage._switch(right)
-
-   # if parent
-   if container.parentage.parent is not None:
-
-      # get index of container in parent
-      container_index = container.parentage.parent.index(container)
-
-      # insert left and right in place of container in parent
-      container.parentage.parent[container_index : container_index + 1] = \
-         [left, right] 
-
-   # for every spanner attaching to container
-   for spanner in list(container.spanners.attached):
+   if isinstance(container, _Measure):
+      left_duration = sum([x.duration.prolated for x in left_music])
+      right_duration = sum([x.duration.prolated for x in right_music])
+      #right = container.__class__(right_duration, container[i:])
+      #left = container.__class__(left_duration, container[:i])
+      right = container.__class__(right_duration, right_music)
+      left = container.__class__(left_duration, left_music)
+   elif isinstance(container, _Tuplet):
+      #right = container.__class__(1, container[i:])
+      #left = container.__class__(1, container[:i])
+      right = container.__class__(1, right_music)
+      left = container.__class__(1, left_music)
+   else:
+      #right = container.__class__(container[i:])
+      #left = container.__class__(container[:i])
+      right = container.__class__(right_music)
+      left = container.__class__(left_music)
    
-      # get index of container in spanner 
-      spanner_index = spanner.index(container)
+   parts = [left, right]
 
-      # insert left and right in spanner in place of container
-      spanner._components[spanner_index:spanner_index+1] = [left, right]
-   left.spanners._update(list(container.spanners.attached))
-   right.spanners._update(list(container.spanners.attached))
+#   print container, container.spanners.attached
+#   print left, left.spanners.attached
+#   print right, right.spanners.attached
+#   print ''
+   
+   ## QUESTION: Can this first branch be bequeath( ) or donate( )? ##
 
-   # fracture spanners across newly hewn parts, if requested
+   parent, start, stop = parenttools.get_with_indices([container])
+   if parent is not None:
+      #parent[start:stop+1] = [part for part in parts if len(part)]
+      nonempty = [part for part in parts if len(part)]
+      parent._music[start:stop+1] = nonempty
+      for part in nonempty:
+         part.parentage._switch(parent)
+      for spanner in list(container.spanners.attached):
+         i = spanner.index(container)
+         spanner._components[i:i+1] = nonempty
+         for part in nonempty:
+            part.spanners._add(spanner)
+   else:
+      ## TODO: Implement spannertools._give_attached_to( ) ##
+      for spanner in list(container.spanners.attached):
+         i = spanner.index(container)
+         spanner._components[i:i+1] = parts
+         parts.spanners.attached._add(spanner) # fix this line
+      left.parentage._switch(None)
+      right.parentage._switch(None)
+
+   #print container, container.spanners.attached
+   #print left, left.spanners.attached
+   #print right, right.spanners.attached
+   #print ''
+
    if spanners == 'fractured':
-      left.spanners.fracture(direction = 'right')
-
+      if len(parts) == 2:
+         left.spanners.fracture(direction = 'right')
+   
    # set left and right multiplier equal to container multiplier, if any
    containertools.multiplier_set(left, container_multiplier)
    containertools.multiplier_set(right, container_multiplier)

@@ -190,8 +190,6 @@ def test_split_container_fractured_05( ):
 
    r'''\new Staff {
            \new Voice {
-           }
-           \new Voice {
                    c'8 [
                    d'8
                    e'8
@@ -202,7 +200,7 @@ def test_split_container_fractured_05( ):
    assert left.format == '\\new Voice {\n}'
    assert right.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
    assert v.format == '\\new Voice {\n}'
-   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t}\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_split_container_fractured_06( ):
@@ -224,11 +222,9 @@ def test_split_container_fractured_06( ):
                    e'8
                    f'8 ]
            }
-           \new Voice {
-           }
    }'''
 
    assert left.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
    assert right.format == '\\new Voice {\n}'
    assert v.format == '\\new Voice {\n}'
-   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n\t\\new Voice {\n\t}\n}"
+   assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
