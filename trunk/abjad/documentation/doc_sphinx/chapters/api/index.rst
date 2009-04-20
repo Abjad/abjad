@@ -3,6 +3,8 @@ Abjad API
 
 .. toctree::
 
+   accidental/accidental
+
    tools/cfgtools/index
    tools/check/index
    tools/chordtools/index

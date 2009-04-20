@@ -9,12 +9,12 @@ Welcome to Abjad
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    chapters/introduction/index
-   chapters/tour/index
-   chapters/examples/index
    chapters/install
+   chapters/examples/index
+   chapters/tour/index
    chapters/whatnext/index
    chapters/lcs/index
 
