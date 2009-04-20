@@ -21,7 +21,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       contribution = formatter.number._measure_contribution
       if contribution == 'comment':
          contributor = (formatter.number, '_measure_contribution')
-         contributions = ['%% start measure %s' % measure.numbering.measure]
+         contributions = ['%% start measure %s' % measure.number]
          result.append([contributor, contributions])
       return tuple(result)
 
@@ -38,6 +38,6 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       contribution = formatter.number._measure_contribution
       if contribution == 'comment':
          contributor = (formatter.number, '_measure_contribution')
-         contributions = ['%% stop measure %s' % measure.numbering.measure]
+         contributions = ['%% stop measure %s' % measure.number]
          result.append([contributor, contributions])
       return tuple(result)

@@ -64,9 +64,9 @@ class _LeafFormatter(_ComponentFormatter):
       leaf = self._client
       contribution = self.number._leaf_contribution
       if contribution == 'markup':
-         result.append(r'^ \markup { %s }' % leaf.numbering.leaf)
+         result.append(r'^ \markup { %s }' % leaf.number)
       elif contribution == 'comment':
-         result.append(r'%% leaf %s' % leaf.numbering.leaf)
+         result.append(r'%% leaf %s' % leaf.number)
       return result
 
    @property

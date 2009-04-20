@@ -57,3 +57,8 @@ class _Measure(Container):
    @property
    def full(self):
       return self.meter.effective.duration == self.duration.preprolated
+
+   @property
+   def number(self):
+      self._numbering._makeSubjectUpdateIfNecessary( )
+      return self._numbering._measure

@@ -79,6 +79,11 @@ class _Leaf(_Component):
       return self._navigator._nextBead
 
    @property
+   def number(self):
+      self._numbering._makeSubjectUpdateIfNecessary( )
+      return self._numbering._leaf
+
+   @property
    def prev(self):
       return self._navigator._prevBead
 

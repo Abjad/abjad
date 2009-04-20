@@ -193,9 +193,9 @@ class _Component(_Abjad):
    def notehead(self):
       return self._notehead
 
-   @property
-   def numbering(self):
-      return self._numbering
+#   @property
+#   def numbering(self):
+#      return self._numbering
 
    @property
    def offset(self):

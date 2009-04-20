@@ -3,22 +3,8 @@ from abjad.exceptions.exceptions import MeasureContiguityError
 from abjad.rational.rational import Rational
 
 
-## TODO: Architectural considerations:
-##       This current implementation gives only the _NumberingInterface
-##       implemented here and attached to _Component.
-##       Would it be better to implement a family of numbering interfaces
-##       like _LeafNumberingInterface, _MeasureNumberingInterface, etc.?
-##       This family-based approach would mirror the _Formatter classes.
-##       Also, right now it is possible to ask for t.numbering.leaf,
-##       t.numbering.measure, etc., on *all* components.
-##       There's probably nothing wrong with that, but it might be a little
-##       weird to ask for t.numbering.leaf when t is a *measure* rather
-##       than a leaf.
-##       Our more usual way of doing things is to navigate to a single
-##       component and ask for attributes there.
-
 class _NumberingInterface(_Observer):
-   '''Number score components and handle no LilyPond grob.'''
+   '''Number score components but handle no LilyPond grob.'''
 
    def __init__(self, _client, updateInterface):
       '''Bind to client and register self as observer.
@@ -45,27 +31,27 @@ class _NumberingInterface(_Observer):
       prevLeaf = self.client.prev
       if prevLeaf:
          assert isinstance(prevLeaf, _Leaf)
-         self._leaf = prevLeaf.numbering.leaf + 1
+         self._leaf = prevLeaf._numbering._leaf + 1
 
    def _updateMeasureNumber(self):
       '''Update (one-indexed) number of any one measure in score.'''
       from abjad.tools import iterate
       try:
          prev = iterate.measure_prev(self._client)
-         self._measure = prev.numbering.measure + 1
+         self._measure = prev._numbering._measure + 1
       except StopIteration:
          pass
 
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def leaf(self):
-      '''(Zero-indexed) number of leaf in score.'''
-      self._makeSubjectUpdateIfNecessary( )
-      return self._leaf
-   
-   @property
-   def measure(self):
-      '''(One-indexed) number of measure in score.'''
-      self._makeSubjectUpdateIfNecessary( )
-      return self._measure
+#   ## PUBLIC ATTRIBUTES ##
+#
+#   @property
+#   def leaf(self):
+#      '''(Zero-indexed) number of leaf in score.'''
+#      self._makeSubjectUpdateIfNecessary( )
+#      return self._leaf
+#   
+#   @property
+#   def measure(self):
+#      '''(One-indexed) number of measure in score.'''
+#      self._makeSubjectUpdateIfNecessary( )
+#      return self._measure
