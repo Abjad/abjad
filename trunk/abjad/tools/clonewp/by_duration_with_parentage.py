@@ -5,6 +5,7 @@ from abjad.rational.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import iterate
 from abjad.tools import leaftools
+from abjad.tools import split
 from abjad.tools.clone.fracture import fracture
 from abjad.tools.clonewp.by_count_with_parentage import by_count_with_parentage
 
@@ -50,11 +51,11 @@ def _scopy_container(container, start, stop):
    leaf_start = container.leaves[0]
    leaf_end = container.leaves[-1]
    # split first leaf
-   leaf_start_splitted = leaftools.split_general(leaf_start, first_dif)
+   leaf_start_splitted = split.leaf_by_reference(leaf_start, first_dif)
    if len(leaf_start_splitted) == 2:
       leaftools.excise(leaf_start_splitted[0][0])
    # split second leaf
-   leaf_end_splitted = leaftools.split_general(leaf_end, second_dif)
+   leaf_end_splitted = split.leaf_by_reference(leaf_end, second_dif)
    if len(leaf_end_splitted) == 2:
       leaftools.excise(leaf_end_splitted[1][0])
    return container

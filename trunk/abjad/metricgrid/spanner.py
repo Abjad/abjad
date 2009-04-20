@@ -57,7 +57,6 @@ class MetricGrid(Spanner):
             ## TODO: this is very hacky. Find better solution
             if len(r) > 0:
                r[0].grace.after = r[-1].grace.after
-            #leaftools.fuse_binary(r)
             fuse.leaves_by_reference(r)
          
    def _matchingMeter(self, leaf):
@@ -108,7 +107,7 @@ class MetricGrid(Spanner):
       return True
 
    def splitOnBar(self):
-      from abjad.tools import leaftools
+      from abjad.tools import split
       leaf = self.leaves[0]
       meters = self.meters
       meter = meters.next( )
@@ -120,7 +119,7 @@ class MetricGrid(Spanner):
                if not leaf.tie.parented:
                   Tie(leaf)
                splitdur = meter.offset - leaf.offset.score
-               leaves_splitted = leaftools.split_general(leaf, splitdur)
+               leaves_splitted = split.leaf_by_reference(leaf, splitdur)
                leaf = leaves_splitted[0][0]
             else:
                ## only advance if we have not split.
