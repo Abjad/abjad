@@ -119,7 +119,7 @@ class MetricGrid(Spanner):
                if not leaf.tie.parented:
                   Tie(leaf)
                splitdur = meter.offset - leaf.offset.score
-               leaves_splitted = split.leaf_by_reference(leaf, splitdur)
+               leaves_splitted = split.leaf_by_duration(leaf, splitdur)
                leaf = leaves_splitted[0][0]
             else:
                ## only advance if we have not split.

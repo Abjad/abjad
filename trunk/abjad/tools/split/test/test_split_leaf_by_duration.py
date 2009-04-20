@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaf_split_by_reference_01( ):
+def test_split_leaf_by_duration_01( ):
    '''Notehead-assignable split duration produces two notes.'''
 
    t = Staff(construct.scale(3))
@@ -13,7 +13,7 @@ def test_leaf_split_by_reference_01( ):
         e'8 ]
    }'''
 
-   split.leaf_by_reference(t[1], Rational(1, 32))
+   split.leaf_by_duration(t[1], Rational(1, 32))
 
    r'''\new Staff {
            c'8 [
@@ -26,7 +26,7 @@ def test_leaf_split_by_reference_01( ):
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
 
 
-def test_leaf_split_by_reference_02( ):
+def test_split_leaf_by_duration_02( ):
    '''Nonbinary denominator produces two one-note tuplets.'''
 
    t = Staff(construct.scale(3))
@@ -38,7 +38,7 @@ def test_leaf_split_by_reference_02( ):
         e'8 ]
    }'''
 
-   split.leaf_by_reference(t[1], Rational(1, 24))
+   split.leaf_by_duration(t[1], Rational(1, 24))
 
    r'''\new Staff {
         c'8 [
@@ -55,7 +55,7 @@ def test_leaf_split_by_reference_02( ):
    assert t.format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
 
 
-def test_leaf_split_by_reference_03( ):
+def test_split_leaf_by_duration_03( ):
    '''Notehead-assignable duration produces two notes.
       This test comes from a container-crossing spanner bug.'''
 
@@ -72,7 +72,7 @@ def test_leaf_split_by_reference_03( ):
       }
    }'''
 
-   split.leaf_by_reference(t.leaves[1], Rational(1, 24))
+   split.leaf_by_duration(t.leaves[1], Rational(1, 24))
 
    r'''\new Voice {
       c'8 [
@@ -88,11 +88,11 @@ def test_leaf_split_by_reference_03( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_leaf_split_by_reference_04( ):
+def test_split_leaf_by_duration_04( ):
    '''Split duration equal to zero produces no change.'''
 
    t = Note(0, (1, 4))
-   new = split.leaf_by_reference(t, Rational(0))
+   new = split.leaf_by_duration(t, Rational(0))
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
@@ -100,11 +100,11 @@ def test_leaf_split_by_reference_04( ):
    assert new[0] == t
 
 
-def test_leaf_split_by_reference_05( ):
+def test_split_leaf_by_duration_05( ):
    '''Leaf duration less than split duration produces no change.'''
 
    t = Note(0, (1, 4))
-   new = split.leaf_by_reference(t, Rational(3, 4))
+   new = split.leaf_by_duration(t, Rational(3, 4))
    assert isinstance(new, list)
    assert len(new) == 1
    assert isinstance(new[0], Note)
@@ -112,11 +112,11 @@ def test_leaf_split_by_reference_05( ):
    assert new[0] == t
 
 
-def test_leaf_split_by_reference_06( ):
+def test_split_leaf_by_duration_06( ):
    '''Split returns two lists of Leaves.'''
 
    t = Note(0, (1, 4))
-   new = split.leaf_by_reference(t, Rational(1, 8))
+   new = split.leaf_by_duration(t, Rational(1, 8))
 
    assert isinstance(new, list)
    assert len(new) == 2
@@ -132,11 +132,11 @@ def test_leaf_split_by_reference_06( ):
    assert not new[1][0].tie.spanned
 
 
-def test_leaf_split_by_reference_07( ):
+def test_split_leaf_by_duration_07( ):
    '''Split returns two lists of Leaves.'''
 
    t = Note(0, (1, 4))
-   new = split.leaf_by_reference(t, Rational(1, 16))
+   new = split.leaf_by_duration(t, Rational(1, 16))
 
    assert isinstance(new, list)
    assert len(new) == 2
@@ -148,13 +148,13 @@ def test_leaf_split_by_reference_07( ):
    assert new[1][0].duration.written == Rational(3, 16)
 
 
-def test_leaf_split_by_reference_08( ):
+def test_split_leaf_by_duration_08( ):
    '''Nonassignable binary split duration produces two lists.
       Left list contains two notes tied together.
       Right list contains only one note.'''
 
    t = Note(0, (1, 4))
-   new = split.leaf_by_reference(t, Rational(5, 32))
+   new = split.leaf_by_duration(t, Rational(5, 32))
 
    assert isinstance(new, list)
    assert len(new) == 2
@@ -172,12 +172,12 @@ def test_leaf_split_by_reference_08( ):
    assert not new[1][0].tie.spanned
 
 
-def test_leaf_split_by_reference_09( ):
+def test_split_leaf_by_duration_09( ):
    '''Lone spanned Leaf results in two spanned leaves.'''
 
    t = Staff([Note(0, (1, 4))])
    s = Tie(t.leaves)
-   new = split.leaf_by_reference(t[0], Rational(1, 8))
+   new = split.leaf_by_duration(t[0], Rational(1, 8))
 
    assert len(t) == 2
    for leaf in t.leaves:
@@ -186,12 +186,12 @@ def test_leaf_split_by_reference_09( ):
    assert check.wf(t)
 
 
-def test_leaf_split_by_reference_10( ):
+def test_split_leaf_by_duration_10( ):
    '''Spanners are unaffected by leaf split.'''
 
    t = Staff(construct.run(4))
    b = Beam(t.leaves)
-   new = split.leaf_by_reference(t[0], Rational(1, 16))
+   new = split.leaf_by_duration(t[0], Rational(1, 16))
 
    assert len(t) == 5
    for l in t.leaves:
@@ -200,13 +200,13 @@ def test_leaf_split_by_reference_10( ):
    assert check.wf(t)
 
 
-def test_leaf_split_by_reference_11( ):
+def test_split_leaf_by_duration_11( ):
    '''Split returns three Leaves, two are tied.
       Spanner is shared by all 3 leaves.'''
 
    t = Staff([Note(0, (1, 4))])
    s = Tie(t.leaves)
-   new = split.leaf_by_reference(t[0], Rational(5, 32))
+   new = split.leaf_by_duration(t[0], Rational(5, 32))
 
    assert len(new) == 2
    assert len(new[0]) == 2
@@ -217,13 +217,13 @@ def test_leaf_split_by_reference_11( ):
    assert check.wf(t)
    
 
-def test_leaf_split_by_reference_12( ):
+def test_split_leaf_by_duration_12( ):
    '''Split leaf is not tied again when a Container 
       containing it is already Tie-spanned.'''
 
    t = Staff(construct.run(4))
    s = Tie(t)
-   new = split.leaf_by_reference(t[0], Rational(5, 64))
+   new = split.leaf_by_duration(t[0], Rational(5, 64))
 
    assert t.tie.spanner is s
    assert s.components == [t]
@@ -232,13 +232,13 @@ def test_leaf_split_by_reference_12( ):
    assert check.wf(t)
 
 
-def test_leaf_split_by_reference_13( ):
+def test_split_leaf_by_duration_13( ):
    '''Split leaf is not tied again when a Container containing it is 
       already Tie-spanned.'''
 
    t = Staff(Container(construct.run(4)) * 2)
    s = Tie(t[:])
-   new = split.leaf_by_reference(t[0][0], Rational(5, 64))
+   new = split.leaf_by_duration(t[0][0], Rational(5, 64))
 
    assert s.components == t[:]
    for v in t:
@@ -249,23 +249,23 @@ def test_leaf_split_by_reference_13( ):
    assert check.wf(t)
 
 
-def test_leaf_split_by_reference_14( ):
+def test_split_leaf_by_duration_14( ):
    '''After grace notes are removed from first leaf in bipartition.'''
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
-   new = split.leaf_by_reference(t, Rational(1, 8))
+   new = split.leaf_by_duration(t, Rational(1, 8))
 
    assert len(new[0][0].grace.after) == 0
    assert len(new[1][0].grace.after) == 1
 
 
-def test_leaf_split_by_reference_15( ):
+def test_split_leaf_by_duration_15( ):
    '''After grace notes are removed from first tied leaves in bipartition.'''
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
-   new = split.leaf_by_reference(t, Rational(5, 32))
+   new = split.leaf_by_duration(t, Rational(5, 32))
 
    assert len(new) == 2
    assert len(new[0][0].grace.after) == 0
@@ -274,12 +274,12 @@ def test_leaf_split_by_reference_15( ):
    assert len(new[1][0].grace.after) == 1
 
 
-def test_leaf_split_by_reference_16( ):
+def test_split_leaf_by_duration_16( ):
    '''Grace notes are removed from second leaf in bipartition.'''
 
    t = Note(0, (1, 4))
    t.grace.before = Note(0, (1, 32))
-   new = split.leaf_by_reference(t, Rational(1, 16))
+   new = split.leaf_by_duration(t, Rational(1, 16))
 
    assert len(new[0]) == 1
    assert len(new[1]) == 1
