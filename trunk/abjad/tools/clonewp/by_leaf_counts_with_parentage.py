@@ -1,14 +1,13 @@
 from abjad.container.container import Container
-from abjad.tools import clonewp
 from abjad.tools import listtools
 from abjad.tools import mathtools
+from abjad.tools.clonewp.by_leaf_range_with_parentage import \
+   by_leaf_range_with_parentage
 
 
-## TODO: Possibly implement this as a generalization of lcopy( )? ##
+## TODO: Implement in-place containertools.partition_by_counts( ) that doesn't climb to governor ##
 
-## TODO: Implement an in-place version that doesn't climb to score root ##
-
-def partition_by_leaf_counts_with_parentage(container, leaf_counts):
+def by_leaf_counts_with_parentage(container, leaf_counts):
    r'''container is any Abjad container to partition.
       leaf_counts is a Python list of zero or more positive integers.
 
@@ -50,6 +49,6 @@ def partition_by_leaf_counts_with_parentage(container, leaf_counts):
    sums = [0] + mathtools.sums(leaf_counts)
    for start, stop in listtools.pairwise(sums):
       result.append(
-         clonewp.by_leaf_count_with_parentage(container, start, stop))
+         by_leaf_range_with_parentage(container, start, stop))
 
    return result
