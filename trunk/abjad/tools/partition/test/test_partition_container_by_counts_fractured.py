@@ -116,3 +116,36 @@ def test_partition_container_by_counts_fractured_03( ):
    assert check.wf(t)
    assert len(result) == 2
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+
+
+def test_partition_container_by_counts_fractured_04( ):
+   '''Partition by large empty part counts list.
+      Empty list returns and expression remains unaltered.'''
+
+   t = Voice([Container(construct.scale(4))])
+   Beam(t[0])
+   Slur(t[0].leaves)
+
+   r'''\new Voice {
+           {
+                   c'8 [ (
+                   d'8
+                   e'8
+                   f'8 ] )
+           }
+   }'''
+
+   parts = partition.container_by_counts_fractured(t[0], [ ])
+
+   r'''\new Voice {
+           {
+                   c'8 [ (
+                   d'8
+                   e'8
+                   f'8 ] )
+           }
+   }'''
+
+   assert check.wf(t)
+   assert parts == [ ]
+   assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ (\n\t\td'8\n\t\te'8\n\t\tf'8 ] )\n\t}\n}"

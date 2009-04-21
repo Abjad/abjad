@@ -17,10 +17,11 @@ def container_cyclic_by_counts_unfractured(container, counts):
    left, right = None, container
    i = 0
    len_counts = len(counts)
-   while 1 < len(right):
-      count = counts[i % len_counts]
-      left, right = split.container_unfractured(right, count)
-      result.append(left)
-      i += 1
+   if len_counts:
+      while 1 < len(right):
+         count = counts[i % len_counts]
+         left, right = split.container_unfractured(right, count)
+         result.append(left)
+         i += 1
 
    return result
