@@ -1,6 +1,8 @@
 from abjad.container.container import Container
+from abjad.exceptions.exceptions import ContainmentError
 from abjad.leaf.leaf import _Leaf
 from abjad.tools import componenttools
+from abjad.tools import iterate
 from abjad.tools.split._leaf_at_duration import _leaf_at_duration as \
    split__leaf_at_duration
 from abjad.tools.split._at_index import _at_index as \
@@ -15,9 +17,11 @@ def _at_duration(component, duration, spanners = 'unfractured'):
 
    assert 0 <= duration
 
+   ## if zero duration then return component
    if duration == 0:
       return (component, )
 
+   ## get global position of duration split in score
    global_split_point = component.offset.score + duration
 
    ## get duration crossers, if any
@@ -25,25 +29,36 @@ def _at_duration(component, duration, spanners = 'unfractured'):
 
    ## if leaf duration crosser, will be at end of list
    bottom = contents[-1]
-   assert isinstance(bottom, _Leaf)
-   split_point_in_bottom = global_split_point - bottom.offset.score
-   left_list, right_list = split__leaf_at_duration(
-      bottom, split_point_in_bottom)
-   right = right_list[0]
+
+   ## if split point necessitates leaf split
+   if isinstance(bottom, _Leaf):
+      assert isinstance(bottom, _Leaf)
+      split_point_in_bottom = global_split_point - bottom.offset.score
+      left_list, right_list = split__leaf_at_duration(
+         bottom, split_point_in_bottom)
+      right = right_list[0]
+      containers = contents[:-1]
+      if not len(containers):
+         return left_list, right_list
+   else:
+      ## if split point falls between leaves
+      ## then find leaf to immediate right of split point
+      ## in order to start upward crawl through containers
+      containers = contents[:]
+      for leaf in iterate.naive(bottom, _Leaf):
+         if leaf.offset.score == global_split_point:
+            right = leaf
+            break
+      else:
+         raise ContainmentError('can not split empty container.')
    
-   ## if container duration crossers, will be front of list
-   containers = contents[:-1]
-
-   ## if no container duration crosses, return split leaf halves
-   if not len(containers):
-      return left_list, right_list
-
-   ## crawl back up through container duration crossers and split each
-   for cur in reversed(contents[:-1]):
+   ## crawl back up through container duration crossers
+   ## split each container duration crosser
+   for cur in reversed(containers):
       assert isinstance(cur, Container)
       prev = right
       i = cur.index(prev)
       left, right = split__at_index(cur, i, spanners = spanners)
          
-   ## return split input component and split contents, if any
+   ## return pair of left and right list-wrapped halves of container
    return ([left], [right])

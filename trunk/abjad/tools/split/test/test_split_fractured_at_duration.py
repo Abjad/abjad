@@ -184,3 +184,40 @@ def test_split_fractured_at_duration_05( ):
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\t\\time 7/32\n\t\tc'8 [ (\n\t\td'16. ]\n\t\t\\time 1/32\n\t\td'32 [ ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+
+
+def test_split_fractured_at_duration_06( ):
+   '''Duration fracture container between leaves.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Beam(t[1])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+         \time 2/8
+         c'8 [ (
+         d'8 ]
+         \time 2/8
+         e'8 [
+         f'8 ] )
+   }'''
+
+   parts = split.fractured_at_duration(t[0], Rational(1, 8))
+
+   r'''\new Staff {
+         \time 1/8
+         c'8 [ ] (
+         \time 1/8
+         d'8 [ ]
+         \time 2/8
+         e'8 [
+         f'8 ] )
+   }'''
+
+   assert check.wf(t)
+   assert isinstance(parts, tuple)
+   assert isinstance(parts[0], list)
+   assert isinstance(parts[1], list)
+   assert t.format == "\\new Staff {\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
