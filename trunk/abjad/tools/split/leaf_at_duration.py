@@ -4,6 +4,8 @@ from abjad.tools import clone
 from abjad.tools.leaftools.duration_change import duration_change
 
 
+## TODO: Implement leaf_fractured_at_duration( ), leaf_unfractured_at_duration( ) to parallel container split logic. Then generalize to all components. ##
+
 def leaf_at_duration(leaf, split_dur):
    '''Split leaf into left and right lists.
       Left list may be list of one note, many tied notes, or tuplet.
