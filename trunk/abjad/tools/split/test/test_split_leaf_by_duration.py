@@ -93,7 +93,7 @@ def test_split_leaf_by_duration_04( ):
 
    t = Note(0, (1, 4))
    new = split.leaf_by_duration(t, Rational(0))
-   assert isinstance(new, list)
+   assert isinstance(new, tuple)
    assert len(new) == 1
    assert isinstance(new[0], Note)
    assert new[0].duration.written == Rational(1, 4)
@@ -105,7 +105,7 @@ def test_split_leaf_by_duration_05( ):
 
    t = Note(0, (1, 4))
    new = split.leaf_by_duration(t, Rational(3, 4))
-   assert isinstance(new, list)
+   assert isinstance(new, tuple)
    assert len(new) == 1
    assert isinstance(new[0], Note)
    assert new[0].duration.written == Rational(1, 4)
@@ -118,7 +118,7 @@ def test_split_leaf_by_duration_06( ):
    t = Note(0, (1, 4))
    new = split.leaf_by_duration(t, Rational(1, 8))
 
-   assert isinstance(new, list)
+   assert isinstance(new, tuple)
    assert len(new) == 2
    assert len(new[0]) == 1
    assert len(new[1]) == 1
@@ -138,7 +138,7 @@ def test_split_leaf_by_duration_07( ):
    t = Note(0, (1, 4))
    new = split.leaf_by_duration(t, Rational(1, 16))
 
-   assert isinstance(new, list)
+   assert isinstance(new, tuple)
    assert len(new) == 2
    assert len(new[0]) == 1
    assert len(new[1]) == 1
@@ -156,7 +156,7 @@ def test_split_leaf_by_duration_08( ):
    t = Note(0, (1, 4))
    new = split.leaf_by_duration(t, Rational(5, 32))
 
-   assert isinstance(new, list)
+   assert isinstance(new, tuple)
    assert len(new) == 2
    assert len(new[0]) == 2
    assert len(new[1]) == 1

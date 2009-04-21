@@ -15,9 +15,9 @@ def leaf_by_duration(leaf, split_dur):
    leaf_written_duration = leaf.duration.written
    unprolated_split_dur = split_dur / leaf.duration.prolation
    if unprolated_split_dur <= 0:
-      return [leaf]
+      return (leaf, )
    if leaf_written_duration <= unprolated_split_dur:
-      return [leaf]
+      return (leaf, )
 
    new_leaf = clone.unspan([leaf])[0]
    leaf.splice([new_leaf])
@@ -28,6 +28,6 @@ def leaf_by_duration(leaf, split_dur):
 
    l1 = duration_change(leaf, unprolated_split_dur)
    l2 = duration_change(new_leaf, leaf_written_duration - unprolated_split_dur)
-   result = [l1, l2] 
+   result = (l1, l2) 
 
    return result
