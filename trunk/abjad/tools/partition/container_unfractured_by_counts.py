@@ -2,10 +2,9 @@ from abjad.container.container import Container
 from abjad.tools import split
 
 
-def container_by_counts_fractured(container, counts):
+def container_unfractured_by_counts(container, counts):
    '''Partition container into parts of lengths equal to counts.
-      Fracture spanners attaching directly to container.
-      Leave spanners attaching to container contents untouched.
+      Leave all spanners untouched.
       Return Python list of partitioned parts.'''
 
    assert isinstance(container, Container)
@@ -16,7 +15,7 @@ def container_by_counts_fractured(container, counts):
 
    left, right = None, container
    for count in counts:
-      left, right = split.fractured_at_index(right, count)
+      left, right = split.unfractured_at_index(right, count)
       result.append(left)
       if not len(right):
          break

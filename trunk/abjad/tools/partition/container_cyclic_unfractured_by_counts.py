@@ -2,7 +2,7 @@ from abjad.container.container import Container
 from abjad.tools import split
 
 
-def container_cyclic_by_counts_unfractured(container, counts):
+def container_cyclic_unfractured_by_counts(container, counts):
    '''Partition container into parts of lengths equal to counts.
       Read counts cyclically to determine split points.
       Leave all spanners untouched.
