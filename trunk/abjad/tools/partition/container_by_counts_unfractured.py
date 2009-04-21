@@ -19,5 +19,7 @@ def container_by_counts_unfractured(container, counts):
       result.append(left)
       if not len(right):
          break
+   if len(right):
+      result.append(right)
 
    return result

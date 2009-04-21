@@ -24,7 +24,7 @@ def test_partition_container_by_counts_fractured_01( ):
       }
    }'''
 
-   partition.container_cyclic_by_counts_fractured(t[0], [1, 3])
+   parts = partition.container_cyclic_by_counts_fractured(t[0], [1, 3])
 
    r'''\new Voice {
       {
@@ -46,6 +46,7 @@ def test_partition_container_by_counts_fractured_01( ):
    }'''
 
    assert check.wf(t)
+   assert len(parts) == 4
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\td'8 [\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [ ]\n\t}\n\t{\n\t\ta'8 [\n\t\tb'8\n\t\tc''8 ] )\n\t}\n}"
 
 
@@ -65,7 +66,7 @@ def test_partition_container_by_counts_fractured_02( ):
       }
    }'''
 
-   partition.container_cyclic_by_counts_fractured(t[0], [1])
+   parts = partition.container_cyclic_by_counts_fractured(t[0], [1])
 
    r'''\new Voice {
       {
@@ -83,6 +84,7 @@ def test_partition_container_by_counts_fractured_02( ):
    }'''
 
    assert check.wf(t)
+   assert len(parts) == 4
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\td'8 [ ]\n\t}\n\t{\n\t\te'8 [ ]\n\t}\n\t{\n\t\tf'8 [ ] )\n\t}\n}"
 
 
@@ -187,5 +189,5 @@ def test_partition_container_by_counts_fractured_05( ):
    }'''
 
    assert check.wf(t)
-   assert parts == [ ]
+   assert len(parts) == 1
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ (\n\t\td'8\n\t\te'8\n\t\tf'8 ] )\n\t}\n}"

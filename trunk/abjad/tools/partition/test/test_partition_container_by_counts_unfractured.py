@@ -24,7 +24,7 @@ def test_partition_container_by_counts_unfractured_01( ):
       }
    }'''
 
-   partition.container_by_counts_unfractured(t[0], [1, 3])
+   parts = partition.container_by_counts_unfractured(t[0], [1, 3])
 
    r'''\new Voice {
       {
@@ -44,4 +44,5 @@ def test_partition_container_by_counts_unfractured_01( ):
    }'''
 
    assert check.wf(t)
+   assert len(parts) == 3
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ (\n\t}\n\t{\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t\tb'8\n\t\tc''8 ] )\n\t}\n}"

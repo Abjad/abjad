@@ -20,5 +20,7 @@ def container_by_counts_fractured(container, counts):
       result.append(left)
       if not len(right):
          break
+   if len(right):
+      result.append(right)
 
    return result

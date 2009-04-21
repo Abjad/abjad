@@ -26,8 +26,8 @@ def _container_general(container, i, spanners = 'unfractured'):
       meter_denominator = container.meter.effective.denominator
       left_duration = sum([x.duration.prolated for x in left_music])
       right_duration = sum([x.duration.prolated for x in right_music])
-      left = container.__class__(left_duration, left_music)
-      right = container.__class__(right_duration, right_music)
+      left = container.__class__(left_duration or (1, 1), left_music)
+      right = container.__class__(right_duration or (1, 1), right_music)
    elif isinstance(container, _Tuplet):
       meter_denominator = None
       left = container.__class__(1, left_music)
