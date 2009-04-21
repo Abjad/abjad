@@ -4,7 +4,7 @@ from abjad.tools import clone
 from abjad.tools.leaftools.duration_change import duration_change
 
 
-def leaf_by_duration(leaf, split_dur):
+def leaf_at_duration(leaf, split_dur):
    '''Split leaf into left and right lists.
       Left list may be list of one note, many tied notes, or tuplet.
       Right list may be list of one note, many tied notes, or tuplet.'''

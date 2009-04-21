@@ -1,8 +1,8 @@
 from abjad.container.container import Container
 from abjad.leaf.leaf import _Leaf
 from abjad.tools import componenttools
-from abjad.tools.split.leaf_by_duration import leaf_by_duration as \
-   split_leaf_by_duration
+from abjad.tools.split.leaf_at_duration import leaf_at_duration as \
+   split_leaf_at_duration
 from abjad.tools.split._container_general import _container_general as \
    split__container_general
 
@@ -20,7 +20,7 @@ def _at_duration(component, duration, spanners = 'unfractured'):
    last = contents[-1]
    assert isinstance(last, _Leaf)
    split_point = duration - last.offset.score 
-   left_list, right_list = split_leaf_by_duration(last, split_point)
+   left_list, right_list = split_leaf_at_duration(last, split_point)
    right = right_list[0]
    
    ## if container duration crossers, will be front of list
