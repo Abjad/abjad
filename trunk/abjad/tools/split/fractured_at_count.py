@@ -1,7 +1,7 @@
-from abjad.tools.split._container_general import _container_general
+from abjad.tools.split._at_count import _at_count as split__at_count
 
 
-def container_fractured(container, i):
+def fractured_at_count(container, i):
    r'''Splits container in two at given index position.
       Compare with :func:`split.container_fractured( )`.
 
@@ -51,4 +51,4 @@ def container_fractured(container, i):
                  }
          }'''
 
-   return _container_general(container, i, spanners = 'fractured')
+   return split__at_count(container, i, spanners = 'fractured')

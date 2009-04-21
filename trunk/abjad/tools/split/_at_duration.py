@@ -3,8 +3,8 @@ from abjad.leaf.leaf import _Leaf
 from abjad.tools import componenttools
 from abjad.tools.split.leaf_at_duration import leaf_at_duration as \
    split_leaf_at_duration
-from abjad.tools.split._container_general import _container_general as \
-   split__container_general
+from abjad.tools.split._at_count import _at_count as \
+   split__at_count
 
 
 def _at_duration(component, duration, spanners = 'unfractured'):
@@ -35,7 +35,7 @@ def _at_duration(component, duration, spanners = 'unfractured'):
       assert isinstance(cur, Container)
       prev = right
       i = cur.index(prev)
-      left, right = split__container_general(cur, i, spanners = spanners)
+      left, right = split__at_count(cur, i, spanners = spanners)
          
    ## return split input component and split contents, if any
    return ([left], [right])

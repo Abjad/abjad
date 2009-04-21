@@ -16,7 +16,7 @@ def container_by_counts_fractured(container, counts):
 
    left, right = None, container
    for count in counts:
-      left, right = split.container_fractured(right, count)
+      left, right = split.fractured_at_count(right, count)
       result.append(left)
       if not len(right):
          break
