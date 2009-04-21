@@ -58,14 +58,14 @@ def _container_general(container, i, spanners = 'unfractured'):
    if spanners == 'fractured':
       if len(parts) == 2:
          left.spanners.fracture(direction = 'right')
-   
-   # set left and right multiplier equal to container multiplier, if any
+
+   ## set left and right multiplier equal to container multiplier, if any
    containertools.multiplier_set(left, container_multiplier)
    containertools.multiplier_set(right, container_multiplier)
 
-   # set left and right meter denominator, if any
+   ## set left and right meter denominator, if any
    measuretools.denominator_set(left, meter_denominator)
    measuretools.denominator_set(right, meter_denominator)
 
-   # return new left and right parts
+   ## return new left and right parts
    return left, right
