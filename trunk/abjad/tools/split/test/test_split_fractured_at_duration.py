@@ -115,3 +115,72 @@ def test_split_fractured_at_duration_03( ):
    }'''
 
    assert halves[1][0].format == "\\new Staff {\n\t\t\\time 7/32\n\t\tc'16. [\n\t\td'8 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+
+
+def test_split_fractured_at_duration_04( ):
+   '''Duration fracture leaf at nonzero index.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Beam(t[1])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+         \time 2/8
+         c'8 [ (
+         d'8 ]
+         \time 2/8
+         e'8 [
+         f'8 ] )
+   }'''
+
+   split.fractured_at_duration(t.leaves[1], Rational(1, 32))
+
+   r'''\new Staff {
+         \time 2/8
+         c'8 [ (
+         d'32
+         d'16. ]
+         \time 2/8
+         e'8 [
+         f'8 ] )
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32\n\t\td'16. ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+
+
+def test_split_fractured_at_duration_05( ):
+   '''Duration fracture container over leaf at nonzero index.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Beam(t[1])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+         \time 2/8
+         c'8 [ (
+         d'8 ]
+         \time 2/8
+         e'8 [
+         f'8 ] )
+   }'''
+
+   split.fractured_at_duration(t[0], Rational(7, 32))
+
+   r'''\new Staff {
+         \time 7/32
+         c'8 [ (
+         d'16. ]
+         \time 1/32
+         d'32 [ ]
+         \time 2/8
+         e'8 [
+         f'8 ] )
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\t\t\\time 7/32\n\t\tc'8 [ (\n\t\td'16. ]\n\t\t\\time 1/32\n\t\td'32 [ ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"

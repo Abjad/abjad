@@ -18,15 +18,17 @@ def _at_duration(component, duration, spanners = 'unfractured'):
    if duration == 0:
       return (component, )
 
+   global_split_point = component.offset.score + duration
+
    ## get duration crossers, if any
    contents = componenttools.get_duration_crossers(component, duration) 
 
    ## if leaf duration crosser, will be at end of list
    bottom = contents[-1]
    assert isinstance(bottom, _Leaf)
-   #split_point = duration - bottom.offset.score 
-   #left_list, right_list = split__leaf_at_duration(bottom, split_point)
-   left_list, right_list = split__leaf_at_duration(bottom, duration)
+   split_point_in_bottom = global_split_point - bottom.offset.score
+   left_list, right_list = split__leaf_at_duration(
+      bottom, split_point_in_bottom)
    right = right_list[0]
    
    ## if container duration crossers, will be front of list
