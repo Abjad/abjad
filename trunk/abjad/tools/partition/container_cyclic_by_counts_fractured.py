@@ -22,6 +22,5 @@ def container_cyclic_by_counts_fractured(container, counts):
       left, right = split.container_fractured(right, count)
       result.append(left)
       i += 1
-   result.append(right)
 
    return result

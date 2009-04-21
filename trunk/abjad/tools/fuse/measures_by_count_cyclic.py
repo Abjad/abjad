@@ -5,7 +5,7 @@ from abjad.tools.fuse.measures_by_reference import measures_by_reference
 
 def measures_by_count_cyclic(container, part_counts, mark = False):
    '''Iterate measures in 'container'.
-      Fuse accoring to positive integer parts in 'part_counts'.'''
+      Fuse according to positive integer parts in 'part_counts'.'''
 
    assert isinstance(container, Container)
    assert isinstance(part_counts, (tuple, list))
