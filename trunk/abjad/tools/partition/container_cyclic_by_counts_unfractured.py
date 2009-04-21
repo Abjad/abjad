@@ -20,7 +20,7 @@ def container_cyclic_by_counts_unfractured(container, counts):
    if len_counts:
       while 1 < len(right):
          count = counts[i % len_counts]
-         left, right = split.unfractured_at_count(right, count)
+         left, right = split.unfractured_at_index(right, count)
          result.append(left)
          i += 1
       if len(right):

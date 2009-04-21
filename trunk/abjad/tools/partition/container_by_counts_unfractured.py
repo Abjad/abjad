@@ -15,7 +15,7 @@ def container_by_counts_unfractured(container, counts):
 
    left, right = None, container
    for count in counts:
-      left, right = split.unfractured_at_count(right, count)
+      left, right = split.unfractured_at_index(right, count)
       result.append(left)
       if not len(right):
          break

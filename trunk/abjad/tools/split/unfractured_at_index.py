@@ -1,7 +1,7 @@
-from abjad.tools.split._at_count import _at_count as split__at_count
+from abjad.tools.split._at_index import _at_index as split__at_index
 
 
-def unfractured_at_count(container, i):
+def unfractured_at_index(container, i):
    r'''Split container in two just before index i.
       Compare with split.container_fractured( ).
       Special spanner management to leave all spanners in tact.
@@ -41,4 +41,4 @@ def unfractured_at_count(container, i):
                       a'8 ]
       }'''
 
-   return split__at_count(container, i, spanners = 'unfractured')
+   return split__at_index(container, i, spanners = 'unfractured')

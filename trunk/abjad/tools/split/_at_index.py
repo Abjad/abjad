@@ -7,7 +7,7 @@ from abjad.tools.parenttools.switch import _switch
 from abjad.tuplet.tuplet import _Tuplet
 
 
-def _at_count(container, i, spanners = 'unfractured'):
+def _at_index(container, i, spanners = 'unfractured'):
    '''General container count-split algorithm.
       Works on tuplets, measures, contexts and unqualified containers.
       Keyword controls spanner behavior at split time.
