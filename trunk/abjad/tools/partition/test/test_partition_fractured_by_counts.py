@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_partition_container_fractured_by_counts_01( ):
+def test_partition_fractured_by_counts_01( ):
    '''Partition container into parts of lengths equal to counts.
       Read list of counts only once; do not cycle.
       Fracture spanners attaching directly to container.
@@ -24,7 +24,7 @@ def test_partition_container_fractured_by_counts_01( ):
       }
    }'''
 
-   parts = partition.container_fractured_by_counts(t[0], [1, 3])
+   parts = partition.fractured_by_counts(t[:], [1, 3])
 
    r'''\new Voice {
       {
@@ -48,7 +48,7 @@ def test_partition_container_fractured_by_counts_01( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\td'8 [\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8\n\t\tb'8\n\t\tc''8 ] )\n\t}\n}"
 
 
-def test_partition_container_fractured_by_counts_02( ):
+def test_partition_fractured_by_counts_02( ):
    '''Partition by large part count.
       Input container cedes contents to new instance.
       Expression appears unaltered.'''
@@ -67,7 +67,7 @@ def test_partition_container_fractured_by_counts_02( ):
            }
    }'''
 
-   parts = partition.container_fractured_by_counts(t[0], [100])
+   parts = partition.fractured_by_counts(t[:], [100])
 
    r'''\new Voice {
            {
@@ -84,7 +84,7 @@ def test_partition_container_fractured_by_counts_02( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ (\n\t\td'8\n\t\te'8\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_partition_container_fractured_by_counts_03( ):
+def test_partition_fractured_by_counts_03( ):
    '''Partition by large number of part counts.
       First part counts apply and extra part counts do not apply.
       Result contains no empty parts.'''
@@ -102,7 +102,7 @@ def test_partition_container_fractured_by_counts_03( ):
            }
    }'''
 
-   parts = partition.container_fractured_by_counts(t[0], [2, 2, 2, 2, 2])
+   parts = partition.fractured_by_counts(t[:], [2, 2, 2, 2, 2])
 
    r'''\new Voice {
            {
@@ -120,7 +120,7 @@ def test_partition_container_fractured_by_counts_03( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_partition_container_fractured_by_counts_04( ):
+def test_partition_fractured_by_counts_04( ):
    '''Partition by empty part counts list.
       Input container returns within one-element result list.'''
 
@@ -137,7 +137,7 @@ def test_partition_container_fractured_by_counts_04( ):
            }
    }'''
 
-   parts = partition.container_fractured_by_counts(t[0], [ ])
+   parts = partition.fractured_by_counts(t[:], [ ])
 
    r'''\new Voice {
            {
