@@ -8,4 +8,4 @@ def container_fractured_by_counts(container, counts):
       Leave spanners attaching to container contents untouched.
       Return Python list of partitioned parts.'''
 
-   return partition__by_counts(container, counts, spanners = 'fractured')
+   return partition__by_counts([container], counts, spanners = 'fractured')

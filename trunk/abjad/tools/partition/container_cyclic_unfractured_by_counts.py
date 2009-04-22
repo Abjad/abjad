@@ -9,4 +9,4 @@ def container_cyclic_unfractured_by_counts(container, counts):
       Return Python list of partitioned parts.'''
 
    return partition__by_counts(
-      container, counts, spanners = 'unfractured', cyclic = True)
+      [container], counts, spanners = 'unfractured', cyclic = True)

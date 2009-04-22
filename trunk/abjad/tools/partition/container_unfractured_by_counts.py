@@ -7,4 +7,4 @@ def container_unfractured_by_counts(container, counts):
       Leave all spanners untouched.
       Return Python list of partitioned parts.'''
 
-   return partition__by_counts(container, counts, spanners = 'unfractured')
+   return partition__by_counts([container], counts, spanners = 'unfractured')
