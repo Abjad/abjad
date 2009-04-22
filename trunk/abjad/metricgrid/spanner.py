@@ -107,27 +107,30 @@ class MetricGrid(Spanner):
       return True
 
    def splitOnBar(self):
-      from abjad.tools import split
-      leaf = self.leaves[0]
-      meters = self.meters
-      meter = meters.next( )
-      while leaf:
-         if leaf.offset.score < meter.offset:
-            if leaf.offset.score + leaf.duration.prolated > meter.offset and \
-               self.splittingCondition(leaf):
-               ## will split
-               if not leaf.tie.parented:
-                  Tie(leaf)
-               splitdur = meter.offset - leaf.offset.score
-               #leaves_splitted = split.leaf_at_duration(leaf, splitdur)
-               leaves_splitted = split.unfractured_at_duration(leaf, splitdur)
-               leaf = leaves_splitted[0][0]
-            else:
-               ## only advance if we have not split.
-               leaf = leaf.next
-         else:
-            try:
-               meter = meters.next( )
-            except StopIteration:
-               break 
+      from abjad.tools import partition
+#      from abjad.tools import split
+#      leaf = self.leaves[0]
+#      meters = self.meters
+#      meter = meters.next( )
+#      while leaf:
+#         if leaf.offset.score < meter.offset:
+#            if leaf.offset.score + leaf.duration.prolated > meter.offset and \
+#               self.splittingCondition(leaf):
+#               ## will split
+#               if not leaf.tie.parented:
+#                  Tie(leaf)
+#               splitdur = meter.offset - leaf.offset.score
+#               #leaves_splitted = split.leaf_at_duration(leaf, splitdur)
+#               leaves_splitted = split.unfractured_at_duration(leaf, splitdur)
+#               leaf = leaves_splitted[0][0]
+#            else:
+#               ## only advance if we have not split.
+#               leaf = leaf.next
+#         else:
+#            try:
+#               meter = meters.next( )
+#            except StopIteration:
+#               break 
+      leaves = [leaf for leaf in self.leaves if self.splittingCondition(leaf)]
+      partition.cyclic_unfractured_by_durations(leaves, [x.duration for x in self.meters], tie_after = True)
       self._fuseTiedLeavesWithinMeasures( )
