@@ -1,5 +1,8 @@
 from abjad import *
+import py.test
 
+
+py.test.skip('Deprecated.')
 
 def test_partition_leaves_cyclic_unfractured_by_durations_01( ):
    '''Split leaves with split points taken cyclically from 'durations'.'''
@@ -17,7 +20,8 @@ def test_partition_leaves_cyclic_unfractured_by_durations_01( ):
          f'8 ]
    }'''
 
-   partition.leaves_cyclic_unfractured_by_durations(t.leaves, [(1, 16)])
+   partition.leaves_cyclic_unfractured_by_durations(
+      t.leaves, [Rational(1, 16)])
 
    r'''\new Voice {
          \time 2/8
@@ -43,7 +47,7 @@ def test_partition_leaves_cyclic_unfractured_by_durations_02( ):
    t = Voice(Note(0, (3, 8)) * 4)
    pitchtools.diatonicize(t)
 
-   partition.leaves_cyclic_unfractured_by_durations(t.leaves, [(1, 4)])
+   partition.leaves_cyclic_unfractured_by_durations(t.leaves, [Rational(1, 4)])
 
    r'''\new Voice {
       c'4 ~

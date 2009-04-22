@@ -58,8 +58,8 @@ def _by_durations(components, durations,
          #print 'must split %s' % x
          local_split_duration = next_split_point - cum_duration
          #print cum_duration, next_split_point, x, part, local_split_duration
-         left_list, right_list = split__at_duration(
-            x, local_split_duration, spanners = spanners)
+         left_list, right_list = split__at_duration(x, local_split_duration, 
+            spanners = spanners, tie_after = tie_after)
          #print 'left_list, right_list %s, %s' % (left_list, right_list)
          part.extend(left_list)
          result.append(part)

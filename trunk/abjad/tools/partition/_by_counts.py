@@ -57,8 +57,8 @@ def _by_counts(components, counts, spanners = 'unfractured', cyclic = False):
       else:
          ## try to grab enough container contents to fill current part
          comp_still_needed = count - cum_comp_in_this_part
-         left, right = split__at_index(
-            x, comp_still_needed, spanners = spanners)
+         left, right = split__at_index(x, comp_still_needed, 
+            spanners = spanners)
          ## accept whatever num of container contents came back and append
          part.append(left)
          cum_comp_in_this_part += len(left)

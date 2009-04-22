@@ -33,9 +33,12 @@ def _at_duration(
    ## if leaf duration crosser, will be at end of list
    bottom = contents[-1]
 
+   did_split_leaf = False
+
    ## if split point necessitates leaf split
    if isinstance(bottom, _Leaf):
       assert isinstance(bottom, _Leaf)
+      did_split_leaf = True
       split_point_in_bottom = global_split_point - bottom.offset.score
       left_list, right_list = split__leaf_at_duration(bottom, 
          split_point_in_bottom, spanners = spanners, tie_after = tie_after)
@@ -73,14 +76,16 @@ def _at_duration(
 
    ## crawl above will kill any tie applied to leaves
    ## reapply tie here if necessary
-   if tie_after:
-      leaves_at_split = [leaf_left_of_split, leaf_right_of_split]
-      if not tietools.are_in_same_spanner(leaves_at_split):
-         if all([x.tie.spanned for x in leaves_at_split]):
-            leaf_left_of_split.tie.spanner.fuse(
-               leaf_right_of_split.tie.spanner)
-         else:
-            Tie(leaves_at_split)
+   ## TODO: Possibly replace this with tietools.span_leaf_pair( )? ##
+   if did_split_leaf:
+      if tie_after:
+         leaves_at_split = [leaf_left_of_split, leaf_right_of_split]
+         if not tietools.are_in_same_spanner(leaves_at_split):
+            if all([x.tie.spanned for x in leaves_at_split]):
+               leaf_left_of_split.tie.spanner.fuse(
+                  leaf_right_of_split.tie.spanner)
+            else:
+               Tie(leaves_at_split)
          
    ## return pair of left and right list-wrapped halves of container
    return ([left], [right])
