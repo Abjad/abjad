@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 from abjad.cfg.cfg import ABJADPATH
+from _filter_files import _filter_files
+from _filter_directories import  _filter_directories
 import os
 
 def make_sphinx_listing(package, files):
@@ -16,20 +18,6 @@ def make_sphinx_listing(package, files):
    return result
 
 
-def _filter_directories(dirs):
-   ## remove .svn and test directories
-   try:
-      dirs.remove('.svn')
-      dirs.remove('test')
-   except ValueError:
-      pass
-
-
-def _filter_files(files):
-   ## remove keep only *.py files.
-   for f in files[:]:
-      if not f.endswith('.py') or f.startswith('_'):
-         files.remove(f)
 
 
 tools_path = os.path.join(ABJADPATH, 'tools')
