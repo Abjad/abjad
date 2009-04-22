@@ -1,5 +1,5 @@
-from abjad.tools.partition._cyclic_by_counts import _cyclic_by_counts as \
-   partition__cyclic_by_counts
+from abjad.tools.partition._by_counts import _by_counts as \
+   partition__by_counts
 
 
 def container_cyclic_fractured_by_counts(container, counts):
@@ -8,4 +8,5 @@ def container_cyclic_fractured_by_counts(container, counts):
       Leave spanners attaching to container contents untouched.
       Return Python list of partitioned parts.'''
 
-   return partition__cyclic_by_counts(container, counts, spanners = 'fractured')
+   return partition__by_counts(
+      container, counts, spanners = 'fractured', cyclic = True)
