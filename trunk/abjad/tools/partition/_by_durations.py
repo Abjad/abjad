@@ -4,6 +4,8 @@ from abjad.tools import split
 from abjad.tools.split._at_duration import _at_duration as split__at_duration
 
 
+## TODO: Take care of bug that unintentionally fractures ties. ##
+
 def _by_durations(
    components, durations, spanners = 'unfractured', cyclic = False):
    '''Partition Python list of components according to durations.
