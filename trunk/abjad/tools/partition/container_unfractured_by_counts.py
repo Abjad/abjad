@@ -1,5 +1,5 @@
-from abjad.container.container import Container
-from abjad.tools import split
+from abjad.tools.partition._by_counts import _by_counts as \
+   partition__by_counts
 
 
 def container_unfractured_by_counts(container, counts):
@@ -7,19 +7,4 @@ def container_unfractured_by_counts(container, counts):
       Leave all spanners untouched.
       Return Python list of partitioned parts.'''
 
-   assert isinstance(container, Container)
-   assert isinstance(counts, list)
-   assert all([isinstance(x, int) and 0 < x for x in counts])
-
-   result = [ ]
-
-   left, right = None, container
-   for count in counts:
-      left, right = split.unfractured_at_index(right, count)
-      result.append(left)
-      if not len(right):
-         break
-   if len(right):
-      result.append(right)
-
-   return result
+   return partition__by_counts(container, counts, spanners = 'unfractured')
