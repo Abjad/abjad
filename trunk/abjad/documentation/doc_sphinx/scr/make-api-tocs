@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+from abjad.cfg.cfg import ABJADPATH
+from _create_subdirs_interactive import _create_subdirs_interactive
+from _filter_files import _filter_files
+from _filter_directories import  _filter_directories
+from _get_module_members import _get_module_members
+from _write_file_interactive import _write_file_interactive
+from make_sphinx_toc import make_sphinx_toc
+from make_sphinx_module_listing import make_sphinx_module_listing
+import os
+import types
+
+api_doc_path = os.path.join(ABJADPATH, 'documentation', 'doc_sphinx', 
+   'chapters', 'api')
+
+
+
+def make_api_tocs( ):
+   modules_visited = [ ]
+   for current_root, dirs, files in os.walk(ABJADPATH):
+      ## removed unwanted dirs and files.
+      filtered_dirs = ['.svn', 'cfg', 'demos', 'documentation', 'scm', 
+         'scr', 'test', 'tools']
+      _filter_directories(dirs, filtered_dirs)
+      _filter_files(files)
+      dirs.sort( )
+      files.sort( )
+
+      ## make subdirectories in docs if needed
+      #abjad_subdir = current_root[current_root.rindex('abjad'):]
+      abjad_subdir = current_root.split('abjad')[-1].strip(os.path.sep)
+      root_dir = os.path.join(api_doc_path, abjad_subdir)
+      _create_subdirs_interactive(root_dir, dirs)
+
+      ## make shinx listing of modules
+      for file in files:
+         listing = make_sphinx_module_listing('abjad/' + abjad_subdir, file)
+         #print listing
+         
+         ## write listing to file
+         rst_file = file.split('.')[0] + '.rst'
+         index = os.path.join(root_dir, rst_file)
+         _write_file_interactive(listing, index)
+
+         ## keep track of modules visited
+         mod = os.path.join(abjad_subdir, file.split('.')[0])
+         modules_visited.append(mod)
+
+   toc = make_sphinx_toc(modules_visited)
+   #print toc
+   index = os.path.join(api_doc_path, 'index.rst')
+   _write_file_interactive(toc, index)
+
+
+if __name__ == '__main__':
+   make_api_tocs( )
