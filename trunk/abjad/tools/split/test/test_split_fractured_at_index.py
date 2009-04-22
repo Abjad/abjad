@@ -231,8 +231,7 @@ def test_split_fractured_at_index_06( ):
 
 
 def test_split_fractured_at_index_07( ):
-   '''Index split measure in score.
-      Fracture spanners.'''
+   '''Index split measure in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
    pitchtools.diatonicize(t)
@@ -263,3 +262,75 @@ def test_split_fractured_at_index_07( ):
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+
+
+def test_split_fractured_at_index_08( ):
+   '''Index split left of leaf in score and fracture spanners.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Beam(t[1])
+   slur = Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 2/8
+                   c'8 [ (
+                   d'8 ]
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+   }'''
+
+   leaf = t.leaves[1]
+   left, right = split.fractured_at_index(leaf, -100)
+
+   r'''\new Staff {
+         \time 2/8
+         c'8 ( ) [
+         d'8 ] (
+         \time 2/8
+         e'8 [
+         f'8 ] )
+   }'''
+   
+   assert check.wf(t)
+   assert left is None
+   assert right is leaf
+   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+
+   
+def test_split_fractured_at_index_09( ):
+   '''Index split right of leaf in score and fracture spanners.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Beam(t[1])
+   slur = Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 2/8
+                   c'8 [ (
+                   d'8 ]
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+   }'''
+
+   leaf = t.leaves[1]
+   left, right = split.fractured_at_index(leaf, 100)
+
+   r'''\new Staff {
+         \time 2/8
+         c'8 [ (
+         d'8 ] )
+         \time 2/8
+         e'8 [ (
+         f'8 ] )
+   }'''
+
+   assert check.wf(t)
+   assert left is leaf
+   assert right is None
+   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n}"

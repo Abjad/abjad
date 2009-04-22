@@ -3,7 +3,7 @@ import py.test
 
 
 def test_split_unfractured_at_index_01( ):
-   '''Hew triplet.'''
+   '''Index split tuplet in score and do not fracture spanners.'''
 
    t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
@@ -44,7 +44,7 @@ def test_split_unfractured_at_index_01( ):
 
 
 def test_split_unfractured_at_index_02( ):
-   '''Hew binary measure.'''
+   '''Index split binary measure in score and do not fracture spanners.'''
 
    t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
@@ -80,7 +80,7 @@ def test_split_unfractured_at_index_02( ):
 
 
 def test_split_unfractured_at_index_03( ):
-   '''Hew nonbinary measure.'''
+   '''Index split nonbinary measure in score and do not frature spanners.'''
 
    t = Voice(RigidMeasure((3, 9), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
@@ -126,7 +126,7 @@ def test_split_unfractured_at_index_03( ):
 
 
 def test_split_unfractured_at_index_04( ):
-   '''A single container can be split in two by the middle;
+   '''A single container can be index split in two by the middle;
       no parent.'''
 
    t = Voice(construct.scale(4))
@@ -190,8 +190,7 @@ def test_split_unfractured_at_index_06( ):
 
 
 def test_split_unfractured_at_index_07( ):
-   '''Voice can be split but automatic reinsertion to parent
-      raises ContiguityError.'''
+   '''Voice can be index split.'''
 
    t = Staff([Voice(construct.scale(4))])
    v = t[0]
@@ -206,8 +205,7 @@ def test_split_unfractured_at_index_07( ):
 
 
 def test_split_unfractured_at_index_08( ):
-   '''Spanners attached to hewn container reattach
-      to all resulting hewn parts.'''
+   '''Index split container in score and do not fracture spanners.'''
 
    t = Staff([Container(construct.scale(4))])
    v = t[0]
@@ -232,10 +230,8 @@ def test_split_unfractured_at_index_08( ):
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-   
 def test_split_unfractured_at_index_09( ):
-   '''Hewing a container with parent results in parented 
-      sibling containers.'''
+   '''Index split tuplet in score and do not fracture spanners.'''
 
    t = Staff([Voice([FixedMultiplierTuplet((4, 5), construct.run(5))])])
    v = t[0]
@@ -263,3 +259,79 @@ def test_split_unfractured_at_index_09( ):
    assert tuplet.format == '\\times 4/5 {\n}'
    assert v.format == "\\new Voice {\n\t\\times 4/5 {\n\t\tc'8 [\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\t\\times 4/5 {\n\t\t\tc'8 [\n\t\t\tc'8\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8 ]\n\t\t}\n\t}\n}"
+
+
+def test_split_unfractured_at_duration_10( ):
+   '''Index split left of leaf in score and do not fracture spanners.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Beam(t[1])
+   slur = Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 2/8
+                   c'8 [ (
+                   d'8 ]
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+   }'''
+
+   leaf = t.leaves[1]
+   left, right = split.unfractured_at_index(leaf, -100)
+
+   "Score is unchanged."
+
+   r'''\new Staff {
+                   \time 2/8
+                   c'8 [ (
+                   d'8 ]
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+   }'''
+
+   assert check.wf(t)
+   assert left is None
+   assert right is leaf
+   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+
+
+def test_split_unfractured_at_duration_11( ):
+   '''Index split right of leaf in score and do not fracture spanners.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Beam(t[1])
+   slur = Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 2/8
+                   c'8 [ (
+                   d'8 ]
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+   }'''
+
+   leaf = t.leaves[1]
+   left, right = split.unfractured_at_index(leaf, 100)
+
+   "Score is unchanged."
+
+   r'''\new Staff {
+                   \time 2/8
+                   c'8 [ (
+                   d'8 ]
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+   }'''
+
+   assert check.wf(t)
+   assert left is leaf
+   assert right is None
+   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"

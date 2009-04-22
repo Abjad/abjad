@@ -37,7 +37,6 @@ def test_split_unfractured_at_duration_01( ):
    assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'32 [ (\n\t\tc'16.\n\t\td'8 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
 
 
-
 def test_split_unfractured_at_duration_02( ):
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)

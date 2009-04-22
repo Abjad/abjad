@@ -1,3 +1,4 @@
+from abjad.leaf.leaf import _Leaf
 from abjad.measure.measure import _Measure
 from abjad.tools import containertools
 from abjad.tools import measuretools
@@ -13,6 +14,21 @@ def _at_index(container, i, spanners = 'unfractured'):
       Keyword controls spanner behavior at split time.
       Use split.container_fractured( ) to fracture spanners.
       Use split.container_unfractured( ) to leave spanners unchanged.'''
+
+   ## TODO: Change input parameter name from 'container' to 'component' ##
+
+   ## convenience definition leaf split at index
+   if isinstance(container, _Leaf):
+      if i <= 0:
+         print 'foo'
+         if spanners == 'fractured':
+            print 'bar'
+            container.spanners.fracture(direction = 'left')
+         return None, container
+      else:
+         if spanners == 'fractured':
+            container.spanners.fracture(direction = 'right')
+         return container, None
 
    ## remember container multiplier, if any
    container_multiplier = getattr(container.duration, 'multiplier', None)
