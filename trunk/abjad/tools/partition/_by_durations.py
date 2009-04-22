@@ -6,24 +6,28 @@ from abjad.tools.split._at_duration import _at_duration as split__at_duration
 
 ## TODO: Take care of bug that unintentionally fractures ties. ##
 
-def _by_durations(
-   components, durations, spanners = 'unfractured', cyclic = False):
+def _by_durations(components, durations, 
+   spanners = 'unfractured', cyclic = False, tie_after = False):
    '''Partition Python list of components according to durations.
       Interpret durations as prolated durations.
       Return list of newly split parts.'''
 
+   ## check input
    check.assert_components(components)
    assert isinstance(durations, list)
    assert all([isinstance(x, (int, float, Rational)) for x in durations])
 
+   ## initialize loop variables
    result = [ ]
-
+   part = [ ]
    duration_index = 0 
    len_durations = len(durations)
-   part = [ ]
    cum_duration = Rational(0)
-
    xx = components[:]
+
+   ## loop and build partition parts
+   ## grab next component from input stack every time through loop
+   ## grab size of current part every time, though part may still be filling
    while True:
       #print 'xx are now %s' % xx
       try:
@@ -33,12 +37,15 @@ def _by_durations(
             next_split_point = durations[duration_index]
       except IndexError:
          break
+      ## grab next component from input stack of components
       try:
          x = xx.pop(0)
       except IndexError:
          break
+      ## find where end point of current component will position us
       next_cum_duration = cum_duration + x.duration.prolated
-      #print x, duration_index, cum_duration, next_split_point, next_cum_duration
+      #print x, duration_index, cum_duration, next_split_point
+      ## if current component fills duration of current part exactly
       if next_cum_duration == next_split_point:
          #print 'exactly equal %s' % x
          part.append(x)
@@ -46,6 +53,7 @@ def _by_durations(
          part = [ ]
          cum_duration = Rational(0)
          duration_index += 1
+      ## if current component exceeds duration of current part
       elif next_split_point < next_cum_duration:
          #print 'must split %s' % x
          local_split_duration = next_split_point - cum_duration
@@ -59,15 +67,20 @@ def _by_durations(
          xx[0:0] = right_list
          duration_index += 1
          cum_duration = Rational(0)
+      ## if current component does not fill duration of current part
       else:
          #print 'simple append %s' % x
          part.append(x)
          cum_duration += x.duration.prolated
       #print ''
 
+   ## append stub part, if any 
    if len(part):
       result.append(part)
+
+   ## append unexamined components, if any
    if len(xx):
       result.append(xx)
       
+   ## return list of parts, each of which is a list of components
    return result
