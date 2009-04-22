@@ -3,7 +3,7 @@ import py.test
 
 
 def test_split_fractured_at_index_01( ):
-   '''Split beamed triplet.'''
+   '''Index split triplet, and fracture spanners.'''
 
    t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    tuplet = t[1]
@@ -48,7 +48,7 @@ def test_split_fractured_at_index_01( ):
 
 
 def test_split_fractured_at_index_02( ):
-   '''Split binary measure.'''
+   '''Index split binary measure, and fracture spanners.'''
 
    t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
    m = t[1]
@@ -88,7 +88,7 @@ def test_split_fractured_at_index_02( ):
 
 
 def test_split_fractured_at_index_03( ):
-   '''Split nonbinary measure.'''
+   '''Index split nonbinary measure, and fracture spanners.'''
 
    t = Voice(RigidMeasure((3, 9), construct.run(3)) * 2)
    m = t[1]
@@ -138,8 +138,8 @@ def test_split_fractured_at_index_03( ):
 
 
 def test_split_fractured_at_index_04( ):
-   '''A single container can be split in two by the middle.
-      No parent.'''
+   '''Index split voice outside of score.
+      Fracture spanners.'''
 
    t = Voice(construct.scale(4))
    Beam(t[:])
@@ -228,3 +228,38 @@ def test_split_fractured_at_index_06( ):
    assert right.format == '\\new Voice {\n}'
    assert v.format == '\\new Voice {\n}'
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+
+
+def test_split_fractured_at_index_07( ):
+   '''Index split measure in score.
+      Fracture spanners.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Beam(t[1])
+   slur = Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 2/8
+                   c'8 [ (
+                   d'8 ]
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+   }'''
+
+   left, right = split.fractured_at_index(t[0], 1)
+
+   r'''\new Staff {
+                   \time 1/8
+                   c'8 [ ] (
+                   \time 1/8
+                   d'8 [ ]
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"

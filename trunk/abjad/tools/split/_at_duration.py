@@ -35,7 +35,7 @@ def _at_duration(component, duration, spanners = 'unfractured'):
       assert isinstance(bottom, _Leaf)
       split_point_in_bottom = global_split_point - bottom.offset.score
       left_list, right_list = split__leaf_at_duration(
-         bottom, split_point_in_bottom)
+         bottom, split_point_in_bottom, spanners = spanners)
       right = right_list[0]
       containers = contents[:-1]
       if not len(containers):
@@ -51,6 +51,9 @@ def _at_duration(component, duration, spanners = 'unfractured'):
             break
       else:
          raise ContainmentError('can not split empty container.')
+   
+   if spanners == 'fractured':
+      right.spanners.fracture(direction = 'left')
    
    ## crawl back up through container duration crossers
    ## split each container duration crosser
