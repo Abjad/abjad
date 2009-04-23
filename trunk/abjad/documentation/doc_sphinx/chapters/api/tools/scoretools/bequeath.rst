@@ -1,0 +1,6 @@
+abjad.tools.scoretools.bequeath
+===============================
+
+.. automodule:: abjad.tools.scoretools.bequeath
+
+.. autofunction:: abjad.tools.scoretools.bequeath.bequeath

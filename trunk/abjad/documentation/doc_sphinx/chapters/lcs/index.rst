@@ -16,6 +16,8 @@ Abjad, it is probably easier to base the discussion on concrete
 musical examples. Let's begin with a simple and rather abstract
 musical fragment: a measure with nested tuplets.
 
+.. image:: images/1.png
+
 What we see in this little fragment is a measure with 4/4 meter, 14
 notes and four tuplet brackets prolating the notes. The three bottom
 tuplets (with ratios 5:4, 3:2, 5:4) prolate all but the last note. The
@@ -31,7 +33,7 @@ measure that contains a tuplet that contains tuplets that contain
 notes. The structure of the measure with nested tuplets as we have
 just described it has two important properties:
 
-#. It is a **hierarchic(al)** structure.
+#. It is a **hierarchical** structure.
 #. It follows **exclusive membership**, meaning that each element in
    the hierarchy (a note, a tuplet or a measure) has one and only one
    **parent**. In other words a single note is not contained in more than
@@ -41,7 +43,6 @@ just described it has two important properties:
 What we are describing here is a tree, and it is the structure of
 Abjad **Containers**.
 
-.. image:: images/1.png
 
 While this tree structure seem like the right way to represent the
 relationships between the elements of a score, it is not enough.

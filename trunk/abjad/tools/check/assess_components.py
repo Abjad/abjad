@@ -385,39 +385,39 @@ def __are_strictly_contiguous_components_in_same_thread(
 
 def __are_thread_contiguous_components(expr, klasses = (_Component), 
    allow_orphans = True):
-   r'''True when expr is a Python list of Abjad components, and
+   r'''True when *expr* is a Python list of Abjad components, and
       when there exists no foreign component C_f not in list such that
       C_f occurs temporally between any of the components in list.
 
       Thread-contiguous components are definitionally spannable.
 
-      Example:
+      Example::
 
-      t = Voice(construct.run(4))
-      t.insert(2, Voice(construct.run(2)))
-      Container(t[:2])
-      Container(t[-2:])
-      pitchtools.diatonicize(t)
+         t = Voice(construct.run(4))
+         t.insert(2, Voice(construct.run(2)))
+         Container(t[:2])
+         Container(t[-2:])
+         pitchtools.diatonicize(t)
 
-      \new Voice {
-         {
-            c'8
-            d'8
-         }
          \new Voice {
-            e'8
-            f'8
+            {
+               c'8
+               d'8
+            }
+            \new Voice {
+               e'8
+               f'8
+            }
+            {
+               g'8
+               a'8
+            }
          }
-         {
-            g'8
-            a'8
-         }
-      }
 
-      assert _are_thread_contiguous_components(t[0:1] + t[-1:])
-      assert _are_thread_contiguous_components(t[0][:] + t[-1:])
-      assert _are_thread_contiguous_components(t[0:1] + t[-1][:])
-      assert _are_thread_contiguous_components(t[0][:] + t[-1][:])'''
+         assert _are_thread_contiguous_components(t[0:1] + t[-1:])
+         assert _are_thread_contiguous_components(t[0][:] + t[-1:])
+         assert _are_thread_contiguous_components(t[0:1] + t[-1][:])
+         assert _are_thread_contiguous_components(t[0][:] + t[-1][:])'''
 
    if not isinstance(expr, (list, types.GeneratorType)):
       raise TypeError('Must be list of Abjad components.')
