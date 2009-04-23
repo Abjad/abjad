@@ -11,7 +11,11 @@ class _Observer(_Interface):
    ## PRIVATE METHODS ##
 
    def _makeSubjectUpdateIfNecessary(self):
-      observerSubject = self._client._update
+      try:
+         observerSubject = self._client._update
+      except AttributeError:
+         ## t.offset.prolated
+         observerSubject = self._client._client._update
       if not observerSubject._currentToRoot:
          if getattr(_CFG, 'update', True):
             observerSubject._updateAll( )
