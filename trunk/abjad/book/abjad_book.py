@@ -79,7 +79,7 @@ def _abjad_book( ):
    if out_fn:
       file = open(out_fn, 'w')
    else:
-      file = open('%s_abj.%s' % (fn_root, fn_extension), 'w')
+      file = open('%s_abj%s' % (fn_root, fn_extension), 'w')
 
    file.writelines(a.process( ))
    file.close( )
