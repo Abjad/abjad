@@ -27,17 +27,17 @@ def get_dominant(components):
    
    first, last = components[0], components[-1]
 
-#   subtree_begin = first.offset.score
-#   subtree_end = last.offset.score + last.duration.prolated
+#   subtree_begin = first.offset.prolated.start
+#   subtree_end = last.offset.prolated.start + last.duration.prolated
 
 #   for component in iterate.naive(first, _Component):
-#      if component.offset.score == subtree_begin:
+#      if component.offset.prolated.start == subtree_begin:
 #         for spanner in component.spanners.attached:
 #            if spanner.offset.start <= subtree_begin:
 #               if subtree_end <= spanner.offset.stop:
 #                  index = spanner.index(component)
 #                  receipt.add((spanner, index))
-#      elif subtree_begin < component.offset.score:
+#      elif subtree_begin < component.offset.prolated.start:
 #         break
 
    start_components = first._navigator._contemporaneousStartContents

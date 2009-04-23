@@ -25,7 +25,7 @@ def _at_duration(
       return (component, )
 
    ## get global position of duration split in score
-   global_split_point = component.offset.score + duration
+   global_split_point = component.offset.prolated.start + duration
 
    ## get duration crossers, if any
    contents = componenttools.get_duration_crossers(component, duration) 
@@ -39,7 +39,7 @@ def _at_duration(
    if isinstance(bottom, _Leaf):
       assert isinstance(bottom, _Leaf)
       did_split_leaf = True
-      split_point_in_bottom = global_split_point - bottom.offset.score
+      split_point_in_bottom = global_split_point - bottom.offset.prolated.start
       left_list, right_list = split__leaf_at_duration(bottom, 
          split_point_in_bottom, spanners = spanners, tie_after = tie_after)
       right = right_list[0]
@@ -54,7 +54,7 @@ def _at_duration(
    else:
       containers = contents[:]
       for leaf in iterate.naive(bottom, _Leaf):
-         if leaf.offset.score == global_split_point:
+         if leaf.offset.prolated.start == global_split_point:
             right = leaf
             leaf_right_of_split = right
             leaf_left_of_split = right.prev

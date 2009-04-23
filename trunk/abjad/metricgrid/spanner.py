@@ -25,7 +25,7 @@ class MetricGrid(Spanner):
       leaf = self.leaves[0]
       ## group leaves by measure.
       while leaf:
-         if leaf.offset.score < meter.offset + meter.duration:
+         if leaf.offset.prolated.start < meter.offset + meter.duration:
             leaves_in_meter[-1].append(leaf)
             leaf = leaf.next
          else:
@@ -62,14 +62,14 @@ class MetricGrid(Spanner):
    def _matchingMeter(self, leaf):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''
       for m in self.meters:
-         if leaf.offset.score == m.offset: 
+         if leaf.offset.prolated.start == m.offset: 
             return m
 
    def _slicingMeters(self, leaf):
       '''Return the MetricStrip(s) that slices leaf, if any.'''
       for m in self.meters:
-         if leaf.offset.score < m.offset:
-            if leaf.offset.score + leaf.duration.prolated > m.offset:
+         if leaf.offset.prolated.start < m.offset:
+            if leaf.offset.prolated.start + leaf.duration.prolated > m.offset:
                yield m 
             else:
                break
@@ -113,13 +113,13 @@ class MetricGrid(Spanner):
 #      meters = self.meters
 #      meter = meters.next( )
 #      while leaf:
-#         if leaf.offset.score < meter.offset:
-#            if leaf.offset.score + leaf.duration.prolated > meter.offset and \
+#         if leaf.offset.prolated.start < meter.offset:
+#            if leaf.offset.prolated.start + leaf.duration.prolated > meter.offset and \
 #               self.splittingCondition(leaf):
 #               ## will split
 #               if not leaf.tie.parented:
 #                  Tie(leaf)
-#               splitdur = meter.offset - leaf.offset.score
+#               splitdur = meter.offset - leaf.offset.prolated.start
 #               #leaves_splitted = split.leaf_at_duration(leaf, splitdur)
 #               leaves_splitted = split.unfractured_at_duration(leaf, splitdur)
 #               leaf = leaves_splitted[0][0]

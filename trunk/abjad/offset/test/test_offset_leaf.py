@@ -7,34 +7,34 @@ py.test.skip('Revise tests.')
 def test_offset_leaves_01( ):
    t = Voice(construct.run(16))
    for i, x in enumerate(t):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
 
 
 def test_offset_leaves_02( ):
    t = Staff(construct.run(16))
    for i, x in enumerate(t):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
 
 
 def test_offset_leaves_03( ):
    t = Staff(construct.run(16))
    t[10] = Rest((1, 8))
    for i, x in enumerate(t):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
  
 
 def test_offset_leaves_04( ):
    t = Staff(construct.run(16))
    t[10 : 10] = [Rest((1, 8))]
    for i, x in enumerate(t):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
  
 
 def test_offset_leaves_05( ):
    t = Staff(construct.run(16))
    t[10 : 12] = [Rest((1, 8))]
    for i, x in enumerate(t):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
 
 
 def test_offset_leaves_06( ):
@@ -44,7 +44,7 @@ def test_offset_leaves_06( ):
    v1.name = v2.name = 'voice'
    t = Container([v1, v2])
    for i, x in enumerate(t.leaves):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
 
 
 ### tuplets ###
@@ -52,7 +52,7 @@ def test_offset_leaves_06( ):
 def test_offset_leaves_10( ):
    t = FixedDurationTuplet((1,4), construct.run(3))
    for i, x in enumerate(t):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 12)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 12)
 
 
 def test_offset_leaves_11( ):
@@ -60,7 +60,7 @@ def test_offset_leaves_11( ):
    t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
    offset = 0
    for x, d in zip(t.leaves, [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]):
-      assert x.offset.thread == x.offset.score == offset
+      assert x.offset.thread == x.offset.prolated.start == offset
       offset += Rational(*d)
 
 
@@ -70,7 +70,7 @@ def test_offset_leaves_12( ):
    t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
    offset = 0
    for x, d in zip(t.leaves, [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
-      assert x.offset.thread == x.offset.score == offset
+      assert x.offset.thread == x.offset.prolated.start == offset
       offset += Rational(*d)
 
 
@@ -83,9 +83,9 @@ def test_offset_leaves_13( ):
    t = Staff([v1, v2])
    t.parallel = True
    for i, x in enumerate(v1):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
    for i, x in enumerate(v2):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
 
 
 ## nested contexts ##
@@ -95,10 +95,10 @@ def test_offset_leaves_14( ):
    v = Voice(construct.run(4))
    t = Staff([Note(0, (1, 8)), v, Note(0, (1, 8))])
    for i, x in enumerate(t.leaves):
-      assert x.offset.score == i * Rational(1, 8)
+      assert x.offset.prolated.start == i * Rational(1, 8)
    for i, x in enumerate(v.leaves):
       assert x.offset.thread == i * Rational(1, 8) 
-      assert x.offset.score == i * Rational(1, 8) + Rational(1, 8)
+      assert x.offset.prolated.start == i * Rational(1, 8) + Rational(1, 8)
    
    
 def test_offset_leaves_15( ):
@@ -107,10 +107,10 @@ def test_offset_leaves_15( ):
    v2 = Voice(construct.run(4))
    t = Staff([v1, v2])
    for i, x in enumerate(v1.leaves):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
    for i, x in enumerate(v2.leaves):
       assert x.offset.thread  == i * Rational(1, 8)
-      assert x.offset.score  == i * Rational(1, 8) + Rational(1, 2)
+      assert x.offset.prolated.start  == i * Rational(1, 8) + Rational(1, 2)
 
 
 def test_offset_leaves_16( ):
@@ -120,9 +120,9 @@ def test_offset_leaves_16( ):
    t = Staff([v1, v2])
    t.parallel = True
    for i, x in enumerate(v1.leaves):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
    for i, x in enumerate(v2.leaves):
-      assert x.offset.thread == x.offset.score == i * Rational(1, 8)
+      assert x.offset.thread == x.offset.prolated.start == i * Rational(1, 8)
 
 
 def test_offset_leaves_17( ):
@@ -134,7 +134,7 @@ def test_offset_leaves_17( ):
    t[0].parallel = True
    for i, x in enumerate(v3.leaves):
       assert x.offset.thread == i * Rational(1, 8)
-      assert x.offset.score == i * Rational(1, 8) + Rational(4, 8)
+      assert x.offset.prolated.start == i * Rational(1, 8) + Rational(4, 8)
 
 
 def test_offset_leaves_18( ):
@@ -146,7 +146,7 @@ def test_offset_leaves_18( ):
    t[1].parallel = True
    for i, x in enumerate(v1.leaves):
       assert x.offset.thread == i * Rational(1, 8)
-      assert x.offset.score == i * Rational(1, 8) + Rational(4, 8)
+      assert x.offset.prolated.start == i * Rational(1, 8) + Rational(4, 8)
    for i, x in enumerate(v2.leaves):
       assert x.offset.thread == i * Rational(1, 8)
-      assert x.offset.score == i * Rational(1, 8) + Rational(4, 8)
+      assert x.offset.prolated.start == i * Rational(1, 8) + Rational(4, 8)

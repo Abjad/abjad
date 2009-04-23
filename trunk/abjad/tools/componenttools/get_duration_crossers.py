@@ -14,11 +14,11 @@ def get_duration_crossers(component, duration):
    if component.duration.prolated <= duration:
       return result
 
-   boundary_time = component.offset.score + duration
+   boundary_time = component.offset.prolated.start + duration
 
    for x in iterate.naive(component, _Component):
-      x_start = x.offset.score
-      x_stop = x.offset.score + x.duration.prolated
+      x_start = x.offset.prolated.start
+      x_stop = x.offset.prolated.start + x.duration.prolated
       if x_start < boundary_time < x_stop:
          result.append(x)
 

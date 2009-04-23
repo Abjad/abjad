@@ -4,5 +4,5 @@ def find_component_at_score_offset(spanner, score_offset):
       Otherwise return None.'''
 
    for component in spanner:
-      if component.offset.score == score_offset:
+      if component.offset.prolated.start == score_offset:
          return component

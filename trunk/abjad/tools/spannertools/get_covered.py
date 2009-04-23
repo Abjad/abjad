@@ -15,8 +15,8 @@ def get_covered(components):
       return set([ ])
 
    first, last = components[0], components[-1]
-   components_begin = first.offset.score
-   components_end = last.offset.score + last.duration.prolated
+   components_begin = first.offset.prolated.start
+   components_end = last.offset.prolated.start + last.duration.prolated
 
    result = get_contained(components)
    for spanner in list(result):

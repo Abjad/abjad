@@ -6,9 +6,9 @@ def contents_reverse(container):
       Container and any of its children may be spanned.'''
 
    def offset(x, y):
-      if x.offset.score < y.offset.score:
+      if x.offset.prolated.start < y.offset.prolated.start:
          return -1
-      elif x.offset.score > y.offset.score:
+      elif x.offset.prolated.start > y.offset.prolated.start:
          return 1
       else:
          return 0

@@ -7,7 +7,7 @@ def find_index_at_score_offset(spanner, score_offset):
       Otherwise raise SpannerPopulationError.'''
 
    for component in spanner:
-      if component.offset.score == score_offset:
+      if component.offset.prolated.start == score_offset:
          return spanner.index(component)
 
    raise SpannerPopulationError(

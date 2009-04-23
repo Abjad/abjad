@@ -30,7 +30,7 @@ def _remove_files(skip_files, files):
             files.remove(file)
 
 def replace_in_files(dir, old, new, skip_dirs=['.svn'], confirm=True):
-   skip_files = ['replace-in-files', '.pyc', ]
+   skip_files = ['replace-in-files', '.pyc', '.rst']
 
    for root, dirs, files in os.walk(dir):
       _remove_dirs(skip_dirs, dirs)
