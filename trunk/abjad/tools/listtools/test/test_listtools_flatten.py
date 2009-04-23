@@ -30,3 +30,11 @@ def test_listtools_flatten_05( ):
    l = [(1, 2), [3, (4, 5)]]
    assert py.test.raises(AssertionError, 
       'listtools.flatten(l, ltypes = (tuple, ))')
+
+
+def test_listtools_flatten_06( ):
+   l = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+   assert listtools.flatten(l, depth = 0) == [1, [2, 3, [4]], 5, [6, 7, [8]]]
+   assert listtools.flatten(l, depth = 1) == [1, 2, 3, [4], 5, 6, 7, [8]]
+   assert listtools.flatten(l, depth = 2) == [1, 2, 3, 4, 5, 6, 7, 8]
+   assert listtools.flatten(l, depth = 2) == listtools.flatten(l, depth = 99)
