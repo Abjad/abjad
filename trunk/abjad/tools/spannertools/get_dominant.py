@@ -28,7 +28,7 @@ def get_dominant(components):
    first, last = components[0], components[-1]
 
 #   subtree_begin = first.offset.prolated.start
-#   subtree_end = last.offset.prolated.start + last.duration.prolated
+#   subtree_end = last.offset.prolated.stop
 
 #   for component in iterate.naive(first, _Component):
 #      if component.offset.prolated.start == subtree_begin:

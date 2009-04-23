@@ -270,7 +270,7 @@ class _Component(_Abjad):
       from abjad.tools import parenttools
       from abjad.tools import spannertools
       check.assert_components(components)
-      insert_offset = self.offset.prolated.start + self.duration.prolated
+      insert_offset = self.offset.prolated.stop
       receipt = spannertools.get_dominant([self])
       for spanner, index in receipt:
          insert_component = spannertools.find_component_at_score_offset(

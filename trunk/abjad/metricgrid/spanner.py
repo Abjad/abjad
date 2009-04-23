@@ -69,7 +69,7 @@ class MetricGrid(Spanner):
       '''Return the MetricStrip(s) that slices leaf, if any.'''
       for m in self.meters:
          if leaf.offset.prolated.start < m.offset:
-            if leaf.offset.prolated.start + leaf.duration.prolated > m.offset:
+            if leaf.offset.prolated.stop > m.offset:
                yield m 
             else:
                break
@@ -114,7 +114,7 @@ class MetricGrid(Spanner):
 #      meter = meters.next( )
 #      while leaf:
 #         if leaf.offset.prolated.start < meter.offset:
-#            if leaf.offset.prolated.start + leaf.duration.prolated > meter.offset and \
+#            if leaf.offset.prolated.stop > meter.offset and \
 #               self.splittingCondition(leaf):
 #               ## will split
 #               if not leaf.tie.parented:

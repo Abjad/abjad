@@ -18,7 +18,7 @@ def get_duration_crossers(component, duration):
 
    for x in iterate.naive(component, _Component):
       x_start = x.offset.prolated.start
-      x_stop = x.offset.prolated.start + x.duration.prolated
+      x_stop = x.offset.prolated.stop
       if x_start < boundary_time < x_stop:
          result.append(x)
 

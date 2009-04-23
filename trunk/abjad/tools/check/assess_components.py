@@ -480,7 +480,7 @@ def _are_thread_proper(component_1, component_2, klasses = (_Component)):
       return False
 
    ## find component_1 offset end time and component_2 offset begin
-   first_end = component_1.offset.prolated.start + component_1.duration.prolated
+   first_end = component_1.offset.prolated.stop
    second_begin = component_2.offset.prolated.start
 
    ## if component_1 does not preced component_2
