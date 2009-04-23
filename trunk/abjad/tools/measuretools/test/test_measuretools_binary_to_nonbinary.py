@@ -83,8 +83,9 @@ def test_measuretools_binary_to_nonbinary_04( ):
    c'8 [
    d'8 ]'''
 
-   r'''measuretools.binary_to_nonbinary(t, 9)
-   \time 9/36
+   measuretools.binary_to_nonbinary(t, 9)
+
+   r'''\time 9/36
    \scaleDurations #'(8 . 9) {
       c'8 [ ~
       c'64

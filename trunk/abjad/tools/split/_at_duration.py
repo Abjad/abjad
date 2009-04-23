@@ -1,9 +1,12 @@
 from abjad.container.container import Container
 from abjad.exceptions.exceptions import ContainmentError
 from abjad.leaf.leaf import _Leaf
+from abjad.measure.rigid.measure import RigidMeasure
 from abjad.tie.spanner import Tie
 from abjad.tools import componenttools
 from abjad.tools import iterate
+from abjad.tools import mathtools
+from abjad.tools import measuretools
 from abjad.tools import tietools
 from abjad.tools.split._leaf_at_duration import _leaf_at_duration as \
    split__leaf_at_duration
@@ -18,6 +21,8 @@ def _at_duration(
       Works on leaves, tuplets, measures, context and unqualified containers.
       Keyword controls spanner behavior at split-time.'''
 
+   from abjad.tools import fuse
+
    assert 0 <= duration
 
    ## if zero duration then return component
@@ -29,6 +34,32 @@ def _at_duration(
 
    ## get duration crossers, if any
    contents = componenttools.get_duration_crossers(component, duration) 
+
+   ## get duration crossing measures, if any
+   measures = [x for x in contents if isinstance(x, RigidMeasure)]
+
+   ## if we must split a binary measure at a nonbinary split point
+   ## go ahead and transform the binary measure to nonbinary equiavlent now;
+   ## code that crawls and splits later on will be happier
+   if len(measures) == 1:
+      measure = measures[0]
+      if measure.duration.nonbinary:
+         ## TODO: implement code to split nonbinary measure ##
+         raise Exception(NotImplemented)
+      split_point_in_measure = \
+         global_split_point - measure.offset.prolated.start
+      split_point_denominator = split_point_in_measure._d
+      #print measure, split_point_in_measure
+      if not mathtools.is_power_of_two(split_point_denominator):
+         nonbinary_factors = mathtools.factors(
+            mathtools.remove_powers_of_two(split_point_denominator))
+         nonbinary_product = 1
+         for nonbinary_factor in nonbinary_factors:
+            nonbinary_product *= nonbinary_factor
+         measuretools.binary_to_nonbinary(measure, nonbinary_product)
+         #print measure
+   elif 1 < len(measures):
+      raise ContainmentError('measures can not nest.')
 
    ## if leaf duration crosser, will be at end of list
    bottom = contents[-1]
@@ -74,6 +105,12 @@ def _at_duration(
       i = cur.index(prev)
       left, right = split__at_index(cur, i, spanners = spanners)
 
+   ## NOTE: If tie chain here is convenience, then fusing is good.
+   ##       If tie chain here is user-given, then fusing is less good.
+   ##       Maybe later model difference between user tie chains and not.
+   fuse.leaves_in_tie_chain(leaf_left_of_split.tie.chain)
+   fuse.leaves_in_tie_chain(leaf_right_of_split.tie.chain)
+   
    ## crawl above will kill any tie applied to leaves
    ## reapply tie here if necessary
    ## TODO: Possibly replace this with tietools.span_leaf_pair( )? ##
