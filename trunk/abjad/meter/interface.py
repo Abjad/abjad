@@ -15,7 +15,7 @@ class _MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       _GrobHandler.__init__(self, 'TimeSignature')
       _BacktrackingInterface.__init__(self, 'meter')
       self._acceptableTypes = (Meter, types.NoneType)
-      self._effective = Meter(4, 4)
+      self._default = Meter(4, 4)
       self._forced = None
       self._suppress = False
 
@@ -43,6 +43,10 @@ class _MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       return False
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def default(self):
+      return self._default
 
    @property
    def opening(self):

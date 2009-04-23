@@ -17,10 +17,14 @@ class _ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       _GrobHandler.__init__(self, 'Clef')
       _BacktrackingInterface.__init__(self, 'clef')
       self._acceptableTypes = (Clef, types.NoneType)
-      self._effective = Clef('treble')
+      self._default = Clef('treble')
       self._forced = None
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def default(self):
+      return self._default
 
    @property
    def opening(self):

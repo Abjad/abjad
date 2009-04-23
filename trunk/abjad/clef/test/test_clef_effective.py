@@ -1,14 +1,14 @@
 from abjad import *
 
 
-def test_clef_01( ):
+def test_clef_effective_01( ):
    '''Clef defaults to treble.'''
    t = Staff(construct.scale(8))
    for note in t:
       assert note.clef.effective == Clef('treble')
    
 
-def test_clef_02( ):
+def test_clef_effective_02( ):
    '''Clefs carry over to notes following.'''
    t = Staff(construct.scale(8))
    t[0].clef.forced = Clef('treble')
@@ -16,7 +16,7 @@ def test_clef_02( ):
       assert note.clef.effective == Clef('treble')
 
 
-def test_clef_03( ):
+def test_clef_effective_03( ):
    '''Clef defaults to treble;
       clefs carry over to notes following.'''
    t = Staff(construct.scale(8))
@@ -28,7 +28,7 @@ def test_clef_03( ):
          note.clef.effective == Clef('bass')
 
 
-def test_clef_04( ):
+def test_clef_effective_04( ):
    '''Clefs carry over to notes following.'''
    t = Staff(construct.scale(8))
    t[0].clef.forced = Clef('treble')
@@ -38,7 +38,7 @@ def test_clef_04( ):
       'bass', 'bass', 'bass', 'bass']]
 
 
-def test_clef_05( ):
+def test_clef_effective_05( ):
    '''None cancels an explicit clef.'''
    t = Staff(construct.scale(8))
    t[0].clef.forced = Clef('treble')
@@ -48,7 +48,7 @@ def test_clef_05( ):
       assert note.clef.effective == Clef('treble')
       
 
-def test_clef_06( ):
+def test_clef_effective_06( ):
    '''None has no effect on an unassigned clef.'''
    t = Staff(construct.scale(8))
    for note in t:
@@ -57,7 +57,7 @@ def test_clef_06( ):
       assert note.clef.effective == Clef('treble')
 
 
-def test_clef_07( ):
+def test_clef_effective_07( ):
    '''Redudant clefs are allowed.'''
 
    t = Staff(construct.run(8))
@@ -82,7 +82,7 @@ def test_clef_07( ):
    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "treble"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}'''
 
 
-def test_clef_08( ):
+def test_clef_effective_08( ):
    '''Clefs with transposition are allowed and work as expected.'''
 
    t = Staff(construct.run(8))
@@ -105,3 +105,16 @@ def test_clef_08( ):
 
    assert check.wf(t)
    assert t.format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
+
+
+def test_clef_effective_09( ):
+   '''Setting and then clearing works as expected.'''
+
+   t = Staff(construct.scale(4))
+   t[0].clef.forced = Clef('alto')
+   t[0].clef.forced = None
+
+   for leaf in t:
+      assert leaf.clef.effective == Clef('treble')
+
+

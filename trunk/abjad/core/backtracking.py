@@ -30,12 +30,13 @@ class _BacktrackingInterface(_Abjad):
             parentForced = parentInterface.forced
             if parentForced is not None:
                return parentForced
+      default = getattr(self, 'default', None)
+      return default
    
    def _update(self):
       '''Update my score-dependent core attributes.'''
       effective = self._getEffective( )
-      if effective is not None:
-         self._effective = effective
+      self._effective = effective
 
    ## PUBLIC ATTRIBUTES ##
 
