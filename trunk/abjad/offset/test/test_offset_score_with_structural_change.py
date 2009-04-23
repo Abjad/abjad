@@ -1,12 +1,9 @@
 from abjad import *
-import py.test
 
-
-py.test.skip('Revise tests.')
 
 ## TODO: Write a good 6 or 8 offset interface with structural change tests ##
 
-def test_offset_interface_score_with_structural_change_01( ):
+def test_offset_prolated_with_structural_change_01( ):
    '''Insert note in voice.'''
 
    t = Voice(construct.scale(4))
@@ -18,7 +15,7 @@ def test_offset_interface_score_with_structural_change_01( ):
    assert note.offset.prolated.start == Rational(3, 8)
 
 
-def test_offset_interface_score_with_structural_change_02( ):
+def test_offset_prolated_with_structural_change_02( ):
    '''Delete note in voice.'''
 
    t = Voice(construct.scale(4))
