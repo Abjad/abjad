@@ -5,8 +5,8 @@ from abjad.tie.spanner import Tie
 from abjad.tools import durtools
 
 
-def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None,
-      tied=True):
+def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None, 
+   tied=True):
    '''Returns a list of Leaves to fill the given duration. 
       Leaves returned are Tie spanned.
       dur:  must be of the form m / 2**n for any m integer.

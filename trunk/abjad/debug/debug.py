@@ -8,8 +8,7 @@ else:
    DEBUG = True
 
 class debug(_Abjad):
-   '''
-   Debug decorator class. 
+   '''Debug decorator class.  
    The purpose of this decorator is to run "live bug tracking" when "DEBUG" 
    is set to True. 
    Apply the decorator to any function that requires live debugging.

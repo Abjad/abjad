@@ -19,28 +19,28 @@ def by_leaf_counts_with_parentage(container, leaf_counts):
       This means that the original structure remains unchanged.
       Also that resulting parts cut all the way up into voice.
    
-      Example:
+      Example::
 
-      t = Voice([FixedDurationTuplet((2, 8), construct.scale(3))])
-      Beam(t[0][:])
-      left, right = containertools.partition_by_leaf_counts_with_parentage(t[0], [1, 2])
+         t = Voice([FixedDurationTuplet((2, 8), construct.scale(3))])
+         Beam(t[0][:])
+         left, right = containertools.partition_by_leaf_counts_with_parentage(t[0], [1, 2])
 
-      left:
+         left:
 
-      \new Voice {
-              \times 2/3 {
-                      c'8 [ ]
-              }
-      } 
+         \new Voice {
+                 \times 2/3 {
+                         c'8 [ ]
+                 }
+         } 
 
-      right:
+         right:
 
-      \new Voice {
-              \times 2/3 {
-                      d'8 [
-                      e'8 ]
-              }
-      }'''
+         \new Voice {
+                 \times 2/3 {
+                         d'8 [
+                         e'8 ]
+                 }
+         }'''
    
    assert isinstance(container, Container)
    assert all([isinstance(x, int) for x in leaf_counts])
