@@ -6,20 +6,31 @@
 Welcome to Abjad
 ================
 
-Contents:
+Start here:
 
 .. toctree::
    :maxdepth: 1
 
    chapters/introduction/index
-   chapters/install
+   chapters/download/index
    chapters/examples/index
    chapters/tour/index
    chapters/whatnext/index
-   chapters/lcs/index
 
+Abjad Fundamentals:
+
+.. toctree::
+   :maxdepth: 1
+
+   chapters/lcs/index
    chapters/duration/index
    chapters/developers/index
+
+Abjad API:
+
+.. toctree::
+   :maxdepth: 1
+
    chapters/api/index
 
 

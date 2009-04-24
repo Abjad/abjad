@@ -1,9 +1,5 @@
-Real world examples for the impatient
-=====================================
-
-
-Rhythms: slicing and dicing [#f1]_
------------------------------------
+Rhythms: floating metric grid, slicing and dicing [#f1]_
+========================================================
 
 This example demonstrates how you can compose a sequence of notes with
 arbitrary durations outside a metric hierarchy (e.g. Measures) and
@@ -12,49 +8,45 @@ a posteriori.
 
 Let us first define a set of durations from prime numbers:
 
-::
-
+   <abjad> 
     abjad> durations = [5, 7, 2, 11, 13, 5, 13, 3]
     abjad> durations = zip(durations, [16] * len(durations))
     abjad> durations
     [(5, 16), (7, 16), (2, 16), (11, 16), (13, 16), (5, 16), (13, 16), (3, 16)]
-
+   </abjad>
 
 Let us now create a list of notes from these durations.
 
-::
-
+   <abjad> 
     abjad> notes = construct.notes(0, durations)
     abjad> notes
     [Note(c', 4), Note(c', 16), Note(c', 8.), Note(c', 4), Note(c', 8), 
     Note(c', 8), Note(c', 2), Note(c', 16), Note(c', 8.), Note(c', 4), 
     Note(c', 4), Note(c', 8), Note(c', 8), Note(c', 8.), Note(c', 16), 
     Note(c', 4), Note(c', 2), Note(c', 8.)]
-
+   </abjad>
 
 
 Let us now put these notes inside a :class:RhythmicSketchStaff
 
-::
-
+   <abjad> 
     abjad> staff = RhythmicSketchStaff(notes)
+    hide> write(staff, 'example1')
     abjad> show(staff)
-
-.. image:: images/example1.png
+   </abjad>
 
 As this will become part of a piece for ensemble to be conducted, we
 would like all the parts to have a common metric (measure) structure.
 We now apply a :class:MetricGrid spanner with the desired metric sequence
 to our staff.
 
-::
-
+   <abjad>
     abjad> MetricGrid(staff, [(4, 4), (4, 4), (4, 4), (11, 16)])
     abjad> staff.meter.clear( )
     abjad> staff.barline.clear( )
+    hide> write(staff, 'example2')
     abjad> show(staff)
-
-.. image:: images/example2.png
+   </abjad>
 
 Notice how some notes **span** more than one measure (i.e. they extend
 over the bar lines). This is a good thing because it shows that note
@@ -65,18 +57,18 @@ also want to show each beat by splitting notes every quarter or every
 half note duration. To do this we will slice the music to a second
 sequence of meters.
 
-::
-
+   <abjad> 
     abjad> meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
-    abjad> containertools.slice_by_duration(staff, meters)
+    abjad> meters = durtools.rationalize(meters)
+    abjad> partition.unfractured_by_durations(staff.leaves, meters, tie_after=True)
+    hide> write(staff, 'example3')
     abjad> show(staff)
-
-.. image:: images/example3.png
+   </abjad>
 
 
 And this gives us our final score.
 
-.. [#f1] This example reconstructs the first few measures of Stephen Lehman's Rai following the composer's own process: *"I basically created a duration row, and then applied a meter to it after the fact. Then, once I started changing the distribution of prime number values over the course of the piece, I tried to make them fit in the same time span."*
+.. [#f1] This example reconstructs the first few measures of Stephen Lehman's `Rai` following the composer's own process: *"I basically created a duration row, and then applied a meter to it after the fact. Then, once I started changing the distribution of prime number values over the course of the piece, I tried to make them fit in the same time span."*
 
 
 
