@@ -84,6 +84,10 @@ class ParallelError(ContainmentError):
    inside a parallel container.'''
    pass
 
+class PartitionError(Exception):
+   '''General partition error.'''
+   pass
+
 class SpannerError(Exception):
    '''General spanner error.'''
    pass
