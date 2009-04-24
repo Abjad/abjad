@@ -32,6 +32,8 @@ class _NumberingInterface(_Observer):
       if prevLeaf:
          assert isinstance(prevLeaf, _Leaf)
          self._leaf = prevLeaf._numbering._leaf + 1
+      else:
+         self._leaf = 0
 
    def _updateMeasureNumber(self):
       '''Update (one-indexed) number of any one measure in score.'''
@@ -40,18 +42,4 @@ class _NumberingInterface(_Observer):
          prev = iterate.measure_prev(self._client)
          self._measure = prev._numbering._measure + 1
       except StopIteration:
-         pass
-
-#   ## PUBLIC ATTRIBUTES ##
-#
-#   @property
-#   def leaf(self):
-#      '''(Zero-indexed) number of leaf in score.'''
-#      self._makeSubjectUpdateIfNecessary( )
-#      return self._leaf
-#   
-#   @property
-#   def measure(self):
-#      '''(One-indexed) number of measure in score.'''
-#      self._makeSubjectUpdateIfNecessary( )
-#      return self._measure
+         self._measure = 1

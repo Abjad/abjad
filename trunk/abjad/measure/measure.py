@@ -4,8 +4,10 @@ from abjad.measure.formatter import _MeasureFormatter
 
 
 class _Measure(Container):
+   '''Base class to model the musical measure.'''
 
    def __init__(self, music = None):
+      '''Init music and add dedicated duration interface and formatter.'''
       music = music or [ ]
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
@@ -22,6 +24,7 @@ class _Measure(Container):
       return new
 
    def __repr__(self):
+      '''String form of measure with parentheses for interpreter display.'''
       class_name = self.__class__.__name__
       forced_meter = self.meter.forced
       summary = self._summary
@@ -36,6 +39,7 @@ class _Measure(Container):
          return '%s( )' % class_name
 
    def __str__(self):
+      '''String form of measure with pipes for single string display.'''
       forced_meter = self.meter.forced
       summary = self._summary
       length = len(self)
@@ -50,15 +54,13 @@ class _Measure(Container):
 
    ## PUBLIC ATTRIBUTES ##
 
-#   @property
-#   def duration(self):
-#      return self._duration
-
    @property
    def full(self):
+      '''True if preprolated duration matches effective meter duration.'''
       return self.meter.effective.duration == self.duration.preprolated
 
    @property
    def number(self):
+      '''Read-only measure number STARTING AT ONE, not zero.'''
       self._numbering._makeSubjectUpdateIfNecessary( )
       return self._numbering._measure

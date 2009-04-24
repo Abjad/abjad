@@ -38,3 +38,31 @@ def test_leaf_number_04( ):
 
    t = Note(0, (1, 4))
    assert t.number == 0
+
+
+def test_leaf_number_05( ):
+   '''Leaves number correctly after contents rotation.'''
+
+   t = Staff(construct.scale(4))
+
+   assert t[0].number == 0
+   assert t[1].number == 1
+   assert t[2].number == 2
+   assert t[3].number == 3
+
+   t[:] = (t[-2:] + t[:2])
+
+   r'''\new Staff {
+      e'8
+      f'8
+      c'8
+      d'8
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\te'8\n\tf'8\n\tc'8\n\td'8\n}"
+
+   assert t[0].number == 0
+   assert t[1].number == 1
+   assert t[2].number == 2
+   assert t[3].number == 3
