@@ -53,8 +53,12 @@ class _BacktrackingInterface(_Abjad):
    @property
    def effective(self):
       '''Effective core attribute governing client.'''
-      self._makeSubjectUpdateIfNecessary( )
-      return self._effective
+      forced = self._forced
+      if forced is not None:
+         return forced
+      else:
+         self._makeSubjectUpdateIfNecessary( )
+         return self._effective
 
    @apply
    def forced( ):
