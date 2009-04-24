@@ -130,3 +130,7 @@ class VoiceContainmentError(ContextContainmentError):
       Voice must not contain higher-level components.
       Higher-level components import stave, staff groups, scores, etc.'''
    pass
+
+class WellFormednessError(Exception):
+   '''Score not well formed.'''
+   pass
