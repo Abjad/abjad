@@ -16,6 +16,10 @@ def _leaf_at_duration(
    assert isinstance(leaf, _Leaf)
    assert isinstance(split_dur, Rational)
 
+   if leaf.duration.multiplier is not None:
+      raise ValueError(
+         'duration split on leaf with multiplier not yet implemented.')
+
    leaf_written_duration = leaf.duration.written
    unprolated_split_dur = split_dur / leaf.duration.prolation
    if unprolated_split_dur <= 0:
