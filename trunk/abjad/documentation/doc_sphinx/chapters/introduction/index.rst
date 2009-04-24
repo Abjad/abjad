@@ -3,7 +3,7 @@ Abjad?
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    abjad/index
    midi_not_enough/index

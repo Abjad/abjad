@@ -1,5 +1,5 @@
-Introduction
-============
+Durations Introduction
+======================
 
 
 Abjad publishes information about many **durated** score objects.

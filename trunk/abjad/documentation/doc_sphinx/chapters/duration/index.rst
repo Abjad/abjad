@@ -5,3 +5,6 @@ Understanding Duration
 
    introduction/index
    initialization/index
+   assignability/index
+   token/index
+   prolation/index
