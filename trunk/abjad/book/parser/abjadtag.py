@@ -119,10 +119,19 @@ class _AbjadTag(_TagParser):
       f.writelines('\n'.join(self._abjad_code))
       f.close( )
       ## run it.
-      os.system('python tmp_abjad.aj')
-      self._makeImages( )
-      os.chdir('..')
-      _createImagesDirectory( ) 
-      os.system('mv tmp_out/*.png images')
-      os.system('rm -r tmp_out')
+      p = subprocess.Popen('python tmp_abjad.aj', shell = True, 
+         stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+      out, error =  p.communicate( )
+      if error:
+         #raise SyntaxError(error)
+         print "\nERROR in Abjad script compilation:"
+         print error
+         os.chdir('..')
+         os.system('rm -r tmp_out')
+      else:
+         self._makeImages( )
+         os.chdir('..')
+         _createImagesDirectory( ) 
+         os.system('mv tmp_out/*.png images')
+         os.system('rm -r tmp_out')
 
