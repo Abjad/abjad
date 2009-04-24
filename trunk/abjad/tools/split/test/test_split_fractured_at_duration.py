@@ -411,3 +411,52 @@ def test_split_fractured_at_duration_11( ):
    assert check.wf(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ] ) ~\n\t\t}\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 [ ] (\n\t\t}\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+
+
+def test_split_fractured_at_duration_12( ):
+   '''Split binary measure at nonbinary split point.
+      Do fracture spanners but do not tie across split locus.
+      This test results from a fix.
+      What's being tested here is contents rederivation.'''
+
+   t = Staff(RigidMeasure((3, 8), construct.scale(3)) * 2)
+   Beam(t[0])
+   Beam(t[1])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 3/8
+                   c'8 [ (
+                   d'8
+                   e'8 ]
+                   \time 3/8
+                   c'8 [
+                   d'8
+                   e'8 ] )
+   }'''   
+
+   halves = split.fractured_at_duration(t[0], Rational(7, 20))
+
+   r'''\new Staff {
+                   \time 14/40
+                   \scaleDurations #'(4 . 5) {
+                           c'8 [ ( ~
+                           c'32
+                           d'8 ~
+                           d'32
+                           e'8 ] )
+                   }
+                   \time 1/40
+                   \scaleDurations #'(4 . 5) {
+                           e'32 [ ] (
+                   }
+                   \time 3/8
+                   c'8 [
+                   d'8
+                   e'8 ] )
+   }'''
+   
+   assert check.wf(t)
+   assert len(halves) == 2
+   assert t.format == "\\new Staff {\n\t\t\\time 14/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'8 ~\n\t\t\td'32\n\t\t\te'8 ] )\n\t\t}\n\t\t\\time 1/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\te'32 [ ] (\n\t\t}\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8 ] )\n}"
+   

@@ -49,7 +49,6 @@ def _at_duration(
       split_point_in_measure = \
          global_split_point - measure.offset.prolated.start
       split_point_denominator = split_point_in_measure._d
-      #print measure, split_point_in_measure
       if not mathtools.is_power_of_two(split_point_denominator):
          nonbinary_factors = mathtools.factors(
             mathtools.remove_powers_of_two(split_point_denominator))
@@ -57,7 +56,8 @@ def _at_duration(
          for nonbinary_factor in nonbinary_factors:
             nonbinary_product *= nonbinary_factor
          measuretools.binary_to_nonbinary(measure, nonbinary_product)
-         #print measure
+         ## rederive duration crosses with possibly new measure contents
+         contents = componenttools.get_duration_crossers(component, duration) 
    elif 1 < len(measures):
       raise ContainmentError('measures can not nest.')
 
