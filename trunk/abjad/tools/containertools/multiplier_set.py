@@ -5,7 +5,7 @@ def multiplier_set(container, multiplier):
    '''Fiddle with other container duration attributes to
       set container.duration.multiplier equal to multiplier.'''
 
-   ## TODO: Replace class name comparison with isinstance class testing ##
+   ## TODO: Reimplement as settable container duration interface attrs ##
 
    if container.__class__.__name__ == 'FixedDurationTuplet':
       container.duration.target = multiplier * container.duration.contents

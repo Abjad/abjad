@@ -338,7 +338,8 @@ def test_split_fractured_at_index_09( ):
 
 def test_split_fractured_at_index_10( ):
    '''Index split nonbinary measure in score.
-      Fractured spanners but do not tie over split locus.'''
+      Fractured spanners but do not tie over split locus.
+      Measure contents necessitate denominator change.'''
 
    t = Staff([RigidMeasure((3, 12), construct.scale(2, Rational(3, 16)))])
    Beam(t[0])
@@ -354,8 +355,46 @@ def test_split_fractured_at_index_10( ):
 
    halves = split.fractured_at_index(t[0], 1)
    
-   ## TODO: Make index split nonbinary measures work ##
+   r'''\new Staff {
+         \time 3/24
+         \scaleDurations #'(2 . 3) {
+            c'8. [ ] (
+         }
+         \time 3/24
+         \scaleDurations #'(2 . 3) {
+            d'8. [ ] )
+         }
+   }'''
 
-#   assert check.wf(t)
-#   assert len(halves) == 2
-#   assert t.format == 'foo'
+   assert check.wf(t)
+   assert len(halves) == 2
+   assert t.format == "\\new Staff {\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n}"
+
+
+def test_split_fractured_at_index_11( ):
+   '''Index split binary measure in score.
+      Fractured spanners but do not tie over split locus.
+      Measure contents necessitate denominator change.'''
+
+   t = Staff([RigidMeasure((3, 8), construct.scale(2, Rational(3, 16)))])
+   Beam(t[0])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+         \time 3/8
+         c'8. [ (
+         d'8. ] )
+   }'''
+
+   halves = split.fractured_at_index(t[0], 1)
+
+   r'''\new Staff {
+         \time 3/16
+         c'8. [ ] (
+         \time 3/16
+         d'8. [ ] )
+   }'''
+
+   assert check.wf(t)
+   assert len(halves) == 2
+   assert t.format == "\\new Staff {\n\t\t\\time 3/16\n\t\tc'8. [ ] (\n\t\t\\time 3/16\n\t\td'8. [ ] )\n}"
