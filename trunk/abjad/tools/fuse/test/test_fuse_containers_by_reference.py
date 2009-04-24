@@ -40,16 +40,6 @@ def test_fuse_containers_by_reference_04( ):
    
 
 def test_fuse_containers_by_reference_05( ):
-   '''fuse.containers_by_reference( ) can take a list of components.'''
-
-   t = Voice(construct.run(4)) * 2
-   t[0].name = t[1].name = 'voiceOne'
-   result = fuse.containers_by_reference(t)
-   assert isinstance(result, Voice)  
-   assert len(result) == 8
-
-
-def test_fuse_containers_by_reference_06( ):
    '''fuse.containers_by_reference( ) works on equally named staves.'''
 
    t = Staff(construct.run(4)) * 2
@@ -59,7 +49,7 @@ def test_fuse_containers_by_reference_06( ):
    assert len(result) == 8
 
 
-def test_fuse_containers_by_reference_07( ):
+def test_fuse_containers_by_reference_06( ):
    '''fuse.containers_by_reference( ) works on equally named staves 
       but not on differently named Voices.'''
 
@@ -112,6 +102,26 @@ def test_fuse_containers_by_reference_07( ):
                    }
            }
    }'''
+
+
+def test_fuse_containers_by_reference_07( ):
+   '''fuse.containers_by_reference( ) can take a list of orphan components.'''
+
+   t = Voice(construct.run(4)) * 2
+   t[0].name = t[1].name = 'voiceOne'
+   result = fuse.containers_by_reference(t)
+   assert isinstance(result, Voice)  
+   assert len(result) == 8
+
+
+## TODO this should work.
+#def test_fuse_containers_by_reference_08( ):
+#   '''fuse.containers_by_reference( ) can take a list of parented 
+#   Components.'''
+#   t = Staff(Voice(construct.run(2)) * 2)
+#   result = fuse.containers_by_reference(t[:])
+#   assert check.wf(t)
+#   assert len(t) == 1
 
 
 ## NESTED PARALLEL STRUCTURES ##
