@@ -213,3 +213,55 @@ def test_fuse_measures_by_reference_07( ):
 
    assert py.test.raises(ContiguityError, 
       'fuse.measures_by_reference([t[0][1], t[1][0]])')
+
+
+def test_fuse_measures_by_reference_08( ):
+   '''Fusing binary and nonbinary measures.
+      With change in number of noteheads because of nonbinary multiplier.'''
+
+   t = Staff([
+      RigidMeasure((9, 80), [ ]),
+      RigidMeasure((2, 16), [ ])])
+   measuretools.populate(t, 'meter series')
+
+   r'''\new Staff {
+         \time 9/80
+         \scaleDurations #'(4 . 5) {
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+         }
+         \time 2/16
+         c'16
+         c'16
+   }'''
+
+   new = fuse.measures_by_reference(t[:]) 
+
+   r'''\new Staff {
+         \time 19/80
+         \scaleDurations #'(4 . 5) {
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'64
+            c'16 ~
+            c'64
+            c'16 ~
+            c'64
+         }
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\t\t\\time 19/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'16 ~\n\t\t\tc'64\n\t\t\tc'16 ~\n\t\t\tc'64\n\t\t}\n}"

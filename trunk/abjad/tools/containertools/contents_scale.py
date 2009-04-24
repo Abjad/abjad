@@ -7,8 +7,8 @@ from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 
 
 def contents_scale(container, multiplier):
-   '''Change all leaves in measure by multiplier.
-      Return measure.'''
+   '''Change all leaves in container by multiplier.
+      Return container.'''
 
    for expr in iterate.chained_contents(container[:]):
       if tietools.is_chain(expr):
