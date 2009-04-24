@@ -13,6 +13,9 @@ def group_prolated(
       If rump is True and components remain, append as final part.
       If rump is False and components remain, do not append final part.'''
 
+   assert isinstance(durations, list)
+   assert all([isinstance(x, (int, float, Rational)) for x in durations])
+
    len_durations = len(durations)
    result = [ ]
    part = [ ]

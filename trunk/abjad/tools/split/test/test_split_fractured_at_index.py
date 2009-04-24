@@ -334,3 +334,28 @@ def test_split_fractured_at_index_09( ):
    assert left is leaf
    assert right is None
    assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n}"
+
+
+def test_split_fractured_at_index_10( ):
+   '''Index split nonbinary measure in score.
+      Fractured spanners but do not tie over split locus.'''
+
+   t = Staff([RigidMeasure((3, 12), construct.scale(2, Rational(3, 16)))])
+   Beam(t[0])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+         \time 3/12
+         \scaleDurations #'(2 . 3) {
+            c'8. [ (
+            d'8. ] )
+         }
+   }'''
+
+   halves = split.fractured_at_index(t[0], 1)
+   
+   ## TODO: Make index split nonbinary measures work ##
+
+#   assert check.wf(t)
+#   assert len(halves) == 2
+#   assert t.format == 'foo'

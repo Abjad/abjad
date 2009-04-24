@@ -8,60 +8,58 @@ from abjad.tools.parenttools.switch import _switch
 from abjad.tuplet.tuplet import _Tuplet
 
 
-def _at_index(container, i, spanners = 'unfractured'):
-   '''General container count-split algorithm.
-      Works on tuplets, measures, contexts and unqualified containers.
+def _at_index(component, i, spanners = 'unfractured'):
+   '''General component count-split algorithm.
+      Works on leaves, tuplets, measures, contexts and unqualified containers.
       Keyword controls spanner behavior at split time.
-      Use split.container_fractured( ) to fracture spanners.
-      Use split.container_unfractured( ) to leave spanners unchanged.'''
-
-   ## TODO: Change input parameter name from 'container' to 'component' ##
+      Use split.fractured_at_index( ) to fracture spanners.
+      Use split.unfractured_at_index( ) to leave spanners unchanged.'''
 
    ## convenience definition leaf split at index
-   if isinstance(container, _Leaf):
+   if isinstance(component, _Leaf):
       if i <= 0:
          print 'foo'
          if spanners == 'fractured':
             print 'bar'
-            container.spanners.fracture(direction = 'left')
-         return None, container
+            component.spanners.fracture(direction = 'left')
+         return None, component
       else:
          if spanners == 'fractured':
-            container.spanners.fracture(direction = 'right')
-         return container, None
+            component.spanners.fracture(direction = 'right')
+         return component, None
 
    ## remember container multiplier, if any
-   container_multiplier = getattr(container.duration, 'multiplier', None)
+   container_multiplier = getattr(component.duration, 'multiplier', None)
 
    ## partition music of input container
-   left_music = container[:i]
-   right_music = container[i:]
+   left_music = component[:i]
+   right_music = component[i:]
 
    ## instantiate new left and right containers
-   if isinstance(container, _Measure):
-      meter_denominator = container.meter.effective.denominator
+   if isinstance(component, _Measure):
+      meter_denominator = component.meter.effective.denominator
       left_duration = sum([x.duration.prolated for x in left_music])
       right_duration = sum([x.duration.prolated for x in right_music])
-      left = container.__class__(left_duration or (1, 1), left_music)
-      right = container.__class__(right_duration or (1, 1), right_music)
-   elif isinstance(container, _Tuplet):
+      left = component.__class__(left_duration or (1, 1), left_music)
+      right = component.__class__(right_duration or (1, 1), right_music)
+   elif isinstance(component, _Tuplet):
       meter_denominator = None
-      left = container.__class__(1, left_music)
-      right = container.__class__(1, right_music)
+      left = component.__class__(1, left_music)
+      right = component.__class__(1, right_music)
    else:
       meter_denominator = None
-      left = container.__class__(left_music)
-      right = container.__class__(right_music)
+      left = component.__class__(left_music)
+      right = component.__class__(right_music)
    
    ## save left and right parts together for iteration
    parts = [left, right]
    nonempty_parts = [part for part in parts if len(part)]
 
    ## give attached spanners to children
-   spannertools.give_attached_to_children(container)
+   spannertools.give_attached_to_children(component)
 
    ## incorporate left and right parents in score, if possible
-   parent, start, stop = parenttools.get_with_indices([container])
+   parent, start, stop = parenttools.get_with_indices([component])
    if parent is not None:
       parent._music[start:stop+1] = nonempty_parts
       for part in nonempty_parts:
