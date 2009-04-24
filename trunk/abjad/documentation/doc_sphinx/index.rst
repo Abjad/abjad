@@ -18,6 +18,7 @@ Contents:
    chapters/whatnext/index
    chapters/lcs/index
 
+   chapters/duration/index
    chapters/developers/index
    chapters/api/index
 
