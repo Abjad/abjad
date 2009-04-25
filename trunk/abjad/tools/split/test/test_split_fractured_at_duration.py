@@ -657,3 +657,35 @@ def test_split_fractured_at_duration_18( ):
    assert check.wf(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t\t\\time 16/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 1/4\n\t\t}\n\t\t\\time 9/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 9/64\n\t\t}\n}"
+
+
+def test_split_fractured_at_duration_19( ):
+   '''Duration split nonbinary measure at nonbinary split point.
+      Measure multiplier and split point multiplier match.
+      Split between leaves but do fracture spanners.'''
+
+   t = Staff([RigidMeasure((15, 80), construct.notes(
+      0, [Rational(1, 32)] * 7 + [Rational(1, 64)]))])
+   pitchtools.diatonicize(t)
+   Beam(t[0])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 15/80
+                   \scaleDurations #'(4 . 5) {
+                           c'32 [ (
+                           d'32
+                           e'32
+                           f'32
+                           g'32
+                           a'32
+                           b'32
+                           c''64 ] )
+                   }
+   }'''
+
+   halves = split.fractured_at_duration(t[0], Rational(14, 80))
+
+   assert check.wf(t)
+   assert len(halves) == 2
+   assert t.format == "\\new Staff {\n\t\t\\time 14/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'32 [ (\n\t\t\td'32\n\t\t\te'32\n\t\t\tf'32\n\t\t\tg'32\n\t\t\ta'32\n\t\t\tb'32 ] )\n\t\t}\n\t\t\\time 1/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc''64 [ ] ( )\n\t\t}\n}"

@@ -30,6 +30,7 @@ def measures_by_count_cyclic(container, part_counts, mark = False):
                   break
             meter_sum_str = ' + '.join([
                str(x.meter.effective) for x in measures_to_fuse])
+            meter_sum_str = '"%s"' % meter_sum_str
             new = measures_by_reference(measures_to_fuse)
             if mark:
                new.leaves[0].markup.up.append(meter_sum_str)

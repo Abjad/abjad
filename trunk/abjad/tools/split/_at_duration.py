@@ -4,6 +4,7 @@ from abjad.leaf.leaf import _Leaf
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.tie.spanner import Tie
 from abjad.tools import componenttools
+from abjad.tools import durtools
 from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import measuretools
@@ -44,13 +45,16 @@ def _at_duration(
    ## code that crawls and splits later on will be happier
    if len(measures) == 1:
       measure = measures[0]
-      if measure.duration.nonbinary:
-         ## TODO: implement code to split nonbinary measure ##
-         raise Exception(NotImplemented)
       split_point_in_measure = \
          global_split_point - measure.offset.prolated.start
       split_point_denominator = split_point_in_measure._d
-      if not mathtools.is_power_of_two(split_point_denominator):
+      if measure.duration.nonbinary:
+         measure_multiplier = measure.duration.multiplier
+         split_point_multiplier = durtools.denominator_to_multiplier(
+            split_point_denominator)
+         if not measure_multiplier == split_point_multiplier:
+            raise Exception(NotImplemented)
+      elif not mathtools.is_power_of_two(split_point_denominator):
          nonbinary_factors = mathtools.factors(
             mathtools.remove_powers_of_two(split_point_denominator))
          nonbinary_product = 1
