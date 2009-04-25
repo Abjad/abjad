@@ -15,7 +15,7 @@ def test_split__leaf_at_duration_01( ):
         e'8 ]
    }'''
 
-   split__leaf_at_duration(t[1], Rational(1, 32))
+   halves = split__leaf_at_duration(t[1], Rational(1, 32))
 
    r'''\new Staff {
            c'8 [
@@ -40,7 +40,7 @@ def test_split__leaf_at_duration_02( ):
         e'8 ]
    }'''
 
-   split__leaf_at_duration(t[1], Rational(1, 24))
+   halves = split__leaf_at_duration(t[1], Rational(1, 24))
 
    r'''\new Staff {
         c'8 [
@@ -74,7 +74,7 @@ def test_split__leaf_at_duration_03( ):
       }
    }'''
 
-   split__leaf_at_duration(t.leaves[1], Rational(1, 24))
+   halves = split__leaf_at_duration(t.leaves[1], Rational(1, 24))
 
    r'''\new Voice {
       c'8 [
@@ -94,60 +94,66 @@ def test_split__leaf_at_duration_04( ):
    '''Split duration equal to zero produces no change.'''
 
    t = Note(0, (1, 4))
-   new = split__leaf_at_duration(t, Rational(0))
-   assert isinstance(new, tuple)
-   assert len(new) == 1
-   assert isinstance(new[0], Note)
-   assert new[0].duration.written == Rational(1, 4)
-   assert new[0] == t
+
+   halves = split__leaf_at_duration(t, Rational(0))
+   left, right = halves
+
+   assert len(halves) == 2
+   assert len(left) == 0
+   assert len(right) == 1
+   assert isinstance(right[0], Note)
+   assert right[0].duration.written == Rational(1, 4)
 
 
 def test_split__leaf_at_duration_05( ):
    '''Leaf duration less than split duration produces no change.'''
 
    t = Note(0, (1, 4))
-   new = split__leaf_at_duration(t, Rational(3, 4))
-   assert isinstance(new, tuple)
-   assert len(new) == 1
-   assert isinstance(new[0], Note)
-   assert new[0].duration.written == Rational(1, 4)
-   assert new[0] == t
+
+   halves = split__leaf_at_duration(t, Rational(3, 4))
+   left, right = halves
+
+   assert len(halves) == 2
+   assert len(left) == 1
+   assert isinstance(left[0], Note)
+   assert left[0].duration.written == Rational(1, 4)
+   assert len(right) == 0
 
 
 def test_split__leaf_at_duration_06( ):
-   '''Split returns two lists of Leaves.'''
+   '''Split returns two lists of zero or more leaves.'''
 
    t = Note(0, (1, 4))
-   new = split__leaf_at_duration(t, Rational(1, 8))
+   halves = split__leaf_at_duration(t, Rational(1, 8))
 
-   assert isinstance(new, tuple)
-   assert len(new) == 2
-   assert len(new[0]) == 1
-   assert len(new[1]) == 1
-   assert new[0][0] is t
-   assert new[1][0] is not t
-   assert isinstance(new[0][0], Note)
-   assert isinstance(new[1][0], Note)
-   assert new[0][0].duration.written == Rational(1, 8)
-   assert new[1][0].duration.written == Rational(1, 8)
-   assert not new[0][0].tie.spanned
-   assert not new[1][0].tie.spanned
+   assert isinstance(halves, tuple)
+   assert len(halves) == 2
+   assert len(halves[0]) == 1
+   assert len(halves[1]) == 1
+   assert halves[0][0] is t
+   assert halves[1][0] is not t
+   assert isinstance(halves[0][0], Note)
+   assert isinstance(halves[1][0], Note)
+   assert halves[0][0].duration.written == Rational(1, 8)
+   assert halves[1][0].duration.written == Rational(1, 8)
+   assert not halves[0][0].tie.spanned
+   assert not halves[1][0].tie.spanned
 
 
 def test_split__leaf_at_duration_07( ):
-   '''Split returns two lists of Leaves.'''
+   '''Split returns two lists of zero or more.'''
 
    t = Note(0, (1, 4))
-   new = split__leaf_at_duration(t, Rational(1, 16))
+   halves = split__leaf_at_duration(t, Rational(1, 16))
 
-   assert isinstance(new, tuple)
-   assert len(new) == 2
-   assert len(new[0]) == 1
-   assert len(new[1]) == 1
-   assert isinstance(new[0][0], Note)
-   assert isinstance(new[1][0], Note)
-   assert new[0][0].duration.written == Rational(1, 16)
-   assert new[1][0].duration.written == Rational(3, 16)
+   assert isinstance(halves, tuple)
+   assert len(halves) == 2
+   assert len(halves[0]) == 1
+   assert len(halves[1]) == 1
+   assert isinstance(halves[0][0], Note)
+   assert isinstance(halves[1][0], Note)
+   assert halves[0][0].duration.written == Rational(1, 16)
+   assert halves[1][0].duration.written == Rational(3, 16)
 
 
 def test_split__leaf_at_duration_08( ):
@@ -156,22 +162,22 @@ def test_split__leaf_at_duration_08( ):
       Right list contains only one note.'''
 
    t = Note(0, (1, 4))
-   new = split__leaf_at_duration(t, Rational(5, 32))
+   halves = split__leaf_at_duration(t, Rational(5, 32))
 
-   assert isinstance(new, tuple)
-   assert len(new) == 2
-   assert len(new[0]) == 2
-   assert len(new[1]) == 1
-   assert isinstance(new[0][0], Note)
-   assert isinstance(new[0][1], Note)
-   assert isinstance(new[1][0], Note)
-   assert new[0][0].duration.written == Rational(4, 32)
-   assert new[0][1].duration.written == Rational(1, 32)
-   assert new[1][0].duration.written == Rational(3, 32)
-   assert new[0][0].tie.spanned
-   assert new[0][1].tie.spanned
-   assert new[0][0].tie.spanner is new[0][1].tie.spanner
-   assert not new[1][0].tie.spanned
+   assert isinstance(halves, tuple)
+   assert len(halves) == 2
+   assert len(halves[0]) == 2
+   assert len(halves[1]) == 1
+   assert isinstance(halves[0][0], Note)
+   assert isinstance(halves[0][1], Note)
+   assert isinstance(halves[1][0], Note)
+   assert halves[0][0].duration.written == Rational(4, 32)
+   assert halves[0][1].duration.written == Rational(1, 32)
+   assert halves[1][0].duration.written == Rational(3, 32)
+   assert halves[0][0].tie.spanned
+   assert halves[0][1].tie.spanned
+   assert halves[0][0].tie.spanner is halves[0][1].tie.spanner
+   assert not halves[1][0].tie.spanned
 
 
 def test_split__leaf_at_duration_09( ):
@@ -179,7 +185,7 @@ def test_split__leaf_at_duration_09( ):
 
    t = Staff([Note(0, (1, 4))])
    s = Tie(t.leaves)
-   new = split__leaf_at_duration(t[0], Rational(1, 8))
+   halves = split__leaf_at_duration(t[0], Rational(1, 8))
 
    assert len(t) == 2
    for leaf in t.leaves:
@@ -193,7 +199,7 @@ def test_split__leaf_at_duration_10( ):
 
    t = Staff(construct.run(4))
    b = Beam(t.leaves)
-   new = split__leaf_at_duration(t[0], Rational(1, 16))
+   halves = split__leaf_at_duration(t[0], Rational(1, 16))
 
    assert len(t) == 5
    for l in t.leaves:
@@ -203,16 +209,16 @@ def test_split__leaf_at_duration_10( ):
 
 
 def test_split__leaf_at_duration_11( ):
-   '''Split returns three Leaves, two are tied.
+   '''Split returns three leaves, two are tied.
       Spanner is shared by all 3 leaves.'''
 
    t = Staff([Note(0, (1, 4))])
    s = Tie(t.leaves)
-   new = split__leaf_at_duration(t[0], Rational(5, 32))
+   halves = split__leaf_at_duration(t[0], Rational(5, 32))
 
-   assert len(new) == 2
-   assert len(new[0]) == 2
-   assert len(new[1]) == 1
+   assert len(halves) == 2
+   assert len(halves[0]) == 2
+   assert len(halves[1]) == 1
    for l in t.leaves:
       assert l.spanners.attached == set([s])
       assert l.tie.spanner is s
@@ -225,7 +231,7 @@ def test_split__leaf_at_duration_12( ):
 
    t = Staff(construct.run(4))
    s = Tie(t)
-   new = split__leaf_at_duration(t[0], Rational(5, 64))
+   halves = split__leaf_at_duration(t[0], Rational(5, 64))
 
    assert t.tie.spanner is s
    assert s.components == [t]
@@ -240,7 +246,7 @@ def test_split__leaf_at_duration_13( ):
 
    t = Staff(Container(construct.run(4)) * 2)
    s = Tie(t[:])
-   new = split__leaf_at_duration(t[0][0], Rational(5, 64))
+   halves = split__leaf_at_duration(t[0][0], Rational(5, 64))
 
    assert s.components == t[:]
    for v in t:
@@ -256,10 +262,10 @@ def test_split__leaf_at_duration_14( ):
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
-   new = split__leaf_at_duration(t, Rational(1, 8))
+   halves = split__leaf_at_duration(t, Rational(1, 8))
 
-   assert len(new[0][0].grace.after) == 0
-   assert len(new[1][0].grace.after) == 1
+   assert len(halves[0][0].grace.after) == 0
+   assert len(halves[1][0].grace.after) == 1
 
 
 def test_split__leaf_at_duration_15( ):
@@ -267,13 +273,13 @@ def test_split__leaf_at_duration_15( ):
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
-   new = split__leaf_at_duration(t, Rational(5, 32))
+   halves = split__leaf_at_duration(t, Rational(5, 32))
 
-   assert len(new) == 2
-   assert len(new[0][0].grace.after) == 0
-   assert len(new[0][1].grace.after) == 0
-   assert len(new[1]) == 1
-   assert len(new[1][0].grace.after) == 1
+   assert len(halves) == 2
+   assert len(halves[0][0].grace.after) == 0
+   assert len(halves[0][1].grace.after) == 0
+   assert len(halves[1]) == 1
+   assert len(halves[1][0].grace.after) == 1
 
 
 def test_split__leaf_at_duration_16( ):
@@ -281,9 +287,9 @@ def test_split__leaf_at_duration_16( ):
 
    t = Note(0, (1, 4))
    t.grace.before = Note(0, (1, 32))
-   new = split__leaf_at_duration(t, Rational(1, 16))
+   halves = split__leaf_at_duration(t, Rational(1, 16))
 
-   assert len(new[0]) == 1
-   assert len(new[1]) == 1
-   assert len(new[0][0].grace.before) == 1
-   assert len(new[1][0].grace.before) == 0
+   assert len(halves[0]) == 1
+   assert len(halves[1]) == 1
+   assert len(halves[0][0].grace.before) == 1
+   assert len(halves[1][0].grace.before) == 0

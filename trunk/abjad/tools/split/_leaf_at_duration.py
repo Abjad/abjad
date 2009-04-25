@@ -12,19 +12,20 @@ def _leaf_at_duration(
    '''Split leaf into left and right lists.
       Left list may be list of one note, many tied notes, or tuplet.
       Right list may be list of one note, many tied notes, or tuplet.
-      Interpret boolean tie_after keyword as 'add tie after split'.'''
+      Interpret boolean tie_after keyword as 'add tie after split'.
+      Return value is always uniformly a pair of lists.'''
 
    assert isinstance(leaf, _Leaf)
    assert isinstance(split_dur, Rational)
 
    leaf_multiplied_duration = leaf.duration.multiplied
    unprolated_split_dur = split_dur / leaf.duration.prolation
+   
+   ## handle split duration boundary cases
    if unprolated_split_dur <= 0:
-      ## TODO: This one case should be ([ ], [leaf]) ##
-      return (leaf, )
+      return ([ ], [leaf])
    if leaf_multiplied_duration <= unprolated_split_dur:
-      ## TODO: This one case should be ([leaf], [ ]) ##
-      return (leaf, )
+      return ([leaf], [ ])
 
    new_leaf = clone.unspan([leaf])[0]
    leaf.splice([new_leaf])
