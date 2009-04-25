@@ -2,10 +2,9 @@ Duration token
 ==============
 
 
-
 Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
 
-* Abjad :class:`Rational` instances
+* Abjad :class:`abjad.rational.rational.Rational` instances
 * Python pairs
 * Python `int` and `long` instances
 
@@ -48,9 +47,8 @@ Examples in the documentation that ask for valid duration token input accept any
 
 
 
-Comments
---------
+.. note::
 
-Abjad does not count the Python `float` among the valid types of duration token.
+   Abjad does not count the Python `float` among the valid types of duration token.
 
 
