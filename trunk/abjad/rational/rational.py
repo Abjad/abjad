@@ -15,6 +15,9 @@ class Rational(object):
          d = args[1]
          assert isinstance(n, (int, long))
          assert isinstance(d, (int, long))
+         if d == 0:
+            msg = 'Rational cannot initialize with 0 denominator.'
+            raise ZeroDivisionError(msg)
          gcd = self._gcd(n, d)
          self._numerator = n / gcd
          self._denominator = d / gcd

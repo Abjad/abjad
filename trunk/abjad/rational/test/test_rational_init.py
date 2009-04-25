@@ -29,3 +29,7 @@ def test_rational_init_04( ):
 def test_rational_init_05( ):
    '''Rational can NOT initialize with more than one Rational.'''
    assert py.test.raises(AssertionError, 'Rational(Rational(1), Rational(2))')
+
+def test_rational_init_06( ):
+   '''Rational can NOT initialize with 0 denominator.'''
+   assert py.test.raises(ZeroDivisionError, 'Rational(12, 0)')
