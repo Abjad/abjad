@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_split_fractured_at_duration_01( ):
@@ -460,3 +461,199 @@ def test_split_fractured_at_duration_12( ):
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t\t\\time 14/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'8 ~\n\t\t\td'32\n\t\t\te'8 ] )\n\t\t}\n\t\t\\time 1/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\te'32 [ ] (\n\t\t}\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8 ] )\n}"
    
+
+def test_split_fractured_at_duration_13( ):
+   '''Duration split leaf with LilyPond multiplier.
+      Split at binary split point.
+      Halves carry original written duration.
+      Halves carry adjusted LilyPond multipliers.'''
+
+   t = Note(0, (1, 8))
+   t.duration.multiplier = Rational(1, 2)
+
+   "c'8 * 1/2"
+
+   halves = split.fractured_at_duration(t, Rational(1, 32))
+
+   assert len(halves) == 2
+   assert check.wf(halves[0][0])
+   assert check.wf(halves[1][0])
+
+   assert halves[0][0].format == "c'8 * 1/4"
+   assert halves[1][0].format == "c'8 * 1/4"
+
+
+def test_split_fractured_at_duration_14( ):
+   '''Duration split leaf with LilyPond multiplier.
+      Split at nonbinary split point.
+      Halves carry original written duration.
+      Halves carry adjusted LilyPond multipliers.'''
+
+   t = Note(0, (1, 8))
+   t.duration.multiplier = Rational(1, 2)
+
+   "c'8 * 1/2"
+
+   halves = split.fractured_at_duration(t, Rational(1, 48))
+
+   assert len(halves) == 2
+   assert check.wf(halves[0][0])
+   assert check.wf(halves[1][0])
+
+   assert halves[0][0].format == "c'8 * 1/6"
+   assert halves[1][0].format == "c'8 * 1/3"
+
+
+def test_split_fractured_at_duration_15( ):
+   '''Duration split binary measure with multiplied leaves.
+      Split at binary split point between leaves.''
+      Leaves remain unaltered.'''
+
+   t = Staff(RigidMeasure((2, 16), construct.run(2)) * 2)
+   pitchtools.diatonicize(t)
+   for leaf in t.leaves:
+      leaf.duration.multiplier = Rational(1, 2)
+   Beam(t[0])
+   Beam(t[1])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 2/16
+                   c'8 * 1/2 [ (
+                   d'8 * 1/2 ]
+                   \time 2/16
+                   e'8 * 1/2 [
+                   f'8 * 1/2 ] )
+   }'''
+
+   halves = split.fractured_at_duration(t[0], Rational(1, 16))
+
+   r'''\new Staff {
+                   \time 1/16
+                   c'8 * 1/2 [ ] ( )
+                   \time 1/16
+                   c'8 * 1/2 [ ] (
+                   \time 2/16
+                   c'8 * 1/2 [
+                   c'8 * 1/2 ] )
+   }'''
+
+   assert check.wf(t)
+   assert len(halves) == 2
+   assert t.format == "\\new Staff {\n\t\t\\time 1/16\n\t\tc'8 * 1/2 [ ] ( )\n\t\t\\time 1/16\n\t\td'8 * 1/2 [ ] (\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n}"
+
+
+def test_split_fractured_at_duration_16( ):
+   '''Duration split binary measure with multiplied leaves.
+      Split at binary split point through leaves.
+      Leaf written durations stay the same but multipliers change.'''
+
+   t = Staff(RigidMeasure((2, 16), construct.run(2)) * 2)
+   pitchtools.diatonicize(t)
+   for leaf in t.leaves:
+      leaf.duration.multiplier = Rational(1, 2)
+   Beam(t[0])
+   Beam(t[1])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 2/16
+                   c'8 * 1/2 [ (
+                   d'8 * 1/2 ]
+                   \time 2/16
+                   e'8 * 1/2 [
+                   f'8 * 1/2 ] )
+   }'''
+
+   halves = split.fractured_at_duration(t[0], Rational(3, 32))
+
+   r'''\new Staff {
+                   \time 3/32
+                   c'8 * 1/2 [ (
+                   d'8 * 1/4 ] )
+                   \time 1/32
+                   d'8 * 1/4 [ ] (
+                   \time 2/16
+                   e'8 * 1/2 [
+                   f'8 * 1/2 ] )
+   }'''
+
+   assert check.wf(t)
+   assert len(halves) == 2
+   assert t.format == "\\new Staff {\n\t\t\\time 3/32\n\t\tc'8 * 1/2 [ (\n\t\td'8 * 1/4 ] )\n\t\t\\time 1/32\n\t\td'8 * 1/4 [ ] (\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n}"
+
+
+def test_split_fractured_at_duration_17( ):
+   '''Duration split binary measure with multiplied leaves.
+      Split at nonbinary split point through leaves.
+      Leaf written durations adjust for binary-to-nonbinary change.
+      Leaf multipliers also change.'''
+
+   t = Staff(RigidMeasure((2, 16), construct.run(2)) * 2)
+   pitchtools.diatonicize(t)
+   for leaf in t.leaves:
+      leaf.duration.multiplier = Rational(1, 2)
+   Beam(t[0])
+   Beam(t[1])
+   Slur(t.leaves)
+
+   r'''\new Staff {
+                   \time 2/16
+                   c'8 * 1/2 [ (
+                   d'8 * 1/2 ]
+                   \time 2/16
+                   e'8 * 1/2 [
+                   f'8 * 1/2 ] )
+   }'''
+
+   halves = split.fractured_at_duration(t[0], Rational(2, 24))
+
+   r'''\new Staff {
+                   \time 2/24
+                   \scaleDurations #'(2 . 3) {
+                           c'8. * 1/2 [ (
+                           d'8. * 1/6 ] )
+                   }
+                   \time 1/24
+                   \scaleDurations #'(2 . 3) {
+                           d'8. * 1/3 [ ] (
+                   }
+                   \time 2/16
+                   e'8 * 1/2 [
+                   f'8 * 1/2 ] )
+   }'''
+
+   assert check.wf(t)
+   assert len(halves) == 2
+   assert t.format == "\\new Staff {\n\t\t\\time 2/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. * 1/2 [ (\n\t\t\td'8. * 1/6 ] )\n\t\t}\n\t\t\\time 1/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. * 1/3 [ ] (\n\t\t}\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n}"
+
+
+def test_split_fractured_at_duration_18( ):
+   '''Duration split binary measure with multiplied leaves.
+      Meter carries numerator that necessitates ties.
+      Split at nonbinary split point through leaves.'''
+
+   t = Staff([RigidMeasure((5, 16), [Skip((1, 1))])])
+   t.leaves[0].duration.multiplier = Rational(5, 16)
+
+   r'''\new Staff {
+                   \time 5/16
+                   s1 * 5/16
+   }'''
+
+   halves = split.fractured_at_duration(t[0], Rational(16, 80))
+
+   r'''\new Staff {
+                   \time 16/80
+                   \scaleDurations #'(4 . 5) {
+                           s1 * 1/4
+                   }
+                   \time 9/80
+                   \scaleDurations #'(4 . 5) {
+                           s1 * 9/64
+                   }
+   }'''   
+
+   assert check.wf(t)
+   assert len(halves) == 2
+   assert t.format == "\\new Staff {\n\t\t\\time 16/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 1/4\n\t\t}\n\t\t\\time 9/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 9/64\n\t\t}\n}"

@@ -3,7 +3,8 @@ from abjad.rational.rational import Rational
 from abjad.tie.spanner import Tie
 from abjad.tools import clone
 from abjad.tools import tietools
-from abjad.tools.leaftools.duration_change import duration_change
+from abjad.tools.leaftools.duration_change import duration_change as \
+   leaftools_duration_change
 
 
 def _leaf_at_duration(
@@ -16,15 +17,13 @@ def _leaf_at_duration(
    assert isinstance(leaf, _Leaf)
    assert isinstance(split_dur, Rational)
 
-   if leaf.duration.multiplier is not None:
-      raise ValueError(
-         'duration split on leaf with multiplier not yet implemented.')
-
-   leaf_written_duration = leaf.duration.written
+   leaf_multiplied_duration = leaf.duration.multiplied
    unprolated_split_dur = split_dur / leaf.duration.prolation
    if unprolated_split_dur <= 0:
+      ## TODO: This one case should be ([ ], [leaf]) ##
       return (leaf, )
-   if leaf_written_duration <= unprolated_split_dur:
+   if leaf_multiplied_duration <= unprolated_split_dur:
+      ## TODO: This one case should be ([leaf], [ ]) ##
       return (leaf, )
 
    new_leaf = clone.unspan([leaf])[0]
@@ -34,9 +33,9 @@ def _leaf_at_duration(
    new_leaf.dynamics.mark = None
    leaf.grace.after = None
 
-   left_leaf_list = duration_change(leaf, unprolated_split_dur)
-   right_leaf_list = duration_change(
-      new_leaf, leaf_written_duration - unprolated_split_dur)
+   left_leaf_list = leaftools_duration_change(leaf, unprolated_split_dur)
+   right_leaf_list = leaftools_duration_change(
+      new_leaf, leaf_multiplied_duration - unprolated_split_dur)
 
    leaf_left_of_split = left_leaf_list[-1]
    leaf_right_of_split = right_leaf_list[0]

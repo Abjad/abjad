@@ -35,3 +35,28 @@ def test_fuse_leaves_by_reference_04( ):
    assert t[0] is fused[0]
    assert t[1] is fused[1]
    assert t[0].pitch.number == t[1].pitch.number
+
+
+def test_fuse_leaves_by_reference_05( ):
+   '''Fuse leaves with differing LilyPond multipliers.'''
+
+   t = Staff([Skip((1, 1)), Skip((1, 1))])
+   t[0].duration.multiplier = Rational(1, 16)
+   t[1].duration.multiplier = Rational(5, 16)
+
+   r'''\new Staff {
+           s1 * 1/16
+           s1 * 5/16
+   }'''
+
+   assert t.duration.prolated == Rational(3, 8)
+
+   result = fuse.leaves_by_reference(t[:])
+
+   r'''\new Staff {
+           s1 * 3/8
+   }'''
+
+   assert check.wf(t)
+   assert len(result) == 1
+   assert t.duration.prolated == Rational(3, 8)

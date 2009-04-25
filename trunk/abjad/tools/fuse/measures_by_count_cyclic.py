@@ -1,5 +1,4 @@
 from abjad.container.container import Container
-from abjad.tools import check # debug
 from abjad.tools import iterate
 from abjad.tools.fuse.measures_by_reference import measures_by_reference
 
@@ -29,13 +28,11 @@ def measures_by_count_cyclic(container, part_counts, mark = False):
                   measure_to_fuse = iterate.measure_next(measure_to_fuse)
                except StopIteration:
                   break
-            ## debug
-            #print measures_to_fuse, [x.number for x in measures_to_fuse]
+            meter_sum_str = ' + '.join([
+               str(x.meter.effective) for x in measures_to_fuse])
             new = measures_by_reference(measures_to_fuse)
-            ## debug
-            #print check.wf(new)
             if mark:
-               new.leaves[0].markup.up.append('*')
+               new.leaves[0].markup.up.append(meter_sum_str)
             cur_measure = new
          try:
             cur_measure = iterate.measure_next(cur_measure)

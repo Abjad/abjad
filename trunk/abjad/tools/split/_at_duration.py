@@ -27,6 +27,7 @@ def _at_duration(
 
    ## if zero duration then return component
    if duration == 0:
+      ## TODO: This one case should be ([ ], component) ##
       return (component, )
 
    ## get global position of duration split in score

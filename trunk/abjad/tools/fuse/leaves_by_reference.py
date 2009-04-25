@@ -1,5 +1,6 @@
 from abjad.tools import check
 from abjad.tools import componenttools
+from abjad.tools import durtools
 from abjad.tools import leaftools
 
 
@@ -12,7 +13,7 @@ def leaves_by_reference(leaves):
    check.assert_components(leaves, contiguity = 'thread')
    if len(leaves) <= 1:
       return leaves
-   total_written = sum([leaf.duration.written for leaf in leaves])
+   total_preprolated = durtools.sum_preprolated(leaves)
    componenttools.detach(leaves[1:])
-   #return leaftools.scale_binary(leaves[0], total_written)
-   return leaftools.duration_change(leaves[0], total_written)
+   ## TODO: Rename leaftools.duration_change to leaftools.duration_preprolated_change ##
+   return leaftools.duration_change(leaves[0], total_preprolated)
