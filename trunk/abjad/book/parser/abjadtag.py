@@ -69,15 +69,17 @@ class _AbjadTag(_TagParser):
             result.append(line)
          else:
             self.output.append(line)
-
+      return None, None
 
    def _handle_code_block(self, lines, type):
+      lines = [line.replace('\n', '') for line in lines]
       code, images = self._parse_code_block(lines, type)
       self._abjad_code.extend(code)
       out = _execute_abjad_code(self._abjad_code)
       out = _extract_code_block(out)
       out = _recover_commented_show_directives(out)
       out = _remove_hidden_directives(out)
+      out = _insert_abjad_prompt(out, lines)
       return [line + '\n' for line in out], images
 
 
@@ -113,7 +115,6 @@ class _AbjadTag(_TagParser):
 
       code.append('print "## START ##"')
       for line in lines:
-         line = line.replace('\n', '')
          ## get indentation
          indent = re.search('^ +', line)
          if indent:
@@ -142,6 +143,15 @@ class _AbjadTag(_TagParser):
 
 ## HELPERS ##
 
+def _insert_abjad_prompt(output_lines, input_lines):
+   result = [ ]
+   for oline in output_lines:
+      if oline in input_lines:
+         print oline
+         oline = 'abjad> ' + oline
+      result.append(oline)
+   return result
+      
 def _get_image_name(directive):
    try:
       image_name = directive.split(',')[1].split(')')[0]
@@ -178,6 +188,7 @@ def _execute_abjad_code(lines):
    if err:
       print "\nERROR in Abjad script compilation:"
       print err
+      sys.exit(2)
    out = out.split('\n')
    return out
 
