@@ -41,9 +41,9 @@ class _AbjadTag(_TagParser):
       print 'Parsing file...'
       input = self._input[:]
       while len(input) > 0:
-         code = self._get_next_code_block(input)
+         code, type = self._get_next_code_block(input)
          if code:
-            output_codeblock, images = self._handle_code_block(code)
+            output_codeblock, images = self._handle_code_block(code, type)
             if output_codeblock:
                self.output.append(self._target_open_tag)
                self.output.extend(output_codeblock)
@@ -55,21 +55,24 @@ class _AbjadTag(_TagParser):
 
    def _get_next_code_block(self, input):
       result = [ ]
+      type = None
       in_block = False
       for line in input[:]:
          input.remove(line) 
          if self._open_tag in line:
             in_block = True
+            if 'hide=true' in line.replace(' ', '').lower( ):
+               type = 'hide'
          elif self._close_tag in line:
-            return result
+            return result, type
          elif in_block:
             result.append(line)
          else:
             self.output.append(line)
 
 
-   def _handle_code_block(self, lines):
-      code, images = self._parse_code_block(lines)
+   def _handle_code_block(self, lines, type):
+      code, images = self._parse_code_block(lines, type)
       self._abjad_code.extend(code)
       out = _execute_abjad_code(self._abjad_code)
       out = _extract_code_block(out)
@@ -98,11 +101,16 @@ class _AbjadTag(_TagParser):
       return rendered_image
 
 
-   def _parse_code_block(self, lines):
+   def _parse_code_block(self, lines, type):
       '''Parses code and adds it to self._abjad_code. 
       Returns names of images found.'''
       images = [ ]
       code = [ ]
+      ## handle code block type
+      if type == 'hide':
+         for i in range(len(lines)):
+            lines[i] += '<hide'
+
       code.append('print "## START ##"')
       for line in lines:
          line = line.replace('\n', '')
