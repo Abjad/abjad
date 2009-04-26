@@ -5,8 +5,6 @@ from abjad.tools import construct
 from abjad.tools import durtools
 from abjad.tools.spannertools.withdraw_from_attached import \
    _withdraw_from_attached
-#from abjad.tools.tietools.get_duration_written import \
-#   get_duration_written as tietools_get_duration_written
 from abjad.tools.tietools.get_duration_preprolated import \
    get_duration_preprolated as tietools_get_duration_preprolated
 from abjad.tools.tietools.get_leaves import get_leaves as tietools_get_leaves
@@ -14,6 +12,9 @@ from abjad.tools.tietools.is_chain import is_chain as tietools_is_chain
 from abjad.tools.tietools.truncate import truncate
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
+
+## TODO: Inspect tietools.duration_change( ) carefully. ##
+##       Determine whether behavior is correct with LilyPond multipliers. ##
 
 def duration_change(tie_chain, new_written_duration):
    '''Change the written duration of tie chain,
@@ -51,8 +52,8 @@ def duration_change(tie_chain, new_written_duration):
       duration_tokens = construct.notes(0, new_written_duration)
       assert isinstance(duration_tokens[0], FixedMultiplierTuplet)
       fmtuplet = duration_tokens[0]
-      #new_chain_written = tietools_get_duration_written(fmtuplet[0].tie.chain)
-      new_chain_written = tietools_get_duration_preprolated(fmtuplet[0].tie.chain)
+      new_chain_written = tietools_get_duration_preprolated(
+         fmtuplet[0].tie.chain)
       duration_change(tie_chain, new_chain_written)
       multiplier = fmtuplet.duration.multiplier
       FixedMultiplierTuplet(multiplier, tietools_get_leaves(tie_chain))

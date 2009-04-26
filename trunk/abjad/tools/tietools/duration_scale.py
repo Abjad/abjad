@@ -14,6 +14,8 @@ def duration_scale(tie_chain, multiplier):
       Returns tie chain.'''
 
    ## TODO: Find out why tietools_get_duration_preprolated( ) fails split! ##
+   ##       This can only be changed in tietools.duration_change( ). ##
+   ##       Check tietools.duration_change( ). ##
 
    ## find new tie chain written duration
    new_written_duration = multiplier * tietools_get_duration_written(tie_chain)
