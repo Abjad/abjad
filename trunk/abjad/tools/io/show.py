@@ -11,6 +11,9 @@ import os
 import time
 
 
+## TODO: Implement show( ) 'footer' keyword to allow dynamic footer. ##
+## TODO: Extend show( ) 'title' keyword to allow multiple lines. ##
+
 def show(expr, template = None, title = None, lilytime = 10):
    '''Create a new LilyPond .ly file in the ABJADOUTPUT directory.
       Assign a four-digit numeric name to the new LilyPond .ly file.
