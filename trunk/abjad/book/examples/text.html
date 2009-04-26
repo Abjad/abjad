@@ -1,28 +1,32 @@
-<p>
-This is <b>paragraph 1</b>.
-Now comes some Abjad code
-</p>
+<p>This is a line of text. Abjad code follows:</p>
 
 <abjad>
-   abjad> v = Voice(construct.run(8))
-   abjad> Beam(v)
-   hide> write(v, 'example1')
-   abjad> show(v)
+v = Voice(construct.run(8))
+print v
+f(v)
 </abjad>
 
-<p>Here is <b>paragraph</b> 2, and more Abjad code.  Notice that in the second block of abjad code I can reference objects and variables crated in previous blocks:
-</p>
+<p>Another line of text. More Abjad code follows. Notice that in the second block of Abjad code we can reference objects and variables crated in previous blocks:</p>
 
 <abjad>
-   abjad> pitchtools.diatonicize(v)
-   abjad> Trill(v[2:])
-   hide> write(v, 'example2')
-   abjad> show(v)
+Beam(v)
+show(v)
+write(v, 'example1') <hide
+</abjad>
+
+<p>Here is <b>paragraph</b> 3, and more Abjad code.</p>
+
+<abjad>
+pitchtools.diatonicize(v)
+for leaf in v: print leaf
+Trill(v[2:])
+show(v)
+write(v, 'example2') <hide
 </abjad>
 
 <p>And a final paragraph. Here all the code is hidden:</p>
 
 <abjad>
-   hide> PianoPedal(v[:])
-   hide> write(v, 'example4')
+PianoPedal(v[:]) <hide
+write(v, "example4") <hide
 </abjad>

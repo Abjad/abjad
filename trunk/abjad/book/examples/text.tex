@@ -1,27 +1,40 @@
 \documentclass[11pt]{article}
 \usepackage{graphicx}
+\usepackage{listings}
 
 \begin{document}
 
-This is \textbf{paragraph 1}.
-Now comes some Abjad code:
+This is a line of text. \textbf{Abjad} code follows:
 
 <abjad>
-   abjad> v = Voice(construct.run(8))
-   abjad> Beam(v)
-   hide> write(v, 'example1')
-   abjad> show(v)
+v = Voice(construct.run(8))
+print v
+f(v)
 </abjad>
 
-Here is \textbf{paragraph 2}, and more Abjad code. Notice that in the second block of abjad code I can reference objects and variables crated in previous blocks:
+Another line of text. More \textbf{Abjad} code follows. Notice that in the second block of \textbf{Abjad} code we can reference objects and variables crated in previous blocks:
 
 <abjad>
-   abjad> pitchtools.diatonicize(v)
-   abjad> Trill(v[4:])
-   hide> write(v, 'example2')
-   abjad> show(v)
+Beam(v)
+show(v)
+write(v, 'example1') <hide
 </abjad>
 
-And a final paragraph.
+Here is paragraph 3, and more \textbf{Abjad} code.
+
+<abjad>
+pitchtools.diatonicize(v)
+for leaf in v: print leaf
+Trill(v[2:])
+show(v)
+write(v, 'example2') <hide
+</abjad>
+
+And a final paragraph. Here all the code is hidden:
+
+<abjad>
+PianoPedal(v[:]) <hide
+write(v, "example4") <hide
+</abjad>
 
 \end{document}
