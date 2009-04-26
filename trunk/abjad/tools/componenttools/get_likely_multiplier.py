@@ -22,7 +22,7 @@ def get_likely_multiplier(components):
    chain_duration_numerators = [ ]
    for expr in iterate.chained_contents(components):
       if tietools.is_chain(expr):
-         chain_duration = tietools.duration_written(expr)   
+         chain_duration = tietools.get_duration_written(expr)   
          chain_duration_numerators.append(chain_duration._n)
        
    if len(listtools.unique(chain_duration_numerators)) == 1:
