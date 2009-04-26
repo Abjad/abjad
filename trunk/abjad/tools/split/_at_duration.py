@@ -37,6 +37,8 @@ def _at_duration(
    ## get duration crossers, if any
    contents = componenttools.get_duration_crossers(component, duration) 
 
+   print component, global_split_point, contents
+
    ## get duration crossing measures, if any
    measures = [x for x in contents if isinstance(x, RigidMeasure)]
 
@@ -55,14 +57,20 @@ def _at_duration(
          if not measure_multiplier == split_point_multiplier:
             raise Exception(NotImplemented)
       elif not mathtools.is_power_of_two(split_point_denominator):
+         print 'bar'
          nonbinary_factors = mathtools.factors(
             mathtools.remove_powers_of_two(split_point_denominator))
          nonbinary_product = 1
          for nonbinary_factor in nonbinary_factors:
             nonbinary_product *= nonbinary_factor
          measuretools.binary_to_nonbinary(measure, nonbinary_product)
+         print measure
+         print component, duration
+         print component.format
          ## rederive duration crosses with possibly new measure contents
          contents = componenttools.get_duration_crossers(component, duration) 
+         print contents
+         print ''
    elif 1 < len(measures):
       raise ContainmentError('measures can not nest.')
 
