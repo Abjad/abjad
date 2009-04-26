@@ -11,6 +11,12 @@ class _SpannerDurationInterface(_Abjad):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def preprolated(self):
+      '''Sum of preprolated duration of all components in spanner.'''
+      client = self._client
+      return sum([component.duration.preprolated for component in client])
+
+   @property
    def prolated(self):
       '''Sum of prolated duration of all components in spanner.'''
       client = self._client
@@ -23,6 +29,8 @@ class _SpannerDurationInterface(_Abjad):
       for leaf in self._client.leaves:
          duration += leaf.duration.seconds
       return duration
+
+   ## TODO: Deprecate _SpannerDurationInterface.written in favor of _SpannerDurationInterface.preprolated; this will handle LilyPond multipliers ##
 
    @property
    def written(self):
