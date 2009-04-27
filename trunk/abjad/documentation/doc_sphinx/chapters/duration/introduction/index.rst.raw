@@ -7,23 +7,21 @@ Abjad publishes information about many **durated** score objects.
 Notes, rests, chords and skips carry some duration attributes.
 
 <abjad>
-  abjad> note = Note(0, (3, 16))
-  abjad> measure = RigidMeasure((3, 16), [note])
-  abjad> staff = RhythmicStaff([measure])
-  abjad> note.duration.written
-  Rational(3, 16)
-  hide> write(staff, 'example1', 'oedo')
+note = Note(0, (3, 16))
+measure = RigidMeasure((3, 16), [note])
+staff = RhythmicStaff([measure])
+print note.duration.written
+write(staff, 'example1', 'oedo') <hide
 </abjad>
 
 Tuplets, measures, voices, staves and the other containers carry even more.
 
 <abjad>
-  abjad> tuplet = FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
-  abjad> measure = RigidMeasure((3, 16), [tuplet])
-  abjad> staff = RhythmicStaff([measure])
-  abjad> tuplet.duration.multiplier
-  Rational(3, 5)
-  hide> write(staff, 'example2', 'oedo')
+tuplet = FixedDurationTuplet((3, 16), Note(0, (1, 16)) * 5)
+measure = RigidMeasure((3, 16), [tuplet])
+staff = RhythmicStaff([measure])
+print tuplet.duration.multiplier
+write(staff, 'example2', 'oedo') <hide
 </abjad>
 
 The next chapters document duration in Abjad and explain core duration concepts.
