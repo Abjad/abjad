@@ -137,6 +137,3 @@ There can be any number of Spanners, they may overlap, and they may
 attach to the elements of the tree, so a tree structure must exist for
 spanners to be made manifest.
 
-`Contents <../../index.html>`__
-
-

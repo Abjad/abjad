@@ -6,7 +6,7 @@
 Welcome to Abjad
 ================
 
-Start here:
+Start Here:
 
 .. toctree::
    :maxdepth: 1
@@ -24,7 +24,14 @@ Abjad Fundamentals:
 
    chapters/lcs/index
    chapters/duration/index
+
+Other topics (find a good title):
+
+.. toctree::
+   :maxdepth: 1
+
    chapters/developers/index
+   chapters/bibliography/index
 
 Abjad API:
 

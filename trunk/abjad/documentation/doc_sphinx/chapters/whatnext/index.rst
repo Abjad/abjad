@@ -1,6 +1,3 @@
-
-
-
 What next?
 ==========
 
@@ -27,7 +24,4 @@ And last, once as you start to add your own classes or helpers to
 Abjad, read the chapter about developer concerns. We love
 contributions from composers working in many different ways. So get in
 touch and consider contributing to the project at any time.
-
-`Contents <../../index.html>`__
-
 
