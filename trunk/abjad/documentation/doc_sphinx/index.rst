@@ -17,6 +17,7 @@ Start Here:
    chapters/tour/index
    chapters/whatnext/index
 
+
 Abjad Fundamentals:
 
 .. toctree::
@@ -24,14 +25,25 @@ Abjad Fundamentals:
 
    chapters/lcs/index
    chapters/duration/index
+   chapters/note_basics/index
 
-Other topics (find a good title):
+
+Developers:
 
 .. toctree::
    :maxdepth: 1
 
    chapters/developers/index
+
+
+Appendices:
+
+.. toctree::
+   :maxdepth: 1
+
    chapters/bibliography/index
+   chapters/pitch_conventions/index
+
 
 Abjad API:
 

@@ -1,0 +1,220 @@
+Working with notes
+==================
+
+
+Creating notes
+--------------
+
+Create notes with a `pitch token` and a `duration token`.
+
+<abjad>
+note = Note(0, (1, 4))
+measure = RigidMeasure(note.duration.prolated, [note]) <hide
+measure.meter.transparent = True <hide
+write(measure, 'note1', 'oedo') <hide
+</abjad>
+
+
+Pitch assignment
+----------------
+
+Change pitch with a number:
+
+<abjad>
+note = Note(0, (1, 4))
+note.pitch = 2
+measure = RigidMeasure(note.duration.prolated, [note]) <hide
+measure.meter.transparent = True <hide
+write(measure, 'pitch1', 'oedo') <hide
+</abjad>
+
+With a pair:
+
+<abjad>
+note = Note(2, (1, 4))
+note.pitch = ('e', 4)
+measure = RigidMeasure(note.duration.prolated, [note]) <hide
+measure.meter.transparent = True <hide
+write(measure, 'example3', 'oedo') <hide
+</abjad>
+
+Or with a :class:`Pitch <abjad.pitch.pitch.Pitch>` instance:
+
+<abjad>
+note = Note(('e', 4), (1, 4))
+note.pitch = Pitch('f', 4)
+measure = RigidMeasure(note.duration.prolated, [note]) <hide
+measure.meter.transparent = True <hide
+write(measure, 'example4', 'oedo') <hide
+</abjad>
+
+Any `pitch token` will work.
+
+.. todo:: document pitch-to-pitch assignment.
+
+
+
+Pitch comparison
+----------------
+
+To a :class:`Pitch <abjad.pitch.pitch.Pitch>` instance:
+
+<abjad>
+note = Note(0, (1, 4))
+note.pitch == Pitch('c', 4)
+</abjad>
+
+Or to another pitched Abjad object:
+
+<abjad>
+note = Note(0, (1, 4))
+chord = Chord([0, 2, 10], (1, 4))
+note.pitch == chord.noteheads[0].pitch
+</abjad>
+
+
+Types of pitch comparison
+-------------------------
+
+All six Python comparison operators work as expected.
+<abjad>
+n1 = Note(0, (1, 4))
+n2 = Note(2, (1, 4))
+</abjad>
+
+<abjad>
+print n1.pitch == n2.pitch
+</abjad>
+
+<abjad>
+print n1.pitch != n2.pitch
+</abjad>
+
+<abjad>
+print n1.pitch > n2.pitch
+</abjad>
+
+<abjad>
+print n1.pitch < n2.pitch
+</abjad>
+
+<abjad>
+print n1.pitch >= n2.pitch
+</abjad>
+
+<abjad>
+print n1.pitch <= n2.pitch
+</abjad>
+
+.. note::
+   
+   Is this the comparison we want?
+
+
+Duration initialization
+-----------------------
+
+Initialize :class:`Note <abjad.note.note.Note>` duration with a :class:`Rational <abjad.rational.rational.Rational>`.
+
+<abjad>
+note = Note(0, Rational(1, 8))
+measure = RigidMeasure(note.duration.prolated, [note]) <hide
+measure.meter.transparent = True <hide
+write(measure, 'duration_init1', 'oedo') <hide
+</abjad>
+
+You can also use a `duration token` as a shortcut.
+
+
+
+Duration attributes
+-------------------
+
+:class:`Note <abjad.note.note.Note>`  has a :class:`_LeafDurationInterface <abjad.leaf.duration.interface._LeafDurationInterface>`.
+
+<abjad>
+tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+note = tuplet[0]
+print note.duration
+</abjad>
+
+:class:`_LeafDurationInterface <abjad.leaf.duration.interface._LeafDurationInterface>` bundles six public attributes.
+
+<abjad>
+tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+note = tuplet[0]
+print note.duration.multiplied
+</abjad>
+
+<abjad>
+tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+note = tuplet[0]
+print note.duration.multiplier
+</abjad>
+
+<abjad>
+tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+note = tuplet[0]
+print note.duration.preprolated
+</abjad>
+
+<abjad>
+tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+note = tuplet[0]
+print note.duration.prolated
+</abjad>
+
+<abjad>
+tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+note = tuplet[0]
+print note.duration.prolation
+</abjad>
+
+<abjad>
+tuplet = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
+note = tuplet[0]
+print note.duration.written
+</abjad>
+
+
+Duration attribute assignment
+-----------------------------
+
+You can reassign `note.duration.written`.
+
+<abjad>
+note = Note(0, (1, 4))
+</abjad>
+
+<abjad>
+note = Note(0, (1, 8))
+note.duration.written = Rational(3, 16)
+measure = RigidMeasure(note.duration.prolated, [note]) <hide
+measure.meter.transparent = True <hide
+write(measure, 'duration_assign1', 'oedo') <hide
+</abjad>
+
+Use must use a :class:`Rational <abjad.rational.rational.Rational>` which meets :doc:`assignability </chapters/duration/assignability/index>` criteria.
+You can also assign `note.duration.multiplier`.
+
+<abjad>
+note = Note(0, (1, 4))
+note.duration.multiplier = Rational(1, 6)
+</abjad>
+
+<abjad>
+note = Note(0, (1, 4))
+note.duration.mutiplier = Rational(1, 6)
+print note.duration.written
+print note.duration.multiplier
+print note.duration.multiplied
+</abjad>
+
+Use any positive Rational.
+All other duration attributes are read-only.
+
+
+.. todo::
+
+   This currently causes reference problems: ``n1.pitch = n2.pitch``. Can we block directly in the implementation? Or must we teach users never to cross references this way?
+
