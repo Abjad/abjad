@@ -80,7 +80,7 @@ class _AbjadTag(_TagParser):
       out = _recover_commented_show_directives(out)
       out = _remove_hidden_directives(out)
       out = _insert_abjad_prompt(out, lines)
-      return [line + '\n' for line in out], images
+      return ['\t%s\n' % line for line in out], images
 
 
    def _renderImages(self):
