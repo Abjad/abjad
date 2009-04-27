@@ -5,28 +5,38 @@ from abjad.staff.staff import Staff
 import types
 
 
+## TODO: Make _StaffInterface handle LilyPond StaffSymbol grob? ##
+
 class _StaffInterface(_Observer, _FormatContributor, _BacktrackingInterface):
+   r'''Report on Abjad staff in parentage of client.
+      Interface to LilyPond \stopStaff, \startStaff hiding commands.
+      Handle no LilyPond grob.'''
    
    def __init__(self, _client, _updateInterface):
+      '''Register as observer, format contributor and backtracker.
+         Init effective and force staff to None.
+         Init hide to False.'''
       _Observer.__init__(self, _client, _updateInterface)
       _FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'staff')
       self._acceptableTypes = (Staff, types.NoneType)
       self._effective = None
       self._forced = None
+      self._hide = False
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def before(self):
-      '''Format contribution before leaf.'''
+   def closing(self):
+      '''Format contribution at container closing or after leaf.'''
       result = [ ]
-      if self.change or (not self.client.prev and self.forced):
-         result.append(r'\change Staff = %s' % self.effective.name)
+      if self.hide:
+         result.append(r'\startStaff')
       return result
 
    @property
    def effective(self):
+      '''Effective staff of client.'''
       effective = _BacktrackingInterface.effective.fget(self)
       if effective is None:
          from abjad.staff.staff import Staff
@@ -34,3 +44,23 @@ class _StaffInterface(_Observer, _FormatContributor, _BacktrackingInterface):
             if isinstance(parent, Staff):
                return parent
       return effective
+
+   @apply
+   def hide( ):
+      r'''Interface to LilyPond \stopStaff, \startStaff commands.'''
+      def fget(self):
+         return self._hide
+      def fset(self, arg):
+         assert isinstance(arg, (types.BooleanType, types.NoneType))
+         self._hide = arg
+      return property(**locals( ))
+
+   @property
+   def opening(self):
+      '''Format contribution before leaf.'''
+      result = [ ]
+      if self.change or (not self.client.prev and self.forced):
+         result.append(r'\change Staff = %s' % self.effective.name)
+      if self.hide:
+         result.append(r'\stopStaff')
+      return result
