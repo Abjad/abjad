@@ -25,6 +25,7 @@ Abjad Fundamentals:
 
    chapters/lcs/index
    chapters/duration/index
+   chapters/pitch/index
    chapters/note_basics/index
 
 
