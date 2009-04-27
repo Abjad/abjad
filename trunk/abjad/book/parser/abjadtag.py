@@ -147,7 +147,6 @@ def _insert_abjad_prompt(output_lines, input_lines):
    result = [ ]
    for oline in output_lines:
       if oline in input_lines:
-         print oline
          oline = 'abjad> ' + oline
       result.append(oline)
    return result
