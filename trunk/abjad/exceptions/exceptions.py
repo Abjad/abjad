@@ -120,6 +120,11 @@ class TupletFuseError(Exception):
       Tuplets must carry same multiplier and be same type.'''
    pass
 
+class TypographicWhitespaceError(Exception):
+   '''Whitespace after leaf consues LilyPond timekeeping.
+      Insert whitespace after measure instead.'''
+   pass
+
 class UndefinedTempoError(TempoError):
    '''Tempo required for calculation but not yet defined.'''
    pass

@@ -1,19 +1,23 @@
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
+from abjad.exceptions.exceptions import TypographicWhitespaceError
+from abjad.rational.rational import Rational
 import types
 
 
 class _BreaksInterface(_Interface, _FormatContributor):
    r'''Handle no LilyPond grob.
       Interface to LilyPond \break and \pageBreak commands.
+      Affordance for nonstaff whitespace following client.
       Interface to LilyPond x- and y- system positioning.'''
    
    def __init__(self, client):
-      '''Bind to client and set line, page, x and y to None.'''
+      '''Bind to client and set line, page, whitespace, x and y to None.'''
       _Interface.__init__(self, client)
       _FormatContributor.__init__(self)
       self._line = None
       self._page = None
+      self._whitespace = None
       self._x = None
       self._y = None
 
@@ -29,13 +33,10 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def _line_break_system_details(self):
       '''LilyPond Score.NonMusicalPaperColumn #'line-break-system-details
          formatting contribution.'''
-      #result = ''
       result = [ ]
       x = self.x
       y = self.y
       if x is not None or y is not None:
-         #result += '\\overrideProperty #"Score.NonMusicalPaperColumn"\n'
-         #result += "#'line-break-system-details\n"
          result.append('\\overrideProperty #"Score.NonMusicalPaperColumn"')
          result.append("#'line-break-system-details")
          temp = [ ]
@@ -44,7 +45,6 @@ class _BreaksInterface(_Interface, _FormatContributor):
          if y is not None:
             temp.append('(Y-offset . %s)' % y)
          temp_str = ' '.join(temp)
-         #result += "#'(%s)" % temp_str
          result.append("#'(%s)" % temp_str)
       return result
 
@@ -54,14 +54,17 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def closing(self):
       '''Format contribution at container closing or after leaf.'''
       result = [ ]
+      whitespace = self.whitespace
+      if whitespace:
+         from abjad.tools.layout._rational_to_whitespace_measure_string import \
+            _rational_to_whitespace_measure_string as \
+            layout__rational_to_whitespace_measure_string
+         string = layout__rational_to_whitespace_measure_string(whitespace)
+         result.extend(string.split('\n'))
       if self.line:
          result.append(r'\break')
       if self.page:
          result.append(r'\pageBreak')
-#      details = self._line_break_system_details
-#      if details:
-#         #result.append(details)
-#         result.extend(details)
       return result
 
    @apply
@@ -91,6 +94,22 @@ class _BreaksInterface(_Interface, _FormatContributor):
       def fset(self, arg):
          assert isinstance(arg, bool) or arg is None
          self._page = arg
+      return property(**locals( ))
+
+   ## Client type-checking is a hack; find structural solution later. ##
+
+   @apply
+   def whitespace( ):
+      r'''Rational-valued non-durative whitespace following client.
+         Fake measure between \stopStaff, \startStaff commands.'''
+      def fget(self):
+         return self._whitespace
+      def fset(self, arg):
+         from abjad.leaf.leaf import _Leaf
+         assert isinstance(arg, (int, Rational, types.NoneType))
+         if isinstance(self._client, _Leaf):
+            raise TypographicWhitespaceError
+         self._whitespace = arg
       return property(**locals( ))
 
    @apply

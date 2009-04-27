@@ -4,7 +4,7 @@
 
       * rational numbers
       * core Abjad classes
-      * tool/iterate'''
+      * tools/iterate'''
 
 
 from abjad.tools.imports.package_import import _package_import
