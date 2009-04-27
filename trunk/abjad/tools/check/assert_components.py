@@ -34,7 +34,7 @@ def assert_components(expr, klasses = (_Component, ),
       if share is None:
          if not assess_components(expr, klasses = klasses):
             raise TypeError('Must be Python list'
-               ' of Abjad components.')
+               ' of Abjad %s.' % str(klasses))
 
       elif share == 'parent':
          if not assess_components(expr, klasses = klasses, share = 'parent', 
