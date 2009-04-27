@@ -94,29 +94,29 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-html_theme = 'default'
+html_theme = 'abjadtheme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-  'bodyfont': 'Lucida Sans Unicode, Lucida Sans, Arial,  sans-serif',
+  'bodyfont': 'Arial,  sans-serif',
   'headfont': 'Lucida Sans Unicode, Lucida Sans, Arial,  sans-serif',
   'footerbgcolor': '#222222',
   'footertextcolor': '#aaaaaa',
 
   'sidebarbgcolor': '#ffffff', 
   'sidebartextcolor': '#222222',
-  'sidebarlinkcolor': '#812222',
+  'sidebarlinkcolor': '#215240',
 
-  'relbarbgcolor': '#622222',
+  'relbarbgcolor': '#225240',
   'relbartextcolor': '#aaaaaa',
 
   'headbgcolor' : '#fefefe',
   'headtextcolor': '#212121',
 
-  'linkcolor': '#812222' ,
-  'headlinkcolor': '#812222',
+  'linkcolor': '#215240' ,
+  'headlinkcolor': '#215240',
 #  'relbarlinkcolor': ,
 #  'bgcolor ': ,
 #  'textcolor': ,
@@ -124,7 +124,7 @@ html_theme_options = {
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
-#html_theme_path = []
+html_theme_path = ['_themes']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
