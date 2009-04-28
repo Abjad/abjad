@@ -1,6 +1,7 @@
 from abjad.book.parser.tagparser import _TagParser
 import os
 import re
+import shutil
 import subprocess
 import sys
 
@@ -30,8 +31,12 @@ class _AbjadTag(_TagParser):
       os.chdir('..')
       if rendered: 
          _createDirectory('images') 
-         os.system('mv tmp_out/*.png images')
-      os.system('rm -r tmp_out')
+         for element in os.listdir('tmp_out'):
+            if element.endswith('.png'):
+               shutil.move(os.path.join('tmp_out', element), 'images')
+         #os.system('mv tmp_out/*.png images')
+      #os.system('rm -r tmp_out')
+      shutil.rmtree('tmp_out')
       return self.output
 
 
@@ -86,8 +91,8 @@ class _AbjadTag(_TagParser):
    def _renderImages(self):
       rendered_image = False
       for file in os.listdir(os.curdir):
-         print 'Rendering "%s"...' % file
          if file.endswith('.ly'):
+            print 'Rendering "%s"...' % file
             file_base = file.rstrip('.ly')
             # NOTE: setting stderr = sys.stderr 
             # below will print LilyPond messages
