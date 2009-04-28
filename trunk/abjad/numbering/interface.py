@@ -38,8 +38,13 @@ class _NumberingInterface(_Observer):
    def _updateMeasureNumber(self):
       '''Update (one-indexed) number of any one measure in score.'''
       from abjad.tools import iterate
-      try:
-         prev = iterate.measure_prev(self._client)
-         self._measure = prev._numbering._measure + 1
-      except StopIteration:
+#      try:
+#         prev = iterate.measure_prev(self._client)
+#         self._measure = prev._numbering._measure + 1
+#      except StopIteration:
+#         self._measure = 1
+      prevMeasure = iterate.measure_prev(self._client)
+      if prevMeasure is not None:
+         self._measure = prevMeasure._numbering._measure + 1
+      else:
          self._measure = 1

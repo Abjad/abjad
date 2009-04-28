@@ -30,7 +30,8 @@ def test_iterate_measure_next_01( ):
    assert iterate.measure_next(t[0][0]) is t[0][1]
    assert iterate.measure_next(t[0][1]) is t[1]
    assert iterate.measure_next(t[1]) is t[2]
-   assert py.test.raises(StopIteration, 'iterate.measure_next(t[2])')
+   #assert py.test.raises(StopIteration, 'iterate.measure_next(t[2])')
+   assert iterate.measure_next(t[2]) is None
    assert iterate.measure_next(t.leaves[0]) is t[0][0]
    assert iterate.measure_next(t.leaves[1]) is t[0][0]
    assert iterate.measure_next(t.leaves[2]) is t[0][1]

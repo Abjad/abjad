@@ -19,14 +19,14 @@ def measures_by_count_cyclic(container, part_counts, mark = False):
       cur_measure = iterate.measure_next(container)
       while True:
          part_count = part_counts[part_index % len_parts]
+         print cur_measure, part_count
          if 1 < part_count:
             measures_to_fuse = [ ]
             measure_to_fuse = cur_measure
             for x in range(part_count):
                measures_to_fuse.append(measure_to_fuse)
-               try:
-                  measure_to_fuse = iterate.measure_next(measure_to_fuse)
-               except StopIteration:
+               measure_to_fuse = iterate.measure_next(measure_to_fuse)
+               if measure_to_fuse is None:
                   break
             meter_sum_str = ' + '.join([
                str(x.meter.effective) for x in measures_to_fuse])
@@ -35,9 +35,8 @@ def measures_by_count_cyclic(container, part_counts, mark = False):
             if mark:
                new.leaves[0].markup.up.append(meter_sum_str)
             cur_measure = new
-         try:
-            cur_measure = iterate.measure_next(cur_measure)
-         except StopIteration:
+         cur_measure = iterate.measure_next(cur_measure)
+         if cur_measure is None:
             break
          part_index += 1 
    finally:

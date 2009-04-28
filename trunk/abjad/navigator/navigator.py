@@ -181,6 +181,20 @@ class _Navigator(_Abjad):
             node.parentage.signature == self._client.parentage.signature:
             return node
 
+   ## TODO: Write tests for _Navigator._prevNamesake.               ##
+   ##       Backwards DFS has always had a bug that needs fixing. ##
+
+   @property
+   def _prevNamesake(self):
+      '''Find the prev component of same type and parentage signature.'''
+      prev = self._prev
+      if prev is None:
+         return None
+      for node in prev._navigator._DFS(capped = False, direction = 'right'):
+         if type(node) == type(self._client) and \
+            node.parentage.signature == self._client.parentage.signature:
+            return node
+
    @property
    def _nextSibling(self):
       '''Returns the next *sequential* element in the caller's parent; 

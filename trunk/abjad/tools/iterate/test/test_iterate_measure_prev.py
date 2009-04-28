@@ -27,7 +27,8 @@ def test_iterate_measure_prev_01( ):
 
    assert iterate.measure_prev(t) is t[-1]
    assert iterate.measure_prev(t[0]) is t[0][1]
-   assert py.test.raises(StopIteration, 'iterate.measure_prev(t[0][0])')
+   #assert py.test.raises(StopIteration, 'iterate.measure_prev(t[0][0])')
+   assert iterate.measure_prev(t[0][0]) is None
    assert iterate.measure_prev(t[0][1]) is t[0][0]
    assert iterate.measure_prev(t[1]) is t[0][1]
    assert iterate.measure_prev(t[2]) is t[1]
