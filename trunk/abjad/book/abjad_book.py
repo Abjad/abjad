@@ -58,7 +58,8 @@ def _abjad_book( ):
    ## chage to file dir and read input file
    os.chdir(fn_dir)
    file = open(fn, 'r')
-   lines = file.readlines( )
+   #lines = file.readlines( )
+   lines = file.read( ).splitlines( ) ## send lines with no trailing '\n'
    file.close( )
 
    ## create Abjad tag parser type based on file extension

@@ -11,10 +11,10 @@ class _AbjadTag(_TagParser):
       _TagParser.__init__(self, lines)
       self._close_tag = '</abjad>'
       self._open_tag = '<abjad>'
-      self._target_open_tag = '<pre class="abjad">\n'
-      self._target_close_tag = '</pre>\n'
-      self._abjad_code = ['from abjad import *\n']
-      self._image_tag = '<img alt="" src="images/%s.png"/>\n'
+      self._target_open_tag = '<pre class="abjad">' + os.linesep
+      self._target_close_tag = '</pre>' + os.linesep
+      self._abjad_code = ['from abjad import *' + os.linesep]
+      self._image_tag = '<img alt="" src="images/%s.png"/>' + os.linesep
 
 
    def process(self):
@@ -77,7 +77,7 @@ class _AbjadTag(_TagParser):
       return None, None
 
    def _handle_code_block(self, lines, type):
-      lines = [line.replace('\n', '') for line in lines]
+#      lines = [line.replace('\n', '') for line in lines]
       code, images = self._parse_code_block(lines, type)
       self._abjad_code.extend(code)
       out = _execute_abjad_code(self._abjad_code)
@@ -85,7 +85,7 @@ class _AbjadTag(_TagParser):
       out = _recover_commented_show_directives(out)
       out = _remove_hidden_directives(out)
       out = _insert_abjad_prompt(out, lines)
-      return ['\t%s\n' % line for line in out], images
+      return ['\t%s%s' % (line, os.linesep) for line in out], images
 
 
    def _renderImages(self):
@@ -188,12 +188,13 @@ def _extract_code_block(lines):
 def _execute_abjad_code(lines):
    p = subprocess.Popen('python', stdin = subprocess.PIPE, 
       stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-   out, err = p.communicate('\n'.join(lines))
+   out, err = p.communicate(os.linesep.join(lines))
    if err:
-      print "\nERROR in Abjad script compilation:"
+      print os.linesep + "ERROR in Abjad script compilation:"
       print err
       sys.exit(2)
-   out = out.split('\n')
+   #out = out.split('\n')
+   out = out.splitlines( )
    return out
 
 def _createDirectory(dir):
