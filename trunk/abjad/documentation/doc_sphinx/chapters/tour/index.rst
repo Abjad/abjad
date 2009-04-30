@@ -1,5 +1,5 @@
-Start here
-==========
+Tour
+====
 
 Work through the examples here to learn how to start Abjad and to make
 notes, rests and chords. After you know the basics you can move on to
@@ -9,7 +9,7 @@ more advanced examples.
 1. Start Abjad
 --------------
 
-To start Abjad, type `abj` at any shell prompt. [1] The Abjad
+To start Abjad, type `abj` at any shell prompt. [#f1]_ The Abjad
 intepreter appears.
 
 .. sourcecode:: python
@@ -22,8 +22,7 @@ That's all there is to starting Abjad! Notice that all you have to
 type are the three letters `abj` rather than the full five letters in
 the name of the system.
 
-What if the Abjad interpreter doesn't start? See the page on making
-sure Abjad is installed correctly; link to be provided soon.
+What if the Abjad interpreter doesn't start? See the page on :doc:`installing Abjad </chapters/download/install>`.
 
 
 
@@ -148,7 +147,7 @@ notes.
     [Note(c', 8), Note(c', 8), Note(c', 8), Note(c', 8)]
 
 
-These four notes are all truly different from one another. [2]
+These four notes are all truly different from one another. [#f2]_
 
 All the usual Python list operations are available.
 
@@ -159,44 +158,10 @@ All the usual Python list operations are available.
     4
 
 
-And you can use the Abjad `f( )` helper to look at all four notes
-formatted as LilyPond input.
-
-.. sourcecode:: python
-
-    
-    abjad> f(my_notes)
-    c'8
-    c'8
-    c'8
-    c'8
-
-
-You can not, however, use the Abjad `show( )` helper to show a Python
-list of notes. Try putting these notes in an Abjad staff first. This
-is the subject of the next section.
 
 
 
-Comments
-^^^^^^^^
-
-1: On Mac OS X you can get a shell prompt using the Terminal
-application. The terminal application lives at
-`/Applications/Utilities`. It's probably a good a idea to drag the
-Terminal application to your dock so that the application is easy to
-get to and easy to start. Once you've found the Terminal application,
-click it and type `abj` to start Abjad.
-
-2: By "truly different" we mean that each of the four notes in the
-example above have a separate ID in the Abjad interpreter. You can see
-this by asking, for example, for `id(my_notes[0])` and
-`id(my_notes[1])`. Different IDs will come back in each case. This is
-important for two reasons. First, the usual Python multiplication
-operator acts to multiply references, rather than deep copying
-instances as happens here. Second, as you build more complex musical
-expressions, it will be important that notes, rests and all components
-be unique throughout complex score structure to prevent accidental
-aliasing of elements.
+.. [#f1] On Mac OS X you can get a shell prompt using the Terminal application. The terminal application lives at `/Applications/Utilities`. It's probably a good a idea to drag the Terminal application to your dock so that the application is easy to get to and easy to start. Once you've found the Terminal application, click it and type `abj` to start Abjad.
 
 
+.. [#f2] By "truly different" we mean that each of the four notes in the example above have a separate ID in the Abjad interpreter. You can see this by asking, for example, for `id(my_notes[0])` and `id(my_notes[1])`. Different IDs will come back in each case. This is important for two reasons. First, the usual Python multiplication operator acts to multiply references, rather than deep copying instances as happens here. Second, as you build more complex musical expressions, it will be important that notes, rests and all components be unique throughout complex score structure to prevent accidental aliasing of elements.

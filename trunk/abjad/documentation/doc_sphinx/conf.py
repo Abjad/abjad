@@ -107,16 +107,16 @@ html_theme_options = {
 
   'sidebarbgcolor': '#ffffff', 
   'sidebartextcolor': '#222222',
-  'sidebarlinkcolor': '#215240',
+  'sidebarlinkcolor': '#e14200',
 
-  'relbarbgcolor': '#225240',
+  'relbarbgcolor': '#e24200',
   'relbartextcolor': '#aaaaaa',
 
   'headbgcolor' : '#fefefe',
   'headtextcolor': '#212121',
 
-  'linkcolor': '#215240' ,
-  'headlinkcolor': '#215240',
+  'linkcolor': '#e14200' ,
+  'headlinkcolor': '#e14200',
 #  'relbarlinkcolor': ,
 #  'bgcolor ': ,
 #  'textcolor': ,
@@ -172,7 +172,7 @@ html_static_path = ['_static']
 #html_split_index = False
 
 # If true, links to the reST sources are added to the pages.
-#html_show_sourcelink = True
+html_show_sourcelink = False
 
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the

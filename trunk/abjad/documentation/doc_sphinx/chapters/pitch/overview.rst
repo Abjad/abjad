@@ -23,9 +23,12 @@ Abjad implements quartertones only.
 
 .. note::
 
-   The chapters here refer to both object-oriented Abjad classes and to the pitch-classes of American music theory. This first use of 'class' refers to instantiable code and the second to the residue classes of a pitch space.
+   The chapters here refer to both object-oriented Abjad classes and to the pitch-classes of American music theory. This first use of `class` refers to instantiable code and the second to the residue classes of a pitch space.
    
-   For the conventions these chapters follow, refer to the appendix on :doc:`pitch conventions <chapters/pitch_conventions/index>`.
+
+.. note::
+
+   For the conventions these chapters follow, refer to the appendix on :doc:`pitch conventions </chapters/pitch_conventions/index>`.
 
 .. todo::
 

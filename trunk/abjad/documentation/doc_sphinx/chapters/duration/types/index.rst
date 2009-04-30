@@ -4,8 +4,8 @@ Duration types
 Abjad publishes duration information about notes, rests, chords and
 skips, and also about tuplets, measures, voices, staves and the other
 containers. Abjad groups duration information about notes, rests,
-chords and skips into the :class:`abjad.leaf.duration._LeafDurationInterface` class; duration information about tuplets, measures, voices, staves and other
-containers groups together inside some type of :class:`abjad.component.duration._ComponentDurationInterface` interface. 
+chords and skips into the :class:`_LeafDurationInterface <abjad.leaf.duration._LeafDurationInterface>` class; duration information about tuplets, measures, voices, staves and other
+containers groups together inside some type of :class:`_ComponentDurationInterface <abjad.component.duration._ComponentDurationInterface>` interface. 
 
 
 
@@ -26,7 +26,6 @@ The sixteenth notes here are worth exactly a sixteenth of a whole note.
 	abjad> note = measure[0]
 	abjad> print note.duration.written
 	1/16
-	
 
 .. image:: images/written_dur1.png
 
@@ -43,7 +42,6 @@ The sixteenth notes here are worth more than a sixteenth of a whole note.
 	abjad> note = tuplet[0]
 	abjad> print note.duration.written
 	1/16
-	
 
 .. image:: images/written_dur2.png
 
@@ -53,11 +51,11 @@ But we probably still call them all sixteenths anyway.
 Abjad written duration captures the fact that these notes write the same way before prolation.
 
 Abjad notes, rests, chords and skips all make written duration
-available as `duraiton.written`. Written duration is a user-assignable
+available as ``duration.written``. Written duration is a user-assignable
 rational number. Users can assign and reassign the written duration of
 notes, rests, chords and skips at initialization and at any time
 during the life of the note, rest, chord or skip. Notes, rests, chords
-and skips admit a degree of input flexibility; Abjad `Rational`
+and skips admit a degree of input flexibility; Abjad :class:`Rational <abjad.rational.rational.Rational>`
 instances, rational tokens, and integers are all allowed; see the
 chapter on :doc:`duration initialzation <../initialization/index>` for details. 
 Written durations must always be notehead-assignable; see the chapter on
@@ -92,10 +90,10 @@ container in question.
    prolated container duration is a mess: self * prolation, where self is
    whatever magic value the container duration interface itself carries.
    Clean this in the one remaining duration rewrite. We want duration
-   interface comparison of the form `leaf1.duration == leaf2.duration`
-   and `container1.duration == container2.duration`. But we do not want
-   duration interface assignment of the form `container1.duration = (1,
-   8)`. Right now, unfortunately, fixed-duration tuplets demand interface
+   interface comparison of the form ``leaf1.duration == leaf2.duration``
+   and ``container1.duration == container2.duration``. But we do not want
+   duration interface assignment of the form ``container1.duration = (1,
+   8)``. Right now, unfortunately, fixed-duration tuplets demand interface
    assignment when, for example, you want to change the "container size"
    (or whatever it is) of the tuplet in question.
 
@@ -119,7 +117,6 @@ The measure here contains two eighth notes and tuplet. These elements carry prep
 	abjad> staff = RhythmicStaff([measure])
 	abjad> print measure.duration.contents
 	1/2
-	
 
 .. image:: images/contents_dur1.png
 
@@ -145,7 +142,6 @@ The fixed-duration tuplet here carries a target duration equal to 4/8.
 	5/8
 	abjad> print tuplet.duration.target
 	1/2
-	
 
 .. image:: images/target_dur1.png
 
@@ -172,7 +168,6 @@ The first two notes here carry leaf mulitipliers equal to 2/1.
 	abjad> note = measure[0]
 	abjad> print note.duration.written
 	1/16
-	
 
 .. image:: images/multiplied_dur1.png
 
@@ -180,7 +175,6 @@ The first two notes here carry leaf mulitipliers equal to 2/1.
 
 	abjad> print note.duration.multiplier
 	2
-	
 
 
 ::
@@ -189,7 +183,6 @@ The first two notes here carry leaf mulitipliers equal to 2/1.
 	1/8
 	abjad> print note.duration.multiplied
 	1/8
-	
 
 
 The written duration of these first two notes equals 1/16 and so the multiplied duration of these first two notes equals 1/16 * 2/1 = 1/8.

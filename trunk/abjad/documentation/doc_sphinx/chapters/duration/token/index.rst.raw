@@ -4,44 +4,42 @@ Duration token
 
 Abjad notes, rests, chords, tuplets and other durated components accept duration input in a couple of different formats.
 
-* Abjad :class:`abjad.rational.rational.Rational` instances
+* Abjad :class:`Rational <abjad.rational.rational.Rational>` instances
 * Python pairs
 * Python `int` and `long` instances
 
 For example:
 
 <abjad>
-   abjad> note = Note(0, Rational(1, 4))
-   hide> measure = RigidMeasure((1, 4), [note])
-   hide> measure.meter.transparent = True
-   hide> staff = RhythmicStaff([measure])
-   hide> write(staff, 'example1', 'oedo')
+note = Note(0, Rational(1, 4))
+measure = RigidMeasure((1, 4), [note]) <hide
+measure.meter.transparent = True <hide
+staff = RhythmicStaff([measure]) <hide
+write(staff, 'example1', 'oedo') <hide
 </abjad>
 
 And:
 
 <abjad>
-   abjad> note = Note(0, (3, 8))
-   hide> measure = RigidMeasure((3, 8), [note])
-   hide> measure.meter.transparent = True
-   hide> staff = RhythmicStaff([measure])
-   hide> write(staff, 'example2', 'oedo')
+note = Note(0, (3, 8))
+measure = RigidMeasure((3, 8), [note]) <hide
+measure.meter.transparent = True <hide
+staff = RhythmicStaff([measure]) <hide
+write(staff, 'example2', 'oedo') <hide
 </abjad>
 
 And:
 
 <abjad>
-   abjad> note = Note(0, 1)
-   hide> measure = RigidMeasure((1, 1), [note])
-   hide> measure.meter.transparent = True
-   hide> staff = RhythmicStaff([measure])
-   hide> write(staff, 'example3', 'oedo')
+note = Note(0, 1)
+measure = RigidMeasure((1, 1), [note]) <hide
+measure.meter.transparent = True <hide
+staff = RhythmicStaff([measure]) <hide
+write(staff, 'example3', 'oedo') <hide
 </abjad>
 
 
 The Abjad **duration token** generalizes these different types of input.
-
-
 
 Examples in the documentation that ask for valid duration token input accept any of the types of input show here.
 

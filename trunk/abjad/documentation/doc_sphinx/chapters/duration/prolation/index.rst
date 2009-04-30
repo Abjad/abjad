@@ -18,11 +18,11 @@ Fixed-duration tuplets and fixed-multiplier tuplets both **prolate** their conte
 
 ::
 
-  abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
-  abjad> staff = RhythmicStaff([RigidMeasure((5, 8), [tuplet])])
-  abjad> Beam(tuplet)
-  abjad> tuplet.duration.augmentation
-  True
+	abjad> tuplet = FixedDurationTuplet((5, 8), Note(0, (1, 8)) * 4)
+	abjad> staff = RhythmicStaff([RigidMeasure((5, 8), [tuplet])])
+	abjad> Beam(tuplet)
+	abjad> print tuplet.duration.augmentation
+	True
 
 .. image:: images/example1.png
 
@@ -31,19 +31,16 @@ Fixed-duration tuplets and fixed-multiplier tuplets both **prolate** their conte
   abjad> tuplet.duration.multiplier
   Rational(4, 5)
 
-
 ::
 
   abjad> note = tuplet[0]
   abjad> note.duration.written
   Rational(1, 8)
 
-
 ::
 
   abjad> note.duration.prolation
   Rational(5, 4)
-
 
 ::
 
@@ -51,29 +48,28 @@ Fixed-duration tuplets and fixed-multiplier tuplets both **prolate** their conte
   Rational(5, 32)
 
 
-
 The tuplet here augments its contents and carries a tuplet multiplier equal to `4/5`.
-Notes here with :doc:`written duration <../written_duration/index>` equal to `1/8` carry **prolation factor** equal to `4/5` and :doc:`prolated duration <../prolation/index>` equal to `5/4 * 1/8 = 5/32`.
+Notes here with :doc:`written duration </chapters/duration/types/index>` equal to `1/8` carry **prolation factor** equal to `4/5` and :doc:`prolated duration <../prolation/index>` equal to `5/4 * 1/8 = 5/32`.
 
 
 
 Meter prolation
 ---------------
 
-Time signatures in western notation usually carry a denominator equal to some nonnegative integer power of&nbsp;2. 
+Time signatures in western notation usually carry a denominator equal to some nonnegative integer power of 2. 
 We can call these conventional meters **binary meters**.
-Denominators equal to integers other than integer powers of&nbsp;2 are also possible. 
+Denominators equal to integers other than integer powers of 2 are also possible. 
 Such **nonbinary meters** prolate the music they contain.
 
 
 ::
 
-  abjad> measure = RigidMeasure((4, 10), Note(0, (1, 8)) * 4)
-  abjad> Beam(measure)
-  abjad> staff = RhythmicStaff([measure])
-  abjad> note = staff.leaves[0]
-  abjad> note.duration.prolation
-  Rational(4, 5)
+	abjad> measure = RigidMeasure((4, 10), Note(0, (1, 8)) * 4)
+	abjad> Beam(measure)
+	abjad> staff = RhythmicStaff([measure])
+	abjad> note = staff.leaves[0]
+	abjad> print note.duration.prolation
+	4/5
 
 .. image:: images/example2.png
 
@@ -81,7 +77,6 @@ Such **nonbinary meters** prolate the music they contain.
 
   abjad> note.duration.prolated
   Rational(1, 10)
-
 
 
 The nonbinary `4/10` meter here prolates the contents of the measure it governs by a prolation factor equal to `4/5`.
@@ -100,12 +95,12 @@ Tuplets nest. And tuplet prolation and meter prolation combine freely. When two 
 
 ::
 
-  abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
-  abjad> Beam(tuplet)
-  abjad> measure = RigidMeasure((4, 10), [tuplet])
-  abjad> staff = RhythmicStaff([measure])
-  abjad> tuplet.duration.multiplier
-  Rational(8, 7)
+	abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 16)) * 7)
+	abjad> Beam(tuplet)
+	abjad> measure = RigidMeasure((4, 10), [tuplet])
+	abjad> staff = RhythmicStaff([measure])
+	abjad> print tuplet.duration.multiplier
+	8/7
 
 .. image:: images/example3.png
 
@@ -114,19 +109,16 @@ Tuplets nest. And tuplet prolation and meter prolation combine freely. When two 
   abjad> measure.duration.multiplier
   Rational(4, 5)
 
-
 ::
 
   abjad> note = measure.leaves[0]
   abjad> note.duration.prolation
   Rational(32, 35)
 
-
 ::
 
   abjad> note.duration.prolated
   Rational(2, 35)
-
 
 
 The tuplet here augments the notes it contains by a prolation factor equal to `8/7`.
@@ -152,7 +144,7 @@ All durated objects everywhere carry a prolation chain. Only the prolation chain
 
 .. note::
 
-   Nonbinary meters `n/d` diminish the contents of the measures they govern by a factor `j/k`, with `k = d`, and with `j` equal to the greatest integer power of `2` less than `d`.  That is, `j = 2 ** int(log(2, d))`. 
+   Nonbinary meters `n/d` diminish the contents of the measures they govern by a factor `j/k`, with `k = d`, and with `j` equal to the greatest integer power of `2` less than `d`.  That is, `j = 2 ** int(log2(d))`. 
 
 
 .. note::

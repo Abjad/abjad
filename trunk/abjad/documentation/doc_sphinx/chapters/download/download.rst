@@ -6,6 +6,7 @@ Release 1.0.1055
 ----------------
 `Abjad 1.0.1055dev.tar.gz
 <http://128.59.116.55/~abjad/Abjad-1.0.1055dev.tar.gz>`__
+
 Changes to the public interface:
 
 + Abjad now models ties exclusively with the Tie spanner. The old
@@ -29,7 +30,6 @@ New tools:
 + construct.notes_curve( ), mathtools.interpolate_divide( )
 
 
-
 Bug fixes:
 
 + Grace note appending and extending no longer throw error.
@@ -39,7 +39,9 @@ Bug fixes:
 
 Release 1.0.1022
 ----------------
+
 `Abjad 1.0.1012dev.tar.gz
 <http://128.59.116.55/~abjad/Abjad-1.0.1012dev.tar.gz>`__
+
 This is the first public release of Abjad!
 
