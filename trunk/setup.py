@@ -20,6 +20,6 @@ setup(name = 'Abjad',
       include_package_data = True, ### include all file types under abjad.
       entry_points = { 'console_scripts':[
          'abj = abjad.cfg.run_abjad:_run_abjad',
-         'abjad-book = abjad.book.abjad_book._abjad_book',
+         'abjad-book = abjad.book.abjad_book:_abjad_book',
          ] },
       )
