@@ -73,7 +73,7 @@ class _AbjadTag(_TagParser):
          elif in_block:
             result.append(line)
          else:
-            self.output.append(line)
+            self.output.append(line + os.linesep)
       return None, None
 
    def _handle_code_block(self, lines, type):
@@ -85,6 +85,9 @@ class _AbjadTag(_TagParser):
       out = _recover_commented_show_directives(out)
       out = _remove_hidden_directives(out)
       out = _insert_abjad_prompt(out, lines)
+      ## TODO os.linesep here inserts a white space between every line in 
+      ## Windowz. Using '\r' instead seems to work on both Linux and 
+      ## Windowz. use '\r' instead?
       return ['\t%s%s' % (line, os.linesep) for line in out], images
 
 
