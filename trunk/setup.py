@@ -7,10 +7,10 @@ use_setuptools( ) ### this must come before setup import
 from setuptools import setup, find_packages
 
 setup(name = 'Abjad', 
-      version = '1.1.2077', 
+      version = '1.1', 
       description = 'Abjad is a Python API for Formalized Score Control.',
       long_description = 'Abjad is a Python API for Formalized Score Control.',
-      author = 'Víctor Adán and Trevor Bača',
+      author = 'Victor Adan and Trevor Baca',
       author_email = 'contact@victoradan.net, trevorbaca@gmail.com',
       url = 'http://www.projectabjad.org',
       keywords = 'music formalized score control lilypond composition',

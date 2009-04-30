@@ -1,6 +1,19 @@
 Download
 ========
 
+Release 1.1
+----------------
+
+`Abjad 1.1.tar.gz <http://pypi.python.org/pypi/Abjad>`__
+
+**Many** changes and improvements!
+
+Highlights:
+
+* Many composer and structure transformation tools added. See the `abjad.tools.*` in the :doc:`Abjad API </chapters/api/index>` package.
+* All tools (construction, transformation, manipulation) are now very cleanly grouped and categorized in various packages.
+* New ``abjad-book`` application available. Use ``abjad-book`` to interpret Abjad code blocks embedded in HTML, LaTex and reST documents. 
+
 
 Release 1.0.1055
 ----------------
