@@ -75,7 +75,7 @@ Wandering from Mikrokosmos vol. III. As simple as it may seem, these
 five measures carry with them a lot of information pertaining to
 musical notation.
 
-.. images:: images/bartok_wandering.png
+.. image:: images/bartok_wandering.png
 
 
 There are many musical signs of different types on the pages: notes,

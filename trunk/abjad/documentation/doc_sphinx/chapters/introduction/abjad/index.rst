@@ -16,7 +16,6 @@ small examples of only one or two notes to full pieces of orchestral
 score worked out against many dozes of staves.
 
 
-
 Abjad extends python
 --------------------
 
@@ -82,10 +81,27 @@ an ANG.
 
 
 
-Other topics
-------------
 
 History of Abjad
+----------------
+
+Working independently and faced with similar aesthetic and technical problems in the creation of new music, composers `Trevor Bača <http://www.trevorbaca.com>`__ and `Víctor Adán <http://www.victoradan.net>`__ had for several years been developing two systems for symbolic music composition: `Lascaux` and `Cuepatlahto`, respectively. Both systems were designed to tackle similar problems, such as: 
+
+1. The difficulty involved in transcribing larger scale and highly 
+   parameterized gestures and textures into traditional western notation.
+2. The general inflexibility of commercial music notation software packages.
+3. The relative inability of objects on the printed page in conventional 
+   score to point to each other — or, indeed, to other objects or ideas 
+   outside the printed page — in ways rich enough to help capture, model 
+   and develop long-range, nonlocal relationships throughout our scores.
+
+After collaborating on a joint paper describing the two systems and discussing their design implementation, Víctor and Trevor decided to combine their efforts into a single unified project, now called **Abjad**. 
+
+In Abjad we strive to develop a powerful and flexible symbolic music system for `formalized score control`.  In picking the phrase `formalized score control` to capture our solutions to these problems, we hope to highlight our want to embody important elements of musical score symbolically such that the full power of modern programming languages and tools in mathematics can be brought to bear on all parts of the compositional process.
+
+
+Other topics
+------------
 
 Command-line interface (CLI)
 

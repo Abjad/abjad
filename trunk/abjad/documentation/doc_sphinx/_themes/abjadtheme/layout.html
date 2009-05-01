@@ -1,10 +1,10 @@
 {% extends "basic/layout.html" %}
 
+{% set script_files = script_files + ["_static/ga-1.js"] %}
+{% set script_files = script_files + ["_static/ga-2.js"] %}
 
 {% block rootrellink %}
     <li><a href="http://www.projectabjad.org/">Project Abjad</a> &raquo;</li>
     {{ super() }}
 {% endblock %}
 
-{% set script_files = script_files + [pathto("_static/ga-1.js", 1)] %}
-{% set script_files = script_files + [pathto("_static/ga-1.js", 1)] %}
