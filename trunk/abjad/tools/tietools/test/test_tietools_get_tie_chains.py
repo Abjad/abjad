@@ -25,7 +25,7 @@ def test_tietools_get_tie_chains_03( ):
    Tie(t[0:2])
    chains = tietools.get_tie_chains(t)
 
-   assert chains == [t[0:2]]
+   assert chains == [tuple(t[0:2])]
 
 
 def test_tietools_get_tie_chains_04( ):
@@ -35,7 +35,7 @@ def test_tietools_get_tie_chains_04( ):
    Tie(t)
    chains = tietools.get_tie_chains([t])
 
-   assert chains == [t.leaves]
+   assert chains == [tuple(t.leaves)]
 
 
 def test_tietools_get_tie_chains_05( ):
@@ -46,7 +46,7 @@ def test_tietools_get_tie_chains_05( ):
    Tie(t[2:])
    chains = tietools.get_tie_chains(t.leaves)
 
-   assert chains == [t[0:2], t[2:]]
+   assert chains == [tuple(t[0:2]), tuple(t[2:])]
 
 
 def test_tietools_get_tie_chains_06( ):
@@ -69,7 +69,7 @@ def test_tietools_get_tie_chains_07( ):
    Tie(t.leaves)
    chains = tietools.get_tie_chains(t.leaves[1:3])
 
-   assert chains == [t.leaves[1:3]]
+   assert chains == [tuple(t.leaves[1:3])]
 
 
 def test_tietools_get_tie_chains_08( ):
@@ -79,6 +79,6 @@ def test_tietools_get_tie_chains_08( ):
    Tie(t[0:2])
    chains = tietools.get_tie_chains(t[:])
 
-   assert chains == [t.leaves[0:8]]
+   assert chains == [tuple(t.leaves[0:8])]
 
 

@@ -21,15 +21,13 @@ def get_tie_chains(components):
          if not spanner in tie_spanners:
             tie_spanners.append(component.tie.spanner)
 
-   print tie_spanners
    ## get leaves to fuse  
    result = [ ]
    leaves_in_components = list(iterate.naive(components, _Leaf))
-   print leaves_in_components
    for spanner in tie_spanners:
       leaves_intersecting = [ ]
       for leaf in spanner.leaves:
          if leaf in leaves_in_components:
             leaves_intersecting.append(leaf)
-      result.append(leaves_intersecting)
+      result.append(tuple(leaves_intersecting))
    return result 
