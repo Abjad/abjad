@@ -27,6 +27,7 @@ Abjad Fundamentals:
    chapters/duration/index
    chapters/pitch/index
    chapters/note_basics/index
+   chapters/grobhandlers/index
 
 
 Developers:

@@ -223,7 +223,7 @@ pre {
     background-color: {{ theme_codebgcolor }};
     color: {{ theme_codetextcolor }};
     line-height: 120%;
-    border: 1px dotted #ac9;
+    border: 1px dotted #e04200;
     font-size: 0.85em;
 }
 
@@ -235,6 +235,12 @@ tt {
 
 /* VA */
 
+blockquote {
+    font-style: italic;
+
+}
+
+
 strong {
    color: #333;
 }
@@ -243,3 +249,5 @@ strong {
 table.docutil {
    border: 0px;
 }
+
+
