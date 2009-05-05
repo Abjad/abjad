@@ -139,7 +139,7 @@ class _AbjadTag(_TagParser):
             abjad_directive = '%s#abjad_comment#%s' % ((indent or ''), 
                abjad_directive)
          
-         code.append("%sprint '''%s'''" % ((indent or ''), abjad_directive))
+         code.append("%sprint '''%s '''" % ((indent or ''), abjad_directive))
          code.append(abjad_directive)
 
          ## handle and collect images
