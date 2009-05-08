@@ -2,7 +2,7 @@ from abjad.cfg.cfg import accidental_spelling
 from abjad.core.abjadcore import _Abjad
 from abjad.accidental.accidental import Accidental
 from abjad.pitch.initializer import _PitchInitializer
-from abjad.pitch.tools import _PitchTools
+#from abjad.pitch.tools import _PitchTools
 
 
 class Pitch(_Abjad):
@@ -10,7 +10,7 @@ class Pitch(_Abjad):
    accidental_spelling = accidental_spelling
 
    def __init__(self, *args):
-      self.tools = _PitchTools(self)
+      #self.tools = _PitchTools(self)
       self.initializer = _PitchInitializer( )
       self.initializer.initialize(self, *args)
 
@@ -91,8 +91,11 @@ class Pitch(_Abjad):
       
    @property
    def degree(self):
+      from abjad.tools.pitchtools.letter_to_diatonic_scale_degree \
+         import letter_to_diatonic_scale_degree
       if self.letter:
-         return self.tools.letterToDiatonicScaleDegree[self.letter]
+         #return self.tools.letterToDiatonicScaleDegree[self.letter]
+         return letter_to_diatonic_scale_degree(self.letter)
       else:
          return None
 
@@ -108,7 +111,10 @@ class Pitch(_Abjad):
          else:
             return None
       def fset(self, name):
-         letter, accidental = self.tools.nameToLetterAccidental(name)
+         from abjad.tools.pitchtools.name_to_letter_accidental \
+            import name_to_letter_accidental
+         #letter, accidental = self.tools.nameToLetterAccidental(name)
+         letter, accidental = name_to_letter_accidental(name)
          self.letter = letter
          self.accidental = accidental
       return property(**locals( ))
@@ -116,8 +122,11 @@ class Pitch(_Abjad):
    @apply
    def number( ):
       def fget(self):
+         from abjad.tools.pitchtools.letter_to_pc import letter_to_pc
          if self._isSet( ):
-            return self.tools.letterToPC[self.letter] + \
+            #return self.tools.letterToPC[self.letter] + \
+            #   self.accidental.adjustment + (self.octave - 4) * 12
+            return letter_to_pc(self.letter) + \
                self.accidental.adjustment + (self.octave - 4) * 12
          else:
             return None
@@ -153,20 +162,23 @@ class Pitch(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   def diatonicTranspose(self, diatonicInterval):
-      quality, interval = diatonicInterval.split()
-      staffSpaces = self.tools.diatonicIntervalToStaffSpaces[interval]
-      degree = self.tools.addStaffSpaces(staffSpaces)
-      letter = self.tools.diatonicScaleDegreeToLetter[degree]
-      pitchNumber = self.number + \
-         self.tools.diatonicIntervalToAbsoluteInterval[diatonicInterval]
-      accidentalString = self.tools.letterPitchNumberToNearestAccidentalString(
-         letter, pitchNumber)
-      pitchName = letter + accidentalString
-      octave = self.tools.letterPitchNumberToOctave(letter, pitchNumber)
-      return Pitch(pitchName, octave) 
+   ## DEPRECATED: Use pitchtools.diatonic_transpose( ) instead ##
 
-   ## DEPRECATED: use p1.altitude == p2.altitude instead
+#   def diatonicTranspose(self, diatonicInterval):
+#      quality, interval = diatonicInterval.split()
+#      staffSpaces = self.tools.diatonicIntervalToStaffSpaces[interval]
+#      degree = self.tools.addStaffSpaces(staffSpaces)
+#      letter = self.tools.diatonicScaleDegreeToLetter[degree]
+#      pitchNumber = self.number + \
+#         self.tools.diatonicIntervalToAbsoluteInterval[diatonicInterval]
+#      accidentalString = self.tools.letterPitchNumberToNearestAccidentalString(
+#         letter, pitchNumber)
+#      pitchName = letter + accidentalString
+#      octave = self.tools.letterPitchNumberToOctave(letter, pitchNumber)
+#      return Pitch(pitchName, octave) 
+
+   ## DEPRECATED: use p1.altitude == p2.altitude instead ##
+
 #   def enharmonicCompare(self, arg):
 #      result = cmp(self.number, arg.number)
 #      if result == 0:
@@ -175,10 +187,12 @@ class Pitch(_Abjad):
 #      else:
 #         return result
 
-   # p.staffSpaceTranspose(-1, 0.5)
-   def staffSpaceTranspose(self, staffSpaces, absoluteInterval):
-      '''p.staffSpaceTranspose(-1, 0.5)'''
-      pitchNumber = self.number + absoluteInterval
-      degree = self.tools.addStaffSpaces(staffSpaces)
-      letter = self.tools.diatonicScaleDegreeToLetter[degree]
-      return Pitch(pitchNumber, letter)
+   ## DEPRECATED: Use pitchtools.staff_space_transpose( ) instead. ##
+
+#   # p.staffSpaceTranspose(-1, 0.5)
+#   def staffSpaceTranspose(self, staffSpaces, absoluteInterval):
+#      '''p.staffSpaceTranspose(-1, 0.5)'''
+#      pitchNumber = self.number + absoluteInterval
+#      degree = self.tools.addStaffSpaces(staffSpaces)
+#      letter = self.tools.diatonicScaleDegreeToLetter[degree]
+#      return Pitch(pitchNumber, letter)

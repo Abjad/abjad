@@ -1,7 +1,7 @@
 from abjad.accidental.accidental import Accidental
 from abjad.cfg.cfg import accidental_spelling
 from abjad.core.abjadcore import _Abjad
-from math import floor
+import math
 
 
 
@@ -30,17 +30,24 @@ class _InitializeByPitchNumber(_PitchInit):
          return False
 
    def initialize(self, client, pitchNumber):
+      from abjad.tools.pitchtools.pc_to_pitch_name import \
+         pc_to_pitch_name
+      from abjad.tools.pitchtools.pc_to_pitch_name_flats import \
+         pc_to_pitch_name_flats
+      from abjad.tools.pitchtools.pc_to_pitch_name_sharps import \
+         pc_to_pitch_name_sharps
+      pc = pitchNumber % 12
       if client.accidental_spelling == 'mixed':
-         pitchName = client.tools.pcToPitchName[pitchNumber % 12]
+         pitchName = pc_to_pitch_name(pc)
       elif client.accidental_spelling == 'sharps':
-         pitchName = client.tools.pcToPitchNameSharps[pitchNumber % 12]
+         pitchName = pc_to_pitch_name_sharps(pc)
       elif client.accidental_spelling == 'flats':
-         pitchName = client.tools.pcToPitchNameFlats[pitchNumber % 12]
+         pitchName = pc_to_pitch_name_flats(pc)
       else:
          raise ValueError('unknown accidental spelling.')
       client.letter = pitchName[0]
       client.accidental = Accidental(pitchName[1:])
-      client.octave = int(floor(pitchNumber / 12)) + 4
+      client.octave = int(math.floor(pitchNumber / 12)) + 4
 
 
 class _InitializeByPitchReference(_PitchInit):
@@ -87,12 +94,16 @@ class _InitializeByPitchNumberAndLetter(_PitchInit):
       return len(args) == 2  and isinstance(args[0], (int, long, float))
 
    def initialize(self, client, pitchNumber, letter):
-      pc = client.tools.letterToPC[letter]
-      nearestNeighbor = client.tools.nearestNeighbor(pitchNumber, pc)
+      from abjad.tools.pitchtools.letter_to_pc import letter_to_pc
+      from abjad.tools.pitchtools.nearest_neighbor import nearest_neighbor
+      from abjad.tools.pitchtools.pitch_number_adjustment_to_octave import \
+         pitch_number_adjustment_to_octave
+      pc = letter_to_pc(letter)
+      nearestNeighbor = nearest_neighbor(pitchNumber, pc)
       adjustment = pitchNumber - nearestNeighbor
       accidentalString = Accidental.adjustmentToAccidentalString[adjustment]
       pitchName = letter + accidentalString
-      octave = client.tools.pitchNumberAdjustmentToOctave ( 
+      octave = pitch_number_adjustment_to_octave(
          pitchNumber, adjustment)
       client.letter = letter
       client.accidental = Accidental(pitchName[1:])
