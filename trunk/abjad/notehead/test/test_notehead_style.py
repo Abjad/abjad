@@ -2,6 +2,9 @@ from abjad import *
 import py.test
 
 
+## BUG:  NoteHead.style seems to be broken in _LeafFormatter. ##
+##       Extend these tests to test leaf formatting, too.     ##
+
 def test_notehead_style_01( ):
    '''Supported head styles are formated with NoteHead #'style override.'''
 
