@@ -4,14 +4,13 @@ from abjad.rational.rational import Rational
 
 def group_prolated(
    components, durations, fill = 'exact', cyclic = False, rump = False):
-   '''Group 'components' according to succesive 'durations'.
-      Like itertools.groupby( ) more than the Abjad partition functions.
-      When fill == 'exact', then parts must equal durations exactly.
-      When fill == 'less', then parts must be less or equal to durations.
-      When fill == 'greater', then parts must be greater or equal to durations.
-      If cyclic is true, read 'durations' cyclically.
-      If rump is True and components remain, append as final part.
-      If rump is False and components remain, do not append final part.'''
+   '''Group *components* according to succesive *durations*.
+      When fill == `exact`, then parts must equal durations exactly.
+      When fill == `less`, then parts must be less or equal to durations.
+      When fill == `greater`, then parts must be greater or equal to durations.
+      If *cyclic* is true, read *durations* cyclically.
+      If *rump* is True and components remain, append as final part.
+      If *rump* is False and components remain, do not append final part.'''
 
    assert isinstance(durations, list)
    assert all([isinstance(x, (int, float, Rational)) for x in durations])
