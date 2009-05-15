@@ -16,6 +16,7 @@ Start Here:
    chapters/examples/index
    chapters/tour/index
    chapters/whatnext/index
+   chapters/community/index
 
 
 Abjad Fundamentals:
