@@ -84,23 +84,24 @@ following alternative:
 
 2. Checkout Abjad's `trunk` development like so::
 
-      svn co svn://128.59.116.55/abjad/trunk/ abjad-trunk
+      svn checkout http://abjad.googlecode.com/svn/abjad/ abjad-read-only
 
 3. Make the Python interpreter aware of Abjad. There are two ways to do
    this:
 
    a. Make a symlink in your Python `site-packages` directory pointing
-      to the abjad-trunk directory previously checked out via Subversion::
+      to the abjad-read-only directory previously checked out via Subversion::
          
-         ln -s 'pwd'/abjad-trunk/abjad SITE-PACKAGES-DIR/abjad
+         ln -s /path/to/abjad-read-only SITE-PACKAGES-DIR/abjad
 
-      where *SITE-PACKAGES-DIR* is the Python `site-packages` directory.
-      In Linux this is usually in /usr/lib/Python2.x/site-packages.
+      where `SITE-PACKAGES-DIR` is the Python `site-packages` directory.
+      In Linux this is usually in /usr/lib/python2.x/site-packages.
 
-   b. Alternatively you can include the `abjad-trunk` directory in 
+   b. Alternatively you can include the `abjad-read-only` directory in 
       your *PYTHONPATH* environment variable.             
 
-   c. You will also need to include the `abjad-trunk/scr` directory in your 
-      *PATH* in order to be able to run Abjad directly with the ``abj`` command. 
+   c. You will also need to include the `abjad-read-only/scr` directory 
+   in your *PATH* in order to be able to run Abjad directly with the 
+   ``abj`` command. 
 
 
