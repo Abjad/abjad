@@ -96,7 +96,8 @@ class _AbjadTag(_TagParser):
       for file in os.listdir(os.curdir):
          if file.endswith('.ly'):
             print 'Rendering "%s"...' % file
-            file_base = file.rstrip('.ly')
+            #file_base = file.rstrip('.ly')
+            file_base = file.replace('.ly', '')
             # NOTE: setting stderr = sys.stderr 
             # below will print LilyPond messages
             p = subprocess.Popen(
@@ -154,6 +155,7 @@ class _AbjadTag(_TagParser):
 def _insert_abjad_prompt(output_lines, input_lines):
    result = [ ]
    for oline in output_lines:
+      oline = oline.rstrip( )
       if oline in input_lines:
          oline = 'abjad> ' + oline
       result.append(oline)
