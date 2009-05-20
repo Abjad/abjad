@@ -80,7 +80,7 @@ Such **nonbinary meters** prolate the music they contain.
 
 
 The nonbinary `4/10` meter here prolates the contents of the measure it governs by a prolation factor equal to `4/5`.
-The notes here with :doc:`written duration <../written/index>` of `1/8` carry :doc:`prolated duration` equal to `4/5 * 1/8 = 1/10`.
+The notes here with written duration of `1/8` carry prolated duration equal to `4/5 * 1/8 = 1/10`.
 
 
 
