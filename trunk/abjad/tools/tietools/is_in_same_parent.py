@@ -7,24 +7,26 @@ def is_in_same_parent(expr):
       IE, True when tie chain crosses no container boundaries.
       Otherwise False.
 
-      Example:
+      Example::
 
-      t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
-      Tie(t.leaves[1:3])
+         t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+         Tie(t.leaves[1:3])
 
-      \new Staff {
-            \time 2/8
-            c'8
-            c'8 ~
-            \time 2/8
-            c'8
-            c'8
-      }
+         \new Staff {
+               \time 2/8
+               c'8
+               c'8 ~
+               \time 2/8
+               c'8
+               c'8
+         }
 
-      assert tietools.is_in_same_parent(t.leaves[0].tie.chain)
-      assert not tietools.is_in_same_parent(t.leaves[1].tie.chain)
-      assert not tietools.is_in_same_parent(t.leaves[2].tie.chain)
-      assert tietools.is_in_same_parent(t.leaves[3].tie.chain)'''
+         assert tietools.is_in_same_parent(t.leaves[0].tie.chain)
+         assert not tietools.is_in_same_parent(t.leaves[1].tie.chain)
+         assert not tietools.is_in_same_parent(t.leaves[2].tie.chain)
+         assert tietools.is_in_same_parent(t.leaves[3].tie.chain)
+
+   Other options are also possible.'''
 
    return is_chain(expr) and \
       check.assess_components(list(expr), share = 'parent')
