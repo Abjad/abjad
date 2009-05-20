@@ -98,6 +98,11 @@ abjad.exceptions.exceptions
    :undoc-members:
    :show-inheritance:
 
+.. autoclass:: abjad.exceptions.exceptions.PartitionError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. autoclass:: abjad.exceptions.exceptions.SpannerError
    :members:
    :undoc-members:
@@ -133,6 +138,11 @@ abjad.exceptions.exceptions
    :undoc-members:
    :show-inheritance:
 
+.. autoclass:: abjad.exceptions.exceptions.TypographicWhitespaceError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. autoclass:: abjad.exceptions.exceptions.UndefinedTempoError
    :members:
    :undoc-members:
@@ -144,6 +154,11 @@ abjad.exceptions.exceptions
    :show-inheritance:
 
 .. autoclass:: abjad.exceptions.exceptions.VoiceContainmentError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: abjad.exceptions.exceptions.WellFormednessError
    :members:
    :undoc-members:
    :show-inheritance:

@@ -63,8 +63,6 @@ Abjad API
    container/formatter
    container/multipliedduration
    container/number
-   container/parallel
-   container/sequential
    container/slots
    container/spanner/aggregator
    context/context
@@ -140,6 +138,8 @@ Abjad API
    octavation/format
    octavation/spanner
    offset/interface
+   offset/prolated/interface
+   offset/seconds/interface
    override/format
    override/spanner
    parentage/containment
@@ -150,7 +150,6 @@ Abjad API
    pitch/initializer
    pitch/initializers
    pitch/pitch
-   pitch/tools
    rational/rational
    receipt/component
    receipt/slip
@@ -172,10 +171,10 @@ Abjad API
    spanner/positionalhandler
    spanner/receptor
    spanner/spanner
-   staff/interface
    staff/rhythmicsketchstaff
    staff/rhythmicstaff
    staff/staff
+   staff/interface/interface
    staffgroup/grandstaff
    staffgroup/pianostaff
    staffgroup/staffgroup
@@ -243,7 +242,9 @@ Abjad API
    tools/divide/tie_chain
    tools/durtools/aggomerate_by_prolation
    tools/durtools/denominator_to_multiplier
+   tools/durtools/group_prolated
    tools/durtools/in_terms_of
+   tools/durtools/in_terms_of_binary_multiple
    tools/durtools/is_assignable
    tools/durtools/is_binary_rational
    tools/durtools/is_pair
@@ -256,14 +257,21 @@ Abjad API
    tools/durtools/prolated_to_written
    tools/durtools/rationalize
    tools/durtools/seconds_to_clock_string
+   tools/durtools/sum_preprolated
+   tools/durtools/sum_prolated
+   tools/durtools/sum_seconds
    tools/durtools/to_fraction
    tools/durtools/token_decompose
    tools/durtools/token_unpack
+   tools/durtools/within_prolated
+   tools/durtools/within_seconds
    tools/fuse/containers_by_reference
    tools/fuse/contents_by_count
    tools/fuse/leaves_by_reference
+   tools/fuse/leaves_in_tie_chain
    tools/fuse/measures_by_count_cyclic
    tools/fuse/measures_by_reference
+   tools/fuse/tie_chains_by_durations
    tools/fuse/tuplets_by_reference
    tools/harmonictools/add_artificial
    tools/imports/get_functions_in_module
@@ -302,6 +310,7 @@ Abjad API
    tools/leaftools/excise
    tools/leaftools/meiose
    tools/leaftools/multiply
+   tools/listtools/difference_series
    tools/listtools/flatten
    tools/listtools/increase_cyclic
    tools/listtools/pairwise
@@ -327,10 +336,12 @@ Abjad API
    tools/mathtools/products
    tools/mathtools/remove_powers_of_two
    tools/mathtools/scalar_divide
+   tools/mathtools/sign
    tools/mathtools/sums
    tools/mathtools/truncate_to_sum
    tools/measuretools/beam
    tools/measuretools/beam_together
+   tools/measuretools/binary_to_nonbinary
    tools/measuretools/color_nonbinary
    tools/measuretools/concentrate
    tools/measuretools/denominator_set
@@ -338,11 +349,13 @@ Abjad API
    tools/measuretools/overdraw
    tools/measuretools/populate
    tools/measuretools/project
+   tools/measuretools/report_meter_distribution
    tools/measuretools/scale
    tools/measuretools/scale_and_remeter
    tools/measuretools/spin
    tools/measuretools/subsume
    tools/measuretools/tupletize
+   tools/metertools/get_nonbinary_factor
    tools/metertools/is_binary_equivalent
    tools/metertools/is_token
    tools/metertools/make_best
@@ -363,16 +376,36 @@ Abjad API
    tools/partition/unfractured_by_durations
    tools/pickle/dump
    tools/pickle/load
+   tools/pitchtools/add_staff_spaces
+   tools/pitchtools/are_in_octave_order
    tools/pitchtools/chromaticize
+   tools/pitchtools/diatonic_interval_to_absolute_interval
+   tools/pitchtools/diatonic_interval_to_staff_spaces
+   tools/pitchtools/diatonic_scale_degree_to_letter
    tools/pitchtools/diatonic_to_chromatic
+   tools/pitchtools/diatonic_transpose
    tools/pitchtools/diatonicize
    tools/pitchtools/is_name
    tools/pitchtools/is_pair
    tools/pitchtools/is_token
    tools/pitchtools/is_token_collection
+   tools/pitchtools/letter_pitch_number_to_nearest_accidental_string
+   tools/pitchtools/letter_pitch_number_to_octave
+   tools/pitchtools/letter_to_diatonic_scale_degree
+   tools/pitchtools/letter_to_pc
    tools/pitchtools/make_flat
    tools/pitchtools/make_sharp
+   tools/pitchtools/name_to_letter_accidental
+   tools/pitchtools/nearest_neighbor
+   tools/pitchtools/octave_transpositions
+   tools/pitchtools/pc_to_pitch_name
+   tools/pitchtools/pc_to_pitch_name_flats
+   tools/pitchtools/pc_to_pitch_name_sharps
    tools/pitchtools/pentatonic_to_chromatic
+   tools/pitchtools/pitch_number_adjustment_to_octave
+   tools/pitchtools/pitch_number_to_octave
+   tools/pitchtools/registrate
+   tools/pitchtools/staff_space_transpose
    tools/scoretools/bequeath
    tools/scoretools/donate
    tools/scoretools/find
@@ -400,8 +433,13 @@ Abjad API
    tools/tietools/are_in_same_spanner
    tools/tietools/duration_change
    tools/tietools/duration_scale
-   tools/tietools/duration_written
+   tools/tietools/get_duration_preprolated
+   tools/tietools/get_duration_prolated
+   tools/tietools/get_duration_seconds
+   tools/tietools/get_duration_written
    tools/tietools/get_leaves
+   tools/tietools/get_tie_chains
+   tools/tietools/group_by_parent
    tools/tietools/is_chain
    tools/tietools/is_in_same_parent
    tools/tietools/span_leaf_pair
