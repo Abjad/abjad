@@ -41,6 +41,7 @@ Developers:
    :maxdepth: 1
 
    chapters/developers/index
+   chapters/standards/index
 
 
 Appendices:
