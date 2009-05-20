@@ -6,6 +6,10 @@
 Welcome to Abjad
 ================
 
+.. note:: 
+   The Abjad documentation is still very incomplete and very much work in progress. Please be patient. The Abjad API listing is, however, complete. 
+
+
 Start Here:
 
 .. toctree::
