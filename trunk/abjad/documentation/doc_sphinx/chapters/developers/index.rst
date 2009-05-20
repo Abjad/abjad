@@ -1,4 +1,4 @@
-Developer Concerns
+Extending LilyPond and Python
 ==================
 
 .. toctree::
