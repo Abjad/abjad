@@ -71,12 +71,14 @@ Example 2
 ^^^^^^^^^
 
 As a second example let's look at the last five measures of Bartók's
-Wandering from Mikrokosmos vol. III. As simple as it may seem, these
+`Wandering` from Mikrokosmos vol. III. As simple as it may seem, these
 five measures carry with them a lot of information pertaining to
 musical notation.
 
 .. image:: images/bartok_wandering.png
 
+.. note::
+   Please refer to the :doc:`Bartok example </chapters/examples/bartok/index>` for a step by step construction of the musical fragment and its full Abjad code.
 
 There are many musical signs of different types on the pages: notes,
 dynamic markings, clefs, staves, slurs, etc. These signs are
