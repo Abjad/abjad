@@ -17,6 +17,7 @@ api_doc_path = os.path.join(ABJADPATH, 'documentation', 'doc_sphinx',
 
 def make_api_tocs( ):
    modules_visited = [ ]
+   interactive = raw_input('Run script in interactive mode? [Y/n]: ')
    for current_root, dirs, files in os.walk(ABJADPATH):
       ## removed unwanted dirs and files.
       filtered_dirs = ['.svn', 'cfg', 'demos', 'documentation', 'scm', 
@@ -30,7 +31,7 @@ def make_api_tocs( ):
       #abjad_subdir = current_root[current_root.rindex('abjad'):]
       abjad_subdir = current_root.split('abjad')[-1].strip(os.path.sep)
       root_dir = os.path.join(api_doc_path, abjad_subdir)
-      _create_subdirs_interactive(root_dir, dirs)
+      _create_subdirs_interactive(root_dir, dirs, interactive)
 
       ## make shinx listing of modules
       for file in files:
@@ -40,7 +41,7 @@ def make_api_tocs( ):
          ## write listing to file
          rst_file = file.split('.')[0] + '.rst'
          index = os.path.join(root_dir, rst_file)
-         _write_file_interactive(listing, index)
+         _write_file_interactive(listing, index, interactive)
 
          ## keep track of modules visited
          mod = os.path.join(abjad_subdir, file.split('.')[0])
@@ -49,7 +50,7 @@ def make_api_tocs( ):
    toc = make_sphinx_toc(modules_visited)
    #print toc
    index = os.path.join(api_doc_path, 'index.rst')
-   _write_file_interactive(toc, index)
+   _write_file_interactive(toc, index, interactive)
 
 
 if __name__ == '__main__':
