@@ -11,16 +11,12 @@ from abjad.tools import construct
 
 def contents_by_count(container, counts, target = Note(0, (1, 4)), 
    direction = 'big-endian'):
-   '''Glom elements of container together rhythmically.
-      Sum(counts) should equal len(countainer).
-      Replace with material of class equal to target.
+   '''Glom elements of `container` together rhythmically.
 
-      Useful mostly during rhythmic construction.
+      ``sum(counts)`` should equal ``len(countainer)``.
+      Replace with material of class equal to ``target``.
 
-      TODO: implement first* and last* tokens to allow counts like
-               [2, 2, rest]
-               [first, 2, 3]
-      TODO: implement a cyclicity interface.'''
+      Useful mostly during rhythmic construction.'''
 
    ## assert input types
    assert isinstance(container, Container)

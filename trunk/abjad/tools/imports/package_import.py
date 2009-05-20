@@ -4,11 +4,13 @@ import os
 
 
 def _package_import(path, namespace):
-   '''Non-recursive import helper. 
-   All packages (non-leaf sub-modules) in `path` are imported to the 
-   given `namespace`.
-   All the functions and classes inside modules (leaf-modules, *.py files) 
-   found in `path` are imported into `namespace`.'''
+   r'''Nonrecursive import helper. 
+      All packages (nonleaf submodules) in `path` are imported to the 
+      given `namespace`.
+
+      All the functions and classes inside modules (leaf-modules, \*.py files) 
+      found in `path` are imported into `namespace`.'''
+
    module = path[path.rindex('abjad'):]
    module = module.replace(os.sep, '.')
 

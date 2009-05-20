@@ -16,20 +16,23 @@ def concentrate(expr, concentration_pairs, cyclic = True):
 
       Return Python list of transformed measures.
 
-      Examples:
+      Example::
 
-      abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
-      abjad> print(measuretools.concentrate(t, [(3, 3)])[0])
-      |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
+         abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
+         abjad> print(measuretools.concentrate(t, [(3, 3)])[0])
+         |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
-      abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
-      abjad> print(measuretools.concentrate(t, [(3, 2)])[0])
-      |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
+      Example::
+
+         abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
+         abjad> print(measuretools.concentrate(t, [(3, 2)])[0])
+         |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
       
-      abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
-      abjad> print(measuretools.concentrate(t, [(3, 1)])[0])
-      |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
-   '''
+      Example::
+
+         abjad> t = RigidMeasure((3, 16), construct.run(3, Rational(1, 16)))
+         abjad> print(measuretools.concentrate(t, [(3, 1)])[0])
+         |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|'''
 
    assert isinstance(concentration_pairs, list)
    assert all([isinstance(pair, tuple) for pair in concentration_pairs])

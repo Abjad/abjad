@@ -32,15 +32,22 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
       Rest and another Note with pitch 12.
 
       Parameters:
-      pitches:    a single pitch or a list/tuple of pitches. If the list is
-                  smaller than that of the durations, the pitches are cycled 
-                  through.
-      durations:  a sinlge duration or a list of durations. The durations
-                  need not be of form m / 2**n and may be any rational value.
-      direction:  may be 'big-endian' or 'little-endian'.
-                  'big-endian' returns list of notes of decreasing duration.
-                  'little-endian' returns list of notes of increasing duration.
-      tied_rests: Set to True to return Tied rests. False otherwise.
+
+      `pitches`
+         a single pitch or a list/tuple of pitches. If the list is
+         smaller than that of the durations, the pitches are cycled through.
+
+      `durations`
+         a sinlge duration or a list of durations. The durations
+         need not be of form m / 2**n and may be any rational value.
+
+      `direction`
+         may be 'big-endian' or 'little-endian'.
+         'big-endian' returns list of notes of decreasing duration.
+         'little-endian' returns list of notes of increasing duration.
+
+      `tied_rests`
+            Set to True to return Tied rests. False otherwise.
    '''
 
    def _make_leaf_on_pitch(pch, ds, direction):

@@ -9,25 +9,27 @@ else:
 
 class debug(_Abjad):
    '''Debug decorator class.  
-   The purpose of this decorator is to run "live bug tracking" when "DEBUG" 
-   is set to True. 
-   Apply the decorator to any function that requires live debugging.
-   Because this decorator is a class, you must instantiated by using 
-   parenthesis.
 
-   Example:
-   You want the debugger to track function insert( ):
+      The purpose of this decorator is to run "live bug tracking" 
+      when ``DEBUG`` is set to `True`. 
 
-   def insert(self, expr): 
-      ...
+      Apply the decorator to any function that requires live debugging.
+      Instantiate with parentheses.
 
-   To get the debugger called every time insert( ) is called put '@debug( )' 
-   immediately above the function definition:
+      Example:
 
-   @debug( )
-   def insert(self, expr): 
-      ...
-   '''
+      You want the debugger to track function ``insert( )``::
+
+         def insert(self, expr): 
+            ...
+
+      To get the debugger called every time ``insert( )`` is called,
+      put ``@debug( )`` immediately above the function definition::
+
+         @debug( )
+         def insert(self, expr): 
+            ...
+      '''
 
    def __init__(self, check_function=check.wf, verbose=False):
       self.check_function = check_function

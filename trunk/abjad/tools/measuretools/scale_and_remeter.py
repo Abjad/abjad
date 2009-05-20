@@ -13,17 +13,18 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
 
       Like magic.
 
-      Example:
+      Example::
 
-      t = RigidMeasure((3, 8), construct.scale(3))
-      measuretools.scale_and_remeter(t, Rational(2, 3))
+         abjad> t = RigidMeasure((3, 8), construct.scale(3))
+         abjad> measuretools.scale_and_remeter(t, Rational(2, 3))
+         abjad> print t.format
 
-           \time 3/12
-           \scaleDurations #'(2 . 3) {
-                   c'8
-                   d'8
-                   e'8
-           }'''
+              \time 3/12
+              \scaleDurations #'(2 . 3) {
+                      c'8
+                      d'8
+                      e'8
+              }'''
 
    from abjad.tools import containertools
 

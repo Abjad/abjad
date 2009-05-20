@@ -4,13 +4,14 @@ from abjad.tools.tietools.is_chain import is_chain
 
 def is_in_same_parent(expr):
    r'''True when expr is a tie chain with all leaves in same parent.
-      IE, True when tie chain crosses no container boundaries.
-      Otherwise False.
+
+      That is, True when tie chain crosses no container boundaries,
+      otherwise False.
 
       Example::
 
-         t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
-         Tie(t.leaves[1:3])
+         abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+         abjad> Tie(t.leaves[1:3])
 
          \new Staff {
                \time 2/8
@@ -21,12 +22,10 @@ def is_in_same_parent(expr):
                c'8
          }
 
-         assert tietools.is_in_same_parent(t.leaves[0].tie.chain)
-         assert not tietools.is_in_same_parent(t.leaves[1].tie.chain)
-         assert not tietools.is_in_same_parent(t.leaves[2].tie.chain)
-         assert tietools.is_in_same_parent(t.leaves[3].tie.chain)
-
-   Other options are also possible.'''
+         abjad> assert tietools.is_in_same_parent(t.leaves[0].tie.chain)
+         abjad> assert not tietools.is_in_same_parent(t.leaves[1].tie.chain)
+         abjad> assert not tietools.is_in_same_parent(t.leaves[2].tie.chain)
+         abjad> assert tietools.is_in_same_parent(t.leaves[3].tie.chain)'''
 
    return is_chain(expr) and \
       check.assess_components(list(expr), share = 'parent')
