@@ -53,3 +53,31 @@ def test_tempo_spanner_02( ):
    assert t[1].tempo.effective == TempoIndication(Rational(1, 8), 38)
    assert t[2].tempo.effective == TempoIndication(Rational(1, 8), 44)
    assert t[3].tempo.effective == TempoIndication(Rational(1, 8), 38)
+
+
+def test_tempo_spanner_03( ):
+   '''Tempo spanner works with containers.'''
+
+   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
+   p = Tempo(t[:], TempoIndication(Rational(1, 8), 38))
+
+   r'''\new Voice {
+         \time 2/8
+         \tempo 8=38
+         c'8
+         c'8
+         \time 2/8
+         c'8
+         c'8
+         %% tempo 8=38 ends here
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\t\\tempo 8=38\n\t\tc'8\n\t\tc'8\n\t\t\\time 2/8\n\t\tc'8\n\t\tc'8\n\t\t%% tempo 8=38 ends here\n}"
+
+   assert t[0].tempo.effective == TempoIndication(Rational(1, 8), 38)
+   assert t[0][0].tempo.effective == TempoIndication(Rational(1, 8), 38)
+   assert t[0][1].tempo.effective == TempoIndication(Rational(1, 8), 38)
+   assert t[1].tempo.effective == TempoIndication(Rational(1, 8), 38)
+   assert t[1][0].tempo.effective == TempoIndication(Rational(1, 8), 38)
+   assert t[1][1].tempo.effective == TempoIndication(Rational(1, 8), 38)

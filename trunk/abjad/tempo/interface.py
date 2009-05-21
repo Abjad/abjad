@@ -46,8 +46,8 @@ class _TempoInterface(_Observer, _GrobHandler,
          Decisions here arbitrate between spanner and forced attribute.'''
       if self.forced:
          return self.forced
-      if self.spanned:
-         return self.spanner.indication
+      if self.parented:
+         return self.spanner_in_parentage.indication
       return _BacktrackingInterface.effective.fget(self)
 
    @property
