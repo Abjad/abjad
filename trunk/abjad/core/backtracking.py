@@ -1,13 +1,34 @@
 from abjad.core.abjadcore import _Abjad
 
 
+## TODO: The system model does not clearly define what happens
+##       when spanners and forced interface values overlap.
+##       What does it mean, for example, when several hundred
+##       consecutive notes are spanned with a tempo spanner
+##       and when a note somewhere in the middle of the sequence
+##       forces a tempo change?
+
+##       The solution implemented as of r2125 is that spanners will
+##       'win' in place of forced and backtracked attributes.
+##       That is, in the example above, all notes governed by the
+##       hypothetical tempo spanner will derive t.tempo.effective
+##       directly from the governing spanner EXCEPT for the
+##       one note in the middle of a run one which the tempo is forced.
+
+## NOTE: This solution is not evident here in _BacktrackingInterface.
+##       You have to look at, for example, _TempoInterface.effective
+##       to see the logic that determines who wins the tournament.
+
 class _BacktrackingInterface(_Abjad):
-   '''Interfaces with 'forced' and 'effective' attributes.'''
+   '''Mixin base class for interfaces with 'forced', 'effective' attributes.'''
 
    def __init__(self, _interfaceName):
+      '''Initialize interface name.'''
       self._interfaceName = _interfaceName
 
    ## PRIVATE METHODS ##
+
+   ## TODO: Can _BacktrackingInterface._getEffective( ) deprecate? ##
 
    def _getEffective(self):
       '''Works for any interface with 'forced' and 'effective' attributes.

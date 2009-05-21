@@ -1,20 +1,15 @@
-## Use this _SpannerReceptor class as a mix-in from which
-## different leaf interfaces can inherit.
-## Having a leaf interface inherit from _SpannerReceptor
-## indicates that you want the leaf interface to be 'spannable'.
-## The 'spanners' variable passed in here at initialization is
-## a list of (usually a single) string, like ['Beam'], that says
-## to the leaf interface: "please recevie spanners of which the
-## classname is 'Beam'".
-
 from abjad.core.abjadcore import _Abjad
 from abjad.exceptions.exceptions import ExtraSpannerError
 from abjad.exceptions.exceptions import MissingSpannerError
 
 
 class _SpannerReceptor(_Abjad):
+   '''Abstract base class to mix in with component interfaces.
+      _SpannerReceptor confers the ability to receive spanners.'''
 
+   ## TODO: rename classreferences to klasses ##
    def __init__(self, classreferences):
+      '''`classreferences` should be a tuple of one or more classes.'''
       self._classreferences = classreferences
 
    ## PUBLIC ATTRIBUTES ##

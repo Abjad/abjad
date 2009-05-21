@@ -12,6 +12,8 @@ Introduce comments with two pound signs and a single space::
    def foo(x, y):
       return x + y
 
+Limit lines to 80 characters and use ``\`` to break lines where necessary.
+
 Favor early imports at the head of each module instead of late imports within the body of a module. Include only one ``import`` per line::
 
       from foo import x
