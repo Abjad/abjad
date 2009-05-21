@@ -49,6 +49,11 @@ class TempoIndication(_Abjad):
       '''Tempo indication as string.'''
       return r'\tempo %s=%s' % (self._dotted, self.mark)
 
+   @property
+   def maelzel(self):
+      '''Maelzel metronome marking.'''
+      return Rational(1, 4) / self.duration * self.mark
+
    @apply
    def mark( ):
       '''Metronome mark value of tempo indication.'''
