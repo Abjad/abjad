@@ -7,10 +7,9 @@ class _SpannerReceptor(_Abjad):
    '''Abstract base class to mix in with component interfaces.
       _SpannerReceptor confers the ability to receive spanners.'''
 
-   ## TODO: rename classreferences to klasses ##
-   def __init__(self, classreferences):
-      '''`classreferences` should be a tuple of one or more classes.'''
-      self._classreferences = classreferences
+   def __init__(self, klasses):
+      '''`klasses` should be a tuple of one or more spanner classes.'''
+      self._klasses = klasses
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -54,9 +53,9 @@ class _SpannerReceptor(_Abjad):
       parentage = self._client.parentage.parentage
       for parent in parentage:
          spanners = parent.spanners.attached
-         for classreference in self._classreferences:
+         for klass in self._klasses:
             result.extend(
-               [p for p in spanners if isinstance(p, classreference)])
+               [p for p in spanners if isinstance(p, klass)])
       return bool(result)
 
    @property
@@ -87,13 +86,25 @@ class _SpannerReceptor(_Abjad):
          raise ExtraSpannerError
 
    @property
+   def spanner_in_parentage(self):
+      '''Return first spanner attaching to parentage of client.'''
+      parentage = self._client.parentage.parentage
+      for parent in parentage:
+         spanners = parent.spanners.attached
+         for klass in self._klasses:
+            for spanner in spanners:
+               if isinstance(spanner, klass):
+                  return spanner
+      raise MissingSpannerError
+      
+   @property
    def spanners(self):
       '''Return all spanners attaching to client.'''
       result = set([ ])
       client = self._client
-      for classreference in self._classreferences:
+      for klass in self._klasses:
          spanners = client.spanners.attached
-         result.update([p for p in spanners if isinstance(p, classreference)])
+         result.update([p for p in spanners if isinstance(p, klass)])
       return result
 
    ## PUBLIC METHODS ##
