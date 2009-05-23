@@ -88,6 +88,14 @@ class PartitionError(Exception):
    '''General partition error.'''
    pass
 
+class SpacingError(Exception):
+   '''General spacing error.'''
+   pass
+
+class UndefinedSpacingError(SpacingError):
+   '''Spacing value needed for calculation but unavailable.'''
+   pass
+
 class SpannerError(Exception):
    '''General spanner error.'''
    pass

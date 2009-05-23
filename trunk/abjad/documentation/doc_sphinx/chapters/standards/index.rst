@@ -147,6 +147,10 @@ Do not abbreviate variable names. Use ``container`` instead of ``cont`` and ``co
 
 Name variables that represent a list or other collection of object in the plural. For example, use ``components`` to name a variable that will most likely house a Python list of Abjad components.
 
+Use ``<`` less-than signs in preference to greater-than signs::
+
+   if x < y < z
+
 Implement only one class per module.
 
 Implement only one function per module.
