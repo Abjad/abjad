@@ -116,6 +116,14 @@ class _InterfaceAggregator(_Interface):
          result.extend(getattr(contributor, 'right', [ ]))
       return result
 
+   @property
+   def settings(self):
+      '''Ordered data structure of format-time context settings.'''
+      result = [ ]
+      for contributor in self.contributors:
+         result.extend(getattr(contributor, 'settings', [ ]))
+      return result
+
    ## PUBLIC METHODS ##
 
    def report(self, output = 'screen'):

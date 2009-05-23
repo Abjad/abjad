@@ -1,5 +1,6 @@
 from abjad.accidental.interface import _AccidentalInterface
 from abjad.barline.interface import _BarLineInterface
+from abjad.barnumber.interface import _BarNumberInterface
 from abjad.beam.interface import _BeamInterface
 from abjad.breaks.interface import _BreaksInterface
 from abjad.comments.comments import _UserComments
@@ -43,6 +44,7 @@ class _Component(_Abjad):
       self._interfaces = _InterfaceAggregator(self)
       self._accidental = _AccidentalInterface(self)
       self._barline = _BarLineInterface(self)
+      self._barnumber = _BarNumberInterface(self)
       self._beam = _BeamInterface(self)
       self._breaks = _BreaksInterface(self)
       self._comments = _UserComments( )
@@ -105,6 +107,10 @@ class _Component(_Abjad):
    @property
    def barline(self):
       return self._barline
+
+   @property
+   def barnumber(self):
+      return self._barnumber
    
    @property
    def beam(self):

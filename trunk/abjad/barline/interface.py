@@ -7,9 +7,9 @@ class _BarLineInterface(_Interface, _GrobHandler):
       One public read / write 'kind' attribute.
       Makes format contribution at container closing or after leaf.'''
    
-   def __init__(self, client):
-      '''Establish client and set kind to None.'''
-      _Interface.__init__(self, client)
+   def __init__(self, _client):
+      '''Bind to client and set ``kind`` to ``None``.'''
+      _Interface.__init__(self, _client)
       _GrobHandler.__init__(self, 'BarLine')
       self._kind = None
 

@@ -15,11 +15,14 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       context = formatter.context
       brackets_open = context.brackets.open
       overrides = context.interfaces.overrides
-      if overrides:
+      settings = context.interfaces.settings
+      if overrides or settings:
          contributions = [formatter._invocation + r' \with {']
          result.append([(context.brackets, 'open'), contributions])
          contributions = ['\t' + x for x in overrides]
          result.append([(context.interfaces, 'overrides'), contributions])
+         contributions = ['\t' + x for x in settings]
+         result.append([(context.interfaces, 'settings'), contributions])
          contributions = ['} %s' % context.brackets.open[0]]
          result.append([(context.brackets, 'open'), contributions])
       else:

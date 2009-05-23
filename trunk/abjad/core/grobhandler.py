@@ -12,6 +12,8 @@ class _GrobHandler(_FormatContributor):
 
    ## OVERLOADS ##
 
+   ## TODO: Deprecate _GrobHandler.__len__ because not semantic. ##
+
    def __len__(self):
       return len([kvp for kvp in vars(self).items( ) 
          if not kvp[0].startswith('_')])
@@ -74,14 +76,15 @@ class _GrobHandler(_FormatContributor):
    ## PUBLIC METHODS ##
 
    def clear(self):
+      '''Remove all grob settings.'''
       for key, value in vars(self).items( ):
          if not key.startswith('_'):
             delattr(self, key)
 
    def promote(self, attribute, context):
+      '''Promote ``attribute`` to *LilyPond* ``context``.'''
       assert isinstance(context, str)
       if hasattr(self, attribute):
-         self._promotions[attribute] = str(context)
+         self._promotions[attribute] = context
       else:
-         raise AttributeError('%s has no %s attribute.' %
-            (self.__class__.__name__, attribute))
+         raise AttributeError('no %s attribute.' % attribute)
