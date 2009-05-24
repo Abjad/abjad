@@ -4,14 +4,15 @@ from abjad.tuplet.tuplet import _Tuplet
 
 
 class FixedMultiplierTuplet(_Tuplet):
+   '''*Abjad* model of tuplet with fixed multiplier.'''
 
    def __init__(self, multiplier, music = None):
-      music = music or [ ]
+      '''Init fixed-multiplier tuplet as type of *Abjad* tuplet.'''
       _Tuplet.__init__(self, music)
       self._duration = _FMTupletDurationInterface(self, multiplier)
       self._signifier = '*'
 
-   ### REPR ###
+   ## REPR ##
 
    def __repr__(self):
       return 'FixedMultiplierTuplet(%s, [%s])' % ( 
@@ -25,7 +26,7 @@ class FixedMultiplierTuplet(_Tuplet):
          return '{%s %s %s}' % (
             self._signifier, self.duration.multiplier, self._signifier)
 
-   ### PROPERTIES ###
+   ## PROPERTIES ##
 
    @property
    def duration(self):

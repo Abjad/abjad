@@ -4,9 +4,10 @@ from abjad.tuplet.formatter import _TupletFormatter
 
 
 class _Tuplet(Container):
+   '''*Abjad* model of musical tuplet.'''
 
    def __init__(self, music = None):
-      music = music or [ ]
+      '''Init tuplet as type of *Abjad* container.'''
       Container.__init__(self, music)
       self._duration = _TupletDurationInterface(self)
       self._formatter = _TupletFormatter(self) 

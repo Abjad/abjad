@@ -5,11 +5,11 @@ from abjad.staff.interface.interface import _StaffInterface
 
 
 class _Measure(Container):
-   '''Base class to model the musical measure.'''
+   '''Abstract base class of *Abjad* model of one measure in score.'''
 
    def __init__(self, music = None):
-      '''Init music and add dedicated duration interface and formatter.'''
-      music = music or [ ]
+      '''Init measure as a type of *Abjad* container.
+         Init dedicated duration interface and formatter.'''
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self._formatter = _MeasureFormatter(self)

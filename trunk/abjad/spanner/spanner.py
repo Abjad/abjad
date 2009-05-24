@@ -9,8 +9,10 @@ from copy import deepcopy as python_deepcopy
 
 
 class Spanner(_Abjad):
+   '''Abstract base class of any type of spanning object.'''
 
    def __init__(self, music = None):
+      '''Apply spanner to music. Init dedicated duration interface.'''
       from abjad.component.component import _Component
       self._components = [ ]
       self._duration = _SpannerDurationInterface(self)

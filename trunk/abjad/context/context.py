@@ -5,7 +5,6 @@ from abjad.context.formatter import _ContextFormatter
 class _Context(Container):
 
    def __init__(self, music = None):
-      music = music or [ ]
       Container.__init__(self, music)
       self._formatter = _ContextFormatter(self)
 
