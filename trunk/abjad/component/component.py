@@ -22,6 +22,7 @@ from abjad.pianopedal.interface import _PianoPedalInterface
 from abjad.rational.rational import Rational
 from abjad.receipt.component import _ComponentReceipt
 from abjad.rest.interface import _RestInterface
+from abjad.score.interface.interface import _ScoreInterface
 from abjad.slur.interface import _SlurInterface
 from abjad.spacing.interface import _SpacingInterface
 from abjad.stem.interface import _StemInterface
@@ -61,6 +62,7 @@ class _Component(_Abjad):
       self._parentage = _Parentage(self)
       self._pianopedal = _PianoPedalInterface(self)
       self._rest = _RestInterface(self)
+      self._score = _ScoreInterface(self)
       self._slur = _SlurInterface(self)
       self._spacing = _SpacingInterface(self)
       self._stem = _StemInterface(self)
@@ -220,6 +222,10 @@ class _Component(_Abjad):
    @property
    def rest(self):
       return self._rest
+
+   @property
+   def score(self):
+      return self._score
 
    @property
    def slur(self):
