@@ -2,14 +2,18 @@ from abjad.core.abjadcore import _Abjad
 
 
 class _SpannerFormatInterface(_Abjad):
+   '''Abstract base class. 
+      Model format interface for all *Abjad* spanners.'''
 
    def __init__(self, spanner):
+      '''Bind to spanner client.'''
       self._spanner = spanner
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def spanner(self):
+      '''Read-only reference to spanner client.'''
       return self._spanner
 
    ## PUBLIC METHODS ##
