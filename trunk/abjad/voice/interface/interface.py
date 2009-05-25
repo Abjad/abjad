@@ -6,13 +6,22 @@ class _VoiceInterface(_Interface, _FormatContributor):
    '''Publish LilyPond voice-number settings.
       Handle no LilyPond grob.'''
 
-   def __init__(self, client):
+   def __init__(self, _client):
       '''Bind to client and set voice number to None.'''
-      _Interface.__init__(self, client)
+      _Interface.__init__(self, _client)
       _FormatContributor.__init__(self)
       self.number = None
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def explicit(self):
+      '''First explicit *Abjad* ``Voice`` in parenage of client.
+         If no explicit *Abjad* ``Voice``, return ``None``.'''
+      from abjad.voice.voice import Voice
+      for parent in self._client.parentage.parentage:
+         if isinstance(parent, Voice):
+            return parent
 
    @apply
    def number( ):
