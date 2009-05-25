@@ -1,7 +1,6 @@
 from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.observer import _Observer
-from abjad.staff.staff import Staff
 import types
 
 
@@ -16,6 +15,7 @@ class _StaffInterface(_Observer, _FormatContributor, _BacktrackingInterface):
       '''Register as observer, format contributor and backtracker.
          Init effective and force staff to None.
          Init hide to False.'''
+      from abjad.staff.staff import Staff
       _Observer.__init__(self, _client, _updateInterface)
       _FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'staff')

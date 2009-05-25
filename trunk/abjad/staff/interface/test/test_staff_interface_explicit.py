@@ -17,11 +17,8 @@ def test_staff_interface_explicit_01( ):
    >>'''
 
    assert t.leaves[0].staff.explicit is t[0]
-
-   ## TODO: Add staff interface to Abjad containers. ##
-
-#   assert t[0].staff.explicit is t[0]
-#   assert t.staff.explicit is None
+   assert t[0].staff.explicit is t[0]
+   assert t.staff.explicit is None
 
 
 def test_staff_interface_explicit_02( ):

@@ -25,6 +25,7 @@ from abjad.rest.interface import _RestInterface
 from abjad.score.interface.interface import _ScoreInterface
 from abjad.slur.interface import _SlurInterface
 from abjad.spacing.interface import _SpacingInterface
+from abjad.staff.interface.interface import _StaffInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tempo.interface import _TempoInterface
 from abjad.thread.interface import _ThreadInterface
@@ -79,6 +80,7 @@ class _Component(_Abjad):
       self._meter = _MeterInterface(self, self._update)
       self._numbering = _NumberingInterface(self, self._update)
       self._offset = _OffsetInterface(self, self._update)
+      self._staff = _StaffInterface(self, self._update)
       self._tempo = _TempoInterface(self, self._update)
       self._voice = _VoiceInterface(self)
 
@@ -238,6 +240,10 @@ class _Component(_Abjad):
    @property
    def spanners(self):
       return self._spanners
+   
+   @property
+   def staff(self):
+      return self._staff
 
    @property
    def stem(self):

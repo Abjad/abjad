@@ -8,7 +8,6 @@ from abjad.leaf.formatter import _LeafFormatter
 from abjad.leaf.spanner.aggregator import _LeafSpannerAggregator
 from abjad.markup.interface import _MarkupInterface
 from abjad.rational.rational import Rational
-from abjad.staff.interface.interface import _StaffInterface
 import operator
 
 
@@ -23,7 +22,6 @@ class _Leaf(_Component):
       self._harmonic = _HarmonicInterface(self)
       self._markup = _MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
-      self._staff = _StaffInterface(self, self._update)
 
    ## OVERLOADS ##
 
@@ -91,7 +89,3 @@ class _Leaf(_Component):
    def signature(self):
       return (self.pairs, 
          (self.duration.written._n, self.duration.written._d))
-
-   @property
-   def staff(self):
-      return self._staff

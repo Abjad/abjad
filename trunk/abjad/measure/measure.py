@@ -1,7 +1,6 @@
 from abjad.container.container import Container
 from abjad.measure.duration import _MeasureDurationInterface
 from abjad.measure.formatter import _MeasureFormatter
-from abjad.staff.interface.interface import _StaffInterface
 
 
 class _Measure(Container):
@@ -13,7 +12,6 @@ class _Measure(Container):
       Container.__init__(self, music)
       self._duration = _MeasureDurationInterface(self)
       self._formatter = _MeasureFormatter(self)
-      self._staff = _StaffInterface(self, self._update)
 
    ## OVERLOADS ##
 
@@ -66,8 +64,3 @@ class _Measure(Container):
       '''Read-only measure number STARTING AT ONE, not zero.'''
       self._numbering._makeSubjectUpdateIfNecessary( )
       return self._numbering._measure
-
-   @property
-   def staff(self):
-      '''Read-only reference to staff interface.'''
-      return self._staff
