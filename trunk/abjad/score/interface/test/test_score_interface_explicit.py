@@ -1,8 +1,8 @@
 from abjad import *
 
 
-def test_score_interface_effective_01( ):
-   '''Effective *Abjad* ``Score`` in parentage of client.
+def test_score_interface_explicit_01( ):
+   '''First explicit *Abjad* ``Score`` in parentage of client.
       If no explicit ``Score`` in parentage, return ``None``.'''
 
    t = Score([Staff(construct.scale(4))])
@@ -17,13 +17,13 @@ def test_score_interface_effective_01( ):
            }
    >>'''
 
-   assert t.leaves[0].score.effective is t
-   assert t[0].score.effective is t
-   assert t.score.effective is t
+   assert t.leaves[0].score.explicit is t
+   assert t[0].score.explicit is t
+   assert t.score.explicit is t
 
 
-def test_score_interface_effective_02( ):
-   '''Effective *Abjad* ``Score`` in parentage of client.
+def test_score_interface_explicit_02( ):
+   '''First explicit *Abjad* ``Score`` in parentage of client.
       If no explicit ``Score`` in parentage, return ``None``.'''
 
    t = Staff(construct.scale(4))
@@ -36,5 +36,5 @@ def test_score_interface_effective_02( ):
            f'8
    }'''
 
-   assert t[0].score.effective is None
-   assert t.score.effective is None
+   assert t[0].score.explicit is None
+   assert t.score.explicit is None

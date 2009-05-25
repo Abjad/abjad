@@ -12,8 +12,8 @@ class _ScoreInterface(_Interface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def effective(self):
-      '''Effective *Abjad* ``Score`` in parentage of client.
+   def explicit(self):
+      '''First explicit *Abjad* ``Score`` in parentage of client.
          If no explicit ``Score`` in parentage of client, return ``None``.'''
       from abjad.score.score import Score
       for parent in self._client.parentage.parentage:
