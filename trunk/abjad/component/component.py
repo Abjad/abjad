@@ -35,7 +35,7 @@ from abjad.trill.interface import _TrillInterface
 from abjad.tuplet.bracket import _TupletBracketInterface
 from abjad.tuplet.number import _TupletNumberInterface
 from abjad.update.interface import _UpdateInterface
-from abjad.voice.interface import _VoiceInterface
+from abjad.voice.interface.interface import _VoiceInterface
 import copy
 import types
 
