@@ -25,4 +25,4 @@ class Moment(_Abjad):
    def format(self):
       '''*LilyPond* input representation of moment.'''
       numerator, denominator = self.duration._n, self.duration._d
-      return '(ly:make-moment %s . %s)' % (numerator, denominator)
+      return '(ly:make-moment %s %s)' % (numerator, denominator)
