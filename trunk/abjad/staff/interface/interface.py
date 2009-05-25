@@ -36,14 +36,22 @@ class _StaffInterface(_Observer, _FormatContributor, _BacktrackingInterface):
 
    @property
    def effective(self):
-      '''Effective staff of client.'''
+      '''Effective staff of client.
+         If staff is forced on client, return forced staff.
+         Otherwise, return explicit staff of client.'''
       effective = _BacktrackingInterface.effective.fget(self)
       if effective is None:
-         from abjad.staff.staff import Staff
-         for parent in self._client.parentage.parentage:
-            if isinstance(parent, Staff):
-               return parent
+         return self.explicit
       return effective
+
+   @property
+   def explicit(self):
+      '''First explicit *Abjad* ``Staff`` in parentage of client.
+         Otherwise ``None``.'''
+      from abjad.staff.staff import Staff
+      for parent in self._client.parentage.parentage:
+         if isinstance(parent, Staff):
+            return parent
 
    @apply
    def hide( ):
