@@ -54,7 +54,7 @@ class _TempoInterface(_Observer, _GrobHandler,
    def opening(self):
       '''Format contribution at container opening or before leaf.'''
       result =  [ ] 
-      if self.forced or self.change:
-         result.append(
-            r'\tempo %s=%s' % (self.effective._dotted, self.effective.mark))
+      if self.forced or self.change and not (
+         self.spanned and self.spanner._isMyFirstLeaf(self._client)):
+         result.append(self.effective.format)
       return result
