@@ -6,10 +6,10 @@ import types
 
 
 class _BreaksInterface(_Interface, _FormatContributor):
-   r'''Handle no LilyPond grob.
-      Interface to LilyPond \break and \pageBreak commands.
+   r'''Interface to LilyPond ``break`` and ``pageBreak`` commands.
       Affordance for nonstaff whitespace following client.
-      Interface to LilyPond x- and y- system positioning.'''
+      Interface to *LilyPond* x- and y- system positioning.
+      Handle no *LilyPond* grob.'''
    
    def __init__(self, client):
       '''Bind to client and set line, page, whitespace, x and y to None.'''

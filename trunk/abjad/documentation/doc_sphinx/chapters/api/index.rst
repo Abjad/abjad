@@ -8,6 +8,7 @@ Abjad API
    articulations/articulation
    articulations/interface
    barline/interface
+   barnumber/interface
    beam/format
    beam/interface
    beam/spanner
@@ -78,6 +79,7 @@ Abjad API
    core/interface
    core/observer
    core/parser
+   core/settinghandler
    debug/debug
    directives/interface
    dots/interface
@@ -110,7 +112,6 @@ Abjad API
    leaf/spanner/aggregator
    markup/interface
    markup/markup
-   measure/base
    measure/duration
    measure/formatter
    measure/measure
@@ -158,11 +159,16 @@ Abjad API
    rest/interface
    rest/rest
    score/score
+   score/interface/interface
    skip/initializer
    skip/skip
    slur/format
    slur/interface
    slur/spanner
+   spacing/format
+   spacing/indication
+   spacing/interface
+   spacing/spanner
    spanner/duration
    spanner/format
    spanner/grobhandler
@@ -183,6 +189,8 @@ Abjad API
    tempo/indication
    tempo/interface
    tempo/spanner
+   tempo/proportional/format
+   tempo/proportional/spanner
    text/format
    text/interface
    text/spanner
@@ -243,6 +251,7 @@ Abjad API
    tools/durtools/aggomerate_by_prolation
    tools/durtools/denominator_to_multiplier
    tools/durtools/group_prolated
+   tools/durtools/group_seconds
    tools/durtools/in_terms_of
    tools/durtools/in_terms_of_binary_multiple
    tools/durtools/is_assignable
@@ -355,6 +364,7 @@ Abjad API
    tools/measuretools/spin
    tools/measuretools/subsume
    tools/measuretools/tupletize
+   tools/metertools/extract_meter_list
    tools/metertools/get_nonbinary_factor
    tools/metertools/is_binary_equivalent
    tools/metertools/is_token
@@ -410,6 +420,7 @@ Abjad API
    tools/scoretools/donate
    tools/scoretools/find
    tools/scoretools/transfer_all_attributes
+   tools/spacing/get_global
    tools/spannertools/find_component_at_score_offset
    tools/spannertools/find_index_at_score_offset
    tools/spannertools/fracture_crossing
@@ -464,5 +475,5 @@ Abjad API
    tuplet/fm/duration
    tuplet/fm/tuplet
    update/interface
-   voice/interface
    voice/voice
+   voice/interface/interface

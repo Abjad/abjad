@@ -103,6 +103,16 @@ abjad.exceptions.exceptions
    :undoc-members:
    :show-inheritance:
 
+.. autoclass:: abjad.exceptions.exceptions.SpacingError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: abjad.exceptions.exceptions.UndefinedSpacingError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. autoclass:: abjad.exceptions.exceptions.SpannerError
    :members:
    :undoc-members:

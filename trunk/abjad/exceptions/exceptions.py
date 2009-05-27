@@ -129,7 +129,7 @@ class TupletFuseError(Exception):
    pass
 
 class TypographicWhitespaceError(Exception):
-   '''Whitespace after leaf consues LilyPond timekeeping.
+   '''Whitespace after leaf confuses LilyPond timekeeping.
       Insert whitespace after measure instead.'''
    pass
 
