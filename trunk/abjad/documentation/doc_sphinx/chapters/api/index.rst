@@ -325,6 +325,7 @@ Abjad API
    tools/listtools/pairwise
    tools/listtools/resize
    tools/listtools/rotate
+   tools/listtools/truncate_subruns
    tools/listtools/unique
    tools/listtools/weight
    tools/listtools/zip_cyclic
