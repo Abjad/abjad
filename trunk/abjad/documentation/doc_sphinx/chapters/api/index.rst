@@ -326,6 +326,7 @@ Abjad API
    tools/listtools/remove_weighted_subrun_at
    tools/listtools/resize
    tools/listtools/rotate
+   tools/listtools/sum_slices_at
    tools/listtools/truncate_subruns
    tools/listtools/unique
    tools/listtools/weight

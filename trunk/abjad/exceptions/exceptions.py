@@ -42,6 +42,10 @@ class ExtraSpannerError(Exception):
       but more than one spanner is present.'''
    pass
 
+class InputSpecificationError(Exception):
+   '''Malformed specification token passed as input.'''
+   pass
+
 class MeterError(Exception):
    '''Any meter error.'''
    pass

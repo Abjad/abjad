@@ -53,6 +53,11 @@ abjad.exceptions.exceptions
    :undoc-members:
    :show-inheritance:
 
+.. autoclass:: abjad.exceptions.exceptions.InputSpecificationError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. autoclass:: abjad.exceptions.exceptions.MeterError
    :members:
    :undoc-members:
