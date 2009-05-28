@@ -69,8 +69,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
 
    @apply
    def line( ):
-      r'''Boolean setting to contribute LilyPond \line break.'''
       def fget(self):
+         r'''Boolean setting to contribute LilyPond \line break.'''
          return self._line
       def fset(self, arg):
          assert isinstance(arg, bool) or arg is None
@@ -88,8 +88,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
 
    @apply
    def page( ):
-      r'''Boolean setting to contribute LilyPond \pageBreak.'''
       def fget(self):
+         r'''Boolean setting to contribute LilyPond \pageBreak.'''
          return self._page
       def fset(self, arg):
          assert isinstance(arg, bool) or arg is None
@@ -100,9 +100,9 @@ class _BreaksInterface(_Interface, _FormatContributor):
 
    @apply
    def whitespace( ):
-      r'''Rational-valued non-durative whitespace following client.
-         Fake measure between \stopStaff, \startStaff commands.'''
       def fget(self):
+         r'''Rational-valued non-durative whitespace following client.
+            Fake measure between \stopStaff, \startStaff commands.'''
          return self._whitespace
       def fset(self, arg):
          from abjad.leaf.leaf import _Leaf
@@ -114,8 +114,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
 
    @apply
    def x( ):
-      '''X-value for line-break-system-details contribution.'''
       def fget(self):
+         '''X-value for line-break-system-details contribution.'''
          return self._x
       def fset(self, arg):
          assert isinstance(arg, (int, long, float, types.NoneType))
@@ -124,8 +124,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
 
    @apply
    def y( ):
-      '''Y-value for line-break-system-details contribution.'''
       def fget(self):
+         '''Y-value for line-break-system-details contribution.'''
          return self._y
       def fset(self, arg):
          assert isinstance(arg, (int, long, float, types.NoneType))
