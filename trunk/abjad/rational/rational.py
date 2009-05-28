@@ -1,4 +1,5 @@
 class Rational(object):
+   '''Abjad rational number class.'''
 
    def __init__(self, *args):
       if len(args) == 1:
@@ -64,37 +65,37 @@ class Rational(object):
       return Rational(abs(self._n), self._d)
 
    def __eq__(self, arg):
-      if isinstance(arg, (int, float, Rational)):
+      if isinstance(arg, (int, float, long, Rational)):
          return self._n == self._d * arg
       else:
          return False
 
    def __ne__(self, arg):
-      if isinstance(arg, (int, float, Rational)):
+      if isinstance(arg, (int, float, long, Rational)):
          return not self == arg
       else:
          return True
 
    def __ge__(self, arg):
-      if isinstance(arg, (int, float, Rational)):
+      if isinstance(arg, (int, float, long, Rational)):
          return self._n >= self._d * arg
       else:
          raise TypeError
 
    def __gt__(self, arg):
-      if isinstance(arg, (int, float, Rational)):
+      if isinstance(arg, (int, float, long, Rational)):
          return self._n > self._d * arg
       else:
          raise TypeError
 
    def __le__(self, arg):
-      if isinstance(arg, (int, float, Rational)):
+      if isinstance(arg, (int, float, long, Rational)):
          return self._n <= self._d * arg
       else:
          raise TypeError
 
    def __lt__(self, arg):
-      if isinstance(arg, (int, float, Rational)):
+      if isinstance(arg, (int, float, long, Rational)):
          return self._n < self._d * arg
       else:
          raise TypeError
