@@ -323,6 +323,7 @@ Abjad API
    tools/listtools/flatten
    tools/listtools/increase_cyclic
    tools/listtools/pairwise
+   tools/listtools/remove_weighted_subrun_at
    tools/listtools/resize
    tools/listtools/rotate
    tools/listtools/truncate_subruns
