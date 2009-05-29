@@ -30,4 +30,7 @@ class FixedMultiplierTuplet(_Tuplet):
 
    @property
    def duration(self):
+      ''':class:`_FMTupletDurationInterface \
+      <abjad.tuplet.fm.duration._FMTupletDurationInterface>` \
+      duration interface.'''
       return self._duration

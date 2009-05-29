@@ -16,8 +16,8 @@ class _VoiceInterface(_Interface, _FormatContributor):
 
    @property
    def explicit(self):
-      '''First explicit *Abjad* ``Voice`` in parenage of client.
-         If no explicit *Abjad* ``Voice``, return ``None``.'''
+      '''First explicit *Abjad* :class:`Voice <abjad.voice.voice.Voice>` in parentage of client.
+         If no explicit *Abjad* :class:`Voice <abjad.voice.voice.Voice>`, return ``None``.'''
       from abjad.voice.voice import Voice
       for parent in self._client.parentage.parentage:
          if isinstance(parent, Voice):
@@ -25,8 +25,8 @@ class _VoiceInterface(_Interface, _FormatContributor):
 
    @apply
    def number( ):
-      '''LilyPond voice number 1 - 4 of this voice, or None.'''
       def fget(self):
+         '''LilyPond voice number 1 - 4 of this voice, or ``None``.'''
          return self._number
       def fset(self, arg):
          if not arg in (1, 2, 3, 4, None):
