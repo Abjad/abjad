@@ -3,11 +3,18 @@ from abjad.core.interface import _Interface
 
 
 class _VoiceInterface(_Interface, _FormatContributor):
-   '''Publish LilyPond voice-number settings.
-      Handle no LilyPond grob.'''
+   '''Manage *LilyPond* and *Abjad* voice settings.
+   
+      ::
+
+         abjad> t = Voice(construct.scale(4))
+         abjad> t[0].voice      
+         <_VoiceInterface>'''
 
    def __init__(self, _client):
-      '''Bind to client and set voice number to None.'''
+      '''Bind to ``_client``, register as ``_FormatContributor`` 
+         and set ``number`` to ``None``.'''
+
       _Interface.__init__(self, _client)
       _FormatContributor.__init__(self)
       self.number = None
@@ -16,8 +23,19 @@ class _VoiceInterface(_Interface, _FormatContributor):
 
    @property
    def explicit(self):
-      '''First explicit *Abjad* :class:`Voice <abjad.voice.voice.Voice>` in parentage of client.
-         If no explicit *Abjad* :class:`Voice <abjad.voice.voice.Voice>`, return ``None``.'''
+      '''Read-only reference to first \
+         *Abjad* :class:`Voice <abjad.voice.voice.Voice>` \
+         in parentage of client.
+
+         * If no explicit *Abjad* \
+            :class:`Voice <abjad.voice.voice.Voice>` \
+            in parentage of client, return ``None``.
+
+         ::
+
+            abjad> t.voice.explicit
+            Voice{4}'''
+
       from abjad.voice.voice import Voice
       for parent in self._client.parentage.parentage:
          if isinstance(parent, Voice):
@@ -26,7 +44,25 @@ class _VoiceInterface(_Interface, _FormatContributor):
    @apply
    def number( ):
       def fget(self):
-         '''LilyPond voice number 1 - 4 of this voice, or ``None``.'''
+         r'''Read / write *LilyPond* number of this voice.
+
+            * Default value: ``None``.
+            * Allowed values: ``1``, ``2``, ``3``, ``4``, ``None``.
+
+            ::
+
+               abjad> t.voice.number = 1
+               abjad> t.voice.number
+               1
+               abjad> print t.format
+               \new Voice {
+                       \voiceOne
+                       c'8
+                       d'8
+                       e'8
+                       f'8
+               }'''
+
          return self._number
       def fset(self, arg):
          if not arg in (1, 2, 3, 4, None):
@@ -36,7 +72,16 @@ class _VoiceInterface(_Interface, _FormatContributor):
 
    @property
    def opening(self):
-      '''Format contribution at container opening or before leaf.'''
+      '''Read-only format contribution at container opening or before leaf.
+
+         * Depends on ``_VoiceInterface.number``.
+
+         ::
+
+            abjad> t.voice.number
+            abjad> t.voice.opening
+            ['\\voiceOne']'''
+
       result = [ ]
       voices = {
          1:r'\voiceOne', 2:r'\voiceTwo', 3:r'\voiceThree', 4:r'\voiceFour'}
