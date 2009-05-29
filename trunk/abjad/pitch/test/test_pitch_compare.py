@@ -1,5 +1,5 @@
 from abjad import *
-from py.test import raises
+import py.test
 
 
 def test_pitch_compare_01( ):
@@ -55,3 +55,16 @@ def test_pitch_compare_05( ):
    assert not p1 >= p2
    assert     p1 <  p2
    assert     p1 <= p2
+
+
+def test_pitch_compare_06( ):
+   '''Pitches test False for equality against unlike instances.
+      Other pitch comparisons raise ValueError against unlike instances.'''
+   p = Pitch('c', 4)
+   n = 99
+   assert not p == n
+   assert     p != n
+   assert py.test.raises(ValueError, 'p >  n')
+   assert py.test.raises(ValueError, 'p >= n')
+   assert py.test.raises(ValueError, 'p <  n')
+   assert py.test.raises(ValueError, 'p <= n')

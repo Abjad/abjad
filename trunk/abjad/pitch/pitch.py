@@ -17,30 +17,36 @@ class Pitch(_Abjad):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      assert isinstance(arg, Pitch)
-      return self.altitude == arg.altitude and \
-         self.accidental.adjustment == arg.accidental.adjustment
+      if isinstance(arg, Pitch):
+         if self.altitude == arg.altitude:
+            if self.accidental.adjustment == arg.accidental.adjustment:
+               return True
+      return False
 
    def __ge__(self, arg):
-      assert isinstance(arg, Pitch)
+      if not isinstance(arg, Pitch):
+         raise ValueError
       return self.altitude > arg.altitude or \
          (self.altitude == arg.altitude and \
          self.accidental.adjustment >= arg.accidental.adjustment)
 
    def __gt__(self, arg):
-      assert isinstance(arg, Pitch)
+      if not isinstance(arg, Pitch):
+         raise ValueError
       return self.altitude > arg.altitude or \
          (self.altitude == arg.altitude and \
          self.accidental.adjustment > arg.accidental.adjustment)
 
    def __le__(self, arg):
-      assert isinstance(arg, Pitch)
+      if not isinstance(arg, Pitch):
+         raise ValueError
       return self.altitude < arg.altitude or \
          (self.altitude == arg.altitude and \
          self.accidental.adjustment <= arg.accidental.adjustment)
 
    def __lt__(self, arg):
-      assert isinstance(arg, Pitch)
+      if not isinstance(arg, Pitch):
+         raise ValueError
       return self.altitude < arg.altitude or \
          (self.altitude == arg.altitude and \
          self.accidental.adjustment < arg.accidental.adjustment)
