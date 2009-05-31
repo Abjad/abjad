@@ -3,7 +3,8 @@ import sys
 
 
 def _open_file(file_name, application=None):
-   '''Generic cross-platform file openner.'''
+   '''Generic cross-platform file opener.'''
+
    if os.name == 'nt':
       os.startfile(file_name)
    else:

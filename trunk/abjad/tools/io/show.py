@@ -15,14 +15,40 @@ import time
 ## TODO: Extend show( ) 'title' keyword to allow multiple lines. ##
 
 def show(expr, template = None, title = None, lilytime = 10):
-   '''Create a new LilyPond .ly file in the ABJADOUTPUT directory.
-      Assign a four-digit numeric name to the new LilyPond .ly file.
-      Write template, title and other header information to .ly file.
-      Format Abjad expression 'expr' as LilyPond code.
-      Write the LilyPond version of 'expr' to .ly file.
-      Process .ly file with LilyPond and log to ABJADOUTPUT/lily.log.
-      Open the PDF output by LilyPond with the PDF viewer defined in
-      the config file..'''
+   '''Render ``expr`` as *LilyPond* input, call *LilyPond* \
+      and open the resulting PDF.
+
+      Examples.
+
+      Render ``t`` and open the resulting PDF:
+
+      ::
+
+         abjad> t = Note(0, (1, 4))
+         abjad> show(t)
+
+      Render ``t`` with the ``tangiers.ly`` template \ 
+      and then open the resulting PDF:
+
+      ::
+
+         abjad> show(t, template = 'tangiers')
+
+      Render ``t`` with a score title and open the reuslting PDF:
+
+      ::
+
+         abjad> show(t, title = 'Score Title')
+
+      Render ``t``, open the resulting PDF and alert the composer \
+      if *LilyPond* takes greater than 60 seconds to render:
+
+      ::
+
+         abjad> show(t, lilytime = 60)
+
+      *Abjad* writes *LilyPond* input files \
+      to the ``$ABJADOUTPUT`` directory.'''
 
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)

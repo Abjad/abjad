@@ -5,8 +5,15 @@ import os
 
 
 def write(expr, name, template = None, title = None):
-   '''Writes a given Abjad expression `expr` out to a 
-      LilyPond input file with the given `name`.'''
+   '''Format ``expr`` as *LilyPond* input and write to output file ``name``.
+
+      ::
+
+         abjad> t = Note(0, (1, 4))
+         abjad> write(t, 'foo.ly')
+
+      *Abjad* writes *LilyPond* input files \
+      to the ``$ABJADOUTPUT`` directory.'''
 
    name = os.path.expanduser(name)
    if not name.endswith('.ly'):
@@ -21,5 +28,4 @@ def write(expr, name, template = None, title = None):
       print 'ERROR: cound not open file %s' % name
       dirname = os.path.dirname(name)
       if dirname:
-         print 'Make sure "%s" exists in your sistem.' % dirname
-
+         print 'Make sure "%s" exists in your system.' % dirname
