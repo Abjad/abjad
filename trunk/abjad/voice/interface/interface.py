@@ -74,11 +74,11 @@ class _VoiceInterface(_Interface, _FormatContributor):
    def opening(self):
       '''Read-only format contribution at container opening or before leaf.
 
-         * Depends on ``_VoiceInterface.number``.
+         * Derived from ``_VoiceInterface.number``.
 
          ::
 
-            abjad> t.voice.number
+            abjad> t.voice.number = 1
             abjad> t.voice.opening
             ['\\voiceOne']'''
 

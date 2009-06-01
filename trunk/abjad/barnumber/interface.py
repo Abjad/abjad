@@ -5,11 +5,20 @@ import types
 
 
 class _BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
-   '''Manage *LilyPond* ``BarNumber`` grob.
-      Manage *LilyPond* ``currentBarNumber`` context setting.'''
+   '''Manage bar number attributes.
+
+      *  Handle *LilyPond* ``BarNumber`` grob.
+      *  Manage *LilyPond* ``currentBarNumber`` context setting.
+
+      ::
+
+         abjad> t = RigidMeasure((2, 8), construct.scale(2))
+         abjad> t.barnumber
+         <_BarNumberInterface>'''
 
    def __init__(self, _client):
       '''Bind to client and set current bar number to 1.'''
+
       _Interface.__init__(self, _client)
       _GrobHandler.__init__(self, 'BarNumber')
       self.current = None
@@ -18,8 +27,20 @@ class _BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
    @apply
    def current( ):
-      '''Read / write *LilyPond* ``currentBarNumber`` context setting.'''
       def fget(self):
+         '''Read / write *LilyPond* ``currentBarNumber`` context setting.
+
+            *  Default value: ``None``.
+            *  All values: integer, ``None``.         
+
+            :: 
+
+               abjad> t = RigidMeasure((2, 8), construct.scale(2))
+               abjad> t[0]
+               abjad> t[0].barnumber.current = 22
+               abjad> t[0].barnumber.current
+               22'''
+
          return self._current
       def fset(self, expr):
          assert isinstance(expr, (int, types.NoneType))
@@ -30,7 +51,21 @@ class _BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
    @property
    def settings(self):
-      '''List of *LilyPond* context settings.'''
+      r'''List of *LilyPond* context settings picked up at format-time.
+
+         *  Derived from ``_BarNumberInterface.current``.
+
+         ::
+
+            abjad> t = RigidMeasure((2, 8), construct.scale(2))
+            abjad> t[0]
+            abjad> t[0].barnumber.current = 22
+            abjad> print t.format
+                    \time 2/8
+                    \set currentBarNumber = #22
+                    c'8
+                    d'8'''
+
       result = [ ]
       if self.current is not None:
          formatted_value = self._parser.formatValue(self.current)
