@@ -1,9 +1,19 @@
 from abjad.core.abjadcore import _Abjad
+import types
 
 
 class Articulation(_Abjad):
+   '''Any staccato, tenuto, portato, etc.
+
+      ::
+
+         abjad> t = Articulation('staccato')
+         abjad> print t.format
+         -\staccato'''
 
    def __init__(self, string = None, direction = None):
+      '''Init ``string`` and ``direction`` both to ``None``.'''
+
       self.string = string
       self.direction = direction
 
@@ -56,36 +66,69 @@ class Articulation(_Abjad):
    @apply
    def direction( ):
       def fget(self):
+         '''Read / write *LilyPond* direction string.
+
+            *  Default value: ``None``.
+            *  All values: ``'^'``, ``'_'``, ``'-'``, \
+               ``'up'``, ``'down'``, ``'default'``, ``None``.
+
+            ::
+
+               abjad> t = Articulation('staccato')
+
+            ::
+
+               abjad> t.direction = 'up'
+               abjad> print t.format
+               ^\staccato
+
+            ::
+
+               abjad> t.direction = 'down'
+               abjad> print t.format
+               _\staccato'''
+
          return self._direction
       def fset(self, expr):
-         if expr is None:
+         assert isinstance(expr, (str, types.NoneType))
+         if expr in ('^', 'up'):
+            self._direction = '^'
+         elif expr in ('_', 'down'):
+            self._direction = '_'
+         elif expr in ('-', 'default', None):
             self._direction = '-'
-         elif isinstance(expr, str):
-            if expr in ('^', 'up'):
-               self._direction = '^'
-            elif expr in ('_', 'down'):
-               self._direction = '_'
-            elif expr in ('-', 'default'):
-               self._direction = '-'
-            else:
-               raise ValueError('can not set articulation direction.')
          else:
             raise ValueError('can not set articulation direction.')
       return property(**locals( ))
 
    @property
    def format(self):
+      '''Read-only *LilyPond* format string.
+
+         ::
+
+            abjad> t = Articulation('staccato')
+            abjad> print t.format
+            -\staccato'''
+         
       return str(self)
 
    @apply
    def string( ):
       def fget(self):
+         '''Read / write string representation of accidental.
+
+            * All values: any *LilyPond* articulation string, ``None``.
+
+            ::
+
+               abjad> t = Articulation('staccato')
+               abjad> t.string = 'marcato'
+               abjad> print t.format
+               -\marcato'''
+
          return self._string
       def fset(self, expr):
-         if expr is None:
-            self._string = None #''
-         elif isinstance(expr, str):
-            self._string = expr
-         else:
-            raise ValueError('can not set articulation string.')
+         assert isinstance(expr, (str, types.NoneType))
+         self._string = expr
       return property(**locals( ))
