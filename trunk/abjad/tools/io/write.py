@@ -5,15 +5,39 @@ import os
 
 
 def write(expr, name, template = None, title = None):
-   '''Format ``expr`` as *LilyPond* input and write to output file ``name``.
+   r'''Format *expr* as **LilyPond** input and write to output file *name*.
 
-      ::
+   Arguments:
+      *expr* : Abjad :class:`~abjad.component.component._Component`
+         The abjad component to be written to disk.
+      *name* : string
+         The full path name (relative or absolute) of the **LilyPond** 
+         file. If only the file name is given, the file is written to
+         the current directory.
+      *template* : string, None
+         The name of the template to use to format the **LilyPond** file.
+         If not set, no template is used.
+      *title* : string, None
+         The title of the file.
+   
+   Examples:
 
-         abjad> t = Note(0, (1, 4))
-         abjad> write(t, 'foo.ly')
+   Write the **Abjad** component ``t`` to the file ``foo.ly`` in the
+   current directory.
 
-      *Abjad* writes *LilyPond* input files \
-      to the ``$ABJADOUTPUT`` directory.'''
+   ::
+
+      abjad> t = Note(0, (1, 4))
+      abjad> write(t, 'foo.ly')
+
+   
+   Write the component ``t`` to file ``foo.ly`` in the 
+   ``/home/user`` directory, and add ``paris`` formatting.
+
+   ::
+
+      abjad> t = Note(0, (1, 4))
+      abjad> write(t, '/home/user/foo.ly', 'paris') '''
 
    name = os.path.expanduser(name)
    if not name.endswith('.ly'):
