@@ -11,10 +11,11 @@ class _BreaksInterface(_Interface, _FormatContributor):
       Interface to *LilyPond* x- and y- system positioning.
       Handle no *LilyPond* grob.'''
    
-   def __init__(self, client):
+   def __init__(self, _client):
       '''Bind to client and set line, page, whitespace, x and y to None.'''
-      _Interface.__init__(self, client)
+      _Interface.__init__(self, _client)
       _FormatContributor.__init__(self)
+      self._alignment_offsets = [ ]
       self._line = None
       self._page = None
       self._whitespace = None
@@ -36,7 +37,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
       result = [ ]
       x = self.x
       y = self.y
-      if x is not None or y is not None:
+      alignment_offsets = self.alignment_offsets
+      if x is not None or y is not None or alignment_offsets:
          result.append('\\overrideProperty #"Score.NonMusicalPaperColumn"')
          result.append("#'line-break-system-details")
          temp = [ ]
@@ -44,11 +46,36 @@ class _BreaksInterface(_Interface, _FormatContributor):
             temp.append('(X-offset . %s)' % x)
          if y is not None:
             temp.append('(Y-offset . %s)' % y)
+         if alignment_offsets:
+            value_vector = ' '.join([str(x) for x in alignment_offsets])
+            temp.append('(alignment-offsets . (%s))' % value_vector)
          temp_str = ' '.join(temp)
          result.append("#'(%s)" % temp_str)
       return result
 
    ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def alignment_offsets( ):
+      def fget(self):
+         '''*LilyPond* ``alignment-offsets`` list to format as \
+         ``NonMusicalPaperColumn``.
+
+         ::
+
+            abjad> t = Note(0, (1, 4))
+            abjad> t.breaks.alignment_offsets = [0, -18, -54, -70]
+            abjad> print t.format
+            \overrideProperty #"Score.NonMusicalPaperColumn"
+            #'line-break-system-details
+            #'((alignment-offsets . (0 -18 -54 -70)))
+            c'4'''
+
+         return self._alignment_offsets
+      def fset(self, expr):
+         assert isinstance(expr, list)
+         self._alignment_offsets = expr
+      return property(**locals( ))
 
    @property
    def closing(self):
@@ -135,7 +162,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
    ## PUBLIC METHODS ##
 
    def clear(self):
-      r'''Set ``line``, ``page``, ``x`` and ``y`` to ``None``.
+      r'''Set ``line``, ``page``, ``x`` and ``y`` to ``None`` and \
+      empty ``alignment_offsets``.
 
       ::
 
@@ -160,3 +188,4 @@ class _BreaksInterface(_Interface, _FormatContributor):
       self.page = None
       self.x = None
       self.y = None
+      self.alignment_offsets = [ ]
