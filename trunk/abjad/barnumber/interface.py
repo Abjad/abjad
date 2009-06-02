@@ -51,20 +51,21 @@ class _BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
    @property
    def settings(self):
-      r'''List of *LilyPond* context settings picked up at format-time.
+      r'''Read-only list of *LilyPond* context settings \
+      picked up at format-time.
 
-         *  Derived from ``_BarNumberInterface.current``.
+      *  Derived from ``_BarNumberInterface.current``.
 
-         ::
+      ::
 
-            abjad> t = RigidMeasure((2, 8), construct.scale(2))
-            abjad> t[0]
-            abjad> t[0].barnumber.current = 22
-            abjad> print t.format
-                    \time 2/8
-                    \set currentBarNumber = #22
-                    c'8
-                    d'8'''
+         abjad> t = RigidMeasure((2, 8), construct.scale(2))
+         abjad> t[0]
+         abjad> t[0].barnumber.current = 22
+         abjad> print t.format
+                 \time 2/8
+                 \set currentBarNumber = #22
+                 c'8
+                 d'8'''
 
       result = [ ]
       if self.current is not None:
