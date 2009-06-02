@@ -49,8 +49,7 @@ class Accidental(_Abjad):
 
    @property
    def adjustment(self):
-      '''Read-only number of semitones by which this accidental \
-         acts on the note it modifies::
+      '''Read-only number of semitones to which this accidental is equal::
 
             abjad> t = Accidental('s')
             abjad> t.adjustment
@@ -73,6 +72,12 @@ class Accidental(_Abjad):
             abjad> t = Accidental('s')
             abjad> t.format
             's' 
+
+         ::
+
+            abjad> t = Accidental('f')
+            abjad> t.format
+            'f'
       '''
 
       return self.string
@@ -86,7 +91,13 @@ class Accidental(_Abjad):
          
                abjad> t = Accidental('s')
                abjad> t.string
-               's' '''
+               's'
+
+            ::
+
+               abjad> t = Accidental('f')
+               abjad> t.string
+               'f' '''
 
          return self._string
       def fset(self, arg):
@@ -111,22 +122,3 @@ class Accidental(_Abjad):
        1: 's',     0.5: 'qs',
     -2.5: 'ff'
        }
-
-   ## PUBLIC METHODS ##
-
-   def hasNone(self):
-      '''Read-only boolean ``True`` when ``self.string == ''``.
-
-         ::
-
-            abjad> t = Accidental( )
-            abjad> t.hasNone( )
-            True
-
-         ::
-
-            abjad> t = Accidental('s')
-            abjad> t.hasNone( )
-            False'''
-
-      return self.string == ''
