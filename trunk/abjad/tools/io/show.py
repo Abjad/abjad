@@ -47,8 +47,10 @@ def show(expr, template = None, title = None, lilytime = 10):
 
          abjad> show(t, lilytime = 60)
 
-      *Abjad* writes *LilyPond* input files \
-      to the ``$ABJADOUTPUT`` directory.'''
+      .. note::
+         By default, *Abjad* writes *LilyPond* input files
+         to the ``~/.abjad/output`` directory, otherwise to 
+         ``$ABJADOUTPUT``, if the environment variable is set.'''
 
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
