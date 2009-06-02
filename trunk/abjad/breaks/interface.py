@@ -135,7 +135,28 @@ class _BreaksInterface(_Interface, _FormatContributor):
    ## PUBLIC METHODS ##
 
    def clear(self):
-      r'''Remove any LilyPond \line break contribution.
-         Remove any LilyPond \pageBreak contribution.'''
+      r'''Set ``line``, ``page``, ``x`` and ``y`` to ``None``.
+
+      ::
+
+         abjad> t = Note(0, (1, 4))
+         abjad> t.breaks.line = True
+         abjad> t.breaks.x = 20
+         abjad> t.breaks.y = 40
+         abjad> print t.format
+         \overrideProperty #"Score.NonMusicalPaperColumn"
+         #'line-break-system-details
+         #'((X-offset . 20) (Y-offset . 40))
+         c'4
+         \break
+
+      ::
+
+         abjad> t.breaks.clear( )
+         abjad> print t.format
+         c'4'''
+
       self.line = None
       self.page = None
+      self.x = None
+      self.y = None
