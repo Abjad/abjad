@@ -2,21 +2,17 @@ from abjad.rational.rational import Rational
 from abjad.tools.durtools.token_unpack import token_unpack
 
 def in_terms_of(q, desired_denominator):
-   r'''Rewrite *q* in terms of desired denominator.
+   r'''Rewrite ``q`` in terms of ``desired_denominator``.
 
-   Arguments:
-      *q* : int, long, Rational, tuple pair
-         The pair (a, b) to be expressed in terms of a new denominator 
-         b' = *desired_denominator*.
-      *desired_denominator* : int
-         The new denominator of *q*.
+   * ``q``: ``int``, ``long``, ``Rational``. Input value to rewrite.
 
-   Returns:
-      (a', b') pair. a' = a * *desired_denominator* / b.  
-      b' = *desired_denominator*
+   * ``desired_denominator``: ``int``. Desired denominator of output.
 
+   Returns ``(a', b')`` pair such that \
+   ``a' = a * desired_denominator / b`` and \
+   ``b' = desired_denominator``.
 
-   Example::
+   ::
 
       >>> for pair in [(n, 6) for n in range(12)]:
       ...     print pair, in_terms_of(pair, 12)
