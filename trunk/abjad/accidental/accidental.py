@@ -2,6 +2,13 @@ from abjad.core.abjadcore import _Abjad
 
 
 class Accidental(_Abjad):
+   '''Any sharp, quarter-sharp, flat, quarter-flat, etc.
+
+      ::
+
+         abjad> t = Accidental('s')
+         abjad> t
+         Accidental(s)'''
 
    def __init__(self, arg = ''):
       if isinstance(arg, str):
@@ -42,15 +49,45 @@ class Accidental(_Abjad):
 
    @property
    def adjustment(self):
+      '''Read-only number of semitones by which this accidental \
+         acts on the note it modifies::
+
+            abjad> t = Accidental('s')
+            abjad> t.adjustment
+            1
+
+         ::
+
+            abjad> t = Accidental('f')
+            abjad> t.adjustment 
+            -1'''
+
       return self.accidentalStringToAdjustment[self.string]
 
    @property
    def format(self):
+      '''Read-only *LilyPond* format of accidental.
+
+         ::
+      
+            abjad> t = Accidental('s')
+            abjad> t.format
+            's' 
+      '''
+
       return self.string
 
    @apply
    def string( ):
       def fget(self):
+         '''Read / write *LilyPond* accidental string.
+      
+            ::
+         
+               abjad> t = Accidental('s')
+               abjad> t.string
+               's' '''
+
          return self._string
       def fset(self, arg):
          assert isinstance(arg, str)
@@ -78,4 +115,18 @@ class Accidental(_Abjad):
    ## PUBLIC METHODS ##
 
    def hasNone(self):
+      '''Read-only boolean ``True`` when ``self.string == ''``.
+
+         ::
+
+            abjad> t = Accidental( )
+            abjad> t.hasNone( )
+            True
+
+         ::
+
+            abjad> t = Accidental('s')
+            abjad> t.hasNone( )
+            False'''
+
       return self.string == ''
