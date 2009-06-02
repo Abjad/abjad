@@ -2,7 +2,7 @@ from abjad.rational.rational import Rational
 from abjad.tools.durtools.token_unpack import token_unpack
 
 def in_terms_of(q, desired_denominator):
-   '''Rewrite *q* in terms of desired denominator.
+   r'''Rewrite *q* in terms of desired denominator.
 
    Arguments:
       *q* : int, long, Rational, tuple pair
