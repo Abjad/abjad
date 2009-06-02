@@ -4,12 +4,21 @@ import types
 
 
 class _AccidentalInterface(_Interface, _GrobHandler):
-   '''Manage LilyPond Accidental grob.
-      Manage LilyPond set-accidental-style function.'''
+   '''Interface to all accidental-related settings and information.
 
-   def __init__(self, client):
+      *  Manage *LilyPond* ``Accidental`` grob.
+      *  Manage *LilyPond* ``set-accidental-style`` function.
+
+      ::
+
+         abjad> t = Staff(construct.scale(4))
+         abjad> t.accidental
+         <_AccidentalInterface>'''
+
+   def __init__(self, _client):
       '''Bind client and set style to None.'''
-      _Interface.__init__(self, client)
+
+      _Interface.__init__(self, _client)
       _GrobHandler.__init__(self, 'Accidental')
       self._style = None
 
@@ -26,8 +35,28 @@ class _AccidentalInterface(_Interface, _GrobHandler):
 
    @apply
    def style( ):
-      '''LilyPond accidental style as string or None.'''
       def fget(self):
+         r'''Read / write *LilyPond* accidental style.
+      
+            *  Default value: ``None``.
+            *  All values: *LilyPond* accidental style string, ``None``.
+
+            ::
+
+               abjad> t = Staff(construct.scale(4))
+               abjad> t.accidental.style = 'forget'
+
+            ::
+
+               abjad> print t.format
+               \new Staff {
+                       #(set-accidental-style 'forget)
+                       c'8
+                       d'8
+                       e'8
+                       f'8
+               }'''
+
          return self._style
       def fset(self, arg):
          assert isinstance(arg, (str, types.NoneType))
