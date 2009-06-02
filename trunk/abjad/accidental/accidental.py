@@ -49,7 +49,9 @@ class Accidental(_Abjad):
 
    @property
    def adjustment(self):
-      '''Read-only number of semitones to which this accidental is equal::
+      '''Read-only number of semitones to which this accidental is equal.
+
+         ::
 
             abjad> t = Accidental('s')
             abjad> t.adjustment
