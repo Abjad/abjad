@@ -325,6 +325,8 @@ Abjad API
    tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums
    tools/listtools/remove_weighted_subrun_at
+   tools/listtools/repeat_to_length
+   tools/listtools/repeat_to_weight
    tools/listtools/resize
    tools/listtools/rotate
    tools/listtools/sum_slices_at
