@@ -30,7 +30,11 @@ def pdf(target = -1):
       *  When ``target = -3`` open the next-to-next-to-last PDF output file.
       *  When ``target`` is positive open ``target.pdf``.
 
-      *Abjad* writes PDF output to the ``$ABJADOUTPUT`` directory.'''
+      .. note::
+
+         By default, *Abjad* writes *LilyPond* input files
+         to the ``~/.abjad/output`` directory, otherwise to 
+         ``$ABJADOUTPUT``, if the environment variable is set.'''
 
    if isinstance(target, int) and target < 0:
       last_lilypond = _get_last_output( )
