@@ -345,6 +345,7 @@ Abjad API
    tools/mathtools/greatest_multiple_less
    tools/mathtools/integer_decompose
    tools/mathtools/integer_halve
+   tools/mathtools/integer_partition_by_ratio
    tools/mathtools/integer_tripartition
    tools/mathtools/is_divisor_of
    tools/mathtools/is_power_of_two
