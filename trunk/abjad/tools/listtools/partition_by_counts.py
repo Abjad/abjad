@@ -7,8 +7,17 @@ from abjad.tools import mathtools
 
 
 def partition_by_counts(l, counts, cyclic = False, overhang = False):
-   '''Partition list ``l`` into sublists of such that \
-   ``len(r)_i`` for ``r_i`` in ``result`` equals ``counts_i``.
+   '''Partition list ``l`` into sublists ``r_i`` in ``result`` list \
+   such that ``len(r)_i == counts_i`` for all ``i < len(result)``.
+
+   Intput:
+
+   * ``l``: any iterable of positive, negative or zero-valued numbers.
+   * ``counts``: any iterable of one or more positive integers.
+   * ``cyclic``: boolean.
+   * ``overhang``: boolean.
+
+   Output: Python list of one or more sublists.
 
    ::
 

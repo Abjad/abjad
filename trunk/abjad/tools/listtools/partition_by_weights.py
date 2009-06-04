@@ -13,6 +13,8 @@ def partition_by_weights(l, weights, cyclic = False, overhang = False):
 
    * ``l``: any iterable comprising positive, negative or zero-valued numbers.
    * ``weights``: any iterable of one or more positive numbers.
+   * ``cyclic``: boolean.
+   * ``overhang``: boolean.
 
    Ouput: Python list of one or more sublists.
 
