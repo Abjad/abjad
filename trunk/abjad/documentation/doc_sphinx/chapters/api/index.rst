@@ -324,6 +324,8 @@ Abjad API
    tools/listtools/increase_cyclic
    tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums
+   tools/listtools/partition_by_counts
+   tools/listtools/partition_by_weights
    tools/listtools/remove_weighted_subrun_at
    tools/listtools/repeat_to_length
    tools/listtools/repeat_to_weight
