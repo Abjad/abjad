@@ -1,4 +1,5 @@
-from abjad.rational.rational import Rational
+from __future__ import division
+import math
 
 
 def repeat_to_length(l, length):
@@ -30,12 +31,18 @@ def repeat_to_length(l, length):
       abjad> listtools.repeat_to_length(l, 0)
       [ ]'''
 
-   assert isinstance(length, (int, long)) and 0 <= length
-   assert all([isinstance(x, (int, float, long, Rational)) for x in l])
+   assert isinstance(l, list)
+   assert isinstance(length, int)
+   assert 0 <= length
+   assert 0 < len(l)
 
-   result = [ ]
+   if length == 0:
+      return [ ]
 
-   for i in range(length):
-      result.append(l[i % len(l)])
-
-   return result
+   if len(l) == length:
+      return l[:]
+   elif len(l) > length:
+      return l[0:length]
+   else:
+      l = l * int(math.ceil(length / len(l)))
+      return l[0:length]
