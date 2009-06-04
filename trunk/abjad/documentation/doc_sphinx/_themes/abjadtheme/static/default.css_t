@@ -156,7 +156,7 @@ div.body h6 {
     font-family: {{ theme_headfont }};
     background-color: {{ theme_headbgcolor }};
     font-weight: normal;
-    font-variant: small-caps;
+    /*font-variant: small-caps;*/
     color: {{ theme_headtextcolor }};
     border-bottom: 1px solid #ccc;
     margin: 20px -20px 10px -20px;
@@ -228,11 +228,11 @@ pre {
 }
 
 span.pre {
-    background-color: {{ theme_codebgcolor }};
-    border: 1px dotted #ffbd7a;
+    background-color: #f6f6f6;
+    /*border: 1px dotted #ffbd7a;*/
     font-family: courier;
-    padding: 0 2px 0 2px;
-    font-size: 0.90em;
+    /*font-size: 0.90em;*/
+    padding: 0 3px 0 1px;
 }
 
 /* VA */
@@ -247,7 +247,7 @@ em {
     color: {{ theme_codetextcolor }};
     font-family: courier;
     font-style: italic;
-    padding: 0 2px 0 2px;
+    padding: 0 3px 0 1px;
 }
 
 strong {
