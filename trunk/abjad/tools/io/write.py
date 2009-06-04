@@ -5,20 +5,20 @@ import os
 
 
 def write(expr, name, template = None, title = None):
-   '''Format *expr* as *LilyPond* input and write to output file *name*.
+   '''Format *expr* as `LilyPond` input and write to output file *name*.
 
-   * *expr* : Abjad :class:`~abjad.component.component._Component` \
+   - *expr* : `Abjad` :class:`~abjad.component.component._Component` \
       to be written to disk.
-   * *name* : ``str``. The full path name (relative or absolute) of \
-      the *LilyPond* file. If only the file name is given, the file \
+   - *name* : ``str``. The full path name (relative or absolute) of \
+      the `LilyPond` file. If only the file name is given, the file \
       is written to the current directory.
-   * *template* : ``string``, ``None``. The name of the template to \
-      use to format the *LilyPond* file. If ``None`` set, no template is used.
-   * *title* : ``str``, ``None``. The title of the file.
+   - *template* : ``string``, ``None``. The name of the template to \
+      use to format the `LilyPond` file. If ``None``, no template is used.
+   - *title* : ``str``, ``None``. The title of the file.
    
    Examples:
 
-   Write the *Abjad* component ``t`` to the file ``foo.ly`` in the
+   Write the `Abjad` component ``t`` to the file ``foo.ly`` in the
    current directory.
 
    ::

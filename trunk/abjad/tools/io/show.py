@@ -15,7 +15,7 @@ import time
 ## TODO: Extend show( ) 'title' keyword to allow multiple lines. ##
 
 def show(expr, template = None, title = None, lilytime = 10):
-   '''Render ``expr`` as *LilyPond* input, call *LilyPond* \
+   '''Render *expr* as `LilyPond` input, call `LilyPond` \
       and open the resulting PDF.
 
       Examples.
@@ -48,7 +48,7 @@ def show(expr, template = None, title = None, lilytime = 10):
          abjad> show(t, lilytime = 60)
 
       .. note::
-         By default, *Abjad* writes *LilyPond* input files
+         By default, `Abjad` writes `LilyPond` input files
          to the ``~/.abjad/output`` directory, otherwise to 
          ``$ABJADOUTPUT``, if the environment variable is set.'''
 

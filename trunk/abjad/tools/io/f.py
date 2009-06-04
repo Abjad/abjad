@@ -9,10 +9,9 @@
 #         'must be format object or be iterable of format objects.')
 
 def f(expr):
-   '''Print the *LilyPond* input code of *Abjad* expression ``expr``.
+   '''Print the `LilyPond` input code of `Abjad` expression *expr*.
    
-   * ``expr`` must be an *Abjad* \
-      :class:`~abjad.component.component._Component`.
+   - *expr* can be any `Abjad` object having a ``format`` property.
 
    Example::
       

@@ -227,9 +227,11 @@ pre {
     font-size: 0.85em;
 }
 
-tt {
-    background-color: #ecf0f3;
-    padding: 0 1px 0 1px;
+span.pre {
+    background-color: {{ theme_codebgcolor }};
+    border: 1px dotted #ffbd7a;
+    font-family: courier;
+    padding: 0 2px 0 2px;
     font-size: 0.90em;
 }
 
@@ -240,6 +242,13 @@ blockquote {
 
 }
 
+em {
+    background-color: #f6f6f6;
+    color: {{ theme_codetextcolor }};
+    font-family: courier;
+    font-style: italic;
+    padding: 0 2px 0 2px;
+}
 
 strong {
    color: #333;
@@ -249,5 +258,4 @@ strong {
 table.docutil {
    border: 0px;
 }
-
 
