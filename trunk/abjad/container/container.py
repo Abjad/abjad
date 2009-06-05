@@ -154,13 +154,13 @@ class Container(_Component):
       '''Read / write boollean for paralllel / sequential containers.'''
       def fget(self):
          return self._parallel
-      def fset(self, arg):
+      def fset(self, expr):
          from abjad.context.context import _Context
          from abjad.tools import check
-         assert isinstance(arg, bool)
-         if arg == True:
+         assert isinstance(expr, bool)
+         if expr == True:
             check.assert_components(self._music, klasses = (_Context, ))
-         self._parallel = arg
+         self._parallel = expr
       return property(**locals( ))
 
    ## PRIVATE METHODS ##
@@ -187,6 +187,8 @@ class Container(_Component):
       return leaf in self._navigator._contemporaneousStopContents
 
    ## PUBLIC METHODS ## 
+
+   ## TODO: Spanner get silently stripped sometimes! ##
 
    def append(self, component):
       '''Append component to the end of container.
