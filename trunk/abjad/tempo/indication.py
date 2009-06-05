@@ -53,8 +53,8 @@ class TempoIndication(_Abjad):
 
    @apply
    def duration( ):
-      '''Duration of tempo indication.'''
       def fget(self):
+         '''Duration of tempo indication.'''
          return self._duration
       def fset(self, arg):
          assert durtools.is_assignable(arg)
@@ -73,8 +73,8 @@ class TempoIndication(_Abjad):
 
    @apply
    def mark( ):
-      '''Metronome mark value of tempo indication.'''
       def fget(self):
+         '''Metronome mark value of tempo indication.'''
          return self._mark
       def fset(self, arg):
          assert isinstance(arg, (int, float))

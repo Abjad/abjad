@@ -9,12 +9,13 @@ import types
 
 class Tempo(_GrobHandlerSpanner):
    r'''Apply tempo indication to zero or more contiguous components.
-      Handle LilyPond MetronomeMark grob.
-      Handle LilyPond proportionalNotationDuration setting.
-      Invoke LilyPond \newSpacingSection command.'''
+      Handle *LilyPond* ``MetronomeMark`` grob.
+      Handle *LilyPond* ``proportionalNotationDuration`` context setting.
+      Invoke *LilyPond* ``\newSpacingSection`` command.'''
 
    def __init__(self, music = None, indication = None):
       '''Handle LilyPond MetronomeMark grob. Init tempo indication.'''
+
       _GrobHandlerSpanner.__init__(self, 'MetronomeMark', music)
       self._format = _TempoSpannerFormatInterface(self)
       self._proportional_notation_duration_effective = None
@@ -26,8 +27,8 @@ class Tempo(_GrobHandlerSpanner):
 
    @apply
    def indication( ):
-      '''Read / write tempo indication.'''
       def fget(self):
+         '''Read / write tempo indication.'''
          return self._indication
       def fset(self, arg):
          assert isinstance(arg, (TempoIndication, types.NoneType))
@@ -50,9 +51,9 @@ class Tempo(_GrobHandlerSpanner):
 
    @apply
    def proportional_notation_duration_reference( ):
-      '''Read / write LilyPond proportionalNotationDuration.
-         Must be rational-valued duration.'''
       def fget(self):
+         '''Read / write LilyPond proportionalNotationDuration. \
+         Must be rational-valued duration.'''
          return self._proportional_notation_duration_reference
       def fset(self, arg):
          assert isinstance(arg, Rational)
@@ -62,9 +63,9 @@ class Tempo(_GrobHandlerSpanner):
 
    @apply
    def reference( ):
-      '''Read / write reference tempo indication.
-         If set, scale durations at format-time.'''
       def fget(self):
+         '''Read / write reference tempo indication. \
+         If set, scale durations at format-time.'''
          return self._reference
       def fset(self, arg):
          assert isinstance(arg, (TempoIndication, types.NoneType))
