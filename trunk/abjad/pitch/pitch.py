@@ -2,15 +2,14 @@ from abjad.cfg.cfg import accidental_spelling
 from abjad.core.abjadcore import _Abjad
 from abjad.accidental.accidental import Accidental
 from abjad.pitch.initializer import _PitchInitializer
-#from abjad.pitch.tools import _PitchTools
 
 
 class Pitch(_Abjad):
+   '''Musical pitch.'''
 
    accidental_spelling = accidental_spelling
 
    def __init__(self, *args):
-      #self.tools = _PitchTools(self)
       self.initializer = _PitchInitializer( )
       self.initializer.initialize(self, *args)
 
@@ -76,6 +75,7 @@ class Pitch(_Abjad):
    @apply
    def accidental( ):
       def fget(self):
+         '''Read / write reference to any accidental attaching to pitch.'''
          return self._accidental
       def fset(self, expr):
          if expr is None:
@@ -90,6 +90,7 @@ class Pitch(_Abjad):
 
    @property
    def altitude(self):
+      '''Measure of the absolute height of accidental on grand staff.'''
       if self.letter:
          return (self.octave - 4) * 7 + self.degree - 1
       else:
@@ -97,21 +98,24 @@ class Pitch(_Abjad):
       
    @property
    def degree(self):
+      '''Diatonic scale degree with ``1`` for C, ``2`` for D, etc.'''
       from abjad.tools.pitchtools.letter_to_diatonic_scale_degree \
          import letter_to_diatonic_scale_degree
       if self.letter:
-         #return self.tools.letterToDiatonicScaleDegree[self.letter]
          return letter_to_diatonic_scale_degree(self.letter)
       else:
          return None
 
    @property
    def format(self):
+      '''Read-only LilyPond format of pitch.'''
       return str(self)
 
    @apply
    def name( ):
       def fget(self):
+         '''Read / write letter and accidental of pitch concatenated \
+         as a single string.'''
          if self.letter and self.accidental:
             return '%s%s' % (self.letter, self.accidental)
          else:
@@ -119,7 +123,6 @@ class Pitch(_Abjad):
       def fset(self, name):
          from abjad.tools.pitchtools.name_to_letter_accidental \
             import name_to_letter_accidental
-         #letter, accidental = self.tools.nameToLetterAccidental(name)
          letter, accidental = name_to_letter_accidental(name)
          self.letter = letter
          self.accidental = accidental
@@ -128,10 +131,10 @@ class Pitch(_Abjad):
    @apply
    def number( ):
       def fget(self):
+         '''Read / write numeric value of pitch \
+         with middle C equal to ``0``.'''
          from abjad.tools.pitchtools.letter_to_pc import letter_to_pc
          if self._isSet( ):
-            #return self.tools.letterToPC[self.letter] + \
-            #   self.accidental.adjustment + (self.octave - 4) * 12
             return letter_to_pc(self.letter) + \
                self.accidental.adjustment + (self.octave - 4) * 12
          else:
@@ -142,6 +145,7 @@ class Pitch(_Abjad):
 
    @property
    def pair(self):
+      '''Read-only ``(name, octave)`` pair of pitch.'''
       if self.name and self.octave is not None:
          return (self.name, self.octave)
       else:
@@ -149,6 +153,8 @@ class Pitch(_Abjad):
 
    @property
    def pc(self):
+      '''Read-only numeric value of pitch-class of pitch \
+      with the pitch-class of C equal to ``0``.'''
       if self._isSet( ):
          return self.number % 12
       else:
@@ -156,6 +162,8 @@ class Pitch(_Abjad):
       
    @property
    def ticks(self):
+      '''Read-only European indicator of octave of pitch with \
+      the octave of middle C equal to a single ``'`` tick.'''
       if self.octave is not None:
          if self.octave <= 2:
             return ',' * (3 - self.octave)
@@ -165,40 +173,3 @@ class Pitch(_Abjad):
             return "'" * (self.octave - 3)
       else:
          return None
-
-   ## PUBLIC METHODS ##
-
-   ## DEPRECATED: Use pitchtools.diatonic_transpose( ) instead ##
-
-#   def diatonicTranspose(self, diatonicInterval):
-#      quality, interval = diatonicInterval.split()
-#      staffSpaces = self.tools.diatonicIntervalToStaffSpaces[interval]
-#      degree = self.tools.addStaffSpaces(staffSpaces)
-#      letter = self.tools.diatonicScaleDegreeToLetter[degree]
-#      pitchNumber = self.number + \
-#         self.tools.diatonicIntervalToAbsoluteInterval[diatonicInterval]
-#      accidentalString = self.tools.letterPitchNumberToNearestAccidentalString(
-#         letter, pitchNumber)
-#      pitchName = letter + accidentalString
-#      octave = self.tools.letterPitchNumberToOctave(letter, pitchNumber)
-#      return Pitch(pitchName, octave) 
-
-   ## DEPRECATED: use p1.altitude == p2.altitude instead ##
-
-#   def enharmonicCompare(self, arg):
-#      result = cmp(self.number, arg.number)
-#      if result == 0:
-#         return -cmp(
-#            self.accidental.adjustment, arg.accidental.adjustment)
-#      else:
-#         return result
-
-   ## DEPRECATED: Use pitchtools.staff_space_transpose( ) instead. ##
-
-#   # p.staffSpaceTranspose(-1, 0.5)
-#   def staffSpaceTranspose(self, staffSpaces, absoluteInterval):
-#      '''p.staffSpaceTranspose(-1, 0.5)'''
-#      pitchNumber = self.number + absoluteInterval
-#      degree = self.tools.addStaffSpaces(staffSpaces)
-#      letter = self.tools.diatonicScaleDegreeToLetter[degree]
-#      return Pitch(pitchNumber, letter)
