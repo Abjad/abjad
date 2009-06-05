@@ -76,9 +76,9 @@ class Chord(_Leaf):
 
    @apply
    def noteheads( ):
-      '''Set noteheads from any iterable.
-         Get immutable tuple of noteheads in chord.'''
       def fget(self):
+         '''Set noteheads from any iterable.
+            Get immutable tuple of noteheads in chord.'''
          result = [ ]
          for notehead in self._noteheads:
             result.append(notehead)
@@ -104,8 +104,8 @@ class Chord(_Leaf):
 
    @apply
    def pitches( ):
-      '''Return immutable tuple of pitches in self.'''
       def fget(self):
+         '''Return immutable tuple of pitches in self.'''
          result = [ ]
          for notehead in self._noteheads:
             if notehead.pitch:

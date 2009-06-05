@@ -5,6 +5,7 @@ from abjad.pitch.pitch import Pitch
 
 
 class Note(_Leaf):
+   '''The `Abjad` model of a single note.'''
    
    def __init__(self, *args):
       self._initializer = _NoteInitializer(self, _Leaf, *args)
@@ -21,8 +22,8 @@ class Note(_Leaf):
 
    @property
    def body(self):
-      '''String representation of body of note at format-time.
-         Return list like all other format-time contributions.'''
+      '''Read-only list of string representation of body of note.
+      Picked up as format contribution at format-time.'''
       result = ''
       if self.pitch:
          result += str(self.pitch)
@@ -32,31 +33,35 @@ class Note(_Leaf):
    @apply
    def notehead( ):
       def fget(self):
+         '''Read / write reference to `Abjad` notehead instance.'''
          return self._notehead
       def fset(self, arg):
          if isinstance(arg, type(None)):
             self._notehead = None
          elif isinstance(arg, (int, float, long)):
-            #self._notehead = NoteHead(pitch = arg)
-            #self._notehead._client = self
             self._notehead = NoteHead(self, pitch = arg)
          elif isinstance(arg, tuple) and len(arg) == 2:
             pitch = Pitch(*arg)
             self._notehead = NoteHead(self, pitch = pitch)
          elif isinstance(arg, Pitch):
-            #self._notehead = NoteHead(pitch = arg)
-            #self._notehead._client = self
             self._notehead = NoteHead(self, pitch = arg)
          elif isinstance(arg, NoteHead):
-            #self._notehead = arg
-            #self._notehead._client = self
             self._notehead = arg
          else:
             print 'Can not bind %s to Note.notehead.' % arg
       return property(**locals( ))
 
    @property
+   def numbers(self):
+      '''Read-only sorted tuple of pitch number of note, if any.'''
+      if self.pitch:
+         return (self.pitch.number, )
+      else:
+         return ( )
+
+   @property
    def pairs(self):
+      '''Read-only pair of pitch of note.'''
       if self.pitch:
          return (self.pitch.pair, )
       else:
@@ -65,7 +70,7 @@ class Note(_Leaf):
    @apply
    def pitch( ):
       def fget(self):
-         #if self.notehead is not None:
+         '''Read / write pitch of note.'''
          if self.notehead is not None and hasattr(self.notehead, 'pitch'):
             return self._notehead.pitch
          else:
@@ -76,7 +81,6 @@ class Note(_Leaf):
                self.notehead.pitch = None
          else:
             if self.notehead is None:
-               #self.notehead = NoteHead(pitch = None)
                self.notehead = NoteHead(self, pitch = None)
             if isinstance(arg, (int, float, long)):
                self.notehead.pitch = Pitch(arg)
@@ -90,6 +94,7 @@ class Note(_Leaf):
 
    @property
    def pitches(self):
+      '''Read-only one-tuple of pitch of note.'''
       if self.pitch:
          return (self.pitch, )
       else:

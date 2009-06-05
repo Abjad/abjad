@@ -4,6 +4,7 @@ from abjad.rest.initializer import _RestInitializer
 
 
 class Rest(_Leaf):
+   '''The `Abjad` model of a single rest.'''
 
    def __init__(self, *args):
       self._initializer = _RestInitializer(self, _Leaf, *args)
@@ -20,8 +21,8 @@ class Rest(_Leaf):
 
    @property
    def body(self):
-      '''String representation of body of rest at format-time.
-         Return list like all other format-time contributions.'''
+      '''Read-only list of string representation of body of rest.
+      Picked up as format contribution at format-time.'''
       result = ''
       if self.pitch:
          result += str(self.pitch)
@@ -31,15 +32,22 @@ class Rest(_Leaf):
       if self.pitch:
          result += r' \rest'
       return [result]
+
+   @property
+   def numbers(self):
+      '''Read-only empty tuple because rests have no pitch.'''
+      return ( )
   
    @property
    def pairs(self):
+      '''Read-only empty tuple because rests have no pitch.'''
       return ( )
 
    @apply
    def pitch( ):
       def fget(self):
-          return self._pitch
+         '''Read / write value for so-called pitched rest.'''
+         return self._pitch
       def fset(self, arg):
          if isinstance(arg, type(None)):
             self._pitch = None
@@ -55,4 +63,5 @@ class Rest(_Leaf):
 
    @property
    def pitches(self):
+      '''Read-only empty tuple because rests have no pitch.'''
       return ( )
