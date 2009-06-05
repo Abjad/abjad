@@ -49,3 +49,5 @@ def write(expr, name, template = None, title = None):
       dirname = os.path.dirname(name)
       if dirname:
          print 'Make sure "%s" exists in your system.' % dirname
+
+   print 'LilyPond input file written to %s' % name
