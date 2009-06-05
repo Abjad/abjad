@@ -425,6 +425,7 @@ Abjad API
    tools/pitchtools/pitch_number_adjustment_to_octave
    tools/pitchtools/pitch_number_to_octave
    tools/pitchtools/registrate
+   tools/pitchtools/send_pitch_to_octave
    tools/pitchtools/staff_space_transpose
    tools/scoretools/bequeath
    tools/scoretools/donate
