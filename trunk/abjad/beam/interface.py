@@ -40,9 +40,9 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    @apply
    def counts( ):
-      '''Interface to LilyPond \setStemLeftBeamCount, \setStemRightBeamCount.
-         Set to nonzero integer, pair or None.'''
       def fget(self):
+         '''Interface to LilyPond \setStemLeftBeamCount, 
+            \setStemRightBeamCount.  Set to nonzero integer, pair or None.'''
          return self._counts
       def fset(self, expr):
          if expr is None:
