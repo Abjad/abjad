@@ -340,6 +340,7 @@ Abjad API
    tools/listtools/unique
    tools/listtools/weight
    tools/listtools/zip_cyclic
+   tools/listtools/zip_nontruncating
    tools/mathtools/binary_string
    tools/mathtools/chop
    tools/mathtools/converge_to_power_of_two
