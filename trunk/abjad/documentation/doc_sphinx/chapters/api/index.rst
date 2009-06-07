@@ -428,6 +428,7 @@ Abjad API
    tools/pitchtools/pc_to_pitch_name_flats
    tools/pitchtools/pc_to_pitch_name_sharps
    tools/pitchtools/pentatonic_to_chromatic
+   tools/pitchtools/permute_by_row
    tools/pitchtools/pitch_number_adjustment_to_octave
    tools/pitchtools/pitch_number_to_octave
    tools/pitchtools/registrate
