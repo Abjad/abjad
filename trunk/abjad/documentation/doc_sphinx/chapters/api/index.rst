@@ -323,7 +323,7 @@ Abjad API
    tools/listtools/difference_series
    tools/listtools/flatten
    tools/listtools/group_by_weights
-   tools/listtools/increase_at_positions
+   tools/listtools/increase_at_indices
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
    tools/listtools/negate_elements_at_indices
