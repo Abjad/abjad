@@ -412,6 +412,7 @@ Abjad API
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonic_transpose
    tools/pitchtools/diatonicize
+   tools/pitchtools/insert_transposed_subruns
    tools/pitchtools/is_name
    tools/pitchtools/is_pair
    tools/pitchtools/is_token
