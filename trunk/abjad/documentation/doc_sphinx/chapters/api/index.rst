@@ -329,6 +329,7 @@ Abjad API
    tools/listtools/insert_slice_cyclic
    tools/listtools/negate_elements_at_indices
    tools/listtools/outer_product
+   tools/listtools/overwrite_slices_at
    tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums
    tools/listtools/partition_by_counts
