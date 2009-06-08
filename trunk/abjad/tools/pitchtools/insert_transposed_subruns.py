@@ -26,16 +26,38 @@ def insert_transposed_pc_subruns(notes, subrun_indicators):
       abjad> notes = [Note(p, (1, 4)) for p in [0, 2, 7, 9, 5, 11, 4]]
       abjad> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
       abjad> pitchtools.insert_transposed_pc_subruns(notes, subrun_indicators)
-      abjad> [note.pitch.number for note in notes]
-      [0, 5, 7, 2, 4, 0, 6, 11, 7, 9, 5, 10, 6, 8, 11, 7, 4]
 
-   Newly created transposed inserts are shown in the innermost pairs of
-   brackets below::
+      abjad> for x in notes:
+         try:
+            t.append(x.pitch.number)
+         except AttributeError:
+            t.append([y.pitch.number for y in x])
 
+      abjad> t
       [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]
 
-   .. todo:: Implement a *flattened* keyword to return output as above.'''
+   .. note:: New subruns are wrapped with lists. \
+      These wrapper lists are designed \
+      to allow inspection of the structural changes to *notes* \
+      immediately after the function returns. \
+      For this reason most calls to this function will be followed \
+      by ``notes = listtools.flatten(notes)``.
 
+   ::
+
+      abjad> notes = listtools.flatten(notes)
+      abjad> notes
+      [0, 5, 7, 2, 4, 0, 6, 11, 7, 9, 5, 10, 6, 8, 11, 7, 4]
+
+   .. note:: This function is designed to work on a built-in Python list \
+      of notes. This function is **not** designed to work on Abjad \
+      voices, staves or other containers because the function currently \
+      implements no spanner-handling. \
+      Specifically, this function is designed to be used during \
+      precomposition when other, similar abstract pitch transforms \
+      may be common.'''
+
+   assert isinstance(notes, list)
    assert all([isinstance(x, Note) for x in notes])
    assert isinstance(subrun_indicators, list)
 
@@ -59,9 +81,7 @@ def insert_transposed_pc_subruns(notes, subrun_indicators):
          instructions.append(instruction)
 
    for anchor_index, new_notes in reversed(sorted(instructions)):
-      i = anchor_index + 1
-      notes[i:i] = new_notes
-      #notes.insert(i + 1, new_notes)
+      notes.insert(anchor_index + 1, new_notes)
 
 
 def _get_intervals_in_subrun(subrun_source):
