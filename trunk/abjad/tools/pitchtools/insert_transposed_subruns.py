@@ -1,8 +1,11 @@
 from abjad.note.note import Note
 from abjad.tools import clone
+from abjad.tools import listtools
+from abjad.tools.pitchtools.get_pitch import get_pitch as \
+   pitchtools_get_pitch
 
 
-def insert_transposed_pc_subruns(notes, subrun_indicators, history = False):
+def insert_transposed_pc_subruns(notes, subrun_indicators):
    '''Insert transposed subruns according to ``subrun_indicators``.
 
    *  *pitches* must be a list of zero or more Abjad \
@@ -22,9 +25,8 @@ def insert_transposed_pc_subruns(notes, subrun_indicators, history = False):
 
       abjad> notes = [Note(p, (1, 4)) for p in [0, 2, 7, 9, 5, 11, 4]]
       abjad> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
-      abjad> new_notes = 
-         pitchtools.insert_transposed_pc_subruns(notes, subrun_indicators)
-      abjad> [new_note.pitch.number for new_note in new_notes]
+      abjad> pitchtools.insert_transposed_pc_subruns(notes, subrun_indicators)
+      abjad> [note.pitch.number for note in notes]
       [0, 5, 7, 2, 4, 0, 6, 11, 7, 9, 5, 10, 6, 8, 11, 7, 4]
 
    Newly created transposed inserts are shown in the innermost pairs of
@@ -37,56 +39,59 @@ def insert_transposed_pc_subruns(notes, subrun_indicators, history = False):
    assert all([isinstance(x, Note) for x in notes])
    assert isinstance(subrun_indicators, list)
 
-   cloned_notes = clone.unspan(notes)
-   len_notes = len(cloned_notes)
+   len_notes = len(notes)
    instructions = [ ]
 
-   #print [x.pitch.number for x in cloned_notes]
-
-   # for (0, [2, 4])
-   for (anchor_index, subrun_lengths) in subrun_indicators:
-      #print anchor_index, subrun_lengths
-      # pairs are [(0, 2), (1, 4)]
-      pairs = [ ]
-      num_subruns = len(subrun_lengths)
-      for i in range(num_subruns):
-         starting_note_index = anchor_index + i
-         length_of_following_subrun = subrun_lengths[i]
-         pair = (starting_note_index, length_of_following_subrun)
-         pairs.append(pair)
-      #print pairs
-      for starting_note_index, length_of_following_subrun in pairs:
-         #print starting_note_index, length_of_following_subrun
-         real_starting_note = notes[starting_note_index % len_notes]
-         cloned_starting_note = cloned_notes[starting_note_index % len_notes]
-         #print real_starting_note, cloned_starting_note
-         tag = real_starting_note.history.get('tag', None)
-         cloned_starting_note.history['tag'] = tag
-         new_notes = [ ]
-         start = starting_note_index + 1
-         stop = start + length_of_following_subrun
-         #print start, stop
-         cloned_starting_note_pc = cloned_starting_note.pitch.pc
-         written_duration = cloned_starting_note.duration.written
-         local_start_note_pc = cloned_notes[start].pitch.pc
-         for index in range(start, stop):
-            start_note = cloned_notes[index % len_notes]
-            stop_note = cloned_notes[(index + 1) % len_notes]
-            interval = stop_note.pitch.pc - local_start_note_pc
-            #print stop_note, start_note, interval
-            new_pc = (interval + cloned_starting_note_pc) % 12
-            new_note = Note(new_pc, written_duration)
-            if isinstance(history, str):
-               starting_note_tag = cloned_starting_note.history['tag']
-               if starting_note_tag is not None:
-                  new_note.history['tag'] = starting_note_tag + history
-               else:
-                  new_note.history['tag'] = history
-            new_notes.append(new_note)
-         instruction = (starting_note_index + 1, new_notes)
+   for subrun_indicator in subrun_indicators:
+      pairs = _make_index_length_pairs(subrun_indicator)
+      for anchor_index, subrun_length in pairs:
+         anchor_note = notes[anchor_index % len_notes]
+         anchor_pitch = pitchtools_get_pitch(anchor_note)
+         anchor_written_duration = anchor_note.duration.written
+         source_start_index = anchor_index + 1
+         source_stop_index = source_start_index + subrun_length + 1
+         subrun_source = listtools.get_cyclic(
+            notes, source_start_index, source_stop_index)
+         subrun_intervals = _get_intervals_in_subrun(subrun_source)
+         new_notes = _make_new_notes(
+            anchor_pitch, anchor_written_duration, subrun_intervals)
+         instruction = (anchor_index, new_notes)
          instructions.append(instruction)
 
-   for index, new_notes in reversed(sorted(instructions)):
-      cloned_notes[index:index] = new_notes
+   for anchor_index, new_notes in reversed(sorted(instructions)):
+      i = anchor_index + 1
+      notes[i:i] = new_notes
+      #notes.insert(i + 1, new_notes)
 
-   return cloned_notes
+
+def _get_intervals_in_subrun(subrun_source):
+   subrun_source = list(subrun_source)
+   result = [0]
+   for first, second in listtools.pairwise(subrun_source):
+      first_pitch = pitchtools_get_pitch(first)
+      second_pitch = pitchtools_get_pitch(second)
+      interval = second_pitch.number - first_pitch.number
+      result.append(interval + result[-1])
+   result.pop(0)
+   return result
+
+
+def _make_index_length_pairs(subrun_indicator):
+   anchor_index, subrun_lengths = subrun_indicator
+   num_subruns = len(subrun_lengths)
+   pairs = [ ]
+   for i in range(num_subruns):
+      start_index = anchor_index + i
+      subrun_length = subrun_lengths[i]
+      pair = (start_index, subrun_length)
+      pairs.append(pair)
+   return pairs
+
+
+def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
+   new_notes = [ ]
+   for subrun_interval in subrun_intervals:
+      new_pc = (anchor_pitch.number + subrun_interval) % 12
+      new_note = Note(new_pc, anchor_written_duration)
+      new_notes.append(new_note)
+   return new_notes

@@ -12,6 +12,13 @@ def get_cyclic(l, start_index, stop_index):
 
    ::
 
+      abjad> listtools.get_cyclic(l, 18, 28)
+      <generator object at 0x117daf8>
+      abjad> list(_)
+      [18, 19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+   ::
+   
       abjad> listtools.get_cyclic(l, 18, 10)
       <generator object at 0x117daf8>
       abjad> list(_)
