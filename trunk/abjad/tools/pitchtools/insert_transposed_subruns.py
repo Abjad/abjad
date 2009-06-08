@@ -41,11 +41,11 @@ def insert_transposed_pc_subruns(notes, subrun_indicators, history = False):
    len_notes = len(cloned_notes)
    instructions = [ ]
 
-   print [x.pitch.number for x in cloned_notes]
+   #print [x.pitch.number for x in cloned_notes]
 
    # for (0, [2, 4])
    for (anchor_index, subrun_lengths) in subrun_indicators:
-      print anchor_index, subrun_lengths
+      #print anchor_index, subrun_lengths
       # pairs are [(0, 2), (1, 4)]
       pairs = [ ]
       num_subruns = len(subrun_lengths)
@@ -54,18 +54,18 @@ def insert_transposed_pc_subruns(notes, subrun_indicators, history = False):
          length_of_following_subrun = subrun_lengths[i]
          pair = (starting_note_index, length_of_following_subrun)
          pairs.append(pair)
-      print pairs
+      #print pairs
       for starting_note_index, length_of_following_subrun in pairs:
-         print starting_note_index, length_of_following_subrun
+         #print starting_note_index, length_of_following_subrun
          real_starting_note = notes[starting_note_index % len_notes]
          cloned_starting_note = cloned_notes[starting_note_index % len_notes]
-         print real_starting_note, cloned_starting_note
+         #print real_starting_note, cloned_starting_note
          tag = real_starting_note.history.get('tag', None)
          cloned_starting_note.history['tag'] = tag
          new_notes = [ ]
          start = starting_note_index + 1
          stop = start + length_of_following_subrun
-         print start, stop
+         #print start, stop
          cloned_starting_note_pc = cloned_starting_note.pitch.pc
          written_duration = cloned_starting_note.duration.written
          local_start_note_pc = cloned_notes[start].pitch.pc
@@ -73,7 +73,7 @@ def insert_transposed_pc_subruns(notes, subrun_indicators, history = False):
             start_note = cloned_notes[index % len_notes]
             stop_note = cloned_notes[(index + 1) % len_notes]
             interval = stop_note.pitch.pc - local_start_note_pc
-            print stop_note, start_note, interval
+            #print stop_note, start_note, interval
             new_pc = (interval + cloned_starting_note_pc) % 12
             new_note = Note(new_pc, written_duration)
             if isinstance(history, str):
