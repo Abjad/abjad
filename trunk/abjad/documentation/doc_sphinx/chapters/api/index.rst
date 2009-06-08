@@ -415,7 +415,7 @@ Abjad API
    tools/pitchtools/diatonicize
    tools/pitchtools/get_pitch
    tools/pitchtools/get_signed_interval_series
-   tools/pitchtools/insert_transposed_subruns
+   tools/pitchtools/insert_transposed_pc_subruns
    tools/pitchtools/is_carrier
    tools/pitchtools/is_name
    tools/pitchtools/is_pair
