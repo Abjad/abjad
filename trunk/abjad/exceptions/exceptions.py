@@ -92,6 +92,19 @@ class PartitionError(Exception):
    '''General partition error.'''
    pass
 
+class PitchError(Exception):
+   '''General pitch error.'''
+   pass
+
+class MissingPitchError(PitchError):
+   '''Operation requests pitch of object without pitch.'''
+   pass
+
+class ExtraPitchError(PitchError):
+   '''Operation assumes presence of a single pitch,
+      but more than one pitch is present.'''
+   pass
+
 class SpacingError(Exception):
    '''General spacing error.'''
    pass

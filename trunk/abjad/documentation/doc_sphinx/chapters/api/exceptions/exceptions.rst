@@ -108,6 +108,21 @@ abjad.exceptions.exceptions
    :undoc-members:
    :show-inheritance:
 
+.. autoclass:: abjad.exceptions.exceptions.PitchError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: abjad.exceptions.exceptions.MissingPitchError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: abjad.exceptions.exceptions.ExtraPitchError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. autoclass:: abjad.exceptions.exceptions.SpacingError
    :members:
    :undoc-members:
