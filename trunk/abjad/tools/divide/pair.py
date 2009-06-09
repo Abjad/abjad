@@ -4,7 +4,6 @@ from abjad.note.note import Note
 from abjad.rest.rest import Rest
 from abjad.tools import construct
 from abjad.tools import listtools
-from abjad.tools import mathtools
 from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 import math
 
@@ -53,8 +52,7 @@ def pair(l, (n, d), together = False):
          raise ValueError('no divide zero values.')
 
    if len(l) > 1:
-      exponent = mathtools.chop(
-         math.log(listtools.weight(l), 2) - math.log(n, 2))
+      exponent = int(math.log(listtools.weight(l), 2) - math.log(n, 2))
       denominator = int(d * 2 ** exponent)
       music = [ ]
       for x in l:
