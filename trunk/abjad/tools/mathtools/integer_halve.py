@@ -2,21 +2,34 @@ import math
 
 
 def integer_halve(n, bigger = 'left', even = 'allowed'):
-   '''>>> integer_halve(7)
+   '''Write positive integer *n* as the pair ``t = (left, right)`` 
+   such that ``n == left + right``.
+
+   When *n* is odd the greater part of ``t`` corresponds
+   to the value of *bigger*::
+
+      abjad> integer_halve(7, bigger = 'left')
       (4, 3)
-      >>> integer_halve(7, bigger = 'right')
+      abjad> integer_halve(7, bigger = 'right')
       (3, 4)
 
-      >>> integer_halve(8)    
-      (4, 4)
-      >>> integer_halve(8, bigger = 'left')
-      (4, 4)
-      >>> integer_halve(8, bigger = 'right')
-      (4, 4)
-      >>> integer_halve(8, bigger = 'left', even = 'disallowed')
+   Likewise when *n* is even and ``even = 'disallowed'``::
+
+      abjad> integer_halve(8, bigger = 'left', even = 'disallowed')
       (5, 3)
-      >>> integer_halve(8, bigger = 'right', even = 'disallowed')
-      (3, 5)''' 
+      abjad> integer_halve(8, bigger = 'right', even = 'disallowed')
+      (3, 5)
+
+   But when *n* is even and ``even = 'allowed'`` then ``left == right``
+   and *bigger* is ignored::
+
+      abjad> integer_halve(8)    
+      (4, 4)
+      abjad> integer_halve(8, bigger = 'left')
+      (4, 4)
+      abjad> integer_halve(8, bigger = 'right')
+      (4, 4)
+''' 
 
    smallerHalf = int(math.floor(n / 2))
    biggerHalf = n - smallerHalf

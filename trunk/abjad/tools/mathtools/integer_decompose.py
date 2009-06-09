@@ -2,14 +2,36 @@ from abjad.tools.mathtools.binary_string import binary_string
 
 
 def integer_decompose(n):
-   '''Return big-ending tuple of n.
+   '''Return big-ending tuple ``t = (t_0, ..., t_j)`` such that
+   
+   *  ``sum(t) == n``
+   *  ``t_i`` can be written without recourse to ties, and
+   *  ``t_(i + 1) < t_i`` for every ``t_i`` in ``t``.
 
-      Example:
+   That is, partition positive integer *n* into strictly decreasing
+   integer parts, each of which can be written without recourse to ties.
 
-      >>> for i in range(10, 20):
-      ...     print i, mathtools.integer_decompose(i)
+   ::
+
+      abjad> for n in range(1, 11):
+      ...     print n, mathtools.integer_decompose(n)
       ... 
+      1 (1,)
+      2 (2,)
+      3 (3,)
+      4 (4,)
+      5 (4, 1)
+      6 (6,)
+      7 (7,)
+      8 (8,)
+      9 (8, 1)
       10 (8, 2)
+
+   ::
+
+      abjad> for n in range(11, 21):
+      ...     print n, mathtools.integer_decompose(n)
+      ... 
       11 (8, 3)
       12 (12,)
       13 (12, 1)
@@ -18,9 +40,26 @@ def integer_decompose(n):
       16 (16,)
       17 (16, 1)
       18 (16, 2)
-      19 (16, 3)'''
+      19 (16, 3)
+      20 (16, 4)
 
-   assert isinstance(n, (int, long))
+   Raise :exc:`TypeError` on noninteger *n*::
+
+      abjad> mathtools.integer_decompose(7.5)
+      TypeError
+
+   Raise :exc:`ValueError` on nonpositive integer *n*::
+
+      abjad> mathtools.integer_decompose(-1)
+      ValueError
+
+'''
+
+   if not isinstance(n, (int, long)):
+      raise TypeError
+
+   if n < 0:
+      raise ValueError
 
    if n == 0:
       return (0, )

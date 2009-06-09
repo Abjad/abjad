@@ -1,12 +1,15 @@
 def fragment(total, cell):
-   '''Fragment a given scalar value into cell fragments.
-      sum(cell) must be <= total.
+   '''Fragment a given scalar value into *cell* fragments 
+   such that ``sum(cell) <= total``.
 
-      Examples:
-      >>> fragment(1, [Rational(1, 2), Rational(1, 4)])
+   Examples::
+
+      abjad> mathtools.fragment(1, [Rational(1, 2), Rational(1, 4)])
       [Rational(1, 2), Rational(1, 4), Rational(1, 4)]
 
-      >>> fragment(Rational(1,2), [Rational(1, 6), Rational(1, 10)])
+   ::
+
+      abjad> mathtools.fragment(Rational(1,2), [Rational(1, 6), Rational(1, 10)])
       [Rational(1, 6), Rational(1, 10), Rational(7, 30)]'''
 
    assert sum(cell) <= total
