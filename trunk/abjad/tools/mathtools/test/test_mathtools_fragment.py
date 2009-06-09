@@ -36,11 +36,11 @@ def test_mathtools_fragment_03( ):
    assert t[2] == Rational(1, 6)
 
 
-### ERRORS ###
+## ERRORS ##
 
 def test_mathtools_fragment_05( ):
-   '''
-   The sum of the fragments must be smaller than the total to be fragmented.
-   '''
-   assert py.test.raises(AssertionError, 'mathtools.fragment(1, [2])')   
+   '''Raise ValueError when the sum of the fragments is not smaller 
+   than the total to be fragmented.'''
+
+   assert py.test.raises(ValueError, 'mathtools.fragment(1, [2])')   
 

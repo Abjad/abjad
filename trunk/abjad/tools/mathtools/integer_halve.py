@@ -29,16 +29,32 @@ def integer_halve(n, bigger = 'left', even = 'allowed'):
       (4, 4)
       abjad> integer_halve(8, bigger = 'right')
       (4, 4)
+
+   Raise :exc:`TypeError` on noninteger *n*::
+
+      abjad> mathtools.integer_halve('foo')
+      TypeError
+
+   Raise :exc:`ValueError` on nonpositive *n*::
+
+      abjad> mathtools.integer_halve(-1)
+      ValueError
 ''' 
 
-   smallerHalf = int(math.floor(n / 2))
-   biggerHalf = n - smallerHalf
+   if not isinstance(n, (int, long)):
+      raise TypeError
 
-   if (smallerHalf == biggerHalf) and (even != 'allowed'):
-      smallerHalf -= 1
-      biggerHalf += 1
+   if n <= 0:
+      raise ValueError
+
+   smaller_half = int(math.floor(n / 2))
+   bigger_half = n - smaller_half
+
+   if (smaller_half == bigger_half) and (even != 'allowed'):
+      smaller_half -= 1
+      bigger_half += 1
 
    if bigger == 'left':
-      return (biggerHalf, smallerHalf)
+      return (bigger_half, smaller_half)
    else:
-      return (smallerHalf, biggerHalf)
+      return (smaller_half, bigger_half)

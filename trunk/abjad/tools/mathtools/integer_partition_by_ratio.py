@@ -45,9 +45,25 @@ def integer_partition_by_ratio(n, ratio):
    ::
 
       abjad> ratio(10, [3, 2])
-      [6, 4]'''
+      [6, 4]
 
-   assert isinstance(n, (int, long))
+
+   Raise :exc:`TypeError` on noninteger *n*::
+
+      abjad> mathtools.integer_halve('foo')
+      TypeError
+
+   Raise :exc:`ValueError` on nonpositive *n*::
+
+      abjad> mathtools.integer_halve(-1)
+      ValueError'''
+
+   if not isinstance(n, (int, long)):
+      raise TypeError
+
+   if n <= 0:
+      raise ValueError
+
    assert all([isinstance(part, (int, long)) for part in ratio])
 
    result = [0]

@@ -21,9 +21,12 @@ def test_next_least_power_of_two_01( ):
 
 
 def test_next_least_power_of_two_02( ):
-   '''Gives OverflowError on 0.'''
+   '''Raise TypeError on nonnumeric n.
+      Raise ValueError on nonpositive n.'''
 
-   assert py.test.raises(OverflowError, 'mathtools.next_least_power_of_two(0)')
+   assert py.test.raises(TypeError, "mathtools.next_least_power_of_two('foo')")
+   assert py.test.raises(ValueError, 'mathtools.next_least_power_of_two(0)')
+   assert py.test.raises(ValueError, 'mathtools.next_least_power_of_two(-1)')
 
 
 def test_next_least_power_of_two_03( ):

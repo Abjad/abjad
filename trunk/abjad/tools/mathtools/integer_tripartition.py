@@ -1,7 +1,45 @@
 def integer_tripartition(n, smallest = 'middle', biggest = 'middle'):
-   '''Partition integer n into three parts, returned as a tuple.'''
+   '''Partition positive integer *n* into ``left, middle, right`` parts.
 
-   assert isinstance(n, int)
+   When ``n % 3 == 0``, ``left == middle == right``::
+
+      abjad> mathtools.integer_tripartition(9)
+      (3, 3, 3)
+
+   When ``n % 3 == 1``, set biggest part to *biggest*::
+
+      abjad> maththools.integer_tripartition(10, biggest = 'left')
+      (4, 3, 3)
+      abjad> maththools.integer_tripartition(10, biggest = 'middle')
+      (3, 4, 3)
+      abjad> maththools.integer_tripartition(10, biggest = 'right')
+      (3, 3, 4)
+
+   When ``n % 3 == 2``, set smallest part to *smallest*::
+
+      abjad> maththools.integer_tripartition(11, smallest = 'left')
+      (3, 4, 4)
+      abjad> maththools.integer_tripartition(11, smallest = 'middle')
+      (4, 3, 4)
+      abjad> maththools.integer_tripartition(11, smallest = 'right')
+      (4, 4, 3)
+
+   Raise :exc:`TypeError` on noninteger *n*::
+
+      abjad> mathtools.integer_tripartition(7.5)
+      TypeError
+
+   Raise :exc:`ValueError` on nonpositive *n*::
+
+      abjad> mathtools.integer_tripartition(-1)
+      ValueError'''
+
+   if not isinstance(n, int):
+      raise TypeError
+
+   if n <= 0:
+      raise ValueError
+
    assert smallest in ('left', 'middle', 'right')
    assert biggest in ('left', 'middle', 'right')
    
@@ -24,3 +62,5 @@ def integer_tripartition(n, smallest = 'middle', biggest = 'middle'):
          return big, small, big
       elif smallest == 'right':
          return big, big, small
+   else:
+      raise ValueError

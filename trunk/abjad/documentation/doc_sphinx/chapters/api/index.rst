@@ -336,6 +336,7 @@ Abjad API
    tools/listtools/partition_by_counts
    tools/listtools/partition_by_weights
    tools/listtools/permutations
+   tools/listtools/phasor
    tools/listtools/remove_weighted_subrun_at
    tools/listtools/repeat_subruns_cyclic
    tools/listtools/repeat_to_length
@@ -357,7 +358,6 @@ Abjad API
    tools/mathtools/integer_halve
    tools/mathtools/integer_partition_by_ratio
    tools/mathtools/integer_tripartition
-   tools/mathtools/is_divisor_of
    tools/mathtools/is_power_of_two
    tools/mathtools/least_multiple_greater
    tools/mathtools/next_least_power_of_two

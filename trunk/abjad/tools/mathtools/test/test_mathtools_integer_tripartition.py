@@ -2,9 +2,9 @@ from abjad import *
 
 
 def test_mathtools_integer_tripartition_01( ):
-   '''Test.'''
+   '''Partition n into left, middle, right parts.'''
 
-   assert mathtools.integer_tripartition(0) == (0, 0, 0)
+   #assert mathtools.integer_tripartition(0) == (0, 0, 0)
    assert mathtools.integer_tripartition(1) == (0, 1, 0)
    assert mathtools.integer_tripartition(2) == (1, 0, 1)
    assert mathtools.integer_tripartition(3) == (1, 1, 1)
@@ -19,7 +19,7 @@ def test_mathtools_integer_tripartition_01( ):
 def test_mathtools_integer_tripartition_02( ):
    '''Smallest part on left.'''
 
-   assert mathtools.integer_tripartition(0, smallest ='left') == (0, 0, 0)
+   #assert mathtools.integer_tripartition(0, smallest ='left') == (0, 0, 0)
    assert mathtools.integer_tripartition(1, smallest ='left') == (0, 1, 0)
    assert mathtools.integer_tripartition(2, smallest ='left') == (0, 1, 1)
    assert mathtools.integer_tripartition(3, smallest ='left') == (1, 1, 1)
@@ -34,7 +34,7 @@ def test_mathtools_integer_tripartition_02( ):
 def test_mathtools_integer_tripartition_03( ):
    '''Smallest part on right.'''
 
-   assert mathtools.integer_tripartition(0, smallest = 'right') == (0, 0, 0)
+   #assert mathtools.integer_tripartition(0, smallest = 'right') == (0, 0, 0)
    assert mathtools.integer_tripartition(1, smallest = 'right') == (0, 1, 0)
    assert mathtools.integer_tripartition(2, smallest = 'right') == (1, 1, 0)
    assert mathtools.integer_tripartition(3, smallest = 'right') == (1, 1, 1)
@@ -49,7 +49,7 @@ def test_mathtools_integer_tripartition_03( ):
 def test_mathtools_integer_tripartition_04( ):
    '''Biggest part on left.'''
 
-   assert mathtools.integer_tripartition(0, biggest = 'left') == (0, 0, 0)
+   #assert mathtools.integer_tripartition(0, biggest = 'left') == (0, 0, 0)
    assert mathtools.integer_tripartition(1, biggest = 'left') == (1, 0, 0)
    assert mathtools.integer_tripartition(2, biggest = 'left') == (1, 0, 1)
    assert mathtools.integer_tripartition(3, biggest = 'left') == (1, 1, 1)
@@ -64,7 +64,7 @@ def test_mathtools_integer_tripartition_04( ):
 def test_mathtools_integer_tripartition_05( ):
    '''Biggest part on right.'''
 
-   assert mathtools.integer_tripartition(0, biggest = 'right') == (0, 0, 0)
+   #assert mathtools.integer_tripartition(0, biggest = 'right') == (0, 0, 0)
    assert mathtools.integer_tripartition(1, biggest = 'right') == (0, 0, 1)
    assert mathtools.integer_tripartition(2, biggest = 'right') == (1, 0, 1)
    assert mathtools.integer_tripartition(3, biggest = 'right') == (1, 1, 1)

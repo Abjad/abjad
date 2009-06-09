@@ -15,6 +15,8 @@ def sign(n):
    ::
 
       abjad> mathtools.sign(Rational(9, 8))
-      1'''
+      1
+  
+   .. note:: ``mathtools.sign(n)`` aliases built-in ``cmp(n, 0)``.'''
 
    return cmp(n, 0)

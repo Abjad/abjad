@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_mathtools_remove_powers_of_two_01( ):
@@ -13,3 +14,11 @@ def test_mathtools_remove_powers_of_two_01( ):
    assert mathtools.remove_powers_of_two(70) == 35
    assert mathtools.remove_powers_of_two(80) == 5
    assert mathtools.remove_powers_of_two(90) == 45
+
+
+def test_mathtools_remove_powers_of_two_02( ):
+   '''Raise TypeError on noninteger n.
+      Raise ValueError on nonpositive n.'''
+
+   assert py.test.raises(TypeError, "mathtools.remove_powers_of_two('foo')")
+   assert py.test.raises(ValueError, 'mathtools.remove_powers_of_two(-1)')
