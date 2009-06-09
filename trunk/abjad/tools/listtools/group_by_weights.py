@@ -46,6 +46,10 @@ def group_by_weights(l, weights,
 
    ::
 
+      abjad> l = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
+
+   ::
+
       abjad> t = listtools.group_by_weights(l, [3, 9], fill = 'exact', cyclic = False, overhang = False)
       [[3], [3, 3, 3]]
 
