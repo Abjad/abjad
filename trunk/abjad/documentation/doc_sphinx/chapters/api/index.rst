@@ -349,7 +349,6 @@ Abjad API
    tools/listtools/zip_cyclic
    tools/listtools/zip_nontruncating
    tools/mathtools/binary_string
-   tools/mathtools/converge_to_power_of_two
    tools/mathtools/divisors
    tools/mathtools/factors
    tools/mathtools/fragment
