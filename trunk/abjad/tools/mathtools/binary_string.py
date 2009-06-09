@@ -32,7 +32,8 @@ def binary_string(n):
    .. note:: ``mathtools.binary_string(n)`` will deprecate when \
       Abjad migrates to Python 2.6.'''
 
-   assert isinstance(n, (int, long))
+   if not isinstance(n, (int, long)):
+      raise TypeError
 
    result = ''
    while n > 0:
