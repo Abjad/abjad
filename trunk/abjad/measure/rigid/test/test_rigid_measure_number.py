@@ -28,7 +28,7 @@ def test_rigid_mesaure_number_03( ):
    assert t[2].number == 3
 
    contents = t[:]
-   contents = listtools.rotate(contents, 'left', 1)
+   contents = listtools.rotate(contents, -1)
    t[:] = contents
 
    r'''\new Staff {
