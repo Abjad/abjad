@@ -17,7 +17,7 @@ Another line of text. More \textbf{Abjad} code follows. Notice that in the secon
 <abjad>
 Beam(v)
 show(v)
-write(v, 'example1') <hide
+write(v, 'example1', 'oedo') <hide
 </abjad>
 
 Here is paragraph 3, and more \textbf{Abjad} code.
@@ -27,14 +27,14 @@ pitchtools.diatonicize(v)
 for leaf in v: print leaf
 Trill(v[2:])
 show(v)
-write(v, 'example2') <hide
+write(v, 'example2', 'oedo') <hide
 </abjad>
 
 And a final paragraph. Here all the code is hidden:
 
 <abjad>
 PianoPedal(v[:]) <hide
-write(v, "example4") <hide
+write(v, "example4", 'oedo') <hide
 </abjad>
 
 \end{document}
