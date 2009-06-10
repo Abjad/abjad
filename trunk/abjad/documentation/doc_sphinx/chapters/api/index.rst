@@ -346,6 +346,7 @@ Abjad API
    tools/listtools/sum_slices_at
    tools/listtools/truncate_subruns
    tools/listtools/truncate_to_sum
+   tools/listtools/truncate_to_weight
    tools/listtools/unique
    tools/listtools/weight
    tools/listtools/zip_cyclic
