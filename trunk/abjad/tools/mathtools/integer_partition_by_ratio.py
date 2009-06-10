@@ -50,12 +50,12 @@ def integer_partition_by_ratio(n, ratio):
 
    Raise :exc:`TypeError` on noninteger *n*::
 
-      abjad> mathtools.integer_halve('foo')
+      abjad> mathtools.integer_partition_by_ratio('foo', [1, 1, 3])
       TypeError
 
    Raise :exc:`ValueError` on nonpositive *n*::
 
-      abjad> mathtools.integer_halve(-1)
+      abjad> mathtools.integer_partition_by_ratio(-1, [1, 1, 3])
       ValueError'''
 
    if not isinstance(n, (int, long)):
