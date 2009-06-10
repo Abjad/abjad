@@ -12,6 +12,7 @@ def _log_render_lilypond_input(expr, template, title, lilytime=10):
    '''Private function that stores both .ly and .pdf files in the
    ABJADOUTPUT directory. Returns the name of the newly created file.'''
 
+   current_directory = os.path.abspath('.')
    ## log score
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
@@ -21,10 +22,13 @@ def _log_render_lilypond_input(expr, template, title, lilytime=10):
    _write_title(outfile, title)
    outfile.write(_wrap_format(expr.format))
    outfile.close( )
+   ## render
    start_time = time.time( )
    _run_lilypond(name)
    stop_time = time.time( )
    total_time = int(stop_time - start_time)
+
+   os.chdir(current_directory)
 
    if lilytime <= total_time:
       print 'LilyPond processing time equal to %s sec.' % total_time
