@@ -34,7 +34,8 @@ def rest_half(container, rested_half, bigger_half,
       return container
 
    ## determine split index
-   halves = mathtools.integer_halve(len(container), bigger = bigger_half)
+   halves = mathtools.partition_integer_into_halves(
+      len(container), bigger = bigger_half)
    i = halves[0]
 
    ## rest container in place at split index
