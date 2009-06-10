@@ -3,21 +3,41 @@ from abjad.tools.construct.helpers import _construct_tied_rest
 
 
 def rests(durations, direction='big-endian', tied=False):
-   '''Construct a list of rests.
+   '''Resturs a list of rests of varying durations.
 
-      `durations`
-         a sinlge duration or a list of durations.
+   * *durations* can be a sinlge duration token or a list of durations.
+   * *direction*, a string that may be ``'big-endian'`` or \
+      ``'little-endian'``.  When durations are not \
+      `notehead-assignable`, ``'big-endian'`` returns a list of rests \
+         in decreasing duration, while ``'little-endian'`` returns a \
+         list of rests in increasing duration.
+   * *tied*, set to ``True`` to return tied rests, otherwise set to \
+      ``False``. Default is ``False``.
 
-      `direction`
-         may be 'big-endian' or 'little-endian'.
+   Examples:
 
-         'big-endian' returns a list of notes of decreasing duration.
+   ::
 
-         'little-endian' returns a list of notes of increasing duration.
+      abjad> construct.rests([(1, 16), (5, 16), (1, 4)])
+      [Rest(16), Rest(4), Rest(16), Rest(4)]
 
-      `tied`
-         Set to True to return tied rests, otherwise False.
-   '''
+   ::
+
+      abjad> construct.rests([(1, 16), (5, 16), (1, 4)], 'little-endian')
+      [Rest(16), Rest(16), Rest(4), Rest(4)]
+
+   ::
+
+      abjad> durs = [(1, 16), (5, 16), (1, 4)]
+      abjad> construct.rests(durs, 'little-endian', True)
+      [Rest(16), Rest(16), Rest(4), Rest(4)]
+      abjad> for r in _:
+      ...     print r.tie.spanners
+      ... 
+      set([])
+      set([Tie(r16, r4)])
+      set([Tie(r16, r4)])
+      set([]) '''
 
    if durtools.is_token(durations):
       durations = [durations]
