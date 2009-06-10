@@ -1,15 +1,15 @@
-#from abjad.cfg.cfg import ABJADOUTPUT
 #from abjad.cfg.get_next_output import _get_next_output
 #from abjad.cfg.run_lilypond import _run_lilypond
 #from abjad.cfg.verify_output_directory import _verify_output_directory
 #from abjad.cfg.wrap_format import _wrap_format
 #from abjad.cfg.write_preamble import _write_preamble
 #from abjad.cfg.write_title import _write_title
-#import os
 #import time
+from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg.log_render_lilypond_input import _log_render_lilypond_input
 from abjad.cfg.open_file import _open_file
 from abjad.cfg.read_config_value import _read_config_value
+import os
 
 
 ## TODO: Implement show( ) 'footer' keyword to allow dynamic footer. ##
@@ -73,4 +73,5 @@ def show(expr, template = None, title = None, lilytime = 10):
 
    # view score
    pdfviewer = _read_config_value('pdfviewer')
+   name = os.path.join(ABJADOUTPUT, name)
    _open_file('%s.pdf' % name[:-3], pdfviewer)
