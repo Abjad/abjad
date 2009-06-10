@@ -345,6 +345,7 @@ Abjad API
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
    tools/listtools/truncate_subruns
+   tools/listtools/truncate_to_sum
    tools/listtools/unique
    tools/listtools/weight
    tools/listtools/zip_cyclic
@@ -366,7 +367,6 @@ Abjad API
    tools/mathtools/scalar_divide
    tools/mathtools/sign
    tools/mathtools/sums
-   tools/mathtools/truncate_to_sum
    tools/measuretools/beam
    tools/measuretools/beam_together
    tools/measuretools/binary_to_nonbinary

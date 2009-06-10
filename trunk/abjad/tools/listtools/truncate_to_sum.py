@@ -4,7 +4,7 @@ def truncate_to_sum(l, total):
    ::
 
       abjad> for n in range(10):
-      ...     print n, mathtools.truncate_to_sum([2, 2, 2], n)
+      ...     print n, listtools.truncate_to_sum([2, 2, 2], n)
       ... 
       0 [0]
       1 [1]
@@ -21,7 +21,7 @@ def truncate_to_sum(l, total):
 
       abjad> l = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
       abjad> for n in range(10):
-      ...     print n, mathtools.truncate_to_sum(l, n)
+      ...     print n, listtools.truncate_to_sum(l, n)
       ... 
       0 [-1, 1]
       1 [-1, 2]
@@ -36,12 +36,12 @@ def truncate_to_sum(l, total):
 
    Raise :exc:`TypeError` when *l* is not a list::
 
-      abjad> mathtools.truncate_to_sum('foo', 4)
+      abjad> listtools.truncate_to_sum('foo', 4)
       TypeError
 
    Raise :exc:`ValueError` on negative *total*::
 
-      abjad> mathtools.truncate_to_sum([2, 2, 2], -4)
+      abjad> listtools.truncate_to_sum([2, 2, 2], -4)
       ValueError'''
 
    if not isinstance(l, list):
