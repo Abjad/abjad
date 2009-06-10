@@ -1,7 +1,7 @@
 from abjad.tools.mathtools.sums import sums as mathtools_sums
 
 
-def integer_partition_by_ratio(n, ratio):
+def partition_integer_by_ratio(n, ratio):
    '''Partition integer ``n`` into parts such that the sum \
    of all parts in parts equals ``n`` and such that the proportions \
    between the parts in parts equals the the proportions in ``ratio`` \
@@ -9,27 +9,27 @@ def integer_partition_by_ratio(n, ratio):
 
    ::
 
-      abjad> mathtools.integer_partition_by_ratio(10, [1])
+      abjad> mathtools.partition_integer_by_ratio(10, [1])
       [10]
 
    ::
 
-      abjad> mathtools.integer_partition_by_ratio(10, [1, 1])
+      abjad> mathtools.partition_integer_by_ratio(10, [1, 1])
       [5, 5]
 
    ::
 
-      abjad> mathtools.integer_partition_by_ratio(10, [1, 1, 1])
+      abjad> mathtools.partition_integer_by_ratio(10, [1, 1, 1])
       [3, 4, 3]
 
    ::
 
-      abjad> mathtools.integer_partition_by_ratio(10, [1, 1, 1, 1])
+      abjad> mathtools.partition_integer_by_ratio(10, [1, 1, 1, 1])
       [3, 2, 3, 2]
 
    ::
 
-      abjad> mathtools.integer_partition_by_ratio(10, [1, 1, 1, 1, 1])
+      abjad> mathtools.partition_integer_by_ratio(10, [1, 1, 1, 1, 1])
       [2, 2, 2, 2, 2]
       
    ::
@@ -50,12 +50,12 @@ def integer_partition_by_ratio(n, ratio):
 
    Raise :exc:`TypeError` on noninteger *n*::
 
-      abjad> mathtools.integer_partition_by_ratio('foo', [1, 1, 3])
+      abjad> mathtools.partition_integer_by_ratio('foo', [1, 1, 3])
       TypeError
 
    Raise :exc:`ValueError` on nonpositive *n*::
 
-      abjad> mathtools.integer_partition_by_ratio(-1, [1, 1, 3])
+      abjad> mathtools.partition_integer_by_ratio(-1, [1, 1, 3])
       ValueError'''
 
    if not isinstance(n, (int, long)):
