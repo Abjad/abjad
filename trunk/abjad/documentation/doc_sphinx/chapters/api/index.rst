@@ -355,6 +355,7 @@ Abjad API
    tools/mathtools/cumulative_products
    tools/mathtools/cumulative_sums
    tools/mathtools/cumulative_sums_zero
+   tools/mathtools/divide_scalar_by_ratio
    tools/mathtools/divisors
    tools/mathtools/factors
    tools/mathtools/fragment
@@ -368,7 +369,6 @@ Abjad API
    tools/mathtools/partition_integer_into_halves
    tools/mathtools/partition_integer_into_thirds
    tools/mathtools/remove_powers_of_two
-   tools/mathtools/scalar_divide
    tools/mathtools/sign
    tools/measuretools/beam
    tools/measuretools/beam_together
