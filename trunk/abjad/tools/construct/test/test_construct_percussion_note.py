@@ -6,11 +6,13 @@ def test_construct_percussion_note_01( ):
    t = construct.percussion_note(1, (5, 64), (1, 1))
 
    assert len(t) == 2
+   assert t[0].pitch.number == 1
    assert isinstance(t[0], Note)
    assert isinstance(t[1], Rest)
    assert t[0].duration.written == Rational(1, 16)
    assert t[1].duration.written == Rational(1, 64)
-   assert t[0].pitch.number == 1
+   assert not t[0].tie.spanned
+   assert not t[1].tie.spanned
 
 
 def test_construct_percussion_note_02( ):
@@ -23,6 +25,8 @@ def test_construct_percussion_note_02( ):
    assert isinstance(t[1], Rest)
    assert t[0].duration.written == Rational(1, 64)
    assert t[1].duration.written == Rational(1, 16)
+   assert not t[0].tie.spanned
+   assert not t[1].tie.spanned
 
 
 def test_construct_percussion_note_03( ):
@@ -45,4 +49,6 @@ def test_construct_percussion_note_04( ):
    assert isinstance(t[1], Rest)
    assert t[0].duration.written == Rational(1, 64)
    assert t[1].duration.written == Rational(1, 32)
+   assert not t[0].tie.spanned
+   assert not t[1].tie.spanned
 

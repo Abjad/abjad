@@ -1,8 +1,10 @@
 from abjad.rational.rational import Rational
 from abjad.rest.rest import Rest
+from abjad.note.note import Note
 from abjad.tools import durtools
 from abjad.tools.construct.helpers import _construct_tied_note
 from abjad.tools.construct.helpers import  _construct_tied_rest
+from abjad.tools.construct.helpers import  _construct_tied_leaf
 
 
 def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
@@ -48,7 +50,9 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
       r = _construct_tied_rest(rest_duration)
       n = _construct_tied_note(pitch, max_note_duration)
    else:
-      n = _construct_tied_note(pitch, total_duration)
+      #n = _construct_tied_note(pitch, total_duration)
+      n = _construct_tied_leaf(Note, total_duration, 
+         pitches = pitch, tied = False)
       if len(n) > 1:
          for i in range(1, len(n)):
             n[i] = Rest(n[i])
