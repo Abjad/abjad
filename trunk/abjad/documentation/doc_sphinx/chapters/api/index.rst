@@ -356,11 +356,11 @@ Abjad API
    tools/mathtools/factors
    tools/mathtools/fragment
    tools/mathtools/greatest_multiple_less
-   tools/mathtools/integer_decompose
    tools/mathtools/integer_partition_by_ratio
    tools/mathtools/is_power_of_two
    tools/mathtools/least_multiple_greater
    tools/mathtools/next_least_power_of_two
+   tools/mathtools/partition_integer_into_canonic_parts
    tools/mathtools/partition_integer_into_halves
    tools/mathtools/partition_integer_into_thirds
    tools/mathtools/products

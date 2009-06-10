@@ -5,8 +5,8 @@ from abjad.tools import mathtools
 def token_decompose(duration_token):
    '''Return big-endian list of notehead-assignable duration tokens.
 
-      >>> duration_tokens = [(n, 16) for n in range(10, 20)]
-      >>> for duration_token in duration_tokens:
+      abjad> duration_tokens = [(n, 16) for n in range(10, 20)]
+      abjad> for duration_token in duration_tokens:
       ...     print duration_token, durtools.token_decompose(duration_token)
       ... 
       (10, 16) ((8, 16), (2, 16))
@@ -21,5 +21,6 @@ def token_decompose(duration_token):
       (19, 16) ((16, 16), (3, 16))'''
 
    numerator, denominator = token_unpack(duration_token)
-   result = [(n, denominator) for n in mathtools.integer_decompose(numerator)]
+   result = [(n, denominator) 
+      for n in mathtools.partition_integer_into_canonic_parts(numerator)]
    return tuple(result)

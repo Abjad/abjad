@@ -1,7 +1,7 @@
 from abjad.tools.mathtools.binary_string import binary_string
 
 
-def integer_decompose(n):
+def partition_integer_into_canonic_parts(n):
    '''Return big-ending tuple ``t = (t_0, ..., t_j)`` such that
    
    *  ``sum(t) == n``
@@ -14,7 +14,7 @@ def integer_decompose(n):
    ::
 
       abjad> for n in range(1, 11):
-      ...     print n, mathtools.integer_decompose(n)
+      ...     print n, mathtools.partition_integer_into_canonic_parts(n)
       ... 
       1 (1,)
       2 (2,)
@@ -30,7 +30,7 @@ def integer_decompose(n):
    ::
 
       abjad> for n in range(11, 21):
-      ...     print n, mathtools.integer_decompose(n)
+      ...     print n, mathtools.partition_integer_into_canonic_parts(n)
       ... 
       11 (8, 3)
       12 (12,)
@@ -45,15 +45,13 @@ def integer_decompose(n):
 
    Raise :exc:`TypeError` on noninteger *n*::
 
-      abjad> mathtools.integer_decompose(7.5)
+      abjad> mathtools.partition_integer_into_canonic_parts(7.5)
       TypeError
 
    Raise :exc:`ValueError` on nonpositive integer *n*::
 
-      abjad> mathtools.integer_decompose(-1)
-      ValueError
-
-'''
+      abjad> mathtools.partition_integer_into_canonic_parts(-1)
+      ValueError'''
 
    if not isinstance(n, (int, long)):
       raise TypeError
