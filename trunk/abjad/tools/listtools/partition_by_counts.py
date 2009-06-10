@@ -1,5 +1,5 @@
-from abjad.tools.listtools.pairwise_cumulative_sums import \
-   pairwise_cumulative_sums as listtools_pairwise_cumulative_sums
+from abjad.tools.listtools.pairwise_cumulative_sums_zero import \
+   pairwise_cumulative_sums_zero as listtools_pairwise_cumulative_sums_zero
 from abjad.tools.listtools.repeat_to_weight import repeat_to_weight as \
    listtools_repeat_to_weight
 from abjad.tools.listtools.weight import weight as listtools_weight
@@ -96,7 +96,7 @@ def partition_by_counts(l, counts, cyclic = False, overhang = False):
       if weight_counts < len_l:
          counts.append(len(l) - weight_counts)
 
-   for start, stop in listtools_pairwise_cumulative_sums(counts):
+   for start, stop in listtools_pairwise_cumulative_sums_zero(counts):
       result.append(l[start:stop])
 
    return result

@@ -332,7 +332,7 @@ Abjad API
    tools/listtools/outer_product
    tools/listtools/overwrite_slices_at
    tools/listtools/pairwise
-   tools/listtools/pairwise_cumulative_sums
+   tools/listtools/pairwise_cumulative_sums_zero
    tools/listtools/partition_by_counts
    tools/listtools/partition_by_weights
    tools/listtools/permutations
