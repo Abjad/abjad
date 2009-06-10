@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_greatest_power_of_two_less_equal_01( ):
+def test_mathtools_greatest_power_of_two_less_equal_01( ):
    '''Return greatest integer power of two
       less than or equal to n.'''
 
@@ -20,7 +20,7 @@ def test_greatest_power_of_two_less_equal_01( ):
    assert mathtools.greatest_power_of_two_less_equal(12) == 8
 
 
-def test_greatest_power_of_two_less_equal_02( ):
+def test_mathtools_greatest_power_of_two_less_equal_02( ):
    '''Raise TypeError on nonnumeric n.
       Raise ValueError on nonpositive n.'''
 
@@ -32,7 +32,7 @@ def test_greatest_power_of_two_less_equal_02( ):
       ValueError, 'mathtools.greatest_power_of_two_less_equal(-1)')
 
 
-def test_greatest_power_of_two_less_equal_03( ):
+def test_mathtools_greatest_power_of_two_less_equal_03( ):
    '''Optional offset keyword allows for the next to greatest
       integer power of two, etc.'''
 
