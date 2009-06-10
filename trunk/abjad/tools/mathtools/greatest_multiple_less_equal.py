@@ -1,17 +1,17 @@
 import math
 
 
-def greatest_multiple_less(m, n):
+def greatest_multiple_less_equal(m, n):
    '''Return the greatest integer multiple of *m* 
    less than or equal to *n*::
 
-      abjad> mathtools.greatest_multiple_less(10, 47)
+      abjad> mathtools.greatest_multiple_less_equal(10, 47)
       40
 
    ::
 
       abjad> for m in range(1, 10):
-      ...     print m, mathtools.greatest_multiple_less(m, 47)
+      ...     print m, mathtools.greatest_multiple_less_equal(m, 47)
       ... 
       1 47
       2 46
@@ -26,7 +26,7 @@ def greatest_multiple_less(m, n):
    ::
 
       abjad> for n in range(10, 100, 10):
-      ...     print mathtools.greatest_multiple_less(7, n), n
+      ...     print mathtools.greatest_multiple_less_equal(7, n), n
       ... 
       7 10
       14 20

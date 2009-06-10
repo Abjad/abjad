@@ -358,10 +358,10 @@ Abjad API
    tools/mathtools/divisors
    tools/mathtools/factors
    tools/mathtools/fragment
-   tools/mathtools/greatest_multiple_less
+   tools/mathtools/greatest_multiple_less_equal
    tools/mathtools/greatest_power_of_two_less_equal
    tools/mathtools/is_power_of_two
-   tools/mathtools/least_multiple_greater
+   tools/mathtools/least_multiple_greater_equal
    tools/mathtools/partition_integer_by_ratio
    tools/mathtools/partition_integer_into_canonic_parts
    tools/mathtools/partition_integer_into_halves
