@@ -20,10 +20,10 @@ def make_binary(nonbinary_meter, contents_multiplier = Rational(1)):
 
    # find binary denominator
    if contents_multiplier == Rational(1):
-      binary_denominator = mathtools.next_least_power_of_two(
+      binary_denominator = mathtools.greatest_power_of_two_less_equal(
          nonbinary_denominator)
    else:
-      binary_denominator = mathtools.next_least_power_of_two(
+      binary_denominator = mathtools.greatest_power_of_two_less_equal(
          nonbinary_denominator, 1)
 
    # find binary pair

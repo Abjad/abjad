@@ -38,7 +38,7 @@ def scale(expr, multiplier = Rational(1)):
       measure.meter.forced = new_meter
 
       contents_multiplier_denominator = \
-         mathtools.next_least_power_of_two(multiplier._d)
+         mathtools.greatest_power_of_two_less_equal(multiplier._d)
       contents_multiplier = Rational(
          multiplier._n, contents_multiplier_denominator)
       containertools.contents_scale(measure, contents_multiplier)

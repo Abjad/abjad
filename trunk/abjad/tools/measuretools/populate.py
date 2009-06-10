@@ -87,7 +87,8 @@ def _measures_populate_meter_series(expr, iterctrl):
    for i, measure in enumerate(iterate.naive(expr, _Measure)):
       if iterctrl(measure, i):
          meter = measure.meter.effective
-         denominator = mathtools.next_least_power_of_two(meter.denominator)
+         denominator = mathtools.greatest_power_of_two_less_equal(
+            meter.denominator)
          numerator = meter.numerator
          notes = Note(0, (1, denominator)) * numerator
          measure[:] = notes

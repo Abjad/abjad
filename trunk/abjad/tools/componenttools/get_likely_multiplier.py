@@ -27,6 +27,6 @@ def get_likely_multiplier(components):
        
    if len(listtools.unique(chain_duration_numerators)) == 1:
       numerator = chain_duration_numerators[0]
-      denominator = mathtools.next_least_power_of_two(numerator)
+      denominator = mathtools.greatest_power_of_two_less_equal(numerator)
       likely_multiplier = Rational(numerator, denominator)
       return likely_multiplier

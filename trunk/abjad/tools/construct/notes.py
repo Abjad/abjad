@@ -67,7 +67,7 @@ def notes(pitches, durations, direction='big-endian'):
          ## compute prolation
          #denominator = reduce(operator.mul, factors)
          denominator = ds[0][1]
-         numerator = mathtools.next_least_power_of_two(denominator)
+         numerator = mathtools.greatest_power_of_two_less_equal(denominator)
          multiplier = (numerator, denominator)
          ratio = 1 / Rational(*multiplier)
          ds = [ratio * Rational(*d) for d in ds]

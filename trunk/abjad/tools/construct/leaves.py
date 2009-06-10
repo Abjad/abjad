@@ -11,7 +11,7 @@ from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
 ## TODO: Change construct.leaves( ) signature to allow ('c', 4) named pairs 
-##       This will allow the creation of enharmonica equivalents.
+##       This will allow the creation of enharmonic equivalents.
 ##       Examples: construct.leaves([('c', 4), ('cs', 4)], [(1, 4)])
 
 ## TODO: Extend construct.leaves( ) to accept Abjad Pitch instances. Ex:
@@ -94,7 +94,7 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
       else:
          ## compute prolation
          denominator = ds[0][1]
-         numerator = mathtools.next_least_power_of_two(denominator)
+         numerator = mathtools.greatest_power_of_two_less_equal(denominator)
          multiplier = (numerator, denominator)
          ratio = 1 / Rational(*multiplier)
          ds = [ratio * Rational(*d) for d in ds]

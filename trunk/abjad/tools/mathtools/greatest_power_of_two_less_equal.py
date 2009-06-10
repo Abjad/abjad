@@ -2,14 +2,14 @@ from abjad.rational.rational import Rational
 import math
 
 
-def next_least_power_of_two(n, i = 0):
+def greatest_power_of_two_less_equal(n, i = 0):
    r'''Return greatest integer power of two 
    less than or equal to positive *n*.
 
    ::
 
       abjad> for n in range(10, 20):
-      ...     print '\t%s\t%s' % (n, mathtools.next_least_power_of_two(n))
+      ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n))
       ... 
          10 8
          11 8
@@ -28,7 +28,7 @@ def next_least_power_of_two(n, i = 0):
    ::
 
       abjad> for n in range(10, 20):
-      ...     print '\t%s\t%s' % (n, mathtools.next_least_power_of_two(n, i = 1))
+      ...     print '\t%s\t%s' % (n, mathtools.greatest_power_of_two_less_equal(n, i = 1))
       ... 
          10 4
          11 4
@@ -46,12 +46,12 @@ def next_least_power_of_two(n, i = 0):
 
    Raise :exc:`TypeError` on nonnumeric *n*::
 
-      abjad> mathtools.next_least_power_of_two('foo')
+      abjad> mathtools.greatest_power_of_two_less_equal('foo')
       TypeError
 
    Raise :exc:`ValueError` on nonpositive *n*::
 
-      abjad> mathtools.next_least_power_of_two(-1)
+      abjad> mathtools.greatest_power_of_two_less_equal(-1)
       ValueError'''
 
    if not isinstance(n, (int, long, float, Rational)):

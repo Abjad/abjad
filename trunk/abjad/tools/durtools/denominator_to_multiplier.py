@@ -17,4 +17,4 @@ def denominator_to_multiplier(d):
       7 4/7
       8 1'''
 
-   return Rational(mathtools.next_least_power_of_two(d), d)
+   return Rational(mathtools.greatest_power_of_two_less_equal(d), d)
