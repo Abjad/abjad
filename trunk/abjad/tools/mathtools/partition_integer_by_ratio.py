@@ -1,4 +1,5 @@
-from abjad.tools.mathtools.sums import sums as mathtools_sums
+from abjad.tools.mathtools.cumulative_sums import cumulative_sums as \
+   mathtools_cumulative_sums
 
 
 def partition_integer_by_ratio(n, ratio):
@@ -69,7 +70,7 @@ def partition_integer_by_ratio(n, ratio):
    result = [0]
 
    divisions = [float(n) * part / sum(ratio) for part in ratio]
-   cumulative_divisions = mathtools_sums(divisions)
+   cumulative_divisions = mathtools_cumulative_sums(divisions)
 
    for division in cumulative_divisions:
       rounded_division = int(round(division)) - sum(result)

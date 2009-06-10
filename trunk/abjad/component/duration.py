@@ -31,5 +31,6 @@ class _ComponentDurationInterface(_Interface):
 
    @property
    def prolation(self):
-      products = mathtools.products([Rational(1)] + self._prolations)
+      products = mathtools.cumulative_products(
+         [Rational(1)] + self._prolations)
       return products[-1]

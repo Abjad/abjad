@@ -352,6 +352,8 @@ Abjad API
    tools/listtools/zip_cyclic
    tools/listtools/zip_nontruncating
    tools/mathtools/binary_string
+   tools/mathtools/cumulative_products
+   tools/mathtools/cumulative_sums
    tools/mathtools/divisors
    tools/mathtools/factors
    tools/mathtools/fragment
@@ -363,11 +365,9 @@ Abjad API
    tools/mathtools/partition_integer_into_canonic_parts
    tools/mathtools/partition_integer_into_halves
    tools/mathtools/partition_integer_into_thirds
-   tools/mathtools/products
    tools/mathtools/remove_powers_of_two
    tools/mathtools/scalar_divide
    tools/mathtools/sign
-   tools/mathtools/sums
    tools/measuretools/beam
    tools/measuretools/beam_together
    tools/measuretools/binary_to_nonbinary

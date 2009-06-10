@@ -16,6 +16,6 @@ def pairwise_cumulative_sums(l):
    assert isinstance(l, list)
    assert all([isinstance(x, (int, float, long, Rational)) for x in l])
    
-   cumulative_sums = mathtools.sums(l) 
+   cumulative_sums = mathtools.cumulative_sums(l) 
    cumulative_sums.insert(0, 0)
    return listtools_pairwise(cumulative_sums)

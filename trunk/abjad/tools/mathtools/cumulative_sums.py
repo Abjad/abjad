@@ -1,24 +1,24 @@
-def sums(l):
+def cumulative_sums(l):
    '''Return a list of the cumulative sums of the elements in *l*.
 
    ::
 
-      abjad> mathtools.products([1, 2, 3, 4, 5, 6, 7, 8])
+      abjad> mathtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8])
       [1, 3, 6, 10, 15, 21, 28, 36]
 
    ::
    
-      abjad> mathtools.sums([1, -2, 3, -4, 5, -6, 7, -8])
+      abjad> mathtools.cumulative_sums([1, -2, 3, -4, 5, -6, 7, -8])
       [1, -1, 2, -2, 3, -3, 4, -4]
 
    Raise :exc:`TypeError` when *l* is neither list nor tuple::
 
-      abjad> mathtools.products('foo')
+      abjad> mathtools.cumulative_sums('foo')
       TypeError
 
    Raise :exc:`ValueError` when *l* is empty::
 
-      abjad> mathtools.products([ ])
+      abjad> mathtools.cumulative_sums([ ])
       ValueError'''
 
 
