@@ -24,7 +24,9 @@ def fragment(n, cell):
    less than or equal to *n*::
 
       abjad> mathtools.fragment(1, [Rational(3, 4), Rational(3, 4)]) 
-      ValueError'''
+      ValueError
+
+   .. todo:: Generalize and rename this function.'''
 
    if not isinstance(n, (int, float, long, Rational)):
       raise TypeError
