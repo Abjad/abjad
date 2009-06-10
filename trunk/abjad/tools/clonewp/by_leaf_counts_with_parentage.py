@@ -46,7 +46,7 @@ def by_leaf_counts_with_parentage(container, leaf_counts):
    assert all([isinstance(x, int) for x in leaf_counts])
 
    result = [ ]
-   sums = [0] + mathtools.cumulative_sums(leaf_counts)
+   sums = mathtools.cumulative_sums_zero(leaf_counts)
    for start, stop in listtools.pairwise(sums):
       result.append(
          by_leaf_range_with_parentage(container, start, stop))

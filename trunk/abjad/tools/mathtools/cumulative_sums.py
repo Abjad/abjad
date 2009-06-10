@@ -1,6 +1,8 @@
 def cumulative_sums(l):
    '''Return a list of the cumulative sums of the elements in *l*.
 
+   .. note:: ``len(mathtools.cumulative_sums(l)) == len(l)``.
+
    ::
 
       abjad> mathtools.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8])

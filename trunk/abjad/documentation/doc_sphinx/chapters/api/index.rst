@@ -354,6 +354,7 @@ Abjad API
    tools/mathtools/binary_string
    tools/mathtools/cumulative_products
    tools/mathtools/cumulative_sums
+   tools/mathtools/cumulative_sums_zero
    tools/mathtools/divisors
    tools/mathtools/factors
    tools/mathtools/fragment
