@@ -1,4 +1,6 @@
-from abjad.tools.mathtools.binary_string import binary_string
+from abjad.tools.mathtools.binary_string import binary_string as \
+   mathtools_binary_string
+from abjad.tools.mathtools.sign import sign as mathtools_sign
 
 
 def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
@@ -8,8 +10,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
    *  ``t_i`` can be written without recourse to ties, and
    *  ``t_(i + 1) < t_i`` for every ``t_i`` in ``t``.
 
-   That is, partition positive integer *n* into strictly decreasing
-   integer parts, each of which can be written without recourse to ties.
+   When *n* is positive, return all parts positive.
 
    ::
 
@@ -27,21 +28,23 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
       9 (8, 1)
       10 (8, 2)
 
+   When *n* is negative, return all parts negative.
+
    ::
 
-      abjad> for n in range(11, 21):
+      abjad> for n in reversed(range(-20, -10)):
       ...     print n, mathtools.partition_integer_into_canonic_parts(n)
       ... 
-      11 (8, 3)
-      12 (12,)
-      13 (12, 1)
-      14 (14,)
-      15 (15,)
-      16 (16,)
-      17 (16, 1)
-      18 (16, 2)
-      19 (16, 3)
-      20 (16, 4)
+      -11 (-8, -3)
+      -12 (-12,)
+      -13 (-12, -1)
+      -14 (-14,)
+      -15 (-15,)
+      -16 (-16,)
+      -17 (-16, -1)
+      -18 (-16, -2)
+      -19 (-16, -3)
+      -20 (-16, -4)
 
    When ``direction = 'little-endian'``, return little-endian tuple.
 
@@ -65,17 +68,10 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
 
       abjad> mathtools.partition_integer_into_canonic_parts(7.5)
       TypeError
-
-   Raise :exc:`ValueError` on nonpositive integer *n*::
-
-      abjad> mathtools.partition_integer_into_canonic_parts(-1)
-      ValueError'''
+   '''
 
    if not isinstance(n, (int, long)):
       raise TypeError
-
-   if n < 0:
-      raise ValueError
 
    if direction not in ('big-endian', 'little-endian'):
       raise ValueError
@@ -85,7 +81,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
    
    result = [ ]
    prev_empty = True
-   binary_n = binary_string(n)
+   binary_n = mathtools_binary_string(abs(n))
    binary_length = len(binary_n)
 
    for i, x in enumerate(binary_n):
@@ -98,6 +94,10 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
          prev_empty = False
       else:
          prev_empty = True
+
+   sign_n = mathtools_sign(n)
+   if mathtools_sign(n) == -1:
+      result = [sign_n * x for x in result]
 
    if direction == 'big-endian':
       return tuple(result)

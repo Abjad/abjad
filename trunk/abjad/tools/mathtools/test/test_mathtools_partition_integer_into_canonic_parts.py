@@ -32,6 +32,20 @@ def test_partition_integer_into_canonic_parts_02( ):
 
 def test_partition_integer_into_canonic_parts_03( ):
 
+   assert mathtools.partition_integer_into_canonic_parts(-11) == (-8, -3)
+   assert mathtools.partition_integer_into_canonic_parts(-12) == (-12, )
+   assert mathtools.partition_integer_into_canonic_parts(-13) == (-12, -1)
+   assert mathtools.partition_integer_into_canonic_parts(-14) == (-14, )
+   assert mathtools.partition_integer_into_canonic_parts(-15) == (-15, )
+   assert mathtools.partition_integer_into_canonic_parts(-16) == (-16, )
+   assert mathtools.partition_integer_into_canonic_parts(-17) == (-16, -1)
+   assert mathtools.partition_integer_into_canonic_parts(-18) == (-16, -2)
+   assert mathtools.partition_integer_into_canonic_parts(-19) == (-16, -3)
+   assert mathtools.partition_integer_into_canonic_parts(-20) == (-16, -4)
+
+
+def test_partition_integer_into_canonic_parts_04( ):
+
    assert mathtools.partition_integer_into_canonic_parts(
       11, direction = 'little-endian') == (3, 8)
    assert mathtools.partition_integer_into_canonic_parts(
@@ -54,9 +68,7 @@ def test_partition_integer_into_canonic_parts_03( ):
       20, direction = 'little-endian') == (4, 16)
 
 
-def test_mathtools_partition_integer_into_canonic_parts_04( ):
+def test_mathtools_partition_integer_into_canonic_parts_05( ):
 
    assert py.test.raises(
       TypeError, 'mathtools.partition_integer_into_canonic_parts(7.5)')
-   assert py.test.raises(
-      ValueError, 'mathtools.partition_integer_into_canonic_parts(-1)')
