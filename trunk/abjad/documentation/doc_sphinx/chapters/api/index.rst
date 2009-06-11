@@ -23,6 +23,7 @@ Abjad API
    book/parser/abjadlatextag
    book/parser/abjadresttag
    book/parser/abjadtag
+   book/parser/codeblock
    book/parser/tagparser
    bracket/format
    bracket/spanner
