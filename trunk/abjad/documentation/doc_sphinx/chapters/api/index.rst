@@ -330,6 +330,7 @@ Abjad API
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
    tools/listtools/negate_elements_at_indices
+   tools/listtools/negate_elements_at_indices_absolutely
    tools/listtools/outer_product
    tools/listtools/overwrite_slices_at
    tools/listtools/pairwise
