@@ -1,8 +1,8 @@
 from abjad.tools.mathtools.binary_string import binary_string
 
 
-def partition_integer_into_canonic_parts(n):
-   '''Return big-ending tuple ``t = (t_0, ..., t_j)`` such that
+def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
+   '''Return big-endian tuple ``t = (t_0, ..., t_j)`` such that
    
    *  ``sum(t) == n``
    *  ``t_i`` can be written without recourse to ties, and
@@ -43,6 +43,24 @@ def partition_integer_into_canonic_parts(n):
       19 (16, 3)
       20 (16, 4)
 
+   When ``direction = 'little-endian'``, return little-endian tuple.
+
+   ::
+
+      abjad> for n in range(11, 21):
+      ...     print n, mathtools.partition_integer_into_canonic_parts(n, direction = 'little-endian')
+      ... 
+      11 (3, 8)
+      12 (12,)
+      13 (1, 12)
+      14 (14,)
+      15 (15,)
+      16 (16,)
+      17 (1, 16)
+      18 (2, 16)
+      19 (3, 16)
+      20 (4, 16)
+
    Raise :exc:`TypeError` on noninteger *n*::
 
       abjad> mathtools.partition_integer_into_canonic_parts(7.5)
@@ -57,6 +75,9 @@ def partition_integer_into_canonic_parts(n):
       raise TypeError
 
    if n < 0:
+      raise ValueError
+
+   if direction not in ('big-endian', 'little-endian'):
       raise ValueError
 
    if n == 0:
@@ -78,4 +99,9 @@ def partition_integer_into_canonic_parts(n):
       else:
          prev_empty = True
 
-   return tuple(result)
+   if direction == 'big-endian':
+      return tuple(result)
+   elif direction == 'little-endian':
+      return tuple(reversed(result))
+   else:
+      raise ValueError
