@@ -321,6 +321,8 @@ Abjad API
    tools/leaftools/excise
    tools/leaftools/meiose
    tools/leaftools/multiply
+   tools/listtools/cumulative_signed_weights
+   tools/listtools/cumulative_weights
    tools/listtools/difference_series
    tools/listtools/flatten
    tools/listtools/get_cyclic
