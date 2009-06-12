@@ -331,6 +331,8 @@ Abjad API
    tools/listtools/increase_at_indices
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
+   tools/listtools/join_sublists_by_sign
+   tools/listtools/lengths_to_counts
    tools/listtools/negate_elements_at_indices
    tools/listtools/negate_elements_at_indices_absolutely
    tools/listtools/outer_product
@@ -349,6 +351,7 @@ Abjad API
    tools/listtools/repeat_to_length
    tools/listtools/repeat_to_weight
    tools/listtools/rotate
+   tools/listtools/sign
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
    tools/listtools/true_indices
