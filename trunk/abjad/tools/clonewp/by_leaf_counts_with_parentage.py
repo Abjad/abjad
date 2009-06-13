@@ -4,7 +4,7 @@ from abjad.tools.clonewp.by_leaf_range_with_parentage import \
    by_leaf_range_with_parentage
 
 
-## TODO: Implement in-place containertools.partition_by_counts( ) that doesn't climb to governor ##
+## TODO: Implement in-place containertools.partition_by_lengths( ) that doesn't climb to governor ##
 
 def by_leaf_counts_with_parentage(container, leaf_counts):
    r'''container is any Abjad container to partition.

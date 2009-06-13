@@ -341,7 +341,7 @@ Abjad API
    tools/listtools/overwrite_slices_at
    tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums_zero
-   tools/listtools/partition_by_counts
+   tools/listtools/partition_by_lengths
    tools/listtools/partition_by_weights
    tools/listtools/partition_elements_into_canonic_parts
    tools/listtools/permutations

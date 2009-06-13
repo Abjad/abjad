@@ -6,7 +6,7 @@ from abjad.tools.listtools.weight import weight as listtools_weight
 from abjad.tools import mathtools
 
 
-def partition_by_counts(l, counts, cyclic = False, overhang = False):
+def partition_by_lengths(l, counts, cyclic = False, overhang = False):
    '''Partition list ``l`` into sublists ``r_i`` in ``result`` list \
    such that ``len(r)_i == counts_i`` for all ``i < len(result)``.
 
@@ -22,7 +22,7 @@ def partition_by_counts(l, counts, cyclic = False, overhang = False):
    ::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-      abjad> listtools.partition_by_counts(l, [3])
+      abjad> listtools.partition_by_lengths(l, [3])
       [[0, 1, 2]]
 
    When ``cyclic = True`` repeat the elements in ``counts``.
@@ -30,7 +30,7 @@ def partition_by_counts(l, counts, cyclic = False, overhang = False):
    ::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-      abjad> listtools.partition_by_counts(l, [3], cyclic = True) 
+      abjad> listtools.partition_by_lengths(l, [3], cyclic = True) 
       [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
    When ``overhang = True`` return any remaining unicorporated \
@@ -39,7 +39,7 @@ def partition_by_counts(l, counts, cyclic = False, overhang = False):
    ::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-      abjad> listtools.partition_by_counts(l, [3], overhang = True)
+      abjad> listtools.partition_by_lengths(l, [3], overhang = True)
       [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
 
    When both ``cyclic = True`` and ``overhang = True`` repeat the \
@@ -49,7 +49,7 @@ def partition_by_counts(l, counts, cyclic = False, overhang = False):
    ::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-      abjad> listtools.partition_by_counts(l, [3], cyclic = True, overhang = True)
+      abjad> listtools.partition_by_lengths(l, [3], cyclic = True, overhang = True)
       [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
 
    Examples with ``1 < len(counts)``.
@@ -57,25 +57,25 @@ def partition_by_counts(l, counts, cyclic = False, overhang = False):
    ::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-      abjad> listtools.partition_by_counts(l, [4, 3])
+      abjad> listtools.partition_by_lengths(l, [4, 3])
       [[0, 1, 2, 3], [4, 5, 6]]
 
    ::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-      abjad> listtools.partition_by_counts(l, [4, 3], cyclic = True)
+      abjad> listtools.partition_by_lengths(l, [4, 3], cyclic = True)
       [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13]]
 
    ::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-      abjad> listtools.partition_by_counts(l, [4, 3], overhang = True)
+      abjad> listtools.partition_by_lengths(l, [4, 3], overhang = True)
       [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10, 11, 12, 13, 14, 15]]
 
    ::
 
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-      abjad> listtools.partition_by_counts(
+      abjad> listtools.partition_by_lengths(
          l, [4, 3], cyclic = True, overhang = True)
       [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]'''
 
