@@ -4,8 +4,59 @@ from abjad.tools import iterate
 
 
 def fixed_systems_apply(expr, system_indicator, klass = _Measure):
-   '''Apply fixed system distances to expr.
-      Expr must already be marked with line breaks.'''
+   r'''Apply *system_indicator* to *expr*.
+   Music *expr* must already be marked with line breaks.
+
+   ::
+
+      t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+      pitchtools.diatonicize(t)
+      layout.line_break_every_prolated(t, Rational(4, 8))      
+
+      \new Staff {
+                      \time 2/8
+                      c'8
+                      d'8
+                      \time 2/8
+                      e'8
+                      f'8
+                      \break
+                      \time 2/8
+                      g'8
+                      a'8
+                      \time 2/8
+                      b'8
+                      c''8
+                      \break
+      }
+
+      system_indicator = FixedSystemIndicator((20, ), 1)
+      layout.fixed_systems_apply(t, system_indicator)
+
+      \new Staff {
+                      \overrideProperty #"Score.NonMusicalPaperColumn"
+                      #'line-break-system-details
+                      #'((Y-offset . 20))
+                      \time 2/8
+                      c'8
+                      d'8
+                      \time 2/8
+                      e'8
+                      f'8
+                      \break
+                      \pageBreak
+                      \overrideProperty #"Score.NonMusicalPaperColumn"
+                      #'line-break-system-details
+                      #'((Y-offset . 20))
+                      \time 2/8
+                      g'8
+                      a'8
+                      \time 2/8
+                      b'8
+                      c''8
+                      \break
+      }
+   '''
 
    if not isinstance(system_indicator, FixedSystemIndicator):
       raise TypeError
