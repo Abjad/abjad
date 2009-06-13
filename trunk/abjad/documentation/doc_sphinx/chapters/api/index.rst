@@ -322,10 +322,9 @@ Abjad API
    tools/leaftools/meiose
    tools/leaftools/multiply
    tools/listtools/cumulative_products
-   tools/listtools/cumulative_signed_weights
    tools/listtools/cumulative_sums
    tools/listtools/cumulative_sums_zero
-   tools/listtools/cumulative_weights
+   tools/listtools/cumulative_weights_signed
    tools/listtools/difference_series
    tools/listtools/flatten
    tools/listtools/get_cyclic
