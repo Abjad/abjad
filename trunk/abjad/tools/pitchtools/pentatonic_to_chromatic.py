@@ -1,4 +1,4 @@
-from abjad.tools import mathtools
+from abjad.tools import listtools
 
 
 def pentatonic_to_chromatic(num, transpose=1, phase=0):
@@ -19,7 +19,7 @@ def pentatonic_to_chromatic(num, transpose=1, phase=0):
 
    penta_intervals = [2,3,2,2,3] * 2
    penta = dict(zip([0,1,2,3,4],
-      mathtools.cumulative_sums_zero(penta_intervals[phase:phase+5])))
+      listtools.cumulative_sums_zero(penta_intervals[phase:phase+5])))
    pclass = num % 5
    octave = num // 5
    return 12 * octave + penta[pclass] + transpose

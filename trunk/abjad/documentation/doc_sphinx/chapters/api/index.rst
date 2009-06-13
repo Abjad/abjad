@@ -321,7 +321,10 @@ Abjad API
    tools/leaftools/excise
    tools/leaftools/meiose
    tools/leaftools/multiply
+   tools/listtools/cumulative_products
    tools/listtools/cumulative_signed_weights
+   tools/listtools/cumulative_sums
+   tools/listtools/cumulative_sums_zero
    tools/listtools/cumulative_weights
    tools/listtools/difference_series
    tools/listtools/flatten
@@ -363,9 +366,6 @@ Abjad API
    tools/listtools/zip_cyclic
    tools/listtools/zip_nontruncating
    tools/mathtools/binary_string
-   tools/mathtools/cumulative_products
-   tools/mathtools/cumulative_sums
-   tools/mathtools/cumulative_sums_zero
    tools/mathtools/divide_scalar_by_ratio
    tools/mathtools/divisors
    tools/mathtools/factors

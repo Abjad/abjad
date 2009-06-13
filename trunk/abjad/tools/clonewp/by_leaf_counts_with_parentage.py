@@ -1,6 +1,5 @@
 from abjad.container.container import Container
 from abjad.tools import listtools
-from abjad.tools import mathtools
 from abjad.tools.clonewp.by_leaf_range_with_parentage import \
    by_leaf_range_with_parentage
 
@@ -46,7 +45,7 @@ def by_leaf_counts_with_parentage(container, leaf_counts):
    assert all([isinstance(x, int) for x in leaf_counts])
 
    result = [ ]
-   sums = mathtools.cumulative_sums_zero(leaf_counts)
+   sums = listtools.cumulative_sums_zero(leaf_counts)
    for start, stop in listtools.pairwise(sums):
       result.append(
          by_leaf_range_with_parentage(container, start, stop))

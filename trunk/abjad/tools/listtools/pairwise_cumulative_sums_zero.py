@@ -1,5 +1,7 @@
 from abjad.rational.rational import Rational
 from abjad.tools import mathtools
+from abjad.tools.listtools.cumulative_sums_zero import cumulative_sums_zero \
+   as listtools_cumulative_sums_zero
 from abjad.tools.listtools.pairwise import pairwise as listtools_pairwise
 
 
@@ -18,4 +20,4 @@ def pairwise_cumulative_sums_zero(l):
    assert isinstance(l, list)
    assert all([isinstance(x, (int, float, long, Rational)) for x in l])
    
-   return listtools_pairwise(mathtools.cumulative_sums_zero(l))
+   return listtools_pairwise(listtools_cumulative_sums_zero(l))
