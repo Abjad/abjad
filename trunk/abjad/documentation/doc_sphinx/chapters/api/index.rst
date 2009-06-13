@@ -336,7 +336,6 @@ Abjad API
    tools/listtools/negate_elements_at_indices
    tools/listtools/negate_elements_at_indices_absolutely
    tools/listtools/outer_product
-   tools/listtools/overwrite_elements_at
    tools/listtools/overwrite_slices_at
    tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums_zero
@@ -350,6 +349,7 @@ Abjad API
    tools/listtools/repeat_subruns_cyclic
    tools/listtools/repeat_to_length
    tools/listtools/repeat_to_weight
+   tools/listtools/replace_elements_cyclic
    tools/listtools/rotate
    tools/listtools/sign
    tools/listtools/sum_by_sign

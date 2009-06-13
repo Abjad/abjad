@@ -2,36 +2,36 @@ import sys
 import types
 
 
-def overwrite_elements_at(l, indices, material):
-   '''Overwrite elements in *l* at cyclic *indices* with cyclic *material*.
+def replace_elements_cyclic(l, indices, material):
+   '''Replace elements in *l* at cyclic *indices* with cyclic *material*.
 
    ::
 
       abjad> l = range(20)
-      abjad> listtools.overwrite_elements_at(l, ([0], 2), (['A', 'B'], 3))
+      abjad> listtools.replace_elements_cyclic(l, ([0], 2), (['A', 'B'], 3))
       ['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15, 16, 17, 'A', 19]
 
    ::
 
       abjad> l = range(20)
-      abjad> listtools.overwrite_elements_at(l, ([0], 2), (['*'], 1))
+      abjad> listtools.replace_elements_cyclic(l, ([0], 2), (['*'], 1))
       ['*', 1, '*', 3, '*', 5, '*', 7, '*', 9, '*', 11, '*', 13, '*', 15, '*', 17, '*', 19]
 
    ::
 
       abjad> l = range(20)
-      abjad> listtools.overwrite_elements_at(l, ([0], 2), (['A', 'B', 'C', 'D'], None))
+      abjad> listtools.replace_elements_cyclic(l, ([0], 2), (['A', 'B', 'C', 'D'], None))
       ['A', 1, 'B', 3, 'C', 5, 'D', 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
    ::
 
       abjad> l = range(20)
-      abjad> listtools.overwrite_elements_at(l, ([0, 1, 8, 13], None), (['A', 'B', 'C', 'D'], None))
+      abjad> listtools.replace_elements_cyclic(l, ([0, 1, 8, 13], None), (['A', 'B', 'C', 'D'], None))
       ['A', 'B', 2, 3, 4, 5, 6, 7, 'C', 9, 10, 11, 12, 'D', 14, 15, 16, 17, 18, 19]
 
    Raise :exc:`TypeError` when *l* is not a list::
 
-      abjad> listtools.overwrite_elements_at('foo', ([0], 2), (['*'], 1))
+      abjad> listtools.replace_elements_cyclic('foo', ([0], 2), (['*'], 1))
       TypeError
    '''
 
