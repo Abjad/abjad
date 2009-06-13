@@ -24,8 +24,8 @@ def test_layout_fixed_system_indicator_01( ):
                    \break
    }'''
 
-   system_indicator = FixedSystemIndicator((20, ), 1)
-   layout.fixed_systems_apply(t, system_indicator)
+   system_indicator = FixedSystemsIndicator((20, ), 1)
+   layout.apply_fixed_systems_indicator(t, system_indicator)
 
    r'''\new Staff {
                    \overrideProperty #"Score.NonMusicalPaperColumn"

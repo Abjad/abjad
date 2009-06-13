@@ -104,7 +104,7 @@ Abjad API
    instrument/interface
    instrument/spanner
    interfaces/aggregator
-   layout/systemindicator
+   layout/systemsindicator
    leaf/duration
    leaf/formatter
    leaf/leaf
@@ -312,7 +312,7 @@ Abjad API
    tools/label/leaf_depth
    tools/label/leaf_durations
    tools/label/leaf_layer
-   tools/layout/fixed_systems_apply
+   tools/layout/apply_fixed_systems_indicator
    tools/layout/line_break_every_prolated
    tools/layout/line_break_every_seconds
    tools/leaftools/duration_change

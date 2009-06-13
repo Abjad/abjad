@@ -1,9 +1,9 @@
-from abjad.layout.systemindicator import FixedSystemIndicator
+from abjad.layout.systemsindicator import FixedSystemsIndicator
 from abjad.measure.measure import _Measure
 from abjad.tools import iterate
 
 
-def fixed_systems_apply(expr, system_indicator, klass = _Measure):
+def apply_fixed_systems_indicator(expr, system_indicator, klass = _Measure):
    r'''Apply *system_indicator* to *expr*.
    Music *expr* must already be marked with line breaks.
 
@@ -30,8 +30,8 @@ def fixed_systems_apply(expr, system_indicator, klass = _Measure):
                       \break
       }
 
-      system_indicator = FixedSystemIndicator((20, ), 1)
-      layout.fixed_systems_apply(t, system_indicator)
+      system_indicator = FixedSystemsIndicator((20, ), 1)
+      layout.apply_fixed_systems_indicator(t, system_indicator)
 
       \new Staff {
                       \overrideProperty #"Score.NonMusicalPaperColumn"
@@ -58,21 +58,21 @@ def fixed_systems_apply(expr, system_indicator, klass = _Measure):
       }
    '''
 
-   if not isinstance(system_indicator, FixedSystemIndicator):
+   if not isinstance(system_indicator, FixedSystemsIndicator):
       raise TypeError
 
-   yOffsetTuple = system_indicator.yOffsetTuple
-   systems_per_page = len(yOffsetTuple)
+   y_offset_tuple = system_indicator.y_offset_tuple
+   systems_per_page = len(y_offset_tuple)
 
    line_breaks_found = 0
    prev = None
    for cur in iterate.naive(expr, klass):
       if prev is None or prev.breaks.line:
          system_on_page = (line_breaks_found + 
-            system_indicator.startingSystem) % \
+            system_indicator.starting_system) % \
             systems_per_page
-         yOffset = yOffsetTuple[system_on_page]
-         cur.breaks.y = yOffset
+         y_offset = y_offset_tuple[system_on_page]
+         cur.breaks.y = y_offset
          line_breaks_found += 1
          if system_on_page == 0:
             if prev is not None:
