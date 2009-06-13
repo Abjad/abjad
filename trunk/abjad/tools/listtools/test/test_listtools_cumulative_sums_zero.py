@@ -12,9 +12,11 @@ def test_listtools_cumulative_sums_zero_01( ):
       [0, -10, 0, -10, 0]
 
 
-def test_listtools_cumulative_sums_zero_02( ):
-   '''Raise TypeError when l is neither tuple nor list.
-      Raise ValueError when l is empty.'''
+## Must allow generator input as l. ##
 
-   assert py.test.raises(TypeError, "listtools.cumulative_sums_zero('foo')")
-   assert py.test.raises(ValueError, 'listtools.cumulative_sums_zero([ ])')
+#def test_listtools_cumulative_sums_zero_02( ):
+#   '''Raise TypeError when l is neither tuple nor list.
+#      Raise ValueError when l is empty.'''
+#
+#   assert py.test.raises(TypeError, "listtools.cumulative_sums_zero('foo')")
+#   assert py.test.raises(ValueError, 'listtools.cumulative_sums_zero([ ])')

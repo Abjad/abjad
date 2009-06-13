@@ -17,7 +17,4 @@ def pairwise_cumulative_sums_zero(l):
 
    Note that this function returns a generator.'''
 
-   assert isinstance(l, list)
-   assert all([isinstance(x, (int, float, long, Rational)) for x in l])
-   
    return listtools_pairwise(listtools_cumulative_sums_zero(l))

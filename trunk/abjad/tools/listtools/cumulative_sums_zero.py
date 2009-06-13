@@ -14,22 +14,10 @@ def cumulative_sums_zero(l):
       abjad> listtools.cumulative_sums_zero([1, -2, 3, -4, 5, -6, 7, -8])
       [0, 1, -1, 2, -2, 3, -3, 4, -4]
 
-   Raise :exc:`TypeError` when *l* is neither list nor tuple::
-
-      abjad> listtools.cumulative_sums_zero('foo')
-      TypeError
-
    Raise :exc:`ValueError` when *l* is empty::
 
       abjad> listtools.cumulative_sums_zero([ ])
       ValueError'''
-
-
-   if not isinstance(l, (list, tuple)):
-      raise TypeError
-
-   if len(l) == 0:
-      raise ValueError
 
    result = [0]
    for element in l:
