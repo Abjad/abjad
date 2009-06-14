@@ -1,6 +1,7 @@
 from abjad.cfg.cfg import accidental_spelling
 from abjad.core.abjadcore import _Abjad
-from abjad.accidental.accidental import Accidental
+#from abjad.accidental.accidental import Accidental
+from abjad.accidental import Accidental
 from abjad.pitch.initializer import _PitchInitializer
 
 

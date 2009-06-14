@@ -1,5 +1,5 @@
 from abjad.beam.complex.format import _BeamComplexFormatInterface
-from abjad.measure.measure import _Measure
+#from abjad.measure.measure import _Measure
 
 
 class _BeamComplexMeasuredFormatInterface(_BeamComplexFormatInterface):
@@ -8,6 +8,7 @@ class _BeamComplexMeasuredFormatInterface(_BeamComplexFormatInterface):
 
    def before(self, leaf):
       '''Spanner format contribution to output before leaf.'''
+      from abjad.measure.measure import _Measure
       result = [ ]
       spanner = self.spanner
       if leaf.beam.beamable:

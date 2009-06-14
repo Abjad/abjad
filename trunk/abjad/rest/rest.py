@@ -1,5 +1,5 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.pitch.pitch import Pitch
+#from abjad.pitch.pitch import Pitch
 from abjad.rest.initializer import _RestInitializer
 
 
@@ -49,6 +49,7 @@ class Rest(_Leaf):
          '''Read / write value for so-called pitched rest.'''
          return self._pitch
       def fset(self, arg):
+         from abjad.pitch.pitch import Pitch
          if isinstance(arg, type(None)):
             self._pitch = None
          elif isinstance(arg, (int, float, long)):

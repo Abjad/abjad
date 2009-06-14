@@ -1,7 +1,7 @@
-from abjad.component.component import _Component
+#from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
-from abjad.tools import iterate
-from abjad.leaf.leaf import _Leaf
+#from abjad.tools import iterate
+#from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.spanner.offset import _SpannerOffsetInterface
 from abjad.rational.rational import Rational
@@ -13,7 +13,6 @@ class Spanner(_Abjad):
 
    def __init__(self, music = None):
       '''Apply spanner to music. Init dedicated duration interface.'''
-      from abjad.component.component import _Component
       self._components = [ ]
       self._duration = _SpannerDurationInterface(self)
       self._offset = _SpannerOffsetInterface(self)
@@ -77,7 +76,10 @@ class Spanner(_Abjad):
       return [(self, spanner, result)]
   
    def _initializeMusic(self, music):
+      from abjad.component.component import _Component
+      from abjad.leaf.leaf import _Leaf
       from abjad.tools import check
+      from abjad.tools import iterate
       music = music or [ ]
       if isinstance(music, _Component):
          music = [music]

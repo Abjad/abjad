@@ -1,4 +1,5 @@
-from abjad.accidental.accidental import Accidental
+#from abjad.accidental.accidental import Accidental
+from abjad.accidental import Accidental
 from abjad.tools.pitchtools.letter_pitch_number_to_nearest_accidental_string \
    import letter_pitch_number_to_nearest_accidental_string as \
    pitchtools_letter_pitch_number_to_nearest_accidental_string

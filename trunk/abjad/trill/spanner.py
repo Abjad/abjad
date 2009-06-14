@@ -1,4 +1,4 @@
-from abjad.pitch.pitch import Pitch
+#from abjad.pitch.pitch import Pitch
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 from abjad.trill.format import _TrillSpannerFormatInterface
 import types
@@ -61,6 +61,7 @@ class Trill(_GrobHandlerSpanner):
 
          return self._pitch
       def fset(self, expr):
+         from abjad.pitch.pitch import Pitch
          assert isinstance(expr, (Pitch, types.NoneType))
          self._pitch = expr
       return property(**locals( ))

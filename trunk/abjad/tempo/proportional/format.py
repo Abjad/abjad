@@ -1,6 +1,6 @@
 from abjad.scm.moment import Moment
 from abjad.tempo.format import _TempoSpannerFormatInterface
-from abjad.tools import spacing
+#from abjad.tools import spacing
 
 
 class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
@@ -31,6 +31,7 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
 
    def before(self, leaf):
       '''Spanner format contribution before leaf.'''
+      from abjad.tools import spacing
       result = [ ]
       result.extend(_TempoSpannerFormatInterface.before(self, leaf))
       spanner = self.spanner
