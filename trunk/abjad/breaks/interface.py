@@ -1,7 +1,9 @@
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
-from abjad.exceptions.exceptions import TypographicWhitespaceError
-from abjad.rational.rational import Rational
+#from abjad.exceptions.exceptions import TypographicWhitespaceError
+from abjad.exceptions import TypographicWhitespaceError
+#from abjad.rational.rational import Rational
+from abjad.rational import Rational
 import types
 
 

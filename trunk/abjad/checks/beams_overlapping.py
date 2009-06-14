@@ -7,7 +7,8 @@ class BeamsOverlapping(_Check):
 
    def _run(self, expr):
       from abjad.leaf.leaf import _Leaf
-      from abjad.beam.spanner import Beam
+      #from abjad.beam.spanner import Beam
+      from abjad.beam import Beam
       violators = [ ]
       for leaf in iterate.naive(expr, _Leaf):
          beams = [p for p in leaf.spanners.attached

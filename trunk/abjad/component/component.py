@@ -19,7 +19,8 @@ from abjad.numbering.interface import _NumberingInterface
 from abjad.offset.interface import _OffsetInterface
 from abjad.parentage.parentage import _Parentage
 from abjad.pianopedal.interface import _PianoPedalInterface
-from abjad.rational.rational import Rational
+#from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.receipt.component import _ComponentReceipt
 #from abjad.rest.interface import _RestInterface
 #from abjad.score.interface.interface import _ScoreInterface

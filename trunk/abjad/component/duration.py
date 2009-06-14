@@ -1,6 +1,7 @@
 from abjad.core.interface import _Interface
 from abjad.tools import listtools
-from abjad.rational.rational import Rational
+#from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 class _ComponentDurationInterface(_Interface):

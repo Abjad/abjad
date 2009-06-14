@@ -5,7 +5,8 @@ class HairpinsIntermarked(_Check):
    '''Are there any dynamic marks in the middle of a hairpin?'''
 
    def _run(self, expr):
-      from abjad.hairpin.spanner import Hairpin
+      #from abjad.hairpin.spanner import Hairpin
+      from abjad.hairpin import Hairpin
       violators = [ ]
       total, bad = 0, 0
       hairpins = [
