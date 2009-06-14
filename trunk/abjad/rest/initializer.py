@@ -9,7 +9,8 @@ class _RestInitializer(_Initializer):
       from abjad.tools.scoretools.transfer_all_attributes import _transfer_all_attributes
       from abjad.note.note import Note
       from abjad.rest.rest import Rest
-      from abjad.skip.skip import Skip
+      #from abjad.skip.skip import Skip
+      from abjad.skip import Skip
       client.pitch = None
       if len(args) == 1 and isinstance(args[0], _Leaf):
          if isinstance(args[0], Note):

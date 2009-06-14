@@ -9,7 +9,8 @@ class _NoteInitializer(_Initializer):
       from abjad.rest.rest import Rest
       from abjad.chord.chord import Chord
       from abjad.note.note import Note
-      from abjad.skip.skip import Skip
+      #from abjad.skip.skip import Skip
+      from abjad.skip import Skip
       from abjad.tools import clone
       client.notehead = None
       if len(args) == 1 and isinstance(args[0], _Leaf):

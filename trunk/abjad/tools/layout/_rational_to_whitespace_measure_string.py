@@ -1,5 +1,6 @@
 from abjad.measure.rigid.measure import RigidMeasure
-from abjad.skip.skip import Skip
+#from abjad.skip.skip import Skip
+from abjad.skip import Skip
 
 
 def _rational_to_whitespace_measure_string(duration):
