@@ -1,5 +1,5 @@
 from abjad.core.observer import _Observer
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 class _OffsetProlatedInterface(_Observer):

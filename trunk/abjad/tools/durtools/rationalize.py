@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools.durtools.is_token import is_token
 from abjad.tools.durtools.token_unpack import token_unpack
 

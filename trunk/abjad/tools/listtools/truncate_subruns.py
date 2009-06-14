@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 def truncate_subruns(l):

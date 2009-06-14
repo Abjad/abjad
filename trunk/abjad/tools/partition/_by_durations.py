@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools import check
 from abjad.tools import split
 from abjad.tools.split._at_duration import _at_duration as split__at_duration

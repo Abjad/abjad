@@ -1,5 +1,5 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tempo.indication import TempoIndication
 
 

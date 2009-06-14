@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tuplet.fm.duration import _FMTupletDurationInterface
 from abjad.tuplet.tuplet import _Tuplet
 

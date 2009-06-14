@@ -1,5 +1,5 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tie.spanner import Tie
 from abjad.tools import clone
 from abjad.tools import tietools

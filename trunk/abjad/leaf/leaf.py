@@ -7,7 +7,7 @@ from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
 from abjad.leaf.spanner.aggregator import _LeafSpannerAggregator
 from abjad.markup.interface import _MarkupInterface
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 import operator
 
 

@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import PartitionError
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 def _group(duration_type,

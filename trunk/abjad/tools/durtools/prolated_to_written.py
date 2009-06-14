@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools.durtools.is_assignable import is_assignable
 from abjad.tools.durtools.naive_prolated_to_written import \
    naive_prolated_to_written

@@ -1,7 +1,7 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 class Meter(_GrobHandler):

@@ -1,5 +1,5 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 def duration_rewrite(leaf, target):

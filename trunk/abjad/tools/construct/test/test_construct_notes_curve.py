@@ -1,5 +1,5 @@
 from abjad.tools.construct import notes_curve
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 import py.test
 
 def test_construct_notes_curve_01( ):

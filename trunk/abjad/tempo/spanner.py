@@ -1,6 +1,6 @@
 from abjad.exceptions.exceptions import UndefinedSpacingError
 from abjad.exceptions.exceptions import UndefinedTempoError
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 from abjad.tempo.format import _TempoSpannerFormatInterface
 from abjad.tempo.indication import TempoIndication

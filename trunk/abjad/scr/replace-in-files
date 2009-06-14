@@ -7,7 +7,7 @@ def _usage( ):
    result.append('')
    result.append('Usage:')
    result.append('')
-   result.append('replace-in-file DIR OLD_TEXT NEW_TEXT [CONFIRM=true/false]')
+   result.append('replace-in-files DIR OLD_TEXT NEW_TEXT [CONFIRM=true/false]')
    result.append('')
    result.append('Crawl directory DIR and read every file in it recursively. ')
    result.append('Replace OLD_TEXT with NEW_TEXT in each file.')

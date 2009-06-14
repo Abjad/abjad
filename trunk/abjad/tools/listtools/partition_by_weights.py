@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools import mathtools
 from abjad.tools.listtools.flatten import flatten as listtools_flatten
 from abjad.tools.listtools.weight import weight as listtools_weight

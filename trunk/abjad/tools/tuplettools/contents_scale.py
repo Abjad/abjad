@@ -1,5 +1,5 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.contents_fix import contents_fix

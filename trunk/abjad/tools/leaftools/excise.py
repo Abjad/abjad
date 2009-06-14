@@ -1,6 +1,6 @@
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.meter.meter import Meter
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools.detach import detach

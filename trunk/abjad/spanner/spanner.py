@@ -4,7 +4,7 @@ from abjad.core.abjadcore import _Abjad
 #from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.spanner.offset import _SpannerOffsetInterface
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from copy import deepcopy as python_deepcopy
 
 

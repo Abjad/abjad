@@ -1,5 +1,5 @@
 from abjad.note.note import Note
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 def run(count, duration = Rational(1, 8)):

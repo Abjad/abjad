@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools

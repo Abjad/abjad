@@ -1,6 +1,6 @@
 from abjad.measure.measure import _Measure
 from abjad.note.note import Note
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 #from abjad.skip.skip import Skip
 from abjad.skip import Skip
 from abjad.tools import construct

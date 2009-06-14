@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 def pair_multiply_constant_numerator(pair, multiplier):

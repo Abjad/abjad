@@ -4,7 +4,7 @@ from abjad.exceptions.exceptions import AssignabilityError
 from abjad.exceptions.exceptions import UndefinedTempoError
 from abjad.tools import mathtools
 from abjad.tools import durtools
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools import durtools
 import math
 

@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools import iterate
 from abjad.tools.measuretools.scale_and_remeter import scale_and_remeter
 from abjad.tools.measuretools.spin import spin

@@ -1,5 +1,5 @@
 from abjad.exceptions.exceptions import InputSpecificationError
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 import types
 
 

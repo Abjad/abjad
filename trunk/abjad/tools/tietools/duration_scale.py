@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 from abjad.tools.tietools.is_chain import is_chain
 from abjad.tools.tietools.duration_change import duration_change as \
    tietools_duration_change

@@ -1,4 +1,4 @@
-from abjad.rational.rational import Rational
+from abjad.rational import Rational
 
 
 def seconds_to_clock_string(total_seconds, escape = False):
