@@ -1,7 +1,7 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.core.settinghandler import _ContextSettingHandler
-from abjad.markup.markup import Markup
+from abjad.markup import Markup
 from abjad.spanner.receptor import _SpannerReceptor
 import types
 

@@ -1,7 +1,7 @@
-from abjad.note.note import Note
+from abjad.note import Note
 from abjad.tools import durtools
 from abjad.tools import scoretools
-from abjad.tuplet.fd.tuplet import FixedDurationTuplet
+from abjad.tuplet import FixedDurationTuplet
 
 
 def leaf(l, divisions = 2, prolation = 'diminution'):

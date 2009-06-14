@@ -1,8 +1,8 @@
-from abjad.note.note import Note
+from abjad.note import Note
 from abjad.tools import durtools
 from abjad.tools import scoretools
 from abjad.tools import tietools
-from abjad.tuplet.fd.tuplet import FixedDurationTuplet
+from abjad.tuplet import FixedDurationTuplet
 
 
 def tie_chain(chain, divisions = 2, prolation = 'diminution'):

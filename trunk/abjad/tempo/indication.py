@@ -46,7 +46,7 @@ class TempoIndication(_Abjad):
    @property
    def _dotted(self):
       '''Dotted numeral representation of duration.'''
-      from abjad.note.note import Note
+      from abjad.note import Note
       return Note(0, self.duration).duration._dotted
 
    ## PUBLIC ATTRIBUTES ##

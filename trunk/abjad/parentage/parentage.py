@@ -48,7 +48,7 @@ class _Parentage(_Interface):
          the parent of Q is either a parallel container or None.
          In the case that no such sequential container exists
          in the parentage of client, return None.'''
-      from abjad.container.container import Container
+      from abjad.container import Container
       for component in self.parentage:
          if isinstance(component, Container) and not component.parallel:
             parent = component.parentage.parent
@@ -97,10 +97,10 @@ class _Parentage(_Interface):
    def signature(self):
       '''Return _ContainmentSignature giving the root and
          first voice, staff and score in parentage of component.'''
-      from abjad.score.score import Score
-      from abjad.staffgroup.staffgroup import StaffGroup
-      from abjad.staff.staff import Staff
-      from abjad.voice.voice import Voice
+      from abjad.score import Score
+      from abjad.staffgroup import StaffGroup
+      from abjad.staff import Staff
+      from abjad.voice import Voice
       signature = _ContainmentSignature( )
       signature._self = self._client._ID
       for component in self._client.parentage.parentage:

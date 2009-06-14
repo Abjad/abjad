@@ -1,4 +1,4 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.tools import listtools
 from abjad.tools.clonewp.by_leaf_range_with_parentage import \
    by_leaf_range_with_parentage

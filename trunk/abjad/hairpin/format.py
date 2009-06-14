@@ -10,8 +10,8 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
 
    def right(self, leaf):
       '''Spanner format contribution right of leaf.'''
-      from abjad.chord.chord import Chord
-      from abjad.note.note import Note
+      from abjad.chord import Chord
+      from abjad.note import Note
       result = [ ]
       spanner = self.spanner
       if not spanner.trim:

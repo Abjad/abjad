@@ -7,7 +7,7 @@ class MeasuresImproperlyFilled(_Check):
       does effective meter duration equal preprolated duration?'''
 
    def _run(self, expr):
-      #from abjad.measure.rigid.measure import RigidMeasure
+      #from abjad.measure import RigidMeasure
       from abjad.measure import RigidMeasure
       violators = [ ]
       total, bad = 0, 0

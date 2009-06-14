@@ -1,4 +1,4 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.exceptions import MusicContentsError
 from abjad.leaf.leaf import _Leaf
 from abjad.tools import check

@@ -1,7 +1,7 @@
-from abjad.chord.chord import Chord
-from abjad.note.note import Note
-from abjad.rest.rest import Rest
-from abjad.tie.spanner import Tie
+from abjad.chord import Chord
+from abjad.note import Note
+from abjad.rest import Rest
+from abjad.tie import Tie
 from abjad.tools import durtools
 
 

@@ -1,4 +1,4 @@
-from abjad.meter.meter import Meter
+from abjad.meter import Meter
 from abjad.tools import check
 from abjad.tools import durtools
 from abjad.tools import clone

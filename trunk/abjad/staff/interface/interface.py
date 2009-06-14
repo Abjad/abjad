@@ -15,7 +15,7 @@ class _StaffInterface(_Observer, _FormatContributor, _BacktrackingInterface):
       '''Register as observer, format contributor and backtracker.
          Init effective and force staff to None.
          Init hide to False.'''
-      from abjad.staff.staff import Staff
+      from abjad.staff import Staff
       _Observer.__init__(self, _client, _updateInterface)
       _FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'staff')
@@ -48,7 +48,7 @@ class _StaffInterface(_Observer, _FormatContributor, _BacktrackingInterface):
    def explicit(self):
       '''First explicit *Abjad* ``Staff`` in parentage of client.
          Otherwise ``None``.'''
-      from abjad.staff.staff import Staff
+      from abjad.staff import Staff
       for parent in self._client.parentage.parentage:
          if isinstance(parent, Staff):
             return parent

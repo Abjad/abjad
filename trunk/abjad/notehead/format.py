@@ -53,7 +53,7 @@ class _NoteHeadFormatInterface(_FormatInterface):
 
    @property
    def before(self):
-      from abjad.chord.chord import Chord
+      from abjad.chord import Chord
       result = [ ]
       client = self.notehead.client
       if client and isinstance(client, Chord):

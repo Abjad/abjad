@@ -1,5 +1,4 @@
-from abjad.measure.rigid.measure import RigidMeasure
-#from abjad.skip.skip import Skip
+from abjad.measure import RigidMeasure
 from abjad.skip import Skip
 
 

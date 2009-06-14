@@ -9,7 +9,7 @@ class _TieInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __init__(self, client):
       '''Bind to client and LilyPond Tie grob.
          Receive Abjad Tie spanner.'''
-      from abjad.tie.spanner import Tie
+      from abjad.tie import Tie
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Tie')
       _SpannerReceptor.__init__(self, (Tie, ))

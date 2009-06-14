@@ -31,7 +31,7 @@ class NoteHead(_NoteHeadInterface):
    def _unregister_if_necessary(self):
       '''Note noteheads should register as format contributors.
          Chord noteheads should not register as format contributors.'''
-      from abjad.chord.chord import Chord
+      from abjad.chord import Chord
       client = getattr(self, '_client', None)
       if client is not None:
          if isinstance(client, Chord):

@@ -16,10 +16,6 @@ from abjad.notehead.interface import _NoteHeadInterface
 class _ChordInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
-      #from abjad.chord.chord import Chord
-      #from abjad.note.note import Note
-      #from abjad.rest.rest import Rest
-      #from abjad.skip.skip import Skip
       from abjad.chord import Chord
       from abjad.note import Note
       from abjad.rest import Rest

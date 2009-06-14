@@ -8,7 +8,6 @@ class TiesMispitched(_Check):
       '''Check for mispitched notes.
          Do not check tied rests or skips.
          Implement chord-checking later.'''
-      #from abjad.note.note import Note
       from abjad.note import Note
       violators = [ ]
       total = 0

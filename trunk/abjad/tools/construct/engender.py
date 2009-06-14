@@ -1,7 +1,7 @@
-from abjad.chord.chord import Chord
+from abjad.chord import Chord
 from abjad.tools import durtools
-from abjad.note.note import Note
-from abjad.rest.rest import Rest
+from abjad.note import Note
+from abjad.rest import Rest
 from abjad.tools import pitchtools
 
 

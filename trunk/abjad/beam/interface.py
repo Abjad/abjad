@@ -21,9 +21,7 @@ class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
    @property
    def beamable(self):
       '''True when client is beamable, otherwise False.'''
-      #from abjad.chord.chord import Chord
       from abjad.chord import Chord
-      #from abjad.note.note import Note
       from abjad.note import Note
       client = self.client
       flags = client.duration._flags

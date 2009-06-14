@@ -1,10 +1,10 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.exceptions import AssignabilityError
-from abjad.note.note import Note
-from abjad.rest.rest import Rest
+from abjad.note import Note
+from abjad.rest import Rest
 from abjad.tools import construct
 from abjad.tools import listtools
-from abjad.tuplet.fd.tuplet import FixedDurationTuplet
+from abjad.tuplet import FixedDurationTuplet
 import math
 
 

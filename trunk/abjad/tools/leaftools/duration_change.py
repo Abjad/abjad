@@ -1,10 +1,10 @@
 from abjad.exceptions import AssignabilityError
 from abjad.leaf.leaf import _Leaf
 from abjad.rational import Rational
-from abjad.tie.spanner import Tie
+from abjad.tie import Tie
 from abjad.tools import clone
 from abjad.tools import construct
-from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tuplet import FixedMultiplierTuplet
 
    
 def duration_change(leaf, new_preprolated_duration):

@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.leaf.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.tools import durtools

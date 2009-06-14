@@ -1,10 +1,10 @@
-from abjad.measure.rigid.measure import RigidMeasure
-from abjad.meter.meter import Meter
+from abjad.measure import RigidMeasure
+from abjad.meter import Meter
 from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools.detach import detach
-from abjad.tuplet.fd.tuplet import FixedDurationTuplet
+from abjad.tuplet import FixedDurationTuplet
 
 
 def excise(leaf):

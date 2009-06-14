@@ -7,7 +7,7 @@ from abjad.tools import pitchtools
 from abjad.tools.construct.helpers import _construct_tied_chord
 from abjad.tools.construct.helpers import _construct_tied_note
 from abjad.tools.construct.helpers import _construct_tied_rest
-from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tuplet import FixedMultiplierTuplet
 
 
 ## TODO: Change construct.leaves( ) signature to allow ('c', 4) named pairs 

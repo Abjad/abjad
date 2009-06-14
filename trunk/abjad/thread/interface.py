@@ -16,10 +16,10 @@ class _ThreadInterface(_Interface):
    def signature(self):
       '''Return _ContainmentSignature giving the root and
          first voice, staff and score in parentage of component.'''
-      from abjad.score.score import Score
-      from abjad.staffgroup.staffgroup import StaffGroup
-      from abjad.staff.staff import Staff
-      from abjad.voice.voice import Voice
+      from abjad.score import Score
+      from abjad.staffgroup import StaffGroup
+      from abjad.staff import Staff
+      from abjad.voice import Voice
       signature = _ContainmentSignature( )
       signature._self = self._client._ID
       for component in self._client.parentage.parentage:

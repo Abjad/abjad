@@ -1,4 +1,4 @@
-from abjad.meter.meter import Meter
+from abjad.meter import Meter
 from abjad.rational import Rational
 from abjad.tools import durtools
 

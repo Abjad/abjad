@@ -1,15 +1,14 @@
 from abjad.core.initializer import _Initializer
-from abjad.notehead.notehead import NoteHead
+from abjad.notehead import NoteHead
 
 
 class _NoteInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
       from abjad.tools.scoretools.transfer_all_attributes import _transfer_all_attributes
-      from abjad.rest.rest import Rest
-      from abjad.chord.chord import Chord
-      from abjad.note.note import Note
-      #from abjad.skip.skip import Skip
+      from abjad.rest import Rest
+      from abjad.chord import Chord
+      from abjad.note import Note
       from abjad.skip import Skip
       from abjad.tools import clone
       client.notehead = None

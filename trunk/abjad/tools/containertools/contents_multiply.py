@@ -1,4 +1,4 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.tools.containertools.extend_cyclic import extend_cyclic
 
 

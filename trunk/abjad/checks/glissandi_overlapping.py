@@ -7,7 +7,6 @@ class GlissandiOverlapping(_Check):
       Dove-tailed glissandi are OK.'''
 
    def _run(self, expr):
-      #from abjad.glissando.spanner import Glissando
       from abjad.glissando import Glissando
       from abjad.leaf.leaf import _Leaf
       violators = [ ] 

@@ -1,6 +1,6 @@
-from abjad.container.container import Container
-from abjad.note.note import Note
-from abjad.rest.rest import Rest
+from abjad.container import Container
+from abjad.note import Note
+from abjad.rest import Rest
 from abjad.tools import clonewp
 from abjad.tools import construct
 

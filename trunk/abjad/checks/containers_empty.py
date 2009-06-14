@@ -7,7 +7,6 @@ class ContainersEmpty(_Check):
    runtime = 'composition'
 
    def _run(self, expr):
-      #from abjad.container.container import Container
       from abjad.container import Container
       violators = [ ]
       bad, total = 0, 0

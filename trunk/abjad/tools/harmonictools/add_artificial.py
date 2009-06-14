@@ -1,4 +1,4 @@
-from abjad.chord.chord import Chord
+from abjad.chord import Chord
 from abjad.tools import pitchtools
 
 

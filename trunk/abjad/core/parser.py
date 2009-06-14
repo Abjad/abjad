@@ -1,6 +1,6 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.scm.function import Function
-from abjad.scm.moment import Moment
+from abjad.scm import Function
+from abjad.scm import Moment
 
 
 class _Parser(_Abjad):

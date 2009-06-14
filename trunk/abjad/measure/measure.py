@@ -1,4 +1,4 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.measure.duration import _MeasureDurationInterface
 from abjad.measure.formatter import _MeasureFormatter
 

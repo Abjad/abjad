@@ -4,7 +4,7 @@ from abjad.exceptions import UnderfullMeasureError
 from abjad.measure.number import _MeasureFormatterNumberInterface
 from abjad.measure.slots import _MeasureFormatterSlotsInterface
 from abjad.rational import Rational
-from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tuplet import FixedMultiplierTuplet
 
 
 class _MeasureFormatter(_ContainerFormatter):

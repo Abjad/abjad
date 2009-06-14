@@ -1,6 +1,6 @@
 from abjad.measure.measure import _Measure
 from abjad.tools import iterate
-from abjad.tuplet.fd.tuplet import FixedDurationTuplet
+from abjad.tuplet import FixedDurationTuplet
 import copy
 
 

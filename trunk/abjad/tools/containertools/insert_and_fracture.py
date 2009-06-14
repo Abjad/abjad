@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.container.container import Container
+from abjad.container import Container
 
 
 def insert_and_fracture(container, i, component):

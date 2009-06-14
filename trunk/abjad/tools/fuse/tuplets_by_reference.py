@@ -1,10 +1,10 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.exceptions import TupletFuseError
 from abjad.rational import Rational
 from abjad.tools import check
 from abjad.tuplet.tuplet import _Tuplet
-from abjad.tuplet.fd.tuplet import FixedDurationTuplet
-from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tuplet import FixedDurationTuplet
+from abjad.tuplet import FixedMultiplierTuplet
 
 
 def tuplets_by_reference(tuplets):

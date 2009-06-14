@@ -1,4 +1,4 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.navigator.dfs import depth_first_search
 from abjad.tools import check
 from abjad.tools import componenttools

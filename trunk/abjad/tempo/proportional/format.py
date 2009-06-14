@@ -1,6 +1,5 @@
-from abjad.scm.moment import Moment
+from abjad.scm import Moment
 from abjad.tempo.format import _TempoSpannerFormatInterface
-#from abjad.tools import spacing
 
 
 class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):

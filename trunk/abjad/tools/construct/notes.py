@@ -4,7 +4,7 @@ from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools.construct.helpers import _construct_unprolated_notes
-from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tuplet import FixedMultiplierTuplet
 import operator
 import math
       

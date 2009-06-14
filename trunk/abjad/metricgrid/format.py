@@ -1,6 +1,5 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.rational import Rational
-#from abjad.skip.skip import Skip
 from abjad.skip import Skip
 from abjad.spanner.format import _SpannerFormatInterface
 
