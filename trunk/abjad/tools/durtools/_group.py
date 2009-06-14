@@ -1,4 +1,4 @@
-from abjad.exceptions.exceptions import PartitionError
+from abjad.exceptions import PartitionError
 from abjad.rational import Rational
 
 

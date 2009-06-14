@@ -1,6 +1,6 @@
 from abjad.leaf.leaf import _Leaf
 from abjad.rational import Rational
-from abjad.tie.spanner import Tie
+from abjad.tie import Tie
 from abjad.tools import clone
 from abjad.tools import tietools
 from abjad.tools.leaftools.duration_change import duration_change as \

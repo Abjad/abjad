@@ -1,6 +1,6 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.exceptions.exceptions import ExtraSpannerError
-from abjad.exceptions.exceptions import MissingSpannerError
+from abjad.exceptions import ExtraSpannerError
+from abjad.exceptions import MissingSpannerError
 
 
 class _SpannerReceptor(_Abjad):

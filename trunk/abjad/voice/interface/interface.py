@@ -36,7 +36,7 @@ class _VoiceInterface(_Interface, _FormatContributor):
             abjad> t.voice.explicit
             Voice{4}'''
 
-      from abjad.voice.voice import Voice
+      from abjad.voice import Voice
       for parent in self._client.parentage.parentage:
          if isinstance(parent, Voice):
             return parent

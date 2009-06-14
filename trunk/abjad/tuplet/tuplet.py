@@ -1,4 +1,4 @@
-from abjad.container.container import Container
+from abjad.container import Container
 from abjad.tuplet.duration import _TupletDurationInterface
 from abjad.tuplet.formatter import _TupletFormatter
 

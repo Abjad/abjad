@@ -1,5 +1,5 @@
 from abjad.rational import Rational
-from abjad.tie.spanner import Tie
+from abjad.tie import Tie
 from abjad.tools import componenttools
 from abjad.tools import construct
 from abjad.tools import durtools
@@ -10,7 +10,7 @@ from abjad.tools.tietools.get_duration_preprolated import \
 from abjad.tools.tietools.get_leaves import get_leaves as tietools_get_leaves
 from abjad.tools.tietools.is_chain import is_chain as tietools_is_chain
 from abjad.tools.tietools.truncate import truncate
-from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tuplet import FixedMultiplierTuplet
 
 
 ## TODO: Inspect tietools.duration_change( ) carefully. ##

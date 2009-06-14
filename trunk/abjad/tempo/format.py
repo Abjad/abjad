@@ -1,5 +1,5 @@
-from abjad.exceptions.exceptions import UndefinedSpacingError
-from abjad.exceptions.exceptions import UndefinedTempoError
+from abjad.exceptions import UndefinedSpacingError
+from abjad.exceptions import UndefinedTempoError
 from abjad.spanner.format import _SpannerFormatInterface
 
 

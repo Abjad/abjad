@@ -1,4 +1,3 @@
-#from abjad.pitch.pitch import Pitch
 from abjad.spanner.grobhandler import _GrobHandlerSpanner
 from abjad.trill.format import _TrillSpannerFormatInterface
 import types

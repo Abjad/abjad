@@ -1,5 +1,5 @@
 from abjad.container.container import Container
-from abjad.exceptions.exceptions import TieChainError
+from abjad.exceptions import TieChainError
 from abjad.leaf.leaf import _Leaf
 
 

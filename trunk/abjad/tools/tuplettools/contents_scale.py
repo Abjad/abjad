@@ -3,8 +3,8 @@ from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.contents_fix import contents_fix
-from abjad.tuplet.fd.tuplet import FixedDurationTuplet
-from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tuplet import FixedDurationTuplet
+from abjad.tuplet import FixedMultiplierTuplet
 
 
 def contents_scale(tuplet, multiplier):

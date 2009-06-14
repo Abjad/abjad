@@ -1,5 +1,5 @@
 from abjad.container.container import Container
-from abjad.exceptions.exceptions import AssignabilityError
+from abjad.exceptions import AssignabilityError
 from abjad.note.note import Note
 from abjad.rest.rest import Rest
 from abjad.tools import construct

@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.exceptions.exceptions import ContiguityError
+from abjad.exceptions import ContiguityError
 from abjad.tools.check.assess_components import assess_components
 
 #visits = 0

@@ -1,4 +1,4 @@
-from abjad.note.note import Note
+from abjad.note import Note
 from abjad.tools import clone
 from abjad.tools import listtools
 from abjad.tools.pitchtools.get_pitch import get_pitch as \

@@ -1,4 +1,4 @@
-from abjad.exceptions.exceptions import MissingSpannerError
+from abjad.exceptions import MissingSpannerError
 from abjad.tools.tietools.is_chain import is_chain as tietools_is_chain
 
 

@@ -1,4 +1,4 @@
-from abjad.exceptions.exceptions import PartitionError
+from abjad.exceptions import PartitionError
 from abjad.rational import Rational
 from abjad.tools.listtools.flatten import flatten as listtools_flatten
 from abjad.tools.listtools.partition_by_weights import partition_by_weights \
@@ -35,7 +35,7 @@ def group_by_weights(l, weights,
       do append as final part.
    *  Defaults to ``False``.
 
-   Raise :exc:`~abjad.exceptions.exceptions.PartitionError` when
+   Raise :exc:`~abjad.exceptions.PartitionError` when
 
    *  When ``fill = 'exact'`` and ``listtools.weight(result[i])`` \
       can not equal ``weights[i]`` exactly.

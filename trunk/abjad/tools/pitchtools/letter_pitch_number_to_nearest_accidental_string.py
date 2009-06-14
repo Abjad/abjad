@@ -1,4 +1,3 @@
-#from abjad.accidental.accidental import Accidental
 from abjad.accidental import Accidental
 from abjad.tools.pitchtools.letter_to_pc import letter_to_pc as \
    pitchtools_letter_to_pc

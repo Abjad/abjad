@@ -1,4 +1,4 @@
-from abjad.exceptions.exceptions import AssignabilityError
+from abjad.exceptions import AssignabilityError
 from abjad.leaf.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.tie.spanner import Tie

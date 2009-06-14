@@ -1,8 +1,8 @@
 from abjad.leaf.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.tools import leaftools
-from abjad.tuplet.fd.tuplet import FixedDurationTuplet
-from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
+from abjad.tuplet import FixedDurationTuplet
+from abjad.tuplet import FixedMultiplierTuplet
 import math
 
 

@@ -1,4 +1,4 @@
-from abjad.exceptions.exceptions import MeterAssignmentError
+from abjad.exceptions import MeterAssignmentError
 from abjad.tools import durtools
 from abjad.meter.meter import Meter
 from abjad.meter.interface import _MeterInterface

@@ -1,5 +1,5 @@
 from abjad.container.container import Container
-from abjad.exceptions.exceptions import TupletFuseError
+from abjad.exceptions import TupletFuseError
 from abjad.rational import Rational
 from abjad.tools import check
 from abjad.tuplet.tuplet import _Tuplet

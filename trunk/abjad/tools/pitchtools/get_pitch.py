@@ -2,8 +2,8 @@ from abjad.chord.chord import Chord
 from abjad.note.note import Note
 from abjad.notehead.notehead import NoteHead
 from abjad.pitch.pitch import Pitch
-from abjad.exceptions.exceptions import ExtraPitchError
-from abjad.exceptions.exceptions import MissingPitchError
+from abjad.exceptions import ExtraPitchError
+from abjad.exceptions import MissingPitchError
 
 
 def get_pitch(pitch_carrier):
@@ -45,7 +45,7 @@ def get_pitch(pitch_carrier):
       abjad> pitchtools.get_pitch(chord)
       Pitch(df, 5)
 
-   Raise :exc:`~abjad.exceptions.exceptions.MissingPitchError` when
+   Raise :exc:`~abjad.exceptions.MissingPitchError` when
    *pitch_carrier* carries no :class:`~abjad.pitch.pitch.Pitch`.
    
    ::
@@ -75,7 +75,7 @@ def get_pitch(pitch_carrier):
       abjad> pitchtools.get_pitch(chord)
       MissingPitchError
 
-   Raise :exc:`~abjad.exceptions.exceptions.ExtraPitchError` when
+   Raise :exc:`~abjad.exceptions.ExtraPitchError` when
    :class:`~abjad.chord.chord.Chord` carries more than one pitch.
 
    ::

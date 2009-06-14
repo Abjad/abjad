@@ -1,6 +1,6 @@
 from abjad.container.container import Container
-from abjad.exceptions.exceptions import MeasureContiguityError
-from abjad.exceptions.exceptions import MissingMeasureError
+from abjad.exceptions import MeasureContiguityError
+from abjad.exceptions import MissingMeasureError
 from abjad.leaf.leaf import _Leaf
 from abjad.measure.measure import _Measure
 

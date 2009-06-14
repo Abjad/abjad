@@ -1,4 +1,4 @@
-from abjad.exceptions.exceptions import SpannerPopulationError
+from abjad.exceptions import SpannerPopulationError
 
 
 def find_index_at_score_offset(spanner, score_offset):

@@ -1,5 +1,5 @@
 from abjad.core.observer import _Observer
-from abjad.exceptions.exceptions import MeasureContiguityError
+from abjad.exceptions import MeasureContiguityError
 from abjad.rational import Rational
 
 

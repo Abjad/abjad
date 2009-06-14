@@ -9,7 +9,7 @@ def get_dominant_slice(container, start, stop):
       Generalization of dominant spanner-finding functions for slices.
       This exists for slices like t[2:2] that are empty lists.'''
 
-   from abjad.container.container import Container
+   from abjad.container import Container
    if not isinstance(container, Container):
       raise TypeError('Must be Abjad container.')
 

@@ -1,4 +1,4 @@
-from abjad.exceptions.exceptions import MissingSpannerError
+from abjad.exceptions import MissingSpannerError
 from abjad.tools import check
 from abjad.tools import iterate
 from abjad.leaf.leaf import _Leaf
