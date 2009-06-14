@@ -9,7 +9,7 @@ class _SlurInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __init__(self, client):
       '''Bind to client and LilyPond Slur grob.
          Receive Abjad Slur spanner.'''
-      from abjad.slur.spanner import Slur
+      from abjad.slur import Slur
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Slur')
       _SpannerReceptor.__init__(self, (Slur, ))

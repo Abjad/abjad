@@ -15,7 +15,7 @@ class _ScoreInterface(_Interface):
    def explicit(self):
       '''First explicit *Abjad* ``Score`` in parentage of client.
          If no explicit ``Score`` in parentage of client, return ``None``.'''
-      from abjad.score.score import Score
+      from abjad.score import Score
       for parent in self._client.parentage.parentage:
          if isinstance(parent, Score):
             return parent

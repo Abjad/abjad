@@ -1,4 +1,4 @@
-from abjad.layout.systemsindicator import FixedSystemsIndicator
+from abjad.layout import FixedSystemsIndicator
 from abjad.measure.measure import _Measure
 from abjad.tools import iterate
 

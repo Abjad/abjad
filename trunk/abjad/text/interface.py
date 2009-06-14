@@ -10,7 +10,7 @@ class _TextInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __init__(self, client):
       '''Bind client and LilyPond TextScript grob.
          Receive Abjad Text spanner.'''
-      from abjad.text.spanner import Text
+      from abjad.text import Text
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TextScript')
       _SpannerReceptor.__init__(self, (Text, ))

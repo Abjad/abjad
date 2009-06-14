@@ -9,7 +9,7 @@ class _TrillInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __init__(self, client):
       '''Bind to client and LilyPond TrillSpanner grob.
          Receive Abjad Trill spanner.'''
-      from abjad.trill.spanner import Trill
+      from abjad.trill import Trill
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TrillSpanner')
       _SpannerReceptor.__init__(self, (Trill, ))

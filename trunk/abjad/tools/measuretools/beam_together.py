@@ -1,4 +1,4 @@
-from abjad.beam.complex.durated.spanner import BeamComplexDurated
+from abjad.beam import BeamComplexDurated
 
 
 def beam_together(measures):
