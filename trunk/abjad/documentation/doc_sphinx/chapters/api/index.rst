@@ -329,6 +329,7 @@ Abjad API
    tools/listtools/difference_series
    tools/listtools/flatten
    tools/listtools/get_cyclic
+   tools/listtools/get_unordered_pairs
    tools/listtools/group_by_sign
    tools/listtools/group_by_weights
    tools/listtools/increase_at_indices
@@ -430,6 +431,7 @@ Abjad API
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonic_transpose
    tools/pitchtools/diatonicize
+   tools/pitchtools/get_interval_vector
    tools/pitchtools/get_pitch
    tools/pitchtools/get_pitches
    tools/pitchtools/get_signed_interval_series
