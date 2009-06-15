@@ -312,6 +312,7 @@ Abjad API
    tools/label/leaf_depth
    tools/label/leaf_durations
    tools/label/leaf_layer
+   tools/label/leaf_pcs
    tools/layout/apply_fixed_systems_indicator
    tools/layout/line_break_every_prolated
    tools/layout/line_break_every_seconds
@@ -422,6 +423,7 @@ Abjad API
    tools/pitchtools/add_staff_spaces
    tools/pitchtools/are_in_octave_order
    tools/pitchtools/chromaticize
+   tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_interval_to_absolute_interval
    tools/pitchtools/diatonic_interval_to_staff_spaces
    tools/pitchtools/diatonic_scale_degree_to_letter
