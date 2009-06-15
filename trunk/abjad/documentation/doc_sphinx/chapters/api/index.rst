@@ -431,6 +431,7 @@ Abjad API
    tools/pitchtools/diatonic_transpose
    tools/pitchtools/diatonicize
    tools/pitchtools/get_pitch
+   tools/pitchtools/get_pitches
    tools/pitchtools/get_signed_interval_series
    tools/pitchtools/insert_transposed_pc_subruns
    tools/pitchtools/is_carrier
