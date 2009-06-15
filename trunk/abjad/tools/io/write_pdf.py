@@ -23,4 +23,4 @@ def write_pdf(expr, file_name, template = None, title = None, lilytime = 10):
    full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
    shutil.move(full_path_pdf_name, file_name)
 
-   print 'LilyPond PDF written to %s.' % file_name
+   print 'LilyPond PDF written to %s.' % os.path.basename(file_name)

@@ -4,7 +4,7 @@ from abjad.cfg.write_title import _write_title
 import os
 
 
-def write(expr, name, template = None, title = None):
+def write_ly(expr, name, template = None, title = None):
    '''Format *expr* as `LilyPond` input and write to output file *name*.
 
    - *expr* : `Abjad` :class:`~abjad.component.component._Component` \
@@ -16,24 +16,20 @@ def write(expr, name, template = None, title = None):
       use to format the `LilyPond` file. If ``None``, no template is used.
    - *title* : ``str``, ``None``. The title of the file.
    
-   Examples:
-
-   Write the `Abjad` component ``t`` to the file ``foo.ly`` in the
-   current directory.
+   Write ``t`` to ``foo.ly`` in the current directory.
 
    ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> write(t, 'foo.ly')
-
+      abjad> write_ly(t, 'foo.ly')
    
-   Write the component ``t`` to file ``foo.ly`` in the 
-   ``/home/user`` directory, and add ``paris`` formatting.
+   Write ``t`` to ``foo.ly`` in the ``/home/user`` directory.
+   Include the ``paris.ly`` template in ``foo.ly``.
 
    ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> write(t, '/home/user/foo.ly', 'paris') '''
+      abjad> write_ly(t, '/home/user/foo.ly', 'paris') '''
 
    name = os.path.expanduser(name)
    if not name.endswith('.ly'):
@@ -50,4 +46,4 @@ def write(expr, name, template = None, title = None):
       if dirname:
          print 'Make sure "%s" exists in your system.' % dirname
 
-   print 'LilyPond input file written to %s' % name
+   print 'LilyPond input file written to %s' % os.path.basename(name)

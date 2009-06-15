@@ -298,7 +298,7 @@ Abjad API
    tools/io/pdf
    tools/io/play
    tools/io/show
-   tools/io/write
+   tools/io/write_ly
    tools/io/write_pdf
    tools/iterate/backwards
    tools/iterate/chained_contents
