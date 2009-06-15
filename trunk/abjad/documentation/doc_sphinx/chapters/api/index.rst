@@ -431,6 +431,7 @@ Abjad API
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonic_transpose
    tools/pitchtools/diatonicize
+   tools/pitchtools/get_interval_class_vector
    tools/pitchtools/get_interval_vector
    tools/pitchtools/get_pitch
    tools/pitchtools/get_pitches
