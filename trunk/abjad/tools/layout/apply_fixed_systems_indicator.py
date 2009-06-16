@@ -77,4 +77,8 @@ def apply_fixed_systems_indicator(expr, system_indicator, klass = _Measure):
          if system_on_page == 0:
             if prev is not None:
                prev.breaks.page = True
+         ## TODO: Write test cases for this this branch. ##
+         else:
+            if prev is not None:
+               prev.breaks.page = False
       prev = cur

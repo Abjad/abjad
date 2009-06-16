@@ -1,6 +1,5 @@
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
-#from abjad.exceptions import TypographicWhitespaceError
 from abjad.exceptions import TypographicWhitespaceError
 from abjad.rational import Rational
 import types
@@ -89,10 +88,14 @@ class _BreaksInterface(_Interface, _FormatContributor):
             layout__rational_to_whitespace_measure_string
          string = layout__rational_to_whitespace_measure_string(whitespace)
          result.extend(string.split('\n'))
-      if self.line:
+      if self.line == True:
          result.append(r'\break')
-      if self.page:
+      elif self.line == False:
+         result.append(r'\noBreak')
+      if self.page == True:
          result.append(r'\pageBreak')
+      elif self.page == False:
+         result.append(r'\noPageBreak')
       return result
 
    @apply
