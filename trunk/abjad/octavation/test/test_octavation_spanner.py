@@ -4,29 +4,29 @@ from abjad.checks import OctavationsOverlapping
 
 def test_octavation_01( ):
    '''Octavation has default start and stop arguments set to 0.'''
+
    t = Staff(construct.run(4))
    o = Octavation(t[ : ])
+
+   r'''\new Staff {
+           \ottava #0 
+           c'8
+           c'8
+           c'8
+           c'8
+           \ottava #0 
+   }'''
+
    assert o.start == o.stop == 0
    assert t.format == "\\new Staff {\n\t\\ottava #0\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\t\\ottava #0\n}"
-   r'''
-   \new Staff {
-           \ottava #0 
-           c'8
-           c'8
-           c'8
-           c'8
-           \ottava #0 
-   }
-   '''
    
 
 def test_octavation_02( ):
+
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[ : 4], 1)
-   assert check.wf(t)
-   assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   r'''
-   \new Staff {
+
+   r'''\new Staff {
            \ottava #1
            c'8
            cs'8
@@ -37,17 +37,18 @@ def test_octavation_02( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
 def test_octavation_03( ):
+
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[ : 4], 1, 2)
-   assert check.wf(t)
-   assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #2\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   r'''
-   \new Staff {
+
+   r'''\new Staff {
            \ottava #1
            c'8
            cs'8
@@ -58,18 +59,23 @@ def test_octavation_03( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #2\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+
 
 
 def test_octavation_04( ):
    '''One-note octavation changes are allowed.'''
+
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[0], 1)
+
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   r'''
-   \new Staff {
+
+   r'''\new Staff {
            \ottava #1
            c'8
            \ottava #0
@@ -80,21 +86,22 @@ def test_octavation_04( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
 
 
 def test_octavation_05( ):
    '''Adjacent one-note octavation changes are allowed;
       TODO - check for back-to-back set-octavation at format-
              time and compress to a single set-octavation.'''
+
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[0], 1)
    Octavation(t[1], 2)
+
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\t\\ottava #2\n\tcs'8\n\t\\ottava #0\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-   r'''
-   \new Staff {
+
+   r'''\new Staff {
            \ottava #1
            c'8
            \ottava #0
@@ -107,20 +114,21 @@ def test_octavation_05( ):
            f'8
            fs'8
            g'8
-   }
-   '''
+   }'''
 
 
 def test_octavation_06( ):
    '''Overlapping octavation spanners are allowed but not well-formed.'''
+
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Octavation(t[ : 4], 1)
    Octavation(t[2 : 6], 2)
    checker = OctavationsOverlapping( )
+
    assert not checker.check(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\t\\ottava #2\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\t\\ottava #0\n\tfs'8\n\tg'8\n}"
-   r'''
-   \new Staff {
+
+   r'''\new Staff {
            \ottava #1
            c'8
            cs'8
@@ -133,8 +141,7 @@ def test_octavation_06( ):
            \ottava #0
            fs'8
            g'8
-   }
-   '''
+   }'''
 
 #def test_octavation_01( ):
 #   t = Staff([Note(n, (1, 8)) for n in range(8)])
