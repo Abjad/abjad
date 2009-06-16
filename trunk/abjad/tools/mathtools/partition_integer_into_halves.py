@@ -1,3 +1,4 @@
+from abjad.exceptions import PartitionError
 import math
 
 
@@ -30,12 +31,23 @@ def partition_integer_into_halves(n, bigger = 'left', even = 'allowed'):
       abjad> mathtools.partition_integer_into_halves(8, bigger = 'right')
       (4, 4)
 
+   When *n* is ``0`` return ``(0, 0)``::
+
+      abjad> mathtools.partition_integer_into_halves(0)
+      (0, 0)
+
+   When *n* is ``0`` and ``even = 'disallowed'`` raise
+   :exc:`~abjad.exceptions.exceptions.PartitionError`::
+
+      abjad> mathtools.partition_integer_into_halves(0, even = 'disallowed')
+      PartitionError
+
    Raise :exc:`TypeError` on noninteger *n*::
 
       abjad> mathtools.partition_integer_into_halves('foo')
       TypeError
 
-   Raise :exc:`ValueError` on nonpositive *n*::
+   Raise :exc:`ValueError` on negative *n*::
 
       abjad> mathtools.partition_integer_into_halves(-1)
       ValueError''' 
@@ -43,8 +55,13 @@ def partition_integer_into_halves(n, bigger = 'left', even = 'allowed'):
    if not isinstance(n, (int, long)):
       raise TypeError
 
-   if n <= 0:
+   if n < 0:
       raise ValueError
+
+   if n == 0:
+      if even == 'disallowed':
+         raise PartitionError
+      return (0, 0)
 
    smaller_half = int(math.floor(n / 2))
    bigger_half = n - smaller_half
