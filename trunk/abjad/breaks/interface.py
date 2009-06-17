@@ -7,9 +7,32 @@ import types
 
 class _BreaksInterface(_Interface, _FormatContributor):
    r'''Interface to LilyPond ``break`` and ``pageBreak`` commands.
-      Affordance for nonstaff whitespace following client.
-      Interface to *LilyPond* x- and y- system positioning.
-      Handle no *LilyPond* grob.'''
+   Affordance for nonstaff whitespace following client.
+   Interface to *LilyPond* x- and y- system positioning.
+   Handle no *LilyPond* grob. ::
+
+      abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+      abjad> pitchtools.diatonicize(t)
+      abjad> t[0].formatter.number.self = 'comment'
+      abjad> t[1].formatter.number.self = 'comment'
+
+      abjad> t[0].breaks.page = True
+      abjad> print t.format
+
+      \new Staff {
+              % start measure 1
+                      \time 2/8
+                      c'8
+                      d'8
+                      \pageBreak
+              % stop measure 1
+              % start measure 2
+                      \time 2/8
+                      e'8
+                      f'8
+              % stop measure 2
+      }
+   '''
    
    def __init__(self, _client):
       '''Bind to client and set line, page, whitespace, x and y to None.'''
