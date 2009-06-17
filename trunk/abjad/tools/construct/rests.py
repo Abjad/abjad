@@ -3,18 +3,16 @@ from abjad.tools.construct.helpers import _construct_tied_rest
 
 
 def rests(durations, direction='big-endian', tied=False):
-   '''Resturs a list of rests of varying durations.
+   '''Return a list of rests.
 
-   * *durations* can be a sinlge duration token or a list of durations.
-   * *direction*, a string that may be ``'big-endian'`` or \
-      ``'little-endian'``.  When durations are not \
-      `notehead-assignable`, ``'big-endian'`` returns a list of rests \
+   * `durations` can be a sinlge duration token or a list of durations.
+   * `direction`, a string that may be ``'big-endian'`` or \
+      ``'little-endian'``.  When `durations` are not \
+      :term:`notehead-assignable`, ``'big-endian'`` returns a list of rests \
          in decreasing duration, while ``'little-endian'`` returns a \
          list of rests in increasing duration.
-   * *tied*, set to ``True`` to return tied rests, otherwise set to \
+   * `tied`, set to ``True`` to return tied rests, otherwise set to \
       ``False``. Default is ``False``.
-
-   Examples:
 
    ::
 
@@ -29,7 +27,7 @@ def rests(durations, direction='big-endian', tied=False):
    ::
 
       abjad> durs = [(1, 16), (5, 16), (1, 4)]
-      abjad> construct.rests(durs, 'little-endian', True)
+      abjad> construct.rests(durs, 'little-endian', tied = True)
       [Rest(16), Rest(16), Rest(4), Rest(4)]
       abjad> for r in _:
       ...     print r.tie.spanners

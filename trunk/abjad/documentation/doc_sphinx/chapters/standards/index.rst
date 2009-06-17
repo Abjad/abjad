@@ -1,5 +1,5 @@
-Coding Standards
-================
+Abjad Coding Standards
+======================
 
 Indent with spaces, not with tabs. Use three spaces at a time::
 

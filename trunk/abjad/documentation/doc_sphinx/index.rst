@@ -48,8 +48,9 @@ Appendices:
 .. toctree::
    :maxdepth: 1
 
-   chapters/bibliography/index
    chapters/pitch_conventions/index
+   chapters/glossary/index
+   chapters/bibliography/index
 
 
 Abjad API:
