@@ -55,8 +55,9 @@ class _BreaksInterface(_Interface, _FormatContributor):
 
    @property
    def _line_break_system_details(self):
-      '''LilyPond Score.NonMusicalPaperColumn #'line-break-system-details
-         formatting contribution.'''
+      '''LilyPond ``Score.NonMusicalPaperColumn`` 
+      ``#'line-break-system-details`` formatting contribution.
+      Contribution appears **before** Abjad component.'''
       result = [ ]
       x = self.x
       y = self.y
@@ -81,8 +82,9 @@ class _BreaksInterface(_Interface, _FormatContributor):
    @apply
    def alignment_offsets( ):
       def fget(self):
-         '''*LilyPond* ``alignment-offsets`` list to format as \
-         ``NonMusicalPaperColumn``.
+         '''LilyPond ``alignment-offsets`` list to format as \
+         ``NonMusicalPaperColumn``. Contribution appears **before**
+         Abjad component.
 
          ::
 
@@ -124,7 +126,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
    @apply
    def line( ):
       def fget(self):
-         r'''Boolean setting to contribute LilyPond \line break.'''
+         r'''Boolean setting to contribute LilyPond ``\line`` break.
+         Contribution appears **after** Abjad component.'''
          return self._line
       def fset(self, arg):
          assert isinstance(arg, bool) or arg is None
@@ -143,7 +146,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
    @apply
    def page( ):
       def fget(self):
-         r'''Boolean setting to contribute LilyPond \pageBreak.'''
+         r'''Boolean setting to contribute LilyPond ``\pageBreak``.
+         Contribution appears **after** Abjad component.'''
          return self._page
       def fset(self, arg):
          assert isinstance(arg, bool) or arg is None
@@ -156,7 +160,7 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def whitespace( ):
       def fget(self):
          r'''Rational-valued non-durative whitespace following client.
-            Fake measure between \stopStaff, \startStaff commands.'''
+         Fake measure between ``\stopStaff``, ``\startStaff`` commands.'''
          return self._whitespace
       def fset(self, arg):
          from abjad.leaf.leaf import _Leaf
@@ -169,7 +173,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
    @apply
    def x( ):
       def fget(self):
-         '''X-value for line-break-system-details contribution.'''
+         '''X-value for ``line-break-system-details`` contribution.
+         Contribution appears **before** Abjad component.'''
          return self._x
       def fset(self, arg):
          assert isinstance(arg, (int, long, float, types.NoneType))
@@ -179,7 +184,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
    @apply
    def y( ):
       def fget(self):
-         '''Y-value for line-break-system-details contribution.'''
+         '''Y-value for ``line-break-system-details`` contribution.
+         Contribution appears **before** Abjad component.'''
          return self._y
       def fset(self, arg):
          assert isinstance(arg, (int, long, float, types.NoneType))
