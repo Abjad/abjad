@@ -5,46 +5,40 @@ from abjad.cfg.read_config_value import _read_config_value
 import os
 
 
-## TODO: Implement show( ) 'footer' keyword to allow dynamic footer. ##
-## TODO: Extend show( ) 'title' keyword to allow multiple lines. ##
-
 def show(expr, template = None, title = None, lilytime = 10):
-   '''Render *expr* as `LilyPond` input, call `LilyPond` \
-      and open the resulting PDF.
+   '''Format `expr` as a valid string of LilyPond input and 
+   then call LilyPond on the formatted version of `expr`.
+   Open the PDF that LilyPond creates.
 
-      Examples.
+   Render `t` and open the resulting PDF::
 
-      Render ``t`` and open the resulting PDF:
+      abjad> t = Note(0, (1, 4))
+      abjad> show(t)
 
-      ::
+   Render `t` with the ``tangiers.ly`` template and then 
+   open the resulting PDF::
 
-         abjad> t = Note(0, (1, 4))
-         abjad> show(t)
+      abjad> show(t, template = 'tangiers')
 
-      Render ``t`` with the ``tangiers.ly`` template \ 
-      and then open the resulting PDF:
+   Render `t` with a score title and open the resulting PDF::
 
-      ::
+      abjad> show(t, title = 'Score Title')
 
-         abjad> show(t, template = 'tangiers')
+   Render `t` with a multiline score title and open the resulting PDF::
 
-      Render ``t`` with a score title and open the reuslting PDF:
+      abjad> show(t, title = ['Score Title', 'score subtitle', 'more subtitle'])
 
-      ::
+   .. todo:: Implement an optional `footer` keyword \
+      similar to the `title` keyword.
 
-         abjad> show(t, title = 'Score Title')
+   Render `t` and open the resulting PDF. Alert the composer
+   if LilyPond takes greater than 60 seconds to render::
 
-      Render ``t``, open the resulting PDF and alert the composer \
-      if *LilyPond* takes greater than 60 seconds to render:
+      abjad> show(t, lilytime = 60)
 
-      ::
-
-         abjad> show(t, lilytime = 60)
-
-      .. note::
-         By default, `Abjad` writes `LilyPond` input files
-         to the ``~/.abjad/output`` directory, otherwise to 
-         ``$ABJADOUTPUT``, if the environment variable is set.'''
+   .. note:: Abjad writes to the ``~/.abjad/output`` directory by default. \
+      If the directory does not exist, Abjad writes to ``$ABJADOUTPUT``.
+   '''
 
    name = _log_render_lilypond_input(expr, template, title, lilytime)
    pdfviewer = _read_config_value('pdfviewer')

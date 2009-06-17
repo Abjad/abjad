@@ -1,7 +1,7 @@
 Coding Standards
 ================
 
-Indent with three spaces at a time. Do no indent with tabs::
+Indent with spaces, not with tabs. Use three spaces at a time::
 
    def foo(x, y):
       return x + y
@@ -14,13 +14,13 @@ Introduce comments with two pound signs and a single space::
 
 Limit lines to 80 characters and use ``\`` to break lines where necessary.
 
-Favor early imports at the head of each module instead of late imports within the body of a module. Include only one ``import`` per line::
+Favor early imports at the head of each module. Only one ``import`` per line::
 
       from foo import x
       from foo import y
       from foo import z
 
-Include two blank lines after ``import``` statements but before the class or method definitions::
+Include two blank lines after ``import`` statements before the rest of the module::
 
       from foo import x
       from foo import y
@@ -31,18 +31,18 @@ Include two blank lines after ``import``` statements but before the class or met
          ...
          ...
 
-Wrap docstrings with triple apostrophes instead of triple quotation marks. Align docstrings like this::
+Wrap docstrings with triple apostrophes and align like this::
 
    def foo(x, y):
       '''This is the first line of the foo docstring.
-         This is the second line of the foo docstring.
-         And this is the last line of the foo docstring.'''
+      This is the second line of the foo docstring.
+      And this is the last line of the foo docstring.'''
 
-Use paired apostrophes to delimit strings instead of pair quotation marks::
+Use paired apostrophes to delimit strings::
 
    s = 'foo'
 
-Use paired quotation marks only within pair apostrophes::
+Use paired quotation marks to delimit strings within a string::
 
    s = 'foo and "bar"'
 
@@ -54,14 +54,14 @@ Name classes in upper camelcase::
       ...
       ...
 
-Name bound methods in lower camelcase::
+Name bound methods in underscore-delimited lowercase::
 
    def Foo(object):
 
-      def barBlah(self):
+      def bar_blah(self):
          ...
 
-      def barBaz(self):
+      def bar_baz(self):
          ...
 
 Name module-level functions in underscore-delimited lowercase::
@@ -79,10 +79,10 @@ Separate bound method definitions with a single empty line::
       def __init__(self, x, y):
          ...
 
-      def barBlah(self):
+      def bar_blah(self):
          ...
 
-      def barBaz(self):
+      def bar_baz(self):
          ...
 
 Organize the definitions of core classes into the five following major sections plus initialization::
@@ -143,18 +143,19 @@ Include a single space in between empty parentheses::
       ...
       ...
 
-Do not abbreviate variable names. Use ``container`` instead of ``cont`` and ``component`` instead of ``comp``.
+Do not abbreviate variable names.
 
-Name variables that represent a list or other collection of object in the plural. For example, use ``components`` to name a variable that will most likely house a Python list of Abjad components.
+Name variables that represent a list or other collection of objects in the plural.
 
 Use ``<`` less-than signs in preference to greater-than signs::
 
-   if x < y < z
+   if x < y < z:
+      ...
 
 Implement only one class per module.
 
 Implement only one function per module.
 
-Author one ``py.test`` test file for each module-level function or for each bound method in the public interface of a class.
+Author one ``py.test`` test file for every module-level function.
 
-Encapsulate, encapsulate, encapsulate.
+Author one ``py.test`` test file for every bound method in the public interface of a class.
