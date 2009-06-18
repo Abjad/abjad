@@ -27,11 +27,12 @@ Abjad Fundamentals:
 .. toctree::
    :maxdepth: 1
 
-   chapters/lcs/index
    chapters/duration/index
    chapters/pitch/index
    chapters/note_basics/index
    chapters/grobhandlers/index
+   chapters/lcs/index
+   chapters/threads/index
 
 
 Developer Concerns:

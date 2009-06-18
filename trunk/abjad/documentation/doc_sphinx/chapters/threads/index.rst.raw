@@ -1,0 +1,74 @@
+Threads
+=======
+
+
+What is a thread?
+-----------------
+
+Abjad has the notion of a :term:`thread`. A thread is a structural relationship binding a set of strictly sequential :class:`~abjad.voice.voice.Voice` level Abjad component, such as notes, rests, chords, tuplets or plain containers.
+
+Threads may be *explicitly* defined via :class:`~abjad.voice.voice.Voice` instances: 
+
+<abjad>
+v = Voice( )
+</abjad>
+
+or they may exist *implicitly* in certain score constructs in the absence of :class:`~abjad.voice.voice.Voice` containers:
+
+<abjad>
+staff = Staff(construct.scale(4))
+</abjad>
+
+The existence of :class:`~abjad.voice.voice.Voice` objects does not, however, guarantee the existence of a thread between the element contained in different voices. Two contiguous voices *must* have the same name in order to be part of the same thread. 
+
+Here a thread does *not* exist between notes in the different :class:`~abjad.voice.voice.Voice` contexts:
+
+<abjad>
+v_one = Voice(construct.scale(4, (1, 16)))
+v_two = Voice(construct.scale(2))
+staff = Staff([v_one, v_two])
+f(staff)
+</abjad>
+
+
+Here a thread does exist:
+
+<abjad>
+v_one.name = 'flute'
+v_two.name = 'flute'
+f(staff)
+</abjad>
+
+
+
+What are threads for?
+---------------------
+
+Consider the following situation:
+
+<abjad>[hide = True]
+v_one_1 = Voice(construct.notes([5, 7, 9, 11], [(1, 8)] * 4))
+v_one_2 = Voice(construct.notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
+v_two = Voice(construct.notes([12, 12], [(1, 4)] * 2))
+v_one_1.voice.number = 1
+v_one_2.voice.number = 1
+v_two.voice.number = 2
+v_one_1.name = 'top'
+v_one_2.name = 'top'
+m_1 = RigidMeasure((2, 4), [v_one_1])
+p = Container([v_one_2, v_two])
+p.parallel = True
+m_2 = RigidMeasure((2, 4), [p])
+m_2.meter.suppress = True
+staff = Staff([m_1, m_2])
+write_ly(staff, 'thread-resolution_1', 'oedo')
+</abjad>
+
+Are the two eighth notes in the second measure the continuation of the ascending line in the first measure, or is it the quarter note? The stem might suggest an answer, but the same question can be asked for the two quarter notes in the second half of measure two. Is the *C* the continuation of the top melodic line or is it the *A*?  
+What path should Abjad take to traverse this little score from the first note to the last *A*? This same problem appears when trying to apply spanners to parallel structures.  Thus, threads are important in both score navigation (also called score traversal) and :class:`~abjad.spanner.spanner.Spanner` application.
+In fact, threads are a *requirement* for :class:`~abjad.spanner.spanner.Spanner` application (See the chapter in :doc:`/chapters/spanners/index` for an introduction to spanners). 
+
+In Abjad, the ambiguity is resolved through the explicit use of named Voices, i.e. the explicit definition of threads. 
+
+
+

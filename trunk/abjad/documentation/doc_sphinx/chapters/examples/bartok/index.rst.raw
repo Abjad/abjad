@@ -127,7 +127,7 @@ lower_measures[4].append(p)
 Let's see what we have up till now:
 
 <abjad>
-write(piano, 'bartok_framework') <hide
+write_ly(piano, 'bartok_framework') <hide
 show(piano)
 </abjad>
 
@@ -155,7 +155,7 @@ lower_staff.barline.kind = '||'
 Let's see how this is coming out:
 
 <abjad>
-write(piano, 'bartok_notes') <hide
+write_ly(piano, 'bartok_notes') <hide
 show(piano)
 </abjad>
 
@@ -172,7 +172,7 @@ Beam(lower_staff.leaves[6:10])
 </abjad>
 
 <abjad>
-write(piano, 'bartok_beams') <hide
+write_ly(piano, 'bartok_beams') <hide
 show(piano)
 </abjad>
 
@@ -212,7 +212,7 @@ Tie([appendix_voice_m4[0], appendix_voice_m5[0]])
 The final result:
 
 <abjad>
-write(piano, 'bartok_final') <hide
+write_ly(piano, 'bartok_final') <hide
 show(piano)
 </abjad>
 
