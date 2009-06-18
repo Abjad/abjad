@@ -4,7 +4,7 @@ import types
 
 
 class Octavation(_GrobHandlerSpanner):
-   r'''8va or 8vb spanner.
+   r'''8va or 8vb spanner. Overrides the LilyPond OttavaBracket grob.
 
    ::
 
