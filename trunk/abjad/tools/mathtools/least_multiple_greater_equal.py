@@ -2,17 +2,13 @@ import math
 
 
 def least_multiple_greater_equal(m, n):
-   '''Return the least integer multiple of *m* 
-   greater than or equal to *n*.
+   '''Return the least integer multiple of `m` 
+   greater than or equal to `n`.
 
    ::
 
       abjad> mathtools.least_multiple_greater_equal(10, 47)
       50
-
-   ::
-
-      abjad> for m in range(1, 10):
 
    ::
       

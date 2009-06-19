@@ -375,6 +375,7 @@ Abjad API
    tools/mathtools/greatest_multiple_less_equal
    tools/mathtools/greatest_power_of_two_less_equal
    tools/mathtools/is_power_of_two
+   tools/mathtools/least_common_multiple
    tools/mathtools/least_multiple_greater_equal
    tools/mathtools/least_power_of_two_greater_equal
    tools/mathtools/partition_integer_by_ratio

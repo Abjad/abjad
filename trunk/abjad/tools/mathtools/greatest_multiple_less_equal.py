@@ -2,8 +2,8 @@ import math
 
 
 def greatest_multiple_less_equal(m, n):
-   '''Return the greatest integer multiple of *m* 
-   less than or equal to *n*::
+   '''Return the greatest integer multiple of `m` 
+   less than or equal to `n`::
 
       abjad> mathtools.greatest_multiple_less_equal(10, 47)
       40
