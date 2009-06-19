@@ -19,6 +19,8 @@ class _MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       self._forced = None
       self._suppress = False
 
+   ## TODO: Generalize _selfShouldContribute for both _Clef and _Meter ##
+
    ## PRIVATE ATTRIBUTES ##
 
    @property
