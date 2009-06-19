@@ -74,8 +74,8 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
    size = max(len(durations), len(pitches))
    #durations = listtools.resize(durations, size)
    #pitches = listtools.resize(pitches, size)
-   durations = listtools.repeat_to_length(durations, size)
-   pitches = listtools.repeat_to_length(pitches, size)
+   durations = listtools.repeat_list_to_length(durations, size)
+   pitches = listtools.repeat_list_to_length(pitches, size)
 
    durations = durtools.agglomerate_by_prolation(durations)
 
