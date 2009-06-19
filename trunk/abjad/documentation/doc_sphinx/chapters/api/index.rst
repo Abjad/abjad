@@ -463,6 +463,7 @@ Abjad API
    tools/pitchtools/registrate
    tools/pitchtools/send_pitch_to_octave
    tools/pitchtools/staff_space_transpose
+   tools/pitchtools/suggest_clef
    tools/scoretools/bequeath
    tools/scoretools/donate
    tools/scoretools/find
