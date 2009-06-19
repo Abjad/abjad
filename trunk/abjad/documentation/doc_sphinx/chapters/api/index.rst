@@ -351,7 +351,7 @@ Abjad API
    tools/listtools/phasor
    tools/listtools/remove_weighted_subrun_at
    tools/listtools/repeat_elements_to_length
-   tools/listtools/repeat_subruns_cyclic
+   tools/listtools/repeat_subruns_to_count
    tools/listtools/repeat_to_length
    tools/listtools/repeat_to_weight
    tools/listtools/replace_elements_cyclic

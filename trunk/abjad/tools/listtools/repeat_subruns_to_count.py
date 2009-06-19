@@ -1,7 +1,7 @@
 from abjad.component.component import _Component
 
 
-def repeat_subruns_cyclic(l, indicators):
+def repeat_subruns_to_count(l, indicators):
    '''Repeat subruns in `l` according to `indicators`.
    The `indicators` input parameter must be a list of 
    zero or more ``(start, length, count)`` triples.
@@ -18,14 +18,14 @@ def repeat_subruns_cyclic(l, indicators):
 
    To insert ``10`` count of ``l[:2]`` at ``l[2:2]``::
    
-      abjad> listtools.repeat_subruns_cyclic(range(20), [(0, 2, 10)])
+      abjad> listtools.repeat_subruns_to_count(range(20), [(0, 2, 10)])
       [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 
       2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
    To insert ``5`` count of ``l[10:12]`` at ``l[12:12]`` and then
    insert ``5`` count of ``l[:2]`` at ``l[2:2]``::
 
-      abjad> listtools.repeat_subruns_cyclic(l, [(0, 2, 5), (10, 2, 5)])
+      abjad> listtools.repeat_subruns_to_count(l, [(0, 2, 5), (10, 2, 5)])
       [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
       10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
@@ -34,12 +34,12 @@ def repeat_subruns_cyclic(l, indicators):
       
    To insert ``2`` count of ``[18, 19, 0, 1]`` at ``l[2:2]``::
 
-      abjad> listtools.repeat_subruns_cyclic(l, [(18, 4, 2)])
+      abjad> listtools.repeat_subruns_to_count(l, [(18, 4, 2)])
       [0, 1, 18, 19, 0, 1, 18, 19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
    To insert ``2`` count of ``[18, 19, 0, 1, 2, 3, 4]`` at ``l[4:4]``::
 
-      abjad> listtools.repeat_subruns_cyclic(l, [(18, 8, 2)])
+      abjad> listtools.repeat_subruns_to_count(l, [(18, 8, 2)])
       [0, 1, 2, 3, 4, 5, 18, 19, 0, 1, 2, 3, 4, 5, 18, 19, 0, 1, 2, 3, 4, 
       5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
@@ -51,8 +51,9 @@ def repeat_subruns_cyclic(l, indicators):
 
    Generalizations of this function would include functions to repeat subruns
    in `l` to not only a certain count, as implemented here, but to a certain
-   sum or weight. That is, ``listtools.repeat_subruns_to_sum( )`` and
-   ``listtools.repeat_subruns_to_weight( )``.
+   length, weight or sum. That is, ``listtools.repeat_subruns_to_length( )``,
+   ``listtools.repeat_subruns_to_weight( )``  and 
+   ``listtools.repeat_subruns_to_sum( )``.
    '''
 
    assert isinstance(l, list)
