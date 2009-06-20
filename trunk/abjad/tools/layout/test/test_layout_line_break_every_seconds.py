@@ -1,8 +1,6 @@
 from abjad import *
 
 
-## TODO: write layout.line_break_every_seconds( ) tests. ##
-
 def test_layout_line_break_every_seconds_01( ):
    '''Iterate klass instances in expr and accumulate duration in seconds.
    Add line break after every total less than or equal to line_duration.'''

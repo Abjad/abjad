@@ -315,6 +315,7 @@ Abjad API
    tools/label/leaf_layer
    tools/label/leaf_pcs
    tools/layout/apply_fixed_systems_indicator
+   tools/layout/insert_measure_padding
    tools/layout/line_break_every_prolated
    tools/layout/line_break_every_seconds
    tools/leaftools/duration_change

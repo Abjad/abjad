@@ -4,7 +4,7 @@ from abjad.tools.layout._rational_to_whitespace_measure_string import \
    layout__rational_to_whitespace_measure_string
 
 
-def test__rational_to_whitespace_measure_string_01( ):
+def test_layout__rational_to_whitespace_measure_string_01( ):
    '''Turn rational into whitespace measure string.'''
 
    t = layout__rational_to_whitespace_measure_string(Rational(1, 32))

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.leaf.leaf import _Leaf
 
 
-def test_line_break_every_prolated_01( ):
+def test_layout_line_break_every_prolated_01( ):
    '''Iterate klasses in expr and accumulate prolated duration.
       Add line break after every total le line duration.'''
 
@@ -31,7 +31,7 @@ def test_line_break_every_prolated_01( ):
    assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\break\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t\t\\break\n}"
 
 
-def test_line_break_every_prolated_02( ):
+def test_layout_line_break_every_prolated_02( ):
    '''Iterate klasses in expr and accumulate prolated duration.
       Add line break after every total le line duration.'''
 
