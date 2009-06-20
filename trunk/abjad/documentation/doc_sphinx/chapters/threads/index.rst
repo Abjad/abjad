@@ -78,7 +78,7 @@ Consider the following situation:
 
 Are the two eighth notes in the second measure the continuation of the ascending line in the first measure, or is it the quarter note? The stem might suggest an answer, but the same question can be asked for the two quarter notes in the second half of measure two. Is the *C* the continuation of the top melodic line or is it the *A*?  
 What path should Abjad take to traverse this little score from the first note to the last *A*? This same problem appears when trying to apply spanners to parallel structures.  Thus, threads are important in both score navigation (also called score traversal) and :class:`~abjad.spanner.spanner.Spanner` application.
-In fact, threads are a *requirement* for :class:`~abjad.spanner.spanner.Spanner` application (See the chapter in :doc:`/chapters/spanners/index` for an introduction to spanners). 
+In fact, threads are a *requirement* for :class:`~abjad.spanner.spanner.Spanner` application (See the chapter on spanners for an introduction to spanners). 
 
 In Abjad, the ambiguity is resolved through the explicit use of named Voices, i.e. the explicit definition of threads. 
 
