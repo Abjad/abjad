@@ -210,6 +210,7 @@ Abjad API
    tools/check/wf
    tools/chordtools/arpeggiate
    tools/chordtools/cast_defective
+   tools/chordtools/get_notehead
    tools/chordtools/split
    tools/clone/covered
    tools/clone/fracture

@@ -14,6 +14,12 @@ class NoteHead(_NoteHeadInterface):
 
    ## OVERLOADS ##
 
+   def __eq__(self, expr):
+      if isinstance(expr, NoteHead):
+         if self.pitch == expr.pitch:
+            return True
+      return False
+
    def __repr__(self):
       if self.pitch:
          return 'NoteHead(%s)' % self.pitch

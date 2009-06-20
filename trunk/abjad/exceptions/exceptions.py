@@ -78,6 +78,20 @@ class NonbinaryMeterSuppressionError(Exception):
       to calculate incorrectly.'''
    pass
 
+class NoteHeadError(Exception):
+   '''General notehead error.'''
+   pass
+
+class ExtraNoteHeadError(Exception):
+   '''Operation expects exactly one notehead of a certain type.
+   But there is instead more than one notehead of that type.'''
+   pass
+
+class MissingNoteHeadError(Exception):
+   '''Operation expects exactly one notehead of a certain type.
+   But there is no notehead of that type.'''
+   pass
+
 class OverfullMeasureError(ImproperlyFilledMeasureError):
    '''Measure contents duration is greater than measure meter duration.'''
    pass

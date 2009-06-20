@@ -93,6 +93,21 @@ abjad.exceptions.exceptions
    :undoc-members:
    :show-inheritance:
 
+.. autoclass:: abjad.exceptions.exceptions.NoteHeadError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: abjad.exceptions.exceptions.ExtraNoteHeadError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: abjad.exceptions.exceptions.MissingNoteHeadError
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. autoclass:: abjad.exceptions.exceptions.OverfullMeasureError
    :members:
    :undoc-members:
