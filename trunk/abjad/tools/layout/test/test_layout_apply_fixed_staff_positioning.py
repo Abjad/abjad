@@ -24,13 +24,15 @@ def test_layout_fixed_system_indicator_01( ):
                    \break
    }'''
 
-   system_indicator = FixedSystemsIndicator((20, ), 1)
-   layout.apply_fixed_systems_indicator(t, system_indicator)
+   systems = SystemYOffsets(20, 1)
+   staves = StaffAlignmentOffsets(0)
+   positioning = FixedStaffPositioning(systems, staves)
+   layout.apply_fixed_staff_positioning(t, positioning)
 
    r'''\new Staff {
                    \overrideProperty #"Score.NonMusicalPaperColumn"
                    #'line-break-system-details
-                   #'((Y-offset . 20))
+                   #'((Y-offset . 0) (alignment-offsets . (0)))
                    \time 2/8
                    c'8
                    d'8
@@ -41,7 +43,7 @@ def test_layout_fixed_system_indicator_01( ):
                    \pageBreak
                    \overrideProperty #"Score.NonMusicalPaperColumn"
                    #'line-break-system-details
-                   #'((Y-offset . 20))
+                   #'((Y-offset . 0) (alignment-offsets . (0)))
                    \time 2/8
                    g'8
                    a'8
@@ -52,4 +54,4 @@ def test_layout_fixed_system_indicator_01( ):
    }'''
 
    assert check.wf(t)
-   assert t.format == '\\new Staff {\n\t\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t\t#\'line-break-system-details\n\t\t#\'((Y-offset . 20))\n\t\t\\time 2/8\n\t\tc\'8\n\t\td\'8\n\t\t\\time 2/8\n\t\te\'8\n\t\tf\'8\n\t\t\\break\n\t\t\\pageBreak\n\t\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t\t#\'line-break-system-details\n\t\t#\'((Y-offset . 20))\n\t\t\\time 2/8\n\t\tg\'8\n\t\ta\'8\n\t\t\\time 2/8\n\t\tb\'8\n\t\tc\'\'8\n\t\t\\break\n}'
+   assert t.format == '\\new Staff {\n\t\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t\t#\'line-break-system-details\n\t\t#\'((Y-offset . 0) (alignment-offsets . (0)))\n\t\t\\time 2/8\n\t\tc\'8\n\t\td\'8\n\t\t\\time 2/8\n\t\te\'8\n\t\tf\'8\n\t\t\\break\n\t\t\\pageBreak\n\t\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t\t#\'line-break-system-details\n\t\t#\'((Y-offset . 0) (alignment-offsets . (0)))\n\t\t\\time 2/8\n\t\tg\'8\n\t\ta\'8\n\t\t\\time 2/8\n\t\tb\'8\n\t\tc\'\'8\n\t\t\\break\n}'

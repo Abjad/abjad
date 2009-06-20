@@ -104,7 +104,9 @@ Abjad API
    instrument/interface
    instrument/spanner
    interfaces/aggregator
-   layout/systemsindicator
+   layout/fixed_staff_positioning
+   layout/staff_alignment_offsets
+   layout/system_y_offsets
    leaf/duration
    leaf/formatter
    leaf/leaf
@@ -314,7 +316,7 @@ Abjad API
    tools/label/leaf_durations
    tools/label/leaf_layer
    tools/label/leaf_pcs
-   tools/layout/apply_fixed_systems_indicator
+   tools/layout/apply_fixed_staff_positioning
    tools/layout/insert_measure_padding
    tools/layout/line_break_every_prolated
    tools/layout/line_break_every_seconds
