@@ -20,6 +20,9 @@ class NoteHead(_NoteHeadInterface):
             return True
       return False
 
+   def __ne__(self, expr):
+      return not self == expr
+
    def __repr__(self):
       if self.pitch:
          return 'NoteHead(%s)' % self.pitch
@@ -36,7 +39,7 @@ class NoteHead(_NoteHeadInterface):
 
    def _unregister_if_necessary(self):
       '''Note noteheads should register as format contributors.
-         Chord noteheads should not register as format contributors.'''
+      Chord noteheads should not register as format contributors.'''
       from abjad.chord import Chord
       client = getattr(self, '_client', None)
       if client is not None:

@@ -43,6 +43,7 @@ class Chord(_Leaf):
          self._noteheads[i] = NoteHead(self, pitch = arg)
       elif isinstance(arg, NoteHead):
          self._noteheads[i] = arg
+         arg._client = self
       self._sort( )
 
    def __str__(self):
@@ -128,6 +129,7 @@ class Chord(_Leaf):
          self._noteheads.append(NoteHead(self, pitch = arg))
       elif isinstance(arg, NoteHead):
          self._noteheads.append(arg)
+         arg._client = self
       else:
          print 'Can not append %s to Chord.' % arg
       self._sort( )
