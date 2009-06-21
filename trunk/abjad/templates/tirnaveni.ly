@@ -13,7 +13,11 @@
 %%%   * Collisions are ignored
 %%%   * Differently dotted noteheads are merged
 %%%   * Different notehead types are merged
+%%%   * Tagline is removed
 
+\header{
+   tagline = ""
+}
 
 \layout {
    indent = #0
