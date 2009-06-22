@@ -307,8 +307,8 @@ class _Component(_Abjad):
    ## PUBLIC METHODS ##
 
    def splice(self, components):
-      '''Splice 'components' after self.
-         Extend spanners to attached to all components in list.'''
+      '''Splice `components` after `self`.
+      Extend spanners rightwards to attach to all components in list.'''
       from abjad.tools import check
       from abjad.tools import parenttools
       from abjad.tools import spannertools
@@ -333,9 +333,8 @@ class _Component(_Abjad):
       return [self] + components
 
    def splice_left(self, components):
-      '''Splice 'components' before self.
-         Extend spanners leftwards to attach 
-         to all components in 'components'.'''
+      '''Splice `components` before `self`.
+      Extend spanners leftwards to attach to all components in list.'''
       from abjad.tools import check
       from abjad.tools import parenttools
       from abjad.tools import spannertools

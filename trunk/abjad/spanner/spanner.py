@@ -1,7 +1,4 @@
-#from abjad.component.component import _Component
 from abjad.core.abjadcore import _Abjad
-#from abjad.tools import iterate
-#from abjad.leaf.leaf import _Leaf
 from abjad.spanner.duration import _SpannerDurationInterface
 from abjad.spanner.offset import _SpannerOffsetInterface
 from abjad.rational import Rational
@@ -9,7 +6,31 @@ from copy import deepcopy as python_deepcopy
 
 
 class Spanner(_Abjad):
-   '''Abstract base class of any type of spanning object.'''
+   '''Any type of notation object that stretches horizontally
+   and encompasses some number of notes, rest, chords, tuplets,
+   measures, voices or other Abjad components. 
+
+   Beams, slurs, hairpins, trills, glissandi and piano pedal brackets
+   all stretch horizontally on the page to encompass multiple notes
+   and all implement as Abjad spanners.
+   That is, these spanner all have an obvious graphic reality with
+   definite start-, stop- and midpoints.
+
+   Abjad also implements a number of spanners of a different type,
+   such as tempo and instrument spanners, which mark a group of notes,
+   rests, chords or measues as carrying a certain tempo or being
+   played by a certain instrument.
+
+   The :class:`~abjad.spanner.spanner.Spanner` class described here
+   abstracts the functionality that all such spanners, both graphic
+   and nongraphics, share. 
+   This shared functionality includes methods to add, remove, inspect
+   and test components governed by the spanner, as well as basic
+   formatting properties.
+   The other spanner classes, such as :class:`~abjad.beam.spanner.Beam`
+   and :class:`~abjad.glissando.spanner.Glissando`, all inherit from
+   this class and receive the functionality implemented here.
+   '''
 
    def __init__(self, music = None):
       '''Apply spanner to music. Init dedicated duration interface.'''
@@ -171,18 +192,113 @@ class Spanner(_Abjad):
    
    @property
    def components(self):
+      '''Read-only list of components in spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[:2])
+         abjad> spanner.components
+         [Note(c', 8), Note(d', 8)]
+
+      .. note:: The list returned here is newly constructed and
+         is not the same as the private list of components that
+         the spanner maintains. For this reason, using :func:`append`
+         or :func:`extend` on the list returned by this read-only
+         property is probably not what you want.
+         To add components to the spanner itself, use
+         :func:`~abjad.spanner.spanner.Spanner.append` or
+         :func:`~abjad.spanner.spanner.Spanner.extend`.
+
+      .. todo:: Return an (immutable) tuple rather than a (mutable) list.
+      '''
       return self._components[:]
 
    @property
    def duration(self):
+      '''Read-only reference to the duration interface serving 
+      this spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[:2])
+         abjad> spanner.duration
+         <_SpannerDurationInterface>
+
+      The spanner duration interface collects use information about the
+      duration of the spanner and the components it governs. ::
+
+         abjad> spanner.duration.written
+         Rational(1, 4)
+
+      See 
+      :class:`~abjad.spanner.duration.interface._SpannerDurationInterface`
+      for the complete list of properties and methods available.
+      '''
+
       return self._duration
    
    @property
    def format(self):
+      r'''Read-only reference to the spanner format interface that
+      serves this spanner. Because the base 
+      :class:`~abjad.spanner.spanner.Spanner` class has no graphic
+      reality, only concrete classes that inherit from 
+      :class:`~abjad.spanner.spanner.Spanner`, 
+      such as :class:`~abjad.beam.spanner.Beam` and
+      :class:`~abjad.slur.spanner.Slur`, implement this property. ::
+      
+         abjad> voice = Voice(construct.scale(4))
+         abjad> slur = Slur(voice[:]2)
+         abjad> slur.format
+         <_SlurSpannerFormatInterface>
+
+      See the class documentation for
+      :class:`~abjad.slur.spanner.format.interface._SlurSpannerFormatInterface`,
+      :class:`~abjad.beam.spanner.format.interface._BeamSpannerFormatInterface`,      and so on for the complete list of properties and methods available.
+
+      .. note:: The spanner ``format`` property differs from the 
+         read-only ``format`` property attached to notes, rests, chords,
+         measures, voices and other Abjad components.
+         The spanner ``format`` property described here returns a
+         read-only reference to spanner format interface serving this
+         spanner.
+         The ``format`` property attached to notes, rests and so on
+         returns a string of valid LilyPond input.
+
+      ::
+
+         abjad> spanner.format
+         <_SlurSpannerFormatInterface>
+
+         abjad> print voice.format
+         \new Voice {
+                 c'8 (
+                 d'8 )
+                 e'8
+                 f'8
+         }
+      '''
+      
       return self._format
 
    @property
    def leaves(self):
+      '''Read-only list of leaves in spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[:2])
+         abjad> spanner.leaves
+         [Note(c', 8), Note(d', 8)]
+
+      .. note:: The list returned here is newly constructed.
+         For this reason, using :func:`append`
+         or :func:`extend` on the list returned by this read-only
+         property is probably not what you want.
+         To add leaves to the spanner itself, use
+         :func:`~abjad.spanner.spanner.Spanner.append` or
+         :func:`~abjad.spanner.spanner.Spanner.extend`.
+
+      .. todo:: Return an (immutable) tuple rather than a (mutable) list.
+      '''
+
       from abjad.leaf.leaf import _Leaf
       result = [ ]
       for component in self._components:
@@ -193,11 +309,51 @@ class Spanner(_Abjad):
 
    @property
    def offset(self):
+      '''Read-only reference to the
+      :class:`~abjad.spanner.offset._SpannerOffsetInterface` serving
+      this spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[:2])
+         abjad> spanner.offset
+         <_SpannerOffsetInterface>
+
+      Use the spanner offset interface to inspect start- and stop-times
+      of this spanner. ::
+
+         abjad> spanner.offset.start
+         Rational(0, 1)
+
+      ::
+
+         abjad> spanner.offset.stop
+         Rational(1, 4)
+
+      See :class:`~abjad.spanner.offset._SpannerOffsetInterface` for
+      details.
+      '''
+         
       return self._offset
 
    ## PUBLIC METHODS ##
 
    def append(self, component):
+      '''Add `component` to the right end of `spanner`.
+
+      :: 
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[:2])
+         abjad> spanner
+         Spanner(c'8, d'8)
+
+      ::
+
+         abjad> spanner.append(voice[2])
+         abjad> spanner
+         Spanner(c'8, d'8, e'8)
+      '''
+
       from abjad.tools import check
       components = self[-1:] + [component]
       check.assert_components(components, contiguity = 'thread')
@@ -205,6 +361,22 @@ class Spanner(_Abjad):
       self._components.append(component)
 
    def append_left(self, component):
+      '''Add `component` to the left end of `spanner`.
+
+      :: 
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[2:])
+         abjad> spanner
+         Spanner(e'8, f'8)
+
+      ::
+
+         abjad> spanner.append_left(voice[1])
+         abjad> spanner
+         Spanner(d'8, e'8, f'8)
+      '''
+
       from abjad.tools import check
       components = [component] + self[:1] 
       check.assert_components(components, contiguity = 'thread')
