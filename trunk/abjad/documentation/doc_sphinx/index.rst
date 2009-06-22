@@ -9,7 +9,7 @@ Welcome to Abjad
 .. note:: 
    The Abjad documentation is still very much a work in progress.
 
-Start Here:
+Start here:
 
 .. toctree::
    :maxdepth: 1
@@ -22,11 +22,12 @@ Start Here:
    chapters/community/index
 
 
-Abjad Fundamentals:
+Abjad fundamentals:
 
 .. toctree::
    :maxdepth: 1
 
+   chapters/developers/index
    chapters/duration/index
    chapters/pitch/index
    chapters/note_basics/index
@@ -35,13 +36,14 @@ Abjad Fundamentals:
    chapters/threads/index
 
 
-Developer Concerns:
+Developer concerns:
 
 .. toctree::
    :maxdepth: 1
 
-   chapters/developers/index
-   chapters/standards/index
+   chapters/developers/codebase/index
+   chapters/developers/tests/index
+   chapters/developers/documentation/index
 
 
 Appendices:
@@ -50,6 +52,7 @@ Appendices:
    :maxdepth: 1
 
    chapters/pitch_conventions/index
+   chapters/standards/index
    chapters/glossary/index
    chapters/bibliography/index
 

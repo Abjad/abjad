@@ -1,5 +1,5 @@
-Extending LilyPond and Python
-=============================
+Using LilyPond and Python
+=========================
 
 .. toctree::
    :maxdepth: 2
