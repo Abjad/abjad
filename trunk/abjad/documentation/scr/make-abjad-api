@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 from abjad.cfg.cfg import ABJADPATH
 from _create_subdirs_interactive import _create_subdirs_interactive
 from _filter_files import _filter_files
@@ -10,10 +11,8 @@ from make_sphinx_module_listing import make_sphinx_module_listing
 import os
 import types
 
-api_doc_path = os.path.join(ABJADPATH, 'documentation', 'doc_sphinx', 
-   'chapters', 'api')
 
-
+api_doc_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
 
 def make_api_tocs( ):
    modules_visited = [ ]
