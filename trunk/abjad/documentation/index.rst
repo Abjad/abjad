@@ -15,7 +15,8 @@ Start here:
    :maxdepth: 1
 
    chapters/introduction/abjad/index
-   chapters/introduction/download/index
+   chapters/introduction/download/install
+   chapters/introduction/download/download
    chapters/introduction/examples/index
    chapters/introduction/tour/index
    chapters/introduction/whatnext/index
@@ -27,13 +28,12 @@ Abjad fundamentals:
 .. toctree::
    :maxdepth: 1
 
-   chapters/developers/index
-   chapters/duration/index
-   chapters/pitch/index
-   chapters/note_basics/index
-   chapters/grobhandlers/index
-   chapters/lcs/index
-   chapters/threads/index
+   chapters/fundamentals/duration/index
+   chapters/fundamentals/pitch/index
+   chapters/fundamentals/note_basics/index
+   chapters/fundamentals/grobhandlers/index
+   chapters/fundamentals/lcs/index
+   chapters/fundamentals/threads/index
 
 
 Developer concerns:
@@ -45,6 +45,16 @@ Developer concerns:
    chapters/developers/install/index
    chapters/developers/tests/index
    chapters/developers/documentation/index
+
+
+Background and motivations
+
+.. toctree::
+   :maxdepth: 1
+
+   chapters/background/lilypond/index
+   chapters/background/python/index
+   chapters/background/midi_not_enough/index
 
 
 Appendices:

@@ -1,5 +1,5 @@
-Installation
-============
+Install
+=======
 
 .. toctree::
    :maxdepth: 2

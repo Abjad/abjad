@@ -1,5 +1,5 @@
-Getting and Installing Abjad
-============================
+Install
+=======
 
 
 Dependencies
@@ -76,32 +76,4 @@ favorite PDF viewer.
 Installing the development version
 ----------------------------------
 
-If you'd like to be at the cutting edge of the Abjad development use the 
-following alternative:
-
-1. Install Subversion if you don't have it already installed 
-   (enter ``svn help`` to verify this).
-
-2. Checkout Abjad's `trunk` development like so::
-
-      svn checkout http://abjad.googlecode.com/svn/abjad/ abjad-read-only
-
-3. Make the Python interpreter aware of Abjad. There are two ways to do
-   this:
-
-   a. Make a symlink in your Python `site-packages` directory pointing
-      to the abjad-read-only directory previously checked out via Subversion::
-         
-         ln -s /path/to/abjad-read-only SITE-PACKAGES-DIR/abjad
-
-      where `SITE-PACKAGES-DIR` is the Python `site-packages` directory.
-      In Linux this is usually in /usr/lib/python2.x/site-packages.
-
-   b. Alternatively you can include the `abjad-read-only` directory in 
-      your *PYTHONPATH* environment variable.             
-
-   c. You will also need to include the `abjad-read-only/scr` directory 
-   in your *PATH* in order to be able to run Abjad directly with the 
-   ``abj`` command. 
-
-
+See the section on developer concerns in the docs.
