@@ -242,6 +242,7 @@ blockquote {
 
 }
 
+/*
 em {
     background-color: #f6f6f6;
     color: {{ theme_codetextcolor }};
@@ -249,6 +250,7 @@ em {
     font-style: italic;
     padding: 0 3px 0 1px;
 }
+*/
 
 strong {
    color: #333;
