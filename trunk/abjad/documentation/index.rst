@@ -15,7 +15,8 @@ Start here
    :maxdepth: 1
 
    chapters/introduction/abjad/index
-   chapters/introduction/examples/index
+   chapters/introduction/examples/bartok/index
+   chapters/introduction/examples/slicing/index
    chapters/introduction/install/install
    chapters/introduction/download/index
    chapters/introduction/whatnext/index

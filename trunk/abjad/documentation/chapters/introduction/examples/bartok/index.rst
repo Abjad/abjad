@@ -1,5 +1,5 @@
-Bartok "Wandering"
-==================
+Example: Bartók
+===============
 
 This example demonstrates the use of many of the main classes in Abjad. The end result is just a few measures long, but the example covert most of the basic features you'll usually need. So place close attention!
 

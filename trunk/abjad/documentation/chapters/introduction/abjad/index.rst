@@ -1,5 +1,5 @@
-What is Abjad?
-==============
+Abjad?
+======
 
 Abjad is an interactive software system designed to help composers
 build up complex pieces of music notation in an iterative and

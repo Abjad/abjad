@@ -1,7 +1,7 @@
-Rhythms: floating metric grid, slicing and dicing [#f1]_
-========================================================
+Example: metric grid
+====================
 
-This example demonstrates how you can compose a sequence of notes with
+This example [#f1]_ demonstrates how you can compose a sequence of notes with
 arbitrary durations outside a metric hierarchy (e.g. Measures) and
 then slice and dice the notes to have them fit a metric overlay added
 `a posteriori`.
