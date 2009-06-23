@@ -19,7 +19,7 @@ score worked out against many dozes of staves.
 Abjad extends python
 --------------------
 
-`Python <www.python.org>`__ is an object-oriented, dynamic programming
+`Python <http://www.python.org>`__ is an object-oriented, dynamic programming
 language developed by Guido van Rossum in the 1990s. Python is now
 widely used for everything from straightforward scripting applications
 to the development and deployment of complex distributed systems. The
@@ -29,15 +29,15 @@ than most other languages. Much has been written about the benefits of
 Python and we are happy to add our voice to the chorus. We find Python
 to be an excellent all-purpose language that scales well, tests well,
 develops quickly, and keeps total lines of code to a minimum. For more
-on the benefits (and some limitations) of Python, see our page on `why
-Python is right for Abjad <../python/index.html>`__.
+on the benefits (and some limitations) of Python, see our page on 
+:doc:`/chapters/background/python/index`.
 
 
 
 Abjad extends lilypond
 ----------------------
 
-`LilyPond <www.lilypond.org>`__ is an open source music notation
+`LilyPond <http://www.lilypond.org>`__ is an open source music notation
 package invented by Han-Wen Nienhuys and Jan Niewenhuizen in the 1990s
 and still under development today. LilyPond is a command-line driven
 music typography system that allows for the generation of music
@@ -50,8 +50,8 @@ perhaps most importantly, LilyPond implements the rhythmic model of
 western music correctly: broken tuplets, nonbinary meters, and
 durations that cross measure and line boundaries all work correctly
 out of the box. For these and other details relating to our selection
-of LilyPond as the notational engine for Abjad, see our page on `why
-LilyPond is right for Abjad <../lilypond/index.html>`__.
+of LilyPond as the notational engine for Abjad, see our page on 
+:doc:`/chapters/background/lilypond/index`.
 
 
 
@@ -95,7 +95,7 @@ Working independently and faced with similar aesthetic and technical problems in
    outside the printed page — in ways rich enough to help capture, model 
    and develop long-range, nonlocal relationships throughout our scores.
 
-After collaborating on a joint paper describing the two systems and discussing their design implementation, Víctor and Trevor decided to combine their efforts into a single unified project, now called **Abjad**. 
+After collaborating on a joint paper describing the two systems and discussing their design implementation, Víctor and Trevor decided to combine their efforts into a single unified project, now called *Abjad*. 
 
 In Abjad we strive to develop a powerful and flexible symbolic music system for `formalized score control`.  In picking the phrase `formalized score control` to capture our solutions to these problems, we hope to highlight our want to embody important elements of musical score symbolically such that the full power of modern programming languages and tools in mathematics can be brought to bear on all parts of the compositional process.
 
