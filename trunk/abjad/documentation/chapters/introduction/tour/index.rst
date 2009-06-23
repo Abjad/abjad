@@ -22,7 +22,7 @@ That's all there is to starting Abjad! Notice that all you have to
 type are the three letters `abj` rather than the full five letters in
 the name of the system.
 
-What if the Abjad interpreter doesn't start? See the page on :doc:`installing Abjad </chapters/introduction/download/install>`.
+What if the Abjad interpreter doesn't start? See the page on installing Abjad.
 
 
 

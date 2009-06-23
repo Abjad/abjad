@@ -15,12 +15,11 @@ Start here:
    :maxdepth: 1
 
    chapters/introduction/abjad/index
-   chapters/introduction/download/install
-   chapters/introduction/download/download
+   chapters/introduction/install/install
+   chapters/introduction/download/index
    chapters/introduction/examples/index
    chapters/introduction/tour/index
    chapters/introduction/whatnext/index
-   chapters/introduction/community/index
 
 
 Abjad fundamentals:

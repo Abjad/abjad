@@ -30,5 +30,5 @@ Abjad uses the following terms in ways that are unique to the project.
    thread
       A term referring to a structural relationship binding a strictly 
       sequential set of :class:`~abjad.voice.voice.Voice` level Abjad
-      component. See the chapter on :doc:`/chapters/threads/index` 
+      component. See the chapter on :doc:`/chapters/fundamentals/threads/index` 
       for a detail discussion.
