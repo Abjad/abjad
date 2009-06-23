@@ -42,6 +42,7 @@ Developer concerns:
    :maxdepth: 1
 
    chapters/developers/codebase/index
+   chapters/developers/install/index
    chapters/developers/tests/index
    chapters/developers/documentation/index
 
