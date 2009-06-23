@@ -224,8 +224,8 @@ You can reassign ``note.duration.written``.
 
 .. image:: images/duration_assign1.png
 
-Use must use a :class:`Rational <abjad.rational.rational.Rational>` which meets :doc:`assignability </chapters/duration/assignability/index>` criteria.
-You can also assign ``note.duration.multiplier``.
+Use must use a :class:`Rational <abjad.rational.rational.Rational>` which meets :doc:`assignability </chapters/fundamentals/duration/assignability/index>` 
+criteria. You can also assign ``note.duration.multiplier``.
 
 ::
 

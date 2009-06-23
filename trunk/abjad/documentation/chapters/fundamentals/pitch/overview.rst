@@ -28,7 +28,8 @@ Abjad implements quartertones only.
 
 .. note::
 
-   For the conventions these chapters follow, refer to the appendix on :doc:`pitch conventions </chapters/pitch_conventions/index>`.
+   For the conventions these chapters follow, refer to the appendix on 
+   :doc:`pitch conventions </chapters/appendices/pitch_conventions/index>`.
 
 .. todo::
 

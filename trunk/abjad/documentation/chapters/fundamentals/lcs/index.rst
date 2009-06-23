@@ -78,7 +78,9 @@ musical notation.
 .. image:: images/bartok_wandering.png
 
 .. note::
-   Please refer to the :doc:`Bartok example </chapters/examples/bartok/index>` for a step by step construction of the musical fragment and its full Abjad code.
+   Please refer to the :doc:`Bartok example 
+   </chapters/introduction/examples/bartok/index>` for a step by step 
+   construction of the musical fragment and its full Abjad code.
 
 There are many musical signs of different types on the pages: notes,
 dynamic markings, clefs, staves, slurs, etc. These signs are

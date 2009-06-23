@@ -48,8 +48,9 @@ Fixed-duration tuplets and fixed-multiplier tuplets both **prolate** their conte
   Rational(5, 32)
 
 
-The tuplet here augments its contents and carries a tuplet multiplier equal to `4/5`.
-Notes here with :doc:`written duration </chapters/duration/types/index>` equal to `1/8` carry **prolation factor** equal to `4/5` and :doc:`prolated duration <../prolation/index>` equal to `5/4 * 1/8 = 5/32`.
+The tuplet here augments its contents and carries a tuplet multiplier 
+equal to `4/5`.  Notes here with :doc:`written duration 
+</chapters/fundamentals/duration/types/index>` equal to `1/8` carry **prolation factor** equal to `4/5` and :doc:`prolated duration <../prolation/index>` equal to `5/4 * 1/8 = 5/32`.
 
 
 
