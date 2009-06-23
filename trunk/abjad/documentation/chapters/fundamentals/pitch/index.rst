@@ -1,5 +1,5 @@
-Understanding Pitches
-=====================
+Pitches
+=======
 
 .. toctree::
 

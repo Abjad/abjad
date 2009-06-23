@@ -1,33 +1,6 @@
-Tour
-====
+2 Make one note
+===============
 
-Work through the examples here to learn how to start Abjad and to make
-notes, rests and chords. After you know the basics you can move on to
-more advanced examples.
-
-
-1. Start Abjad
---------------
-
-To start Abjad, type `abj` at any shell prompt. [#f1]_ The Abjad
-intepreter appears.
-
-.. sourcecode:: python
-
-    
-    abjad> 
-
-
-That's all there is to starting Abjad! Notice that all you have to
-type are the three letters `abj` rather than the full five letters in
-the name of the system.
-
-What if the Abjad interpreter doesn't start? See the page on installing Abjad.
-
-
-
-2. Make one note
-----------------
 To create one note, type code like the following and hit return.
 
 .. sourcecode:: python
@@ -122,46 +95,3 @@ note to a variable name. We've also looked at just a few of the many
 dozen different structural attributes that Abjad makes available for
 the different objects in the system. In the next section we'll look at
 a few ways to make many notes at once.
-
-
-
-3. Make many notes
-------------------
-
-Abjad overloads the Python multiplication `*` operator to copy notes,
-rests and other system objects.
-
-.. sourcecode:: python
-
-    
-    abjad> my_notes = Note(0, (1, 8)) * 4
-
-
-The `my_notes` variable is now bound to a Python list of four Abjad
-notes.
-
-.. sourcecode:: python
-
-    
-    abjad> my_notes
-    [Note(c', 8), Note(c', 8), Note(c', 8), Note(c', 8)]
-
-
-These four notes are all truly different from one another. [#f2]_
-
-All the usual Python list operations are available.
-
-.. sourcecode:: python
-
-    
-    abjad> len(my_notes)
-    4
-
-
-
-
-
-.. [#f1] On Mac OS X you can get a shell prompt using the Terminal application. The terminal application lives at `/Applications/Utilities`. It's probably a good a idea to drag the Terminal application to your dock so that the application is easy to get to and easy to start. Once you've found the Terminal application, click it and type `abj` to start Abjad.
-
-
-.. [#f2] By "truly different" we mean that each of the four notes in the example above have a separate ID in the Abjad interpreter. You can see this by asking, for example, for `id(my_notes[0])` and `id(my_notes[1])`. Different IDs will come back in each case. This is important for two reasons. First, the usual Python multiplication operator acts to multiply references, rather than deep copying instances as happens here. Second, as you build more complex musical expressions, it will be important that notes, rests and all components be unique throughout complex score structure to prevent accidental aliasing of elements.

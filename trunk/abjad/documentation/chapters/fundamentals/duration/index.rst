@@ -1,5 +1,5 @@
-Understanding Duration
-======================
+Durations
+=========
 
 .. toctree::
 

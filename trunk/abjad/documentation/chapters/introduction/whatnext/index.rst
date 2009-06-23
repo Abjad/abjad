@@ -26,7 +26,7 @@ touch and consider contributing to the project at any time.
 
 
 Have questions? Want to contribute?
-===================================
+-----------------------------------
 
 
 Please join our two new mailing lists!

@@ -1,5 +1,5 @@
-The Leaf Container Spanner (LCS) Model
-======================================
+Leaf, Container, Spanner
+========================
 
 
 The LCS by example

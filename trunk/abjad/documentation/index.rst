@@ -9,33 +9,42 @@ Welcome to Abjad
 .. note:: 
    The Abjad documentation is still very much a work in progress.
 
-Start here:
+Start here
 
 .. toctree::
    :maxdepth: 1
 
    chapters/introduction/abjad/index
+   chapters/introduction/examples/index
    chapters/introduction/install/install
    chapters/introduction/download/index
-   chapters/introduction/examples/index
-   chapters/introduction/tour/index
    chapters/introduction/whatnext/index
 
 
-Abjad fundamentals:
+Tutorial
+
+.. toctree::
+   :maxdepth: 1
+   
+   chapters/tutorial/start/index
+   chapters/tutorial/one_note/index
+   chapters/tutorial/many_notes/index
+
+
+Fundamentals
 
 .. toctree::
    :maxdepth: 1
 
+   chapters/fundamentals/lcs/index
    chapters/fundamentals/duration/index
    chapters/fundamentals/pitch/index
    chapters/fundamentals/note_basics/index
    chapters/fundamentals/grobhandlers/index
-   chapters/fundamentals/lcs/index
    chapters/fundamentals/threads/index
 
 
-Developer concerns:
+Development
 
 .. toctree::
    :maxdepth: 1
@@ -46,7 +55,7 @@ Developer concerns:
    chapters/developers/documentation/index
 
 
-Background and motivations
+Motivations
 
 .. toctree::
    :maxdepth: 1
@@ -56,7 +65,7 @@ Background and motivations
    chapters/background/midi_not_enough/index
 
 
-Appendices:
+Appendices
 
 .. toctree::
    :maxdepth: 1
@@ -67,7 +76,7 @@ Appendices:
    chapters/appendices/bibliography/index
 
 
-Abjad API:
+Abjad API
 
 .. toctree::
    :maxdepth: 1

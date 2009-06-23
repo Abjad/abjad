@@ -1,5 +1,5 @@
-Working with notes
-==================
+Notes
+=====
 
 
 Creating notes
