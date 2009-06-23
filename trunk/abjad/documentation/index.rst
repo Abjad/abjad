@@ -14,12 +14,12 @@ Start here:
 .. toctree::
    :maxdepth: 1
 
-   chapters/introduction/index
-   chapters/download/index
-   chapters/examples/index
-   chapters/tour/index
-   chapters/whatnext/index
-   chapters/community/index
+   chapters/introduction/abjad/index
+   chapters/introduction/download/index
+   chapters/introduction/examples/index
+   chapters/introduction/tour/index
+   chapters/introduction/whatnext/index
+   chapters/introduction/community/index
 
 
 Abjad fundamentals:
