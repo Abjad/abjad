@@ -6,6 +6,12 @@
 Welcome to Abjad
 ================
 
+Abjad helps composers build up complex pieces of music notation 
+in an iterative and incremental way. 
+You can use Abjad to create a symbolic representation of all the 
+notes, rests, staves, nested rhythms, beams, slurs and 
+other notational elements in any score. 
+
 .. note:: 
    The Abjad documentation is still very much a work in progress.
 
@@ -17,7 +23,6 @@ Start here
    chapters/introduction/abjad/index
    chapters/introduction/examples/bartok/index
    chapters/introduction/examples/slicing/index
-   chapters/introduction/install/install
    chapters/introduction/download/index
    chapters/introduction/whatnext/index
 
@@ -54,6 +59,7 @@ Development
    chapters/developers/install/index
    chapters/developers/tests/index
    chapters/developers/documentation/index
+   chapters/developers/versions/index
 
 
 Motivations
