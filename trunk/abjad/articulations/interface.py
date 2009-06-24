@@ -1,13 +1,17 @@
 from abjad.articulations.articulation import Articulation
 from abjad.core.formatcontributor import _FormatContributor
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
-class _ArticulationsInterface(_Interface, _FormatContributor):
+#class _ArticulationsInterface(_Interface, _FormatContributor):
+class _ArticulationsInterface(_Interface, _GrobHandler):
+   '''Handle the LilyPond Script grob.'''
 
    def __init__(self, client):
       _Interface.__init__(self, client)
-      _FormatContributor.__init__(self)
+      #_FormatContributor.__init__(self)
+      _GrobHandler.__init__(self, 'Script')
       self._articulations = [ ]
 
    ## OVERLOADS ##
