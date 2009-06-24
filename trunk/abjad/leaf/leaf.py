@@ -1,4 +1,3 @@
-from abjad.articulations.interface import _ArticulationsInterface
 from abjad.component.component import _Component
 from abjad.core.interface import _Interface
 from abjad.grace.interface import _GraceInterface
@@ -15,7 +14,6 @@ class _Leaf(_Component):
 
    def __init__(self, duration):
       _Component.__init__(self)
-      self._articulations = _ArticulationsInterface(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
       self._grace = _GraceInterface(self)
