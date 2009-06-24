@@ -67,6 +67,7 @@ Motivations
 .. toctree::
    :maxdepth: 1
 
+   chapters/background/history/index
    chapters/background/lilypond/index
    chapters/background/python/index
    chapters/background/midi_not_enough/index
