@@ -1,5 +1,5 @@
-Writing documentation
-=====================
+Documentation
+=============
 
 The Abjad documentation is included in its entirety when you check out
 the Abjad codebase. You may add to and edit the docs as soon as you 
@@ -13,8 +13,8 @@ This remaining sections of this chapter describe how to find and edit the
 Abjad docs, and how to build the the docs with Sphinx.
 
 
-Layout of the docs
-------------------
+How the docs are laid out
+-------------------------
 
 The Abjad documentation source files are included in the ``documentation``
 directory of every Abjad download. ::
@@ -47,11 +47,11 @@ the main sections on the front page of the Abjad docs.
 What you'll find as you inspect the chapters directories, or as you 
 consider adding a new chapter directory, are a collection of ``.rst`` 
 files organized into directories. The ``.rst`` extension identifies files
-written in restructured text, or reST, described more fully below. ::
+written in restructured text, or reST, described more fully below. [#]_ ::
 
-   abjad$ ls documentation/doc_sphinx/chapters/note_basics
+   abjad$ ls documentation/chapters/appendices/glossary
 
-   images        index.rst     index.rst.raw
+   index.rst
 
 
 Building the docs
@@ -72,9 +72,6 @@ need to download and install Sphinx.
    
 .. rubric:: Footnotes
 
-.. [#] Abjad stores the location of Abjad codebase in the ``ABJADPATH``
-   configuration variable. Note that ``ABJADPATH`` is not an OS-level
-   environment variable but instead a configuration variable internal
-   to Abjad. To see the value of ``ABJADPATH``, and find out where
-   you installed Abjad after download, just type
-   ``from abjad.cfg.cfg import ABJADPATH`` at the Abjad interpreter.
+.. [#] Restructured text is abbreviated :abbr:`reST` or :abbr:`ReST`
+   and should not be confused with the :abbr:`REST` and :abbr:`SOAP`
+   protocols in use in other development projects on the Web.

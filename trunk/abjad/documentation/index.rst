@@ -55,11 +55,11 @@ Development
 .. toctree::
    :maxdepth: 1
 
-   chapters/developers/codebase/index
-   chapters/developers/install/index
-   chapters/developers/tests/index
-   chapters/developers/documentation/index
-   chapters/developers/versions/index
+   chapters/devel/codebase/index
+   chapters/devel/install/index
+   chapters/devel/tests/index
+   chapters/devel/documentation/index
+   chapters/devel/versions/index
 
 
 Motivations
