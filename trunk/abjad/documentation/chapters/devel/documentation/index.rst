@@ -72,6 +72,36 @@ After ``make clean`` feel free to build new HTML or other versions of
 of the docs as described in the following sections.
 
 
+Autogenerating the Abjad API
+----------------------------
+
+The ``documentation/scr`` directory includes a script to autogenerate
+the Abjad API.  Run this script before building the main part of the
+docs for the first time. ::
+
+   documentation$ scr/make-abjad-api
+   Run script in interactive mode? [Y/n]: n
+
+   Writing file /Users/trevorbaca/Documents/abjad/trunk/abjad/documentation/chapter
+   s/api/accidental/accidental.rst ...
+   Writing file /Users/trevorbaca/Documents/abjad/trunk/abjad/documentation/chapter
+   s/api/accidental/interface.rst ...
+   Writing file /Users/trevorbaca/Documents/abjad/trunk/abjad/documentation/chapter
+   s/api/articulations/articulation.rst ...
+
+   ... (many lines omitted) ...
+
+   Writing file /Users/trevorbaca/Documents/abjad/trunk/abjad/documentation/chapter
+   s/api/voice/voice.rst ...
+   Writing file /Users/trevorbaca/Documents/abjad/trunk/abjad/documentation/chapter
+   s/api/voice/interface/interface.rst ...
+   Writing file /Users/trevorbaca/Documents/abjad/trunk/abjad/documentation/chapter
+   s/api/index.rst ...
+
+Rerun ``make-abjad-api`` any time you add or remove a public class, 
+method or function from the codebase.
+
+
 Building the HTML docs
 ----------------------
 
