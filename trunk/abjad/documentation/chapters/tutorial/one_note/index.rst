@@ -4,7 +4,6 @@ Making one note
 To create one note, type code like the following and hit return.
 
 .. sourcecode:: python
-
     
     abjad> Note(13, (1, 4))
     Note(c'', 4)
@@ -18,7 +17,6 @@ special Python `_` underscore character.
 
 .. sourcecode:: python
 
-    
     abjad> my_note = _
 
 Python interpreters the special `_` underscore character to mean "the
@@ -28,7 +26,6 @@ variable now equals the C-sharp we created earlier. Any time we type
 
 .. sourcecode:: python
 
-    
     abjad> my_note
     Note(cs'', 4)
 
@@ -37,7 +34,6 @@ into a single step.
 
 .. sourcecode:: python
 
-    
     abjad> my_note = Note(13, (1, 4))
 
 Abjad instantiates the C-sharp on the right-hand side of the equals

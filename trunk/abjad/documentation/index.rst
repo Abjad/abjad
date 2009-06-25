@@ -37,6 +37,7 @@ Tutorial
    chapters/tutorial/one_note/index
    chapters/tutorial/many_notes/index
    chapters/tutorial/inspecting_output/index
+   chapters/tutorial/measures/index
 
 
 Fundamentals
