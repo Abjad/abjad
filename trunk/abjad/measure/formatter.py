@@ -8,6 +8,28 @@ from abjad.tuplet import FixedMultiplierTuplet
 
 
 class _MeasureFormatter(_ContainerFormatter):
+   '''Encapsulate all
+   :class:`~abjad.measure.dynamic.measure.DynamicMeasure` and
+   :class:`~abjad.measure.anonymous.measure.AnonymousMeasure` 
+   format logic. ::
+
+      abjad> measure = AnonymousMeasure(construct.scale(3))
+      abjad> measure.formatter
+      <_MeasureFormatter>
+
+   ::
+
+      abjad> measure = DynamicMeasure(construct.scale(3))
+      abjad> measure.formatter
+      <_MeasureFormatter>
+
+   :class:`~abjad.measure.rigid.measure.RigidMeasure` instances implement
+   a special formatter which inherits from this base class. ::
+
+      abjad> measure = RigidMeasure((3, 8), construct.scale(3))
+      abjad> measure.formatter
+      <_RigidMeasureFormatter>
+   '''
 
    def __init__(self, client):
       _ContainerFormatter.__init__(self, client)
@@ -18,4 +40,7 @@ class _MeasureFormatter(_ContainerFormatter):
 
    @property
    def slots(self):
+      '''Read-only reference to 
+      :class:`~abjad.measure.slots._MeasureFormatterSlotsInterface`.'''
+
       return self._slots

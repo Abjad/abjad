@@ -151,8 +151,8 @@ class Container(_Component):
 
    @apply
    def parallel( ):
-      '''Read / write boollean for paralllel / sequential containers.'''
       def fget(self):
+         '''Read / write boolean for paralllel / sequential containers.'''
          return self._parallel
       def fset(self, expr):
          from abjad.context.context import _Context

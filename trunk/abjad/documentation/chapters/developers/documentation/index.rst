@@ -38,8 +38,8 @@ The core content of the Abjad docs lives in ``documentation/chapters``. ::
 
    abjad$ ls documentation/chapters/
 
-   api          background   fundamentals notehead
-   appendices   developers   introduction tutorial
+   api          background   fundamentals tutorial
+   appendices   developers   introduction 
 
 The ``documentation/chapters`` subdirectories mirror
 the main sections on the front page of the Abjad docs.
