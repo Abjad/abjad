@@ -8,7 +8,7 @@ def rests(durations, direction='big-endian', tied=False):
    * `durations` can be a sinlge duration token or a list of durations.
    * `direction`, a string that may be ``'big-endian'`` or \
       ``'little-endian'``.  When `durations` are not \
-      :term:`notehead-assignable`, ``'big-endian'`` returns a list of rests \
+      :term:`assignable`, ``'big-endian'`` returns a list of rests \
          in decreasing duration, while ``'little-endian'`` returns a \
          list of rests in increasing duration.
    * `tied`, set to ``True`` to return tied rests, otherwise set to \

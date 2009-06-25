@@ -90,7 +90,7 @@ class Pitch(_Abjad):
 
    @property
    def altitude(self):
-      '''Measure of the absolute height of accidental on grand staff.'''
+      '''See :term:`altitude`.'''
       if self.letter:
          return (self.octave - 4) * 7 + self.degree - 1
       else:
