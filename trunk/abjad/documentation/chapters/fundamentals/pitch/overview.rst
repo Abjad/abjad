@@ -1,5 +1,5 @@
-Pitch overview
-==============
+Overview
+========
 
 Abjad models pitch with a combination of custom classes and helper functions.
 

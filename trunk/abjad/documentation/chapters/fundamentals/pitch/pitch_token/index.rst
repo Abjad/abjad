@@ -1,5 +1,5 @@
-Pitch token
-===========
+Pitch token input
+=================
 
 
 Abjad notes and chords accept all of the following as pitch input:
