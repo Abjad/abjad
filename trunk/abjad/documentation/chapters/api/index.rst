@@ -429,7 +429,9 @@ Abjad API
    tools/pickle/dump
    tools/pickle/load
    tools/pitchtools/add_staff_spaces
+   tools/pitchtools/apply_octavation
    tools/pitchtools/are_in_octave_order
+   tools/pitchtools/change_default_accidental_spelling
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_interval_to_absolute_interval
@@ -472,6 +474,7 @@ Abjad API
    tools/scoretools/bequeath
    tools/scoretools/donate
    tools/scoretools/find
+   tools/scoretools/make_piano_staff
    tools/scoretools/transfer_all_attributes
    tools/spacing/get_global
    tools/spannertools/find_component_at_score_offset
