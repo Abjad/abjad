@@ -4,5 +4,5 @@ Pitches
 .. toctree::
 
    overview
-   token/index
-   /chapters/notehead/token/index
+   pitch_token/index
+   notehead_token/index

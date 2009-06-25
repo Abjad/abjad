@@ -16,51 +16,33 @@ Abjad docs, and how to build the the docs with Sphinx.
 Layout of the docs
 ------------------
 
-To see that the Abjad docs are included when you download the codebase,
-change to ``ABJADPATH`` [#]_ and list the contents of that directory. ::
+The Abjad documentation source files are included in the ``documentation``
+directory of every Abjad download. ::
 
-   abjad$ ls
+   abjad$ ls -d d*
 
-   __init__.py   cluster       hairpin       octavation    spanner
-   __init__.pyc  comments      harmonic      offset        staff
-   accidental    component     instrument    override      staffgroup
-   articulations container     interfaces    parentage     stem
-   barline       context       layout        pianopedal    templates
-   barnumber     core          leaf          pitch         tempo
-   beam          debug         lily          rational      text
-   book          demos         markup        receipt       thread
-   bracket       directives    measure       rest          tie
-   brackets      documentation meter         scm           tools
-   breaks        dots          metricgrid    score         tremolo
-   cfg           dynamics      navigator     scr           trill
-   checks        exceptions    note          skip          tuplet
-   chord         glissando     notehead      slur          update
-   clef          grace         numbering     spacing       voice
+   debug         directives    dots
+   demos         documentation dynamics
 
-The ``documentation`` directory lists together with the rest of the code.
+The ``documentation`` directory contains everything 
+required to build HTML, LaTeX and PDF versions of the Abjad docs,
+including the page that you're reading now.
+List the contents of the ``documentation`` directory and take a look around. ::
 
-Most of the contents of the ``documentation`` directory predates the 
-Sphinx version of the site and can be ignored for this reason. 
-Instead, list the contents of the ``documentation/doc_sphinx`` directory 
-and take a look around. ::
-
-   abjad$ ls documentation/doc_sphinx/
+   abjad$ ls documentation
 
    Makefile   _templates chapters   index.rst  scr
    _static    _themes    conf.py    make.bat
 
-The ``documentation/doc_sphinx`` directory contains everything 
-required to build HTML, LaTeX and PDF versions of documentation system
-for all of Abjad. The core content of the system lives in the 
-``documentation/doc_sphinx/chapters`` subdirectory. ::
+The core content of the Abjad docs lives in ``documentation/chapters``. ::
 
-   abjad$ ls documentation/doc_sphinx/chapters/
+   abjad$ ls documentation/chapters/
 
-   api               duration          lcs               standards
-   bibliography      examples          note_basics       threads
-   community         glossary          notehead          tour
-   developers        grobhandlers      pitch             whatnext
-   download          introduction      pitch_conventions
+   api          background   fundamentals notehead
+   appendices   developers   introduction tutorial
+
+The ``documentation/chapters`` subdirectories mirror
+the main sections on the front page of the Abjad docs.
 
 What you'll find as you inspect the chapters directories, or as you 
 consider adding a new chapter directory, are a collection of ``.rst`` 
