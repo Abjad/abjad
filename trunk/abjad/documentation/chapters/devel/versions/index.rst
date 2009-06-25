@@ -2,7 +2,7 @@ Version history
 ===============
 
 
-Release 1.1 
+Abjad 1.1 
 -----------
 `Abjad 1.1.tar.gz <http://pypi.python.org/pypi/Abjad>`__
 
@@ -17,7 +17,7 @@ Release 1.1
    HTML, LaTex and reST documents. 
 
 
-Release 1.0.1055
+Abjad 1.0.1055
 ----------------
 `Abjad 1.0.1055dev.tar.gz
 <http://128.59.116.55/~abjad/Abjad-1.0.1055dev.tar.gz>`__
@@ -49,7 +49,7 @@ Changes to the public interface:
 *  Grace note ``append()`` and ``extend()`` no longer throw errors.
 
 
-Release 1.0.1022
+Abjad 1.0.1022
 ----------------
 
 `Abjad 1.0.1012dev.tar.gz

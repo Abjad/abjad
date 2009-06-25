@@ -56,9 +56,8 @@ Development
    :maxdepth: 1
 
    chapters/devel/codebase/index
-   chapters/devel/install/index
-   chapters/devel/tests/index
    chapters/devel/documentation/index
+   chapters/devel/tests/index
    chapters/devel/versions/index
 
 

@@ -1,5 +1,5 @@
-Writing and running tests
-=========================
+Tests
+=====
 
 Abjad includes an exetensive battery of tests. Current versions of the
 system include more than 2000 tests, [#]_ all of which are important to 

@@ -9,6 +9,13 @@ Abjad uses the following terms in ways that are unique to the project.
    assignable
       See :term:`notehead-assignable`.
 
+   coverage
+      The percentage of public classes, methods and functions currently
+      documented in the system (doc coverage). Also the percentage
+      of code exercised when the regression tests run (test coverage).
+      Abjad coverage goals are set at 100% for the docs and as high
+      as possible for the core code.
+     
    format
       The LilyPond input string corresponding to an Abjad object.
       The :term:`format` of the Abjad ``Note(1, (1, 4))`` is
