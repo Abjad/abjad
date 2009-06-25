@@ -1,4 +1,4 @@
-2 Make one note
+Making one note
 ===============
 
 To create one note, type code like the following and hit return.

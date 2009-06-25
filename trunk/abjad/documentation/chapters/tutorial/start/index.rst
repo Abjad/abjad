@@ -1,4 +1,4 @@
-1 Start Abjad
+Starting Abjad
 ==============
 
 To start Abjad, type ``abj`` at any shell prompt. [#f1]_ 

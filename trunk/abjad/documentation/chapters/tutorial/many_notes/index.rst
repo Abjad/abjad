@@ -1,4 +1,4 @@
-3 Make many notes
+Making many notes
 =================
 
 Abjad overloads the Python multiplication `*` operator to copy notes,
