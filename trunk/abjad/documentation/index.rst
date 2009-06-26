@@ -81,6 +81,7 @@ Appendices
    :maxdepth: 1
 
    chapters/appendices/pitch_conventions/index
+   chapters/appendices/altitude_values/index
    chapters/appendices/standards/index
    chapters/appendices/glossary/index
    chapters/appendices/bibliography/index
