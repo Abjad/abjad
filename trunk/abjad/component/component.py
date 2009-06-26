@@ -15,6 +15,7 @@ from abjad.instrument.interface import _InstrumentInterface
 from abjad.interfaces.aggregator import _InterfaceAggregator
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
+from abjad.notecolumn.interface import _NoteColumnInterface
 #from abjad.notehead.interface import _NoteHeadInterface
 from abjad.numbering.interface import _NumberingInterface
 from abjad.offset.interface import _OffsetInterface
@@ -80,6 +81,7 @@ class _Component(_Abjad):
       self._instrument = _InstrumentInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
+      self._notecolumn = _NoteColumnInterface(self)
       self._notehead = _NoteHeadInterface(self)
       self._parentage = _Parentage(self)
       self._pianopedal = _PianoPedalInterface(self)
@@ -225,6 +227,10 @@ class _Component(_Abjad):
          assert isinstance(arg, (str, types.NoneType))
          self._name = arg
       return property(**locals( ))
+
+   @property
+   def notecolumn(self):
+      return self._notecolumn
 
    @property
    def notehead(self):

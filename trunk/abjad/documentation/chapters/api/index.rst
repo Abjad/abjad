@@ -135,6 +135,7 @@ Abjad API
    navigator/navigator
    note/initializer
    note/note
+   notecolumn/interface
    notehead/format
    notehead/interface
    notehead/notehead
