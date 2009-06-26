@@ -53,10 +53,18 @@ class _InterfaceAggregator(_Interface):
 
    @property
    def contributors(self):
+      from abjad.chord import Chord
+      from abjad.notehead import NoteHead
       if not self._contributors_sorted:
          self._contributors.sort(lambda x, y:
             cmp(x.__class__.__name__, y.__class__.__name__))
          self._contributors_sorted = True
+      ## TODO: Remove client-testing hack. ##
+      if isinstance(self._client, Chord):
+         notehead = [x for x in self._contributors if isinstance(x, NoteHead)]
+         if notehead:
+            notehead = notehead[0]
+            self._contributors.remove(notehead) 
       return self._contributors
 
    @property

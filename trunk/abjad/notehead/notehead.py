@@ -8,7 +8,7 @@ class NoteHead(_NoteHeadInterface):
    def __init__(self, client, pitch = None):
       _NoteHeadInterface.__init__(self, client)
       self._formatter = _NoteHeadFormatInterface(self)
-      self._style = None
+      #self._style = None
       self.pitch = pitch
       self._unregister_if_necessary( )
 
@@ -76,15 +76,18 @@ class NoteHead(_NoteHeadInterface):
             raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
 
-   @apply
-   def style( ):
-      def fget(self):
-         return self._style
-      def fset(self, expr):
-         if expr is None:
-            self._style = None
-         elif isinstance(expr, str):
-            self._style = expr
-         else:
-            raise ValueError('can not set notehead style.')
-      return property(**locals( ))
+   ## BAD: 'style is a valid LilyPond NoteHead Scheme attribute. ##
+   ##       'style should not be managed by Abjad NoteHead.      ##
+
+#   @apply
+#   def style( ):
+#      def fget(self):
+#         return self._style
+#      def fset(self, expr):
+#         if expr is None:
+#            self._style = None
+#         elif isinstance(expr, str):
+#            self._style = expr
+#         else:
+#            raise ValueError('can not set notehead style.')
+#      return property(**locals( ))

@@ -3,8 +3,6 @@ from abjad.leaf.number import _LeafFormatterNumberInterface
 from abjad.leaf.slots import _LeafFormatterSlotsInterface
 
 
-## BUG: _LeafFormatter currently doesn't respect NoteHead.style ##
-
 class _LeafFormatter(_ComponentFormatter):
 
    def __init__(self, client):
