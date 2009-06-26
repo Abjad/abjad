@@ -11,12 +11,12 @@ Abjad creates the first four notes of an ascending C major scale.
 
 Wrap these notes in a staff and then show.
 
-::
-
-	abjad> staff = Staff(notes)
-	abjad> show(staff)
-
-.. image:: images/test.png
+<abjad>
+notes = construct.scale(4) <hide
+staff = Staff(notes)
+show(staff)
+write_ly(staff, 'test') <hide
+</abjad>
 
 The ``notes`` variable is now bound to a Python list of four Abjad notes.
 The ``staff`` variable is bound to an Abjad staff containing those notes.

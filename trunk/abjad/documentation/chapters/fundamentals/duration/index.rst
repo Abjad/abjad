@@ -2,6 +2,7 @@ Durations
 =========
 
 .. toctree::
+   :maxdepth: 1
 
    introduction/index
    rationals/index

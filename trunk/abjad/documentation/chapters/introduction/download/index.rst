@@ -1,7 +1,7 @@
 Installation
 ============
 
-Abjad 1.1 requires Python 2.5 or 2.6 and LilyPond 12.2 or newer to run.
+Abjad 1.1.x requires Python 2.5 or 2.6 and LilyPond 12.2 or newer to run.
 The sections below explain how to install Python, LilyPond and Abjad.
 
 
@@ -20,7 +20,8 @@ Type ``python`` at the commandline to find out. ::
 If Python starts, then you already have Python installed.
 
 If Python does not start, or if you have Python 2.4 or earlier,
-download a newer version of Python from http://www.python.org. Make sure to avoid Python to your ``PATH`` environment variable after install. [#f1]_
+download from http://www.python.org.  Make sure to add Python to your 
+``PATH`` environment variable after install. [#f1]_
 
 
 Install LilyPond 2.12 or newer
@@ -41,10 +42,10 @@ type ``lilypond --help`` at the commandline. ::
 If LilyPond starts then you already have LilyPond installed on your system.
 
 If LilyPond does not start, download from http://www.lilypond.org.
-And again make sure to add LilyPond to your ``PATH`` after install.
+Make sure to add LilyPond to your ``PATH`` after install.
 
 
-Install Abjad 1.1
+Install Abjad 1.1.x
 ------------------------------
 
 It is easy to install Abjad with the Python
@@ -59,13 +60,14 @@ just follow the steps outlined below.
 
 2. Untar the downloaded file. ::
 
-      tar xzvf Abjad-1.1.tar.gz
+      tar xzvf Abjad-1.1.x.tar.gz
 
-   The sequence ``1.1`` should be the version number of the latest release.
+   The sequence ``1.1.x`` should be the version number of the latest release
+   of Abjad.
 
 3. Change into the directory created in step 2. ::
 
-      cd Abjad-1.1
+      cd Abjad-1.1.x
 
 4. If you're using Linux [#f2]_ or MacOS [#f3]_ you can use 
    Python to install. ::
@@ -78,8 +80,6 @@ just follow the steps outlined below.
       setup.py install
 
 These commands install Abjad in your Python ``site-packages`` directory. 
-
-
 
  
 .. rubric:: Notes

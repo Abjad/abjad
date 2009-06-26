@@ -36,6 +36,7 @@ Tutorial
    chapters/tutorial/start/index
    chapters/tutorial/one_note/index
    chapters/tutorial/many_notes/index
+   chapters/tutorial/note_attributes/index
    chapters/tutorial/inspecting_output/index
    chapters/tutorial/measures/index
 

@@ -1,5 +1,5 @@
-Starting Abjad
-==============
+Start Abjad
+===========
 
 To start Abjad, type ``abj`` at any shell prompt. [#f1]_ 
 The Abjad intepreter appears.
