@@ -4,6 +4,21 @@ from abjad.notehead.interface import _NoteHeadInterface
 
 
 class NoteHead(_NoteHeadInterface):
+   r'''The head of a single note or one of the heads in a chord.  
+
+   ::
+
+      abjad> note = Note(1, (1, 4))
+      abjad> note.notehead
+      NoteHead(cs')
+
+   The Abjad NoteHead overrides the LilyPond NoteHead grob. ::
+
+      abjad> note.notehead.color = 'red'
+      abjad> print note.format
+      \once \override NoteHead #'color = #red
+      cs'4
+   '''
 
    def __init__(self, client, pitch = None):
       _NoteHeadInterface.__init__(self, client)
@@ -50,15 +65,42 @@ class NoteHead(_NoteHeadInterface):
 
    @property
    def format(self):
+      '''Read-only format string of notehead.
+
+      .. todo:: appears to not currently be working, or necessary.
+
+      ::
+      
+         abjad> note = Note(1, (1, 4))
+         abjad> note.nothead.format
+         "cs'"
+      '''
       return self.formatter.format
 
    @property
    def formatter(self):
+      '''Read-only reference to note head formatter.
+
+      ::
+
+         abjad> note = Note(1, (1, 4))
+         abjad> note.notehead.formatter
+         <_NoteHeadFormatInterface>
+      '''
       return self._formatter
 
    @apply
    def pitch( ):
       def fget(self):
+         '''Read / write pitch of notehead.
+
+         ::
+
+            abjad> note = Note(1, (1, 4))
+            abjad> note.notehead.pitch = 2
+            abjad> print note.format
+            d'4
+         '''
          return self._pitch
       def fset(self, arg):
          from abjad.pitch.pitch import Pitch
@@ -75,19 +117,3 @@ class NoteHead(_NoteHeadInterface):
          else:
             raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
-
-   ## BAD: 'style is a valid LilyPond NoteHead Scheme attribute. ##
-   ##       'style should not be managed by Abjad NoteHead.      ##
-
-#   @apply
-#   def style( ):
-#      def fget(self):
-#         return self._style
-#      def fset(self, expr):
-#         if expr is None:
-#            self._style = None
-#         elif isinstance(expr, str):
-#            self._style = expr
-#         else:
-#            raise ValueError('can not set notehead style.')
-#      return property(**locals( ))
