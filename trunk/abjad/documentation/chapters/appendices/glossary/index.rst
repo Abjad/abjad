@@ -24,6 +24,13 @@ Abjad uses the following terms in ways that are unique to the project.
       of code exercised when the regression tests run (test coverage).
       Abjad coverage goals are set at 100% for the docs and as high
       as possible for the core code.
+
+   driver
+      Used in reference to the testing process the term refers to the
+      application chosen to execute a collection of tests before, during
+      or after making changes to the system. Abjad uses 
+      `py.test <http://codespeak.net/py/dist/test/test.html>`_ 
+      to execute the regression battery automatically.
      
    format
       LilyPond input string corresponding to an Abjad object.
