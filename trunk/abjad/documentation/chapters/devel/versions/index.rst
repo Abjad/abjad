@@ -4,7 +4,12 @@ Version history
 
 Abjad 1.1 
 -----------
-`Abjad 1.1.tar.gz <http://pypi.python.org/pypi/Abjad>`__
+
+Abjad 1.1.0
+^^^^^^^^^^^
+
+`Abjad 1.1.tar.gz <http://pypi.python.org/pypi/Abjad>`__ | 
+`Documentation <http://www.projectabjad.org/version1.1.0>`__
 
 *  Many structure transform tools added. See the `abjad.tools.*`
    in the :doc:`Abjad API </chapters/api/index>` package.
@@ -15,6 +20,7 @@ Abjad 1.1
 *  New ``abjad-book`` application available. 
    Use ``abjad-book`` to interpret Abjad code blocks embedded in 
    HTML, LaTex and reST documents. 
+
 
 
 Abjad 1.0.1055

@@ -165,10 +165,10 @@ div.body h6 {
 
 div.body h1 { margin-top: 0; font-size: 200%; }
 div.body h2 { font-size: 160%; }
-div.body h3 { font-size: 140%; }
-div.body h4 { font-size: 120%; }
-div.body h5 { font-size: 110%; }
-div.body h6 { font-size: 100%; }
+div.body h3 { font-size: 130%; border-bottom: 0px;}
+div.body h4 { font-size: 110%; border-bottom: 0px;}
+div.body h5 { font-size: 105%; border-bottom: 0px;}
+div.body h6 { font-size: 100%; border-bottom: 0px;}
 
 a.headerlink {
     color: {{ theme_headlinkcolor }};
