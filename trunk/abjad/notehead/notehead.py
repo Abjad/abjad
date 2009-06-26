@@ -24,6 +24,7 @@ class NoteHead(_NoteHeadInterface):
       _NoteHeadInterface.__init__(self, client)
       self._formatter = _NoteHeadFormatInterface(self)
       #self._style = None
+      #self.pitch = pitch
       self.pitch = pitch
       self._unregister_if_necessary( )
 
