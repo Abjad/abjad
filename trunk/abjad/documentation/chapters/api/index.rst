@@ -326,6 +326,7 @@ Abjad API
    tools/leaftools/duration_rewrite
    tools/leaftools/duration_scale
    tools/leaftools/excise
+   tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply
    tools/listtools/cumulative_products
