@@ -12,7 +12,7 @@ class _Parser(_Abjad):
    def _isConstant(self, value):
       '''True is ``value`` is constant, otherwise False.'''
       if isinstance(value, int) or isinstance(value, float) or \
-          value in ['up', 'down', 'center', 
+          value in ['up', 'down', 'left', 'center', 'right',
          'red', 'blue', 'green', 'black', 'white']:
          return True
       else:
