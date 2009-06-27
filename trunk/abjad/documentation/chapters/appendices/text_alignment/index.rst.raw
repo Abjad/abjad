@@ -1,0 +1,170 @@
+Text alignment
+==============
+
+LilyPond provides a bewildering collection of explicit settings, markup
+and grob overrides to control the positioning and alignment of text.
+The appendix here serves as a visual index of a growing number of the
+different ways to align text in LilyPond score.
+
+``TextScript #'self-alignment-X``
+---------------------------------
+
+Determines alignment of text relative to left-edge-of-notehead.
+These three examples look visibly different and make sense.
+
+<abjad>
+score = Score([RhythmicStaff(construct.run(3, Rational(1, 4)))])
+leaves = score.leaves
+leaves[0].markup.up.append('XX')
+leaves[0].text.self_alignment_X = 'left'
+leaves[1].markup.up.append('XX')
+leaves[1].text.self_alignment_X = 'center'
+leaves[2].markup.up.append('XX')
+leaves[2].text.self_alignment_X = 'right'
+write_ly(score, 'self-alignment-X-only', template = 'thebes') <hide
+show(score, 'thebes')
+</abjad>
+
+
+``TextScript #'X-offset``
+-------------------------
+
+.. note:: These three examples just don't make sense. 
+   It looks like what's going on here are two things.
+   First, the text takes the left-edge-of-notehead as a reference
+   point in all three cases.
+   Second, the text offets itself by 1 notehead width the left,
+   no notehead withds at all, and 1 notehead width to the right,
+   for the three examples respectively.
+   If that's what's going on, then ``#'X-offset`` values don't
+   mean something semantic like 'edge of notehead' but instead
+   are just numbers of notehead widths.
+
+<abjad>
+score = Score([RhythmicStaff(construct.run(3, Rational(1, 4)))])
+leaves = score.leaves
+leaves[0].markup.up.append('XX')
+leaves[0].text.X_offset = 'left'
+leaves[1].markup.up.append('XX')
+leaves[1].text.X_offset = 'center'
+leaves[2].markup.up.append('XX')
+leaves[2].text.X_offset = 'right'
+write_ly(score, 'X-offset-only', template = 'thebes') <hide
+show(score, 'thebes')
+</abjad>
+
+
+Constant ``TextScript #'self-alignment-X``
+------------------------------------------
+
+.. note:: The three sets of examples here are all the same!
+
+Left
+^^^^
+
+<abjad>
+score = Score([RhythmicStaff(construct.run(3, Rational(1, 4)))])
+score.text.self_alignment_X = 'left'
+leaves = score.leaves
+leaves[0].markup.up.append('XX')
+leaves[0].text.X_offset = 'left'
+leaves[1].markup.up.append('XX')
+leaves[1].text.X_offset = 'center'
+leaves[2].markup.up.append('XX')
+leaves[2].text.X_offset = 'right'
+write_ly(score, 'left-of-notehead', template = 'thebes') <hide
+show(score, 'thebes')
+</abjad>
+
+
+Center
+^^^^^^
+
+<abjad>
+score = Score([RhythmicStaff(construct.run(3, Rational(1, 4)))])
+score.text.self_alignment_X = 'center'
+leaves = score.leaves
+leaves[0].markup.up.append('XX')
+leaves[0].text.X_offset = 'left'
+leaves[1].markup.up.append('XX')
+leaves[1].text.X_offset = 'center'
+leaves[2].markup.up.append('XX')
+leaves[2].text.X_offset = 'right'
+write_ly(score, 'center-of-notehead', template = 'thebes') <hide
+show(score, 'thebes')
+</abjad>
+
+
+Right
+^^^^^
+
+<abjad>
+score = Score([RhythmicStaff(construct.run(3, Rational(1, 4)))])
+score.text.self_alignment_X = 'right'
+leaves = score.leaves
+leaves[0].markup.up.append('XX')
+leaves[0].text.X_offset = 'left'
+leaves[1].markup.up.append('XX')
+leaves[1].text.X_offset = 'center'
+leaves[2].markup.up.append('XX')
+leaves[2].text.X_offset = 'right'
+write_ly(score, 'right-of-notehead', template = 'thebes') <hide
+show(score, 'thebes')
+</abjad>
+
+
+Constant ``TextScript #'X-offset``
+----------------------------------
+
+Left
+^^^^
+
+<abjad>
+score = Score([RhythmicStaff(construct.run(3, Rational(1, 4)))])
+score.text.X_offset = 'left'
+leaves = score.leaves
+leaves[0].markup.up.append('XX')
+leaves[0].text.self_alignment_X = 'left'
+leaves[1].markup.up.append('XX')
+leaves[1].text.self_alignment_X = 'center'
+leaves[2].markup.up.append('XX')
+leaves[2].text.self_alignment_X = 'right'
+write_ly(score, 'left-offset-variable-alignment', template = 'thebes') <hide
+show(score, 'thebes')
+</abjad>
+
+
+Center
+^^^^^^
+
+<abjad>
+score = Score([RhythmicStaff(construct.run(3, Rational(1, 4)))])
+score.text.X_offset = 'center'
+leaves = score.leaves
+leaves[0].markup.up.append('XX')
+leaves[0].text.self_alignment_X = 'left'
+leaves[1].markup.up.append('XX')
+leaves[1].text.self_alignment_X = 'center'
+leaves[2].markup.up.append('XX')
+leaves[2].text.self_alignment_X = 'right'
+write_ly(score, 'center-offset-variable-alignment', template = 'thebes') <hide
+show(score, 'thebes')
+</abjad>
+
+
+Right
+^^^^^
+
+<abjad>
+score = Score([RhythmicStaff(construct.run(3, Rational(1, 4)))])
+score.text.X_offset = 'right'
+leaves = score.leaves
+leaves[0].markup.up.append('XX')
+leaves[0].text.self_alignment_X = 'left'
+leaves[1].markup.up.append('XX')
+leaves[1].text.self_alignment_X = 'center'
+leaves[2].markup.up.append('XX')
+leaves[2].text.self_alignment_X = 'right'
+write_ly(score, 'right-offset-variable-alignment', template = 'thebes') <hide
+show(score, 'thebes')
+</abjad>
