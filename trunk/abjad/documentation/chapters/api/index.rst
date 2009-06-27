@@ -173,6 +173,7 @@ Abjad API
    spacing/indication
    spacing/interface
    spacing/spanner
+   spanbar/interface
    spanner/duration
    spanner/format
    spanner/grobhandler

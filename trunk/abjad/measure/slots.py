@@ -80,14 +80,17 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    def _wrap_barline_interface_overrides(self):
       measure = self.formatter.container
-      barline_interface = measure.barline
-      return [(barline_interface, 'overrides'), barline_interface.overrides]
+      barline_overrides = [ ]
+      barline_overrides.extend(measure.barline.overrides)
+      barline_overrides.extend(measure.spanbar.overrides)
+      return [('BarLine / SpanBar', 'overrides'), barline_overrides]
       
    def _wrap_measure_interface_overrides(self):
       '''To allow filtering out of BarLine overrides.'''
       result = self.wrap(self.formatter.container.interfaces, 'overrides')
       override_list = result[-1]
-      override_list = [x for x in override_list if 'BarLine' not in x]
+      override_list = [x for x in override_list 
+         if 'BarLine' not in x and 'SpanBar' not in x]
       result[-1] = override_list
       return result
 
@@ -95,6 +98,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       '''To allow filtering out of BarLine reverts.'''
       result = self.wrap(self.formatter.container.interfaces, 'reverts')
       override_list = result[-1]
-      override_list = [x for x in override_list if 'BarLine' not in x]
+      override_list = [x for x in override_list 
+         if 'BarLine' not in x and 'SpanBar' not in x]
       result[-1] = override_list
       return result

@@ -27,6 +27,7 @@ from abjad.receipt.component import _ComponentReceipt
 #from abjad.score.interface.interface import _ScoreInterface
 from abjad.slur.interface import _SlurInterface
 from abjad.spacing.interface import _SpacingInterface
+from abjad.spanbar.interface import _SpanBarInterface
 #from abjad.staff.interface.interface import _StaffInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tempo.interface import _TempoInterface
@@ -89,6 +90,7 @@ class _Component(_Abjad):
       self._score = _ScoreInterface(self)
       self._slur = _SlurInterface(self)
       self._spacing = _SpacingInterface(self)
+      self._spanbar = _SpanBarInterface(self)
       self._stem = _StemInterface(self)
       self._text = _TextInterface(self)
       self._thread = _ThreadInterface(self)
@@ -267,6 +269,10 @@ class _Component(_Abjad):
    @property
    def spacing(self):
       return self._spacing
+
+   @property
+   def spanbar(self):
+      return self._spanbar
 
    @property
    def spanners(self):
