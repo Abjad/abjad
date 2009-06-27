@@ -81,9 +81,11 @@ Appendices
 .. toctree::
    :maxdepth: 1
 
+   chapters/appendices/standards/index
    chapters/appendices/pitch_conventions/index
    chapters/appendices/altitude_values/index
-   chapters/appendices/standards/index
+   chapters/appendices/text_alignment/index
+   chapters/appendices/templates/index
    chapters/appendices/abjad_book/index
    chapters/appendices/glossary/index
    chapters/appendices/bibliography/index

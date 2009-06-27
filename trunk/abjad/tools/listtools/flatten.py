@@ -1,7 +1,7 @@
 import sys
 
 
-def flatten(l, ltypes=(list, tuple), depth = sys.maxint):
+def flatten(l, ltypes = (list, tuple), depth = sys.maxint):
    '''Flatten nested lists `l`. Return a 0-depth list or tuple.
    Set optional `depth` keyword set to positive integer.
    Keyword controls depth to which the function operates.
@@ -28,7 +28,8 @@ def flatten(l, ltypes=(list, tuple), depth = sys.maxint):
    '''
 
    if depth < sys.maxint:
-      return _flatten_to_depth(l, depth)
+      #return _flatten_to_depth(l, depth)
+      return _flatten_to_depth(l, ltypes, depth)
 
    assert isinstance(l, ltypes)
    ltype = type(l)
@@ -46,7 +47,7 @@ def flatten(l, ltypes=(list, tuple), depth = sys.maxint):
    return ltype(l)
 
 
-def _flatten_to_depth(l, depth):
+def _flatten_to_depth(l, ltypes = (list, tuple), depth = sys.maxint):
    assert isinstance(l, list)
    assert isinstance(depth, int)
    assert 0 <= depth
@@ -56,7 +57,8 @@ def _flatten_to_depth(l, depth):
       cur_sweep = [ ]
       at_bottom = True
       for x in prev_sweep:
-         if isinstance(x, list):
+         #if isinstance(x, list):
+         if isinstance(x, ltypes):
             cur_sweep.extend(x)
             at_bottom = False
          else:
