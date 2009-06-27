@@ -12,7 +12,7 @@ class _BarLineInterface(_Interface, _GrobHandler):
          abjad> t.barline
          <_BarLineInterface>
 
-      Override *LilyPond* ``BarLine`` grob.
+      Override LilyPond ``BarLine`` grob.
 
       ::
 
@@ -32,17 +32,18 @@ class _BarLineInterface(_Interface, _GrobHandler):
 
    @property
    def closing(self):
-      '''Read-only list of container-closing or after-leaf \
-         format contribution strings.
+      '''Read-only list of container-closing or after-leaf
+      format contribution strings.
 
-         *  Derived from ``_BarLineInterface.kind``.
+      Derived from ``_BarLineInterface.kind``.
 
          ::
 
             abjad> t = Note(0, (1, 4))
             abjad> t.barline.kind = '||'
             abjad> t.barline.closing
-            ['\\bar "||"']'''
+            ['\\bar "||"']
+      '''
 
       result = [ ]
       if self.kind:
@@ -52,10 +53,10 @@ class _BarLineInterface(_Interface, _GrobHandler):
    @apply
    def kind( ):
       def fget(self):
-         r'''Read / write *LilyPond* barline string.
+         r'''Read / write LilyPond barline string.
 
-            *  Default value: ``None``.
-            *  All values: *LilyPond* barline string, ``None``.
+         *  Default value: ``None``.
+         *  All values: *LilyPond* barline string, ``None``.
 
             ::
 
@@ -66,7 +67,8 @@ class _BarLineInterface(_Interface, _GrobHandler):
 
                abjad> print t.format
                c'4
-               \bar "|."'''
+               \bar "|."
+      '''
 
          return self._kind
       def fset(self, expr):

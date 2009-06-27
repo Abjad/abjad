@@ -5,7 +5,10 @@ class _InterfaceAggregator(_Interface):
    '''Aggregate information about all format-contributing interfaces.'''
 
    def __init__(self, client):
-      '''Bind to client.'''
+      '''Bind to client. Note that private contributors list is not
+      populate in this class. Rather, each class inheriting from format
+      contributor is reponsible for registering itself and adding
+      its class to the private contributors list initialized here.'''
       _Interface.__init__(self, client)
       self._contributors = [ ]
       self._contributors_sorted = False

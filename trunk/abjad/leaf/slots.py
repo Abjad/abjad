@@ -37,6 +37,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def slot_4(self):
       result = [ ]
       result.append(self.wrap(self.formatter, '_leaf_body'))
+      result.append(self._wrap_preceding_measure_barline_reverts( ))
       return tuple(result)
 
    @property
@@ -60,3 +61,20 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append(self.wrap(leaf.directives, 'after'))
       result.append(self.wrap(leaf.comments, 'after'))
       return tuple(result)
+
+   ## PRIVATE METHODS ##
+
+   def _wrap_preceding_measure_barline_reverts(self):
+      from abjad.measure.measure import _Measure
+      from abjad.tools import iterate
+      leaf = self.formatter._client
+      containing_measure = leaf.parentage.first(_Measure)
+      if containing_measure is None:
+         return [('Special', 'reverts'), [ ]]
+      if leaf is not containing_measure.leaves[0]:
+         return [('Special', 'reverts'), [ ]]
+      prev_measure = iterate.measure_prev(containing_measure)
+      if prev_measure is None:
+         return [('Special', 'reverts'), [ ]]
+      barline_reverts = prev_measure.barline.reverts
+      return [('Special', 'reverts'), barline_reverts]
