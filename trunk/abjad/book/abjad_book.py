@@ -32,8 +32,8 @@ Example (HTML document):
    <abjad>
    v = Voice(construct.run(8))
    Beam(v)
-   write(v, 'example1') <hide ## this will insert an image here. 
-   show( )
+   write_ly(v, 'example1') <hide ## this will insert an image here. 
+   show(v)
    </abjad>
    More ordinary <b>HTML</b> text here.
    '''

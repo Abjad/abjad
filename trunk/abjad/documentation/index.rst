@@ -84,6 +84,7 @@ Appendices
    chapters/appendices/pitch_conventions/index
    chapters/appendices/altitude_values/index
    chapters/appendices/standards/index
+   chapters/appendices/abjad_book/index
    chapters/appendices/glossary/index
    chapters/appendices/bibliography/index
 

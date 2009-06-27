@@ -9,7 +9,9 @@ These chapters explain how to work with the basic Abjad components.
 Read some of the chapters concerning materials generation to figure
 out how to create starting materials.
 
-And then read about structure traversal and manipulation to learn how to move around in large pieces of notation and change them while you go.
+And then read about structure traversal and manipulation to learn 
+how to move around in large pieces of notation and change them 
+while you go.
 
 When you get stuck, check out the public interface in
 the :doc:`Abjad API </chapters/api/index>`.
