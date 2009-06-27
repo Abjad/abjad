@@ -1,10 +1,10 @@
-Grob Handlers
-=============
+Grobs
+=====
 
 Introduction
 ------------
 
-`Grob` stands for `graphical object`.  It is a word borrowed from LilyPond  to refer to those elements in a score that have graphical properties and thus have a visible existence in a score. 
+The term :term:`grob` stands for `graphical object`.  It is a word borrowed from LilyPond  to refer to those elements in a score that have graphical properties and thus have a visible existence in a score. 
 
 From the `LilyPond documentation <http://lilypond.org/doc/v2.13/Documentation/user/lilypond-internals-big-page#grob_002dinterface>`__:
 
@@ -18,8 +18,8 @@ For example, because a :class:`NoteHead <abjad.notehead.notehead.NoteHead>` is a
 
 ::
 
-	n = Note(1, (1, 4)) 
-	n.notehead.color = 'red' 
+	abjad> n = Note(1, (1, 4))
+	abjad> n.notehead.color = 'red'
 
 .. image:: images/notehead_color.png
 
@@ -27,9 +27,9 @@ Another example: `Glissandi` are usually represented with straight lines, but ma
 
 ::
 
-	s = Staff([Note(0, (1, 4)), Note(12, (1, 4))]) 
-	g = Glissando(s.leaves) 
-	g.style = 'zigzag' 
+	abjad> s = Staff([Note(0, (1, 4)), Note(12, (1, 4))])
+	abjad> g = Glissando(s.leaves)
+	abjad> g.style = 'zigzag'
 
 .. image:: images/glissando_style.png
 

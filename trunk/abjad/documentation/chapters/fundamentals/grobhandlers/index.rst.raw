@@ -1,10 +1,10 @@
-Grob Handlers
-=============
+Grobs
+=====
 
 Introduction
 ------------
 
-`Grob` stands for `graphical object`.  It is a word borrowed from LilyPond  to refer to those elements in a score that have graphical properties and thus have a visible existence in a score. 
+The term :term:`grob` stands for `graphical object`.  It is a word borrowed from LilyPond  to refer to those elements in a score that have graphical properties and thus have a visible existence in a score. 
 
 From the `LilyPond documentation <http://lilypond.org/doc/v2.13/Documentation/user/lilypond-internals-big-page#grob_002dinterface>`__:
 
@@ -21,7 +21,7 @@ n = Note(1, (1, 4))
 n.notehead.color = 'red'
 s = Staff([n]) <hide
 s.meter.transparent = True <hide
-write(s, 'notehead_color', 'oedo') <hide
+write_ly(s, 'notehead_color', 'oedo') <hide
 </abjad>
 
 Another example: `Glissandi` are usually represented with straight lines, but maybe you want a wiggly line. You can change the style of the `glissando` to, for example, `zigzag` by simply setting the glissando style property:
@@ -31,7 +31,7 @@ s = Staff([Note(0, (1, 4)), Note(12, (1, 4))])
 s.meter.transparent = True <hide
 g = Glissando(s.leaves)
 g.style = 'zigzag'
-write(s, 'glissando_style', 'oedo') <hide
+write_ly(s, 'glissando_style', 'oedo') <hide
 </abjad>
 
 Notice that the `grob` properties that can be set for the different Abjad objects, as well as the values these properties can take, depend entirely on those defined by LilyPond. You must, therefore, always refer to the LilyPond documentation to find out exactly what `grob` properties can be set. 

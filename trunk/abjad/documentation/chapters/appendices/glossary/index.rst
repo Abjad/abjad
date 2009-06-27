@@ -35,6 +35,17 @@ Abjad uses the following terms in ways that are unique to the project.
    format
       LilyPond input string corresponding to an Abjad object.
 
+   grob
+      LilyPond contraction of 'graphic object'. In its primary sense,
+      refers to bit of LilyPond code that models a particular symbol
+      on the printed page. The LilyPond NoteHead grob is LilyPond code
+      that models musical noteheads on the printed page. In its secondary
+      sense, a bit of LilyPond that models some part of the LilyPond
+      engraving process that does not correspond to a visual symbol on 
+      the printed page. The LilyPond NonMusicalPaperColumn grob is a
+      non-printing grob. The term is special to LilyPond and borrowed
+      by Abjad.
+
    render
       Short-hand verb meaning to format an Abjad object as valid LilyPond
       input and then pass that input to LilyPond to create a PDF of
