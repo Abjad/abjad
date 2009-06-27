@@ -14,6 +14,7 @@
 
 \layout {
    ragged-right = ##t
+
    \context {
       \Score
       proportionalNotationDuration = #(ly:make-moment 1 64)
@@ -22,10 +23,17 @@
       \override TupletBracket #'bracket-visibility = ##t
       \remove Bar_number_engraver
    }
+
    \context {
       \Staff
       \override TimeSignature #'stencil = ##f
    }
+
+   \context {
+      \RhythmicStaff
+      \override TimeSignature #'stencil = ##f
+   }
+   
    indent = #0
 }
       
