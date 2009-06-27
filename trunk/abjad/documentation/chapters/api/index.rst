@@ -308,6 +308,7 @@ Abjad API
    tools/io/write_pdf
    tools/iterate/backwards
    tools/iterate/chained_contents
+   tools/iterate/get_nth
    tools/iterate/grace
    tools/iterate/measure_get
    tools/iterate/measure_next
@@ -344,6 +345,7 @@ Abjad API
    tools/listtools/increase_at_indices
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
+   tools/listtools/interlace
    tools/listtools/join_sublists_by_sign
    tools/listtools/lengths_to_counts
    tools/listtools/negate_elements_at_indices
