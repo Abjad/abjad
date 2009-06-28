@@ -1,7 +1,7 @@
 ``abjad-book``
 ==============
 
-``abjad-book`` is an independent application included every installation
+``abjad-book`` is an independent application included in every installation
 of Abjad. ``abjad-book`` allows you to write Abjad code in the middle
 of documents written in HTML, LaTeX or ReST. 
 We created ``abjad-book`` to help us document Abjad.
@@ -13,7 +13,7 @@ HTML with embedded Abjad
 ------------------------
 
 To see ``abjad-book`` in action, open a file and write some HTML by hand.
-And add some Abjad code to your HTML between open and close
+Add some Abjad code to your HTML between open and close
 \<abjad\> \</abjad\> tags.
 
 .. sourcecode:: html
@@ -26,12 +26,12 @@ And add some Abjad code to your HTML between open and close
 
    <p>Here is some music notation generated automatically by Abjad:</p>
 
-   <ajbad>
+   <abjad>
    v = Voice(construct.scale(8))
    Beam(v)
    write_ly(v, 'example-1') <hide
    show(v)
-   </ajbad>
+   </abjad>
 
    <p>And here is more ordinary <b>HTML</b>.</p>
 
@@ -40,16 +40,16 @@ And add some Abjad code to your HTML between open and close
 Save your the file with the name ``example.html.raw``. You now have
 an HTML file with embedded Abjad code.
 
-Call ``abjad-book`` on ``example.html.raw``. ::
+In the terminal, call ``abjad-book`` on ``example.html.raw``. ::
 
-   abjad-book example.html.raw example.html
+   $ abjad-book example.html.raw example.html
 
    Parsing file...
    Rendering "example-1.ly"...
    
 The application opens ``example.html.raw``, finds all Abjad code between
-\<abjad\> \</abjad\> tags, and then creates and inserts image files
-of music notation accordingly.
+\<abjad\> \</abjad\> tags, executes it, and then creates and inserts 
+image files of music notation accordingly.
 
 Open ``example.html`` with your browser.
 
