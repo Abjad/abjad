@@ -4,7 +4,7 @@ from abjad.tools.listtools.zip_nontruncating import \
 
 
 def interlace(*iterables):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 1.1.1
 
    Interlace elements of arbirarily many `iterables`. ::
 

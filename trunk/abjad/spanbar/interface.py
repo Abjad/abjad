@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 
 
 class _SpanBarInterface(_Interface, _GrobHandler):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 1.1.1
 
    Manage barlines that span the space between staves
    in a single system. ::

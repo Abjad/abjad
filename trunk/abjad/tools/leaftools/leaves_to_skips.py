@@ -4,7 +4,7 @@ from abjad.tools import iterate
 
 
 def leaves_to_skips(expr):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.1
 
    Iterate `expr` and change notes, rests and chords into skips.
 

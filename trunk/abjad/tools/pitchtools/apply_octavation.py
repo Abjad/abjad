@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.get_pitches import get_pitches
 
 def apply_octavation(expr, 
    ottava_altitude = None, quindecisima_altitude = None):
-   r""".. versionadded:: 1.1.2
+   r""".. versionadded:: 1.1.1
 
    Apply :class:`~abjad.octavation.spanner.Octavation` to `expr`
    dependent on the :term:`altitude` of the maximum pitch in `expr`. ::

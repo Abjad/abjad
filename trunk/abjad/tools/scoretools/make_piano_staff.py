@@ -5,7 +5,7 @@ from abjad.staffgroup import PianoStaff
 
 
 def make_piano_staff( ):
-   r'''..versionadded:: 1.1.2
+   r'''..versionadded:: 1.1.1
    
    'Return new score with piano staff. 
    Piano staff contains treble and bass staves with the appropriate clefs.

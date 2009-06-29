@@ -3,7 +3,7 @@ from abjad.tools.iterate.backwards import backwards as iterate_backwards
 
 
 def get_nth(expr, klasses, n = 0):
-   r'''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.1
 
    Return element `n` in the `klasses` of `expr`. ::
 

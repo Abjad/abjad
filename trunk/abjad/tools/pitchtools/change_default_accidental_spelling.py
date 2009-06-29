@@ -2,7 +2,7 @@ from abjad.pitch.pitch import Pitch
 
 
 def change_default_accidental_spelling(spelling = 'mixed'):
-   '''.. versionadded:: 1.1.2
+   '''.. versionadded:: 1.1.1
 
    Change default accidental spelling. ::
 
