@@ -324,6 +324,71 @@ class _Component(_Abjad):
 
    ## PUBLIC METHODS ##
 
+   def extend_in_parent(self, components):
+      r'''.. versionadded:: 1.1.1
+
+      Extend `components` rightwards of `self` in parent.
+
+      Do not extend edge spanners. ::
+
+         abjad> t = Voice(construct.scale(3))
+         abjad> Beam(t[:])
+         abjad> t[-1].extend_in_parent(construct.scale(3))
+
+      ::
+
+         abjad> print t.format
+         \new Voice {
+            c'8 [
+            d'8
+            e'8 ]
+            c'8
+            d'8
+            e'8
+         }
+      '''
+
+      from abjad.tools import check
+      from abjad.tools import parenttools
+      check.assert_components(components)
+      parent, start, stop = parenttools.get_with_indices([self])
+      if parent is not None:
+         after = stop + 1
+         parent[after:after] = components
+      return [self] + components
+
+   def extend_left_in_parent(self, components):
+      r'''.. versionadded:: 1.1.1
+
+      Extend `components` leftwards of `self` in parent.
+
+      Do not extend edge spanners. ::
+
+         abjad> t = Voice(construct.scale(3))
+         abjad> Beam(t[:])
+         abjad> t[0].extend_in_parent(construct.scale(3))
+
+      ::
+
+         abjad> print t.format
+         \new Voice {
+            c'8 
+            d'8
+            e'8 
+            c'8 [
+            d'8
+            e'8 ]
+         }
+      '''
+
+      from abjad.tools import check
+      from abjad.tools import parenttools
+      check.assert_components(components)
+      parent, start, stop = parenttools.get_with_indices([self])
+      if parent is not None:
+         parent[start:start] = components
+      return components + [self] 
+
    def splice(self, components):
       '''Splice `components` after `self`.
       Extend spanners rightwards to attach to all components in list.'''
