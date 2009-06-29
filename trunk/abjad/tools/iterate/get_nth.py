@@ -5,6 +5,8 @@ from abjad.tools.iterate.backwards import backwards as iterate_backwards
 def get_nth(expr, klasses, n = 0):
    r'''.. versionadded:: 1.1.1
 
+   .. todo:: combine with :func:`~abjad.tools.scoretools.find.find`.
+
    Return element `n` in the `klasses` of `expr`. ::
 
       abjad> staff = Staff([ ])
