@@ -29,9 +29,11 @@ def make_piano_staff( ):
    '''
 
    treble_staff = Staff([ ])
+   treble_staff.name = 'treble'
    treble_staff.clef.forced = Clef('treble')
 
    bass_staff = Staff([ ])
+   bass_staff.name = 'bass'
    bass_staff.clef.forced = Clef('bass')
 
    piano_staff = PianoStaff([treble_staff, bass_staff])
