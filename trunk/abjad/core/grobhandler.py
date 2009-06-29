@@ -60,11 +60,11 @@ class _GrobHandler(_FormatContributor):
 
    @property
    def overrides(self):
-      r'''Read-only list of LilyPond \override strings to contribute
-      at format time.'''
+      r'''Read-only, alphabetized list of LilyPond \override strings 
+      to contribute at format time.'''
 
       result = [ ]
-      for key, value in vars(self).items( ):
+      for key, value in sorted(vars(self).items( )):
          if not key.startswith('_'):
             result.append(r'%s\override %s %s = %s' % (
                self._frequencyIndicator,

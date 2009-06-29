@@ -16,21 +16,23 @@ def test_spacing_spanner_grob_handling_01( ):
    p.promote('strict_note_spacing', 'Score')
    p.promote('uniform_stretching', 'Score')
 
-   r'''\new Staff {
-           \override Score.SpacingSpanner #'strict-note-spacing = ##t
-           \override Score.SpacingSpanner #'strict-grace-spacing = ##t
-           \override Score.SpacingSpanner #'uniform-stretching = ##t
-           c'8
-           d'8
-           e'8
-           f'8
-           \revert Score.SpacingSpanner #'strict-note-spacing
-           \revert Score.SpacingSpanner #'strict-grace-spacing
-           \revert Score.SpacingSpanner #'uniform-stretching
-   }'''
+   r'''
+   \new Staff {
+      \override Score.SpacingSpanner #'strict-grace-spacing = ##t
+      \override Score.SpacingSpanner #'strict-note-spacing = ##t
+      \override Score.SpacingSpanner #'uniform-stretching = ##t
+      c'8
+      d'8
+      e'8
+      f'8
+      \revert Score.SpacingSpanner #'strict-note-spacing
+      \revert Score.SpacingSpanner #'strict-grace-spacing
+      \revert Score.SpacingSpanner #'uniform-stretching
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Staff {\n\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\\revert Score.SpacingSpanner #'uniform-stretching\n}"
+   assert t.format == "\\new Staff {\n\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\\revert Score.SpacingSpanner #'uniform-stretching\n}"
 
 
 def test_spacing_spanner_grob_handling_02( ):
@@ -49,20 +51,22 @@ def test_spacing_spanner_grob_handling_02( ):
    p.promote('strict_note_spacing', 'Score')
    p.promote('uniform_stretching', 'Score')
 
-   r'''\new Staff {
-                   \time 2/8
-                   \override Score.SpacingSpanner #'strict-note-spacing = ##t
-                   \override Score.SpacingSpanner #'strict-grace-spacing = ##t
-                   \override Score.SpacingSpanner #'uniform-stretching = ##t
-                   c'8
-                   d'8
-                   \time 2/8
-                   e'8
-                   f'8
-                   \revert Score.SpacingSpanner #'strict-note-spacing
-                   \revert Score.SpacingSpanner #'strict-grace-spacing
-                   \revert Score.SpacingSpanner #'uniform-stretching
-   }'''
+   r'''
+   \new Staff {
+         \time 2/8
+         \override Score.SpacingSpanner #'strict-grace-spacing = ##t
+         \override Score.SpacingSpanner #'strict-note-spacing = ##t
+         \override Score.SpacingSpanner #'uniform-stretching = ##t
+         c'8
+         d'8
+         \time 2/8
+         e'8
+         f'8
+         \revert Score.SpacingSpanner #'strict-note-spacing
+         \revert Score.SpacingSpanner #'strict-grace-spacing
+         \revert Score.SpacingSpanner #'uniform-stretching
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\tc'8\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n}"
+   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\tc'8\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n}"
