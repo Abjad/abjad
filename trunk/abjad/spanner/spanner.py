@@ -35,6 +35,7 @@ class Spanner(_Abjad):
    def __init__(self, music = None):
       '''Apply spanner to music. Init dedicated duration interface.'''
       self._components = [ ]
+      self._contiguity_constraint = 'thread'
       self._duration = _SpannerDurationInterface(self)
       self._offset = _SpannerOffsetInterface(self)
       self._initializeMusic(music)
@@ -104,8 +105,11 @@ class Spanner(_Abjad):
       music = music or [ ]
       if isinstance(music, _Component):
          music = [music]
-      leaves = list(iterate.naive(music, _Leaf))
-      check.assert_components(leaves, contiguity = 'thread')
+      ## TODO: Author staff-level contiguity check in tools/check. ##
+      ##       Include optional staff-level contiguity check here. ##
+      if self._contiguity_constraint == 'thread':
+         leaves = list(iterate.naive(music, _Leaf))
+         check.assert_components(leaves, contiguity = 'thread')
       self.extend(music)
 
    def _insert(self, i, component):
@@ -302,7 +306,8 @@ class Spanner(_Abjad):
       from abjad.leaf.leaf import _Leaf
       result = [ ]
       for component in self._components:
-         for node in component._navigator._DFS(forbid = 'parallel'):
+         #for node in component._navigator._DFS(forbid = 'parallel'):
+         for node in component._navigator._DFS( ):
             if isinstance(node, _Leaf):
                result.append(node)
       return result
