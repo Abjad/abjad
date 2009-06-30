@@ -17,3 +17,21 @@ def test_pitchtools_apply_octavation_01( ):
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'''8\n\td'''8\n\tef'''8\n\tf'''8\n\t\\ottava #0\n}"
+
+
+def test_pitchtools_apply_octavation_02( ):
+
+   t = Voice([Note(31, (1, 4))])
+   assert t[0].pitch.altitude == 18
+   pitchtools.apply_octavation(t,
+      ottava_altitude = 15, quindecisima_altitude = 19)
+
+   r"""
+   \new Voice {
+      \ottava #1
+      g'''4
+      \ottava #0
+   }
+   """
+
+   assert t.format == "\\new Voice {\n\t\\ottava #1\n\tg'''4\n\t\\ottava #0\n}"

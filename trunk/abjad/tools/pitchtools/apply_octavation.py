@@ -32,11 +32,12 @@ def apply_octavation(expr,
    if ottava_altitude is not None:
       if ottava_altitude <= max_altitude:
          octavation = Octavation(expr)   
+         octavation.start = 1
          if quindecisima_altitude is not None:
             if quindecisima_altitude <= max_altitude:
                octavation.start = 2
-         else:
-            octavation.start = 1
+         #else:
+         #   octavation.start = 1
 
    try:
       return octavation
