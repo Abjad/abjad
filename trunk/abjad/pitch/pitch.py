@@ -12,7 +12,6 @@ class Pitch(_Abjad):
    def __init__(self, *args):
       self.initializer = _PitchInitializer( )
       self.initializer.initialize(self, *args)
-      
 
    ## OVERLOADS ##
 

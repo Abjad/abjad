@@ -464,6 +464,8 @@ Abjad API
    tools/pitchtools/make_sharp
    tools/pitchtools/name_to_letter_accidental
    tools/pitchtools/nearest_neighbor
+   tools/pitchtools/number_letter_to_accidental_octave
+   tools/pitchtools/number_to_letter_accidental_octave
    tools/pitchtools/octave_transpositions
    tools/pitchtools/pc_to_pitch_name
    tools/pitchtools/pc_to_pitch_name_flats
