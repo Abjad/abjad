@@ -12,6 +12,7 @@ class Pitch(_Abjad):
    def __init__(self, *args):
       self.initializer = _PitchInitializer( )
       self.initializer.initialize(self, *args)
+      
 
    ## OVERLOADS ##
 
@@ -67,9 +68,6 @@ class Pitch(_Abjad):
 
    ## PRIVATE METHODS ##
 
-   def _isSet(self):
-      return bool(self.letter and self.accidental and not self.octave is None)
-
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -114,7 +112,7 @@ class Pitch(_Abjad):
    @apply
    def name( ):
       def fget(self):
-         '''Read / write letter and accidental of pitch concatenated \
+         '''Read / write letter and accidental of pitch concatenated
          as a single string.'''
          if self.letter and self.accidental:
             return '%s%s' % (self.letter, self.accidental)
@@ -131,12 +129,16 @@ class Pitch(_Abjad):
    @apply
    def number( ):
       def fget(self):
-         '''Read / write numeric value of pitch \
+         '''Read / write numeric value of pitch
          with middle C equal to ``0``.'''
          from abjad.tools.pitchtools.letter_to_pc import letter_to_pc
-         if self._isSet( ):
-            return letter_to_pc(self.letter) + \
-               self.accidental.adjustment + (self.octave - 4) * 12
+         if not self.octave is None:
+            if self.letter:
+               if self.accidental:
+                  octave = 12 * (self.octave - 4)
+                  pc = letter_to_pc(self.letter)
+                  adjustment = self.accidental.adjustment
+                  return octave + pc + adjustment
          else:
             return None
       def fset(self, arg):
@@ -153,16 +155,17 @@ class Pitch(_Abjad):
 
    @property
    def pc(self):
-      '''Read-only numeric value of pitch-class of pitch \
+      '''Read-only numeric value of pitch-class of pitch
       with the pitch-class of C equal to ``0``.'''
-      if self._isSet( ):
-         return self.number % 12
+      number = self.number
+      if number is not None:
+         return number % 12
       else:
          return None
       
    @property
    def ticks(self):
-      '''Read-only European indicator of octave of pitch with \
+      '''Read-only European indicator of octave of pitch with
       the octave of middle C equal to a single ``'`` tick.'''
       if self.octave is not None:
          if self.octave <= 2:
