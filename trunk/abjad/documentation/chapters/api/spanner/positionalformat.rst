@@ -7,4 +7,5 @@ abjad.spanner.positionalformat
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

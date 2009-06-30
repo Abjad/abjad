@@ -7,4 +7,5 @@ abjad.core.formatcontributor
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

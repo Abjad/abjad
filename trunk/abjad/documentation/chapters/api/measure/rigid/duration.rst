@@ -7,4 +7,5 @@ abjad.measure.rigid.duration
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

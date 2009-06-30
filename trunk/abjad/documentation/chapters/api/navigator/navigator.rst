@@ -7,4 +7,5 @@ abjad.navigator.navigator
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

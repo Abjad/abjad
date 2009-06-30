@@ -7,4 +7,5 @@ abjad.chord.initializer
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

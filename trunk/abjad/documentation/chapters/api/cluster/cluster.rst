@@ -7,4 +7,5 @@ abjad.cluster.cluster
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

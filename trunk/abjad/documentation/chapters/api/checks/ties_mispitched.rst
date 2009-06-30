@@ -7,4 +7,5 @@ abjad.checks.ties_mispitched
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

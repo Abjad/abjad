@@ -7,4 +7,5 @@ abjad.layout.fixed_staff_positioning
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

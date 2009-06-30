@@ -7,4 +7,5 @@ abjad.rational.rational
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

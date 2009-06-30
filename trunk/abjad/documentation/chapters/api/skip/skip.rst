@@ -7,4 +7,5 @@ abjad.skip.skip
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

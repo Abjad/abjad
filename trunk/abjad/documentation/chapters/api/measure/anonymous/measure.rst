@@ -7,4 +7,5 @@ abjad.measure.anonymous.measure
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

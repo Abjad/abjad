@@ -7,6 +7,7 @@ abjad.book.parser.abjadtag
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 
 .. autofunction:: abjad.book.parser.abjadtag._create_directory
 .. autofunction:: abjad.book.parser.abjadtag._extract_code_block

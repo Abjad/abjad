@@ -7,4 +7,5 @@ abjad.tuplet.number
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

@@ -7,4 +7,5 @@ abjad.layout.system_y_offsets
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

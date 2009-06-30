@@ -7,4 +7,5 @@ abjad.checks.ids_duplicated
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

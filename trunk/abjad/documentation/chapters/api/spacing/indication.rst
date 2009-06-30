@@ -7,4 +7,5 @@ abjad.spacing.indication
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

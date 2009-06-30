@@ -7,4 +7,5 @@ abjad.checks.beams_overlapping
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

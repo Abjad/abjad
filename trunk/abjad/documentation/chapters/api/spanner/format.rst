@@ -7,4 +7,5 @@ abjad.spanner.format
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

@@ -7,4 +7,5 @@ abjad.meter.meter
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

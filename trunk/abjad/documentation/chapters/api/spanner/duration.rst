@@ -7,4 +7,5 @@ abjad.spanner.duration
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

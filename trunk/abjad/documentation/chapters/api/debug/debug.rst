@@ -7,4 +7,5 @@ abjad.debug.debug
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

@@ -22,6 +22,7 @@ def make_sphinx_module_listing(package_path, file):
       result += '   :members:\n'
       result += '   :undoc-members:\n'
       result += '   :show-inheritance:\n'
+      result += '   :inherited-members:\n'
       result += '\n'
 
    members = _get_module_members(source_full_path, 'def')

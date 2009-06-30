@@ -7,4 +7,5 @@ abjad.component.component
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

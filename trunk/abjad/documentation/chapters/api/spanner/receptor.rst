@@ -7,4 +7,5 @@ abjad.spanner.receptor
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

@@ -7,4 +7,5 @@ abjad.core.grobhandler
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

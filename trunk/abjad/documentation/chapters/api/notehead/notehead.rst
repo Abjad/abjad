@@ -7,4 +7,5 @@ abjad.notehead.notehead
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

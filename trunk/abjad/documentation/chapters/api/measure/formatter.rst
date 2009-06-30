@@ -7,4 +7,5 @@ abjad.measure.formatter
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

@@ -7,4 +7,5 @@ abjad.measure.dynamic.duration
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

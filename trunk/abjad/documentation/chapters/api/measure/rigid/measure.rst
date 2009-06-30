@@ -7,4 +7,5 @@ abjad.measure.rigid.measure
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

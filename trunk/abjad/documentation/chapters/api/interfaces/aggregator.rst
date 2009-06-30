@@ -7,4 +7,5 @@ abjad.interfaces.aggregator
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

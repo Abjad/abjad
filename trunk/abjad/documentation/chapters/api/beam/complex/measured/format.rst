@@ -7,4 +7,5 @@ abjad.beam.complex.measured.format
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

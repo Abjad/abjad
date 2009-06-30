@@ -7,4 +7,5 @@ abjad.checks.measures_nested
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

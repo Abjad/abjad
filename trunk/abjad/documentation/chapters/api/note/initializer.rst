@@ -7,4 +7,5 @@ abjad.note.initializer
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

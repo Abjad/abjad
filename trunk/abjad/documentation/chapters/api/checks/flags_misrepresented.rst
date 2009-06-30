@@ -7,4 +7,5 @@ abjad.checks.flags_misrepresented
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

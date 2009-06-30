@@ -7,6 +7,7 @@ abjad.book.parser.codeblock
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 
 .. autofunction:: abjad.book.parser.codeblock._insert_abjad_prompt
 .. autofunction:: abjad.book.parser.codeblock._get_image_name

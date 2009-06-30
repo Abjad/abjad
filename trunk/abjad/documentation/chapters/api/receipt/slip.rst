@@ -7,4 +7,5 @@ abjad.receipt.slip
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

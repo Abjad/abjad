@@ -7,4 +7,5 @@ abjad.checks.quarters_beamed
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

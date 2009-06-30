@@ -7,4 +7,5 @@ abjad.instrument.format
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

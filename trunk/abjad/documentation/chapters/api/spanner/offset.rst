@@ -7,4 +7,5 @@ abjad.spanner.offset
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

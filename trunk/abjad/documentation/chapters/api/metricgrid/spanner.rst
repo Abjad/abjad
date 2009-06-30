@@ -7,4 +7,5 @@ abjad.metricgrid.spanner
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

@@ -7,4 +7,5 @@ abjad.tuplet.bracket
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

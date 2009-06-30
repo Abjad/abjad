@@ -7,4 +7,5 @@ abjad.voice.voice
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

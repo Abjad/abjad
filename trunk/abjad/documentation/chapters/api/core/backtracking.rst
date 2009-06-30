@@ -7,4 +7,5 @@ abjad.core.backtracking
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

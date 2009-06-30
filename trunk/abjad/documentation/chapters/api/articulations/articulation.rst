@@ -7,4 +7,5 @@ abjad.articulations.articulation
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

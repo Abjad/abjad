@@ -7,4 +7,5 @@ abjad.component.duration
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

@@ -7,4 +7,5 @@ abjad.layout.staff_alignment_offsets
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

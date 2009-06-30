@@ -7,4 +7,5 @@ abjad.clef.clef
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

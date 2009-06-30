@@ -7,4 +7,5 @@ abjad.rest.interface
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

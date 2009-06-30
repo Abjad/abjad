@@ -7,4 +7,5 @@ abjad.container.container
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

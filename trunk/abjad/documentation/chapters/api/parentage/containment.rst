@@ -7,4 +7,5 @@ abjad.parentage.containment
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

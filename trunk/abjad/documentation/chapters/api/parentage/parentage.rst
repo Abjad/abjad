@@ -7,4 +7,5 @@ abjad.parentage.parentage
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

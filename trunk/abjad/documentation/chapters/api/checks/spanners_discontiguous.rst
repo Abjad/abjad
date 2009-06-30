@@ -7,4 +7,5 @@ abjad.checks.spanners_discontiguous
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

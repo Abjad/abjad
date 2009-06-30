@@ -7,4 +7,5 @@ abjad.octavation.spanner
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

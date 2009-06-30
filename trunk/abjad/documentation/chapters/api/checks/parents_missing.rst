@@ -7,4 +7,5 @@ abjad.checks.parents_missing
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

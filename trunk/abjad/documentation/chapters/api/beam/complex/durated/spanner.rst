@@ -7,4 +7,5 @@ abjad.beam.complex.durated.spanner
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

@@ -7,4 +7,5 @@ abjad.context.context
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

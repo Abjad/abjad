@@ -7,4 +7,5 @@ abjad.leaf.leaf
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

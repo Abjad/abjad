@@ -7,4 +7,5 @@ abjad.checks.measures_misfilled
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

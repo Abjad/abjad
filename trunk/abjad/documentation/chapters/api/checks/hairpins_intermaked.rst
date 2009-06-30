@@ -7,4 +7,5 @@ abjad.checks.hairpins_intermaked
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

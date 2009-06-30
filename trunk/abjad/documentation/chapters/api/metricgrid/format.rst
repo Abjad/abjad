@@ -7,4 +7,5 @@ abjad.metricgrid.format
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

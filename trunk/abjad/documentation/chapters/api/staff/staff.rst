@@ -7,4 +7,5 @@ abjad.staff.staff
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

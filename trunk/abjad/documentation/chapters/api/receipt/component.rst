@@ -7,4 +7,5 @@ abjad.receipt.component
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

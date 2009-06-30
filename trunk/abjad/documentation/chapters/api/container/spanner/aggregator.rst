@@ -7,4 +7,5 @@ abjad.container.spanner.aggregator
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

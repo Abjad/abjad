@@ -7,4 +7,5 @@ abjad.book.parser.tagparser
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

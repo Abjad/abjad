@@ -7,4 +7,5 @@ abjad.tuplet.fm.tuplet
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

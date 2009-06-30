@@ -7,4 +7,5 @@ abjad.tempo.format
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

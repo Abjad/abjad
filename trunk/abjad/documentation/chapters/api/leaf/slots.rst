@@ -7,4 +7,5 @@ abjad.leaf.slots
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 

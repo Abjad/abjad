@@ -7,4 +7,5 @@ abjad.grace.grace
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 
