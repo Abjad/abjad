@@ -1,5 +1,5 @@
 from abjad.clef import Clef
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 
 
 def suggest_clef(pitches, clefs = ['treble', 'bass']):

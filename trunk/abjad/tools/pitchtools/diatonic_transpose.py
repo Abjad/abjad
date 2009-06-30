@@ -1,4 +1,4 @@
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 from abjad.tools.pitchtools.diatonic_interval_to_staff_spaces import \
    diatonic_interval_to_staff_spaces as \
    pitchtools_diatonic_interval_to_staff_spaces

@@ -1,4 +1,4 @@
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 from abjad.tools.pitchtools.add_staff_spaces import add_staff_spaces as \
    pitchtools_add_staff_spaces
 from abjad.tools.pitchtools.diatonic_scale_degree_to_letter import \

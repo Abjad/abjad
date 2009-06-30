@@ -1,6 +1,6 @@
 from abjad.notehead.format import _NoteHeadFormatInterface
 from abjad.notehead.interface import _NoteHeadInterface
-#from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 
 
 class NoteHead(_NoteHeadInterface):
@@ -104,7 +104,6 @@ class NoteHead(_NoteHeadInterface):
          '''
          return self._pitch
       def fset(self, arg):
-         from abjad.pitch.pitch import Pitch
          if arg is None:
             self._pitch = None
          elif isinstance(arg, (int, float, long)):

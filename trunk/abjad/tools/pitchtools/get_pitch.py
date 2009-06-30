@@ -1,9 +1,9 @@
 from abjad.chord import Chord
-from abjad.note import Note
-from abjad.notehead import NoteHead
-from abjad.pitch.pitch import Pitch
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
+from abjad.note import Note
+from abjad.notehead import NoteHead
+from abjad.pitch import Pitch
 
 
 def get_pitch(pitch_carrier):

@@ -1,4 +1,4 @@
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 from abjad.tools import listtools
 
 

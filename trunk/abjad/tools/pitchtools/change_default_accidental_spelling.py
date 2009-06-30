@@ -1,4 +1,4 @@
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 
 
 def change_default_accidental_spelling(spelling = 'mixed'):

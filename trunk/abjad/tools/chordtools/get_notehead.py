@@ -1,7 +1,7 @@
 from abjad.chord import Chord
 from abjad.exceptions import ExtraNoteHeadError
 from abjad.exceptions import MissingNoteHeadError
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 from abjad.rational import Rational
 
 

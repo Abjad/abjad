@@ -1,5 +1,5 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 from abjad.tools import iterate
 from abjad.tools.pitchtools.pitch_number_to_octave import \
    pitch_number_to_octave as pitchtools_pitch_number_to_octave

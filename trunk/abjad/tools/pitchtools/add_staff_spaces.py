@@ -1,4 +1,4 @@
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 
 
 def add_staff_spaces(pitch, staff_spaces):

@@ -1,5 +1,5 @@
 from abjad.note import Note
-from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 
 
 def permute_by_row(pitches, row):
