@@ -152,8 +152,6 @@ Abjad API
    pianopedal/format
    pianopedal/interface
    pianopedal/spanner
-   pitch/initializer
-   pitch/initializers
    pitch/pitch
    rational/rational
    receipt/component

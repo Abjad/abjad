@@ -1,7 +1,6 @@
 from abjad.cfg.cfg import accidental_spelling
 from abjad.core.abjadcore import _Abjad
 from abjad.accidental import Accidental
-from abjad.pitch.initializer import _PitchInitializer
 
 
 class Pitch(_Abjad):
@@ -10,8 +9,21 @@ class Pitch(_Abjad):
    accidental_spelling = accidental_spelling
 
    def __init__(self, *args):
-      self.initializer = _PitchInitializer( )
-      self.initializer.initialize(self, *args)
+      from abjad.tools import pitchtools
+      if not args:
+         self._init_empty( )
+      elif len(args) == 1 and isinstance(args[0], (int, long, float)):
+         self._init_by_number(*args)
+      elif len(args) == 1 and isinstance(args[0], Pitch):
+         self._init_by_reference(*args)
+      elif len(args) == 1 and pitchtools.is_pair(args[0]):
+         self._init_by_pair(*args)
+      elif len(args) == 2 and isinstance(args[0], str):
+         self._init_by_name_and_octave(*args)
+      elif len(args) == 2 and isinstance(args[0], (int, long, float)):
+         self._init_by_number_and_letter(*args)
+      else:
+         raise ValueError
 
    ## OVERLOADS ##
 
@@ -66,6 +78,48 @@ class Pitch(_Abjad):
          return ''
 
    ## PRIVATE METHODS ##
+
+   def _init_by_name_and_octave(self, name, octave):
+      letter = name[0]
+      accidental_string = name[1:]
+      self.letter = letter
+      self.accidental = Accidental(accidental_string)
+      self.octave = octave
+
+   def _init_by_number(self, number):
+      from abjad.tools import pitchtools
+      spelling = self.accidental_spelling
+      triple = pitchtools.number_to_letter_accidental_octave(number, spelling)
+      letter, accidental_string, octave = triple
+      self.letter = letter
+      self.accidental = Accidental(accidental_string)
+      self.octave = octave
+
+   def _init_by_number_and_letter(self, number, letter):
+      from abjad.tools import pitchtools
+      pair = pitchtools.number_letter_to_accidental_octave(number, letter)
+      accidental_string, octave = pair
+      self.letter = letter
+      self.accidental = Accidental(accidental_string)
+      self.octave = octave
+
+   def _init_by_pair(self, pair):
+      name, octave = pair
+      letter = name[0]
+      accidental_string = name[1:]
+      self.letter = letter
+      self.accidental = Accidental(accidental_string)
+      self.octave = octave
+
+   def _init_by_reference(self, pitch):
+      self.letter = pitch.letter
+      self.accidental = Accidental(pitch.accidental._string)
+      self.octave = pitch.octave
+
+   def _init_empty(self):
+      self.letter = None
+      self.accidental = None
+      self.octave = None
 
    ## PUBLIC ATTRIBUTES ##
 

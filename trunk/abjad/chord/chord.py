@@ -2,7 +2,7 @@ from abjad.chord.formatter import _ChordFormatter
 from abjad.chord.initializer import _ChordInitializer
 from abjad.leaf.leaf import _Leaf
 from abjad.notehead import NoteHead
-#from abjad.pitch.pitch import Pitch
+from abjad.pitch import Pitch
 
 
 class Chord(_Leaf):
@@ -13,7 +13,6 @@ class Chord(_Leaf):
    ## OVERLOADS ##
 
    def __contains__(self, arg):
-      from abjad.pitch.pitch import Pitch
       if isinstance(arg, (int, float, long)):
          return Pitch(arg) in self.pitches
       elif isinstance(arg, Pitch):
@@ -36,7 +35,6 @@ class Chord(_Leaf):
       return 'Chord(%s, %s)' % (self._summary, self.duration._product)
 
    def __setitem__(self, i, arg):
-      from abjad.pitch.pitch import Pitch
       if isinstance(arg, (int, long, float)):
          self._noteheads[i] = NoteHead(self, pitch = arg)
       elif isinstance(arg, Pitch):
@@ -122,7 +120,6 @@ class Chord(_Leaf):
 
    def append(self, arg):
       '''Append notehead token to self. Then sort noteheads.'''
-      from abjad.pitch.pitch import Pitch
       if isinstance(arg, (int, float, long)):
          self._noteheads.append(NoteHead(self, pitch = arg))
       elif isinstance(arg, Pitch):
