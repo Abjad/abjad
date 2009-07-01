@@ -102,25 +102,6 @@ html_theme = 'abjadtheme'
 html_theme_options = {
   'bodyfont': 'Arial,  sans-serif',
   'headfont': 'Lucida Sans Unicode, Lucida Sans, Arial,  sans-serif',
-  'footerbgcolor': '#222222',
-  'footertextcolor': '#aaaaaa',
-
-  'sidebarbgcolor': '#ffffff', 
-  'sidebartextcolor': '#222222',
-  'sidebarlinkcolor': '#e14200',
-
-  'relbarbgcolor': '#e24200',
-  'relbartextcolor': '#aaaaaa',
-
-  'headbgcolor' : '#fefefe',
-  'headtextcolor': '#212121',
-
-  'linkcolor': '#e14200' ,
-  'headlinkcolor': '#e14200',
-#  'relbarlinkcolor': ,
-#  'bgcolor ': ,
-#  'textcolor': ,
-#  'codetextcolor': ,
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
