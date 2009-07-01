@@ -12,11 +12,22 @@ def test_assess_components_strict_parent_01( ):
 
    assert not check.assess_components(list(reversed(t.leaves)), 
       contiguity = 'strict', share = 'parent')
-   assert not check.assess_components(t.leaves[2:] + t.leaves[:2], 
+
+   components = [ ]
+   components.extend(t.leaves[2:])
+   components.extend(t.leaves[:2])
+   assert not check.assess_components(components,
       contiguity = 'strict', share = 'parent')
-   assert not check.assess_components(t[3:4] + t[0:1], 
+
+   components = [ ]
+   components.extend(t.leaves[3:4])
+   components.extend(t.leaves[0:1])
+   assert not check.assess_components(components,
       contiguity = 'strict', share = 'parent')
-   assert not check.assess_components([t] + t.leaves, 
+
+   components = [t]
+   components.extend(t.leaves)
+   assert not check.assess_components(components,
       contiguity = 'strict', share = 'parent')
 
 

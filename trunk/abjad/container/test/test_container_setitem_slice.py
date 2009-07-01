@@ -327,3 +327,83 @@ def test_container_setitem_slice_12( ):
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tr8\n}"
+
+
+def test_container_setitem_slice_13( ):
+   '''You can use the slice for of setitem to empty the contents
+   of a container. When you do this, emptied components withdraw
+   from absolutely all spanners.
+
+   On the other hand, if you want to empty a container and
+   allow the emptied components to remain embedded within spanners,
+   use containertools.contents_delete( ) instead.'''
+
+   t = Staff(construct.scale(4))
+   inner = Container(t[1:3])
+   outer = Container([inner])
+   beam = Beam(inner[:])
+
+   r'''
+   \new Staff {
+           c'8
+           {
+               {
+                      d'8 [
+                      e'8 ]
+               }
+           }
+           f'8
+   }
+   '''
+
+   ## set outer container contents to empty
+   outer[:] = [ ]
+
+   r'''
+   \new Staff {
+           c'8
+           {
+           }
+           f'8
+   }
+   '''
+
+   assert t.format == "\\new Staff {\n\tc'8\n\t{\n\t}\n\tf'8\n}"
+
+   r'''
+   {
+           d'8
+           e'8
+   }
+   '''
+
+   ## inner container leaves DO withdraw from all spanners
+   assert inner.format == "{\n\td'8\n\te'8\n}"
+
+   ## ALTERNATIVE: use containertools.contents_delete( )
+
+   t = Staff(construct.scale(4))
+   inner = Container(t[1:3])
+   outer = Container([inner])
+   beam = Beam(inner[:])
+
+   containertools.contents_delete(outer)
+
+   r'''
+   \new Staff {
+           c'8
+           {
+           }
+           f'8
+   }
+   '''
+
+   r'''
+   {
+           d'8 [
+           e'8 ]
+   }   
+   '''
+
+   ## inner container leaves DO NOT withdraw from spanners
+   assert inner.format == "{\n\td'8 [\n\te'8 ]\n}"

@@ -23,7 +23,7 @@ def _group(duration_type,
    target_duration = durations[cur_duration_idx]
    cum_duration = Rational(0)
 
-   components_copy = components[:]
+   components_copy = list(components[:])
    while True:
       #print part
       try:

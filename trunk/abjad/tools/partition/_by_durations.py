@@ -23,7 +23,7 @@ def _by_durations(components, durations,
    duration_index = 0 
    len_durations = len(durations)
    cum_duration = Rational(0)
-   xx = components[:]
+   xx = list(components[:])
 
    ## loop and build partition parts
    ## grab next component from input stack every time through loop

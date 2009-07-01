@@ -146,7 +146,8 @@ class Container(_Component):
 
    @property
    def brackets(self):
-      '''Read-only reference to brackets interface.'''
+      '''Read-only reference to
+      :class:`~abjad.brackets.interface._BracketsInterface`.'''
       return self._brackets
 
    @apply
@@ -174,7 +175,7 @@ class Container(_Component):
       music = music or [ ]
       check.assert_components(music, contiguity = 'strict', share = 'thread')
       parent, index, stop_index = parenttools.get_with_indices(music)
-      self._music = music
+      self._music = list(music)
       _switch(self._music, self)
       if parent is not None:
          parent._music.insert(index, self)

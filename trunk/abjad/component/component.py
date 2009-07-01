@@ -231,12 +231,12 @@ class _Component(_Abjad):
 
    @property
    def leaves(self):
-      '''Read-only list of all leaves in `self`.
+      '''Read-only tuple of all leaves in `self`.
 
-      .. todo:: Return immutable tuple instead of mutable list.'''
+      .. versionchanged:: 1.1.1'''
       from abjad.leaf.leaf import _Leaf
       from abjad.tools import iterate
-      return list(iterate.naive(self, _Leaf))
+      return tuple(iterate.naive(self, _Leaf))
 
    @property
    def meter(self):

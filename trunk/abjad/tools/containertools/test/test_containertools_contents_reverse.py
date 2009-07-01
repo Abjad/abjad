@@ -9,7 +9,7 @@ def test_containertools_contents_reverse_01( ):
    leaves_rev = reversed(t.leaves)
    containertools.contents_reverse(t)
 
-   assert list(leaves_rev) == t.leaves
+   assert list(leaves_rev) == list(t.leaves)
    assert check.wf(t)
 
 
@@ -22,7 +22,7 @@ def test_containertools_contents_reverse_02( ):
    leaves_rev = reversed(t.leaves)
    containertools.contents_reverse(t)
 
-   assert list(leaves_rev) == t.leaves
+   assert list(leaves_rev) == list(t.leaves)
    assert beam.components == [t]
    assert check.wf(t)
 
@@ -36,8 +36,8 @@ def test_containertools_contents_reverse_03( ):
    leaves_rev = reversed(t.leaves)
    containertools.contents_reverse(t)
 
-   assert list(leaves_rev) == t.leaves
-   assert beam.components == t.leaves
+   assert list(leaves_rev) == list(t.leaves)
+   assert beam.components == list(t.leaves)
    assert check.wf(t)
 
 
@@ -49,7 +49,7 @@ def test_containertools_contents_reverse_04( ):
    beam = Beam(t[0])
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
-   assert list(leaves_rev) == t[0].leaves
+   assert list(leaves_rev) == list(t[0].leaves)
    assert beam.components == [t[0]]
    assert check.wf(t)
 
@@ -62,8 +62,8 @@ def test_containertools_contents_reverse_05( ):
    beam = Beam(t[0].leaves)
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
-   assert list(leaves_rev) == t[0].leaves
-   assert beam.components == t[0].leaves
+   assert list(leaves_rev) == list(t[0].leaves)
+   assert beam.components == list(t[0].leaves)
    assert check.wf(t)
 
 
@@ -75,7 +75,7 @@ def test_containertools_contents_reverse_06( ):
    beam = Beam(t)
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
-   assert list(leaves_rev) == t[0].leaves
+   assert list(leaves_rev) == list(t[0].leaves)
    assert beam.components == [t]
    assert check.wf(t)
 
@@ -90,7 +90,7 @@ def test_containertools_contents_reverse_06( ):
    beam = Beam(t[:])
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
-   assert list(leaves_rev) == t[0].leaves
+   assert list(leaves_rev) == list(t[0].leaves)
    assert beam.components == [measure] + notes
    assert check.wf(t)
 
@@ -146,5 +146,5 @@ def test_containertools_contents_reverse_10( ):
    assert trill.components == staff[:]
    assert beam1.components == [m1]
    assert beam2.components == [m2]
-   assert gliss.components == staff.leaves
+   assert gliss.components == list(staff.leaves)
    assert check.wf(staff)

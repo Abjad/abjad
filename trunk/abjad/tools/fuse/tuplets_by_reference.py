@@ -2,6 +2,7 @@ from abjad.container import Container
 from abjad.exceptions import TupletFuseError
 from abjad.rational import Rational
 from abjad.tools import check
+from abjad.tools import containertools
 from abjad.tuplet.tuplet import _Tuplet
 from abjad.tuplet import FixedDurationTuplet
 from abjad.tuplet import FixedMultiplierTuplet
@@ -45,7 +46,8 @@ def tuplets_by_reference(tuplets):
       dummy_container = Container(tuplets) 
       wrapped = True
    scoretools.donate(tuplets, new_tuplet)
+
    if wrapped:
-      dummy_container[:] = [ ]
+      containertools.contents_delete(dummy_container)
    
    return new_tuplet

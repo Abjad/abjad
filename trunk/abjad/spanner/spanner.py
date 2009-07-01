@@ -410,7 +410,8 @@ class Spanner(_Abjad):
 
    def extend(self, components):
       from abjad.tools import check
-      input = self[-1:] + components
+      input = self[-1:]
+      input.extend(components)
       check.assert_components(input, contiguity = 'thread')
       for component in components:
          self.append(component)

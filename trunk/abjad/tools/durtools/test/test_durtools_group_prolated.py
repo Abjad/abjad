@@ -26,7 +26,7 @@ def test_durtools_group_prolated_01( ):
    "[[Note(c'', 8), Note(b', 8), Note(a', 8)]]"
 
    assert len(groups) == 1
-   assert groups[0] == t.leaves[:3]
+   assert groups[0] == list(t.leaves[:3])
 
 
 def test_durtools_group_prolated_02( ):
@@ -54,8 +54,8 @@ def test_durtools_group_prolated_02( ):
    "[[Note(c'', 8), Note(b', 8), Note(a', 8)], [Note(g', 8), Note(f', 8), Note(e', 8)]]"
 
    assert len(groups) == 2
-   assert groups[0] == t.leaves[:3]
-   assert groups[1] == t.leaves[3:6]
+   assert groups[0] == list(t.leaves[:3])
+   assert groups[1] == list(t.leaves[3:6])
 
 
 def test_durtools_group_prolated_03( ):
@@ -84,9 +84,9 @@ def test_durtools_group_prolated_03( ):
    "[[Note(c'', 8), Note(b', 8), Note(a', 8)], [Note(g', 8), Note(f', 8), Note(e', 8)], [Note(d', 8), Note(c', 8)]]"
 
    assert len(groups) == 3
-   assert groups[0] == t.leaves[:3]
-   assert groups[1] == t.leaves[3:6]
-   assert groups[2] == t.leaves[6:8]
+   assert groups[0] == list(t.leaves[:3])
+   assert groups[1] == list(t.leaves[3:6])
+   assert groups[2] == list(t.leaves[6:8])
 
 
 def test_durtools_group_prolated_04( ):
@@ -115,7 +115,7 @@ def test_durtools_group_prolated_04( ):
    "[[Note(c', 8)]]"
 
    assert len(groups) == 1
-   assert groups[0] == t.leaves[:1]
+   assert groups[0] == list(t.leaves[:1])
 
 
 def test_durtools_group_prolated_05( ):
@@ -144,10 +144,10 @@ def test_durtools_group_prolated_05( ):
    "[[Note(c', 8)], [Note(d', 8)], [Note(e', 8)], [Note(f', 8)], [Note(g', 8)], [Note(a', 8)], [Note(b', 8)]]"
 
    assert len(groups) == 7
-   assert groups[0] == t.leaves[:1]
-   assert groups[1] == t.leaves[1:2]
-   assert groups[2] == t.leaves[2:3]
-   assert groups[3] == t.leaves[3:4]
-   assert groups[4] == t.leaves[4:5]
-   assert groups[5] == t.leaves[5:6]
-   assert groups[6] == t.leaves[6:7]
+   assert groups[0] == list(t.leaves[:1])
+   assert groups[1] == list(t.leaves[1:2])
+   assert groups[2] == list(t.leaves[2:3])
+   assert groups[3] == list(t.leaves[3:4])
+   assert groups[4] == list(t.leaves[4:5])
+   assert groups[5] == list(t.leaves[5:6])
+   assert groups[6] == list(t.leaves[6:7])

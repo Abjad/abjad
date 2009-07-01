@@ -35,7 +35,7 @@ def by_leaf_range_with_parentage(expr, start = 0, stop = None):
    governor = leaves[start].parentage.governor
 
    # new: find start and stop leaves in governor
-   governor_leaves = governor.leaves
+   governor_leaves = list(governor.leaves)
    start_index_in_governor = governor_leaves.index(start_leaf_in_expr)
    stop_index_in_governor = governor_leaves.index(stop_leaf_in_expr)
 
