@@ -35,25 +35,29 @@ class Tempo(_GrobHandlerSpanner):
          self._indication = arg 
       return property(**locals( ))
 
-   ## TODO: Write tests ##
-
    @property
    def proportional_notation_duration_effective(self):
       '''Read-only LilyPond proportionalNotationDuration.
-         Raises UndefinedTempoError if reference tempo undefined.
-         Raises UndefinedSpacingError if reference spacing undefined.'''
+      Raises UndefinedTempoError if reference tempo undefined.
+      Raises UndefinedSpacingError if reference spacing undefined.
+
+      .. todo:: Write Tempo.proportional_notation_duration_effective( )
+         tests.
+      '''
       reference = self.proportional_notation_duration_reference
       if reference is not None:
          return self.scaling_factor * reference
       raise UndefinedSpacingError
 
-   ## TODO: Write tests ##
-
    @apply
    def proportional_notation_duration_reference( ):
       def fget(self):
          '''Read / write LilyPond proportionalNotationDuration. \
-         Must be rational-valued duration.'''
+         Must be rational-valued duration.
+
+         .. todo:: Write Tempo.proportional_notation_duration_reference( )
+            tests.
+         '''
          return self._proportional_notation_duration_reference
       def fset(self, arg):
          assert isinstance(arg, Rational)

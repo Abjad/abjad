@@ -118,12 +118,13 @@ class Spanner(_Abjad):
       component.spanners._add(self)
       self._components.insert(i, component)
    
-   ## TODO: Add Spanner._isExteriorLeaf( ) tests. ##
-
    def _isExteriorLeaf(self, leaf):
       '''True if leaf is first or last in spanner.
-         True leaf.next or leaf.prev is None.
-         False otherwise.'''
+      True leaf.next or leaf.prev is None.
+      False otherwise.
+
+      .. todo:: Write Spanner._isExteriorLeaf( ) tests.
+      '''
       if self._isMyFirstLeaf(leaf):
          return True
       elif self._isMyLastLeaf(leaf):
@@ -375,10 +376,12 @@ class Spanner(_Abjad):
       component.spanners._add(self)
       self._components.insert(0, component)
 
-   ## TODO: Deprecate ghetto start / stop interface in Spanner.copy( ) ##
-   ##       Pass explicit slice to Spanner.copy( ) instead.            ##
-
    def copy(self, start = None, stop = None):
+      '''Copy spanner components.
+
+      .. todo:: Deprecate inelegant start / stop interface in 
+         Spanner.copy( ) and pass explicit slice instead.
+      '''
       my_components = self._components[:]
       self._components = [ ]
       result = python_deepcopy(self)

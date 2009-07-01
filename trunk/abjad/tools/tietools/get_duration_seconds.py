@@ -2,10 +2,11 @@ from abjad.exceptions import MissingSpannerError
 from abjad.tools.tietools.is_chain import is_chain as tietools_is_chain
 
 
-## TODO: Write tests ##
-
 def duration_seconds(tie_chain):
-   '''Return sum of seconds duration of all leaves in chain.'''
+   '''Return sum of seconds duration of all leaves in chain.
+
+   .. todo:: Write tietools.get_duration_seconds( ) tests.
+   '''
 
    assert tietools_is_chain(tie_chain)
 
