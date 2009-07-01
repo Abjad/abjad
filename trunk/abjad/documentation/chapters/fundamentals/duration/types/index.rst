@@ -113,7 +113,7 @@ The measure here contains two eighth notes and tuplet. These elements carry prep
 	abjad> Beam(notes)
 	abjad> tuplet = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
 	abjad> Beam(tuplet)
-	abjad> measure = RigidMeasure((4, 8), notes + [tuplet]) 
+	measure = RigidMeasure((4, 8), notes + [tuplet])
 	abjad> staff = RhythmicStaff([measure])
 	abjad> print measure.duration.contents
 	1/2
@@ -136,7 +136,7 @@ The fixed-duration tuplet here carries a target duration equal to 4/8.
 
 	abjad> tuplet = FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 5)
 	abjad> Beam(tuplet)
-	abjad> measure = RigidMeasure((4, 8), [tuplet]) 
+	measure = RigidMeasure((4, 8), [tuplet])
 	abjad> staff = RhythmicStaff([measure])
 	abjad> print tuplet.duration.contents
 	5/8
@@ -162,7 +162,7 @@ The first two notes here carry leaf mulitipliers equal to 2/1.
 	abjad> notes = Note(0, (1, 16)) * 4
 	abjad> notes[0].duration.multiplier = Rational(2, 1)
 	abjad> notes[1].duration.multiplier = Rational(2, 1)
-	abjad> measure = RigidMeasure((3, 8), notes) 
+	measure = RigidMeasure((3, 8), notes)
 	abjad> Beam(measure)
 	abjad> staff = RhythmicStaff([measure])
 	abjad> note = measure[0]

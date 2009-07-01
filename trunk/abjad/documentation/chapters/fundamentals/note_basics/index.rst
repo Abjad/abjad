@@ -1,5 +1,5 @@
-Notes
-=====
+Working with notes
+==================
 
 
 Creating notes
@@ -45,15 +45,6 @@ Or with a :class:`Pitch <abjad.pitch.pitch.Pitch>` instance:
 .. image:: images/example4.png
 
 Any `pitch token` will work.
-
-.. todo:: 
-
-   document pitch-to-pitch assignment.
-
-.. todo::
-
-   This currently causes reference problems: ``n1.pitch = n2.pitch``. Can we block directly in the implementation? Or must we teach users never to cross references this way?
-
 
 
 Pitch comparison
@@ -224,8 +215,9 @@ You can reassign ``note.duration.written``.
 
 .. image:: images/duration_assign1.png
 
-Use must use a :class:`Rational <abjad.rational.rational.Rational>` which meets :doc:`assignability </chapters/fundamentals/duration/assignability/index>` 
-criteria. You can also assign ``note.duration.multiplier``.
+Use must use a :class:`Rational <abjad.rational.rational.Rational>` 
+which meets :term:`assignability` criteria. You can also assign 
+``note.duration.multiplier``.
 
 ::
 

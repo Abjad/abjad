@@ -11,7 +11,7 @@ Create notes with a `pitch token` and a `duration token`.
 note = Note(0, (1, 4))
 measure = RigidMeasure(note.duration.prolated, [note]) <hide
 measure.meter.transparent = True <hide
-write(measure, 'note1', 'oedo') <hide
+write_ly(measure, 'note1', 'oedo') <hide
 </abjad>
 
 
@@ -25,7 +25,7 @@ note = Note(0, (1, 4))
 note.pitch = 2
 measure = RigidMeasure(note.duration.prolated, [note]) <hide
 measure.meter.transparent = True <hide
-write(measure, 'pitch1', 'oedo') <hide
+write_ly(measure, 'pitch1', 'oedo') <hide
 </abjad>
 
 With a pair:
@@ -35,7 +35,7 @@ note = Note(2, (1, 4))
 note.pitch = ('e', 4)
 measure = RigidMeasure(note.duration.prolated, [note]) <hide
 measure.meter.transparent = True <hide
-write(measure, 'example3', 'oedo') <hide
+write_ly(measure, 'example3', 'oedo') <hide
 </abjad>
 
 Or with a :class:`Pitch <abjad.pitch.pitch.Pitch>` instance:
@@ -45,19 +45,10 @@ note = Note(('e', 4), (1, 4))
 note.pitch = Pitch('f', 4)
 measure = RigidMeasure(note.duration.prolated, [note]) <hide
 measure.meter.transparent = True <hide
-write(measure, 'example4', 'oedo') <hide
+write_ly(measure, 'example4', 'oedo') <hide
 </abjad>
 
 Any `pitch token` will work.
-
-.. todo:: 
-
-   document pitch-to-pitch assignment.
-
-.. todo::
-
-   This currently causes reference problems: ``n1.pitch = n2.pitch``. Can we block directly in the implementation? Or must we teach users never to cross references this way?
-
 
 
 Pitch comparison
@@ -126,7 +117,7 @@ Initialize :class:`Note <abjad.note.note.Note>` duration with a :class:`Rational
 note = Note(0, Rational(1, 8))
 measure = RigidMeasure(note.duration.prolated, [note]) <hide
 measure.meter.transparent = True <hide
-write(measure, 'duration_init1', 'oedo') <hide
+write_ly(measure, 'duration_init1', 'oedo') <hide
 </abjad>
 
 You can also use a `duration token` as a shortcut.
@@ -197,11 +188,12 @@ note = Note(0, (1, 8))
 note.duration.written = Rational(3, 16)
 measure = RigidMeasure(note.duration.prolated, [note]) <hide
 measure.meter.transparent = True <hide
-write(measure, 'duration_assign1', 'oedo') <hide
+write_ly(measure, 'duration_assign1', 'oedo') <hide
 </abjad>
 
-Use must use a :class:`Rational <abjad.rational.rational.Rational>` which meets :doc:`assignability </chapters/duration/assignability/index>` criteria.
-You can also assign ``note.duration.multiplier``.
+Use must use a :class:`Rational <abjad.rational.rational.Rational>` 
+which meets :term:`assignability` criteria. You can also assign 
+``note.duration.multiplier``.
 
 <abjad>
 note = Note(0, (1, 4))

@@ -111,7 +111,7 @@ class NoteHead(_NoteHeadInterface):
          elif isinstance(arg, tuple):
             self._pitch = Pitch(*arg) 
          elif isinstance(arg, Pitch):
-            self._pitch = arg
+            self._pitch = Pitch(arg)
          elif isinstance(arg, NoteHead):
             self._pitch = arg.pitch
          else:

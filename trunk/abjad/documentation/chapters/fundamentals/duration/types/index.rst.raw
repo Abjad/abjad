@@ -24,7 +24,7 @@ Beam(measure)
 staff = RhythmicStaff([measure])
 note = measure[0]
 print note.duration.written
-write(staff, 'written_dur1', 'oedo') <hide
+write_ly(staff, 'written_dur1', 'oedo') <hide
 </abjad>
 
 
@@ -38,7 +38,7 @@ measure = RigidMeasure((5, 16), [tuplet])
 staff = RhythmicStaff([measure])
 note = tuplet[0]
 print note.duration.written
-write(staff, 'written_dur2', 'oedo') <hide
+write_ly(staff, 'written_dur2', 'oedo') <hide
 </abjad>
 
 
@@ -111,7 +111,7 @@ Beam(tuplet)
 measure = RigidMeasure((4, 8), notes + [tuplet]) 
 staff = RhythmicStaff([measure])
 print measure.duration.contents
-write(staff, 'contents_dur1', 'oedo') <hide
+write_ly(staff, 'contents_dur1', 'oedo') <hide
 </abjad>
 
 The contents duration of the measure here equals 1/8 + 1/8 + 2/8 = 4/8.
@@ -132,7 +132,7 @@ Beam(tuplet)
 measure = RigidMeasure((4, 8), [tuplet]) 
 staff = RhythmicStaff([measure])
 print tuplet.duration.contents
-write(staff, 'target_dur1', 'oedo') <hide
+write_ly(staff, 'target_dur1', 'oedo') <hide
 print tuplet.duration.target
 </abjad>
 
@@ -157,7 +157,7 @@ Beam(measure)
 staff = RhythmicStaff([measure])
 note = measure[0]
 print note.duration.written
-write(staff, 'multiplied_dur1', 'oedo') <hide
+write_ly(staff, 'multiplied_dur1', 'oedo') <hide
 </abjad>
 
 <abjad>

@@ -33,3 +33,16 @@ def test_notehead_pitch_03( ):
    "NoteHead( )"
    assert t.notehead.pitch == None
    assert py.test.raises(AssertionError, 't.notehead.format')
+
+
+def test_notehead_pitch_04( ):
+   '''Set NoteHead pitch from another note or notehead.
+   Make sure this does not cause reference problems.'''
+
+   n1 = Note(12, (1, 4))
+   n2 = Note(14, (1, 4))
+   n1.pitch = n2.pitch
+
+   assert n1.pitch == Pitch(14)
+   assert n2.pitch == Pitch(14)
+   assert n1.pitch is not n2.pitch

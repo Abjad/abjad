@@ -116,25 +116,5 @@ Type coercion works with ``float( )``.
    closely to the Abjad :class:`Rational <abjad.rational.rational.Rational>`.
    Other good examples show up readily in search results.
 
-
-
-.. todo::
-
-   The Abjad :class:`Rational <abjad.rational.rational.Rational>` class
-   currently does not implement the Value Object design pattern. But it
-   should. To see that this is the case, consider that ``p = Rational(4,
-   5)`` followed by ``p._numerator = 3`` interprets and leaves ``p`` equal to
-   ``Rational(3, 5)``. This is probably a bad idea because two different
-   class instances running somewhere in the same interpreter session with
-   references to ``p`` will both receive value updates when ``p`` changes
-   from ``Rational(4, 5)`` to ``Rational(3, 5)``. The usual fix for this is
-   the Value Object design pattern. The Value Object design pattern
-   suggests that any changes to a value object result in the emission of
-   a new instance. What this comes out to mean is that once, say,
-   ``Rational(4, 5)`` instantiates, it can never change value, only emit a
-   new ``Rational(3, 5)`` instance. It's not clear what the right
-   implementation pattern is in Python, but we need to pick one and run
-   with it. FWIW, this also raises a larger question as to whether even
-   music classes like `Note` should refuse to change internal values and
-   instead emit new `Note` instances. A more complicated decision.
+.. todo:: Migrate to the rational type available in Python 2.6.
 
