@@ -108,7 +108,6 @@ Type coercion works with ``float( )``.
    :class:`Rational <abjad.rational.rational.Rational>` class and consider
    adding helpers for novel uses of rational arithmetic instead.
 
-
 .. note::
 
    Other third-party implementations of rational arithmetic abound on the
@@ -117,4 +116,3 @@ Type coercion works with ``float( )``.
    Other good examples show up readily in search results.
 
 .. todo:: Migrate to the rational type available in Python 2.6.
-

@@ -80,22 +80,6 @@ of the container duration interface itself and the prolation of the
 container in question.
 
 
-.. todo::
-
-   Prolated leaf duration makes perfect sense: written * prolation. But
-   prolated container duration is a mess: self * prolation, where self is
-   whatever magic value the container duration interface itself carries.
-   Clean this in the one remaining duration rewrite. We want duration
-   interface comparison of the form ``leaf1.duration == leaf2.duration``
-   and ``container1.duration == container2.duration``. But we do not want
-   duration interface assignment of the form ``container1.duration = (1,
-   8)``. Right now, unfortunately, fixed-duration tuplets demand interface
-   assignment when, for example, you want to change the "container size"
-   (or whatever it is) of the tuplet in question.
-
-
-
-
 Contents duration
 -----------------
 
