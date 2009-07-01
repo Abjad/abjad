@@ -62,6 +62,7 @@ Development
    chapters/devel/codebase/index
    chapters/devel/documentation/index
    chapters/devel/tests/index
+   chapters/devel/todo/index
    chapters/devel/versions/index
 
 
