@@ -1,5 +1,5 @@
-abjad.tools.construct.rests
-===========================
+rests
+=====
 
 .. automodule:: abjad.tools.construct.rests
 

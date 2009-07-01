@@ -1,5 +1,5 @@
-abjad.container.multipliedduration
-==================================
+multipliedduration
+==================
 
 .. automodule:: abjad.container.multipliedduration
 

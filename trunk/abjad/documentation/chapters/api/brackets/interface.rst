@@ -1,5 +1,5 @@
-abjad.brackets.interface
-========================
+interface
+=========
 
 .. automodule:: abjad.brackets.interface
 

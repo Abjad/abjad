@@ -1,5 +1,5 @@
-abjad.core.parser
-=================
+parser
+======
 
 .. automodule:: abjad.core.parser
 

@@ -1,5 +1,5 @@
-abjad.tools.durtools.rationalize
-================================
+rationalize
+===========
 
 .. automodule:: abjad.tools.durtools.rationalize
 

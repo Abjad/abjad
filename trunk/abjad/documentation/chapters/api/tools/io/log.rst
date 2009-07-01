@@ -1,5 +1,5 @@
-abjad.tools.io.log
-==================
+log
+===
 
 .. automodule:: abjad.tools.io.log
 

@@ -1,5 +1,5 @@
-abjad.spanner.positionalformat
-==============================
+positionalformat
+================
 
 .. automodule:: abjad.spanner.positionalformat
 

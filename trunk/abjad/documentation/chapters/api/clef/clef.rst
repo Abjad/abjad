@@ -1,9 +1,9 @@
-abjad.clef.clef
-===============
+clef
+====
 
 .. automodule:: abjad.clef.clef
 
-.. autoclass:: abjad.clef.clef.Clef
+.. autoclass:: abjad.Clef
    :members:
    :undoc-members:
    :show-inheritance:

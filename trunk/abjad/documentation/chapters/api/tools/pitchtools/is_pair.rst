@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.is_pair
-==============================
+is_pair
+=======
 
 .. automodule:: abjad.tools.pitchtools.is_pair
 

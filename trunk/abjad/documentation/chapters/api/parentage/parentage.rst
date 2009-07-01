@@ -1,5 +1,5 @@
-abjad.parentage.parentage
-=========================
+parentage
+=========
 
 .. automodule:: abjad.parentage.parentage
 

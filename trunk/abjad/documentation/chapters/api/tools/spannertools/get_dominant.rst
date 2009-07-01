@@ -1,5 +1,5 @@
-abjad.tools.spannertools.get_dominant
-=====================================
+get_dominant
+============
 
 .. automodule:: abjad.tools.spannertools.get_dominant
 

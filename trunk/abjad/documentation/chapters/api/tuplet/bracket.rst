@@ -1,5 +1,5 @@
-abjad.tuplet.bracket
-====================
+bracket
+=======
 
 .. automodule:: abjad.tuplet.bracket
 

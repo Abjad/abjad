@@ -1,5 +1,5 @@
-abjad.tools.listtools.unique
-============================
+unique
+======
 
 .. automodule:: abjad.tools.listtools.unique
 

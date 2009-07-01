@@ -1,5 +1,5 @@
-abjad.staff.interface.interface
-===============================
+interface
+=========
 
 .. automodule:: abjad.staff.interface.interface
 

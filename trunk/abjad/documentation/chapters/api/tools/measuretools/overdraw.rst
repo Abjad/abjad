@@ -1,5 +1,5 @@
-abjad.tools.measuretools.overdraw
-=================================
+overdraw
+========
 
 .. automodule:: abjad.tools.measuretools.overdraw
 

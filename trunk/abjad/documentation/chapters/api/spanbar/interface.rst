@@ -1,5 +1,5 @@
-abjad.spanbar.interface
-=======================
+interface
+=========
 
 .. automodule:: abjad.spanbar.interface
 

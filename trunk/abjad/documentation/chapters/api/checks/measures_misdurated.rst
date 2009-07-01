@@ -1,9 +1,9 @@
-abjad.checks.measures_misdurated
-================================
+measures_misdurated
+===================
 
 .. automodule:: abjad.checks.measures_misdurated
 
-.. autoclass:: abjad.checks.measures_misdurated.MeasuresMisdurated
+.. autoclass:: abjad.MeasuresMisdurated
    :members:
    :undoc-members:
    :show-inheritance:

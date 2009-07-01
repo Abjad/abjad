@@ -1,5 +1,5 @@
-abjad.tools.spannertools.find_component_at_score_offset
-=======================================================
+find_component_at_score_offset
+==============================
 
 .. automodule:: abjad.tools.spannertools.find_component_at_score_offset
 

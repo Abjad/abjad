@@ -1,5 +1,5 @@
-abjad.override.format
-=====================
+format
+======
 
 .. automodule:: abjad.override.format
 

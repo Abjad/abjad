@@ -1,9 +1,9 @@
-abjad.measure.dynamic.measure
-=============================
+measure
+=======
 
 .. automodule:: abjad.measure.dynamic.measure
 
-.. autoclass:: abjad.measure.dynamic.measure.DynamicMeasure
+.. autoclass:: abjad.DynamicMeasure
    :members:
    :undoc-members:
    :show-inheritance:

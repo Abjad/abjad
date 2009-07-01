@@ -1,5 +1,5 @@
-abjad.tools.listtools.rotate
-============================
+rotate
+======
 
 .. automodule:: abjad.tools.listtools.rotate
 

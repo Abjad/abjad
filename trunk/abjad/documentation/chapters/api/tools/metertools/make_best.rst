@@ -1,5 +1,5 @@
-abjad.tools.metertools.make_best
-================================
+make_best
+=========
 
 .. automodule:: abjad.tools.metertools.make_best
 

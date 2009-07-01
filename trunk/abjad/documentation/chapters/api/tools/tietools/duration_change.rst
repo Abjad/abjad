@@ -1,5 +1,5 @@
-abjad.tools.tietools.duration_change
-====================================
+duration_change
+===============
 
 .. automodule:: abjad.tools.tietools.duration_change
 

@@ -1,9 +1,9 @@
-abjad.book.parser.codeblock
-===========================
+codeblock
+=========
 
 .. automodule:: abjad.book.parser.codeblock
 
-.. autoclass:: abjad.book.parser.codeblock.CodeBlock
+.. autoclass:: abjad.CodeBlock
    :members:
    :undoc-members:
    :show-inheritance:

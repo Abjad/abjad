@@ -1,5 +1,5 @@
-abjad.slur.interface
-====================
+interface
+=========
 
 .. automodule:: abjad.slur.interface
 

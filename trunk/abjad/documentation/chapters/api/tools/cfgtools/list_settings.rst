@@ -1,5 +1,5 @@
-abjad.tools.cfgtools.list_settings
-==================================
+list_settings
+=============
 
 .. automodule:: abjad.tools.cfgtools.list_settings
 

@@ -1,5 +1,5 @@
-abjad.tools.io.write_ly
-=======================
+write_ly
+========
 
 .. automodule:: abjad.tools.io.write_ly
 

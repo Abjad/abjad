@@ -1,5 +1,5 @@
-abjad.tools.construct.engender
-==============================
+engender
+========
 
 .. automodule:: abjad.tools.construct.engender
 

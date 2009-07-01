@@ -1,5 +1,5 @@
-abjad.tuplet.tuplet
-===================
+tuplet
+======
 
 .. automodule:: abjad.tuplet.tuplet
 

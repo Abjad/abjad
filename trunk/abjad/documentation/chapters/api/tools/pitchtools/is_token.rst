@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.is_token
-===============================
+is_token
+========
 
 .. automodule:: abjad.tools.pitchtools.is_token
 

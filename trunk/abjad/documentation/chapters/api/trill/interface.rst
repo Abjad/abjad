@@ -1,5 +1,5 @@
-abjad.trill.interface
-=====================
+interface
+=========
 
 .. automodule:: abjad.trill.interface
 

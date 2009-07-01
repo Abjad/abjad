@@ -1,5 +1,5 @@
-abjad.tools.durtools.denominator_to_multiplier
-==============================================
+denominator_to_multiplier
+=========================
 
 .. automodule:: abjad.tools.durtools.denominator_to_multiplier
 

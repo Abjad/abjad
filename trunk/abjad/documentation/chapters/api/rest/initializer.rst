@@ -1,5 +1,5 @@
-abjad.rest.initializer
-======================
+initializer
+===========
 
 .. automodule:: abjad.rest.initializer
 

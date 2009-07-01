@@ -1,9 +1,9 @@
-abjad.slur.spanner
-==================
+spanner
+=======
 
 .. automodule:: abjad.slur.spanner
 
-.. autoclass:: abjad.slur.spanner.Slur
+.. autoclass:: abjad.Slur
    :members:
    :undoc-members:
    :show-inheritance:

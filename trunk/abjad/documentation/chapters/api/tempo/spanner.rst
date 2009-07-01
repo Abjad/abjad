@@ -1,9 +1,9 @@
-abjad.tempo.spanner
-===================
+spanner
+=======
 
 .. automodule:: abjad.tempo.spanner
 
-.. autoclass:: abjad.tempo.spanner.Tempo
+.. autoclass:: abjad.Tempo
    :members:
    :undoc-members:
    :show-inheritance:

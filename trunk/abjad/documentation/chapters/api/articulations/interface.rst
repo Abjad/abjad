@@ -1,5 +1,5 @@
-abjad.articulations.interface
-=============================
+interface
+=========
 
 .. automodule:: abjad.articulations.interface
 

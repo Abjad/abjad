@@ -1,5 +1,5 @@
-abjad.tools.listtools.cumulative_products
-=========================================
+cumulative_products
+===================
 
 .. automodule:: abjad.tools.listtools.cumulative_products
 

@@ -1,5 +1,5 @@
-abjad.staff.rhythmicsketchstaff
-===============================
+rhythmicsketchstaff
+===================
 
 .. automodule:: abjad.staff.rhythmicsketchstaff
 

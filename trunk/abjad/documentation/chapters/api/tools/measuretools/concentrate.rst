@@ -1,5 +1,5 @@
-abjad.tools.measuretools.concentrate
-====================================
+concentrate
+===========
 
 .. automodule:: abjad.tools.measuretools.concentrate
 

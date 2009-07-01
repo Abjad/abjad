@@ -1,5 +1,5 @@
-abjad.tools.measuretools.subsume
-================================
+subsume
+=======
 
 .. automodule:: abjad.tools.measuretools.subsume
 

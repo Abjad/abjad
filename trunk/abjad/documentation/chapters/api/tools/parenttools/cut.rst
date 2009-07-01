@@ -1,5 +1,5 @@
-abjad.tools.parenttools.cut
-===========================
+cut
+===
 
 .. automodule:: abjad.tools.parenttools.cut
 

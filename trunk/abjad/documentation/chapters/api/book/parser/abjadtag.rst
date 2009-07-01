@@ -1,5 +1,5 @@
-abjad.book.parser.abjadtag
-==========================
+abjadtag
+========
 
 .. automodule:: abjad.book.parser.abjadtag
 

@@ -1,5 +1,5 @@
-abjad.tuplet.number
-===================
+number
+======
 
 .. automodule:: abjad.tuplet.number
 

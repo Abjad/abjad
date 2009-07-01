@@ -1,5 +1,5 @@
-abjad.navigator.dfs
-===================
+dfs
+===
 
 .. automodule:: abjad.navigator.dfs
 

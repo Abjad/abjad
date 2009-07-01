@@ -1,5 +1,5 @@
-abjad.grace.interface
-=====================
+interface
+=========
 
 .. automodule:: abjad.grace.interface
 

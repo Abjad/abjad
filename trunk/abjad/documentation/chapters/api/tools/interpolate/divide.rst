@@ -1,5 +1,5 @@
-abjad.tools.interpolate.divide
-==============================
+divide
+======
 
 .. automodule:: abjad.tools.interpolate.divide
 

@@ -1,5 +1,5 @@
-abjad.tools.measuretools.report_meter_distribution
-==================================================
+report_meter_distribution
+=========================
 
 .. automodule:: abjad.tools.measuretools.report_meter_distribution
 

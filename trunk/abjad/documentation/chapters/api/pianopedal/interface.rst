@@ -1,5 +1,5 @@
-abjad.pianopedal.interface
-==========================
+interface
+=========
 
 .. automodule:: abjad.pianopedal.interface
 

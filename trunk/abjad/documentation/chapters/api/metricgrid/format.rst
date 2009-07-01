@@ -1,5 +1,5 @@
-abjad.metricgrid.format
-=======================
+format
+======
 
 .. automodule:: abjad.metricgrid.format
 

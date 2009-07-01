@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.get_interval_vector
-==========================================
+get_interval_vector
+===================
 
 .. automodule:: abjad.tools.pitchtools.get_interval_vector
 

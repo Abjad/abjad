@@ -1,5 +1,5 @@
-abjad.checks.check
-==================
+check
+=====
 
 .. automodule:: abjad.checks.check
 

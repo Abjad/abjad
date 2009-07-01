@@ -1,5 +1,5 @@
-abjad.tools.measuretools.spin
-=============================
+spin
+====
 
 .. automodule:: abjad.tools.measuretools.spin
 

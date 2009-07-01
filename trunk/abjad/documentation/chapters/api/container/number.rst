@@ -1,5 +1,5 @@
-abjad.container.number
-======================
+number
+======
 
 .. automodule:: abjad.container.number
 

@@ -1,5 +1,5 @@
-abjad.directives.interface
-==========================
+interface
+=========
 
 .. automodule:: abjad.directives.interface
 

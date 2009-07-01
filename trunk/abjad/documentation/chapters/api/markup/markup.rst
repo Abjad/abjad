@@ -1,9 +1,9 @@
-abjad.markup.markup
-===================
+markup
+======
 
 .. automodule:: abjad.markup.markup
 
-.. autoclass:: abjad.markup.markup.Markup
+.. autoclass:: abjad.Markup
    :members:
    :undoc-members:
    :show-inheritance:

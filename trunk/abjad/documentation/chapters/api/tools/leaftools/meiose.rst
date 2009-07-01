@@ -1,5 +1,5 @@
-abjad.tools.leaftools.meiose
-============================
+meiose
+======
 
 .. automodule:: abjad.tools.leaftools.meiose
 

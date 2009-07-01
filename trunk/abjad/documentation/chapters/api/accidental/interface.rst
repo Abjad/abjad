@@ -1,5 +1,5 @@
-abjad.accidental.interface
-==========================
+interface
+=========
 
 .. automodule:: abjad.accidental.interface
 

@@ -1,5 +1,5 @@
-abjad.rest.interface
-====================
+interface
+=========
 
 .. automodule:: abjad.rest.interface
 

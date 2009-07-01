@@ -1,9 +1,9 @@
-abjad.beam.complex.spanner
-==========================
+spanner
+=======
 
 .. automodule:: abjad.beam.complex.spanner
 
-.. autoclass:: abjad.beam.complex.spanner.BeamComplex
+.. autoclass:: abjad.BeamComplex
    :members:
    :undoc-members:
    :show-inheritance:

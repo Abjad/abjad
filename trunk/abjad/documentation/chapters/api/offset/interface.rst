@@ -1,5 +1,5 @@
-abjad.offset.interface
-======================
+interface
+=========
 
 .. automodule:: abjad.offset.interface
 

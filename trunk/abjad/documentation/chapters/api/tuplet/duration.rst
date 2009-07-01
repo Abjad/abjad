@@ -1,5 +1,5 @@
-abjad.tuplet.duration
-=====================
+duration
+========
 
 .. automodule:: abjad.tuplet.duration
 

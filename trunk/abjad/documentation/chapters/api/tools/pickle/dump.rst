@@ -1,5 +1,5 @@
-abjad.tools.pickle.dump
-=======================
+dump
+====
 
 .. automodule:: abjad.tools.pickle.dump
 

@@ -1,9 +1,9 @@
-abjad.checks.measures_misfilled
-===============================
+measures_misfilled
+==================
 
 .. automodule:: abjad.checks.measures_misfilled
 
-.. autoclass:: abjad.checks.measures_misfilled.MeasuresImproperlyFilled
+.. autoclass:: abjad.MeasuresImproperlyFilled
    :members:
    :undoc-members:
    :show-inheritance:

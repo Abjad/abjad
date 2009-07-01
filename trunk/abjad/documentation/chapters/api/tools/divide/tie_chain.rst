@@ -1,5 +1,5 @@
-abjad.tools.divide.tie_chain
-============================
+tie_chain
+=========
 
 .. automodule:: abjad.tools.divide.tie_chain
 

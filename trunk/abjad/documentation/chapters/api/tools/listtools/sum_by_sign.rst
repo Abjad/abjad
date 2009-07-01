@@ -1,5 +1,5 @@
-abjad.tools.listtools.sum_by_sign
-=================================
+sum_by_sign
+===========
 
 .. automodule:: abjad.tools.listtools.sum_by_sign
 

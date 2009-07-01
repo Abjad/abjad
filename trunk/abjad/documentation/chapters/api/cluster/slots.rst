@@ -1,5 +1,5 @@
-abjad.cluster.slots
-===================
+slots
+=====
 
 .. automodule:: abjad.cluster.slots
 

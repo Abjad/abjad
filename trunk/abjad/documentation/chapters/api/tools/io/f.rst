@@ -1,5 +1,5 @@
-abjad.tools.io.f
-================
+f
+=
 
 .. automodule:: abjad.tools.io.f
 

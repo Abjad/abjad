@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.octave_transpositions
-============================================
+octave_transpositions
+=====================
 
 .. automodule:: abjad.tools.pitchtools.octave_transpositions
 

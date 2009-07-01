@@ -1,5 +1,5 @@
-abjad.core.formatcontributor
-============================
+formatcontributor
+=================
 
 .. automodule:: abjad.core.formatcontributor
 

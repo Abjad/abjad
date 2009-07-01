@@ -1,5 +1,5 @@
-abjad.tools.io.ly
-=================
+ly
+==
 
 .. automodule:: abjad.tools.io.ly
 

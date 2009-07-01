@@ -1,5 +1,5 @@
-abjad.tools.measuretools.tupletize
-==================================
+tupletize
+=========
 
 .. automodule:: abjad.tools.measuretools.tupletize
 

@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.apply_octavation
-=======================================
+apply_octavation
+================
 
 .. automodule:: abjad.tools.pitchtools.apply_octavation
 

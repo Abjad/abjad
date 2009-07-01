@@ -1,5 +1,5 @@
-abjad.tools.durtools.token_decompose
-====================================
+token_decompose
+===============
 
 .. automodule:: abjad.tools.durtools.token_decompose
 

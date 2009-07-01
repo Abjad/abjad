@@ -1,5 +1,5 @@
-abjad.glissando.format
-======================
+format
+======
 
 .. automodule:: abjad.glissando.format
 

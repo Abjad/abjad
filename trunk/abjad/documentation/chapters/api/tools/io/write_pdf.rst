@@ -1,5 +1,5 @@
-abjad.tools.io.write_pdf
-========================
+write_pdf
+=========
 
 .. automodule:: abjad.tools.io.write_pdf
 

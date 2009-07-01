@@ -1,5 +1,5 @@
-abjad.tools.iterate.tie_chains
-==============================
+tie_chains
+==========
 
 .. automodule:: abjad.tools.iterate.tie_chains
 

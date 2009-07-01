@@ -1,5 +1,5 @@
-abjad.harmonic.interface
-========================
+interface
+=========
 
 .. automodule:: abjad.harmonic.interface
 

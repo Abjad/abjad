@@ -1,5 +1,5 @@
-abjad.tools.durtools.sum_seconds
-================================
+sum_seconds
+===========
 
 .. automodule:: abjad.tools.durtools.sum_seconds
 

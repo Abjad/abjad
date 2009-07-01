@@ -1,5 +1,5 @@
-abjad.context.slots
-===================
+slots
+=====
 
 .. automodule:: abjad.context.slots
 

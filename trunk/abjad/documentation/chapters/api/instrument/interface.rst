@@ -1,5 +1,5 @@
-abjad.instrument.interface
-==========================
+interface
+=========
 
 .. automodule:: abjad.instrument.interface
 

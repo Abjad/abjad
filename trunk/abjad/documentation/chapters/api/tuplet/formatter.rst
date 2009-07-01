@@ -1,5 +1,5 @@
-abjad.tuplet.formatter
-======================
+formatter
+=========
 
 .. automodule:: abjad.tuplet.formatter
 

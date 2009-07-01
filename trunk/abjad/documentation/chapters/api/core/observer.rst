@@ -1,5 +1,5 @@
-abjad.core.observer
-===================
+observer
+========
 
 .. automodule:: abjad.core.observer
 

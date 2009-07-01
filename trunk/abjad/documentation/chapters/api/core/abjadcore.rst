@@ -1,5 +1,5 @@
-abjad.core.abjadcore
-====================
+abjadcore
+=========
 
 .. automodule:: abjad.core.abjadcore
 

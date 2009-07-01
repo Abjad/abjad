@@ -1,5 +1,5 @@
-abjad.tools.clonewp.by_duration_with_parentage
-==============================================
+by_duration_with_parentage
+==========================
 
 .. automodule:: abjad.tools.clonewp.by_duration_with_parentage
 

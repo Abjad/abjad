@@ -1,5 +1,5 @@
-abjad.tools.interpolate.exponential
-===================================
+exponential
+===========
 
 .. automodule:: abjad.tools.interpolate.exponential
 

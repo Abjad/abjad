@@ -1,5 +1,5 @@
-abjad.tools.mathtools.divisors
-==============================
+divisors
+========
 
 .. automodule:: abjad.tools.mathtools.divisors
 

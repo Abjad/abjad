@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.chromaticize
-===================================
+chromaticize
+============
 
 .. automodule:: abjad.tools.pitchtools.chromaticize
 

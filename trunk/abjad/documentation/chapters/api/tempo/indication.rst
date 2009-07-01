@@ -1,9 +1,9 @@
-abjad.tempo.indication
-======================
+indication
+==========
 
 .. automodule:: abjad.tempo.indication
 
-.. autoclass:: abjad.tempo.indication.TempoIndication
+.. autoclass:: abjad.TempoIndication
    :members:
    :undoc-members:
    :show-inheritance:

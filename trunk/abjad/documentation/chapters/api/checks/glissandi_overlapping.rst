@@ -1,9 +1,9 @@
-abjad.checks.glissandi_overlapping
-==================================
+glissandi_overlapping
+=====================
 
 .. automodule:: abjad.checks.glissandi_overlapping
 
-.. autoclass:: abjad.checks.glissandi_overlapping.GlissandiOverlapping
+.. autoclass:: abjad.GlissandiOverlapping
    :members:
    :undoc-members:
    :show-inheritance:

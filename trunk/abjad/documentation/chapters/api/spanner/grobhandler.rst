@@ -1,5 +1,5 @@
-abjad.spanner.grobhandler
-=========================
+grobhandler
+===========
 
 .. automodule:: abjad.spanner.grobhandler
 

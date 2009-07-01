@@ -1,5 +1,5 @@
-abjad.notehead.format
-=====================
+format
+======
 
 .. automodule:: abjad.notehead.format
 

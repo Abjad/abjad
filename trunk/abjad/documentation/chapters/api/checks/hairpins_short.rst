@@ -1,9 +1,9 @@
-abjad.checks.hairpins_short
-===========================
+hairpins_short
+==============
 
 .. automodule:: abjad.checks.hairpins_short
 
-.. autoclass:: abjad.checks.hairpins_short.HairpinsShort
+.. autoclass:: abjad.HairpinsShort
    :members:
    :undoc-members:
    :show-inheritance:

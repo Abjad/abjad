@@ -1,5 +1,5 @@
-abjad.tools.scoretools.donate
-=============================
+donate
+======
 
 .. automodule:: abjad.tools.scoretools.donate
 

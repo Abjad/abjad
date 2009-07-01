@@ -1,5 +1,5 @@
-abjad.receipt.spanner
-=====================
+spanner
+=======
 
 .. automodule:: abjad.receipt.spanner
 

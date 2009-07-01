@@ -1,5 +1,5 @@
-abjad.tools.label.leaf_durations
-================================
+leaf_durations
+==============
 
 .. automodule:: abjad.tools.label.leaf_durations
 

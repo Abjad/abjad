@@ -1,5 +1,5 @@
-abjad.beam.complex.format
-=========================
+format
+======
 
 .. automodule:: abjad.beam.complex.format
 

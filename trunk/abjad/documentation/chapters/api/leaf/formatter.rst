@@ -1,5 +1,5 @@
-abjad.leaf.formatter
-====================
+formatter
+=========
 
 .. automodule:: abjad.leaf.formatter
 

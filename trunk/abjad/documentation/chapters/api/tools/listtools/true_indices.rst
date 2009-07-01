@@ -1,5 +1,5 @@
-abjad.tools.listtools.true_indices
-==================================
+true_indices
+============
 
 .. automodule:: abjad.tools.listtools.true_indices
 

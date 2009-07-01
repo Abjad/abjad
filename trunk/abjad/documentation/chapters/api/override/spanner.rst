@@ -1,9 +1,9 @@
-abjad.override.spanner
-======================
+spanner
+=======
 
 .. automodule:: abjad.override.spanner
 
-.. autoclass:: abjad.override.spanner.Override
+.. autoclass:: abjad.Override
    :members:
    :undoc-members:
    :show-inheritance:

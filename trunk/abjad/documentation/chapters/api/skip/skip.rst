@@ -1,9 +1,9 @@
-abjad.skip.skip
-===============
+skip
+====
 
 .. automodule:: abjad.skip.skip
 
-.. autoclass:: abjad.skip.skip.Skip
+.. autoclass:: abjad.Skip
    :members:
    :undoc-members:
    :show-inheritance:

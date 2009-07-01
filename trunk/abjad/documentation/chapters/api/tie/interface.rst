@@ -1,5 +1,5 @@
-abjad.tie.interface
-===================
+interface
+=========
 
 .. automodule:: abjad.tie.interface
 

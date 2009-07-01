@@ -1,5 +1,5 @@
-abjad.leaf.slots
-================
+slots
+=====
 
 .. automodule:: abjad.leaf.slots
 

@@ -1,5 +1,5 @@
-abjad.leaf.number
-=================
+number
+======
 
 .. automodule:: abjad.leaf.number
 

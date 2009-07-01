@@ -1,9 +1,9 @@
-abjad.chord.chord
-=================
+chord
+=====
 
 .. automodule:: abjad.chord.chord
 
-.. autoclass:: abjad.chord.chord.Chord
+.. autoclass:: abjad.Chord
    :members:
    :undoc-members:
    :show-inheritance:

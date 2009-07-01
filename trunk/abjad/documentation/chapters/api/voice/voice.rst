@@ -1,9 +1,9 @@
-abjad.voice.voice
-=================
+voice
+=====
 
 .. automodule:: abjad.voice.voice
 
-.. autoclass:: abjad.voice.voice.Voice
+.. autoclass:: abjad.Voice
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,5 +1,5 @@
-abjad.tools.tietools.are_in_same_spanner
-========================================
+are_in_same_spanner
+===================
 
 .. automodule:: abjad.tools.tietools.are_in_same_spanner
 

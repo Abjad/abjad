@@ -1,5 +1,5 @@
-abjad.tools.tietools.get_duration_seconds
-=========================================
+get_duration_seconds
+====================
 
 .. automodule:: abjad.tools.tietools.get_duration_seconds
 

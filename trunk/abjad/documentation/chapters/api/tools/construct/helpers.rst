@@ -1,5 +1,5 @@
-abjad.tools.construct.helpers
-=============================
+helpers
+=======
 
 .. automodule:: abjad.tools.construct.helpers
 

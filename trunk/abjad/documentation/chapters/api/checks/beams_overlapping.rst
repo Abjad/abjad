@@ -1,9 +1,9 @@
-abjad.checks.beams_overlapping
-==============================
+beams_overlapping
+=================
 
 .. automodule:: abjad.checks.beams_overlapping
 
-.. autoclass:: abjad.checks.beams_overlapping.BeamsOverlapping
+.. autoclass:: abjad.BeamsOverlapping
    :members:
    :undoc-members:
    :show-inheritance:

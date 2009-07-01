@@ -1,9 +1,9 @@
-abjad.checks.octavations_overlapping
-====================================
+octavations_overlapping
+=======================
 
 .. automodule:: abjad.checks.octavations_overlapping
 
-.. autoclass:: abjad.checks.octavations_overlapping.OctavationsOverlapping
+.. autoclass:: abjad.OctavationsOverlapping
    :members:
    :undoc-members:
    :show-inheritance:

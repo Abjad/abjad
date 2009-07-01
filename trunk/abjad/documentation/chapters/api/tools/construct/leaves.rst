@@ -1,5 +1,5 @@
-abjad.tools.construct.leaves
-============================
+leaves
+======
 
 .. automodule:: abjad.tools.construct.leaves
 

@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.diatonic_to_chromatic
-============================================
+diatonic_to_chromatic
+=====================
 
 .. automodule:: abjad.tools.pitchtools.diatonic_to_chromatic
 

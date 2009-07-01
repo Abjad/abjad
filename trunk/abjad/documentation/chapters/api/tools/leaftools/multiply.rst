@@ -1,5 +1,5 @@
-abjad.tools.leaftools.multiply
-==============================
+multiply
+========
 
 .. automodule:: abjad.tools.leaftools.multiply
 

@@ -1,9 +1,9 @@
-abjad.hairpin.spanner
-=====================
+spanner
+=======
 
 .. automodule:: abjad.hairpin.spanner
 
-.. autoclass:: abjad.hairpin.spanner.Hairpin
+.. autoclass:: abjad.Hairpin
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,5 +1,5 @@
-abjad.grace.formatter
-=====================
+formatter
+=========
 
 .. automodule:: abjad.grace.formatter
 

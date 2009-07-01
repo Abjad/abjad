@@ -1,5 +1,5 @@
-abjad.tools.listtools.cumulative_sums
-=====================================
+cumulative_sums
+===============
 
 .. automodule:: abjad.tools.listtools.cumulative_sums
 

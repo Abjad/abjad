@@ -1,5 +1,5 @@
-abjad.spanner.format
-====================
+format
+======
 
 .. automodule:: abjad.spanner.format
 

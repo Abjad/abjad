@@ -1,5 +1,5 @@
-abjad.tools.componenttools.untie_shallow
-========================================
+untie_shallow
+=============
 
 .. automodule:: abjad.tools.componenttools.untie_shallow
 

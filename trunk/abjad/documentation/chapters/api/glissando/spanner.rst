@@ -1,9 +1,9 @@
-abjad.glissando.spanner
-=======================
+spanner
+=======
 
 .. automodule:: abjad.glissando.spanner
 
-.. autoclass:: abjad.glissando.spanner.Glissando
+.. autoclass:: abjad.Glissando
    :members:
    :undoc-members:
    :show-inheritance:

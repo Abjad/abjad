@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.send_pitch_to_octave
-===========================================
+send_pitch_to_octave
+====================
 
 .. automodule:: abjad.tools.pitchtools.send_pitch_to_octave
 

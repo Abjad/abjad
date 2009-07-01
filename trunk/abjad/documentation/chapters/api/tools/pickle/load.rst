@@ -1,5 +1,5 @@
-abjad.tools.pickle.load
-=======================
+load
+====
 
 .. automodule:: abjad.tools.pickle.load
 

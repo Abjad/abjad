@@ -1,5 +1,5 @@
-abjad.tools.spannertools.get_covered
-====================================
+get_covered
+===========
 
 .. automodule:: abjad.tools.spannertools.get_covered
 

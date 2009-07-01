@@ -1,9 +1,9 @@
-abjad.checks.spanners_discontiguous
-===================================
+spanners_discontiguous
+======================
 
 .. automodule:: abjad.checks.spanners_discontiguous
 
-.. autoclass:: abjad.checks.spanners_discontiguous.SpannersDiscontiguous
+.. autoclass:: abjad.SpannersDiscontiguous
    :members:
    :undoc-members:
    :show-inheritance:

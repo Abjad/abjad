@@ -1,5 +1,5 @@
-abjad.tools.construct.run
-=========================
+run
+===
 
 .. automodule:: abjad.tools.construct.run
 

@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.diatonicize
-==================================
+diatonicize
+===========
 
 .. automodule:: abjad.tools.pitchtools.diatonicize
 

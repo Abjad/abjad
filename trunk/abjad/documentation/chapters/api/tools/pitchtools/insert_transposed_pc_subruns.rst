@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.insert_transposed_pc_subruns
-===================================================
+insert_transposed_pc_subruns
+============================
 
 .. automodule:: abjad.tools.pitchtools.insert_transposed_pc_subruns
 

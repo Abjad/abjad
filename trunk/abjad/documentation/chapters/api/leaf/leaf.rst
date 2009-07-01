@@ -1,5 +1,5 @@
-abjad.leaf.leaf
-===============
+leaf
+====
 
 .. automodule:: abjad.leaf.leaf
 

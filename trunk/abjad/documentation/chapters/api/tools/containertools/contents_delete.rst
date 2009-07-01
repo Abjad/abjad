@@ -1,5 +1,5 @@
-abjad.tools.containertools.contents_delete
-==========================================
+contents_delete
+===============
 
 .. automodule:: abjad.tools.containertools.contents_delete
 

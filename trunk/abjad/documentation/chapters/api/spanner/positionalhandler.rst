@@ -1,5 +1,5 @@
-abjad.spanner.positionalhandler
-===============================
+positionalhandler
+=================
 
 .. automodule:: abjad.spanner.positionalhandler
 

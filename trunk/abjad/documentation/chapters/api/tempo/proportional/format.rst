@@ -1,5 +1,5 @@
-abjad.tempo.proportional.format
-===============================
+format
+======
 
 .. automodule:: abjad.tempo.proportional.format
 

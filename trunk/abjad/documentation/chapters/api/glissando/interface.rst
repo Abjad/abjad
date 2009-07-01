@@ -1,5 +1,5 @@
-abjad.glissando.interface
-=========================
+interface
+=========
 
 .. automodule:: abjad.glissando.interface
 

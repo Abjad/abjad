@@ -1,5 +1,5 @@
-abjad.component.component
-=========================
+component
+=========
 
 .. automodule:: abjad.component.component
 

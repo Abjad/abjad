@@ -1,5 +1,5 @@
-abjad.breaks.interface
-======================
+interface
+=========
 
 .. automodule:: abjad.breaks.interface
 

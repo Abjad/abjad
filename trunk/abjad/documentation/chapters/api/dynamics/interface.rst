@@ -1,5 +1,5 @@
-abjad.dynamics.interface
-========================
+interface
+=========
 
 .. automodule:: abjad.dynamics.interface
 

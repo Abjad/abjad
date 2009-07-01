@@ -1,9 +1,9 @@
-abjad.book.parser.abjadhtmltag
-==============================
+abjadhtmltag
+============
 
 .. automodule:: abjad.book.parser.abjadhtmltag
 
-.. autoclass:: abjad.book.parser.abjadhtmltag.AbjadHTMLTag
+.. autoclass:: abjad.AbjadHTMLTag
    :members:
    :undoc-members:
    :show-inheritance:

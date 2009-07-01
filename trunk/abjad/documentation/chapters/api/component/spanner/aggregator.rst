@@ -1,5 +1,5 @@
-abjad.component.spanner.aggregator
-==================================
+aggregator
+==========
 
 .. automodule:: abjad.component.spanner.aggregator
 

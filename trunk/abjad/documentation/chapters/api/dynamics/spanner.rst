@@ -1,9 +1,9 @@
-abjad.dynamics.spanner
-======================
+spanner
+=======
 
 .. automodule:: abjad.dynamics.spanner
 
-.. autoclass:: abjad.dynamics.spanner.Dynamic
+.. autoclass:: abjad.Dynamic
    :members:
    :undoc-members:
    :show-inheritance:

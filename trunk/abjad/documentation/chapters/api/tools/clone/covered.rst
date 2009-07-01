@@ -1,5 +1,5 @@
-abjad.tools.clone.covered
-=========================
+covered
+=======
 
 .. automodule:: abjad.tools.clone.covered
 

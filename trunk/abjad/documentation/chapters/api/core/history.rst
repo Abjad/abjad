@@ -1,5 +1,5 @@
-abjad.core.history
-==================
+history
+=======
 
 .. automodule:: abjad.core.history
 

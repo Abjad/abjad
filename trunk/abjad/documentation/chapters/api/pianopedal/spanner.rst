@@ -1,9 +1,9 @@
-abjad.pianopedal.spanner
-========================
+spanner
+=======
 
 .. automodule:: abjad.pianopedal.spanner
 
-.. autoclass:: abjad.pianopedal.spanner.PianoPedal
+.. autoclass:: abjad.PianoPedal
    :members:
    :undoc-members:
    :show-inheritance:

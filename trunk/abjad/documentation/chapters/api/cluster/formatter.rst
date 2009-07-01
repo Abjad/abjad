@@ -1,5 +1,5 @@
-abjad.cluster.formatter
-=======================
+formatter
+=========
 
 .. automodule:: abjad.cluster.formatter
 

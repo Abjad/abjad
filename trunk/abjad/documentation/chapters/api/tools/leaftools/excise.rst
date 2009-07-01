@@ -1,5 +1,5 @@
-abjad.tools.leaftools.excise
-============================
+excise
+======
 
 .. automodule:: abjad.tools.leaftools.excise
 

@@ -1,5 +1,5 @@
-abjad.score.interface.interface
-===============================
+interface
+=========
 
 .. automodule:: abjad.score.interface.interface
 

@@ -1,5 +1,5 @@
-abjad.hairpin.format
-====================
+format
+======
 
 .. automodule:: abjad.hairpin.format
 

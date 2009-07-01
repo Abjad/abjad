@@ -1,5 +1,5 @@
-abjad.tools.iterate.grace
-=========================
+grace
+=====
 
 .. automodule:: abjad.tools.iterate.grace
 

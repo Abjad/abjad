@@ -1,5 +1,5 @@
-abjad.spacing.format
-====================
+format
+======
 
 .. automodule:: abjad.spacing.format
 

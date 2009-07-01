@@ -1,5 +1,5 @@
-abjad.tools.chordtools.cast_defective
-=====================================
+cast_defective
+==============
 
 .. automodule:: abjad.tools.chordtools.cast_defective
 

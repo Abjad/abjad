@@ -1,9 +1,9 @@
-abjad.checks.measures_nested
-============================
+measures_nested
+===============
 
 .. automodule:: abjad.checks.measures_nested
 
-.. autoclass:: abjad.checks.measures_nested.MeasuresNested
+.. autoclass:: abjad.MeasuresNested
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,9 +1,9 @@
-abjad.checks.quarters_beamed
-============================
+quarters_beamed
+===============
 
 .. automodule:: abjad.checks.quarters_beamed
 
-.. autoclass:: abjad.checks.quarters_beamed.QuartersBeamed
+.. autoclass:: abjad.QuartersBeamed
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,5 +1,5 @@
-abjad.tools.listtools.zip_nontruncating
-=======================================
+zip_nontruncating
+=================
 
 .. automodule:: abjad.tools.listtools.zip_nontruncating
 

@@ -1,5 +1,5 @@
-abjad.tools.construct.percussion_note
-=====================================
+percussion_note
+===============
 
 .. automodule:: abjad.tools.construct.percussion_note
 

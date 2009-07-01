@@ -1,5 +1,5 @@
-abjad.measure.dynamic.duration
-==============================
+duration
+========
 
 .. automodule:: abjad.measure.dynamic.duration
 

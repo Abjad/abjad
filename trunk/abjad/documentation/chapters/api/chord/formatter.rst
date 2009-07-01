@@ -1,5 +1,5 @@
-abjad.chord.formatter
-=====================
+formatter
+=========
 
 .. automodule:: abjad.chord.formatter
 

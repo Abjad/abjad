@@ -1,9 +1,9 @@
-abjad.book.parser.abjadlatextag
-===============================
+abjadlatextag
+=============
 
 .. automodule:: abjad.book.parser.abjadlatextag
 
-.. autoclass:: abjad.book.parser.abjadlatextag.AbjadLatexTag
+.. autoclass:: abjad.AbjadLatexTag
    :members:
    :undoc-members:
    :show-inheritance:

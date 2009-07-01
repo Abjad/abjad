@@ -1,5 +1,5 @@
-abjad.tools.leaftools.duration_change
-=====================================
+duration_change
+===============
 
 .. automodule:: abjad.tools.leaftools.duration_change
 

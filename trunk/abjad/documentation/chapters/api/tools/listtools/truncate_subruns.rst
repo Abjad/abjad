@@ -1,5 +1,5 @@
-abjad.tools.listtools.truncate_subruns
-======================================
+truncate_subruns
+================
 
 .. automodule:: abjad.tools.listtools.truncate_subruns
 

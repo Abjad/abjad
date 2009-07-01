@@ -1,5 +1,5 @@
-abjad.tools.durtools.group_seconds
-==================================
+group_seconds
+=============
 
 .. automodule:: abjad.tools.durtools.group_seconds
 

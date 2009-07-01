@@ -1,5 +1,5 @@
-abjad.tuplet.slots
-==================
+slots
+=====
 
 .. automodule:: abjad.tuplet.slots
 

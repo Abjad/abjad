@@ -1,5 +1,5 @@
-abjad.tools.chordtools.arpeggiate
-=================================
+arpeggiate
+==========
 
 .. automodule:: abjad.tools.chordtools.arpeggiate
 

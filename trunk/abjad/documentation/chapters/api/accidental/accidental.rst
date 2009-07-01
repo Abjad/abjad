@@ -1,9 +1,9 @@
-abjad.accidental.accidental
-===========================
+accidental
+==========
 
 .. automodule:: abjad.accidental.accidental
 
-.. autoclass:: abjad.accidental.accidental.Accidental
+.. autoclass:: abjad.Accidental
    :members:
    :undoc-members:
    :show-inheritance:

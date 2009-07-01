@@ -1,9 +1,9 @@
-abjad.text.spanner
-==================
+spanner
+=======
 
 .. automodule:: abjad.text.spanner
 
-.. autoclass:: abjad.text.spanner.Text
+.. autoclass:: abjad.Text
    :members:
    :undoc-members:
    :show-inheritance:

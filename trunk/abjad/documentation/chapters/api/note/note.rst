@@ -1,9 +1,9 @@
-abjad.note.note
-===============
+note
+====
 
 .. automodule:: abjad.note.note
 
-.. autoclass:: abjad.note.note.Note
+.. autoclass:: abjad.Note
    :members:
    :undoc-members:
    :show-inheritance:

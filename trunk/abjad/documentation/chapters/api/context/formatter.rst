@@ -1,5 +1,5 @@
-abjad.context.formatter
-=======================
+formatter
+=========
 
 .. automodule:: abjad.context.formatter
 

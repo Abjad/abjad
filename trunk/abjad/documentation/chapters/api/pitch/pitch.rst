@@ -1,9 +1,9 @@
-abjad.pitch.pitch
-=================
+pitch
+=====
 
 .. automodule:: abjad.pitch.pitch
 
-.. autoclass:: abjad.pitch.pitch.Pitch
+.. autoclass:: abjad.Pitch
    :members:
    :undoc-members:
    :show-inheritance:

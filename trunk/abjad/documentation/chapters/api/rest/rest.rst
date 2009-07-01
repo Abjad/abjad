@@ -1,9 +1,9 @@
-abjad.rest.rest
-===============
+rest
+====
 
 .. automodule:: abjad.rest.rest
 
-.. autoclass:: abjad.rest.rest.Rest
+.. autoclass:: abjad.Rest
    :members:
    :undoc-members:
    :show-inheritance:

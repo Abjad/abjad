@@ -1,9 +1,9 @@
-abjad.beam.complex.measured.spanner
-===================================
+spanner
+=======
 
 .. automodule:: abjad.beam.complex.measured.spanner
 
-.. autoclass:: abjad.beam.complex.measured.spanner.BeamComplexMeasured
+.. autoclass:: abjad.BeamComplexMeasured
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,5 +1,5 @@
-abjad.pianopedal.format
-=======================
+format
+======
 
 .. automodule:: abjad.pianopedal.format
 

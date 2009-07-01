@@ -1,5 +1,5 @@
-abjad.spacing.interface
-=======================
+interface
+=========
 
 .. automodule:: abjad.spacing.interface
 

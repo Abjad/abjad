@@ -1,5 +1,5 @@
-abjad.spanner.offset
-====================
+offset
+======
 
 .. automodule:: abjad.spanner.offset
 

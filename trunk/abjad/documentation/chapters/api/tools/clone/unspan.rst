@@ -1,5 +1,5 @@
-abjad.tools.clone.unspan
-========================
+unspan
+======
 
 .. automodule:: abjad.tools.clone.unspan
 

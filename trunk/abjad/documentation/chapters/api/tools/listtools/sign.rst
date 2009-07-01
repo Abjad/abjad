@@ -1,5 +1,5 @@
-abjad.tools.listtools.sign
-==========================
+sign
+====
 
 .. automodule:: abjad.tools.listtools.sign
 

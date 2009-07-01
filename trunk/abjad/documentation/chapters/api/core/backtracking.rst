@@ -1,5 +1,5 @@
-abjad.core.backtracking
-=======================
+backtracking
+============
 
 .. automodule:: abjad.core.backtracking
 

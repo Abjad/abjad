@@ -1,5 +1,5 @@
-abjad.tools.split.unfractured_at_index
-======================================
+unfractured_at_index
+====================
 
 .. automodule:: abjad.tools.split.unfractured_at_index
 

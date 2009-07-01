@@ -1,5 +1,5 @@
-abjad.component.formatter
-=========================
+formatter
+=========
 
 .. automodule:: abjad.component.formatter
 

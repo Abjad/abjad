@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.is_carrier
-=================================
+is_carrier
+==========
 
 .. automodule:: abjad.tools.pitchtools.is_carrier
 

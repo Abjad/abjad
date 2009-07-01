@@ -1,9 +1,9 @@
-abjad.checks.parents_missing
-============================
+parents_missing
+===============
 
 .. automodule:: abjad.checks.parents_missing
 
-.. autoclass:: abjad.checks.parents_missing.ParentsMissing
+.. autoclass:: abjad.ParentsMissing
    :members:
    :undoc-members:
    :show-inheritance:

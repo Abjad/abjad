@@ -1,9 +1,9 @@
-abjad.checks.ids_duplicated
-===========================
+ids_duplicated
+==============
 
 .. automodule:: abjad.checks.ids_duplicated
 
-.. autoclass:: abjad.checks.ids_duplicated.IdsDuplicated
+.. autoclass:: abjad.IdsDuplicated
    :members:
    :undoc-members:
    :show-inheritance:

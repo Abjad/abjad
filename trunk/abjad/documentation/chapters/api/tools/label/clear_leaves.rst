@@ -1,5 +1,5 @@
-abjad.tools.label.clear_leaves
-==============================
+clear_leaves
+============
 
 .. automodule:: abjad.tools.label.clear_leaves
 

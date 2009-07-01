@@ -1,9 +1,9 @@
-abjad.tuplet.fd.tuplet
-======================
+tuplet
+======
 
 .. automodule:: abjad.tuplet.fd.tuplet
 
-.. autoclass:: abjad.tuplet.fd.tuplet.FixedDurationTuplet
+.. autoclass:: abjad.FixedDurationTuplet
    :members:
    :undoc-members:
    :show-inheritance:

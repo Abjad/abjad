@@ -1,5 +1,5 @@
-abjad.clef.interface
-====================
+interface
+=========
 
 .. automodule:: abjad.clef.interface
 

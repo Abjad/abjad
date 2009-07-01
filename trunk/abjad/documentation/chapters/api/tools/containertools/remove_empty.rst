@@ -1,5 +1,5 @@
-abjad.tools.containertools.remove_empty
-=======================================
+remove_empty
+============
 
 .. automodule:: abjad.tools.containertools.remove_empty
 

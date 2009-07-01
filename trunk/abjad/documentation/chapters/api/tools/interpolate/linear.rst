@@ -1,5 +1,5 @@
-abjad.tools.interpolate.linear
-==============================
+linear
+======
 
 .. automodule:: abjad.tools.interpolate.linear
 

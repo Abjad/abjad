@@ -1,9 +1,9 @@
-abjad.articulations.articulation
-================================
+articulation
+============
 
 .. automodule:: abjad.articulations.articulation
 
-.. autoclass:: abjad.articulations.articulation.Articulation
+.. autoclass:: abjad.Articulation
    :members:
    :undoc-members:
    :show-inheritance:

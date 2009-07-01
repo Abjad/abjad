@@ -1,5 +1,5 @@
-abjad.interfaces.aggregator
-===========================
+aggregator
+==========
 
 .. automodule:: abjad.interfaces.aggregator
 

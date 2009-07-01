@@ -1,5 +1,5 @@
-abjad.tools.parenttools.switch
-==============================
+switch
+======
 
 .. automodule:: abjad.tools.parenttools.switch
 

@@ -1,5 +1,5 @@
-abjad.tools.listtools.interlace
-===============================
+interlace
+=========
 
 .. automodule:: abjad.tools.listtools.interlace
 

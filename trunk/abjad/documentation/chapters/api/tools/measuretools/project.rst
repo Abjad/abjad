@@ -1,5 +1,5 @@
-abjad.tools.measuretools.project
-================================
+project
+=======
 
 .. automodule:: abjad.tools.measuretools.project
 

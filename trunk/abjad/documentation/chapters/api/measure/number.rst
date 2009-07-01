@@ -1,5 +1,5 @@
-abjad.measure.number
-====================
+number
+======
 
 .. automodule:: abjad.measure.number
 

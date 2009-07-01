@@ -1,5 +1,5 @@
-abjad.tools.componenttools.flip
-===============================
+flip
+====
 
 .. automodule:: abjad.tools.componenttools.flip
 

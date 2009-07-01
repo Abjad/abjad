@@ -1,5 +1,5 @@
-abjad.trill.format
-==================
+format
+======
 
 .. automodule:: abjad.trill.format
 

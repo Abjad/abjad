@@ -1,5 +1,5 @@
-abjad.tools.componenttools.give_music_to
-========================================
+give_music_to
+=============
 
 .. automodule:: abjad.tools.componenttools.give_music_to
 

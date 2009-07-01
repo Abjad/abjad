@@ -1,5 +1,5 @@
-abjad.tools.listtools.get_cyclic
-================================
+get_cyclic
+==========
 
 .. automodule:: abjad.tools.listtools.get_cyclic
 

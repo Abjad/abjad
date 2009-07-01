@@ -1,5 +1,5 @@
-abjad.tools.construct.notes
-===========================
+notes
+=====
 
 .. automodule:: abjad.tools.construct.notes
 

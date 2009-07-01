@@ -1,5 +1,5 @@
-abjad.skip.initializer
-======================
+initializer
+===========
 
 .. automodule:: abjad.skip.initializer
 

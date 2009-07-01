@@ -1,5 +1,5 @@
-abjad.component.slots
-=====================
+slots
+=====
 
 .. automodule:: abjad.component.slots
 

@@ -1,5 +1,5 @@
-abjad.tools.clonewp.with_parent
-===============================
+with_parent
+===========
 
 .. automodule:: abjad.tools.clonewp.with_parent
 

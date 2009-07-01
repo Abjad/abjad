@@ -1,5 +1,5 @@
-abjad.parentage.containment
-===========================
+containment
+===========
 
 .. automodule:: abjad.parentage.containment
 

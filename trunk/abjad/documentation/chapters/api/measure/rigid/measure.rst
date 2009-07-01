@@ -1,9 +1,9 @@
-abjad.measure.rigid.measure
-===========================
+measure
+=======
 
 .. automodule:: abjad.measure.rigid.measure
 
-.. autoclass:: abjad.measure.rigid.measure.RigidMeasure
+.. autoclass:: abjad.RigidMeasure
    :members:
    :undoc-members:
    :show-inheritance:

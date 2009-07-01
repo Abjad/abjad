@@ -1,5 +1,5 @@
-abjad.voice.interface.interface
-===============================
+interface
+=========
 
 .. automodule:: abjad.voice.interface.interface
 

@@ -1,5 +1,5 @@
-abjad.tools.listtools.repeat_list_to_weight
-===========================================
+repeat_list_to_weight
+=====================
 
 .. automodule:: abjad.tools.listtools.repeat_list_to_weight
 

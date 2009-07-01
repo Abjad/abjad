@@ -1,9 +1,9 @@
-abjad.trill.spanner
-===================
+spanner
+=======
 
 .. automodule:: abjad.trill.spanner
 
-.. autoclass:: abjad.trill.spanner.Trill
+.. autoclass:: abjad.Trill
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,9 +1,9 @@
-abjad.grace.grace
-=================
+grace
+=====
 
 .. automodule:: abjad.grace.grace
 
-.. autoclass:: abjad.grace.grace.Grace
+.. autoclass:: abjad.Grace
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,5 +1,5 @@
-abjad.tools.construct.scale
-===========================
+scale
+=====
 
 .. automodule:: abjad.tools.construct.scale
 

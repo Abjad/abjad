@@ -1,5 +1,5 @@
-abjad.tools.tietools.truncate
-=============================
+truncate
+========
 
 .. automodule:: abjad.tools.tietools.truncate
 

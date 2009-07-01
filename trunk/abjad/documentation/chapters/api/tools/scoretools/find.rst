@@ -1,5 +1,5 @@
-abjad.tools.scoretools.find
-===========================
+find
+====
 
 .. automodule:: abjad.tools.scoretools.find
 

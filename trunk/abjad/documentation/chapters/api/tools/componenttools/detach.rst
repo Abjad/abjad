@@ -1,5 +1,5 @@
-abjad.tools.componenttools.detach
-=================================
+detach
+======
 
 .. automodule:: abjad.tools.componenttools.detach
 

@@ -1,5 +1,5 @@
-abjad.tie.format
-================
+format
+======
 
 .. automodule:: abjad.tie.format
 

@@ -1,5 +1,5 @@
-abjad.text.format
-=================
+format
+======
 
 .. automodule:: abjad.text.format
 

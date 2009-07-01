@@ -1,5 +1,5 @@
-abjad.leaf.spanner.aggregator
-=============================
+aggregator
+==========
 
 .. automodule:: abjad.leaf.spanner.aggregator
 

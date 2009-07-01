@@ -1,9 +1,9 @@
-abjad.bracket.spanner
-=====================
+spanner
+=======
 
 .. automodule:: abjad.bracket.spanner
 
-.. autoclass:: abjad.bracket.spanner.Bracket
+.. autoclass:: abjad.Bracket
    :members:
    :undoc-members:
    :show-inheritance:

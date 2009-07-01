@@ -1,5 +1,5 @@
-abjad.tools.iterate.measure_next
-================================
+measure_next
+============
 
 .. automodule:: abjad.tools.iterate.measure_next
 

@@ -1,5 +1,5 @@
-abjad.meter.interface
-=====================
+interface
+=========
 
 .. automodule:: abjad.meter.interface
 

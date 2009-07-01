@@ -1,9 +1,9 @@
-abjad.checks.ties_mispitched
-============================
+ties_mispitched
+===============
 
 .. automodule:: abjad.checks.ties_mispitched
 
-.. autoclass:: abjad.checks.ties_mispitched.TiesMispitched
+.. autoclass:: abjad.TiesMispitched
    :members:
    :undoc-members:
    :show-inheritance:

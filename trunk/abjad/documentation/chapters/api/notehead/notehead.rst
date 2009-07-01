@@ -1,9 +1,9 @@
-abjad.notehead.notehead
-=======================
+notehead
+========
 
 .. automodule:: abjad.notehead.notehead
 
-.. autoclass:: abjad.notehead.notehead.NoteHead
+.. autoclass:: abjad.NoteHead
    :members:
    :undoc-members:
    :show-inheritance:

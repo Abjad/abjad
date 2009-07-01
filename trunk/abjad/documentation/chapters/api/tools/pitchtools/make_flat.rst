@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.make_flat
-================================
+make_flat
+=========
 
 .. automodule:: abjad.tools.pitchtools.make_flat
 

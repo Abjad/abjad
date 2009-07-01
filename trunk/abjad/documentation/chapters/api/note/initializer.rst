@@ -1,5 +1,5 @@
-abjad.note.initializer
-======================
+initializer
+===========
 
 .. automodule:: abjad.note.initializer
 

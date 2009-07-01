@@ -1,5 +1,5 @@
-abjad.context.context
-=====================
+context
+=======
 
 .. automodule:: abjad.context.context
 

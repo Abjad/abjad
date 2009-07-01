@@ -1,5 +1,5 @@
-abjad.tools.listtools.flatten
-=============================
+flatten
+=======
 
 .. automodule:: abjad.tools.listtools.flatten
 

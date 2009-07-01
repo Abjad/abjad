@@ -1,5 +1,5 @@
-abjad.numbering.interface
-=========================
+interface
+=========
 
 .. automodule:: abjad.numbering.interface
 

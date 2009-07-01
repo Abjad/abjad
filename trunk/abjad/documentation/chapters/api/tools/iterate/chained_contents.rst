@@ -1,5 +1,5 @@
-abjad.tools.iterate.chained_contents
-====================================
+chained_contents
+================
 
 .. automodule:: abjad.tools.iterate.chained_contents
 

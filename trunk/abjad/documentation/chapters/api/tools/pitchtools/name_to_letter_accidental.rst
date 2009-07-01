@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.name_to_letter_accidental
-================================================
+name_to_letter_accidental
+=========================
 
 .. automodule:: abjad.tools.pitchtools.name_to_letter_accidental
 

@@ -1,9 +1,9 @@
-abjad.layout.fixed_staff_positioning
-====================================
+fixed_staff_positioning
+=======================
 
 .. automodule:: abjad.layout.fixed_staff_positioning
 
-.. autoclass:: abjad.layout.fixed_staff_positioning.FixedStaffPositioning
+.. autoclass:: abjad.FixedStaffPositioning
    :members:
    :undoc-members:
    :show-inheritance:

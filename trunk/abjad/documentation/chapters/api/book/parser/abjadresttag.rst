@@ -1,9 +1,9 @@
-abjad.book.parser.abjadresttag
-==============================
+abjadresttag
+============
 
 .. automodule:: abjad.book.parser.abjadresttag
 
-.. autoclass:: abjad.book.parser.abjadresttag.AbjadReSTTag
+.. autoclass:: abjad.AbjadReSTTag
    :members:
    :undoc-members:
    :show-inheritance:

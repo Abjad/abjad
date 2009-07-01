@@ -1,5 +1,5 @@
-abjad.tools.spacing.get_global
-==============================
+get_global
+==========
 
 .. automodule:: abjad.tools.spacing.get_global
 

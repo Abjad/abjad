@@ -1,5 +1,5 @@
-abjad.update.interface
-======================
+interface
+=========
 
 .. automodule:: abjad.update.interface
 

@@ -1,5 +1,5 @@
-abjad.tools.chordtools.get_notehead
-===================================
+get_notehead
+============
 
 .. automodule:: abjad.tools.chordtools.get_notehead
 

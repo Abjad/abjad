@@ -1,5 +1,5 @@
-abjad.bracket.format
-====================
+format
+======
 
 .. automodule:: abjad.bracket.format
 

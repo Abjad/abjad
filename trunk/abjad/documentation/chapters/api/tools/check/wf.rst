@@ -1,5 +1,5 @@
-abjad.tools.check.wf
-====================
+wf
+==
 
 .. automodule:: abjad.tools.check.wf
 

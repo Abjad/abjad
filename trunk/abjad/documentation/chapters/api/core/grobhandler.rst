@@ -1,5 +1,5 @@
-abjad.core.grobhandler
-======================
+grobhandler
+===========
 
 .. automodule:: abjad.core.grobhandler
 

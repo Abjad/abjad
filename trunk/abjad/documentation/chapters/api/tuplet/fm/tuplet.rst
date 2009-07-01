@@ -1,9 +1,9 @@
-abjad.tuplet.fm.tuplet
-======================
+tuplet
+======
 
 .. automodule:: abjad.tuplet.fm.tuplet
 
-.. autoclass:: abjad.tuplet.fm.tuplet.FixedMultiplierTuplet
+.. autoclass:: abjad.FixedMultiplierTuplet
    :members:
    :undoc-members:
    :show-inheritance:

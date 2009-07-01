@@ -1,5 +1,5 @@
-abjad.core.settinghandler
-=========================
+settinghandler
+==============
 
 .. automodule:: abjad.core.settinghandler
 

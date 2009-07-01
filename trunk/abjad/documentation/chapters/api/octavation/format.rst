@@ -1,5 +1,5 @@
-abjad.octavation.format
-=======================
+format
+======
 
 .. automodule:: abjad.octavation.format
 

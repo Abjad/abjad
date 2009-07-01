@@ -1,5 +1,5 @@
-abjad.tools.metertools.is_token
-===============================
+is_token
+========
 
 .. automodule:: abjad.tools.metertools.is_token
 

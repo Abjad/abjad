@@ -1,5 +1,5 @@
-abjad.spanner.receptor
-======================
+receptor
+========
 
 .. automodule:: abjad.spanner.receptor
 

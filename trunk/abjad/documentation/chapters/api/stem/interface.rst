@@ -1,5 +1,5 @@
-abjad.stem.interface
-====================
+interface
+=========
 
 .. automodule:: abjad.stem.interface
 

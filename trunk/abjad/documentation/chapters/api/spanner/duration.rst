@@ -1,5 +1,5 @@
-abjad.spanner.duration
-======================
+duration
+========
 
 .. automodule:: abjad.spanner.duration
 

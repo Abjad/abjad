@@ -6,7 +6,9 @@ def make_sphinx_module_listing(package_path, file):
    source_full_path = os.path.join(ABJADPATH.rstrip('/abjad'), 
       package_path, file)
    file = file.split('.')[0]
-   package = os.path.join(package_path, file).replace(os.path.sep, '.')
+   ## TODO: tweak me to print accurate but minimal page and sidebar title ##
+   #package = os.path.join(package_path, file).replace(os.path.sep, '.')
+   package = file
    result = '%s\n' %  package
    result += '=' * (len(result) - 1)
    result += '\n\n'
@@ -18,7 +20,13 @@ def make_sphinx_module_listing(package_path, file):
 
    members = _get_module_members(source_full_path, 'class')
    for member in members:
-      result += '.. autoclass:: %s.%s\n' % (module, member)
+
+      ## TODO: tweak me to get accurate but minimal search path ##
+      if member.startswith('_'):
+         result += '.. autoclass:: %s.%s\n' % (module, member)
+      else:
+         result += '.. autoclass:: abjad.%s\n' % member
+
       result += '   :members:\n'
       result += '   :undoc-members:\n'
       result += '   :show-inheritance:\n'

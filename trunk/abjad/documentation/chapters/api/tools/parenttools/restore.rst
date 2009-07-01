@@ -1,5 +1,5 @@
-abjad.tools.parenttools.restore
-===============================
+restore
+=======
 
 .. automodule:: abjad.tools.parenttools.restore
 

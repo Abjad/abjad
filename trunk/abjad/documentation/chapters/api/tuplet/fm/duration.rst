@@ -1,5 +1,5 @@
-abjad.tuplet.fm.duration
-========================
+duration
+========
 
 .. automodule:: abjad.tuplet.fm.duration
 

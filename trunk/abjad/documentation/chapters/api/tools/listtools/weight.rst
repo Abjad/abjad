@@ -1,5 +1,5 @@
-abjad.tools.listtools.weight
-============================
+weight
+======
 
 .. automodule:: abjad.tools.listtools.weight
 

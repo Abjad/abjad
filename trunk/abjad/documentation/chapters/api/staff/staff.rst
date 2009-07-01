@@ -1,9 +1,9 @@
-abjad.staff.staff
-=================
+staff
+=====
 
 .. automodule:: abjad.staff.staff
 
-.. autoclass:: abjad.staff.staff.Staff
+.. autoclass:: abjad.Staff
    :members:
    :undoc-members:
    :show-inheritance:

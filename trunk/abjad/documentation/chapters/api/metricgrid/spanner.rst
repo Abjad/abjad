@@ -1,9 +1,9 @@
-abjad.metricgrid.spanner
-========================
+spanner
+=======
 
 .. automodule:: abjad.metricgrid.spanner
 
-.. autoclass:: abjad.metricgrid.spanner.MetricGrid
+.. autoclass:: abjad.MetricGrid
    :members:
    :undoc-members:
    :show-inheritance:

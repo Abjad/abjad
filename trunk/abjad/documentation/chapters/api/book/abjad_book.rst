@@ -1,5 +1,5 @@
-abjad.book.abjad_book
-=====================
+abjad_book
+==========
 
 .. automodule:: abjad.book.abjad_book
 

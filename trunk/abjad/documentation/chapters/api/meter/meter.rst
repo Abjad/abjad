@@ -1,9 +1,9 @@
-abjad.meter.meter
-=================
+meter
+=====
 
 .. automodule:: abjad.meter.meter
 
-.. autoclass:: abjad.meter.meter.Meter
+.. autoclass:: abjad.Meter
    :members:
    :undoc-members:
    :show-inheritance:

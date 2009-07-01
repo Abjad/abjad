@@ -1,5 +1,5 @@
-abjad.tools.divide.pair
-=======================
+pair
+====
 
 .. automodule:: abjad.tools.divide.pair
 

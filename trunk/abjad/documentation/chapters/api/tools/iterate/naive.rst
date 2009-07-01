@@ -1,5 +1,5 @@
-abjad.tools.iterate.naive
-=========================
+naive
+=====
 
 .. automodule:: abjad.tools.iterate.naive
 

@@ -1,5 +1,5 @@
-abjad.tools.iterate.thread
-==========================
+thread
+======
 
 .. automodule:: abjad.tools.iterate.thread
 

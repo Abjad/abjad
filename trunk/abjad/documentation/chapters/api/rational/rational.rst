@@ -1,9 +1,9 @@
-abjad.rational.rational
-=======================
+rational
+========
 
 .. automodule:: abjad.rational.rational
 
-.. autoclass:: abjad.rational.rational.Rational
+.. autoclass:: abjad.Rational
    :members:
    :undoc-members:
    :show-inheritance:

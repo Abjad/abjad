@@ -1,5 +1,5 @@
-abjad.tools.divide.leaf
-=======================
+leaf
+====
 
 .. automodule:: abjad.tools.divide.leaf
 

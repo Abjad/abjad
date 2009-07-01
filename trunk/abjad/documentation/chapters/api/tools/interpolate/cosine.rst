@@ -1,5 +1,5 @@
-abjad.tools.interpolate.cosine
-==============================
+cosine
+======
 
 .. automodule:: abjad.tools.interpolate.cosine
 

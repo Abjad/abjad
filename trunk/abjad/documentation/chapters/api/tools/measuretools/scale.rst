@@ -1,5 +1,5 @@
-abjad.tools.measuretools.scale
-==============================
+scale
+=====
 
 .. automodule:: abjad.tools.measuretools.scale
 

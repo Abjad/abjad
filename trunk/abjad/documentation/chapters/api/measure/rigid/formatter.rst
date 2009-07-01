@@ -1,5 +1,5 @@
-abjad.measure.rigid.formatter
-=============================
+formatter
+=========
 
 .. automodule:: abjad.measure.rigid.formatter
 

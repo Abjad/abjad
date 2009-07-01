@@ -1,9 +1,9 @@
-abjad.instrument.spanner
-========================
+spanner
+=======
 
 .. automodule:: abjad.instrument.spanner
 
-.. autoclass:: abjad.instrument.spanner.Instrument
+.. autoclass:: abjad.Instrument
    :members:
    :undoc-members:
    :show-inheritance:

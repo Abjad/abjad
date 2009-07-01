@@ -1,5 +1,5 @@
-abjad.cluster.interface
-=======================
+interface
+=========
 
 .. automodule:: abjad.cluster.interface
 

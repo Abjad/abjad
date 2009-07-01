@@ -1,9 +1,9 @@
-abjad.spacing.indication
-========================
+indication
+==========
 
 .. automodule:: abjad.spacing.indication
 
-.. autoclass:: abjad.spacing.indication.SpacingIndication
+.. autoclass:: abjad.SpacingIndication
    :members:
    :undoc-members:
    :show-inheritance:

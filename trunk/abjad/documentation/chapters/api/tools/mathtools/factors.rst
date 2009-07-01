@@ -1,5 +1,5 @@
-abjad.tools.mathtools.factors
-=============================
+factors
+=======
 
 .. automodule:: abjad.tools.mathtools.factors
 

@@ -1,9 +1,9 @@
-abjad.checks.hairpins_intermaked
-================================
+hairpins_intermaked
+===================
 
 .. automodule:: abjad.checks.hairpins_intermaked
 
-.. autoclass:: abjad.checks.hairpins_intermaked.HairpinsIntermarked
+.. autoclass:: abjad.HairpinsIntermarked
    :members:
    :undoc-members:
    :show-inheritance:

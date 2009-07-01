@@ -1,5 +1,5 @@
-abjad.tools.check.assess_components
-===================================
+assess_components
+=================
 
 .. automodule:: abjad.tools.check.assess_components
 

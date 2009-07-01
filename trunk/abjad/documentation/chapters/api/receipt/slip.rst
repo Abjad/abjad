@@ -1,5 +1,5 @@
-abjad.receipt.slip
-==================
+slip
+====
 
 .. automodule:: abjad.receipt.slip
 

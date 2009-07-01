@@ -1,5 +1,5 @@
-abjad.tools.listtools.sum_slices_at
-===================================
+sum_slices_at
+=============
 
 .. automodule:: abjad.tools.listtools.sum_slices_at
 

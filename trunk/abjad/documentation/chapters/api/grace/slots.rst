@@ -1,5 +1,5 @@
-abjad.grace.slots
-=================
+slots
+=====
 
 .. automodule:: abjad.grace.slots
 

@@ -1,5 +1,5 @@
-abjad.tools.mathtools.sign
-==========================
+sign
+====
 
 .. automodule:: abjad.tools.mathtools.sign
 

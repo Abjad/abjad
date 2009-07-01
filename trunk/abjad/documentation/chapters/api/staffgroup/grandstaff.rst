@@ -1,5 +1,5 @@
-abjad.staffgroup.grandstaff
-===========================
+grandstaff
+==========
 
 .. automodule:: abjad.staffgroup.grandstaff
 

@@ -1,5 +1,5 @@
-abjad.tools.check.profile
-=========================
+profile
+=======
 
 .. automodule:: abjad.tools.check.profile
 

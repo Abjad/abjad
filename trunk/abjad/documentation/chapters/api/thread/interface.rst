@@ -1,5 +1,5 @@
-abjad.thread.interface
-======================
+interface
+=========
 
 .. automodule:: abjad.thread.interface
 

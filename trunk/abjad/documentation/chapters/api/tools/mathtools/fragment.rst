@@ -1,5 +1,5 @@
-abjad.tools.mathtools.fragment
-==============================
+fragment
+========
 
 .. automodule:: abjad.tools.mathtools.fragment
 

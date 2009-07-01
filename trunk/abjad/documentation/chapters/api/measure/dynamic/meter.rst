@@ -1,5 +1,5 @@
-abjad.measure.dynamic.meter
-===========================
+meter
+=====
 
 .. automodule:: abjad.measure.dynamic.meter
 

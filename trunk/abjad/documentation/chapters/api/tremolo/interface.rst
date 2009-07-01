@@ -1,5 +1,5 @@
-abjad.tremolo.interface
-=======================
+interface
+=========
 
 .. automodule:: abjad.tremolo.interface
 

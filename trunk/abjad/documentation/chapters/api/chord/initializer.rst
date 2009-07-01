@@ -1,5 +1,5 @@
-abjad.chord.initializer
-=======================
+initializer
+===========
 
 .. automodule:: abjad.chord.initializer
 

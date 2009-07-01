@@ -1,5 +1,5 @@
-abjad.component.duration
-========================
+duration
+========
 
 .. automodule:: abjad.component.duration
 

@@ -1,5 +1,5 @@
-abjad.tools.chordtools.split
-============================
+split
+=====
 
 .. automodule:: abjad.tools.chordtools.split
 

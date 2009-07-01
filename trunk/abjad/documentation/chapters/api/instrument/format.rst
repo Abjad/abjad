@@ -1,5 +1,5 @@
-abjad.instrument.format
-=======================
+format
+======
 
 .. automodule:: abjad.instrument.format
 

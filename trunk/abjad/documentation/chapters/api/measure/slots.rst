@@ -1,5 +1,5 @@
-abjad.measure.slots
-===================
+slots
+=====
 
 .. automodule:: abjad.measure.slots
 

@@ -1,249 +1,249 @@
-abjad.exceptions.exceptions
-===========================
+exceptions
+==========
 
 .. automodule:: abjad.exceptions.exceptions
 
-.. autoclass:: abjad.exceptions.exceptions.DurationError
+.. autoclass:: abjad.DurationError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MeasureError
+.. autoclass:: abjad.MeasureError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MissingMeasureError
+.. autoclass:: abjad.MissingMeasureError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.ImproperlyFilledMeasureError
+.. autoclass:: abjad.ImproperlyFilledMeasureError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.AssignabilityError
+.. autoclass:: abjad.AssignabilityError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.ContainmentError
+.. autoclass:: abjad.ContainmentError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.ContextContainmentError
+.. autoclass:: abjad.ContextContainmentError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.ContiguityError
+.. autoclass:: abjad.ContiguityError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MeasureContiguityError
+.. autoclass:: abjad.MeasureContiguityError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.ExtraSpannerError
+.. autoclass:: abjad.ExtraSpannerError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.InputSpecificationError
+.. autoclass:: abjad.InputSpecificationError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MeterError
+.. autoclass:: abjad.MeterError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MeterAssignmentError
+.. autoclass:: abjad.MeterAssignmentError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MissingSpannerError
+.. autoclass:: abjad.MissingSpannerError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MusicContentsError
+.. autoclass:: abjad.MusicContentsError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.NegativeDurationError
+.. autoclass:: abjad.NegativeDurationError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.NonbinaryMeterConversionError
+.. autoclass:: abjad.NonbinaryMeterConversionError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.NonbinaryMeterSuppressionError
+.. autoclass:: abjad.NonbinaryMeterSuppressionError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.NoteHeadError
+.. autoclass:: abjad.NoteHeadError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.ExtraNoteHeadError
+.. autoclass:: abjad.ExtraNoteHeadError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MissingNoteHeadError
+.. autoclass:: abjad.MissingNoteHeadError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.OverfullMeasureError
+.. autoclass:: abjad.OverfullMeasureError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.ParallelError
+.. autoclass:: abjad.ParallelError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.PartitionError
+.. autoclass:: abjad.PartitionError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.PitchError
+.. autoclass:: abjad.PitchError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.MissingPitchError
+.. autoclass:: abjad.MissingPitchError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.ExtraPitchError
+.. autoclass:: abjad.ExtraPitchError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.SpacingError
+.. autoclass:: abjad.SpacingError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.UndefinedSpacingError
+.. autoclass:: abjad.UndefinedSpacingError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.SpannerError
+.. autoclass:: abjad.SpannerError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.SpannerPopulationError
+.. autoclass:: abjad.SpannerPopulationError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.StaffContainmentError
+.. autoclass:: abjad.StaffContainmentError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.TieChainError
+.. autoclass:: abjad.TieChainError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.TempoError
+.. autoclass:: abjad.TempoError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.TupletError
+.. autoclass:: abjad.TupletError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.TupletFuseError
+.. autoclass:: abjad.TupletFuseError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.TypographicWhitespaceError
+.. autoclass:: abjad.TypographicWhitespaceError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.UndefinedTempoError
+.. autoclass:: abjad.UndefinedTempoError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.UnderfullMeasureError
+.. autoclass:: abjad.UnderfullMeasureError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.VoiceContainmentError
+.. autoclass:: abjad.VoiceContainmentError
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
 
-.. autoclass:: abjad.exceptions.exceptions.WellFormednessError
+.. autoclass:: abjad.WellFormednessError
    :members:
    :undoc-members:
    :show-inheritance:

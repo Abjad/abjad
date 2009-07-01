@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.get_pitches
-==================================
+get_pitches
+===========
 
 .. automodule:: abjad.tools.pitchtools.get_pitches
 

@@ -1,5 +1,5 @@
-abjad.tools.io.play
-===================
+play
+====
 
 .. automodule:: abjad.tools.io.play
 

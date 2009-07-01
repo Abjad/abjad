@@ -1,5 +1,5 @@
-abjad.notehead.interface
-========================
+interface
+=========
 
 .. automodule:: abjad.notehead.interface
 

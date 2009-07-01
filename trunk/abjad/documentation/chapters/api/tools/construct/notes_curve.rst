@@ -1,5 +1,5 @@
-abjad.tools.construct.notes_curve
-=================================
+notes_curve
+===========
 
 .. automodule:: abjad.tools.construct.notes_curve
 

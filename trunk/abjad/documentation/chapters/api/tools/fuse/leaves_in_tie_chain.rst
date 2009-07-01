@@ -1,5 +1,5 @@
-abjad.tools.fuse.leaves_in_tie_chain
-====================================
+leaves_in_tie_chain
+===================
 
 .. automodule:: abjad.tools.fuse.leaves_in_tie_chain
 

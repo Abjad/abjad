@@ -1,5 +1,5 @@
-abjad.dots.interface
-====================
+interface
+=========
 
 .. automodule:: abjad.dots.interface
 

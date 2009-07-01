@@ -1,5 +1,5 @@
-abjad.notecolumn.interface
-==========================
+interface
+=========
 
 .. automodule:: abjad.notecolumn.interface
 

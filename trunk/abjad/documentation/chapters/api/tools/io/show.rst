@@ -1,5 +1,5 @@
-abjad.tools.io.show
-===================
+show
+====
 
 .. automodule:: abjad.tools.io.show
 

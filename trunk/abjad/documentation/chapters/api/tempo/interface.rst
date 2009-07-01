@@ -1,5 +1,5 @@
-abjad.tempo.interface
-=====================
+interface
+=========
 
 .. automodule:: abjad.tempo.interface
 

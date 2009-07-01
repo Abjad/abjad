@@ -1,5 +1,5 @@
-abjad.markup.interface
-======================
+interface
+=========
 
 .. automodule:: abjad.markup.interface
 

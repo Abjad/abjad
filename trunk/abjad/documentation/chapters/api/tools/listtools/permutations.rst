@@ -1,5 +1,5 @@
-abjad.tools.listtools.permutations
-==================================
+permutations
+============
 
 .. automodule:: abjad.tools.listtools.permutations
 

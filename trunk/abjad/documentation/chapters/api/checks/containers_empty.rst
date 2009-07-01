@@ -1,9 +1,9 @@
-abjad.checks.containers_empty
-=============================
+containers_empty
+================
 
 .. automodule:: abjad.checks.containers_empty
 
-.. autoclass:: abjad.checks.containers_empty.ContainersEmpty
+.. autoclass:: abjad.ContainersEmpty
    :members:
    :undoc-members:
    :show-inheritance:

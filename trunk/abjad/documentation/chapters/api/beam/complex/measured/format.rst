@@ -1,5 +1,5 @@
-abjad.beam.complex.measured.format
-==================================
+format
+======
 
 .. automodule:: abjad.beam.complex.measured.format
 

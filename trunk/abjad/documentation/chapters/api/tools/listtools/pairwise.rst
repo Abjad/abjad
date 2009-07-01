@@ -1,5 +1,5 @@
-abjad.tools.listtools.pairwise
-==============================
+pairwise
+========
 
 .. automodule:: abjad.tools.listtools.pairwise
 

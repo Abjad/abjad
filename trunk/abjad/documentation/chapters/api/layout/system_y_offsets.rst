@@ -1,9 +1,9 @@
-abjad.layout.system_y_offsets
-=============================
+system_y_offsets
+================
 
 .. automodule:: abjad.layout.system_y_offsets
 
-.. autoclass:: abjad.layout.system_y_offsets.SystemYOffsets
+.. autoclass:: abjad.SystemYOffsets
    :members:
    :undoc-members:
    :show-inheritance:

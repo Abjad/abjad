@@ -1,5 +1,5 @@
-abjad.barnumber.interface
-=========================
+interface
+=========
 
 .. automodule:: abjad.barnumber.interface
 

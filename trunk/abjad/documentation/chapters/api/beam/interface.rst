@@ -1,5 +1,5 @@
-abjad.beam.interface
-====================
+interface
+=========
 
 .. automodule:: abjad.beam.interface
 

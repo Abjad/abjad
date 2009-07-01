@@ -1,5 +1,5 @@
-abjad.comments.comments
-=======================
+comments
+========
 
 .. automodule:: abjad.comments.comments
 

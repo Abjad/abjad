@@ -1,5 +1,5 @@
-abjad.tools.io.pdf
-==================
+pdf
+===
 
 .. automodule:: abjad.tools.io.pdf
 

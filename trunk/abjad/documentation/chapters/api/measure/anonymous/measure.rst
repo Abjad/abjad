@@ -1,9 +1,9 @@
-abjad.measure.anonymous.measure
-===============================
+measure
+=======
 
 .. automodule:: abjad.measure.anonymous.measure
 
-.. autoclass:: abjad.measure.anonymous.measure.AnonymousMeasure
+.. autoclass:: abjad.AnonymousMeasure
    :members:
    :undoc-members:
    :show-inheritance:

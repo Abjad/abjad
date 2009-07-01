@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.staff_space_transpose
-============================================
+staff_space_transpose
+=====================
 
 .. automodule:: abjad.tools.pitchtools.staff_space_transpose
 

@@ -1,5 +1,5 @@
-abjad.tools.clone.fracture
-==========================
+fracture
+========
 
 .. automodule:: abjad.tools.clone.fracture
 

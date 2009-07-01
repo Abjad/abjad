@@ -1,5 +1,5 @@
-abjad.tools.listtools.phasor
-============================
+phasor
+======
 
 .. automodule:: abjad.tools.listtools.phasor
 

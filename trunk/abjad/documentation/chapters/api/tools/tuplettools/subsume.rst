@@ -1,5 +1,5 @@
-abjad.tools.tuplettools.subsume
-===============================
+subsume
+=======
 
 .. automodule:: abjad.tools.tuplettools.subsume
 

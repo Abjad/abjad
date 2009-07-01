@@ -1,5 +1,5 @@
-abjad.slur.format
-=================
+format
+======
 
 .. automodule:: abjad.slur.format
 

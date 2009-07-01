@@ -1,5 +1,5 @@
-abjad.tools.iterate.backwards
-=============================
+backwards
+=========
 
 .. automodule:: abjad.tools.iterate.backwards
 

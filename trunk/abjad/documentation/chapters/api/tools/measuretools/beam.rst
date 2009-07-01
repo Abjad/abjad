@@ -1,5 +1,5 @@
-abjad.tools.measuretools.beam
-=============================
+beam
+====
 
 .. automodule:: abjad.tools.measuretools.beam
 

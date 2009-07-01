@@ -1,5 +1,5 @@
-abjad.tools.pitchtools.registrate
-=================================
+registrate
+==========
 
 .. automodule:: abjad.tools.pitchtools.registrate
 

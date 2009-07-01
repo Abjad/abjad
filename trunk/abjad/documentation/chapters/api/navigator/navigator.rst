@@ -1,5 +1,5 @@
-abjad.navigator.navigator
-=========================
+navigator
+=========
 
 .. automodule:: abjad.navigator.navigator
 

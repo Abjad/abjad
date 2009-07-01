@@ -1,5 +1,5 @@
-abjad.offset.seconds.interface
-==============================
+interface
+=========
 
 .. automodule:: abjad.offset.seconds.interface
 

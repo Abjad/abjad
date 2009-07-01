@@ -1,5 +1,5 @@
-abjad.tools.parenttools.ignore
-==============================
+ignore
+======
 
 .. automodule:: abjad.tools.parenttools.ignore
 

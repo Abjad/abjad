@@ -1,5 +1,5 @@
-abjad.dynamics.format
-=====================
+format
+======
 
 .. automodule:: abjad.dynamics.format
 
