@@ -73,9 +73,9 @@ class Spanner(_Abjad):
       component.spanners._spanners.remove(self)
    
    def _durationOffsetInMe(self, leaf):
-      leaves = self.leaves
+      leaves = list(self.leaves)
       assert leaf in leaves
-      prev = leaves[ : leaves.index(leaf)]
+      prev = leaves[:leaves.index(leaf)]
       return sum([leaf.duration.prolated for leaf in prev])
 
    def _fractureLeft(self, i):
@@ -146,9 +146,9 @@ class Spanner(_Abjad):
 
    def _isMyFirst(self, leaf, klass):
       if isinstance(leaf, klass):
-         leaves = self.leaves
+         leaves = list(self.leaves)
          i = leaves.index(leaf)
-         for x in leaves[ : i]:
+         for x in leaves[:i]:
             if isinstance(x, klass):
                return False
          return True
@@ -156,7 +156,7 @@ class Spanner(_Abjad):
 
    def _isMyLast(self, leaf, klass):
       if isinstance(leaf, klass):
-         leaves = self.leaves
+         leaves = list(self.leaves)
          i = leaves.index(leaf)
          for x in leaves[i + 1 : ]:
             if isinstance(x, klass):
@@ -196,23 +196,15 @@ class Spanner(_Abjad):
    
    @property
    def components(self):
-      '''Read-only list of components in spanner. ::
+      '''Read-only tuple of components in spanner. ::
 
          abjad> voice = Voice(construct.scale(4))
          abjad> spanner = Spanner(voice[:2])
          abjad> spanner.components
          [Note(c', 8), Note(d', 8)]
 
-      .. note:: The list returned here is newly constructed and
-         is not the same as the private list of components that
-         the spanner maintains. For this reason, using :func:`append`
-         or :func:`extend` on the list returned by this read-only
-         property is probably not what you want.
-         To add components to the spanner itself, use
-         :func:`~abjad.spanner.spanner.Spanner.append` or
-         :func:`~abjad.spanner.spanner.Spanner.extend`.
-
-      .. todo:: Return an (immutable) tuple rather than a (mutable) list.
+      .. versionchanged:: 1.1.1
+         Now returns an immutable tuple instead of a mutable list.
       '''
       return self._components[:]
 
@@ -285,31 +277,26 @@ class Spanner(_Abjad):
 
    @property
    def leaves(self):
-      '''Read-only list of leaves in spanner. ::
+      '''Read-only tuple of leaves in spanner. ::
 
          abjad> voice = Voice(construct.scale(4))
          abjad> spanner = Spanner(voice[:2])
          abjad> spanner.leaves
          [Note(c', 8), Note(d', 8)]
 
-      .. note:: The list returned here is newly constructed.
-         For this reason, using :func:`append`
-         or :func:`extend` on the list returned by this read-only
-         property is probably not what you want.
-         To add leaves to the spanner itself, use
-         :func:`~abjad.spanner.spanner.Spanner.append` or
-         :func:`~abjad.spanner.spanner.Spanner.extend`.
-
-      .. todo:: Return an (immutable) tuple rather than a (mutable) list.
+      .. versionchanged:: 1.1.1
+         Now returns an immutable tuple instead of a mutable list.
       '''
 
       from abjad.leaf.leaf import _Leaf
       result = [ ]
       for component in self._components:
+         ## EXPERIMENTAL: expand to allow staff-level spanner eventually ##
          #for node in component._navigator._DFS(forbid = 'parallel'):
          for node in component._navigator._DFS( ):
             if isinstance(node, _Leaf):
                result.append(node)
+      result = tuple(result)
       return result
 
    @property

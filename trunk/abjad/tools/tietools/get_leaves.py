@@ -11,4 +11,5 @@ def get_leaves(tie_chain):
       return tie_chain[0].tie.spanner.leaves
    except MissingSpannerError:
       assert len(tie_chain) == 1
-      return [tie_chain[0]]
+      leaves = (tie_chain[0], )
+      return leaves
