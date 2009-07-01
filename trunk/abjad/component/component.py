@@ -16,19 +16,15 @@ from abjad.interfaces.aggregator import _InterfaceAggregator
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.notecolumn.interface import _NoteColumnInterface
-#from abjad.notehead.interface import _NoteHeadInterface
 from abjad.numbering.interface import _NumberingInterface
 from abjad.offset.interface import _OffsetInterface
 from abjad.parentage.parentage import _Parentage
 from abjad.pianopedal.interface import _PianoPedalInterface
 from abjad.rational import Rational
 from abjad.receipt.component import _ComponentReceipt
-#from abjad.rest.interface import _RestInterface
-#from abjad.score.interface.interface import _ScoreInterface
 from abjad.slur.interface import _SlurInterface
 from abjad.spacing.interface import _SpacingInterface
 from abjad.spanbar.interface import _SpanBarInterface
-#from abjad.staff.interface.interface import _StaffInterface
 from abjad.stem.interface import _StemInterface
 from abjad.tempo.interface import _TempoInterface
 from abjad.thread.interface import _ThreadInterface
@@ -36,10 +32,7 @@ from abjad.tie.interface import _TieInterface
 from abjad.text.interface import _TextInterface
 from abjad.tremolo.interface import _TremoloInterface
 from abjad.trill.interface import _TrillInterface
-#from abjad.tuplet.bracket import _TupletBracketInterface
-#from abjad.tuplet.number import _TupletNumberInterface
 from abjad.update.interface import _UpdateInterface
-#from abjad.voice.interface.interface import _VoiceInterface
 import copy
 import types
 
@@ -100,7 +93,8 @@ class _Component(_Abjad):
       self._tupletbracket = _TupletBracketInterface(self)
       self._tupletnumber = _TupletNumberInterface(self)
       self._update = _UpdateInterface(self)
-      ## Observer interfaces must instantiate lexically after _UpdateInterface
+
+      ## Observer Interfaces must instantiate after _UpdateInterface ##
       self._clef = _ClefInterface(self, self._update)
       self._meter = _MeterInterface(self, self._update)
       self._numbering = _NumberingInterface(self, self._update)
@@ -133,89 +127,126 @@ class _Component(_Abjad):
 
    @property
    def accidental(self):
+      '''Read-only reference to 
+      :class:`~abjad.accidental.interface._AccidentalInterface`.'''
       return self._accidental
 
    @property
    def articulations(self):
+      '''Read-only reference to
+      :class:`~abjad.articulations.interface._ArticulationsInterface`.'''
       return self._articulations
    
    @property
    def barline(self):
+      '''Read-only reference to
+      :class:`~abjad.barline.interface._BarLineInterface`.'''
       return self._barline
 
    @property
    def barnumber(self):
+      '''Read-only reference to
+      :class:`~abjad.barnumber.interface._BarNumberInterface`.'''
       return self._barnumber
    
    @property
    def beam(self):
+      '''Read-only reference to
+      :class:`~abjad.beam.interface._BeamInterface`.'''
       return self._beam
 
    @property
    def breaks(self):
+      '''Read-only reference to
+      :class:`~abjad.breaks.interface._BreaksInterface`.'''
       return self._breaks
 
    @property
    def clef(self):
+      '''Read-only reference to
+      :class:`~abjad.clef.interface._ClefInterface`.'''
       return self._clef
 
    @property
    def comments(self):
+      '''Read-only reference to
+      :class:`~abjad.comments.comments._UserComments`.'''
       return self._comments
 
    @property
    def directives(self):
+      '''Read-only reference to
+      :class:`~abjad.directives.interface._UserDirectivesInterface`.'''
       return self._directives
 
    @property
    def dots(self):
+      '''Read-only reference to
+      :class:`~abjad.dots.interface._DotsInterface`.'''
       return self._dots
 
    @property
    def duration(self):
+      '''Read-only reference to class-specific duration interface.'''
       return self._duration
 
    @property
    def dynamics(self):
+      '''Read-only reference to
+      :class:`~abjad.dynamics.interface._DynamicsInterface`.'''
       return self._dynamics
 
    @property
    def format(self):
+      '''Read-only version of `self` as LilyPond input code.'''
       return self.formatter.format
 
    @property
    def formatter(self):
+      '''Read-only reference to class-specific formatter.'''
       return self._formatter
 
    @property
    def glissando(self):
+      '''Read-only reference to
+      :class:`~abjad.glissando.interface._GlissandoInterface`.'''
       return self._glissando
 
    @property
    def history(self):
+      '''Read-only reference to history dictionary.'''
       return self._history
 
    @property
    def instrument(self):
+      '''Read-only reference to
+      :class:`~abjad.instrument.interface._InstrumentInterface`.'''
       return self._instrument
 
    @property
    def interfaces(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.aggregator._InterfaceAggregator`.'''
       return self._interfaces
 
    @property
    def leaves(self):
-      '''Python list of all leaves in container.'''
+      '''Read-only list of all leaves in `self`.
+
+      .. todo:: Return immutable tuple instead of mutable list.'''
       from abjad.leaf.leaf import _Leaf
       from abjad.tools import iterate
       return list(iterate.naive(self, _Leaf))
 
    @property
    def meter(self):
+      '''Read-only reference to
+      :class:`~abjad.meter.interface._MeterInterface`.''' 
       return self._meter
 
    @property
    def music(self):
+      '''Read-only tuple of music in `self`.'''
       if hasattr(self, '_music'):
          return tuple(self._music)
       else:
@@ -224,6 +255,7 @@ class _Component(_Abjad):
    @apply
    def name( ):
       def fget(self):
+         '''Read-write name of `self`. Must be string or ``None``.'''
          return self._name
       def fset(self, arg):
          assert isinstance(arg, (str, types.NoneType))
@@ -232,94 +264,135 @@ class _Component(_Abjad):
 
    @property
    def notecolumn(self):
+      '''Read-only reference to
+      :class:`~abjad.notecolumn.interface._NoteColumnInterface`.'''
       return self._notecolumn
 
    @property
    def notehead(self):
+      '''Read-only reference to
+      :class:`~abjad.notehead.interface._NoteHeadInterface`.'''
       return self._notehead
-
-#   @property
-#   def numbering(self):
-#      return self._numbering
 
    @property
    def offset(self):
+      '''Read-only reference to
+      :class:`~abjad.offset.interface._OffsetInterface`.'''
       return self._offset
 
    @property
    def parentage(self):
+      '''Read-only reference to
+      :class:`~abjad.parentage.parentage._Parentage`.'''
       return self._parentage
 
    @property
    def pianopedal(self):
+      '''Read-only reference to
+      :class:`~abjad.pianopedal.interface._PianoPedalInterface`.'''
       return self._pianopedal
 
    @property
    def rest(self):
+      '''Read-only reference to
+      :class:`~abjad.rest.interface._RestInterface`.'''
       return self._rest
 
    @property
    def score(self):
+      '''Read-only reference to
+      :class:`~abjad.score.interface.interface._ScoreInterface`.'''
       return self._score
 
    @property
    def slur(self):
+      '''Read-only reference to
+      :class:`~abjad.slur.interface._SlurInterface`.'''
       return self._slur
 
    @property
    def spacing(self):
+      '''Read-only reference to
+      :class:`~abjad.spacing.interface._SpacingInterface`.'''
       return self._spacing
 
    @property
    def spanbar(self):
+      '''Read-only reference to
+      :class:`~abjad.spanbar.interface._SpanBarInterface`.'''
       return self._spanbar
 
    @property
    def spanners(self):
+      '''Read-only reference to
+      :class:`~abjad.component.spanner.aggregator._ComponentSpannerAggregator`.
+      '''
       return self._spanners
    
    @property
    def staff(self):
+      '''Read-only reference to
+      :class:`~abjad.staff.interface.interface._StaffInterface`.'''
       return self._staff
 
    @property
    def stem(self):
+      '''Read-only reference to
+      :class:`~abjad.stem.interface._StemInterface`.'''
       return self._stem
 
    @property
    def thread(self):
+      '''Read-only reference to
+      :class:`~abjad.thread.interface._ThreadInterface`.'''
       return self._thread
 
    @property
    def tie(self):
+      '''Read-only reference to
+      :class:`~abjad.tie.interface._TieInterface`.'''
       return self._tie
 
    @property
    def tempo(self):
+      '''Read-only reference to
+      :class:`~abjad.tempo.interface._TempoInterface`.'''
       return self._tempo
 
    @property
    def text(self):
+      '''Read-only reference to
+      :class:`~abjad.text.interface._TextInterface`.'''
       return self._text
 
    @property
    def tremolo(self):
+      '''Read-only reference to
+      :class:`~abjad.tremolo.interface._TremoloInterface`.'''
       return self._tremolo
 
    @property
    def trill(self):
+      '''Read-only reference to
+      :class:`~abjad.trill.interface._TrillInterface`.'''
       return self._trill
    
    @property
    def tupletbracket(self):
+      '''Read-only reference to
+      :class:`~abjad.tuplet.bracket._TupletBracketInterface`.'''
       return self._tupletbracket
 
    @property
    def tupletnumber(self):
+      '''Read-only reference to
+      :class:`~abjad.tuplet.number._TupletNumberInterface`.'''
       return self._tupletnumber
 
    @property
    def voice(self):
+      '''Read-only reference to
+      :class:`~abjad.voice.interface.interface._VoiceInterface`.'''
       return self._voice
 
    ## PUBLIC METHODS ##
