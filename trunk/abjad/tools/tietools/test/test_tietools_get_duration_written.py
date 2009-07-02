@@ -1,9 +1,6 @@
 from abjad import *
 from abjad.tools import construct
-#import py.test
 
-
-#py.test.skip('Deprecated.')
 
 def test_tietools_get_duration_written_01( ):
    '''Return sum of written durations of leaves in tie chain.'''

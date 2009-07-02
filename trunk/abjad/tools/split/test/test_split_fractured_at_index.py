@@ -1,6 +1,5 @@
 from abjad import *
 import py.test
-py.test.skip('measure redo')
 
 
 def test_split_fractured_at_index_01( ):
@@ -56,36 +55,50 @@ def test_split_fractured_at_index_02( ):
    Beam(t[:])
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
-                   \time 3/8
-                   c'8 [
-                   d'8
-                   e'8
-                   \time 3/8
-                   f'8
-                   g'8
-                   a'8 ]
-   }'''
+   r'''
+   \new Voice {
+      {
+         \time 3/8
+         c'8 [
+         d'8
+         e'8
+      }
+      {
+         \time 3/8
+         f'8
+         g'8
+         a'8 ]
+      }
+   }
+   '''
 
    left, right = split.fractured_at_index(m, 1)
 
-   r'''\new Voice {
-                   \time 3/8
-                   c'8 [
-                   d'8
-                   e'8
-                   \time 1/8
-                   f'8 ]
-                   \time 2/8
-                   g'8 [
-                   a'8 ]
-   }'''
+   r'''
+   \new Voice {
+      {
+         \time 3/8
+         c'8 [
+         d'8
+         e'8
+      }
+      {
+         \time 1/8
+         f'8 ]
+      }
+      {
+         \time 2/8
+         g'8 [
+         a'8 ]
+      }
+   }
+   '''
 
    assert check.wf(t)
-   assert left.format == "\t\\time 1/8\n\tf'8 ]"
-   assert right.format == "\t\\time 2/8\n\tg'8 [\n\ta'8 ]"
+   assert left.format == "{\n\t\\time 1/8\n\tf'8 ]\n}"
+   assert right.format == "{\n\t\\time 2/8\n\tg'8 [\n\ta'8 ]\n}"
    assert py.test.raises(UnderfullMeasureError, 'm.format')
-   assert t.format == "\\new Voice {\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\t\\time 1/8\n\t\tf'8 ]\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ]\n}"
+   assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
 def test_split_fractured_at_index_03( ):
@@ -96,46 +109,60 @@ def test_split_fractured_at_index_03( ):
    Beam(t[:])
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
-                   \time 3/9
-                   \scaleDurations #'(8 . 9) {
-                           c'8 [
-                           d'8
-                           e'8
-                   }
-                   \time 3/9
-                   \scaleDurations #'(8 . 9) {
-                           f'8
-                           g'8
-                           a'8 ]
-                   }
-   }'''
+   r'''
+   \new Voice {
+      {
+         \time 3/9
+         \scaleDurations #'(8 . 9) {
+            c'8 [
+            d'8
+            e'8
+         }
+      }
+      {
+         \time 3/9
+         \scaleDurations #'(8 . 9) {
+            f'8
+            g'8
+            a'8 ]
+         }
+      }
+   }
+   '''
 
    left, right = split.fractured_at_index(m, 1)
 
-   r'''\new Voice {
-                   \time 3/9
-                   \scaleDurations #'(8 . 9) {
-                           c'8 [
-                           d'8
-                           e'8
-                   }
-                   \time 1/9
-                   \scaleDurations #'(8 . 9) {
-                           f'8 ]
-                   }
-                   \time 2/9
-                   \scaleDurations #'(8 . 9) {
-                           g'8 [
-                           a'8 ]
-                   }
-   }'''
+   r'''
+   \new Voice {
+      {
+         \time 3/9
+         \scaleDurations #'(8 . 9) {
+            c'8 [
+            d'8
+            e'8
+         }
+      }
+      {
+         \time 1/9
+         \scaleDurations #'(8 . 9) {
+            f'8 ]
+         }
+      }
+      {
+         \time 2/9
+         \scaleDurations #'(8 . 9) {
+            g'8 [
+            a'8 ]
+         }
+      }
+   }
+   '''
 
    assert check.wf(t)
-   assert left.format == "\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}"
-   assert right.format == "\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}"
+   assert left.format == "{\n\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}\n}"
+   assert right.format == "{\n\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
    assert py.test.raises(UnderfullMeasureError, 'm.format')
-   assert t.format == "\\new Voice {\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8 ]\n\t\t}\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8 [\n\t\t\ta'8 ]\n\t\t}\n}"
+   assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8 [\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
 
 def test_split_fractured_at_index_04( ):
@@ -240,29 +267,43 @@ def test_split_fractured_at_index_07( ):
    Beam(t[1])
    slur = Slur(t.leaves)
 
-   r'''\new Staff {
-                   \time 2/8
-                   c'8 [ (
-                   d'8 ]
-                   \time 2/8
-                   e'8 [
-                   f'8 ] )
-   }'''
+   r'''
+   \new Staff {
+      {
+         \time 2/8
+         c'8 [ (
+         d'8 ]
+      }
+      {
+         \time 2/8
+         e'8 [
+         f'8 ] )
+      }
+   }
+   '''
 
    left, right = split.fractured_at_index(t[0], 1)
 
-   r'''\new Staff {
-                   \time 1/8
-                   c'8 [ ] (
-                   \time 1/8
-                   d'8 [ ]
-                   \time 2/8
-                   e'8 [
-                   f'8 ] )
-   }'''
+   r'''
+   \new Staff {
+      {
+         \time 1/8
+         c'8 [ ] (
+      }
+      {
+         \time 1/8
+         d'8 [ ]
+      }
+      {
+         \time 2/8
+         e'8 [
+         f'8 ] )
+      }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Staff {\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_split_fractured_at_index_08( ):
@@ -274,31 +315,43 @@ def test_split_fractured_at_index_08( ):
    Beam(t[1])
    slur = Slur(t.leaves)
 
-   r'''\new Staff {
-                   \time 2/8
-                   c'8 [ (
-                   d'8 ]
-                   \time 2/8
-                   e'8 [
-                   f'8 ] )
-   }'''
+   r'''
+   \new Staff {
+      {
+         \time 2/8
+         c'8 [ (
+         d'8 ]
+      }
+      {
+         \time 2/8
+         e'8 [
+         f'8 ] )
+      }
+   }
+   '''
 
    leaf = t.leaves[1]
    left, right = split.fractured_at_index(leaf, -100)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 2/8
          c'8 ( ) [
          d'8 ] (
+      }
+      {
          \time 2/8
          e'8 [
          f'8 ] )
-   }'''
+      }
+   }
+   '''
    
    assert check.wf(t)
    assert left is None
    assert right is leaf
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
    
 def test_split_fractured_at_index_09( ):
@@ -310,31 +363,43 @@ def test_split_fractured_at_index_09( ):
    Beam(t[1])
    slur = Slur(t.leaves)
 
-   r'''\new Staff {
-                   \time 2/8
-                   c'8 [ (
-                   d'8 ]
-                   \time 2/8
-                   e'8 [
-                   f'8 ] )
-   }'''
+   r'''
+   \new Staff {
+      {
+         \time 2/8
+         c'8 [ (
+         d'8 ]
+      }
+      {
+         \time 2/8
+         e'8 [
+         f'8 ] )
+      }
+   }
+   '''
 
    leaf = t.leaves[1]
    left, right = split.fractured_at_index(leaf, 100)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 2/8
          c'8 [ (
          d'8 ] )
+      }
+      {
          \time 2/8
          e'8 [ (
          f'8 ] )
-   }'''
+      }
+   }
+   '''
 
    assert check.wf(t)
    assert left is leaf
    assert right is None
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_split_fractured_at_index_10( ):
@@ -346,30 +411,40 @@ def test_split_fractured_at_index_10( ):
    Beam(t[0])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 3/12
          \scaleDurations #'(2 . 3) {
             c'8. [ (
             d'8. ] )
          }
-   }'''
+      }
+   }
+   '''
 
    halves = split.fractured_at_index(t[0], 1)
    
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 3/24
          \scaleDurations #'(2 . 3) {
             c'8. [ ] (
          }
+      }
+      {
          \time 3/24
          \scaleDurations #'(2 . 3) {
             d'8. [ ] )
          }
-   }'''
+      }
+   }
+   '''
 
    assert check.wf(t)
    assert len(halves) == 2
-   assert t.format == "\\new Staff {\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n\t}\n}"
 
 
 def test_split_fractured_at_index_11( ):
@@ -381,21 +456,31 @@ def test_split_fractured_at_index_11( ):
    Beam(t[0])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 3/8
          c'8. [ (
          d'8. ] )
-   }'''
+      }
+   }
+   '''
 
    halves = split.fractured_at_index(t[0], 1)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 3/16
          c'8. [ ] (
+      }
+      {
          \time 3/16
          d'8. [ ] )
-   }'''
+      }
+   }
+   '''
 
    assert check.wf(t)
    assert len(halves) == 2
-   assert t.format == "\\new Staff {\n\t\t\\time 3/16\n\t\tc'8. [ ] (\n\t\t\\time 3/16\n\t\td'8. [ ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\tc'8. [ ] (\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8. [ ] )\n\t}\n}"

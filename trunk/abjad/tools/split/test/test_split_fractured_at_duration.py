@@ -1,5 +1,6 @@
 from abjad import *
 import py.test
+
 py.test.skip('measure redo')
 
 
@@ -12,33 +13,45 @@ def test_split_fractured_at_duration_01( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 2/8
          c'8 [ (
          d'8 ]
+      }
+      {
          \time 2/8
          e'8 [
          f'8 ] )
-   }'''
+      }
+   }
+   '''
 
    halves = split.fractured_at_duration(t.leaves[0], Rational(1, 32))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 2/8
          c'32 ( ) [
          c'16. (
          d'8 ]
+      }
+      {
          \time 2/8
          e'8 [
          f'8 ] )
-   }'''
+      }
+   }
+   '''
 
    assert check.wf(t)
    assert len(halves) == 2
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
    assert isinstance(halves[1], list)
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'32 ( ) [\n\t\tc'16. (\n\t\td'8 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 ( ) [\n\t\tc'16. (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_split_fractured_at_duration_02( ):
@@ -50,37 +63,53 @@ def test_split_fractured_at_duration_02( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 2/8
          c'8 [ (
          d'8 ]
+      }
+      {
          \time 2/8
          e'8 [
          f'8 ] )
-   }'''
+      }
+   }
+   '''
 
    halves = split.fractured_at_duration(t[0], Rational(1, 32))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+      {
          \time 1/32
          c'32 [ ] ( )
+      }
+      {
          \time 7/32
          c'16. [ (
          d'8 ]
+      }
+      {
          \time 2/8
          e'8 [
          f'8 ] )
-   }'''
+      }
+   }
+   '''
 
    assert check.wf(t)
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
    assert isinstance(halves[1], list)
-   assert t.format == "\\new Staff {\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t\t\\time 7/32\n\t\tc'16. [ (\n\t\td'8 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16. [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_split_fractured_at_duration_03( ):
    '''Duration split staff outside of score and fracture spanners.'''
+
+   ## TODO: RESUME FIXING TESTS HERE. ##
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
