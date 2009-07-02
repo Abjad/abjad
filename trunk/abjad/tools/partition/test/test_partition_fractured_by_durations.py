@@ -1,8 +1,5 @@
 from abjad import *
 
-import py.test
-py.test.skip('mesaure redo')
-
 
 def test_partition_fractured_by_durations_01( ):
    '''Duration partition one container in score, and fracture spanners.'''
@@ -13,33 +10,49 @@ def test_partition_fractured_by_durations_01( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
    parts = partition.fractured_by_durations(t[:1], durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 1/32
                    c'32 [ ] ( )
+           }
+           {
                    \time 3/32
                    c'16. [ ] ( )
+           }
+           {
                    \time 4/32
                    d'8 [ ] (
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 3
-   assert t.format == "\\new Staff {\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_partition_fractured_by_durations_02( ):
@@ -52,35 +65,53 @@ def test_partition_fractured_by_durations_02( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
    parts = partition.fractured_by_durations(t[:], durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 1/32
                    c'32 [ ] ( )
+           }
+           {
                    \time 3/32
                    c'16. [ ] ( )
+           }
+           {
                    \time 4/32
                    d'8 [ ] (
+           }
+           {
                    \time 1/32
                    e'32 [ ] )
+           }
+           {
                    \time 7/32
                    e'16. [ (
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 4
-   assert t.format == "\\new Staff {\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_partition_fractured_by_durations_03( ):

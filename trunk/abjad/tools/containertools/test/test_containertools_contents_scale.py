@@ -1,8 +1,5 @@
 from abjad import *
 
-import py.test
-py.test.skip('measure redo')
-
 
 def test_containertools_contents_scale_01( ):
    '''Scale leaves in voice by 3/2; ie, dot leaves.'''
@@ -10,12 +7,14 @@ def test_containertools_contents_scale_01( ):
    t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(3, 2))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8.
            d'8.
            e'8.
            f'8.
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8.\n\td'8.\n\te'8.\n\tf'8.\n}"
@@ -27,7 +26,8 @@ def test_containertools_contents_scale_02( ):
    t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(5, 4))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 ~
            c'32
            d'8 ~
@@ -36,7 +36,8 @@ def test_containertools_contents_scale_02( ):
            e'32
            f'8 ~
            f'32
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
@@ -49,7 +50,8 @@ def test_containertools_contents_scale_03( ):
    t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(4, 3))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'4
            }
@@ -62,7 +64,8 @@ def test_containertools_contents_scale_03( ):
            \times 2/3 {
                    f'4
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'4\n\t}\n\t\\times 2/3 {\n\t\td'4\n\t}\n\t\\times 2/3 {\n\t\te'4\n\t}\n\t\\times 2/3 {\n\t\tf'4\n\t}\n}"
@@ -75,7 +78,8 @@ def test_containertools_contents_scale_04( ):
    t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(5, 6))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8 ~
                    c'32
@@ -92,7 +96,8 @@ def test_containertools_contents_scale_04( ):
                    f'8 ~
                    f'32
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 ~\n\t\tc'32\n\t}\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32\n\t}\n\t\\times 2/3 {\n\t\te'8 ~\n\t\te'32\n\t}\n\t\\times 2/3 {\n\t\tf'8 ~\n\t\tf'32\n\t}\n}"
@@ -105,7 +110,8 @@ def test_containertools_contents_scale_05( ):
       FixedDurationTuplet((3, 8), construct.run(4))])
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8.
       \fraction \times 3/4 {
          d'8
@@ -113,17 +119,20 @@ def test_containertools_contents_scale_05( ):
          f'8
          g'8
       }
-   }'''
+   }
+   '''
 
    containertools.contents_scale(t, Rational(2, 3))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
          d'16
          e'16
          f'16
          g'16
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n}"
@@ -135,7 +144,8 @@ def test_containertools_contents_scale_06( ):
    t = Voice(construct.scale(4))
    containertools.contents_scale(t, Rational(5, 4))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 ~
       c'32
       d'8 ~
@@ -144,17 +154,21 @@ def test_containertools_contents_scale_06( ):
       e'32
       f'8 ~
       f'32
-   }'''
+   }
+   '''
+
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
 
    containertools.contents_scale(t, Rational(4, 5))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
@@ -166,29 +180,40 @@ def test_containertools_contents_scale_07( ):
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
-         \time 2/8
-         c'8
-         d'8
-         \time 2/8
-         e'8
-         f'8
-   }'''
-
+   r'''
+   \new Voice {
+           {
+                   \time 2/8
+                   c'8
+                   d'8
+           }
+           {
+                   \time 2/8
+                   e'8
+                   f'8
+           }
+   }
+   '''
 
    containertools.contents_scale(t, Rational(2))
 
-   r'''\new Voice {
-         \time 2/4
-         c'4
-         d'4
-         \time 2/4
-         e'4
-         f'4
-   }'''
+   r'''
+   \new Voice {
+           {
+                   \time 2/4
+                   c'4
+                   d'4
+           }
+           {
+                   \time 2/4
+                   e'4
+                   f'4
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Voice {\n\t\t\\time 2/4\n\t\tc'4\n\t\td'4\n\t\t\\time 2/4\n\t\te'4\n\t\tf'4\n}"
+   assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/4\n\t\tc'4\n\t\td'4\n\t}\n\t{\n\t\t\\time 2/4\n\t\te'4\n\t\tf'4\n\t}\n}"
 
 
 def test_containertools_contents_scale_08( ):
@@ -197,29 +222,41 @@ def test_containertools_contents_scale_08( ):
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
-         \time 2/8
-         c'8
-         d'8
-         \time 2/8
-         e'8
-         f'8
-   }'''
+   r'''
+   \new Voice {
+           {
+                   \time 2/8
+                   c'8
+                   d'8
+           }
+           {
+                   \time 2/8
+                   e'8
+                   f'8
+           }
+   }
+   '''
 
    containertools.contents_scale(t, Rational(5, 4))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
+           {
                    \time 20/64
                    c'8 ~
                    c'32
                    d'8 ~
                    d'32
+           }
+           {
                    \time 20/64
                    e'8 ~
                    e'32
                    f'8 ~
                    f'32
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Voice {\n\t\t\\time 20/64\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\t\\time 20/64\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n}"
+   assert t.format == "\\new Voice {\n\t{\n\t\t\\time 20/64\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t}\n\t{\n\t\t\\time 20/64\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t}\n}"

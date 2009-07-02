@@ -2,8 +2,6 @@ from abjad import *
 from abjad.tools import construct
 import py.test
 
-py.test.skip('measure redo')
-
 
 def test_construct_note_train_01( ):
    '''Construct train of 1/16th notes equal to 1/4 total duration.'''
@@ -87,15 +85,17 @@ def test_construct_note_train_04( ):
       0, Rational(1, 16), Rational(5, 18), prolation = Rational(16, 18)))
 
    r'''
-      \time 5/18
-      \scaleDurations #'(8 . 9) {
-         c'16
-         c'16
-         c'16
-         c'16
-         c'16
-      }
+   {
+           \time 5/18
+           \scaleDurations #'(8 . 9) {
+                   c'16
+                   c'16
+                   c'16
+                   c'16
+                   c'16
+           }
+   }
    '''
 
    assert check.wf(t)
-   assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}"
+   assert t.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"

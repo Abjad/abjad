@@ -1,8 +1,6 @@
 from abjad import *
 import py.test
 
-py.test.skip('measure redo')
-
 
 def test_clonewp_by_leaf_range_with_parentage_01( ):
    '''Copy consecutive notes across tuplet boundary, in staff.'''
@@ -10,7 +8,8 @@ def test_clonewp_by_leaf_range_with_parentage_01( ):
    t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \times 2/3 {
                    c'8
                    d'8
@@ -21,11 +20,13 @@ def test_clonewp_by_leaf_range_with_parentage_01( ):
                    g'8
                    a'8
            }
-   }'''
+   }
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t, 1, 5)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \times 2/3 {
                    d'8
                    e'8
@@ -34,7 +35,8 @@ def test_clonewp_by_leaf_range_with_parentage_01( ):
                    f'8
                    g'8
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
@@ -47,7 +49,8 @@ def test_clonewp_by_leaf_range_with_parentage_02( ):
    t = Staff([Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)])
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \new Voice {
                    \times 2/3 {
                            c'8
@@ -60,11 +63,13 @@ def test_clonewp_by_leaf_range_with_parentage_02( ):
                            a'8
                    }
            }
-   }'''
+   }
+   '''
    
    u = clonewp.by_leaf_range_with_parentage(t, 1, 5)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \times 2/3 {
                    d'8
                    e'8
@@ -73,7 +78,8 @@ def test_clonewp_by_leaf_range_with_parentage_02( ):
                    f'8
                    g'8
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
@@ -98,7 +104,8 @@ def test_clonewp_by_leaf_range_with_parentage_04( ):
    t.parallel = True
    pitchtools.diatonicize(t)
 
-   r'''\new Staff <<
+   r'''
+   \new Staff <<
            \new Voice {
                    c'8
                    d'8
@@ -111,14 +118,17 @@ def test_clonewp_by_leaf_range_with_parentage_04( ):
                    b'8
                    c''8
            }
-   >>'''
+   >>
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t[0], 1, 3)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            d'8
            e'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
@@ -131,12 +141,16 @@ def test_clonewp_by_leaf_range_with_parentage_05( ):
    t = RigidMeasure((4, 8), construct.scale(4))
    u = clonewp.by_leaf_range_with_parentage(t, 1, 3)
 
-   r'''\time 2/8
-        d'8
-        e'8'''
+   r'''
+   {
+           \time 2/8
+           d'8
+           e'8
+   }
+   '''
 
    assert check.wf(u)
-   assert u.format == "\t\\time 2/8\n\td'8\n\te'8"
+   assert u.format == "{\n\t\\time 2/8\n\td'8\n\te'8\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_06( ):
@@ -146,10 +160,12 @@ def test_clonewp_by_leaf_range_with_parentage_06( ):
    t = score[0]
    new = clonewp.by_leaf_range_with_parentage(t, 1, 3)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            d'8
            e'8
-   }'''
+   }
+   '''
    
    assert check.wf(t)
    assert check.wf(new)
@@ -162,27 +178,35 @@ def test_clonewp_by_leaf_range_with_parentage_07( ):
 
    t = RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), construct.scale(5))])
 
-   r'''\time 4/8
-        \times 4/5 {
-                c'8
-                d'8
-                e'8
-                f'8
-                g'8
-        }'''
+   r'''
+   {
+           \time 4/8
+           \times 4/5 {
+                   c'8
+                   d'8
+                   e'8
+                   f'8
+                   g'8
+           }
+   }
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t, 1, 4)
 
-   r'''\time 3/10
-        \scaleDurations #'(4 . 5) {
-                        d'8
-                        e'8
-                        f'8
-        }'''
+   r'''
+   {
+           \time 3/10
+           \scaleDurations #'(4 . 5) {
+                           d'8
+                           e'8
+                           f'8
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t}"
+   assert u.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t}\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_08( ):
@@ -192,7 +216,9 @@ def test_clonewp_by_leaf_range_with_parentage_08( ):
    t = Voice([RigidMeasure((4, 8), 
       [FixedDurationTuplet((4, 8), construct.scale(5))])])
   
-   r'''\new Voice {
+   r'''
+   \new Voice {
+           {
                    \time 4/8
                    \times 4/5 {
                            c'8
@@ -201,22 +227,28 @@ def test_clonewp_by_leaf_range_with_parentage_08( ):
                            f'8
                            g'8
                    }
-   }'''
+           }
+   }
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t, 1, 4)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
+           {
                    \time 3/10
                    \scaleDurations #'(4 . 5) {
                                    d'8
                                    e'8
                                    f'8
                    }
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "\\new Voice {\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t}\n}"
+   assert u.format == "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t}\n\t}\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_09( ):
@@ -225,32 +257,40 @@ def test_clonewp_by_leaf_range_with_parentage_09( ):
    t = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\time 4/8
-        \times 2/3 {
-                c'8
-                d'8
-                e'8
-        }
-        \times 2/3 {
-                f'8
-                g'8
-                a'8
-        }'''
+   r'''
+   {
+           \time 4/8
+           \times 2/3 {
+                   c'8
+                   d'8
+                   e'8
+           }
+           \times 2/3 {
+                   f'8
+                   g'8
+                   a'8
+           }
+   }
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t, 1)
 
-   r'''\time 5/12
-        \scaleDurations #'(2 . 3) {
-                        d'8
-                        e'8
-                        f'8
-                        g'8
-                        a'8
-        }'''
+   r'''
+   {
+           \time 5/12
+           \scaleDurations #'(2 . 3) {
+                           d'8
+                           e'8
+                           f'8
+                           g'8
+                           a'8
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t}"
+   assert u.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t}\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_10( ):
@@ -259,29 +299,41 @@ def test_clonewp_by_leaf_range_with_parentage_10( ):
    t = Staff(RigidMeasure((3, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 3/8
                    c'8
                    d'8
                    e'8
+           }
+           {
                    \time 3/8
                    f'8
                    g'8
                    a'8
-   }'''
+           }
+   }
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t, 2, 4)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 1/8
                    e'8
+           }
+           {
                    \time 1/8
                    f'8
-   }'''
+           }
+   }
+   '''
    
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "\\new Staff {\n\t\t\\time 1/8\n\t\te'8\n\t\t\\time 1/8\n\t\tf'8\n}"
+   assert u.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8\n\t}\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_11( ):
@@ -291,7 +343,8 @@ def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_11( ):
    t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \times 2/3 {
                    c'8
                    d'8
@@ -302,16 +355,19 @@ def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_11( ):
                    g'8
                    a'8
            }
-   }'''
+   }
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t[1], 1, 3)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \times 2/3 {
                    g'8
                    a'8
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
@@ -325,28 +381,38 @@ def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_12( ):
    t = Staff(RigidMeasure((3, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 3/8
                    c'8
                    d'8
                    e'8
+           }
+           {
                    \time 3/8
                    f'8
                    g'8
                    a'8
-   }'''
+           }
+   }
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t[1], 1, 3)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    g'8
                    a'8
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n}"   
+   assert u.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_13( ):
@@ -356,31 +422,41 @@ def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_13( ):
    t = Staff(RigidMeasure((3, 9), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 3/9
                    \scaleDurations #'(8 . 9) {
                            c'8
                            d'8
                            e'8
                    }
+           }
+           {
                    \time 3/9
                    \scaleDurations #'(8 . 9) {
                            f'8
                            g'8
                            a'8
                    }
-   }'''
+           }
+   }
+   '''
 
    u = clonewp.by_leaf_range_with_parentage(t[1], 1, 3)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/9
                    \scaleDurations #'(8 . 9) {
                            g'8
                            a'8
                    }
-   }'''
+           }
+   }
+   '''
    
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "\\new Staff {\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n}"
+   assert u.format == "\\new Staff {\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"

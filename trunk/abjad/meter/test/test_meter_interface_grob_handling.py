@@ -1,13 +1,8 @@
 from abjad import *
-import py.test
-
-py.test.skip('measure redo')
 
 
 def test_meter_grob_handling_01( ):
-   '''
-   Transparent meter on staff.
-   '''
+   '''Transparent meter on staff.'''
 
    t = Staff(construct.scale(4))
    t.meter.transparent = True
@@ -27,52 +22,50 @@ def test_meter_grob_handling_01( ):
 
 
 def test_meter_grob_handling_02( ):
-   '''
-   (Nonpromoted) transparent meter on measure.
-   '''
+   '''(Nonpromoted) transparent meter on measure.'''
 
    t = RigidMeasure((4, 8), construct.scale(4))
    t.meter.transparent = True
 
    r'''
-        \override TimeSignature #'transparent = ##t
-        \time 4/8
-        c'8
-        d'8
-        e'8
-        f'8
-        \revert TimeSignature #'transparent
+   {
+           \override TimeSignature #'transparent = ##t
+           \time 4/8
+           c'8
+           d'8
+           e'8
+           f'8
+           \revert TimeSignature #'transparent
+   }
    '''
 
-   assert t.format == "\t\\override TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TimeSignature #'transparent"
+   assert t.format == "{\n\t\\override TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TimeSignature #'transparent\n}"
 
 
 def test_meter_grob_handling_03( ):
-   '''
-   Promoted transarent meter on measure.
-   '''
+   '''Promoted transarent meter on measure.'''
 
    t = RigidMeasure((4, 8), construct.scale(4))
    t.meter.transparent = True
    t.meter.promote('transparent', 'Staff')
 
    r'''
-        \override Staff.TimeSignature #'transparent = ##t
-        \time 4/8
-        c'8
-        d'8
-        e'8
-        f'8
-        \revert Staff.TimeSignature #'transparent
+   {
+           \override Staff.TimeSignature #'transparent = ##t
+           \time 4/8
+           c'8
+           d'8
+           e'8
+           f'8
+           \revert Staff.TimeSignature #'transparent
+   }
    '''
 
-   assert t.format == "\t\\override Staff.TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'transparent"
+   assert t.format == "{\n\t\\override Staff.TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'transparent\n}"
 
 
 def test_meter_grob_handling_04( ):
-   '''
-   Clear all meter overrides.
-   '''
+   '''Clear all meter overrides.'''
 
    t = Note(0, (1, 4))
    t.meter.color = 'red'

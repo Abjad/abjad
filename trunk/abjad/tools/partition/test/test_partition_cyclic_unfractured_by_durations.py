@@ -1,8 +1,5 @@
 from abjad import *
 
-import py.test
-py.test.skip('meaure redo')
-
 
 def test_partition_cyclic_unfractured_by_durations_01( ):
    '''Cyclically duration partition one leaf in score.
@@ -14,33 +11,45 @@ def test_partition_cyclic_unfractured_by_durations_01( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(3, 64)]
    parts = partition.cyclic_unfractured_by_durations(t[0][1:2], durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
-                   d'32. 
+                   d'32.
                    d'32. ~
                    d'64 ~
                    d'64 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 3
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32.\n\t\td'32. ~\n\t\td'64 ~\n\t\td'64 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32.\n\t\td'32. ~\n\t\td'64 ~\n\t\td'64 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_partition_cyclic_unfractured_by_durations_02( ):
@@ -53,34 +62,46 @@ def test_partition_cyclic_unfractured_by_durations_02( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(3, 32)]
    parts = partition.cyclic_unfractured_by_durations(t.leaves, durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'16. [ (
-                   c'32 
-                   d'16 
-                   d'16 ] 
+                   c'32
+                   d'16
+                   d'16 ]
+           }
+           {
                    \time 2/8
                    e'32 [
-                   e'16. 
-                   f'16. 
+                   e'16.
+                   f'16.
                    f'32 ] )
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 6
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'16. [ (\n\t\tc'32\n\t\td'16\n\t\td'16 ]\n\t\t\\time 2/8\n\t\te'32 [\n\t\te'16.\n\t\tf'16.\n\t\tf'32 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ (\n\t\tc'32\n\t\td'16\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'32 [\n\t\te'16.\n\t\tf'16.\n\t\tf'32 ] )\n\t}\n}"
 
 
 def test_partition_cyclic_unfractured_by_durations_03( ):
@@ -93,34 +114,50 @@ def test_partition_cyclic_unfractured_by_durations_03( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(3, 32)]
    parts = partition.cyclic_unfractured_by_durations(t[:1], durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 3/32
                    c'16. [ (
+           }
+           {
                    \time 3/32
-                   c'32 
-                   d'16 
+                   c'32
+                   d'16
+           }
+           {
                    \time 2/32
-                   d'16 ] 
+                   d'16 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 3
-   assert t.format == "\\new Staff {\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t\t\\time 2/32\n\t\td'16 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_partition_cyclic_unfractured_by_durations_04( ):
@@ -133,39 +170,61 @@ def test_partition_cyclic_unfractured_by_durations_04( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(3, 32)]
    parts = partition.cyclic_unfractured_by_durations(t[:], durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 3/32
                    c'16. [ (
+           }
+           {
                    \time 3/32
-                   c'32 
+                   c'32
                    d'16
+           }
+           {
                    \time 2/32
                    d'16 ]
+           }
+           {
                    \time 1/32
                    e'32 [
+           }
+           {
                    \time 3/32
-                   e'16. 
+                   e'16.
+           }
+           {
                    \time 3/32
-                   f'16. 
+                   f'16.
+           }
+           {
                    \time 1/32
                    f'32 ] )
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 6
-   assert t.format == "\\new Staff {\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t\t\\time 2/32\n\t\td'16 ]\n\t\t\\time 1/32\n\t\te'32 [\n\t\t\\time 3/32\n\t\te'16.\n\t\t\\time 3/32\n\t\tf'16.\n\t\t\\time 1/32\n\t\tf'32 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
 
 
 def test_partition_cyclic_unfractured_by_durations_05( ):
@@ -216,26 +275,42 @@ def test_partition_cyclic_unfractured_by_durations_06( ):
    for part in parts:
       t.extend(part)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 3/32
                    c'16.
+           }
+           {
                    \time 3/32
                    c'32
                    d'16
+           }
+           {
                    \time 2/32
                    d'16 [ ]
+           }
+           {
                    \time 1/32
-                   e'32 
+                   e'32
+           }
+           {
                    \time 3/32
                    e'16.
+           }
+           {
                    \time 3/32
                    f'16.
+           }
+           {
                    \time 1/32
                    f'32 [ ]
-   }'''
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Staff {\n\t\t\\time 3/32\n\t\tc'16.\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t\t\\time 1/32\n\t\te'32\n\t\t\\time 3/32\n\t\te'16.\n\t\t\\time 3/32\n\t\tf'16.\n\t\t\\time 1/32\n\t\tf'32 [ ]\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
 
 
 def test_partition_cyclic_unfractured_by_durations_07( ):
@@ -249,34 +324,46 @@ def test_partition_cyclic_unfractured_by_durations_07( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(1, 32)]
    parts = partition.cyclic_unfractured_by_durations(
       t[0][1:], durations, tie_after = True)
 
-   r'''\new Staff {
-         \time 2/8
-         c'8 [ (
-         d'32 ~
-         d'32 ~
-         d'32 ~
-         d'32 ]
-         \time 2/8
-         e'8 [
-         f'8 ] )
-   }'''
+   r'''
+   \new Staff {
+           {
+                   \time 2/8
+                   c'8 [ (
+                   d'32 ~
+                   d'32 ~
+                   d'32 ~
+                   d'32 ]
+           }
+           {
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 4
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_partition_cyclic_unfractured_by_durations_08( ):
@@ -290,35 +377,47 @@ def test_partition_cyclic_unfractured_by_durations_08( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(1, 16)]
    parts = partition.cyclic_unfractured_by_durations(
       t.leaves, durations, tie_after = True)
 
-   r'''\new Staff {
-         \time 2/8
-         c'16 [ ( ~
-         c'16
-         d'16 ~
-         d'16 ]
-         \time 2/8
-         e'16 [ ~
-         e'16
-         f'16 ~
-         f'16 ] )
-   }'''
+   r'''
+   \new Staff {
+           {
+                   \time 2/8
+                   c'16 [ ( ~
+                   c'16
+                   d'16 ~
+                   d'16 ]
+           }
+           {
+                   \time 2/8
+                   e'16 [ ~
+                   e'16
+                   f'16 ~
+                   f'16 ] )
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 8
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'16 [ ( ~\n\t\tc'16\n\t\td'16 ~\n\t\td'16 ]\n\t\t\\time 2/8\n\t\te'16 [ ~\n\t\te'16\n\t\tf'16 ~\n\t\tf'16 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ~\n\t\tc'16\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'16 [ ~\n\t\te'16\n\t\tf'16 ~\n\t\tf'16 ] )\n\t}\n}"
 
 
 def test_partition_cyclic_unfractured_by_durations_09( ):
@@ -332,36 +431,54 @@ def test_partition_cyclic_unfractured_by_durations_09( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(1, 16)]
    parts = partition.cyclic_unfractured_by_durations(
       t[:1], durations, tie_after = True)
 
-   r'''\new Staff {
-         \time 1/16
-         c'16 [ ( ~
-         \time 1/16
-         c'16
-         \time 1/16
-         d'16 ~
-         \time 1/16
-         d'16 ]
-         \time 2/8
-         e'8 [
-         f'8 ] )
-   }'''
+   r'''
+   \new Staff {
+           {
+                   \time 1/16
+                   c'16 [ ( ~
+           }
+           {
+                   \time 1/16
+                   c'16
+           }
+           {
+                   \time 1/16
+                   d'16 ~
+           }
+           {
+                   \time 1/16
+                   d'16 ]
+           }
+           {
+                   \time 2/8
+                   e'8 [
+                   f'8 ] )
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 4
-   assert t.format == "\\new Staff {\n\t\t\\time 1/16\n\t\tc'16 [ ( ~\n\t\t\\time 1/16\n\t\tc'16\n\t\t\\time 1/16\n\t\td'16 ~\n\t\t\\time 1/16\n\t\td'16 ]\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ( ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\tc'16\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_partition_cyclic_unfractured_by_durations_10( ):
@@ -375,37 +492,59 @@ def test_partition_cyclic_unfractured_by_durations_10( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
+           {
                    \time 2/8
                    c'8 [ (
                    d'8 ]
+           }
+           {
                    \time 2/8
                    e'8 [
                    f'8 ] )
-   }'''
+           }
+   }
+   '''
 
    durations = [Rational(3, 32)]
    parts = partition.cyclic_unfractured_by_durations(
       t[:], durations, tie_after = True)
 
-   r'''\new Staff {
-         \time 3/32
-         c'16. [ ( ~
-         \time 3/32
-         c'32
-         d'16 ~
-         \time 2/32
-         d'16 ]
-         \time 1/32
-         e'32 [ ~
-         \time 3/32
-         e'16.
-         \time 3/32
-         f'16. ~
-         \time 1/32
-         f'32 ] )
-   }'''
+   r'''
+   \new Staff {
+           {
+                   \time 3/32
+                   c'16. [ ( ~
+           }
+           {
+                   \time 3/32
+                   c'32
+                   d'16 ~
+           }
+           {
+                   \time 2/32
+                   d'16 ]
+           }
+           {
+                   \time 1/32
+                   e'32 [ ~
+           }
+           {
+                   \time 3/32
+                   e'16.
+           }
+           {
+                   \time 3/32
+                   f'16. ~
+           }
+           {
+                   \time 1/32
+                   f'32 ] )
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 6
-   assert t.format == "\\new Staff {\n\t\t\\time 3/32\n\t\tc'16. [ ( ~\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16 ~\n\t\t\\time 2/32\n\t\td'16 ]\n\t\t\\time 1/32\n\t\te'32 [ ~\n\t\t\\time 3/32\n\t\te'16.\n\t\t\\time 3/32\n\t\tf'16. ~\n\t\t\\time 1/32\n\t\tf'32 ] )\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ( ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"

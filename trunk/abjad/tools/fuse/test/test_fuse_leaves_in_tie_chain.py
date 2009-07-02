@@ -1,8 +1,5 @@
 from abjad import *
 
-import py.test
-py.test.skip('measure redo')
-
 
 def test_fuse_leaves_in_tie_chain_01( ):
    '''Fuse leaves in tie chain with same immediate parent.'''
@@ -10,27 +7,39 @@ def test_fuse_leaves_in_tie_chain_01( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    Tie(t.leaves)
    
-   r'''\new Staff {
-         \time 2/8
-         c'8 ~
-         c'8 ~
-         \time 2/8
-         c'8 ~
-         c'8
-   }'''
+   r'''
+   \new Staff {
+           {
+                   \time 2/8
+                   c'8 ~
+                   c'8 ~
+           }
+           {
+                   \time 2/8
+                   c'8 ~
+                   c'8
+           }
+   }
+   '''
 
    result = fuse.leaves_in_tie_chain(t.leaves[1].tie.chain)
 
-   r'''\new Staff {
-         \time 2/8
-         c'4 ~
-         \time 2/8
-         c'4
-   }'''
+   r'''
+   \new Staff {
+           {
+                   \time 2/8
+                   c'4 ~
+           }
+           {
+                   \time 2/8
+                   c'4
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert len(result) == 2
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\tc'4 ~\n\t\t\\time 2/8\n\t\tc'4\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'4 ~\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'4\n\t}\n}"
 
 
 def test_fuse_leaves_in_tie_chain_02( ):
@@ -39,12 +48,14 @@ def test_fuse_leaves_in_tie_chain_02( ):
    t = Staff(construct.run(4))
    Tie(t.leaves)
    
-   r'''\new Staff {
+   r'''
+   \new Staff {
          c'8 ~
          c'8 ~
          c'8 ~
          c'8
-   }'''
+   }
+   '''
 
    result = fuse.leaves_in_tie_chain(t.leaves[1].tie.chain)
 
@@ -60,5 +71,3 @@ def test_fuse_leaves_in_tie_chain_03( ):
    result = fuse.leaves_in_tie_chain(t.tie.chain)
    assert len(result) == 1
    assert check.wf(t)
-
-
