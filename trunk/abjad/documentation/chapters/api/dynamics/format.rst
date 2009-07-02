@@ -1,11 +1,10 @@
-format
-======
+_DynamicSpannerFormatInterface
+==============================
 
 .. automodule:: abjad.dynamics.format
 
-.. autoclass:: abjad.dynamics.format._DynamicSpannerFormatInterface
+.. autoclass:: _DynamicSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

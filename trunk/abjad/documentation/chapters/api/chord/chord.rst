@@ -1,4 +1,4 @@
-chord
+Chord
 =====
 
 .. automodule:: abjad.chord.chord
@@ -8,4 +8,3 @@ chord
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

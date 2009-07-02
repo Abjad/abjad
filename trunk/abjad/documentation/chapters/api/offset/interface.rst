@@ -1,11 +1,10 @@
-interface
-=========
+_OffsetInterface
+================
 
 .. automodule:: abjad.offset.interface
 
-.. autoclass:: abjad.offset.interface._OffsetInterface
+.. autoclass:: _OffsetInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

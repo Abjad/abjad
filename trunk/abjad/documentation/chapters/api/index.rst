@@ -18,7 +18,6 @@ Abjad API
    beam/complex/durated/spanner
    beam/complex/measured/format
    beam/complex/measured/spanner
-   book/abjad_book
    book/parser/abjadhtmltag
    book/parser/abjadlatextag
    book/parser/abjadresttag
@@ -29,22 +28,6 @@ Abjad API
    bracket/spanner
    brackets/interface
    breaks/interface
-   checks/beams_overlapping
-   checks/check
-   checks/containers_empty
-   checks/flags_misrepresented
-   checks/glissandi_overlapping
-   checks/hairpins_intermaked
-   checks/hairpins_short
-   checks/ids_duplicated
-   checks/measures_misdurated
-   checks/measures_misfilled
-   checks/measures_nested
-   checks/octavations_overlapping
-   checks/parents_missing
-   checks/quarters_beamed
-   checks/spanners_discontiguous
-   checks/ties_mispitched
    chord/chord
    chord/formatter
    chord/initializer
@@ -95,8 +78,6 @@ Abjad API
    grace/grace
    grace/interface
    grace/slots
-   hairpin/crescendo
-   hairpin/decrescendo
    hairpin/format
    hairpin/spanner
    harmonic/interface
@@ -131,7 +112,6 @@ Abjad API
    meter/meter
    metricgrid/format
    metricgrid/spanner
-   navigator/dfs
    navigator/navigator
    note/initializer
    note/note
@@ -180,12 +160,8 @@ Abjad API
    spanner/positionalhandler
    spanner/receptor
    spanner/spanner
-   staff/rhythmicsketchstaff
-   staff/rhythmicstaff
    staff/staff
    staff/interface/interface
-   staffgroup/grandstaff
-   staffgroup/pianostaff
    staffgroup/staffgroup
    stem/interface
    tempo/format

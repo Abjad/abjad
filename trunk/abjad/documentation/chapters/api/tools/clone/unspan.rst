@@ -1,6 +1,6 @@
-unspan
-======
+clone.unspan
+============
 
 .. automodule:: abjad.tools.clone.unspan
 
-.. autofunction:: abjad.tools.clone.unspan.unspan
+.. autofunction:: abjad.tools.clone.unspan

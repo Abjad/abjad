@@ -1,5 +1,5 @@
-system_y_offsets
-================
+SystemYOffsets
+==============
 
 .. automodule:: abjad.layout.system_y_offsets
 
@@ -8,4 +8,3 @@ system_y_offsets
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

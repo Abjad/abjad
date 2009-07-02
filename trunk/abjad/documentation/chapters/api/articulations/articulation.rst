@@ -1,4 +1,4 @@
-articulation
+Articulation
 ============
 
 .. automodule:: abjad.articulations.articulation
@@ -8,4 +8,3 @@ articulation
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

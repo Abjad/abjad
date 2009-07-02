@@ -1,5 +1,5 @@
-measure
-=======
+RigidMeasure
+============
 
 .. automodule:: abjad.measure.rigid.measure
 
@@ -8,4 +8,3 @@ measure
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

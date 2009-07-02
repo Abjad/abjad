@@ -1,11 +1,10 @@
-formatter
-=========
+_RigidMeasureFormatter
+======================
 
 .. automodule:: abjad.measure.rigid.formatter
 
-.. autoclass:: abjad.measure.rigid.formatter._RigidMeasureFormatter
+.. autoclass:: _RigidMeasureFormatter
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

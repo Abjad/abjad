@@ -1,6 +1,6 @@
-excise
-======
+leaftools.excise
+================
 
 .. automodule:: abjad.tools.leaftools.excise
 
-.. autofunction:: abjad.tools.leaftools.excise.excise
+.. autofunction:: abjad.tools.leaftools.excise

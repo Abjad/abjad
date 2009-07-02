@@ -1,11 +1,10 @@
-number
-======
+_ContainerFormatterNumberInterface
+==================================
 
 .. automodule:: abjad.container.number
 
-.. autoclass:: abjad.container.number._ContainerFormatterNumberInterface
+.. autoclass:: _ContainerFormatterNumberInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

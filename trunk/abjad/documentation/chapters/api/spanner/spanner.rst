@@ -1,4 +1,4 @@
-spanner
+Spanner
 =======
 
 .. automodule:: abjad.spanner.spanner
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-tuplet
-======
+_Tuplet
+=======
 
 .. automodule:: abjad.tuplet.tuplet
 
-.. autoclass:: abjad.tuplet.tuplet._Tuplet
+.. autoclass:: _Tuplet
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

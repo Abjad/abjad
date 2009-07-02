@@ -1,4 +1,4 @@
-clef
+Clef
 ====
 
 .. automodule:: abjad.clef.clef
@@ -8,4 +8,3 @@ clef
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

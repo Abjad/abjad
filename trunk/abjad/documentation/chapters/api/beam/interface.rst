@@ -1,11 +1,10 @@
-interface
-=========
+_BeamInterface
+==============
 
 .. automodule:: abjad.beam.interface
 
-.. autoclass:: abjad.beam.interface._BeamInterface
+.. autoclass:: _BeamInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

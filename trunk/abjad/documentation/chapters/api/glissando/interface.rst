@@ -1,11 +1,10 @@
-interface
-=========
+_GlissandoInterface
+===================
 
 .. automodule:: abjad.glissando.interface
 
-.. autoclass:: abjad.glissando.interface._GlissandoInterface
+.. autoclass:: _GlissandoInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-interface
-=========
+_StemInterface
+==============
 
 .. automodule:: abjad.stem.interface
 
-.. autoclass:: abjad.stem.interface._StemInterface
+.. autoclass:: _StemInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-slots
-=====
+_TupletFormatterSlotsInterface
+==============================
 
 .. automodule:: abjad.tuplet.slots
 
-.. autoclass:: abjad.tuplet.slots._TupletFormatterSlotsInterface
+.. autoclass:: _TupletFormatterSlotsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,6 +1,6 @@
-make_best
-=========
+metertools.make_best
+====================
 
 .. automodule:: abjad.tools.metertools.make_best
 
-.. autofunction:: abjad.tools.metertools.make_best.make_best
+.. autofunction:: abjad.tools.metertools.make_best

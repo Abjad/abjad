@@ -1,11 +1,10 @@
-duration
-========
+_DynamicMeasureDurationInterface
+================================
 
 .. automodule:: abjad.measure.dynamic.duration
 
-.. autoclass:: abjad.measure.dynamic.duration._DynamicMeasureDurationInterface
+.. autoclass:: _DynamicMeasureDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

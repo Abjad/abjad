@@ -1,6 +1,6 @@
-leaf
-====
+divide.leaf
+===========
 
 .. automodule:: abjad.tools.divide.leaf
 
-.. autofunction:: abjad.tools.divide.leaf.leaf
+.. autofunction:: abjad.tools.divide.leaf

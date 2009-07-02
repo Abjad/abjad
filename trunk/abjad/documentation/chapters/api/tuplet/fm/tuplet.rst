@@ -1,5 +1,5 @@
-tuplet
-======
+FixedMultiplierTuplet
+=====================
 
 .. automodule:: abjad.tuplet.fm.tuplet
 
@@ -8,4 +8,3 @@ tuplet
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

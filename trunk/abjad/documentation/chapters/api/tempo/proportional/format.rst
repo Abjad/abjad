@@ -1,11 +1,10 @@
-format
-======
+_TempoProportionalFormatInterface
+=================================
 
 .. automodule:: abjad.tempo.proportional.format
 
-.. autoclass:: abjad.tempo.proportional.format._TempoProportionalFormatInterface
+.. autoclass:: _TempoProportionalFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

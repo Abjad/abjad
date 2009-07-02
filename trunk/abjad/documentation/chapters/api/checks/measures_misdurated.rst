@@ -1,5 +1,5 @@
-measures_misdurated
-===================
+MeasuresMisdurated
+==================
 
 .. automodule:: abjad.checks.measures_misdurated
 

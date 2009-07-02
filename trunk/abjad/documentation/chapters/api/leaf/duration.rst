@@ -1,11 +1,10 @@
-duration
-========
+_LeafDurationInterface
+======================
 
 .. automodule:: abjad.leaf.duration
 
-.. autoclass:: abjad.leaf.duration._LeafDurationInterface
+.. autoclass:: _LeafDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

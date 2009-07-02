@@ -1,4 +1,4 @@
-markup
+Markup
 ======
 
 .. automodule:: abjad.markup.markup
@@ -8,4 +8,3 @@ markup
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,5 +1,5 @@
-spanner
-=======
+Text
+====
 
 .. automodule:: abjad.text.spanner
 
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

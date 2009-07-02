@@ -1,11 +1,10 @@
-duration
-========
+_FMTupletDurationInterface
+==========================
 
 .. automodule:: abjad.tuplet.fm.duration
 
-.. autoclass:: abjad.tuplet.fm.duration._FMTupletDurationInterface
+.. autoclass:: _FMTupletDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-interface
-=========
+_ScoreInterface
+===============
 
 .. automodule:: abjad.score.interface.interface
 
-.. autoclass:: abjad.score.interface.interface._ScoreInterface
+.. autoclass:: _ScoreInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

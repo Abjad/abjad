@@ -1,4 +1,4 @@
-spanner
+Hairpin
 =======
 
 .. automodule:: abjad.hairpin.spanner
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

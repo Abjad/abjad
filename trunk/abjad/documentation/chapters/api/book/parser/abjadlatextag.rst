@@ -1,4 +1,4 @@
-abjadlatextag
+AbjadLatexTag
 =============
 
 .. automodule:: abjad.book.parser.abjadlatextag
@@ -8,4 +8,3 @@ abjadlatextag
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

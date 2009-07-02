@@ -1,11 +1,10 @@
-duration
-========
+_ComponentDurationInterface
+===========================
 
 .. automodule:: abjad.component.duration
 
-.. autoclass:: abjad.component.duration._ComponentDurationInterface
+.. autoclass:: _ComponentDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

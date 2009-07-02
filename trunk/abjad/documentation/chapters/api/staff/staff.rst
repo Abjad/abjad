@@ -1,4 +1,4 @@
-staff
+Staff
 =====
 
 .. automodule:: abjad.staff.staff
@@ -8,4 +8,3 @@ staff
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

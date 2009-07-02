@@ -1,11 +1,10 @@
-format
-======
+_TrillSpannerFormatInterface
+============================
 
 .. automodule:: abjad.trill.format
 
-.. autoclass:: abjad.trill.format._TrillSpannerFormatInterface
+.. autoclass:: _TrillSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

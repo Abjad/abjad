@@ -1,11 +1,10 @@
-settinghandler
-==============
+_ContextSettingHandler
+======================
 
 .. automodule:: abjad.core.settinghandler
 
-.. autoclass:: abjad.core.settinghandler._ContextSettingHandler
+.. autoclass:: _ContextSettingHandler
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

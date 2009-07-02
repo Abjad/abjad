@@ -1,6 +1,6 @@
-phasor
-======
+listtools.phasor
+================
 
 .. automodule:: abjad.tools.listtools.phasor
 
-.. autofunction:: abjad.tools.listtools.phasor.phasor
+.. autofunction:: abjad.tools.listtools.phasor

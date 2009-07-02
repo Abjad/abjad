@@ -1,5 +1,5 @@
-measure
-=======
+DynamicMeasure
+==============
 
 .. automodule:: abjad.measure.dynamic.measure
 
@@ -8,4 +8,3 @@ measure
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

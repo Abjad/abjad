@@ -1,4 +1,4 @@
-accidental
+Accidental
 ==========
 
 .. automodule:: abjad.accidental.accidental
@@ -8,4 +8,3 @@ accidental
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

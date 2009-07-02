@@ -1,11 +1,10 @@
-format
-======
+_PianoPedalSpannerFormatInterface
+=================================
 
 .. automodule:: abjad.pianopedal.format
 
-.. autoclass:: abjad.pianopedal.format._PianoPedalSpannerFormatInterface
+.. autoclass:: _PianoPedalSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

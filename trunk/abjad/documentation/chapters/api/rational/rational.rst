@@ -1,4 +1,4 @@
-rational
+Rational
 ========
 
 .. automodule:: abjad.rational.rational
@@ -8,4 +8,3 @@ rational
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

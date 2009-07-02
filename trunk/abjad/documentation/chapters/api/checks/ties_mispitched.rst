@@ -1,5 +1,5 @@
-ties_mispitched
-===============
+TiesMispitched
+==============
 
 .. automodule:: abjad.checks.ties_mispitched
 

@@ -1,11 +1,10 @@
-aggregator
-==========
+_ContainerSpannerAggregator
+===========================
 
 .. automodule:: abjad.container.spanner.aggregator
 
-.. autoclass:: abjad.container.spanner.aggregator._ContainerSpannerAggregator
+.. autoclass:: _ContainerSpannerAggregator
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

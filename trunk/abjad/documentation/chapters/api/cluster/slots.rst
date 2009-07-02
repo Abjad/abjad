@@ -1,11 +1,10 @@
-slots
-=====
+_ClusterFormatterSlotsInterface
+===============================
 
 .. automodule:: abjad.cluster.slots
 
-.. autoclass:: abjad.cluster.slots._ClusterFormatterSlotsInterface
+.. autoclass:: _ClusterFormatterSlotsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

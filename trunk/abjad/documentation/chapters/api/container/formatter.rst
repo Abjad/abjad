@@ -1,11 +1,10 @@
-formatter
-=========
+_ContainerFormatter
+===================
 
 .. automodule:: abjad.container.formatter
 
-.. autoclass:: abjad.container.formatter._ContainerFormatter
+.. autoclass:: _ContainerFormatter
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

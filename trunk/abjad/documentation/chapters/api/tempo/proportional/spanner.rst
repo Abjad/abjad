@@ -1,5 +1,5 @@
-spanner
-=======
+TempoProportional
+=================
 
 .. automodule:: abjad.tempo.proportional.spanner
 
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

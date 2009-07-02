@@ -1,11 +1,10 @@
-comments
-========
+_UserComments
+=============
 
 .. automodule:: abjad.comments.comments
 
-.. autoclass:: abjad.comments.comments._UserComments
+.. autoclass:: _UserComments
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

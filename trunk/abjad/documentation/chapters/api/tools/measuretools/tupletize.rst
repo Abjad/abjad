@@ -1,6 +1,6 @@
-tupletize
-=========
+measuretools.tupletize
+======================
 
 .. automodule:: abjad.tools.measuretools.tupletize
 
-.. autofunction:: abjad.tools.measuretools.tupletize.tupletize
+.. autofunction:: abjad.tools.measuretools.tupletize

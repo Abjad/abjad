@@ -1,11 +1,10 @@
-aggregator
-==========
+_InterfaceAggregator
+====================
 
 .. automodule:: abjad.interfaces.aggregator
 
-.. autoclass:: abjad.interfaces.aggregator._InterfaceAggregator
+.. autoclass:: _InterfaceAggregator
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

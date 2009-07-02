@@ -1,4 +1,4 @@
-pitch
+Pitch
 =====
 
 .. automodule:: abjad.pitch.pitch
@@ -8,4 +8,3 @@ pitch
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

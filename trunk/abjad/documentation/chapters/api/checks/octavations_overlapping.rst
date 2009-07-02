@@ -1,5 +1,5 @@
-octavations_overlapping
-=======================
+OctavationsOverlapping
+======================
 
 .. automodule:: abjad.checks.octavations_overlapping
 

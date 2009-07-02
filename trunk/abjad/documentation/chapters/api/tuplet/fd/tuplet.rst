@@ -1,5 +1,5 @@
-tuplet
-======
+FixedDurationTuplet
+===================
 
 .. automodule:: abjad.tuplet.fd.tuplet
 
@@ -8,4 +8,3 @@ tuplet
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

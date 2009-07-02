@@ -1,4 +1,4 @@
-voice
+Voice
 =====
 
 .. automodule:: abjad.voice.voice
@@ -8,4 +8,3 @@ voice
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

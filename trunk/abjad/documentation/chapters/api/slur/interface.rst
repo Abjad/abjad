@@ -1,11 +1,10 @@
-interface
-=========
+_SlurInterface
+==============
 
 .. automodule:: abjad.slur.interface
 
-.. autoclass:: abjad.slur.interface._SlurInterface
+.. autoclass:: _SlurInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

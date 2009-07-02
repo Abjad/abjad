@@ -1,11 +1,10 @@
-interface
-=========
+_NoteColumnInterface
+====================
 
 .. automodule:: abjad.notecolumn.interface
 
-.. autoclass:: abjad.notecolumn.interface._NoteColumnInterface
+.. autoclass:: _NoteColumnInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

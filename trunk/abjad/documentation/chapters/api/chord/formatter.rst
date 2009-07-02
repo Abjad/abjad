@@ -1,11 +1,10 @@
-formatter
-=========
+_ChordFormatter
+===============
 
 .. automodule:: abjad.chord.formatter
 
-.. autoclass:: abjad.chord.formatter._ChordFormatter
+.. autoclass:: _ChordFormatter
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

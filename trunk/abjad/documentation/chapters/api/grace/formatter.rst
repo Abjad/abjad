@@ -1,11 +1,10 @@
-formatter
-=========
+_GraceFormatter
+===============
 
 .. automodule:: abjad.grace.formatter
 
-.. autoclass:: abjad.grace.formatter._GraceFormatter
+.. autoclass:: _GraceFormatter
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

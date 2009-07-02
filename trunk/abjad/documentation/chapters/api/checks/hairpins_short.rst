@@ -1,5 +1,5 @@
-hairpins_short
-==============
+HairpinsShort
+=============
 
 .. automodule:: abjad.checks.hairpins_short
 

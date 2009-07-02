@@ -1,11 +1,10 @@
-measure
-=======
+_Measure
+========
 
 .. automodule:: abjad.measure.measure
 
-.. autoclass:: abjad.measure.measure._Measure
+.. autoclass:: _Measure
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

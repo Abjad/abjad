@@ -1,11 +1,10 @@
-interface
-=========
+_MarkupInterface
+================
 
 .. automodule:: abjad.markup.interface
 
-.. autoclass:: abjad.markup.interface._MarkupInterface
+.. autoclass:: _MarkupInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

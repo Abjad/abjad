@@ -191,9 +191,9 @@ measure.meter.transparent = True <hide
 write_ly(measure, 'duration_assign1', 'oedo') <hide
 </abjad>
 
-Use must use a :class:`Rational <abjad.rational.rational.Rational>` 
-which meets :term:`assignability` criteria. You can also assign 
-``note.duration.multiplier``.
+You must use an :term:`assignable` 
+:class:`Rational <abjad.rational.rational.Rational>`.
+You can also assign ``note.duration.multiplier``.
 
 <abjad>
 note = Note(0, (1, 4))

@@ -1,11 +1,10 @@
-duration
-========
+_SpannerDurationInterface
+=========================
 
 .. automodule:: abjad.spanner.duration
 
-.. autoclass:: abjad.spanner.duration._SpannerDurationInterface
+.. autoclass:: _SpannerDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

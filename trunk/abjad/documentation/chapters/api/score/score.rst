@@ -1,4 +1,4 @@
-score
+Score
 =====
 
 .. automodule:: abjad.score.score
@@ -8,4 +8,3 @@ score
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-grobhandler
-===========
+_GrobHandler
+============
 
 .. automodule:: abjad.core.grobhandler
 
-.. autoclass:: abjad.core.grobhandler._GrobHandler
+.. autoclass:: _GrobHandler
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-abjadcore
-=========
+_Abjad
+======
 
 .. automodule:: abjad.core.abjadcore
 
-.. autoclass:: abjad.core.abjadcore._Abjad
+.. autoclass:: _Abjad
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

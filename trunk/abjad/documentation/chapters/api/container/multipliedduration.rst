@@ -1,11 +1,10 @@
-multipliedduration
-==================
+_MultipliedContainerDurationInterface
+=====================================
 
 .. automodule:: abjad.container.multipliedduration
 
-.. autoclass:: abjad.container.multipliedduration._MultipliedContainerDurationInterface
+.. autoclass:: _MultipliedContainerDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,5 +1,5 @@
-spanner
-=======
+Tie
+===
 
 .. automodule:: abjad.tie.spanner
 
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

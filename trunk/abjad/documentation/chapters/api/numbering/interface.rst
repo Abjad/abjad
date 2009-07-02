@@ -1,11 +1,10 @@
-interface
-=========
+_NumberingInterface
+===================
 
 .. automodule:: abjad.numbering.interface
 
-.. autoclass:: abjad.numbering.interface._NumberingInterface
+.. autoclass:: _NumberingInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

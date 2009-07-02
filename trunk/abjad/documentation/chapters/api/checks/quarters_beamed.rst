@@ -1,5 +1,5 @@
-quarters_beamed
-===============
+QuartersBeamed
+==============
 
 .. automodule:: abjad.checks.quarters_beamed
 

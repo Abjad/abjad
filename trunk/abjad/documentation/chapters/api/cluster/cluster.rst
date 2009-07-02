@@ -1,4 +1,4 @@
-cluster
+Cluster
 =======
 
 .. automodule:: abjad.cluster.cluster
@@ -8,4 +8,3 @@ cluster
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

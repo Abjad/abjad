@@ -1,5 +1,5 @@
-parents_missing
-===============
+ParentsMissing
+==============
 
 .. automodule:: abjad.checks.parents_missing
 

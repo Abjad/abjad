@@ -1,11 +1,10 @@
-navigator
-=========
+_Navigator
+==========
 
 .. automodule:: abjad.navigator.navigator
 
-.. autoclass:: abjad.navigator.navigator._Navigator
+.. autoclass:: _Navigator
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

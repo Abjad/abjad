@@ -1,11 +1,10 @@
-receptor
-========
+_SpannerReceptor
+================
 
 .. automodule:: abjad.spanner.receptor
 
-.. autoclass:: abjad.spanner.receptor._SpannerReceptor
+.. autoclass:: _SpannerReceptor
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

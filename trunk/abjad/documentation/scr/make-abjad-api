@@ -19,8 +19,8 @@ def make_api_tocs( ):
    interactive = raw_input('Run script in interactive mode? [Y/n]: ')
    for current_root, dirs, files in os.walk(ABJADPATH):
       ## removed unwanted dirs and files.
-      filtered_dirs = ['.svn', 'cfg', 'demos', 'documentation', 'scm', 
-         'scr', 'test', ]
+      filtered_dirs = ['.svn', 'cfg', 'checks', 'demos', 'documentation', 
+         'scm', 'scr', 'test', ]
       _filter_directories(dirs, filtered_dirs)
       _filter_files(files)
       dirs.sort( )
@@ -36,6 +36,9 @@ def make_api_tocs( ):
       for file in files:
          listing = make_sphinx_module_listing('abjad/' + abjad_subdir, file)
          #print listing
+
+         if listing is None:
+            continue
          
          ## write listing to file
          rst_file = file.split('.')[0] + '.rst'

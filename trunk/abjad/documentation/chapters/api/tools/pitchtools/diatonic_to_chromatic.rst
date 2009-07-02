@@ -1,6 +1,6 @@
-diatonic_to_chromatic
-=====================
+pitchtools.diatonic_to_chromatic
+================================
 
 .. automodule:: abjad.tools.pitchtools.diatonic_to_chromatic
 
-.. autofunction:: abjad.tools.pitchtools.diatonic_to_chromatic.diatonic_to_chromatic
+.. autofunction:: abjad.tools.pitchtools.diatonic_to_chromatic

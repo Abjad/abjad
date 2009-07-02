@@ -1,4 +1,4 @@
-meter
+Meter
 =====
 
 .. automodule:: abjad.meter.meter
@@ -8,4 +8,3 @@ meter
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

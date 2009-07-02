@@ -1,5 +1,5 @@
-measure
-=======
+AnonymousMeasure
+================
 
 .. automodule:: abjad.measure.anonymous.measure
 
@@ -8,4 +8,3 @@ measure
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

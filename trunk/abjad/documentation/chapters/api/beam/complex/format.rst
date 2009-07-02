@@ -1,11 +1,10 @@
-format
-======
+_BeamComplexFormatInterface
+===========================
 
 .. automodule:: abjad.beam.complex.format
 
-.. autoclass:: abjad.beam.complex.format._BeamComplexFormatInterface
+.. autoclass:: _BeamComplexFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

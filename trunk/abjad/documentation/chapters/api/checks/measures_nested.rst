@@ -1,5 +1,5 @@
-measures_nested
-===============
+MeasuresNested
+==============
 
 .. automodule:: abjad.checks.measures_nested
 

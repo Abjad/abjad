@@ -1,4 +1,4 @@
-container
+Container
 =========
 
 .. automodule:: abjad.container.container
@@ -8,4 +8,3 @@ container
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

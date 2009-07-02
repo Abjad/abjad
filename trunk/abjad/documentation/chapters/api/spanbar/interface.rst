@@ -1,11 +1,10 @@
-interface
-=========
+_SpanBarInterface
+=================
 
 .. automodule:: abjad.spanbar.interface
 
-.. autoclass:: abjad.spanbar.interface._SpanBarInterface
+.. autoclass:: _SpanBarInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

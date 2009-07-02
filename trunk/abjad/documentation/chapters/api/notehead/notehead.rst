@@ -1,4 +1,4 @@
-notehead
+NoteHead
 ========
 
 .. automodule:: abjad.notehead.notehead
@@ -8,4 +8,3 @@ notehead
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

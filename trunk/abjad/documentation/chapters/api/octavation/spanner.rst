@@ -1,5 +1,5 @@
-spanner
-=======
+Octavation
+==========
 
 .. automodule:: abjad.octavation.spanner
 
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

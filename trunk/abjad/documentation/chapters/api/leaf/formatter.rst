@@ -1,11 +1,10 @@
-formatter
-=========
+_LeafFormatter
+==============
 
 .. automodule:: abjad.leaf.formatter
 
-.. autoclass:: abjad.leaf.formatter._LeafFormatter
+.. autoclass:: _LeafFormatter
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

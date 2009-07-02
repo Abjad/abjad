@@ -1,11 +1,10 @@
-format
-======
+_SpannerFormatInterface
+=======================
 
 .. automodule:: abjad.spanner.format
 
-.. autoclass:: abjad.spanner.format._SpannerFormatInterface
+.. autoclass:: _SpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-formatter
-=========
+_TupletFormatter
+================
 
 .. automodule:: abjad.tuplet.formatter
 
-.. autoclass:: abjad.tuplet.formatter._TupletFormatter
+.. autoclass:: _TupletFormatter
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

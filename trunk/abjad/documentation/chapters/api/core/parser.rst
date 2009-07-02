@@ -1,11 +1,10 @@
-parser
-======
+_Parser
+=======
 
 .. automodule:: abjad.core.parser
 
-.. autoclass:: abjad.core.parser._Parser
+.. autoclass:: _Parser
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

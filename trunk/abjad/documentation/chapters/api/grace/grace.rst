@@ -1,4 +1,4 @@
-grace
+Grace
 =====
 
 .. automodule:: abjad.grace.grace
@@ -8,4 +8,3 @@ grace
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

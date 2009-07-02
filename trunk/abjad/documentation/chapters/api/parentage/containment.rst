@@ -1,11 +1,10 @@
-containment
-===========
+_ContainmentSignature
+=====================
 
 .. automodule:: abjad.parentage.containment
 
-.. autoclass:: abjad.parentage.containment._ContainmentSignature
+.. autoclass:: _ContainmentSignature
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

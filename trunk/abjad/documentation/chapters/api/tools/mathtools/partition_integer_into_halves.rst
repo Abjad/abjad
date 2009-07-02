@@ -1,6 +1,6 @@
-partition_integer_into_halves
-=============================
+mathtools.partition_integer_into_halves
+=======================================
 
 .. automodule:: abjad.tools.mathtools.partition_integer_into_halves
 
-.. autofunction:: abjad.tools.mathtools.partition_integer_into_halves.partition_integer_into_halves
+.. autofunction:: abjad.tools.mathtools.partition_integer_into_halves

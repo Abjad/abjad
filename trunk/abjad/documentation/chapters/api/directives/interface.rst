@@ -1,11 +1,10 @@
-interface
-=========
+_UserDirectivesInterface
+========================
 
 .. automodule:: abjad.directives.interface
 
-.. autoclass:: abjad.directives.interface._UserDirectivesInterface
+.. autoclass:: _UserDirectivesInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

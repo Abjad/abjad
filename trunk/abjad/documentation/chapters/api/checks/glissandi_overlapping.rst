@@ -1,5 +1,5 @@
-glissandi_overlapping
-=====================
+GlissandiOverlapping
+====================
 
 .. automodule:: abjad.checks.glissandi_overlapping
 

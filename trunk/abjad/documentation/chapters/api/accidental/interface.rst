@@ -1,11 +1,10 @@
-interface
-=========
+_AccidentalInterface
+====================
 
 .. automodule:: abjad.accidental.interface
 
-.. autoclass:: abjad.accidental.interface._AccidentalInterface
+.. autoclass:: _AccidentalInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

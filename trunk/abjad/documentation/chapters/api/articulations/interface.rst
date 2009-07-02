@@ -1,11 +1,10 @@
-interface
-=========
+_ArticulationsInterface
+=======================
 
 .. automodule:: abjad.articulations.interface
 
-.. autoclass:: abjad.articulations.interface._ArticulationsInterface
+.. autoclass:: _ArticulationsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

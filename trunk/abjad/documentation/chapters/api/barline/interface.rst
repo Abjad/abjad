@@ -1,11 +1,10 @@
-interface
-=========
+_BarLineInterface
+=================
 
 .. automodule:: abjad.barline.interface
 
-.. autoclass:: abjad.barline.interface._BarLineInterface
+.. autoclass:: _BarLineInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

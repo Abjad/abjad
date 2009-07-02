@@ -1,11 +1,10 @@
-format
-======
+_HairpinSpannerFormatInterface
+==============================
 
 .. automodule:: abjad.hairpin.format
 
-.. autoclass:: abjad.hairpin.format._HairpinSpannerFormatInterface
+.. autoclass:: _HairpinSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

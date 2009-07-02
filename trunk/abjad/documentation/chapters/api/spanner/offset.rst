@@ -1,11 +1,10 @@
-offset
-======
+_SpannerOffsetInterface
+=======================
 
 .. automodule:: abjad.spanner.offset
 
-.. autoclass:: abjad.spanner.offset._SpannerOffsetInterface
+.. autoclass:: _SpannerOffsetInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-tagparser
-=========
+_TagParser
+==========
 
 .. automodule:: abjad.book.parser.tagparser
 
-.. autoclass:: abjad.book.parser.tagparser._TagParser
+.. autoclass:: _TagParser
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

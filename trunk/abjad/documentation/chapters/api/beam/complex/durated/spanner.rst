@@ -1,5 +1,5 @@
-spanner
-=======
+BeamComplexDurated
+==================
 
 .. automodule:: abjad.beam.complex.durated.spanner
 
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,5 +1,5 @@
-indication
-==========
+SpacingIndication
+=================
 
 .. automodule:: abjad.spacing.indication
 
@@ -8,4 +8,3 @@ indication
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

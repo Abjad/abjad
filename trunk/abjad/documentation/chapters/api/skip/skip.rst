@@ -1,4 +1,4 @@
-skip
+Skip
 ====
 
 .. automodule:: abjad.skip.skip
@@ -8,4 +8,3 @@ skip
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

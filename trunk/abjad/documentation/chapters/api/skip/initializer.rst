@@ -1,11 +1,10 @@
-initializer
-===========
+_SkipInitializer
+================
 
 .. automodule:: abjad.skip.initializer
 
-.. autoclass:: abjad.skip.initializer._SkipInitializer
+.. autoclass:: _SkipInitializer
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

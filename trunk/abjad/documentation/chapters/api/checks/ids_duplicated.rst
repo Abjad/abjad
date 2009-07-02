@@ -1,5 +1,5 @@
-ids_duplicated
-==============
+IdsDuplicated
+=============
 
 .. automodule:: abjad.checks.ids_duplicated
 

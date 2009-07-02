@@ -1,6 +1,6 @@
-notes
-=====
+construct.notes
+===============
 
 .. automodule:: abjad.tools.construct.notes
 
-.. autofunction:: abjad.tools.construct.notes.notes
+.. autofunction:: abjad.tools.construct.notes

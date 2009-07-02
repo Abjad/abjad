@@ -1,11 +1,10 @@
-formatter
-=========
+_ClusterFormatter
+=================
 
 .. automodule:: abjad.cluster.formatter
 
-.. autoclass:: abjad.cluster.formatter._ClusterFormatter
+.. autoclass:: _ClusterFormatter
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

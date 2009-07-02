@@ -1,11 +1,10 @@
-initializer
-===========
+_NoteInitializer
+================
 
 .. automodule:: abjad.note.initializer
 
-.. autoclass:: abjad.note.initializer._NoteInitializer
+.. autoclass:: _NoteInitializer
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

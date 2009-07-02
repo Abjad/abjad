@@ -1,5 +1,5 @@
-spanners_discontiguous
-======================
+SpannersDiscontiguous
+=====================
 
 .. automodule:: abjad.checks.spanners_discontiguous
 

@@ -1,11 +1,10 @@
-interface
-=========
+_OffsetSecondsInterface
+=======================
 
 .. automodule:: abjad.offset.seconds.interface
 
-.. autoclass:: abjad.offset.seconds.interface._OffsetSecondsInterface
+.. autoclass:: _OffsetSecondsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

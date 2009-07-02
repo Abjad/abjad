@@ -1,11 +1,10 @@
-interface
-=========
+_TextInterface
+==============
 
 .. automodule:: abjad.text.interface
 
-.. autoclass:: abjad.text.interface._TextInterface
+.. autoclass:: _TextInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

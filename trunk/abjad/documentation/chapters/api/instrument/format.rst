@@ -1,11 +1,10 @@
-format
-======
+_InstrumentSpannerFormatInterface
+=================================
 
 .. automodule:: abjad.instrument.format
 
-.. autoclass:: abjad.instrument.format._InstrumentSpannerFormatInterface
+.. autoclass:: _InstrumentSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

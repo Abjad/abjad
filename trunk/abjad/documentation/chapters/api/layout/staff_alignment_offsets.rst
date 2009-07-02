@@ -1,5 +1,5 @@
-staff_alignment_offsets
-=======================
+StaffAlignmentOffsets
+=====================
 
 .. automodule:: abjad.layout.staff_alignment_offsets
 
@@ -8,4 +8,3 @@ staff_alignment_offsets
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

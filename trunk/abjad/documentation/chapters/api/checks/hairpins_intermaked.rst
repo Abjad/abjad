@@ -1,4 +1,4 @@
-hairpins_intermaked
+HairpinsIntermarked
 ===================
 
 .. automodule:: abjad.checks.hairpins_intermaked

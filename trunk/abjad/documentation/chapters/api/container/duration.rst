@@ -1,11 +1,10 @@
-duration
-========
+_ContainerDurationInterface
+===========================
 
 .. automodule:: abjad.container.duration
 
-.. autoclass:: abjad.container.duration._ContainerDurationInterface
+.. autoclass:: _ContainerDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

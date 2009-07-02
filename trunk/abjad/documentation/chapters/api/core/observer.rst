@@ -1,11 +1,10 @@
-observer
-========
+_Observer
+=========
 
 .. automodule:: abjad.core.observer
 
-.. autoclass:: abjad.core.observer._Observer
+.. autoclass:: _Observer
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

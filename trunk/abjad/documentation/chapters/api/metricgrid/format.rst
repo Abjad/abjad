@@ -1,11 +1,10 @@
-format
-======
+_MetricGridSpannerFormatInterface
+=================================
 
 .. automodule:: abjad.metricgrid.format
 
-.. autoclass:: abjad.metricgrid.format._MetricGridSpannerFormatInterface
+.. autoclass:: _MetricGridSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

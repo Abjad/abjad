@@ -1,11 +1,10 @@
-interface
-=========
+_DotsInterface
+==============
 
 .. automodule:: abjad.dots.interface
 
-.. autoclass:: abjad.dots.interface._DotsInterface
+.. autoclass:: _DotsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

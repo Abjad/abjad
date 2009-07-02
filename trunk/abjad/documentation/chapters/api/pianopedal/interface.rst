@@ -1,11 +1,10 @@
-interface
-=========
+_PianoPedalInterface
+====================
 
 .. automodule:: abjad.pianopedal.interface
 
-.. autoclass:: abjad.pianopedal.interface._PianoPedalInterface
+.. autoclass:: _PianoPedalInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

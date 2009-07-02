@@ -1,4 +1,4 @@
-abjadhtmltag
+AbjadHTMLTag
 ============
 
 .. automodule:: abjad.book.parser.abjadhtmltag
@@ -8,4 +8,3 @@ abjadhtmltag
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

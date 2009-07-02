@@ -1,11 +1,10 @@
-slots
-=====
+_MeasureFormatterSlotsInterface
+===============================
 
 .. automodule:: abjad.measure.slots
 
-.. autoclass:: abjad.measure.slots._MeasureFormatterSlotsInterface
+.. autoclass:: _MeasureFormatterSlotsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

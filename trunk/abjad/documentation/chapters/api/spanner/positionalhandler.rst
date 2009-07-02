@@ -1,11 +1,10 @@
-positionalhandler
-=================
+_PositionalGrobHandlerSpanner
+=============================
 
 .. automodule:: abjad.spanner.positionalhandler
 
-.. autoclass:: abjad.spanner.positionalhandler._PositionalGrobHandlerSpanner
+.. autoclass:: _PositionalGrobHandlerSpanner
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-slots
-=====
+_GraceFormatterSlotsInterface
+=============================
 
 .. automodule:: abjad.grace.slots
 
-.. autoclass:: abjad.grace.slots._GraceFormatterSlotsInterface
+.. autoclass:: _GraceFormatterSlotsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,5 +1,5 @@
-beams_overlapping
-=================
+BeamsOverlapping
+================
 
 .. automodule:: abjad.checks.beams_overlapping
 

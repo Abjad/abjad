@@ -1,11 +1,10 @@
-duration
-========
+_MeasureDurationInterface
+=========================
 
 .. automodule:: abjad.measure.duration
 
-.. autoclass:: abjad.measure.duration._MeasureDurationInterface
+.. autoclass:: _MeasureDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

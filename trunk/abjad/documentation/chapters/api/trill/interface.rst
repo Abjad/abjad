@@ -1,11 +1,10 @@
-interface
-=========
+_TrillInterface
+===============
 
 .. automodule:: abjad.trill.interface
 
-.. autoclass:: abjad.trill.interface._TrillInterface
+.. autoclass:: _TrillInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

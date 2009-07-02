@@ -1,5 +1,5 @@
-fixed_staff_positioning
-=======================
+FixedStaffPositioning
+=====================
 
 .. automodule:: abjad.layout.fixed_staff_positioning
 
@@ -8,4 +8,3 @@ fixed_staff_positioning
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

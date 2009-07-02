@@ -1,11 +1,10 @@
-component
-=========
+_ComponentReceipt
+=================
 
 .. automodule:: abjad.receipt.component
 
-.. autoclass:: abjad.receipt.component._ComponentReceipt
+.. autoclass:: _ComponentReceipt
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

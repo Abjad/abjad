@@ -1,11 +1,10 @@
-slots
-=====
+_ContainerFormatterSlotsInterface
+=================================
 
 .. automodule:: abjad.container.slots
 
-.. autoclass:: abjad.container.slots._ContainerFormatterSlotsInterface
+.. autoclass:: _ContainerFormatterSlotsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

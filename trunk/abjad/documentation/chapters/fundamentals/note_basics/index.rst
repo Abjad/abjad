@@ -215,9 +215,9 @@ You can reassign ``note.duration.written``.
 
 .. image:: images/duration_assign1.png
 
-Use must use a :class:`Rational <abjad.rational.rational.Rational>` 
-which meets :term:`assignability` criteria. You can also assign 
-``note.duration.multiplier``.
+You must use an :term:`assignable` 
+:class:`Rational <abjad.rational.rational.Rational>`.
+You can also assign ``note.duration.multiplier``.
 
 ::
 

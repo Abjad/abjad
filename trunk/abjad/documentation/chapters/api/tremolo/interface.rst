@@ -1,11 +1,10 @@
-interface
-=========
+_TremoloInterface
+=================
 
 .. automodule:: abjad.tremolo.interface
 
-.. autoclass:: abjad.tremolo.interface._TremoloInterface
+.. autoclass:: _TremoloInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

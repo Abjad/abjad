@@ -1,5 +1,5 @@
-indication
-==========
+TempoIndication
+===============
 
 .. automodule:: abjad.tempo.indication
 
@@ -8,4 +8,3 @@ indication
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

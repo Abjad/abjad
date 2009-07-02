@@ -1,11 +1,10 @@
-format
-======
+_BracketSpannerFormatInterface
+==============================
 
 .. automodule:: abjad.bracket.format
 
-.. autoclass:: abjad.bracket.format._BracketSpannerFormatInterface
+.. autoclass:: _BracketSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-format
-======
+_OverrideSpannerFormatInterface
+===============================
 
 .. automodule:: abjad.override.format
 
-.. autoclass:: abjad.override.format._OverrideSpannerFormatInterface
+.. autoclass:: _OverrideSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

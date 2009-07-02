@@ -1,11 +1,10 @@
-initializer
-===========
+_ChordInitializer
+=================
 
 .. automodule:: abjad.chord.initializer
 
-.. autoclass:: abjad.chord.initializer._ChordInitializer
+.. autoclass:: _ChordInitializer
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,4 +1,4 @@
-rest
+Rest
 ====
 
 .. automodule:: abjad.rest.rest
@@ -8,4 +8,3 @@ rest
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

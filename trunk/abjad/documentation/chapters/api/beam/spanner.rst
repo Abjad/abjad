@@ -1,5 +1,5 @@
-spanner
-=======
+Beam
+====
 
 .. automodule:: abjad.beam.spanner
 
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

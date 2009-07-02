@@ -1,4 +1,4 @@
-abjadresttag
+AbjadReSTTag
 ============
 
 .. automodule:: abjad.book.parser.abjadresttag
@@ -8,4 +8,3 @@ abjadresttag
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

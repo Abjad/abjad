@@ -1,11 +1,10 @@
-formatter
-=========
+_ContextFormatter
+=================
 
 .. automodule:: abjad.context.formatter
 
-.. autoclass:: abjad.context.formatter._ContextFormatter
+.. autoclass:: _ContextFormatter
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

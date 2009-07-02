@@ -1,11 +1,10 @@
-spanner
-=======
+_SpannerReceipt
+===============
 
 .. automodule:: abjad.receipt.spanner
 
-.. autoclass:: abjad.receipt.spanner._SpannerReceipt
+.. autoclass:: _SpannerReceipt
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

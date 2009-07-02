@@ -1,11 +1,10 @@
-format
-======
+_NoteHeadFormatInterface
+========================
 
 .. automodule:: abjad.notehead.format
 
-.. autoclass:: abjad.notehead.format._NoteHeadFormatInterface
+.. autoclass:: _NoteHeadFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

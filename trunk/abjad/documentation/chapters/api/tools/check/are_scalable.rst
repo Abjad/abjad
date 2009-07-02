@@ -1,6 +1,6 @@
-are_scalable
-============
+check.are_scalable
+==================
 
 .. automodule:: abjad.tools.check.are_scalable
 
-.. autofunction:: abjad.tools.check.are_scalable.are_scalable
+.. autofunction:: abjad.tools.check.are_scalable

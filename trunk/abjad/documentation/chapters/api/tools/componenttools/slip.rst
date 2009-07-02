@@ -1,6 +1,6 @@
-slip
-====
+componenttools.slip
+===================
 
 .. automodule:: abjad.tools.componenttools.slip
 
-.. autofunction:: abjad.tools.componenttools.slip.slip
+.. autofunction:: abjad.tools.componenttools.slip

@@ -1,11 +1,10 @@
-format
-======
+_GlissandoSpannerFormatInterface
+================================
 
 .. automodule:: abjad.glissando.format
 
-.. autoclass:: abjad.glissando.format._GlissandoSpannerFormatInterface
+.. autoclass:: _GlissandoSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

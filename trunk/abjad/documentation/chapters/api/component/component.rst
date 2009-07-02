@@ -1,11 +1,10 @@
-component
-=========
+_Component
+==========
 
 .. automodule:: abjad.component.component
 
-.. autoclass:: abjad.component.component._Component
+.. autoclass:: _Component
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

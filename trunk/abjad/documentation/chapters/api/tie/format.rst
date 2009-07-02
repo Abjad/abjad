@@ -1,11 +1,10 @@
-format
-======
+_TieSpannerFormatInterface
+==========================
 
 .. automodule:: abjad.tie.format
 
-.. autoclass:: abjad.tie.format._TieSpannerFormatInterface
+.. autoclass:: _TieSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

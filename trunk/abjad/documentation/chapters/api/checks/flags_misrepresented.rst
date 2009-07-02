@@ -1,5 +1,5 @@
-flags_misrepresented
-====================
+FlagsMisrepresented
+===================
 
 .. automodule:: abjad.checks.flags_misrepresented
 

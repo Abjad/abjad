@@ -1,11 +1,10 @@
-format
-======
+_OctavationSpannerFormatInterface
+=================================
 
 .. automodule:: abjad.octavation.format
 
-.. autoclass:: abjad.octavation.format._OctavationSpannerFormatInterface
+.. autoclass:: _OctavationSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

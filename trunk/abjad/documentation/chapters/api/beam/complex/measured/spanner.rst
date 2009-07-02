@@ -1,5 +1,5 @@
-spanner
-=======
+BeamComplexMeasured
+===================
 
 .. automodule:: abjad.beam.complex.measured.spanner
 
@@ -8,4 +8,3 @@ spanner
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

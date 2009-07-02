@@ -1,11 +1,10 @@
-format
-======
+_BeamSpannerFormatInterface
+===========================
 
 .. automodule:: abjad.beam.format
 
-.. autoclass:: abjad.beam.format._BeamSpannerFormatInterface
+.. autoclass:: _BeamSpannerFormatInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

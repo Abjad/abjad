@@ -1,11 +1,10 @@
-interface
-=========
+_HarmonicInterface
+==================
 
 .. automodule:: abjad.harmonic.interface
 
-.. autoclass:: abjad.harmonic.interface._HarmonicInterface
+.. autoclass:: _HarmonicInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

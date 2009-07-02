@@ -1,11 +1,10 @@
-interface
-=========
+_ClefInterface
+==============
 
 .. automodule:: abjad.clef.interface
 
-.. autoclass:: abjad.clef.interface._ClefInterface
+.. autoclass:: _ClefInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

@@ -1,11 +1,10 @@
-duration
-========
+_TupletDurationInterface
+========================
 
 .. automodule:: abjad.tuplet.duration
 
-.. autoclass:: abjad.tuplet.duration._TupletDurationInterface
+.. autoclass:: _TupletDurationInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

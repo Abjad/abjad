@@ -1,4 +1,4 @@
-note
+Note
 ====
 
 .. automodule:: abjad.note.note
@@ -8,4 +8,3 @@ note
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

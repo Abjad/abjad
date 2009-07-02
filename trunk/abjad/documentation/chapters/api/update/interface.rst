@@ -1,11 +1,10 @@
-interface
-=========
+_UpdateInterface
+================
 
 .. automodule:: abjad.update.interface
 
-.. autoclass:: abjad.update.interface._UpdateInterface
+.. autoclass:: _UpdateInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

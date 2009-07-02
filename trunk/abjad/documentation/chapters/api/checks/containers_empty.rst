@@ -1,5 +1,5 @@
-containers_empty
-================
+ContainersEmpty
+===============
 
 .. automodule:: abjad.checks.containers_empty
 

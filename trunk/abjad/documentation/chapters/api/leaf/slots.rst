@@ -1,11 +1,10 @@
-slots
-=====
+_LeafFormatterSlotsInterface
+============================
 
 .. automodule:: abjad.leaf.slots
 
-.. autoclass:: abjad.leaf.slots._LeafFormatterSlotsInterface
+.. autoclass:: _LeafFormatterSlotsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

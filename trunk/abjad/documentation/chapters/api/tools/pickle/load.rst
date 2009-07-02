@@ -1,6 +1,6 @@
-load
-====
+pickle.load
+===========
 
 .. automodule:: abjad.tools.pickle.load
 
-.. autofunction:: abjad.tools.pickle.load.load
+.. autofunction:: abjad.tools.pickle.load

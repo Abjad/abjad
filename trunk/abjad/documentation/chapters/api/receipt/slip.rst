@@ -1,11 +1,10 @@
-slip
-====
+_SlipReceipt
+============
 
 .. automodule:: abjad.receipt.slip
 
-.. autoclass:: abjad.receipt.slip._SlipReceipt
+.. autoclass:: _SlipReceipt
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-

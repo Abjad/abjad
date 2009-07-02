@@ -1,11 +1,10 @@
-slots
-=====
+_ContextFormatterSlotsInterface
+===============================
 
 .. automodule:: abjad.context.slots
 
-.. autoclass:: abjad.context.slots._ContextFormatterSlotsInterface
+.. autoclass:: _ContextFormatterSlotsInterface
    :members:
    :undoc-members:
    :show-inheritance:
    :inherited-members:
-
