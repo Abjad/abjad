@@ -1,5 +1,6 @@
 from abjad import *
 import py.test
+py.test.skip('measure redo')
 
 
 def test_split_fractured_at_duration_01( ):

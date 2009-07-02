@@ -1,4 +1,7 @@
 from abjad import *
+import py.test
+
+py.test.skip('measure redo')
 
 
 def test_staff_interface_hide_01( ):

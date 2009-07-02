@@ -15,27 +15,34 @@ def test_anonymous_measure_clef_change_01( ):
    t.append(AnonymousMeasure(construct.scale(2)))
    t[-1].clef.forced = Clef('treble')
 
-   r'''\new Staff {
-         \override Staff.TimeSignature #'stencil = ##f
-         \clef "treble"
-         \time 1/4
-         c'8
-         d'8
-         \revert Staff.TimeSignature #'stencil
-         \override Staff.TimeSignature #'stencil = ##f
-         \clef "bass"
-         \time 1/4
-         c'8
-         d'8
-         \revert Staff.TimeSignature #'stencil
-         \override Staff.TimeSignature #'stencil = ##f
-         \clef "treble"
-         \time 1/4
-         \clef "bass"
-         c'8
-         d'8
-         \revert Staff.TimeSignature #'stencil
-   }'''
+   r'''
+   \new Staff {
+           {
+                   \override Staff.TimeSignature #'stencil = ##f
+                   \clef "treble"
+                   \time 1/4
+                   c'8
+                   d'8
+                   \revert Staff.TimeSignature #'stencil
+           }
+           {
+                   \override Staff.TimeSignature #'stencil = ##f
+                   \clef "bass"
+                   \time 1/4
+                   c'8
+                   d'8
+                   \revert Staff.TimeSignature #'stencil
+           }
+           {
+                   \override Staff.TimeSignature #'stencil = ##f
+                   \clef "treble"
+                   \time 1/4
+                   c'8
+                   d'8
+                   \revert Staff.TimeSignature #'stencil
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == '\\new Staff {\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "treble"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "bass"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "treble"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n}'
+   assert t.format == '\\new Staff {\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "treble"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "bass"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "treble"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n}'

@@ -1,5 +1,8 @@
 from abjad import *
 
+import py.test
+py.test.skip('measure redo')
+
 
 def test_containertools_contents_scale_01( ):
    '''Scale leaves in voice by 3/2; ie, dot leaves.'''

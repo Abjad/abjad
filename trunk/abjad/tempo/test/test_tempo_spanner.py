@@ -1,4 +1,7 @@
 from abjad import *
+import py.test
+
+py.test.skip('measure redo')
 
 
 def test_tempo_spanner_01( ):

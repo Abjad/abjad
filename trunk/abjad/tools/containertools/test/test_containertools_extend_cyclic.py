@@ -1,5 +1,8 @@
 from abjad import *
 
+import py.test
+py.test.skip('measure redo')
+
 
 def test_containertools_extend_cyclic_01( ):
    '''Cyclic extend measures in voice.'''

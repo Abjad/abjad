@@ -8,7 +8,7 @@ def test_rigid_measure_del_01( ):
    del(t[:1])
 
    assert check.wf(t)
-   assert t.format == "\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8"
+   assert t.format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
 def test_rigid_measure_del_02( ):
@@ -18,7 +18,7 @@ def test_rigid_measure_del_02( ):
    del(t[-1:])
 
    assert check.wf(t)
-   assert t.format == "\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8"
+   assert t.format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
    
 
 def test_rigid_measure_del_03( ):
@@ -28,7 +28,7 @@ def test_rigid_measure_del_03( ):
    del(t[:2])
 
    assert check.wf(t)
-   assert t.format == "\t\\time 2/8\n\tc'8\n\tc'8"
+   assert t.format == "{\n\t\\time 2/8\n\tc'8\n\tc'8\n}"
 
 
 def test_rigid_measure_del_04( ):
@@ -38,7 +38,7 @@ def test_rigid_measure_del_04( ):
    del(t[:1])
 
    assert check.wf(t)
-   assert t.format == "\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8"
+   assert t.format == "{\n\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
 def test_rigid_measure_del_05( ):
@@ -47,15 +47,19 @@ def test_rigid_measure_del_05( ):
    t = RigidMeasure((4, 9), construct.scale(4))
    del(t[:1]) 
 
-   r'''\time 3/9
-        \scaleDurations #'(8 . 9) {
-                d'8
-                e'8
-                f'8
-        }'''
+   r'''
+   {
+           \time 3/9
+           \scaleDurations #'(8 . 9) {
+                   d'8
+                   e'8
+                   f'8
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}"
+   assert t.format == "{\n\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
 def tet_rigid_measure_trim_06( ):
@@ -66,22 +70,30 @@ def tet_rigid_measure_trim_06( ):
    notes[1].duration.written = Rational(1, 16)
    t = RigidMeasure((3, 9), notes)
 
-   r'''\time 3/9
-        \scaleDurations #'(8 . 9) {
-                c'16
-                d'16
-                e'8
-                f'8
-        }'''
+   r'''
+   {
+           \time 3/9
+           \scaleDurations #'(8 . 9) {
+                   c'16
+                   d'16
+                   e'8
+                   f'8
+           }
+   }
+   '''
 
    del(t[:1])
 
-   r'''\time 5/18
-        \scaleDurations #'(8 . 9) {
-                d'16
-                e'8
-                f'8
-        }'''
+   r'''
+   {
+           \time 5/18
+           \scaleDurations #'(8 . 9) {
+                   d'16
+                   e'8
+                   f'8
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\td'16\n\t\te'8\n\t\tf'8\n\t}"
+   assert t.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\td'16\n\t\te'8\n\t\tf'8\n\t}\n}"

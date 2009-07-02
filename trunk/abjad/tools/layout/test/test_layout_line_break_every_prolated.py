@@ -1,6 +1,9 @@
 from abjad import *
 from abjad.leaf.leaf import _Leaf
 
+import py.test
+py.test.skip('measure redo')
+
 
 def test_layout_line_break_every_prolated_01( ):
    '''Iterate klasses in expr and accumulate prolated duration.

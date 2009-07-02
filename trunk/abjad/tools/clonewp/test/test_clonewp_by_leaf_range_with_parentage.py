@@ -1,6 +1,8 @@
 from abjad import *
 import py.test
 
+py.test.skip('measure redo')
+
 
 def test_clonewp_by_leaf_range_with_parentage_01( ):
    '''Copy consecutive notes across tuplet boundary, in staff.'''

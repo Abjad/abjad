@@ -1,5 +1,8 @@
 from abjad import *
 
+import py.test
+py.test.skip('measure redo')
+
 
 def test_containertools_rest_by_count_01( ):
    '''Rest different parts of a container of length 9.'''

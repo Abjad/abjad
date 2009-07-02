@@ -1,5 +1,8 @@
 from abjad import *
 
+import py.test
+py.test.skip('measure redo')
+
 
 def test_layout_fixed_system_indicator_01( ):
 

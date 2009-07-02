@@ -11,10 +11,10 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    @property
    def slot_2(self):
       '''Optional class-level start comments in LilyPond output.
-         Let client_class = self._client.__class__.
-         Set client_class.block to True to print unnumbered start comments.
-         Set client_class.block to 'number' to print numbered start comments.
-         Analagous to close brackets for other types of container.'''
+
+      .. versionchanged:: 1.1.1
+         Measures now format { } and << >> like other containers.
+      '''
       result = [ ]
       formatter = self._client
       measure = formatter._client
@@ -23,6 +23,8 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          contributor = (formatter.number, '_measure_contribution')
          contributions = ['%% start measure %s' % measure.number]
          result.append([contributor, contributions])
+      brackets = _ContainerFormatterSlotsInterface.slot_2.fget(self) 
+      result.extend(brackets)
       return tuple(result)
 
    @property
@@ -61,14 +63,17 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    @property
    def slot_6(self):
-      '''Optional class-level stop comments in LilyPond output.
-         Let client_class = self._client.__class__.
-         Set client_class.block to True to print unnumbered stop comments.
-         Set client_class.block to 'number' to print numbered stop comments.
-         Analagous to open brackets for other types of container.'''
+      '''Sequential or parallel close brackets.
+      Also Optional class-level stop comments in LilyPond output.
+
+      .. versionchanged:: 1.1.1
+         Measures now format { } and << >> like other containers.
+      '''
       result = [ ]
       formatter = self._client
       measure = formatter._client
+      brackets = _ContainerFormatterSlotsInterface.slot_6.fget(self)
+      result.extend(brackets)
       contribution = formatter.number._measure_contribution
       if contribution == 'comment':
          contributor = (formatter.number, '_measure_contribution')

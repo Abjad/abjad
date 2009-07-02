@@ -1,5 +1,8 @@
 from abjad import *
 
+import py.test
+py.test.skip('measure redo')
+
 
 def test_layout_line_break_every_seconds_01( ):
    '''Iterate klass instances in expr and accumulate duration in seconds.

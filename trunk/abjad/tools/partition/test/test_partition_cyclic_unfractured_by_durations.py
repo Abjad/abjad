@@ -1,5 +1,8 @@
 from abjad import *
 
+import py.test
+py.test.skip('meaure redo')
+
 
 def test_partition_cyclic_unfractured_by_durations_01( ):
    '''Cyclically duration partition one leaf in score.

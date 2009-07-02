@@ -1,5 +1,6 @@
 from abjad import *
 import py.test
+py.test.skip('measure redo')
 
 
 def test_fuse_measures_by_reference_00( ):

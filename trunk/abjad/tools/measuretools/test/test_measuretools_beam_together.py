@@ -9,22 +9,28 @@ def test_measuretools_beam_together_01( ):
    pitchtools.diatonicize(t)
    measuretools.beam_together(t[:])
 
-   r'''\new Voice {
-         \time 2/8
-         \set stemLeftBeamCount = #0
-         \set stemRightBeamCount = #1
-         c'8 [
-         \set stemLeftBeamCount = #1
-         \set stemRightBeamCount = #1
-         d'8
-         \time 2/8
-         \set stemLeftBeamCount = #1
-         \set stemRightBeamCount = #1
-         e'8
-         \set stemLeftBeamCount = #1
-         \set stemRightBeamCount = #0
-         f'8 ]
-   }'''
+   r'''
+   \new Voice {
+           {
+                   \time 2/8
+                   \set stemLeftBeamCount = #0
+                   \set stemRightBeamCount = #1
+                   c'8 [
+                   \set stemLeftBeamCount = #1
+                   \set stemRightBeamCount = #1
+                   d'8
+           }
+           {
+                   \time 2/8
+                   \set stemLeftBeamCount = #1
+                   \set stemRightBeamCount = #1
+                   e'8
+                   \set stemLeftBeamCount = #1
+                   \set stemRightBeamCount = #0
+                   f'8 ]
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #1\n\t\tc'8 [\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #1\n\t\td'8\n\t\t\\time 2/8\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #1\n\t\te'8\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #0\n\t\tf'8 ]\n}"
+   assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #1\n\t\tc'8 [\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #1\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #1\n\t\te'8\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #0\n\t\tf'8 ]\n\t}\n}"

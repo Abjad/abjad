@@ -47,30 +47,42 @@ def test_clone_fracture_02( ):
    trill = Trill(t.leaves)
    beam = Beam(t[0][:] + t[1:2] + t[2][:])
 
-   r'''\new Voice {
-         \time 2/8
-         c'8 [ ( \startTrillSpan
-         d'8
-         \time 2/8
-         e'8
-         f'8
-         \time 2/8
-         g'8
-         a'8 ] ) \stopTrillSpan
-   }'''
+   r'''
+   \new Voice {
+           {
+                   \time 2/8
+                   c'8 [ ( \startTrillSpan
+                   d'8
+           }
+           {
+                   \time 2/8
+                   e'8
+                   f'8
+           }
+           {
+                   \time 2/8
+                   g'8
+                   a'8 ] ) \stopTrillSpan
+           }
+   }
+   '''
 
    result = clone.fracture(t[1:2])
    new = Voice(result)
 
-   r'''\new Voice {
-         \time 2/8
-         e'8 [ ( \startTrillSpan
-         f'8 ] ) \stopTrillSpan
-   }'''
+   r'''
+   \new Voice {
+           {
+                   \time 2/8
+                   e'8 [ ( \startTrillSpan
+                   f'8 ] ) \stopTrillSpan
+           }
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(new)
-   assert new.format == "\\new Voice {\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n}"
+   assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
 
 
 def test_clone_fracture_03( ):
@@ -82,26 +94,36 @@ def test_clone_fracture_03( ):
    trill = Trill(t.leaves)
    beam = Beam(t[0][:] + t[1:2] + t[2][:])
 
-   r'''\new Voice {
-         \time 2/8
-         c'8 [ ( \startTrillSpan
-         d'8
-         \time 2/8
-         e'8
-         f'8
-         \time 2/8
-         g'8
-         a'8 ] ) \stopTrillSpan
-   }'''
+   r'''
+   \new Voice {
+           {
+                   \time 2/8
+                   c'8 [ ( \startTrillSpan
+                   d'8
+           }
+           {
+                   \time 2/8
+                   e'8
+                   f'8
+           }
+           {
+                   \time 2/8
+                   g'8
+                   a'8 ] ) \stopTrillSpan
+           }
+   }
+   '''
 
    result = clone.fracture(t.leaves[-3:])
    new = Voice(result)
 
-   r'''\new Voice {
-      f'8 \startTrillSpan
-      g'8 [
-      a'8 ] \stopTrillSpan
-   }'''
+   r'''
+   \new Voice {
+           f'8 \startTrillSpan
+           g'8 [
+           a'8 ] \stopTrillSpan
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(new)
@@ -117,32 +139,48 @@ def test_clone_fracture_04( ):
    trill = Trill(t.leaves)
    beam = Beam(t[0][:] + t[1:2] + t[2][:])
 
-   r'''\new Voice {
-         \time 2/8
-         c'8 [ ( \startTrillSpan
-         d'8
-         \time 2/8
-         e'8
-         f'8         
-         \time 2/8
-         g'8
-         a'8 ] ) \stopTrillSpan
-   }'''
+   r'''
+   \new Voice {
+           {
+                   \time 2/8
+                   c'8 [ ( \startTrillSpan
+                   d'8
+           }
+           {
+                   \time 2/8
+                   e'8
+                   f'8
+           }
+           {
+                   \time 2/8
+                   g'8
+                   a'8 ] ) \stopTrillSpan
+           }
+   }
+   '''
 
    result = clone.fracture(t[1:2], 3)
    new = Voice(result)
 
-   r'''\new Voice {
-         \time 2/8
-         e'8 [ ( \startTrillSpan
-         f'8 ] ) \stopTrillSpan
-         \time 2/8
-         e'8 [ ( \startTrillSpan
-         f'8 ] ) \stopTrillSpan
-         \time 2/8
-         e'8 [ ( \startTrillSpan
-         f'8 ] ) \stopTrillSpan
-   }'''
+   r'''
+   \new Voice {
+           {
+                   \time 2/8
+                   e'8 [ ( \startTrillSpan
+                   f'8 ] ) \stopTrillSpan
+           }
+           {
+                   \time 2/8
+                   e'8 [ ( \startTrillSpan
+                   f'8 ] ) \stopTrillSpan
+           }
+           {
+                   \time 2/8
+                   e'8 [ ( \startTrillSpan
+                   f'8 ] ) \stopTrillSpan
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Voice {\n\t\t\\time 2/8\n\t\tc'8 [ ( \\startTrillSpan\n\t\td'8\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8 ] ) \\stopTrillSpan\n}"
+   assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"

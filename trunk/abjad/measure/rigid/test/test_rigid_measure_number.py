@@ -31,20 +31,28 @@ def test_rigid_mesaure_number_03( ):
    contents = listtools.rotate(contents, -1)
    t[:] = contents
 
-   r'''\new Staff {
-         \time 2/8
-         e'8
-         f'8
-         \time 2/8
-         g'8
-         a'8
-         \time 2/8
-         c'8
-         d'8
-   }'''
+   r'''
+   \new Staff {
+           {
+                   \time 2/8
+                   e'8
+                   f'8
+           }
+           {
+                   \time 2/8
+                   g'8
+                   a'8
+           }
+           {
+                   \time 2/8
+                   c'8
+                   d'8
+           }
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\\new Staff {\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n}"
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n}"
 
    assert t[0].number == 1
    assert t[1].number == 2

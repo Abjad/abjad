@@ -1,4 +1,7 @@
 from abjad import *
+import py.test
+
+py.test.skip('measure redo')
 
 
 def test_spacing_spanner_new_section_01( ):
