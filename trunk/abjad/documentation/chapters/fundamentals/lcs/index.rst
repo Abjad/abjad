@@ -1,6 +1,23 @@
 Leaf, Container, Spanner
 ========================
 
+At the heart of Abjad's Symbolic Score-Control lies a powerful model
+that we call the Leaf Container Spanner, or LCS, model of the musical
+score. 
+
+The LCS model can be schematically visualized as a superposition of
+two complementary and completely independent layers of structure: a
+*tree* that includes the Containers and the Leaves, and a layer of
+free floating *connectors* or Spanners. [#f1]_
+
+.. image:: images/container_spanner.png
+
+
+There can be any number of Spanners, they may overlap, and they may
+connect to different levels of the tree hierarchy. The spanner
+attach to the elements of the tree, so a tree structure must exist for
+spanners to be made manifest.
+
 
 The LCS by example
 ------------------
@@ -9,9 +26,7 @@ The LCS by example
 Example 1
 ^^^^^^^^^
 
-At the heart of Abjad's Symbolic Score-Control lies a powerful model
-that we call the Leaf Container Spanner, or LCS, model of the musical
-score. To understand the whys and hows of the LCS model implemented in
+To understand the whys and hows of the LCS model implemented in
 Abjad, it is probably easier to base the discussion on concrete
 musical examples. Let's begin with a simple and rather abstract
 musical fragment: a measure with nested tuplets.
@@ -22,10 +37,10 @@ What we see in this little fragment is a measure with 4/4 meter, 14
 notes and four tuplet brackets prolating the notes. The three bottom
 tuplets (with ratios 5:4, 3:2, 5:4) prolate all but the last note. The
 topmost tuplet prolates all the notes in the measure and combines with
-the bottom three tuplets to doubly prolate all but the last note. We
-can think of the topmost tuplet as prolating three tuplets, each of
-which in turn prolates a group of notes. We can think of a tuplet as
-**containing** notes or other tuplets or both. Thus, in our example,
+the bottom three tuplets to doubly prolate all but the last note. 
+The topmost tuplet as thus prolates three tuplets, each of which in 
+turn prolates a group of notes. We can think of a tuplet as
+*containing* notes or other tuplets or both. Thus, in our example,
 the topmost tuplet contains three tuplets and a half note. Each of the
 tuplets contained by the topmost tuplet in turn contains five, three,
 and five notes respectively. If we add the measure, then we have a
@@ -33,15 +48,15 @@ measure that contains a tuplet that contains tuplets that contain
 notes. The structure of the measure with nested tuplets as we have
 just described it has two important properties:
 
-#. It is a **hierarchical** structure.
-#. It follows **exclusive membership**, meaning that each element in
+#. It is a *hierarchical* structure.
+#. It follows *exclusive membership*, meaning that each element in
    the hierarchy (a note, a tuplet or a measure) has one and only one
-   **parent**. In other words a single note is not contained in more than
-   one tuplet at the same time, and no one tuplet is contained in more
+   *parent*. In other words a single note is not contained in more than
+   one tuplet simultaneously, and no one tuplet is contained in more
    than one other tuplet at the same time.
 
 What we are describing here is a tree, and it is the structure of
-Abjad **Containers**.
+Abjad *containers*.
 
 
 While this tree structure seem like the right way to represent the
@@ -56,14 +71,17 @@ alternatives:
 Clearly the beaming of notes can be totally independent from the
 tuplet groupings. Beaming across tuplet groups implies beaming across
 nodes in the tree structure, which means that the beams do not adhere
-to the **exclusive (parenthood) membership** characteristic of the
+to the *exclusive (parenthood) membership* characteristic of the
 tree. Beams must then be modeled independently as a separate and
-complementary structure. These are the Abjad **Spanners**.
+complementary structure. These are the Abjad *spanners*.
 
 Below we have the score of our tuplet example with alternative beaming
-and its the Leaf-Container-Spanner graph.
+and its the Leaf-Container-Spanner graph. Notice that the colored blocks
+represent spanners.
 
 .. image:: images/5.png
+
+.. image:: images/lcs_tuplet_spanned.png
 
 
 
@@ -71,7 +89,7 @@ Example 2
 ^^^^^^^^^
 
 As a second example let's look at the last five measures of Bartók's
-`Wandering` from Mikrokosmos vol. III. As simple as it may seem, these
+*Wandering* from Mikrokosmos vol. III. As simple as it may seem, these
 five measures carry with them a lot of information pertaining to
 musical notation.
 
@@ -92,24 +110,28 @@ Notice that each staff has a variety of signs associated with it.
 There are notes printed on the staff lines as well as meter
 indications and bar lines. Each note, for example, is in one and only
 one staff. A note is never in two staves at the same time. This is
-also true of the measures. A measure in the top staff is not
+also true for measures. A measure in the top staff is not
 simultaneously drawn on the top staff and the bottom staff. It is
 better to think of each staff as having its own set of measures.
 Notice also that the notes in each staff fall within the region of one
-and only one measure, i.e. measures seem to **contain** notes (this is
-standard practice in musical notation, but it need not always be the
-case, as we'll see later). There is not one note that is at once in
-two measures. As we continue describing the relationships between the
+and only one measure, i.e. measures seem to contain notes.
+There is not one note that is at once in two measures  
+(this is standard practice in musical notation, but it need not always be the
+case. See the 
+:doc:`metric grid example </chapters/introduction/examples/slicing/index>` 
+for a non-containment approach to meters). 
+
+As we continue describing the relationships between the
 musical signs in the page, we begin to discover a certain structure,
 or a convenient way of structuring the score for conceptualization and
 manipulation. All the music in a piano score seems to be written in
-what we might call a "staff group". The staff group is **composed of**
-two staves. Each staff in turn seems to be composed of a series or
+what we might call a *staff group*. The staff group is *composed of*
+two staves. Each staff in turn appears to be composed of a series or
 measures, and each measure is composed of a series of notes. So again
 we find that the score structure can be organized hierarchically as a
 tree. This tree structure looks like this:
 
-TREE FIGURE HERE.
+.. image:: images/bartok_wandering_graph.png
 
 Notice again though that there are elements in the score that imply
 and require a different kind of grouping. The two four eighth-note
@@ -117,27 +139,10 @@ runs in the lower staff are beamed together across the bar line and,
 based on our tree structure, across tree nodes. So do the slurs, the
 dynamics markings and the ritardando indication at the top of the
 score. As we have seen in the tuplets example, all these groups
-running across the tree structure can be defined with **Spanners**.
+running across the tree structure can be defined with *spanners*.
 
 
+.. rubric:: Footnotes
 
-The LCS Model
--------------
-
-Leaves include notes, rests, chords and skips. Containers include
-staves, voices, measures and tuplets. Spanners include beams, trills,
-ties, glissandi, and pedal markings, among others.
-
-The LCS model can be schematically visualized as a superposition of
-two complementary and completely independent layers of structure: a
-**tree** that includes the Containers and the Leaves, and a layer of
-free floating "connectors" or Spanners.
-
-.. image:: images/container_spanner.png
-
-
-There can be any number of Spanners, they may overlap, and they may
-"connect" to different levels of the tree hierarchy. The spanner
-attach to the elements of the tree, so a tree structure must exist for
-spanners to be made manifest.
+.. [#f1] Leaves include notes, rests, chords and skips. Containers include staves, voices, measures and tuplets. Spanners include beams, trills, ties, glissandi, and pedal markings, among others.
 
