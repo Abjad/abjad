@@ -5,8 +5,8 @@ import sys
 import os
 
 def _usage( ):
-   usage = '''\nUsage: abjad-book FILE [OUTPUT] 
-
+   usage = '''\nUsage: abjad-book INPUT OUTPUT 
+   
 Process Abjad snippets embedded in HTML, LaTeX, or ReST document.
 
 All Abjad code placed between the <abjad> </abjad> tags in either HTML, LaTeX
@@ -61,20 +61,21 @@ Example:
 
 def _abjad_book( ):
    ## get input parameters
-   if len(sys.argv) == 1:
+   if len(sys.argv) < 3:
       print _usage( )
       sys.exit(2)
 
    fn = sys.argv[1]
-   out_fn = None
-   if len(sys.argv) > 2:
-      out_fn = sys.argv[2]
+   out_fn = sys.argv[2]
+#   out_fn = None
+#   if len(sys.argv) > 2:
+#      out_fn = sys.argv[2]
 
    ## parse file name
    fn_dir = os.path.dirname(os.path.abspath(fn))
    fn = os.path.basename(fn)
    #fn_extension = fn.split('.')[-1]
-   fn_root = fn.split('.')[0]
+   #fn_root = fn.split('.')[0]
    
    ## chage to file dir and read input file
    os.chdir(fn_dir)
@@ -84,24 +85,22 @@ def _abjad_book( ):
    file.close( )
 
    ## create Abjad tag parser type based on file extension
-   #if 'htm' in fn_extension:
    if '.htm' in fn:
       a = AbjadHTMLTag(lines)
-      fn_extension = '.html'
-   #elif 'tex' in fn_extension:
+      #fn_extension = '.html'
    elif '.tex' in fn:
       a = AbjadLatexTag(lines)
-      fn_extension = '.tex'
-   #elif 'rst' in fn_extension:
+      #fn_extension = '.tex'
    elif '.rst' in fn:
       a = AbjadReSTTag(lines)
-      fn_extension = '.rst'
+      #fn_extension = '.rst'
 
    ## open and write to output file
-   if out_fn:
-      file = open(out_fn, 'w')
-   else:
-      file = open('%s_abj%s' % (fn_root, fn_extension), 'w')
+   file = open(out_fn, 'w')
+#   if out_fn:
+#      file = open(out_fn, 'w')
+#   else:
+#      file = open('%s_abj%s' % (fn_root, fn_extension), 'w')
 
    file.writelines(a.process( ))
    file.close( )
