@@ -7,8 +7,10 @@ import sys
 
 
 class _AbjadTag(_TagParser):
-   def __init__(self, lines):
+
+   def __init__(self, lines, skip_rendering = False):
       _TagParser.__init__(self, lines)
+      self.skipRendering = skip_rendering
       self._close_tag = '</abjad>'
       self._open_tag = '<abjad>'
       self._target_open_tag = '<pre class="abjad">' + os.linesep
@@ -26,7 +28,11 @@ class _AbjadTag(_TagParser):
 
       ## start processing
       self._parse( )
-      self._renderImages( )
+
+      if self.skipRendering:
+         print 'Skipped image rendering by request.'
+      else:
+         self._renderImages( )
       
       ## clean up directories
       os.chdir('..')
