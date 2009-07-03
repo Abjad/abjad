@@ -12,7 +12,7 @@ f(v)
 <abjad>
 Beam(v)
 show(v)
-write(v, 'example1') <hide
+write_ly(v, 'example1') <hide
 </abjad>
 
 <p>Here is <b>paragraph</b> 3, and more Abjad code.</p>
@@ -22,18 +22,18 @@ pitchtools.diatonicize(v)
 for leaf in v: print leaf
 Trill(v[2:])
 show(v)
-write(v, 'example2') <hide
+write_ly(v, 'example2') <hide
 </abjad>
 
 <p>And a final paragraph. Here all the code is hidden:</p>
 
 <abjad>[hide = True]
 PianoPedal(v[:])
-write(v, "example4")
+write_ly(v, "example4")
 </abjad>
 
-<p>Now just write(v), hidden.</p>
+<p>Now just write_ly(v), hidden.</p>
 
 <abjad>
-write(v, "example5") <hide
+write_ly(v, "example5") <hide
 </abjad>

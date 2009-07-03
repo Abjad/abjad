@@ -1,8 +1,8 @@
 from abjad.book.parser.abjadtag import _AbjadTag
 
 class AbjadLatexTag(_AbjadTag):
-   def __init__(self, lines):
-      _AbjadTag.__init__(self, lines)
+   def __init__(self, lines, skip_rendering):
+      _AbjadTag.__init__(self, lines, skip_rendering)
 
       self._target_open_tag = '\\begin{lstlisting}'
       self._target_open_tag += '[basicstyle=\\footnotesize, tabsize=4, '
