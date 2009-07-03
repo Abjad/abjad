@@ -2,23 +2,24 @@ from abjad import checks as _checks
 
 
 def wf(expr, delivery = 'boolean', runtime = 'composition'):
-   '''Run every check in the 'check' module against expr.
+   '''Run every check in the ``check`` module against `expr`.
 
-      Set the 'runtime' keyword to 'composition' to run
-      only those checks appropriate at composition-time.
-      Abjad allow empty containers at composition-time.
-      Empty container checks will NOT run.
+   Set the `runtime` keyword to ``composition`` to run
+   only those checks appropriate at composition-time.
+   Abjad allows empty containers at composition-time.
+   Empty container checks will NOT run. ::
 
       abjad> check.wf(Voice([ ]), runtime = 'composition')
       True
 
-      Set the 'runtime' keyword to 'format' to run the 
-      complete set of checks appropriate at format-time.
-      LilyPond does NOT allow empty containers at format-time.
-      Empty container check WILL run.
+   Set the `runtime` keyword to ``format`` to run the 
+   complete set of checks appropriate at format-time.
+   LilyPond does NOT allow empty containers at format-time.
+   Empty container check WILL run. ::
 
       abjad> check.wf(Voice([ ]), runtime = 'format')
-      False'''
+      False
+   '''
    
    results = [ ]
 
