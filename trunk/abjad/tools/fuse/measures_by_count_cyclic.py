@@ -19,7 +19,7 @@ def measures_by_count_cyclic(container, part_counts, mark = False):
       cur_measure = iterate.measure_next(container)
       while True:
          part_count = part_counts[part_index % len_parts]
-         print cur_measure, part_count
+         #print cur_measure, part_count
          if 1 < part_count:
             measures_to_fuse = [ ]
             measure_to_fuse = cur_measure
