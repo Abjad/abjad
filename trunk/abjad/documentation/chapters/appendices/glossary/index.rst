@@ -44,7 +44,8 @@ Abjad uses the following terms in ways that are unique to the project.
       engraving process that does not correspond to a visual symbol on 
       the printed page. The LilyPond NonMusicalPaperColumn grob is a
       non-printing grob. The term is special to LilyPond and borrowed
-      by Abjad.
+      by Abjad. Refer to chapter :doc:`/chapters/fundamentals/grobhandlers/index`
+      to see Abjad grob handling.
 
    render
       Short-hand verb meaning to format an Abjad object as valid LilyPond
