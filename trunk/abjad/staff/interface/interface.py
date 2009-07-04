@@ -1,12 +1,18 @@
 from abjad.core.backtracking import _BacktrackingInterface
-from abjad.core.formatcontributor import _FormatContributor
+#from abjad.core.formatcontributor import _FormatContributor
+from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
 import types
 
 
-## TODO: Make _StaffInterface handle LilyPond StaffSymbol grob? ##
+## TODO: note that this is the expected formatting but that it will not change
+## the color of the Staff lines. For this to work the Staff must be stopped 
+## and restarted before the change for this to have an effect. 
+## Should the GrobHandler be smart enough to see who is contributing the 
+## formating and add a \stopStaff\startStaff immediately before the staff 
+## contribution IFF the contributor is not a Staff?
 
-class _StaffInterface(_Observer, _FormatContributor, _BacktrackingInterface):
+class _StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
    r'''Report on Abjad staff in parentage of client.
       Interface to LilyPond \stopStaff, \startStaff hiding commands.
       Handle no LilyPond grob.'''
@@ -17,8 +23,9 @@ class _StaffInterface(_Observer, _FormatContributor, _BacktrackingInterface):
          Init hide to False.'''
       from abjad.staff import Staff
       _Observer.__init__(self, _client, _updateInterface)
-      _FormatContributor.__init__(self)
       _BacktrackingInterface.__init__(self, 'staff')
+      #_FormatContributor.__init__(self)
+      _GrobHandler.__init__(self, 'StaffSymbol')
       self._acceptableTypes = (Staff, types.NoneType)
       self._effective = None
       self._forced = None
