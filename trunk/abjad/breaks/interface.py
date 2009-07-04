@@ -6,19 +6,21 @@ import types
 
 
 class _BreaksInterface(_Interface, _FormatContributor):
-   r'''Interface to LilyPond ``break`` and ``pageBreak`` commands.
-   Affordance for nonstaff whitespace following client.
-   Interface to *LilyPond* x- and y- system positioning.
-   Handle no *LilyPond* grob. ::
+   r'''Interface to LilyPond ``\break`` and ``\pageBreak`` commands.
+
+   Interface to LilyPond x- and y- system positioning.
+
+   Handle no LilyPond grob. ::
 
       abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
       abjad> pitchtools.diatonicize(t)
       abjad> t[0].formatter.number.self = 'comment'
       abjad> t[1].formatter.number.self = 'comment'
 
+   ::
+
       abjad> t[0].breaks.page = True
       abjad> print t.format
-
       \new Staff {
               % start measure 1
                       \time 2/8
@@ -32,13 +34,21 @@ class _BreaksInterface(_Interface, _FormatContributor):
                       f'8
               % stop measure 2
       }
+
+   .. versionadded:: 1.1.1
+      Affordance for nonstaff whitespace following client.
+
+   .. versionadded:: 1.1.1
+      Interface to LilyPond ``\adjustEOLMeterBarlineExtraOffset``.
    '''
    
    def __init__(self, _client):
-      '''Bind to client and set line, page, whitespace, x and y to None.'''
+      '''Bind to client and set line, page, eol_adjustment,
+      whitespace, x and y to None.'''
       _Interface.__init__(self, _client)
       _FormatContributor.__init__(self)
       self._alignment_offsets = [ ]
+      self._eol_adjustment = None
       self._line = None
       self._page = None
       self._whitespace = None
@@ -57,6 +67,7 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def _line_break_system_details(self):
       '''LilyPond ``Score.NonMusicalPaperColumn`` 
       ``#'line-break-system-details`` formatting contribution.
+
       Contribution appears **before** Abjad component.'''
       result = [ ]
       x = self.x
@@ -82,9 +93,10 @@ class _BreaksInterface(_Interface, _FormatContributor):
    @apply
    def alignment_offsets( ):
       def fget(self):
-         '''LilyPond ``alignment-offsets`` list to format as \
-         ``NonMusicalPaperColumn``. Contribution appears **before**
-         Abjad component.
+         '''LilyPond ``alignment-offsets`` list to format as
+         ``NonMusicalPaperColumn``. 
+
+         Contribution appears **before** Abjad component.
 
          ::
 
@@ -94,7 +106,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
             \overrideProperty #"Score.NonMusicalPaperColumn"
             #'line-break-system-details
             #'((alignment-offsets . (0 -18 -54 -70)))
-            c'4'''
+            c'4
+         '''
 
          return self._alignment_offsets
       def fset(self, expr):
@@ -104,7 +117,7 @@ class _BreaksInterface(_Interface, _FormatContributor):
 
    @property
    def closing(self):
-      '''Format contribution at container closing or after leaf.'''
+      r'''Format contribution at container closing or after leaf.'''
       result = [ ]
       whitespace = self.whitespace
       if whitespace:
@@ -113,6 +126,8 @@ class _BreaksInterface(_Interface, _FormatContributor):
             layout__rational_to_whitespace_measure_string
          string = layout__rational_to_whitespace_measure_string(whitespace)
          result.extend(string.split('\n'))
+      if self.eol_adjustment:
+         result.append(r'\adjustEOLMeterBarlineExtraOffset')
       if self.line == True:
          result.append(r'\break')
       elif self.line == False:
@@ -124,10 +139,29 @@ class _BreaksInterface(_Interface, _FormatContributor):
       return result
 
    @apply
+   def eol_adjustment( ):
+      def fget(self):
+         '''.. versionadded:: 1.1.1
+            Read / write boolean set. 
+
+         Set to ``True`` to apply LilyPond ``extra-offset`` to 
+         both LilyPond TimeSignature and LilyPond BarLine grobs. 
+         
+         Otherwise, apply no ``extra-offset``.
+         '''
+         return self._eol_adjustment
+      def fset(self, arg):
+         assert isinstance(arg, (bool, types.NoneType))
+         self._eol_adjustment = arg
+      return property(**locals( ))
+
+   @apply
    def line( ):
       def fget(self):
          r'''Boolean setting to contribute LilyPond ``\line`` break.
-         Contribution appears **after** Abjad component.'''
+
+         Contribution appears **after** Abjad component.
+         '''
          return self._line
       def fset(self, arg):
          assert isinstance(arg, bool) or arg is None
@@ -147,7 +181,9 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def page( ):
       def fget(self):
          r'''Boolean setting to contribute LilyPond ``\pageBreak``.
-         Contribution appears **after** Abjad component.'''
+         
+         Contribution appears **after** Abjad component.
+         '''
          return self._page
       def fset(self, arg):
          assert isinstance(arg, bool) or arg is None
@@ -160,7 +196,9 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def whitespace( ):
       def fget(self):
          r'''Rational-valued non-durative whitespace following client.
-         Fake measure between ``\stopStaff``, ``\startStaff`` commands.'''
+
+         Fake measure between ``\stopStaff``, ``\startStaff`` commands.
+         '''
          return self._whitespace
       def fset(self, arg):
          from abjad.leaf.leaf import _Leaf
@@ -174,7 +212,9 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def x( ):
       def fget(self):
          '''X-value for ``line-break-system-details`` contribution.
-         Contribution appears **before** Abjad component.'''
+
+         Contribution appears **before** Abjad component.
+         '''
          return self._x
       def fset(self, arg):
          assert isinstance(arg, (int, long, float, types.NoneType))
@@ -185,7 +225,9 @@ class _BreaksInterface(_Interface, _FormatContributor):
    def y( ):
       def fget(self):
          '''Y-value for ``line-break-system-details`` contribution.
-         Contribution appears **before** Abjad component.'''
+
+         Contribution appears **before** Abjad component.
+         '''
          return self._y
       def fset(self, arg):
          assert isinstance(arg, (int, long, float, types.NoneType))
@@ -195,13 +237,14 @@ class _BreaksInterface(_Interface, _FormatContributor):
    ## PUBLIC METHODS ##
 
    def clear(self):
-      r'''Set ``line``, ``page``, ``x`` and ``y`` to ``None`` and \
-      empty ``alignment_offsets``.
+      r'''Set ``line``, ``page``, ``eol_adjustment``, ``x`` and ``y`` 
+      to ``None`` and empty ``alignment_offsets``.
 
       ::
 
          abjad> t = Note(0, (1, 4))
          abjad> t.breaks.line = True
+         abjad> t.breaks.eol_adjustment = True
          abjad> t.breaks.x = 20
          abjad> t.breaks.y = 40
          abjad> print t.format
@@ -209,16 +252,23 @@ class _BreaksInterface(_Interface, _FormatContributor):
          #'line-break-system-details
          #'((X-offset . 20) (Y-offset . 40))
          c'4
+         \adjustEOLMeterBarlineExtraOffset
          \break
 
       ::
 
          abjad> t.breaks.clear( )
          abjad> print t.format
-         c'4'''
+         c'4
 
-      self.line = None
-      self.page = None
-      self.x = None
-      self.y = None
-      self.alignment_offsets = [ ]
+      .. todo:: Reimplement all _Interface.clear( ) methods with __init__
+      '''
+
+#      self.line = None
+#      self.page = None
+#      self.eol_adjustment = None
+#      self.x = None
+#      self.y = None
+#      self.alignment_offsets = [ ]
+
+      self.__init__(self._client)
