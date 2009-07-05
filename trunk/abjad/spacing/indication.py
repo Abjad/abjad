@@ -5,16 +5,16 @@ from abjad.tempo.indication import TempoIndication
 
 class SpacingIndication(_Abjad):
    '''Spacing indication token.
-      This says that LilyPond Score.proportionalNotationDuration
-      should equal ``proportional_notation_duration`` when tempo
-      is equal to ``tempo_indication``.
 
-      Example::
+   LilyPond ``Score.proportionalNotationDuration``
+   will equal ``proportional_notation_duration`` when tempo
+   equals ``tempo_indication``. ::
 
-         abjad> tempo = TempoIndication(Rational(1, 8), 44)
-         abjad> spacing_indication = SpacingIndication(tempo, Rational(1, 68))
-         abjad> spacing_indication
-         <SpacingIndication>'''
+      abjad> tempo = TempoIndication(Rational(1, 8), 44)
+      abjad> spacing_indication = SpacingIndication(tempo, Rational(1, 68))
+      abjad> spacing_indication
+      <SpacingIndication>
+   '''
 
    def __init__(self, tempo_indication, proportional_notation_duration):
       '''Initialize ``tempo_indication`` and 
@@ -50,18 +50,19 @@ class SpacingIndication(_Abjad):
 
    @apply
    def proportional_notation_duration( ):
-      '''Read / write LilyPond proportionalNotationDuration.'''
       def fget(self):
+         '''Read / write LilyPond ``proportionalNotationDuration``.'''
          return self._proportional_notation_duration
       def fset(self, expr):
          assert isinstance(expr, Rational)
          assert 0 < expr
          self._proportional_notation_duration = expr
+      return property(**locals( ))
 
    @apply
    def tempo_indication( ):
-      '''Read / write Abjad ``TempoIndication``.'''
       def fget(self):
+         '''Read / write Abjad :class:`~abjad.TempoIndication`.'''
          return self._tempo_indication
       def fset(self, expr):
          assert isinstance(expr, TempoIndication)

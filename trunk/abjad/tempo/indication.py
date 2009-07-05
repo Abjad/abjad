@@ -4,25 +4,29 @@ from abjad.rational import Rational
 
 
 class TempoIndication(_Abjad):
-   r'''Tempo indication token. Assign to ``Tempo`` spanner ``indication``.
+   r'''Tempo indication token. 
+   
+   Assign to :class:`~abjad.Tempo` spanner ``indication``.
       
-      Example::
+   ::
 
-         abjad> t = Staff(construct.scale(4))
-         abjad> tempo_spanner = Tempo(t[:])
+      abjad> t = Staff(construct.scale(4))
+      abjad> tempo_spanner = Tempo(t[:])
+      abjad> tempo_indication = TempoIndication(Rational(1, 8), 44)
+      abjad> tempo_spanner.indication = tempo_indication
 
-         abjad> tempo_indication = TempoIndication(Rational(1, 8), 44)
-         abjad> tempo_spanner.indication = tempo_indication
-         abjad> print t.format
+   ::
 
-         \new Staff {
-                 \tempo 8=44
-                 c'8
-                 d'8
-                 e'8
-                 f'8
-                 %% tempo 8=44 ends here
-         }'''
+      abjad> print t.format
+      \new Staff {
+              \tempo 8=44
+              c'8
+              d'8
+              e'8
+              f'8
+              %% tempo 8=44 ends here
+      }
+   '''
 
    def __init__(self, duration, mark):
       '''Set duration and mark.'''
@@ -40,6 +44,9 @@ class TempoIndication(_Abjad):
 
    def __ne__(self, expr):
       return not self == expr
+
+   def __repr__(self):
+      return '%s(%s, %s)' % (self.__class__.__name__, self._dotted, self.mark)
 
    ## PRIVATE ATTRIBUTES ##
 

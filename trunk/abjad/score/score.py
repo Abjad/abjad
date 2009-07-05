@@ -1,15 +1,14 @@
 from abjad.context.context import _Context
-#from abjad.spacing.indication import SpacingIndication
 from abjad.spacing import SpacingIndication
 import types
 
 
 class Score(_Context):
-   '''*Abjad* model of the musical score.'''
+   '''Abjad model of the musical score.'''
 
    def __init__(self, music = None):
-      '''Init score as type of *Abjad* container.
-         Init ``context`` to ``Score`` and ``parallel`` to ``True``.'''
+      '''Init score as type of Abjad container.
+      Init ``context`` to ``Score`` and ``parallel`` to ``True``.'''
       _Context.__init__(self, music)
       self.context = 'Score'
       self.global_spacing = None
@@ -19,10 +18,13 @@ class Score(_Context):
 
    @apply
    def global_spacing( ):
-      '''Special read / write attribute to manage score-global spacing.
-         Assign *Abjad* ``SpacingIndication`` or ``None``.
-         Set to activate *Abjad* ``ProportionalTempo`` spanners.'''
       def fget(self):
+         '''Special read / write attribute to manage score-global spacing.
+
+         Assign Abjad :class:`~abjad.SpacingIndication` or ``None``.
+
+         Set to activate Abjad :class:`~abjad.TempoProportional` spanners.
+         '''
          return self._global_spacing
       def fset(self, expr):
          assert isinstance(expr, (SpacingIndication, types.NoneType))
