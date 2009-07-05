@@ -5,9 +5,11 @@ from abjad.cfg.read_config_value import _read_config_value
 import os
 
 
-def show(expr, template = None, title = None, lilytime = 10):
-   '''Format `expr` as a valid string of LilyPond input and 
-   then call LilyPond on the formatted version of `expr`.
+def show(expr, template = None, title = None, footer = None, lilytime = 10):
+   '''Format `expr` as a valid string of LilyPond input.
+
+   Call LilyPond on the formatted version of `expr`.
+
    Open the PDF that LilyPond creates.
 
    Render `t` and open the resulting PDF::
@@ -28,8 +30,9 @@ def show(expr, template = None, title = None, lilytime = 10):
 
       abjad> show(t, title = ['Score Title', 'score subtitle', 'more subtitle'])
 
-   .. todo:: Implement an optional `footer` keyword \
-      similar to the `title` keyword.
+   Render `t` with a footer and open the resulting PDF::
+
+      abjad> show(t, footer = '"This is footer text."')
 
    Render `t` and open the resulting PDF. Alert the composer
    if LilyPond takes greater than 60 seconds to render::
@@ -40,7 +43,8 @@ def show(expr, template = None, title = None, lilytime = 10):
       If the directory does not exist, Abjad writes to ``$ABJADOUTPUT``.
    '''
 
-   name = _log_render_lilypond_input(expr, template, title, lilytime)
+   name = _log_render_lilypond_input(expr, template = template, 
+      title = title, footer = footer, lilytime = lilytime)
    pdfviewer = _read_config_value('pdfviewer')
    name = os.path.join(ABJADOUTPUT, name)
    _open_file('%s.pdf' % name[:-3], pdfviewer)
