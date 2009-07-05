@@ -20,7 +20,7 @@ class Markup(_Abjad):
    Markup contents must be set by hand.
    '''
 
-   def __init__(self, contents):
+   def __init__(self, contents = None):
       self.contents = contents
       self.style = 'backslash'
 
@@ -49,7 +49,10 @@ class Markup(_Abjad):
          return self._contents
       def fset(self, arg):
          assert isinstance(arg, (str, types.NoneType))
-         self._contents = arg
+         if isinstance(arg, str):
+            self._contents = arg
+         elif isinstance(arg, types.NoneType):
+            self._contents = ''
       return property(**locals( ))
 
    @property
