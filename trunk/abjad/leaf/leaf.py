@@ -48,6 +48,9 @@ class _Leaf(_Component):
    @apply
    def articulations( ):
       def fget(self):
+         '''Read-only reference to
+         :class:`~abjad.articulations.interface._ArticulationsInterface`.
+         '''
          return self._articulations
       def fset(self, arg):
          if arg is None:
@@ -60,30 +63,43 @@ class _Leaf(_Component):
 
    @property
    def grace(self):
+      '''Read-only reference to
+      :class:`~abjad.grace.interface._GraceInterface`.
+      '''
       return self._grace
    
    @property
    def harmonic(self):
+      '''Read-only reference to
+      :class:`~abjad.harmonic.interface._HarmonicInterface`.
+      '''
       return self._harmonic
 
    @property
    def markup(self):
+      '''Read-only reference to
+      :class:`~abjad.markup.interface._MarkupInterface`.
+      '''
       return self._markup
 
    @property
    def next(self):
+      '''Read-only reference to next bead in thread.'''
       return self._navigator._nextBead
 
    @property
    def number(self):
+      '''Read-only number of `self` in thread.'''
       self._numbering._makeSubjectUpdateIfNecessary( )
       return self._numbering._leaf
 
    @property
    def prev(self):
+      '''Read-only reference to previous bead in thread.'''
       return self._navigator._prevBead
 
    @property
    def signature(self):
+      '''Read-only signature of `self`.'''
       return (self.pairs, 
          (self.duration.written._n, self.duration.written._d))
