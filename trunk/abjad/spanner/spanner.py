@@ -1,5 +1,6 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.spanner.duration import _SpannerDurationInterface
+from abjad.spanner.format import _SpannerFormatInterface
 from abjad.spanner.offset import _SpannerOffsetInterface
 from abjad.rational import Rational
 from copy import deepcopy as python_deepcopy
@@ -37,6 +38,7 @@ class Spanner(_Abjad):
       self._components = [ ]
       self._contiguity_constraint = 'thread'
       self._duration = _SpannerDurationInterface(self)
+      self._format = _SpannerFormatInterface(self)
       self._offset = _SpannerOffsetInterface(self)
       self._initializeMusic(music)
 
