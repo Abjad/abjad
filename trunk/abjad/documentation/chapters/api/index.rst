@@ -352,6 +352,7 @@ Abjad API
    tools/listtools/weight
    tools/listtools/zip_cyclic
    tools/listtools/zip_nontruncating
+   tools/markup/big_centered_page_number
    tools/mathtools/binary_string
    tools/mathtools/divide_scalar_by_ratio
    tools/mathtools/divisors
