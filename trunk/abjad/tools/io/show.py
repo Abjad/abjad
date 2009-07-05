@@ -30,7 +30,10 @@ def show(expr, template = None, title = None, footer = None, lilytime = 10):
 
       abjad> show(t, title = ['Score Title', 'score subtitle', 'more subtitle'])
 
-   Render `t` with a footer and open the resulting PDF::
+   .. versionadded:: 1.1.1
+      Render `t` with a footer and open the resulting PDF:
+
+   ::
 
       abjad> show(t, footer = '"This is footer text."')
 

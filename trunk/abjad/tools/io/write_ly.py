@@ -28,6 +28,9 @@ def write_ly(expr, name, template = None,
 
       abjad> t = Note(0, (1, 4))
       abjad> write_ly(t, '/home/user/foo.ly', 'paris')
+
+   .. versionadded:: 1.1.1
+      Optional `footer` keyword.
    '''
 
    name = os.path.expanduser(name)

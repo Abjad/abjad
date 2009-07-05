@@ -11,6 +11,9 @@ def write_pdf(expr, file_name, template = None,
 
       abjad> t = Note(0, (1, 4))
       abjad> write_pdf(t, 'one_note.pdf')
+
+   .. versionadded:: 1.1.1
+      Optional `footer` keyword.
    '''
 
    ## massage file_name

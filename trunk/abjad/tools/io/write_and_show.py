@@ -15,6 +15,9 @@ def write_and_show(
 
    The purpose of this function is to conditionally save named PDF
    and named ``.ly`` output corresponding to `expr`.
+
+   .. versionadded:: 1.1.1
+      Optional `footer` keyword.
    '''
 
    if write:
