@@ -1,7 +1,7 @@
 _HistoryInterface
 =================
 
-.. automodule:: abjad.core.history
+.. automodule:: abjad.history.interface
 
 .. autoclass:: _HistoryInterface
    :members:

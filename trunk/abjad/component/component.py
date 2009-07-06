@@ -11,6 +11,7 @@ from abjad.directives.interface import _UserDirectivesInterface
 from abjad.dots.interface import _DotsInterface
 from abjad.dynamics.interface import _DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
+from abjad.history.interface import _HistoryInterface
 from abjad.instrument.interface import _InstrumentInterface
 from abjad.interfaces.aggregator import _InterfaceAggregator
 from abjad.meter.interface import _MeterInterface
@@ -71,7 +72,8 @@ class _Component(_Abjad):
       self._dots = _DotsInterface(self)
       self._dynamics = _DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)
-      self._history = { }
+      #self._history = { }
+      self._history = _HistoryInterface(self)
       self._instrument = _InstrumentInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
@@ -214,7 +216,8 @@ class _Component(_Abjad):
 
    @property
    def history(self):
-      '''Read-only reference to history dictionary.'''
+      '''Read-only reference to 
+      :class:`~abjad.history.interface._HistoryInterface`.'''
       return self._history
 
    @property

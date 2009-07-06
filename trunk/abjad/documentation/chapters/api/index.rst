@@ -58,7 +58,6 @@ Abjad API
    core/format
    core/formatcontributor
    core/grobhandler
-   core/history
    core/initializer
    core/interface
    core/observer
@@ -81,6 +80,7 @@ Abjad API
    hairpin/format
    hairpin/spanner
    harmonic/interface
+   history/interface
    instrument/format
    instrument/interface
    instrument/spanner
