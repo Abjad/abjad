@@ -1,9 +1,13 @@
 #! /usr/bin/env python
+
 import os
 from abjad.cfg.cfg import ABJADPATH
+## TODO: Rename abjad_version.py to _write_abjad_versionfile.py
 from abjad.cfg.abjad_version import _write_abjad_versionfile
+from abjad.cfg._remove_abjad_pyc_files import _remove_abjad_pyc_files
 
 
+## find start directory and project root
 start_directory = os.path.abspath('.')
 project_root = ABJADPATH.rstrip('abjad')
 
@@ -16,12 +20,5 @@ os.chdir(start_directory)
 ## write version file
 _write_abjad_versionfile( )
 
-## remove *.pyc files
-for root, dirs, files in os.walk(project_root):
-   if '.svn' in dirs:
-      dirs.remove('.svn')
-   for file in files:
-      if file.endswith('.pyc'):
-         file_full_path = os.path.join(root, file)
-         os.remove(file_full_path)
-
+## remove Abjad *.pyc files
+_remove_abjad_pyc_files( )
