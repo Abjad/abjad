@@ -202,11 +202,9 @@ Abjad API
    tools/componenttools/get_duration_preprolated
    tools/componenttools/get_le_duration_prolated
    tools/componenttools/get_likely_multiplier
-   tools/componenttools/give_music_to
    tools/componenttools/slip
    tools/componenttools/untie_shallow
    tools/construct/engender
-   tools/construct/helpers
    tools/construct/leaves
    tools/construct/notes
    tools/construct/notes_curve
@@ -264,10 +262,6 @@ Abjad API
    tools/fuse/tie_chains_by_durations
    tools/fuse/tuplets_by_reference
    tools/harmonictools/add_artificial
-   tools/imports/get_functions_in_module
-   tools/imports/import_functions_in_package_to_namespace
-   tools/imports/package_import
-   tools/imports/remove_modules_from_namespace
    tools/interpolate/cosine
    tools/interpolate/divide
    tools/interpolate/exponential
@@ -285,7 +279,6 @@ Abjad API
    tools/iterate/chained_contents
    tools/iterate/get_nth
    tools/iterate/grace
-   tools/iterate/measure_get
    tools/iterate/measure_next
    tools/iterate/measure_prev
    tools/iterate/naive
@@ -393,12 +386,7 @@ Abjad API
    tools/metertools/is_token
    tools/metertools/make_best
    tools/metertools/make_binary
-   tools/parenttools/cut
    tools/parenttools/get_with_indices
-   tools/parenttools/give_position_to
-   tools/parenttools/ignore
-   tools/parenttools/restore
-   tools/parenttools/switch
    tools/partition/cyclic_fractured_by_counts
    tools/partition/cyclic_fractured_by_durations
    tools/partition/cyclic_unfractured_by_counts
@@ -458,7 +446,6 @@ Abjad API
    tools/scoretools/donate
    tools/scoretools/find
    tools/scoretools/make_piano_staff
-   tools/scoretools/transfer_all_attributes
    tools/spacing/get_global
    tools/spannertools/find_component_at_score_offset
    tools/spannertools/find_index_at_score_offset
@@ -471,11 +458,7 @@ Abjad API
    tools/spannertools/get_dominant_between
    tools/spannertools/get_dominant_slice
    tools/spannertools/give_attached_to_children
-   tools/spannertools/give_dominant_to
-   tools/spannertools/withdraw_from_attached
-   tools/spannertools/withdraw_from_contained
    tools/spannertools/withdraw_from_covered
-   tools/spannertools/withdraw_from_crossing
    tools/split/fractured_at_duration
    tools/split/fractured_at_index
    tools/split/unfractured_at_duration

@@ -2,6 +2,7 @@ from abjad.cfg.cfg import ABJADPATH
 from _get_module_members import _get_module_members
 import os
 
+
 def make_sphinx_module_listing(package_path, file):
    source_full_path = os.path.join(
       ABJADPATH.rstrip('/abjad'), package_path, file)
@@ -70,11 +71,15 @@ def _get_title_type_members(source_full_path):
    ## module is either in one of the tools packages
    if parts.startswith('abjad.tools.'):
       page_title = parts[12:]
-      print 'PAGE TITLE is %s' % page_title
+      #print 'PAGE TITLE is %s' % page_title
       auto_type = 'autofunction'
       functions = _get_module_members(source_full_path, 'def')
       public_functions = [x for x in functions if not x.startswith('_')]
       members = public_functions
+      ## check if file defines only private _measure_get( ), for example
+      if not members:
+         print 'NOT rendering %s ...' % page_title
+         page_title = None
 
    ## or is the exceptions module
    elif 'exceptions' in source_full_path:
