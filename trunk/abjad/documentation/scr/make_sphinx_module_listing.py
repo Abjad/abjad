@@ -13,6 +13,13 @@ def make_sphinx_module_listing(package_path, file):
 
    page_title, auto_type, members = _get_title_type_members(source_full_path)
 
+#   print 'FOO!'
+#   print page_title
+#   print auto_type
+#   print members
+#   print 'BAR!'
+#   raise Exception
+
    if page_title is None:
       return None
 
@@ -43,8 +50,10 @@ def make_sphinx_module_listing(package_path, file):
 
       ## .. autoexception:: abjad.MeasureError
       elif auto_type == 'autoexception':
-         result += '.. %s:: abjad.%s\n' % (auto_type, page_title)
+         #result += '.. %s:: abjad.%s\n' % (auto_type, page_title)
+         result += '.. %s:: abjad.%s\n' % (auto_type, member)
          result = _append_class_options(result)
+         result += '\n'
 
       ## shouldn't be anything else
       else:
