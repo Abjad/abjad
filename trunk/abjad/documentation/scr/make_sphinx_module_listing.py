@@ -18,8 +18,11 @@ def make_sphinx_module_listing(package_path, file):
 #   print auto_type
 #   print members
 #   print 'BAR!'
-#   raise Exception
+#   print ''
 
+   ## if you want to generate NO api entry for a class of function,
+   ## then return page_title as None;
+   ## yes, this is hackish, but it works at least for now.
    if page_title is None:
       return None
 

@@ -18,12 +18,6 @@ Abjad API
    beam/complex/durated/spanner
    beam/complex/measured/format
    beam/complex/measured/spanner
-   book/parser/abjadhtmltag
-   book/parser/abjadlatextag
-   book/parser/abjadresttag
-   book/parser/abjadtag
-   book/parser/codeblock
-   book/parser/tagparser
    bracket/format
    bracket/spanner
    brackets/interface
