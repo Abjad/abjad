@@ -1,4 +1,4 @@
-from abjad.book.parser.codeblock import CodeBlock
+from abjad.book.parser.codeblock import _CodeBlock
 from abjad.book.parser.tagparser import _TagParser
 import os
 import shutil
@@ -65,7 +65,7 @@ class _AbjadTag(_TagParser):
 
 
    def _get_next_code_block(self, input):
-      result = CodeBlock( )
+      result = _CodeBlock( )
       result.type = None
       in_block = False
       for line in input[:]:

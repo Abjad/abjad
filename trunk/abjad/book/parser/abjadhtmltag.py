@@ -1,6 +1,6 @@
 from abjad.book.parser.abjadtag import _AbjadTag
 
-class AbjadHTMLTag(_AbjadTag):
+class _AbjadHTMLTag(_AbjadTag):
    def __init__(self, lines, skip_rendering):
       _AbjadTag.__init__(self, lines, skip_rendering)
       self._target_open_tag = '<pre class="abjad">\n'

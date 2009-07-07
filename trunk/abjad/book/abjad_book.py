@@ -1,6 +1,6 @@
-from abjad.book.parser.abjadhtmltag import AbjadHTMLTag
-from abjad.book.parser.abjadlatextag import AbjadLatexTag
-from abjad.book.parser.abjadresttag import AbjadReSTTag
+from abjad.book.parser.abjadhtmltag import _AbjadHTMLTag
+from abjad.book.parser.abjadlatextag import _AbjadLatexTag
+from abjad.book.parser.abjadresttag import _AbjadReSTTag
 import getopt
 import sys
 import os
@@ -105,11 +105,11 @@ def _abjad_book( ):
 
    ## create Abjad tag parser type based on file extension
    if '.htm' in fn:
-      a = AbjadHTMLTag(lines, skip_rendering)
+      a = _AbjadHTMLTag(lines, skip_rendering)
    elif '.tex' in fn:
-      a = AbjadLatexTag(lines, skip_rendering)
+      a = _AbjadLatexTag(lines, skip_rendering)
    elif '.rst' in fn:
-      a = AbjadReSTTag(lines, skip_rendering)
+      a = _AbjadReSTTag(lines, skip_rendering)
 
    ## open and write to output file
    file = open(out_fn, 'w')

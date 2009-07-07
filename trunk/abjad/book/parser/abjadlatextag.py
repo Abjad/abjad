@@ -1,6 +1,6 @@
 from abjad.book.parser.abjadtag import _AbjadTag
 
-class AbjadLatexTag(_AbjadTag):
+class _AbjadLatexTag(_AbjadTag):
    def __init__(self, lines, skip_rendering):
       _AbjadTag.__init__(self, lines, skip_rendering)
 

@@ -1,7 +1,7 @@
 import os
 import re
 
-class CodeBlock(object):
+class _CodeBlock(object):
    '''Class that handles code-block processing for abjad-book.'''
 
    def __init__(self):

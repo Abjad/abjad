@@ -1,6 +1,6 @@
 from abjad.book.parser.abjadtag import _AbjadTag
 
-class AbjadReSTTag(_AbjadTag):
+class _AbjadReSTTag(_AbjadTag):
    def __init__(self, lines, skip_rendering):
       _AbjadTag.__init__(self, lines, skip_rendering)
       self._target_open_tag = '::\n\n'
