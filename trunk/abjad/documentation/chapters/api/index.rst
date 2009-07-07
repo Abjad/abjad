@@ -157,6 +157,7 @@ Abjad API
    spanner/positionalhandler
    spanner/receptor
    spanner/spanner
+   staff/invisiblestaff
    staff/rhythmicsketchstaff
    staff/rhythmicstaff
    staff/staff
