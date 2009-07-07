@@ -2,9 +2,9 @@ from abjad.rational import Rational
 from abjad.rest import Rest
 from abjad.note import Note
 from abjad.tools import durtools
-from abjad.tools.construct.helpers import _construct_tied_note
-from abjad.tools.construct.helpers import  _construct_tied_rest
-from abjad.tools.construct.helpers import  _construct_tied_leaf
+from abjad.tools.construct._construct_tied_note import _construct_tied_note
+from abjad.tools.construct._construct_tied_rest import  _construct_tied_rest
+from abjad.tools.construct._construct_tied_leaf import  _construct_tied_leaf
 
 
 def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
@@ -18,10 +18,10 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
    Useful for percussion music where the duration of the attack is 
    negligible and you don't want tied notes.
 
-   * *pitch* can be any `pitch token`.
-   * *total_duration* is the duration resulting from the sum of the \
+   * `pitch` can be any *pitch token*.
+   * `total_duration` is the duration resulting from the sum of the \
       durations of the objects returned.
-   * *max_note_duration* is the maximum duration that the note returned \
+   * `max_note_duration` is the maximum duration that the note returned \
       will have.
 
 

@@ -1,5 +1,5 @@
 from abjad.tools import durtools
-from abjad.tools.construct.helpers import _construct_tied_rest
+from abjad.tools.construct._construct_tied_rest import _construct_tied_rest
 
 
 def rests(durations, direction='big-endian', tied=False):

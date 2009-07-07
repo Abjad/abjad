@@ -3,7 +3,8 @@ from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from abjad.tools.construct.helpers import _construct_unprolated_notes
+from abjad.tools.construct._construct_unprolated_notes \
+   import _construct_unprolated_notes
 from abjad.tuplet import FixedMultiplierTuplet
 import operator
 import math

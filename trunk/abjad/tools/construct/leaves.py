@@ -4,9 +4,9 @@ from abjad.tools import durtools
 from abjad.tools import listtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from abjad.tools.construct.helpers import _construct_tied_chord
-from abjad.tools.construct.helpers import _construct_tied_note
-from abjad.tools.construct.helpers import _construct_tied_rest
+from abjad.tools.construct._construct_tied_chord import _construct_tied_chord
+from abjad.tools.construct._construct_tied_note import _construct_tied_note
+from abjad.tools.construct._construct_tied_rest import _construct_tied_rest
 from abjad.tuplet import FixedMultiplierTuplet
 
 
@@ -31,23 +31,18 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
       Will create a Note with pitch 12, a Chord with pitches (1,2,3), a
       Rest and another Note with pitch 12.
 
-      Parameters:
 
-      `pitches`
-         a single pitch or a list/tuple of pitches. If the list is
+      * `pitches` is a single pitch or a list/tuple of pitches. If the list is
          smaller than that of the durations, the pitches are cycled through.
 
-      `durations`
-         a sinlge duration or a list of durations. The durations
+      * `durations` is a sinlge duration or a list of durations. The durations
          need not be of form m / 2**n and may be any rational value.
 
-      `direction`
-         may be 'big-endian' or 'little-endian'.
+      * `direction` may be 'big-endian' or 'little-endian'.
          'big-endian' returns list of notes of decreasing duration.
          'little-endian' returns list of notes of increasing duration.
 
-      `tied_rests`
-            Set to True to return Tied rests. False otherwise.
+      * `tied_rests`: Set to True to return Tied rests. False otherwise.
    '''
 
    def _make_leaf_on_pitch(pch, ds, direction):
