@@ -1,5 +1,7 @@
 def thread(expr, klass, thread_signature):
-   '''Iterates all instances of class `klass` that have the given 
+   r'''.. versionadded:: 1.1.1
+
+   Iterates all instances of class `klass` that have the given 
    `thread_signature`.
 
    Returns a generator.
