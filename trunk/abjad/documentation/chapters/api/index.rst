@@ -206,9 +206,9 @@ Abjad API
    tools/componenttools/untie_shallow
    tools/construct/engender
    tools/construct/leaves
+   tools/construct/note_train
    tools/construct/notes
    tools/construct/notes_curve
-   tools/construct/notes_train
    tools/construct/percussion_note
    tools/construct/rests
    tools/construct/run
@@ -227,7 +227,7 @@ Abjad API
    tools/divide/leaf
    tools/divide/pair
    tools/divide/tie_chain
-   tools/durtools/aggomerate_by_prolation
+   tools/durtools/agglomerate_by_prolation
    tools/durtools/denominator_to_multiplier
    tools/durtools/group_prolated
    tools/durtools/group_seconds
@@ -439,7 +439,7 @@ Abjad API
    tools/pitchtools/pitch_number_adjustment_to_octave
    tools/pitchtools/pitch_number_to_octave
    tools/pitchtools/registrate
-   tools/pitchtools/send_pitch_to_octave
+   tools/pitchtools/send_pitch_number_to_octave
    tools/pitchtools/staff_space_transpose
    tools/pitchtools/suggest_clef
    tools/scoretools/bequeath
