@@ -2,8 +2,7 @@
 
 import os
 from abjad.cfg.cfg import ABJADPATH
-## TODO: Rename abjad_version.py to _write_abjad_versionfile.py
-from abjad.cfg.abjad_version import _write_abjad_versionfile
+from abjad.cfg._write_abjad_versionfile import _write_abjad_versionfile
 from abjad.cfg._remove_abjad_pyc_files import _remove_abjad_pyc_files
 
 

@@ -1,4 +1,4 @@
-from abjad.cfg.abjad_version import _get_abjad_version
+from abjad.cfg._get_abjad_version import _get_abjad_version
 import time
 
 

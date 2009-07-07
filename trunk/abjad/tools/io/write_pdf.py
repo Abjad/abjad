@@ -1,5 +1,5 @@
 from abjad.cfg.cfg import ABJADOUTPUT
-from abjad.cfg.log_render_lilypond_input import _log_render_lilypond_input
+from abjad.cfg._log_render_lilypond_input import _log_render_lilypond_input
 import os
 import shutil
 

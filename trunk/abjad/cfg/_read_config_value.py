@@ -1,4 +1,4 @@
-from abjad.cfg.read_config_file import _read_config_file
+from abjad.cfg._read_config_file import _read_config_file
 
 
 def _read_config_value(key):

@@ -1,5 +1,5 @@
 from abjad.cfg.cfg import ABJADOUTPUT
-from abjad.cfg.get_last_output import _get_last_output
+from abjad.cfg._get_last_output import _get_last_output
 import os
 
 

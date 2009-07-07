@@ -1,6 +1,7 @@
 from abjad.cfg.cfg import ABJADCONFIG
-from abjad.cfg.write_config_file import _write_config_file
+from abjad.cfg._write_config_file import _write_config_file
 import os
+
 
 def _verify_config_file( ):
    try:

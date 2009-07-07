@@ -1,4 +1,4 @@
-from abjad.cfg.abjad_version import _get_abjad_version
+from abjad.cfg._get_abjad_version import _get_abjad_version
 
 
 def list_helpers(search_string = '', scope = 'both'):
@@ -28,7 +28,10 @@ def list_helpers(search_string = '', scope = 'both'):
 
    Abjad r1330 implements 14 private helpers containing the string 'are':
 
-      _is_tie_chain_in_same_parent, _link_new_leaf_to_parent.'''
+      _is_tie_chain_in_same_parent, _link_new_leaf_to_parent.
+
+   .. todo:: Currently broken. Decide whether to fix or remove.
+   '''
 
    import abjad
    helpers = [x for x in dir(abjad) if x.islower( )]

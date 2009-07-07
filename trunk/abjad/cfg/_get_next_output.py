@@ -1,5 +1,5 @@
-from abjad.cfg.get_last_output import _get_last_output
-from abjad.cfg.warn_almost_full import _warn_almost_full
+from abjad.cfg._get_last_output import _get_last_output
+from abjad.cfg._warn_almost_full import _warn_almost_full
 
 
 def _get_next_output( ):

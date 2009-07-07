@@ -1,5 +1,6 @@
 import os
 
+
 def _verify_output_directory(directory):
    if not os.path.isdir(directory):
       raw_input('Attention: "%s" does not exist in your system.\n\

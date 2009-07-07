@@ -1,4 +1,4 @@
-from abjad.cfg.lilypond_version import _get_lilypond_version
+from abjad.cfg._get_lilypond_version import _get_lilypond_version
 
 
 def _write_lilypond_version(outfile):

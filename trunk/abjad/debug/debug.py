@@ -1,5 +1,5 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.cfg.read_config_value import _read_config_value
+from abjad.cfg._read_config_value import _read_config_value
 from abjad.tools import check
 
 if _read_config_value('DEBUG').lower( ) == 'false':

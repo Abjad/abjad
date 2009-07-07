@@ -1,5 +1,5 @@
 from abjad.cfg.cfg import ABJADCONFIG
-from abjad.cfg.verify_config_file import _verify_config_file
+from abjad.cfg._verify_config_file import _verify_config_file
 
 
 def _read_config_file( ):

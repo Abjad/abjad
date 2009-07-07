@@ -1,12 +1,12 @@
 from abjad.cfg.cfg import ABJADOUTPUT
-from abjad.cfg.get_next_output import _get_next_output
-from abjad.cfg.open_file import _open_file
-from abjad.cfg.read_config_value import _read_config_value
-from abjad.cfg.run_lilypond import _run_lilypond
-from abjad.cfg.verify_output_directory import _verify_output_directory
-from abjad.cfg.wrap_format_in_score_block import _wrap_format_in_score_block
-from abjad.cfg.write_preamble import _write_preamble
-from abjad.cfg.write_title import _write_title
+from abjad.cfg._get_next_output import _get_next_output
+from abjad.cfg._open_file import _open_file
+from abjad.cfg._read_config_value import _read_config_value
+from abjad.cfg._run_lilypond import _run_lilypond
+from abjad.cfg._verify_output_directory import _verify_output_directory
+from abjad.cfg._wrap_format_in_score_block import _wrap_format_in_score_block
+from abjad.cfg._write_preamble import _write_preamble
+from abjad.cfg._write_title import _write_title
 import os
 
 

@@ -1,7 +1,7 @@
-from abjad.cfg.wrap_format import _wrap_format
-from abjad.cfg.write_preamble import _write_preamble
+from abjad.cfg._wrap_format import _wrap_format
+from abjad.cfg._write_preamble import _write_preamble
 from abjad.cfg._write_footer import _write_footer
-from abjad.cfg.write_title import _write_title
+from abjad.cfg._write_title import _write_title
 import os
 
 

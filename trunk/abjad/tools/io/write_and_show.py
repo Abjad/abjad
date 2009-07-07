@@ -1,5 +1,5 @@
-from abjad.cfg.open_file import _open_file
-from abjad.cfg.read_config_value import _read_config_value
+from abjad.cfg._open_file import _open_file
+from abjad.cfg._read_config_value import _read_config_value
 from write_ly import write_ly
 from write_pdf import write_pdf
 from show import show
