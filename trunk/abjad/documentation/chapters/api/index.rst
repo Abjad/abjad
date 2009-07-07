@@ -284,6 +284,7 @@ Abjad API
    tools/iterate/measure_next
    tools/iterate/measure_prev
    tools/iterate/naive
+   tools/iterate/namesakes_from
    tools/iterate/thread
    tools/iterate/thread_from
    tools/iterate/tie_chains

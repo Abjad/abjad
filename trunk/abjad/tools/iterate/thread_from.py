@@ -2,16 +2,16 @@ from abjad.component.component import _Component
 from abjad.navigator.dfs import depth_first_search
 
 
-def thread_from(expr, klass = None):
+def thread_from(component, klass = None):
    r'''.. versionadded:: 1.1.1
 
-   Yield left-to-right components in the thread of `expr`
-   starting from `expr`.
+   Yield left-to-right components in the thread of `component`
+   starting from `component`.
 
-   When ``klass = None`` return all components in the thread of `expr`.
+   When ``klass = None`` return all components in the thread of `component`.
 
    When `klass` is set to some other Abjad class,
-   yield only `klass` instances in the thread of `expr`. ::
+   yield only `klass` instances in the thread of `component`. ::
 
       abjad> container = Container(Voice(construct.run(2)) * 2)
       abjad> container.parallel = True
@@ -83,11 +83,11 @@ def thread_from(expr, klass = None):
    if klass is None:
       klass = _Component
 
-   ## save thread signature of input expression
-   expr_thread_signature = expr.thread.signature
+   ## save thread signature of input component
+   component_thread_signature = component.thread.signature
 
-   ## iterate expr depth-first allowing to crawl UP into score
-   for x in depth_first_search(expr, capped = False):
+   ## iterate component depth-first allowing to crawl UP into score
+   for x in depth_first_search(component, capped = False):
       if isinstance(x, klass):
-         if x.thread.signature == expr_thread_signature:
+         if x.thread.signature == component_thread_signature:
             yield x
