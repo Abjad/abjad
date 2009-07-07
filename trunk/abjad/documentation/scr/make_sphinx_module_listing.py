@@ -19,6 +19,9 @@ def make_sphinx_module_listing(package_path, file):
 #   print members
 #   print 'BAR!'
 #   print ''
+#   if members and 'Crescendo' in members:
+#   #if 'hairpin' in page_title:
+#      raise Exception
 
    ## if you want to generate NO api entry for a class of function,
    ## then return page_title as None;
@@ -37,9 +40,14 @@ def make_sphinx_module_listing(package_path, file):
 
    for member in members:
 
-      ## .. autofunction:: listtools.reabjad.tools.peat_to_length
-      if auto_type == 'autofunction':
+      ## .. autofunction:: listtools.abjad.tools.repeat_to_length
+      if auto_type == 'autofunction' and 'tools' in module:
          result += '.. %s:: abjad.tools.%s\n' % (auto_type, page_title)
+
+      ## .. autofunction:: abjad.hairpin.crescendo.Crescendo
+      ## note that Crescendo( ) is a facade function rather than a class
+      elif auto_type == 'autofunction' and 'tools' not in module:
+         result += '.. autofunction:: %s.%s\n' % (module, page_title)
 
       ## public .. autoclass:: abjad.Accidental
       elif auto_type == 'autoclass' and not page_title.startswith('_'):
@@ -108,10 +116,21 @@ def _get_title_type_members(source_full_path):
       page_title = members[0]
       auto_type = 'autoclass'
 
+   ## or contains public functions, like dfs( ), outside of tools packages
+   elif _get_module_members(source_full_path, 'def'):
+      members = _get_module_members(source_full_path, 'def')
+      members = [x for x in members if not x.startswith('_')]
+      if 1 < len(members):
+         raise ValueError('%s defines more than 1 public function!' %
+            source_full_path)
+      page_title = members[0] # FIXME!
+      auto_type = 'autofunction'
+
    ## or else contains only non-documenting helper functions
    else:
-      print 'NOTE: nothing to document in %s' % source_full_path
-      page_title, auto_type, members = None, None, None
+      raise ValueError('Unkonwn type of module content.')
+      #print 'NOTE: nothing to document in %s' % source_full_path
+      #page_title, auto_type, members = None, None, None
 
    return page_title, auto_type, members
 

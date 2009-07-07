@@ -1,4 +1,4 @@
-crescendo
+Crescendo
 =========
 
 .. automodule:: abjad.hairpin.crescendo

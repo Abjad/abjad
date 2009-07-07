@@ -71,6 +71,8 @@ Abjad API
    grace/grace
    grace/interface
    grace/slots
+   hairpin/crescendo
+   hairpin/decrescendo
    hairpin/format
    hairpin/spanner
    harmonic/interface
@@ -106,6 +108,7 @@ Abjad API
    meter/meter
    metricgrid/format
    metricgrid/spanner
+   navigator/dfs
    navigator/navigator
    note/initializer
    note/note
@@ -154,8 +157,12 @@ Abjad API
    spanner/positionalhandler
    spanner/receptor
    spanner/spanner
+   staff/rhythmicsketchstaff
+   staff/rhythmicstaff
    staff/staff
    staff/interface/interface
+   staffgroup/grandstaff
+   staffgroup/pianostaff
    staffgroup/staffgroup
    stem/interface
    tempo/format

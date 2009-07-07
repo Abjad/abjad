@@ -1,4 +1,4 @@
-grandstaff
+GrandStaff
 ==========
 
 .. automodule:: abjad.staffgroup.grandstaff

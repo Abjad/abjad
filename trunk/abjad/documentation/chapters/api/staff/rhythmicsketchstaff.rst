@@ -1,4 +1,4 @@
-rhythmicsketchstaff
+RhythmicSketchStaff
 ===================
 
 .. automodule:: abjad.staff.rhythmicsketchstaff

@@ -5,7 +5,7 @@ def _write_file_interactive(content, file, interactive):
    else:
       input = 'Y'
    if input.lower( ) in ('y', ''):
-      print 'Writing file %s ...' % file
+      #print 'Writing file %s ...' % file
       listing_file = open(file, 'w')
       listing_file.write(content)
       listing_file.close( )

@@ -1,4 +1,4 @@
-rhythmicstaff
+RhythmicStaff
 =============
 
 .. automodule:: abjad.staff.rhythmicstaff

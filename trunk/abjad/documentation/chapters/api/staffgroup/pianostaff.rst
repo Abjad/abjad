@@ -1,4 +1,4 @@
-pianostaff
+PianoStaff
 ==========
 
 .. automodule:: abjad.staffgroup.pianostaff

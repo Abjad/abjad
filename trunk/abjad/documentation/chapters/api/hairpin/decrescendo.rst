@@ -1,4 +1,4 @@
-decrescendo
+Decrescendo
 ===========
 
 .. automodule:: abjad.hairpin.decrescendo
