@@ -6,7 +6,7 @@ import os
 
 
 def _import_functions_in_package_to_namespace(
-   package, namespace, skip_dirs=['test']):
+   package, namespace, skip_dirs=['test', '.svn']):
    '''Import all the functions defined in the modules of the package given 
       as a string path into the given namespace.
 
