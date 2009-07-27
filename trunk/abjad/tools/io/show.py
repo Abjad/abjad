@@ -1,7 +1,8 @@
-from abjad.cfg.cfg import ABJADOUTPUT
+#from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg._log_render_lilypond_input import _log_render_lilypond_input
 from abjad.cfg._open_file import _open_file
-from abjad.cfg._read_config_value import _read_config_value
+#from abjad.cfg._read_config_value import _read_config_value
+from abjad.cfg._read_config_file import _read_config_file
 import os
 
 
@@ -42,12 +43,17 @@ def show(expr, template = None, title = None, footer = None, lilytime = 10):
 
       abjad> show(t, lilytime = 60)
 
-   .. note:: Abjad writes to the ``~/.abjad/output`` directory by default. \
-      If the directory does not exist, Abjad writes to ``$ABJADOUTPUT``.
+   .. note:: 
+      By default, *Abjad* writes *LilyPond* input files
+      to the ``~/.abjad/output`` directory. You may change this by
+      setting the ``abjadoutput`` variable in the ``config.py`` file.
    '''
 
    name = _log_render_lilypond_input(expr, template = template, 
       title = title, footer = footer, lilytime = lilytime)
-   pdfviewer = _read_config_value('pdfviewer')
+   #pdfviewer = _read_config_value('pdfviewer')
+   config = _read_config_file( )
+   pdfviewer = config['pdfviewer']
+   ABJADOUTPUT = config['abjadoutput']
    name = os.path.join(ABJADOUTPUT, name)
    _open_file('%s.pdf' % name[:-3], pdfviewer)

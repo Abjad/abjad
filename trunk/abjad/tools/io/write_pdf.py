@@ -1,4 +1,5 @@
-from abjad.cfg.cfg import ABJADOUTPUT
+#from abjad.cfg.cfg import ABJADOUTPUT
+from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._log_render_lilypond_input import _log_render_lilypond_input
 import os
 import shutil
@@ -26,6 +27,7 @@ def write_pdf(expr, file_name, template = None,
 
    ## copy PDF file to file_name
    pdf_name = name[:-3] + '.pdf'
+   ABJADOUTPUT = _read_config_file( )['abjadoutput']
    full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
    shutil.move(full_path_pdf_name, file_name)
 

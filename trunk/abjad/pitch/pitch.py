@@ -1,12 +1,15 @@
-from abjad.cfg.cfg import accidental_spelling
+#from abjad.cfg.cfg import accidental_spelling
+from abjad.cfg._read_config_file import _read_config_file
 from abjad.core.abjadcore import _Abjad
 from abjad.accidental import Accidental
 
+_accidental_spelling = _read_config_file( )['accidental_spelling']
 
 class Pitch(_Abjad):
    '''Musical pitch.'''
 
-   accidental_spelling = accidental_spelling
+   #accidental_spelling = accidental_spelling
+   accidental_spelling = _accidental_spelling
 
    def __init__(self, *args):
       from abjad.tools import pitchtools

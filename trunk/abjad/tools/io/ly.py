@@ -1,4 +1,5 @@
-from abjad.cfg.cfg import ABJADOUTPUT
+#from abjad.cfg.cfg import ABJADOUTPUT
+from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._get_last_output import _get_last_output
 import os
 
@@ -33,6 +34,7 @@ def ly(target = -1):
 
       Exit ``vi`` in the usual way with ``:q`` or equivalent.'''
 
+   ABJADOUTPUT = _read_config_file( )['abjadoutput']
    if isinstance(target, int) and target < 0:
       last_lilypond = _get_last_output( )
       if last_lilypond:

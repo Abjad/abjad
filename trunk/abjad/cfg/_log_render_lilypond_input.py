@@ -1,4 +1,5 @@
-from abjad.cfg.cfg import ABJADOUTPUT
+#from abjad.cfg.cfg import ABJADOUTPUT
+from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._get_next_output import _get_next_output
 from abjad.cfg._run_lilypond import _run_lilypond
 from abjad.cfg._verify_output_directory import _verify_output_directory
@@ -13,11 +14,12 @@ import time
 def _log_render_lilypond_input(expr, template = None, 
    title = None, footer = None, lilytime = 10):
    '''Private function that stores both .ly and .pdf files in the
-   ABJADOUTPUT directory. Returns the name of the newly created file.
+   ``abjadoutput`` directory. Returns the name of the newly created file.
    '''
 
    current_directory = os.path.abspath('.')
    ## log score
+   ABJADOUTPUT = _read_config_file( )['abjadoutput']
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
    name = _get_next_output( )

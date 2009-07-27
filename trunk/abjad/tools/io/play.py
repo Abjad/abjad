@@ -1,7 +1,8 @@
-from abjad.cfg.cfg import ABJADOUTPUT
+#from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg._get_next_output import _get_next_output
 from abjad.cfg._open_file import _open_file
-from abjad.cfg._read_config_value import _read_config_value
+#from abjad.cfg._read_config_value import _read_config_value
+from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._run_lilypond import _run_lilypond
 from abjad.cfg._verify_output_directory import _verify_output_directory
 from abjad.cfg._wrap_format_in_score_block import _wrap_format_in_score_block
@@ -26,6 +27,7 @@ def play(expr):
       *  *Abjad* outputs MIDI files of the format \
          ``filename.midi`` under other operating systems.'''
 
+   ABJADOUTPUT = _read_config_file( )['abjadoutput']
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
    name = _get_next_output( )
@@ -38,5 +40,6 @@ def play(expr):
       extension = 'mid'
    else:
       extension = 'midi'
-   midiplayer = _read_config_value('midiplayer')
+   #midiplayer = _read_config_value('midiplayer')
+   midiplayer = _read_config_file( )['midiplayer']
    _open_file('%s.%s' % (name[:-3], extension), midiplayer)

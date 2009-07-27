@@ -1,8 +1,10 @@
-from abjad.cfg.cfg import ABJADTEMPLATES
+#from abjad.cfg.cfg import ABJADTEMPLATES
+from abjad.cfg._read_config_file import _read_config_file
 import os
 
 
 def _write_layout_template(outfile, template):
+   ABJADTEMPLATES = _read_config_file( )['abjadtemplates']
    if template:
       names = [template, template + '.ly']
       if ABJADTEMPLATES is not None:

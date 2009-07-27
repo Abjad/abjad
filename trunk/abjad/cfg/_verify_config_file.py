@@ -10,6 +10,7 @@ def _verify_config_file( ):
    except IOError:
       raw_input('Attention: "%s" does not exist in your system.\n\
       Abjad will now create it to store all configuration settings. \n\
+      You may want to edit this file to configure Abjad to your liking.\n\
       Press any key to continue.' % ABJADCONFIG)
 
       abjad_config_dir = os.path.dirname(ABJADCONFIG) 

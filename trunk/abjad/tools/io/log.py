@@ -1,4 +1,5 @@
-from abjad.cfg.cfg import ABJADOUTPUT
+#from abjad.cfg.cfg import ABJADOUTPUT
+from abjad.cfg._read_config_file import _read_config_file
 import os
 
 
@@ -6,7 +7,8 @@ import os
 
 def log( ):
    '''Call ``log( )`` to ``vi`` the last round of *LilyPond* output \
-      redirected to ``$ABJADOUTPUT/lily.log``.
+      redirected to the ``lily.log`` file in the ``abjadoutput`` 
+      configuration variable.
       
       ::
 
@@ -30,4 +32,5 @@ def log( ):
       Exit ``vi`` in the usual way with ``:q`` or equivalent to \
       return to the *Abjad* interpreter.'''
 
+   ABJADOUTPUT = _read_config_file( )['abjadoutput']
    os.system('vi %s' % os.path.join(ABJADOUTPUT, 'lily.log'))
