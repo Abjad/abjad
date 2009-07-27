@@ -49,6 +49,8 @@ def make_api_tocs( ):
          mod = os.path.join(abjad_subdir, file.split('.')[0])
          modules_visited.append(mod)
 
+   print modules_visited
+   raise Exception
    toc = make_sphinx_toc(modules_visited)
    #print toc
    index = os.path.join(api_doc_path, 'index.rst')

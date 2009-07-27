@@ -2,7 +2,7 @@ from abjad.cfg.cfg import ABJADPATH
 import os
 
 
-def _get_all_abjad_names( ):
+def _get_all_abjad_modules( ):
    '''Return a list of all Abjad modules.
    Exclude initializers and other modules beginning in double underscore.
    '''

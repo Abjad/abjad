@@ -1,5 +1,6 @@
-
 def _get_module_members(module_path, klass='class'):
+   '''Get members in module.'''
+
    f = open(module_path, 'r')
    lines = f.readlines( )
    f.close( )
@@ -9,4 +10,3 @@ def _get_module_members(module_path, klass='class'):
          attr_name = line.split(' ')[1].split('(')[0]
          result.append(attr_name)
    return result
-
