@@ -50,6 +50,7 @@ Fundamentals
    chapters/fundamentals/duration/index
    chapters/fundamentals/pitch/index
    chapters/fundamentals/note_basics/index
+   chapters/fundamentals/parentage/index
    chapters/fundamentals/grobhandlers/index
    chapters/fundamentals/threads/index
 
