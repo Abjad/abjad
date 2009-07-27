@@ -1,15 +1,15 @@
 from abjad.core.interface import _Interface
-from abjad.comments.comments import UserComments
+from abjad.comments.comments import UserCommentsInterface
 
 
-class UserDirectivesInterface(_Interface, UserComments):
+class UserDirectivesInterface(_Interface, UserCommentsInterface):
    '''Interface to handle literal *LilyPond* directives that \
    are not yet modelled explicitly in *Abjad*.'''
 
    def __init__(self, component):
       '''Init as a subclass of the user comments interface.'''
       _Interface.__init__(self, component)
-      UserComments.__init__(self)
+      UserCommentsInterface.__init__(self)
       self._left = [ ]
 
    ## PUBLIC ATTRIBUTES ##

@@ -1,7 +1,7 @@
 from abjad.core.abjadcore import _Abjad
 
 
-class UserComments(_Abjad):
+class UserCommentsInterface(_Abjad):
    
    def __init__(self):
       self._after = [ ]

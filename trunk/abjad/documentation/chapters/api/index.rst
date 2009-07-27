@@ -59,7 +59,6 @@ Classes
    text/spanner
    tie/spanner
    trill/spanner
-   comments/comments
    voice/voice
    debug/debug
 
@@ -125,6 +124,7 @@ Interfaces
    trill/interface
    tuplet/bracket
    tuplet/number
+   comments/comments
    directives/interface
    voice/interface/interface
 

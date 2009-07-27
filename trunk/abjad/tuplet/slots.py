@@ -54,7 +54,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
             abjad> import pprint
             abjad> pprint.pprint(t.formatter.slots.slot_1)
-            ([(<UserComments>, 'before'), []],
+            ([(<UserCommentsInterface>, 'before'), []],
              [(<UserDirectivesInterface>, 'before'), []],
              [(<InterfaceAggregator>, 'overrides'), []])
 
@@ -78,7 +78,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
             abjad> import pprint
             abjad> pprint.pprint(t.formatter.slots.slot_1)
-            ([(<UserComments>, 'before'), ['% This is a tuplet']],
+            ([(<UserCommentsInterface>, 'before'), ['% This is a tuplet']],
              [(<UserDirectivesInterface>, 'before'), []],
              [(<InterfaceAggregator>, 'overrides'),
               ["\\override Dots #'color = #red", "\\override NoteHead #'color = #red"]])
