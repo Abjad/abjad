@@ -37,7 +37,6 @@ Classes
    notehead/notehead
    octavation/spanner
    override/spanner
-   parentage/parentage
    pianopedal/spanner
    pitch/pitch
    rational/rational
@@ -108,6 +107,7 @@ Interfaces
    numbering/interface
    offset/interface
    offset/prolated/interface
+   parentage/parentage
    pianopedal/interface
    rest/interface
    score/interface/interface

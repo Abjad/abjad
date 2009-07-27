@@ -19,7 +19,7 @@ from abjad.navigator.navigator import _Navigator
 from abjad.notecolumn.interface import NoteColumnInterface
 from abjad.numbering.interface import NumberingInterface
 from abjad.offset.interface import OffsetInterface
-from abjad.parentage.parentage import Parentage
+from abjad.parentage.parentage import ParentageInterface
 from abjad.pianopedal.interface import PianoPedalInterface
 from abjad.rational import Rational
 from abjad.receipt.component import _ComponentReceipt
@@ -79,7 +79,7 @@ class _Component(_Abjad):
       self._navigator = _Navigator(self)
       self._notecolumn = NoteColumnInterface(self)
       self._notehead = NoteHeadInterface(self)
-      self._parentage = Parentage(self)
+      self._parentage = ParentageInterface(self)
       self._pianopedal = PianoPedalInterface(self)
       self._rest = RestInterface(self)
       self._score = ScoreInterface(self)
@@ -286,7 +286,7 @@ class _Component(_Abjad):
    @property
    def parentage(self):
       '''Read-only reference to
-      :class:`~abjad.parentage.parentage.Parentage`.'''
+      :class:`~abjad.parentage.parentage.ParentageInterface`.'''
       return self._parentage
 
    @property
