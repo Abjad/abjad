@@ -54,7 +54,8 @@ class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
             return spanner.shape
          else:
             raise Exception
-      prev = self.client.prev
+      #prev = self.client.prev
+      prev = self._client.prev
       if prev is not None:
          return prev.dynamics.effective
       return None

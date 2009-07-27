@@ -24,7 +24,8 @@ class _DynamicMeasureMeterInterface(_MeterInterface):
    @property
    def effective(self):
       '''Return reference to meter effectively governing client.'''
-      client = self.client
+      #client = self.client
+      client = self._client
       if client.denominator:
          return Meter(
             durtools.in_terms_of(client.duration.contents, client.denominator))

@@ -17,7 +17,8 @@ class _Parentage(_Interface):
 
    def _cut(self):
       '''Client and parent cut completely.'''
-      client, parent = self.client, self.parent
+      #client, parent = self.client, self.parent
+      client, parent = self._client, self.parent
       if parent is not None:
          index = parent.index(client)
          parent._music.remove(client)
@@ -25,14 +26,16 @@ class _Parentage(_Interface):
 
    def _ignore(self):
       '''Client forgets parent (but parent remembers client).'''
-      self.client._update._markForUpdateToRoot( )
+      #self.client._update._markForUpdateToRoot( )
+      self._client._update._markForUpdateToRoot( )
       self.__parent = None
 
    def _switch(self, new_parent):
       '''Remove client from parent and give client to new_parent.'''
       self._cut( )
       self.__parent = new_parent
-      self.client._update._markForUpdateToRoot( )
+      #self.client._update._markForUpdateToRoot( )
+      self._client._update._markForUpdateToRoot( )
 
    ## PUBLIC ATTRIBUTES ##
 

@@ -28,7 +28,8 @@ class _NumberingInterface(_Observer):
    def _updateLeafNumber(self):
       '''Update (zero-indexed) number of any one leaf in score.'''
       from abjad.leaf.leaf import _Leaf
-      prevLeaf = self.client.prev
+      #prevLeaf = self.client.prev
+      prevLeaf = self._client.prev
       if prevLeaf:
          assert isinstance(prevLeaf, _Leaf)
          self._leaf = prevLeaf._numbering._leaf + 1

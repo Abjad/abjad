@@ -81,12 +81,14 @@ class _StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
       result = [ ]
       ## if client is a leaf
       if isinstance(self._client, _Leaf):
-         if self.change or (not self.client.prev and self.forced):
+         #if self.change or (not self.client.prev and self.forced):
+         if self.change or (not self._client.prev and self.forced):
             result.append(r'\change Staff = %s' % self.effective.name)
       ## if client is a measure
       else:
          try:
-            prev = iterate.measure_prev(self.client)
+            #prev = iterate.measure_prev(self.client)
+            prev = iterate.measure_prev(self._client)
          except:
             prev = None
          if self.change or (prev is None and self.forced):

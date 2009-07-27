@@ -58,7 +58,8 @@ class _NoteHeadFormatInterface(_FormatInterface):
    def before(self):
       from abjad.chord import Chord
       result = [ ]
-      client = self.notehead.client
+      #client = self.notehead.client
+      client = self.notehead._client
       if client and isinstance(client, Chord):
          result.extend(self._chordFormat)
       else:

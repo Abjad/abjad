@@ -36,7 +36,8 @@ class _MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    @property
    def _parentCanContribute(self):
       r'''True when any parent, other than self, can contribute LP \time.'''
-      for parent in self.client.parentage.parentage[1:]:
+      #for parent in self.client.parentage.parentage[1:]:
+      for parent in self._client.parentage.parentage[1:]:
          try:
             if parent.meter._selfCanContribute:
                return True
