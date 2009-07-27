@@ -9,13 +9,16 @@ class _BeamComplexMeasuredFormatInterface(_BeamComplexFormatInterface):
    def before(self, leaf):
       '''Spanner format contribution to output before leaf.'''
       from abjad.measure.measure import _Measure
+      from abjad.tools import parenttools
       result = [ ]
       spanner = self.spanner
       if leaf.beam.beamable:
          if spanner._isExteriorLeaf(leaf):
             left, right = self._getLeftRightForExteriorLeaf(leaf)
-         elif leaf.parentage.first(_Measure) is not None:
-            measure = leaf.parentage.first(_Measure)
+         #elif leaf.parentage.first(_Measure) is not None:
+         elif parenttools.get_first(leaf, _Measure) is not None:
+            #measure = leaf.parentage.first(_Measure)
+            measure = parenttools.get_first(leaf, _Measure)
             # leaf at beginning of measure
             if measure._isOneOfMyFirstLeaves(leaf):
                assert isinstance(spanner.span, int)

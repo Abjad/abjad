@@ -309,6 +309,7 @@ Abjad API
    tools/metertools/is_token
    tools/metertools/make_best
    tools/metertools/make_binary
+   tools/parenttools/get_first
    tools/parenttools/get_with_indices
    tools/partition/cyclic_fractured_by_counts
    tools/partition/cyclic_fractured_by_durations

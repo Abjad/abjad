@@ -121,10 +121,10 @@ class Parentage(_Interface):
          signature._root_str = component._ID
       return signature
 
-   ## PUBLIC METHODS ##
-
-   def first(self, klass):
-      '''Return first instance of klass in score tree above client.'''
-      for component in self.parentage[1:]:
-         if isinstance(component, klass):
-            return component
+#   ## PUBLIC METHODS ##
+#
+#   def first(self, klass):
+#      '''Return first instance of klass in score tree above client.'''
+#      for component in self.parentage[1:]:
+#         if isinstance(component, klass):
+#            return component

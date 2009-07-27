@@ -67,8 +67,10 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
    def _wrap_preceding_measure_barline_reverts(self):
       from abjad.measure.measure import _Measure
       from abjad.tools import iterate
+      from abjad.tools import parenttools
       leaf = self.formatter._client
-      containing_measure = leaf.parentage.first(_Measure)
+      #containing_measure = leaf.parentage.first(_Measure)
+      containing_measure = parenttools.get_first(leaf, _Measure)
       if containing_measure is None:
          return [('Special', 'reverts'), [ ]]
       if leaf is not containing_measure.leaves[0]:
