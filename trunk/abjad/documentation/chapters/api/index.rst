@@ -142,7 +142,6 @@ cfgtools
 .. toctree::
    :maxdepth: 1
 
-   tools/cfgtools/list_helpers
    tools/cfgtools/list_settings
 
 
