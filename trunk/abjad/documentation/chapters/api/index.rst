@@ -673,12 +673,3 @@ tuplettools
    tools/tuplettools/contents_scale
    tools/tuplettools/slip_trivial
    tools/tuplettools/subsume
-
-
-Exceptions
-----------
-
-.. toctree::
-   :maxdepth: 1
-
-   exceptions/exceptions

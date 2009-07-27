@@ -73,15 +73,15 @@ def make_sphinx_toc( ):
             result += '\n'
             last_tools_module = cur_tools_module
          result += '   %s\n' % doc_path
-   result += '\n\n'
-
-   result += 'Exceptions\n'
-   result += '-' * (len('Exceptions'))
-   result += '\n\n'
-   result += '.. toctree::\n'
-   result += '   :maxdepth: 1\n'
-   result += '\n'
-   result += '   exceptions/exceptions'
+#   result += '\n\n'
+#
+#   result += 'Exceptions\n'
+#   result += '-' * (len('Exceptions'))
+#   result += '\n\n'
+#   result += '.. toctree::\n'
+#   result += '   :maxdepth: 1\n'
+#   result += '\n'
+#   result += '   exceptions/exceptions'
 
    return result
 

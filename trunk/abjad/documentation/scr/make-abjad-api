@@ -20,7 +20,7 @@ def make_api_tocs( ):
    for current_root, dirs, files in os.walk(ABJADPATH):
       ## removed unwanted dirs and files.
       filtered_dirs = ['.svn', 'book', 'cfg', 'checks', 'demos', 
-         'documentation', 'scm', 'scr', 'test', ]
+         'documentation', 'exceptions', 'scm', 'scr', 'test', ]
       _filter_directories(dirs, filtered_dirs)
       _filter_files(files)
       dirs.sort( )
