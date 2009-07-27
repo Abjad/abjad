@@ -91,7 +91,7 @@ def _get_title_type_members(source_full_path):
    ## ends as 'abjad.tools.listtools.do_stuff'
    parts = '.'.join(parts)
    parts = parts[:-3]
-   print parts
+   #print parts
 
    ## module is either in one of the tools packages
    if parts.startswith('abjad.tools.'):

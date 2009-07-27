@@ -49,10 +49,11 @@ def make_api_tocs( ):
          mod = os.path.join(abjad_subdir, file.split('.')[0])
          modules_visited.append(mod)
 
-   print modules_visited
-   raise Exception
-   toc = make_sphinx_toc(modules_visited)
+   ## toc logic changed to divide into classes and functions
+   #toc = make_sphinx_toc(modules_visited)
+   toc = make_sphinx_toc( )
    #print toc
+
    index = os.path.join(api_doc_path, 'index.rst')
    _write_file_interactive(toc, index, interactive)
 
