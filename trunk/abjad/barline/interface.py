@@ -3,14 +3,14 @@ from abjad.core.interface import _Interface
 import types
 
 
-class _BarLineInterface(_Interface, _GrobHandler):
+class BarLineInterface(_Interface, _GrobHandler):
    '''Manage barlines.
 
       ::
 
          abjad> t = Note(0, (1, 4))
          abjad> t.barline
-         <_BarLineInterface>
+         <BarLineInterface>
 
       Override LilyPond ``BarLine`` grob.
 
@@ -35,7 +35,7 @@ class _BarLineInterface(_Interface, _GrobHandler):
       '''Read-only list of container-closing or after-leaf
       format contribution strings.
 
-      Derived from ``_BarLineInterface.kind``.
+      Derived from ``BarLineInterface.kind``.
 
          ::
 

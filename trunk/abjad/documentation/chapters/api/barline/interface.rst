@@ -1,9 +1,9 @@
-_BarLineInterface
-=================
+BarLineInterface
+================
 
 .. automodule:: abjad.barline.interface
 
-.. autoclass:: _BarLineInterface
+.. autoclass:: abjad.BarLineInterface
    :members:
    :undoc-members:
    :show-inheritance:

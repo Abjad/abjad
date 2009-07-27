@@ -1,7 +1,7 @@
 from abjad.accidental.interface import AccidentalInterface
-from abjad.articulations.interface import _ArticulationsInterface
-from abjad.barline.interface import _BarLineInterface
-from abjad.barnumber.interface import _BarNumberInterface
+from abjad.articulations.interface import ArticulationsInterface
+from abjad.barline.interface import BarLineInterface
+from abjad.barnumber.interface import BarNumberInterface
 from abjad.beam.interface import _BeamInterface
 from abjad.breaks.interface import _BreaksInterface
 from abjad.comments.comments import _UserComments
@@ -62,9 +62,9 @@ class _Component(_Abjad):
       from abjad.voice.interface.interface import _VoiceInterface
       self._interfaces = _InterfaceAggregator(self)
       self._accidental = AccidentalInterface(self)
-      self._articulations = _ArticulationsInterface(self)
-      self._barline = _BarLineInterface(self)
-      self._barnumber = _BarNumberInterface(self)
+      self._articulations = ArticulationsInterface(self)
+      self._barline = BarLineInterface(self)
+      self._barnumber = BarNumberInterface(self)
       self._beam = _BeamInterface(self)
       self._breaks = _BreaksInterface(self)
       self._comments = _UserComments( )
@@ -136,19 +136,19 @@ class _Component(_Abjad):
    @property
    def articulations(self):
       '''Read-only reference to
-      :class:`~abjad.articulations.interface._ArticulationsInterface`.'''
+      :class:`~abjad.articulations.interface.ArticulationsInterface`.'''
       return self._articulations
    
    @property
    def barline(self):
       '''Read-only reference to
-      :class:`~abjad.barline.interface._BarLineInterface`.'''
+      :class:`~abjad.barline.interface.BarLineInterface`.'''
       return self._barline
 
    @property
    def barnumber(self):
       '''Read-only reference to
-      :class:`~abjad.barnumber.interface._BarNumberInterface`.'''
+      :class:`~abjad.barnumber.interface.BarNumberInterface`.'''
       return self._barnumber
    
    @property

@@ -4,7 +4,7 @@ from abjad.core.interface import _Interface
 import types
 
 
-class _BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
+class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
    '''Manage bar number attributes.
 
       *  Handle *LilyPond* ``BarNumber`` grob.
@@ -14,7 +14,7 @@ class _BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
          abjad> t = RigidMeasure((2, 8), construct.scale(2))
          abjad> t.barnumber
-         <_BarNumberInterface>'''
+         <BarNumberInterface>'''
 
    def __init__(self, _client):
       '''Bind to client and set current bar number to 1.'''
@@ -54,7 +54,7 @@ class _BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
       r'''Read-only list of *LilyPond* context settings \
       picked up at format-time.
 
-      *  Derived from ``_BarNumberInterface.current``.
+      *  Derived from ``BarNumberInterface.current``.
 
       ::
 

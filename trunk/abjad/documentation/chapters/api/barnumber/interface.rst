@@ -1,9 +1,9 @@
-_BarNumberInterface
-===================
+BarNumberInterface
+==================
 
 .. automodule:: abjad.barnumber.interface
 
-.. autoclass:: _BarNumberInterface
+.. autoclass:: abjad.BarNumberInterface
    :members:
    :undoc-members:
    :show-inheritance:

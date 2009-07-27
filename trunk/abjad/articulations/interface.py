@@ -4,8 +4,8 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
-#class _ArticulationsInterface(_Interface, _FormatContributor):
-class _ArticulationsInterface(_Interface, _GrobHandler):
+#class ArticulationsInterface(_Interface, _FormatContributor):
+class ArticulationsInterface(_Interface, _GrobHandler):
    '''Handle the LilyPond Script grob.'''
 
    def __init__(self, client):
@@ -34,10 +34,10 @@ class _ArticulationsInterface(_Interface, _GrobHandler):
 
    def __repr__(self):
       if len(self._articulations):
-         return '<_ArticulationsInterface(%s)>' % ', '.join([str(x) 
+         return '<ArticulationsInterface(%s)>' % ', '.join([str(x) 
             for x in self._articulations])
       else:
-         return '<_ArticulationsInterface>'
+         return '<ArticulationsInterface>'
 
    def __setitem__(self, i, expr):
       if isinstance(i, int):
