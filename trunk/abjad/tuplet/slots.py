@@ -54,7 +54,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
             abjad> import pprint
             abjad> pprint.pprint(t.formatter.slots.slot_1)
-            ([(<_UserComments>, 'before'), []],
+            ([(<UserComments>, 'before'), []],
              [(<UserDirectivesInterface>, 'before'), []],
              [(<InterfaceAggregator>, 'overrides'), []])
 
@@ -78,7 +78,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
             abjad> import pprint
             abjad> pprint.pprint(t.formatter.slots.slot_1)
-            ([(<_UserComments>, 'before'), ['% This is a tuplet']],
+            ([(<UserComments>, 'before'), ['% This is a tuplet']],
              [(<UserDirectivesInterface>, 'before'), []],
              [(<InterfaceAggregator>, 'overrides'),
               ["\\override Dots #'color = #red", "\\override NoteHead #'color = #red"]])
@@ -130,7 +130,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          This is apparent in the contents of the slot 2::
 
             abjad> pprint.pprint(t.formatter.slots.slot_2)
-            ([(<_BracketsInterface>, 'open'), ['\\times 2/3 {']],)
+            ([(<BracketsInterface>, 'open'), ['\\times 2/3 {']],)
 
          Trivial tuplets carry a ratio of ``1:1``::
 
@@ -172,7 +172,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          ::
 
             abjad> pprint.pprint(t.formatter.slots.slot_2)
-            ([(<_BracketsInterface>, 'open'), ['\\times 1/1 {']],)
+            ([(<BracketsInterface>, 'open'), ['\\times 1/1 {']],)
 
          Note that ``color`` is a tuplet class attribute, \
          not a tuplet instance attribute.

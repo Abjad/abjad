@@ -1,9 +1,9 @@
-_MeterInterface
-===============
+MeterInterface
+==============
 
 .. automodule:: abjad.meter.interface
 
-.. autoclass:: _MeterInterface
+.. autoclass:: abjad.MeterInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 from abjad.tools import mathtools
 
 
-class _TremoloInterface(_Interface, _FormatContributor):
+class TremoloInterface(_Interface, _FormatContributor):
    '''Publish tremolo subdivision settings.
       Handle no LilyPond grob.'''
 

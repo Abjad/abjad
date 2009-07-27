@@ -16,7 +16,7 @@ from abjad.core.abjadcore import _Abjad
 ##       one note in the middle of a run one which the tempo is forced.
 
 ## NOTE: This solution is not evident here in _BacktrackingInterface.
-##       You have to look at, for example, _TempoInterface.effective
+##       You have to look at, for example, TempoInterface.effective
 ##       to see the logic that determines who wins the tournament.
 
 class _BacktrackingInterface(_Abjad):

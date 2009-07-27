@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-class _GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class GlissandoInterface(_Interface, _GrobHandler, _SpannerReceptor):
    '''Handle *LilyPond* ``Glissando`` grob.
       Receive *Abjad* ``Glissando`` spanner.'''
 

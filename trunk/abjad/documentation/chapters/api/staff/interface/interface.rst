@@ -1,9 +1,9 @@
-_StaffInterface
-===============
+StaffInterface
+==============
 
 .. automodule:: abjad.staff.interface.interface
 
-.. autoclass:: _StaffInterface
+.. autoclass:: abjad.StaffInterface
    :members:
    :undoc-members:
    :show-inheritance:

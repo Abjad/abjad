@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
-class _TupletBracketInterface(_Interface, _GrobHandler):
+class TupletBracketInterface(_Interface, _GrobHandler):
    r'''Handle LilyPond TupletBracket grob.
 
    ::

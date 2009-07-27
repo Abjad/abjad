@@ -1,11 +1,11 @@
 from abjad.component.component import _Component
 from abjad.core.interface import _Interface
 from abjad.grace.interface import GraceInterface
-from abjad.harmonic.interface import _HarmonicInterface
+from abjad.harmonic.interface import HarmonicInterface
 from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
 from abjad.leaf.spanner.aggregator import _LeafSpannerAggregator
-from abjad.markup.interface import _MarkupInterface
+from abjad.markup.interface import MarkupInterface
 from abjad.rational import Rational
 import operator
 
@@ -17,8 +17,8 @@ class _Leaf(_Component):
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
       self._grace = GraceInterface(self)
-      self._harmonic = _HarmonicInterface(self)
-      self._markup = _MarkupInterface(self)
+      self._harmonic = HarmonicInterface(self)
+      self._markup = MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
 
    ## OVERLOADS ##
@@ -71,14 +71,14 @@ class _Leaf(_Component):
    @property
    def harmonic(self):
       '''Read-only reference to
-      :class:`~abjad.harmonic.interface._HarmonicInterface`.
+      :class:`~abjad.harmonic.interface.HarmonicInterface`.
       '''
       return self._harmonic
 
    @property
    def markup(self):
       '''Read-only reference to
-      :class:`~abjad.markup.interface._MarkupInterface`.
+      :class:`~abjad.markup.interface.MarkupInterface`.
       '''
       return self._markup
 

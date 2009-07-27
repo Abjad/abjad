@@ -1,9 +1,9 @@
-_TremoloInterface
-=================
+TremoloInterface
+================
 
 .. automodule:: abjad.tremolo.interface
 
-.. autoclass:: _TremoloInterface
+.. autoclass:: abjad.TremoloInterface
    :members:
    :undoc-members:
    :show-inheritance:

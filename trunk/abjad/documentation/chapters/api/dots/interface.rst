@@ -1,9 +1,9 @@
-_DotsInterface
-==============
+DotsInterface
+=============
 
 .. automodule:: abjad.dots.interface
 
-.. autoclass:: _DotsInterface
+.. autoclass:: abjad.DotsInterface
    :members:
    :undoc-members:
    :show-inheritance:

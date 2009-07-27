@@ -2,7 +2,7 @@ from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
 
 
-class _HarmonicInterface(_Interface, _FormatContributor):
+class HarmonicInterface(_Interface, _FormatContributor):
    r'''Interface to LilyPond \flageolet command.'''
 
    def __init__(self, client):

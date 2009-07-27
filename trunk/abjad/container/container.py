@@ -1,9 +1,9 @@
-from abjad.brackets.interface import _BracketsInterface
+from abjad.brackets.interface import BracketsInterface
 from abjad.component.component import _Component
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
-from abjad.notehead.interface import _NoteHeadInterface
+from abjad.notehead.interface import NoteHeadInterface
 
 
 class Container(_Component):
@@ -13,7 +13,7 @@ class Container(_Component):
       _Component.__init__(self)
       self._spanners = _ContainerSpannerAggregator(self)
       self._initializeMusic(music)
-      self._brackets = _BracketsInterface(self)
+      self._brackets = BracketsInterface(self)
       self._duration = _ContainerDurationInterface(self)
       self._formatter = _ContainerFormatter(self)
       self.parallel = False
@@ -147,7 +147,7 @@ class Container(_Component):
    @property
    def brackets(self):
       '''Read-only reference to
-      :class:`~abjad.brackets.interface._BracketsInterface`.'''
+      :class:`~abjad.brackets.interface.BracketsInterface`.'''
       return self._brackets
 
    @apply

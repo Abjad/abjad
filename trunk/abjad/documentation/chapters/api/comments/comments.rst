@@ -1,9 +1,9 @@
-_UserComments
-=============
+UserComments
+============
 
 .. automodule:: abjad.comments.comments
 
-.. autoclass:: _UserComments
+.. autoclass:: abjad.UserComments
    :members:
    :undoc-members:
    :show-inheritance:

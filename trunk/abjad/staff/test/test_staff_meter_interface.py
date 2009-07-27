@@ -1,16 +1,16 @@
 from abjad import *
 from abjad.meter import Meter
-from abjad.meter.interface import _MeterInterface
+from abjad.meter.interface import MeterInterface
 
 
 def test_staff_meter_01( ):
    '''Staff has a meter interface.'''
    t = Staff(Note(0, (1, 4)) * 8)
-   assert isinstance(t.meter, _MeterInterface)
+   assert isinstance(t.meter, MeterInterface)
    
 
 def test_staff_meter_02( ):
-   '''Test _MeterInterface public attributes.'''
+   '''Test MeterInterface public attributes.'''
    t = Staff(Note(0, (1, 4)) * 8)
    assert t.meter.change == False
    assert isinstance(t.meter.effective, Meter)

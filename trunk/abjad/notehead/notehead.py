@@ -1,9 +1,9 @@
 from abjad.notehead.format import _NoteHeadFormatInterface
-from abjad.notehead.interface import _NoteHeadInterface
+from abjad.notehead.interface import NoteHeadInterface
 from abjad.pitch import Pitch
 
 
-class NoteHead(_NoteHeadInterface):
+class NoteHead(NoteHeadInterface):
    r'''The head of a single note or one of the heads in a chord.  
 
    ::
@@ -21,7 +21,7 @@ class NoteHead(_NoteHeadInterface):
    '''
 
    def __init__(self, client, pitch = None):
-      _NoteHeadInterface.__init__(self, client)
+      NoteHeadInterface.__init__(self, client)
       self._formatter = _NoteHeadFormatInterface(self)
       #self._style = None
       #self.pitch = pitch

@@ -4,7 +4,7 @@ from abjad.offset.seconds.interface import _OffsetSecondsInterface
 from abjad.rational import Rational
 
 
-class _OffsetInterface(_Interface):
+class OffsetInterface(_Interface):
    '''Namespace only to hold rational-valued start and stop offsets.'''
 
    def __init__(self, _client, _updateInterface):

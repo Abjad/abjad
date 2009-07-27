@@ -1,9 +1,9 @@
-_BracketsInterface
-==================
+BracketsInterface
+=================
 
 .. automodule:: abjad.brackets.interface
 
-.. autoclass:: _BracketsInterface
+.. autoclass:: abjad.BracketsInterface
    :members:
    :undoc-members:
    :show-inheritance:

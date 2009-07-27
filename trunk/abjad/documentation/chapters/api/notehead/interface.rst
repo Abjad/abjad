@@ -1,9 +1,9 @@
-_NoteHeadInterface
-==================
+NoteHeadInterface
+=================
 
 .. automodule:: abjad.notehead.interface
 
-.. autoclass:: _NoteHeadInterface
+.. autoclass:: abjad.NoteHeadInterface
    :members:
    :undoc-members:
    :show-inheritance:

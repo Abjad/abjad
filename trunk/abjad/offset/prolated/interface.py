@@ -6,7 +6,7 @@ class OffsetProlatedInterface(_Observer):
    '''Serve rational-valued prolated start and stop values.'''
 
    def __init__(self, _client, _updateInterface):
-      '''Bind to _OffsetInterface as client.
+      '''Bind to OffsetInterface as client.
          Register self as observer.
          Init start and stop to zero.'''
       _Observer.__init__(self, _client, _updateInterface)

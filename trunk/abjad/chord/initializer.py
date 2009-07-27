@@ -1,6 +1,6 @@
 from abjad.chord.formatter import _ChordFormatter
 from abjad.core.initializer import _Initializer
-from abjad.notehead.interface import _NoteHeadInterface
+from abjad.notehead.interface import NoteHeadInterface
 
 
 ## NOTE - order of steps must be 
@@ -36,7 +36,7 @@ class _ChordInitializer(_Initializer):
                copy = clone.fracture([note])[0]
             _transfer_all_attributes(note, client)
             #del client._notehead
-            client._notehead = _NoteHeadInterface(client)
+            client._notehead = NoteHeadInterface(client)
             if note.notehead is not None:
                client.append(copy.notehead)
          if isinstance(args[0], Rest):

@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-class _SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
    r'''Handle *LilyPond* ``SpacingSpanner`` grob.
       Receive *Abjad* ``SpacingSpanner`` spanner.
 

@@ -1,7 +1,7 @@
 from abjad.core.interface import _Interface
 
 
-class _BracketsInterface(_Interface):
+class BracketsInterface(_Interface):
 
    ## PUBLIC ATTRIBUTES ##
 

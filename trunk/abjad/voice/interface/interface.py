@@ -2,14 +2,14 @@ from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
 
 
-class _VoiceInterface(_Interface, _FormatContributor):
+class VoiceInterface(_Interface, _FormatContributor):
    '''Manage *LilyPond* and *Abjad* voice settings.
    
       ::
 
          abjad> t = Voice(construct.scale(4))
          abjad> t[0].voice      
-         <_VoiceInterface>'''
+         <VoiceInterface>'''
 
    def __init__(self, _client):
       '''Bind to ``_client``, register as ``_FormatContributor`` 
@@ -74,7 +74,7 @@ class _VoiceInterface(_Interface, _FormatContributor):
    def opening(self):
       '''Read-only format contribution at container opening or before leaf.
 
-         * Derived from ``_VoiceInterface.number``.
+         * Derived from ``VoiceInterface.number``.
 
          ::
 

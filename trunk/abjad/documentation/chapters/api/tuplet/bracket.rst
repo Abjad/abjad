@@ -1,9 +1,9 @@
-_TupletBracketInterface
-=======================
+TupletBracketInterface
+======================
 
 .. automodule:: abjad.tuplet.bracket
 
-.. autoclass:: _TupletBracketInterface
+.. autoclass:: abjad.TupletBracketInterface
    :members:
    :undoc-members:
    :show-inheritance:

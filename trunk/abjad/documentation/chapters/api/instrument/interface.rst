@@ -1,9 +1,9 @@
-_InstrumentInterface
-====================
+InstrumentInterface
+===================
 
 .. automodule:: abjad.instrument.interface
 
-.. autoclass:: _InstrumentInterface
+.. autoclass:: abjad.InstrumentInterface
    :members:
    :undoc-members:
    :show-inheritance:

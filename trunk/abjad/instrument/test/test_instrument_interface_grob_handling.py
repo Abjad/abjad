@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_instrument_interface_grob_handling_01( ):
-   '''The *Abjad* ``_InstrumentInterface`` handles the
+   '''The *Abjad* ``InstrumentInterface`` handles the
       *LilyPond* ``InstrumentName`` grob.'''
 
    t = Staff(construct.scale(4))

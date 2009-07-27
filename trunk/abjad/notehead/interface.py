@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
-class _NoteHeadInterface(_Interface, _GrobHandler):
+class NoteHeadInterface(_Interface, _GrobHandler):
    '''Handle LilyPond NoteHead grob.'''
 
    def __init__(self, client):
@@ -14,7 +14,7 @@ class _NoteHeadInterface(_Interface, _GrobHandler):
 
    ## TODO: This is an (effective) hack to filter out any erroneous
    ##       \once \override NoteHead #'pitch = #'cs
-   ##       that _NoteHeadInterface might contribute.
+   ##       that NoteHeadInterface might contribute.
 
    @property
    def overrides(self):

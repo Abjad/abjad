@@ -111,10 +111,10 @@ print list(notes)
 In each case we are passing a different *thread signature* to the :func:`~abjad.tools.iterate.thread.thread` iterator, so each case returns a different list of Notes.
 
 .. note::
-   All *Abjad* Components have a :class:`~abjad.thread.interface._ThreadInterface`.
+   All *Abjad* Components have a :class:`~abjad.thread.interface.ThreadInterface`.
 
 
-We can see that the *thread signature* of each voice is indeed different by calling the ``report( )`` method on each of the Voice's :class:`~abjad.thread.interface._ThreadInterface`.
+We can see that the *thread signature* of each voice is indeed different by calling the ``report( )`` method on each of the Voice's :class:`~abjad.thread.interface.ThreadInterface`.
 
 <abjad>
 vA.thread.report( )

@@ -1,7 +1,7 @@
 from abjad.core.interface import _Interface
 
 
-class _ScoreInterface(_Interface):
+class ScoreInterface(_Interface):
    '''Report on *Abjad* ``Score`` in parentage of ``_client``.
       Handle no *LilyPond* grob.'''
 

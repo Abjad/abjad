@@ -1,9 +1,9 @@
-_VoiceInterface
-===============
+VoiceInterface
+==============
 
 .. automodule:: abjad.voice.interface.interface
 
-.. autoclass:: _VoiceInterface
+.. autoclass:: abjad.VoiceInterface
    :members:
    :undoc-members:
    :show-inheritance:

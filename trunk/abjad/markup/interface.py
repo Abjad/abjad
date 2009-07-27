@@ -2,7 +2,7 @@ from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
 
 
-class _MarkupInterface(_Interface, _FormatContributor):
+class MarkupInterface(_Interface, _FormatContributor):
    '''Manage LilyPond markup.
       Handles no LilyPond grob.'''
 

@@ -6,14 +6,14 @@ from abjad.tempo.indication import TempoIndication
 import types
 
 
-class _TempoInterface(_Observer, _GrobHandler, 
+class TempoInterface(_Observer, _GrobHandler, 
    _BacktrackingInterface, _SpannerReceptor):
    '''Handle LilyPond MetronomeMark grob and Abjad Tempo spanner.
 
       The implementation of `effective` given here allows for
       tempo indication to be set either be a tempo spanner or
       by a forced value set directly on the tempo interface.
-      As such, `_TempoInterface` implements two different and
+      As such, `TempoInterface` implements two different and
       competing patterns for the way in which tempo indications
       can be set.
 

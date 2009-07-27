@@ -12,7 +12,7 @@ import types
 ## formating and add a \stopStaff\startStaff immediately before the staff 
 ## contribution IFF the contributor is not a Staff?
 
-class _StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
+class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
    r'''Report on Abjad staff in parentage of client.
       Interface to LilyPond \stopStaff, \startStaff hiding commands.
       Handle no LilyPond grob.'''
@@ -70,7 +70,7 @@ class _StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
          self._hide = arg
       return property(**locals( ))
 
-   ## TODO: Client type-testing in _StaffInterface is a hack. ##
+   ## TODO: Client type-testing in StaffInterface is a hack. ##
    ##       Replace eventually with something structural.     ##
 
    @property

@@ -1,9 +1,9 @@
-_GlissandoInterface
-===================
+GlissandoInterface
+==================
 
 .. automodule:: abjad.glissando.interface
 
-.. autoclass:: _GlissandoInterface
+.. autoclass:: abjad.GlissandoInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,9 +1,9 @@
-_OffsetInterface
-================
+OffsetInterface
+===============
 
 .. automodule:: abjad.offset.interface
 
-.. autoclass:: _OffsetInterface
+.. autoclass:: abjad.OffsetInterface
    :members:
    :undoc-members:
    :show-inheritance:

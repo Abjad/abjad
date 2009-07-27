@@ -5,7 +5,7 @@ from abjad.core.observer import _Observer
 import types
 
 
-class _ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
+class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    '''Handle LilyPond Clef grob.
       Observe score structure to find effective clef.
       Manage forced clef changes.'''

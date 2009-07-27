@@ -1,9 +1,9 @@
-_SpacingInterface
-=================
+SpacingInterface
+================
 
 .. automodule:: abjad.spacing.interface
 
-.. autoclass:: _SpacingInterface
+.. autoclass:: abjad.SpacingInterface
    :members:
    :undoc-members:
    :show-inheritance:

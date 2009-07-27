@@ -6,7 +6,7 @@ from abjad.spanner.receptor import _SpannerReceptor
 import types
 
 
-class _InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler, 
+class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler, 
    _SpannerReceptor):
    r'''Receive *Abjad* :class:`~abjad.instrument.spanner.Instrument` spanner.
    Handle the *LilyPond* ``InstrumentName`` grob.
@@ -15,7 +15,7 @@ class _InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
 
       abjad> t = Staff(construct.scale(4))
       abjad> t.instrument
-      <_InstrumentInterface>
+      <InstrumentInterface>
 
    ::
 

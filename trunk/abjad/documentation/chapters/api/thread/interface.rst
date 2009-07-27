@@ -1,9 +1,9 @@
-_ThreadInterface
-================
+ThreadInterface
+===============
 
 .. automodule:: abjad.thread.interface
 
-.. autoclass:: _ThreadInterface
+.. autoclass:: abjad.ThreadInterface
    :members:
    :undoc-members:
    :show-inheritance:

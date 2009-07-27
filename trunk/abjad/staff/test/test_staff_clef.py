@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_staff_clef_02( ):
-   '''Test _ClefInterface public attributes.'''
+   '''Test ClefInterface public attributes.'''
    t = Staff(Note(0, (1, 4)) * 8)
    assert t.clef.change == False
    assert isinstance(t.clef.effective, Clef)

@@ -2,7 +2,7 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-class _PianoPedalInterface(_Interface, _SpannerReceptor):
+class PianoPedalInterface(_Interface, _SpannerReceptor):
    '''Handle LilyPond PianoPedal grob.
       Receive Abjad PianoPedal spanner.'''
 

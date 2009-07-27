@@ -1,9 +1,9 @@
-_TempoInterface
-===============
+TempoInterface
+==============
 
 .. automodule:: abjad.tempo.interface
 
-.. autoclass:: _TempoInterface
+.. autoclass:: abjad.TempoInterface
    :members:
    :undoc-members:
    :show-inheritance:

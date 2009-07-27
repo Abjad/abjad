@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
-class _DotsInterface(_Interface, _GrobHandler):
+class DotsInterface(_Interface, _GrobHandler):
 
    def __init__(self, client):
       _Interface.__init__(self, client)
