@@ -10,99 +10,57 @@ Classes
    :maxdepth: 1
 
    accidental/accidental
-   accidental/interface
    measure/anonymous/measure
    articulations/articulation
-   articulations/interface
-   barline/interface
-   barnumber/interface
    beam/spanner
    beam/complex/spanner
    beam/complex/durated/spanner
    beam/complex/measured/spanner
-   beam/interface
    bracket/spanner
-   brackets/interface
-   breaks/interface
    chord/chord
    clef/clef
-   clef/interface
    cluster/cluster
-   cluster/interface
    container/container
-   dots/interface
    dynamics/spanner
    measure/dynamic/measure
-   dynamics/interface
    tuplet/fd/tuplet
    tuplet/fm/tuplet
    layout/fixed_staff_positioning
    glissando/spanner
-   glissando/interface
    grace/grace
-   grace/interface
    hairpin/spanner
-   harmonic/interface
-   history/interface
    instrument/spanner
-   instrument/interface
-   interfaces/aggregator
    markup/markup
-   markup/interface
    meter/meter
-   meter/interface
    metricgrid/spanner
    note/note
-   notecolumn/interface
    notehead/notehead
-   notehead/interface
-   numbering/interface
    octavation/spanner
-   offset/interface
-   offset/prolated/interface
    override/spanner
    parentage/parentage
    pianopedal/spanner
-   pianopedal/interface
    pitch/pitch
    rational/rational
    rest/rest
-   rest/interface
    measure/rigid/measure
    score/score
-   score/interface/interface
    skip/skip
    slur/spanner
-   slur/interface
    spacing/indication
-   spacing/interface
    spacing/spanner
-   spanbar/interface
    spanner/spanner
    staff/staff
    layout/staff_alignment_offsets
    staffgroup/staffgroup
-   staff/interface/interface
-   stem/interface
    layout/system_y_offsets
    tempo/spanner
    tempo/indication
-   tempo/interface
    tempo/proportional/spanner
    text/spanner
-   text/interface
-   thread/interface
    tie/spanner
-   tie/interface
-   tremolo/interface
    trill/spanner
-   trill/interface
-   tuplet/bracket
-   tuplet/number
    comments/comments
-   directives/interface
    voice/voice
-   voice/interface/interface
    debug/debug
 
 
@@ -119,6 +77,56 @@ Facade classes
    staff/rhythmicsketchstaff
    staff/rhythmicstaff
    navigator/dfs
+
+
+Interfaces
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   accidental/interface
+   articulations/interface
+   barline/interface
+   barnumber/interface
+   beam/interface
+   brackets/interface
+   breaks/interface
+   clef/interface
+   cluster/interface
+   dots/interface
+   dynamics/interface
+   glissando/interface
+   grace/interface
+   harmonic/interface
+   history/interface
+   instrument/interface
+   interfaces/aggregator
+   markup/interface
+   meter/interface
+   notecolumn/interface
+   notehead/interface
+   numbering/interface
+   offset/interface
+   offset/prolated/interface
+   pianopedal/interface
+   rest/interface
+   score/interface/interface
+   slur/interface
+   spacing/interface
+   spanbar/interface
+   staff/interface/interface
+   stem/interface
+   tempo/interface
+   text/interface
+   thread/interface
+   tie/interface
+   tremolo/interface
+   trill/interface
+   tuplet/bracket
+   tuplet/number
+   directives/interface
+   voice/interface/interface
 
 
 Tools

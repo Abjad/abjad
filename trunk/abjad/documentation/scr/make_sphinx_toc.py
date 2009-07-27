@@ -5,14 +5,17 @@ import os
 
 def make_sphinx_toc( ):
    '''Make table of contents for Abjad API.
-   Divide TOC into classes and functions.'''
+   Divide TOC into classes, interfaces and tools.'''
 
    names = _get_public_abjad_names( )
-   klasses, functions, tools = [ ], [ ], [ ]
+   klasses, interfaces, functions, tools = [ ], [ ], [ ], [ ]
    for name in names:
       if name['kind'] == 'class':
          if 'exceptions' not in name['module']:
-            klasses.append(name)
+            if 'Interface' in name['name']:
+               interfaces.append(name)
+            else:
+               klasses.append(name)
       elif name['kind'] == 'function':
          if 'tools' in name['module']:
             tools.append(name)
@@ -50,6 +53,18 @@ def make_sphinx_toc( ):
          result += '   %s\n' % doc_path
    result += '\n\n'
 
+   result += 'Interfaces\n'
+   result += '-' * (len('Interfaces'))
+   result += '\n\n'
+   result += '.. toctree::\n'
+   result += '   :maxdepth: 1\n'
+   result += '\n'
+   for name in interfaces:
+      if not name['name'].startswith('_'):
+         doc_path = _module_path_to_doc_path(name['module'])
+         result += '   %s\n' % doc_path
+   result += '\n\n'
+  
    tools.sort(lambda x, y: cmp(x['module'], y['module']))
 
    result += 'Tools\n'
