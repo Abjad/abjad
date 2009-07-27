@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
-class _SpanBarInterface(_Interface, _GrobHandler):
+class SpanBarInterface(_Interface, _GrobHandler):
    '''.. versionadded:: 1.1.1
 
    Manage barlines that span the space between staves
@@ -10,7 +10,7 @@ class _SpanBarInterface(_Interface, _GrobHandler):
 
       abjad> t = Note(0, (1, 4))
       abjad> t.barline
-      <_SpanBarInterface>
+      <SpanBarInterface>
 
    Override LilyPond ``SpanBar`` grob.
 

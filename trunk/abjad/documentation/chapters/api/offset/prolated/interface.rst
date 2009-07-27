@@ -1,9 +1,9 @@
-_OffsetProlatedInterface
-========================
+OffsetProlatedInterface
+=======================
 
 .. automodule:: abjad.offset.prolated.interface
 
-.. autoclass:: _OffsetProlatedInterface
+.. autoclass:: abjad.OffsetProlatedInterface
    :members:
    :undoc-members:
    :show-inheritance:

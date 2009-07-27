@@ -1,9 +1,9 @@
-_Parentage
-==========
+Parentage
+=========
 
 .. automodule:: abjad.parentage.parentage
 
-.. autoclass:: _Parentage
+.. autoclass:: abjad.Parentage
    :members:
    :undoc-members:
    :show-inheritance:

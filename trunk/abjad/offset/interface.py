@@ -1,5 +1,5 @@
 from abjad.core.interface import _Interface
-from abjad.offset.prolated.interface import _OffsetProlatedInterface
+from abjad.offset.prolated.interface import OffsetProlatedInterface
 from abjad.offset.seconds.interface import _OffsetSecondsInterface
 from abjad.rational import Rational
 
@@ -11,7 +11,7 @@ class _OffsetInterface(_Interface):
       '''Bind to client.
          Pass update interface reference to aggregated interfaces.'''
       _Interface.__init__(self, _client)
-      self._prolated = _OffsetProlatedInterface(self, _updateInterface)
+      self._prolated = OffsetProlatedInterface(self, _updateInterface)
       self._seconds = _OffsetSecondsInterface(self, _updateInterface)
 
    ## PUBLIC ATTRIBUTES ##

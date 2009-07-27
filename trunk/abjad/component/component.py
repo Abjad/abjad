@@ -2,37 +2,37 @@ from abjad.accidental.interface import AccidentalInterface
 from abjad.articulations.interface import ArticulationsInterface
 from abjad.barline.interface import BarLineInterface
 from abjad.barnumber.interface import BarNumberInterface
-from abjad.beam.interface import _BeamInterface
-from abjad.breaks.interface import _BreaksInterface
+from abjad.beam.interface import BeamInterface
+from abjad.breaks.interface import BreaksInterface
 from abjad.comments.comments import _UserComments
 from abjad.core.abjadcore import _Abjad
 from abjad.clef.interface import _ClefInterface
-from abjad.directives.interface import _UserDirectivesInterface
+from abjad.directives.interface import UserDirectivesInterface
 from abjad.dots.interface import _DotsInterface
-from abjad.dynamics.interface import _DynamicsInterface
+from abjad.dynamics.interface import DynamicsInterface
 from abjad.glissando.interface import _GlissandoInterface
-from abjad.history.interface import _HistoryInterface
+from abjad.history.interface import HistoryInterface
 from abjad.instrument.interface import _InstrumentInterface
-from abjad.interfaces.aggregator import _InterfaceAggregator
+from abjad.interfaces.aggregator import InterfaceAggregator
 from abjad.meter.interface import _MeterInterface
 from abjad.navigator.navigator import _Navigator
-from abjad.notecolumn.interface import _NoteColumnInterface
-from abjad.numbering.interface import _NumberingInterface
+from abjad.notecolumn.interface import NoteColumnInterface
+from abjad.numbering.interface import NumberingInterface
 from abjad.offset.interface import _OffsetInterface
-from abjad.parentage.parentage import _Parentage
+from abjad.parentage.parentage import Parentage
 from abjad.pianopedal.interface import _PianoPedalInterface
 from abjad.rational import Rational
 from abjad.receipt.component import _ComponentReceipt
-from abjad.slur.interface import _SlurInterface
+from abjad.slur.interface import SlurInterface
 from abjad.spacing.interface import _SpacingInterface
-from abjad.spanbar.interface import _SpanBarInterface
-from abjad.stem.interface import _StemInterface
+from abjad.spanbar.interface import SpanBarInterface
+from abjad.stem.interface import StemInterface
 from abjad.tempo.interface import _TempoInterface
 from abjad.thread.interface import _ThreadInterface
-from abjad.tie.interface import _TieInterface
-from abjad.text.interface import _TextInterface
+from abjad.tie.interface import TieInterface
+from abjad.text.interface import TextInterface
 from abjad.tremolo.interface import _TremoloInterface
-from abjad.trill.interface import _TrillInterface
+from abjad.trill.interface import TrillInterface
 from abjad.update.interface import _UpdateInterface
 import copy
 import types
@@ -41,11 +41,11 @@ import types
 class _Component(_Abjad):
 
    def __init__(self):
-      '''Late import of _RestInterface, _ScoreInterface, _StaffInterface
+      '''Late import of RestInterface, _ScoreInterface, _StaffInterface
       and _VoiceInterface to avoid circular imports in which instantiating
       a rest imports abjad/leaf (because Rest is a _Leaf), which imports 
       abjad/component (because _Leaf is a _Component), which imports 
-      abjad/rest (because _Component has a _RestInterface).
+      abjad/rest (because _Component has a RestInterface).
    
       The solution given here with the late imports of what we might
       collectively term the 'component information interfaces' does indeed
@@ -54,52 +54,52 @@ class _Component(_Abjad):
       information interfaces imported here, collectively live inside
       some abjad/allinterfaces package.'''
       from abjad.notehead.interface import _NoteHeadInterface
-      from abjad.rest.interface import _RestInterface
+      from abjad.rest.interface import RestInterface
       from abjad.score.interface.interface import _ScoreInterface
       from abjad.staff.interface.interface import _StaffInterface
       from abjad.tuplet.bracket import _TupletBracketInterface
-      from abjad.tuplet.number import _TupletNumberInterface
+      from abjad.tuplet.number import TupletNumberInterface
       from abjad.voice.interface.interface import _VoiceInterface
-      self._interfaces = _InterfaceAggregator(self)
+      self._interfaces = InterfaceAggregator(self)
       self._accidental = AccidentalInterface(self)
       self._articulations = ArticulationsInterface(self)
       self._barline = BarLineInterface(self)
       self._barnumber = BarNumberInterface(self)
-      self._beam = _BeamInterface(self)
-      self._breaks = _BreaksInterface(self)
+      self._beam = BeamInterface(self)
+      self._breaks = BreaksInterface(self)
       self._comments = _UserComments( )
-      self._directives = _UserDirectivesInterface(self)
+      self._directives = UserDirectivesInterface(self)
       self._dots = _DotsInterface(self)
-      self._dynamics = _DynamicsInterface(self)
+      self._dynamics = DynamicsInterface(self)
       self._glissando = _GlissandoInterface(self)
       #self._history = { }
-      self._history = _HistoryInterface(self)
+      self._history = HistoryInterface(self)
       self._instrument = _InstrumentInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
-      self._notecolumn = _NoteColumnInterface(self)
+      self._notecolumn = NoteColumnInterface(self)
       self._notehead = _NoteHeadInterface(self)
-      self._parentage = _Parentage(self)
+      self._parentage = Parentage(self)
       self._pianopedal = _PianoPedalInterface(self)
-      self._rest = _RestInterface(self)
+      self._rest = RestInterface(self)
       self._score = _ScoreInterface(self)
-      self._slur = _SlurInterface(self)
+      self._slur = SlurInterface(self)
       self._spacing = _SpacingInterface(self)
-      self._spanbar = _SpanBarInterface(self)
-      self._stem = _StemInterface(self)
-      self._text = _TextInterface(self)
+      self._spanbar = SpanBarInterface(self)
+      self._stem = StemInterface(self)
+      self._text = TextInterface(self)
       self._thread = _ThreadInterface(self)
-      self._tie = _TieInterface(self)
+      self._tie = TieInterface(self)
       self._tremolo = _TremoloInterface(self)
-      self._trill = _TrillInterface(self)
+      self._trill = TrillInterface(self)
       self._tupletbracket = _TupletBracketInterface(self)
-      self._tupletnumber = _TupletNumberInterface(self)
+      self._tupletnumber = TupletNumberInterface(self)
       self._update = _UpdateInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
       self._clef = _ClefInterface(self, self._update)
       self._meter = _MeterInterface(self, self._update)
-      self._numbering = _NumberingInterface(self, self._update)
+      self._numbering = NumberingInterface(self, self._update)
       self._offset = _OffsetInterface(self, self._update)
       self._staff = _StaffInterface(self, self._update)
       self._tempo = _TempoInterface(self, self._update)
@@ -154,13 +154,13 @@ class _Component(_Abjad):
    @property
    def beam(self):
       '''Read-only reference to
-      :class:`~abjad.beam.interface._BeamInterface`.'''
+      :class:`~abjad.beam.interface.BeamInterface`.'''
       return self._beam
 
    @property
    def breaks(self):
       '''Read-only reference to
-      :class:`~abjad.breaks.interface._BreaksInterface`.'''
+      :class:`~abjad.breaks.interface.BreaksInterface`.'''
       return self._breaks
 
    @property
@@ -178,7 +178,7 @@ class _Component(_Abjad):
    @property
    def directives(self):
       '''Read-only reference to
-      :class:`~abjad.directives.interface._UserDirectivesInterface`.'''
+      :class:`~abjad.directives.interface.UserDirectivesInterface`.'''
       return self._directives
 
    @property
@@ -195,7 +195,7 @@ class _Component(_Abjad):
    @property
    def dynamics(self):
       '''Read-only reference to
-      :class:`~abjad.dynamics.interface._DynamicsInterface`.'''
+      :class:`~abjad.dynamics.interface.DynamicsInterface`.'''
       return self._dynamics
 
    @property
@@ -217,7 +217,7 @@ class _Component(_Abjad):
    @property
    def history(self):
       '''Read-only reference to 
-      :class:`~abjad.history.interface._HistoryInterface`.'''
+      :class:`~abjad.history.interface.HistoryInterface`.'''
       return self._history
 
    @property
@@ -229,7 +229,7 @@ class _Component(_Abjad):
    @property
    def interfaces(self):
       '''Read-only reference to
-      :class:`~abjad.interfaces.aggregator._InterfaceAggregator`.'''
+      :class:`~abjad.interfaces.aggregator.InterfaceAggregator`.'''
       return self._interfaces
 
    @property
@@ -268,7 +268,7 @@ class _Component(_Abjad):
    @property
    def notecolumn(self):
       '''Read-only reference to
-      :class:`~abjad.notecolumn.interface._NoteColumnInterface`.'''
+      :class:`~abjad.notecolumn.interface.NoteColumnInterface`.'''
       return self._notecolumn
 
    @property
@@ -286,7 +286,7 @@ class _Component(_Abjad):
    @property
    def parentage(self):
       '''Read-only reference to
-      :class:`~abjad.parentage.parentage._Parentage`.'''
+      :class:`~abjad.parentage.parentage.Parentage`.'''
       return self._parentage
 
    @property
@@ -298,7 +298,7 @@ class _Component(_Abjad):
    @property
    def rest(self):
       '''Read-only reference to
-      :class:`~abjad.rest.interface._RestInterface`.'''
+      :class:`~abjad.rest.interface.RestInterface`.'''
       return self._rest
 
    @property
@@ -310,7 +310,7 @@ class _Component(_Abjad):
    @property
    def slur(self):
       '''Read-only reference to
-      :class:`~abjad.slur.interface._SlurInterface`.'''
+      :class:`~abjad.slur.interface.SlurInterface`.'''
       return self._slur
 
    @property
@@ -322,7 +322,7 @@ class _Component(_Abjad):
    @property
    def spanbar(self):
       '''Read-only reference to
-      :class:`~abjad.spanbar.interface._SpanBarInterface`.'''
+      :class:`~abjad.spanbar.interface.SpanBarInterface`.'''
       return self._spanbar
 
    @property
@@ -341,7 +341,7 @@ class _Component(_Abjad):
    @property
    def stem(self):
       '''Read-only reference to
-      :class:`~abjad.stem.interface._StemInterface`.'''
+      :class:`~abjad.stem.interface.StemInterface`.'''
       return self._stem
 
    @property
@@ -353,7 +353,7 @@ class _Component(_Abjad):
    @property
    def tie(self):
       '''Read-only reference to
-      :class:`~abjad.tie.interface._TieInterface`.'''
+      :class:`~abjad.tie.interface.TieInterface`.'''
       return self._tie
 
    @property
@@ -365,7 +365,7 @@ class _Component(_Abjad):
    @property
    def text(self):
       '''Read-only reference to
-      :class:`~abjad.text.interface._TextInterface`.'''
+      :class:`~abjad.text.interface.TextInterface`.'''
       return self._text
 
    @property
@@ -377,7 +377,7 @@ class _Component(_Abjad):
    @property
    def trill(self):
       '''Read-only reference to
-      :class:`~abjad.trill.interface._TrillInterface`.'''
+      :class:`~abjad.trill.interface.TrillInterface`.'''
       return self._trill
    
    @property
@@ -389,7 +389,7 @@ class _Component(_Abjad):
    @property
    def tupletnumber(self):
       '''Read-only reference to
-      :class:`~abjad.tuplet.number._TupletNumberInterface`.'''
+      :class:`~abjad.tuplet.number.TupletNumberInterface`.'''
       return self._tupletnumber
 
    @property

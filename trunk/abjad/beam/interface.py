@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-class _BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
    '''Handle LilyPond Beam grob.
       Interface to LilyPond \setStemLeftBeamCount, \setStemRightBeamCount.'''
 

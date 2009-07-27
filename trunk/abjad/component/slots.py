@@ -1,6 +1,6 @@
 from abjad.core.interface import _Interface
 from abjad.comments.comments import _UserComments
-from abjad.directives.interface import _UserDirectivesInterface
+from abjad.directives.interface import UserDirectivesInterface
 
 
 class _ComponentFormatterSlotsInterface(_Interface):
@@ -87,7 +87,7 @@ class _ComponentFormatterSlotsInterface(_Interface):
    def wrap(self, contributor, attr):
       '''Wrap format contribution with format source.'''
       if isinstance(contributor, _UserComments) and \
-         not isinstance(contributor, _UserDirectivesInterface):
+         not isinstance(contributor, UserDirectivesInterface):
          return [(contributor, attr), 
             ['% ' + x for x in getattr(contributor, attr)]]
       else:

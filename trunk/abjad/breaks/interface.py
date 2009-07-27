@@ -5,7 +5,7 @@ from abjad.rational import Rational
 import types
 
 
-class _BreaksInterface(_Interface, _FormatContributor):
+class BreaksInterface(_Interface, _FormatContributor):
    r'''Interface to LilyPond ``\break`` and ``\pageBreak`` commands.
 
    Interface to LilyPond x- and y- system positioning.

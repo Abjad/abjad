@@ -4,7 +4,7 @@ from abjad.rational import Rational
 import types
 
 
-class _Parentage(_Interface):
+class Parentage(_Interface):
    '''Serve literal score parentage information about component.
       Handle no LilyPond grob.'''
 

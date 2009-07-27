@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
  
-class _StemInterface(_Interface, _GrobHandler):
+class StemInterface(_Interface, _GrobHandler):
    '''Handle LilyPond Stem grob.'''
 
    def __init__(self, client):

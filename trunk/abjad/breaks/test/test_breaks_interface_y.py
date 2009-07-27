@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_breaks_interface_y_01( ):
-   '''``_BreaksInterface.y`` formats the \
+   '''``BreaksInterface.y`` formats the \
    LilyPond ``NonMusicalPaperColumn`` prob.'''
 
    t = RigidMeasure((4, 8), construct.scale(4))

@@ -1,9 +1,9 @@
-_TieInterface
-=============
+TieInterface
+============
 
 .. automodule:: abjad.tie.interface
 
-.. autoclass:: _TieInterface
+.. autoclass:: abjad.TieInterface
    :members:
    :undoc-members:
    :show-inheritance:

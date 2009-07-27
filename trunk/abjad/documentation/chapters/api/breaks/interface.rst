@@ -1,9 +1,9 @@
-_BreaksInterface
-================
+BreaksInterface
+===============
 
 .. automodule:: abjad.breaks.interface
 
-.. autoclass:: _BreaksInterface
+.. autoclass:: abjad.BreaksInterface
    :members:
    :undoc-members:
    :show-inheritance:

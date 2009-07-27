@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-class _SlurInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class SlurInterface(_Interface, _GrobHandler, _SpannerReceptor):
    '''Handle LilyPond Slur grob and Abjad Slur spanner.'''
 
    def __init__(self, client):

@@ -39,7 +39,7 @@ The parentage interface serves information about the parentage of every
 Abjad component. ::
 
    abjad> note.parentage
-   <_Parentage>
+   <Parentage>
 
 The immediate parent of the first note in the score is the first is a tuplet.
 The complete parentage of the first note in score is longer. ::
@@ -75,4 +75,4 @@ parentage minus 1. ::
 Other parentage-related attributes include layer, orphan and root.
 
 .. seealso:: The API entry for the 
-   :class:`~abjad.parentage.parentage._Parentage` interface.
+   :class:`~abjad.parentage.parentage.Parentage` interface.

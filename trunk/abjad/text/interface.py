@@ -3,11 +3,11 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-class _TextInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class TextInterface(_Interface, _GrobHandler, _SpannerReceptor):
    r'''Handle LilyPond TextScript grob.
    Receive Abjad Text spanner.
 
-   The `Abjad` :class:`~abjad.text.interface._TextInterface` handles
+   The `Abjad` :class:`~abjad.text.interface.TextInterface` handles
    the `LilyPond` `TextScript` grob.
 
    ::

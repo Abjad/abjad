@@ -2,7 +2,7 @@ from abjad.core.interface import _Interface
 from abjad.grace.grace import Grace
 
 
-class _GraceInterface(_Interface):
+class GraceInterface(_Interface):
 
    def __init__(self, client):
       _Interface.__init__(self, client)

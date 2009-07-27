@@ -25,7 +25,7 @@ def test_tuplet_formatter_report_01( ):
       _BracketsInterface.open
          \times 2/3 {
    slot_3
-      _InterfaceAggregator.opening
+      InterfaceAggregator.opening
             #(set-accidental-style 'forget)
             \clef "treble"
    slot_4
@@ -34,11 +34,11 @@ def test_tuplet_formatter_report_01( ):
             d'8
             e'8
    slot_5
-      _InterfaceAggregator.closing
+      InterfaceAggregator.closing
             \bar "|."
    slot_6
       _BracketsInterface.close
          }
    slot_7'''
 
-   assert result == 'slot_1\nslot_2\n\t_BracketsInterface.open\n\t\t\\times 2/3 {\nslot_3\n\t_InterfaceAggregator.opening\n\t\t\t#(set-accidental-style \'forget)\n\t\t\t\\clef "treble"\nslot_4\n\t_TupletFormatter._contents\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\nslot_5\n\t_InterfaceAggregator.closing\n\t\t\t\\bar "|."\nslot_6\n\t_BracketsInterface.close\n\t\t}\nslot_7\n'
+   assert result == 'slot_1\nslot_2\n\t_BracketsInterface.open\n\t\t\\times 2/3 {\nslot_3\n\tInterfaceAggregator.opening\n\t\t\t#(set-accidental-style \'forget)\n\t\t\t\\clef "treble"\nslot_4\n\t_TupletFormatter._contents\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\nslot_5\n\tInterfaceAggregator.closing\n\t\t\t\\bar "|."\nslot_6\n\t_BracketsInterface.close\n\t\t}\nslot_7\n'

@@ -1,7 +1,7 @@
 from abjad.core.interface import _Interface
 
 
-class _HistoryInterface(_Interface):
+class HistoryInterface(_Interface):
    '''Completely empty namespace available for composer labelling.
 
    ::
@@ -11,9 +11,9 @@ class _HistoryInterface(_Interface):
       abjad> t.history.previous_transform
       'foo'
 
-   Abjad ignores _HistoryInterface attributes and usage completely.
+   Abjad ignores HistoryInterface attributes and usage completely.
 
-   The _HistoryInterface handles no LilyPond grob.
+   The HistoryInterface handles no LilyPond grob.
    '''
 
    def __init__(self, _client):

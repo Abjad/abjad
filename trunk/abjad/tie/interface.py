@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-class _TieInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class TieInterface(_Interface, _GrobHandler, _SpannerReceptor):
    '''Handle LilyPond Tie grob and Abjad Tie spanner.'''
 
    def __init__(self, client):

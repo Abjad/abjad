@@ -1,9 +1,9 @@
-_SlurInterface
-==============
+SlurInterface
+=============
 
 .. automodule:: abjad.slur.interface
 
-.. autoclass:: _SlurInterface
+.. autoclass:: abjad.SlurInterface
    :members:
    :undoc-members:
    :show-inheritance:

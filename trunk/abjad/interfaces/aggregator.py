@@ -1,7 +1,7 @@
 from abjad.core.interface import _Interface
 
 
-class _InterfaceAggregator(_Interface):
+class InterfaceAggregator(_Interface):
    '''Aggregate information about all format-contributing interfaces.'''
 
    def __init__(self, client):

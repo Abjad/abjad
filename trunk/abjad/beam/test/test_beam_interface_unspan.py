@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_beam_interface_unspan_01( ):
-   '''_BeamInterface unspan( ) clears any beam spanner attaching to leaf t.'''
+   '''BeamInterface unspan( ) clears any beam spanner attaching to leaf t.'''
 
    t = Staff(construct.scale(4))
    p = Beam(t[ : ])

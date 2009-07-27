@@ -1,9 +1,9 @@
-_UserDirectivesInterface
-========================
+UserDirectivesInterface
+=======================
 
 .. automodule:: abjad.directives.interface
 
-.. autoclass:: _UserDirectivesInterface
+.. autoclass:: abjad.UserDirectivesInterface
    :members:
    :undoc-members:
    :show-inheritance:

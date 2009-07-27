@@ -2,7 +2,7 @@ from abjad.core.observer import _Observer
 from abjad.rational import Rational
 
 
-class _OffsetProlatedInterface(_Observer):
+class OffsetProlatedInterface(_Observer):
    '''Serve rational-valued prolated start and stop values.'''
 
    def __init__(self, _client, _updateInterface):

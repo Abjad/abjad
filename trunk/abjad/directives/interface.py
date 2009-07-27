@@ -2,7 +2,7 @@ from abjad.core.interface import _Interface
 from abjad.comments.comments import _UserComments
 
 
-class _UserDirectivesInterface(_Interface, _UserComments):
+class UserDirectivesInterface(_Interface, _UserComments):
    '''Interface to handle literal *LilyPond* directives that \
    are not yet modelled explicitly in *Abjad*.'''
 

@@ -1,6 +1,6 @@
 from abjad.component.component import _Component
 from abjad.core.interface import _Interface
-from abjad.grace.interface import _GraceInterface
+from abjad.grace.interface import GraceInterface
 from abjad.harmonic.interface import _HarmonicInterface
 from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
@@ -16,7 +16,7 @@ class _Leaf(_Component):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, duration)
       self._formatter = _LeafFormatter(self)
-      self._grace = _GraceInterface(self)
+      self._grace = GraceInterface(self)
       self._harmonic = _HarmonicInterface(self)
       self._markup = _MarkupInterface(self)
       self._spanners = _LeafSpannerAggregator(self)
@@ -64,7 +64,7 @@ class _Leaf(_Component):
    @property
    def grace(self):
       '''Read-only reference to
-      :class:`~abjad.grace.interface._GraceInterface`.
+      :class:`~abjad.grace.interface.GraceInterface`.
       '''
       return self._grace
    

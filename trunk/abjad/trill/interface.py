@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
 
 
-class _TrillInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class TrillInterface(_Interface, _GrobHandler, _SpannerReceptor):
    '''Handle LilyPond TrillSpanner grob and Abjad Trill spanner.'''
 
    def __init__(self, client):

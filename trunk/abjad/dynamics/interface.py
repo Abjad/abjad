@@ -6,7 +6,7 @@ from abjad.spanner.receptor import _SpannerReceptor
 ## TODO: Dynamics by spanner only? ##
 ## TODO: Multistage dynamic spanner? ##
 
-class _DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    '''Handle LilyPond DynamicText grob.
       Receive Abjad Dynamic and Hairpin spanners.
       Implement read / write 'mark' attribute.'''

@@ -3,7 +3,7 @@ from abjad.exceptions import MeasureContiguityError
 from abjad.rational import Rational
 
 
-class _NumberingInterface(_Observer):
+class NumberingInterface(_Observer):
    '''Number score components but handle no LilyPond grob.'''
 
    def __init__(self, _client, updateInterface):

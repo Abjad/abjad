@@ -1,9 +1,9 @@
-_ClusterInterface
-=================
+ClusterInterface
+================
 
 .. automodule:: abjad.cluster.interface
 
-.. autoclass:: _ClusterInterface
+.. autoclass:: abjad.ClusterInterface
    :members:
    :undoc-members:
    :show-inheritance:

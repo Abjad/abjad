@@ -1,9 +1,9 @@
-_GraceInterface
-===============
+GraceInterface
+==============
 
 .. automodule:: abjad.grace.interface
 
-.. autoclass:: _GraceInterface
+.. autoclass:: abjad.GraceInterface
    :members:
    :undoc-members:
    :show-inheritance:

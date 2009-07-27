@@ -1,6 +1,6 @@
 from abjad.container import Container
 from abjad.cluster.formatter import _ClusterFormatter
-from abjad.cluster.interface import _ClusterInterface
+from abjad.cluster.interface import ClusterInterface
 
 
 class Cluster(Container):
@@ -9,7 +9,7 @@ class Cluster(Container):
       Container.__init__(self, music)
       self.parallel = False
       self._formatter = _ClusterFormatter(self)
-      self._cluster = _ClusterInterface(self)
+      self._cluster = ClusterInterface(self)
    
    ## OVERLOADS ##
 

@@ -1,4 +1,4 @@
-from abjad.grace.interface import _GraceInterface
+from abjad.grace.interface import GraceInterface
 from abjad.tools.scoretools.donate import donate
 
 
@@ -12,7 +12,7 @@ def _transfer_all_attributes(old, new):
       if key not in _attributes_not_to_copy:
          if hasattr(value, '_client'):
             setattr(value, '_client', new)
-            if isinstance(value, _GraceInterface):
+            if isinstance(value, GraceInterface):
                setattr(value.after, '_carrier', new)
                setattr(value.before, '_carrier', new)
          setattr(new, key, value)

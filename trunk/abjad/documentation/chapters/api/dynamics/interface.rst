@@ -1,9 +1,9 @@
-_DynamicsInterface
-==================
+DynamicsInterface
+=================
 
 .. automodule:: abjad.dynamics.interface
 
-.. autoclass:: _DynamicsInterface
+.. autoclass:: abjad.DynamicsInterface
    :members:
    :undoc-members:
    :show-inheritance:

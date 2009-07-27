@@ -3,7 +3,7 @@ from abjad import *
 
 def test_rest_interface_grob_handling_01( ):
    '''
-   _RestInterface handles the LilyPond Rest grob.
+   RestInterface handles the LilyPond Rest grob.
    '''
 
    t = Staff(construct.scale(4))

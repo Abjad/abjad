@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
-class _NoteColumnInterface(_Interface, _GrobHandler):
+class NoteColumnInterface(_Interface, _GrobHandler):
    r'''.. versionadded:: 1.1.1.
 
    Handle the LilyPond NoteColumn grob. ::

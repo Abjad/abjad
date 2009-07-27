@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 
 
-class _RestInterface(_Interface, _GrobHandler):
+class RestInterface(_Interface, _GrobHandler):
    '''Handle LilyPond Rest grob.'''
 
    def __init__(self, client):

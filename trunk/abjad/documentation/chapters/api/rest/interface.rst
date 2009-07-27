@@ -1,9 +1,9 @@
-_RestInterface
-==============
+RestInterface
+=============
 
 .. automodule:: abjad.rest.interface
 
-.. autoclass:: _RestInterface
+.. autoclass:: abjad.RestInterface
    :members:
    :undoc-members:
    :show-inheritance:

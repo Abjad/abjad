@@ -1,9 +1,9 @@
-_TupletNumberInterface
-======================
+TupletNumberInterface
+=====================
 
 .. automodule:: abjad.tuplet.number
 
-.. autoclass:: _TupletNumberInterface
+.. autoclass:: abjad.TupletNumberInterface
    :members:
    :undoc-members:
    :show-inheritance:

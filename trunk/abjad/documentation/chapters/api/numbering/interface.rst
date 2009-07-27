@@ -1,9 +1,9 @@
-_NumberingInterface
-===================
+NumberingInterface
+==================
 
 .. automodule:: abjad.numbering.interface
 
-.. autoclass:: _NumberingInterface
+.. autoclass:: abjad.NumberingInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,9 +1,9 @@
-_BeamInterface
-==============
+BeamInterface
+=============
 
 .. automodule:: abjad.beam.interface
 
-.. autoclass:: _BeamInterface
+.. autoclass:: abjad.BeamInterface
    :members:
    :undoc-members:
    :show-inheritance:

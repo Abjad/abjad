@@ -305,7 +305,7 @@ class _Navigator(_Abjad):
       from abjad.tools import check
       return check.assess_components([self._client, expr], share = 'thread')
 
-   ## TODO: Move _Navigator._rank to _Parentage._rank ##
+   ## TODO: Move _Navigator._rank to Parentage._rank ##
 
    def _rank(self):
       '''Returns the index of the caller (its position) in 

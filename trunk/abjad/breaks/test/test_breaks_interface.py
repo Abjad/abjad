@@ -136,7 +136,7 @@ def test_breaks_interface_08( ):
 
 
 def test_breaks_interface_09( ):
-   '''_BreaksInterface returns True when 'line' is True.'''
+   '''BreaksInterface returns True when 'line' is True.'''
 
    t = Note(0, (1, 4))
    t.breaks.line = True
@@ -145,7 +145,7 @@ def test_breaks_interface_09( ):
    
 
 def test_breaks_interface_10( ):
-   '''_BreaksInterface returns True when 'page' is True.'''
+   '''BreaksInterface returns True when 'page' is True.'''
 
    t = Note(0, (1, 4))
    t.breaks.page = True
@@ -154,7 +154,7 @@ def test_breaks_interface_10( ):
    
 
 def test_breaks_interface_11( ):
-   '''_BreaksInterface returns True when both
+   '''BreaksInterface returns True when both
       'line' and 'page' are True.'''
 
    t = Note(0, (1, 4))
@@ -165,7 +165,7 @@ def test_breaks_interface_11( ):
    
 
 def test_breaks_interface_12( ):
-   '''_BreaksInterface returns False when neither
+   '''BreaksInterface returns False when neither
       'line' nor 'page' are True.'''
 
    t = Note(0, (1, 4))

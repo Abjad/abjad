@@ -1,9 +1,9 @@
-_HistoryInterface
-=================
+HistoryInterface
+================
 
 .. automodule:: abjad.history.interface
 
-.. autoclass:: _HistoryInterface
+.. autoclass:: abjad.HistoryInterface
    :members:
    :undoc-members:
    :show-inheritance:
