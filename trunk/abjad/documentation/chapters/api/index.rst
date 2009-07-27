@@ -9,153 +9,76 @@ Abjad API
    articulations/interface
    barline/interface
    barnumber/interface
-   beam/format
    beam/interface
    beam/spanner
-   beam/complex/format
    beam/complex/spanner
-   beam/complex/durated/format
    beam/complex/durated/spanner
-   beam/complex/measured/format
    beam/complex/measured/spanner
-   bracket/format
    bracket/spanner
    brackets/interface
    breaks/interface
    chord/chord
-   chord/formatter
-   chord/initializer
    clef/clef
    clef/interface
    cluster/cluster
-   cluster/formatter
    cluster/interface
-   cluster/slots
    comments/comments
-   component/component
-   component/duration
-   component/formatter
-   component/slots
-   component/spanner/aggregator
    container/container
-   container/duration
-   container/formatter
-   container/multipliedduration
-   container/number
-   container/slots
-   container/spanner/aggregator
-   context/context
-   context/formatter
-   context/slots
-   core/abjadcore
-   core/backtracking
-   core/format
-   core/formatcontributor
-   core/grobhandler
-   core/initializer
-   core/interface
-   core/observer
-   core/parser
-   core/settinghandler
    debug/debug
    directives/interface
    dots/interface
-   dynamics/format
    dynamics/interface
    dynamics/spanner
    exceptions/exceptions
-   glissando/format
    glissando/interface
    glissando/spanner
-   grace/formatter
    grace/grace
    grace/interface
-   grace/slots
    hairpin/crescendo
    hairpin/decrescendo
-   hairpin/format
    hairpin/spanner
    harmonic/interface
    history/interface
-   instrument/format
    instrument/interface
    instrument/spanner
    interfaces/aggregator
    layout/fixed_staff_positioning
    layout/staff_alignment_offsets
    layout/system_y_offsets
-   leaf/duration
-   leaf/formatter
-   leaf/leaf
-   leaf/number
-   leaf/slots
-   leaf/spanner/aggregator
    markup/interface
    markup/markup
-   measure/duration
-   measure/formatter
-   measure/measure
-   measure/number
-   measure/slots
    measure/anonymous/measure
-   measure/dynamic/duration
    measure/dynamic/measure
-   measure/dynamic/meter
-   measure/rigid/duration
-   measure/rigid/formatter
    measure/rigid/measure
    meter/interface
    meter/meter
-   metricgrid/format
    metricgrid/spanner
    navigator/dfs
-   navigator/navigator
-   note/initializer
    note/note
    notecolumn/interface
-   notehead/format
    notehead/interface
    notehead/notehead
    numbering/interface
-   octavation/format
    octavation/spanner
    offset/interface
    offset/prolated/interface
-   offset/seconds/interface
-   override/format
    override/spanner
-   parentage/containment
    parentage/parentage
-   pianopedal/format
    pianopedal/interface
    pianopedal/spanner
    pitch/pitch
    rational/rational
-   receipt/component
-   receipt/slip
-   receipt/spanner
-   rest/initializer
    rest/interface
    rest/rest
    score/score
    score/interface/interface
-   skip/initializer
    skip/skip
-   slur/format
    slur/interface
    slur/spanner
-   spacing/format
    spacing/indication
    spacing/interface
    spacing/spanner
    spanbar/interface
-   spanner/duration
-   spanner/format
-   spanner/grobhandler
-   spanner/offset
-   spanner/positionalformat
-   spanner/positionalhandler
-   spanner/receptor
    spanner/spanner
    staff/invisiblestaff
    staff/rhythmicsketchstaff
@@ -166,17 +89,13 @@ Abjad API
    staffgroup/pianostaff
    staffgroup/staffgroup
    stem/interface
-   tempo/format
    tempo/indication
    tempo/interface
    tempo/spanner
-   tempo/proportional/format
    tempo/proportional/spanner
-   text/format
    text/interface
    text/spanner
    thread/interface
-   tie/format
    tie/interface
    tie/spanner
    tools/cfgtools/list_helpers
@@ -487,19 +406,11 @@ Abjad API
    tools/tuplettools/slip_trivial
    tools/tuplettools/subsume
    tremolo/interface
-   trill/format
    trill/interface
    trill/spanner
    tuplet/bracket
-   tuplet/duration
-   tuplet/formatter
    tuplet/number
-   tuplet/slots
-   tuplet/tuplet
-   tuplet/fd/duration
    tuplet/fd/tuplet
-   tuplet/fm/duration
    tuplet/fm/tuplet
-   update/interface
    voice/voice
    voice/interface/interface

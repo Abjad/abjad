@@ -19,9 +19,10 @@ def make_sphinx_module_listing(package_path, file):
 #   print members
 #   print 'BAR!'
 #   print ''
-#   if members and 'Crescendo' in members:
+#   #if members and 'Crescendo' in members:
 #   #if 'hairpin' in page_title:
-#      raise Exception
+#   #   raise Exception
+#   raise Exception
 
    ## if you want to generate NO api entry for a class of function,
    ## then return page_title as None;
@@ -54,10 +55,14 @@ def make_sphinx_module_listing(package_path, file):
          result += '.. %s:: abjad.%s\n' % (auto_type, page_title)   
          result = _append_class_options(result)
 
-      ## private .. autoclass:: AccidentalInterface
+#      ## private .. autoclass:: AccidentalInterface
+#      elif auto_type == 'autoclass' and page_title.startswith('_'):
+#         result += '.. %s:: %s\n' % (auto_type, page_title)   
+#         result = _append_class_options(result)
+
+      ## private _AccidentalInterface is now public AccidentalInterface
       elif auto_type == 'autoclass' and page_title.startswith('_'):
-         result += '.. %s:: %s\n' % (auto_type, page_title)   
-         result = _append_class_options(result)
+         return None
 
       ## .. autoexception:: abjad.MeasureError
       elif auto_type == 'autoexception':
