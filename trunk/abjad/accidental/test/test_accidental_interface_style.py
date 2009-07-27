@@ -3,7 +3,7 @@ from abjad import *
 
 def test_accidental_interface_style_01( ):
    '''
-   _AccidentalInterface.style manages LilyPond set-accidental-style.
+   AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
    t = Staff(construct.scale(4))
@@ -24,7 +24,7 @@ def test_accidental_interface_style_01( ):
 
 def test_accidental_interface_style_02( ):
    '''
-   _AccidentalInterface.style manages LilyPond set-accidental-style.
+   AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
    t = Staff(construct.scale(4))

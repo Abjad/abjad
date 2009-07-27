@@ -3,7 +3,7 @@ from abjad.core.interface import _Interface
 import types
 
 
-class _AccidentalInterface(_Interface, _GrobHandler):
+class AccidentalInterface(_Interface, _GrobHandler):
    '''Interface to all accidental-related settings and information.
 
       *  Manage *LilyPond* ``Accidental`` grob.
@@ -13,7 +13,7 @@ class _AccidentalInterface(_Interface, _GrobHandler):
 
          abjad> t = Staff(construct.scale(4))
          abjad> t.accidental
-         <_AccidentalInterface>'''
+         <AccidentalInterface>'''
 
    def __init__(self, _client):
       '''Bind client and set style to None.'''

@@ -3,7 +3,7 @@ from abjad import *
 
 def test_accidental_interface_grob_handling_01( ):
    '''
-   _AccidentalInterface handles the LilyPond Accidental grob.
+   AccidentalInterface handles the LilyPond Accidental grob.
    '''
 
    t = Staff(construct.scale(4))
@@ -25,7 +25,7 @@ def test_accidental_interface_grob_handling_01( ):
 
 def test_accidental_interface_grob_handling_02( ):
    '''
-   _AccidentalInterface handles the LilyPond Accidental grob.
+   AccidentalInterface handles the LilyPond Accidental grob.
    '''
 
    t = Staff(construct.scale(4))

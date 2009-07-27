@@ -54,7 +54,7 @@ def make_sphinx_module_listing(package_path, file):
          result += '.. %s:: abjad.%s\n' % (auto_type, page_title)   
          result = _append_class_options(result)
 
-      ## private .. autoclass:: _AccidentalInterface
+      ## private .. autoclass:: AccidentalInterface
       elif auto_type == 'autoclass' and page_title.startswith('_'):
          result += '.. %s:: %s\n' % (auto_type, page_title)   
          result = _append_class_options(result)
