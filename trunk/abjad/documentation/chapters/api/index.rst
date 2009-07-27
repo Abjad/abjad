@@ -12,52 +12,31 @@ Classes
    accidental/accidental
    measure/anonymous/measure
    articulations/articulation
-   beam/spanner
-   beam/complex/spanner
-   beam/complex/durated/spanner
-   beam/complex/measured/spanner
-   bracket/spanner
    chord/chord
    clef/clef
    cluster/cluster
    container/container
-   dynamics/spanner
    measure/dynamic/measure
    tuplet/fd/tuplet
    tuplet/fm/tuplet
    layout/fixed_staff_positioning
-   glissando/spanner
    grace/grace
-   hairpin/spanner
-   instrument/spanner
    markup/markup
    meter/meter
-   metricgrid/spanner
    note/note
    notehead/notehead
-   octavation/spanner
-   override/spanner
-   pianopedal/spanner
    pitch/pitch
    rational/rational
    rest/rest
    measure/rigid/measure
    score/score
    skip/skip
-   slur/spanner
    spacing/indication
-   spacing/spanner
-   spanner/spanner
    staff/staff
    layout/staff_alignment_offsets
    staffgroup/staffgroup
    layout/system_y_offsets
-   tempo/spanner
    tempo/indication
-   tempo/proportional/spanner
-   text/spanner
-   tie/spanner
-   trill/spanner
    voice/voice
    debug/debug
 
@@ -127,6 +106,35 @@ Interfaces
    comments/comments
    directives/interface
    voice/interface/interface
+
+
+Spanners
+--------
+
+.. toctree::
+   :maxdepth: 1
+
+   beam/spanner
+   beam/complex/spanner
+   beam/complex/durated/spanner
+   beam/complex/measured/spanner
+   bracket/spanner
+   dynamics/spanner
+   glissando/spanner
+   hairpin/spanner
+   instrument/spanner
+   metricgrid/spanner
+   octavation/spanner
+   override/spanner
+   pianopedal/spanner
+   slur/spanner
+   spacing/spanner
+   spanner/spanner
+   tempo/spanner
+   tempo/proportional/spanner
+   text/spanner
+   tie/spanner
+   trill/spanner
 
 
 Tools

@@ -8,12 +8,14 @@ def make_sphinx_toc( ):
    Divide TOC into classes, interfaces and tools.'''
 
    names = _get_public_abjad_names( )
-   klasses, interfaces, functions, tools = [ ], [ ], [ ], [ ]
+   klasses, interfaces, spanners, functions, tools = [ ], [ ], [ ], [ ], [ ]
    for name in names:
       if name['kind'] == 'class':
          if 'exceptions' not in name['module']:
             if 'Interface' in name['name']:
                interfaces.append(name)
+            elif 'spanner' in name['module']:
+               spanners.append(name)
             else:
                klasses.append(name)
       elif name['kind'] == 'function':
@@ -60,6 +62,18 @@ def make_sphinx_toc( ):
    result += '   :maxdepth: 1\n'
    result += '\n'
    for name in interfaces:
+      if not name['name'].startswith('_'):
+         doc_path = _module_path_to_doc_path(name['module'])
+         result += '   %s\n' % doc_path
+   result += '\n\n'
+  
+   result += 'Spanners\n'
+   result += '-' * (len('Spanners'))
+   result += '\n\n'
+   result += '.. toctree::\n'
+   result += '   :maxdepth: 1\n'
+   result += '\n'
+   for name in spanners:
       if not name['name'].startswith('_'):
          doc_path = _module_path_to_doc_path(name['module'])
          result += '   %s\n' % doc_path
