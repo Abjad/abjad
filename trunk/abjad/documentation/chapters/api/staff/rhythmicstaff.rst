@@ -3,4 +3,8 @@ RhythmicStaff
 
 .. automodule:: abjad.staff.rhythmicstaff
 
-.. autofunction:: abjad.staff.rhythmicstaff.RhythmicStaff
+.. autoclass:: abjad.RhythmicStaff
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:

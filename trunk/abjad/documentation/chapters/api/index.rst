@@ -21,13 +21,18 @@ Classes
    tuplet/fm/tuplet
    layout/fixed_staff_positioning
    grace/grace
+   staffgroup/grandstaff
+   staff/invisiblestaff
    markup/markup
    meter/meter
    note/note
    notehead/notehead
+   staffgroup/pianostaff
    pitch/pitch
    rational/rational
    rest/rest
+   staff/rhythmicsketchstaff
+   staff/rhythmicstaff
    measure/rigid/measure
    score/score
    skip/skip
@@ -38,18 +43,6 @@ Classes
    layout/system_y_offsets
    tempo/indication
    voice/voice
-
-
-Facade classes
-
-.. toctree::
-   :maxdepth: 1
-
-   staffgroup/grandstaff
-   staff/invisiblestaff
-   staffgroup/pianostaff
-   staff/rhythmicsketchstaff
-   staff/rhythmicstaff
 
 
 Interfaces

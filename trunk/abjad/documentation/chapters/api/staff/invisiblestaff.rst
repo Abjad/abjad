@@ -3,4 +3,8 @@ InvisibleStaff
 
 .. automodule:: abjad.staff.invisiblestaff
 
-.. autofunction:: abjad.staff.invisiblestaff.InvisibleStaff
+.. autoclass:: abjad.InvisibleStaff
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:

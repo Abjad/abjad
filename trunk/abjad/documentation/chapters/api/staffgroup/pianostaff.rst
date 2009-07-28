@@ -3,4 +3,8 @@ PianoStaff
 
 .. automodule:: abjad.staffgroup.pianostaff
 
-.. autofunction:: abjad.staffgroup.pianostaff.PianoStaff
+.. autoclass:: abjad.PianoStaff
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:

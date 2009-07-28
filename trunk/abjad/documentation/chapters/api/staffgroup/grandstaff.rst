@@ -3,4 +3,8 @@ GrandStaff
 
 .. automodule:: abjad.staffgroup.grandstaff
 
-.. autofunction:: abjad.staffgroup.grandstaff.GrandStaff
+.. autoclass:: abjad.GrandStaff
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :inherited-members:

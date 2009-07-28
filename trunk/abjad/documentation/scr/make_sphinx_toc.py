@@ -8,7 +8,8 @@ def make_sphinx_toc( ):
    Divide TOC into classes, interfaces and tools.'''
 
    names = _get_public_abjad_names( )
-   klasses, interfaces, spanners, functions, tools = [ ], [ ], [ ], [ ], [ ]
+   #klasses, interfaces, spanners, functions, tools = [ ], [ ], [ ], [ ], [ ]
+   klasses, interfaces, spanners, tools = [ ], [ ], [ ], [ ]
    for name in names:
       if name['kind'] == 'class':
          if 'exceptions' not in name['module']:
@@ -22,7 +23,8 @@ def make_sphinx_toc( ):
          if 'tools' in name['module']:
             tools.append(name)
          else:
-            functions.append(name)
+            #functions.append(name)
+            raise ValueError('all public functions must be tools.')
       else:
          raise ValueError('name must be class or function.')
 
@@ -44,16 +46,16 @@ def make_sphinx_toc( ):
          result += '   %s\n' % doc_path
    result += '\n\n'
   
-   result += 'Facade classes'
-   result += '\n\n'
-   result += '.. toctree::\n'
-   result += '   :maxdepth: 1\n'
-   result += '\n'
-   for name in functions:
-      if not name['name'].startswith('_'):
-         doc_path = _module_path_to_doc_path(name['module'])
-         result += '   %s\n' % doc_path
-   result += '\n\n'
+#   result += 'Facade classes'
+#   result += '\n\n'
+#   result += '.. toctree::\n'
+#   result += '   :maxdepth: 1\n'
+#   result += '\n'
+#   for name in functions:
+#      if not name['name'].startswith('_'):
+#         doc_path = _module_path_to_doc_path(name['module'])
+#         result += '   %s\n' % doc_path
+#   result += '\n\n'
 
    result += 'Interfaces\n'
    result += '-' * (len('Interfaces'))
