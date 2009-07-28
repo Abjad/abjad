@@ -79,6 +79,6 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       if prev_measure is None:
          return [('Special', 'reverts'), [ ]]
       barline_reverts = [ ]
-      barline_reverts.extend(prev_measure.barline.reverts)
-      barline_reverts.extend(prev_measure.spanbar.reverts)
+      barline_reverts.extend(prev_measure.barline._reverts)
+      barline_reverts.extend(prev_measure.spanbar._reverts)
       return [('Special', 'reverts'), barline_reverts]

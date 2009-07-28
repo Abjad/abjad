@@ -17,8 +17,8 @@ class NoteHeadInterface(_Interface, _GrobHandler):
    ##       that NoteHeadInterface might contribute.
 
    @property
-   def overrides(self):
+   def _overrides(self):
       result = [ ]
-      result.extend(_GrobHandler.overrides.fget(self))
+      result.extend(_GrobHandler._overrides.fget(self))
       result = [x for x in result if not "#'pitch" in x]
       return result

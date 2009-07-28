@@ -106,7 +106,7 @@ class InterfaceAggregator(_Interface):
       '''Ordered data structure of format-time grob overrides.'''
       result = [ ]
       for contributor in self.contributors:
-         result.extend(getattr(contributor, 'overrides', [ ]))
+         result.extend(getattr(contributor, '_overrides', [ ]))
       return result
 
    ## OPTIMIZATION: Maybe better to derive at attr assignment time. ##
@@ -116,7 +116,7 @@ class InterfaceAggregator(_Interface):
       '''Ordered data structure of format-time grob reverts.'''
       result = [ ]
       for contributor in self.contributors:
-         result.extend(getattr(contributor, 'reverts', [ ]))
+         result.extend(getattr(contributor, '_reverts', [ ]))
       return result
 
    @property

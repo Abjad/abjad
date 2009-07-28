@@ -59,7 +59,7 @@ class _GrobHandler(_FormatContributor):
       return result
 
    @property
-   def overrides(self):
+   def _overrides(self):
       r'''Read-only, alphabetized list of LilyPond \override strings 
       to contribute at format time.'''
 
@@ -74,7 +74,7 @@ class _GrobHandler(_FormatContributor):
       return result
 
    @property
-   def reverts(self):
+   def _reverts(self):
       r'''Read-only list of LilyPond \revert strings to contribute
       at format time.'''
 

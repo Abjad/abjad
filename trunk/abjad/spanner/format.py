@@ -23,7 +23,7 @@ class _SpannerFormatInterface(_Abjad):
       result = [ ]
       spanner = self.spanner
       if spanner._isMyLastLeaf(leaf):
-         result.extend(getattr(spanner, 'reverts', [ ]))
+         result.extend(getattr(spanner, '_reverts', [ ]))
       return result
 
    def _before(self, leaf):
@@ -31,7 +31,7 @@ class _SpannerFormatInterface(_Abjad):
       result = [ ]
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
-         result.extend(getattr(spanner, 'overrides', [ ]))
+         result.extend(getattr(spanner, '_overrides', [ ]))
       return result
 
    def left(self, leaf):

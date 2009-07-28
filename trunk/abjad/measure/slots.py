@@ -86,8 +86,8 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def _wrap_barline_interface_overrides(self):
       measure = self.formatter.container
       barline_overrides = [ ]
-      barline_overrides.extend(measure.barline.overrides)
-      barline_overrides.extend(measure.spanbar.overrides)
+      barline_overrides.extend(measure.barline._overrides)
+      barline_overrides.extend(measure.spanbar._overrides)
       return [('BarLine / SpanBar', 'overrides'), barline_overrides]
       
    def _wrap_measure_interface_overrides(self):

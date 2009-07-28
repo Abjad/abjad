@@ -14,8 +14,9 @@ import types
 
 class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
    r'''Report on Abjad staff in parentage of client.
-      Interface to LilyPond \stopStaff, \startStaff hiding commands.
-      Handle no LilyPond grob.'''
+   Interface to LilyPond \stopStaff, \startStaff hiding commands.
+   Handle no LilyPond grob.
+   '''
    
    def __init__(self, _client, _updateInterface):
       '''Register as observer, format contributor and backtracker.
