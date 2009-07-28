@@ -45,8 +45,6 @@ Facade classes
 .. toctree::
    :maxdepth: 1
 
-   hairpin/crescendo
-   hairpin/decrescendo
    staffgroup/grandstaff
    staff/invisiblestaff
    staffgroup/pianostaff
@@ -117,6 +115,8 @@ Spanners
    beam/complex/durated/spanner
    beam/complex/measured/spanner
    bracket/spanner
+   crescendo/spanner
+   decrescendo/spanner
    dynamics/spanner
    glissando/spanner
    hairpin/spanner
