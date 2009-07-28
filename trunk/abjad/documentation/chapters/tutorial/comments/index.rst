@@ -12,11 +12,14 @@ You can add comments to any note, rest, chord or skip.
 ::
 
 	abjad> note = Note(13, (1, 4))
-	abjad> note.comments.before.append('This is a comment before the note.')
-	abjad> note.comments.before.append('This is another comment before the note.')
 	abjad> show(note)
 
 .. image:: images/first-ex.png
+
+::
+
+   abjad> note.comments.before.append('This is a comment before the note.')
+   abjad> note.comments.before.append('This is another comment before the note.')
 
 ::
 
@@ -36,14 +39,17 @@ You can also add comments to any container.
 ::
 
 	abjad> staff = Staff(construct.scale(4))
-	abjad> staff.comments.before.append('Here is a comment before the staff.')
-	abjad> staff.comments.opening.append('Here is a comment in the staff opening.')
-	abjad> staff.comments.opening.append('Here is another comment in the staff opening.')
-	abjad> staff.comments.closing.append('Comment in the staff closing.')
-	abjad> staff.comments.after.append('Comment after the staff.')
 	abjad> show(staff)
 
 .. image:: images/staff-ex.png
+
+::
+
+   abjad> staff.comments.before.append('Here is a comment before the staff.')
+   abjad> staff.comments.opening.append('Here is a comment in the staff opening.')
+   abjad> staff.comments.opening.append('Here is another comment in the staff opening.')
+   abjad> staff.comments.closing.append('Comment in the staff closing.')
+   abjad> staff.comments.after.append('Comment after the staff.')
 
 ::
 
