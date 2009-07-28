@@ -60,5 +60,6 @@ def make_api_tocs( ):
 
 if __name__ == '__main__':
    make_api_tocs( )
-   print 'Done.'
-   print 'You are now readby to build the HTML docs with make html.'
+   print ''
+   print "Done. You are now ready to build the HTML docs with 'make html'."
+   print ''

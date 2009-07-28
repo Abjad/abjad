@@ -46,4 +46,8 @@ def _import_functions_in_package_to_namespace(
    _remove_modules_from_namespace(namespace)
 
    ## remove myself
-   del(namespace['_import_functions_in_package_to_namespace'])
+   try:
+      del(namespace['_import_functions_in_package_to_namespace'])
+   ## if we were importing into __builtins__, myself will raise KeyError
+   except KeyError:
+      pass
