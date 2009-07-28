@@ -57,7 +57,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       formatter = self.formatter
       leaf = formatter.leaf
       result.append(self.wrap(leaf.interfaces, 'after'))
-      result.append(self.wrap(leaf.spanners, 'after'))
+      result.append(self.wrap(leaf.spanners, '_after'))
       result.append(self.wrap(leaf.directives, 'after'))
       result.append(self.wrap(leaf.comments, 'after'))
       return tuple(result)

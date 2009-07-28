@@ -13,6 +13,6 @@ def _transfer_all_attributes(old, new):
          if hasattr(value, '_client'):
             setattr(value, '_client', new)
             if isinstance(value, GraceInterface):
-               setattr(value.after, '_carrier', new)
+               setattr(value._after, '_carrier', new)
                setattr(value._before, '_carrier', new)
          setattr(new, key, value)

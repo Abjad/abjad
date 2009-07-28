@@ -8,11 +8,11 @@ class _InstrumentSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def after(self, leaf):
+   def _after(self, leaf):
       '''Spanner format contribution after leaf.'''
       result = [ ]
-      #result.extend(Spanner.after(spanner, leaf))
-      result.extend(_SpannerFormatInterface.after(self, leaf))
+      #result.extend(Spanner._after(spanner, leaf))
+      result.extend(_SpannerFormatInterface._after(self, leaf))
       spanner = self.spanner
       if spanner._isMyLastLeaf(leaf):
          #staff = leaf.staff.context

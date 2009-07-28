@@ -10,10 +10,10 @@ class _SpacingSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def after(self, leaf):
+   def _after(self, leaf):
       '''Spanner format contribution after leaf.'''
       result = [ ]
-      result.extend(_SpannerFormatInterface.after(self, leaf))
+      result.extend(_SpannerFormatInterface._after(self, leaf))
       new_section = self.spanner.new_section
       if new_section:
          if self.spanner._isMyLastLeaf(leaf):

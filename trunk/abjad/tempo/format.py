@@ -12,10 +12,10 @@ class _TempoSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def after(self, leaf):
+   def _after(self, leaf):
       '''Spanner format contribution after leaf.'''
       result = [ ]
-      result.extend(_SpannerFormatInterface.after(self, leaf))
+      result.extend(_SpannerFormatInterface._after(self, leaf))
       spanner = self.spanner
       if spanner._isMyLastLeaf(leaf):
          if spanner.indication:

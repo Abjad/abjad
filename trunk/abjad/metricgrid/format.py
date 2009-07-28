@@ -11,7 +11,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def after(self, leaf):
+   def _after(self, leaf):
       '''Spanner format contribution after leaf.'''
       result = [ ]
       spanner = self.spanner

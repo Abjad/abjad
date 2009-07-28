@@ -11,11 +11,11 @@ class _OctavationSpannerFormatInterface(_SpannerFormatInterface):
    ## TODO - test the shit out of the middleCPosition stuff, esp
    ##        clef changes in the middle of an octavation spanner
 
-   def after(self, leaf):
+   def _after(self, leaf):
       '''Spanner format contributions after leaf.'''
       result = [ ]
-      #result.extend(_GrobHandlerSpanner.after(spanner, leaf))
-      result.extend(_SpannerFormatInterface.after(self, leaf))
+      #result.extend(_GrobHandlerSpanner._after(spanner, leaf))
+      result.extend(_SpannerFormatInterface._after(self, leaf))
       spanner = self.spanner
       if spanner._isMyLastLeaf(leaf):
          result.append(r'\ottava #%s' % spanner.stop)

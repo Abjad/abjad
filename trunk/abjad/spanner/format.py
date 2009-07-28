@@ -18,7 +18,7 @@ class _SpannerFormatInterface(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   def after(self, leaf):
+   def _after(self, leaf):
       '''Spanner format contributions to output after leaf.'''
       result = [ ]
       spanner = self.spanner
@@ -45,7 +45,7 @@ class _SpannerFormatInterface(_Abjad):
       for leaf in leaves:
          print leaf
          print '\tbefore: %s' % self._before(leaf)
-         print '\t after: %s' % self.after(leaf)
+         print '\t after: %s' % self._after(leaf)
          print '\t  left: %s' % self.left(leaf)
          print '\t right: %s' % self.right(leaf)
          print ''

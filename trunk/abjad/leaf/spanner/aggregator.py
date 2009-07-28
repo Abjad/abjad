@@ -21,11 +21,11 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def after(self):
+   def _after(self):
       result = [ ]
       leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.format.after(leaf))
+         result.extend(spanner.format._after(leaf))
       return result
 
    @property

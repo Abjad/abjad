@@ -8,7 +8,7 @@ class _OverrideSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def after(self, leaf):
+   def _after(self, leaf):
       '''Spanner format contribution after leaf.'''
       spanner = self.spanner
       if spanner._isMyLastLeaf(leaf) and \
