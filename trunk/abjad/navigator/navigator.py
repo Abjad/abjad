@@ -1,5 +1,5 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.navigator.dfs import depth_first_search
+#from abjad.navigator.dfs import depth_first_search
 import collections
 
 
@@ -273,7 +273,10 @@ class _Navigator(_Abjad):
 
    def _DFS(self, capped = True, unique = True, 
       forbid = None, direction = 'left'):
-      return depth_first_search(
+      from abjad.tools import iterate
+      #return depth_first_search(
+      #   self._client, capped, unique, forbid, direction)
+      return iterate.depth_first(
          self._client, capped, unique, forbid, direction)
 
    def _findFellowBead(self, candidates):

@@ -52,7 +52,6 @@ Facade classes
    staffgroup/pianostaff
    staff/rhythmicsketchstaff
    staff/rhythmicstaff
-   navigator/dfs
 
 
 Interfaces
@@ -353,6 +352,7 @@ iterate
 
    tools/iterate/backwards
    tools/iterate/chained_contents
+   tools/iterate/depth_first
    tools/iterate/get_nth
    tools/iterate/grace
    tools/iterate/measure_next

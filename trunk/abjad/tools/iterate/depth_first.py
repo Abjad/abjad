@@ -1,8 +1,15 @@
 import collections
 
 
-def depth_first_search(component, capped = True, unique = True, 
+def depth_first(component, capped = True, unique = True, 
    forbid = None, direction = 'left'):
+   '''.. versionadded:: 1.1.1
+
+   Iterate entire `component` score depth-first from `component`.
+
+   .. todo:: Add usage examples.
+   '''
+
    client_parent, node, rank = component.parentage.parent, component, 0 
    queue = collections.deque([ ])
    while node is not None and not (capped and node is client_parent):

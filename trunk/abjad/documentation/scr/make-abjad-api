@@ -19,7 +19,7 @@ def make_api_tocs( ):
    interactive = raw_input('Run script in interactive mode? [Y/n]: ')
    for current_root, dirs, files in os.walk(ABJADPATH):
       ## removed unwanted dirs and files.
-      filtered_dirs = ['.svn', 'book', 'cfg', 'checks', 'demos', 
+      filtered_dirs = ['.svn', 'book', 'cfg', 'checks', 'debug', 'demos', 
          'documentation', 'exceptions', 'scm', 'scr', 'test', ]
       _filter_directories(dirs, filtered_dirs)
       _filter_files(files)
