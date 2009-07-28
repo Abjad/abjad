@@ -1,7 +1,7 @@
 ParentageInterface
 ==================
 
-.. automodule:: abjad.parentage.parentage
+.. automodule:: abjad.parentage.interface
 
 .. autoclass:: abjad.ParentageInterface
    :members:

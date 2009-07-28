@@ -19,7 +19,7 @@ from abjad.navigator.navigator import _Navigator
 from abjad.notecolumn.interface import NoteColumnInterface
 from abjad.numbering.interface import NumberingInterface
 from abjad.offset.interface import OffsetInterface
-from abjad.parentage.parentage import ParentageInterface
+from abjad.parentage.interface import ParentageInterface
 from abjad.pianopedal.interface import PianoPedalInterface
 from abjad.rational import Rational
 from abjad.receipt.component import _ComponentReceipt

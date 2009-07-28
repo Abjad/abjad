@@ -86,7 +86,7 @@ Interfaces
    numbering/interface
    offset/interface
    offset/prolated/interface
-   parentage/parentage
+   parentage/interface
    pianopedal/interface
    rest/interface
    score/interface/interface
@@ -372,8 +372,8 @@ label
 
    tools/label/clear_leaves
    tools/label/leaf_depth
+   tools/label/leaf_depth_tuplet
    tools/label/leaf_durations
-   tools/label/leaf_layer
    tools/label/leaf_pcs
 
 
