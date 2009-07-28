@@ -1,37 +1,35 @@
 from abjad.core.abjadcore import _Abjad
-#from abjad.cfg._read_config_value import _read_config_value
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools import check
 
-#if _read_config_value('DEBUG').lower( ) == 'false':
 if _read_config_file( )['DEBUG'] == False:
    DEBUG = False
 else:
    DEBUG = True
 
-class debug(_Abjad):
+class _debug(_Abjad):
    '''Debug decorator class.  
 
-      The purpose of this decorator is to run "live bug tracking" 
-      when ``DEBUG`` is set to `True`. 
+   The purpose of this decorator is to run "live bug tracking" 
+   when ``DEBUG`` is set to `True`. 
 
-      Apply the decorator to any function that requires live debugging.
-      Instantiate with parentheses.
+   Apply the decorator to any function that requires live debugging.
+   Instantiate with parentheses.
 
-      Example:
+   Example:
 
-      You want the debugger to track function ``insert( )``::
+   You want the debugger to track function ``insert( )``::
 
-         def insert(self, expr): 
-            ...
+      def insert(self, expr): 
+         ...
 
-      To get the debugger called every time ``insert( )`` is called,
-      put ``@debug( )`` immediately above the function definition::
+   To get the debugger called every time ``insert( )`` is called,
+   put ``@_debug( )`` immediately above the function definition::
 
-         @debug( )
-         def insert(self, expr): 
-            ...
-      '''
+      @_debug( )
+      def insert(self, expr): 
+         ...
+   '''
 
    def __init__(self, check_function=check.wf, verbose=False):
       self.check_function = check_function

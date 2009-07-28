@@ -38,7 +38,6 @@ Classes
    layout/system_y_offsets
    tempo/indication
    voice/voice
-   debug/debug
 
 
 Facade classes

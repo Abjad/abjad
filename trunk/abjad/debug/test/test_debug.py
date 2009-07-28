@@ -1,16 +1,17 @@
-from abjad.debug.debug import debug, DEBUG
+from abjad.debug.debug import _debug
+from abjad.debug.debug import DEBUG
 import py.test
 
 
-def test_debug_01( ):
+def test__debug_01( ):
+   '''@_debug( ) decorator correctly returns the return value/object 
+   of the function or method it decorates.
    '''
-   @debug( ) decorator correctly returns the return value/object of the
-   function or method it decorates.
-   '''
+
    def mycheck(expr):
       return True
 
-   @debug(mycheck)
+   @_debug(mycheck)
    def dummy(expr):
       return expr
 
@@ -21,12 +22,15 @@ def test_debug_01( ):
 
 if DEBUG:
 
-   def test_debug_02( ):
-      '''debug throws a Warning exception if the check function returns False.'''
+   def test__debug_02( ):
+      '''debug throws a Warning exception if the check function 
+      returns False.
+      '''
+
       def mycheck(expr):
          return isinstance(expr, str)
 
-      @debug(mycheck)
+      @_debug(mycheck)
       def dummy(expr):
          return expr
 
@@ -34,14 +38,16 @@ if DEBUG:
       assert py.test.raises(Warning, 'dummy(1)')
 
 
-   def test_debug_03( ):
-      '''the checking function passed to the debugger must take one argument.'''
+   def test__debug_03( ):
+      '''The checking function passed to the debugger 
+      must take one argument.
+      '''
+
       def mycheck( ):
          pass
 
-      @debug(mycheck)
+      @_debug(mycheck)
       def dummy(expr):
          return expr
 
       assert py.test.raises(TypeError, "dummy('hello')")
-
