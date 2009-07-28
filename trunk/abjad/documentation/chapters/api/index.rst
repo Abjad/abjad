@@ -71,6 +71,8 @@ Interfaces
    breaks/interface
    clef/interface
    cluster/interface
+   comments/interface
+   directives/interface
    dots/interface
    dynamics/interface
    glissando/interface
@@ -103,8 +105,6 @@ Interfaces
    trill/interface
    tuplet/bracket
    tuplet/number
-   comments/comments
-   directives/interface
    voice/interface/interface
 
 

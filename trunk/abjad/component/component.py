@@ -4,10 +4,10 @@ from abjad.barline.interface import BarLineInterface
 from abjad.barnumber.interface import BarNumberInterface
 from abjad.beam.interface import BeamInterface
 from abjad.breaks.interface import BreaksInterface
-from abjad.comments.comments import UserCommentsInterface
+from abjad.comments.interface import CommentsInterface
 from abjad.core.abjadcore import _Abjad
 from abjad.clef.interface import ClefInterface
-from abjad.directives.interface import UserDirectivesInterface
+from abjad.directives.interface import DirectivesInterface
 from abjad.dots.interface import DotsInterface
 from abjad.dynamics.interface import DynamicsInterface
 from abjad.glissando.interface import GlissandoInterface
@@ -67,8 +67,8 @@ class _Component(_Abjad):
       self._barnumber = BarNumberInterface(self)
       self._beam = BeamInterface(self)
       self._breaks = BreaksInterface(self)
-      self._comments = UserCommentsInterface( )
-      self._directives = UserDirectivesInterface(self)
+      self._comments = CommentsInterface( )
+      self._directives = DirectivesInterface(self)
       self._dots = DotsInterface(self)
       self._dynamics = DynamicsInterface(self)
       self._glissando = GlissandoInterface(self)
@@ -172,13 +172,13 @@ class _Component(_Abjad):
    @property
    def comments(self):
       '''Read-only reference to
-      :class:`~abjad.comments.comments.UserCommentsInterface`.'''
+      :class:`~abjad.comments.interface.CommentsInterface`.'''
       return self._comments
 
    @property
    def directives(self):
       '''Read-only reference to
-      :class:`~abjad.directives.interface.UserDirectivesInterface`.'''
+      :class:`~abjad.directives.interface.DirectivesInterface`.'''
       return self._directives
 
    @property
