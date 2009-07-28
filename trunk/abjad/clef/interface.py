@@ -54,7 +54,7 @@ class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       return self._default
 
    @property
-   def opening(self):
+   def _opening(self):
       '''Format contribution at container opening or before leaf.'''
       result = [ ]
       #if self.forced or self.change:

@@ -31,7 +31,7 @@ class BarLineInterface(_Interface, _GrobHandler):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def closing(self):
+   def _closing(self):
       '''Read-only list of container-closing or after-leaf
       format contribution strings.
 

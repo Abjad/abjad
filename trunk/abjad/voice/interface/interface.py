@@ -71,7 +71,7 @@ class VoiceInterface(_Interface, _FormatContributor):
       return property(**locals( ))
 
    @property
-   def opening(self):
+   def _opening(self):
       '''Read-only format contribution at container opening or before leaf.
 
          * Derived from ``VoiceInterface.number``.

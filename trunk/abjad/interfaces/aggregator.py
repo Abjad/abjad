@@ -36,7 +36,7 @@ class InterfaceAggregator(_Interface):
       '''Ordered list of format-time contributions for closing format slot.'''
       result = [ ]
       for contributor in self.contributors:
-         result.extend(getattr(contributor, 'closing', [ ]))
+         result.extend(getattr(contributor, '_closing', [ ]))
       return result
 
 #   @property
@@ -96,7 +96,7 @@ class InterfaceAggregator(_Interface):
       '''Ordered list of format-time contributions for opening format slot.'''
       result = [ ]
       for contributor in self.contributors:
-         result.extend(getattr(contributor, 'opening', [ ]))
+         result.extend(getattr(contributor, '_opening', [ ]))
       return result
 
    ## OPTIMIZATION: Maybe better to derive at attr assignment time. ##

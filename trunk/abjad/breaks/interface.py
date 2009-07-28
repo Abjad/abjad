@@ -116,7 +116,7 @@ class BreaksInterface(_Interface, _FormatContributor):
       return property(**locals( ))
 
    @property
-   def closing(self):
+   def _closing(self):
       r'''Format contribution at container closing or after leaf.'''
       result = [ ]
       whitespace = self.whitespace
@@ -169,7 +169,7 @@ class BreaksInterface(_Interface, _FormatContributor):
       return property(**locals( ))
 
    @property
-   def opening(self):
+   def _opening(self):
       '''Format contribution at container opening or before leaf.'''
       result = [ ]
       details = self._line_break_system_details

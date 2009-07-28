@@ -52,7 +52,7 @@ class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       return self._default
 
    @property
-   def opening(self):
+   def _opening(self):
       '''Format contributions at container opening or before leaf.'''
       result = [ ]
       if self._selfShouldContribute:

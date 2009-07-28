@@ -34,7 +34,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def closing(self):
+   def _closing(self):
       '''Format contribution at container closing or after leaf.'''
       result = [ ]
       if self.hide:
@@ -74,7 +74,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
    ##       Replace eventually with something structural.     ##
 
    @property
-   def opening(self):
+   def _opening(self):
       '''Format contribution at container opening or before leaf.'''
       from abjad.leaf.leaf import _Leaf
       from abjad.tools import iterate

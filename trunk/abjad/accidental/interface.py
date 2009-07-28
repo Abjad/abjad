@@ -25,7 +25,7 @@ class AccidentalInterface(_Interface, _GrobHandler):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def opening(self):
+   def _opening(self):
       '''Format contribution at container opening.'''
       result = [ ]
       style = self.style

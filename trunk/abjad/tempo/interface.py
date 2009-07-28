@@ -51,7 +51,7 @@ class TempoInterface(_Observer, _GrobHandler,
       return _BacktrackingInterface.effective.fget(self)
 
    @property
-   def opening(self):
+   def _opening(self):
       '''Format contribution at container opening or before leaf.'''
       result =  [ ] 
       if self.forced or self.change and not (
