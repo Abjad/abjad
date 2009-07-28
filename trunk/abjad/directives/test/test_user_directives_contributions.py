@@ -9,12 +9,13 @@ def test_user_directives_contributions_01( ):
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   t.directives.left.append(r'\foo-left')
+   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
 
-   r'''\override BeforeFoo #'bar = #'blah
+   r'''
+   \override BeforeFoo #'bar = #'blah
    {
            #(set-opening-foo 'bar)
            \override Beam #'thickness = #3
@@ -25,18 +26,18 @@ def test_user_directives_contributions_01( ):
            \revert Beam #'thickness
            #(set-closing-foo 'bar)
    }
-   \revert AfterFoo #'bar'''
+   \revert AfterFoo #'bar
+   '''
 
    result = t.directives.contributions
 
    (('before', ("\\override BeforeFoo #'bar = #'blah",)),
     ('opening', ("#(set-opening-foo 'bar)",)),
-    ('left', ('\\foo-left',)),
     ('right', ('\\foo-right',)),
     ('closing', ("#(set-closing-foo 'bar)",)),
     ('after', ("\\revert AfterFoo #'bar",)))
 
-   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('left', ('\\foo-left',)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
+   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
 
 
 def test_user_directives_contributions_02( ):
@@ -47,12 +48,13 @@ def test_user_directives_contributions_02( ):
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   t.directives.left.append(r'\foo-left')
+   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
 
-   r'''\override BeforeFoo #'bar = #'blah
+   r'''
+   \override BeforeFoo #'bar = #'blah
    \new Voice {
            #(set-opening-foo 'bar)
            \override Beam #'thickness = #3
@@ -63,18 +65,18 @@ def test_user_directives_contributions_02( ):
            \revert Beam #'thickness
            #(set-closing-foo 'bar)
    }
-   \revert AfterFoo #'bar'''
+   \revert AfterFoo #'bar
+   '''
 
    result = t.directives.contributions
 
    (('before', ("\\override BeforeFoo #'bar = #'blah",)),
     ('opening', ("#(set-opening-foo 'bar)",)),
-    ('left', ('\\foo-left',)),
     ('right', ('\\foo-right',)),
     ('closing', ("#(set-closing-foo 'bar)",)),
     ('after', ("\\revert AfterFoo #'bar",)))
 
-   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('left', ('\\foo-left',)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
+   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
 
 
 def test_user_directives_contributions_03( ):
@@ -85,12 +87,13 @@ def test_user_directives_contributions_03( ):
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   t.directives.left.append(r'\foo-left')
+   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
 
-   r'''\override BeforeFoo #'bar = #'blah
+   r'''
+   \override BeforeFoo #'bar = #'blah
    \times 2/3 {
            #(set-opening-foo 'bar)
            \override Beam #'thickness = #3
@@ -100,18 +103,18 @@ def test_user_directives_contributions_03( ):
            \revert Beam #'thickness
            #(set-closing-foo 'bar)
    }
-   \revert AfterFoo #'bar'''
+   \revert AfterFoo #'bar
+   '''
 
    result = t.directives.contributions
 
    (('before', ("\\override BeforeFoo #'bar = #'blah",)),
     ('opening', ("#(set-opening-foo 'bar)",)),
-    ('left', ('\\foo-left',)),
     ('right', ('\\foo-right',)),
     ('closing', ("#(set-closing-foo 'bar)",)),
     ('after', ("\\revert AfterFoo #'bar",)))
 
-   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('left', ('\\foo-left',)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
+   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
 
 
 def test_user_directives_contributions_04( ):
@@ -122,12 +125,13 @@ def test_user_directives_contributions_04( ):
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   t.directives.left.append(r'\foo-left')
+   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
 
-   r'''\override BeforeFoo #'bar = #'blah
+   r'''
+   \override BeforeFoo #'bar = #'blah
            #(set-opening-foo 'bar)
            \time 3/8
            \override Beam #'thickness = #3
@@ -136,18 +140,18 @@ def test_user_directives_contributions_04( ):
            e'8 ]
            \revert Beam #'thickness
            #(set-closing-foo 'bar)
-   \revert AfterFoo #'bar'''
+   \revert AfterFoo #'bar
+   '''
 
    result = t.directives.contributions
 
    (('before', ("\\override BeforeFoo #'bar = #'blah",)),
     ('opening', ("#(set-opening-foo 'bar)",)),
-    ('left', ('\\foo-left',)),
     ('right', ('\\foo-right',)),
     ('closing', ("#(set-closing-foo 'bar)",)),
     ('after', ("\\revert AfterFoo #'bar",)))
 
-   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('left', ('\\foo-left',)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
+   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
 
 
 def test_user_directives_contributions_05( ):
@@ -157,15 +161,16 @@ def test_user_directives_contributions_05( ):
    t.beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
    t.directives.opening.append(r"#(set-opening-foo 'bar)")
-   t.directives.left.append(r'\foo-left')
+   #t.directives.left.append(r'\foo-left')
    t.directives.right.append(r'\foo-right')
    t.directives.closing.append(r"#(set-closing-foo 'bar)")
    t.directives.after.append(r"\revert AfterFoo #'bar")
 
-   r'''\override BeforeFoo #'bar = #'blah
+   r'''
+   \override BeforeFoo #'bar = #'blah
    \once \override Beam #'thickness = #3
    #(set-opening-foo 'bar)
-   \foo-left c'8 \foo-right
+   c'8 \foo-right
    #(set-closing-foo 'bar)
    \revert AfterFoo #'bar'''
 
@@ -173,9 +178,8 @@ def test_user_directives_contributions_05( ):
 
    (('before', ("\\override BeforeFoo #'bar = #'blah",)),
     ('opening', ("#(set-opening-foo 'bar)",)),
-    ('left', ('\\foo-left',)),
     ('right', ('\\foo-right',)),
     ('closing', ("#(set-closing-foo 'bar)",)),
     ('after', ("\\revert AfterFoo #'bar",)))
 
-   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('left', ('\\foo-left',)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))
+   assert result == (('before', ("\\override BeforeFoo #'bar = #'blah",)), ('opening', ("#(set-opening-foo 'bar)",)), ('right', ('\\foo-right',)), ('closing', ("#(set-closing-foo 'bar)",)), ('after', ("\\revert AfterFoo #'bar",)))

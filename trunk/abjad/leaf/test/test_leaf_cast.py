@@ -7,7 +7,8 @@ def test_leaf_cast_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Rest(t[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            r8
            cs'8
            d'8
@@ -16,7 +17,8 @@ def test_leaf_cast_01( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tr8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -76,16 +78,14 @@ def test_leaf_cast_04( ):
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
    staff[0].directives.before.append(r"\override NoteHead #'color = #red")
    staff[0].directives.after.append(r"\revert NoteHead #'color")
-   staff[0].directives.left.append(r'\beam #0 #1')
+   #staff[0].directives.left.append(r'\beam #0 #1')
+
    staff[0].directives.right.append(r'\staccato')
 
-   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 c'8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-
-   Rest(staff[0])
-
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \override NoteHead #'color = #red
-           \beam #0 #1 r8 \staccato
+           c'8 \staccato
            \revert NoteHead #'color
            cs'8
            d'8
@@ -94,9 +94,29 @@ def test_leaf_cast_04( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
-   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 r8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+
+   Rest(staff[0])
+
+   r'''
+   \new Staff {
+           \override NoteHead #'color = #red
+           r8 \staccato
+           \revert NoteHead #'color
+           cs'8
+           d'8
+           ef'8
+           e'8
+           f'8
+           fs'8
+           g'8
+   }
+   '''
+
+   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tr8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
 def test_leaf_cast_05( ):
@@ -107,16 +127,17 @@ def test_leaf_cast_05( ):
    staff = Staff([Note(n, (1, 8)) for n in range(8)])
    staff[0].directives.before.append(r"\override NoteHead #'color = #red")
    staff[0].directives.after.append(r"\revert NoteHead #'color")
-   staff[0].directives.left.append(r'\beam #0 #1')
+   #staff[0].directives.left.append(r'\beam #0 #1')
    staff[0].directives.right.append(r'\staccato')
 
-   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 c'8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\tc'8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    Chord(staff[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \override NoteHead #'color = #red
-           \beam #0 #1 <c'>8 \staccato
+           <c'>8 \staccato
            \revert NoteHead #'color
            cs'8
            d'8
@@ -125,6 +146,7 @@ def test_leaf_cast_05( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
-   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t\\beam #0 #1 <c'>8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+   assert staff.format == "\\new Staff {\n\t\\override NoteHead #'color = #red\n\t<c'>8 \\staccato\n\t\\revert NoteHead #'color\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"

@@ -3,43 +3,48 @@ import py.test
 
 
 def test_user_directives_interface_01( ):
-   '''Leaf directives interface has before, after, left, right.'''
+   #'''Leaf directives interface has before, after, left, right.'''
+   '''Leaf directives interface has before, after, right.'''
 
    t = Note(1, (1, 4))
    t.directives.before.append('before')
    t.directives.after.append('after')
-   t.directives.left.append('left')
+   #t.directives.left.append('left')
    t.directives.right.append('right')
 
-   r'''before
+   r'''
+   before
    opening
    cs'4
    closing
    after'''
 
-   assert t.format == "before\nleft cs'4 right\nafter"
+   assert t.format == "before\ncs'4 right\nafter"
 
 
 def test_user_directives_interface_02( ):
-   '''Multiple left, right, before, afters format correctly.'''
+   #'''Multiple left, right, before, afters format correctly.'''
+   '''Multiple right, before, afters format correctly.'''
 
    t = Note(1, (1, 4))
    t.directives.before.append('before1')
    t.directives.before.append('before2')
    t.directives.after.append('after1')
    t.directives.after.append('after2')
-   t.directives.left.append('left1')
-   t.directives.left.append('left2')
+   #t.directives.left.append('left1')
+   #t.directives.left.append('left2')
    t.directives.right.append('right1')
    t.directives.right.append('right2')
 
-   r'''before1
+   r'''
+   before1
    before2
-   left1 left2 cs'4 right1 right2
+   cs'4 right1 right2
    after1
-   after2'''
+   after2
+   '''
 
-   assert t.format == "before1\nbefore2\nleft1 left2 cs'4 right1 right2\nafter1\nafter2"
+   assert t.format == "before1\nbefore2\ncs'4 right1 right2\nafter1\nafter2"
 
 
 def test_user_directives_interface_03( ):

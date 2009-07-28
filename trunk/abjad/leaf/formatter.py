@@ -42,7 +42,7 @@ class _LeafFormatter(_ComponentFormatter):
       directives = client.directives
       interfaces = client.interfaces
       spanners = client.spanners
-      result.extend(directives.left)
+      #result.extend(directives.left)
       result.extend(spanners.left)
       result.extend(interfaces.left)
       result.extend(self._nucleus)
