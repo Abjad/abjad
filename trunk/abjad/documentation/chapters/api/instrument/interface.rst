@@ -3,7 +3,7 @@ InstrumentInterface
 
 .. automodule:: abjad.instrument.interface
 
-.. autoclass:: abjad.InstrumentInterface
+.. autoclass:: abjad.instrument.interface.InstrumentInterface
    :members:
    :undoc-members:
    :show-inheritance:

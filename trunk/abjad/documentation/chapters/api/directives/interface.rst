@@ -3,7 +3,7 @@ DirectivesInterface
 
 .. automodule:: abjad.directives.interface
 
-.. autoclass:: abjad.DirectivesInterface
+.. autoclass:: abjad.directives.interface.DirectivesInterface
    :members:
    :undoc-members:
    :show-inheritance:

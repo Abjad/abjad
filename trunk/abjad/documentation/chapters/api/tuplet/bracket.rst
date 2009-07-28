@@ -3,7 +3,7 @@ TupletBracketInterface
 
 .. automodule:: abjad.tuplet.bracket
 
-.. autoclass:: abjad.TupletBracketInterface
+.. autoclass:: abjad.tuplet.bracket.TupletBracketInterface
    :members:
    :undoc-members:
    :show-inheritance:

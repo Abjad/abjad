@@ -3,7 +3,7 @@ BeamInterface
 
 .. automodule:: abjad.beam.interface
 
-.. autoclass:: abjad.BeamInterface
+.. autoclass:: abjad.beam.interface.BeamInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -3,7 +3,7 @@ VoiceInterface
 
 .. automodule:: abjad.voice.interface.interface
 
-.. autoclass:: abjad.VoiceInterface
+.. autoclass:: abjad.voice.interface.interface.VoiceInterface
    :members:
    :undoc-members:
    :show-inheritance:

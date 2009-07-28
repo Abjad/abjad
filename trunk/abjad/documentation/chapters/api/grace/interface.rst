@@ -3,7 +3,7 @@ GraceInterface
 
 .. automodule:: abjad.grace.interface
 
-.. autoclass:: abjad.GraceInterface
+.. autoclass:: abjad.grace.interface.GraceInterface
    :members:
    :undoc-members:
    :show-inheritance:

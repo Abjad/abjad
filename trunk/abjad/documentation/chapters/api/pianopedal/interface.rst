@@ -3,7 +3,7 @@ PianoPedalInterface
 
 .. automodule:: abjad.pianopedal.interface
 
-.. autoclass:: abjad.PianoPedalInterface
+.. autoclass:: abjad.pianopedal.interface.PianoPedalInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -3,7 +3,7 @@ HistoryInterface
 
 .. automodule:: abjad.history.interface
 
-.. autoclass:: abjad.HistoryInterface
+.. autoclass:: abjad.history.interface.HistoryInterface
    :members:
    :undoc-members:
    :show-inheritance:

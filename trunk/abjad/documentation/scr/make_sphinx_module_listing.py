@@ -4,6 +4,21 @@ import os
 
 
 def make_sphinx_module_listing(package_path, file):
+   '''This function creates the files like accidental.rst.
+   Output looks like this:
+
+   Accidental
+   ==========
+
+   .. automodule:: abjad.accidental.accidental
+
+   .. autoclass:: abjad.Accidental
+      :members:
+      :undoc-members:
+      :show-inheritance:
+      :inherited-members:
+   '''
+   
    source_full_path = os.path.join(
       ABJADPATH.rstrip('/abjad'), package_path, file)
    file = file.split('.')[0]
@@ -51,8 +66,15 @@ def make_sphinx_module_listing(package_path, file):
          result += '.. autofunction:: %s.%s\n' % (module, page_title)
 
       ## public .. autoclass:: abjad.Accidental
-      elif auto_type == 'autoclass' and not page_title.startswith('_'):
+      elif auto_type == 'autoclass' and not page_title.startswith('_') \
+         and not page_title.endswith('Interface'):
          result += '.. %s:: abjad.%s\n' % (auto_type, page_title)   
+         result = _append_class_options(result)
+
+      ## public .. autoclass:: abjad.accidental.interface.AccidentalInterface
+      elif auto_type == 'autoclass' and not page_title.startswith('_') \
+         and page_title.endswith('Interface'):
+         result += '.. %s:: %s.%s\n' % (auto_type, module, page_title)   
          result = _append_class_options(result)
 
 #      ## private .. autoclass:: AccidentalInterface
@@ -103,7 +125,7 @@ def _get_title_type_members(source_full_path):
       members = public_functions
       ## check if file defines only private _measure_get( ), for example
       if not members:
-         print 'NOT rendering %s ...' % page_title
+         #print 'NOT rendering %s ...' % page_title
          page_title = None
 
    ## or is the exceptions module

@@ -3,7 +3,7 @@ SlurInterface
 
 .. automodule:: abjad.slur.interface
 
-.. autoclass:: abjad.SlurInterface
+.. autoclass:: abjad.slur.interface.SlurInterface
    :members:
    :undoc-members:
    :show-inheritance:

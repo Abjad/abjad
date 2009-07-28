@@ -3,7 +3,7 @@ NoteHeadInterface
 
 .. automodule:: abjad.notehead.interface
 
-.. autoclass:: abjad.NoteHeadInterface
+.. autoclass:: abjad.notehead.interface.NoteHeadInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -3,7 +3,7 @@ TempoInterface
 
 .. automodule:: abjad.tempo.interface
 
-.. autoclass:: abjad.TempoInterface
+.. autoclass:: abjad.tempo.interface.TempoInterface
    :members:
    :undoc-members:
    :show-inheritance:

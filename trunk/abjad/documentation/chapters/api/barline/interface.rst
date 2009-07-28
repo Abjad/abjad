@@ -3,7 +3,7 @@ BarLineInterface
 
 .. automodule:: abjad.barline.interface
 
-.. autoclass:: abjad.BarLineInterface
+.. autoclass:: abjad.barline.interface.BarLineInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -3,7 +3,7 @@ DotsInterface
 
 .. automodule:: abjad.dots.interface
 
-.. autoclass:: abjad.DotsInterface
+.. autoclass:: abjad.dots.interface.DotsInterface
    :members:
    :undoc-members:
    :show-inheritance:

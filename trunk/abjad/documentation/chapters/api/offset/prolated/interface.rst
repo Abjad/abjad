@@ -3,7 +3,7 @@ OffsetProlatedInterface
 
 .. automodule:: abjad.offset.prolated.interface
 
-.. autoclass:: abjad.OffsetProlatedInterface
+.. autoclass:: abjad.offset.prolated.interface.OffsetProlatedInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -3,7 +3,7 @@ DynamicsInterface
 
 .. automodule:: abjad.dynamics.interface
 
-.. autoclass:: abjad.DynamicsInterface
+.. autoclass:: abjad.dynamics.interface.DynamicsInterface
    :members:
    :undoc-members:
    :show-inheritance:

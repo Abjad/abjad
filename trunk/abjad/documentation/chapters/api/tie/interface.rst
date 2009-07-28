@@ -3,7 +3,7 @@ TieInterface
 
 .. automodule:: abjad.tie.interface
 
-.. autoclass:: abjad.TieInterface
+.. autoclass:: abjad.tie.interface.TieInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -3,7 +3,7 @@ CommentsInterface
 
 .. automodule:: abjad.comments.interface
 
-.. autoclass:: abjad.CommentsInterface
+.. autoclass:: abjad.comments.interface.CommentsInterface
    :members:
    :undoc-members:
    :show-inheritance:

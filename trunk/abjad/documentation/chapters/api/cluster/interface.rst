@@ -3,7 +3,7 @@ ClusterInterface
 
 .. automodule:: abjad.cluster.interface
 
-.. autoclass:: abjad.ClusterInterface
+.. autoclass:: abjad.cluster.interface.ClusterInterface
    :members:
    :undoc-members:
    :show-inheritance:

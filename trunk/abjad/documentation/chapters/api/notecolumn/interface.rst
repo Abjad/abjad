@@ -3,7 +3,7 @@ NoteColumnInterface
 
 .. automodule:: abjad.notecolumn.interface
 
-.. autoclass:: abjad.NoteColumnInterface
+.. autoclass:: abjad.notecolumn.interface.NoteColumnInterface
    :members:
    :undoc-members:
    :show-inheritance:

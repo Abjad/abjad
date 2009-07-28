@@ -3,7 +3,7 @@ GlissandoInterface
 
 .. automodule:: abjad.glissando.interface
 
-.. autoclass:: abjad.GlissandoInterface
+.. autoclass:: abjad.glissando.interface.GlissandoInterface
    :members:
    :undoc-members:
    :show-inheritance:

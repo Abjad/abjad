@@ -3,7 +3,7 @@ TrillInterface
 
 .. automodule:: abjad.trill.interface
 
-.. autoclass:: abjad.TrillInterface
+.. autoclass:: abjad.trill.interface.TrillInterface
    :members:
    :undoc-members:
    :show-inheritance:

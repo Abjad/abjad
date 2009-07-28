@@ -3,7 +3,7 @@ MeterInterface
 
 .. automodule:: abjad.meter.interface
 
-.. autoclass:: abjad.MeterInterface
+.. autoclass:: abjad.meter.interface.MeterInterface
    :members:
    :undoc-members:
    :show-inheritance:

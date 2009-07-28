@@ -3,7 +3,7 @@ RestInterface
 
 .. automodule:: abjad.rest.interface
 
-.. autoclass:: abjad.RestInterface
+.. autoclass:: abjad.rest.interface.RestInterface
    :members:
    :undoc-members:
    :show-inheritance:

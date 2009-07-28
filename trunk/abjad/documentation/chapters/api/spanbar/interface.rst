@@ -3,7 +3,7 @@ SpanBarInterface
 
 .. automodule:: abjad.spanbar.interface
 
-.. autoclass:: abjad.SpanBarInterface
+.. autoclass:: abjad.spanbar.interface.SpanBarInterface
    :members:
    :undoc-members:
    :show-inheritance:

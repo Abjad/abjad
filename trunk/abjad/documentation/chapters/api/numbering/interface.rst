@@ -3,7 +3,7 @@ NumberingInterface
 
 .. automodule:: abjad.numbering.interface
 
-.. autoclass:: abjad.NumberingInterface
+.. autoclass:: abjad.numbering.interface.NumberingInterface
    :members:
    :undoc-members:
    :show-inheritance:

@@ -3,7 +3,7 @@ SpacingInterface
 
 .. automodule:: abjad.spacing.interface
 
-.. autoclass:: abjad.SpacingInterface
+.. autoclass:: abjad.spacing.interface.SpacingInterface
    :members:
    :undoc-members:
    :show-inheritance:

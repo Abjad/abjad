@@ -3,7 +3,7 @@ ParentageInterface
 
 .. automodule:: abjad.parentage.interface
 
-.. autoclass:: abjad.ParentageInterface
+.. autoclass:: abjad.parentage.interface.ParentageInterface
    :members:
    :undoc-members:
    :show-inheritance:

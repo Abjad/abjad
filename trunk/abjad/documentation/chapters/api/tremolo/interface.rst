@@ -3,7 +3,7 @@ TremoloInterface
 
 .. automodule:: abjad.tremolo.interface
 
-.. autoclass:: abjad.TremoloInterface
+.. autoclass:: abjad.tremolo.interface.TremoloInterface
    :members:
    :undoc-members:
    :show-inheritance:
