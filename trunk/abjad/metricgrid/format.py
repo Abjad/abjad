@@ -26,7 +26,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
    ## flag now to improve performance time. Better but still not perfect. 
    ## Is metricgrid a good candidate for the UpdateInterface?
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       result = [ ]
       spanner = self.spanner

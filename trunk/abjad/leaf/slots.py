@@ -18,7 +18,7 @@ class _LeafFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append(self.wrap(leaf.directives, 'before'))
       result.append(self.wrap(leaf.interfaces, 'overrides'))
       result.append(self.wrap(leaf.interfaces, 'settings'))
-      result.append(self.wrap(leaf.spanners, 'before'))
+      result.append(self.wrap(leaf.spanners, '_before'))
       result.append(self.wrap(leaf.interfaces, 'before'))
       return tuple(result)
 

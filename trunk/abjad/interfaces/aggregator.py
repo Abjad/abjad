@@ -28,7 +28,7 @@ class InterfaceAggregator(_Interface):
       '''Ordered list of format-time contributions for before format slot.'''
       result = [ ]
       for contributor in self.contributors:
-         result.extend(getattr(contributor, 'before', [ ]))
+         result.extend(getattr(contributor, '_before', [ ]))
       return result
 
    @property

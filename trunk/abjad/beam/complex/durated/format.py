@@ -5,7 +5,7 @@ class _BeamComplexDuratedFormatInterface(_BeamComplexFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution to output before leaf.'''
       result = [ ]
       spanner = self.spanner

@@ -8,7 +8,7 @@ class _PianoPedalSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       result = [ ]
       spanner = self.spanner

@@ -26,7 +26,7 @@ class _SpannerFormatInterface(_Abjad):
          result.extend(getattr(spanner, 'reverts', [ ]))
       return result
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contributions to output before leaf.'''
       result = [ ]
       spanner = self.spanner
@@ -44,7 +44,7 @@ class _SpannerFormatInterface(_Abjad):
       leaves = leaves or self.spanner.leaves
       for leaf in leaves:
          print leaf
-         print '\tbefore: %s' % self.before(leaf)
+         print '\tbefore: %s' % self._before(leaf)
          print '\t after: %s' % self.after(leaf)
          print '\t  left: %s' % self.left(leaf)
          print '\t right: %s' % self.right(leaf)

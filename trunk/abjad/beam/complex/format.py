@@ -73,10 +73,10 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution to output before leaf.'''
       result = [ ]
-      result.extend(_BeamSpannerFormatInterface.before(self, leaf))
+      result.extend(_BeamSpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
       if leaf.beam.beamable:
          if spanner._isExteriorLeaf(leaf):

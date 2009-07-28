@@ -23,11 +23,11 @@ class _InstrumentSpannerFormatInterface(_SpannerFormatInterface):
             result.append(r'\unset %s.shortInstrumentName' % staff)
       return result
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       result = [ ]
-      #result.extend(Spanner.before(spanner, leaf))
-      result.extend(_SpannerFormatInterface.before(self, leaf))
+      #result.extend(Spanner._before(spanner, leaf))
+      result.extend(_SpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
          #staff = leaf.staff.context

@@ -52,7 +52,7 @@ class _GrobHandler(_FormatContributor):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def before(self):
+   def _before(self):
       '''Read-only list of strings to contribute at format time.'''
 
       result = [ ]

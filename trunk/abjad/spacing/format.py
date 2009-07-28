@@ -20,12 +20,12 @@ class _SpacingSpannerFormatInterface(_SpannerFormatInterface):
             result.append(r'%%% spacing section ends here %%%')
       return result
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       result = [ ]
       new_section = self.spanner.new_section
       if new_section:
          if self.spanner._isMyFirstLeaf(leaf):
             result.append(r'\newSpacingSection')
-      result.extend(_SpannerFormatInterface.before(self, leaf))
+      result.extend(_SpannerFormatInterface._before(self, leaf))
       return result

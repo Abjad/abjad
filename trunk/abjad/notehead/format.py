@@ -55,7 +55,7 @@ class _NoteHeadFormatInterface(_FormatInterface):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def before(self):
+   def _before(self):
       from abjad.chord import Chord
       result = [ ]
       #client = self.notehead.client
@@ -71,7 +71,7 @@ class _NoteHeadFormatInterface(_FormatInterface):
       result = [ ]
       notehead = self.notehead
       assert notehead.pitch
-      result.extend(self.before)
+      result.extend(self._before)
       result.append(notehead.pitch.format)
       result = '\n'.join(result)
       return result

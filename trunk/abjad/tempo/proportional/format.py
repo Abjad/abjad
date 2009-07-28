@@ -28,11 +28,11 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       from abjad.tools import spacing
       result = [ ]
-      result.extend(_TempoSpannerFormatInterface.before(self, leaf))
+      result.extend(_TempoSpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
          result.append(r'\newSpacingSection')

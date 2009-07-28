@@ -29,10 +29,10 @@ class BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
       return isinstance(client, (Note, Chord)) and 0 < flags
 
    @property
-   def before(self):
+   def _before(self):
       '''Format contribution before leaf.'''
       result = [ ]
-      result.extend(_GrobHandler.before.fget(self))
+      result.extend(_GrobHandler._before.fget(self))
       if self.counts[0] is not None:
          result.append(r'\set stemLeftBeamCount = #%s' % self.counts[0])
       if self.counts[1] is not None:

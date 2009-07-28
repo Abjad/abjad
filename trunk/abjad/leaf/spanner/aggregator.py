@@ -29,11 +29,11 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       return result
 
    @property
-   def before(self):
+   def _before(self):
       result = [ ]
       leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.format.before(leaf))
+         result.extend(spanner.format._before(leaf))
       return result
 
    @property

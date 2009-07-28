@@ -22,10 +22,10 @@ class _TempoSpannerFormatInterface(_SpannerFormatInterface):
             result.append(r'%%%% %s ends here' % spanner.indication.format[1:])
       return result
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       result = [ ]
-      result.extend(_SpannerFormatInterface.before(self, leaf))
+      result.extend(_SpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
          if spanner.indication:

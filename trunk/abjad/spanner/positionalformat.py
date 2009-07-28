@@ -8,11 +8,11 @@ class _PositionalSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       result = [ ]
-      #result.extend(_GrobHandlerSpanner.before(self, leaf))
-      result.extend(_SpannerFormatInterface.before(self, leaf))
+      #result.extend(_GrobHandlerSpanner._before(self, leaf))
+      result.extend(_SpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
          if not spanner.position is None:

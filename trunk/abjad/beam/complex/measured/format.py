@@ -6,7 +6,7 @@ class _BeamComplexMeasuredFormatInterface(_BeamComplexFormatInterface):
 
    ## PUBLIC ATTRIBUTES ##
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution to output before leaf.'''
       from abjad.measure.measure import _Measure
       from abjad.tools import parenttools

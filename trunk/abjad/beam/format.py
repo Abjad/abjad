@@ -8,10 +8,10 @@ class _BeamSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       result = [ ]
-      result.extend(_SpannerFormatInterface.before(self, leaf))
+      result.extend(_SpannerFormatInterface._before(self, leaf))
       return result
 
    def right(self, leaf):

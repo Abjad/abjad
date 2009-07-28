@@ -20,7 +20,7 @@ class _OverrideSpannerFormatInterface(_SpannerFormatInterface):
       else:
          return [ ]
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf) and spanner._attribute and \

@@ -24,11 +24,11 @@ class _OctavationSpannerFormatInterface(_SpannerFormatInterface):
          #result.append(r'\set Staff.middleCPosition = #%s' % position)
       return result
 
-   def before(self, leaf):
+   def _before(self, leaf):
       '''Spanner format contributions before leaf.'''
       result = [ ]
-      #result.extend(_GrobHandlerSpanner.before(spanner, leaf))
-      result.extend(_SpannerFormatInterface.before(self, leaf))
+      #result.extend(_GrobHandlerSpanner._before(spanner, leaf))
+      result.extend(_SpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
          result.append(r'\ottava #%s' % spanner.start)
