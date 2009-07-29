@@ -56,42 +56,27 @@ def make_sphinx_module_listing(package_path, file):
 
    for member in members:
 
-      ## .. autofunction:: listtools.abjad.tools.repeat_to_length
+      ## tool like .. autofunction:: listtools.abjad.tools.repeat_to_length
       if auto_type == 'autofunction' and 'tools' in module:
          result += '.. %s:: abjad.tools.%s\n' % (auto_type, page_title)
 
-      ## .. autofunction:: abjad.hairpin.crescendo.Crescendo
-      ## note that Crescendo( ) is a facade function rather than a class
-      elif auto_type == 'autofunction' and 'tools' not in module:
-         result += '.. autofunction:: %s.%s\n' % (module, page_title)
-
-      ## public .. autoclass:: abjad.Accidental
+      ## class like .. autoclass:: abjad.Accidental
       elif auto_type == 'autoclass' and not page_title.startswith('_') \
-         and not page_title.endswith('Interface'):
+         and not page_title.endswith('Interface') \
+         and not page_title.endswith('Aggregator'):
          result += '.. %s:: abjad.%s\n' % (auto_type, page_title)   
          result = _append_class_options(result)
 
-      ## public .. autoclass:: abjad.accidental.interface.AccidentalInterface
+      ## interface .. autoclass:: abjad.accidental.interface.AccidentalInterface
       elif auto_type == 'autoclass' and not page_title.startswith('_') \
-         and page_title.endswith('Interface'):
+         and (page_title.endswith('Interface') or 
+         page_title.endswith('Aggregator')):
          result += '.. %s:: %s.%s\n' % (auto_type, module, page_title)   
          result = _append_class_options(result)
-
-#      ## private .. autoclass:: AccidentalInterface
-#      elif auto_type == 'autoclass' and page_title.startswith('_'):
-#         result += '.. %s:: %s\n' % (auto_type, page_title)   
-#         result = _append_class_options(result)
 
       ## private _AccidentalInterface is now public AccidentalInterface
       elif auto_type == 'autoclass' and page_title.startswith('_'):
          return None
-
-      ## .. autoexception:: abjad.MeasureError
-      elif auto_type == 'autoexception':
-         #result += '.. %s:: abjad.%s\n' % (auto_type, page_title)
-         result += '.. %s:: abjad.%s\n' % (auto_type, member)
-         result = _append_class_options(result)
-         result += '\n'
 
       ## shouldn't be anything else
       else:

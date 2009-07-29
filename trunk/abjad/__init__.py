@@ -12,7 +12,7 @@ _import_functions_in_package_to_namespace(__path__[0], globals( ), _skip)
 
 ## remove AccidentalInterface, BeamInterface and other interfaces.
 for _key in globals( ).keys( ):
-   if _key.endswith('Interface'):
+   if _key.endswith('Interface') or _key.endswith('Aggregator'):
       del(globals( )[_key])
 
 ## reimport import tools since they were removed after previous import

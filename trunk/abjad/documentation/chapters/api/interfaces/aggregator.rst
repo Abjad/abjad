@@ -3,7 +3,7 @@ InterfaceAggregator
 
 .. automodule:: abjad.interfaces.aggregator
 
-.. autoclass:: abjad.InterfaceAggregator
+.. autoclass:: abjad.interfaces.aggregator.InterfaceAggregator
    :members:
    :undoc-members:
    :show-inheritance:
