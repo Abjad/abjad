@@ -82,23 +82,28 @@ class Spanner(_Abjad):
 
    def _fractureLeft(self, i):
       ##left = self.copy(0, i - 1)
-      left = self.copy(self[:i])
+      #left = self.copy(self[:i])
+      left = self._copy(self[:i])
       ##right = self.copy(i, len(self))
-      right = self.copy(self[i:])
+      #right = self.copy(self[i:])
+      right = self._copy(self[i:])
       self._blockAllComponents( )
       return self, left, right
 
    def _fractureRight(self, i):
       ##left = self.copy(0, i)
-      left = self.copy(self[:i+1])
+      #left = self.copy(self[:i+1])
+      left = self._copy(self[:i+1])
       ##right = self.copy(i + 1, len(self))
-      right = self.copy(self[i+1:])
+      #right = self.copy(self[i+1:])
+      right = self._copy(self[i+1:])
       self._blockAllComponents( )
       return self, left, right
 
    def _fuseByReference(self, spanner):
       ##result = self.copy( )
-      result = self.copy(self[:])
+      #result = self.copy(self[:])
+      result = self._copy(self[:])
       result.extend(spanner.components)
       self._blockAllComponents( )
       spanner._blockAllComponents( )
@@ -378,7 +383,8 @@ class Spanner(_Abjad):
       self._severAllComponents( )
 
    ##def copy(self, start = None, stop = None):
-   def copy(self, components):
+   #def copy(self, components):
+   def _copy(self, components):
       '''Return copy of spanner with `components`.
    
       `components` must be an iterable of components already
@@ -484,11 +490,14 @@ class Spanner(_Abjad):
          return self._fractureRight(i)
       elif direction == 'both':
          ##left = self.copy(0, i - 1)
-         left = self.copy(self[:i])
+         #left = self.copy(self[:i])
+         left = self._copy(self[:i])
          ##right = self.copy(i + 1, len(self))
-         right = self.copy(self[i+1:])
+         #right = self.copy(self[i+1:])
+         right = self._copy(self[i+1:])
          ##center = self.copy(i, i)
-         center = self.copy(self[i:i+1])
+         #center = self.copy(self[i:i+1])
+         center = self._copy(self[i:i+1])
          self._blockAllComponents( )
          return self, left, center, right
       else:
