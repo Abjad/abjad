@@ -89,39 +89,39 @@ class _GrobHandler(_FormatContributor):
 
    ## PUBLIC METHODS ##
 
-   def clear(self):
-      '''Remove all grob settings.'''
+#   def clear(self):
+#      '''Remove all grob settings.'''
+#
+#      for key, value in vars(self).items( ):
+#         if not key.startswith('_'):
+#            delattr(self, key)
 
-      for key, value in vars(self).items( ):
-         if not key.startswith('_'):
-            delattr(self, key)
-
-   def promote(self, attribute, context):
-      r'''Promote `attribute` to LilyPond `context`.
-      Both `attribute` and `context` must be strings. ::
-
-         abjad> staff = Staff(construct.scale(4))
-         abjad> staff[0].clef.color = 'red'
-         abjad> staff[0].clef.promote('color', 'Staff')
-
-         abjad> print staff.format
-         \new Staff {
-                 \once \override Staff.Clef #'color = #red
-                 c'8
-                 d'8
-                 e'8
-                 f'8
-         }
-
-      This code overrides the color of the clef preceding the first
-      note in staff and then promotes that color override to the 
-      LilyPond staff context. This is important because the LilyPond
-      engraver that creates clef symbols lives at the staff context
-      and does not live at the lower level of the voice context.
-      '''
-
-      assert isinstance(context, str)
-      if hasattr(self, attribute):
-         self._promotions[attribute] = context
-      else:
-         raise AttributeError('no %s attribute.' % attribute)
+#   def promote(self, attribute, context):
+#      r'''Promote `attribute` to LilyPond `context`.
+#      Both `attribute` and `context` must be strings. ::
+#
+#         abjad> staff = Staff(construct.scale(4))
+#         abjad> staff[0].clef.color = 'red'
+#         abjad> staff[0].clef.promote('color', 'Staff')
+#
+#         abjad> print staff.format
+#         \new Staff {
+#                 \once \override Staff.Clef #'color = #red
+#                 c'8
+#                 d'8
+#                 e'8
+#                 f'8
+#         }
+#
+#      This code overrides the color of the clef preceding the first
+#      note in staff and then promotes that color override to the 
+#      LilyPond staff context. This is important because the LilyPond
+#      engraver that creates clef symbols lives at the staff context
+#      and does not live at the lower level of the voice context.
+#      '''
+#
+#      assert isinstance(context, str)
+#      if hasattr(self, attribute):
+#         self._promotions[attribute] = context
+#      else:
+#         raise AttributeError('no %s attribute.' % attribute)

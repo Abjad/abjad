@@ -12,9 +12,12 @@ def test_spacing_spanner_grob_handling_01( ):
    p.strict_grace_spacing = True
    p.strict_note_spacing = True
    p.uniform_stretching = True
-   p.promote('strict_grace_spacing', 'Score')
-   p.promote('strict_note_spacing', 'Score')
-   p.promote('uniform_stretching', 'Score')
+   #p.promote('strict_grace_spacing', 'Score')
+   #p.promote('strict_note_spacing', 'Score')
+   #p.promote('uniform_stretching', 'Score')
+   overridetools.promote(p, 'strict_grace_spacing', 'Score')
+   overridetools.promote(p, 'strict_note_spacing', 'Score')
+   overridetools.promote(p, 'uniform_stretching', 'Score')
 
    r'''
    \new Staff {
@@ -47,9 +50,12 @@ def test_spacing_spanner_grob_handling_02( ):
    p.strict_grace_spacing = True
    p.strict_note_spacing = True
    p.uniform_stretching = True
-   p.promote('strict_grace_spacing', 'Score')
-   p.promote('strict_note_spacing', 'Score')
-   p.promote('uniform_stretching', 'Score')
+   #p.promote('strict_grace_spacing', 'Score')
+   #p.promote('strict_note_spacing', 'Score')
+   #p.promote('uniform_stretching', 'Score')
+   overridetools.promote(p, 'strict_grace_spacing', 'Score')
+   overridetools.promote(p, 'strict_note_spacing', 'Score')
+   overridetools.promote(p, 'uniform_stretching', 'Score')
 
    r'''
    \new Staff {

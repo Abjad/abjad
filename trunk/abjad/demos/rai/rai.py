@@ -35,8 +35,11 @@ s = Statement(text, code)
 statements.append(s)
 
 
+#code = ['MetricGrid(s, [(4, 4), (4, 4), (4, 4), (11, 16)])', 
+#         's.meter.clear( )', 's.barline.clear( )', "show(s, 'tirnaveni')"]
 code = ['MetricGrid(s, [(4, 4), (4, 4), (4, 4), (11, 16)])', 
-         's.meter.clear( )', 's.barline.clear( )', "show(s, 'tirnaveni')"]
+         'overridetools.clear_all(s.meter)', 
+         'overridetools.clear_all(s.barline', "show(s, 'tirnaveni')"]
 text = "Let's then apply a MetricGrid spanner on our staff."
 s = Statement(text, code)
 statements.append(s)

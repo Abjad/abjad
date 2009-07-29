@@ -47,7 +47,8 @@ def test_meter_grob_handling_03( ):
 
    t = RigidMeasure((4, 8), construct.scale(4))
    t.meter.transparent = True
-   t.meter.promote('transparent', 'Staff')
+   #t.meter.promote('transparent', 'Staff')
+   overridetools.promote(t.meter, 'transparent', 'Staff')
 
    r'''
    {
@@ -70,6 +71,6 @@ def test_meter_grob_handling_04( ):
    t = Note(0, (1, 4))
    t.meter.color = 'red'
    t.meter.transparent = True
-   t.meter.clear( )
+   overridetools.clear_all(t.meter)
 
    assert t.format == "c'4"

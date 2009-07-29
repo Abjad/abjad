@@ -29,7 +29,8 @@ def test_tie_interface_04( ):
    t = Note(0, (1, 4))
    t.tie.color = 'red'
    assert t.format == "\\once \\override Tie #'color = #red\nc'4"
-   t.tie.clear( )
+   #t.tie.clear( )
+   overridetools.clear_all(t.tie)
    assert t.format == "c'4"
 
 

@@ -11,7 +11,8 @@ def test_measure_rigid_measure_barline_override_01( ):
    t.formatter.number.measures = 'comment'
    t[0].barline.kind = '||'
    t[0].barline.color = 'red'
-   t[0].barline.promote('color', 'Staff')
+   #t[0].barline.promote('color', 'Staff')
+   overridetools.promote(t[0].barline, 'color', 'Staff')
 
    ## NOTE: The LilyPond code here colors the DOUBLE BAR red and
    ##       not any of the single bars. What this means is that

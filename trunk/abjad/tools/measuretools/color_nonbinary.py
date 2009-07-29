@@ -1,5 +1,6 @@
 from abjad.measure.measure import _Measure
 from abjad.tools import iterate
+from abjad.tools import overridetools
 
 
 def color_nonbinary(expr, color = 'red'):
@@ -20,6 +21,6 @@ def color_nonbinary(expr, color = 'red'):
          measure.beam.color = color
          measure.dots.color = color
          measure.meter.color = color
-         measure.meter.promote('color', 'Staff')
+         overridetools.promote(measure.meter, 'color', 'Staff')
          measure.notehead.color = color
          measure.stem.color = color

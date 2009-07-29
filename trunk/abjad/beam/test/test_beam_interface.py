@@ -235,7 +235,8 @@ def test_beam_interface_14( ):
    '''Composer attributes clear.'''
    t = Note(0, (1, 32))
    t.beam.color = 'red'
-   t.beam.clear( )
+   #t.beam.clear( )
+   overridetools.clear_all(t.beam)
    assert t.format == "c'32"
 
 

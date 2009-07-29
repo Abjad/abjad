@@ -30,7 +30,8 @@ def test_rest_interface_grob_handling_02( ):
 
    t = Staff(construct.scale(4))
    t.rest.transparent = True
-   t.rest.clear( )
+   #t.rest.clear( )
+   overridetools.clear_all(t.rest)
 
    r'''
    \new Staff {

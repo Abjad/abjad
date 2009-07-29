@@ -35,6 +35,8 @@ class AnonymousMeasure(DynamicMeasure):
 
    def __init__(self, music = None):
       '''Initialize music and hide TimeSignature stencil.'''
+      from abjad.tools import overridetools
       DynamicMeasure.__init__(self, music = music)
       self.meter.stencil = False
-      self.meter.promote('stencil', 'Staff')
+      #self.meter.promote('stencil', 'Staff')
+      overridetools.promote(self.meter, 'stencil', 'Staff')

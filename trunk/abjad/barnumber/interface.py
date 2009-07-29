@@ -7,8 +7,8 @@ import types
 class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
    '''Manage bar number attributes.
 
-      *  Handle *LilyPond* ``BarNumber`` grob.
-      *  Manage *LilyPond* ``currentBarNumber`` context setting.
+      *  Handle LilyPond ``BarNumber`` grob.
+      *  Manage LilyPond ``currentBarNumber`` context setting.
 
       ::
 

@@ -515,6 +515,15 @@ metertools
    tools/metertools/make_binary
 
 
+overridetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/overridetools/clear_all
+   tools/overridetools/promote
+
+
 parenttools
 
 .. toctree::

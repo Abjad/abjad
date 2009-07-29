@@ -24,7 +24,7 @@ def test_grob_handling_02( ):
 
    t = Note(0, (1, 4))
    t.text.color = 'red'
-   t.text.promote('color', 'Staff')
+   overridetools.promote(t.text, 'color', 'Staff')
 
    r'''
    \once \override Staff.TextScript #'color = #red
@@ -57,13 +57,13 @@ def test_grob_handling_03( ):
 
 
 def test_grob_handling_04( ):
-   '''
-   Clear all overrides.
+   '''Clear all overrides.
    '''
 
    t = Note(0, (1, 4))
    t.text.color = 'red'
    t.text.size = 4
-   t.text.clear( )
+   #t.text.clear( )
+   overridetools.clear_all(t.text)
 
    assert t.format == "c'4"
