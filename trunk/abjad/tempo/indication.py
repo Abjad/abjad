@@ -6,9 +6,7 @@ from abjad.rational import Rational
 class TempoIndication(_Abjad):
    r'''Tempo indication token. 
    
-   Assign to :class:`~abjad.Tempo` spanner ``indication``.
-      
-   ::
+   Assign to :class:`~abjad.Tempo` spanner ``indication``. ::
 
       abjad> t = Staff(construct.scale(4))
       abjad> tempo_spanner = Tempo(t[:])
@@ -56,6 +54,11 @@ class TempoIndication(_Abjad):
       from abjad.note import Note
       return Note(0, self.duration).duration._dotted
 
+   @property
+   def _equation(self):
+      '''Dotted numeral and mark together around equal sign.'''
+      return '%s=%s' % (self._dotted, self.mark)
+
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -71,7 +74,7 @@ class TempoIndication(_Abjad):
    @property
    def format(self):
       '''Tempo indication as string.'''
-      return r'\tempo %s=%s' % (self._dotted, self.mark)
+      return r'\tempo %s' % self._equation
 
    @property
    def maelzel(self):

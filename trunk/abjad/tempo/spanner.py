@@ -9,9 +9,13 @@ import types
 
 class Tempo(_GrobHandlerSpanner):
    r'''Apply tempo indication to zero or more contiguous components.
-      Handle *LilyPond* ``MetronomeMark`` grob.
-      Handle *LilyPond* ``proportionalNotationDuration`` context setting.
-      Invoke *LilyPond* ``\newSpacingSection`` command.'''
+
+   Handle LilyPond ``MetronomeMark`` grob.
+
+   Handle LilyPond ``proportionalNotationDuration`` context setting.
+
+   Invoke LilyPond ``\newSpacingSection`` command.
+   '''
 
    def __init__(self, music = None, indication = None):
       '''Handle LilyPond MetronomeMark grob. Init tempo indication.'''
@@ -22,6 +26,17 @@ class Tempo(_GrobHandlerSpanner):
       self._proportional_notation_duration_reference = None
       self.indication = indication
       self.reference = None
+
+   ## OVERRIDES ##
+
+   def __repr__(self):
+      name = self.__class__.__name__
+      summary = self._summary
+      if self.indication is not None:
+         equation = self.indication._equation
+         return '%s(%s, %s)' % (name, equation, summary)
+      else:
+         return '%s(%s)' % (name, summary) 
 
    ## PUBLIC ATTRIBUTES ##
 
