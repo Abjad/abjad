@@ -3,9 +3,10 @@ from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._get_next_output import _get_next_output
 from abjad.cfg._run_lilypond import _run_lilypond
 from abjad.cfg._verify_output_directory import _verify_output_directory
-from abjad.cfg._wrap_format import _wrap_format
+#from abjad.cfg._wrap_format import _wrap_format
 from abjad.cfg._write_footer import _write_footer
 from abjad.cfg._write_preamble import _write_preamble
+from abjad.cfg._write_score import _write_score
 from abjad.cfg._write_title import _write_title
 import os
 import time
@@ -27,7 +28,8 @@ def _log_render_lilypond_input(expr, template = None,
    _write_preamble(outfile, template)
    _write_title(outfile, title)
    _write_footer(outfile, footer)
-   outfile.write(_wrap_format(expr.format))
+   #outfile.write(_wrap_format(expr.format))
+   _write_score(outfile, expr.format)
    outfile.close( )
    ## render
    start_time = time.time( )
