@@ -199,7 +199,7 @@ class Spanner(_Abjad):
    
    @property
    def components(self):
-      '''Read-only tuple of components in spanner. ::
+      '''Return read-only tuple of components in spanner. ::
 
          abjad> voice = Voice(construct.scale(4))
          abjad> spanner = Spanner(voice[:2])
@@ -207,29 +207,42 @@ class Spanner(_Abjad):
          (Note(c', 8), Note(d', 8))
 
       .. versionchanged:: 1.1.1
-         Now returns an immutable tuple instead of a mutable list.
+         Now returns an (immutable) tuple instead of a (mutable) list.
       '''
       return tuple(self._components[:])
 
    @property
    def duration(self):
-      '''Read-only reference to the duration interface serving 
-      this spanner. ::
+      '''Return read-only reference to spanner duration interface.
+      
+      Spanner duration interface implements ``written``, 
+      ``preprolated`` and ``prolated`` attributes. ::
 
          abjad> voice = Voice(construct.scale(4))
          abjad> spanner = Spanner(voice[:2])
-         abjad> spanner.duration
-         <_SpannerDurationInterface>
+         abjad> spanner
+         Spanner(c'8, d'8, e'8, f'8)
 
-      The spanner duration interface collects use information about the
-      duration of the spanner and the components it governs. ::
+      ::
 
          abjad> spanner.duration.written
-         Rational(1, 4)
+         Rational(1, 2)
 
-      See 
-      :class:`~abjad.spanner.duration.interface._SpannerDurationInterface`
-      for the complete list of properties and methods available.
+      ::
+
+         abjad> spanner.duration.preprolated
+         Rational(1, 2)
+
+      ::
+
+         abjad> spanner.duration.prolated
+         Rational(1, 2)
+
+      Spanner duration interface also implements ``seconds`` attribute. ::
+
+         abjad> Tempo(voice[:], TempoIndication(Rational(1, 8), 48))
+         abjad> spanner.duration.seconds
+         Rational(5, 1)
       '''
 
       return self._duration
@@ -274,13 +287,15 @@ class Spanner(_Abjad):
                  e'8
                  f'8
          }
+
+      .. todo:: Remove from public interface.
       '''
       
       return self._format
 
    @property
    def leaves(self):
-      '''Read-only tuple of leaves in spanner. ::
+      '''Return read-only tuple of leaves in spanner. ::
 
          abjad> voice = Voice(construct.scale(4))
          abjad> spanner = Spanner(voice[:2])
@@ -288,7 +303,7 @@ class Spanner(_Abjad):
          (Note(c', 8), Note(d', 8))
 
       .. versionchanged:: 1.1.1
-         Now returns an immutable tuple instead of a mutable list.
+         Now returns an (immutable) tuple instead of a (mutable) list.
       '''
 
       from abjad.leaf.leaf import _Leaf
@@ -304,28 +319,26 @@ class Spanner(_Abjad):
 
    @property
    def offset(self):
-      '''Read-only reference to the
-      :class:`~abjad.spanner.offset._SpannerOffsetInterface` serving
-      this spanner. ::
+      '''.. versionadded:: 1.1.1
+
+      Return read-only reference to spanner offset interface.
+
+      Spanner offset interface implements ``start`` and ``stop`` attributes. ::
 
          abjad> voice = Voice(construct.scale(4))
-         abjad> spanner = Spanner(voice[:2])
-         abjad> spanner.offset
-         <_SpannerOffsetInterface>
+         abjad> spanner = Spanner(voice[2:])
+         abjad> spanner
+         Spanner(e'8, f'8)
 
-      Use the spanner offset interface to inspect start- and stop-times
-      of this spanner. ::
+      ::
 
          abjad> spanner.offset.start
-         Rational(0, 1)
+         Rational(1, 4)
 
       ::
 
          abjad> spanner.offset.stop
-         Rational(1, 4)
-
-      See :class:`~abjad.spanner.offset._SpannerOffsetInterface` for
-      details.
+         Rational(1, 2)
       '''
          
       return self._offset
@@ -333,7 +346,7 @@ class Spanner(_Abjad):
    ## PUBLIC METHODS ##
 
    def append(self, component):
-      '''Add `component` to the right end of `spanner`.
+      '''Add `component` to right of spanner.
 
       :: 
 
@@ -357,7 +370,7 @@ class Spanner(_Abjad):
       self._components.append(component)
 
    def append_left(self, component):
-      '''Add `component` to the left end of `spanner`.
+      '''Add `component` to left of spanner.
 
       :: 
 
@@ -382,33 +395,18 @@ class Spanner(_Abjad):
    def clear(self):
       r'''Remove all components from spanner. ::
 
-         abjad> staff = Staff(construct.scale(4))
-         abjad> beam = Beam(t[:])
-         abjad> beam
-         Beam(c'8, d'8, e'8, f'8)
-         abjad> print staff.format
-         \new Staff {
-                 c'8 [
-                 d'8
-                 e'8
-                 f'8 ]
-         }
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[:])
+         abjad> spanner
+         Spanner(c'8, d'8, e'8, f'8)
 
       ::
-      
-         abjad> beam.clear( )
-         abjad> beam
-         Beam( )
-         abjad> len(beam)
-         0
-         abjad> print staff.format
-         \new Staff {
-                 c'8
-                 d'8
-                 e'8
-                 f'8
-         }
+
+         abjad> spanner.clear( )
+         abjad> spanner
+         Spanner( )
       '''
+
       self._severAllComponents( )
 
    def copy(self, start = None, stop = None):
@@ -431,6 +429,20 @@ class Spanner(_Abjad):
       return result
 
    def extend(self, components):
+      '''Add iterable `components` to right of spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice([:2])
+         abjad> spanner
+         Spanner(c'8, d'8)
+
+      ::
+
+         abjad> spanner.extend(voice[2:])
+         abjad> spanner
+         Spanner(c'8, d'8, e'8, f'8)
+      '''
+
       from abjad.tools import check
       input = self[-1:]
       input.extend(components)
@@ -439,6 +451,20 @@ class Spanner(_Abjad):
          self.append(component)
 
    def extend_left(self, components):
+      '''Add iterable `components` to left of spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice([2:])
+         abjad> spanner
+         Spanner(e'8, f'8)
+
+      ::
+
+         abjad> spanner.extend_left(voice[:2])
+         abjad> spanner
+         Spanner(c'8, d'8, e'8, f'8)
+      '''
+
       from abjad.tools import check
       input = components + self[:1]
       check.assert_components(input, contiguity = 'thread')
@@ -446,6 +472,33 @@ class Spanner(_Abjad):
          self.append_left(component)
 
    def fracture(self, i, direction = 'both'):
+      r'''Fracture spanner at `direction` of component at index `i`. 
+
+      Valid values for `direction` are ``'left'``, ``'right'`` and ``'both'``.
+
+      Return original, left and right spanners. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> beam = Beam(voice[:])
+         abjad> beam
+         Beam(c'8, d'8, e'8, f'8)
+
+      ::
+
+         abjad> beam.fracture(1, direction = 'left')
+         (Beam(c'8, d'8, e'8, f'8), Beam(c'8), Beam(d'8, e'8, f'8))
+
+      ::
+
+         abjad> print voice.format
+         \new Voice {
+                 c'8 [ ]
+                 d'8 [
+                 e'8
+                 f'8 ]
+         }
+      '''
+
       if i < 0:
          i = len(self) + i
       if direction == 'left':
@@ -463,17 +516,102 @@ class Spanner(_Abjad):
             'direction %s must be left, right or both.' % direction)
 
    def fuse(self, spanner):
+      r'''Fuse contiguous spanners.
+
+      Return new spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> left_beam = Beam(t[:2])
+         abjad> right_beam = Beam(t[2:])
+
+      ::
+
+         abjad> print voice.format
+         \new Voice {
+                 c'8 [
+                 d'8 ]
+                 e'8 [
+                 f'8 ]
+         }
+
+      ::
+         
+         abjad> left_beam.fuse(right_beam)
+         [(Beam(c'8, d'8), Beam(e'8, f'8), Beam(c'8, d'8, e'8, f'8))]
+
+      ::
+
+         abjad> print voice.format 
+         \new Voice {
+                 c'8 [
+                 d'8
+                 e'8
+                 f'8 ]
+         }
+      
+      .. todo:: Return (immutable) tuple instead of (mutable) list.
+      '''
+
       return self._fuseByReference(spanner)
       
    def index(self, component):
+      '''Return nonnegative integer index of `component` in spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[2:])
+         abjad> spanner
+         Spanner(e'8, f'8)
+
+      ::
+
+         abjad> spanner.index(t[-2])
+         0
+      '''
+
       return self._components.index(component)
 
    def pop(self):
+      '''Remove and return rightmost component in spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[:])
+         abjad> spanner
+         Spanner(c'8, d'8, e'8, f'8)
+
+      ::
+
+         abjad> spanner.pop( )
+         f'8
+
+      ::
+
+         abjad> spanner
+         Spanner(c'8, d'8, e'8)
+      '''
+
       component = self[-1]
       self._severComponent(component)
       return component
 
    def pop_left(self):
+      '''Remove and return leftmost component in spanner. ::
+
+         abjad> voice = Voice(construct.scale(4))
+         abjad> spanner = Spanner(voice[:])
+         abjad> spanner
+         Spanner(c'8, d'8, e'8, f'8)
+
+      ::
+
+         abjad> spanner.pop_left( )
+         c'8
+
+      ::
+
+         abjad> spanner
+         Spanner(d'8, e'8, f'8)
+      '''
+
       component = self[0]
       self._severComponent(component)
       return component
