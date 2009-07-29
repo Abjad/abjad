@@ -24,6 +24,8 @@ class Score(_Context):
          Assign Abjad :class:`~abjad.SpacingIndication` or ``None``.
 
          Set to activate Abjad :class:`~abjad.TempoProportional` spanners.
+
+         .. todo:: Encapsulate in SpacingInterface.
          '''
          return self._global_spacing
       def fset(self, expr):
