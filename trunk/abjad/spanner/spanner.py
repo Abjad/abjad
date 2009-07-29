@@ -209,7 +209,7 @@ class Spanner(_Abjad):
       .. versionchanged:: 1.1.1
          Now returns an immutable tuple instead of a mutable list.
       '''
-      return self._components[:]
+      return tuple(self._components[:])
 
    @property
    def duration(self):
@@ -349,9 +349,10 @@ class Spanner(_Abjad):
          Spanner(c'8, d'8, e'8)
       '''
 
-      from abjad.tools import check
-      components = self[-1:] + [component]
-      check.assert_components(components, contiguity = 'thread')
+      if self._contiguity_constraint == 'thread':
+         from abjad.tools import check
+         components = self[-1:] + [component]
+         check.assert_components(components, contiguity = 'thread')
       component.spanners._add(self)
       self._components.append(component)
 

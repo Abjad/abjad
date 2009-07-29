@@ -234,7 +234,7 @@ def test_split__leaf_at_duration_12( ):
    halves = split__leaf_at_duration(t[0], Rational(5, 64))
 
    assert t.tie.spanner is s
-   assert s.components == [t]
+   assert s.components == (t, )
    for l in t.leaves:
       assert not l.spanners.attached 
    assert check.wf(t)
@@ -248,7 +248,7 @@ def test_split__leaf_at_duration_13( ):
    s = Tie(t[:])
    halves = split__leaf_at_duration(t[0][0], Rational(5, 64))
 
-   assert s.components == t[:]
+   assert s.components == tuple(t[:])
    for v in t:
       assert v.spanners.attached == set([s])
       for l in v.leaves:

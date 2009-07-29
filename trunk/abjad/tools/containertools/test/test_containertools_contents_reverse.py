@@ -23,7 +23,7 @@ def test_containertools_contents_reverse_02( ):
    containertools.contents_reverse(t)
 
    assert list(leaves_rev) == list(t.leaves)
-   assert beam.components == [t]
+   assert beam.components == (t, )
    assert check.wf(t)
 
 
@@ -37,7 +37,7 @@ def test_containertools_contents_reverse_03( ):
    containertools.contents_reverse(t)
 
    assert list(leaves_rev) == list(t.leaves)
-   assert beam.components == list(t.leaves)
+   assert beam.components == tuple(t.leaves)
    assert check.wf(t)
 
 
@@ -50,7 +50,7 @@ def test_containertools_contents_reverse_04( ):
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
-   assert beam.components == [t[0]]
+   assert beam.components == (t[0], )
    assert check.wf(t)
 
 
@@ -63,7 +63,7 @@ def test_containertools_contents_reverse_05( ):
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
-   assert beam.components == list(t[0].leaves)
+   assert beam.components == tuple(t[0].leaves)
    assert check.wf(t)
 
 
@@ -76,7 +76,7 @@ def test_containertools_contents_reverse_06( ):
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
-   assert beam.components == [t]
+   assert beam.components == tuple(t, )
    assert check.wf(t)
 
 
@@ -91,7 +91,7 @@ def test_containertools_contents_reverse_06( ):
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
-   assert beam.components == [measure] + notes
+   assert beam.components == tuple([measure] + notes)
    assert check.wf(t)
 
 
@@ -142,9 +142,9 @@ def test_containertools_contents_reverse_10( ):
    assert staff[1] is m1
    assert len(m2) == 3
    assert len(m1) == 4
-   assert pedal.components == [staff]
-   assert trill.components == staff[:]
-   assert beam1.components == [m1]
-   assert beam2.components == [m2]
-   assert gliss.components == list(staff.leaves)
+   assert pedal.components == (staff, )
+   assert trill.components == tuple(staff[:])
+   assert beam1.components == (m1, )
+   assert beam2.components == (m2, )
+   assert gliss.components == tuple(staff.leaves)
    assert check.wf(staff)

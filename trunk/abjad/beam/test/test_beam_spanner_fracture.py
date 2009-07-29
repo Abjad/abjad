@@ -10,7 +10,7 @@ def test_beam_spanner_fracture_01( ):
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
    #assert old[ : ] == t[ : 4]
-   old.components == t[ : 4]
+   assert old.components == tuple(t[ : 4])
    old.fracture(0, 'left')
    assert len(t.spanners.contained) == 1
    #new = list(t.spanners.contained)[0]
@@ -25,7 +25,7 @@ def test_beam_spanner_fracture_02( ):
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
    #assert old[ : ] == t[ : 4]
-   assert old.components == t[ : 4]
+   assert old.components == tuple(t[ : 4])
    old.fracture(1, 'left')
    assert len(t.spanners.contained) == 2
    #left, right = t.spanners.contained
@@ -46,7 +46,7 @@ def test_beam_spanner_fracture_03( ):
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
    #assert old[ : ] == t[ : 4]
-   assert old.components == t[ : 4]
+   assert old.components == tuple(t[ : 4])
    old.fracture(-1, 'right')
    assert len(t.spanners.contained) == 1
    #new = list(t.spanners.contained)[0]
@@ -61,7 +61,7 @@ def test_beam_spanner_fracture_04( ):
    assert len(t.spanners.contained) == 1
    old = list(t.spanners.contained)[0]
    #assert old[ : ] == t[ : 4]
-   assert old.components == t[ : 4]
+   assert old.components == tuple(t[ : 4])
    old.fracture(1, 'right')
    assert len(t.spanners.contained) == 2
    #left, right = t.spanners.contained
