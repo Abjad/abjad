@@ -204,7 +204,7 @@ class Spanner(_Abjad):
          abjad> voice = Voice(construct.scale(4))
          abjad> spanner = Spanner(voice[:2])
          abjad> spanner.components
-         [Note(c', 8), Note(d', 8)]
+         (Note(c', 8), Note(d', 8))
 
       .. versionchanged:: 1.1.1
          Now returns an immutable tuple instead of a mutable list.
