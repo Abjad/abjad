@@ -81,24 +81,24 @@ class Spanner(_Abjad):
       return sum([leaf.duration.prolated for leaf in prev])
 
    def _fractureLeft(self, i):
-      left = self.copy(0, i - 1)
-      #left = self.copy(self[:i])
-      right = self.copy(i, len(self))
-      #right = self.copy(self[i:])
+      ##left = self.copy(0, i - 1)
+      left = self.copy(self[:i])
+      ##right = self.copy(i, len(self))
+      right = self.copy(self[i:])
       self._blockAllComponents( )
       return self, left, right
 
    def _fractureRight(self, i):
-      left = self.copy(0, i)
-      #left = self.copy(self[:i+1])
-      right = self.copy(i + 1, len(self))
-      #right = self.copy(self[i+1:])
+      ##left = self.copy(0, i)
+      left = self.copy(self[:i+1])
+      ##right = self.copy(i + 1, len(self))
+      right = self.copy(self[i+1:])
       self._blockAllComponents( )
       return self, left, right
 
    def _fuseByReference(self, spanner):
-      result = self.copy( )
-      #result = self.copy(self[:])
+      ##result = self.copy( )
+      result = self.copy(self[:])
       result.extend(spanner.components)
       self._blockAllComponents( )
       spanner._blockAllComponents( )
@@ -377,26 +377,30 @@ class Spanner(_Abjad):
 
       self._severAllComponents( )
 
-   def copy(self, start = None, stop = None):
-   #def copy(self, components):
-      '''Return copy of spanner with `components`.'''
+   ##def copy(self, start = None, stop = None):
+   def copy(self, components):
+      '''Return copy of spanner with `components`.
+   
+      `components` must be an iterable of components already
+      contained in spanner.
+      '''
 
       my_components = self._components[:]
       self._components = [ ]
       result = python_deepcopy(self)
       self._components = my_components
 
-      if stop is not None:
-         for component in self[start : stop + 1]:
-            result._components.append(component)
-      else:
-         for component in self:
-            result._components.append(component)
+##      if stop is not None:
+##         for component in self[start : stop + 1]:
+##            result._components.append(component)
+##      else:
+##         for component in self:
+##            result._components.append(component)
 
-#      for component in components:
-#         assert component in self
-#      for component in components:
-#         result._components.append(component)
+      for component in components:
+         assert component in self
+      for component in components:
+         result._components.append(component)
       
       result._unblockAllComponents( )
       return result
@@ -479,12 +483,12 @@ class Spanner(_Abjad):
       elif direction == 'right':
          return self._fractureRight(i)
       elif direction == 'both':
-         left = self.copy(0, i - 1)
-         #left = self.copy(self[:i])
-         right = self.copy(i + 1, len(self))
-         #right = self.copy(self[i+1:])
-         center = self.copy(i, i)
-         #center = self.copy(self[i:i+1])
+         ##left = self.copy(0, i - 1)
+         left = self.copy(self[:i])
+         ##right = self.copy(i + 1, len(self))
+         right = self.copy(self[i+1:])
+         ##center = self.copy(i, i)
+         center = self.copy(self[i:i+1])
          self._blockAllComponents( )
          return self, left, center, right
       else:
