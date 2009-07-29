@@ -6,7 +6,8 @@ def test_fdtuplet_formatter_number_01( ):
       markup to many notes at format-time at once.'''
 
    t = FixedDurationTuplet((4, 8), construct.scale(5))
-   t.formatter.number.leaves = 'markup'
+   #t.formatter.number.leaves = 'markup'
+   t._formatter.number.leaves = 'markup'
 
    r'''
    \times 4/5 {
@@ -27,7 +28,8 @@ def test_fdtuplet_formatter_number_02( ):
       LilyPond comments to many notes at format-time at once.'''
 
    t = FixedDurationTuplet((4, 8), construct.scale(5))
-   t.formatter.number.leaves = 'comment'
+   #t.formatter.number.leaves = 'comment'
+   t._formatter.number.leaves = 'comment'
 
    r'''
    \times 4/5 {

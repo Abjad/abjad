@@ -8,7 +8,8 @@ def test_staff_formatter_number_01( ):
 
    t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
    measuretools.populate(t, Rational(1, 16))
-   t.formatter.number.measures = 'comment'
+   #t.formatter.number.measures = 'comment'
+   t._formatter.number.measures = 'comment'
 
    r'''
    \new Staff {
@@ -48,7 +49,8 @@ def test_staff_formatter_number_02( ):
 
    t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
    measuretools.populate(t, Rational(1, 16))
-   t.formatter.number.leaves = 'markup'
+   #t.formatter.number.leaves = 'markup'
+   t._formatter.number.leaves = 'markup'
 
    r'''
    \new Staff {
@@ -82,8 +84,10 @@ def test_staff_formatter_number_03( ):
 
    t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
    measuretools.populate(t, Rational(1, 16))
-   t.formatter.number.measures = 'comment'
-   t.formatter.number.leaves = 'markup'
+   #t.formatter.number.measures = 'comment'
+   #t.formatter.number.leaves = 'markup'
+   t._formatter.number.measures = 'comment'
+   t._formatter.number.leaves = 'markup'
 
    r'''
    \new Staff {

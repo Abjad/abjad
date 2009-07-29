@@ -11,7 +11,8 @@ def test_container_formatter_wrapper_01( ):
    beam = Beam(t[:])
    beam.thickness = 3
 
-   r'''% Example voice
+   r'''
+   % Example voice
    \new Voice \with {
            \override NoteHead #'color = #red
    } {
@@ -22,11 +23,14 @@ def test_container_formatter_wrapper_01( ):
            e'8
            f'8 ]
            \revert Beam #'thickness
-   }'''
+   }
+   '''
 
-   result = t.formatter.wrapper
+   #result = t.formatter.wrapper
+   result = formattools.wrapper(t)
 
-   r'''% Example voice
+   r'''
+   % Example voice
    \new Voice \with {
            \override NoteHead #'color = #red
    } {
@@ -34,7 +38,8 @@ def test_container_formatter_wrapper_01( ):
 
            %%% 4 components omitted %%%
 
-   }'''
+   }
+   '''
 
    assert result == "% Example voice\n\\new Voice \\with {\n\t\\override NoteHead #'color = #red\n} {\n\t#(set-accidental-style 'forget)\n\n\t%%% 4 components omitted %%%\n\n}"
 
@@ -49,7 +54,8 @@ def test_container_formatter_wrapper_02( ):
    beam = Beam(t[:])
    beam.thickness = 3
 
-   r'''% Example tuplet
+   r'''
+   % Example tuplet
    \override NoteHead #'color = #red
    \times 2/3 {
            #(set-accidental-style 'forget)
@@ -59,11 +65,14 @@ def test_container_formatter_wrapper_02( ):
            e'8 ]
            \revert Beam #'thickness
    }
-   \revert NoteHead #'color'''
+   \revert NoteHead #'color
+   '''
 
-   result = t.formatter.wrapper
+   #result = t.formatter.wrapper
+   result = formattools.wrapper(t)
 
-   r'''% Example tuplet
+   r'''
+   % Example tuplet
    \override NoteHead #'color = #red
    \times 2/3 {
            #(set-accidental-style 'forget)
@@ -71,6 +80,7 @@ def test_container_formatter_wrapper_02( ):
            %%% 3 components omitted %%%
 
    }
-   \revert NoteHead #'color'''
+   \revert NoteHead #'color
+   '''
 
    assert result == "% Example tuplet\n\\override NoteHead #'color = #red\n\\times 2/3 {\n\t#(set-accidental-style 'forget)\n\n\t%%% 3 components omitted %%%\n\n}\n\\revert NoteHead #'color"

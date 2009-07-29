@@ -4,8 +4,7 @@ from abjad.component.formatter import _ComponentFormatter
 
 
 class _ContainerFormatter(_ComponentFormatter):
-   '''Encapsulate all
-   :class:`~abjad.container.container.Container` format logic. ::
+   '''Encapsulate all container format logic. ::
 
       abjad> container = Container(construct.scale(4))
       abjad> container.formatter
@@ -64,35 +63,35 @@ class _ContainerFormatter(_ComponentFormatter):
 
       return self._slots
 
-   @property
-   def wrapper(self):
-      r'''Read-only string representation of all parts of container
-      format except container contents. ::
-
-         abjad> container = Container(construct.scale(12))
-         abjad> container.notehead.color = 'red'
-         abjad> container.notehead.style = 'harmonic'
-         abjad> container.comments.before.append('Container comments')
-         abjad> print container.formatter.wrapper
-         {
-                 \override NoteHead #'style = #'harmonic
-                 \override NoteHead #'color = #red
-
-                 %%% 12 components omitted %%%
-
-                 \revert NoteHead #'style
-                 \revert NoteHead #'color
-         }
-      '''
-
-      result = [ ]
-      result.extend(self.slots.contributions('slot_1'))
-      result.extend(self.slots.contributions('slot_2'))
-      result.extend(self.slots.contributions('slot_3'))
-      heart = '\t%%%%%% %s components omitted %%%%%%' % len(self.container)
-      result.extend(['', heart, ''])
-      result.extend(self.slots.contributions('slot_5'))
-      result.extend(self.slots.contributions('slot_6'))
-      result.extend(self.slots.contributions('slot_7'))
-      result = '\n'.join(result)
-      return result
+#   @property
+#   def wrapper(self):
+#      r'''Read-only string representation of all parts of container
+#      format except container contents. ::
+#
+#         abjad> container = Container(construct.scale(12))
+#         abjad> container.notehead.color = 'red'
+#         abjad> container.notehead.style = 'harmonic'
+#         abjad> container.comments.before.append('Container comments')
+#         abjad> print container.formatter.wrapper
+#         {
+#                 \override NoteHead #'style = #'harmonic
+#                 \override NoteHead #'color = #red
+#
+#                 %%% 12 components omitted %%%
+#
+#                 \revert NoteHead #'style
+#                 \revert NoteHead #'color
+#         }
+#      '''
+#
+#      result = [ ]
+#      result.extend(self.slots.contributions('slot_1'))
+#      result.extend(self.slots.contributions('slot_2'))
+#      result.extend(self.slots.contributions('slot_3'))
+#      heart = '\t%%%%%% %s components omitted %%%%%%' % len(self.container)
+#      result.extend(['', heart, ''])
+#      result.extend(self.slots.contributions('slot_5'))
+#      result.extend(self.slots.contributions('slot_6'))
+#      result.extend(self.slots.contributions('slot_7'))
+#      result = '\n'.join(result)
+#      return result

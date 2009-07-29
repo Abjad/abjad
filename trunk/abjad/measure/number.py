@@ -16,8 +16,8 @@ class _MeasureFormatterNumberInterface(_Abjad):
          return self.self
       parentage = self._client._client.parentage.parentage[1:]
       for parent in parentage:
-         if hasattr(parent.formatter, 'number'):
-            contribution = getattr(parent.formatter.number, 'measures', None)
+         if hasattr(parent._formatter, 'number'):
+            contribution = getattr(parent._formatter.number, 'measures', None)
             if contribution is not None:
                return contribution
       return None

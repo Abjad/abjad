@@ -8,7 +8,8 @@ def test_measure_rigid_measure_barline_override_01( ):
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(t)
-   t.formatter.number.measures = 'comment'
+   #t.formatter.number.measures = 'comment'
+   t._formatter.number.measures = 'comment'
    t[0].barline.kind = '||'
    t[0].barline.color = 'red'
    #t[0].barline.promote('color', 'Staff')

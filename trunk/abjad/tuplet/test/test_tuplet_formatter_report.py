@@ -9,16 +9,21 @@ def test_tuplet_formatter_report_01( ):
    t.barline.kind = '|.'
    t.clef.forced = Clef('treble')
 
-   r'''\times 2/3 {
+   r'''
+   \times 2/3 {
            #(set-accidental-style 'forget)
            \clef "treble"
            c'8
            d'8
            e'8
            \bar "|."
-   }'''
+   }
+   '''
 
-   result = t.formatter.report(output = 'string')
+   ## TODO: Externalize to formattools package. ##
+
+   #result = t.formatter.report(output = 'string')
+   result = t._formatter.report(output = 'string')
 
    r'''slot_1
    slot_2

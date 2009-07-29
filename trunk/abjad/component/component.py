@@ -201,12 +201,12 @@ class _Component(_Abjad):
    @property
    def format(self):
       '''Read-only version of `self` as LilyPond input code.'''
-      return self.formatter.format
+      return self._formatter.format
 
-   @property
-   def formatter(self):
-      '''Read-only reference to class-specific formatter.'''
-      return self._formatter
+#   @property
+#   def formatter(self):
+#      '''Read-only reference to class-specific formatter.'''
+#      return self._formatter
 
    @property
    def glissando(self):

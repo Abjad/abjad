@@ -288,6 +288,14 @@ durtools
    tools/durtools/within_seconds
 
 
+formattools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/formattools/wrapper
+
+
 fuse
 
 .. toctree::

@@ -1,11 +1,14 @@
 from abjad import *
 
 
+## TODO: Externalize numbering code to a tools module. ##
+
 def test_leaf_formatter_number_self_01( ):
-   '''_LeafFormatterNumberInterface can contribution markup.'''
+   '''_LeafFormatterNumberInterface can contribute markup.'''
 
    t = Staff(construct.scale(8))
-   t[0].formatter.number.self = 'markup'
+   #t[0].formatter.number.self = 'markup'
+   t[0]._formatter.number.self = 'markup'
 
    r'''
    \new Staff {
@@ -27,7 +30,8 @@ def test_leaf_formatter_number_self_02( ):
    '''_LeafFormatterNumberInterface can contribute LilyPond comments.'''
 
    t = Staff(construct.scale(8))
-   t[0].formatter.number.self = 'comment'
+   #t[0].formatter.number.self = 'comment'
+   t[0]._formatter.number.self = 'comment'
 
    r'''
    \new Staff {

@@ -12,8 +12,8 @@ class _LeafFormatterNumberInterface(object):
          return self.self
       parentage = self._client._client.parentage.parentage[1:]
       for parent in parentage:
-         if hasattr(parent.formatter, 'number'):
-            contribution = getattr(parent.formatter.number, 'leaves', None)
+         if hasattr(parent._formatter, 'number'):
+            contribution = getattr(parent._formatter.number, 'leaves', None)
             if contribution is not None:
                return contribution
       return None

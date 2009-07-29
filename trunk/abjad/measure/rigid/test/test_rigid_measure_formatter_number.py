@@ -7,7 +7,8 @@ def test_rigid_measure_block_01( ):
 
    t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
    measuretools.populate(t, Rational(1, 16))
-   t[0].formatter.number.self = 'comment'
+   #t[0].formatter.number.self = 'comment'
+   t[0]._formatter.number.self = 'comment'
 
    r'''
    \new Staff {
@@ -43,7 +44,8 @@ def test_rigid_measure_block_02( ):
 
    t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
    measuretools.populate(t, Rational(1, 16))
-   t[0].formatter.number.leaves = 'markup'
+   #t[0].formatter.number.leaves = 'markup'
+   t[0]._formatter.number.leaves = 'markup'
 
    r'''
    \new Staff {
@@ -78,8 +80,10 @@ def test_rigid_measure_block_03( ):
 
    t = Staff(measuretools.make([(2, 16), (3, 16), (3, 16)]))
    measuretools.populate(t, Rational(1, 16))
-   t[0].formatter.number.self = 'comment'
-   t[0].formatter.number.leaves = 'markup'
+   #t[0].formatter.number.self = 'comment'
+   #t[0].formatter.number.leaves = 'markup'
+   t[0]._formatter.number.self = 'comment'
+   t[0]._formatter.number.leaves = 'markup'
 
    r'''
    \new Staff {
