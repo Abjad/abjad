@@ -8,7 +8,7 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner format contribution right of leaf.'''
       from abjad.chord import Chord
       from abjad.note import Note

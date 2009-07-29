@@ -8,7 +8,7 @@ class _TextSpannerFormatInterface(_PositionalSpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner format contribution right of leaf.'''
       result = [ ]
       spanner = self.spanner

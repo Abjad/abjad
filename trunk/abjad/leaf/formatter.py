@@ -48,7 +48,7 @@ class _LeafFormatter(_ComponentFormatter):
       result.extend(self._nucleus)
       result.extend(self._tremolo_subdivision_contribution)
       result.extend(interfaces.right)
-      result.extend(spanners.right)
+      result.extend(spanners._right)
       result.extend(directives.right)
       result.extend(self._number_contribution)
       result.extend(['% ' + x for x in client.comments.right])

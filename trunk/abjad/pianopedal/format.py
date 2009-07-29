@@ -16,7 +16,7 @@ class _PianoPedalSpannerFormatInterface(_SpannerFormatInterface):
          result.append(r"\set Staff.pedalSustainStyle = #'%s" % spanner.style)
       return result
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner format contribution right of leaf.'''
       result = [ ]
       spanner = self.spanner

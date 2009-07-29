@@ -71,7 +71,7 @@ class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
       return property(**locals( ))
 
    @property
-   def right(self):
+   def _right(self):
       '''Format contribution to right of leaf.'''
       result = [ ]
       if self.mark:

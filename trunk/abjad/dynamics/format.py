@@ -8,7 +8,7 @@ class _DynamicSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner format contribution to right of leaf.'''
       result = [ ]
       spanner = self.spanner

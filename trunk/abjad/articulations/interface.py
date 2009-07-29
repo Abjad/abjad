@@ -68,7 +68,7 @@ class ArticulationsInterface(_Interface, _GrobHandler):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def right(self):
+   def _right(self):
       '''Format contribution to right of leaf.'''
       result = [ ]
       result.extend([x.format for x in self._articulations])

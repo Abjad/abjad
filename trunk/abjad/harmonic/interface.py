@@ -24,7 +24,7 @@ class HarmonicInterface(_Interface, _FormatContributor):
       return property(**locals( ))
 
    @property
-   def right(self):
+   def _right(self):
       '''Format contribution right of leaf.'''
       result = [ ]
       if self.natural:

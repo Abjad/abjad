@@ -10,7 +10,7 @@ class _GlissandoSpannerFormatInterface(_SpannerFormatInterface):
 
    ## PUBLIC METHODS ##
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner contribution to right of leaf.'''
       result = [ ]
       if not self.spanner._isMyLastLeaf(leaf):

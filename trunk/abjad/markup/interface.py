@@ -28,7 +28,7 @@ class MarkupInterface(_Interface, _FormatContributor):
       return property(**locals( ))
 
    @property
-   def right(self):
+   def _right(self):
       '''Format contribution to right of leaf.'''
       result = [ ]
       if len(self.up) == 1:

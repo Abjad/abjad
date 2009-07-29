@@ -89,7 +89,7 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
             result.append(r'\set stemRightBeamCount = #%s' % right)
       return result
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner format contribution to output right of leaf.'''
       result = [ ]
       spanner = self.spanner

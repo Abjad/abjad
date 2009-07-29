@@ -14,7 +14,7 @@ class _BeamSpannerFormatInterface(_SpannerFormatInterface):
       result.extend(_SpannerFormatInterface._before(self, leaf))
       return result
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner format contribution right of leaf.'''
       result = [ ]
       spanner = self.spanner

@@ -17,7 +17,7 @@ class _TrillSpannerFormatInterface(_SpannerFormatInterface):
             result.append(r'\pitchedTrill')
       return result
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner format contribution right of leaf.'''
       result = [ ]
       spanner = self.spanner

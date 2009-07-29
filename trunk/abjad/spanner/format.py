@@ -50,7 +50,7 @@ class _SpannerFormatInterface(_Abjad):
          print '\t right: %s' % self.right(leaf)
          print ''
 
-   def right(self, leaf):
+   def _right(self, leaf):
       '''Spanner format contributions to output right of leaf.'''
       result = [ ]
       return result

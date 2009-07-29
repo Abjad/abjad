@@ -49,7 +49,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       return result
 
    @property
-   def right(self):
+   def _right(self):
       '''Order first by alphabetically by spanner class name;
          order next by stop / start status of spanner rel to leaf.'''
       stop_contributions = [ ]
@@ -57,7 +57,7 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       leaf = self.leaf
       for spanner in self._spannersInParentage:
          #result.extend(spanner.format.right(leaf))
-         contributions = spanner.format.right(leaf)
+         contributions = spanner.format._right(leaf)
          if contributions:
             if spanner._isMyLastLeaf(leaf):
                stop_contributions.extend(contributions)

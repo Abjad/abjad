@@ -124,7 +124,7 @@ class InterfaceAggregator(_Interface):
       '''Ordered list of format-time contributions for right format slot.'''
       result = [ ]
       for contributor in self.contributors:
-         result.extend(getattr(contributor, 'right', [ ]))
+         result.extend(getattr(contributor, '_right', [ ]))
       return result
 
    @property
