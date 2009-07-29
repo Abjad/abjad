@@ -14,12 +14,12 @@ import time
 def _log_render_lilypond_input(expr, template = None, 
    title = None, footer = None, lilytime = 10):
    '''Private function that stores both .ly and .pdf files in the
-   ``abjadoutput`` directory. Returns the name of the newly created file.
+   ``abjad_output`` directory. Returns the name of the newly created file.
    '''
 
    current_directory = os.path.abspath('.')
    ## log score
-   ABJADOUTPUT = _read_config_file( )['abjadoutput']
+   ABJADOUTPUT = _read_config_file( )['abjad_output']
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
    name = _get_next_output( )

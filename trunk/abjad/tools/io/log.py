@@ -7,7 +7,7 @@ import os
 
 def log( ):
    '''Call ``log( )`` to ``vi`` the last round of *LilyPond* output \
-      redirected to the ``lily.log`` file in the ``abjadoutput`` 
+      redirected to the ``lily.log`` file in the ``abjad_output`` 
       configuration variable.
       
       ::
@@ -32,5 +32,5 @@ def log( ):
       Exit ``vi`` in the usual way with ``:q`` or equivalent to \
       return to the *Abjad* interpreter.'''
 
-   ABJADOUTPUT = _read_config_file( )['abjadoutput']
+   ABJADOUTPUT = _read_config_file( )['abjad_output']
    os.system('vi %s' % os.path.join(ABJADOUTPUT, 'lily.log'))

@@ -4,7 +4,7 @@ import os
 
 
 def _write_layout_template(outfile, template):
-   ABJADTEMPLATES = _read_config_file( )['abjadtemplates']
+   ABJADTEMPLATES = _read_config_file( )['abjad_templates']
    if template:
       names = [template, template + '.ly']
       if ABJADTEMPLATES is not None:

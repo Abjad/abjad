@@ -1,7 +1,5 @@
-#from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg._get_last_output import _get_last_output
 from abjad.cfg._open_file import _open_file
-#from abjad.cfg._read_config_value import _read_config_value
 from abjad.cfg._read_config_file import _read_config_file
 import os
 
@@ -35,9 +33,9 @@ def pdf(target = -1):
 
          By default, *Abjad* writes *LilyPond* input files
          to the ``~/.abjad/output`` directory. You may change this by
-         setting the ``abjadoutput`` variable in the ``config.py`` file.'''
+         setting the ``abjad_output`` variable in the ``config.py`` file.'''
    
-   ABJADOUTPUT = _read_config_file( )['abjadoutput']
+   ABJADOUTPUT = _read_config_file( )['abjad_output']
    if isinstance(target, int) and target < 0:
       last_lilypond = _get_last_output( )
       if last_lilypond:
@@ -56,8 +54,7 @@ def pdf(target = -1):
       raise ValueError('can not get target pdf name from %s.' % target)
 
    if os.stat(target_pdf):
-      #pdfviewer = _read_config_value('pdfviewer')
-      pdfviewer = _read_config_file( )['pdfviewer']
-      _open_file(target_pdf, pdfviewer)
+      pdf_viewer = _read_config_file( )['pdf_viewer']
+      _open_file(target_pdf, pdf_viewer)
    else:
       print 'Target PDF %s does not exist.' % target_pdf

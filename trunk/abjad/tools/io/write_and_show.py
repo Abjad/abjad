@@ -1,5 +1,4 @@
 from abjad.cfg._open_file import _open_file
-#from abjad.cfg._read_config_value import _read_config_value
 from abjad.cfg._read_config_file import _read_config_file
 from write_ly import write_ly
 from write_pdf import write_pdf
@@ -26,9 +25,8 @@ def write_and_show(
          footer = footer, lilytime = lilytime)
       write_pdf(expr, name + '.pdf', template = template, title = title,
          footer = footer, lilytime = lilytime)
-      #pdfviewer = _read_config_value('pdfviewer')
-      pdfviewer = _read_config_file( )['pdfviewer']
-      _open_file(name + '.pdf', pdfviewer)
+      pdf_viewer = _read_config_file( )['pdf_viewer']
+      _open_file(name + '.pdf', pdf_viewer)
    else:
       show(expr, template = template, title = title, 
          footer = footer, lilytime = lilytime)

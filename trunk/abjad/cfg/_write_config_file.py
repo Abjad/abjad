@@ -9,8 +9,8 @@ def _write_config_file(path):
    preamble += '# Abjad configuration file, created by Abjad on %s.\n' % \
       time.strftime("%d %B %Y %H:%M:%S")
    preamble += '#\n'
-   preamble += '# This file is Python execfile( )d and should thus conform\n'
-   preamble += '# to an all Python syntax.\n'
+   preamble += '# This file is Python execfile( )d and should thus follow\n'
+   preamble += "# Python's syntax.\n"
    preamble += '\n\n'
 
    ## write file
@@ -25,12 +25,12 @@ def _write_config_file(path):
 
    f.write("# Set to the one directory you wish all Abjad generate files\n")
    f.write("# (such as PDFs, LilyPond, MIDI or log files) to be saved.\n") 
-   f.write("abjadoutput = '%s'\n\n" % \
+   f.write("abjad_output = '%s'\n\n" % \
       os.path.join(home_path, '.abjad', 'output'))
 
    f.write("# List of directories where Abjad will look for LilyPond\n")
    f.write("# templates.\n")
-   f.write("abjadtemplates = ['%s',]\n\n" % \
+   f.write("abjad_templates = ['%s',]\n\n" % \
       os.path.join(ABJADPATH, 'templates'))
 
    f.write("# Default accidental spelling.\n")
@@ -38,17 +38,17 @@ def _write_config_file(path):
 
    f.write("# List of LilyPond files that Abjad will '\include' in all \n")
    f.write("# generated *.ly files.\n")
-   f.write("lilypondincludes = None\n\n")
+   f.write("lilypond_includes = None\n\n")
 
    f.write("# Language to use in all generated LilyPond files.\n")
-   f.write("lilypondlang = 'english'\n\n")
+   f.write("lilypond_lang = 'english'\n\n")
 
    f.write("# PDF viewer to use to view generated PDF files.\n")
    f.write("# When None your environment should know how to open PDFs.\n")
-   f.write("pdfviewer = None \n\n")
+   f.write("pdf_viewer = None \n\n")
 
    f.write("# MIDI player to play MIDI files.\n")
    f.write("# When None your environment should know how to open MIDIs.\n")
-   f.write("midiplayer = None\n\n")
+   f.write("midi_player = None\n\n")
 
    f.close( ) 

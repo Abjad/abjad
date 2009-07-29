@@ -3,7 +3,7 @@ from abjad.cfg._read_config_file import _read_config_file
 
 
 def _warn_almost_full(last_number):
-   ABJADOUTPUT = _read_config_file( )['abjadoutput']
+   ABJADOUTPUT = _read_config_file( )['abjad_output']
    max_number = 10000
    lines = [
       '',

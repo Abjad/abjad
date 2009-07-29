@@ -34,7 +34,7 @@ def ly(target = -1):
 
       Exit ``vi`` in the usual way with ``:q`` or equivalent.'''
 
-   ABJADOUTPUT = _read_config_file( )['abjadoutput']
+   ABJADOUTPUT = _read_config_file( )['abjad_output']
    if isinstance(target, int) and target < 0:
       last_lilypond = _get_last_output( )
       if last_lilypond:
