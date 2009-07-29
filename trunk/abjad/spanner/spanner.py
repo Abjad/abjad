@@ -616,16 +616,16 @@ class Spanner(_Abjad):
       self._severComponent(component)
       return component
 
-   def trim(self, component):
-      assert component in self
-      result = [ ]
-      while not result[:1] == [component]:
-         result.insert(0, self.pop( ))
-      return result 
-
-   def trim_left(self, component):
-      assert component in self
-      result = [ ]
-      while not result[-1:] == [component]:
-         result.append(self.pop( ))
-      return result 
+#   def trim(self, component):
+#      assert component in self
+#      result = [ ]
+#      while not result[:1] == [component]:
+#         result.insert(0, self.pop( ))
+#      return result 
+#
+#   def trim_left(self, component):
+#      assert component in self
+#      result = [ ]
+#      while not result[-1:] == [component]:
+#         result.append(self.pop( ))
+#      return result 
