@@ -379,6 +379,38 @@ class Spanner(_Abjad):
       component.spanners._add(self)
       self._components.insert(0, component)
 
+   def clear(self):
+      r'''Remove all components from spanner. ::
+
+         abjad> staff = Staff(construct.scale(4))
+         abjad> beam = Beam(t[:])
+         abjad> beam
+         Beam(c'8, d'8, e'8, f'8)
+         abjad> print staff.format
+         \new Staff {
+                 c'8 [
+                 d'8
+                 e'8
+                 f'8 ]
+         }
+
+      ::
+      
+         abjad> beam.clear( )
+         abjad> beam
+         Beam( )
+         abjad> len(beam)
+         0
+         abjad> print staff.format
+         \new Staff {
+                 c'8
+                 d'8
+                 e'8
+                 f'8
+         }
+      '''
+      self._severAllComponents( )
+
    def copy(self, start = None, stop = None):
       '''Copy spanner components.
 
@@ -397,9 +429,6 @@ class Spanner(_Abjad):
             result._components.append(component)
       result._unblockAllComponents( )
       return result
-
-   def clear(self):
-      self._severAllComponents( )
 
    def extend(self, components):
       from abjad.tools import check
