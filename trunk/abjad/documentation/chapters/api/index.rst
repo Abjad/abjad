@@ -375,6 +375,7 @@ label
    tools/label/leaf_depth_tuplet
    tools/label/leaf_durations
    tools/label/leaf_pcs
+   tools/label/measure_numbers
 
 
 layout
