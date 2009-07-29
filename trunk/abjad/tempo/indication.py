@@ -26,10 +26,20 @@ class TempoIndication(_Abjad):
       }
    '''
 
-   def __init__(self, duration, mark):
-      '''Set duration and mark.'''
-      self.duration = duration
-      self.mark = mark
+   #def __init__(self, duration, mark):
+   def __init__(self, *args):
+      if len(args) == 1 and isinstance(args[0], TempoIndication):
+         tempo_indication = args[0]
+         self.duration = Rational(tempo_indication.duration)
+         self.mark = tempo_indication.mark
+      elif len(args) == 2:
+         duration, mark = args
+         assert isinstance(duration, Rational)
+         assert isinstance(mark, (int, long, float))
+         self.duration = duration
+         self.mark = mark
+      else:
+         raise ValueError('can not initialize tempo indication.')
 
    ## OVERLOADS ##
 

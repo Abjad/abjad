@@ -47,7 +47,12 @@ class Tempo(_GrobHandlerSpanner):
          return self._indication
       def fset(self, arg):
          assert isinstance(arg, (TempoIndication, types.NoneType))
-         self._indication = arg 
+         if isinstance(arg, TempoIndication):
+            self._indication = TempoIndication(arg)
+         elif isinstance(arg, types.NoneType):
+            self._indication = arg 
+         else:
+            raise ValueError('must be Abjad TempoIndication or None.')
       return property(**locals( ))
 
    @property
