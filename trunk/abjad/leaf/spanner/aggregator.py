@@ -25,7 +25,8 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       result = [ ]
       leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.format._after(leaf))
+         #result.extend(spanner.format._after(leaf))
+         result.extend(spanner._format._after(leaf))
       return result
 
    @property
@@ -33,7 +34,8 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       result = [ ]
       leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.format._before(leaf))
+         #result.extend(spanner.format._before(leaf))
+         result.extend(spanner._format._before(leaf))
       return result
 
    @property
@@ -45,7 +47,8 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       result = [ ]
       leaf = self.leaf
       for spanner in self._spannersInParentage:
-         result.extend(spanner.format.left(leaf))   
+         #result.extend(spanner.format.left(leaf))   
+         result.extend(spanner._format.left(leaf))   
       return result
 
    @property
@@ -57,7 +60,8 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       leaf = self.leaf
       for spanner in self._spannersInParentage:
          #result.extend(spanner.format.right(leaf))
-         contributions = spanner.format._right(leaf)
+         #contributions = spanner.format._right(leaf)
+         contributions = spanner._format._right(leaf)
          if contributions:
             if spanner._isMyLastLeaf(leaf):
                stop_contributions.extend(contributions)

@@ -247,51 +247,14 @@ class Spanner(_Abjad):
 
       return self._duration
    
-   @property
-   def format(self):
-      r'''Read-only reference to the spanner format interface that
-      serves this spanner. Because the base 
-      :class:`~abjad.spanner.spanner.Spanner` class has no graphic
-      reality, only concrete classes that inherit from 
-      :class:`~abjad.spanner.spanner.Spanner`, 
-      such as :class:`~abjad.beam.spanner.Beam` and
-      :class:`~abjad.slur.spanner.Slur`, implement this property. ::
-      
-         abjad> voice = Voice(construct.scale(4))
-         abjad> slur = Slur(voice[:]2)
-         abjad> slur.format
-         <_SlurSpannerFormatInterface>
-
-      See the class documentation for
-      :class:`~abjad.slur.spanner.format.interface._SlurSpannerFormatInterface`,
-      :class:`~abjad.beam.spanner.format.interface._BeamSpannerFormatInterface`,      and so on for the complete list of properties and methods available.
-
-      .. note:: The spanner ``format`` property differs from the 
-         read-only ``format`` property attached to notes, rests, chords,
-         measures, voices and other Abjad components.
-         The spanner ``format`` property described here returns a
-         read-only reference to spanner format interface serving this
-         spanner.
-         The ``format`` property attached to notes, rests and so on
-         returns a string of valid LilyPond input.
-
-      ::
-
-         abjad> spanner.format
-         <_SlurSpannerFormatInterface>
-
-         abjad> print voice.format
-         \new Voice {
-                 c'8 (
-                 d'8 )
-                 e'8
-                 f'8
-         }
-
-      .. todo:: Remove from public interface.
-      '''
-      
-      return self._format
+#   @property
+#   def format(self):
+#      '''Return read-only reference to spanner format interface.
+#
+#      .. todo:: Remove from public interface.
+#      '''
+#      
+#      return self._format
 
    @property
    def leaves(self):
