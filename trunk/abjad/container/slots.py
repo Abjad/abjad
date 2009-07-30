@@ -38,6 +38,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
       result.append(self.wrap(container.directives, 'opening'))
       result.append(self.wrap(container.interfaces, 'overrides'))
       result.append(self.wrap(container.interfaces, 'opening'))
+      result.append(self.wrap(container.interfaces, 'settings'))
       self._indent_slot_contributions(result)
       return tuple(result)
 

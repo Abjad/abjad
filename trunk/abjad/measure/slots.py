@@ -42,6 +42,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       #result.append(self.wrap(measure.interfaces, 'overrides'))
       result.append(self._wrap_measure_interface_overrides( ))
       result.append(self.wrap(measure.interfaces, 'opening'))
+      result.append(self.wrap(measure.interfaces, 'settings'))
       self._indent_slot_contributions(result)
       return tuple(result)
 
