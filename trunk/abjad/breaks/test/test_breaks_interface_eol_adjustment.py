@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_breaks_interface_eol_adjustment_01( ):
@@ -48,3 +49,12 @@ def test_breaks_interface_eol_adjustment_01( ):
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t\t\\adjustEOLMeterBarlineExtraOffset\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+
+
+def test_breaks_interface_eol_adjustment_02( ):
+   '''Raise LineBreakError when attempting to set eol and
+   no line break is present.
+   '''
+
+   t = Note(0, (1, 4))
+   assert py.test.raises(LineBreakError, 't.breaks.eol_adjustment = True')

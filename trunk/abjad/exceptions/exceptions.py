@@ -46,6 +46,11 @@ class InputSpecificationError(Exception):
    '''Malformed specification token passed as input.'''
    pass
 
+class LineBreakError(Exception):
+   '''Operation requires line break but none is present.
+   Or operation requires no line break but one is present.'''
+   pass
+
 class MeterError(Exception):
    '''Any meter error.'''
    pass

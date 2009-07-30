@@ -1,5 +1,6 @@
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.interface import _Interface
+from abjad.exceptions import LineBreakError
 from abjad.exceptions import TypographicWhitespaceError
 from abjad.rational import Rational
 import types
@@ -147,11 +148,15 @@ class BreaksInterface(_Interface, _FormatContributor):
          Set to ``True`` to apply LilyPond ``extra-offset`` to 
          both LilyPond TimeSignature and LilyPond BarLine grobs. 
          
-         Otherwise, apply no ``extra-offset``.
+         Otherwise, apply no ``extra-offset``
+   
+         Raise ``LineBreakError`` when no line break is present.
          '''
          return self._eol_adjustment
       def fset(self, arg):
          assert isinstance(arg, (bool, types.NoneType))
+         if arg == True and not self.line:
+            raise LineBreakError('missing line break.')
          self._eol_adjustment = arg
       return property(**locals( ))
 
