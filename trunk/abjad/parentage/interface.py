@@ -123,8 +123,8 @@ class ParentageInterface(_Interface):
       in the parentage of `component`, return ``None``. ::
 
          abjad> note = Note(0, (1, 4))
-         abjad> note.parentage.governor
-         None
+         abjad> note.parentage.governor is None
+         True
 
       .. note:: Governor is an old and probably nonoptimal idea
          in the codebase. The concept is used only in the `clonewp`
@@ -185,7 +185,8 @@ class ParentageInterface(_Interface):
          abjad> note.parentage.parentage
          [Note(c', 8), FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1}]
 
-      .. todo:: Return read-only tuple.
+      .. versionchanged:: 1.1.1
+         Returns (immutable) tuple instead of (mutable) list.
       '''
 
       result = [ ]
@@ -206,8 +207,8 @@ class ParentageInterface(_Interface):
          abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
-         abjad> note.parentage.parentage
-         [FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1}]
+         abjad> note.parentage.proper
+         (FixedDurationTuplet(1/4, [c'8, d'8, e'8]), Staff{1})
 
       Defined equal to ``component.parentage.parentage[1:]``.
       '''
