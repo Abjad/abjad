@@ -56,7 +56,7 @@ class _LeafFormatter(_ComponentFormatter):
 
    @property
    def _nucleus(self):
-      return self._client.body
+      return self._client._body
 
    @property
    def _number_contribution(self):

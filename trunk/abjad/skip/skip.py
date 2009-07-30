@@ -18,7 +18,7 @@ class Skip(_Leaf):
    ## PUBLIC ATTRIBUTES ##
   
    @property
-   def body(self):
+   def _body(self):
       '''String representation of body of skip at format-time.
          Return list like all other format-time contributions.'''
       result = [ ]

@@ -20,7 +20,7 @@ class Rest(_Leaf):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def body(self):
+   def _body(self):
       '''Read-only list of string representation of body of rest.
       Picked up as format contribution at format-time.'''
       result = ''

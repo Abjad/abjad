@@ -286,7 +286,7 @@ class _Component(_Abjad):
    @property
    def parentage(self):
       '''Read-only reference to
-      :class:`~abjad.parentage.parentage.ParentageInterface`.'''
+      :class:`~abjad.parentage.interface.ParentageInterface`.'''
       return self._parentage
 
    @property

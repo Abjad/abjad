@@ -16,12 +16,12 @@ class Note(_Leaf):
       return 'Note(%s, %s)' % (self.pitch, self.duration._product)
 
    def __str__(self):
-      return self.body[0]
+      return self._body[0]
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def body(self):
+   def _body(self):
       '''Read-only list of string representation of body of note.
       Picked up as format contribution at format-time.'''
       result = ''
