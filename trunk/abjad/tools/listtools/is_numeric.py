@@ -2,7 +2,9 @@ from abjad.rational import Rational
 
 
 def is_numeric(l):
-   '''Return ``True`` when all elements in iterable `l` are numeric,
+   '''.. versionadded:: 1.1.1
+
+   Return ``True`` when all elements in iterable `l` are numeric,
    otherwise ``False``. ::
 
       abjad> listtools.is_numeric([1, 2, 4.5, 5.5, Rational(13, 8)])
