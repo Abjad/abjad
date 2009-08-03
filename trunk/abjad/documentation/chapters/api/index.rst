@@ -408,6 +408,7 @@ listtools
 .. toctree::
    :maxdepth: 1
 
+   tools/listtools/arithmetic_mean
    tools/listtools/cumulative_products
    tools/listtools/cumulative_sums
    tools/listtools/cumulative_sums_zero
