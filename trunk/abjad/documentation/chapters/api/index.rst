@@ -422,6 +422,7 @@ listtools
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
    tools/listtools/interlace
+   tools/listtools/is_unique
    tools/listtools/join_sublists_by_sign
    tools/listtools/lengths_to_counts
    tools/listtools/negate_elements_at_indices
