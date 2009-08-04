@@ -507,6 +507,7 @@ measuretools
    tools/measuretools/overdraw
    tools/measuretools/populate
    tools/measuretools/project
+   tools/measuretools/remedy_underfull_measures
    tools/measuretools/report_meter_distribution
    tools/measuretools/scale
    tools/measuretools/scale_and_remeter
