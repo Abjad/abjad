@@ -503,6 +503,7 @@ measuretools
    tools/measuretools/concentrate
    tools/measuretools/denominator_set
    tools/measuretools/make
+   tools/measuretools/make_underfull_spacer_skip
    tools/measuretools/overdraw
    tools/measuretools/populate
    tools/measuretools/project
