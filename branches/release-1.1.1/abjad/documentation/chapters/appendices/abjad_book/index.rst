@@ -60,6 +60,9 @@ HTML by hand with Abjad sandwiched between the special \<abjad\> \</abjad\>
 tags described here. Run ``abjad-book`` on such a hybrid file to create
 pure HTML with images of music notation created by Abjad.
 
+.. note::
+   ``abjad-book`` makes use of ImageMagick's `convert <http://www.imagemagick.org/script/convert.php>`__ application to crop and scale PNG images generated for HTML and ReST documents. For LaTeX documents, ``abjad-book`` uses ``pdfcrop`` for cropping PDFs. 
+
 
 Using ``abjad-book`` on other document types
 --------------------------------------------
