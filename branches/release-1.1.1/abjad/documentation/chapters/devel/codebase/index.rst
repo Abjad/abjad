@@ -51,21 +51,21 @@ and then tell Python and your operating system about Abjad.
 
 2. Check out the Abjad codebase. ::
 
-      svn checkout http://abjad.googlecode.com/svn/abjad/ abjad-read-only
+      svn checkout http://abjad.googlecode.com/svn/abjad/trunk abjad-trunk
 
 3. Make the Python interpreter aware of Abjad. Symlink your Python 
-   ``site-packages/`` directory to the ``abjad-read-only/`` directory. [#]_ ::
+   ``site-packages/`` directory to the ``abjad-trunk/`` directory. [#]_ ::
 
-      ln -s /path/to/abjad-read-only SITE-PACKAGES-DIR/abjad
+      ln -s /path/to/abjad-trunk SITE-PACKAGES-DIR/abjad
 
-4. Alternatively, you can include the ``abjad-read-only`` directory in
+4. Alternatively, you can include the ``abjad-trunk`` directory in
    your ``PYTHONPATH`` environment variable. ::
 
-      export PYTHONPATH="/path/to/abjad-read-only:"$PYTHONPATH
+      export PYTHONPATH="/path/to/abjad-trunk:"$PYTHONPATH
 
-5. Finally, add the ``abjad-read-only/scr/`` directory to your ``PATH``. ::
+5. Finally, add the ``abjad-trunk/scr/`` directory to your ``PATH``. ::
 
-      export PATH="/path/to/abjad-read-only/scr:"$PATH
+      export PATH="/path/to/abjad-trunk/scr:"$PATH
 
    You will then be able to run Abjad directly with the ``abj`` command.
 
