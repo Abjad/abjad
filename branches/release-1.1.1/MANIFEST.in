@@ -1,0 +1,2 @@
+recursive-include abjad/documentation *
+recursive-include abjad/scr *

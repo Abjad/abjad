@@ -1,0 +1,5 @@
+#! /usr/bin/env python
+
+from abjad.tools.io.ly import ly
+
+ly( )

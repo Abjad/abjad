@@ -1,0 +1,99 @@
+Adding comments
+===============
+
+It is easy to add comments to any Abjad component.
+
+
+Adding leaf comments
+--------------------
+
+You can add comments to any note, rest, chord or skip.
+
+::
+
+	abjad> note = Note(13, (1, 4))
+	abjad> show(note)
+
+.. image:: images/first-ex.png
+
+::
+
+   abjad> note.comments.before.append('This is a comment before the note.')
+   abjad> note.comments.before.append('This is another comment before the note.')
+
+::
+
+   abjad> print note.format
+   % This is a comment before the note.
+   % This is another comment before the note.
+   cs''4
+
+Leaf comments go before, after or to the right of the note they modify.
+
+
+Adding container comments
+-------------------------
+
+You can also add comments to any container.
+
+::
+
+	abjad> staff = Staff(construct.scale(4))
+	abjad> show(staff)
+
+.. image:: images/staff-ex.png
+
+::
+
+   abjad> staff.comments.before.append('Here is a comment before the staff.')
+   abjad> staff.comments.opening.append('Here is a comment in the staff opening.')
+   abjad> staff.comments.opening.append('Here is another comment in the staff opening.')
+   abjad> staff.comments.closing.append('Comment in the staff closing.')
+   abjad> staff.comments.after.append('Comment after the staff.')
+
+::
+
+   abjad> print staff.format
+   % Here is a comment before the staff.
+   \new Staff {
+           % Here is a comment in the staff opening.
+           % Here is another comment in the staff opening.
+           c'8
+           d'8
+           e'8
+           f'8
+           % Comment in the staff closing.
+   }
+   % Comment after the staff.
+
+The complete set of container comment locations is ``before``, ``after``, 
+``opening`` and ``closing``.
+
+
+Removing comments
+-----------------
+
+Comment locations are all built-in Python lists.
+
+This means you can add and remove comments with the usual list methods. ::
+
+   abjad> staff.comments.before.pop( )
+   abjad> 'Here is a comment before the staff.'
+   abjad> staff.comment.opening.pop( )
+   abjad> 'Here is another comment in the staff opening.'
+
+::
+
+   abjad> print staff.format
+   \new Staff {
+           % Here is a comment in the staff opening.
+           c'8
+           d'8
+           e'8
+           f'8
+           % Comment in the staff closing.
+   }
+   % Comment after the staff.
+
+
+.. seealso:: :class:`~abjad.comments.interface.CommentsInterface` API entry.
