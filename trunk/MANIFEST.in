@@ -1,3 +1,4 @@
+include abjad/.version
 include INSTALL
 include README
 include COPYING
@@ -6,3 +7,5 @@ include setup.py
 include MANIFEST.in
 recursive-include abjad/documentation *
 recursive-include abjad/scr *
+recursive-include abjad *
+recursive-exclude abjad *.pyc
