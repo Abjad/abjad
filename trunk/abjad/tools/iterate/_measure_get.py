@@ -5,10 +5,13 @@ from abjad.leaf.leaf import _Leaf
 from abjad.measure.measure import _Measure
 from abjad.tools.iterate.backwards import backwards as iterate_backwards
 from abjad.tools.iterate.naive import naive as iterate_naive
+from _get_contemporaneous_measure import _get_contemporaneous_measure
 
 
 def _measure_get(component, direction):
-   '''When `component` is voice, staff or other sequential context,
+   '''.. versionadded:: 1.1.1
+
+   When `component` is voice, staff or other sequential context,
    and when `component` contains a measure, return first measure 
    in `component`.
 
@@ -57,19 +60,3 @@ def _measure_get(component, direction):
          raise MissingMeasureError
    else:
       raise TypeError('"%s" is unknown Abjad component.' % component)
-
-
-def _get_contemporaneous_measure(container, direction):
-   '''Return measure in container starting at same moment as container.'''
-
-   if isinstance(container, Container):
-      if direction == '_next':
-         contents = container._navigator._contemporaneousStartContents
-      elif direction == '_prev':
-         contents = container._navigator._contemporaneousStopContents
-      else:
-         raise ValueError("direction must be '_next' or '_prev'.")
-      contents = [x for x in contents if isinstance(x, _Measure)]
-      if contents:
-         return contents[0]
-      raise MissingMeasureError

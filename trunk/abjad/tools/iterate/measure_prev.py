@@ -1,8 +1,10 @@
-from abjad.tools.iterate.measure_get import _measure_get
+from _measure_get import _measure_get
 
 
 def measure_prev(component):
-   '''When `component` is voice, staff or other sequential context,
+   '''.. versionadded:: 1.1.1
+
+   When `component` is voice, staff or other sequential context,
    and when `component` contains a measure, return last measure 
    in `component`. This starts the process of backwards measure iteration. ::
 
