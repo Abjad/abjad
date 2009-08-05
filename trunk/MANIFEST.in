@@ -1,2 +1,8 @@
+include INSTALL
+include README
+include COPYING
+include ez_setup.py
+include setup.py
+include MANIFEST.in
 recursive-include abjad/documentation *
 recursive-include abjad/scr *
