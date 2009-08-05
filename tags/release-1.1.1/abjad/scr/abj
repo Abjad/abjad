@@ -1,0 +1,2 @@
+clear
+python -i $1 -c 'import sys; sys.ps1 = "abjad> "; del sys; from abjad import *'

@@ -1,0 +1,39 @@
+<p>This is a line of text. Abjad code follows:</p>
+
+<abjad>
+v = Voice(construct.run(8))
+v[0].notehead.color = 'red'
+print v
+f(v)
+</abjad>
+
+<p>Another line of text. More Abjad code follows. Notice that in the second block of Abjad code we can reference objects and variables crated in previous blocks:</p>
+
+<abjad>
+Beam(v)
+show(v)
+write_ly(v, 'example1') <hide
+</abjad>
+
+<p>Here is <b>paragraph</b> 3, and more Abjad code.</p>
+
+<abjad>
+pitchtools.diatonicize(v)
+for leaf in v: print leaf
+Trill(v[2:])
+show(v)
+write_ly(v, 'example2') <hide
+</abjad>
+
+<p>And a final paragraph. Here all the code is hidden:</p>
+
+<abjad>[hide = True]
+PianoPedal(v[:])
+write_ly(v, "example4")
+</abjad>
+
+<p>Now just write_ly(v), hidden.</p>
+
+<abjad>
+write_ly(v, "example5") <hide
+</abjad>

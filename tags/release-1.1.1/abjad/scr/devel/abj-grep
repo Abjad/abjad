@@ -1,0 +1,13 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+import sys
+
+
+start_directory = os.path.abspath('.')
+os.chdir(ABJADPATH)
+os.system('clear')
+os.system('grep -Irn "%s" * | grep -v svn | grep -v documentation' % 
+   sys.argv[1])
+os.chdir(start_directory)
