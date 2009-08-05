@@ -2,9 +2,7 @@ from abjad import *
 
 
 def test_measuretools_make_01( ):
-   '''Make list of skip-populated rigid measures;
-      only one skip per measure, with LilyPond
-      duration multipliers, as required.'''
+   '''Make list of skip-populated rigid measures.'''
 
    t = Staff(measuretools.make([(1, 8), (5, 16), (5, 16), (1, 4)]))
 

@@ -8,7 +8,8 @@ def test_iterate_measure_next_01( ):
    Container(t[:2])
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            {
                            \time 2/8
                            c'8
@@ -23,7 +24,8 @@ def test_iterate_measure_next_01( ):
                    \time 2/8
                    b'8
                    c''8
-   }'''
+   }
+   '''
 
    assert iterate.measure_next(t) is t[0][0]
    assert iterate.measure_next(t[0]) is t[0][0]
@@ -40,3 +42,11 @@ def test_iterate_measure_next_01( ):
    assert iterate.measure_next(t.leaves[5]) is t[1]
    assert iterate.measure_next(t.leaves[6]) is t[2]
    assert iterate.measure_next(t.leaves[7]) is t[2]
+
+
+def test_iterate_measure_next_02( ):
+   '''Can retrieve first measure in a Python list.'''
+
+   t = [Note(0, (1, 4)), RigidMeasure((2, 8), construct.scale(2))]
+
+   assert iterate.measure_next(t) is t[1]

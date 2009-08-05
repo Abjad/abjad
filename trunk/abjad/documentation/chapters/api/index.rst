@@ -505,6 +505,7 @@ measuretools
    tools/measuretools/make
    tools/measuretools/make_underfull_spacer_skip
    tools/measuretools/overdraw
+   tools/measuretools/overwrite_contents
    tools/measuretools/populate
    tools/measuretools/project
    tools/measuretools/remedy_underfull_measures

@@ -8,7 +8,8 @@ def test_iterate_measure_prev_01( ):
    Container(t[:2])
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            {
                            \time 2/8
                            c'8
@@ -23,7 +24,8 @@ def test_iterate_measure_prev_01( ):
                    \time 2/8
                    b'8
                    c''8
-   }'''
+   }
+   '''
 
    assert iterate.measure_prev(t) is t[-1]
    assert iterate.measure_prev(t[0]) is t[0][1]
@@ -40,3 +42,11 @@ def test_iterate_measure_prev_01( ):
    assert iterate.measure_prev(t.leaves[5]) is t[1]
    assert iterate.measure_prev(t.leaves[6]) is t[2]
    assert iterate.measure_prev(t.leaves[7]) is t[2]
+
+
+def test_iterate_measure_prev_02( ):
+   '''Can retrieve last measure in a Python list.'''
+
+   t = [RigidMeasure((2, 8), construct.scale(2)), Note(0, (1, 4))]
+
+   assert iterate.measure_prev(t) is t[0]
