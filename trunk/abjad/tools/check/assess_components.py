@@ -11,24 +11,38 @@ import types
 
 def assess_components(expr, klasses = (_Component, ), 
    contiguity = None, share = None, allow_orphans = True):
-   '''Assert expr is a Python list of Abjad components.
-      Set _contiguity_ to None, 'strict' or 'thread'.
-      Set _share_ to None, 'parent', 'score' or 'thread'.
+   '''Boolean predicate to return ``True`` or ``False`` depending
+   on the the value of the four keyword parameters.
 
-      The allow_orphans keyword works as a type of bypass.
-      If allow_orphans is set to True (which it is by default),
-      and if expr is a Python list of orphan components,
-      then the function will always evaluate to True, regardless
-      of the checks specified by the other keywords.
+   The different combinations of keyword parameters are important.
 
-      On the other hand, if the allow_orphans keyword is set
-      to False, then expr must meet the checks specified by the
-      other keywords in other for the function to evaluate to True.
+   Set `contiguity` to ``'strict'``, ``'thread'`` or ``None``.
 
-      Calls to this function appear at the beginning of many functions.
+   .. todo:: Add examples.
+
+   Set `share` to ``'parent'``, ``'score'``, ``'thread'`` or ``None``.
+
+   .. todo:: Add examples.
+
+   The ``allow_orphans`` keyword works as a type of bypass.
+   If ``allow_orphans`` is set to ``True`` (which it is by default),
+   and if ``expr`` is a Python list of orphan components,
+   then the function will always evaluate to ``True``, regardless
+   of the checks specified by the other keywords.
+
+   On the other hand, if the ``allow_orphans`` keyword is set
+   to ``False``, then expr must meet the checks specified by the
+   other keywords in other for the function to evaluate to ``True``.
+
+   .. todo:: Add examples.
+
+   .. note:: A note on optimization. Calls to this function appear 
+      at the beginning of many functions.  
       Calls to this function also iterate all elements in expr.
-      For this reason, you can turn off all calls to this function.
-      Set something in cfg.'''
+      This function would, therefore, seem to be a potential 
+      performance bottleneck. But initial performance testing indicates
+      that this function is not a bottleneck.
+   '''
 
    #global visits
    #visits += 1
