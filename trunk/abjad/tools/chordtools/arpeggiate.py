@@ -3,14 +3,33 @@ from abjad.note import Note
 
 
 def arpeggiate(chord):
-   '''Return a Python list of newly-instantiated Abjad Note instances 
-   derived from the pitches in *chord*.
+   '''Return a list of newly-instantiated notes
+   derived from the pitches in `chord`. 
 
-   *  ``chord`` must be an Abjad Chord instance.
-   *  ``note.duration.written == chord.duration.written`` for every \
-      ``note`` in ``result``.
-   *  notes inherit neither articulations, overrides nor any of the \
-      other attributes of *chord*.'''
+   Arpeggiated notes carry the same written duration as the chord
+   from which they derive. ::
+
+      abjad> chord = Chord([0, 14, 15], (3, 16))
+      abjad> chordtools.arpeggiate(chord)
+      [Note(c', 8.), Note(d'', 8.), Note(ef'', 8.)]
+
+   Arpeggiated notes inherit neither articulations,
+   overrides nor any of the other attributes of the chord from
+   which they derive. ::
+
+      abjad> chord = Chord([0, 14, 15], (3, 16))
+      abjad> chord.articulations.append('staccato')
+      abjad> f(chord)
+      <c' d'' ef''>8. -\staccato
+
+   ::
+
+      abjad> notes = chordtools.arpeggiate(chord)
+      abjad> notes
+      [Note(c', 8.), Note(d'', 8.), Note(ef'', 8.)]
+      abjad> f(notes[0])
+      c'8.
+   '''
    
    assert isinstance(chord, Chord)
 
