@@ -4,7 +4,7 @@ from abjad.tools import construct
 from abjad.tools import pitchtools
 
 
-def split(chord, pitch = Pitch('b', 3), attr = 'number'):
+def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
    '''Split ``chord`` into a disjunt ``(treble, bass)`` pair
    of parts about ``pitch``. 
    Place pitches in ``chord`` greater than or equal to 

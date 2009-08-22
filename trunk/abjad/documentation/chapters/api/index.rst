@@ -165,7 +165,8 @@ chordtools
    tools/chordtools/arpeggiate
    tools/chordtools/cast_defective
    tools/chordtools/get_notehead
-   tools/chordtools/split
+   tools/chordtools/split_by_altitude
+   tools/chordtools/split_by_pitch_number
 
 
 clone
