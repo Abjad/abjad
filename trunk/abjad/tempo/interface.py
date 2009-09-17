@@ -34,7 +34,7 @@ class TempoInterface(_Observer, _GrobHandler,
       _GrobHandler.__init__(self, 'MetronomeMark')
       _BacktrackingInterface.__init__(self, 'tempo')
       _SpannerReceptor.__init__(self, (Tempo, ))
-      self._acceptableTypes = (TempoIndication, types.NoneType)
+      self._acceptableTypes = (TempoIndication, )
       self._effective = None
       self._forced = None
  

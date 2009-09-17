@@ -16,7 +16,7 @@ class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       _Observer.__init__(self, _client, updateInterface)
       _GrobHandler.__init__(self, 'Clef')
       _BacktrackingInterface.__init__(self, 'clef')
-      self._acceptableTypes = (Clef, types.NoneType)
+      self._acceptableTypes = (Clef, )
       self._default = Clef('treble')
       self._forced = None
       self._suppress = False

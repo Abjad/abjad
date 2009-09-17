@@ -19,6 +19,9 @@ from abjad.core.abjadcore import _Abjad
 ##       You have to look at, for example, TempoInterface.effective
 ##       to see the logic that determines who wins the tournament.
 
+import types
+
+
 class _BacktrackingInterface(_Abjad):
    '''Mixin base class for interfaces with 'forced', 'effective' attributes.'''
 
@@ -87,7 +90,7 @@ class _BacktrackingInterface(_Abjad):
       def fget(self):
          return self._forced
       def fset(self, arg):
-         assert isinstance(arg, self._acceptableTypes)
+         assert isinstance(arg, (self._acceptableTypes, types.NoneType))
          self._forced = arg
          self._client._update._markForUpdateToRoot( )
       return property(**locals( ))

@@ -14,7 +14,7 @@ class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       _Observer.__init__(self, _client, _updateInterface)
       _GrobHandler.__init__(self, 'TimeSignature')
       _BacktrackingInterface.__init__(self, 'meter')
-      self._acceptableTypes = (Meter, types.NoneType)
+      self._acceptableTypes = (Meter, )
       self._default = Meter(4, 4)
       self._forced = None
       self._suppress = False

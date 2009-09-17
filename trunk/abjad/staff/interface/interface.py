@@ -27,7 +27,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
       _BacktrackingInterface.__init__(self, 'staff')
       #_FormatContributor.__init__(self)
       _GrobHandler.__init__(self, 'StaffSymbol')
-      self._acceptableTypes = (Staff, types.NoneType)
+      self._acceptableTypes = (Staff, )
       self._effective = None
       self._forced = None
       self._hide = False
