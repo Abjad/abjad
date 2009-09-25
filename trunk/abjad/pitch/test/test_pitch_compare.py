@@ -68,3 +68,42 @@ def test_pitch_compare_06( ):
    assert py.test.raises(ValueError, 'p >= n')
    assert py.test.raises(ValueError, 'p <  n')
    assert py.test.raises(ValueError, 'p <= n')
+
+
+def test_pitch_compare_07( ):
+   '''Pitches with like name, accidental, octave and deviation
+      compare equally.'''
+   p1 = Pitch('bf', 4, -31)
+   p2 = Pitch('bf', 4, -31)
+   assert     p1 == p2
+   assert not p1 != p2
+   assert not p1 >  p1
+   assert     p1 >= p1
+   assert not p1 <  p1
+   assert     p1 <= p1
+
+
+def test_pitch_compare_08( ):
+   '''Pitches with like name, accidental and ocatve
+      but with different deviation compare unequally.'''
+   p1 = Pitch('bf', 4, 0)
+   p2 = Pitch('bf', 4, -31)
+   assert not p1 == p2
+   assert     p1 != p2
+   assert     p1 >  p2
+   assert     p1 >= p2
+   assert not p1 <  p2
+   assert not p1 <= p2
+
+
+def test_pitch_compare_09( ):
+   '''Pitches with the same frequency but with different deviation
+      do not compare equally.'''
+   p1 = Pitch('c', 5)
+   p2 = Pitch('bf', 4, 100)
+   assert not p1 == p2
+   assert     p1 != p2
+   assert     p1 >  p2
+   assert     p1 >= p2
+   assert not p1 <  p2
+   assert not p1 <= p2
