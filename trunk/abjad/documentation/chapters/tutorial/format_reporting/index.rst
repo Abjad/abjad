@@ -1,0 +1,58 @@
+Format reporting
+================
+
+It is easy to make heavily tweaked notes, rests and chords.
+
+::
+
+	abjad> t = Note(0, (1, 4))
+	abjad> t.notehead.style = 'cross'
+	abjad> t.notehead.color = 'red'
+	abjad> t.stem.color = 'red'
+	abjad> t.articulations.append('staccato')
+	abjad> t.articulations.append('tenuto')
+	abjad> t.markup.down.append(r'\italic { ben. marcato }')
+	abjad> t.comments.before.append('textual information before')
+	abjad> t.comments.after.append('textual information after')
+
+.. image:: images/1.png
+
+This produces a lot of output at format time. ::
+
+   abjad> print t.format
+   % textual information before
+   \once \override NoteHead #'color = #red
+   \once \override NoteHead #'style = #'cross
+   \once \override Stem #'color = #red
+   c'4 -\staccato -\tenuto _ \markup { \italic { ben. marcato } }
+   % textual information after
+
+Where does all this formatting come from?
+
+You can get an answer with reporting available in the 
+formattools module. ::
+
+   abjad> print formattools.report(t)
+   slot_1
+           CommentsInterface.before
+                   % textual information before
+           InterfaceAggregator.overrides
+                   \once \override NoteHead #'color = #red
+                   \once \override NoteHead #'style = #'cross
+                   \once \override Stem #'color = #red
+   slot_2
+   slot_3
+   slot_4
+           _LeafFormatter._leaf_body
+                   c'4 -\staccato -\tenuto _ \markup { \italic { ben. marcato } }
+   slot_5
+   slot_6
+   slot_7
+           CommentsInterface.after
+                   % textual information after
+
+Note that Abjad uses a system of exactly seven slots to model 
+the tremendously large number of different ways you can format 
+objects in LilyPond code.
+
+This seven slot system isn't documented yet but will be soon.

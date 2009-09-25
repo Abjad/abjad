@@ -295,6 +295,7 @@ formattools
 .. toctree::
    :maxdepth: 1
 
+   tools/formattools/report
    tools/formattools/wrapper
 
 

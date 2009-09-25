@@ -42,6 +42,7 @@ Tutorial
    chapters/tutorial/comments/index
    chapters/tutorial/inspecting_output/index
    chapters/tutorial/measures/index
+   chapters/tutorial/format_reporting/index
 
 
 Fundamentals
