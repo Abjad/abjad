@@ -11,6 +11,16 @@ class HarmonicInterface(_Interface, _FormatContributor):
       _FormatContributor.__init__(self)
       self.natural = False
 
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _right(self):
+      '''Format contribution right of leaf.'''
+      result = [ ]
+      if self.natural:
+         result.append(r'\flageolet')
+      return result
+
    ## PUBLIC ATTRIBUTES ##
 
    @apply
@@ -22,11 +32,3 @@ class HarmonicInterface(_Interface, _FormatContributor):
          assert isinstance(arg, bool)
          self._natural = arg
       return property(**locals( ))
-
-   @property
-   def _right(self):
-      '''Format contribution right of leaf.'''
-      result = [ ]
-      if self.natural:
-         result.append(r'\flageolet')
-      return result

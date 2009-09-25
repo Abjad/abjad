@@ -1,5 +1,6 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
+import types
 
 
 class NoteHeadInterface(_Interface, _GrobHandler):
@@ -10,7 +11,7 @@ class NoteHeadInterface(_Interface, _GrobHandler):
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'NoteHead')
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    ## TODO: This is an (effective) hack to filter out any erroneous
    ##       \once \override NoteHead #'pitch = #'cs

@@ -42,6 +42,19 @@ class _GrobHandler(_FormatContributor):
    ## PRIVATE ATTRIBUTES ##
 
    @property
+   def _before(self):
+      '''Read-only list of strings to contribute at format time.'''
+
+      result = [ ]
+      return result
+
+   @property
+   def _dynamic_key_value_pairs(self):
+      '''To be overriden in concrete classes inheriting from this class.'''
+      result = [ ]
+      return result
+
+   @property
    def _frequencyIndicator(self):
       from abjad.leaf.leaf import _Leaf
       if hasattr(self, '_client') and isinstance(self._client, _Leaf):
@@ -49,13 +62,12 @@ class _GrobHandler(_FormatContributor):
       else:
          return ''
 
-   ## PUBLIC ATTRIBUTES ##
-
    @property
-   def _before(self):
-      '''Read-only list of strings to contribute at format time.'''
-
+   def _key_value_pairs(self):
       result = [ ]
+      result.extend(vars(self).items( ))
+      result.extend(self._dynamic_key_value_pairs)
+      result.sort( )
       return result
 
    @property
@@ -64,7 +76,9 @@ class _GrobHandler(_FormatContributor):
       to contribute at format time.'''
 
       result = [ ]
-      for key, value in sorted(vars(self).items( )):
+         
+      #for key, value in sorted(vars(self).items( )):
+      for key, value in self._key_value_pairs:
          if not key.startswith('_'):
             result.append(r'%s\override %s %s = %s' % (
                self._frequencyIndicator,
@@ -86,42 +100,3 @@ class _GrobHandler(_FormatContributor):
                self._promotedGrob(key),
                self._parser.formatAttribute(key)))
       return result
-
-   ## PUBLIC METHODS ##
-
-#   def clear(self):
-#      '''Remove all grob settings.'''
-#
-#      for key, value in vars(self).items( ):
-#         if not key.startswith('_'):
-#            delattr(self, key)
-
-#   def promote(self, attribute, context):
-#      r'''Promote `attribute` to LilyPond `context`.
-#      Both `attribute` and `context` must be strings. ::
-#
-#         abjad> staff = Staff(construct.scale(4))
-#         abjad> staff[0].clef.color = 'red'
-#         abjad> staff[0].clef.promote('color', 'Staff')
-#
-#         abjad> print staff.format
-#         \new Staff {
-#                 \once \override Staff.Clef #'color = #red
-#                 c'8
-#                 d'8
-#                 e'8
-#                 f'8
-#         }
-#
-#      This code overrides the color of the clef preceding the first
-#      note in staff and then promotes that color override to the 
-#      LilyPond staff context. This is important because the LilyPond
-#      engraver that creates clef symbols lives at the staff context
-#      and does not live at the lower level of the voice context.
-#      '''
-#
-#      assert isinstance(context, str)
-#      if hasattr(self, attribute):
-#         self._promotions[attribute] = context
-#      else:
-#         raise AttributeError('no %s attribute.' % attribute)

@@ -26,7 +26,8 @@ class _NoteHeadFormatInterface(_FormatInterface):
    @property
    def _chordFormat(self):
       result = [ ]
-      for key, value in vars(self.notehead).items( ):
+      #for key, value in vars(self.notehead).items( ):
+      for key, value in self.notehead._key_value_pairs:
          if not key.startswith('_'):
             result.append(r'\tweak %s %s' % (
                self.notehead._parser.formatAttribute(key),

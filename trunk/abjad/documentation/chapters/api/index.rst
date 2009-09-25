@@ -22,6 +22,7 @@ Classes
    layout/fixed_staff_positioning
    grace/grace
    staffgroup/grandstaff
+   harmonic/natural
    staff/invisiblestaff
    markup/markup
    meter/meter

@@ -1,6 +1,7 @@
 from abjad.notehead.format import _NoteHeadFormatInterface
 from abjad.notehead.interface import NoteHeadInterface
 from abjad.pitch import Pitch
+import types
 
 
 class NoteHead(NoteHeadInterface):
@@ -23,7 +24,7 @@ class NoteHead(NoteHeadInterface):
    def __init__(self, client, pitch = None):
       NoteHeadInterface.__init__(self, client)
       self._formatter = _NoteHeadFormatInterface(self)
-      #self._style = None
+      self._style = None
       #self.pitch = pitch
       self.pitch = pitch
       self._unregister_if_necessary( )
@@ -50,6 +51,15 @@ class NoteHead(NoteHeadInterface):
          return str(self.pitch)
       else:
          return ''
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _dynamic_key_value_pairs(self):
+      result = [ ]
+      if self.style is not None:
+         result.append(('style', self.style))
+      return result
 
    ## PRIVATE METHODS ##
 
@@ -117,3 +127,21 @@ class NoteHead(NoteHeadInterface):
          else:
             raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
       return property(**locals( ))
+
+   @apply
+   def style( ):
+      def fget(self):
+         '''Read / write notehead style.
+            Assign a string to override default nothead style.
+            Assign None to remove the override.'''
+         if self._style is not None:
+            return self._style
+         ## TODO: This is a hack. 
+         ##       Implement HarmonicNaturalNoteheadInterface instead.
+         if self._client.__class__.__name__ == 'HarmonicNatural':
+            return 'harmonic'
+      def fset(self, arg):
+         if not isinstance(arg, (str, types.NoneType)):
+            raise TypeError
+         self._style = arg
+      return property(**locals( ))      

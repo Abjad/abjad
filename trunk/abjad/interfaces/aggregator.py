@@ -106,6 +106,7 @@ class InterfaceAggregator(_Interface):
       '''Ordered data structure of format-time grob overrides.'''
       result = [ ]
       for contributor in self.contributors:
+         #print contributor.__repr__( ), getattr(contributor, '_overrides', [ ])
          result.extend(getattr(contributor, '_overrides', [ ]))
       return result
 
