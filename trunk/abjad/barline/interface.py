@@ -28,21 +28,17 @@ class BarLineInterface(_Interface, _GrobHandler):
       _GrobHandler.__init__(self, 'BarLine')
       self._kind = None
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _closing(self):
       '''Read-only list of container-closing or after-leaf
-      format contribution strings.
+      format contribution strings. ::
 
-      Derived from ``BarLineInterface.kind``.
-
-         ::
-
-            abjad> t = Note(0, (1, 4))
-            abjad> t.barline.kind = '||'
-            abjad> t.barline.closing
-            ['\\bar "||"']
+         abjad> t = Note(0, (1, 4))
+         abjad> t.barline.kind = '||'
+         abjad> t.barline.closing
+         ['\\bar "||"']
       '''
 
       result = [ ]
@@ -50,13 +46,15 @@ class BarLineInterface(_Interface, _GrobHandler):
          result.append(r'\bar "%s"' % self.kind)
       return result
 
+   ## PUBLIC ATTRIBUTES ##
+
    @apply
    def kind( ):
       def fget(self):
          r'''Read / write LilyPond barline string.
 
          *  Default value: ``None``.
-         *  All values: *LilyPond* barline string, ``None``.
+         *  All values: LilyPond barline string, ``None``.
 
             ::
 
