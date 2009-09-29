@@ -12,7 +12,7 @@ def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
       abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
       abjad> pitchtools.diatonicize(t)
       abjad> layout.line_break_every_prolated(t, Rational(4, 8))      
-
+      abjad> print t.format
       \new Staff {
                       \time 2/8
                       c'8
@@ -30,10 +30,44 @@ def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
                       \break
       }
 
+   ::
+
       abjad> systems = SystemYOffsets(40, 5)
-      abjad> staves = StaffAlignmentOffsets(0, 15)
+      abjad> staves = StaffAlignmentOffsets(0, -15)
       abjad> positioning = FixedStaffPositioning(systems, staves)
       abjad> layout.apply_fixed_staff_positioning(t, positioning)
+      abjad> print t.format
+      \new Staff {
+              {
+                      \overrideProperty #"Score.NonMusicalPaperColumn"
+                      #'line-break-system-details
+                      #'((Y-offset . 40) (alignment-offsets . (0 -15)))
+                      \time 2/8
+                      c'8
+                      d'8
+              }
+              {
+                      \time 2/8
+                      e'8
+                      f'8
+                      \break
+                      \noPageBreak
+              }
+              {
+                      \overrideProperty #"Score.NonMusicalPaperColumn"
+                      #'line-break-system-details
+                      #'((Y-offset . 80) (alignment-offsets . (0 -15)))
+                      \time 2/8
+                      g'8
+                      a'8
+              }
+              {
+                      \time 2/8
+                      b'8
+                      c''8
+                      \break
+              }
+      }
    '''
 
    if not isinstance(positioning, FixedStaffPositioning):
