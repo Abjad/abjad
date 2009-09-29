@@ -27,5 +27,11 @@ class _SpacingSpannerFormatInterface(_SpannerFormatInterface):
       if new_section:
          if self.spanner._isMyFirstLeaf(leaf):
             result.append(r'\newSpacingSection')
+            pnd = self.spanner.proportional_notation_duration
+            if pnd is not None:
+               setting = r'\set Score.proportionalNotationDuration = ' + \
+                  '#(ly:make-moment %s %s)' % (
+                  pnd._numerator, pnd._denominator)
+               result.append(setting)
       result.extend(_SpannerFormatInterface._before(self, leaf))
       return result
