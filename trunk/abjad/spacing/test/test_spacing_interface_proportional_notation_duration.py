@@ -10,7 +10,7 @@ def test_spacing_interface_proportional_notation_duration_01( ):
 
    r'''
    \new Score \with {
-           \set proportionalNotationDuration = #(ly:make-moment 1 56)
+           proportionalNotationDuration = #(ly:make-moment 1 56)
    } <<
            \new Staff {
                    c'8
@@ -22,4 +22,4 @@ def test_spacing_interface_proportional_notation_duration_01( ):
    '''
 
    assert check.wf(t)
-   assert t.format == "\\new Score \\with {\n\t\\set proportionalNotationDuration = #(ly:make-moment 1 56)\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+   assert t.format == "\\new Score \\with {\n\tproportionalNotationDuration = #(ly:make-moment 1 56)\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"

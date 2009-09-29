@@ -50,7 +50,7 @@ class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
       result.extend(_GrobHandler._overrides.fget(self))
       pnd = self.proportional_notation_duration
       if pnd is not None:
-         setting = r'\set proportionalNotationDuration = ' + \
+         setting = r'proportionalNotationDuration = ' + \
             '#(ly:make-moment %s %s)' % (
             pnd._numerator, pnd._denominator)
          result.append(setting)
@@ -76,7 +76,7 @@ class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
             abjad> t.spacing.proportional_notation_duration = Rational(1, 56)
             abjad> print t.format
             \new Score \with {
-                    \set proportionalNotationDuration = #(ly:make-moment 1 56)
+                    proportionalNotationDuration = #(ly:make-moment 1 56)
             } <<
                     \new Staff {
                             c'8
