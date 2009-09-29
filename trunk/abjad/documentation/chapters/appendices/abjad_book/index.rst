@@ -64,9 +64,107 @@ pure HTML with images of music notation created by Abjad.
    ``abjad-book`` makes use of ImageMagick's `convert <http://www.imagemagick.org/script/convert.php>`__ application to crop and scale PNG images generated for HTML and ReST documents. For LaTeX documents, ``abjad-book`` uses ``pdfcrop`` for cropping PDFs. 
 
 
-Using ``abjad-book`` on other document types
---------------------------------------------
 
-You can call ``abjad-book`` on LaTeX and ReST documents, too.
+LaTeX with embedded Abjad
+-------------------------
 
-Examples coming soon.
+You can use ``abjad-book`` to insert Abjad code and score excerpts into
+any LaTeX you create. Type the sample code below into a file. ::
+
+   \documentclass{article}
+   \usepackage{graphicx}
+   \usepackage{listings}
+   \begin{document}
+
+   This is a standard LaTeX document with embedded Abjad.
+
+   The code below creates an Abjad measure and then prints the measure
+   format string.
+
+   <abjad>
+   measure = RigidMeasure((5, 8), construct.scale(5))
+   print measure.format
+   </abjad>
+
+   This next bit of code knows about the measure we defined earlier.
+   This code renders the measure as a PDF using a template suitable
+   for inclusion in LaTeX documents.
+
+   <abjad>
+   write_ly(measure, 'example-1', 'oedo') <hide
+   </abjad>
+
+   And this is the end of the our sample LaTeX document.
+
+   \end{document}
+
+Save your file with the name ``example.tex.raw``. You now have a LaTeX file
+with embedded Abjad code.
+
+In the terminal, call ``abjad-book`` on ``example.tex.raw``. ::
+
+   $ abjad-book example.tex.raw example.tex
+
+   Processing 'example.tex.raw'. Will write output to 'example.tex'...
+   Parsing file...
+   Rendering "example-1.ly"...
+
+The application open ``example.tex.raw``, finds all code between Abjad tags,
+executes it, and then creates and inserts Abjad interpreter output and
+PDF files of music notation. You can view the contents of the next LaTeX
+file ``abjad-book`` has created. ::
+
+   \documentclass{article}
+   \usepackage{graphicx}
+   \usepackage{listings}
+   \begin{document}
+
+   This is a standard LaTeX document with embedded Abjad.
+
+   The code below creates an Abjad measure and then prints the measure
+   format string.
+
+   \begin{lstlisting}[basicstyle=\footnotesize, tabsize=4, showtabs=false, showspaces=false]
+      abjad> measure = RigidMeasure((5, 8), construct.scale(5))
+      abjad> print measure.format
+      {
+         \time 5/8
+         c'8
+         d'8
+         e'8
+         f'8
+         g'8
+      }
+   \end{lstlisting}
+
+   This next bit of code knows about the measure we defined earlier.
+   This code renders the measure as a PDF using a template suitable
+   for inclusion in LaTeX documents.
+
+   \includegraphics{images/example-1.pdf}
+
+   And this is the end of the our sample LaTeX document.
+
+   \end{document}
+
+You can now process the file ``example.tex`` just like any other LaTeX file,
+using ``pdflatex`` or TexShop or whatever LaTeX compilation program you
+normally use on your computer. ::
+
+   $ pdflatex example.tex
+
+   This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6)
+    %&-line parsing enabled.
+   entering extended mode
+   ...
+
+And then open the resulting PDF.
+
+.. image:: images/latex-example-1.png
+
+
+Using ``abjad-book`` on ReST documents
+--------------------------------------
+
+You can call ``abjad-book`` on ReST documents, too. Follow the examples
+given here for HTML and LaTeX documents and modify accordingly.
