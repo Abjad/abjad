@@ -39,6 +39,7 @@ Tutorial
    chapters/tutorial/many_notes/index
    chapters/tutorial/note_attributes/index
    chapters/tutorial/pitch_deviation/index
+   chapters/tutorial/lists_of_numbers/index
    chapters/tutorial/comments/index
    chapters/tutorial/inspecting_output/index
    chapters/tutorial/measures/index
