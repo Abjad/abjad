@@ -168,3 +168,15 @@ Using ``abjad-book`` on ReST documents
 
 You can call ``abjad-book`` on ReST documents, too. Follow the examples
 given here for HTML and LaTeX documents and modify accordingly.
+
+
+Using [hide = True]
+-------------------
+
+You can add ``[hide = True]`` to any ``abjad-book`` example to show
+only music notation. ::
+
+   <abjad>[hide = True]
+   staff = Staff(construct.scale(8))
+   write_ly(staff, 'staff-example', 'oedo')
+   </abjad>
