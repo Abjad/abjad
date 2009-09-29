@@ -1,4 +1,5 @@
 class _TagParser(object):
+
    def __init__(self, lines):
       self._close_tag = None
       self._open_tag = None
@@ -29,4 +30,3 @@ class _TagParser(object):
                in_block = True
             elif self._close_tag in line:
                raise error
-

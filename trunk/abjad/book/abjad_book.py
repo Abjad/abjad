@@ -2,8 +2,9 @@ from abjad.book.parser.abjadhtmltag import _AbjadHTMLTag
 from abjad.book.parser.abjadlatextag import _AbjadLatexTag
 from abjad.book.parser.abjadresttag import _AbjadReSTTag
 import getopt
-import sys
 import os
+import sys
+
 
 def _usage( ):
    usage = '''
@@ -120,4 +121,3 @@ def _abjad_book( ):
 
 if __name__ == '__main__':
    _abjad_book( )
-

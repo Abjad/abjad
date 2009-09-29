@@ -1,6 +1,7 @@
 import os
 import re
 
+
 class _CodeBlock(object):
    '''Class that handles code-block processing for abjad-book.'''
 
@@ -11,7 +12,6 @@ class _CodeBlock(object):
       self.postProcessedCode = [ ]## processed code + code output
 
       self.filterFromOutput = ['LilyPond input']
-
 
    @property
    def finalOutputCode(self):
@@ -24,7 +24,6 @@ class _CodeBlock(object):
       ## Windowz. use '\r' instead?
       out = ['\t%s%s' % (line, os.linesep) for line in out]
       return out
-
 
    @property
    def toProcessCode(self):
@@ -67,7 +66,6 @@ class _CodeBlock(object):
       for line in self.preProcessedCode:
          if line.startswith('write'):
             self.images.append(_get_image_name(line))
-
 
 
 ## HELPERS ##
@@ -117,4 +115,3 @@ def _remove_lines_starting_with(lines, filters):
             result.append(line)
 
    return result         
-         

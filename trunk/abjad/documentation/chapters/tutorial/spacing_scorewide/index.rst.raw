@@ -1,0 +1,24 @@
+Setting spacing scorewide
+-------------------------
+
+You can use the ``SpacingInterface`` to set spacing attributes scorewide.
+
+Here is a score with no explicit spacing.
+
+<abjad>
+score = Score([Staff(construct.scale(4, Rational(1, 4)))])
+show(score)
+write_ly(score, '1') <hide
+</abjad>
+
+Here is the same score with LilyPond's proportional notation turned on.
+
+<abjad>
+score.spacing.proportional_notation_duration = Rational(1, 16)
+print score.format
+</abjad>
+
+<abjad>
+show(score)
+write_ly(score, '2') <hide
+</abjad>

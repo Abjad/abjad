@@ -63,7 +63,6 @@ class _AbjadTag(_TagParser):
                for image in codeblock.images:
                   self.output.append(self._image_tag % image)
 
-
    def _get_next_code_block(self, input):
       result = _CodeBlock( )
       result.type = None
@@ -81,18 +80,15 @@ class _AbjadTag(_TagParser):
             self.output.append(line + os.linesep)
       return None
 
-
    def _get_block_type_from_open_tag(self, line):
       if 'hide=true' in line.replace(' ', '').lower( ):
          return 'hide'
-
 
    def _handle_code_block(self, codeblock):
       self._abjad_code.extend(codeblock.toProcessCode)
       out = _execute_abjad_code(self._abjad_code)
       codeblock.postProcessedCode = _extract_code_block(out)
       codeblock._collectImages( )
-
 
    def _renderImages(self):
       for file in os.listdir(os.curdir):
@@ -103,7 +99,6 @@ class _AbjadTag(_TagParser):
             else:
                self._renderPNGimage(file)
 
-
    def _renderPDFimage(self, filename):
       file_base = filename.replace('.ly', '')
       p = subprocess.Popen('lilypond  %s' % filename,
@@ -111,7 +106,6 @@ class _AbjadTag(_TagParser):
       out, err = p.communicate( )
       output = 'pdfcrop %s.pdf %s.pdf'
       os.popen(output % (file_base, file_base))
-
 
    def _renderPNGimage(self, filename):
       file_base = filename.replace('.ly', '')
@@ -141,6 +135,10 @@ def _extract_code_block(lines):
 def _execute_abjad_code(lines):
    p = subprocess.Popen('python', stdin = subprocess.PIPE, 
       stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+
+   ## debug:
+   #print os.linesep.join(lines)
+
    out, err = p.communicate(os.linesep.join(lines))
    if err:
       print os.linesep + "ERROR in Abjad script compilation:"

@@ -43,6 +43,7 @@ Tutorial
    chapters/tutorial/comments/index
    chapters/tutorial/inspecting_output/index
    chapters/tutorial/measures/index
+   chapters/tutorial/spacing_scorewide/index
    chapters/tutorial/format_reporting/index
 
 
