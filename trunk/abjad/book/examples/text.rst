@@ -9,7 +9,7 @@ Now comes some Abjad code
 </abjad>
 
 Here is **paragraph 2**, and more Abjad code.
-Notice that in the second block of abjad code I can reference objects and variables crated in previous blocks:
+Notice that in the second block of abjad code I can reference objects and variables created in previous blocks:
 
 <abjad>
    abjad> pitchtools.diatonicize(v)
