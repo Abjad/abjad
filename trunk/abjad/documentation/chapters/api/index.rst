@@ -387,7 +387,8 @@ layout
    :maxdepth: 1
 
    tools/layout/apply_fixed_staff_positioning
-   tools/layout/insert_measure_padding
+   tools/layout/insert_measure_padding_rest
+   tools/layout/insert_measure_padding_skip
    tools/layout/line_break_every_prolated
    tools/layout/line_break_every_seconds
 

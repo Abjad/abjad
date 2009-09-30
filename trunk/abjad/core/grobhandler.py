@@ -100,3 +100,11 @@ class _GrobHandler(_FormatContributor):
                self._promotedGrob(key),
                self._parser.formatAttribute(key)))
       return result
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def grob(self):
+      '''Read-only string name of LilyPond grob handled by this class.
+      '''
+      return self._grob
