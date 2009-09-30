@@ -1,13 +1,10 @@
-from abjad.leaf.leaf import _Leaf
-from abjad.measure.measure import _Measure
-from abjad.rational import Rational
 from abjad.skip import Skip
-from abjad.tools import iterate
-import types
+from abjad.tools.layout._insert_measure_padding import \
+   _insert_measure_padding as layout__insert_measure_padding
 
 
 def insert_measure_padding_skip(expr, front, back, splice = False):
-   r'''.. versionadded:: 1.1.1
+   r'''.. versionadded:: 1.1.2
 
    Iterate all measures in `expr`. Insert skip with duration equal
    to `front` at beginning of each measure. Insert skip with
@@ -117,35 +114,7 @@ def insert_measure_padding_skip(expr, front, back, splice = False):
       ValueError
    '''
 
-   if not isinstance(front, (Rational, types.NoneType)):
-      raise ValueError
-
-   if not isinstance(back, (Rational, types.NoneType)):
-      raise ValueError
-
-   root = expr[0].parentage.root
-
-   ## forbid updates because _Component.splice_left( ) and ##
-   ## _Component.splice( ) call self.offset.prolated.stop  ##
-   root._update._forbidUpdate( )
-
-   for measure in iterate.naive(expr, _Measure):
-      if front is not None:
-         start_components = measure._navigator._contemporaneousStartContents
-         start_leaves = [x for x in start_components if isinstance(x, _Leaf)]
-         for start_leaf in start_leaves:
-            if splice:
-               start_leaf.splice_left([Skip(front)])
-            else:
-               start_leaf.extend_left_in_parent([Skip(front)])
-      if back is not None:
-         stop_components = measure._navigator._contemporaneousStopContents
-         stop_leaves = [x for x in stop_components if isinstance(x, _Leaf)]
-         for stop_leaf in stop_leaves:
-            if splice:
-               stop_leaf.splice([Skip(back)])
-            else:
-               stop_leaf.extend_in_parent([Skip(back)])
-
-   ## allow updates after all calls to splice( ) are done. ##
-   root._update._allowUpdate( )
+   klass_token = Skip((1, 4))
+   result = layout__insert_measure_padding(
+      expr, front, back, klass_token, splice = splice)
+   return result
