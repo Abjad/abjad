@@ -6,7 +6,7 @@ from abjad.tools import iterate
 import types
 
 
-def insert_measure_padding(expr, front, back, splice = False):
+def insert_measure_padding_rest(expr, front, back, splice = False):
    r'''.. versionadded:: 1.1.1
 
    Iterate all measures in `expr`. Insert rest with duration equal
@@ -28,7 +28,7 @@ def insert_measure_padding(expr, front, back, splice = False):
 
       abjad> t = Staff(AnonymousMeasure(construct.scale(2)) * 2)
       abjad> front, back = Rational(1, 32), Rational(1, 64)
-      abjad> layout.insert_measure_padding(t, front, back)
+      abjad> layout.insert_measure_padding_rest(t, front, back)
       abjad> print t.format
 
       \new Staff {
@@ -54,7 +54,7 @@ def insert_measure_padding(expr, front, back, splice = False):
       abjad> measure.parallel = True
       abjad> t = Staff(measure * 2)
       abjad> pitchtools.diatonicize(t)
-      abjad> layout.insert_measure_padding(t, Rational(1, 32), Rational(1, 64))
+      abjad> layout.insert_measure_padding_rest(t, Rational(1, 32), Rational(1, 64))
 
    ::
 
@@ -94,7 +94,7 @@ def insert_measure_padding(expr, front, back, splice = False):
       abjad> t = DynamicMeasure(construct.scale(2))
       abjad> Beam(t[:])
       abjad> t.formatter.number.self = 'comment'
-      abjad> layout.insert_measure_padding(t, Rational(1, 32), Rational(1, 64), splice = True)
+      abjad> layout.insert_measure_padding_rest(t, Rational(1, 32), Rational(1, 64), splice = True)
 
    ::
 
@@ -113,7 +113,7 @@ def insert_measure_padding(expr, front, back, splice = False):
    rational nor ``None``. ::
 
       abjad> t = Staff(AnonymousMeasure(construct.scale(2)) * 2)
-      abjad> layout.insert_measure_padding(t, 'foo', 'bar')
+      abjad> layout.insert_measure_padding_rest(t, 'foo', 'bar')
       ValueError
    '''
 
