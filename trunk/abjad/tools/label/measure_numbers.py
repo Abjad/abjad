@@ -1,4 +1,5 @@
 from abjad.container import Container
+from abjad.measure.measure import _Measure
 
 
 def measure_numbers(container, style = 'comment'):
@@ -58,4 +59,7 @@ def measure_numbers(container, style = 'comment'):
    '''
 
    ## functionality implemented on _ContainerFormatterNumberInterface
-   container._formatter.number.measures = style
+   if isinstance(container, _Measure):
+      container._formatter.number.self = style
+   else:
+      container._formatter.number.measures = style

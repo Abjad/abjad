@@ -134,8 +134,8 @@ def test_layout_insert_measure_padding_03( ):
 
    t = DynamicMeasure(construct.scale(2))
    Beam(t[:])
-   #t.formatter.number.self = 'comment'
-   t._formatter.number.self = 'comment'
+   #t._formatter.number.self = 'comment'
+   label.measure_numbers(t)
    layout.insert_measure_padding(
       t, Rational(1, 32), Rational(1, 64), splice = True)
 

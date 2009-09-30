@@ -9,9 +9,9 @@ import types
 def insert_measure_padding(expr, front, back, splice = False):
    r'''.. versionadded:: 1.1.1
 
-   Iterate all measures in `expr`. Insert transparent rest equal
-   to `front` at beginning of each measure. Insert transparent 
-   rest equal to `back` at end of each measure. 
+   Iterate all measures in `expr`. Insert rest with duration equal
+   to `front` at beginning of each measure. Insert rest with
+   duation aqual to `back` at end of each measure. 
 
    Set `front` to a positive rational or ``None``.
    Set `back` to a positive rational or ``None``.
@@ -20,8 +20,8 @@ def insert_measure_padding(expr, front, back, splice = False):
    .. note:: This function is designed to
       help create regularly spaced charts and tables of musical materials.
       This function makes most sense when used on
-      :class:`~abjad.measure.anonymous.measure.AnonymousMeasure`
-      and :class:`~abjad.measure.dynamic.measure.DynamicMeasure`
+      :class:`~abjad.AnonymousMeasure`
+      and :class:`~abjad.DynamicMeasure`
       instances.
 
    ::

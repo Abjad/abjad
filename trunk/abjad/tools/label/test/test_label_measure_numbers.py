@@ -68,3 +68,36 @@ def test_label_measure_numbers_02( ):
    '''
 
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+
+
+def test_label_measure_numbers_03( ):
+   '''Works on measures, too, in addition to contexts.'''
+
+   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   pitchtools.diatonicize(t)
+   label.measure_numbers(t[1], 'comment')
+
+   r'''
+   \new Staff {
+           {
+                   \time 2/8
+                   c'8
+                   d'8
+           }
+           % start measure 2
+           {
+                   \time 2/8
+                   e'8
+                   f'8
+           }
+           % stop measure 2
+           {
+                   \time 2/8
+                   g'8
+                   a'8
+           }
+   }
+   '''
+
+   assert check.wf(t)
+   assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t% start measure 2\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t% stop measure 2\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
