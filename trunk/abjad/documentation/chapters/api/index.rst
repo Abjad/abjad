@@ -73,6 +73,7 @@ Interfaces
    interfaces/aggregator
    markup/interface
    meter/interface
+   nonmusicalpapercolumn/interface
    notecolumn/interface
    notehead/interface
    numbering/interface

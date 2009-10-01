@@ -16,6 +16,8 @@ from abjad.instrument.interface import InstrumentInterface
 from abjad.interfaces.aggregator import InterfaceAggregator
 from abjad.meter.interface import MeterInterface
 from abjad.navigator.navigator import _Navigator
+from abjad.nonmusicalpapercolumn.interface import \
+   NonMusicalPaperColumnInterface
 from abjad.notecolumn.interface import NoteColumnInterface
 from abjad.numbering.interface import NumberingInterface
 from abjad.offset.interface import OffsetInterface
@@ -77,6 +79,7 @@ class _Component(_Abjad):
       self._instrument = InstrumentInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
+      self._nonmusicalpapercolumn = NonMusicalPaperColumnInterface(self)
       self._notecolumn = NoteColumnInterface(self)
       self._notehead = NoteHeadInterface(self)
       self._parentage = ParentageInterface(self)
@@ -264,6 +267,13 @@ class _Component(_Abjad):
          assert isinstance(arg, (str, types.NoneType))
          self._name = arg
       return property(**locals( ))
+
+   @property
+   def nonmusicalpapercolumn(self):
+      '''Read-only reference to
+      :class:`~abjad.nonmusicalpapercolumn.interface.NonMusicalPaperColumn`.
+      '''
+      return self._nonmusicalpapercolumn
 
    @property
    def notecolumn(self):
