@@ -74,6 +74,7 @@ class Spanner(_Abjad):
    def _blockComponent(self, component):
       component.spanners._spanners.remove(self)
    
+   ## TODO: Remove call to self.leaes ##
    def _durationOffsetInMe(self, leaf):
       leaves = list(self.leaves)
       assert leaf in leaves
@@ -147,17 +148,31 @@ class Spanner(_Abjad):
          return False
 
    def _isMyFirstLeaf(self, leaf):
+      from abjad.tools.spannertools.get_nth_leaf import get_nth_leaf
       ## ! Full-leaf traversal extremely inefficient !
-      leaves = self.leaves
-      return leaves and leaf is leaves[0]
+      #leaves = self.leaves
+      #return leaves and leaf is leaves[0]
+      try:
+         first_leaf = get_nth_leaf(self, 0)
+         return leaf is first_leaf
+      except IndexError:
+         return False
    
    def _isMyLastLeaf(self, leaf):
-      leaves = self.leaves
-      return leaves and leaf is leaves[-1]
+      from abjad.tools.spannertools.get_nth_leaf import get_nth_leaf
+      ## ! Full-leaf traversal extremely inefficient !
+      #leaves = self.leaves
+      #return leaves and leaf is leaves[-1]
+      try:
+         last_leaf = get_nth_leaf(self, -1)
+         return leaf is last_leaf
+      except IndexError:
+         False
 
    def _isMyOnlyLeaf(self, leaf):
       return self._isMyFirstLeaf(leaf) and self._isMyLastLeaf(leaf)
 
+   ## TODO: Remove call to self.leaves ##
    def _isMyFirst(self, leaf, klass):
       if isinstance(leaf, klass):
          leaves = list(self.leaves)
@@ -168,6 +183,7 @@ class Spanner(_Abjad):
          return True
       return False
 
+   ## TODO: Remove call to self.leaves ##
    def _isMyLast(self, leaf, klass):
       if isinstance(leaf, klass):
          leaves = list(self.leaves)
@@ -178,6 +194,7 @@ class Spanner(_Abjad):
          return True
       return False
 
+   ## TODO: Remove call to self.leaves ##
    def _isMyOnly(self, leaf, klass):
       return isinstance(leaf, klass) and len(self.leaves) == 1
 
