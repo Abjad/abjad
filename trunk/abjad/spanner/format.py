@@ -3,7 +3,10 @@ from abjad.core.abjadcore import _Abjad
 
 class _SpannerFormatInterface(_Abjad):
    '''Abstract base class. 
-      Model format interface for all *Abjad* spanners.'''
+   Model format interface for all Abjad spanners.
+   '''
+
+   ## OVERLOADS ##
 
    def __init__(self, spanner):
       '''Bind to spanner client.'''
@@ -16,7 +19,7 @@ class _SpannerFormatInterface(_Abjad):
       '''Read-only reference to spanner client.'''
       return self._spanner
 
-   ## PUBLIC METHODS ##
+   ## PRIVATE METHODS ##
 
    def _after(self, leaf):
       '''Spanner format contributions to output after leaf.'''
@@ -34,10 +37,17 @@ class _SpannerFormatInterface(_Abjad):
          result.extend(getattr(spanner, '_overrides', [ ]))
       return result
 
-   def left(self, leaf):
+   def _left(self, leaf):
       '''Spanner format contributions to output left of leaf.'''
       result = [ ]
       return result
+
+   def _right(self, leaf):
+      '''Spanner format contributions to output right of leaf.'''
+      result = [ ]
+      return result
+
+   ## PUBLIC METHODS ##
 
    def report(self, leaves = None):
       '''Print spanner format contributions for every leaf in leaves.'''
@@ -46,11 +56,6 @@ class _SpannerFormatInterface(_Abjad):
          print leaf
          print '\tbefore: %s' % self._before(leaf)
          print '\t after: %s' % self._after(leaf)
-         print '\t  left: %s' % self.left(leaf)
-         print '\t right: %s' % self.right(leaf)
+         print '\t  left: %s' % self._left(leaf)
+         print '\t right: %s' % self._right(leaf)
          print ''
-
-   def _right(self, leaf):
-      '''Spanner format contributions to output right of leaf.'''
-      result = [ ]
-      return result

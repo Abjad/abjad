@@ -147,6 +147,7 @@ class Spanner(_Abjad):
          return False
 
    def _isMyFirstLeaf(self, leaf):
+      ## ! Full-leaf traversal extremely inefficient !
       leaves = self.leaves
       return leaves and leaf is leaves[0]
    
@@ -257,15 +258,6 @@ class Spanner(_Abjad):
 
       return self._duration
    
-#   @property
-#   def format(self):
-#      '''Return read-only reference to spanner format interface.
-#
-#      .. todo:: Remove from public interface.
-#      '''
-#      
-#      return self._format
-
    @property
    def leaves(self):
       '''Return read-only tuple of leaves in spanner. ::
@@ -277,6 +269,11 @@ class Spanner(_Abjad):
 
       .. versionchanged:: 1.1.1
          Now returns an (immutable) tuple instead of a (mutable) list.
+      
+      .. note:: When dealing with large, complex scores accessing
+         this attribute can take some time. Best to make a local
+         copy with leaves = spanner.leaves first. Or use spanner-
+         specific iteration tools.
       '''
 
       from abjad.leaf.leaf import _Leaf

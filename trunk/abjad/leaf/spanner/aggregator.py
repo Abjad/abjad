@@ -7,20 +7,6 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _spannersInParentage(self):
-      '''List of all spanners attaching either to client
-         or to a component in the parentage of client,
-         ordered alphabetically by spanner class name.'''
-      result = [ ]
-      for component in self._client.parentage.parentage:
-         result.extend(component.spanners.attached)
-      result.sort(
-         lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
-      return result
-
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
    def _after(self):
       result = [ ]
       leaf = self.leaf
@@ -29,6 +15,9 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
          result.extend(spanner._format._after(leaf))
       return result
 
+   ## TODO: OPTIMIZE!
+   ##       Can take 16,678 function calls for a leaf in a single
+   ##       staff with 100 leaves and a single spanner.
    @property
    def _before(self):
       result = [ ]
@@ -39,16 +28,14 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
       return result
 
    @property
-   def leaf(self):
-      return self._client
-
-   @property
-   def left(self):
+   #def left(self):
+   def _left(self):
       result = [ ]
       leaf = self.leaf
       for spanner in self._spannersInParentage:
          #result.extend(spanner.format.left(leaf))   
-         result.extend(spanner._format.left(leaf))   
+         #result.extend(spanner._format.left(leaf))   
+         result.extend(spanner._format._left(leaf))   
       return result
 
    @property
@@ -69,3 +56,21 @@ class _LeafSpannerAggregator(_ComponentSpannerAggregator):
                other_contributions.extend(contributions)
       result = stop_contributions + other_contributions
       return result
+
+   @property
+   def _spannersInParentage(self):
+      '''List of all spanners attaching either to client
+         or to a component in the parentage of client,
+         ordered alphabetically by spanner class name.'''
+      result = [ ]
+      for component in self._client.parentage.parentage:
+         result.extend(component.spanners.attached)
+      result.sort(
+         lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
+      return result
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def leaf(self):
+      return self._client

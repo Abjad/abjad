@@ -43,7 +43,8 @@ class _LeafFormatter(_ComponentFormatter):
       interfaces = client.interfaces
       spanners = client.spanners
       #result.extend(directives.left)
-      result.extend(spanners.left)
+      #result.extend(spanners.left)
+      result.extend(spanners._left)
       result.extend(interfaces.left)
       result.extend(self._nucleus)
       result.extend(self._tremolo_subdivision_contribution)
