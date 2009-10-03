@@ -663,7 +663,10 @@ spannertools
    tools/spannertools/get_dominant
    tools/spannertools/get_dominant_between
    tools/spannertools/get_dominant_slice
+   tools/spannertools/get_nth_leaf
    tools/spannertools/give_attached_to_children
+   tools/spannertools/iterate_components_backwards
+   tools/spannertools/iterate_components_forwards
    tools/spannertools/withdraw_from_covered
 
 
