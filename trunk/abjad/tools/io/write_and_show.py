@@ -7,7 +7,7 @@ from show import show
 
 def write_and_show(
    expr, name, template = None, title = None, footer = None, 
-   lilytime = 10, write = True):
+   lily_time = 10, write = True):
    '''When ``write = True`` (default) call ``write_ly(expr)`` and 
    ``write_pdf(expr)`` and then open the resulting PDF.
 
@@ -22,11 +22,11 @@ def write_and_show(
 
    if write:
       write_ly(expr, name + '.ly', template = template, title = title, 
-         footer = footer, lilytime = lilytime)
+         footer = footer, lily_time = lily_time)
       write_pdf(expr, name + '.pdf', template = template, title = title,
-         footer = footer, lilytime = lilytime)
+         footer = footer, lily_time = lily_time)
       pdf_viewer = _read_config_file( )['pdf_viewer']
       _open_file(name + '.pdf', pdf_viewer)
    else:
       show(expr, template = template, title = title, 
-         footer = footer, lilytime = lilytime)
+         footer = footer, lily_time = lily_time)

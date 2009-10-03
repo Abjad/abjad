@@ -11,12 +11,12 @@ import time
 
 
 def _log_render_lilypond_input(expr, template = None, 
-   title = None, footer = None, lilytime = 10, formattime = 10):
+   title = None, footer = None, lily_time = 10, format_time = 10):
    '''Private function that stores both .ly and .pdf files in the
    ``abjad_output`` directory. 
 
    .. versionadded:: 1.1.2
-      New formattime keyword to message conditionally output
+      New format_time keyword to message conditionally output
       Abjad format time of `expr`.
 
    .. versionchanged:: 1.1.2
@@ -40,7 +40,7 @@ def _log_render_lilypond_input(expr, template = None,
    formatted_expr = expr.format
    stop_format_time = time.time( )
    actual_format_time = int(stop_format_time - start_format_time)
-   if formattime <= actual_format_time:
+   if format_time <= actual_format_time:
       print 'Abjad format time equal to %s sec.' % actual_format_time
 
    _write_score(outfile, expr.format)
@@ -55,7 +55,7 @@ def _log_render_lilypond_input(expr, template = None,
    os.chdir(current_directory)
 
    ## catch LilyPond taking a long time to render
-   if lilytime <= actual_lily_time:
+   if lily_time <= actual_lily_time:
       print 'LilyPond processing time equal to %s sec.' % actual_lily_time
 
    return name, actual_format_time, actual_lily_time

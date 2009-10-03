@@ -5,7 +5,7 @@ import os
 
 
 def show(expr, template = None, title = None, footer = None, 
-   lilytime = 10, formattime = 10, return_timing = False,
+   lily_time = 10, format_time = 10, return_timing = False,
    suppress_pdf = False):
    '''Format `expr` as a valid string of LilyPond input.
 
@@ -41,7 +41,7 @@ def show(expr, template = None, title = None, footer = None,
    Render `t` and open the resulting PDF. Alert the composer
    if LilyPond takes greater than 60 seconds to render::
 
-      abjad> show(t, lilytime = 60)
+      abjad> show(t, lily_time = 60)
 
    .. versionadded:: 1.1.2
       Render `t` and open the resulting PDF. Alert the composer
@@ -49,7 +49,7 @@ def show(expr, template = None, title = None, footer = None,
 
    ::
 
-      abjad> show(t, formattime = 10)
+      abjad> show(t, format_time = 10)
 
    .. versionadded:: 1.1.2
       Render `t`, open the resulting PDF, and return both the number
@@ -69,7 +69,7 @@ def show(expr, template = None, title = None, footer = None,
    ## format expr and write lilypond input file
    name, actual_format_time, actual_lily_time = _log_render_lilypond_input(
       expr, template = template, title = title, footer = footer, 
-      lilytime = lilytime, formattime = formattime)
+      lily_time = lily_time, format_time = format_time)
 
    ## do not open PDF if we're running py.test regression battery
    if not suppress_pdf:

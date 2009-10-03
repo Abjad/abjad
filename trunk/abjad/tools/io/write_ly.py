@@ -7,7 +7,7 @@ import os
 
 
 def write_ly(expr, name, template = None, 
-   title = None, footer = None, lilytime = None):
+   title = None, footer = None, lily_time = None):
    '''Format `expr` as `LilyPond` input and write to output file `name`.
 
    - `expr` : `Abjad` :class:`~abjad.component.component._Component` \

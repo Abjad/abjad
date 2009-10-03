@@ -5,7 +5,7 @@ import os
 import shutil
 
 def write_pdf(expr, file_name, template = None, 
-   title = None, footer = None, lilytime = 10):
+   title = None, footer = None, lily_time = 10):
    '''Render `expr` as LilyPond input.
 
    Call LilyPond and write the resulting PDF as `file_name`. ::
@@ -23,7 +23,7 @@ def write_pdf(expr, file_name, template = None,
       file_name += '.pdf'
 
    name = _log_render_lilypond_input(expr, template = template, 
-      title = title, footer = footer, lilytime = lilytime)
+      title = title, footer = footer, lily_time = lily_time)
 
    ## copy PDF file to file_name
    pdf_name = name[:-3] + '.pdf'
