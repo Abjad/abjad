@@ -4,7 +4,9 @@ from abjad.cfg._read_config_file import _read_config_file
 import os
 
 
-def show(expr, template = None, title = None, footer = None, lilytime = 10):
+def show(expr, template = None, title = None, footer = None, 
+   lilytime = 10, formattime = 10, return_timing = False,
+   suppress_pdf = False):
    '''Format `expr` as a valid string of LilyPond input.
 
    Call LilyPond on the formatted version of `expr`.
@@ -41,16 +43,42 @@ def show(expr, template = None, title = None, footer = None, lilytime = 10):
 
       abjad> show(t, lilytime = 60)
 
+   .. versionadded:: 1.1.2
+      Render `t` and open the resulting PDF. Alert the composer
+      if Abjad takes greater than 10 seconds to format `t`:
+
+   ::
+
+      abjad> show(t, formattime = 10)
+
+   .. versionadded:: 1.1.2
+      Render `t`, open the resulting PDF, and return both the number
+      of seconds it took Abjad to format `t` and also the number
+      of seconds it took LilyPond to render `t`:
+
+   ::
+
+      abjad> show(t, return_timing = True)
+
    .. note:: 
-      By default, *Abjad* writes *LilyPond* input files
+      By default, Abjad writes LilyPond input files
       to the ``~/.abjad/output`` directory. You may change this by
       setting the ``abjad_output`` variable in the ``config.py`` file.
    '''
 
-   name = _log_render_lilypond_input(expr, template = template, 
-      title = title, footer = footer, lilytime = lilytime)
-   config = _read_config_file( )
-   pdf_viewer = config['pdf_viewer']
-   ABJADOUTPUT = config['abjad_output']
-   name = os.path.join(ABJADOUTPUT, name)
-   _open_file('%s.pdf' % name[:-3], pdf_viewer)
+   ## format expr and write lilypond input file
+   name, actual_format_time, actual_lily_time = _log_render_lilypond_input(
+      expr, template = template, title = title, footer = footer, 
+      lilytime = lilytime, formattime = formattime)
+
+   ## do not open PDF if we're running py.test regression battery
+   if not suppress_pdf:
+      config = _read_config_file( )
+      pdf_viewer = config['pdf_viewer']
+      ABJADOUTPUT = config['abjad_output']
+      name = os.path.join(ABJADOUTPUT, name)
+      _open_file('%s.pdf' % name[:-3], pdf_viewer)
+
+   ## return timing if requested
+   if return_timing:
+      return actual_format_time, actual_lily_time

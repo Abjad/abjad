@@ -1,9 +1,7 @@
-#from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._get_next_output import _get_next_output
 from abjad.cfg._run_lilypond import _run_lilypond
 from abjad.cfg._verify_output_directory import _verify_output_directory
-#from abjad.cfg._wrap_format import _wrap_format
 from abjad.cfg._write_footer import _write_footer
 from abjad.cfg._write_preamble import _write_preamble
 from abjad.cfg._write_score import _write_score
@@ -13,13 +11,21 @@ import time
 
 
 def _log_render_lilypond_input(expr, template = None, 
-   title = None, footer = None, lilytime = 10):
+   title = None, footer = None, lilytime = 10, formattime = 10):
    '''Private function that stores both .ly and .pdf files in the
-   ``abjad_output`` directory. Returns the name of the newly created file.
+   ``abjad_output`` directory. 
+
+   .. versionadded:: 1.1.2
+      New formattime keyword to message conditionally output
+      Abjad format time of `expr`.
+
+   .. versionchanged:: 1.1.2
+      Returns triple of name of file created, Abjad format time,
+      LilyPond render time.
    '''
 
-   current_directory = os.path.abspath('.')
    ## log score
+   current_directory = os.path.abspath('.')
    ABJADOUTPUT = _read_config_file( )['abjad_output']
    _verify_output_directory(ABJADOUTPUT)
    os.chdir(ABJADOUTPUT)
@@ -28,18 +34,28 @@ def _log_render_lilypond_input(expr, template = None,
    _write_preamble(outfile, template)
    _write_title(outfile, title)
    _write_footer(outfile, footer)
-   #outfile.write(_wrap_format(expr.format))
+
+   ## catch Abjad tight loops that result in excessive format time
+   start_format_time = time.time( )
+   formatted_expr = expr.format
+   stop_format_time = time.time( )
+   actual_format_time = int(stop_format_time - start_format_time)
+   if formattime <= actual_format_time:
+      print 'Abjad format time equal to %s sec.' % actual_format_time
+
    _write_score(outfile, expr.format)
    outfile.close( )
+
    ## render
    start_time = time.time( )
    _run_lilypond(name)
    stop_time = time.time( )
-   total_time = int(stop_time - start_time)
+   actual_lily_time = int(stop_time - start_time)
 
    os.chdir(current_directory)
 
-   if lilytime <= total_time:
-      print 'LilyPond processing time equal to %s sec.' % total_time
+   ## catch LilyPond taking a long time to render
+   if lilytime <= actual_lily_time:
+      print 'LilyPond processing time equal to %s sec.' % actual_lily_time
 
-   return name
+   return name, actual_format_time, actual_lily_time
