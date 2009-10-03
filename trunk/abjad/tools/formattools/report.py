@@ -1,6 +1,10 @@
-def report(component, verbose = False, output = 'screen'):
+from abjad.component.component import _Component
+from abjad.spanner.spanner import Spanner
+
+
+def report(system_element, verbose = False, output = 'screen'):
    r'''Read-only string report of all format-time contributions
-   made to `component` by all the different parts of the Abjad
+   made to `system_element` by all the different parts of the Abjad
    system plumbing. ::
 
       abjad> t = Note(0, (1, 4))
@@ -39,4 +43,10 @@ def report(component, verbose = False, output = 'screen'):
    Set `output` to 'screen' or 'string'.
    '''
 
-   return component._formatter.report(verbose = verbose, output = output)
+   if isinstance(system_element, _Component): 
+      return system_element._formatter.report(
+         verbose = verbose, output = output)
+   elif isinstance(system_element, Spanner):
+      return system_element._format.report(output = output)
+   else:
+      raise TypeError

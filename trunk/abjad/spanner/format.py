@@ -49,13 +49,22 @@ class _SpannerFormatInterface(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   def report(self, leaves = None):
+   def report(self, leaves = None, output = 'screen'):
       '''Print spanner format contributions for every leaf in leaves.'''
+      result = ''
       leaves = leaves or self.spanner.leaves
       for leaf in leaves:
-         print leaf
-         print '\tbefore: %s' % self._before(leaf)
-         print '\t after: %s' % self._after(leaf)
-         print '\t  left: %s' % self._left(leaf)
-         print '\t right: %s' % self._right(leaf)
-         print ''
+         result += str(leaf)
+         result += '\tbefore: %s\n' % self._before(leaf)
+         result += '\t after: %s\n' % self._after(leaf)
+         result += '\t  left: %s\n' % self._left(leaf)
+         result += '\t right: %s\n' % self._right(leaf)
+         result += '\n'
+
+      if result[-1] == '\n':
+         result = result[:-1]
+
+      if output == 'screen':
+         print result
+      else:
+         return result
