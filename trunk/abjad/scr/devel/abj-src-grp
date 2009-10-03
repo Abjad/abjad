@@ -6,5 +6,5 @@ import sys
 
 os.system('clear')
 os.system(
-   'grep -Irn "%s" * | grep -v svn | grep -v documentation | grep -v test_' % 
+   'grep -Irn "%s" * | grep -v svn | grep -v documentation | grep -v test' % 
    sys.argv[1])
