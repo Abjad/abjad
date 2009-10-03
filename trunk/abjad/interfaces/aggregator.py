@@ -88,7 +88,6 @@ class InterfaceAggregator(_Interface):
       '''Ordered list of format-time contributions for left format slot.'''
       result = [ ]
       for contributor in self.contributors:
-         #result.extend(getattr(contributor, 'left', [ ]))
          result.extend(getattr(contributor, '_left', [ ]))
       return result
 
