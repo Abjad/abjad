@@ -274,8 +274,6 @@ class _Navigator(_Abjad):
    def _DFS(self, capped = True, unique = True, 
       forbid = None, direction = 'left'):
       from abjad.tools import iterate
-      #return depth_first_search(
-      #   self._client, capped, unique, forbid, direction)
       return iterate.depth_first(
          self._client, capped, unique, forbid, direction)
 
