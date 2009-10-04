@@ -60,7 +60,7 @@ def test_container_parallel_04( ):
 
 ## Parallel Errors ##
 
-def test_container_parallel_10( ):
+def test_container_parallel_05( ):
    '''Parallel containers must contain only Contexts.
    It cannot take leaves.'''
 
@@ -68,7 +68,7 @@ def test_container_parallel_10( ):
    py.test.raises(TypeError, 't.parallel = True')
 
 
-def test_container_parallel_11( ):
+def test_container_parallel_06( ):
    '''Parallel containers must contain only Contexts.
    It cannot take Containers.'''
 

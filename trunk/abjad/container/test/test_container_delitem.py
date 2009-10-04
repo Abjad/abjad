@@ -2,7 +2,7 @@ from abjad import *
 
 
 
-def test_container_delitem_00( ):
+def test_container_delitem_01( ):
    '''Delete spanned component.
       Component withdraws crossing spanners.
       Component carries covered spanners forward.
@@ -51,7 +51,7 @@ def test_container_delitem_00( ):
    assert old.format == "{\n\tc'8 (\n\td'8 )\n}"
 
 
-def test_container_delitem_01( ):
+def test_container_delitem_02( ):
    '''Delete 1 leaf in container. 
       Spanner structure is preserved.'''
 
@@ -70,7 +70,7 @@ def test_container_delitem_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n}"
 
 
-def test_container_delitem_02( ):
+def test_container_delitem_03( ):
    '''Delete slice in middle of container.'''
 
    t = Voice(construct.scale(4))
@@ -87,7 +87,7 @@ def test_container_delitem_02( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\tf'8 ]\n}"
 
 
-def test_container_delitem_03( ):
+def test_container_delitem_04( ):
    '''Delete slice from beginning to middle of container.'''
 
    t = Voice(construct.scale(4))
@@ -104,7 +104,7 @@ def test_container_delitem_03( ):
    assert t.format == "\\new Voice {\n\te'8 [\n\tf'8 ]\n}"
 
 
-def test_container_delitem_04( ):
+def test_container_delitem_05( ):
    '''Delete slice from middle to end of container.'''
 
    t = Voice(construct.scale(4))
@@ -121,7 +121,7 @@ def test_container_delitem_04( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
-def test_container_delitem_05( ):
+def test_container_delitem_06( ):
    '''Delete slice from beginning to end of container.'''
 
    t = Voice(construct.scale(4)) 
@@ -136,7 +136,7 @@ def test_container_delitem_05( ):
    assert t.format == '\\new Voice {\n}'
 
 
-def test_container_delitem_06( ):
+def test_container_delitem_07( ):
    '''Detach leaf from tuplet and spanner.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))

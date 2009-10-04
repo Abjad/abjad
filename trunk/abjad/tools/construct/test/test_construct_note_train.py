@@ -78,7 +78,7 @@ def test_construct_note_train_04( ):
    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\t\\times 4/5 {\n\t\tc'32\n\t}\n}"
 
 
-def test_construct_note_train_04( ):
+def test_construct_note_train_05( ):
    '''Construct train of written 1/16th notes within measure of 5/18.'''
 
    t = RigidMeasure((5, 18), construct.note_train(

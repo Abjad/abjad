@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_fuse_measures_by_reference_00( ):
+def test_fuse_measures_by_reference_01( ):
    '''Fuse unicorporated binary measures.'''
 
    t1 = RigidMeasure((1, 8), construct.scale(2, Rational(1, 16)))
@@ -45,7 +45,7 @@ def test_fuse_measures_by_reference_00( ):
    assert new.format == "{\n\t\\time 2/8\n\tc'16 [\n\td'16 ]\n\tc'16 (\n\td'16 )\n}"
    
 
-def test_fuse_measures_by_reference_01( ):
+def test_fuse_measures_by_reference_02( ):
    '''Fuse binary measures with different denominators.
       Helpers selects minimum of two denominators.
       Beams are OK because they attach to leaves rather than containers.'''
@@ -88,7 +88,7 @@ def test_fuse_measures_by_reference_01( ):
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16 ]\n\t}\n}"
 
 
-def test_fuse_measures_by_reference_02( ):
+def test_fuse_measures_by_reference_03( ):
    '''Fuse binary measures with different denominators.
       Helpers selects minimum of two denominators.
       Beam attaches to container rather than leaves.'''
@@ -131,7 +131,7 @@ def test_fuse_measures_by_reference_02( ):
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t}\n}"
 
 
-def test_fuse_measures_by_reference_03( ):
+def test_fuse_measures_by_reference_04( ):
    '''Fuse binary and nonbinary measures.
       Helpers selects least common multiple of denominators.
       Beams are OK because they attach to leaves rather than containers.'''
@@ -175,14 +175,14 @@ def test_fuse_measures_by_reference_03( ):
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 5/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [\n\t\t\td'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_fuse_measures_by_reference_04( ):
+def test_fuse_measures_by_reference_05( ):
    '''Fusing empty list raises no excpetion but returns None.'''
 
    result = fuse.measures_by_reference([ ])
    assert result is None
 
 
-def test_fuse_measures_by_reference_05( ):
+def test_fuse_measures_by_reference_06( ):
    '''Fusing list of only one measure returns measure unaltered.'''
 
    t = RigidMeasure((3, 8), construct.scale(3))
@@ -191,7 +191,7 @@ def test_fuse_measures_by_reference_05( ):
    assert new is t
 
 
-def test_fuse_measures_by_reference_06( ):
+def test_fuse_measures_by_reference_07( ):
    '''Fuse three measures.'''
 
    t = Voice(measuretools.make([(1, 8), (1, 8), (1, 8)]))
@@ -239,7 +239,7 @@ def test_fuse_measures_by_reference_06( ):
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16 ]\n\t}\n}"
 
 
-def test_fuse_measures_by_reference_07( ):
+def test_fuse_measures_by_reference_08( ):
    '''Measure fusion across intervening container boundaries is undefined.'''
 
    t = Voice(Container(RigidMeasure((2, 8), construct.run(2)) * 2) * 2)
@@ -278,7 +278,7 @@ def test_fuse_measures_by_reference_07( ):
       'fuse.measures_by_reference([t[0][1], t[1][0]])')
 
 
-def test_fuse_measures_by_reference_08( ):
+def test_fuse_measures_by_reference_09( ):
    '''Fusing binary and nonbinary measures.
       With change in number of noteheads because of nonbinary multiplier.'''
 

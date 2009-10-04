@@ -12,7 +12,7 @@ def test_chord_public_methods_01( ):
    assert t.format == "<c' d' ef' e'>4"
 
 
-def test_chord_public_methods_01( ):
+def test_chord_public_methods_02( ):
    '''Chords can be copied. Python ids differ.'''
    t = Chord([2, 4], (1, 4))
    new = clone.fracture([t])[0]
@@ -23,7 +23,7 @@ def test_chord_public_methods_01( ):
    assert id(t) != id(new)
 
 
-def test_chord_public_methods_01( ):
+def test_chord_public_methods_03( ):
    '''Chords can be extended. Noteheads are sorted.'''
    t = Chord([2, 4], (1,4))
    t.extend([Pitch(3)])
@@ -34,7 +34,7 @@ def test_chord_public_methods_01( ):
    assert t.format == "<c' cs' d' ef' e'>4"
 
 
-def test_chord_public_methods_01( ):
+def test_chord_public_methods_04( ):
    '''Lone chords can pop noteheads by index.'''
    t = Chord([2, 4], (1, 4))
    notehead = t.pop( )
@@ -43,7 +43,7 @@ def test_chord_public_methods_01( ):
    assert t.pitches[0].number == 2
    
 
-def test_chord_public_methods_01( ):
+def test_chord_public_methods_05( ):
    '''Lone chords can remove noteheads by reference.'''
    t = Chord([2, 4], (1, 4))
    t.remove(t[0])
@@ -51,7 +51,7 @@ def test_chord_public_methods_01( ):
    assert t.pitches[0].number == 4
 
 
-def test_chord_public_methods_02( ):
+def test_chord_public_methods_06( ):
    '''Lone chords can remove noteheads by reference.'''
    t = Chord([2, 4], (1, 4))
    t.remove(t[1])

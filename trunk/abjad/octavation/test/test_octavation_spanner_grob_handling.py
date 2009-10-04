@@ -29,7 +29,7 @@ def test_octavation_spanner_grob_handling_01( ):
    assert t.format == "\\new Voice {\n\t\\override Staff.OttavaBracket #'staff-position = #4\n\t\\ottava #1\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.OttavaBracket #'staff-position\n\t\\ottava #0\n}"
 
 
-#def test_octavation_spanner_grob_handling_01( ):
+#def test_octavation_spanner_grob_handling_02( ):
 #   '''
 #   The Abjad Octavation spanner handles the LilyPond OttavaBracket grob.
 #   Note the need to promot OttavaBracket grob overrides to the

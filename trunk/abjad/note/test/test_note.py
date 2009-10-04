@@ -12,6 +12,6 @@ def test_note_01( ):
 
 ### ASSERTS ###
 
-def test_note_01( ):
+def test_note_02( ):
    #raises(ValueError, Note, 0, (5, 8))
    raises(AssignabilityError, 'Note(0, (5, 8))')

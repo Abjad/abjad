@@ -71,7 +71,7 @@ def test_construct_notes_07( ):
    assert len(t) == 1
    assert t[0].duration.written == Rational(1, 4)
 
-def test_construct_notes_10( ):
+def test_construct_notes_08( ):
    '''
    Key word 'direction' == 'big_endian' returns note durations in descending
    order. This is the default.
@@ -81,7 +81,7 @@ def test_construct_notes_10( ):
    assert t[0].duration.written == Rational(4, 16)
    assert t[1].duration.written == Rational(1, 16)
 
-def test_construct_notes_11( ):
+def test_construct_notes_09( ):
    '''
    Key word 'direction' == 'little_endian' returns note durations in ascending
    order. 
@@ -94,7 +94,7 @@ def test_construct_notes_11( ):
 
 ### PROLATED NOTES ###
 
-def test_construct_notes_20( ):
+def test_construct_notes_10( ):
    '''
    notes( ) can take parameters for a single prolated note.
    '''
@@ -107,7 +107,7 @@ def test_construct_notes_20( ):
    assert t[0][0].duration.written == Rational(1, 32)
 
 
-def test_construct_notes_21( ):
+def test_construct_notes_11( ):
    '''
    notes( ) can take a single pitch and a list of prolated durations.
    '''
@@ -131,7 +131,7 @@ def test_construct_notes_21( ):
    '''
 
 
-def test_construct_notes_22( ):
+def test_construct_notes_12( ):
    '''
    notes( ) may take a direction attribute.
    '''

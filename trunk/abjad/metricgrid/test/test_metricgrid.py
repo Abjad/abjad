@@ -138,7 +138,7 @@ def test_metricgrid_05( ):
    assert t.format == "\\new Staff {\n\t\\time 1/8\n\t<<\n\t{\n\t\t\\time 1/4\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 1/8\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n\t\\time 1/4\n\t<<\n\t{\n\t\t\\time 1/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 1/4\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n}"
 
 
-def test_metricgrid_01( ):
+def test_metricgrid_06( ):
    '''MetricGrid splits notes on bar lines.'''
 
    t = Staff(Note(0, (1,8)) * 8)
@@ -164,7 +164,7 @@ def test_metricgrid_01( ):
    }'''
 
 
-def test_metricgrid_02( ):
+def test_metricgrid_07( ):
    '''MetricGrid splits notes on bar lines.'''
 
    t = Staff(Note(0, (1,8))*8)
@@ -192,7 +192,7 @@ def test_metricgrid_02( ):
    }'''
 
 
-def test_metricgrid_03( ):
+def test_metricgrid_08( ):
    '''MetricGrid split works with tuplets.'''
 
    t = Voice([FixedMultiplierTuplet((2,3), Note(0, (1,8)) * 6)])
@@ -217,7 +217,7 @@ def test_metricgrid_03( ):
    }'''
 
 
-def test_metricgrid_04( ):
+def test_metricgrid_09( ):
    '''MetricGrid split works with nested tuplets.'''
 
    t = Voice([FixedMultiplierTuplet((2,3), [Note(0, (1,8)), 
@@ -261,7 +261,7 @@ def test_metricgrid_04( ):
    }'''
 
 
-def test_metricgrid_05( ):
+def test_metricgrid_10( ):
    '''MetricGrid split fuses correctly tied leaves in last measure.'''
 
    v = Voice(Note(1, (1, 4))*3)
@@ -285,7 +285,7 @@ def test_metricgrid_05( ):
    }'''
 
 
-def test_metricgrid_06( ):
+def test_metricgrid_11( ):
    '''MetricGrid can split conditionally.'''
 
    v = Voice([Note(1, (1, 4)), Rest((1, 4)), Note(1, (1, 4))])

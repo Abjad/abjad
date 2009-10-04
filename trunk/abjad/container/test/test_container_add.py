@@ -79,7 +79,7 @@ def test_container_add_06( ):
 ### PARALLEL STRUCTURES ###
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_container_add_10( ):
+#def test_container_add_07( ):
 #   '''Addition raises exception on parallels of notes.'''
 #   t1 = Container(Note(0, (1, 4))*2)
 #   t1.parallel = True
@@ -88,7 +88,7 @@ def test_container_add_06( ):
 #   assert t1 + t2 is None
     
 
-def test_container_add_11( ):
+def test_container_add_08( ):
    '''Addition works on two matching parallel containers each with 
    a single threadable Voice child.'''
    t1 = Container([Voice(Note(0, (1, 4))*2)])
@@ -107,10 +107,9 @@ def test_container_add_11( ):
    assert len(tadd[0]) == 4
     
 
-def test_container_add_13( ): 
+def test_container_add_09( ):
    '''Addition works on matching parallel containers each 
    with two named threadable Voice children.'''
-
 
    v1 = Voice(Note(0, (1, 4))*2)
    v1.name = '1'
@@ -140,7 +139,7 @@ def test_container_add_13( ):
 
 ### iadd ###
 
-def test_container_add_01( ):
+def test_container_add_10( ):
    '''In place add makes a copy of right hand operand only.'''
    v1 = Voice(Note(1, (1, 4))*4)
    v2 = Voice(Note(2, (1, 4))*4)

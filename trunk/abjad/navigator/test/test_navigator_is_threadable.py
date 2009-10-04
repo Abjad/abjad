@@ -86,7 +86,7 @@ def test_navigator_is_threadable_03( ):
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_navigator_is_threadable_04( ):
+#def test_navigator_is_threadable_05( ):
 #   '''A path DOES exist between leaves with a parent parallel container
 #   contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating chords.'''
@@ -109,7 +109,7 @@ def test_navigator_is_threadable_03( ):
 #      }'''
 
 
-def test_navigator_is_threadable_05( ):
+def test_navigator_is_threadable_06( ):
    '''Tuplets and leaves all thread.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
@@ -127,7 +127,7 @@ def test_navigator_is_threadable_05( ):
    }'''
 
 
-def test_navigator_is_threadable_06( ):
+def test_navigator_is_threadable_07( ):
    '''Voice and its noncontext contents all thread.'''
 
    t = Voice(Container(construct.run(4)) * 2)
@@ -163,7 +163,7 @@ def test_navigator_is_threadable_06( ):
    assert t[1]._navigator._isThreadable(t[0][3])
 
 
-def test_navigator_is_threadable_07( ):
+def test_navigator_is_threadable_08( ):
    '''Voice and its noncontext contents all thread.'''
 
    t1 = FixedDurationTuplet((2, 8), [Note(i, (1, 8)) for i in range(3)])
@@ -196,7 +196,7 @@ def test_navigator_is_threadable_07( ):
    '''
 
 
-def test_navigator_is_threadable_08( ):
+def test_navigator_is_threadable_09( ):
    '''Can not thread across differently identified anonymous voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -234,7 +234,7 @@ def test_navigator_is_threadable_08( ):
    '''
 
 
-def test_navigator_is_threadable_09( ):
+def test_navigator_is_threadable_10( ):
    '''Can thread across like-named voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -273,7 +273,7 @@ def test_navigator_is_threadable_09( ):
    '''
 
 
-def test_navigator_is_threadable_10( ):
+def test_navigator_is_threadable_11( ):
    '''Can not thread across differently named voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -303,7 +303,7 @@ def test_navigator_is_threadable_10( ):
    '''
 
 
-def test_navigator_is_threadable_11( ):
+def test_navigator_is_threadable_12( ):
    '''Can not thread across differently identified anonymous voices.'''
 
    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -345,7 +345,7 @@ def test_navigator_is_threadable_11( ):
    '''   
 
 
-def test_navigator_is_threadable_12( ):
+def test_navigator_is_threadable_13( ):
    '''Can not thread across differently identified anonymous voices.'''
 
    vl1 = Voice([Note(i, (1, 8)) for i in range(4)])
@@ -422,7 +422,7 @@ def test_navigator_is_threadable_12( ):
    '''
 
 
-def test_navigator_is_threadable_13( ):
+def test_navigator_is_threadable_14( ):
    '''Voice threads its noncontext contents.'''
 
    s1 = Container([Note(i, (1, 8)) for i in range(4)])
@@ -465,7 +465,7 @@ def test_navigator_is_threadable_13( ):
    assert t[0][0][-1]._navigator._isThreadable(t[1][0][0])
 
 
-def test_navigator_is_threadable_14( ):
+def test_navigator_is_threadable_15( ):
    '''Like-named staves do NOT thread.'''
 
    t = Container(Staff([ ]) * 2)

@@ -181,7 +181,7 @@ def test_navigator_is_immediate_temporal_successor_of_08( ):
    }'''
 
 
-def test_navigator_is_immediate_temporal_successor_of_10( ):
+def test_navigator_is_immediate_temporal_successor_of_09( ):
    '''The second (like-named) voice and the first note of the 
       second (like-named) voice both temporally follow the 
       first (like-named) voice and the last note of the 
@@ -213,7 +213,7 @@ def test_navigator_is_immediate_temporal_successor_of_10( ):
    }'''
 
 
-def test_navigator_is_immediate_temporal_successor_of_11( ):
+def test_navigator_is_immediate_temporal_successor_of_10( ):
    '''The second (differently named) voice and the first note of the 
       second (differently named) voice both temporally follow the 
       first (differently named) voice and the last note of the 
@@ -245,7 +245,7 @@ def test_navigator_is_immediate_temporal_successor_of_11( ):
    }'''
 
 
-def test_navigator_is_immediate_temporal_successor_of_12( ):
+def test_navigator_is_immediate_temporal_successor_of_11( ):
    '''Each of ...
       * the first (anonymous) staff
       * the first (anonymous) voice
@@ -293,7 +293,7 @@ def test_navigator_is_immediate_temporal_successor_of_12( ):
    }'''   
 
 
-def test_navigator_is_immediate_temporal_successor_of_13( ):
+def test_navigator_is_immediate_temporal_successor_of_12( ):
    '''Everything at the beginning of the second staff temporally
       follows everything at the end of the first staff immediately.'''
 
@@ -369,7 +369,7 @@ def test_navigator_is_immediate_temporal_successor_of_13( ):
    }'''
 
 
-def test_navigator_is_immediate_temporal_successor_of_14( ):
+def test_navigator_is_immediate_temporal_successor_of_13( ):
    '''Everything at the beginning of the second sequential temporally 
       follows everything at the end of the first sequential immediately.'''
 

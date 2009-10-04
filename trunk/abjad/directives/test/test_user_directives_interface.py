@@ -70,7 +70,7 @@ def test_user_directives_interface_03( ):
    assert t.format == "before\n{\n\topening\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tclosing\n}\nafter"
 
 
-def test_user_directives_interface_05( ):
+def test_user_directives_interface_04( ):
    '''Multiple before, after, opening, closing format correctly on Container.'''
 
    t = Container(construct.scale(4))

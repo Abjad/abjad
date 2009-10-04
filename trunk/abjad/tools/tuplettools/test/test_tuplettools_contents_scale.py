@@ -71,15 +71,19 @@ def test_tuplettools_contents_scale_05( ):
    t = FixedDurationTuplet((2, 8), construct.scale(3))
    tuplettools.contents_scale(t, Rational(3, 2))
 
-   r'''c'8
-      d'8
-      e'8'''
+   r'''
+   \times 2/3 {
+           c'8.
+           d'8.
+           e'8.
+   }
+   '''
 
    assert check.wf(t)
-   assert t.format == "\tc'8\n\td'8\n\te'8"
+   assert t.format == "\\times 2/3 {\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_tuplettools_contents_scale_05( ):
+def test_tuplettools_contents_scale_06( ):
    '''Multiply tuplet by 2/3.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
@@ -95,7 +99,7 @@ def test_tuplettools_contents_scale_05( ):
    assert t.format == "\\times 8/9 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_contents_scale_06( ):
+def test_tuplettools_contents_scale_07( ):
    '''Multiply tuplet by 3/5.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
@@ -111,7 +115,7 @@ def test_tuplettools_contents_scale_06( ):
    assert t.format == "\\times 4/5 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_contents_scale_07( ):
+def test_tuplettools_contents_scale_08( ):
    '''Multiply undotted, unbracketted notes by 3/2;
       ie, add a single dot.'''
 
@@ -126,7 +130,7 @@ def test_tuplettools_contents_scale_07( ):
    assert t.format == "\tc'8.\n\td'8.\n\te'8."
 
 
-def test_tuplettools_contents_scale_08( ):
+def test_tuplettools_contents_scale_09( ):
    '''Binary target duration.'''
 
    t = FixedDurationTuplet((3, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
@@ -147,7 +151,7 @@ def test_tuplettools_contents_scale_08( ):
    assert t.format == "\\times 4/5 {\n\tc'8\n\tc'8.\n}"
 
 
-def test_tuplettools_contents_scale_09( ):
+def test_tuplettools_contents_scale_10( ):
    '''Nonbinary target duration.'''
 
    t = FixedDurationTuplet((4, 8), [Note(0, (2, 8)), Note(0, (3, 8))])

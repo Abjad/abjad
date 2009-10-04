@@ -14,7 +14,7 @@ def test_clonewp_by_duration_with_parentage_01( ):
    assert check.wf(new)
 
 
-def test_clonewp_by_duration_with_parentage01b( ):
+def test_clonewp_by_duration_with_parentage002( ):
    '''Container with rest.'''
    t = Container([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
    new = clonewp.by_duration_with_parentage(t, 0, (3, 16))
@@ -28,7 +28,7 @@ def test_clonewp_by_duration_with_parentage01b( ):
    assert check.wf(new)
 
 
-def test_clonewp_by_duration_with_parentage_02( ):
+def test_clonewp_by_duration_with_parentage_03( ):
    '''RigidMeasure.'''
    t = RigidMeasure((3, 8), Note(0, (1, 8)) * 3)
    new = clonewp.by_duration_with_parentage(t, 0, (3, 16))
@@ -41,7 +41,7 @@ def test_clonewp_by_duration_with_parentage_02( ):
    assert check.wf(new)
 
 
-def test_clonewp_by_duration_with_parentage_03( ):
+def test_clonewp_by_duration_with_parentage_04( ):
    '''Fixed duration tuplet.'''
    t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    new = clonewp.by_duration_with_parentage(t, 0, (1, 8))
@@ -55,7 +55,7 @@ def test_clonewp_by_duration_with_parentage_03( ):
    assert check.wf(new)
 
 
-def test_clonewp_by_duration_with_parentage_04( ):
+def test_clonewp_by_duration_with_parentage_05( ):
    '''Fixed multiplier tuplet.'''
    t = FixedMultiplierTuplet((2, 3), Note(0, (1, 8)) * 3)
    new = clonewp.by_duration_with_parentage(t, 0, (1, 8))
@@ -69,7 +69,7 @@ def test_clonewp_by_duration_with_parentage_04( ):
    assert check.wf(new)
 
 
-def test_clonewp_by_duration_with_parentage_05( ):
+def test_clonewp_by_duration_with_parentage_06( ):
    '''Voice.'''
    t = Voice(Note(0, (1, 8)) * 3)
    new = clonewp.by_duration_with_parentage(t, 0, (3, 16))
@@ -81,7 +81,7 @@ def test_clonewp_by_duration_with_parentage_05( ):
    assert check.wf(new)
 
 
-def test_clonewp_by_duration_with_parentage_06( ):
+def test_clonewp_by_duration_with_parentage_07( ):
    '''Staff.'''
    t = Staff(Note(0, (1, 8)) * 3)
    new = clonewp.by_duration_with_parentage(t, 0, (3, 16))
@@ -102,7 +102,7 @@ def test_clonewp_by_duration_with_parentage_06( ):
 ##     5. 'after', ie some value z such that t.duration.prolated < z
 
 
-def test_clonewp_by_duration_with_parentage_01( ):
+def test_clonewp_by_duration_with_parentage_08( ):
    '''Start-to-mid clean cut.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, 0, (1, 8))
@@ -111,7 +111,7 @@ def test_clonewp_by_duration_with_parentage_01( ):
    assert new.duration.written == Rational(1, 8)
 
 
-def test_clonewp_by_duration_with_parentage_02( ):
+def test_clonewp_by_duration_with_parentage_09( ):
    '''Start-to-mid jagged cut.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, 0, (1, 12))
@@ -121,7 +121,7 @@ def test_clonewp_by_duration_with_parentage_02( ):
    assert new.duration.prolated == Rational(1, 12)
   
 
-def test_clonewp_by_duration_with_parentage_03( ):
+def test_clonewp_by_duration_with_parentage_10( ):
    '''Mid-mid jagged cut.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, (1, 12), (2, 12)) 
@@ -131,7 +131,7 @@ def test_clonewp_by_duration_with_parentage_03( ):
    assert new.duration.prolated == Rational(1, 12)
 
 
-def test_clonewp_by_duration_with_parentage_04( ):
+def test_clonewp_by_duration_with_parentage_11( ):
    '''Mid-to-stop jagged cut.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, (1, 6), (1, 4))
@@ -146,7 +146,7 @@ def test_clonewp_by_duration_with_parentage_04( ):
    assert new.duration.prolated == Rational(1, 12)
   
 
-def test_clonewp_by_duration_with_parentage_05( ):
+def test_clonewp_by_duration_with_parentage_12( ):
    '''Start-to-after clean cut.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, 0, (1, 2))
@@ -154,7 +154,7 @@ def test_clonewp_by_duration_with_parentage_05( ):
    assert new.duration.written == Rational(1, 4)
 
 
-def test_clonewp_by_duration_with_parentage_06( ):
+def test_clonewp_by_duration_with_parentage_13( ):
    '''Mid-to-after clean cut.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, (1, 8), (1, 2))
@@ -162,7 +162,7 @@ def test_clonewp_by_duration_with_parentage_06( ):
    assert new.duration.written == Rational(1, 8)
 
 
-def test_clonewp_by_duration_with_parentage_07( ):
+def test_clonewp_by_duration_with_parentage_14( ):
    '''Mid-to-after jagged cut.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, (2, 12), (1, 2))
@@ -176,7 +176,7 @@ def test_clonewp_by_duration_with_parentage_07( ):
    assert new.duration.prolated == Rational(1, 12)
 
 
-def test_clonewp_by_duration_with_parentage_08( ):
+def test_clonewp_by_duration_with_parentage_15( ):
    '''Before-to-after.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, (-1, 4), (1, 2))
@@ -184,7 +184,7 @@ def test_clonewp_by_duration_with_parentage_08( ):
    assert new.duration.written == Rational(1, 4)
 
 
-def test_clonewp_by_duration_with_parentage_09( ):
+def test_clonewp_by_duration_with_parentage_16( ):
    '''Start-to-mid jagged.'''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, 0, (5, 24))
@@ -202,7 +202,7 @@ def test_clonewp_by_duration_with_parentage_09( ):
    assert parent[1].duration.written == Rational(1, 16)
 
 
-def test_clonewp_by_duration_with_parentage_10( ):
+def test_clonewp_by_duration_with_parentage_17( ):
    '''Start-to-mid jagged. '''
    t = Note(0, (1, 4))
    new = clonewp.by_duration_with_parentage(t, 0, (1, 5))

@@ -68,7 +68,7 @@ def test_rational_compare_06( ):
    assert py.test.raises(TypeError, "r > 'foo'")
 
 
-def test_rational_compare_06( ):
+def test_rational_compare_07( ):
    '''Greater-than-or-equal-to, #1.'''
    r = Rational(1)
    assert r >= Rational(1)
@@ -79,7 +79,7 @@ def test_rational_compare_06( ):
    assert py.test.raises(TypeError, "r >= 'foo'")
 
 
-def test_rational_compare_07( ):
+def test_rational_compare_08( ):
    '''Greater-than-or-equal-to, #2.'''
    r = Rational(1, 4)
    assert not r >= Rational(1)
@@ -90,7 +90,7 @@ def test_rational_compare_07( ):
    assert py.test.raises(TypeError, "r >= 'foo'")
 
 
-def test_rational_compare_08( ):
+def test_rational_compare_09( ):
    '''Less-than, #1.'''
    r = Rational(1)
    assert not r < Rational(1)
@@ -101,7 +101,7 @@ def test_rational_compare_08( ):
    assert py.test.raises(TypeError, "r < 'foo'")
 
 
-def test_rational_compare_09( ):
+def test_rational_compare_10( ):
    '''Less-than, #2.'''
    r = Rational(1, 4)
    assert r < Rational(1)
@@ -112,7 +112,7 @@ def test_rational_compare_09( ):
    assert py.test.raises(TypeError, "r < 'foo'")
 
 
-def test_rational_compare_10( ):
+def test_rational_compare_11( ):
    '''Less-than-or-equal-to, #1.'''
    r = Rational(1)
    assert r <= Rational(1)
@@ -123,7 +123,7 @@ def test_rational_compare_10( ):
    assert py.test.raises(TypeError, "r <= 'foo'")
 
 
-def test_rational_compare_11( ):
+def test_rational_compare_12( ):
    '''Less-than-or-equal-to, #2.'''
    r = Rational(1, 4)
    assert r <= Rational(1)

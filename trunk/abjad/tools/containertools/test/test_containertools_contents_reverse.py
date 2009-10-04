@@ -76,11 +76,11 @@ def test_containertools_contents_reverse_06( ):
    leaves_rev = reversed(t[0].leaves)
    containertools.contents_reverse(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
-   assert beam.components == tuple(t, )
+   assert beam.components == tuple([t])
    assert check.wf(t)
 
 
-def test_containertools_contents_reverse_06( ):
+def test_containertools_contents_reverse_07( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to its parent's contents.'''
 
@@ -97,7 +97,7 @@ def test_containertools_contents_reverse_06( ):
 
 ## TODO: Added check.wf( ) check for measure contiguity. ##
 
-def test_containertools_contents_reverse_07( ):
+def test_containertools_contents_reverse_08( ):
    '''Retrograde unable to apply because of measure contiguity.'''
 
    notes = construct.scale(2)
@@ -125,7 +125,7 @@ def test_containertools_contents_reverse_07( ):
 #      'containertools.contents_reverse(t)')
 
 
-def test_containertools_contents_reverse_10( ):
+def test_containertools_contents_reverse_09( ):
    '''Retrograde works on a depth-2 Container with 
       no parent and with spanners at all levels.'''
 

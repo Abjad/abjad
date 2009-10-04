@@ -81,7 +81,7 @@ def test_fuse_tie_chains_by_durations_04( ):
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'4 ~\n\tc'8\n\tc'8 ~\n\tc'4 ~\n\tc'8\n}"
 
 
-def test_fuse_tie_chains_by_durations_10( ):
+def test_fuse_tie_chains_by_durations_05( ):
    '''Steve Lehman's "Rai" slicing example.'''
    durations = [5, 7, 2, 11, 13, 5, 13, 3]
    durations = zip(durations, [16] * len(durations))

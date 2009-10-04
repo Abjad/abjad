@@ -58,13 +58,13 @@ def test_grace_parentage_04( ):
    assert t.grace.before._carrier is t
 
 
-#def test_grace_parentage_01( ):
+#def test_grace_parentage_05( ):
 #   '''Lone Grace containers _parent is None.'''
 #   t = Grace(construct.run(4))
 #   assert t._parent is None
 #
 #
-#def test_grace_parentage_02( ):
+#def test_grace_parentage_06( ):
 #   '''Grace containers in Leaf do have parent.'''
 #   t = Note(1, (1, 4))
 #   assert isinstance(t.grace.before, Grace)
@@ -72,7 +72,7 @@ def test_grace_parentage_04( ):
 #   assert t.grace.after._parent is t
 #
 #
-#def test_grace_parentage_03( ):
+#def test_grace_parentage_07( ):
 #   '''
 #   Grace containers in Leaf have their correct parent after assignment 
 #   via GraceInterface.
@@ -92,7 +92,7 @@ def test_grace_parentage_04( ):
 #   assert t.grace.before._parent is t
 #
 #
-#def test_grace_parentage_04( ):
+#def test_grace_parentage_08( ):
 #   '''
 #   Grace container in Leaf have their correct parent after Leaf casting.
 #   '''

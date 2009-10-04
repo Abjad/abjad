@@ -21,7 +21,7 @@ def test_skip_02( ):
 
 ### TEST CAST SKIP AS NOTE ###
 
-def test_skip_01( ):
+def test_skip_03( ):
    s = Skip((1, 8))
    d = s.duration.written
    n = Note(s)
@@ -33,7 +33,7 @@ def test_skip_01( ):
    assert n.duration.written == d
 
 
-def test_skip_02( ):
+def test_skip_04( ):
    t = FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
    d = t[0].duration.written
    Note(t[0])
@@ -42,7 +42,7 @@ def test_skip_02( ):
    assert t[0].duration.written == d
 
 
-def test_skip_03( ):
+def test_skip_05( ):
    v = Voice(Skip((1, 8)) * 3)
    d = v[0].duration.written
    Note(v[0])
@@ -51,7 +51,7 @@ def test_skip_03( ):
    assert v[0].duration.written == d
 
 
-def test_skip_04( ):
+def test_skip_06( ):
    t = Staff(Skip((1, 8)) * 3)
    d = t[0].duration.written
    Note(t[0])
@@ -60,7 +60,7 @@ def test_skip_04( ):
    assert t[0].duration.written == d
 
 
-def test_skip_05( ):
+def test_skip_07( ):
    '''Works fine when skip is beamed.'''
    t = Staff([Note(0, (1, 8)), Skip((1, 8)), Note(0, (1, 8))])
    Beam(t[ : ])
@@ -72,7 +72,7 @@ def test_skip_05( ):
 
 ### TEST CAST SKIP AS REST ###
 
-def test_skip_01( ):
+def test_skip_08( ):
    s = Skip((1, 8))
    d = s.duration.written
    r = Rest(s)
@@ -84,7 +84,7 @@ def test_skip_01( ):
    assert r.duration.written == d
 
 
-def test_skip_02( ):
+def test_skip_09( ):
    t = FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
    d = t[0].duration.written
    Rest(t[0])
@@ -93,7 +93,7 @@ def test_skip_02( ):
    assert t[0].duration.written == d
 
 
-def test_skip_03( ):
+def test_skip_10( ):
    v = Voice(Skip((1, 8)) * 3)
    d = v[0].duration.written
    Rest(v[0])
@@ -102,7 +102,7 @@ def test_skip_03( ):
    assert v[0].duration.written == d
 
 
-def test_skip_04( ):
+def test_skip_11( ):
    t = Staff(Skip((1, 8)) * 3)
    d = t[0].duration.written
    Rest(t[0])
@@ -111,7 +111,7 @@ def test_skip_04( ):
    assert t[0].duration.written == d
 
 
-def test_skip_05( ):
+def test_skip_12( ):
    '''Works fine when skip is beamed.'''
    t = Staff([Note(0, (1, 8)), Skip((1, 8)), Note(0, (1, 8))])
    Beam(t[ : ])
@@ -122,7 +122,7 @@ def test_skip_05( ):
 
 ### TEST CAST REST AS CHORD ###
 
-def test_skip_01( ):
+def test_skip_13( ):
    s = Skip((1, 8))
    d = s.duration.written
    c = Chord(s)
@@ -134,7 +134,7 @@ def test_skip_01( ):
    assert c.duration.written == d
 
 
-def test_skip_02( ):
+def test_skip_14( ):
    t = FixedDurationTuplet((2, 8), Skip((1, 8)) * 3)
    d = t[0].duration.written
    Chord(t[0])
@@ -143,7 +143,7 @@ def test_skip_02( ):
    assert t[0].duration.written == d
 
 
-def test_skip_03( ):
+def test_skip_15( ):
    v = Voice(Skip((1, 8)) * 3)
    d = v[0].duration.written
    Chord(v[0])
@@ -152,7 +152,7 @@ def test_skip_03( ):
    assert v[0].duration.written == d
 
 
-def test_skip_04( ):
+def test_skip_16( ):
    t = Staff(Skip((1, 8)) * 3)
    d = t[0].duration.written
    Chord(t[0])
@@ -161,7 +161,7 @@ def test_skip_04( ):
    assert t[0].duration.written == d
 
 
-def test_skip_05( ):
+def test_skip_17( ):
    '''Works fine when skip is beamed.'''
    t = Staff([Note(0, (1, 8)), Skip((1, 8)), Note(0, (1, 8))])
    Beam(t[ : ])

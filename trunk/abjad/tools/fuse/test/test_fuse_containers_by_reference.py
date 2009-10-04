@@ -126,7 +126,7 @@ def test_fuse_containers_by_reference_07( ):
 
 ## NESTED PARALLEL STRUCTURES ##
 
-def test_fuse_containers_by_reference_10( ):
+def test_fuse_containers_by_reference_09( ):
    '''Parallel voices within parallel staves within parallel
       staff groups within a single container fuse.containers_by_reference( ) correctly.'''
 
@@ -220,7 +220,7 @@ def test_fuse_containers_by_reference_10( ):
         >>
    }'''
 
-def test_fuse_containers_by_reference_11( ):
+def test_fuse_containers_by_reference_10( ):
    '''Nested parallel structures in sequence fuse.containers_by_reference( ) correctly.'''
 
    v1a = Voice(Note(0, (1,4))*2)

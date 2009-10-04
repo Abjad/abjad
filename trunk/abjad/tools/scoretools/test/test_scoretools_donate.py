@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_scoretools_donate_09( ):
+def test_scoretools_donate_01( ):
    '''Donate from multiple containers to tuplet.'''
 
    t = Voice(Container(construct.run(2)) * 3)

@@ -49,7 +49,7 @@ def test_navigator_bead_navigation_02( ):
    '''
 
 
-def test_navigator_bead_navigation_04( ):
+def test_navigator_bead_navigation_03( ):
    '''NextBead and prevBead work on simple Container.'''
    t = Container([Note(i, (1,8)) for i in range(4)])
    assert t[0]._navigator._nextBead is t[1]
@@ -73,7 +73,7 @@ def test_navigator_bead_navigation_04( ):
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_navigator_bead_navigation_05( ):
+#def test_navigator_bead_navigation_04( ):
 #   '''NextBead and prevBead work on simple Parallel.'''
 #   t = Container([Note(i, (1,8)) for i in range(4)])
 #   t.parallel = True
@@ -97,7 +97,7 @@ def test_navigator_bead_navigation_04( ):
 #   '''
 
 
-def test_navigator_bead_navigation_06( ):
+def test_navigator_bead_navigation_05( ):
    '''NextBead and prevBead work on FixedDurationTuplet.'''
    t = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3)])
    assert t[0]._navigator._nextBead is t[1]
@@ -119,7 +119,7 @@ def test_navigator_bead_navigation_06( ):
 
 ### LEVEL 1 NESTING ###
 
-def test_navigator_bead_navigation_10( ):
+def test_navigator_bead_navigation_06( ):
    '''NextBead and prevBead work on contiguous Containers inside a Voice.'''
    s1 = Container([Note(i, (1,8)) for i in range(4)])
    s2 = Container([Note(i, (1,8)) for i in range(4,8)])
@@ -152,7 +152,7 @@ def test_navigator_bead_navigation_10( ):
    '''
 
 
-def test_navigator_bead_navigation_11( ):
+def test_navigator_bead_navigation_07( ):
    '''NextBead and prevBead work on contiguous Tuplets inside a Voice.'''
    t1 = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3)])
    t2 = FixedDurationTuplet((2,8), [Note(i, (1,8)) for i in range(3,6)])
@@ -181,7 +181,7 @@ def test_navigator_bead_navigation_11( ):
    '''
 
 
-def test_navigator_bead_navigation_12( ):
+def test_navigator_bead_navigation_08( ):
    '''
    NextBead and prevBead do not go across contiguous anonymous Voices 
    inside a Staff.
@@ -210,7 +210,7 @@ def test_navigator_bead_navigation_12( ):
    '''
 
 
-def test_navigator_bead_navigation_13( ):
+def test_navigator_bead_navigation_09( ):
    '''NextBead and prevBead work on contiguous equally named Voices 
    inside a Staff.'''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -246,7 +246,7 @@ def test_navigator_bead_navigation_13( ):
    '''
 
 
-def test_navigator_bead_navigation_14( ):
+def test_navigator_bead_navigation_10( ):
    '''Beads do not connect through contiguous unequally named Voices; 
    these are, by definition, two different "threads".'''
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -286,7 +286,7 @@ def test_navigator_bead_navigation_14( ):
 
 ### LEVEL 2 NESTING ###
 
-def test_navigator_bead_navigation_20( ):
+def test_navigator_bead_navigation_11( ):
    '''Beads do NOT connect through equally named staves. '''
 
    v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -326,7 +326,7 @@ def test_navigator_bead_navigation_20( ):
    '''
 
 
-def test_navigator_bead_navigation_21( ):
+def test_navigator_bead_navigation_12( ):
    '''Beads do NOT connect through equally named Staves.''' 
 
    vl1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -391,7 +391,7 @@ def test_navigator_bead_navigation_21( ):
 ### DEPTH ASYMMETRICAL STRUCTURES ###
 ### Parentage asymmetrical structures work IF tautological ###
 
-def test_navigator_bead_navigation_30( ):
+def test_navigator_bead_navigation_13( ):
    '''nextBead and prevBead work on symmetrical 
       nested Containers in a Voice.'''
    s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -431,7 +431,7 @@ def test_navigator_bead_navigation_30( ):
    '''
 
 
-def test_navigator_bead_navigation_31( ):
+def test_navigator_bead_navigation_14( ):
    '''Tautological parentage asymmetries result in symmetric (balanced) 
       threaded parentage.  These work well.'''
    s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -471,7 +471,7 @@ def test_navigator_bead_navigation_31( ):
    '''
 
 
-def test_navigator_bead_navigation_32( ):
+def test_navigator_bead_navigation_15( ):
    '''Tautological parentage asymmetries result in symmetric (balanced) 
       threaded parentage.  These work well.'''
    s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -511,7 +511,7 @@ def test_navigator_bead_navigation_32( ):
    '''
 
 
-def test_navigator_bead_navigation_33( ):
+def test_navigator_bead_navigation_16( ):
    '''nextBead and prevBead DO work in sequence of alternating 
    Containers and Note.'''
    s1 = Container([Note(i, (1,8)) for i in range(2)])
@@ -538,7 +538,7 @@ def test_navigator_bead_navigation_33( ):
    '''
 
 
-def test_navigator_bead_navigation_34( ):
+def test_navigator_bead_navigation_17( ):
    '''nextBead and prevBead DO work in sequence of alternating 
    tuplets and Notes.'''
    t1 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(3)])
@@ -567,7 +567,7 @@ def test_navigator_bead_navigation_34( ):
    '''
 
 
-def test_navigator_bead_navigation_35( ):
+def test_navigator_bead_navigation_18( ):
    '''nextBead and prevBead  work on asymmetrically nested tuplets.'''
    tinner = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
@@ -590,7 +590,7 @@ def test_navigator_bead_navigation_35( ):
 
 ### Parentage asymmetrical structures DON'T work if NOT tautological ###
 
-def test_navigator_bead_navigation_36( ):
+def test_navigator_bead_navigation_19( ):
    '''NextBead returns None in asymmetric thread parentage structures.'''
    v1 = Voice([Note(i , (1,8)) for i in range(3)])
    n = Note(3, (1,8))
@@ -622,7 +622,7 @@ def test_navigator_bead_navigation_36( ):
 
 ### NON-CONTIGUOUS / BROKEN THREADS ###
 
-def test_navigator_bead_navigation_40( ):
+def test_navigator_bead_navigation_20( ):
    '''Non-contiguous / broken threads do not connect.'''
    ###
    ### do we want them to connect? probably not...
@@ -669,7 +669,7 @@ def test_navigator_bead_navigation_40( ):
 
 ### TAUTOLOGICAL NESTING ###
 
-def test_navigator_bead_navigation_50( ):
+def test_navigator_bead_navigation_21( ):
    '''
    nextBead and prevBead do not work on nested anonymous Voices.
    '''
@@ -695,7 +695,7 @@ def test_navigator_bead_navigation_50( ):
    '''
 
 
-def test_navigator_bead_navigation_50( ):
+def test_navigator_bead_navigation_22( ):
    '''nextBead and prevBead do not work on nested anonymous Voices.'''
    vin = Voice([Note(i, (1,8)) for i in range(1,4)])
    vout = Voice([Note(0, (1,8)), vin])
@@ -720,7 +720,7 @@ def test_navigator_bead_navigation_50( ):
 
 
 
-def test_navigator_bead_navigation_51( ):
+def test_navigator_bead_navigation_23( ):
    '''nextBead and prevBead work on nested equally named Voices.'''
    vin = Voice([Note(i, (1,8)) for i in range(3)])
    vin.name = 'myvoice'
@@ -746,7 +746,7 @@ def test_navigator_bead_navigation_51( ):
    '''
 
 
-def test_navigator_bead_navigation_51( ):
+def test_navigator_bead_navigation_24( ):
    '''nextBead and prevBead work on nested equally named Voices.'''
    vin = Voice([Note(i, (1,8)) for i in range(1,4)])
    vin.name = 'myvoice'
@@ -772,7 +772,7 @@ def test_navigator_bead_navigation_51( ):
    '''
 
 
-def test_navigator_bead_navigation_52( ):
+def test_navigator_bead_navigation_25( ):
    '''NextBead return None on nested *differently* named Voices.
       This is what we want because these are NOT tautologies.''' 
    vin = Voice([Note(i, (1,8)) for i in range(3)])
@@ -799,7 +799,7 @@ def test_navigator_bead_navigation_52( ):
    '''
 
 
-def test_navigator_bead_navigation_52( ):
+def test_navigator_bead_navigation_26( ):
    '''NextBead return None on nested *differently* named Voices.
       This is what we want because these are NOT tautologies.''' 
    vin = Voice([Note(i, (1,8)) for i in range(1, 4)])

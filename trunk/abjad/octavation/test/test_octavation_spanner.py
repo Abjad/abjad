@@ -143,7 +143,7 @@ def test_octavation_spanner_06( ):
            g'8
    }'''
 
-#def test_octavation_spanner_01( ):
+#def test_octavation_spanner_07( ):
 #   t = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Octavation(t[ : 4], 1)
 #   assert check.wf(t)
@@ -166,7 +166,7 @@ def test_octavation_spanner_06( ):
 #   '''
 #
 #
-#def test_octavation_spanner_02( ):
+#def test_octavation_spanner_08( ):
 #   t = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Octavation(t[ : 4], 1, 2)
 #   assert check.wf(t)
@@ -189,7 +189,7 @@ def test_octavation_spanner_06( ):
 #   '''
 #
 #
-#def test_octavation_spanner_03( ):
+#def test_octavation_spanner_09( ):
 #   '''One-note octavation changes are allowed.'''
 #   t = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Octavation(t[0], 1)
@@ -213,7 +213,7 @@ def test_octavation_spanner_06( ):
 #   '''
 #
 #
-#def test_octavation_spanner_04( ):
+#def test_octavation_spanner_10( ):
 #   '''Adjacent one-note octavation changes are allowed;
 #      TODO - check for back-to-back set-octavation at format-
 #             time and compress to a single set-octavation.'''
@@ -244,7 +244,7 @@ def test_octavation_spanner_06( ):
 #   '''
 #
 #
-#def test_octavation_spanner_05( ):
+#def test_octavation_spanner_11( ):
 #   '''Overlapping octavation spanners are allowed but not well-formed.'''
 #   t = Staff([Note(n, (1, 8)) for n in range(8)])
 #   Octavation(t[ : 4], 1)

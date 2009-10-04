@@ -111,7 +111,7 @@ def test_beam_spanner_fracture_06( ):
    old = list(t.spanners.contained)[0]
    old.fracture(0, 'both')
    assert len(t.spanners.contained) == 2
-   spanners = t.spanners.contained
+   spanners = list(t.spanners.contained)
    assert len(spanners[0]) == 1
    assert len(spanners[1]) == 4
    assert spanners[0] != spanners[1] 

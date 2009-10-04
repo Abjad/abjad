@@ -47,7 +47,7 @@ def test_iterate_namesakes_backwards_01( ):
    assert staves[1].name == 'staff 1'
 
 
-def test_iterate_namesakes_backwards_02( ): 
+def test_iterate_namesakes_backwards_02( ):
 
    container = Container(Staff(construct.run(2)) * 2)
    container.parallel = True

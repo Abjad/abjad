@@ -38,7 +38,7 @@ def test_mathtools_fragment_03( ):
 
 ## ERRORS ##
 
-def test_mathtools_fragment_05( ):
+def test_mathtools_fragment_04( ):
    '''Raise ValueError when the sum of the fragments is not smaller 
    than the total to be fragmented.'''
 

@@ -21,7 +21,7 @@ def test_mathtools_least_power_of_two_greater_equal_01( ):
 
    
 
-def test_mathtools_least_power_of_two_greater_equal_02( ): 
+def test_mathtools_least_power_of_two_greater_equal_02( ):
    '''Raise TypeError on nonnumeric n.
       Raise ValueError on nonpositive n.'''
 

@@ -91,7 +91,7 @@ def test_grace_06( ):
    }'''
 
 
-def test_grace_10( ):
+def test_grace_07( ):
    '''Grace containers can be appended.'''
 
    t = Grace(construct.run(2))
@@ -101,7 +101,7 @@ def test_grace_10( ):
    assert t[-1] is n
 
 
-def test_grace_11( ):
+def test_grace_08( ):
    '''Grace containers can be extended.'''
 
    t = Grace(construct.run(2))

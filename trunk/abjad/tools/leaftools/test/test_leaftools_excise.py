@@ -468,7 +468,7 @@ def test_leaftools_excise_09( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_24( ):
+def test_leaftools_excise_10( ):
    '''Excise voice.'''
 
    t = Voice(Note(0, (1, 4)) * 6)
@@ -483,7 +483,7 @@ def test_leaftools_excise_24( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_25( ):
+def test_leaftools_excise_11( ):
    '''Staff.'''
    t = Staff(Note(0, (1, 4)) * 6)
    leaftools.excise(t.leaves[0])
@@ -497,7 +497,7 @@ def test_leaftools_excise_25( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_26( ):
+def test_leaftools_excise_12( ):
    '''Container.'''
 
    t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
@@ -515,7 +515,7 @@ def test_leaftools_excise_26( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_27( ):
+def test_leaftools_excise_13( ):
    '''Container.'''
 
    t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
@@ -533,7 +533,7 @@ def test_leaftools_excise_27( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_28( ):
+def test_leaftools_excise_14( ):
    '''Excise voice.'''
 
    t = Voice(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
@@ -551,7 +551,7 @@ def test_leaftools_excise_28( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_29( ):
+def test_leaftools_excise_15( ):
    '''Excise staff.'''
 
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
@@ -569,7 +569,7 @@ def test_leaftools_excise_29( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_30( ):
+def test_leaftools_excise_16( ):
    '''Excise container.'''
 
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
@@ -587,7 +587,7 @@ def test_leaftools_excise_30( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_31( ):
+def test_leaftools_excise_17( ):
    '''Excise container.'''
 
    t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
@@ -605,7 +605,7 @@ def test_leaftools_excise_31( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_32( ):
+def test_leaftools_excise_18( ):
    '''Excise voice.'''
 
    t = Voice(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
@@ -623,7 +623,7 @@ def test_leaftools_excise_32( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_33( ):
+def test_leaftools_excise_19( ):
    '''Excise staff.'''
 
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
@@ -641,7 +641,7 @@ def test_leaftools_excise_33( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_09( ):
+def test_leaftools_excise_20( ):
    '''Excise singly-nested singleton.'''
 
    t = FixedDurationTuplet((2, 4), [
@@ -659,7 +659,7 @@ def test_leaftools_excise_09( ):
    assert t[0].duration.prolated == Rational(1, 6)
 
 
-def test_leaftools_excise_10( ):
+def test_leaftools_excise_21( ):
    '''Excise doubly-nested singleton.'''
 
    t = FixedDurationTuplet((2, 4), [
@@ -678,7 +678,7 @@ def test_leaftools_excise_10( ):
    assert t[0].duration.prolated == Rational(1, 6)
 
 
-def test_leaftools_excise_11( ):
+def test_leaftools_excise_22( ):
    '''Doubly-nested singleton.'''
 
    t = FixedDurationTuplet((2, 4), [
@@ -729,7 +729,7 @@ def test_leaftools_excise_11( ):
    '''
 
 
-def test_leaftools_excise_12( ):
+def test_leaftools_excise_23( ):
    '''Excise nonnested fixed-duration tuplet.'''
 
    t = FixedDurationTuplet((4, 4), Note(0, (1, 4)) * 5)
@@ -743,7 +743,7 @@ def test_leaftools_excise_12( ):
    assert t[0].duration.prolated == Rational(1, 5)
 
 
-def test_leaftools_excise_13( ):
+def test_leaftools_excise_24( ):
    '''Nonnested fixed-multiplier tuplet.'''
 
    t = FixedMultiplierTuplet((4, 5), Note(0, (1, 4)) * 5)
@@ -757,7 +757,7 @@ def test_leaftools_excise_13( ):
    assert t[0].duration.prolated == Rational(1, 5)
 
 
-def test_leaftools_excise_14( ):
+def test_leaftools_excise_25( ):
    '''Excise nested fixed-duration tuplet.'''
 
    t = FixedDurationTuplet((2,2), [Note(0, (1,2)), Note(1, (1,2)), \
@@ -772,7 +772,7 @@ def test_leaftools_excise_14( ):
    assert t[2].duration.prolated == Rational(2, 9)
 
 
-def test_leaftools_excise_15( ):
+def test_leaftools_excise_26( ):
    '''Excise nested fixed-multiplier tuplet.'''
 
    t = FixedMultiplierTuplet((2,3), [Note(0, (1,2)), Note(1, (1,2)), \
