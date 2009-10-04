@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_cast_skip_01( ):
+def test_rest_cast_as_skip_01( ):
    r = Rest((1, 8))
    d = r.duration.written
    s = Skip(r)
@@ -13,7 +13,7 @@ def test_cast_skip_01( ):
    assert s.duration.written == d
 
 
-def test_cast_skip_02( ):
+def test_rest_cast_as_skip_02( ):
    t = FixedDurationTuplet((2, 8), Rest((1, 8)) * 3)
    d = t[0].duration.written
    Skip(t[0])
@@ -22,7 +22,7 @@ def test_cast_skip_02( ):
    assert t[0].duration.written == d
 
 
-def test_cast_skip_03( ):
+def test_rest_cast_as_skip_03( ):
    v = Voice(Rest((1, 8)) * 3)
    d = v[0].duration.written
    Skip(v[0])
@@ -31,7 +31,7 @@ def test_cast_skip_03( ):
    assert v[0].duration.written == d
 
 
-def test_cast_skip_04( ):
+def test_rest_cast_as_skip_04( ):
    t = Staff(Rest((1, 8)) * 3)
    d = t[0].duration.written
    Skip(t[0])
@@ -40,7 +40,7 @@ def test_cast_skip_04( ):
    assert t[0].duration.written == d
 
 
-def test_cast_skip_05( ):
+def test_rest_cast_as_skip_05( ):
    '''Works fine when rest is beamed.'''
    t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
    Beam(t[ : ])

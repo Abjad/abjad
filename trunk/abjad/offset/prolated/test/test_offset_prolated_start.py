@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_offset_prolated_01( ):
+def test_offset_prolated_start_01( ):
    '''Prolated offsets works on threaded sequential voices.'''
    t = Staff([Voice(construct.run(4)), Voice(construct.run(4))])
    t[0].name = t[1].name = 'voice'
@@ -10,7 +10,7 @@ def test_offset_prolated_01( ):
       assert x.offset.prolated.start == i * Rational(4, 8)
 
 
-def test_offset_prolated_02( ):
+def test_offset_prolated_start_02( ):
    '''Prolated offset does NOT go across sequential staves.'''
    t = Container([Staff(construct.run(4)), Staff(construct.run(4))])
    t[0].name = t[1].name = 'staff'
@@ -18,14 +18,14 @@ def test_offset_prolated_02( ):
    assert t[1].offset.prolated.start == Rational(1, 2)
 
 
-def test_offset_prolated_03( ):
+def test_offset_prolated_start_03( ):
    '''Prolated offsets follows strict threads.'''
    t = Staff([Voice(construct.run(4)), Voice(construct.run(4))])
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(4, 8)
 
 
-def test_offset_prolated_04( ):
+def test_offset_prolated_start_04( ):
    '''Prolated offsets works on sequential tuplets.'''
    t = Voice(FixedDurationTuplet((1, 4), construct.run(3)) * 3)
    assert t[0].offset.prolated.start == 0
@@ -33,7 +33,7 @@ def test_offset_prolated_04( ):
    assert t[2].offset.prolated.start == 2 * Rational(1, 4)
 
 
-def test_offset_prolated_05( ):
+def test_offset_prolated_start_05( ):
    '''Prolated offsets work on tuplets between notes.'''
    tp = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
@@ -42,7 +42,7 @@ def test_offset_prolated_05( ):
    assert t[2].offset.prolated.start == Rational(3, 8)
 
 
-def test_offset_prolated_06( ):
+def test_offset_prolated_start_06( ):
    '''Prolated offsets work on nested tuplets.'''
    tp = FixedDurationTuplet((1, 4), construct.run(3))
    t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
@@ -53,7 +53,7 @@ def test_offset_prolated_06( ):
 
 ### nested contexts ###
 
-def test_offset_prolated_10( ):
+def test_offset_prolated_start_10( ):
    '''Prolated offsets work on nested contexts.'''
    vin = Voice(construct.run(4))
    vout = Voice([Note(0, (1, 8)), vin])
@@ -63,7 +63,7 @@ def test_offset_prolated_10( ):
    assert vout.offset.prolated.start == Rational(1, 8)
    
 
-def test_offset_prolated_12( ):
+def test_offset_prolated_start_12( ):
    '''Prolated offsets work on nested parallel contexts.'''
    v1 = Voice(construct.run(4))
    v2 = Voice(construct.run(4))
@@ -73,7 +73,7 @@ def test_offset_prolated_12( ):
    assert t[1].offset.prolated.start == 0
 
 
-def test_offset_prolated_13( ):
+def test_offset_prolated_start_13( ):
    '''Prolated offsets works in nested parallel and sequential 
    contexts.'''
    v1 = Voice(construct.run(4))

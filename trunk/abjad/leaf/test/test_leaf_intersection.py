@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_intersection_01( ):
+def test_leaf_intersection_01( ):
    '''Chords completely disjunct;
       empty set returned as skip.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -12,7 +12,7 @@ def test_intersection_01( ):
    assert t is not u is not v
 
 
-def test_intersection_02( ):
+def test_leaf_intersection_02( ):
    '''Partially intersecting chords;
       multiple shared pitches return as chord.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -23,7 +23,7 @@ def test_intersection_02( ):
    assert t is not u is not v
 
 
-def test_intersection_03( ):
+def test_leaf_intersection_03( ):
    '''Wholly intersecting chords;
       shared pitches appear only once.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -34,7 +34,7 @@ def test_intersection_03( ):
    assert t is not u is not v
    
 
-def test_intersection_04( ):
+def test_leaf_intersection_04( ):
    '''Enharmonically disjunct;
       enharmonic equivalents do not appear.'''
    t = Chord([0, ('cs', 4), 2], (1, 4))
@@ -45,7 +45,7 @@ def test_intersection_04( ):
    assert t is not u is not v
 
 
-def test_intersection_05( ):
+def test_leaf_intersection_05( ):
    '''Duration inequality;
       noncommutative union takes from LHS.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -57,7 +57,7 @@ def test_intersection_05( ):
    assert t is not u is not v
 
 
-def test_intersection_06( ):
+def test_leaf_intersection_06( ):
    '''Duration inequality;
       noncommutative union takes from LHS.'''
    t = Chord([0, 1, 2], (1, 8))
@@ -69,7 +69,7 @@ def test_intersection_06( ):
    assert t is not u is not v
 
 
-def test_intersection_07( ):
+def test_leaf_intersection_07( ):
    '''Partially intersecting chords;
       one shared pitch returns as note.'''
    t = Chord([0, 1, 2], (1, 4))

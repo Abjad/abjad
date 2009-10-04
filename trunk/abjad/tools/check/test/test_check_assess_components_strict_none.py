@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_assess_components_strict_none_01( ):
+def test_check_assess_components_strict_none_01( ):
    '''True for strictly contiguous leaves in voice.
       False for other time orderings of leaves in voice.'''
 
@@ -27,7 +27,7 @@ def test_assess_components_strict_none_01( ):
    assert not check.assess_components(components, contiguity = 'strict')
 
 
-def test_assess_components_strict_none_02( ):
+def test_check_assess_components_strict_none_02( ):
    '''True for strictly contiguous components.'''
 
    t = Voice(Container(construct.run(2)) * 2)
@@ -53,7 +53,7 @@ def test_assess_components_strict_none_02( ):
    assert check.assess_components(t.leaves, contiguity = 'strict')
 
 
-def test_assess_components_strict_none_03( ):
+def test_check_assess_components_strict_none_03( ):
    '''Unicorporated leaves can not be evaluated for contiguity.'''
 
    t = construct.scale(4)
@@ -63,7 +63,7 @@ def test_assess_components_strict_none_03( ):
       allow_orphans = False)
 
 
-def test_assess_components_strict_none_04( ):
+def test_check_assess_components_strict_none_04( ):
    '''Empty list returns True.'''
 
    t = [ ]

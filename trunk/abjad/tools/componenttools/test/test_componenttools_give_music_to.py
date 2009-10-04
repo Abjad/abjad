@@ -3,7 +3,7 @@ from abjad.tools.componenttools.give_music_to import _give_music_to
 import py.test
 
 
-def test_componenttools_give_spanend_music_to_01( ):
+def test_componenttools_give_music_to_01( ):
    '''Give spanned music from donor to recipient.
       Helper is not composer-safe and results here in bad spanners.'''
 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanners_01( ):
+def test_container_spanner_clear_01( ):
    '''Clear one spanner attaching to container.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -46,7 +46,7 @@ def test_spanners_01( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
-def test_clear_02( ):
+def test_container_spanner_clear_02( ):
    '''Clear multiple spanners attaaching to container.'''
 
    t = Voice(Container(construct.run(2)) * 3)

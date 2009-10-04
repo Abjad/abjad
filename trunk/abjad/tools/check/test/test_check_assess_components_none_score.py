@@ -2,7 +2,7 @@ from abjad.component.component import _Component
 from abjad import *
 
 
-def test_assess_components_none_score_01( ):
+def test_check_assess_components_none_score_01( ):
    '''All components here in the same score.'''
    
    t = Voice(Container(construct.run(2)) * 2)
@@ -27,7 +27,7 @@ def test_assess_components_none_score_01( ):
    assert check.assess_components(list(iterate.naive(t, _Component)), share = 'score')
 
 
-def test_assess_components_none_score_02( ):
+def test_check_assess_components_none_score_02( ):
    '''Components here divide between two different scores.'''
 
    t1 = Voice(construct.scale(4))
@@ -45,13 +45,13 @@ def test_assess_components_none_score_02( ):
    assert not check.assess_components(t1.leaves + t2.leaves, share = 'score')
 
 
-def test_assess_components_none_score_03( ):
+def test_check_assess_components_none_score_03( ):
    '''Unincorporated component returns True.'''
 
    assert check.assess_components([Note(0, (1, 8))], share = 'score')
 
 
-def test_assess_components_none_score_04( ):
+def test_check_assess_components_none_score_04( ):
    '''Empty list returns True.'''
 
    assert check.assess_components([ ], share = 'score')

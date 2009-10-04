@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_assess_components_none_parent_01( ):
+def test_check_assess_components_none_parent_01( ):
    
    t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
@@ -31,7 +31,7 @@ def test_assess_components_none_parent_01( ):
    assert not check.assess_components(list(iterate.naive(t, _Component)), share = 'parent')
 
 
-def test_assess_components_none_parent_02( ):
+def test_check_assess_components_none_parent_02( ):
 
    t1 = Voice(construct.scale(4))
    t2 = Voice(construct.scale(4))
@@ -52,14 +52,14 @@ def test_assess_components_none_parent_02( ):
    assert not check.assess_components(t1.leaves + t2.leaves, share = 'parent')
 
 
-def test_assess_components_none_parent_03( ):
+def test_check_assess_components_none_parent_03( ):
    '''Nonlist input raises TypeError.'''
 
    assert py.test.raises(TypeError, 
       'check.assess_components(Note(0, (1, 8)))', share = 'parent')
 
 
-def test_assess_components_none_parent_04( ):
+def test_check_assess_components_none_parent_04( ):
    '''Empty list returns True.'''
 
    assert check.assess_components([ ], share = 'parent')

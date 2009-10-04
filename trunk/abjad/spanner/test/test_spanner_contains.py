@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_contains_01( ):
+def test_spanner_contains_01( ):
    '''Spanner containment tests components.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -28,7 +28,7 @@ def test_contains_01( ):
    assert t[1][1] not in p
 
 
-def test_contains_02( ):
+def test_spanner_contains_02( ):
    '''Spanner containment tests components.'''
 
    t = Voice(Container(construct.run(2)) * 3)

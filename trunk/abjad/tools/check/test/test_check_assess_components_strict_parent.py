@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_assess_components_strict_parent_01( ):
+def test_check_assess_components_strict_parent_01( ):
    '''True for strictly contiguous leaves in voice.
       False for other time orderings of leaves in voice.'''
 
@@ -31,7 +31,7 @@ def test_assess_components_strict_parent_01( ):
       contiguity = 'strict', share = 'parent')
 
 
-def test_assess_components_strict_parent_02( ):
+def test_check_assess_components_strict_parent_02( ):
    '''True for unincorporated components when orphans allowed.
       False to unincorporated components when orphans not allowed.'''
 
@@ -62,7 +62,7 @@ def test_assess_components_strict_parent_02( ):
       contiguity = 'strict', share = 'parent')
 
 
-def test_assess_components_strict_parent_03( ):
+def test_check_assess_components_strict_parent_03( ):
    '''True for orphan leaves when allow_orphans is True.
       False for orphan leaves when allow_orphans is False.'''
 
@@ -73,7 +73,7 @@ def test_assess_components_strict_parent_03( ):
       contiguity = 'strict', share = 'parent')
 
 
-def test_assess_components_strict_parent_04( ):
+def test_check_assess_components_strict_parent_04( ):
    '''Empty list returns True.'''
 
    t = [ ]

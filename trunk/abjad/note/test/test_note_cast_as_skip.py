@@ -2,7 +2,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_cast_skip_01( ):
+def test_note_cast_as_skip_01( ):
    n = Note(2, (1, 8))
    d = n.duration.written
    s = Skip(n)
@@ -15,7 +15,7 @@ def test_cast_skip_01( ):
    assert s.duration.written == d
 
 
-def test_cast_skip_02( ):
+def test_note_cast_as_skip_02( ):
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    d = t[0].duration.written
    Skip(t[0])
@@ -25,7 +25,7 @@ def test_cast_skip_02( ):
    assert t[0].duration.written == d
 
 
-def test_cast_skip_03( ):
+def test_note_cast_as_skip_03( ):
    v = Voice(Note(0, (1, 8)) * 3)
    d = v[0].duration.written
    Skip(v[0])
@@ -35,7 +35,7 @@ def test_cast_skip_03( ):
    assert v[0].duration.written == d
 
 
-def test_cast_skip_04( ):
+def test_note_cast_as_skip_04( ):
    t = Staff(Note(0, (1, 8)) * 3)
    d = t[0].duration.written
    Skip(t[0])
@@ -45,7 +45,7 @@ def test_cast_skip_04( ):
    assert t[0].duration.written == d
 
 
-def test_cast_skip_05( ):
+def test_note_cast_as_skip_05( ):
    '''Works fine when note is beamed.'''
    t = Staff(Note(0, (1, 8)) * 3)
    Beam(t[ : ])

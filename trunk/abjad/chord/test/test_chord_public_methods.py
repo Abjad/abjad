@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chord_append_01( ):
+def test_chord_public_methods_01( ):
    '''Chords can be appended noteheads. Noteheads are sorted.'''
    t = Chord([2, 4], (1,4))
    t.append(Pitch(3))
@@ -12,7 +12,7 @@ def test_chord_append_01( ):
    assert t.format == "<c' d' ef' e'>4"
 
 
-def test_chord_copy_01( ):
+def test_chord_public_methods_01( ):
    '''Chords can be copied. Python ids differ.'''
    t = Chord([2, 4], (1, 4))
    new = clone.fracture([t])[0]
@@ -23,7 +23,7 @@ def test_chord_copy_01( ):
    assert id(t) != id(new)
 
 
-def test_chord_extend_01( ):
+def test_chord_public_methods_01( ):
    '''Chords can be extended. Noteheads are sorted.'''
    t = Chord([2, 4], (1,4))
    t.extend([Pitch(3)])
@@ -34,7 +34,7 @@ def test_chord_extend_01( ):
    assert t.format == "<c' cs' d' ef' e'>4"
 
 
-def test_chord_pop_01( ):
+def test_chord_public_methods_01( ):
    '''Lone chords can pop noteheads by index.'''
    t = Chord([2, 4], (1, 4))
    notehead = t.pop( )
@@ -43,7 +43,7 @@ def test_chord_pop_01( ):
    assert t.pitches[0].number == 2
    
 
-def test_chord_remove_01( ):
+def test_chord_public_methods_01( ):
    '''Lone chords can remove noteheads by reference.'''
    t = Chord([2, 4], (1, 4))
    t.remove(t[0])
@@ -51,7 +51,7 @@ def test_chord_remove_01( ):
    assert t.pitches[0].number == 4
 
 
-def test_chord_remove_02( ):
+def test_chord_public_methods_02( ):
    '''Lone chords can remove noteheads by reference.'''
    t = Chord([2, 4], (1, 4))
    t.remove(t[1])

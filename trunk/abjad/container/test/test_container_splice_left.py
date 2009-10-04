@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_container_splice_01( ):
+def test_container_splice_left_01( ):
    '''Splice tuplet left of tuplet.'''
 
    t = Voice([FixedDurationTuplet((2, 8), construct.scale(3))])
@@ -26,7 +26,7 @@ def test_container_splice_01( ):
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8 ]\n\t}\n}"
 
 
-def test_container_splice_02( ):
+def test_container_splice_left_02( ):
    '''Splice left of container with underspanners.'''
 
    t = Voice(Container(construct.run(2)) * 2)

@@ -140,7 +140,7 @@ def test_container_add_13( ):
 
 ### iadd ###
 
-def test_container_iadd_01( ):
+def test_container_add_01( ):
    '''In place add makes a copy of right hand operand only.'''
    v1 = Voice(Note(1, (1, 4))*4)
    v2 = Voice(Note(2, (1, 4))*4)

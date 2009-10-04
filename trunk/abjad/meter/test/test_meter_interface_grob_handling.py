@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_meter_grob_handling_01( ):
+def test_meter_interface_grob_handling_01( ):
    '''Transparent meter on staff.'''
 
    t = Staff(construct.scale(4))
@@ -21,7 +21,7 @@ def test_meter_grob_handling_01( ):
    assert t.format == "\\new Staff \\with {\n\t\\override TimeSignature #'transparent = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_meter_grob_handling_02( ):
+def test_meter_interface_grob_handling_02( ):
    '''(Nonpromoted) transparent meter on measure.'''
 
    t = RigidMeasure((4, 8), construct.scale(4))
@@ -42,7 +42,7 @@ def test_meter_grob_handling_02( ):
    assert t.format == "{\n\t\\override TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TimeSignature #'transparent\n}"
 
 
-def test_meter_grob_handling_03( ):
+def test_meter_interface_grob_handling_03( ):
    '''Promoted transarent meter on measure.'''
 
    t = RigidMeasure((4, 8), construct.scale(4))
@@ -65,7 +65,7 @@ def test_meter_grob_handling_03( ):
    assert t.format == "{\n\t\\override Staff.TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'transparent\n}"
 
 
-def test_meter_grob_handling_04( ):
+def test_meter_interface_grob_handling_04( ):
    '''Clear all meter overrides.'''
 
    t = Note(0, (1, 4))

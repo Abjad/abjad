@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_comments_clear_01( ):
+def test_user_comments_clear_01( ):
    '''Clear context comments.'''
 
    t = Voice(construct.scale(4))
@@ -41,7 +41,7 @@ def test_comments_clear_01( ):
    assert t.format == "\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}"
 
 
-def test_comments_clear_02( ):
+def test_user_comments_clear_02( ):
    '''Clear leaf comments.'''
 
    t = Note(0, (1, 8))

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_grob_override_01( ):
+def test_container_grob_override_01( ):
    '''Noncontext containers bracket grob overrides at opening and closing.'''
 
    t = Container(construct.scale(4))

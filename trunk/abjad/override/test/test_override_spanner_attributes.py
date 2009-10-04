@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_override_public_01( ):
+def test_override_spanner_attributes_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    q = Override(t[0], 'Beam', 'positions', (8, 8))
 
@@ -25,7 +25,7 @@ def test_override_public_01( ):
    assert t.format == "\\new Staff {\n\t\\once \\override Beam #'positions = #'(8 . 8)\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
-def test_override_public_02( ):
+def test_override_spanner_attributes_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    q = Override(t[ : 4], 'Beam', 'positions', (8, 8))
 

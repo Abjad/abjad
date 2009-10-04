@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_get_duration_crossing_components_01( ):
+def test_componenttools_get_duration_crossers_01( ):
    '''Staff and first measure cross offset at 1/8.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
@@ -21,7 +21,7 @@ def test_componenttools_get_duration_crossing_components_01( ):
    assert result == [t, t[0]]
 
 
-def test_componenttools_get_duration_crossing_components_02( ):
+def test_componenttools_get_duration_crossers_02( ):
    '''Staff, first measure and first note cross 1/16.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
@@ -41,7 +41,7 @@ def test_componenttools_get_duration_crossing_components_02( ):
    assert result == [t, t[0], t[0][0]]
 
 
-def test_componenttools_get_duration_crossing_components_03( ):
+def test_componenttools_get_duration_crossers_03( ):
    '''Nothing crosses 0.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
@@ -61,7 +61,7 @@ def test_componenttools_get_duration_crossing_components_03( ):
    assert result == [ ]
 
 
-def test_componenttools_get_duration_crossing_components_04( ):
+def test_componenttools_get_duration_crossers_04( ):
    '''Nothing crosses 100.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)

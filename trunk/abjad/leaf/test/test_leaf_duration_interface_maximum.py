@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_leaf_duartion_interface_maximum_01( ):
+def test_leaf_duration_interface_maximum_01( ):
    '''Leaf durations can go up to 'maxima...': duration < (16, 1) '''
    t = Note(1, 2)
    assert t.format == "cs'\\breve"

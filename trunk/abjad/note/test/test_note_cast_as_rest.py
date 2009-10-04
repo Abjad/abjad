@@ -2,7 +2,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_cast_rest_01( ):
+def test_note_cast_as_rest_01( ):
    n = Note(2, (1, 8))
    d = n.duration.written
    r = Rest(n)
@@ -15,7 +15,7 @@ def test_cast_rest_01( ):
    assert r.duration.written == d
 
 
-def test_cast_rest_02( ):
+def test_note_cast_as_rest_02( ):
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    d = t[0].duration.written
    Rest(t[0])
@@ -25,7 +25,7 @@ def test_cast_rest_02( ):
    assert t[0].duration.written == d
 
 
-def test_cast_rest_03( ):
+def test_note_cast_as_rest_03( ):
    v = Voice(Note(0, (1, 8)) * 3)
    d = v[0].duration.written
    Rest(v[0])
@@ -35,7 +35,7 @@ def test_cast_rest_03( ):
    assert v[0].duration.written == d
 
 
-def test_cast_rest_04( ):
+def test_note_cast_as_rest_04( ):
    t = Staff(Note(0, (1, 8)) * 3)
    d = t[0].duration.written
    Rest(t[0])
@@ -45,7 +45,7 @@ def test_cast_rest_04( ):
    assert t[0].duration.written == d
 
 
-def test_cast_rest_05( ):
+def test_note_cast_as_rest_05( ):
    '''Works fine when note is beamed.'''
    t = Staff(Note(0, (1, 8)) * 3)
    Beam(t[ : ])
@@ -54,7 +54,7 @@ def test_cast_rest_05( ):
    assert t[0].parentage.parent is t
 
 
-def test_cast_rest_06( ):
+def test_note_cast_as_rest_06( ):
    '''Spanner interface references emerge correctly from casting.'''
    t = Note(0, (1, 4))
    r = Rest(t)

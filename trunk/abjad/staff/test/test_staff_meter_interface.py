@@ -3,13 +3,13 @@ from abjad.meter import Meter
 from abjad.meter.interface import MeterInterface
 
 
-def test_staff_meter_01( ):
+def test_staff_meter_interface_01( ):
    '''Staff has a meter interface.'''
    t = Staff(Note(0, (1, 4)) * 8)
    assert isinstance(t.meter, MeterInterface)
    
 
-def test_staff_meter_02( ):
+def test_staff_meter_interface_02( ):
    '''Test MeterInterface public attributes.'''
    t = Staff(Note(0, (1, 4)) * 8)
    assert t.meter.change == False
@@ -17,7 +17,7 @@ def test_staff_meter_02( ):
    assert t.meter.forced is None
 
 
-def test_staff_meter_03( ):
+def test_staff_meter_interface_03( ):
    '''Force meter on nonempty staff.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.meter.forced = Meter(2, 4)
@@ -37,7 +37,7 @@ def test_staff_meter_03( ):
    '''
 
 
-def test_staff_meter_04( ):
+def test_staff_meter_interface_04( ):
    '''Force meter on empty staff.'''
    t = Staff([ ])
    t.meter.forced = Meter(2, 4)
@@ -49,7 +49,7 @@ def test_staff_meter_04( ):
    '''
 
 
-def test_staff_meter_05( ):
+def test_staff_meter_interface_05( ):
    '''Staff meter carries over to staff-contained leaves.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.meter.forced = Meter(2, 4)
@@ -70,7 +70,7 @@ def test_staff_meter_05( ):
 #         assert leaf.meter.effective == (4, 4)
 
 
-def test_staff_meter_07( ):
+def test_staff_meter_interface_07( ):
    '''Staff meter clears with None.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.meter.forced = Meter(2, 4)

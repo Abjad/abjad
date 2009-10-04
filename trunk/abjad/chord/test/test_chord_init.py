@@ -29,7 +29,7 @@ def test_chord_init_04( ):
    assert t.format == "<ds' ef'>4"
 
 
-def test_chord_init_100( ):
+def test_chord_init_05( ):
    '''Chord initializes with mixed pitch token input.'''
    t = Chord([2, ('ef', 4), Pitch(4)], (1, 4))
    assert repr(t) == "Chord(d' ef' e', 4)"

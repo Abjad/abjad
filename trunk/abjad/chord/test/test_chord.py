@@ -4,7 +4,7 @@ from py.test import raises
 
 ## TEST DEMO PUBLIC CHORD INTERFACE ##
 
-def test_demo_public_chord_interface_01( ):
+def test_chord_01( ):
    t = Chord([2, 3, 4], (1, 4))
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert str(t) == "<d' ef' e'>4"
@@ -17,12 +17,12 @@ def test_demo_public_chord_interface_01( ):
 
 ## TEST TWEAKED CHORD ##
 
-def test_tweaked_chord_01( ):
+def test_chord_01( ):
    t = Chord([2, 3, 4], (1, 4))
    t[0].style = 'harmonic'
    assert t.format == "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
 
-def test_tweaked_chord_02( ):
+def test_chord_02( ):
    t = Chord([2, 3, 4], (1, 4))
    t[0].transparent = True
    assert t.format == "<\n\t\\tweak #'transparent ##t\n\td'\n\tef'\n\te'\n>4"
@@ -32,7 +32,7 @@ def test_tweaked_chord_02( ):
 ## the point here is that one-note chords ##
 ## format as chords and not as single notes ##
 
-def test_one_note_chord_01( ):
+def test_chord_01( ):
    t = Chord([0], (1, 4))
    assert repr(t) == "Chord(c', 4)"
    assert str(t) == "<c'>4"
@@ -41,7 +41,7 @@ def test_one_note_chord_01( ):
    assert len(t.noteheads) == 1
    assert len(t.pitches) == 1
 
-def test_one_note_chord_02( ):
+def test_chord_02( ):
    t = Chord([0.5], (1, 4))
    assert repr(t) == "Chord(cqs', 4)"
    assert str(t) == "<cqs'>4"
@@ -81,7 +81,7 @@ def test_one_note_chord_02( ):
 
 ## TEST MANAGED ATTRIBUTES ##
 
-def test_chord_set_pitches_01( ):
+def test_chord_01( ):
    '''Chord pitches can be set as list or tuple of numbers.'''
    t = Chord([], (1,4))
    t.pitches = [4, 3, 2]
@@ -92,7 +92,7 @@ def test_chord_set_pitches_01( ):
    assert t.format == "<d' ef' e'>4"
 
 
-def test_chord_set_pitches_02( ):
+def test_chord_02( ):
    '''Chord pitches can be set as list or tuple of Pitches.'''
    t = Chord([], (1,4))
    t.pitches = [Pitch(4), Pitch(3), Pitch(2)]
@@ -100,7 +100,7 @@ def test_chord_set_pitches_02( ):
    assert t.format == "<d' ef' e'>4"
 
 
-def test_chord_set_pitches_03( ):
+def test_chord_03( ):
    '''Chord pitches can be set as list or tuple of both numbers and Pitches.'''
    t = Chord([], (1,4))
    t.pitches = [4, Pitch(3), Pitch(2)]
@@ -108,7 +108,7 @@ def test_chord_set_pitches_03( ):
    assert t.format == "<d' ef' e'>4"
 
 
-def test_chord_set_noteheads_01( ):
+def test_chord_01( ):
    '''Chord noteheads can be set as list or tuple of numbers.'''
    t = Chord([], (1,4))
    t.noteheads = [4, 3, 2]
@@ -116,7 +116,7 @@ def test_chord_set_noteheads_01( ):
    assert t.format == "<d' ef' e'>4"
    
 
-def test_chord_set_noteheads_02( ):
+def test_chord_02( ):
    '''Chord noteheads can be set as list or tuple of Pitches.'''
    t = Chord([], (1,4))
    t.noteheads = [Pitch(4), Pitch(3), Pitch(2)]
@@ -124,7 +124,7 @@ def test_chord_set_noteheads_02( ):
    assert t.format == "<d' ef' e'>4"
 
 
-def test_chord_set_noteheads_03( ):
+def test_chord_03( ):
    '''Chord noteheads can be set as list or tuple of both numbers and Pitches.'''
    t = Chord([], (1,4))
    t.noteheads = [Pitch(4), 3, Pitch(2)]
@@ -134,7 +134,7 @@ def test_chord_set_noteheads_03( ):
 
 ## TEST CHORD SPECIAL METHODS ##
 
-def test_chord_setitem_01( ):
+def test_chord_01( ):
    '''Noteheads can be replaced. Noteheads are sorted.'''
    t = Chord([2, 4], (1,4))
    t[0] = Pitch(5)

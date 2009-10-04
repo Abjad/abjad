@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_append_left_01( ):
+def test_spanner_append_left_01( ):
    '''Append container to the left.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -44,7 +44,7 @@ def test_append_left_01( ):
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
  
 
-def test_append_left_02( ):
+def test_spanner_append_left_02( ):
    '''Spanner appends one leaf to the right.'''
    
    t = Voice(Container(construct.run(2)) * 3)

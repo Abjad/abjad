@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_assess_components_thread_contiguous_01( ):
+def test_check_assess_components_thread_contiguous_01( ):
    '''True for thread contiguous components even when
       components are not strictly contiguous.'''
 
@@ -25,7 +25,7 @@ def test_assess_components_thread_contiguous_01( ):
    assert check.assess_components([t.leaves[i] for i in outer], contiguity = 'thread')
 
 
-def test_assess_components_thread_contiguous_02( ):
+def test_check_assess_components_thread_contiguous_02( ):
    '''Temporal gaps between components are OK.
       So long as gaps are filled with foreign components
       that do not belong to thread.'''
@@ -57,7 +57,7 @@ def test_assess_components_thread_contiguous_02( ):
    assert check.assess_components(t[0][:] + t[-1][:], contiguity = 'thread')
 
 
-def test_assess_components_thread_contiguous_03( ):
+def test_check_assess_components_thread_contiguous_03( ):
    '''Components that start at the same moment are bad.
       Even if components are all part of the same thread.'''
 
@@ -87,14 +87,14 @@ def test_assess_components_thread_contiguous_03( ):
    assert not check.assess_components(t[-1:] + t[-1][:], contiguity = 'thread')
 
 
-def test_assess_components_thread_contiguous_04( ):
+def test_check_assess_components_thread_contiguous_04( ):
    '''True for strictly contiguous leaves in same staff.'''
 
    t = Staff(construct.scale(4))
    assert check.assess_components(t[:], contiguity = 'thread')
 
 
-def test_assess_components_thread_contiguous_05( ):
+def test_check_assess_components_thread_contiguous_05( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
@@ -103,26 +103,26 @@ def test_assess_components_thread_contiguous_05( ):
       contiguity = 'thread', allow_orphans = False)
 
 
-def test_assess_components_thread_contiguous_06( ):
+def test_check_assess_components_thread_contiguous_06( ):
    '''False for time reordered leaves in staff.'''
 
    t = Staff(construct.scale(4))
    assert not check.assess_components(t[2:] + t[:2], contiguity = 'thread')
 
 
-def test_assess_components_thread_contiguous_07( ):
+def test_check_assess_components_thread_contiguous_07( ):
    '''True for unincorporated component.'''
 
    assert check.assess_components([Staff(construct.scale(4))], contiguity = 'thread')
 
 
-def test_assess_components_thread_contiguous_08( ):
+def test_check_assess_components_thread_contiguous_08( ):
    '''True for empty list.'''
 
    assert check.assess_components([ ], contiguity = 'thread')
 
 
-def test_assess_components_thread_contiguous_09( ):
+def test_check_assess_components_thread_contiguous_09( ):
    '''False when components belonging to same thread are ommitted.'''
 
    t = Voice(construct.scale(6))
@@ -140,7 +140,7 @@ def test_assess_components_thread_contiguous_09( ):
    assert not check.assess_components(t[:2] + t[-2:], contiguity = 'thread')
 
 
-def test_assess_components_thread_contiguous_10( ):
+def test_check_assess_components_thread_contiguous_10( ):
    '''False when components belonging to same thread are ommitted.'''
 
    t = Voice(Container(construct.run(2)) * 3)

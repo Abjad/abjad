@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_grob_override_01( ):
+def test_context_grob_override_01( ):
    '''
    Contexts override grobs in their with block.
    '''

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_container_empty_01( ):
+def test_container_init_01( ):
    '''Abjad allows empty containers.'''
 
    t = Container([ ])

@@ -17,7 +17,7 @@ def test_rigid_measure_number_02( ):
    assert t.number == 1
 
 
-def test_rigid_mesaure_number_03( ):
+def test_rigid_measure_number_03( ):
    '''Mesaure numbering works correctly after contents rotation.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)

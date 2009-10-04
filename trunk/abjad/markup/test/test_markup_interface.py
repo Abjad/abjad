@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_markup_01( ):
+def test_markup_interface_01( ):
    '''Append integer.'''
    t = Note(0, (1, 4))
    t.markup.down.append(12)
@@ -11,7 +11,7 @@ def test_markup_01( ):
    '''
 
 
-def test_markup_02( ):
+def test_markup_interface_02( ):
    '''Append string.'''
    t = Note(0, (1, 4))
    t.markup.down.append('12')
@@ -21,7 +21,7 @@ def test_markup_02( ):
    '''
    
 
-def test_markup_03( ):
+def test_markup_interface_03( ):
    '''Both up and down.'''
    t = Note(0, (1, 4))
    t.markup.up.append('foo')
@@ -32,7 +32,7 @@ def test_markup_03( ):
    '''
 
 
-def test_markup_04( ):
+def test_markup_interface_04( ):
    '''Append string with LilyPond formatting command.'''
    t = Note(0, (1, 4))
    t.markup.up.append(r'\italic { attaca! }')
@@ -42,7 +42,7 @@ def test_markup_04( ):
    '''
 
 
-def test_markup_05( ):
+def test_markup_interface_05( ):
    '''Extend multiple strings below.'''
    t = Note(0, (1, 4))
    t.markup.down.extend(['1/4', '1/6'])
@@ -52,7 +52,7 @@ def test_markup_05( ):
    '''
 
 
-def test_markup_06( ):
+def test_markup_interface_06( ):
    '''Extend multiple strings above.'''
    t = Note(0, (1, 4))
    t.markup.up.extend(['1/4', '1/6'])
@@ -62,7 +62,7 @@ def test_markup_06( ):
    '''
 
 
-def test_markup_07( ):
+def test_markup_interface_07( ):
    '''Clear all up-markup.'''
    t = Note(0, (1, 4))
    t.markup.up.extend(['A', 'B', 'C'])
@@ -73,7 +73,7 @@ def test_markup_07( ):
    '''
 
 
-def test_markup_08( ):
+def test_markup_interface_08( ):
    '''Clear all down-markup.'''
    t = Note(0, (1, 4))
    t.markup.down.extend(['A', 'B', 'C'])

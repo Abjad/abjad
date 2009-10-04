@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_grob_handling_01( ):
+def test_text_interface_grob_handling_01( ):
    '''
    Text override on leaf without context promotion.
    '''
@@ -17,7 +17,7 @@ def test_grob_handling_01( ):
    assert t.format == "\\once \\override TextScript #'color = #red\nc'4"
 
 
-def test_grob_handling_02( ):
+def test_text_interface_grob_handling_02( ):
    '''
    Text override on leaf with context promotion.
    '''
@@ -34,7 +34,7 @@ def test_grob_handling_02( ):
    assert t.format == "\\once \\override Staff.TextScript #'color = #red\nc'4"
 
 
-def test_grob_handling_03( ):
+def test_text_interface_grob_handling_03( ):
    '''
    Override text on context.
    '''
@@ -56,7 +56,7 @@ def test_grob_handling_03( ):
    assert t.format == "\\new Staff \\with {\n\t\\override TextScript #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_grob_handling_04( ):
+def test_text_interface_grob_handling_04( ):
    '''Clear all overrides.
    '''
 

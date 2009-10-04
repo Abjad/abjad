@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_union_01( ):
+def test_leaf_union_01( ):
    '''Chords completely disjunct;
       all pitches preserved.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -12,7 +12,7 @@ def test_union_01( ):
    assert t is not u is not v
 
 
-def test_union_02( ):
+def test_leaf_union_02( ):
    '''Partially intersecting chords;
       shared pitches appear only once.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -23,7 +23,7 @@ def test_union_02( ):
    assert t is not u is not v
 
 
-def test_union_03( ):
+def test_leaf_union_03( ):
    '''Wholly intersecting chords;
       shared pitches appear only once.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -34,7 +34,7 @@ def test_union_03( ):
    assert t is not u is not v
    
 
-def test_union_04( ):
+def test_leaf_union_04( ):
    '''Enharmonically disjunct;
       enharmonic equivalents both appear.'''
    t = Chord([0, ('cs', 4), 2], (1, 4))
@@ -45,7 +45,7 @@ def test_union_04( ):
    assert t is not u is not v
 
 
-def test_union_05( ):
+def test_leaf_union_05( ):
    '''Duration inequality;
       noncommutative union takes from LHS.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -57,7 +57,7 @@ def test_union_05( ):
    assert t is not u is not v
 
 
-def test_union_06( ):
+def test_leaf_union_06( ):
    '''Duration inequality;
       noncommutative union takes from LHS.'''
    t = Chord([0, 1, 2], (1, 8))
@@ -69,7 +69,7 @@ def test_union_06( ):
    assert t is not u is not v
 
 
-def test_union_07( ):
+def test_leaf_union_07( ):
    '''Rest in union with rest produces rest.'''
    t = Rest((1, 4))
    u = Rest((1, 4))
@@ -79,7 +79,7 @@ def test_union_07( ):
    assert t is not u is not v
 
 
-def test_union_08( ):
+def test_leaf_union_08( ):
    '''Rest in union with note produces note.'''
    t = Rest((1, 4))
    u = Note(0, (1, 4))
@@ -89,7 +89,7 @@ def test_union_08( ):
    assert t is not u is not v
 
 
-def test_union_09( ):
+def test_leaf_union_09( ):
    '''Note in union with like pitched note produces note.'''
    t = Note(0, (1, 4))
    u = Note(0, (1, 4))
@@ -99,7 +99,7 @@ def test_union_09( ):
    assert t is not u is not v
 
 
-def test_union_10( ):
+def test_leaf_union_10( ):
    '''Note in union with differently pitched note
       produces chord.'''
    t = Note(0, (1, 4))
@@ -110,7 +110,7 @@ def test_union_10( ):
    assert t is not u is not v
 
 
-def test_union_11( ):
+def test_leaf_union_11( ):
    '''Chord in union with differently pitched note
       produces chord.'''
    t = Chord([0, 2], (1, 4))
@@ -121,7 +121,7 @@ def test_union_11( ):
    assert t is not u is not v
 
 
-def test_union_12( ):
+def test_leaf_union_12( ):
    '''Chord in union with like pitched note
       produces chord.'''
    t = Chord([0, 2], (1, 4))

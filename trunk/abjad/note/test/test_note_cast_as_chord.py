@@ -2,7 +2,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_cast_chord_01( ):
+def test_note_cast_as_chord_01( ):
    n = Note(2, (1, 8))
    h, p, d = n.notehead, n.pitch, n.duration.written
    c = Chord(n)
@@ -17,7 +17,7 @@ def test_cast_chord_01( ):
    assert c.duration.written == d
 
 
-def test_cast_chord_02( ):
+def test_note_cast_as_chord_02( ):
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    h, p, d = t[0].notehead, t[0].pitch, t[0].duration.written
    Chord(t[0])
@@ -29,7 +29,7 @@ def test_cast_chord_02( ):
    assert t[0].duration.written == d
 
 
-def test_cast_chord_03( ):
+def test_note_cast_as_chord_03( ):
    v = Voice(Note(0, (1, 8)) * 3)
    h, p, d = v[0].notehead, v[0].pitch, v[0].duration.written
    Chord(v[0])
@@ -41,7 +41,7 @@ def test_cast_chord_03( ):
    assert v[0].duration.written == d
 
 
-def test_cast_chord_04( ):
+def test_note_cast_as_chord_04( ):
    t = Staff(Note(0, (1, 8)) * 3)
    h, p, d = t[0].notehead, t[0].pitch, t[0].duration.written
    Chord(t[0])
@@ -53,7 +53,7 @@ def test_cast_chord_04( ):
    assert t[0].duration.written == d
 
 
-def test_cast_chord_05( ):
+def test_note_cast_as_chord_05( ):
    '''Works fine when note is beamed.'''
    t = Staff(Note(0, (1, 8)) * 3)
    Beam(t[ : ])

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_symmetric_difference_01( ):
+def test_leaf_symmetric_difference_01( ):
    '''Chords completely disjunct;
       all pitches preserved.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -12,7 +12,7 @@ def test_symmetric_difference_01( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_02( ):
+def test_leaf_symmetric_difference_02( ):
    '''Partially intersecting chords;
       shared pitches do not appear at all.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -23,7 +23,7 @@ def test_symmetric_difference_02( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_03( ):
+def test_leaf_symmetric_difference_03( ):
    '''Wholly intersecting chords;
       returns no pitches at all.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -34,7 +34,7 @@ def test_symmetric_difference_03( ):
    assert t is not u is not v
    
 
-def test_symmetric_difference_04( ):
+def test_leaf_symmetric_difference_04( ):
    '''Enharmonically disjunct;
       enharmonic equivalents both appear.'''
    t = Chord([0, ('cs', 4), 2], (1, 4))
@@ -45,7 +45,7 @@ def test_symmetric_difference_04( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_05( ):
+def test_leaf_symmetric_difference_05( ):
    '''Duration inequality;
       noncommutative operation takes duration from LHS.'''
    t = Chord([0, 1, 2], (1, 4))
@@ -57,7 +57,7 @@ def test_symmetric_difference_05( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_06( ):
+def test_leaf_symmetric_difference_06( ):
    '''Duration inequality;
       noncommutative operation takes duration from LHS.'''
    t = Chord([0, 1, 2], (1, 8))
@@ -69,7 +69,7 @@ def test_symmetric_difference_06( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_07( ):
+def test_leaf_symmetric_difference_07( ):
    '''Rest in symmetric difference with rest produces rest.'''
    t = Rest((1, 4))
    u = Rest((1, 4))
@@ -79,7 +79,7 @@ def test_symmetric_difference_07( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_08( ):
+def test_leaf_symmetric_difference_08( ):
    '''Rest in symmetric difference with note produces note.'''
    t = Rest((1, 4))
    u = Note(0, (1, 4))
@@ -89,7 +89,7 @@ def test_symmetric_difference_08( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_09( ):
+def test_leaf_symmetric_difference_09( ):
    '''Note in symmetric difference with like 
       pitched note produces rest.'''
    t = Note(0, (1, 4))
@@ -100,7 +100,7 @@ def test_symmetric_difference_09( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_10( ):
+def test_leaf_symmetric_difference_10( ):
    '''Note in symmetric difference with differently pitched note
       produces chord.'''
    t = Note(0, (1, 4))
@@ -111,7 +111,7 @@ def test_symmetric_difference_10( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_11( ):
+def test_leaf_symmetric_difference_11( ):
    '''Chord in symmetric difference with differently 
       pitched note produces chord.'''
    t = Chord([0, 2], (1, 4))
@@ -122,7 +122,7 @@ def test_symmetric_difference_11( ):
    assert t is not u is not v
 
 
-def test_symmetric_difference_12( ):
+def test_leaf_symmetric_difference_12( ):
    '''Chord in symmetric difference with like 
       pitched note removes shared note.'''
    t = Chord([0, 2], (1, 4))

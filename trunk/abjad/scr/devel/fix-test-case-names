@@ -37,8 +37,8 @@ def _check_test_case_names( ):
                   print 'NONMATCHING in %s' % test_module
                   new_line = line.replace(
                      actual_test_case_prefix, desired_test_case_prefix)
-                  print 'OLD LINE: %s' % line.strip('\n')
-                  print 'NEW LINE: %s' % new_line.strip('\n')
+                  print 'OLD LINE:  %s' % line.strip('\n')
+                  print 'NEW LINE:  %s' % new_line.strip('\n')
                   choice = raw_input('Make replacement [y/n]? ')
                   if choice.lower( ) == 'y':
                      new_lines.append(new_line)

@@ -336,7 +336,7 @@ def test_clonewp_by_leaf_range_with_parentage_10( ):
    assert u.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_11( ):
+def test_clonewp_by_leaf_range_with_parentage_11( ):
    '''Copy consecutive leaves from tuplet in staff;
       pass start and stop indices local to tuplet.'''
 
@@ -374,7 +374,7 @@ def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_11( ):
    assert u.format == "\\new Staff {\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_12( ):
+def test_clonewp_by_leaf_range_with_parentage_12( ):
    '''Copy consecutive leaves from measure in staff;
       pass start and stop indices local to measure.'''
 
@@ -415,7 +415,7 @@ def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_12( ):
    assert u.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_local_leaf_index_13( ):
+def test_clonewp_by_leaf_range_with_parentage_13( ):
    '''Copy consecutive leaves from nonbinary measure in staff;
       pass start and stop indices local to measure.'''
 

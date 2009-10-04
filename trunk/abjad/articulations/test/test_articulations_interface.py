@@ -8,14 +8,14 @@ def test_articulations_interface_01( ):
    assert t.format == "c'4"
 
 
-def test_articulations_interface_02a( ):
+def test_articulations_interface_02( ):
    t = Note(0, (1, 4))
    t.articulations = ['staccato']
    assert len(t.articulations) == 1
    assert t.format == "c'4 -\\staccato"
 
 
-def test_articulations_interface_02b( ):
+def test_articulations_interface_02( ):
    '''Articulations can be set as list of (string, direction) pairs.'''
    t = Note(0, (1, 4))
    t.articulations = [('staccato', 'up')]
@@ -23,14 +23,14 @@ def test_articulations_interface_02b( ):
    assert t.format == "c'4 ^\\staccato"
 
 
-def test_articulations_interface_03a( ):
+def test_articulations_interface_03( ):
    t = Note(0, (1, 4))
    t.articulations = ['staccato', 'marcato']
    assert len(t.articulations) == 2
    assert t.format == "c'4 -\\staccato -\\marcato"
 
 
-def test_articulations_interface_03b( ):
+def test_articulations_interface_03( ):
    '''Articulations can be set as list of (string, direction) pairs.'''
    t = Note(0, (1, 4))
    t.articulations = [('staccato', 'up'), ('marcato', 'down')]
@@ -38,7 +38,7 @@ def test_articulations_interface_03b( ):
    assert t.format == "c'4 ^\\staccato _\\marcato"
 
 
-def test_articulations_interface_03c( ):
+def test_articulations_interface_03( ):
    '''Articulations can be set as list of (string, direction) pairs.'''
    t = Note(0, (1, 4))
    t.articulations = [('staccato', 'up'), 'marcato']

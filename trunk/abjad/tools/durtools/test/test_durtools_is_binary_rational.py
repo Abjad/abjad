@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_is_binary_rational_01( ):
+def test_durtools_is_binary_rational_01( ):
    '''True when input is a Rational with denominator of the form 2**n.'''
 
    assert durtools.is_binary_rational(Rational(1, 1))

@@ -2,7 +2,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_note_compare_01( ):
+def test_rest_compare_01( ):
    '''Rests referentially equal.'''
    r1 = Rest((1, 4))
    assert     r1 == r1
@@ -13,7 +13,7 @@ def test_note_compare_01( ):
    assert raises(Exception, 'r1 <= r1')
 
 
-def test_note_compare_02( ):
+def test_rest_compare_02( ):
    '''Rests superficially similar.'''
    r1 = Rest((1, 4))
    r2 = Rest((1, 4))
@@ -25,7 +25,7 @@ def test_note_compare_02( ):
    assert raises(Exception, 'r1 <= r1')
 
 
-def test_note_compare_03( ):
+def test_rest_compare_03( ):
    '''Rests manifestly different.'''
    r1 = Rest((1, 4))
    r2 = Rest((1, 8))

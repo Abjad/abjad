@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_tools_check_assert_wf_01( ):
+def test_check_assert_wf_01( ):
    '''Report violators and raise WellFormednessError
    when not well formed.'''
 
@@ -31,7 +31,7 @@ def test_tools_check_assert_wf_01( ):
    assert py.test.raises(WellFormednessError, 'check.assert_wf(t)')
 
 
-def test_tools_check_assert_wf_02( ):
+def test_check_assert_wf_02( ):
    '''Pass silently when well formed.'''
 
    t = Staff(construct.scale(4))

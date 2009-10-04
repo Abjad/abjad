@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_grace_carrierage_01( ):
+def test_grace_parentage_01( ):
    '''Lone Grace containers _carrier is None.'''
    t = Grace(construct.run(4))
    assert t._carrier is None
 
 
-def test_grace_carrierage_02( ):
+def test_grace_parentage_02( ):
    '''Grace containers in Leaf do have parent.'''
    t = Note(1, (1, 4))
    assert isinstance(t.grace.before, Grace)
@@ -15,7 +15,7 @@ def test_grace_carrierage_02( ):
    assert t.grace.after._carrier is t
 
 
-def test_grace_carrierage_03( ):
+def test_grace_parentage_03( ):
    '''
    Grace containers in Leaf have their correct parent after assignment 
    via GraceInterface.
@@ -35,7 +35,7 @@ def test_grace_carrierage_03( ):
    assert t.grace.before._carrier is t
 
 
-def test_grace_carrierage_04( ):
+def test_grace_parentage_04( ):
    '''
    Grace container in Leaf have their correct parent after Leaf casting.
    '''

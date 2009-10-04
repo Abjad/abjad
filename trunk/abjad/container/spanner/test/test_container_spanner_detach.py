@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_container_spanner_aggregator_detach_01( ):
+def test_container_spanner_detach_01( ):
    '''t.spanners._detach( ) detaches all spanners attaching to container t.'''
 
    t = Staff(Container(construct.run(2)) * 2)

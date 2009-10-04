@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fracture_01( ):
+def test_spanner_fracture_01( ):
    '''Fracture container spanner to the right of index 1.'''
 
    t = Staff(Container(construct.run(4)) * 3)

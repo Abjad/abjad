@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measure_rigid_measure_barline_override_01( ):
+def test_rigid_measure_barline_override_01( ):
    '''Very magic things have to happen with slots at format time.
    This is to work correctly with the time at which LilyPond 
    draws new barlines during the LilyPond interpretation process.'''

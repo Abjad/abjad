@@ -1,40 +1,40 @@
 from abjad import *
 
 
-def test_offset_leaves_01( ):
+def test_offset_leaf_01( ):
    t = Voice(construct.run(16))
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 8)
 
 
-def test_offset_leaves_02( ):
+def test_offset_leaf_02( ):
    t = Staff(construct.run(16))
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 8)
 
 
-def test_offset_leaves_03( ):
+def test_offset_leaf_03( ):
    t = Staff(construct.run(16))
    t[10] = Rest((1, 8))
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 8)
  
 
-def test_offset_leaves_04( ):
+def test_offset_leaf_04( ):
    t = Staff(construct.run(16))
    t[10 : 10] = [Rest((1, 8))]
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 8)
  
 
-def test_offset_leaves_05( ):
+def test_offset_leaf_05( ):
    t = Staff(construct.run(16))
    t[10 : 12] = [Rest((1, 8))]
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 8)
 
 
-def test_offset_leaves_06( ):
+def test_offset_leaf_06( ):
    '''Offset works with explicit voice threads.'''
    v1 = Voice(construct.run(16))
    v2 = Voice(construct.run(16))
@@ -46,13 +46,13 @@ def test_offset_leaves_06( ):
 
 ### tuplets ###
 
-def test_offset_leaves_10( ):
+def test_offset_leaf_10( ):
    t = FixedDurationTuplet((1,4), construct.run(3))
    for i, x in enumerate(t):
       assert x.offset.prolated.start == i * Rational(1, 12)
 
 
-def test_offset_leaves_11( ):
+def test_offset_leaf_11( ):
    tp = FixedDurationTuplet((1, 4), construct.run(3))
    t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
    offset = 0
@@ -61,7 +61,7 @@ def test_offset_leaves_11( ):
       offset += Rational(*d)
 
 
-def test_offset_leaves_12( ):
+def test_offset_leaf_12( ):
    '''Offset works on nested tuplets.'''
    tp = FixedDurationTuplet((1, 4), construct.run(3))
    t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tp, Note(0, (1, 4))])
@@ -73,7 +73,7 @@ def test_offset_leaves_12( ):
 
 ## parallel ##
 
-def test_offset_leaves_13( ):
+def test_offset_leaf_13( ):
    '''Offset works with parallel structures.'''
    v1 = Voice(construct.run(16))
    v2 = Voice(construct.run(16))
@@ -87,7 +87,7 @@ def test_offset_leaves_13( ):
 
 ## nested contexts ##
 
-def test_offset_leaves_14( ):
+def test_offset_leaf_14( ):
    '''offset on leaves works in nested contexts.'''
    v = Voice(construct.run(4))
    t = Staff([Note(0, (1, 8)), v, Note(0, (1, 8))])
@@ -97,7 +97,7 @@ def test_offset_leaves_14( ):
       assert x.offset.prolated.start == i * Rational(1, 8) + Rational(1, 8)
    
    
-def test_offset_leaves_15( ):
+def test_offset_leaf_15( ):
    '''offset on leaves works in sequential contexts.'''
    v1 = Voice(construct.run(4))
    v2 = Voice(construct.run(4))
@@ -108,7 +108,7 @@ def test_offset_leaves_15( ):
       assert x.offset.prolated.start  == i * Rational(1, 8) + Rational(1, 2)
 
 
-def test_offset_leaves_16( ):
+def test_offset_leaf_16( ):
    '''offset on leaves works in nested parallel contexts.'''
    v1 = Voice(construct.run(4))
    v2 = Voice(construct.run(4))
@@ -120,7 +120,7 @@ def test_offset_leaves_16( ):
       assert x.offset.prolated.start == i * Rational(1, 8)
 
 
-def test_offset_leaves_17( ):
+def test_offset_leaf_17( ):
    '''offset on leaves works in nested parallel and sequential contexts.'''
    v1 = Voice(construct.run(4))
    v2 = Voice(construct.run(4))
@@ -131,7 +131,7 @@ def test_offset_leaves_17( ):
       assert x.offset.prolated.start == i * Rational(1, 8) + Rational(4, 8)
 
 
-def test_offset_leaves_18( ):
+def test_offset_leaf_18( ):
    '''offset on leaves works in nested parallel and sequential contexts.'''
    v1 = Voice(construct.run(4))
    v2 = Voice(construct.run(4))

@@ -3,7 +3,7 @@ from abjad.debug.debug import DEBUG
 import py.test
 
 
-def test__debug_01( ):
+def test_debug_01( ):
    '''@_debug( ) decorator correctly returns the return value/object 
    of the function or method it decorates.
    '''

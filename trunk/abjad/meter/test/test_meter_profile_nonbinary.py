@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_nonbinary_01( ):
+def test_meter_profile_nonbinary_01( ):
    t = RigidMeasure((5, 7), [
       FixedMultiplierTuplet((4, 7), Note(0, (1, 4)) * 5)])
    assert repr(t.meter.forced) == 'Meter(5, 7)'
@@ -12,7 +12,7 @@ def test_nonbinary_01( ):
    assert t.meter.forced.duration == Rational(5, 7)
 
 
-def test_nonbinary_02( ):
+def test_meter_profile_nonbinary_02( ):
    t = RigidMeasure((6, 7), [
       FixedMultiplierTuplet((4, 7), Note(0, (1, 4)) * 6)])
    assert repr(t.meter.forced) == 'Meter(6, 7)'
