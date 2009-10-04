@@ -70,7 +70,7 @@ class Spanner(_Abjad):
          left = ', '.join([x._compact_representation for x in self[:2]])
          right = ', '.join([x._compact_representation for x in self[-2:]])
          number_in_middle = len_self - 4
-         middle = ', ... %s more ..., ' % number_in_middle
+         middle = ', ... [%s] ..., ' % number_in_middle
          return left + middle + right
 
    @property
