@@ -73,7 +73,7 @@ def test_navigator_bead_navigation_04( ):
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_bead_navigation_05( ):
+#def test_navigator_bead_navigation_05( ):
 #   '''NextBead and prevBead work on simple Parallel.'''
 #   t = Container([Note(i, (1,8)) for i in range(4)])
 #   t.parallel = True

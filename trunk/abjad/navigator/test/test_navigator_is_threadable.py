@@ -53,7 +53,7 @@ def test_navigator_is_threadable_03( ):
    }'''
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_navigator_is_threadable_04_a( ):
+#def test_navigator_is_threadable_04( ):
 #   '''A path does NOT exist between leaves with a parent parallel container
 #   not contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating a separate Staff for each
@@ -86,7 +86,7 @@ def test_navigator_is_threadable_03( ):
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_navigator_is_threadable_04_b( ):
+#def test_navigator_is_threadable_04( ):
 #   '''A path DOES exist between leaves with a parent parallel container
 #   contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating chords.'''

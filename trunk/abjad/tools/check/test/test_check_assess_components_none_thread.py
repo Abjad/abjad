@@ -42,7 +42,7 @@ def test_check_assess_components_none_thread_03( ):
    assert check.assess_components(list(iterate.naive(t, _Component)), share = 'thread')
 
 ## nonstructural in new parallel --> context model.
-#def test_assess_components_none_thread_04( ):
+#def test_check_assess_components_none_thread_04( ):
 #   '''LilyPond assigns each leaf here to not only
 #      a different voice but a different staff.
 #      Abjad mimics this behavior and assigns each leaf 
@@ -1139,7 +1139,7 @@ def test_check_assess_components_none_thread_41( ):
    assert not check.assess_components(t.leaves, share = 'thread')
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_assess_components_none_thread_42_trev( ):
+#def test_check_assess_components_none_thread_42( ):
 #   '''A parallel Staff and only leaves as it's content DO NOT thread.'''
 #
 #   t = Staff(construct.scale(4))
@@ -1156,7 +1156,7 @@ def test_check_assess_components_none_thread_41( ):
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_assess_components_none_thread_42( ):
+#def test_check_assess_components_none_thread_42( ):
 #   '''Leaves inside anonymous parallel Staff DO NOT thread.
 #   This mimics LilyPond's behavior of not collapsing then notes into
 #   a chord. '''
@@ -1175,7 +1175,7 @@ def test_check_assess_components_none_thread_41( ):
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_assess_components_none_thread_43( ):
+#def test_check_assess_components_none_thread_43( ):
 #   '''Parallel and sequential containers, and leaves, all thead.'''
 #
 #   t = Container(Note(0, (1, 8)) * 4)
@@ -1201,7 +1201,7 @@ def test_check_assess_components_none_thread_41( ):
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_assess_components_none_thread_44( ):
+#def test_check_assess_components_none_thread_44( ):
 #   '''Voice, containers and leaves all thread.'''
 #
 #   t = Voice(Note(0, (1, 8)) * 4)
@@ -1227,7 +1227,7 @@ def test_check_assess_components_none_thread_41( ):
 
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_assess_components_none_thread_45( ):
+#def test_check_assess_components_none_thread_45( ):
 #   '''Containers and leaves all thread.
 #      Iterating through here will be a little tricky.
 #      But all components do belong to the same thread.'''
@@ -1253,7 +1253,7 @@ def test_check_assess_components_none_thread_41( ):
 
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_assess_components_none_thread_46( ):
+#def test_check_assess_components_none_thread_46( ):
 #   '''Everything threads.'''
 #
 #   p = Container(Container(Note(0, (1, 8)) * 4) * 2)

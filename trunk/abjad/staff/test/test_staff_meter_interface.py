@@ -57,7 +57,7 @@ def test_staff_meter_interface_05( ):
       assert x.meter.effective == (2, 4)
 
 
-#def test_staff_meter_06( ):
+#def test_staff_meter_interface_06( ):
 #   '''Staff meterf carries over to staff-contained leaves,
 #      but leaves can reassert new meter.'''
 #   t = Staff(Note(0, (1, 4)) * 8)
@@ -79,7 +79,7 @@ def test_staff_meter_interface_07( ):
       assert leaf.meter.effective == (4, 4)
 
 
-#def test_staff_meter_08( ):
+#def test_staff_meter_interface_08( ):
 #   '''Staff / first-leaf meter competition resolves
 #      in favor of first leaf.'''
 #   t = Staff(Note(0, (1, 4)) * 8)

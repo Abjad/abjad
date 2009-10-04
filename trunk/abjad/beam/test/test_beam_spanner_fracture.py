@@ -131,7 +131,7 @@ def test_beam_spanner_fracture_06( ):
    '''
 
 
-def test_beam_spanner_fracture_06( ):
+def test_beam_spanner_fracture_07( ):
    '''Fracture "both" works of last spanned leaf.'''
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Beam(t[ : 5])
@@ -159,7 +159,7 @@ def test_beam_spanner_fracture_06( ):
    '''
 
 
-def test_beam_spanner_fracture_07( ):
+def test_beam_spanner_fracture_08( ):
    '''
    Fracture "both" works with negative indeces.
    '''

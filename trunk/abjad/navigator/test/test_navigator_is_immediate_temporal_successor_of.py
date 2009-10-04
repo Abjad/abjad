@@ -57,7 +57,7 @@ def test_navigator_is_immediate_temporal_successor_of_03( ):
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
-#def test_is_immediate_temporal_successor_of_04( ):
+#def test_navigator_is_immediate_temporal_successor_of_04( ):
 #   '''None of the leaves in the same parallel follow
 #      any of the others temporally.'''
 #
