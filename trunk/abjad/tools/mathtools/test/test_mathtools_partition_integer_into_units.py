@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_partition_integer_into_units_01( ):
+def test_mathtools_partition_integer_into_units_01( ):
    '''Partition integer n into n equal parts.
       Partition positive n into parts all equal to 1.'''
 
@@ -10,7 +10,7 @@ def test_partition_integer_into_units_01( ):
    assert t == [1, 1, 1, 1, 1, 1]
 
 
-def test_partition_integer_into_units_02( ):
+def test_mathtools_partition_integer_into_units_02( ):
    '''Partition integer n into n equal parts.
       Partition negative n into parts all equal to -1.'''
 
@@ -19,7 +19,7 @@ def test_partition_integer_into_units_02( ):
    assert t == [-1, -1, -1, -1, -1]
 
 
-def test_partition_integer_into_units_03( ):
+def test_mathtools_partition_integer_into_units_03( ):
    '''Partition integer n into n equal parts.
       Return empty list when n is 0.'''
 

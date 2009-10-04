@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_pitch_diatonic_to_chromatic_01( ):
+def test_pitchtools_diatonic_to_chromatic_01( ):
    '''Defaults to white keys on the piano, Ionian.'''
 
    assert pitchtools.diatonic_to_chromatic(0) == 0
@@ -25,7 +25,7 @@ def test_pitch_diatonic_to_chromatic_01( ):
    assert pitchtools.diatonic_to_chromatic(-8) == -13
 
 
-def test_pitch_diatonic_to_chromatic_02( ):
+def test_pitchtools_diatonic_to_chromatic_02( ):
    '''Diatonic scale can be tranposed.'''
 
    assert pitchtools.diatonic_to_chromatic(0, 2) == 2
@@ -53,7 +53,7 @@ def test_pitch_diatonic_to_chromatic_02( ):
    assert pitchtools.diatonic_to_chromatic(-2, -1) == -4
 
 
-def test_pitch_diatonic_to_chromatic_03( ):
+def test_pitchtools_diatonic_to_chromatic_03( ):
    '''Diatonic scale can be rotated.'''
 
    ## Interval sequence 2,1,2,2,2,1, 2
@@ -82,7 +82,7 @@ def test_pitch_diatonic_to_chromatic_03( ):
    assert pitchtools.diatonic_to_chromatic(-2, 0, 2) == -4
 
 
-def test_pitch_diatonic_to_chromatic_04( ):
+def test_pitchtools_diatonic_to_chromatic_04( ):
    '''Phase must be positive.'''
 
    assert py.test.raises(AssertionError, 'pitchtools.diatonic_to_chromatic(0, 1, -3)')

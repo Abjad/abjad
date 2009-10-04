@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import construct
 
 
-def test_diatonicize_01( ):
+def test_pitchtools_diatonicize_01( ):
    '''Diatonicize notes in staff.'''
 
    t = Staff(construct.run(4))
@@ -19,7 +19,7 @@ def test_diatonicize_01( ):
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_diatonicize_02( ):
+def test_pitchtools_diatonicize_02( ):
    '''Diatonicize tie chains in staff.'''
 
    t = Staff(construct.notes(0, [(5, 32)] * 4))

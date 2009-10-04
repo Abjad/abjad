@@ -1,9 +1,8 @@
 from abjad import *
 
 
-## TEST NEST TYPICAL FDTUPLET ##
-
-def test_nest_typical_fdtuplet( ):
+def test_fdtuplet_01( ):
+   '''Nest typical fdtuplet.'''
    
    t = FixedDurationTuplet((2, 4), [
       FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3),
@@ -23,9 +22,8 @@ def test_nest_typical_fdtuplet( ):
    assert t[0].duration.prolated == Rational(1, 5)
 
 
-## TEST NEST EMPTY FDTUPLET ##
-
-def test_nest_typical_fdtuplet( ):
+def test_fdtuplet_02( ):
+   '''Nest empty fdtuplet.'''
    
    t = FixedDurationTuplet((2, 4), [
       FixedDurationTuplet((2, 8), [ ]),
@@ -45,16 +43,18 @@ def test_nest_typical_fdtuplet( ):
    assert t[0].duration.prolated == Rational(1, 5)
 
 
-## TEST 1-MULTIPLIER TUPLET ##
+def test_fdtuplet_03( ):
+   '''Test 1-multiplier fdtuplet.'''
 
-def test_1_multiplier_tuplet_01( ):
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 2)
    assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
    assert str(t) == "{@ 1:1 c'8, c'8 @}"
    assert t.format == "\tc'8\n\tc'8"
 
 
-def test_1_mutliplier_tuplet_02( ):
+def test_fdtuplet_04( ):
+   '''Test 1-multiplier fdtuplet.'''
+
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3)
    t.pop( )
    assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
@@ -62,12 +62,14 @@ def test_1_mutliplier_tuplet_02( ):
    assert t.format == "\tc'8\n\tc'8"
 
 
-def test_invisible_tuplet( ):
+def test_fdtuplet_05( ):
    '''Tuplet.invisible formats compressed music.'''
+
    t = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    assert t.invisible == False
    t.invisible = True
    assert t.format == "\\scaleDurations #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"
+
    r'''
    \scaleDurations #'(2 . 3) {
       c'8
@@ -75,5 +77,6 @@ def test_invisible_tuplet( ):
       c'8
    }
    '''
+
    t.invisible = False
    assert t.format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"

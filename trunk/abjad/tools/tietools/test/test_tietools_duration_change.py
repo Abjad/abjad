@@ -18,7 +18,7 @@ def test_tietools_duration_change_01( ):
    assert t.format == "\\new Staff {\n\tc'8 [ ~\n\tc'32 ]\n}"
 
 
-def test_tietools_duration_chnage_02( ):
+def test_tietools_duration_change_02( ):
    '''Change length-2 tie chain to length-1 tie chain.'''
 
    t = Staff(construct.notes(0, [(5, 32)]))

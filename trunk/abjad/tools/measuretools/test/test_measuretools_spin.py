@@ -26,7 +26,7 @@ def test_measuretools_spin_01( ):
    assert t.format == "{\n\t\\time 9/8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_spin_measures_02( ):
+def test_measuretools_spin_02( ):
    '''Spin multiples measures out twice each.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)

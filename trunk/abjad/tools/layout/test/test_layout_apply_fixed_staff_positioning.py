@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_layout_fixed_system_indicator_01( ):
+def test_layout_apply_fixed_staff_positioning_01( ):
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)

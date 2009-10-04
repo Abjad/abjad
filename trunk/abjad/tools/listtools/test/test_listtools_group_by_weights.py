@@ -18,7 +18,7 @@ import py.test
    12. fill = 'greater', cyclic = True, overhang = True'''
 
 
-def test_group_by_weights_01( ):
+def test_listtools_group_by_weights_01( ):
    '''Partition the elements of l into sublists such that sublist
    weights correspond to input weights according to the value of fill.'''
 
@@ -85,7 +85,7 @@ def test_group_by_weights_01( ):
    assert t == [[3], [3, 3, 3], [4], [4, 4, 4], [5], [5]]
 
 
-def test_group_by_weights_02( ):
+def test_listtools_group_by_weights_02( ):
    '''Partition the elements of l into sublists such that sublist
    weights correspond to input weights according to the value of fill.'''
 
@@ -152,7 +152,7 @@ def test_group_by_weights_02( ):
    assert t == [[1, 2, 3, 4], [5, 6], [7, 8], [9, 10]]
 
 
-def test_group_by_weights_03( ):
+def test_listtools_group_by_weights_03( ):
    '''Partition the elements of l into sublists such that sublist
    weights correspond to input weights according to the value of fill.'''
 
@@ -219,7 +219,7 @@ def test_group_by_weights_03( ):
    assert t == [[1, 2, 3, 4, 5, 6], [7, 8, 9], [10]]
 
 
-def test_group_by_weights_04( ):
+def test_listtools_group_by_weights_04( ):
    '''Partition the elements of l into sublists such that sublist
    weights correspond to input weights according to the value of fill.'''
 

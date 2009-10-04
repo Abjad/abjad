@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_partition_integer_into_canonic_parts_01( ):
+def test_mathtools_partition_integer_into_canonic_parts_01( ):
 
    assert mathtools.partition_integer_into_canonic_parts(1) == (1, )
    assert mathtools.partition_integer_into_canonic_parts(2) == (2, )
@@ -16,7 +16,7 @@ def test_partition_integer_into_canonic_parts_01( ):
    assert mathtools.partition_integer_into_canonic_parts(10) == (8, 2)
 
 
-def test_partition_integer_into_canonic_parts_02( ):
+def test_mathtools_partition_integer_into_canonic_parts_02( ):
 
    assert mathtools.partition_integer_into_canonic_parts(11) == (8, 3)
    assert mathtools.partition_integer_into_canonic_parts(12) == (12, )
@@ -30,7 +30,7 @@ def test_partition_integer_into_canonic_parts_02( ):
    assert mathtools.partition_integer_into_canonic_parts(20) == (16, 4)
 
 
-def test_partition_integer_into_canonic_parts_03( ):
+def test_mathtools_partition_integer_into_canonic_parts_03( ):
 
    assert mathtools.partition_integer_into_canonic_parts(-11) == (-8, -3)
    assert mathtools.partition_integer_into_canonic_parts(-12) == (-12, )
@@ -44,7 +44,7 @@ def test_partition_integer_into_canonic_parts_03( ):
    assert mathtools.partition_integer_into_canonic_parts(-20) == (-16, -4)
 
 
-def test_partition_integer_into_canonic_parts_04( ):
+def test_mathtools_partition_integer_into_canonic_parts_04( ):
 
    assert mathtools.partition_integer_into_canonic_parts(
       11, direction = 'little-endian') == (3, 8)

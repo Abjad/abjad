@@ -84,7 +84,7 @@ def test_leaftools_duration_change_03( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8. ]\n\te'8\n\tf'8\n}"
 
 
-def test_change_leaf_duration_04( ):
+def test_leaftools_duration_change_04( ):
    '''Change leaf to tied, nonbinary duration.
       FixedMultiplierTuplet inserted over new tied notes.'''
 
@@ -114,7 +114,7 @@ def test_change_leaf_duration_04( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32 ]\n\t}\n\te'8\n\tf'8\n}"
 
 
-def test_change_leaf_duration_05( ):
+def test_leaftools_duration_change_05( ):
    '''Change leaf to untied, nonbinary duration.
       FixedMultiplierTuplet inserted over input leaf.'''
 
@@ -143,7 +143,7 @@ def test_change_leaf_duration_05( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ]\n\t}\n\te'8\n\tf'8\n}" 
 
 
-def test_change_leaf_duration_06( ):
+def test_leaftools_duration_change_06( ):
    '''Change leaf with LilyPond multiplier to untied, binary duration.
       LilyPond multiplier changes but leaf written duration does not.'''
 
@@ -158,7 +158,7 @@ def test_change_leaf_duration_06( ):
    assert t.format == "c'8 * 1/4"
 
 
-def test_change_leaf_duration_07( ):
+def test_leaftools_duration_change_07( ):
    '''Change leaf with LilyPond multiplier to untied, binary duration.
       LilyPond multiplier changes but leaf written duration does not.'''
 
@@ -173,7 +173,7 @@ def test_change_leaf_duration_07( ):
    assert t.format == "c'8 * 3/4"
 
 
-def test_change_leaf_duration_08( ):
+def test_leaftools_duration_change_08( ):
    '''Change leaf with LilyPond multiplier to tied, binary duration.
       LilyPond multiplier changes but leaf written duration does not.'''
 
@@ -188,7 +188,7 @@ def test_change_leaf_duration_08( ):
    assert t.format == "c'8 * 5/4"
 
 
-def test_change_leaf_duration_09( ):
+def test_leaftools_duration_change_09( ):
    '''Change leaf with LilyPond multiplier to nonbinary duration.
       LilyPond multiplier changes but leaf written duration does not.'''
 
@@ -203,7 +203,7 @@ def test_change_leaf_duration_09( ):
    assert t.format == "c'8 * 1/3"
 
 
-def test_change_leaf_duration_10( ):
+def test_leaftools_duration_change_10( ):
    '''Change leaf with LilyPond multiplier.
       Change to nonbinary duration necessitating ties.
       LilyPond multiplier changes but leaf written duration does not.'''

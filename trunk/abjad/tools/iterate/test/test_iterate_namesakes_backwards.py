@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterate_namesakes_from_forward_01( ):
+def test_iterate_namesakes_backwards_01( ):
 
    container = Container(Staff(construct.run(2)) * 2)
    container.parallel = True
@@ -37,17 +37,17 @@ def test_iterate_namesakes_from_forward_01( ):
    }
    '''
 
-   staves = iterate.namesakes_from(score[0][0])
+   staves = iterate.namesakes_from(score[1][0], backwards = True)
    staves = list(staves)
 
-   assert staves[0] is score[0][0]
+   assert staves[0] is score[1][0]
    assert staves[0].name == 'staff 1'
 
-   assert staves[1] is score[1][0]
+   assert staves[1] is score[0][0]
    assert staves[1].name == 'staff 1'
 
 
-def test_iterate_namesakes_from_forward_02( ):
+def test_iterate_namesakes_backwards_02( ): 
 
    container = Container(Staff(construct.run(2)) * 2)
    container.parallel = True
@@ -83,11 +83,18 @@ def test_iterate_namesakes_from_forward_02( ):
    }
    '''
 
-   notes = iterate.namesakes_from(score.leaves[0])
+   notes = iterate.namesakes_from(score.leaves[-1], backwards = True)
    notes = list(notes)
 
-   assert notes[0].staff.effective.name == 'staff 1'
-   assert notes[1].staff.effective.name == 'staff 1'
-   assert notes[2].staff.effective.name == 'staff 1'
-   assert notes[3].staff.effective.name == 'staff 1'
+   r'''
+   Note(c'', 8)
+   Note(b', 8)
+   Note(f', 8)
+   Note(e', 8)
+   '''
+
+   assert notes[0].staff.effective.name == 'staff 2'
+   assert notes[1].staff.effective.name == 'staff 2'
+   assert notes[2].staff.effective.name == 'staff 2'
+   assert notes[3].staff.effective.name == 'staff 2'
    

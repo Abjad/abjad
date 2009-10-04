@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.parenttools.switch import _switch
 
 
-def test__switch_01( ):
+def test_parenttools_switch_01( ):
 
    t = Voice([ ])
    u = Voice(construct.scale(4))

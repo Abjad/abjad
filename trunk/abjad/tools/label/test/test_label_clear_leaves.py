@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_clear_leaves_01( ):
+def test_label_clear_leaves_01( ):
    '''Clear multiple pieces of down-markup.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))

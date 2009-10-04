@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_insert_slice_cyclic_01( ):
+def test_listtools_insert_slice_cyclic_01( ):
    '''Insert a copy of the elements of s between
       each of the elements of l.'''
 

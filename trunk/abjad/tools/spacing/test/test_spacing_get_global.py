@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tools_spacing_get_global_01( ):
+def test_spacing_get_global_01( ):
    '''Return ``global_spacing`` of effective score of ``component``.'''
 
    t = Score([Staff(construct.scale(4))])
@@ -23,7 +23,7 @@ def test_tools_spacing_get_global_01( ):
    assert spacing.get_global(t) is spacing_indication
 
 
-def test_tools_spacing_get_global_02( ):
+def test_spacing_get_global_02( ):
    '''Return ``None`` when effective score has no global spacing.'''
 
    t = Score([Staff(construct.scale(4))])
@@ -42,7 +42,7 @@ def test_tools_spacing_get_global_02( ):
    assert spacing.get_global(t) is None
 
 
-def test_tools_spacing_get_global_03( ):
+def test_spacing_get_global_03( ):
    '''Return ``None`` when effective score is ``None``.'''
 
    t = Staff(construct.scale(4))

@@ -290,7 +290,7 @@ def test_split_unfractured_at_index_09( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\t\\times 4/5 {\n\t\t\tc'8 [\n\t\t\tc'8\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_split_unfractured_at_duration_10( ):
+def test_split_unfractured_at_index_10( ):
    '''Index split left of leaf in score and do not fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
@@ -340,7 +340,7 @@ def test_split_unfractured_at_duration_10( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_unfractured_at_duration_11( ):
+def test_split_unfractured_at_index_11( ):
    '''Index split right of leaf in score and do not fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
