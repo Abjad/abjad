@@ -1,0 +1,63 @@
+#! /usr/bin/env python
+
+import os
+
+
+def _fix_test_case_numbering( ):
+   total_test_modules = 0
+   total_test_cases = 0
+   total_misnumbered_cases = 0
+   for path, subdirectories, files in os.walk('.'):
+      test_modules = [ ]
+      for f in files:
+         if f.startswith('test_') and f.endswith('.py'):
+            test_modules.append(f)
+      total_test_modules += len(test_modules)
+      for test_module in test_modules:
+         test_cases_in_current_module = 0
+         full_module_name = os.path.join(path, test_module)
+         short_module_name = test_module[:-3]
+         desired_test_case_prefix = short_module_name
+         fp = file(full_module_name, 'r')
+         new_lines = [ ]
+         lines = fp.readlines( )
+         current_case_number = 1
+         for line in lines:
+            if line.startswith('def test') or line.startswith('#def test'):
+               test_cases_in_current_module += 1
+               desired_test_case_number = str(current_case_number).zfill(2)
+               actual_test_case_number = line[-7:-5]
+               if not actual_test_case_number == desired_test_case_number:
+                  total_misnumbered_cases += 1
+                  print ''
+                  print 'NONMATCHING in %s' % test_module
+                  new_line = line.replace(
+                     actual_test_case_number, desired_test_case_number)
+                  print 'OLD LINE:  %s' % line.strip('\n')
+                  print 'NEW LINE:  %s' % new_line.strip('\n')
+                  choice = raw_input('Make replacement [y/n]? ')
+                  if choice.lower( ) == 'y':
+                     new_lines.append(new_line)
+                  else:
+                     new_lines.append(line)
+               else:
+                  new_lines.append(line)
+               current_case_number += 1
+            else:
+               new_lines.append(line)
+         fp.close( )
+         total_test_cases += test_cases_in_current_module
+         fp = open(full_module_name, 'w')
+         fp.writelines(new_lines)
+         fp.close( )
+
+   print ''
+   print '%s total test modules.' % total_test_modules
+   print '%s total test cases.' % total_test_cases
+   print '%s total misnumbered test case names.' % total_misnumbered_cases
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   _fix_test_case_numbering( )
+   print ''
