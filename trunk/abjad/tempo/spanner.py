@@ -31,7 +31,8 @@ class Tempo(_GrobHandlerSpanner):
 
    def __repr__(self):
       name = self.__class__.__name__
-      summary = self._summary
+      #summary = self._summary
+      summary = self._compact_summary
       if self.indication is not None:
          equation = self.indication._equation
          return '%s(%s, %s)' % (name, equation, summary)
