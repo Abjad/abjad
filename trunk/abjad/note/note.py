@@ -15,7 +15,10 @@ class Note(_Leaf):
    def __repr__(self):
       return 'Note(%s, %s)' % (self.pitch, self.duration._product)
 
-   def __str__(self):
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _compact_representation(self):
       return self._body[0]
 
    ## PUBLIC ATTRIBUTES ##

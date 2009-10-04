@@ -44,7 +44,10 @@ class Chord(_Leaf):
          arg._client = self
       self._sort( )
 
-   def __str__(self):
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _compact_representation(self):
       return '<%s>%s' % (self._summary, self.duration._product)
 
    ## PRIVATE METHODS ##

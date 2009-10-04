@@ -29,6 +29,9 @@ class _Leaf(_Component):
    def __or__(self, arg):
       return self._operate(arg, operator.__or__)
 
+   def __str__(self):
+      return self._compact_representation
+
    def __sub__(self, arg):
       return self._operate(arg, operator.__sub__)
 

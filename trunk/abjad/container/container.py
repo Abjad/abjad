@@ -79,10 +79,11 @@ class Container(_Component):
 
    def __repr__(self):
       '''String format of container for interpreter display.'''
-      if not self.parallel:
-         return '{%s}' % self._summary
-      else:
-         return '<<%s>>' % self._summary
+#      if not self.parallel:
+#         return '{%s}' % self._summary
+#      else:
+#         return '<<%s>>' % self._summary
+      return self._compact_representation
 
    def __setitem__(self, i, expr):
       '''Set 'expr' in self at nonnegative integer index i.
@@ -133,6 +134,14 @@ class Container(_Component):
                component.spanners._add(spanner)
 
    ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _compact_representation(self):
+      '''Compact form used in spanner display.'''
+      if not self.parallel:
+         return '{%s}' % self._summary
+      else:
+         return '<<%s>>' % self._summary
 
    @property
    def _summary(self):

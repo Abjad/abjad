@@ -14,7 +14,10 @@ class Rest(_Leaf):
    def __repr__(self):
       return 'Rest(%s)' % self.duration._product
 
-   def __str__(self):
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _compact_representation(self):
       return 'r%s' % self.duration._product
 
    ## PUBLIC ATTRIBUTES ##

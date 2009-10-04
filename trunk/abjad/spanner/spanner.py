@@ -54,13 +54,28 @@ class Spanner(_Abjad):
       return self._components.__len__( )
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._summary)
+      #return '%s(%s)' % (self.__class__.__name__, self._summary)
+      return '%s(%s)' % (self.__class__.__name__, self._compact_summary)
 
    ## PRIVATE ATTRIBUTES ##
 
    @property
+   def _compact_summary(self):
+      len_self = len(self)
+      if not len_self:
+         return ' '
+      elif 0 < len_self <= 8:
+         return ', '.join([x._compact_representation for x in self])
+      else:
+         left = ', '.join([x._compact_representation for x in self[:2]])
+         right = ', '.join([x._compact_representation for x in self[-2:]])
+         number_in_middle = len_self - 4
+         middle = ', ... %s more ..., ' % number_in_middle
+         return left + middle + right
+
+   @property
    def _summary(self):
-      if len(self) > 0:
+      if 0 < len(self):
          return ', '.join([str(x) for x in self])
       else:
          return ' '

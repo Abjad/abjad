@@ -52,6 +52,14 @@ class _Measure(Container):
       else:
          return '| |'
 
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _compact_representation(self):
+      '''Display form of measure used for spanners to display
+      potentially many spanned measures one after the other.'''
+      return '|%s(%s)|' % (self.meter.effective, len(self))
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
