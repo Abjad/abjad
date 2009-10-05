@@ -641,6 +641,7 @@ scoretools
    tools/scoretools/bequeath
    tools/scoretools/donate
    tools/scoretools/find
+   tools/scoretools/make_piano_score
    tools/scoretools/make_piano_staff
 
 
