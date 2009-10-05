@@ -628,6 +628,7 @@ pitchtools
    tools/pitchtools/pitch_number_to_octave
    tools/pitchtools/registrate
    tools/pitchtools/send_pitch_number_to_octave
+   tools/pitchtools/sort_by_pc
    tools/pitchtools/staff_space_transpose
    tools/pitchtools/suggest_clef
 

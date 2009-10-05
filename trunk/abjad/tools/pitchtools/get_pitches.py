@@ -8,7 +8,7 @@ from abjad.tools.pitchtools.get_pitch import get_pitch as \
 
 
 def get_pitches(expr):
-   '''Get tuple of zero or more Abjad :class:`~abjad.pitch.pitch.Pitch` 
+   '''Get tuple of zero or more Abjad :class:`~abjad.Pitch` 
    instances from almost any expression.
 
    ::
