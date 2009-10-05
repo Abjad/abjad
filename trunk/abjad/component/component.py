@@ -120,6 +120,10 @@ class _Component(_Abjad):
    ## PRIVATE ATTRIBUTES ##
 
    @property
+   def _format_pieces(self):
+      return self._formatter._format_pieces
+   
+   @property
    def _ID(self):
       if self.name is not None:
          rhs = self.name
@@ -205,11 +209,6 @@ class _Component(_Abjad):
    def format(self):
       '''Read-only version of `self` as LilyPond input code.'''
       return self._formatter.format
-
-#   @property
-#   def formatter(self):
-#      '''Read-only reference to class-specific formatter.'''
-#      return self._formatter
 
    @property
    def glissando(self):

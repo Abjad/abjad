@@ -12,10 +12,10 @@ class _ComponentFormatter(_Interface):
       self._slots = _ComponentFormatterSlotsInterface(self)
       #self.number = False
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
-   def format(self):
+   def _format_pieces(self):
       result = [ ]
       result.extend(self.slots.contributions('slot_1'))
       result.extend(self.slots.contributions('slot_2'))
@@ -24,8 +24,25 @@ class _ComponentFormatter(_Interface):
       result.extend(self.slots.contributions('slot_5'))
       result.extend(self.slots.contributions('slot_6'))
       result.extend(self.slots.contributions('slot_7'))
-      result = '\n'.join(result)
       return result
+
+   ## PUBLIC ATTRIBUTES ##
+
+#   @property
+#   def format(self):
+#      result = [ ]
+#      result.extend(self.slots.contributions('slot_1'))
+#      result.extend(self.slots.contributions('slot_2'))
+#      result.extend(self.slots.contributions('slot_3'))
+#      result.extend(self.slots.contributions('slot_4'))
+#      result.extend(self.slots.contributions('slot_5'))
+#      result.extend(self.slots.contributions('slot_6'))
+#      result.extend(self.slots.contributions('slot_7'))
+#      result = '\n'.join(result)
+#      return result
+   @property
+   def format(self):
+      return '\n'.join(self._format_pieces)
 
    @property
    def slots(self):

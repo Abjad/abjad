@@ -12,6 +12,8 @@ Classes
    accidental/accidental
    measure/anonymous/measure
    articulations/articulation
+   tools/lilytools/BookBlock
+   tools/lilytools/BookpartBlock
    chord/chord
    clef/clef
    cluster/cluster
@@ -23,11 +25,16 @@ Classes
    grace/grace
    staffgroup/grandstaff
    harmonic/natural
+   tools/lilytools/HeaderBlock
    staff/invisiblestaff
+   tools/lilytools/LayoutBlock
+   tools/lilytools/LilyFile
    markup/markup
    meter/meter
+   tools/lilytools/MidiBlock
    note/note
    notehead/notehead
+   tools/lilytools/PaperBlock
    staffgroup/pianostaff
    pitch/pitch
    rational/rational
@@ -36,6 +43,7 @@ Classes
    staff/rhythmicstaff
    measure/rigid/measure
    score/score
+   tools/lilytools/ScoreBlock
    skip/skip
    spacing/indication
    staff/staff

@@ -14,6 +14,7 @@ from abjad.tools import interpolate
 from abjad.tools import iterate
 from abjad.tools import label
 from abjad.tools import layout
+from abjad.tools import lilytools
 from abjad.tools import markup
 from abjad.tools import metertools
 from abjad.tools import overridetools
