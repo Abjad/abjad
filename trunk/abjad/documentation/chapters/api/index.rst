@@ -166,7 +166,9 @@ chordtools
 
    tools/chordtools/arpeggiate
    tools/chordtools/cast_defective
+   tools/chordtools/color_noteheads_by_pc
    tools/chordtools/get_notehead
+   tools/chordtools/show_chord
    tools/chordtools/split_by_altitude
    tools/chordtools/split_by_pitch_number
 
@@ -344,6 +346,7 @@ io
    tools/io/ly
    tools/io/pdf
    tools/io/play
+   tools/io/redo
    tools/io/show
    tools/io/write_and_show
    tools/io/write_ly
