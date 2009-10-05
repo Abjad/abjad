@@ -419,6 +419,14 @@ leaftools
    tools/leaftools/multiply
 
 
+lilytools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lilytools/make_basic_lily_file
+
+
 listtools
 
 .. toctree::
