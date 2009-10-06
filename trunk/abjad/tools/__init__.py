@@ -20,6 +20,7 @@ from abjad.tools import metertools
 from abjad.tools import overridetools
 from abjad.tools import parenttools
 from abjad.tools import partition
+from abjad.tools import pctheory
 from abjad.tools import pickle
 from abjad.tools import pitchtools
 from abjad.tools import spacing
