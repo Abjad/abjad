@@ -52,23 +52,13 @@ def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
    assert pitchtools.is_token(pitch)
    assert attr in ('number', 'altitude')
 
-#   pitch = Pitch(pitch)
-#   treble = [ ]
-#   bass = [ ]
-#
-#   for p in chord.pitches:
-#      if getattr(p, attr) < getattr(pitch, attr):
-#         bass.append(p.pair)   
-#      else:
-#         treble.append(p.pair)
-#
-#   treble = construct.engender(treble, chord.duration.written)
-#   bass = construct.engender(bass, chord.duration.written)
-
    pitch = Pitch(pitch)
    treble = clone.unspan([chord])[0]
    bass = clone.unspan([chord])[0]
 
+   treble.markup.down[:] = [ ]
+   bass.markup.up[:] = [ ]
+   
    if isinstance(treble, Note):
       if getattr(treble.pitch, attr) < getattr(pitch, attr):
          treble = Rest(treble)

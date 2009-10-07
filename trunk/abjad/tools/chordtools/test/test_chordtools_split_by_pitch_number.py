@@ -165,3 +165,25 @@ def test_chordtools_split_by_pitch_number_10( ):
 
    assert check.wf(bass)
    assert bass.format == "<\n\t\\tweak #'color #red\n\tc'\n\t\\tweak #'color #red\n\tcs'\n>4"
+
+
+def test_chordtools_split_by_pitch_number_11( ):
+   '''Copy up-markup to treble and down-markup to bass.'''
+
+   t = Chord([-11, 2, 5], (1, 4))
+   t.markup.up.append('UP')
+   t.markup.down.append('DOWN')
+
+   "<cs d' f'>4 ^ \markup { UP } _ \markup { DOWN }"
+
+   treble, bass = chordtools.split_by_pitch_number(t, 0)
+
+   "<d' f'>4 ^ \markup { UP }"
+
+   assert check.wf(treble)
+   assert treble.format == "<d' f'>4 ^ \\markup { UP }"
+
+   "cs4 _ \markup { DOWN }"
+
+   assert check.wf(bass)
+   assert bass.format == 'cs4 _ \\markup { DOWN }'
