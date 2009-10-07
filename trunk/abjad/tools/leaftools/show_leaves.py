@@ -35,7 +35,7 @@ def show_leaves(leaves, template = None, title = None, suppress_pdf = False):
    yet been added to score.
    """
 
-   score = scoretools.make_piano_score(leaves)
+   score, treble, bass = scoretools.make_piano_sketch_score(leaves)
    show(score, template = template, title = title, suppress_pdf = suppress_pdf)
 
    return score

@@ -1,0 +1,26 @@
+from abjad.tools import iterate
+from abjad.staff import Staff
+from make_piano_score import make_piano_score
+
+
+def make_piano_sketch_score(leaves):
+   r""".. versionadded:: 1.1.2
+
+   Create a two-staff, treble / bass score of `leaves`.
+
+      * Make time signatures and bar numbers transparent.
+      * Do not print barlines or spanbars.
+      * Set all staff accidental styles to forget.
+   """
+
+   score, treble_staff, bass_staff = make_piano_score(leaves)
+
+   score.meter.transparent = True
+   score.barnumber.transparent = True
+   score.barline.stencil = False
+   score.spanbar.stencil = False
+
+   for staff in iterate.naive(score, klass = Staff):
+      staff.accidental.style = 'forget'
+
+   return score, treble_staff, bass_staff
