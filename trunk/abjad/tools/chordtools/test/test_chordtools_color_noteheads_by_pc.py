@@ -4,20 +4,9 @@ from abjad import *
 def test_chordtools_color_noteheads_by_pc_01( ):
    '''Works on chords.'''
 
-   color_map = {
-      -12: 'red',
-      -10: 'red',
-        4: 'red',
-       -2: 'blue',
-        8: 'blue',
-       11: 'blue',
-       17: 'blue',
-       19: 'green',
-       27: 'green',
-       30: 'green',
-       33: 'green',
-       37: 'green'
-   }
+   pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]] 
+   colors = ['red', 'blue', 'green']
+   color_map = pitchtools.PitchClassColorMap(pitches, colors)
 
    chord = Chord([12, 14, 18, 21, 23], (1, 4))
    chordtools.color_noteheads_by_pc(chord, color_map)
@@ -44,20 +33,9 @@ def test_chordtools_color_noteheads_by_pc_01( ):
 def test_chordtools_color_noteheads_by_pc_02( ):
    '''Works on notes.'''
 
-   color_map = {
-      -12: 'red',
-      -10: 'red',
-        4: 'red',
-       -2: 'blue',
-        8: 'blue',
-       11: 'blue',
-       17: 'blue',
-       19: 'green',
-       27: 'green',
-       30: 'green',
-       33: 'green',
-       37: 'green'
-   }
+   pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]] 
+   colors = ['red', 'blue', 'green']
+   color_map = pitchtools.PitchClassColorMap(pitches, colors)
 
    note = Note(0, (1, 4))
    chordtools.color_noteheads_by_pc(note, color_map)
