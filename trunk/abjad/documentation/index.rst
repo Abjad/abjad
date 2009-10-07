@@ -97,6 +97,7 @@ Appendices
    chapters/appendices/text_alignment/index
    chapters/appendices/templates/index
    chapters/appendices/abjad_book/index
+   chapters/appendices/colors/index
    chapters/appendices/glossary/index
    chapters/appendices/bibliography/index
 
