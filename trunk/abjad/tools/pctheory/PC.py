@@ -2,13 +2,13 @@ class PC(object):
    '''12-ET pitch-class ranging from [0, 12).'''
 
    def __init__(self, arg):
+      from abjad.pitch import Pitch
       if isinstance(arg, (int, long, float)):
-         if 0 <= arg < 12:
-            self._number = arg
-         else:
-            raise ValueError
+         self._number = arg % 12
       elif isinstance(arg, PC):
          self._number = arg.number
+      elif isinstance(arg, Pitch):
+         self._number = arg.number % 12
       else:
          raise TypeError
 
