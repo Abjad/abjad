@@ -1,7 +1,12 @@
+from abjad.chord import Chord
 from abjad.leaf.leaf import _Leaf
+from abjad.note import Note
 from abjad.pitch import Pitch
+from abjad.rest import Rest
+from abjad.tools import clone
 from abjad.tools import construct
 from abjad.tools import pitchtools
+from cast_defective import cast_defective
 
 
 def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
@@ -47,17 +52,48 @@ def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
    assert pitchtools.is_token(pitch)
    assert attr in ('number', 'altitude')
 
+#   pitch = Pitch(pitch)
+#   treble = [ ]
+#   bass = [ ]
+#
+#   for p in chord.pitches:
+#      if getattr(p, attr) < getattr(pitch, attr):
+#         bass.append(p.pair)   
+#      else:
+#         treble.append(p.pair)
+#
+#   treble = construct.engender(treble, chord.duration.written)
+#   bass = construct.engender(bass, chord.duration.written)
+
    pitch = Pitch(pitch)
-   treble = [ ]
-   bass = [ ]
+   treble = clone.unspan([chord])[0]
+   bass = clone.unspan([chord])[0]
 
-   for p in chord.pitches:
-      if getattr(p, attr) < getattr(pitch, attr):
-         bass.append(p.pair)   
-      else:
-         treble.append(p.pair)
+   if isinstance(treble, Note):
+      if getattr(treble.pitch, attr) < getattr(pitch, attr):
+         treble = Rest(treble)
+   elif isinstance(treble, Rest):
+      pass
+   elif isinstance(treble, Chord):
+      for notehead in treble.noteheads:
+         if getattr(notehead.pitch, attr) < getattr(pitch, attr):
+            treble.remove(notehead)
+   else:
+      raise ValueError('must be note, rest or chord.')
 
-   treble = construct.engender(treble, chord.duration.written)
-   bass = construct.engender(bass, chord.duration.written)
+   if isinstance(bass, Note):
+      if getattr(pitch, attr) <= getattr(bass.pitch, attr):
+         bass = Rest(bass)
+   elif isinstance(bass, Rest):
+      pass
+   elif isinstance(bass, Chord):
+      for notehead in bass.noteheads:
+         if getattr(pitch, attr) <= getattr(notehead.pitch, attr):
+            bass.remove(notehead)
+   else:
+      raise ValueError('must be note, rest or chord.')
+
+   treble = cast_defective(treble)
+   bass = cast_defective(bass)
 
    return treble, bass

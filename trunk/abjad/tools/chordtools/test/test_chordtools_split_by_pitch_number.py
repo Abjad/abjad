@@ -116,3 +116,52 @@ def test_chordtools_split_by_pitch_number_09( ):
    assert t is not treble
    assert t is not bass
    assert treble is not bass
+
+
+def test_chordtools_split_by_pitch_number_10( ):
+   '''Split copies over notehead coloring.'''
+
+   t = Chord([0, 1, 2, 3], (1, 4))
+   t[0].color = 'red'
+   t[1].color = 'red'
+   t[2].color = 'blue'
+   t[3].color = 'blue'
+   
+   r'''
+   <
+           \tweak #'color #red
+           c'
+           \tweak #'color #red
+           cs'
+           \tweak #'color #blue
+           d'
+           \tweak #'color #blue
+           ef'
+   >4
+   '''
+
+   treble, bass = chordtools.split_by_pitch_number(t, 2)
+
+   r'''
+   <
+           \tweak #'color #blue
+           d'
+           \tweak #'color #blue
+           ef'
+   >4
+   '''
+
+   assert check.wf(treble)
+   assert treble.format == "<\n\t\\tweak #'color #blue\n\td'\n\t\\tweak #'color #blue\n\tef'\n>4"
+
+   r'''
+   <
+           \tweak #'color #red
+           c'
+           \tweak #'color #red
+           cs'
+   >4   
+   '''
+
+   assert check.wf(bass)
+   assert bass.format == "<\n\t\\tweak #'color #red\n\tc'\n\t\\tweak #'color #red\n\tcs'\n>4"

@@ -40,6 +40,36 @@ def split_by_pitch_number(chord, pitch = Pitch('b', 3)):
       Chord(c' cs' d' ef' e' f' fs' g' af' a' bf' b', 4)
       abjad> chordtools.split_by_pitch_number(chord, Pitch(6))
       (Chord(fs' g' af' a' bf' b', 4), Chord(c' cs' d' ef' e' f', 4))
+
+   Preserve notehead coloring. ::
+
+      abjad> t = Chord([0, 1, 2, 3], (1, 4))
+      abjad> t[0].color = 'red'
+      abjad> t[1].color = 'red'
+      abjad> t[2].color = 'blue'
+      abjad> t[3].color = 'blue'
+      abjad> f(t)
+      <
+              \tweak #'color #red
+              c'
+              \tweak #'color #red
+              cs'
+              \tweak #'color #blue
+              d'
+              \tweak #'color #blue
+              ef'
+      >4
+
+   ::
+
+      abjad> treble, bass = chordtools.split_by_pitch_number(t, 2)     
+      abjad> f(treble)
+      <
+              \tweak #'color #blue
+              d'
+              \tweak #'color #blue
+              ef'
+      >4
    '''
 
    treble, bass = _split(chord, pitch = pitch, attr = 'number')
