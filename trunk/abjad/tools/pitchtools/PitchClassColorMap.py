@@ -60,3 +60,11 @@ class PitchClassColorMap(object):
       pcs = [x / 2.0 for x in range(24)]
       pcs = [int(x) if int(x) == x else x for x in pcs]
       return set(pcs).issubset(set(self._color_dictionary.keys( )))
+
+   ## PUBLIC METHODS ##
+
+   def get(self, key, alternative = None):
+      try:
+         return self[key]
+      except (KeyError, TypeError):
+         return alternative

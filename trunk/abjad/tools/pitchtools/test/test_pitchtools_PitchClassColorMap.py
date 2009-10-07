@@ -36,3 +36,7 @@ def test_pitchtools_PitchClassColorMap_02( ):
    assert pcm[Pitch(13)] == 'blue'
 
    assert py.test.raises(Exception, "pcm['foo']")
+
+   assert pcm.get(1) == 'blue'
+   assert pcm.get('foo') is None
+   assert pcm.get('foo', 'blah') == 'blah'
