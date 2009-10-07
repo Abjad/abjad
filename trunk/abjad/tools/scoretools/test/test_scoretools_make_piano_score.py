@@ -6,7 +6,7 @@ def test_scoretools_make_piano_score_01( ):
 
    pitches = [-12, 37, -10, 27, 4, 17]
    notes = [Note(x, (1, 4)) for x in pitches]
-   score = scoretools.make_piano_score(notes)
+   score, treble_staff, bass_staff = scoretools.make_piano_score(notes)
 
    r"""
    \new Score <<

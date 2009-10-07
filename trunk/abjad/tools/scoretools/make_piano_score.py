@@ -12,7 +12,7 @@ def make_piano_score(leaves):
    Create a two-staff, treble / bass score of `leaves`. ::
 
       abjad> notes = [Note(x, (1, 4)) for x in [-12, 37, -10, 2, 4, 17]]
-      abjad> score = scoretools.make_piano_score(notes)
+      abjad> score, treble_staff, bass_staff = scoretools.make_piano_score(notes)
       abjad> f(score)
       \new Score <<
               \new PianoStaff <<
@@ -44,4 +44,4 @@ def make_piano_score(leaves):
       treble_staff.append(treble_chord)
       bass_staff.append(bass_chord)
 
-   return score
+   return score, treble_staff, bass_staff
