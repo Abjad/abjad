@@ -34,9 +34,12 @@ Classes
    tools/lilytools/MidiBlock
    note/note
    notehead/notehead
+   tools/pctheory/PC
+   tools/pctheory/PCSet
    tools/lilytools/PaperBlock
    staffgroup/pianostaff
    pitch/pitch
+   tools/pitchtools/PitchClassColorMap
    rational/rational
    rest/rest
    staff/rhythmicsketchstaff
@@ -176,7 +179,6 @@ chordtools
    tools/chordtools/cast_defective
    tools/chordtools/color_noteheads_by_pc
    tools/chordtools/get_notehead
-   tools/chordtools/show_chord
    tools/chordtools/split_by_altitude
    tools/chordtools/split_by_pitch_number
 
@@ -417,6 +419,7 @@ leaftools
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply
+   tools/leaftools/show_leaves
 
 
 lilytools
