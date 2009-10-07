@@ -27,13 +27,24 @@ def cast_defective(chord):
       Chord(c' c'' cs'', 8.)
       abjad> chordtools.cast_defective(chord)
       Chord(c' c'' cs'', 8.)
+
+   Return notes and rests unchanged. ::
+
+      abjad> note = Note(0, (1, 4))
+      abjad> chordtools.cast_defective(note)
+      Note(c', 4)
+
+   ::
+
+      abjad> rest = Rest((1, 4))
+      abjad> chordtools.cast_defective(rest)
+      Rest((1, 4))
    '''
 
-   assert isinstance(chord, Chord)
+   if isinstance(chord, Chord):
+      if len(chord) == 0:
+         return Rest(chord)
+      elif len(chord) == 1:
+         return Note(chord)
 
-   if len(chord) == 0:
-      return Rest(chord)
-   elif len(chord) == 1:
-      return Note(chord)
-   else:
-      return chord
+   return chord
