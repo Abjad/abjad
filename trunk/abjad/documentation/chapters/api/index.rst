@@ -661,6 +661,7 @@ scoretools
    tools/scoretools/donate
    tools/scoretools/find
    tools/scoretools/make_piano_score
+   tools/scoretools/make_piano_sketch_score
    tools/scoretools/make_piano_staff
 
 
