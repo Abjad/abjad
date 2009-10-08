@@ -1,9 +1,9 @@
-from abjad.accidental.interface import AccidentalInterface
-from abjad.articulations.interface import ArticulationsInterface
-from abjad.barline.interface import BarLineInterface
-from abjad.barnumber.interface import BarNumberInterface
-from abjad.beam.interface import BeamInterface
-from abjad.breaks.interface import BreaksInterface
+from abjad.interfaces.accidental.interface import AccidentalInterface
+from abjad.interfaces.articulation.interface import ArticulationsInterface
+from abjad.interfaces.barline.interface import BarLineInterface
+from abjad.interfaces.barnumber.interface import BarNumberInterface
+from abjad.interfaces.beam.interface import BeamInterface
+from abjad.interfaces.breaks.interface import BreaksInterface
 from abjad.comments.interface import CommentsInterface
 from abjad.core.abjadcore import _Abjad
 from abjad.clef.interface import ClefInterface
@@ -13,11 +13,11 @@ from abjad.dynamics.interface import DynamicsInterface
 from abjad.glissando.interface import GlissandoInterface
 from abjad.history.interface import HistoryInterface
 from abjad.instrument.interface import InstrumentInterface
-#from abjad.interfaces.aggregator import InterfaceAggregator
-from abjad.interface_aggregator.aggregator import InterfaceAggregator
+from abjad.interfaces.interface_aggregator.aggregator import \
+   InterfaceAggregator
 from abjad.meter.interface import MeterInterface
 from abjad.navigator.navigator import _Navigator
-from abjad.nonmusicalpapercolumn.interface import \
+from abjad.interfaces.nonmusicalpapercolumn.interface import \
    NonMusicalPaperColumnInterface
 from abjad.notecolumn.interface import NoteColumnInterface
 from abjad.numbering.interface import NumberingInterface
