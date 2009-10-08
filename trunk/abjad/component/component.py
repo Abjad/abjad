@@ -13,7 +13,8 @@ from abjad.dynamics.interface import DynamicsInterface
 from abjad.glissando.interface import GlissandoInterface
 from abjad.history.interface import HistoryInterface
 from abjad.instrument.interface import InstrumentInterface
-from abjad.interfaces.aggregator import InterfaceAggregator
+#from abjad.interfaces.aggregator import InterfaceAggregator
+from abjad.interface_aggregator.aggregator import InterfaceAggregator
 from abjad.meter.interface import MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.nonmusicalpapercolumn.interface import \
