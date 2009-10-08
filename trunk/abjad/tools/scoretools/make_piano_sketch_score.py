@@ -14,6 +14,9 @@ def make_piano_sketch_score(leaves):
    """
 
    score, treble_staff, bass_staff = make_piano_score(leaves)
+   lily_file = lilytools.make_basic_lily_file(score)
+   score._lily_file = lily_file
+   lily_file.layout.indent = 0
 
    score.meter.transparent = True
    score.barnumber.transparent = True

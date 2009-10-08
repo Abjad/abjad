@@ -74,9 +74,9 @@ class _Component(_Abjad):
       self._dots = DotsInterface(self)
       self._dynamics = DynamicsInterface(self)
       self._glissando = GlissandoInterface(self)
-      #self._history = { }
       self._history = HistoryInterface(self)
       self._instrument = InstrumentInterface(self)
+      self._lily_file = None
       self._name = None
       self._navigator = _Navigator(self)
       self._nonmusicalpapercolumn = NonMusicalPaperColumnInterface(self)
@@ -242,6 +242,13 @@ class _Component(_Abjad):
       from abjad.leaf.leaf import _Leaf
       from abjad.tools import iterate
       return tuple(iterate.naive(self, _Leaf))
+
+   @property
+   def lily_file(self):
+      '''.. versionadded:: 1.1.2
+      Read-only reference to .ly file in which 
+      component is housed, if any.'''
+      return self._lily_file
 
    @property
    def meter(self):
