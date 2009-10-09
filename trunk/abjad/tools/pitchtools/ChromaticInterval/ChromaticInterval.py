@@ -1,8 +1,13 @@
+from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
+
+
 class ChromaticInterval(object):
 
-   def __init__(self, number):
-      if isinstance(number, (int, float, long)):
-         self._number = number
+   def __init__(self, arg):
+      if isinstance(arg, (int, float, long)):
+         self._number = arg
+      elif isinstance(arg, DiatonicInterval):
+         self._number = arg.semitones
       else:
          raise TypeError
 
