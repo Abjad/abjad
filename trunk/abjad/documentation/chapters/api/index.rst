@@ -15,6 +15,7 @@ Classes
    tools/lilytools/BookBlock
    tools/lilytools/BookpartBlock
    chord/chord
+   tools/pitchtools/ChromaticInterval/ChromaticInterval
    clef/clef
    cluster/cluster
    container/container
@@ -652,6 +653,7 @@ pitchtools
    tools/pitchtools/sort_by_pc
    tools/pitchtools/staff_space_transpose
    tools/pitchtools/suggest_clef
+   tools/pitchtools/transpose_by_chromatic_interval
 
 
 scoretools
