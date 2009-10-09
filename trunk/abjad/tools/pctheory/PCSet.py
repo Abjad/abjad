@@ -56,6 +56,10 @@ class PCSet(set):
       if candidate_pc not in self:
          set.add(self, candidate_pc)
 
+   def transpose(self, n):
+      '''Transpose all pcs in self by n.'''
+      return PCSet([PC(pc.number + n) for pc in self])
+
    def update(self, arg):
       '''Build-in update( ) extended with type- and value-checking.'''
       for element in arg:

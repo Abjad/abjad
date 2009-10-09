@@ -63,3 +63,17 @@ class PC(object):
    def number(self):
       '''Read-only numeric value of pitch-class.'''
       return self._number
+
+   ## PUBLIC METHODS ##
+
+   def invert(self):
+      '''Invert PC.'''
+      return PC(12 - self.number)
+
+   def multiply(self, n):
+      '''Multiply PC by n.'''
+      return PC(self.number * n)
+
+   def transpose(self, n):
+      '''Transpose PC by n.'''
+      return PC(self.number + n)
