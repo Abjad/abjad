@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pctheory_PCSet___contains__01( ):
+def test_pctheory_PCSet___contains___01( ):
    '''PCSet containment works as expected.'''
 
    pcset = pctheory.PCSet([0, 2, 6, 7])

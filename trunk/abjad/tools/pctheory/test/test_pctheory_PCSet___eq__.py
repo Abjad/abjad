@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pctheory_PCSet___eq__01( ):
+def test_pctheory_PCSet___eq___01( ):
    '''PCset equality works as expected.'''
 
    pcset1 = pctheory.PCSet([0, 2, 6, 7])

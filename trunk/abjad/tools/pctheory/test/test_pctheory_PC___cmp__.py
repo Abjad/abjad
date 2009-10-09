@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pctheory_PC___cmp__01( ):
+def test_pctheory_PC___cmp___01( ):
    '''All six comparison operators work as expected
    on different-valued PCs.'''
 
@@ -16,7 +16,7 @@ def test_pctheory_PC___cmp__01( ):
    assert not pc1 >= pc2
 
 
-def test_pctheory_PC___cmp__02( ):
+def test_pctheory_PC___cmp___02( ):
    '''All six comparison operators work as expected
    on same-valued PCs.'''
 

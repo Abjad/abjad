@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pctheory_PC___sub__01( ):
+def test_pctheory_PC___sub___01( ):
 
    pc1 = pctheory.PC(6)
    pc2 = pctheory.PC(7)
