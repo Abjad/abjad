@@ -1,5 +1,8 @@
 class PC(object):
-   '''12-ET pitch-class ranging from [0, 12).'''
+   '''.. versionadded::
+
+   12-ET pitch-class ranging from [0, 12).
+   '''
 
    def __init__(self, arg):
       from abjad.pitch import Pitch

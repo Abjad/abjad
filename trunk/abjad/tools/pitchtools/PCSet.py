@@ -2,7 +2,10 @@ from PC import PC
 
 
 class PCSet(set):
-   '''12-ET pitch-class set from American pitch-class theory.'''
+   '''.. versionadded:: 1.1.2
+
+   12-ET pitch-class set from American pitch-class theory.
+   '''
 
    def __init__(self, pcs):
       self.update(pcs)
@@ -56,9 +59,17 @@ class PCSet(set):
       if candidate_pc not in self:
          set.add(self, candidate_pc)
 
+   def invert(self):
+      '''Transpose all pcs in self by n.'''
+      return PCSet([pc.invert( ) for pc in self])
+
+   def multiply(self, n):
+      '''Transpose all pcs in self by n.'''
+      return PCSet([pc.multiply(n) for pc in self])
+
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
-      return PCSet([PC(pc.number + n) for pc in self])
+      return PCSet([pc.transpose(n) for pc in self])
 
    def update(self, arg):
       '''Build-in update( ) extended with type- and value-checking.'''
