@@ -1,8 +1,11 @@
 from abjad.pitch import Pitch
+from get_pitches import get_pitches
 
 
 class PitchRange(object):
-   '''Model a range of pitches.
+   '''.. versionadded:: 1.1.2
+
+   Model a range of pitches.
 
    All the magic is in the implementation of __contains__.
 
@@ -16,33 +19,16 @@ class PitchRange(object):
    ## OVERLOADS ##
 
    def __contains__(self, arg):
-      try:
+      if isinstance(arg, (int, long, float)):
          pitch = Pitch(arg)
-      except (KeyError, ValueError):
-         return False
-      if self.start is None and self.stop is None:
-         return True
-      elif self.start is None:
-         if self._include_stop:
-            return pitch <= self._stop_pitch
-         else:
-            return pitch < self._stop_pitch
-      elif self.stop is None:
-         if self._include_start:
-            return self._start_pitch <= pitch
-         else:
-            return self._start_pitch < pitch
+         return self._contains_pitch(pitch)
+      elif isinstance(arg, Pitch):
+         return self._contains_pitch(arg)
       else:
-         if self._include_start:
-            if self._include_stop:
-               return self._start_pitch <= pitch <= self._stop_pitch
-            else:
-               return self._start_pitch <= pitch < self._stop_pitch
-         else:
-            if self._include_stop:
-               return self._start_pitch < pitch <= self._stop_pitch
-            else:
-               return self._start_pitch < pitch < self._stop_pitch
+         pitches = get_pitches(arg)
+         if pitches:
+            return all([self._contains_pitch(x) for x in pitches])
+      return False
 
    def __repr__(self):
       return '%s(%s, %s)' % (
@@ -73,6 +59,33 @@ class PitchRange(object):
       if self.stop is None:
          return None
       return self.stop[0]
+
+   ## PRIVATE METHODS ##
+
+   def _contains_pitch(self, pitch):
+      if self.start is None and self.stop is None:
+         return True
+      elif self.start is None:
+         if self._include_stop:
+            return pitch <= self._stop_pitch
+         else:
+            return pitch < self._stop_pitch
+      elif self.stop is None:
+         if self._include_start:
+            return self._start_pitch <= pitch
+         else:
+            return self._start_pitch < pitch
+      else:
+         if self._include_start:
+            if self._include_stop:
+               return self._start_pitch <= pitch <= self._stop_pitch
+            else:
+               return self._start_pitch <= pitch < self._stop_pitch
+         else:
+            if self._include_stop:
+               return self._start_pitch < pitch <= self._stop_pitch
+            else:
+               return self._start_pitch < pitch < self._stop_pitch
 
    ## PUBLIC ATTRIBUTES ##
    

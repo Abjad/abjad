@@ -98,3 +98,33 @@ def test_pitchtools_PitchRange___contains___09( ):
    assert   0     in pr
    assert  48     in pr
    assert  99     in pr
+
+
+def test_pitchtools_PitchRange___contains__10( ):
+   '''Chord containement.'''
+
+   pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
+   assert Chord([-99, -98, -97], (1, 4)) not in pr
+   assert Chord([-39, -38, -37], (1, 4)) in pr
+   assert Chord([0, 2, 3], (1, 4)) in pr
+   assert Chord([46, 47, 48], (1, 4)) in pr
+   assert Chord([48, 49, 50], (1, 4)) not in pr
+
+
+def test_pitchtools_PitchRange___contains__11( ):
+   '''Note containement.'''
+
+   pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
+   assert Note(-99, (1, 4)) not in pr
+   assert Note(-39, (1, 4))     in pr
+   assert Note(  0, (1, 4))     in pr
+   assert Note( 48, (1, 4))     in pr
+   assert Note( 99, (1, 4)) not in pr
+
+
+def test_pitchtools_PitchRange___contains__12( ):
+   '''Rest and skip containement.'''
+
+   pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
+   assert Rest((1, 4)) not in pr
+   assert Skip((1, 4)) not in pr
