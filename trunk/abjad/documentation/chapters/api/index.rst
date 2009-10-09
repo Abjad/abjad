@@ -34,12 +34,13 @@ Classes
    tools/lilytools/MidiBlock
    note/note
    notehead/notehead
-   tools/pctheory/PC
-   tools/pctheory/PCSet
+   tools/pitchtools/PC
+   tools/pitchtools/PCSet
    tools/lilytools/PaperBlock
    staffgroup/pianostaff
    pitch/pitch
    tools/pitchtools/PitchClassColorMap
+   tools/pitchtools/PitchRange
    rational/rational
    rest/rest
    staff/rhythmicsketchstaff
@@ -63,13 +64,13 @@ Interfaces
 .. toctree::
    :maxdepth: 1
 
-   accidental/interface
-   articulations/interface
-   barline/interface
-   barnumber/interface
-   beam/interface
+   interfaces/accidental/interface
+   interfaces/articulation/interface
+   interfaces/barline/interface
+   interfaces/barnumber/interface
+   interfaces/beam/interface
    brackets/interface
-   breaks/interface
+   interfaces/breaks/interface
    clef/interface
    cluster/interface
    comments/interface
@@ -81,10 +82,10 @@ Interfaces
    harmonic/interface
    history/interface
    instrument/interface
-   interfaces/aggregator
+   interfaces/interface_aggregator/aggregator
    markup/interface
    meter/interface
-   nonmusicalpapercolumn/interface
+   interfaces/nonmusicalpapercolumn/interface
    notecolumn/interface
    notehead/interface
    numbering/interface
@@ -631,6 +632,7 @@ pitchtools
    tools/pitchtools/letter_pitch_number_to_octave
    tools/pitchtools/letter_to_diatonic_scale_degree
    tools/pitchtools/letter_to_pc
+   tools/pitchtools/make_all_aggregate_subsets
    tools/pitchtools/make_flat
    tools/pitchtools/make_sharp
    tools/pitchtools/name_to_letter_accidental
