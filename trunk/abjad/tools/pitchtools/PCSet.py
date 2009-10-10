@@ -1,6 +1,8 @@
 from PC import PC
 
 
+## TODO: Make PCSset and PitchSet both inherit from a shared base class. ##
+
 class PCSet(set):
    '''.. versionadded:: 1.1.2
 
