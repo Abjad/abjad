@@ -39,3 +39,11 @@ def test_pitchtools_PitchRange___init___04( ):
    pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
    assert pr.start == (Pitch(-39), 'inclusive')
    assert pr.stop == (Pitch(48), 'inclusive')
+
+
+def test_pitchtools_PitchRange___init___05( ):
+   '''Short-form init with only integers.'''
+
+   pr = pitchtools.PitchRange(-39, 48)
+   assert pr.start == (Pitch(-39), 'inclusive')
+   assert pr.stop == (Pitch(48), 'inclusive')

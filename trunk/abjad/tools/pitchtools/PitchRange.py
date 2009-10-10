@@ -96,6 +96,9 @@ class PitchRange(object):
       def fset(self, arg):
          if arg is None:
             self._start = arg
+         elif isinstance(arg, (int, long, float)):
+            pitch = Pitch(arg)
+            self._start = (pitch, 'inclusive')
          else:
             assert len(arg) == 2
             pitch, containment = arg
@@ -111,6 +114,9 @@ class PitchRange(object):
       def fset(self, arg):
          if arg is None:
             self._stop = arg
+         elif isinstance(arg, (int, long, float)):
+            pitch = Pitch(arg)
+            self._stop = (pitch, 'inclusive')
          else:
             assert len(arg) == 2
             pitch, containment = arg
