@@ -4,11 +4,6 @@ from abjad import *
 def test_pitchtools_octave_transpositions_01( ):
    '''List all octave transposition of pitches in range r.'''
 
-   #pitches = [0, 2, 4]
-   #t = pitchtools.octave_transpositions(pitches, [0, 48])
-   #
-   #assert t == [[0, 2, 4], [12, 14, 16], [24, 26, 28], [36, 38, 40]]
-
    chord = Chord([0, 2, 4], (1, 4))
    pitch_range = pitchtools.PitchRange(0, 48)
    transpositions = pitchtools.octave_transpositions(chord, pitch_range)
@@ -26,3 +21,13 @@ def test_pitchtools_octave_transpositions_01( ):
       ((('c', 6), ('d', 6), ('e', 6)), (1, 4))
    assert transpositions[3].signature == \
       ((('c', 7), ('d', 7), ('e', 7)), (1, 4))
+
+
+def test_pitchtools_octave_transpositions_02( ):
+   '''Works on pitch numbers.'''
+
+   pitch_numbers = [0, 2, 4]
+   pitch_range = pitchtools.PitchRange(0, 48)
+   t = pitchtools.octave_transpositions(pitch_numbers, pitch_range)
+   
+   assert t == [[0, 2, 4], [12, 14, 16], [24, 26, 28], [36, 38, 40]]
