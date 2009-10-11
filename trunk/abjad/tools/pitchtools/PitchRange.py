@@ -30,6 +30,16 @@ class PitchRange(object):
             return all([self._contains_pitch(x) for x in pitches])
       return False
 
+   def __eq__(self, arg):
+      if isinstance(arg, PitchRange):
+         if self.start == arg.start:
+            if self.stop == arg.stop:
+               return True
+      return False
+
+   def __ne__(self, arg):
+      return not self == arg
+
    def __repr__(self):
       return '%s(%s, %s)' % (
          self.__class__.__name__, self.start, self.stop)
