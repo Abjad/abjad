@@ -4,39 +4,39 @@ from abjad.interfaces.barline.interface import BarLineInterface
 from abjad.interfaces.barnumber.interface import BarNumberInterface
 from abjad.interfaces.beam.interface import BeamInterface
 from abjad.interfaces.breaks.interface import BreaksInterface
-from abjad.comments.interface import CommentsInterface
+from abjad.interfaces.comments.interface import CommentsInterface
 from abjad.core.abjadcore import _Abjad
-from abjad.clef.interface import ClefInterface
-from abjad.directives.interface import DirectivesInterface
-from abjad.dots.interface import DotsInterface
-from abjad.dynamics.interface import DynamicsInterface
-from abjad.glissando.interface import GlissandoInterface
-from abjad.history.interface import HistoryInterface
-from abjad.instrument.interface import InstrumentInterface
+from abjad.interfaces.clef.interface import ClefInterface
+from abjad.interfaces.directives.interface import DirectivesInterface
+from abjad.interfaces.dots.interface import DotsInterface
+from abjad.interfaces.dynamics.interface import DynamicsInterface
+from abjad.interfaces.glissando.interface import GlissandoInterface
+from abjad.interfaces.history.interface import HistoryInterface
+from abjad.interfaces.instrument.interface import InstrumentInterface
 from abjad.interfaces.interface_aggregator.aggregator import \
    InterfaceAggregator
-from abjad.meter.interface import MeterInterface
+from abjad.interfaces.meter.interface import MeterInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.interfaces.nonmusicalpapercolumn.interface import \
    NonMusicalPaperColumnInterface
-from abjad.notecolumn.interface import NoteColumnInterface
-from abjad.numbering.interface import NumberingInterface
-from abjad.offset.interface import OffsetInterface
-from abjad.parentage.interface import ParentageInterface
-from abjad.pianopedal.interface import PianoPedalInterface
+from abjad.interfaces.notecolumn.interface import NoteColumnInterface
+from abjad.interfaces.numbering.interface import NumberingInterface
+from abjad.interfaces.offset.interface import OffsetInterface
+from abjad.interfaces.parentage.interface import ParentageInterface
+from abjad.interfaces.pianopedal.interface import PianoPedalInterface
 from abjad.rational import Rational
 from abjad.receipt.component import _ComponentReceipt
-from abjad.slur.interface import SlurInterface
-from abjad.spacing.interface import SpacingInterface
-from abjad.spanbar.interface import SpanBarInterface
-from abjad.stem.interface import StemInterface
-from abjad.tempo.interface import TempoInterface
-from abjad.thread.interface import ThreadInterface
-from abjad.tie.interface import TieInterface
-from abjad.text.interface import TextInterface
-from abjad.tremolo.interface import TremoloInterface
-from abjad.trill.interface import TrillInterface
-from abjad.update.interface import _UpdateInterface
+from abjad.interfaces.slur.interface import SlurInterface
+from abjad.interfaces.spacing.interface import SpacingInterface
+from abjad.interfaces.spanbar.interface import SpanBarInterface
+from abjad.interfaces.stem.interface import StemInterface
+from abjad.interfaces.tempo.interface import TempoInterface
+from abjad.interfaces.thread.interface import ThreadInterface
+from abjad.interfaces.tie.interface import TieInterface
+from abjad.interfaces.text.interface import TextInterface
+from abjad.interfaces.tremolo.interface import TremoloInterface
+from abjad.interfaces.trill.interface import TrillInterface
+from abjad.interfaces.update.interface import _UpdateInterface
 import copy
 import types
 

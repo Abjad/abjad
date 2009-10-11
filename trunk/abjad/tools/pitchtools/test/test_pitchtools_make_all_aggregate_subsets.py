@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_make_all_aggregate_subsets_01( ):
+def test_pitchtools_make_all_aggregate_subsets_01( ):
 
    U_star = pitchtools.make_all_aggregate_subsets( )
    assert len(U_star) == 4096

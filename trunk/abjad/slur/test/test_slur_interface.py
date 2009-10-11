@@ -1,13 +1,7 @@
 from abjad import *
-from abjad.slur.interface import SlurInterface
+
 
 def test_slur_interface_01( ):
-   '''The slur interface exists.'''
-   t = Voice(construct.scale(4))
-   assert isinstance(t.slur, SlurInterface)
-
-
-def test_slur_interface_02( ):
    '''Slur interface GrobHandles 'Slur'.'''
    t = Voice(construct.scale(4))
    t.slur.color = 'red'

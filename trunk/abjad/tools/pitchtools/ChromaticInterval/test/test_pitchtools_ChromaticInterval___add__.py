@@ -10,7 +10,7 @@ def test_pitchtools_ChromaticInterval___add___01( ):
    assert j + i == pitchtools.ChromaticInterval(17)
 
 
-def test_pitchtools_ChromaticInterval___add___01( ):
+def test_pitchtools_ChromaticInterval___add___02( ):
 
    i = pitchtools.ChromaticInterval(3)
    j = pitchtools.ChromaticInterval(14)

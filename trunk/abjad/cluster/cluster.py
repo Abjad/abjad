@@ -1,6 +1,6 @@
 from abjad.container import Container
 from abjad.cluster.formatter import _ClusterFormatter
-from abjad.cluster.interface import ClusterInterface
+from abjad.interfaces.cluster.interface import ClusterInterface
 
 
 class Cluster(Container):

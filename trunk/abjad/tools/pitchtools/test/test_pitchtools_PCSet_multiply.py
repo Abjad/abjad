@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_PCSet_invert_01( ):
+def test_pitchtools_PCSet_multiply_01( ):
 
    assert pitchtools.PCSet([0, 1, 5]).multiply(5) == \
       pitchtools.PCSet([0, 1, 5])

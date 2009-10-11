@@ -1,15 +1,8 @@
 from abjad import *
 from abjad.meter import Meter
-from abjad.meter.interface import MeterInterface
 
 
 def test_staff_meter_interface_01( ):
-   '''Staff has a meter interface.'''
-   t = Staff(Note(0, (1, 4)) * 8)
-   assert isinstance(t.meter, MeterInterface)
-   
-
-def test_staff_meter_interface_02( ):
    '''Test MeterInterface public attributes.'''
    t = Staff(Note(0, (1, 4)) * 8)
    assert t.meter.change == False
@@ -17,7 +10,7 @@ def test_staff_meter_interface_02( ):
    assert t.meter.forced is None
 
 
-def test_staff_meter_interface_03( ):
+def test_staff_meter_interface_02( ):
    '''Force meter on nonempty staff.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.meter.forced = Meter(2, 4)
@@ -37,7 +30,7 @@ def test_staff_meter_interface_03( ):
    '''
 
 
-def test_staff_meter_interface_04( ):
+def test_staff_meter_interface_03( ):
    '''Force meter on empty staff.'''
    t = Staff([ ])
    t.meter.forced = Meter(2, 4)
@@ -49,7 +42,7 @@ def test_staff_meter_interface_04( ):
    '''
 
 
-def test_staff_meter_interface_05( ):
+def test_staff_meter_interface_04( ):
    '''Staff meter carries over to staff-contained leaves.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.meter.forced = Meter(2, 4)
@@ -57,7 +50,7 @@ def test_staff_meter_interface_05( ):
       assert x.meter.effective == (2, 4)
 
 
-#def test_staff_meter_interface_06( ):
+#def test_staff_meter_interface_05( ):
 #   '''Staff meterf carries over to staff-contained leaves,
 #      but leaves can reassert new meter.'''
 #   t = Staff(Note(0, (1, 4)) * 8)
@@ -70,7 +63,7 @@ def test_staff_meter_interface_05( ):
 #         assert leaf.meter.effective == (4, 4)
 
 
-def test_staff_meter_interface_07( ):
+def test_staff_meter_interface_06( ):
    '''Staff meter clears with None.'''
    t = Staff(Note(0, (1, 4)) * 8)
    t.meter.forced = Meter(2, 4)
@@ -79,7 +72,7 @@ def test_staff_meter_interface_07( ):
       assert leaf.meter.effective == (4, 4)
 
 
-#def test_staff_meter_interface_08( ):
+#def test_staff_meter_interface_07( ):
 #   '''Staff / first-leaf meter competition resolves
 #      in favor of first leaf.'''
 #   t = Staff(Note(0, (1, 4)) * 8)
