@@ -1,4 +1,4 @@
-from PC import PC
+from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
 class PitchClassColorMap(object):
@@ -13,7 +13,7 @@ class PitchClassColorMap(object):
    ## OVERLOADS ##
 
    def __getitem__(self, pc):
-      pc = PC(pc)
+      pc = PitchClass(pc)
       color = self._color_dictionary[pc.number]
       return color
 
@@ -28,7 +28,7 @@ class PitchClassColorMap(object):
       self._color_dictionary = { }
       for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
          for pitch in pitch_iterable:
-            pc = PC(pitch)
+            pc = PitchClass(pitch)
             if pc.number in self._color_dictionary.keys( ):
                print pc, self._color_dictionary.keys( )
                raise KeyError(

@@ -1,9 +1,9 @@
-from PC import PC
+from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
 ## TODO: Make PCSset and PitchSet both inherit from a shared base class. ##
 
-class PCSet(set):
+class PitchClassSet(set):
    '''.. versionadded:: 1.1.2
 
    12-ET pitch-class set from American pitch-class theory.
@@ -15,14 +15,14 @@ class PCSet(set):
    ## OVERLOADS ##
 
    def __contains__(self, arg):
-      if isinstance(arg, PC):
+      if isinstance(arg, PitchClass):
          for pc in self:
             if pc == arg:
                return True
       return False
 
    def __eq__(self, arg):
-      if isinstance(arg, PCSet):
+      if isinstance(arg, PitchClassSet):
          for element in arg:
             if element not in self:
                return False
@@ -49,11 +49,11 @@ class PCSet(set):
    
    def add(self, arg):
       '''Built-in add( ) extended with type- and value-checking.'''
-      if isinstance(arg, PC):
+      if isinstance(arg, PitchClass):
          candidate_pc = arg
       elif isinstance(arg, (int, float, long)):
          if 0 <= arg < 12:
-            candidate_pc = PC(arg)
+            candidate_pc = PitchClass(arg)
          else:
             raise ValueError
       else:
@@ -63,15 +63,15 @@ class PCSet(set):
 
    def invert(self):
       '''Transpose all pcs in self by n.'''
-      return PCSet([pc.invert( ) for pc in self])
+      return PitchClassSet([pc.invert( ) for pc in self])
 
    def multiply(self, n):
       '''Transpose all pcs in self by n.'''
-      return PCSet([pc.multiply(n) for pc in self])
+      return PitchClassSet([pc.multiply(n) for pc in self])
 
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
-      return PCSet([pc.transpose(n) for pc in self])
+      return PitchClassSet([pc.transpose(n) for pc in self])
 
    def update(self, arg):
       '''Build-in update( ) extended with type- and value-checking.'''

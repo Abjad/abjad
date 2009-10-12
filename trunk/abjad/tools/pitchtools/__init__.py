@@ -4,4 +4,8 @@ _package_import(__path__[0], globals( ))
 
 from ChromaticInterval import ChromaticInterval
 from DiatonicInterval import DiatonicInterval
+from PitchClass import PitchClass
+from PitchClassColorMap import PitchClassColorMap
+from PitchClassSet import PitchClassSet
+from PitchRange import PitchRange
 from PitchSet import PitchSet

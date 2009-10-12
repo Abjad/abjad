@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from PCSet import PCSet
+from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 
 
 def make_all_aggregate_subsets( ):
@@ -13,26 +13,26 @@ def make_all_aggregate_subsets( ):
       4096 
       abjad> for pcset in U_star[:20]:
          pcset
-      PCSet([])
-      PCSet([PC(0)])
-      PCSet([PC(1)])
-      PCSet([PC(0), PC(1)])
-      PCSet([PC(2)])
-      PCSet([PC(0), PC(2)])
-      PCSet([PC(1), PC(2)])
-      PCSet([PC(0), PC(1), PC(2)])
-      PCSet([PC(3)])
-      PCSet([PC(0), PC(3)])
-      PCSet([PC(1), PC(3)])
-      PCSet([PC(0), PC(1), PC(3)])
-      PCSet([PC(2), PC(3)])
-      PCSet([PC(0), PC(2), PC(3)])
-      PCSet([PC(1), PC(2), PC(3)])
-      PCSet([PC(0), PC(1), PC(2), PC(3)])
-      PCSet([PC(4)])
-      PCSet([PC(0), PC(4)])
-      PCSet([PC(1), PC(4)])
-      PCSet([PC(0), PC(1), PC(4)])
+      PitchClassSet([])
+      PitchClassSet([PitchClass(0)])
+      PitchClassSet([PitchClass(1)])
+      PitchClassSet([PitchClass(0), PitchClass(1)])
+      PitchClassSet([PitchClass(2)])
+      PitchClassSet([PitchClass(0), PitchClass(2)])
+      PitchClassSet([PitchClass(1), PitchClass(2)])
+      PitchClassSet([PitchClass(0), PitchClass(1), PitchClass(2)])
+      PitchClassSet([PitchClass(3)])
+      PitchClassSet([PitchClass(0), PitchClass(3)])
+      PitchClassSet([PitchClass(1), PitchClass(3)])
+      PitchClassSet([PitchClass(0), PitchClass(1), PitchClass(3)])
+      PitchClassSet([PitchClass(2), PitchClass(3)])
+      PitchClassSet([PitchClass(0), PitchClass(2), PitchClass(3)])
+      PitchClassSet([PitchClass(1), PitchClass(2), PitchClass(3)])
+      PitchClassSet([PitchClass(0), PitchClass(1), PitchClass(2), PitchClass(3)])
+      PitchClassSet([PitchClass(4)])
+      PitchClassSet([PitchClass(0), PitchClass(4)])
+      PitchClassSet([PitchClass(1), PitchClass(4)])
+      PitchClassSet([PitchClass(0), PitchClass(1), PitchClass(4)])
    '''
 
    def _helper(binary_string):
@@ -45,7 +45,7 @@ def make_all_aggregate_subsets( ):
    for x in range(4096):
       subset = ''.join(list(reversed(mathtools.binary_string(x).zfill(12))))
       subset = _helper(subset)
-      subset = PCSet(subset)
+      subset = PitchClassSet(subset)
       result.append(subset)
 
    return result

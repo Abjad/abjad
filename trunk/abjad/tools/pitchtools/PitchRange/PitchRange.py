@@ -1,5 +1,5 @@
 from abjad.pitch import Pitch
-from get_pitches import get_pitches
+from abjad.tools.pitchtools.get_pitches import get_pitches
 
 
 class PitchRange(object):
