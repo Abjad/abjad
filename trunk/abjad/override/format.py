@@ -12,7 +12,8 @@ class _OverrideSpannerFormatInterface(_SpannerFormatInterface):
       '''Spanner format contribution after leaf.'''
       spanner = self.spanner
       if spanner._isMyLastLeaf(leaf) and \
-         not spanner._isMyOnlyLeaf(leaf) and spanner._attribute:
+         not spanner._isMyOnlyLeaf(leaf) and \
+         (spanner._attribute is not None):
          grob = spanner._prependContext(spanner._grob)
          attribute = spanner._parser.formatAttribute(spanner._attribute)
          result = r'\revert %s %s' % (grob, attribute)
@@ -23,8 +24,9 @@ class _OverrideSpannerFormatInterface(_SpannerFormatInterface):
    def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
       spanner = self.spanner
-      if spanner._isMyFirstLeaf(leaf) and spanner._attribute and \
-         spanner._value:
+      if spanner._isMyFirstLeaf(leaf) and \
+         spanner._attribute and \
+         (spanner._value is not None):
          grob = spanner._prependContext(spanner._grob)
          attribute = spanner._parser.formatAttribute(spanner._attribute)
          value = spanner._parser.formatValue(spanner._value)
