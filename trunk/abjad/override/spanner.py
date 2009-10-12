@@ -1,12 +1,53 @@
 from abjad.core.parser import _Parser
 from abjad.override.format import _OverrideSpannerFormatInterface
-from abjad.spanner.spanner import Spanner
+#from abjad.spanner.spanner import Spanner
+from abjad.spanner.grobhandler import _GrobHandlerSpanner
 
 
-class Override(Spanner):
+#class Override(Spanner):
+class Override(_GrobHandlerSpanner):
+   r'''Arbitrary LilyPond override spanner.
+
+   Five-argument form of initializer uses context specification. ::
+
+      abjad> staff = Staff(construct.scale(8))
+      abjad> Override(staff[:4], 'Staff', 'Beam', 'positions', (8, 8))
+      abjad> print staff.format
+      \new Staff {
+              \override Staff.Beam #'positions = #'(8 . 8)
+              c'8
+              d'8
+              e'8
+              f'8
+              \revert Staff.Beam #'positions
+              g'8
+              a'8
+              b'8
+              c''8
+      }
+
+   Four-argument form of initializer does not use context specification. ::
+
+      abjad> staff = Staff(construct.scale(8))
+      abjad> Override(staff[:4], 'Beam', 'positions', (8, 8))
+      abjad> print staff.format
+      \new Staff {
+              \override Beam #'positions = #'(8 . 8)
+              c'8
+              d'8
+              e'8
+              f'8
+              \revert Beam #'positions
+              g'8
+              a'8
+              b'8
+              c''8
+      }
+   '''
 
    def __init__(self, music, *args):
-      Spanner.__init__(self, music)
+      #Spanner.__init__(self, music)
+      _GrobHandlerSpanner.__init__(self, 'TemporaryGrob', music)
       if len(args) == 3:
          self._context = None
          self._grob, self._attribute, self._value  = args

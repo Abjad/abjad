@@ -7,10 +7,10 @@ import types
 class Trill(_GrobHandlerSpanner):
    r'''Trill with continuation line.
 
-      *  Inherits from *Abjad* spanner.
-      *  Interfaces to *LilyPond* ``startTrillSpan``, \
+      *  Inherits from Abjad spanner.
+      *  Interfaces to LilyPond ``startTrillSpan``, \
          ``stopTrillSpan`` commands.
-      *  Handles *LilyPond* ``TrillSpanner`` grob.
+      *  Handles LilyPond ``TrillSpanner`` grob.
 
       ::
 

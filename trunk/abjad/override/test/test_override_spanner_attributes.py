@@ -48,4 +48,3 @@ def test_override_spanner_attributes_02( ):
    assert q.duration.prolated == Rational(1, 2)
 
    assert t.format == "\\new Staff {\n\t\\override Beam #'positions = #'(8 . 8)\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\revert Beam #'positions\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
-
