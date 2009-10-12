@@ -10,7 +10,7 @@ from cast_defective import cast_defective
 
 
 def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
-   '''Split ``chord`` into a disjunt ``(treble, bass)`` pair
+   r'''Split ``chord`` into a disjunt ``(treble, bass)`` pair
    of parts about ``pitch``. 
    Place pitches in ``chord`` greater than or equal to 
    ``pitch.attr`` into the treble part of the return pair. 
@@ -83,7 +83,23 @@ def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
    else:
       raise ValueError('must be note, rest or chord.')
 
+#   treble_notehead_attrs = [ ]
+#   if isinstance(treble, Chord):
+#      if len(treble) == 1:
+#         treble_notehead_attrs = [(k, v) for k, v in treble[0].__dict__.items( ) 
+#            if not k.startswith('_')]
+#   bass_notehead_attrs = [ ]
+#   if isinstance(bass, Chord):
+#      if len(bass) == 1:
+#         bass_notehead_attrs = [(k, v) for k, v in bass[0].__dict__.items( ) 
+#            if not k.startswith('_')]
+
    treble = cast_defective(treble)
    bass = cast_defective(bass)
+
+#   for k, v in treble_notehead_attrs:
+#      setattr(treble.notehead, k, v)
+#   for k, v in bass_notehead_attrs:
+#      setattr(bass.notehead, k, v)
 
    return treble, bass

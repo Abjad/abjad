@@ -6,7 +6,7 @@ from abjad.tools.chordtools._split import _split
 
 
 def split_by_pitch_number(chord, pitch = Pitch('b', 3)):
-   '''Create two new disjunct `treble`, `bass` chords from `chord`,
+   r'''Create two new disjunct `treble`, `bass` chords from `chord`,
    based on the number of `pitch`.
 
    For every notehead in `chord` with altitude greater than or equal
