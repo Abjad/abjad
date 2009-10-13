@@ -6,7 +6,8 @@ def test_spacing_indication_normalized_spacing_duration_01( ):
       for this spacing indication at quarter equals 60.'''
 
    tempo_indication = TempoIndication(Rational(1, 4), 120)
-   spacing_indication = SpacingIndication(tempo_indication, Rational(1, 16))
+   spacing_indication = spacing.SpacingIndication(
+      tempo_indication, Rational(1, 16))
    assert spacing_indication.normalized_spacing_duration == Rational(1, 32)
 
 
@@ -18,5 +19,6 @@ def test_spacing_indication_normalized_spacing_duration_02( ):
       on this spacing indication is already quarter equals 60.'''
 
    tempo_indication = TempoIndication(Rational(1, 4), 60)
-   spacing_indication = SpacingIndication(tempo_indication, Rational(1, 68))
+   spacing_indication = spacing.SpacingIndication(
+      tempo_indication, Rational(1, 68))
    assert spacing_indication.normalized_spacing_duration == Rational(1, 68)

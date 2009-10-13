@@ -6,7 +6,8 @@ def test_tempo_proportional_spanner_01( ):
 
    t = Score([Staff(construct.scale(4))])
    tempo_indication = TempoIndication(Rational(1, 4), 60)
-   spacing_indication = SpacingIndication(tempo_indication, Rational(1, 34))
+   spacing_indication = spacing.SpacingIndication(
+      tempo_indication, Rational(1, 34))
    t.global_spacing = spacing_indication
 
    p = TempoProportional(t[0][:2])

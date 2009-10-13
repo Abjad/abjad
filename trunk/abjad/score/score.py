@@ -1,5 +1,5 @@
 from abjad.context.context import _Context
-from abjad.spacing import SpacingIndication
+from abjad.tools.spacing import SpacingIndication
 import types
 
 

@@ -6,7 +6,8 @@ def test_spacing_get_global_01( ):
 
    t = Score([Staff(construct.scale(4))])
    tempo_indication = TempoIndication(Rational(1, 8), 38)
-   spacing_indication = SpacingIndication(tempo_indication, Rational(1, 68))
+   spacing_indication = spacing.SpacingIndication(
+      tempo_indication, Rational(1, 68))
    t.global_spacing = spacing_indication
 
    r'''\new Score <<
