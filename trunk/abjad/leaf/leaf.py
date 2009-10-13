@@ -52,7 +52,7 @@ class _Leaf(_Component):
    def articulations( ):
       def fget(self):
          '''Read-only reference to
-         :class:`~abjad.articulations.interface.ArticulationsInterface`.
+         :class:`~abjad.articulations.interface.ArticulationInterface`.
          '''
          return self._articulations
       def fset(self, arg):

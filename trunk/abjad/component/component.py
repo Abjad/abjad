@@ -1,5 +1,5 @@
 from abjad.interfaces.accidental.interface import AccidentalInterface
-from abjad.interfaces.articulation.interface import ArticulationsInterface
+from abjad.interfaces.articulation.interface import ArticulationInterface
 from abjad.interfaces.barline.interface import BarLineInterface
 from abjad.interfaces.barnumber.interface import BarNumberInterface
 from abjad.interfaces.beam.interface import BeamInterface
@@ -65,7 +65,7 @@ class _Component(_Abjad):
       from abjad.voice.interface.interface import VoiceInterface
       self._interfaces = InterfaceAggregator(self)
       self._accidental = AccidentalInterface(self)
-      self._articulations = ArticulationsInterface(self)
+      self._articulations = ArticulationInterface(self)
       self._barline = BarLineInterface(self)
       self._barnumber = BarNumberInterface(self)
       self._beam = BeamInterface(self)
@@ -144,7 +144,7 @@ class _Component(_Abjad):
    @property
    def articulations(self):
       '''Read-only reference to
-      :class:`~abjad.articulations.interface.ArticulationsInterface`.'''
+      :class:`~abjad.articulations.interface.ArticulationInterface`.'''
       return self._articulations
    
    @property
