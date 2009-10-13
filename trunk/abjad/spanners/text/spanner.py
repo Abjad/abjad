@@ -1,4 +1,5 @@
-from abjad.spanner.positionalhandler import _PositionalGrobHandlerSpanner
+from abjad.spanners.spanner.positionalhandler import \
+   _PositionalGrobHandlerSpanner
 from abjad.spanners.text.format import _TextSpannerFormatInterface
 
 

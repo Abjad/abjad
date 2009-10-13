@@ -1,5 +1,5 @@
 from abjad.spanners.glissando.format import _GlissandoSpannerFormatInterface
-from abjad.spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.spanner.grobhandler import _GrobHandlerSpanner
 
 
 class Glissando(_GrobHandlerSpanner):

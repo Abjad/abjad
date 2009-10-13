@@ -1,8 +1,8 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.rational import Rational
-from abjad.spanner.receptor import _SpannerReceptor
 from abjad.spanners.spacing.spanner import SpacingSpanner
+from abjad.spanners.spanner.receptor import _SpannerReceptor
 import types
 
 

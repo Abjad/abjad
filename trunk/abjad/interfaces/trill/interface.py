@@ -1,6 +1,6 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
-from abjad.spanner.receptor import _SpannerReceptor
+from abjad.spanners.spanner.receptor import _SpannerReceptor
 from abjad.spanners.trill import Trill
 
 

@@ -1,6 +1,6 @@
 from abjad.exceptions import UndefinedSpacingError
 from abjad.exceptions import UndefinedTempoError
-from abjad.spanner.format import _SpannerFormatInterface
+from abjad.spanners.spanner.format import _SpannerFormatInterface
 
 
 class _TempoSpannerFormatInterface(_SpannerFormatInterface):

@@ -1,10 +1,8 @@
 from abjad.core.parser import _Parser
 from abjad.override.format import _OverrideSpannerFormatInterface
-#from abjad.spanner.spanner import Spanner
-from abjad.spanner.grobhandler import _GrobHandlerSpanner
+from abjad.spanners.spanner.grobhandler import _GrobHandlerSpanner
 
 
-#class Override(Spanner):
 class Override(_GrobHandlerSpanner):
    r'''Arbitrary LilyPond override spanner.
 
@@ -46,7 +44,6 @@ class Override(_GrobHandlerSpanner):
    '''
 
    def __init__(self, music, *args):
-      #Spanner.__init__(self, music)
       _GrobHandlerSpanner.__init__(self, 'TemporaryGrob', music)
       if len(args) == 3:
          self._context = None

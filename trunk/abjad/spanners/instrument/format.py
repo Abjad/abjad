@@ -1,4 +1,4 @@
-from abjad.spanner.format import _SpannerFormatInterface
+from abjad.spanners.spanner.format import _SpannerFormatInterface
 
 
 class _InstrumentSpannerFormatInterface(_SpannerFormatInterface):

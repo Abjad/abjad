@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.spanner.spanner import Spanner
+from abjad.spanners.spanner.spanner import Spanner
 
 
 def report(system_element, verbose = False, output = 'screen'):

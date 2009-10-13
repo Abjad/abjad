@@ -1,5 +1,5 @@
 from abjad.spanners.instrument.format import _InstrumentSpannerFormatInterface
-from abjad.spanner.spanner import Spanner
+from abjad.spanners.spanner.spanner import Spanner
 
 
 class Instrument(Spanner):
