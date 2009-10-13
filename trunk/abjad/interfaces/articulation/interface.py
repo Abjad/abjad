@@ -1,7 +1,7 @@
 from abjad.articulations.articulation import Articulation
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.interfaces.interface.interface import _Interface
 
 
 #class ArticulationsInterface(_Interface, _FormatContributor):

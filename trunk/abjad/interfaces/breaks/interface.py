@@ -1,5 +1,5 @@
 from abjad.core.formatcontributor import _FormatContributor
-from abjad.core.interface import _Interface
+from abjad.interfaces.interface.interface import _Interface
 from abjad.exceptions import LineBreakError
 from abjad.exceptions import TypographicWhitespaceError
 from abjad.rational import Rational

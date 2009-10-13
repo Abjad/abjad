@@ -1,5 +1,5 @@
 from abjad.component.component import _Component
-from abjad.core.interface import _Interface
+from abjad.interfaces.interface.interface import _Interface
 from abjad.interfaces.grace.interface import GraceInterface
 from abjad.interfaces.harmonic.interface import HarmonicInterface
 from abjad.interfaces.markup.interface import MarkupInterface

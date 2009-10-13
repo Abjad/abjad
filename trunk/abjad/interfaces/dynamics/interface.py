@@ -1,5 +1,5 @@
 from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.interfaces.interface.interface import _Interface
 from abjad.spanners.dynamics.spanner import Dynamic
 from abjad.spanners.hairpin.spanner import Hairpin
 from abjad.spanners.spanner.receptor import _SpannerReceptor

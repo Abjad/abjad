@@ -1,6 +1,6 @@
 from abjad.core.settinghandler import _ContextSettingHandler
 from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.interfaces.interface.interface import _Interface
 import types
 
 

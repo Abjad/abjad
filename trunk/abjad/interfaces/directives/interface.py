@@ -1,4 +1,4 @@
-from abjad.core.interface import _Interface
+from abjad.interfaces.interface.interface import _Interface
 from abjad.interfaces.comments.interface import CommentsInterface
 
 

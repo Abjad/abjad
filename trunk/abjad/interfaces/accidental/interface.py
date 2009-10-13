@@ -1,13 +1,13 @@
 from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.interfaces.interface.interface import _Interface
 import types
 
 
 class AccidentalInterface(_Interface, _GrobHandler):
    '''Interface to all accidental-related settings and information.
 
-      *  Manage *LilyPond* ``Accidental`` grob.
-      *  Manage *LilyPond* ``set-accidental-style`` function.
+      *  Manage LilyPond``Accidental`` grob.
+      *  Manage LilyPond ``set-accidental-style`` function.
 
       ::
 

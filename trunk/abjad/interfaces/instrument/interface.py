@@ -1,5 +1,5 @@
 from abjad.core.grobhandler import _GrobHandler
-from abjad.core.interface import _Interface
+from abjad.interfaces.interface.interface import _Interface
 from abjad.core.settinghandler import _ContextSettingHandler
 from abjad.markup import Markup
 from abjad.spanners.instrument.spanner import Instrument

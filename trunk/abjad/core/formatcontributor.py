@@ -9,7 +9,7 @@ class _FormatContributor(_Abjad):
    ## PRIVATE METHODS ##
 
    def _register_as_format_contributor(self):
-      from abjad.core.interface import _Interface
+      from abjad.interfaces.interface.interface import _Interface
       if isinstance(self, _Interface):
          client = getattr(self, '_client', None)
          if client is not None:
