@@ -1,6 +1,6 @@
-from abjad.layout import FixedStaffPositioning
 from abjad.measure.measure import _Measure
 from abjad.tools import iterate
+from abjad.tools.layout.FixedStaffPositioning import FixedStaffPositioning
 
 
 def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
