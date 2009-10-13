@@ -1,6 +1,7 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
+from abjad.spanners.beam import Beam
 
 
 class BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
@@ -10,7 +11,7 @@ class BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __init__(self, client):
       '''Bind to client, LilyPond Beam grob and Abjad Beam spanner.
          Set 'counts' to (None, None).'''
-      from abjad.beam.spanner import Beam
+      #from abjad.beam.spanner import Beam
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Beam')
       _SpannerReceptor.__init__(self, (Beam, ))

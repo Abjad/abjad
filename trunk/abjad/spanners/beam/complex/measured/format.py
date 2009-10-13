@@ -1,4 +1,5 @@
-from abjad.beam.complex.format import _BeamComplexFormatInterface
+#from abjad.beam.complex.format import _BeamComplexFormatInterface
+from abjad.spanners.beam.complex.format import _BeamComplexFormatInterface
 #from abjad.measure.measure import _Measure
 
 

@@ -1,5 +1,5 @@
-#from os import listdir
 import os
+
 
 _fns = os.listdir(__path__[0])
 _modules = [_fn[ : -3] for _fn in _fns 
@@ -11,8 +11,15 @@ for _module in sorted(_modules):
 def check_cleaner(locals):
    #from types import TypeType
    import types
+   from abjad.checks.check import _Check
    for _key, _value in locals.items( ):
-      if not isinstance(_value, types.TypeType) and _key != 'check_cleaner':
+      #if not isinstance(_value, types.TypeType) and _key != 'check_cleaner':
+      #   del(locals[_key])
+      if _key == 'check_cleaner' or \
+         (isinstance(_value, types.TypeType) and \
+         'checks' in _value.__module__):
+         pass
+      else:
          del(locals[_key])
 check_cleaner(locals( ))
 del check_cleaner
