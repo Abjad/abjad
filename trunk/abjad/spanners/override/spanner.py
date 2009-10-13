@@ -1,5 +1,5 @@
 from abjad.core.parser import _Parser
-from abjad.override.format import _OverrideSpannerFormatInterface
+from abjad.spanners.override.format import _OverrideSpannerFormatInterface
 from abjad.spanners.spanner.grobhandler import _GrobHandlerSpanner
 
 
