@@ -25,7 +25,6 @@ from abjad.interfaces.offset.interface import OffsetInterface
 from abjad.interfaces.parentage.interface import ParentageInterface
 from abjad.interfaces.pianopedal.interface import PianoPedalInterface
 from abjad.rational import Rational
-#from abjad.receipt.component import _ComponentReceipt
 from abjad.interfaces.slur.interface import SlurInterface
 from abjad.interfaces.spacing.interface import SpacingInterface
 from abjad.interfaces.spanbar.interface import SpanBarInterface

@@ -1,5 +1,4 @@
 from abjad.interfaces.interface.interface import _Interface
-#from abjad.receipt.spanner import _SpannerReceipt
 
 
 class _ComponentSpannerAggregator(_Interface):
@@ -32,22 +31,9 @@ class _ComponentSpannerAggregator(_Interface):
    def _detach(self):
       '''Remove client from every spanner attaching to client.'''
       client = self._client
-      #receipt = _SpannerReceipt(client)
       for spanner in list(self.attached):
          index = spanner.index(client)
-         #receipt._pairs.add((spanner, index))
          spanner._remove(client)
-      #return receipt
-
-#   def _reattach(self, receipt):
-#      '''Reattach spanners described in component to client.
-#         Empty receipt and return client.'''
-#      client = self._client
-#      assert client is receipt._component
-#      for spanner, index in receipt._pairs:
-#         spanner._insert(index, client)
-#      receipt._empty( )
-#      return client
 
    def _update(self, spanners):
       '''Add list of spanners to _spanners set.'''
