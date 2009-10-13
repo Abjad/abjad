@@ -1,5 +1,7 @@
 from abjad.checks.check import _Check
+from abjad.leaf.leaf import _Leaf
 from abjad.tools import iterate
+from abjad.spanners.glissando import Glissando
 
 
 class GlissandiOverlapping(_Check):
@@ -7,8 +9,8 @@ class GlissandiOverlapping(_Check):
       Dove-tailed glissandi are OK.'''
 
    def _run(self, expr):
-      from abjad.glissando import Glissando
-      from abjad.leaf.leaf import _Leaf
+      #from abjad.glissando import Glissando
+      #from abjad.leaf.leaf import _Leaf
       violators = [ ] 
       for leaf in iterate.naive(expr, _Leaf):
          glissandi = leaf.glissando.spanners

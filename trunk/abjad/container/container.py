@@ -1,4 +1,4 @@
-from abjad.brackets.interface import BracketsInterface
+from abjad.interfaces.brackets.interface import BracketsInterface
 from abjad.component.component import _Component
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter

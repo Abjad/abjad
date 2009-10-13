@@ -1,5 +1,5 @@
 from abjad.rational import Rational
-from abjad.tie import Tie
+from abjad.spanners.tie import Tie
 from abjad.tools import componenttools
 from abjad.tools import construct
 from abjad.tools import durtools

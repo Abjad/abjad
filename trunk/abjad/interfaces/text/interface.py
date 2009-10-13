@@ -1,6 +1,7 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.interface import _Interface
 from abjad.spanner.receptor import _SpannerReceptor
+from abjad.spanners.text import Text
 
 
 class TextInterface(_Interface, _GrobHandler, _SpannerReceptor):
@@ -28,7 +29,7 @@ class TextInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __init__(self, client):
       '''Bind client and LilyPond TextScript grob.
          Receive Abjad Text spanner.'''
-      from abjad.text import Text
+      #from abjad.text import Text
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TextScript')
       _SpannerReceptor.__init__(self, (Text, ))

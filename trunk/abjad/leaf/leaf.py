@@ -2,10 +2,10 @@ from abjad.component.component import _Component
 from abjad.core.interface import _Interface
 from abjad.interfaces.grace.interface import GraceInterface
 from abjad.interfaces.harmonic.interface import HarmonicInterface
+from abjad.interfaces.markup.interface import MarkupInterface
 from abjad.leaf.duration import _LeafDurationInterface
 from abjad.leaf.formatter import _LeafFormatter
 from abjad.leaf.spanner.aggregator import _LeafSpannerAggregator
-from abjad.markup.interface import MarkupInterface
 from abjad.rational import Rational
 import operator
 

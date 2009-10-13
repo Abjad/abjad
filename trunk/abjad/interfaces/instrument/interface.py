@@ -3,13 +3,14 @@ from abjad.core.interface import _Interface
 from abjad.core.settinghandler import _ContextSettingHandler
 from abjad.markup import Markup
 from abjad.spanner.receptor import _SpannerReceptor
+from abjad.spanners.instrument.spanner import Instrument
 import types
 
 
 class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler, 
    _SpannerReceptor):
-   r'''Receive *Abjad* :class:`~abjad.instrument.spanner.Instrument` spanner.
-   Handle the *LilyPond* ``InstrumentName`` grob.
+   r'''Receive Abjad :class:`~abjad.instrument.spanner.Instrument` spanner.
+   Handle the LilyPond ``InstrumentName`` grob.
 
    ::
 
@@ -34,7 +35,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
       '''Init as type of \
          :class:`~abjad.spanner.receptor._SpannerReceptor`.'''
       
-      from abjad.instrument.spanner import Instrument
+      #from abjad.instrument.spanner import Instrument
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'InstrumentName')
       _SpannerReceptor.__init__(self, (Instrument, ))
