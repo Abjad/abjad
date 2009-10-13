@@ -9,7 +9,7 @@ def test_durtools_group_seconds_01( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
 
    r'''\new Staff {
          \time 2/8
@@ -43,7 +43,7 @@ def test_durtools_group_seconds_02( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
 
    r'''\new Staff {
          \time 2/8
@@ -78,7 +78,7 @@ def test_durtools_group_seconds_03( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
 
    r'''\new Staff {
          \time 2/8
@@ -114,7 +114,7 @@ def test_durtools_group_seconds_04( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
 
    r'''\new Staff {
          \time 2/8
@@ -150,7 +150,7 @@ def test_durtools_group_seconds_05( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
 
    r'''\new Staff {
          \time 2/8

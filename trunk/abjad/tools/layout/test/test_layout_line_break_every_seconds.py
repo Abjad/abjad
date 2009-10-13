@@ -9,7 +9,7 @@ def test_layout_line_break_every_seconds_01( ):
    pitchtools.diatonicize(t)
 
    tempo_spanner = Tempo(t[:])
-   tempo_indication = TempoIndication(Rational(1, 8), 44)
+   tempo_indication = tempotools.TempoIndication(Rational(1, 8), 44)
    tempo_spanner.indication = tempo_indication
 
    r'''

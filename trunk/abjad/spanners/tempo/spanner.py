@@ -3,7 +3,7 @@ from abjad.exceptions import UndefinedTempoError
 from abjad.rational import Rational
 from abjad.spanners.spanner.grobhandler import _GrobHandlerSpanner
 from abjad.spanners.tempo.format import _TempoSpannerFormatInterface
-from abjad.tempo.indication import TempoIndication
+from abjad.tools import tempotools
 import types
 
 
@@ -47,9 +47,9 @@ class Tempo(_GrobHandlerSpanner):
          '''Read / write tempo indication.'''
          return self._indication
       def fset(self, arg):
-         assert isinstance(arg, (TempoIndication, types.NoneType))
-         if isinstance(arg, TempoIndication):
-            self._indication = TempoIndication(arg)
+         assert isinstance(arg, (tempotools.TempoIndication, types.NoneType))
+         if isinstance(arg, tempotools.TempoIndication):
+            self._indication = tempotools.TempoIndication(arg)
          elif isinstance(arg, types.NoneType):
             self._indication = arg 
          else:
@@ -93,7 +93,7 @@ class Tempo(_GrobHandlerSpanner):
          If set, scale durations at format-time.'''
          return self._reference
       def fset(self, arg):
-         assert isinstance(arg, (TempoIndication, types.NoneType))
+         assert isinstance(arg, (tempotools.TempoIndication, types.NoneType))
          self._reference = arg 
       return property(**locals( ))
 

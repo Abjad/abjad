@@ -7,8 +7,8 @@ def test_container_duration_interface_seconds_01( ):
       sum of leaf durations in seconds.'''
 
    t = Container(construct.scale(4))
-   t.tempo.forced = TempoIndication(Rational(1, 4), 38)
-   t[2].tempo.forced = TempoIndication(Rational(1, 4), 42)
+   t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
+   t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
 
    r'''{
       \tempo 8=38

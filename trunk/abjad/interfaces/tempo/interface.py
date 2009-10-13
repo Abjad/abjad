@@ -3,7 +3,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
 from abjad.spanners.spanner.receptor import _SpannerReceptor
 from abjad.spanners.tempo import Tempo
-from abjad.tempo.indication import TempoIndication
+from abjad.tools import tempotools
 import types
 
 
@@ -35,7 +35,7 @@ class TempoInterface(_Observer, _GrobHandler,
       _GrobHandler.__init__(self, 'MetronomeMark')
       _BacktrackingInterface.__init__(self, 'tempo')
       _SpannerReceptor.__init__(self, (Tempo, ))
-      self._acceptableTypes = (TempoIndication, )
+      self._acceptableTypes = (tempotools.TempoIndication, )
       self._effective = None
       self._forced = None
  

@@ -5,7 +5,7 @@ def test_spacing_get_global_01( ):
    '''Return ``global_spacing`` of effective score of ``component``.'''
 
    t = Score([Staff(construct.scale(4))])
-   tempo_indication = TempoIndication(Rational(1, 8), 38)
+   tempo_indication = tempotools.TempoIndication(Rational(1, 8), 38)
    spacing_indication = spacing.SpacingIndication(
       tempo_indication, Rational(1, 68))
    t.global_spacing = spacing_indication

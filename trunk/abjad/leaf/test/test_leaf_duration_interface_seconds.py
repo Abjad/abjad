@@ -6,8 +6,8 @@ def test_leaf_duration_interface_seconds_01( ):
    '''Clock duration equals prolated duration divide by effective tempo.'''
 
    t = Container(construct.scale(4))
-   t.tempo.forced = TempoIndication(Rational(1, 4), 38)
-   t[2].tempo.forced = TempoIndication(Rational(1, 4), 42)
+   t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
+   t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
 
    r'''{
       \tempo 4=38

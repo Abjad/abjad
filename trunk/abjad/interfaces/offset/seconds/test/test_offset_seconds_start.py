@@ -22,7 +22,7 @@ def test_offset_seconds_start_02( ):
    '''Offset seconds work with explicit tempo indication.'''
 
    t = Staff(construct.scale(4))
-   t.tempo.forced = TempoIndication(Rational(1, 8), 48)
+   t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 48)
    
    r'''\new Staff {
       \tempo 8=48

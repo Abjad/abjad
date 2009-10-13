@@ -7,7 +7,7 @@ def test_spanner_duration_seconds_01( ):
 
    t = Voice([RigidMeasure((2, 12), construct.scale(2)), 
       RigidMeasure((2, 8), construct.scale(2))])
-   t.tempo.forced = TempoIndication(Rational(1, 8), 42)
+   t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 42)
    beam = Beam(t.leaves)
    crescendo = Crescendo(t[0][:])
    decrescendo = Decrescendo(t[1][:])

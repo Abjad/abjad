@@ -5,7 +5,7 @@ def test_tempo_spanner_repr_01( ):
    '''Tempo spanner repr gives tempo equation when possible.'''
 
    t = Staff(construct.scale(4))
-   tempo = Tempo(t[:], TempoIndication(Rational(1, 8), 58))
+   tempo = Tempo(t[:], tempotools.TempoIndication(Rational(1, 8), 58))
 
    r'''
    \new Staff {
@@ -26,7 +26,7 @@ def test_tempo_spanner_repr_02( ):
    tempo indication is available.'''
 
    t = Staff(construct.scale(4))
-   tempo = Tempo(t[:], TempoIndication(Rational(1, 8), 58))
+   tempo = Tempo(t[:], tempotools.TempoIndication(Rational(1, 8), 58))
    tempo.indication = None
 
    r'''

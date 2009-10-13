@@ -1,6 +1,7 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.rational import Rational
-from abjad.tempo.indication import TempoIndication
+#from abjad.tempo.indication import TempoIndication
+from abjad.tools import tempotools
 
 
 class SpacingIndication(_Abjad):
@@ -10,7 +11,7 @@ class SpacingIndication(_Abjad):
    will equal ``proportional_notation_duration`` when tempo
    equals ``tempo_indication``. ::
 
-      abjad> tempo = TempoIndication(Rational(1, 8), 44)
+      abjad> tempo = tempotools.TempoIndication(Rational(1, 8), 44)
       abjad> spacing_indication = SpacingIndication(tempo, Rational(1, 68))
       abjad> spacing_indication
       <SpacingIndication>
@@ -62,9 +63,9 @@ class SpacingIndication(_Abjad):
    @apply
    def tempo_indication( ):
       def fget(self):
-         '''Read / write Abjad :class:`~abjad.TempoIndication`.'''
+         '''Read / write Abjad :class:`~abjad.tools.tempotools.TempoIndication`.'''
          return self._tempo_indication
       def fset(self, expr):
-         assert isinstance(expr, TempoIndication)
+         assert isinstance(expr, tempotools.TempoIndication)
          self._tempo_indication = expr
       return property(**locals( ))

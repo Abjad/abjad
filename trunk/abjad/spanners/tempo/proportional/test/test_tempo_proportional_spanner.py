@@ -5,15 +5,15 @@ def test_tempo_proportional_spanner_01( ):
    '''Do special things with tempo and spacing.'''
 
    t = Score([Staff(construct.scale(4))])
-   tempo_indication = TempoIndication(Rational(1, 4), 60)
+   tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
    spacing_indication = spacing.SpacingIndication(
       tempo_indication, Rational(1, 34))
    t.global_spacing = spacing_indication
 
    p = TempoProportional(t[0][:2])
-   p.indication = TempoIndication(Rational(1, 4), 60)
+   p.indication = tempotools.TempoIndication(Rational(1, 4), 60)
    p = TempoProportional(t[0][2:])
-   p.indication = TempoIndication(Rational(1, 4), 120)
+   p.indication = tempotools.TempoIndication(Rational(1, 4), 120)
 
    r'''
    \new Score <<
