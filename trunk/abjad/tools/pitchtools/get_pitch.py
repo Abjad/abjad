@@ -11,9 +11,7 @@ def get_pitch(pitch_carrier):
    Abjad :class:`~abjad.pitch.pitch.Pitch`, 
    :class:`~abjad.note.note.Note`, 
    :class:`~abjad.notehead.notehead.NoteHead` or 
-   :class:`~abjad.chord.chord.Chord` instance.
-
-   ::
+   :class:`~abjad.chord.chord.Chord` instance. ::
 
       abjad> pitch = Pitch('df', 5)
       abjad> pitch
@@ -46,7 +44,7 @@ def get_pitch(pitch_carrier):
       Pitch(df, 5)
 
    Raise :exc:`~abjad.exceptions.MissingPitchError` when
-   *pitch_carrier* carries no :class:`~abjad.pitch.pitch.Pitch`.
+   `pitch_carrier` carries no :class:`~abjad.pitch.pitch.Pitch`.
    
    ::
 
@@ -92,7 +90,7 @@ def get_pitch(pitch_carrier):
       in the current implementation of Abjad but may deprecate in a future
       implementation.
 
-   Raise :exc:`TypeError` when *pitch_carrier* is not a valid pitch carrier.
+   Raise :exc:`TypeError` when `pitch_carrier` is not a valid pitch carrier.
 
    ::
 
@@ -126,4 +124,5 @@ def get_pitch(pitch_carrier):
       else:
          raise ExtraPitchError
    else:
-      raise TypeError('must be Pitch, Note, NoteHead or Chord.')
+      raise TypeError(
+         '%s must be Pitch, Note, NoteHead or Chord.' % pitch_carrier)

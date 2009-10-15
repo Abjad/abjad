@@ -1,3 +1,4 @@
+from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
@@ -10,7 +11,11 @@ class PitchClassSet(set):
    '''
 
    def __init__(self, pcs):
-      self.update(pcs)
+      try:
+         self.update(pcs)
+      except TypeError:
+         pitch_classes = get_pitch_classes(pcs)
+         self.update(pitch_classes)
 
    ## OVERLOADS ##
 

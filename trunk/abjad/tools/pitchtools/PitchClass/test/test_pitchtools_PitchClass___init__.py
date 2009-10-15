@@ -45,6 +45,37 @@ def test_pitchtools_PitchClass___init___03( ):
 
 
 def test_pitchtools_PitchClass___init___04( ):
-   '''PitchClass initialization raises TypeError on non-numbers, non-PitchClasss.'''
+   '''Pitch class initialization works with notes.'''
+
+   note = Note(13, (1, 4))
+   pc = pitchtools.PitchClass(note)
+   assert pc == pitchtools.PitchClass(1)
+
+
+def test_pitchtools_PitchClass___init___05( ):
+   '''Pitch class initialization works with one-note chords.'''
+
+   chord = Chord([13], (1, 4))
+   pc = pitchtools.PitchClass(chord)
+   assert pc == pitchtools.PitchClass(1)
+
+
+def test_pitchtools_PitchClass___init___06( ):
+   '''PitchClass initialization raises TypeError on non-numbers, 
+   non-PitchClasss.'''
 
    assert py.test.raises(TypeError, "pitchtools.PitchClass('foo')")
+
+
+def test_pitchtools_PitchClass___init___07( ):
+   '''PitchClass initialization raises TypeError on rest.'''
+
+   rest = Rest((1, 4))
+   assert py.test.raises(TypeError, 'pitchtools.PitchClass(rest)')
+
+
+def test_pitchtools_PitchClass___init___08( ):
+   '''PitchClass initialization raises MissingPitchError on empty chord.''' 
+
+   chord = Chord([ ], (1, 4))
+   assert py.test.raises(MissingPitchError, 'pitchtools.PitchClass(chord)')

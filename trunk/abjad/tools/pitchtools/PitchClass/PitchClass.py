@@ -1,7 +1,13 @@
+from abjad.tools.pitchtools.get_pitch import get_pitch
+
+
 class PitchClass(object):
-   '''.. versionadded::
+   '''.. versionadded:: 1.1.2
 
    12-ET pitch-class ranging from [0, 12).
+
+   Initialization works with pitch numbers, pitch instances,
+   other pitch class instances, notes, and one-note chords.
    '''
 
    def __init__(self, arg):
@@ -13,7 +19,8 @@ class PitchClass(object):
       elif isinstance(arg, Pitch):
          self._number = arg.number % 12
       else:
-         raise TypeError
+         pitch = get_pitch(arg)
+         self._number = pitch.number % 12
 
    ## OVERLOADS ##
 

@@ -183,6 +183,7 @@ chordtools
    tools/chordtools/cast_defective
    tools/chordtools/color_noteheads_by_pc
    tools/chordtools/get_notehead
+   tools/chordtools/has_duplicate_pitch_class
    tools/chordtools/split_by_altitude
    tools/chordtools/split_by_pitch_number
    tools/chordtools/subchords
@@ -625,8 +626,12 @@ pitchtools
    tools/pitchtools/get_interval_class_vector
    tools/pitchtools/get_interval_vector
    tools/pitchtools/get_pitch
+   tools/pitchtools/get_pitch_class
+   tools/pitchtools/get_pitch_classes
    tools/pitchtools/get_pitches
    tools/pitchtools/get_signed_interval_series
+   tools/pitchtools/has_duplicate_pitch
+   tools/pitchtools/has_duplicate_pitch_class
    tools/pitchtools/insert_transposed_pc_subruns
    tools/pitchtools/is_carrier
    tools/pitchtools/is_name

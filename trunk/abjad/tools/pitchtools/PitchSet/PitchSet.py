@@ -1,5 +1,6 @@
 from abjad.pitch import Pitch
 from abjad.tools.pitchtools.ChromaticInterval import ChromaticInterval
+from abjad.tools.pitchtools.get_pitches import get_pitches
 from abjad.tools.pitchtools.transpose_by_chromatic_interval import \
    transpose_by_chromatic_interval
 
@@ -13,7 +14,11 @@ class PitchSet(set):
    '''
 
    def __init__(self, pitches):
-      self.update(pitches)
+      try:
+         self.update(pitches)
+      except (TypeError, ValueError):
+         pitches = get_pitches(pitches)
+         self.update(pitches)
 
    ## OVERLOADS ##
 
