@@ -11,7 +11,7 @@ Classes
 
    accidental/accidental
    measure/anonymous/measure
-   articulations/articulation
+   articulation/articulation
    tools/lilytools/BookBlock
    tools/lilytools/BookpartBlock
    chord/chord
@@ -19,10 +19,11 @@ Classes
    clef/clef
    cluster/cluster
    container/container
+   tools/pitchtools/DiatonicInterval/DiatonicInterval
    measure/dynamic/measure
    tuplet/fd/tuplet
    tuplet/fm/tuplet
-   layout/fixed_staff_positioning
+   tools/layout/FixedStaffPositioning/FixedStaffPositioning
    grace/grace
    staffgroup/grandstaff
    harmonic/natural
@@ -35,13 +36,14 @@ Classes
    tools/lilytools/MidiBlock
    note/note
    notehead/notehead
-   tools/pitchtools/PC
-   tools/pitchtools/PCSet
    tools/lilytools/PaperBlock
    staffgroup/pianostaff
    pitch/pitch
-   tools/pitchtools/PitchClassColorMap
-   tools/pitchtools/PitchRange
+   tools/pitchtools/PitchClass/PitchClass
+   tools/pitchtools/PitchClassColorMap/PitchClassColorMap
+   tools/pitchtools/PitchClassSet/PitchClassSet
+   tools/pitchtools/PitchRange/PitchRange
+   tools/pitchtools/PitchSet/PitchSet
    rational/rational
    rest/rest
    staff/rhythmicsketchstaff
@@ -50,12 +52,12 @@ Classes
    score/score
    tools/lilytools/ScoreBlock
    skip/skip
-   spacing/indication
+   tools/spacing/SpacingIndication/SpacingIndication
    staff/staff
-   layout/staff_alignment_offsets
+   tools/layout/StaffAlignmentOffsets/StaffAlignmentOffsets
    staffgroup/staffgroup
-   layout/system_y_offsets
-   tempo/indication
+   tools/layout/SystemYOffsets/SystemYOffsets
+   tools/tempotools/TempoIndication/indication
    voice/voice
 
 
@@ -70,43 +72,43 @@ Interfaces
    interfaces/barline/interface
    interfaces/barnumber/interface
    interfaces/beam/interface
-   brackets/interface
+   interfaces/brackets/interface
    interfaces/breaks/interface
-   clef/interface
-   cluster/interface
-   comments/interface
-   directives/interface
-   dots/interface
-   dynamics/interface
-   glissando/interface
-   grace/interface
-   harmonic/interface
-   history/interface
-   instrument/interface
+   interfaces/clef/interface
+   interfaces/cluster/interface
+   interfaces/comments/interface
+   interfaces/directives/interface
+   interfaces/dots/interface
+   interfaces/dynamics/interface
+   interfaces/glissando/interface
+   interfaces/grace/interface
+   interfaces/harmonic/interface
+   interfaces/history/interface
+   interfaces/instrument/interface
    interfaces/interface_aggregator/aggregator
-   markup/interface
-   meter/interface
+   interfaces/markup/interface
+   interfaces/meter/interface
    interfaces/nonmusicalpapercolumn/interface
-   notecolumn/interface
+   interfaces/notecolumn/interface
    notehead/interface
-   numbering/interface
-   offset/interface
-   offset/prolated/interface
-   parentage/interface
-   pianopedal/interface
+   interfaces/numbering/interface
+   interfaces/offset/interface
+   interfaces/offset/prolated/interface
+   interfaces/parentage/interface
+   interfaces/pianopedal/interface
    rest/interface
    score/interface/interface
-   slur/interface
-   spacing/interface
-   spanbar/interface
+   interfaces/slur/interface
+   interfaces/spacing/interface
+   interfaces/spanbar/interface
    staff/interface/interface
-   stem/interface
-   tempo/interface
-   text/interface
-   thread/interface
-   tie/interface
-   tremolo/interface
-   trill/interface
+   interfaces/stem/interface
+   interfaces/tempo/interface
+   interfaces/text/interface
+   interfaces/thread/interface
+   interfaces/tie/interface
+   interfaces/tremolo/interface
+   interfaces/trill/interface
    tuplet/bracket
    tuplet/number
    voice/interface/interface
@@ -118,29 +120,29 @@ Spanners
 .. toctree::
    :maxdepth: 1
 
-   beam/spanner
-   beam/complex/spanner
-   beam/complex/durated/spanner
-   beam/complex/measured/spanner
-   bracket/spanner
-   crescendo/spanner
-   decrescendo/spanner
-   dynamics/spanner
-   glissando/spanner
-   hairpin/spanner
-   instrument/spanner
-   metricgrid/spanner
-   octavation/spanner
-   override/spanner
-   pianopedal/spanner
-   slur/spanner
-   spacing/spanner
-   spanner/spanner
-   tempo/spanner
-   tempo/proportional/spanner
-   text/spanner
-   tie/spanner
-   trill/spanner
+   spanners/beam/spanner
+   spanners/beam/complex/spanner
+   spanners/beam/complex/durated/spanner
+   spanners/beam/complex/measured/spanner
+   spanners/bracket/spanner
+   spanners/crescendo/spanner
+   spanners/decrescendo/spanner
+   spanners/dynamics/spanner
+   spanners/glissando/spanner
+   spanners/hairpin/spanner
+   spanners/instrument/spanner
+   spanners/metricgrid/spanner
+   spanners/octavation/spanner
+   spanners/override/spanner
+   spanners/pianopedal/spanner
+   spanners/slur/spanner
+   spanners/spacing/spanner
+   spanners/spanner/spanner
+   spanners/tempo/spanner
+   spanners/tempo/proportional/spanner
+   spanners/text/spanner
+   spanners/tie/spanner
+   spanners/trill/spanner
 
 
 Tools
@@ -475,6 +477,7 @@ listtools
    tools/listtools/replace_elements_cyclic
    tools/listtools/rotate
    tools/listtools/sign
+   tools/listtools/subsets
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
    tools/listtools/true_indices

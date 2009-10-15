@@ -1,9 +1,9 @@
-ArticulationsInterface
-======================
+ArticulationInterface
+=====================
 
 .. automodule:: abjad.interfaces.articulation.interface
 
-.. autoclass:: abjad.interfaces.articulation.interface.ArticulationsInterface
+.. autoclass:: abjad.interfaces.articulation.interface.ArticulationInterface
    :members:
    :undoc-members:
    :show-inheritance:
