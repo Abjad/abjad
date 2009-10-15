@@ -46,6 +46,16 @@ class PitchSet(set):
       contents.sort( )
       return '%s(%s)' % (self.__class__.__name__, contents)
 
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def pitch_numbers(self):
+      '''Read-only tuple of pitch numbers in pitch set.'''
+      pitch_numbers = [pitch.number for pitch in self]
+      pitch_numbers.sort( )
+      pitch_numbers = tuple(pitch_numbers)
+      return pitch_numbers
+
    ## PUBLIC METHODS ##
 
    def add(self, arg):
