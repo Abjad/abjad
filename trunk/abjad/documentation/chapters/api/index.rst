@@ -183,7 +183,6 @@ chordtools
    tools/chordtools/cast_defective
    tools/chordtools/color_noteheads_by_pc
    tools/chordtools/get_notehead
-   tools/chordtools/has_duplicate_pitch_class
    tools/chordtools/split_by_altitude
    tools/chordtools/split_by_pitch_number
    tools/chordtools/subchords
@@ -479,7 +478,7 @@ listtools
    tools/listtools/replace_elements_cyclic
    tools/listtools/rotate
    tools/listtools/sign
-   tools/listtools/subsets
+   tools/listtools/sublists
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
    tools/listtools/true_indices
