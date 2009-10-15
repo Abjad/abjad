@@ -4,7 +4,7 @@ from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.tools import iterate
 from abjad.tools.pitchtools.get_pitch import get_pitch as \
-   pitchtools_get_pitch
+   get_pitch
 
 
 def get_pitches(expr):
@@ -52,20 +52,32 @@ def get_pitches(expr):
       abjad> pitchtools.get_pitches(Rest((1, 4)))
       ()
 
+   Works with pitch sets. ::
+
+      abjad> pitch_set = pitchtools.PitchSet([0, 2, 4, 5])
+      abjad> pitchtools.get_pitches(pitch_set)
+      (Pitch(c, 4), Pitch(d, 4), Pitch(e, 4), Pitch(f, 4))
+
    Raises neither :exc:`MissingPitchError` nor :exc:`ExtraPitchError`.
 
    .. note:: The logic implemented here to iterate over the contents of \
       spanners is unusual but useful.
    '''
-   
+   from abjad.tools.pitchtools.PitchSet import PitchSet
+
    try:
-      result = pitchtools_get_pitch(expr)
+      result = get_pitch(expr)
       return (result, )
    except (TypeError, MissingPitchError, ExtraPitchError):
       result = [ ]
       if isinstance(expr, Spanner):
          for leaf in expr.leaves:
             result.extend(leaf.pitches)
+      elif isinstance(expr, PitchSet):
+         pitches = list(expr)
+         pitches.sort( )
+         pitches = tuple(pitches)
+         return pitches
       else:
          for leaf in iterate.naive(expr, _Leaf):
             result.extend(leaf.pitches)

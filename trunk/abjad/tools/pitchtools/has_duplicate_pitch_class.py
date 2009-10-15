@@ -20,5 +20,7 @@ def has_duplicate_pitch_class(expr):
    '''
  
    pitch_classes = get_pitch_classes(expr)
+   print pitch_classes
    pitch_class_set = PitchClassSet(expr)
+   print pitch_class_set
    return not len(pitch_classes) == len(pitch_class_set) 
