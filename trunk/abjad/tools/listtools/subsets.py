@@ -2,9 +2,9 @@ from abjad.tools import mathtools
 
 
 def subsets(l):
-   '''Yield all subsets of list `l` in binary string order.
+   '''.. versionadded:: 1.1.2
 
-   ::
+   Yield all subsets of list `l` in binary string order. ::
 
       abjad> list(listtools.subsets([1, 2, 3, 4]))
       [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], 

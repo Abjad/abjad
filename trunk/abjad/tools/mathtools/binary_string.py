@@ -1,8 +1,6 @@
 def binary_string(n):
-   r'''Return the base-2 representation of positive integer *n* 
-   as a string.
-
-   ::
+   r'''Return the base-2 representation of positive integer `n` 
+   as a string. ::
 
       abjad> mathtools.binary_string(5)
       '101'

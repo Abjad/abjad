@@ -185,6 +185,7 @@ chordtools
    tools/chordtools/get_notehead
    tools/chordtools/split_by_altitude
    tools/chordtools/split_by_pitch_number
+   tools/chordtools/subchords
 
 
 clone
