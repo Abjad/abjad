@@ -1,10 +1,10 @@
 from abjad import *
-from abjad.tools import construct
+
 
 def test_construct_leaves_01( ):
+   '''Leaves constructor can create chords, notes and rests simultaneously.
    '''
-   Leaves constructor can create chords, notes and rests simultaneously.
-   '''
+
    leaves = construct.leaves([1, (1,2,3), None], [(1, 4)])
    assert isinstance(leaves[0], Note) 
    assert isinstance(leaves[1], Chord) 
@@ -14,11 +14,11 @@ def test_construct_leaves_01( ):
 
 
 def test_construct_leaves_02( ):
-   '''
-   Leaves constructor can create prolated chords, notes and rests 
+   '''Leaves constructor can create prolated chords, notes and rests 
    simultaneously. Contiguous leaves with the same prolation are
    put together inside a Tuplet.
    '''
+
    leaves = construct.leaves([1, (1,2,3), None], [(2, 9), (1,18), (1,5)])
    assert isinstance(leaves[0], FixedMultiplierTuplet)
    assert isinstance(leaves[1], FixedMultiplierTuplet)
@@ -38,10 +38,10 @@ def test_construct_leaves_02( ):
 
 
 def test_construct_leaves_03( ):
-   '''
-   Leaves constructor can create prolated and unprolated chords, 
+   '''Leaves constructor can create prolated and unprolated chords, 
    notes and rests simultaneously. 
    '''
+
    leaves = construct.leaves([1, (1,2,3), None], [(2, 9), (1,8), (1,5)])
    assert isinstance(leaves[0], FixedMultiplierTuplet)
    assert isinstance(leaves[1], Chord)
@@ -57,7 +57,9 @@ def test_construct_leaves_03( ):
 
 
 def test_construct_leaves_04( ):
-   '''Leaves constructor can take an optional 'tied_rests' keyword argument.'''
+   '''Leaves constructor can take an optional 'tied_rests' keyword argument.
+   '''
+
    leaves = construct.leaves([None], [(5, 32), (5, 32)], tied_rests=True)
    assert len(leaves) == 4
    for l in leaves:
@@ -68,8 +70,16 @@ def test_construct_leaves_04( ):
 
 def test_construct_leaves_05( ):
    ''''tied_rests' is False by default.'''
+
    leaves = construct.leaves([None], [(5, 32), (5, 32)])
    assert len(leaves) == 4
    for l in leaves:
       assert isinstance(l, Rest)
       assert l.tie.spanned == False
+
+
+def test_construct_leaves_06( ):
+   '''Works with quarter-tone pitch numbers.'''
+
+   leaves = construct.leaves([12, 12.5, 13, 13.5], [(1, 4)])
+   assert [leaf.pitch.number for leaf in leaves] == [12, 12.5, 13, 13.5]

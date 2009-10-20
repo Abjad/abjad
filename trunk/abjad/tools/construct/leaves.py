@@ -89,7 +89,7 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
    '''
 
    def _make_leaf_on_pitch(pch, ds, direction):
-      if isinstance(pch, (int, long)):
+      if isinstance(pch, (int, long, float)):
          leaves = _construct_tied_note(pch, ds, direction)
       elif isinstance(pch, (tuple, list)):
          leaves = _construct_tied_chord(pch, ds, direction)
