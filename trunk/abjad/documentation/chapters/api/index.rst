@@ -399,6 +399,7 @@ label
    tools/label/leaf_indices
    tools/label/leaf_numbers
    tools/label/leaf_pcs
+   tools/label/leaf_pitch_numbers
    tools/label/measure_numbers
 
 
