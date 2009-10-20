@@ -3,7 +3,7 @@ from abjad.tools import pitchtools
 
 
 def leaf_pcs(expr, number = True, color = False):
-   r'''Iterate *expr* and label all leaf pitch classes.
+   r'''Label the pitch-class of every leaf in `expr`.
 
    When ``number = True`` add markup below leaves.
 

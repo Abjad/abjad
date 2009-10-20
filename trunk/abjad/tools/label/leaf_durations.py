@@ -3,7 +3,44 @@ from abjad.tools import iterate
 
 def leaf_durations(expr, 
    show = ['written', 'prolated'], ties = 'together'):
-   '''Iterate expr and label all written and prolated durations.'''
+   r'''Label the duration of every leaf in `expr`.
+
+   When ``show = ['written']`` label only the written duration of
+   leaves in `expr`. ::
+
+      abjad> tuplet = FixedDurationTuplet((1, 4), construct.scale(3))
+      abjad> label.leaf_durations(tuplet, show = ['written'])
+      abjad> f(tuplet)
+      \times 2/3 {
+              c'8 _ \markup { \small 1/8 }
+              d'8 _ \markup { \small 1/8 }
+              e'8 _ \markup { \small 1/8 }
+      }
+
+   When ``show = ['prolated']`` label only the prolated duration of leaves
+   in `expr`. ::
+
+      abjad> tuplet = FixedDurationTuplet((1, 4), construct.scale(3))
+      abjad> label.leaf_durations(tuplet, show = ['prolated'])
+      abjad> f(tuplet)
+      \times 2/3 {
+              c'8 _ \markup { \small 1/12 }
+              d'8 _ \markup { \small 1/12 }
+              e'8 _ \markup { \small 1/12 }
+      }
+
+   When ``show = ['written', 'prolated']`` label both the written and
+   prolated duration of leaves in `expr`. ::
+
+      abjad> tuplet = FixedDurationTuplet((1, 4), construct.scale(3))
+      abjad> label.leaf_durations(tuplet)
+      abjad> f(tuplet)
+      \times 2/3 {
+              c'8 _ \markup { \column { \small 1/8 \small 1/12 } }
+              d'8 _ \markup { \column { \small 1/8 \small 1/12 } }
+              e'8 _ \markup { \column { \small 1/8 \small 1/12 } }
+      }
+   '''
    
    from abjad.leaf.leaf import _Leaf
    for leaf in iterate.naive(expr, _Leaf):
