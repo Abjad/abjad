@@ -21,28 +21,71 @@ from abjad.tuplet import FixedMultiplierTuplet
 ##       Only possible after the two extensions to construct.leaves( ), above.
 
 def leaves(pitches, durations, direction='big-endian', tied_rests=False):
-   '''Constructs a list of prolated and/or unprolated leaves of length 
-      len(durations).
-      The type of the leaves returned depends on the type of the pitches given.
-      Integer pitches create Notes.
-      Tuple pitches create Chords.
-      None pitches create Rests.
-      e.g. pitches = [12, (1,2,3), None, 12]
-      Will create a Note with pitch 12, a Chord with pitches (1,2,3), a
-      Rest and another Note with pitch 12.
+   r'''Construct a list of notes, rests or chords.
 
+   Set `pitches` is a single pitch, or a list of pitches, or a tuple
+   of pitches.
 
-      * `pitches` is a single pitch or a list/tuple of pitches. If the list is
-         smaller than that of the durations, the pitches are cycled through.
+   Integer pitches create notes. ::
 
-      * `durations` is a sinlge duration or a list of durations. The durations
-         need not be of form m / 2**n and may be any rational value.
+      abjad> construct.leaves([2, 4, 19], [(1, 4)])
+      [Note(d', 4), Note(e', 4), Note(g'', 4)]
 
-      * `direction` may be 'big-endian' or 'little-endian'.
-         'big-endian' returns list of notes of decreasing duration.
-         'little-endian' returns list of notes of increasing duration.
+   Tuple pitches create chords. ::
 
-      * `tied_rests`: Set to True to return Tied rests. False otherwise.
+      abjad> construct.leaves([(0, 1, 2), (3, 4, 5), (6, 7, 8)], [(1, 4)])
+      [Chord(c' cs' d', 4), Chord(ef' e' f', 4), Chord(fs' g' af', 4)]
+
+   Set `pitches` to a list of none to create rests. ::
+
+      abjad> construct.leaves([None, None, None, None], [(1, 8)])
+      [Rest(8), Rest(8), Rest(8), Rest(8)]
+
+   You can mix and match pitch values. ::
+
+      abjad> construct.leaves([12, (1, 2, 3), None, 12], [(1, 4)])
+      [Note(c'', 4), Chord(cs' d' ef', 4), Rest(4), Note(c'', 4)]
+
+   If the length of `pitches` is less than the length of `durations`,
+   the function reads `durations` cyclically. ::
+
+      abjad> construct.leaves([13], [(1, 8), (1, 8), (1, 4), (1, 4)])
+      [Note(cs'', 8), Note(cs'', 8), Note(cs'', 4), Note(cs'', 4)]
+
+   Set `durations` to a single duration, a list of duration, or
+   a tuple of durations.
+
+   If the length of `durations` is less than the length of `pitches`,
+   the function reads `pitches` cyclically. ::
+
+      abjad> construct.leaves([13, 14, 15, 16], [(1, 8)])
+      [Note(cs'', 8), Note(d'', 8), Note(ef'', 8), Note(e'', 8)]
+      
+   Duration values not of the form ``m / 2 ** n`` return
+   leaves nested inside a fixed-multiplier tuplet. ::
+
+      abjad> construct.leaves([14], [(1, 12), (1, 12), (1, 12)])
+      [FixedMultiplierTuplet(2/3, [d''8, d''8, d''8])]
+
+   Set `direction` to ``'little-endian'`` to return tied leaf
+   durations from least to greatest. ::
+
+      abjad> staff = Staff(construct.leaves([15], ([13, 16]), direction = 'little-endian'))
+      abjad> f(staff)
+      \new Staff {
+              ef''16 ~
+              ef''2.
+      }
+
+   Set `tied_rests` to true to return tied rests for durations like
+   ``5/16`` and ``9/16``. ::
+
+      abjad> staff = Staff(construct.leaves([None], [(5, 16)], tied_rests = True))
+      abjad> f(staff)
+      \new Staff {
+              r4 ~
+              r16
+      }
    '''
 
    def _make_leaf_on_pitch(pch, ds, direction):

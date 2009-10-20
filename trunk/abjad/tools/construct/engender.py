@@ -6,7 +6,11 @@ from abjad.tools import pitchtools
 
 
 def engender(pitches, duration):
-   '''Create note, rest or skip from pitches and duration.'''
+   '''Create note, rest or skip from pitches and duration.
+
+   .. todo:: deprecate ``construct.engender( )`` in favor of
+      ``construct.leaves( )``.'''
+
    assert pitchtools.is_token_collection(pitches)
    assert durtools.is_token(duration)
    if len(pitches) == 0:
