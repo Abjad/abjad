@@ -396,6 +396,8 @@ label
    tools/label/leaf_depth
    tools/label/leaf_depth_tuplet
    tools/label/leaf_durations
+   tools/label/leaf_indices
+   tools/label/leaf_numbers
    tools/label/leaf_pcs
    tools/label/measure_numbers
 
