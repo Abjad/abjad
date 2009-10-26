@@ -5,11 +5,10 @@ from abjad.tools.layout.line_break_every_prolated import \
    line_break_every_prolated
 
 
-def apply_layout_schema(expr, line_break_duration, system_y_offsets_tuple,
-   staff_alignment_offsets_tuple):
+def apply_layout_schema(expr, layout_schema):
    r'''.. versionadded:: 1.1.2
 
-   Apply layout parameters to `expr`.
+   Apply `layout_schema` to `expr`.
 
    The following example line breaks every 4 eighth notes,
    layos out 5 systems per page, spaces systems 40 vertical spaces
@@ -19,7 +18,8 @@ def apply_layout_schema(expr, line_break_duration, system_y_offsets_tuple,
 
       abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
       abjad> pitchtools.diatonicize(t)
-      abjad> layout.apply_layout_schema(t, Rational(4, 8), (40, 5, 1), (0, -15))
+      abjad> schema = Layout(Rational(4, 8), (40, 5, 1), (0, -15))
+      abjad> layout.apply_layout_schema(t, schema)
       abjad> f(t)
       \new Staff {
               {
@@ -54,7 +54,8 @@ def apply_layout_schema(expr, line_break_duration, system_y_offsets_tuple,
       }
    '''
    
-   layout_schema = LayoutSchema(line_break_duration,
-      system_y_offsets_tuple, staff_alignment_offsets_tuple)
+   if not isinstance(layout_schema, LayoutSchema):
+      raise TypeError('must be layout schema.')
+
    line_break_every_prolated(expr, layout_schema.line_break_duration)
    apply_fixed_staff_positioning(expr, layout_schema.fixed_staff_positioning)

@@ -40,7 +40,8 @@ def test_layout_apply_layout_schema_01( ):
    ## then leave blank space equivalent to 1 system at top of first page;
    ## then offset the two staves in each system at 0 and -15 vertical units.
 
-   layout.apply_layout_schema(t, Rational(4, 8), (40, 5, 1), (0, -15))   
+   schema = layout.LayoutSchema(Rational(4, 8), (40, 5, 1), (0, -15))   
+   layout.apply_layout_schema(t, schema)
 
    r'''
    \new Staff {
