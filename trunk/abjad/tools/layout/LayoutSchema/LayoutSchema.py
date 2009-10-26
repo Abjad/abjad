@@ -1,0 +1,37 @@
+from abjad.core.abjadcore import _Abjad
+from abjad.rational import Rational
+from abjad.tools.layout.FixedStaffPositioning import FixedStaffPositioning
+from abjad.tools.layout.StaffAlignmentOffsets import StaffAlignmentOffsets
+from abjad.tools.layout.SystemYOffsets import SystemYOffsets
+
+
+class LayoutSchema(_Abjad):
+   r'''Indicator to line-break an arbitrary score and then
+   position staves and systems regularly throughout.
+
+   Short-cut to avoid instanting SystemYOffsets and
+   StaffAlignmentOffsets by hand.
+   '''
+
+   def __init__(self, line_break_duration, system_y_offsets_tuple,
+      staff_alignment_offsets_tuple):
+      self.line_break_duration = Rational(line_break_duration)
+      self.system_y_offsets = SystemYOffsets(*system_y_offsets_tuple)
+      self.staff_alignment_offsets = StaffAlignmentOffsets(
+         *staff_alignment_offsets_tuple)
+      self.fixed_staff_positioning = FixedStaffPositioning(
+         self.system_y_offsets, self.staff_alignment_offsets)
+
+   ## OVERLOADS ##
+
+   def __eq__(self, expr):
+      if isinstance(expr, LayoutSchema):
+         if self.line_break_duration == expr.line_break_duration:
+            if self.system_y_offsets == expr.system_y_offsets:
+               if self.staff_alignment_offsets == \
+                  expr.staff_alignment_offsets:
+                  return True
+      return False
+
+   def __ne__(self, expr):
+      return not self == expr

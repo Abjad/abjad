@@ -30,6 +30,7 @@ Classes
    tools/lilytools/HeaderBlock
    staff/invisiblestaff
    tools/lilytools/LayoutBlock
+   tools/layout/LayoutSchema/LayoutSchema
    tools/lilytools/LilyFile
    markup/markup
    meter/meter
@@ -409,6 +410,7 @@ layout
    :maxdepth: 1
 
    tools/layout/apply_fixed_staff_positioning
+   tools/layout/apply_layout_schema
    tools/layout/insert_measure_padding_rest
    tools/layout/insert_measure_padding_skip
    tools/layout/line_break_every_prolated
