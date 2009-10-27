@@ -380,6 +380,8 @@ iterate
    tools/iterate/get_nth
    tools/iterate/get_nth_leaf
    tools/iterate/grace
+   tools/iterate/leaves_backward
+   tools/iterate/leaves_forward
    tools/iterate/measure_next
    tools/iterate/measure_prev
    tools/iterate/naive
