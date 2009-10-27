@@ -85,6 +85,10 @@ def test_beam_spanner_fracture_05( ):
    #assert len(spanners[1].components) == 1
    #assert len(spanners[2].components) == 2
    #assert spanners[0] != spanners[1] != spanners[2]
+   assert len(t[0].beam.spanner) == 2
+   assert len(t[2].beam.spanner) == 1
+   assert len(t[3].beam.spanner) == 2
+   assert t[0].beam.spanner != t[2].beam.spanner != t[3].beam.spanner
    check.wf(t) ### check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8 ]\n\td'8 [ ]\n\tef'8 [\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
@@ -111,10 +115,13 @@ def test_beam_spanner_fracture_06( ):
    old = list(t.spanners.contained)[0]
    old.fracture(0, 'both')
    assert len(t.spanners.contained) == 2
-   spanners = list(t.spanners.contained)
-   assert len(spanners[0]) == 1
-   assert len(spanners[1]) == 4
-   assert spanners[0] != spanners[1] 
+   #spanners = list(t.spanners.contained)
+   #assert len(spanners[0]) == 1
+   #assert len(spanners[1]) == 4
+   #assert spanners[0] != spanners[1] 
+   assert len(t[0].beam.spanner) == 1
+   assert len(t[1].beam.spanner) == 4
+   assert t[0].beam.spanner != t[1].beam.spanner
    check.wf(t) ### check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tcs'8 [\n\td'8\n\tef'8\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
    r'''
@@ -142,6 +149,9 @@ def test_beam_spanner_fracture_07( ):
    #assert len(spanners[0].components) == 4
    #assert len(spanners[1].components) == 1
    #assert spanners[0] != spanners[1] 
+   assert len(t[0].beam.spanner) == 4
+   assert len(t[4].beam.spanner) == 1
+   assert t[0].beam.spanner != t[4].beam.spanner
    check.wf(t) ### check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
@@ -173,6 +183,9 @@ def test_beam_spanner_fracture_08( ):
    #assert len(spanners[0].components) == 4
    #assert len(spanners[1].components) == 1
    #assert spanners[0] != spanners[1] 
+   assert len(t[0].beam.spanner) == 4
+   assert len(t[4].beam.spanner) == 1
+   assert t[0].beam.spanner != t[4].beam.spanner
    check.wf(t) ### check for Beam overlaps
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
