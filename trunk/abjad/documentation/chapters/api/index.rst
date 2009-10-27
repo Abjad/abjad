@@ -378,6 +378,7 @@ iterate
    tools/iterate/chained_contents
    tools/iterate/depth_first
    tools/iterate/get_nth
+   tools/iterate/get_nth_leaf
    tools/iterate/grace
    tools/iterate/measure_next
    tools/iterate/measure_prev
