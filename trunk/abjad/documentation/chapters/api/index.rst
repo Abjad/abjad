@@ -391,7 +391,8 @@ iterate
    tools/iterate/thread_backward_in
    tools/iterate/thread_forward_from
    tools/iterate/thread_forward_in
-   tools/iterate/tie_chains
+   tools/iterate/tie_chains_backward_in
+   tools/iterate/tie_chains_forward_in
 
 
 label

@@ -1,9 +1,9 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.tools.iterate.naive_forward import naive_forward
+from abjad.tools.iterate.naive_backward import naive_backward
 
 
-def tie_chains(expr):
-   r'''Yield left-to-right tie chains in `expr`.
+def tie_chains_backward_in(expr):
+   r'''Yield right-to-left tie chains in `expr`.
 
    ::
 
@@ -25,19 +25,19 @@ def tie_chains(expr):
 
    ::
 
-      abjad> for x in iterate.tie_chains(t):
+      abjad> for x in iterate.tie_chains_backward_in(t):
       ...     x
       ... 
-      (Note(c', 4), Note(c', 16))
-      (Note(d', 8),)
-      (Note(e', 8),)
       (Note(f', 4), Note(f', 16))
+      (Note(e', 8),)
+      (Note(d', 8),)
+      (Note(c', 4), Note(c', 16))
 
    Note that one-note tie chains yield the same as other tie chains.
 
    Note also that nested structures are no problem.
    '''
 
-   for leaf in naive_forward(expr, _Leaf):
-      if not leaf.tie.spanned or leaf.tie.last:
+   for leaf in naive_backward(expr, _Leaf):
+      if not leaf.tie.spanned or leaf.tie.first:
          yield leaf.tie.chain
