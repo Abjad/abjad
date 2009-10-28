@@ -31,7 +31,7 @@ def spin(expr, n):
    assert isinstance(n, int)
    assert n > 0
 
-   for measure in iterate.naive(expr, _Measure):
+   for measure in iterate.naive_forward(expr, _Measure):
       old_meter = measure.meter.effective
       containertools.contents_multiply(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)

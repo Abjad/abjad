@@ -1,5 +1,6 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.tools.iterate.backwards import backwards as iterate_backwards
+from abjad.tools.iterate.naive_backward import naive_backward as \
+   iterate_naive_backwards
 
 
 def leaves_backward(expr):
@@ -45,4 +46,4 @@ def leaves_backward(expr):
    .. todo:: generalize with optional start and stop values.
    '''
 
-   return iterate_backwards(expr, _Leaf)
+   return iterate_naive_backwards(expr, _Leaf)

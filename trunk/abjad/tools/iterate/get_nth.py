@@ -1,5 +1,7 @@
-from abjad.tools.iterate.naive import naive as iterate_naive
-from abjad.tools.iterate.backwards import backwards as iterate_backwards
+from abjad.tools.iterate.naive_backward import naive_backward as \
+   iterate_naive_backward
+from abjad.tools.iterate.naive_forward import naive_forward as \
+   iterate_naive_forward
 
 
 def get_nth(expr, klasses, n = 0):
@@ -55,7 +57,7 @@ def get_nth(expr, klasses, n = 0):
       abjad> iterate.get_nth(staff, Staff)
       Staff{8}
 
-   Read backwards for negative values of `n`. ::
+   Read right-to-left for negative values of `n`. ::
 
       abjad> for n in range(3, -1, -1):
       ...      iterate.get_nth(staff, Rest, n)
@@ -76,10 +78,10 @@ def get_nth(expr, klasses, n = 0):
       raise ValueError
 
    if 0 <= n:
-      for i, x in enumerate(iterate_naive(expr, klasses)):
+      for i, x in enumerate(iterate_naive_forward(expr, klasses)):
          if i == n:
             return x
    else:
-      for i, x in enumerate(iterate_backwards(expr, klasses)):
+      for i, x in enumerate(iterate_naive_backward(expr, klasses)):
          if i == abs(n) - 1:
             return x

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterate_namesakes_forwards_01( ):
+def test_iterate_namesakes_forward_01( ):
 
    container = Container(Staff(construct.run(2)) * 2)
    container.parallel = True
@@ -47,7 +47,7 @@ def test_iterate_namesakes_forwards_01( ):
    assert staves[1].name == 'staff 1'
 
 
-def test_iterate_namesakes_forwards_02( ):
+def test_iterate_namesakes_forward_02( ):
 
    container = Container(Staff(construct.run(2)) * 2)
    container.parallel = True

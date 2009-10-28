@@ -11,7 +11,7 @@ class MeasuresImproperlyFilled(_Check):
       from abjad.measure import RigidMeasure
       violators = [ ]
       total, bad = 0, 0
-      for t in iterate.naive(expr, RigidMeasure):
+      for t in iterate.naive_forward(expr, RigidMeasure):
          if not t.full:
             violators.append(t)
             bad += 1

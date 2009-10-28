@@ -10,7 +10,7 @@ class ContainersEmpty(_Check):
       from abjad.container import Container
       violators = [ ]
       bad, total = 0, 0
-      for t in iterate.naive(expr, Container):
+      for t in iterate.naive_forward(expr, Container):
          if len(t) == 0:
             violators.append(t)
             bad += 1

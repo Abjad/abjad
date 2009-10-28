@@ -16,7 +16,7 @@ def color_nonbinary(expr, color = 'red'):
    
       Additional color names appear in appendix B.5 of the LilyPond LM.'''
 
-   for measure in iterate.naive(expr, _Measure):
+   for measure in iterate.naive_forward(expr, _Measure):
       if measure.meter.effective.nonbinary:
          measure.beam.color = color
          measure.dots.color = color

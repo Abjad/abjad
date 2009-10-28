@@ -28,7 +28,7 @@ def subsume(expr):
          }'''
 
    from abjad.tools import containertools
-   for measure in iterate.naive(expr, _Measure): 
+   for measure in iterate.naive_forward(expr, _Measure): 
       if len(measure) == 1:
          if isinstance(measure[0], _Tuplet):
             tuplet = measure[0]

@@ -48,7 +48,7 @@ def remedy_underfull_measures(expr):
       }
    '''
 
-   for rigid_measure in iterate.naive(expr, RigidMeasure):
+   for rigid_measure in iterate.naive_forward(expr, RigidMeasure):
       if rigid_measure.duration.is_underfull:
          spacer_skip = make_underfull_spacer_skip(rigid_measure)
          rigid_measure.append(spacer_skip)

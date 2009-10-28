@@ -24,7 +24,7 @@ def extract_meter_list(components):
    result = [ ]
 
    ## iterate measures and store meter pairs
-   for measure in iterate.naive(components, _Measure):
+   for measure in iterate.naive_forward(components, _Measure):
       meter = measure.meter.effective
       pair = (meter.numerator, meter.denominator)
       result.append(pair)

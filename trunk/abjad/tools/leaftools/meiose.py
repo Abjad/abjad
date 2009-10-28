@@ -12,7 +12,7 @@ def meiose(expr, n = 2):
       Preserve parentage and spanners.
       Returns nothing.'''
 
-   for leaf in iterate.backwards(expr, _Leaf):
+   for leaf in iterate.naive_backward(expr, _Leaf):
       _leaf_meiose(leaf, n)
       
 

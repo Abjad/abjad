@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterate_namesakes_backwards_01( ):
+def test_iterate_namesakes_backward_01( ):
 
    container = Container(Staff(construct.run(2)) * 2)
    container.parallel = True
@@ -37,7 +37,7 @@ def test_iterate_namesakes_backwards_01( ):
    }
    '''
 
-   staves = iterate.namesakes_from(score[1][0], backwards = True)
+   staves = iterate.namesakes_from(score[1][0], backward = True)
    staves = list(staves)
 
    assert staves[0] is score[1][0]
@@ -47,7 +47,7 @@ def test_iterate_namesakes_backwards_01( ):
    assert staves[1].name == 'staff 1'
 
 
-def test_iterate_namesakes_backwards_02( ):
+def test_iterate_namesakes_backward_02( ):
 
    container = Container(Staff(construct.run(2)) * 2)
    container.parallel = True
@@ -83,7 +83,7 @@ def test_iterate_namesakes_backwards_02( ):
    }
    '''
 
-   notes = iterate.namesakes_from(score.leaves[-1], backwards = True)
+   notes = iterate.namesakes_from(score.leaves[-1], backward = True)
    notes = list(notes)
 
    r'''

@@ -1,8 +1,12 @@
 from abjad.component.component import _Component
 
 
-def backwards(expr, klass = _Component):
-   r'''Yield right-to-left instances of `klass` in `expr`.
+#def backwards(expr, klass = _Component):
+def naive_backward(expr, klass = _Component):
+   r'''.. versionchanged:: 1.1.2
+      Renamed from ``iterate.backwards`` to ``iterate.naive_backward``.
+
+   Yield right-to-left instances of `klass` in `expr`.
 
    ::
 
@@ -24,7 +28,7 @@ def backwards(expr, klass = _Component):
 
    ::
 
-      abjad> for x in iterate.backwards(staff, Note):
+      abjad> for x in iterate.naive_backward(staff, Note):
       ...     x 
       ... 
       Note(a', 8)
@@ -36,7 +40,7 @@ def backwards(expr, klass = _Component):
 
    ::
 
-      abjad> for x in iterate.backwards(staff, FixedDurationTuplet):
+      abjad> for x in iterate.naive_backward(staff, FixedDurationTuplet):
       ...     x
       ... 
       FixedDurationTuplet(1/4, [f'8, g'8, a'8])
@@ -49,9 +53,11 @@ def backwards(expr, klass = _Component):
       yield expr
    if isinstance(expr, (list, tuple)):
       for m in reversed(expr):
-         for x in backwards(m, klass):
+         #for x in backwards(m, klass):
+         for x in naive_backward(m, klass):
             yield x
    if hasattr(expr, '_music'):
       for m in reversed(expr._music):
-         for x in backwards(m, klass):
+         #for x in backwards(m, klass):
+         for x in naive_backward(m, klass):
             yield x

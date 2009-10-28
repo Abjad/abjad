@@ -11,7 +11,7 @@ class BeamsOverlapping(_Check):
       #from abjad.leaf.leaf import _Leaf
       #from abjad.beam import Beam
       violators = [ ]
-      for leaf in iterate.naive(expr, _Leaf):
+      for leaf in iterate.naive_forward(expr, _Leaf):
          beams = [p for p in leaf.spanners.attached
             if isinstance(p, Beam)]
          if len(beams) > 1:

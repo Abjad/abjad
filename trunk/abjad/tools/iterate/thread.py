@@ -48,7 +48,7 @@ def thread(expr, klass, thread_signature):
    The important thing to note is that the function yields only
    those leaves that sit in the same thread.
 
-   Compare with :func:`iterate.naive() <abjad.tools.iterate.naive>`.
+   Compare with :func:`iterate.naive_forward() <abjad.tools.iterate.naive>`.
    '''
 
    if isinstance(expr, klass) and expr.thread.signature == thread_signature:

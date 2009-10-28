@@ -79,6 +79,6 @@ def get_pitches(expr):
          pitches = tuple(pitches)
          return pitches
       else:
-         for leaf in iterate.naive(expr, _Leaf):
+         for leaf in iterate.naive_forward(expr, _Leaf):
             result.extend(leaf.pitches)
       return tuple(result)

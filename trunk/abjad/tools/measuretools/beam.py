@@ -17,7 +17,7 @@ def beam(expr, style = 'complex'):
       Return list of measures treated.'''
 
    measures_treated = [ ]
-   for measure in iterate.naive(expr, _Measure):
+   for measure in iterate.naive_forward(expr, _Measure):
       if style == 'complex':
          BeamComplexDurated(measure)
       elif style is None:

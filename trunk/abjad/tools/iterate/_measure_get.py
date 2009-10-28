@@ -3,8 +3,10 @@ from abjad.exceptions import MeasureContiguityError
 from abjad.exceptions import MissingMeasureError
 from abjad.leaf.leaf import _Leaf
 from abjad.measure.measure import _Measure
-from abjad.tools.iterate.backwards import backwards as iterate_backwards
-from abjad.tools.iterate.naive import naive as iterate_naive
+from abjad.tools.iterate.naive_backward import naive_backward as \
+   iterate_naive_backward
+from abjad.tools.iterate.naive_forward import naive_forward as \
+   iterate_naive_forward
 from _get_contemporaneous_measure import _get_contemporaneous_measure
 
 
@@ -48,9 +50,9 @@ def _measure_get(component, direction):
       return _get_contemporaneous_measure(component, direction)
    elif isinstance(component, (list, tuple)):
       if direction == '_next':
-         measure_generator = iterate_naive(component, _Measure)
+         measure_generator = iterate_naive_forward(component, _Measure)
       elif direction == '_prev':
-         measure_generator = iterate_backwards(component, _Measure)
+         measure_generator = iterate_naive_backward(component, _Measure)
       else:
          raise ValueError('direction must be _next or _prev.')
       try:

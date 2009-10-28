@@ -30,7 +30,7 @@ def get_dominant(components):
 #   subtree_begin = first.offset.prolated.start
 #   subtree_end = last.offset.prolated.stop
 
-#   for component in iterate.naive(first, _Component):
+#   for component in iterate.naive_forward(first, _Component):
 #      if component.offset.prolated.start == subtree_begin:
 #         for spanner in component.spanners.attached:
 #            if spanner.offset.start <= subtree_begin:

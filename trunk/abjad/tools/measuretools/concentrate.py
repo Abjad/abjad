@@ -40,7 +40,7 @@ def concentrate(expr, concentration_pairs, cyclic = True):
    result = [ ]
    num_pairs = len(concentration_pairs)
    from abjad.measure.measure import _Measure
-   for i, measure in enumerate(iterate.naive(expr, _Measure)):
+   for i, measure in enumerate(iterate.naive_forward(expr, _Measure)):
       concentration_pair = concentration_pairs[i % num_pairs]
       assert isinstance(concentration_pair, tuple)
       spin_count, scalar_denominator = concentration_pair

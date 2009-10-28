@@ -11,7 +11,7 @@ class TiesMispitched(_Check):
       from abjad.note import Note
       violators = [ ]
       total = 0
-      for leaf in iterate.naive(expr, Note):
+      for leaf in iterate.naive_forward(expr, Note):
          total += 1
          if leaf.tie.spanned and not leaf.tie.last and leaf.next:
             if leaf.pitch != leaf.next.pitch:

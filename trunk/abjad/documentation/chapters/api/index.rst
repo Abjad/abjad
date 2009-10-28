@@ -374,7 +374,6 @@ iterate
 .. toctree::
    :maxdepth: 1
 
-   tools/iterate/backwards
    tools/iterate/chained_contents
    tools/iterate/depth_first
    tools/iterate/get_nth
@@ -384,7 +383,8 @@ iterate
    tools/iterate/leaves_forward
    tools/iterate/measure_next
    tools/iterate/measure_prev
-   tools/iterate/naive
+   tools/iterate/naive_backward
+   tools/iterate/naive_forward
    tools/iterate/namesakes_from
    tools/iterate/thread
    tools/iterate/thread_from

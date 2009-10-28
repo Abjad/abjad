@@ -29,5 +29,5 @@ def leaves_to_skips(expr):
       }
    '''
 
-   for leaf in iterate.naive(expr, _Leaf):
+   for leaf in iterate.naive_forward(expr, _Leaf):
       Skip(leaf)

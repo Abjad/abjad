@@ -21,7 +21,7 @@ def overdraw(expr, source_count = 1, total_reps = 2):
 
    source = [ ]
    result = [ ]
-   for i, measure in enumerate(iterate.naive(expr, _Measure)):
+   for i, measure in enumerate(iterate.naive_forward(expr, _Measure)):
       if i < source_count:
          source.append(measure)   
       elif i == source_count:

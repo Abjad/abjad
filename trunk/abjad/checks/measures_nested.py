@@ -10,7 +10,7 @@ class MeasuresNested(_Check):
       from abjad.tools import parenttools
       violators = [ ]
       total = 0
-      for t in iterate.naive(expr, _Measure):
+      for t in iterate.naive_forward(expr, _Measure):
          #if t.parentage.first(_Measure):
          if parenttools.get_first(t, _Measure):
             violators.append(t)

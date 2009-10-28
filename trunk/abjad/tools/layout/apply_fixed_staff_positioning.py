@@ -84,7 +84,7 @@ def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
 
    line_breaks_found = 0
    prev = None
-   for cur in iterate.naive(expr, klass):
+   for cur in iterate.naive_forward(expr, klass):
       if prev is None or prev.breaks.line:
          system_on_page = line_breaks_found + starting_system
          system_on_page %= systems_per_page

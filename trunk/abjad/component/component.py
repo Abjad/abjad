@@ -241,7 +241,7 @@ class _Component(_Abjad):
       .. versionchanged:: 1.1.1'''
       from abjad.leaf.leaf import _Leaf
       from abjad.tools import iterate
-      return tuple(iterate.naive(self, _Leaf))
+      return tuple(iterate.naive_forward(self, _Leaf))
 
    @property
    def lily_file(self):

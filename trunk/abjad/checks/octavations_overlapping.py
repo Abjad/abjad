@@ -11,7 +11,7 @@ class OctavationsOverlapping(_Check):
       #from abjad.leaf.leaf import _Leaf
       #from abjad.octavation import Octavation
       violators = [ ]
-      for leaf in iterate.naive(expr, _Leaf):
+      for leaf in iterate.naive_forward(expr, _Leaf):
          octavations = leaf.spanners.contained
          octavations = [p for p in octavations if isinstance(p, Octavation)]
          if len(octavations) > 1:

@@ -16,7 +16,7 @@ def _line_break_every(expr, line_duration, klass = _Measure,
 
    prev = None
    cum_duration = Rational(0)
-   for cur in iterate.naive(expr, klass):
+   for cur in iterate.naive_forward(expr, klass):
       cur_duration = getattr(cur.duration, kind)
       candidate_duration = cum_duration + cur_duration
       if candidate_duration < line_duration:

@@ -1,5 +1,8 @@
-def naive(expr, klass):
-   r'''Yield left-to-right instances of `klass` in `expr`.
+def naive_forward(expr, klass):
+   r'''.. versionchanged:: 1.1.2
+      Renamed from ``iterate.naive`` to ``iterate.naive_forward``.
+
+   Yield left-to-right instances of `klass` in `expr`.
 
    Treat `expr` as an undifferentiated tree; ignore threads. ::
 
@@ -35,7 +38,7 @@ def naive(expr, klass):
 
    ::
 
-      abjad> for x in iterate.naive(staff, Note):
+      abjad> for x in iterate.naive_forward(staff, Note):
       ...     x
       ... 
       Note(c', 8)
@@ -57,9 +60,9 @@ def naive(expr, klass):
       yield expr
    if isinstance(expr, (list, tuple)):
       for m in expr:
-         for x in naive(m, klass):
+         for x in naive_forward(m, klass):
             yield x
    if hasattr(expr, '_music'):
       for m in expr._music:
-         for x in naive(m, klass):
+         for x in naive_forward(m, klass):
             yield x

@@ -18,7 +18,7 @@ def scale(expr, multiplier = Rational(1)):
       This might best be a bound method on RigidMeasure.'''
 
    from abjad.tools import containertools
-   for measure in iterate.naive(expr, _Measure):
+   for measure in iterate.naive_forward(expr, _Measure):
 
       if multiplier == Rational(1):
          continue

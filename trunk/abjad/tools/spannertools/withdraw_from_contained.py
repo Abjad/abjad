@@ -13,7 +13,7 @@ def _withdraw_from_contained(components):
    check.assert_components(components, contiguity = 'thread')
 
    ## withdraw from contained spanners
-   for component in iterate.naive(components, _Component):
+   for component in iterate.naive_forward(components, _Component):
       component.spanners._detach( )
 
    ## return components

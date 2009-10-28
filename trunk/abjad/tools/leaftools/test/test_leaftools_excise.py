@@ -109,7 +109,7 @@ def test_leaftools_excise_03( ):
       ])
    
    from abjad.leaf.leaf import _Leaf
-   for i, leaf in enumerate(iterate.naive(t, _Leaf)):
+   for i, leaf in enumerate(iterate.naive_forward(t, _Leaf)):
       leaf.pitch = i
 
    r'''\time 5/6
@@ -185,7 +185,7 @@ def test_leaftools_excise_04( ):
       ])
 
    from abjad.leaf.leaf import _Leaf
-   for i, leaf in enumerate(iterate.naive(t, _Leaf)):
+   for i, leaf in enumerate(iterate.naive_forward(t, _Leaf)):
       leaf.pitch = i
 
    r'''\time 5/6

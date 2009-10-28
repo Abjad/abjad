@@ -12,7 +12,7 @@ def make_sharp(expr):
    if isinstance(expr, Pitch):
       _pitch_renotate_sharps(expr)
    else:
-      for leaf in iterate.naive(expr, _Leaf):
+      for leaf in iterate.naive_forward(expr, _Leaf):
          if hasattr(leaf, 'pitches'):
             for pitch in leaf.pitches:
                _pitch_renotate_sharps(pitch)

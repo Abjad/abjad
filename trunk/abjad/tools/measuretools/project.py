@@ -17,7 +17,7 @@ def project(expr):
       Returns None because processes potentially many measures.'''
 
    from abjad.tools import containertools
-   for measure in iterate.naive(expr, _Measure):
+   for measure in iterate.naive_forward(expr, _Measure):
       if measure.meter.effective.nonbinary:
 
          # find meter and contents multipliers

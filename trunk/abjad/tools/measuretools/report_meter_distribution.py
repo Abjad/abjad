@@ -28,7 +28,7 @@ def report_meter_distribution(expr, delivery = 'screen'):
    '''
 
    meters = [ ]
-   for measure in iterate.naive(expr, _Measure):
+   for measure in iterate.naive_forward(expr, _Measure):
       meters.append(measure.meter.effective)
       
    meters.sort( )
