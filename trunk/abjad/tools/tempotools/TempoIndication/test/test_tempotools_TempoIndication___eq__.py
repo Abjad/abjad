@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tempo_indication_eq_01( ):
+def test_tempotools_TempoIndication___eq___01( ):
    '''Tempo indications compare equal when duration and mark match.'''
    
    t1 = tempotools.TempoIndication(Rational(3, 32), 52)
@@ -9,7 +9,7 @@ def test_tempo_indication_eq_01( ):
    assert t1 == t2
    
 
-def test_tempo_indication_eq_02( ):
+def test_tempotools_TempoIndication___eq___02( ):
    '''Tempo indications do not compare equal
    when mathematically equal.
    '''

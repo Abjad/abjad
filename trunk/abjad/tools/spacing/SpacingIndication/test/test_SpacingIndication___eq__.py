@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spacing_indication_eq_01( ):
+def test_SpacingIndication___eq___01( ):
    '''Spacing indications compare equal when 
       normalized spacing durations compare equal.'''
 
@@ -14,7 +14,7 @@ def test_spacing_indication_eq_01( ):
    assert p == q
    
 
-def test_spacing_indication_eq_02( ):
+def test_SpacingIndication___eq___02( ):
    '''Spacing indications compare not equal when 
       normalized spacing durations compare not equal.'''
 

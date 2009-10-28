@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterate_tie_chains_backward_01( ):
+def test_iterate_tie_chains_backward_in_01( ):
    '''Yield successive tie chains.'''
 
    t = Staff(construct.run(4))
@@ -23,7 +23,7 @@ def test_iterate_tie_chains_backward_01( ):
    assert chains[1] == (t[0], t[1])
 
 
-def test_iterate_tie_chains_backward_02( ):
+def test_iterate_tie_chains_backward_in_02( ):
    '''Yield successive tie chains.'''
 
    t = Staff(construct.run(4))
