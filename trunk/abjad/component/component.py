@@ -38,6 +38,8 @@ from abjad.interfaces.tie.interface import TieInterface
 from abjad.interfaces.text.interface import TextInterface
 from abjad.interfaces.tremolo.interface import TremoloInterface
 from abjad.interfaces.trill.interface import TrillInterface
+from abjad.interfaces.tupletbracket.interface import TupletBracketInterface
+from abjad.interfaces.tupletnumber.interface import TupletNumberInterface
 from abjad.interfaces.update.interface import _UpdateInterface
 from abjad.interfaces.voice.interface import VoiceInterface
 from abjad.rational import Rational
@@ -64,8 +66,8 @@ class _Component(_Abjad):
       #from abjad.rest.interface import RestInterface
       #from abjad.score.interface.interface import ScoreInterface
       #from abjad.staff.interface.interface import StaffInterface
-      from abjad.tuplet.bracket import TupletBracketInterface
-      from abjad.tuplet.number import TupletNumberInterface
+      #from abjad.tuplet.bracket import TupletBracketInterface
+      #from abjad.tuplet.number import TupletNumberInterface
       #from abjad.voice.interface.interface import VoiceInterface
       self._interfaces = InterfaceAggregator(self)
       self._accidental = AccidentalInterface(self)
