@@ -1,5 +1,7 @@
-def namesakes_from(component, backward = False):
-   r'''Yield left-to-right namesakes of `component` starting
+def namesakes_backward_from(component):
+   r'''.. versionadded:: 1.1.2
+
+   Yield right-to-left namesakes of `component` starting
    from `component`. ::
 
       abjad> container = Container(Staff(construct.run(2)) * 2)
@@ -36,21 +38,7 @@ def namesakes_from(component, backward = False):
 
    ::
 
-      abjad> for staff in iterate.namesakes_from(score[0][0]):
-      ...     print staff.format
-      ... 
-      \context Staff = "staff 1" {
-              c'8
-              d'8
-      }
-      \context Staff = "staff 1" {
-              g'8
-              a'8
-      }
-
-   When ``backward = True`` yield right-to-left. ::
-
-      abjad> for staff in iterate.namesakes_from(score[-1][0], backward = True):
+      abjad> for staff in iterate.namesakes_backward_from(score[-1][0]):
       ...     print staff.format
       ... 
       \context Staff = "staff 1" {
@@ -67,7 +55,9 @@ def namesakes_from(component, backward = False):
 
    while cur_component is not None:
       yield cur_component
-      if not backward:
-         cur_component = cur_component._navigator._nextNamesake
-      else:
-         cur_component = cur_component._navigator._prevNamesake
+      cur_component = cur_component._navigator._prevNamesake
+
+      #if not backward:
+      #   cur_component = cur_component._navigator._nextNamesake
+      #else:
+      #   cur_component = cur_component._navigator._prevNamesake

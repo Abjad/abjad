@@ -385,7 +385,8 @@ iterate
    tools/iterate/measure_prev
    tools/iterate/naive_backward
    tools/iterate/naive_forward
-   tools/iterate/namesakes_from
+   tools/iterate/namesakes_backward_from
+   tools/iterate/namesakes_forward_from
    tools/iterate/thread
    tools/iterate/thread_from
    tools/iterate/tie_chains
