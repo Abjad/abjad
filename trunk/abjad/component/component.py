@@ -1,3 +1,4 @@
+from abjad.core.abjadcore import _Abjad
 from abjad.interfaces.accidental.interface import AccidentalInterface
 from abjad.interfaces.articulation.interface import ArticulationInterface
 from abjad.interfaces.barline.interface import BarLineInterface
@@ -5,7 +6,6 @@ from abjad.interfaces.barnumber.interface import BarNumberInterface
 from abjad.interfaces.beam.interface import BeamInterface
 from abjad.interfaces.breaks.interface import BreaksInterface
 from abjad.interfaces.comments.interface import CommentsInterface
-from abjad.core.abjadcore import _Abjad
 from abjad.interfaces.clef.interface import ClefInterface
 from abjad.interfaces.directives.interface import DirectivesInterface
 from abjad.interfaces.dots.interface import DotsInterface
@@ -16,7 +16,6 @@ from abjad.interfaces.instrument.interface import InstrumentInterface
 from abjad.interfaces.interface_aggregator.aggregator import \
    InterfaceAggregator
 from abjad.interfaces.meter.interface import MeterInterface
-from abjad.navigator.navigator import _Navigator
 from abjad.interfaces.nonmusicalpapercolumn.interface import \
    NonMusicalPaperColumnInterface
 from abjad.interfaces.notecolumn.interface import NoteColumnInterface
@@ -33,15 +32,16 @@ from abjad.interfaces.spanbar.interface import SpanBarInterface
 from abjad.interfaces.staff.interface import StaffInterface
 from abjad.interfaces.stem.interface import StemInterface
 from abjad.interfaces.tempo.interface import TempoInterface
+from abjad.interfaces.text.interface import TextInterface
 from abjad.interfaces.thread.interface import ThreadInterface
 from abjad.interfaces.tie.interface import TieInterface
-from abjad.interfaces.text.interface import TextInterface
 from abjad.interfaces.tremolo.interface import TremoloInterface
 from abjad.interfaces.trill.interface import TrillInterface
 from abjad.interfaces.tupletbracket.interface import TupletBracketInterface
 from abjad.interfaces.tupletnumber.interface import TupletNumberInterface
 from abjad.interfaces.update.interface import _UpdateInterface
 from abjad.interfaces.voice.interface import VoiceInterface
+from abjad.navigator.navigator import _Navigator
 from abjad.rational import Rational
 import copy
 import types
@@ -50,25 +50,6 @@ import types
 class _Component(_Abjad):
 
    def __init__(self):
-      '''Late import of RestInterface, ScoreInterface, StaffInterface
-      and VoiceInterface to avoid circular imports in which instantiating
-      a rest imports abjad/leaf (because Rest is a _Leaf), which imports 
-      abjad/component (because _Leaf is a _Component), which imports 
-      abjad/rest (because _Component has a RestInterface).
-   
-      The solution given here with the late imports of what we might
-      collectively term the 'component information interfaces' does indeed
-      work but also suggests a cleaner way of laying out the codebase
-      in which ALL interfaces of whatever sort, not just the component
-      information interfaces imported here, collectively live inside
-      some abjad/allinterfaces package.'''
-      #from abjad.notehead.interface import NoteHeadInterface
-      #from abjad.rest.interface import RestInterface
-      #from abjad.score.interface.interface import ScoreInterface
-      #from abjad.staff.interface.interface import StaffInterface
-      #from abjad.tuplet.bracket import TupletBracketInterface
-      #from abjad.tuplet.number import TupletNumberInterface
-      #from abjad.voice.interface.interface import VoiceInterface
       self._interfaces = InterfaceAggregator(self)
       self._accidental = AccidentalInterface(self)
       self._articulations = ArticulationInterface(self)
