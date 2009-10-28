@@ -91,18 +91,18 @@ Interfaces
    interfaces/meter/interface
    interfaces/nonmusicalpapercolumn/interface
    interfaces/notecolumn/interface
-   notehead/interface
+   interfaces/notehead/interface
    interfaces/numbering/interface
    interfaces/offset/interface
    interfaces/offset/prolated/interface
    interfaces/parentage/interface
    interfaces/pianopedal/interface
-   rest/interface
-   score/interface/interface
+   interfaces/rest/interface
+   interfaces/score/interface
    interfaces/slur/interface
    interfaces/spacing/interface
    interfaces/spanbar/interface
-   staff/interface/interface
+   interfaces/staff/interface
    interfaces/stem/interface
    interfaces/tempo/interface
    interfaces/text/interface
@@ -110,9 +110,9 @@ Interfaces
    interfaces/tie/interface
    interfaces/tremolo/interface
    interfaces/trill/interface
-   tuplet/bracket
-   tuplet/number
-   voice/interface/interface
+   interfaces/tupletbracket/interface
+   interfaces/tupletnumber/interface
+   interfaces/voice/interface
 
 
 Spanners
