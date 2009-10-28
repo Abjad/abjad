@@ -1,7 +1,6 @@
 from abjad.component.component import _Component
 
 
-#def backwards(expr, klass = _Component):
 def naive_backward(expr, klass = _Component):
    r'''.. versionchanged:: 1.1.2
       Renamed from ``iterate.backwards`` to ``iterate.naive_backward``.
@@ -53,11 +52,9 @@ def naive_backward(expr, klass = _Component):
       yield expr
    if isinstance(expr, (list, tuple)):
       for m in reversed(expr):
-         #for x in backwards(m, klass):
          for x in naive_backward(m, klass):
             yield x
    if hasattr(expr, '_music'):
       for m in reversed(expr._music):
-         #for x in backwards(m, klass):
          for x in naive_backward(m, klass):
             yield x

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterate_thread_from_01( ):
+def test_iterate_thread_forward_from_01( ):
 
    container = Container(Voice(construct.run(2)) * 2)
    container.parallel = True
@@ -35,7 +35,7 @@ def test_iterate_thread_from_01( ):
    }
    '''
 
-   notes = iterate.thread_from(staff.leaves[0], Note)
+   notes = iterate.thread_forward_from(staff.leaves[0], Note)
    notes = list(notes)
 
    voice_1_first_half = staff[0][0]
@@ -47,7 +47,7 @@ def test_iterate_thread_from_01( ):
    assert notes[3] is voice_1_second_half[1]
 
 
-def test_iterate_thread_from_02( ):
+def test_iterate_thread_forward_from_02( ):
 
    container = Container(Voice(construct.run(2)) * 2)
    container.parallel = True
@@ -81,7 +81,7 @@ def test_iterate_thread_from_02( ):
    }
    '''
 
-   components = iterate.thread_from(staff.leaves[0])
+   components = iterate.thread_forward_from(staff.leaves[0])
    components = list(components)
 
    r'''

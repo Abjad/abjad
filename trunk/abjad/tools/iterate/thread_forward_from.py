@@ -1,9 +1,8 @@
 from abjad.component.component import _Component
-#from abjad.navigator.dfs import depth_first_search
 from depth_first import depth_first
 
 
-def thread_from(component, klass = None):
+def thread_forward_from(component, klass = None):
    r'''.. versionadded:: 1.1.1
 
    Yield left-to-right components in the thread of `component`
@@ -46,7 +45,7 @@ def thread_from(component, klass = None):
 
    Starting from the first leaf in score. ::
 
-      abjad> for x in iterate.thread_from(staff.leaves[0], Note):
+      abjad> for x in iterate.thread_forward_from(staff.leaves[0], Note):
       ...     x
       ... 
       Note(c', 8)
@@ -56,7 +55,7 @@ def thread_from(component, klass = None):
 
    Starting from the second leaf in score. ::
 
-      abjad> for x in iterate.thread_from(staff.leaves[1], Note):
+      abjad> for x in iterate.thread_forward_from(staff.leaves[1], Note):
       ...     x
       ... 
       Note(d', 8)
@@ -65,7 +64,7 @@ def thread_from(component, klass = None):
 
    Yield all components in thread. ::
 
-      abjad> for x in iterate.thread_from(staff.leaves[0]):
+      abjad> for x in iterate.thread_forward_from(staff.leaves[0]):
       ...     x
       ... 
       Note(c', 8)
@@ -77,7 +76,8 @@ def thread_from(component, klass = None):
    
    Note that this function is a special type of depth-first search.
 
-   Compare with :func:`iterate.thread() <abjad.tools.iterate.thread>`.
+   Compare with :func:`iterate.thread_forward_in() 
+   <abjad.tools.iterate.thread_forward_in>`.
    '''
 
    ## set default class
@@ -88,7 +88,6 @@ def thread_from(component, klass = None):
    component_thread_signature = component.thread.signature
 
    ## iterate component depth-first allowing to crawl UP into score
-   #for x in depth_first_search(component, capped = False):
    for x in depth_first(component, capped = False):
       if isinstance(x, klass):
          if x.thread.signature == component_thread_signature:

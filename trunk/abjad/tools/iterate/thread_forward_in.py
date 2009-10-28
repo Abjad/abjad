@@ -1,4 +1,4 @@
-def thread(expr, klass, thread_signature):
+def thread_forward_in(expr, klass, thread_signature):
    r'''.. versionadded:: 1.1.1
 
    Yield left-to-right instances of `klass` in `expr` with
@@ -37,7 +37,7 @@ def thread(expr, klass, thread_signature):
    ::
 
       abjad> signature = staff.leaves[0].thread.signature
-      abjad> for x in iterate.thread(staff, Note, signature):
+      abjad> for x in iterate.thread_forward_in(staff, Note, signature):
       ...     x
       ... 
       Note(c', 8)
@@ -48,16 +48,17 @@ def thread(expr, klass, thread_signature):
    The important thing to note is that the function yields only
    those leaves that sit in the same thread.
 
-   Compare with :func:`iterate.naive_forward() <abjad.tools.iterate.naive>`.
+   Compare with :func:`iterate.naive_forward() 
+   <abjad.tools.iterate.naive_forward>`.
    '''
 
    if isinstance(expr, klass) and expr.thread.signature == thread_signature:
       yield expr
    if isinstance(expr, (list, tuple)):
       for m in expr:
-         for x in thread(m, klass, thread_signature):
+         for x in thread_forward_in(m, klass, thread_signature):
             yield x
    if hasattr(expr, '_music'):
       for m in expr._music:
-         for x in thread(m, klass, thread_signature):
+         for x in thread_forward_in(m, klass, thread_signature):
             yield x

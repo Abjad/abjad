@@ -1,10 +1,8 @@
-def naive_forward(expr, klass):
-   r'''.. versionchanged:: 1.1.2
-      Renamed from ``iterate.naive`` to ``iterate.naive_forward``.
+def thread_backward_in(expr, klass, thread_signature):
+   r'''.. versionadded:: 1.1.2
 
-   Yield left-to-right instances of `klass` in `expr`.
-
-   Treat `expr` as an undifferentiated tree; ignore threads. ::
+   Yield right-to-left instances of `klass` in `expr` with
+   `thread_signature`. ::
 
       abjad> container = Container(Voice(construct.run(2)) * 2)
       abjad> container.parallel = True
@@ -38,32 +36,29 @@ def naive_forward(expr, klass):
 
    ::
 
-      abjad> for x in iterate.naive_forward(staff, Note):
+      abjad> signature = staff.leaves[-1].thread.signature
+      abjad> for x in iterate.thread_backward_in(staff, Note, signature):
       ...     x
       ... 
-      Note(c', 8)
-      Note(d', 8)
-      Note(e', 8)
-      Note(f', 8)
-      Note(g', 8)
-      Note(a', 8)
-      Note(b', 8)
       Note(c'', 8)
-   
-   The important thing to notice here is that the function yields
-   notes with no regard for the threads in the which the notes appear.
+      Note(b', 8)
+      Note(f', 8)
+      Note(e', 8)
 
-   Compare with :func:`iterate.thread_forward_in() 
-   <abjad.tools.iterate.thread_forward_in>`.
+   The important thing to note is that the function yields only
+   those leaves that sit in the same thread.
+
+   Compare with :func:`iterate.naive_backward() 
+   <abjad.tools.iterate.naive_backward>`.
    '''
 
-   if isinstance(expr, klass):
+   if isinstance(expr, klass) and expr.thread.signature == thread_signature:
       yield expr
    if isinstance(expr, (list, tuple)):
-      for m in expr:
-         for x in naive_forward(m, klass):
+      for m in reversed(expr):
+         for x in thread_backward_in(m, klass, thread_signature):
             yield x
    if hasattr(expr, '_music'):
-      for m in expr._music:
-         for x in naive_forward(m, klass):
+      for m in reversed(expr._music):
+         for x in thread_backward_in(m, klass, thread_signature):
             yield x

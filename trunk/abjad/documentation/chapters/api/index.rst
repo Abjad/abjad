@@ -387,8 +387,10 @@ iterate
    tools/iterate/naive_forward
    tools/iterate/namesakes_backward_from
    tools/iterate/namesakes_forward_from
-   tools/iterate/thread
-   tools/iterate/thread_from
+   tools/iterate/thread_backward_from
+   tools/iterate/thread_backward_in
+   tools/iterate/thread_forward_from
+   tools/iterate/thread_forward_in
    tools/iterate/tie_chains
 
 
