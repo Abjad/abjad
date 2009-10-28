@@ -1,5 +1,6 @@
 from abjad.core.initializer import _Initializer
-from abjad.notehead.interface import NoteHeadInterface
+#from abjad.notehead.interface import NoteHeadInterface
+from abjad.interfaces.notehead.interface import NoteHeadInterface
 
 
 class _SkipInitializer(_Initializer):

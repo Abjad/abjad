@@ -1,12 +1,14 @@
 from abjad.core.initializer import _Initializer
-from abjad.notehead.interface import NoteHeadInterface
+#from abjad.notehead.interface import NoteHeadInterface
+from abjad.interfaces.notehead.interface import NoteHeadInterface
 
 
 class _RestInitializer(_Initializer):
    
    def __init__(self, client, _Leaf, *args): 
       from abjad.chord import Chord
-      from abjad.tools.scoretools.transfer_all_attributes import _transfer_all_attributes
+      from abjad.tools.scoretools.transfer_all_attributes import \
+         _transfer_all_attributes
       from abjad.note import Note
       from abjad.rest import Rest
       from abjad.skip import Skip

@@ -20,6 +20,7 @@ from abjad.navigator.navigator import _Navigator
 from abjad.interfaces.nonmusicalpapercolumn.interface import \
    NonMusicalPaperColumnInterface
 from abjad.interfaces.notecolumn.interface import NoteColumnInterface
+from abjad.interfaces.notehead.interface import NoteHeadInterface
 from abjad.interfaces.numbering.interface import NumberingInterface
 from abjad.interfaces.offset.interface import OffsetInterface
 from abjad.interfaces.parentage.interface import ParentageInterface
@@ -59,7 +60,7 @@ class _Component(_Abjad):
       in which ALL interfaces of whatever sort, not just the component
       information interfaces imported here, collectively live inside
       some abjad/allinterfaces package.'''
-      from abjad.notehead.interface import NoteHeadInterface
+      #from abjad.notehead.interface import NoteHeadInterface
       #from abjad.rest.interface import RestInterface
       #from abjad.score.interface.interface import ScoreInterface
       #from abjad.staff.interface.interface import StaffInterface
