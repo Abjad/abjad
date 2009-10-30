@@ -393,6 +393,10 @@ iterate
    tools/iterate/thread_forward_in
    tools/iterate/tie_chains_backward_in
    tools/iterate/tie_chains_forward_in
+   tools/iterate/timeline_backward_from
+   tools/iterate/timeline_backward_in
+   tools/iterate/timeline_forward_from
+   tools/iterate/timeline_forward_in
 
 
 label
@@ -461,6 +465,7 @@ listtools
    tools/listtools/flatten
    tools/listtools/get_cyclic
    tools/listtools/get_unordered_pairs
+   tools/listtools/group_by_equality
    tools/listtools/group_by_sign
    tools/listtools/group_by_weights
    tools/listtools/increase_at_indices
