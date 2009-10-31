@@ -1,17 +1,14 @@
-from abjad.component.component import _Component
+from abjad.leaf.leaf import _Leaf
 
 
-def naive_backward(expr, klass = _Component):
-   r'''.. versionchanged:: 1.1.2
-      Renamed from ``iterate.backwards`` to ``iterate.naive_backward``.
-
-   Yield right-to-left instances of `klass` in `expr`.
+def naive_backward(expr, klass = _Leaf):
+   r'''Yield right-to-left instances of `klass` in `expr`.
 
    ::
 
       abjad> staff = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
       abjad> pitchtools.diatonicize(staff)
-      abjad> print staff.format
+      abjad> f(staff)
       \new Staff {
               \times 2/3 {
                       c'8
@@ -24,9 +21,6 @@ def naive_backward(expr, klass = _Component):
                       a'8
               }
       }
-
-   ::
-
       abjad> for x in iterate.naive_backward(staff, Note):
       ...     x 
       ... 
@@ -37,17 +31,10 @@ def naive_backward(expr, klass = _Component):
       Note(d', 8)
       Note(c', 8)
 
-   ::
+   This function is thread-agnostic.
 
-      abjad> for x in iterate.naive_backward(staff, FixedDurationTuplet):
-      ...     x
-      ... 
-      FixedDurationTuplet(1/4, [f'8, g'8, a'8])
-      FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-
-   .. note:: This naive iteration ignores threads.
-
-   .. todo:: set ``klass = _Leaf`` by default.
+   .. versionchanged:: 1.1.2
+      Renamed from ``iterate.backwards( )`` to ``iterate.naive_backward( )``.
    '''
 
    if isinstance(expr, klass):

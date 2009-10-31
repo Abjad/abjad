@@ -1,10 +1,8 @@
-def naive_forward(expr, klass):
-   r'''.. versionchanged:: 1.1.2
-      Renamed from ``iterate.naive`` to ``iterate.naive_forward``.
+from abjad.leaf.leaf import _Leaf
 
-   Yield left-to-right instances of `klass` in `expr`.
 
-   Treat `expr` as an undifferentiated tree; ignore threads. ::
+def naive_forward(expr, klass = _Leaf):
+   r'''Yield left-to-right instances of `klass` in `expr`. ::
 
       abjad> container = Container(Voice(construct.run(2)) * 2)
       abjad> container.parallel = True
@@ -12,7 +10,7 @@ def naive_forward(expr, klass):
       abjad> container[1].name = 'vocie 2'
       abjad> staff = Staff(container * 2)
       abjad> pitchtools.diatonicize(staff)
-      abjad> print staff.format
+      abjad> f(staff)
       \new Staff {
               <<
                       \context Voice = "voice 1" {
@@ -35,9 +33,6 @@ def naive_forward(expr, klass):
                       }
               >>
       }
-
-   ::
-
       abjad> for x in iterate.naive_forward(staff, Note):
       ...     x
       ... 
@@ -50,10 +45,13 @@ def naive_forward(expr, klass):
       Note(b', 8)
       Note(c'', 8)
    
-   The important thing to notice here is that the function yields
-   notes with no regard for the threads in the which the notes appear.
+   This function is thread-agnostic.
 
-   .. todo:: set ``klass = _Leaf`` by default.
+   .. versionchanged:: 1.1.2
+      Renamed from ``iterate.naive( )`` to ``iterate.naive_forward( )``.
+
+   .. versionchanged:: 1.1.2
+      `klass` now defaults to ``_Leaf``.
    '''
 
    if isinstance(expr, klass):
