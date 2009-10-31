@@ -400,6 +400,7 @@ iterate
    tools/iterate/timeline_backward_in
    tools/iterate/timeline_forward_from
    tools/iterate/timeline_forward_in
+   tools/iterate/vertical_moments_forward_in
 
 
 label

@@ -49,7 +49,6 @@ def get_vertical_moment_at_prolated_offset_in(governor, prolated_offset):
    .. todo:: optimize without full-component traversal.
    '''
 
-
    governors = [ ]
    message = 'must be Abjad component or list or tuple of Abjad components.'
    if isinstance(governor, _Component):
