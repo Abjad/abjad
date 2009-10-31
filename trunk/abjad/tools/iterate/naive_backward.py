@@ -46,6 +46,8 @@ def naive_backward(expr, klass = _Component):
       FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
    .. note:: This naive iteration ignores threads.
+
+   .. todo:: set ``klass = _Leaf`` by default.
    '''
 
    if isinstance(expr, klass):

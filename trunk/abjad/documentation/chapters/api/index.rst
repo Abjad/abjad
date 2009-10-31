@@ -59,6 +59,7 @@ Classes
    staffgroup/staffgroup
    tools/layout/SystemYOffsets/SystemYOffsets
    tools/tempotools/TempoIndication/indication
+   tools/iterate/VerticalMoment/VerticalMoment
    voice/voice
 
 
@@ -378,6 +379,7 @@ iterate
    tools/iterate/depth_first
    tools/iterate/get_nth
    tools/iterate/get_nth_leaf
+   tools/iterate/get_vertical_moment_at_prolated_offset_in
    tools/iterate/grace
    tools/iterate/leaves_backward
    tools/iterate/leaves_forward

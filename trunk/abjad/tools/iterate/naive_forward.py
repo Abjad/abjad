@@ -53,8 +53,7 @@ def naive_forward(expr, klass):
    The important thing to notice here is that the function yields
    notes with no regard for the threads in the which the notes appear.
 
-   Compare with :func:`iterate.thread_forward_in() 
-   <abjad.tools.iterate.thread_forward_in>`.
+   .. todo:: set ``klass = _Leaf`` by default.
    '''
 
    if isinstance(expr, klass):
