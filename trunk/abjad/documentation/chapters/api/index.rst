@@ -377,7 +377,7 @@ iterate
 
    tools/iterate/chained_contents
    tools/iterate/depth_first
-   tools/iterate/get_nth
+   tools/iterate/get_nth_component
    tools/iterate/get_nth_leaf
    tools/iterate/get_vertical_moment_at_prolated_offset_in
    tools/iterate/grace

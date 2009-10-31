@@ -1,5 +1,6 @@
 from abjad.leaf.leaf import _Leaf
-from abjad.tools.iterate.get_nth import get_nth as iterate_get_nth
+from abjad.tools.iterate.get_nth_component import get_nth_component as \
+   iterate_get_nth_component
 
 
 def get_nth_leaf(expr, n = 0):
@@ -45,11 +46,14 @@ def get_nth_leaf(expr, n = 0):
       abjad> iterate.get_nth_leaf(t, -1)
       Note(a', 8)
       
-   .. note:: this function is defined equal to
-      ``iterate.get_nth(expr, _Leaf, n)``.
+   .. note:: Because this function returns as soon as it finds instance
+      `n` of `klasses`, it is more efficient to call
+      ``iterate.get_nth_leaf(expr, 0)`` than ``expr.leaves[0]``.
+      It is likewise more efficient to call
+      ``iterate.get_nth_leaf(expr, -1)`` than ``expr.leaves[-1]``.
 
    .. todo:: implement ``iterate.yield_leaves(expr, i = 0, j = None)``
       as a generalization of, and companion to, this function.
    '''
 
-   return iterate_get_nth(expr, _Leaf, n)
+   return iterate_get_nth_component(expr, _Leaf, n)
