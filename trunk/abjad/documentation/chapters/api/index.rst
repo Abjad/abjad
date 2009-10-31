@@ -380,6 +380,7 @@ iterate
    tools/iterate/get_nth_component
    tools/iterate/get_nth_leaf
    tools/iterate/get_vertical_moment_at_prolated_offset_in
+   tools/iterate/get_vertical_moment_starting_with
    tools/iterate/grace
    tools/iterate/leaves_backward
    tools/iterate/leaves_forward

@@ -4,8 +4,10 @@ from abjad.tools.iterate.naive_forward import naive_forward as \
    iterate_naive_forward
 
 
-def get_vertical_moment_at_prolated_offset_in(expr, prolated_offset):
-   r'''Get vertical moment at `prolated_offset` in `expr`.
+def get_vertical_moment_at_prolated_offset_in(governor, prolated_offset):
+   r'''.. versionadded:: 1.1.2
+   
+   Get vertical moment at `prolated_offset` in `governor`.
 
    ::
 
@@ -44,16 +46,16 @@ def get_vertical_moment_at_prolated_offset_in(expr, prolated_offset):
       abjad> vertical_moment.leaves
       (Note(a', 4), Note(e', 8))
 
-   .. todo:: reimplement without full-component traversal.
+   .. todo:: optimize without full-component traversal.
    '''
 
 
    governors = [ ]
    message = 'must be Abjad component or list or tuple of Abjad components.'
-   if isinstance(expr, _Component):
-      governors.append(expr)
-   elif isinstance(expr, (list, tuple)):
-      for x in expr:
+   if isinstance(governor, _Component):
+      governors.append(governor)
+   elif isinstance(governor, (list, tuple)):
+      for x in governor:
          if isinstance(x, _Component):
             governors.append(x)
          else:
