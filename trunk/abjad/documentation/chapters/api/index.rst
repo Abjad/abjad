@@ -272,7 +272,8 @@ divide
 .. toctree::
    :maxdepth: 1
 
-   tools/divide/leaf
+   tools/divide/leaf_into_even_augmentation
+   tools/divide/leaf_into_even_diminution
    tools/divide/pair
    tools/divide/tie_chain
 

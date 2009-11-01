@@ -4,24 +4,9 @@ from abjad.tools import scoretools
 from abjad.tuplet import FixedDurationTuplet
 
 
-def leaf(l, divisions = 2, prolation = 'diminution'):
-   '''Divide the written duration of `l` according to `divisions`.
-
-   ::
-
-      abjad> for divisions in range(1, 6):
-      ...     note = Note(0, (3, 16))
-      ...     tuplet = divide.leaf(note, divisions = divisions, prolation = 'diminution')
-      ...     print tuplet
-      ... 
-      {@ 1:1 c'8. @}
-      {@ 1:1 c'16., c'16. @}
-      {@ 1:1 c'16, c'16, c'16 @}
-      {@ 1:1 c'32., c'32., c'32., c'32. @}
-      {@ 5:3 c'16, c'16, c'16, c'16, c'16 @}
-
-   Compare with :func:`divide.pair()
-   <abjad.tools.divide.pair>`.
+def _leaf_into_even_fixed_duration_tuplet(l, divisions, prolation):
+   '''Divide written duration of `l` according to `divisions`
+   and `prolation`.
    '''
 
    # find target duration of fixed-duration tuplet
@@ -31,7 +16,8 @@ def leaf(l, divisions = 2, prolation = 'diminution'):
    prolated_duration = target_duration / divisions
 
    # find written duration of each note in tuplet
-   written_duration = durtools.prolated_to_written(prolated_duration, prolation)
+   written_duration = durtools.prolated_to_written(
+      prolated_duration, prolation = prolation)
 
    # make tuplet notes
    notes = Note(0, written_duration) * divisions
