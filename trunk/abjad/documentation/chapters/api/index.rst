@@ -272,6 +272,8 @@ divide
 .. toctree::
    :maxdepth: 1
 
+   tools/divide/leaf_into_arbitrary_augmentation
+   tools/divide/leaf_into_arbitrary_diminution
    tools/divide/leaf_into_even_augmentation
    tools/divide/leaf_into_even_diminution
    tools/divide/pair
@@ -532,6 +534,7 @@ mathtools
    tools/mathtools/divisors
    tools/mathtools/factors
    tools/mathtools/fragment
+   tools/mathtools/greatest_common_divisor
    tools/mathtools/greatest_multiple_less_equal
    tools/mathtools/greatest_power_of_two_less_equal
    tools/mathtools/is_power_of_two
