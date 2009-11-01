@@ -5,8 +5,24 @@ from abjad.tuplet import FixedDurationTuplet
 
 
 def leaf(l, divisions = 2, prolation = 'diminution'):
-   '''Newer and better tuplet-maker.
-      Compare with divide.pair( ) tuplet-maker.'''
+   '''Divide the written duration of `l` according to `divisions`.
+
+   ::
+
+      abjad> for divisions in range(1, 6):
+      ...     note = Note(0, (3, 16))
+      ...     tuplet = divide.leaf(note, divisions = divisions, prolation = 'diminution')
+      ...     print tuplet
+      ... 
+      {@ 1:1 c'8. @}
+      {@ 1:1 c'16., c'16. @}
+      {@ 1:1 c'16, c'16, c'16 @}
+      {@ 1:1 c'32., c'32., c'32., c'32. @}
+      {@ 5:3 c'16, c'16, c'16, c'16, c'16 @}
+
+   Compare with :func:`divide.pair()
+   <abjad.tools.divide.pair>`.
+   '''
 
    # find target duration of fixed-duration tuplet
    target_duration = l.duration.written

@@ -3,8 +3,8 @@ from abjad import *
 
 def test_durtools_prolated_to_written_01( ):
    '''Wrapper around _naivedurtools.prolated_to_written( ) that returns
-      dotted and double dotted durations where appropriate.
-      Note that output *does not* increase monotonically for diminution.'''
+   dotted and double dotted durations where appropriate.
+   Note that output *does not* increase monotonically for diminution.'''
 
    assert durtools.prolated_to_written(
       Rational(1, 16), 'diminution') == Rational(1, 16)
@@ -34,8 +34,8 @@ def test_durtools_prolated_to_written_01( ):
 
 def test_durtools_prolated_to_written_02( ):
    '''Wrapper around _naivedurtools.prolated_to_written( ) that returns
-      dotted and double dotted durations where appropriate.
-      Note that output *does* increase monotonically for augmentation.'''
+   dotted and double dotted durations where appropriate.
+   Note that output *does* increase monotonically for augmentation.'''
 
    assert durtools.prolated_to_written(
       Rational(1, 16), 'augmentation') == Rational(1, 16)
