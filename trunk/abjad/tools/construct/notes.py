@@ -13,21 +13,26 @@ import math
 def notes(pitches, durations, direction='big-endian'):
    '''Constructs a list of prolated notes of length len(durations).
 
-      Parameters:
+   Parameters:
 
-      `pitches`
-         a single pitch or a list/tuple of pitches. If the list is
-         smaller than that of the durations, the pitches are cycled through.
+   `pitches`
+      a single pitch or a list/tuple of pitches. If the list is
+      smaller than that of the durations, the pitches are cycled through.
 
-      `durations`
-         a sinlge duration or a list of durations. 
-         The durations need not be of the form m / 2**n 
-         and may be any rational value.
+   `durations`
+      a sinlge duration or a list of durations. 
+      The durations need not be of the form m / 2**n 
+      and may be any rational value.
 
-      `direction`
-         may be 'big-endian' or 'little-endian'.
-         'big-endian' returns list of notes of decreasing duration.
-         'little-endian' returns list of notes of increasing duration.
+   `direction`
+      may be 'big-endian' or 'little-endian'.
+      'big-endian' returns list of notes of decreasing duration.
+      'little-endian' returns list of notes of increasing duration.
+
+   Example. ::
+
+      abjad> construct.notes(0, [(1, 16), (1, 8), (1, 8)])
+      [Note(c', 16), Note(c', 8), Note(c', 8)]
    '''
 
    if pitchtools.is_token(pitches):
