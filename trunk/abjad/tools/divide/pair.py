@@ -9,27 +9,42 @@ import math
 
 
 def pair(l, (n, d), together = False):
-   '''Divide duration pair (n, d) according to list l.
-      Note that denominator d is interpreter as the basic tuplet unit.
-      This explains why the function accepts a pair rather than a Rational.
+   '''Divide `(n, d)` according to `l`.
 
-      >>> divide.pair([1], (7, 16))
-      (c'4..)
+   Where no prolation is necessary, return container. ::
 
-      >>> divide.pair([1, 2], (7, 16))
-      (6:7, c'8, c'4)
+      abjad> divide.pair([1], (7, 16))
+      {c'4..}
 
-      >>> divide.pair([1, 2, 4], (7, 16))
-      (c'16, c'8, c'4)
+   Where prolation is necessary, return fixed-duration tuplet. ::
 
-      >>> divide.pair([1, 2, 4, 1], (7, 16))
-      (8:7, c'16, c'8, c'4, c'16)
+      abjad> divide.pair([1, 2], (7, 16))
+      FixedDurationTuplet(7/16, [c'8, c'4])
 
-      >>> divide.pair([1, 2, 4, 1, 2], (7, 16))
-      (10:7, c'16, c'8, c'4, c'16, c'8)
+   ::
 
-      >>> divide.pair([1, 2, 4, 1, 2, 4], (7, 16))
-      (c'32, c'16, c'8, c'32, c'16, c'8)'''
+      abjad> divide.pair([1, 2, 4], (7, 16))
+      FixedDurationTuplet(7/16, [c'16, c'8, c'4])
+
+   ::
+
+      abjad> divide.pair([1, 2, 4, 1], (7, 16))
+      FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16])
+
+   ::
+
+      abjad> divide.pair([1, 2, 4, 1, 2], (7, 16))
+      FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8])
+
+   ::
+
+      abjad> divide.pair([1, 2, 4, 1, 2, 4], (7, 16))
+      FixedDurationTuplet(7/16, [c'32, c'16, c'8, c'32, c'16, c'8])
+
+   .. note:: function accepts a pair rather than a rational.
+
+   .. note:: function interprets `d` as tuplet denominator.
+   '''
 
 
    duration = (n, d)
