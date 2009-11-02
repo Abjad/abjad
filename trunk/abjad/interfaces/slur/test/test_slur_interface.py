@@ -2,10 +2,11 @@ from abjad import *
 
 
 def test_slur_interface_01( ):
-   '''Slur interface GrobHandles 'Slur'.'''
+   '''Abjad SlurInterface handles the LilyPond Slur grob.'''
+
    t = Voice(construct.scale(4))
    t.slur.color = 'red'
-   assert t.format == "\\new Voice \\with {\n\t\\override Slur #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+
    r'''
    \new Voice \with {
            \override Slur #'color = #red
@@ -16,3 +17,6 @@ def test_slur_interface_01( ):
            f'8
    }
    '''
+
+   assert check.wf(t)
+   assert t.format == "\\new Voice \\with {\n\t\\override Slur #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
