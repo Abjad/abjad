@@ -45,6 +45,8 @@ Classes
    tools/pitchtools/PitchClassSet/PitchClassSet
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/PitchSet/PitchSet
+   tools/sievetools/rc
+   tools/sievetools/rcexpression
    rational/rational
    rest/rest
    staff/rhythmicsketchstaff
@@ -107,6 +109,7 @@ Interfaces
    interfaces/stem/interface
    interfaces/tempo/interface
    interfaces/text/interface
+   interfaces/textspanner/interface
    interfaces/thread/interface
    interfaces/tie/interface
    interfaces/tremolo/interface

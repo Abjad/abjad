@@ -3,14 +3,54 @@ from abjad.tools.durtools._group import _group as durtools__group
 
 def group_prolated(
    components, durations, fill = 'exact', cyclic = False, rump = False):
-   '''Group ``component`` according to prolated ``durations``.
+   r'''Group `components` according to prolated ``durations``.
 
-         * When ``fill == exact``, parts must equal durations exactly.
-         * When ``fill == less``, parts must be <= durations.
-         * When ``fill == greater``, parts must be >= durations.
-         * If ``cyclic`` True, read *durations* cyclically.
-         * If ``rump`` True and components remain, append final part.
-         * If ``rump`` False and components remain, do not append final part.
+   * When ``fill == exact``, parts must equal durations exactly.
+   * When ``fill == less``, parts must be <= durations.
+   * When ``fill == greater``, parts must be >= durations.
+   * If ``cyclic`` True, read *durations* cyclically.
+   * If ``rump`` True and components remain, append final part.
+   * If ``rump`` False and components remain, do not append final part.
+
+   Examples all refer to the following. ::
+
+      abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+      abjad> pitchtools.diatonicize(t)
+      abjad> f(t)
+      \new Staff {
+            \time 2/8
+            c'8
+            d'8
+            \time 2/8
+            e'8
+            f'8
+            \time 2/8
+            g'8
+            a'8
+            \time 2/8
+            b'8
+            c''8
+      }
+
+   Noncyclic exact fill with no rump part. ::
+
+      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, rump = False)
+      [[Note(c', 8), Note(d', 8), Note(e', 8)]]
+
+   Noncyclic exact fill with rump part. ::
+
+      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, rump = True)
+      [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8), Note(b', 8), Note(c'', 8)]]
+
+   Cyclic exact fill with no rump part. ::
+
+      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, rump = False)
+      [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)]]
+
+   Cyclic exact fill with rump part. ::
+
+      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, rump = True)
+      [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)], [Note(b', 8), Note(c'', 8)]]   
    '''
    
    duration_type = 'prolated'

@@ -39,7 +39,7 @@ class Bracket(Text):
       a LillyPond TextSpanner. The large number of \overrides and \reverts
       shown above are necessary to draw a 1.5-unit thick solid red spanner
       with nibs at the beginning and end but with no nibs at line breaks.
-      These values may all be override after creating the bracket.
+      These values may all be overriden after creating the bracket.
    '''
 
    def __init__(self, music = None):

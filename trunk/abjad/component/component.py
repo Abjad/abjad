@@ -33,6 +33,7 @@ from abjad.interfaces.staff.interface import StaffInterface
 from abjad.interfaces.stem.interface import StemInterface
 from abjad.interfaces.tempo.interface import TempoInterface
 from abjad.interfaces.text.interface import TextInterface
+from abjad.interfaces.textspanner.interface import TextSpannerInterface
 from abjad.interfaces.thread.interface import ThreadInterface
 from abjad.interfaces.tie.interface import TieInterface
 from abjad.interfaces.tremolo.interface import TremoloInterface
@@ -79,6 +80,7 @@ class _Component(_Abjad):
       self._spanbar = SpanBarInterface(self)
       self._stem = StemInterface(self)
       self._text = TextInterface(self)
+      self._text_spanner = TextSpannerInterface(self)
       self._thread = ThreadInterface(self)
       self._tie = TieInterface(self)
       self._tremolo = TremoloInterface(self)
@@ -371,6 +373,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.text.interface.TextInterface`.'''
       return self._text
+
+   @property
+   def text_spanner(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.textspanner.interface.TextSpannerInterface`.'''
+      return self._text_spanner
 
    @property
    def tremolo(self):

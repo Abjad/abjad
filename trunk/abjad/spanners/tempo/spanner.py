@@ -14,7 +14,20 @@ class Tempo(_GrobHandlerSpanner):
 
    Handle LilyPond ``proportionalNotationDuration`` context setting.
 
-   Invoke LilyPond ``\newSpacingSection`` command.
+   Invoke LilyPond ``\newSpacingSection`` command. ::
+
+      abjad> t = Voice(construct.scale(4))
+      abjad> indication = tempotools.TempoIndication(Rational(1, 8), 38)
+      abjad> p = Tempo(t[:], indication)
+      abjad> f(t)
+      \new Voice {
+              \tempo 8=38
+              c'8
+              d'8
+              e'8
+              f'8
+              %% tempo 8=38 ends here
+      }
    '''
 
    def __init__(self, music = None, indication = None):
