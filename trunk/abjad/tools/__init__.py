@@ -22,6 +22,7 @@ from abjad.tools import parenttools
 from abjad.tools import partition
 from abjad.tools import pickle
 from abjad.tools import pitchtools
+from abjad.tools import sievetools
 from abjad.tools import spacing
 from abjad.tools import split
 from abjad.tools import tietools
