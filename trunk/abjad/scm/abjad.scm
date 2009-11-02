@@ -57,3 +57,17 @@ locationWhichContext = #(define-music-function (parser location) ()
             (ly:grob-set-property! grob 'X-offset offset)))))
 
 centerText = \applyOutput #'Voice #centerTextFn
+
+%% TODO: Parameterize x-value extra offset or take from global staff size %%
+adjustEOLMeterBarlineExtraOffset = #(define-music-function (parser location) ()
+   #{ 
+      #(define (foo grob)
+         (if (<= (ly:item-break-dir grob) 0)
+            (ly:grob-set-property! grob 'extra-offset (cons 3 0)) '() ))
+      #(define (bar grob)
+         (if (<= (ly:item-break-dir grob) 0)
+            (ly:grob-set-property! grob 'extra-offset (cons 3 0)) '() ))
+      \once \override Score.TimeSignature #'after-line-breaking = #foo
+      \once \override Score.BarLine #'after-line-breaking = #bar
+      \once \override Score.SpanBar #'after-line-breaking = #bar
+   #})

@@ -5,7 +5,7 @@ from abjad.tools.layout.line_break_every_prolated import \
    line_break_every_prolated
 
 
-def apply_layout_schema(expr, layout_schema):
+def apply_layout_schema(expr, layout_schema, adjust_eol = False):
    r'''.. versionadded:: 1.1.2
 
    Apply `layout_schema` to `expr`.
@@ -57,5 +57,6 @@ def apply_layout_schema(expr, layout_schema):
    if not isinstance(layout_schema, LayoutSchema):
       raise TypeError('must be layout schema.')
 
-   line_break_every_prolated(expr, layout_schema.line_break_duration)
+   line_break_every_prolated(
+      expr, layout_schema.line_break_duration, adjust_eol = adjust_eol)
    apply_fixed_staff_positioning(expr, layout_schema.fixed_staff_positioning)
