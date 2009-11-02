@@ -272,6 +272,8 @@ divide
 .. toctree::
    :maxdepth: 1
 
+   tools/divide/duration_into_arbitrary_augmentation
+   tools/divide/duration_into_arbitrary_diminution
    tools/divide/leaf_into_arbitrary_augmentation
    tools/divide/leaf_into_arbitrary_diminution
    tools/divide/leaf_into_even_augmentation
@@ -777,4 +779,3 @@ tuplettools
    tools/tuplettools/diminution_to_augmentation
    tools/tuplettools/slip_trivial
    tools/tuplettools/subsume
-   tools/tuplettools/to_diminution
