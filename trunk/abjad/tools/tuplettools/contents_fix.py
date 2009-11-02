@@ -7,10 +7,16 @@ import math
 
 
 def contents_fix(tuplet):
-   '''Scale tuplet contents by power of two
-      if tuplet multiplier less than 1/2 or greater than 2.
-   
-      Return tuplet.'''
+   '''Scale `tuplet` contents by power of two
+   if tuplet multiplier less than 1/2 or greater than 2.
+   Return tuplet. ::
+
+      abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3, Rational(1, 4)))
+      abjad> tuplet   
+      FixedDurationTuplet(1/4, [c'4, d'4, e'4])
+      abjad> tuplettools.contents_fix(tuplet)
+      FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+   '''
 
    # check input
    if isinstance(tuplet, FixedMultiplierTuplet):

@@ -770,8 +770,11 @@ tuplettools
 .. toctree::
    :maxdepth: 1
 
+   tools/tuplettools/augmentation_to_diminution
    tools/tuplettools/beam_bottommost
    tools/tuplettools/contents_fix
    tools/tuplettools/contents_scale
+   tools/tuplettools/diminution_to_augmentation
    tools/tuplettools/slip_trivial
    tools/tuplettools/subsume
+   tools/tuplettools/to_diminution
