@@ -68,7 +68,8 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
                d'8
                e'8
                f'8
-            }'''
+            }
+         '''
 
          return self._name
       def fset(self, expr):
@@ -78,7 +79,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
 
    @property
    def settings(self):
-      r'''Read-only list of *LilyPond* context settings \
+      r'''Read-only list of *LilyPond* context settings
       picked up at format-time.
 
       *  Derived from ``name`` and ``short_name``.
