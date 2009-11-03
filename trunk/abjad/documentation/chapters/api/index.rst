@@ -73,8 +73,8 @@ Interfaces
 
    interfaces/accidental/interface
    interfaces/articulation/interface
-   interfaces/barline/interface
-   interfaces/barnumber/interface
+   interfaces/bar_line/interface
+   interfaces/bar_number/interface
    interfaces/beam/interface
    interfaces/brackets/interface
    interfaces/breaks/interface
@@ -92,30 +92,30 @@ Interfaces
    interfaces/interface_aggregator/aggregator
    interfaces/markup/interface
    interfaces/meter/interface
-   interfaces/nonmusicalpapercolumn/interface
-   interfaces/notecolumn/interface
-   interfaces/notehead/interface
+   interfaces/non_musical_paper_column/interface
+   interfaces/note_column/interface
+   interfaces/note_head/interface
    interfaces/numbering/interface
    interfaces/offset/interface
    interfaces/offset/prolated/interface
    interfaces/parentage/interface
-   interfaces/pianopedal/interface
+   interfaces/piano_pedal/interface
    interfaces/rest/interface
    interfaces/score/interface
    interfaces/slur/interface
    interfaces/spacing/interface
-   interfaces/spanbar/interface
+   interfaces/span_bar/interface
    interfaces/staff/interface
    interfaces/stem/interface
    interfaces/tempo/interface
-   interfaces/textscript/interface
-   interfaces/textspanner/interface
+   interfaces/text_script/interface
+   interfaces/text_spanner/interface
    interfaces/thread/interface
    interfaces/tie/interface
    interfaces/tremolo/interface
    interfaces/trill/interface
-   interfaces/tupletbracket/interface
-   interfaces/tupletnumber/interface
+   interfaces/tuplet_bracket/interface
+   interfaces/tuplet_number/interface
    interfaces/voice/interface
 
 
@@ -136,16 +136,16 @@ Spanners
    spanners/glissando/spanner
    spanners/hairpin/spanner
    spanners/instrument/spanner
-   spanners/metricgrid/spanner
+   spanners/metric_grid/spanner
    spanners/octavation/spanner
    spanners/override/spanner
-   spanners/pianopedal/spanner
+   spanners/piano_pedal/spanner
    spanners/slur/spanner
    spanners/spacing/spanner
    spanners/spanner/spanner
    spanners/tempo/spanner
    spanners/tempo/proportional/spanner
-   spanners/textscript/spanner
+   spanners/text_script/spanner
    spanners/text/spanner
    spanners/tie/spanner
    spanners/trill/spanner
@@ -463,6 +463,8 @@ lilytools
    :maxdepth: 1
 
    tools/lilytools/make_basic_lily_file
+   tools/lilytools/save_ly_as
+   tools/lilytools/save_pdf_as
 
 
 listtools
