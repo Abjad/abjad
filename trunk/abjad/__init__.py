@@ -28,3 +28,7 @@ _import_functions_in_package_to_namespace(
 ## import tools and io
 from abjad.tools.io import *
 from abjad.tools import *
+
+import sys
+sys.ps1 = 'abjad> '
+del sys

@@ -1,2 +1,6 @@
 clear
-python -i $1 -c 'import sys; sys.ps1 = "abjad> "; del sys; from abjad import *'
+
+## prompt-setting code moved to abjad/__init__.py
+##python -i $1 -c 'import sys; sys.ps1 = "abjad> "; del sys; from abjad import *'
+
+python -i $1 -c 'from abjad import *'
