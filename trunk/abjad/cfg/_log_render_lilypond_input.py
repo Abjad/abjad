@@ -6,6 +6,7 @@ from abjad.cfg._write_footer import _write_footer
 from abjad.cfg._write_preamble import _write_preamble
 from abjad.cfg._write_score import _write_score
 from abjad.cfg._write_title import _write_title
+from abjad.tools import lilytools
 import os
 import time
 
@@ -43,7 +44,10 @@ def _log_render_lilypond_input(expr, template = None,
    if format_time <= actual_format_time:
       print 'Abjad format time equal to %s sec.' % actual_format_time
 
-   _write_score(outfile, expr.format)
+   if isinstance(expr, lilytools.LilyFile):
+      outfile.write(expr.format)
+   else:
+      _write_score(outfile, expr.format)
    outfile.close( )
 
    ## render
