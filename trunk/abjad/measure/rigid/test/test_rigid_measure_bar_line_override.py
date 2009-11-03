@@ -1,19 +1,19 @@
 from abjad import *
 
 
-def test_rigid_measure_barline_override_01( ):
+def test_rigid_measure_bar_line_override_01( ):
    '''Very magic things have to happen with slots at format time.
    This is to work correctly with the time at which LilyPond 
-   draws new barlines during the LilyPond interpretation process.'''
+   draws new bar_lines during the LilyPond interpretation process.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(t)
    #t.formatter.number.measures = 'comment'
    t._formatter.number.measures = 'comment'
-   t[0].barline.kind = '||'
-   t[0].barline.color = 'red'
-   #t[0].barline.promote('color', 'Staff')
-   overridetools.promote(t[0].barline, 'color', 'Staff')
+   t[0].bar_line.kind = '||'
+   t[0].bar_line.color = 'red'
+   #t[0].bar_line.promote('color', 'Staff')
+   overridetools.promote(t[0].bar_line, 'color', 'Staff')
 
    ## NOTE: The LilyPond code here colors the DOUBLE BAR red and
    ##       not any of the single bars. What this means is that

@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplet_bracket_interface_tuplet_full_length_01( ):
 
    t = Staff([ ])
-   t.tupletbracket.tuplet_full_length = True
+   t.tuplet_bracket.tuplet_full_length = True
 
    r'''
    \new Staff \with {
@@ -16,7 +16,7 @@ def test_tuplet_bracket_interface_tuplet_full_length_01( ):
    assert check.wf(t)
    assert t.format == '\\new Staff \\with {\n\ttupletFullLength = ##t\n} {\n}'
 
-   t.tupletbracket.tuplet_full_length = False
+   t.tuplet_bracket.tuplet_full_length = False
 
    r'''
    \new Staff \with {
@@ -28,7 +28,7 @@ def test_tuplet_bracket_interface_tuplet_full_length_01( ):
    assert check.wf(t)
    assert t.format == '\\new Staff \\with {\n\ttupletFullLength = ##f\n} {\n}'
 
-   t.tupletbracket.tuplet_full_length = None
+   t.tuplet_bracket.tuplet_full_length = None
 
    r'''
    \new Staff {

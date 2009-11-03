@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_notecolumn_interface_grob_handling_01( ):
+def test_note_column_interface_grob_handling_01( ):
 
    t = Note(0, (1, 4))
-   t.notecolumn.ignore_collision = True
+   t.note_column.ignore_collision = True
 
    r'''
    \once \override NoteColumn #'ignore-collision = ##t
@@ -15,10 +15,10 @@ def test_notecolumn_interface_grob_handling_01( ):
    assert t.format == "\\once \\override NoteColumn #'ignore-collision = ##t\nc'4"
 
 
-def test_notecolumn_interface_grob_handling_02( ):
+def test_note_column_interface_grob_handling_02( ):
 
    t = Staff(construct.scale(4))
-   t.notecolumn.ignore_collision = True
+   t.note_column.ignore_collision = True
 
    r'''\new Staff \with {
       \override NoteColumn #'ignore-collision = ##t

@@ -51,7 +51,7 @@ def desordre_run(pitches):
    p.parallel = True
    ## make all 1/8 beats breakable
    for n in v_lower.leaves[:-1]:
-      n.barline.kind = ''
+      n.bar_line.kind = ''
    return p
 
 

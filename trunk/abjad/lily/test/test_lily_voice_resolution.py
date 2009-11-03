@@ -13,7 +13,7 @@ def test_lily_voice_resolution_01( ):
    t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.diatonicize(t)
-   t.notehead.color = 'red'
+   t.note_head.color = 'red'
 
    r'''
    \new Voice \with {
@@ -56,7 +56,7 @@ def test_lily_voice_resolution_02( ):
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.diatonicize(t)
-   t.notehead.color = 'red'
+   t.note_head.color = 'red'
 
    r'''
    \context Voice = "foo" \with {
@@ -149,6 +149,6 @@ def test_lily_voice_resolution_04( ):
    '''
 
    '''LilyPond handles this example perfectly.
-   LilyPond colors the four noteheads of the soprano voice red.
-   LilyPond colors all other noteheads black.
+   LilyPond colors the four note_heads of the soprano voice red.
+   LilyPond colors all other note_heads black.
    '''

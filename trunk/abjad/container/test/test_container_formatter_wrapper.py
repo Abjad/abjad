@@ -6,7 +6,7 @@ def test_container_formatter_wrapper_01( ):
 
    t = Voice(construct.scale(4))
    t.comments.before.append('Example voice')
-   t.notehead.color = 'red'
+   t.note_head.color = 'red'
    t.accidental.style = 'forget'
    beam = Beam(t[:])
    beam.thickness = 3
@@ -49,7 +49,7 @@ def test_container_formatter_wrapper_02( ):
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
    t.comments.before.append('Example tuplet')
-   t.notehead.color = 'red'
+   t.note_head.color = 'red'
    t.accidental.style = 'forget'
    beam = Beam(t[:])
    beam.thickness = 3

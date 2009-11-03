@@ -5,7 +5,7 @@ from abjad.staff.staff import Staff
 #   result = Staff(music)
 #   result.context = 'RhythmicStaff'
 #   result.meter.transparent = True
-#   result.barline.transparent = True
+#   result.bar_line.transparent = True
 #   return result
 
 class RhythmicSketchStaff(Staff):
@@ -14,4 +14,4 @@ class RhythmicSketchStaff(Staff):
       Staff.__init__(self, music)
       self.context = 'RhythmicStaff'
       self.meter.transparent = True
-      self.barline.transparent = True
+      self.bar_line.transparent = True

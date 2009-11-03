@@ -31,7 +31,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
    def slot_3(self):
       r'''This is the slot where LilyPond grob \override commands live.
       Measure need to override the default container behavior for slot 3
-      assembly in order to push barline overrides to slot 5, later in
+      assembly in order to push bar_line overrides to slot 5, later in
       the format string. Otherwise, measure contents of slot 3 is just
       like generic container contents of slot 3.
       '''
@@ -53,7 +53,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       any LilyPond BarLine \revert strings that may appear later.'''
       result = [ ]
       measure = self.formatter.container
-      result.append(self._wrap_barline_interface_overrides( ))
+      result.append(self._wrap_bar_line_interface_overrides( ))
       result.append(self.wrap(measure.interfaces, 'closing'))
       #result.append(self.wrap(measure.interfaces, 'reverts'))
       result.append(self._wrap_measure_interface_reverts( ))
@@ -84,12 +84,12 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
    ## PRIVATE METHODS ##
 
-   def _wrap_barline_interface_overrides(self):
+   def _wrap_bar_line_interface_overrides(self):
       measure = self.formatter.container
-      barline_overrides = [ ]
-      barline_overrides.extend(measure.barline._overrides)
-      barline_overrides.extend(measure.spanbar._overrides)
-      return [('BarLine / SpanBar', 'overrides'), barline_overrides]
+      bar_line_overrides = [ ]
+      bar_line_overrides.extend(measure.bar_line._overrides)
+      bar_line_overrides.extend(measure.span_bar._overrides)
+      return [('BarLine / SpanBar', 'overrides'), bar_line_overrides]
       
    def _wrap_measure_interface_overrides(self):
       '''To allow filtering out of BarLine overrides.'''

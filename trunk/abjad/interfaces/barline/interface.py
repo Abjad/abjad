@@ -4,19 +4,19 @@ import types
 
 
 class BarLineInterface(_Interface, _GrobHandler):
-   '''Manage barlines.
+   '''Manage bar lines.
 
       ::
 
          abjad> t = Note(0, (1, 4))
-         abjad> t.barline
+         abjad> t.bar_line
          <BarLineInterface>
 
       Override LilyPond ``BarLine`` grob.
 
       ::
 
-         abjad> t.barline.color = 'red'
+         abjad> t.bar_line.color = 'red'
          abjad> print t.format
          \once \override BarLine #'color = #red
          c'4'''
@@ -36,8 +36,8 @@ class BarLineInterface(_Interface, _GrobHandler):
       format contribution strings. ::
 
          abjad> t = Note(0, (1, 4))
-         abjad> t.barline.kind = '||'
-         abjad> t.barline.closing
+         abjad> t.bar_line.kind = '||'
+         abjad> t.bar_line.closing
          ['\\bar "||"']
       '''
 
@@ -51,16 +51,16 @@ class BarLineInterface(_Interface, _GrobHandler):
    @apply
    def kind( ):
       def fget(self):
-         r'''Read / write LilyPond barline string.
+         r'''Read / write LilyPond bar_line string.
 
          *  Default value: ``None``.
-         *  All values: LilyPond barline string, ``None``.
+         *  All values: LilyPond bar_line string, ``None``.
 
             ::
 
                abjad> t = Note(0, (1, 4))
-               abjad> t.barline.kind = '|.'
-               abjad> t.barline.kind
+               abjad> t.bar_line.kind = '|.'
+               abjad> t.bar_line.kind
                '|.'
 
                abjad> print t.format

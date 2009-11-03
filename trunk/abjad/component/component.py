@@ -32,7 +32,6 @@ from abjad.interfaces.spanbar.interface import SpanBarInterface
 from abjad.interfaces.staff.interface import StaffInterface
 from abjad.interfaces.stem.interface import StemInterface
 from abjad.interfaces.tempo.interface import TempoInterface
-#from abjad.interfaces.text.interface import TextInterface
 from abjad.interfaces.textscript.interface import TextScriptInterface
 from abjad.interfaces.textspanner.interface import TextSpannerInterface
 from abjad.interfaces.thread.interface import ThreadInterface
@@ -55,8 +54,8 @@ class _Component(_Abjad):
       self._interfaces = InterfaceAggregator(self)
       self._accidental = AccidentalInterface(self)
       self._articulations = ArticulationInterface(self)
-      self._barline = BarLineInterface(self)
-      self._barnumber = BarNumberInterface(self)
+      self._bar_line = BarLineInterface(self)
+      self._bar_number = BarNumberInterface(self)
       self._beam = BeamInterface(self)
       self._breaks = BreaksInterface(self)
       self._comments = CommentsInterface( )
@@ -69,26 +68,25 @@ class _Component(_Abjad):
       self._lily_file = None
       self._name = None
       self._navigator = _Navigator(self)
-      self._nonmusicalpapercolumn = NonMusicalPaperColumnInterface(self)
-      self._notecolumn = NoteColumnInterface(self)
-      self._notehead = NoteHeadInterface(self)
+      self._non_musical_paper_column = NonMusicalPaperColumnInterface(self)
+      self._note_column = NoteColumnInterface(self)
+      self._note_head = NoteHeadInterface(self)
       self._parentage = ParentageInterface(self)
-      self._pianopedal = PianoPedalInterface(self)
+      self._piano_pedal = PianoPedalInterface(self)
       self._rest = RestInterface(self)
       self._score = ScoreInterface(self)
       self._slur = SlurInterface(self)
       self._spacing = SpacingInterface(self)
-      self._spanbar = SpanBarInterface(self)
+      self._span_bar = SpanBarInterface(self)
       self._stem = StemInterface(self)
-      #self._text = TextInterface(self)
       self._text_script = TextScriptInterface(self)
       self._text_spanner = TextSpannerInterface(self)
       self._thread = ThreadInterface(self)
       self._tie = TieInterface(self)
       self._tremolo = TremoloInterface(self)
       self._trill = TrillInterface(self)
-      self._tupletbracket = TupletBracketInterface(self)
-      self._tupletnumber = TupletNumberInterface(self)
+      self._tuplet_bracket = TupletBracketInterface(self)
+      self._tuplet_number = TupletNumberInterface(self)
       self._update = _UpdateInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
@@ -139,16 +137,16 @@ class _Component(_Abjad):
       return self._articulations
    
    @property
-   def barline(self):
+   def bar_line(self):
       '''Read-only reference to
-      :class:`~abjad.barline.interface.BarLineInterface`.'''
-      return self._barline
+      :class:`~abjad.bar_line.interface.BarLineInterface`.'''
+      return self._bar_line
 
    @property
-   def barnumber(self):
+   def bar_number(self):
       '''Read-only reference to
-      :class:`~abjad.barnumber.interface.BarNumberInterface`.'''
-      return self._barnumber
+      :class:`~abjad.bar_number.interface.BarNumberInterface`.'''
+      return self._bar_number
    
    @property
    def beam(self):
@@ -267,23 +265,23 @@ class _Component(_Abjad):
       return property(**locals( ))
 
    @property
-   def nonmusicalpapercolumn(self):
+   def non_musical_paper_column(self):
       '''Read-only reference to
-      :class:`~abjad.nonmusicalpapercolumn.interface.NonMusicalPaperColumn`.
+      :class:`~abjad.non_musical_paper_column.interface.NonMusicalPaperColumn`.
       '''
-      return self._nonmusicalpapercolumn
+      return self._non_musical_paper_column
 
    @property
-   def notecolumn(self):
+   def note_column(self):
       '''Read-only reference to
-      :class:`~abjad.notecolumn.interface.NoteColumnInterface`.'''
-      return self._notecolumn
+      :class:`~abjad.note_column.interface.NoteColumnInterface`.'''
+      return self._note_column
 
    @property
-   def notehead(self):
+   def note_head(self):
       '''Read-only reference to
-      :class:`~abjad.notehead.interface.NoteHeadInterface`.'''
-      return self._notehead
+      :class:`~abjad.note_head.interface.NoteHeadInterface`.'''
+      return self._note_head
 
    @property
    def offset(self):
@@ -298,10 +296,10 @@ class _Component(_Abjad):
       return self._parentage
 
    @property
-   def pianopedal(self):
+   def piano_pedal(self):
       '''Read-only reference to
-      :class:`~abjad.pianopedal.interface.PianoPedalInterface`.'''
-      return self._pianopedal
+      :class:`~abjad.piano_pedal.interface.PianoPedalInterface`.'''
+      return self._piano_pedal
 
    @property
    def rest(self):
@@ -328,10 +326,10 @@ class _Component(_Abjad):
       return self._spacing
 
    @property
-   def spanbar(self):
+   def span_bar(self):
       '''Read-only reference to
-      :class:`~abjad.spanbar.interface.SpanBarInterface`.'''
-      return self._spanbar
+      :class:`~abjad.span_bar.interface.SpanBarInterface`.'''
+      return self._span_bar
 
    @property
    def spanners(self):
@@ -399,16 +397,16 @@ class _Component(_Abjad):
       return self._trill
    
    @property
-   def tupletbracket(self):
+   def tuplet_bracket(self):
       '''Read-only reference to
       :class:`~abjad.tuplet.bracket.TupletBracketInterface`.'''
-      return self._tupletbracket
+      return self._tuplet_bracket
 
    @property
-   def tupletnumber(self):
+   def tuplet_number(self):
       '''Read-only reference to
       :class:`~abjad.tuplet.number.TupletNumberInterface`.'''
-      return self._tupletnumber
+      return self._tuplet_number
 
    @property
    def voice(self):

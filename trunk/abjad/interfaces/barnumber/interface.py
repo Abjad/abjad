@@ -13,7 +13,7 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
       ::
 
          abjad> t = RigidMeasure((2, 8), construct.scale(2))
-         abjad> t.barnumber
+         abjad> t.bar_number
          <BarNumberInterface>'''
 
    def __init__(self, _client):
@@ -37,8 +37,8 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
                abjad> t = RigidMeasure((2, 8), construct.scale(2))
                abjad> t[0]
-               abjad> t[0].barnumber.current = 22
-               abjad> t[0].barnumber.current
+               abjad> t[0].bar_number.current = 22
+               abjad> t[0].bar_number.current
                22'''
 
          return self._current
@@ -60,7 +60,7 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
          abjad> t = RigidMeasure((2, 8), construct.scale(2))
          abjad> t[0]
-         abjad> t[0].barnumber.current = 22
+         abjad> t[0].bar_number.current = 22
          abjad> print t.format
                  \time 2/8
                  \set currentBarNumber = #22

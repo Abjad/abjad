@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_barnumber_interface_current_01( ):
+def test_bar_number_interface_current_01( ):
    '''Handle LilyPond ``currentBarNumber`` context setting on note.'''
 
    t = Staff(construct.scale(4))
-   t[0].barnumber.current = 12
-   overridetools.promote(t[0].barnumber, 'current', 'Score')
+   t[0].bar_number.current = 12
+   overridetools.promote(t[0].bar_number, 'current', 'Score')
 
    r'''
    \new Staff {
@@ -22,13 +22,13 @@ def test_barnumber_interface_current_01( ):
    assert t.format == "\\new Staff {\n\t\\set Score.currentBarNumber = #12\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_barnumber_interface_current_02( ):
+def test_bar_number_interface_current_02( ):
    '''Handle LilyPond ``currentBarNumber`` context setting on measure.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
-   t[0].barnumber.current = 12
-   overridetools.promote(t[0].barnumber, 'current', 'Score')
+   t[0].bar_number.current = 12
+   overridetools.promote(t[0].bar_number, 'current', 'Score')
 
    r'''
    \new Staff {

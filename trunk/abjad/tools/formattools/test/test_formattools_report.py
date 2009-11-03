@@ -32,7 +32,7 @@ def test_formattools_report_03( ):
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
    t.accidental.style = 'forget'
-   t.barline.kind = '|.'
+   t.bar_line.kind = '|.'
    t.clef.forced = Clef('treble')
 
    r'''

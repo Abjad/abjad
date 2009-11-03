@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_notehead_interface_01( ):
+def test_note_head_interface_01( ):
    '''Override LilyPond NoteHead grob on voice.'''
 
    t = Voice(construct.scale(4))
-   t.notehead.color = 'red'
+   t.note_head.color = 'red'
 
    r'''
    \new Voice \with {

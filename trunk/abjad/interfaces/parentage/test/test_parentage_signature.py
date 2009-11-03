@@ -45,7 +45,7 @@ def test_parentage_signature_04( ):
    t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.diatonicize(t)
-   t.notehead.color = 'red'
+   t.note_head.color = 'red'
 
    r'''\new Voice \with {
            \override NoteHead #'color = #red

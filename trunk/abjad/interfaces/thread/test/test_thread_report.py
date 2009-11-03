@@ -12,7 +12,7 @@ import py.test
 #   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
-#   t.notehead.color = 'red'
+#   t.note_head.color = 'red'
 #
 #   r'''{
 #           \override NoteHead #'color = #red
@@ -54,7 +54,7 @@ import py.test
 #   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
-#   t.notehead.color = 'red'
+#   t.note_head.color = 'red'
 #
 #   r'''\context Voice = "foo" \with {
 #           \override NoteHead #'color = #red
@@ -95,7 +95,7 @@ import py.test
 #   t.insert(2, Container(Container(construct.run(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
-#   t.notehead.color = 'red'
+#   t.note_head.color = 'red'
 #
 #   r'''\new Voice \with {
 #           \override NoteHead #'color = #red
@@ -135,7 +135,7 @@ def test_thread_report_04( ):
    t.insert(2, Container(Voice(construct.run(2)) * 2))
    t[2].parallel = True
    pitchtools.diatonicize(t)
-   t.notehead.color = 'red'
+   t.note_head.color = 'red'
 
    r'''\new Voice \with {
            \override NoteHead #'color = #red
@@ -177,7 +177,7 @@ def test_thread_report_05( ):
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.diatonicize(t)
-   t.notehead.color = 'red'
+   t.note_head.color = 'red'
 
    r'''\context Voice = "foo" \with {
            \override NoteHead #'color = #red

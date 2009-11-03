@@ -11,7 +11,7 @@ def make_piano_sketch_score(leaves):
    Create a two-staff, treble / bass score of `leaves`.
 
       * Make time signatures and bar numbers transparent.
-      * Do not print barlines or spanbars.
+      * Do not print bar lines or span bars.
       * Set all staff accidental styles to forget.
    """
 
@@ -22,9 +22,9 @@ def make_piano_sketch_score(leaves):
    lily_file.paper.tagline = Markup('')
 
    score.meter.transparent = True
-   score.barnumber.transparent = True
-   score.barline.stencil = False
-   score.spanbar.stencil = False
+   score.bar_number.transparent = True
+   score.bar_line.stencil = False
+   score.span_bar.stencil = False
 
    for staff in iterate.naive_forward(score, klass = Staff):
       staff.accidental.style = 'forget'

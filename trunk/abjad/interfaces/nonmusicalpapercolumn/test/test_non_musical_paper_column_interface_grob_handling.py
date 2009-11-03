@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_nonmusicalpapercolumn_interface_grob_handling_01( ):
+def test_non_musical_paper_column_interface_grob_handling_01( ):
    '''Abjad NonMusicalPaperColumnInterface handles the LilyPond
    NonMusicalPaperColumn grob.'''
 
    t = Score([Staff(construct.scale(4))])
-   t.nonmusicalpapercolumn.line_break_permission = False
-   t.nonmusicalpapercolumn.page_break_permission = False
+   t.non_musical_paper_column.line_break_permission = False
+   t.non_musical_paper_column.page_break_permission = False
 
    r'''
    \new Score \with {
