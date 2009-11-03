@@ -7,28 +7,26 @@ import types
 class Trill(_GrobHandlerSpanner):
    r'''Trill with continuation line.
 
-      *  Inherits from Abjad spanner.
-      *  Interfaces to LilyPond ``startTrillSpan``, \
-         ``stopTrillSpan`` commands.
-      *  Handles LilyPond ``TrillSpanner`` grob.
+   *  Interfaces to LilyPond ``startTrillSpan``, ``stopTrillSpan`` commands.
+   *  Handles LilyPond TrillSpanner grob.
 
-      ::
+   ::
 
-         abjad> t = Staff(construct.scale(4))
-         abjad> Trill(t[:])
-         Trill(c'8, d'8, e'8, f'8)
-
-         abjad> print t.format
-         \new Staff {
-            c'8 \startTrillSpan
-            d'8
-            e'8
-            f'8 \stopTrillSpan
-         }'''
+      abjad> t = Staff(construct.scale(4))
+      abjad> Trill(t[:])
+      Trill(c'8, d'8, e'8, f'8)
+      abjad> print t.format
+      \new Staff {
+         c'8 \startTrillSpan
+         d'8
+         e'8
+         f'8 \stopTrillSpan
+      }
+   '''
 
    def __init__(self, music = None):
       '''Initialize as type of grob-handling spanner.
-         Set ``pitch`` to ``None``.'''
+      Set ``pitch`` to ``None``.'''
 
       _GrobHandlerSpanner.__init__(self, 'TrillSpanner', music)
       self._format = _TrillSpannerFormatInterface(self)

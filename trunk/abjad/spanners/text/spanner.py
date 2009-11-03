@@ -3,7 +3,28 @@ from abjad.spanners.spanner.positionalhandler import \
 from abjad.spanners.text.format import _TextSpannerFormatInterface
 
 
-class Text(_PositionalGrobHandlerSpanner):
+class TextSpanner(_PositionalGrobHandlerSpanner):
+   r'''.. versionadded:: 1.1.2
+
+   Handle LilyPond TextSpanner grob.
+
+   Interface LilyPond ``\startTextSpan``, ``\stopTextSpan`` commands.
+
+   Interface LilyPond ``\textSpannerUp``, ``\textSpannerDown`` commands. ::
+
+      abjad> staff = Staff(construct.scale(4))
+      abjad> spanner = TextSpanner(staff[:])
+      abjad> spanner.color = 'red'
+      abjad> f(staff)
+      \new Staff {
+              \override TextSpanner #'color = #red
+              c'8 \startTextSpan
+              d'8
+              e'8
+              f'8 \stopTextSpan
+              \revert TextSpanner #'color
+      }
+   '''
 
    def __init__(self, music = None):
       _PositionalGrobHandlerSpanner.__init__(self, 'TextSpanner', music)

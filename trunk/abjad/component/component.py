@@ -32,7 +32,8 @@ from abjad.interfaces.spanbar.interface import SpanBarInterface
 from abjad.interfaces.staff.interface import StaffInterface
 from abjad.interfaces.stem.interface import StemInterface
 from abjad.interfaces.tempo.interface import TempoInterface
-from abjad.interfaces.text.interface import TextInterface
+#from abjad.interfaces.text.interface import TextInterface
+from abjad.interfaces.textscript.interface import TextScriptInterface
 from abjad.interfaces.textspanner.interface import TextSpannerInterface
 from abjad.interfaces.thread.interface import ThreadInterface
 from abjad.interfaces.tie.interface import TieInterface
@@ -79,7 +80,8 @@ class _Component(_Abjad):
       self._spacing = SpacingInterface(self)
       self._spanbar = SpanBarInterface(self)
       self._stem = StemInterface(self)
-      self._text = TextInterface(self)
+      #self._text = TextInterface(self)
+      self._text_script = TextScriptInterface(self)
       self._text_spanner = TextSpannerInterface(self)
       self._thread = ThreadInterface(self)
       self._tie = TieInterface(self)
@@ -369,15 +371,19 @@ class _Component(_Abjad):
       return self._tempo
 
    @property
-   def text(self):
+   #def text(self):
+   def text_script(self):
       '''Read-only reference to
-      :class:`~abjad.text.interface.TextInterface`.'''
-      return self._text
+      :class:`~abjad.interfaces.textscript.interface.TextScriptInterface`.
+      '''
+      #return self._text
+      return self._text_script
 
    @property
    def text_spanner(self):
       '''Read-only reference to
-      :class:`~abjad.interfaces.textspanner.interface.TextSpannerInterface`.'''
+      :class:`~abjad.interfaces.textspanner.interface.TextSpannerInterface`.
+      '''
       return self._text_spanner
 
    @property

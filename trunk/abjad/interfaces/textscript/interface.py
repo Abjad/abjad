@@ -1,21 +1,19 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces.interface.interface import _Interface
 from abjad.spanners.spanner.receptor import _SpannerReceptor
-from abjad.spanners.text import Text
+from abjad.spanners.textscript import TextScriptSpanner
 
 
-class TextInterface(_Interface, _GrobHandler, _SpannerReceptor):
-   r'''Handle LilyPond TextScript grob.
-   Receive Abjad Text spanner.
+class TextScriptInterface(_Interface, _GrobHandler, _SpannerReceptor):
+   r'''.. versionadded:: 1.1.2
+   
+   Handle LilyPond TextScript grob.
 
-   The `Abjad` :class:`~abjad.text.interface.TextInterface` handles
-   the `LilyPond` `TextScript` grob.
-
-   ::
+   Receive Abjad TextScriptSpanner. ::
 
       abjad> t = Staff(construct.scale(4))
       abjad> t[0].markup.up.append(r'\italic { Lento }')
-      abjad> t.text.staff_padding = 6
+      abjad> t.text_script.staff_padding = 6
       \new Staff \with {
          \override TextScript #'staff-padding = #6
       } {
@@ -28,8 +26,7 @@ class TextInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    def __init__(self, client):
       '''Bind client and LilyPond TextScript grob.
-         Receive Abjad Text spanner.'''
-      #from abjad.text import Text
+      Receive Abjad Text spanner.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TextScript')
-      _SpannerReceptor.__init__(self, (Text, ))
+      _SpannerReceptor.__init__(self, (TextScriptSpanner, ))

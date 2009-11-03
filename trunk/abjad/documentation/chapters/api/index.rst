@@ -108,7 +108,7 @@ Interfaces
    interfaces/staff/interface
    interfaces/stem/interface
    interfaces/tempo/interface
-   interfaces/text/interface
+   interfaces/textscript/interface
    interfaces/textspanner/interface
    interfaces/thread/interface
    interfaces/tie/interface
@@ -145,6 +145,7 @@ Spanners
    spanners/spanner/spanner
    spanners/tempo/spanner
    spanners/tempo/proportional/spanner
+   spanners/textscript/spanner
    spanners/text/spanner
    spanners/tie/spanner
    spanners/trill/spanner

@@ -2,11 +2,11 @@ from abjad import *
 
 
 def test_text_spanner_interface_grob_handling_01( ):
-   '''Handle LilyPond TextSpanner grob.'''
+   '''Abjad TextSpannerInterface handles LilyPond TextSpanner grob.'''
 
    t = Staff(construct.scale(4))
    t.text_spanner.staff_padding = 6
-   Text(t[:])
+   TextSpanner(t[:])
 
    r'''
    \new Staff \with {

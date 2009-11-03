@@ -1,9 +1,11 @@
 from abjad.markup import Markup
 from abjad.spanners.bracket.format import _BracketSpannerFormatInterface
-from abjad.spanners.text import Text
+#from abjad.spanners.text import Text
+from abjad.spanners.text import TextSpanner
 
 
-class Bracket(Text):
+#class Bracket(Text):
+class Bracket(TextSpanner):
    r'''Structural bracket to group any Abjad components at 
    composition-time. Defaults to red. ::
    
@@ -43,7 +45,7 @@ class Bracket(Text):
    '''
 
    def __init__(self, music = None):
-      Text.__init__(self, music)
+      TextSpanner.__init__(self, music)
       self._format = _BracketSpannerFormatInterface(self)
       self.bound_details__left__text = \
          Markup("(markup #:draw-line '(0 . -1))")

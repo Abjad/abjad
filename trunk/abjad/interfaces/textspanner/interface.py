@@ -1,19 +1,19 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces.interface.interface import _Interface
 from abjad.spanners.spanner.receptor import _SpannerReceptor
-#from abjad.spanners.text import Text
+from abjad.spanners.text import TextSpanner
 
 
 class TextSpannerInterface(_Interface, _GrobHandler, _SpannerReceptor):
-   r'''Handle LilyPond TextSpanner grob.
+   r'''.. versionadded:: 1.1.2
 
-   .. todo:: implement Abjad TextSpannerSpanner.
+   Handle LilyPond TextSpanner grob.
 
-   ::
+   Receive Abjad TextSpanner. ::
 
       abjad> t = Staff(construct.scale(4))
       abjad> t.text_spanner.staff_padding = 6
-      abjad> Text(t[:])
+      abjad> TextSpanner(t[:])
       \new Staff \with {
          \override TextSpanner #'staff-padding = #6
       } {
@@ -29,4 +29,4 @@ class TextSpannerInterface(_Interface, _GrobHandler, _SpannerReceptor):
       Receive Abjad Text spanner.'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'TextSpanner')
-      #_SpannerReceptor.__init__(self, (Text, ))
+      _SpannerReceptor.__init__(self, (TextSpanner, ))
