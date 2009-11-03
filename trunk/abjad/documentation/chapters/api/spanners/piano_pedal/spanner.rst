@@ -1,7 +1,7 @@
 PianoPedal
 ==========
 
-.. automodule:: abjad.spanners.pianopedal.spanner
+.. automodule:: abjad.spanners.piano_pedal.spanner
 
 .. autoclass:: abjad.PianoPedal
    :members:

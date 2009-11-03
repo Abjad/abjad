@@ -1,7 +1,7 @@
 TextScriptSpanner
 =================
 
-.. automodule:: abjad.spanners.textscript.spanner
+.. automodule:: abjad.spanners.text_script.spanner
 
 .. autoclass:: abjad.TextScriptSpanner
    :members:

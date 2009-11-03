@@ -1,7 +1,7 @@
 MetricGrid
 ==========
 
-.. automodule:: abjad.spanners.metricgrid.spanner
+.. automodule:: abjad.spanners.metric_grid.spanner
 
 .. autoclass:: abjad.MetricGrid
    :members:
