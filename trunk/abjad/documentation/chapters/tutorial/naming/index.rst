@@ -16,7 +16,7 @@ You can name any Abjad component.
 Component names make it easy to find components later. ::
 
    scoretools.find(score, 'Flute')
-   [Staff{4}]
+   [Staff-"Flute"{4}]
 
 Component names do not appear in musical output.
 

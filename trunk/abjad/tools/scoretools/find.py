@@ -3,7 +3,7 @@ from abjad.tools import iterate
 
 
 def find(expr, name = None, klass = None, context = None):
-   '''Return a Python list of all components in `expr`, such that:
+   '''Return a tuple of all components in `expr`, such that:
 
    * ``component.name == name``
    * ``isinstance(component, klass)``
@@ -23,21 +23,20 @@ def find(expr, name = None, klass = None, context = None):
    Find components by name. ::
 
       abjad> scoretools.find(score, name = 'Violin')
-      [Staff{4}]
+      (Staff-"Violin"{4}, )
 
    Find components by class. ::
 
       abjad> scoretools.find(score, klass = Staff)
-      [Staff{4}, Staff{4}]
+      (Staff-"Flute"{4}, Staff-"Violin"{4})
 
    Find components by context. ::
 
       abjad> violin_staff.context = 'ViolinContext'
       abjad> scoretools.find(score, context = 'ViolinContext')
-      [ViolinContext{4}]
+      (ViolinContext-"Violin"{4}, )
 
-   .. note:: For shallow traversal of container for numeric indices,
-      use ``Container[i]`` instead.
+   .. note:: For shallow traversal use ``Container[i]`` instead.
    '''
 
    result = [ ]
@@ -49,4 +48,5 @@ def find(expr, name = None, klass = None, context = None):
                getattr(component, 'context', None) == context:
                result.append(component)
 
+   result = tuple(result)
    return result

@@ -11,6 +11,8 @@ class _Context(Container):
    ## OVERLOADS ##
 
    def __repr__(self):
+      '''.. versionchanged:: 1.1.2
+         Named contexts now print name at the interpreter.'''
       if len(self) > 0:
          summary = str(len(self))
       else:
@@ -19,7 +21,13 @@ class _Context(Container):
          open, close = '<<', '>>'
       else:
          open, close = '{', '}'
-      return '%s%s%s%s' % (self.context, open, summary, close)
+      name = self.name
+      if name is not None:
+         name = '-"%s"' % name
+      else:
+         name = ''
+      #return '%s%s%s%s' % (self.context, open, summary, close)
+      return '%s%s%s%s%s' % (self.context, name, open, summary, close)
 
    ## PUBLIC ATTRIBUTES ##
 
