@@ -8,7 +8,7 @@ The appendix here outlines some of the most important.
 Default alignment
 -----------------
 
-LilyPond LEFT aligns markup relative to the LEFT edge-of-notehead by default.
+LilyPond LEFT aligns markup relative to the LEFT edge-of-note_head by default.
 
 <abjad>
 notes = construct.run(1, Rational(1, 4))
@@ -24,11 +24,11 @@ show(staff, 'thebes')
 ---------------------------------
 
 Use ``#'self-alignment-X`` to LEFT-, CENTER- or RIGHT-align markup
-relative to the LEFT edge-of-notehead.
+relative to the LEFT edge-of-note_head.
 
 .. note:: changes to ``#'self-alignment-X`` do not change the fact
    that markup positioning is by default relative to the 
-   LEFT edge-of-notehead.
+   LEFT edge-of-note_head.
 
 <abjad>
 notes = construct.run(3, Rational(1, 4))
@@ -57,7 +57,7 @@ in the horizontal direction.
 
 .. note:: changes to ``#'X-offset`` do not change the fact
    that markup positioning is by default relative to the 
-   LEFT edge-of-notehead.
+   LEFT edge-of-note_head.
 
 <abjad>
 notes = construct.run(4, Rational(1, 4))

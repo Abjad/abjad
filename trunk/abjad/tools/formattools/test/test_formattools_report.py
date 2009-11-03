@@ -5,8 +5,8 @@ def test_formattools_report_01( ):
    '''You can report on a heavily tweaked leaf.'''
 
    t = Note(0, (1, 4))
-   t.notehead.style = 'cross'
-   t.notehead.color = 'red'
+   t.note_head.style = 'cross'
+   t.note_head.color = 'red'
    t.stem.color = 'red'
    t.articulations.append('staccato')
    t.articulations.append('tenuto')

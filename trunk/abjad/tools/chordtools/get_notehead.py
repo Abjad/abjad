@@ -5,27 +5,27 @@ from abjad.pitch import Pitch
 from abjad.rational import Rational
 
 
-def get_notehead(chord, pitch):
-   '''Return notehead with `pitch` in `chord`.
+def get_note_head(chord, pitch):
+   '''Return note_head with `pitch` in `chord`.
    Set `pitch` to an Abjad :class:`~abjad.pitch.pitch.Pitch`
    instance or a number. ::
 
       abjad> chord = Chord([12, 14, 23], Rational(1, 4))
-      abjad> chordtools.get_notehead(chord, 14)
+      abjad> chordtools.get_note_head(chord, 14)
       NoteHead('d', 5)
 
    Raise :exc:`~abjad.exceptions.exceptions.MissingNoteHeadError`
-   when `chord` contains no notehead with pitch equal to `pitch`. ::
+   when `chord` contains no note_head with pitch equal to `pitch`. ::
 
       abjad> chord = Chord([12, 14, 23], Rational(1, 4))
-      abjad> chordtools.get_notehead(chord, 14)
+      abjad> chordtools.get_note_head(chord, 14)
       MissingNoteHeadError
 
    Raise :exc:`~abjad.exceptions.exceptions.ExtraNoteHeadError`
-   when `chord` contains more than one notehead with pitch equal to `pitch`. ::
+   when `chord` contains more than one note_head with pitch equal to `pitch`. ::
 
       abjad> chord = Chord([12, 12], Rational(1, 4))
-      abjad> chordtools.get_notehead(chord, 12)
+      abjad> chordtools.get_note_head(chord, 12)
       ExtraNoteHeadError
    '''
 
@@ -38,20 +38,20 @@ def get_notehead(chord, pitch):
    result = [ ]
    
    if isinstance(pitch, Pitch):
-      for notehead in chord.noteheads:
-         if notehead.pitch == pitch:
-            result.append(notehead)
+      for note_head in chord.note_heads:
+         if note_head.pitch == pitch:
+            result.append(note_head)
    else:
-      for notehead in chord.noteheads:
-         if notehead.pitch.number == pitch:
-            result.append(notehead)
+      for note_head in chord.note_heads:
+         if note_head.pitch.number == pitch:
+            result.append(note_head)
 
    count = len(result)
 
    if count == 0:
       raise MissingNoteHeadError
    elif count == 1:
-      notehead = result[0]
-      return notehead
+      note_head = result[0]
+      return note_head
    else:
       raise ExtraNoteHeadError

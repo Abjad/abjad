@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_binary_to_nonbinary_01( ):
    '''Make binary measure into equivalent nonbinary measure.
-      Assignable 3/2 multiplier conserves noteheads.'''
+      Assignable 3/2 multiplier conserves note_heads.'''
 
    t = RigidMeasure((2, 8), construct.scale(2))
    Beam(t[:])
@@ -67,7 +67,7 @@ def test_measuretools_binary_to_nonbinary_02( ):
 
 def test_measuretools_binary_to_nonbinary_03( ):
    '''Make binary measure into equivalent nonbinary measure.
-      Assignable 7/4 multiplier conserves noteheads.'''
+      Assignable 7/4 multiplier conserves note_heads.'''
 
    t = RigidMeasure((2, 8), construct.scale(2))
    Beam(t[:])

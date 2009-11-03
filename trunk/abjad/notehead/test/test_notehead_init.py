@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_notehead_init_01( ):
+def test_note_head_init_01( ):
 
    t = NoteHead(None, 6)
    new = NoteHead(None, t)

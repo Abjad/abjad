@@ -18,8 +18,8 @@ class _RestInitializer(_Initializer):
             note = args[0]
             _Leaf.__init__(client, note.duration.written)
             _transfer_all_attributes(note, client)
-            #del client._notehead
-            client._notehead = NoteHeadInterface(client)
+            #del client._note_head
+            client._note_head = NoteHeadInterface(client)
          if isinstance(args[0], Rest):
             rest = args[0]
             _Leaf.__init__(client, rest.duration.written)
@@ -28,7 +28,7 @@ class _RestInitializer(_Initializer):
             chord = args[0]
             _Leaf.__init__(client, chord.duration.written)
             _transfer_all_attributes(chord, client)
-            del client._noteheads
+            del client._note_heads
          elif isinstance(args[0], Skip):
             skip = args[0]
             _Leaf.__init__(client, skip.duration.written)

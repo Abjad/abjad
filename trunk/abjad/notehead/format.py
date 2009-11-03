@@ -3,8 +3,8 @@ from abjad.core.format import _FormatInterface
 
 class _NoteHeadFormatInterface(_FormatInterface):
 
-   def __init__(self, _notehead):
-      _FormatInterface.__init__(self, _notehead)
+   def __init__(self, _note_head):
+      _FormatInterface.__init__(self, _note_head)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -17,40 +17,40 @@ class _NoteHeadFormatInterface(_FormatInterface):
 #
 #   @property
 #   def _abjadToLilyStyle(self):
-#      style = self._abjadLilyStyles.get(self.notehead.style)
+#      style = self._abjadLilyStyles.get(self.note_head.style)
 #      if style:
 #         return style
 #      else:
-#         return self.notehead.style
+#         return self.note_head.style
 
    @property
    def _chordFormat(self):
       result = [ ]
-      #for key, value in vars(self.notehead).items( ):
-      for key, value in self.notehead._key_value_pairs:
+      #for key, value in vars(self.note_head).items( ):
+      for key, value in self.note_head._key_value_pairs:
          if not key.startswith('_'):
             result.append(r'\tweak %s %s' % (
-               self.notehead._parser.formatAttribute(key),
-               self.notehead._parser.formatValue(value)))
-#      if self.notehead.style:
-#         if self.notehead.style in self.stylesSupported:
+               self.note_head._parser.formatAttribute(key),
+               self.note_head._parser.formatValue(value)))
+#      if self.note_head.style:
+#         if self.note_head.style in self.stylesSupported:
 #            result.append(r'\tweak %s %s' % (
-#                  self.notehead._parser.formatAttribute('style'),
-#                  self.notehead._parser.formatValue(
+#                  self.note_head._parser.formatAttribute('style'),
+#                  self.note_head._parser.formatValue(
 #                     self._abjadToLilyStyle)))
 #         else:
-#            result.append(r"\%s" % self.notehead.style)
+#            result.append(r"\%s" % self.note_head.style)
       return result
 
    @property
    def _noteFormat(self):
       result = [ ]
-#      if self.notehead.style:
-#         if self.notehead.style in self.stylesSupported:
+#      if self.note_head.style:
+#         if self.note_head.style in self.stylesSupported:
 #            result.append(r"\once \override NoteHead #'style = #'%s" \
 #               % self._abjadToLilyStyle)
 #         else:
-#            result.append(r"\%s" % self.notehead.style)
+#            result.append(r"\%s" % self.note_head.style)
       return result
 
    ## PUBLIC ATTRIBUTES ##
@@ -59,8 +59,8 @@ class _NoteHeadFormatInterface(_FormatInterface):
    def _before(self):
       from abjad.chord import Chord
       result = [ ]
-      #client = self.notehead.client
-      client = self.notehead._client
+      #client = self.note_head.client
+      client = self.note_head._client
       if client and isinstance(client, Chord):
          result.extend(self._chordFormat)
       else:
@@ -70,15 +70,15 @@ class _NoteHeadFormatInterface(_FormatInterface):
    @property
    def format(self):
       result = [ ]
-      notehead = self.notehead
-      assert notehead.pitch
+      note_head = self.note_head
+      assert note_head.pitch
       result.extend(self._before)
-      result.append(notehead.pitch.format)
+      result.append(note_head.pitch.format)
       result = '\n'.join(result)
       return result
 
    @property
-   def notehead(self):
+   def note_head(self):
       return self.interface
 
 #   stylesSupported = (

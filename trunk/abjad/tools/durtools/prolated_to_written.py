@@ -7,7 +7,7 @@ import math
 
 def prolated_to_written(prolated_duration, prolation = 'diminution'):
    '''When ``prolation = 'diminution'`` return the greatest 
-   notehead-assignable rational less than or equal to 
+   note_head-assignable rational less than or equal to 
    `prolated_duration`. ::
 
       abjad> for n in range(1, 17):
@@ -33,7 +33,7 @@ def prolated_to_written(prolated_duration, prolation = 'diminution'):
       16/16   1
 
    When ``prolation = 'augmentation'`` return the greatest 
-   notehead-assignable rational greater than or equal to 
+   note_head-assignable rational greater than or equal to 
    `prolated_duration`. ::
    
       abjad> for n in range(1, 17):

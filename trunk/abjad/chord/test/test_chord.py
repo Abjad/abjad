@@ -10,7 +10,7 @@ def test_chord_01( ):
    assert str(t) == "<d' ef' e'>4"
    assert t.format == "<d' ef' e'>4"
    assert len(t) == 3
-   assert len(t.noteheads) == 3
+   assert len(t.note_heads) == 3
    assert len(t.pitches) == 3
    assert t.duration.written == t.duration.prolated == Rational(1, 4)
 
@@ -38,7 +38,7 @@ def test_chord_04( ):
    assert str(t) == "<c'>4"
    assert t.format == "<c'>4"
    assert len(t) == 1
-   assert len(t.noteheads) == 1
+   assert len(t.note_heads) == 1
    assert len(t.pitches) == 1
 
 def test_chord_05( ):
@@ -47,7 +47,7 @@ def test_chord_05( ):
    assert str(t) == "<cqs'>4"
    assert t.format == "<cqs'>4"
    assert len(t) == 1
-   assert len(t.noteheads) == 1
+   assert len(t.note_heads) == 1
    assert len(t.pitches) == 1
 
 
@@ -109,25 +109,25 @@ def test_chord_10( ):
 
 
 def test_chord_11( ):
-   '''Chord noteheads can be set as list or tuple of numbers.'''
+   '''Chord note_heads can be set as list or tuple of numbers.'''
    t = Chord([], (1,4))
-   t.noteheads = [4, 3, 2]
+   t.note_heads = [4, 3, 2]
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
    
 
 def test_chord_12( ):
-   '''Chord noteheads can be set as list or tuple of Pitches.'''
+   '''Chord note_heads can be set as list or tuple of Pitches.'''
    t = Chord([], (1,4))
-   t.noteheads = [Pitch(4), Pitch(3), Pitch(2)]
+   t.note_heads = [Pitch(4), Pitch(3), Pitch(2)]
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 
 
 def test_chord_13( ):
-   '''Chord noteheads can be set as list or tuple of both numbers and Pitches.'''
+   '''Chord note_heads can be set as list or tuple of both numbers and Pitches.'''
    t = Chord([], (1,4))
-   t.noteheads = [Pitch(4), 3, Pitch(2)]
+   t.note_heads = [Pitch(4), 3, Pitch(2)]
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
 

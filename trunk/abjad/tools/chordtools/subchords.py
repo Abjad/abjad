@@ -45,8 +45,8 @@ def subchords(chord):
       for j, digit in enumerate(reversed(binary_string)):
          if digit == '0':
             new_chord[j]._remove_me = True
-      for notehead in new_chord.noteheads:
-         if getattr(notehead, '_remove_me', False):
-            new_chord.remove(notehead)
+      for note_head in new_chord.note_heads:
+         if getattr(note_head, '_remove_me', False):
+            new_chord.remove(note_head)
       new_chord = cast_defective(new_chord)
       yield new_chord

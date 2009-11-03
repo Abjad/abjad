@@ -21,7 +21,7 @@ def test_pitchtools_get_pitch_02( ):
 def test_pitchtools_get_pitch_03( ):
 
    note = Note(('df', 5), (1, 4))
-   t = pitchtools.get_pitch(note.notehead)
+   t = pitchtools.get_pitch(note.note_head)
 
    assert t.pair == ('df', 5)
    
@@ -46,7 +46,7 @@ def test_pitchtools_get_pitch_06( ):
    note = Note(('df', 5), (1, 4))
    note.pitch = None
    assert py.test.raises(
-      MissingPitchError, 't = pitchtools.get_pitch(note.notehead)')
+      MissingPitchError, 't = pitchtools.get_pitch(note.note_head)')
 
 
 def test_pitchtools_get_pitch_07( ):

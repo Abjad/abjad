@@ -119,7 +119,7 @@ def test_chordtools_split_by_pitch_number_09( ):
 
 
 def test_chordtools_split_by_pitch_number_10( ):
-   '''Split copies over notehead coloring.'''
+   '''Split copies over note_head coloring.'''
 
    t = Chord([0, 1, 2, 3], (1, 4))
    t[0].color = 'red'

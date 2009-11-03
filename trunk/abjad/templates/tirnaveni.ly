@@ -11,8 +11,8 @@
 %%%   * Line break are allowed on spanning durations
 %%%   * All breakable spanners are set to True
 %%%   * Collisions are ignored
-%%%   * Differently dotted noteheads are merged
-%%%   * Different notehead types are merged
+%%%   * Differently dotted note_heads are merged
+%%%   * Different note_head types are merged
 %%%   * Tagline is removed
 
 \header{

@@ -280,7 +280,7 @@ def test_fuse_measures_by_reference_08( ):
 
 def test_fuse_measures_by_reference_09( ):
    '''Fusing binary and nonbinary measures.
-      With change in number of noteheads because of nonbinary multiplier.'''
+      With change in number of note_heads because of nonbinary multiplier.'''
 
    t = Staff([
       RigidMeasure((9, 80), [ ]),

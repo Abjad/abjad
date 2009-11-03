@@ -2,41 +2,41 @@ from abjad import *
 import py.test
 
 
-def test_notehead_pitch_01( ):
+def test_note_head_pitch_01( ):
    '''Set NoteHead pitch with integer.'''
 
    t = Note(13, (1, 4))
-   t.notehead.pitch = 14
+   t.note_head.pitch = 14
 
    "NoteHead(d'')"
-   assert t.notehead.format == "d''"
-   assert t.notehead.pitch.number == 14
+   assert t.note_head.format == "d''"
+   assert t.note_head.pitch.number == 14
 
 
-def test_notehead_pitch_02( ):
+def test_note_head_pitch_02( ):
    '''Set NoteHead pitch with Abjad Pitch object.'''
 
    t = Note(13, (1, 4))
-   t.notehead.pitch = Pitch(14)
+   t.note_head.pitch = Pitch(14)
 
    "NoteHead(d'')"
-   assert t.notehead.format == "d''"
-   assert t.notehead.pitch.number == 14
+   assert t.note_head.format == "d''"
+   assert t.note_head.pitch.number == 14
 
 
-def test_notehead_pitch_03( ):
+def test_note_head_pitch_03( ):
    '''Set NoteHead pitch to None.'''
 
    t = Note(13, (1, 4))
-   t.notehead.pitch = None
+   t.note_head.pitch = None
 
    "NoteHead( )"
-   assert t.notehead.pitch == None
-   assert py.test.raises(AssertionError, 't.notehead.format')
+   assert t.note_head.pitch == None
+   assert py.test.raises(AssertionError, 't.note_head.format')
 
 
-def test_notehead_pitch_04( ):
-   '''Set NoteHead pitch from another note or notehead.
+def test_note_head_pitch_04( ):
+   '''Set NoteHead pitch from another note or note_head.
    Make sure this does not cause reference problems.'''
 
    n1 = Note(12, (1, 4))

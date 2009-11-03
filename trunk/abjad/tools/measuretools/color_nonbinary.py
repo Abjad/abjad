@@ -22,5 +22,5 @@ def color_nonbinary(expr, color = 'red'):
          measure.dots.color = color
          measure.meter.color = color
          overridetools.promote(measure.meter, 'color', 'Staff')
-         measure.notehead.color = color
+         measure.note_head.color = color
          measure.stem.color = color

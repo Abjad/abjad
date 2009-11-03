@@ -8,8 +8,8 @@ def report(system_element, verbose = False, output = 'screen'):
    system plumbing. ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> t.notehead.style = 'cross'
-      abjad> t.notehead.color = 'red'
+      abjad> t.note_head.style = 'cross'
+      abjad> t.note_head.color = 'red'
       abjad> t.stem.color = 'red'
       abjad> t.articulations.append('staccato')
       abjad> t.articulations.append('tenuto')

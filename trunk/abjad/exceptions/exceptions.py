@@ -84,17 +84,17 @@ class NonbinaryMeterSuppressionError(Exception):
    pass
 
 class NoteHeadError(Exception):
-   '''General notehead error.'''
+   '''General note_head error.'''
    pass
 
 class ExtraNoteHeadError(Exception):
-   '''Operation expects exactly one notehead of a certain type.
-   But there is instead more than one notehead of that type.'''
+   '''Operation expects exactly one note_head of a certain type.
+   But there is instead more than one note_head of that type.'''
    pass
 
 class MissingNoteHeadError(Exception):
-   '''Operation expects exactly one notehead of a certain type.
-   But there is no notehead of that type.'''
+   '''Operation expects exactly one note_head of a certain type.
+   But there is no note_head of that type.'''
    pass
 
 class OverfullMeasureError(ImproperlyFilledMeasureError):

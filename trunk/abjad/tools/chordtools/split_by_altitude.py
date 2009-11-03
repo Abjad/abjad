@@ -9,12 +9,12 @@ def split_by_altitude(chord, pitch = Pitch('b', 3)):
    r'''Create two new disjunct `treble`, `bass` chords from `chord`,
    based on the altitude of `pitch`.
 
-   For every notehead in `chord` with altitude greater than or equal
-   to the altitude of `pitch`, add a notehead to the treble chord
+   For every note_head in `chord` with altitude greater than or equal
+   to the altitude of `pitch`, add a note_head to the treble chord
    returned by this function.
 
-   For every notehead in `chord` with altitude strictly less than
-   the altitude of `pitch`, add a notehead to the bass chord returned
+   For every note_head in `chord` with altitude strictly less than
+   the altitude of `pitch`, add a note_head to the bass chord returned
    by this function.
 
    In the usual case, `chord` is an Abjad chord instance. But `chord`
@@ -41,7 +41,7 @@ def split_by_altitude(chord, pitch = Pitch('b', 3)):
       abjad> chordtools.split_by_altitude(chord, Pitch(6))
       (Chord(fs' g' af' a' bf' b', 4), Chord(c' cs' d' ef' e' f', 4))
 
-   Preserve notehead coloring. ::
+   Preserve note_head coloring. ::
 
       abjad> t = Chord([0, 1, 2, 3], (1, 4))
       abjad> t[0].color = 'red'

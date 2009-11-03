@@ -2,25 +2,25 @@ from abjad import *
 import py.test
 
 
-def test_chord_noteheads_01( ):
-   '''Returns immutable tuple of noteheads in chord.'''
+def test_chord_note_heads_01( ):
+   '''Returns immutable tuple of note_heads in chord.'''
 
    t = Chord([2, 4, 5], (1, 4))
-   noteheads = t.noteheads
+   note_heads = t.note_heads
 
-   assert isinstance(noteheads, tuple)
-   assert len(noteheads) == 3
-   assert py.test.raises(AttributeError, 'noteheads.pop( )')
-   assert py.test.raises(AttributeError, 'noteheads.index(noteheads[0])')
-   assert py.test.raises(AttributeError, 'noteheads.remove(noteheads[0])')
+   assert isinstance(note_heads, tuple)
+   assert len(note_heads) == 3
+   assert py.test.raises(AttributeError, 'note_heads.pop( )')
+   assert py.test.raises(AttributeError, 'note_heads.index(note_heads[0])')
+   assert py.test.raises(AttributeError, 'note_heads.remove(note_heads[0])')
 
 
-def test_chord_noteheads_02( ):
+def test_chord_note_heads_02( ):
    '''Chords with equivalent pitch numbers
-      *do* carry equivalent notehead instances.'''
+      *do* carry equivalent note_head instances.'''
 
    t1 = Chord([2, 4, 5], (1, 4))
    t2 = Chord([2, 4, 5], (1, 4))
 
    assert t1.numbers == t2.numbers
-   assert t1.noteheads == t2.noteheads
+   assert t1.note_heads == t2.note_heads

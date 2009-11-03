@@ -3,8 +3,8 @@ def wrapper(container):
    format except container contents. ::
 
       abjad> container = Container(construct.scale(12))
-      abjad> container.notehead.color = 'red'
-      abjad> container.notehead.style = 'harmonic'
+      abjad> container.note_head.color = 'red'
+      abjad> container.note_head.style = 'harmonic'
       abjad> container.comments.before.append('Container comments')
       abjad> print container.formatter.wrapper
       {

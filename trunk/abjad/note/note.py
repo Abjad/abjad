@@ -34,24 +34,24 @@ class Note(_Leaf):
       return [result] 
 
    @apply
-   def notehead( ):
+   def note_head( ):
       def fget(self):
-         '''Read / write reference to `Abjad` notehead instance.'''
-         return self._notehead
+         '''Read / write reference to `Abjad` note_head instance.'''
+         return self._note_head
       def fset(self, arg):
          if isinstance(arg, type(None)):
-            self._notehead = None
+            self._note_head = None
          elif isinstance(arg, (int, float, long)):
-            self._notehead = NoteHead(self, pitch = arg)
+            self._note_head = NoteHead(self, pitch = arg)
          elif isinstance(arg, tuple) and len(arg) == 2:
             pitch = Pitch(*arg)
-            self._notehead = NoteHead(self, pitch = pitch)
+            self._note_head = NoteHead(self, pitch = pitch)
          elif isinstance(arg, Pitch):
-            self._notehead = NoteHead(self, pitch = arg)
+            self._note_head = NoteHead(self, pitch = arg)
          elif isinstance(arg, NoteHead):
-            self._notehead = arg
+            self._note_head = arg
          else:
-            print 'Can not bind %s to Note.notehead.' % arg
+            print 'Can not bind %s to Note.note_head.' % arg
       return property(**locals( ))
 
    @property
@@ -74,23 +74,23 @@ class Note(_Leaf):
    def pitch( ):
       def fget(self):
          '''Read / write pitch of note.'''
-         if self.notehead is not None and hasattr(self.notehead, 'pitch'):
-            return self._notehead.pitch
+         if self.note_head is not None and hasattr(self.note_head, 'pitch'):
+            return self._note_head.pitch
          else:
             return None
       def fset(self, arg):
          if arg is None:
-            if self.notehead is not None:
-               self.notehead.pitch = None
+            if self.note_head is not None:
+               self.note_head.pitch = None
          else:
-            if self.notehead is None:
-               self.notehead = NoteHead(self, pitch = None)
+            if self.note_head is None:
+               self.note_head = NoteHead(self, pitch = None)
             if isinstance(arg, (int, float, long)):
-               self.notehead.pitch = Pitch(arg)
+               self.note_head.pitch = Pitch(arg)
             elif isinstance(arg, tuple):
-               self.notehead.pitch = Pitch(*arg)
+               self.note_head.pitch = Pitch(*arg)
             elif isinstance(arg, Pitch):
-               self.notehead.pitch = arg
+               self.note_head.pitch = arg
             else:
                raise ValueError('Can not set Note.pitch from %s' % str(arg))
       return property(**locals( ))

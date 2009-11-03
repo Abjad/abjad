@@ -20,7 +20,7 @@ def color_by_pc(pitch_carrier):
    pitch = pitchtools_get_pitch(pitch_carrier)
    color = _pc_to_color(pitch.pc)
    if color is not None:
-      pitch_carrier.notehead.color = color
+      pitch_carrier.note_head.color = color
 
 
 def _pc_to_color(pc):

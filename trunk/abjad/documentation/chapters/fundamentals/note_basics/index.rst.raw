@@ -66,7 +66,7 @@ Or to another pitched Abjad object:
 <abjad>
 note = Note(0, (1, 4))
 chord = Chord([0, 2, 10], (1, 4))
-note.pitch == chord.noteheads[0].pitch
+note.pitch == chord.note_heads[0].pitch
 </abjad>
 
 

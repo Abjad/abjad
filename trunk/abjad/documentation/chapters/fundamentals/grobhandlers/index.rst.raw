@@ -14,14 +14,14 @@ From the `LilyPond documentation <http://lilypond.org/doc/v2.13/Documentation/us
 
 
 Many elements in Abjad are :class:`grob handlers <abjad.core.grobhandler._GrobHandler>`, which means that they support user setting of graphical properties supported by the LilyPond grobs.  
-For example, because a :class:`NoteHead <abjad.notehead.notehead.NoteHead>` is a :class:`_GrobHandler <abjad.core.grobhandler._GrobHandler>`, we can change its graphical appearance by setting any of the different properties supported by the corresponding LilyPond notehead grob to anything supported by LilyPond for that grob:
+For example, because a :class:`NoteHead <abjad.note_head.note_head.NoteHead>` is a :class:`_GrobHandler <abjad.core.grobhandler._GrobHandler>`, we can change its graphical appearance by setting any of the different properties supported by the corresponding LilyPond note_head grob to anything supported by LilyPond for that grob:
 
 <abjad>
 n = Note(1, (1, 4))
-n.notehead.color = 'red'
+n.note_head.color = 'red'
 s = Staff([n]) <hide
 s.meter.transparent = True <hide
-write_ly(s, 'notehead_color', 'oedo') <hide
+write_ly(s, 'note_head_color', 'oedo') <hide
 </abjad>
 
 Another example: `Glissandi` are usually represented with straight lines, but maybe you want a wiggly line. You can change the style of the `glissando` to, for example, `zigzag` by simply setting the glissando style property:

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_durtools_token_decompose_01( ):
-   '''Return big-endian list of notehead-assignable duration tokens.'''
+   '''Return big-endian list of note_head-assignable duration tokens.'''
 
    assert durtools.token_decompose((10, 16)) == ((8, 16), (2, 16))
    assert durtools.token_decompose((11, 16)) == ((8, 16), (3, 16))

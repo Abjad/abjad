@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_chord_public_methods_01( ):
-   '''Chords can be appended noteheads. Noteheads are sorted.'''
+   '''Chords can be appended note_heads. Noteheads are sorted.'''
    t = Chord([2, 4], (1,4))
    t.append(Pitch(3))
    assert repr(t) == "Chord(d' ef' e', 4)"
@@ -35,16 +35,16 @@ def test_chord_public_methods_03( ):
 
 
 def test_chord_public_methods_04( ):
-   '''Lone chords can pop noteheads by index.'''
+   '''Lone chords can pop note_heads by index.'''
    t = Chord([2, 4], (1, 4))
-   notehead = t.pop( )
-   assert notehead.pitch.number == 4
+   note_head = t.pop( )
+   assert note_head.pitch.number == 4
    assert len(t) == 1
    assert t.pitches[0].number == 2
    
 
 def test_chord_public_methods_05( ):
-   '''Lone chords can remove noteheads by reference.'''
+   '''Lone chords can remove note_heads by reference.'''
    t = Chord([2, 4], (1, 4))
    t.remove(t[0])
    assert len(t) == 1
@@ -52,7 +52,7 @@ def test_chord_public_methods_05( ):
 
 
 def test_chord_public_methods_06( ):
-   '''Lone chords can remove noteheads by reference.'''
+   '''Lone chords can remove note_heads by reference.'''
    t = Chord([2, 4], (1, 4))
    t.remove(t[1])
    assert len(t) == 1

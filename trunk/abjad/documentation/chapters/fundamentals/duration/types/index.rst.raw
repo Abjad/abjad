@@ -54,7 +54,7 @@ during the life of the note, rest, chord or skip. Notes, rests, chords
 and skips admit a degree of input flexibility; Abjad :class:`Rational <abjad.rational.rational.Rational>`
 instances, rational tokens, and integers are all allowed; see the
 chapter on :doc:`duration initialzation <../initialization/index>` for details. 
-Written durations must always be notehead-assignable; see the chapter on
+Written durations must always be note_head-assignable; see the chapter on
 :doc:`assignability <../assignability/index>` for
 details. The written duration of notes, rests, chords and skips
 corresponds more closely to our usual understanding of musical

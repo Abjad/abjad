@@ -10,7 +10,7 @@ def get_pitch(pitch_carrier):
    '''Get Abjad :class:`~abjad.pitch.pitch.Pitch` from
    Abjad :class:`~abjad.pitch.pitch.Pitch`, 
    :class:`~abjad.note.note.Note`, 
-   :class:`~abjad.notehead.notehead.NoteHead` or 
+   :class:`~abjad.note_head.note_head.NoteHead` or 
    :class:`~abjad.chord.chord.Chord` instance. ::
 
       abjad> pitch = Pitch('df', 5)
@@ -30,9 +30,9 @@ def get_pitch(pitch_carrier):
    ::
 
       abjad> note = Note(('df', 5), (1, 4))
-      abjad> note.notehead
+      abjad> note.note_head
       NoteHead(df'')
-      abjad> pitchtools.get_pitch(note.notehead)
+      abjad> pitchtools.get_pitch(note.note_head)
       Pitch(df, 5)
 
    ::
@@ -59,9 +59,9 @@ def get_pitch(pitch_carrier):
 
       abjad> note = Note(('df', 5), (1, 4))
       abjad> note.pitch = None
-      abjad> note.notehead
+      abjad> note.note_head
       NoteHead( )
-      abjad> pitchtools.get_pitch(note.notehead)
+      abjad> pitchtools.get_pitch(note.note_head)
       MissingPitchError
 
    ::
@@ -85,7 +85,7 @@ def get_pitch(pitch_carrier):
       ExtraPitchError
 
    .. note:: 'Defective' :class:`~abjad.note.note.Note` and \
-      :class:`~abjad.notehead.notehead.NoteHead` instances with \
+      :class:`~abjad.note_head.note_head.NoteHead` instances with \
       no :class:`~abjad.pitch.pitch.Pitch` are allowed \
       in the current implementation of Abjad but may deprecate in a future
       implementation.

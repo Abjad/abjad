@@ -26,7 +26,7 @@ def transpose_by_chromatic_interval(pitch_carrier, chromatic_interval):
    elif isinstance(pitch_carrier, Chord):
       new_chord = clone.unspan([pitch_carrier])[0]
       for new_nh, old_nh in zip(
-         new_chord.noteheads, pitch_carrier.noteheads):
+         new_chord.note_heads, pitch_carrier.note_heads):
          new_pitch = Pitch(old_nh.pitch.number + chromatic_interval._number)
          new_nh.pitch = new_pitch
       return new_chord

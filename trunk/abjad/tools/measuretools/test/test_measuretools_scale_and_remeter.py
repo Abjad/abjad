@@ -4,7 +4,7 @@ import py.test
 
 def test_measuretools_scale_and_remeter_01( ):
    '''Scale binary to nonbinary.
-      No notehead rewriting necessary.'''
+      No note_head rewriting necessary.'''
 
    t = RigidMeasure((3, 8), construct.scale(3))
    measuretools.scale_and_remeter(t, Rational(2, 3))
@@ -26,7 +26,7 @@ def test_measuretools_scale_and_remeter_01( ):
 
 def test_measuretools_scale_and_remeter_02( ):
    '''Scale nonbinary meter to binary. 
-      No notehead rewriting necessary.'''
+      No note_head rewriting necessary.'''
   
    t = RigidMeasure((3, 12), construct.scale(3))
    measuretools.scale_and_remeter(t, Rational(3, 2))
@@ -86,7 +86,7 @@ def test_measuretools_scale_and_remeter_04( ):
 
 def test_measuretools_scale_and_remeter_05( ):
    '''Scale binary meter to nonbinary meter.
-      No notehead rewriting necessary.'''
+      No note_head rewriting necessary.'''
 
    t = RigidMeasure((9, 16), construct.scale(9, Rational(1, 16)))
    measuretools.scale_and_remeter(t, Rational(2, 3))

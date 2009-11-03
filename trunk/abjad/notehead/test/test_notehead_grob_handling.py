@@ -1,20 +1,20 @@
 from abjad import *
 
 
-def test_notehead_grob_handling_01( ):
+def test_note_head_grob_handling_01( ):
    '''Abjad NoteHead handles LilyPond NoteHead grob.'''
 
    t = Note(13, (1, 4))
-   t.notehead.transparent = True
+   t.note_head.transparent = True
 
-   assert t.notehead.transparent
+   assert t.note_head.transparent
    assert t.format == "\\once \\override NoteHead #'transparent = ##t\ncs''4"
 
-   t.notehead.transparent = None
+   t.note_head.transparent = None
    assert t.format == "cs''4"
 
 
-def test_notehead_grob_handling_02( ):
+def test_note_head_grob_handling_02( ):
    '''From a bug fix. Pitch should never show up as a grob
    override because pitch is a fully managed note head attribute.'''
 
@@ -24,6 +24,6 @@ def test_notehead_grob_handling_02( ):
 
    assert note.format == "d'8"
 
-   note.notehead.color = 'red'
+   note.note_head.color = 'red'
    
    assert note.format == "\\once \\override NoteHead #'color = #red\nd'8"

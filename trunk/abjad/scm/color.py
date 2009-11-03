@@ -5,7 +5,7 @@ class Color(_Abjad):
    '''Wrapper for names of X-11 colors known to `LilyPond`. ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> t.notehead.color = Color('ForestGreen')
+      abjad> t.note_head.color = Color('ForestGreen')
       abjad> print t.format
       \once \override NoteHead #'color = #(x11-color 'ForestGreen)
       c'4

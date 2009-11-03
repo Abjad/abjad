@@ -71,7 +71,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
          format contributions to slot 1::
 
             abjad> t.comments.append('This is a tuplet')
-            abjad> t.notehead.color = 'red'
+            abjad> t.note_head.color = 'red'
             abjad> t.dots.color = 'red'
      
          ::

@@ -26,7 +26,7 @@ def test_leaf_cast_01( ):
 
 def test_leaf_cast_02( ):
    '''Round-trip (re)initialization from note to rest to note again
-      does not preserve notehead.'''
+      does not preserve note_head.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Rest(t[0])

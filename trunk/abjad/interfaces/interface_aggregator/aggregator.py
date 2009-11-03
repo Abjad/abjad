@@ -64,10 +64,10 @@ class InterfaceAggregator(_Interface):
          self._contributors_sorted = True
       ## TODO: Remove client-testing hack. ##
       if isinstance(self._client, Chord):
-         notehead = [x for x in self._contributors if isinstance(x, NoteHead)]
-         if notehead:
-            notehead = notehead[0]
-            self._contributors.remove(notehead) 
+         note_head = [x for x in self._contributors if isinstance(x, NoteHead)]
+         if note_head:
+            note_head = note_head[0]
+            self._contributors.remove(note_head) 
       return self._contributors
 
    @property

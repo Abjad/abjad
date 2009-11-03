@@ -26,7 +26,7 @@ def contents_scale(tuplet, multiplier):
    # change tuplet target duration
    tuplet.duration.target = new_target_duration
 
-   # if multiplier is notehead assignable, scale contents graphically
+   # if multiplier is note_head assignable, scale contents graphically
    if durtools.is_assignable(multiplier):
       for component in tuplet[:]:
          if isinstance(component, _Leaf):

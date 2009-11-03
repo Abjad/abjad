@@ -65,9 +65,9 @@ def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
    elif isinstance(treble, Rest):
       pass
    elif isinstance(treble, Chord):
-      for notehead in treble.noteheads:
-         if getattr(notehead.pitch, attr) < getattr(pitch, attr):
-            treble.remove(notehead)
+      for note_head in treble.note_heads:
+         if getattr(note_head.pitch, attr) < getattr(pitch, attr):
+            treble.remove(note_head)
    else:
       raise ValueError('must be note, rest or chord.')
 
@@ -77,29 +77,29 @@ def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
    elif isinstance(bass, Rest):
       pass
    elif isinstance(bass, Chord):
-      for notehead in bass.noteheads:
-         if getattr(pitch, attr) <= getattr(notehead.pitch, attr):
-            bass.remove(notehead)
+      for note_head in bass.note_heads:
+         if getattr(pitch, attr) <= getattr(note_head.pitch, attr):
+            bass.remove(note_head)
    else:
       raise ValueError('must be note, rest or chord.')
 
-#   treble_notehead_attrs = [ ]
+#   treble_note_head_attrs = [ ]
 #   if isinstance(treble, Chord):
 #      if len(treble) == 1:
-#         treble_notehead_attrs = [(k, v) for k, v in treble[0].__dict__.items( ) 
+#         treble_note_head_attrs = [(k, v) for k, v in treble[0].__dict__.items( ) 
 #            if not k.startswith('_')]
-#   bass_notehead_attrs = [ ]
+#   bass_note_head_attrs = [ ]
 #   if isinstance(bass, Chord):
 #      if len(bass) == 1:
-#         bass_notehead_attrs = [(k, v) for k, v in bass[0].__dict__.items( ) 
+#         bass_note_head_attrs = [(k, v) for k, v in bass[0].__dict__.items( ) 
 #            if not k.startswith('_')]
 
    treble = cast_defective(treble)
    bass = cast_defective(bass)
 
-#   for k, v in treble_notehead_attrs:
-#      setattr(treble.notehead, k, v)
-#   for k, v in bass_notehead_attrs:
-#      setattr(bass.notehead, k, v)
+#   for k, v in treble_note_head_attrs:
+#      setattr(treble.note_head, k, v)
+#   for k, v in bass_note_head_attrs:
+#      setattr(bass.note_head, k, v)
 
    return treble, bass

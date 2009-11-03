@@ -11,7 +11,7 @@ class _NoteInitializer(_Initializer):
       from abjad.note import Note
       from abjad.skip import Skip
       from abjad.tools import clone
-      client.notehead = None
+      client.note_head = None
       if len(args) == 1 and isinstance(args[0], _Leaf):
          if isinstance(args[0], Note):
             note = args[0]
@@ -29,9 +29,9 @@ class _NoteInitializer(_Initializer):
             if len(chord) > 0:
                copy = clone.fracture([chord])[0]
             _transfer_all_attributes(chord, client)
-            del client._noteheads
+            del client._note_heads
             if len(chord) > 0:
-               client.notehead = copy.noteheads[0]
+               client.note_head = copy.note_heads[0]
          elif isinstance(args[0], Skip):
             skip = args[0]
             _Leaf.__init__(client, skip.duration.written)
@@ -40,7 +40,7 @@ class _NoteInitializer(_Initializer):
          pitch, duration = args
          #print pitch, duration, type(pitch)
          _Leaf.__init__(client, duration)
-         client.notehead = pitch
+         client.note_head = pitch
          #client.pitch = pitch
       else:
          raise ValueError('can not initialize note.')
