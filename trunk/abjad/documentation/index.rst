@@ -44,6 +44,7 @@ Tutorial
    chapters/tutorial/inspecting_output/index
    chapters/tutorial/measures/index
    chapters/tutorial/measure_comment_numbering/index
+   chapters/tutorial/naming/index
    chapters/tutorial/spacing_scorewide/index
    chapters/tutorial/format_reporting/index
 
