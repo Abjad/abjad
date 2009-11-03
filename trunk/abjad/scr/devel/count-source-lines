@@ -38,7 +38,10 @@ def _report(source_modules, source_lines, test_modules, test_lines):
 
    print ''
    print 'total lines: %s' % (source_lines + test_lines)
-   ratio = test_lines / float(source_lines)
+   try:
+      ratio = test_lines / float(source_lines)
+   except ZeroDivisionError:
+      ratio = 1
    print 'test-to-source ratio is %s : 1' % round(ratio, 1)  
    print ''
 

@@ -2,7 +2,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_text_spanner_01( ):
+def test_text_spanner_position_01( ):
 
    t = Staff(construct.run(4))
    p = TextSpanner(t[:])
@@ -20,7 +20,7 @@ def test_text_spanner_01( ):
    assert t.format == "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
-def test_text_spanner_02( ):
+def test_text_spanner_position_02( ):
 
    t = Staff(construct.run(4))
    p = TextSpanner(t[:])
@@ -39,7 +39,7 @@ def test_text_spanner_02( ):
    assert t.format == "\\new Staff {\n\t\\textSpannerNeutral\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
-def test_text_spanner_03( ):
+def test_text_spanner_position_03( ):
 
    t = Staff(construct.run(4))
    p = TextSpanner(t[:])
@@ -58,7 +58,7 @@ def test_text_spanner_03( ):
    assert t.format == "\\new Staff {\n\t\\textSpannerUp\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
-def test_text_spanner_04( ):
+def test_text_spanner_position_04( ):
 
    t = Staff(construct.run(4))
    p = TextSpanner(t[:])
@@ -77,7 +77,7 @@ def test_text_spanner_04( ):
    assert t.format == "\\new Staff {\n\t\\textSpannerDown\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
-def test_text_spanner_05( ):
+def test_text_spanner_position_05( ):
    '''Setting unknown position raises ValueError.'''
 
    t = Staff(construct.run(4))
@@ -86,7 +86,7 @@ def test_text_spanner_05( ):
    assert raises(ValueError, 'p.position = "xxx"')
 
 
-def test_text_spanner_06( ):
+def test_text_spanner_position_06( ):
    '''TextSpanner attaching to container formats correctly.'''
 
    t = Staff(construct.run(4))
