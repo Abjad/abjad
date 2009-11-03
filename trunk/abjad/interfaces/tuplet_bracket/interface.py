@@ -12,7 +12,7 @@ class TupletBracketInterface(_Interface, _GrobHandler, _ContextSettingHandler):
    ::
 
       abjad> t = Staff(construct.scale(4))
-      abjad> t.tupletbracket.bracket_visibility = True
+      abjad> t.tuplet_bracket.bracket_visibility = True
       abjad> print t.format
       \new Staff \with {
          \override TupletBracket #'bracket-visibility = ##t
@@ -39,7 +39,7 @@ class TupletBracketInterface(_Interface, _GrobHandler, _ContextSettingHandler):
          ::
 
             abjad> staff = Staff(construct.scale(4))
-            abjad> staff.tupletbracket.tuplet_full_length = True
+            abjad> staff.tuplet_bracket.tuplet_full_length = True
             abjad> f(staff)
             \new Staff \with {
                     tupletFullLength = ##t

@@ -8,7 +8,7 @@ class TupletNumberInterface(_Interface, _GrobHandler):
    ::
 
       abjad> t = Staff(construct.scale(4))
-      abjad> t.tupletnumber.transparent = True
+      abjad> t.tuplet_number.transparent = True
       abjad> print t.format
       \new Staff \with {
          \override TupletNumber #'transparent = ##t

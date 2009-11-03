@@ -8,8 +8,8 @@ class NonMusicalPaperColumnInterface(_Interface, _GrobHandler):
    Handle the LilyPond NonMusicalPaperColumn grob. ::
 
       abjad> t = Score([Staff(construct.scale(4))])
-      abjad> t.nonmusicalpapercolumn.line_break_permission = False
-      abjad> t.nonmusicalpapercolumn.page_break_permission = False
+      abjad> t.non_musical_paper_column.line_break_permission = False
+      abjad> t.non_musical_paper_column.page_break_permission = False
 
    ::
 

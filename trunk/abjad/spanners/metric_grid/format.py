@@ -24,7 +24,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
    ##       find a way to make it faster.
    ## Tue Jan 13 12:05:43 EST 2009 [VA] using _slicingMetersFound boolean
    ## flag now to improve performance time. Better but still not perfect. 
-   ## Is metricgrid a good candidate for the UpdateInterface?
+   ## Is metric grid a good candidate for the UpdateInterface?
 
    def _before(self, leaf):
       '''Spanner format contribution before leaf.'''

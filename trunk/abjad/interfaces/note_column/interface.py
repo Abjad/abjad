@@ -8,7 +8,7 @@ class NoteColumnInterface(_Interface, _GrobHandler):
    Handle the LilyPond NoteColumn grob. ::
 
       abjad> t = Staff(construct.scale(4))
-      abjad> t.notecolumn.ignore_collision = True
+      abjad> t.note_column.ignore_collision = True
 
    ::
 

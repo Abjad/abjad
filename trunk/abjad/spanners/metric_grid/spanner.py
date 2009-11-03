@@ -1,5 +1,5 @@
 from abjad.meter import Meter
-from abjad.spanners.metricgrid.format import _MetricGridSpannerFormatInterface
+from abjad.spanners.metric_grid.format import _MetricGridSpannerFormatInterface
 from abjad.spanners.spanner.spanner import Spanner
 from abjad.spanners.tie import Tie
 from abjad.tools import mathtools

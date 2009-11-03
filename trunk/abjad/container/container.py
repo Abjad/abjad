@@ -4,7 +4,7 @@ from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
 #from abjad.notehead.interface import NoteHeadInterface
-from abjad.interfaces.notehead.interface import NoteHeadInterface
+from abjad.interfaces.note_head.interface import NoteHeadInterface
 
 
 class Container(_Component):
