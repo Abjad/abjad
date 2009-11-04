@@ -2,6 +2,10 @@ class DurationError(Exception):
    '''Any type of duration error.'''
    pass
 
+class MissingComponentError(Exception):
+   '''Operation assumes presence of component, but none is found.'''
+   pass
+
 class MeasureError(Exception):
    '''General measure error.'''
    pass

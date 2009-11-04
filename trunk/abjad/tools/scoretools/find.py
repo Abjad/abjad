@@ -1,9 +1,10 @@
 from abjad.component.component import _Component
+from abjad.exceptions import MissingComponentError
 from abjad.tools import iterate
 
 
 def find(expr, name = None, klass = None, context = None):
-   '''Return a tuple of all components in `expr`, such that:
+   '''Return the first component in `expr`, such that:
 
    * ``component.name == name``
    * ``isinstance(component, klass)``
@@ -23,20 +24,24 @@ def find(expr, name = None, klass = None, context = None):
    Find components by name. ::
 
       abjad> scoretools.find(score, name = 'Violin')
-      (Staff-"Violin"{4}, )
+      Staff-"Violin"{4}
 
    Find components by class. ::
 
       abjad> scoretools.find(score, klass = Staff)
-      (Staff-"Flute"{4}, Staff-"Violin"{4})
+      Staff-"Flute"{4}
 
    Find components by context. ::
 
       abjad> violin_staff.context = 'ViolinContext'
       abjad> scoretools.find(score, context = 'ViolinContext')
-      (ViolinContext-"Violin"{4}, )
+      ViolinContext-"Violin"{4},
 
    .. note:: For shallow traversal use ``Container[i]`` instead.
+
+   .. versionchanged:: 1.1.2
+      Function returns first component found.
+      Function previously returned tuple of all components found.
    '''
 
    result = [ ]
@@ -46,7 +51,9 @@ def find(expr, name = None, klass = None, context = None):
          if klass is None or isinstance(component, klass):
             if context is None or \
                getattr(component, 'context', None) == context:
-               result.append(component)
+               #result.append(component)
+               return component
 
-   result = tuple(result)
-   return result
+   #result = tuple(result)
+   #return result
+   raise MissingComponentError
