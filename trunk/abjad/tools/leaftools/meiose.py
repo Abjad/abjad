@@ -7,10 +7,28 @@ import math
 
 
 def meiose(expr, n = 2):
-   '''Iterate expr and replace every leaf 
-      with n leaves *in the same time*.
-      Preserve parentage and spanners.
-      Returns nothing.'''
+   r'''Iterate `expr` and replace every leaf in `expr`
+   with `n` leaves of equal duration.
+   Preserve parentage and spanners. Return nothing. ::
+
+      abjad> staff = Staff(construct.scale(4))
+      abjad> leaftools.meiose(staff[1], 4)
+      abjad> f(staff)
+      \new Staff {
+              c'8
+              d'32
+              d'32
+              d'32
+              d'32
+              e'8
+              f'8
+      }      
+
+   Divisions into only ``1, 2, 4, 8, 16, ...`` are allowed.
+   That is, `n` must be a nonnegative integer power of 2.
+
+   Function produces only leaves, never tuplets or other containers.
+   '''
 
    for leaf in iterate.naive_backward(expr, _Leaf):
       _leaf_meiose(leaf, n)
