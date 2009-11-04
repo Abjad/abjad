@@ -1,5 +1,6 @@
-from abjad.tools.mathtools.integer_partitions import integer_partitions \
-   as mathtools_integer_partitions
+from abjad.tools.mathtools.binary_string import binary_string as \
+   mathtools_binary_string
+import itertools
 
 
 def integer_compositions(n):
@@ -32,13 +33,25 @@ def integer_compositions(n):
    from abjad.tools.listtools.permutations import permutations as \
       listtools_permutations
 
-   ## definitely not optimized
-   ## ... though shouldn't matter unless 
-   ## generating MANY compositions 
+   ## Finds small values of n easily.
+   ## Takes ca. 4 seconds for n = 17.
 
-   compositions = set([ ])
-   for partition in mathtools_integer_partitions(n):
-      for permutation in listtools_permutations(partition):
-         compositions.add(permutation)
+   compositions = [ ]
+
+   x = 0
+   string_length = n
+   while x < 2 ** (n - 1):
+      string = mathtools_binary_string(x)
+      string = string.zfill(string_length)
+      l = [int(c) for c in list(string)]
+      partition = [ ]
+      g = itertools.groupby(l, lambda x: x)
+      for value, group in g:
+         partition.append(list(group))
+      sublengths = [len(part) for part in partition]
+      composition = tuple(sublengths)
+      compositions.append(composition)
+      x += 1
+
    for composition in reversed(sorted(compositions)):
       yield composition
