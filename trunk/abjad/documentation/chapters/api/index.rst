@@ -545,6 +545,7 @@ mathtools
    tools/mathtools/greatest_common_divisor
    tools/mathtools/greatest_multiple_less_equal
    tools/mathtools/greatest_power_of_two_less_equal
+   tools/mathtools/integer_compositions
    tools/mathtools/integer_partitions
    tools/mathtools/is_power_of_two
    tools/mathtools/least_common_multiple
