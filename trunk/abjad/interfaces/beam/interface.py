@@ -1,33 +1,30 @@
 from abjad.core.grobhandler import _GrobHandler
+from abjad.core.settinghandler import _ContextSettingHandler
 from abjad.interfaces.interface.interface import _Interface
 from abjad.spanners.spanner.receptor import _SpannerReceptor
 from abjad.spanners.beam import Beam
+import types
 
 
-class BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
+class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler, 
+   _SpannerReceptor):
    '''Handle LilyPond Beam grob.
-      Interface to LilyPond \setStemLeftBeamCount, \setStemRightBeamCount.'''
+
+   Interface to LilyPond \setStemLeftBeamCount, \setStemRightBeamCount.
+
+   Receive Abjad Beam spanner.
+   '''
 
    def __init__(self, client):
       '''Bind to client, LilyPond Beam grob and Abjad Beam spanner.
-         Set 'counts' to (None, None).'''
-      #from abjad.beam.spanner import Beam
+      Set 'counts' to (None, None).'''
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'Beam')
       _SpannerReceptor.__init__(self, (Beam, ))
+      self.auto_beaming = None
       self._counts = (None, None)
 
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def beamable(self):
-      '''True when client is beamable, otherwise False.'''
-      from abjad.chord import Chord
-      from abjad.note import Note
-      #client = self.client
-      client = self._client
-      flags = client.duration._flags
-      return isinstance(client, (Note, Chord)) and 0 < flags
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _before(self):
@@ -40,11 +37,47 @@ class BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
          result.append(r'\set stemRightBeamCount = #%s' % self.counts[1])
       return result
 
+   ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def auto_beaming( ):
+      def fget(self):
+         r'''Interface to LilyPond automatic beaming command.
+      
+         ::
+
+            abjad> staff = Staff(construct.scale(4))
+            abjad> staff.beam.auto_beaming = False
+            abjad> f(staff)
+            \new Staff \with {
+                    autoBeaming = ##f
+            } {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+            }
+         '''
+         return self._auto_beaming
+      def fset(self, expr):
+         assert isinstance(expr, (bool, types.NoneType))
+         self._auto_beaming = expr
+      return property(**locals( ))
+
+   @property
+   def beamable(self):
+      '''True when client is beamable, otherwise False.'''
+      from abjad.chord import Chord
+      from abjad.note import Note
+      client = self._client
+      flags = client.duration._flags
+      return isinstance(client, (Note, Chord)) and 0 < flags
+
    @apply
    def counts( ):
       def fget(self):
          '''Interface to LilyPond \setStemLeftBeamCount, 
-            \setStemRightBeamCount.  Set to nonzero integer, pair or None.'''
+         \setStemRightBeamCount.  Set to nonzero integer, pair or None.'''
          return self._counts
       def fset(self, expr):
          if expr is None:
@@ -56,3 +89,16 @@ class BeamInterface(_Interface, _GrobHandler, _SpannerReceptor):
          else:
             raise ValueError('must be nonzero integer, pair or None.')
       return property(**locals( ))
+
+   @property
+   def settings(self):
+      r'''Read-only list of LilyPond context settings
+      picked up at format-time.'''
+      result = [ ]
+      auto_beaming = self.auto_beaming
+      if auto_beaming is not None:
+         if auto_beaming:
+            result.append('autoBeaming = ##t')
+         else:
+            result.append('autoBeaming = ##f')
+      return result
