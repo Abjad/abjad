@@ -3,7 +3,33 @@ from abjad.tools.sievetools.process_min_max_attribute import _process_min_max_at
 
 class RC(_BaseRC):
    '''Residue class (or congruence class). 
-   Use to construct sieves a la Xenakis.'''
+   Residue classes form the basis of Xenakis sieves. They can be used to 
+   construct any complex periodic integer (or boolean) sequence as a 
+   combination of simple periodic sequences. 
+
+   Example: From the opening of Xenakis' *Psappha* for solo percussion:: 
+
+      abjad> s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
+      abjad> s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
+      abjad> s3 = RC(8, 3)
+      abjad> s4 = RC(8, 4)
+      abjad> s5 = (RC(8, 5) | RC(8, 6)) & (RC(5, 2) | RC(5, 3) | RC(5, 4))
+      abjad> s6 = (RC(8, 1) & RC(5, 2))
+      abjad> s7 = (RC(8, 6) & RC(5, 1))
+
+      abjad> y = s1 | s2 | s3 | s4 | s5 | s6 | s7 
+      abjad> y
+      {{{RC(8, 0) | RC(8, 1) | RC(8, 7)} & {RC(5, 1) | RC(5, 3)}} | 
+      {{RC(8, 0) | RC(8, 1) | RC(8, 2)} & RC(5, 0)} | RC(8, 3) | RC(8, 4) | 
+      {{RC(8, 5) | RC(8, 6)} & {RC(5, 2) | RC(5, 3) | RC(5, 4)}} | 
+      {RC(8, 1) & RC(5, 2)} | {RC(8, 6) & RC(5, 1)}}
+
+      abjad> y.get_congruent_bases(40)
+         [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22, 23, 25, 27, 
+         28, 29, 31, 33, 35, 36, 37, 38, 40]
+      abjad> y.get_boolean_train(40)
+         [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 
+         1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]'''
 
    def __init__(self, modulo, residue):
       if not modulo > 0:
