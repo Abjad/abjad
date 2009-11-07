@@ -1,4 +1,5 @@
 from abjad.leaf.leaf import _Leaf
+from abjad.measure.measure import _Measure
 from abjad.rational import Rational
 
 
@@ -65,6 +66,17 @@ class VerticalMoment(object):
       return result
 
    @property
+   def measures(self):
+      '''Read-only tuplet of zero or more measures
+      at vertical moment.'''
+      result = [ ]
+      for component in self.components:
+         if isinstance(component, _Measure):
+            result.append(component)
+      result = tuple(result)
+      return result
+
+   @property
    def prolated_offset(self):
       '''Read-only rational-valued score offset
       at which vertical moment is evaluated.'''
@@ -86,6 +98,14 @@ class VerticalMoment(object):
       '''Read-only tuple of leaves in vertical moment
       starting before vertical moment, ordered by score index.'''
       result = [x for x in self.overlap_components if isinstance(x, _Leaf)]
+      result = tuple(result)
+      return result
+
+   @property
+   def overlap_measures(self):
+      '''Read-only tuple of measures in vertical moment
+      starting before vertical moment, ordered by score index.'''
+      result = [x for x in self.overlap_components if isinstance(x, _Measure)]
       result = tuple(result)
       return result
 
