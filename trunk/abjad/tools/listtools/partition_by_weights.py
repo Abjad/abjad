@@ -5,8 +5,8 @@ from abjad.tools.listtools.weight import weight as listtools_weight
 
 
 def partition_by_weights(l, weights, cyclic = False, overhang = False):
-   '''Partition list ``l`` into ``result`` comprising sublists \
-   such that ``listtools.weight(r_i)`` for ``r_i`` in ``result`` equals \
+   '''Partition list ``l`` into ``result`` comprising sublists
+   such that ``listtools.weight(r_i)`` for ``r_i`` in ``result`` equals
    ``s_i`` for ``s_i`` in list of weights ``s``.
 
    Input:
@@ -18,9 +18,7 @@ def partition_by_weights(l, weights, cyclic = False, overhang = False):
 
    Ouput: Python list of one or more sublists.
 
-   With one-element ``weights`` list.
-
-   ::
+   With one-element ``weights`` list. ::
 
       abjad> l = [20, 20, 20, 20] 
       abjad> listtools.partition_by_weights(l, [15])
@@ -44,9 +42,7 @@ def partition_by_weights(l, weights, cyclic = False, overhang = False):
       abjad> listtools.partition_by_weights(l, [15], cyclic = True, overhang = True)
       [[15], [5, 10], [10, 5], [15], [15], [5]]
 
-   With multi-element ``weights`` list.
-
-   ::
+   With multi-element ``weights`` list. ::
 
       abjad> l = [20, 20, 20, 20]
       abjad> listtools.partition_by_weights(l, [7, 15])
@@ -70,16 +66,15 @@ def partition_by_weights(l, weights, cyclic = False, overhang = False):
       abjad> listtools.partition_by_weights(l, [7, 15], cyclic = True, overhang = True)
       [[7], [13, 2], [7], [11, 4], [7], [9, 6], [7], [7]]
 
-   Because ``listtools.weight(l)`` equals the sum of the absolute \
-   values of the elements in list ``l``, negative numbers in ``l`` \
-   give negative numbers in the output of \
-   ``listtools.partition_by_weights( )``.
-
-   ::
+   Because ``listtools.weight(l)`` equals the sum of the absolute
+   values of the elements in list ``l``, negative numbers in ``l``
+   give negative numbers in the output of 
+   ``listtools.partition_by_weights( )``. ::
 
       abjad> l = [20, -20, 20, -20]
       abjad> listtools.partition_by_weights(l, [7, 15], cyclic = True)
-      [[7], [13, -2], [-7], [-11, 4], [7], [9, -6], [-7]]'''
+      [[7], [13, -2], [-7], [-11, 4], [7], [9, -6], [-7]]
+   '''
 
    assert all([isinstance(x, (int, float, long, Rational)) for x in l])
    assert all([isinstance(x, (int, float, long, Rational)) for x in weights])
