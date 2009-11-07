@@ -21,7 +21,8 @@ class _BlockAttributed(object):
    @property
    def _format_pieces(self):
       result = [ ]
-      if not self._user_attributes:
+      #if not self._user_attributes:
+      if not self._formatted_user_attributes:
          result.append('%s { }' % self._escaped_name)
       else:
          result = ['%s {' % self._escaped_name]
