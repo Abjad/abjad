@@ -488,6 +488,7 @@ listtools
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
    tools/listtools/interlace
+   tools/listtools/is_assignable
    tools/listtools/is_decreasing_monotonically
    tools/listtools/is_decreasing_strictly
    tools/listtools/is_increasing_monotonically
