@@ -1,10 +1,8 @@
 def partition_integer_by_ratio(n, ratio):
-   '''Partition integer ``n`` into parts such that the sum \
-   of all parts in parts equals ``n`` and such that the proportions \
-   between the parts in parts equals the the proportions in ``ratio`` \
-   with some rounding magic.
-
-   ::
+   '''Partition integer `n` into parts such that the sum
+   of all parts equals `n` and such that the proportions
+   between the parts equal the proportions in `ratio`
+   with some rounding magic. ::
 
       abjad> mathtools.partition_integer_by_ratio(10, [1])
       [10]

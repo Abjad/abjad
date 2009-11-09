@@ -506,6 +506,7 @@ listtools
    tools/listtools/partition_by_lengths
    tools/listtools/partition_by_weights
    tools/listtools/partition_by_weights_not_less_than
+   tools/listtools/partition_by_weights_ratio
    tools/listtools/partition_elements_into_canonic_parts
    tools/listtools/permutations
    tools/listtools/phasor
