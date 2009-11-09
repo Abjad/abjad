@@ -458,7 +458,8 @@ class Spanner(_Abjad):
       from abjad.tools import check
       input = self[-1:]
       input.extend(components)
-      check.assert_components(input, contiguity = 'thread')
+      if self._contiguity_constraint == 'thread':
+         check.assert_components(input, contiguity = 'thread')
       for component in components:
          self.append(component)
 
