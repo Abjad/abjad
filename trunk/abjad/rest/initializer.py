@@ -1,6 +1,5 @@
 from abjad.core.initializer import _Initializer
-#from abjad.notehead.interface import NoteHeadInterface
-from abjad.interfaces.note_head.interface import NoteHeadInterface
+from abjad.interfaces import NoteHeadInterface
 
 
 class _RestInitializer(_Initializer):

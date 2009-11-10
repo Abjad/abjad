@@ -1,9 +1,9 @@
-from abjad.interfaces.brackets.interface import BracketsInterface
 from abjad.component.component import _Component
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
-from abjad.interfaces.note_head.interface import NoteHeadInterface
+from abjad.interfaces import BracketsInterface
+from abjad.interfaces import NoteHeadInterface
 
 
 class Container(_Component):

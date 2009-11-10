@@ -1,6 +1,6 @@
 from abjad.interfaces.interface.interface import _Interface
-from abjad.interfaces.comments.interface import CommentsInterface
-from abjad.interfaces.directives.interface import DirectivesInterface
+from abjad.interfaces import CommentsInterface
+from abjad.interfaces import DirectivesInterface
 
 
 class _ComponentFormatterSlotsInterface(_Interface):

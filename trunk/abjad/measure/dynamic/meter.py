@@ -1,12 +1,13 @@
 from abjad.exceptions import MeterAssignmentError
 from abjad.tools import durtools
 from abjad.meter import Meter
-from abjad.interfaces.meter.interface import MeterInterface
+from abjad.interfaces import MeterInterface
 
 
 class _DynamicMeasureMeterInterface(MeterInterface):
    '''Handle LilyPond TimeSignature grob for DynamicMeasure.
-      Publish information about effective and forced meter.'''
+   Publish information about effective and forced meter.
+   '''
    
    def __init__(self, _client, _updateInterface):
       '''Initialize parent class.'''

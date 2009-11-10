@@ -1,6 +1,5 @@
 from abjad.notehead.format import _NoteHeadFormatInterface
-#from abjad.notehead.interface import NoteHeadInterface
-from abjad.interfaces.note_head.interface import NoteHeadInterface
+from abjad.interfaces import NoteHeadInterface
 from abjad.pitch import Pitch
 import types
 

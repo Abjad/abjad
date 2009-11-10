@@ -1,7 +1,6 @@
 from abjad.chord.formatter import _ChordFormatter
 from abjad.core.initializer import _Initializer
-#from abjad.notehead.interface import NoteHeadInterface
-from abjad.interfaces.note_head.interface import NoteHeadInterface
+from abjad.interfaces import NoteHeadInterface
 
 
 ## NOTE - order of steps must be 
