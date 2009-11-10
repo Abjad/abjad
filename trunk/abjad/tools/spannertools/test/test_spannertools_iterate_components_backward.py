@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_iterate_components_backwards_01( ):
+def test_spannertools_iterate_components_backward_01( ):
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
@@ -22,7 +22,7 @@ def test_spannertools_iterate_components_backwards_01( ):
    }
    '''
 
-   components = spannertools.iterate_components_backwards(p)
+   components = spannertools.iterate_components_backward(p)
    components = list(components)
    leaves = t.leaves
 
