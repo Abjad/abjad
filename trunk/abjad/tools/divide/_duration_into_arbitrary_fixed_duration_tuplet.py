@@ -19,7 +19,9 @@ def _duration_into_arbitrary_fixed_duration_tuplet(
    basic_prolated_duration = duration / sum(divisions)
 
    ## find basic written duration of note in tuplet
-   basic_written_duration = durtools.prolated_to_written(
+   #basic_written_duration = durtools.prolated_to_written(
+   #   basic_prolated_duration)
+   basic_written_duration = durtools.prolated_to_written_not_less_than(
       basic_prolated_duration)
    
    ## find written duration of each note in tuplet
