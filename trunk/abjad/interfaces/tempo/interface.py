@@ -1,7 +1,7 @@
 from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
-from abjad.spanners.spanner.receptor import _SpannerReceptor
+from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
 from abjad.spanners.tempo import Tempo
 from abjad.tools import tempotools
 import types

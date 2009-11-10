@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces.interface.interface import _Interface
 from abjad.spanners.dynamics.spanner import Dynamic
 from abjad.spanners.hairpin.spanner import Hairpin
-from abjad.spanners.spanner.receptor import _SpannerReceptor
+from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
 
 
 ## TODO: Dynamics by spanner only? ##

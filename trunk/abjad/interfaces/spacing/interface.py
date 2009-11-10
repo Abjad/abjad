@@ -2,7 +2,7 @@ from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces.interface.interface import _Interface
 from abjad.rational import Rational
 from abjad.spanners.spacing.spanner import SpacingSpanner
-from abjad.spanners.spanner.receptor import _SpannerReceptor
+from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
 import types
 
 

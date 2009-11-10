@@ -3,7 +3,7 @@ from abjad.interfaces.interface.interface import _Interface
 from abjad.core.settinghandler import _ContextSettingHandler
 from abjad.markup import Markup
 from abjad.spanners.instrument.spanner import Instrument
-from abjad.spanners.spanner.receptor import _SpannerReceptor
+from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
 import types
 
 

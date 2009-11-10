@@ -1,6 +1,7 @@
 from abjad.checks.check import _Check
 from abjad.leaf import _Leaf
-from abjad.spanners.beam import Beam
+#from abjad.spanners.beam import Beam
+from abjad.spanners import Beam
 from abjad.tools import iterate
 
 

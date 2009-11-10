@@ -1,6 +1,6 @@
-from abjad.container import Container
+#from abjad.container import Container
 from abjad.rational import Rational
-from abjad.skip import Skip
+#from abjad.skip import Skip
 from abjad.spanners.spanner.format import _SpannerFormatInterface
 
 
@@ -28,6 +28,8 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
 
    def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
+      from abjad.container import Container
+      from abjad.skip import Skip
       result = [ ]
       spanner = self.spanner
       if not spanner.hide:
