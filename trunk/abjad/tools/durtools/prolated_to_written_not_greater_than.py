@@ -1,8 +1,11 @@
 from abjad.rational import Rational
 from abjad.tools.durtools.is_assignable import is_assignable as \
    durtools_is_assignable
-from abjad.tools.durtools.naive_prolated_to_written import \
-   naive_prolated_to_written as durtools_naive_prolated_to_written
+#from abjad.tools.durtools.naive_prolated_to_written import \
+#   naive_prolated_to_written as durtools_naive_prolated_to_written
+from abjad.tools.durtools.naive_prolated_to_written_not_greater_than \
+   import naive_prolated_to_written_not_greater_than \
+   as durtools_naive_prolated_to_written_not_greater_than
 import math
 
 
@@ -41,4 +44,6 @@ def prolated_to_written_not_greater_than(prolated_duration):
    if durtools_is_assignable(prolated_duration):
       return prolated_duration
    else:
-      return durtools_naive_prolated_to_written(prolated_duration, 'augmentation')
+      #return durtools_naive_prolated_to_written(prolated_duration, 'augmentation')
+      return durtools_naive_prolated_to_written_not_greater_than(
+         prolated_duration)

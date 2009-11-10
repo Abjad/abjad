@@ -1,10 +1,10 @@
-from abjad.rational import Rational
-from abjad.tools.durtools.is_assignable import is_assignable
-from abjad.tools.durtools.naive_prolated_to_written import \
-   naive_prolated_to_written
-import math
-
-
+#from abjad.rational import Rational
+#from abjad.tools.durtools.is_assignable import is_assignable
+#from abjad.tools.durtools.naive_prolated_to_written import \
+#   naive_prolated_to_written
+#import math
+#
+#
 #def prolated_to_written(prolated_duration, prolation = 'diminution'):
 #   '''When ``prolation = 'diminution'`` return the greatest 
 #   note_head-assignable rational less than or equal to 
