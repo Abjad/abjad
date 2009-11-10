@@ -3,7 +3,6 @@ from abjad.component.component import _Component
 from abjad.container.duration import _ContainerDurationInterface
 from abjad.container.formatter import _ContainerFormatter
 from abjad.container.spanner.aggregator import _ContainerSpannerAggregator
-#from abjad.notehead.interface import NoteHeadInterface
 from abjad.interfaces.note_head.interface import NoteHeadInterface
 
 
@@ -80,10 +79,6 @@ class Container(_Component):
 
    def __repr__(self):
       '''String format of container for interpreter display.'''
-#      if not self.parallel:
-#         return '{%s}' % self._summary
-#      else:
-#         return '<<%s>>' % self._summary
       return self._compact_representation
 
    def __setitem__(self, i, expr):
@@ -157,7 +152,7 @@ class Container(_Component):
    @property
    def brackets(self):
       '''Read-only reference to
-      :class:`~abjad.brackets.interface.BracketsInterface`.'''
+      :class:`~abjad.interfaces.brackets.interface.BracketsInterface`.'''
       return self._brackets
 
    @apply
@@ -177,8 +172,8 @@ class Container(_Component):
    ## PRIVATE METHODS ##
 
    def _initializeMusic(self, music):
-      '''Insert components in 'music' in container.
-         Set parent of components in 'music' to container.'''
+      '''Insert `music` components in in container.
+      Set parent of `music` components to container.'''
       from abjad.tools import check
       from abjad.tools import parenttools
       from abjad.tools.parenttools.switch import _switch
@@ -203,13 +198,13 @@ class Container(_Component):
 
    def append(self, component):
       '''Append component to the end of container.
-         Attach no new spanners to component.'''
+      Attach no new spanners to component.'''
       self[len(self):len(self)] = [component]
 
    def extend(self, expr):
       '''Extend container with components in 'expr'.
-         Change no container spanners.
-         Return container.'''
+      Change no container spanners.
+      Return container.'''
       self[len(self):len(self)] = expr[:]
       return self
 
@@ -219,25 +214,25 @@ class Container(_Component):
 
    def insert(self, i, component):
       '''Insert component 'component' at index 'i' in container.
-         Attach spanners that dominate index 'i' to 'component'.'''
+      Attach spanners that dominate index 'i' to 'component'.'''
       self[i:i] = [component]
 
    def pop(self, i = -1):
       '''Find component at index 'i' in container.
-         Detach component from parentage.
-         Withdraw component from crossing spanners.
-         Preserve spanners that component covers.
-         Return component.'''
+      Detach component from parentage.
+      Withdraw component from crossing spanners.
+      Preserve spanners that component covers.
+      Return component.'''
       component = self[i]
       del(self[i])
       return component
 
    def remove(self, component):
       '''Assert 'component' in container.
-         Detach 'component' from parentage.
-         Withdraw 'component' from crossing spanners.
-         Carry covered spanners forward on 'component'.
-         Return 'component'.'''
+      Detach 'component' from parentage.
+      Withdraw 'component' from crossing spanners.
+      Carry covered spanners forward on 'component'.
+      Return 'component'.'''
       i = self.index(component)
       del(self[i])
       return component

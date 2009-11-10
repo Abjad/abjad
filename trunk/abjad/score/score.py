@@ -20,5 +20,6 @@ class Score(_Context):
    @property
    def spacing(self):
       '''Read-only reference to
-      :class:`~abjad.spacing.score.interface.ScoreSpacingInterface`.'''
+      :class:`~abjad.interfaces.spacing.score.interface.ScoreSpacingInterface`.
+      '''
       return self._spacing
