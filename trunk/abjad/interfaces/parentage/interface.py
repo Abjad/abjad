@@ -78,7 +78,7 @@ class ParentageInterface(_Interface):
          0
       '''
 
-      from abjad.tuplet.tuplet import _Tuplet
+      from abjad.tuplet import _Tuplet
       result = 0
       for parent in self.parentage[1:]:
          if isinstance(parent, _Tuplet):

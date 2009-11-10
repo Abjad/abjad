@@ -1,5 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 from abjad.tools import iterate
 from abjad.tools import tietools
 from abjad.tools import tuplettools

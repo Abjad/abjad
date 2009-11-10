@@ -1,4 +1,4 @@
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 from abjad.meter import Meter
 from abjad.tools import durtools
 

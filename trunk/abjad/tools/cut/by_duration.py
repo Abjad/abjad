@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 from abjad.exceptions import NegativeDurationError
 from abjad.leaf import _Leaf
 from abjad.rational import Rational
@@ -11,11 +11,12 @@ from abjad.tools import leaftools
 
 def by_duration(component, duration):
    '''Trim the first 'duration' of time from 'component'.
-      When 'component' is a leaf, shorten duration of leaf.
-      When 'component' is a container, remove contents from container.
-      Add ties or duration-modification tuplets as necessary.
-      Return value to be determined.
-      Maybe return ejected components.'''
+   When 'component' is a leaf, shorten duration of leaf.
+   When 'component' is a container, remove contents from container.
+   Add ties or duration-modification tuplets as necessary.
+   Return value to be determined.
+   Maybe return ejected components.
+   '''
 
    assert isinstance(component, _Component)
    assert isinstance(duration, Rational)

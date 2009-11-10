@@ -1,6 +1,3 @@
-#from abjad.component.component import _Component
-
-
 def get_scorewide(component):
    '''Return scorewide spacing of explicit score of `compoment`. ::
 

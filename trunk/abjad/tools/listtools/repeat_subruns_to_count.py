@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 
 
 def repeat_subruns_to_count(l, indicators):

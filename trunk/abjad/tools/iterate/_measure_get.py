@@ -2,7 +2,7 @@ from abjad.container import Container
 from abjad.exceptions import MeasureContiguityError
 from abjad.exceptions import MissingMeasureError
 from abjad.leaf import _Leaf
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 from abjad.tools.iterate.naive_backward import naive_backward as \
    iterate_naive_backward
 from abjad.tools.iterate.naive_forward import naive_forward as \

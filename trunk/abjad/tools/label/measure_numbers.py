@@ -1,5 +1,5 @@
 from abjad.container import Container
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 
 
 def measure_numbers(container, style = 'comment'):

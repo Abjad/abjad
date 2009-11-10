@@ -1,4 +1,5 @@
 from abjad.checks.check import _Check
+from abjad.component import _Component
 from abjad.tools import iterate
 from abjad.tools import listtools
 
@@ -6,7 +7,6 @@ from abjad.tools import listtools
 class IdsDuplicated(_Check):
 
    def _run(self, expr):
-      from abjad.component.component import _Component
       violators = [ ]
       components = iterate.naive_forward(expr, _Component)
       total_ids = [id(x) for x in components]

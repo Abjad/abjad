@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 from abjad.rational import Rational
 from abjad.tools.iterate.VerticalMoment import VerticalMoment
 from abjad.tools.iterate.get_vertical_moment_at_prolated_offset_in \

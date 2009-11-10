@@ -1,4 +1,4 @@
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 from abjad.tools.layout._line_break_every import _line_break_every
 
 

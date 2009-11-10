@@ -12,7 +12,7 @@ def with_parent(ll):
    Return in container equal to type of first element in ll.
    Shrink result container as necessary to preserve parent multiplier.'''
 
-   from abjad.measure.measure import _Measure
+   from abjad.measure import _Measure
 
    # assert strictly contiguous components in same thread
    check.assert_components(ll, contiguity = 'strict', share = 'thread')

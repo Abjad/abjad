@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 from abjad.container import Container
 from abjad.leaf import _Leaf
 from abjad.rational import Rational
@@ -13,8 +13,9 @@ from abjad.tools.clonewp.by_leaf_range_with_parentage import \
 
 def by_duration_with_parentage(expr, start = 0, stop = None):
    '''Copy expr from start duration stop up to
-      and including stop duration stop;
-      slice all layers of structure as required.'''
+   and including stop duration stop;
+   slice all layers of structure as required.
+   '''
 
    assert isinstance(expr, _Component)
    start = Rational(*durtools.token_unpack(start))

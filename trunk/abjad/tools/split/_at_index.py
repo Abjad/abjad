@@ -1,5 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 from abjad.meter import Meter
 from abjad.tools import containertools
 from abjad.tools import durtools
@@ -8,15 +8,16 @@ from abjad.tools import metertools
 from abjad.tools import parenttools
 from abjad.tools import spannertools
 from abjad.tools.parenttools.switch import _switch
-from abjad.tuplet.tuplet import _Tuplet
+from abjad.tuplet import _Tuplet
 
 
 def _at_index(component, i, spanners = 'unfractured'):
    '''General component index split algorithm.
-      Works on leaves, tuplets, measures, contexts and unqualified containers.
-      Keyword controls spanner behavior at split time.
-      Use split.fractured_at_index( ) to fracture spanners.
-      Use split.unfractured_at_index( ) to leave spanners unchanged.'''
+   Works on leaves, tuplets, measures, contexts and unqualified containers.
+   Keyword controls spanner behavior at split time.
+   Use split.fractured_at_index( ) to fracture spanners.
+   Use split.unfractured_at_index( ) to leave spanners unchanged.
+   '''
 
    ## convenience leaf index split definition
    if isinstance(component, _Leaf):

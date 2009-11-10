@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 from abjad.tools.iterate.VerticalMoment import VerticalMoment
 from abjad.tools.iterate.naive_forward import naive_forward as \
    iterate_naive_forward

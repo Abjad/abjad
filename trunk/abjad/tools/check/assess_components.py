@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 from abjad.tools import iterate
 import types
 
@@ -6,8 +6,6 @@ import types
 ## TODO: Make check.assess_components( ) work with generators 
 ##       This will prevent needing to manifest large lists
 ##       of leaves for checking wiht check.assess_components( ).
-
-#visits = 0
 
 def assess_components(expr, klasses = (_Component, ), 
    contiguity = None, share = None, allow_orphans = True):
@@ -43,10 +41,6 @@ def assess_components(expr, klasses = (_Component, ),
       performance bottleneck. But initial performance testing indicates
       that this function is not a bottleneck.
    '''
-
-   #global visits
-   #visits += 1
-   #print 'debug: in assess components %s ...' % visits
 
    if contiguity is None:
       

@@ -1,5 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 from abjad.rational import Rational
 from abjad.rest import Rest
 from abjad.skip import Skip

@@ -6,7 +6,7 @@ class MeasuresNested(_Check):
    '''Do we have any nested measures?'''
 
    def _run(self, expr):
-      from abjad.measure.measure import _Measure
+      from abjad.measure import _Measure
       from abjad.tools import parenttools
       violators = [ ]
       total = 0

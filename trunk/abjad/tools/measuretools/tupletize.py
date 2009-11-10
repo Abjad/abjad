@@ -1,4 +1,4 @@
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 from abjad.tools import iterate
 from abjad.tuplet import FixedDurationTuplet
 import copy

@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 from abjad.tools import check
 from abjad.tools import parenttools
 from abjad.tools import iterate
@@ -6,16 +6,17 @@ from abjad.tools import iterate
 
 def get_dominant(components):
    '''Return Python list of (spanner, index) pairs.
-      Each (spanner, index) pair gives a spanner which dominates
-      all components in 'components' together with the start-index
-      at which spanner first encounters 'components'.
+   Each (spanner, index) pair gives a spanner which dominates
+   all components in 'components' together with the start-index
+   at which spanner first encounters 'components'.
 
-      Use this helper to 'lift' any and all spanners temporarily
-      from 'components', perform some action to the underlying
-      score tree, and then reattach all spanners to new
-      score components.
+   Use this helper to 'lift' any and all spanners temporarily
+   from 'components', perform some action to the underlying
+   score tree, and then reattach all spanners to new
+   score components.
 
-      This operation always leaves all expressions in tact.'''
+   This operation always leaves all expressions in tact.
+   '''
 
    check.assert_components(
       components, contiguity = 'thread', allow_orphans = False)

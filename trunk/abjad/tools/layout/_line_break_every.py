@@ -1,4 +1,4 @@
-from abjad.measure.measure import _Measure
+from abjad.measure import _Measure
 from abjad.rational import Rational
 from abjad.tools import iterate
 

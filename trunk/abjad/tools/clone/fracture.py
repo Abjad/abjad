@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 from abjad.tools import check
 from abjad.tools import iterate
 from abjad.tools.parenttools.ignore import _ignore
@@ -9,9 +9,10 @@ import copy
 
 def fracture(components, n = 1):
    '''Deep copy components in 'components'.
-      Deep copy spanners that attach to any component in 'components'.
-      Fracture spanners that attach to components not in 'components'.
-      Return Python list of copied components.'''
+   Deep copy spanners that attach to any component in 'components'.
+   Fracture spanners that attach to components not in 'components'.
+   Return Python list of copied components.
+   '''
 
    if n < 1:
       return [ ]

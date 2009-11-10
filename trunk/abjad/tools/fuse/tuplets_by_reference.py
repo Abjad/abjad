@@ -3,17 +3,18 @@ from abjad.exceptions import TupletFuseError
 from abjad.rational import Rational
 from abjad.tools import check
 from abjad.tools import containertools
-from abjad.tuplet.tuplet import _Tuplet
+from abjad.tuplet import _Tuplet
 from abjad.tuplet import FixedDurationTuplet
 from abjad.tuplet import FixedMultiplierTuplet
 
 
 def tuplets_by_reference(tuplets):
    '''Fuse zero or more tuplets in the 'tuplets' list.
-      Tuplets to fuse must carry the same multiplier.
-      Tuplets to fuse must be of the same type.
-      Works on in-score and outside-of-score tuplets.
-      Returns newly instantiated, fused tuplet.'''
+   Tuplets to fuse must carry the same multiplier.
+   Tuplets to fuse must be of the same type.
+   Works on in-score and outside-of-score tuplets.
+   Returns newly instantiated, fused tuplet.
+   '''
 
    from abjad.tools import scoretools
 

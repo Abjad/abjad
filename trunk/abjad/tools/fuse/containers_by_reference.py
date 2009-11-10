@@ -1,15 +1,15 @@
 from abjad.container import Container
-#from abjad.navigator.dfs import depth_first_search
 from abjad.tools import check
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import iterate
-from abjad.tuplet.tuplet import _Tuplet
+from abjad.tuplet import _Tuplet
 
 
 def containers_by_reference(expr):
    '''Fuse containers in self that are strictly contiguous 
-      and that have the same name.'''
+   and that have the same name.
+   '''
 
    merged = False
    if not isinstance(expr, list):

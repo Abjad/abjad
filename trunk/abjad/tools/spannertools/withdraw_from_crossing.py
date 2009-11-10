@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+from abjad.component import _Component
 from abjad.tools import check
 from abjad.tools import iterate
 from abjad.tools.spannertools.get_crossing import get_crossing
@@ -6,13 +6,14 @@ from abjad.tools.spannertools.get_crossing import get_crossing
 
 def _withdraw_from_crossing(components):
    '''This operation can leave score trees in a weird state.
-      Operation should only be used in the middle of some other operation.
-      Intended purpose is to strip components of crosssing spanners.
-      Similar to stripping components of parentage.
-      These two operations prepared components for reincorporation.
-      Reincorporation means setting into some other score tree.
-      Container setitem is probably primary consumer of this operation.
-      Return None.'''
+   Operation should only be used in the middle of some other operation.
+   Intended purpose is to strip components of crosssing spanners.
+   Similar to stripping components of parentage.
+   These two operations prepared components for reincorporation.
+   Reincorporation means setting into some other score tree.
+   Container setitem is probably primary consumer of this operation.
+   Return None.
+   '''
 
    check.assert_components(components, contiguity = 'thread')
 

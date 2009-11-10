@@ -1,4 +1,4 @@
-from abjad.tuplet.tuplet import _Tuplet
+from abjad.tuplet import _Tuplet
 
 
 def diminution_to_augmentation(tuplet):
