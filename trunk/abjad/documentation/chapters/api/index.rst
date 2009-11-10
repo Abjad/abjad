@@ -304,10 +304,11 @@ durtools
    tools/durtools/is_token
    tools/durtools/is_tuplet_multiplier
    tools/durtools/naive_prolated_to_written
+   tools/durtools/naive_prolated_to_written_not_greater_than
+   tools/durtools/naive_prolated_to_written_not_less_than
    tools/durtools/pair_multiply_constant_numerator
    tools/durtools/pair_multiply_naive
    tools/durtools/pair_multiply_reduce_factors
-   tools/durtools/prolated_to_written
    tools/durtools/prolated_to_written_not_greater_than
    tools/durtools/prolated_to_written_not_less_than
    tools/durtools/rationalize
