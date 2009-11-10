@@ -1,5 +1,5 @@
 from abjad.interfaces.interface.interface import _Interface
-from abjad.spanners.piano_pedal import PianoPedal
+from abjad.spanners import PianoPedal
 from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
 
 

@@ -1,5 +1,4 @@
-#from abjad.beam import Beam
-from abjad.spanners.beam import Beam
+from abjad.spanners import Beam
 from abjad.tools import iterate
 from abjad.tuplet.tuplet import _Tuplet
 

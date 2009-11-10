@@ -1,6 +1,6 @@
+from abjad.note import Note
 from abjad.rational import Rational
 from abjad.rest import Rest
-from abjad.note import Note
 from abjad.tools import durtools
 from abjad.tools.construct._construct_tied_note import _construct_tied_note
 from abjad.tools.construct._construct_tied_rest import  _construct_tied_rest

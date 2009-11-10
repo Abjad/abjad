@@ -1,7 +1,7 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces.interface.interface import _Interface
 from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
-from abjad.spanners.text import TextSpanner
+from abjad.spanners import TextSpanner
 
 
 class TextSpannerInterface(_Interface, _GrobHandler, _SpannerReceptor):

@@ -1,10 +1,10 @@
-#from abjad.beam import BeamComplexDurated
-from abjad.spanners.beam import BeamComplexDurated
+from abjad.spanners import BeamComplexDurated
 
 
 def beam_together(measures):
    '''Apply BeamComplexDurated to all measures in measures;
-      set p.durations equal to preprolated measure durations.'''
+   set p.durations equal to preprolated measure durations.
+   '''
 
    durations = [ ]
    for measure in measures:

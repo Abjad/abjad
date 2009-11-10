@@ -12,9 +12,7 @@ def scale(count, duration = Rational(1, 8)):
       The default is 1/8.
 
 
-   Examples:
-
-   ::
+   Examples::
 
       abjad> construct.scale(4)
       [Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8)]

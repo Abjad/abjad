@@ -1,6 +1,6 @@
 from abjad.leaf import _Leaf
 from abjad.rational import Rational
-from abjad.spanners.tie import Tie
+from abjad.spanners import Tie
 from abjad.tools import clone
 from abjad.tools import tietools
 from abjad.tools.leaftools.duration_change import duration_change as \
@@ -10,10 +10,11 @@ from abjad.tools.leaftools.duration_change import duration_change as \
 def _leaf_at_duration(
    leaf, split_dur, spanners = 'unfractured', tie_after = False):
    '''Split leaf into left and right lists.
-      Left list may be list of one note, many tied notes, or tuplet.
-      Right list may be list of one note, many tied notes, or tuplet.
-      Interpret boolean tie_after keyword as 'add tie after split'.
-      Return value is always uniformly a pair of lists.'''
+   Left list may be list of one note, many tied notes, or tuplet.
+   Right list may be list of one note, many tied notes, or tuplet.
+   Interpret boolean tie_after keyword as 'add tie after split'.
+   Return value is always uniformly a pair of lists.
+   '''
 
    assert isinstance(leaf, _Leaf)
    assert isinstance(split_dur, Rational)

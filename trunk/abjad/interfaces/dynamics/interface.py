@@ -1,7 +1,7 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces.interface.interface import _Interface
-from abjad.spanners.dynamics.spanner import Dynamic
-from abjad.spanners.hairpin.spanner import Hairpin
+from abjad.spanners import Dynamic
+from abjad.spanners import Hairpin
 from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
 
 
@@ -17,8 +17,6 @@ class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
       '''Bind client, LilyPond DynamicText grob.
          Receive Abjad Dynamic and Hairpin spanners.
          Set 'mark' to None.'''
-      #from abjad.dynamics.spanner import Dynamic
-      #from abjad.hairpin.spanner import Hairpin
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'DynamicText')
       _SpannerReceptor.__init__(self, (Dynamic, Hairpin))
@@ -44,8 +42,6 @@ class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
    @property
    def effective(self):
       '''Effective dynamic.'''
-      #from abjad.dynamics.spanner import Dynamic
-      #from abjad.hairpin.spanner import Hairpin
       if self.mark:
          return self.mark
       if self.spanned:
@@ -56,7 +52,6 @@ class DynamicsInterface(_Interface, _GrobHandler, _SpannerReceptor):
             return spanner.shape
          else:
             raise Exception
-      #prev = self.client.prev
       prev = self._client.prev
       if prev is not None:
          return prev.dynamics.effective

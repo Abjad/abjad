@@ -1,16 +1,14 @@
 from abjad.checks.check import _Check
 from abjad.leaf import _Leaf
+from abjad.spanners import Glissando
 from abjad.tools import iterate
-from abjad.spanners.glissando import Glissando
 
 
 class GlissandiOverlapping(_Check):
    '''Glissandi must not overlap.
-      Dove-tailed glissandi are OK.'''
+   Dove-tailed glissandi are OK.'''
 
    def _run(self, expr):
-      #from abjad.glissando import Glissando
-      #from abjad.leaf import _Leaf
       violators = [ ] 
       for leaf in iterate.naive_forward(expr, _Leaf):
          glissandi = leaf.glissando.spanners

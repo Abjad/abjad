@@ -3,7 +3,8 @@ from abjad.container import Container
 
 def contents_reverse(container):
    '''Retrograde in place the contents of container.
-      Container and any of its children may be spanned.'''
+   Container and any of its children may be spanned.
+   '''
 
    def offset(x, y):
       if x.offset.prolated.start < y.offset.prolated.start:

@@ -1,5 +1,5 @@
 from abjad.component.component import _Component 
-from abjad.spanners.spanner.spanner import Spanner
+from abjad.spanners import Spanner
 
 
 def iterate_components_forwards(spanner, klass = _Component):
@@ -14,6 +14,8 @@ def iterate_components_forwards(spanner, klass = _Component):
          print note
       Note(e', 8)
       Note(f', 8)
+
+   .. todo:: renam ``spannertools.iterate_components_forward()``.
    '''
 
    if not isinstance(spanner, Spanner):

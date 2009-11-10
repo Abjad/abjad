@@ -2,7 +2,7 @@ from abjad.container import Container
 from abjad.exceptions import ContainmentError
 from abjad.leaf import _Leaf
 from abjad.measure import RigidMeasure
-from abjad.spanners.tie import Tie
+from abjad.spanners import Tie
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import iterate
@@ -18,9 +18,10 @@ from abjad.tools.split._at_index import _at_index as \
 def _at_duration(
    component, duration, spanners = 'unfractured', tie_after = False):
    '''General component duration split algorithm.
-      Duration is interpreted as prolated duration.
-      Works on leaves, tuplets, measures, context and unqualified containers.
-      Keyword controls spanner behavior at split-time.'''
+   Duration is interpreted as prolated duration.
+   Works on leaves, tuplets, measures, context and unqualified containers.
+   Keyword controls spanner behavior at split-time.
+   '''
 
    from abjad.tools import fuse
 

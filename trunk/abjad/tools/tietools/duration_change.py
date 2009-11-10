@@ -1,5 +1,5 @@
 from abjad.rational import Rational
-from abjad.spanners.tie import Tie
+from abjad.spanners import Tie
 from abjad.tools import componenttools
 from abjad.tools import construct
 from abjad.tools import durtools
@@ -18,9 +18,10 @@ from abjad.tuplet import FixedMultiplierTuplet
 
 def duration_change(tie_chain, new_written_duration):
    '''Change the written duration of tie chain,
-      adding and subtracting notes as necessary.
+   adding and subtracting notes as necessary.
 
-      Return newly modified tie chain.'''
+   Return newly modified tie chain.
+   '''
 
    assert tietools_is_chain(tie_chain)
    assert isinstance(new_written_duration, Rational)

@@ -1,12 +1,12 @@
 from abjad.checks.check import _Check
-from abjad.spanners.hairpin import Hairpin
+from abjad.spanners import Hairpin
 
 
 class HairpinsShort(_Check):
-   '''Hairpins must span at least two leaves.'''
+   '''Hairpins must span at least two leaves.
+   '''
 
    def _run(self, expr):
-      #from abjad.hairpin import Hairpin
       violators = [ ]
       total, bad = 0, 0
       hairpins = [

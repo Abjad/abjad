@@ -1,8 +1,8 @@
 from abjad.core.grobhandler import _GrobHandler
 from abjad.interfaces.interface.interface import _Interface
-from abjad.rational import Rational
-from abjad.spanners.spacing.spanner import SpacingSpanner
 from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
+from abjad.rational import Rational
+from abjad.spanners import SpacingSpanner
 import types
 
 
@@ -36,7 +36,6 @@ class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
    def __init__(self, _client):
       '''Bind to client. Handle LilyPond ``SpacingSpanner`` grob.
          Receive Abjad ``SpacingSpanner`` spanner.'''
-      #from abjad.spacing.spanner import SpacingSpanner
       _Interface.__init__(self, _client)
       _GrobHandler.__init__(self, 'SpacingSpanner')
       _SpannerReceptor.__init__(self, (SpacingSpanner, ))

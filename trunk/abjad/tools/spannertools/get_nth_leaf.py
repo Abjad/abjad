@@ -1,5 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.spanners.spanner.spanner import Spanner
+from abjad.spanners import Spanner
 from abjad.tools.spannertools.iterate_components_forwards import \
    iterate_components_forwards as spannertools_iterate_components_forwards
 from abjad.tools.spannertools.iterate_components_backwards import \

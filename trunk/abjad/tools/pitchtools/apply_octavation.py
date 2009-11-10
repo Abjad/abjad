@@ -1,4 +1,4 @@
-from abjad.spanners.octavation import Octavation
+from abjad.spanners import Octavation
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 

@@ -2,7 +2,7 @@ from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
 from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
-from abjad.spanners.tempo import Tempo
+from abjad.spanners import Tempo
 from abjad.tools import tempotools
 import types
 
@@ -30,7 +30,6 @@ class TempoInterface(_Observer, _GrobHandler,
    def __init__(self, _client, _updateInterface):
       '''Bind to client and LilyPond MetronomMark grob.
          Receive Abjad Tempo spanner.'''
-      #from abjad.tempo import Tempo
       _Observer.__init__(self, _client, _updateInterface)
       _GrobHandler.__init__(self, 'MetronomeMark')
       _BacktrackingInterface.__init__(self, 'tempo')

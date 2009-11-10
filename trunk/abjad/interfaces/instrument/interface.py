@@ -1,9 +1,9 @@
 from abjad.core.grobhandler import _GrobHandler
-from abjad.interfaces.interface.interface import _Interface
 from abjad.core.settinghandler import _ContextSettingHandler
-from abjad.markup import Markup
-from abjad.spanners.instrument.spanner import Instrument
+from abjad.interfaces.interface.interface import _Interface
 from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
+from abjad.markup import Markup
+from abjad.spanners import Instrument
 import types
 
 
@@ -29,13 +29,10 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
          d'8
          e'8
          f'8
-      }'''
+      }
+   '''
 
    def __init__(self, client):
-      '''Init as type of \
-         :class:`~abjad.spanner.receptor._SpannerReceptor`.'''
-      
-      #from abjad.instrument.spanner import Instrument
       _Interface.__init__(self, client)
       _GrobHandler.__init__(self, 'InstrumentName')
       _SpannerReceptor.__init__(self, (Instrument, ))
@@ -70,7 +67,6 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
                f'8
             }
          '''
-
          return self._name
       def fset(self, expr):
          assert isinstance(expr, (str, Markup, types.NoneType))
@@ -92,7 +88,6 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
          abjad> t.instrument.settings
          ['instrumentName = "Violini I"', 'shortInstrumentName = "Vni. I"']
       '''
-
       result = [ ]
       name = self.name
       if name is not None:
@@ -134,8 +129,8 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
                d'8
                e'8
                f'8
-            }'''
-
+            }
+         '''
          return self._short_name
       def fset(self, expr):
          assert isinstance(expr, (str, Markup, types.NoneType))

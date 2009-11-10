@@ -7,23 +7,23 @@ from abjad.tools import interpolate
 def notes_curve(pitches, total, start, stop, exp='cosine', 
    written=Rational(1, 8)):
    '''Returns a train of notes with "continuously" changing effective 
-      durations given as the written duration argument times the 
-      computed interpolated multipliers. 
-      The default written duration is 1/8 note. The durations are 
-      interpolated from the `start` duration argument to the `stop` 
-      duration argument. 
-      The function returns as many interpolation values as necessary to 
-      fill the `total` duration requested.
-      The pitches of the notes are set cyclically from the `pitches` list.
-      
-      Example::
+   durations given as the written duration argument times the 
+   computed interpolated multipliers. 
+   The default written duration is 1/8 note. The durations are 
+   interpolated from the `start` duration argument to the `stop` 
+   duration argument. 
+   The function returns as many interpolation values as necessary to 
+   fill the `total` duration requested.
+   The pitches of the notes are set cyclically from the `pitches` list.
+   
+   Example::
 
-         abjad> construct.notes_curve([1,2], (1, 2), (1, 4), (1, 8))
-         [Note(cs', 8 * 113/64), Note(d', 8 * 169/128), Note(cs', 8 * 117/128)]
-         abjad> x = Voice(_)
-         abjad> x.duration.prolated
-         Rational(1, 2)
-         '''
+      abjad> construct.notes_curve([1,2], (1, 2), (1, 4), (1, 8))
+      [Note(cs', 8 * 113/64), Note(d', 8 * 169/128), Note(cs', 8 * 117/128)]
+      abjad> x = Voice(_)
+      abjad> x.duration.prolated
+      Rational(1, 2)
+   '''
 
    total = Rational(*durtools.token_unpack(total))
    start = Rational(*durtools.token_unpack(start))

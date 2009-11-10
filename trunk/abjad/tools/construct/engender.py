@@ -1,7 +1,7 @@
 from abjad.chord import Chord
-from abjad.tools import durtools
 from abjad.note import Note
 from abjad.rest import Rest
+from abjad.tools import durtools
 from abjad.tools import pitchtools
 
 
@@ -9,7 +9,8 @@ def engender(pitches, duration):
    '''Create note, rest or skip from pitches and duration.
 
    .. todo:: deprecate ``construct.engender( )`` in favor of
-      ``construct.leaves( )``.'''
+      ``construct.leaves( )``.
+   '''
 
    assert pitchtools.is_token_collection(pitches)
    assert durtools.is_token(duration)
