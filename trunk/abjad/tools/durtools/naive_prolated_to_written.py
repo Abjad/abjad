@@ -3,16 +3,20 @@ import math
 
 
 def naive_prolated_to_written(prolated_duration, prolation = 'diminution'):
-   '''Return number of the form 1/2**n that is either just greater, 
-      or just less, than prolated_duration, according to 'prolation'.
+   '''When ``prolation = 'diminution'`` return greatest rational of the form
+   ``1/2**n`` that is less than or equal to `prolated_duration`. ::
 
-      Intended to find written duration of notes inside tuplet.
-
-      durtools.naive_prolated_to_writtenRational(3, 80), 'diminution')
+      abjad> durtools.naive_prolated_to_written(Rational(3, 80), 'diminution')
       Rational(1, 32)
 
-      durtools.naive_prolated_to_writtenRational(3, 80), 'augmentation')
-      Rational(1, 16)'''
+   When ``prolation = 'augmentation'`` return least rational of the form 
+   ``1/2**n`` that is greater than or equal to `prolated_duration`. ::
+
+      abjad> durtools.naive_prolated_to_written(Rational(3, 80), 'augmentation')
+      Rational(1, 16)
+
+   Function intended to find written duration of notes inside tuplet.
+   '''
 
    # find exponent of denominator
    if prolation == 'diminution':
