@@ -25,15 +25,3 @@ def test_durtools_seconds_to_clock_string_02( ):
 def test_durtools_seconds_to_clock_string_03( ):
 
    assert py.test.raises(ValueError, 'durtools.seconds_to_clock_string(-1.5)')
-
-
-def test_durtools_seconds_to_clock_string_04( ):
-   '''Set ``escape = True`` to escape the ``"`` seconds indicator.
-      Useful when formatting output as *LilyPond* markup.'''
-   
-   assert durtools.seconds_to_clock_string(0, escape = True) == "0'00\\\""
-   assert durtools.seconds_to_clock_string(4, escape = True) == "0'04\\\""
-   assert durtools.seconds_to_clock_string(20, escape = True) == "0'20\\\""
-   assert durtools.seconds_to_clock_string(60, escape = True) == "1'00\\\""
-   assert durtools.seconds_to_clock_string(120, escape = True) == "2'00\\\""
-   assert durtools.seconds_to_clock_string(240, escape = True) == "4'00\\\""

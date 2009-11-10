@@ -4,7 +4,7 @@ from abjad import *
 def test_durtools_group_seconds_01( ):
    '''Fill one group exactly.
       Do not read durations cyclically.
-      Do not return rump group.'''
+      Do not return overhang group.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
@@ -98,7 +98,7 @@ def test_durtools_group_seconds_03( ):
    }'''
 
    groups = durtools.group_seconds(
-      t.leaves, [1.5], cyclic = True, rump = True)
+      t.leaves, [1.5], cyclic = True, overhang = True)
 
    "[[Note(c'', 8), Note(b', 8), Note(a', 8)], [Note(g', 8), Note(f', 8), Note(e', 8)], [Note(d', 8), Note(c', 8)]]"
 

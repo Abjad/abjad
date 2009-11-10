@@ -79,7 +79,7 @@ def test_durtools_group_prolated_03( ):
    }'''
 
    groups = durtools.group_prolated(
-      t.leaves, [Rational(3, 8)], cyclic = True, rump = True)
+      t.leaves, [Rational(3, 8)], cyclic = True, overhang = True)
 
    "[[Note(c'', 8), Note(b', 8), Note(a', 8)], [Note(g', 8), Note(f', 8), Note(e', 8)], [Note(d', 8), Note(c', 8)]]"
 

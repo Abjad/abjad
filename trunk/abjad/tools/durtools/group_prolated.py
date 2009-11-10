@@ -2,15 +2,15 @@ from abjad.tools.durtools._group import _group as durtools__group
 
 
 def group_prolated(
-   components, durations, fill = 'exact', cyclic = False, rump = False):
+   components, durations, fill = 'exact', cyclic = False, overhang = False):
    r'''Group `components` according to prolated ``durations``.
 
    * When ``fill == exact``, parts must equal durations exactly.
    * When ``fill == less``, parts must be <= durations.
    * When ``fill == greater``, parts must be >= durations.
    * If ``cyclic`` True, read *durations* cyclically.
-   * If ``rump`` True and components remain, append final part.
-   * If ``rump`` False and components remain, do not append final part.
+   * If ``overhang`` True and components remain, append final part.
+   * If ``overhang`` False and components remain, do not append final part.
 
    Examples all refer to the following. ::
 
@@ -32,28 +32,28 @@ def group_prolated(
             c''8
       }
 
-   Noncyclic exact fill with no rump part. ::
+   Noncyclic exact fill with no overhang part. ::
 
-      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, rump = False)
+      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, overhang = False)
       [[Note(c', 8), Note(d', 8), Note(e', 8)]]
 
-   Noncyclic exact fill with rump part. ::
+   Noncyclic exact fill with overhang part. ::
 
-      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, rump = True)
+      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, overhang = True)
       [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8), Note(b', 8), Note(c'', 8)]]
 
-   Cyclic exact fill with no rump part. ::
+   Cyclic exact fill with no overhang part. ::
 
-      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, rump = False)
+      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, overhang = False)
       [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)]]
 
-   Cyclic exact fill with rump part. ::
+   Cyclic exact fill with overhang part. ::
 
-      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, rump = True)
+      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, overhang = True)
       [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)], [Note(b', 8), Note(c'', 8)]]   
    '''
    
    duration_type = 'prolated'
 
    return durtools__group(duration_type,
-      components, durations, fill = fill, cyclic = cyclic, rump = rump)
+      components, durations, fill = fill, cyclic = cyclic, overhang = overhang)

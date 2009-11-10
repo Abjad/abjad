@@ -3,7 +3,9 @@ from abjad.tools import mathtools
 
 
 def token_decompose(duration_token):
-   '''Return big-endian list of note_head-assignable duration tokens.
+   '''Return big-endian list of note-head-assignable duration tokens.
+
+   ::
 
       abjad> duration_tokens = [(n, 16) for n in range(10, 20)]
       abjad> for duration_token in duration_tokens:
@@ -18,7 +20,8 @@ def token_decompose(duration_token):
       (16, 16) ((16, 16),)
       (17, 16) ((16, 16), (1, 16))
       (18, 16) ((16, 16), (2, 16))
-      (19, 16) ((16, 16), (3, 16))'''
+      (19, 16) ((16, 16), (3, 16))
+   '''
 
    numerator, denominator = token_unpack(duration_token)
    result = [(n, denominator) 

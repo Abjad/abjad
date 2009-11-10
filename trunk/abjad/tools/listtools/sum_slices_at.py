@@ -3,13 +3,13 @@ from abjad.rational import Rational
 import types
 
 
-def sum_slices_at(l, pairs, period = None, rump = True):
+def sum_slices_at(l, pairs, period = None, overhang = True):
    '''Sum elements in ``l`` according to ``pairs``.
       For each ``(i, count)`` in ``pairs``, 
       replace ``l[i:i+count]`` with ``sum(l[i:i+count])``.
 
          * When ``period`` is a positive integer, read ``pairs`` cyclically.
-         * When ``rump = False`` do not append incomplete final sum.
+         * When ``overhang = False`` do not append incomplete final sum.
 
       Examples::
 
@@ -30,7 +30,7 @@ def sum_slices_at(l, pairs, period = None, rump = True):
    assert isinstance(l, list)
    assert all([isinstance(x, (int, float, Rational)) for x in l])
    assert isinstance(period, (int, types.NoneType))
-   assert isinstance(rump, bool)
+   assert isinstance(overhang, bool)
 
    if not _check_sum_slices_at_specification(pairs):
       raise InputSpecificationError('must be list of nonoverlapping pairs.')
@@ -69,7 +69,7 @@ def sum_slices_at(l, pairs, period = None, rump = True):
             result.append(x)
 
    if 0 < slice_total:
-      if rump:
+      if overhang:
          result.append(slice_total)
 
    return result

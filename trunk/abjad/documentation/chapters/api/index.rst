@@ -310,6 +310,7 @@ durtools
    tools/durtools/prolated_to_written
    tools/durtools/rationalize
    tools/durtools/seconds_to_clock_string
+   tools/durtools/seconds_to_clock_string_escaped
    tools/durtools/sum_preprolated
    tools/durtools/sum_prolated
    tools/durtools/sum_seconds

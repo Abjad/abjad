@@ -2,9 +2,31 @@ from abjad.rational import Rational
 
 
 def token_unpack(duration_token):
-   '''Return numerator, denominator pair from duration token,
-      where duration token is an integer or a one- or two-element tuple;
-      allow binary, nonbinary and all other duration tokens.'''
+   '''Return reduced numerator, denominator pair from `duration_token`.
+
+   Rationals are allowed. ::
+
+      abjad> durtools.token_unpack(Rational(1, 4))
+      (1, 4)
+
+   Two-element integer tuples and lists are allowed. ::
+
+      abjad> durtools.token_unpack((1, 4))
+      (1, 4)
+      abjad> durtools.token_unpack([1, 4])
+
+   One-element integer tuples and lists are allowed. ::
+
+      abjad> durtools.token_unpack((2, ))
+      (2, 1)
+      abjad> durtools.token_unpack([2])
+      (2, 1)
+
+   Integers are allowed. ::
+
+      abjad> durtools.token_unpack(2)
+      (2, 1)
+   '''
 
    if isinstance(duration_token, (tuple, list)):
       if len(duration_token) == 1:

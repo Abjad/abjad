@@ -12,7 +12,7 @@ def tie_chains_by_durations(components, durations):
 
    ## get duration groups
    groups = durtools.group_prolated(components, durations, 
-      fill = 'exact', cyclic = False, rump = False)
+      fill = 'exact', cyclic = False, overhang = False)
 
    for group in groups:
       ## get tie_chains intersecting this group

@@ -22,7 +22,7 @@ def test_listtools_sum_slices_at_01( ):
 
 def test_listtools_sum_slices_at_02( ):
    '''Sum slice at only the zeroth index.
-      Append rump elements.'''
+      Append overhang elements.'''
    
    t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
@@ -45,16 +45,16 @@ def test_listtools_sum_slices_at_03( ):
    
    t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
-   result = listtools.sum_slices_at(t, [(0, 5)], period = 5, rump = True)
+   result = listtools.sum_slices_at(t, [(0, 5)], period = 5, overhang = True)
    assert result == [10, 35, 21]
 
-   result = listtools.sum_slices_at(t, [(0, 6)], period = 6, rump = True)
+   result = listtools.sum_slices_at(t, [(0, 6)], period = 6, overhang = True)
    assert result == [15, 51]
 
-   result = listtools.sum_slices_at(t, [(0, 7)], period = 7, rump = True)
+   result = listtools.sum_slices_at(t, [(0, 7)], period = 7, overhang = True)
    assert result == [21, 45]
 
-   result = listtools.sum_slices_at(t, [(0, 8)], period = 8, rump = True)
+   result = listtools.sum_slices_at(t, [(0, 8)], period = 8, overhang = True)
    assert result == [28, 38]
 
 
@@ -64,16 +64,16 @@ def test_listtools_sum_slices_at_04( ):
    
    t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
-   result = listtools.sum_slices_at(t, [(0, 5)], period = 5, rump = False)
+   result = listtools.sum_slices_at(t, [(0, 5)], period = 5, overhang = False)
    assert result == [10, 35]
 
-   result = listtools.sum_slices_at(t, [(0, 6)], period = 6, rump = False)
+   result = listtools.sum_slices_at(t, [(0, 6)], period = 6, overhang = False)
    assert result == [15, 51]
 
-   result = listtools.sum_slices_at(t, [(0, 7)], period = 7, rump = False)
+   result = listtools.sum_slices_at(t, [(0, 7)], period = 7, overhang = False)
    assert result == [21]
 
-   result = listtools.sum_slices_at(t, [(0, 8)], period = 8, rump = False)
+   result = listtools.sum_slices_at(t, [(0, 8)], period = 8, overhang = False)
    assert result == [28]
 
 
