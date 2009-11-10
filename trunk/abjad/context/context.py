@@ -12,7 +12,7 @@ class _Context(Container):
 
    def __repr__(self):
       '''.. versionchanged:: 1.1.2
-         Named contexts now print name at the interpreter.'''
+      Named contexts now print name at the interpreter.'''
       if len(self) > 0:
          summary = str(len(self))
       else:
@@ -26,7 +26,6 @@ class _Context(Container):
          name = '-"%s"' % name
       else:
          name = ''
-      #return '%s%s%s%s' % (self.context, open, summary, close)
       return '%s%s%s%s%s' % (self.context, name, open, summary, close)
 
    ## PUBLIC ATTRIBUTES ##
@@ -34,6 +33,7 @@ class _Context(Container):
    @apply
    def context( ):
       def fget(self):
+         '''Read / write name of context as a string.'''
          return self._context
       def fset(self, arg):
          assert isinstance(arg, str)

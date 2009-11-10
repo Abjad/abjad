@@ -8,7 +8,7 @@ def test_tempo_proportional_spanner_01( ):
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
    spacing_indication = spacing.SpacingIndication(
       tempo_indication, Rational(1, 34))
-   t.global_spacing = spacing_indication
+   t.spacing.scorewide = spacing_indication
 
    p = TempoProportional(t[0][:2])
    p.indication = tempotools.TempoIndication(Rational(1, 4), 60)

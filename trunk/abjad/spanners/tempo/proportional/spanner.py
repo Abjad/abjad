@@ -7,12 +7,12 @@ import types
 class TempoProportional(Tempo):
    r'''.. versionadded:: 1.1.1
 
-   Tempo spanner aware of score-global spacing. ::
+   Tempo spanner aware of scorewide spacing. ::
 
       abjad> t = Score([Staff(construct.scale(4))])   
       abjad> tempo_indication = TempoIndication(Rational(1, 4), 60)   
       abjad> spacing_indication = SpacingIndication(tempo_indication, Rational(1, 34))   
-      abjad> t.global_spacing = spacing_indication   
+      abjad> t.spacing.scorewide = spacing_indication   
 
    ::
 

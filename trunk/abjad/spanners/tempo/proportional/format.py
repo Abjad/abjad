@@ -17,12 +17,12 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
       moment = Moment(proportional_notation_duration)
       return r'\set Score.%s = #%s' % (setting, moment.format)
 
-   def _make_proportional_directive(self, global_spacing, local_tempo):
+   def _make_proportional_directive(self, scorewide_spacing, local_tempo):
       '''Calculate proportional notation duration for local tempo.'''
       local_maelzel = local_tempo.maelzel
-      global_maelzel = global_spacing.tempo_indication.maelzel
-      global_pnd = global_spacing.proportional_notation_duration
-      local_pnd = local_maelzel / global_maelzel * global_pnd
+      scorewide_maelzel = scorewide_spacing.tempo_indication.maelzel
+      scorewide_pnd = scorewide_spacing.proportional_notation_duration
+      local_pnd = local_maelzel / scorewide_maelzel * scorewide_pnd
       directive = self._format_proportional_directive(local_pnd)
       return directive
 
@@ -36,9 +36,9 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
          result.append(r'\newSpacingSection')
-         global_spacing = spacing.get_global(leaf)
-         if global_spacing is not None:
+         scorewide_spacing = spacing.get_scorewide(leaf)
+         if scorewide_spacing is not None:
             directive = self._make_proportional_directive(
-               global_spacing, spanner.indication)
+               scorewide_spacing, spanner.indication)
             result.append(directive)
       return result

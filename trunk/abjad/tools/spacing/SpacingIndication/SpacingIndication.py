@@ -1,6 +1,5 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.rational import Rational
-#from abjad.tempo.indication import TempoIndication
 from abjad.tools import tempotools
 
 
@@ -12,14 +11,14 @@ class SpacingIndication(_Abjad):
    equals ``tempo_indication``. ::
 
       abjad> tempo = tempotools.TempoIndication(Rational(1, 8), 44)
-      abjad> spacing_indication = SpacingIndication(tempo, Rational(1, 68))
+      abjad> spacing_indication = spacing.SpacingIndication(tempo, Rational(1, 68))
       abjad> spacing_indication
       <SpacingIndication>
    '''
 
    def __init__(self, tempo_indication, proportional_notation_duration):
-      '''Initialize ``tempo_indication`` and 
-         ``proportional_notation_duration``.'''
+      '''Initialize `tempo_indication` and 
+      `proportional_notation_duration`.'''
       self.tempo_indication = tempo_indication
       self.proportional_notation_duration = proportional_notation_duration
       
@@ -27,7 +26,7 @@ class SpacingIndication(_Abjad):
 
    def __eq__(self, expr):
       '''Spacing indications compare equal when
-         normalized spacing durations compare equal.'''
+      normalized spacing durations compare equal.'''
       if isinstance(expr, SpacingIndication):
          if self.normalized_spacing_duration == \
             expr.normalized_spacing_duration:
@@ -36,8 +35,12 @@ class SpacingIndication(_Abjad):
 
    def __ne__(self, expr):
       '''Spacing indications compare unequal when
-         normalized spacing durations compare unequal.'''
+      normalized spacing durations compare unequal.'''
       return not self == expr
+
+   def __repr__(self):
+      return '%s(%s, %s)' % (self.__class__.__name__, 
+         self.tempo_indication, self.proportional_notation_duration)
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -63,7 +66,8 @@ class SpacingIndication(_Abjad):
    @apply
    def tempo_indication( ):
       def fget(self):
-         '''Read / write Abjad :class:`~abjad.tools.tempotools.TempoIndication`.'''
+         '''Read / write Abjad 
+         :class:`~abjad.tools.tempotools.TempoIndication`.'''
          return self._tempo_indication
       def fset(self, expr):
          assert isinstance(expr, tempotools.TempoIndication)

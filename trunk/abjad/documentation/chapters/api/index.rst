@@ -60,7 +60,7 @@ Classes
    tools/layout/StaffAlignmentOffsets/StaffAlignmentOffsets
    staffgroup/staffgroup
    tools/layout/SystemYOffsets/SystemYOffsets
-   tools/tempotools/TempoIndication/indication
+   tools/tempotools/TempoIndication/TempoIndication
    tools/iterate/VerticalMoment/VerticalMoment
    voice/voice
 
@@ -102,6 +102,7 @@ Interfaces
    interfaces/piano_pedal/interface
    interfaces/rest/interface
    interfaces/score/interface
+   interfaces/spacing/score/interface
    interfaces/slur/interface
    interfaces/spacing/interface
    interfaces/span_bar/interface
@@ -358,6 +359,7 @@ interpolate
 
    tools/interpolate/cosine
    tools/interpolate/divide
+   tools/interpolate/divide_multiple
    tools/interpolate/exponential
    tools/interpolate/linear
 
@@ -727,7 +729,7 @@ spacing
 .. toctree::
    :maxdepth: 1
 
-   tools/spacing/get_global
+   tools/spacing/get_scorewide
 
 
 spannertools
