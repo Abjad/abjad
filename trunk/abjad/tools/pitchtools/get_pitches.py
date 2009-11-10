@@ -1,4 +1,4 @@
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.spanners.spanner.spanner import Spanner
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError

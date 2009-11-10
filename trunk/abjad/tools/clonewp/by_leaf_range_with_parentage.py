@@ -1,6 +1,6 @@
 from abjad.container import Container
 from abjad.exceptions import ContiguityError
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.tools import leaftools
 from abjad.tools import iterate
 from abjad.tools.clone.fracture import fracture

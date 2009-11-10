@@ -5,7 +5,7 @@ from abjad.tools import iterate
 class FlagsMisrepresented(_Check):
 
    def _run(self, expr):
-      from abjad.leaf.leaf import _Leaf
+      from abjad.leaf import _Leaf
       violators = [ ] 
       total = 0
       for leaf in iterate.naive_forward(expr, _Leaf):

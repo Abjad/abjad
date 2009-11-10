@@ -77,7 +77,7 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
    @property
    def _opening(self):
       '''Format contribution at container opening or before leaf.'''
-      from abjad.leaf.leaf import _Leaf
+      from abjad.leaf import _Leaf
       from abjad.tools import iterate
       result = [ ]
       ## if client is a leaf

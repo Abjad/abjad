@@ -1,6 +1,6 @@
 from abjad.component.component import _Component
 from abjad.container import Container
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import iterate
@@ -68,7 +68,7 @@ def _get_lcopy(container, start, stop):
    total_dur = Rational(0)
    start_leaf, stop_leaf = None, None
    first_dif = second_dif = 0
-   from abjad.leaf.leaf import _Leaf
+   from abjad.leaf import _Leaf
    for i, leaf in enumerate(iterate.naive_forward(container, _Leaf)):
       total_dur += leaf.duration.prolated
       if total_dur == start and start_leaf is None:

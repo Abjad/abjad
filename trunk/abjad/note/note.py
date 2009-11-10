@@ -1,4 +1,4 @@
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.notehead import NoteHead
 from abjad.note.initializer import _NoteInitializer
 from abjad.pitch import Pitch

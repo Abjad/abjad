@@ -105,7 +105,7 @@ class _Navigator(_Abjad):
       '''Returns the first (leftmost) leaf or leaves 
          (in case there's a parallel structure) in a tree.'''
       from abjad.container import Container
-      from abjad.leaf.leaf import _Leaf
+      from abjad.leaf import _Leaf
       client = self._client
       if isinstance(client, _Leaf):
          return [client]
@@ -126,7 +126,7 @@ class _Navigator(_Abjad):
       '''Returns the last (rightmost) leaf or leaves
          (in case there's a parallel structure) in a tree.'''
       from abjad.container import Container
-      from abjad.leaf.leaf import _Leaf
+      from abjad.leaf import _Leaf
       client = self._client
       if isinstance(client, _Leaf):
          return [client]
@@ -160,7 +160,7 @@ class _Navigator(_Abjad):
          This method will search the whole (parentage) structure 
          moving forward.
          This will only return if called on a Leaf.'''
-      from abjad.leaf.leaf import _Leaf
+      from abjad.leaf import _Leaf
       if not isinstance(self._client, _Leaf):
          return None
       next = self._next
@@ -210,7 +210,7 @@ class _Navigator(_Abjad):
    def _nextThread(self):
       '''Returns the next threadable Container.'''
       from abjad.container import Container
-      from abjad.leaf.leaf import _Leaf
+      from abjad.leaf import _Leaf
       if not isinstance(self._client, Container):
          return None
       next = self._next
@@ -238,7 +238,7 @@ class _Navigator(_Abjad):
       '''Returns the previous Bead (time threaded Leaf), if such exists. 
          This method will search the whole (parentage) structure moving back.
          This will only return if called on a Leaf.'''
-      from abjad.leaf.leaf import _Leaf
+      from abjad.leaf import _Leaf
       if not isinstance(self._client, _Leaf):
          return None
       prev = self._prev

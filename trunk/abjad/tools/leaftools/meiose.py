@@ -1,4 +1,4 @@
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.tools import clone
 from abjad.tools import iterate

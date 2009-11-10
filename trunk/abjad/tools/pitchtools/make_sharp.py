@@ -1,4 +1,4 @@
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.pitch import Pitch
 from abjad.tools import iterate
 from abjad.tools.pitchtools.pitch_number_to_octave import \

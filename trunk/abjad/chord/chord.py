@@ -1,6 +1,6 @@
 from abjad.chord.formatter import _ChordFormatter
 from abjad.chord.initializer import _ChordInitializer
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.notehead import NoteHead
 from abjad.pitch import Pitch
 

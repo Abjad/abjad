@@ -1,4 +1,4 @@
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.measure.measure import _Measure
 from abjad.rational import Rational
 from abjad.rest import Rest

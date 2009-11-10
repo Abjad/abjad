@@ -1,6 +1,6 @@
 from abjad.container import Container
 from abjad.exceptions import ContainmentError
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.measure import RigidMeasure
 from abjad.spanners.tie import Tie
 from abjad.tools import componenttools

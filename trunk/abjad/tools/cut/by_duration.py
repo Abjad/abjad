@@ -1,6 +1,6 @@
 from abjad.component.component import _Component
 from abjad.exceptions import NegativeDurationError
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.tools import componenttools
 from abjad.tools import leaftools

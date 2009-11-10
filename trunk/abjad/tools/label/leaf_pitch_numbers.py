@@ -18,7 +18,7 @@ def leaf_pitch_numbers(expr):
       }
    '''
 
-   from abjad.leaf.leaf import _Leaf
+   from abjad.leaf import _Leaf
    for leaf in iterate.naive_forward(expr, _Leaf):
       for pitch in reversed(pitchtools.get_pitches(leaf)):
          label = r'\small %s' % pitch.number

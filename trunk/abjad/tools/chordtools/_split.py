@@ -1,5 +1,5 @@
 from abjad.chord import Chord
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.note import Note
 from abjad.pitch import Pitch
 from abjad.rest import Rest

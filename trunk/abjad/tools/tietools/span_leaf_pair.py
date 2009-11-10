@@ -1,5 +1,5 @@
 from abjad.exceptions import MissingSpannerError
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.spanners.tie import Tie
 from abjad.tools.tietools.are_in_same_spanner import \
    are_in_same_spanner as tietools_are_in_same_spanner

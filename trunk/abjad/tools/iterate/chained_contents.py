@@ -1,6 +1,6 @@
 from abjad.container import Container
 from abjad.exceptions import TieChainError
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 
 
 def chained_contents(expr):

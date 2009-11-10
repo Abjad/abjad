@@ -30,7 +30,7 @@ class GraceInterface(_Interface):
       def fget(self):
          return self._after
       def fset(self, arg):
-         from abjad.leaf.leaf import _Leaf
+         from abjad.leaf import _Leaf
          from abjad.grace.grace import Grace
          if arg is None:
             self._after = Grace( )
@@ -53,7 +53,7 @@ class GraceInterface(_Interface):
       def fget(self):
          return self._before
       def fset(self, arg):
-         from abjad.leaf.leaf import _Leaf
+         from abjad.leaf import _Leaf
          from abjad.grace.grace import Grace
          if arg is None:
             self._before = Grace( )

@@ -1,5 +1,5 @@
 from abjad.tools import durtools
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 
 
 def are_scalable(components, multiplier):

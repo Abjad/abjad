@@ -33,7 +33,7 @@ def test_iterate_naive_backward_04( ):
 def test_iterate_naive_backward_05( ):
    '''Yield leaves based on names higher in inheritence hierarchy.'''
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   from abjad.leaf.leaf import _Leaf
+   from abjad.leaf import _Leaf
    iter = iterate.naive_backward(t, _Leaf)
    assert len(list(iter)) == 9
 

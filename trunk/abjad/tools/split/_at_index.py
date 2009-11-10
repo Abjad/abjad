@@ -1,4 +1,4 @@
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.measure.measure import _Measure
 from abjad.meter import Meter
 from abjad.tools import containertools

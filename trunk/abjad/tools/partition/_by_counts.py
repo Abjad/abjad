@@ -1,5 +1,5 @@
 from abjad.container import Container
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.tools import check
 from abjad.tools.split._at_index import _at_index as split__at_index
 

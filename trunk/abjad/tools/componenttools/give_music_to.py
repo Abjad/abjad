@@ -1,6 +1,6 @@
 from abjad.container import Container
 from abjad.exceptions import MusicContentsError
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.tools import check
 from abjad.tools.parenttools.switch import _switch
 

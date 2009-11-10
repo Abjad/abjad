@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 
 
 def test_layout_line_break_every_prolated_01( ):

@@ -20,7 +20,7 @@ def leaf_depth_tuplet(expr):
       }
    '''
 
-   from abjad.leaf.leaf import _Leaf
+   from abjad.leaf import _Leaf
    for leaf in iterate.naive_forward(expr, _Leaf):
       label = r'\small %s' % leaf.parentage.depth_tuplet
       leaf.markup.down.append(label)

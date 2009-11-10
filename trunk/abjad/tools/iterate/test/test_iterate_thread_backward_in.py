@@ -30,7 +30,7 @@ def test_iterate_thread_backward_in_04( ):
    '''Yield leaves based on names higher in inheritence hierarchy.'''
 
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 3)
-   from abjad.leaf.leaf import _Leaf
+   from abjad.leaf import _Leaf
    iter = iterate.thread_backward_in(t, _Leaf, t[-1][-1].thread.signature )
    assert len(list(iter)) == 9
 

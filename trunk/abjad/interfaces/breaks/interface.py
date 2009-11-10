@@ -206,7 +206,7 @@ class BreaksInterface(_Interface, _FormatContributor):
          '''
          return self._whitespace
       def fset(self, arg):
-         from abjad.leaf.leaf import _Leaf
+         from abjad.leaf import _Leaf
          assert isinstance(arg, (int, Rational, types.NoneType))
          if isinstance(self._client, _Leaf):
             raise TypographicWhitespaceError

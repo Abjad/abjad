@@ -108,7 +108,7 @@ def test_leaftools_excise_03( ):
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
    
-   from abjad.leaf.leaf import _Leaf
+   from abjad.leaf import _Leaf
    for i, leaf in enumerate(iterate.naive_forward(t, _Leaf)):
       leaf.pitch = i
 
@@ -184,7 +184,7 @@ def test_leaftools_excise_04( ):
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
 
-   from abjad.leaf.leaf import _Leaf
+   from abjad.leaf import _Leaf
    for i, leaf in enumerate(iterate.naive_forward(t, _Leaf)):
       leaf.pitch = i
 

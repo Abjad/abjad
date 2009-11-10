@@ -1,4 +1,4 @@
-from abjad.leaf.leaf import _Leaf
+from abjad.leaf import _Leaf
 from abjad.tools.iterate.timeline_backward_in import timeline_backward_in as \
    iterate_timeline_backward_in
 

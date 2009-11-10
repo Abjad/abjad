@@ -227,7 +227,7 @@ class _Component(_Abjad):
       '''Read-only tuple of all leaves in `self`.
 
       .. versionchanged:: 1.1.1'''
-      from abjad.leaf.leaf import _Leaf
+      from abjad.leaf import _Leaf
       from abjad.tools import iterate
       return tuple(iterate.naive_forward(self, _Leaf))
 
