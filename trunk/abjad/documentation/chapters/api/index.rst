@@ -308,6 +308,8 @@ durtools
    tools/durtools/pair_multiply_naive
    tools/durtools/pair_multiply_reduce_factors
    tools/durtools/prolated_to_written
+   tools/durtools/prolated_to_written_not_greater_than
+   tools/durtools/prolated_to_written_not_less_than
    tools/durtools/rationalize
    tools/durtools/seconds_to_clock_string
    tools/durtools/seconds_to_clock_string_escaped
