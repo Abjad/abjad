@@ -17,4 +17,5 @@ def test_divide_leaf_into_even_augmentation_01( ):
    assert t.format == "\tc'32.\n\tc'32.\n\tc'32.\n\tc'32."
 
    t = divide.leaf_into_even_augmentation(Note(0, (3, 16)), 5)
-   assert t.format == "\\fraction \\times 6/5 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
+   #assert t.format == "\\fraction \\times 6/5 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
+   assert t.format == "\\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"

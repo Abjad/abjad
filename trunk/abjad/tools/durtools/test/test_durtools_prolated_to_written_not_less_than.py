@@ -15,7 +15,8 @@ def test_durtools_prolated_to_written_not_less_than_01( ):
    assert durtools.prolated_to_written_not_less_than(
       Rational(4, 16)) == Rational(4, 16)
    assert durtools.prolated_to_written_not_less_than(
-      Rational(5, 16)) == Rational(8, 16)
+      #Rational(5, 16)) == Rational(8, 16)
+      Rational(5, 16)) == Rational(6, 16)
    assert durtools.prolated_to_written_not_less_than(
       Rational(6, 16)) == Rational(6, 16)
    assert durtools.prolated_to_written_not_less_than(
@@ -23,10 +24,13 @@ def test_durtools_prolated_to_written_not_less_than_01( ):
    assert durtools.prolated_to_written_not_less_than(
       Rational(8, 16)) == Rational(8, 16)
    assert durtools.prolated_to_written_not_less_than(
-      Rational(9, 16)) == Rational(16, 16)
+      #Rational(9, 16)) == Rational(16, 16)
+      Rational(9, 16)) == Rational(12, 16)
    assert durtools.prolated_to_written_not_less_than(
-      Rational(10, 16)) == Rational(16, 16)
+      #Rational(10, 16)) == Rational(16, 16)
+      Rational(10, 16)) == Rational(12, 16)
    assert durtools.prolated_to_written_not_less_than(
-      Rational(11, 16)) == Rational(16, 16)
+      #Rational(11, 16)) == Rational(16, 16)
+      Rational(11, 16)) == Rational(12, 16)
    assert durtools.prolated_to_written_not_less_than(
       Rational(12, 16)) == Rational(12, 16)
