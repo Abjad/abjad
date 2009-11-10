@@ -1,47 +1,47 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.interfaces.accidental.interface import AccidentalInterface
-from abjad.interfaces.articulation.interface import ArticulationInterface
-from abjad.interfaces.bar_line.interface import BarLineInterface
-from abjad.interfaces.bar_number.interface import BarNumberInterface
-from abjad.interfaces.beam.interface import BeamInterface
-from abjad.interfaces.breaks.interface import BreaksInterface
-from abjad.interfaces.comments.interface import CommentsInterface
-from abjad.interfaces.clef.interface import ClefInterface
-from abjad.interfaces.directives.interface import DirectivesInterface
-from abjad.interfaces.dots.interface import DotsInterface
-from abjad.interfaces.dynamics.interface import DynamicsInterface
-from abjad.interfaces.glissando.interface import GlissandoInterface
-from abjad.interfaces.history.interface import HistoryInterface
-from abjad.interfaces.instrument.interface import InstrumentInterface
+from abjad.interfaces.accidental import AccidentalInterface
+from abjad.interfaces.articulation import ArticulationInterface
+from abjad.interfaces.bar_line import BarLineInterface
+from abjad.interfaces.bar_number import BarNumberInterface
+from abjad.interfaces.beam import BeamInterface
+from abjad.interfaces.breaks import BreaksInterface
+from abjad.interfaces.comments import CommentsInterface
+from abjad.interfaces.clef import ClefInterface
+from abjad.interfaces.directives import DirectivesInterface
+from abjad.interfaces.dots import DotsInterface
+from abjad.interfaces.dynamics import DynamicsInterface
+from abjad.interfaces.glissando import GlissandoInterface
+from abjad.interfaces.history import HistoryInterface
+from abjad.interfaces.instrument import InstrumentInterface
 from abjad.interfaces.interface_aggregator.aggregator import \
    InterfaceAggregator
-from abjad.interfaces.meter.interface import MeterInterface
-from abjad.interfaces.non_musical_paper_column.interface import \
+from abjad.interfaces.meter import MeterInterface
+from abjad.interfaces.non_musical_paper_column import \
    NonMusicalPaperColumnInterface
-from abjad.interfaces.note_column.interface import NoteColumnInterface
-from abjad.interfaces.note_head.interface import NoteHeadInterface
-from abjad.interfaces.numbering.interface import NumberingInterface
-from abjad.interfaces.offset.interface import OffsetInterface
-from abjad.interfaces.parentage.interface import ParentageInterface
-from abjad.interfaces.piano_pedal.interface import PianoPedalInterface
-from abjad.interfaces.rest.interface import RestInterface
-from abjad.interfaces.score.interface import ScoreInterface
-from abjad.interfaces.slur.interface import SlurInterface
-from abjad.interfaces.spacing.interface import SpacingInterface
-from abjad.interfaces.span_bar.interface import SpanBarInterface
-from abjad.interfaces.staff.interface import StaffInterface
-from abjad.interfaces.stem.interface import StemInterface
-from abjad.interfaces.tempo.interface import TempoInterface
-from abjad.interfaces.text_script.interface import TextScriptInterface
-from abjad.interfaces.text_spanner.interface import TextSpannerInterface
-from abjad.interfaces.thread.interface import ThreadInterface
-from abjad.interfaces.tie.interface import TieInterface
-from abjad.interfaces.tremolo.interface import TremoloInterface
-from abjad.interfaces.trill.interface import TrillInterface
-from abjad.interfaces.tuplet_bracket.interface import TupletBracketInterface
-from abjad.interfaces.tuplet_number.interface import TupletNumberInterface
+from abjad.interfaces.note_column import NoteColumnInterface
+from abjad.interfaces.note_head import NoteHeadInterface
+from abjad.interfaces.numbering import NumberingInterface
+from abjad.interfaces.offset import OffsetInterface
+from abjad.interfaces.parentage import ParentageInterface
+from abjad.interfaces.piano_pedal import PianoPedalInterface
+from abjad.interfaces.rest import RestInterface
+from abjad.interfaces.score import ScoreInterface
+from abjad.interfaces.slur import SlurInterface
+from abjad.interfaces.spacing import SpacingInterface
+from abjad.interfaces.span_bar import SpanBarInterface
+from abjad.interfaces.staff import StaffInterface
+from abjad.interfaces.stem import StemInterface
+from abjad.interfaces.tempo import TempoInterface
+from abjad.interfaces.text_script import TextScriptInterface
+from abjad.interfaces.text_spanner import TextSpannerInterface
+from abjad.interfaces.thread import ThreadInterface
+from abjad.interfaces.tie import TieInterface
+from abjad.interfaces.tremolo import TremoloInterface
+from abjad.interfaces.trill import TrillInterface
+from abjad.interfaces.tuplet_bracket import TupletBracketInterface
+from abjad.interfaces.tuplet_number import TupletNumberInterface
 from abjad.interfaces.update.interface import _UpdateInterface
-from abjad.interfaces.voice.interface import VoiceInterface
+from abjad.interfaces.voice import VoiceInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.rational import Rational
 import copy
@@ -133,8 +133,7 @@ class _Component(_Abjad):
    @property
    def articulations(self):
       '''Read-only reference to
-      :class:`~abjad.interfaces.articulation.interface.ArticulationInterface`.
-      '''
+      :class:`~abjad.interfaces.articulation.interface.ArticulationInterface`.'''
       return self._articulations
    
    @property
@@ -381,8 +380,7 @@ class _Component(_Abjad):
    @property
    def text_spanner(self):
       '''Read-only reference to
-      :class:`~abjad.interfaces.text_spanner.interface.TextSpannerInterface`.
-      '''
+      :class:`~abjad.interfaces.text_spanner.interface.TextSpannerInterface`.'''
       return self._text_spanner
 
    @property
@@ -406,8 +404,7 @@ class _Component(_Abjad):
    @property
    def tuplet_number(self):
       '''Read-only reference to
-      :class:`~abjad.interfaces.tuplet_number.interface.TupletNumberInterface`.
-      '''
+      :class:`~abjad.interfaces.tuplet_number.interface.TupletNumberInterface`.'''
       return self._tuplet_number
 
    @property

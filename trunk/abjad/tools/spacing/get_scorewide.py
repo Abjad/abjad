@@ -1,4 +1,4 @@
-from abjad.component.component import _Component
+#from abjad.component.component import _Component
 
 
 def get_scorewide(component):
@@ -21,6 +21,7 @@ def get_scorewide(component):
       Name changed from ``spacing.get_global()`` to ``spacing.get_scorewide()``.
    '''
 
+   from abjad.component.component import _Component
    if not isinstance(component, _Component):
       raise TypeError('must be Abjad component.')
 
