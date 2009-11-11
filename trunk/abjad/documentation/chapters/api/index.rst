@@ -278,7 +278,11 @@ divide
    :maxdepth: 1
 
    tools/divide/duration_into_arbitrary_augmentation
+   tools/divide/duration_into_arbitrary_augmentation_dotted
+   tools/divide/duration_into_arbitrary_augmentation_undotted
    tools/divide/duration_into_arbitrary_diminution
+   tools/divide/duration_into_arbitrary_diminution_dotted
+   tools/divide/duration_into_arbitrary_diminution_undotted
    tools/divide/leaf_into_arbitrary_augmentation
    tools/divide/leaf_into_arbitrary_diminution
    tools/divide/leaf_into_even_augmentation

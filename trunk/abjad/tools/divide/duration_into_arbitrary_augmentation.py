@@ -20,6 +20,11 @@ def duration_into_arbitrary_augmentation(duration, divisions):
       {@ 11:12 c'64, c'32, c'32, c'32., c'32. @}
       abjad> print divide.duration_into_arbitrary_augmentation(duration, [1, 2, 2, 3, 3, 4])
       {@ 5:8 c'128, c'64, c'64, c'64., c'64., c'32 @}
+
+   Series of dotted values are allowed. ::
+
+      abjad> divide.duration_into_arbitrary_augmentation(Rational(3, 16), [1, 1, 1, 1, 1])
+      FixedDurationTuplet(3/16, [c'64., c'64., c'64., c'64., c'64.])
    '''
 
    return _duration_into_arbitrary_fixed_duration_tuplet(
