@@ -16,8 +16,6 @@ def _leaf_into_even_fixed_duration_tuplet(l, divisions, prolation):
    prolated_duration = target_duration / divisions
 
    # find written duration of each note in tuplet
-   #written_duration = durtools.prolated_to_written(
-   #   prolated_duration, prolation = prolation)
    if prolation == 'diminution':
       written_duration = durtools.prolated_to_written_not_less_than(
          prolated_duration)

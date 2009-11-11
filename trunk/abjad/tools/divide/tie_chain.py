@@ -15,7 +15,6 @@ def tie_chain(chain, divisions = 2, prolation = 'diminution'):
    prolated_duration = target_duration / divisions
 
    # find written duration of each notes in tuplet
-   #written_duration = durtools.prolated_to_written(prolated_duration, prolation)
    if prolation == 'diminution':
       written_duration = durtools.prolated_to_written_not_less_than(
          prolated_duration)
