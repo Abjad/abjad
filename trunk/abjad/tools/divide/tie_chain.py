@@ -16,10 +16,14 @@ def tie_chain(chain, divisions = 2, prolation = 'diminution'):
 
    # find written duration of each notes in tuplet
    if prolation == 'diminution':
-      written_duration = durtools.prolated_to_written_not_less_than(
+      #written_duration = durtools.prolated_to_written_not_less_than(
+      #   prolated_duration)
+      written_duration = durtools.naive_prolated_to_written_not_less_than(
          prolated_duration)
    elif prolation == 'augmentation':
-      written_duration = durtools.prolated_to_written_not_greater_than(
+      #written_duration = durtools.prolated_to_written_not_greater_than(
+      #   prolated_duration)
+      written_duration = durtools.naive_prolated_to_written_not_greater_than(
          prolated_duration)
    else:
       raise ValueError('must be diminution or augmentation.')

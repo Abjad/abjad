@@ -11,8 +11,9 @@ from abjad.tuplet import FixedDurationTuplet
 
 def _duration_into_arbitrary_fixed_duration_tuplet_dotted(
    duration, divisions, prolation):
-   '''Divide `duration` according to `divisions`
-   and `prolation`.
+   '''.. versionadded:: 1.1.2
+
+   Divide `duration` according to `divisions` and `prolation`.
 
    Do not allow series of dotted values.
    '''

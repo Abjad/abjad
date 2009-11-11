@@ -287,6 +287,10 @@ divide
    tools/divide/leaf_into_even_diminution
    tools/divide/pair
    tools/divide/tie_chain
+   tools/divide/tie_chain_into_arbitrary_augmentation_dotted
+   tools/divide/tie_chain_into_arbitrary_augmentation_undotted
+   tools/divide/tie_chain_into_arbitrary_diminution_dotted
+   tools/divide/tie_chain_into_arbitrary_diminution_undotted
 
 
 durtools
