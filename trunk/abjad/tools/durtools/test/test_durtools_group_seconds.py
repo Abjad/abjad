@@ -3,15 +3,17 @@ from abjad import *
 
 def test_durtools_group_seconds_01( ):
    '''Fill one group exactly.
-      Do not read durations cyclically.
-      Do not return overhang group.'''
+   Do not read durations cyclically.
+   Do not return overhang group.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
-   tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner = TempoSpanner(t[:])
+   tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.tempo_indication = tempo_indication
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          \tempo 4=60
          c'8
@@ -26,7 +28,8 @@ def test_durtools_group_seconds_01( ):
          b'8
          c''8
          %% tempo 4=60 ends here
-   }'''
+   }
+   '''
 
    groups = durtools.group_seconds(t.leaves, [1.5], )
 
@@ -38,14 +41,16 @@ def test_durtools_group_seconds_01( ):
 
 def test_durtools_group_seconds_02( ):
    '''Read durations cyclically.
-      If components remain, do not append final part.'''
+   If components remain, do not append final part.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
-   tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner = TempoSpanner(t[:])
+   tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.tempo_indication = tempo_indication
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          \tempo 4=60
          c'8
@@ -60,7 +65,8 @@ def test_durtools_group_seconds_02( ):
          b'8
          c''8
          %% tempo 4=60 ends here
-   }'''
+   }
+   '''
 
    groups = durtools.group_seconds(t.leaves, [1.5], cyclic = True)
 
@@ -73,14 +79,16 @@ def test_durtools_group_seconds_02( ):
 
 def test_durtools_group_seconds_03( ):
    '''Read durations cyclically.
-      If components remain, do append final part.'''
+   If components remain, do append final part.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
-   tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner = TempoSpanner(t[:])
+   tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.tempo_indication = tempo_indication
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          \tempo 4=60
          c'8
@@ -95,7 +103,8 @@ def test_durtools_group_seconds_03( ):
          b'8
          c''8
          %% tempo 4=60 ends here
-   }'''
+   }
+   '''
 
    groups = durtools.group_seconds(
       t.leaves, [1.5], cyclic = True, overhang = True)
@@ -113,10 +122,12 @@ def test_durtools_group_seconds_04( ):
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
-   tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner = TempoSpanner(t[:])
+   tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.tempo_indication = tempo_indication
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          \tempo 4=60
          c'8
@@ -131,7 +142,8 @@ def test_durtools_group_seconds_04( ):
          b'8
          c''8
          %% tempo 4=60 ends here
-   }'''
+   }
+   '''
 
    groups = durtools.group_seconds(
       t.leaves, [0.75], fill = 'less')
@@ -144,15 +156,17 @@ def test_durtools_group_seconds_04( ):
 
 def test_durtools_group_seconds_05( ):
    '''Parts must be less than durations.
-      Do read durations cyclically.
-      If components remain, do not append final part.'''
+   Do read durations cyclically.
+   If components remain, do not append final part.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
-   tempo_spanner = Tempo(t[:])
-   tempo_spanner.indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner = TempoSpanner(t[:])
+   tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   tempo_spanner.tempo_indication = tempo_indication
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          \tempo 4=60
          c'8
@@ -167,7 +181,8 @@ def test_durtools_group_seconds_05( ):
          b'8
          c''8
          %% tempo 4=60 ends here
-   }'''
+   }
+   '''
 
    groups = durtools.group_seconds(
       t.leaves, [0.75], cyclic = True, fill = 'less')

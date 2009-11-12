@@ -9,7 +9,7 @@ import math
 
 
 def prolated_to_written_not_less_than(prolated_duration):
-   '''Return the greatest note-head-assignabel rational not
+   '''Return the least note-head-assignable rational not
    less than `prolated_duration`. ::
 
       abjad> for n in range(1, 17):

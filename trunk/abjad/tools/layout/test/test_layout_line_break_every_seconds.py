@@ -8,9 +8,9 @@ def test_layout_line_break_every_seconds_01( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
 
-   tempo_spanner = Tempo(t[:])
+   tempo_spanner = TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 8), 44)
-   tempo_spanner.indication = tempo_indication
+   tempo_spanner.tempo_indication = tempo_indication
 
    r'''
    \new Staff {

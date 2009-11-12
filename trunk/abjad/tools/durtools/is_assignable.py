@@ -3,18 +3,17 @@ from abjad.tools import mathtools
 
 
 def is_assignable(duration):
-   r'''True when rational-valued `duration` is 
-   and of a form acceptable for assignment to written duration
-   of a note, rest, chord or skip. Otherwise false.
+   r'''True when `duration` is of a form acceptable 
+   for note-head assignment.
 
-   That is, `duration` must be rational of the form ``p/q``,
+   That is, true when `duration` is a rational of the form ``p/q``,
    such that:
 
-   * ``0 < p/q 16``
+   * ``p`` is a notehead-assignable integer
    * ``q = 2**n`` with integer ``n``
-   * ``p`` is a notehead-assignable integer.
+   * ``0 < p/q 16``
 
-   ::
+   Otherwise false. ::
 
       abjad> for numerator in range(0, 16 + 1):
       ...     duration = Rational(numerator, 16)

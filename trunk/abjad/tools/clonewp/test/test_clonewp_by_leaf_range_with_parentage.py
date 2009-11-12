@@ -197,21 +197,23 @@ def test_clonewp_by_leaf_range_with_parentage_07( ):
    {
            \time 3/10
            \scaleDurations #'(4 . 5) {
+               {
                            d'8
                            e'8
                            f'8
+               }
            }
    }
    '''
 
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t}\n}"
+   assert u.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_08( ):
    '''Copy consecutive leaves from tuplet in measure and voice;
-      nonbinary measure results.'''
+   nonbinary measure results.'''
 
    t = Voice([RigidMeasure((4, 8), 
       [FixedDurationTuplet((4, 8), construct.scale(5))])])
@@ -238,9 +240,11 @@ def test_clonewp_by_leaf_range_with_parentage_08( ):
            {
                    \time 3/10
                    \scaleDurations #'(4 . 5) {
+                           {
                                    d'8
                                    e'8
                                    f'8
+                           }
                    }
            }
    }
@@ -248,7 +252,7 @@ def test_clonewp_by_leaf_range_with_parentage_08( ):
 
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t}\n\t}\n}"
+   assert u.format == "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_09( ):
@@ -279,18 +283,22 @@ def test_clonewp_by_leaf_range_with_parentage_09( ):
    {
            \time 5/12
            \scaleDurations #'(2 . 3) {
+               {
                            d'8
                            e'8
+               }
+               {
                            f'8
                            g'8
                            a'8
+               }
            }
    }
    '''
 
    assert check.wf(t)
    assert check.wf(u)
-   assert u.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t}\n}"
+   assert u.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
 
 
 def test_clonewp_by_leaf_range_with_parentage_10( ):

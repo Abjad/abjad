@@ -87,7 +87,12 @@ class _SpannerReceptor(_Abjad):
 
    @property
    def spanner_in_parentage(self):
-      '''Return first spanner attaching to parentage of client.'''
+      '''Return first spanner attaching to parentage of client.
+
+      .. todo:: raise ExtraSpannerError when more than one spanner
+         is found attaching to a component in the parentage of
+         client.
+      '''
       parentage = self._client.parentage.parentage
       for parent in parentage:
          spanners = parent.spanners.attached
@@ -105,6 +110,23 @@ class _SpannerReceptor(_Abjad):
       for klass in self._klasses:
          spanners = client.spanners.attached
          result.update([p for p in spanners if isinstance(p, klass)])
+      return result
+
+   @property
+   def spanners_in_parentage(self):
+      '''.. versionadded:: 1.1.2
+
+      Return unordered set of all spanners attaching to 
+      any component in the parentage of client, including client.
+      '''
+      result = set([ ])
+      parentage = self._client.parentage.parentage
+      for parent in parentage:
+         spanners = parent.spanners.attached
+         for klass in self._klasses:
+            for spanner in spanners:
+               if isinstance(spanner, klass):
+                  result.add(spanner)
       return result
 
    ## PUBLIC METHODS ##

@@ -283,7 +283,7 @@ class Spanner(_Abjad):
 
       Spanner duration interface also implements ``seconds`` attribute. ::
 
-         abjad> Tempo(voice[:], TempoIndication(Rational(1, 8), 48))
+         abjad> TempoSpanner(voice[:], TempoIndication(Rational(1, 8), 48))
          abjad> spanner.duration.seconds
          Rational(5, 1)
       '''

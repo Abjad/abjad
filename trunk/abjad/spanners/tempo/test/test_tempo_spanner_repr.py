@@ -5,7 +5,8 @@ def test_tempo_spanner_repr_01( ):
    '''Tempo spanner repr gives tempo equation when possible.'''
 
    t = Staff(construct.scale(4))
-   tempo = Tempo(t[:], tempotools.TempoIndication(Rational(1, 8), 58))
+   tempo_spanner = TempoSpanner(
+      t[:], tempotools.TempoIndication(Rational(1, 8), 58))
 
    r'''
    \new Staff {
@@ -18,7 +19,7 @@ def test_tempo_spanner_repr_01( ):
    }
    '''
 
-   assert tempo.__repr__( ) == "Tempo(8=58, c'8, d'8, e'8, f'8)"
+   assert tempo_spanner.__repr__( ) == "TempoSpanner(8=58, c'8, d'8, e'8, f'8)"
 
 
 def test_tempo_spanner_repr_02( ):
@@ -26,8 +27,9 @@ def test_tempo_spanner_repr_02( ):
    tempo indication is available.'''
 
    t = Staff(construct.scale(4))
-   tempo = Tempo(t[:], tempotools.TempoIndication(Rational(1, 8), 58))
-   tempo.indication = None
+   tempo_spanner = TempoSpanner(
+      t[:], tempotools.TempoIndication(Rational(1, 8), 58))
+   tempo_spanner.tempo_indication = None
 
    r'''
    \new Staff {
@@ -38,4 +40,4 @@ def test_tempo_spanner_repr_02( ):
    }
    '''
    
-   assert tempo.__repr__( ) == "Tempo(c'8, d'8, e'8, f'8)"
+   assert tempo_spanner.__repr__( ) == "TempoSpanner(c'8, d'8, e'8, f'8)"

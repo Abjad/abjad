@@ -1,22 +1,22 @@
 from abjad.spanners.tempo.proportional.format import \
    _TempoProportionalFormatInterface
-from abjad.spanners.tempo.spanner import Tempo
+from abjad.spanners.tempo.spanner import TempoSpanner
 import types
 
 
-class TempoProportional(Tempo):
+class TempoSpannerProportional(TempoSpanner):
    r'''.. versionadded:: 1.1.1
 
    Tempo spanner aware of scorewide spacing. ::
 
-      abjad> t = Score([Staff(construct.scale(4))])   
-      abjad> tempo_indication = TempoIndication(Rational(1, 4), 60)   
-      abjad> spacing_indication = SpacingIndication(tempo_indication, Rational(1, 34))   
-      abjad> t.spacing.scorewide = spacing_indication   
+      abjad> score = Score([Staff(construct.scale(4))])   
+      abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)   
+      abjad> spacing_indication = spacing.SpacingIndication(tempo_indication, Rational(1, 34))   
+      abjad> score.spacing.scorewide = spacing_indication   
 
    ::
 
-      abjad> print t.format
+      abjad> f(score)
       \new Score <<
               \new Staff {
                       c'8
@@ -28,17 +28,17 @@ class TempoProportional(Tempo):
 
    ::
 
-      abjad> p = TempoProportional(t[0][:2])   
-      abjad> p.indication = TempoIndication(Rational(1, 4), 60)   
+      abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)   
+      abjad> proportional_tempo_spanner = TempoSpannerProportional(t[0][:2], tempo_indication)   
    
    ::
 
-      abjad> p = TempoProportional(t[0][2:])   
-      abjad> p.indication = TempoIndication(Rational(1, 4), 120)
+      abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 4), 120)
+      abjad> proportional_tempo_spanner = TempoSpannerProportional(t[0][2:], tempo_indication)   
 
    ::
 
-      abjad> print t.format
+      abjad> f(score)
       \new Score <<
               \new Staff {
                       \tempo 4=60
@@ -57,7 +57,6 @@ class TempoProportional(Tempo):
       >>
    '''
 
-   def __init__(self, music = None, indication = None):
-      '''Init ``TempoProportional`` as type of ``Tempo`` spanner.'''
-      Tempo.__init__(self, music, indication)
+   def __init__(self, music = None, tempo_indication = None):
+      TempoSpanner.__init__(self, music, tempo_indication)
       self._format = _TempoProportionalFormatInterface(self)

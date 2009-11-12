@@ -1,0 +1,85 @@
+Tempo spanners
+==============
+
+Sometimes you might want to change tempo in the middle of a piece.
+You can do this with Abjad tempo spanners.
+
+By default, the scores you create in Abjad carry no tempo indication.
+
+::
+
+	abjad> staff = RhythmicStaff(construct.run(8))
+	abjad> score = Score([staff])
+	abjad> f(score)
+	\new Score <<
+		\new RhythmicStaff {
+			c'8
+			c'8
+			c'8
+			c'8
+			c'8
+			c'8
+			c'8
+			c'8
+		}
+	>>
+	abjad> show(score)
+
+.. image:: images/1.png
+
+You can add a tempo indication to any part of a score
+with a tempo spanner. The tempo spanner below attaches 
+to the first four notes in staff.
+
+::
+
+	abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 8), 72)
+	abjad> tempo_spanner = TempoSpanner(staff[:4], tempo_indication)
+	abjad> f(score)
+	\new Score <<
+		\new RhythmicStaff {
+			\tempo 8=72
+			c'8
+			c'8
+			c'8
+			c'8
+			%% tempo 8=72 ends here
+			c'8
+			c'8
+			c'8
+			c'8
+		}
+	>>
+	abjad> show(score)
+
+.. image:: images/2.png
+
+This tempo spanner below attaches to the last four notes in staff.
+
+::
+
+	abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 8), 84)
+	abjad> tempo_spanner = TempoSpanner(staff[4:], tempo_indication)
+	abjad> f(score)
+	\new Score <<
+		\new RhythmicStaff {
+			\tempo 8=72
+			c'8
+			c'8
+			c'8
+			c'8
+			%% tempo 8=72 ends here
+			\tempo 8=84
+			c'8
+			c'8
+			c'8
+			c'8
+			%% tempo 8=84 ends here
+		}
+	>>
+	abjad> show(score)
+
+.. image:: images/3.png
+
+Tempo spanners side by side are one way to model different tempo
+regions in a score.

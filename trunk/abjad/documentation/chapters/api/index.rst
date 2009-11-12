@@ -286,7 +286,6 @@ divide
    tools/divide/leaf_into_even_augmentation
    tools/divide/leaf_into_even_diminution
    tools/divide/pair
-   tools/divide/tie_chain
    tools/divide/tie_chain_into_arbitrary_augmentation_dotted
    tools/divide/tie_chain_into_arbitrary_augmentation_undotted
    tools/divide/tie_chain_into_arbitrary_diminution_dotted
@@ -302,6 +301,7 @@ durtools
    tools/durtools/denominator_to_multiplier
    tools/durtools/group_prolated
    tools/durtools/group_seconds
+   tools/durtools/implied_prolation
    tools/durtools/in_terms_of
    tools/durtools/in_terms_of_binary_multiple
    tools/durtools/is_assignable

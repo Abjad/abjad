@@ -1,7 +1,6 @@
 def within_seconds(timepoint, component):
-   '''True when `timepoint` is within the duration of `component`.
-
-   ::
+   '''True when `timepoint` is within the duration 
+   of `component` in seconds. ::
    
       abjad> staff = Staff(construct.scale(4))
       abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 2), 60)

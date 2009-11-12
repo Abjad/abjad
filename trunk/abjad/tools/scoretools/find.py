@@ -44,6 +44,9 @@ def find(expr, name = None, klass = None, context = None):
       Function previously returned tuple of all components found.
    '''
 
+   if not isinstance(expr, (_Component, list, tuple)):
+      raise TypeError('must be tuple, list or Abjad comonent.')
+
    result = [ ]
 
    for component in iterate.naive_forward(expr, _Component):
@@ -51,9 +54,6 @@ def find(expr, name = None, klass = None, context = None):
          if klass is None or isinstance(component, klass):
             if context is None or \
                getattr(component, 'context', None) == context:
-               #result.append(component)
                return component
 
-   #result = tuple(result)
-   #return result
    raise MissingComponentError

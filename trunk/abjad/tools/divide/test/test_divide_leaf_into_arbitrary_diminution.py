@@ -6,10 +6,10 @@ def test_divide_leaf_into_arbitrary_diminution_01( ):
    note = Note(0, (3, 16))
 
    t = divide.leaf_into_arbitrary_diminution(note, [1])
-   assert t.format == "\tc'8."
+   assert t.format == "{\n\tc'8.\n}"
 
    t = divide.leaf_into_arbitrary_diminution(note, [1, 2])
-   assert t.format == "\tc'16\n\tc'8"
+   assert t.format == "{\n\tc'16\n\tc'8\n}"
 
    ## TODO: DECIDE ON DOTTED VALUES ##
    #t = divide.leaf_into_arbitrary_diminution(note, [1, 2, 2])

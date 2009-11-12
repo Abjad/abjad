@@ -10,10 +10,10 @@ def test_tempo_proportional_spanner_01( ):
       tempo_indication, Rational(1, 34))
    t.spacing.scorewide = spacing_indication
 
-   p = TempoProportional(t[0][:2])
-   p.indication = tempotools.TempoIndication(Rational(1, 4), 60)
-   p = TempoProportional(t[0][2:])
-   p.indication = tempotools.TempoIndication(Rational(1, 4), 120)
+   p = TempoSpannerProportional(t[0][:2])
+   p.tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
+   p = TempoSpannerProportional(t[0][2:])
+   p.tempo_indication = tempotools.TempoIndication(Rational(1, 4), 120)
 
    r'''
    \new Score <<

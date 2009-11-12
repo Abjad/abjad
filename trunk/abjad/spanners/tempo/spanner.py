@@ -7,7 +7,7 @@ from abjad.tools import tempotools
 import types
 
 
-class Tempo(_GrobHandlerSpanner):
+class TempoSpanner(_GrobHandlerSpanner):
    r'''Apply tempo indication to zero or more contiguous components.
 
    Handle LilyPond ``MetronomeMark`` grob.
@@ -17,8 +17,8 @@ class Tempo(_GrobHandlerSpanner):
    Invoke LilyPond ``\newSpacingSection`` command. ::
 
       abjad> t = Voice(construct.scale(4))
-      abjad> indication = tempotools.TempoIndication(Rational(1, 8), 38)
-      abjad> p = Tempo(t[:], indication)
+      abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 8), 38)
+      abjad> p = TempoSpanner(t[:], tempo_indication)
       abjad> f(t)
       \new Voice {
               \tempo 8=38
@@ -30,44 +30,26 @@ class Tempo(_GrobHandlerSpanner):
       }
    '''
 
-   def __init__(self, music = None, indication = None):
-      '''Handle LilyPond MetronomeMark grob. Init tempo indication.'''
-
+   def __init__(self, music = None, tempo_indication = None):
       _GrobHandlerSpanner.__init__(self, 'MetronomeMark', music)
       self._format = _TempoSpannerFormatInterface(self)
       self._proportional_notation_duration_effective = None
       self._proportional_notation_duration_reference = None
-      self.indication = indication
+      self.tempo_indication = tempo_indication
       self.reference = None
 
    ## OVERRIDES ##
 
    def __repr__(self):
       name = self.__class__.__name__
-      #summary = self._summary
       summary = self._compact_summary
-      if self.indication is not None:
-         equation = self.indication._equation
+      if self.tempo_indication is not None:
+         equation = self.tempo_indication._equation
          return '%s(%s, %s)' % (name, equation, summary)
       else:
          return '%s(%s)' % (name, summary) 
 
    ## PUBLIC ATTRIBUTES ##
-
-   @apply
-   def indication( ):
-      def fget(self):
-         '''Read / write tempo indication.'''
-         return self._indication
-      def fset(self, arg):
-         assert isinstance(arg, (tempotools.TempoIndication, types.NoneType))
-         if isinstance(arg, tempotools.TempoIndication):
-            self._indication = tempotools.TempoIndication(arg)
-         elif isinstance(arg, types.NoneType):
-            self._indication = arg 
-         else:
-            raise ValueError('must be Abjad TempoIndication or None.')
-      return property(**locals( ))
 
    @property
    def proportional_notation_duration_effective(self):
@@ -86,7 +68,7 @@ class Tempo(_GrobHandlerSpanner):
    @apply
    def proportional_notation_duration_reference( ):
       def fget(self):
-         '''Read / write LilyPond proportionalNotationDuration. \
+         '''Read / write LilyPond proportionalNotationDuration.
          Must be rational-valued duration.
 
          .. todo:: Write Tempo.proportional_notation_duration_reference( )
@@ -102,7 +84,7 @@ class Tempo(_GrobHandlerSpanner):
    @apply
    def reference( ):
       def fget(self):
-         '''Read / write reference tempo indication. \
+         '''Read / write reference tempo indication.
          If set, scale durations at format-time.'''
          return self._reference
       def fset(self, arg):
@@ -114,6 +96,21 @@ class Tempo(_GrobHandlerSpanner):
    def scaling_factor(self):
       '''Reference tempo divided by indicated tempo.'''
       try:
-         return self.reference.maelzel / self.indication.maelzel
+         return self.reference.quarters_per_minute / self.tempo_indication.quarters_per_minute
       except AttributeError:
          raise UndefinedTempoError
+
+   @apply
+   def tempo_indication( ):
+      def fget(self):
+         '''Read / write tempo indication.'''
+         return self._tempo_indication
+      def fset(self, arg):
+         assert isinstance(arg, (tempotools.TempoIndication, types.NoneType))
+         if isinstance(arg, tempotools.TempoIndication):
+            self._tempo_indication = tempotools.TempoIndication(arg)
+         elif isinstance(arg, types.NoneType):
+            self._tempo_indication = arg 
+         else:
+            raise ValueError('must be Abjad TempoIndication or None.')
+      return property(**locals( ))

@@ -49,7 +49,7 @@ def test_fdtuplet_03( ):
    t = FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 2)
    assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
    assert str(t) == "{@ 1:1 c'8, c'8 @}"
-   assert t.format == "\tc'8\n\tc'8"
+   assert t.format == "{\n\tc'8\n\tc'8\n}"
 
 
 def test_fdtuplet_04( ):
@@ -59,7 +59,7 @@ def test_fdtuplet_04( ):
    t.pop( )
    assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
    assert str(t) == "{@ 1:1 c'8, c'8 @}"
-   assert t.format == "\tc'8\n\tc'8"
+   assert t.format == "{\n\tc'8\n\tc'8\n}"
 
 
 def test_fdtuplet_05( ):

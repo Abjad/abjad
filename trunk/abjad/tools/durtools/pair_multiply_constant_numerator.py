@@ -2,22 +2,25 @@ from abjad.rational import Rational
 
 
 def pair_multiply_constant_numerator(pair, multiplier):
-   '''Multiply Python pair by Rational multiplier.
-      Hold pair numerator constant, if possible.
-      Return new Python pair representing product.
+   '''Multiply `pair` by rational `multiplier`.
+   Hold `pair` numerator constant, if possible.
+   Return new pair. ::
 
-      Intended for certain types of meter multiplication.
-
-      Examples:
-
-      durtools.pair_multiply_constant_numerator(9, 16), Rational(2, 3))
+      abjad> durtools.pair_multiply_constant_numerator((9, 16), Rational(2, 3))
       (9, 24)
 
-      durtools.pair_multiply_constant_numerator(9, 16), Rational(1, 2))
+   ::
+
+      abjad> durtools.pair_multiply_constant_numerator((9, 16), Rational(1, 2))
       (9, 32)
 
-      durtools.pair_multiply_constant_numerator(9, 16), Rational(5, 6))
-      (45, 96)'''
+   ::
+
+      abjad> durtools.pair_multiply_constant_numerator((9, 16), Rational(5, 6))
+      (45, 96)
+
+   Intended for certain types of meter multiplication.
+   '''
 
    assert isinstance(pair, tuple)
    assert isinstance(multiplier, Rational)

@@ -7,7 +7,7 @@ def test_tempo_spanner_grob_handling_01( ):
    '''
 
    t = Voice(construct.scale(4))
-   p = Tempo(t[:], tempotools.TempoIndication(Rational(1, 4), 58))
+   p = TempoSpanner(t[:], tempotools.TempoIndication(Rational(1, 4), 58))
    p.color = 'red'
    overridetools.promote(p, 'color', 'Staff')
    

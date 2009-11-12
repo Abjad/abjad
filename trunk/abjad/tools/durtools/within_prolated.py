@@ -1,7 +1,6 @@
 def within_prolated(timepoint, component):
-   '''True when `timepoint` is within the duration of `component`.
-
-   ::
+   '''True when `timepoint` is within the prolated 
+   duration of `component`. ::
    
       abjad> staff = Staff(construct.scale(4))
       abjad> leaf = staff.leaves[0]

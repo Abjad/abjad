@@ -2,7 +2,7 @@ from abjad.rational import Rational
 
 
 def to_fraction(rational):
-   '''Format `rational` as a string in the form ``p/q``.
+   '''Format `rational` as a string of the form ``p/q``.
 
    ::
 

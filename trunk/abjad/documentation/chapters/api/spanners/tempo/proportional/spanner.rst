@@ -1,9 +1,9 @@
-TempoProportional
-=================
+TempoSpannerProportional
+========================
 
 .. automodule:: abjad.spanners.tempo.proportional.spanner
 
-.. autoclass:: abjad.TempoProportional
+.. autoclass:: abjad.TempoSpannerProportional
    :members:
    :undoc-members:
    :show-inheritance:

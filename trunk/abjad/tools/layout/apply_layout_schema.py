@@ -3,6 +3,8 @@ from abjad.tools.layout.apply_fixed_staff_positioning import \
    apply_fixed_staff_positioning
 from abjad.tools.layout.line_break_every_prolated import \
    line_break_every_prolated
+from abjad.tools.layout.line_break_every_seconds import \
+   line_break_every_seconds
 
 
 def apply_layout_schema(expr, layout_schema, adjust_eol = False):
@@ -52,11 +54,18 @@ def apply_layout_schema(expr, layout_schema, adjust_eol = False):
                       \break
               }
       }
+
+   .. todo:: document LayoutSchema.in_seconds.
    '''
    
    if not isinstance(layout_schema, LayoutSchema):
       raise TypeError('must be layout schema.')
 
-   line_break_every_prolated(
-      expr, layout_schema.line_break_duration, adjust_eol = adjust_eol)
+   if layout_schema.in_seconds:
+      line_break_every_seconds(
+         expr, layout_schema.line_break_duration, adjust_eol = adjust_eol)
+   else:
+      line_break_every_prolated(
+         expr, layout_schema.line_break_duration, adjust_eol = adjust_eol)
+
    apply_fixed_staff_positioning(expr, layout_schema.fixed_staff_positioning)

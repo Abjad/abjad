@@ -94,7 +94,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    def seconds(self):
       tempo = self._client.tempo.effective
       if tempo is not None:
-         return self.prolated / tempo.duration / tempo.mark * 60
+         return self.prolated / tempo.duration / tempo.units_per_minute * 60
       raise UndefinedTempoError
 
    @apply

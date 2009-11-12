@@ -3,16 +3,19 @@ from abjad.tools import mathtools
 
 
 def pair_multiply_reduce_factors(pair, multiplier):
-   '''Multiply Python pair by Rational multiplier.
-      Reduce common cross factors.
+   '''Multiply `pair` by rational `multiplier`.
+   Reduce common cross factors. ::
 
-      Examples:
-
-      durtools.pair_multiply_reduce_factors(4, 8), Rational(2, 3))
+      abjad> durtools.pair_multiply_reduce_factors((4, 8), Rational(2, 3))
       (4, 12)
 
-      durtools.pair_multiply_reduce_factors(4, 8), Rational(6, 5))
-      (12, 20)'''
+   ::
+
+      durtools.pair_multiply_reduce_factors((4, 8), Rational(6, 5))
+      (12, 20)
+
+   Intended for certain types of meter multiplication.
+   '''
 
    assert isinstance(pair, tuple)
    assert isinstance(multiplier, Rational)

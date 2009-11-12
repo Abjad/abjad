@@ -1,38 +1,36 @@
 from abjad.rational import Rational
 from abjad.tools.durtools.token_unpack import token_unpack
 
-def in_terms_of(q, desired_denominator):
-   r'''Rewrite ``q`` in terms of ``desired_denominator``.
 
-   * ``q``: ``int``, ``long``, ``Rational``. Input value to rewrite.
+def in_terms_of(duration, desired_denominator):
+   r'''Rewrite `duration` as a pair
+   with positive integer `desired_denominator`. ::
 
-   * ``desired_denominator``: ``int``. Desired denominator of output.
-
-   Returns ``(a', b')`` pair such that \
-   ``a' = a * desired_denominator / b`` and \
-   ``b' = desired_denominator``.
-
-   ::
-
-      abjad> for pair in [(n, 6) for n in range(12)]:
-      ...     print '%s\t%s' % (pair, durtools.in_terms_of(pair, 12))
+      abjad> for n in range(1, 17):
+      ...     rational = Rational(n, 16)
+      ...     pair = durtools.in_terms_of(rational, 16)
+      ...     print '%s\t%s' % (rational, pair)
       ... 
-      (0, 6)  (0, 12)
-      (1, 6)  (2, 12)
-      (2, 6)  (4, 12)
-      (3, 6)  (6, 12)
-      (4, 6)  (8, 12)
-      (5, 6)  (10, 12)
-      (6, 6)  (12, 12)
-      (7, 6)  (14, 12)
-      (8, 6)  (16, 12)
-      (9, 6)  (18, 12)
-      (10, 6) (20, 12)
-      (11, 6) (22, 12)
+      1/16    (1, 16)
+      1/8     (2, 16)
+      3/16    (3, 16)
+      1/4     (4, 16)
+      5/16    (5, 16)
+      3/8     (6, 16)
+      7/16    (7, 16)
+      1/2     (8, 16)
+      9/16    (9, 16)
+      5/8     (10, 16)
+      11/16   (11, 16)
+      3/4     (12, 16)
+      13/16   (13, 16)
+      7/8     (14, 16)
+      15/16   (15, 16)
+      1       (16, 16)
    '''
 
-   assert isinstance(q, (Rational, int, long, tuple))
-   n, d = token_unpack(q)
+   assert isinstance(duration, (Rational, int, long, tuple))
+   n, d = token_unpack(duration)
    multiplier = Rational(desired_denominator, d)
    new_numerator = multiplier * n
    new_denominator = multiplier * d

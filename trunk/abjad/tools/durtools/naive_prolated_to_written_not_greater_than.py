@@ -3,8 +3,8 @@ import math
 
 
 def naive_prolated_to_written_not_greater_than(prolated_duration):
-   '''Return greatest rational of the form ``1/2**n`` 
-   that is less than or equal to `prolated_duration`. ::
+   '''Return the greatest rational of the form ``1/2**n`` 
+   less than or equal to `prolated_duration`. ::
 
       abjad> for n in range(1, 17):
       ...     prolated_duration = Rational(n, 16)
@@ -27,6 +27,11 @@ def naive_prolated_to_written_not_greater_than(prolated_duration):
       14/16   1/2
       15/16   1/2
       16/16   1
+
+   ::
+
+      abjad> durtools.naive_prolated_to_written_not_greater_than(Rational(1, 80))
+      Rational(1, 128)
 
    Function intended to find written duration of notes inside tuplet.
    '''

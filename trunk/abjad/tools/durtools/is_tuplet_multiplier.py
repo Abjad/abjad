@@ -2,13 +2,14 @@ from abjad.rational import Rational
 
 
 def is_tuplet_multiplier(multiplier):
-   '''True when `multiplier` is a rational
-   strictly greater than 1/2 and strictly less than 2. ::
+   '''True when ``1/2 < multiplier < 2``.
+
+   ::
 
       abjad> for n in range(17):
       ...     rational = Rational(n, 8)
       ...     multiplier = durtools.is_tuplet_multiplier(rational)
-      ...     print '%s\t%s' % (rational, multiplier)
+      ...     print '%s\\t%s' % (rational, multiplier)
       ... 
       0       False
       1/8     False

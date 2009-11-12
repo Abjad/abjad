@@ -1,13 +1,13 @@
 def sum_seconds(components):
-   r'''Sum of the duration of each component in `components`, in seconds.
+   r'''Sum the duration of `components` in seconds.
 
    ::
 
-      abjad> t = FixedDurationTuplet((2, 8), construct.scale(3))
-      abjad> tempo = Tempo([t])
-      abjad> tempo.indication = TempoIndication(Rational(1, 4), 48)
-      abjad> print t.format
-
+      abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> tempo_spanner = TempoSpanner([tuplet])
+      abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 4), 48)
+      abjad> tempo_spanner.tempo_indication = tempo_indication
+      abjad> f(tuplet)
       \times 2/3 {
          \tempo 4=48
          c'8
@@ -15,8 +15,7 @@ def sum_seconds(components):
          e'8
          %% tempo 4=48 ends here
       }
-
-      abjad> durtools.sum_seconds(t[:])
+      abjad> durtools.sum_seconds(tuplet[:])
       Rational(5, 4)
    '''
 

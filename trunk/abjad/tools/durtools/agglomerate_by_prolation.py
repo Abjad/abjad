@@ -2,19 +2,17 @@ from abjad.tools import mathtools
 
 
 def agglomerate_by_prolation(durations):
-   '''Given a list of tuplet duration tokens L =  [d1, d2, d3, ..., dn], 
-      this function returns a list 
-      L' = [[d1, ..., dp], [dp+1, ..., dq], ..., [dq+1, ..., dn]] of sublists 
-      of L, where each sublist is a group of consecutive durations 
-      with the same implied prolation. 
-      
-      Example:
+   '''Partition `durations` by implied prolation.
+   
+   ::
 
-      L = [(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)]
-      L'= [[(1, 4), (1, 8)], [(1, 3), (1, 6)], [(1, 4)]]'''
+      abjad> durations = [(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)]
+      abjad> durtools.agglomerate_by_prolation(durations)
+      [[(1, 4), (1, 8)], [(1, 3), (1, 6)], [(1, 4)]]
+   '''
 
    assert isinstance(durations, list)
-   assert len(durations) > 0
+   assert 0 < len(durations)
 
    group = [durations[0]]
    result = [group]

@@ -13,7 +13,7 @@ class SpacingIndication(_Abjad):
       abjad> tempo = tempotools.TempoIndication(Rational(1, 8), 44)
       abjad> spacing_indication = spacing.SpacingIndication(tempo, Rational(1, 68))
       abjad> spacing_indication
-      <SpacingIndication>
+      SpacingIndication(TempoIndication(8., 72), 1/68)
    '''
 
    def __init__(self, tempo_indication, proportional_notation_duration):
@@ -49,7 +49,7 @@ class SpacingIndication(_Abjad):
       '''Read-only proportional notation duration at 60 MM.'''
       indication = self.tempo_indication
       duration = self.proportional_notation_duration
-      scalar = indication.duration / indication.mark * 60 / Rational(1, 4)
+      scalar = indication.duration / indication.units_per_minute * 60 / Rational(1, 4)
       return scalar * self.proportional_notation_duration
 
    @apply

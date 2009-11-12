@@ -2,7 +2,8 @@ from abjad.rational import Rational
 
 
 def token_unpack(duration_token):
-   '''Return reduced numerator, denominator pair from `duration_token`.
+   '''Return reduced numerator, denominator pair
+   equal to `duration_token`.
 
    Rationals are allowed. ::
 

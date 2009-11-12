@@ -6,8 +6,8 @@ def test_tempo_spanner_01( ):
    '''Tempo spanner works on notes in voice.'''
 
    t = Voice(construct.scale(4))
-   indication = tempotools.TempoIndication(Rational(1, 8), 38)
-   p = Tempo(t[:], indication)
+   tempo_indication = tempotools.TempoIndication(Rational(1, 8), 38)
+   p = TempoSpanner(t[:], tempo_indication)
 
    r'''
    \new Voice {
@@ -34,8 +34,8 @@ def test_tempo_spanner_02( ):
       Tempo forced on a single spanned leaf applies only to that leaf.'''
 
    t = Voice(construct.scale(4))
-   indication = tempotools.TempoIndication(Rational(1, 8), 38)
-   p = Tempo(t[:], indication)
+   tempo_indication = tempotools.TempoIndication(Rational(1, 8), 38)
+   p = TempoSpanner(t[:], tempo_indication)
    t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 8), 44)
 
    r'''
@@ -64,7 +64,7 @@ def test_tempo_spanner_03( ):
    '''Tempo spanner works with containers.'''
 
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
-   p = Tempo(t[:], tempotools.TempoIndication(Rational(1, 8), 38))
+   p = TempoSpanner(t[:], tempotools.TempoIndication(Rational(1, 8), 38))
 
    r'''
    \new Voice {

@@ -11,9 +11,9 @@ def line_break_every_seconds(expr, line_duration, klass = _Measure,
 
       abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
       abjad> pitchtools.diatonicize(t)
-      abjad> tempo_spanner = Tempo(t[:])
+      abjad> tempo_spanner = TempoSpanner(t[:])
       abjad> tempo_indication = TempoIndication(Rational(1, 8), 44)
-      abjad> tempo_spanner.indication = tempo_indication
+      abjad> tempo_spanner.tempo_indication = tempo_indication
       abjad> print t.format
       \new Staff {
                       \time 2/8

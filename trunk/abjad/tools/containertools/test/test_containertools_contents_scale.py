@@ -127,15 +127,17 @@ def test_containertools_contents_scale_05( ):
    r'''
    \new Voice {
       c'8
+      {
          d'16
          e'16
          f'16
          g'16
+      }
    }
    '''
 
    assert check.wf(t)
-   assert t.format == "\\new Voice {\n\tc'8\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n}"
+   assert t.format == "\\new Voice {\n\tc'8\n\t{\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t}\n}"
 
 
 def test_containertools_contents_scale_06( ):

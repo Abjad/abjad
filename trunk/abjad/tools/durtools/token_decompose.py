@@ -3,9 +3,8 @@ from abjad.tools import mathtools
 
 
 def token_decompose(duration_token):
-   '''Return big-endian list of note-head-assignable duration tokens.
-
-   ::
+   '''Return big-endian list of note-head-assignable duration tokens
+   equal to `duration_token`. ::
 
       abjad> duration_tokens = [(n, 16) for n in range(10, 20)]
       abjad> for duration_token in duration_tokens:

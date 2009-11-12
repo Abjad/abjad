@@ -3,14 +3,67 @@ from abjad.tools.durtools._group import _group as durtools__group
 
 def group_seconds(
    components, durations, fill = 'exact', cyclic = False, overhang = False):
-   '''Group ``component`` according to ``durations`` in seconds.
+   r'''Group `components` according to `durations` in seconds.
 
-         * When ``fill == exact``, parts must equal durations exactly.
-         * When ``fill == less``, parts must be <= durations.
-         * When ``fill == greater``, parts must be >= durations.
-         * If ``cyclic`` is True, read *durations* cyclically.
-         * If ``overhang`` True and components remain, append as final part.
-         * If ``overhang`` False and components remain, do not append final part.
+   * When ``fill == exact``, parts must equal durations exactly.
+   * When ``fill == less``, parts must be <= durations.
+   * When ``fill == greater``, parts must be >= durations.
+   * If ``cyclic`` is True, read *durations* cyclically.
+   * If ``overhang`` True and components remain, append as final part.
+   * If ``overhang`` False and components remain, do not append final part.
+
+   Examples all refer to the following. ::
+
+      abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+      abjad> pitchtools.diatonicize(t)
+      abjad> tempo_spanner = TempoSpanner(t[:])
+      abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
+      abjad> tempo_spanner.tempo_indication = tempo_indication
+      abjad> f(t)
+      \new Staff {
+              {
+                      \time 2/8
+                      \tempo 4=60
+                      c'8
+                      d'8
+              }
+              {
+                      \time 2/8
+                      e'8
+                      f'8
+              }
+              {
+                      \time 2/8
+                      g'8
+                      a'8
+              }
+              {
+                      \time 2/8
+                      b'8
+                      c''8
+                      %% tempo 4=60 ends here
+              }
+      }
+
+   Noncyclic exact fill with no overhang part. ::
+
+      abjad> durtools.group_seconds(t.leaves, [1.5], fill = 'exact', cyclic = False, overhang = False)
+      [[Note(c', 8), Note(d', 8), Note(e', 8)]]
+
+   Noncyclic exact fill with overhang part. ::
+
+      abjad> durtools.group_seconds(t.leaves, [1.5], fill = 'exact', cyclic = False, overhang = True)
+      [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8), Note(b', 8), Note(c'', 8)]]
+
+   Cyclic exact fill with no overhang part. ::
+
+      abjad> durtools.group_seconds(t.leaves, [1.5], fill = 'exact', cyclic = True, overhang = False)
+      [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)]]
+
+   Cyclic exact fill with overhang part. ::
+
+      abjad> durtools.group_seconds(t.leaves, [1.5], fill = 'exact', cyclic = True, overhang = True)
+      [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)], [Note(b', 8), Note(c'', 8)]]
    '''
 
    duration_type = 'seconds'

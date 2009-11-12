@@ -1,16 +1,16 @@
 def sum_prolated(components):
-   r'''Sum of prolated duration of each component in `components`.
+   r'''Sum the prolated duration of `components`.
 
    ::
 
-      abjad> t = FixedDurationTuplet((2, 8), construct.scale(3))
-      abjad> print t.format
+      abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> f(tuplet)
       \times 2/3 {
          c'8
          d'8
          e'8
       }
-      abjad> durtools.sum_prolated(t[:])
+      abjad> durtools.sum_prolated(tuplet[:])
       Rational(1, 4)
    '''
 

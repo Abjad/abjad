@@ -19,10 +19,12 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
 
    def _make_proportional_directive(self, scorewide_spacing, local_tempo):
       '''Calculate proportional notation duration for local tempo.'''
-      local_maelzel = local_tempo.maelzel
-      scorewide_maelzel = scorewide_spacing.tempo_indication.maelzel
+      local_quarters_per_minute = local_tempo.quarters_per_minute
+      scorewide_quarters_per_minute = \
+         scorewide_spacing.tempo_indication.quarters_per_minute
       scorewide_pnd = scorewide_spacing.proportional_notation_duration
-      local_pnd = local_maelzel / scorewide_maelzel * scorewide_pnd
+      local_pnd = local_quarters_per_minute / scorewide_quarters_per_minute * \
+         scorewide_pnd
       directive = self._format_proportional_directive(local_pnd)
       return directive
 
@@ -39,6 +41,6 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
          scorewide_spacing = spacing.get_scorewide(leaf)
          if scorewide_spacing is not None:
             directive = self._make_proportional_directive(
-               scorewide_spacing, spanner.indication)
+               scorewide_spacing, spanner.tempo_indication)
             result.append(directive)
       return result

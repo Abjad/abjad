@@ -21,6 +21,7 @@ class LayoutSchema(_Abjad):
          *staff_alignment_offsets_tuple)
       self.fixed_staff_positioning = FixedStaffPositioning(
          self.system_y_offsets, self.staff_alignment_offsets)
+      self.in_seconds = False
 
    ## OVERLOADS ##
 
@@ -35,3 +36,18 @@ class LayoutSchema(_Abjad):
 
    def __ne__(self, expr):
       return not self == expr
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def in_seconds( ):
+      '''Write docs.
+
+      .. todo:: write tests.'''
+      def fget(self):
+         return self._in_seconds
+      def fset(self, expr):
+         if not isinstance(expr, bool):
+            raise TypeError('must be true or false.')
+         self._in_seconds = expr
+      return property(**locals( ))
