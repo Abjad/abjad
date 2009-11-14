@@ -34,13 +34,30 @@ class TempoIndication(_Abjad):
       elif len(args) == 2:
          duration, units_per_minute = args
          assert isinstance(duration, Rational)
-         assert isinstance(units_per_minute, (int, long, float))
+         assert isinstance(units_per_minute, (int, long, float, Rational))
          self.duration = duration
          self.units_per_minute = units_per_minute
       else:
          raise ValueError('can not initialize tempo indication.')
 
    ## OVERLOADS ##
+
+   def __add__(self, expr):
+      if isinstance(expr, TempoIndication):
+         new_quarters_per_minute = \
+            self.quarters_per_minute + expr.quarters_per_minute
+         minimum_denominator = min((self.duration._d, expr.duration._d))
+         new_units_per_minute, new_duration_denominator = durtools.in_terms_of(
+            new_quarters_per_minute / 4, minimum_denominator)
+         new_duration = Rational(1, new_duration_denominator)
+         new_tempo_indication = TempoIndication(
+            new_duration, new_units_per_minute)
+         return new_tempo_indication
+
+   def __div__(self, expr):
+      if isinstance(expr, TempoIndication):
+         return self.quarters_per_minute / expr.quarters_per_minute
+      raise TypeError('must be tempo indication.')
 
    def __eq__(self, expr):
       if isinstance(expr, TempoIndication):
@@ -49,12 +66,32 @@ class TempoIndication(_Abjad):
                return True
       return False
 
+   def __mul__(self, multiplier):
+      if isinstance(multiplier, (int, float, Rational)):
+         new_units_per_minute = multiplier * self.units_per_minute
+         new_duration = Rational(self.duration)
+         new_tempo_indication = TempoIndication(
+            new_duration, new_units_per_minute)
+         return new_tempo_indication
+
    def __ne__(self, expr):
       return not self == expr
 
    def __repr__(self):
       return '%s(%s, %s)' % (
          self.__class__.__name__, self._dotted, self.units_per_minute)
+
+   def __sub__(self, expr):
+      if isinstance(expr, TempoIndication):
+         new_quarters_per_minute = \
+            self.quarters_per_minute - expr.quarters_per_minute
+         minimum_denominator = min((self.duration._d, expr.duration._d))
+         new_units_per_minute, new_duration_denominator = durtools.in_terms_of(
+            new_quarters_per_minute / 4, minimum_denominator)
+         new_duration = Rational(1, new_duration_denominator)
+         new_tempo_indication = TempoIndication(
+            new_duration, new_units_per_minute)
+         return new_tempo_indication
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -98,7 +135,8 @@ class TempoIndication(_Abjad):
          '''Units per minute.'''
          return self._units_per_minute
       def fset(self, arg):
-         assert isinstance(arg, (int, float))
-         assert 0 < arg
+         if not isinstance(arg, (int, float, long, Rational)):
+            raise TypeError('must be int or float.')
+         #assert 0 < arg
          self._units_per_minute = arg
       return property(**locals( ))

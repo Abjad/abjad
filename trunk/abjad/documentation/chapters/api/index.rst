@@ -299,9 +299,12 @@ durtools
 
    tools/durtools/agglomerate_by_prolation
    tools/durtools/denominator_to_multiplier
+   tools/durtools/diagonalize_all_assignable_durations
+   tools/durtools/diagonalize_all_positive_integer_pairs
+   tools/durtools/diagonalize_all_rationals
+   tools/durtools/diagonalize_all_rationals_unique
    tools/durtools/group_prolated
    tools/durtools/group_seconds
-   tools/durtools/implied_prolation
    tools/durtools/in_terms_of
    tools/durtools/in_terms_of_binary_multiple
    tools/durtools/is_assignable
@@ -309,11 +312,14 @@ durtools
    tools/durtools/is_pair
    tools/durtools/is_token
    tools/durtools/is_tuplet_multiplier
+   tools/durtools/metric_modulation_pairs
+   tools/durtools/metric_modulation_rhs_prolated_duration
    tools/durtools/naive_prolated_to_written_not_greater_than
    tools/durtools/naive_prolated_to_written_not_less_than
    tools/durtools/pair_multiply_constant_numerator
    tools/durtools/pair_multiply_naive
    tools/durtools/pair_multiply_reduce_factors
+   tools/durtools/prolated_to_prolation_written_pairs
    tools/durtools/prolated_to_written_not_greater_than
    tools/durtools/prolated_to_written_not_less_than
    tools/durtools/rationalize
