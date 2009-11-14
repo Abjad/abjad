@@ -322,6 +322,7 @@ durtools
    tools/durtools/prolated_to_prolation_written_pairs
    tools/durtools/prolated_to_written_not_greater_than
    tools/durtools/prolated_to_written_not_less_than
+   tools/durtools/rational_to_prolation_string
    tools/durtools/rationalize
    tools/durtools/seconds_to_clock_string
    tools/durtools/seconds_to_clock_string_escaped
@@ -778,6 +779,15 @@ split
    tools/split/fractured_at_index
    tools/split/unfractured_at_duration
    tools/split/unfractured_at_index
+
+
+tempotools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tempotools/integer_tempo_to_multiplier_pairs_report
+   tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
 
 
 tietools
