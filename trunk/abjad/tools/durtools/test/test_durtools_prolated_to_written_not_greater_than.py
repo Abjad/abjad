@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_durtools_prolated_to_written_not_greater_than_02( ):
+def test_durtools_prolated_to_written_not_greater_than_01( ):
    '''Wrapper around _naivedurtools.prolated_to_written_not_greater_than( ) 
    that returns dotted and double dotted durations where appropriate.'''
 

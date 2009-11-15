@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_prolated_to_prolation_written_pairs_01( ):
+def test_durtools_prolated_to_prolation_written_pairs_01( ):
 
    pairs = durtools.prolated_to_prolation_written_pairs(Rational(1, 8))
 
@@ -16,7 +16,7 @@ def test_prolated_to_prolation_written_pairs_01( ):
       (Rational(16, 31), Rational(31, 128)))
 
 
-def test_prolated_to_prolation_written_pairs_02( ):
+def test_durtools_prolated_to_prolation_written_pairs_02( ):
 
 
    pairs = durtools.prolated_to_prolation_written_pairs(Rational(1, 12))
@@ -31,7 +31,7 @@ def test_prolated_to_prolation_written_pairs_02( ):
       (Rational(32, 45), Rational(15, 128)))
 
 
-def test_prolated_to_prolation_written_pairs_03( ):
+def test_durtools_prolated_to_prolation_written_pairs_03( ):
 
 
    pairs = durtools.prolated_to_prolation_written_pairs(Rational(5, 48))

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_diagonalize_all_assignable_durations_01( ):
+def test_durtools_diagonalize_all_assignable_durations_01( ):
 
    generator = durtools.diagonalize_all_assignable_durations( )
 

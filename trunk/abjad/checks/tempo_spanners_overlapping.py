@@ -9,7 +9,7 @@ class TempoSpannersOverlapping(_Check):
 
    def _run(self, expr):
       violators = set([ ])
-      for leaf in iterate.leaves_forward(expr):
+      for leaf in iterate.leaves_forward_in(expr):
          spanners_in_parentage = leaf.tempo.spanners_in_parentage
          if 1 < len(spanners_in_parentage):
             violators.update(spanners_in_parentage)

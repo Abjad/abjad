@@ -3,7 +3,7 @@ from abjad.tools.iterate.naive_backward import naive_backward as \
    iterate_naive_backwards
 
 
-def leaves_backward(expr, start = 0, stop = None):
+def leaves_backward_in(expr, start = 0, stop = None):
    r'''.. versionadded:: 1.1.2
 
    Yield right-to-left leaves in `expr`. ::
@@ -31,7 +31,7 @@ def leaves_backward(expr, start = 0, stop = None):
 
    ::
 
-      abjad> for leaf in iterate.leaves_backward(staff):
+      abjad> for leaf in iterate.leaves_backward_in(staff):
       ...     leaf
       ... 
       Note(a', 8)
@@ -44,7 +44,7 @@ def leaves_backward(expr, start = 0, stop = None):
    Use the optional `start` and `stop` keyword parameters to control
    the indices of iteration. ::
 
-      abjad> for leaf in iterate.leaves_backward(staff, start = 3):
+      abjad> for leaf in iterate.leaves_backward_in(staff, start = 3):
       ...     leaf
       ... 
       Note(e', 8)
@@ -53,7 +53,7 @@ def leaves_backward(expr, start = 0, stop = None):
 
    ::
 
-      abjad> for leaf in iterate.leaves_backward(staff, start = 0, stop = 3):
+      abjad> for leaf in iterate.leaves_backward_in(staff, start = 0, stop = 3):
       ...     leaf
       ... 
       Note(a', 8)
@@ -62,7 +62,7 @@ def leaves_backward(expr, start = 0, stop = None):
 
    ::
 
-      abjad> for leaf in iterate.leaves_backward(staff, start = 2, stop = 4):
+      abjad> for leaf in iterate.leaves_backward_in(staff, start = 2, stop = 4):
       ...     leaf
       ... 
       Note(f', 8)

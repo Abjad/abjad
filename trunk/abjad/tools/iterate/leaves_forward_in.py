@@ -3,7 +3,7 @@ from abjad.tools.iterate.naive_forward import naive_forward as \
    iterate_naive_forward
 
 
-def leaves_forward(expr, start = 0, stop = None):
+def leaves_forward_in(expr, start = 0, stop = None):
    r'''.. versionadded:: 1.1.2
 
    Yield left-to-right leaves in `expr`. ::
@@ -31,7 +31,7 @@ def leaves_forward(expr, start = 0, stop = None):
 
    ::
 
-      abjad> for leaf in iterate.leaves_forward(staff):
+      abjad> for leaf in iterate.leaves_forward_in(staff):
       ...     leaf
       ... 
       Note(c', 8)
@@ -44,7 +44,7 @@ def leaves_forward(expr, start = 0, stop = None):
    Use the optional `start` and `stop` keyword parameters to control
    the start and stop indices of iteration. ::
 
-      abjad> for leaf in iterate.leaves_forward(staff, start = 3):
+      abjad> for leaf in iterate.leaves_forward_in(staff, start = 3):
       ...     leaf
       ... 
       Note(f', 8)
@@ -53,7 +53,7 @@ def leaves_forward(expr, start = 0, stop = None):
 
    ::
 
-      abjad> for leaf in iterate.leaves_forward(staff, start = 0, stop = 3):
+      abjad> for leaf in iterate.leaves_forward_in(staff, start = 0, stop = 3):
       ...     leaf
       ... 
       Note(c', 8)
@@ -62,7 +62,7 @@ def leaves_forward(expr, start = 0, stop = None):
 
    ::
 
-      abjad> for leaf in iterate.leaves_forward(staff, start = 2, stop = 4):
+      abjad> for leaf in iterate.leaves_forward_in(staff, start = 2, stop = 4):
       ...     leaf
       ... 
       Note(e', 8)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterate_leaves_backward_01( ):
+def test_iterate_leaves_backward_in_01( ):
 
    staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(staff)
@@ -26,7 +26,7 @@ def test_iterate_leaves_backward_01( ):
    }   
    '''
 
-   generator = iterate.leaves_backward(staff)
+   generator = iterate.leaves_backward_in(staff)
    leaves = list(generator)
 
    assert leaves[0] is staff[2][1]
@@ -37,25 +37,25 @@ def test_iterate_leaves_backward_01( ):
    assert leaves[5] is staff[0][0]
 
 
-def test_iterate_leaves_backward_02( ):
+def test_iterate_leaves_backward_in_02( ):
    '''Optional start and stop keyword parameters.'''
 
    staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(staff)
 
-   leaves = list(iterate.leaves_backward(staff, start = 3))
+   leaves = list(iterate.leaves_backward_in(staff, start = 3))
    assert leaves[0] is staff[1][0]
    assert leaves[1] is staff[0][1]
    assert leaves[2] is staff[0][0]
    assert len(leaves) == 3
 
-   leaves = list(iterate.leaves_backward(staff, start = 0, stop = 3))
+   leaves = list(iterate.leaves_backward_in(staff, start = 0, stop = 3))
    assert leaves[0] is staff[2][1]
    assert leaves[1] is staff[2][0]
    assert leaves[2] is staff[1][1]
    assert len(leaves) == 3
 
-   leaves = list(iterate.leaves_backward(staff, start = 2, stop = 4))
+   leaves = list(iterate.leaves_backward_in(staff, start = 2, stop = 4))
    assert leaves[0] is staff[1][1]
    assert leaves[1] is staff[1][0]
    assert len(leaves) == 2

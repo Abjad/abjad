@@ -13,7 +13,7 @@ def test_tempotools_TempoIndication___add___01( ):
    assert result == tempotools.TempoIndication(Rational(1, 4), 150)
 
 
-def test_tempotools_TempoIndication___add___01( ):
+def test_tempotools_TempoIndication___add___02( ):
 
    tempo_indication_1 = tempotools.TempoIndication(Rational(1, 8), 42)
    tempo_indication_2 = tempotools.TempoIndication(Rational(1, 4), 90)
