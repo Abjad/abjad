@@ -1,5 +1,4 @@
 from abjad.core.backtracking import _BacktrackingInterface
-#from abjad.core.formatcontributor import _FormatContributor
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
 import types
@@ -9,7 +8,7 @@ import types
 ## the color of the Staff lines. For this to work the Staff must be stopped 
 ## and restarted before the change for this to have an effect. 
 ## Should the GrobHandler be smart enough to see who is contributing the 
-## formating and add a \stopStaff\startStaff immediately before the staff 
+## formating and add a \stopStaff \startStaff immediately before the staff 
 ## contribution IFF the contributor is not a Staff?
 
 class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
@@ -20,19 +19,19 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
    
    def __init__(self, _client, _updateInterface):
       '''Register as observer, format contributor and backtracker.
-         Init effective and force staff to None.
-         Init hide to False.'''
+      Init effective and force staff to None.
+      Init hide to False.'''
       from abjad.staff import Staff
       _Observer.__init__(self, _client, _updateInterface)
       _BacktrackingInterface.__init__(self, 'staff')
-      #_FormatContributor.__init__(self)
       _GrobHandler.__init__(self, 'StaffSymbol')
       self._acceptableTypes = (Staff, )
       self._effective = None
       self._forced = None
-      self._hide = False
+      self._hide = None
+      self._show = None
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
    @property
    def _closing(self):
@@ -40,36 +39,9 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
       result = [ ]
       if self.hide:
          result.append(r'\startStaff')
+      elif self.show:
+         result.append(r'\stopStaff')
       return result
-
-   @property
-   def effective(self):
-      '''Effective staff of client.
-         If staff is forced on client, return forced staff.
-         Otherwise, return explicit staff of client.'''
-      effective = _BacktrackingInterface.effective.fget(self)
-      if effective is None:
-         return self.explicit
-      return effective
-
-   @property
-   def explicit(self):
-      '''First explicit *Abjad* ``Staff`` in parentage of client.
-         Otherwise ``None``.'''
-      from abjad.staff import Staff
-      for parent in self._client.parentage.parentage:
-         if isinstance(parent, Staff):
-            return parent
-
-   @apply
-   def hide( ):
-      r'''Interface to LilyPond \stopStaff, \startStaff commands.'''
-      def fget(self):
-         return self._hide
-      def fset(self, arg):
-         assert isinstance(arg, (types.BooleanType, types.NoneType))
-         self._hide = arg
-      return property(**locals( ))
 
    ## TODO: Client type-testing in StaffInterface is a hack. ##
    ##       Replace eventually with something structural.     ##
@@ -96,4 +68,53 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler):
             result.append(r'\change Staff = %s' % self.effective.name)
       if self.hide:
          result.append(r'\stopStaff')
+      elif self.show:
+         result.append(r'\startStaff')
       return result
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def effective(self):
+      '''Effective staff of client.
+      If staff is forced on client, return forced staff.
+      Otherwise, return explicit staff of client.'''
+      effective = _BacktrackingInterface.effective.fget(self)
+      if effective is None:
+         return self.explicit
+      return effective
+
+   @property
+   def explicit(self):
+      '''First explicit Abjad staff in parentage of client.
+      Otherwise none.'''
+      from abjad.staff import Staff
+      for parent in self._client.parentage.parentage:
+         if isinstance(parent, Staff):
+            return parent
+
+   @apply
+   def hide( ):
+      r'''Interface to LilyPond \stopStaff, \startStaff commands,
+      in that order.'''
+      def fget(self):
+         return self._hide
+      def fset(self, arg):
+         assert isinstance(arg, (types.BooleanType, types.NoneType))
+         if self.show is not None:
+            raise ValueError('can not set hide and show at same time.')
+         self._hide = arg
+      return property(**locals( ))
+
+   @apply
+   def show( ):
+      r'''Interface to LilyPond \startStaff and \stopStaff commands,
+      in that order.'''
+      def fget(self):
+         return self._show
+      def fset(self, arg):
+         assert isinstance(arg, (types.BooleanType, types.NoneType))
+         if self.hide is not None:
+            raise ValueError('can not set show and hide at same time.')
+         self._show = arg
+      return property(**locals( ))
