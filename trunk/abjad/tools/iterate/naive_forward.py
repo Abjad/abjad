@@ -1,7 +1,7 @@
 from abjad.leaf import _Leaf
 
 
-def naive_forward(expr, klass = _Leaf):
+def naive_forward(expr, klass = _Leaf, start = 0, stop = None):
    r'''Yield left-to-right instances of `klass` in `expr`. ::
 
       abjad> container = Container(Voice(construct.run(2)) * 2)
@@ -45,6 +45,37 @@ def naive_forward(expr, klass = _Leaf):
       Note(b', 8)
       Note(c'', 8)
    
+   .. versionadded:: 1.1.2
+      optional `start` and `stop` keyword parameters.
+
+   ::
+
+      abjad> for x in iterate.naive_forward(staff, Note, start = 0, stop = 4):
+      ...     x
+      ... 
+      Note(c', 8)
+      Note(d', 8)
+      Note(e', 8)
+      Note(f', 8)
+
+   ::
+
+      abjad> for x in iterate.naive_forward(staff, Note, start = 4):
+      ...     x
+      ... 
+      Note(g', 8)
+      Note(a', 8)
+      Note(b', 8)
+      Note(c'', 8)
+
+   ::
+
+      abjad> for x in iterate.naive_forward(staff, Note, start = 4, stop = 6):
+      ...     x
+      ... 
+      Note(g', 8)
+      Note(a', 8)   
+
    This function is thread-agnostic.
 
    .. versionchanged:: 1.1.2
@@ -54,13 +85,30 @@ def naive_forward(expr, klass = _Leaf):
       `klass` now defaults to ``_Leaf``.
    '''
 
+   total = 0
+
+   def test(total):
+      if start < total:
+         if stop is None or total <= stop:
+            return True
+      return False
+
    if isinstance(expr, klass):
-      yield expr
+      #yield expr
+      total += 1
+      if test(total):
+         yield expr
    if isinstance(expr, (list, tuple)):
       for m in expr:
          for x in naive_forward(m, klass):
-            yield x
+            #yield x
+            total += 1
+            if test(total):
+               yield x
    if hasattr(expr, '_music'):
       for m in expr._music:
          for x in naive_forward(m, klass):
-            yield x
+            #yield x
+            total += 1
+            if test(total):
+               yield x
