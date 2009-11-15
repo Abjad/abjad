@@ -786,8 +786,8 @@ tempotools
 .. toctree::
    :maxdepth: 1
 
-   tools/tempotools/integer_tempo_to_multiplier_pairs_report
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
+   tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
 
 
 tietools
