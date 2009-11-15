@@ -3,7 +3,7 @@ from abjad.tools.iterate.naive_forward import naive_forward as \
    iterate_naive_forward
 
 
-def leaves_forward(expr):
+def leaves_forward(expr, start = 0, stop = None):
    r'''.. versionadded:: 1.1.2
 
    Yield left-to-right leaves in `expr`. ::
@@ -31,7 +31,7 @@ def leaves_forward(expr):
 
    ::
 
-      abjad> for leaf in iterate.leaves_forward(t):
+      abjad> for leaf in iterate.leaves_forward(staff):
       ...     leaf
       ... 
       Note(c', 8)
@@ -41,9 +41,34 @@ def leaves_forward(expr):
       Note(g', 8)
       Note(a', 8)
 
-   .. note:: this naive iteration ignores threads.
+   Use the optional `start` and `stop` keyword parameters to control
+   the start and stop indices of iteration. ::
 
-   .. todo:: generalize with optional start and stop values.
+      abjad> for leaf in iterate.leaves_forward(staff, start = 3):
+      ...     leaf
+      ... 
+      Note(f', 8)
+      Note(g', 8)
+      Note(a', 8)
+
+   ::
+
+      abjad> for leaf in iterate.leaves_forward(staff, start = 0, stop = 3):
+      ...     leaf
+      ... 
+      Note(c', 8)
+      Note(d', 8)
+      Note(e', 8)
+
+   ::
+
+      abjad> for leaf in iterate.leaves_forward(staff, start = 2, stop = 4):
+      ...     leaf
+      ... 
+      Note(e', 8)
+      Note(f', 8)
+
+   .. note:: naive iteration ignores threads.
    '''
 
-   return iterate_naive_forward(expr, _Leaf)
+   return iterate_naive_forward(expr, _Leaf, start = start, stop = stop)
