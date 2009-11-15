@@ -322,6 +322,7 @@ durtools
    tools/durtools/prolated_to_prolation_written_pairs
    tools/durtools/prolated_to_written_not_greater_than
    tools/durtools/prolated_to_written_not_less_than
+   tools/durtools/rational_to_fraction_string
    tools/durtools/rational_to_prolation_string
    tools/durtools/rationalize
    tools/durtools/seconds_to_clock_string
@@ -329,7 +330,6 @@ durtools
    tools/durtools/sum_preprolated
    tools/durtools/sum_prolated
    tools/durtools/sum_seconds
-   tools/durtools/to_fraction
    tools/durtools/token_decompose
    tools/durtools/token_unpack
    tools/durtools/within_prolated

@@ -175,7 +175,8 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
                   hasattr(tuplet.__class__, 'color'):
                   contributions = [r'%s\times %s %s' % (
                      formatter._fraction, 
-                     durtools.to_fraction(tuplet.duration.multiplier), 
+                     durtools.rational_to_fraction_string(
+                        tuplet.duration.multiplier), 
                      tuplet.brackets.open[0])]
                else:
                   contributions = [tuplet.brackets.open[0]]

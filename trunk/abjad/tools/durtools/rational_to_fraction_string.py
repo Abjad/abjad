@@ -1,27 +1,27 @@
 from abjad.rational import Rational
 
 
-def to_fraction(rational):
+def rational_to_fraction_string(rational):
    '''Format `rational` as a string of the form ``p/q``.
 
    ::
 
-      abjad> durtools.to_fraction(Rational(1, 4))
+      abjad> durtools.rational_to_fraction_string(Rational(1, 4))
       '1/4'
 
    ::
 
-      abjad> durtools.to_fraction(Rational(2, 4))
+      abjad> durtools.rational_to_fraction_string(Rational(2, 4))
       '1/2'
 
    ::
 
-      abjad> durtools.to_fraction(Rational(3, 4))
+      abjad> durtools.rational_to_fraction_string(Rational(3, 4))
       '3/4'
 
    ::
 
-      abjad> durtools.to_fraction(Rational(4, 4))
+      abjad> durtools.rational_to_fraction_string(Rational(4, 4))
       '1/1'
    '''
 
