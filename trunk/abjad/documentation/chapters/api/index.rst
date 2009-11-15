@@ -410,10 +410,12 @@ iterate
    tools/iterate/get_vertical_moment_at_prolated_offset_in
    tools/iterate/get_vertical_moment_starting_with
    tools/iterate/grace
-   tools/iterate/leaves_backward
-   tools/iterate/leaves_forward
+   tools/iterate/leaves_backward_in
+   tools/iterate/leaves_forward_in
    tools/iterate/measure_next
    tools/iterate/measure_prev
+   tools/iterate/measures_backward_in
+   tools/iterate/measures_forward_in
    tools/iterate/naive_backward
    tools/iterate/naive_forward
    tools/iterate/namesakes_backward_from
