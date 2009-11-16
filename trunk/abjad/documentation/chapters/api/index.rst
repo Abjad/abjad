@@ -188,7 +188,7 @@ chordtools
 
    tools/chordtools/arpeggiate
    tools/chordtools/cast_defective
-   tools/chordtools/color_noteheads_by_pc
+   tools/chordtools/color_note_heads_by_pc
    tools/chordtools/get_notehead
    tools/chordtools/split_by_altitude
    tools/chordtools/split_by_pitch_number
