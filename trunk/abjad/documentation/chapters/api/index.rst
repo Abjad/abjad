@@ -475,6 +475,7 @@ leaftools
    tools/leaftools/duration_rewrite
    tools/leaftools/duration_scale
    tools/leaftools/excise
+   tools/leaftools/get_duration_from
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply
