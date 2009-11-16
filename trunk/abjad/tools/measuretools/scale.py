@@ -1,4 +1,3 @@
-from abjad.measure import _Measure
 from abjad.meter import Meter
 from abjad.rational import Rational
 from abjad.tools import iterate
@@ -9,16 +8,17 @@ from abjad.tools import metertools
 def scale(expr, multiplier = Rational(1)):
    '''Iterate expr. For every measure in expr:
 
-         1. multiply measure's meter by multiplier
-         2. scale measure's contents to fit new meter
+      1. multiply measure's meter by multiplier
+      2. scale measure's contents to fit new meter
 
-      Extends containertools.contents_scale( ).
-      Returns None because iterates possibly many measures.
+   Extends containertools.contents_scale( ).
+   Returns None because iterates possibly many measures.
 
-      This might best be a bound method on RigidMeasure.'''
+   This might best be a bound method on RigidMeasure.
+   '''
 
    from abjad.tools import containertools
-   for measure in iterate.naive_forward(expr, _Measure):
+   for measure in iterate.measures_forward_in(expr):
 
       if multiplier == Rational(1):
          continue

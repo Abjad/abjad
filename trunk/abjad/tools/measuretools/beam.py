@@ -1,6 +1,5 @@
 from abjad.spanners import Beam
 from abjad.spanners import BeamComplexDurated
-from abjad.measure import _Measure
 from abjad.tools import iterate
 
 
@@ -16,7 +15,7 @@ def beam(expr, style = 'complex'):
    '''
 
    measures_treated = [ ]
-   for measure in iterate.naive_forward(expr, _Measure):
+   for measure in iterate.measures_forward_in(expr):
       if style == 'complex':
          BeamComplexDurated(measure)
       elif style is None:

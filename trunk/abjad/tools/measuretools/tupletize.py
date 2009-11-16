@@ -1,4 +1,3 @@
-from abjad.measure import _Measure
 from abjad.tools import iterate
 from abjad.tuplet import FixedDurationTuplet
 import copy
@@ -6,15 +5,16 @@ import copy
 
 def tupletize(expr, supplement = None):
    '''Tupletize the contents of every measure in expr.
-      When supplement is not None, extend newly created
-      FixedDurationTuplet by copy of supplement.
+   When supplement is not None, extend newly created
+   FixedDurationTuplet by copy of supplement.
 
-      Use primarily during rhythmic construction.
+   Use primarily during rhythmic construction.
 
-      Note that supplement should be a Python list of 
-      notes, rests, chords, tuplets or whatever.'''
+   Note that supplement should be a Python list of 
+   notes, rests, chords, tuplets or whatever.
+   '''
 
-   for measure in iterate.naive_forward(expr, _Measure):
+   for measure in iterate.measures_forward_in(expr):
       target_duration = measure.duration.preprolated
       tuplet = FixedDurationTuplet(target_duration, measure[:])
       if supplement:

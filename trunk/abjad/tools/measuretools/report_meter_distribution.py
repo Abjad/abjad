@@ -1,4 +1,3 @@
-from abjad.measure import _Measure
 from abjad.tools import iterate
 import itertools
 
@@ -28,7 +27,7 @@ def report_meter_distribution(expr, delivery = 'screen'):
    '''
 
    meters = [ ]
-   for measure in iterate.naive_forward(expr, _Measure):
+   for measure in iterate.measures_forward_in(expr):
       meters.append(measure.meter.effective)
       
    meters.sort( )

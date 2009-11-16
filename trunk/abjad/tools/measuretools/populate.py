@@ -1,4 +1,3 @@
-from abjad.measure import _Measure
 from abjad.note import Note
 from abjad.rational import Rational
 from abjad.skip import Skip
@@ -11,26 +10,27 @@ from abjad.tools import mathtools
 def populate(expr, mode, iterctrl = lambda measure, i: True):
    '''Populate each measure in 'expr' according to 'mode'.
 
-      With mode = 'big-endian':
-         Populate with big-endian series of notes
-         summing to measure.meter.effective.duration.
-      
-      With mode = 'little-endian':
-         Populate with little-endian series of notes
-         summing to measure.meter.effective.duration.
-      
-      With mode = 'meter series':
-         Populate with n total 1/d notes, where
-         n equals measure.meter.effective.numerator, and
-         d equals measure.meter.effective.denominator.
+   With mode = 'big-endian':
+      Populate with big-endian series of notes
+      summing to measure.meter.effective.duration.
+   
+   With mode = 'little-endian':
+      Populate with little-endian series of notes
+      summing to measure.meter.effective.duration.
+   
+   With mode = 'meter series':
+      Populate with n total 1/d notes, where
+      n equals measure.meter.effective.numerator, and
+      d equals measure.meter.effective.denominator.
 
-      With mode = 'skip':
-         Populate with exactly one skip, such that
-         skip.duration.prolated == measure.meter.effective.duration.
-         Remove spanners attaching to measure.
+   With mode = 'skip':
+      Populate with exactly one skip, such that
+      skip.duration.prolated == measure.meter.effective.duration.
+      Remove spanners attaching to measure.
 
-      When mode is None:
-         Empty the contents of each measure.'''
+   When mode is None:
+      Empty the contents of each measure.
+   '''
 
    if mode == 'big-endian':
       _measures_populate_big_endian(expr, iterctrl)
@@ -49,8 +49,7 @@ def populate(expr, mode, iterctrl = lambda measure, i: True):
 
 
 def _measures_populate_big_endian(expr, iterctrl):
-   from abjad.measure import _Measure
-   for i, measure in enumerate(iterate.naive_forward(expr, _Measure)):
+   for i, measure in enumerate(iterate.measures_forward_in(expr)):
       if iterctrl(measure, i):
          meter = measure.meter.effective
          written_duration = ~meter.multiplier * meter.duration
@@ -59,8 +58,7 @@ def _measures_populate_big_endian(expr, iterctrl):
 
 
 def _measures_populate_little_endian(expr, iterctrl):
-   from abjad.measure import _Measure
-   for i, measure in enumerate(iterate.naive_forward(expr, _Measure)):
+   for i, measure in enumerate(iterate.measures_forward_in(expr)):
       if iterctrl(measure, i):
          meter = measure.meter.effective
          written_duration = ~meter.multiplier * meter.duration
@@ -70,9 +68,8 @@ def _measures_populate_little_endian(expr, iterctrl):
 
 
 def _measures_populate_duration_train(expr, written_duration, iterctrl):
-   from abjad.measure import _Measure
    written_duration = Rational(written_duration)
-   for i, measure in enumerate(iterate.naive_forward(expr, _Measure)):
+   for i, measure in enumerate(iterate.measures_forward_in(expr)):
       if iterctrl(measure, i):
          meter = measure.meter.effective
          total_duration = meter.duration
@@ -83,8 +80,7 @@ def _measures_populate_duration_train(expr, written_duration, iterctrl):
 
 
 def _measures_populate_meter_series(expr, iterctrl):
-   from abjad.measure import _Measure
-   for i, measure in enumerate(iterate.naive_forward(expr, _Measure)):
+   for i, measure in enumerate(iterate.measures_forward_in(expr)):
       if iterctrl(measure, i):
          meter = measure.meter.effective
          denominator = mathtools.greatest_power_of_two_less_equal(
@@ -95,15 +91,13 @@ def _measures_populate_meter_series(expr, iterctrl):
 
 
 def _measures_populate_none(expr, iterctrl):
-   from abjad.measure import _Measure
-   for i, measure in enumerate(iterate.naive_forward(expr, _Measure)):
+   for i, measure in enumerate(iterate.measures_forward_in(expr)):
       if iterctrl(measure, i):
          measure[:] = [ ]
 
 
 def _measures_populate_skip(expr, iterctrl):
-   from abjad.measure import _Measure
-   for i, measure in enumerate(iterate.naive_forward(expr, _Measure)):
+   for i, measure in enumerate(iterate.measures_forward_in(expr)):
       if iterctrl(measure, i):
          skip = Skip(1)
          ## allow zero-update iteration

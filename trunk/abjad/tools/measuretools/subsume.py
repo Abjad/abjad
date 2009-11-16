@@ -1,4 +1,3 @@
-from abjad.measure import _Measure
 from abjad.meter import Meter
 from abjad.rational import Rational
 from abjad.tools import iterate
@@ -29,7 +28,7 @@ def subsume(expr):
    '''
 
    from abjad.tools import containertools
-   for measure in iterate.naive_forward(expr, _Measure): 
+   for measure in iterate.measures_forward_in(expr):
       if len(measure) == 1:
          if isinstance(measure[0], _Tuplet):
             tuplet = measure[0]
