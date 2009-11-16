@@ -11,7 +11,8 @@ import math
       
 
 def notes(pitches, durations, direction='big-endian'):
-   '''Constructs a list of prolated notes of length len(durations).
+   '''Constructs a list of prolated notes with length 
+   equal to length of `durations.`
 
    Parameters:
 
@@ -21,7 +22,7 @@ def notes(pitches, durations, direction='big-endian'):
 
    `durations`
       a sinlge duration or a list of durations. 
-      The durations need not be of the form m / 2**n 
+      The durations need not be of the form ``m / 2**n``
       and may be any rational value.
 
    `direction`
@@ -48,12 +49,14 @@ def notes(pitches, durations, direction='big-endian'):
    ## Rationals reduce fractions to their minimum expression. e.g. 
    ## (3, 3) --> Rational(1, 1), and we sometimes generate duration
    ## tokens that are not reduced, so we want to preserve the denominator 3.
+   ## [TB] When do we want (3, 3) instead of (1, 1)?
+   ## Durations should always reduce;
+   ## So tokens can represent tuplet multipliers or something
+   ## else that shouldn't reduce?
    durations = [durtools.token_unpack(dur) for dur in durations]
 
    ## set lists of pitches and durations to the same length
    size = max(len(durations), len(pitches))
-   #durations = listtools.resize(durations, size)
-   #pitches = listtools.resize(pitches, size)
    durations = listtools.repeat_list_to_length(durations, size)
    pitches = listtools.repeat_list_to_length(pitches, size)
 

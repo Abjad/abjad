@@ -242,6 +242,7 @@ construct
    tools/construct/notes
    tools/construct/notes_curve
    tools/construct/percussion_note
+   tools/construct/quarter_notes_with_multipliers
    tools/construct/rests
    tools/construct/run
    tools/construct/scale
