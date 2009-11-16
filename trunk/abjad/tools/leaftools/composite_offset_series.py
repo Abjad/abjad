@@ -4,7 +4,7 @@ from abjad.tools import iterate
 def composite_offset_series(expr):
    r'''.. versionadded:: 1.1.2
 
-   List unique offsets of leaves in arbitrary `expr`. ::
+   List unique start and stop offsets of leaves in arbitrary `expr`. ::
 
       abjad> staff_1 = Staff([FixedDurationTuplet((4, 8), construct.run(3))])
       abjad> staff_2 = Staff(construct.run(4))
@@ -27,15 +27,18 @@ def composite_offset_series(expr):
                  }
          >>
       abjad> leaftools.composite_offset_series(score)
-      [Rational(0, 1), Rational(1, 8), Rational(1, 6), Rational(1, 4), Rational(1, 3), Rational(3, 8)]
+      [Rational(0, 1), Rational(1, 8), Rational(1, 6), Rational(1, 4), Rational(1, 3), Rational(3, 8), (Rational(1, 2)]
    '''
 
    offsets = [ ]
 
    for leaf in iterate.leaves_forward_in(expr):
-      offset = leaf.offset.prolated.start
-      if offset not in offsets:
-         offsets.append(offset)
+      start_offset = leaf.offset.prolated.start
+      if start_offset not in offsets:
+         offsets.append(start_offset)
+      stop_offset = leaf.offset.prolated.stop
+      if stop_offset not in offsets:
+         offsets.append(stop_offset)
 
    offsets.sort( )
 

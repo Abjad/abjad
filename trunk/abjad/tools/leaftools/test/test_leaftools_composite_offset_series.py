@@ -32,4 +32,4 @@ def test_leaftools_composite_offset_series_01( ):
    '''
 
    result = leaftools.composite_offset_series(score)
-   assert result == [Rational(0, 1), Rational(1, 12), Rational(1, 8), Rational(1, 6), Rational(1, 4), Rational(1, 3), Rational(3, 8), Rational(5, 12)]
+   assert result == [Rational(0, 1), Rational(1, 12), Rational(1, 8), Rational(1, 6), Rational(1, 4), Rational(1, 3), Rational(3, 8), Rational(5, 12), Rational(1, 2)]

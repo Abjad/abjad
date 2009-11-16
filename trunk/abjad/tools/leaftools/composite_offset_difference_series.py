@@ -6,7 +6,7 @@ from abjad.tools.leaftools.composite_offset_series import \
 def composite_offset_difference_series(expr):
    r'''.. versionadded:: 1.1.2
 
-   List time intervals between unique offsets of leaves 
+   List time intervals between unique start and stop offsets of leaves 
    in arbitrary `expr`. ::
 
       abjad> staff_1 = Staff([FixedDurationTuplet((4, 8), construct.run(3))])
@@ -30,7 +30,7 @@ def composite_offset_difference_series(expr):
                  }
          >>
       abjad> leaftools.composite_offset_difference_series(score)
-      [Rational(1, 8), Rational(1, 24), Rational(1, 12), Rational(1, 12), Rational(1, 24)]
+      [Rational(1, 8), Rational(1, 24), Rational(1, 12), Rational(1, 12), Rational(1, 24), Rational(1, 8)]
    '''
 
    return list(listtools.difference_series(composite_offset_series(expr)))
