@@ -469,6 +469,8 @@ leaftools
 .. toctree::
    :maxdepth: 1
 
+   tools/leaftools/composite_offset_difference_series
+   tools/leaftools/composite_offset_series
    tools/leaftools/duration_change
    tools/leaftools/duration_rewrite
    tools/leaftools/duration_scale
