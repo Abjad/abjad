@@ -2,8 +2,7 @@ from abjad import *
 
 
 def test_context_grob_override_01( ):
-   '''
-   Contexts override grobs in their with block.
+   '''Contexts override grobs in their with block.
    '''
 
    t = Voice(construct.scale(4))

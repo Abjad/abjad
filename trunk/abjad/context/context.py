@@ -7,6 +7,8 @@ class _Context(Container):
    def __init__(self, music = None):
       Container.__init__(self, music)
       self._formatter = _ContextFormatter(self)
+      self._engraver_consists = set([ ])
+      self._engraver_removals = set([ ])
 
    ## OVERLOADS ##
 
@@ -39,3 +41,39 @@ class _Context(Container):
          assert isinstance(arg, str)
          self._context = arg
       return property(**locals( ))
+
+   @property
+   def engraver_consists(self):
+      r'''.. versionadded:: 1.1.2
+      
+      Unordered set of LilyPond engravers to include in context definition.
+   
+      Manage with add, update, other standard set commands. ::
+
+         abjad> staff = Staff([ ])
+         abjad> staff.engraver_consists.add('Horizontal_bracket_engraver')
+         abjad> f(staff)
+         \new Staff \with {
+                 \consists Horizontal_bracket_engraver
+         } {
+         }
+      '''
+      return self._engraver_consists
+
+   @property
+   def engraver_removals(self):
+      r'''.. versionadded:: 1.1.2
+      
+      Unordered set of LilyPond engravers to remove from context.
+   
+      Manage with add, update, other standard set commands. ::
+
+         abjad> staff = Staff([ ])
+         abjad> staff.engraver_consists.add('Time_signature_engraver')
+         abjad> f(staff)
+         \new Staff \with {
+                 \remove Time_signature_engraver
+         } {
+         }
+      '''
+      return self._engraver_removals

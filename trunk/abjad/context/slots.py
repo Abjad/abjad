@@ -14,14 +14,20 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       formatter = self.formatter
       context = formatter.context
       brackets_open = context.brackets.open
+      engraver_removals = formatter._formatted_engraver_removals
+      engraver_consists = formatter._formatted_engraver_consists
       overrides = context.interfaces.overrides
       settings = context.interfaces.settings
-      if overrides or settings:
+      if engraver_removals or engraver_consists or overrides or settings:
          contributions = [formatter._invocation + r' \with {']
          result.append([(context.brackets, 'open'), contributions])
+         contributions = ['\t' + x for x in engraver_removals]
+         result.append([(formatter, 'engraver_removals'), contributions])
+         contributions = ['\t' + x for x in engraver_consists]
+         result.append([(formatter, 'engraver_consists'), contributions])
          contributions = ['\t' + x for x in overrides]
          result.append([(context.interfaces, 'overrides'), contributions])
-         contributions = ['\t' + x for x in settings]
+         contributions = ['\t' + x for x in settings] 
          result.append([(context.interfaces, 'settings'), contributions])
          contributions = ['} %s' % context.brackets.open[0]]
          result.append([(context.brackets, 'open'), contributions])
