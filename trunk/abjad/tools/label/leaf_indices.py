@@ -1,8 +1,8 @@
 from abjad.tools import iterate
 
 
-def leaf_indices(expr):
-   r'''Label the indiex of every leaf in `expr`, starting at 0.
+def leaf_indices(expr, direction = 'below'):
+   r'''Label leaf indices in `expr` from 0.
 
    ::
 
@@ -14,9 +14,16 @@ def leaf_indices(expr):
               e'8 _ \markup { \small 2 }
               f'8 _ \markup { \small 3 }
       } 
+
+   .. versionchanged:: 1.1.2
+      new `direction` keyword parameter.
    '''
 
-   from abjad.leaf import _Leaf
-   for i, leaf in enumerate(iterate.naive_forward(expr, _Leaf)):
+   for i, leaf in enumerate(iterate.leaves_forward_in(expr)):
       label = r'\small %s' % i
-      leaf.markup.down.append(label)
+      if direction == 'below':
+         leaf.markup.down.append(label)
+      elif direction == 'above':
+         leaf.markup.up.append(label)
+      else:
+         raise ValueError("must be 'above' or 'below'.")
