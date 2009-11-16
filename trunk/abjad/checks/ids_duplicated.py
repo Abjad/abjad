@@ -8,7 +8,7 @@ class IdsDuplicated(_Check):
 
    def _run(self, expr):
       violators = [ ]
-      components = iterate.naive_forward(expr, _Component)
+      components = iterate.naive_forward_in(expr, _Component)
       total_ids = [id(x) for x in components]
       unique_ids = listtools.unique(total_ids)
       if len(total_ids) > len(unique_ids):

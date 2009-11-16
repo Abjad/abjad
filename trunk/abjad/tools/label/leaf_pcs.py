@@ -41,7 +41,7 @@ def leaf_pcs(expr, number = True, color = False):
    '''
 
    from abjad.note import Note
-   for note in iterate.naive_forward(expr, Note):
+   for note in iterate.naive_forward_in(expr, Note):
       if number:
          label = r'\small %s' % note.pitch.pc
          note.markup.down.append(label)

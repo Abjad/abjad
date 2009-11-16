@@ -19,7 +19,7 @@ def fracture(components, n = 1):
 
    check.assert_components(components, contiguity = 'thread')
 
-   selection_components = set(iterate.naive_forward(components, _Component))
+   selection_components = set(iterate.naive_forward_in(components, _Component))
 
    spanners = spannertools.get_crossing(components) 
 

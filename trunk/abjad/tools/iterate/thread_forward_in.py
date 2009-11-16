@@ -48,7 +48,7 @@ def thread_forward_in(expr, klass, thread_signature):
    The important thing to note is that the function yields only
    those leaves that sit in the same thread.
 
-   Compare with :func:`iterate.naive_forward() 
+   Compare with :func:`iterate.naive_forward_in() 
    <abjad.tools.iterate.naive_forward>`.
    '''
 

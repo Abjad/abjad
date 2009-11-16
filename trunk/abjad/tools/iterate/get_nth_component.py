@@ -1,7 +1,7 @@
-from abjad.tools.iterate.naive_backward import naive_backward as \
-   iterate_naive_backward
-from abjad.tools.iterate.naive_forward import naive_forward as \
-   iterate_naive_forward
+from abjad.tools.iterate.naive_backward_in import naive_backward_in as \
+   iterate_naive_backward_in
+from abjad.tools.iterate.naive_forward_in import naive_forward_in as \
+   iterate_naive_forward_in
 
 
 def get_nth_component(expr, klasses, n = 0):
@@ -75,10 +75,10 @@ def get_nth_component(expr, klasses, n = 0):
       raise ValueError
 
    if 0 <= n:
-      for i, x in enumerate(iterate_naive_forward(expr, klasses)):
+      for i, x in enumerate(iterate_naive_forward_in(expr, klasses)):
          if i == n:
             return x
    else:
-      for i, x in enumerate(iterate_naive_backward(expr, klasses)):
+      for i, x in enumerate(iterate_naive_backward_in(expr, klasses)):
          if i == abs(n) - 1:
             return x

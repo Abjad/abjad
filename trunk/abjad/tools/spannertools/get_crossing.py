@@ -26,7 +26,7 @@ def get_crossing(components):
 #   result = get_contained(components) - \
 #      get_covered(components)
 
-   all_components = set(iterate.naive_forward(components, _Component))
+   all_components = set(iterate.naive_forward_in(components, _Component))
    contained_spanners = get_contained(components)
    crossing_spanners = set([ ])
    for spanner in contained_spanners:

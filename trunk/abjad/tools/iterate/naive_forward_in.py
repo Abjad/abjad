@@ -1,7 +1,7 @@
 from abjad.leaf import _Leaf
 
 
-def naive_forward(expr, klass = _Leaf, start = 0, stop = None):
+def naive_forward_in(expr, klass = _Leaf, start = 0, stop = None):
    r'''Yield left-to-right instances of `klass` in `expr`. ::
 
       abjad> container = Container(Voice(construct.run(2)) * 2)
@@ -33,7 +33,7 @@ def naive_forward(expr, klass = _Leaf, start = 0, stop = None):
                       }
               >>
       }
-      abjad> for x in iterate.naive_forward(staff, Note):
+      abjad> for x in iterate.naive_forward_in(staff, Note):
       ...     x
       ... 
       Note(c', 8)
@@ -50,7 +50,7 @@ def naive_forward(expr, klass = _Leaf, start = 0, stop = None):
 
    ::
 
-      abjad> for x in iterate.naive_forward(staff, Note, start = 0, stop = 4):
+      abjad> for x in iterate.naive_forward_in(staff, Note, start = 0, stop = 4):
       ...     x
       ... 
       Note(c', 8)
@@ -60,7 +60,7 @@ def naive_forward(expr, klass = _Leaf, start = 0, stop = None):
 
    ::
 
-      abjad> for x in iterate.naive_forward(staff, Note, start = 4):
+      abjad> for x in iterate.naive_forward_in(staff, Note, start = 4):
       ...     x
       ... 
       Note(g', 8)
@@ -70,7 +70,7 @@ def naive_forward(expr, klass = _Leaf, start = 0, stop = None):
 
    ::
 
-      abjad> for x in iterate.naive_forward(staff, Note, start = 4, stop = 6):
+      abjad> for x in iterate.naive_forward_in(staff, Note, start = 4, stop = 6):
       ...     x
       ... 
       Note(g', 8)
@@ -79,7 +79,7 @@ def naive_forward(expr, klass = _Leaf, start = 0, stop = None):
    This function is thread-agnostic.
 
    .. versionchanged:: 1.1.2
-      Renamed from ``iterate.naive( )`` to ``iterate.naive_forward( )``.
+      Renamed from ``iterate.naive( )`` to ``iterate.naive_forward_in( )``.
 
    .. versionchanged:: 1.1.2
       `klass` now defaults to ``_Leaf``.
@@ -100,14 +100,14 @@ def naive_forward(expr, klass = _Leaf, start = 0, stop = None):
          yield expr
    if isinstance(expr, (list, tuple)):
       for m in expr:
-         for x in naive_forward(m, klass):
+         for x in naive_forward_in(m, klass):
             #yield x
             total += 1
             if test(total):
                yield x
    if hasattr(expr, '_music'):
       for m in expr._music:
-         for x in naive_forward(m, klass):
+         for x in naive_forward_in(m, klass):
             #yield x
             total += 1
             if test(total):

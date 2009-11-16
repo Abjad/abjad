@@ -417,8 +417,8 @@ iterate
    tools/iterate/measure_prev
    tools/iterate/measures_backward_in
    tools/iterate/measures_forward_in
-   tools/iterate/naive_backward
-   tools/iterate/naive_forward
+   tools/iterate/naive_backward_in
+   tools/iterate/naive_forward_in
    tools/iterate/namesakes_backward_from
    tools/iterate/namesakes_forward_from
    tools/iterate/thread_backward_from

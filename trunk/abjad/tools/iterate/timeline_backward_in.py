@@ -1,6 +1,6 @@
 from abjad.leaf import _Leaf
-from abjad.tools.iterate.naive_forward import naive_forward \
-   as iterate_naive_forward
+from abjad.tools.iterate.naive_forward_in import naive_forward_in \
+   as iterate_naive_forward_in
 
 
 def timeline_backward_in(expr, klass = _Leaf):
@@ -43,7 +43,7 @@ def timeline_backward_in(expr, klass = _Leaf):
    .. todo:: optimize to avoid behind-the-scenes full-score traversal.
    '''
 
-   component_generator = iterate_naive_forward(expr, klass = klass)
+   component_generator = iterate_naive_forward_in(expr, klass = klass)
    components = list(component_generator)
    
    def sort_helper(component_1, component_2):

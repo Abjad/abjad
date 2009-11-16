@@ -26,7 +26,7 @@ def make_piano_sketch_score(leaves):
    score.bar_line.stencil = False
    score.span_bar.stencil = False
 
-   for staff in iterate.naive_forward(score, klass = Staff):
+   for staff in iterate.naive_forward_in(score, klass = Staff):
       staff.accidental.style = 'forget'
 
    return score, treble_staff, bass_staff

@@ -24,7 +24,7 @@ def test_check_assess_components_none_score_01( ):
    assert check.assess_components(t.leaves[:2], share = 'score')
    assert check.assess_components(t.leaves[2:], share = 'score')
    assert check.assess_components(t.leaves, share = 'score')
-   assert check.assess_components(list(iterate.naive_forward(t, _Component)), share = 'score')
+   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'score')
 
 
 def test_check_assess_components_none_score_02( ):

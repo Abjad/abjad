@@ -1,7 +1,7 @@
 from abjad.leaf import _Leaf
 
 
-def naive_backward(expr, klass = _Leaf, start = 0, stop = None):
+def naive_backward_in(expr, klass = _Leaf, start = 0, stop = None):
    r'''Yield right-to-left instances of `klass` in `expr`.
 
    ::
@@ -21,7 +21,7 @@ def naive_backward(expr, klass = _Leaf, start = 0, stop = None):
                       a'8
               }
       }
-      abjad> for x in iterate.naive_backward(staff, Note):
+      abjad> for x in iterate.naive_backward_in(staff, Note):
       ...     x 
       ... 
       Note(a', 8)
@@ -36,7 +36,7 @@ def naive_backward(expr, klass = _Leaf, start = 0, stop = None):
 
    ::
 
-      abjad> for x in iterate.naive_backward(staff, Note, start = 0, stop = 4):
+      abjad> for x in iterate.naive_backward_in(staff, Note, start = 0, stop = 4):
       ...     x
       ... 
       Note(c'', 8)
@@ -46,7 +46,7 @@ def naive_backward(expr, klass = _Leaf, start = 0, stop = None):
 
    ::
 
-      abjad> for x in iterate.naive_backward(staff, Note, start = 4):
+      abjad> for x in iterate.naive_backward_in(staff, Note, start = 4):
       ...     x
       ... 
       Note(f', 8)
@@ -56,7 +56,7 @@ def naive_backward(expr, klass = _Leaf, start = 0, stop = None):
 
    ::
 
-      abjad> for x in iterate.naive_backward(staff, Note, start = 4, stop = 6):
+      abjad> for x in iterate.naive_backward_in(staff, Note, start = 4, stop = 6):
       ...     x
       ... 
       Note(f', 8)
@@ -65,7 +65,7 @@ def naive_backward(expr, klass = _Leaf, start = 0, stop = None):
    This function is thread-agnostic.
 
    .. versionchanged:: 1.1.2
-      Renamed from ``iterate.backwards( )`` to ``iterate.naive_backward( )``.
+      Renamed from ``iterate.backwards( )`` to ``iterate.naive_backward_in( )``.
    '''
 
    total = 0
@@ -83,14 +83,14 @@ def naive_backward(expr, klass = _Leaf, start = 0, stop = None):
          yield expr
    if isinstance(expr, (list, tuple)):
       for m in reversed(expr):
-         for x in naive_backward(m, klass):
+         for x in naive_backward_in(m, klass):
             #yield x
             total += 1
             if test(total):
                yield x
    if hasattr(expr, '_music'):
       for m in reversed(expr._music):
-         for x in naive_backward(m, klass):
+         for x in naive_backward_in(m, klass):
             #yield x
             total += 1
             if test(total):

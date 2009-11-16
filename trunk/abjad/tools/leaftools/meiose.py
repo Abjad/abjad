@@ -30,7 +30,7 @@ def meiose(expr, n = 2):
    Function produces only leaves, never tuplets or other containers.
    '''
 
-   for leaf in iterate.naive_backward(expr, _Leaf):
+   for leaf in iterate.naive_backward_in(expr, _Leaf):
       _leaf_meiose(leaf, n)
       
 

@@ -49,7 +49,7 @@ def find(expr, name = None, klass = None, context = None):
 
    result = [ ]
 
-   for component in iterate.naive_forward(expr, _Component):
+   for component in iterate.naive_forward_in(expr, _Component):
       if name is None or component.name == name:
          if klass is None or isinstance(component, klass):
             if context is None or \

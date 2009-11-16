@@ -4,8 +4,8 @@ from abjad.tools.iterate.VerticalMoment import VerticalMoment
 from abjad.tools.iterate.get_vertical_moment_at_prolated_offset_in \
    import get_vertical_moment_at_prolated_offset_in as \
    iterate_get_vertical_moment_at_prolated_offset_in
-from abjad.tools.iterate.naive_forward import naive_forward as \
-   iterate_naive_forward
+from abjad.tools.iterate.naive_forward_in import naive_forward_in as \
+   iterate_naive_forward_in
 
 
 def vertical_moments_forward_in(governor):
@@ -65,7 +65,7 @@ def vertical_moments_forward_in(governor):
    '''
 
    moments_in_governor = [ ]
-   for component in iterate_naive_forward(governor, _Component):
+   for component in iterate_naive_forward_in(governor, _Component):
       prolated_offset = component.offset.prolated.start
       if prolated_offset not in moments_in_governor:
          moments_in_governor.append(prolated_offset)

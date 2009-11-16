@@ -48,7 +48,7 @@ def thread_backward_in(expr, klass, thread_signature):
    The important thing to note is that the function yields only
    those leaves that sit in the same thread.
 
-   Compare with :func:`iterate.naive_backward() 
+   Compare with :func:`iterate.naive_backward_in() 
    <abjad.tools.iterate.naive_backward>`.
    '''
 

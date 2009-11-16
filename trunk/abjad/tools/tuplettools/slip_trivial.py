@@ -45,6 +45,6 @@ def slip_trivial(expr):
       }
    '''
    
-   for tuplet in list(iterate.naive_forward(expr, _Tuplet)):
+   for tuplet in list(iterate.naive_forward_in(expr, _Tuplet)):
       if tuplet.trivial:
          scoretools.bequeath([tuplet], tuplet[:])

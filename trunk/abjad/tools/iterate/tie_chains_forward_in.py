@@ -1,5 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.tools.iterate.naive_forward import naive_forward
+from abjad.tools.iterate.naive_forward_in import naive_forward_in
 
 
 def tie_chains_forward_in(expr):
@@ -38,6 +38,6 @@ def tie_chains_forward_in(expr):
    Note also that nested structures are no problem.
    '''
 
-   for leaf in naive_forward(expr, _Leaf):
+   for leaf in naive_forward_in(expr, _Leaf):
       if not leaf.tie.spanned or leaf.tie.last:
          yield leaf.tie.chain
