@@ -1,5 +1,4 @@
 from abjad.checks.check import _Check
-from abjad.leaf import _Leaf
 from abjad.spanners import Glissando
 from abjad.tools import iterate
 
@@ -10,7 +9,7 @@ class GlissandiOverlapping(_Check):
 
    def _run(self, expr):
       violators = [ ] 
-      for leaf in iterate.naive_forward(expr, _Leaf):
+      for leaf in iterate.leaves_forward_in(expr):
          glissandi = leaf.glissando.spanners
          if len(glissandi) > 1:
             if len(glissandi) == 2:

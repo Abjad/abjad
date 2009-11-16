@@ -1,4 +1,3 @@
-from abjad.leaf import _Leaf
 from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.spanners import Spanner
@@ -79,6 +78,6 @@ def get_pitches(expr):
          pitches = tuple(pitches)
          return pitches
       else:
-         for leaf in iterate.naive_forward(expr, _Leaf):
+         for leaf in iterate.leaves_forward_in(expr):
             result.extend(leaf.pitches)
       return tuple(result)

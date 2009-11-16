@@ -20,7 +20,6 @@ def leaf_depth(expr):
       }
    '''
 
-   from abjad.leaf import _Leaf
-   for leaf in iterate.naive_forward(expr, _Leaf):
+   for leaf in iterate.leaves_forward_in(expr):
       label = r'\small %s' % leaf.parentage.depth
       leaf.markup.down.append(label)

@@ -27,7 +27,6 @@ def clear_leaves(expr):
       }
    '''
 
-   from abjad.leaf import _Leaf
-   for leaf in iterate.naive_forward(expr, _Leaf):
+   for leaf in iterate.leaves_forward_in(expr):
       leaf.markup.up = [ ]
       leaf.markup.down = [ ]   

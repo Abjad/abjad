@@ -1,4 +1,3 @@
-from abjad.leaf import _Leaf
 from abjad.pitch import Pitch
 from abjad.tools import iterate
 from abjad.tools.pitchtools.pitch_number_to_octave import \
@@ -12,7 +11,7 @@ def make_sharp(expr):
    if isinstance(expr, Pitch):
       _pitch_renotate_sharps(expr)
    else:
-      for leaf in iterate.naive_forward(expr, _Leaf):
+      for leaf in iterate.leaves_forward_in(expr):
          if hasattr(leaf, 'pitches'):
             for pitch in leaf.pitches:
                _pitch_renotate_sharps(pitch)

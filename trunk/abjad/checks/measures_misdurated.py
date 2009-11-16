@@ -6,10 +6,9 @@ class MeasuresMisdurated(_Check):
    '''Does the (pre)prolated duration of the measure match its meter?'''
 
    def _run(self, expr):
-      from abjad.measure import _Measure
       violators = [ ]
       total, bad = 0, 0
-      for t in iterate.naive_forward(expr, _Measure):
+      for t in iterate.measures_forward_in(expr):
          if t.meter.forced is not None:
             if t.duration.preprolated != t.meter.forced.duration:
                violators.append(t)

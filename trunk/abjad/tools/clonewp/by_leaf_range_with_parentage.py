@@ -8,9 +8,10 @@ from abjad.tools.clone.fracture import fracture
 
 def by_leaf_range_with_parentage(expr, start = 0, stop = None):
    '''Copy consecutive leaves from start to stop in expr.
-      Copy all structure in the parentage of copied leaves.
-      Trim and shrink parent containers as necessary.
-      When stop is None, copy all leaves from start in expr.'''
+   Copy all structure in the parentage of copied leaves.
+   Trim and shrink parent containers as necessary.
+   When stop is None, copy all leaves from start in expr.
+   '''
 
    # trivial leaf lcopy
    if isinstance(expr, _Leaf):
@@ -51,7 +52,7 @@ def by_leaf_range_with_parentage(expr, start = 0, stop = None):
    _found_start_leaf = False
 
    while not _found_start_leaf:
-      leaf = iterate.naive_forward(governor_copy, _Leaf).next( )
+      leaf = iterate.leaves_forward_in(governor_copy).next( )
       if leaf == start_leaf:
          _found_start_leaf = True
       else:
@@ -63,7 +64,7 @@ def by_leaf_range_with_parentage(expr, start = 0, stop = None):
    _found_stop_leaf = False
 
    while not _found_stop_leaf:
-      leaf = iterate.naive_backward(governor_copy, _Leaf).next( )
+      leaf = iterate.leaves_backward_in(governor_copy).next( )
       if leaf == stop_leaf:
          _found_stop_leaf = True
       else:

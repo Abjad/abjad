@@ -42,8 +42,7 @@ def leaf_durations(expr,
       }
    '''
    
-   from abjad.leaf import _Leaf
-   for leaf in iterate.naive_forward(expr, _Leaf):
+   for leaf in iterate.leaves_forward_in(expr):
       if ties == 'together':
          if not leaf.tie.spanned:
             if leaf.duration.multiplier is not None:

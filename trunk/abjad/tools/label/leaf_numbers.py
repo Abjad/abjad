@@ -16,8 +16,7 @@ def leaf_numbers(expr):
       } 
    '''
 
-   from abjad.leaf import _Leaf
-   for i, leaf in enumerate(iterate.naive_forward(expr, _Leaf)):
+   for i, leaf in enumerate(iterate.leaves_forward_in(expr)):
       leaf_number = i + 1
       label = r'\small %s' % leaf_number
       leaf.markup.down.append(label)

@@ -5,10 +5,9 @@ from abjad.tools import iterate
 class QuartersBeamed(_Check):
 
    def _run(self, expr):
-      from abjad.leaf import _Leaf
       violators = [ ]
       total = 0
-      for leaf in iterate.naive_forward(expr, _Leaf):
+      for leaf in iterate.leaves_forward_in(expr):
          total += 1
          if hasattr(leaf, 'beam'):
             if leaf.beam.spanned:

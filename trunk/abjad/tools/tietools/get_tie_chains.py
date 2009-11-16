@@ -1,7 +1,6 @@
 from abjad.exceptions import MissingSpannerError
 from abjad.tools import check
 from abjad.tools import iterate
-from abjad.leaf import _Leaf
 
 
 def get_tie_chains(components):
@@ -23,7 +22,7 @@ def get_tie_chains(components):
 
    ## get leaves to fuse  
    result = [ ]
-   leaves_in_components = list(iterate.naive_forward(components, _Leaf))
+   leaves_in_components = list(iterate.leaves_forward_in(components))
    for spanner in tie_spanners:
       leaves_intersecting = [ ]
       for leaf in spanner.leaves:
