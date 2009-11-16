@@ -56,7 +56,6 @@ class TupletBracketInterface(_Interface, _GrobHandler, _ContextSettingHandler):
          self._tuplet_full_length = expr
       return property(**locals( ))
       
-
    @property
    def settings(self):
       r'''Read-only list of LilyPond context settings
