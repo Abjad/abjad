@@ -449,6 +449,9 @@ label
    tools/label/leaf_pcs
    tools/label/leaf_pitch_numbers
    tools/label/measure_numbers
+   tools/label/vertical_moment_interval_class_vectors
+   tools/label/vertical_moment_pitch_classes
+   tools/label/vertical_moment_pitch_numbers
 
 
 layout

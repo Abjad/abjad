@@ -20,5 +20,5 @@ def leaf_pitch_numbers(expr):
 
    for leaf in iterate.leaves_forward_in(expr):
       for pitch in reversed(pitchtools.get_pitches(leaf)):
-         label = r'\small %s' % pitch.number
-         leaf.markup.down.append(label)
+         pitch_number = r'\small %s' % pitch.number
+         leaf.markup.down.append(pitch_number)
