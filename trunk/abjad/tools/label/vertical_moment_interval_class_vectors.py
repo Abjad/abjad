@@ -38,7 +38,6 @@ def vertical_moment_interval_class_vectors(expr):
       leaves = vertical_moment.leaves
       pitches = pitchtools.get_pitches(leaves)
       interval_class_vector = pitchtools.get_interval_class_vector(pitches)
-      print interval_class_vector
       counts = [ ]
       for i in range(7):
          counts.append(interval_class_vector[i])
