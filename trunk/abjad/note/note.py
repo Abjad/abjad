@@ -12,6 +12,12 @@ class Note(_Leaf):
 
    ## OVERLOADS ##
 
+   def __len__(self):
+      if self.pitch is None:
+         return 0
+      else:
+         return 1
+
    def __repr__(self):
       return 'Note(%s, %s)' % (self.pitch, self.duration._product)
 

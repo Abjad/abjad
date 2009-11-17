@@ -9,6 +9,9 @@ class Skip(_Leaf):
       
    ## OVERLOADS ##
 
+   def __len__(self):
+      return 0
+
    def __repr__(self):
       return 'Skip(%s)' % self.duration._product
 
