@@ -61,7 +61,6 @@ def get_interval_class_vector(pitches):
          interval = 12 - interval
       intervals.append(interval)
 
-   print intervals
    vector = { }
 
    ## 12-ET pitches only
