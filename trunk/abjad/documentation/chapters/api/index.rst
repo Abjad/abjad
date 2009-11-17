@@ -500,6 +500,7 @@ listtools
 .. toctree::
    :maxdepth: 1
 
+   tools/listtools/all_ordered_sublists
    tools/listtools/arithmetic_mean
    tools/listtools/cumulative_products
    tools/listtools/cumulative_sums
