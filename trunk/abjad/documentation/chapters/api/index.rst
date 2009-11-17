@@ -501,6 +501,8 @@ listtools
    :maxdepth: 1
 
    tools/listtools/all_ordered_sublists
+   tools/listtools/all_restricted_growth_functions_of_length
+   tools/listtools/all_set_partitions
    tools/listtools/arithmetic_mean
    tools/listtools/cumulative_products
    tools/listtools/cumulative_sums
@@ -523,6 +525,7 @@ listtools
    tools/listtools/is_increasing_monotonically
    tools/listtools/is_increasing_strictly
    tools/listtools/is_numeric
+   tools/listtools/is_restricted_growth_function
    tools/listtools/is_unique
    tools/listtools/join_sublists_by_sign
    tools/listtools/lengths_to_counts
@@ -533,6 +536,7 @@ listtools
    tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums_zero
    tools/listtools/partition_by_lengths
+   tools/listtools/partition_by_restricted_growth_function
    tools/listtools/partition_by_weights
    tools/listtools/partition_by_weights_not_less_than
    tools/listtools/partition_by_weights_ratio
