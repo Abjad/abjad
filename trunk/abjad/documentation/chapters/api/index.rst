@@ -705,6 +705,7 @@ pitchtools
    tools/pitchtools/get_pitch
    tools/pitchtools/get_pitch_class
    tools/pitchtools/get_pitch_classes
+   tools/pitchtools/get_pitch_numbers
    tools/pitchtools/get_pitches
    tools/pitchtools/get_signed_interval_series
    tools/pitchtools/has_duplicate_pitch
