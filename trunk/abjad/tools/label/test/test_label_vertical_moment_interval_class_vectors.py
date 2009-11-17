@@ -33,3 +33,17 @@ def test_label_vertical_moment_interval_class_vectors_01( ):
 
    assert check.wf(score)
    assert score.format == '\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8 _ \\markup { \\tiny { 0010020 } }\n\t\te\'8\n\t\tf\'8 _ \\markup { \\tiny { 1000020 } }\n\t}\n\t\\new Staff {\n\t\t\\clef "alto"\n\t\tg4\n\t\tf4 _ \\markup { \\tiny { 0100110 } }\n\t}\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc,2 _ \\markup { \\tiny { 1000020 } }\n\t}\n>>'
+
+
+def test_label_vertical_moment_interval_class_vectors_02( ):
+   '''Vertical moments with quartertones format with a two-row
+   interval class vector. Top for 12-ET, bottom for 24-ET.'''
+
+   chord = Chord([-2, -1.5, 9], (1, 4))
+   label.vertical_moment_interval_class_vectors([chord])
+
+   r'''
+   <bf bqf a'>4 _ \markup { \tiny { \column { "0100000" "110000" } } }
+   '''
+
+   assert chord.format == '<bf bqf a\'>4 _ \\markup { \\tiny { \\column { "0100000" "110000" } } }'

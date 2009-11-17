@@ -38,6 +38,9 @@ def get_interval_class_vector(pitches):
          4  9
          5  9
          6  0
+   
+   .. versionchanged:: 1.1.2
+      works with quartertones.
    '''
 
    numbers = [ ]
@@ -58,9 +61,20 @@ def get_interval_class_vector(pitches):
          interval = 12 - interval
       intervals.append(interval)
 
+   print intervals
    vector = { }
 
-   for i in range(7):
-      vector[i] = intervals.count(i)
+   ## 12-ET pitches only
+   if all([isinstance(interval, int) for interval in intervals]):
+      for i in range(7):
+         vector[i] = intervals.count(i)
+   ## 24-ET pitches included
+   else:
+      for i in range(13):
+         if i % 2 == 0:
+            key = i / 2
+         else:
+            key = i / 2.0
+         vector[key] = intervals.count(key)
 
    return vector

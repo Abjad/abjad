@@ -38,9 +38,20 @@ def vertical_moment_interval_class_vectors(expr):
       leaves = vertical_moment.leaves
       pitches = pitchtools.get_pitches(leaves)
       interval_class_vector = pitchtools.get_interval_class_vector(pitches)
-      counts = [ ]
-      for i in range(7):
-         counts.append(interval_class_vector[i])
-      counts = ''.join([str(x) for x in counts])
-      counts = r'\tiny { %s }' % counts
-      vertical_moment.start_leaves[-1].markup.down.append(counts)
+      formatted = _format_interval_class_vector(interval_class_vector)
+      vertical_moment.start_leaves[-1].markup.down.append(formatted)
+
+
+def _format_interval_class_vector(interval_class_vector):
+   counts = [ ]
+   for i in range(7):
+      counts.append(interval_class_vector[i])
+   counts = ''.join([str(x) for x in counts])
+   if len(interval_class_vector) == 13:
+      quartertones = [ ]
+      for i in range(6):
+         quartertones.append(interval_class_vector[i+0.5])
+      quartertones = ''.join([str(x) for x in quartertones])
+      return r'\tiny { \column { "%s" "%s" } }' % (counts, quartertones)
+   else:
+      return r'\tiny { %s }' % counts
