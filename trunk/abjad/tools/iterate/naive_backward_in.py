@@ -39,18 +39,16 @@ def naive_backward_in(expr, klass = _Leaf, start = 0, stop = None):
       abjad> for x in iterate.naive_backward_in(staff, Note, start = 0, stop = 4):
       ...     x
       ... 
-      Note(c'', 8)
-      Note(b', 8)
       Note(a', 8)
       Note(g', 8)
+      Note(f', 8)
+      Note(e', 8)
 
    ::
 
       abjad> for x in iterate.naive_backward_in(staff, Note, start = 4):
       ...     x
       ... 
-      Note(f', 8)
-      Note(e', 8)
       Note(d', 8)
       Note(c', 8)
 
@@ -59,8 +57,8 @@ def naive_backward_in(expr, klass = _Leaf, start = 0, stop = None):
       abjad> for x in iterate.naive_backward_in(staff, Note, start = 4, stop = 6):
       ...     x
       ... 
-      Note(f', 8)
-      Note(e', 8)   
+      Note(d', 8)
+      Note(c', 8)
 
    This function is thread-agnostic.
 

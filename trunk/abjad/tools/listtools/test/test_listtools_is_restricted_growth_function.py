@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_is_restricted_growth_function_01( ):
+def test_listtools_is_restricted_growth_function_01( ):
 
    assert listtools.is_restricted_growth_function([1, 1, 1, 1])
    assert listtools.is_restricted_growth_function([1, 1, 1, 2])
@@ -20,7 +20,7 @@ def test_is_restricted_growth_function_01( ):
    assert listtools.is_restricted_growth_function([1, 2, 3, 4])
 
 
-def test_is_restricted_growth_function_02( ):
+def test_listtools_is_restricted_growth_function_02( ):
 
    assert not listtools.is_restricted_growth_function([1, 1, 1, 3])
    assert not listtools.is_restricted_growth_function([1, 1, 3, 3])

@@ -12,7 +12,7 @@ def test_listtools_all_restricted_growth_functions_of_length_01( ):
    assert rgfs.next( ) == [1, 2, 3]
 
 
-def test_listtools_all_restricted_growth_functions_of_length_04( ):
+def test_listtools_all_restricted_growth_functions_of_length_02( ):
 
    rgfs = listtools.all_restricted_growth_functions_of_length(4)
 
