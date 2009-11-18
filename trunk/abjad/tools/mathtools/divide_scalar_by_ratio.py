@@ -27,4 +27,6 @@ def divide_scalar_by_ratio(scalar, ratio):
    if not isinstance(scalar, (int, float, long, Rational)):
       raise TypeError
 
-   return [scalar * p / sum(ratio) for p in ratio]
+   #return [scalar * p / sum(ratio) for p in ratio]
+   factor = scalar / sum(ratio)
+   return [p * factor for p in ratio]
