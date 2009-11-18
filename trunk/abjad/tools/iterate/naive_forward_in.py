@@ -85,30 +85,37 @@ def naive_forward_in(expr, klass = _Leaf, start = 0, stop = None):
       `klass` now defaults to ``_Leaf``.
    '''
 
-   total = 0
+   return subrange(_forward_generator(expr, klass), start, stop)
 
-   def test(total):
-      if start < total:
-         if stop is None or total <= stop:
-            return True
-      return False
+def subrange(iter, start = 0, stop = None):
+   assert start >= 0    # if start<0, then 'stop-start' gives a funny result
+                        # dont have to check stop>=start, as xrange(stop-start) already handles that
 
+   try:
+      # Skip the first few elements, up to 'start' of them:
+      for i in xrange(start): 
+         iter.next()  # no 'yield' to swallow the results
+
+      # Now generate (stop-start) elements (or all elements if stop is None)
+      if stop is None:
+         for x in iter: 
+            yield x
+      else:
+         for i in xrange(stop-start): 
+            yield iter.next() 
+   except StopIteration:
+      # This happens if we exhaust the list before we generate a total of 'stop' elements
+      pass
+
+# Creates a generator that returns elements of type klass, descending into containers
+def _forward_generator(expr, klass):
    if isinstance(expr, klass):
-      #yield expr
-      total += 1
-      if test(total):
-         yield expr
+      yield expr
    if isinstance(expr, (list, tuple)):
       for m in expr:
-         for x in naive_forward_in(m, klass):
-            #yield x
-            total += 1
-            if test(total):
-               yield x
+         for x in _forward_generator(m, klass):
+            yield x
    if hasattr(expr, '_music'):
       for m in expr._music:
-         for x in naive_forward_in(m, klass):
-            #yield x
-            total += 1
-            if test(total):
-               yield x
+         for x in _forward_generator(m, klass):
+            yield x
