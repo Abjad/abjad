@@ -3,8 +3,7 @@ import py.test
 
 
 def test_meter_compare_01( ):
-   '''
-   Meters referentially equal compare equally.
+   '''Meters referentially equal compare equally.
    '''
 
    m1 = m2 = Meter(3, 8)
@@ -17,8 +16,7 @@ def test_meter_compare_01( ):
 
 
 def test_meter_compare_02( ):
-   '''
-   Meters equal by numerator and denominator compare equally.
+   '''Meters equal by numerator and denominator compare equally.
    '''
 
    m1, m2 = Meter(3, 8), Meter(3, 8)
@@ -31,8 +29,7 @@ def test_meter_compare_02( ):
 
 
 def test_meter_compare_03( ):
-   '''
-   Meters unequal by numerator and denominator compare unequally.
+   '''Meters unequal by numerator and denominator compare unequally.
    '''
    
    m1, m2 = Meter(3, 8), Meter(6, 16)
@@ -45,8 +42,7 @@ def test_meter_compare_03( ):
 
 
 def test_meter_compare_04( ):
-   '''
-   Meters unequal by numerator and denominator compare unequally.
+   '''Meters unequal by numerator and denominator compare unequally.
    '''
 
    m1, m2 = Meter(3, 8), Meter(4, 8)
@@ -59,8 +55,7 @@ def test_meter_compare_04( ):
 
 
 def test_meter_compare_05( ):
-   '''
-   Meters compare unequally with other types of object.
+   '''Meters compare unequally with other types of object.
    '''
 
    m1, x = Meter(3, 8), 'foo'

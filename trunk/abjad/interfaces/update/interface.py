@@ -3,16 +3,17 @@ from abjad.interfaces.interface.interface import _Interface
 
 class _UpdateInterface(_Interface):
    '''UpdateInterface and OffsetInterface implement the Observer pattern. 
-      UpdateInterface holds and updates the state of the branch.
-      UpdateInterface holds a list of all the observers.
-      UpdateInterface calls ("notifies") all observers to update themselves
-      when requested by any observer.
-      Observers "pull" the state of the tree from the "subject"
-      (UpdateInterface) and tell it to _updateAll( ) if tree has changed.'''
+   UpdateInterface holds and updates the state of the branch.
+   UpdateInterface holds a list of all the observers.
+   UpdateInterface calls ("notifies") all observers to update themselves
+   when requested by any observer.
+   Observers "pull" the state of the tree from the "subject"
+   (UpdateInterface) and tell it to _updateAll( ) if tree has changed.
+   '''
 
    def __init__(self, client):
       '''Bind to client and initialize client as needing update.
-         Init empty list of observers.'''
+      Init empty list of observers.'''
       _Interface.__init__(self, client)
       self._allow = True
       self._current = False

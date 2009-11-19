@@ -15,6 +15,7 @@ from abjad.interfaces import GlissandoInterface
 from abjad.interfaces import HistoryInterface
 from abjad.interfaces import InstrumentInterface
 from abjad.interfaces import InterfaceAggregator
+from abjad.interfaces import KeySignatureInterface
 from abjad.interfaces import MeterInterface
 from abjad.interfaces import NonMusicalPaperColumnInterface
 from abjad.interfaces import NoteColumnInterface
@@ -89,6 +90,7 @@ class _Component(_Abjad):
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
       self._clef = ClefInterface(self, self._update)
+      self._key_signature = KeySignatureInterface(self, self._update)
       self._meter = MeterInterface(self, self._update)
       self._numbering = NumberingInterface(self, self._update)
       self._offset = OffsetInterface(self, self._update)
@@ -221,6 +223,13 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.interface_aggregator.aggregator.InterfaceAggregator`.'''
       return self._interfaces
+
+   @property
+   def key_signature(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.key_signature.interface.KeySignatureInterface.`
+      '''
+      return self._key_signature
 
    @property
    def leaves(self):
