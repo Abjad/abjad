@@ -64,12 +64,6 @@ class Pitch(_Abjad):
    def __le__(self, arg):
       if not isinstance(arg, Pitch):
          raise ValueError
-#      return self.altitude < arg.altitude or \
-#         (self.altitude == arg.altitude and \
-#         self.accidental.adjustment <= arg.accidental.adjustment) or \
-#         (self.altitude == arg.altitude and \
-#         self.accidental == arg.accidental and \
-#         self._deviation_numeric <= arg._deviation_numeric)
       if not self.altitude == arg.altitude:
          return self.altitude <= arg.altitude
       if not self.accidental == arg.accidental:
