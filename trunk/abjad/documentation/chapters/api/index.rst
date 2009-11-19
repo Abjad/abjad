@@ -29,6 +29,7 @@ Classes
    harmonic/natural
    tools/lilytools/HeaderBlock
    staff/invisiblestaff
+   key_signature/key_signature
    tools/lilytools/LayoutBlock
    tools/layout/LayoutSchema/LayoutSchema
    tools/lilytools/LilyFile
@@ -90,6 +91,7 @@ Interfaces
    interfaces/history/interface
    interfaces/instrument/interface
    interfaces/interface_aggregator/aggregator
+   interfaces/key_signature/interface
    interfaces/markup/interface
    interfaces/meter/interface
    interfaces/non_musical_paper_column/interface
@@ -418,6 +420,8 @@ iterate
    tools/iterate/measures_backward_in
    tools/iterate/measures_forward_in
    tools/iterate/naive_backward_in
+   tools/iterate/naive_backward_in
+   tools/iterate/naive_forward_in
    tools/iterate/naive_forward_in
    tools/iterate/namesakes_backward_from
    tools/iterate/namesakes_forward_from
