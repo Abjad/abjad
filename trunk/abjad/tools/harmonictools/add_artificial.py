@@ -21,7 +21,7 @@ def add_artificial(note, diatonic_interval = perfect_fourth):
 
    chord = Chord(note)
    chord.append(chord[0].pitch.number)
-   chord[1].pitch = pitchtools.diatonic_transpose(
+   chord[1].pitch = pitchtools.transpose_by_diatonic_interval(
       chord[1].pitch, diatonic_interval)
    chord[1].style = 'harmonic'
    return chord

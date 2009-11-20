@@ -701,7 +701,6 @@ pitchtools
    tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
    tools/pitchtools/diatonic_scale_degree_to_letter
    tools/pitchtools/diatonic_to_chromatic
-   tools/pitchtools/diatonic_transpose
    tools/pitchtools/diatonicize
    tools/pitchtools/get_interval_class_vector
    tools/pitchtools/get_interval_vector
