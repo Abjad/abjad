@@ -700,7 +700,6 @@ pitchtools
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
-   tools/pitchtools/diatonic_interval_string_to_diatonic_interval_number
    tools/pitchtools/diatonic_scale_degree_to_letter
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonic_transpose
@@ -721,8 +720,6 @@ pitchtools
    tools/pitchtools/is_pair
    tools/pitchtools/is_token
    tools/pitchtools/is_token_collection
-   tools/pitchtools/letter_pitch_number_to_nearest_accidental_string
-   tools/pitchtools/letter_pitch_number_to_octave
    tools/pitchtools/letter_to_diatonic_scale_degree
    tools/pitchtools/letter_to_pc
    tools/pitchtools/make_all_aggregate_subsets
