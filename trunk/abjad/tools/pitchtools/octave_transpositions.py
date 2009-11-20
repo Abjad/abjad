@@ -11,11 +11,8 @@ from abjad.tools.pitchtools.transpose_by_chromatic_interval import \
 ## TODO: Reimplement pitchtools.octave_transposition( ) with diatonic transposition. ##
 
 #def octave_transpositions(pitches, r):
-def octave_transpositions(chord, pitch_range):
-   r"""List all octave transpositions of `pitches` in range `r`.
-
-   `pitches` may be an Abjad pitch-set or chord. `pitch_range` should
-   be an Abjad PitchRange instance.
+def octave_transpositions(pitches, pitch_range):
+   r"""List octave transpositions of `pitches` in `pitch_range`.
 
    ::
       
@@ -28,17 +25,17 @@ def octave_transpositions(chord, pitch_range):
    if not isinstance(pitch_range, PitchRange):
       raise TypeError('must be pitch range.')
 
-   if all([isinstance(x, (int, long, float)) for x in chord]):
-      return _pitch_number_list_octave_transpositions(chord, pitch_range)
+   if all([isinstance(x, (int, long, float)) for x in pitches]):
+      return _pitch_number_list_octave_transpositions(pitches, pitch_range)
 
-   if not isinstance(chord, (Chord, PitchSet)):
-      raise TypeError('must be chord or pitch set.')
+   if not isinstance(pitches, (Chord, PitchSet)):
+      raise TypeError('must be pitches or pitch set.')
 
    result = [ ]
 
    interval = ChromaticInterval(-12)
    while True:
-      candidate = transpose_by_chromatic_interval(chord, interval)
+      candidate = transpose_by_chromatic_interval(pitches, interval)
       if candidate in pitch_range:
          result.append(candidate)
          interval -= ChromaticInterval(12) 
@@ -49,7 +46,7 @@ def octave_transpositions(chord, pitch_range):
 
    interval = ChromaticInterval(0)
    while True:
-      candidate = transpose_by_chromatic_interval(chord, interval)
+      candidate = transpose_by_chromatic_interval(pitches, interval)
       if candidate in pitch_range:
          result.append(candidate)
          interval += ChromaticInterval(12) 

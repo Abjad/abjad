@@ -8,9 +8,12 @@ from abjad.tools import clone
 def transpose_by_chromatic_interval(pitch_carrier, chromatic_interval):
    '''.. versionadded:: 1.1.2
 
-   Transpose `pitch_carrier` by `chromatic_interval`.
+   Transpose `pitch_carrier` by `chromatic_interval`. ::
 
-   `pitch_carrier` may be a pitch, note or chord.
+      abjad> pitch = Pitch(12)
+      abjad> chromatic_interval = pitchtools.ChromaticInterval(-3)
+      abjad> pitchtools.transpose_by_chromatic_interval(pitch, chromatic_interval)
+      Pitch(a, 4)
    '''
    
    if not isinstance(chromatic_interval, ChromaticInterval):

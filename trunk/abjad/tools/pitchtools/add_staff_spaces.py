@@ -2,14 +2,9 @@ from abjad.pitch import Pitch
 
 
 def add_staff_spaces(pitch, staff_spaces):
-   '''Return diatonic integer scale degree from ``1`` to ``7`` \
-   corresponding to ``pitch`` transposed by integer number \
-   of ``staff_spaces``.
-
-   * ``pitch``: any Abjad :class:`~abjad.pitch.pitch.Pitch` instance.
-   * ``staff_spaces``: any integer.
-
-   ::
+   '''Return positive integer diatonic scale degree
+   corresponding to `pitch` transposed by nonnegative integer
+   `staff_spaces`. ::
 
       abjad> pitch = Pitch(13)
       abjad> pitch.degree

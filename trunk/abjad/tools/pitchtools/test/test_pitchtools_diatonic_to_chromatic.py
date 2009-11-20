@@ -85,4 +85,5 @@ def test_pitchtools_diatonic_to_chromatic_03( ):
 def test_pitchtools_diatonic_to_chromatic_04( ):
    '''Phase must be positive.'''
 
-   assert py.test.raises(AssertionError, 'pitchtools.diatonic_to_chromatic(0, 1, -3)')
+   assert py.test.raises(AssertionError, 
+      'pitchtools.diatonic_to_chromatic(0, 1, -3)')

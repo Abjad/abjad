@@ -10,9 +10,8 @@ from abjad.tools.pitchtools.pitch_number_adjustment_to_octave import \
 def number_letter_to_accidental_octave(number, letter):
    '''.. versionadded:: 1.1.1
 
-   Convert int, long or float `number` and `letter` in
-   ``['c', 'd', 'e', 'f', 'g', 'a', 'b']`` to unique pair
-   of one-character accidental string and integer octave number. ::
+   Return accidental, octave pair necessary to notate pitch `number`
+   spelled starting with pitch `letter`. ::
 
       abjad> pitchtools.number_letter_to_accidental_octave(14, 'c')
       ('ss', 5)

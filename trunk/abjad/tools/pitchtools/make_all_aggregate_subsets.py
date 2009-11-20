@@ -5,8 +5,7 @@ from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 def make_all_aggregate_subsets( ):
    '''.. versionadded:: 1.1.2
 
-   Generate a list of the 4096 subsets of the twelve-tone aggregated.
-   This is U* in [Morris 1987]. ::
+   List all 4096 subsets of the twelve-tone aggregate. ::
 
       abjad> U_star = pitchtools.make_all_aggregate_subsets( )
       abjad> len(U_star)
@@ -33,6 +32,8 @@ def make_all_aggregate_subsets( ):
       PitchClassSet([PitchClass(0), PitchClass(4)])
       PitchClassSet([PitchClass(1), PitchClass(4)])
       PitchClassSet([PitchClass(0), PitchClass(1), PitchClass(4)])
+
+   This is ``U*`` in [Morris 1987].
    '''
 
    def _helper(binary_string):

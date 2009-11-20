@@ -7,6 +7,31 @@ from abjad.tools.pitchtools.pc_to_pitch_name_sharps import \
 
 
 def make_sharp(expr):
+   r'''Renotate every pitch in `expr` with zero 
+   or more sharps. ::
+
+      abjad> staff = Staff(construct.run(6))
+      abjad> pitchtools.chromaticize(staff)
+      abjad> f(staff)
+      \new Staff {
+         c'8
+         cs'8
+         d'8
+         ef'8
+         e'8
+         f'8
+      }
+      abjad> pitchtools.make_sharp(staff)
+      abjad> f(staff)
+      \new Staff {
+         c'8
+         cs'8
+         d'8
+         ds'8
+         e'8
+         f'8
+      }
+   '''
 
    if isinstance(expr, Pitch):
       _pitch_renotate_sharps(expr)

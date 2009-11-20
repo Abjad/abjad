@@ -6,8 +6,8 @@ def apply_octavation(expr,
    ottava_altitude = None, quindecisima_altitude = None):
    r""".. versionadded:: 1.1.1
 
-   Apply :class:`~abjad.octavation.spanner.Octavation` to `expr`
-   dependent on the :term:`altitude` of the maximum pitch in `expr`. ::
+   Apply octavation spanner to `expr` according to the altitude
+   of the maximum pitch in `expr`. ::
 
       abjad> t = RigidMeasure((4, 8), construct.notes([24, 26, 27, 29], [(1, 8)]))
       abjad> pitchtools.apply_octavation(t, ottava_altitude = 14)

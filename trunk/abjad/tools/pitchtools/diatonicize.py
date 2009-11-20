@@ -4,11 +4,25 @@ from abjad.tools import iterate
 
 
 def diatonicize(expr):
-   '''Apply ascending diatonic pitches from zero.
-   Apply to notes and chords in expr.
-   Used primarily in generating test and doc file examples. 
+   r'''Apply ascending diatonic pitches to the notes
+   and chords in `expr`. ::
 
-   Compare with ``pitchtools.chromaticize( )``.'''
+      abjad> staff = Staff(construct.notes(0, [(5, 32)] * 4))
+      abjad> pitchtools.diatonicize(staff)
+      abjad> f(staff)
+      \new Staff {
+         c'8 ~
+         c'32
+         d'8 ~
+         d'32
+         e'8 ~
+         e'32
+         f'8 ~
+         f'32
+      }
+
+   Used primarily in generating test file examples.
+   '''
 
    diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
    length = len(diatonic_residues)

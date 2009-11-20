@@ -3,8 +3,8 @@ from abjad.pitch import Pitch
 
 
 def suggest_clef(pitches, clefs = ['treble', 'bass']):
-   '''Suggest best clef for `pitches` determined by the least number
-   of leger lines required to notate all pitches on a single staff. ::
+   '''Suggest best clef from `clefs` for `pitches` 
+   as determined by minimal ledger lines. ::
 
       abjad> pitches = [Pitch(x) for x in (-30, 10, 20)]
       abjad> pitchtools.suggest_clef(pitches)

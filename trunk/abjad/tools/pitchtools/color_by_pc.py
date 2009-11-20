@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.get_pitch import get_pitch as \
 
 
 def color_by_pc(pitch_carrier):
-   r'''Color *pitch_carrier* according to pitch-class.
+   r'''Color `pitch_carrier` by pitch-class.
 
    ::
 
@@ -15,6 +15,22 @@ def color_by_pc(pitch_carrier):
       abjad> print t.format
       \once \override NoteHead #'color = #(x11-color 'red)
       c'4
+   
+   Pitch-class colors are these.
+
+   * 0: red
+   * 1: MediumBlue
+   * 2: orange
+   * 3: LightSlateBlue
+   * 4: ForestGreen
+   * 5: MediumOrchid
+   * 6: firebrick
+   * 7: DeepPink
+   * 8: DarkOrange
+   * 9: IndianRed
+   * 10: CadetBlue
+   * 11: SeaGreen
+   * 12: LimeGreen
    '''
    
    pitch = pitchtools_get_pitch(pitch_carrier)

@@ -25,7 +25,8 @@ def test_pitchtools_diatonicize_02( ):
    t = Staff(construct.notes(0, [(5, 32)] * 4))
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 ~
       c'32
       d'8 ~
@@ -34,7 +35,8 @@ def test_pitchtools_diatonicize_02( ):
       e'32
       f'8 ~
       f'32
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"

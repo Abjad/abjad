@@ -3,14 +3,8 @@ from abjad.pitch import Pitch
 
 
 def permute_by_row(pitches, row):
-   '''Permute *pitches* by *row*.
-
-   * *pitches* must be a list of zero or more Abjad \
-      :class:`~abjad.pitch.pitch.Pitch` or \
-      :class:`~abjad.note.note.Note` instances.
-   * *row* must be a list of the twelve integers ``0, ..., 11`` \
-      in any order.
-
+   '''Permute `pitches` by `row`. 
+   
    ::
 
       abjad> notes = [Note(p, (1, 4)) for p in (17, -10, -2, 11)]
@@ -18,7 +12,8 @@ def permute_by_row(pitches, row):
       abjad> pitchtools.permute_by_row(notes, row)
       [Note(bf, 4), Note(d, 4), Note(f'', 4), Note(b', 4)]
 
-   This function works by reference only. No objects are cloned.'''
+   This function works by reference only. No objects are cloned.
+   '''
 
    result = [ ] 
 

@@ -7,11 +7,8 @@ from abjad.pitch import Pitch
 
 
 def get_pitch(pitch_carrier):
-   '''Get Abjad :class:`~abjad.pitch.pitch.Pitch` from
-   Abjad :class:`~abjad.pitch.pitch.Pitch`, 
-   :class:`~abjad.note.note.Note`, 
-   :class:`~abjad.note_head.note_head.NoteHead` or 
-   :class:`~abjad.chord.chord.Chord` instance. ::
+   '''Get Abjad pitch instance from pitch, note, note head
+   of chord `pitch_carrier`. ::
 
       abjad> pitch = Pitch('df', 5)
       abjad> pitch
@@ -44,9 +41,7 @@ def get_pitch(pitch_carrier):
       Pitch(df, 5)
 
    Raise :exc:`~abjad.exceptions.MissingPitchError` when
-   `pitch_carrier` carries no :class:`~abjad.pitch.pitch.Pitch`.
-   
-   ::
+   `pitch_carrier` carries no pitch. ::
 
       abjad> note = Note(('df', 5), (1, 4))
       abjad> note.pitch = None
@@ -74,9 +69,7 @@ def get_pitch(pitch_carrier):
       MissingPitchError
 
    Raise :exc:`~abjad.exceptions.ExtraPitchError` when
-   :class:`~abjad.chord.chord.Chord` carries more than one pitch.
-
-   ::
+   chord carries more than one pitch. ::
 
       abjad> chord = Chord([12, 14, 23], (1, 4))
       abjad> chord
@@ -84,15 +77,12 @@ def get_pitch(pitch_carrier):
       abjad> pitchtools.get_pitch(chord)
       ExtraPitchError
 
-   .. note:: 'Defective' :class:`~abjad.note.note.Note` and \
-      :class:`~abjad.note_head.note_head.NoteHead` instances with \
-      no :class:`~abjad.pitch.pitch.Pitch` are allowed \
+   .. note:: 'Defective' note and note head instances with no
+      pitch are allowed 
       in the current implementation of Abjad but may deprecate in a future
       implementation.
 
-   Raise :exc:`TypeError` when `pitch_carrier` is not a valid pitch carrier.
-
-   ::
+   Raise :exc:`TypeError` when `pitch_carrier` is not a valid pitch carrier. ::
 
       abjad> staff = Staff([ ])
       abjad> staff

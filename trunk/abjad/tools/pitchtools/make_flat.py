@@ -7,6 +7,33 @@ from abjad.tools.pitchtools.pc_to_pitch_name_flats import \
 
 
 def make_flat(expr):
+   r'''Renotate every pitch in `expr` with zero or more flats.
+
+   ::
+
+      abjad> staff = Staff(construct.run(6))
+      abjad> pitchtools.chromaticize(staff)
+      abjad> f(staff)
+      \new Staff {
+         c'8
+         cs'8
+         d'8
+         ef'8
+         e'8
+         f'8
+      }
+      abjad> pitchtools.make_flat(staff)
+      abjad> f(staff)
+      \new Staff {
+         c'8
+         df'8
+         d'8
+         ef'8
+         e'8
+         f'8
+      }
+   '''
+
 
    if isinstance(expr, Pitch):
       _pitch_renotate_flats(expr)
@@ -18,8 +45,6 @@ def make_flat(expr):
 
 
 def _pitch_renotate_flats(pitch):
-   #octave = pitch.tools.pitchNumberToOctave(pitch.number)
-   #name = pitch.tools.pcToPitchNameFlats[pitch.pc]
    octave = pitchtools_pitch_number_to_octave(pitch.number)
    name = pitchtools_pc_to_pitch_name_flats(pitch.pc)
    pitch.octave = octave

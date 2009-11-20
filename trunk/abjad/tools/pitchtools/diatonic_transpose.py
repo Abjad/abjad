@@ -17,25 +17,31 @@ from abjad.tools.pitchtools.letter_pitch_number_to_octave import \
    letter_pitch_number_to_octave as pitchtools_letter_pitch_number_to_octave
 
 
-#def diatonicTranspose(self, diatonicInterval):
-def diatonic_transpose(pitch, diatonicInterval):
-   quality, interval = diatonicInterval.split( )
-   #staffSpaces = self.tools.diatonicIntervalToStaffSpaces[interval]
+def diatonic_transpose(pitch, diatonic_interval):
+   '''Return new pitch equal to `pitch` transposed up by
+   `diatonic_interval` string. ::
+
+      abjad> pitchtools.diatonic_transpose(Pitch('c', 4), 'perfect unison')
+      Pitch(c, 4)
+      abjad> pitchtools.diatonic_transpose(Pitch('c', 4), 'minor second')
+      Pitch(df, 4)
+      abjad> pitchtools.diatonic_transpose(Pitch('c', 4), 'major second')
+      Pitch(d, 4)
+      abjad> pitchtools.diatonic_transpose(Pitch('c', 4), 'minor third')
+      Pitch(ef, 4)
+
+   Down-transposition is not possible with this function.
+   '''
+
+   quality, interval = diatonic_interval.split( )
    staffSpaces = pitchtools_diatonic_interval_to_staff_spaces(interval)
-   #degree = self.tools.addStaffSpaces(staffSpaces)
    degree = pitchtools_add_staff_spaces(pitch, staffSpaces)
-   #letter = self.tools.diatonicScaleDegreeToLetter[degree]
    letter = pitchtools_diatonic_scale_degree_to_letter(degree)
-   #pitchNumber = self.number + \
-   #   self.tools.diatonicIntervalToAbsoluteInterval[diatonicInterval]
    pitchNumber = pitch.number + \
-      pitchtools_diatonic_interval_to_absolute_interval(diatonicInterval)
-   #accidentalString = self.tools.letterPitchNumberToNearestAccidentalString(
-   #   letter, pitchNumber)
+      pitchtools_diatonic_interval_to_absolute_interval(diatonic_interval)
    accidentalString = \
       pitchtools_letter_pitch_number_to_nearest_accidental_string(
       letter, pitchNumber)
    pitchName = letter + accidentalString
-   #octave = self.tools.letterPitchNumberToOctave(letter, pitchNumber)
    octave = pitchtools_letter_pitch_number_to_octave(letter, pitchNumber)
    return Pitch(pitchName, octave)
