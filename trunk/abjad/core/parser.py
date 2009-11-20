@@ -5,7 +5,8 @@ from abjad.scm import Moment
 
 
 class _Parser(_Abjad):
-   '''Utility lass to format *Abjad* values as *LilyPond*-style *Scheme*.'''
+   '''Utility lass to format *Abjad* values as LilyPond-style Scheme.
+   '''
 
    ## PRIVATE METHODS ##
 
@@ -13,26 +14,29 @@ class _Parser(_Abjad):
       '''True is ``value`` is constant, otherwise False.'''
       if isinstance(value, int) or isinstance(value, float) or \
           value in ['up', 'down', 'left', 'center', 'right',
-         'red', 'blue', 'green', 'black', 'white']:
+         'black', 'white', 'red', 'green',
+         'blue', 'cyan', 'magenta', 'yellow',
+         'grey', 'darkred', 'darkgreen', 'darkblue',
+         'darkcyan', 'darkmagenta', 'darkyellow', ]:
          return True
       else:
          return False
 
    def _isLilyFunctionName(self, arg):
-      '''True if ``arg`` contains ``::``, otherwise False.'''
+      '''True if `arg` contains ``::``, otherwise False.'''
       return isinstance(arg, str) and '::' in arg
 
    ## PUBLIC METHODS ##
 
    def formatAttribute(self, attribute):
-      '''Return *Scheme*-formatted attribute.'''
+      '''Return Scheme-formatted attribute.'''
       attribute = attribute.replace('__', " #'")
       result = attribute.replace('_', '-')
       result = "#'%s" % result
       return result
 
    def formatValue(self, value):
-      '''Return *Scheme*-formatted value.'''
+      '''Return Scheme-formatted value.'''
       if value is True:
          return '##t'
       elif value is False:
