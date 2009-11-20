@@ -52,6 +52,16 @@ class DiatonicInterval(object):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def counterpoint_interval(self):
+      counterpoint_interval = self.interval_class
+      if counterpoint_interval == 1:
+         if self.interval_number == 1:
+            return 1
+         else:
+            return 8
+      return counterpoint_interval
+
+   @property
    def direction_number(self):
       if self.quality_string == 'perfect' and \
          abs(self.interval_number) == 1:
@@ -69,12 +79,16 @@ class DiatonicInterval(object):
          return 'ascending'
 
    @property
-   def interval_string(self):
-      return self._interval_string
+   def interval_class(self):
+      return ((abs(self.interval_number) - 1) % 7) + 1
 
    @property
    def interval_number(self):
       return self._interval_number
+
+   @property
+   def interval_string(self):
+      return self._interval_string
 
    @property
    def quality_string(self):

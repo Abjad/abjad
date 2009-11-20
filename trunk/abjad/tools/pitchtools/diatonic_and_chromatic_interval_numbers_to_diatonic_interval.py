@@ -33,11 +33,12 @@ def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
    direction_number = mathtools.sign(chromatic_interval_number)
 
    if diatonic_interval_number == 1:
-      if chromatic_interval_number == -1:
+      #if chromatic_interval_number == -1:
+      if chromatic_interval_number % 12 == 11:
          quality_string = 'augmented'
-      elif chromatic_interval_number == 0:
+      elif chromatic_interval_number % 12 == 0:
          quality_string = 'perfect'
-      elif chromatic_interval_number == 1:
+      elif chromatic_interval_number % 12== 1:
          quality_string = 'augmented'
       if not direction_number == 0:
          diatonic_interval_number *= direction_number
@@ -45,16 +46,25 @@ def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
          quality_string, diatonic_interval_number)
       return diatonic_interval
 
-   if diatonic_interval_number in [7, 8]:
-      diatonic_interval_class_number = diatonic_interval_number
-   else:
-      diatonic_interval_class_number = diatonic_interval_number % 7
+#   if diatonic_interval_number in [7, 8]:
+#      diatonic_interval_class_number = diatonic_interval_number
+#   else:
+#      diatonic_interval_class_number = diatonic_interval_number % 7
+
+   diatonic_interval_class_number = diatonic_interval_number % 7
 
    chromatic_interval_class_number = abs(chromatic_interval_number) % 12
 
    #print diatonic_interval_class_number, chromatic_interval_class_number
 
-   if diatonic_interval_class_number == 2:
+   if diatonic_interval_class_number == 1:
+      if chromatic_interval_class_number == 11:
+         quality_string = 'diminished'
+      elif chromatic_interval_class_number == 0:
+         quality_string = 'perfect'
+      elif chromatic_interval_class_number == 1:
+         quality_string = 'augmented'
+   elif diatonic_interval_class_number == 2:
       if chromatic_interval_class_number == 0:
          quality_string = 'diminished'
       elif chromatic_interval_class_number == 1:
