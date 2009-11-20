@@ -18,8 +18,12 @@ def diatonic_scale_degree_to_letter(diatonic_scale_degree):
       'b'
    '''
 
-   return _diatonicScaleDegreeToLetter[diatonic_scale_degree]
+   diatonic_scale_degree_class = diatonic_scale_degree % 7
+   if diatonic_scale_degree_class == 0:
+      diatonic_scale_degree_class = 7
 
+   return _diatonic_scale_degree_class_to_letter[
+      diatonic_scale_degree_class]
 
-_diatonicScaleDegreeToLetter = {
+_diatonic_scale_degree_class_to_letter = {
    1: 'c',  2: 'd',  3: 'e',  4: 'f',  5: 'g',  6: 'a',  7: 'b' }

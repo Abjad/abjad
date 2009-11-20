@@ -693,7 +693,6 @@ pitchtools
 .. toctree::
    :maxdepth: 1
 
-   tools/pitchtools/add_staff_spaces
    tools/pitchtools/apply_octavation
    tools/pitchtools/are_in_octave_order
    tools/pitchtools/change_default_accidental_spelling
