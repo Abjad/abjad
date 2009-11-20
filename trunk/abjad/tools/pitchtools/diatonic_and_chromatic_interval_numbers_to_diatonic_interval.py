@@ -57,7 +57,16 @@ def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
 
    #print diatonic_interval_class_number, chromatic_interval_class_number
 
-   if diatonic_interval_class_number == 1:
+   if diatonic_interval_class_number == 0:
+      if chromatic_interval_class_number == 9:
+         quality_string = 'diminished'
+      elif chromatic_interval_class_number == 10:
+         quality_string = 'minor'
+      elif chromatic_interval_class_number == 11:
+         quality_string = 'major'
+      elif chromatic_interval_class_number == 0:
+         quality_string = 'augmented'
+   elif diatonic_interval_class_number == 1:
       if chromatic_interval_class_number == 11:
          quality_string = 'diminished'
       elif chromatic_interval_class_number == 0:

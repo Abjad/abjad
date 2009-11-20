@@ -60,6 +60,8 @@ def pitches_to_diatonic_interval(pitch_1, pitch_2):
    if not isinstance(pitch_2, Pitch):
       raise TypeError('must be pitch.')
 
+   #print pitch_1, pitch_2
+
    diatonic_interval_number = abs(pitch_2.altitude - pitch_1.altitude) + 1
    chromatic_interval_number = pitch_2.number - pitch_1.number
    diatonic_interval = \

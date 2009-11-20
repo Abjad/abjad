@@ -47,7 +47,11 @@ class DiatonicInterval(object):
          4: 'fourth', 5: 'fifth', 6: 'sixth', 7: 'seventh', 8: 'octave',
          9: 'ninth', 10: 'tenth', 11: 'eleventh', 12: 'twelth',
          13: 'thirteenth', 14: 'fourteenth', 15: 'fifteenth'}
-      return interval_to_string[abs(self.interval_number)]
+      try:
+         interval_string = interval_to_string[abs(self.interval_number)]
+      except KeyError:
+         interval_string = '%sth' % self.interval_number
+      return interval_string
 
    ## PUBLIC ATTRIBUTES ##
 
