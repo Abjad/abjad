@@ -17,4 +17,6 @@ def _transpose_pitch_carrier_by_diatonic_interval(
    pitch_carrier, diatonic_interval):
 
    if isinstance(pitch_carrier, Pitch):
-      pass
+      pitch_number = pitch_carrier.number
+      pitch_number += diatonic_interval.semitones
+      

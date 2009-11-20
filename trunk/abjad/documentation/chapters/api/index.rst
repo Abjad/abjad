@@ -700,8 +700,7 @@ pitchtools
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
-   tools/pitchtools/diatonic_interval_to_absolute_interval
-   tools/pitchtools/diatonic_interval_to_staff_spaces
+   tools/pitchtools/diatonic_interval_string_to_diatonic_interval_number
    tools/pitchtools/diatonic_scale_degree_to_letter
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonic_transpose
