@@ -5,6 +5,7 @@ def transpose_by_diatonic_interval(expr, diatonic_interval):
 
       abjad>
 
+   .. todo:: FINISH IMPLEMENTATION.
    '''
 
    if not isinstance(diatonic_interval, DiatonicInterval):

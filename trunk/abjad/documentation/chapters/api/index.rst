@@ -453,6 +453,7 @@ label
    tools/label/leaf_pcs
    tools/label/leaf_pitch_numbers
    tools/label/measure_numbers
+   tools/label/vertical_moment_diatonic_intervals
    tools/label/vertical_moment_interval_class_vectors
    tools/label/vertical_moment_pitch_classes
    tools/label/vertical_moment_pitch_numbers
@@ -698,6 +699,7 @@ pitchtools
    tools/pitchtools/change_default_accidental_spelling
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc
+   tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
    tools/pitchtools/diatonic_interval_to_absolute_interval
    tools/pitchtools/diatonic_interval_to_staff_spaces
    tools/pitchtools/diatonic_scale_degree_to_letter
@@ -739,12 +741,14 @@ pitchtools
    tools/pitchtools/permute_by_row
    tools/pitchtools/pitch_number_adjustment_to_octave
    tools/pitchtools/pitch_number_to_octave
+   tools/pitchtools/pitches_to_diatonic_interval
    tools/pitchtools/registrate
    tools/pitchtools/send_pitch_number_to_octave
    tools/pitchtools/sort_by_pc
    tools/pitchtools/staff_space_transpose
    tools/pitchtools/suggest_clef
    tools/pitchtools/transpose_by_chromatic_interval
+   tools/pitchtools/transpose_by_diatonic_interval
 
 
 scoretools

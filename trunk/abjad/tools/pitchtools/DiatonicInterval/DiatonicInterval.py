@@ -18,6 +18,16 @@ class DiatonicInterval(object):
 
    ## OVERLOADS ##
 
+   def __eq__(self, expr):
+      if isinstance(expr, DiatonicInterval):
+         if self.quality_string == expr.quality_string:
+            if self.interval_number == expr.interval_number:
+               return True
+      return False
+
+   def __ne__(self, expr):
+      return not self == expr
+
    def __repr__(self):
       if self.direction_string:
          return '%s(%s %s %s)' % (self.__class__.__name__, 
