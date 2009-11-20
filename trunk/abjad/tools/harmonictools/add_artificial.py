@@ -2,20 +2,26 @@ from abjad.chord import Chord
 from abjad.tools import pitchtools
 
 
-def add_artificial(note, diatonicInterval = 'perfect fourth'):
-   '''>>> t = Note(0, (1, 4))
-      >>> harmonictools.add_artificial(t, 'perfect fourth')
-      >>> f(t)
+perfect_fourth = pitchtools.DiatonicInterval('perfect', 4)
+
+def add_artificial(note, diatonic_interval = perfect_fourth):
+   r'''Add artifical harmonic at `diatonic_interval` to `note`.
+
+   ::
+
+      abjad> t = Note(0, (1, 4))
+      abjad> harmonictools.add_artificial(t)
+      abjad> f(t)
       <
               c'
               \\tweak #'style #'harmonic
               f'
-      >4'''
+      >4
+   '''
 
    chord = Chord(note)
    chord.append(chord[0].pitch.number)
-   #chord[1].pitch = chord[1].pitch.diatonicTranspose(diatonicInterval)
    chord[1].pitch = pitchtools.diatonic_transpose(
-      chord[1].pitch, diatonicInterval)
+      chord[1].pitch, diatonic_interval)
    chord[1].style = 'harmonic'
    return chord

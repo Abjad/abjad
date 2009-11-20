@@ -18,10 +18,12 @@ def test_harmonictools_add_artificial_01( ):
 
 
 def test_harmonictools_add_artificial_02( ):
-   '''Specify other diatonic intervals as a string.'''
+   '''Specify other diatonic intervals explicitly.'''
 
    t = Note(0, (1, 4))
-   t = harmonictools.add_artificial(t, 'minor third')
+   #t = harmonictools.add_artificial(t, 'minor third')
+   diatonic_interval = pitchtools.DiatonicInterval('minor', 3)
+   t = harmonictools.add_artificial(t, diatonic_interval)
    assert t.format == "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tef'\n>4"
 
    r'''
