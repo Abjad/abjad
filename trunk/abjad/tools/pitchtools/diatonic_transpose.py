@@ -34,14 +34,14 @@ def diatonic_transpose(pitch, diatonic_interval):
    '''
 
    quality, interval = diatonic_interval.split( )
-   staffSpaces = pitchtools_diatonic_interval_to_staff_spaces(interval)
-   degree = pitchtools_add_staff_spaces(pitch, staffSpaces)
+   staff_spaces = pitchtools_diatonic_interval_to_staff_spaces(interval)
+   degree = pitchtools_add_staff_spaces(pitch, staff_spaces)
    letter = pitchtools_diatonic_scale_degree_to_letter(degree)
-   pitchNumber = pitch.number + \
+   pitch_number = pitch.number + \
       pitchtools_diatonic_interval_to_absolute_interval(diatonic_interval)
-   accidentalString = \
+   accidental_string = \
       pitchtools_letter_pitch_number_to_nearest_accidental_string(
-      letter, pitchNumber)
-   pitchName = letter + accidentalString
-   octave = pitchtools_letter_pitch_number_to_octave(letter, pitchNumber)
-   return Pitch(pitchName, octave)
+      letter, pitch_number)
+   pitch_name = letter + accidental_string
+   octave = pitchtools_letter_pitch_number_to_octave(letter, pitch_number)
+   return Pitch(pitch_name, octave)

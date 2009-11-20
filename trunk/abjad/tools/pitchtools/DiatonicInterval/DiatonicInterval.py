@@ -1,42 +1,35 @@
+from abjad.tools import mathtools
+
+
 class DiatonicInterval(object):
 
-   def __init__(self, quality, interval):
-      if quality in self._acceptable_qualities:
-         self._quality = quality
+   def __init__(self, quality_string, interval_number):
+      if quality_string in self._acceptable_quality_strings:
+         self._quality_string = quality_string
       else:
          raise ValueError(
-            'quality must be in %s' % self._acceptable_qualities)
-      if isinstance(interval, int):
+            'quality must be in %s' % self._acceptable_quality_strings)
+      if isinstance(interval_number, int):
          if int == 0:
             raise ValueError
-         self._interval = interval
+         self._interval_number = interval_number
       else:
          raise ValueError('interval must be integer.')
 
    ## OVERLOADS ##
 
    def __repr__(self):
-      direction_string = self._direction_string
-      if direction_string:
+      if self.direction_string:
          return '%s(%s %s %s)' % (self.__class__.__name__, 
-            self._direction_string, self._quality, self._interval_string)
+            self.direction_string, self.quality_string, self.interval_string)
       else:
          return '%s(%s %s)' % (self.__class__.__name__,
-            self._quality, self._interval_string)
+            self.quality_string, self.interval_string)
       
    ## PRIVATE ATTRIBUTES ##
 
-   _acceptable_qualities = ('perfect', 'major', 'minor',
+   _acceptable_quality_strings = ('perfect', 'major', 'minor',
       'diminished', 'augmented')
-
-   @property
-   def _direction_string(self):
-      if abs(self._interval) == 1:
-         return None
-      elif 1 < self._interval:
-         return 'ascending'
-      else:
-         return 'descending'
 
    @property
    def _interval_string(self):
@@ -44,9 +37,39 @@ class DiatonicInterval(object):
          4: 'fourth', 5: 'fifth', 6: 'sixth', 7: 'seventh', 8: 'octave',
          9: 'ninth', 10: 'tenth', 11: 'eleventh', 12: 'twelth',
          13: 'thirteenth', 14: 'fourteenth', 15: 'fifteenth'}
-      return interval_to_string[abs(self._interval)]
+      return interval_to_string[abs(self.interval_number)]
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def direction_number(self):
+      if abs(self.interval_number) == 1:
+         return 0
+      elif 1 < self.interval_number:
+         return 1
+      else:
+         return -1
+
+   @property
+   def direction_string(self):
+      if self.direction_number == -1:
+         return 'descending'
+      elif self.direction_number == 0:
+         return None
+      elif self.direction_number == 1:
+         return 'ascending'
+
+   @property
+   def interval_string(self):
+      return self._interval_string
+
+   @property
+   def interval_number(self):
+      return self._interval_number
+
+   @property
+   def quality_string(self):
+      return self._quality_string
 
    @property
    def semitones(self):
@@ -54,11 +77,20 @@ class DiatonicInterval(object):
       interval_to_semitones = {
          1: 0, 2: 1, 3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8: 12,
          9: 13, 10: 15, 11: 17, 12: 19, 13: 20, 14: 22, 15: 24}
-      result += interval_to_semitones[abs(self._interval)]
-      quality_to_semitones = {
+      result += interval_to_semitones[abs(self.interval_number)]
+      quality_string_to_semitones = {
          'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1,
          'diminished': -1}
-      result += quality_to_semitones[self._quality]
-      if self._interval < 0:
+      result += quality_string_to_semitones[self.quality_string]
+      if self.interval_number < 0:
          result *= -1
       return result
+
+   @property
+   def staff_spaces(self):
+      if self.direction_string == 'descending':
+         return self.interval_number + 1
+      elif self.direction_string is None:
+         return 0
+      elif self.direction_string == 'ascending':
+         return self.interval_number - 1
