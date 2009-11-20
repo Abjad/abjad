@@ -53,12 +53,11 @@ class DiatonicInterval(object):
 
    @property
    def direction_number(self):
-      if abs(self.interval_number) == 1:
+      if self.quality_string == 'perfect' and \
+         abs(self.interval_number) == 1:
          return 0
-      elif 1 < self.interval_number:
-         return 1
       else:
-         return -1
+         return mathtools.sign(self.interval_number)
 
    @property
    def direction_string(self):

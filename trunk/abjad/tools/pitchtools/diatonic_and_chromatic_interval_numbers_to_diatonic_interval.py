@@ -30,12 +30,17 @@ def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
    '''
 
    #print diatonic_interval_number, chromatic_interval_number
+   direction_number = mathtools.sign(chromatic_interval_number)
 
    if diatonic_interval_number == 1:
-      if chromatic_interval_number == 0:
-         quality_string = 'perfect'
-      elif abs(chromatic_interval_number) == 1:
+      if chromatic_interval_number == -1:
          quality_string = 'augmented'
+      elif chromatic_interval_number == 0:
+         quality_string = 'perfect'
+      elif chromatic_interval_number == 1:
+         quality_string = 'augmented'
+      if not direction_number == 0:
+         diatonic_interval_number *= direction_number
       diatonic_interval = DiatonicInterval(
          quality_string, diatonic_interval_number)
       return diatonic_interval
@@ -46,7 +51,6 @@ def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
       diatonic_interval_class_number = diatonic_interval_number % 7
 
    chromatic_interval_class_number = abs(chromatic_interval_number) % 12
-   direction_number = mathtools.sign(chromatic_interval_number)
 
    #print diatonic_interval_class_number, chromatic_interval_class_number
 
