@@ -12,13 +12,17 @@ def arithmetic_mean(l):
       abjad> listtools.arithmetic_mean(l)
       11
 
-   Otherwise return a rational. ::
+   Or return a rational. ::
 
       abjad> l = [1, 2, 20]
       abjad> listtools.arithmetic_mean(l)
       Rational(23, 3)
 
-   Never return a float.
+   Or return a float. ::
+
+      abjad> l = [2, 2, 20.0]
+      abjad> listtools.arithmetic_mean(l)
+      8.0
    '''
 
    sum_l = sum(l)
