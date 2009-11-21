@@ -21,6 +21,12 @@ def arithmetic_mean(l):
    Never return a float.
    '''
 
+   sum_l = sum(l)
+   len_l = len(l)
+
+   if isinstance(sum_l, float):
+      return sum_l / len_l
+
    result = Rational(sum(l), len(l))
 
    int_result = int(result)
