@@ -152,9 +152,9 @@ class PitchArrayCell(_Abjad):
       def fget(self):
          return self._pitches
       def fset(self, arg):
-         if not isinstance(arg, types.NoneType):
-            raise TypeError
-         self._pitches = [ ]
+         if not isinstance(arg, (list, tuple)):
+            raise TypeError('must be list or tuple of pitches.')
+         self._pitches = arg
       return property(**locals( ))
 
    @property

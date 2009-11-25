@@ -95,8 +95,22 @@ class PitchArrayRow(_Abjad):
    def parent_array(self):
       return self._parent_array
 
+#   @property
+#   def pitches(self):
+#      pitches = [ ]
+#      for cell in self:
+#         pitches.extend(cell.pitches)
+#      return tuple(pitches)
+
    @property
-   def pitches(self):
+   def pitches_by_cell(self):
+      pitches = [ ]
+      for cell in self.cells:
+         pitches.extend(cell.pitches)
+      return tuple(pitches)
+
+   @property
+   def pitches_by_index(self):
       pitches = [ ]
       for cell in self:
          pitches.extend(cell.pitches)
