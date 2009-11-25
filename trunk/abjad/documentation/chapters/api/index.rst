@@ -196,7 +196,7 @@ chordtools
    tools/chordtools/arpeggiate
    tools/chordtools/cast_defective
    tools/chordtools/color_note_heads_by_pc
-   tools/chordtools/get_notehead
+   tools/chordtools/get_note_head
    tools/chordtools/split_by_altitude
    tools/chordtools/split_by_pitch_number
    tools/chordtools/subchords
@@ -485,11 +485,13 @@ leaftools
 
    tools/leaftools/composite_offset_difference_series
    tools/leaftools/composite_offset_series
+   tools/leaftools/copy_duration_from_to
    tools/leaftools/duration_change
    tools/leaftools/duration_rewrite
    tools/leaftools/duration_scale
    tools/leaftools/excise
-   tools/leaftools/get_duration_from
+   tools/leaftools/get_durations_prolated
+   tools/leaftools/get_durations_written
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply
@@ -724,6 +726,7 @@ pitchtools
    tools/pitchtools/is_pair
    tools/pitchtools/is_token
    tools/pitchtools/is_token_collection
+   tools/pitchtools/leaf_array_to_pitch_array_empty
    tools/pitchtools/letter_to_diatonic_scale_degree
    tools/pitchtools/letter_to_pc
    tools/pitchtools/make_all_aggregate_subsets

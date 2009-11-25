@@ -2,18 +2,18 @@ from abjad.leaf import _Leaf
 from abjad.rational import Rational
 
 
-def get_duration_from(source, target):
+def copy_duration_from_to(source, target):
    r'''.. versionadded:: 1.1.2
 
-   Get duration from `source` leaf and set on `target` leaf. ::
+   Copy duration from leaf `source` to leaf `target`. ::
 
       abjad> note = Note(0, (1, 4))
       abjad> note.duration.multiplier = Rational(1, 2)
       abjad> rest = Rest((1, 64))
-      abjad> leaftools.get_duration_from(note, rest)
+      abjad> leaftools.copy_duration_from_to(note, rest)
       Rest(4 * 1/2)
 
-   Return `target` leaf.
+   Return leaf `target`.
    '''
 
    if not isinstance(source, _Leaf):

@@ -1,6 +1,6 @@
-chordtools.get_notehead
-=======================
+chordtools.get_note_head
+========================
 
-.. automodule:: abjad.tools.chordtools.get_notehead
+.. automodule:: abjad.tools.chordtools.get_note_head
 
-.. autofunction:: abjad.tools.chordtools.get_notehead
+.. autofunction:: abjad.tools.chordtools.get_note_head
