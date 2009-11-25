@@ -34,14 +34,14 @@ def color_by_pc(pitch_carrier):
    '''
    
    pitch = pitchtools_get_pitch(pitch_carrier)
-   color = _pc_to_color(pitch.pc)
+   color = _pc_number_to_color(pitch.pc.number)
    if color is not None:
       pitch_carrier.note_head.color = color
 
 
-def _pc_to_color(pc):
+def _pc_number_to_color(pc):
    
-   pc_to_color = {
+   pc_number_to_color = {
       0: Color('red'),
       1: Color('MediumBlue'),
       2: Color('orange'),
@@ -56,4 +56,4 @@ def _pc_to_color(pc):
      11: Color('SeaGreen'),
      12: Color('LimeGreen')}
 
-   return pc_to_color.get(pc, None)
+   return pc_number_to_color.get(pc, None)

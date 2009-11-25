@@ -22,7 +22,10 @@ def pc_to_pitch_name_flats(pc):
       6.0   gf
    '''
   
-   return _pcToPitchNameFlats[pc]
+   try:
+      return _pcToPitchNameFlats[pc]
+   except KeyError:
+      return _pcToPitchNameFlats[pc.number]
 
 
 _pcToPitchNameFlats = {
@@ -32,4 +35,3 @@ _pcToPitchNameFlats = {
       6:  'gf',    6.5: 'gqf',     7: 'g',     7.5:  'atqf',
       8:  'af',    8.5: 'aqf',     9: 'a',     9.5:  'btqf',
       10: 'bf',   10.5: 'bqf',    11: 'b',    11.5:  'cqf' }
-

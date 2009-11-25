@@ -1,6 +1,6 @@
+from abjad.accidental import Accidental
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.core.abjadcore import _Abjad
-from abjad.accidental import Accidental
 import types
 
 
@@ -258,11 +258,14 @@ class Pitch(_Abjad):
 
    @property
    def pc(self):
-      '''Read-only numeric value of pitch-class of pitch
-      with the pitch-class of C equal to ``0``.'''
+      '''Read-only pitch-class corresponding to pitch.
+
+      .. versionchanged:: 1.1.2
+         now returns Abjad pitch-class instance instead of number.'''
+      from abjad.tools import pitchtools
       number = self.number
       if number is not None:
-         return number % 12
+         return pitchtools.PitchClass(number % 12)
       else:
          return None
       

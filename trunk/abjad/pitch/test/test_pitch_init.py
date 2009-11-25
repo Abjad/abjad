@@ -33,7 +33,7 @@ def test_pitch_init_02( ):
    assert p.number == 13
    assert p.octave == 5
    assert p.pair == ('cs', 5)
-   assert p.pc == 1
+   assert p.pc == pitchtools.PitchClass(1)
    assert p.ticks == "''"
 
 
@@ -50,7 +50,7 @@ def test_pitch_init_03( ):
    assert p.number == 13
    assert p.octave == 5
    assert p.pair == ('df', 5)
-   assert p.pc == 1
+   assert p.pc == pitchtools.PitchClass(1)
    assert p.ticks == "''"
 
 
@@ -68,7 +68,7 @@ def test_pitch_init_04( ):
    assert p.number == 13
    assert p.octave == 5
    assert p.pair == ('df', 5)
-   assert p.pc == 1
+   assert p.pc == pitchtools.PitchClass(1)
    assert p.ticks == "''"
 
 
@@ -87,7 +87,7 @@ def test_pitch_init_05( ):
    assert p.number == 13
    assert p.octave == 5
    assert p.pair == ('df', 5)
-   assert p.pc == 1
+   assert p.pc == pitchtools.PitchClass(1)
    assert p.ticks == "''"
 
 
@@ -105,5 +105,5 @@ def test_pitch_init_06( ):
    assert p.number == 13
    assert p.octave == 5
    assert p.pair == ('df', 5)
-   assert p.pc == 1
+   assert p.pc == pitchtools.PitchClass(1)
    assert p.ticks == "''"

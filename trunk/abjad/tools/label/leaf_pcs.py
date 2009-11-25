@@ -37,13 +37,13 @@ def leaf_pcs(expr, number = True, color = False):
          f'8
       }
 
-   You can of course set *number* and *color* at the same time.
+   You can of course set `number` and `color` at the same time.
    '''
 
    from abjad.note import Note
    for note in iterate.naive_forward_in(expr, Note):
       if number:
-         label = r'\small %s' % note.pitch.pc
+         label = r'\small %s' % note.pitch.pc.number
          note.markup.down.append(label)
       if color:
          pitchtools.color_by_pc(note)

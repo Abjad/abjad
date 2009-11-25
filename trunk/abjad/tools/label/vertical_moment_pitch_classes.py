@@ -37,7 +37,7 @@ def vertical_moment_pitch_classes(expr):
    for vertical_moment in iterate.vertical_moments_forward_in(expr):
       leaves = vertical_moment.leaves
       pitches = pitchtools.get_pitches(leaves)
-      pitch_classes = [pitch.pc for pitch in pitches]
+      pitch_classes = [pitch.pc.number for pitch in pitches]
       pitch_classes = list(set(pitch_classes))
       pitch_classes.sort( )
       pitch_classes.reverse( )

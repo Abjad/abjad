@@ -19,5 +19,7 @@ def sort_by_pc(pitch_carriers):
 
    result = list(pitch_carriers[:])
    result.sort(lambda x, y: cmp(
-         pitchtools_get_pitches(x)[0].pc, pitchtools_get_pitches(y)[0].pc))
+         pitchtools_get_pitches(x)[0].pc.number, 
+         pitchtools_get_pitches(y)[0].pc.number))
+
    return result

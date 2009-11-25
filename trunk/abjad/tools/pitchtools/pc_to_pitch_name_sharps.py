@@ -22,7 +22,10 @@ def pc_to_pitch_name_sharps(pc):
       6.0   fs
    '''
 
-   return _pcToPitchNameSharps[pc]
+   try:
+      return _pcToPitchNameSharps[pc]
+   except KeyError:
+      return _pcToPitchNameSharps[pc.number]
 
 
 _pcToPitchNameSharps = {
@@ -32,4 +35,3 @@ _pcToPitchNameSharps = {
       6:  'fs',    6.5: 'ftqs',   7: 'g',     7.5:  'gqs',
       8:  'gs',    8.5: 'gtqs',   9: 'a',     9.5:  'aqs',
       10: 'as',   10.5: 'atqs',  11: 'b',    11.5:  'bqs' }
-
