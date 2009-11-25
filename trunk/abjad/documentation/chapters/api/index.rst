@@ -726,7 +726,7 @@ pitchtools
    tools/pitchtools/is_pair
    tools/pitchtools/is_token
    tools/pitchtools/is_token_collection
-   tools/pitchtools/leaf_array_to_pitch_array_empty
+   tools/pitchtools/leaf_iterables_to_pitch_array_empty
    tools/pitchtools/letter_to_diatonic_scale_degree
    tools/pitchtools/letter_to_pc
    tools/pitchtools/make_all_aggregate_subsets

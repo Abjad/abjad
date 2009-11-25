@@ -113,6 +113,10 @@ class PitchArrayRow(_Abjad):
    def width(self):
       return sum([cell.width for cell in self.cells])
 
+   @property
+   def widths(self):
+      return [cell.width for cell in self.cells]
+
    ## PUBLIC METHODS ##
    
    def append(self, cell):
