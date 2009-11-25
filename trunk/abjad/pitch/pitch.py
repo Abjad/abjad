@@ -33,6 +33,10 @@ class Pitch(_Abjad):
 
    ## OVERLOADS ##
 
+   def __copy__(self):
+      '''.. versionadded:: 1.1.2'''
+      return Pitch(self)
+
    def __eq__(self, arg):
       if isinstance(arg, Pitch):
          if self.altitude == arg.altitude:
