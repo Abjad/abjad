@@ -1,5 +1,6 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.pitch import Pitch
+from abjad.tools import listtools
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell \
    import PitchArrayCell
 from abjad.tools.pitchtools.PitchArray.PitchArrayColumn.PitchArrayColumn \
@@ -69,6 +70,11 @@ class PitchArray(_Abjad):
 
    ## PRIVATE METHODS ##
 
+   def _column_format_width_at_index(self, index):
+      columns = self.columns
+      column = columns[index]
+      return column._column_format_width
+
    def _format_cells(self, cells):
       result = [str(cell) for cell in cells]
       result = ' '.join(result)
@@ -99,8 +105,10 @@ class PitchArray(_Abjad):
    def columns(self):
       columns = [ ]
       rows = self.rows
-      for cells in zip(*self.rows):
+      for i, cells in enumerate(listtools.zip_nontruncating(*self.rows)):
          column = PitchArrayColumn(cells)
+         column._parent_array = self
+         column._column_index = i
          columns.append(column)
       columns = tuple(columns)
       return columns
@@ -156,7 +164,7 @@ class PitchArray(_Abjad):
       for i in range(missing_rows):
          row = PitchArrayRow([ ])
          row.pad_to_width(self_width)
-         self.append(row)
+         self.append_row(row)
 
    def pad_to_width(self, width):
       self_width = self.width
@@ -173,11 +181,7 @@ class PitchArray(_Abjad):
          cell.withdraw( )
       return column
 
-   def pop_row(self, row_index):
+   def pop_row(self, row_index = -1):
       row = self._rows.pop(row_index)
       row._parent_array = None
       return row
-
-#   def untie_cells(self):
-#      for cell in self.cells:
-#         cell.is_tied = None

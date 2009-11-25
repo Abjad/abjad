@@ -8,17 +8,19 @@ class PitchArrayCell(_Abjad):
 
    '''
 
-   def __init__(self, pitch = None):
+   def __init__(self, pitches = None):
       self._parent_row = None
-      self.pitch = pitch
-      self.width = 1
+      self._pitches = [ ]
+      if pitches is not None:
+         self.pitches.extend(pitches)
+      self._width = 1
 
    ## OVERLOADS ##
 
    def __eq__(self, arg):
       if isinstance(arg, PitchArrayCell):
          if self.width == arg.width:
-            if self.pitch == arg.pitch:
+            if self.pitches == arg.pitches:
                return True
       return False
 
@@ -26,111 +28,106 @@ class PitchArrayCell(_Abjad):
       return not self == arg
 
    def __repr__(self):
-      pitch_string = self._pitch_string
-      if pitch_string == '':
-         pitch_string = ' '
-      width = self.width
-      if width == 1:
-         width_string = ''
-      else:
-         width_string = ' x %s' % width
-      return '%s(%s%s)' % (self.__class__.__name__, pitch_string, width_string)
+      return '%s(%s)' % (
+         self.__class__.__name__, self._format_pitch_width_string)
 
    def __str__(self):
-      if self.parent_row is None:
-         return self._format_string_orphan
-      else:
-         return self._format_string_total
+      return self._format_string
        
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _format_string_head(self):
-      pitch = self.pitch
-      if pitch is not None:
-         return str(pitch)
+   def _composite_column_width(self):
+      composite_column_width = 0
+      columns = self.parent_array.columns
+      for column_index in self.column_indices:
+         composite_column_width += columns[column_index]._column_format_width
+      return composite_column_width
+
+   @property
+   def _conditional_pitch_string(self):
+      if self.pitches:
+         return self._pitch_string
       else:
          return ' '
 
    @property
-   def _format_string_orphan(self):
-      self_width = self.width
-      if self_width == 1:
-         width_string = ''
-      else:
-         width_string = ' x %s' % self_width
-      return '%s%s' % (self._format_string_head, width_string)
+   def _format_row_column_repr_string(self):
+      return self._format_pitch_width_string
 
    @property
-   def _format_string_total(self):
-      ## TODO ##
-      head = self._format_string_head
-      return '[%s]' % head.ljust(2 * self.width)
+   def _format_pitch_width_string(self):
+      if self.pitches:
+         if self.width == 1:
+            return self._pitch_string
+         else:
+            return '%s %s' % (self._pitch_string, self._width_string)
+      else:
+         return self._width_string
 
    @property
-   def _pitch_count_string(self):
-      if self.width == 1:
-         return self._pitch_string
+   def _format_string(self):
+      if self.parent_column is not None:
+         if self._is_last_cell_in_row:
+            cell_width = self._composite_column_width - 2
+         else:
+            cell_width = self._composite_column_width - 3
+         return '[%s]' % self._conditional_pitch_string.ljust(cell_width)
       else:
-         return 
+         return '[%s]' % self._conditional_pitch_string
+
+   @property
+   def _is_last_cell_in_row(self):
+      if self.parent_row is not None:
+         if self.column_indices[-1] == (self.parent_row.width - 1):
+            return True
+         return False
+      return True
+
+   @property
+   def _width_string(self):
+      return 'x%s' % self.width
 
    @property
    def _pitch_string(self):
-      pitch = self.pitch
-      if pitch is not None:
-         return str(pitch)
+      if self.pitches:
+         return ' '.join([str(pitch) for pitch in self.pitches])
       else:
          return ''
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def cell_above(self):
-      row_index, column_index = self.indices
-      return self.parent_array[row_index - 1][column_index]
+   def next(self):
+      return self.parent_row[self.column_indices[-1] + 1]
 
    @property
-   def cell_below(self):
-      row_index, column_index = self.indices
-      return self.parent_array[row_index + 1][column_index]
-
-   @property
-   def cell_next(self):
-      return self.parent_row[self.column_index + 1]
-
-   @property
-   def cell_prev(self):
-      cell_prev_index = self.column_index - 1
-      if cell_prev_index < 0:
+   def prev(self):
+      prev_index = self.column_indices[0] - 1
+      if prev_index < 0:
          raise ValueError
-      return self.parent_row[cell_prev_index]
+      return self.parent_row[prev_index]
 
    @property
    def column_indices(self):
-      '''Read-only integer pair.'''
+      '''Read-only tuple of one or more nonnegative integer indices.'''
       parent_row = self.parent_row
       if parent_row is not None:
          cumulative_width = 0
          for cell in parent_row.cells:
             if cell is self:
-               return cumulative_width, cumulative_width + self.width
+               start = cumulative_width
+               stop = start + self.width
+               indices = range(start, stop)
+               indices = tuple(indices)
+               return indices
             cumulative_width += cell.width
       return None
 
    @property
    def indices(self):
-      return self.row_index, self.column_index
+      return self.row_index, self.column_indices
       
-#   @apply
-#   def is_tied( ):
-#      def fget(self):
-#         return self._is_tied
-#      def fset(self, arg):
-#         if not isinstance(arg, (bool, types.NoneType)):
-#            raise TypeError
-#         self._is_tied = arg
-#      return property(**locals( ))
-
    @property
    def parent_array(self):
       parent_row = self.parent_row
@@ -142,7 +139,8 @@ class PitchArrayCell(_Abjad):
    def parent_column(self):
       parent_array = self.parent_array
       if parent_array is not None:
-         return parent_array.columns[self.column_index]
+         start_column_index = self.column_indices[0]
+         return parent_array.columns[start_column_index]
       return None
 
    @property
@@ -150,47 +148,25 @@ class PitchArrayCell(_Abjad):
       return self._parent_row
 
    @apply
-   def pitch( ):
+   def pitches( ):
       def fget(self):
-         return self._pitch
+         return self._pitches
       def fset(self, arg):
-         if not isinstance(arg, (Pitch, types.NoneType)):
+         if not isinstance(arg, types.NoneType):
             raise TypeError
-         self._pitch = arg
+         self._pitches = [ ]
       return property(**locals( ))
-
-   @property
-   def pitch_effective(self):
-      pitch = self.pitch
-      if pitch is not None:
-         return pitch
-      try:
-         cell_prev = self.cell_prev
-      except IndexError:
-         return None
-      if cell_prev.is_tied:
-         return cell_prev.pitch_effective
-      else:
-         return None
 
    @property
    def row_index(self):
       parent_row = self.parent_row
       if parent_row is not None:
-         return parent_row.index(self)
+         return parent_row.row_index
       return None
 
-   @apply
-   def width( ):
-      def fget(self):
-         return self._width
-      def fset(self, arg):
-         if not isinstance(arg, int):
-            raise TypeError
-         if not 0 < arg:
-            raise ValueError
-         self._width = arg
-      return property(**locals( ))
+   @property
+   def width(self):
+      return self._width
 
    ## PUBLIC METHODS ##
 
