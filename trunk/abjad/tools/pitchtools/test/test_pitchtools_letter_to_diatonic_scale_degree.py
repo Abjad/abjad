@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_letter_to_diatonic_scale_degree_01( ):
+def test_pitchtools_letter_to_diatonic_scale_degree_01( ):
 
    assert pitchtools.letter_to_diatonic_scale_degree('c') == 1
    assert pitchtools.letter_to_diatonic_scale_degree('d') == 2

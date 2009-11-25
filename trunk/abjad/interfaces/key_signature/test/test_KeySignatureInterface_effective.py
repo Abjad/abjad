@@ -23,7 +23,7 @@ def test_KeySignatureInterface_effective_01( ):
    assert t.format == "\\new Staff {\n\t\\key c \\major\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
    
-def test_KeySignature_effective_02( ):
+def test_KeySignatureInterface_effective_02( ):
    '''There is no default key signature.'''
 
    t = Staff(construct.scale(4))

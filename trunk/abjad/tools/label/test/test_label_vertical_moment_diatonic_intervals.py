@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_label_vertical_moments_diatonic_intervals_01( ):
+def test_label_vertical_moment_diatonic_intervals_01( ):
 
    score = Score(Staff([ ]) * 3)
    score[0].extend(construct.scale(4))

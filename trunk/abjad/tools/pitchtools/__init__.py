@@ -10,3 +10,4 @@ from PitchClassColorMap import PitchClassColorMap
 from PitchClassSet import PitchClassSet
 from PitchRange import PitchRange
 from PitchSet import PitchSet
+from TwelveToneRow import TwelveToneRow
