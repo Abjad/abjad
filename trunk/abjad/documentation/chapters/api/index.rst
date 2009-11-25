@@ -41,6 +41,10 @@ Classes
    tools/lilytools/PaperBlock
    staffgroup/pianostaff
    pitch/pitch
+   tools/pitchtools/PitchArray/PitchArray
+   tools/pitchtools/PitchArray/PitchArrayCell/PitchArrayCell
+   tools/pitchtools/PitchArray/PitchArrayColumn/PitchArrayColumn
+   tools/pitchtools/PitchArray/PitchArrayRow/PitchArrayRow
    tools/pitchtools/PitchClass/PitchClass
    tools/pitchtools/PitchClassColorMap/PitchClassColorMap
    tools/pitchtools/PitchClassSet/PitchClassSet
@@ -62,6 +66,7 @@ Classes
    staffgroup/staffgroup
    tools/layout/SystemYOffsets/SystemYOffsets
    tools/tempotools/TempoIndication/TempoIndication
+   tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/iterate/VerticalMoment/VerticalMoment
    voice/voice
 
