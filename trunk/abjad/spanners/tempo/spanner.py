@@ -38,7 +38,7 @@ class TempoSpanner(_GrobHandlerSpanner):
       self.tempo_indication = tempo_indication
       self.reference = None
 
-   ## OVERRIDES ##
+   ## OVERLOADS ##
 
    def __repr__(self):
       name = self.__class__.__name__

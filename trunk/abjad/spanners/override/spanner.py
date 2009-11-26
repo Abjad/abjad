@@ -59,10 +59,10 @@ class Override(_GrobHandlerSpanner):
 
    def __repr__(self):
       if self._context:
-         return 'Override([%s], %s, %s, %s, %s)' % (self._summary, 
+         return 'Override([%s], %s, %s, %s, %s)' % (self._compact_summary, 
             self._context, self._grob, self._attribute, self._value)
       else:
-         return 'Override([%s], %s, %s, %s)' % (self._summary, 
+         return 'Override([%s], %s, %s, %s)' % (self._compact_summary, 
             self._grob, self._attribute, self._value)
 
    ## PRIVATE METHODS ##

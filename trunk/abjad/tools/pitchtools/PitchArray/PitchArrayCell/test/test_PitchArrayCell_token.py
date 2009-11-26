@@ -13,8 +13,8 @@ def test_PitchArrayCell_token_01( ):
    [          ] [ ] [ ]
    '''
 
-   assert array[0].cells[0].token == Pitch(0)
-   assert array[0].cells[1].token == ([Pitch(2), Pitch(4)], 2)
+   assert array[0].cells[0].token == ('c', 4)
+   assert array[0].cells[1].token == ([('d', 4), ('e', 4)], 2)
    assert array[0].cells[2].token == 1
 
    assert array[1].cells[0].token == 2

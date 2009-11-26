@@ -118,7 +118,8 @@ class PitchArrayRow(_Abjad):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_contents_string)
+      #return '%s(%s)' % (self.__class__.__name__, self._format_contents_string)
+      return '%s(%s)' % (self.__class__.__name__, self._compact_summary)
 
    def __str__(self):
       result = [str(cell) for cell in self.cells]
@@ -126,6 +127,23 @@ class PitchArrayRow(_Abjad):
       return result
 
    ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _compact_summary(self):
+      len_self = len(self.cells)
+      if not len_self:
+         return ' '
+      elif 0 < len_self <= 8:
+         result = [cell._format_row_column_repr_string for cell in self.cells]
+         return ', '.join(result)
+      else:
+         left = ', '.join(
+            [x._format_row_column_repr_string for x in self.cells[:2]])
+         right = ', '.join(
+            [x._format_row_column_repr_string for x in self.cells[-2:]])
+         number_in_middle = len_self - 4
+         middle = ', ... [%s] ..., '% number_in_middle
+         return left + middle + right
 
    @property
    def _format_contents_string(self):

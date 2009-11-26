@@ -191,6 +191,8 @@ class PitchArrayCell(_Abjad):
       if isinstance(pitch_token, (int, float, Pitch)):
          pitch = Pitch(pitch_token)
          pitches.append(pitch)
+      elif isinstance(pitch_token, tuple):
+         pitches.append(Pitch(*pitch_token))
       elif isinstance(pitch_token, list):
          for element in pitch_token:
             pitch = Pitch(element)
@@ -301,14 +303,14 @@ class PitchArrayCell(_Abjad):
          return self.width
       elif len(self.pitches) == 1:
          if self.width == 1:
-            return self.pitches[0]
+            return self.pitches[0].pair
          else:
-            return self.pitches[0], self.width
+            return self.pitches[0].pair, self.width
       else:
          if self.width == 1:
-            return self.pitches
+            return [pitch.pair for pitch in self.pitches]
          else:
-            return self.pitches, self.width
+            return [pitch.pair for pitch in self.pitches], self.width
 
    @property
    def width(self):

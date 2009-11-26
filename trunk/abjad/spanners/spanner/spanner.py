@@ -54,7 +54,6 @@ class Spanner(_Abjad):
       return self._components.__len__( )
 
    def __repr__(self):
-      #return '%s(%s)' % (self.__class__.__name__, self._summary)
       return '%s(%s)' % (self.__class__.__name__, self._compact_summary)
 
    ## PRIVATE ATTRIBUTES ##
