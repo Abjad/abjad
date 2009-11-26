@@ -42,9 +42,9 @@ def test_pitchtools_leaf_iterables_to_pitch_array_empty_01( ):
    [ ] [ ] [ ] [ ] [ ] [ ]
    '''
 
-   assert pitch_array[0].widths == [1, 1, 1, 1, 1, 1]
-   assert pitch_array[1].widths == [2, 2, 2]
-   assert pitch_array[2].widths == [1, 1, 1, 1, 1, 1]
+   assert pitch_array[0].cell_widths == [1, 1, 1, 1, 1, 1]
+   assert pitch_array[1].cell_widths == [2, 2, 2]
+   assert pitch_array[2].cell_widths == [1, 1, 1, 1, 1, 1]
 
 
 def test_pitchtools_leaf_iterables_to_pitch_array_empty_02( ):
@@ -89,6 +89,6 @@ def test_pitchtools_leaf_iterables_to_pitch_array_empty_02( ):
    [ ] [     ] [ ] [ ] [     ] [ ]
    '''
 
-   assert pitch_array[0].widths == [2, 2, 2, 2]
-   assert pitch_array[1].widths == [4, 4]
-   assert pitch_array[2].widths == [1, 2, 1, 1, 2, 1]
+   assert pitch_array[0].cell_widths == [2, 2, 2, 2]
+   assert pitch_array[1].cell_widths == [4, 4]
+   assert pitch_array[2].cell_widths == [1, 2, 1, 1, 2, 1]

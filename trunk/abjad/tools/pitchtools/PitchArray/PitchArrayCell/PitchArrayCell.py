@@ -17,15 +17,15 @@ class PitchArrayCell(_Abjad):
 
    ## OVERLOADS ##
 
-   def __eq__(self, arg):
-      if isinstance(arg, PitchArrayCell):
-         if self.width == arg.width:
-            if self.pitches == arg.pitches:
-               return True
-      return False
+#   def __eq__(self, arg):
+#      if isinstance(arg, PitchArrayCell):
+#         if self.width == arg.width:
+#            if self.pitches == arg.pitches:
+#               return True
+#      return False
 
-   def __ne__(self, arg):
-      return not self == arg
+#   def __ne__(self, arg):
+#      return not self == arg
 
    def __repr__(self):
       return '%s(%s)' % (
@@ -165,10 +165,32 @@ class PitchArrayCell(_Abjad):
       return None
 
    @property
+   def token(self):
+      if not self.pitches:
+         return self.width
+      elif len(self.pitches) == 1:
+         if self.width == 1:
+            return self.pitches[0]
+         else:
+            return self.pitches[0], self.width
+      else:
+         if self.width == 1:
+            return tuple(self.pitches, )
+         else:
+            return tuple(self.pitches, self.width)
+
+   @property
    def width(self):
       return self._width
 
    ## PUBLIC METHODS ##
+
+   def matches_cell(self, arg):
+      if isinstance(arg, PitchArrayCell):
+         if self.pitches == arg.pitches:
+            if self.width == arg.width:
+               return True
+      return False
 
    def withdraw(self):
       parent_row = self.parent_row

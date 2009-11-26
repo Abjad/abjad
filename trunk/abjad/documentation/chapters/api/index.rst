@@ -703,6 +703,7 @@ pitchtools
 
    tools/pitchtools/apply_octavation
    tools/pitchtools/are_in_octave_order
+   tools/pitchtools/array_to_nonspanning_subarrays
    tools/pitchtools/change_default_accidental_spelling
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc

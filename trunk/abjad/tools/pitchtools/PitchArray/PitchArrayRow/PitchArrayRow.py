@@ -1,6 +1,7 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import \
    PitchArrayCell
+import copy
 
 
 class PitchArrayRow(_Abjad):
@@ -10,15 +11,33 @@ class PitchArrayRow(_Abjad):
    '''
 
    def __init__(self, cells):
+      self._parent_array = None
       self._cells = [ ]
       self.extend(cells)
 
    ## OVERLOADS ##
 
+   def __add__(self, arg):
+      if not isinstance(arg, PitchArrayRow):
+         raise TypeError('must be pitch array row.')
+      self_copy = copy.copy(self)
+      arg_copy = copy.copy(arg)
+      new_row = PitchArrayRow([ ])
+      new_row.extend(self_copy.cells)
+      new_row.extend(arg_copy.cells)
+      return new_row
+
+   def __copy__(self):
+      new_cells = [ ]
+      for cell in self.cells:
+         new_cell = copy.copy(cell)
+         new_cells.append(new_cell)
+      return PitchArrayRow(new_cells)
+
    def __eq__(self, arg):
       if isinstance(arg, PitchArrayRow):
          for self_cell, arg_cell in zip(self.cells, arg.cells):
-            if not self_cell == arg_cell:
+            if not self_cell.matches_cell(arg_cell):
                return False
             return True
       return False
@@ -57,6 +76,13 @@ class PitchArrayRow(_Abjad):
       else:
          raise ValueError('must be int or slice.')
 
+   def __iadd__(self, arg):
+      if not isinstance(arg, PitchArrayRow):
+         raise TypeError('must be pitch array row.')
+      copy_arg = copy.copy(arg)
+      self.extend(copy_arg.cells)
+      return self
+
    def __len__(self):
       return self.width
 
@@ -84,6 +110,14 @@ class PitchArrayRow(_Abjad):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def cell_tokens(self):
+      return [cell.token for cell in self.cells]
+
+   @property
+   def cell_widths(self):
+      return [cell.width for cell in self.cells]
+
+   @property
    def cells(self):
       return tuple(self._cells)
 
@@ -92,15 +126,14 @@ class PitchArrayRow(_Abjad):
       return 1
 
    @property
+   def is_defective(self):
+      if self.parent_array is not None:
+         return not self.width == self.parent_array.width
+      return False
+
+   @property
    def parent_array(self):
       return self._parent_array
-
-#   @property
-#   def pitches(self):
-#      pitches = [ ]
-#      for cell in self:
-#         pitches.extend(cell.pitches)
-#      return tuple(pitches)
 
    @property
    def pitches_by_cell(self):
@@ -127,9 +160,6 @@ class PitchArrayRow(_Abjad):
    def width(self):
       return sum([cell.width for cell in self.cells])
 
-   @property
-   def widths(self):
-      return [cell.width for cell in self.cells]
 
    ## PUBLIC METHODS ##
    
@@ -144,6 +174,32 @@ class PitchArrayRow(_Abjad):
          raise TypeError('must be cells.')
       for cell in cells:
          self.append(cell)
+
+   def extract(self, start = None, stop = None):
+      arg = slice(start, stop)
+      start, stop, step = arg.indices(self.width)
+      if not step == 1:
+         raise NotImplementedError('step not implemented.')
+      column_indices = set(range(start, stop, step))
+      row = PitchArrayRow([ ])
+      cells = self[arg]
+      new_cells = [ ]
+      for cell in cells:
+         if not cell in new_cells:
+            trim = [x for x in cell.column_indices if x not in column_indices]
+            new_width = cell.width - len(trim)
+            new_cell = copy.copy(cell)
+            new_cell._width = new_width
+            new_cells.append(new_cell)
+      row.extend(new_cells)
+      return row
+
+   def has_spanning_cell_over_index(self, index):
+      try:
+         cell = self[index]
+         return cell.column_indices[0] < index
+      except IndexError:
+         return False
 
    def index(self, cell):
       return self._cells.index(cell)
