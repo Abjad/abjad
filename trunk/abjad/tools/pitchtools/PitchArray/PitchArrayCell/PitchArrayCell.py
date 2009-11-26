@@ -6,6 +6,80 @@ import types
 class PitchArrayCell(_Abjad):
    '''.. versionadded 1.1.2
 
+   One cell in a pitch array. ::
+
+      abjad> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+      abjad> print array
+      [ ] [     ] [ ]
+      [     ] [ ] [ ]
+      abjad> cell = array[0][1]
+      abjad> cell
+      PitchArrayCell(x2)
+
+   ::
+
+      abjad> cell.column_indices
+      (1, 2)
+
+   ::
+
+      abjad> cell.indices
+      (0, (1, 2))
+
+   ::
+
+      abjad> cell.is_first_in_row
+      False
+
+   ::
+
+      abjad> cell.is_last_in_row
+      False
+
+   ::
+
+      abjad> cell.next
+      PitchArrayCell(x1)
+
+   ::
+
+      abjad> cell.parent_array
+      PitchArray(PitchArrayRow(x1, x2, x1), PitchArrayRow(x2, x1, x1))
+
+   ::
+
+      abjad> cell.parent_column
+      PitchArrayColumn(x2, x2)
+
+   ::
+
+      abjad> cell.parent_row
+      PitchArrayRow(x1, x2, x1)
+
+   ::
+
+      abjad> cell.pitches
+      []
+
+   ::
+
+      abjad> cell.prev
+      PitchArrayCell(x1)
+
+   ::
+
+      abjad> cell.row_index 
+      0
+
+   ::
+
+      abjad> cell.token
+      2
+
+   ::
+
+      abjad> cell.width
+      2
    '''
 
    def __init__(self, pitches = None):
@@ -16,16 +90,6 @@ class PitchArrayCell(_Abjad):
       self._width = 1
 
    ## OVERLOADS ##
-
-#   def __eq__(self, arg):
-#      if isinstance(arg, PitchArrayCell):
-#         if self.width == arg.width:
-#            if self.pitches == arg.pitches:
-#               return True
-#      return False
-
-#   def __ne__(self, arg):
-#      return not self == arg
 
    def __repr__(self):
       return '%s(%s)' % (
@@ -95,6 +159,13 @@ class PitchArrayCell(_Abjad):
       else:
          return ''
 
+   ## PRIVATE METHODS ##
+
+   def _withdraw(self):
+      parent_row = self.parent_row
+      parent_row.remove(self)
+      return self
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -111,7 +182,7 @@ class PitchArrayCell(_Abjad):
                indices = tuple(indices)
                return indices
             cumulative_width += cell.width
-      return None
+      raise IndexError('cell has no parent row.')
 
    @property
    def indices(self):
@@ -196,7 +267,7 @@ class PitchArrayCell(_Abjad):
          if self.width == 1:
             return tuple(self.pitches, )
          else:
-            return tuple(self.pitches, self.width)
+            return self.pitches, self.width
 
    @property
    def width(self):
@@ -210,8 +281,3 @@ class PitchArrayCell(_Abjad):
             if self.width == arg.width:
                return True
       return False
-
-   def withdraw(self):
-      parent_row = self.parent_row
-      parent_row.remove(self)
-      return self
