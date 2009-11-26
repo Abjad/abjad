@@ -98,17 +98,6 @@ class PitchArrayCell(_Abjad):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def next(self):
-      return self.parent_row[self.column_indices[-1] + 1]
-
-   @property
-   def prev(self):
-      prev_index = self.column_indices[0] - 1
-      if prev_index < 0:
-         raise ValueError
-      return self.parent_row[prev_index]
-
-   @property
    def column_indices(self):
       '''Read-only tuple of one or more nonnegative integer indices.'''
       parent_row = self.parent_row
@@ -127,7 +116,29 @@ class PitchArrayCell(_Abjad):
    @property
    def indices(self):
       return self.row_index, self.column_indices
+
+   @property
+   def is_first_in_row(self):
+      if self.parent_row is not None:
+         if self.column_indices[0] == 0:
+            return True
+      return False
+
+   @property
+   def is_last_in_row(self):
+      if self.parent_row is not None:
+         if self.column_indices[-1] == self.parent_row.width - 1:
+            return True
+      return False
       
+   @property
+   def next(self):
+      if self.parent_row is not None:
+         if self.is_last_in_row:
+            raise IndexError('cell is last in row.')
+         return self.parent_row[self.column_indices[-1] + 1]
+      raise IndexError('cell has no parent row.')
+
    @property
    def parent_array(self):
       parent_row = self.parent_row
@@ -156,6 +167,14 @@ class PitchArrayCell(_Abjad):
             raise TypeError('must be list or tuple of pitches.')
          self._pitches = arg
       return property(**locals( ))
+
+   @property
+   def prev(self):
+      if self.parent_row is not None:
+         if self.is_first_in_row:
+            raise IndexError('cell is first in row.')
+         return self.parent_row[self.column_indices[0] - 1]
+      raise IndexError('cell has no parent row.')
 
    @property
    def row_index(self):
