@@ -126,6 +126,10 @@ class PitchArrayRow(_Abjad):
       return 1
 
    @property
+   def dimensions(self):
+      return self.depth, self.width
+
+   @property
    def is_defective(self):
       if self.parent_array is not None:
          return not self.width == self.parent_array.width
@@ -136,16 +140,9 @@ class PitchArrayRow(_Abjad):
       return self._parent_array
 
    @property
-   def pitches_by_cell(self):
+   def pitches(self):
       pitches = [ ]
       for cell in self.cells:
-         pitches.extend(cell.pitches)
-      return tuple(pitches)
-
-   @property
-   def pitches_by_index(self):
-      pitches = [ ]
-      for cell in self:
          pitches.extend(cell.pitches)
       return tuple(pitches)
 
@@ -154,7 +151,7 @@ class PitchArrayRow(_Abjad):
       parent_array = self.parent_array
       if parent_array is not None:
          return parent_array._rows.index(self)
-      return None
+      raise IndexError('row has no parent array.')
 
    @property
    def width(self):
@@ -252,3 +249,7 @@ class PitchArrayRow(_Abjad):
             break
       cell._parent_row = None
 
+   def withdraw(self):
+      if self.parent_array is not None:
+         self.parent_array.remove_row(self)
+      return self

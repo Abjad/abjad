@@ -29,23 +29,47 @@ def test_PitchArrayCell___init___03( ):
 
 
 def test_PitchArrayCell___init___04( ):
-   '''Init with tuple of pitch instances.'''
+   '''Init with list of pitch tokens.'''
+
+   cell = PitchArrayCell([0, 2, 4])
+   assert cell.pitches == [Pitch(0), Pitch(2), Pitch(4)]
+   assert cell.width == 1
+
+
+def test_PitchArrayCell___init___05( ):
+   '''Init with list of pitch instances.'''
 
    cell = PitchArrayCell([Pitch(0), Pitch(2), Pitch(4)])
    assert cell.pitches == [Pitch(0), Pitch(2), Pitch(4)]
    assert cell.width == 1
 
 
-def test_PitchArrayCell___init___05( ):
-   '''Init with pitch, width pair.'''
+def test_PitchArrayCell___init___06( ):
+   '''Init with pitch token, width pair.'''
+
+   cell = PitchArrayCell((0, 2))
+   assert cell.pitches == [Pitch(0)]
+   assert cell.width == 2
+
+
+def test_PitchArrayCell___init___07( ):
+   '''Init with pitch instance, width pair.'''
 
    cell = PitchArrayCell((Pitch(0), 2))
    assert cell.pitches == [Pitch(0)]
    assert cell.width == 2
 
 
-def test_PitchArrayCell___init___06( ):
-   '''Init with pitches, width pair.'''
+def test_PitchArrayCell___init___08( ):
+   '''Init with pitch token list, width pair.'''
+
+   cell = PitchArrayCell(([0, 2, 4], 2))
+   assert cell.pitches == [Pitch(0), Pitch(2), Pitch(4)]
+   assert cell.width == 2
+
+
+def test_PitchArrayCell___init___09( ):
+   '''Init with pitch instance list, width pair.'''
 
    cell = PitchArrayCell(([Pitch(0), Pitch(2), Pitch(4)], 2))
    assert cell.pitches == [Pitch(0), Pitch(2), Pitch(4)]

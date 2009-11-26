@@ -172,7 +172,8 @@ class PitchArrayCell(_Abjad):
       elif isinstance(cell_token, Pitch):
          pitches, width = [cell_token], 1
       elif isinstance(cell_token, list):
-         pitches, width = cell_token, 1
+         pitch_token, width = cell_token, 1
+         pitches = self._parse_pitch_token(pitch_token)
       elif isinstance(cell_token, tuple):
          if not len(cell_token) == 2:
             print cell_token
@@ -269,6 +270,9 @@ class PitchArrayCell(_Abjad):
    @apply
    def pitches( ):
       def fget(self):
+         for i, pitch in enumerate(self._pitches):
+            if not isinstance(pitch, Pitch):
+               self._pitches[i] = Pitch(pitch)
          return self._pitches
       def fset(self, arg):
          if not isinstance(arg, (list, tuple)):

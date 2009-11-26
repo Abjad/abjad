@@ -83,6 +83,16 @@ class PitchArray(_Abjad):
       rows = ', '.join(rows)
       return '%s(%s)' % (self.__class__.__name__, rows)
 
+   def __setitem__(self, i, arg):
+      if isinstance(i, int):
+         if not isinstance(arg, PitchArrayRow):
+            raise TypeError('can assign only pitch array row to pitch array.')
+         self._rows[i]._parent_array = None
+         arg._parent_array = self
+         self._rows[i] = arg
+      else:
+         raise ValueError('must be integer index.')
+
    def __str__(self):
       return self._two_by_two_format_string
 
@@ -259,3 +269,9 @@ class PitchArray(_Abjad):
       row = self._rows.pop(row_index)
       row._parent_array = None
       return row
+
+   def remove_row(self, row):
+      if row not in self.rows:
+         raise ValueError('row not in array.')
+      self._rows.remove(row)
+      row._parent_array = None

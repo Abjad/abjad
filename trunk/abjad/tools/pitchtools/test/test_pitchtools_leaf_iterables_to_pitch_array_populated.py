@@ -42,9 +42,9 @@ def test_pitchtools_leaf_iterables_to_pitch_array_populated_01( ):
    [c'] [d'] [e'] [f'] [g'] [a']
    '''
 
-   assert pitch_array[0].pitches_by_cell == pitchtools.get_pitches(score[0])
-   assert pitch_array[1].pitches_by_cell == pitchtools.get_pitches(score[1])
-   assert pitch_array[2].pitches_by_cell == pitchtools.get_pitches(score[2])
+   assert pitch_array[0].pitches == pitchtools.get_pitches(score[0])
+   assert pitch_array[1].pitches == pitchtools.get_pitches(score[1])
+   assert pitch_array[2].pitches == pitchtools.get_pitches(score[2])
 
 
 def test_pitchtools_leaf_iterables_to_pitch_array_populated_02( ):
@@ -89,6 +89,6 @@ def test_pitchtools_leaf_iterables_to_pitch_array_populated_02( ):
    [c'] [d'     ] [e'] [c'] [d'     ] [e']
    '''
 
-   assert pitch_array[0].pitches_by_cell == pitchtools.get_pitches(score[0])
-   assert pitch_array[1].pitches_by_cell == pitchtools.get_pitches(score[1]) 
-   assert pitch_array[2].pitches_by_cell == pitchtools.get_pitches(score[2])
+   assert pitch_array[0].pitches == pitchtools.get_pitches(score[0])
+   assert pitch_array[1].pitches == pitchtools.get_pitches(score[1]) 
+   assert pitch_array[2].pitches == pitchtools.get_pitches(score[2])
