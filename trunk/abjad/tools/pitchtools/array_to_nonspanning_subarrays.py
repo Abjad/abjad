@@ -57,7 +57,7 @@ def array_to_nonspanning_subarrays(array):
    for start_column, stop_column in listtools.pairwise(unspanned_indices):
       upper_left_pair = (0, start_column)
       lower_right_pair = (array_depth, stop_column)
-      subarray = array.extract(upper_left_pair, lower_right_pair)
+      subarray = array.copy_subarray(upper_left_pair, lower_right_pair)
       subarrays.append(subarray)
       
    return subarrays

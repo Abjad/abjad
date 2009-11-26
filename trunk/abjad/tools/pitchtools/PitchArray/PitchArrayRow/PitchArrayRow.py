@@ -139,7 +139,7 @@ class PitchArrayRow(_Abjad):
 
    @property
    def cell_tokens(self):
-      return [cell.token for cell in self.cells]
+      return tuple([cell.token for cell in self.cells])
 
    @property
    def cell_widths(self):
@@ -192,15 +192,7 @@ class PitchArrayRow(_Abjad):
       cell._parent_row = self
       self._cells.append(cell)
 
-   def empty_pitches(self):
-      for cell in self.cells:
-         cell.pitches = [ ]
-
-   def extend(self, cell_tokens):
-      for cell_token in cell_tokens:
-         self.append(cell_token)
-
-   def extract(self, start = None, stop = None):
+   def copy_subrow(self, start = None, stop = None):
       arg = slice(start, stop)
       start, stop, step = arg.indices(self.width)
       if not step == 1:
@@ -218,6 +210,14 @@ class PitchArrayRow(_Abjad):
             new_cells.append(new_cell)
       row.extend(new_cells)
       return row
+
+   def empty_pitches(self):
+      for cell in self.cells:
+         cell.pitches = [ ]
+
+   def extend(self, cell_tokens):
+      for cell_token in cell_tokens:
+         self.append(cell_token)
 
    def has_spanning_cell_over_index(self, i):
       try:

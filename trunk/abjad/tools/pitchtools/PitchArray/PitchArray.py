@@ -137,11 +137,11 @@ class PitchArray(_Abjad):
 
    @property
    def cell_tokens_by_row(self):
-      return [row.cell_tokens for row in self.rows]
+      return tuple([row.cell_tokens for row in self.rows])
 
    @property
    def cell_widths_by_row(self):
-      return [row.cell_widths for row in self.rows]
+      return tuple([row.cell_widths for row in self.rows])
 
    @property
    def cells(self):
@@ -159,8 +159,7 @@ class PitchArray(_Abjad):
          column._parent_array = self
          column._column_index = i
          columns.append(column)
-      columns = tuple(columns)
-      return columns
+      return tuple(columns)
 
    @property
    def depth(self):
@@ -176,11 +175,15 @@ class PitchArray(_Abjad):
 
    @property
    def pitches(self):
-      pitches = set([ ])
-      for row in self.rows:
-         pitches.update(row.pitches)
-      return pitches
+      return set(listtools.flatten(self.pitches_by_row))
 
+   @property
+   def pitches_by_row(self):
+      pitches = [ ]
+      for row in self.rows:
+         pitches.append(row.pitches)
+      return tuple(pitches)
+      
    @property
    def rows(self):
       return tuple(self._rows)
@@ -215,7 +218,7 @@ class PitchArray(_Abjad):
       for row, cell in zip(self.rows, column):
          row.append(cell)
 
-   def extract(self, upper_left_pair, lower_right_pair):
+   def copy_subarray(self, upper_left_pair, lower_right_pair):
       if not isinstance(upper_left_pair, tuple):
          raise TypeError
       if not isinstance(lower_right_pair, tuple):
@@ -230,7 +233,7 @@ class PitchArray(_Abjad):
       rows = self.rows
       row_indices = range(start_i, stop_i)
       for row_index in row_indices:
-         new_row = rows[row_index].extract(start_j, stop_j)
+         new_row = rows[row_index].copy_subrow(start_j, stop_j)
          new_array.append_row(new_row)
       return new_array
 
