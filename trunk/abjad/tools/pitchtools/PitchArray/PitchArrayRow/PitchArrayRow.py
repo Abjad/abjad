@@ -160,14 +160,16 @@ class PitchArrayRow(_Abjad):
    def width(self):
       return sum([cell.width for cell in self.cells])
 
-
    ## PUBLIC METHODS ##
    
-   def append(self, cell):
-      if not isinstance(cell, PitchArrayCell):
-         raise TypeError('must be cell.')
+   def append(self, cell_token):
+      cell = PitchArrayCell(cell_token)
       cell._parent_row = self
       self._cells.append(cell)
+
+   def empty_pitches(self):
+      for cell in self.cells:
+         cell.pitches = None
 
    def extend(self, cells):
       if not all([isinstance(cell, PitchArrayCell) for cell in cells]):
@@ -250,10 +252,3 @@ class PitchArrayRow(_Abjad):
             break
       cell._parent_row = None
 
-   def empty_pitches(self):
-      for cell in self.cells:
-         cell.pitches = None
-
-   def untie_cells(self):
-      for cell in self.cells:
-         cell.is_tied = None

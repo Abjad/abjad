@@ -20,7 +20,6 @@ class PitchArray(_Abjad):
       self._columns = [ ]
       if len(args) == 1:
          if isinstance(args[0], (tuple, list)):
-            #self._init_by_cell_widths_by_row(*args)
             self._init_by_cell_token_lists(*args)
       elif len(args) == 2:
          if all([isinstance(arg, int) for arg in args]):
@@ -113,19 +112,6 @@ class PitchArray(_Abjad):
             row.append(cell)
          self.append_row(row)
 
-#   def _init_by_cell_widths_by_row(self, width_lists):
-#      if 0 < len(width_lists):
-#         sum_first_list = sum(width_lists[0])
-#         if not all([sum(x) == sum_first_list for x in width_lists]):
-#            raise ValueError('width lists must all be of same width.')
-#      for width_list in width_lists:
-#         row = PitchArrayRow([ ])
-#         for width in width_list:
-#            cell = PitchArrayCell( )
-#            cell._width = width
-#            row.append(cell)
-#         self.append_row(row)
-
    def _init_by_cell_token_lists(self, cell_token_lists):
       for cell_token_list in cell_token_lists:
          row = PitchArrayRow([ ])
@@ -134,42 +120,9 @@ class PitchArray(_Abjad):
             row.append(cell)
          self.append_row(row)
 
-   def _parse_cell_token(self, token):
-      if isinstance(token, int):
-         if 0 < token:
-            cell = PitchArrayCell( )
-            cell._width = token
-         else:
-            raise ValueError('integer tokens must be positive.')
-      elif isinstance(token, Pitch):
-         cell = PitchArrayCell( )
-         cell.pitches.append(token)
-      elif isinstance(token, tuple):
-         if len(token) == 2:
-            pitch_token, width = token
-            cell = PitchArrayCell( )
-            pitches = self._parse_pitch_token(pitch_token)
-            cell.pitches.extend(pitches)
-            cell._width = width
-         else:
-            raise ValueError('tuple tokens must be of length two.')
-      else:
-         raise TypeError('cell token must be integer width, pitch or pair.')
-      return cell
+   def _parse_cell_token(self, cell_token):
+      return PitchArrayCell(cell_token)
 
-   def _parse_pitch_token(self, pitch_token):
-      pitches = [ ]
-      if isinstance(pitch_token, (int, float, Pitch)):
-         pitch = Pitch(pitch_token)
-         pitches.append(pitch)
-      elif isinstance(pitch_token, tuple):
-         for element in pitch_token:
-            pitch = Pitch(element)
-            pitches.append(pitch)
-      else:
-         raise TypeError('pitch token must be number, pitch or tuple.')
-      return pitches
-         
    ## PUBLIC ATTRIBUTES ##
 
    @property

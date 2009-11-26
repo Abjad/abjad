@@ -82,12 +82,12 @@ class PitchArrayCell(_Abjad):
       2
    '''
 
-   def __init__(self, pitches = None):
+   def __init__(self, cell_token = None):
       self._parent_row = None
       self._pitches = [ ]
-      if pitches is not None:
-         self.pitches.extend(pitches)
-      self._width = 1
+      pitches, width = self._parse_cell_token(cell_token)
+      self._pitches.extend(pitches)
+      self._width = width
 
    ## OVERLOADS ##
 
@@ -160,6 +160,43 @@ class PitchArrayCell(_Abjad):
          return ''
 
    ## PRIVATE METHODS ##
+
+   def _parse_cell_token(self, cell_token):
+      if cell_token is None:
+         pitches, width = [ ], 1  
+      elif isinstance(cell_token, int):
+         if 0 < cell_token:
+            pitches, width = [ ], cell_token
+         else:
+            raise ValueError('integer width token must be positive.')
+      elif isinstance(cell_token, Pitch):
+         pitches, width = [cell_token], 1
+      elif isinstance(cell_token, list):
+         pitches, width = cell_token, 1
+      elif isinstance(cell_token, tuple):
+         if not len(cell_token) == 2:
+            print cell_token
+            raise ValueError('tuple token must be of length two.')
+         pitch_token, width = cell_token
+         pitches = self._parse_pitch_token(pitch_token)
+      elif isinstance(cell_token, PitchArrayCell):
+         pitches, width = cell_token.pitches, cell_token.width
+      else:
+         raise TypeError('cell token must be integer width, pitch or pair.')
+      return pitches, width
+
+   def _parse_pitch_token(self, pitch_token):
+      pitches = [ ]
+      if isinstance(pitch_token, (int, float, Pitch)):
+         pitch = Pitch(pitch_token)
+         pitches.append(pitch)
+      elif isinstance(pitch_token, list):
+         for element in pitch_token:
+            pitch = Pitch(element)
+            pitches.append(pitch)
+      else:
+         raise TypeError('pitch token must be number, pitch or list.')
+      return pitches
 
    def _withdraw(self):
       parent_row = self.parent_row
@@ -265,7 +302,7 @@ class PitchArrayCell(_Abjad):
             return self.pitches[0], self.width
       else:
          if self.width == 1:
-            return tuple(self.pitches, )
+            return self.pitches
          else:
             return self.pitches, self.width
 
