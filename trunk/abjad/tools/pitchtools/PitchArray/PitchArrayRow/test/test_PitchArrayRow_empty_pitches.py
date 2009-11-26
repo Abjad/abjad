@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_PitchArrayRow___iadd___01( ):
+def test_PitchArrayRow_empty_pitches_01( ):
 
    array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
    array[0].cells[0].pitches.append(0)
@@ -13,13 +13,13 @@ def test_PitchArrayRow___iadd___01( ):
    [       ] [ ] [e']
    '''
 
-   row = array[0].withdraw( )
-   row += row
+   array[0].empty_pitches( )
 
    '''
-   [c'] [d'] [ ] [c'] [d'] [ ]
+   [ ] [     ] [  ]
+   [     ] [ ] [e']
    '''
 
-   assert row.cell_widths == (1, 2, 1, 1, 2, 1)
-   assert row.dimensions == (1, 8)
-   assert row.pitches == tuple(construct.pitches([0, 2, 0, 2]))
+   assert array[0].dimensions == (1, 4)
+   assert array[0].cell_widths == (1, 2, 1)
+   assert array[0].pitches == ( )

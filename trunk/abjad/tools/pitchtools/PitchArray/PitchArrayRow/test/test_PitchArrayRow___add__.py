@@ -20,6 +20,6 @@ def test_PitchArrayRow___add___01( ):
    '''
 
    assert new_row.parent_array is None
-   assert new_row.cell_widths == [1, 2, 1, 2, 1, 1]
+   assert new_row.cell_widths == (1, 2, 1, 2, 1, 1)
    assert new_row.depth == 1
    assert new_row.width == 8

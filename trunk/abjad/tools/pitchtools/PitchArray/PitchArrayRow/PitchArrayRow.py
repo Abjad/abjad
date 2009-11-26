@@ -7,7 +7,35 @@ import copy
 class PitchArrayRow(_Abjad):
    '''.. versionadded:: 1.1.2
 
-   Docs.
+   One row in pitch array. ::
+
+      abjad> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+      abjad> array[0].cells[0].pitches.append(0)
+      abjad> array[0].cells[1].pitches.append(2)
+      abjad> array[1].cells[2].pitches.append(4)
+      abjad> print array
+      [c'] [d'    ] [  ]
+      [       ] [ ] [e']
+
+   ::
+
+      abjad> array[0]
+      PitchArrayRow(c', d' x2, x1)
+
+   ::
+
+      abjad> array[0].cell_widths
+      [1, 2, 1]
+
+   ::
+
+      abjad> array[0].dimensions
+      (1, 4)
+
+   ::
+
+      abjad> array[0].pitches
+      (Pitch(c, 4), Pitch(d, 4))
    '''
 
    def __init__(self, cells):
@@ -115,7 +143,7 @@ class PitchArrayRow(_Abjad):
 
    @property
    def cell_widths(self):
-      return [cell.width for cell in self.cells]
+      return tuple([cell.width for cell in self.cells])
 
    @property
    def cells(self):
@@ -166,13 +194,11 @@ class PitchArrayRow(_Abjad):
 
    def empty_pitches(self):
       for cell in self.cells:
-         cell.pitches = None
+         cell.pitches = [ ]
 
-   def extend(self, cells):
-      if not all([isinstance(cell, PitchArrayCell) for cell in cells]):
-         raise TypeError('must be cells.')
-      for cell in cells:
-         self.append(cell)
+   def extend(self, cell_tokens):
+      for cell_token in cell_tokens:
+         self.append(cell_token)
 
    def extract(self, start = None, stop = None):
       arg = slice(start, stop)
@@ -193,10 +219,10 @@ class PitchArrayRow(_Abjad):
       row.extend(new_cells)
       return row
 
-   def has_spanning_cell_over_index(self, index):
+   def has_spanning_cell_over_index(self, i):
       try:
-         cell = self[index]
-         return cell.column_indices[0] < index
+         cell = self[i]
+         return cell.column_indices[0] < i
       except IndexError:
          return False
 
