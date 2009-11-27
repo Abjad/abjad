@@ -17,3 +17,9 @@ def test_pitchtools_DiatonicInterval_semitones_01( ):
    assert pitchtools.DiatonicInterval('minor', 7).semitones == 10
    assert pitchtools.DiatonicInterval('major', 7).semitones == 11
    assert pitchtools.DiatonicInterval('perfect', 8).semitones == 12
+
+
+def test_pitchtools_DiatonicInterval_semitones_02( ):
+
+   assert pitchtools.DiatonicInterval('major', 23).semitones == 38
+   assert pitchtools.DiatonicInterval('major', -23).semitones == -38

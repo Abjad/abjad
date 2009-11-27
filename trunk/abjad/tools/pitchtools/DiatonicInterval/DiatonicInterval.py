@@ -64,7 +64,17 @@ class DiatonicInterval(object):
       try:
          interval_string = interval_to_string[abs(self.interval_number)]
       except KeyError:
-         interval_string = '%sth' % self.interval_number
+         abs_interval_number = abs(self.interval_number)
+         residue = abs_interval_number % 10
+         if residue == 1:
+            suffix = 'st'
+         elif residue == 2:
+            suffix = 'nd'
+         elif residue == 3:
+            suffix = 'rd'
+         else:
+            suffix = 'th'
+         interval_string = '%s%s' % (abs_interval_number, suffix)
       return interval_string
 
    ## PUBLIC ATTRIBUTES ##
@@ -115,10 +125,10 @@ class DiatonicInterval(object):
    @property
    def semitones(self):
       result = 0
-      interval_to_semitones = {
-         1: 0, 2: 1, 3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8: 12,
-         9: 13, 10: 15, 11: 17, 12: 19, 13: 20, 14: 22, 15: 24}
-      result += interval_to_semitones[abs(self.interval_number)]
+      interval_class_to_semitones = {
+         1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10}
+      result += interval_class_to_semitones[abs(self.interval_class)]
+      result += (abs(self.interval_number) - 1) / 7 * 12
       quality_string_to_semitones = {
          'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1,
          'diminished': -1}
