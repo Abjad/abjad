@@ -15,8 +15,8 @@ class DiatonicInterval(object):
       if quality_string in self._acceptable_quality_strings:
          self._quality_string = quality_string
       else:
-         raise ValueError(
-            'quality must be in %s' % self._acceptable_quality_strings)
+         raise ValueError("quality string '%s' must be in %s." % (
+            quality_string, str(self._acceptable_quality_strings)))
       if isinstance(interval_number, int):
          if int == 0:
             raise ValueError
