@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_tranpose_by_interval_01( ):
+def test_pitchtools_transpose_by_interval_01( ):
 
    pitch = Pitch(12)
 
@@ -11,7 +11,7 @@ def test_pitchtools_tranpose_by_interval_01( ):
    assert transposed == Pitch('df', 5)
 
 
-def test_pitchtools_tranpose_by_interval_02( ):
+def test_pitchtools_transpose_by_interval_02( ):
 
    pitch = Pitch(12)
 

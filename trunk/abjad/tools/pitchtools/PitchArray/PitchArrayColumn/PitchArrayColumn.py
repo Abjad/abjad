@@ -6,7 +6,28 @@ from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import \
 class PitchArrayColumn(_Abjad):
    '''.. versionadded:: 1.1.2
 
-   Docs.
+   Column in a pitch array. ::
+
+      abjad> array = pitchtools.PitchArray([
+         [1, (2, 1), (-1.5, 2)],
+         [(7, 2), (6, 1), 1]])
+
+      ::
+
+         abjad> print array
+         [  ] [bf] [bqf    ]
+         [g'     ] [fs'] [ ]
+
+      ::
+
+         abjad> array.columns[0]
+         PitchArrayColumn(x1, g' x2)
+
+      ::
+
+         abjad> print array.columns[0]
+         [  ]
+         [g'     ]
    '''
 
    def __init__(self, cells):
@@ -122,6 +143,14 @@ class PitchArrayColumn(_Abjad):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def cell_tokens(self):
+      return tuple([cell.token for cell in self.cells])
+
+   @property
+   def cell_widths(self):
+      return tuple([cell.width for cell in self.cells])
+
+   @property
    def cells(self):
       return tuple(self._cells)
 
@@ -134,6 +163,15 @@ class PitchArrayColumn(_Abjad):
       return len(self.cells)
 
    @property
+   def dimensions(self):
+      return self.depth, self.width
+
+   @property
+   def is_defective(self):
+      if self.parent_array is not None:
+         return not self.depth == self.parent_array.depth
+
+   @property
    def parent_array(self):
       return self._parent_array
 
@@ -141,11 +179,12 @@ class PitchArrayColumn(_Abjad):
    def pitches(self):
       pitches = [ ]
       for cell in self.cells:
-         pitch = cell.pitch
-         if pitch is not None:
-            pitches.append(pitch)
-      pitches = tuple(pitches)
-      return pitches
+         pitches.extend(cell.pitches)
+      return tuple(pitches)
+
+   @property
+   def weight(self):
+      return sum([cell.weight for cell in self.cells])
 
    @property
    def width(self):

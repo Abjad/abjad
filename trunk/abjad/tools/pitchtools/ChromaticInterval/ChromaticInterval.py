@@ -14,6 +14,8 @@ class ChromaticInterval(object):
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
          self._interval_number = arg
+      elif isinstance(arg, ChromaticInterval):
+         self._interval_number = arg.interval
       elif isinstance(arg, DiatonicInterval):
          self._interval_number = arg.semitones
       else:
@@ -29,6 +31,9 @@ class ChromaticInterval(object):
          return ChromaticInterval(self._interval_number + arg._interval_number)
       else:
          raise TypeError
+
+   def __copy__(self):
+      return ChromaticInterval(self)
 
    def __eq__(self, arg):
       if isinstance(arg, ChromaticInterval):
