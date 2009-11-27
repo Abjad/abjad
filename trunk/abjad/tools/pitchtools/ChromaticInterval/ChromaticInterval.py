@@ -15,7 +15,7 @@ class ChromaticInterval(object):
       if isinstance(arg, (int, float, long)):
          self._interval_number = arg
       elif isinstance(arg, ChromaticInterval):
-         self._interval_number = arg.interval
+         self._interval_number = arg.interval_number
       elif isinstance(arg, DiatonicInterval):
          self._interval_number = arg.semitones
       else:

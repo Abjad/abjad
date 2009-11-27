@@ -7,6 +7,7 @@ def test_ChromaticInterval___init___01( ):
    i = pitchtools.ChromaticInterval(3)
    assert i.interval_number == 3
 
+
 def test_ChromaticInterval___init___02( ):
    '''Init from negative number.'''
 
@@ -15,6 +16,15 @@ def test_ChromaticInterval___init___02( ):
 
 
 def test_ChromaticInterval___init___03( ):
+   '''Init from other chromatic interval.'''
+
+   i = pitchtools.ChromaticInterval(3)
+   j = pitchtools.ChromaticInterval(i)
+   assert i.interval_number == j.interval_number == 3
+   assert i is not j
+   
+
+def test_ChromaticInterval___init___04( ):
    '''Init from diatonic interval.'''
 
    diatonic_interval = pitchtools.DiatonicInterval('perfect', 4)
