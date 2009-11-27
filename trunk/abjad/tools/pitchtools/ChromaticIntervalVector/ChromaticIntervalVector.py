@@ -31,7 +31,7 @@ class ChromaticIntervalVector(dict):
          self[interval_number] = 0
          self[interval_number + 0.5] = 0
       for chromatic_interval in get_chromatic_intervals_in(expr):
-         self[chromatic_interval.interval_number] += 1
+         self[chromatic_interval.interval_class] += 1
 
    ## OVERLOADS ##
 
