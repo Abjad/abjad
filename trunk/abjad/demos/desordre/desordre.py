@@ -90,6 +90,11 @@ code = "show(desordre, 'tirnaveni')"
 s = Statement(text, code)
 statements.append(s)
 
+text = "And let's hear it too."
+code = "play(desordre)"
+s = Statement(text, code)
+statements.append(s)
+
 
 text = "Now that we have 'Desordre' encoded in Abjad, we can play around with the data in the piece. Let's shuffle the sequences around a bit."
 code = 'for measure in pitches[0]: measure[0].reverse( ); measure.reverse( )'
@@ -109,11 +114,17 @@ s = Statement(text, code)
 statements.append(s)
 
 
+text = "And let's hear it too."
+code = "play(desordre_retro)"
+s = Statement(text, code)
+statements.append(s)
+
+
 ## presentation
 p = Presentation(title, abstract, statements)
 p.setup.append('from abjad import *')
 p.setup.append('from abjad.cfg.cfg import ABJADPATH')
-p.setup.append('from abjad.cfg.open_file import _open_file as open_file')
+p.setup.append('from abjad.cfg._open_file import _open_file as open_file')
 p.setup.append('from abjad.demos.desordre.helpers import *')
 p.setup.append('import os')
 p.setup.append("desordre = ABJADPATH + \

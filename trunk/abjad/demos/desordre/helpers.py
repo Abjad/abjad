@@ -1,14 +1,18 @@
 from abjad import *
 import math
-from abjad.tools import template
+#from abjad.tools import template
+from abjad.tools.scoretools.make_piano_staff import make_piano_staff
 
 
 def desordre_build(pitches):
-   piano = template.piano( )
-   piano[1].formatter.opening.append(r'\key b \major')
+   piano = make_piano_staff( )[0]
+   TempoSpanner(piano, tempotools.TempoIndication(Rational(1, 8), 480))
+   #piano[1].formatter.opening.append(r'\key b \major')
+   piano[0][1].key_signature.forced = KeySignature('b', 'major')
    for i, hand in enumerate(pitches):
       seq = multimeasure_build(hand)
-      piano[i].extend(seq)
+      #piano[i].extend(seq)
+      piano[0][i].extend(seq)
    return piano
 
 
