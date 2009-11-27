@@ -1,6 +1,7 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import \
    PitchArrayCell
+from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
 import copy
 
 
@@ -40,6 +41,7 @@ class PitchArrayRow(_Abjad):
 
    def __init__(self, cells):
       self._parent_array = None
+      self._pitch_range = PitchRange(None, None)
       self._cells = [ ]
       self.extend(cells)
 
@@ -182,8 +184,22 @@ class PitchArrayRow(_Abjad):
       return False
 
    @property
+   def is_in_range(self):
+      return all([pitch in self.pitch_range for pitch in self.pitches])
+
+   @property
    def parent_array(self):
       return self._parent_array
+
+   @apply
+   def pitch_range( ):
+      def fget(self):
+         return self._pitch_range
+      def fset(self, arg):
+         if not isinstance(arg, PitchRange):
+            raise TypeError('must be pitch range.')
+         self._pitch_range = arg
+      return property(**locals( ))
 
    @property
    def pitches(self):

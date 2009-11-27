@@ -709,6 +709,7 @@ pitchtools
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
+   tools/pitchtools/diatonic_interval_from_to
    tools/pitchtools/diatonic_scale_degree_to_letter
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonicize
@@ -756,6 +757,7 @@ pitchtools
    tools/pitchtools/suggest_clef
    tools/pitchtools/transpose_by_chromatic_interval
    tools/pitchtools/transpose_by_diatonic_interval
+   tools/pitchtools/transpose_by_interval
 
 
 scoretools

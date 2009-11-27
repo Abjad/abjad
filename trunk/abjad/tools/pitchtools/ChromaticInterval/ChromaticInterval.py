@@ -2,6 +2,13 @@ from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
 
 
 class ChromaticInterval(object):
+   '''.. versionaddedd:: 1.1.2
+
+   Chromatic interval in semitones. ::
+
+      abjad> pitchtools.ChromaticInterval(-2)
+      ChromaticInterval(-2)
+   '''
 
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):

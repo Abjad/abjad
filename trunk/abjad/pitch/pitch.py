@@ -33,6 +33,11 @@ class Pitch(_Abjad):
 
    ## OVERLOADS ##
 
+   def __add__(self, interval):
+      '''.. versionadded:: 1.1.2'''
+      from abjad.tools import pitchtools
+      return pitchtools.transpose_by_interval(self, interval)
+
    def __copy__(self):
       '''.. versionadded:: 1.1.2'''
       return Pitch(self)
@@ -103,6 +108,14 @@ class Pitch(_Abjad):
       else:
          return ''
 
+   def __sub__(self, arg):
+      from abjad.tools import pitchtools
+      if isinstance(arg, Pitch):
+         return pitchtools.diatonic_interval_from_to(self, arg)
+      else:
+         interval = arg
+         return pitchtools.transpose_by_interval(self, -interval)
+
    ## PRIVATE ATTRIBUTES ##
 
    @property
@@ -161,6 +174,10 @@ class Pitch(_Abjad):
       self.octave = None
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def absolute_diatonic_scale_degree(self):
+      return 7 * self.octave + self.degree
 
    @apply
    def accidental( ):

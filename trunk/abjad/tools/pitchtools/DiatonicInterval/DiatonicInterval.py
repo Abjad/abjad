@@ -2,6 +2,14 @@ from abjad.tools import mathtools
 
 
 class DiatonicInterval(object):
+   '''.. versionadded:: 1.1.2
+
+   Diatonic interval. ::
+
+      abjad> interval = pitchtools.DiatonicInterval('minor', -3)
+      abjad> interval
+      DiatonicInterval(descending minor third)
+   '''
 
    def __init__(self, quality_string, interval_number):
       if quality_string in self._acceptable_quality_strings:
@@ -18,6 +26,9 @@ class DiatonicInterval(object):
 
    ## OVERLOADS ##
 
+   def __abs__(self):
+      return DiatonicInterval(self.quality_string, abs(self.interval_number))
+
    def __eq__(self, expr):
       if isinstance(expr, DiatonicInterval):
          if self.quality_string == expr.quality_string:
@@ -27,6 +38,9 @@ class DiatonicInterval(object):
 
    def __ne__(self, expr):
       return not self == expr
+
+   def __neg__(self):
+      return DiatonicInterval(self.quality_string, -self.interval_number)
 
    def __repr__(self):
       if self.direction_string:
