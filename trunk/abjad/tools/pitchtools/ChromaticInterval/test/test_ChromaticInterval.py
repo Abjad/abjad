@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_ChromaticInterval_01( ):
+def test_ChromaticInterval_01( ):
 
    i = pitchtools.ChromaticInterval(3)
 

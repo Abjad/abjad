@@ -67,7 +67,9 @@ def get_pitches(expr):
       return (result, )
    except (TypeError, MissingPitchError, ExtraPitchError):
       result = [ ]
-      if isinstance(expr, Spanner):
+      if hasattr(expr, 'pitches'):
+         result.extend(expr.pitches)
+      elif isinstance(expr, Spanner):
          for leaf in expr.leaves:
             result.extend(leaf.pitches)
       elif isinstance(expr, PitchSet):

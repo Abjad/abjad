@@ -27,3 +27,20 @@ def test_pitchtools_get_pitches_03( ):
    t = pitchtools.get_pitches(pitch_set)
 
    assert t == (Pitch('c', 4), Pitch('d', 4), Pitch('e', 4), Pitch('f', 4))
+
+
+def test_pitchtools_get_pitches_04( ):
+   '''Works with pitch arrays.'''
+
+   array = pitchtools.PitchArray([
+      [1, (2, 1), (-1.5, 2)],
+      [(7, 2), (6, 1), 1],
+      ]) 
+
+   '''
+   [  ] [d'] [bqf    ]
+   [g'     ] [fs'] [ ]
+   '''
+
+   assert pitchtools.get_pitches(array) == (
+      Pitch('d', 4), Pitch('bqf', 3), Pitch('fs', 4), Pitch('g', 4))
