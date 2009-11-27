@@ -200,6 +200,10 @@ class PitchArrayRow(_Abjad):
       raise IndexError('row has no parent array.')
 
    @property
+   def weight(self):
+      return sum([cell.weight for cell in self.cells])
+
+   @property
    def width(self):
       return sum([cell.width for cell in self.cells])
 

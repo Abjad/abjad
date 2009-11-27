@@ -316,6 +316,10 @@ class PitchArrayCell(_Abjad):
             return [pitch.pair for pitch in self.pitches], self.width
 
    @property
+   def weight(self):
+      return len(self.pitches)
+
+   @property
    def width(self):
       return self._width
 

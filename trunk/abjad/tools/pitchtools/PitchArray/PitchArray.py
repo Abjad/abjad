@@ -193,6 +193,10 @@ class PitchArray(_Abjad):
       return self.depth * self.width
 
    @property
+   def weight(self):
+      return sum([row.weight for row in self.rows])
+
+   @property
    def width(self):
       try:
          return max([row.width for row in self.rows])
