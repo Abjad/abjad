@@ -2,18 +2,18 @@ from abjad.pitch import Pitch
 from abjad.tools.pitchtools.is_pair import is_pair
 
 
-def is_token(pitch_token):
+def is_pitch_token(pitch_token):
    '''True when `pitch_token` has the form of 
    an Abjad pitch token. ::
 
-      abjad> pitchtools.is_token(('c', 4))
+      abjad> pitchtools.is_pitch_token(('c', 4))
       True
-      abjad> pitchtools.is_token(Pitch('c', 4))
+      abjad> pitchtools.is_pitch_token(Pitch('c', 4))
       True
 
    Otherwise false. ::
 
-      abjad> pitchtools.is_token('foo')
+      abjad> pitchtools.is_pitch_token('foo')
       False
    '''
 

@@ -5,7 +5,7 @@ def is_pair(arg):
    '''True when `arg` has the form of a pair
    of integers that initialize a positive rational. ::
 
-      abjad> durtools.is_token((1, 4))
+      abjad> durtools.is_duration_token((1, 4))
       True
 
    Otherwise false. ::

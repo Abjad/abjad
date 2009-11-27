@@ -49,6 +49,7 @@ Classes
    tools/pitchtools/PitchClassColorMap/PitchClassColorMap
    tools/pitchtools/PitchClassSet/PitchClassSet
    tools/pitchtools/PitchRange/PitchRange
+   tools/pitchtools/PitchSegment/PitchSegment
    tools/pitchtools/PitchSet/PitchSet
    tools/sievetools/rc
    tools/sievetools/rcexpression
@@ -318,8 +319,8 @@ durtools
    tools/durtools/in_terms_of_binary_multiple
    tools/durtools/is_assignable
    tools/durtools/is_binary_rational
+   tools/durtools/is_duration_token
    tools/durtools/is_pair
-   tools/durtools/is_token
    tools/durtools/is_tuplet_multiplier
    tools/durtools/naive_prolated_to_written_not_greater_than
    tools/durtools/naive_prolated_to_written_not_less_than
@@ -650,7 +651,7 @@ metertools
    tools/metertools/extract_meter_list
    tools/metertools/get_nonbinary_factor
    tools/metertools/is_binary_equivalent
-   tools/metertools/is_token
+   tools/metertools/is_meter_token
    tools/metertools/make_best
    tools/metertools/make_binary
 
@@ -727,8 +728,8 @@ pitchtools
    tools/pitchtools/is_carrier
    tools/pitchtools/is_name
    tools/pitchtools/is_pair
-   tools/pitchtools/is_token
-   tools/pitchtools/is_token_collection
+   tools/pitchtools/is_pitch_token
+   tools/pitchtools/is_pitch_token_collection
    tools/pitchtools/leaf_iterables_to_pitch_array_empty
    tools/pitchtools/leaf_iterables_to_pitch_array_populated
    tools/pitchtools/letter_to_diatonic_scale_degree

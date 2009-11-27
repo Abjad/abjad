@@ -12,8 +12,8 @@ def engender(pitches, duration):
       ``construct.leaves( )``.
    '''
 
-   assert pitchtools.is_token_collection(pitches)
-   assert durtools.is_token(duration)
+   assert pitchtools.is_pitch_token_collection(pitches)
+   assert durtools.is_duration_token(duration)
    if len(pitches) == 0:
       return Rest(duration)
    elif len(pitches) == 1:

@@ -37,7 +37,7 @@ def rests(durations, direction='big-endian', tied=False):
       set([Tie(r16, r4)])
       set([]) '''
 
-   if durtools.is_token(durations):
+   if durtools.is_duration_token(durations):
       durations = [durations]
 
    result = [ ]

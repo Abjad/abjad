@@ -28,7 +28,7 @@ def make(meters):
    '''
 
    ## check input
-   if not all([metertools.is_token(meter) for meter in meters]):
+   if not all([metertools.is_meter_token(meter) for meter in meters]):
       raise ValueError('meters must all be Abjad meter tokens.')
 
    ## make measures

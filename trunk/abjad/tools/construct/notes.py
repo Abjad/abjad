@@ -36,10 +36,10 @@ def notes(pitches, durations, direction='big-endian'):
       [Note(c', 16), Note(c', 8), Note(c', 8)]
    '''
 
-   if pitchtools.is_token(pitches):
+   if pitchtools.is_pitch_token(pitches):
       pitches = [pitches]
    
-   if durtools.is_token(durations):
+   if durtools.is_duration_token(durations):
       durations = [durations]
 
    # this block is a hack to allow the function to accept a Rational

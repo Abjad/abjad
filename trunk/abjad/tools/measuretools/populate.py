@@ -40,7 +40,7 @@ def populate(expr, mode, iterctrl = lambda measure, i: True):
       _measures_populate_meter_series(expr, iterctrl)
    elif mode == 'skip':
       _measures_populate_skip(expr, iterctrl)
-   elif durtools.is_token(mode):
+   elif durtools.is_duration_token(mode):
       _measures_populate_duration_train(expr, mode, iterctrl)
    elif mode is None:
       _measures_populate_none(expr, iterctrl)

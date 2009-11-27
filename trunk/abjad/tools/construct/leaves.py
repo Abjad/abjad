@@ -99,10 +99,10 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
          raise ValueError("Unknown pitch token %s." % pch)
       return leaves
 
-   if pitchtools.is_token(pitches):
+   if pitchtools.is_pitch_token(pitches):
       pitches = [pitches]
    
-   if durtools.is_token(durations):
+   if durtools.is_duration_token(durations):
       durations = [durations]
 
    ## convert Rationals to duration tokens.
