@@ -231,6 +231,7 @@ class PitchArrayRow(_Abjad):
       self._cells.append(cell)
 
    def apply_pitches(self, pitch_tokens):
+      pitch_tokens = pitch_tokens[:]
       for cell in self.cells:
          if cell.pitches:
             cell.pitches = [pitch_tokens.pop(0)]
