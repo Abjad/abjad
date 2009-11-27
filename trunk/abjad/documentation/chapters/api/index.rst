@@ -735,6 +735,7 @@ pitchtools
    tools/pitchtools/make_all_aggregate_subsets
    tools/pitchtools/make_flat
    tools/pitchtools/make_sharp
+   tools/pitchtools/merge_pitch_arrays
    tools/pitchtools/name_to_letter_accidental
    tools/pitchtools/nearest_neighbor
    tools/pitchtools/number_letter_to_accidental_octave

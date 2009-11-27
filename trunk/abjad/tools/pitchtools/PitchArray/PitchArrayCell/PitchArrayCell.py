@@ -176,10 +176,13 @@ class PitchArrayCell(_Abjad):
          pitches = self._parse_pitch_token(pitch_token)
       elif isinstance(cell_token, tuple):
          if not len(cell_token) == 2:
-            print cell_token
             raise ValueError('tuple token must be of length two.')
-         pitch_token, width = cell_token
-         pitches = self._parse_pitch_token(pitch_token)
+         if isinstance(cell_token[0], str):
+            pitches = self._parse_pitch_token(cell_token)
+            width = 1
+         else:
+            pitch_token, width = cell_token
+            pitches = self._parse_pitch_token(pitch_token)
       elif isinstance(cell_token, PitchArrayCell):
          pitches, width = cell_token.pitches, cell_token.width
       else:
