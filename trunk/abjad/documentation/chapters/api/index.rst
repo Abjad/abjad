@@ -16,6 +16,7 @@ Classes
    tools/lilytools/BookpartBlock
    chord/chord
    tools/pitchtools/ChromaticInterval/ChromaticInterval
+   tools/pitchtools/ChromaticIntervalVector/ChromaticIntervalVector
    clef/clef
    cluster/cluster
    container/container
@@ -714,6 +715,8 @@ pitchtools
    tools/pitchtools/diatonic_scale_degree_to_letter
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonicize
+   tools/pitchtools/get_chromatic_intervals_in
+   tools/pitchtools/get_diatonic_intervals_in
    tools/pitchtools/get_interval_class_vector
    tools/pitchtools/get_interval_vector
    tools/pitchtools/get_pitch

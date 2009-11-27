@@ -44,8 +44,36 @@ class ChromaticInterval(object):
    def __float__(self):
       return float(self._interval_number)
 
+   def __ge__(self, arg):
+      if not isinstance(arg, ChromaticInterval):
+         raise TypeError('%s must be chromatic interval.' % arg)
+      if not self.direction_number == arg.direction_number:
+         raise ValueError('can only compare intervals of same direction.')
+      return abs(self.interval_number) >= abs(arg.interval_number)
+
+   def __gt__(self, arg):
+      if not isinstance(arg, ChromaticInterval):
+         raise TypeError('%s must be chromatic interval.' % arg)
+      if not self.direction_number == arg.direction_number:
+         raise ValueError('can only compare intervals of same direction.')
+      return abs(self.interval_number) > abs(arg.interval_number)
+
    def __int__(self):
       return int(self._interval_number)
+
+   def __le__(self, arg):
+      if not isinstance(arg, ChromaticInterval):
+         raise TypeError('%s must be chromatic interval.' % arg)
+      if not self.direction_number == arg.direction_number:
+         raise ValueError('can only compare intervals of same direction.')
+      return abs(self.interval_number) <= abs(arg.interval_number)
+
+   def __lt__(self, arg):
+      if not isinstance(arg, ChromaticInterval):
+         raise TypeError('%s must be chromatic interval.' % arg)
+      if not self.direction_number == arg.direction_number:
+         raise ValueError('can only compare intervals of same direction.')
+      return abs(self.interval_number) < abs(arg.interval_number)
 
    def __ne__(self, arg):
       return not self == arg
