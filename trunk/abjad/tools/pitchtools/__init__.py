@@ -9,5 +9,6 @@ from PitchClass import PitchClass
 from PitchClassColorMap import PitchClassColorMap
 from PitchClassSet import PitchClassSet
 from PitchRange import PitchRange
+from PitchSegment import PitchSegment
 from PitchSet import PitchSet
 from TwelveToneRow import TwelveToneRow
