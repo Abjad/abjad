@@ -205,12 +205,6 @@ class PitchArray(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   def append_row(self, row):
-      if not isinstance(row, PitchArrayRow):
-         raise TypeError('must be row.')
-      row._parent_array = self
-      self._rows.append(row)
-
    def append_column(self, column):
       if not isinstance(column, PitchArrayColumn):
          raise TypeError('must be column.')
@@ -221,6 +215,16 @@ class PitchArray(_Abjad):
       self.pad_to_width(self.width)
       for row, cell in zip(self.rows, column):
          row.append(cell)
+
+   def append_row(self, row):
+      if not isinstance(row, PitchArrayRow):
+         raise TypeError('must be row.')
+      row._parent_array = self
+      self._rows.append(row)
+
+   def apply_pitches_by_row(self, pitch_lists):
+      for row, pitch_list in zip(self.rows, pitch_lists):
+         row.apply_pitches(pitch_list)
 
    def copy_subarray(self, upper_left_pair, lower_right_pair):
       if not isinstance(upper_left_pair, tuple):

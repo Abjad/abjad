@@ -230,6 +230,11 @@ class PitchArrayRow(_Abjad):
       cell._parent_row = self
       self._cells.append(cell)
 
+   def apply_pitches(self, pitch_tokens):
+      for cell in self.cells:
+         if cell.pitches:
+            cell.pitches = [pitch_tokens.pop(0)]
+
    def copy_subrow(self, start = None, stop = None):
       arg = slice(start, stop)
       start, stop, step = arg.indices(self.width)

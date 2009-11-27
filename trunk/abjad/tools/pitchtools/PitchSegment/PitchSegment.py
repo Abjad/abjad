@@ -47,6 +47,10 @@ class PitchSegment(list):
       return [x.interval_class for x in self.diatonic_interval_segment]
 
    @property
+   def inflection_point_count(self):
+      return len(self.local_minima) + len(self.local_maxima)
+
+   @property
    def local_minima(self):
       result = [ ]
       if 3 <= len(self):
