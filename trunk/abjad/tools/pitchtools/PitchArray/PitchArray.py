@@ -170,6 +170,13 @@ class PitchArray(_Abjad):
       return self.depth, self.width
 
    @property
+   def has_voice_crossing(self):
+      for column in self.columns:
+         if column.has_voice_crossing:
+            return True
+      return False
+
+   @property
    def is_rectangular(self):
       return all([not row.is_defective for row in self.rows])
 

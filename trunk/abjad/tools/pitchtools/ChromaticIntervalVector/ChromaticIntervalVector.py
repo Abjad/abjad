@@ -69,3 +69,11 @@ class ChromaticIntervalVector(dict):
          if self[interval_number + 0.5]:
             return True
       return False
+
+   ## PUBLIC METHODS ##
+
+   def has_none_of(self, chromatic_interval_numbers):
+      for chromatic_interval_number in chromatic_interval_numbers:
+         if self[chromatic_interval_number]:
+            return False
+      return True

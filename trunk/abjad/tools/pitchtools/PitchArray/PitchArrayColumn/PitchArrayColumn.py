@@ -1,4 +1,5 @@
 from abjad.core.abjadcore import _Abjad
+from abjad.tools import listtools
 from abjad.tools.pitchtools.PitchArray.PitchArrayCell.PitchArrayCell import \
    PitchArrayCell
 
@@ -167,6 +168,15 @@ class PitchArrayColumn(_Abjad):
       return self.depth, self.width
 
    @property
+   def has_voice_crossing(self):
+      for upper, lower in listtools.pairwise(self.cells):
+         for lower_pitch in lower.pitches:
+            for upper_pitch in upper.pitches:
+               if upper_pitch.number < lower_pitch.number:
+                  return True
+      return False
+
+   @property
    def is_defective(self):
       if self.parent_array is not None:
          return not self.depth == self.parent_array.depth
@@ -210,7 +220,3 @@ class PitchArrayColumn(_Abjad):
    def remove_pitches(self):
       for cell in self.cells:
          cell.pitch = None
-
-   def untie_cells(self):
-      for cell in self.cells:
-         cell.is_tied = None
