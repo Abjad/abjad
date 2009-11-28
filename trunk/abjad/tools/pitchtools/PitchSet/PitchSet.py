@@ -70,6 +70,22 @@ class PitchSet(set):
    #   '''Transpose all pcs in self by n.'''
    #   return PCSet([pc.invert( ) for pc in self])
 
+   def issubset(self, pitch_set):
+      if isinstance(pitch_set, PitchSet):
+         for pitch in self:
+            if pitch not in pitch_set:
+               return False
+         return True
+      return False
+
+   def issuperset(self, pitch_set):
+      if isinstance(pitch_set, PitchSet):
+         for pitch in pitch_set:
+            if pitch not in self:
+               return False
+         return True
+      return False
+
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
       interval = ChromaticInterval(n)
