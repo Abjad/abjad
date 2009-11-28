@@ -83,3 +83,10 @@ def test_construct_leaves_06( ):
 
    leaves = construct.leaves([12, 12.5, 13, 13.5], [(1, 4)])
    assert [leaf.pitch.number for leaf in leaves] == [12, 12.5, 13, 13.5]
+
+
+def test_construct_leaves_07( ):
+   '''Works with pitch instances.'''
+
+   leaves = construct.leaves([Pitch(0)], [(1, 8), (1, 8), (1, 4)])
+   assert [leaf.pitch.number for leaf in leaves] == [0, 0, 0]

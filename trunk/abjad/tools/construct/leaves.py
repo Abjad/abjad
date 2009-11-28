@@ -1,4 +1,5 @@
 from __future__ import division
+from abjad.pitch import Pitch
 from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import listtools
@@ -89,7 +90,7 @@ def leaves(pitches, durations, direction='big-endian', tied_rests=False):
    '''
 
    def _make_leaf_on_pitch(pch, ds, direction):
-      if isinstance(pch, (int, long, float)):
+      if isinstance(pch, (int, long, float, Pitch)):
          leaves = _construct_tied_note(pch, ds, direction)
       elif isinstance(pch, (tuple, list)):
          leaves = _construct_tied_chord(pch, ds, direction)
