@@ -43,4 +43,4 @@ def test_pitchtools_get_pitches_04( ):
    '''
 
    assert pitchtools.get_pitches(array) == (
-      Pitch('d', 4), Pitch('bqf', 3), Pitch('fs', 4), Pitch('g', 4))
+      Pitch('d', 4), Pitch('bqf', 3), Pitch('g', 4), Pitch('fs', 4))

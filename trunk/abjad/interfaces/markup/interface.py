@@ -1,10 +1,12 @@
 from abjad.core.formatcontributor import _FormatContributor
 from abjad.interfaces.interface.interface import _Interface
+from abjad.markup import Markup
 
 
 class MarkupInterface(_Interface, _FormatContributor):
    '''Manage LilyPond markup.
-      Handles no LilyPond grob.'''
+   Handles no LilyPond grob.
+   '''
 
    def __init__(self, client):
       '''Bind to client and set up and down to empty lists.'''
@@ -12,6 +14,34 @@ class MarkupInterface(_Interface, _FormatContributor):
       _FormatContributor.__init__(self)
       self._down = [ ]
       self._up = [ ]
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _right(self):
+      '''Format contribution to right of leaf.'''
+      result = [ ]
+      if len(self.up):
+         string = '^ %s' % self._direction_to_format_string('up')
+         result.append(string)
+      if len(self.down):
+         string = '_ %s' % self._direction_to_format_string('down')
+         result.append(string)
+      return result
+
+   ## PRIVATE METHODS ##
+
+   def _direction_to_format_string(self, direction):
+      result = [ ]
+      for x in getattr(self, direction):
+         if isinstance(x, Markup):
+            result.append(x.contents)
+         else:
+            result.append(str(x))
+      if len(result) == 1:
+         return r'\markup { %s }' % result[0]
+      elif 1 < len(result):
+         return r'\markup { \column { %s } }' % ' '.join(result)
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -26,24 +56,6 @@ class MarkupInterface(_Interface, _FormatContributor):
          else:
             raise ValueError('set leaf markup with append( ) and extend( ).')
       return property(**locals( ))
-
-   @property
-   def _right(self):
-      '''Format contribution to right of leaf.'''
-      result = [ ]
-      if len(self.up) == 1:
-         result.append(r'^ \markup { %s }' % str(self.up[0]))
-      elif len(self.up) > 1:
-         column = r'^ \markup { \column { %s } }' 
-         column %= ' '.join([str(x) for x in self.up])
-         result.append(column)
-      if len(self.down) == 1:
-         result.append(r'_ \markup { %s }' % str(self.down[0]))
-      elif len(self.down) > 1:
-         column = r'_ \markup { \column { %s } }' 
-         column %= ' '.join([str(x) for x in self.down])
-         result.append(column)
-      return result
 
    @apply
    def up( ):

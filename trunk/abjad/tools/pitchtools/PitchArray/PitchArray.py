@@ -182,7 +182,7 @@ class PitchArray(_Abjad):
 
    @property
    def pitches(self):
-      return set(listtools.flatten(self.pitches_by_row))
+      return listtools.flatten(self.pitches_by_row)
 
    @property
    def pitches_by_row(self):
