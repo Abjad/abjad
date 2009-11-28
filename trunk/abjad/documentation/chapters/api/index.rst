@@ -777,6 +777,7 @@ scoretools
    tools/scoretools/make_piano_score
    tools/scoretools/make_piano_sketch_score
    tools/scoretools/make_piano_staff
+   tools/scoretools/pitch_arrays_to_score
 
 
 spacing
