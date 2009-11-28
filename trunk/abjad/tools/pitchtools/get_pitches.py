@@ -77,6 +77,9 @@ def get_pitches(expr):
          pitches.sort( )
          pitches = tuple(pitches)
          return pitches
+      elif isinstance(expr, (list, tuple)):
+         for x in expr:
+            result.extend(get_pitches(x))
       else:
          for leaf in iterate.leaves_forward_in(expr):
             result.extend(leaf.pitches)

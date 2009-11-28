@@ -44,3 +44,11 @@ def test_pitchtools_get_pitches_04( ):
 
    assert pitchtools.get_pitches(array) == (
       Pitch('d', 4), Pitch('bqf', 3), Pitch('g', 4), Pitch('fs', 4))
+
+
+def test_pitchtools_get_pitches_05( ):
+   '''Works with list or tuple of pitches.'''
+
+   t = [Pitch(0), Note(2, (1, 4)), Chord([4, 6, 7], (1, 4))]
+   assert pitchtools.get_pitches(t) == (Pitch('c', 4), Pitch('d', 4), Pitch('e', 4), Pitch('fs', 4), Pitch('g', 4))
+
