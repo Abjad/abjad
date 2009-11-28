@@ -209,6 +209,22 @@ class PitchArrayColumn(_Abjad):
       return tuple(start_pitches)
 
    @property
+   def stop_cells(self):
+      start_cells = [ ]
+      column_index = self.column_index
+      for cell in self.cells:
+         if cell.column_indices[-1] == column_index:
+            start_cells.append(cell)
+      return tuple(start_cells)
+
+   @property
+   def stop_pitches(self):
+      stop_pitches = [ ]
+      for cell in self.stop_cells:
+         stop_pitches.extend(cell.pitches)
+      return tuple(stop_pitches)
+
+   @property
    def weight(self):
       return sum([cell.weight for cell in self.cells])
 
