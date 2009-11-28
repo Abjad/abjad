@@ -461,6 +461,8 @@ label
    tools/label/leaf_pcs
    tools/label/leaf_pitch_numbers
    tools/label/measure_numbers
+   tools/label/vertical_moment_chromatic_interval_classes
+   tools/label/vertical_moment_chromatic_intervals
    tools/label/vertical_moment_counterpoint_intervals
    tools/label/vertical_moment_diatonic_intervals
    tools/label/vertical_moment_interval_class_vectors
@@ -710,6 +712,7 @@ pitchtools
    tools/pitchtools/are_in_octave_order
    tools/pitchtools/array_to_nonspanning_subarrays
    tools/pitchtools/change_default_accidental_spelling
+   tools/pitchtools/chromatic_interval_from_to
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
