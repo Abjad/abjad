@@ -633,6 +633,8 @@ measuretools
    tools/measuretools/make_underfull_spacer_skip
    tools/measuretools/overdraw
    tools/measuretools/overwrite_contents
+   tools/measuretools/pitch_array_row_to_measure
+   tools/measuretools/pitch_array_to_measure_list
    tools/measuretools/populate
    tools/measuretools/project
    tools/measuretools/remedy_underfull_measures
