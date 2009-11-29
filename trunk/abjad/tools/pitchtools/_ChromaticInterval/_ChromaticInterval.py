@@ -1,6 +1,5 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._Interval import _Interval
-from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
 
 
 class _ChromaticInterval(_Interval):
