@@ -2,7 +2,6 @@ from abjad.tools import mathtools
 from abjad.tools.pitchtools._ChromaticInterval import _ChromaticInterval
 from abjad.tools.pitchtools._Interval import _Interval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
-from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
 from abjad.tools.pitchtools.HarmonicChromaticInterval import \
    HarmonicChromaticInterval
 

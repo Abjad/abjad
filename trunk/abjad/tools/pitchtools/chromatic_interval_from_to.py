@@ -1,4 +1,5 @@
-from abjad.tools.pitchtools.ChromaticInterval import ChromaticInterval
+from abjad.tools.pitchtools.MelodicChromaticInterval import \
+   MelodicChromaticInterval
 from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
@@ -16,6 +17,6 @@ def chromatic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
    pitch_2 = get_pitch(pitch_carrier_2)
 
    chromatic_interval_number = pitch_2.number - pitch_1.number
-   chromatic_interval = ChromaticInterval(chromatic_interval_number)
+   chromatic_interval = MelodicChromaticInterval(chromatic_interval_number)
 
    return chromatic_interval

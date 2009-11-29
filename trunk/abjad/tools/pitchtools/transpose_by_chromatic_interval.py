@@ -1,4 +1,5 @@
-from ChromaticInterval import ChromaticInterval
+#from ChromaticInterval import ChromaticInterval
+from MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.chord import Chord
 from abjad.note import Note
 from abjad.pitch import Pitch
@@ -11,13 +12,14 @@ def transpose_by_chromatic_interval(pitch_carrier, chromatic_interval):
    Transpose `pitch_carrier` by `chromatic_interval`. ::
 
       abjad> pitch = Pitch(12)
-      abjad> chromatic_interval = pitchtools.ChromaticInterval(-3)
+      abjad> chromatic_interval = pitchtools.MelodicChromaticInterval(-3)
       abjad> pitchtools.transpose_by_chromatic_interval(pitch, chromatic_interval)
       Pitch(a, 4)
    '''
    
-   if not isinstance(chromatic_interval, ChromaticInterval):
-      raise TypeError('must be chromatic interval.')
+   #if not isinstance(chromatic_interval, ChromaticInterval):
+   if not isinstance(chromatic_interval, MelodicChromaticInterval):
+      raise TypeError('must be melodic chromatic interval.')
    
    if isinstance(pitch_carrier, Pitch):
       return Pitch(pitch_carrier.number + chromatic_interval.interval_number)

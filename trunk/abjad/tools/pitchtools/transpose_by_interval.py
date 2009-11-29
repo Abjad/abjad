@@ -1,5 +1,7 @@
-from abjad.tools.pitchtools.ChromaticInterval import ChromaticInterval
-from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
+from abjad.tools.pitchtools.MelodicChromaticInterval import \
+   MelodicChromaticInterval
+from abjad.tools.pitchtools.MelodicDiatonicInterval import \
+   MelodicDiatonicInterval
 from abjad.tools.pitchtools.transpose_by_chromatic_interval import \
    transpose_by_chromatic_interval
 from abjad.tools.pitchtools.transpose_by_diatonic_interval import \
@@ -17,7 +19,7 @@ def transpose_by_interval(pitch_carrier, interval):
 
    ::
 
-      abjad> diatonic_interval = pitchtools.DiatonicInterval('minor', 2)
+      abjad> diatonic_interval = pitchtools.MelodicDiatonicInterval('minor', 2)
       abjad> diatonic_interval
       DiatonicInterval(ascending minor second)
       abjad> pitchtools.transpose_by_interval(pitch, diatonic_interval)
@@ -25,16 +27,16 @@ def transpose_by_interval(pitch_carrier, interval):
 
    ::
 
-      abjad> chromatic_interval = pitchtools.ChromaticInterval(1)
+      abjad> chromatic_interval = pitchtools.MelodicChromaticInterval(1)
       abjad> chromatic_interval
       ChromaticInterval(1)
       abjad> pitchtools.transpose_by_interval(pitch, chromatic_interval)
       Pitch(cs, 5)
    '''
 
-   if isinstance(interval, DiatonicInterval):
+   if isinstance(interval, MelodicDiatonicInterval):
       return transpose_by_diatonic_interval(pitch_carrier, interval)
-   elif isinstance(interval, ChromaticInterval):
+   elif isinstance(interval, MelodicChromaticInterval):
       return transpose_by_chromatic_interval(pitch_carrier, interval)
    else:
       raise TypeError('must be diatonic or chromatic interval.')

@@ -1,5 +1,6 @@
 from abjad.pitch import Pitch
-from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
+from abjad.tools.pitchtools.MelodicDiatonicInterval import \
+   MelodicDiatonicInterval
 from abjad.tools.pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval import diatonic_and_chromatic_interval_numbers_to_diatonic_interval
 
 
@@ -11,12 +12,12 @@ def pitches_to_diatonic_interval(pitch_1, pitch_2):
    Unison. ::
 
       abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('c', 4))
-      DiatonicInterval(perfect unison)
+      MelodicDiatonicInterval(perfect unison)
 
    Ascending diatonic intervals. ::
 
       abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('dff', 4))
-      DiatonicInterval(ascending diminished second)
+      MelodicDiatonicInterval(ascending diminished second)
 
    ::
 
@@ -26,32 +27,32 @@ def pitches_to_diatonic_interval(pitch_1, pitch_2):
    ::
 
       abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('d', 4))
-      DiatonicInterval(ascending major second)
+      MelodicDiatonicInterval(ascending major second)
 
    ::
 
       abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('ds', 4))
-      DiatonicInterval(ascending augmented second)
+      MelodicDiatonicInterval(ascending augmented second)
 
    Descending diatonic intervals. ::
 
       abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('bs', 3))
-      DiatonicInterval(ascending diminished second)
+      MelodicDiatonicInterval(ascending diminished second)
 
    ::
 
       abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('b', 3))
-      DiatonicInterval(descending minor second)
+      MelodicDiatonicInterval(descending minor second)
 
    ::
 
       abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('bf', 3))
-      DiatonicInterval(descending major second)
+      MelodicDiatonicInterval(descending major second)
 
    ::
 
       abjad> pitchtools.pitches_to_diatonic_interval(Pitch('c', 4), Pitch('bff', 3))
-      DiatonicInterval(descending augmented second)
+      MelodicDiatonicInterval(descending augmented second)
    '''
 
    if not isinstance(pitch_1, Pitch):

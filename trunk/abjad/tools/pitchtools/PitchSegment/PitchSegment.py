@@ -1,6 +1,9 @@
 from abjad.pitch import Pitch
 from abjad.tools import listtools
-from abjad.tools.pitchtools.ChromaticInterval import ChromaticInterval
+from abjad.tools.pitchtools.HarmonicChromaticInterval import \
+   HarmonicChromaticInterval
+from abjad.tools.pitchtools.MelodicChromaticInterval import \
+   MelodicChromaticInterval
 
 
 class PitchSegment(list):
@@ -26,25 +29,22 @@ class PitchSegment(list):
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def chromatic_interval_segment(self):
-      result = list(listtools.difference_series(self.chromatic_pitch_numbers))
-      return [ChromaticInterval(n) for n in result]
+   def harmonic_chromatic_interval_class_segment(self):
+      return [
+         x.interval_class for x in self.harmonic_chromatic_interval_segment]
 
    @property
-   def chromatic_interval_class_segment(self):
-      return [x.interval_class for x in self.chromatic_interval_segment]
+   def harmonic_chromatic_interval_segment(self):
+      result = list(listtools.difference_series(self.pitch_numbers))
+      return [HarmonicChromaticInterval(n) for n in result]
 
    @property
-   def chromatic_pitch_numbers(self):
-      return [pitch.number for pitch in self]
+   def harmonic_diatonic_interval_class_segment(self):
+      return [x.interval_class for x in self.harmonic_diatonic_interval_segment]
 
    @property
-   def diatonic_interval_segment(self):
-      return list(listtools.difference_series(self))
-
-   @property
-   def diatonic_interval_class_segment(self):
-      return [x.interval_class for x in self.diatonic_interval_segment]
+   def harmonic_diatonic_interval_segment(self):
+      return [abs(x) for x in self.melodic_diatonic_interval_segment]
 
    @property
    def inflection_point_count(self):
@@ -69,3 +69,28 @@ class PitchSegment(list):
             if left < middle and right < middle:
                result.append(middle)
       return tuple(result)
+
+   @property
+   def melodic_chromatic_interval_class_segment(self):
+      return [x.interval_class for x in self.melodic_chromatic_interval_segment]
+
+   @property
+   def melodic_chromatic_interval_segment(self):
+      result = list(listtools.difference_series(self.pitch_numbers))
+      return [MelodicChromaticInterval(n) for n in result]
+
+   @property
+   def melodic_diatonic_interval_class_segment(self):
+      return [x.interval_class for x in self.melodic_diatonic_interval_segment]
+
+   @property
+   def melodic_diatonic_interval_segment(self):
+      melodic_diatonic_intervals = [ ]
+      for left_pitch, right_pitch in listtools.pairwise(self):
+         melodic_diatonic_interval = left_pitch - right_pitch
+         melodic_diatonic_intervals.append(melodic_diatonic_interval)
+      return melodic_diatonic_intervals
+
+   @property
+   def pitch_numbers(self):
+      return [pitch.number for pitch in self]

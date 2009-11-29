@@ -1,5 +1,6 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.ChromaticInterval import ChromaticInterval
+from abjad.tools.pitchtools.HarmonicChromaticInterval import \
+   HarmonicChromaticInterval
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 
@@ -28,7 +29,7 @@ def get_chromatic_intervals_in(expr):
       first_pitch = unordered_pitch_pair.pop( )
       second_pitch = unordered_pitch_pair.pop( )
       chromatic_interval_number = abs(first_pitch.number - second_pitch.number)
-      chromatic_interval = ChromaticInterval(chromatic_interval_number)
+      chromatic_interval = HarmonicChromaticInterval(chromatic_interval_number)
       chromatic_intervals.add(chromatic_interval)      
    
    return chromatic_intervals

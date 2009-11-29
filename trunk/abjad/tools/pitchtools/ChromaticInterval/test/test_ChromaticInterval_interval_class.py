@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip( )
 
 
 def test_ChromaticInterval_interval_class_01( ):

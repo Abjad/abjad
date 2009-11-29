@@ -1,5 +1,7 @@
+from abjad.exceptions import IntervalError
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
+from abjad.tools.pitchtools.MelodicDiatonicInterval import \
+   MelodicDiatonicInterval
 
 
 def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
@@ -10,26 +12,32 @@ def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
    and `diatonic_interval_number`. ::
 
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(1, 0)
-      DiatonicInterval(perfect unison)
+      MelodicDiatonicInterval(perfect unison)
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(1, 1)
-      DiatonicInterval(augmented unison)
+      MelodicDiatonicInterval(augmented unison)
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(2, 0)
-      DiatonicInterval(ascending diminished second)
+      MelodicDiatonicInterval(ascending diminished second)
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(2, 1)
-      DiatonicInterval(ascending minor second)
+      MelodicDiatonicInterval(ascending minor second)
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(2, 2)
-      DiatonicInterval(ascending major second)
+      MelodicDiatonicInterval(ascending major second)
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(2, 3)
-      DiatonicInterval(ascending augmented second)
+      MelodicDiatonicInterval(ascending augmented second)
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(5, 6)
-      DiatonicInterval(ascending diminished fifth)
+      MelodicDiatonicInterval(ascending diminished fifth)
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(5, 7)
-      DiatonicInterval(ascending perfect fifth)
+      MelodicDiatonicInterval(ascending perfect fifth)
       abjad> pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_interval(5, 8)
-      DiatonicInterval(ascending augmented fifth)
+      MelodicDiatonicInterval(ascending augmented fifth)
    '''
 
+   #diatonic_interval_number = abs(diatonic_interval_number)
+   #chromatic_interval_number = abs(chromatic_interval_number)
    #print diatonic_interval_number, chromatic_interval_number
+
+   if not isinstance(chromatic_interval_number, int):
+      raise IntervalError('can not determine diatonic interval from float.')
+
    direction_number = mathtools.sign(chromatic_interval_number)
 
    if diatonic_interval_number == 1:
@@ -42,7 +50,9 @@ def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
          quality_string = 'augmented'
       if not direction_number == 0:
          diatonic_interval_number *= direction_number
-      diatonic_interval = DiatonicInterval(
+      #diatonic_interval = DiatonicInterval(
+      #   quality_string, diatonic_interval_number)
+      diatonic_interval = MelodicDiatonicInterval(
          quality_string, diatonic_interval_number)
       return diatonic_interval
 
@@ -134,7 +144,9 @@ def diatonic_and_chromatic_interval_numbers_to_diatonic_interval(
    if not direction_number == 0:
       diatonic_interval_number *= direction_number
 
-   diatonic_interval = DiatonicInterval(
+   #diatonic_interval = DiatonicInterval(
+   #   quality_string, diatonic_interval_number)
+   diatonic_interval = MelodicDiatonicInterval(
       quality_string, diatonic_interval_number)
 
    return diatonic_interval

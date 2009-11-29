@@ -2,6 +2,10 @@ class DurationError(Exception):
    '''Any type of duration error.'''
    pass
 
+class IntervalError(Exception):
+   '''Any type of error relating to pitch intervals.'''
+   pass
+
 class MissingComponentError(Exception):
    '''Operation assumes presence of component, but none is found.'''
    pass

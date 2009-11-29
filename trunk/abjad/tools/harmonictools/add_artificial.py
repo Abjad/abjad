@@ -2,7 +2,7 @@ from abjad.chord import Chord
 from abjad.tools import pitchtools
 
 
-perfect_fourth = pitchtools.DiatonicInterval('perfect', 4)
+perfect_fourth = pitchtools.MelodicDiatonicInterval('perfect', 4)
 
 def add_artificial(note, diatonic_interval = perfect_fourth):
    r'''Add artifical harmonic at `diatonic_interval` to `note`.

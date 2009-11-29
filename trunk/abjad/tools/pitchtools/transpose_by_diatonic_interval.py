@@ -2,7 +2,8 @@ from abjad.chord import Chord
 from abjad.note import Note
 from abjad.pitch import Pitch
 from abjad.tools import clone
-from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
+from abjad.tools.pitchtools.MelodicDiatonicInterval import \
+   MelodicDiatonicInterval
 from abjad.tools.pitchtools.diatonic_scale_degree_to_letter import \
    diatonic_scale_degree_to_letter
 
@@ -13,12 +14,12 @@ def transpose_by_diatonic_interval(pitch_carrier, diatonic_interval):
    Transpose `pitch_carrier` by `diatonic_interval`. ::
 
       abjad> pitch = Pitch(12)
-      abjad> diatonic_interval = pitchtools.DiatonicInterval('minor', -3)
+      abjad> diatonic_interval = pitchtools.MelodicDiatonicInterval('minor', -3)
       abjad> pitchtools.transpose_by_diatonic_interval(pitch, diatonic_interval)
       Pitch(a, 4)
    '''
 
-   if not isinstance(diatonic_interval, DiatonicInterval):
+   if not isinstance(diatonic_interval, MelodicDiatonicInterval):
       raise TypeError('must be diatonic interval.')
 
    if isinstance(pitch_carrier, Pitch):

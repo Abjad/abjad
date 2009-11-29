@@ -1,5 +1,6 @@
 from abjad.pitch import Pitch
-from abjad.tools.pitchtools.ChromaticInterval import ChromaticInterval
+from abjad.tools.pitchtools.MelodicChromaticInterval import \
+   MelodicChromaticInterval
 from abjad.tools.pitchtools.get_pitches import get_pitches
 from abjad.tools.pitchtools.transpose_by_chromatic_interval import \
    transpose_by_chromatic_interval
@@ -88,7 +89,7 @@ class PitchSet(set):
 
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
-      interval = ChromaticInterval(n)
+      interval = MelodicChromaticInterval(n)
       return PitchSet(
          [transpose_by_chromatic_interval(pitch, interval) for pitch in self])
 

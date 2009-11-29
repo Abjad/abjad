@@ -1,4 +1,6 @@
 from abjad import *
+import py.test
+py.test.skip( )
 
 
 def test_pitchtools_DiatonicInterval___neg___01( ):
