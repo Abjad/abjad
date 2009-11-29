@@ -1,0 +1,1 @@
+from HarmonicDiatonicInterval import HarmonicDiatonicInterval

@@ -5,6 +5,10 @@ _package_import(__path__[0], globals( ))
 from ChromaticInterval import ChromaticInterval
 from ChromaticIntervalVector import ChromaticIntervalVector
 from DiatonicInterval import DiatonicInterval
+from HarmonicChromaticInterval import HarmonicChromaticInterval
+from HarmonicDiatonicInterval import HarmonicDiatonicInterval
+from MelodicChromaticInterval import MelodicChromaticInterval
+from MelodicDiatonicInterval import MelodicDiatonicInterval
 from PitchArray import PitchArray
 from PitchClass import PitchClass
 from PitchClassColorMap import PitchClassColorMap

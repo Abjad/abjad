@@ -1,0 +1,1 @@
+from MelodicChromaticInterval import MelodicChromaticInterval
