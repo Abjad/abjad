@@ -37,6 +37,8 @@ def vertical_moment_pitch_numbers(expr):
    for vertical_moment in iterate.vertical_moments_forward_in(expr):
       leaves = vertical_moment.leaves
       pitches = pitchtools.get_pitches(leaves)
+      if not pitches:
+         continue
       pitch_numbers = [pitch.number for pitch in pitches]
       pitch_numbers = ' '.join([str(x) for x in pitch_numbers])
       pitch_numbers = r'\small { \column { %s } }' % pitch_numbers

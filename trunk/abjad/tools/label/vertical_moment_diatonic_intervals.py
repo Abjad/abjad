@@ -38,6 +38,8 @@ def vertical_moment_diatonic_intervals(expr):
    for vertical_moment in iterate.vertical_moments_forward_in(expr):
       leaves = vertical_moment.leaves
       notes = [leaf for leaf in leaves if isinstance(leaf, Note)]
+      if not notes:
+         continue
       notes.sort(lambda x, y: cmp(x.pitch.number, y.pitch.number))
       notes.reverse( )
       bass_note = notes[-1]

@@ -37,6 +37,8 @@ def vertical_moment_interval_class_vectors(expr):
    for vertical_moment in iterate.vertical_moments_forward_in(expr):
       leaves = vertical_moment.leaves
       pitches = pitchtools.get_pitches(leaves)
+      if not pitches:
+         continue
       interval_class_vector = pitchtools.get_interval_class_vector(pitches)
       formatted = _format_interval_class_vector(interval_class_vector)
       vertical_moment.start_leaves[-1].markup.down.append(formatted)
