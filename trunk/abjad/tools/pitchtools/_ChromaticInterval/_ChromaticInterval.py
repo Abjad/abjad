@@ -12,17 +12,17 @@ class _ChromaticInterval(_Interval):
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
          self._interval_number = arg
-      elif isinstance(arg, ChromaticInterval):
-         self._interval_number = arg.interval_number
-      elif isinstance(arg, DiatonicInterval):
+      elif isinstance(arg, _Interval):
          self._interval_number = arg.semitones
       else:
-         raise TypeError
+         raise TypeError('%s must be number or interval.' % arg)
 
    ## OVERLOADS ##
 
    def __abs__(self):
-      return ChromaticInterval(abs(self._interval_number))
+      from abjad.tools.pitchtools.HarmonicChromaticInterval import \
+         HarmonicChromaticInterval
+      return HarmonicChromaticInterval(abs(self._interval_number))
 
    def __add__(self, arg):
       if isinstance(arg, self.__class__):

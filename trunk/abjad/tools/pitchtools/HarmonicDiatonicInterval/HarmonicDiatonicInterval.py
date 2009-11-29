@@ -37,3 +37,9 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
          else:
             return 8
       return counterpoint_interval
+
+   @property
+   def staff_spaces(self):
+      if self.quality_string == 'perfect' and self.interval_number == 1:
+         return 0
+      return abs(_DiatonicInterval.staff_spaces.fget(self))

@@ -51,7 +51,10 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
 
    @property
    def interval_class(self):
-      return self.direction_number * _DiatonicInterval.interval_class.fget(self)
+      interval_class = _DiatonicInterval.interval_class.fget(self)
+      if self.interval_number == 1:
+         return 1
+      return self.direction_number * interval_class
 
    @property
    def semitones(self):

@@ -23,6 +23,21 @@ class _DiatonicInterval(_Interval):
 
    ## OVERLOADS ##
 
+   def __abs__(self):
+      from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
+         HarmonicDiatonicInterval
+      return HarmonicDiatonicInterval(self.quality_string, self.interval_number)
+
+   def __eq__(self, arg):
+      if isinstance(arg, self.__class__):
+         if self.quality_string == arg.quality_string:
+            if self.interval_number == arg.interval_number:
+               return True
+      return False
+
+   def __ne__(self, arg):
+      return not self == arg
+
    def __repr__(self):
       return '%s(%s %s)' % (self.__class__.__name__,
          self.quality_string, self.interval_string)
@@ -89,4 +104,4 @@ class _DiatonicInterval(_Interval):
 
    @property
    def staff_spaces(self):
-      return self.interval_number
+      return self.interval_number - 1
