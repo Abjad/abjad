@@ -15,18 +15,18 @@ Classes
    tools/lilytools/BookBlock
    tools/lilytools/BookpartBlock
    chord/chord
-   tools/pitchtools/ChromaticInterval/ChromaticInterval
    tools/pitchtools/ChromaticIntervalVector/ChromaticIntervalVector
    clef/clef
    cluster/cluster
    container/container
-   tools/pitchtools/DiatonicInterval/DiatonicInterval
    measure/dynamic/measure
    tuplet/fd/tuplet
    tuplet/fm/tuplet
    tools/layout/FixedStaffPositioning/FixedStaffPositioning
    grace/grace
    staffgroup/grandstaff
+   tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
+   tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
    harmonic/natural
    tools/lilytools/HeaderBlock
    staff/invisiblestaff
@@ -35,6 +35,8 @@ Classes
    tools/layout/LayoutSchema/LayoutSchema
    tools/lilytools/LilyFile
    markup/markup
+   tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
+   tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
    meter/meter
    tools/lilytools/MidiBlock
    note/note
