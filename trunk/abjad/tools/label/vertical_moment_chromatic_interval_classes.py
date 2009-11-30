@@ -35,6 +35,7 @@ def vertical_moment_chromatic_interval_classes(expr):
       >>
    '''
 
+   ## TODO: OPTIMIZE VERTICAL MOMENT ITERATION! ##
    for vertical_moment in iterate.vertical_moments_forward_in(expr):
       leaves = vertical_moment.leaves
       notes = [leaf for leaf in leaves if isinstance(leaf, Note)]

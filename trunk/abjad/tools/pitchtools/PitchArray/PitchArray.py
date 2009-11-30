@@ -200,6 +200,14 @@ class PitchArray(_Abjad):
       return self.depth * self.width
 
    @property
+   def voice_crossing_count(self):
+      count = 0
+      for column in self.columns:
+         if column.has_voice_crossing:
+            count += 1
+      return count
+
+   @property
    def weight(self):
       return sum([row.weight for row in self.rows])
 

@@ -232,9 +232,12 @@ class PitchArrayRow(_Abjad):
 
    def apply_pitches(self, pitch_tokens):
       pitch_tokens = pitch_tokens[:]
-      for cell in self.cells:
-         if cell.pitches:
-            cell.pitches = [pitch_tokens.pop(0)]
+      if pitch_tokens:
+         for cell in self.cells:
+            if cell.pitches:
+               cell.pitches = [pitch_tokens.pop(0)]
+      else:
+         self.empty_pitches( )
 
    def copy_subrow(self, start = None, stop = None):
       arg = slice(start, stop)
