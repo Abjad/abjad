@@ -28,19 +28,19 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
    @apply
    def current( ):
       def fget(self):
-         '''Read / write *LilyPond* ``currentBarNumber`` context setting.
+         '''Read / write LilyPond ``currentBarNumber`` context setting.
 
-            *  Default value: ``None``.
-            *  All values: integer, ``None``.         
+         *  Default value: ``None``.
+         *  All values: integer, ``None``.         
 
-            :: 
+         :: 
 
-               abjad> t = RigidMeasure((2, 8), construct.scale(2))
-               abjad> t[0]
-               abjad> t[0].bar_number.current = 22
-               abjad> t[0].bar_number.current
-               22'''
-
+            abjad> t = RigidMeasure((2, 8), construct.scale(2))
+            abjad> t[0]
+            abjad> t[0].bar_number.current = 22
+            abjad> t[0].bar_number.current
+            22
+         '''
          return self._current
       def fset(self, expr):
          assert isinstance(expr, (int, types.NoneType))
@@ -51,7 +51,7 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
    @property
    def settings(self):
-      r'''Read-only list of *LilyPond* context settings \
+      r'''Read-only list of LilyPond context settings
       picked up at format-time.
 
       *  Derived from ``BarNumberInterface.current``.
@@ -65,8 +65,8 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
                  \time 2/8
                  \set currentBarNumber = #22
                  c'8
-                 d'8'''
-
+                 d'8
+      '''
       result = [ ]
       if self.current is not None:
          formatted_value = self._parser.formatValue(self.current)
