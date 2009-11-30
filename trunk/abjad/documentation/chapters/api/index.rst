@@ -696,13 +696,13 @@ partition
    tools/partition/unfractured_by_durations
 
 
-pickle
+persistencetools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/pickle/dump
-   tools/pickle/load
+   tools/persistencetools/pickle_dump
+   tools/persistencetools/pickle_load
 
 
 pitchtools

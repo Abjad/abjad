@@ -1,7 +1,7 @@
 import cPickle
 
 
-def load(file_name):
+def pickle_dump(data, file_name):
    '''Easy interface to Python cPickle persistence module.
 
    ::
@@ -9,16 +9,15 @@ def load(file_name):
       abjad> t = Note(0, (1, 4))
       abjad> f(t)
       c'4
-      abjad> pickle.dump(t, 'temp.pkl')
+      abjad> persistencetools.pickle_dump(t, 'temp.pkl')
 
    ::
 
-      abjad> new = pickle.load('temp.pkl') 
+      abjad> new = persistencetools.pickle_load('temp.pkl') 
       abjad> new
       Note(c', 4)
    '''
 
-   f = open(file_name, 'r')
-   data = cPickle.load(f)
+   f = open(file_name, 'w')
+   cPickle.dump(data, f)
    f.close( )
-   return data
