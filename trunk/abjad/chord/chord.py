@@ -136,7 +136,7 @@ class Chord(_Leaf):
 
    def extend(self, arglist):
       '''Extend note_head tokens to self. Then sort note_heads.'''
-      assert isinstance(arglist, list)
+      assert isinstance(arglist, (tuple, list))
       for arg in arglist:
          self.append(arg)
       self._sort( )
