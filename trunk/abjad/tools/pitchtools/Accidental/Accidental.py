@@ -4,11 +4,12 @@ from abjad.core.abjadcore import _Abjad
 class Accidental(_Abjad):
    '''Any sharp, quarter-sharp, flat, quarter-flat, etc.
 
-      ::
+   ::
 
-         abjad> t = Accidental('s')
-         abjad> t
-         Accidental(s)'''
+      abjad> t = pitchtools.Accidental('s')
+      abjad> t
+      Accidental(s)
+   '''
 
    def __init__(self, arg = ''):
       if isinstance(arg, str):
@@ -51,56 +52,61 @@ class Accidental(_Abjad):
    def adjustment(self):
       '''Read-only number of semitones to which this accidental is equal.
 
-         ::
+      ::
 
-            abjad> t = Accidental('s')
-            abjad> t.adjustment
-            1
+         abjad> t = pitchtools.Accidental('s')
+         abjad> t.adjustment
+         1
 
-         ::
+      ::
 
-            abjad> t = Accidental('f')
-            abjad> t.adjustment 
-            -1'''
-
+         abjad> t = pitchtools.Accidental('f')
+         abjad> t.adjustment 
+         -1
+      '''
       return self.accidentalStringToAdjustment[self.string]
 
    @property
    def format(self):
-      '''Read-only *LilyPond* format of accidental.
+      '''Read-only LilyPond format of accidental.
 
-         ::
-      
-            abjad> t = Accidental('s')
-            abjad> t.format
-            's' 
+      ::
+   
+         abjad> t = pitchtools.Accidental('s')
+         abjad> t.format
+         's' 
 
-         ::
+      ::
 
-            abjad> t = Accidental('f')
-            abjad> t.format
-            'f'
+         abjad> t = pitchtools.Accidental('f')
+         abjad> t.format
+         'f'
       '''
-
       return self.string
+
+   @property
+   def semitones(self):
+      '''Read-only number of semitones to which this accidental is equal.
+      '''
+      return self.adjustment
 
    @apply
    def string( ):
       def fget(self):
-         '''Read / write *LilyPond* accidental string.
+         '''Read / write LilyPond accidental string.
       
-            ::
-         
-               abjad> t = Accidental('s')
-               abjad> t.string
-               's'
+         ::
+      
+            abjad> t = pitchtools.Accidental('s')
+            abjad> t.string
+            's'
 
-            ::
+         ::
 
-               abjad> t = Accidental('f')
-               abjad> t.string
-               'f' '''
-
+            abjad> t = pitchtools.Accidental('f')
+            abjad> t.string
+            'f' 
+         '''
          return self._string
       def fset(self, arg):
          assert isinstance(arg, str)

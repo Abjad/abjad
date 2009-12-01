@@ -1,3 +1,4 @@
+from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.letter_to_pc import \
    letter_to_pc as pitchtools_letter_to_pc
 from abjad.tools.pitchtools.nearest_neighbor import \
@@ -37,8 +38,6 @@ def number_letter_to_accidental_octave(number, letter):
    if not letter in ['c', 'd', 'e', 'f', 'g', 'a', 'b']:
       raise ValueError
    
-   from abjad.accidental import Accidental
-
    ## find accidental adjustment
    pc = pitchtools_letter_to_pc(letter)
    nearest_neighbor = pitchtools_nearest_neighbor(number, pc)

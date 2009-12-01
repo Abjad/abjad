@@ -2,20 +2,20 @@ from abjad import *
 
 
 def test_accidental_string_01( ):
-   t = Accidental('s')
+   t = pitchtools.Accidental('s')
    assert t.string == 's'
 
 
 def test_accidental_string_02( ):
-   t = Accidental('')
+   t = pitchtools.Accidental('')
    assert t.string == ''
 
 
 def test_accidental_string_03( ):
-   t = Accidental( )
+   t = pitchtools.Accidental( )
    assert t.string == ''
 
 
 def test_accidental_string_04( ):
-   t = Accidental('!')
+   t = pitchtools.Accidental('!')
    assert t.string == '!'

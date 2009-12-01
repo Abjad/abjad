@@ -1,4 +1,5 @@
-from abjad.accidental import Accidental
+#from abjad.accidental import Accidental
+#from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.core.abjadcore import _Abjad
 import types
@@ -128,10 +129,11 @@ class Pitch(_Abjad):
    ## PRIVATE METHODS ##
 
    def _init_by_name_and_octave(self, name, octave):
+      from abjad.tools import pitchtools
       letter = name[0]
       accidental_string = name[1:]
       self.letter = letter
-      self.accidental = Accidental(accidental_string)
+      self.accidental = pitchtools.Accidental(accidental_string)
       self.octave = octave
 
    def _init_by_name_octave_and_deviation(self, name, octave, deviation):
@@ -144,7 +146,7 @@ class Pitch(_Abjad):
       triple = pitchtools.number_to_letter_accidental_octave(number, spelling)
       letter, accidental_string, octave = triple
       self.letter = letter
-      self.accidental = Accidental(accidental_string)
+      self.accidental = pitchtools.Accidental(accidental_string)
       self.octave = octave
 
    def _init_by_number_and_letter(self, number, letter):
@@ -152,20 +154,22 @@ class Pitch(_Abjad):
       pair = pitchtools.number_letter_to_accidental_octave(number, letter)
       accidental_string, octave = pair
       self.letter = letter
-      self.accidental = Accidental(accidental_string)
+      self.accidental = pitchtools.Accidental(accidental_string)
       self.octave = octave
 
    def _init_by_pair(self, pair):
+      from abjad.tools import pitchtools
       name, octave = pair
       letter = name[0]
       accidental_string = name[1:]
       self.letter = letter
-      self.accidental = Accidental(accidental_string)
+      self.accidental = pitchtools.Accidental(accidental_string)
       self.octave = octave
 
    def _init_by_reference(self, pitch):
+      from abjad.tools import pitchtools
       self.letter = pitch.letter
-      self.accidental = Accidental(pitch.accidental._string)
+      self.accidental = pitchtools.Accidental(pitch.accidental._string)
       self.octave = pitch.octave
 
    def _init_empty(self):
@@ -185,11 +189,12 @@ class Pitch(_Abjad):
          '''Read / write reference to any accidental attaching to pitch.'''
          return self._accidental
       def fset(self, expr):
+         from abjad.tools import pitchtools
          if expr is None:
-            self._accidental = Accidental('')
+            self._accidental = pitchtools.Accidental('')
          elif isinstance(expr, str):
-            self._accidental = Accidental(expr)
-         elif isinstance(expr, Accidental):
+            self._accidental = pitchtools.Accidental(expr)
+         elif isinstance(expr, pitchtools.Accidental):
             self._accidental = expr
          else:
             raise ValueError('can not set accidental.')
