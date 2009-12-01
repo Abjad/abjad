@@ -9,7 +9,7 @@ Classes
 .. toctree::
    :maxdepth: 1
 
-   accidental/accidental
+   tools/pitchtools/Accidental/Accidental
    measure/anonymous/measure
    articulation/articulation
    tools/lilytools/BookBlock
@@ -26,7 +26,9 @@ Classes
    grace/grace
    staffgroup/grandstaff
    tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
+   tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
    tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
+   tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
    harmonic/natural
    tools/lilytools/HeaderBlock
    staff/invisiblestaff
@@ -36,7 +38,9 @@ Classes
    tools/lilytools/LilyFile
    markup/markup
    tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
+   tools/pitchtools/MelodicChromaticIntervalSegment/MelodicChromaticIntervalSegment
    tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
+   tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
    meter/meter
    tools/lilytools/MidiBlock
    note/note
@@ -758,7 +762,7 @@ pitchtools
    tools/pitchtools/pc_to_pitch_name_sharps
    tools/pitchtools/pentatonic_to_chromatic
    tools/pitchtools/permute_by_row
-   tools/pitchtools/pitch_number_adjustment_to_octave
+   tools/pitchtools/pitch_number_and_accidental_semitones_to_octave
    tools/pitchtools/pitch_number_to_octave
    tools/pitchtools/pitches_to_diatonic_interval
    tools/pitchtools/registrate

@@ -13,6 +13,14 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       MelodicDiatonicInterval(descending minor third)
    '''
 
+   def __init__(self, *args):
+      if len(args) == 1 and isinstance(args[0], MelodicDiatonicInterval):
+         quality_string = args[0].quality_string
+         interval_number = args[0].interval_number
+      elif len(args) == 2:
+         quality_string, interval_number = args
+      _DiatonicInterval.__init__(self, quality_string, interval_number)
+
    ## OVERLOADS ##
 
    def __abs__(self):
@@ -29,6 +37,10 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          return '%s(%s %s %s)' % (self.__class__.__name__, 
             self.direction_string, self.quality_string, self.interval_string)
       return _DiatonicInterval.__repr__(self)
+
+   def __str__(self):
+      return '%s%s%s' % (self._direction_symbol, self._quality_abbreviation,
+         abs(self.interval_number))
       
    ## PUBLIC ATTRIBUTES ##
 

@@ -50,6 +50,9 @@ class _ChromaticInterval(_Interval):
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._interval_number)
 
+   def __str__(self):
+      return '%s' % self.interval_number
+
    def __sub__(self, arg):
       if isinstance(arg, self.__class__):
          interval_number = self.interval_number - arg.interval_number

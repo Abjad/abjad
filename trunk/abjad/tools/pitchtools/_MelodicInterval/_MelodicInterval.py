@@ -23,9 +23,21 @@ class _MelodicInterval(_Interval):
    def __ne__(self, arg):
       return not self == arg
 
-   @staticmethod
    def __neg__(self):
       pass
+
+   ## PRIVATE ATTRIUBTES ##
+
+   @property
+   def _direction_symbol(self):
+      if self.direction_number == -1:
+         return '-'
+      elif self.direction_number == 0:
+         return ''
+      elif self.direction_number == 1:
+         return '+'
+      else:
+         raise ValueError
 
    ## PUBLIC ATTRIBUTES ##
 

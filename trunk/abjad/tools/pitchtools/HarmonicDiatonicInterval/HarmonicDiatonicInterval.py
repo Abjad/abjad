@@ -13,9 +13,14 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
       HarmonicDiatonicInterval(minor third)
    '''
 
-   def __init__(self, quality_string, interval_number):
+   def __init__(self, *args):
+      if len(args) == 1 and isinstance(args[0], _DiatonicInterval):
+         quality_string = args[0].quality_string
+         interval_number = abs(args[0].interval_number)
+      elif len(args) == 2:
+         quality_string = args[0]
+         interval_number = abs(args[1])
       _DiatonicInterval.__init__(self, quality_string, interval_number)
-      self._interval_number = abs(self.interval_number)
 
    ## OVERLOADS ##
 
@@ -25,6 +30,9 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
 
    def __repr__(self):
       return _DiatonicInterval.__repr__(self)
+
+   def __str__(self):
+      return '%s%s' % (self._quality_abbreviation, self.interval_number)
       
    ## PUBLIC ATTRIBUTES ##
 

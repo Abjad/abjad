@@ -1,0 +1,1 @@
+from MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment

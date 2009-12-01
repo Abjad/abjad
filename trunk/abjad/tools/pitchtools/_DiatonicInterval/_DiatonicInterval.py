@@ -1,3 +1,4 @@
+from abjad.exceptions import IntervalError
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._Interval import _Interval
 
@@ -9,6 +10,9 @@ class _DiatonicInterval(_Interval):
    '''
 
    def __init__(self, quality_string, interval_number):
+      if quality_string == 'diminished':
+         if abs(interval_number) == 1:
+            raise IntervalError('diminished unison makes no sense.')
       if quality_string in self._acceptable_quality_strings:
          self._quality_string = quality_string
       else:
@@ -68,6 +72,13 @@ class _DiatonicInterval(_Interval):
             suffix = 'th'
          interval_string = '%s%s' % (abs_interval_number, suffix)
       return interval_string
+
+   @property
+   def _quality_abbreviation(self):
+      _quality_string_to_quality_abbreviation = {
+         'major': 'M', 'minor': 'm', 'perfect': 'P',
+         'augmented': 'aug', 'diminished': 'dim'}
+      return _quality_string_to_quality_abbreviation[self.quality_string]
 
    ## PUBLIC ATTRIBUTES ##
 
