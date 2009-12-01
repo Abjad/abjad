@@ -52,20 +52,6 @@ class Accidental(_Abjad):
    def adjustment(self):
       '''.. note::
          deprecated. Use accidental `semitones` instead.
-
-      Read-only number of semitones to which this accidental is equal.
-
-      ::
-
-         abjad> t = pitchtools.Accidental('s')
-         abjad> t.adjustment
-         1
-
-      ::
-
-         abjad> t = pitchtools.Accidental('f')
-         abjad> t.adjustment 
-         -1
       '''
       return self.semitones
 
@@ -90,6 +76,16 @@ class Accidental(_Abjad):
    @property
    def semitones(self):
       '''Read-only number of semitones to which this accidental is equal.
+
+      ::
+
+         abjad> pitchtools.Accidental('s').semitones
+         1
+
+      ::
+
+         abjad> pitchtools.Accidental('f').semitones
+         -1
       '''
       return self.accidental_string_to_semitones[self.string]
 
@@ -118,7 +114,6 @@ class Accidental(_Abjad):
 
    ## DICTIONARIES ##
 
-   #accidentalStringToAdjustment = {
    accidental_string_to_semitones = {
         '': 0,      '!': 0,
       'ff': -2,   'tqf': -1.5, 
@@ -126,7 +121,6 @@ class Accidental(_Abjad):
       'ss': 2,    'tqs': 1.5,
        's': 1,     'qs': 0.5  }
 
-   #adjustmentToAccidentalString = {
    semitones_to_accidental_string = {
        0: '',
       -2: 'ff',   -1.5: 'tqf',   

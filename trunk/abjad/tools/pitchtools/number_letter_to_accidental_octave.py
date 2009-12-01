@@ -3,9 +3,8 @@ from abjad.tools.pitchtools.letter_to_pc import \
    letter_to_pc as pitchtools_letter_to_pc
 from abjad.tools.pitchtools.nearest_neighbor import \
    nearest_neighbor as pitchtools_nearest_neighbor
-from abjad.tools.pitchtools.pitch_number_adjustment_to_octave import \
-   pitch_number_adjustment_to_octave as \
-   pitchtools_pitch_number_adjustment_to_octave
+from abjad.tools.pitchtools.pitch_number_and_accidental_semitones_to_octave \
+   import pitch_number_and_accidental_semitones_to_octave
 
 
 def number_letter_to_accidental_octave(number, letter):
@@ -38,17 +37,17 @@ def number_letter_to_accidental_octave(number, letter):
    if not letter in ['c', 'd', 'e', 'f', 'g', 'a', 'b']:
       raise ValueError
    
-   ## find accidental adjustment
+   ## find accidental semitones
    pc = pitchtools_letter_to_pc(letter)
    nearest_neighbor = pitchtools_nearest_neighbor(number, pc)
-   adjustment = number - nearest_neighbor
+   semitones = number - nearest_neighbor
    
    ## find accidental string
-   #accidental_string = Accidental.adjustmentToAccidentalString[adjustment]
-   accidental_string = Accidental.semitones_to_accidental_string[adjustment]
+   accidental_string = Accidental.semitones_to_accidental_string[semitones]
    
    ## find octave
-   octave = pitchtools_pitch_number_adjustment_to_octave(number, adjustment)
+   octave = pitch_number_and_accidental_semitones_to_octave(
+      number, semitones)
 
    ## return unique pair of accidental string and octave
    return accidental_string, octave
