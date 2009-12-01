@@ -23,16 +23,16 @@ class Accidental(_Abjad):
       return self.string == Accidental(arg).string
 
    def __ge__(self, arg):
-      return self.adjustment >= arg.adjustment
+      return self.semitones >= arg.semitones
 
    def __gt__(self, arg):
-      return self.adjustment > arg.adjustment
+      return self.semitones > arg.semitones
    
    def __le__(self, arg):
-      return self.adjustment <= arg.adjustment
+      return self.semitones <= arg.semitones
 
    def __lt__(self, arg):
-      return self.adjustment < arg.adjustment
+      return self.semitones < arg.semitones
    
    def __ne__(self, arg):
       return not self == arg
@@ -50,7 +50,10 @@ class Accidental(_Abjad):
 
    @property
    def adjustment(self):
-      '''Read-only number of semitones to which this accidental is equal.
+      '''.. note::
+         deprecated. Use accidental `semitones` instead.
+
+      Read-only number of semitones to which this accidental is equal.
 
       ::
 
@@ -64,7 +67,7 @@ class Accidental(_Abjad):
          abjad> t.adjustment 
          -1
       '''
-      return self.accidentalStringToAdjustment[self.string]
+      return self.semitones
 
    @property
    def format(self):
@@ -88,7 +91,7 @@ class Accidental(_Abjad):
    def semitones(self):
       '''Read-only number of semitones to which this accidental is equal.
       '''
-      return self.adjustment
+      return self.accidental_string_to_semitones[self.string]
 
    @apply
    def string( ):
@@ -115,14 +118,16 @@ class Accidental(_Abjad):
 
    ## DICTIONARIES ##
 
-   accidentalStringToAdjustment = {
+   #accidentalStringToAdjustment = {
+   accidental_string_to_semitones = {
         '': 0,      '!': 0,
       'ff': -2,   'tqf': -1.5, 
        'f': -1,    'qf': -0.5,
       'ss': 2,    'tqs': 1.5,
        's': 1,     'qs': 0.5  }
 
-   adjustmentToAccidentalString = {
+   #adjustmentToAccidentalString = {
+   semitones_to_accidental_string = {
        0: '',
       -2: 'ff',   -1.5: 'tqf',   
       -1: 'f',    -0.5: 'qf',

@@ -1,5 +1,3 @@
-#from abjad.accidental import Accidental
-#from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.core.abjadcore import _Abjad
 import types
@@ -46,7 +44,7 @@ class Pitch(_Abjad):
    def __eq__(self, arg):
       if isinstance(arg, Pitch):
          if self.altitude == arg.altitude:
-            if self.accidental.adjustment == arg.accidental.adjustment:
+            if self.accidental.semitones == arg.accidental.semitones:
                if self.deviation == arg.deviation:
                   return True
       return False
@@ -56,7 +54,7 @@ class Pitch(_Abjad):
          raise ValueError
       return self.altitude > arg.altitude or \
          (self.altitude == arg.altitude and \
-         self.accidental.adjustment >= arg.accidental.adjustment) or \
+         self.accidental.semitones >= arg.accidental.semitones) or \
          (self.altitude == arg.altitude and \
          self.accidental == arg.accidental and \
          self._deviation_numeric >= arg._deviation_numeric)
@@ -66,7 +64,7 @@ class Pitch(_Abjad):
          raise ValueError
       return self.altitude > arg.altitude or \
          (self.altitude == arg.altitude and \
-         self.accidental.adjustment > arg.accidental.adjustment) or \
+         self.accidental.semitones > arg.accidental.semitones) or \
          (self.altitude == arg.altitude and \
          self.accidental == arg.accidental and \
          self._deviation_numeric > arg._deviation_numeric)
@@ -85,7 +83,7 @@ class Pitch(_Abjad):
          raise ValueError
       return self.altitude < arg.altitude or \
          (self.altitude == arg.altitude and \
-         self.accidental.adjustment < arg.accidental.adjustment) or \
+         self.accidental.semitones < arg.accidental.semitones) or \
          (self.altitude == arg.altitude and \
          self.accidental == arg.accidental and \
          self._deviation_numeric < arg._deviation_numeric)
@@ -262,8 +260,8 @@ class Pitch(_Abjad):
                if self.accidental:
                   octave = 12 * (self.octave - 4)
                   pc = letter_to_pc(self.letter)
-                  adjustment = self.accidental.adjustment
-                  return octave + pc + adjustment
+                  semitones = self.accidental.semitones
+                  return octave + pc + semitones
          else:
             return None
       def fset(self, arg):

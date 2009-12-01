@@ -44,7 +44,8 @@ def number_letter_to_accidental_octave(number, letter):
    adjustment = number - nearest_neighbor
    
    ## find accidental string
-   accidental_string = Accidental.adjustmentToAccidentalString[adjustment]
+   #accidental_string = Accidental.adjustmentToAccidentalString[adjustment]
+   accidental_string = Accidental.semitones_to_accidental_string[adjustment]
    
    ## find octave
    octave = pitchtools_pitch_number_adjustment_to_octave(number, adjustment)
