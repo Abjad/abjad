@@ -6,6 +6,9 @@ class _Interval(object):
 
    ## OVERLOADS ##
 
+   def __hash__(self):
+      return hash(repr(self))
+
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
 

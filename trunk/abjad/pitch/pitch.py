@@ -69,6 +69,9 @@ class Pitch(_Abjad):
          self.accidental == arg.accidental and \
          self._deviation_numeric > arg._deviation_numeric)
 
+   def __hash__(self):
+      return hash(repr(self))
+
    def __le__(self, arg):
       if not isinstance(arg, Pitch):
          raise ValueError
@@ -280,6 +283,21 @@ class Pitch(_Abjad):
    def pc(self):
       '''Read-only pitch-class corresponding to pitch.
 
+      .. note:: 
+         deprecated. Use `pitch_class` instead.
+      '''
+      from abjad.tools import pitchtools
+      number = self.number
+      if number is not None:
+         return pitchtools.PitchClass(number % 12)
+      else:
+         return None
+      
+
+   @property
+   def pitch_class(self):
+      '''Read-only pitch-class corresponding to pitch.
+
       .. versionchanged:: 1.1.2
          now returns Abjad pitch-class instance instead of number.'''
       from abjad.tools import pitchtools
@@ -289,6 +307,7 @@ class Pitch(_Abjad):
       else:
          return None
       
+
    @property
    def ticks(self):
       '''Read-only European indicator of octave of pitch with

@@ -8,6 +8,10 @@ from HarmonicChromaticInterval import HarmonicChromaticInterval
 from HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
 from HarmonicDiatonicInterval import HarmonicDiatonicInterval
 from HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
+from IntervalClass import IntervalClass
+from IntervalClassSegment import IntervalClassSegment
+from IntervalClassSet import IntervalClassSet
+from IntervalClassVector import IntervalClassVector
 from MelodicChromaticInterval import MelodicChromaticInterval
 from MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
 from MelodicDiatonicInterval import MelodicDiatonicInterval
@@ -15,8 +19,11 @@ from MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from PitchArray import PitchArray
 from PitchClass import PitchClass
 from PitchClassColorMap import PitchClassColorMap
+from PitchClassSegment import PitchClassSegment
 from PitchClassSet import PitchClassSet
+from PitchClassVector import PitchClassVector
 from PitchRange import PitchRange
 from PitchSegment import PitchSegment
 from PitchSet import PitchSet
+from PitchVector import PitchVector
 from TwelveToneRow import TwelveToneRow

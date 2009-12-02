@@ -20,5 +20,5 @@ def has_duplicate_pitch(expr):
    '''
 
    pitches = get_pitches(expr)
-   pitch_set = PitchSet(expr)
+   pitch_set = PitchSet(pitches)
    return not len(pitches) == len(pitch_set)

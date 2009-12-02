@@ -14,21 +14,12 @@ class PitchSet(set):
    12-ET pitch set from American pitch-class theory.
    '''
 
-   def __init__(self, pitches):
-      try:
-         self.update(pitches)
-      except (TypeError, ValueError):
-         pitches = get_pitches(pitches)
-         self.update(pitches)
+   def __init__(self, pitch_tokens):
+      for token in pitch_tokens:
+         pitch = Pitch(token)
+         self.add(pitch)
 
    ## OVERLOADS ##
-
-   def __contains__(self, arg):
-      if isinstance(arg, Pitch):
-         for pc in self:
-            if pc == arg:
-               return True
-      return False
 
    def __eq__(self, arg):
       if isinstance(arg, PitchSet):
@@ -43,27 +34,31 @@ class PitchSet(set):
       return not self == arg
 
    def __repr__(self):
-      contents = list(self)
-      contents.sort( )
-      return '%s(%s)' % (self.__class__.__name__, contents)
+      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _format_string(self):
+      return ', '.join([str(pitch) for pitch in self.pitches])
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def pitch_numbers(self):
-      '''Read-only tuple of pitch numbers in pitch set.'''
-      pitch_numbers = [pitch.number for pitch in self]
-      pitch_numbers.sort( )
-      pitch_numbers = tuple(pitch_numbers)
-      return pitch_numbers
+   def pitches(self):
+      return list(sorted(self))
+
+   @property
+   def numbers(self):
+      return tuple(sorted([pitch.number for pitch in self]))
 
    ## PUBLIC METHODS ##
 
-   def add(self, arg):
-      '''Built-in add( ) extended with type- and value-checking.'''
-      pitch = Pitch(arg)
-      if pitch not in self:
-         set.add(self, pitch)
+#   def add(self, arg):
+#      '''Built-in add( ) extended with type- and value-checking.'''
+#      pitch = Pitch(arg)
+#      if pitch not in self:
+#         set.add(self, pitch)
 
    ## TODO: Implement pitch set (axis) inversion. ##
 
@@ -93,7 +88,7 @@ class PitchSet(set):
       return PitchSet(
          [transpose_by_chromatic_interval(pitch, interval) for pitch in self])
 
-   def update(self, arg):
-      '''Built-in update( ) extended with type- and value-checking.'''
-      for element in arg:
-         self.add(element)
+#   def update(self, arg):
+#      '''Built-in update( ) extended with type- and value-checking.'''
+#      for element in arg:
+#         self.add(element)

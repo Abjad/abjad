@@ -2,7 +2,8 @@ from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
-## TODO: Make PCSset and PitchSet both inherit from a shared base class. ##
+## TODO: Make PitchClassSet and PitchSet both inherit ##
+## from a shared base class. ##
 
 class PitchClassSet(set):
    '''.. versionadded:: 1.1.2
@@ -39,9 +40,13 @@ class PitchClassSet(set):
       return not self == arg
 
    def __repr__(self):
-      contents = list(self)
-      contents.sort( )
-      return '%s(%s)' % (self.__class__.__name__, contents)
+      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _format_string(self):
+      return ', '.join([str(x) for x in sorted(self)])
 
    ## PUBLIC ATTRIBUTES ##
 

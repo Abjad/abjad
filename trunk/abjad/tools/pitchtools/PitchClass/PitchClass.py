@@ -1,4 +1,5 @@
 from abjad.tools.pitchtools.get_pitch import get_pitch
+from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
 class PitchClass(object):
@@ -45,6 +46,9 @@ class PitchClass(object):
          raise TypeError
       return self.number > arg.number
 
+   def __hash__(self):
+      return hash(repr(self))
+
    def __le__(self, arg):
       if not isinstance(arg, PitchClass):
          raise TypeError
@@ -61,12 +65,17 @@ class PitchClass(object):
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self.number)
 
+   def __str__(self):
+      return '%s' % self.number
+
    def __sub__(self, arg):
       if not isinstance(arg, PitchClass):
          raise TypeError
-      new_number = (self.number - arg.number) % 12
-      return PitchClass(new_number)
-      
+      interval_class_number = abs(self.number - arg.number)
+      if 6 < interval_class_number:
+         interval_class_number = 12 - interval_class_number
+      return IntervalClass(interval_class_number)
+     
    ## PUBLIC ATTRIBUTES ##
 
    @property

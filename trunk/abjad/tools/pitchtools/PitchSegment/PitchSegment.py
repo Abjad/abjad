@@ -1,9 +1,23 @@
 from abjad.pitch import Pitch
 from abjad.tools import listtools
-from abjad.tools.pitchtools.HarmonicChromaticInterval import \
-   HarmonicChromaticInterval
-from abjad.tools.pitchtools.MelodicChromaticInterval import \
-   MelodicChromaticInterval
+from abjad.tools.pitchtools.HarmonicChromaticIntervalSegment import \
+   HarmonicChromaticIntervalSegment
+from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import \
+   MelodicChromaticIntervalSegment
+from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import \
+   HarmonicDiatonicIntervalSegment
+from abjad.tools.pitchtools.IntervalClassSegment import \
+   IntervalClassSegment
+from abjad.tools.pitchtools.IntervalClassSet import \
+   IntervalClassSet
+from abjad.tools.pitchtools.IntervalClassVector import \
+   IntervalClassVector
+from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import \
+   MelodicDiatonicIntervalSegment
+from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
+from abjad.tools.pitchtools.PitchClassVector import PitchClassVector
+from abjad.tools.pitchtools.PitchSet import PitchSet
+from abjad.tools.pitchtools.PitchVector import PitchVector
 
 
 class PitchSegment(list):
@@ -35,8 +49,9 @@ class PitchSegment(list):
 
    @property
    def harmonic_chromatic_interval_segment(self):
-      result = list(listtools.difference_series(self.pitch_numbers))
-      return [HarmonicChromaticInterval(n) for n in result]
+      result = list(listtools.difference_series(self.numbers))
+      result = [-x for x in result]
+      return HarmonicChromaticIntervalSegment(result)
 
    @property
    def harmonic_diatonic_interval_class_segment(self):
@@ -44,12 +59,32 @@ class PitchSegment(list):
 
    @property
    def harmonic_diatonic_interval_segment(self):
-      return [abs(x) for x in self.melodic_diatonic_interval_segment]
+      result = list(listtools.difference_series(self.pitches))
+      result = [-x for x in result]
+      return HarmonicDiatonicIntervalSegment(result)
 
    @property
    def inflection_point_count(self):
       return len(self.local_minima) + len(self.local_maxima)
 
+   @property
+   def interval_class_segment(self):
+      pitch_classes = self.pitch_class_segment
+      interval_classes = listtools.difference_series(pitch_classes)
+      return IntervalClassSegment(interval_classes)
+
+   @property
+   def interval_class_set(self):
+      pitch_classes = self.pitch_class_segment
+      interval_classes = listtools.difference_series(pitch_classes)
+      return IntervalClassSet(interval_classes)
+      
+   @property
+   def interval_class_vector(self):
+      pitch_classes = self.pitch_class_segment
+      interval_classes = listtools.difference_series(pitch_classes)
+      return IntervalClassVector(interval_classes)
+      
    @property
    def local_minima(self):
       result = [ ]
@@ -76,8 +111,8 @@ class PitchSegment(list):
 
    @property
    def melodic_chromatic_interval_segment(self):
-      result = list(listtools.difference_series(self.pitch_numbers))
-      return [MelodicChromaticInterval(n) for n in result]
+      result = list(listtools.difference_series(self.numbers))
+      return MelodicChromaticIntervalSegment(result)
 
    @property
    def melodic_diatonic_interval_class_segment(self):
@@ -85,12 +120,35 @@ class PitchSegment(list):
 
    @property
    def melodic_diatonic_interval_segment(self):
-      melodic_diatonic_intervals = [ ]
-      for left_pitch, right_pitch in listtools.pairwise(self):
-         melodic_diatonic_interval = left_pitch - right_pitch
-         melodic_diatonic_intervals.append(melodic_diatonic_interval)
-      return melodic_diatonic_intervals
+      result = list(listtools.difference_series(self.pitches))
+      result = [-x for x in result]
+      return MelodicDiatonicIntervalSegment(result)
 
    @property
-   def pitch_numbers(self):
+   def numbers(self):
       return [pitch.number for pitch in self]
+
+   @property
+   def pitch_class_segment(self):
+      from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
+      return PitchClassSegment([pitch.pitch_class for pitch in self])
+
+   @property
+   def pitch_class_set(self):
+      return PitchClassSet([pitch.pitch_class for pitch in self])
+
+   @property
+   def pitch_class_vector(self):
+      return PitchClassVector([pitch.pitch_class for pitch in self])
+
+   @property
+   def pitch_set(self):
+      return PitchSet(self[:])
+
+   @property
+   def pitch_vector(self):
+      return PitchVector(self.pitches)
+
+   @property
+   def pitches(self):
+      return self[:]

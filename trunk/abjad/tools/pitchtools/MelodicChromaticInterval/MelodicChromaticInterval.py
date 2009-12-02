@@ -44,6 +44,9 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
             'can only compare melodic intervals of same direction.')
       return abs(self.interval_number) > abs(arg.interval_number)
 
+   def __hash__(self):
+      return hash(repr(self))
+
    def __le__(self, arg):
       if not isinstance(arg, MelodicChromaticInterval):
          raise TypeError('%s must be melodic chromatic interval.' % arg)
@@ -63,6 +66,18 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
    def __neg__(self):
       return MelodicChromaticInterval(-self._interval_number)
 
+   def __repr__(self):
+      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+
+   def __str__(self):
+      return self._format_string
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _format_string(self):
+      return '%s%s' % (self._direction_symbol, abs(self.number))
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -77,3 +92,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
    @property
    def interval_class(self):
       return self.direction_number * (abs(self.interval_number) % 12)
+
+   @property
+   def number(self):
+      return self.interval_number

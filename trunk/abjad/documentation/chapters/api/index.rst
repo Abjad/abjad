@@ -31,6 +31,10 @@ Classes
    tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
    harmonic/natural
    tools/lilytools/HeaderBlock
+   tools/pitchtools/IntervalClass/IntervalClass
+   tools/pitchtools/IntervalClassSegment/IntervalClassSegment
+   tools/pitchtools/IntervalClassSet/IntervalClassSet
+   tools/pitchtools/IntervalClassVector/IntervalClassVector
    staff/invisiblestaff
    key_signature/key_signature
    tools/lilytools/LayoutBlock
@@ -54,10 +58,13 @@ Classes
    tools/pitchtools/PitchArray/PitchArrayRow/PitchArrayRow
    tools/pitchtools/PitchClass/PitchClass
    tools/pitchtools/PitchClassColorMap/PitchClassColorMap
+   tools/pitchtools/PitchClassSegment/PitchClassSegment
    tools/pitchtools/PitchClassSet/PitchClassSet
+   tools/pitchtools/PitchClassVector/PitchClassVector
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/PitchSegment/PitchSegment
    tools/pitchtools/PitchSet/PitchSet
+   tools/pitchtools/PitchVector/PitchVector
    tools/sievetools/rc
    tools/sievetools/rcexpression
    rational/rational
