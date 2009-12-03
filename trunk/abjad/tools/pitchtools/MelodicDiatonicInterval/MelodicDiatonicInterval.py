@@ -1,6 +1,12 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
+from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
+   HarmonicDiatonicInterval
+from abjad.tools.pitchtools.HarmonicChromaticInterval import \
+   HarmonicChromaticInterval
+from abjad.tools.pitchtools.MelodicChromaticInterval import \
+   MelodicChromaticInterval
 
 
 class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
@@ -62,11 +68,23 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
          return 'ascending'
 
    @property
+   def harmonic_chromatic_interval(self):
+      return HarmonicChromaticInterval(self)
+
+   @property
+   def harmonic_diatonic_interval(self):
+      return HarmonicDiatonicInterval(self)
+
+   @property
    def interval_class(self):
       interval_class = _DiatonicInterval.interval_class.fget(self)
       if self.interval_number == 1:
          return 1
       return self.direction_number * interval_class
+
+   @property
+   def melodic_chromatic_interval(self):
+      return MelodicChromaticInterval(self)
 
    @property
    def semitones(self):
