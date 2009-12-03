@@ -535,6 +535,7 @@ listtools
    tools/listtools/all_restricted_growth_functions_of_length
    tools/listtools/all_set_partitions
    tools/listtools/arithmetic_mean
+   tools/listtools/contiguous_sublists
    tools/listtools/cumulative_products
    tools/listtools/cumulative_sums
    tools/listtools/cumulative_sums_zero
