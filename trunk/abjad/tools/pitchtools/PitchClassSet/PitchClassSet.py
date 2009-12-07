@@ -1,5 +1,8 @@
-from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
+from abjad.tools import listtools
+from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
+from abjad.tools.pitchtools.IntervalClassVector import IntervalClassVector
 from abjad.tools.pitchtools.PitchClass import PitchClass
+from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 
 
 ## TODO: Make PitchClassSet and PitchSet both inherit ##
@@ -48,6 +51,26 @@ class PitchClassSet(set):
       return ', '.join([str(x) for x in sorted(self)])
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def interval_class_set(self):
+      interval_class_set = IntervalClassSet([ ])
+      for first_pc, second_pc in listtools.get_unordered_pairs(self):
+         interval_class = first_pc - second_pc
+         interval_class_set.add(interval_class)
+      return interval_class_set
+
+   @property
+   def interval_class_vector(self):
+      interval_classes = [ ]
+      for first_pc, second_pc in listtools.get_unordered_pairs(self):
+         interval_class = first_pc - second_pc
+         interval_classes.append(interval_class)
+      return IntervalClassVector(interval_classes)
+
+   @property
+   def pitch_classes(self):
+      return tuple(sorted(self))
 
    @property
    def prime_form(self):

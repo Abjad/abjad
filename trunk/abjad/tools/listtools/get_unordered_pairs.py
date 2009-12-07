@@ -1,5 +1,5 @@
 def get_unordered_pairs(l):
-   '''Return an ordered list of unordered pairs in *l*.
+   '''Return ordered list of unordered pairs in `l`.
    
    ::
    
@@ -25,9 +25,10 @@ def get_unordered_pairs(l):
    '''
 
    result = [ ]
+   l_copy = list(l)
 
    for i, x in enumerate(l):
-      for y in l[i+1:]:
+      for y in l_copy[i+1:]:
          result.append(set([x, y]))
 
    return result
