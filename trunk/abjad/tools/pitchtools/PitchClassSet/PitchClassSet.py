@@ -88,6 +88,18 @@ class PitchClassSet(set):
       '''Invert all pcs in self.'''
       return PitchClassSet([pc.invert( ) for pc in self])
 
+   def is_transposed_subset(self, pcset):
+      for n in range(12):
+         if self.transpose(n).issubset(pcset):
+            return True
+      return False
+
+   def is_transposed_superset(self, pcset):
+      for n in range(12):
+         if self.transpose(n).issuperset(pcset):
+            return True
+      return False
+
    def multiply(self, n):
       '''Transpose all pcs in self by n.'''
       return PitchClassSet([pc.multiply(n) for pc in self])
