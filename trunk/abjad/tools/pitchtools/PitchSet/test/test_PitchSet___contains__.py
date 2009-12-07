@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_PitchSet___contains___01( ):
+def test_PitchSet___contains___01( ):
    '''Pitch set containment works as expected.'''
 
    pset = pitchtools.PitchSet([12, 14, 18, 19])

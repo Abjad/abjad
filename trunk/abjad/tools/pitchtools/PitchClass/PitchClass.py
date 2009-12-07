@@ -1,5 +1,7 @@
 from abjad.tools.pitchtools.get_pitch import get_pitch
 from abjad.tools.pitchtools.IntervalClass import IntervalClass
+from abjad.tools.pitchtools.MelodicChromaticInterval import \
+   MelodicChromaticInterval
 
 
 class PitchClass(object):
@@ -26,15 +28,15 @@ class PitchClass(object):
    ## OVERLOADS ##
 
    def __add__(self, arg):
-      if not isinstance(arg, PitchClass):
-         raise TypeError
-      new_number = (self.number + arg.number) % 12
-      return PitchClass(new_number)
+      '''Addition defined against melodic chromatic intervals only.'''
+      if not isinstance(arg, MelodicChromaticInterval):
+         raise TypeError('must be melodic chromatic interval.')
+      return PitchClass(self.number + arg.number % 12)
       
    def __eq__(self, arg):
-      if not isinstance(arg, PitchClass):
-         raise TypeError
-      return self.number == arg.number
+      if isinstance(arg, PitchClass):
+         return self.number == arg.number
+      return False
 
    def __ge__(self, arg):
       if not isinstance(arg, PitchClass):
@@ -69,12 +71,17 @@ class PitchClass(object):
       return '%s' % self.number
 
    def __sub__(self, arg):
-      if not isinstance(arg, PitchClass):
-         raise TypeError
-      interval_class_number = abs(self.number - arg.number)
-      if 6 < interval_class_number:
-         interval_class_number = 12 - interval_class_number
-      return IntervalClass(interval_class_number)
+      '''Subtraction defined against both melodic chromatic intevals
+      and against other pitch classes.'''
+      if isinstance(arg, PitchClass):
+         interval_class_number = abs(self.number - arg.number)
+         if 6 < interval_class_number:
+            interval_class_number = 12 - interval_class_number
+         return IntervalClass(interval_class_number)
+      elif isinstance(arg, IntervalClass):
+         return PitchClass(self.number - arg.number % 12)
+      else:
+         raise TypeError('must be pitch class or interval class.')
      
    ## PUBLIC ATTRIBUTES ##
 

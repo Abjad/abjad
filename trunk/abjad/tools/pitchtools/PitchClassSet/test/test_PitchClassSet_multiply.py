@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_PitchClassSet_multiply_01( ):
+def test_PitchClassSet_multiply_01( ):
 
    assert pitchtools.PitchClassSet([0, 1, 5]).multiply(5) == \
       pitchtools.PitchClassSet([0, 1, 5])

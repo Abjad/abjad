@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_PitchClassSet_transpose_01( ):
+def test_PitchClassSet_transpose_01( ):
 
    pcset = pitchtools.PitchClassSet([1, 2, 5])
    assert pcset.transpose(0) == pitchtools.PitchClassSet([1, 2, 5])

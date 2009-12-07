@@ -5,7 +5,7 @@ def test_IntervalClass___init___01( ):
    '''Init from zero.'''
 
 
-def test_IntervalClass___init__02( ):
+def test_IntervalClass___init___02( ):
    '''Init from positive integer.'''
 
    ic = pitchtools.IntervalClass(1)
@@ -27,7 +27,7 @@ def test_IntervalClass___init__02( ):
    assert ic.number == 6
 
 
-def test_IntervalClass___init__03( ):
+def test_IntervalClass___init___03( ):
    '''Init from positive float.'''
 
    ic = pitchtools.IntervalClass(0.5)

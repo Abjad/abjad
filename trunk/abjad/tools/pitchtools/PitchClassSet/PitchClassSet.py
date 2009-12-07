@@ -20,13 +20,6 @@ class PitchClassSet(set):
 
    ## OVERLOADS ##
 
-   def __contains__(self, arg):
-      if isinstance(arg, PitchClass):
-         for pc in self:
-            if pc == arg:
-               return True
-      return False
-
    def __eq__(self, arg):
       if isinstance(arg, PitchClassSet):
          for element in arg:
@@ -36,11 +29,17 @@ class PitchClassSet(set):
             return True
       return False
 
+   def __hash__(self):
+      return hash(repr(self))
+
    def __ne__(self, arg):
       return not self == arg
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
+   
+   def __str__(self):
+      return '{%s}' % self._format_string
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -58,21 +57,12 @@ class PitchClassSet(set):
    ## PUBLIC METHODS ##
    
    def add(self, arg):
-      '''Built-in add( ) extended with type- and value-checking.'''
-      if isinstance(arg, PitchClass):
-         candidate_pc = arg
-      elif isinstance(arg, (int, float, long)):
-         if 0 <= arg < 12:
-            candidate_pc = PitchClass(arg)
-         else:
-            raise ValueError
-      else:
-         raise TypeError
-      if candidate_pc not in self:
-         set.add(self, candidate_pc)
+      '''Custom add to allow both pitch-classes and numbers.'''
+      pitch_class = PitchClass(arg)
+      set.add(self, pitch_class)
 
    def invert(self):
-      '''Transpose all pcs in self by n.'''
+      '''Invert all pcs in self.'''
       return PitchClassSet([pc.invert( ) for pc in self])
 
    def multiply(self, n):
@@ -84,6 +74,6 @@ class PitchClassSet(set):
       return PitchClassSet([pc.transpose(n) for pc in self])
 
    def update(self, arg):
-      '''Build-in update( ) extended with type- and value-checking.'''
+      '''Custom update to allow both pitch-classes and numbers.'''
       for element in arg:
          self.add(element)

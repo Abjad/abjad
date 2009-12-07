@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_label_melodic_chromatic_intervals_01( ):
+def test_label_melodic_counterpoint_intervals_01( ):
 
    staff = Staff(construct.scale(8))
    label.melodic_chromatic_intervals(staff)
@@ -23,7 +23,7 @@ def test_label_melodic_chromatic_intervals_01( ):
    assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { 2 }\n\td'8 ^ \\markup { 2 }\n\te'8 ^ \\markup { 1 }\n\tf'8 ^ \\markup { 2 }\n\tg'8 ^ \\markup { 2 }\n\ta'8 ^ \\markup { 2 }\n\tb'8 ^ \\markup { 1 }\n\tc''8\n}"
 
 
-def test_label_melodic_chromatic_intervals_02( ):
+def test_label_melodic_counterpoint_intervals_02( ):
 
    staff = Staff(construct.notes([0, 13, 11, 8, 2, 3, 9, 10, 6, 5], [Rational(1, 8)]))
    label.melodic_chromatic_intervals(staff)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_PitchClass_invert_01( ):
+def test_PitchClass_invert_01( ):
    
    assert pitchtools.PitchClass(0).invert( ) == pitchtools.PitchClass(0)
    assert pitchtools.PitchClass(1).invert( ) == pitchtools.PitchClass(11)

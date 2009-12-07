@@ -1,4 +1,5 @@
 from abjad.tools.pitchtools.PitchClass import PitchClass
+from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 
 
 class PitchClassSegment(list):
@@ -16,6 +17,10 @@ class PitchClassSegment(list):
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
+   def __str__(self):
+      return '<%s>' % self._format_string
+      
+
    ## PRIVATE ATTRIBUTES ##
 
    @property
@@ -28,3 +33,11 @@ class PitchClassSegment(list):
    def interval_class_segment(self):
       interval_classes = list(listtools.difference_series(self.pitch_classes))
       return IntervalClassSegment(interval_classes)
+
+   @property
+   def pitch_class_set(self):
+      return PitchClassSet(self)
+
+   @property
+   def pitch_classes(self):
+      return tuple(self[:])
