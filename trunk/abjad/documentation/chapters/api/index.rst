@@ -27,6 +27,7 @@ Classes
    staffgroup/grandstaff
    tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
    tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
+   tools/pitchtools/HarmonicChromaticIntervalSet/HarmonicChromaticIntervalSet
    tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
    tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
    harmonic/natural
@@ -43,6 +44,7 @@ Classes
    markup/markup
    tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
    tools/pitchtools/MelodicChromaticIntervalSegment/MelodicChromaticIntervalSegment
+   tools/pitchtools/MelodicChromaticIntervalSet/MelodicChromaticIntervalSet
    tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
    meter/meter

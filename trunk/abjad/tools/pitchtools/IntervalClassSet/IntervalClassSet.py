@@ -8,7 +8,7 @@ class IntervalClassSet(set):
    '''
 
    def __init__(self, interval_class_tokens):
-      self._interval_classes = [ ]
+      self._interval_classes = [ ] ## can this line be deleted?
       for token in interval_class_tokens:
          interval_class = IntervalClass(token)
          self.add(interval_class)

@@ -42,3 +42,7 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
    @property
    def interval_class(self):
       return self.interval_number % 12
+
+   @property
+   def number(self):
+      return self.interval_number

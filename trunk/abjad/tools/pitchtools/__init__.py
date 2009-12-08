@@ -6,6 +6,7 @@ from Accidental import Accidental
 from ChromaticIntervalVector import ChromaticIntervalVector
 from HarmonicChromaticInterval import HarmonicChromaticInterval
 from HarmonicChromaticIntervalSegment import HarmonicChromaticIntervalSegment
+from HarmonicChromaticIntervalSet import HarmonicChromaticIntervalSet
 from HarmonicDiatonicInterval import HarmonicDiatonicInterval
 from HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
 from IntervalClass import IntervalClass
@@ -14,6 +15,7 @@ from IntervalClassSet import IntervalClassSet
 from IntervalClassVector import IntervalClassVector
 from MelodicChromaticInterval import MelodicChromaticInterval
 from MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
+from MelodicChromaticIntervalSet import MelodicChromaticIntervalSet
 from MelodicDiatonicInterval import MelodicDiatonicInterval
 from MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from PitchArray import PitchArray
