@@ -5,19 +5,25 @@ from abjad.tools.scoretools.make_piano_staff import make_piano_staff
 
 
 def desordre_build(pitches):
-   piano = make_piano_staff( )[0]
-   TempoSpanner(piano, tempotools.TempoIndication(Rational(1, 8), 480))
-   #piano[1].formatter.opening.append(r'\key b \major')
-   piano[0][1].key_signature.forced = KeySignature('b', 'major')
-   for i, hand in enumerate(pitches):
-      seq = multimeasure_build(hand)
-      #piano[i].extend(seq)
-      piano[0][i].extend(seq)
+   '''Returns a complete PianoStaff with Ligeti music!'''
+   assert len(pitches) == 2
+   #piano = make_piano_staff( )[0]
+   piano = PianoStaff([ ])
+   ## set tempo indication...
+   TempoSpanner(piano, tempotools.TempoIndication(Rational(1, 1), 60))
+   ## build music...
+   for hand in pitches:
+      seq = staff_build(hand)
+      piano.append(seq)
+   ## set cleff and key to lower staff...
+   piano[1].clef.forced = Clef('bass')
+   piano[1].key_signature.forced = KeySignature('b', 'major')
    return piano
 
 
-def multimeasure_build(pitches):
-   result = [ ]
+def staff_build(pitches):
+   '''Returns a Staff containing DynamicMeasures.'''
+   result = Staff([ ])
    for seq in pitches:
       measure = measure_build(seq)
       result.append(measure)
@@ -25,16 +31,18 @@ def multimeasure_build(pitches):
 
 
 def measure_build(pitches):
+   '''Returns a DynamicMeasure containing Ligeti "cells".'''
    result = DynamicMeasure([ ])
    for seq in pitches:
-      result.append(desordre_run(seq))
-   ## make denominator 4
+      result.append(desordre_cell(seq))
+   ## make denominator 8
    if result.meter.effective.denominator == 1:
-      result.denominator = 4
+      result.denominator = 8
    return result
 
 
-def desordre_run(pitches):
+def desordre_cell(pitches):
+   '''Returns a parallel container encapsulating a Ligeti "cell".'''
    Pitch.accidental_spelling = 'sharps'
    notes = [Note(p, (1, 8)) for p in pitches]
    Beam(notes)

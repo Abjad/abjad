@@ -13,7 +13,7 @@ s = Statement(text, code)
 statements.append(s)
 
 
-text = "Notice how the first several bars of the piece are made up of a single pattern, a two voice nucleus comprised of an octave in the upper voice and a run of 1/8th notes in the lower voice. Let's call this a 'Ligeti class'. The pitch sequences in the piece, however, are less redundant."
+text = "Notice how the first several bars of the piece are made up of a single pattern, a two voice nucleus comprised of an octave in the upper voice and a run of 1/8th notes in the lower voice. Let's call this a 'Ligeti cell'. The pitch sequences in the piece, however, are less redundant."
 code = [ ]
 s = Statement(text, code)
 statements.append(s)
@@ -32,7 +32,7 @@ statements.append(s)
 
 
 text = "'pitches' is a depth-2 list. pitches[i] are all the pitches in the i'th hand, pitches[i][j] are the pitches in the j'th measure, and pitces[i][j][k] are the pitches making up the k'th 'Ligeti object'. \nWe construct a single 'Ligeti object' like so:"
-code = 'run = desordre_run(pitches[0][0][0])'
+code = 'run = desordre_cell(pitches[0][0][0])'
 s = Statement(text, code)
 statements.append(s)
 
@@ -55,7 +55,7 @@ s = Statement(text, code)
 statements.append(s)
 
 
-text = "The measure builder can make any number of 'Ligeti classes'."
+text = "The measure builder can make any number of 'Ligeti cells'."
 code = 'measure = measure_build([[0,2], [0,2,0,2], [0,2,0,2,0]])'
 s = Statement(text, code)
 statements.append(s)
@@ -67,14 +67,14 @@ s = Statement(text, code)
 statements.append(s)
 
 
-text = "Now let's create several measures at a time using the multimeasure_build..."
-code = 'multimeasures = multimeasure_build(pitches[0])'
+text = "Now let's create several measures at a time using the staff_build..."
+code = 'multimeasures = staff_build(pitches[0])'
 s = Statement(text, code)
 statements.append(s)
 
 
 text = "Let's display what we have created."
-code = "show(Staff(multimeasures), 'tirnaveni')"
+code = "show(multimeasures, 'tirnaveni')"
 s = Statement(text, code)
 statements.append(s)
 
