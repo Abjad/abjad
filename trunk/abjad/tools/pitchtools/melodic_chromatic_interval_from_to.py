@@ -3,14 +3,14 @@ from abjad.tools.pitchtools.MelodicChromaticInterval import \
 from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
-def chromatic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
+def melodic_chromatic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
    '''.. versionadded:: 1.1.2
 
-   Return chromatic interval from `pitch_carrier_1` to
+   Return melodic chromatic interval from `pitch_carrier_1` to
    `pitch_carrier_2`. ::
 
-      abjad> pitchtools.chromatic_interval_from_to(Pitch(12), Pitch(10))
-      ChromaticInterval(-2)
+      abjad> pitchtools.melodic_chromatic_interval_from_to(Pitch(12), Pitch(10))
+      MelodicChromaticInterval(-2)
    '''
 
    pitch_1 = get_pitch(pitch_carrier_1)

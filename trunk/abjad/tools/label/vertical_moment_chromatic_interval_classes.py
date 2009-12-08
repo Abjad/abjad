@@ -47,7 +47,7 @@ def vertical_moment_chromatic_interval_classes(expr):
       upper_notes = notes[:-1]
       chromatic_intervals = [ ]
       for upper_note in upper_notes:
-         chromatic_interval = pitchtools.chromatic_interval_from_to(
+         chromatic_interval = pitchtools.melodic_chromatic_interval_from_to(
             bass_note.pitch, upper_note.pitch)
          chromatic_intervals.append(chromatic_interval)    
       intervals = [x.interval_class for x in chromatic_intervals]
