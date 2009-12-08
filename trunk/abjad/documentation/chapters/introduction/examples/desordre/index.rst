@@ -124,8 +124,75 @@ We define a function to create a measure from a list of lists of numbers::
 
 
 The function is very simple. It simply creates a DynamicMeasure and then populates it with *cells* that are created internally with the function previously defined. The function takes a list `pitches` which is actually a list of lists of pitches (e.g., ``[[1,2,3], [2,3,4]]``. The list of lists of pitches is iterated to create each of the *cells* to be appended to the DynamicMeasures. We could have defined the function to take ready made *cells* directly, but we are building the hierarchy of functions so that we can pass simple lists of lists of numbers to generate the full structure.
+To construct a Ligeti measure we would call the function like so:
+
+::
+
+	abjad> measure = measure_build([[0,4,7], [0,4,7,9], [4,7,9,11]])
+	abjad> show(Staff([measure]))
+
+.. image:: images/desordre_measure.png
 
 
+The staff
+---------
+
+Now we move up to the next level, the staff::
+
+   def staff_build(pitches):
+      '''Returns a Staff containing DynamicMeasures.'''
+      result = Staff([ ])
+      for seq in pitches:
+         measure = measure_build(seq)
+         result.append(measure)
+      return result
+
+The function again takes a plain list as argument. The list must be a list of lists (for measures) of lists (for cells) of pitches. The function simply constructs the Ligeti measures internally by calling our previously defined function and puts them inside a Staff.
+As with measures, we can now create full measure sequences with this new function:
+
+::
+
+	abjad> pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
+	abjad> staff = staff_build(pitches)
+	abjad> show(staff)
+
+.. image:: images/desordre_staff.png
+
+The whole
+---------
+
+Finally a function that will generate the whole opening section of the piece *Désordre*::
+
+   def desordre_build(pitches):
+      '''Returns a complete PianoStaff with Ligeti music!'''
+      assert len(pitches) == 2
+      piano = PianoStaff([ ])
+      ## build the music...
+      for hand in pitches:
+         seq = staff_build(hand)
+         piano.append(seq)
+      ## set clef and key signature to left hand staff...
+      piano[1].clef.forced = Clef('bass')
+      piano[1].key_signature.forced = KeySignature('b', 'major')
+      return piano
 
 
+The function creates a PianoStaff, constructs Staves with Ligeti music and appends these to the empty PianoStaff. Finally it sets the clef and key signature of the lower staff to match the original score.
+The argument of the function is a list of length 2, depth 3. The first element in the list corresponds to the upper staff, the second to the lower staff. 
 
+The final result:
+
+::
+
+	abjad> top = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]], [[2, 4, 5, 7, 9], [0, 5, 7]], [[-3, -1, 0, 2, 4, 5, 7]], [[-3, 2, 4], [-3, 2, 4, 5, 7]], [[2, 5, 7], [-3, 9, 11, 12, 14]], [[4, 5, 7, 9, 11], [2, 4, 5]], [[-5, 4, 5, 7, 9, 11, 12]], [[2, 9, 11], [2, 9, 11, 12, 14]]]
+	abjad> bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
+	abjad> 
+	abjad> desordre = desordre_build([top, bottom])
+	abjad> show(desordre)
+
+.. image:: images/desordre_final.png
+
+Now that we have the redundant aspect of the piece compactly expressed and encapsulated, we can play around with it by changing the sequence of pitches.
+
+.. note::
+   In order for each staff to carry its own sequence of independent measure changes, LilyPond requires some special setting up prior to rendering. Specifically, one must move the *Timing_translator* from the score level to the level of staves. In this example we used the 'tirnaveni' template, which is configured to do just that. You may want to study this template (in the "templates" directory of the abjad distribution). Refer to the LilyPond documentation on `Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_ to learn all about how this works. 
