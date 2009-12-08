@@ -434,6 +434,7 @@ iterate
    tools/iterate/get_vertical_moment_at_prolated_offset_in
    tools/iterate/get_vertical_moment_starting_with
    tools/iterate/grace
+   tools/iterate/leaf_pairs_forward_in
    tools/iterate/leaves_backward_in
    tools/iterate/leaves_forward_in
    tools/iterate/measure_next
@@ -446,6 +447,7 @@ iterate
    tools/iterate/naive_forward_in
    tools/iterate/namesakes_backward_from
    tools/iterate/namesakes_forward_from
+   tools/iterate/pitch_pairs_forward_in
    tools/iterate/thread_backward_from
    tools/iterate/thread_backward_in
    tools/iterate/thread_forward_from

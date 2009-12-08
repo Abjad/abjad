@@ -77,7 +77,7 @@ def get_pitches(expr):
          pitches.sort( )
          pitches = tuple(pitches)
          return pitches
-      elif isinstance(expr, (list, tuple)):
+      elif isinstance(expr, (list, tuple, set)):
          for x in expr:
             result.extend(get_pitches(x))
       else:
