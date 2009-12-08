@@ -21,6 +21,7 @@ Start here
    :maxdepth: 1
 
    chapters/introduction/abjad/index
+   chapters/introduction/examples/desordre/index
    chapters/introduction/examples/bartok/index
    chapters/introduction/examples/slicing/index
    chapters/introduction/download/index

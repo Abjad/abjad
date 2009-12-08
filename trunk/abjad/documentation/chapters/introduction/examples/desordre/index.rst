@@ -1,0 +1,131 @@
+Ligeti's *Désordre*: modeling music structure by exploiting redundancy
+======================================================================
+
+This example demonstrates the power of exploiting redundancy to model musical structure. The piece that concerns us here is Ligeti's *Désordre*: the first piano study from Book I. Specifically, we will focus on modeling the first section of the piece:
+
+.. image :: images/desordre.jpg
+
+
+The redundancy is immediately evident in the repeating pattern found in both staves. The pattern is hierarchical. At the smallest level we have what we will here call a *cell*: 
+
+.. image :: images/desordre_cell.png
+
+There are two of these cells per measure. Notice that the cells are strictly contained within the measure (i.e., there are no cells crossing a bar line). So, the next level in the hierarchy is the measure.  Notice that the measure sizes (the meters) change and that these changes occur independently for each staff, so that each staff carries it's own sequence of measures. Thus, the staff is the next level in the hierarchy.
+Finally there's the piano staff, which is composed of the right hand and left hand staves.
+
+In what follows we will model this structure in this order (*cell*, measure, staff, piano staff), from bottom to top.
+
+
+The *cell*
+----------
+
+Before plunging into the code, observe the following characteristic of the *cell*:
+
+1. It is composed of two layers: the top one which is an octave "chord" and the bottom one which is a straight eighth note run. 
+2. The total duration of the *cell* can vary, and is always the sum of the eight note funs.
+3. The eight note runs are always stem down while the octave "chord" is always stem up.
+4. The eight note runs are always beamed together and slurred, and the first two notes always have the dynamic markings 'f' 'p'. 
+
+The two "layers" of the *cell* we will model with two Voices inside a parallel Container. The top Voice will hold the octave "chord" while the lower Voice will hold the eighth note run. First the eighth notes:
+
+::
+
+	abjad> pitches = [1,2,3]
+	abjad> notes = construct.notes(pitches, [(1, 8)])
+	abjad> Beam(notes)
+	abjad> Slur(notes)
+	abjad> notes[0].dynamics.mark = 'f'
+	abjad> notes[1].dynamics.mark = 'p'
+
+::
+
+	abjad> voice_lower = Voice(notes)
+	abjad> voice_lower.name = 'rh_lower'
+	abjad> voice_lower.voice.number = 2
+
+
+The notes belonging to the eighth note run are first beamed and slurred. Then we add the dynamic marks to the first two notes, and finally we put them inside a Voice. After naming the voice we number it ``2`` so that the stems of the notes point down.
+
+Now we construct the octave:
+
+::
+
+	abjad> import math
+	abjad> n = int(math.ceil(len(pitches) / 2.))
+	abjad> chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
+	abjad> chord.articulations.append('>')
+
+::
+
+	abjad> voice_higher = Voice([chord])
+	abjad> voice_higher.name = 'rh_higher'
+	abjad> voice_higher.voice.number = 1
+
+
+The duration of the chord is half the duration of the running eighth notes if the duration of the running notes is divisible by two. Otherwise the duration of the chord is the next integer greater than this half.
+We add the articulation marking and finally ad the Chord to a Voice, to which we set the number to 1, forcing the stem to always point up.
+
+Finally we combine the two voices in a parallel Container:
+
+::
+
+	abjad> p = Container([voice_lower, voice_higher])
+	abjad> p.parallel = True
+
+
+This results in the complete *Désordre* *cell*:
+
+.. image:: images/desordre_cell.png
+
+Because this *cell* appears over and over again, we want to reuse this code to generate any number of these *cells*. We here encapsulate it in a function that will take only a list of pitches::
+
+   def desordre_cell(pitches):
+      '''The function constructs and returns a *Désordre cell*.
+         - `pitches` is a list of numbers or, more generally, pitch tokens.
+      '''
+      notes = [Note(p, (1, 8)) for p in pitches]
+      Beam(notes)
+      Slur(notes)
+      notes[0].dynamics.mark = 'f'
+      notes[1].dynamics.mark = 'p'
+      v_lower = Voice(notes)
+      v_lower.name = 'rh_lower'
+      v_lower.voice.number = 2
+
+      n = int(math.ceil(len(pitches) / 2.))
+      chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
+      chord.articulations.append('>')
+      v_higher = Voice([chord])
+      v_higher.name = 'rh_higher'
+      v_higher.voice.number = 1
+      p = Container([v_lower, v_higher])
+      p.parallel = True
+      ## make all 1/8 beats breakable
+      for n in v_lower.leaves[:-1]:
+         n.bar_line.kind = ''
+      return p
+
+
+Now we can call this function to create any number of *cells*. That was actually the hardest part of reconstructing the opening of Ligeti's *Désordre*. Because the repetition of patters occurs also at the level of measures and staves, we will now define functions to create these other higher level constructs.
+
+The measure 
+-----------
+
+We define a function to create a measure from a list of lists of numbers::
+
+   def measure_build(pitches):
+      '''Constructs a measure composed of *Désordre cells*. 
+         - `pitches` is a list of lists of number (e.g., [[1,2,3], [2,3,4]])
+      The function returns a DynamicMeasure.
+      '''
+      result = DynamicMeasure([ ])
+      for seq in pitches:
+         result.append(desordre_cell(seq))
+
+
+The function is very simple. It simply creates a DynamicMeasure and then populates it with *cells* that are created internally with the function previously defined. The function takes a list `pitches` which is actually a list of lists of pitches (e.g., ``[[1,2,3], [2,3,4]]``. The list of lists of pitches is iterated to create each of the *cells* to be appended to the DynamicMeasures. We could have defined the function to take ready made *cells* directly, but we are building the hierarchy of functions so that we can pass simple lists of lists of numbers to generate the full structure.
+
+
+
+
+
