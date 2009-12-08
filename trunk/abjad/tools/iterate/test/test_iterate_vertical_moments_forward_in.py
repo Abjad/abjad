@@ -53,12 +53,12 @@ def test_iterate_vertical_moments_forward_in_01( ):
    treble = piano_staff[0].leaves
    bass = piano_staff[1].leaves
 
-   assert moments[0].leaves == (tuplet[0], treble[0], bass[0])
-   assert moments[1].leaves == (tuplet[0], treble[0], bass[1])
-   assert moments[2].leaves == (tuplet[1], treble[0], bass[1])
-   assert moments[3].leaves == (tuplet[1], treble[1], bass[2])
-   assert moments[4].leaves == (tuplet[2], treble[1], bass[2])
-   assert moments[5].leaves == (tuplet[2], treble[1], bass[3])
+   assert set(moments[0].leaves) == set((tuplet[0], treble[0], bass[0]))
+   assert set(moments[1].leaves) == set((tuplet[0], treble[0], bass[1]))
+   assert set(moments[2].leaves) == set((tuplet[1], treble[0], bass[1]))
+   assert set(moments[3].leaves) == set((tuplet[1], treble[1], bass[2]))
+   assert set(moments[4].leaves) == set((tuplet[2], treble[1], bass[2]))
+   assert set(moments[5].leaves) == set((tuplet[2], treble[1], bass[3]))
 
 
 def test_iterate_vertical_moments_forward_in_02( ):
@@ -87,7 +87,7 @@ def test_iterate_vertical_moments_forward_in_02( ):
    treble = piano_staff[0].leaves
    bass = piano_staff[1].leaves
 
-   assert moments[0].leaves == (treble[0], bass[0])
-   assert moments[1].leaves == (treble[0], bass[1])
-   assert moments[2].leaves == (treble[1], bass[2])
-   assert moments[3].leaves == (treble[1], bass[3])
+   assert set(moments[0].leaves) == set((treble[0], bass[0]))
+   assert set(moments[1].leaves) == set((treble[0], bass[1]))
+   assert set(moments[2].leaves) == set((treble[1], bass[2]))
+   assert set(moments[3].leaves) == set((treble[1], bass[3]))

@@ -40,7 +40,7 @@ def test_label_vertical_moment_interval_class_vectors_02( ):
    interval class vector. Top for 12-ET, bottom for 24-ET.'''
 
    chord = Chord([-2, -1.5, 9], (1, 4))
-   label.vertical_moment_interval_class_vectors([chord])
+   label.vertical_moment_interval_class_vectors(chord)
 
    r'''
    <bf bqf a'>4 _ \markup { \tiny { \column { "0100000" "110000" } } }

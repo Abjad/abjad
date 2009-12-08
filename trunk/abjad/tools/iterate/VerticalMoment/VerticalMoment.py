@@ -4,7 +4,9 @@ from abjad.rational import Rational
 
 
 class VerticalMoment(object):
-   r'''Everything happening at a single moment in musical time.
+   r'''.. versionadded: 1.1.2
+
+   Everything happening at a single moment in musical time.
    '''
 
    def __init__(self, prolated_offset, governors, components):
@@ -13,6 +15,8 @@ class VerticalMoment(object):
       assert isinstance(components, tuple)
       self._prolated_offset = prolated_offset
       self._governors = tuple(governors)
+      components = list(components)
+      components.sort(lambda x, y: cmp(x.score.index, y.score.index))
       self._components = tuple(components)
 
    ## OVERLOADS ##
@@ -34,8 +38,13 @@ class VerticalMoment(object):
       return not self == expr
 
    def __repr__(self):
-      contents = ', '.join([str(x) for x in self.components])
-      return '%s(%s)' % (self.__class__.__name__, contents)
+      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _format_string(self):
+      return ', '.join([str(x) for x in self.components])
 
    ## PUBLIC ATTRIBUTES ##
 
