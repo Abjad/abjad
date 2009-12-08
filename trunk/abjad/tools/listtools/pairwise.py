@@ -25,8 +25,14 @@ def pairwise(iter, mode = None):
    '''
 
    if mode is None:
-      for i in range(len(iter) - 1):
-         yield (iter[i], iter[i + 1])
+      #for i in range(len(iter) - 1):
+      #   yield (iter[i], iter[i + 1])
+      prev = None
+      for x in iter:
+         cur = x
+         if prev is not None:
+            yield prev, cur
+         prev = cur
    elif mode == 'wrap':
       for i in range(len(iter)):
          yield (iter[i], iter[(i + 1) % len(iter)])

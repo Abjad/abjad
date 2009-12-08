@@ -37,3 +37,15 @@ def test_listtools_pairwise_05( ):
    pairs = listtools.pairwise(t, 'cycle')
    for x in range(100):
       assert pairs.next( )
+
+
+def test_listtools_pairwise_06( ): 
+   '''Works on generators.'''
+   t = xrange(6)
+   pairs = listtools.pairwise(t)
+   pairs = list(pairs)
+   assert pairs[0] == (0, 1)
+   assert pairs[1] == (1, 2)
+   assert pairs[2] == (2, 3)
+   assert pairs[3] == (3, 4)
+   assert pairs[4] == (4, 5)
