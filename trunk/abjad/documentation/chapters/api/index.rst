@@ -567,6 +567,7 @@ listtools
    tools/listtools/negate_elements_at_indices_absolutely
    tools/listtools/outer_product
    tools/listtools/overwrite_slices_at
+   tools/listtools/pairs_from_to
    tools/listtools/pairwise
    tools/listtools/pairwise_cumulative_sums_zero
    tools/listtools/partition_by_lengths
@@ -774,6 +775,8 @@ pitchtools
    tools/pitchtools/permute_by_row
    tools/pitchtools/pitch_number_and_accidental_semitones_to_octave
    tools/pitchtools/pitch_number_to_octave
+   tools/pitchtools/pitch_pairs_from_to
+   tools/pitchtools/pitch_pairs_within
    tools/pitchtools/pitches_to_diatonic_interval
    tools/pitchtools/registrate
    tools/pitchtools/send_pitch_number_to_octave
