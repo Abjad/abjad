@@ -6,7 +6,7 @@ def test_MelodicDiatonicInterval___init___01( ):
 
    mdi = pitchtools.MelodicDiatonicInterval('major', 3)
    assert mdi.quality_string == 'major'
-   assert mdi.interval_number == 3
+   assert mdi.number == 3
 
 
 
@@ -17,10 +17,10 @@ def test_MelodicDiatonicInterval___init___02( ):
    new = pitchtools.MelodicDiatonicInterval(mdi)
 
    assert mdi.quality_string == 'major'
-   assert mdi.interval_number == 3
+   assert mdi.number == 3
 
    assert new.quality_string == 'major'
-   assert new.interval_number == 3
+   assert new.number == 3
 
    assert new is not mdi
    assert new == mdi

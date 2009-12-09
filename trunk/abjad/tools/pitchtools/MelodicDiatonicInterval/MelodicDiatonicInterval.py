@@ -22,10 +22,10 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], MelodicDiatonicInterval):
          quality_string = args[0].quality_string
-         interval_number = args[0].interval_number
+         number = args[0].number
       elif len(args) == 2:
-         quality_string, interval_number = args
-      _DiatonicInterval.__init__(self, quality_string, interval_number)
+         quality_string, number = args
+      _DiatonicInterval.__init__(self, quality_string, number)
 
    ## OVERLOADS ##
 
@@ -33,10 +33,10 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
          HarmonicDiatonicInterval
       return HarmonicDiatonicInterval(
-         self.quality_string, abs(self.interval_number))
+         self.quality_string, abs(self.number))
 
    def __neg__(self):
-      return MelodicDiatonicInterval(self.quality_string, -self.interval_number)
+      return MelodicDiatonicInterval(self.quality_string, -self.number)
 
    def __repr__(self):
       if self.direction_string:
@@ -46,17 +46,17 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
 
    def __str__(self):
       return '%s%s%s' % (self._direction_symbol, self._quality_abbreviation,
-         abs(self.interval_number))
+         abs(self.number))
       
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def direction_number(self):
       if self.quality_string == 'perfect' and \
-         abs(self.interval_number) == 1:
+         abs(self.number) == 1:
          return 0
       else:
-         return mathtools.sign(self.interval_number)
+         return mathtools.sign(self.number)
 
    @property
    def direction_string(self):
@@ -78,7 +78,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
    @property
    def interval_class(self):
       interval_class = _DiatonicInterval.interval_class.fget(self)
-      if self.interval_number == 1:
+      if self.number == 1:
          return 1
       return self.direction_number * interval_class
 
@@ -92,20 +92,20 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       interval_class_to_semitones = {
          1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10}
       result += interval_class_to_semitones[abs(self.interval_class)]
-      result += (abs(self.interval_number) - 1) / 7 * 12
+      result += (abs(self.number) - 1) / 7 * 12
       quality_string_to_semitones = {
          'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1,
          'diminished': -1}
       result += quality_string_to_semitones[self.quality_string]
-      if self.interval_number < 0:
+      if self.number < 0:
          result *= -1
       return result
 
    @property
    def staff_spaces(self):
       if self.direction_string == 'descending':
-         return self.interval_number + 1
+         return self.number + 1
       elif self.direction_string is None:
          return 0
       elif self.direction_string == 'ascending':
-         return self.interval_number - 1
+         return self.number - 1

@@ -15,7 +15,7 @@ class _MelodicInterval(_Interval):
 
    def __eq__(self, arg):
       if isinstance(arg, self.__class__):
-         if arg.interval_number == self.interval_number:
+         if arg.number == self.number:
             if arg.direction_number == self.direction_number:
                return True
       return False

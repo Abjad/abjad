@@ -7,7 +7,7 @@ def test_pitchtools_get_diatonic_intervals_in_01( ):
 
    intervals = pitchtools.get_diatonic_intervals_in(staff)
    intervals = list(intervals)
-   interval_numbers = [interval.interval_number for interval in intervals]
-   interval_numbers.sort( )
+   numbers = [interval.number for interval in intervals]
+   numbers.sort( )
 
-   assert interval_numbers == [2, 2, 2, 3, 3, 4]
+   assert numbers == [2, 2, 2, 3, 3, 4]

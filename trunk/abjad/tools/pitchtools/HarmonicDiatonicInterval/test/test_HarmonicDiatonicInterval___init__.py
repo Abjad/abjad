@@ -7,7 +7,7 @@ def test_HarmonicDiatonicInterval___init___01( ):
    hdi = pitchtools.HarmonicDiatonicInterval('major', 3)
 
    assert hdi.quality_string == 'major'
-   assert hdi.interval_number == 3
+   assert hdi.number == 3
 
 
 def test_HarmonicDiatonicInterval___init___02( ):
@@ -17,10 +17,10 @@ def test_HarmonicDiatonicInterval___init___02( ):
    new = pitchtools.HarmonicDiatonicInterval(hdi)
 
    assert hdi.quality_string == 'major'
-   assert hdi.interval_number == 3
+   assert hdi.number == 3
 
    assert new.quality_string == 'major'
-   assert new.interval_number == 3
+   assert new.number == 3
 
    assert new is not hdi   
    assert new == hdi
@@ -33,10 +33,10 @@ def test_HarmonicDiatonicInterval___init___03( ):
    hdi = pitchtools.HarmonicDiatonicInterval(mdi)
 
    assert mdi.quality_string == 'major'
-   assert mdi.interval_number == -3
+   assert mdi.number == -3
 
    assert hdi.quality_string == 'major'
-   assert hdi.interval_number == 3
+   assert hdi.number == 3
 
    assert hdi is not mdi
    assert not hdi == mdi

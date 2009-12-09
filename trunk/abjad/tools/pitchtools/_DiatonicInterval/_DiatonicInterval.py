@@ -9,19 +9,19 @@ class _DiatonicInterval(_Interval):
    Abstract diatonic interval class from which concrete classes inherit.
    '''
 
-   def __init__(self, quality_string, interval_number):
+   def __init__(self, quality_string, number):
       if quality_string == 'diminished':
-         if abs(interval_number) == 1:
+         if abs(number) == 1:
             raise IntervalError('diminished unison makes no sense.')
       if quality_string in self._acceptable_quality_strings:
          self._quality_string = quality_string
       else:
          raise ValueError("quality string '%s' must be in %s." % (
             quality_string, str(self._acceptable_quality_strings)))
-      if isinstance(interval_number, int):
+      if isinstance(number, int):
          if int == 0:
             raise ValueError
-         self._interval_number = interval_number
+         self._number = number
       else:
          raise ValueError('interval must be integer.')
 
@@ -30,12 +30,12 @@ class _DiatonicInterval(_Interval):
    def __abs__(self):
       from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
          HarmonicDiatonicInterval
-      return HarmonicDiatonicInterval(self.quality_string, self.interval_number)
+      return HarmonicDiatonicInterval(self.quality_string, self.number)
 
    def __eq__(self, arg):
       if isinstance(arg, self.__class__):
          if self.quality_string == arg.quality_string:
-            if self.interval_number == arg.interval_number:
+            if self.number == arg.number:
                return True
       return False
 
@@ -58,10 +58,10 @@ class _DiatonicInterval(_Interval):
          9: 'ninth', 10: 'tenth', 11: 'eleventh', 12: 'twelth',
          13: 'thirteenth', 14: 'fourteenth', 15: 'fifteenth'}
       try:
-         interval_string = interval_to_string[abs(self.interval_number)]
+         interval_string = interval_to_string[abs(self.number)]
       except KeyError:
-         abs_interval_number = abs(self.interval_number)
-         residue = abs_interval_number % 10
+         abs_number = abs(self.number)
+         residue = abs_number % 10
          if residue == 1:
             suffix = 'st'
          elif residue == 2:
@@ -70,7 +70,7 @@ class _DiatonicInterval(_Interval):
             suffix = 'rd'
          else:
             suffix = 'th'
-         interval_string = '%s%s' % (abs_interval_number, suffix)
+         interval_string = '%s%s' % (abs_number, suffix)
       return interval_string
 
    @property
@@ -84,11 +84,11 @@ class _DiatonicInterval(_Interval):
 
    @property
    def interval_class(self):
-      return ((abs(self.interval_number) - 1) % 7) + 1
+      return ((abs(self.number) - 1) % 7) + 1
 
    @property
-   def interval_number(self):
-      return self._interval_number
+   def number(self):
+      return self._number
 
    @property
    def interval_string(self):
@@ -104,15 +104,15 @@ class _DiatonicInterval(_Interval):
       interval_class_to_semitones = {
          1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10}
       result += interval_class_to_semitones[abs(self.interval_class)]
-      result += (abs(self.interval_number) - 1) / 7 * 12
+      result += (abs(self.number) - 1) / 7 * 12
       quality_string_to_semitones = {
          'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1,
          'diminished': -1}
       result += quality_string_to_semitones[self.quality_string]
-      if self.interval_number < 0:
+      if self.number < 0:
          result *= -1
       return result
 
    @property
    def staff_spaces(self):
-      return self.interval_number - 1
+      return self.number - 1

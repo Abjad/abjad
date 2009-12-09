@@ -49,7 +49,7 @@ def vertical_moment_diatonic_intervals(expr):
          diatonic_interval = pitchtools.pitches_to_diatonic_interval(
             bass_note.pitch, upper_note.pitch)
          diatonic_intervals.append(diatonic_interval)    
-      intervals = [x.interval_number for x in diatonic_intervals]
+      intervals = [x.number for x in diatonic_intervals]
       intervals = ' '.join([str(x) for x in intervals])
       intervals = r'\small { \column { %s } }' % intervals
       vertical_moment.start_leaves[-1].markup.down.append(intervals)
