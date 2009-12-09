@@ -5,16 +5,16 @@ from abjad.tools.pitchtools.get_pitch import get_pitch
 def melodic_diatonic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
    '''.. versionadded:: 1.1.2
 
-   Return diatonic interval from `pitch_carrier_1` to 
+   Return melodic diatonic interval from `pitch_carrier_1` to 
    `pitch_carrier_2`. ::
 
-      abjad> pitchtools.melodic_diatonic_interval_from_to(Pitch(12), Pitch(10))
-      MelodicDiatonicInterval(descending major second)
+      abjad> pitchtools.melodic_diatonic_interval_from_to(Pitch(-2), Pitch(12))
+      MelodicDiatonicInterval(ascending major ninth)
 
    ::
 
-      abjad> pitchtools.melodic_diatonic_interval_from_to(Pitch(10), Pitch(12))
-      MelodicDiatonicInterval(ascending major second)
+      abjad> pitchtools.melodic_diatonic_interval_from_to(Pitch(12), Pitch(-2))
+      MelodicDiatonicInterval(descending major ninth)
    '''
 
    pitch_1 = get_pitch(pitch_carrier_1)

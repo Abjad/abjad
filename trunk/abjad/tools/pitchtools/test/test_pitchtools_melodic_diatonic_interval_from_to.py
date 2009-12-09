@@ -9,11 +9,11 @@ def test_pitchtools_melodic_diatonic_interval_from_to_01( ):
    assert interval == pitchtools.MelodicDiatonicInterval('perfect', 1)
 
    interval = pitchtools.melodic_diatonic_interval_from_to(
-      Pitch(12), Pitch('b', 4))
+      pitch, Pitch('b', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('minor', -2)
 
    interval = pitchtools.melodic_diatonic_interval_from_to(
-      Pitch(12), Pitch('bf', 4))
+      pitch, Pitch('bf', 4))
    assert interval == pitchtools.MelodicDiatonicInterval('major', -2)
 
    interval = pitchtools.melodic_diatonic_interval_from_to(

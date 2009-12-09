@@ -744,7 +744,6 @@ pitchtools
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
-   tools/pitchtools/diatonic_interval_from_to
    tools/pitchtools/diatonic_scale_degree_to_letter
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonicize
@@ -773,7 +772,12 @@ pitchtools
    tools/pitchtools/make_all_aggregate_subsets
    tools/pitchtools/make_flat
    tools/pitchtools/make_sharp
+   tools/pitchtools/melodic_chromatic_interval_class_from_to
    tools/pitchtools/melodic_chromatic_interval_from_to
+   tools/pitchtools/melodic_counterpoint_interval_class_from_to
+   tools/pitchtools/melodic_counterpoint_interval_from_to
+   tools/pitchtools/melodic_diatonic_interval_class_from_to
+   tools/pitchtools/melodic_diatonic_interval_from_to
    tools/pitchtools/merge_pitch_arrays
    tools/pitchtools/name_to_letter_accidental
    tools/pitchtools/nearest_neighbor

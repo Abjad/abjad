@@ -22,5 +22,16 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def direction_number(self):
+      if self.number < 0:
+         return -1
+      elif self.number == 1:
+         return 0
+      elif 1 < self.number:
+         return 1
+      else:
+         raise ValueError
+
+   @property
    def interval_class(self):
       return MelodicCounterpointIntervalClass(self)
