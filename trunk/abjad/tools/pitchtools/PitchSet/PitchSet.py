@@ -2,8 +2,8 @@ from abjad.pitch import Pitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
 from abjad.tools.pitchtools.get_pitches import get_pitches
-from abjad.tools.pitchtools.transpose_by_chromatic_interval import \
-   transpose_by_chromatic_interval
+from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import \
+   transpose_by_melodic_chromatic_interval
 
 
 ## TODO: Make PitchSet and PCSet both inherit for a shared base class. ##

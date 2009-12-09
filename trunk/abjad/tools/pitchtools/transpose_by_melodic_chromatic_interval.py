@@ -1,4 +1,3 @@
-#from ChromaticInterval import ChromaticInterval
 from MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.chord import Chord
 from abjad.note import Note
@@ -6,27 +5,27 @@ from abjad.pitch import Pitch
 from abjad.tools import clone
 
 
-def transpose_by_chromatic_interval(pitch_carrier, chromatic_interval):
+def transpose_by_melodic_chromatic_interval(
+   pitch_carrier, melodic_chromatic_interval):
    '''.. versionadded:: 1.1.2
 
-   Transpose `pitch_carrier` by `chromatic_interval`. ::
+   Transpose `pitch_carrier` by `melodic_chromatic_interval`. ::
 
       abjad> pitch = Pitch(12)
-      abjad> chromatic_interval = pitchtools.MelodicChromaticInterval(-3)
-      abjad> pitchtools.transpose_by_chromatic_interval(pitch, chromatic_interval)
+      abjad> mci = pitchtools.MelodicChromaticInterval(-3)
+      abjad> pitchtools.transpose_by_melodic_chromatic_interval(pitch, mci)
       Pitch(a, 4)
    '''
    
-   #if not isinstance(chromatic_interval, ChromaticInterval):
-   if not isinstance(chromatic_interval, MelodicChromaticInterval):
+   if not isinstance(melodic_chromatic_interval, MelodicChromaticInterval):
       raise TypeError('must be melodic chromatic interval.')
    
    if isinstance(pitch_carrier, Pitch):
-      return Pitch(pitch_carrier.number + chromatic_interval.number)
+      return Pitch(pitch_carrier.number + melodic_chromatic_interval.number)
    elif isinstance(pitch_carrier, Note):
       new_note = clone.unspan([pitch_carrier])[0]
       new_pitch = Pitch(
-         pitch_carrier.pitch.number + chromatic_interval.number)
+         pitch_carrier.pitch.number + melodic_chromatic_interval.number)
       new_note.pitch = new_pitch
       return new_note
    elif isinstance(pitch_carrier, Chord):
@@ -34,7 +33,7 @@ def transpose_by_chromatic_interval(pitch_carrier, chromatic_interval):
       for new_nh, old_nh in zip(
          new_chord.note_heads, pitch_carrier.note_heads):
          new_pitch = Pitch(
-            old_nh.pitch.number + chromatic_interval.number)
+            old_nh.pitch.number + melodic_chromatic_interval.number)
          new_nh.pitch = new_pitch
       return new_chord
    else:

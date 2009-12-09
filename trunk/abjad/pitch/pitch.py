@@ -32,10 +32,10 @@ class Pitch(_Abjad):
 
    ## OVERLOADS ##
 
-   def __add__(self, interval):
+   def __add__(self, melodic_interval):
       '''.. versionadded:: 1.1.2'''
       from abjad.tools import pitchtools
-      return pitchtools.transpose_by_interval(self, interval)
+      return pitchtools.transpose_by_melodic_interval(self, melodic_interval)
 
    def __copy__(self):
       '''.. versionadded:: 1.1.2'''
@@ -116,7 +116,7 @@ class Pitch(_Abjad):
          return pitchtools.melodic_diatonic_interval_from_to(self, arg)
       else:
          interval = arg
-         return pitchtools.transpose_by_interval(self, -interval)
+         return pitchtools.transpose_by_melodic_interval(self, -interval)
 
    ## PRIVATE ATTRIBUTES ##
 

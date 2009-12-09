@@ -3,8 +3,8 @@ from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
 from abjad.tools.pitchtools.PitchRange import PitchRange
 from abjad.tools.pitchtools.PitchSet import PitchSet
-from abjad.tools.pitchtools.transpose_by_chromatic_interval import \
-   transpose_by_chromatic_interval
+from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import \
+   transpose_by_melodic_chromatic_interval
 
 
 ## TODO: Reimplement pitchtools.octave_transpositions( ) to work on Abjad PitchSet, Note and Chord objects only. ##
@@ -36,7 +36,7 @@ def octave_transpositions(pitches, pitch_range):
 
    interval = MelodicChromaticInterval(-12)
    while True:
-      candidate = transpose_by_chromatic_interval(pitches, interval)
+      candidate = transpose_by_melodic_chromatic_interval(pitches, interval)
       if candidate in pitch_range:
          result.append(candidate)
          interval -= MelodicChromaticInterval(12) 
@@ -47,7 +47,7 @@ def octave_transpositions(pitches, pitch_range):
 
    interval = MelodicChromaticInterval(0)
    while True:
-      candidate = transpose_by_chromatic_interval(pitches, interval)
+      candidate = transpose_by_melodic_chromatic_interval(pitches, interval)
       if candidate in pitch_range:
          result.append(candidate)
          interval += MelodicChromaticInterval(12) 
