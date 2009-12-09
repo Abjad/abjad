@@ -1,5 +1,7 @@
-from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
-   melodic_diatonic_interval_from_to
+from abjad.tools import mathtools
+from abjad.tools.pitchtools.MelodicChromaticInterval import \
+   MelodicChromaticInterval
+from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
 def melodic_chromatic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
@@ -17,8 +19,18 @@ def melodic_chromatic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
       MelodicChromaticInterval(-14)
    '''
 
-   ## get melodic diatonic interval
-   mdi = melodic_diatonic_interval_from_to(pitch_carrier_1, pitch_carrier_2)
+   ## get pitches
+   pitch_1 = get_pitch(pitch_carrier_1)
+   pitch_2 = get_pitch(pitch_carrier_2)
+
+   ## get difference in semitones
+   number = pitch_2.number - pitch_1.number
+
+   ## change 1.0, 2.0, ... into 1, 2, ...
+   number = mathtools.trivial_float_to_int(number)   
+
+   ## make melodic chromatic interval
+   mci = MelodicChromaticInterval(number)
 
    ## return melodic chromatic interval
-   return mdi.melodic_chromatic_interval
+   return mci

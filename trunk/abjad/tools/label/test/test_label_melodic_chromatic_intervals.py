@@ -32,7 +32,7 @@ def test_label_melodic_chromatic_intervals_02( ):
    \new Staff {
            c'8 ^ \markup { +25 }
            cs'''8 ^ \markup { -14 }
-           b'8 ^ \markup { -14 }
+           b'8 ^ \markup { -15 }
            af8 ^ \markup { -10 }
            bf,8 ^ \markup { +1 }
            b,8 ^ \markup { +22 }
@@ -44,4 +44,29 @@ def test_label_melodic_chromatic_intervals_02( ):
    """
 
    assert check.wf(staff)
-   assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +25 }\n\tcs'''8 ^ \\markup { -14 }\n\tb'8 ^ \\markup { -14 }\n\taf8 ^ \\markup { -10 }\n\tbf,8 ^ \\markup { +1 }\n\tb,8 ^ \\markup { +22 }\n\ta'8 ^ \\markup { +1 }\n\tbf'8 ^ \\markup { -4 }\n\tfs'8 ^ \\markup { -1 }\n\tf'8\n}"
+   assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +25 }\n\tcs'''8 ^ \\markup { -14 }\n\tb'8 ^ \\markup { -15 }\n\taf8 ^ \\markup { -10 }\n\tbf,8 ^ \\markup { +1 }\n\tb,8 ^ \\markup { +22 }\n\ta'8 ^ \\markup { +1 }\n\tbf'8 ^ \\markup { -4 }\n\tfs'8 ^ \\markup { -1 }\n\tf'8\n}"
+
+
+def test_label_melodic_chromatic_intervals_03( ):
+   '''Works with quartertones.'''
+
+   staff = Staff(construct.notes([0, 25.5, 11.5, -4, -14, -13, 9, 10, 6.5, 5.5], [Rational(1, 8)]))
+   label.melodic_chromatic_intervals(staff)
+
+   r"""
+   \new Staff {
+           c'8 ^ \markup { +25 }
+           cs'''8 ^ \markup { -14 }
+           b'8 ^ \markup { -15 }
+           af8 ^ \markup { -10 }
+           bf,8 ^ \markup { +1 }
+           b,8 ^ \markup { +22 }
+           a'8 ^ \markup { +1 }
+           bf'8 ^ \markup { -4 }
+           fs'8 ^ \markup { -1 }
+           f'8
+   }
+   """
+
+   assert check.wf(staff)
+   assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +25 }\n\tcs'''8 ^ \\markup { -14 }\n\tb'8 ^ \\markup { -15 }\n\taf8 ^ \\markup { -10 }\n\tbf,8 ^ \\markup { +1 }\n\tb,8 ^ \\markup { +22 }\n\ta'8 ^ \\markup { +1 }\n\tbf'8 ^ \\markup { -4 }\n\tfs'8 ^ \\markup { -1 }\n\tf'8\n}"

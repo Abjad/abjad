@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
-   melodic_diatonic_interval_from_to
+from abjad.tools.pitchtools.melodic_chromatic_interval_from_to import \
+   melodic_chromatic_interval_from_to
 
 
 def melodic_chromatic_interval_class_from_to(pitch_carrier_1, pitch_carrier_2):
@@ -17,8 +17,8 @@ def melodic_chromatic_interval_class_from_to(pitch_carrier_1, pitch_carrier_2):
       MelodicChromaticIntervalClass(-2)
    '''
 
-   ## get melodic diatonic interval
-   mdi = melodic_diatonic_interval_from_to(pitch_carrier_1, pitch_carrier_2)
+   ## get melodic chromatic interval
+   mci = melodic_chromatic_interval_from_to(pitch_carrier_1, pitch_carrier_2)
 
    ## return melodic chromatic interval class
-   return mdi.melodic_chromatic_interval.interval_class
+   return mci.interval_class

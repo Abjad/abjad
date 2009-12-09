@@ -14,7 +14,7 @@ def melodic_chromatic_intervals(expr):
       \new Staff {
               c'8 ^ \markup { +25 }
               cs'''8 ^ \markup { -14 }
-              b'8 ^ \markup { -14 }
+              b'8 ^ \markup { -15 }
               af8 ^ \markup { -10 }
               bf,8 ^ \markup { +1 }
               b,8 ^ \markup { +22 }
@@ -24,6 +24,7 @@ def melodic_chromatic_intervals(expr):
               f'8
       }
    """ 
+   from abjad.tools import pitchtools
 
    for note in iterate.naive_forward_in(expr, Note):
       thread_iterator = iterate.thread_forward_from(note, _Leaf)
@@ -31,8 +32,8 @@ def melodic_chromatic_intervals(expr):
          thread_iterator.next( )
          next_leaf = thread_iterator.next( )
          if isinstance(next_leaf, Note):
-            mdi = note.pitch - next_leaf.pitch
-            mci = mdi.melodic_chromatic_interval
+            mci = pitchtools.melodic_chromatic_interval_from_to(
+               note, next_leaf)
             note.markup.up.append(mci)
       except StopIteration:
          pass
