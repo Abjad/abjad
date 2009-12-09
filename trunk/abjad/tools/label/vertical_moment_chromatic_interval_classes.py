@@ -50,7 +50,7 @@ def vertical_moment_chromatic_interval_classes(expr):
          chromatic_interval = pitchtools.melodic_chromatic_interval_from_to(
             bass_note.pitch, upper_note.pitch)
          chromatic_intervals.append(chromatic_interval)    
-      intervals = [x.interval_class for x in chromatic_intervals]
+      intervals = [x.interval_class.number for x in chromatic_intervals]
       intervals = ' '.join([str(x) for x in intervals])
       intervals = r'\small { \column { %s } }' % intervals
       vertical_moment.start_leaves[-1].markup.down.append(intervals)

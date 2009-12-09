@@ -101,9 +101,10 @@ class _DiatonicInterval(_Interval):
    @property
    def semitones(self):
       result = 0
-      interval_class_to_semitones = {
-         1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10}
-      result += interval_class_to_semitones[abs(self.interval_class)]
+      interval_class_number_to_semitones = {
+         1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
+      interval_class_number = abs(self.interval_class.number) 
+      result += interval_class_number_to_semitones[interval_class_number]
       result += (abs(self.number) - 1) / 7 * 12
       quality_string_to_semitones = {
          'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1,

@@ -30,6 +30,7 @@ Classes
    tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
    tools/pitchtools/HarmonicChromaticIntervalSet/HarmonicChromaticIntervalSet
    tools/pitchtools/HarmonicCounterpointInterval/HarmonicCounterpointInterval
+   tools/pitchtools/HarmonicCounterpointIntervalClass/HarmonicCounterpointIntervalClass
    tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
    tools/pitchtools/HarmonicDiatonicIntervalClass/HarmonicDiatonicIntervalClass
    tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
@@ -50,6 +51,7 @@ Classes
    tools/pitchtools/MelodicChromaticIntervalSegment/MelodicChromaticIntervalSegment
    tools/pitchtools/MelodicChromaticIntervalSet/MelodicChromaticIntervalSet
    tools/pitchtools/MelodicCounterpointInterval/MelodicCounterpointInterval
+   tools/pitchtools/MelodicCounterpointIntervalClass/MelodicCounterpointIntervalClass
    tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
    tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment

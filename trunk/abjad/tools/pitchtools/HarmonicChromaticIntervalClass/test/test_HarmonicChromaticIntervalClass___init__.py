@@ -40,3 +40,15 @@ def test_HarmonicChromaticIntervalClass___init___02( ):
 
    hcic = pitchtools.HarmonicChromaticIntervalClass(25)
    assert hcic.number == 1
+
+
+def test_HarmonicChromaticIntervalClass___init___03( ):
+   '''Works on harmonic chromatic interval instances.'''
+
+   hci = pitchtools.HarmonicChromaticInterval(-14)
+   hcic = pitchtools.HarmonicChromaticIntervalClass(hci)
+   assert hcic.number == 2
+
+   hci = pitchtools.HarmonicChromaticInterval(14)
+   hcic = pitchtools.HarmonicChromaticIntervalClass(hci)
+   assert hcic.number == 2

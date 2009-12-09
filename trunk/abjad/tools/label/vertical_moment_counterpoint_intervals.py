@@ -44,12 +44,16 @@ def vertical_moment_counterpoint_intervals(expr):
       notes.reverse( )
       bass_note = notes[-1]
       upper_notes = notes[:-1]
-      diatonic_intervals = [ ]
+      melodic_diatonic_intervals = [ ]
       for upper_note in upper_notes:
          diatonic_interval = pitchtools.pitches_to_diatonic_interval(
             bass_note.pitch, upper_note.pitch)
-         diatonic_intervals.append(diatonic_interval)    
-      intervals = [abs(x).counterpoint_interval for x in diatonic_intervals]
-      intervals = ' '.join([str(x) for x in intervals])
+         melodic_diatonic_intervals.append(diatonic_interval)    
+      intervals = melodic_diatonic_intervals
+      hcpics = [ ]
+      for mdi in melodic_diatonic_intervals:
+         hcpic = pitchtools.HarmonicCounterpointIntervalClass(mdi)
+         hcpics.append(hcpic)
+      intervals = ' '.join([str(x) for x in hcpics])
       intervals = r'\small { \column { %s } }' % intervals
       vertical_moment.start_leaves[-1].markup.down.append(intervals)

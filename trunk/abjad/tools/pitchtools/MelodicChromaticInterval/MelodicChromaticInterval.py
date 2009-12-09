@@ -4,6 +4,8 @@ from abjad.tools.pitchtools._Interval import _Interval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
 from abjad.tools.pitchtools.HarmonicChromaticInterval import \
    HarmonicChromaticInterval
+from abjad.tools.pitchtools.MelodicChromaticIntervalClass import \
+   MelodicChromaticIntervalClass
 
 
 class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
@@ -91,4 +93,5 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
 
    @property
    def interval_class(self):
-      return self.direction_number * (abs(self.number) % 12)
+      #return self.direction_number * (abs(self.number) % 12)
+      return MelodicChromaticIntervalClass(self)

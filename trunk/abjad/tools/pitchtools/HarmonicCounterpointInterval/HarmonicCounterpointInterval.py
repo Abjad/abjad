@@ -10,9 +10,13 @@ class HarmonicCounterpointInterval(_CounterpointInterval, _HarmonicInterval):
    minor, perfect or other quality.
    '''
 
-   def __init__(self, number):
-      if not isinstance(number, int):
-         raise TypeError('must be integer.')
-      if not 0 < number:
-         raise ValueError('must be positive integer.')
-      self._number = number
+   def __init__(self, token):
+      from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
+      if isinstance(token, int):
+         if not 0 < token:
+            raise ValueError('must be positive integer.')
+         self._number = token
+      elif isinstance(token, _DiatonicInterval):
+         self._number = token.number
+      else:
+         raise TypeError('must be number or diatonic interval.')

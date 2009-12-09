@@ -16,7 +16,7 @@ class HarmonicChromaticIntervalClass(_ChromaticIntervalClass,
    def __init__(self, token):
       if isinstance(token, (int, float, long, Rational)):
          number = token
-      elif isinstance(_Interval):   
+      elif isinstance(token, _Interval):   
          number = token.semitones
       else:
          raise TypeError('must be number or interval instance.')
@@ -25,3 +25,14 @@ class HarmonicChromaticIntervalClass(_ChromaticIntervalClass,
       else:
          number = abs(number) % 12
       self._number = number
+
+   ## OVERLOADS ##
+
+   def __eq__(self, arg):
+      if isinstance(arg, HarmonicChromaticIntervalClass):
+         if self.number == arg.number:
+            return True
+      return False
+
+   def __ne__(self, arg):
+      return not self == arg

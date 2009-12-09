@@ -10,7 +10,17 @@ class HarmonicDiatonicIntervalClass(
    Harmonic diatonic interval class.
    '''
 
-   def __init__(self, quality_string, number):
+   def __init__(self, *args):
+      from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
+         HarmonicDiatonicInterval
+      if len(args) == 1:
+         if isinstance(args[0], HarmonicDiatonicInterval):
+            quality_string = args[0]._quality_string
+            number = args[0].number
+         else:
+            raise TypeError
+      else:
+         quality_string, number = args   
       if quality_string not in self._acceptable_quality_strings:
          raise ValueError('not acceptable quality string.')
       self._quality_string = quality_string
@@ -23,6 +33,8 @@ class HarmonicDiatonicIntervalClass(
          number = 8
       else:
          number = abs_number % 7
+         if number == 0:
+            number = 7
       self._number = number
 
    ## OVERLOADS ##

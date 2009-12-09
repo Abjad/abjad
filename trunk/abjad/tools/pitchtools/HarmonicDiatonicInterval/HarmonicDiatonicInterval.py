@@ -1,6 +1,10 @@
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._HarmonicInterval import _HarmonicInterval
+from abjad.tools.pitchtools.HarmonicCounterpointInterval import \
+   HarmonicCounterpointInterval
+from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass import \
+   HarmonicDiatonicIntervalClass
 
 
 class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
@@ -38,13 +42,18 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
 
    @property
    def counterpoint_interval(self):
-      counterpoint_interval = self.interval_class
-      if counterpoint_interval == 1:
-         if self.number == 1:
-            return 1
-         else:
-            return 8
-      return counterpoint_interval
+#      counterpoint_interval = self.interval_class
+#      if counterpoint_interval == 1:
+#         if self.number == 1:
+#            return 1
+#         else:
+#            return 8
+#      return counterpoint_interval
+      return HarmonicCounterpointInterval(self)
+
+   @property
+   def interval_class(self):
+      return HarmonicDiatonicIntervalClass(self)
 
    @property
    def staff_spaces(self):

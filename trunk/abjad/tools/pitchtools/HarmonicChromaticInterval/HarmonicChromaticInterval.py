@@ -1,5 +1,7 @@
 from abjad.tools.pitchtools._ChromaticInterval import _ChromaticInterval
 from abjad.tools.pitchtools._HarmonicInterval import _HarmonicInterval
+from abjad.tools.pitchtools.HarmonicChromaticIntervalClass import \
+   HarmonicChromaticIntervalClass
 
 
 class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
@@ -41,4 +43,5 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
 
    @property
    def interval_class(self):
-      return self.number % 12
+      #return self.number % 12
+      return HarmonicChromaticIntervalClass(self)
