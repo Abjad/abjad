@@ -757,6 +757,12 @@ pitchtools
    tools/pitchtools/get_pitch_numbers
    tools/pitchtools/get_pitches
    tools/pitchtools/get_signed_interval_series
+   tools/pitchtools/harmonic_chromatic_interval_class_from_to
+   tools/pitchtools/harmonic_chromatic_interval_from_to
+   tools/pitchtools/harmonic_counterpoint_interval_class_from_to
+   tools/pitchtools/harmonic_counterpoint_interval_from_to
+   tools/pitchtools/harmonic_diatonic_interval_class_from_to
+   tools/pitchtools/harmonic_diatonic_interval_from_to
    tools/pitchtools/has_duplicate_pitch
    tools/pitchtools/has_duplicate_pitch_class
    tools/pitchtools/insert_transposed_pc_subruns

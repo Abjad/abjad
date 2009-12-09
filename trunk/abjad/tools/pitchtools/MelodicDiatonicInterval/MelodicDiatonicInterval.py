@@ -5,6 +5,8 @@ from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
    HarmonicDiatonicInterval
 from abjad.tools.pitchtools.HarmonicChromaticInterval import \
    HarmonicChromaticInterval
+from abjad.tools.pitchtools.HarmonicCounterpointInterval import \
+   HarmonicCounterpointInterval
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
 from abjad.tools.pitchtools.MelodicCounterpointInterval import \
@@ -76,15 +78,15 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       return HarmonicChromaticInterval(self)
 
    @property
+   def harmonic_counterpoint_interval(self):
+      return HarmonicCounterpointInterval(self)
+
+   @property
    def harmonic_diatonic_interval(self):
       return HarmonicDiatonicInterval(self)
 
    @property
    def interval_class(self):
-      #interval_class = _DiatonicInterval.interval_class.fget(self)
-      #if self.number == 1:
-      #   return 1
-      #return self.direction_number * interval_class
       return MelodicDiatonicIntervalClass(self)
 
    @property
