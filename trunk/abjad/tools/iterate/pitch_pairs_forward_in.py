@@ -39,21 +39,21 @@ def pitch_pairs_forward_in(expr):
       abjad> for pair in iterate.pitch_pairs_forward_in(score):
       ...     pair
       ... 
-      set([Pitch(c, 4), Pitch(c, 3)])
+      (Pitch(c, 4), Pitch(c, 3))
       (Pitch(c, 4), Pitch(d, 4))
       (Pitch(c, 3), Pitch(d, 4))
       (Pitch(d, 4), Pitch(e, 4))
       (Pitch(d, 4), Pitch(a, 2))
       (Pitch(c, 3), Pitch(e, 4))
       (Pitch(c, 3), Pitch(a, 2))
-      set([Pitch(e, 4), Pitch(a, 2)])
+      (Pitch(e, 4), Pitch(a, 2))
       (Pitch(e, 4), Pitch(f, 4))
       (Pitch(a, 2), Pitch(f, 4))
       (Pitch(f, 4), Pitch(g, 4))
       (Pitch(f, 4), Pitch(g, 2))
       (Pitch(a, 2), Pitch(g, 4))
       (Pitch(a, 2), Pitch(g, 2))
-      set([Pitch(g, 2), Pitch(g, 4)])
+      (Pitch(g, 4), Pitch(g, 2))
 
    Chords are handled correctly. ::
 
@@ -73,21 +73,16 @@ def pitch_pairs_forward_in(expr):
 
       abjad> for pair in iterate.pitch_pairs_forward_in(staff):
       ...   print pair
-      set([Pitch(c, 4), Pitch(d, 4)])
-      set([Pitch(c, 4), Pitch(e, 4)])
-      set([Pitch(d, 4), Pitch(e, 4)])
+      (Pitch(c, 4), Pitch(d, 4))
+      (Pitch(c, 4), Pitch(e, 4))
+      (Pitch(d, 4), Pitch(e, 4))
       (Pitch(c, 4), Pitch(f, 5))
       (Pitch(c, 4), Pitch(g, 5))
       (Pitch(d, 4), Pitch(f, 5))
       (Pitch(d, 4), Pitch(g, 5))
       (Pitch(e, 4), Pitch(f, 5))
       (Pitch(e, 4), Pitch(g, 5))
-      set([Pitch(g, 5), Pitch(f, 5)])
-
-   .. note:: the function yields vertical pitch pairs as (unordered)
-      sets but horizontal and diagonal pitch pairs as (ordered) pairs.
-      Calling code can easily distinguish harmonic and melodic
-      output from this function.
+      (Pitch(f, 5), Pitch(g, 5))
    '''
 
    from abjad.tools import pitchtools

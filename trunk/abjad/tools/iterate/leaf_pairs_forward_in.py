@@ -38,26 +38,21 @@ def leaf_pairs_forward_in(expr):
 
       abjad> for pair in iterate.leaf_pairs_forward_in(score):
       ...      pair
-      set([Note(c', 8), Note(c, 4)])
+      (Note(c', 8), Note(c, 4))
       (Note(c', 8), Note(d', 8))
       (Note(c, 4), Note(d', 8))
       (Note(d', 8), Note(e', 8))
       (Note(d', 8), Note(a,, 4))
       (Note(c, 4), Note(e', 8))
       (Note(c, 4), Note(a,, 4))
-      set([Note(e', 8), Note(a,, 4)])
+      (Note(e', 8), Note(a,, 4))
       (Note(e', 8), Note(f', 8))
       (Note(a,, 4), Note(f', 8))
       (Note(f', 8), Note(g', 4))
       (Note(f', 8), Note(g,, 4))
       (Note(a,, 4), Note(g', 4))
       (Note(a,, 4), Note(g,, 4))
-      set([Note(g', 4), Note(g,, 4)])
-
-   .. note:: the function yields vertical pitch pairs as (unordered)
-      sets but horizontal and diagonal pitch pairs as (ordered) pairs.
-      Calling code can easily distinguish harmonic and melodic
-      output from this function.
+      (Note(g', 4), Note(g,, 4))
    '''
 
    vertical_moments = vertical_moments_forward_in(expr)

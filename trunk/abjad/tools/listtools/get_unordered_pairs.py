@@ -1,10 +1,11 @@
 def get_unordered_pairs(l):
-   '''Return ordered list of unordered pairs in `l`.
+   '''Return list of unordered pairs in `l`.
    
    ::
    
       abjad> listtools.get_unordered_pairs([1, 2, 3, 4])
-      [set([1, 2]), set([1, 3]), set([1, 4]), set([2, 3]), set([2, 4]), set([3, 4])]
+      [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+
 
    ::
 
@@ -20,15 +21,27 @@ def get_unordered_pairs(l):
 
       abjad> listtools.get_unordered_pairs([ ])
       []
-      
-   .. note:: This function returns a list instead of a generator.
+
+   ::
+
+      abjad> listtools.get_unordered_pairs([1, 1, 1])
+      [(1, 1), (1, 1), (1, 1)]
+
+   ::
+
+      abjad> listtools.get_unordered_pairs(set([1, 2, 3]))
+      [(1, 2), (1, 3), (2, 3)]
+
+   .. note:: pairs are tuples instead of sets to accommodate 
+      duplicate value input in `l`.
    '''
 
    result = [ ]
    l_copy = list(l)
 
-   for i, x in enumerate(l):
+   for i, x in enumerate(l_copy):
       for y in l_copy[i+1:]:
-         result.append(set([x, y]))
+         pair = (x, y)
+         result.append(pair)
 
    return result

@@ -4,31 +4,29 @@ from abjad.tools.pitchtools.HarmonicChromaticInterval import \
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 
+## TODO: rename to get_harmonic_chromatic_intervals_in ##
 def get_chromatic_intervals_in(expr):
    '''.. versionadded:: 1.1.2
 
-   Return unordered set of chromatic intervals in `expr`. ::
+   Return unordered set of harmonic chromatic intervals in `expr`. ::
 
       abjad> staff = Staff(construct.scale(4))
       abjad> pitchtools.get_chromatic_intervals_in(staff)
       abjad> for interval in pitchtools.get_chromatic_intervals_in(staff):
       ...     interval
       ... 
-      ChromaticInterval(4)
-      ChromaticInterval(2)
-      ChromaticInterval(5)
-      ChromaticInterval(2)
-      ChromaticInterval(3)
-      ChromaticInterval(1)
+      HarmonicChromaticInterval(4)
+      HarmonicChromaticInterval(2)
+      HarmonicChromaticInterval(5)
+      HarmonicChromaticInterval(2)
+      HarmonicChromaticInterval(3)
+      HarmonicChromaticInterval(1)
    '''
    
-   #chromatic_intervals = set([ ])
    chromatic_intervals = [ ]
    pitches = get_pitches(expr)
    unordered_pitch_pairs = listtools.get_unordered_pairs(pitches)
-   for unordered_pitch_pair in unordered_pitch_pairs:
-      first_pitch = unordered_pitch_pair.pop( )
-      second_pitch = unordered_pitch_pair.pop( )
+   for first_pitch, second_pitch in unordered_pitch_pairs:
       chromatic_interval_number = abs(first_pitch.number - second_pitch.number)
       chromatic_interval = HarmonicChromaticInterval(chromatic_interval_number)
       chromatic_intervals.append(chromatic_interval)      

@@ -31,21 +31,21 @@ def test_iterate_pitch_pairs_forward_in_01( ):
    pairs = iterate.pitch_pairs_forward_in(score)
    pairs = list(pairs)
 
-   assert pairs[0] == set([Pitch('c', 4), Pitch('c', 3)])
+   assert pairs[0] == (Pitch('c', 4), Pitch('c', 3)) #
    assert pairs[1] == (Pitch('c', 4), Pitch('d', 4))
    assert pairs[2] == (Pitch('c', 3), Pitch('d', 4))
    assert pairs[3] == (Pitch('d', 4), Pitch('e', 4))
    assert pairs[4] == (Pitch('d', 4), Pitch('a', 2))
    assert pairs[5] == (Pitch('c', 3), Pitch('e', 4))
    assert pairs[6] == (Pitch('c', 3), Pitch('a', 2))
-   assert pairs[7] == set([Pitch('e', 4), Pitch('a', 2)])
+   assert pairs[7] == (Pitch('e', 4), Pitch('a', 2))
    assert pairs[8] == (Pitch('e', 4), Pitch('f', 4))
    assert pairs[9] == (Pitch('a', 2), Pitch('f', 4))
    assert pairs[10] == (Pitch('f', 4), Pitch('g', 4))
    assert pairs[11] == (Pitch('f', 4), Pitch('g', 2))
    assert pairs[12] == (Pitch('a', 2), Pitch('g', 4))
    assert pairs[13] == (Pitch('a', 2), Pitch('g', 2))
-   assert pairs[14] == set([Pitch('g', 2), Pitch('g', 4)])
+   assert pairs[14] == (Pitch('g', 4), Pitch('g', 2))
 
 
 def test_iterate_pitch_pairs_forward_in_02( ):
@@ -64,13 +64,13 @@ def test_iterate_pitch_pairs_forward_in_02( ):
    pairs = iterate.pitch_pairs_forward_in(staff)
    pairs = list(pairs)
 
-   assert pairs[0] == set([Pitch('c', 4), Pitch('d', 4)])
-   assert pairs[1] == set([Pitch('c', 4), Pitch('e', 4)])
-   assert pairs[2] == set([Pitch('d', 4), Pitch('e', 4)])
+   assert pairs[0] == (Pitch('c', 4), Pitch('d', 4))
+   assert pairs[1] == (Pitch('c', 4), Pitch('e', 4))
+   assert pairs[2] == (Pitch('d', 4), Pitch('e', 4))
    assert pairs[3] == (Pitch('c', 4), Pitch('f', 5))
    assert pairs[4] == (Pitch('c', 4), Pitch('g', 5))
    assert pairs[5] == (Pitch('d', 4), Pitch('f', 5))
    assert pairs[6] == (Pitch('d', 4), Pitch('g', 5))
    assert pairs[7] == (Pitch('e', 4), Pitch('f', 5))
    assert pairs[8] == (Pitch('e', 4), Pitch('g', 5))
-   assert pairs[9] == set([Pitch('g', 5), Pitch('f', 5)])
+   assert pairs[9] == (Pitch('f', 5), Pitch('g', 5))

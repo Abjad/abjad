@@ -2,6 +2,7 @@ from abjad.tools import listtools
 from abjad.tools.pitchtools.get_pitches import get_pitches
 
 
+## TODO: rename to get_harmonic_diatonic_intervals_in ##
 def get_diatonic_intervals_in(expr):
    '''.. versionadded:: 1.1.2
 
@@ -19,13 +20,10 @@ def get_diatonic_intervals_in(expr):
       HarmonicDiatonicInterval(perfect fourth)
    '''
    
-   #diatonic_intervals = set([ ])
    diatonic_intervals = [ ]
    pitches = get_pitches(expr)
    unordered_pitch_pairs = listtools.get_unordered_pairs(pitches)
-   for unordered_pitch_pair in unordered_pitch_pairs:
-      first_pitch = unordered_pitch_pair.pop( )
-      second_pitch = unordered_pitch_pair.pop( )
+   for first_pitch, second_pitch in unordered_pitch_pairs:
       diatonic_interval = first_pitch - second_pitch
       diatonic_interval = abs(diatonic_interval)
       diatonic_intervals.append(diatonic_interval)      

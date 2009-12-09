@@ -10,12 +10,12 @@ def pitch_pairs_within(expr):
       abjad> for pair in pitchtools.pitch_pairs_within(Chord([0, 1, 2, 3], (1, 4))):
       ...     pair
       ... 
-      set([Pitch(c, 4), Pitch(cs, 4)])
-      set([Pitch(c, 4), Pitch(d, 4)])
-      set([Pitch(c, 4), Pitch(ef, 4)])
-      set([Pitch(d, 4), Pitch(cs, 4)])
-      set([Pitch(cs, 4), Pitch(ef, 4)])
-      set([Pitch(d, 4), Pitch(ef, 4)])
+      (Pitch(c, 4), Pitch(cs, 4))
+      (Pitch(c, 4), Pitch(d, 4))
+      (Pitch(c, 4), Pitch(ef, 4))
+      (Pitch(d, 4), Pitch(cs, 4))
+      (Pitch(cs, 4), Pitch(ef, 4))
+      (Pitch(d, 4), Pitch(ef, 4))
    '''
 
    for pair in listtools.get_unordered_pairs(sorted(get_pitches(expr))):

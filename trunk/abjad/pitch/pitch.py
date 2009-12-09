@@ -28,7 +28,7 @@ class Pitch(_Abjad):
       elif len(args) == 3:
          self._init_by_name_octave_and_deviation(*args)
       else:
-         raise ValueError('not a valid pitch token.')
+         raise ValueError('%s not valid pitch token.' % str(args))
 
    ## OVERLOADS ##
 
