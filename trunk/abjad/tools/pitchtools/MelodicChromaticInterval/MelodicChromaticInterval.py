@@ -17,9 +17,9 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
 
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
-         self._interval_number = arg
+         self._number = arg
       elif isinstance(arg, _Interval):
-         self._interval_number = arg.semitones
+         self._number = arg.semitones
       else:
          raise TypeError('%s must be number or interval.' % arg)
 
@@ -34,7 +34,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       if not self.direction_number == arg.direction_number:
          raise ValueError(
             'can only compare melodic intervals of same direction.')
-      return abs(self.interval_number) >= abs(arg.interval_number)
+      return abs(self.number) >= abs(arg.number)
 
    def __gt__(self, arg):
       if not isinstance(arg, MelodicChromaticInterval):
@@ -42,7 +42,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       if not self.direction_number == arg.direction_number:
          raise ValueError(
             'can only compare melodic intervals of same direction.')
-      return abs(self.interval_number) > abs(arg.interval_number)
+      return abs(self.number) > abs(arg.number)
 
    def __hash__(self):
       return hash(repr(self))
@@ -53,7 +53,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       if not self.direction_number == arg.direction_number:
          raise ValueError(
             'can only compare melodic intervals of same direction.')
-      return abs(self.interval_number) <= abs(arg.interval_number)
+      return abs(self.number) <= abs(arg.number)
 
    def __lt__(self, arg):
       if not isinstance(arg, MelodicChromaticInterval):
@@ -61,10 +61,10 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       if not self.direction_number == arg.direction_number:
          raise ValueError(
             'can only compare melodic intervals of same direction.')
-      return abs(self.interval_number) < abs(arg.interval_number)
+      return abs(self.number) < abs(arg.number)
 
    def __neg__(self):
-      return MelodicChromaticInterval(-self._interval_number)
+      return MelodicChromaticInterval(-self._number)
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
@@ -82,17 +82,13 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
 
    @property
    def direction_number(self):
-      return mathtools.sign(self.interval_number) 
+      return mathtools.sign(self.number) 
 
    @property
    def harmonic_interval(self):
-      interval_number = abs(self.interval_number)
-      return HarmonicChromaticInterval(interval_number)
+      number = abs(self.number)
+      return HarmonicChromaticInterval(number)
 
    @property
    def interval_class(self):
-      return self.direction_number * (abs(self.interval_number) % 12)
-
-   @property
-   def number(self):
-      return self.interval_number
+      return self.direction_number * (abs(self.number) % 12)

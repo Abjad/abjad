@@ -11,38 +11,34 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
       HarmonicChromaticInterval(2)
    '''
 
-   def __init__(self, interval_number):
-      _ChromaticInterval.__init__(self, interval_number)
-      self._interval_number = abs(self.interval_number)
+   def __init__(self, number):
+      _ChromaticInterval.__init__(self, number)
+      self._number = abs(self.number)
 
    ## OVERLOADS ##
 
    def __ge__(self, arg):
       if not isinstance(arg, HarmonicChromaticInterval):
          raise TypeError('%s must be harmonic chromatic interval.' % arg)
-      return self.interval_number >= arg.interval_number
+      return self.number >= arg.number
 
    def __gt__(self, arg):
       if not isinstance(arg, HarmonicChromaticInterval):
          raise TypeError('%s must be harmonic chromatic interval.' % arg)
-      return self.interval_number > arg.interval_number
+      return self.number > arg.number
 
    def __le__(self, arg):
       if not isinstance(arg, HarmonicChromaticInterval):
          raise TypeError('%s must be harmonic chromatic interval.' % arg)
-      return self.interval_number <= arg.interval_number
+      return self.number <= arg.number
 
    def __lt__(self, arg):
       if not isinstance(arg, HarmonicChromaticInterval):
          raise TypeError('%s must be harmonic chromatic interval.' % arg)
-      return self.interval_number < arg.interval_number
+      return self.number < arg.number
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def interval_class(self):
-      return self.interval_number % 12
-
-   @property
-   def number(self):
-      return self.interval_number
+      return self.number % 12

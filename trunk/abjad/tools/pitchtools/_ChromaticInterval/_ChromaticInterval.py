@@ -10,9 +10,9 @@ class _ChromaticInterval(_Interval):
 
    def __init__(self, arg):
       if isinstance(arg, (int, float, long)):
-         self._interval_number = arg
+         self._number = arg
       elif isinstance(arg, _Interval):
-         self._interval_number = arg.semitones
+         self._number = arg.semitones
       else:
          raise TypeError('%s must be number or interval.' % arg)
 
@@ -21,46 +21,46 @@ class _ChromaticInterval(_Interval):
    def __abs__(self):
       from abjad.tools.pitchtools.HarmonicChromaticInterval import \
          HarmonicChromaticInterval
-      return HarmonicChromaticInterval(abs(self._interval_number))
+      return HarmonicChromaticInterval(abs(self._number))
 
    def __add__(self, arg):
       if isinstance(arg, self.__class__):
-         interval_number = self.interval_number + arg.interval_number
-         return self.__class__(interval_number)
+         number = self.number + arg.number
+         return self.__class__(number)
       raise TypeError('must be %s.'% self.__class__)
 
    def __copy__(self):
-      return self.__class__(self.interval_number)
+      return self.__class__(self.number)
 
    def __eq__(self, arg):
       if isinstance(arg, self.__class__):
-         if self.interval_number == arg.interval_number:
+         if self.number == arg.number:
             return True
       return False
 
    def __float__(self):
-      return float(self._interval_number)
+      return float(self._number)
 
    def __int__(self):
-      return int(self._interval_number)
+      return int(self._number)
 
    def __ne__(self, arg):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._interval_number)
+      return '%s(%s)' % (self.__class__.__name__, self._number)
 
    def __str__(self):
-      return '%s' % self.interval_number
+      return '%s' % self.number
 
    def __sub__(self, arg):
       if isinstance(arg, self.__class__):
-         interval_number = self.interval_number - arg.interval_number
-         return self.__class__(interval_number)
+         number = self.number - arg.number
+         return self.__class__(number)
       raise TypeError('must be %s' % self.__class__)
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def semitones(self):
-      return self.interval_number
+      return self.number

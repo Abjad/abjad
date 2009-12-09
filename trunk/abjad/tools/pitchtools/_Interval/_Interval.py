@@ -12,21 +12,28 @@ class _Interval(object):
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
+   def __str__(self):
+      return str(self.number)
+
    ## PRIVATE ATTRIBUTES ##
 
    @property
    def _format_string(self):
-      return ' '
+      return str(self.number)
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def cents(self):
+      return 100 * self.semitones
 
    @property
    def interval_class(self):
       pass
 
    @property
-   def interval_number(self):
-      return self._interval_number
+   def number(self):
+      return self._number
 
    @property
    def semitones(self):

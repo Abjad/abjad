@@ -28,6 +28,7 @@ Classes
    tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
    tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
    tools/pitchtools/HarmonicChromaticIntervalSet/HarmonicChromaticIntervalSet
+   tools/pitchtools/HarmonicCounterpointInterval/HarmonicCounterpointInterval
    tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
    tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
    harmonic/natural
@@ -45,6 +46,7 @@ Classes
    tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
    tools/pitchtools/MelodicChromaticIntervalSegment/MelodicChromaticIntervalSegment
    tools/pitchtools/MelodicChromaticIntervalSet/MelodicChromaticIntervalSet
+   tools/pitchtools/MelodicCounterpointInterval/MelodicCounterpointInterval
    tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
    meter/meter
@@ -733,7 +735,6 @@ pitchtools
    tools/pitchtools/are_in_octave_order
    tools/pitchtools/array_to_nonspanning_subarrays
    tools/pitchtools/change_default_accidental_spelling
-   tools/pitchtools/chromatic_interval_from_to
    tools/pitchtools/chromaticize
    tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
@@ -766,6 +767,7 @@ pitchtools
    tools/pitchtools/make_all_aggregate_subsets
    tools/pitchtools/make_flat
    tools/pitchtools/make_sharp
+   tools/pitchtools/melodic_chromatic_interval_from_to
    tools/pitchtools/merge_pitch_arrays
    tools/pitchtools/name_to_letter_accidental
    tools/pitchtools/nearest_neighbor

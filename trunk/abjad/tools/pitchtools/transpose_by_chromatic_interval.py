@@ -22,11 +22,11 @@ def transpose_by_chromatic_interval(pitch_carrier, chromatic_interval):
       raise TypeError('must be melodic chromatic interval.')
    
    if isinstance(pitch_carrier, Pitch):
-      return Pitch(pitch_carrier.number + chromatic_interval.interval_number)
+      return Pitch(pitch_carrier.number + chromatic_interval.number)
    elif isinstance(pitch_carrier, Note):
       new_note = clone.unspan([pitch_carrier])[0]
       new_pitch = Pitch(
-         pitch_carrier.pitch.number + chromatic_interval.interval_number)
+         pitch_carrier.pitch.number + chromatic_interval.number)
       new_note.pitch = new_pitch
       return new_note
    elif isinstance(pitch_carrier, Chord):
@@ -34,7 +34,7 @@ def transpose_by_chromatic_interval(pitch_carrier, chromatic_interval):
       for new_nh, old_nh in zip(
          new_chord.note_heads, pitch_carrier.note_heads):
          new_pitch = Pitch(
-            old_nh.pitch.number + chromatic_interval.interval_number)
+            old_nh.pitch.number + chromatic_interval.number)
          new_nh.pitch = new_pitch
       return new_chord
    else:
