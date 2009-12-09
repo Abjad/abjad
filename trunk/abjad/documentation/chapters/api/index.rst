@@ -486,8 +486,12 @@ label
    tools/label/leaf_pcs
    tools/label/leaf_pitch_numbers
    tools/label/measure_numbers
+   tools/label/melodic_chromatic_interval_classes
    tools/label/melodic_chromatic_intervals
+   tools/label/melodic_counterpoint_interval_classes
    tools/label/melodic_counterpoint_intervals
+   tools/label/melodic_diatonic_interval_classes
+   tools/label/melodic_diatonic_intervals
    tools/label/vertical_moment_chromatic_interval_classes
    tools/label/vertical_moment_chromatic_intervals
    tools/label/vertical_moment_counterpoint_intervals

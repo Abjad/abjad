@@ -17,7 +17,20 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
          raise TypeError('must be integer.')
       if number == 0:
          raise ValueError('must be nonzero integer.')
+      if abs(number) == 1:
+         number = 1
       self._number = number
+
+   ## OVERLOADS ##
+  
+   def __str__(self):
+      return self._format_string
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _format_string(self):
+      return '%s%s' % (self._direction_symbol, abs(self.number))
 
    ## PUBLIC ATTRIBUTES ##
 
