@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicChromaticIntervalClass___init__01( ):
+def test_HarmonicChromaticIntervalClass___init___01( ):
    
    hcic = pitchtools.HarmonicChromaticIntervalClass(0)
    assert repr(hcic) == 'HarmonicChromaticIntervalClass(0)'

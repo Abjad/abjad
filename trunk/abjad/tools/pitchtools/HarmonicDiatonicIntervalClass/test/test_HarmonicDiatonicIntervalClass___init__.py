@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicDiatonicIntervalClass___init__01( ):
+def test_HarmonicDiatonicIntervalClass___init___01( ):
    '''Unisons and octaves are treated differently.'''
 
    hdic = pitchtools.HarmonicDiatonicIntervalClass('perfect', 1)
@@ -13,7 +13,7 @@ def test_HarmonicDiatonicIntervalClass___init__01( ):
    assert hdic.number == 1
 
 
-def test_HarmonicDiatonicIntervalClass___init__02( ):
+def test_HarmonicDiatonicIntervalClass___init___02( ):
    '''Unisons and octaves are treated differently.'''
 
    hdic = pitchtools.HarmonicDiatonicIntervalClass('perfect', -15)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicCounterpointInterval___init___01( ):
+def test_HarmonicCounterpointInterval___init____01( ):
 
    hcpi = pitchtools.HarmonicCounterpointInterval(10)
    assert repr(hcpi) == 'HarmonicCounterpointInterval(10)'
@@ -9,7 +9,7 @@ def test_HarmonicCounterpointInterval___init___01( ):
    assert hcpi.number == 10
 
 
-def test_HarmonicCounterpointInterval___init___02( ):
+def test_HarmonicCounterpointInterval___init____02( ):
    '''Works with ascending diatonic interval instances.'''
 
    mdi = pitchtools.MelodicDiatonicInterval('major', 10)
@@ -19,7 +19,7 @@ def test_HarmonicCounterpointInterval___init___02( ):
    assert hcpi.number == 10
 
 
-def test_HarmonicCounterpointInterval___init___03( ):
+def test_HarmonicCounterpointInterval___init____03( ):
    '''Works with descending diatonic interval instances.'''
 
    mdi = pitchtools.MelodicDiatonicInterval('major', -10)
