@@ -71,7 +71,7 @@ class PitchClass(object):
       return '%s' % self.number
 
    def __sub__(self, arg):
-      '''Subtraction defined against both melodic chromatic intevals
+      '''Subtraction defined against both melodic chromatic intervals
       and against other pitch classes.'''
       if isinstance(arg, PitchClass):
          interval_class_number = abs(self.number - arg.number)

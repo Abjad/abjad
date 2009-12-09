@@ -26,10 +26,12 @@ Classes
    grace/grace
    staffgroup/grandstaff
    tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
+   tools/pitchtools/HarmonicChromaticIntervalClass/HarmonicChromaticIntervalClass
    tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
    tools/pitchtools/HarmonicChromaticIntervalSet/HarmonicChromaticIntervalSet
    tools/pitchtools/HarmonicCounterpointInterval/HarmonicCounterpointInterval
    tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
+   tools/pitchtools/HarmonicDiatonicIntervalClass/HarmonicDiatonicIntervalClass
    tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
    harmonic/natural
    tools/lilytools/HeaderBlock
@@ -44,10 +46,12 @@ Classes
    tools/lilytools/LilyFile
    markup/markup
    tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
+   tools/pitchtools/MelodicChromaticIntervalClass/MelodicChromaticIntervalClass
    tools/pitchtools/MelodicChromaticIntervalSegment/MelodicChromaticIntervalSegment
    tools/pitchtools/MelodicChromaticIntervalSet/MelodicChromaticIntervalSet
    tools/pitchtools/MelodicCounterpointInterval/MelodicCounterpointInterval
    tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
+   tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
    meter/meter
    tools/lilytools/MidiBlock

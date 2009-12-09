@@ -1,0 +1,1 @@
+from HarmonicChromaticIntervalClass import HarmonicChromaticIntervalClass

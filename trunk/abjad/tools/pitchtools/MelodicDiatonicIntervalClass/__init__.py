@@ -1,0 +1,1 @@
+from MelodicDiatonicIntervalClass import MelodicDiatonicIntervalClass
