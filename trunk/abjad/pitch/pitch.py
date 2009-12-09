@@ -113,7 +113,7 @@ class Pitch(_Abjad):
    def __sub__(self, arg):
       from abjad.tools import pitchtools
       if isinstance(arg, Pitch):
-         return pitchtools.diatonic_interval_from_to(self, arg)
+         return pitchtools.melodic_diatonic_interval_from_to(self, arg)
       else:
          interval = arg
          return pitchtools.transpose_by_interval(self, -interval)

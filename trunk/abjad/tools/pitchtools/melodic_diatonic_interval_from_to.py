@@ -2,19 +2,19 @@ from abjad.tools.pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_
 from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
-def diatonic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
+def melodic_diatonic_interval_from_to(pitch_carrier_1, pitch_carrier_2):
    '''.. versionadded:: 1.1.2
 
    Return diatonic interval from `pitch_carrier_1` to 
    `pitch_carrier_2`. ::
 
-      abjad> pitchtools.diatonic_interval_from_to(Pitch(12), Pitch(10))
-      DiatonicInterval(descending major second)
+      abjad> pitchtools.melodic_diatonic_interval_from_to(Pitch(12), Pitch(10))
+      MelodicDiatonicInterval(descending major second)
 
    ::
 
-      abjad> pitchtools.diatonic_interval_from_to(Pitch(10), Pitch(12))
-      DiatonicInterval(ascending major second)
+      abjad> pitchtools.melodic_diatonic_interval_from_to(Pitch(10), Pitch(12))
+      MelodicDiatonicInterval(ascending major second)
    '''
 
    pitch_1 = get_pitch(pitch_carrier_1)
