@@ -55,18 +55,18 @@ def test_label_melodic_chromatic_intervals_03( ):
 
    r"""
    \new Staff {
-           c'8 ^ \markup { +25 }
-           cs'''8 ^ \markup { -14 }
-           b'8 ^ \markup { -15 }
-           af8 ^ \markup { -10 }
-           bf,8 ^ \markup { +1 }
-           b,8 ^ \markup { +22 }
-           a'8 ^ \markup { +1 }
-           bf'8 ^ \markup { -4 }
-           fs'8 ^ \markup { -1 }
-           f'8
+      c'8 ^ \markup { +25.5 }
+      dqf'''8 ^ \markup { -14 }
+      bqs'8 ^ \markup { -15.5 }
+      af8 ^ \markup { -10 }
+      bf,8 ^ \markup { +1 }
+      b,8 ^ \markup { +22 }
+      a'8 ^ \markup { +1 }
+      bf'8 ^ \markup { -3.5 }
+      gqf'8 ^ \markup { -1 }
+      fqs'8
    }
    """
 
    assert check.wf(staff)
-   assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +25 }\n\tcs'''8 ^ \\markup { -14 }\n\tb'8 ^ \\markup { -15 }\n\taf8 ^ \\markup { -10 }\n\tbf,8 ^ \\markup { +1 }\n\tb,8 ^ \\markup { +22 }\n\ta'8 ^ \\markup { +1 }\n\tbf'8 ^ \\markup { -4 }\n\tfs'8 ^ \\markup { -1 }\n\tf'8\n}"
+   assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +25.5 }\n\tdqf'''8 ^ \\markup { -14 }\n\tbqs'8 ^ \\markup { -15.5 }\n\taf8 ^ \\markup { -10 }\n\tbf,8 ^ \\markup { +1 }\n\tb,8 ^ \\markup { +22 }\n\ta'8 ^ \\markup { +1 }\n\tbf'8 ^ \\markup { -3.5 }\n\tgqf'8 ^ \\markup { -1 }\n\tfqs'8\n}"
