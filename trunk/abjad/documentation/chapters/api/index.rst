@@ -560,6 +560,8 @@ listtools
    tools/listtools/cumulative_weights_signed
    tools/listtools/difference_series
    tools/listtools/flatten
+   tools/listtools/forward_and_backward_nonoverlapping
+   tools/listtools/forward_and_backward_overlapping
    tools/listtools/get_cyclic
    tools/listtools/get_unordered_pairs
    tools/listtools/group_by_equality
