@@ -600,6 +600,7 @@ listtools
    tools/listtools/repeat_elements_to_count
    tools/listtools/repeat_list_to_length
    tools/listtools/repeat_list_to_weight
+   tools/listtools/repeat_n_cycles
    tools/listtools/repeat_subruns_to_count
    tools/listtools/replace_elements_cyclic
    tools/listtools/rotate
