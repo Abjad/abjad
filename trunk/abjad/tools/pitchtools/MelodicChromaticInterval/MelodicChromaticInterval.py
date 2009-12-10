@@ -87,6 +87,11 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
       return mathtools.sign(self.number) 
 
    @property
+   def harmonic_chromatic_interval(self):
+      number = abs(self.number)
+      return HarmonicChromaticInterval(number)
+
+   @property
    def harmonic_interval(self):
       number = abs(self.number)
       return HarmonicChromaticInterval(number)

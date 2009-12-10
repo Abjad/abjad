@@ -6,7 +6,8 @@ from abjad.tools import pitchtools
 def vertical_moment_chromatic_intervals(expr):
    r'''.. versionadded:: 1.1.2
 
-   Label chromatic intervals of every vertical moment in `expr`. ::
+   Label harmonic chromatic intervals 
+   of every vertical moment in `expr`. ::
 
       abjad> score = Score(Staff([ ]) * 3)
       abjad> score[0].extend(construct.scale(4))
@@ -44,12 +45,11 @@ def vertical_moment_chromatic_intervals(expr):
       notes.reverse( )
       bass_note = notes[-1]
       upper_notes = notes[:-1]
-      chromatic_intervals = [ ]
+      hcis = [ ]
       for upper_note in upper_notes:
-         chromatic_interval = pitchtools.melodic_chromatic_interval_from_to(
-            bass_note.pitch, upper_note.pitch)
-         chromatic_intervals.append(chromatic_interval)    
-      intervals = [x.number for x in chromatic_intervals]
-      intervals = ' '.join([str(x) for x in intervals])
-      intervals = r'\small { \column { %s } }' % intervals
-      vertical_moment.start_leaves[-1].markup.down.append(intervals)
+         hci = pitchtools.harmonic_chromatic_interval_from_to(
+            bass_note, upper_note)
+         hcis.append(hci)
+      hcis = ' '.join([str(hci) for hci in hcis])
+      hcis = r'\small { \column { %s } }' % hcis
+      vertical_moment.start_leaves[-1].markup.down.append(hcis)

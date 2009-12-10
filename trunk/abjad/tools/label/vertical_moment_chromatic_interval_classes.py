@@ -6,7 +6,8 @@ from abjad.tools import pitchtools
 def vertical_moment_chromatic_interval_classes(expr):
    r'''.. versionadded:: 1.1.2
 
-   Label chromatic interval classes of every vertical moment in `expr`. ::
+   Label harmonic chromatic interval classes 
+   of every vertical moment in `expr`. ::
 
       abjad> score = Score(Staff([ ]) * 3)
       abjad> score[0].extend(construct.scale(4))
@@ -35,7 +36,6 @@ def vertical_moment_chromatic_interval_classes(expr):
       >>
    '''
 
-   ## TODO: OPTIMIZE VERTICAL MOMENT ITERATION! ##
    for vertical_moment in iterate.vertical_moments_forward_in(expr):
       leaves = vertical_moment.leaves
       notes = [leaf for leaf in leaves if isinstance(leaf, Note)]
@@ -45,12 +45,11 @@ def vertical_moment_chromatic_interval_classes(expr):
       notes.reverse( )
       bass_note = notes[-1]
       upper_notes = notes[:-1]
-      chromatic_intervals = [ ]
+      hcics = [ ]
       for upper_note in upper_notes:
-         chromatic_interval = pitchtools.melodic_chromatic_interval_from_to(
-            bass_note.pitch, upper_note.pitch)
-         chromatic_intervals.append(chromatic_interval)    
-      intervals = [x.interval_class.number for x in chromatic_intervals]
-      intervals = ' '.join([str(x) for x in intervals])
-      intervals = r'\small { \column { %s } }' % intervals
-      vertical_moment.start_leaves[-1].markup.down.append(intervals)
+         hcic = pitchtools.harmonic_chromatic_interval_class_from_to(
+            bass_note, upper_note)
+         hcics.append(hcic)
+      hcics = ' '.join([str(hcic) for hcic in hcics])
+      hcics = r'\small { \column { %s } }' % hcics
+      vertical_moment.start_leaves[-1].markup.down.append(hcics)

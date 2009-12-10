@@ -87,3 +87,11 @@ def test_pitchtools_harmonic_chromatic_interval_from_to_07( ):
    hci = pitchtools.harmonic_chromatic_interval_from_to(
       Pitch(12), Pitch(11))
    assert hci == pitchtools.HarmonicChromaticInterval(1)
+
+
+def test_pitchtools_harmonic_chromatic_interval_from_to_08( ):
+   '''Works with quartertones.'''
+
+   hci = pitchtools.harmonic_chromatic_interval_from_to(
+      Pitch(12), Pitch(-2.5))
+   assert hci == pitchtools.HarmonicChromaticInterval(14.5)
