@@ -735,6 +735,7 @@ persistencetools
 
    tools/persistencetools/pickle_dump
    tools/persistencetools/pickle_load
+   tools/persistencetools/pitch_and_rhythm_skeleton
 
 
 pitchtools
