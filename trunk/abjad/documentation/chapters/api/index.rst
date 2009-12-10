@@ -753,7 +753,6 @@ pitchtools
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonicize
    tools/pitchtools/get_harmonic_chromatic_intervals_in
-   tools/pitchtools/get_harmonic_diatonic_intervals
    tools/pitchtools/get_harmonic_diatonic_intervals_in
    tools/pitchtools/get_interval_class_vector
    tools/pitchtools/get_interval_vector
