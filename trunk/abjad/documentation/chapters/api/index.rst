@@ -596,6 +596,8 @@ listtools
    tools/listtools/partition_elements_into_canonic_parts
    tools/listtools/permutations
    tools/listtools/phasor
+   tools/listtools/remove_elements_at_indices
+   tools/listtools/remove_elements_at_indices_cyclic
    tools/listtools/remove_weighted_subrun_at
    tools/listtools/repeat_elements_to_count
    tools/listtools/repeat_list_to_length
@@ -603,6 +605,8 @@ listtools
    tools/listtools/repeat_n_cycles
    tools/listtools/repeat_subruns_to_count
    tools/listtools/replace_elements_cyclic
+   tools/listtools/retain_elements_at_indices
+   tools/listtools/retain_elements_at_indices_cyclic
    tools/listtools/rotate
    tools/listtools/sign
    tools/listtools/sublists
