@@ -1,22 +1,32 @@
 from factors import factors
 
 
-def least_common_multiple(m, n):
-   '''Return the least common multiple of integers `m` and `n`.
+def least_common_multiple(*positive_integers):
+   '''Return the least common multiple of `positive_integers`.
 
    ::
 
       abjad> mathtools.least_common_multiple(4, 5)
       20
 
-   ::
+   Works with more than two positive integers. ::
 
-      abjad> mathtools.least_common_multiple(4, 6)
-      12
+      abjad> mathtools.least_common_multiple(2, 4, 5, 10, 20)
+      20
 
    .. todo:: Optimize.
    '''
 
+   if len(positive_integers) == 1:
+      return positive_integers[0]
+
+   cur_lcm = _least_common_multiple(*positive_integers[:2])
+   for remaining_positive_integer in positive_integers[2:]:
+      cur_lcm = _least_common_multiple(cur_lcm, remaining_positive_integer)
+   return cur_lcm
+
+
+def _least_common_multiple(m, n):
    ## check input
    if not isinstance(m, int):
       raise TypeError
