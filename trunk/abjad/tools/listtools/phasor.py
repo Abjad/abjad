@@ -1,6 +1,8 @@
 import itertools
 
 
+## TODO: merge with listtools.repeat_to_length( ) ##
+
 def phasor(iterable, step=1, start=0, length='inf'):
    '''Yield elements in `iterable` cyclically according to `step`,
    `start` and `length`.

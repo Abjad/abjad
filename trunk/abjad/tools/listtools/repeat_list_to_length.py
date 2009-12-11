@@ -2,6 +2,10 @@ from __future__ import division
 import math
 
 
+## TODO: reimplement as generator ##
+
+## TODO: merge with listtools.phasor( ) ##
+
 def repeat_list_to_length(l, length, start = 0):
    '''Repeat list `l` to nonnegative integer `length` from `start`
    defaulting to ``0``. ::
