@@ -18,6 +18,10 @@ def least_common_multiple(*positive_integers):
    '''
 
    if len(positive_integers) == 1:
+      if not isinstance(positive_integers[0], int):
+         raise TypeError('must be integer.')
+      if not 0 < positive_integers[0]:
+         raise ValueError('must be positive.')
       return positive_integers[0]
 
    cur_lcm = _least_common_multiple(*positive_integers[:2])
