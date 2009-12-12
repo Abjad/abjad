@@ -50,6 +50,37 @@ class RC(_BaseRC):
       else:
          return False
 
+   def __gt__(self, expr):
+      if not isinstance(expr, RC):
+         raise TypeError('must be residue class.')
+      if self.modulo == expr.modulo:
+         return self.residue > expr.residue
+      return self.modulo > expr.modulo
+
+   def __ge__(self, expr):
+      if not isinstance(expr, RC):
+         raise TypeError('must be residue class.')
+      if self.modulo == expr.modulo:
+         return self.residue >= expr.residue
+      return self.modulo >= expr.modulo
+
+   def __lt__(self, expr):
+      if not isinstance(expr, RC):
+         raise TypeError('must be residue class.')
+      if self.modulo == expr.modulo:
+         return self.residue < expr.residue
+      return self.modulo < expr.modulo
+
+   def __le__(self, expr):
+      if not isinstance(expr, RC):
+         raise TypeError('must be residue class.')
+      if self.modulo == expr.modulo:
+         return self.residue <= expr.residue
+      return self.modulo <= expr.modulo
+
+   def __ne__(self, expr):
+      return not self == expr
+
    def __repr__(self):
       return 'RC(%i, %i)' % (self.modulo, self.residue)
 

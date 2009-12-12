@@ -7,8 +7,9 @@ import operator
 class RCexpression(_BaseRC):
 
    def __init__(self, rcs, operator = 'or'):
-      self.rcs = rcs
+      self.rcs = rcs[:]
       self.operator = operator
+      self._sort_rcs( )
 
    ## OVERLOADS ##
 
@@ -24,11 +25,14 @@ class RCexpression(_BaseRC):
          result = set(range(min, max + 1))
       else:
          result = set([ ])
-
       for rc in self.rcs:
          op(result, set(rc.get_congruent_bases(min, max)))
-
       return sorted(result)
+
+   def _sort_rcs(self): 
+      from abjad.tools.sievetools.rc import RC
+      if all([isinstance(rc, RC) for rc in self.rcs]):
+         self.rcs.sort( )
 
    ## PUBLIC METHODS ##
 

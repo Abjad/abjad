@@ -838,6 +838,15 @@ scoretools
    tools/scoretools/set_accidental_style
 
 
+sievetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/sievetools/cycle_token_to_sieve
+   tools/sievetools/cycle_tokens_to_sieve
+
+
 spacing
 
 .. toctree::
