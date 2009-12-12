@@ -2,6 +2,45 @@ from abjad import *
 
 
 def test_sievetools_cycle_tokens_to_sieve_01( ):
+   '''Single length-2 cycle token with modulo and residue list.'''
+
+   cycle_token = (6, [0, 4, 5])
+   sieve = sievetools.cycle_tokens_to_sieve(cycle_token)
+   RC = sievetools.RC
+
+   assert sieve.rcs == [RC(6, 0), RC(6, 4), RC(6, 5)]
+
+
+def test_sievetools_cycle_tokens_to_sieve_02( ):
+   '''Single length-3 cycle token with modulo, residue list and offset.'''
+
+   cycle_token = (6, [0, 4, 5], 1)
+   sieve = sievetools.cycle_tokens_to_sieve(cycle_token)
+   RC = sievetools.RC
+
+   assert sieve.rcs == [RC(6, 0), RC(6, 1), RC(6, 5)]
+
+
+def test_sievetools_cycle_tokens_to_sieve_03( ):
+   '''Large offset.'''
+
+   cycle_token = (6, [0, 4, 5], 99)
+   sieve = sievetools.cycle_tokens_to_sieve(cycle_token)
+   RC = sievetools.RC
+
+   assert sieve.rcs == [RC(6, 1), RC(6, 2), RC(6, 3)]
+
+
+def test_sievetools_cycle_tokens_to_sieve_04( ):
+   '''Unsorted residues are sorted on initialization.'''
+
+   cycle_token = (6, [5, 0, 4])
+   sieve = sievetools.cycle_tokens_to_sieve(cycle_token)
+   RC = sievetools.RC
+
+   assert sieve.rcs == [RC(6, 0), RC(6, 4), RC(6, 5)]
+
+def test_sievetools_cycle_tokens_to_sieve_05( ):
    '''Arbitrarily many cycle tokens.'''
 
    cycle_token_1 = (6, [0, 4, 5])
@@ -15,7 +54,7 @@ def test_sievetools_cycle_tokens_to_sieve_01( ):
       RC(6, 0), RC(6, 4), RC(6, 5), RC(10, 0), RC(10, 1), RC(10, 2)]
 
 
-def test_sievetools_cycle_tokens_to_sieve_02( ):
+def test_sievetools_cycle_tokens_to_sieve_06( ):
    '''Unsorted RCs are sorted on initialization.'''
 
    cycle_token_1 = (6, [0, 4, 5])
@@ -29,7 +68,7 @@ def test_sievetools_cycle_tokens_to_sieve_02( ):
       RC(6, 0), RC(6, 4), RC(6, 5), RC(10, 0), RC(10, 1), RC(10, 2)]
 
 
-def test_sievetools_cycle_tokens_to_sieve_03( ):
+def test_sievetools_cycle_tokens_to_sieve_07( ):
    '''Cycle tokens allow optional offset values.'''
 
    cycle_token_1 = (6, [0, 4, 5])

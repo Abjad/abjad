@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitch_and_rhythm_skeleton_01( ):
+def test_persistencetools_pitch_and_rhythm_skeleton_01( ):
 
    note = Note(0, (1, 4))
    skeleton = persistencetools.pitch_and_rhythm_skeleton(note)
@@ -20,7 +20,7 @@ def test_pitch_and_rhythm_skeleton_01( ):
    assert skeleton == "Skip(Rational(1, 4))"
 
 
-def test_pitch_and_rhythm_skeleton_02( ):
+def test_persistencetools_pitch_and_rhythm_skeleton_02( ):
 
    staff = Staff(construct.scale(4))
    skeleton = persistencetools.pitch_and_rhythm_skeleton(staff)
@@ -42,7 +42,7 @@ def test_pitch_and_rhythm_skeleton_02( ):
    assert new.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_pitch_and_rhythm_skeleton_03( ):
+def test_persistencetools_pitch_and_rhythm_skeleton_03( ):
 
 
    tuplet = FixedDurationTuplet((3, 8), construct.scale(4))

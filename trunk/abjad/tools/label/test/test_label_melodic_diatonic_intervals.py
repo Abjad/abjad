@@ -22,7 +22,7 @@ def test_label_melodic_diatonic_intervals_01( ):
    assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +M2 }\n\td'8 ^ \\markup { +M2 }\n\te'8 ^ \\markup { +m2 }\n\tf'8 ^ \\markup { +M2 }\n\tg'8 ^ \\markup { +M2 }\n\ta'8 ^ \\markup { +M2 }\n\tb'8 ^ \\markup { +m2 }\n\tc''8\n}"
 
 
-def test_label_diatonic_melodic_intervals_02( ):
+def test_label_melodic_diatonic_intervals_02( ):
 
    staff = Staff(construct.notes([0, 13, 11, 8, 2, 3, 9, 10, 6, 5], [Rational(1, 8)]))
    label.melodic_diatonic_intervals(staff)

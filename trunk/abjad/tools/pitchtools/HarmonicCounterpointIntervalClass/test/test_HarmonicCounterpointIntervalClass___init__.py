@@ -82,7 +82,7 @@ def test_HarmonicCounterpointIntervalClass___init___03( ):
    assert hcpic.number == 8
 
 
-def test_HarmonicCounterpointIntervalClass___init___02( ):
+def test_HarmonicCounterpointIntervalClass___init___04( ):
    '''Works with less than -8.'''
 
    hcpic = pitchtools.HarmonicCounterpointIntervalClass(-9)

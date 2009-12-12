@@ -2,10 +2,10 @@ from abjad.tools.sievetools.rc import RC
 from abjad.tools.sievetools.rcexpression import RCexpression
 
 
-def cycle_token_to_sieve(cycle_token):
+def _cycle_token_to_sieve(cycle_token):
    r'''.. versionadded:: 1.1.2
 
-   Make Xenakis sieve (ie, residue-class expression) from `cycle_token`.
+   Make Xenakis sieve from `cycle_token`.
 
    When `cycle_token` has length 2, interpret `cycle_token` as
    ``modulo, residues`` pair. ::

@@ -39,7 +39,7 @@ def test_listtools_pairwise_05( ):
       assert pairs.next( )
 
 
-def test_listtools_pairwise_06( ): 
+def test_listtools_pairwise_006 ): 
    '''Works on generators.'''
    t = xrange(6)
    pairs = listtools.pairwise(t)
