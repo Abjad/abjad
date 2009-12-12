@@ -80,3 +80,10 @@ def test_sievetools_cycle_tokens_to_sieve_07( ):
    RC = sievetools.RC
    assert sieve.rcs == [
       RC(6, 0), RC(6, 4), RC(6, 5), RC(10, 6), RC(10, 7), RC(10, 8)]
+
+
+def test_sievetools_cycle_tokens_to_sieve_08( ):
+   '''Works with no cycle tokens.'''
+
+   sieve = sievetools.cycle_tokens_to_sieve( )
+   assert sieve.rcs == [ ]

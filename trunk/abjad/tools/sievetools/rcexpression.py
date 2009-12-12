@@ -20,6 +20,13 @@ class RCexpression(_BaseRC):
 
    ## PRIVATE METHODS ##
 
+   ## TB: _get_congruent_bases( ) might implement more cleanly 
+   ## if the min and max parameters behaved more like the
+   ## start and stop parameters passed to slice( ) objects in
+   ## list slicing.
+   ## That is, RCexpression.get_congruent_bases(8) currently
+   ## returns a list of up to *nine* items; should probably
+   ## return a list of up to only *eight* items.
    def _get_congruent_bases(self, min, max, op):
       if op is operator.iand:
          result = set(range(min, max + 1))
