@@ -1,5 +1,7 @@
 from abjad.tools.sievetools.baserc import _BaseRC
-from abjad.tools.sievetools.process_min_max_attribute import _process_min_max_attribute
+from abjad.tools.sievetools.process_min_max_attribute import \
+   _process_min_max_attribute
+
 
 class RC(_BaseRC):
    '''Residue class (or congruence class). 
@@ -7,7 +9,7 @@ class RC(_BaseRC):
    construct any complex periodic integer (or boolean) sequence as a 
    combination of simple periodic sequences. 
 
-   Example: From the opening of Xenakis' *Psappha* for solo percussion:: 
+   Example from the opening of Xenakis's *Psappha* for solo percussion:: 
 
       abjad> s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
       abjad> s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
@@ -29,46 +31,37 @@ class RC(_BaseRC):
          28, 29, 31, 33, 35, 36, 37, 38, 40]
       abjad> y.get_boolean_train(40)
          [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 
-         1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]'''
+         1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
+   '''
 
    def __init__(self, modulo, residue):
-      if not modulo > 0:
-         raise ValueError('modulo must be > 0.')
+      if not 0 < modulo:
+         raise ValueError('modulo must be positive.')
       if not 0 <= residue < modulo:
          raise ValueError('abs(residue) must be < modulo')
-
       self.modulo = modulo # period
       self.residue = residue # phase
 
+   ## OVERLOADS ##
 
-   def get_congruent_bases(self, *min_max):
-      '''Returns all the congruent bases of this residue class within the 
-      given range. 
-      The method takes one or two integer arguments. If only one it given, 
-      it is taken as the *max* range and *min* is assumed to be 0.
-      
-      Example::
+   def __eq__(self, exp):
+      if isinstance(exp, RC):
+         return (self.modulo == exp.modulo) and (self.residue == exp.residue)
+      else:
+         return False
+
+   def __repr__(self):
+      return 'RC(%i, %i)' % (self.modulo, self.residue)
+
+   ## PUBLIC METHODS ##
+
          
-         abjad> r = RC(3, 0)
-         abjad> r.get_congruent_bases(6)
-         [0, 3, 6]
-         abjad> r.get_congruent_bases(-6, 6)
-         [-6, -3, 0, 3, 6] '''
-
-      min, max = _process_min_max_attribute(*min_max)
-      result = [ ]
-      for i in range(min, max + 1): 
-         if i % self.modulo == self.residue:
-            result.append(i)
-      return result
-         
-
    def get_boolean_train(self, *min_max):
       '''Returns a boolean train with 0s mapped to the integers
       that are not congruent bases of the residue class and 1s mapped
       to those that are.
-      The method takes one or two integer arguments. If only one it given, 
-      it is taken as the *max* range and *min* is assumed to be 0.
+      The method takes one or two integer arguments. If only one is given, 
+      it is taken as the max range and the min is assumed to be 0.
 
       Example::
 
@@ -76,7 +69,8 @@ class RC(_BaseRC):
          abjad> r.get_boolean_train(6)
          [1, 0, 0, 1, 0, 0]
          abjad> k.get_congruent_bases(-6, 6)
-         [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0]'''
+         [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0]
+      '''
 
       min, max = _process_min_max_attribute(*min_max)
       result = [ ]
@@ -87,24 +81,31 @@ class RC(_BaseRC):
             result.append(0)
       return result
 
+   def get_congruent_bases(self, *min_max):
+      '''Returns all the congruent bases of this residue class 
+      within the given range. 
+      The method takes one or two integer arguments. 
+      If only one it given, it is taken as the max range and 
+      the min is assumed to be 0.
+      
+      Example::
+         
+         abjad> r = RC(3, 0)
+         abjad> r.get_congruent_bases(6)
+         [0, 3, 6]
+         abjad> r.get_congruent_bases(-6, 6)
+         [-6, -3, 0, 3, 6]
+      '''
 
-   ## OVERRIDES ##
-
-   def __eq__(self, exp):
-      if isinstance(exp, RC):
-         return (self.modulo == exp.modulo) and (self.residue == exp.residue)
-      else:
-         return False
-
-
-   def __repr__(self):
-      return 'RC(%i, %i)' % (self.modulo, self.residue)
-
-
+      min, max = _process_min_max_attribute(*min_max)
+      result = [ ]
+      for i in range(min, max + 1): 
+         if i % self.modulo == self.residue:
+            result.append(i)
+      return result
 
 
 if __name__ == '__main__':
-   
    print 'Psappha B2[0:40]'
    s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
    s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)

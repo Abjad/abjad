@@ -1,8 +1,8 @@
-
 def _process_min_max_attribute(*min_max):
    '''Check and process min max attributes.
-   The function expects at least one and at most two attributes. If only one
-   attribute is given, this is taken as the *maximum* of a range.'''
+   The function expects at least one and at most two attributes. 
+   If only one attribute is given, this is taken as the *maximum* of a range.
+   '''
 
    if len(min_max) == 0 or len(min_max) > 2:
       raise AttributeError('The function expects one or two attributes.')
@@ -17,5 +17,3 @@ def _process_min_max_attribute(*min_max):
       raise AttributeError('Arguments must be integers and min < max.')
 
    return min, max
-
-
