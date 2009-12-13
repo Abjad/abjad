@@ -7,8 +7,15 @@ import operator
 class RCexpression(_BaseRC):
 
    def __init__(self, rcs, operator = 'or'):
-      self.rcs = rcs[:]
-      self.operator = operator
+      ## init from RCexpression instance and ignore operator keyword
+      if isinstance(rcs, RCexpression):
+         self.rcs = rcs.rcs[:]
+         self.operator = rcs.operator
+      ## init from rcs and operator arguments
+      else:
+         self.rcs = rcs[:]
+         self.operator = operator
+      ## sort rcs
       self._sort_rcs( )
 
    ## OVERLOADS ##

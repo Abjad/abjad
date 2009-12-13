@@ -599,6 +599,8 @@ listtools
    tools/listtools/remove_elements_at_indices
    tools/listtools/remove_elements_at_indices_cyclic
    tools/listtools/remove_weighted_subrun_at
+   tools/listtools/repeat_elements_at_indices
+   tools/listtools/repeat_elements_at_indices_cyclic
    tools/listtools/repeat_elements_to_count
    tools/listtools/repeat_list_to_length
    tools/listtools/repeat_list_to_weight

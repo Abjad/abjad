@@ -87,3 +87,13 @@ def test_sievetools_cycle_tokens_to_sieve_08( ):
 
    sieve = sievetools.cycle_tokens_to_sieve( )
    assert sieve.rcs == [ ]
+
+
+def test_sievetools_cycle_tokens_to_sieve_09( ):
+   '''Sieves count as cycle tokens in themselves.'''
+
+   RC = sievetools.RC
+   sieve_cycle_token = RC(6, 0) | RC(6, 1)
+   sieve = sievetools.cycle_tokens_to_sieve(sieve_cycle_token)
+
+   assert sieve.rcs == [RC(6, 0), RC(6, 1)]

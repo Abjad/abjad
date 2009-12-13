@@ -34,13 +34,13 @@ class RC(_BaseRC):
          1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
    '''
 
-   def __init__(self, modulo, residue):
-      if not 0 < modulo:
-         raise ValueError('modulo must be positive.')
-      if not 0 <= residue < modulo:
-         raise ValueError('abs(residue) must be < modulo')
-      self.modulo = modulo # period
-      self.residue = residue # phase
+   def __init__(self, *args):
+      if len(args) == 1:
+         self._init_by_rc_instance(*args)
+      elif len(args) == 2:
+         self._init_by_modulo_and_residue(*args)
+      else:
+         raise ValueError('unknown init arguments.')
 
    ## OVERLOADS ##
 
@@ -84,9 +84,24 @@ class RC(_BaseRC):
    def __repr__(self):
       return 'RC(%i, %i)' % (self.modulo, self.residue)
 
+   ## PRIVATE METHODS ##
+
+   def _init_by_rc_instance(self, rc):
+      if not isinstance(rc, RC):
+         raise TypeError('must be rc instance.')
+      self.modulo = rc.modulo # period
+      self.residue = rc.residue # phase
+
+   def _init_by_modulo_and_residue(self, modulo, residue):
+      if not 0 < modulo:
+         raise ValueError('modulo must be positive.')
+      if not 0 <= residue < modulo:
+         raise ValueError('abs(residue) must be < modulo')
+      self.modulo = modulo # period
+      self.residue = residue # phase
+
    ## PUBLIC METHODS ##
 
-         
    def get_boolean_train(self, *min_max):
       '''Returns a boolean train with 0s mapped to the integers
       that are not congruent bases of the residue class and 1s mapped

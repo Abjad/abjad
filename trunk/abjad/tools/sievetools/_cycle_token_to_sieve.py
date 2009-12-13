@@ -22,6 +22,10 @@ def _cycle_token_to_sieve(cycle_token):
       {RC(10, 6) | RC(10, 7) | RC(10, 8)}
    '''
 
+   ## sieves count as cycle tokens in themselves
+   if isinstance(cycle_token, RCexpression):
+      return RCexpression(cycle_token)
+
    ## parse cycle token
    modulo = cycle_token[0]
    residues = cycle_token[1]
