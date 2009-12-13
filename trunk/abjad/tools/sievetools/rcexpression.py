@@ -7,11 +7,11 @@ import operator
 class RCexpression(_BaseRC):
 
    def __init__(self, rcs, operator = 'or'):
-      ## init from RCexpression instance and ignore operator keyword
+      ## init from other rc expression
       if isinstance(rcs, RCexpression):
          self.rcs = rcs.rcs[:]
          self.operator = rcs.operator
-      ## init from rcs and operator arguments
+      ## init from rcs and operator
       else:
          self.rcs = rcs[:]
          self.operator = operator
@@ -100,3 +100,11 @@ class RCexpression(_BaseRC):
          return self._get_congruent_bases(min, max, operator.ixor)
       elif self.operator == 'and':
          return self._get_congruent_bases(min, max, operator.iand)
+
+   ## TB: the +1 adjustment is necessary here because of
+   ## _process_min_max_attribute( ) demands min strictly less than max;
+   ## that is, self.get_congruent_bases(0, 0) raises an exception;
+   ## so we workaround this with self.get_congruent_bases(-1, 1) instead.
+   def is_congruent_base(self, integer):
+      tmp_min, tmp_max = -(abs(integer) + 1), abs(integer) + 1
+      return integer in self.get_congruent_bases(tmp_min, tmp_max)
