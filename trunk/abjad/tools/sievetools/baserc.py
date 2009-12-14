@@ -5,6 +5,8 @@ class _BaseRC(object):
 
    ## OVERLOADS ##
 
+   ## TODO: implement __neg__( ) ##
+
    def __and__(self, arg):
       assert isinstance(arg, _BaseRC)
       return self._operate(arg, 'and')
