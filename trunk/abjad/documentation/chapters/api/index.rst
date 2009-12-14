@@ -564,6 +564,7 @@ listtools
    tools/listtools/forward_and_backward_nonoverlapping
    tools/listtools/forward_and_backward_overlapping
    tools/listtools/get_cyclic
+   tools/listtools/get_period
    tools/listtools/get_unordered_pairs
    tools/listtools/group_by_equality
    tools/listtools/group_by_sign
@@ -579,6 +580,7 @@ listtools
    tools/listtools/is_increasing_strictly
    tools/listtools/is_numeric
    tools/listtools/is_restricted_growth_function
+   tools/listtools/is_uniform
    tools/listtools/is_unique
    tools/listtools/join_sublists_by_sign
    tools/listtools/lengths_to_counts
