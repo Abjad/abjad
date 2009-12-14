@@ -1,5 +1,6 @@
 from abjad.clef import Clef
 from abjad.pitch import Pitch
+from abjad.tools.pitchtools.get_pitches import get_pitches
 
 
 def suggest_clef(pitches, clefs = ['treble', 'bass']):
@@ -15,10 +16,17 @@ def suggest_clef(pitches, clefs = ['treble', 'bass']):
       abjad> pitches = [Pitch(x) for x in (-5, 30)]
       abjad> pitchtools.suggest_clef(pitches)
       Clef('treble')
+
+   Works for arbitrary input expression. ::
+
+      abjad> staff = Staff(construct.notes(range(-12, -6), [(1, 4)]))
+      abjad> pitchtools.suggest_clef(staff)
+      Clef('bass')
    '''
 
-   assert isinstance(pitches, list)
-   assert all([isinstance(pitch, Pitch) for pitch in pitches])
+   #assert isinstance(pitches, list)
+   #assert all([isinstance(pitch, Pitch) for pitch in pitches])
+   pitches = get_pitches(pitches)
 
    altitudes = [pitch.altitude for pitch in pitches]
    max_altitude = max(altitudes)

@@ -31,3 +31,11 @@ def test_pitchtools_suggest_clef_04( ):
    pitches = [Pitch(x) for x in pitches]
 
    assert pitchtools.suggest_clef(pitches) == Clef('treble')
+
+
+def test_pitchtools_suggest_clef_05( ):
+   '''Works with arbitrary expression.'''
+
+   staff = Staff(construct.notes(range(-12, -6), [(1, 4)]))
+   
+   assert pitchtools.suggest_clef(staff) == Clef('bass')
