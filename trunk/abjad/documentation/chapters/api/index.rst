@@ -579,6 +579,7 @@ listtools
    tools/listtools/is_increasing_monotonically
    tools/listtools/is_increasing_strictly
    tools/listtools/is_numeric
+   tools/listtools/is_repetition_free
    tools/listtools/is_restricted_growth_function
    tools/listtools/is_uniform
    tools/listtools/is_unique
