@@ -1,3 +1,4 @@
+from abjad.measure.measure import _Measure
 from abjad.tools.layout.LayoutSchema import LayoutSchema
 from abjad.tools.layout.apply_fixed_staff_positioning import \
    apply_fixed_staff_positioning
@@ -7,7 +8,8 @@ from abjad.tools.layout.line_break_every_seconds import \
    line_break_every_seconds
 
 
-def apply_layout_schema(expr, layout_schema, adjust_eol = False):
+def apply_layout_schema(expr, layout_schema, 
+   klass = _Measure, adjust_eol = False):
    r'''.. versionadded:: 1.1.2
 
    Apply `layout_schema` to `expr`.
@@ -62,10 +64,11 @@ def apply_layout_schema(expr, layout_schema, adjust_eol = False):
       raise TypeError('must be layout schema.')
 
    if layout_schema.in_seconds:
-      line_break_every_seconds(
-         expr, layout_schema.line_break_duration, adjust_eol = adjust_eol)
+      line_break_every_seconds(expr, layout_schema.line_break_duration, 
+         klass = klass, adjust_eol = adjust_eol)
    else:
-      line_break_every_prolated(
-         expr, layout_schema.line_break_duration, adjust_eol = adjust_eol)
+      line_break_every_prolated(expr, layout_schema.line_break_duration, 
+         klass = klass, adjust_eol = adjust_eol)
 
-   apply_fixed_staff_positioning(expr, layout_schema.fixed_staff_positioning)
+   apply_fixed_staff_positioning(expr, layout_schema.fixed_staff_positioning,
+      klass = klass)
