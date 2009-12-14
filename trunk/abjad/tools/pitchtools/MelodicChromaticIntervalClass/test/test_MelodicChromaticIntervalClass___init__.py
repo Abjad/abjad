@@ -36,3 +36,13 @@ def test_MelodicChromaticIntervalClass___init___03( ):
    assert repr(mcic) == 'MelodicChromaticIntervalClass(+1)'
    assert str(mcic) == '+1'
    assert mcic.number == 1
+
+
+def test_MelodicChromaticIntervalClass___init___04( ):
+   '''Works with other interval class instances.'''
+
+   mcic = pitchtools.MelodicChromaticIntervalClass(12)
+   new_mcic = pitchtools.MelodicChromaticIntervalClass(mcic)
+   assert repr(mcic) == 'MelodicChromaticIntervalClass(+12)'
+   assert str(mcic) == '+12'
+   assert mcic.number == 12

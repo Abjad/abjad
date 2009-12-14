@@ -3,6 +3,7 @@ from abjad.tools import mathtools
 from abjad.tools.pitchtools._ChromaticIntervalClass import \
    _ChromaticIntervalClass
 from abjad.tools.pitchtools._Interval import _Interval
+from abjad.tools.pitchtools._IntervalClass import _IntervalClass
 from abjad.tools.pitchtools._MelodicIntervalClass import \
    _MelodicIntervalClass
 
@@ -32,8 +33,17 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass,
          else:
             self._number = abs_number % 12
          self._number *= sign
+      elif isinstance(token, _IntervalClass):
+         number = token.number
+         sign = mathtools.sign(number)
+         abs_number = abs(number)
+         if abs_number % 12 == 0 and 12 <= abs_number:
+            self._number = 12
+         else:
+            self._number = abs_number % 12
+         self._number *= sign
       else:
-         raise ValueError('must be number or interval instance.')
+         raise ValueError('must be number, interval or interval class.')
 
    ## OVERLOADS ##
 

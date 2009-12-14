@@ -48,6 +48,8 @@ Classes
    markup/markup
    tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
    tools/pitchtools/MelodicChromaticIntervalClass/MelodicChromaticIntervalClass
+   tools/pitchtools/MelodicChromaticIntervalClassSegment/MelodicChromaticIntervalClassSegment
+   tools/pitchtools/MelodicChromaticIntervalClassVector/MelodicChromaticIntervalClassVector
    tools/pitchtools/MelodicChromaticIntervalSegment/MelodicChromaticIntervalSegment
    tools/pitchtools/MelodicChromaticIntervalSet/MelodicChromaticIntervalSet
    tools/pitchtools/MelodicCounterpointInterval/MelodicCounterpointInterval
@@ -767,6 +769,7 @@ pitchtools
    tools/pitchtools/diatonic_scale_degree_to_letter
    tools/pitchtools/diatonic_to_chromatic
    tools/pitchtools/diatonicize
+   tools/pitchtools/expr_to_melodic_chromatic_interval_segment
    tools/pitchtools/get_harmonic_chromatic_intervals_in
    tools/pitchtools/get_harmonic_diatonic_intervals_in
    tools/pitchtools/get_interval_class_vector

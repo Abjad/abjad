@@ -1,0 +1,2 @@
+from MelodicChromaticIntervalClassVector import \
+   MelodicChromaticIntervalClassVector

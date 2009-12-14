@@ -1,0 +1,2 @@
+from MelodicChromaticIntervalClassSegment import \
+   MelodicChromaticIntervalClassSegment

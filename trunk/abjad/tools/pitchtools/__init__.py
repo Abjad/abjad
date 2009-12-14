@@ -19,6 +19,10 @@ from IntervalClassSet import IntervalClassSet
 from IntervalClassVector import IntervalClassVector
 from MelodicChromaticInterval import MelodicChromaticInterval
 from MelodicChromaticIntervalClass import MelodicChromaticIntervalClass
+from MelodicChromaticIntervalClassSegment import \
+   MelodicChromaticIntervalClassSegment
+from MelodicChromaticIntervalClassVector import \
+   MelodicChromaticIntervalClassVector
 from MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
 from MelodicChromaticIntervalSet import MelodicChromaticIntervalSet
 from MelodicCounterpointInterval import MelodicCounterpointInterval
