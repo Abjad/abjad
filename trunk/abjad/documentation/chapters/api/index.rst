@@ -605,6 +605,7 @@ listtools
    tools/listtools/phasor
    tools/listtools/remove_elements_at_indices
    tools/listtools/remove_elements_at_indices_cyclic
+   tools/listtools/remove_repetitions
    tools/listtools/remove_weighted_subrun_at
    tools/listtools/repeat_elements_at_indices
    tools/listtools/repeat_elements_at_indices_cyclic
