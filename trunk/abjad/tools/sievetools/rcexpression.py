@@ -1,3 +1,4 @@
+from abjad.tools import mathtools
 from abjad.tools.sievetools.baserc import _BaseRC
 from abjad.tools.sievetools.process_min_max_attribute import \
    _process_min_max_attribute
@@ -47,6 +48,30 @@ class RCexpression(_BaseRC):
       from abjad.tools.sievetools.rc import RC
       if all([isinstance(rc, RC) for rc in self.rcs]):
          self.rcs.sort( )
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def period(self):
+      rc_periods = [ ]
+      for rc in self.rcs:
+         rc_periods.append(rc.modulo)
+      if rc_periods:
+         period = mathtools.least_common_multiple(*rc_periods)
+      else:
+         period = 1
+      return period
+
+   @property
+   def representative_boolean_train(self):
+      return self.get_boolean_train(self.period)
+
+   @property
+   def representative_congruent_bases(self):
+      congruent_bases = self.get_congruent_bases(self.period)
+      ## remove redundant last element from get_congruent_bases( )
+      congruent_bases = congruent_bases[:-1]
+      return congruent_bases
 
    ## PUBLIC METHODS ##
 
