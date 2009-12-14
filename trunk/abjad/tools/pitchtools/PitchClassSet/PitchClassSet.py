@@ -8,18 +8,39 @@ from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 ## TODO: Make PitchClassSet and PitchSet both inherit ##
 ## from a shared base class. ##
 
-class PitchClassSet(set):
+#class PitchClassSet(set):
+class PitchClassSet(frozenset):
    '''.. versionadded:: 1.1.2
 
    12-ET pitch-class set from American pitch-class theory.
    '''
 
-   def __init__(self, pcs):
+#   def __init__(self, pcs):
+#      try:
+#         self.update(pcs)
+#      except TypeError:
+#         pitch_classes = get_pitch_classes(pcs)
+#         self.update(pitch_classes)
+
+   def __new__(self, expr):
+      pcs = [ ]
+      ## assume expr is iterable
       try:
-         self.update(pcs)
+         for x in expr:
+            try:
+               pcs.append(PitchClass(x))
+            except TypeError:
+               pcs.extend(get_pitch_classes(x))
+      ## if expr is not iterable
       except TypeError:
-         pitch_classes = get_pitch_classes(pcs)
-         self.update(pitch_classes)
+         ## assume expr can be turned into a single pc
+         try:
+            pc = PitchClass(expr)
+            pcs.append(pc)
+         ## expr is a Rest or non-PC type
+         except TypeError:
+            pcs = [ ]
+      return frozenset.__new__(PitchClassSet, pcs)
 
    ## OVERLOADS ##
 
@@ -79,10 +100,10 @@ class PitchClassSet(set):
 
    ## PUBLIC METHODS ##
    
-   def add(self, arg):
-      '''Custom add to allow both pitch-classes and numbers.'''
-      pitch_class = PitchClass(arg)
-      set.add(self, pitch_class)
+#   def add(self, arg):
+#      '''Custom add to allow both pitch-classes and numbers.'''
+#      pitch_class = PitchClass(arg)
+#      set.add(self, pitch_class)
 
    def invert(self):
       '''Invert all pcs in self.'''
@@ -108,7 +129,7 @@ class PitchClassSet(set):
       '''Transpose all pcs in self by n.'''
       return PitchClassSet([pc.transpose(n) for pc in self])
 
-   def update(self, arg):
-      '''Custom update to allow both pitch-classes and numbers.'''
-      for element in arg:
-         self.add(element)
+#   def update(self, arg):
+#      '''Custom update to allow both pitch-classes and numbers.'''
+#      for element in arg:
+#         self.add(element)
