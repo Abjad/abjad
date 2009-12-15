@@ -1,12 +1,15 @@
 from abjad.pitch import Pitch
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
+from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 from abjad.tools.pitchtools.get_pitches import get_pitches
 from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import \
    transpose_by_melodic_chromatic_interval
 
 
 ## TODO: Make PitchSet and PCSet both inherit for a shared base class. ##
+
+## TODO: Make PitchSet inherit from frozenset instead of set. ##
 
 class PitchSet(set):
    '''.. versionadded:: 1.1.2
@@ -36,17 +39,36 @@ class PitchSet(set):
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
+   def __str__(self):
+      return '{%s}' % self._str_format_string
+
    ## PRIVATE ATTRIBUTES ##
 
    @property
    def _format_string(self):
       return ', '.join([str(pitch) for pitch in self.pitches])
 
+   @property
+   def _str_format_string(self):
+      return ', '.join([str(pitch.number) for pitch in self.pitches])
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def is_pitch_class_unique(self):
+      return len(self) == len(self.pitch_class_set)
+
+   @property
+   def pitch_classes(self):
+      return tuple([pitch.pitch_class for pitch in self.pitches])
+
+   @property
+   def pitch_class_set(self):
+      return PitchClassSet(self)
+      
+   @property
    def pitches(self):
-      return list(sorted(self))
+      return tuple(sorted(self))
 
    @property
    def numbers(self):
@@ -54,41 +76,14 @@ class PitchSet(set):
 
    ## PUBLIC METHODS ##
 
-#   def add(self, arg):
-#      '''Built-in add( ) extended with type- and value-checking.'''
-#      pitch = Pitch(arg)
-#      if pitch not in self:
-#         set.add(self, pitch)
-
    ## TODO: Implement pitch set (axis) inversion. ##
 
    #def invert(self):
    #   '''Transpose all pcs in self by n.'''
    #   return PCSet([pc.invert( ) for pc in self])
 
-   def issubset(self, pitch_set):
-      if isinstance(pitch_set, PitchSet):
-         for pitch in self:
-            if pitch not in pitch_set:
-               return False
-         return True
-      return False
-
-   def issuperset(self, pitch_set):
-      if isinstance(pitch_set, PitchSet):
-         for pitch in pitch_set:
-            if pitch not in self:
-               return False
-         return True
-      return False
-
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
       interval = MelodicChromaticInterval(n)
       return PitchSet(
          [transpose_by_chromatic_interval(pitch, interval) for pitch in self])
-
-#   def update(self, arg):
-#      '''Built-in update( ) extended with type- and value-checking.'''
-#      for element in arg:
-#         self.add(element)
