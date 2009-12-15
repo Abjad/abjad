@@ -55,8 +55,23 @@ class PitchSet(set):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def duplicate_pitch_classes(self):
+      pitch_classes = [ ]
+      duplicate_pitch_classes = [ ]
+      for pitch in self:
+         pitch_class = pitch.pitch_class
+         if pitch_class in pitch_classes:
+            duplicate_pitch_classes.append(pitch_class)
+         pitch_classes.append(pitch_class)
+      return PitchClassSet(duplicate_pitch_classes)
+
+   @property
    def is_pitch_class_unique(self):
       return len(self) == len(self.pitch_class_set)
+
+   @property
+   def numbers(self):
+      return tuple(sorted([pitch.number for pitch in self]))
 
    @property
    def pitch_classes(self):
@@ -69,10 +84,6 @@ class PitchSet(set):
    @property
    def pitches(self):
       return tuple(sorted(self))
-
-   @property
-   def numbers(self):
-      return tuple(sorted([pitch.number for pitch in self]))
 
    ## PUBLIC METHODS ##
 
