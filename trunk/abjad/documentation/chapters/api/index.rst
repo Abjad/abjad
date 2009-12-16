@@ -596,6 +596,9 @@ listtools
    tools/listtools/lengths_to_counts
    tools/listtools/negate_elements_at_indices
    tools/listtools/negate_elements_at_indices_absolutely
+   tools/listtools/nwise_cyclic
+   tools/listtools/nwise_strict
+   tools/listtools/nwise_wrapped
    tools/listtools/outer_product
    tools/listtools/overwrite_slices_at
    tools/listtools/pairs_from_to
