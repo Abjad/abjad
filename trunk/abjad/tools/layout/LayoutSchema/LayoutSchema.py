@@ -1,7 +1,8 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.rational import Rational
 from abjad.tools.layout.FixedStaffPositioning import FixedStaffPositioning
-from abjad.tools.layout.StaffAlignmentOffsets import StaffAlignmentOffsets
+#from abjad.tools.layout.StaffAlignmentOffsets import StaffAlignmentOffsets
+from abjad.tools.layout.StaffAlignmentDistances import StaffAlignmentDistances
 from abjad.tools.layout.SystemYOffsets import SystemYOffsets
 
 
@@ -17,7 +18,9 @@ class LayoutSchema(_Abjad):
       staff_alignment_offsets_tuple):
       self.line_break_duration = Rational(line_break_duration)
       self.system_y_offsets = SystemYOffsets(*system_y_offsets_tuple)
-      self.staff_alignment_offsets = StaffAlignmentOffsets(
+      #self.staff_alignment_offsets = StaffAlignmentOffsets(
+      #   *staff_alignment_offsets_tuple)
+      self.staff_alignment_offsets = StaffAlignmentDistances(
          *staff_alignment_offsets_tuple)
       self.fixed_staff_positioning = FixedStaffPositioning(
          self.system_y_offsets, self.staff_alignment_offsets)
