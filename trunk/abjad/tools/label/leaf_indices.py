@@ -15,7 +15,7 @@ def leaf_indices(expr, direction = 'below'):
               f'8 _ \markup { \small 3 }
       } 
 
-   .. versionchanged:: 1.1.2
+   .. versionadded:: 1.1.2
       new `direction` keyword parameter.
    '''
 
