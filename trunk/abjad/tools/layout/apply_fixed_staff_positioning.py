@@ -1,6 +1,8 @@
 from abjad.measure import _Measure
 from abjad.tools import iterate
 from abjad.tools.layout.FixedStaffPositioning import FixedStaffPositioning
+from abjad.tools.layout.StaffAlignmentOffsets import StaffAlignmentOffsets
+from abjad.tools.layout.StaffAlignmentDistances import StaffAlignmentDistances
 
 
 def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
@@ -77,10 +79,14 @@ def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
    starting_system = positioning.system_y_offsets.skip_systems_on_first_page
 
    if positioning.staff_alignment_offsets is not None:
-      alignment_offsets = \
-         positioning.staff_alignment_offsets.alignment_offsets
+      try:
+         alignment_values = \
+            positioning.staff_alignment_offsets.alignment_offsets
+      except AttributeError:
+         alignment_values = \
+            positioning.staff_alignment_offsets.alignment_distances
    else:
-      alignment_offsets = [0]
+      alignment_values = [0]
 
    line_breaks_found = 0
    prev = None
@@ -90,7 +96,14 @@ def apply_fixed_staff_positioning(expr, positioning, klass = _Measure):
          system_on_page %= systems_per_page
          y_offset = positioning.system_y_offsets[system_on_page]
          cur.breaks.y = y_offset
-         cur.breaks.alignment_offsets = alignment_offsets
+         if isinstance(positioning.staff_alignment_offsets, 
+            StaffAlignmentOffsets):
+            cur.breaks.alignment_offsets = alignment_values
+         elif isinstance(positioning.staff_alignment_offsets, 
+            StaffAlignmentDistances):
+            cur.breaks.alignment_distances = alignment_values
+         else:
+            raise TypeError('should be alignment offsets or distances.')
          line_breaks_found += 1
          if system_on_page == 0:
             if prev is not None:

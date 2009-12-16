@@ -56,6 +56,9 @@ class FixedStaffPositioning(_Abjad):
                       c''8
                       \break
       }
+
+   .. note:: Staff alignment offsets and staff alignment distances
+      are both allowed.
    '''
 
    def __init__(self, system_y_offsets, staff_alignment_offsets = None):

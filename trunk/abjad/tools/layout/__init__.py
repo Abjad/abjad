@@ -13,5 +13,6 @@ _package_import(__path__[0], globals( ))
 
 from FixedStaffPositioning import FixedStaffPositioning
 from LayoutSchema import LayoutSchema
+from StaffAlignmentDistances import StaffAlignmentDistances
 from StaffAlignmentOffsets import StaffAlignmentOffsets
 from SystemYOffsets import SystemYOffsets

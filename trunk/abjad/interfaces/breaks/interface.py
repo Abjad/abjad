@@ -49,6 +49,7 @@ class BreaksInterface(_Interface, _FormatContributor):
       _Interface.__init__(self, _client)
       _FormatContributor.__init__(self)
       self._alignment_offsets = [ ]
+      self._alignment_distances = [ ]
       self._eol_adjustment = None
       self._line = None
       self._page = None
@@ -73,8 +74,10 @@ class BreaksInterface(_Interface, _FormatContributor):
       result = [ ]
       x = self.x
       y = self.y
+      alignment_distances = self.alignment_distances
       alignment_offsets = self.alignment_offsets
-      if x is not None or y is not None or alignment_offsets:
+      if x is not None or y is not None or alignment_distances or \
+         alignment_offsets:
          result.append('\\overrideProperty #"Score.NonMusicalPaperColumn"')
          result.append("#'line-break-system-details")
          temp = [ ]
@@ -82,6 +85,9 @@ class BreaksInterface(_Interface, _FormatContributor):
             temp.append('(X-offset . %s)' % x)
          if y is not None:
             temp.append('(Y-offset . %s)' % y)
+         if alignment_distances:
+            value_vector = ' '.join([str(x) for x in alignment_distances])
+            temp.append('(alignment-distances . (%s))' % value_vector)
          if alignment_offsets:
             value_vector = ' '.join([str(x) for x in alignment_offsets])
             temp.append('(alignment-offsets . (%s))' % value_vector)
@@ -90,6 +96,35 @@ class BreaksInterface(_Interface, _FormatContributor):
       return result
 
    ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def alignment_distances( ):
+      def fget(self):
+         '''LilyPond ``alignment-distances`` list to format as
+         ``NonMusicalPaperColumn``. 
+
+         Contribution appears **before** Abjad component.
+
+         ::
+
+            abjad> t = Note(0, (1, 4))
+            abjad> t.breaks.alignment_distances = [18, 18, 18]
+            abjad> print t.format
+            \overrideProperty #"Score.NonMusicalPaperColumn"
+            #'line-break-system-details
+            #'((alignment-distances . (18, 18, 18)))
+            c'4
+
+         .. note:: ``alignment-distances`` replaces ``alignment-offsets``
+            in the vertical spacing improvements included in LilyPond
+            versions 2.13 and greater.
+         '''
+
+         return self._alignment_distances
+      def fset(self, expr):
+         assert isinstance(expr, list)
+         self._alignment_distances = expr
+      return property(**locals( ))
 
    @apply
    def alignment_offsets( ):
@@ -243,7 +278,7 @@ class BreaksInterface(_Interface, _FormatContributor):
 
    def clear(self):
       r'''Set ``line``, ``page``, ``eol_adjustment``, ``x`` and ``y`` 
-      to ``None`` and empty ``alignment_offsets``.
+      to ``None`` and empty ``alignment_distances`` and ``alignment_offsets``.
 
       ::
 
@@ -265,15 +300,6 @@ class BreaksInterface(_Interface, _FormatContributor):
          abjad> t.breaks.clear( )
          abjad> print t.format
          c'4
-
-      .. todo:: Reimplement all _Interface.clear( ) methods with __init__
       '''
-
-#      self.line = None
-#      self.page = None
-#      self.eol_adjustment = None
-#      self.x = None
-#      self.y = None
-#      self.alignment_offsets = [ ]
 
       self.__init__(self._client)
