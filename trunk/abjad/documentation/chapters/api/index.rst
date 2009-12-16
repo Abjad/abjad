@@ -611,6 +611,7 @@ listtools
    tools/listtools/partition_by_weights_ratio
    tools/listtools/partition_elements_into_canonic_parts
    tools/listtools/permutations
+   tools/listtools/permute
    tools/listtools/phasor
    tools/listtools/remove_elements_at_indices
    tools/listtools/remove_elements_at_indices_cyclic
