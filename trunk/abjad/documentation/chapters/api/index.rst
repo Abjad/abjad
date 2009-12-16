@@ -89,6 +89,7 @@ Classes
    skip/skip
    tools/spacing/SpacingIndication/SpacingIndication
    staff/staff
+   tools/layout/StaffAlignmentDistances/StaffAlignmentDistances
    tools/layout/StaffAlignmentOffsets/StaffAlignmentOffsets
    staffgroup/staffgroup
    tools/layout/SystemYOffsets/SystemYOffsets
@@ -289,10 +290,15 @@ containertools
    :maxdepth: 1
 
    tools/containertools/contents_delete
+   tools/containertools/contents_delete_starting_not_before_prolated_offset
    tools/containertools/contents_multiply
    tools/containertools/contents_reverse
    tools/containertools/contents_scale
    tools/containertools/extend_cyclic
+   tools/containertools/get_element_starting_at_prolated_offset
+   tools/containertools/get_first_element_starting_not_before_prolated_offset
+   tools/containertools/get_first_index_starting_not_before_prolated_offset
+   tools/containertools/get_index_starting_at_prolated_offset
    tools/containertools/insert_and_fracture
    tools/containertools/multiplier_set
    tools/containertools/remove_empty

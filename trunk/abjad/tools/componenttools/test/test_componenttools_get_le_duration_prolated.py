@@ -2,9 +2,10 @@ from abjad import *
 
 
 def test_componenttools_get_le_duration_prolated_01( ):
-   '''Accumulate components from list.
-      Stop when total prolated duration *just* <= 'prolated_duration'.
-      Return (accumulated components, accumulated duration).'''
+   '''Accumulate maximum number of components from list 
+   such that prolated duration of components is no greater
+   than prolated duration at input.
+   '''
 
    t = Voice(construct.scale(4))
    components, duration = componenttools.get_le_duration_prolated(

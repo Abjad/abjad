@@ -3,10 +3,14 @@ from abjad.tools import check
 
 
 def get_le_duration_prolated(components, prolated_duration):
-   '''Assert thread-contiguous Python list of Abjad components.
-      Accumulate components from list.
-      Stop when total prolated duration *just* <= 'prolated_duration'.
-      Return (accumulated components, accumulated duration).'''
+   '''Return ``components[:i]`` together with its prolated duration.
+   Maximize ``i`` such that the prolated duration of 
+   ``components[:i]`` is no greater than `prolated_duration`. ::
+
+      abjad> voice = Voice(construct.scale(4))
+      abjad> componenttools.get_le_duration_prolated(voice[:], Rational(1, 4))
+      ([Note(c', 8), Note(d', 8)], Rational(1, 4))
+   '''
 
    check.assert_components(components, contiguity = 'thread')
 
