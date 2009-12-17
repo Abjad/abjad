@@ -3,7 +3,7 @@ from abjad.tools.layout._line_break_every import _line_break_every
 
 
 def line_break_every_seconds(expr, line_duration, klass = _Measure,
-   adjust_eol = False):
+   adjust_eol = False, add_empty_bars = False):
    r'''Iterate `klass` instances in `expr` and accumulate duration in seconds.
    Add line break after every total less than or equal to `line_duration`.
 
@@ -60,4 +60,5 @@ def line_break_every_seconds(expr, line_duration, klass = _Measure,
    '''
 
    _line_break_every(
-      expr, line_duration, klass, 'seconds', adjust_eol = adjust_eol)
+      expr, line_duration, klass, 'seconds', adjust_eol = adjust_eol,
+      add_empty_bars = add_empty_bars)

@@ -9,7 +9,7 @@ from abjad.tools.layout.line_break_every_seconds import \
 
 
 def apply_layout_schema(expr, layout_schema, 
-   klass = _Measure, adjust_eol = False):
+   klass = _Measure, adjust_eol = False, add_empty_bars = False):
    r'''.. versionadded:: 1.1.2
 
    Apply `layout_schema` to `expr`.
@@ -65,10 +65,12 @@ def apply_layout_schema(expr, layout_schema,
 
    if layout_schema.in_seconds:
       line_break_every_seconds(expr, layout_schema.line_break_duration, 
-         klass = klass, adjust_eol = adjust_eol)
+         klass = klass, adjust_eol = adjust_eol, 
+         add_empty_bars = add_empty_bars)
    else:
       line_break_every_prolated(expr, layout_schema.line_break_duration, 
-         klass = klass, adjust_eol = adjust_eol)
+         klass = klass, adjust_eol = adjust_eol,
+         add_empty_bars = add_empty_bars)
 
    apply_fixed_staff_positioning(expr, layout_schema.fixed_staff_positioning,
       klass = klass)
