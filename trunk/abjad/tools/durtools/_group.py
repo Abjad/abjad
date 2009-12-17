@@ -5,13 +5,15 @@ from abjad.rational import Rational
 def _group(duration_type,
    components, durations, fill = 'exact', cyclic = False, overhang = False):
    '''Group *components* according to succesive *durations*.
-      ``duration_type`` may be ``prolated`` or ``seconds``.
-      When fill == `exact`, then parts must equal durations exactly.
-      When fill == `less`, then parts must be less or equal to durations.
-      When fill == `greater`, then parts must be greater or equal to durations.
-      If *cyclic* is true, read *durations* cyclically.
-      If *overhang* is True and components remain, append as final part.
-      If *overhang* is False and components remain, do not append final part.'''
+
+   ``duration_type`` may be ``prolated`` or ``seconds``.
+   When fill == `exact`, then parts must equal durations exactly.
+   When fill == `less`, then parts must be less or equal to durations.
+   When fill == `greater`, then parts must be greater or equal to durations.
+   If *cyclic* is true, read *durations* cyclically.
+   If *overhang* is True and components remain, append as final part.
+   If *overhang* is False and components remain, do not append final part.
+   '''
 
    assert isinstance(durations, list)
    assert all([isinstance(x, (int, float, Rational)) for x in durations])
