@@ -42,7 +42,7 @@ class BarLineInterface(_Interface, _GrobHandler):
       '''
 
       result = [ ]
-      if self.kind:
+      if self.kind is not None:
          result.append(r'\bar "%s"' % self.kind)
       return result
 
