@@ -669,6 +669,7 @@ mathtools
    tools/mathtools/integer_compositions
    tools/mathtools/integer_partitions
    tools/mathtools/is_assignable
+   tools/mathtools/is_dotted_integer
    tools/mathtools/is_power_of_two
    tools/mathtools/least_common_multiple
    tools/mathtools/least_multiple_greater_equal
