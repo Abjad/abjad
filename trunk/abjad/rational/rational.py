@@ -2,37 +2,37 @@ class Rational(object):
    '''Abjad rational number class.'''
 
    def __init__(self, *args):
-      if len(args) == 1:
-         n = args[0]
-         assert isinstance(n, (int, long, Rational))
-         if type(n) in (int, long):
-            self._numerator = n 
-            self._denominator = 1
-         else:
-            self._numerator = n._numerator
-            self._denominator = n._denominator
+      if len(args) == 1 and isinstance(args[0], (int, long)):
+         self._numerator = args[0]
+         self._denominator = 1
+      elif len(args) == 1 and isinstance(args[0], Rational):
+         rational = args[0]
+         self._numerator = rational._numerator
+         self._denominator = rational._denominator
+      elif len(args) == 1 and isinstance(args[0], tuple):
+         self.__init__(*args[0])
       elif len(args) == 2:
-         n = args[0]
-         d = args[1]
-         assert isinstance(n, (int, long))
-         assert isinstance(d, (int, long))
+         n, d = args
+         if not isinstance(n, (int, long)):
+            raise TypeError('must be int or long.')
+         if not isinstance(d, (int, long)):
+            raise TypeError('must be int or long.')
          if d == 0:
-            msg = 'Rational cannot initialize with 0 denominator.'
-            raise ZeroDivisionError(msg)
+            raise ZeroDivisionError
          gcd = self._gcd(n, d)
          self._numerator = n / gcd
          self._denominator = d / gcd
       else:
-         raise TypeError('Rational( ) must take one or two arguments.')
+         raise TypeError
 
-   ### INIT UTILS ###
+   ## INIT UTILS ##
 
    def _gcd(self, a, b):
        if b == 0: 
          return a
        return self._gcd(b, a % b)
 
-   ### REPR ###
+   ## REPR ##
 
    def __repr__(self):
       return 'Rational(%s, %s)' % (self._n, self._d)
@@ -43,7 +43,7 @@ class Rational(object):
       else:
          return '%s/%s' % (self._n, self._d)
 
-   ### PROPERTIES ###
+   ## PROPERTIES ##
 
    @property
    def _n(self):
@@ -53,7 +53,7 @@ class Rational(object):
    def _d(self):
       return self._denominator
 
-   ### ARITHMETIC OPERATORS ###
+   ## ARITHMETIC OPERATORS ##
 
    def __neg__(self):
       return Rational(-self._n, self._d)

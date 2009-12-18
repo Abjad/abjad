@@ -16,9 +16,9 @@ def test_rational_init_02( ):
 
 def test_rational_init_03( ):
    '''Rational can NOT initialize with floats.'''
-   assert py.test.raises(AssertionError, 'Rational(1.)')
-   assert py.test.raises(AssertionError, 'Rational(1./4)')
-   assert py.test.raises(AssertionError, 'Rational(1/4.)')
+   assert py.test.raises(TypeError, 'Rational(1.)')
+   assert py.test.raises(TypeError, 'Rational(1./4)')
+   assert py.test.raises(TypeError, 'Rational(1/4.)')
 
 
 def test_rational_init_04( ):
@@ -28,8 +28,17 @@ def test_rational_init_04( ):
 
 def test_rational_init_05( ):
    '''Rational can NOT initialize with more than one Rational.'''
-   assert py.test.raises(AssertionError, 'Rational(Rational(1), Rational(2))')
+   assert py.test.raises(TypeError, 'Rational(Rational(1), Rational(2))')
+
 
 def test_rational_init_06( ):
    '''Rational can NOT initialize with 0 denominator.'''
    assert py.test.raises(ZeroDivisionError, 'Rational(12, 0)')
+
+
+def test_rational_init_07( ):
+   '''Rational can initialize from integer pair.'''
+
+   assert Rational((1, 2)) == Rational(1, 2)
+   assert Rational((-1, 2)) == Rational(-1, 2)
+   assert Rational((1, -2)) == Rational(-1, 2)
