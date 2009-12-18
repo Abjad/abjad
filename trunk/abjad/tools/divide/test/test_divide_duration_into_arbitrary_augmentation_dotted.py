@@ -20,7 +20,7 @@ def test_divide_duration_into_arbitrary_augmentation_dotted_01( ):
 
    t = divide.duration_into_arbitrary_augmentation_dotted(
       duration, [1, 1, 1, 1, 1])
-   assert t.format == "\\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"
+   assert t.format == "\\fraction \\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}" 
 
 
 def test_divide_duration_into_arbitrary_augmentation_dotted_02( ):
@@ -34,7 +34,7 @@ def test_divide_duration_into_arbitrary_augmentation_dotted_02( ):
    assert t.format == "{\n\tc'16\n\tc'8\n}"
 
    t = divide.duration_into_arbitrary_augmentation_dotted(duration, [1, 2, 2])
-   assert t.format == "\\times 8/5 {\n\tc'64.\n\tc'32.\n\tc'32.\n}"
+   assert t.format == "\\fraction \\times 8/5 {\n\tc'64.\n\tc'32.\n\tc'32.\n}" 
 
    t = divide.duration_into_arbitrary_augmentation_dotted(
       duration, [1, 2, 2, 3])

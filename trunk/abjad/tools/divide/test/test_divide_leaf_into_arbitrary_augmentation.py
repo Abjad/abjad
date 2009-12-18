@@ -22,4 +22,4 @@ def test_divide_leaf_into_arbitrary_augmentation_01( ):
    assert t.format == "\\fraction \\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
 
    t = divide.leaf_into_arbitrary_augmentation(note, [1, 2, 2, 3, 3, 4])
-   assert t.format == "\\times 8/5 {\n\tc'128\n\tc'64\n\tc'64\n\tc'64.\n\tc'64.\n\tc'32\n}"
+   assert t.format == "\\fraction \\times 8/5 {\n\tc'128\n\tc'64\n\tc'64\n\tc'64.\n\tc'64.\n\tc'32\n}"

@@ -61,7 +61,7 @@ def test_divide_tie_chain_into_arbitrary_augmentation_dotted_03( ):
 
    r'''
    \new Staff {
-           \times 8/5 {
+           \fraction \times 8/5 {
                    c'64. [
                    c'32.
                    c'32.
@@ -71,4 +71,4 @@ def test_divide_tie_chain_into_arbitrary_augmentation_dotted_03( ):
    '''
 
    assert check.wf(t)
-   assert t.format == "\\new Staff {\n\t\\times 8/5 {\n\t\tc'64. [\n\t\tc'32.\n\t\tc'32.\n\t}\n\tc'16 ]\n}"
+   assert t.format == "\\new Staff {\n\t\\fraction \\times 8/5 {\n\t\tc'64. [\n\t\tc'32.\n\t\tc'32.\n\t}\n\tc'16 ]\n}"

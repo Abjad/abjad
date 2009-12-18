@@ -40,7 +40,7 @@ def test_tuplettools_contents_fix_02( ):
 
    tuplettools.contents_fix(t)
 
-   r'''\times 4/3 {
+   r'''\fraction \times 4/3 {
       c'16
       d'16
       e'16
@@ -48,7 +48,7 @@ def test_tuplettools_contents_fix_02( ):
 
    assert check.wf(t)
    assert durtools.is_tuplet_multiplier(t.duration.multiplier)
-   assert t.format == "\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+   assert t.format == "\\fraction \\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
 def test_tuplettools_contents_fix_03( ):

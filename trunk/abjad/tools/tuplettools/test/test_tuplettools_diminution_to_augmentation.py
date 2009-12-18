@@ -16,7 +16,7 @@ def test_tuplettools_diminution_to_augmentation_01( ):
    tuplettools.diminution_to_augmentation(tuplet)
 
    r'''
-   \times 4/3 {
+   \fraction \times 4/3 {
            c'16
            d'16
            e'16
@@ -24,4 +24,4 @@ def test_tuplettools_diminution_to_augmentation_01( ):
    '''
 
    assert check.wf(tuplet)
-   assert tuplet.format == "\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+   assert tuplet.format == "\\fraction \\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
