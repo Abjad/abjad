@@ -160,27 +160,28 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       formatter = self.formatter
       tuplet = formatter.tuplet
       if tuplet.duration.multiplier:
-         #if tuplet.duration.multiplier != 1 or \
-         #   hasattr(tuplet.__class__, 'color'):
-         if True: # new in 1.1.2
-            if tuplet.invisible:
-               multiplier = tuplet.duration.multiplier
-               n, d = multiplier._n, multiplier._d
-               contributor = (tuplet, 'invisible')
-               contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
-               result.append([contributor, contributions])
+         if tuplet.invisible:
+            multiplier = tuplet.duration.multiplier
+            n, d = multiplier._n, multiplier._d
+            contributor = (tuplet, 'invisible')
+            contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
+            result.append([contributor, contributions])
+         else:
+            contributor = (tuplet.brackets, 'open')
+            if tuplet.duration.multiplier != 1 or \
+               hasattr(tuplet.__class__, 'color'):
+#               contributions = [r'%s\times %s %s' % (
+#                  formatter._fraction, 
+#                  durtools.rational_to_fraction_string(
+#                     tuplet.duration.multiplier), 
+#                  tuplet.brackets.open[0])]
+               contributions = [r'%s\times %s %s' % (
+                  formatter._fraction, 
+                  tuplet.duration._multiplier_fraction_string,
+                  tuplet.brackets.open[0])]
             else:
-               contributor = (tuplet.brackets, 'open')
-               if tuplet.duration.multiplier != 1 or \
-                  hasattr(tuplet.__class__, 'color'):
-                  contributions = [r'%s\times %s %s' % (
-                     formatter._fraction, 
-                     durtools.rational_to_fraction_string(
-                        tuplet.duration.multiplier), 
-                     tuplet.brackets.open[0])]
-               else:
-                  contributions = [tuplet.brackets.open[0]]
-               result.append([contributor, contributions])
+               contributions = [tuplet.brackets.open[0]]
+            result.append([contributor, contributions])
       return tuple(result)
 
    @property
@@ -215,10 +216,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
       result = [ ]
       tuplet = self.formatter.tuplet
       if tuplet.duration.multiplier:
-         #if tuplet.duration.multiplier != 1 or \
-         #   hasattr(tuplet.__class__, 'color'):
-         if True:
-            result.append(self.wrap(tuplet.brackets, 'close'))
+         result.append(self.wrap(tuplet.brackets, 'close'))
       return tuple(result)
 
    @property
