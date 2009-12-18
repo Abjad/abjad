@@ -290,6 +290,7 @@ containertools
 .. toctree::
    :maxdepth: 1
 
+   tools/containertools/contents_color
    tools/containertools/contents_delete
    tools/containertools/contents_delete_starting_not_before_prolated_offset
    tools/containertools/contents_multiply
@@ -537,6 +538,7 @@ leaftools
    tools/leaftools/excise
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
+   tools/leaftools/has_dotted_written_duration
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply

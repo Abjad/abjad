@@ -1,13 +1,33 @@
 def contents_color(container, color):
-   '''.. versionadded:: 1.1.2
+   r'''.. versionadded:: 1.1.2
 
-   Override the color of the following in `container`:
-   accidental, beam, dots, note head, rest, stem, tuplet bracket,
-   tuplet number. ::
+   Set `container` contents to `color`. ::
 
-      abjad>
+      abjad> measure = RigidMeasure((2, 8), construct.scale(2))
+      abjad> containertools.contents_color(measure, 'red')
+      {
+              \override Accidental #'color = #red
+              \override Beam #'color = #red
+              \override Dots #'color = #red
+              \override NoteHead #'color = #red
+              \override Rest #'color = #red
+              \override Stem #'color = #red
+              \override TupletBracket #'color = #red
+              \override TupletNumber #'color = #red
+              \time 2/8
+              c'8
+              d'8
+              \revert Accidental #'color
+              \revert Beam #'color
+              \revert Dots #'color
+              \revert NoteHead #'color
+              \revert Rest #'color
+              \revert Stem #'color
+              \revert TupletBracket #'color
+              \revert TupletNumber #'color
+      }
    
-   Useful for a type of structural highlighting.
+   Useful as a type of structural highlighting.
    '''
 
    container.accidental.color = color
