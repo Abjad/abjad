@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_clef_copy_01( ):
+def test_clef_interface_copy_01( ):
    '''Forced clefs copy.'''
 
    t = Staff(construct.run(8))
@@ -41,7 +41,7 @@ def test_clef_copy_01( ):
    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef "treble"\n\tc'8\n\tcs'8\n}'''
 
 
-def test_clef_copy_02( ):
+def test_clef_interface_copy_02( ):
    '''Implicit clefs do not copy.'''
 
    t = Staff(construct.run(8))

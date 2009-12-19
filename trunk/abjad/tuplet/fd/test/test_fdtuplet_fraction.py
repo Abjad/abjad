@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fdtupet_fraction_01( ):
+def test_fdtuplet_fraction_01( ):
    '''Fraction format nonbinary tuplets.'''
 
    t = FixedDurationTuplet((3, 8), construct.scale(4))
@@ -37,7 +37,7 @@ def test_fdtuplet_fraction_02( ):
    assert t.format == "\\fraction \\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_fdtupet_fraction_03( ):
+def test_fdtuplet_fraction_03( ):
    '''Do not fraction format trivial tuplets.'''
 
    t = FixedDurationTuplet((3, 8), construct.scale(3))

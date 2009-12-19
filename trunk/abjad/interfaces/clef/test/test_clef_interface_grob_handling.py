@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_clef_grob_handling_01( ):
+def test_clef_interface_grob_handling_01( ):
    '''Leaf override without context promotion.'''
 
    t = Note(0, (1, 4))
@@ -16,7 +16,7 @@ def test_clef_grob_handling_01( ):
    assert t.format == "\\once \\override Clef #'color = #red\nc'4"
 
 
-def test_clef_grob_handling_02( ):
+def test_clef_interface_grob_handling_02( ):
    '''Leaf override with context promotion.'''
 
    t = Note(0, (1, 4))
@@ -31,14 +31,14 @@ def test_clef_grob_handling_02( ):
    '''
 
 
-def test_clef_grob_handling_03( ):
+def test_clef_interface_grob_handling_03( ):
    '''Context promotion before assignment raises an exception.'''
    t = Note(0, (1, 4))
    #assert py.test.raises(AttributeError, "t.clef.promote('color', 'Staff')")
    assert py.test.raises(AttributeError, "overridetools.promote(t.clef, 'color', 'Staff')")
 
 
-def test_clef_grob_handling_04( ):
+def test_clef_interface_grob_handling_04( ):
    '''
    Clef override on staff.
    '''
