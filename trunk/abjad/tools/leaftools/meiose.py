@@ -30,15 +30,25 @@ def meiose(expr, n = 2):
    Function produces only leaves, never tuplets or other containers.
    '''
 
+   ## can not wrap with update control because of leaf.splice( ) ##
+
+   #expr.parentage.root._update._forbidUpdate( )
    for leaf in iterate.naive_backward_in(expr, _Leaf):
       _leaf_meiose(leaf, n)
-      
+   #expr.parentage.root._update._allowUpdate( )
+   #expr.parentage.root._update._updateAll( )
 
 
 def _leaf_meiose(leaf, n = 2):
    '''Replace leaf with n instances of leaf.
-      Decrease duration half for each generation.
-      Preserve parentage and spanners.'''
+   Decrease duration half for each generation.
+   Preserve parentage and spanners.
+   '''
+
+   #print 'meiosing %s ...' % leaf
+   
+   ## TODO: find a way to optimize this; either reimplement
+   ## _Component.splice( ), or come up with something else.
 
    assert isinstance(leaf, _Leaf)
    assert mathtools.is_power_of_two(n)
