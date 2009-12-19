@@ -1,5 +1,4 @@
 from abjad.core.abjadcore import _Abjad
-#from abjad.navigator.dfs import depth_first_search
 import collections
 
 
@@ -13,8 +12,9 @@ class _Navigator(_Abjad):
    @property
    def _contemporaneousStartComponents(self):
       '''Return a list of all components in either the contents or
-         parentage of client starting at the same moment as client,
-         including client.'''
+      parentage of client starting at the same moment as client,
+      including client.
+      '''
       result = [ ]
       result.extend(self._contemporaneousStartContents)
       result.extend(self._contemporaneousStartParentage)
@@ -23,7 +23,8 @@ class _Navigator(_Abjad):
    @property
    def _contemporaneousStartContents(self):
       '''Return a list of all components in the contents of client
-         starting at the same moment as client, including client.'''
+      starting at the same moment as client, including client.
+      '''
       from abjad.container import Container
       result = [ ]
       client = self._client

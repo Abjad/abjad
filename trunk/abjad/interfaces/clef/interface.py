@@ -37,12 +37,16 @@ class ClefInterface(_Observer, _GrobHandler, _BacktrackingInterface):
 
    @property
    def _parentCanContribute(self):
-      r'''True when any parent, other than self, can contribute LP \clef.'''
-      #for parent in self.client.parentage.parentage[1:]:
+      r'''True when any parent, other than self, can contribute LP \clef
+      and when that parent begins at the exact same moment as client,
+      effectively overruling forced clef of client.
+      '''
       for parent in self._client.parentage.parentage[1:]:
          try:
             if parent.clef._selfCanContribute:
-               return True
+               if self._client in \
+                  parent._navigator._contemporaneousStartComponents:
+                  return True
          except AttributeError:
             pass
       return False

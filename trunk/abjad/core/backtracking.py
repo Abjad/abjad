@@ -31,23 +31,70 @@ class _BacktrackingInterface(_Abjad):
 
    ## PRIVATE METHODS ##
 
-   ## TODO: Can _BacktrackingInterface._getEffective( ) deprecate? ##
+   ## TODO: _BacktrackingInterface._getEffective( ) needs extension. ##
+   ##       The example below is incorrect and should fix. ##
+   
+   r'''
+   abjad> t = Staff(FixedDurationTuplet((2, 8), construct.scale(3)) * 2)
+   abjad> t.leaves[1].clef.forced = Clef('bass')
+   \new Staff {
+           \times 2/3 {
+                   c'8
+                   \clef "bass"
+                   d'8
+                   e'8
+           }
+           \times 2/3 {
+                   \clef "treble"
+                   c'8
+                   d'8
+                   e'8
+           }
+   }
+   '''
 
    def _getEffective(self):
       '''Works for any interface with 'forced' and 'effective' attributes.
          Most such interfaces are observers.'''
+      from abjad.tools import iterate
+      from abjad.leaf import _Leaf
       myForced = self.forced
       if myForced is not None:
          return myForced
       prevComponent = self._client._navigator._prev 
       if prevComponent is not None:
-         prevInterface = getattr(prevComponent, self._interfaceName, None)
-         if prevInterface is not None:
-            prevForced = prevInterface.forced
-            if prevForced:
-               return prevForced
-            else:
-               return prevInterface._effective
+#         prevInterface = getattr(prevComponent, self._interfaceName, None)
+#         if prevInterface is not None:
+#            prevForced = prevInterface.forced
+#            if prevForced:
+#               return prevForced
+#            else:
+#               return prevInterface._effective
+         if isinstance(prevComponent, _Leaf):
+            prevInterface = getattr(prevComponent, self._interfaceName, None)
+            if prevInterface is not None:
+               prevForced = prevInterface.forced
+               if prevForced:
+                  return prevForced
+               else:
+                  return prevInterface._effective
+         else:
+            ## TODO: this is a hack; the logic here will work if prev
+            ##       component is a container that happens to contain
+            ##       a leaf as its last contained element.
+            ##       The logic here needs to be truly backwards recursive.
+            ## TODO: Using iterate.depth_first( ) here *backwards* should work.
+            try:
+               last_contained = prevComponent[-1]
+            except IndexError:
+               last_contained = prevComponent
+            prevInterface = getattr(last_contained, self._interfaceName, None)
+            if prevInterface is not None:
+               prevForced = prevInterface.forced
+               if prevForced:
+                  return prevForced
+               else:
+                  return prevInterface._effective
       for parent in self._client.parentage.parentage[1:]:
          parentInterface = getattr(parent, self._interfaceName, None)
          if parentInterface is not None:
