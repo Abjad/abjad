@@ -14,13 +14,12 @@ class _TupletFormatter(_ContainerFormatter):
    @property
    def _fraction(self):
       tuplet = self._client
-      #if not tuplet.duration._binary:
-      if not tuplet.duration._binary or \
-         tuplet.duration.augmentation:
-         if not tuplet.invisible:
-            return r'\fraction '
-      else:
-         return ''
+      if tuplet._visible:
+         if tuplet.duration.augmentation or \
+            tuplet.duration._nonbinary or \
+            tuplet.force_fraction:
+               return r'\fraction '
+      return ''
 
    ## PUBLIC ATTRIBUTES ##
 

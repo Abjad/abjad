@@ -36,6 +36,10 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
          n, d = self.multiplier._n, self.multiplier._d
       return '%s/%s' % (n, d)
 
+   @property
+   def _nonbinary(self):
+      return not self._binary
+
    ## PUBLIC ATTRIBUTES ##
 
    @property

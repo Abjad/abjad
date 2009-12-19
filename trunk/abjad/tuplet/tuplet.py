@@ -1,15 +1,18 @@
 from abjad.container import Container
 from abjad.tuplet.duration import _TupletDurationInterface
 from abjad.tuplet.formatter import _TupletFormatter
+import types
 
 
 class _Tuplet(Container):
-   '''*Abjad* model of musical tuplet.'''
+   '''Abjad tuplet formalization.
+   '''
 
    def __init__(self, music = None):
-      '''Init tuplet as type of *Abjad* container.'''
+      '''Init tuplet as type of Abjad container.'''
       Container.__init__(self, music)
       self._duration = _TupletDurationInterface(self)
+      self._force_fraction = None
       self._formatter = _TupletFormatter(self) 
       self._invisible = False
 
@@ -37,12 +40,28 @@ class _Tuplet(Container):
       else:
          return ' '
 
+   @property
+   def _visible(self):
+      return not self.invisible
+
    ## PUBLIC ATTRIBUTES ##
 
    @apply
-   def invisible( ):
-      '''Read / write boolean to render tuplet invisible.'''
+   def force_fraction( ):
+      '''Read / write boolean to force n:m fraction.'''
       def fget(self):
+         return self._force_fraction
+      def fset(self, arg):
+         if isinstance(arg, (bool, types.NoneType)):
+            self._force_fraction = arg
+         else:
+            raise TypeError
+      return property(**locals( ))
+
+   @apply
+   def invisible( ):
+      def fget(self):
+         '''Read / write boolean to render tuplet invisible.'''
          return self._invisible
       def fset(self, arg):
          assert isinstance(arg, bool)
