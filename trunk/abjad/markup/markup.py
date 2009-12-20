@@ -20,8 +20,15 @@ class Markup(_Abjad):
    Markup contents must be set by hand.
    '''
 
-   def __init__(self, contents = None):
-      self.contents = contents
+   #def __init__(self, contents = None):
+   def __init__(self, arg):
+      if isinstance(arg, str):
+         self._contents = arg
+      elif isinstance(self, Markup):
+         self._contents = arg.contents
+      else:
+         raise TypeError('must be string or other markup instance.')
+      #self.contents = contents
       self.style = 'backslash'
 
    ## PRIVATE ATTRIBUTES ##
@@ -30,30 +37,47 @@ class Markup(_Abjad):
 
    ## OVERLOADS ##
 
+   def __eq__(self, arg):
+      if isinstance(arg, Markup):
+         if self.format == arg.format:
+            return True
+      return False
+
+   def __ne__(self, arg):
+      return not self == arg
+
    def __repr__(self):
-      return 'Markup(%s)' % self.contents
+      return '%s(%s)' % (self.__class__.__name__, self.contents)
+
+   def __str__(self):
+      return self.format
 
    ## PUBLIC ATTRIBUTES ##
 
-   @apply
-   def contents( ):
-      def fget(self):
-         '''Read / write string equal to markup contents.
-         
-         ::
-   
-            abjad> markup = Markup('"This is markup text."')
-            abjad> markup.contents
-            '"This is markup text."'
-         '''
-         return self._contents
-      def fset(self, arg):
-         assert isinstance(arg, (str, types.NoneType))
-         if isinstance(arg, str):
-            self._contents = arg
-         elif isinstance(arg, types.NoneType):
-            self._contents = ''
-      return property(**locals( ))
+#   @apply
+#   def contents( ):
+#      def fget(self):
+#         '''Read / write string equal to markup contents.
+#         
+#         ::
+#   
+#            abjad> markup = Markup('"This is markup text."')
+#            abjad> markup.contents
+#            '"This is markup text."'
+#         '''
+#         return self._contents
+#      def fset(self, arg):
+#         assert isinstance(arg, (str, types.NoneType))
+#         if isinstance(arg, str):
+#            self._contents = arg
+#         elif isinstance(arg, types.NoneType):
+#            self._contents = ''
+#      return property(**locals( ))
+
+   @property
+   def contents(self):
+      '''Read-only content string.'''
+      return self._contents
 
    @property
    def format(self):

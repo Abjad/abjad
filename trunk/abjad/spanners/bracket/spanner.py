@@ -1,10 +1,8 @@
 from abjad.markup import Markup
 from abjad.spanners.bracket.format import _BracketSpannerFormatInterface
-#from abjad.spanners.text import Text
 from abjad.spanners.text import TextSpanner
 
 
-#class Bracket(Text):
 class Bracket(TextSpanner):
    r'''Structural bracket to group any Abjad components at 
    composition-time. Defaults to red. ::

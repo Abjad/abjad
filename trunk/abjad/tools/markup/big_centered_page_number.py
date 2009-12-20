@@ -20,16 +20,17 @@ def big_centered_page_number(text = None):
 
    assert isinstance(text, (str, types.NoneType))
 
-   markup = Markup( )
-   markup.contents = r'''
+   contents = r'''
    \fill-line {
    \bold \fontsize #3 \concat {
    \on-the-fly #print-page-number-check-first
    \fromproperty #'page:page-number-string'''
 
    if text is None:
-      markup.contents += ' } }'
+      contents += ' } }'
    else:
-      markup.contents += '\n   " - " %s } }' % text
+      contents += '\n   " - " %s } }' % text
+
+   markup = Markup(contents)
 
    return markup

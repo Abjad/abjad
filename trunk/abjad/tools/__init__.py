@@ -24,5 +24,6 @@ from abjad.tools import persistencetools
 from abjad.tools import pitchtools
 from abjad.tools import sievetools
 from abjad.tools import spacing
+from abjad.tools import spanners
 from abjad.tools import split
 from abjad.tools import tietools
