@@ -20,16 +20,15 @@ class Markup(_Abjad):
    Markup contents must be set by hand.
    '''
 
-   #def __init__(self, contents = None):
    def __init__(self, arg):
       if isinstance(arg, str):
          self._contents = arg
+         self.style = 'backslash'
       elif isinstance(self, Markup):
          self._contents = arg.contents
+         self.style = arg.style
       else:
          raise TypeError('must be string or other markup instance.')
-      #self.contents = contents
-      self.style = 'backslash'
 
    ## PRIVATE ATTRIBUTES ##
 

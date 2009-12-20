@@ -881,6 +881,16 @@ spacing
    tools/spacing/get_scorewide
 
 
+spanners
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/spanners/dynamic_spanner_below_with_nib_at_right
+   tools/spanners/solid_text_spanner_above_with_nib_at_right
+   tools/spanners/solid_text_spanner_below_with_nib_at_right
+
+
 spannertools
 
 .. toctree::
