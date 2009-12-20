@@ -347,6 +347,8 @@ durtools
    tools/durtools/diagonalize_all_positive_integer_pairs
    tools/durtools/diagonalize_all_rationals
    tools/durtools/diagonalize_all_rationals_unique
+   tools/durtools/group_by_duration_preprolated
+   tools/durtools/group_by_duration_prolated
    tools/durtools/group_prolated
    tools/durtools/group_seconds
    tools/durtools/in_terms_of

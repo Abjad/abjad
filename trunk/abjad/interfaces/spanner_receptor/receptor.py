@@ -113,6 +113,18 @@ class _SpannerReceptor(_Abjad):
       return result
 
    @property
+   def spanners_attached_to_contents(self):
+      '''Unordered set of all spanners attaching to
+      any component in the contents of client, including client.'''
+      from abjad.tools import spannertools
+      contained = set([ ])
+      for spanner in spannertools.get_contained([self._client]):
+         for klass in self._klasses:
+            if isinstance(spanner, klass):
+               contained.add(spanner)
+      return contained
+
+   @property
    def spanners_in_parentage(self):
       '''.. versionadded:: 1.1.2
 
