@@ -7,6 +7,8 @@ from abjad.tools import tempotools
 import types
 
 
+## TODO: Rename MetronomeMarkInterface ##
+
 class TempoInterface(_Observer, _GrobHandler, 
    _BacktrackingInterface, _SpannerReceptor):
    '''Handle LilyPond MetronomeMark grob and Abjad TempoSpanner.

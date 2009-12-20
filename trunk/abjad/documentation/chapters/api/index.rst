@@ -117,9 +117,13 @@ Interfaces
    interfaces/comments/interface
    interfaces/directives/interface
    interfaces/dots/interface
+   interfaces/dynamic_line_spanner/interface
+   interfaces/dynamic_text/interface
+   interfaces/dynamic_text_spanner/interface
    interfaces/dynamics/interface
    interfaces/glissando/interface
    interfaces/grace/interface
+   interfaces/hairpin/interface
    interfaces/harmonic/interface
    interfaces/history/interface
    interfaces/instrument/interface
@@ -133,16 +137,20 @@ Interfaces
    interfaces/numbering/interface
    interfaces/offset/interface
    interfaces/offset/prolated/interface
+   interfaces/ottava_bracket/interface
    interfaces/parentage/interface
    interfaces/piano_pedal/interface
+   interfaces/rehearsal_mark/interface
    interfaces/rest/interface
    interfaces/score/interface
    interfaces/spacing/score/interface
+   interfaces/script/interface
    interfaces/slur/interface
    interfaces/spacing/interface
    interfaces/span_bar/interface
    interfaces/staff/interface
    interfaces/stem/interface
+   interfaces/stem_tremolo/interface
    interfaces/tempo/interface
    interfaces/text_script/interface
    interfaces/text_spanner/interface
@@ -152,6 +160,8 @@ Interfaces
    interfaces/trill/interface
    interfaces/tuplet_bracket/interface
    interfaces/tuplet_number/interface
+   interfaces/vertical_alignment/interface
+   interfaces/vertical_axis_group/interface
    interfaces/voice/interface
 
 

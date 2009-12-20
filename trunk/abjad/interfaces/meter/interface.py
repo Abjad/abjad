@@ -5,6 +5,8 @@ from abjad.meter.meter import Meter
 import types
 
 
+## TODO: rename to TimeSignatureInterface ##
+
 class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    '''Handle LilyPond TimeSignature grob.
       Publish information about effective and forced meter.'''

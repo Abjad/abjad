@@ -11,7 +11,11 @@ from abjad.interfaces import ClefInterface
 from abjad.interfaces import DirectivesInterface
 from abjad.interfaces import DotsInterface
 from abjad.interfaces import DynamicsInterface
+from abjad.interfaces import DynamicLineSpannerInterface
+from abjad.interfaces import DynamicTextInterface
+from abjad.interfaces import DynamicTextSpannerInterface
 from abjad.interfaces import GlissandoInterface
+from abjad.interfaces import HairpinInterface
 from abjad.interfaces import HistoryInterface
 from abjad.interfaces import InstrumentInterface
 from abjad.interfaces import InterfaceAggregator
@@ -22,15 +26,19 @@ from abjad.interfaces import NoteColumnInterface
 from abjad.interfaces import NoteHeadInterface
 from abjad.interfaces import NumberingInterface
 from abjad.interfaces import OffsetInterface
+from abjad.interfaces import OttavaBracketInterface
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import PianoPedalInterface
+from abjad.interfaces import RehearsalMarkInterface
 from abjad.interfaces import RestInterface
 from abjad.interfaces import ScoreInterface
+from abjad.interfaces import ScriptInterface
 from abjad.interfaces import SlurInterface
 from abjad.interfaces import SpacingInterface
 from abjad.interfaces import SpanBarInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import StemInterface
+from abjad.interfaces import StemTremoloInterface
 from abjad.interfaces import TempoInterface
 from abjad.interfaces import TextScriptInterface
 from abjad.interfaces import TextSpannerInterface
@@ -40,6 +48,8 @@ from abjad.interfaces import TremoloInterface
 from abjad.interfaces import TrillInterface
 from abjad.interfaces import TupletBracketInterface
 from abjad.interfaces import TupletNumberInterface
+from abjad.interfaces import VerticalAlignmentInterface
+from abjad.interfaces import VerticalAxisGroupInterface
 from abjad.interfaces import VoiceInterface
 from abjad.navigator.navigator import _Navigator
 from abjad.rational import Rational
@@ -61,7 +71,11 @@ class _Component(_Abjad):
       self._directives = DirectivesInterface(self)
       self._dots = DotsInterface(self)
       self._dynamics = DynamicsInterface(self)
+      self._dynamic_line_spanner = DynamicLineSpannerInterface(self)
+      self._dynamic_text = DynamicTextInterface(self)
+      self._dynamic_text_spanner = DynamicTextSpannerInterface(self)
       self._glissando = GlissandoInterface(self)
+      self._hairpin = HairpinInterface(self)
       self._history = HistoryInterface(self)
       self._instrument = InstrumentInterface(self)
       self._lily_file = None
@@ -70,14 +84,18 @@ class _Component(_Abjad):
       self._non_musical_paper_column = NonMusicalPaperColumnInterface(self)
       self._note_column = NoteColumnInterface(self)
       self._note_head = NoteHeadInterface(self)
+      self._ottava_bracket = OttavaBracketInterface(self)
       self._parentage = ParentageInterface(self)
       self._piano_pedal = PianoPedalInterface(self)
+      self._rehearsal_mark = RehearsalMarkInterface(self)
       self._rest = RestInterface(self)
       self._score = ScoreInterface(self)
+      self._script = ScriptInterface(self)
       self._slur = SlurInterface(self)
       self._spacing = SpacingInterface(self)
       self._span_bar = SpanBarInterface(self)
       self._stem = StemInterface(self)
+      self._stem_tremolo = StemTremoloInterface(self)
       self._text_script = TextScriptInterface(self)
       self._text_spanner = TextSpannerInterface(self)
       self._thread = ThreadInterface(self)
@@ -87,6 +105,8 @@ class _Component(_Abjad):
       self._tuplet_bracket = TupletBracketInterface(self)
       self._tuplet_number = TupletNumberInterface(self)
       self._update = _UpdateInterface(self)
+      self._vertical_alignment = VerticalAlignmentInterface(self)
+      self._vertical_axis_group = VerticalAxisGroupInterface(self)
 
       ## Observer Interfaces must instantiate after _UpdateInterface ##
       self._clef = ClefInterface(self, self._update)
@@ -190,6 +210,24 @@ class _Component(_Abjad):
       return self._duration
 
    @property
+   def dynamic_line_spanner(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.dynamic_line_spanner.interface.DynamicLineSpannerInterface`.'''
+      return self._dynamic_line_spanner
+
+   @property
+   def dynamic_text(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.dynamic_text.interface.DynamicTextInterface`.'''
+      return self._dynamic_text
+
+   @property
+   def dynamic_text_spanner(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.dynamic_text_spanner.interface.DynamicTextSpannerInterface`.'''
+      return self._dynamic_text_spanner
+
+   @property
    def dynamics(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.dynamics.interface.DynamicsInterface`.'''
@@ -205,6 +243,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.glissando.interface.GlissandoInterface`.'''
       return self._glissando
+
+   @property
+   def hairpin(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.hairpin.interface.HairpinInterface`.'''
+      return self._hairpin
 
    @property
    def history(self):
@@ -246,6 +290,7 @@ class _Component(_Abjad):
       component is housed, if any.'''
       return self._lily_file
 
+   ## TODO: rename to time_siganture ##
    @property
    def meter(self):
       '''Read-only reference to
@@ -296,6 +341,12 @@ class _Component(_Abjad):
       return self._offset
 
    @property
+   def ottava_bracket(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.ottava_bracket.interface.OttavaBracketInterface`.'''
+      return self._ottava_bracket
+
+   @property
    def parentage(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.parentage.interface.ParentageInterface`.'''
@@ -308,6 +359,12 @@ class _Component(_Abjad):
       return self._piano_pedal
 
    @property
+   def rehearsal_mark(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.rehearsal_mark.interface.RestInterface`.'''
+      return self._rehearsal_mark
+
+   @property
    def rest(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.rest.interface.RestInterface`.'''
@@ -318,6 +375,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.score.interface.ScoreInterface`.'''
       return self._score
+
+   @property
+   def script(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.script.interface.ScriptInterface`.'''
+      return self._script
 
    @property
    def slur(self):
@@ -359,6 +422,12 @@ class _Component(_Abjad):
       return self._stem
 
    @property
+   def stem_tremolo(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.stem_tremolo.interface.StemTremoloInterface`.'''
+      return self._stem_tremolo
+
+   @property
    def thread(self):
       '''Read-only reference to
       :class:`~abjad.interfaces.thread.interface.ThreadInterface`.'''
@@ -370,6 +439,7 @@ class _Component(_Abjad):
       :class:`~abjad.interfaces.tie.interface.TieInterface`.'''
       return self._tie
 
+   ## TODO: rename to metronome_mark ##
    @property
    def tempo(self):
       '''Read-only reference to
@@ -412,6 +482,18 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.tuplet_number.interface.TupletNumberInterface`.'''
       return self._tuplet_number
+
+   @property
+   def vertical_alignment(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.vertical_alignment.interface.VerticalAlignmentInterface`.'''
+      return self._vertical_alignment
+
+   @property
+   def vertical_axis_group(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.vertical_axis_group.interface.VerticalAxisGroupInterface`.'''
+      return self._vertical_axis_group
 
    @property
    def voice(self):
