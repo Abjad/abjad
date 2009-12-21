@@ -22,10 +22,14 @@ class _BlockAttributed(object):
    def _format_pieces(self):
       result = [ ]
       #if not self._user_attributes:
-      if not self._formatted_user_attributes:
+      if not self._formatted_user_attributes and \
+         not getattr(self, 'contexts', None):
          result.append('%s { }' % self._escaped_name)
       else:
          result = ['%s {' % self._escaped_name]
+         if getattr(self, 'contexts', None):
+            specs = self._formatted_context_specifications
+            result.extend(['\t' + x for x in specs])
          formatted_attributes = self._formatted_user_attributes
          formatted_attributes = ['\t' + x for x in formatted_attributes]
          result.extend(formatted_attributes)
