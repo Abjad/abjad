@@ -550,11 +550,13 @@ leaftools
    tools/leaftools/excise
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
+   tools/leaftools/group_by_leaf_type
    tools/leaftools/has_dotted_written_duration
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply
    tools/leaftools/show_leaves
+   tools/leaftools/subruns_of_type
 
 
 lilytools
