@@ -46,6 +46,7 @@ from abjad.interfaces import ThreadInterface
 from abjad.interfaces import TieInterface
 from abjad.interfaces import TremoloInterface
 from abjad.interfaces import TrillInterface
+from abjad.interfaces import TrillPitchAccidentalInterface
 from abjad.interfaces import TupletBracketInterface
 from abjad.interfaces import TupletNumberInterface
 from abjad.interfaces import VerticalAlignmentInterface
@@ -102,6 +103,7 @@ class _Component(_Abjad):
       self._tie = TieInterface(self)
       self._tremolo = TremoloInterface(self)
       self._trill = TrillInterface(self)
+      self._trill_pitch_accidental = TrillPitchAccidentalInterface(self)
       self._tuplet_bracket = TupletBracketInterface(self)
       self._tuplet_number = TupletNumberInterface(self)
       self._update = _UpdateInterface(self)
@@ -470,6 +472,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.trill.interface.TrillInterface`.'''
       return self._trill
+   
+   @property
+   def trill_pitch_accidental(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.trill_pitch_accidental.interface.TrillPitchAccidentalInterface`.'''
+      return self._trill_pitch_accidental
    
    @property
    def tuplet_bracket(self):

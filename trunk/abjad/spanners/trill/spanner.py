@@ -55,10 +55,15 @@ class Trill(_GrobHandlerSpanner):
                   d'8 \stopTrillSpan
                   e'8
                   f'8
-               }'''
+               }
+         '''
 
          return self._pitch
       def fset(self, expr):
-         assert isinstance(expr, (Pitch, types.NoneType))
-         self._pitch = expr
+         #assert isinstance(expr, (Pitch, types.NoneType))
+         if expr is None:
+            self._pitch = expr
+         else:
+            pitch = Pitch(expr)
+            self._pitch = pitch
       return property(**locals( ))

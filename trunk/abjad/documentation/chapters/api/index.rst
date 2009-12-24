@@ -158,6 +158,7 @@ Interfaces
    interfaces/tie/interface
    interfaces/tremolo/interface
    interfaces/trill/interface
+   interfaces/trill_pitch_accidental/interface
    interfaces/tuplet_bracket/interface
    interfaces/tuplet_number/interface
    interfaces/vertical_alignment/interface
