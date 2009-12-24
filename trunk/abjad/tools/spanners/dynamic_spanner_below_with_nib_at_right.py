@@ -31,6 +31,7 @@ def dynamic_spanner_below_with_nib_at_right(dynamic_text, components = None):
    '''
 
    text_spanner = TextSpanner(components) 
+   text_spanner._dynamic_text = dynamic_text
    dynamic_text = Markup(r'\dynamic { %s }' % dynamic_text)
    text_spanner.bound_details__left__text = dynamic_text
    right_text = Markup("(markup #:draw-line '(0 . 1))")
