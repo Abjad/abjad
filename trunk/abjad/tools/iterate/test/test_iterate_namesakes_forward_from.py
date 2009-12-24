@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_iterate_namesakes_forward_from_01( ):
@@ -91,3 +92,60 @@ def test_iterate_namesakes_forward_from_02( ):
    assert notes[2].staff.effective.name == 'staff 1'
    assert notes[3].staff.effective.name == 'staff 1'
    
+
+def test_iterate_namesakes_forward_from_03( ):
+   '''Optional start and stop keywords.'''
+
+   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   pitchtools.diatonicize(t)
+
+   r'''
+   \new Staff {
+      \times 2/3 {
+         c'8
+         d'8
+         e'8
+      }
+      \times 2/3 {
+         f'8
+         g'8
+         a'8
+      }
+   }
+   '''
+
+   g = iterate.namesakes_forward_from(t.leaves[1], 0, 3)
+
+   assert g.next( ) is t.leaves[1]
+   assert g.next( ) is t.leaves[2]
+   assert g.next( ) is t.leaves[3]
+   assert py.test.raises(StopIteration, 'g.next( )')
+
+
+def test_iterate_namesakes_forward_from_04( ):
+   '''Optional start and stop keywords.'''
+
+   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   pitchtools.diatonicize(t)
+
+   r'''
+   \new Staff {
+      \times 2/3 {
+         c'8
+         d'8
+         e'8
+      }
+      \times 2/3 {
+         f'8
+         g'8
+         a'8
+      }
+   }
+   '''
+
+   g = iterate.namesakes_forward_from(t.leaves[1], 2)
+
+   assert g.next( ) is t.leaves[3]
+   assert g.next( ) is t.leaves[4]
+   assert g.next( ) is t.leaves[5]
+   assert py.test.raises(StopIteration, 'g.next( )')

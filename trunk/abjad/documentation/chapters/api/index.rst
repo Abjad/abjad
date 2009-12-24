@@ -590,6 +590,7 @@ listtools
    tools/listtools/forward_and_backward_nonoverlapping
    tools/listtools/forward_and_backward_overlapping
    tools/listtools/get_cyclic
+   tools/listtools/get_elements_at_indices
    tools/listtools/get_period
    tools/listtools/get_unordered_pairs
    tools/listtools/group_by_equality

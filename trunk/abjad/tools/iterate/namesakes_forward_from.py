@@ -1,4 +1,4 @@
-def namesakes_forward_from(component):
+def namesakes_forward_from(component, start = 0, stop = None):
    r'''Yield left-to-right namesakes of `component` starting
    from `component`. ::
 
@@ -50,12 +50,14 @@ def namesakes_forward_from(component):
    '''
 
    cur_component = component
+   total_components = 0
 
    while cur_component is not None:
-      yield cur_component
+      if start <= total_components:
+         if stop is not None:
+            if total_components < stop:
+               yield cur_component 
+         else:
+            yield cur_component
+      total_components += 1
       cur_component = cur_component._navigator._nextNamesake
-
-      #if not backward:
-      #   cur_component = cur_component._navigator._nextNamesake
-      #else:
-      #   cur_component = cur_component._navigator._prevNamesake
