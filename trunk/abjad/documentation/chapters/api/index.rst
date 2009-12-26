@@ -465,6 +465,7 @@ iterate
 
    tools/iterate/chained_contents
    tools/iterate/depth_first
+   tools/iterate/get_measure_leaf
    tools/iterate/get_nth_component
    tools/iterate/get_nth_leaf
    tools/iterate/get_nth_measure
