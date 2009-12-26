@@ -153,19 +153,23 @@ def test_partition_fractured_by_durations_05( ):
    t = Staff([Note(0, (1, 8))])
    Beam(t[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ ]
-   }'''
+   }
+   '''
 
    durations = [Rational(1, 64), Rational(5, 64)]
    parts = partition.fractured_by_durations(t[:], durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'64 [ ]
       c'16 [ ~
       c'64 ]
       c'32 [ ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'64 [ ]\n\tc'16 [ ~\n\tc'64 ]\n\tc'32 [ ]\n}"
