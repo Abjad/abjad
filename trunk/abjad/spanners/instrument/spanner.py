@@ -1,5 +1,7 @@
+from abjad.markup import Markup
 from abjad.spanners.instrument.format import _InstrumentSpannerFormatInterface
 from abjad.spanners.spanner.spanner import Spanner
+import types
 
 
 class Instrument(Spanner):
@@ -17,8 +19,13 @@ class Instrument(Spanner):
       def fget(self):
          return self._long
       def fset(self, arg):
-         assert isinstance(arg, str) or arg is None
-         self._long = arg
+         #assert isinstance(arg, str) or arg is None
+         #self._long = arg
+         if isinstance(arg, types.NoneType):
+            self._long = arg
+         else:
+            markup = Markup(arg)
+            self._long = markup
       return property(**locals( ))
 
    @apply
@@ -26,6 +33,11 @@ class Instrument(Spanner):
       def fget(self):
          return self._short
       def fset(self, arg):
-         assert isinstance(arg, str) or arg is None
-         self._short = arg
+         #assert isinstance(arg, str) or arg is None
+         #self._short = arg
+         if isinstance(arg, types.NoneType):
+            self._short = arg
+         else:
+            markup = Markup(arg)
+            self._short = markup
       return property(**locals( ))
