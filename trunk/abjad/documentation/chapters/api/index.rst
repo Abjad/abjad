@@ -375,6 +375,10 @@ durtools
    tools/durtools/pair_multiply_naive
    tools/durtools/pair_multiply_reduce_factors
    tools/durtools/pair_to_prolation_string
+   tools/durtools/partition_noncyclic_with_overhang_by_durations_prolated
+   tools/durtools/partition_noncyclic_with_overhang_by_durations_prolated_not_less_than
+   tools/durtools/partition_noncyclic_without_overhang_by_durations_prolated
+   tools/durtools/partition_noncyclic_without_overhang_by_durations_prolated_not_less_than
    tools/durtools/prolated_to_prolated
    tools/durtools/prolated_to_prolation_written_pairs
    tools/durtools/prolated_to_written_not_greater_than
