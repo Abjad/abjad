@@ -2,6 +2,7 @@ from abjad.container import Container
 from abjad.exceptions import ContainmentError
 from abjad.leaf import _Leaf
 from abjad.measure import RigidMeasure
+from abjad.rational import Rational
 from abjad.spanners import Tie
 from abjad.tools import componenttools
 from abjad.tools import durtools
@@ -25,6 +26,7 @@ def _at_duration(
 
    from abjad.tools import fuse
 
+   duration = Rational(duration)
    assert 0 <= duration
 
    ## if zero duration then return component

@@ -562,6 +562,7 @@ leaftools
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply
+   tools/leaftools/shorten
    tools/leaftools/show_leaves
    tools/leaftools/subruns_of_type
 
