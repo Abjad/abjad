@@ -122,7 +122,7 @@ class BreaksInterface(_Interface, _FormatContributor):
 
          return self._alignment_distances
       def fset(self, expr):
-         assert isinstance(expr, list)
+         assert isinstance(expr, (tuple, list))
          self._alignment_distances = expr
       return property(**locals( ))
 
@@ -147,7 +147,7 @@ class BreaksInterface(_Interface, _FormatContributor):
 
          return self._alignment_offsets
       def fset(self, expr):
-         assert isinstance(expr, list)
+         assert isinstance(expr, (tuple, list))
          self._alignment_offsets = expr
       return property(**locals( ))
 
