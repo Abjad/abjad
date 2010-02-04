@@ -21,6 +21,8 @@ class Pitch(_Abjad):
          self._init_by_reference(*args)
       elif len(args) == 1 and pitchtools.is_pair(args[0]):
          self._init_by_pair(*args)
+      elif len(args) == 1 and isinstance(args[0], str):
+         self._init_by_pitch_string(*args)
       elif len(args) == 2 and isinstance(args[0], str):
          self._init_by_name_and_octave(*args)
       elif len(args) == 2 and isinstance(args[0], (int, long, float)):
@@ -166,6 +168,12 @@ class Pitch(_Abjad):
       self.letter = letter
       self.accidental = pitchtools.Accidental(accidental_string)
       self.octave = octave
+
+   def _init_by_pitch_string(self, pitch_string):
+      from abjad.tools import pitchtools
+      name = pitchtools.pitch_string_to_name(pitch_string)
+      octave_number = pitchtools.pitch_string_to_octave_number(pitch_string)
+      self._init_by_name_and_octave(name, octave_number)
 
    def _init_by_reference(self, pitch):
       from abjad.tools import pitchtools

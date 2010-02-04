@@ -863,6 +863,8 @@ pitchtools
    tools/pitchtools/pitch_number_to_octave
    tools/pitchtools/pitch_pairs_from_to
    tools/pitchtools/pitch_pairs_within
+   tools/pitchtools/pitch_string_to_name
+   tools/pitchtools/pitch_string_to_octave_number
    tools/pitchtools/pitches_to_diatonic_interval
    tools/pitchtools/registrate
    tools/pitchtools/send_pitch_number_to_octave
