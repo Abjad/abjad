@@ -9,7 +9,7 @@ def pitch_string_to_octave_number(pitch_string):
    Convert `pitch_string` to American octave number. ::
 
       abjad> pitchtools.pitch_string_to_name('cs')
-      4
+      3
    '''
 
    if not isinstance(pitch_string, str):

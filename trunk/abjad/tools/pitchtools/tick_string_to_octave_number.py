@@ -8,22 +8,22 @@ def tick_string_to_octave_number(tick_string):
    Convert European `tick_string` to American octave number. ::
 
       abjad> pitchtools.tick_string_to_octave_number('')
-      4
+      3
 
    ::
 
       abjad> pitchtools.tick_string_to_octave_number("'")
-      5
+      4
    '''
 
    if not isinstance(tick_string, str):
       raise TypeError('tick string must be string.')
 
    if tick_string == '':
-      return 4
+      return 3
    elif re.match("(\\'+)", tick_string):
-      return 4 + len(tick_string)
+      return 3 + len(tick_string)
    elif re.match('(\\,+)', tick_string):
-      return 4 - len(tick_string)
+      return 3 - len(tick_string)
    else:
       PitchError('incorrect tick string format.')
