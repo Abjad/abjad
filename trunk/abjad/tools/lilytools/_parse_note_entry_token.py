@@ -1,3 +1,7 @@
+from abjad.tools import durtools
+from abjad.tools import pitchtools
+
+
 def _parse_note_entry_token(note_entry_token):
    '''.. versionadded:: 1.1.2
 

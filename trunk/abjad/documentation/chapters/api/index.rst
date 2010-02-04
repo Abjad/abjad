@@ -869,6 +869,7 @@ pitchtools
    tools/pitchtools/sort_by_pc
    tools/pitchtools/staff_space_transpose
    tools/pitchtools/suggest_clef
+   tools/pitchtools/tick_string_to_octave_number
    tools/pitchtools/transpose_by_melodic_chromatic_interval
    tools/pitchtools/transpose_by_melodic_diatonic_interval
    tools/pitchtools/transpose_by_melodic_interval
