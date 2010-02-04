@@ -358,6 +358,7 @@ durtools
    tools/durtools/diagonalize_all_positive_integer_pairs
    tools/durtools/diagonalize_all_rationals
    tools/durtools/diagonalize_all_rationals_unique
+   tools/durtools/duration_string_to_rational
    tools/durtools/group_by_duration_preprolated
    tools/durtools/group_by_duration_prolated
    tools/durtools/group_prolated
@@ -573,6 +574,7 @@ lilytools
    :maxdepth: 1
 
    tools/lilytools/make_basic_lily_file
+   tools/lilytools/parse_note_entry_string
    tools/lilytools/save_ly_as
    tools/lilytools/save_pdf_as
 
@@ -584,6 +586,7 @@ listtools
 
    tools/listtools/all_ordered_sublists
    tools/listtools/all_restricted_growth_functions_of_length
+   tools/listtools/all_rotations
    tools/listtools/all_set_partitions
    tools/listtools/arithmetic_mean
    tools/listtools/contiguous_sublists
