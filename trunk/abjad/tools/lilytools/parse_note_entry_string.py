@@ -22,6 +22,7 @@ def parse_note_entry_string(note_entry_string):
    container = Container([ ])
    tokens = note_entry_string.split( ) 
    tie_next_leaf = False
+   waiting_on_bar_string = False
    for token in tokens:
       if re.match('\w+', token) is not None: 
          leaf = _parse_note_entry_token(token)
@@ -38,6 +39,17 @@ def parse_note_entry_string(note_entry_string):
          except MissingSpannerError:
             Tie([last_leaf])
          tie_next_leaf = True
+      elif token == r'\bar':
+         waiting_on_bar_string = True
+      elif token.startswith('"'):
+         bar_string = eval(token)
+         last_leaf = iterate.get_nth_leaf(container, -1)
+         last_leaf.bar_line.kind = bar_string
+         waiting_on_bar_string = False
+      elif token.startswith('\\'):
+         last_leaf = iterate.get_nth_leaf(container, -1)
+         articulation_string = token.strip('\\')
+         last_leaf.articulations.append(articulation_string)
       else:
          pass
 
