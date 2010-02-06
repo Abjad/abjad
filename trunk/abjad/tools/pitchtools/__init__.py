@@ -13,6 +13,7 @@ from HarmonicCounterpointIntervalClass import HarmonicCounterpointIntervalClass
 from HarmonicDiatonicInterval import HarmonicDiatonicInterval
 from HarmonicDiatonicIntervalClass import HarmonicDiatonicIntervalClass
 from HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
+from HarmonicDiatonicIntervalSet import HarmonicDiatonicIntervalSet
 from IntervalClass import IntervalClass
 from IntervalClassSegment import IntervalClassSegment
 from IntervalClassSet import IntervalClassSet
@@ -30,6 +31,7 @@ from MelodicCounterpointIntervalClass import MelodicCounterpointIntervalClass
 from MelodicDiatonicInterval import MelodicDiatonicInterval
 from MelodicDiatonicIntervalClass import MelodicDiatonicIntervalClass
 from MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
+from MelodicDiatonicIntervalSet import MelodicDiatonicIntervalSet
 from PitchArray import PitchArray
 from PitchClass import PitchClass
 from PitchClassColorMap import PitchClassColorMap

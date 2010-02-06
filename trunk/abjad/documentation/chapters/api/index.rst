@@ -34,6 +34,7 @@ Classes
    tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
    tools/pitchtools/HarmonicDiatonicIntervalClass/HarmonicDiatonicIntervalClass
    tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
+   tools/pitchtools/HarmonicDiatonicIntervalSet/HarmonicDiatonicIntervalSet
    harmonic/natural
    tools/lilytools/HeaderBlock
    tools/pitchtools/IntervalClass/IntervalClass
@@ -57,6 +58,7 @@ Classes
    tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
    tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
    tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
+   tools/pitchtools/MelodicDiatonicIntervalSet/MelodicDiatonicIntervalSet
    meter/meter
    tools/lilytools/MidiBlock
    note/note
@@ -979,6 +981,14 @@ tietools
    tools/tietools/is_in_same_parent
    tools/tietools/span_leaf_pair
    tools/tietools/truncate
+
+
+tonalharmony
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tonalharmony/is_unlikely_melodic_diatonic_interval_in_chorale
 
 
 tuplettools
