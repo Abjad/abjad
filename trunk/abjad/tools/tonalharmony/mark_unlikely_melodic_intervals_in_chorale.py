@@ -7,14 +7,14 @@ from abjad.tools.tonalharmony.is_unlikely_melodic_diatonic_interval_in_chorale \
    import is_unlikely_melodic_diatonic_interval_in_chorale
 
 
-def mark_unlikely_melodic_intervals_in_chorale(expr):
+def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below'):
    '''.. versionadded:: 1.1.2
 
    Mark unlikely melodic intervals in chorale. ::
 
       abjad> note_entry_string = "b'4 d''2 c'4 b'4 a'2 g'2"
       abjad> soprano = lilytools.parse_note_entry_string(note_entry_string)
-      abjad> tonalharmony.mark_unlikely_melodic_intervals_in_chorale(soprano)
+      abjad> tonalharmony.mark_unlikely_melodic_intervals_in_chorale(soprano, 'above')
       abjad> f(soprano)
       {
               b'4
@@ -39,6 +39,11 @@ def mark_unlikely_melodic_intervals_in_chorale(expr):
             if is_unlikely_melodic_diatonic_interval_in_chorale(mdi):
                next_leaf.note_head.color = 'red'
                markup = Markup(r'\with-color #red { %s }' % mdi)
-               next_leaf.markup.up.append(markup)
+               if direction == 'above':
+                  next_leaf.markup.up.append(markup)
+               elif direction == 'below':
+                  next_leaf.markup.down.append(markup)
+               else:
+                  raise ValueError("must be 'above' or 'below'.")
       except StopIteration:
          pass

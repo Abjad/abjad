@@ -6,7 +6,7 @@ def test_tonalharmony_mark_unlikely_melodic_intervals_in_chorale_01( ):
    ## c'4 is down an octave and should be c''4 instead
    note_entry_string = "b'4 d''2 c'4 b'4 a'2 g'2"
    soprano = lilytools.parse_note_entry_string(note_entry_string)
-   tonalharmony.mark_unlikely_melodic_intervals_in_chorale(soprano)
+   tonalharmony.mark_unlikely_melodic_intervals_in_chorale(soprano, 'above')
 
    r'''
    {
