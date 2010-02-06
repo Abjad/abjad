@@ -989,6 +989,7 @@ tonalharmony
    :maxdepth: 1
 
    tools/tonalharmony/is_unlikely_melodic_diatonic_interval_in_chorale
+   tools/tonalharmony/mark_unlikely_melodic_intervals_in_chorale
 
 
 tuplettools

@@ -27,3 +27,4 @@ from abjad.tools import spacing
 from abjad.tools import spanners
 from abjad.tools import split
 from abjad.tools import tietools
+from abjad.tools import tonalharmony
