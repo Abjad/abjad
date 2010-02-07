@@ -19,17 +19,9 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _dots(self):
-      return sum([int(x) for x in 
-         list(mathtools.binary_string(self.written._n))]) - 1
-
-   @property
    def _dotted(self):
-      durationNames = {0.5:r'\breve', 0.25:r'\longa', 0.125:r'\maxima'}
-      number = self._number
-      if number in durationNames:
-         number = durationNames[number]
-      return '%s%s' % (number, '.' * self._dots)
+      from abjad.tools import durtools
+      return durtools.rational_to_duration_string(self.written)
 
    @property
    def _duration(self):
@@ -42,10 +34,6 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    def _flags(self):
       return max(-int(math.floor(math.log(float(self.written._n) / \
          self.written._d, 2))) - 2, 0)
-
-   @property
-   def _number(self):
-      return 2 ** int(math.ceil(math.log(1/self.written, 2)))
 
    @property
    def _product(self):
