@@ -13,10 +13,10 @@ class Skip(_Leaf):
       return 0
 
    def __repr__(self):
-      return 'Skip(%s)' % self.duration._product
+      return 'Skip(%s)' % self.duration
 
    def __str__(self):
-      return 's%s' % self.duration._product
+      return 's%s' % self.duration
 
    ## PUBLIC ATTRIBUTES ##
   
@@ -25,7 +25,7 @@ class Skip(_Leaf):
       '''String representation of body of skip at format-time.
          Return list like all other format-time contributions.'''
       result = [ ]
-      result.append('s%s' % self.duration._product)
+      result.append('s%s' % self.duration)
       return result
 
    @property

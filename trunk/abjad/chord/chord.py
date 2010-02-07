@@ -32,7 +32,7 @@ class Chord(_Leaf):
       return len(self._note_heads)
 
    def __repr__(self):
-      return 'Chord(%s, %s)' % (self._summary, self.duration._product)
+      return 'Chord(%s, %s)' % (self._summary, self.duration)
 
    def __setitem__(self, i, arg):
       if isinstance(arg, (int, long, float)):
@@ -48,7 +48,7 @@ class Chord(_Leaf):
 
    @property
    def _compact_representation(self):
-      return '<%s>%s' % (self._summary, self.duration._product)
+      return '<%s>%s' % (self._summary, self.duration)
 
    ## PRIVATE METHODS ##
 

@@ -34,11 +34,11 @@ class _ChordFormatter(_LeafFormatter):
          result.insert(0, '<')
          result.append('>')
          result = '\n'.join(result)
-         result += str(chord.duration._product)
+         result += str(chord.duration)
       else:
          #print 'no overrides'
          result.extend([x.format for x in note_heads])
          result = '<%s>%s' % (
-            ' '.join(result), chord.duration._product)
+            ' '.join(result), chord.duration)
       ## single string, but wrapped in list bc contribution
       return [result]

@@ -19,7 +19,7 @@ class Note(_Leaf):
          return 1
 
    def __repr__(self):
-      return 'Note(%s, %s)' % (self.pitch, self.duration._product)
+      return 'Note(%s, %s)' % (self.pitch, self.duration)
 
    ## PRIVATE ATTRIBUTES ##
 
@@ -36,7 +36,7 @@ class Note(_Leaf):
       result = ''
       if self.pitch:
          result += str(self.pitch)
-      result += str(self.duration._product)
+      result += str(self.duration)
       return [result] 
 
    @apply

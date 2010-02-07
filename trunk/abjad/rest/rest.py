@@ -15,13 +15,13 @@ class Rest(_Leaf):
       return 0
 
    def __repr__(self):
-      return 'Rest(%s)' % self.duration._product
+      return 'Rest(%s)' % self.duration
 
    ## PRIVATE ATTRIBUTES ##
 
    @property
    def _compact_representation(self):
-      return 'r%s' % self.duration._product
+      return 'r%s' % self.duration
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -34,7 +34,7 @@ class Rest(_Leaf):
          result += str(self.pitch)
       else:
          result += 'r'
-      result += str(self.duration._product)
+      result += str(self.duration)
       if self.pitch:
          result += r' \rest'
       return [result]

@@ -3,9 +3,7 @@ from abjad.interfaces.interface.interface import _Interface
 from abjad.exceptions import AssignabilityError
 from abjad.exceptions import UndefinedTempoError
 from abjad.tools import durtools
-#from abjad.tools import mathtools
 from abjad.rational import Rational
-#import math
 
 
 class _LeafDurationInterface(_ComponentDurationInterface):
@@ -15,31 +13,21 @@ class _LeafDurationInterface(_ComponentDurationInterface):
       self.multiplier = None
       self.written = Rational(*durtools.token_unpack(duration_token))
 
-   ## PRIVATE ATTRIBUTES ##
+   ## OVERLOADS ##
 
-#   @property
-#   def _dotted(self):
-#      from abjad.tools import durtools
-#      return durtools.rational_to_duration_string(self.written)
-
-   @property
-   def _duration(self):
-#      if self.multiplier is not None:
-#         return self.written * self.multiplier
-#      else:
-#         return self.written
-      return self.multiplied
-
-   @property
-   def _product(self):
+   def __str__(self):
       from abjad.tools import durtools
       duration_string = durtools.rational_to_duration_string(self.written)
       if self.multiplier is not None:
-         #return '%s * %s' % (self._dotted, self.multiplier)
          return '%s * %s' % (duration_string, self.multiplier)
       else:
-         #return self._dotted
          return duration_string
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _duration(self):
+      return self.multiplied
 
    ## PUBLIC ATTRIBUTES ##
 

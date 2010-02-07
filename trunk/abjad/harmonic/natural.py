@@ -11,4 +11,4 @@ class HarmonicNatural(Note, _Harmonic):
    ## OVERLOADS ##
 
    def __repr__(self):
-      return 'HarmonicNatural(%s, %s)' % (self.pitch, self.duration._product)
+      return 'HarmonicNatural(%s, %s)' % (self.pitch, self.duration)
