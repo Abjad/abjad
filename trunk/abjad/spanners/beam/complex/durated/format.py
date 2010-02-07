@@ -1,5 +1,5 @@
-#from abjad.beam.complex.format import _BeamComplexFormatInterface
 from abjad.spanners.beam.complex.format import _BeamComplexFormatInterface
+from abjad.tools import durtools
 
 
 class _BeamComplexDuratedFormatInterface(_BeamComplexFormatInterface):
@@ -19,13 +19,15 @@ class _BeamComplexDuratedFormatInterface(_BeamComplexFormatInterface):
             spanner._spanPoints):
             assert isinstance(spanner.span, int)
             left = spanner.span
-            right = leaf.duration._flags
+            #right = leaf.duration._flags
+            right = durtools.rational_to_flag_count(leaf.duration.written)
          # just left of span gap
          elif spanner._durationOffsetInMe(leaf) + leaf.duration.prolated in \
             spanner._spanPoints and not spanner._durationOffsetInMe(leaf) in \
             spanner._spanPoints:
             assert isinstance(spanner.span, int)
-            left = leaf.duration._flags
+            #left = leaf.duration._flags
+            left = durtools.rational_to_flag_count(leaf.duration.written)
             right = spanner.span
          else:
             left, right = self._getLeftRightForInteriorLeaf(leaf)

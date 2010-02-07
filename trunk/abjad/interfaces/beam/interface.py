@@ -69,9 +69,12 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler,
       '''True when client is beamable, otherwise False.'''
       from abjad.chord import Chord
       from abjad.note import Note
+      from abjad.tools import durtools
       client = self._client
-      flags = client.duration._flags
-      return isinstance(client, (Note, Chord)) and 0 < flags
+      #flags = client.duration._flags
+      flag_count = durtools.rational_to_flag_count(client.duration.written)
+      #return isinstance(client, (Note, Chord)) and 0 < flags
+      return isinstance(client, (Note, Chord)) and 0 < flag_count
 
    @apply
    def counts( ):

@@ -1,4 +1,5 @@
 from abjad.checks.check import _Check
+from abjad.tools import durtools
 from abjad.tools import iterate
 
 
@@ -13,6 +14,9 @@ class QuartersBeamed(_Check):
             if leaf.beam.spanned:
                beam = leaf.beam.spanner
                if not beam.__class__.__name__ == 'BeamComplexDurated':
-                  if leaf.duration._flags < 1:
+                  flag_count = durtools.rational_to_flag_count(
+                     leaf.duration.written)
+                  #if leaf.duration._flags < 1:
+                  if flag_count < 1:
                      violators.append(leaf)
       return violators, total

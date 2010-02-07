@@ -388,6 +388,7 @@ durtools
    tools/durtools/prolated_to_written_not_less_than
    tools/durtools/rational_to_dot_count
    tools/durtools/rational_to_duration_string
+   tools/durtools/rational_to_flag_count
    tools/durtools/rational_to_fraction_string
    tools/durtools/rational_to_prolation_string
    tools/durtools/rational_to_undotted_duration

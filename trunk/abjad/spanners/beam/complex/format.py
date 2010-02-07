@@ -1,5 +1,5 @@
-#from abjad.beam.format import _BeamSpannerFormatInterface
 from abjad.spanners.beam.format import _BeamSpannerFormatInterface
+from abjad.tools import durtools
 
 
 class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
@@ -18,38 +18,56 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
       # first
       elif spanner._isMyFirstLeaf(leaf) or not leaf.prev:
          left = 0
-         right = leaf.duration._flags
+         #right = leaf.duration._flags
+         right = durtools.rational_to_flag_count(leaf.duration.written)
       # last
       elif spanner._isMyLastLeaf(leaf) or not leaf.next:
-         left = leaf.duration._flags
+         #left = leaf.duration._flags
+         left = durtools.rational_to_flag_count(leaf.duration.written)
          right = 0
       else:
          raise ValueError('leaf must be first or last in spanner.')
       return left, right
 
    def _getLeftRightForInteriorLeaf(self, leaf):
-      """'Interior' leaves are neither first nor last in spanner.
-         Interior leaves may be surrounded by beamable leaves.
-         Interior leaves may be surrounded by unbeamable leaves.
-         Four cases total for beamability of surrounding leaves."""
+      '''Interior leaves are neither first nor last in spanner.
+      Interior leaves may be surrounded by beamable leaves.
+      Interior leaves may be surrounded by unbeamable leaves.
+      Four cases total for beamability of surrounding leaves.'''
+      prev_written = leaf.prev.duration.written
+      cur_written = leaf.duration.written
+      next_written = leaf.next.duration.written
+      prev_flag_count = durtools.rational_to_flag_count(prev_written)
+      cur_flag_count = durtools.rational_to_flag_count(cur_written)
+      next_flag_count = durtools.rational_to_flag_count(next_written)
       # [unbeamable leaf beamable]
       if not leaf.prev.beam.beamable and leaf.next.beam.beamable:
-         left = leaf.duration._flags
-         right = min(leaf.duration._flags, leaf.next.duration._flags)
+         #left = leaf.duration._flags
+         #right = min(leaf.duration._flags, leaf.next.duration._flags)
+         left = cur_flag_count
+         right = min(cur_flag_count, next_flag_count)
       # [beamable leaf unbeamable]
       elif leaf.prev.beam.beamable and not leaf.next.beam.beamable:
-         left = min(leaf.duration._flags, leaf.prev.duration._flags)
-         right = leaf.duration._flags
+         #left = min(leaf.duration._flags, leaf.prev.duration._flags)
+         #right = leaf.duration._flags
+         left = min(cur_flag_count, prev_flag_count)
+         right = cur_flag_count
       # [unbeamable leaf unbeamable]
       elif not leaf.prev.beam.beamable and not leaf.next.beam.beamable:
-         left = leaf.duration._flags
-         right = leaf.duration._flags
+         #left = leaf.duration._flags
+         #right = leaf.duration._flags
+         left = cur_flag_count
+         right = cur_flag_count
       # [beamable leaf beamable]
       else:
-         left = min(leaf.duration._flags, leaf.prev.duration._flags)
-         right = min(leaf.duration._flags, leaf.next.duration._flags)
-         if left != leaf.duration._flags and right != leaf.duration._flags:
-            left = leaf.duration._flags
+         #left = min(leaf.duration._flags, leaf.prev.duration._flags)
+         #right = min(leaf.duration._flags, leaf.next.duration._flags)
+         #if left != leaf.duration._flags and right != leaf.duration._flags:
+         #   left = leaf.duration._flags
+         left = min(cur_flag_count, prev_flag_count)
+         right = min(cur_flag_count, next_flag_count)
+         if left != cur_flag_count and right != cur_flag_count:
+            left = cur_flag_count
       return left, right
 
    def _getLeftRightForLoneLeaf(self, leaf):
@@ -57,14 +75,18 @@ class _BeamComplexFormatInterface(_BeamSpannerFormatInterface):
       spanner = self.spanner
       left, right = None, None
       if spanner.nibs == 'left':
-         left = leaf.duration._flags
+         #left = leaf.duration._flags
+         left = cur_flag_count
          right = 0
       elif spanner.nibs == 'right':
          left = 0
-         right = leaf.duration._flags
+         #right = leaf.duration._flags
+         right = cur_flag_count
       elif spanner.nibs == 'both':
-         left = leaf.duration._flags
-         right = leaf.duration._flags
+         #left = leaf.duration._flags
+         #right = leaf.duration._flags
+         left = cur_flag_count
+         right = cur_flag_count
       elif spanner.nibs == 'neither':
          left = None
          right = None
