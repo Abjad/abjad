@@ -33,7 +33,8 @@ def _parse_note_entry_token(note_entry_token):
 
    match = re.match(pattern, note_entry_token)
    if match is None:
-      raise InputSpecificationError('incorrect note entry token format.')
+      message = 'incorrect note entry token %s.' % note_entry_token
+      raise InputSpecificationError(message)
 
    name, ticks, duration_body, dots = match.groups( )
 
