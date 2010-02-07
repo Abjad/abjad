@@ -1,13 +1,12 @@
 from abjad import *
-import py.test
-py.test.skip( )
 
 
-def test_meter_interface_partial_01( ):
+def test_meter_partial_01( ):
 
    t = Staff(construct.scale(4))
-   t.meter.forced = Meter(2, 8)
-   t.meter.partial = Rational(1, 8)
+   meter = Meter(2, 8)
+   meter.partial = Rational(1, 8)
+   t.meter.forced = meter   
 
    r'''
    \new Staff {
@@ -17,7 +16,7 @@ def test_meter_interface_partial_01( ):
            d'8
            e'8
            f'8
-   }   
+   }
    '''
 
    assert check.wf(t)

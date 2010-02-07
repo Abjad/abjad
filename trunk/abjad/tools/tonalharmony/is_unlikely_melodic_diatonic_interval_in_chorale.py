@@ -26,6 +26,8 @@ def is_unlikely_melodic_diatonic_interval_in_chorale(mdi):
       return True
    elif 8 < hdi.number:
       return True
+   elif hdi == pitchtools.HarmonicDiatonicInterval('augmented', 1):
+      return False
    elif mdi.quality_string not in ('major', 'minor', 'perfect'):
       return True
 

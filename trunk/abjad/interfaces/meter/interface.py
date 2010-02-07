@@ -21,7 +21,6 @@ class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       self._acceptableTypes = (Meter, )
       self._default = Meter(4, 4)
       self._forced = None
-      self._partial = None
       self._suppress = False
 
    ## TODO: Generalize _selfShouldContribute for both _Clef and _Meter ##
@@ -33,9 +32,11 @@ class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
       '''Format contributions at container opening or before leaf.'''
       result = [ ]
       if self._selfShouldContribute:
-         result.append(self.effective.format)
-         if self.partial is not None:
-            string = durtools.rational_to_duration_string(self.partial)
+         effective_meter = self.effective
+         result.append(effective_meter.format)
+         partial = effective_meter.partial
+         if partial is not None:
+            string = durtools.rational_to_duration_string(partial)
             result.append(r'\partial %s' % string)
       return result
 
@@ -65,17 +66,6 @@ class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
    @property
    def default(self):
       return self._default
-
-   @apply
-   def partial( ):
-      r'''Rational-valued duration of pick-up at beginning of score.'''
-      def fget(self):
-         return self._partial
-      def fset(self, arg):
-         if not isinstance(arg, Rational):
-            raise TypeError('%s must be rational.' % arg)
-         self._partial = arg
-      return property(**locals( ))
 
    @apply
    def suppress( ):

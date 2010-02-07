@@ -567,6 +567,7 @@ leaftools
    tools/leaftools/get_durations_written
    tools/leaftools/group_by_leaf_type
    tools/leaftools/has_dotted_written_duration
+   tools/leaftools/is_bar_line_crosser
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply

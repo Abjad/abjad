@@ -1,7 +1,8 @@
 from abjad.core.grobhandler import _GrobHandler
+from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.rational import Rational
+import types
 
 
 class Meter(_GrobHandler):
@@ -24,6 +25,7 @@ class Meter(_GrobHandler):
          self.denominator = args[1]
       else:
          raise TypeError('invalid %s meter initialization.' % str(args))
+      self._partial = None
 
    ## OVERLOADS ##
 
@@ -106,4 +108,15 @@ class Meter(_GrobHandler):
       def fset(self, arg):
          assert isinstance(arg, int)
          self._numerator = arg
+      return property(**locals( ))
+
+   @apply
+   def partial( ):
+      r'''Rational-valued duration of pick-up at beginning of score.'''
+      def fget(self):
+         return self._partial
+      def fset(self, arg):
+         if not isinstance(arg, (Rational, types.NoneType)):
+            raise TypeError('%s must be rational.' % arg)
+         self._partial = arg
       return property(**locals( ))

@@ -29,6 +29,9 @@ def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below'):
    '''
 
    for note in iterate.naive_forward_in(expr, Note):
+      is_cadence = getattr(note.history, 'cadence', None)
+      if is_cadence:
+         continue
       thread_iterator = iterate.thread_forward_from(note, _Leaf)
       try:
          thread_iterator.next( )
