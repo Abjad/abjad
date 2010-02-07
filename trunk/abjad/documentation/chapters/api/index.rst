@@ -386,8 +386,12 @@ durtools
    tools/durtools/prolated_to_prolation_written_pairs
    tools/durtools/prolated_to_written_not_greater_than
    tools/durtools/prolated_to_written_not_less_than
+   tools/durtools/rational_to_dot_count
+   tools/durtools/rational_to_duration_string
    tools/durtools/rational_to_fraction_string
    tools/durtools/rational_to_prolation_string
+   tools/durtools/rational_to_undotted_duration
+   tools/durtools/rational_to_undotted_duration_string
    tools/durtools/rationalize
    tools/durtools/seconds_to_clock_string
    tools/durtools/seconds_to_clock_string_escaped
