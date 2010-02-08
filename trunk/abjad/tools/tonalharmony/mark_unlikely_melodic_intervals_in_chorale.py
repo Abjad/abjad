@@ -28,6 +28,7 @@ def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below'):
       }
    '''
 
+   result = True
    for note in iterate.naive_forward_in(expr, Note):
       is_cadence = getattr(note.history, 'cadence', None)
       if is_cadence:
@@ -48,5 +49,7 @@ def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below'):
                   next_leaf.markup.down.append(markup)
                else:
                   raise ValueError("must be 'above' or 'below'.")
+               result = False
       except StopIteration:
          pass
+   return result

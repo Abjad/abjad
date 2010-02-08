@@ -1,4 +1,3 @@
-#from abjad.cfg.cfg import ABJADOUTPUT
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.cfg._log_render_lilypond_input import _log_render_lilypond_input
 import os
