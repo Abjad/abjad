@@ -1,0 +1,1 @@
+from NamedPitchClass import NamedPitchClass
