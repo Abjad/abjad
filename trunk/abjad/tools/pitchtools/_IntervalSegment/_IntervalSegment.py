@@ -1,14 +1,17 @@
 class _IntervalSegment(list):
    '''.. versionadded:: 1.1.2
 
-   Abstract ordered collection of interval instances class from
-   which concrete classes inherit.
+   Class of abstract ordered collection of interval instances 
+   from which concrete classes inherit.
    '''
 
    ## OVERLOADS ##
 
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self._format_string)
+
+   def __str__(self):
+      return '<%s>' % self._format_string
 
    ## PRIVATE ATTRIBUTES ##
    

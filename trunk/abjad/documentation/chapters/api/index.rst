@@ -61,6 +61,8 @@ Classes
    tools/pitchtools/MelodicDiatonicIntervalSet/MelodicDiatonicIntervalSet
    meter/meter
    tools/lilytools/MidiBlock
+   tools/tonalharmony/Mode/Mode
+   tools/pitchtools/NamedPitchClass/NamedPitchClass
    note/note
    notehead/notehead
    tools/lilytools/PaperBlock
@@ -86,6 +88,7 @@ Classes
    staff/rhythmicsketchstaff
    staff/rhythmicstaff
    measure/rigid/measure
+   tools/tonalharmony/Scale/Scale
    score/score
    tools/lilytools/ScoreBlock
    skip/skip

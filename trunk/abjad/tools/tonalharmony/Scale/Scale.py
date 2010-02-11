@@ -1,6 +1,4 @@
-#from abjad.tools.pitchtools.PitchClass import PitchClass
-#from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
-from abjad.tools.tonalharmony.NamedPitchClass import NamedPitchClass
+from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 import copy
 
 

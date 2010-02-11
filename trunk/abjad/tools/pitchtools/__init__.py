@@ -32,6 +32,7 @@ from MelodicDiatonicInterval import MelodicDiatonicInterval
 from MelodicDiatonicIntervalClass import MelodicDiatonicIntervalClass
 from MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from MelodicDiatonicIntervalSet import MelodicDiatonicIntervalSet
+from NamedPitchClass import NamedPitchClass
 from PitchArray import PitchArray
 from PitchClass import PitchClass
 from PitchClassColorMap import PitchClassColorMap
