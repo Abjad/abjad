@@ -63,6 +63,8 @@ Classes
    tools/lilytools/MidiBlock
    tools/tonalharmony/Mode/Mode
    tools/pitchtools/NamedPitchClass/NamedPitchClass
+   tools/pitchtools/NamedPitchClassSegment/NamedPitchClassSegment
+   tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet
    note/note
    notehead/notehead
    tools/lilytools/PaperBlock
