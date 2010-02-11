@@ -1,4 +1,5 @@
 from abjad.pitch import Pitch
+from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
 class NamedPitchClass(object):
@@ -7,20 +8,67 @@ class NamedPitchClass(object):
    Named pitch-class ranging over c, cqs, cs, ..., bf, bqf, b. 
    '''
 
-   def __init__(self, name):
-      if not self._is_acceptable_name(name):
-         raise ValueError('unknown pitch-class name %s' % name)
-      self._name = name
+   def __init__(self, arg):
+      if isinstance(arg, str):
+         self._init_by_name_string(arg)
+      elif isinstance(arg, NamedPitchClass):
+         self._init_by_name_string(arg.name)
+      else:
+         pitch = get_pitch(arg)
+         self._name = pitch.name
 
    ## OVERLOADS ##
+
+   def __add__(self, melodic_diatonic_interval):
+      from abjad.pitch import Pitch
+      from abjad.tools import pitchtools
+      dummy = Pitch(self.name, 4)
+      mdi = melodic_diatonic_interval
+      new = pitchtools.transpose_by_melodic_diatonic_interval(dummy, mdi)
+      return new.named_pitch_class
+
+   def __copy__(self):
+      return NamedPitchClass(self)
 
    def __eq__(self, arg):
       if isinstance(arg, NamedPitchClass):
          return self.name == arg.name
       return False
 
+   def __ge__(self, arg):
+      if not isinstance(arg, NamedPitchClass):
+         raise TypeError
+      if self._letter_string == arg._letter_string:
+         return self.pitch_class >= arg.pitch_class
+      else:
+         return self._letter_string >= arg._letter_string
+
+   def __gt__(self, arg):
+      if not isinstance(arg, NamedPitchClass):
+         raise TypeError
+      if self._letter_string == arg._letter_string:
+         return self.pitch_class > arg.pitch_class
+      else:
+         return self._letter_string > arg._letter_string
+
    def __hash__(self):
       return hash(repr(self))
+
+   def __le__(self, arg):
+      if not isinstance(arg, NamedPitchClass):
+         raise TypeError
+      if self._letter_string == arg._letter_string:
+         return self.pitch_class <= arg.pitch_class
+      else:
+         return self._letter_string <= arg._letter_string
+
+   def __lt__(self, arg):
+      if not isinstance(arg, NamedPitchClass):
+         raise TypeError
+      if self._letter_string == arg._letter_string:
+         return self.pitch_class < arg.pitch_class
+      else:
+         return self._letter_string < arg._letter_string
 
    def __ne__(self, arg):
       return not self == arg
@@ -31,7 +79,22 @@ class NamedPitchClass(object):
    def __str__(self):
       return '%s' % self.name
 
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _accidental_string(self):
+      return self.name[1:]
+
+   @property
+   def _letter_string(self):
+      return self.name[0]
+
    ## PRIVATE METHODS ##
+
+   def _init_by_name_string(self, name):
+      if not self._is_acceptable_name(name):
+         raise ValueError("unknown pitch-class name '%s'." % name)
+      self._name = name
 
    def _is_acceptable_name(self, name):
       return name in (

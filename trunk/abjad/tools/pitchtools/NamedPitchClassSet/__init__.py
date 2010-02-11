@@ -1,1 +1,1 @@
-from PitchClassSet import PitchClassSet
+from NamedPitchClassSet import NamedPitchClassSet

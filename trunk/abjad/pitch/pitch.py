@@ -260,6 +260,11 @@ class Pitch(_Abjad):
          self.accidental = accidental
       return property(**locals( ))
 
+   @property
+   def named_pitch_class(self):
+      from abjad.tools import pitchtools
+      return pitchtools.NamedPitchClass(self.name)
+
    @apply
    def number( ):
       def fget(self):

@@ -33,8 +33,8 @@ from MelodicDiatonicIntervalClass import MelodicDiatonicIntervalClass
 from MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 from MelodicDiatonicIntervalSet import MelodicDiatonicIntervalSet
 from NamedPitchClass import NamedPitchClass
-#from NamedPitchClassSegment import NamedPitchClassSegment
-#from NamedPitchClassSet import NamedPitchClassSet
+from NamedPitchClassSegment import NamedPitchClassSegment
+from NamedPitchClassSet import NamedPitchClassSet
 from PitchArray import PitchArray
 from PitchClass import PitchClass
 from PitchClassColorMap import PitchClassColorMap

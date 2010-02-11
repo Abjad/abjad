@@ -8,19 +8,11 @@ from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 ## TODO: Make PitchClassSet and PitchSet both inherit ##
 ## from a shared base class. ##
 
-#class PitchClassSet(set):
 class PitchClassSet(frozenset):
    '''.. versionadded:: 1.1.2
 
    12-ET pitch-class set from American pitch-class theory.
    '''
-
-#   def __init__(self, pcs):
-#      try:
-#         self.update(pcs)
-#      except TypeError:
-#         pitch_classes = get_pitch_classes(pcs)
-#         self.update(pitch_classes)
 
    def __new__(self, expr):
       pcs = [ ]
@@ -100,11 +92,6 @@ class PitchClassSet(frozenset):
 
    ## PUBLIC METHODS ##
    
-#   def add(self, arg):
-#      '''Custom add to allow both pitch-classes and numbers.'''
-#      pitch_class = PitchClass(arg)
-#      set.add(self, pitch_class)
-
    def invert(self):
       '''Invert all pcs in self.'''
       return PitchClassSet([pc.invert( ) for pc in self])
@@ -128,8 +115,3 @@ class PitchClassSet(frozenset):
    def transpose(self, n):
       '''Transpose all pcs in self by n.'''
       return PitchClassSet([pc.transpose(n) for pc in self])
-
-#   def update(self, arg):
-#      '''Custom update to allow both pitch-classes and numbers.'''
-#      for element in arg:
-#         self.add(element)

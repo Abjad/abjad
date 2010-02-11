@@ -61,20 +61,28 @@ def test_PitchClass___init___05( ):
 
 
 def test_PitchClass___init___06( ):
+   '''Init with named pitch class instance.'''
+
+   npc = pitchtools.NamedPitchClass('cs')
+   pc = pitchtools.PitchClass(npc)
+   assert pc == pitchtools.PitchClass(1)
+
+
+def test_PitchClass___init___07( ):
    '''PitchClass initialization raises TypeError on non-numbers, 
    non-PitchClasss.'''
 
    assert py.test.raises(TypeError, "pitchtools.PitchClass('foo')")
 
 
-def test_PitchClass___init___07( ):
+def test_PitchClass___init___08( ):
    '''PitchClass initialization raises TypeError on rest.'''
 
    rest = Rest((1, 4))
    assert py.test.raises(TypeError, 'pitchtools.PitchClass(rest)')
 
 
-def test_PitchClass___init___08( ):
+def test_PitchClass___init___09( ):
    '''PitchClass initialization raises MissingPitchError on empty chord.''' 
 
    chord = Chord([ ], (1, 4))

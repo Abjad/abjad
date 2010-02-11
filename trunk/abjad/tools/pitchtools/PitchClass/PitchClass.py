@@ -15,12 +15,15 @@ class PitchClass(object):
 
    def __init__(self, arg):
       from abjad.pitch import Pitch
+      from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
       if isinstance(arg, (int, long, float)):
          self._number = arg % 12
       elif isinstance(arg, PitchClass):
          self._number = arg.number
       elif isinstance(arg, Pitch):
          self._number = arg.number % 12
+      elif isinstance(arg, NamedPitchClass):
+         self._number = arg.pitch_class.number
       else:
          pitch = get_pitch(arg)
          self._number = pitch.number % 12
