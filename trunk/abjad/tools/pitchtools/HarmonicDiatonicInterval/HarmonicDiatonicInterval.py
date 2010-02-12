@@ -32,6 +32,34 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
       return HarmonicDiatonicInterval(
          self.quality_string, self.number)
 
+   def __ge__(self, arg):
+      if not isinstance(arg, type(self)):
+         raise TypeError
+      if self.number == arg.number:
+         return self.semitones >= arg.semitones
+      return self.number >= arg.number
+
+   def __gt__(self, arg):
+      if not isinstance(arg, type(self)):
+         raise TypeError
+      if self.number == arg.number:
+         return self.semitones > arg.semitones
+      return self.number > arg.number
+
+   def __le__(self, arg):
+      if not isinstance(arg, type(self)):
+         raise TypeError
+      if self.number == arg.number:
+         return self.semitones <= arg.semitones
+      return self.number <= arg.number
+
+   def __lt__(self, arg):
+      if not isinstance(arg, type(self)):
+         raise TypeError
+      if self.number == arg.number:
+         return self.semitones < arg.semitones
+      return self.number < arg.number
+
    def __repr__(self):
       return _DiatonicInterval.__repr__(self)
 
@@ -42,13 +70,6 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
 
    @property
    def counterpoint_interval(self):
-#      counterpoint_interval = self.interval_class
-#      if counterpoint_interval == 1:
-#         if self.number == 1:
-#            return 1
-#         else:
-#            return 8
-#      return counterpoint_interval
       return HarmonicCounterpointInterval(self)
 
    @property

@@ -15,6 +15,8 @@ Classes
    tools/lilytools/BookBlock
    tools/lilytools/BookpartBlock
    chord/chord
+   tools/tonalharmony/ChordClass/ChordClass
+   tools/tonalharmony/ChordQualityIndicator/ChordQualityIndicator
    tools/pitchtools/ChromaticIntervalVector/ChromaticIntervalVector
    clef/clef
    cluster/cluster
