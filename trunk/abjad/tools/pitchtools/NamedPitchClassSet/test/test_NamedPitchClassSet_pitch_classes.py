@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_PitchClassSet_pitch_classes_01( ):
+def test_NamedPitchClassSet_pitch_classes_01( ):
 
    npc_set = pitchtools.NamedPitchClassSet([
       pitchtools.NamedPitchClass('c'),

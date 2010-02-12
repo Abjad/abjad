@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spanners_solid_spanner_below_with_nib_at_right_01( ):
+def test_spanners_solid_text_spanner_below_with_nib_at_right_01( ):
 
    t = Staff(construct.scale(4))
    spanners.solid_text_spanner_below_with_nib_at_right('foo', t[:])

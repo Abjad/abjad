@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_clef_effective_01( ):
+def test_clef_interface_effective_01( ):
    '''Clef defaults to treble.'''
    t = Staff(construct.scale(8))
    for note in t:
