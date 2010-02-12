@@ -13,7 +13,25 @@ class Mode(object):
    Modes with different ascending and descending forms not yet implemented.
    '''
 
-   def __init__(self, mode_name_string):
+   def __init__(self, arg):
+      if isinstance(arg, str):
+         self._init_with_mode_name_string(arg)
+      elif isinstance(arg, Mode):
+         self._init_with_mode_name_string(arg.mode_name_string)
+      else:
+         raise TypeError('%s must be mode instance or mode name string.' % arg)
+
+   ## OVERLOADS ##
+
+   def __len__(self):
+      return len(self.melodic_diatonic_interval_segment)
+
+   def __repr__(self):
+      return '%s(%s)' % (self.__class__.__name__, self.mode_name_string)
+
+   ## PRIVATE METHODS ##
+
+   def _init_with_mode_name_string(self, mode_name_string):
       mdi_segment = MelodicDiatonicIntervalSegment([ ])
       m2 = MelodicDiatonicInterval('minor', 2)
       M2 = MelodicDiatonicInterval('major', 2)
@@ -36,15 +54,6 @@ class Mode(object):
          raise ValueError("unknown mode name string '%s'." % mode_name_string)
       self._mode_name_string = mode_name_string
       self._melodic_diatonic_interval_segment = mdi_segment
-      self._init_named_pitch_class_segment
-
-   ## OVERLOADS ##
-
-   def __len__(self):
-      return len(self.melodic_diatonic_interval_segment)
-
-   def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self.mode_name_string)
 
    ## PUBLIC ATTRIBUTES ##
 
