@@ -7,5 +7,5 @@ def test_KeySignature___init___01( ):
 
    ks = KeySignature('g', 'major')
    
-   assert ks.pitch_class_letter == 'g'
-   assert ks.mode == 'major'
+   assert ks.tonic == pitchtools.NamedPitchClass('g')
+   assert ks.mode == tonalharmony.Mode('major')

@@ -23,11 +23,22 @@ class Mode(object):
 
    ## OVERLOADS ##
 
+   def __eq__(self, arg):
+      if not isinstance(arg, type(self)):
+         return False
+      return self.mode_name_string == arg.mode_name_string
+
    def __len__(self):
       return len(self.melodic_diatonic_interval_segment)
 
+   def __ne__(self, arg):
+      return not self == arg
+
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self.mode_name_string)
+
+   def __str__(self):
+      return self.mode_name_string
 
    ## PRIVATE METHODS ##
 
