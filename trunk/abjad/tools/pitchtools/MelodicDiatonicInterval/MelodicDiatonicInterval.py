@@ -1,3 +1,4 @@
+from abjad.pitch import Pitch
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
 from abjad.tools.pitchtools._MelodicInterval import _MelodicInterval
@@ -41,6 +42,25 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
       return HarmonicDiatonicInterval(
          self.quality_string, abs(self.number))
 
+   def __add__(self, arg):
+      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
+         melodic_diatonic_interval_from_to
+      if not isinstance(arg, MelodicDiatonicInterval):
+         raise TypeError('%s must be melodic diatonic interval.' % arg)
+      dummy_pitch = Pitch(0)
+      new_pitch = dummy_pitch + self + arg 
+      return melodic_diatonic_interval_from_to(dummy_pitch, new_pitch)
+
+   def __mul__(self, arg):
+      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
+         melodic_diatonic_interval_from_to
+      if not isinstance(arg, (int, long)):
+         raise TypeError('%s must be int.' % arg)
+      dummy_pitch = Pitch(0)
+      for i in range(arg):
+         dummy_pitch += self
+      return melodic_diatonic_interval_from_to(Pitch(0), dummy_pitch)
+
    def __neg__(self):
       return MelodicDiatonicInterval(self.quality_string, -self.number)
 
@@ -50,9 +70,21 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
             self.direction_string, self.quality_string, self.interval_string)
       return _DiatonicInterval.__repr__(self)
 
+   def __rmul__(self, arg):
+      return self * arg
+
    def __str__(self):
       return '%s%s%s' % (self._direction_symbol, self._quality_abbreviation,
          abs(self.number))
+
+   def __sub__(self, arg):
+      from abjad.tools.pitchtools.melodic_diatonic_interval_from_to import \
+         melodic_diatonic_interval_from_to
+      if not isinstance(arg, MelodicDiatonicInterval):
+         raise TypeError('%s must be melodic diatonic interval.' % arg)
+      dummy_pitch = Pitch(0)
+      new_pitch = dummy_pitch + self - arg 
+      return melodic_diatonic_interval_from_to(dummy_pitch, new_pitch)
       
    ## PUBLIC ATTRIBUTES ##
 
