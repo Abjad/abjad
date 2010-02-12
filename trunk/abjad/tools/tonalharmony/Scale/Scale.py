@@ -1,72 +1,78 @@
-from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
+from abjad.key_signature import KeySignature
+from abjad.tools.pitchtools.NamedPitchClassSegment import NamedPitchClassSegment
 import copy
 
 
-class Scale(list):
+class Scale(NamedPitchClassSegment):
    '''.. versionadded:: 1.1.2
 
-   Ordered collection of named pitch-class instances.
+   Abjad model of diatonic scale.
    '''
 
-   def __init__(self, key_signature):
-      if not isinstance(key_signature, KeySignature):
-         raise TypeError('%s is not key signature instance.' % key_signature)
-      npcs = self._key_signature_to_named_pitch_classes(key_signature)
-      self.extend(npcs)
+   def __init__(self, *args):
+      if len(args) == 1 and isinstance(args[0], KeySignature):
+         self._init_by_key_signature(args[0])
+      elif len(args) == 1 and isinstance(args[0], type(self)):
+         self._init_by_key_signature(args[0].key_signature)
+      elif len(args) == 2:
+         key_signature = KeySignature(*args)
+         self._init_by_key_signature(key_signature)
+      else:
+         raise TypeError
 
    ## OVERLOADS ##
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+      return '%s(%s)' % (self._capital_name, self._format_string)
 
-   def __str__(self):
-      return '<%s>' % self._format_string
-      
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _format_string(self):
-      return ', '.join([str(x) for x in self])
+   def _capital_name(self):
+      letter = self.key_signature.tonic.name.title( )
+      mode = self.key_signature.mode.mode_name_string.title( )
+      return '%s%s' % (letter, mode)
 
    ## PRIVATE METHODS ##
 
-   def _key_signature_to_npcs(self, key_signature):
-      if key_signature == KeySignature('c', 'major'):
-         names = ('c', 'd', 'e', 'f', 'g', 'a', 'b')
-      elif key_signature == KeySignature('d', 'major'):
-         names = ('d', 'e', 'fs', 'g', 'a', 'b', 'cs')
-
+   def _init_by_key_signature(self, key_signature):
+      self._key_signature = key_signature
+      npcs = [key_signature.tonic]
+      for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
+         named_pitch_class = npcs[-1] + mdi
+         npcs.append(named_pitch_class)
+      self.extend(npcs)
 
    ## PUBLIC ATTRIBUTES ##
 
    @property
-   def interval_class_segment(self):
-      interval_classes = list(listtools.difference_series(self.pitch_classes))
-      return IntervalClassSegment(interval_classes)
+   def dominant(self):
+      return self[4]
 
    @property
-   def pitch_class_set(self):
-      return PitchClassSet(self)
+   def key_signature(self):
+      return self._key_signature
 
    @property
-   def pitch_classes(self):
-      return tuple(self[:])
+   def leading_tone(self):
+      return self[-1]
 
-   ## PUBLIC METHODS ##
+   @property
+   def mediant(self):
+      return self[2]
 
-   def invert(self):
-      return PitchClassSegment([pc.invert( ) for pc in self])
-      
-   def multiply(self, n):
-      return PitchClassSegment([pc.multiply(n) for pc in self])
+   @property
+   def subdominant(self):
+      return self[3]
+   
+   @property
+   def submediant(self):
+      return self[5]
 
-   def retrograde(self):
-      return PitchClassSegment(reversed(self))
+   @property
+   def superdominant(self):
+      return self[1]
 
-   def rotate(self, n):
-      from abjad.tools import listtools
-      pitch_classes = listtools.rotate(self.pitch_classes, n)
-      return PitchClassSegment(pitch_classes)
-      
-   def transpose(self, n):
-      return PitchClassSegment([pc.transpose(n) for pc in self])
+   @property
+   def tonic(self):
+      return self[0]
