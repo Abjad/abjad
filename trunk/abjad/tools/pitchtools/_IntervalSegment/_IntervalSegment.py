@@ -28,3 +28,8 @@ class _IntervalSegment(list):
    @property
    def intervals(self):
       return self[:]
+
+   ## PUBLIC METHODS ##
+
+   def rotate(self, n):
+      self[:] = self[-n:] + self[:-n]

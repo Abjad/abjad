@@ -1,7 +1,7 @@
 def rotate(l, n):
-   '''When *n* is positive, rotate the elements in *l* *n* places
-   to the right. When *n* is negative, rotate the elements in *l*
-   *n* places to the left.
+   '''When `n` is positive, rotate the elements in `l` `n` places
+   to the right. When `n` is negative, rotate the elements in `l`
+   `n` places to the left.
    
    ::
 

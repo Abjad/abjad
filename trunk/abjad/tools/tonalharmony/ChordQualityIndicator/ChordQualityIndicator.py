@@ -1,28 +1,25 @@
 from abjad.tools.pitchtools.HarmonicDiatonicInterval import \
    HarmonicDiatonicInterval
-from abjad.tools.pitchtools.HarmonicDiatonicIntervalSet import \
-   HarmonicDiatonicIntervalSet
+from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import \
+   HarmonicDiatonicIntervalSegment
 
 
-class ChordQualityIndicator(HarmonicDiatonicIntervalSet):
+class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
    '''.. versionadded:: 1.1.2
 
    Chord quality indicator.
    '''
 
-   def __init__(self, *args):
-      if len(args) == 1 and isinstance(args[0], str):
-         self._init_triad(args[0])
-      elif len(args) == 1 and args[0] == 7:
-         self._init_seventh('dominant')
-      elif len(args) == 1 and args[0] == 9:
-         self._init_ninth('dominant')
-      elif len(args) == 2 and args[1] == 7:
-         self._init_seventh(args[0])
-      elif len(args) == 2 and args[1] == 9:
-         self._init_ninth(args[0])
+   def __init__(self, quality_string, extent = 'triad', inversion = 'root'):
+      if extent in ('triad', 5):
+         self._init_triad(quality_string)
+      elif extent in ('seventh', 7):
+         self._init_seventh(quality_string)
+      elif extent in ('ninth', 9):
+         self._init_ninth(quality_string)
       else:
          raise ValueError('unknown chord quality indicator arguments.')
+      self._invert_quality_indicator(inversion)
 
    ## OVERLOADS ##
 
@@ -40,9 +37,13 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSet):
       return ('major', 'minor', 'diminished', 'augmented')
    
    @property
+   def _chord_position_string(self):
+      return self.position.title( ).replace(' ', '')
+   
+   @property
    def _title_case_name(self):
-      return '%s%s' % (
-         self._quality_string.title( ), self._cardinality_string.title( ))
+      return '%s%sIn%s' % (self._quality_string.title( ), 
+         self._cardinality_string.title( ), self._chord_position_string)
 
    ## PRIVATE METHODS ##
 
@@ -56,7 +57,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSet):
          raise ValueError('triad quality string %s must be in %s.' % (
             quality_string, acceptable_strings))
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
-      self.update(intervals)
+      self.extend(intervals)
       self._quality_string = quality_string
       self._cardinality_string = 'ninth'
 
@@ -85,7 +86,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSet):
          raise ValueError('triad quality string %s must be in %s.' % (
             quality_string, acceptable_strings))
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
-      self.update(intervals)
+      self.extend(intervals)
       self._quality_string = quality_string
       self._cardinality_string = 'seventh'
 
@@ -106,6 +107,48 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSet):
          raise ValueError('triad quality string %s must be in %s.' % (
             quality_string, acceptable_strings))
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
-      self.update(intervals)
+      self.extend(intervals)
       self._quality_string = quality_string
       self._cardinality_string = 'triad'
+
+   def _invert_quality_indicator(self, inversion):
+      if isinstance(inversion, int):
+         self.rotate(inversion) 
+         self._rotation = inversion
+      elif inversion == 'root':
+         self._rotation = 0
+      elif inversion == 'first':
+         self.rotate(1)
+         self._rotation = 1
+      elif inversion == 'second':
+         self.rotate(2)
+         self._rotation = 2
+      elif inversion == 'third':
+         self.rotate(3)
+         self._rotation = 3
+      elif inversion == 'fourth':
+         self.rotate(4)
+         self._rotation = 4
+      else:
+         raise ValueError('unknown inversion indicator: %s' % inversion)
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def position(self):
+      if self.rotation == 0:
+         return 'root position'
+      elif self.rotation == 1:
+         return 'first inversion'
+      elif self.rotation == 2:
+         return 'second inversion'
+      elif self.rotation == 3:
+         return 'third inversion'
+      elif self.rotation == 4:
+         return 'fourth inversion'
+      else:
+         raise ValueError('unknown chord position.')
+
+   @property
+   def rotation(self):
+      return self._rotation
