@@ -41,6 +41,14 @@ class KeySignature(_GrobHandler):
       return self._mode
 
    @property
+   def name(self):
+      if self.mode.mode_name_string == 'major':
+         tonic = self.tonic.name.upper( )   
+      else:
+         tonic = self.tonic.name
+      return '%s %s' % (tonic, self.mode.mode_name_string)
+
+   @property
    def tonic(self):
       '''Read-only tonic.'''
       return self._tonic
