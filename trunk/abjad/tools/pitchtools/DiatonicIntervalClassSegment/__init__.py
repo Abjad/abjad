@@ -1,0 +1,1 @@
+from DiatonicIntervalClassSegment import DiatonicIntervalClassSegment

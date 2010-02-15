@@ -22,6 +22,7 @@ Classes
    cluster/cluster
    container/container
    tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
+   tools/pitchtools/DiatonicIntervalClassSegment/DiatonicIntervalClassSegment
    measure/dynamic/measure
    tuplet/fd/tuplet
    tuplet/fm/tuplet

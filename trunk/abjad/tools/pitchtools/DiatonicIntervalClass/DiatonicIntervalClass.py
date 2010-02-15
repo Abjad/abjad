@@ -49,6 +49,8 @@ class DiatonicIntervalClass(_DiatonicInterval):
    def __init__(self, *args):
       if len(args) == 1 and isinstance(args[0], type(self)):
          self._init_by_self_reference(args[0])
+      elif len(args) == 1 and isinstance(args[0], tuple):
+         self.__init__(*args[0])
       elif len(args) == 2:
          self._init_by_quality_string_and_number(*args)
       else:
