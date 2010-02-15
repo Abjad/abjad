@@ -79,6 +79,17 @@ class NamedPitchClass(object):
    def __str__(self):
       return '%s' % self.name
 
+   def __sub__(self, arg):
+      if not isinstance(arg, type(self)):
+         raise TypeError('%s must be named pitch class.' % arg)
+      from abjad.pitch import Pitch
+      from abjad.tools import pitchtools
+      pitch_1 = Pitch(self, 4)
+      pitch_2 = Pitch(arg, 4)
+      mdi = pitchtools.melodic_diatonic_interval_from_to(pitch_1, pitch_2)
+      dic = pitchtools.DiatonicIntervalClass(mdi.quality_string, mdi.number)
+      return dic
+
    ## PRIVATE ATTRIBUTES ##
 
    @property
