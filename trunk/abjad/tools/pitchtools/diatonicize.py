@@ -1,5 +1,6 @@
 from abjad.chord import Chord
 from abjad.note import Note
+from abjad.pitch import Pitch
 from abjad.tools import iterate
 
 
@@ -23,12 +24,20 @@ def diatonicize(expr):
 
    Used primarily in generating test file examples.
    '''
+   from abjad.tools import tonalharmony
+
+   scale = tonalharmony.Scale('d', 'major')
 
    diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
    length = len(diatonic_residues)
+   #length = len(scale)
 
    for i, tie_chain in enumerate(iterate.tie_chains_forward_in(expr)):
       pitch = int(i / length) * 12 + diatonic_residues[i % length] 
+      #named_pitch_class = scale[i % length]
+      #pitch_class_number = named_pitch_class.pitch_class.number
+      #pitch_number = int(i / length) * 12 + pitch_class_number
+      #pitch = Pitch(pitch_number, named_pitch_class)
       if isinstance(tie_chain[0], Note):
          for note in tie_chain:
             note.pitch = pitch

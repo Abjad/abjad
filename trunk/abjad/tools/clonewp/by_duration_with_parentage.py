@@ -12,9 +12,10 @@ from abjad.tools.clonewp.by_leaf_range_with_parentage import \
 
 
 def by_duration_with_parentage(expr, start = 0, stop = None):
-   '''Copy expr from start duration stop up to
-   and including stop duration stop;
-   slice all layers of structure as required.
+   '''Clone `expr` from prolated offset `start`
+   up to, but not including, prolated offset `stop`.
+   Slice all layers of structure as required.
+   Raise exception if asked to slice a parallel container.
    '''
 
    assert isinstance(expr, _Component)

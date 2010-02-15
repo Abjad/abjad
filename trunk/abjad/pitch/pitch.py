@@ -25,8 +25,15 @@ class Pitch(_Abjad):
          self._init_by_pitch_string(*args)
       elif len(args) == 2 and isinstance(args[0], str):
          self._init_by_name_and_octave(*args)
+      elif len(args) == 2 and isinstance(args[0], pitchtools.NamedPitchClass):
+         self._init_by_named_pitch_class_and_octave_number(*args)
       elif len(args) == 2 and isinstance(args[0], (int, long, float)):
-         self._init_by_number_and_letter(*args)
+         if isinstance(args[1], str):
+            self._init_by_number_and_letter(*args)
+         elif isinstance(args[1], pitchtools.NamedPitchClass):
+            self._init_by_number_and_named_pitch_class(*args)
+         else:
+            raise TypeError
       elif len(args) == 3:
          self._init_by_name_octave_and_deviation(*args)
       else:
@@ -143,6 +150,9 @@ class Pitch(_Abjad):
       self._init_by_name_and_octave(name, octave)
       self.deviation = deviation
 
+   def _init_by_named_pitch_class_and_octave_number(self, npc, octave_number):
+      self._init_by_name_and_octave(npc.name, octave_number)
+
    def _init_by_number(self, number):
       from abjad.tools import pitchtools
       spelling = self.accidental_spelling
@@ -159,6 +169,10 @@ class Pitch(_Abjad):
       self.letter = letter
       self.accidental = pitchtools.Accidental(accidental_string)
       self.octave = octave
+
+   def _init_by_number_and_named_pitch_class(self, pitch_number, npc):
+      letter = npc.name[:1]
+      self._init_by_number_and_letter(pitch_number, letter)
 
    def _init_by_pair(self, pair):
       from abjad.tools import pitchtools

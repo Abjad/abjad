@@ -7,10 +7,9 @@ def scale(count, duration = Rational(1, 8)):
    '''Returns a list of notes with equal duration following an 
    ascending C major diatonic scale, starting on middle C.
 
-   * *count*, the number of notes to create.
-   * *duration*, a duration token indicating the duration of each note.\
+   * `count`, the number of notes to create.
+   * `duration`, a duration token indicating the duration of each note. \
       The default is 1/8.
-
 
    Examples::
 

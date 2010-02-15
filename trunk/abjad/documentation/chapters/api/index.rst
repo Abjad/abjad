@@ -21,6 +21,7 @@ Classes
    clef/clef
    cluster/cluster
    container/container
+   tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
    measure/dynamic/measure
    tuplet/fd/tuplet
    tuplet/fm/tuplet

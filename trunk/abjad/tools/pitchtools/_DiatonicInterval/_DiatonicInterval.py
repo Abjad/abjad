@@ -45,11 +45,18 @@ class _DiatonicInterval(_Interval):
    def __repr__(self):
       return '%s(%s %s)' % (self.__class__.__name__,
          self.quality_string, self.interval_string)
+
+   def __str__(self):
+      return self._format_string
       
    ## PRIVATE ATTRIBUTES ##
 
    _acceptable_quality_strings = ('perfect', 'major', 'minor',
       'diminished', 'augmented')
+
+   @property
+   def _format_string(self):
+      return '%s%s' % (self._quality_abbreviation, self.number)
 
    @property
    def _interval_string(self):
@@ -103,7 +110,10 @@ class _DiatonicInterval(_Interval):
       result = 0
       interval_class_number_to_semitones = {
          1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
-      interval_class_number = abs(self.interval_class.number) 
+      try:
+         interval_class_number = abs(self.interval_class.number) 
+      except AttributeError:
+         interval_class_number = self.number
       result += interval_class_number_to_semitones[interval_class_number]
       result += (abs(self.number) - 1) / 7 * 12
       quality_string_to_semitones = {
