@@ -26,14 +26,14 @@ def diatonicize(expr):
    '''
    from abjad.tools import tonalharmony
 
-   scale = tonalharmony.Scale('d', 'major')
+   #scale = tonalharmony.Scale('d', 'major')
 
    diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
    length = len(diatonic_residues)
    #length = len(scale)
 
-   octave_number = 4
-   start_pitch = Pitch(scale[0], octave_number)
+   #octave_number = 4
+   #pitch = Pitch(scale[0], octave_number)
    for i, tie_chain in enumerate(iterate.tie_chains_forward_in(expr)):
       pitch = int(i / length) * 12 + diatonic_residues[i % length] 
       #named_pitch_class = scale[i % length]

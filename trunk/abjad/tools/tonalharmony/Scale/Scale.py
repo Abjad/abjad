@@ -50,6 +50,17 @@ class Scale(NamedPitchClassSegment):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def diatonic_interval_class_segment(self):
+      from abjad.tools import listtools
+      from abjad.tools import pitchtools
+      dics = [ ]
+      for left, right in listtools.pairwise(self, mode = 'wrap'):
+         dic = left - right
+         dics.append(dic)
+      dicg = pitchtools.DiatonicIntervalClassSegment(dics)
+      return dicg
+
+   @property
    def dominant(self):
       return self[4]
 
