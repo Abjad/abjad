@@ -10,7 +10,8 @@ class VerticalMoment(object):
    '''
 
    def __init__(self, prolated_offset, governors, components):
-      assert isinstance(prolated_offset, Rational)
+      #assert isinstance(prolated_offset, Rational)
+      prolated_offset = Rational(prolated_offset)
       assert isinstance(governors, tuple)
       assert isinstance(components, tuple)
       self._prolated_offset = prolated_offset

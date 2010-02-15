@@ -2,6 +2,7 @@ from abjad.core.backtracking import _BacktrackingInterface
 from abjad.core.grobhandler import _GrobHandler
 from abjad.core.observer import _Observer
 from abjad.interfaces.spanner_receptor.receptor import _SpannerReceptor
+from abjad.rational import Rational
 from abjad.spanners import TempoSpanner
 from abjad.tools import tempotools
 import types
@@ -40,7 +41,19 @@ class TempoInterface(_Observer, _GrobHandler,
       self._acceptableTypes = (tempotools.TempoIndication, )
       self._effective = None
       self._forced = None
+      self._tempo_wholes_per_minute = None
  
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _opening(self):
+      '''Format contribution at container opening or before leaf.'''
+      result =  [ ] 
+      if self.forced or self.change and not (
+         self.spanned and self.spanner._isMyFirstLeaf(self._client)):
+         result.append(self.effective.format)
+      return result
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -54,10 +67,33 @@ class TempoInterface(_Observer, _GrobHandler,
       return _BacktrackingInterface.effective.fget(self)
 
    @property
-   def _opening(self):
-      '''Format contribution at container opening or before leaf.'''
-      result =  [ ] 
-      if self.forced or self.change and not (
-         self.spanned and self.spanner._isMyFirstLeaf(self._client)):
-         result.append(self.effective.format)
+   def settings(self):
+      '''Read-only list of LilyPond context settings
+      picked up at format-time.'''
+      from abjad.context.context import _Context
+      result = [ ]
+      tempo_wholes_per_minute = self.tempo_wholes_per_minute
+      if tempo_wholes_per_minute is not None:
+         numerator = tempo_wholes_per_minute._n
+         denominator = tempo_wholes_per_minute._d
+         if isinstance(self._client, _Context):
+            setting = 'tempoWholesPerMinute = '
+         else:
+            setting = r'\set Score.tempoWholesPerMinute = '
+         setting += '#(ly:make-moment %s %s)' % (numerator, denominator)
+         result.append(setting)
       return result
+
+   @apply
+   def tempo_wholes_per_minute( ):
+      def fget(self):
+         '''Read / write LilyPond tempoWholesPerMinute conext setting.
+         '''
+         return self._tempo_wholes_per_minute
+      def fset(self, expr):
+         if expr is None:
+            self._tempo_wholes_per_minute = expr
+         else:
+            rational = Rational(expr)
+            self._tempo_wholes_per_minute = rational
+      return property(**locals( ))
