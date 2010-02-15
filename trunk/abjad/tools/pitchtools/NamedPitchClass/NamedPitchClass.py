@@ -103,9 +103,9 @@ class NamedPitchClass(object):
    ## PRIVATE METHODS ##
 
    def _init_by_name_string(self, name):
-      if not self._is_acceptable_name(name):
+      if not self._is_acceptable_name(name.lower( )):
          raise ValueError("unknown pitch-class name '%s'." % name)
-      self._name = name
+      self._name = name.lower( )
 
    def _is_acceptable_name(self, name):
       return name in (

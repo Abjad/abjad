@@ -8,7 +8,7 @@ class KeySignature(_GrobHandler):
       from abjad.tools import tonalharmony
       _GrobHandler.__init__(self, 'KeySignature')
       tonic = pitchtools.NamedPitchClass(tonic)
-      self._tonic = pitchtools.NamedPitchClass(tonic)
+      self._tonic = tonic
       self._mode = tonalharmony.Mode(mode)
 
    ## OVERLOADS ##

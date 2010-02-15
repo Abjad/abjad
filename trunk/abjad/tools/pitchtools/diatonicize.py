@@ -2,9 +2,11 @@ from abjad.chord import Chord
 from abjad.note import Note
 from abjad.pitch import Pitch
 from abjad.tools import iterate
+from abjad.tools.pitchtools.MelodicDiatonicInterval import \
+   MelodicDiatonicInterval
 
 
-def diatonicize(expr):
+def diatonicize(expr, key_signature = None):
    r'''Apply ascending diatonic pitches to the notes
    and chords in `expr`. ::
 
@@ -23,19 +25,28 @@ def diatonicize(expr):
       }
 
    Used primarily in generating test file examples.
+
+   .. versionadded:: 1.1.2
+      Optional `key_signature` keyword argument.
    '''
    from abjad.tools import tonalharmony
 
-   #scale = tonalharmony.Scale('d', 'major')
+   #diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
+   #length = len(diatonic_residues)
 
-   diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
-   length = len(diatonic_residues)
-   #length = len(scale)
+   if key_signature is None:
+      scale = tonalharmony.Scale('C', 'major')
+   else:
+      scale = tonalharmony.Scale(key_signature)
 
-   #octave_number = 4
-   #pitch = Pitch(scale[0], octave_number)
+   dicg = scale.diatonic_interval_class_segment
+   length = len(dicg)
+
+   octave_number = 4
+   pitch = Pitch(scale[0], octave_number)
+
    for i, tie_chain in enumerate(iterate.tie_chains_forward_in(expr)):
-      pitch = int(i / length) * 12 + diatonic_residues[i % length] 
+      #pitch = int(i / length) * 12 + diatonic_residues[i % length] 
       #named_pitch_class = scale[i % length]
       #pitch_class_number = named_pitch_class.pitch_class.number
       #pitch_number = int(i / length) * 12 + pitch_class_number
@@ -48,3 +59,6 @@ def diatonicize(expr):
             chord.pitches = [pitch]
       else:
          pass
+      dic = dicg[i % length]
+      ascending_mdi = MelodicDiatonicInterval(dic.quality_string, dic.number)
+      pitch += ascending_mdi
