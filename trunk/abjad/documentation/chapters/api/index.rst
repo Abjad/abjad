@@ -304,6 +304,7 @@ construct
    tools/construct/rests
    tools/construct/run
    tools/construct/scale
+   tools/construct/scale_period
    tools/construct/skips_with_multipliers
 
 
