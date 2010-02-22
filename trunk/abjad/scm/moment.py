@@ -3,7 +3,7 @@ from abjad.rational import Rational
 
 
 class Moment(_Abjad):
-   '''*Abjad* representation of *LilyPond* moment.'''
+   '''Abjad representation of LilyPond moment.'''
 
    def __init__(self, duration):
       '''Initialize duration.'''
@@ -23,6 +23,6 @@ class Moment(_Abjad):
 
    @property
    def format(self):
-      '''*LilyPond* input representation of moment.'''
+      '''LilyPond input representation of moment.'''
       numerator, denominator = self.duration._n, self.duration._d
       return '(ly:make-moment %s %s)' % (numerator, denominator)

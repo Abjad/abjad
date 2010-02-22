@@ -95,6 +95,7 @@ Classes
    staff/rhythmicstaff
    measure/rigid/measure
    tools/tonalharmony/Scale/Scale
+   tools/schemetools/SchemeVector/SchemeVector
    score/score
    tools/lilytools/ScoreBlock
    skip/skip
