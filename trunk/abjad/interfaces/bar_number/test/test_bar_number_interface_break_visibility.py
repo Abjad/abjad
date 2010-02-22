@@ -4,7 +4,8 @@ from abjad import *
 def test_bar_number_interface_break_visibility_01( ):
 
    score = Score([Staff(construct.scale(8))])
-   score.bar_number.break_visibility = Function('end-of-line-invisible')
+   score.bar_number.break_visibility = schemetools.SchemeFunction(
+      'end-of-line-invisible')
 
    r'''
    \new Score \with {

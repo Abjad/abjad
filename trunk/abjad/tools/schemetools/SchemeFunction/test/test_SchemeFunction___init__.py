@@ -1,11 +1,12 @@
 from abjad import *
 
 
-def test_scm_function_01( ):
+def test_SchemeFunction___init___01( ):
    '''Scheme function with only a name and no arguments.'''
 
    t = Staff(construct.scale(4))
-   t.meter.break_visibility = Function('end-of-line-invisible')
+   t.meter.break_visibility = schemetools.SchemeFunction(
+      'end-of-line-invisible')
 
    r'''
    \new Staff \with {
@@ -21,12 +22,12 @@ def test_scm_function_01( ):
    assert t.format == "\\new Staff \\with {\n\t\\override TimeSignature #'break-visibility = #end-of-line-invisible\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_scm_function_02( ):
+def test_SchemeFunction___init___02( ):
    '''Scheme function with a name and a single numeric argument.'''
 
    staff = Staff(construct.scale(4))
-   staff.staff.staff_space = Function('magstep', -3)
-   staff.staff.thickness = Function('magstep', -3)
+   staff.staff.staff_space = schemetools.SchemeFunction('magstep', -3)
+   staff.staff.thickness = schemetools.SchemeFunction('magstep', -3)
 
    r'''
    \new Staff \with {

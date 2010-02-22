@@ -1,12 +1,10 @@
 from abjad.core.abjadcore import _Abjad
 
 
-class OldFunction(_Abjad):
-   '''Wrapper for names of Scheme functions known to LilyPond.
-   '''
+class SchemeFunction(_Abjad):
+   '''Wrapper for names of Scheme functions known to LilyPond.'''
 
    def __init__(self, name = '', *args):
-      '''Initialize function name.'''
       self.name = name
       self.args = [ ]
       self.args.extend(args)

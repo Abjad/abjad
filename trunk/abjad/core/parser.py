@@ -1,12 +1,12 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.scm import Color
-from abjad.scm import Function
+#from abjad.scm import Color
+#from abjad.scm import Function
 from abjad.scm import Moment
+from abjad.tools import schemetools
 
 
 class _Parser(_Abjad):
-   '''Utility lass to format *Abjad* values as LilyPond-style Scheme.
-   '''
+   '''Utility class to format Abjad values as LilyPond-style Scheme.'''
 
    ## PRIVATE METHODS ##
 
@@ -45,7 +45,8 @@ class _Parser(_Abjad):
          return '#%s' % value
       elif self._isLilyFunctionName(value):
          return '#%s' % value
-      elif isinstance(value, (Function, Moment, Color)):
+      elif isinstance(value, (Moment,
+         schemetools.SchemeColor, schemetools.SchemeFunction)):
          return '#%s' % value.format
       elif isinstance(value, tuple):
          return "#'(%s . %s)" % value

@@ -1,6 +1,7 @@
 from abjad.exceptions import MissingPitchError
 from abjad.exceptions import ExtraPitchError
-from abjad.scm import Color
+#from abjad.scm import Color
+from abjad.tools import schemetools
 from abjad.tools.pitchtools.get_pitch import get_pitch as \
    pitchtools_get_pitch
 
@@ -42,18 +43,18 @@ def color_by_pc(pitch_carrier):
 def _pc_number_to_color(pc):
    
    pc_number_to_color = {
-      0: Color('red'),
-      1: Color('MediumBlue'),
-      2: Color('orange'),
-      3: Color('LightSlateBlue'),
-      4: Color('ForestGreen'),
-      5: Color('MediumOrchid'),
-      6: Color('firebrick'),
-      7: Color('DeepPink'),
-      8: Color('DarkOrange'),
-      9: Color('IndianRed'),
-     10: Color('CadetBlue'),
-     11: Color('SeaGreen'),
-     12: Color('LimeGreen')}
+      0: schemetools.SchemeColor('red'),
+      1: schemetools.SchemeColor('MediumBlue'),
+      2: schemetools.SchemeColor('orange'),
+      3: schemetools.SchemeColor('LightSlateBlue'),
+      4: schemetools.SchemeColor('ForestGreen'),
+      5: schemetools.SchemeColor('MediumOrchid'),
+      6: schemetools.SchemeColor('firebrick'),
+      7: schemetools.SchemeColor('DeepPink'),
+      8: schemetools.SchemeColor('DarkOrange'),
+      9: schemetools.SchemeColor('IndianRed'),
+     10: schemetools.SchemeColor('CadetBlue'),
+     11: schemetools.SchemeColor('SeaGreen'),
+     12: schemetools.SchemeColor('LimeGreen')}
 
    return pc_number_to_color.get(pc, None)
