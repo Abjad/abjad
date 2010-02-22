@@ -17,17 +17,17 @@ class Clef(_Abjad):
    def __str__(self):
       return self.name
 
-   ## PUBLIC ATTRIBUTES ##
+   ## PRIVATE ATTRIBUTES ##
 
-   clefNameToMiddleCPosition = {
-      'treble': -6,
-      'bass':    6,
-   }
+   _clef_name_to_middle_c_position = { 'treble': -6, 'alto': 0,
+      'tenor': 2, 'bass':6, }
+
+   ## PUBLIC ATTRIBUTES ##
 
    @property
    def format(self):
       return r'\clef "%s"' % self.name
 
    @property
-   def middleCPosition(self):
-      return self.clefNameToMiddleCPosition[self.name]
+   def middle_c_position(self):
+      return self._clef_name_to_middle_c_position[self.name]

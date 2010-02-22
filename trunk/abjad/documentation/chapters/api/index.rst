@@ -826,6 +826,7 @@ pitchtools
    tools/pitchtools/array_to_nonspanning_subarrays
    tools/pitchtools/change_default_accidental_spelling
    tools/pitchtools/chromaticize
+   tools/pitchtools/clef_and_staff_position_number_to_pitch
    tools/pitchtools/color_by_pc
    tools/pitchtools/diatonic_and_chromatic_interval_numbers_to_diatonic_interval
    tools/pitchtools/diatonic_scale_degree_to_letter
@@ -880,6 +881,7 @@ pitchtools
    tools/pitchtools/pc_to_pitch_name_sharps
    tools/pitchtools/pentatonic_to_chromatic
    tools/pitchtools/permute_by_row
+   tools/pitchtools/pitch_and_clef_to_staff_position_number
    tools/pitchtools/pitch_number_and_accidental_semitones_to_octave
    tools/pitchtools/pitch_number_to_octave
    tools/pitchtools/pitch_pairs_from_to
