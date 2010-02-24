@@ -22,14 +22,14 @@ def apply_layout_schema(expr, layout_schema,
 
       abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
       abjad> pitchtools.diatonicize(t)
-      abjad> schema = Layout(Rational(4, 8), (40, 5, 1), (0, -15))
+      abjad> schema = layout.LayoutSchema(Rational(4, 8), (40, 5, 1), (0, 15))
       abjad> layout.apply_layout_schema(t, schema)
       abjad> f(t)
       \new Staff {
               {
                       \overrideProperty #"Score.NonMusicalPaperColumn"
                       #'line-break-system-details
-                      #'((Y-offset . 40) (alignment-offsets . (0 -15)))
+                      #'((Y-offset . 40) (alignment-distances . (0 15)))
                       \time 2/8
                       c'8
                       d'8
@@ -44,7 +44,7 @@ def apply_layout_schema(expr, layout_schema,
               {
                       \overrideProperty #"Score.NonMusicalPaperColumn"
                       #'line-break-system-details
-                      #'((Y-offset . 80) (alignment-offsets . (0 -15)))
+                      #'((Y-offset . 80) (alignment-distance . (0 15)))
                       \time 2/8
                       g'8
                       a'8
