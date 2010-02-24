@@ -8,4 +8,5 @@ _package_import(__path__[0], globals( ))
 
 from SchemeColor import SchemeColor
 from SchemeFunction import SchemeFunction
+from SchemeString import SchemeString
 from SchemeVector import SchemeVector
