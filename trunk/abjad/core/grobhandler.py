@@ -83,8 +83,8 @@ class _GrobHandler(_FormatContributor):
             result.append(r'%s\override %s %s = %s' % (
                self._frequencyIndicator,
                self._promotedGrob(key),
-               self._parser.formatAttribute(key),
-               self._parser.formatValue(value)))
+               self._parser.format_attribute(key),
+               self._parser.format_value(value)))
       return result
 
    @property
@@ -98,7 +98,7 @@ class _GrobHandler(_FormatContributor):
             result.append(r'%s\revert %s %s' % (
                self._frequencyIndicator,
                self._promotedGrob(key),
-               self._parser.formatAttribute(key)))
+               self._parser.format_attribute(key)))
       return result
 
    ## PUBLIC ATTRIBUTES ##

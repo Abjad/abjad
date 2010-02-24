@@ -48,7 +48,7 @@ class AccidentalInterface(_Interface, _GrobHandler, _ContextSettingHandler):
       '''
       result = [ ]
       if self.suggest_accidentals is not None:
-         formatted_value = self._parser.formatValue(self.suggest_accidentals)
+         formatted_value = self._parser.format_value(self.suggest_accidentals)
          context = getattr(self._client, 'context', None)
          if context is not None:
             result.append(r'suggestAccidentals = %s' % formatted_value)

@@ -42,7 +42,7 @@ class _BlockAttributed(object):
       for key, value in sorted(vars(self).items( )):
          if not key.startswith('_'):
             formatted_key = key.replace('_', '-')
-            formatted_value = self._parser.formatValue(value)
+            formatted_value = self._parser.format_value(value)
             setting = '%s = %s' % (formatted_key, formatted_value)
             result.append(setting)
       return result

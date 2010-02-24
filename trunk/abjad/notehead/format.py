@@ -30,13 +30,13 @@ class _NoteHeadFormatInterface(_FormatInterface):
       for key, value in self.note_head._key_value_pairs:
          if not key.startswith('_'):
             result.append(r'\tweak %s %s' % (
-               self.note_head._parser.formatAttribute(key),
-               self.note_head._parser.formatValue(value)))
+               self.note_head._parser.format_attribute(key),
+               self.note_head._parser.format_value(value)))
 #      if self.note_head.style:
 #         if self.note_head.style in self.stylesSupported:
 #            result.append(r'\tweak %s %s' % (
-#                  self.note_head._parser.formatAttribute('style'),
-#                  self.note_head._parser.formatValue(
+#                  self.note_head._parser.format_attribute('style'),
+#                  self.note_head._parser.format_value(
 #                     self._abjadToLilyStyle)))
 #         else:
 #            result.append(r"\%s" % self.note_head.style)

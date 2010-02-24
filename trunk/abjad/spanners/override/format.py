@@ -15,7 +15,7 @@ class _OverrideSpannerFormatInterface(_SpannerFormatInterface):
          not spanner._isMyOnlyLeaf(leaf) and \
          (spanner._attribute is not None):
          grob = spanner._prependContext(spanner._grob)
-         attribute = spanner._parser.formatAttribute(spanner._attribute)
+         attribute = spanner._parser.format_attribute(spanner._attribute)
          result = r'\revert %s %s' % (grob, attribute)
          return [result]
       else:
@@ -28,8 +28,8 @@ class _OverrideSpannerFormatInterface(_SpannerFormatInterface):
          spanner._attribute and \
          (spanner._value is not None):
          grob = spanner._prependContext(spanner._grob)
-         attribute = spanner._parser.formatAttribute(spanner._attribute)
-         value = spanner._parser.formatValue(spanner._value)
+         attribute = spanner._parser.format_attribute(spanner._attribute)
+         value = spanner._parser.format_value(spanner._value)
          result = r'\override %s %s = %s' % (grob, attribute, value)
          result = spanner._prependCounter(result)
          return [result]

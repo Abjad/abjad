@@ -8,7 +8,7 @@ class _Parser(_Abjad):
 
    ## PRIVATE METHODS ##
 
-   def _isConstant(self, value):
+   def _is_constant(self, value):
       '''True is ``value`` is constant, otherwise False.'''
       if isinstance(value, int) or isinstance(value, float) or \
           value in ['up', 'down', 'left', 'center', 'right',
@@ -20,28 +20,28 @@ class _Parser(_Abjad):
       else:
          return False
 
-   def _isLilyFunctionName(self, arg):
+   def _is_lily_function_name(self, arg):
       '''True if `arg` contains ``::``, otherwise False.'''
       return isinstance(arg, str) and '::' in arg
 
    ## PUBLIC METHODS ##
 
-   def formatAttribute(self, attribute):
+   def format_attribute(self, attribute):
       '''Return Scheme-formatted attribute.'''
       attribute = attribute.replace('__', " #'")
       result = attribute.replace('_', '-')
       result = "#'%s" % result
       return result
 
-   def formatValue(self, value):
+   def format_value(self, value):
       '''Return Scheme-formatted value.'''
       if value is True:
          return '##t'
       elif value is False:
          return '##f'
-      elif self._isConstant(value):
+      elif self._is_constant(value):
          return '#%s' % value
-      elif self._isLilyFunctionName(value):
+      elif self._is_lily_function_name(value):
          return '#%s' % value
       elif isinstance(value, (Moment,
          schemetools.SchemeColor, schemetools.SchemeFunction)):

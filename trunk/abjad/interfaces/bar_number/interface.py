@@ -14,11 +14,10 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
          abjad> t = RigidMeasure((2, 8), construct.scale(2))
          abjad> t.bar_number
-         <BarNumberInterface>'''
+         <BarNumberInterface>
+   '''
 
    def __init__(self, _client):
-      '''Bind to client and set current bar number to 1.'''
-
       _Interface.__init__(self, _client)
       _GrobHandler.__init__(self, 'BarNumber')
       self.current = None
@@ -69,7 +68,7 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
       '''
       result = [ ]
       if self.current is not None:
-         formatted_value = self._parser.formatValue(self.current)
+         formatted_value = self._parser.format_value(self.current)
          context = getattr(self._client, 'context', None)
          if context is not None:
             result.append(r'currentBarNumber = %s' %

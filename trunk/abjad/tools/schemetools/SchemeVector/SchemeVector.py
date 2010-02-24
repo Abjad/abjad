@@ -27,4 +27,4 @@ class SchemeVector(list):
    @property
    def format(self):
       '''LilyPond input representation of scheme vector.'''
-      return str(self)
+      return "'%s" % self
