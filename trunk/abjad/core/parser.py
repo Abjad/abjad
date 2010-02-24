@@ -1,6 +1,6 @@
 from abjad.core.abjadcore import _Abjad
-from abjad.scm import Moment
-from abjad.tools import schemetools
+#from abjad.scm import Moment
+#from abjad.tools import schemetools
 
 
 class _Parser(_Abjad):
@@ -9,7 +9,7 @@ class _Parser(_Abjad):
    ## PRIVATE METHODS ##
 
    def _is_constant(self, value):
-      '''True is ``value`` is constant, otherwise False.'''
+      '''True if value is constant, otherwise False.'''
       if isinstance(value, int) or isinstance(value, float) or \
           value in ['up', 'down', 'left', 'center', 'right',
          'black', 'white', 'red', 'green',
@@ -21,7 +21,7 @@ class _Parser(_Abjad):
          return False
 
    def _is_lily_function_name(self, arg):
-      '''True if `arg` contains ``::``, otherwise False.'''
+      '''True if arg contains '::', otherwise False.'''
       return isinstance(arg, str) and '::' in arg
 
    ## PUBLIC METHODS ##
@@ -43,14 +43,15 @@ class _Parser(_Abjad):
          return '#%s' % value
       elif self._is_lily_function_name(value):
          return '#%s' % value
-      elif isinstance(value, (Moment,
-         schemetools.SchemeColor, schemetools.SchemeFunction)):
-         return '#%s' % value.format
       elif isinstance(value, tuple):
          return "#'(%s . %s)" % value
-      elif value.__class__.__name__ in ['Markup']:
-         return value.format
+#      elif isinstance(value, (Moment,
+#         schemetools.SchemeColor, schemetools.SchemeFunction)):
+#         return '#%s' % value.format
+#      elif value.__class__.__name__ in ['Markup']:
+#         return value.format
       elif hasattr(value, 'format'):
-         return '#%s' % value.format
+         #return '#%s' % value.format
+         return value.format
       else:
          return "#'%s" % value

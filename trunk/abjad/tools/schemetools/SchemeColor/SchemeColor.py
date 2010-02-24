@@ -19,4 +19,4 @@ class SchemeColor(_Abjad):
    @property
    def format(self):
       '''LilyPond embedded Scheme call for color.'''
-      return "(x11-color '%s)" % self.name
+      return "#(x11-color '%s)" % self.name

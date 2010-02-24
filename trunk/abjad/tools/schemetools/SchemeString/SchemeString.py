@@ -11,7 +11,7 @@ class SchemeString(_Abjad):
    
    @property
    def format(self):
-      return '"%s"' % self.string
+      return '#"%s"' % self.string
 
    @property
    def string(self):

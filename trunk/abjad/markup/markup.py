@@ -53,26 +53,6 @@ class Markup(_Abjad):
 
    ## PUBLIC ATTRIBUTES ##
 
-#   @apply
-#   def contents( ):
-#      def fget(self):
-#         '''Read / write string equal to markup contents.
-#         
-#         ::
-#   
-#            abjad> markup = Markup('"This is markup text."')
-#            abjad> markup.contents
-#            '"This is markup text."'
-#         '''
-#         return self._contents
-#      def fset(self, arg):
-#         assert isinstance(arg, (str, types.NoneType))
-#         if isinstance(arg, str):
-#            self._contents = arg
-#         elif isinstance(arg, types.NoneType):
-#            self._contents = ''
-#      return property(**locals( ))
-
    @property
    def contents(self):
       '''Read-only content string.'''

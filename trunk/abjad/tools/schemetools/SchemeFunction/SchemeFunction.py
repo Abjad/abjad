@@ -15,12 +15,15 @@ class SchemeFunction(_Abjad):
    def format(self):
       '''LilyPond input representation of function.'''
       if len(self.args) == 0:
-         return self.name
+         body = self.name
       elif len(self.args) == 1:
          if isinstance(self.args[0], (int, float, long)):
-            return "(%s %s)" % (self.name, self.args[0])
+            body = "(%s %s)" % (self.name, self.args[0])
          elif isinstance(self.args[0], str):
-            return "(%s '%s)" % (self.name, self.args[0])
+            body = "(%s '%s)" % (self.name, self.args[0])
+         else:
+            raise ValueError
       ## TODO: Generalize for many arguments + parsing ##
-      elif 1 < len(args):
+      else:
          raise ValueError('multiple scheme arguments not yet implemented.')
+      return '#' + body
