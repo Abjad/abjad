@@ -2,11 +2,10 @@ from abjad.core.abjadcore import _Abjad
 from abjad.rational import Rational
 
 
-class Moment(_Abjad):
+class SchemeMoment(_Abjad):
    '''Abjad representation of LilyPond moment.'''
 
    def __init__(self, duration):
-      '''Initialize duration.'''
       self.duration = duration
 
    ## PUBLIC ATTRIBUTES ##
@@ -25,4 +24,4 @@ class Moment(_Abjad):
    def format(self):
       '''LilyPond input representation of moment.'''
       numerator, denominator = self.duration._n, self.duration._d
-      return '(ly:make-moment %s %s)' % (numerator, denominator)
+      return '#(ly:make-moment %s %s)' % (numerator, denominator)

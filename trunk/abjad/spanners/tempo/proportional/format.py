@@ -1,5 +1,5 @@
-from abjad.scm import Moment
 from abjad.spanners.tempo.format import _TempoSpannerFormatInterface
+from abjad.tools import schemetools
 
 
 class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
@@ -14,8 +14,8 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
    def _format_proportional_directive(self, proportional_notation_duration):
       '''Return proportional notation duration directive as string.'''
       setting = 'proportionalNotationDuration'
-      moment = Moment(proportional_notation_duration)
-      return r'\set Score.%s = #%s' % (setting, moment.format)
+      moment = schemetools.SchemeMoment(proportional_notation_duration)
+      return r'\set Score.%s = %s' % (setting, moment.format)
 
    def _make_proportional_directive(self, scorewide_spacing, local_tempo):
       '''Calculate proportional notation duration for local tempo.'''
