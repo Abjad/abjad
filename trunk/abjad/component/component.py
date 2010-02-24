@@ -39,6 +39,7 @@ from abjad.interfaces import SpanBarInterface
 from abjad.interfaces import StaffInterface
 from abjad.interfaces import StemInterface
 from abjad.interfaces import StemTremoloInterface
+from abjad.interfaces import SystemStartBarInterface
 from abjad.interfaces import TempoInterface
 from abjad.interfaces import TextScriptInterface
 from abjad.interfaces import TextSpannerInterface
@@ -97,6 +98,7 @@ class _Component(_Abjad):
       self._span_bar = SpanBarInterface(self)
       self._stem = StemInterface(self)
       self._stem_tremolo = StemTremoloInterface(self)
+      self._system_start_bar = SystemStartBarInterface(self)
       self._text_script = TextScriptInterface(self)
       self._text_spanner = TextSpannerInterface(self)
       self._thread = ThreadInterface(self)
@@ -428,6 +430,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.stem_tremolo.interface.StemTremoloInterface`.'''
       return self._stem_tremolo
+
+   @property
+   def system_start_bar(self):
+      '''Read-only reference to
+      :class:`~abjad.interfaces.system_start_bar.interface.SystemStartBarInterface`.'''
+      return self._system_start_bar
 
    @property
    def thread(self):

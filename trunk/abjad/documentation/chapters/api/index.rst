@@ -167,6 +167,7 @@ Interfaces
    interfaces/staff/interface
    interfaces/stem/interface
    interfaces/stem_tremolo/interface
+   interfaces/system_start_bar/interface
    interfaces/tempo/interface
    interfaces/text_script/interface
    interfaces/text_spanner/interface

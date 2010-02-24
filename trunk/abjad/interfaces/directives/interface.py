@@ -7,8 +7,9 @@ class DirectivesInterface(_Interface, CommentsInterface):
    are not yet modelled explicitly in Abjad.'''
 
    def __init__(self, component):
-      '''Init as a subclass of comments interface.
-      '''
-
+      '''Init as a subclass of comments interface.'''
       _Interface.__init__(self, component)
       CommentsInterface.__init__(self)
+
+   ## TODO: add a 'with' option for contexts. ##
+   ##       Will probably need to subclass this interface for contexts. ##
