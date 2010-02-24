@@ -1,6 +1,4 @@
 from abjad.core.abjadcore import _Abjad
-#from abjad.scm import Moment
-#from abjad.tools import schemetools
 
 
 class _Parser(_Abjad):
@@ -45,13 +43,7 @@ class _Parser(_Abjad):
          return '#%s' % value
       elif isinstance(value, tuple):
          return "#'(%s . %s)" % value
-#      elif isinstance(value, (Moment,
-#         schemetools.SchemeColor, schemetools.SchemeFunction)):
-#         return '#%s' % value.format
-#      elif value.__class__.__name__ in ['Markup']:
-#         return value.format
       elif hasattr(value, 'format'):
-         #return '#%s' % value.format
          return value.format
       else:
          return "#'%s" % value
