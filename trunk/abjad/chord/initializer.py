@@ -1,6 +1,7 @@
 from abjad.chord.formatter import _ChordFormatter
 from abjad.core.initializer import _Initializer
 from abjad.interfaces import NoteHeadInterface
+import re
 
 
 ## NOTE - order of steps must be 
@@ -56,10 +57,12 @@ class _ChordInitializer(_Initializer):
             client._formatter = _ChordFormatter(client)
             _transfer_all_attributes(skip, client)
       elif len(args) == 1 and isinstance(args[0], str):
-         from abjad.tools.lilytools._parse_chord_entry_string import \
-            _parse_chord_entry_string
-         chord = _parse_chord_entry_string(args[0])
-         ## TODO: make this work ##
+         pattern = '^<(.+)>\s*(.+)'
+         match = re.match(pattern, args[0])
+         pitch_string, duration_string = match.groups( )
+         _Leaf.__init__(client, duration_string)
+         client._formatter = _ChordFormatter(client)
+         client.pitches = pitch_string
       elif len(args) == 2:
          pitches, duration = args
          _Leaf.__init__(client, duration)

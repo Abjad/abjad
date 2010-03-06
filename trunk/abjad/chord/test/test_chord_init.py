@@ -41,3 +41,10 @@ def test_chord_init_06( ):
    t = Chord(["d'", "ef'", "e'"], (1, 4))
    assert repr(t) == "Chord(d' ef' e', 4)"
    assert t.format == "<d' ef' e'>4"
+
+
+def test_chord_init_07( ):
+   '''Init chord with complete LilyPond-style chord string.'''
+   t = Chord("<d' ef' e'>4")
+   assert repr(t) == "Chord(d' ef' e', 4)"
+   assert t.format == "<d' ef' e'>4"

@@ -94,14 +94,9 @@ class Note(_Leaf):
          else:
             if self.note_head is None:
                self.note_head = NoteHead(self, pitch = None)
-            if isinstance(arg, (int, float, long)):
-               self.note_head.pitch = Pitch(arg)
-            elif isinstance(arg, tuple):
-               self.note_head.pitch = Pitch(*arg)
-            elif isinstance(arg, Pitch):
-               self.note_head.pitch = arg
             else:
-               raise ValueError('Can not set Note.pitch from %s' % str(arg))
+               pitch = Pitch(arg)
+               self.note_head.pitch = pitch
       return property(**locals( ))
 
    @property

@@ -117,14 +117,6 @@ class NoteHead(NoteHeadInterface):
             self._pitch = None
          elif isinstance(arg, NoteHead):
             self._pitch = arg.pitch
-#         elif isinstance(arg, (int, float, long)):
-#            self._pitch = Pitch(arg)
-#         elif isinstance(arg, tuple):
-#            self._pitch = Pitch(*arg) 
-#         elif isinstance(arg, Pitch):
-#            self._pitch = Pitch(arg)
-#         else:
-#            raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
          else:
             pitch = Pitch(arg)
             self._pitch = pitch

@@ -88,8 +88,10 @@ class Chord(_Leaf):
             result.append(note_head)
          return tuple(result)
       def fset(self, arglist):
-         assert isinstance(arglist, (list, tuple, set))
+         assert isinstance(arglist, (list, tuple, set, str))
          self._note_heads = [ ]
+         if isinstance(arglist, str):
+            arglist = arglist.split( )
          for arg in arglist:
             note_head = NoteHead(self, pitch = arg)
             self._note_heads.append(note_head)

@@ -17,3 +17,9 @@ def test_note___init__03( ):
    '''Init note with LilyPond-style pitch string.'''
    t = Note('c,,', (1, 4))
    assert t.format == 'c,,4'
+
+
+def test_note___init__04( ):
+   '''Init note with complete LilyPond-style note string.'''
+   t = Note('cs8.')
+   assert t.format == 'cs8.'
