@@ -55,6 +55,11 @@ class _ChordInitializer(_Initializer):
             _Leaf.__init__(client, skip.duration.written)
             client._formatter = _ChordFormatter(client)
             _transfer_all_attributes(skip, client)
+      elif len(args) == 1 and isinstance(args[0], str):
+         from abjad.tools.lilytools._parse_chord_entry_string import \
+            _parse_chord_entry_string
+         chord = _parse_chord_entry_string(args[0])
+         ## TODO: make this work ##
       elif len(args) == 2:
          pitches, duration = args
          _Leaf.__init__(client, duration)

@@ -40,6 +40,6 @@ def test_PitchSet___init___05( ):
 def test_PitchSet___init___06( ):
    '''Works with empty chords.'''
 
-   chord = Note([ ], (1, 4))
+   chord = Chord([ ], (1, 4))
    pitch_set = pitchtools.PitchSet(pitchtools.get_pitches(chord))
    assert len(pitch_set) == 0

@@ -5,6 +5,8 @@ from abjad.rest import Rest
 from abjad.skip import Skip
 from abjad.tools import durtools
 from abjad.tools import pitchtools
+from abjad.tools.lilytools._parse_chord_entry_token import \
+   _parse_chord_entry_token
 import re
 
 
@@ -33,6 +35,10 @@ def _parse_note_entry_token(note_entry_token):
 
    match = re.match(pattern, note_entry_token)
    if match is None:
+      ## TODO: make this work; change outer loop. ##
+      #if note_entry_token.startswith('<'):
+      #   chord = _parse_chord_entry_token(note_entry_token)
+      #   return chord
       message = 'incorrect note entry token %s.' % note_entry_token
       raise InputSpecificationError(message)
 

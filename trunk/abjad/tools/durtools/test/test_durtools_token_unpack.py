@@ -9,3 +9,4 @@ def test_durtools_token_unpack_01( ):
    assert durtools.token_unpack((2, )) == (2, 1)
    assert durtools.token_unpack([2]) == (2, 1)
    assert durtools.token_unpack(2) == (2, 1)
+   assert durtools.token_unpack('8.') == (3, 16)

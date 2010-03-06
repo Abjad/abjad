@@ -1,9 +1,10 @@
 from abjad.rational import Rational
+from abjad.tools.durtools.duration_string_to_rational import \
+   duration_string_to_rational
 
 
 def token_unpack(duration_token):
-   '''Return reduced numerator, denominator pair
-   equal to `duration_token`.
+   '''Return reduced numerator, denominator pair equal to `duration_token`.
 
    Rationals are allowed. ::
 
@@ -27,6 +28,14 @@ def token_unpack(duration_token):
 
       abjad> durtools.token_unpack(2)
       (2, 1)
+
+   .. versionadded:: 1.1.2
+      LilyPond-style duration strings are allowed.
+
+   ::
+
+      abjad> durtools.token_unpack('8.')
+      (3, 16)
    '''
 
    if isinstance(duration_token, (tuple, list)):
@@ -42,7 +51,10 @@ def token_unpack(duration_token):
       denominator = 1
    elif isinstance(duration_token, Rational):
       numerator, denominator = duration_token._n, duration_token._d
+   elif isinstance(duration_token, str):
+      rational = duration_string_to_rational(duration_token)
+      numerator, denominator = rational._n, rational._d
    else:
-      raise ValueError('token must be of tuple, list, int or Rational.')
+      raise TypeError('token must be of tuple, list, int or Rational.')
 
    return numerator, denominator 
