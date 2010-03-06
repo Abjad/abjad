@@ -25,7 +25,6 @@ class NoteHead(NoteHeadInterface):
       NoteHeadInterface.__init__(self, client)
       self._formatter = _NoteHeadFormatInterface(self)
       self._style = None
-      #self.pitch = pitch
       self.pitch = pitch
       self._unregister_if_necessary( )
 
@@ -116,16 +115,19 @@ class NoteHead(NoteHeadInterface):
       def fset(self, arg):
          if arg is None:
             self._pitch = None
-         elif isinstance(arg, (int, float, long)):
-            self._pitch = Pitch(arg)
-         elif isinstance(arg, tuple):
-            self._pitch = Pitch(*arg) 
-         elif isinstance(arg, Pitch):
-            self._pitch = Pitch(arg)
          elif isinstance(arg, NoteHead):
             self._pitch = arg.pitch
+#         elif isinstance(arg, (int, float, long)):
+#            self._pitch = Pitch(arg)
+#         elif isinstance(arg, tuple):
+#            self._pitch = Pitch(*arg) 
+#         elif isinstance(arg, Pitch):
+#            self._pitch = Pitch(arg)
+#         else:
+#            raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
          else:
-            raise ValueError('Can not set _NoteHead.pitch = %s' % arg)
+            pitch = Pitch(arg)
+            self._pitch = pitch
       return property(**locals( ))
 
    @apply
