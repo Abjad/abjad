@@ -377,6 +377,7 @@ durtools
    tools/durtools/diagonalize_all_rationals
    tools/durtools/diagonalize_all_rationals_unique
    tools/durtools/duration_string_to_rational
+   tools/durtools/duration_string_to_rationals
    tools/durtools/group_by_duration_preprolated
    tools/durtools/group_by_duration_prolated
    tools/durtools/group_prolated
