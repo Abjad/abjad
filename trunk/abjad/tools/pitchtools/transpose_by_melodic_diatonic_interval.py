@@ -41,7 +41,7 @@ def transpose_by_melodic_diatonic_interval(
          new_nh.pitch = new_pitch
       return new_chord
    else:
-      raise TypeError('must be pitch, note or chord.')
+      raise TypeError('must be pitch, note or chord: %s' % str(pitch_carrier))
 
 
 def _transpose_pitch_by_melodic_diatonic_interval(

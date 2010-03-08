@@ -33,7 +33,8 @@ def duration_string_to_rational(duration_string):
 
    match = re.match(pattern, duration_string)
    if match is None:
-      raise DurationError('incorrect duration string format.')
+      raise DurationError('incorrect duration string format: %s.' % 
+         duration_string)
    body_string, dots_string = match.groups( )
 
    try:
