@@ -6,7 +6,7 @@ def wrapper(container):
       abjad> container.note_head.color = 'red'
       abjad> container.note_head.style = 'harmonic'
       abjad> container.comments.before.append('Container comments')
-      abjad> print container.formatter.wrapper
+      abjad> print formattools.wrapper(container)
       {
               \override NoteHead #'style = #'harmonic
               \override NoteHead #'color = #red
