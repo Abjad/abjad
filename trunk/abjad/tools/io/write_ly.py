@@ -1,4 +1,3 @@
-#from abjad.cfg._wrap_format import _wrap_format
 from abjad.cfg._write_preamble import _write_preamble
 from abjad.cfg._write_footer import _write_footer
 from abjad.cfg._write_score import _write_score
@@ -6,13 +5,12 @@ from abjad.cfg._write_title import _write_title
 import os
 
 
-def write_ly(expr, name, template = None, 
+def write_ly(expr, file_name, template = None, 
    title = None, footer = None, lily_time = None):
-   '''Format `expr` as `LilyPond` input and write to output file `name`.
+   '''Format `expr` and write to `file_name`.
 
-   - `expr` : `Abjad` :class:`~abjad.component.component._Component` \
-      to be written to disk.
-   - `name` : ``str``. The full path name (relative or absolute) of \
+   - `expr` : Abjad expression to format.
+   - `file_name` : ``str``. The full path name (relative or absolute) of \
       the `LilyPond` file. If only the file name is given, the file \
       is written to the current directory.
    - `template` : ``string``, ``None``. The name of the template to \
@@ -34,11 +32,11 @@ def write_ly(expr, name, template = None,
       Optional `footer` keyword.
    '''
 
-   name = os.path.expanduser(name)
-   if not name.endswith('.ly'):
-      name += '.ly'
+   file_name = os.path.expanduser(file_name)
+   if not file_name.endswith('.ly'):
+      file_name += '.ly'
    try:
-      outfile = open(name, 'w')
+      outfile = open(file_name, 'w')
       _write_preamble(outfile, template)
       _write_title(outfile, title)
       _write_footer(outfile, footer)
@@ -46,9 +44,9 @@ def write_ly(expr, name, template = None,
       _write_score(outfile, expr.format)
       outfile.close( )
    except IOError:
-      print 'ERROR: cound not open file %s' % name
-      dirname = os.path.dirname(name)
+      print 'ERROR: cound not open file %s' % file_name
+      dirname = os.path.dirname(file_name)
       if dirname:
          print 'Make sure "%s" exists in your system.' % dirname
 
-   print 'LilyPond input file written to %s' % os.path.basename(name)
+   print 'LilyPond input file written to %s' % os.path.basename(file_name)
