@@ -77,6 +77,16 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
       return HarmonicDiatonicIntervalClass(self)
 
    @property
+   def melodic_diatonic_interval_ascending(self):
+      from abjad.tools.pitchtools.MelodicDiatonicInterval import \
+         MelodicDiatonicInterval
+      return MelodicDiatonicInterval(self.quality_string, self.number)
+
+   @property
+   def melodic_diatonic_interval_descending(self):
+      return -self.melodic_diatonic_interval_ascending
+
+   @property
    def staff_spaces(self):
       if self.quality_string == 'perfect' and self.number == 1:
          return 0

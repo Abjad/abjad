@@ -6,6 +6,7 @@ from abjad.tools.tonalharmony.ChordQualityIndicator import \
    ChordQualityIndicator
 
 
+## TODO: Make inherit from NamedPitchClassSet instead ##
 class ChordClass(NamedPitchClassSegment):
    '''.. versionadded:: 1.1.2
 
@@ -22,7 +23,7 @@ class ChordClass(NamedPitchClassSegment):
       self._quality_indicator = quality_indicator
       npcs = [ ]
       for hdi in quality_indicator:
-         mdi = MelodicDiatonicInterval(hdi.quality_string, hdi.number)
+         mdi = hdi.melodic_diatonic_interval_ascending
          npc = root + mdi
          npcs.append(npc)
       self.extend(npcs)
