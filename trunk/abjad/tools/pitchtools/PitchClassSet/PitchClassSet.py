@@ -32,7 +32,8 @@ class PitchClassSet(frozenset):
          ## expr is a Rest or non-PC type
          except TypeError:
             pcs = [ ]
-      return frozenset.__new__(PitchClassSet, pcs)
+      #return frozenset.__new__(PitchClassSet, pcs)
+      return frozenset.__new__(self, pcs)
 
    ## OVERLOADS ##
 

@@ -34,7 +34,8 @@ class NamedPitchClassSet(frozenset):
          ## expr is a Rest or non-PC type
          except TypeError:
             npcs = [ ]
-      return frozenset.__new__(NamedPitchClassSet, npcs)
+      #return frozenset.__new__(NamedPitchClassSet, npcs)
+      return frozenset.__new__(self, npcs)
 
    ## OVERLOADS ##
 
