@@ -15,23 +15,37 @@ class ChordClass(NamedPitchClassSet):
    there are many different spacings and registrations of a G 7 chord.
    '''
 
-   #def __init__(self, root, *args):
-   def __new__(self, root, *args):
+   def __new__(klass, root, *args):
       root = NamedPitchClass(root)
-      #self._root = root
       quality_indicator = ChordQualityIndicator(*args)
-      #self._quality_indicator = quality_indicator
       npcs = [ ]
       for hdi in quality_indicator:
          mdi = hdi.melodic_diatonic_interval_ascending
          npc = root + mdi
          npcs.append(npc)
-      #self.update(npcs)
-      npcset = NamedPitchClassSet.__new__(self, npcs)
-      #npcset.root = root
-      return npcset
+      bass = npcs[0]
+      self = NamedPitchClassSet.__new__(klass, npcs)
+      self._root = root
+      self._quality_indicator = quality_indicator
+      self._bass = bass
+      return self
+
+   ## OVERLOADS ##
+
+   def __eq__(self, arg):
+      ## TODO: implement me. ##
+      raise Exception(NotImplemented)
+
+   def __repr__(self):
+      root = self.root.name.title( )
+      quality = self.quality_indicator._title_case_name
+      return root + quality
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def bass(self):
+      return self._bass
 
    @property
    def quality_indicator(self):
@@ -39,5 +53,9 @@ class ChordClass(NamedPitchClassSet):
 
    @property
    def root(self):
-      #return self._root
-      return 'foo'
+      return self._root
+
+   ## PUBLIC METHODS ##
+
+   def tranpose(self, mdi):
+      raise Exception(NotImplemented)

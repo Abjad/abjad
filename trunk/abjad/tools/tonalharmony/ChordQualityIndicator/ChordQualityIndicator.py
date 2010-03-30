@@ -113,22 +113,22 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 
    def _invert_quality_indicator(self, inversion):
       if isinstance(inversion, int):
-         self.rotate(inversion) 
-         self._rotation = inversion
+         self.rotate(-inversion) 
+         self._rotation = -inversion
       elif inversion == 'root':
          self._rotation = 0
       elif inversion == 'first':
-         self.rotate(1)
-         self._rotation = 1
+         self.rotate(-1)
+         self._rotation = -1
       elif inversion == 'second':
-         self.rotate(2)
-         self._rotation = 2
+         self.rotate(-2)
+         self._rotation = -2
       elif inversion == 'third':
-         self.rotate(3)
-         self._rotation = 3
+         self.rotate(-3)
+         self._rotation = -3
       elif inversion == 'fourth':
-         self.rotate(4)
-         self._rotation = 4
+         self.rotate(-4)
+         self._rotation = -4
       else:
          raise ValueError('unknown inversion indicator: %s' % inversion)
 
@@ -138,13 +138,13 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
    def position(self):
       if self.rotation == 0:
          return 'root position'
-      elif self.rotation == 1:
+      elif self.rotation == -1:
          return 'first inversion'
-      elif self.rotation == 2:
+      elif self.rotation == -2:
          return 'second inversion'
-      elif self.rotation == 3:
+      elif self.rotation == -3:
          return 'third inversion'
-      elif self.rotation == 4:
+      elif self.rotation == -4:
          return 'fourth inversion'
       else:
          raise ValueError('unknown chord position.')
