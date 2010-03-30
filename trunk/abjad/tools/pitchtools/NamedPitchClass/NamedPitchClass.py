@@ -135,5 +135,10 @@ class NamedPitchClass(object):
 
    def transpose(self, mdi):
       '''Transpose pitch class by melodic diatonic interval.'''
-      ## TODO: implement ##
-      raise Exception(NotImplemented)
+      from abjad.pitch import Pitch
+      from abjad.tools.pitchtools.transpose_by_melodic_diatonic_interval \
+         import transpose_by_melodic_diatonic_interval
+      pitch = Pitch(self, 4)
+      transposed_pitch = transpose_by_melodic_diatonic_interval(pitch, mdi)
+      transposed_named_pitch_class = transposed_pitch.named_pitch_class
+      return transposed_named_pitch_class
