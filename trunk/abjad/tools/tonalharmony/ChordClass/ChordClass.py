@@ -98,13 +98,20 @@ class ChordClass(NamedPitchClassSet):
          else:
             raise ValueError('unknown note name.')
       return root
+
+   @property
+   def _markup_superscript(self):
+      symbol = self._markup_symbol
+      inversion = self._markup_inversion
+      
+      
          
    @property
    def _markup_symbol(self):
       if self.quality_indicator._quality_string == 'augmented':
          return '+'
       elif self.quality_indicator._quality_string == 'diminished':
-         return 'o'
+         return r'\draw-circle #0.35 #0 ##f'
       elif self.quality_indicator._quality_string == 'half diminished':
          return '@'
       elif self.quality_indicator._quality_string == 'major' and \
@@ -140,6 +147,15 @@ class ChordClass(NamedPitchClassSet):
    def markup(self):
       markup = [self._markup_root, self._markup_symbol, self._markup_inversion]
       markup = ''.join(markup)
+      markup = r'\fontsize #1 %s' % self._markup_root
+      symbol = self._markup_symbol
+      if symbol:
+         markup += r' \raise #1 \fontsize #-3 %s' % symbol
+      inversion = self._markup_inversion
+      if inversion:
+         inv = r" \raise #1 \fontsize #-3 \override #'(baseline-skip . 1.5) "
+         inv += r'\column { %s }' % ' '.join(inversion.split('/'))
+         markup += inv
       return Markup(markup)
 
    @property
