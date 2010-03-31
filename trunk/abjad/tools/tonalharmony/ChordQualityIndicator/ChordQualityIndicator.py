@@ -29,8 +29,13 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _acceptable_extended_qualities(self):
-      return ('major', 'minor', 'fully diminshed', 'half diminished')
+   def _acceptable_ninth_qualities(self):
+      return ('dominant', )
+
+   @property
+   def _acceptable_seventh_qualities(self):
+      return ('dominant', 'major', 'minor', 
+         'fully diminshed', 'half diminished')
 
    @property
    def _acceptable_triad_qualities(self):
@@ -54,8 +59,8 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
             HarmonicDiatonicInterval('minor', 7),
             HarmonicDiatonicInterval('major', 9)]
       else:
-         raise ValueError('triad quality string %s must be in %s.' % (
-            quality_string, acceptable_strings))
+         raise ValueError("ninth quality string '%s' must be in %s." % (
+            quality_string, self._acceptable_ninth_qualities))
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
       self.extend(intervals)
       self._quality_string = quality_string
@@ -83,8 +88,8 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
             HarmonicDiatonicInterval('perfect', 5),
             HarmonicDiatonicInterval('diminished', 7)]
       else:
-         raise ValueError('triad quality string %s must be in %s.' % (
-            quality_string, acceptable_strings))
+         raise ValueError("seventh quality string '%s' must be in %s." % (
+            quality_string, self._acceptable_seventh_qualities))
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
       self.extend(intervals)
       self._quality_string = quality_string
@@ -104,8 +109,8 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
          intervals = [HarmonicDiatonicInterval('major', 3),
             HarmonicDiatonicInterval('augmented', 5)]
       else:
-         raise ValueError('triad quality string %s must be in %s.' % (
-            quality_string, acceptable_strings))
+         raise ValueError("triad quality string '%s' must be in %s." % (
+            quality_string, self._acceptable_triad_qualities))
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
       self.extend(intervals)
       self._quality_string = quality_string
@@ -133,6 +138,10 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
          raise ValueError('unknown inversion indicator: %s' % inversion)
 
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def inversion(self):
+      return abs(self.rotation)
 
    @property
    def position(self):

@@ -33,9 +33,16 @@ class ChordClass(NamedPitchClassSet):
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      ## TODO: implement me. ##
-      raise Exception(NotImplemented)
+      if isinstance(arg, type(self)):
+         if self.root == arg.root:
+            if self.quality_indicator == arg.quality_indicator:
+               if self.inversion == arg.inversion:
+                  return True
+      return False
 
+   def __ne__(self, arg):
+      return not self == arg
+         
    def __repr__(self):
       root = self.root.name.title( )
       quality = self.quality_indicator._title_case_name
@@ -48,6 +55,10 @@ class ChordClass(NamedPitchClassSet):
       return self._bass
 
    @property
+   def inversion(self):
+      return self._quality_indicator.inversion
+
+   @property
    def quality_indicator(self):
       return self._quality_indicator
 
@@ -57,5 +68,5 @@ class ChordClass(NamedPitchClassSet):
 
    ## PUBLIC METHODS ##
 
-   def tranpose(self, mdi):
+   def transpose(self, mdi):
       raise Exception(NotImplemented)
