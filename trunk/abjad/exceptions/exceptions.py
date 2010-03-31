@@ -163,6 +163,10 @@ class TempoError(Exception):
    '''General tempo error.'''
    pass
 
+class TonalHarmonyError(Exception):
+   '''General tonal harmony error.'''
+   pass
+
 class TupletError(Exception):
    '''Geneal tuplet error.'''
    pass

@@ -18,3 +18,13 @@ class DiatonicIntervalClassSegment(_IntervalSegment):
 
    def __copy__(self):
       return DiatonicIntervalClassSegment(self.intervals)
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def is_tertian(self):
+      '''Read-only boolean indicator of all tertian interval classes.'''
+      for dic in self:
+         if not dic.number == 3:
+            return False
+      return True
