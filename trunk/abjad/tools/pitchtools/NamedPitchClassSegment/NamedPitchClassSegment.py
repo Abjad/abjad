@@ -32,6 +32,14 @@ class NamedPitchClassSegment(list):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def diatonic_interval_class_segment(self):
+      from abjad.tools import listtools
+      from abjad.tools.pitchtools.DiatonicIntervalClassSegment import \
+         DiatonicIntervalClassSegment
+      dics = listtools.difference_series(self)
+      return DiatonicIntervalClassSegment(dics)
+
+   @property
    def named_pitch_class_set(self):
       return NamedPitchClassSet(self)
 
