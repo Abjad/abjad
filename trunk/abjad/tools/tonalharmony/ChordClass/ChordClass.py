@@ -1,3 +1,4 @@
+from abjad.markup import Markup
 from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
@@ -48,6 +49,59 @@ class ChordClass(NamedPitchClassSet):
       quality = self.quality_indicator._title_case_name
       return root + quality
 
+   ## PRIVATE ATTRIBUTES ##
+
+   ## TODO: Externalize in tonalharmony module. ##
+   @property
+   def _markup_inversion(self):
+      extent, inversion = self.extent, self.inversion
+      if extent == 5:
+         if inversion == 0:
+            return ''
+         elif inversion == 1:
+            return '6/3'
+         elif inversion == 2:
+            return '6/4'
+      elif extent == 7:
+         if inversion == 0:
+            return '7'
+         elif inversion == 1:
+            return '6/5'
+         elif inversion == 2:
+            return '4/3'
+         elif inversion == 3:
+            return '4/2'
+      elif extent == 9:
+         if inversion == 0:
+            return ''
+         elif inversion == 1:
+            return 'foo'
+         elif inversion == 2:
+            return 'foo'
+         elif inversion == 3:
+            return 'foo'
+         elif inversion == 4:
+            return 'foo'
+
+   @property
+   def _markup_root(self):
+      if self.quality_indicator._quality_string in (
+         'major', 'augmented', 'dominant'):
+         return self.root.name.upper( )
+      else:
+         return self.root.name.lower( )
+
+   @property
+   def _markup_symbol(self):
+      if self.quality_indicator._quality_string == 'augmented':
+         return '+'
+      elif self.quality_indicator._quality_string == 'diminished':
+         return 'o'
+      elif self.quality_indicator._quality_string == 'half diminished':
+         return '@'
+      else:
+         return ''
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -55,8 +109,24 @@ class ChordClass(NamedPitchClassSet):
       return self._bass
 
    @property
+   def cardinality(self):
+      return len(self)
+
+   @property
+   def extent(self):
+      from abjad.tools.tonalharmony.chord_class_cardinality_to_extent import \
+         chord_class_cardinality_to_extent
+      return chord_class_cardinality_to_extent(self.cardinality)
+
+   @property
    def inversion(self):
       return self._quality_indicator.inversion
+
+   @property
+   def markup(self):
+      markup = [self._markup_root, self._markup_symbol, self._markup_inversion]
+      markup = ''.join(markup)
+      return Markup(markup)
 
    @property
    def quality_indicator(self):
