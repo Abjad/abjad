@@ -87,10 +87,18 @@ class ChordClass(NamedPitchClassSet):
    def _markup_root(self):
       if self.quality_indicator._quality_string in (
          'major', 'augmented', 'dominant'):
-         return self.root.name.upper( )
+         root = self.root.name.upper( )
       else:
-         return self.root.name.lower( )
-
+         root = self.root.name.lower( )
+      if len(root) == 2:
+         if root[-1] == 's':
+            root = root[0] + r'\sharp '
+         elif root[-1] == 'f':
+            root = root[0] + r'\flat '
+         else:
+            raise ValueError('unknown note name.')
+      return root
+         
    @property
    def _markup_symbol(self):
       if self.quality_indicator._quality_string == 'augmented':
@@ -99,6 +107,12 @@ class ChordClass(NamedPitchClassSet):
          return 'o'
       elif self.quality_indicator._quality_string == 'half diminished':
          return '@'
+      elif self.quality_indicator._quality_string == 'major' and \
+         5 < self.extent:
+         return 'M'
+      elif self.quality_indicator._quality_string == 'minor' and \
+         5 < self.extent:
+         return 'm'
       else:
          return ''
 

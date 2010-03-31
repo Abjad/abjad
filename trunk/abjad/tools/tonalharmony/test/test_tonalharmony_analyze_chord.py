@@ -15,6 +15,19 @@ def test_tonalharmony_analyze_chord_01( ):
 
 
 def test_tonalharmony_analyze_chord_02( ):
+   '''The three inversions of an a minor triad.'''
+
+   chord_class = tonalharmony.analyze_chord(Chord([9, 12, 16], (1, 4)))
+   assert chord_class == tonalharmony.ChordClass('a', 'minor', 'triad', 'root')
+
+   chord_class = tonalharmony.analyze_chord(Chord([12, 16, 21], (1, 4)))
+   assert chord_class == tonalharmony.ChordClass('a', 'minor', 'triad', 1)
+
+   chord_class = tonalharmony.analyze_chord(Chord([16, 21, 24], (1, 4)))
+   assert chord_class == tonalharmony.ChordClass('a', 'minor', 'triad', 2)
+
+
+def test_tonalharmony_analyze_chord_03( ):
    '''The four inversions of a C dominant seventh chord.'''
 
    chord_class = tonalharmony.analyze_chord(Chord([0, 4, 7, 10], (1, 4)))
@@ -30,7 +43,7 @@ def test_tonalharmony_analyze_chord_02( ):
    assert chord_class == tonalharmony.ChordClass('c', 'dominant', 7, 3)
 
 
-def test_tonalharmony_analyze_chord_03( ):
+def test_tonalharmony_analyze_chord_04( ):
    '''The five inversions of a C dominant ninth chord.'''
 
    chord_class = tonalharmony.analyze_chord(Chord([0, 4, 7, 10, 14], (1, 4)))

@@ -28,11 +28,11 @@ def analyze_chord(expr):
             ordered_npcs.append(npc)
 
    for x in range(len(ordered_npcs)):
-      ordered_npcs.rotate(1)
+      ordered_npcs = ordered_npcs.rotate(1)
       if ordered_npcs.diatonic_interval_class_segment.is_tertian:
          break
    else:
-      raise TonalHarmonyError('expr is not tertian harmony: %s' % expr)
+      raise TonalHarmonyError('expr is not tertian harmony: %s' % str(expr))
 
    root = ordered_npcs[0]
    bass = min(pitches).named_pitch_class
