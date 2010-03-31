@@ -120,6 +120,16 @@ class NamedPitchClass(object):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def accidental(self):
+      '''Read-only accidental string of pitch-class name.'''
+      return self.name[1:]
+
+   @property
+   def letter(self):
+      '''Read-only first letter of pitch-class name.'''
+      return self.name[0]
+
+   @property
    def name(self):
       '''Read-only name of pitch-class.'''
       return self._name
