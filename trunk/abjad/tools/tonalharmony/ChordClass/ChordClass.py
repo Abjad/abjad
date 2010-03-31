@@ -51,38 +51,6 @@ class ChordClass(NamedPitchClassSet):
 
    ## PRIVATE ATTRIBUTES ##
 
-   ## TODO: Externalize in tonalharmony module. ##
-   @property
-   def _markup_inversion(self):
-      extent, inversion = self.extent, self.inversion
-      if extent == 5:
-         if inversion == 0:
-            return ''
-         elif inversion == 1:
-            return '6/3'
-         elif inversion == 2:
-            return '6/4'
-      elif extent == 7:
-         if inversion == 0:
-            return '7'
-         elif inversion == 1:
-            return '6/5'
-         elif inversion == 2:
-            return '4/3'
-         elif inversion == 3:
-            return '4/2'
-      elif extent == 9:
-         if inversion == 0:
-            return ''
-         elif inversion == 1:
-            return 'foo'
-         elif inversion == 2:
-            return 'foo'
-         elif inversion == 3:
-            return 'foo'
-         elif inversion == 4:
-            return 'foo'
-
    @property
    def _markup_root(self):
       if self.quality_indicator._quality_string in (
@@ -91,29 +59,27 @@ class ChordClass(NamedPitchClassSet):
       else:
          root = self.root.name.lower( )
       if len(root) == 2:
+         adjustment = r'\hspace #-1 \raise #1 \fontsize #-3'
          if root[-1] == 's':
-            root = root[0] + r'\sharp '
+            root = root[0] + r'%s \sharp' % adjustment
          elif root[-1] == 'f':
-            root = root[0] + r'\flat '
+            root = root[0] + r'%s \flat' % adjustment
          else:
             raise ValueError('unknown note name.')
       return root
 
    @property
-   def _markup_superscript(self):
-      symbol = self._markup_symbol
-      inversion = self._markup_inversion
-      
-      
-         
-   @property
    def _markup_symbol(self):
+      circle = r'\draw-circle #0.35 #0 ##f'
       if self.quality_indicator._quality_string == 'augmented':
          return '+'
       elif self.quality_indicator._quality_string == 'diminished':
-         return r'\draw-circle #0.35 #0 ##f'
+         return circle
       elif self.quality_indicator._quality_string == 'half diminished':
-         return '@'
+         line = r"\draw-line #'(1 . 1)"
+         markup = r'\concat { %s \hspace #-0.85 \raise #-0.5 %s }'
+         markup %= (circle, line)
+         return markup
       elif self.quality_indicator._quality_string == 'major' and \
          5 < self.extent:
          return 'M'
@@ -140,21 +106,53 @@ class ChordClass(NamedPitchClassSet):
       return chord_class_cardinality_to_extent(self.cardinality)
 
    @property
+   def figured_bass(self):
+      extent, inversion = self.extent, self.inversion
+      if extent == 5:
+         if inversion == 0:
+            return ''
+         elif inversion == 1:
+            return '6/3'
+         elif inversion == 2:
+            return '6/4'
+      elif extent == 7:
+         if inversion == 0:
+            return '7'
+         elif inversion == 1:
+            return '6/5'
+         elif inversion == 2:
+            return '4/3'
+         elif inversion == 3:
+            return '4/2'
+      elif extent == 9:
+         if inversion == 0:
+            return ''
+         elif inversion == 1:
+            raise Exception(NotImplemented)
+         elif inversion == 2:
+            raise Exception(NotImplemented)
+         elif inversion == 3:
+            raise Exception(NotImplemented)
+         elif inversion == 4:
+            raise Exception(NotImplemented)
+
+   @property
    def inversion(self):
       return self._quality_indicator.inversion
 
    @property
    def markup(self):
-      markup = [self._markup_root, self._markup_symbol, self._markup_inversion]
+      markup = [self._markup_root, self._markup_symbol, self.figured_bass]
       markup = ''.join(markup)
-      markup = r'\fontsize #1 %s' % self._markup_root
+      markup = r'\fontsize #1 %s \hspace #-1' % self._markup_root
       symbol = self._markup_symbol
       if symbol:
          markup += r' \raise #1 \fontsize #-3 %s' % symbol
-      inversion = self._markup_inversion
+         markup += r' \hspace #-1.2'
+      inversion = self.figured_bass
       if inversion:
-         inv = r" \raise #1 \fontsize #-3 \override #'(baseline-skip . 1.5) "
-         inv += r'\column { %s }' % ' '.join(inversion.split('/'))
+         inv = r" \raise #1 \fontsize #-3 \override #'(baseline-skip . 1.5)"
+         inv += r' \column { %s }' % ' '.join(inversion.split('/'))
          markup += inv
       return Markup(markup)
 
