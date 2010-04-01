@@ -1,13 +1,16 @@
 from abjad.leaf import _Leaf
 from abjad.markup import Markup
 from abjad.note import Note
+from abjad.spanners.glissando import Glissando
 from abjad.tools import iterate
+from abjad.tools import leaftools
 from abjad.tools import pitchtools
 from abjad.tools.tonalharmony.is_unlikely_melodic_diatonic_interval_in_chorale \
    import is_unlikely_melodic_diatonic_interval_in_chorale
 
 
-def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below'):
+def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below',
+   markup = True, glissando = True):
    '''.. versionadded:: 1.1.2
 
    Mark unlikely melodic intervals in chorale. ::
@@ -28,6 +31,7 @@ def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below'):
       }
    '''
 
+   color = 'red'
    result = True
    for note in iterate.naive_forward_in(expr, Note):
       is_cadence = getattr(note.history, 'cadence', None)
@@ -41,15 +45,20 @@ def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below'):
             mdi = pitchtools.melodic_diatonic_interval_from_to(
                note, next_leaf)
             if is_unlikely_melodic_diatonic_interval_in_chorale(mdi):
-               note.note_head.color = 'red'
-               next_leaf.note_head.color = 'red'
-               markup = Markup(r'\with-color #red { %s }' % mdi)
-               if direction == 'above':
-                  next_leaf.markup.up.append(markup)
-               elif direction == 'below':
-                  next_leaf.markup.down.append(markup)
-               else:
-                  raise ValueError("must be 'above' or 'below'.")
+               leaftools.color_leaves(note, color)
+               leaftools.color_leaves(next_leaf, color)
+               if glissando:
+                  tmp = Glissando([note, next_leaf])
+                  tmp.color = color
+                  tmp.thickness = 2
+               if markup:
+                  tmp = Markup(r'\with-color #%s { %s }' % (color, mdi))
+                  if direction == 'above':
+                     next_leaf.markup.up.append(tmp)
+                  elif direction == 'below':
+                     next_leaf.markup.down.append(tmp)
+                  else:
+                     raise ValueError("must be 'above' or 'below'.")
                result = False
       except StopIteration:
          pass
