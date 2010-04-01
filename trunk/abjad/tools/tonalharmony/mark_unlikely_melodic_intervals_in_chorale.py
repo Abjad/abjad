@@ -41,6 +41,7 @@ def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below'):
             mdi = pitchtools.melodic_diatonic_interval_from_to(
                note, next_leaf)
             if is_unlikely_melodic_diatonic_interval_in_chorale(mdi):
+               note.note_head.color = 'red'
                next_leaf.note_head.color = 'red'
                markup = Markup(r'\with-color #red { %s }' % mdi)
                if direction == 'above':

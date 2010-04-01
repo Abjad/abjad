@@ -575,6 +575,7 @@ leaftools
 .. toctree::
    :maxdepth: 1
 
+   tools/leaftools/color_leaves
    tools/leaftools/composite_offset_difference_series
    tools/leaftools/composite_offset_series
    tools/leaftools/copy_duration_from_to
