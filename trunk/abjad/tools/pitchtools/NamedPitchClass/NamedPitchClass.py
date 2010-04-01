@@ -141,6 +141,14 @@ class NamedPitchClass(object):
       pitch_class = pitch.pitch_class
       return pitch_class
 
+   @property
+   def symbolic_name(self):
+      accidental_to_symbol = {
+         '': '', 's': '#', 'f': 'b', 'ss': '##', 'ff': 'bb',
+         'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}
+      symbol = accidental_to_symbol[self.accidental]
+      return self.letter + symbol
+
    ## PUBLIC METHODS ##
 
    def transpose(self, mdi):

@@ -159,5 +159,9 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
          raise ValueError('unknown chord position.')
 
    @property
+   def quality_string(self):
+      return self._quality_string
+
+   @property
    def rotation(self):
       return self._rotation

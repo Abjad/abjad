@@ -164,6 +164,17 @@ class ChordClass(NamedPitchClassSet):
    def root(self):
       return self._root
 
+   @property
+   def root_string(self):
+      capitalized_qualities = ('major', 'dominant', 'augmented')
+      symbolic_name = self.root.symbolic_name
+      letter, accidental = symbolic_name[0], symbolic_name[1:]
+      if self.quality_indicator.quality_string in capitalized_qualities:
+         letter = letter.upper( )
+      else:
+         letter = letter.lower( )
+      return letter + accidental
+
    ## PUBLIC METHODS ##
 
    def transpose(self, mdi):
