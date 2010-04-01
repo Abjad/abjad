@@ -32,6 +32,13 @@ class VerticalMoment(object):
                return True
       return False
 
+   def __hash__(self):
+      result = [ ]
+      result.append(str(self.prolated_offset))
+      result.extend([str(id(x)) for x in self.governors])
+      result = '+'.join(result)
+      return hash(repr(result))
+
    def __len__(self):
       return len(self.components)
 
@@ -39,7 +46,8 @@ class VerticalMoment(object):
       return not self == expr
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+      return '%s(%s, <<%s>>)' % (self.__class__.__name__, 
+         self.prolated_offset, len(self.leaves)) 
 
    ## PRIVATE ATTRIBUTES ##
 
