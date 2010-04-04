@@ -1,5 +1,6 @@
 from abjad.leaf import _Leaf
 from abjad.measure import _Measure
+from abjad.note import Note
 from abjad.rational import Rational
 
 
@@ -10,7 +11,6 @@ class VerticalMoment(object):
    '''
 
    def __init__(self, prolated_offset, governors, components):
-      #assert isinstance(prolated_offset, Rational)
       prolated_offset = Rational(prolated_offset)
       assert isinstance(governors, tuple)
       assert isinstance(components, tuple)
@@ -95,6 +95,17 @@ class VerticalMoment(object):
       return result
 
    @property
+   def notes(self):
+      '''Read-only tuple of zero or more notes
+      at vertical moment.'''
+      result = [ ]
+      for component in self.components:
+         if isinstance(component, Note):
+            result.append(component)
+      result = tuple(result)
+      return result
+
+   @property
    def prolated_offset(self):
       '''Read-only rational-valued score offset
       at which vertical moment is evaluated.'''
@@ -128,6 +139,14 @@ class VerticalMoment(object):
       return result
 
    @property
+   def overlap_notes(self):
+      '''Read-only tuple of notes in vertical moment
+      starting before vertical moment, ordered by score index.'''
+      result = [x for x in self.overlap_components if isinstance(x, Note)]
+      result = tuple(result)
+      return result
+
+   @property
    def start_components(self):
       '''Read-only tuple of components in vertical moment
       starting with at vertical moment, ordered by score index.'''
@@ -143,5 +162,13 @@ class VerticalMoment(object):
       '''Read-only tuple of leaves in vertical moment
       starting with vertical moment, ordered by score index.'''
       result = [x for x in self.start_components if isinstance(x, _Leaf)]
+      result = tuple(result)
+      return result
+
+   @property
+   def start_notes(self):
+      '''Read-only tuple of notes in vertical moment
+      starting with vertical moment, ordered by score index.'''
+      result = [x for x in self.start_components if isinstance(x, Note)]
       result = tuple(result)
       return result
