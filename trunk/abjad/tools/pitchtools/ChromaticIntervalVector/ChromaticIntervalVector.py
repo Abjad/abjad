@@ -1,4 +1,3 @@
-from abjad.core.abjadcore import _Abjad
 from abjad.tools.pitchtools.get_harmonic_chromatic_intervals_in import \
    get_harmonic_chromatic_intervals_in
 

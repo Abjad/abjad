@@ -1,3 +1,4 @@
+from abjad.pitch import Pitch
 from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
 from abjad.tools.pitchtools._HarmonicIntervalClass import \
    _HarmonicIntervalClass
@@ -17,6 +18,8 @@ class HarmonicDiatonicIntervalClass(
          if isinstance(args[0], HarmonicDiatonicInterval):
             quality_string = args[0]._quality_string
             number = args[0].number
+         elif isinstance(args[0], tuple) and len(args[0]) == 2:
+            quality_string, number = args[0]
          else:
             raise TypeError
       else:
@@ -57,3 +60,19 @@ class HarmonicDiatonicIntervalClass(
    @property
    def _full_name(self):
       return '%s %s' % (self._quality_string, self._interval_string)
+
+   ## PUBLIC METHODS ##
+
+   def invert(self):
+      from abjad.tools.pitchtools.MelodicDiatonicInterval import \
+         MelodicDiatonicInterval
+      from abjad.tools.pitchtools.harmonic_diatonic_interval_class_from_to \
+         import harmonic_diatonic_interval_class_from_to
+      low = Pitch('c', 4)
+      quality_string, number = self._quality_string, self.number
+      mdi = MelodicDiatonicInterval(quality_string, number)
+      middle = low + mdi
+      octave = MelodicDiatonicInterval('perfect', 8)
+      high = low + octave
+      hdi = harmonic_diatonic_interval_class_from_to(middle, high)
+      return hdi

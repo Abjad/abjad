@@ -1,0 +1,1 @@
+from DiatonicIntervalClassVector import DiatonicIntervalClassVector

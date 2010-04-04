@@ -90,6 +90,13 @@ class _DiatonicInterval(_Interval):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def diatonic_interval_class(self):
+      from abjad.tools.pitchtools.DiatonicIntervalClass import \
+         DiatonicIntervalClass
+      quality_string, number = self._quality_string, self.number
+      return DiatonicIntervalClass(quality_string, number)
+
+   @property
    def interval_class(self):
       return ((abs(self.number) - 1) % 7) + 1
 

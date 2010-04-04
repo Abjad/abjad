@@ -1,3 +1,6 @@
+from abjad.pitch import Pitch
+from abjad.tools.pitchtools.MelodicDiatonicInterval import \
+   MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.NamedPitchClassSet import NamedPitchClassSet
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
@@ -60,6 +63,16 @@ class NamedPitchClassSegment(list):
       return self.pitch_class_segment.pitch_classes
 
    ## PUBLIC METHODS ##
+
+   def is_equivalent_under_transposition(self, arg):
+      if not isinstance(arg, type(self)):
+         return False
+      if not len(self) == len(arg):
+         return False
+      difference = -(Pitch(arg[0], 4) - Pitch(self[0], 4))
+      new_npcs = [x + difference for x in self]
+      new_npc_seg = NamedPitchClassSegment(new_npcs)
+      return arg == new_npc_seg
 
    def retrograde(self):
       return NamedPitchClassSegment(reversed(self))

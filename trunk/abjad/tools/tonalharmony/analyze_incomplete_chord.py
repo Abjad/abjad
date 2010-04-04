@@ -1,0 +1,47 @@
+from abjad.exceptions import TonalHarmonyError
+from abjad.tools import pitchtools
+from abjad.tools.tonalharmony.ChordClass import ChordClass
+from abjad.tools.tonalharmony.chord_class_cardinality_to_extent import \
+   chord_class_cardinality_to_extent
+from abjad.tools.tonalharmony.diatonic_interval_class_segment_to_chord_quality_string import \
+   diatonic_interval_class_segment_to_chord_quality_string
+
+
+def analyze_incomplete_chord(expr):
+   '''.. versionadded:: 1.1.2
+
+   Analyze `expr` and return chord class based on incomplete pitches. ::
+
+      abjad> tonalharmony.analyze_incomplete_chord(Chord([7, 11], (1, 4)))
+      GMajorTriadInRootPosition
+   
+   ::
+
+      abjad> tonalharmony.analyze_incomplete_chord(Chord(['fs', 'g', 'b'], (1, 4)))
+      GDominantSeventhInSecondInversion
+   '''
+
+   pitches = pitchtools.get_pitches(expr)
+   npcset = pitchtools.NamedPitchClassSet(pitches)
+   dicv = npcset.diatonic_interval_class_vector
+
+   if dicv == _make_dicv('c', 'e'):
+      model_npcs = ['c', 'e']
+      quality, extent = 'major', 'triad'
+   elif dicv == _make_dicv('c', 'e', 'b'):
+      model_npcs = ['c', 'e', 'b']
+      quality, extent = 'dominant', 'seventh'
+   else:
+      raise TonalHarmonyError('can not identify incomplete tertian chord.')
+
+   bass = min(pitches).named_pitch_class
+   npcseg = npcset.order_by(pitchtools.NamedPitchClassSegment(model_npcs))
+   inversion = npcseg.index(bass)
+   root = npcseg[0]
+
+   return ChordClass(root, quality, extent, inversion)
+
+
+def _make_dicv(*named_pitch_classes):
+   npcset = pitchtools.NamedPitchClassSet(named_pitch_classes)
+   return npcset.diatonic_interval_class_vector

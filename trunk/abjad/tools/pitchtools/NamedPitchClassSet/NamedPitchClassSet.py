@@ -1,8 +1,13 @@
+from abjad.pitch import Pitch
 from abjad.tools import listtools
 #from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
 #from abjad.tools.pitchtools.IntervalClassVector import IntervalClassVector
+from abjad.tools.pitchtools.DiatonicIntervalClassVector import \
+   DiatonicIntervalClassVector
 from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
+from abjad.tools.pitchtools.get_harmonic_diatonic_intervals_in import \
+   get_harmonic_diatonic_intervals_in
 from abjad.tools.pitchtools.get_pitch_classes import get_pitch_classes
 
 
@@ -68,6 +73,11 @@ class NamedPitchClassSet(frozenset):
 
    ## PUBLIC ATTRIBUTES ##
 
+   @property
+   def diatonic_interval_class_vector(self):
+      pitches = [Pitch(x, 4) for x in self]
+      return DiatonicIntervalClassVector(pitches)
+
 #   @property
 #   def interval_class_set(self):
 #      interval_class_set = IntervalClassSet([ ])
@@ -98,6 +108,17 @@ class NamedPitchClassSet(frozenset):
 
    ## PUBLIC METHODS ##
    
+   def order_by(self, npc_seg):
+      from abjad.tools.pitchtools.NamedPitchClassSegment import \
+         NamedPitchClassSegment
+      if not len(self) == len(npc_seg):
+         raise ValueError('set and segment must be of equal length.')
+      for npcs in listtools.permutations(self.named_pitch_classes):
+         candidate_npc_seg = NamedPitchClassSegment(npcs)
+         if candidate_npc_seg.is_equivalent_under_transposition(npc_seg):
+            return candidate_npc_seg
+      raise ValueError('named pitch-class set can not order by %s.' % npc_seg)
+
    def transpose(self, melodic_diatonic_interval):
       '''Transpose all npcs in self by melodic diatonic interval.'''
       return NamedPitchClassSet([

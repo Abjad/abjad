@@ -23,6 +23,7 @@ Classes
    container/container
    tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
    tools/pitchtools/DiatonicIntervalClassSegment/DiatonicIntervalClassSegment
+   tools/pitchtools/DiatonicIntervalClassVector/DiatonicIntervalClassVector
    measure/dynamic/measure
    tuplet/fd/tuplet
    tuplet/fm/tuplet
@@ -37,6 +38,7 @@ Classes
    tools/pitchtools/HarmonicCounterpointIntervalClass/HarmonicCounterpointIntervalClass
    tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
    tools/pitchtools/HarmonicDiatonicIntervalClass/HarmonicDiatonicIntervalClass
+   tools/pitchtools/HarmonicDiatonicIntervalClassSet/HarmonicDiatonicIntervalClassSet
    tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
    tools/pitchtools/HarmonicDiatonicIntervalSet/HarmonicDiatonicIntervalSet
    harmonic/natural
@@ -869,6 +871,7 @@ pitchtools
    tools/pitchtools/leaf_iterables_to_pitch_array_populated
    tools/pitchtools/letter_to_diatonic_scale_degree
    tools/pitchtools/letter_to_pc
+   tools/pitchtools/list_all_diatonic_interval_classes
    tools/pitchtools/make_all_aggregate_subsets
    tools/pitchtools/make_flat
    tools/pitchtools/make_sharp
@@ -1020,6 +1023,7 @@ tonalharmony
    :maxdepth: 1
 
    tools/tonalharmony/analyze_chord
+   tools/tonalharmony/analyze_incomplete_chord
    tools/tonalharmony/are_scalar
    tools/tonalharmony/are_stepwise
    tools/tonalharmony/chord_class_cardinality_to_extent
