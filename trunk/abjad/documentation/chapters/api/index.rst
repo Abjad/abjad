@@ -495,6 +495,7 @@ iterate
    tools/iterate/get_nth_component
    tools/iterate/get_nth_leaf
    tools/iterate/get_nth_measure
+   tools/iterate/get_nth_namesake_from
    tools/iterate/get_vertical_moment_at_prolated_offset_in
    tools/iterate/get_vertical_moment_starting_with
    tools/iterate/grace
@@ -1023,6 +1024,7 @@ tonalharmony
    tools/tonalharmony/chord_class_extent_to_cardinality
    tools/tonalharmony/chord_class_extent_to_extent_name
    tools/tonalharmony/diatonic_interval_class_segment_to_chord_quality_string
+   tools/tonalharmony/is_passing_tone
    tools/tonalharmony/is_unlikely_melodic_diatonic_interval_in_chorale
    tools/tonalharmony/mark_unlikely_melodic_intervals_in_chorale
 
