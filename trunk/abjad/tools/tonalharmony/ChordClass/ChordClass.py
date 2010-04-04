@@ -161,6 +161,11 @@ class ChordClass(NamedPitchClassSet):
       return self._quality_indicator
 
    @property
+   def quality_pair(self):
+      quality_indicator = self.quality_indicator
+      return quality_indicator.quality_string, quality_indicator.extent_name
+
+   @property
    def root(self):
       return self._root
 

@@ -48,7 +48,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
    @property
    def _title_case_name(self):
       return '%s%sIn%s' % (self._quality_string.title( ), 
-         self._cardinality_string.title( ), self._chord_position_string)
+         self.extent_name.title( ), self._chord_position_string)
 
    ## PRIVATE METHODS ##
 
@@ -64,7 +64,6 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
       self.extend(intervals)
       self._quality_string = quality_string
-      self._cardinality_string = 'ninth'
 
    def _init_seventh(self, quality_string):
       if quality_string == 'dominant':
@@ -93,7 +92,6 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
       self.extend(intervals)
       self._quality_string = quality_string
-      self._cardinality_string = 'seventh'
 
    def _init_triad(self, quality_string):
       if quality_string == 'major':
@@ -114,7 +112,6 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
       intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
       self.extend(intervals)
       self._quality_string = quality_string
-      self._cardinality_string = 'triad'
 
    def _invert_quality_indicator(self, inversion):
       if isinstance(inversion, int):
@@ -139,6 +136,22 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 
    ## PUBLIC ATTRIBUTES ##
 
+   @property
+   def cardinality(self):
+      return len(self)
+
+   @property
+   def extent(self):
+      from abjad.tools.tonalharmony.chord_class_cardinality_to_extent import \
+         chord_class_cardinality_to_extent
+      return chord_class_cardinality_to_extent(self.cardinality)
+
+   @property
+   def extent_name(self):
+      from abjad.tools.tonalharmony.chord_class_extent_to_extent_name import \
+         chord_class_extent_to_extent_name
+      return chord_class_extent_to_extent_name(self.extent)
+      
    @property
    def inversion(self):
       return abs(self.rotation)
