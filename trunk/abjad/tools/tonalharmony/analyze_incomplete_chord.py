@@ -25,12 +25,32 @@ def analyze_incomplete_chord(expr):
    npcset = pitchtools.NamedPitchClassSet(pitches)
    dicv = npcset.diatonic_interval_class_vector
 
-   if dicv == _make_dicv('c', 'e'):
+   ## TODO: eliminate code duplication ##
+
+   if dicv == _make_dicv('c', 'ef'):
+      model_npcs = ['c', 'ef']
+      quality, extent = 'minor', 'triad'
+
+   elif dicv == _make_dicv('c', 'e'):
       model_npcs = ['c', 'e']
       quality, extent = 'major', 'triad'
+
+   elif dicv == _make_dicv('c', 'ef', 'bff'):
+      model_npcs = ['c', 'ef', 'bff']
+      quality, extent = 'diminished', 'seventh'
+
+   elif dicv == _make_dicv('c', 'ef', 'bf'):
+      model_npcs = ['c', 'ef', 'bf']
+      quality, extent = 'minor', 'seventh'
+
+   elif dicv == _make_dicv('c', 'e', 'bf'):
+      model_npcs = ['c', 'e', 'bf']
+      quality, extent = 'dominant', 'seventh'
+
    elif dicv == _make_dicv('c', 'e', 'b'):
       model_npcs = ['c', 'e', 'b']
-      quality, extent = 'dominant', 'seventh'
+      quality, extent = 'major', 'seventh'
+
    else:
       raise TonalHarmonyError('can not identify incomplete tertian chord.')
 
