@@ -1021,10 +1021,12 @@ tonalharmony
 
    tools/tonalharmony/analyze_chord
    tools/tonalharmony/are_scalar
+   tools/tonalharmony/are_stepwise
    tools/tonalharmony/chord_class_cardinality_to_extent
    tools/tonalharmony/chord_class_extent_to_cardinality
    tools/tonalharmony/chord_class_extent_to_extent_name
    tools/tonalharmony/diatonic_interval_class_segment_to_chord_quality_string
+   tools/tonalharmony/is_neighbor_note
    tools/tonalharmony/is_passing_tone
    tools/tonalharmony/is_unlikely_melodic_diatonic_interval_in_chorale
    tools/tonalharmony/mark_unlikely_melodic_intervals_in_chorale
