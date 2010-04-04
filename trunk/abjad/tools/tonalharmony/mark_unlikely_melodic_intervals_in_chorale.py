@@ -10,7 +10,7 @@ from abjad.tools.tonalharmony.is_unlikely_melodic_diatonic_interval_in_chorale \
 
 
 def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below',
-   markup = True, glissando = True):
+   markup = True, glissando = True, color = 'red'):
    '''.. versionadded:: 1.1.2
 
    Mark unlikely melodic intervals in chorale. ::
@@ -31,7 +31,6 @@ def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below',
       }
    '''
 
-   color = 'red'
    result = True
    for note in iterate.naive_forward_in(expr, Note):
       is_cadence = getattr(note.history, 'cadence', None)
