@@ -1020,6 +1020,7 @@ tonalharmony
    :maxdepth: 1
 
    tools/tonalharmony/analyze_chord
+   tools/tonalharmony/are_scalar
    tools/tonalharmony/chord_class_cardinality_to_extent
    tools/tonalharmony/chord_class_extent_to_cardinality
    tools/tonalharmony/chord_class_extent_to_extent_name
