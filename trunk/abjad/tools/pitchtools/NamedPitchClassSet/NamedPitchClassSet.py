@@ -117,7 +117,9 @@ class NamedPitchClassSet(frozenset):
          candidate_npc_seg = NamedPitchClassSegment(npcs)
          if candidate_npc_seg.is_equivalent_under_transposition(npc_seg):
             return candidate_npc_seg
-      raise ValueError('named pitch-class set can not order by %s.' % npc_seg)
+      message = 'named pitch-class set %s can not order by '
+      message += 'named pitch-class segment %s.'
+      raise ValueError(message % (self, npc_seg))
 
    def transpose(self, melodic_diatonic_interval):
       '''Transpose all npcs in self by melodic diatonic interval.'''

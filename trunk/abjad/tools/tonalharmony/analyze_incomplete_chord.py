@@ -21,6 +21,8 @@ def analyze_incomplete_chord(expr):
       GDominantSeventhInSecondInversion
    '''
 
+   #print 'expr is %s ...' % str(expr)
+
    pitches = pitchtools.get_pitches(expr)
    npcset = pitchtools.NamedPitchClassSet(pitches)
    dicv = npcset.diatonic_interval_class_vector
@@ -54,8 +56,15 @@ def analyze_incomplete_chord(expr):
    else:
       raise TonalHarmonyError('can not identify incomplete tertian chord.')
 
+   #print 'model npcs are %s ...' % model_npcs
+
    bass = min(pitches).named_pitch_class
-   npcseg = npcset.order_by(pitchtools.NamedPitchClassSegment(model_npcs))
+
+   try: 
+      npcseg = npcset.order_by(pitchtools.NamedPitchClassSegment(model_npcs))
+   except ValueError:
+      raise TonalHarmonyError('can not identify incomplete tertian chord.')
+
    inversion = npcseg.index(bass)
    root = npcseg[0]
 
