@@ -34,7 +34,7 @@ def _parse_note_entry_token(note_entry_token):
       #if note_entry_token.startswith('<'):
       #   chord = _parse_chord_entry_token(note_entry_token)
       #   return chord
-      message = 'incorrect note entry token %s.' % note_entry_token
+      message = 'incorrect note entry token:\n%s.' % note_entry_token
       raise InputSpecificationError(message)
 
    name, ticks, duration_body, dots = match.groups( )
