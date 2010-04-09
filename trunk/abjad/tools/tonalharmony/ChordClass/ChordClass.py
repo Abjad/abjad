@@ -65,7 +65,7 @@ class ChordClass(NamedPitchClassSet):
          elif root[-1] == 'f':
             root = root[0] + r'%s \flat' % adjustment
          else:
-            raise ValueError('unknown note name.')
+            raise ValueError('unknown note name: %s' % root)
       return root
 
    @property
