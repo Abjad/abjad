@@ -9,7 +9,8 @@ def test_chord_numbers_01( ):
    assert isinstance(numbers, tuple)
    assert len(numbers) == 3
    assert raises(AttributeError, 'numbers.pop( )')
-   assert raises(AttributeError, 'numbers.index(numbers[0])')
+   ## Python 2.6 implements tuple.index( )
+   #assert raises(AttributeError, 'numbers.index(numbers[0])')
    assert raises(AttributeError, 'numbers.remove(numbers[0])')
 
 

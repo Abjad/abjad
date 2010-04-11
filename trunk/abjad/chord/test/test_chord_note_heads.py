@@ -11,7 +11,8 @@ def test_chord_note_heads_01( ):
    assert isinstance(note_heads, tuple)
    assert len(note_heads) == 3
    assert py.test.raises(AttributeError, 'note_heads.pop( )')
-   assert py.test.raises(AttributeError, 'note_heads.index(note_heads[0])')
+   ## Python 2.6 implements tuple.index( )
+   #assert py.test.raises(AttributeError, 'note_heads.index(note_heads[0])')
    assert py.test.raises(AttributeError, 'note_heads.remove(note_heads[0])')
 
 

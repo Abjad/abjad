@@ -9,7 +9,8 @@ def test_chord_pitches_01( ):
    assert isinstance(pitches, tuple)
    assert len(pitches) == 3
    assert py.test.raises(AttributeError, 'pitches.pop( )')
-   assert py.test.raises(AttributeError, 'pitches.index(pitches[0])')
+   ## Python 2.6 implements tuple.index( )
+   #assert py.test.raises(AttributeError, 'pitches.index(pitches[0])')
    assert py.test.raises(AttributeError, 'pitches.remove(pitches[0])')
 
 

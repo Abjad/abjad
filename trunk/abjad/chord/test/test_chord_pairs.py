@@ -8,7 +8,8 @@ def test_chord_pairs_01( ):
    pairs = t.pairs
    assert pairs == (('d', 4), ('e', 4), ('f', 4))
    assert raises(AttributeError, 'pairs.pop( )')
-   assert raises(AttributeError, 'pairs.index(pairs[0])')
+   ## Python 2.6 implements tuple.index( )
+   #assert raises(AttributeError, 'pairs.index(pairs[0])')
    assert raises(AttributeError, 'pairs.remove(pairs[0])')
 
 
