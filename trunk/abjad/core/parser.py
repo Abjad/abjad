@@ -43,6 +43,8 @@ class _Parser(_Abjad):
          return '#%s' % value
       elif isinstance(value, tuple):
          return "#'(%s . %s)" % value
+      elif isinstance(value, str):
+         return "#'%s" % value
       elif hasattr(value, 'format'):
          return value.format
       else:
