@@ -11,6 +11,10 @@ import operator
 
 class _Leaf(_Component):
 
+## TODO?: could __slots__ improve Abjad's performance?
+#   __slots__ = ('_duration', '_formatter', '_grace', '_harmonic', '_markup',
+#      '_spanners')
+
    def __init__(self, duration):
       _Component.__init__(self)
       self._duration = _LeafDurationInterface(self, duration)
