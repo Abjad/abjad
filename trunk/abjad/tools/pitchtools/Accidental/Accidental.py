@@ -29,6 +29,12 @@ class Accidental(_Abjad):
 
    ## OVERLOADS ##
 
+   def __add__(self, arg):
+      if not isinstance(arg, type(self)):
+         raise TypeError('can only add accidental to other accidental.')
+      semitones = self.semitones + arg.semitones
+      return Accidental(semitones)
+
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
          if self.alphabetic_string == arg.alphabetic_string:
@@ -50,6 +56,9 @@ class Accidental(_Abjad):
    def __ne__(self, arg):
       return not self == arg
 
+   def __neg__(self):
+      return Accidental(-self.semitones)
+
    def __nonzero__(self):
       return True
 
@@ -58,6 +67,12 @@ class Accidental(_Abjad):
 
    def __str__(self):
       return self.alphabetic_string
+
+   def __sub__(self, arg):
+      if not isinstance(arg, type(self)):
+         raise TypeError('can only sub accidental from other accidental.')
+      semitones = self.semitones - arg.semitones
+      return Accidental(semitones)
 
    ## PRIVATE ATTRIBUTES ##
 

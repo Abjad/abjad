@@ -192,8 +192,8 @@ class Pitch(_Abjad):
    def _init_by_reference(self, pitch):
       from abjad.tools import pitchtools
       self.letter = pitch.letter
-      #self.accidental = pitchtools.Accidental(pitch.accidental._string)
-      self.accidental = pitchtools.Accidental(pitch.accidental.alphabetic_string)
+      self.accidental = pitchtools.Accidental(
+         pitch.accidental.alphabetic_string)
       self.octave = pitch.octave
 
    def _init_empty(self):
@@ -334,7 +334,11 @@ class Pitch(_Abjad):
          return pitchtools.PitchClass(number % 12)
       else:
          return None
-      
+
+   @property
+   def semitones(self):
+      '''Read-only number of semitones to which pitch is equal.'''
+      return self.number
 
    @property
    def ticks(self):
@@ -349,3 +353,10 @@ class Pitch(_Abjad):
             return "'" * (self.octave - 3)
       else:
          return None
+
+   ## PUBLIC METHODS ##
+
+   def apply_accidental(self, accidental = None):
+      from abjad.tools.pitchtools.Accidental import Accidental
+      accidental = Accidental(accidental)
+      raise Exception(NotImplemented)

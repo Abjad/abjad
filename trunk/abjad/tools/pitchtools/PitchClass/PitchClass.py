@@ -1,4 +1,5 @@
 from abjad.tools.pitchtools.get_pitch import get_pitch
+from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.IntervalClass import IntervalClass
 from abjad.tools.pitchtools.MelodicChromaticInterval import \
    MelodicChromaticInterval
@@ -7,7 +8,7 @@ from abjad.tools.pitchtools.MelodicChromaticInterval import \
 class PitchClass(object):
    '''.. versionadded:: 1.1.2
 
-   12-ET pitch-class ranging from [0, 12).
+   Numeric 12-ET pitch-class ranging from [0, 12).
 
    Initialization works with pitch numbers, pitch instances,
    other pitch class instances, notes, and one-note chords.
@@ -93,7 +94,18 @@ class PitchClass(object):
       '''Read-only numeric value of pitch-class.'''
       return self._number
 
+   @property
+   def semitones(self):
+      '''Read-only number of semitones.'''
+      return self.number
+
    ## PUBLIC METHODS ##
+
+   def apply_accidental(self, accidental = None):
+      '''Emit new numeric pitch class as sum of self and accidental.'''
+      accidental = Accidental(accidental)
+      semitones = self.semitones + accidental.semitones
+      return PitchClass(semitones)
 
    def invert(self):
       '''Invert pitch class.'''
