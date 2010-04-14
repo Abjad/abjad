@@ -147,7 +147,7 @@ class NamedPitchClass(object):
       accidental_to_symbol = {
          '': '', 's': '#', 'f': 'b', 'ss': '##', 'ff': 'bb',
          'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}
-      symbol = accidental_to_symbol[self.accidental]
+      symbol = accidental_to_symbol[self.accidental.alphabetic_string]
       return self.letter + symbol
 
    ## PUBLIC METHODS ##
