@@ -73,6 +73,7 @@ Classes
    tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet
    note/note
    notehead/notehead
+   tools/pitchtools/NumericPitch/NumericPitch
    tools/lilytools/PaperBlock
    staffgroup/pianostaff
    pitch/pitch

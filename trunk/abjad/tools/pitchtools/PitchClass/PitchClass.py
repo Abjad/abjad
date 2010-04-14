@@ -19,7 +19,7 @@ class PitchClass(object):
       from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
       if isinstance(arg, (int, long, float)):
          self._number = arg % 12
-      elif isinstance(arg, PitchClass):
+      elif isinstance(arg, type(self)):
          self._number = arg.number
       elif isinstance(arg, Pitch):
          self._number = arg.number % 12
@@ -31,6 +31,9 @@ class PitchClass(object):
 
    ## OVERLOADS ##
 
+   def __abs__(self):
+      return PitchClass(abs(self.semitones))
+
    def __add__(self, arg):
       '''Addition defined against melodic chromatic intervals only.'''
       if not isinstance(arg, MelodicChromaticInterval):
@@ -38,17 +41,17 @@ class PitchClass(object):
       return PitchClass(self.number + arg.number % 12)
       
    def __eq__(self, arg):
-      if isinstance(arg, PitchClass):
+      if isinstance(arg, type(self)):
          return self.number == arg.number
       return False
 
    def __ge__(self, arg):
-      if not isinstance(arg, PitchClass):
+      if not isinstance(arg, type(self)):
          raise TypeError
       return self.number >= arg.number
 
    def __gt__(self, arg):
-      if not isinstance(arg, PitchClass):
+      if not isinstance(arg, type(self)):
          raise TypeError
       return self.number > arg.number
 
@@ -56,17 +59,20 @@ class PitchClass(object):
       return hash(repr(self))
 
    def __le__(self, arg):
-      if not isinstance(arg, PitchClass):
+      if not isinstance(arg, type(self)):
          raise TypeError
       return self.number <= arg.number
 
    def __lt__(self, arg):
-      if not isinstance(arg, PitchClass):
+      if not isinstance(arg, type(self)):
          raise TypeError
       return self.number < arg.number
 
    def __ne__(self, arg):
       return not self == arg
+
+   def __neg__(self):
+      return PitchClass(-self.semitones)
    
    def __repr__(self):
       return '%s(%s)' % (self.__class__.__name__, self.number)
@@ -77,7 +83,7 @@ class PitchClass(object):
    def __sub__(self, arg):
       '''Subtraction defined against both melodic chromatic intervals
       and against other pitch classes.'''
-      if isinstance(arg, PitchClass):
+      if isinstance(arg, type(self)):
          interval_class_number = abs(self.number - arg.number)
          if 6 < interval_class_number:
             interval_class_number = 12 - interval_class_number
