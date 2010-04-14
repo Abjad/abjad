@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterate_VerticalMoment___eq___01( ):
+def test_VerticalMoment___eq___01( ):
 
    score = Score([ ])
    score.append(Staff([FixedDurationTuplet((4, 8), construct.run(3))]))
@@ -51,7 +51,7 @@ def test_iterate_VerticalMoment___eq___01( ):
    assert not vertical_moment_1 != vertical_moment_2
 
 
-def test_iterate_VerticalMoment___eq___02( ):
+def test_VerticalMoment___eq___02( ):
 
    score = Score([ ])
    score.append(Staff([FixedDurationTuplet((4, 8), construct.run(3))]))

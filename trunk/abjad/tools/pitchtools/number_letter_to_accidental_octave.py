@@ -42,12 +42,12 @@ def number_letter_to_accidental_octave(number, letter):
    nearest_neighbor = pitchtools_nearest_neighbor(number, pc)
    semitones = number - nearest_neighbor
    
-   ## find accidental string
-   accidental_string = Accidental.semitones_to_accidental_string[semitones]
+   ## find accidental alphabetic string
+   alphabetic_string = Accidental._semitones_to_alphabetic_string[semitones]
    
    ## find octave
    octave = pitch_number_and_accidental_semitones_to_octave(
       number, semitones)
 
    ## return unique pair of accidental string and octave
-   return accidental_string, octave
+   return alphabetic_string, octave

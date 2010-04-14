@@ -12,15 +12,28 @@ class Accidental(_Abjad):
    '''
 
    def __init__(self, arg = ''):
-      if isinstance(arg, str):
-         self.string = arg
+      if arg in self._alphabetic_strings:
+         self._string = arg
+      elif arg in self._names:
+         alphabetic_string = self._name_to_alphabetic_string[arg]
+         self._string = alphabetic_string
+      elif arg in self._semitones:
+         alphabetic_string = self._semitones_to_alphabetic_string[arg]
+         self._string = alphabetic_string
       elif isinstance(arg, Accidental):
-         self.string = arg.string 
+         self._string = arg.string 
+      elif isinstance(arg, type(None)):
+         self._string = ''
+      else:
+         raise ValueError('can not initialize accidental from value: %s' % arg)
 
    ## OVERLOADS ##
 
    def __eq__(self, arg):
-      return self.string == Accidental(arg).string
+      if isinstance(arg, type(self)):
+         if self.string == arg.string:
+            return True
+      return False
 
    def __ge__(self, arg):
       return self.semitones >= arg.semitones
@@ -41,10 +54,24 @@ class Accidental(_Abjad):
       return True
 
    def __repr__(self):
-      return 'Accidental(%s)' % self
+      return '%s(%s)' % (self.__class__.__name__, self.name)
 
    def __str__(self):
       return self.string
+
+   ## PRIVATE ATTRIBUTES ##
+
+   @property
+   def _alphabetic_strings(self):
+      return self._alphabetic_string_to_symbolic_string.keys( )
+
+   @property
+   def _names(self):
+      return self._name_to_alphabetic_string.keys( )
+
+   @property
+   def _semitones(self):
+      return self._semitones_to_alphabetic_string.keys( )
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -74,6 +101,14 @@ class Accidental(_Abjad):
       return self.string
 
    @property
+   def is_adjusted(self):
+      return not self.semitones == 0
+
+   @property
+   def name(self):
+      return self._alphabetic_string_to_name[self.string]
+
+   @property
    def semitones(self):
       '''Read-only number of semitones to which this accidental is equal.
 
@@ -87,7 +122,7 @@ class Accidental(_Abjad):
          abjad> pitchtools.Accidental('f').semitones
          -1
       '''
-      return self.accidental_string_to_semitones[self.string]
+      return self._alphabetic_string_to_semitones[self.string]
 
    @apply
    def string( ):
@@ -107,25 +142,62 @@ class Accidental(_Abjad):
             'f' 
          '''
          return self._string
-      def fset(self, arg):
-         assert isinstance(arg, str)
-         self._string = arg
       return property(**locals( ))
+
+   @property
+   def symbolic_string(self):
+      symbolic_string = self._alphabetic_string_to_symbolic_string[self.string]
+      return symbolic_string
 
    ## DICTIONARIES ##
 
-   accidental_string_to_semitones = {
+   _alphabetic_string_to_name = {
+      'ss'  : 'double sharp',
+      'tqs' : 'three-quarters sharp',
+      's'   : 'sharp',
+      'qs'  : 'quarter-sharp',
+      ''    : 'natural',
+      '!'   : 'forced natural',
+      'qf'  : 'quarter-flat',
+      'f'   : 'flat',
+      'tqf' : 'three-quarters flat',
+      'ff'  : 'double flat',
+   }
+
+   _alphabetic_string_to_semitones = {
         '': 0,      '!': 0,
       'ff': -2,   'tqf': -1.5, 
        'f': -1,    'qf': -0.5,
       'ss': 2,    'tqs': 1.5,
-       's': 1,     'qs': 0.5  }
+       's': 1,     'qs': 0.5,
+   }
 
-   semitones_to_accidental_string = {
+   _alphabetic_string_to_symbolic_string = {
+        '': '',       '!': '!',
+      'ff': 'bb',   'tqf': 'b+', 
+       'f': 'b',     'qf': 'b-',
+      'ss': '##',   'tqs': '#+',
+       's': '#',     'qs': '#-',
+   }
+
+   _name_to_alphabetic_string = {
+      'double sharp'          : 'ss',
+      'three-quarters sharp'  : 'tqs',
+      'sharp'                 : 's',
+      'quarter sharp'         : 'qs',
+      'natural'               : '',
+      'forced natural'        : '!',
+      'quarter flat'          : 'qf',
+      'flat'                  : 'f',
+      'three-quarters flat'   : 'tqf',
+      'double flat'           :  'ff',
+   }
+
+   _semitones_to_alphabetic_string = {
        0: '',
       -2: 'ff',   -1.5: 'tqf',   
       -1: 'f',    -0.5: 'qf',
        2: 'ss',    1.5: 'tqs',    
        1: 's',     0.5: 'qs',
-    -2.5: 'ff'
-       }
+    -2.5: 'ff',
+   }

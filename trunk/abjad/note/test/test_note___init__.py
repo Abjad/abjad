@@ -8,18 +8,18 @@ def test_note___init___01( ):
    assert t.format == 'b,,,4'
 
 
-def test_note___init__02( ):
+def test_note___init___02( ):
    '''Init note with non-assignable duration.'''
    raises(AssignabilityError, 'Note(0, (5, 8))')
 
 
-def test_note___init__03( ):
+def test_note___init___03( ):
    '''Init note with LilyPond-style pitch string.'''
    t = Note('c,,', (1, 4))
    assert t.format == 'c,,4'
 
 
-def test_note___init__04( ):
+def test_note___init___04( ):
    '''Init note with complete LilyPond-style note string.'''
    t = Note('cs8.')
    assert t.format == 'cs8.'

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterate_VerticalMoment_notes_01( ):
+def test_VerticalMoment_leaves_01( ):
 
    score = Score([ ])
    score.append(Staff([FixedDurationTuplet((4, 8), construct.run(3))]))
@@ -40,5 +40,5 @@ def test_iterate_VerticalMoment_notes_01( ):
    vertical_moment = iterate.get_vertical_moment_at_prolated_offset_in(
       score, Rational(1, 8))
    "(Note(d'', 8), Note(a', 4), Note(e', 8))"
-   assert vertical_moment.notes == (
+   assert vertical_moment.leaves == (
       score[0][0][0], piano_staff[0][0], piano_staff[1][1])

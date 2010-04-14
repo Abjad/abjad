@@ -6,3 +6,4 @@ from ChordClass import ChordClass
 from ChordQualityIndicator import ChordQualityIndicator
 from Mode import Mode
 from Scale import Scale
+from ScaleDegree import ScaleDegree
