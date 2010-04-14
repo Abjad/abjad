@@ -357,6 +357,9 @@ class Pitch(_Abjad):
    ## PUBLIC METHODS ##
 
    def apply_accidental(self, accidental = None):
+      '''Apply accidental and emit new pitch instance.'''
       from abjad.tools.pitchtools.Accidental import Accidental
       accidental = Accidental(accidental)
-      raise Exception(NotImplemented)
+      new_accidental = self.accidental + accidental
+      new_name = self.letter + new_accidental.alphabetic_string
+      return type(self)(new_name, self.octave)
