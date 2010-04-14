@@ -1,5 +1,6 @@
 from abjad.pitch import Pitch
 from abjad.tools.pitchtools.get_pitch import get_pitch
+from abjad.tools.pitchtools.Accidental import Accidental
 
 
 class NamedPitchClass(object):
@@ -122,7 +123,7 @@ class NamedPitchClass(object):
    @property
    def accidental(self):
       '''Read-only accidental string of pitch-class name.'''
-      return self.name[1:]
+      return Accidental(self.name[1:])
 
    @property
    def letter(self):
@@ -150,6 +151,13 @@ class NamedPitchClass(object):
       return self.letter + symbol
 
    ## PUBLIC METHODS ##
+
+   def apply_accidental(self, accidental):
+      '''Apply accidental and emit new named pitch class instance.'''
+      accidental = Accidental(accidental)
+      new_accidental = self.accidental + accidental
+      new_name = self.letter + new_accidental.alphabetic_string
+      return type(self)(new_name)
 
    def transpose(self, mdi):
       '''Transpose pitch class by melodic diatonic interval.'''
