@@ -97,6 +97,7 @@ Classes
    staff/rhythmicstaff
    measure/rigid/measure
    tools/tonalharmony/Scale/Scale
+   tools/tonalharmony/ScaleDegree/ScaleDegree
    tools/schemetools/SchemeColor/SchemeColor
    tools/schemetools/SchemeFunction/SchemeFunction
    tools/schemetools/SchemeMoment/SchemeMoment

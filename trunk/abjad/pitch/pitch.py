@@ -192,7 +192,8 @@ class Pitch(_Abjad):
    def _init_by_reference(self, pitch):
       from abjad.tools import pitchtools
       self.letter = pitch.letter
-      self.accidental = pitchtools.Accidental(pitch.accidental._string)
+      #self.accidental = pitchtools.Accidental(pitch.accidental._string)
+      self.accidental = pitchtools.Accidental(pitch.accidental.alphabetic_string)
       self.octave = pitch.octave
 
    def _init_empty(self):

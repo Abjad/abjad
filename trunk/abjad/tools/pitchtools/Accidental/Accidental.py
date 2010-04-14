@@ -6,24 +6,24 @@ class Accidental(_Abjad):
 
    ::
 
-      abjad> t = pitchtools.Accidental('s')
+      abjad> t = pitchtools.Accidental('sharp')
       abjad> t
-      Accidental(s)
+      Accidental(sharp)
    '''
 
    def __init__(self, arg = ''):
       if arg in self._alphabetic_strings:
-         self._string = arg
+         self._alphabetic_string = arg
       elif arg in self._names:
          alphabetic_string = self._name_to_alphabetic_string[arg]
-         self._string = alphabetic_string
+         self._alphabetic_string = alphabetic_string
       elif arg in self._semitones:
          alphabetic_string = self._semitones_to_alphabetic_string[arg]
-         self._string = alphabetic_string
+         self._alphabetic_string = alphabetic_string
       elif isinstance(arg, Accidental):
-         self._string = arg.string 
+         self._alphabetic_string = arg.alphabetic_string 
       elif isinstance(arg, type(None)):
-         self._string = ''
+         self._alphabetic_string = ''
       else:
          raise ValueError('can not initialize accidental from value: %s' % arg)
 
@@ -31,7 +31,7 @@ class Accidental(_Abjad):
 
    def __eq__(self, arg):
       if isinstance(arg, type(self)):
-         if self.string == arg.string:
+         if self.alphabetic_string == arg.alphabetic_string:
             return True
       return False
 
@@ -57,99 +57,13 @@ class Accidental(_Abjad):
       return '%s(%s)' % (self.__class__.__name__, self.name)
 
    def __str__(self):
-      return self.string
+      return self.alphabetic_string
 
    ## PRIVATE ATTRIBUTES ##
 
    @property
    def _alphabetic_strings(self):
       return self._alphabetic_string_to_symbolic_string.keys( )
-
-   @property
-   def _names(self):
-      return self._name_to_alphabetic_string.keys( )
-
-   @property
-   def _semitones(self):
-      return self._semitones_to_alphabetic_string.keys( )
-
-   ## PUBLIC ATTRIBUTES ##
-
-   @property
-   def adjustment(self):
-      '''.. note::
-         deprecated. Use accidental `semitones` instead.
-      '''
-      return self.semitones
-
-   @property
-   def format(self):
-      '''Read-only LilyPond format of accidental.
-
-      ::
-   
-         abjad> t = pitchtools.Accidental('s')
-         abjad> t.format
-         's' 
-
-      ::
-
-         abjad> t = pitchtools.Accidental('f')
-         abjad> t.format
-         'f'
-      '''
-      return self.string
-
-   @property
-   def is_adjusted(self):
-      return not self.semitones == 0
-
-   @property
-   def name(self):
-      return self._alphabetic_string_to_name[self.string]
-
-   @property
-   def semitones(self):
-      '''Read-only number of semitones to which this accidental is equal.
-
-      ::
-
-         abjad> pitchtools.Accidental('s').semitones
-         1
-
-      ::
-
-         abjad> pitchtools.Accidental('f').semitones
-         -1
-      '''
-      return self._alphabetic_string_to_semitones[self.string]
-
-   @apply
-   def string( ):
-      def fget(self):
-         '''Read / write LilyPond accidental string.
-      
-         ::
-      
-            abjad> t = pitchtools.Accidental('s')
-            abjad> t.string
-            's'
-
-         ::
-
-            abjad> t = pitchtools.Accidental('f')
-            abjad> t.string
-            'f' 
-         '''
-         return self._string
-      return property(**locals( ))
-
-   @property
-   def symbolic_string(self):
-      symbolic_string = self._alphabetic_string_to_symbolic_string[self.string]
-      return symbolic_string
-
-   ## DICTIONARIES ##
 
    _alphabetic_string_to_name = {
       'ss'  : 'double sharp',
@@ -201,3 +115,81 @@ class Accidental(_Abjad):
        1: 's',     0.5: 'qs',
     -2.5: 'ff',
    }
+
+   @property
+   def _names(self):
+      return self._name_to_alphabetic_string.keys( )
+
+   @property
+   def _semitones(self):
+      return self._semitones_to_alphabetic_string.keys( )
+
+   ## PUBLIC ATTRIBUTES ##
+
+   @apply
+   def alphabetic_string( ):
+      def fget(self):
+         '''Read / write LilyPond accidental string.
+      
+         ::
+      
+            abjad> t = pitchtools.Accidental('s')
+            abjad> t.alphabetic_string
+            's'
+
+         ::
+
+            abjad> t = pitchtools.Accidental('f')
+            abjad> t.alphabetic_string
+            'f' 
+         '''
+         return self._alphabetic_string
+      return property(**locals( ))
+
+   @property
+   def format(self):
+      '''Read-only LilyPond format of accidental.
+
+      ::
+   
+         abjad> t = pitchtools.Accidental('s')
+         abjad> t.format
+         's' 
+
+      ::
+
+         abjad> t = pitchtools.Accidental('f')
+         abjad> t.format
+         'f'
+      '''
+      return self.alphabetic_string
+
+   @property
+   def is_adjusted(self):
+      return not self.semitones == 0
+
+   @property
+   def name(self):
+      return self._alphabetic_string_to_name[self.alphabetic_string]
+
+   @property
+   def semitones(self):
+      '''Read-only number of semitones to which this accidental is equal.
+
+      ::
+
+         abjad> pitchtools.Accidental('s').semitones
+         1
+
+      ::
+
+         abjad> pitchtools.Accidental('f').semitones
+         -1
+      '''
+      return self._alphabetic_string_to_semitones[self.alphabetic_string]
+
+   @property
+   def symbolic_string(self):
+      symbolic_string = self._alphabetic_string_to_symbolic_string[
+         self.alphabetic_string]
+      return symbolic_string
