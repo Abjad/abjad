@@ -1,9 +1,13 @@
 from abjad.key_signature import KeySignature
+from abjad.pitch import Pitch
 from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import \
    HarmonicDiatonicIntervalSegment
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import \
    MelodicDiatonicIntervalSegment
-from abjad.tools.pitchtools.NamedPitchClassSegment import NamedPitchClassSegment
+from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
+from abjad.tools.pitchtools.NamedPitchClassSegment import \
+   NamedPitchClassSegment
+from abjad.tools.tonalharmony.ScaleDegree import ScaleDegree
 import copy
 
 
@@ -91,3 +95,26 @@ class Scale(NamedPitchClassSegment):
    @property
    def tonic(self):
       return self[0]
+
+   ## PUBLIC METHODS ##
+
+   def named_pitch_class_to_scale_degree(self, *args):
+      foreign_pitch_class = NamedPitchClass(*args)
+      letter = foreign_pitch_class.letter
+      for i, pc in enumerate(self):
+         if pc.letter == letter:
+            native_pitch_class = pc
+            scale_degree_index = i
+            scale_degree_number = scale_degree_index + 1
+            break
+      native_pitch = Pitch(native_pitch_class, 4)
+      foreign_pitch = Pitch(foreign_pitch_class, 4)
+      accidental = foreign_pitch.accidental - native_pitch.accidental
+      return ScaleDegree(accidental, scale_degree_number)
+
+   def scale_degree_to_named_pitch_class(self, *args):
+      scale_degree = ScaleDegree(*args)
+      scale_index = scale_degree.number - 1
+      pitch_class = self[scale_index]
+      pitch_class = pitch_class.apply_accidental(scale_degree.accidental)
+      return pitch_class

@@ -9,10 +9,10 @@ class ScaleDegree(object):
    '''
 
    def __init__(self, *args):
-      if len(args) == 1 and args[0] in self._acceptable_numbers:
+      if len(args) == 1 and isinstance(args[0], type(self)):
+         self._init_by_scale_degree(*args)
+      elif len(args) == 1 and args[0] in self._acceptable_numbers:
          self._init_by_number(*args)
-      elif len(args) == 1 and isinstance(args[0], type(self)):
-         self._init_by_number(args[0].number)
       elif len(args) == 2 and args[1] in self._acceptable_numbers:
          self._init_by_accidental_and_number(*args)
       else:
@@ -55,6 +55,11 @@ class ScaleDegree(object):
       parts.append(str(self.number))
       return ', '.join(parts)
 
+   _scale_degree_number_to_scale_degree_name = {
+      1: 'tonic', 2: 'superdominant', 3: 'mediant',
+      4: 'subdominant', 5: 'dominant', 6: 'submediant', 7: 'leading tone',
+   }
+
    ## PRIVATE METHODS ##
 
    def _init_by_accidental_and_number(self, accidental, number):
@@ -66,12 +71,25 @@ class ScaleDegree(object):
       self._number = number
       self._accidental = Accidental(None)
 
+   def _init_by_scale_degree(self, scale_degree):
+      accidental = scale_degree.accidental
+      number = scale_degree.number
+      self._init_by_accidental_and_number(accidental, number)
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
    def accidental(self):
       '''Read-only accidental applied to scale degree.'''
       return self._accidental
+
+   @property
+   def name(self):
+      '''Read-only name of scale degree.'''
+      if not self.accidental.is_adjusted:
+         return self._scale_degree_number_to_scale_degree_name[self.number]
+      else:
+         raise NotImplementedError
 
    @property
    def number(self):
