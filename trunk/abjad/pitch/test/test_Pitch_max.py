@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitch_max_01( ):
+def test_Pitch_max_01( ):
    '''Built-in max( ) works when __gt__ is defined.'''
 
    t = Staff(construct.scale(4))

@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_pitch___deepcopy___01( ):
+def test_Pitch___deepcopy___01( ):
 
    pitch = Pitch(13)
    new = copy.deepcopy(pitch)

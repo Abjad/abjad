@@ -1,14 +1,14 @@
 from abjad import *
 
 
-def test_pitch_deviation_01( ):
+def test_Pitch_deviation_01( ):
    '''Deviation defaults to None.'''
 
    p = Pitch('bf', 4)
    assert p.deviation is None
 
 
-def test_pitch_deviation_02( ):
+def test_Pitch_deviation_02( ):
    '''Deviation can be int or float.'''
 
    p = Pitch('bf', 4)
