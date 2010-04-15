@@ -24,7 +24,9 @@ Classes
    tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
    tools/pitchtools/DiatonicIntervalClassSegment/DiatonicIntervalClassSegment
    tools/pitchtools/DiatonicIntervalClassVector/DiatonicIntervalClassVector
+   tools/tonalharmony/DoublingIndicator/DoublingIndicator
    measure/dynamic/measure
+   tools/tonalharmony/ExtentIndicator/ExtentIndicator
    tuplet/fd/tuplet
    tuplet/fm/tuplet
    tools/layout/FixedStaffPositioning/FixedStaffPositioning
@@ -47,6 +49,7 @@ Classes
    tools/pitchtools/IntervalClassSegment/IntervalClassSegment
    tools/pitchtools/IntervalClassSet/IntervalClassSet
    tools/pitchtools/IntervalClassVector/IntervalClassVector
+   tools/tonalharmony/InversionIndicator/InversionIndicator
    staff/invisiblestaff
    key_signature/key_signature
    tools/lilytools/LayoutBlock
@@ -74,6 +77,7 @@ Classes
    note/note
    notehead/notehead
    tools/pitchtools/NumericPitch/NumericPitch
+   tools/tonalharmony/OmissionIndicator/OmissionIndicator
    tools/lilytools/PaperBlock
    staffgroup/pianostaff
    pitch/pitch
@@ -90,6 +94,7 @@ Classes
    tools/pitchtools/PitchSegment/PitchSegment
    tools/pitchtools/PitchSet/PitchSet
    tools/pitchtools/PitchVector/PitchVector
+   tools/tonalharmony/QualityIndicator/QualityIndicator
    tools/sievetools/rc
    tools/sievetools/rcexpression
    rational/rational
@@ -112,8 +117,10 @@ Classes
    tools/layout/StaffAlignmentDistances/StaffAlignmentDistances
    tools/layout/StaffAlignmentOffsets/StaffAlignmentOffsets
    staffgroup/staffgroup
+   tools/tonalharmony/SuspensionIndicator/SuspensionIndicator
    tools/layout/SystemYOffsets/SystemYOffsets
    tools/tempotools/TempoIndication/TempoIndication
+   tools/tonalharmony/TonalFunction/TonalFunction
    tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/iterate/VerticalMoment/VerticalMoment
    voice/voice
