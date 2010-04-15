@@ -1033,6 +1033,7 @@ tonalharmony
 
    tools/tonalharmony/analyze_chord
    tools/tonalharmony/analyze_incomplete_chord
+   tools/tonalharmony/analyze_tonal_function
    tools/tonalharmony/are_scalar
    tools/tonalharmony/are_stepwise
    tools/tonalharmony/chord_class_cardinality_to_extent
