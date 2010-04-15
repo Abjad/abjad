@@ -1,7 +1,9 @@
+from abjad.markup import Markup
 from abjad.tools.tonalharmony.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalharmony.InversionIndicator import InversionIndicator
 from abjad.tools.tonalharmony.QualityIndicator import QualityIndicator
 from abjad.tools.tonalharmony.ScaleDegree import ScaleDegree
+import re
 
 
 class TonalFunction(object):
@@ -13,16 +15,15 @@ class TonalFunction(object):
    Value object that can not be cahnged after instantiation.
    '''
 
-   ## TODO: add _init_by_format_string later ##
-   def __init__(self, scale_degree, quality, extent, inversion):
-      scale_degree = ScaleDegree(scale_degree)
-      self._scale_degree = scale_degree
-      quality = QualityIndicator(quality)
-      self._quality = quality
-      extent = ExtentIndicator(extent)
-      self._extent = extent
-      inversion = InversionIndicator(inversion)
-      self._inversion = inversion
+   def __init__(self, *args):
+      if len(args) == 1 and isinstance(args[0], type(self)):
+         self._init_by_reference(args[0])
+      elif len(args) == 1 and isinstance(args[0], str):
+         self._init_by_symbolic_string(args[0])
+      elif len(args) == 4:
+         self._init_by_scale_degree_quality_extent_and_inversion(*args)
+      else:
+         raise ValueError('can not initialize tonal function.')
 
    ## OVERLOADS ##
 
@@ -51,6 +52,41 @@ class TonalFunction(object):
       return ''
 
    @property
+   def _figured_bass_string(self):
+      if self.extent == ExtentIndicator(5):
+         if self.inversion == InversionIndicator(0):
+            return ''
+         elif self.inversion == InversionIndicator(1):
+            return '63'
+         elif self.inversion == InversionIndicator(2):
+            return '64'
+         else:
+            raise ValueError
+      elif self.extent == ExtentIndicator(7):
+         if self.inversion == InversionIndicator(0):
+            return '7'
+         elif self.inversion == InversionIndicator(1):
+            return '65'
+         elif self.inversion == InversionIndicator(2):
+            return '43'
+         elif self.inversion == InversionIndicator(3):
+            return '42'
+         else:
+            raise ValueError
+      else:
+         raise NotImplementedError
+
+   _figured_bass_string_to_extent = {
+      '': 5, '63': 5, '64': 5,
+      '7': 7, '65': 7, '43': 7, '42': 7,
+   }
+         
+   _figured_bass_string_to_inversion = {
+      '': 0, '63': 1, '64': 2,
+      '7': 0, '65': 1, '43': 2, '42': 3,
+   }
+         
+   @property
    def _format_string(self):
       result = [ ]
       result.append(self._accidental_name_string)
@@ -62,12 +98,102 @@ class TonalFunction(object):
       return ''.join(result)
 
    @property
+   def _quality_symbolic_string(self):
+      if self.extent == ExtentIndicator(5):
+         if self.quality == QualityIndicator('diminished'):
+            return 'o'
+         elif self.quality == QualityIndicator('augmented'):
+            return '+'
+         else:
+            return ''
+      elif self.extent == ExtentIndicator(7):
+         if self.quality == QualityIndicator('dominant'):
+            return ''
+         elif self.quality == QualityIndicator('major'):
+            return 'M'
+         elif self.quality == QualityIndicator('minor'):
+            return 'm'
+         elif self.quality == QualityIndicator('diminished'):
+            return 'o'
+         elif self.quality == QualityIndicator('half diminished'):
+            return '@'
+         elif self.quality == QualityIndicator('augmented'):
+            return '+'
+         else:
+            return ''
+      else:
+         raise NotImplementedError
+         
+   @property
    def _roman_numeral_string(self):
       roman_numeral_string = self.scale_degree.roman_numeral_string
       if not self.quality.is_uppercase:
          roman_numeral_string = roman_numeral_string.lower( )
       return roman_numeral_string
 
+   _symbolic_string_regex = re.compile(
+      r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(\d*)')
+
+   ## PRIVATE METHODS ##
+
+   def _init_by_reference(self, tonal_function):
+      args = (tonal_function.scale_degree, tonal_function.quality,
+         tonal_function.extent, tonal_function.inversion)
+      self._init_by_scale_degree_quality_extent_and_inversion(self, *args)
+
+   def _init_by_scale_degree_quality_extent_and_inversion(self, *args):
+      scale_degree, quality, extent, inversion = args
+      scale_degree = ScaleDegree(scale_degree)
+      self._scale_degree = scale_degree
+      quality = QualityIndicator(quality)
+      self._quality = quality
+      extent = ExtentIndicator(extent)
+      self._extent = extent
+      inversion = InversionIndicator(inversion)
+      self._inversion = inversion
+
+   def _init_by_symbolic_string(self, symbolic_string):
+      groups = self._symbolic_string_regex.match(symbolic_string).groups( )
+      accidental, roman_numeral, quality, figured_bass = groups
+      scale_degree = ScaleDegree(accidental + roman_numeral)
+      self._scale_degree = scale_degree
+      extent = self._figured_bass_string_to_extent[figured_bass]
+      extent = ExtentIndicator(extent)
+      self._extent = extent
+      uppercase = roman_numeral == roman_numeral.upper( )
+      quality = self._get_quality_name(uppercase, quality, extent.number)
+      quality = QualityIndicator(quality)
+      self._quality = quality
+      inversion = self._figured_bass_string_to_inversion[figured_bass]
+      inversion = InversionIndicator(inversion)
+      self._inversion = inversion
+
+   def _get_quality_name(self, uppercase, quality_string, extent):
+      if quality_string == 'o':
+         return 'diminished'
+      elif quality_string == '@':
+         return 'half diminished'
+      elif quality_string == '+':
+         return 'augmented'
+      elif quality_string == 'M':
+         return 'major'
+      elif quality_string == 'm':
+         return 'minor'
+      elif extent == 5:
+         if quality_string == '' and uppercase:
+            return 'major'
+         elif quality_string == '' and not uppercase:
+            return 'minor'
+         else:
+            raise ValueError
+      elif extent == 7:
+         if quality_string == '':
+            return 'dominant'
+         else:
+            raise ValueError
+      else:
+         raise ValueError
+      
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -79,9 +205,22 @@ class TonalFunction(object):
       return self._inversion
 
    @property
+   def markup(self):
+      return Markup(self.symbolic_string)
+
+   @property
    def quality(self):
       return self._quality
 
    @property
    def scale_degree(self):
       return self._scale_degree
+
+   @property
+   def symbolic_string(self):
+      result = ''
+      result += self.scale_degree.accidental.symbolic_string
+      result += self._roman_numeral_string
+      result += self._quality_symbolic_string
+      result += self._figured_bass_string
+      return result

@@ -1,4 +1,5 @@
 from abjad.tools.pitchtools import Accidental
+import re
 
 
 class ScaleDegree(object):
@@ -15,6 +16,8 @@ class ScaleDegree(object):
          self._init_by_number(*args)
       elif len(args) == 1 and isinstance(args[0], tuple):
          self._init_by_pair(*args)
+      elif len(args) == 1 and isinstance(args[0], str):
+         self._init_by_symbolic_string(*args)
       elif len(args) == 2 and args[1] in self._acceptable_numbers:
          self._init_by_accidental_and_number(*args)
       else:
@@ -57,15 +60,22 @@ class ScaleDegree(object):
       parts.append(str(self.number))
       return ', '.join(parts)
 
+   _roman_numeral_string_to_scale_degree_number = {
+      'I': 1,  'II': 2, 'III': 3,
+      'IV': 4, 'V': 5,  'VI': 6, 'VII': 7,
+   }
+
    _scale_degree_number_to_roman_numeral_string = {
-      1: 'I', 2: 'II', 3: 'III',
-      4: 'IV', 5: 'V', 6: 'VI', 7: 'VII',
+      1: 'I',  2: 'II', 3: 'III',
+      4: 'IV', 5: 'V',  6: 'VI', 7: 'VII',
    }
 
    _scale_degree_number_to_scale_degree_name = {
       1: 'tonic', 2: 'superdominant', 3: 'mediant',
       4: 'subdominant', 5: 'dominant', 6: 'submediant', 7: 'leading tone',
    }
+
+   _symbolic_string_regex = re.compile(r'([#|b]*)([i|I|v|V]+)')
 
    ## PRIVATE METHODS ##
 
@@ -86,6 +96,15 @@ class ScaleDegree(object):
       accidental = scale_degree.accidental
       number = scale_degree.number
       self._init_by_accidental_and_number(accidental, number)
+
+   def _init_by_symbolic_string(self, symbolic_string):
+      groups = self._symbolic_string_regex.match(symbolic_string).groups( )
+      accidental, roman_numeral = groups
+      accidental = Accidental(accidental)
+      self._accidental = accidental
+      roman_numeral = roman_numeral.upper( )
+      number = self._roman_numeral_string_to_scale_degree_number[roman_numeral]
+      self._number = number
 
    ## PUBLIC ATTRIBUTES ##
 
@@ -111,6 +130,11 @@ class ScaleDegree(object):
    def roman_numeral_string(self):
       string = self._scale_degree_number_to_roman_numeral_string[self.number]
       return string
+
+   @property
+   def symbolic_string(self):
+      return '%s%s' % (self.accidental.symbolic_string, 
+         self.roman_numeral_string)
 
    ## PUBLIC METHODS ##
 

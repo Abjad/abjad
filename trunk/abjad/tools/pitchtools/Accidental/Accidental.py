@@ -14,6 +14,9 @@ class Accidental(_Abjad):
    def __init__(self, arg = ''):
       if arg in self._alphabetic_strings:
          self._alphabetic_string = arg
+      elif arg in self._symbolic_strings:
+         alphabetic_string = self._symbolic_string_to_alphabetic_string[arg]
+         self._alphabetic_string = alphabetic_string
       elif arg in self._names:
          alphabetic_string = self._name_to_alphabetic_string[arg]
          self._alphabetic_string = alphabetic_string
@@ -131,6 +134,14 @@ class Accidental(_Abjad):
     -2.5: 'ff',
    }
 
+   _symbolic_string_to_alphabetic_string = {
+        '': '',       '!': '!',
+      'bb': 'ff',   'b+': 'tqf', 
+       'b': 'f',     'b-': 'qf',
+      '##': 'ss',   '#+': 'tqs',
+       '#': 's',     '#-': 'qs',
+   }
+
    @property
    def _names(self):
       return self._name_to_alphabetic_string.keys( )
@@ -138,6 +149,10 @@ class Accidental(_Abjad):
    @property
    def _semitones(self):
       return self._semitones_to_alphabetic_string.keys( )
+
+   @property
+   def _symbolic_strings(self):
+      return self._symbolic_string_to_alphabetic_string.keys( )
 
    ## PUBLIC ATTRIBUTES ##
 
