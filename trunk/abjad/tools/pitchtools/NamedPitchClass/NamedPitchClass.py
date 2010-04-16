@@ -40,7 +40,7 @@ class NamedPitchClass(object):
       if not isinstance(arg, NamedPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.pitch_class >= arg.pitch_class
+         return self.numeric_pitch_class >= arg.numeric_pitch_class
       else:
          return self._letter_string >= arg._letter_string
 
@@ -48,7 +48,7 @@ class NamedPitchClass(object):
       if not isinstance(arg, NamedPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.pitch_class > arg.pitch_class
+         return self.numeric_pitch_class > arg.numeric_pitch_class
       else:
          return self._letter_string > arg._letter_string
 
@@ -59,7 +59,7 @@ class NamedPitchClass(object):
       if not isinstance(arg, NamedPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.pitch_class <= arg.pitch_class
+         return self.numeric_pitch_class <= arg.numeric_pitch_class
       else:
          return self._letter_string <= arg._letter_string
 
@@ -67,7 +67,7 @@ class NamedPitchClass(object):
       if not isinstance(arg, NamedPitchClass):
          raise TypeError
       if self._letter_string == arg._letter_string:
-         return self.pitch_class < arg.pitch_class
+         return self.numeric_pitch_class < arg.numeric_pitch_class
       else:
          return self._letter_string < arg._letter_string
 
@@ -136,11 +136,10 @@ class NamedPitchClass(object):
       return self._name
 
    @property
-   def pitch_class(self):
+   def numeric_pitch_class(self):
       '''Read-only numeric pitch-class.'''
       pitch = Pitch(self.name, 4)
-      pitch_class = pitch.pitch_class
-      return pitch_class
+      return pitch.pitch_class
 
    @property
    def symbolic_name(self):

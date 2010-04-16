@@ -69,10 +69,9 @@ def test_PitchClass___init___06( ):
 
 
 def test_PitchClass___init___07( ):
-   '''PitchClass initialization raises TypeError on non-numbers, 
-   non-PitchClasss.'''
+   '''PitchClass initialization raises ValueError.'''
 
-   assert py.test.raises(TypeError, "pitchtools.PitchClass('foo')")
+   assert py.test.raises(ValueError, "pitchtools.PitchClass('foo')")
 
 
 def test_PitchClass___init___08( ):
@@ -87,3 +86,12 @@ def test_PitchClass___init___09( ):
 
    chord = Chord([ ], (1, 4))
    assert py.test.raises(MissingPitchError, 'pitchtools.PitchClass(chord)')
+
+
+def test_PitchClass___init___10( ):
+   '''Init from named pitch class string.'''
+
+   assert pitchtools.PitchClass('c').number == 0
+   assert pitchtools.PitchClass('cs').number == 1
+   assert pitchtools.PitchClass('cf').number == 11
+   assert pitchtools.PitchClass('css').number == 2

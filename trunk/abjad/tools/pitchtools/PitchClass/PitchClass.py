@@ -21,10 +21,13 @@ class PitchClass(object):
          self._number = arg % 12
       elif isinstance(arg, type(self)):
          self._number = arg.number
+      elif isinstance(arg, str):
+         named_pitch_class = NamedPitchClass(arg)
+         self._number = named_pitch_class.numeric_pitch_class.number
       elif isinstance(arg, Pitch):
          self._number = arg.number % 12
       elif isinstance(arg, NamedPitchClass):
-         self._number = arg.pitch_class.number
+         self._number = arg.numeric_pitch_class.number
       else:
          pitch = get_pitch(arg)
          self._number = pitch.number % 12

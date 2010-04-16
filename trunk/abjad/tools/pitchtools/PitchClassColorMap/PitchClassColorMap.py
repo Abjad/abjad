@@ -66,5 +66,5 @@ class PitchClassColorMap(object):
    def get(self, key, alternative = None):
       try:
          return self[key]
-      except (KeyError, TypeError):
+      except (KeyError, TypeError, ValueError):
          return alternative
