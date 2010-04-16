@@ -42,7 +42,7 @@ class PitchSet(set):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+      return '%s(%s)' % (self.__class__.__name__, self.format_string)
 
    def __str__(self):
       return '{%s}' % self._str_format_string
@@ -50,12 +50,14 @@ class PitchSet(set):
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _format_string(self):
+   def format_string(self):
       return ', '.join([str(pitch) for pitch in self.pitches])
 
    @property
    def _str_format_string(self):
-      return ', '.join([str(pitch.number) for pitch in self.pitches])
+      ## TODO: implement NumericPitchSet ##
+      #return ', '.join([str(pitch.number) for pitch in self.pitches])
+      return ', '.join([str(pitch) for pitch in self.pitches])
 
    ## PUBLIC ATTRIBUTES ##
 

@@ -60,15 +60,15 @@ class NamedPitchClassSet(frozenset):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s)' % (self.__class__.__name__, self._format_string)
+      return '%s(%s)' % (self.__class__.__name__, self.format_string)
    
    def __str__(self):
-      return '{%s}' % self._format_string
+      return '{%s}' % self.format_string
 
    ## PRIVATE ATTRIBUTES ##
 
    @property
-   def _format_string(self):
+   def format_string(self):
       return ', '.join([str(x) for x in sorted(self)])
 
    ## PUBLIC ATTRIBUTES ##
