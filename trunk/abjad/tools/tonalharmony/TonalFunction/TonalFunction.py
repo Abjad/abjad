@@ -206,7 +206,9 @@ class TonalFunction(object):
 
    @property
    def markup(self):
-      return Markup(self.symbolic_string)
+      symbolic_string = self.symbolic_string
+      symbolic_string = symbolic_string.replace('#', r'\sharp ')
+      return Markup(symbolic_string)
 
    @property
    def quality(self):
