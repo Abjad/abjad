@@ -7,10 +7,13 @@ class ExtentIndicator(object):
    Value object that can not be changed after instantiation.
    '''
 
-   def __init__(self, number):
-      if number not in self._acceptable_number:
-         raise ValueError('can not initialize extent indicator: %s' % number)
-      self._number = number
+   def __init__(self, arg):
+      if isinstance(arg, (int, long)):
+         if arg not in self._acceptable_number:
+            raise ValueError('can not initialize extent indicator: %s' % arg)
+         self._number = arg
+      elif isinstance(arg, type(self)):
+         self._number = arg.number
 
    ## OVERLOADS ##
 

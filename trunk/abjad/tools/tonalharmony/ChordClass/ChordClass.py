@@ -3,6 +3,7 @@ from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedPitchClass import NamedPitchClass
 from abjad.tools.pitchtools.NamedPitchClassSet import NamedPitchClassSet
+from abjad.tools.tonalharmony.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalharmony.ChordQualityIndicator import \
    ChordQualityIndicator
 
@@ -81,10 +82,10 @@ class ChordClass(NamedPitchClassSet):
          markup %= (circle, line)
          return markup
       elif self.quality_indicator._quality_string == 'major' and \
-         5 < self.extent:
+         5 < self.extent.number:
          return 'M'
       elif self.quality_indicator._quality_string == 'minor' and \
-         5 < self.extent:
+         5 < self.extent.number:
          return 'm'
       else:
          return ''
@@ -103,19 +104,20 @@ class ChordClass(NamedPitchClassSet):
    def extent(self):
       from abjad.tools.tonalharmony.chord_class_cardinality_to_extent import \
          chord_class_cardinality_to_extent
-      return chord_class_cardinality_to_extent(self.cardinality)
+      extent = chord_class_cardinality_to_extent(self.cardinality)
+      return ExtentIndicator(extent)
 
    @property
    def figured_bass(self):
       extent, inversion = self.extent, self.inversion
-      if extent == 5:
+      if extent.number == 5:
          if inversion == 0:
             return ''
          elif inversion == 1:
             return '6/3'
          elif inversion == 2:
             return '6/4'
-      elif extent == 7:
+      elif extent.number == 7:
          if inversion == 0:
             return '7'
          elif inversion == 1:
@@ -124,7 +126,7 @@ class ChordClass(NamedPitchClassSet):
             return '4/3'
          elif inversion == 3:
             return '4/2'
-      elif extent == 9:
+      elif extent.number == 9:
          if inversion == 0:
             return ''
          elif inversion == 1:
