@@ -43,3 +43,9 @@ def test_PitchSet___init___06( ):
    chord = Chord([ ], (1, 4))
    pitch_set = pitchtools.PitchSet(pitchtools.get_pitches(chord))
    assert len(pitch_set) == 0
+
+
+def test_PitchSet___init___07( ):
+   '''Works with chords.'''
+
+   assert len(pitchtools.PitchSet(Chord([12, 14, 18, 19], (1, 4)))) == 4
