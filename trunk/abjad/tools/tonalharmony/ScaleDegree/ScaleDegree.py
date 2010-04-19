@@ -83,7 +83,8 @@ class ScaleDegree(object):
       4: 'subdominant', 5: 'dominant', 6: 'submediant', 7: 'leading tone',
    }
 
-   _symbolic_string_regex = re.compile(r'([#|b]*)([i|I|v|V]+)')
+   _symbolic_string_regex = re.compile(r'([#|b]*)([i|I|v|V|\d]+)')
+
 
    ## PRIVATE METHODS ##
 
@@ -111,7 +112,11 @@ class ScaleDegree(object):
       accidental = Accidental(accidental)
       self._accidental = accidental
       roman_numeral = roman_numeral.upper( )
-      number = self._roman_numeral_string_to_scale_degree_number[roman_numeral]
+      try:
+         number = self._roman_numeral_string_to_scale_degree_number[
+            roman_numeral]
+      except KeyError:
+         number = int(roman_numeral)
       self._number = number
 
    ## PUBLIC ATTRIBUTES ##

@@ -36,7 +36,8 @@ class TonalFunction(object):
             if self.quality == arg.quality:
                if self.extent == arg.extent:
                   if self.inversion == arg.inversion:
-                     return True
+                     if self.suspension == arg.suspension:
+                        return True
       return False
 
    def __ne__(self, arg):
@@ -137,8 +138,11 @@ class TonalFunction(object):
          roman_numeral_string = roman_numeral_string.lower( )
       return roman_numeral_string
 
+   #_symbolic_string_regex = re.compile(
+   #   r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(\d*)')
+
    _symbolic_string_regex = re.compile(
-      r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(\d*)')
+      r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(\d*)(\s*)([#|b]?\d*-?[#|b]?\d*)')
 
    ## PRIVATE METHODS ##
 
@@ -161,7 +165,8 @@ class TonalFunction(object):
 
    def _init_by_symbolic_string(self, symbolic_string):
       groups = self._symbolic_string_regex.match(symbolic_string).groups( )
-      accidental, roman_numeral, quality, figured_bass = groups
+      print groups
+      accidental, roman_numeral, quality, figured_bass, ws, suspension = groups
       scale_degree = ScaleDegree(accidental + roman_numeral)
       self._scale_degree = scale_degree
       extent = self._figured_bass_string_to_extent[figured_bass]
@@ -174,6 +179,8 @@ class TonalFunction(object):
       inversion = self._figured_bass_string_to_inversion[figured_bass]
       inversion = InversionIndicator(inversion)
       self._inversion = inversion
+      suspension = SuspensionIndicator(suspension)
+      self._suspension = suspension
 
    def _init_with_suspension(self, *args):
       self._init_by_scale_degree_quality_extent_and_inversion(*args[:-1])

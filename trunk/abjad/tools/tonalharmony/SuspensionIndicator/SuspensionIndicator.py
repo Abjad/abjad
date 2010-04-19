@@ -1,4 +1,5 @@
 from abjad.tools.tonalharmony.ScaleDegree import ScaleDegree
+import re
 
 
 class SuspensionIndicator(object):
@@ -13,12 +14,14 @@ class SuspensionIndicator(object):
    def __init__(self, *args):
       if len(args) == 0:
          self._init_empty( )
-      #elif len(args) == 1 and args[0] is None:
-      #   self._init_empty( )
+      elif len(args) == 1 and args[0] in (None, ''):
+         self._init_empty( )
       elif len(args) == 1 and isinstance(args[0], type(self)):
          self._init_by_reference(*args)
+      elif len(args) == 1 and isinstance(args[0], str):
+         self._init_by_symbolic_string(*args)
       elif len(args) == 1 and isinstance(args[0], tuple):
-         self._init_by_pair(args[0])
+         self._init_by_pair(*args)
       elif len(args) == 2:
          self._init_by_start_and_stop(*args)
       else:
@@ -47,6 +50,10 @@ class SuspensionIndicator(object):
          return '%s-%s' % (self.start, self.stop)
       else:
          return ''
+
+   ## PRIVATE ATTRIBUTES ##
+
+   _symbolic_string_regex = re.compile(r'([#|b]?\d+)-([#|b]?\d+)')
    
    ## PRIVATE METHODS ##
 
@@ -62,6 +69,14 @@ class SuspensionIndicator(object):
       start = ScaleDegree(start)
       stop = ScaleDegree(stop)
       self._start = start
+      self._stop = stop
+
+   def _init_by_symbolic_string(self, symbolic_string):
+      groups = self._symbolic_string_regex.match(symbolic_string).groups( )
+      start, stop = groups
+      start = ScaleDegree(start)
+      self._start = start
+      stop = ScaleDegree(stop)
       self._stop = stop
 
    def _init_empty(self):
