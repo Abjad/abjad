@@ -11,10 +11,10 @@ class SuspensionIndicator(object):
    '''
 
    def __init__(self, *args):
-      if len(args) == 1 and args[0] is None:
-         #self._init_by_start_and_stop(None, None)
-         self._start = None
-         self._stop = None
+      if len(args) == 0:
+         self._init_empty( )
+      #elif len(args) == 1 and args[0] is None:
+      #   self._init_empty( )
       elif len(args) == 1 and isinstance(args[0], type(self)):
          self._init_by_reference(*args)
       elif len(args) == 2:
@@ -35,10 +35,16 @@ class SuspensionIndicator(object):
       return not self == arg
 
    def __repr__(self):
-      return '%s(%s, %s)' % (type(self).__name__, self.start, self.stop)
+      if self.start is not None and self.stop is not None:
+         return '%s(%s, %s)' % (type(self).__name__, self.start, self.stop)
+      else:
+         return '%s( )' % type(self).__name__
 
    def __str__(self):
-      return '%s-%s' % (self.start, self.stop)
+      if self.start is not None and self.stop is not None:
+         return '%s-%s' % (self.start, self.stop)
+      else:
+         return ''
 
    ## PRIVATE METHODS ##
 
@@ -52,7 +58,15 @@ class SuspensionIndicator(object):
       self._start = start
       self._stop = stop
 
+   def _init_empty(self):
+      self._start = None
+      self._stop = None
+
    ## PUBLIC ATTRIBUTES ##
+
+   @property
+   def is_empty(self):
+      return self.start is None and self.stop is None
 
    @property
    def start(self):
