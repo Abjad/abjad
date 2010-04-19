@@ -60,6 +60,14 @@ class ScaleDegree(object):
       parts.append(str(self.number))
       return ', '.join(parts)
 
+   ## PRIVATE ATTRIBUTES ##
+
+   _numeral_to_number_name_string = {
+      1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six',
+      7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten', 11: 'eleven',
+      12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen',
+   }
+
    _roman_numeral_string_to_scale_degree_number = {
       'I': 1,  'II': 2, 'III': 3,
       'IV': 4, 'V': 5,  'VI': 6, 'VII': 7,
@@ -135,6 +143,15 @@ class ScaleDegree(object):
    def symbolic_string(self):
       return '%s%s' % (self.accidental.symbolic_string, 
          self.roman_numeral_string)
+
+   @property
+   def title_string(self):
+      if not self.accidental.name == 'natural':
+         accidental = self.accidental.name
+      else:
+         accidental = ''
+      number = self._numeral_to_number_name_string[self.number]
+      return '%s%s' % (accidental.title( ), number.title( ))
 
    ## PUBLIC METHODS ##
 

@@ -3,6 +3,7 @@ from abjad.tools.tonalharmony.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalharmony.InversionIndicator import InversionIndicator
 from abjad.tools.tonalharmony.QualityIndicator import QualityIndicator
 from abjad.tools.tonalharmony.ScaleDegree import ScaleDegree
+from abjad.tools.tonalharmony.SuspensionIndicator import SuspensionIndicator
 import re
 
 
@@ -22,6 +23,8 @@ class TonalFunction(object):
          self._init_by_symbolic_string(args[0])
       elif len(args) == 4:
          self._init_by_scale_degree_quality_extent_and_inversion(*args)
+      elif len(args) == 5:
+         self._init_with_suspension(*args)
       else:
          raise ValueError('can not initialize tonal function.')
 
@@ -95,6 +98,9 @@ class TonalFunction(object):
       result.append(self.extent.name.title( ))
       result.append('In')
       result.append(self.inversion.title)
+      if not self.suspension.is_empty:
+         result.append('With')
+         result.append(self.suspension.title_string)
       return ''.join(result)
 
    @property
@@ -151,6 +157,7 @@ class TonalFunction(object):
       self._extent = extent
       inversion = InversionIndicator(inversion)
       self._inversion = inversion
+      self._suspension = SuspensionIndicator( )
 
    def _init_by_symbolic_string(self, symbolic_string):
       groups = self._symbolic_string_regex.match(symbolic_string).groups( )
@@ -167,6 +174,11 @@ class TonalFunction(object):
       inversion = self._figured_bass_string_to_inversion[figured_bass]
       inversion = InversionIndicator(inversion)
       self._inversion = inversion
+
+   def _init_with_suspension(self, *args):
+      self._init_by_scale_degree_quality_extent_and_inversion(*args[:-1])
+      suspension = args[-1]
+      self._suspension = SuspensionIndicator(suspension)
 
    def _get_quality_name(self, uppercase, quality_string, extent):
       if quality_string == 'o':
@@ -219,10 +231,15 @@ class TonalFunction(object):
       return self._scale_degree
 
    @property
+   def suspension(self):
+      return self._suspension
+
+   @property
    def symbolic_string(self):
       result = ''
       result += self.scale_degree.accidental.symbolic_string
       result += self._roman_numeral_string
       result += self._quality_symbolic_string
       result += self._figured_bass_string
+      result += self.suspension.figured_bass_string
       return result
