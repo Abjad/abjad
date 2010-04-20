@@ -118,8 +118,8 @@ class TonalFunction(object):
             return ''
          elif self.quality == QualityIndicator('major'):
             return 'M'
-         elif self.quality == QualityIndicator('minor'):
-            return 'm'
+         #elif self.quality == QualityIndicator('minor'):
+         #   return 'm'
          elif self.quality == QualityIndicator('diminished'):
             return 'o'
          elif self.quality == QualityIndicator('half diminished'):
