@@ -1036,6 +1036,8 @@ tonalharmony
    tools/tonalharmony/analyze_tonal_function
    tools/tonalharmony/are_scalar
    tools/tonalharmony/are_stepwise
+   tools/tonalharmony/are_stepwise_ascending
+   tools/tonalharmony/are_stepwise_descending
    tools/tonalharmony/chord_class_cardinality_to_extent
    tools/tonalharmony/chord_class_extent_to_cardinality
    tools/tonalharmony/chord_class_extent_to_extent_name
