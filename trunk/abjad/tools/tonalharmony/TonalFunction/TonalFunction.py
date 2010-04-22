@@ -206,8 +206,10 @@ class TonalFunction(object):
          else:
             raise ValueError
       elif extent == 7:
-         if quality_string == '':
+         if quality_string == '' and uppercase:
             return 'dominant'
+         elif quality_string == '' and not uppercase:
+            return 'minor'
          else:
             raise ValueError
       else:

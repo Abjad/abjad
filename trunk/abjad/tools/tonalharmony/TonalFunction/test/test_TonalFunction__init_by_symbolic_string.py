@@ -44,3 +44,10 @@ def test_TonalFunction__init_by_symbolic_string_03( ):
    tonal_function = tonalharmony.TonalFunction('V65 4-3')
    correct = tonalharmony.TonalFunction(5, 'dominant', 7, 1, (4, 3))
    assert tonal_function == correct
+
+
+def test_TonalFunction__init_by_symbolic_string_04( ):
+
+   tonal_function = tonalharmony.TonalFunction('vi65')
+   correct = tonalharmony.TonalFunction(6, 'minor', 7, 1)
+   assert tonal_function == correct
