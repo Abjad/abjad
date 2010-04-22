@@ -7,7 +7,7 @@ def test_TonalFunction__init_by_symbolic_string_01( ):
    correct = tonalharmony.TonalFunction(('flat', 2), 'major', 5, 0)
    assert tonal_function == correct
 
-   tonal_function = tonalharmony.TonalFunction('bII63')
+   tonal_function = tonalharmony.TonalFunction('bII6')
    correct = tonalharmony.TonalFunction(('flat', 2), 'major', 5, 1)
    assert tonal_function == correct
 

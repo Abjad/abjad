@@ -81,12 +81,12 @@ class TonalFunction(object):
          raise NotImplementedError
 
    _figured_bass_string_to_extent = {
-      '': 5, '63': 5, '64': 5,
+      '': 5, '6': 5, '64': 5,
       '7': 7, '65': 7, '43': 7, '42': 7,
    }
          
    _figured_bass_string_to_inversion = {
-      '': 0, '63': 1, '64': 2,
+      '': 0, '6': 1, '64': 2,
       '7': 0, '65': 1, '43': 2, '42': 3,
    }
          
@@ -165,7 +165,7 @@ class TonalFunction(object):
 
    def _init_by_symbolic_string(self, symbolic_string):
       groups = self._symbolic_string_regex.match(symbolic_string).groups( )
-      print groups
+      #print groups
       accidental, roman_numeral, quality, figured_bass, ws, suspension = groups
       scale_degree = ScaleDegree(accidental + roman_numeral)
       self._scale_degree = scale_degree
