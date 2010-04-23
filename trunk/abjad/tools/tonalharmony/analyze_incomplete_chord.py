@@ -27,6 +27,9 @@ def analyze_incomplete_chord(expr):
    npcset = pitchtools.NamedPitchClassSet(pitches)
    dicv = npcset.diatonic_interval_class_vector
 
+   #print npcset
+   #print dicv
+
    ## TODO: eliminate code duplication ##
 
    if dicv == _make_dicv('c', 'ef'):

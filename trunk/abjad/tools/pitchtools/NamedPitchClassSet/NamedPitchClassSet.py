@@ -1,7 +1,5 @@
 from abjad.pitch import Pitch
 from abjad.tools import listtools
-#from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
-#from abjad.tools.pitchtools.IntervalClassVector import IntervalClassVector
 from abjad.tools.pitchtools.DiatonicIntervalClassVector import \
    DiatonicIntervalClassVector
 from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
@@ -39,7 +37,6 @@ class NamedPitchClassSet(frozenset):
          ## expr is a Rest or non-PC type
          except TypeError:
             npcs = [ ]
-      #return frozenset.__new__(NamedPitchClassSet, npcs)
       return frozenset.__new__(self, npcs)
 
    ## OVERLOADS ##
@@ -77,22 +74,6 @@ class NamedPitchClassSet(frozenset):
    def diatonic_interval_class_vector(self):
       pitches = [Pitch(x, 4) for x in self]
       return DiatonicIntervalClassVector(pitches)
-
-#   @property
-#   def interval_class_set(self):
-#      interval_class_set = IntervalClassSet([ ])
-#      for first_pc, second_pc in listtools.get_unordered_pairs(self):
-#         interval_class = first_pc - second_pc
-#         interval_class_set.add(interval_class)
-#      return interval_class_set
-
-#   @property
-#   def interval_class_vector(self):
-#      interval_classes = [ ]
-#      for first_pc, second_pc in listtools.get_unordered_pairs(self):
-#         interval_class = first_pc - second_pc
-#         interval_classes.append(interval_class)
-#      return IntervalClassVector(interval_classes)
 
    @property
    def named_pitch_classes(self):

@@ -218,6 +218,16 @@ class TonalFunction(object):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def bass_scale_degree(self):
+      root_scale_degree = self.root_scale_degree.number
+      bass_scale_degree = root_scale_degree - 1
+      bass_scale_degree += 2 * self.inversion.number
+      bass_scale_degree %= 7
+      bass_scale_degree += 1
+      bass_scale_degree = ScaleDegree(bass_scale_degree)
+      return bass_scale_degree
+
+   @property
    def extent(self):
       return self._extent
 
@@ -235,6 +245,11 @@ class TonalFunction(object):
    def quality(self):
       return self._quality
 
+   @property
+   def root_scale_degree(self):
+      return self._scale_degree
+
+   ## TODO: deprecate scale_degree in favor of root_scale_degree ##
    @property
    def scale_degree(self):
       return self._scale_degree
