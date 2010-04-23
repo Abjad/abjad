@@ -106,6 +106,20 @@ class VerticalMoment(object):
       return result
 
    @property
+   def next_vertical_moment(self):
+      '''Read-only reference to next vertical moment forward in time.'''
+      from abjad.tools import iterate
+      candidate_shortest_leaf = self.leaves[0] 
+      for leaf in self.leaves[1:]:
+         if leaf.offset.prolated.stop < \
+            candidate_shortest_leaf.offset.prolated.stop:
+            candidate_shortest_leaf = leaf
+      next_leaf = iterate.get_nth_namesake_from(candidate_shortest_leaf, 1)
+      next_vertical_moment = iterate.get_vertical_moment_starting_with(
+         next_leaf)
+      return next_vertical_moment
+
+   @property
    def notes(self):
       '''Read-only tuple of zero or more notes
       at vertical moment.'''
@@ -117,11 +131,19 @@ class VerticalMoment(object):
       return result
 
    @property
-   def prolated_offset(self):
-      '''Read-only rational-valued score offset
-      at which vertical moment is evaluated.'''
-      return self._prolated_offset
-   
+   def next_vertical_moment(self):
+      '''Read-only reference to next vertical moment forward in time.'''
+      from abjad.tools import iterate
+      candidate_shortest_leaf = self.leaves[0] 
+      for leaf in self.leaves[1:]:
+         if leaf.offset.prolated.stop < \
+            candidate_shortest_leaf.offset.prolated.stop:
+            candidate_shortest_leaf = leaf
+      next_leaf = iterate.get_nth_namesake_from(candidate_shortest_leaf, 1)
+      next_vertical_moment = iterate.get_vertical_moment_starting_with(
+         next_leaf)
+      return next_vertical_moment
+
    @property
    def overlap_components(self):
       '''Read-only tuple of components in vertical moment
@@ -157,6 +179,48 @@ class VerticalMoment(object):
       result = tuple(result)
       return result
 
+   @property
+   def prev_vertical_moment(self):
+      '''Read-only reference to prev vertical moment backward in time.'''
+      from abjad.tools import iterate
+      if self.prolated_offset == 0:
+         raise IndexError
+      most_recent_start_offset = Rational(0)
+      token_leaf = None
+      for leaf in self.leaves:
+         #print ''
+         #print leaf
+         leaf_start = leaf.offset.prolated.start
+         if leaf_start < self.prolated_offset:
+            #print 'found leaf starting before this moment ...'
+            if most_recent_start_offset <= leaf_start:
+               most_recent_start_offset = leaf_start
+               token_leaf = leaf
+         else:
+            #print 'found leaf starting on this moment ...'
+            try:
+               prev_leaf = iterate.get_nth_namesake_from(leaf, -1)
+               start = prev_leaf.offset.prolated.start
+               #print prev_leaf, start
+               if most_recent_start_offset <= start:
+                  most_recent_start_offset = start
+                  token_leaf = prev_leaf
+            except IndexError:
+               pass
+      #print 'token_leaf is %s ...' % token_leaf
+      if token_leaf is None:
+         token_leaf = leaf
+         #print 'token_leaf is %s ...' % token_leaf
+      prev_vertical_moment = iterate.get_vertical_moment_starting_with(
+         token_leaf)
+      return prev_vertical_moment
+
+   @property
+   def prolated_offset(self):
+      '''Read-only rational-valued score offset
+      at which vertical moment is evaluated.'''
+      return self._prolated_offset
+   
    @property
    def start_components(self):
       '''Read-only tuple of components in vertical moment
