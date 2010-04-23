@@ -58,6 +58,11 @@ class VerticalMoment(object):
    ## PUBLIC ATTRIBUTES ##
 
    @property
+   def attack_count(self):
+      '''Positive integer number of leaves starting at vertical moment.'''
+      return len(self.start_leaves)
+
+   @property
    def components(self):
       '''Read-only tuple of zero or more components
       happening at vertical moment.
