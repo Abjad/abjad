@@ -61,7 +61,7 @@ class TonalFunction(object):
          if self.inversion == InversionIndicator(0):
             return ''
          elif self.inversion == InversionIndicator(1):
-            return '63'
+            return '6'
          elif self.inversion == InversionIndicator(2):
             return '64'
          else:
