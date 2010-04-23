@@ -1,3 +1,4 @@
+from abjad.chord import Chord
 from abjad.leaf import _Leaf
 from abjad.measure import _Measure
 from abjad.note import Note
@@ -59,8 +60,13 @@ class VerticalMoment(object):
 
    @property
    def attack_count(self):
-      '''Positive integer number of leaves starting at vertical moment.'''
-      return len(self.start_leaves)
+      '''Positive integer number of pitch carriers 
+      starting at vertical moment.'''
+      attack_carriers = [ ]
+      for leaf in self.start_leaves:
+         if isinstance(leaf, (Note, Chord)):
+            attack_carriers.append(leaf)
+      return len(attack_carriers)
 
    @property
    def components(self):
