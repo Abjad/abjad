@@ -10,8 +10,8 @@ import re
 class TonalFunction(object):
    '''.. versionadded:: 1.1.2
 
-   Abjad model of functions in tonal harmony: I, I6, I63, V, V7, V43, V42,
-   bII, bII6, etc., also i, i6, i63, v, v7, etc.
+   Abjad model of functions in tonal harmony: I, I6, I64, V, V7, V43, V42,
+   bII, bII6, etc., also i, i6, i64, v, v7, etc.
 
    Value object that can not be cahnged after instantiation.
    '''
@@ -57,28 +57,7 @@ class TonalFunction(object):
 
    @property
    def _figured_bass_string(self):
-      if self.extent == ExtentIndicator(5):
-         if self.inversion == InversionIndicator(0):
-            return ''
-         elif self.inversion == InversionIndicator(1):
-            return '6'
-         elif self.inversion == InversionIndicator(2):
-            return '64'
-         else:
-            raise ValueError
-      elif self.extent == ExtentIndicator(7):
-         if self.inversion == InversionIndicator(0):
-            return '7'
-         elif self.inversion == InversionIndicator(1):
-            return '65'
-         elif self.inversion == InversionIndicator(2):
-            return '43'
-         elif self.inversion == InversionIndicator(3):
-            return '42'
-         else:
-            raise ValueError
-      else:
-         raise NotImplementedError
+      return self.inversion.extent_to_figured_bass_string(self.extent.number)
 
    _figured_bass_string_to_extent = {
       '': 5, '6': 5, '64': 5,

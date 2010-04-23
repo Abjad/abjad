@@ -43,6 +43,14 @@ class InversionIndicator(object):
       1: 'first', 2: 'second', 3: 'third', 4: 'fourth',
    }
 
+   _seventh_chord_inversion_to_figured_bass_string = {
+      0: '7', 1: '65', 2: '43', 3: '42',
+   }
+
+   _triadic_inversion_to_figured_bass_string = {
+      0: '', 1: '6', 2: '64',
+   }
+
    ## PUBLIC ATTRIBUTES ##
 
    @property
@@ -59,3 +67,14 @@ class InversionIndicator(object):
       if name == 'root position':
          return 'RootPosition'
       return '%sInversion' % name.title( )
+
+   ## PUBLIC METHODS ##
+
+   def extent_to_figured_bass_string(self, extent):
+      if extent == 5:
+         return self._triadic_inversion_to_figured_bass_string[self.number]
+      elif extent == 7:
+         return self._seventh_chord_inversion_to_figured_bass_string[
+            self.number]
+      else:
+         raise NotImplementedError
