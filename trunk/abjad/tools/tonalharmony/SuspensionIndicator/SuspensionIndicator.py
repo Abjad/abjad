@@ -92,6 +92,10 @@ class SuspensionIndicator(object):
       return 'sus%s' % self.start
 
    @property
+   def figured_bass_pair(self):
+      return self.start.number, self.stop.number
+
+   @property
    def figured_bass_string(self):
       if self.is_empty:
          return ''

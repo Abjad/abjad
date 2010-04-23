@@ -56,17 +56,26 @@ class TonalFunction(object):
       return ''
 
    @property
+   def _figured_bass_digits(self):
+      characters = self._figured_bass_string
+      if characters:
+         characters = characters.split('/')
+         digits = [int(x) for x in characters]
+         return tuple(digits)
+      return ( )
+
+   @property
    def _figured_bass_string(self):
       return self.inversion.extent_to_figured_bass_string(self.extent.number)
 
    _figured_bass_string_to_extent = {
-      '': 5, '6': 5, '64': 5,
-      '7': 7, '65': 7, '43': 7, '42': 7,
+      '': 5, '6': 5, '6/4': 5,
+      '7': 7, '6/5': 7, '4/3': 7, '4/2': 7,
    }
          
    _figured_bass_string_to_inversion = {
-      '': 0, '6': 1, '64': 2,
-      '7': 0, '65': 1, '43': 2, '42': 3,
+      '': 0, '6': 1, '6/4': 2,
+      '7': 0, '6/5': 1, '4/3': 2, '4/2': 3,
    }
          
    @property
@@ -120,8 +129,11 @@ class TonalFunction(object):
    #_symbolic_string_regex = re.compile(
    #   r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(\d*)')
 
+   #_symbolic_string_regex = re.compile(
+   #   r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(\d*)(\s*)([#|b]?\d*-?[#|b]?\d*)')
+
    _symbolic_string_regex = re.compile(
-      r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(\d*)(\s*)([#|b]?\d*-?[#|b]?\d*)')
+      r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(.*)')
 
    ## PRIVATE METHODS ##
 
@@ -145,20 +157,29 @@ class TonalFunction(object):
    def _init_by_symbolic_string(self, symbolic_string):
       groups = self._symbolic_string_regex.match(symbolic_string).groups( )
       #print groups
-      accidental, roman_numeral, quality, figured_bass, ws, suspension = groups
+      accidental, roman_numeral, quality, figured_bass = groups
       scale_degree = ScaleDegree(accidental + roman_numeral)
       self._scale_degree = scale_degree
-      extent = self._figured_bass_string_to_extent[figured_bass]
+      figured_bass_parts = figured_bass.split('/')
+      naive_figured_bass = [x for x in figured_bass_parts if not '-' in x]
+      naive_figured_bass = '/'.join(naive_figured_bass)
+      extent = self._figured_bass_string_to_extent[naive_figured_bass]
       extent = ExtentIndicator(extent)
       self._extent = extent
       uppercase = roman_numeral == roman_numeral.upper( )
       quality = self._get_quality_name(uppercase, quality, extent.number)
       quality = QualityIndicator(quality)
       self._quality = quality
-      inversion = self._figured_bass_string_to_inversion[figured_bass]
+      inversion = self._figured_bass_string_to_inversion[naive_figured_bass]
       inversion = InversionIndicator(inversion)
       self._inversion = inversion
-      suspension = SuspensionIndicator(suspension)
+      suspension = [x for x in figured_bass_parts if '-' in x]
+      if not suspension:
+         suspension = SuspensionIndicator( )
+      elif 1 < len(suspension):
+         raise NotImplementedError('no multiple suspensions yet.')
+      else:
+         suspension = SuspensionIndicator(suspension[0])
       self._suspension = suspension
 
    def _init_with_suspension(self, *args):
@@ -211,6 +232,23 @@ class TonalFunction(object):
       return self._extent
 
    @property
+   def figured_bass_string(self):
+      digits = self._figured_bass_digits
+      if self.suspension.is_empty:
+         return '/'.join([str(x) for x in digits])
+      suspension_pair = self.suspension.figured_bass_pair
+      figured_bass_list = [ ]
+      for n in range(9, 1, -1):
+         if n == suspension_pair[0]:
+            figured_bass_list.append(str(self.suspension))
+         elif n == suspension_pair[1]:
+            pass
+         elif n in digits:
+            figured_bass_list.append(str(n))
+      figured_bass_string = '/'.join(figured_bass_list)
+      return figured_bass_string
+            
+   @property
    def inversion(self):
       return self._inversion
 
@@ -243,6 +281,5 @@ class TonalFunction(object):
       result += self.scale_degree.accidental.symbolic_string
       result += self._roman_numeral_string
       result += self._quality_symbolic_string
-      result += self._figured_bass_string
-      result += self.suspension.figured_bass_string
+      result += self.figured_bass_string
       return result

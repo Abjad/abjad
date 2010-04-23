@@ -44,11 +44,11 @@ class InversionIndicator(object):
    }
 
    _seventh_chord_inversion_to_figured_bass_string = {
-      0: '7', 1: '65', 2: '43', 3: '42',
+      0: '7', 1: '6/5', 2: '4/3', 3: '4/2',
    }
 
    _triadic_inversion_to_figured_bass_string = {
-      0: '', 1: '6', 2: '64',
+      0: '', 1: '6', 2: '6/4',
    }
 
    ## PUBLIC ATTRIBUTES ##
