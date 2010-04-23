@@ -61,3 +61,11 @@ def test_tonalharmony_analyze_tonal_function_03( ):
    tonal_function = tonalharmony.analyze_tonal_function(chord, key_signature)
    correct_tonal_function = tonalharmony.TonalFunction(1, 'dominant', 7, 3)
    assert tonal_function == correct_tonal_function
+
+
+def test_tonalharmony_analyze_tonal_function_04( ):
+
+   key_signature = KeySignature('c', 'major')
+   chord = Chord(['c', 'cs', 'd'], (1, 4))
+   tonal_function = tonalharmony.analyze_tonal_function(chord, key_signature)
+   assert tonal_function is None

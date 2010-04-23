@@ -15,6 +15,12 @@ def analyze_chord(expr):
       abjad> chord = Chord([7, 10, 12, 16], (1, 4))
       abjad> tonalharmony.analyze_chord(chord)
       CDominantSeventhInSecondInversion
+
+   Return none when no tonal chord is understood. ::
+
+      abjad> chord = Chord(['c', 'cs', 'd'], (1, 4))
+      abjad> tonalharmony.analyze_chord(chord) is None
+      True
    '''
 
    pitches = pitchtools.get_pitches(expr)
@@ -32,7 +38,8 @@ def analyze_chord(expr):
       if ordered_npcs.diatonic_interval_class_segment.is_tertian:
          break
    else:
-      raise TonalHarmonyError('expr is not tertian harmony: %s' % str(expr))
+      #raise TonalHarmonyError('expr is not tertian harmony: %s' % str(expr))
+      return None
 
    root = ordered_npcs[0]
    bass = min(pitches).named_pitch_class

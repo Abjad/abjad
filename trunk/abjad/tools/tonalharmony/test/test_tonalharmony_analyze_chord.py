@@ -60,3 +60,10 @@ def test_tonalharmony_analyze_chord_04( ):
 
    chord_class = tonalharmony.analyze_chord(Chord([2, 10, 12, 16, 19], (1, 4)))
    assert chord_class == tonalharmony.ChordClass('c', 'dominant', 9, 4)
+
+
+def test_tonalharmony_analyze_chord_05( ):
+   '''Return none when chord does not analyze.'''
+
+   chord_class = tonalharmony.analyze_chord(Chord(['c', 'cs', 'd'], (1, 4)))
+   assert chord_class is None
