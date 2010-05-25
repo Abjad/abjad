@@ -7,4 +7,3 @@ ClefInterface
    :members:
    :undoc-members:
    :show-inheritance:
-   :inherited-members:

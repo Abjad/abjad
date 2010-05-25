@@ -30,11 +30,11 @@ def make_sphinx_toc( ):
             raise ValueError('all public functions must be tools.')
       else:
          raise ValueError('name must be class or function.')
-   print len(klasses)
-   print len(interfaces)
-   print len(spanners)
-   print len(tools)
-   print ''
+   #print len(klasses)
+   #print len(interfaces)
+   #print len(spanners)
+   #print len(tools)
+   #print ''
 
    result = 'Abjad API\n'
    result += '=' * (len(result) - 1)

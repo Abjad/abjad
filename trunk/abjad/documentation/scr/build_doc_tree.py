@@ -22,3 +22,4 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
 
       ## populate sphinx directory with sphinx files
       populate_sphinx_directory(root_dir, abjad_subdir, files, interactive)
+      #print ''

@@ -7,4 +7,3 @@ MeterInterface
    :members:
    :undoc-members:
    :show-inheritance:
-   :inherited-members:

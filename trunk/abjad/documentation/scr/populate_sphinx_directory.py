@@ -6,13 +6,16 @@ import os
 def populate_sphinx_directory(root_dir, abjad_subdir, files, interactive):
 
    ## can probably remove modules_visited altogether
-   modules_visited = [ ]
+   #modules_visited = [ ]
 
    ## make sphinx listing of modules
    for file in files:
+      #print file
+
       listing = make_sphinx_module_listing('abjad/' + abjad_subdir, file)
       #print listing
 
+      ## write no API entry when there is no listing
       if listing is None:
          continue
       
@@ -23,4 +26,4 @@ def populate_sphinx_directory(root_dir, abjad_subdir, files, interactive):
 
       ## keep track of modules visited
       mod = os.path.join(abjad_subdir, file.split('.')[0])
-      modules_visited.append(mod)
+      #modules_visited.append(mod)

@@ -7,4 +7,3 @@ Markup
    :members:
    :undoc-members:
    :show-inheritance:
-   :inherited-members:
