@@ -9,120 +9,35 @@ Classes
 .. toctree::
    :maxdepth: 1
 
-   tools/pitchtools/Accidental/Accidental
    measure/anonymous/measure
    articulation/articulation
-   tools/lilytools/BookBlock
-   tools/lilytools/BookpartBlock
    chord/chord
-   tools/tonalharmony/ChordClass/ChordClass
-   tools/tonalharmony/ChordQualityIndicator/ChordQualityIndicator
-   tools/pitchtools/ChromaticIntervalVector/ChromaticIntervalVector
    clef/clef
    cluster/cluster
    container/container
-   tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
-   tools/pitchtools/DiatonicIntervalClassSegment/DiatonicIntervalClassSegment
-   tools/pitchtools/DiatonicIntervalClassVector/DiatonicIntervalClassVector
-   tools/tonalharmony/DoublingIndicator/DoublingIndicator
    measure/dynamic/measure
-   tools/tonalharmony/ExtentIndicator/ExtentIndicator
    tuplet/fd/tuplet
    tuplet/fm/tuplet
-   tools/layout/FixedStaffPositioning/FixedStaffPositioning
    grace/grace
    staffgroup/grandstaff
-   tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
-   tools/pitchtools/HarmonicChromaticIntervalClass/HarmonicChromaticIntervalClass
-   tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
-   tools/pitchtools/HarmonicChromaticIntervalSet/HarmonicChromaticIntervalSet
-   tools/pitchtools/HarmonicCounterpointInterval/HarmonicCounterpointInterval
-   tools/pitchtools/HarmonicCounterpointIntervalClass/HarmonicCounterpointIntervalClass
-   tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
-   tools/pitchtools/HarmonicDiatonicIntervalClass/HarmonicDiatonicIntervalClass
-   tools/pitchtools/HarmonicDiatonicIntervalClassSet/HarmonicDiatonicIntervalClassSet
-   tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
-   tools/pitchtools/HarmonicDiatonicIntervalSet/HarmonicDiatonicIntervalSet
    harmonic/natural
-   tools/lilytools/HeaderBlock
-   tools/pitchtools/IntervalClass/IntervalClass
-   tools/pitchtools/IntervalClassSegment/IntervalClassSegment
-   tools/pitchtools/IntervalClassSet/IntervalClassSet
-   tools/pitchtools/IntervalClassVector/IntervalClassVector
-   tools/tonalharmony/InversionIndicator/InversionIndicator
    staff/invisiblestaff
    key_signature/key_signature
-   tools/lilytools/LayoutBlock
-   tools/layout/LayoutSchema/LayoutSchema
-   tools/lilytools/LilyFile
    markup/markup
-   tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
-   tools/pitchtools/MelodicChromaticIntervalClass/MelodicChromaticIntervalClass
-   tools/pitchtools/MelodicChromaticIntervalClassSegment/MelodicChromaticIntervalClassSegment
-   tools/pitchtools/MelodicChromaticIntervalClassVector/MelodicChromaticIntervalClassVector
-   tools/pitchtools/MelodicChromaticIntervalSegment/MelodicChromaticIntervalSegment
-   tools/pitchtools/MelodicChromaticIntervalSet/MelodicChromaticIntervalSet
-   tools/pitchtools/MelodicCounterpointInterval/MelodicCounterpointInterval
-   tools/pitchtools/MelodicCounterpointIntervalClass/MelodicCounterpointIntervalClass
-   tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
-   tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
-   tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
-   tools/pitchtools/MelodicDiatonicIntervalSet/MelodicDiatonicIntervalSet
    meter/meter
-   tools/lilytools/MidiBlock
-   tools/tonalharmony/Mode/Mode
-   tools/pitchtools/NamedPitchClass/NamedPitchClass
-   tools/pitchtools/NamedPitchClassSegment/NamedPitchClassSegment
-   tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet
    note/note
    notehead/notehead
-   tools/pitchtools/NumericPitch/NumericPitch
-   tools/tonalharmony/OmissionIndicator/OmissionIndicator
-   tools/lilytools/PaperBlock
    staffgroup/pianostaff
    pitch/pitch
-   tools/pitchtools/PitchArray/PitchArray
-   tools/pitchtools/PitchArray/PitchArrayCell/PitchArrayCell
-   tools/pitchtools/PitchArray/PitchArrayColumn/PitchArrayColumn
-   tools/pitchtools/PitchArray/PitchArrayRow/PitchArrayRow
-   tools/pitchtools/PitchClass/PitchClass
-   tools/pitchtools/PitchClassColorMap/PitchClassColorMap
-   tools/pitchtools/PitchClassSegment/PitchClassSegment
-   tools/pitchtools/PitchClassSet/PitchClassSet
-   tools/pitchtools/PitchClassVector/PitchClassVector
-   tools/pitchtools/PitchRange/PitchRange
-   tools/pitchtools/PitchSegment/PitchSegment
-   tools/pitchtools/PitchSet/PitchSet
-   tools/pitchtools/PitchVector/PitchVector
-   tools/tonalharmony/QualityIndicator/QualityIndicator
-   tools/sievetools/rc
-   tools/sievetools/rcexpression
    rational/rational
    rest/rest
    staff/rhythmicsketchstaff
    staff/rhythmicstaff
    measure/rigid/measure
-   tools/tonalharmony/Scale/Scale
-   tools/tonalharmony/ScaleDegree/ScaleDegree
-   tools/schemetools/SchemeColor/SchemeColor
-   tools/schemetools/SchemeFunction/SchemeFunction
-   tools/schemetools/SchemeMoment/SchemeMoment
-   tools/schemetools/SchemeString/SchemeString
-   tools/schemetools/SchemeVector/SchemeVector
    score/score
-   tools/lilytools/ScoreBlock
    skip/skip
-   tools/spacing/SpacingIndication/SpacingIndication
    staff/staff
-   tools/layout/StaffAlignmentDistances/StaffAlignmentDistances
-   tools/layout/StaffAlignmentOffsets/StaffAlignmentOffsets
    staffgroup/staffgroup
-   tools/tonalharmony/SuspensionIndicator/SuspensionIndicator
-   tools/layout/SystemYOffsets/SystemYOffsets
-   tools/tempotools/TempoIndication/TempoIndication
-   tools/tonalharmony/TonalFunction/TonalFunction
-   tools/pitchtools/TwelveToneRow/TwelveToneRow
-   tools/iterate/VerticalMoment/VerticalMoment
    voice/voice
 
 
@@ -499,6 +414,7 @@ iterate
 .. toctree::
    :maxdepth: 1
 
+   tools/iterate/VerticalMoment/VerticalMoment
    tools/iterate/chained_contents
    tools/iterate/depth_first
    tools/iterate/get_measure_leaf
@@ -574,6 +490,11 @@ layout
 .. toctree::
    :maxdepth: 1
 
+   tools/layout/FixedStaffPositioning/FixedStaffPositioning
+   tools/layout/LayoutSchema/LayoutSchema
+   tools/layout/StaffAlignmentDistances/StaffAlignmentDistances
+   tools/layout/StaffAlignmentOffsets/StaffAlignmentOffsets
+   tools/layout/SystemYOffsets/SystemYOffsets
    tools/layout/apply_fixed_staff_positioning
    tools/layout/apply_layout_schema
    tools/layout/insert_measure_padding_rest
@@ -613,6 +534,14 @@ lilytools
 .. toctree::
    :maxdepth: 1
 
+   tools/lilytools/BookBlock
+   tools/lilytools/BookpartBlock
+   tools/lilytools/HeaderBlock
+   tools/lilytools/LayoutBlock
+   tools/lilytools/LilyFile
+   tools/lilytools/MidiBlock
+   tools/lilytools/PaperBlock
+   tools/lilytools/ScoreBlock
    tools/lilytools/make_basic_lily_file
    tools/lilytools/parse_note_entry_string
    tools/lilytools/save_ly_as
@@ -840,6 +769,56 @@ pitchtools
 .. toctree::
    :maxdepth: 1
 
+   tools/pitchtools/Accidental/Accidental
+   tools/pitchtools/ChromaticIntervalVector/ChromaticIntervalVector
+   tools/pitchtools/DiatonicIntervalClass/DiatonicIntervalClass
+   tools/pitchtools/DiatonicIntervalClassSegment/DiatonicIntervalClassSegment
+   tools/pitchtools/DiatonicIntervalClassVector/DiatonicIntervalClassVector
+   tools/pitchtools/HarmonicChromaticInterval/HarmonicChromaticInterval
+   tools/pitchtools/HarmonicChromaticIntervalClass/HarmonicChromaticIntervalClass
+   tools/pitchtools/HarmonicChromaticIntervalSegment/HarmonicChromaticIntervalSegment
+   tools/pitchtools/HarmonicChromaticIntervalSet/HarmonicChromaticIntervalSet
+   tools/pitchtools/HarmonicCounterpointInterval/HarmonicCounterpointInterval
+   tools/pitchtools/HarmonicCounterpointIntervalClass/HarmonicCounterpointIntervalClass
+   tools/pitchtools/HarmonicDiatonicInterval/HarmonicDiatonicInterval
+   tools/pitchtools/HarmonicDiatonicIntervalClass/HarmonicDiatonicIntervalClass
+   tools/pitchtools/HarmonicDiatonicIntervalClassSet/HarmonicDiatonicIntervalClassSet
+   tools/pitchtools/HarmonicDiatonicIntervalSegment/HarmonicDiatonicIntervalSegment
+   tools/pitchtools/HarmonicDiatonicIntervalSet/HarmonicDiatonicIntervalSet
+   tools/pitchtools/IntervalClass/IntervalClass
+   tools/pitchtools/IntervalClassSegment/IntervalClassSegment
+   tools/pitchtools/IntervalClassSet/IntervalClassSet
+   tools/pitchtools/IntervalClassVector/IntervalClassVector
+   tools/pitchtools/MelodicChromaticInterval/MelodicChromaticInterval
+   tools/pitchtools/MelodicChromaticIntervalClass/MelodicChromaticIntervalClass
+   tools/pitchtools/MelodicChromaticIntervalClassSegment/MelodicChromaticIntervalClassSegment
+   tools/pitchtools/MelodicChromaticIntervalClassVector/MelodicChromaticIntervalClassVector
+   tools/pitchtools/MelodicChromaticIntervalSegment/MelodicChromaticIntervalSegment
+   tools/pitchtools/MelodicChromaticIntervalSet/MelodicChromaticIntervalSet
+   tools/pitchtools/MelodicCounterpointInterval/MelodicCounterpointInterval
+   tools/pitchtools/MelodicCounterpointIntervalClass/MelodicCounterpointIntervalClass
+   tools/pitchtools/MelodicDiatonicInterval/MelodicDiatonicInterval
+   tools/pitchtools/MelodicDiatonicIntervalClass/MelodicDiatonicIntervalClass
+   tools/pitchtools/MelodicDiatonicIntervalSegment/MelodicDiatonicIntervalSegment
+   tools/pitchtools/MelodicDiatonicIntervalSet/MelodicDiatonicIntervalSet
+   tools/pitchtools/NamedPitchClass/NamedPitchClass
+   tools/pitchtools/NamedPitchClassSegment/NamedPitchClassSegment
+   tools/pitchtools/NamedPitchClassSet/NamedPitchClassSet
+   tools/pitchtools/NumericPitch/NumericPitch
+   tools/pitchtools/PitchArray/PitchArray
+   tools/pitchtools/PitchArray/PitchArrayCell/PitchArrayCell
+   tools/pitchtools/PitchArray/PitchArrayColumn/PitchArrayColumn
+   tools/pitchtools/PitchArray/PitchArrayRow/PitchArrayRow
+   tools/pitchtools/PitchClass/PitchClass
+   tools/pitchtools/PitchClassColorMap/PitchClassColorMap
+   tools/pitchtools/PitchClassSegment/PitchClassSegment
+   tools/pitchtools/PitchClassSet/PitchClassSet
+   tools/pitchtools/PitchClassVector/PitchClassVector
+   tools/pitchtools/PitchRange/PitchRange
+   tools/pitchtools/PitchSegment/PitchSegment
+   tools/pitchtools/PitchSet/PitchSet
+   tools/pitchtools/PitchVector/PitchVector
+   tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/pitchtools/apply_octavation
    tools/pitchtools/are_in_octave_order
    tools/pitchtools/array_to_nonspanning_subarrays
@@ -922,6 +901,18 @@ pitchtools
    tools/pitchtools/transpose_by_melodic_interval
 
 
+schemetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/schemetools/SchemeColor/SchemeColor
+   tools/schemetools/SchemeFunction/SchemeFunction
+   tools/schemetools/SchemeMoment/SchemeMoment
+   tools/schemetools/SchemeString/SchemeString
+   tools/schemetools/SchemeVector/SchemeVector
+
+
 scoretools
 
 .. toctree::
@@ -943,6 +934,8 @@ sievetools
    :maxdepth: 1
 
    tools/sievetools/cycle_tokens_to_sieve
+   tools/sievetools/rc
+   tools/sievetools/rcexpression
 
 
 spacing
@@ -950,6 +943,7 @@ spacing
 .. toctree::
    :maxdepth: 1
 
+   tools/spacing/SpacingIndication/SpacingIndication
    tools/spacing/get_scorewide
 
 
@@ -1001,6 +995,7 @@ tempotools
 .. toctree::
    :maxdepth: 1
 
+   tools/tempotools/TempoIndication/TempoIndication
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
 
@@ -1031,6 +1026,18 @@ tonalharmony
 .. toctree::
    :maxdepth: 1
 
+   tools/tonalharmony/ChordClass/ChordClass
+   tools/tonalharmony/ChordQualityIndicator/ChordQualityIndicator
+   tools/tonalharmony/DoublingIndicator/DoublingIndicator
+   tools/tonalharmony/ExtentIndicator/ExtentIndicator
+   tools/tonalharmony/InversionIndicator/InversionIndicator
+   tools/tonalharmony/Mode/Mode
+   tools/tonalharmony/OmissionIndicator/OmissionIndicator
+   tools/tonalharmony/QualityIndicator/QualityIndicator
+   tools/tonalharmony/Scale/Scale
+   tools/tonalharmony/ScaleDegree/ScaleDegree
+   tools/tonalharmony/SuspensionIndicator/SuspensionIndicator
+   tools/tonalharmony/TonalFunction/TonalFunction
    tools/tonalharmony/analyze_chord
    tools/tonalharmony/analyze_incomplete_chord
    tools/tonalharmony/analyze_incomplete_tonal_function

@@ -1,5 +1,5 @@
-from abjad.cfg.cfg import ABJADPATH
 from _get_module_members import _get_module_members
+from abjad.cfg.cfg import ABJADPATH
 import os
 
 

@@ -5,28 +5,36 @@ import os
 
 def make_sphinx_toc( ):
    '''Make table of contents for Abjad API.
-   Divide TOC into classes, interfaces and tools.'''
+   Divide TOC into classes, interfaces, spanners and tools.
+   Divide tools into classes and functions.'''
 
    names = _get_public_abjad_names( )
-   #klasses, interfaces, spanners, functions, tools = [ ], [ ], [ ], [ ], [ ]
-   klasses, interfaces, spanners, tools = [ ], [ ], [ ], [ ]
+   klasses, interfaces, spanners, exceptions, tools = [ ], [ ], [ ], [ ], [ ]
    for name in names:
       if name['kind'] == 'class':
          if 'exceptions' not in name['module']:
-            if 'Interface' in name['name']:
+            if 'tools' in name['module']:
+               tools.append(name)
+            elif 'Interface' in name['name']:
                interfaces.append(name)
             elif 'spanner' in name['module']:
                spanners.append(name)
             else:
                klasses.append(name)
+         else:
+            exceptions.append(name)
       elif name['kind'] == 'function':
          if 'tools' in name['module']:
             tools.append(name)
          else:
-            #functions.append(name)
             raise ValueError('all public functions must be tools.')
       else:
          raise ValueError('name must be class or function.')
+   print len(klasses)
+   print len(interfaces)
+   print len(spanners)
+   print len(tools)
+   print ''
 
    result = 'Abjad API\n'
    result += '=' * (len(result) - 1)
@@ -46,17 +54,6 @@ def make_sphinx_toc( ):
          result += '   %s\n' % doc_path
    result += '\n\n'
   
-#   result += 'Facade classes'
-#   result += '\n\n'
-#   result += '.. toctree::\n'
-#   result += '   :maxdepth: 1\n'
-#   result += '\n'
-#   for name in functions:
-#      if not name['name'].startswith('_'):
-#         doc_path = _module_path_to_doc_path(name['module'])
-#         result += '   %s\n' % doc_path
-#   result += '\n\n'
-
    result += 'Interfaces\n'
    result += '-' * (len('Interfaces'))
    result += '\n\n'
@@ -115,16 +112,3 @@ def make_sphinx_toc( ):
 #   result += '   exceptions/exceptions'
 
    return result
-
-
-#def make_sphinx_toc(content):
-##def make_sphinx_toc(klasses, interfaces, tools):
-#   result = 'Abjad API\n'
-#   result += '=' * (len(result) - 1)
-#   result += '\n\n'
-#   result += '.. toctree::'
-#   result += '\n\n'
-#   for line in content:
-#      result += '   %s' % line
-#      result += '\n'
-#   return result

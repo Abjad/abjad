@@ -3,8 +3,10 @@ from _get_all_abjad_modules import _get_all_abjad_modules
 
 def _get_all_abjad_names( ):
    '''Return a list of all Abjad function and class names.
-   Include private names.
+   Include names in nondocumenting directories. Include private names.
    Sort list alphabetically by name.
+   Each list entry has the form of a dictionary with three items.
+   The dictionary keys are 'name', 'kind' and 'module'.
    '''
 
    names = [ ]

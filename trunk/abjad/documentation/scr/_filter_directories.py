@@ -1,9 +1,14 @@
+def _filter_directories(dirs_list):
+   '''Remove nondocumenting directories from dirs_list.'''
 
-def _filter_directories(dirs_list, dirs_remove=['.svn', 'test']):
-   '''Remove all directories in `dirs_remove` from `dirs_list`.'''
+   ## add newly created nondocumenting directories to this list
+   dirs_remove = ['.svn', 'book', 'cfg', 'checks', 'debug', 'demos',
+      'documentation', 'exceptions', 'navigator', 'scm', 'scr', 'test',
+      'update',
+      ]
+
    for dir in dirs_remove:
       try:
          dirs_list.remove(dir)
       except ValueError:
          pass
-
