@@ -933,9 +933,9 @@ sievetools
 .. toctree::
    :maxdepth: 1
 
+   tools/sievetools/RC/RC
+   tools/sievetools/RCExpression/RCExpression
    tools/sievetools/cycle_tokens_to_sieve
-   tools/sievetools/rc
-   tools/sievetools/rcexpression
 
 
 spacing

@@ -1,5 +1,5 @@
-from abjad.tools.sievetools.rc import RC
-from abjad.tools.sievetools.rcexpression import RCexpression
+from abjad.tools.sievetools.RC import RC
+from abjad.tools.sievetools.RCExpression import RCExpression
 import py.test
 
 

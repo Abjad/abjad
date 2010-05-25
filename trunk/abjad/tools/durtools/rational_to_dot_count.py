@@ -8,6 +8,7 @@ def rational_to_dot_count(rational):
 
    Convert `rational` to nonnegative integer number of dots 
    required to represent as LilyPond-style duration string. ::
+
       abjad> for n in range(1, 9):
       ...     try:
       ...             rational = Rational(n, 16)

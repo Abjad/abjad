@@ -2,7 +2,9 @@ from abjad.core.abjadcore import _Abjad
 
 
 class SchemeColor(_Abjad):
-   '''Wrapper for names of X-11 colors known to LilyPond. ::
+   '''Wrapper for names of X-11 colors known to LilyPond.
+
+   ::
 
       abjad> t = Note(0, (1, 4))
       abjad> t.note_head.color = schemetools.SchemeColor('ForestGreen')

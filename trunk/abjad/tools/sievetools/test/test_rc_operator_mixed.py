@@ -1,10 +1,10 @@
-from abjad.tools.sievetools.rc import RC
-from abjad.tools.sievetools.rcexpression import RCexpression
+from abjad.tools.sievetools.RC import RC
+from abjad.tools.sievetools.RCExpression import RCExpression
 import py.test
 
 
 def test_rc_operator_mixed_01( ):
-   '''Mixed operators yield nested RCexpressions.'''
+   '''Mixed operators yield nested RCExpressions.'''
    
    rc1 = RC(4, 0) 
    rc2 = RC(4, 1)
@@ -15,20 +15,20 @@ def test_rc_operator_mixed_01( ):
    rcsB = rc3 | rc4
    t = rcsA ^ rcsB
 
-   assert isinstance(t, RCexpression)
+   assert isinstance(t, RCExpression)
    assert t.operator == 'xor'
    assert len(t.rcs) == 2
-   assert isinstance(t.rcs[0], RCexpression)
+   assert isinstance(t.rcs[0], RCExpression)
    assert t.rcs[0].operator == 'and'
-   assert isinstance(t.rcs[1], RCexpression)
+   assert isinstance(t.rcs[1], RCExpression)
    assert t.rcs[1].operator == 'or'
    assert t.rcs[0] is rcsA
    assert t.rcs[1] is rcsB
 
 
 def test_rc_operator_mixed_02( ):
-   '''Mixed operators yield nested RCexpressions. 
-   RCexpressions with the same operator, merge.'''
+   '''Mixed operators yield nested RCExpressions. 
+   RCExpressions with the same operator, merge.'''
    
    rc1 = RC(4, 0) 
    rc2 = RC(4, 1)
@@ -39,10 +39,10 @@ def test_rc_operator_mixed_02( ):
    rcsB = rc3 | rc4
    t = rcsA | rcsB
 
-   assert isinstance(t, RCexpression)
+   assert isinstance(t, RCExpression)
    assert t.operator == 'or'
    assert len(t.rcs) == 3
-   assert isinstance(t.rcs[0], RCexpression)
+   assert isinstance(t.rcs[0], RCExpression)
    assert t.rcs[0].operator == 'and'
    assert isinstance(t.rcs[1], RC)
    assert isinstance(t.rcs[2], RC)
@@ -56,9 +56,9 @@ def test_rc_operator_mixed_03( ):
 
    t = (RC(2, 0) ^ RC(3, 0)) | RC(3,0)
 
-   assert isinstance(t, RCexpression)
+   assert isinstance(t, RCExpression)
    assert len(t.rcs) == 2
-   assert isinstance(t.rcs[0], RCexpression)
+   assert isinstance(t.rcs[0], RCExpression)
    assert t.rcs[0].operator == 'xor'
    assert isinstance(t.rcs[1], RC)
    assert t.get_boolean_train(6) == [1,0,1,1,1,0]
@@ -70,9 +70,9 @@ def test_rc_operator_mixed_04( ):
 
    t = (RC(2, 0) ^ RC(3, 0)) | RC(3,0)
 
-   assert isinstance(t, RCexpression)
+   assert isinstance(t, RCExpression)
    assert len(t.rcs) == 2
-   assert isinstance(t.rcs[0], RCexpression)
+   assert isinstance(t.rcs[0], RCExpression)
    assert t.rcs[0].operator == 'xor'
    assert isinstance(t.rcs[1], RC)
    assert t.get_boolean_train(6) == [1,0,1,1,1,0]

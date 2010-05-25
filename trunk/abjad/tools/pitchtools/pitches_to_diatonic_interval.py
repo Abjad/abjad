@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.diatonic_and_chromatic_interval_numbers_to_diatonic_
 def pitches_to_diatonic_interval(pitch_1, pitch_2):
    '''.. versionadded:: 1.1.2
 
-   Return diatonic interval from `pitch_1` to `pitch_2`. ::
+   Return diatonic interval from `pitch_1` to `pitch_2`.
 
    Unison. ::
 

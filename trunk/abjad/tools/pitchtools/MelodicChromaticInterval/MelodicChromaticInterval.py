@@ -9,7 +9,7 @@ from abjad.tools.pitchtools.MelodicChromaticIntervalClass import \
 
 
 class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
-   '''.. versionaddedd:: 1.1.2
+   '''.. versionadded:: 1.1.2
 
    Melodic chromatic interval in semitones. ::
 

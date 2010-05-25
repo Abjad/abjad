@@ -1,4 +1,4 @@
-from abjad.tools.sievetools.rc import RC
+from abjad.tools.sievetools.RC import RC
 import py.test
 
 def test_rc_01( ):

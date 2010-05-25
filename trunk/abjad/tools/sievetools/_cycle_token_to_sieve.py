@@ -1,5 +1,5 @@
-from abjad.tools.sievetools.rc import RC
-from abjad.tools.sievetools.rcexpression import RCexpression
+from abjad.tools.sievetools.RC import RC
+from abjad.tools.sievetools.RCExpression import RCExpression
 
 
 def _cycle_token_to_sieve(cycle_token):
@@ -23,8 +23,8 @@ def _cycle_token_to_sieve(cycle_token):
    '''
 
    ## sieves count as cycle tokens in themselves
-   if isinstance(cycle_token, RCexpression):
-      return RCexpression(cycle_token)
+   if isinstance(cycle_token, RCExpression):
+      return RCExpression(cycle_token)
 
    ## parse cycle token
    modulo = cycle_token[0]
@@ -44,5 +44,5 @@ def _cycle_token_to_sieve(cycle_token):
    residue_classes.sort(lambda x, y: cmp(x.residue, y.residue))
 
    ## return sieve as residue class combination
-   sieve = RCexpression(residue_classes, operator = 'or')
+   sieve = RCExpression(residue_classes, operator = 'or')
    return sieve
