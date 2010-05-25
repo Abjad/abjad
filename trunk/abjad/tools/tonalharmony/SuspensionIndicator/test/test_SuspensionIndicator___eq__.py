@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SuspensionIndicator___eq__01( ):
+def test_SuspensionIndicator___eq___01( ):
 
    t = tonalharmony.SuspensionIndicator(4, 3)
    u = tonalharmony.SuspensionIndicator(4, 3)

@@ -4,7 +4,7 @@ import py.test
 
 ## OR ##
 
-def test_rcexpression_01( ):
+def test_RCExpression_01( ):
    '''boolean operator defaults to OR.'''
 
    t = RCExpression([RC(2, 0), RC(3, 0)])
@@ -12,7 +12,7 @@ def test_rcexpression_01( ):
    assert t.operator == 'or'
 
 
-def test_rcexpression_02( ):
+def test_RCExpression_02( ):
 
    t = RCExpression([RC(2, 0), RC(3, 0)])
 
@@ -20,7 +20,7 @@ def test_rcexpression_02( ):
    assert t.get_congruent_bases(6) == [0,2,3,4,6]
 
 
-def test_rcexpression_03( ):
+def test_RCExpression_03( ):
 
    t = RCExpression([RC(2, 1), RC(3, 0)])
 
@@ -30,7 +30,7 @@ def test_rcexpression_03( ):
 
 ## AND ##
 
-def test_rcexpression_04( ):
+def test_RCExpression_04( ):
 
    t = RCExpression([RC(2, 0), RC(3, 0)], 'and')
 
@@ -39,7 +39,7 @@ def test_rcexpression_04( ):
    assert t.get_congruent_bases(6) == [0, 6]
 
 
-def test_rcexpression_05( ):
+def test_RCExpression_05( ):
 
    t = RCExpression([RC(2, 1), RC(3, 0)], 'and')
 
@@ -49,7 +49,7 @@ def test_rcexpression_05( ):
 
 ## XOR ##
 
-def test_rcexpression_06( ):
+def test_RCExpression_06( ):
 
    t = RCExpression([RC(2, 0), RC(3, 0)], 'xor')
 
@@ -58,7 +58,7 @@ def test_rcexpression_06( ):
    assert t.get_congruent_bases(6) == [2,3,4]
 
 
-def test_rcexpression_07( ):
+def test_RCExpression_07( ):
 
    t = RCExpression([RC(2, 1), RC(3, 0)], 'xor')
 

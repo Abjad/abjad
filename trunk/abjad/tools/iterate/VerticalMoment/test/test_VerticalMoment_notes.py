@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Vertical_Moment_notes_01( ):
+def test_VerticalMoment_notes_01( ):
 
    score = Score([ ])
    score.append(Staff([FixedDurationTuplet((4, 8), construct.run(3))]))

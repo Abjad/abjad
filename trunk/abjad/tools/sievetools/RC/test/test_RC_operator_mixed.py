@@ -3,7 +3,7 @@ from abjad.tools.sievetools.RCExpression import RCExpression
 import py.test
 
 
-def test_rc_operator_mixed_01( ):
+def test_RC_operator_mixed_01( ):
    '''Mixed operators yield nested RCExpressions.'''
    
    rc1 = RC(4, 0) 
@@ -26,7 +26,7 @@ def test_rc_operator_mixed_01( ):
    assert t.rcs[1] is rcsB
 
 
-def test_rc_operator_mixed_02( ):
+def test_RC_operator_mixed_02( ):
    '''Mixed operators yield nested RCExpressions. 
    RCExpressions with the same operator, merge.'''
    
@@ -51,7 +51,7 @@ def test_rc_operator_mixed_02( ):
    assert t.rcs[2] is rc4
 
 
-def test_rc_operator_mixed_03( ):
+def test_RC_operator_mixed_03( ):
    '''Operators combined.'''
 
    t = (RC(2, 0) ^ RC(3, 0)) | RC(3,0)
@@ -65,7 +65,7 @@ def test_rc_operator_mixed_03( ):
    assert t.get_congruent_bases(6) == [0,2,3,4,6]
 
 
-def test_rc_operator_mixed_04( ):
+def test_RC_operator_mixed_04( ):
    '''Operators combined.'''
 
    t = (RC(2, 0) ^ RC(3, 0)) | RC(3,0)

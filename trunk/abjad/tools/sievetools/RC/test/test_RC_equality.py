@@ -3,7 +3,7 @@ from abjad.tools.sievetools.RCExpression import RCExpression
 import py.test
 
 
-def test_rc_equality_01( ):
+def test_RC_equality_01( ):
    '''non-equal residue classes'''
 
    t1 = RC(2, 1)
@@ -12,7 +12,7 @@ def test_rc_equality_01( ):
    assert t1 != t2
 
 
-def test_rc_equality_02( ):
+def test_RC_equality_02( ):
    '''non-equal objects'''
 
    t = RC(2, 1)
@@ -21,7 +21,7 @@ def test_rc_equality_02( ):
    assert 2 != t
 
 
-def test_rc_equality_03( ):
+def test_RC_equality_03( ):
    '''equal'''
 
    t1 = RC(2, 1)

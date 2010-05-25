@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SuspensionIndicator__init_by_stop_and_start_01( ):
+def test_SuspensionIndicator__init_by_start_and_stop_01( ):
 
    t = tonalharmony.SuspensionIndicator(4, 3)
 
@@ -9,7 +9,7 @@ def test_SuspensionIndicator__init_by_stop_and_start_01( ):
    assert t.stop == tonalharmony.ScaleDegree(3)
 
 
-def test_SuspensionIndicator__init_by_stop_and_start_02( ):
+def test_SuspensionIndicator__init_by_start_and_stop_02( ):
 
    t = tonalharmony.SuspensionIndicator(4, ('flat', 3))
 

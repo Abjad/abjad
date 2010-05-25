@@ -3,7 +3,7 @@ from abjad.tools.sievetools.RCExpression import RCExpression
 import py.test
 
 
-def test_rc_operator_xor_01( ):
+def test_RC_operator_xor_01( ):
    '''RC XOR RC returns a RCExpression.'''
 
    rc1 = RC(4, 0) 
@@ -15,7 +15,7 @@ def test_rc_operator_xor_01( ):
    assert t.rcs == [rc1, rc2]
 
 
-def test_rc_operator_xor_02( ):
+def test_RC_operator_xor_02( ):
    '''xor-RCExpression XOR RC returns a flat xor-RCExpression.'''
 
    rcexpression = RC(4, 0) ^ RC(4, 1)
@@ -30,7 +30,7 @@ def test_rc_operator_xor_02( ):
    assert rc in t.rcs
 
 
-def test_rc_operator_xor_03( ):
+def test_RC_operator_xor_03( ):
    '''RC XOR xor-RCExpression returns a flat xor-RCExpression.'''
 
    rcexpression = RC(4, 0) ^ RC(4, 1)
@@ -45,7 +45,7 @@ def test_rc_operator_xor_03( ):
    assert rc in t.rcs
 
 
-def test_rc_operator_xor_04( ):
+def test_RC_operator_xor_04( ):
    '''xor-RCExpression XOR xor-RCExpression returns a flat xor-RCExpression.'''
 
    rc1 = RC(4, 0) 
@@ -65,7 +65,7 @@ def test_rc_operator_xor_04( ):
    assert rc4 in t.rcs
 
 
-def test_rc_operator_xor_05( ):
+def test_RC_operator_xor_05( ):
    '''XOR'''
 
    t = RC(2, 0) ^ RC(3, 0)
@@ -76,7 +76,7 @@ def test_rc_operator_xor_05( ):
    assert t.get_congruent_bases(6) == [2,3,4]
 
 
-def test_rc_operator_xor_06( ):
+def test_RC_operator_xor_06( ):
    '''XOR'''
 
    t = RC(2, 1) ^ RC(3, 0)

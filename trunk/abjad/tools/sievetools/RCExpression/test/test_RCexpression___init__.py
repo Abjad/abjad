@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_RCExpression___init___01( ):
+def test_RCexpression___init___01( ):
    '''Init sieve from rc instances and operator keyword.'''
 
    rcs = [ ]
@@ -15,7 +15,7 @@ def test_RCExpression___init___01( ):
    assert sieve.operator == 'or'
 
 
-def test_RCExpression___init___02( ):
+def test_RCexpression___init___02( ):
    '''Init sieve from other sieve instance.'''
 
    rcs = [ ]
