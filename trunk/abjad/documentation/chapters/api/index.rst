@@ -534,14 +534,14 @@ lilytools
 .. toctree::
    :maxdepth: 1
 
-   tools/lilytools/BookBlock
-   tools/lilytools/BookpartBlock
-   tools/lilytools/HeaderBlock
-   tools/lilytools/LayoutBlock
-   tools/lilytools/LilyFile
-   tools/lilytools/MidiBlock
-   tools/lilytools/PaperBlock
-   tools/lilytools/ScoreBlock
+   tools/lilytools/BookBlock/BookBlock
+   tools/lilytools/BookpartBlock/BookpartBlock
+   tools/lilytools/HeaderBlock/HeaderBlock
+   tools/lilytools/LayoutBlock/LayoutBlock
+   tools/lilytools/LilyFile/LilyFile
+   tools/lilytools/MidiBlock/MidiBlock
+   tools/lilytools/PaperBlock/PaperBlock
+   tools/lilytools/ScoreBlock/ScoreBlock
    tools/lilytools/make_basic_lily_file
    tools/lilytools/parse_note_entry_string
    tools/lilytools/save_ly_as
