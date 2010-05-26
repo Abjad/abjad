@@ -38,7 +38,8 @@ def test_check_assess_components_strict_score_02( ):
    t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            {
                    c'8
                    d'8
@@ -47,7 +48,8 @@ def test_check_assess_components_strict_score_02( ):
                    e'8
                    f'8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components([t], contiguity = 'strict', share = 'score')
    assert check.assess_components(t[:], contiguity = 'strict', share = 'score')

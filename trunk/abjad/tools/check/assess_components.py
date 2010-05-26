@@ -9,37 +9,91 @@ import types
 
 def assess_components(expr, klasses = (_Component, ), 
    contiguity = None, share = None, allow_orphans = True):
-   '''Boolean predicate to return ``True`` or ``False`` depending
-   on the the value of the four keyword parameters.
-
-   The different combinations of keyword parameters are important.
-
+   r'''Test `expr`. Return true or false depending on the
+   combination of values of the four keyword parameters.
    Set `contiguity` to ``'strict'``, ``'thread'`` or ``None``.
-
-   .. todo:: Add examples.
-
    Set `share` to ``'parent'``, ``'score'``, ``'thread'`` or ``None``.
+   The word 'assess' in the name of this function is meant to
+   contrast with 'assert' in other functions defined in this package.
+   This function returns true or false but raises no exceptions.
+   Functions named with 'assert' raise exceptions instead of
+   returning true or false.
 
-   .. todo:: Add examples.
+   Examples all refer to the following score. ::
 
-   The ``allow_orphans`` keyword works as a type of bypass.
-   If ``allow_orphans`` is set to ``True`` (which it is by default),
-   and if ``expr`` is a Python list of orphan components,
-   then the function will always evaluate to ``True``, regardless
+      abjad> first_voice = Voice(construct.scale(3))
+      abjad> second_voice = Voice(construct.scale(2))
+      abjad> pitchtools.diatonicize([first_voice, second_voice])
+      abjad> staff = Staff([first_voice, second_voice])
+      abjad> f(staff)
+      \new Staff {
+              \new Voice {
+                      c'8
+                      d'8
+                      e'8
+              }
+              \new Voice {
+                      f'8
+                      g'8
+              }
+      }
+
+   With ``contiguity == 'strict'`` and ``share == 'parent'``:
+
+      True for strictly contiguous components that share the same parent::
+
+         abjad> first_voice[1:]
+         [Note(d', 8), Note(e', 8)]
+         abjad> check.assess_components(first_voice[1:], contiguity = 'strict', share = 'parent')
+         True
+
+      False for noncontiguous components::
+
+         abjad> (first_voice[0], first_voice[-1])
+         (Note(c', 8), Note(e', 8))
+         abjad> check.assess_components(first_voice[0], first_voice[-1]), contiguity = 'strict', share = 'parent')
+         False
+
+      False for components that do not share the same parent::
+
+         abjad> staff.leaves   
+         (Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8), Note(g', 8))
+         abjad> check.assess_components(staff.leaves, contiguity = 'strict', share = 'parent')
+         False
+
+   With ``contiguity == 'strict'`` and ``share == 'score'``:
+
+      True for strictly contiguous components that share the same score::
+
+         abjad> staff.leaves
+         (Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8), Note(g', 8))
+         abjad> check.assess_components(staff.leaves, contiguity = 'strict', share = 'score')
+         True
+
+      False for noncontiguous components::
+
+         abjad> (first_voice[0], first_voice[-1])
+         (Note(c', 8), Note(e', 8))
+         abjad> check.assess_components(first_voice[0], first_voice[-1]), contiguity = 'strict', share = 'parent')
+         False
+
+   The `allow_orphans` keyword works as a type of bypass.
+
+   If `allow_orphans` is set to true 
+   and if `expr` is a Python list of orphan components,
+   then the function will always evaluate to true, regardless
    of the checks specified by the other keywords.
 
-   On the other hand, if the ``allow_orphans`` keyword is set
-   to ``False``, then expr must meet the checks specified by the
-   other keywords in other for the function to evaluate to ``True``.
+   On the other hand, if the `allow_orphans` keyword is set
+   to false, then `expr` must meet the checks specified by the
+   other keywords in order for the function to evaluate to true.
 
-   .. todo:: Add examples.
+   Calls to this function appear at the beginning of many functions.  
+   Calls to this function also iterate all elements in input.
+   Initial performance testing indicates that this function is
 
-   .. note:: A note on optimization. Calls to this function appear 
-      at the beginning of many functions.  
-      Calls to this function also iterate all elements in expr.
-      This function would, therefore, seem to be a potential 
-      performance bottleneck. But initial performance testing indicates
-      that this function is not a bottleneck.
+   .. todo:: eliminate keywords and break this function into
+      a family of nine related functions with longer names.
    '''
 
    if contiguity is None:

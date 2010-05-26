@@ -162,7 +162,6 @@ check
 .. toctree::
    :maxdepth: 1
 
-   tools/check/are_scalable
    tools/check/assert_components
    tools/check/assert_wf
    tools/check/assess_components
@@ -297,6 +296,7 @@ durtools
    :maxdepth: 1
 
    tools/durtools/agglomerate_by_prolation
+   tools/durtools/are_scalable
    tools/durtools/denominator_to_multiplier
    tools/durtools/diagonalize_all_assignable_durations
    tools/durtools/diagonalize_all_positive_integer_pairs

@@ -1,6 +1,5 @@
 from abjad.meter import Meter
 from abjad.rational import Rational
-from abjad.tools import check
 from abjad.tools import durtools
 from abjad.tools import mathtools
 
@@ -49,7 +48,7 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
       remaining_multiplier = Rational(*reduced_pair)
       if remaining_multiplier != Rational(1):
          containertools.contents_scale(measure, remaining_multiplier)
-   elif check.are_scalable(measure[:], multiplier):
+   elif durtools.are_scalable(measure[:], multiplier):
       containertools.contents_scale(measure, multiplier)
       if old_meter.nonbinary or not mathtools.is_power_of_two(multiplier):
          new_pair = durtools.pair_multiply_reduce_factors(
