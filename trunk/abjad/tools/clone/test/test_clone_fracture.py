@@ -3,9 +3,9 @@ from abjad import *
 
 def test_clone_fracture_01( ):
    '''Deep copy components in 'components'.
-      Deep copy spanners that attach to any component in 'components'.
-      Fracture spanners that attach to components not in 'components'.
-      Return Python list of copied components.'''
+   Deep copy spanners that attach to any component in 'components'.
+   Fracture spanners that attach to components not in 'components'.
+   Return Python list of copied components.'''
 
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
    pitchtools.diatonicize(t)
@@ -13,7 +13,8 @@ def test_clone_fracture_01( ):
    trill = Trill(t.leaves)
    beam = Beam(t[0][:] + t[1:2] + t[2][:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
          \time 2/8
          c'8 [ ( \startTrillSpan
          d'8
@@ -23,15 +24,18 @@ def test_clone_fracture_01( ):
          \time 2/8
          g'8
          a'8 ] ) \stopTrillSpan
-   }'''
+   }
+   '''
 
    result = clone.fracture(t.leaves[2:4])
    new = Voice(result)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       e'8 \startTrillSpan
       f'8 \stopTrillSpan
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(new)

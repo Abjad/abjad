@@ -6,23 +6,23 @@ from abjad.rational import Rational
 
 
 def get_note_head(chord, pitch):
-   '''Return note_head with `pitch` in `chord`.
-   Set `pitch` to an Abjad :class:`~abjad.pitch.pitch.Pitch`
-   instance or a number. ::
+   '''Return note head with `pitch` in `chord`.
+
+   Set `pitch` to an Abjad pitch instance or a number. ::
 
       abjad> chord = Chord([12, 14, 23], Rational(1, 4))
       abjad> chordtools.get_note_head(chord, 14)
       NoteHead('d', 5)
 
-   Raise :exc:`~abjad.exceptions.exceptions.MissingNoteHeadError`
-   when `chord` contains no note_head with pitch equal to `pitch`. ::
+   Raise missing note head error when `chord` contains no 
+   note head with pitch equal to `pitch`. ::
 
       abjad> chord = Chord([12, 14, 23], Rational(1, 4))
       abjad> chordtools.get_note_head(chord, 14)
       MissingNoteHeadError
 
-   Raise :exc:`~abjad.exceptions.exceptions.ExtraNoteHeadError`
-   when `chord` contains more than one note_head with pitch equal to `pitch`. ::
+   Raise extra note head error when `chord` contains more than 
+   one note head with pitch equal to `pitch`. ::
 
       abjad> chord = Chord([12, 12], Rational(1, 4))
       abjad> chordtools.get_note_head(chord, 12)

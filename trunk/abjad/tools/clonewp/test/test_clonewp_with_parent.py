@@ -7,10 +7,12 @@ def test_clonewp_with_parent_01( ):
    t = Staff(construct.scale(4))
    u = clonewp.with_parent(t[:2])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8
            d'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u)
@@ -23,10 +25,12 @@ def test_clonewp_with_parent_02( ):
    t = Staff(construct.scale(4))
    u = clonewp.with_parent(t[-2:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            e'8
            f'8
-   }'''
+   }
+   '''
    
    assert check.wf(t)
    assert check.wf(u)
@@ -35,16 +39,19 @@ def test_clonewp_with_parent_02( ):
 
 
 def test_clonewp_with_parent_03( ):
-   '''Copy notes from tuplet and preserve tuplet target duration.'''
+   '''Copy notes from tuplet and adjust tuplet target duration
+   in order to preserve tuplet multiplier.'''
 
    t = FixedDurationTuplet((4, 8), construct.scale(5))
    u = clonewp.with_parent(t[:3])
 
-   r'''\times 4/5 {
+   r'''
+   \times 4/5 {
            c'8
            d'8
            e'8
-   }'''
+   }
+   '''
 
    assert isinstance(u, FixedDurationTuplet)
    assert u.duration.target == Rational(3, 10)
@@ -60,7 +67,8 @@ def test_clonewp_with_parent_04( ):
    pitchtools.diatonicize(t)
    u = clonewp.with_parent(t[1:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \times 2/3 {
                    f'8
                    g'8
@@ -71,7 +79,8 @@ def test_clonewp_with_parent_04( ):
                    c''8
                    d''8
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(u) 

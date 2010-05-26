@@ -8,10 +8,80 @@ import copy
 
 
 def fracture(components, n = 1):
-   '''Deep copy components in 'components'.
-   Deep copy spanners that attach to any component in 'components'.
-   Fracture spanners that attach to components not in 'components'.
-   Return Python list of copied components.
+   r'''Clone thread-contiguous `components` and fracture 
+   spanners that cover `components`.
+
+   The steps this function takes are as follows.
+   Deep copy `components`.
+   Deep copy spanners that attach to any component in `components`.
+   Fracture spanners that attach to components not in `components`.
+   Return Python list of copied components. ::
+
+      abjad> voice = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
+      abjad> pitchtools.diatonicize(voice)
+      abjad> beam = Beam(voice.leaves[:4])
+      abjad> f(voice)
+      \new Voice {
+              {
+                      \time 2/8
+                      c'8 [
+                      d'8
+              }
+              {
+                      \time 2/8
+                      e'8
+                      f'8 ]
+              }
+              {
+                      \time 2/8
+                      g'8
+                      a'8
+              }
+      }
+
+   ::
+
+      abjad> result = clone.fracture(voice.leaves[2:4])
+      abjad> result
+      (Note(e', 8), Note(f', 8))
+
+   ::
+
+      abjad> new_voice = Voice(result)
+      abjad> f(new_voice)
+      \new Voice {
+              e'8 [
+              f'8 ]
+      }
+
+   ::
+
+      abjad> voice.leaves[2] is new_voice.leaves[0]
+      False
+
+   ::
+
+      abjad> voice.leaves[2].beam.spanner is new_voice.leaves[0].beam.spanner
+      False
+
+   Clone `components` a total of `n` times. ::
+
+      abjad> result = clone.fracture(voice.leaves[2:4], n = 3)
+      abjad> result
+      (Note(e', 8), Note(f', 8), Note(e', 8), Note(f', 8), Note(e', 8), Note(f', 8))
+
+   ::
+
+      abjad> new_voice = Voice(result)
+      abjad> f(new_voice)
+      \new Voice {
+              e'8 [
+              f'8 ]
+              e'8 [
+              f'8 ]
+              e'8 [
+              f'8 ]
+      }
    '''
 
    if n < 1:
