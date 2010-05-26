@@ -3,18 +3,19 @@ from abjad.tools.check.wf import wf as check_wf
 
 
 def assert_wf(expr):
-   '''Check `expr` for well-formedness.
-   
-   If `expr` is not well-formed, report violators
-   and raise :exc:`WellFormednessError`. ::
+   '''Return none when `expr` is well-formed. ::
 
-      abjad> t = Staff(construct.scale(4))
-      abjad> Beam(t[:])
-      abjad> t._music.pop( )
-   
-   ::
+      abjad> staff = Staff(construct.scale(4))
+      abjad> check.assert_wf(staff) is None
+      True      
 
-      abjad> check.assert_wf(t)
+   Report violators and raise well-formedness error
+   when `expr` is not well-formed. ::
+
+      abjad> staff = Staff(construct.scale(4))
+      abjad> Beam(staff[:])
+      abjad> staff._music.pop( )
+      abjad> check.assert_wf(staff)
       0 /    1 beams overlapping
       0 /    1 containers empty
       0 /    3 flags misrepresented
@@ -30,18 +31,7 @@ def assert_wf(expr):
       0 /    3 quarters beamed
       1 /    1 spanners discontiguous
       0 /    3 ties mispitched
-
       WellFormednessError
-
-   If `expr` is well-formed, return ``None``. ::
-
-      abjad> t = Staff(construct.scale(4))
-      abjad> Beam(t[:])
-      abjad> t.pop( )
-
-   ::
-
-      abjad> check.assert_wf(t)
    '''
 
    if not check_wf(expr):
