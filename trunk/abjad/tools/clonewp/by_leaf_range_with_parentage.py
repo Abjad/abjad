@@ -7,10 +7,48 @@ from abjad.tools.clone.fracture import fracture
 
 
 def by_leaf_range_with_parentage(expr, start = 0, stop = None):
-   '''Copy consecutive leaves from start to stop in expr.
-   Copy all structure in the parentage of copied leaves.
+   r'''Clone `expr` with parentage from `start` leaf to `stop` leaf. ::
+
+      abjad> t = Staff([Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)])
+      abjad> pitchtools.diatonicize(t)
+      abjad> f(t)
+      \new Staff {
+         \new Voice {
+            \times 2/3 {
+               c'8
+               d'8
+               e'8
+            }
+            \times 2/3 {
+               f'8
+               g'8
+               a'8
+            }
+         }
+      }
+      
+   ::
+      
+      abjad> u = clonewp.by_leaf_range_with_parentage(t, 1, 5)
+      abjad> f(u)
+      \new Staff {
+         \new Voice {
+            \times 2/3 {
+               d'8
+               e'8
+            }
+            \times 2/3 {
+               f'8
+               g'8
+            }
+         }
+      }
+
+   Clone all layers in leaves' parentage.
+
    Trim and shrink parent containers as necessary.
-   When stop is None, copy all leaves from start in expr.
+
+   When `stop` is none copy all leaves from `start`.
    '''
 
    # trivial leaf lcopy

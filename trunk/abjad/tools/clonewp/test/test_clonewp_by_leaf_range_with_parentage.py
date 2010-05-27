@@ -70,14 +70,16 @@ def test_clonewp_by_leaf_range_with_parentage_02( ):
 
    r'''
    \new Staff {
-           \times 2/3 {
-                   d'8
-                   e'8
-           }
-           \times 2/3 {
-                   f'8
-                   g'8
-           }
+        \new Voice {
+                \times 2/3 {
+                        d'8
+                        e'8
+                }
+                \times 2/3 {
+                        f'8
+                        g'8
+                }
+        }
    }
    '''
 
