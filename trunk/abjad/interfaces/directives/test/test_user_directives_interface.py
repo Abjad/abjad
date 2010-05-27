@@ -56,7 +56,8 @@ def test_user_directives_interface_03( ):
    t.directives.opening.append('opening')
    t.directives.closing.append('closing')
 
-   r'''before
+   r'''
+   before
    {
            opening
            c'8
@@ -83,7 +84,8 @@ def test_user_directives_interface_04( ):
    t.directives.closing.append('closing1')
    t.directives.closing.append('closing2')
 
-   r'''before1
+   r'''
+   before1
    before2
    {
            opening1

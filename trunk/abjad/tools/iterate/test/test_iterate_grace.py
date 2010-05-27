@@ -10,7 +10,8 @@ def test_iterate_grace_01( ):
    t[1].grace.before.extend(notes[:2])
    t[1].grace.after.extend(notes[2:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       \grace {
          c'16
@@ -24,7 +25,8 @@ def test_iterate_grace_01( ):
       }
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    notes = list(iterate.grace(t, Note))
 

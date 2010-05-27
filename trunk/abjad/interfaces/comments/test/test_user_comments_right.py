@@ -12,14 +12,16 @@ def test_user_comments_right_01( ):
 
    "Container slots interfaces do not collect contributions to right."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \override Beam #'thickness = #3
            c'8 [
            d'8
            e'8
            f'8 ]
            \revert Beam #'thickness
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}"
@@ -33,7 +35,8 @@ def test_user_comments_right_02( ):
    t.comments.right.append('Leaf comments right here.')
    t.comments.right.append('More comments right.')
    
-   r'''\once \override Beam #'thickness = #3
+   r'''
+   \once \override Beam #'thickness = #3
    c'8 % Leaf comments right here. % More comments right.'''
 
    assert check.wf(t)

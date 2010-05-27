@@ -8,7 +8,8 @@ def test_voice_interface_explicit_01( ):
    t = Score([Staff([Voice(construct.scale(4))])])
    voice = t[0][0]
 
-   r'''\new Score <<
+   r'''
+   \new Score <<
            \new Staff {
                    \new Voice {
                            c'8
@@ -17,7 +18,8 @@ def test_voice_interface_explicit_01( ):
                            f'8
                    }
            }
-   >>'''
+   >>
+   '''
 
    assert t.leaves[0].voice.explicit is voice
    assert t[0][0].voice.explicit is voice

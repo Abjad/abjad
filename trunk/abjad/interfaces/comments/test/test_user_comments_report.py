@@ -10,7 +10,8 @@ def test_user_comments_report_01( ):
    t.comments.before.append('More comments before.')
    t.comments.opening.append('Comments opening.')
 
-   r'''% Comments before.
+   r'''
+   % Comments before.
    % More comments before.
    \new Voice {
       % Comments opening.
@@ -18,11 +19,13 @@ def test_user_comments_report_01( ):
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    result = t.comments.report(output = 'string')
 
-   r'''before
+   r'''
+   before
       % Comments before.
       % More comments before.
    opening

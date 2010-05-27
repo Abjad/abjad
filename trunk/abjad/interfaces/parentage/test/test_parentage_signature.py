@@ -47,7 +47,8 @@ def test_parentage_signature_04( ):
    pitchtools.diatonicize(t)
    t.note_head.color = 'red'
 
-   r'''\new Voice \with {
+   r'''
+   \new Voice \with {
            \override NoteHead #'color = #red
    } {
            c'8
@@ -64,7 +65,8 @@ def test_parentage_signature_04( ):
            >>
            b'8
            c''8
-   }'''
+   }
+   '''
 
    signatures = [leaf.parentage.signature for leaf in t.leaves]
 
@@ -92,7 +94,8 @@ def test_parentage_signature_06( ):
    t = Container(Staff(construct.run(2)) * 2)
    t[0].name = t[1].name = 'staff'
 
-   r'''{
+   r'''
+   {
            \context Staff = "staff" {
                    c'8
                    c'8
@@ -101,7 +104,8 @@ def test_parentage_signature_06( ):
                    c'8
                    c'8
            }
-   }'''
+   }
+   '''
 
    assert t.leaves[0].parentage.signature == t.leaves[1].parentage.signature
    assert t.leaves[0].parentage.signature == t.leaves[2].parentage.signature

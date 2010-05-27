@@ -8,7 +8,8 @@ def test_tuplettools_subsume_01( ):
    t = Staff(FixedDurationTuplet((3, 8), construct.scale(2)) * 2)
    Beam(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \fraction \times 3/2 {
                    c'8 [
                    d'8
@@ -17,18 +18,21 @@ def test_tuplettools_subsume_01( ):
                    c'8
                    d'8 ]
            }
-   }'''   
+   }
+   '''
 
    tuplettools.subsume(t[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8. [
            d'8.
            \fraction \times 3/2 {
                    c'8
                    d'8 ]
            }
-   }'''   
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8. [\n\td'8.\n\t\\fraction \\times 3/2 {\n\t\tc'8\n\t\td'8 ]\n\t}\n}"
@@ -41,7 +45,8 @@ def test_tuplettools_subsume_02( ):
    t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8
                    d'8
@@ -52,11 +57,13 @@ def test_tuplettools_subsume_02( ):
                    g'8
                    a'8
            }
-   }'''
+   }
+   '''
 
    tuplettools.subsume(t[0])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8
            }
@@ -71,7 +78,8 @@ def test_tuplettools_subsume_02( ):
                    g'8
                    a'8
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\t\\times 2/3 {\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"

@@ -7,13 +7,15 @@ def test_breaks_interface_01( ):
    t = Staff(construct.scale(4))
    t.breaks.line = True
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8
            d'8
            e'8
            f'8
            \break
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\break\n}"
@@ -25,13 +27,15 @@ def test_breaks_interface_02( ):
    t = Staff(construct.scale(4))
    t.breaks.page = True
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8
            d'8
            e'8
            f'8
            \pageBreak
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\pageBreak\n}"
@@ -44,14 +48,16 @@ def test_breaks_interface_03( ):
    t.breaks.line = True
    t.breaks.page = True
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'4
       c'4
       c'4
       c'4
       \break
       \pageBreak
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\t\\break\n\t\\pageBreak\n}"
@@ -113,12 +119,14 @@ def test_breaks_interface_07( ):
    t.breaks.page = True
    t.breaks.clear( )
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'4
       c'4
       c'4
       c'4
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"

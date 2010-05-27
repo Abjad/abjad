@@ -7,12 +7,14 @@ def test_container_imul_01( ):
    Beam(t[:])
    t *= 2
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8 ]
            c'8 [
            d'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
@@ -24,10 +26,12 @@ def test_container_imul_02( ):
    Beam(t[:])
    t *= 1
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
@@ -39,8 +43,10 @@ def test_container_imul_03( ):
    Beam(t[:])
    t *= 0
 
-   r'''\new Voice {
-   }'''
+   r'''
+   \new Voice {
+   }
+   '''
    
    assert check.wf(t)
    assert t.format == '\\new Voice {\n}'

@@ -14,13 +14,15 @@ def test_container_insert_01( ):
    Beam(t[:])
    t.insert(0, Rest((1, 8)))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            r8
            c'8 [
            d'8
            e'8
            f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
@@ -33,13 +35,15 @@ def test_container_insert_02( ):
    Beam(t[:])
    t.insert(1, Note(1, (1, 8)))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       cs'8
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
@@ -53,13 +57,15 @@ def test_container_insert_03( ):
    Beam(t[:])
    t.insert(4, Rest((1, 4)))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [
            cs'8
            d'8
            ef'8 ]
            r4
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
@@ -72,13 +78,15 @@ def test_container_insert_04( ):
    Beam(t[:])
    t.insert(1000, Rest((1, 4)))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [
            cs'8
            d'8
            ef'8 ]
         r4
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
@@ -91,13 +99,15 @@ def test_container_insert_05( ):
    Beam(t[:])
    t.insert(-1, Note(4.5, (1, 8)))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
       e'8
       eqs'8
       f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\teqs'8\n\tf'8 ]\n}"
@@ -110,13 +120,15 @@ def test_container_insert_06( ):
    Beam(t[:])
    t.insert(-1000, Rest((1, 8)))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       r8
       c'8 [
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"

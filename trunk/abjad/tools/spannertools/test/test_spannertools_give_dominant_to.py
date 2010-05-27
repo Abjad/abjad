@@ -14,32 +14,38 @@ def test_spannertools_give_dominant_to_01( ):
    Beam(t[:2])
    Slur(t[1:3])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ \<
       d'8 ] (
       e'8 )
       f'8 \!
-   }'''
+   }
+   '''
 
    recipient = Voice(construct.run(3, Rational(1, 16)))
    Beam(recipient)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'16 [
       c'16
       c'16 ]
-   }'''
+   }
+   '''
 
    _give_dominant_to(t[1:3], recipient[:])
 
    "Voice t is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ \<
       d'8 ]
       e'8
       f'8 \!
-   }'''
+   }
+   '''
 
    "Both crescendo and beam are now discontiguous."
 
@@ -48,11 +54,13 @@ def test_spannertools_give_dominant_to_01( ):
    
    "Recipient is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'16 [ (
       c'16
       c'16 ] )
-   }'''
+   }
+   '''
 
    "Slur is contiguous but recipient participates in discont. cresc."
 
@@ -67,7 +75,8 @@ def test_spannertools_give_dominant_to_02( ):
    pitchtools.diatonicize(t)
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -76,7 +85,8 @@ def test_spannertools_give_dominant_to_02( ):
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    donor = t[0]
    recipient = Voice(construct.scale(4))
@@ -84,7 +94,8 @@ def test_spannertools_give_dominant_to_02( ):
    
    "Container t is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -93,18 +104,21 @@ def test_spannertools_give_dominant_to_02( ):
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
    "Recipient container is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert recipient.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n}"
 

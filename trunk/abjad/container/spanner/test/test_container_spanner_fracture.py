@@ -8,7 +8,8 @@ def test_container_spanner_fracture_01( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -21,11 +22,13 @@ def test_container_spanner_fracture_01( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    t[1].spanners.fracture( )
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8 ]
@@ -38,7 +41,8 @@ def test_container_spanner_fracture_01( ):
          g'8 [
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
@@ -51,7 +55,8 @@ def test_container_spanner_fracture_02( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -64,14 +69,16 @@ def test_container_spanner_fracture_02( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
    t[1].spanners.fracture('left')
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8 ]
@@ -84,7 +91,8 @@ def test_container_spanner_fracture_02( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
@@ -97,7 +105,8 @@ def test_container_spanner_fracture_03( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -110,14 +119,16 @@ def test_container_spanner_fracture_03( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
    t[1].spanners.fracture('right')
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -130,7 +141,8 @@ def test_container_spanner_fracture_03( ):
          g'8 [
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
@@ -142,7 +154,8 @@ def test_container_spanner_fracture_04( ):
    t = Voice(Container(construct.run(2)) * 3)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -155,7 +168,8 @@ def test_container_spanner_fracture_04( ):
          g'8
          a'8
       }
-   }'''
+   }
+   '''
 
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
 

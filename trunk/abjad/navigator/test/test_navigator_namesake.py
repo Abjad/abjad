@@ -79,7 +79,8 @@ def test_navigator_namesake_07( ):
    b.parallel = True
    t = Staff([a, b])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            <<
                    \context Voice = "voiceOne" {
                            c'8
@@ -100,7 +101,8 @@ def test_navigator_namesake_07( ):
                            c'8
                    }
            >>
-   }'''
+   }
+   '''
 
    assert a[0]._navigator._nextNamesake is b[0]
    assert a[1]._navigator._nextNamesake is b[1]

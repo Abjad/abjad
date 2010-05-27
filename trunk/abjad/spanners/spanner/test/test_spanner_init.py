@@ -15,12 +15,14 @@ def test_spanner_init_02( ):
    t = Container(construct.scale(4))
    p = Beam(t[:])
 
-   r'''{
+   r'''
+   {
       c'8 [
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    assert len(p) == 4
    assert p[:] == t[:]

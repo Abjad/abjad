@@ -13,13 +13,15 @@ def test_containertools_insert_and_fracture_01( ):
    Beam(t[:])
    containertools.insert_and_fracture(t, 0, Rest((1, 4)))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            r4
            c'8 [
            cs'8
            d'8
            ef'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"   
@@ -31,13 +33,15 @@ def test_containertools_insert_and_fracture_02( ):
    Beam(t[:])
    containertools.insert_and_fracture(t, 1, Rest((1, 4)))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [ ]
            r4
            cs'8 [
            d'8
            ef'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
@@ -50,13 +54,15 @@ def test_containertools_insert_and_fracture_03( ):
    Beam(t[:])
    containertools.insert_and_fracture(t, 4, Rest((1, 4)))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [
            cs'8
            d'8
            ef'8 ]
            r4
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
@@ -69,13 +75,15 @@ def test_containertools_insert_and_fracture_04( ):
    Beam(t[:])
    containertools.insert_and_fracture(t, 1000, Rest((1, 4)))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [
            cs'8
            d'8
            ef'8 ]
         r4
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
@@ -88,13 +96,15 @@ def test_containertools_insert_and_fracture_05( ):
    Beam(t[:])
    containertools.insert_and_fracture(t, -1, Rest((1, 4)))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [
            cs'8
            d'8 ]
            r4
            ef'8 [ ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
@@ -107,13 +117,15 @@ def test_containertools_insert_and_fracture_06( ):
    Beam(t[:])
    containertools.insert_and_fracture(t, -1000, Rest((1, 4)))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            r4
            c'8 [
            cs'8
            d'8
            ef'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"

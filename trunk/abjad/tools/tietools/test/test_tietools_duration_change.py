@@ -9,10 +9,12 @@ def test_tietools_duration_change_01( ):
    Beam(t[:])
    tietools.duration_change(t[0].tie.chain, Rational(5, 32))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ ~
       c'32 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ~\n\tc'32 ]\n}"
@@ -25,9 +27,11 @@ def test_tietools_duration_change_02( ):
    Beam(t[:])
    tietools.duration_change(t[0].tie.chain, Rational(4, 32))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n}"

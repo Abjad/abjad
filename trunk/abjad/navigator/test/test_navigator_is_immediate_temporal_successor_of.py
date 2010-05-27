@@ -12,12 +12,14 @@ def test_navigator_is_immediate_temporal_successor_of_01( ):
    assert t[1]._navigator._isImmediateTemporalSuccessorOf(t[2])
    assert t[2]._navigator._isImmediateTemporalSuccessorOf(t[3])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       cs'8
       d'8
       ef'8
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_02( ):
@@ -30,12 +32,14 @@ def test_navigator_is_immediate_temporal_successor_of_02( ):
    assert t[1]._navigator._isImmediateTemporalSuccessorOf(t[2])
    assert t[2]._navigator._isImmediateTemporalSuccessorOf(t[3])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
       cs'8
       d'8
       ef'8
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_03( ):
@@ -48,12 +52,14 @@ def test_navigator_is_immediate_temporal_successor_of_03( ):
    assert t[1]._navigator._isImmediateTemporalSuccessorOf(t[2])
    assert t[2]._navigator._isImmediateTemporalSuccessorOf(t[3])
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       d'8
       ef'8
-   }'''
+   }
+   '''
 
 
 ## NONSTRUCTURAL in new parallel --> context model.
@@ -85,11 +91,13 @@ def test_navigator_is_immediate_temporal_successor_of_05( ):
    assert t[0]._navigator._isImmediateTemporalSuccessorOf(t[1])
    assert t[1]._navigator._isImmediateTemporalSuccessorOf(t[2])
 
-   r'''\times 2/3 {
+   r'''
+   \times 2/3 {
       c'8
       cs'8
       d'8
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_06( ):
@@ -106,7 +114,8 @@ def test_navigator_is_immediate_temporal_successor_of_06( ):
    assert t[0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1])
    assert t[0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1][0])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          cs'8
@@ -119,7 +128,8 @@ def test_navigator_is_immediate_temporal_successor_of_06( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_07( ):
@@ -136,7 +146,8 @@ def test_navigator_is_immediate_temporal_successor_of_07( ):
    assert t[0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1])
    assert t[0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1][0])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       \times 2/3 {
          c'8
          cs'8
@@ -147,7 +158,8 @@ def test_navigator_is_immediate_temporal_successor_of_07( ):
          e'8
          f'8
       }
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_08( ):
@@ -165,7 +177,8 @@ def test_navigator_is_immediate_temporal_successor_of_08( ):
    assert t[0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1])
    assert t[0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1][0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \new Voice {
          c'8
          cs'8
@@ -178,7 +191,8 @@ def test_navigator_is_immediate_temporal_successor_of_08( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_09( ):
@@ -197,7 +211,8 @@ def test_navigator_is_immediate_temporal_successor_of_09( ):
    assert t[0]._navigator._isImmediateTemporalSuccessorOf(t[1][0])
    assert t[0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \context Voice = "foo" {
          c'8
          cs'8
@@ -210,7 +225,8 @@ def test_navigator_is_immediate_temporal_successor_of_09( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_10( ):
@@ -229,7 +245,8 @@ def test_navigator_is_immediate_temporal_successor_of_10( ):
    assert t[0]._navigator._isImmediateTemporalSuccessorOf(t[1][0])
    assert t[0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \context Voice = "foo" {
          c'8
          cs'8
@@ -242,7 +259,8 @@ def test_navigator_is_immediate_temporal_successor_of_10( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_11( ):
@@ -273,7 +291,8 @@ def test_navigator_is_immediate_temporal_successor_of_11( ):
    assert seq[0][0][-1]._navigator._isImmediateTemporalSuccessorOf(seq[1][0])
    assert seq[0][0][-1]._navigator._isImmediateTemporalSuccessorOf(seq[1][0][0])
 
-   r'''{
+   r'''
+   {
       \new Staff {
          \new Voice {
             c'8
@@ -290,7 +309,8 @@ def test_navigator_is_immediate_temporal_successor_of_11( ):
             g'8
          }
       }
-   }'''   
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_12( ):
@@ -337,7 +357,8 @@ def test_navigator_is_immediate_temporal_successor_of_12( ):
    assert seq[0][1][-1]._navigator._isImmediateTemporalSuccessorOf(seq[1][1])
    assert seq[0][1][-1]._navigator._isImmediateTemporalSuccessorOf(seq[1][1][0])
 
-   r'''{
+   r'''
+   {
       \new Staff <<
          \new Voice {
             c''8
@@ -366,7 +387,8 @@ def test_navigator_is_immediate_temporal_successor_of_12( ):
             g''8
          }
       >>
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_immediate_temporal_successor_of_13( ):
@@ -391,7 +413,8 @@ def test_navigator_is_immediate_temporal_successor_of_13( ):
    assert t[0][0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1][0])
    assert t[0][0][-1]._navigator._isImmediateTemporalSuccessorOf(t[1][0][0])
    
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          {
             c'8
@@ -408,4 +431,5 @@ def test_navigator_is_immediate_temporal_successor_of_13( ):
             g'8
          }
       }
-   }'''
+   }
+   '''

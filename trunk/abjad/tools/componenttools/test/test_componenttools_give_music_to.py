@@ -11,7 +11,8 @@ def test_componenttools_give_music_to_01( ):
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -20,7 +21,8 @@ def test_componenttools_give_music_to_01( ):
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    donor = t[0]
    recipient = Voice([ ])
@@ -28,14 +30,16 @@ def test_componenttools_give_music_to_01( ):
 
    "Container t is now ..."
    
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
       }
       {
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    "Container t carries discontiguous spanners."
  
@@ -44,10 +48,12 @@ def test_componenttools_give_music_to_01( ):
 
    "Recipient container is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
-   }'''
+   }
+   '''
 
    "Recipient container carries discontiguous spanners."
 

@@ -105,7 +105,8 @@ def test_containertools_contents_reverse_08( ):
    t = Staff([measure] + notes)
    beam = Beam(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
                    \time 1/1
                    c'8 [
                    d'8
@@ -117,7 +118,8 @@ def test_containertools_contents_reverse_08( ):
                    c''8
            c'8
            d'8 ]
-   }'''
+   }
+   '''
 
    ## TODO: Make MeasureContiguityError raise here ##
 

@@ -8,7 +8,8 @@ def test_parentage_parentage_01( ):
    t = Score([Staff(Container(construct.run(2)) * 2)])
    pitchtools.diatonicize(t)
 
-   r'''\new Score <<
+   r'''
+   \new Score <<
       \new Staff {
          {
             c'8
@@ -19,7 +20,8 @@ def test_parentage_parentage_01( ):
             f'8
          }
       }
-   >>'''
+   >>
+   '''
 
    parentage = t.leaves[0].parentage.parentage
 
@@ -39,7 +41,8 @@ def test_parentage_parentage_02( ):
    t = Score([Staff(Container(construct.run(2)) * 2)])
    pitchtools.diatonicize(t)
 
-   r'''\new Score <<
+   r'''
+   \new Score <<
       \new Staff {
          {
             c'8
@@ -50,7 +53,8 @@ def test_parentage_parentage_02( ):
             f'8
          }
       }
-   >>'''
+   >>
+   '''
 
    parentage = t[0][0].parentage.parentage
 

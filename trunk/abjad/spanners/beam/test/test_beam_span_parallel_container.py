@@ -58,7 +58,8 @@ def test_beam_span_parallel_container_03( ):
    assert isinstance(p.components[0], Container)
    assert t.format == "<<\n\t\\new Voice {\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8 ]\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
 
-   r'''<<
+   r'''
+   <<
            \new Voice {
                    c'8 [
                    cs'8
@@ -101,14 +102,16 @@ def test_beam_span_parallel_container_05( ):
    assert len(p.leaves) == 4
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\t<<\n\t>>\n\td'8\n\tef'8 ]\n}"
    
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [
       cs'8
       <<
       >>
       d'8
       ef'8 ]
-   }'''
+   }
+   '''
 
 
 def test_beam_span_parallel_container_06( ):
@@ -132,7 +135,8 @@ def test_beam_span_parallel_container_06( ):
    assert len(p.leaves) == 12
    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t<<\n\t\t\\context Voice = "foo" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t\t\\context Voice = "bar" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8\n\t\t}\n\t>>\n\t\\context Voice = "foo" {\n\t\tc\'\'8\n\t\tcs\'\'8\n\t\td\'\'8\n\t\tef\'\'8 ]\n\t}\n}'
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \context Voice = "foo" {
          c'8 [
          cs'8
@@ -159,4 +163,5 @@ def test_beam_span_parallel_container_06( ):
          d''8
          ef''8 ]
       }
-   }'''
+   }
+   '''

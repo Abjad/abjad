@@ -8,7 +8,8 @@ def test_spannertools_give_attached_to_children_01( ):
    pitchtools.diatonicize(t)
    beam = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -17,7 +18,8 @@ def test_spannertools_give_attached_to_children_01( ):
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    spannertools.give_attached_to_children(t[0])
 

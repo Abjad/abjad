@@ -7,22 +7,26 @@ def test_leaftools_duration_change_01( ):
    t = Voice(construct.scale(4))
    Beam(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
       e'8
       f'8
-   }'''
+   }
+   '''
 
    leaftools.duration_change(t[1], Rational(5, 32))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ~
       d'32 ]
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t) 
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ~\n\td'32 ]\n\te'8\n\tf'8\n}"
@@ -36,22 +40,26 @@ def test_leaftools_duration_change_02( ):
    Tie(t[:2])
    Beam(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ ~
       c'8 ]
       c'8
       c'8
-   }'''
+   }
+   '''
 
    leaftools.duration_change(t[1], Rational(5, 32))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ ~
       c'8 ~
       c'32 ]
       c'8
       c'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert "\\new Voice {\n\tc'8 [ ~\n\tc'8 ~\n\tc'32 ]\n\tc'8\n\tc'8\n}"
@@ -64,21 +72,25 @@ def test_leaftools_duration_change_03( ):
    t = Voice(construct.scale(4))
    Beam(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
       e'8
       f'8
-   }'''
+   }
+   '''
 
    leaftools.duration_change(t[1], Rational(3, 16))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8. ]
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8. ]\n\te'8\n\tf'8\n}"
@@ -91,16 +103,19 @@ def test_leaftools_duration_change_04( ):
    t = Voice(construct.scale(4))
    Beam(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
       e'8
       f'8
-   }'''
+   }
+   '''
 
    leaftools.duration_change(t[1], Rational(5, 48))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            \times 2/3 {
                    d'8 ~
@@ -108,7 +123,8 @@ def test_leaftools_duration_change_04( ):
            }
            e'8
            f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32 ]\n\t}\n\te'8\n\tf'8\n}"
@@ -121,23 +137,27 @@ def test_leaftools_duration_change_05( ):
    t = Voice(construct.scale(4))
    Beam(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
       e'8
       f'8
-   }'''
+   }
+   '''
 
    leaftools.duration_change(t[1], Rational(1, 12))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            \times 2/3 {
                    d'8 ]
            }
            e'8
            f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ]\n\t}\n\te'8\n\tf'8\n}" 

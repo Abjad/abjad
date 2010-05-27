@@ -11,12 +11,14 @@ def test_chord_append_01( ):
    note_head.style = 'harmonic'
    chord.append(note_head)
 
-   r'''<
+   r'''
+   <
            c'
            d'
            \tweak #'style #'harmonic
            b'
-   >4'''   
+   >4
+   '''
 
    assert check.wf(chord)
    assert note_head._client is chord

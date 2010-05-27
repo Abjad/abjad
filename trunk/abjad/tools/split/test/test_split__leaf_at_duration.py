@@ -9,20 +9,24 @@ def test_split__leaf_at_duration_01( ):
    t = Staff(construct.scale(3))
    Beam(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
         c'8 [
         d'8
         e'8 ]
-   }'''
+   }
+   '''
 
    halves = split__leaf_at_duration(t[1], Rational(1, 32))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [
            d'32
            d'16.
            e'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
@@ -34,15 +38,18 @@ def test_split__leaf_at_duration_02( ):
    t = Staff(construct.scale(3))
    Beam(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
         c'8 [
         d'8
         e'8 ]
-   }'''
+   }
+   '''
 
    halves = split__leaf_at_duration(t[1], Rational(1, 24))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
         c'8 [
         \times 2/3 {
                 d'16
@@ -51,7 +58,8 @@ def test_split__leaf_at_duration_02( ):
                 d'8
         }
         e'8 ]
-   }'''
+   }
+   '''
    
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
@@ -65,18 +73,21 @@ def test_split__leaf_at_duration_03( ):
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       \times 2/3 {
          d'8
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    halves = split__leaf_at_duration(t.leaves[1], Rational(1, 24))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       \times 2/3 {
          d'16
@@ -84,7 +95,8 @@ def test_split__leaf_at_duration_03( ):
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"

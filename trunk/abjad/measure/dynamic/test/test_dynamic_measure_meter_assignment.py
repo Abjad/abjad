@@ -7,7 +7,8 @@ def test_dynamic_measure_meter_assignment_01( ):
 
    t = DynamicMeasure(construct.scale(4))
 
-   r'''\time 1/2
+   r'''
+   \time 1/2
         c'8
         d'8
         e'8

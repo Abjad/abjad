@@ -11,20 +11,24 @@ def test_container_pop_01( ):
    Slur(t[:])
    Beam(t[1])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 (
       d'8 [ ]
       e'8
       f'8 )
-   }'''
+   }
+   '''
 
    result = t.pop(1)
 
-   r''' \new Voice {
+   r'''
+    \new Voice {
       c'8 (
       e'8
       f'8 )
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
@@ -43,7 +47,8 @@ def test_container_pop_02( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [
          d'8
@@ -52,24 +57,29 @@ def test_container_pop_02( ):
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    sequential = t.pop( )
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [
          d'8 ]
       }
-   }'''
+   }
+   '''
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n}"
    assert check.wf(t)
 
-   r'''{
+   r'''
+   {
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert sequential.format == "{\n\te'8\n\tf'8\n}"
    assert check.wf(sequential)

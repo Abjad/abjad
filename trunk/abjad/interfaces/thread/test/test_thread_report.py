@@ -137,7 +137,8 @@ def test_thread_report_04( ):
    pitchtools.diatonicize(t)
    t.note_head.color = 'red'
 
-   r'''\new Voice \with {
+   r'''
+   \new Voice \with {
            \override NoteHead #'color = #red
    } {
            c'8
@@ -154,7 +155,8 @@ def test_thread_report_04( ):
            >>
            b'8
            c''8
-   }'''
+   }
+   '''
 
    '''abjad> print t.leaves[2].thread.report
 
@@ -179,7 +181,8 @@ def test_thread_report_05( ):
    pitchtools.diatonicize(t)
    t.note_head.color = 'red'
 
-   r'''\context Voice = "foo" \with {
+   r'''
+   \context Voice = "foo" \with {
            \override NoteHead #'color = #red
    } {
            c'8
@@ -224,7 +227,8 @@ def test_thread_report_06( ):
    Beam(t.leaves[:2])
    Beam(t.leaves[2:])
 
-   r'''{
+   r'''
+   {
            \context Staff = "staff1" {
                    \context Voice = "voicefoo" {
                            c'8 [
@@ -237,7 +241,8 @@ def test_thread_report_06( ):
                            f'8 ]
                    }
            }
-   }'''
+   }
+   '''
 
    '''abjad> print t.leaves[2].thread.report
 
@@ -262,7 +267,8 @@ def test_thread_report_07( ):
    t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
    t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")
 
-   r'''{
+   r'''
+   {
       c'8
       <<
          \context Voice = "alto" {
@@ -283,7 +289,8 @@ def test_thread_report_07( ):
          }
       >>
       a'8
-   }'''
+   }
+   '''
    
    '''abjad> print t.leaves[2].thread.report
 

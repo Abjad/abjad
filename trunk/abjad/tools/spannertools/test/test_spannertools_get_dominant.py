@@ -15,7 +15,8 @@ def test_spannertools_get_dominant_01( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [ \startTrillSpan
          d'8
@@ -28,7 +29,8 @@ def test_spannertools_get_dominant_01( ):
          g'8 \glissando
          a'8 \stopTrillSpan
       }
-   }'''
+   }
+   '''
 
    receipt = spannertools.get_dominant(t[:1])
 
@@ -171,14 +173,16 @@ def test_spannertools_get_dominant_10( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            {
            }
            {
            }
            {
            }
-   }'''
+   }
+   '''
 
    receipt = spannertools.get_dominant(t[:1])
 

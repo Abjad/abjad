@@ -9,8 +9,10 @@ def test_beam_span_anonymous_01( ):
    t = Container([ ])
    p = Beam(t)
 
-   r'''{
-   }'''
+   r'''
+   {
+   }
+   '''
 
    assert len(p.components) == 1
    assert isinstance(p.components[0], Container)
@@ -25,7 +27,8 @@ def test_beam_span_anonymous_02( ):
    t = Container(Note(0, (1, 8)) * 8)
    p = Beam(t)
 
-   r'''{
+   r'''
+   {
       c'8 [
       c'8
       c'8
@@ -34,7 +37,8 @@ def test_beam_span_anonymous_02( ):
       c'8
       c'8
       c'8 ]
-   }'''
+   }
+   '''
 
    assert len(p.components) == 1
    assert isinstance(p.components[0], Container)
@@ -50,7 +54,8 @@ def test_beam_span_anonymous_03( ):
    t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
    p = Beam(t[ : ])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [
          c'8
@@ -63,7 +68,8 @@ def test_beam_span_anonymous_03( ):
          c'8
          c'8 ]
       }
-   }'''
+   }
+   '''
 
    assert len(p.components) == 2
    assert isinstance(p.components[0], Container)
@@ -81,7 +87,8 @@ def test_beam_span_anonymous_04( ):
    t = Staff([Container(construct.run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [
          c'8
@@ -90,7 +97,8 @@ def test_beam_span_anonymous_04( ):
       }
       c'8
       c'8 ]
-   }'''
+   }
+   '''
 
    assert len(p.components) == 1
    assert isinstance(p.components[0], Staff)
@@ -106,7 +114,8 @@ def test_beam_span_anonymous_05( ):
    t = Staff([Container(construct.run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t[ : ])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [
          c'8
@@ -115,7 +124,8 @@ def test_beam_span_anonymous_05( ):
       }
       c'8
       c'8 ]
-   }'''
+   }
+   '''
 
    assert len(p.components) == 3
    assert isinstance(p.components[0], Container)
@@ -133,7 +143,8 @@ def test_beam_span_anonymous_06( ):
    t = Staff([Container(construct.run(4)), Note(0, (1, 8)), Note(0, (1, 8))])
    p = Beam(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [
          c'8
@@ -142,7 +153,8 @@ def test_beam_span_anonymous_06( ):
       }
       c'8
       c'8 ]
-   }'''
+   }
+   '''
 
    assert len(p.components) == 6
    for x in p.components:
@@ -386,7 +398,8 @@ def test_beam_span_anonymous_13( ):
    t2 = FixedDurationTuplet((1,4), [Note(i, (1,8)) for i in range(4,7)])
    v = Voice([t1, Note(3, (1,8)), t2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       \times 2/3 {
          c'8
          cs'8
@@ -398,7 +411,8 @@ def test_beam_span_anonymous_13( ):
          f'8
          fs'8
       }
-   }'''
+   }
+   '''
 
    p = Beam(v)
    assert len(p.components) == 1
@@ -417,7 +431,8 @@ def test_beam_span_anonymous_14( ):
    tinner = FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 3)
    t = FixedDurationTuplet((2, 4), [Note(0, (1, 4)), tinner, Note(0, (1, 4))])
 
-   r'''\times 2/3 {
+   r'''
+   \times 2/3 {
       c'4
       \times 2/3 {
          c'8
@@ -425,7 +440,8 @@ def test_beam_span_anonymous_14( ):
          c'8
       }
       c'4
-   }'''
+   }
+   '''
 
    p = Beam(t)
    assert len(p.components) == 1
@@ -447,7 +463,8 @@ def test_beam_span_anonymous_15( ):
    v2 = Voice([Note(i , (1, 8)) for i in range(4, 8)])
    t = Staff([v1, n, v2])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \new Voice {
          c'8
          cs'8
@@ -460,7 +477,8 @@ def test_beam_span_anonymous_15( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
    assert py.test.raises(ContiguityError, 'p = Beam([t[0], t[1]])')
    assert py.test.raises(ContiguityError, 'p = Beam([t[1], t[2]])')

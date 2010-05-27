@@ -11,12 +11,14 @@ def test_navigator_is_threadable_01( ):
    assert t[1]._navigator._isThreadable(t[2])
    assert t[2]._navigator._isThreadable(t[3])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_threadable_02( ):
@@ -28,12 +30,14 @@ def test_navigator_is_threadable_02( ):
    assert t[1]._navigator._isThreadable(t[2])
    assert t[2]._navigator._isThreadable(t[3])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_threadable_03( ):
@@ -45,12 +49,14 @@ def test_navigator_is_threadable_03( ):
    assert t[1]._navigator._isThreadable(t[2])
    assert t[2]._navigator._isThreadable(t[3])
 
-   r'''{
+   r'''
+   {
       c'8
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
 ## NONSTRUCTURAL in new parallel --> context model.
 #def test_navigator_is_threadable_04( ):
@@ -120,11 +126,13 @@ def test_navigator_is_threadable_06( ):
    assert t[1]._navigator._isThreadable(t[2])
    assert t[2]._navigator._isThreadable(t[1])
 
-   r'''\times 2/3 {
+   r'''
+   \times 2/3 {
       c'8
       d'8
       e'8
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_threadable_07( ):
@@ -495,7 +503,8 @@ def test_navigator_is_threadable_16( ):
    t[1][0].name = 'voice'
    pitchtools.diatonicize(t)
 
-   r'''{
+   r'''
+   {
            \context Staff = "staff" {
                    \context Voice = "voice" {
                            c'8
@@ -512,7 +521,8 @@ def test_navigator_is_threadable_16( ):
                            c''8
                    }
            }
-   }'''
+   }
+   '''
 
    leaves = t.leaves
 
@@ -531,7 +541,8 @@ def test_navigator_is_threadable_17( ):
    t[1][0].name = 'voice'
    pitchtools.diatonicize(t)
 
-   r'''{
+   r'''
+   {
            \new Staff {
                    \context Voice = "voice" {
                            c'8
@@ -548,7 +559,8 @@ def test_navigator_is_threadable_17( ):
                            c''8
                    }
            }
-   }'''
+   }
+   '''
 
    leaves = t.leaves
 
@@ -599,7 +611,8 @@ def test_navigator_is_threadable_19( ):
    t.insert(2, Voice(construct.run(2)))
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
       d'8
       \new Voice {
@@ -608,7 +621,8 @@ def test_navigator_is_threadable_19( ):
       }
       g'8
       a'8
-   }'''
+   }
+   '''
 
    assert t[0]._navigator._isThreadable(t[1])
    assert not t[0]._navigator._isThreadable(t[2][0])
@@ -731,7 +745,8 @@ def test_navigator_is_threadable_23( ):
    t = Container([StaffGroup([ ]), StaffGroup([ ])])
    t[0].name = t[1].name = 'staffGroup'
 
-   r'''{
+   r'''
+   {
            \context StaffGroup = "staffGroup" <<
            >>
            \context StaffGroup = "staffGroup" <<
@@ -752,7 +767,8 @@ def test_navigator_is_threadable_24( ):
    assert t[0][-1]._navigator._isThreadable(t[1][0])
    assert t[1][0]._navigator._isThreadable(t[0][-1])
 
-   r'''{
+   r'''
+   {
       {
          c'8
          cs'8
@@ -765,7 +781,8 @@ def test_navigator_is_threadable_24( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
    
 def test_navigator_is_threadable_25( ):
@@ -777,7 +794,8 @@ def test_navigator_is_threadable_25( ):
    assert not t[0][-1]._navigator._isThreadable(t[1][0])
    assert not t[1][0]._navigator._isThreadable(t[0][-1])
 
-   r'''{
+   r'''
+   {
       \new Voice {
          c'8
          cs'8
@@ -790,7 +808,8 @@ def test_navigator_is_threadable_25( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
 
 def test_navigator_is_threadable_26( ):
@@ -809,7 +828,8 @@ def test_navigator_is_threadable_26( ):
    assert not t[0]._navigator._isThreadable(t[1])
    assert t[0]._navigator._isThreadable(t[0])
 
-   r'''{
+   r'''
+   {
       \new Staff {
          \new Voice {
             c'8
@@ -826,4 +846,5 @@ def test_navigator_is_threadable_26( ):
             g'8
          }
       }
-   }'''
+   }
+   '''

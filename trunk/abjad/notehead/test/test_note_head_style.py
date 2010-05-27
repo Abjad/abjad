@@ -37,12 +37,14 @@ def test_note_head_style_03( ):
    t = Chord([1, 2, 3], (1, 4))
    t.note_heads[0].style = 'harmonic'
 
-   r'''<
+   r'''
+   <
            \tweak #'style #'harmonic
            cs'
            d'
            ef'
-   >4'''
+   >4
+   '''
 
    assert t.format == "<\n\t\\tweak #'style #'harmonic\n\tcs'\n\td'\n\tef'\n>4"
 

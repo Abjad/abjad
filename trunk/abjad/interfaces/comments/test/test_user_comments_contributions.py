@@ -13,7 +13,8 @@ def test_user_comments_contributions_01( ):
    t.comments.closing.append('Comments closing.')
    t.comments.after.append('Comments after.')
 
-   r'''% Comments before.
+   r'''
+   % Comments before.
    \new Voice {
            % Comments opening.
            \override Beam #'thickness = #3
@@ -49,7 +50,8 @@ def test_user_comments_contributions_02( ):
    t.comments.closing.append('Comments closing.')
    t.comments.after.append('Comments after.')
 
-   r'''% Comments before.
+   r'''
+   % Comments before.
    \once \override Beam #'thickness = #3
    % Comments opening.
    c'8 % Comments right.
@@ -80,7 +82,8 @@ def test_user_comments_contributions_03( ):
    t.comments.closing.append('Comments closing.')
    t.comments.after.append('Comments after.')
 
-   r'''% Comments before.
+   r'''
+   % Comments before.
    \times 2/3 {
            % Comments opening.
            \override Beam #'thickness = #3
@@ -115,7 +118,8 @@ def test_user_comments_contributions_04( ):
    t.comments.closing.append('Comments closing.')
    t.comments.after.append('Comments after.')
 
-   r'''% Comments before.
+   r'''
+   % Comments before.
            % Comments opening.
            \time 3/8
            \override Beam #'thickness = #3

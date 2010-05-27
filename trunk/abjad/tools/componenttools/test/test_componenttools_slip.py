@@ -8,7 +8,8 @@ def test_componenttools_slip_01( ):
    pitchtools.diatonicize(t)
    p = Beam(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            {
                    c'8 [
                    d'8
@@ -17,19 +18,22 @@ def test_componenttools_slip_01( ):
                    e'8
                    f'8 ]
            }
-   }'''
+   }
+   '''
 
    sequential = t[0]
    componenttools.slip(t[0:1])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [
            d'8
            {
                    e'8
                    f'8 ]
            }
-   }'''
+   }
+   '''
    
    assert check.wf(t)
    assert len(sequential) == 0
@@ -46,11 +50,13 @@ def test_componenttools_slip_02( ):
    note = t[1]
    componenttools.slip([note])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ \glissando
       e'8 \glissando
       f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\te'8 \\glissando\n\tf'8 ]\n}"
@@ -63,19 +69,23 @@ def test_componenttools_slip_03( ):
    Beam(t[:])
    Glissando(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ \glissando
       d'8 \glissando
       e'8 \glissando
       f'8 ]
-   }'''
+   }
+   '''
 
    componenttools.slip(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       e'8 [ \glissando
       f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\te'8 [ \\glissando\n\tf'8 ]\n}"
@@ -89,7 +99,8 @@ def test_componenttools_slip_04( ):
    Beam(t.leaves)
    Glissando(t.leaves)
    
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [ \glissando
          d'8 \glissando
@@ -102,11 +113,13 @@ def test_componenttools_slip_04( ):
          g'8 \glissando
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    componenttools.slip(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ \glissando
       d'8 \glissando
       e'8 \glissando
@@ -115,7 +128,8 @@ def test_componenttools_slip_04( ):
          g'8 \glissando
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\td'8 \\glissando\n\te'8 \\glissando\n\tf'8 \\glissando\n\t{\n\t\tg'8 \\glissando\n\t\ta'8 ]\n\t}\n}"

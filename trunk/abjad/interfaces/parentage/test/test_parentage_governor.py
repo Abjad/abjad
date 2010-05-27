@@ -12,7 +12,8 @@ def test_parentage_governor_01( ):
    t[0][0].name = 'voice 1'
    t[0][1].name = 'voice 2'
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       <<
          \context Voice = "voice 1" {
             c'8
@@ -23,7 +24,8 @@ def test_parentage_governor_01( ):
             f'8
          }
       >>
-   }'''
+   }
+   '''
 
    assert t.leaves[0].parentage.governor is t[0][0]
    assert t.leaves[1].parentage.governor is t[0][0]
@@ -45,7 +47,8 @@ def test_parentage_governor_03( ):
 
    t = Staff([Voice([Container(construct.scale(4))])])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \new Voice {
          {
             c'8
@@ -54,7 +57,8 @@ def test_parentage_governor_03( ):
             f'8
          }
       }
-   }'''
+   }
+   '''
    
    assert t.leaves[0].parentage.governor is t
    assert t.leaves[1].parentage.governor is t
@@ -69,7 +73,8 @@ def test_parentage_governor_04( ):
 
    t = Staff([Voice([Container(construct.scale(4))])])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \new Voice {
          {
             c'8
@@ -78,7 +83,8 @@ def test_parentage_governor_04( ):
             f'8
          }
       }
-   } '''
+   } 
+   '''
 
    assert t[0][0].parentage.governor is t
    assert t[0].parentage.governor is t

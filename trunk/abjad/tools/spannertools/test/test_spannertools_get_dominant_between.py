@@ -11,7 +11,8 @@ def test_spannertools_get_dominant_between_01( ):
    glissando = Glissando(t[1:])
    trill = Trill(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [ \startTrillSpan
          d'8
@@ -24,7 +25,8 @@ def test_spannertools_get_dominant_between_01( ):
          g'8 \glissando
          a'8 \stopTrillSpan
       }
-   }'''
+   }
+   '''
 
    "No spanners dominate t[0:0]"
 

@@ -9,12 +9,14 @@ def test_scoretools_bequeath_01( ):
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ \<
       d'8 ]
       e'8 [
       f'8 ] \!
-   }'''
+   }
+   '''
 
    old_notes = t[1:3]
    new_notes = Note(12, (1, 16)) * 5
@@ -22,7 +24,8 @@ def test_scoretools_bequeath_01( ):
 
    "Equivalent to t[1:3] = new_notes"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ ] \<
       c''16
       c''16
@@ -30,7 +33,8 @@ def test_scoretools_bequeath_01( ):
       c''16
       c''16
       f'8 [ ] \!
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ] \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
@@ -44,12 +48,14 @@ def test_scoretools_bequeath_02( ):
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ \<
       d'8 ]
       e'8 [
       f'8 ] \!
-   }'''
+   }
+   '''
 
    new_notes = Note(12, (1, 16)) * 5
    #scoretools.bequeath(t[:1], new_notes)
@@ -57,7 +63,8 @@ def test_scoretools_bequeath_02( ):
 
    "Equivalent to t[:1] = new_notes."
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c''16 [ \<
       c''16
       c''16
@@ -66,7 +73,8 @@ def test_scoretools_bequeath_02( ):
       d'8 ]
       e'8 [
       f'8 ] \!
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\td'8 ]\n\te'8 [\n\tf'8 ] \\!\n}"
@@ -80,12 +88,14 @@ def test_scoretools_bequeath_03( ):
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ \<
       d'8 ]
       e'8 [
       f'8 ] \!
-   }'''
+   }
+   '''
 
    new_notes = Note(12, (1, 16)) * 5
    #scoretools.bequeath(t[:2], new_notes)
@@ -93,7 +103,8 @@ def test_scoretools_bequeath_03( ):
 
    "Equivalent to t[:2] = new_notes."
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c''16 [ \<
       c''16
       c''16
@@ -101,7 +112,8 @@ def test_scoretools_bequeath_03( ):
       c''16 ]
       e'8 [
       f'8 ] \!
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 ]\n\te'8 [\n\tf'8 ] \\!\n}"
@@ -115,12 +127,14 @@ def test_scoretools_bequeath_04( ):
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ \<
       d'8 ]
       e'8 [
       f'8 ] \!
-   }'''
+   }
+   '''
 
    new_notes = Note(12, (1, 16)) * 5
    #scoretools.bequeath(t[:3], new_notes)
@@ -128,14 +142,16 @@ def test_scoretools_bequeath_04( ):
 
    "Equivalent to t[:3] = new_notes."
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c''16 \<
       c''16
       c''16
       c''16
       c''16
       f'8 [ ] \!
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
@@ -148,12 +164,14 @@ def test_scoretools_bequeath_05( ):
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ \<
       d'8 ]
       e'8 [
       f'8 ] \!
-   }'''
+   }
+   '''
 
    new_notes = Note(12, (1, 16)) * 5
    #scoretools.bequeath(t[:], new_notes)
@@ -161,13 +179,15 @@ def test_scoretools_bequeath_05( ):
 
    "Equivalent to t[:] = new_notes."
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c''16 \<
       c''16
       c''16
       c''16
       c''16 \!
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 \\!\n}"
@@ -180,14 +200,16 @@ def test_scoretools_bequeath_06( ):
    t = Staff([Voice(construct.scale(4))])
    Beam(t[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \new Voice {
          c'8 [
          d'8
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    #old_components = scoretools.bequeath(t[0:1], t[0][:])
    #voice = old_components[0]
@@ -197,12 +219,14 @@ def test_scoretools_bequeath_06( ):
 
    "Equivalent to t[:1] = t[0][:]."
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"

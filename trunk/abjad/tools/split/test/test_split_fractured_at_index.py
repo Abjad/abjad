@@ -10,7 +10,8 @@ def test_split_fractured_at_index_01( ):
    pitchtools.diatonicize(t)
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8 [
                    d'8
@@ -21,11 +22,13 @@ def test_split_fractured_at_index_01( ):
                    g'8
                    a'8 ]
            }
-   }'''
+   }
+   '''
 
    left, right = split.fractured_at_index(tuplet, 1)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8 [
                    d'8
@@ -38,7 +41,8 @@ def test_split_fractured_at_index_01( ):
                    g'8 [
                    a'8 ]
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert left.format == "\\times 2/3 {\n\tf'8 ]\n}"
@@ -172,24 +176,30 @@ def test_split_fractured_at_index_04( ):
    t = Voice(construct.scale(4))
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    left, right = split.fractured_at_index(t, 2)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8
-   }'''
+   }
+   '''
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            e'8
            f'8 ]
-   }'''
+   }
+   '''
 
    assert left.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
    assert right.format == "\\new Voice {\n\te'8\n\tf'8 ]\n}"
@@ -205,25 +215,29 @@ def test_split_fractured_at_index_05( ):
    v = t[0]
    Beam(v)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \new Voice {
                    c'8 [
                    d'8
                    e'8
                    f'8 ]
            }
-   }'''
+   }
+   '''
 
    left, right = split.fractured_at_index(v, 0)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \new Voice {
                    c'8 [
                    d'8
                    e'8
                    f'8 ]
            }
-   }'''
+   }
+   '''
 
    assert left.format == '\\new Voice {\n}'
    assert right.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
@@ -243,14 +257,16 @@ def test_split_fractured_at_index_06( ):
 
    left, right = split.fractured_at_index(v, 10)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \new Voice {
                    c'8 [
                    d'8
                    e'8
                    f'8 ]
            }
-   }'''
+   }
+   '''
 
    assert left.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
    assert right.format == '\\new Voice {\n}'

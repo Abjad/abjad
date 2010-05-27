@@ -12,7 +12,8 @@ def test_beam_span_differently_named_01( ):
    t = Staff([v1, v2])
    pitchtools.chromaticize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \context Voice = "foo" {
                    c'8
                    cs'8
@@ -25,13 +26,15 @@ def test_beam_span_differently_named_01( ):
                    fs'8
                    g'8
            }
-   }'''
+   }
+   '''
 
    assert py.test.raises(ContiguityError, 'p = Beam(t)')
 
    p = Beam(t[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \context Voice = "foo" {
          c'8 [
          cs'8
@@ -44,7 +47,8 @@ def test_beam_span_differently_named_01( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
@@ -62,7 +66,8 @@ def test_beam_span_differently_named_02( ):
    t[0][1].name, t[1][1].name = 'second', 'second'
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       \context Staff = "foo" <<
          \context Voice = "first" {
             c'8 
@@ -91,7 +96,8 @@ def test_beam_span_differently_named_02( ):
             ef''8
          }
       >>
-   }'''
+   }
+   '''
 
    assert py.test.raises(ContiguityError, 'p = Beam([t[0][0], t[1][0]])')
 

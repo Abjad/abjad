@@ -8,7 +8,8 @@ def test_spanner_len_01( ):
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -21,7 +22,8 @@ def test_spanner_len_01( ):
          g'8
          a'8
       }
-   }'''
+   }
+   '''
 
    assert len(p) == 1
    assert len(p.components) == 1
@@ -35,7 +37,8 @@ def test_spanner_len_02( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -48,7 +51,8 @@ def test_spanner_len_02( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert len(p) == 3
    assert len(p.components) == 3

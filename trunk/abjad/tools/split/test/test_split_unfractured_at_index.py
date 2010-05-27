@@ -9,7 +9,8 @@ def test_split_unfractured_at_index_01( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8
                    d'8
@@ -20,11 +21,13 @@ def test_split_unfractured_at_index_01( ):
                    g'8
                    a'8
            }
-   }'''
+   }
+   '''
 
    split.unfractured_at_index(t[1], 1)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8 [
                    d'8
@@ -37,7 +40,8 @@ def test_split_unfractured_at_index_01( ):
                    g'8
                    a'8 ]
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t}\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
@@ -161,14 +165,16 @@ def test_split_unfractured_at_index_04( ):
    t = Voice(construct.scale(4))
    t1, t2 = split.unfractured_at_index(t, 2)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       d'8
    }
    \new Voice {
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t1)
    assert check.wf(t2)
@@ -186,14 +192,16 @@ def test_split_unfractured_at_index_05( ):
    Beam(v)
    left, right = split.unfractured_at_index(v, 0)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \new Voice {
                    c'8 [
                    d'8
                    e'8
                    f'8 ]
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert left.format == '\\new Voice {\n}'
@@ -241,7 +249,8 @@ def test_split_unfractured_at_index_08( ):
    Beam(v)
    left, right = split.unfractured_at_index(v, 2)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [
          d'8
@@ -250,7 +259,8 @@ def test_split_unfractured_at_index_08( ):
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert left.format == "{\n\tc'8 [\n\td'8\n}"
@@ -268,7 +278,8 @@ def test_split_unfractured_at_index_09( ):
    Beam(tuplet)
    left, right = split.unfractured_at_index(tuplet, 2)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \new Voice {
                    \times 4/5 {
                            c'8 [
@@ -280,7 +291,8 @@ def test_split_unfractured_at_index_09( ):
                            c'8 ]
                    }
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert left.format == "\\times 4/5 {\n\tc'8 [\n\tc'8\n}"

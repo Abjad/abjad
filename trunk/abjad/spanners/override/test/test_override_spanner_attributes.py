@@ -5,7 +5,8 @@ def test_override_spanner_attributes_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    q = Override(t[0], 'Beam', 'positions', (8, 8))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \once \override Beam #'positions = #'(8 . 8)
        c'8
        cs'8
@@ -15,7 +16,8 @@ def test_override_spanner_attributes_01( ):
        f'8
        fs'8
        g'8
-   }'''
+   }
+   '''
 
    assert repr(q) == "Override([c'8], Beam, positions, (8, 8))"
    assert str(q) == repr(q)
@@ -29,7 +31,8 @@ def test_override_spanner_attributes_02( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    q = Override(t[ : 4], 'Beam', 'positions', (8, 8))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \override Beam #'positions = #'(8 . 8)
        c'8
        cs'8
@@ -40,7 +43,8 @@ def test_override_spanner_attributes_02( ):
        f'8
        fs'8
        g'8
-   }'''
+   }
+   '''
 
    assert repr(q) == "Override([c'8, cs'8, d'8, ef'8], Beam, positions, (8, 8))"
    assert str(q) == repr(q)

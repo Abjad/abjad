@@ -10,7 +10,8 @@ def test_check_assess_components_thread_contiguous_01( ):
    t.insert(2, Voice(construct.run(2)))
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       d'8
       \new Voice {
@@ -19,7 +20,8 @@ def test_check_assess_components_thread_contiguous_01( ):
       }
       g'8
       a'8
-   }'''
+   }
+   '''
 
    outer = (0, 1, 4, 5)
    assert check.assess_components([t.leaves[i] for i in outer], contiguity = 'thread')
@@ -36,7 +38,8 @@ def test_check_assess_components_thread_contiguous_02( ):
    Container(t[-2:])
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -49,7 +52,8 @@ def test_check_assess_components_thread_contiguous_02( ):
          g'8
          a'8
       }
-   }'''
+   }
+   '''
    
    assert check.assess_components(t[0:1] + t[-1:], contiguity = 'thread')
    assert check.assess_components(t[0][:] + t[-1:], contiguity = 'thread')
@@ -67,7 +71,8 @@ def test_check_assess_components_thread_contiguous_03( ):
    Container(t[-2:])
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -80,7 +85,8 @@ def test_check_assess_components_thread_contiguous_03( ):
          g'8
          a'8
       }
-   }'''
+   }
+   '''
    
    assert not check.assess_components([t, t[0]], contiguity = 'thread')
    assert not check.assess_components(t[0:1] + t[0][:], contiguity = 'thread')
@@ -128,14 +134,16 @@ def test_check_assess_components_thread_contiguous_09( ):
    t = Voice(construct.scale(6))
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
       e'8
       f'8
       g'8
       a'8 ]
-   }'''
+   }
+   '''
 
    assert not check.assess_components(t[:2] + t[-2:], contiguity = 'thread')
 
@@ -147,7 +155,8 @@ def test_check_assess_components_thread_contiguous_10( ):
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -160,6 +169,7 @@ def test_check_assess_components_thread_contiguous_10( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert not check.assess_components(t[:1] + t[-1:], contiguity = 'thread')

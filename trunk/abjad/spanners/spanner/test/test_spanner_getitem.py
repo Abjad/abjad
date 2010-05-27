@@ -8,7 +8,8 @@ def test_spanner_getitem_01( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -21,7 +22,8 @@ def test_spanner_getitem_01( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert p[0] is t[0]
 
@@ -33,7 +35,8 @@ def test_spanner_getitem_02( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -46,7 +49,8 @@ def test_spanner_getitem_02( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert p[-1] is t[-1]
 
@@ -58,7 +62,8 @@ def test_spanner_getitem_03( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -71,7 +76,8 @@ def test_spanner_getitem_03( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert p[-2:] == t[-2:]
 
@@ -84,7 +90,8 @@ def test_spanner_getitem_04( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -97,6 +104,7 @@ def test_spanner_getitem_04( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert p[:] == t[:]

@@ -56,7 +56,8 @@ def test_fuse_containers_by_reference_06( ):
    t = Container(Staff([Voice(construct.run(4))]) * 2)
    t[0].name = t[1].name = 'staffOne'
 
-   r'''{
+   r'''
+   {
            \context Staff = "staffOne" {
                    \new Voice {
                            c'8
@@ -73,7 +74,8 @@ def test_fuse_containers_by_reference_06( ):
                            c'8
                    }
            }
-   }'''
+   }
+   '''
 
    result = fuse.containers_by_reference(t)
    assert isinstance(result, Container)  
@@ -86,7 +88,8 @@ def test_fuse_containers_by_reference_06( ):
    assert len(result[0][1]) == 4
    assert result.format == '{\n\t\\context Staff = "staffOne" {\n\t\t\\new Voice {\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t}\n\t\t\\new Voice {\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t}\n\t}\n}'
 
-   r'''{
+   r'''
+   {
            \context Staff = "staffOne" {
                    \new Voice {
                            c'8
@@ -101,7 +104,8 @@ def test_fuse_containers_by_reference_06( ):
                            c'8
                    }
            }
-   }'''
+   }
+   '''
 
 
 def test_fuse_containers_by_reference_07( ):
@@ -218,7 +222,8 @@ def test_fuse_containers_by_reference_09( ):
                         }
                 >>
         >>
-   }'''
+   }
+   '''
 
 def test_fuse_containers_by_reference_10( ):
    '''Nested parallel structures in sequence fuse.containers_by_reference( ) correctly.'''
@@ -299,4 +304,5 @@ def test_fuse_containers_by_reference_10( ):
                            }
                    }
            >>
-   >>'''
+   >>
+   '''

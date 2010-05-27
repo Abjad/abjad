@@ -8,9 +8,11 @@ def test_beam_complex_durated_lone_01( ):
    t = Voice(construct.scale(1))
    BeamComplexDurated(t, lone = True)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [ ]\n}"
@@ -23,9 +25,11 @@ def test_beam_complex_durated_lone_02( ):
    t = Voice(construct.scale(1))
    BeamComplexDurated(t, lone = False)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8\n}"
@@ -37,14 +41,16 @@ def test_beam_complex_durated_lone_03( ):
    t = Voice(construct.scale(2))
    BeamComplexDurated(t, lone = False)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       \set stemLeftBeamCount = #0
       \set stemRightBeamCount = #1
       c'8 [
       \set stemLeftBeamCount = #1
       \set stemRightBeamCount = #0
       d'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #1\n\tc'8 [\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #0\n\td'8 ]\n}"

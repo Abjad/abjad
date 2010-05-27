@@ -11,7 +11,8 @@ def test_breaks_interface_clear_01( ):
    t.breaks.y = 40
    t.breaks.alignment_offsets = [0, 20]
 
-   r'''\overrideProperty #"Score.NonMusicalPaperColumn"
+   r'''
+   \overrideProperty #"Score.NonMusicalPaperColumn"
    #'line-break-system-details
    #'((X-offset . 20) (Y-offset . 40) (alignment-offsets . (0 20)))
    c'4

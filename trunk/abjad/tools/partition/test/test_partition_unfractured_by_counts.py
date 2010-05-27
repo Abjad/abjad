@@ -11,7 +11,8 @@ def test_partition_unfractured_by_counts_01( ):
    Beam(t[0])
    Slur(t[0].leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [ (
          d'8
@@ -22,11 +23,13 @@ def test_partition_unfractured_by_counts_01( ):
          b'8
          c''8 ] )
       }
-   }'''
+   }
+   '''
 
    parts = partition.unfractured_by_counts(t[:], [1, 3])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [ (
       }
@@ -41,7 +44,8 @@ def test_partition_unfractured_by_counts_01( ):
          b'8
          c''8 ] )
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 3

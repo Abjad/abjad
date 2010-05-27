@@ -10,7 +10,8 @@ def test_clef_interface_copy_01( ):
    t[4].clef.forced = Clef('bass')
    t.extend(clonewp.with_parent(t[:2]))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \clef "treble"
            c'8
            cs'8
@@ -24,7 +25,8 @@ def test_clef_interface_copy_01( ):
            \clef "treble"
            c'8
            cs'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t[0].clef.effective == Clef('treble')

@@ -55,7 +55,8 @@ def test_spanner_leaves_04( ):
    pitchtools.chromaticize(t)
    p = Spanner(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       {
          cs'8
@@ -68,7 +69,8 @@ def test_spanner_leaves_04( ):
       }
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert len(p.components) == 1
    assert len(p.leaves) == 8
@@ -86,7 +88,8 @@ def test_spanner_leaves_05( ):
    pitchtools.chromaticize(t)
    p = Spanner(t[0:3])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       {
          cs'8
@@ -99,7 +102,8 @@ def test_spanner_leaves_05( ):
       }
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert len(p.components) == 3
    assert p.components[0] is t[0]
@@ -121,7 +125,8 @@ def test_spanner_leaves_06( ):
    t[2].parallel = True
    pitchtools.chromaticize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
       cs'8
       <<
@@ -136,7 +141,8 @@ def test_spanner_leaves_06( ):
       >>
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert py.test.raises(ContiguityError, 'p = Spanner(t)')
 #   assert len(p.components) == 1
@@ -159,7 +165,8 @@ def test_spanner_leaves_07( ):
    t[2].parallel = True
    pitchtools.chromaticize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
       cs'8
       <<
@@ -174,7 +181,8 @@ def test_spanner_leaves_07( ):
       >>
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert py.test.raises(ContiguityError, 'p = Spanner(t[:])')
 #   for i, component in enumerate(t[:]):

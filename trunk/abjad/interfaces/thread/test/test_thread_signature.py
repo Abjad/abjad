@@ -162,7 +162,8 @@ def test_thread_signature_07( ):
    pitchtools.diatonicize(t)
    t.note_head.color = 'red'
 
-   r'''\new Voice \with {
+   r'''
+   \new Voice \with {
            \override NoteHead #'color = #red
    } {
            c'8
@@ -179,7 +180,8 @@ def test_thread_signature_07( ):
            >>
            b'8
            c''8
-   }'''
+   }
+   '''
 
    signatures = [leaf.thread.signature for leaf in t.leaves]
 
@@ -204,7 +206,8 @@ def test_thread_signature_08( ):
    pitchtools.diatonicize(t)
    t.note_head.color = 'red'
 
-   r'''\context Voice = "foo" \with {
+   r'''
+   \context Voice = "foo" \with {
            \override NoteHead #'color = #red
    } {
            c'8
@@ -256,7 +259,8 @@ def test_thread_signature_09( ):
    Beam(t.leaves[:2])
    Beam(t.leaves[2:])
 
-   r'''{
+   r'''
+   {
            \context Staff = "staff1" {
                    \context Voice = "voicefoo" {
                            c'8 [
@@ -269,7 +273,8 @@ def test_thread_signature_09( ):
                            f'8 ]
                    }
            }
-   }'''
+   }
+   '''
 
    signatures = [leaf.thread.signature for leaf in t.leaves]
 
@@ -296,7 +301,8 @@ def test_thread_signature_10( ):
    t[1][1][0].directives.before.append(r"\override NoteHead #'color = #red")
    t[2][1][-1].directives.after.append(r"\revert NoteHead #'color")
 
-   r'''{
+   r'''
+   {
       c'8
       <<
          \context Voice = "alto" {
@@ -317,7 +323,8 @@ def test_thread_signature_10( ):
          }
       >>
       a'8
-   }'''
+   }
+   '''
    
    signatures = [leaf.thread.signature for leaf in t.leaves]
 
@@ -372,13 +379,15 @@ def test_thread_signature_13( ):
    t = Staff([DynamicMeasure(construct.scale(2))] + construct.run(2))
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 1/4
          c'8
          d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert t[0].thread.signature == t[-1].thread.signature
    assert t[0].thread.signature == t[0][0].thread.signature
@@ -391,7 +400,8 @@ def test_thread_signature_14( ):
    t = Container(Staff(construct.run(2)) * 2)
    t[0].name = t[1].name = 'staff'
 
-   r'''{
+   r'''
+   {
            \context Staff = "staff" {
                    c'8
                    c'8
@@ -400,7 +410,8 @@ def test_thread_signature_14( ):
                    c'8
                    c'8
            }
-   }'''
+   }
+   '''
 
    assert t.leaves[0].thread.signature == t.leaves[1].thread.signature
    assert t.leaves[0].thread.signature != t.leaves[2].thread.signature

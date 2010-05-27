@@ -7,12 +7,14 @@ def test_leaftools_leaves_to_skips_01( ):
    t = Staff(construct.scale(4))
    leaftools.leaves_to_skips(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       s8
       s8
       s8
       s8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'
@@ -24,12 +26,14 @@ def test_leaftools_leaves_to_skips_02( ):
    t = Staff(construct.scale(4))
    leaftools.leaves_to_skips(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       s8
       s8
       s8
       s8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'

@@ -46,7 +46,8 @@ def test_container_parallel_04( ):
    t.parallel = True
    assert t.format == "<<\n\t\\new Voice {\n\t\tc'8\n\t\tcs'8\n\t}\n\t\\new Voice {\n\t\td'8\n\t\tef'8\n\t}\n>>"
 
-   r'''<<
+   r'''
+   <<
            \new Voice {
                    c'8
                    cs'8
@@ -55,7 +56,8 @@ def test_container_parallel_04( ):
                    d'8
                    ef'8
            }
-   >>'''
+   >>
+   '''
 
 
 ## Parallel Errors ##

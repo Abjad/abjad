@@ -10,7 +10,8 @@ def test_staff_interface_01( ):
    piano[1].name = 'LH'
    piano[0][0].staff.forced = piano[1]
 
-   r'''\new PianoStaff <<
+   r'''
+   \new PianoStaff <<
       \context Staff = "RH" {
          \change Staff = LH
          c'8
@@ -24,7 +25,8 @@ def test_staff_interface_01( ):
          e'8
          f'8
       }
-   >>'''
+   >>
+   '''
 
    assert check.wf(piano)
    assert piano[0][0].staff.effective is piano[1]
@@ -49,7 +51,8 @@ def test_staff_interface_02( ):
    piano[0][0].staff.forced = piano[1]
    piano[0][2].staff.forced = piano[0]
 
-   r'''\new PianoStaff <<
+   r'''
+   \new PianoStaff <<
       \context Staff = "RH" {
          \change Staff = LH
          c'8
@@ -64,7 +67,8 @@ def test_staff_interface_02( ):
          e'8
          f'8
       }
-   >>'''
+   >>
+   '''
 
    assert check.wf(piano)
    assert piano[0][0].staff.effective is piano[1]
@@ -88,7 +92,8 @@ def test_staff_interface_03( ):
    piano[1].name = 'LH'
    piano[0][-1].staff.forced = piano[1]
 
-   r'''\new PianoStaff <<
+   r'''
+   \new PianoStaff <<
       \context Staff = "RH" {
          c'8
          d'8
@@ -102,7 +107,8 @@ def test_staff_interface_03( ):
          e'8
          f'8
       }
-   >>'''
+   >>
+   '''
 
    assert check.wf(piano)
    assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\t\\change Staff = LH\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
@@ -118,7 +124,8 @@ def test_staff_interface_04( ):
    piano[0][0].staff.forced = piano[1]
    piano[0][1].staff.forced = piano[1]
 
-   r'''\new PianoStaff <<
+   r'''
+   \new PianoStaff <<
       \context Staff = "RH" {
          \change Staff = LH
          c'8
@@ -132,7 +139,8 @@ def test_staff_interface_04( ):
          e'8
          f'8
       }
-   >>'''
+   >>
+   '''
 
    assert check.wf(piano)
    assert piano[0][0].staff.effective is piano[1]

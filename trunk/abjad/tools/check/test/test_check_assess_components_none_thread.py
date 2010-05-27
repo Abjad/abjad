@@ -18,12 +18,14 @@ def test_check_assess_components_none_thread_02( ):
 
    t = Container(construct.scale(4))
 
-   r'''{
+   r'''
+   {
       c'8
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
 
@@ -33,11 +35,13 @@ def test_check_assess_components_none_thread_03( ):
    
    t = FixedDurationTuplet((2, 8), construct.scale(3))
    
-   r'''\times 2/3 {
+   r'''
+   \times 2/3 {
       c'8
       d'8
       e'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
 
@@ -66,12 +70,14 @@ def test_check_assess_components_none_thread_05( ):
 
    t = Voice(construct.scale(4))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
 
@@ -81,12 +87,14 @@ def test_check_assess_components_none_thread_06( ):
 
    t = Staff(construct.scale(4))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
       d'8
       e'8
       f'8 
-   }'''
+   }
+   '''
 
    assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
 
@@ -97,7 +105,8 @@ def test_check_assess_components_none_thread_07( ):
    t = Voice(Container(construct.run(4)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -110,7 +119,8 @@ def test_check_assess_components_none_thread_07( ):
          b'8
          c''8
       }
-   }'''
+   }
+   '''
 
    assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
 
@@ -121,7 +131,8 @@ def test_check_assess_components_none_thread_08( ):
    t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8
                    d'8
@@ -132,7 +143,8 @@ def test_check_assess_components_none_thread_08( ):
                    g'8
                    a'8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
 
@@ -143,7 +155,8 @@ def test_check_assess_components_none_thread_09( ):
    t = Staff(Voice(construct.run(4)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \new Voice {
                    c'8
                    d'8
@@ -156,7 +169,8 @@ def test_check_assess_components_none_thread_09( ):
                    b'8
                    c''8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -172,7 +186,8 @@ def test_check_assess_components_none_thread_10( ):
    t[0].name = 'foo'
    t[1].name = 'foo'
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \context Voice = "foo" {
                    c'8
                    d'8
@@ -185,7 +200,8 @@ def test_check_assess_components_none_thread_10( ):
                    b'8
                    c''8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves, share = 'thread')
 
@@ -250,7 +266,8 @@ def test_check_assess_components_none_thread_13( ):
    t[0].parallel = True
    t[1].parallel = True
 
-   r'''{
+   r'''
+   {
       \new Staff <<
          \new Voice {
             c'8
@@ -271,7 +288,8 @@ def test_check_assess_components_none_thread_13( ):
             c''8
          }
       >>
-   }'''
+   }
+   '''
 
    assert not check.assess_components(t.leaves[:4], share = 'thread')
 
@@ -282,7 +300,8 @@ def test_check_assess_components_none_thread_14( ):
    t = Voice(Container(construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -291,7 +310,8 @@ def test_check_assess_components_none_thread_14( ):
          e'8
          f'8
       }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves, share = 'thread')
 
@@ -305,7 +325,8 @@ def test_check_assess_components_none_thread_15( ):
    t[0].name = 'foo'
    t[1].name = 'foo'
 
-   r'''{
+   r'''
+   {
       \context Staff = "foo" {
          c'8
          cs'8
@@ -318,7 +339,8 @@ def test_check_assess_components_none_thread_15( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert not check.assess_components(t.leaves, share = 'thread')
@@ -330,7 +352,8 @@ def test_check_assess_components_none_thread_16( ):
    t = Container([Container(construct.run(4)), Voice(construct.run(4))])
    pitchtools.diatonicize(t)
    
-   r'''{
+   r'''
+   {
            {
                    c'8
                    d'8
@@ -343,7 +366,8 @@ def test_check_assess_components_none_thread_16( ):
                    b'8
                    c''8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -356,7 +380,8 @@ def test_check_assess_components_none_thread_17( ):
    t = Container([Voice(construct.run(4)), Container(construct.run(4))])
    pitchtools.diatonicize(t)
 
-   r'''{
+   r'''
+   {
            \new Voice {
                    c'8
                    d'8
@@ -369,7 +394,8 @@ def test_check_assess_components_none_thread_17( ):
                    b'8
                    c''8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -383,7 +409,8 @@ def test_check_assess_components_none_thread_18( ):
    t[1].name = 'foo'
    pitchtools.diatonicize(t)
 
-   r'''{
+   r'''
+   {
            {
                    c'8
                    d'8
@@ -396,7 +423,8 @@ def test_check_assess_components_none_thread_18( ):
                    b'8
                    c''8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -410,7 +438,8 @@ def test_check_assess_components_none_thread_19( ):
    t[0].name = 'foo'
    pitchtools.diatonicize(t)
 
-   r'''{
+   r'''
+   {
            \context Voice = "foo" {
                    c'8
                    d'8
@@ -423,7 +452,8 @@ def test_check_assess_components_none_thread_19( ):
                    b'8
                    c''8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -436,7 +466,8 @@ def test_check_assess_components_none_thread_20( ):
    t = Container([Container(construct.run(4)), Staff(construct.run(4))])
    pitchtools.diatonicize(t)
 
-   r'''{
+   r'''
+   {
            {
                    c'8
                    d'8
@@ -449,7 +480,8 @@ def test_check_assess_components_none_thread_20( ):
                    b'8
                    c''8
            }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -462,7 +494,8 @@ def test_check_assess_components_none_thread_21( ):
    t = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       \new Staff {
          c'8
          cs'8
@@ -475,7 +508,8 @@ def test_check_assess_components_none_thread_21( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -488,7 +522,8 @@ def test_check_assess_components_none_thread_22( ):
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       d'8
@@ -499,7 +534,8 @@ def test_check_assess_components_none_thread_22( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -513,7 +549,8 @@ def test_check_assess_components_none_thread_23( ):
    pitchtools.chromaticize(t)
 
 
-   r'''{
+   r'''
+   {
       \new Voice {
          c'8
          cs'8
@@ -524,7 +561,8 @@ def test_check_assess_components_none_thread_23( ):
       f'8
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -538,7 +576,8 @@ def test_check_assess_components_none_thread_24( ):
    t[4].name = 'foo'
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       d'8
@@ -549,7 +588,8 @@ def test_check_assess_components_none_thread_24( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -566,7 +606,8 @@ def test_check_assess_components_none_thread_25( ):
    pitchtools.chromaticize(t)
    t[0].name = 'foo'
 
-   r'''{
+   r'''
+   {
       \context Voice = "foo" {
          c'8
          cs'8
@@ -577,7 +618,8 @@ def test_check_assess_components_none_thread_25( ):
       f'8
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -590,7 +632,8 @@ def test_check_assess_components_none_thread_26( ):
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       d'8
@@ -601,7 +644,8 @@ def test_check_assess_components_none_thread_26( ):
          fs'8
          g'8
       }
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -615,7 +659,8 @@ def test_check_assess_components_none_thread_27( ):
    t.insert(0, Staff(construct.run(4)))
    pitchtools.diatonicize(t)
 
-   r'''{
+   r'''
+   {
            \new Staff {
                    c'8
                    d'8
@@ -626,7 +671,8 @@ def test_check_assess_components_none_thread_27( ):
            a'8
            b'8
            c''8
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -641,7 +687,8 @@ def test_check_assess_components_none_thread_28( ):
    notes = [Note(n, (1, 8)) for n in range(4, 8)]
    t = Container([q] + notes)
 
-   r'''{
+   r'''
+   {
       {
          \new Voice {
             c'8
@@ -654,7 +701,8 @@ def test_check_assess_components_none_thread_28( ):
       f'8
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -670,7 +718,8 @@ def test_check_assess_components_none_thread_29( ):
    notes = [Note(n, (1, 8)) for n in range(4, 8)]
    t = Container([q] + notes)
 
-   r'''{
+   r'''
+   {
       {
          \context Voice = "foo" {
             c'8
@@ -683,7 +732,8 @@ def test_check_assess_components_none_thread_29( ):
       f'8
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -700,7 +750,8 @@ def test_check_assess_components_none_thread_30( ):
    notes = [Note(n, (1, 8)) for n in range(4, 8)]
    t = Container([v2] + notes)
 
-   r'''{
+   r'''
+   {
       \context Voice = "bar" {
          \context Voice = "foo" {
             c'8
@@ -713,7 +764,8 @@ def test_check_assess_components_none_thread_30( ):
       f'8
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -728,7 +780,8 @@ def test_check_assess_components_none_thread_31( ):
    notes = [Note(n, (1, 8)) for n in range(4, 8)]
    t = Container([v2] + notes)
 
-   r'''{
+   r'''
+   {
       \new Voice {
          \new Voice {
             c'8
@@ -741,7 +794,8 @@ def test_check_assess_components_none_thread_31( ):
       f'8
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -758,7 +812,8 @@ def test_check_assess_components_none_thread_32( ):
    p.parallel = True
    t = Container(notes + [p])
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       d'8
@@ -777,7 +832,8 @@ def test_check_assess_components_none_thread_32( ):
             g'8
          }
       >>
-   }'''
+   }
+   '''
 
    assert not check.assess_components(t.leaves[:8], share = 'thread')
    assert not check.assess_components(t.leaves[4:], share = 'thread')
@@ -832,7 +888,8 @@ def test_check_assess_components_none_thread_34( ):
    middle = (2, 3, 8, 9)
    inner = (4, 5, 6, 7)
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       \new Voice {
@@ -849,7 +906,8 @@ def test_check_assess_components_none_thread_34( ):
       }
       bf'8
       b'8
-   }'''
+   }
+   '''
 
    assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
    assert check.assess_components([t.leaves[i] for i in middle], share = 'thread')
@@ -871,7 +929,8 @@ def test_check_assess_components_none_thread_35( ):
    middle = (2, 3, 8, 9)
    inner = (4, 5, 6, 7)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
       cs'8
       \new Staff {
@@ -888,7 +947,8 @@ def test_check_assess_components_none_thread_35( ):
       }
       bf'8
       b'8
-   }'''
+   }
+   '''
    
    assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
    assert check.assess_components([t.leaves[i] for i in middle], share = 'thread')
@@ -904,7 +964,8 @@ def test_check_assess_components_none_thread_36( ):
    t.insert(2, a)
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       {
@@ -921,7 +982,8 @@ def test_check_assess_components_none_thread_36( ):
       }
       bf'8
       b'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
 
@@ -936,7 +998,8 @@ def test_check_assess_components_none_thread_37( ):
    t.duration.target = Rational(9, 8)
    pitchtools.chromaticize(t)
 
-   r'''\fraction \times 9/10 {
+   r'''
+   \fraction \times 9/10 {
       c'8
       cs'8
       \fraction \times 6/7 {
@@ -953,7 +1016,8 @@ def test_check_assess_components_none_thread_37( ):
       }
       bf'8
       b'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
 
@@ -966,7 +1030,8 @@ def test_check_assess_components_none_thread_38( ):
    t[2][0][0].name = 'foo'
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       {
@@ -981,7 +1046,8 @@ def test_check_assess_components_none_thread_38( ):
       }
       fs'8
       g'8
-   }'''
+   }
+   '''
 
    outer = (0, 1, 6, 7)
    inner = (2, 3, 4, 5)
@@ -999,7 +1065,8 @@ def test_check_assess_components_none_thread_39( ):
    t[0][0][0].name = 'foo'
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       {
          {
             \context Voice = "foo" {
@@ -1014,7 +1081,8 @@ def test_check_assess_components_none_thread_39( ):
       f'8
       fs'8
       g'8
-   }'''
+   }
+   '''
   
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:], share = 'thread')
@@ -1031,7 +1099,8 @@ def test_check_assess_components_none_thread_40( ):
    t = Voice([t])
    pitchtools.chromaticize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          {
             {
@@ -1048,7 +1117,8 @@ def test_check_assess_components_none_thread_40( ):
             }
          }
       }
-   }'''
+   }
+   '''
 
    outer = (0, 1, 6, 7)
    inner = (2, 3, 4, 5)
@@ -1072,7 +1142,8 @@ def test_check_assess_components_none_thread_41( ):
    t.name = 'foo'
    pitchtools.chromaticize(t)
 
-   r'''\context Voice = "foo" {
+   r'''
+   \context Voice = "foo" {
       c'8
       cs'8
       {
@@ -1095,7 +1166,8 @@ def test_check_assess_components_none_thread_41( ):
       }
       d''8
       ef''8
-   }'''
+   }
+   '''
 
    outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
    inner = (6, 7, 8, 9)
@@ -1112,7 +1184,8 @@ def test_check_assess_components_none_thread_42( ):
    t[0:0] = Voice(construct.run(4)) * 2
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       \new Voice {
          c'8
          cs'8
@@ -1129,7 +1202,8 @@ def test_check_assess_components_none_thread_42( ):
       a'8
       bf'8
       b'8
-   }'''
+   }
+   '''
 
    assert check.assess_components(t.leaves[:4], share = 'thread')
    assert check.assess_components(t.leaves[4:8], share = 'thread')
@@ -1295,7 +1369,8 @@ def test_check_assess_components_none_thread_49( ):
    t.insert(2, p)
    pitchtools.chromaticize(t)
 
-   r'''{
+   r'''
+   {
       c'8
       cs'8
       <<
@@ -1314,7 +1389,8 @@ def test_check_assess_components_none_thread_49( ):
       >>
       bf'8
       b'8
-   }'''
+   }
+   '''
 
    outer = (0, 1, 10, 11)
 

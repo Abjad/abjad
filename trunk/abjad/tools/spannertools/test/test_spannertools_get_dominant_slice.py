@@ -8,12 +8,14 @@ def test_spannertools_get_dominant_slice_01( ):
    beam = Beam(t[:2])
    glissando = Glissando(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [ \glissando
            d'8 ] \glissando
            e'8 \glissando
            f'8
-   }'''
+   }
+   '''
 
    receipt = spannertools.get_dominant_slice(t, 2, 2)
 
@@ -28,12 +30,14 @@ def test_spannertools_get_dominant_slice_02( ):
    beam = Beam(t[:2])
    glissando = Glissando(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [ \glissando
            d'8 ] \glissando
            e'8 \glissando
            f'8
-   }'''
+   }
+   '''
 
    receipt = spannertools.get_dominant_slice(t, 1, 2)
 
@@ -49,12 +53,14 @@ def test_spannertools_get_dominant_slice_03( ):
    beam = Beam(t[:2])
    glissando = Glissando(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [ \glissando
            d'8 ] \glissando
            e'8 \glissando
            f'8
-   }'''
+   }
+   '''
 
    receipt = spannertools.get_dominant_slice(t, 0, 4)
 

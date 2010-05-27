@@ -32,7 +32,8 @@ def test_leaf_cast_02( ):
    Rest(t[0])
    Note(t[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            8
            cs'8
            d'8
@@ -41,7 +42,8 @@ def test_leaf_cast_02( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -56,7 +58,8 @@ def test_leaf_cast_03( ):
    Rest(t[0])
    Chord(t[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            <>8
            cs'8
            d'8
@@ -65,7 +68,8 @@ def test_leaf_cast_03( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
    assert t.format == "\\new Staff {\n\t<>8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
    

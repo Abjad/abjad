@@ -32,14 +32,16 @@ def test_parentage_cut_02( ):
    p = Beam(t.leaves)
    leaf = t.leaves[0]
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    leaf.parentage._cut( )
    assert not check.wf(t)
@@ -48,14 +50,16 @@ def test_parentage_cut_02( ):
    t._music.insert(0, leaf)
    leaf.parentage._switch(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            {
                    d'8
                    e'8
                    f'8 ]
            }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert check.wf(leaf)
@@ -114,7 +118,8 @@ def test_parentage_cut_04( ):
    tuplet = t[0][0]
    p = Beam(t[0][:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          \times 2/3 {
             c'8 [
@@ -127,7 +132,8 @@ def test_parentage_cut_04( ):
             e'8 ]
          }
       }
-   }'''
+   }
+   '''
 
    tuplet.parentage._cut( )
    assert not check.wf(t)
@@ -136,7 +142,8 @@ def test_parentage_cut_04( ):
    t._music.insert(0, tuplet)
    tuplet.parentage._switch(t)
    
-   r'''\new Voice {
+   r'''
+   \new Voice {
       \times 2/3 {
          c'8 [
          d'8
@@ -149,7 +156,8 @@ def test_parentage_cut_04( ):
             e'8 ]
          }
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\times 2/3 {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8 ]\n\t\t}\n\t}\n}"

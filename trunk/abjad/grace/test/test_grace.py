@@ -11,11 +11,13 @@ def test_grace_01( ):
    assert len(t) == 3
    assert t.format == "\\grace {\n\tc'16\n\td'16\n\te'16\n}"
 
-   r'''\grace {
+   r'''
+   \grace {
            c'16
            d'16
            e'16
-   }'''
+   }
+   '''
 
 
 def test_grace_02( ):
@@ -42,11 +44,13 @@ def test_grace_03( ):
    t.kind = 'grace'
    assert t.format == "\\grace {\n\tc'8\n\tc'8\n\tc'8\n}"
 
-   r'''\grace {
+   r'''
+   \grace {
            c'8
            c'8
            c'8
-   }'''
+   }
+   '''
 
 
 def test_grace_04( ):
@@ -56,11 +60,13 @@ def test_grace_04( ):
    t.kind = 'acciaccatura'
    assert t.format == "\\acciaccatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
-   r'''\acciaccatura {
+   r'''
+   \acciaccatura {
            c'8
            c'8
            c'8
-   }'''
+   }
+   '''
 
 
 def test_grace_05( ):
@@ -70,11 +76,13 @@ def test_grace_05( ):
    t.kind = 'appoggiatura'
    assert t.format == "\\appoggiatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
-   r'''\appoggiatura {
+   r'''
+   \appoggiatura {
            c'8
            c'8
            c'8
-   }'''
+   }
+   '''
 
 
 def test_grace_06( ):
@@ -84,11 +92,13 @@ def test_grace_06( ):
    t.kind = 'after'
    assert t.format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
 
-   r'''{
+   r'''
+   {
            c'8
            c'8
            c'8
-   }'''
+   }
+   '''
 
 
 def test_grace_07( ):

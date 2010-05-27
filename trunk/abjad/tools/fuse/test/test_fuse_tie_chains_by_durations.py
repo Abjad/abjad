@@ -56,7 +56,8 @@ def test_fuse_tie_chains_by_durations_04( ):
    Tie(t.leaves[0:4])
    Tie(t.leaves[4:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 ~
            c'8 ~
            c'8 ~
@@ -65,18 +66,21 @@ def test_fuse_tie_chains_by_durations_04( ):
            c'8 ~
            c'8 ~
            c'8
-   }'''
+   }
+   '''
 
    fuse.tie_chains_by_durations(t.leaves[1:-1], [Rational(1, 4)] * 3)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 ~
            c'4 ~
            c'8
            c'8 ~
            c'4 ~
            c'8
-   } '''
+   } 
+   '''
 
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'4 ~\n\tc'8\n\tc'8 ~\n\tc'4 ~\n\tc'8\n}"
 

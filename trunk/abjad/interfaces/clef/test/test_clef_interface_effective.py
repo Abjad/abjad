@@ -65,7 +65,8 @@ def test_clef_interface_effective_07( ):
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('treble')
 
-   r'''Staff {
+   r'''
+   Staff {
            \clef "treble"
            c'8
            cs'8
@@ -76,7 +77,8 @@ def test_clef_interface_effective_07( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "treble"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}'''
@@ -90,7 +92,8 @@ def test_clef_interface_effective_08( ):
    t[0].clef.forced = Clef('treble_8')
    t[4].clef.forced = Clef('treble')
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \clef "treble_8"
            c'8
            cs'8
@@ -101,7 +104,8 @@ def test_clef_interface_effective_08( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'

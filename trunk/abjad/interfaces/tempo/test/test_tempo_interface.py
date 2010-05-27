@@ -7,13 +7,15 @@ def test_tempo_interface_01( ):
    t = Staff(construct.scale(4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \tempo 8=38
            c'8
            d'8
            e'8
            f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t[0].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
@@ -29,9 +31,11 @@ def test_tempo_interface_02( ):
    t = Staff([ ])
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \tempo 8=38
-   }'''
+   }
+   '''
 
    assert t.format == '\\new Staff {\n\t\\tempo 8=38\n}'
 
@@ -44,13 +48,15 @@ def test_tempo_interface_03( ):
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
    t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 8), 42)
 
-   r'''{
+   r'''
+   {
       \tempo 8=38
       c'8
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t[0].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
@@ -66,7 +72,8 @@ def test_tempo_interface_04( ):
    t = Note(0, (1, 4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
 
-   r'''\tempo 8=38
+   r'''
+   \tempo 8=38
    c'4'''
 
    assert t.format == "\\tempo 8=38\nc'4"
@@ -78,7 +85,8 @@ def test_tempo_interface_05( ):
    t = Chord([2, 3, 4], (1, 4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
 
-   r'''\tempo 8=38
+   r'''
+   \tempo 8=38
       <d' ef' e'>4'''
 
    assert t.format == "\\tempo 8=38\n<d' ef' e'>4"
@@ -90,7 +98,8 @@ def test_tempo_interface_06( ):
    t = Note(0, (1, 4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
 
-   r'''\tempo 8=38
+   r'''
+   \tempo 8=38
       c'4'''
 
    assert t.format == "\\tempo 8=38\nc'4"

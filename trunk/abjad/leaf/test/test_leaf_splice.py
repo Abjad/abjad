@@ -8,14 +8,16 @@ def test_leaf_splice_01( ):
    Beam(t[:])
    result = t[-1].splice(construct.scale(3))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
       e'8
       c'8
       d'8
       e'8 ]
-   }'''
+   }
+   '''
    
    assert check.wf(t)
    assert result == t[-4:]
@@ -29,12 +31,14 @@ def test_leaf_splice_02( ):
    Beam(t[:])
    result = t[1].splice([Note(2.5, (1, 8))])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8
            dqs'8
            e'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"

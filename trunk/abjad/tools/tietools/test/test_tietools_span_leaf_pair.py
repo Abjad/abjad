@@ -7,21 +7,25 @@ def test_tietools_span_leaf_pair_01( ):
    t = Voice(construct.run(4))
    Tie(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 ~
       c'8
       c'8
       c'8
-   }'''
+   }
+   '''
 
    tietools.span_leaf_pair(t[1], t[2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 ~
       c'8 ~
       c'8
       c'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8\n\tc'8\n}"
@@ -34,21 +38,25 @@ def test_tietools_span_leaf_pair_02( ):
    Tie(t[:2])
    Tie(t[2:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 ~
       c'8
       c'8 ~
       c'8
-   }'''
+   }
+   '''
 
    tietools.span_leaf_pair(t[1], t[2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 ~
       c'8 ~
       c'8 ~
       c'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
@@ -59,21 +67,25 @@ def test_tietools_span_leaf_pair_03( ):
    
    t = Voice(construct.run(4))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 
       c'8
       c'8 
       c'8
-   }'''
+   }
+   '''
 
    tietools.span_leaf_pair(t[1], t[2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       c'8 ~
       c'8
       c'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8\n\tc'8\n}"

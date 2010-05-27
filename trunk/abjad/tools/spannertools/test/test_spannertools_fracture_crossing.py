@@ -11,12 +11,14 @@ def test_spannertools_fracture_crossing_01( ):
    Beam(t[:])
    spannertools.fracture_crossing(t[1:3])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ ]
       d'8 [
       e'8 ]
       f'8 [ ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [\n\te'8 ]\n\tf'8 [ ]\n}"
@@ -30,12 +32,14 @@ def test_spannertools_fracture_crossing_02( ):
    Beam(t[:])
    spannertools.fracture_crossing(t[1:2])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8 [ ]
       d'8 [ ]
       e'8 [
       f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [ ]\n\te'8 [\n\tf'8 ]\n}"
@@ -65,7 +69,8 @@ def test_spannertools_fracture_crossing_05( ):
    Crescendo(t)
    Beam(t[:])
    
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [ \<
          d'8
@@ -78,11 +83,13 @@ def test_spannertools_fracture_crossing_05( ):
          g'8
          a'8 ] \!
       }
-   }'''
+   }
+   '''
 
    spannertools.fracture_crossing(t[1:2])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [ \<
          d'8 ]
@@ -95,7 +102,8 @@ def test_spannertools_fracture_crossing_05( ):
          g'8 [
          a'8 ] \!
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [ \\<\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\!\n\t}\n}"
@@ -110,7 +118,8 @@ def test_spannertools_fracture_crossing_06( ):
    Beam(t[:])
    Trill(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [ \< \startTrillSpan
          d'8
@@ -123,11 +132,13 @@ def test_spannertools_fracture_crossing_06( ):
          g'8
          a'8 ] \! \stopTrillSpan
       }
-   }'''
+   }
+   '''
 
    spannertools.fracture_crossing(t[1:2])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [ \< \startTrillSpan
          d'8 ]
@@ -140,7 +151,8 @@ def test_spannertools_fracture_crossing_06( ):
          g'8 [
          a'8 ] \! \stopTrillSpan
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [ \\< \\startTrillSpan\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\! \\stopTrillSpan\n\t}\n}"

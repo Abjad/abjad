@@ -8,19 +8,23 @@ def test_container_extend_01( ):
    t = Voice(construct.scale(2))
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8 ]
-   }'''
+   }
+   '''
 
    t.extend(construct.scale(2))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8 ]
            c'8
            d'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8\n\td'8\n}"
@@ -32,21 +36,25 @@ def test_container_extend_02( ):
    t = Voice(construct.scale(2))
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8 ]
-   }'''
+   }
+   '''
 
    u = Voice([Note(4, (1, 8)), Note(5, (1, 8))])
    Beam(u[:])
    t.extend(u)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8 ]
            e'8 [
            f'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
@@ -59,10 +67,12 @@ def test_container_extend_03( ):
    Beam(t[:])
    t.extend([ ])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
@@ -76,10 +86,12 @@ def test_container_extend_04( ):
    Beam(t[:])
    t.extend(Voice([ ]))
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
@@ -112,41 +124,49 @@ def test_container_extend_07( ):
    t = Voice(construct.scale(2))
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
-   }'''
+   }
+   '''
 
    u = Voice(construct.scale(4))
    Beam(u[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    t.extend(u[-2:]) 
 
    "Container t is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8\n\tf'8\n}"
 
    "Container u is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
-   }'''
+   }
+   '''
 
    assert check.wf(u)
    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
@@ -160,42 +180,50 @@ def test_container_extend_08( ):
    t = Voice(construct.scale(2))
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
-   }'''
+   }
+   '''
 
    u = Voice(construct.scale(4))
    Beam(u[:])
    Slur(u[-2:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
       e'8 (
       f'8 ] )
-   }'''
+   }
+   '''
 
    t.extend(u[-2:]) 
 
    "Container t is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
       e'8 (
       f'8 )
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 (\n\tf'8 )\n}"
 
    "Container u is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8 ]
-   }'''
+   }
+   '''
   
    assert check.wf(u)
    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"

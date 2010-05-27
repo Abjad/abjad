@@ -10,14 +10,16 @@ def test_container_duration_interface_seconds_01( ):
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
    t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
 
-   r'''{
+   r'''
+   {
       \tempo 8=38
       c'8
       d'8
       \tempo 8=42
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert t.duration.seconds == Rational(400, 133)
 

@@ -12,7 +12,8 @@ def test_spanner_duration_seconds_01( ):
    crescendo = Crescendo(t[0][:])
    decrescendo = Decrescendo(t[1][:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
             \tempo 8=42
                    \time 2/12
                    \scaleDurations #'(2 . 3) {
@@ -22,7 +23,8 @@ def test_spanner_duration_seconds_01( ):
                    \time 2/8
                    c'8 \>
                    d'8 ] \!
-   }'''
+   }
+   '''
 
    assert beam.duration.seconds == Rational(100, 21)
    assert crescendo.duration.seconds == Rational(40, 21)

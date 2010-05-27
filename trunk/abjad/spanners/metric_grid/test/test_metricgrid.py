@@ -8,7 +8,8 @@ def test_metricgrid_01( ):
 
    assert t.format == "\\new Staff {\n\t\\time 2/8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \time 2/8
            c'8
            c'8
@@ -18,7 +19,8 @@ def test_metricgrid_01( ):
            c'8
            c'8
            c'8
-   }'''
+   }
+   '''
    
 
 def test_metricgrid_02( ):
@@ -27,7 +29,8 @@ def test_metricgrid_02( ):
 
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \time 3/16
            c'8
            c'8
@@ -37,7 +40,8 @@ def test_metricgrid_02( ):
            c'8
            c'8
            c'8
-   }'''
+   }
+   '''
    
 
 def test_metricgrid_03( ):
@@ -48,7 +52,8 @@ def test_metricgrid_03( ):
 
    assert t.format == "\\new Staff {\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n}"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \time 1/8
            c'8
            \time 1/4
@@ -63,7 +68,8 @@ def test_metricgrid_03( ):
            c'8
            \time 1/4
            c'8
-   }'''
+   }
+   '''
 
 
 def test_metricgrid_04( ):
@@ -72,7 +78,8 @@ def test_metricgrid_04( ):
    t = Staff(construct.run(8))
    m = MetricGrid(t.leaves, [(3, 16), (2, 8)])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \time 3/16
       c'8
       <<
@@ -96,7 +103,8 @@ def test_metricgrid_04( ):
       c'8
       \time 3/16
       c'8
-   }'''
+   }
+   '''
 
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\t<<\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t<<\n\t{\n\t\t\\time 3/16\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
 
@@ -107,7 +115,8 @@ def test_metricgrid_05( ):
    t = Staff(Note(0, (1,2)) * 2)
    m = MetricGrid(t.leaves, [(1, 8), (1, 4)])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \time 1/8
       <<
       {
@@ -132,7 +141,8 @@ def test_metricgrid_05( ):
       }
       c'2
       >>
-   }'''
+   }
+   '''
 
 
    assert t.format == "\\new Staff {\n\t\\time 1/8\n\t<<\n\t{\n\t\t\\time 1/4\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 1/8\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n\t\\time 1/4\n\t<<\n\t{\n\t\t\\time 1/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 1/4\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n}"
@@ -148,7 +158,8 @@ def test_metricgrid_06( ):
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'16 ~\n\tc'16\n\tc'8\n\tc'8\n\tc'16 ~\n\tc'16\n\tc'8\n\tc'8\n\tc'16 ~\n\tc'16\n}"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \time 3/16
            c'8
            c'16 ~
@@ -161,7 +172,8 @@ def test_metricgrid_06( ):
            c'8
            c'16 ~
            c'16
-   }'''
+   }
+   '''
 
 
 def test_metricgrid_07( ):
@@ -173,7 +185,8 @@ def test_metricgrid_07( ):
 
    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'16 ~\n\t\\time 2/8\n\tc'16\n\tc'8\n\tc'16 ~\n\t\\time 3/16\n\tc'16\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            \time 3/16
            c'8
            c'16 ~
@@ -189,7 +202,8 @@ def test_metricgrid_07( ):
            c'8
            \time 3/16
            c'8
-   }'''
+   }
+   '''
 
 
 def test_metricgrid_08( ):
@@ -202,7 +216,8 @@ def test_metricgrid_08( ):
    '''MetricGrid splitOnBar works in Tuplets.'''   
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\t\\time 1/8\n\t\tc'8\n\t\tc'16 ~\n\t\tc'16\n\t\tc'8\n\t\tc'8\n\t\tc'16 ~\n\t\tc'16\n\t\tc'8\n\t}\n}"
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    \time 1/8
                    c'8
@@ -214,7 +229,8 @@ def test_metricgrid_08( ):
                    c'16
                    c'8
            }
-   }'''
+   }
+   '''
 
 
 def test_metricgrid_09( ):
@@ -227,7 +243,8 @@ def test_metricgrid_09( ):
 
    assert t.format =="\\new Voice {\n\t\\times 2/3 {\n\t\t\\time 1/8\n\t\tc'8\n\t\t\\fraction \\times 3/2 {\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t}\n\t}\n}"
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    \time 1/8
                    c'8
@@ -258,7 +275,8 @@ def test_metricgrid_09( ):
                            }
                    }
            }
-   }'''
+   }
+   '''
 
 
 def test_metricgrid_10( ):
@@ -275,14 +293,16 @@ def test_metricgrid_10( ):
    assert v[-2].duration.prolated == Rational(1, 4)
    assert v[-2].tie.spanner == v[-1].tie.spanner
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \time 4/4
            cs'4
            cs'4
            cs'4
            r4 ~
            r1
-   }'''
+   }
+   '''
 
 
 def test_metricgrid_11( ):

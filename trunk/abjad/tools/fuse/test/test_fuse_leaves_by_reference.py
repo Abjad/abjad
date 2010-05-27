@@ -44,18 +44,22 @@ def test_fuse_leaves_by_reference_05( ):
    t[0].duration.multiplier = Rational(1, 16)
    t[1].duration.multiplier = Rational(5, 16)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            s1 * 1/16
            s1 * 5/16
-   }'''
+   }
+   '''
 
    assert t.duration.prolated == Rational(3, 8)
 
    result = fuse.leaves_by_reference(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            s1 * 3/8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert len(result) == 1

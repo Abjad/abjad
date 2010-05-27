@@ -8,7 +8,8 @@ def test_metertools_extract_meter_list_01( ):
       RigidMeasure((3, 8), construct.scale(3)),
       RigidMeasure((4, 8), construct.scale(4))])   
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
                    \time 2/8
                    c'8
                    d'8
@@ -21,7 +22,8 @@ def test_metertools_extract_meter_list_01( ):
                    d'8
                    e'8
                    f'8
-   }'''   
+   }
+   '''
 
    meter_list = metertools.extract_meter_list(t[:])
    assert meter_list == [(2, 8), (3, 8), (4, 8)]
@@ -32,12 +34,14 @@ def test_metertools_extract_meter_list_02( ):
 
    t = Staff(construct.scale(4))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8
            d'8
            e'8
            f'8
-   }'''
+   }
+   '''
 
    meter_list = metertools.extract_meter_list(t[:])
    assert meter_list == [ ]

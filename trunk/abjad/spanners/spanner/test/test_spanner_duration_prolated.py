@@ -8,7 +8,8 @@ def test_spanner_duration_prolated_01( ):
    crescendo = Crescendo(t[0][:])
    decrescendo = Decrescendo(t[1][:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
                    \time 2/12
                    \scaleDurations #'(2 . 3) {
                            c'8 [ \<
@@ -17,7 +18,8 @@ def test_spanner_duration_prolated_01( ):
                    \time 2/8
                    c'8 \>
                    d'8 ] \!
-   }'''
+   }
+   '''
 
    assert beam.duration.prolated == Rational(5, 12)
    assert crescendo.duration.prolated == Rational(2, 12)

@@ -12,7 +12,8 @@ def test_hairpin_01( ):
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 \<
            cs'8
            d'8
@@ -21,7 +22,8 @@ def test_hairpin_01( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
 
 def test_hairpin_02( ):
@@ -34,7 +36,8 @@ def test_hairpin_02( ):
    assert not checker.check(t)
    assert t.format == "\\new Staff {\n\tc'8 \\< \\!\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 \< \!
            cs'8
            d'8
@@ -43,7 +46,8 @@ def test_hairpin_02( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
 
 def test_hairpin_03( ):
@@ -57,7 +61,8 @@ def test_hairpin_03( ):
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 \p \<
            cs'8
            d'8
@@ -66,7 +71,8 @@ def test_hairpin_03( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
 
 def test_hairpin_04( ):
@@ -109,7 +115,8 @@ def test_hairpin_05( ):
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
    assert check.wf(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 \p \<
            cs'8
            d'8 \f \>
@@ -118,7 +125,8 @@ def test_hairpin_05( ):
            f'8
            fs'8 \f
            g'8
-   }'''
+   }
+   '''
 
 
 def test_hairpin_06( ):
@@ -130,7 +138,8 @@ def test_hairpin_06( ):
    assert t.format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
    assert check.wf(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            r8 \<
            r8
            r8
@@ -139,7 +148,8 @@ def test_hairpin_06( ):
            f'8
            fs'8
            g'8 \!
-   }'''
+   }
+   '''
 
 
 def test_hairpin_07( ):
@@ -148,7 +158,8 @@ def test_hairpin_07( ):
    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
    Crescendo(t[:], trim = True)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            r8
            r8
            r8
@@ -157,7 +168,8 @@ def test_hairpin_07( ):
            f'8
            fs'8
            g'8 \!
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
@@ -172,7 +184,8 @@ def test_hairpin_08( ):
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"
    assert check.wf(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 \<
            cs'8
            d'8
@@ -198,7 +211,8 @@ def test_hairpin_09( ):
    checker = HairpinsIntermarked( )
    assert checker.check(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            r8
            cs'8 \< \p
            d'8
@@ -207,4 +221,5 @@ def test_hairpin_09( ):
            f'8
            fs'8 \f
            r8
-   }'''
+   }
+   '''

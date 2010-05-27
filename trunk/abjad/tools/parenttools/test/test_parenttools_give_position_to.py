@@ -13,13 +13,15 @@ def test_parenttools_give_position_to_01( ):
 
    "Container t is now ..."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'16
       d'16
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    assert t.format == "\\new Voice {\n\tc'16\n\td'16\n\td'8\n\te'8\n\tf'8 ]\n}"
 

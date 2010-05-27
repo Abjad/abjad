@@ -20,7 +20,8 @@ def test_navigator_first_leaves_02( ):
    pitchtools.diatonicize(t)
    leaves = t._navigator._firstLeaves
 
-   r'''<<
+   r'''
+   <<
       \new Voice {
          c'8
          d'8
@@ -29,7 +30,8 @@ def test_navigator_first_leaves_02( ):
          e'8
          f'8
       }
-   >>'''
+   >>
+   '''
 
    leaves = t._navigator._firstLeaves
    

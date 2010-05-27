@@ -12,7 +12,8 @@ def test_spannertools_get_crossing_01( ):
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            {
                    c'8 [ \startTrillSpan
                    d'8 ]
@@ -21,7 +22,8 @@ def test_spannertools_get_crossing_01( ):
                    e'8 (
                    f'8 ) \stopTrillSpan
            }
-   }'''
+   }
+   '''
 
    spanners = spannertools.get_crossing([t])
    assert spanners == set([ ])
@@ -48,7 +50,8 @@ def test_spannertools_get_crossing_02( ):
    Beam(t.leaves[:2])
    Slur(t.leaves[2:])
    
-   r'''{
+   r'''
+   {
            \new Voice {
                    c'8 [
                    d'8 ]
@@ -57,7 +60,8 @@ def test_spannertools_get_crossing_02( ):
                    e'8 (
                    f'8 )
            }
-   }'''
+   }
+   '''
    
    assert py.test.raises(ContiguityError, 'spannertools.get_crossing(t.leaves)')
 
@@ -69,7 +73,8 @@ def test_spannertools_get_crossing_03( ):
    pitchtools.diatonicize(t)
    beam = Beam(t[1:2] + t[2][0:1])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
          \time 2/8
          c'8
          d'8
@@ -79,7 +84,8 @@ def test_spannertools_get_crossing_03( ):
          \time 2/8
          g'8 ]
          a'8
-   }'''
+   }
+   '''
 
    spanners = spannertools.get_crossing(t.leaves)
 

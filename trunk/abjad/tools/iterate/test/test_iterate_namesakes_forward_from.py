@@ -13,7 +13,8 @@ def test_iterate_namesakes_forward_from_01( ):
    score.extend(container * 2)
    pitchtools.diatonicize(score)
 
-   r''' 
+   r'''
+    
    \new Score {
            <<
                    \context Staff = "staff 1" {
@@ -59,7 +60,8 @@ def test_iterate_namesakes_forward_from_02( ):
    score.extend(container * 2)
    pitchtools.diatonicize(score)
 
-   r''' 
+   r'''
+    
    \new Score {
            <<
                    \context Staff = "staff 1" {

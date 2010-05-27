@@ -13,7 +13,8 @@ def test_user_comments_clear_01( ):
    t.comments.closing.append('Comments closing.')
    t.comments.after.append('Comments after.')
 
-   r'''% Comments before.
+   r'''
+   % Comments before.
    \new Voice {
            % Comments opening.
            \override Beam #'thickness = #3
@@ -28,14 +29,16 @@ def test_user_comments_clear_01( ):
 
    t.comments.clear( )
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \override Beam #'thickness = #3
            c'8 [
            d'8
            e'8
            f'8 ]
            \revert Beam #'thickness
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}"
@@ -52,7 +55,8 @@ def test_user_comments_clear_02( ):
    t.comments.closing.append('Comments closing.')
    t.comments.after.append('Comments after.')
 
-   r'''% Comments before.
+   r'''
+   % Comments before.
    \once \override Beam #'thickness = #3
    % Comments opening.
    c'8 % Comments right.
@@ -61,7 +65,8 @@ def test_user_comments_clear_02( ):
 
    t.comments.clear( )
 
-   r'''\once \override Beam #'thickness = #3
+   r'''
+   \once \override Beam #'thickness = #3
    c'8'''
 
    assert check.wf(t)

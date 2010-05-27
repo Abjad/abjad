@@ -7,12 +7,14 @@ def test_parenttools_ignore_01( ):
    t = Voice(construct.scale(4))
    Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [
       d'8
       e'8
       f'8 ]
-   }'''
+   }
+   '''
 
    receipt = _ignore(t[:])
 

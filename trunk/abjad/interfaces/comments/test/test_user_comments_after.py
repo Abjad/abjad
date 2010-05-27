@@ -10,7 +10,8 @@ def test_user_comments_after_01( ):
    t.comments.after.append('Voice after comments here.')
    t.comments.after.append('More voice after comments.')
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \override Beam #'thickness = #3
            c'8 [
            d'8
@@ -33,7 +34,8 @@ def test_user_comments_after_02( ):
    t.comments.after.append('Leaf comments after here.')
    t.comments.after.append('More comments after.')
    
-   r'''\once \override Beam #'thickness = #3
+   r'''
+   \once \override Beam #'thickness = #3
    c'8
    % Leaf comments after here.
    % More comments after.'''

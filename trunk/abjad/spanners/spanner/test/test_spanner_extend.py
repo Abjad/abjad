@@ -8,7 +8,8 @@ def test_spanner_extend_01( ):
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -21,11 +22,13 @@ def test_spanner_extend_01( ):
          g'8
          a'8
       }
-   }'''
+   }
+   '''
 
    p.extend(t[2][:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -38,7 +41,8 @@ def test_spanner_extend_01( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
@@ -51,7 +55,8 @@ def test_spanner_extend_02( ):
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -64,11 +69,13 @@ def test_spanner_extend_02( ):
          g'8
          a'8
       }
-   }'''
+   }
+   '''
 
    p.extend(t[2:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -81,6 +88,7 @@ def test_spanner_extend_02( ):
          g'8 
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"

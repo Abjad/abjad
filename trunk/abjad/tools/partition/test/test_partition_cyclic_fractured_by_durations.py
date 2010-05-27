@@ -239,7 +239,8 @@ def test_partition_cyclic_fractured_by_durations_05( ):
    for part in parts:
       t.extend(part)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'16.
            c'32
            d'16
@@ -248,7 +249,8 @@ def test_partition_cyclic_fractured_by_durations_05( ):
            e'16.
            f'16.
            f'32
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'16.\n\tc'32\n\td'16\n\td'16\n\te'32\n\te'16.\n\tf'16.\n\tf'32\n}"

@@ -7,12 +7,14 @@ def test_tietools_are_in_same_spanner_01( ):
    t = Voice(construct.run(4))
    Tie(t[:2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 ~
       c'8
       c'8
       c'8
-   }'''
+   }
+   '''
 
    assert tietools.are_in_same_spanner(t[:2])
    assert not tietools.are_in_same_spanner(t[-2:])

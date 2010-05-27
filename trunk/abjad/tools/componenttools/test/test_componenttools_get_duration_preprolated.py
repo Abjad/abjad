@@ -22,7 +22,8 @@ def test_componenttools_get_duration_preprolated_03( ):
    t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            \times 2/3 {
                    c'8
                    d'8
@@ -33,7 +34,8 @@ def test_componenttools_get_duration_preprolated_03( ):
                    g'8
                    a'8
            }
-   }'''
+   }
+   '''
 
    assert py.test.raises(ContiguityError,
       'componenttools.get_duration_preprolated(t.leaves)')

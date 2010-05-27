@@ -12,23 +12,27 @@ def test_spanner_remove_01( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
    
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8
            e'8
            f'8 ]
-   }'''
+   }
+   '''
 
    p._remove(p.components[1])
 
    "Spanner is now discontiguous: Beam(c'8, e'8, f'8)."
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            c'8 [
            d'8
            e'8
            f'8 ]
-   }'''
+   }
+   '''
 
    assert not check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
@@ -46,7 +50,8 @@ def test_spanner_remove_02( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
    
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -59,11 +64,13 @@ def test_spanner_remove_02( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    result = p._remove(p.components[2])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -76,7 +83,8 @@ def test_spanner_remove_02( ):
          g'8
          a'8
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"

@@ -10,7 +10,8 @@ def test_iterate_get_nth_component_01( ):
    leaves = listtools.interlace(notes, rests)
    staff.extend(leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'16
            r16
            d'8
@@ -19,7 +20,8 @@ def test_iterate_get_nth_component_01( ):
            r8.
            f'4
            r4
-   }'''
+   }
+   '''
 
    assert iterate.get_nth_component(staff, Note, 0) is notes[0]
    assert iterate.get_nth_component(staff, Note, 1) is notes[1]
@@ -44,7 +46,8 @@ def test_iterate_get_nth_component_02( ):
    leaves = listtools.interlace(notes, rests)
    staff.extend(leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'16
            r16
            d'8
@@ -53,7 +56,8 @@ def test_iterate_get_nth_component_02( ):
            r8.
            f'4
            r4
-   }'''
+   }
+   '''
 
    assert iterate.get_nth_component(staff, Note, -1) is notes[3]
    assert iterate.get_nth_component(staff, Note, -2) is notes[2]

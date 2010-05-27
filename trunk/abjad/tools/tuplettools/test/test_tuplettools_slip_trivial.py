@@ -6,21 +6,25 @@ def test_tuplettools_slip_trivial_01( ):
    pitchtools.diatonicize(t)
    assert len(t) == 2
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          c'8
          d'8
          e'8
          f'8
-   }'''
+   }
+   '''
 
    tuplettools.slip_trivial(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
       d'8
       e'8
       f'8
-   }'''
+   }
+   '''
    
    assert check.wf(t)
    assert len(t) == 4

@@ -7,14 +7,16 @@ def test_componenttools_get_duration_crossers_01( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
          \time 2/8
          e'8
          f'8
-   }'''
+   }
+   '''
 
    result = componenttools.get_duration_crossers(t, Rational(1, 8))
 
@@ -27,14 +29,16 @@ def test_componenttools_get_duration_crossers_02( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
          \time 2/8
          e'8
          f'8
-   }'''
+   }
+   '''
 
    result = componenttools.get_duration_crossers(t, Rational(1, 16))
 
@@ -47,14 +51,16 @@ def test_componenttools_get_duration_crossers_03( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
          \time 2/8
          e'8
          f'8
-   }'''
+   }
+   '''
 
    result = componenttools.get_duration_crossers(t, Rational(0))
 
@@ -67,14 +73,16 @@ def test_componenttools_get_duration_crossers_04( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
          \time 2/8
          e'8
          f'8
-   }'''
+   }
+   '''
 
    result = componenttools.get_duration_crossers(t, Rational(100))
 

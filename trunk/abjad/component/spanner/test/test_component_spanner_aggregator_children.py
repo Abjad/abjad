@@ -11,12 +11,14 @@ def test_component_spanner_aggregator_children_01( ):
    beam = Beam(t[:2])
    glissando = Glissando(t[2:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 [ \startTrillSpan
       d'8 ]
       e'8 \glissando
       f'8 \stopTrillSpan
-   }'''
+   }
+   '''
 
    assert len(list(t.spanners.children)) == 2
    assert beam in t.spanners.children

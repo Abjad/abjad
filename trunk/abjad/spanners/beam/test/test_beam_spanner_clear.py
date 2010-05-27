@@ -8,7 +8,8 @@ def test_beam_spanner_clear_01( ):
    pitchtools.chromaticize(t)
    Beam(t[0])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [ ]
            cs'8
            d'8
@@ -17,11 +18,13 @@ def test_beam_spanner_clear_01( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
    t[0].beam.spanner.clear( )
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8
            cs'8
            d'8
@@ -30,7 +33,8 @@ def test_beam_spanner_clear_01( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -43,7 +47,8 @@ def test_beam_spanner_clear_02( ):
    pitchtools.chromaticize(t)
    Beam(t[:4])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
            c'8 [ ]
            cs'8
            d'8
@@ -52,7 +57,8 @@ def test_beam_spanner_clear_02( ):
            f'8
            fs'8
            g'8
-   }'''
+   }
+   '''
 
    t[0].beam.spanner.clear( )
 

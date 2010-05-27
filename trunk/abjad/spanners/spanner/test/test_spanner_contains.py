@@ -8,7 +8,8 @@ def test_spanner_contains_01( ):
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8
          d'8
@@ -21,7 +22,8 @@ def test_spanner_contains_01( ):
          g'8
          a'8
       }
-   }'''
+   }
+   '''
 
    assert t[1] in p
    assert t[1][0] not in p
@@ -35,7 +37,8 @@ def test_spanner_contains_02( ):
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          d'8
@@ -48,7 +51,8 @@ def test_spanner_contains_02( ):
          g'8
          a'8 ]
       }
-   }'''
+   }
+   '''
 
    assert all([x in p for x in (t[0], t[1], t[2])])
    assert not any([x in p for x in t.leaves])

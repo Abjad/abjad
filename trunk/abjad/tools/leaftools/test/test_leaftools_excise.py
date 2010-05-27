@@ -7,7 +7,8 @@ def test_leaftools_excise_01( ):
    t = RigidMeasure((4, 4), 
       FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
 
-   r'''\time 4/4
+   r'''
+   \time 4/4
         \times 2/3 {
                 c'4
                 cs'4
@@ -17,18 +18,21 @@ def test_leaftools_excise_01( ):
                 ef'4
                 e'4
                 f'4
-        }'''
+        }
+        '''
 
    leaftools.excise(t.leaves[0])
 
-   r'''\time 5/6
+   r'''
+   \time 5/6
         \compressMusic #'(2 . 3) {
                         cs'4
                         d'4
                         ef'4
                         e'4
                         f'4
-        }'''
+        }
+        '''
 
    assert isinstance(t, RigidMeasure)
    assert len(t) == 2
@@ -52,7 +56,8 @@ def test_leaftools_excise_02( ):
    t = RigidMeasure((4, 4), 
       FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
 
-   r'''\time 4/4
+   r'''
+   \time 4/4
         \times 4/5 {
                 c'8
                 cs'8
@@ -66,11 +71,13 @@ def test_leaftools_excise_02( ):
                 g'8
                 af'8
                 a'8
-        }'''
+        }
+        '''
 
    leaftools.excise(t.leaves[0])
 
-   r'''\time 9/10
+   r'''
+   \time 9/10
      \compressMusic #'(4 . 5) {
                      cs'8
                      d'8
@@ -81,7 +88,8 @@ def test_leaftools_excise_02( ):
                      g'8
                      af'8
                      a'8
-     }'''
+     }
+     '''
 
    assert isinstance(t, RigidMeasure)
    assert len(t) == 2
@@ -112,7 +120,8 @@ def test_leaftools_excise_03( ):
    for i, leaf in enumerate(iterate.naive_forward_in(t, _Leaf)):
       leaf.pitch = i
 
-   r'''\time 5/6
+   r'''
+   \time 5/6
         \compressMusic #'(2 . 3) {
                 \fraction \times 3/5 {
                         c'4
@@ -130,11 +139,13 @@ def test_leaftools_excise_03( ):
                         bf'8
                         b'8
                 }
-        }'''
+        }
+        '''
 
    leaftools.excise(t.leaves[0])
 
-   r'''\time 11/15
+   r'''
+   \time 11/15
         \compressMusic #'(8 . 15) {
                 \fraction \times 3/4 {
                         cs'4
@@ -151,7 +162,8 @@ def test_leaftools_excise_03( ):
                         bf'8
                         b'8
                 }
-        }'''
+        }
+        '''
 
    assert isinstance(t, RigidMeasure)
    assert t.meter.forced == (11, 15)
@@ -188,7 +200,8 @@ def test_leaftools_excise_04( ):
    for i, leaf in enumerate(iterate.naive_forward_in(t, _Leaf)):
       leaf.pitch = i
 
-   r'''\time 5/6
+   r'''
+   \time 5/6
         \compressMusic #'(2 . 3) {
                 \fraction \times 3/5 {
                         c'4
@@ -206,11 +219,13 @@ def test_leaftools_excise_04( ):
                         bf'8
                         b'8
                 }
-        }'''
+        }
+        '''
 
    leaftools.excise(t.leaves[-1])
 
-   r'''\time 11/14
+   r'''
+   \time 11/14
         \compressMusic #'(4 . 7) {
                 \fraction \times 7/10 {
                         c'4
@@ -227,7 +242,8 @@ def test_leaftools_excise_04( ):
                         a'8
                         bf'8
                 }
-        }'''
+        }
+        '''
 
    assert isinstance(t, RigidMeasure)
    assert t.meter.forced == (11, 14)
@@ -260,7 +276,8 @@ def test_leaftools_excise_05( ):
          construct.run(3, (1, 4)))
    pitchtools.chromaticize(t)
 
-   r'''\time 5/6
+   r'''
+   \time 5/6
         \compressMusic #'(2 . 3) {
                 \times 4/7 {
                         c'8
@@ -274,11 +291,13 @@ def test_leaftools_excise_05( ):
                 g'4
                 af'4
                 a'4
-        }'''
+        }
+        '''
 
    leaftools.excise(t.leaves[0])
 
-   r'''\time 11/14
+   r'''
+   \time 11/14
         \compressMusic #'(4 . 7) {
                 \times 2/3 {
                         cs'8
@@ -297,7 +316,8 @@ def test_leaftools_excise_05( ):
                 \fraction \times 7/6 {
                         a'4
                 }
-        }'''
+        }
+        '''
 
    assert isinstance(t, RigidMeasure)
    assert t.meter.forced == (11, 14)
@@ -330,7 +350,8 @@ def test_leaftools_excise_06( ):
          construct.run(3, (1, 4)))
    pitchtools.chromaticize(t)
 
-   r'''\time 5/6
+   r'''
+   \time 5/6
         \compressMusic #'(2 . 3) {
                 \times 4/7 {
                         c'8
@@ -344,11 +365,13 @@ def test_leaftools_excise_06( ):
                 g'4
                 af'4
                 a'4
-        }'''
+        }
+        '''
 
    leaftools.excise(t.leaves[-1])
 
-   r'''\time 4/6
+   r'''
+   \time 4/6
         \scaleDurations #'(2 . 3) {
                 \times 4/7 {
                         c'8
@@ -361,7 +384,8 @@ def test_leaftools_excise_06( ):
                 }
                 g'4
                 af'4
-        }'''
+        }
+        '''
 
    assert isinstance(t, RigidMeasure)
    assert t.meter.forced == (4, 6)
@@ -387,7 +411,8 @@ def test_leaftools_excise_07( ):
       FixedDurationTuplet((2, 2), [Note(0, (1, 2)), Note(1, (1, 2)), 
       FixedDurationTuplet((2, 4), [Note(i, (1, 4)) for i in range(2, 5)])])])
 
-   r'''\time 4/4
+   r'''
+   \time 4/4
       \times 2/3 {
              c'2
              cs'2
@@ -396,7 +421,8 @@ def test_leaftools_excise_07( ):
                      ef'4
                      e'4
              }
-      }'''
+      }
+      '''
 
    leaftools.excise(t.leaves[-1])
    measure = t

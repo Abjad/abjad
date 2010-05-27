@@ -8,7 +8,8 @@ def test_container_splice_01( ):
    Beam(t[0])
    result = t[-1].splice([FixedDurationTuplet((2, 8), construct.scale(3))])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       \times 2/3 {
          c'8 [
          d'8
@@ -19,7 +20,8 @@ def test_container_splice_01( ):
          d'8
          e'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert result == t[:]
@@ -33,7 +35,8 @@ def test_container_splice_02( ):
    Beam(t.leaves)
    result = t[0].splice([Note(2.5, (1, 8))])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       {
          c'8 [
          c'8
@@ -43,7 +46,8 @@ def test_container_splice_02( ):
          c'8
          c'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t}\n\tdqs'8\n\t{\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"

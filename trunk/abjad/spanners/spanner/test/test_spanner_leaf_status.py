@@ -9,12 +9,14 @@ def test_spanner_leaf_status_01( ):
    pitchtools.chromaticize(t)
    p = Spanner(t)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       cs'8
       d'8
       ef'8
-   }'''
+   }
+   '''
 
    assert p._isMyFirstLeaf(t[0])
    for leaf in t[1 : ]:
@@ -34,7 +36,8 @@ def test_spanner_leaf_status_02( ):
    pitchtools.chromaticize(t)
    p = Spanner(t[ : 3])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8
       cs'8
       {
@@ -43,7 +46,8 @@ def test_spanner_leaf_status_02( ):
       }
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert p._isMyFirstLeaf(t[0])
    assert p._isMyLastLeaf(t[2][1])

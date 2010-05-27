@@ -12,7 +12,8 @@ def test_spannertools_get_contained_01( ):
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            {
                    c'8 [ \startTrillSpan
                    d'8 ]
@@ -21,7 +22,8 @@ def test_spannertools_get_contained_01( ):
                    e'8 (
                    f'8 ) \stopTrillSpan
            }
-   }'''
+   }
+   '''
 
    spanners = spannertools.get_contained([t])
    assert len(spanners) == 3
@@ -55,7 +57,8 @@ def test_spannertools_get_contained_02( ):
    Beam(t.leaves[:2])
    Slur(t.leaves[2:])
    
-   r'''{
+   r'''
+   {
            \new Voice {
                    c'8 [
                    d'8 ]
@@ -64,6 +67,7 @@ def test_spannertools_get_contained_02( ):
                    e'8 (
                    f'8 )
            }
-   }'''
+   }
+   '''
    
    assert py.test.raises(ContiguityError, 'spannertools.get_contained(t.leaves)')

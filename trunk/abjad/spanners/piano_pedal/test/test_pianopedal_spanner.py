@@ -6,13 +6,15 @@ def test_pianopedal_spanner_01( ):
    t = Staff(construct.run(4))
    p = PianoPedal(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
         \set Staff.pedalSustainStyle = #'mixed
         c'8 \sustainOn
         c'8
         c'8
         c'8 \sustainOff
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert p.kind == 'sustain'
@@ -27,13 +29,15 @@ def test_pianopedal_spanner_02( ):
    p = PianoPedal(t[:])
    p.kind = 'sostenuto'
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
         \set Staff.pedalSustainStyle = #'mixed
         c'8 \sostenutoOn
         c'8
         c'8
         c'8 \sostenutoOff
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sostenutoOn\n\tc'8\n\tc'8\n\tc'8 \\sostenutoOff\n}"
@@ -46,13 +50,15 @@ def test_pianopedal_spanner_03( ):
    p = PianoPedal(t[:])
    p.kind = 'corda'
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
         \set Staff.pedalSustainStyle = #'mixed
         c'8 \unaCorda
         c'8
         c'8
         c'8 \treCorde
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\unaCorda\n\tc'8\n\tc'8\n\tc'8 \\treCorde\n}"
@@ -66,13 +72,15 @@ def test_pianopedal_spanner_04( ):
    assert p.kind == 'sustain'
    p.style = 'text'
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
         \set Staff.pedalSustainStyle = #'text
         c'8 \sustainOn
         c'8
         c'8
         c'8 \sustainOff
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'text\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
@@ -86,13 +94,15 @@ def test_pianopedal_spanner_05( ):
    assert p.kind == 'sustain'
    p.style = 'bracket'
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
         \set Staff.pedalSustainStyle = #'bracket
         c'8 \sustainOn
         c'8
         c'8
         c'8 \sustainOff
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'bracket\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
@@ -105,7 +115,8 @@ def test_pianopedal_spanner_06( ):
    PianoPedal(t[:4])
    PianoPedal(t[3:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       \set Staff.pedalSustainStyle = #'mixed
       c'8 \sustainOn
       c'8
@@ -116,7 +127,8 @@ def test_pianopedal_spanner_06( ):
       c'8
       c'8
       c'8 \sustainOff
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOff \\sustainOn\n\tc'8\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"

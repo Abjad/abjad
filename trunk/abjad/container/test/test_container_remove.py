@@ -12,20 +12,24 @@ def test_container_remove_01( ):
    Slur(t[:])
    Beam(t[1])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
       c'8 (
       d'8 [ ]
       e'8
       f'8 )
-   }'''
+   }
+   '''
 
    result = t.remove(t[1])
 
-   r''' \new Voice {
+   r'''
+    \new Voice {
       c'8 (
       e'8
       f'8 )
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
@@ -48,7 +52,8 @@ def test_container_remove_02( ):
    sequential = t[0]
    p = Beam(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [
          d'8
@@ -57,21 +62,25 @@ def test_container_remove_02( ):
          e'8
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    t.remove(sequential)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          e'8 [
          f'8 ]
       }
-   }'''
+   }
+   '''
  
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
-   r'''{
+   r'''
+   {
       c'8
       d'8
    }

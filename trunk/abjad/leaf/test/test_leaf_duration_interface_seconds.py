@@ -9,14 +9,16 @@ def test_leaf_duration_interface_seconds_01( ):
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
    t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
 
-   r'''{
+   r'''
+   {
       \tempo 4=38
       c'8
       d'8
       \tempo 4=42
       e'8
       f'8
-   }'''
+   }
+   '''
 
    assert t[0].duration.seconds == Rational(15, 19)
    assert t[1].duration.seconds == Rational(15, 19)

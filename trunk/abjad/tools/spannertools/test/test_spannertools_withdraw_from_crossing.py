@@ -13,7 +13,8 @@ def test_spannertools_withdraw_from_crossing_01( ):
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            {
                    c'8 [ \startTrillSpan
                    d'8 ]
@@ -22,7 +23,8 @@ def test_spannertools_withdraw_from_crossing_01( ):
                    e'8 (
                    f'8 ) \stopTrillSpan
            }
-   }'''
+   }
+   '''
 
    spanners = spannertools.get_contained([t])
    assert len(spanners) == 3
@@ -46,7 +48,8 @@ def test_spannertools_withdraw_from_crossing_02( ):
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            {
                    c'8 [ \startTrillSpan
                    d'8 ]
@@ -55,7 +58,8 @@ def test_spannertools_withdraw_from_crossing_02( ):
                    e'8 (
                    f'8 ) \stopTrillSpan
            }
-   }'''
+   }
+   '''
 
    spanners = spannertools.get_contained(t[0:1])
    assert len(spanners) == 2
@@ -64,7 +68,8 @@ def test_spannertools_withdraw_from_crossing_02( ):
 
    _withdraw_from_crossing(t[0:1])
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            {
                    c'8 [
                    d'8 ]
@@ -73,7 +78,8 @@ def test_spannertools_withdraw_from_crossing_02( ):
                    e'8 ( \startTrillSpan
                    f'8 ) \stopTrillSpan
            }
-   }'''
+   }
+   '''
 
    spanners = spannertools.get_contained(t[0:1])
    assert len(spanners) == 1
@@ -91,7 +97,8 @@ def test_spannertools_withdraw_from_crossing_03( ):
    slur = Slur(t[1][:])
    trill = Trill(t.leaves)
 
-   r'''\new Voice {
+   r'''
+   \new Voice {
            {
                    c'8 [ \startTrillSpan
                    d'8 ]
@@ -100,7 +107,8 @@ def test_spannertools_withdraw_from_crossing_03( ):
                    e'8 (
                    f'8 ) \stopTrillSpan
            }
-   }'''
+   }
+   '''
 
    spanners = spannertools.get_contained(t.leaves[2:3])
    assert len(spanners) == 2

@@ -6,7 +6,8 @@ def test_durtools_group_prolated_01( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
@@ -19,7 +20,8 @@ def test_durtools_group_prolated_01( ):
          \time 2/8
          b'8
          c''8
-   }'''
+   }
+   '''
 
    groups = durtools.group_prolated(t.leaves, [Rational(3, 8)], )
 
@@ -34,7 +36,8 @@ def test_durtools_group_prolated_02( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
@@ -47,7 +50,8 @@ def test_durtools_group_prolated_02( ):
          \time 2/8
          b'8
          c''8
-   }'''
+   }
+   '''
 
    groups = durtools.group_prolated(t.leaves, [Rational(3, 8)], cyclic = True)
 
@@ -63,7 +67,8 @@ def test_durtools_group_prolated_03( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
@@ -76,7 +81,8 @@ def test_durtools_group_prolated_03( ):
          \time 2/8
          b'8
          c''8
-   }'''
+   }
+   '''
 
    groups = durtools.group_prolated(
       t.leaves, [Rational(3, 8)], cyclic = True, overhang = True)
@@ -94,7 +100,8 @@ def test_durtools_group_prolated_04( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
@@ -107,7 +114,8 @@ def test_durtools_group_prolated_04( ):
          \time 2/8
          b'8
          c''8
-   }'''
+   }
+   '''
 
    groups = durtools.group_prolated(
       t.leaves, [Rational(3, 16)], fill = 'less')
@@ -123,7 +131,8 @@ def test_durtools_group_prolated_05( ):
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
          \time 2/8
          c'8
          d'8
@@ -136,7 +145,8 @@ def test_durtools_group_prolated_05( ):
          \time 2/8
          b'8
          c''8
-   }'''
+   }
+   '''
 
    groups = durtools.group_prolated(
       t.leaves, [Rational(3, 16)], cyclic = True, fill = 'less')

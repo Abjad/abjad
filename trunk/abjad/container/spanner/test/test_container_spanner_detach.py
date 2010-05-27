@@ -9,7 +9,8 @@ def test_container_spanner_detach_01( ):
    p1 = Beam(t[:])
    p2 = Glissando(t[:])
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [ \glissando
          d'8 \glissando
@@ -18,11 +19,13 @@ def test_container_spanner_detach_01( ):
          e'8 \glissando
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    t[0].spanners._detach( )
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8
          d'8
@@ -31,7 +34,8 @@ def test_container_spanner_detach_01( ):
          e'8 [ \glissando
          f'8 ]
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [ \\glissando\n\t\tf'8 ]\n\t}\n}"

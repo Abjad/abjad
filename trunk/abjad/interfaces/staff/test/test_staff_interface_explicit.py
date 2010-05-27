@@ -7,14 +7,16 @@ def test_staff_interface_explicit_01( ):
 
    t = Score([Staff(construct.scale(4))])
 
-   r'''\new Score <<
+   r'''
+   \new Score <<
            \new Staff {
                    c'8
                    d'8
                    e'8
                    f'8
            }
-   >>'''
+   >>
+   '''
 
    assert t.leaves[0].staff.explicit is t[0]
    assert t[0].staff.explicit is t[0]

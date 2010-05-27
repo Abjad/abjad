@@ -11,7 +11,8 @@ def test_partition_unfractured_by_durations_01( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [ (
          d'8 ]
@@ -20,12 +21,14 @@ def test_partition_unfractured_by_durations_01( ):
          e'8 [
          f'8 ] )
       }
-   }'''
+   }
+   '''
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
    parts = partition.unfractured_by_durations(t[:1], durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'32 [ (
       }
@@ -39,7 +42,8 @@ def test_partition_unfractured_by_durations_01( ):
          e'8 [
          f'8 ] )
       }
-   }'''
+   }
+   '''
 
 
    assert check.wf(t)
@@ -57,7 +61,8 @@ def test_partition_unfractured_by_durations_02( ):
    Beam(t[1])
    Slur(t.leaves)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'8 [ (
          d'8 ]
@@ -66,12 +71,14 @@ def test_partition_unfractured_by_durations_02( ):
          e'8 [
          f'8 ] )
       }
-   }'''
+   }
+   '''
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
    parts = partition.unfractured_by_durations(t[:], durations)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       {
          c'32 [ (
       }
@@ -88,7 +95,8 @@ def test_partition_unfractured_by_durations_02( ):
          e'16.
          f'8 ] )
       }
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert len(parts) == 4

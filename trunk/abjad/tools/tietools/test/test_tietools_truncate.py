@@ -7,16 +7,20 @@ def test_tietools_truncate_01( ):
 
    t = Staff(construct.notes(0, [(5, 16)]))
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'4 ~
       c'16
-   }'''
+   }
+   '''
    
    tietools.truncate(t[0].tie.chain)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'4
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'4\n}"
@@ -29,9 +33,11 @@ def test_tietools_truncate_02( ):
 
    tietools.truncate(t[0].tie.chain)
 
-   r'''\new Staff {
+   r'''
+   \new Staff {
       c'8
-   }'''
+   }
+   '''
 
    assert check.wf(t)
    assert t.format == "\\new Staff {\n\tc'8\n}"
