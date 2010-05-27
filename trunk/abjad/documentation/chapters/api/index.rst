@@ -353,6 +353,8 @@ formattools
 .. toctree::
    :maxdepth: 1
 
+   tools/formattools/docstring
+   tools/formattools/regression
    tools/formattools/report
    tools/formattools/wrapper
 
