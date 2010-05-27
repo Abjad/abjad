@@ -12,10 +12,86 @@ from abjad.tools.clonewp.by_leaf_range_with_parentage import \
 
 
 def by_duration_with_parentage(expr, start = 0, stop = None):
-   '''Clone `expr` from prolated offset `start`
-   up to, but not including, prolated offset `stop`.
-   Slice all layers of structure as required.
-   Raise exception if asked to slice a parallel container.
+   r'''Clone `expr` from `start` to `stop` with parentage. ::
+
+      abjad> voice = Voice(construct.run(2))
+      abjad> voice.append(FixedDurationTuplet((2, 8), construct.run(3)))
+      abjad> pitchtools.diatonicize(voice)
+      abjad> f(voice)
+      \new Voice {
+        c'8
+        d'8
+        \times 2/3 {
+                e'8
+                f'8
+                g'8
+        }
+      }
+      
+   ::
+      
+      abjad> new = clonewp.by_duration_with_parentage(voice, (0, 8), (3, 8))
+      abjad> f(new)
+      \new Voice {
+        c'8
+        d'8
+        \times 2/3 {
+                e'8
+                f'16
+        }
+      }
+
+   Raise contiguity error if asked to slice a parallel container. ::
+
+      abjad> staff = Staff(Voice(construct.scale(2)) * 2)
+      abjad> staff.parallel = True
+      abjad> f(staff)
+      \new Staff <<
+        \new Voice {
+                c'8
+                d'8
+        }
+        \new Voice {
+                c'8
+                d'8
+        }
+      >>
+      abjad> clonewp.by_duration_with_parentage(staff, 0, (1, 8))
+      ContiguityError
+
+   .. note:: cases with ``0 = start`` work correctly.
+
+   ::
+
+      abjad> new = clonewp.by_duration_with_parentage(voice, (0, 8), (1, 8))
+      abjad> f(new)
+      \new Voice {
+        c'8
+      }
+      
+   .. note:: cases with ``0 < start`` do not work correctly.
+
+   ::
+      
+      abjad> new = clonewp.by_duration_with_parentage(voice, (1, 8), (2, 8))
+      abjad> f(new)
+      \new Voice {
+        c'8
+        d'8
+      }
+
+   .. note:: function creates ad hoc tuplets as required.
+
+   ::
+
+      abjad> voice = Voice([Note(0, (1, 4))])
+      abjad> new = clonewp.by_duration_with_parentage(voice, 0, (1, 12))
+      abjad> f(new)
+      \new Voice {
+        \times 2/3 {
+                c'8
+        }
+      }
    '''
 
    assert isinstance(expr, _Component)

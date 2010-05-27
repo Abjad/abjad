@@ -42,7 +42,7 @@ def duration_change(leaf, new_preprolated_duration):
          if not leaf.tie.parented:
             Tie(all_leaves)
       elif isinstance(duration_tokens[0], FixedMultiplierTuplet):
-         print 'debug duration_tokens %s' % duration_tokens
+         #print 'debug duration_tokens %s' % duration_tokens
          fmtuplet = duration_tokens[0]
          duration_tokens = fmtuplet[:]
          num_tied_leaves = len(duration_tokens) - 1
