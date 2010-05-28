@@ -24,19 +24,22 @@ def percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
    * `max_note_duration` is the maximum duration that the note returned \
       will have.
 
-
-   Examples:
-   
    ::
 
       abjad> percussion_note(2, (1, 4), (1, 8))
       [Note(d', 8), Rest(8)]
 
+   ::
+
       abjad> percussion_note(2, (1, 64), (1, 8))
       [Note(d', 64)]
 
+   ::
+
       abjad> percussion_note(2, (5, 64), (1, 8))
       [Note(d', 16), Rest(64)]
+
+   ::
 
       abjad> percussion_note(2, (5, 4), (1, 8))
       [Note(d', 8), Rest(1), Rest(8)]

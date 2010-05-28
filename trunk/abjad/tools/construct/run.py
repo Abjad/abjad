@@ -1,28 +1,23 @@
-from abjad.note import Note
 from abjad.rational import Rational
+from abjad.tools.construct.notes import notes as construct_notes
 
 
-def run(count, duration = Rational(1, 8)):
-   '''Returns a list of notes with equal duration and same middle 
-   C pitch.
-
-   * *count*, the number of notes to create.
-   * *duration*, a duration token indicating the duration of each note.\
-      The default is 1/8.
-
-
-   Examples:
-
-   ::
+def run(count, written_duration = Rational(1, 8)):
+   r'''Construct `count` notes on middle C with `written_duration`::
 
       abjad> construct.run(4)
       [Note(c', 8), Note(c', 8), Note(c', 8), Note(c', 8)]
 
-   ::
+   Allow nonassignable `written_duration`::
 
-      abjad> construct.run(4, (1, 16))
-      [Note(c', 16), Note(c', 16), Note(c', 16), Note(c', 16)]
-
+      abjad> voice = Voice(construct.run(2, (5, 16)))
+      abjad> f(voice)
+      \new Voice {
+         c'4 ~
+         c'16
+         c'4 ~
+         c'16
+      }
    '''
 
-   return Note(0, duration) * count
+   return construct_notes([0] * count, [written_duration])

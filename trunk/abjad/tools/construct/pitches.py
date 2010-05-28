@@ -4,7 +4,7 @@ from abjad.pitch import Pitch
 def pitches(pitch_tokens):
    '''.. versionadded:: 1.1.2
 
-   Construct list of pitches from iterable `pitch_tokens`. ::
+   Construct pitches from `pitch_tokens`.::
 
       abjad> construct.pitches([0, 2, 4, 5, 7, 9])
       [Pitch(c, 4), Pitch(d, 4), Pitch(e, 4), Pitch(f, 4), Pitch(g, 4), Pitch(a, 4)]

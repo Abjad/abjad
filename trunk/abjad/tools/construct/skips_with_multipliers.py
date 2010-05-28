@@ -5,14 +5,12 @@ from abjad.skip import Skip
 def skips_with_multipliers(written_duration, multiplied_durations):
    '''.. versionadded:: 1.1.2
 
-   Construct ``skips`` list such that ``skips[i].duration.written``
-   equals `written_duration` and ``skips[i].duration.multiplied``
-   equals ``multiplied_durations[i]``, for all values of ``i``. ::
+   Construct `written_duration` skips with `multiplied_durations`::
    
       abjad> construct.skips_with_multipliers(Rational(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)])
       [Skip(4 * 2), Skip(4 * 4/3), Skip(4 * 1), Skip(4 * 4/5)]
 
-   Useful for making invisible breaks or layout voices.
+   Useful for making invisible layout voices.
    '''
 
    ## initialize skips and written duration

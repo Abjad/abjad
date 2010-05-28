@@ -30,7 +30,7 @@ def notes(pitches, durations, direction='big-endian'):
       'big-endian' returns list of notes of decreasing duration.
       'little-endian' returns list of notes of increasing duration.
 
-   Example. ::
+   ::
 
       abjad> construct.notes(0, [(1, 16), (1, 8), (1, 8)])
       [Note(c', 16), Note(c', 8), Note(c', 8)]

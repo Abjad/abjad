@@ -15,8 +15,8 @@ def notes_curve(pitches, total, start, stop, exp='cosine',
    The function returns as many interpolation values as necessary to 
    fill the `total` duration requested.
    The pitches of the notes are set cyclically from the `pitches` list.
-   
-   Example::
+
+   ::
 
       abjad> construct.notes_curve([1,2], (1, 2), (1, 4), (1, 8))
       [Note(cs', 8 * 113/64), Note(d', 8 * 169/128), Note(cs', 8 * 117/128)]

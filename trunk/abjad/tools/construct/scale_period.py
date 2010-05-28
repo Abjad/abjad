@@ -9,7 +9,7 @@ from abjad.tools.construct.scale import scale
 def scale_period(key_signature = None):
    r'''.. versionadded:: 1.1.2
 
-   Construct one up-down period of scale according to `key_signature`. ::
+   Construct one up-down period of scale according to `key_signature`::
 
       abjad> score = construct.scale_period(KeySignature('E', 'major'))
       abjad> f(score)
