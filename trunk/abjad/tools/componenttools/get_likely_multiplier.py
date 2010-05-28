@@ -8,13 +8,49 @@ from abjad.tools import mathtools
 ## TODO: Maybe move get_likely_multiplier( ) from durtools to measuretools? ##
 
 def get_likely_multiplier(components):
-   '''Heuristic function to guess at a likely multiplier
-      that may have been applied to the components in list
-      at some point during a previous composition-time transform.
+   r'''Get likely multiplier of arbitrary `components`. ::
 
-      Otherwise, return None.
+      abjad> staff = Staff(construct.scale(4, (7, 32)))
+      abjad> f(staff)
+      \new Staff {
+         c'8..
+         d'8..
+         e'8..
+         f'8..
+      }
+      abjad> componenttools.get_likely_multiplier(staff[:])
+      Rational(7, 4)
+   
+   Return ``1`` on no likely multiplier. ::
 
-      Implemented to help reverse measure subsumption.'''
+      abjad> staff = Staff(construct.scale(4))
+      abjad> f(staff)
+      \new Staff {
+         c'8
+         d'8
+         e'8
+         f'8
+      }
+      abjad> componenttools.get_likely_multiplier(staff[:])
+      Rational(1, 1)
+
+   Return none on more than one likely multiplier. ::
+
+      abjad> staff = Staff(construct.notes([0, 2, 4, 5], [(3, 16), (7, 32)]))
+      abjad> f(staff)
+      \new Staff {
+         c'8.
+         d'8..
+         e'8.
+         f'8..
+      }
+      abjad> componenttools.get_likely_multiplier(staff[:]) is None
+      True
+
+   Function implemented to help reverse measure subsumption.
+   
+   .. todo:: move to ``durtools``?
+   '''
 
    from abjad.tools import tietools
    check.assert_components(components)
