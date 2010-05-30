@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_containertools_contents_delete_01( ):
@@ -22,3 +23,10 @@ def test_containertools_contents_delete_02( ):
 
    assert len(t) == 0
    assert contents == [ ]
+
+
+def test_containertools_contents_delete_03( ):
+   '''Raise type error on noncontainer.'''
+
+   assert py.test.raises(TypeError, 
+      'containertools.contents_delete(Note(0, (1, 4)))')

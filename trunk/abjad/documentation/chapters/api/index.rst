@@ -246,15 +246,24 @@ containertools
 
    tools/containertools/contents_color
    tools/containertools/contents_delete
+   tools/containertools/contents_delete_starting_after_prolated_offset
+   tools/containertools/contents_delete_starting_before_prolated_offset
+   tools/containertools/contents_delete_starting_not_after_prolated_offset
    tools/containertools/contents_delete_starting_not_before_prolated_offset
    tools/containertools/contents_multiply
    tools/containertools/contents_reverse
    tools/containertools/contents_scale
    tools/containertools/extend_cyclic
    tools/containertools/get_element_starting_at_prolated_offset
-   tools/containertools/get_first_element_starting_not_before_prolated_offset
-   tools/containertools/get_first_index_starting_not_before_prolated_offset
    tools/containertools/get_index_starting_at_prolated_offset
+   tools/containertools/get_leftmost_element_starting_after_prolated_offset
+   tools/containertools/get_leftmost_element_starting_not_before_prolated_offset
+   tools/containertools/get_leftmost_index_starting_after_prolated_offset
+   tools/containertools/get_leftmost_index_starting_not_before_prolated_offset
+   tools/containertools/get_rightmost_element_starting_before_prolated_offset
+   tools/containertools/get_rightmost_element_starting_not_after_prolated_offset
+   tools/containertools/get_rightmost_index_starting_before_prolated_offset
+   tools/containertools/get_rightmost_index_starting_not_after_prolated_offset
    tools/containertools/insert_and_fracture
    tools/containertools/multiplier_set
    tools/containertools/remove_empty

@@ -15,4 +15,4 @@ def test_containertools_get_index_starting_at_prolated_offset_02( ):
 
    voice = Voice(construct.scale(8))
 
-   assert py.test.raises(MissingComponentError, 'containertools.get_index_starting_at_prolated_offset(voice, Rational(15, 8))')
+   assert py.test.raises(IndexError, 'containertools.get_index_starting_at_prolated_offset(voice, Rational(15, 8))')
