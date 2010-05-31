@@ -1,16 +1,13 @@
 from abjad import *
 
 
-def test_cut_by_duration_01( ):
-   '''Trim the first 'duration' of time from 'component'.
-      When 'component' is a leaf, shorten duration of leaf.
-      When 'component' is a container, remove contents from container.
-      Add ties or duration-modification tuplets as necessary.'''
+def test_cut_by_prolated_duration_01( ):
+   '''Cut component by prolated duration.'''
 
    t = Voice(construct.scale(4))
    Beam(t[:])
 
-   cut.by_duration(t, Rational(1, 8) + Rational(1, 20))
+   cut.by_prolated_duration(t, Rational(1, 8) + Rational(1, 20))
 
    r'''
    \new Voice {
@@ -26,12 +23,12 @@ def test_cut_by_duration_01( ):
    assert t.format == "\\new Voice {\n\t\\times 4/5 {\n\t\td'16. [\n\t}\n\te'8\n\tf'8 ]\n}"
 
 
-def test_cut_by_duration_02( ):
+def test_cut_by_prolated_duration_02( ):
 
    t = Voice(construct.scale(4))
    Beam(t[:])
 
-   cut.by_duration(t, Rational(3, 16))
+   cut.by_prolated_duration(t, Rational(3, 16))
 
    r'''
    \new Voice {

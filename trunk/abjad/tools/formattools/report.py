@@ -5,7 +5,7 @@ from abjad.spanners import Spanner
 def report(system_element, verbose = False, output = 'screen'):
    r'''Read-only string report of all format-time contributions
    made to `system_element` by all the different parts of the Abjad
-   system plumbing. ::
+   system plumbing::
 
       abjad> t = Note(0, (1, 4))
       abjad> t.note_head.style = 'cross'

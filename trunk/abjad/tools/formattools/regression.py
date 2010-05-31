@@ -1,7 +1,7 @@
 def regression(code, tab_width = 3):
    r""".. versionadded:: 1.1.2
 
-   Format `code` for regression test. ::
+   Format `code` for regression test::
 
       abjad> code = '''
       ... staff = Staff(construct.scale(4))
@@ -42,7 +42,7 @@ def regression(code, tab_width = 3):
 
    Treat blank lines intelligently.
 
-   Extremely useful when writing tests.
+   Use when writing tests.
    """
 
    tab = ' ' * tab_width

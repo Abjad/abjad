@@ -7,8 +7,45 @@ from abjad.tuplet import _Tuplet
 
 
 def containers_by_reference(expr):
-   '''Fuse containers in self that are strictly contiguous 
-   and that have the same name.
+   r'''Fuse like-named contiguous containers in `expr`::
+
+      abjad> staff = Staff(Voice(construct.run(2)) * 2)
+      abjad> pitchtools.diatonicize(staff.leaves)
+      abjad> staff[0].name = 'soprano'
+      abjad> staff[1].name = 'soprano'
+      abjad> f(staff)
+      \new Staff {
+         \context Voice = "soprano" {
+            c'8
+            d'8
+         }
+         \context Voice = "soprano" {
+            e'8
+            f'8
+         }
+      }
+      
+   ::
+      
+      abjad> fuse.containers_by_reference(staff)
+      Staff{1}
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \context Voice = "soprano" {
+            c'8
+            d'8
+            e'8
+            f'8
+         }
+      }
+
+   Return `expr`.
+
+   .. todo:: change interface to ``fuse.containers_by_name(staff[:])``
+      to pass containers-to-be-fused explicitly.
    '''
 
    merged = False
@@ -16,7 +53,6 @@ def containers_by_reference(expr):
       expr = [expr]
    expr = Container(expr)
 
-   #g = depth_first_search(expr, direction = 'right')
    g = iterate.depth_first(expr, direction = 'right')
    for cmp in g:
       next = cmp._navigator._nextNamesake
@@ -28,7 +64,7 @@ def containers_by_reference(expr):
          componenttools.detach([next])
          merged = True
    if merged:
-      print expr
+      #print expr
       containertools.remove_empty(expr)
       return expr.pop(0)
    else:
@@ -50,5 +86,3 @@ def containers_by_reference(expr):
 #         componenttools.detach([cmp])
 #         result.extend(cmp)
 #   return result
-
-

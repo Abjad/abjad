@@ -15,6 +15,8 @@ def duration_change(leaf, new_preprolated_duration):
    For durations like 3/14, enclose in tuplet, change note_head.
    For durations like 5/14, enclose in tuplet, splice tied notes.
    Return list modified original leaf and any additional new leaves.
+
+   .. todo:: rename ``leaftools.duration_preprolated_change( )``.
    '''
 
    assert isinstance(leaf, _Leaf)

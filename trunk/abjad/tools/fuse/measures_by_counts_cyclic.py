@@ -3,9 +3,76 @@ from abjad.tools import iterate
 from abjad.tools.fuse.measures_by_reference import measures_by_reference
 
 
-def measures_by_count_cyclic(container, part_counts, mark = False):
-   '''Iterate measures in 'container'.
-      Fuse according to positive integer parts in 'part_counts'.'''
+def measures_by_counts_cyclic(container, part_counts, mark = False):
+   r'''Fuse `container` measures cyclically by `part_counts`::
+
+      abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 5)
+      abjad> pitchtools.diatonicize(staff)
+      abjad> f(staff)
+      \new Staff {
+         {
+            \time 2/8
+            c'8
+            d'8
+         }
+         {
+            \time 2/8
+            e'8
+            f'8
+         }
+         {
+            \time 2/8
+            g'8
+            a'8
+         }
+         {
+            \time 2/8
+            b'8
+            c''8
+         }
+         {
+            \time 2/8
+            d''8
+            e''8
+         }
+      }
+      
+   ::
+      
+      abjad> part_counts = (2, 1)
+      abjad> fuse.measures_by_counts_cyclic(staff, part_counts)
+      
+   ::
+      
+      abjad> f(staff)
+      \new Staff {
+         {
+            \time 4/8
+            c'8
+            d'8
+            e'8
+            f'8
+         }
+         {
+            \time 2/8
+            g'8
+            a'8
+         }
+         {
+            \time 4/8
+            b'8
+            c''8
+            d''8
+            e''8
+         }
+      }
+
+   Return none.
+
+   Set `mark` to true to mark fused measures for later reference.
+
+   .. todo:: rename `part_counts` to `counts`.
+   '''
 
    assert isinstance(container, Container)
    assert isinstance(part_counts, (tuple, list))

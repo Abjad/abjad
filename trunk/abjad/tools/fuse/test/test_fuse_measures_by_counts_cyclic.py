@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fuse_measures_by_count_cyclic_01( ):
+def test_fuse_measures_by_counts_cyclic_01( ):
    '''Docs.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 5)
@@ -38,7 +38,7 @@ def test_fuse_measures_by_count_cyclic_01( ):
    '''
 
    part_counts = (2, 1)
-   fuse.measures_by_count_cyclic(t, part_counts)
+   fuse.measures_by_counts_cyclic(t, part_counts)
 
    r'''
    \new Staff {
@@ -68,7 +68,7 @@ def test_fuse_measures_by_count_cyclic_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\tb'8\n\t\tc''8\n\t\td''8\n\t\te''8\n\t}\n}"
 
 
-def test_fuse_measures_by_count_cyclic_02( ):
+def test_fuse_measures_by_counts_cyclic_02( ):
    '''Docs.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 5)
@@ -105,7 +105,7 @@ def test_fuse_measures_by_count_cyclic_02( ):
    '''
 
    part_counts = (3, )
-   fuse.measures_by_count_cyclic(t, part_counts)
+   fuse.measures_by_counts_cyclic(t, part_counts)
 
    r'''
    \new Staff {

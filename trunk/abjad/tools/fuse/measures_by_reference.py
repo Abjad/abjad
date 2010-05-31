@@ -11,14 +11,64 @@ from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 
 
 def measures_by_reference(measures):
-   '''Measures in 'measures' may be strictly parent-contiguous.
-      Or measures in 'measures' may all be outside-of-score.
-      Measure fusion across intervening container boundaries is undefined.
-      Calculate best new time signature and instantiate new measure.
-      Give contents of 'measures' to new measure.
-      Give dominant spanners of 'measures' to new measure.
-      If parentage of in-score 'measures' to new measure.
-      'Measures' end up empty, undominated and outside-of-score.'''
+   r'''Fuse `measures`::
+
+      abjad> staff = Staff(measuretools.make([(1, 8), (2, 16)]))
+      abjad> measuretools.populate(staff, Rational(1, 16))
+      abjad> pitchtools.diatonicize(staff)
+      abjad> Beam(staff.leaves)
+      abjad> f(staff)
+      \new Staff {
+         {
+            \time 1/8
+            c'16 [
+            d'16
+         }
+         {
+            \time 2/16
+            e'16
+            f'16 ]
+         }
+      }
+      
+   ::
+      
+      abjad> fuse.measures_by_reference(staff[:])
+      RigidMeasure(2/8, [c'16, d'16, e'16, f'16])
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         {
+            \time 2/8
+            c'16 [
+            d'16
+            e'16
+            f'16 ]
+         }
+      }
+
+   Return new measure.
+
+   Allow parent-contiguous `measures`.
+
+   Allow outside-of-score `measures`.
+
+   Do not define measure fusion across intervening container boundaries.
+
+   Calculate best new time signature.
+
+   Instantiate new measure.
+
+   Give `measures` contents to new measure.
+
+   Give `measures` dominant spanners to new measure.
+
+   Give `measures` parentage to new measure.
+
+   Leave `measures` empty, unspanned and outside-of-score.
+   '''
 
    check.assert_components(measures, 
       klasses = (_Measure), contiguity = 'strict', share = 'parent')

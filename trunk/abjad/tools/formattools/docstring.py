@@ -1,7 +1,7 @@
 def docstring(code, tab_width = 3):
    r""".. versionadded:: 1.1.2
 
-   Format `code` for docstring. ::
+   Format `code` for docstring::
 
       abjad> code = '''
       ... staff = Staff(construct.scale(4))
@@ -40,7 +40,7 @@ def docstring(code, tab_width = 3):
 
    Treat blank lines intelligently.
 
-   Extremely useful when writing docstring examples.
+   Use when writing docstrings.
    """
 
    tab = '   '

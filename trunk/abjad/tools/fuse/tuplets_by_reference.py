@@ -9,11 +9,57 @@ from abjad.tuplet import FixedMultiplierTuplet
 
 
 def tuplets_by_reference(tuplets):
-   '''Fuse zero or more tuplets in the 'tuplets' list.
-   Tuplets to fuse must carry the same multiplier.
-   Tuplets to fuse must be of the same type.
-   Works on in-score and outside-of-score tuplets.
-   Returns newly instantiated, fused tuplet.
+   r'''Fuse `tuplets`::
+
+      abjad> t1 = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> Beam(t1[:])
+      abjad> t2 = FixedDurationTuplet((2, 16), construct.scale(3, Rational(1, 16)))
+      abjad> Slur(t2[:])
+      abjad> staff = Staff([t1, t2])
+      abjad> f(staff)
+      \new Staff {
+         \times 2/3 {
+            c'8 [
+            d'8
+            e'8 ]
+         }
+         \times 2/3 {
+            c'16 (
+            d'16
+            e'16 )
+         }
+      }
+      
+   ::
+      
+      abjad> fuse.tuplets_by_reference(staff[:])
+      FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \times 2/3 {
+            c'8 [
+            d'8
+            e'8 ]
+            c'16 (
+            d'16
+            e'16 )
+         }
+      }
+
+   Return new tuplet.
+
+   Fuse zero or more parent-contiguous `tuplets`.
+
+   Allow in-score `tuplets`.
+
+   Allow outside-of-score `tuplets`.
+
+   All `tuplets` must carry the same multiplier.
+
+   All `tuplets` must be of the same type.
    '''
 
    from abjad.tools import scoretools

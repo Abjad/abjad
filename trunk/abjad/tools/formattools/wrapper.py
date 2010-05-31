@@ -1,6 +1,6 @@
 def wrapper(container):
    r'''Read-only string representation of all parts of container
-   format except container contents. ::
+   format except container contents::
 
       abjad> container = Container(construct.scale(12))
       abjad> container.note_head.color = 'red'

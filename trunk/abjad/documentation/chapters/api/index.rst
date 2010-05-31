@@ -277,7 +277,7 @@ cut
 .. toctree::
    :maxdepth: 1
 
-   tools/cut/by_duration
+   tools/cut/by_prolated_duration
 
 
 divide
@@ -375,12 +375,12 @@ fuse
    :maxdepth: 1
 
    tools/fuse/containers_by_reference
-   tools/fuse/contents_by_count
+   tools/fuse/contents_by_counts
    tools/fuse/leaves_by_reference
    tools/fuse/leaves_in_tie_chain
-   tools/fuse/measures_by_count_cyclic
+   tools/fuse/measures_by_counts_cyclic
    tools/fuse/measures_by_reference
-   tools/fuse/tie_chains_by_durations
+   tools/fuse/tied_leaves_by_prolated_durations
    tools/fuse/tuplets_by_reference
 
 
