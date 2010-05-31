@@ -6,9 +6,6 @@ def contents_delete(container):
 
       abjad> staff = Staff(construct.scale(4))
       abjad> Beam(staff.leaves)
-
-   ::
-
       abjad> f(staff)
       \new Staff {
          c'8 [
@@ -29,11 +26,6 @@ def contents_delete(container):
       }
 
    Return `container` contents.
-
-   Raise type error on noncontainer::
-
-      abjad> containertools.contents_delete(Note(0, (1, 4)))
-      TypeError
    '''
    
    if not isinstance(container, Container):

@@ -2,10 +2,19 @@ from abjad.meter import Meter
 
 
 def multiplier_set(container, multiplier):
-   '''Fiddle with other container duration attributes to
-      set container.duration.multiplier equal to multiplier.'''
+   r'''Set `container` `multiplier`::
 
-   ## TODO: Reimplement as settable container duration interface attrs ##
+      abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> containertools.multiplier_set(tuplet, Rational(3, 4))
+      abjad> f(tuplet)
+      \fraction \times 3/4 {
+         c'8
+         d'8
+         e'8
+      }
+
+   .. todo:: reimplement as settable container duration interface attributes.
+   '''
 
    if container.__class__.__name__ == 'FixedDurationTuplet':
       container.duration.target = multiplier * container.duration.contents

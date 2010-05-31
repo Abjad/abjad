@@ -4,20 +4,63 @@ from abjad.tools.containertools.extend_cyclic import extend_cyclic as \
 
 
 def contents_multiply(container, total = 2):
-   '''Multiply the contents of container to total copies of contents;
-   total = 1 leaves container unchanged;
-   total = 2 doubles the contents of container, etc.
+   r'''.. versionadded:: 1.1.1
 
-   Return multiplied container.
+   Multiply `container` contents to `total` repetitions::
+
+      abjad> staff = Staff(construct.scale(2))
+      abjad> Beam(staff.leaves)
+      abjad> containertools.contents_multiply(staff, 3)
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8 ]
+         c'8 [
+         d'8 ]
+         c'8 [
+         d'8 ]
+      }
+
+   Leave `container` unchanged when ``total = 1``::
+
+      abjad> staff = Staff(construct.scale(2))
+      abjad> Beam(staff.leaves)
+      abjad> containertools.contents_multiply(staff, 1)
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8 ]
+      }
+
+   Empty `container` when ``total = 0``::
+
+      abjad> staff = Staff(construct.scale(2))
+      abjad> Beam(staff.leaves)
+      abjad> containertools.contents_multiply(staff, 0)
+      abjad> f(staff)
+      \new Staff {
+      }
+
+   Return `container`.
+
+   .. todo:: rename this function because 'multiply' clashes
+      with duration multiplication. Possibly 'reproduce'.
    '''
 
-   assert isinstance(container, Container)
-   assert isinstance(total, int)
-   assert 0 <= total
+   if not isinstance(container, Container):
+      raise TypeError('must be container: %s' % container)
 
-   if 0 < total:
-      return containertools_extend_cyclic(
-         container, n = len(container), total = total)
-   else:
+   if not isinstance(total, int):
+      raise TypeError('must be int: %s' % total)
+
+   if not 0 <= total:
+      raise ValueError('must be greater than or equal to zero: %s' % total)
+
+   ## empty container when total is zero
+   if total == 0:
       del(container[:])
       return container
+
+   ## reproduce container contents when total is greater than zero
+   n = len(container)
+   return containertools_extend_cyclic(container, n = n, total = total)

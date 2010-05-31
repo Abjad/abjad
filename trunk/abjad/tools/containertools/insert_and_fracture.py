@@ -3,30 +3,43 @@ from abjad.container import Container
 
 
 def insert_and_fracture(container, i, component):
-   r'''Insert component into container at index i.
-   Fracture spanners to the left of index i.
-   Fracture spanners to the right of index i.
-   Return Python list of fractured spanners.
+   r'''Insert `component` into `container` at index `i`
+   and fracture spanners::
 
-   For nonfracturing insert, use ``Container.__setitem__``.
-
-   Example::
-
-      abjad> t = Voice(construct.scale(4))
-      abjad> Beam(t[:])
-      abjad> containertools.insert_and_fracture(t, 1, Rest((1, 4)))
-      abjad> print t.format
-
-      \new Voice {
-              c'8 [ ]
-              r4
-              d'8 [
-              e'8
-              f'8 ]
+      abjad> staff = Staff(construct.scale(4))
+      abjad> Beam(staff.leaves)
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
       }
+      
+   ::
+      
+      abjad> containertools.insert_and_fracture(staff, 1, Rest((1, 8)))
+      [(Beam(c'8, d'8, e'8, f'8), Beam(c'8), Beam(d'8, e'8, f'8)), 
+       (Beam(c'8), Beam(c'8), Beam( )), 
+       (Beam(d'8, e'8, f'8), Beam( ), Beam(d'8, e'8, f'8))]
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 [ ]
+         r8
+         d'8 [
+         e'8
+         f'8 ]
+      }
+
+   Return list of fractured spanners.
    '''
 
-   assert isinstance(container, Container)
+   if not isinstance(container, Container):
+      raise TypeError('must be container: %s' % container)
+
    assert isinstance(i, int)
    assert isinstance(component, _Component)
 

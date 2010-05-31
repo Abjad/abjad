@@ -3,7 +3,49 @@ from abjad.tools import componenttools
 
 
 def remove_empty(expr):
-   '''Delete all emtpy subcontainers in expr.'''
+   r'''Remove empty containers in `expr`::
+
+      abjad> staff = Staff(Container(construct.run(2)) * 4)
+      abjad> pitchtools.diatonicize(staff.leaves)
+      abjad> Beam(staff[:])
+      abjad> containertools.contents_delete(staff[1])
+      abjad> containertools.contents_delete(staff[-1])
+      abjad> f(staff)
+      \new Staff {
+         {
+            c'8 [
+            d'8
+         }
+         {
+         }
+         {
+            g'8
+            a'8 ]
+         }
+         {
+         }
+      }
+      
+   ::
+      
+      abjad> containertools.remove_empty(staff)
+   
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         {
+            c'8 [
+            d'8
+         }
+         {
+            g'8
+            a'8 ]
+         }
+      }
+
+   Return none.
+   '''
 
    class Visitor(object):
       def visit(self, node):

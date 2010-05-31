@@ -1,21 +1,56 @@
-from abjad.tools.clonewp.with_parent import with_parent
+from abjad.tools.clonewp.with_parent import with_parent as clonewp_with_parent
 
 
-def extend_cyclic(expr, n = 1, total = 2):
-   '''Copy the last n elements in expr;
-      then extend expr with addendum to a total of total copies.'''
+def extend_cyclic(container, n = 1, total = 2):
+   r'''.. versionadded:: 1.1.1
+
+   Extend `container` with last `n` elements `total` times::
+
+      abjad> staff = Staff(construct.scale(4))
+      abjad> Beam(staff.leaves)
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
+      }
+      
+   ::
+      
+      abjad> containertools.extend_cyclic(staff, n = 2, total = 3)
+      Staff{8}
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8
+         e'8
+         f'8 ]
+         e'8 [
+         f'8 ]
+         e'8 [
+         f'8 ]
+      }
+
+   Return `container`.
+
+   .. todo:: harmonize name with ``containertools.contents_multiply( )``.
+   '''
 
    # get start and stop indices
-   stop = len(expr)
+   stop = len(container)
    start = stop - n
 
    # for the total number of elements less one
    for x in range(total - 1):
 
-      # copy last n elements of expr
-      addendum = with_parent(expr[start:stop])
+      # copy last n elements of container
+      addendum = clonewp_with_parent(container[start:stop])
 
-      # extend expr with addendum
-      expr.extend(addendum)
+      # extend container with addendum
+      container.extend(addendum)
 
-   return expr
+   return container

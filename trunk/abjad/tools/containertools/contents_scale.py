@@ -7,8 +7,87 @@ from abjad.tuplet import FixedDurationTuplet
 
 
 def contents_scale(container, multiplier):
-   '''Change all leaves in container by multiplier.
-      Return container.'''
+   r'''.. versionadded:: 1.1.1
+
+   Scale `container` contents by dot `multiplier`::
+
+      abjad> staff = Staff(construct.scale(2))
+      abjad> Beam(staff.leaves)
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8 ]
+      }
+      
+   ::
+      
+      abjad> containertools.contents_scale(staff, Rational(3, 2))
+      Staff{2}
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8. [
+         d'8. ]
+      }
+   
+   Scale `container` contents by tie `multiplier`::
+
+      abjad> staff = Staff(construct.scale(2))
+      abjad> Beam(staff.leaves)
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8 ]
+      }
+      
+   ::
+      
+      abjad> containertools.contents_scale(staff, Rational(5, 4))
+      Staff{4}
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         c'8 [ ~
+         c'32
+         d'8 ~
+         d'32 ]
+      }
+
+   Scale `container` contents by nonbinary `multiplier`::
+
+      abjad> staff = Staff(construct.scale(2))
+      abjad> Beam(staff.leaves)
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8 ]
+      }
+      
+   ::
+      
+      abjad> containertools.contents_scale(staff, Rational(4, 3))
+      Staff{2}
+
+   ::
+
+      abjad> f(staff)
+      \new Staff {
+         \times 2/3 {
+            c'4 [
+         }
+         \times 2/3 {
+            d'4 ]
+         }
+      }
+
+   Return `container`.
+
+   .. todo:: Move to ``durtools``?
+   '''
 
    for expr in iterate.chained_contents(container[:]):
       if tietools.is_chain(expr):
@@ -21,3 +100,5 @@ def contents_scale(container, multiplier):
          measuretools.scale(expr, multiplier)
       else:
          raise Exception(NotImplemented)
+
+   return container

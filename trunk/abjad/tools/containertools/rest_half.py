@@ -4,24 +4,89 @@ from abjad.tools.containertools.rest_by_count import rest_by_count
 
 def rest_half(container, rested_half, bigger_half, 
    rest_direction = 'automatic'):
-   '''Turn half of the elements in container into rests.
-      Function works by the *number of* elements in container,
-      and not, for example, by the *duration of* elements in container.
 
-      Either the leftmost, or rightmost, elements in container may rest;
-      set the 'rested_half' keyword to 'left' or 'right', respectively.
+   r'''Turn the left half of `container` into rests with the left
+   half of `container` holding a greater number of elements
+   than the right half::
 
-      Measures with 3, 5, 7 or some other odd number of elements
-      read the mandatory 'bigger_half' parameter to decide whether 
-      more elements on the left, or right, will group together into a half;
-      set the bigger_half keyword to 'left', or 'right', respectively.
-
-      The optional rest_direction keyword should be set to
-      'automatic', 'big-endian' or 'little-endian'.
-      The helper reads rest_direction only when the duration of
-      new rests to construct is nonassignable, like 5/16 or 9/16.
+      abjad> staff = Staff(construct.scale(9))
+      abjad> containertools.rest_half(staff, 'left', 'left')
+      abjad> f(staff)
+      \new Staff {
+         r8
+         r2
+         a'8
+         b'8
+         c''8
+         d''8
+      }
       
-      Return container.'''
+   Turn the left half of `container` into rests with the right
+   half of `container` holding a greater number of elements
+   than the left half::
+      
+      abjad> staff = Staff(construct.scale(9))
+      abjad> containertools.rest_half(staff, 'left', 'right')
+      abjad> f(staff)
+      \new Staff {
+         r2
+         g'8
+         a'8
+         b'8
+         c''8
+         d''8
+      }
+      
+   Turn the right half of `container` into rests with the left
+   half of `container` holding a greater number of elements
+   than the right half::
+      
+      abjad> staff = Staff(construct.scale(9))
+      abjad> containertools.rest_half(staff, 'right', 'left')
+      abjad> f(staff)
+      \new Staff {
+         c'8
+         d'8
+         e'8
+         f'8
+         g'8
+         r2
+      }
+      
+   Turn the right half of `container` into rests with the right
+   half of `container` holding a greater number of elements
+   than the left half::
+      
+      abjad> staff = Staff(construct.scale(9))
+      abjad> containertools.rest_half(staff, 'right', 'right')
+      abjad> f(staff)
+      \new Staff {
+         c'8
+         d'8
+         e'8
+         f'8
+         r2
+         r8
+      }
+   
+   
+   Function works by the number of elements in `container`
+   rather than by the duration of elements in `container`.
+
+   Containers with an odd number of elements
+   read `bigger_half` to decide whether 
+   more elements on the left or right will group together.
+
+   Containers with an even number of elements
+   ignore `bigger_half`.
+
+   Set `rest_direction` to ``'automatic'``, ``'big-endian'`` or 
+   ``'little-endian'``.
+
+   Return `container`.
+
+   .. todo:: replace with a family of functions.
+   '''
 
    ## assert input types
    assert rested_half in ('left', 'right')

@@ -1,7 +1,7 @@
 def contents_color(container, color):
    r'''.. versionadded:: 1.1.2
 
-   Set `container` contents to `color`. ::
+   Set `container` contents to `color`::
 
       abjad> measure = RigidMeasure((2, 8), construct.scale(2))
       abjad> containertools.contents_color(measure, 'red')
@@ -27,7 +27,7 @@ def contents_color(container, color):
               \revert TupletNumber #'color
       }
    
-   Useful as a type of structural highlighting.
+   Use to highlight structure.
    '''
 
    container.accidental.color = color

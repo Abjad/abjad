@@ -264,6 +264,7 @@ containertools
    tools/containertools/get_rightmost_element_starting_not_after_prolated_offset
    tools/containertools/get_rightmost_index_starting_before_prolated_offset
    tools/containertools/get_rightmost_index_starting_not_after_prolated_offset
+   tools/containertools/insert_and_do_not_fracture
    tools/containertools/insert_and_fracture
    tools/containertools/multiplier_set
    tools/containertools/remove_empty
