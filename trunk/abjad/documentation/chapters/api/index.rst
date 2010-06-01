@@ -526,7 +526,6 @@ leaftools
    tools/leaftools/composite_offset_series
    tools/leaftools/copy_duration_from_to
    tools/leaftools/duration_preprolated_change
-   tools/leaftools/duration_scale
    tools/leaftools/excise
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
@@ -536,6 +535,7 @@ leaftools
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply
+   tools/leaftools/scale_leaf_preprolated_duration
    tools/leaftools/shorten
    tools/leaftools/show_leaves
    tools/leaftools/subruns_of_type
