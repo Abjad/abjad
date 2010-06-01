@@ -7,9 +7,11 @@ from abjad.tools.componenttools.detach import detach
 from abjad.tuplet import FixedDurationTuplet
 
 
-def excise(leaf):
-   '''Remove leaf from all sequential containers in leaf's parentage;
-      shrink duration of any enclosing durated containers.'''
+def remove_leaf_and_shrink_durated_parent_containers(leaf):
+   '''Remove `leaf` from score and shrink durated parent containers.
+
+   Return none.
+   '''
 
    prolated_leaf_duration = leaf.duration.prolated
    prolations = leaf.duration._prolations

@@ -1,193 +1,170 @@
 from abjad import *
 
 
-def test_leaftools_excise_01( ):
-   '''Excise leaf that conflicts with meter duration.'''
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
+   '''Excise leaf from tuplet and rigid measure.'''
 
    t = RigidMeasure((4, 4), 
       FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
+   pitchtools.diatonicize(t)
 
    r'''
-   \time 4/4
+   {
+        \time 4/4
         \times 2/3 {
                 c'4
-                cs'4
                 d'4
+                e'4
         }
         \times 2/3 {
-                ef'4
-                e'4
                 f'4
+                g'4
+                a'4
         }
-        '''
+   }
+   '''
 
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
 
    r'''
-   \time 5/6
-        \compressMusic #'(2 . 3) {
-                        cs'4
+   {
+        \time 5/6
+        \scaleDurations #'(2 . 3) {
+                {
                         d'4
-                        ef'4
                         e'4
+                }
+                {
                         f'4
+                        g'4
+                        a'4
+                }
         }
-        '''
+   }
+   '''
 
-   assert isinstance(t, RigidMeasure)
-   assert len(t) == 2
-   assert t.meter.forced == (5, 6)
-   tuplet = t[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 2
-   assert tuplet.duration.preprolated == Rational(2, 4)
-   assert tuplet.duration.prolated == Rational(2, 6)
-   tuplet = t[1]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 3
-   assert tuplet.duration.preprolated == Rational(3, 4)
-   assert tuplet.duration.prolated == Rational(3, 6)
-   check.wf(t)
+   assert check.wf(t)
+   assert t.format == "{\n\t\\time 5/6\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'4\n\t\t\te'4\n\t\t}\n\t\t{\n\t\t\tf'4\n\t\t\tg'4\n\t\t\ta'4\n\t\t}\n\t}\n}"
 
 
-def test_leaftools_excise_02( ):
-   '''Excise leaf that conflicts with meter duration.'''
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02( ):
+   '''Excise leaf from tuplet and measure.'''
 
    t = RigidMeasure((4, 4), 
       FixedDurationTuplet((2, 4), Note(0, (1, 8)) * 5) * 2)
+   pitchtools.diatonicize(t)
 
    r'''
-   \time 4/4
+   {
+        \time 4/4
         \times 4/5 {
                 c'8
-                cs'8
                 d'8
-                ef'8
                 e'8
+                f'8
+                g'8
         }
         \times 4/5 {
-                f'8
-                fs'8
-                g'8
-                af'8
                 a'8
+                b'8
+                c''8
+                d''8
+                e''8
         }
-        '''
+   }
+   '''
 
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
 
    r'''
-   \time 9/10
-     \compressMusic #'(4 . 5) {
-                     cs'8
-                     d'8
-                     ef'8
-                     e'8
-                     f'8
-                     fs'8
-                     g'8
-                     af'8
-                     a'8
-     }
-     '''
+   {
+        \time 9/10
+        \scaleDurations #'(4 . 5) {
+                {
+                        d'8
+                        e'8
+                        f'8
+                        g'8
+                }
+                {
+                        a'8
+                        b'8
+                        c''8
+                        d''8
+                        e''8
+                }
+        }
+   }
+   '''
 
-   assert isinstance(t, RigidMeasure)
-   assert len(t) == 2
-   assert t.meter.forced == (9, 10)
-   tuplet = t[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 4
-   assert tuplet.duration.preprolated == Rational(4, 8)
-   assert tuplet.duration.prolated == Rational(4, 10)
-   tuplet = t[1]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 5
-   assert tuplet.duration.preprolated == Rational(5, 8)
-   assert tuplet.duration.prolated == Rational(5, 10)
-   check.wf(t)
+   assert check.wf(t)
+   assert t.format == "{\n\t\\time 9/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t\t{\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t}\n\t}\n}"
 
 
-def test_leaftools_excise_03( ):
-   '''Excise leaf that conflicts with meter duration;
-      change meter denominator and reset tuplet target durations.'''
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03( ):
+   '''Excise leaf from tuplet and measure.'''
 
    t = RigidMeasure((5, 6), [
       FixedDurationTuplet((3, 4), Note(0, (1, 4)) * 5),
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
    
-   from abjad.leaf import _Leaf
-   for i, leaf in enumerate(iterate.naive_forward_in(t, _Leaf)):
-      leaf.pitch = i
+   pitchtools.diatonicize(t)
 
    r'''
-   \time 5/6
-        \compressMusic #'(2 . 3) {
+   {
+        \time 5/6
+        \scaleDurations #'(2 . 3) {
                 \fraction \times 3/5 {
                         c'4
-                        cs'4
                         d'4
-                        ef'4
                         e'4
+                        f'4
+                        g'4
                 }
                 \times 4/7 {
-                        f'8
-                        fs'8
-                        g'8
-                        af'8
                         a'8
-                        bf'8
                         b'8
+                        c''8
+                        d''8
+                        e''8
+                        f''8
+                        g''8
                 }
         }
-        '''
+   }
+   '''
 
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
 
    r'''
-   \time 11/15
-        \compressMusic #'(8 . 15) {
+   {
+        \time 11/15
+        \scaleDurations #'(8 . 15) {
                 \fraction \times 3/4 {
-                        cs'4
                         d'4
-                        ef'4
                         e'4
+                        f'4
+                        g'4
                 }
                 \fraction \times 5/7 {
-                        f'8
-                        fs'8
-                        g'8
-                        af'8
                         a'8
-                        bf'8
                         b'8
+                        c''8
+                        d''8
+                        e''8
+                        f''8
+                        g''8
                 }
         }
-        '''
+   }
+   '''
 
-   assert isinstance(t, RigidMeasure)
-   assert t.meter.forced == (11, 15)
-   assert len(t) == 2
-   tuplet = t[0]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 4
-   assert tuplet.duration.target == Rational(3, 4)
-   assert tuplet.duration.prolated == Rational(2, 5)
-   note = t[0][0]
-   assert note.duration.written == Rational(1, 4)
-   assert note.duration.prolated == Rational(1, 10)
-   tuplet = t[1]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 7
-   assert tuplet.duration.target == Rational(5, 8)
-   assert tuplet.duration.prolated == Rational(2, 6)
-   note = t[1][0]
-   assert note.duration.written == Rational(1, 8)
-   assert note.duration.prolated == Rational(1, 21)
    assert check.wf(t)
+   assert t.format == "{\n\t\\time 11/15\n\t\\scaleDurations #'(8 . 15) {\n\t\t\\fraction \\times 3/4 {\n\t\t\td'4\n\t\t\te'4\n\t\t\tf'4\n\t\t\tg'4\n\t\t}\n\t\t\\fraction \\times 5/7 {\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t\tf''8\n\t\t\tg''8\n\t\t}\n\t}\n}"
 
 
-def test_leaftools_excise_04( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
    '''Excise leaf that conflicts with meter duration;
       change meter denominator and reset tuplet target durations.'''
 
@@ -196,9 +173,7 @@ def test_leaftools_excise_04( ):
       FixedDurationTuplet((4, 8), Note(0, (1, 8)) * 7),
       ])
 
-   from abjad.leaf import _Leaf
-   for i, leaf in enumerate(iterate.naive_forward_in(t, _Leaf)):
-      leaf.pitch = i
+   pitchtools.chromaticize(t)
 
    r'''
    \time 5/6
@@ -222,7 +197,7 @@ def test_leaftools_excise_04( ):
         }
         '''
 
-   leaftools.excise(t.leaves[-1])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
 
    r'''
    \time 11/14
@@ -267,7 +242,7 @@ def test_leaftools_excise_04( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_05( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
    '''Excise leaf that conflicts with meter duration;
       trigger tuplet insertion.'''
 
@@ -294,7 +269,7 @@ def test_leaftools_excise_05( ):
         }
         '''
 
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
 
    r'''
    \time 11/14
@@ -341,7 +316,7 @@ def test_leaftools_excise_05( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_06( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
    '''Excise leaf that matches meter duration;
       does not trigger trivial 1:1 tuplet insertion.'''
 
@@ -368,7 +343,7 @@ def test_leaftools_excise_06( ):
         }
         '''
 
-   leaftools.excise(t.leaves[-1])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
 
    r'''
    \time 4/6
@@ -404,7 +379,7 @@ def test_leaftools_excise_06( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_07( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
    '''Nested fixed-duration tuplet.'''
 
    t = RigidMeasure((4, 4), [
@@ -424,7 +399,7 @@ def test_leaftools_excise_07( ):
       }
       '''
 
-   leaftools.excise(t.leaves[-1])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
    measure = t
    assert isinstance(measure, RigidMeasure)
    assert measure.meter.forced == (8, 9)
@@ -465,11 +440,11 @@ def test_leaftools_excise_07( ):
    '''
 
 
-def test_leaftools_excise_08( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08( ):
    '''Exicse plain vanilla container.'''
 
    t = Container(Note(0, (1, 4)) * 6)
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 5
    assert t.duration.preprolated == Rational(5, 4)
@@ -480,10 +455,10 @@ def test_leaftools_excise_08( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_09( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09( ):
    '''Container container.'''
    t = Container(Note(0, (1, 4)) * 6)
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 5
    assert t.duration.preprolated == Rational(5, 4)
@@ -494,11 +469,11 @@ def test_leaftools_excise_09( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_10( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10( ):
    '''Excise voice.'''
 
    t = Voice(Note(0, (1, 4)) * 6)
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Voice)
    assert len(t) == 5
    assert t.duration.preprolated == Rational(5, 4)
@@ -509,10 +484,10 @@ def test_leaftools_excise_10( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_11( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11( ):
    '''Staff.'''
    t = Staff(Note(0, (1, 4)) * 6)
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 5
    assert t.duration.preprolated == Rational(5, 4)
@@ -523,11 +498,11 @@ def test_leaftools_excise_11( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_12( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12( ):
    '''Container.'''
 
    t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   leaftools.excise(t[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Container)
    assert len(t) == 1
    assert t.duration.preprolated == Rational(2, 4)
@@ -541,11 +516,11 @@ def test_leaftools_excise_12( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_13( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13( ):
    '''Container.'''
 
    t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   leaftools.excise(t[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Container)
    assert len(t) == 1
    assert t.duration.preprolated == Rational(2, 4)
@@ -559,11 +534,11 @@ def test_leaftools_excise_13( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_14( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14( ):
    '''Excise voice.'''
 
    t = Voice(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   leaftools.excise(t[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Voice)
    assert len(t) == 1
    assert t.duration.preprolated == Rational(2, 4)
@@ -577,11 +552,11 @@ def test_leaftools_excise_14( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_15( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15( ):
    '''Excise staff.'''
 
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   leaftools.excise(t[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
    assert isinstance(t, Staff)
    assert len(t) == 1
    assert t.duration.preprolated == Rational(2, 4)
@@ -595,11 +570,11 @@ def test_leaftools_excise_15( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_16( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16( ):
    '''Excise container.'''
 
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 2
    assert t.duration.preprolated == Rational(5, 6)
@@ -613,11 +588,11 @@ def test_leaftools_excise_16( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_17( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17( ):
    '''Excise container.'''
 
    t = Container(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Container)
    assert len(t) == 2
    assert t.duration.preprolated == Rational(5, 6)
@@ -631,11 +606,11 @@ def test_leaftools_excise_17( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_18( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18( ):
    '''Excise voice.'''
 
    t = Voice(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Voice)
    assert len(t) == 2
    assert t.duration.preprolated == Rational(5, 6)
@@ -649,11 +624,11 @@ def test_leaftools_excise_18( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_19( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19( ):
    '''Excise staff.'''
 
    t = Staff(FixedDurationTuplet((2, 4), Note(0, (1, 4)) * 3) * 2)
-   leaftools.excise(t.leaves[0])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
    assert isinstance(t, Staff)
    assert len(t) == 2
    assert t.duration.preprolated == Rational(5, 6)
@@ -667,14 +642,14 @@ def test_leaftools_excise_19( ):
    assert check.wf(t)
 
 
-def test_leaftools_excise_20( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20( ):
    '''Excise singly-nested singleton.'''
 
    t = FixedDurationTuplet((2, 4), [
       Note(0, (1, 4)),
       Note(0, (1, 4)),
       FixedDurationTuplet((1, 4), [Note(0, (1, 4))])])
-   leaftools.excise(t.leaves[-1])
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
    assert isinstance(t, FixedDurationTuplet)
    assert len(t) == 2
    assert t.duration.target == Rational(2, 6)
@@ -685,7 +660,7 @@ def test_leaftools_excise_20( ):
    assert t[0].duration.prolated == Rational(1, 6)
 
 
-def test_leaftools_excise_21( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21( ):
    '''Excise doubly-nested singleton.'''
 
    t = FixedDurationTuplet((2, 4), [
@@ -693,121 +668,201 @@ def test_leaftools_excise_21( ):
       Note(0, (1, 4)),
       FixedDurationTuplet((1, 4), [
          FixedDurationTuplet((1, 4), [Note(0, (1, 4))])])])
-   leaftools.excise(t.leaves[-1])
-   assert isinstance(t, FixedDurationTuplet)
-   assert len(t) == 2
-   assert t.duration.target == Rational(2, 6)
-   assert t.duration.multiplier == Rational(2, 3)
-   assert t.duration.prolated == Rational(2, 6)
-   assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 6)
+
+   pitchtools.diatonicize(t)
+
+   r'''
+   \times 2/3 {
+        c'4
+        d'4
+        {
+                {
+                        e'4
+                }
+        }
+   }
+   '''
+
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+
+   r'''
+   \times 2/3 {
+        c'4
+        d'4
+   }
+   '''
+
+   assert check.wf(t)
+   assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n}"
 
 
-def test_leaftools_excise_22( ):
-   '''Doubly-nested singleton.'''
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
+   '''Excise doubly-nested singleton leaf.'''
 
    t = FixedDurationTuplet((2, 4), [
       Note(0, (1, 4)),
       Note(0, (1, 4)),
       FixedDurationTuplet((1, 4), [
          FixedDurationTuplet((1, 4), Note(0, (1, 8)) * 2)])])
+
+   pitchtools.diatonicize(t)
+
    r'''
    \times 2/3 {
         c'4
-        cs'4
-                        d'8
-                        ef'8
+        d'4
+        {
+                {
+                        e'8
+                        f'8
+                }
+        }
    }
    '''
 
-   leaftools.excise(t.leaves[-1])
-   assert isinstance(t, FixedDurationTuplet)
-   assert len(t) == 3
-   assert t.duration.target == Rational(5, 12)
-   assert t.duration.prolated == Rational(5, 12)
-   assert t.duration.multiplier == Rational(2, 3)
-   assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 6)
-   tuplet = t[-1]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 1
-   assert tuplet.duration.preprolated == Rational(1, 8)
-   assert tuplet.duration.prolated == Rational(1, 12)
-   assert tuplet.duration.multiplier == Rational(1, 1)
-   tuplet = t[-1][0]
-   assert isinstance(tuplet, FixedDurationTuplet)
-   assert len(tuplet) == 1
-   assert tuplet.duration.preprolated == Rational(1, 8)
-   assert tuplet.duration.prolated == Rational(1, 12)
-   assert tuplet.duration.multiplier == Rational(1, 1)
-   note = t.leaves[-1]
-   assert isinstance(note, Note)
-   assert note.duration.written == Rational(1, 8)
-   assert note.duration.prolated == Rational(1, 12)
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+
    r'''
    \times 2/3 {
-           c'4
-           cs'4
-                           d'8
+        c'4
+        d'4
+        {
+                {
+                        e'8
+                }
+        }
    }
    '''
 
-
-def test_leaftools_excise_23( ):
-   '''Excise nonnested fixed-duration tuplet.'''
-
-   t = FixedDurationTuplet((4, 4), Note(0, (1, 4)) * 5)
-   leaftools.excise(t.leaves[0])
-   assert isinstance(t, FixedDurationTuplet)
-   assert len(t) == 4
-   assert t.duration.target == Rational(4, 5)
-   assert t.duration.prolated == Rational(4, 5)
-   assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 5)
+   assert check.wf(t)
+   assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n\t{\n\t\t{\n\t\t\te'8\n\t\t}\n\t}\n}"
 
 
-def test_leaftools_excise_24( ):
-   '''Nonnested fixed-multiplier tuplet.'''
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23( ):
+   '''Excise leaf from fixed-duration tuplet.'''
 
-   t = FixedMultiplierTuplet((4, 5), Note(0, (1, 4)) * 5)
-   leaftools.excise(t.leaves[0])
-   assert isinstance(t, FixedMultiplierTuplet)
-   assert len(t) == 4
-   assert t.duration.preprolated == Rational(4, 5)
-   assert t.duration.prolated == Rational(4, 5)
-   assert isinstance(t[0], Note)
-   assert t[0].duration.written == Rational(1, 4)
-   assert t[0].duration.prolated == Rational(1, 5)
+   t = FixedDurationTuplet((4, 8), construct.scale(5))
+
+   r'''
+   \times 4/5 {
+        c'8
+        d'8
+        e'8
+        f'8
+        g'8
+   }
+   '''
+
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+
+   r'''
+   \times 4/5 {
+        d'8
+        e'8
+        f'8
+        g'8
+   }
+   '''
+
+   assert check.wf(t)
+   assert t.format == "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
 
 
-def test_leaftools_excise_25( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24( ):
+   '''Excise leaf from fixed-multiplier tuplet.'''
+
+   t = FixedMultiplierTuplet((4, 5), construct.scale(5))
+
+   r'''
+   \times 4/5 {
+        c'8
+        d'8
+        e'8
+        f'8
+        g'8
+   }
+   '''
+
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+
+   r'''
+   \times 4/5 {
+        d'8
+        e'8
+        f'8
+        g'8
+   }
+   '''
+
+   assert check.wf(t)
+   assert t.format == "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
+
+
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25( ):
    '''Excise nested fixed-duration tuplet.'''
 
-   t = FixedDurationTuplet((2,2), [Note(0, (1,2)), Note(1, (1,2)), \
+   t = FixedDurationTuplet((2,2), [Note(0, (1,2)), Note(1, (1,2)), 
       FixedDurationTuplet((2,4), [Note(i, (1,4)) for i in range(2, 5)])])
-   leaftools.excise(t.leaves[-1])
-   assert isinstance(t, FixedDurationTuplet)
-   assert len(t) == 3
-   assert t.duration.target == Rational(8,9)
-   assert t.duration.prolated == Rational(8,9)
-   assert isinstance(t[2], FixedDurationTuplet)
-   assert t[2].duration.target == Rational(2,6)
-   assert t[2].duration.prolated == Rational(2, 9)
+
+   r'''
+   \times 2/3 {
+        c'2
+        cs'2
+        \times 2/3 {
+                d'4
+                ef'4
+                e'4
+        }
+   }
+   '''
+
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+
+   r'''
+   \times 2/3 {
+        c'2
+        cs'2
+        \times 2/3 {
+                d'4
+                ef'4
+        }
+   }
+   '''
+
+   assert check.wf(t)
+   assert t.format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"
 
 
-def test_leaftools_excise_26( ):
+def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26( ):
    '''Excise nested fixed-multiplier tuplet.'''
 
-   t = FixedMultiplierTuplet((2,3), [Note(0, (1,2)), Note(1, (1,2)), \
+   t = FixedMultiplierTuplet((2,3), [Note(0, (1,2)), Note(1, (1,2)), 
       FixedMultiplierTuplet((2,3), [Note(i, (1,4)) for i in range(2, 5)])])
-   leaftools.excise(t.leaves[-1])
-   assert isinstance(t, FixedMultiplierTuplet)
-   assert len(t) == 3
-   assert t.duration.preprolated == Rational(8,9)
-   assert t.duration.prolated == Rational(8,9)
-   assert isinstance(t[2], FixedMultiplierTuplet)
-   assert t[2].duration.preprolated == Rational(2,6)
-   assert t[2].duration.prolated == Rational(2, 9)
+
+   r'''
+   \times 2/3 {
+        c'2
+        cs'2
+        \times 2/3 {
+                d'4
+                ef'4
+                e'4
+        }
+   }
+   '''
+
+   leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+
+   r'''
+   \times 2/3 {
+        c'2
+        cs'2
+        \times 2/3 {
+                d'4
+                ef'4
+        }
+   }
+   '''
+
+   assert check.wf(t)
+   assert t.format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"

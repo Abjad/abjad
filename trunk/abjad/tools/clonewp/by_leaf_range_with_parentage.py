@@ -94,7 +94,7 @@ def by_leaf_range_with_parentage(expr, start = 0, stop = None):
       if leaf == start_leaf:
          _found_start_leaf = True
       else:
-         leaftools.excise(leaf)
+         leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)
 
    #print 'moved on to trimming backwards ...'
 
@@ -106,7 +106,7 @@ def by_leaf_range_with_parentage(expr, start = 0, stop = None):
       if leaf == stop_leaf:
          _found_stop_leaf = True
       else:
-         leaftools.excise(leaf)
+         leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)
 
    # return trimmed governor copy
    return governor_copy

@@ -526,7 +526,6 @@ leaftools
    tools/leaftools/composite_offset_difference_series
    tools/leaftools/composite_offset_series
    tools/leaftools/copy_written_duration_and_multiplier_from_to
-   tools/leaftools/excise
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
    tools/leaftools/group_by_leaf_type
@@ -535,6 +534,8 @@ leaftools
    tools/leaftools/leaves_to_skips
    tools/leaftools/meiose
    tools/leaftools/multiply
+   tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
+   tools/leaftools/remove_leaf_and_shrink_parent_containers
    tools/leaftools/scale_leaf_preprolated_duration
    tools/leaftools/shorten
    tools/leaftools/show_leaves

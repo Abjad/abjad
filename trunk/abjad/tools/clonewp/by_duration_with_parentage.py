@@ -133,12 +133,14 @@ def _scopy_container(container, start, stop):
    #leaf_start_splitted = split.leaf_at_duration(leaf_start, first_dif)
    leaf_start_splitted = split.unfractured_at_duration(leaf_start, first_dif)
    if len(leaf_start_splitted) == 2:
-      leaftools.excise(leaf_start_splitted[0][0])
+      leaftools.remove_leaf_and_shrink_durated_parent_containers(
+         leaf_start_splitted[0][0])
    # split second leaf
    #leaf_end_splitted = split.leaf_at_duration(leaf_end, second_dif)
    leaf_end_splitted = split.unfractured_at_duration(leaf_end, second_dif)
    if len(leaf_end_splitted) == 2:
-      leaftools.excise(leaf_end_splitted[1][0])
+      leaftools.remove_leaf_and_shrink_durated_parent_containers(
+         leaf_end_splitted[1][0])
    return container
 
 
