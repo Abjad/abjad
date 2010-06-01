@@ -535,7 +535,6 @@ leaftools
    tools/leaftools/meiose
    tools/leaftools/multiply
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
-   tools/leaftools/remove_leaf_and_shrink_parent_containers
    tools/leaftools/scale_leaf_preprolated_duration
    tools/leaftools/shorten
    tools/leaftools/show_leaves
