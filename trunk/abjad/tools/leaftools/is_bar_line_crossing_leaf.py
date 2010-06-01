@@ -1,10 +1,10 @@
 from abjad.rational import Rational
 
 
-def is_bar_line_crosser(leaf):
+def is_bar_line_crossing_leaf(leaf):
    r'''.. versionadded:: 1.1.2
 
-   True when `leaf` crosses bar line. Otherwise false. ::
+   True when `leaf` crosses bar line::
 
       abjad> t = Staff(construct.scale(4))
       abjad> t[2].duration.written *= 2
@@ -20,12 +20,13 @@ def is_bar_line_crosser(leaf):
               e'4
               f'8
       }
-      abjad> for leaf in t:
-         print leaf, leaftools.is_bar_line_crosser(leaf)
-      c'8 False
-      d'8 False
-      e'4 True
-      f'8 False
+      abjad> leaftools.is_bar_line_crossing_leaf(t.leaves[2])
+      True
+
+   Otherwise false::
+
+      abjad> leaftools.is_bar_line_crossing_leaf(t.leaves[3])
+      False
    '''
 
    meter = leaf.meter.effective

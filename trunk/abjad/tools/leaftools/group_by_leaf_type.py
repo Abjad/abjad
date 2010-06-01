@@ -4,7 +4,7 @@ import itertools
 def group_by_leaf_type(leaves):
    '''.. versionadded:: 1.1.2
 
-   Yield successive tuples from `leaves` with like type. ::
+   Yield successive tuples from `leaves` by type::
 
       abjad> staff = Staff(construct.leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
       abjad> for x in leaftools.group_by_leaf_type(staff):

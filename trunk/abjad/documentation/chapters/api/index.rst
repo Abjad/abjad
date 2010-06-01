@@ -529,12 +529,12 @@ leaftools
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
    tools/leaftools/group_by_leaf_type
-   tools/leaftools/has_dotted_written_duration
-   tools/leaftools/is_bar_line_crosser
-   tools/leaftools/leaves_to_skips
+   tools/leaftools/has_leaf_with_dotted_written_duration
+   tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/meiose
    tools/leaftools/multiply
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
+   tools/leaftools/replace_leaves_with_skips_in
    tools/leaftools/scale_leaf_preprolated_duration
    tools/leaftools/shorten
    tools/leaftools/show_leaves
