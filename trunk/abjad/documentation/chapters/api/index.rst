@@ -525,7 +525,7 @@ leaftools
    tools/leaftools/color_leaves
    tools/leaftools/composite_offset_difference_series
    tools/leaftools/composite_offset_series
-   tools/leaftools/copy_duration_from_to
+   tools/leaftools/copy_written_duration_and_multiplier_from_to
    tools/leaftools/excise
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
