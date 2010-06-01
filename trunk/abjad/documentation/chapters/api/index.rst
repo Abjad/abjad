@@ -520,12 +520,12 @@ leaftools
 .. toctree::
    :maxdepth: 1
 
+   tools/leaftools/change_written_duration_and_preserve_preprolated_duration
    tools/leaftools/color_leaves
    tools/leaftools/composite_offset_difference_series
    tools/leaftools/composite_offset_series
    tools/leaftools/copy_duration_from_to
    tools/leaftools/duration_preprolated_change
-   tools/leaftools/duration_rewrite
    tools/leaftools/duration_scale
    tools/leaftools/excise
    tools/leaftools/get_durations_prolated

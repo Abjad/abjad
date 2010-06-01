@@ -33,7 +33,7 @@ def test_leaftools_duration_preprolated_change_01( ):
    
 
 def test_leaftools_duration_preprolated_change_02( ):
-   '''Change leaf tied leaf to tied value.
+   '''Change tied leaf to tied value.
       Duplicate ties are not created.'''
 
    t = Voice(construct.run(4))

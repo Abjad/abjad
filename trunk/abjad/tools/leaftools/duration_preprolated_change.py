@@ -8,13 +8,78 @@ from abjad.tuplet import FixedMultiplierTuplet
 
    
 def duration_preprolated_change(leaf, new_preprolated_duration):
-   '''Change preprolated duration of 'leaf' to 'new_preprolated_duration'.
-   It 'leaf' carries LilyPond multiplier, change only LilyPond multiplier.
-   For durations like 3/16, change note_head.
-   For durations like 5/16, splice tied notes to right.
-   For durations like 3/14, enclose in tuplet, change note_head.
-   For durations like 5/14, enclose in tuplet, splice tied notes.
-   Return list modified original leaf and any additional new leaves.
+   r'''Change `leaf` to dotted `preprolated_duration`::
+
+      abjad> staff = Staff(construct.scale(4))
+      abjad> Beam(staff.leaves)
+      abjad> leaftools.duration_preprolated_change(staff[1], Rational(3, 16))
+      [Note(d', 8.)]
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8.
+         e'8
+         f'8 ]
+      }
+      
+   Change `leaf` to tied `preprolated_duration`::
+      
+      abjad> staff = Staff(construct.scale(4))
+      abjad> Beam(staff.leaves)
+      abjad> leaftools.duration_preprolated_change(staff[1], Rational(5, 32))
+      [Note(d', 8), Note(d', 32)]
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         d'8 ~
+         d'32
+         e'8
+         f'8 ]
+      }
+      
+   Change `leaf` to nonbinary `preprolated_duration`::
+      
+      abjad> staff = Staff(construct.scale(4))
+      abjad> Beam(staff.leaves)
+      abjad> leaftools.duration_preprolated_change(staff[1], Rational(1, 12))
+      [Note(d', 8)]
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         \times 2/3 {
+            d'8
+         }
+         e'8
+         f'8 ]
+      }
+      
+   Change `leaf` to tied nonbinary `preprolated_duration`::
+      
+      abjad> staff = Staff(construct.scale(4))
+      abjad> Beam(staff.leaves)
+      abjad> leaftools.duration_preprolated_change(staff[1], Rational(5, 48))
+      [Note(d', 8), Note(d', 32)]
+      abjad> f(staff)
+      \new Staff {
+         c'8 [
+         \times 2/3 {
+            d'8 ~
+            d'32
+         }
+         e'8
+         f'8 ]
+      }
+      
+   Change `preprolated_duration` of `leaf` with LilyPond multiplier::
+      
+      abjad> note = Note(0, (1, 8))
+      abjad> note.duration.multiplier = Rational(1, 2)
+      abjad> leaftools.duration_preprolated_change(note, Rational(5, 48))
+      [Note(c', 8 * 5/6)]
+      abjad> f(note)
+      c'8 * 5/6
+
+   Return list of `leaf` and leaves newly tied to `leaf`.
    '''
 
    assert isinstance(leaf, _Leaf)
