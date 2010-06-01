@@ -33,6 +33,6 @@ def contents_fix(tuplet):
       if isinstance(component, _Leaf):
          old_written_duration = component.duration.written
          new_written_duration = leaf_multiplier * old_written_duration
-         leaftools.duration_change(component, new_written_duration)
+         leaftools.duration_preprolated_change(component, new_written_duration)
 
    return tuplet

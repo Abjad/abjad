@@ -5,7 +5,7 @@ from abjad.rational import Rational
 def copy_duration_from_to(source, target):
    r'''.. versionadded:: 1.1.2
 
-   Copy duration from leaf `source` to leaf `target`. ::
+   Copy duration from leaf `source` to leaf `target`::
 
       abjad> note = Note(0, (1, 4))
       abjad> note.duration.multiplier = Rational(1, 2)

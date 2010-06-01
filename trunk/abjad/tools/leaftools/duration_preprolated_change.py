@@ -7,7 +7,7 @@ from abjad.tools import construct
 from abjad.tuplet import FixedMultiplierTuplet
 
    
-def duration_change(leaf, new_preprolated_duration):
+def duration_preprolated_change(leaf, new_preprolated_duration):
    '''Change preprolated duration of 'leaf' to 'new_preprolated_duration'.
    It 'leaf' carries LilyPond multiplier, change only LilyPond multiplier.
    For durations like 3/16, change note_head.
@@ -15,8 +15,6 @@ def duration_change(leaf, new_preprolated_duration):
    For durations like 3/14, enclose in tuplet, change note_head.
    For durations like 5/14, enclose in tuplet, splice tied notes.
    Return list modified original leaf and any additional new leaves.
-
-   .. todo:: rename ``leaftools.duration_preprolated_change( )``.
    '''
 
    assert isinstance(leaf, _Leaf)

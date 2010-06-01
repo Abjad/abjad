@@ -8,7 +8,7 @@ def color_leaves(expr, color):
    r'''.. versionadded:: 1.1.2
 
    Iterate leaves forward in `expr` and color note heads, rests, dots
-   and accidentals according to `color`. ::
+   and accidentals according to `color`::
 
       abjad> t = Staff([Note(1, (3, 16)), Rest((3, 16)), Skip((3, 16)), Chord([0, 1, 9], (3, 16))])
       abjad> leaftools.color_leaves(t, 'red')

@@ -524,7 +524,7 @@ leaftools
    tools/leaftools/composite_offset_difference_series
    tools/leaftools/composite_offset_series
    tools/leaftools/copy_duration_from_to
-   tools/leaftools/duration_change
+   tools/leaftools/duration_preprolated_change
    tools/leaftools/duration_rewrite
    tools/leaftools/duration_scale
    tools/leaftools/excise
