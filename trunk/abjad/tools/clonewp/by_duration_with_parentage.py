@@ -120,7 +120,7 @@ def _scopy_leaf(leaf, start, stop):
    if total == 0:
       return None
    new = fracture([leaf])[0]
-   leaftools.duration_preprolated_change(new, total)
+   leaftools.change_leaf_preprolated_duration(new, total)
    return new
 
 

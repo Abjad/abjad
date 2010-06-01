@@ -7,12 +7,12 @@ from abjad.tools import construct
 from abjad.tuplet import FixedMultiplierTuplet
 
    
-def duration_preprolated_change(leaf, new_preprolated_duration):
+def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
    r'''Change `leaf` to dotted `preprolated_duration`::
 
       abjad> staff = Staff(construct.scale(4))
       abjad> Beam(staff.leaves)
-      abjad> leaftools.duration_preprolated_change(staff[1], Rational(3, 16))
+      abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(3, 16))
       [Note(d', 8.)]
       abjad> f(staff)
       \new Staff {
@@ -26,7 +26,7 @@ def duration_preprolated_change(leaf, new_preprolated_duration):
       
       abjad> staff = Staff(construct.scale(4))
       abjad> Beam(staff.leaves)
-      abjad> leaftools.duration_preprolated_change(staff[1], Rational(5, 32))
+      abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(5, 32))
       [Note(d', 8), Note(d', 32)]
       abjad> f(staff)
       \new Staff {
@@ -41,7 +41,7 @@ def duration_preprolated_change(leaf, new_preprolated_duration):
       
       abjad> staff = Staff(construct.scale(4))
       abjad> Beam(staff.leaves)
-      abjad> leaftools.duration_preprolated_change(staff[1], Rational(1, 12))
+      abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(1, 12))
       [Note(d', 8)]
       abjad> f(staff)
       \new Staff {
@@ -57,7 +57,7 @@ def duration_preprolated_change(leaf, new_preprolated_duration):
       
       abjad> staff = Staff(construct.scale(4))
       abjad> Beam(staff.leaves)
-      abjad> leaftools.duration_preprolated_change(staff[1], Rational(5, 48))
+      abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(5, 48))
       [Note(d', 8), Note(d', 32)]
       abjad> f(staff)
       \new Staff {
@@ -74,7 +74,7 @@ def duration_preprolated_change(leaf, new_preprolated_duration):
       
       abjad> note = Note(0, (1, 8))
       abjad> note.duration.multiplier = Rational(1, 2)
-      abjad> leaftools.duration_preprolated_change(note, Rational(5, 48))
+      abjad> leaftools.change_leaf_preprolated_duration(note, Rational(5, 48))
       [Note(c', 8 * 5/6)]
       abjad> f(note)
       c'8 * 5/6

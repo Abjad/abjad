@@ -28,4 +28,5 @@ def leaves_by_reference(leaves):
       return leaves
    total_preprolated = durtools.sum_preprolated(leaves)
    componenttools.detach(leaves[1:])
-   return leaftools.duration_preprolated_change(leaves[0], total_preprolated)
+   return leaftools.change_leaf_preprolated_duration(
+      leaves[0], total_preprolated)

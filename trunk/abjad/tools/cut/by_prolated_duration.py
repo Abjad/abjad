@@ -69,7 +69,7 @@ def by_prolated_duration(component, prolated_duration):
       new_prolated_duration = component.duration.prolated - prolated_duration
       prolation = component.duration.prolation
       new_written_duration = new_prolated_duration / prolation
-      result = leaftools.duration_preprolated_change(
+      result = leaftools.change_leaf_preprolated_duration(
          component, new_written_duration)
    else:
       container = component

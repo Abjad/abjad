@@ -3,8 +3,9 @@ from abjad.rational import Rational
 from abjad.spanners import Tie
 from abjad.tools import clone
 from abjad.tools import tietools
-from abjad.tools.leaftools.duration_preprolated_change import \
-   duration_preprolated_change as leaftools_duration_preprolated_change
+from abjad.tools.leaftools.change_leaf_preprolated_duration import \
+   change_leaf_preprolated_duration as \
+   leaftools_change_leaf_preprolated_duration
 
 
 def _leaf_at_duration(
@@ -35,9 +36,9 @@ def _leaf_at_duration(
    new_leaf.dynamics.mark = None
    leaf.grace.after = None
 
-   left_leaf_list = leaftools_duration_preprolated_change(
+   left_leaf_list = leaftools_change_leaf_preprolated_duration(
       leaf, unprolated_split_dur)
-   right_leaf_list = leaftools_duration_preprolated_change(
+   right_leaf_list = leaftools_change_leaf_preprolated_duration(
       new_leaf, leaf_multiplied_duration - unprolated_split_dur)
 
    leaf_left_of_split = left_leaf_list[-1]
