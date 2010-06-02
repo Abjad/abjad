@@ -528,11 +528,11 @@ leaftools
    tools/leaftools/clone_and_splice_leaves_in
    tools/leaftools/color_leaf
    tools/leaftools/color_leaves_in
-   tools/leaftools/composite_offset_difference_series
-   tools/leaftools/composite_offset_series
    tools/leaftools/copy_written_duration_and_multiplier_from_to
    tools/leaftools/divide_leaf_meiotically
    tools/leaftools/divide_leaves_meiotically_in
+   tools/leaftools/get_composite_offset_difference_series
+   tools/leaftools/get_composite_offset_series
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
    tools/leaftools/has_leaf_with_dotted_written_duration_in

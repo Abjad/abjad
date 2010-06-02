@@ -1,7 +1,7 @@
 from abjad.tools import iterate
 
 
-def composite_offset_series(expr):
+def get_composite_offset_series(expr):
    r'''.. versionadded:: 1.1.2
 
    List unique start and stop offsets of `expr` leaves::
@@ -26,7 +26,7 @@ def composite_offset_series(expr):
                          b'8
                  }
          >>
-      abjad> leaftools.composite_offset_series(score)
+      abjad> leaftools.get_composite_offset_series(score)
       [Rational(0, 1), Rational(1, 8), Rational(1, 6), Rational(1, 4), Rational(1, 3), Rational(3, 8), (Rational(1, 2)]
    '''
 

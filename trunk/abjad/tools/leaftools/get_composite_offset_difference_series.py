@@ -1,9 +1,9 @@
 from abjad.tools import listtools
-from abjad.tools.leaftools.composite_offset_series import \
-   composite_offset_series
+from abjad.tools.leaftools.get_composite_offset_series import \
+   get_composite_offset_series
 
 
-def composite_offset_difference_series(expr):
+def get_composite_offset_difference_series(expr):
    r'''.. versionadded:: 1.1.2
 
    List time intervals between unique start and stop offsets 
@@ -29,8 +29,8 @@ def composite_offset_difference_series(expr):
                          b'8
                  }
          >>
-      abjad> leaftools.composite_offset_difference_series(score)
+      abjad> leaftools.get_composite_offset_difference_series(score)
       [Rational(1, 8), Rational(1, 24), Rational(1, 12), Rational(1, 12), Rational(1, 24), Rational(1, 8)]
    '''
 
-   return list(listtools.difference_series(composite_offset_series(expr)))
+   return list(listtools.difference_series(get_composite_offset_series(expr)))
