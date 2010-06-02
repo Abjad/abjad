@@ -456,7 +456,6 @@ iterate
    tools/iterate/notes_backward_in
    tools/iterate/notes_forward_in
    tools/iterate/pitch_pairs_forward_in
-   tools/iterate/test_iterate_group_by_type_and_yield_groups
    tools/iterate/thread_backward_from
    tools/iterate/thread_backward_in
    tools/iterate/thread_forward_from
