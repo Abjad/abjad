@@ -438,6 +438,8 @@ iterate
    tools/iterate/get_vertical_moment_at_prolated_offset_in
    tools/iterate/get_vertical_moment_starting_with
    tools/iterate/grace
+   tools/iterate/group_by_type_and_yield_groups
+   tools/iterate/group_by_type_and_yield_groups_of_klass
    tools/iterate/leaf_pairs_forward_in
    tools/iterate/leaves_backward_in
    tools/iterate/leaves_forward_in
@@ -454,6 +456,7 @@ iterate
    tools/iterate/notes_backward_in
    tools/iterate/notes_forward_in
    tools/iterate/pitch_pairs_forward_in
+   tools/iterate/test_iterate_group_by_type_and_yield_groups
    tools/iterate/thread_backward_from
    tools/iterate/thread_backward_in
    tools/iterate/thread_forward_from
@@ -522,23 +525,23 @@ leaftools
 
    tools/leaftools/change_leaf_preprolated_duration
    tools/leaftools/change_written_duration_and_preserve_preprolated_duration
-   tools/leaftools/color_leaves
+   tools/leaftools/clone_and_splice_leaf
+   tools/leaftools/clone_and_splice_leaves_in
+   tools/leaftools/color_leaf
+   tools/leaftools/color_leaves_in
    tools/leaftools/composite_offset_difference_series
    tools/leaftools/composite_offset_series
    tools/leaftools/copy_written_duration_and_multiplier_from_to
+   tools/leaftools/divide_leaf_meiotically
+   tools/leaftools/divide_leaves_meiotically_in
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
-   tools/leaftools/group_by_leaf_type
-   tools/leaftools/has_leaf_with_dotted_written_duration
+   tools/leaftools/has_leaf_with_dotted_written_duration_in
    tools/leaftools/is_bar_line_crossing_leaf
-   tools/leaftools/meiose
-   tools/leaftools/multiply
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
    tools/leaftools/replace_leaves_with_skips_in
    tools/leaftools/scale_leaf_preprolated_duration
-   tools/leaftools/shorten
-   tools/leaftools/show_leaves
-   tools/leaftools/subruns_of_type
+   tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
 
 
 lilytools
@@ -938,6 +941,7 @@ scoretools
    tools/scoretools/make_piano_staff
    tools/scoretools/pitch_arrays_to_score
    tools/scoretools/set_accidental_style
+   tools/scoretools/show_leaves
 
 
 sievetools

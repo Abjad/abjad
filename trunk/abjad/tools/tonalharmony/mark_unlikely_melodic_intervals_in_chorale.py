@@ -44,8 +44,8 @@ def mark_unlikely_melodic_intervals_in_chorale(expr, direction = 'below',
             mdi = pitchtools.melodic_diatonic_interval_from_to(
                note, next_leaf)
             if is_unlikely_melodic_diatonic_interval_in_chorale(mdi):
-               leaftools.color_leaves(note, color)
-               leaftools.color_leaves(next_leaf, color)
+               leaftools.color_leaves_in(note, color)
+               leaftools.color_leaves_in(next_leaf, color)
                if glissando:
                   tmp = Glissando([note, next_leaf])
                   tmp.color = color

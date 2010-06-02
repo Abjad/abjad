@@ -1,12 +1,13 @@
 from abjad import *
 
 
-def test_leaftools_shorten_01( ):
+def test_leaftools_split_leaf_at_prolated_duration_and_rest_right_half_01( ):
 
    t = Staff(construct.scale(4))
    Slur(t[:])
 
-   leaftools.shorten(t.leaves[1], (1, 32))
+   leaftools.split_leaf_at_prolated_duration_and_rest_right_half(
+      t.leaves[1], (1, 32))
 
    r'''
    \new Staff {

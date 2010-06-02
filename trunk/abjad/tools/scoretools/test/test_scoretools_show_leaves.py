@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_leaftools_show_leaves_01( ):
+def test_scoretools_show_leaves_01( ):
 
    leaves = construct.leaves([None, 1, (-24, -22, 7, 21), None], (1, 4))
-   score = leaftools.show_leaves(leaves, suppress_pdf = True)
+   score = scoretools.show_leaves(leaves, suppress_pdf = True)
 
    r'''
    \new Score \with {

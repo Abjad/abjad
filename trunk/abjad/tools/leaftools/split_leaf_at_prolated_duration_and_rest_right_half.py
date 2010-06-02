@@ -1,13 +1,12 @@
 from abjad.rest import Rest
 
 
-def shorten(leaf, prolated_duration):
+def split_leaf_at_prolated_duration_and_rest_right_half(
+   leaf, prolated_duration):
    r'''.. versionadded:: 1.1.2
 
-   Split `leaf` at `prolated_duration`.
-   Cast leaves after `prolated_duration` to rests.
-   Return list of leaves to left of `prolated_durration`,
-   list of leaves to right of `prolated_duration`. ::
+   Split `leaf` at `prolated_duration` and rest right half::
+
 
       abjad> t = Staff(construct.scale(4))
       abjad> Slur(t[:])
@@ -22,8 +21,11 @@ def shorten(leaf, prolated_duration):
 
    ::
 
-      abjad> leaftools.shorten(t.leaves[1], (1, 32))
+      abjad> leaftools.split_leaf_at_prolated_duration_and_rest_right_half(t.leaves[1], (1, 32))
       ([Note(d', 32)], [Note(d', 16.)])
+
+   ::
+
       abjad> f(t)
       \new Staff {
          c'8 (
@@ -33,7 +35,15 @@ def shorten(leaf, prolated_duration):
          f'8 )
       }
 
-   .. todo:: implement ``leaftools.shorten_left( )``.
+   Return list of leaves to left of `prolated_durration`
+   together with list of leaves to right of `prolated_duration`.
+
+   .. todo:: implement 
+      ``leaftools.split_leaf_at_prolated_duration_and_rest_left_half( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``leaftools.shorten( )`` to
+      ``leaftools.split_leaf_at_prolated_duration_and_rest_right_half( )``.
    '''
 
    from abjad.tools.split.unfractured_at_duration import unfractured_at_duration
