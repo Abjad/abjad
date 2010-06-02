@@ -6,10 +6,12 @@ import os
 def save_pdf_as(file_name):
    r'''.. versionadded:: 1.1.2
 
-   Save last PDF as `file_name`. ::
+   Save last PDF as `file_name`::
 
       abjad> show(score)
       abjad> lilytools.save_pdf_as('/project/output/example-1.pdf')
+
+   Return none.
    '''
 
    ABJADOUTPUT = _read_config_file( )['abjad_output'] 

@@ -5,9 +5,7 @@ import types
 def big_centered_page_number(text = None):
    r'''.. versionadded:: 1.1.1
 
-   Return Abjad centered page number :class:`~abjad.Markup`.
-
-   ::
+   Make big centered page number markup::
 
       abjad> t = markup.centered_page_number( )
       abjad> print t.format
@@ -16,6 +14,8 @@ def big_centered_page_number(text = None):
          \bold \fontsize #3
          \on-the-fly #print-page-number-check-first
          \fromproperty #'page:page-number-string } }
+
+   Return markup.
    '''
 
    assert isinstance(text, (str, types.NoneType))

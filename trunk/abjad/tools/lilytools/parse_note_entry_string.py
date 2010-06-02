@@ -10,13 +10,15 @@ import re
 def parse_note_entry_string(note_entry_string):
    '''.. versionadded:: 1.1.2
 
-   Parse simple LilyPond `note_entry_string`. ::
+   Parse LilyPond `note_entry_string`::
 
       abjad> note_entry_string = "g'2 a'2 g'4. fs'8 e'4 d'4"
       abjad> lilytools.parse_note_entry_string(note_entry_string)
       {g'4, a'4, a'2, fs'8, e'4, d'4}
-      abjad> container[:]
-      [Note(g', 2), Note(a', 2), Note(g', 4.), Note(fs', 8), Note(e', 4), Note(d', 4)]
+
+   Return Abjad container of note, rest and chord instances.
+
+   Do not parse tuplets, measures or other complex LilyPond input.
    '''
 
    container = Container([ ])

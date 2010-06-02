@@ -7,8 +7,7 @@ from PaperBlock import PaperBlock
 def make_basic_lily_file(music = None):
    r'''.. versionadded:: 1.1.2
 
-   Wrap `music` in a LilyFile that comes with
-   header, layout and paper blocks preinstalled. ::
+   Make basic LilyPond file with `music`::
 
       abjad> score = Score([Staff(construct.scale(4))])
       abjad> lily_file = lilytools.make_basic_lily_file(score)
@@ -16,9 +15,6 @@ def make_basic_lily_file(music = None):
       abjad> lily_file.layout.indent = 0
       abjad> lily_file.paper.top_margin = 15
       abjad> lily_file.paper.left_margin = 15
-
-   ::
-   
       abjad> f(lily_file)
       \header {
               composer = \markup { Josquin }
@@ -41,6 +37,10 @@ def make_basic_lily_file(music = None):
                       f'8
               }
       >>
+
+   Equip LilyPond file with header, layout and paper blocks.
+
+   Return LilyPond file.
    '''
 
    lily_file = LilyFile( )
