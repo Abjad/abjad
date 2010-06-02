@@ -704,8 +704,9 @@ measuretools
    tools/measuretools/apply_complex_beam_spanner_to_measure
    tools/measuretools/apply_complex_beam_spanners_to_measures_in
    tools/measuretools/apply_durated_complex_beam_spanner_to_measures
-   tools/measuretools/binary_to_nonbinary
-   tools/measuretools/color_nonbinary
+   tools/measuretools/change_binary_measure_to_nonbinary
+   tools/measuretools/color_measure
+   tools/measuretools/color_nonbinary_measures_in
    tools/measuretools/concentrate
    tools/measuretools/denominator_set
    tools/measuretools/make
