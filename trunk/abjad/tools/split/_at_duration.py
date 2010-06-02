@@ -65,7 +65,8 @@ def _at_duration(
          nonbinary_product = 1
          for nonbinary_factor in nonbinary_factors:
             nonbinary_product *= nonbinary_factor
-         measuretools.binary_to_nonbinary(measure, nonbinary_product)
+         measuretools.change_binary_measure_to_nonbinary(
+            measure, nonbinary_product)
          ## rederive duration crosses with possibly new measure contents
          contents = componenttools.get_duration_crossers(component, duration) 
    elif 1 < len(measures):

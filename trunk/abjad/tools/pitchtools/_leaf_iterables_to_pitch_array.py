@@ -12,7 +12,8 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):
    from abjad.tools import leaftools
    from abjad.tools import partition
 
-   time_intervals = leaftools.composite_offset_difference_series(leaf_iterables)
+   time_intervals = leaftools.get_composite_offset_difference_series(
+      leaf_iterables)
    array_width = len(time_intervals)
    array_depth = len(leaf_iterables)
    pitch_array = PitchArray(array_depth, array_width)
