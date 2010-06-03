@@ -5,16 +5,33 @@ from make_sphinx_toc import make_sphinx_toc
 import os
 
 
-def make_sphinx_tocs( ):
+def make_sphinx_tocs(interactive = None):
    '''Walk entire Abjad codebase and make Sphinx TOCs automatically.'''
 
+   ## determine interactivity
    os.system('clear')
    api_doc_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
    modules_visited = [ ]
-   interactive = raw_input('Run script in interactive mode? [Y/n]: ')
+   if interactive is None:
+      interactive = raw_input('Run script in interactive mode? [Y/n]: ')
+   elif interactive == True:
+      interactive = 'y'
+   elif interactive == False:
+      interactive = 'n'
+   else:
+      raise ValueError('unkonwn value for interactive: %s' % interactive)
+
+   ## print start
    os.system('clear')
    print 'Making Sphinx TOCs ... '
+
+   ## make sphinx tocs
    build_doc_tree(ABJADPATH, api_doc_path, interactive)
    toc = make_sphinx_toc( )
    index = os.path.join(api_doc_path, 'index.rst')
    _write_file_interactive(toc, index, interactive)
+
+   ## print stop
+   print ''
+   print '... Done.'
+   print ''

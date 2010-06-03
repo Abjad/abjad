@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 from make_sphinx_tocs import make_sphinx_tocs
+from make_html_docs import make_html_docs
+
 
 if __name__ == '__main__':
-   make_sphinx_tocs( )
-   print ''
-   print '... Done.'
-   print ''
-   print "You are now ready to build the HTML docs with 'make html'."
-   print ''
+   make_sphinx_tocs(interactive = False)
+   make_html_docs( )
