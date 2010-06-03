@@ -8,7 +8,8 @@ def docstring(code, tab_width = 3):
       ... Beam(staff.leaves)
       ... f(staff)
       ... 
-      ... FixedDurationTuplet((2, 8), staff[:3])
+      ... FixedDurationTuplet((2, 8), staff[:3]) ##
+
       ... f(staff)
       ... '''
       abjad> formattools.docstring(code)
@@ -26,6 +27,10 @@ def docstring(code, tab_width = 3):
          ::
             
             abjad> FixedDurationTuplet((2, 8), staff[:3])
+            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+
+         ::
+
             abjad> f(staff)
             \new Staff {
                \times 2/3 {
@@ -39,6 +44,8 @@ def docstring(code, tab_width = 3):
    Format expressions intelligently.
 
    Treat blank lines intelligently.
+
+   Capture hash-suffixed line output.
 
    Use when writing docstrings.
    """
@@ -56,11 +63,24 @@ def docstring(code, tab_width = 3):
             print tab + tab
       elif line.startswith('f('):
          print _replace_line_with_format(tab, most, line)
+      elif line.endswith('##'):
+         _handle_repr_line(tab, most, line)
+         most += line + '\n'
       else:
          most += line + '\n'
          print start + line
 
 
+def _handle_repr_line(tab, most_lines, line):
+   header = 'from abjad import *\n'
+   most_lines = header + most_lines
+   exec(most_lines)
+   line = line.replace('#', '')
+   print tab + tab + 'abjad> ' + line
+   exec('__x = %s' % line)
+   print tab + tab + repr(__x)
+
+   
 def _replace_line_with_format(tab, most_lines, last_line):
    header = 'from abjad import *\n'
    most_lines = header + most_lines

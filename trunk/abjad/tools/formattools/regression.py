@@ -45,6 +45,8 @@ def regression(code, tab_width = 3):
 
    Treat blank lines intelligently.
 
+   Remove line-final hash characters.
+
    Used when writing tests.
    """
 
@@ -62,6 +64,10 @@ def regression(code, tab_width = 3):
          print tab + "r'''"
          print _replace_line_with_tabbed_format(tab, most, line)
          print tab + "'''"
+      elif line.endswith('#'):
+         line = line.replace('#', '')
+         most += line + '\n'
+         print start + line
       else:
          most += line + '\n'
          print start + line
