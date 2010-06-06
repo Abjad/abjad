@@ -707,11 +707,11 @@ measuretools
    tools/measuretools/change_binary_measure_to_nonbinary
    tools/measuretools/color_measure
    tools/measuretools/color_nonbinary_measures_in
-   tools/measuretools/concentrate
    tools/measuretools/denominator_set
    tools/measuretools/make
    tools/measuretools/make_underfull_spacer_skip
    tools/measuretools/multiply_measure_contents_in
+   tools/measuretools/multiply_measure_contents_and_scale_meter_denominator_in
    tools/measuretools/overdraw
    tools/measuretools/overwrite_contents
    tools/measuretools/pitch_array_row_to_measure

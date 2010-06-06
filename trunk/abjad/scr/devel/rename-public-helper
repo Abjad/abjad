@@ -147,8 +147,7 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
       new_line_global_index = prev_line_global_index + 1
       new_lines.insert(new_line_global_index, new_line)
    revised_toc_string = ''.join(new_lines)
-   #api_toc_file = file(api_toc_file_name, 'w')
-   api_toc_file = file('/Users/trevorbaca/Desktop/tmp', 'w')
+   api_toc_file = file(api_toc_file_name, 'w')
    api_toc_file.write(revised_toc_string)
    api_toc_file.close( )
    print 'done adjusting api toc ...'
@@ -179,7 +178,7 @@ def _update_codebase(
    old_package, old_function, new_package, new_function):
    dir = ABJADPATH
 
-   old_text = '%s\.%s' % (old_package, old_function)
+   old_text = '%s.%s' % (old_package, old_function)
    new_text = '%s.%s' % (new_package, new_function)
    command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
    os.system(command)
