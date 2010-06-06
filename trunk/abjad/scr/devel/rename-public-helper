@@ -81,6 +81,7 @@ def _confirm_name_changes(old_package, old_function, new_package, new_module):
 
 
 def _rename_api_pages(old_package, old_function, new_package, new_module):
+   print 'Renaming old API page ...'
    api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
    api_path = os.path.join(api_path, 'tools')
    old_rst_file = old_function + '.rst'
@@ -89,10 +90,11 @@ def _rename_api_pages(old_package, old_function, new_package, new_module):
    new_api_path = os.path.join(api_path, new_package, new_rst_file)
    command = 'svn mv %s %s' % (old_api_path, new_api_path)
    os.system(command)
-   print 'done renaming api page ...'
+   print ''
 
 
 def _make_new_api_page(new_package, new_function):
+   print 'Making new API page ...'
    content_lines = [ ]
    api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
    api_path = os.path.join(api_path, 'tools')
@@ -110,10 +112,11 @@ def _make_new_api_page(new_package, new_function):
    new_api_file = file(new_api_path, 'w')
    new_api_file.write(content_string)
    new_api_file.close( )
-   print 'done making new api page ...'
+   print ''
 
 
 def _update_api_toc(old_package, old_function, new_package, new_function):
+   print 'Updating API TOC ...'
    api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
    api_toc_file_name = os.path.join(api_path, 'index.rst')
    api_toc_file = file(api_toc_file_name, 'r')
@@ -150,19 +153,21 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
    api_toc_file = file(api_toc_file_name, 'w')
    api_toc_file.write(revised_toc_string)
    api_toc_file.close( )
-   print 'done adjusting api toc ...'
+   print ''
 
 
 def _rename_old_module(old_package, old_function, new_package, new_function):
+   print 'Renaming old module ...'
    old_module = old_function + '.py'
    old_path = os.path.join(ABJADPATH, 'tools', old_package, old_module)
    new_module = new_function + '.py'
    new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
    command = 'svn mv %s %s' % (old_path, new_path)
    os.system(command)
-   print 'done renaming old module ...'
+   print ''
 
 def _rename_old_test_file(old_package, old_function, new_package, new_function):
+   print 'Renaming old test file ...'
    old_test_file = 'test_%s_%s.py' % (old_package, old_function)
    old_path = os.path.join(ABJADPATH, 'tools', old_package, 'test')
    old_path = os.path.join(old_path, old_test_file)
@@ -171,11 +176,12 @@ def _rename_old_test_file(old_package, old_function, new_package, new_function):
    new_path = os.path.join(new_path, new_test_file)
    command = 'svn mv %s %s' % (old_path, new_path)
    os.system(command)
-   print 'done renaming old test file ...'
+   print ''
 
 
 def _update_codebase(
    old_package, old_function, new_package, new_function):
+   print 'Updating codebase ...'
    dir = ABJADPATH
 
    old_text = '%s.%s' % (old_package, old_function)
@@ -198,10 +204,11 @@ def _update_codebase(
    command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
    os.system(command)
 
-   print 'done updating codebase ...'
+   print ''
 
 
 def _add_versionchanged(old_package, old_function, new_package, new_function):
+   print 'Adding Sphinx versionchanged tag ...'
    new_module = new_function + '.py'
    new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
    new_module_pointer = file(new_path, 'r')
@@ -231,7 +238,7 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
    new_module_pointer = file(new_path, 'w')
    new_module_pointer.write(new_module_string)
    new_module_pointer.close( )
-   print 'done adding versionchanged ...'
+   print ''
 
 
 if __name__ == '__main__':

@@ -707,7 +707,6 @@ measuretools
    tools/measuretools/change_binary_measure_to_nonbinary
    tools/measuretools/color_measure
    tools/measuretools/color_nonbinary_measures_in
-   tools/measuretools/denominator_set
    tools/measuretools/make
    tools/measuretools/make_underfull_spacer_skip
    tools/measuretools/multiply_measure_contents_in
@@ -722,6 +721,7 @@ measuretools
    tools/measuretools/report_meter_distribution
    tools/measuretools/scale_and_remeter
    tools/measuretools/scale_measure_contents_in
+   tools/measuretools/set_measure_denominator_and_multiply_numerator
    tools/measuretools/subsume
    tools/measuretools/tupletize
 
