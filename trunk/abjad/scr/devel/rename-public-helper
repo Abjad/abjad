@@ -1,0 +1,244 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+ABJADVERSION = '1.1.2'
+import os
+import pprint
+
+
+def _get_old_package_and_function( ):
+   full_helper_name = raw_input('Enter current helper name: ')
+   helper_parts = full_helper_name.split('.')
+   old_package = helper_parts[0]
+   old_function = helper_parts[1]
+   if old_package not in _get_packages( ):
+      print ''
+      print 'Error: can not find %s in Abjad tools.' % old_package
+      print ''
+      raise SystemExit
+   if old_function not in _get_functions( ):
+      print ''
+      print 'Error: can not find %s in %s.' % (old_function, old_package)
+      print ''
+      raise SystemExit
+   return old_package, old_function
+   
+
+def _get_new_package_and_function( ):
+   message = 'Enter new helper name:     '
+   helper_name = raw_input(message)
+   helper_parts = helper_name.split('.')
+   new_package = helper_parts[0]
+   new_function = helper_parts[1]
+   if new_package not in _get_packages( ):
+      print ''
+      print 'Error: can not find %s in Abjad packages.' % new_package
+      print ''
+      raise SystemExit
+   if new_function in _get_functions( ):
+      print ''
+      print 'Error: %s already exists in Abjad functions.' % new_function
+      print ''
+      raise SystemExit
+   return new_package, new_function
+
+
+def _get_packages( ):
+   tool_path = os.path.join(ABJADPATH, 'tools')
+   names = [ ]
+   for x in os.listdir(tool_path):
+      if not x.startswith('_'):
+         if not x.startswith('.'):
+            names.append(x)
+   return names
+
+
+def _get_functions( ):
+   tool_path = os.path.join(ABJADPATH, 'tools')
+   module_names = [ ]
+   for path, subdirectories, files in os.walk(tool_path):
+      for f in files:
+         if f.endswith('.py') and not f.startswith('_'):
+            module_names.append(f[:-3])
+   module_names.sort( )
+   return module_names
+      
+
+def _confirm_name_changes(old_package, old_function, new_package, new_module):
+   print ''
+   print 'Is ...'
+   print ''
+   print '   %s.%s( )' % (old_package, old_function)
+   print '   ===>'
+   print '   %s.%s( )' % (new_package, new_function)
+   print ''
+   input = raw_input('... correct? ')
+   print ''
+   if not input.lower( ) == 'y':
+      raise SystemExit
+   else:
+      return
+
+
+def _rename_api_pages(old_package, old_function, new_package, new_module):
+   api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
+   api_path = os.path.join(api_path, 'tools')
+   old_rst_file = old_function + '.rst'
+   old_api_path = os.path.join(api_path, old_package, old_rst_file)
+   new_rst_file = new_function + '.rst'
+   new_api_path = os.path.join(api_path, new_package, new_rst_file)
+   command = 'svn mv %s %s' % (old_api_path, new_api_path)
+   os.system(command)
+   print 'done renaming api page ...'
+
+
+def _make_new_api_page(new_package, new_function):
+   content_lines = [ ]
+   api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
+   api_path = os.path.join(api_path, 'tools')
+   new_helper = '%s.%s' % (new_package, new_function)
+   content_lines.append(new_helper)
+   content_lines.append('=' * len(new_helper))
+   content_lines.append('')
+   new_dot_path = 'abjad.tools.%s.%s' % (new_package, new_function)
+   content_lines.append('.. automodule:: %s' % new_dot_path)
+   content_lines.append('')
+   content_lines.append('.. autofunction:: %s' % new_dot_path)
+   content_string = '\n'.join(content_lines)
+   new_rst_file = new_function + '.rst'
+   new_api_path = os.path.join(api_path, new_package, new_rst_file)
+   new_api_file = file(new_api_path, 'w')
+   new_api_file.write(content_string)
+   new_api_file.close( )
+   print 'done making new api page ...'
+
+
+def _update_api_toc(old_package, old_function, new_package, new_function):
+   api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
+   api_toc_file_name = os.path.join(api_path, 'index.rst')
+   api_toc_file = file(api_toc_file_name, 'r')
+   new_lines = [ ]
+   old_line_suffix = '%s/%s\n' % (old_package, old_function)
+   old_line = None
+   for line in api_toc_file.readlines( ):
+      if line.endswith(old_line_suffix):
+         old_line = line
+      else:
+         new_lines.append(line)
+   if old_line is None:
+      print 'could not find API toc line ending in %s' % old_line_suffix
+      raise SystemExit
+   api_toc_file.close( )
+   new_line = old_line.replace(old_package, new_package)
+   new_line = new_line.replace(old_function, new_function)
+   package_tag = 'tools/%s' % new_package
+   package_lines = [x for x in new_lines if package_tag in x]
+   package_lines.append(new_line)
+   package_lines.sort( )
+   #pprint.pprint(package_lines)
+   new_line_idx = package_lines.index(new_line)
+   if new_line_idx == 0:
+      next_line = package_lines[new_line_idx + 1]
+      next_line_global_index = new_lines.index(next_line)
+      new_lines.insert(next_line_global_index, new_line)
+   else:
+      prev_line = package_lines[new_line_idx - 1]
+      prev_line_global_index = new_lines.index(prev_line)
+      new_line_global_index = prev_line_global_index + 1
+      new_lines.insert(new_line_global_index, new_line)
+   revised_toc_string = ''.join(new_lines)
+   #api_toc_file = file(api_toc_file_name, 'w')
+   api_toc_file = file('/Users/trevorbaca/Desktop/tmp', 'w')
+   api_toc_file.write(revised_toc_string)
+   api_toc_file.close( )
+   print 'done adjusting api toc ...'
+
+
+def _rename_old_module(old_package, old_function, new_package, new_function):
+   old_module = old_function + '.py'
+   old_path = os.path.join(ABJADPATH, 'tools', old_package, old_module)
+   new_module = new_function + '.py'
+   new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
+   command = 'svn mv %s %s' % (old_path, new_path)
+   os.system(command)
+   print 'done renaming old module ...'
+
+def _rename_old_test_file(old_package, old_function, new_package, new_function):
+   old_test_file = 'test_%s_%s.py' % (old_package, old_function)
+   old_path = os.path.join(ABJADPATH, 'tools', old_package, 'test')
+   old_path = os.path.join(old_path, old_test_file)
+   new_test_file = 'test_%s_%s.py' % (new_package, new_function)
+   new_path = os.path.join(ABJADPATH, 'tools', new_package, 'test')
+   new_path = os.path.join(new_path, new_test_file)
+   command = 'svn mv %s %s' % (old_path, new_path)
+   os.system(command)
+   print 'done renaming old test file ...'
+
+
+def _update_codebase(
+   old_package, old_function, new_package, new_function):
+   dir = ABJADPATH
+
+   old_text = '%s\.%s' % (old_package, old_function)
+   new_text = '%s.%s' % (new_package, new_function)
+   command = 'replace-in-files %s %s %s false' % (dir, old_text, new_text)
+   os.system(command)
+
+   old_text = '%s_%s' % (old_package, old_function)
+   new_text = '%s_%s' % (new_package, new_function)
+   command = 'replace-in-files %s %s %s false' % (dir, old_text, new_text)
+   os.system(command)
+
+   old_text = ' %s(' % old_function
+   new_text = ' %s(' % new_function
+   command = 'replace-in-files %s %s %s false' % (dir, old_text, new_text)
+   os.system(command)
+
+   print 'done updating codebase ...'
+
+
+def _add_versionchanged(old_package, old_function, new_package, new_function):
+   new_module = new_function + '.py'
+   new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
+   new_module_pointer = file(new_path, 'r')
+   new_module_lines = new_module_pointer.readlines( )
+   new_module_pointer.close( )
+   close_docstring_index = None
+   for i, line in enumerate(new_module_lines):
+      if line == "   '''\n":
+         close_docstring_index = i
+         break
+   if close_docstring_index is None:
+      print ''
+      print 'Error: can not find close docstring for %s.' % new_module
+      print ''
+      raise SystemExit
+   old_helper = '%s.%s( )' % (old_package, old_function)
+   new_helper = '%s.%s( )' % (new_package, new_function)
+   version_lines = [ ]
+   version_lines.append('')
+   version_lines.append('   .. versionchanged:: %s' % ABJADVERSION)
+   version_lines.append('      renamed ``%s`` to' % old_helper)
+   version_lines.append('      ``%s``.' % new_helper)
+   version_string = '\n'.join(version_lines)
+   version_string += '\n'
+   new_module_lines.insert(close_docstring_index, version_string)
+   new_module_string = ''.join(new_module_lines)
+   new_module_pointer = file(new_path, 'w')
+   new_module_pointer.write(new_module_string)
+   new_module_pointer.close( )
+   print 'done adding versionchanged ...'
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   old_package, old_function = _get_old_package_and_function( )
+   new_package, new_function = _get_new_package_and_function( )
+   _confirm_name_changes(old_package, old_function, new_package, new_function)
+   _rename_api_pages(old_package, old_function, new_package, new_function)
+   _make_new_api_page(new_package, new_function)
+   _update_api_toc(old_package, old_function, new_package, new_function)
+   _rename_old_module(old_package, old_function, new_package, new_function)
+   _rename_old_test_file(old_package, old_function, new_package, new_function)
+   _update_codebase(old_package, old_function, new_package, new_function)
+   _add_versionchanged(old_package, old_function, new_package, new_function)
