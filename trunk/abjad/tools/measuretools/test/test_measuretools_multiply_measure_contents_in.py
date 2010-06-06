@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_measuretools_spin_01( ):
+def test_measuretools_multiply_measure_contents_in_01( ):
    '''Spin one measure out three times.'''
 
    t = RigidMeasure((3, 8), construct.scale(3))
-   measuretools.spin(t, 3)
+   measuretools.multiply_measure_contents_in(t, 3)
 
    r'''
    {
@@ -26,7 +26,7 @@ def test_measuretools_spin_01( ):
    assert t.format == "{\n\t\\time 9/8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_measuretools_spin_02( ):
+def test_measuretools_multiply_measure_contents_in_02( ):
    '''Spin multiples measures out twice each.'''
 
    t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
@@ -52,7 +52,7 @@ def test_measuretools_spin_02( ):
    }
    '''
 
-   measuretools.spin(t, 2)
+   measuretools.multiply_measure_contents_in(t, 2)
 
    r'''
    \new Staff {

@@ -32,6 +32,7 @@ def _remove_files(skip_files, files):
 def replace_in_files(dir, old, new, skip_dirs=['.svn'], confirm=True):
    skip_files = ['replace-in-files', '.pyc', '.rst']
 
+   print 'Replacing "%s" with "%s" globally ...' % (old, new)
    for root, dirs, files in os.walk(dir):
       _remove_dirs(skip_dirs, dirs)
       _remove_files(skip_files, files)
@@ -39,7 +40,7 @@ def replace_in_files(dir, old, new, skip_dirs=['.svn'], confirm=True):
       for file in files:
          file = os.path.join(root, file)
          pf = open(file, 'r')
-         print "Working on file: %s" % file
+         #print "Working on file: %s" % file
          new_text = [ ]
          old_text = pf.readlines( )
          for line in old_text:

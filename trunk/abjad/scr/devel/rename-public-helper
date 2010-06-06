@@ -181,17 +181,22 @@ def _update_codebase(
 
    old_text = '%s\.%s' % (old_package, old_function)
    new_text = '%s.%s' % (new_package, new_function)
-   command = 'replace-in-files %s %s %s false' % (dir, old_text, new_text)
+   command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
    os.system(command)
 
    old_text = '%s_%s' % (old_package, old_function)
    new_text = '%s_%s' % (new_package, new_function)
-   command = 'replace-in-files %s %s %s false' % (dir, old_text, new_text)
+   command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
    os.system(command)
 
    old_text = ' %s(' % old_function
    new_text = ' %s(' % new_function
-   command = 'replace-in-files %s %s %s false' % (dir, old_text, new_text)
+   command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
+   os.system(command)
+
+   old_text = 'import %s' % old_function
+   new_text = 'import %s' % new_function
+   command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
    os.system(command)
 
    print 'done updating codebase ...'

@@ -78,7 +78,8 @@ def _handle_repr_line(tab, most_lines, line):
    line = line.replace('#', '')
    print tab + tab + 'abjad> ' + line
    exec('__x = %s' % line)
-   print tab + tab + repr(__x)
+   if __x is not None:
+      print tab + tab + repr(__x)
 
    
 def _replace_line_with_format(tab, most_lines, last_line):

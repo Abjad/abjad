@@ -711,6 +711,7 @@ measuretools
    tools/measuretools/denominator_set
    tools/measuretools/make
    tools/measuretools/make_underfull_spacer_skip
+   tools/measuretools/multiply_measure_contents_in
    tools/measuretools/overdraw
    tools/measuretools/overwrite_contents
    tools/measuretools/pitch_array_row_to_measure
@@ -721,7 +722,6 @@ measuretools
    tools/measuretools/report_meter_distribution
    tools/measuretools/scale_and_remeter
    tools/measuretools/scale_measure_contents_in
-   tools/measuretools/spin
    tools/measuretools/subsume
    tools/measuretools/tupletize
 

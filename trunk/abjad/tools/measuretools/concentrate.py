@@ -1,7 +1,7 @@
 from abjad.rational import Rational
 from abjad.tools import iterate
 from abjad.tools.measuretools.scale_and_remeter import scale_and_remeter
-from abjad.tools.measuretools.spin import spin
+from abjad.tools.measuretools.multiply_measure_contents_in import multiply_measure_contents_in
 
 
 def concentrate(expr, concentration_pairs, cyclic = True):
@@ -44,7 +44,7 @@ def concentrate(expr, concentration_pairs, cyclic = True):
       concentration_pair = concentration_pairs[i % num_pairs]
       assert isinstance(concentration_pair, tuple)
       spin_count, scalar_denominator = concentration_pair
-      spin(measure, spin_count)
+      multiply_measure_contents_in(measure, spin_count)
       multiplier = Rational(1, scalar_denominator)
       scale_and_remeter(measure, multiplier)
       result.append(measure)
