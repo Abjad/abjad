@@ -1,7 +1,6 @@
 from abjad.rational import Rational
 from abjad.tools import mathtools
-from abjad.tools.durtools.is_assignable import is_assignable as \
-   durtools_is_assignable
+from abjad.tools.durtools.is_assignable_duration import is_assignable_duration
 from abjad.tools.durtools.naive_prolated_to_written_not_less_than \
    import naive_prolated_to_written_not_less_than \
    as durtools_naive_prolated_to_written_not_less_than
@@ -42,7 +41,7 @@ def prolated_to_written_not_less_than(prolated_duration):
       to monotonically increasing input.
    '''
 
-#   if durtools_is_assignable(prolated_duration):
+#   if is_assignable_duration(prolated_duration):
 #      return prolated_duration
 #   else:
 #      return durtools_naive_prolated_to_written_not_less_than(
@@ -55,7 +54,7 @@ def prolated_to_written_not_less_than(prolated_duration):
    cur_numerator = prolated_duration._n
    candidate = Rational(cur_numerator, good_denominator)
 
-   while not durtools_is_assignable(candidate):
+   while not is_assignable_duration(candidate):
       #print cur_numerator
       cur_numerator += 1
       candidate = Rational(cur_numerator, good_denominator)

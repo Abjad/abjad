@@ -29,13 +29,13 @@ def parse_note_entry_string(note_entry_string):
       if re.match('\w+', token) is not None: 
          leaf = _parse_note_entry_token(token)
          if tie_next_leaf:
-            last_leaf = iterate.get_nth_leaf(container, -1)
+            last_leaf = iterate.get_nth_leaf_in(container, -1)
             last_leaf.splice([leaf])
             tie_next_leaf = False
          else:
             container.append(leaf) 
       elif token == '~':
-         last_leaf = iterate.get_nth_leaf(container, -1)
+         last_leaf = iterate.get_nth_leaf_in(container, -1)
          try:
             tie_spanner = last_leaf.tie.spanner
          except MissingSpannerError:
@@ -45,11 +45,11 @@ def parse_note_entry_string(note_entry_string):
          waiting_on_bar_string = True
       elif token.startswith('"'):
          bar_string = eval(token)
-         last_leaf = iterate.get_nth_leaf(container, -1)
+         last_leaf = iterate.get_nth_leaf_in(container, -1)
          last_leaf.bar_line.kind = bar_string
          waiting_on_bar_string = False
       elif token.startswith('\\'):
-         last_leaf = iterate.get_nth_leaf(container, -1)
+         last_leaf = iterate.get_nth_leaf_in(container, -1)
          articulation_string = token.strip('\\')
          last_leaf.articulations.append(articulation_string)
       else:

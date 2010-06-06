@@ -1,7 +1,6 @@
 from abjad.tools.durtools.diagonalize_all_rationals_unique import \
    diagonalize_all_rationals_unique
-from abjad.tools.durtools.is_assignable import is_assignable as \
-   durtools_is_assignable
+from abjad.tools.durtools.is_assignable_duration import is_assignable_duration
 
 
 def diagonalize_all_assignable_durations( ):
@@ -35,5 +34,5 @@ def diagonalize_all_assignable_durations( ):
    generator = diagonalize_all_rationals_unique( )
    while True:
       duration = generator.next( )
-      if durtools_is_assignable(duration):
+      if is_assignable_duration(duration):
          yield duration

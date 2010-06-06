@@ -62,7 +62,7 @@ def prolated_to_prolation_written_pairs(
 #      pair = g.next( )
 #      rational = Rational(*pair)
 #      if (rational._n, rational._d) == pair:
-#         if is_assignable(rational):
+#         if is_assignable_duration(rational):
 #            if rational <= 2:
 #               written_duration = rational
 #               if written_duration < minimum_written_duration:

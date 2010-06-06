@@ -1,5 +1,5 @@
 from abjad.exceptions import AssignabilityError
-from abjad.tools.durtools.is_assignable import is_assignable
+from abjad.tools.durtools.is_assignable_duration import is_assignable_duration
 from abjad.tools.durtools.rational_to_dot_count import rational_to_dot_count
 from abjad.tools.durtools.rational_to_undotted_duration_string import \
    rational_to_undotted_duration_string
@@ -19,7 +19,7 @@ def rational_to_duration_string(rational):
       AssignabilityError
    '''
 
-   if not is_assignable(rational):
+   if not is_assignable_duration(rational):
       raise AssignabilityError
 
    undotted_duration_string = rational_to_undotted_duration_string(rational)

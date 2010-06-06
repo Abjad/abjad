@@ -115,7 +115,7 @@ class TempoIndication(_Abjad):
          '''Duration of tempo indication.'''
          return self._duration
       def fset(self, arg):
-         assert durtools.is_assignable(arg)
+         assert durtools.is_assignable_duration(arg)
          self._duration = arg
       return property(**locals( ))
 

@@ -1,6 +1,5 @@
 from abjad.tools.iterate.get_measure_number import get_measure_number
-from abjad.tools.iterate.get_nth_leaf import get_nth_leaf
-#from abjad.tools.iterate.get_nth_measure import get_nth_measure
+from abjad.tools.iterate.get_nth_leaf_in import get_nth_leaf_in
 
 
 def get_measure_leaf(expr, measure_number, leaf_index):
@@ -36,4 +35,4 @@ def get_measure_leaf(expr, measure_number, leaf_index):
    '''
 
    ## return leaf in measure
-   return get_nth_leaf(get_measure_number(expr, measure_number), leaf_index)
+   return get_nth_leaf_in(get_measure_number(expr, measure_number), leaf_index)

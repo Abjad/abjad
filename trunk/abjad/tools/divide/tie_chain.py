@@ -9,7 +9,7 @@
 #   '''Generalization of divide.leaf( ) function.'''
 #
 #   # find target duration of fixed-duration tuplet
-#   target_duration = tietools.get_duration_preprolated(chain[0].tie.chain)
+#   target_duration = tietools.get_tie_chain_duration_preprolated(chain[0].tie.chain)
 #
 #   # find prolated duration of each note in tuplet
 #   prolated_duration = target_duration / divisions

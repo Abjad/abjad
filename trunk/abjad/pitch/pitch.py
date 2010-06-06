@@ -19,7 +19,7 @@ class Pitch(_Abjad):
          self._init_by_number(*args)
       elif len(args) == 1 and isinstance(args[0], Pitch):
          self._init_by_reference(*args)
-      elif len(args) == 1 and pitchtools.is_pair(args[0]):
+      elif len(args) == 1 and pitchtools.is_pitch_pair(args[0]):
          self._init_by_pair(*args)
       elif len(args) == 1 and isinstance(args[0], str):
          self._init_by_pitch_string(*args)

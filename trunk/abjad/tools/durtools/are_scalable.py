@@ -1,4 +1,4 @@
-from abjad.tools.durtools.is_assignable import is_assignable
+from abjad.tools.durtools.is_assignable_duration import is_assignable_duration
 
 
 def are_scalable(components, multiplier):
@@ -28,7 +28,7 @@ def are_scalable(components, multiplier):
    for component in components:
       if isinstance(component, _Leaf):
          candidate_duration = multiplier * component.duration.written 
-         if not is_assignable(candidate_duration):
+         if not is_assignable_duration(candidate_duration):
             return False         
 
    return True

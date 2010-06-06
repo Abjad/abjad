@@ -30,7 +30,7 @@ def is_meter_token(meter_token):
       return True
    elif isinstance(meter_token, Rational):
       return True
-   elif durtools.is_pair(meter_token):
+   elif durtools.is_duration_pair(meter_token):
       return True
    else:
       return False

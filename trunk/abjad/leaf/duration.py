@@ -83,7 +83,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
             rational = Rational(expr)
          else:
             raise ValueError('can not set written duration.')
-         if not durtools.is_assignable(rational):
+         if not durtools.is_assignable_duration(rational):
             raise AssignabilityError('%s' % str(rational))
          self._written = rational
       return property(**locals( ))

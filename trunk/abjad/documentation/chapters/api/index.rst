@@ -252,7 +252,6 @@ containertools
    tools/containertools/contents_delete_starting_not_before_prolated_offset
    tools/containertools/contents_multiply
    tools/containertools/contents_reverse
-   tools/containertools/contents_scale
    tools/containertools/extend_cyclic
    tools/containertools/get_element_starting_at_prolated_offset
    tools/containertools/get_index_starting_at_prolated_offset
@@ -270,6 +269,7 @@ containertools
    tools/containertools/remove_empty
    tools/containertools/rest_by_count
    tools/containertools/rest_half
+   tools/containertools/scale_container_contents
 
 
 cut
@@ -320,10 +320,10 @@ durtools
    tools/durtools/group_seconds
    tools/durtools/in_terms_of
    tools/durtools/in_terms_of_binary_multiple
-   tools/durtools/is_assignable
+   tools/durtools/is_assignable_duration
    tools/durtools/is_binary_rational
+   tools/durtools/is_duration_pair
    tools/durtools/is_duration_token
-   tools/durtools/is_pair
    tools/durtools/is_tuplet_multiplier
    tools/durtools/naive_prolated_to_written_not_greater_than
    tools/durtools/naive_prolated_to_written_not_less_than
@@ -432,7 +432,7 @@ iterate
    tools/iterate/get_measure_leaf
    tools/iterate/get_measure_number
    tools/iterate/get_nth_component
-   tools/iterate/get_nth_leaf
+   tools/iterate/get_nth_leaf_in
    tools/iterate/get_nth_measure
    tools/iterate/get_nth_namesake_from
    tools/iterate/get_vertical_moment_at_prolated_offset_in
@@ -571,6 +571,7 @@ listtools
    tools/listtools/all_restricted_growth_functions_of_length
    tools/listtools/all_rotations
    tools/listtools/all_set_partitions
+   tools/listtools/are_assignable_integers
    tools/listtools/arithmetic_mean
    tools/listtools/contiguous_sublists
    tools/listtools/count_repetitions
@@ -586,6 +587,7 @@ listtools
    tools/listtools/get_cyclic
    tools/listtools/get_elements_at_indices
    tools/listtools/get_period
+   tools/listtools/get_shared_numeric_sign
    tools/listtools/get_unordered_pairs
    tools/listtools/group_by_equality
    tools/listtools/group_by_sign
@@ -594,7 +596,6 @@ listtools
    tools/listtools/increase_cyclic
    tools/listtools/insert_slice_cyclic
    tools/listtools/interlace
-   tools/listtools/is_assignable
    tools/listtools/is_decreasing_monotonically
    tools/listtools/is_decreasing_strictly
    tools/listtools/is_increasing_monotonically
@@ -640,7 +641,6 @@ listtools
    tools/listtools/retain_elements_at_indices
    tools/listtools/retain_elements_at_indices_cyclic
    tools/listtools/rotate
-   tools/listtools/sign
    tools/listtools/sublists
    tools/listtools/sum_by_sign
    tools/listtools/sum_slices_at
@@ -677,7 +677,7 @@ mathtools
    tools/mathtools/greatest_power_of_two_less_equal
    tools/mathtools/integer_compositions
    tools/mathtools/integer_partitions
-   tools/mathtools/is_assignable
+   tools/mathtools/is_assignable_integer
    tools/mathtools/is_dotted_integer
    tools/mathtools/is_power_of_two
    tools/mathtools/least_common_multiple
@@ -719,8 +719,8 @@ measuretools
    tools/measuretools/project
    tools/measuretools/remedy_underfull_measures
    tools/measuretools/report_meter_distribution
-   tools/measuretools/scale
    tools/measuretools/scale_and_remeter
+   tools/measuretools/scale_measure_contents_in
    tools/measuretools/spin
    tools/measuretools/subsume
    tools/measuretools/tupletize
@@ -870,7 +870,7 @@ pitchtools
    tools/pitchtools/insert_transposed_pc_subruns
    tools/pitchtools/is_carrier
    tools/pitchtools/is_name
-   tools/pitchtools/is_pair
+   tools/pitchtools/is_pitch_pair
    tools/pitchtools/is_pitch_token
    tools/pitchtools/is_pitch_token_collection
    tools/pitchtools/leaf_iterables_to_pitch_array_empty
@@ -1027,11 +1027,11 @@ tietools
    tools/tietools/are_in_same_spanner
    tools/tietools/duration_change
    tools/tietools/duration_scale
-   tools/tietools/get_duration_preprolated
    tools/tietools/get_duration_prolated
    tools/tietools/get_duration_seconds
    tools/tietools/get_duration_written
    tools/tietools/get_leaves
+   tools/tietools/get_tie_chain_duration_preprolated
    tools/tietools/get_tie_chains
    tools/tietools/group_by_parent
    tools/tietools/is_chain
@@ -1085,5 +1085,5 @@ tuplettools
    tools/tuplettools/contents_fix
    tools/tuplettools/contents_scale
    tools/tuplettools/diminution_to_augmentation
+   tools/tuplettools/scale_tuplet_contents_and_remove
    tools/tuplettools/slip_trivial
-   tools/tuplettools/subsume

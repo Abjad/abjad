@@ -1,5 +1,5 @@
 from abjad.rational import Rational
-from abjad.tools.durtools.is_pair import is_pair
+from abjad.tools.durtools.is_duration_pair import is_duration_pair
 
 
 def is_duration_token(duration_token):
@@ -27,7 +27,7 @@ def is_duration_token(duration_token):
       False
    '''
 
-   if is_pair(duration_token):
+   if is_duration_pair(duration_token):
       return True
    elif isinstance(duration_token, Rational) and 0 < duration_token:
       return True

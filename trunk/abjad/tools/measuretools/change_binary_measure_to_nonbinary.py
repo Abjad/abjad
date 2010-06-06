@@ -1,6 +1,7 @@
 from abjad.tools import durtools
 from abjad.tools import metertools
-from abjad.tools.measuretools.scale import scale as measuretools_scale
+from abjad.tools.measuretools.scale_measure_contents_in import \
+   scale_measure_contents_in
 
 
 def change_binary_measure_to_nonbinary(measure, new_denominator_factor):
@@ -61,7 +62,7 @@ def change_binary_measure_to_nonbinary(measure, new_denominator_factor):
       new_denominator_factor) 
 
    ## inverse scale measure ... but throw away resultant meter
-   measuretools_scale(measure, ~new_measure_multiplier)
+   scale_measure_contents_in(measure, ~new_measure_multiplier)
 
    ## assign new meter
    measure.meter.forced = new_meter

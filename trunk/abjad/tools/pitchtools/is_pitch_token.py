@@ -1,5 +1,5 @@
 from abjad.pitch import Pitch
-from abjad.tools.pitchtools.is_pair import is_pair
+from abjad.tools.pitchtools.is_pitch_pair import is_pitch_pair
 
 
 def is_pitch_token(pitch_token):
@@ -19,7 +19,7 @@ def is_pitch_token(pitch_token):
 
    if isinstance(pitch_token, Pitch):
       return True
-   elif is_pair(pitch_token):
+   elif is_pitch_pair(pitch_token):
       return True
    elif isinstance(pitch_token, (int, long)):
       return True

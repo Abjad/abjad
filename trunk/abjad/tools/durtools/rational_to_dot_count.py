@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
 from abjad.tools import mathtools
-from abjad.tools.durtools import is_assignable
+from abjad.tools.durtools import is_assignable_duration
 
 
 def rational_to_dot_count(rational):
@@ -32,7 +32,7 @@ def rational_to_dot_count(rational):
       AssignabilityError
    '''
 
-   if not is_assignable(rational):
+   if not is_assignable_duration(rational):
       raise AssignabilityError
 
    binary_string = mathtools.binary_string(rational._n)
