@@ -1,4 +1,4 @@
-from abjad.tools.durtools._group import _group as durtools__group
+from abjad.tools.durtools._group import _group
 
 
 def group_prolated(
@@ -63,5 +63,5 @@ def group_prolated(
    
    duration_type = 'prolated'
 
-   return durtools__group(duration_type,
+   return _group(duration_type,
       components, durations, fill = fill, cyclic = cyclic, overhang = overhang)

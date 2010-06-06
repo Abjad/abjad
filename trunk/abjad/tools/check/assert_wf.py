@@ -1,5 +1,5 @@
 from abjad.exceptions import WellFormednessError
-from abjad.tools.check.wf import wf as check_wf
+from abjad.tools.check.wf import wf
 
 
 def assert_wf(expr):
@@ -34,6 +34,6 @@ def assert_wf(expr):
       WellFormednessError
    '''
 
-   if not check_wf(expr):
-      check_wf(expr, delivery = 'report') 
+   if not wf(expr):
+      wf(expr, delivery = 'report') 
       raise WellFormednessError

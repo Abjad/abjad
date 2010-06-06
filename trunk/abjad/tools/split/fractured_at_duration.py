@@ -1,4 +1,4 @@
-from abjad.tools.split._at_duration import _at_duration as split__at_duration
+from abjad.tools.split._at_duration import _at_duration
 
 
 def fractured_at_duration(component, prolated_duration, tie_after = False):
@@ -45,5 +45,5 @@ def fractured_at_duration(component, prolated_duration, tie_after = False):
    Function works on both leaves and containers.
    '''
 
-   return split__at_duration(component, prolated_duration, 
+   return _at_duration(component, prolated_duration, 
       spanners = 'fractured', tie_after = tie_after)

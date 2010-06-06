@@ -1,8 +1,7 @@
 from abjad.note import Note
 from abjad.tools import clone
 from abjad.tools import listtools
-from abjad.tools.pitchtools.get_pitch import get_pitch as \
-   pitchtools_get_pitch
+from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
 def insert_transposed_pc_subruns(notes, subrun_indicators):
@@ -68,7 +67,7 @@ def insert_transposed_pc_subruns(notes, subrun_indicators):
       pairs = _make_index_length_pairs(subrun_indicator)
       for anchor_index, subrun_length in pairs:
          anchor_note = notes[anchor_index % len_notes]
-         anchor_pitch = pitchtools_get_pitch(anchor_note)
+         anchor_pitch = get_pitch(anchor_note)
          anchor_written_duration = anchor_note.duration.written
          source_start_index = anchor_index + 1
          source_stop_index = source_start_index + subrun_length + 1
@@ -88,8 +87,8 @@ def _get_intervals_in_subrun(subrun_source):
    subrun_source = list(subrun_source)
    result = [0]
    for first, second in listtools.pairwise(subrun_source):
-      first_pitch = pitchtools_get_pitch(first)
-      second_pitch = pitchtools_get_pitch(second)
+      first_pitch = get_pitch(first)
+      second_pitch = get_pitch(second)
       interval = second_pitch.number - first_pitch.number
       result.append(interval + result[-1])
    result.pop(0)

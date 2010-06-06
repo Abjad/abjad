@@ -10,10 +10,8 @@ from abjad.tools import iterate
 from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import tietools
-from abjad.tools.split._leaf_at_duration import _leaf_at_duration as \
-   split__leaf_at_duration
-from abjad.tools.split._at_index import _at_index as \
-   split__at_index
+from abjad.tools.split._leaf_at_duration import _leaf_at_duration
+from abjad.tools.split._at_index import _at_index
 
 
 def _at_duration(
@@ -82,7 +80,7 @@ def _at_duration(
       assert isinstance(bottom, _Leaf)
       did_split_leaf = True
       split_point_in_bottom = global_split_point - bottom.offset.prolated.start
-      left_list, right_list = split__leaf_at_duration(bottom, 
+      left_list, right_list = _leaf_at_duration(bottom, 
          split_point_in_bottom, spanners = spanners, tie_after = tie_after)
       right = right_list[0]
       leaf_right_of_split = right
@@ -114,7 +112,7 @@ def _at_duration(
       assert isinstance(cur, Container)
       prev = right
       i = cur.index(prev)
-      left, right = split__at_index(cur, i, spanners = spanners)
+      left, right = _at_index(cur, i, spanners = spanners)
 
    ## NOTE: If tie chain here is convenience, then fusing is good.
    ##       If tie chain here is user-given, then fusing is less good.

@@ -1,6 +1,6 @@
 from abjad.note import Note
 from abjad.rational import Rational
-from abjad.tools.construct.notes import notes as construct_notes
+from abjad.tools.construct.notes import notes
 
 
 def note_train(pitch, written_duration, total_duration, 
@@ -58,5 +58,5 @@ def note_train(pitch, written_duration, total_duration,
    remainder_duration = total_duration - current_duration
    if remainder_duration > Rational(0):
       multiplied_remainder = ~prolation * remainder_duration
-      result.extend(construct_notes(pitch, [multiplied_remainder]))
+      result.extend(notes(pitch, [multiplied_remainder]))
    return result

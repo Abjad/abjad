@@ -1,6 +1,5 @@
 from abjad.container import Container
-from abjad.tools.containertools.extend_cyclic import extend_cyclic as \
-   containertools_extend_cyclic
+from abjad.tools.containertools.extend_cyclic import extend_cyclic
 
 
 def contents_multiply(container, total = 2):
@@ -63,4 +62,4 @@ def contents_multiply(container, total = 2):
 
    ## reproduce container contents when total is greater than zero
    n = len(container)
-   return containertools_extend_cyclic(container, n = n, total = total)
+   return extend_cyclic(container, n = n, total = total)

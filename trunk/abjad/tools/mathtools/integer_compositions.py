@@ -1,5 +1,4 @@
-from abjad.tools.mathtools.binary_string import binary_string as \
-   mathtools_binary_string
+from abjad.tools.mathtools.binary_string import binary_string
 import itertools
 
 
@@ -30,8 +29,7 @@ def integer_compositions(n):
       (1, 1, 1, 1, 1)
    '''
 
-   from abjad.tools.listtools.permutations import permutations as \
-      listtools_permutations
+   from abjad.tools.listtools.permutations import permutations
 
    ## Finds small values of n easily.
    ## Takes ca. 4 seconds for n = 17.
@@ -41,7 +39,7 @@ def integer_compositions(n):
    x = 0
    string_length = n
    while x < 2 ** (n - 1):
-      string = mathtools_binary_string(x)
+      string = binary_string(x)
       string = string.zfill(string_length)
       l = [int(c) for c in list(string)]
       partition = [ ]

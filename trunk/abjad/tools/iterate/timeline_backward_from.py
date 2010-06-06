@@ -1,6 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.tools.iterate.timeline_backward_in import timeline_backward_in as \
-   iterate_timeline_backward_in
+from abjad.tools.iterate.timeline_backward_in import timeline_backward_in
 
 
 def timeline_backward_from(expr, klass = _Leaf):
@@ -41,7 +40,7 @@ def timeline_backward_from(expr, klass = _Leaf):
    '''
 
    root = expr.parentage.root
-   component_generator = iterate_timeline_backward_in(root, klass = klass)
+   component_generator = timeline_backward_in(root, klass = klass)
 
    yielded_expr = False
    for component in component_generator:

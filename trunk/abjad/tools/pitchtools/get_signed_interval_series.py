@@ -1,8 +1,6 @@
 from abjad.tools import listtools
-from abjad.tools.pitchtools.get_pitch import get_pitch as \
-   pitchtools_get_pitch
-from abjad.tools.pitchtools.is_carrier import is_carrier as \
-   pitchtools_is_carrier
+from abjad.tools.pitchtools.get_pitch import get_pitch
+from abjad.tools.pitchtools.is_carrier import is_carrier
 
 
 def get_signed_interval_series(pitch_carriers, wrap = False):
@@ -65,7 +63,7 @@ def get_signed_interval_series(pitch_carriers, wrap = False):
    if len(pitch_carriers) == 0:
       return result
    elif len(pitch_carriers) == 1:
-      if pitchtools_is_carrier(pitch_carriers[0]):
+      if is_carrier(pitch_carriers[0]):
          return result
       else:
          raise TypeError('must be Abjad Pitch, Note, NoteHead or Chord.')
@@ -76,8 +74,8 @@ def get_signed_interval_series(pitch_carriers, wrap = False):
       pairs = listtools.pairwise(pitch_carriers)
 
    for first_carrier, second_carrier in pairs:
-      first_pitch = pitchtools_get_pitch(first_carrier)
-      second_pitch = pitchtools_get_pitch(second_carrier)
+      first_pitch = get_pitch(first_carrier)
+      second_pitch = get_pitch(second_carrier)
       signed_interval = second_pitch.number - first_pitch.number
       result.append(signed_interval)
 

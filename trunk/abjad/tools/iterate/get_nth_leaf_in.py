@@ -1,6 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.tools.iterate.get_nth_component import get_nth_component as \
-   iterate_get_nth_component
+from abjad.tools.iterate.get_nth_component import get_nth_component
 
 
 def get_nth_leaf_in(expr, n = 0):
@@ -59,4 +58,4 @@ def get_nth_leaf_in(expr, n = 0):
       renamed ``iterate.get_nth_leaf( )`` to ``iterate.get_nth_leaf_in( )``.
    '''
 
-   return iterate_get_nth_component(expr, _Leaf, n)
+   return get_nth_component(expr, _Leaf, n)

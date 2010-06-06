@@ -1,5 +1,5 @@
 from abjad.rational import Rational
-from abjad.tools.construct.notes import notes as construct_notes
+from abjad.tools.construct.notes import notes
 
 
 def run(count, written_duration = Rational(1, 8)):
@@ -20,4 +20,4 @@ def run(count, written_duration = Rational(1, 8)):
       }
    '''
 
-   return construct_notes([0] * count, [written_duration])
+   return notes([0] * count, [written_duration])

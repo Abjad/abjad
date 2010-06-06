@@ -1,0 +1,37 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+import pprint
+
+
+def _find_import_as_statements( ):
+   total_modules_with_import_as_statements = 0
+   total_import_as_statements = 0
+   for path, subdirectories, files in os.walk(ABJADPATH):
+      for f in files:
+         found_import_as_statement = False
+         if f.endswith('.py'):
+            full_file_name = os.path.join(path, f)
+            fp = file(full_file_name, 'r')
+            for line in fp:
+               if 'import' in line and ' as ' in line:
+                  if not found_import_as_statement:
+                     print full_file_name 
+                     found_import_as_statement = True
+                     total_modules_with_import_as_statements += 1
+                  print line.strip( )
+                  total_import_as_statements += 1
+         if found_import_as_statement:
+            print ''
+   print 'Modules with import as statements: %s' % \
+      total_modules_with_import_as_statements
+   print 'Total import as statements: %s' % total_import_as_statements
+   print ''
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   print 'Finding import as statements ...'
+   print ''
+   _find_import_as_statements( )

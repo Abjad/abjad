@@ -1,9 +1,7 @@
 from abjad.exceptions import MissingPitchError
 from abjad.exceptions import ExtraPitchError
-#from abjad.scm import Color
 from abjad.tools import schemetools
-from abjad.tools.pitchtools.get_pitch import get_pitch as \
-   pitchtools_get_pitch
+from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
 def color_by_pc(pitch_carrier):
@@ -34,7 +32,7 @@ def color_by_pc(pitch_carrier):
    * 12: LimeGreen
    '''
    
-   pitch = pitchtools_get_pitch(pitch_carrier)
+   pitch = get_pitch(pitch_carrier)
    color = _pc_number_to_color(pitch.pc.number)
    if color is not None:
       pitch_carrier.note_head.color = color

@@ -2,8 +2,7 @@ from abjad.exceptions import ExtraPitchError
 from abjad.exceptions import MissingPitchError
 from abjad.spanners import Spanner
 from abjad.tools import iterate
-from abjad.tools.pitchtools.get_pitch import get_pitch as \
-   get_pitch
+from abjad.tools.pitchtools.get_pitch import get_pitch
 
 
 def get_pitches(expr):

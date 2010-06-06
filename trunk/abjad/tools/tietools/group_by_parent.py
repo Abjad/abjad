@@ -1,11 +1,11 @@
-from abjad.tools.tietools.is_chain import is_chain as tietools_is_chain
+from abjad.tools.tietools.is_chain import is_chain
 import itertools
 
 
 def group_by_parent(tie_chain):
 
    ## check input
-   if not tietools_is_chain(tie_chain):
+   if not is_chain(tie_chain):
       raise TypeError('must be tie chain.')
    
    ## create partition with itertools

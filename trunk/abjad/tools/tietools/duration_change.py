@@ -6,9 +6,9 @@ from abjad.tools import durtools
 from abjad.tools.spannertools.withdraw_from_attached import \
    _withdraw_from_attached
 from abjad.tools.tietools.get_tie_chain_duration_preprolated import \
-   get_tie_chain_duration_preprolated as get_tie_chain_duration_preprolated
-from abjad.tools.tietools.get_leaves import get_leaves as tietools_get_leaves
-from abjad.tools.tietools.is_chain import is_chain as tietools_is_chain
+   get_tie_chain_duration_preprolated
+from abjad.tools.tietools.get_leaves import get_leaves
+from abjad.tools.tietools.is_chain import is_chain
 from abjad.tools.tietools.truncate import truncate
 from abjad.tuplet import FixedMultiplierTuplet
 
@@ -23,7 +23,7 @@ def duration_change(tie_chain, new_written_duration):
    Return newly modified tie chain.
    '''
 
-   assert tietools_is_chain(tie_chain)
+   assert is_chain(tie_chain)
    assert isinstance(new_written_duration, Rational)
 
    if durtools.is_assignable_duration(new_written_duration):
@@ -57,6 +57,6 @@ def duration_change(tie_chain, new_written_duration):
          fmtuplet[0].tie.chain)
       duration_change(tie_chain, new_chain_written)
       multiplier = fmtuplet.duration.multiplier
-      FixedMultiplierTuplet(multiplier, tietools_get_leaves(tie_chain))
+      FixedMultiplierTuplet(multiplier, get_leaves(tie_chain))
       
    return tie_chain[0].tie.chain         

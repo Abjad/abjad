@@ -1,9 +1,8 @@
 from abjad.rational import Rational
 from abjad.tools import mathtools
-from abjad.tools.listtools.cumulative_sums import cumulative_sums as \
-   listtools_cumulative_sums
-from abjad.tools.listtools.flatten import flatten as listtools_flatten
-from abjad.tools.listtools.weight import weight as listtools_weight
+from abjad.tools.listtools.cumulative_sums import cumulative_sums
+from abjad.tools.listtools.flatten import flatten
+from abjad.tools.listtools.weight import weight
 
 
 def partition_by_weights_ratio(l, ratio):
@@ -33,9 +32,9 @@ def partition_by_weights_ratio(l, ratio):
       [[1, 1, 1, 1], [1, 1, 1], [1, 1, 1]]
    '''
 
-   weight = listtools_weight(l)
-   weights = mathtools.partition_integer_by_ratio(weight, ratio)
-   cumulative_weights = listtools_cumulative_sums(weights)
+   list_weight = weight(l)
+   weights = mathtools.partition_integer_by_ratio(list_weight, ratio)
+   cumulative_weights = cumulative_sums(weights)
 
    result = [ ]
    sublist = [ ]
@@ -45,8 +44,7 @@ def partition_by_weights_ratio(l, ratio):
       if not isinstance(n, (int, long, float, Rational)):
          raise TypeError('must be number.')
       sublist.append(n)
-      while cur_cumulative_weight <= \
-         listtools_weight(listtools_flatten(result)):
+      while cur_cumulative_weight <= weight(flatten(result)):
          try:
             cur_cumulative_weight = cumulative_weights.pop(0)
             sublist = [ ]

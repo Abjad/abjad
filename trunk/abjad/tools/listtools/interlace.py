@@ -1,6 +1,5 @@
-from abjad.tools.listtools.flatten import flatten as listtools_flatten
-from abjad.tools.listtools.zip_nontruncating import \
-   zip_nontruncating as listtools_zip_nontruncating
+from abjad.tools.listtools.flatten import flatten
+from abjad.tools.listtools.zip_nontruncating import zip_nontruncating
 
 
 def interlace(*iterables):
@@ -16,7 +15,7 @@ def interlace(*iterables):
       [100, 200, 300, 400, 101, 301, 401, 102, 302, 402, 403, 404, 405, 406, 407]
    '''
 
-   zipped_iterables = listtools_zip_nontruncating(*iterables)
-   flattened_iterables = listtools_flatten(zipped_iterables, depth = 1)
+   zipped_iterables = zip_nontruncating(*iterables)
+   flattened_iterables = flatten(zipped_iterables, depth = 1)
 
    return flattened_iterables

@@ -1,5 +1,4 @@
-from abjad.tools.partition._by_counts import _by_counts as \
-   partition__by_counts
+from abjad.tools.partition._by_counts import _by_counts
 
 
 def fractured_by_counts(components, counts):
@@ -48,4 +47,4 @@ def fractured_by_counts(components, counts):
       }
    '''
 
-   return partition__by_counts(components, counts, spanners = 'fractured')
+   return _by_counts(components, counts, spanners = 'fractured')

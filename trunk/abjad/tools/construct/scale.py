@@ -1,7 +1,7 @@
 from abjad.note import Note
 from abjad.rational import Rational
 from abjad.tools import pitchtools
-from abjad.tools.construct.notes import notes as construct_notes
+from abjad.tools.construct.notes import notes
 
 
 def scale(count, written_duration = Rational(1, 8), key_signature = None):
@@ -26,6 +26,6 @@ def scale(count, written_duration = Rational(1, 8), key_signature = None):
       Optional `key_signature` keyword parameter.
    '''
 
-   result = construct_notes([0] * count, [written_duration])
+   result = notes([0] * count, [written_duration])
    pitchtools.diatonicize(result, key_signature)
    return result

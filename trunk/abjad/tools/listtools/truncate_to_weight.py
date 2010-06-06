@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.listtools.weight import weight as listtools_weight
+from abjad.tools.listtools.weight import weight
 
 
 def truncate_to_weight(l, total):
@@ -71,7 +71,7 @@ def truncate_to_weight(l, total):
          result.append(x)
       else:
          sign = mathtools.sign(x)
-         trimmed_part = total - listtools_weight(result)
+         trimmed_part = total - weight(result)
          trimmed_part *= sign
          result.append(trimmed_part)
          break

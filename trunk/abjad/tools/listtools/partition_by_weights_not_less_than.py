@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.listtools.weight import weight as listtools_weight
+from abjad.tools.listtools.weight import weight
 
 
 def partition_by_weights_not_less_than(
@@ -89,7 +89,7 @@ def partition_by_weights_not_less_than(
       if not isinstance(n, int):
          raise TypeError('must be integer.')
       sublist.append(n)
-      if cur_weight <= listtools_weight(sublist):
+      if cur_weight <= weight(sublist):
          result.append(sublist)
          sublist = [ ]
          cur_weight_index += 1

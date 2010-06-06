@@ -1,4 +1,4 @@
-from abjad.tools.split._at_index import _at_index as split__at_index
+from abjad.tools.split._at_index import _at_index
 
 
 def fractured_at_index(container, index):
@@ -47,4 +47,4 @@ def fractured_at_index(container, index):
    Function leaves leaves untouched.
    '''
 
-   return split__at_index(container, index, spanners = 'fractured')
+   return _at_index(container, index, spanners = 'fractured')

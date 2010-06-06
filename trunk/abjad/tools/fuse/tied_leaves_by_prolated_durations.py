@@ -1,7 +1,6 @@
 from abjad.tools import durtools
 from abjad.tools import tietools
-from abjad.tools.fuse.leaves_in_tie_chain import leaves_in_tie_chain as \
-   fuse__leaves_in_tie_chain
+from abjad.tools.fuse.leaves_in_tie_chain import leaves_in_tie_chain
 
 
 def tied_leaves_by_prolated_durations(components, prolated_durations):
@@ -47,4 +46,4 @@ def tied_leaves_by_prolated_durations(components, prolated_durations):
       tie_chains = tietools.get_tie_chains(group)
 
       for chain in tie_chains:
-         fuse__leaves_in_tie_chain(chain)
+         leaves_in_tie_chain(chain)

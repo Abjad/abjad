@@ -1,11 +1,6 @@
 from abjad.component import _Component
 from abjad.rational import Rational
 from abjad.tools.iterate.VerticalMoment import VerticalMoment
-#from abjad.tools.iterate.get_vertical_moment_at_prolated_offset_in \
-#   import get_vertical_moment_at_prolated_offset_in as \
-#   iterate_get_vertical_moment_at_prolated_offset_in
-#from abjad.tools.iterate.naive_forward_in import naive_forward_in as \
-#   iterate_naive_forward_in
 from abjad.tools.iterate._new_vertical_moments_forward_in import \
    _new_vertical_moments_forward_in
 
@@ -65,17 +60,6 @@ def vertical_moments_forward_in(governor):
 
    .. todo:: optimize without multiple full-component traversal.
    '''
-
-#   moments_in_governor = [ ]
-#   for component in iterate_naive_forward_in(governor, _Component):
-#      prolated_offset = component.offset.prolated.start
-#      if prolated_offset not in moments_in_governor:
-#         moments_in_governor.append(prolated_offset)
-#   moments_in_governor.sort( )
-#
-#   for moment_in_governor in moments_in_governor:
-#      yield iterate_get_vertical_moment_at_prolated_offset_in(
-#         governor, moment_in_governor)
 
    ## OPTIMIZED DROP-IN REPLACEMENT ##
    for x in _new_vertical_moments_forward_in(governor):

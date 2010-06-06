@@ -1,6 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.tools.iterate.naive_backward_in import naive_backward_in as \
-   iterate_naive_backward_in
+from abjad.tools.iterate.naive_backward_in import naive_backward_in
 
 
 def leaves_backward_in(expr, start = 0, stop = None):
@@ -71,4 +70,4 @@ def leaves_backward_in(expr, start = 0, stop = None):
    .. note:: naive iteration ignores threads.
    '''
 
-   return iterate_naive_backward_in(expr, _Leaf, start = start, stop = stop)
+   return naive_backward_in(expr, _Leaf, start = start, stop = stop)

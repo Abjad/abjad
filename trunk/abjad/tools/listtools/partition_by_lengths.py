@@ -1,8 +1,8 @@
 from abjad.tools.listtools.pairwise_cumulative_sums_zero import \
-   pairwise_cumulative_sums_zero as listtools_pairwise_cumulative_sums_zero
+   pairwise_cumulative_sums_zero
 from abjad.tools.listtools.repeat_list_to_weight import \
-   repeat_list_to_weight as listtools_repeat_list_to_weight
-from abjad.tools.listtools.weight import weight as listtools_weight
+   repeat_list_to_weight
+from abjad.tools.listtools.weight import weight
 from abjad.tools import mathtools
 
 
@@ -78,17 +78,16 @@ def partition_by_lengths(l, lengths, cyclic = False, overhang = False):
 
    if cyclic == True:
       if overhang == True:
-         lengths = listtools_repeat_list_to_weight(lengths, len(l))
+         lengths = repeat_list_to_weight(lengths, len(l))
       else:
-         lengths = listtools_repeat_list_to_weight(
-            lengths, len(l), remainder = 'less')
+         lengths = repeat_list_to_weight(lengths, len(l), remainder = 'less')
    elif overhang == True:
-      weight_lengths = listtools_weight(lengths)
+      weight_lengths = weight(lengths)
       len_l = len(l)
       if weight_lengths < len_l:
          lengths.append(len(l) - weight_lengths)
 
-   for start, stop in listtools_pairwise_cumulative_sums_zero(lengths):
+   for start, stop in pairwise_cumulative_sums_zero(lengths):
       result.append(l[start:stop])
 
    return result

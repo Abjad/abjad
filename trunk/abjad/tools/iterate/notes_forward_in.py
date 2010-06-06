@@ -1,6 +1,5 @@
 from abjad.note import Note
-from abjad.tools.iterate.naive_forward_in import naive_forward_in as \
-   iterate_naive_forward_in
+from abjad.tools.iterate.naive_forward_in import naive_forward_in
 
 
 def notes_forward_in(expr, start = 0, stop = None):
@@ -71,4 +70,4 @@ def notes_forward_in(expr, start = 0, stop = None):
    .. note:: naive iteration ignores threads.
    '''
 
-   return iterate_naive_forward_in(expr, Note, start = start, stop = stop)
+   return naive_forward_in(expr, Note, start = start, stop = stop)

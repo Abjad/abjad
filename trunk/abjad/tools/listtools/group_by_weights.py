@@ -1,9 +1,8 @@
 from abjad.exceptions import PartitionError
 from abjad.rational import Rational
-from abjad.tools.listtools.flatten import flatten as listtools_flatten
-from abjad.tools.listtools.partition_by_weights import partition_by_weights \
-   as listtools_partition_by_weights
-from abjad.tools.listtools.weight import weight as listtools_weight
+from abjad.tools.listtools.flatten import flatten
+from abjad.tools.listtools.partition_by_weights import partition_by_weights
+from abjad.tools.listtools.weight import weight
 
 
 def group_by_weights(l, weights, 
@@ -128,8 +127,8 @@ def group_by_weights(l, weights,
 
 
 def _group_by_weights_exact(l, weights, cyclic, overhang):
-   candidate = listtools_partition_by_weights(l, weights, cyclic, overhang) 
-   flattened_candidate = listtools_flatten(candidate)
+   candidate = partition_by_weights(l, weights, cyclic, overhang) 
+   flattened_candidate = flatten(candidate)
    if flattened_candidate == l[:len(flattened_candidate)]:
       return candidate
    else:
@@ -162,8 +161,8 @@ def _group_by_weights_less_noncyclic(l, weights, overhang):
             x = l_copy.pop(0)
          except IndexError:
             raise PartitionError('too few elements in l.')
-         cur_weight = listtools_weight(cur_part)
-         candidate_weight = cur_weight + listtools_weight([x])
+         cur_weight = weight(cur_part)
+         candidate_weight = cur_weight + weight([x])
          if candidate_weight < target_weight:
             cur_part.append(x)
          elif candidate_weight == target_weight:
@@ -201,8 +200,8 @@ def _group_by_weights_less_cyclic(l, weights, overhang):
    while l_copy:
       cur_target_weight = weights[cur_target_weight_index % len(weights)]
       x = l_copy.pop(0)
-      cur_part_weight = listtools_weight(cur_part)  
-      candidate_part_weight = cur_part_weight + listtools_weight([x])
+      cur_part_weight = weight(cur_part)  
+      candidate_part_weight = cur_part_weight + weight([x])
       if candidate_part_weight < cur_target_weight:
          cur_part.append(x)
       elif candidate_part_weight == cur_target_weight:
@@ -245,7 +244,7 @@ def _group_by_weights_greater_noncyclic(l, weights, overhang):
                   break
             raise PartitionError('too few elements in l.')
          cur_part.append(x)
-         if target_weight <= listtools_weight(cur_part):
+         if target_weight <= weight(cur_part):
             result.append(cur_part)
             cur_part = [ ]
             break
@@ -267,7 +266,7 @@ def _group_by_weights_greater_cyclic(l, weights, overhang):
       target_weight = weights[target_weight_index % len_weights]
       x = l_copy.pop(0)
       cur_part.append(x)
-      if target_weight <= listtools_weight(cur_part):
+      if target_weight <= weight(cur_part):
          result.append(cur_part)
          cur_part = [ ]
          target_weight_index += 1

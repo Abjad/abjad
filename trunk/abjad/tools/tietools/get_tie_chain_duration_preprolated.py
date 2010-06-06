@@ -1,5 +1,5 @@
 from abjad.exceptions import MissingSpannerError
-from abjad.tools.tietools.is_chain import is_chain as tietools_is_chain
+from abjad.tools.tietools.is_chain import is_chain
 
 
 def get_tie_chain_duration_preprolated(tie_chain):
@@ -12,7 +12,7 @@ def get_tie_chain_duration_preprolated(tie_chain):
       ``tietools.get_tie_chain_duration_preprolated( )``.
    '''
 
-   assert tietools_is_chain(tie_chain)
+   assert is_chain(tie_chain)
 
    try:
       return tie_chain[0].tie.spanner.duration.preprolated

@@ -1,6 +1,5 @@
 from abjad.tools import tietools
-from abjad.tools.fuse.leaves_by_reference import leaves_by_reference as \
-   fuse_leaves_by_reference
+from abjad.tools.fuse.leaves_by_reference import leaves_by_reference
 
 
 def leaves_in_tie_chain(tie_chain):
@@ -60,7 +59,7 @@ def leaves_in_tie_chain(tie_chain):
    
    ## fuse leaves in each part
    for part in parts:
-      result.append(fuse_leaves_by_reference(part))
+      result.append(leaves_by_reference(part))
 
    ## return result
    return result

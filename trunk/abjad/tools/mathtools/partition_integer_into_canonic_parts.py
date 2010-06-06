@@ -1,6 +1,5 @@
-from abjad.tools.mathtools.binary_string import binary_string as \
-   mathtools_binary_string
-from abjad.tools.mathtools.sign import sign as mathtools_sign
+from abjad.tools.mathtools.binary_string import binary_string
+from abjad.tools.mathtools.sign import sign
 
 
 def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
@@ -81,7 +80,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
    
    result = [ ]
    prev_empty = True
-   binary_n = mathtools_binary_string(abs(n))
+   binary_n = binary_string(abs(n))
    binary_length = len(binary_n)
 
    for i, x in enumerate(binary_n):
@@ -95,8 +94,8 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
       else:
          prev_empty = True
 
-   sign_n = mathtools_sign(n)
-   if mathtools_sign(n) == -1:
+   sign_n = sign(n)
+   if sign(n) == -1:
       result = [sign_n * x for x in result]
 
    if direction == 'big-endian':

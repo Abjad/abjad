@@ -1,7 +1,6 @@
 from abjad.rational import Rational
 from abjad.tools import mathtools
-from abjad.tools.listtools.flatten import flatten as listtools_flatten
-from abjad.tools.listtools.weight import weight as listtools_weight
+from abjad.tools.listtools.weight import weight
 
 
 def partition_by_weights(l, weights, cyclic = False, overhang = False):
@@ -87,7 +86,7 @@ def partition_by_weights(l, weights, cyclic = False, overhang = False):
 
    while copy_of_l:
       cur_part = result[-1]
-      cur_weight = listtools_weight(cur_part)
+      cur_weight = weight(cur_part)
       if cur_weight == cur_target_weight:
          cur_target_weight_index += 1
          if cyclic:

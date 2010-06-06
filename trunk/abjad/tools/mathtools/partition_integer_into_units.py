@@ -1,4 +1,4 @@
-from abjad.tools.mathtools.sign import sign as mathtools_sign
+from abjad.tools.mathtools.sign import sign
 
 
 def partition_integer_into_units(n):
@@ -25,4 +25,4 @@ def partition_integer_into_units(n):
       TypeError
    '''
 
-   return [mathtools_sign(n) * 1] * abs(n)
+   return [sign(n) * 1] * abs(n)
