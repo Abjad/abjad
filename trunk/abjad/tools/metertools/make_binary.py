@@ -5,11 +5,13 @@ from abjad.tools import mathtools
 
 
 def make_binary(nonbinary_meter, contents_multiplier = Rational(1)):
-   '''Change nonbinary meter to binary.
-      Return meter.
+   '''Change nonbinary `meter` to binary::
 
-      metertools.make_binary(Meter(3, 12))
-      Meter(2, 8)'''
+      abjad> metertools.make_binary(Meter(3, 12))
+      Meter(2, 8)
+
+   Return `meter`.
+   '''
    
    # check input
    assert isinstance(nonbinary_meter, Meter)
