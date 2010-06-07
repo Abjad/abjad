@@ -4,7 +4,6 @@ from abjad.tools.containertools.rest_by_count import rest_by_count
 
 def rest_half(container, rested_half, bigger_half, 
    rest_direction = 'automatic'):
-
    r'''Turn the left half of `container` into rests with the left
    half of `container` holding a greater number of elements
    than the right half::

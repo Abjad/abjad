@@ -331,7 +331,10 @@ class _Navigator(_Abjad):
       queue = collections.deque([self._client])
       while queue:
          node = queue.popleft( )
-         v.visit(node)
+         if hasattr(v, 'visit'):
+            v.visit(node)
+         elif hasattr(v, '_visit'):
+            v._visit(node)
          if hasattr(node, '_music'):
             if leftRight:
                queue.extend(node._music)
@@ -340,9 +343,14 @@ class _Navigator(_Abjad):
 
    def _traverseDepthFirst(self, v):
       '''Traverse depth-frist with visitor visiting each node.'''
-      v.visit(self._client)
+      if hasattr(v, 'visit'):
+         v.visit(self._client)
+      elif hasatr(v, '_visit'):
+         v._visit(self._client)
       if hasattr(self._client, '_music'):
          for m in self._client._music:
             m._navigator._traverse(v)
       if hasattr(v, 'unvisit'):
          v.unvisit(self._client)
+      elif hasattr(v, '_unvisit'):
+         v._unvisit(self._client)
