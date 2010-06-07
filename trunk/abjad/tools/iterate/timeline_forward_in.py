@@ -45,7 +45,7 @@ def timeline_forward_in(expr, klass = _Leaf):
    component_generator = naive_forward_in(expr, klass = klass)
    components = list(component_generator)
    
-   def sort_helper(component_1, component_2):
+   def _sort_helper(component_1, component_2):
       result = cmp(component_1.offset.prolated.start, 
          component_2.offset.prolated.start)
       if result == 0:
@@ -53,7 +53,7 @@ def timeline_forward_in(expr, klass = _Leaf):
       else:
          return result
 
-   components.sort(sort_helper)
+   components.sort(_sort_helper)
 
    for component in components:
       yield component

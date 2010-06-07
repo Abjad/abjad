@@ -35,7 +35,7 @@ def contents_reverse(container):
    Return `container`.
    '''
 
-   def offset(x, y):
+   def _offset(x, y):
       if x.offset.prolated.start < y.offset.prolated.start:
          return -1
       elif x.offset.prolated.start > y.offset.prolated.start:
@@ -49,6 +49,6 @@ def contents_reverse(container):
       container._music.reverse( )
       spanners = container.spanners.contained
       for s in spanners:
-         s._components.sort(offset)
+         s._components.sort(_offset)
 
    return container

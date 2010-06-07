@@ -448,8 +448,6 @@ iterate
    tools/iterate/measures_backward_in
    tools/iterate/measures_forward_in
    tools/iterate/naive_backward_in
-   tools/iterate/naive_backward_in
-   tools/iterate/naive_forward_in
    tools/iterate/naive_forward_in
    tools/iterate/namesakes_backward_from
    tools/iterate/namesakes_forward_from

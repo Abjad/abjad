@@ -46,7 +46,7 @@ def timeline_backward_in(expr, klass = _Leaf):
    component_generator = iterate_naive_forward_in(expr, klass = klass)
    components = list(component_generator)
    
-   def sort_helper(component_1, component_2):
+   def _sort_helper(component_1, component_2):
       result = cmp(component_1.offset.prolated.stop, 
          component_2.offset.prolated.stop)
       if result == 0:
@@ -56,7 +56,7 @@ def timeline_backward_in(expr, klass = _Leaf):
          ## for backward time sort
          return -result
 
-   components.sort(sort_helper)
+   components.sort(_sort_helper)
 
    for component in components:
       yield component
