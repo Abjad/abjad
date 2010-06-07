@@ -1,56 +1,63 @@
 from abjad.measure.rigid.measure import RigidMeasure
 from abjad.tools import iterate
-from remedy_underfull_measures import remedy_underfull_measures
+from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in \
+   import append_spacer_skips_to_underfull_measures_in
 
 
-def overwrite_contents(expr, new_contents):
+def replace_measure_contents_in(expr, new_contents):
    r'''.. versionadded:: 1.1.1
 
-   Iterate measures in `expr` and replace current measure contents
-   with `new_contents`.
-
-   Pad extra space at end of measures with spacer skip.
-
-   Return iterated measures. ::
+   Replace contents of measures in `expr` with `new_contents`::
 
       abjad> staff = Staff(measuretools.make([(1, 8), (3, 16)]))
-      abjad> print staff.format
+      abjad> f(staff)
       \new Staff {
-              {
-                      \time 1/8
-                      s1 * 1/8
-              }
-              {
-                      \time 3/16
-                      s1 * 3/16
-              }
+         {
+            \time 1/8
+            s1 * 1/8
+         }
+         {
+            \time 3/16
+            s1 * 3/16
+         }
       }
-
+      
    ::
-
+      
       abjad> notes = construct.scale(4, Rational(1, 16))
-      abjad> measuretools.overwrite_contents(t, notes)
+      abjad> measuretools.replace_measure_contents_in(staff, notes) 
       [RigidMeasure(1/8, [c'16, d'16]), RigidMeasure(3/16, [e'16, f'16, s1 * 1/16])]
-      abjad> print staff.format
+      
+   ::
+      
+      abjad> f(staff)
       \new Staff {
-              {
-                      \time 1/8
-                      c'16
-                      d'16
-              }
-              {
-                      \time 3/16
-                      e'16
-                      f'16
-                      s1 * 1/16
-              }
+         {
+            \time 1/8
+            c'16
+            d'16
+         }
+         {
+            \time 3/16
+            e'16
+            f'16
+            s1 * 1/16
+         }
       }
 
    Preserve duration of all measures.
 
    Skip measures that are too small.
 
-   If not enough measures, raise :exc:`StopIteration`.
+   Pad extra space at end of measures with spacer skip.
+
+   If not enough measures raise stop iteration.
+
+   Return measures iterated.
+
+   .. versionchanged:: 1.1.2
+      renamed ``measuretools.overwrite_contents( )`` to
+      ``measuretools.replace_measure_contents_in( )``.
    '''
 
    ## init return list
@@ -80,7 +87,7 @@ def overwrite_contents(expr, new_contents):
       ## otherwise restore currene measure and advance to next measure
       else:
          cur_measure.meter.forced = cur_meter
-         remedy_underfull_measures([cur_measure])
+         append_spacer_skips_to_underfull_measures_in([cur_measure])
          cur_measure = iterate.measure_next(cur_measure)
          if cur_measure is None:
             raise StopIteration
@@ -90,7 +97,7 @@ def overwrite_contents(expr, new_contents):
 
    ## restore last iterated measure
    cur_measure.meter.forced = cur_meter
-   remedy_underfull_measures(cur_measure)
+   append_spacer_skips_to_underfull_measures_in(cur_measure)
 
    ## return iterated measures
    return result

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_remedy_underfull_measures_01( ):
+def test_measuretools_append_spacer_skips_to_underfull_measures_in_01( ):
 
    t = Staff(RigidMeasure((3, 8), construct.scale(3)) * 3)
    t[1].meter.forced = Meter(4, 8)
@@ -11,7 +11,7 @@ def test_measuretools_remedy_underfull_measures_01( ):
    assert t[1].duration.is_underfull
    assert t[2].duration.is_underfull
 
-   measuretools.remedy_underfull_measures(t)
+   measuretools.append_spacer_skips_to_underfull_measures_in(t)
 
    r'''
    \new Staff {

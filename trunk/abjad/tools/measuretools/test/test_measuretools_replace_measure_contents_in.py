@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_measuretools_overwrite_contents_01( ):
+def test_measuretools_replace_measure_contents_in_01( ):
    '''Contents duration less than sum of duration of measures.
    Note spacer skip at end of second measure.
    '''
@@ -23,7 +23,7 @@ def test_measuretools_overwrite_contents_01( ):
    '''
 
    notes = construct.scale(4, Rational(1, 16)) 
-   measuretools.overwrite_contents(t, notes)
+   measuretools.replace_measure_contents_in(t, notes)
 
    r'''
    \new Staff {
@@ -45,7 +45,7 @@ def test_measuretools_overwrite_contents_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'16\n\t\td'16\n\t}\n\t{\n\t\t\\time 3/16\n\t\te'16\n\t\tf'16\n\t\ts1 * 1/16\n\t}\n}"
 
 
-def test_measuretools_overwrite_contents_02( ):
+def test_measuretools_replace_measure_contents_in_02( ):
    '''Some contents too big for some measures.
    Small measures skipped.
    '''
@@ -74,7 +74,7 @@ def test_measuretools_overwrite_contents_02( ):
    '''
 
    notes = construct.scale(2)
-   measuretools.overwrite_contents(t, notes)   
+   measuretools.replace_measure_contents_in(t, notes)   
 
    r'''
    \new Staff {
@@ -103,7 +103,7 @@ def test_measuretools_overwrite_contents_02( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'8\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 1/16\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8\n\t\ts1 * 1/16\n\t}\n}"
 
 
-def test_measuretools_overwrite_contents_03( ):
+def test_measuretools_replace_measure_contents_in_03( ):
    '''Raise MissingMeasureError when input expression 
    contains no measures.'''
 
@@ -111,27 +111,27 @@ def test_measuretools_overwrite_contents_03( ):
    notes = construct.scale(2)
 
    assert py.test.raises(MissingMeasureError, 
-      'measuretools.overwrite_contents(t, notes)')
+      'measuretools.replace_measure_contents_in(t, notes)')
 
 
-def test_measuretools_overwrite_contents_04( ):
+def test_measuretools_replace_measure_contents_in_04( ):
    '''Raise StopIteration when not enough measures.'''
 
    t = Staff(measuretools.make([(1, 8), (1, 8)]))
    notes = construct.scale(6, Rational(1, 16))
 
    assert py.test.raises(StopIteration, 
-      'measuretools.overwrite_contents(t, notes)')
+      'measuretools.replace_measure_contents_in(t, notes)')
 
 
-def test_measuretools_overwrite_contents_05( ):
+def test_measuretools_replace_measure_contents_in_05( ):
    '''Populate measures even when not enough total measures.'''
 
    t = Staff(measuretools.make([(1, 8), (1, 8)]))
    notes = construct.scale(6, Rational(1, 16))
 
    try:
-      measuretools.overwrite_contents(t, notes)
+      measuretools.replace_measure_contents_in(t, notes)
    except StopIteration:
       pass
 
