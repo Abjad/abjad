@@ -1,0 +1,60 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+import pprint
+import re
+
+
+function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
+
+def _find_undocumented_tools( ):
+   undocumented_tools = [ ]
+   tools_directory = os.path.join(ABJADPATH, 'tools')
+   for path, subdirectories, files in os.walk(tools_directory):
+      for f in files:
+         if f.endswith('.py'):
+            if f[0].islower( ):
+               if not f.startswith('test_'):
+                  if _has_undocumented_tool(path, f):
+                     package = path.split(os.sep)[-1]
+                     function_name = f[:-3]
+                     name = '%s.%s' % (package, function_name)
+                     undocumented_tools.append(name)
+   total = len(undocumented_tools)
+   if 0 < total:
+      pprint.pprint(undocumented_tools)
+      print ''
+   print 'Total modules with undocumeted tools: %s' % total
+   print ''
+
+
+def _has_undocumented_tool(path, f):
+   full_name = os.path.join(path, f)
+   examine_next_line = False
+   examine_upcoming_line = False
+   for line in file(full_name, 'r').readlines( ):
+      if examine_next_line:
+         if "'''" not in line:
+            if '"""' not in line:
+               return True
+         examine_next_line = False
+         examine_upcoming_line = False
+      elif examine_upcoming_line:
+         if ':' in line:
+            examine_next_line = True
+      match = function_definition_pattern.match(line)
+      if match is not None:
+         function_name = match.groups( )[0]
+         if not function_name.startswith('_'):
+            if ':' in line:
+               examine_next_line = True
+            else:
+               examine_upcoming_line = True
+   else:
+      return False
+         
+
+if __name__ == '__main__':
+   os.system('clear')
+   _find_undocumented_tools( )

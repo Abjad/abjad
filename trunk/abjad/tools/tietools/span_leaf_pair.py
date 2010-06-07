@@ -1,16 +1,45 @@
 from abjad.exceptions import MissingSpannerError
 from abjad.leaf import _Leaf
 from abjad.spanners import Tie
-from abjad.tools.tietools.are_in_same_spanner import \
-   are_in_same_spanner as tietools_are_in_same_spanner
+from abjad.tools.tietools.are_in_same_spanner import are_in_same_spanner
 
 
 def span_leaf_pair(left, right):
+   r'''Apply tie spanner to `left` leaf and `right` leaf::
+
+      abjad> staff = Staff(construct.run(4))
+      abjad> Tie(staff[:2])
+      abjad> f(staff)
+      \new Staff {
+         c'8 ~
+         c'8
+         c'8
+         c'8
+      }
+      
+   ::
+      
+      abjad> tietools.span_leaf_pair(staff[1], staff[2]) 
+      
+   ::
+      
+      abjad> f(staff)
+      \new Staff {
+         c'8 ~
+         c'8 ~
+         c'8
+         c'8
+      }
+
+   Handle existing tie spanners intelligently.
+
+   Return none.
+   '''
 
    assert isinstance(left, _Leaf)
    assert isinstance(right, _Leaf)
 
-   if tietools_are_in_same_spanner([left, right]):
+   if are_in_same_spanner([left, right]):
       return 
 
    try:
