@@ -5,21 +5,28 @@ from abjad.tools import durtools
 
 def make_best(duration, denominators = None, factor = None):
    '''Return new Abjad Meter equal in duration to 'duration'.
-      Determine meter denominator based on 'denominators' or 'factor'.
-      Take denominator from smallest workable value in 'denominators'.
-      Or take denominator from smallest workable multiple of 'factor'.
+   Determine meter denominator based on 'denominators' or 'factor'.
+   Take denominator from smallest workable value in 'denominators'.
+   Or take denominator from smallest workable multiple of 'factor'::
 
-      >>> metertools.make_best(Rational(3, 2), [5, 6, 7, 8])
+      abjad> metertools.make_best(Rational(3, 2), [5, 6, 7, 8])
       Meter(9, 6)
 
-      >>> metertools.make_best(Rational(3, 2), [4, 8, 16, 32])
+   ::
+
+      abjad> metertools.make_best(Rational(3, 2), [4, 8, 16, 32])
       Meter(6, 4)
 
-      >>> metertools.make_best(Rational(3, 2), factor = 5)
+   ::
+
+      abjad> metertools.make_best(Rational(3, 2), factor = 5)
       Meter(15, 10)
 
-      >>> metertools.make_best(Rational(3, 2))
-      Meter(3, 2)'''
+   ::
+
+      abjad> metertools.make_best(Rational(3, 2))
+      Meter(3, 2)
+   '''
 
    if denominators is not None:
       if factor is not None:

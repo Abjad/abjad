@@ -710,7 +710,6 @@ measuretools
    tools/measuretools/make
    tools/measuretools/multiply_measure_contents_and_scale_meter_denominator_in
    tools/measuretools/multiply_measure_contents_in
-   tools/measuretools/overdraw
    tools/measuretools/pitch_array_row_to_measure
    tools/measuretools/pitch_array_to_measures
    tools/measuretools/populate

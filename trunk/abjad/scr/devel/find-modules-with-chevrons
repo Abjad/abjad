@@ -1,0 +1,41 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+import pprint
+import re
+
+
+function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
+
+def _find_modules_with_chevrons( ):
+   modules_with_chevrons = [ ]
+   #tools_directory = os.path.join(ABJADPATH, 'tools')
+   for path, subdirectories, files in os.walk(ABJADPATH):
+      for f in files:
+         if f.endswith('.py'):
+            if _has_python_prompt_chevrons(path, f):
+               package = path.split(os.sep)[-1]
+               function_name = f[:-3]
+               name = '%s.%s' % (package, function_name)
+               modules_with_chevrons.append(name)
+   total = len(modules_with_chevrons)
+   if 0 < total:
+      pprint.pprint(modules_with_chevrons)
+      print ''
+   print 'Total modules with chevrons: %s' % total
+   print ''
+
+
+def _has_python_prompt_chevrons(path, f):
+   full_name = os.path.join(path, f)
+   for line in file(full_name, 'r'):
+      if '>>>' in line:
+         return True
+   else:
+      return False
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   _find_modules_with_chevrons( )

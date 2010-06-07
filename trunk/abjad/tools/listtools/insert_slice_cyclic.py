@@ -13,27 +13,27 @@ def insert_slice_cyclic(l, s, overhang = (0, 0)):
 
    ::
   
-      >>> l = [0, 1, 2, 3, 4]
-      >>> s = ['A', 'B']
+      abjad> l = [0, 1, 2, 3, 4]
+      abjad> s = ['A', 'B']
 
    ::
 
-      >>> listtools.insert_slice_cyclic(l, s)
+      abjad> listtools.insert_slice_cyclic(l, s)
       [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
 
    ::
 
-      >>> listtools.insert_slice_cyclic(l, s, overhang = (0, 1))
+      abjad> listtools.insert_slice_cyclic(l, s, overhang = (0, 1))
       [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
 
    ::
 
-      >>> listtools.insert_slice_cyclic(l, s, overhang = (1, 0))
+      abjad> listtools.insert_slice_cyclic(l, s, overhang = (1, 0))
       ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
 
    ::
 
-      >>> listtools.insert_slice_cyclic(l, s, overhang = (1, 1))
+      abjad> listtools.insert_slice_cyclic(l, s, overhang = (1, 1))
       ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']'''
 
    result = [ ]
