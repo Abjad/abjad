@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spacing_get_scorewide_01( ):
+def test_spacing_get_scorewide_spacing_01( ):
    '''Return global_spacing of effective score of component.'''
 
    t = Score([Staff(construct.scale(4))])
@@ -21,12 +21,12 @@ def test_spacing_get_scorewide_01( ):
    >>
    '''
 
-   assert spacing.get_scorewide(t.leaves[0]) is spacing_indication
-   assert spacing.get_scorewide(t[0]) is spacing_indication
-   assert spacing.get_scorewide(t) is spacing_indication
+   assert spacing.get_scorewide_spacing(t.leaves[0]) is spacing_indication
+   assert spacing.get_scorewide_spacing(t[0]) is spacing_indication
+   assert spacing.get_scorewide_spacing(t) is spacing_indication
 
 
-def test_spacing_get_scorewide_02( ):
+def test_spacing_get_scorewide_spacing_02( ):
    '''Return None when effective score has no global spacing.'''
 
    t = Score([Staff(construct.scale(4))])
@@ -42,16 +42,16 @@ def test_spacing_get_scorewide_02( ):
    >>
    '''
 
-   assert spacing.get_scorewide(t.leaves[0]) is None
-   assert spacing.get_scorewide(t[0]) is None
-   assert spacing.get_scorewide(t) is None
+   assert spacing.get_scorewide_spacing(t.leaves[0]) is None
+   assert spacing.get_scorewide_spacing(t[0]) is None
+   assert spacing.get_scorewide_spacing(t) is None
 
 
-def test_spacing_get_scorewide_03( ):
+def test_spacing_get_scorewide_spacing_03( ):
    '''Return None when effective score is None.'''
 
    t = Staff(construct.scale(4))
 
-   assert spacing.get_scorewide(t.leaves[0]) is None
-   assert spacing.get_scorewide(t[0]) is None
-   assert spacing.get_scorewide(t) is None
+   assert spacing.get_scorewide_spacing(t.leaves[0]) is None
+   assert spacing.get_scorewide_spacing(t[0]) is None
+   assert spacing.get_scorewide_spacing(t) is None

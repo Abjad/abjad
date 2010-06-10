@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_tuplettools_beam_bottommost_01( ):
+def test_tuplettools_beam_bottommost_tuplets_in_expr_01( ):
    '''Beam nonnested tuplets.'''
 
    t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
    pitchtools.diatonicize(t)
-   tuplettools.beam_bottommost(t)
+   tuplettools.beam_bottommost_tuplets_in_expr(t)
 
    r'''
    \new Voice {
@@ -27,7 +27,7 @@ def test_tuplettools_beam_bottommost_01( ):
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t}\n\t\\times 2/3 {\n\t\tf'8 [\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_tuplettools_beam_bottommost_02( ):
+def test_tuplettools_beam_bottommost_tuplets_in_expr_02( ):
    '''Beam bottommost nested tuplets.'''
 
 
@@ -65,7 +65,7 @@ def test_tuplettools_beam_bottommost_02( ):
    }
    '''
 
-   tuplettools.beam_bottommost(t)
+   tuplettools.beam_bottommost_tuplets_in_expr(t)
 
    r'''
    \new Voice {

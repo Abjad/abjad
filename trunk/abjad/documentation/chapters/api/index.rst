@@ -741,8 +741,8 @@ overridetools
 .. toctree::
    :maxdepth: 1
 
-   tools/overridetools/clear_all
-   tools/overridetools/promote
+   tools/overridetools/clear_all_overrides_on_grob_handler
+   tools/overridetools/promote_attribute_to_context_on_grob_handler
 
 
 parenttools
@@ -960,7 +960,7 @@ spacing
    :maxdepth: 1
 
    tools/spacing/SpacingIndication/SpacingIndication
-   tools/spacing/get_scorewide
+   tools/spacing/get_scorewide_spacing
 
 
 spanners
@@ -1076,9 +1076,9 @@ tuplettools
 .. toctree::
    :maxdepth: 1
 
-   tools/tuplettools/augmentation_to_diminution
-   tools/tuplettools/beam_bottommost
-   tools/tuplettools/diminution_to_augmentation
+   tools/tuplettools/beam_bottommost_tuplets_in_expr
+   tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
+   tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
    tools/tuplettools/fix_contents_of_tuplets_in_expr
    tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
    tools/tuplettools/remove_trivial_tuplets_in_expr

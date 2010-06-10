@@ -1,7 +1,7 @@
 from abjad.tuplet import _Tuplet
 
 
-def diminution_to_augmentation(tuplet):
+def change_diminished_tuplets_in_expr_to_augmented(tuplet):
    '''.. versionadded:: 1.1.2
 
    Divide the written duration of the leaves in `tuplet`
@@ -10,10 +10,14 @@ def diminution_to_augmentation(tuplet):
       abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
       abjad> tuplet
       FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-      abjad> tuplettools.diminution_to_augmentation(tuplet)
+      abjad> tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
       FixedDurationTuplet(1/4, [c'16, d'16, e'16])
 
    .. todo:: make work with nested tuplets.
+
+   .. versionchanged:: 1.1.2
+      renamed ``tuplettools.diminution_to_augmentation( )`` to
+      ``tuplettools.change_diminished_tuplets_in_expr_to_augmented( )``.
    '''
 
    if not isinstance(tuplet, _Tuplet):

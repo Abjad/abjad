@@ -13,7 +13,7 @@ def test_rigid_measure_bar_line_override_01( ):
    t[0].bar_line.kind = '||'
    t[0].bar_line.color = 'red'
    #t[0].bar_line.promote('color', 'Staff')
-   overridetools.promote(t[0].bar_line, 'color', 'Staff')
+   overridetools.promote_attribute_to_context_on_grob_handler(t[0].bar_line, 'color', 'Staff')
 
    ## NOTE: The LilyPond code here colors the DOUBLE BAR red and
    ##       not any of the single bars. What this means is that

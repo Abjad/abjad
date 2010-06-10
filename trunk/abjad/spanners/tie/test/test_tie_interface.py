@@ -30,7 +30,7 @@ def test_tie_interface_04( ):
    t.tie.color = 'red'
    assert t.format == "\\once \\override Tie #'color = #red\nc'4"
    #t.tie.clear( )
-   overridetools.clear_all(t.tie)
+   overridetools.clear_all_overrides_on_grob_handler(t.tie)
    assert t.format == "c'4"
 
 

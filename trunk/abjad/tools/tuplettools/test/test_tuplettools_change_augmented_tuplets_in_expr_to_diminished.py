@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplettools_augmentation_to_diminution_01( ):
+def test_tuplettools_change_augmented_tuplets_in_expr_to_diminished_01( ):
 
    tuplet = FixedDurationTuplet((2, 4), construct.scale(3))
    
@@ -13,7 +13,7 @@ def test_tuplettools_augmentation_to_diminution_01( ):
    }
    '''
 
-   tuplettools.augmentation_to_diminution(tuplet)
+   tuplettools.change_augmented_tuplets_in_expr_to_diminished(tuplet)
 
    r'''
    \times 2/3 {

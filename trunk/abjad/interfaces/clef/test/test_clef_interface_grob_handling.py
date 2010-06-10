@@ -22,7 +22,7 @@ def test_clef_interface_grob_handling_02( ):
    t = Note(0, (1, 4))
    t.clef.color = 'red'
    #t.clef.promote('color', 'Staff')
-   overridetools.promote(t.clef, 'color', 'Staff')
+   overridetools.promote_attribute_to_context_on_grob_handler(t.clef, 'color', 'Staff')
 
    assert t.format == "\\once \\override Staff.Clef #'color = #red\nc'4"
    r'''
@@ -35,7 +35,7 @@ def test_clef_interface_grob_handling_03( ):
    '''Context promotion before assignment raises an exception.'''
    t = Note(0, (1, 4))
    #assert py.test.raises(AttributeError, "t.clef.promote('color', 'Staff')")
-   assert py.test.raises(AttributeError, "overridetools.promote(t.clef, 'color', 'Staff')")
+   assert py.test.raises(AttributeError, "overridetools.promote_attribute_to_context_on_grob_handler(t.clef, 'color', 'Staff')")
 
 
 def test_clef_interface_grob_handling_04( ):

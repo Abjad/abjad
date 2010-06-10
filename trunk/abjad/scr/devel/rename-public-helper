@@ -85,7 +85,7 @@ def _confirm_name_changes(old_package, old_function, new_package, new_module):
       return
 
 
-def _rename_api_pages(old_package, old_function, new_package, new_module):
+def _rename_old_api_page(old_package, old_function, new_package, new_module):
    print 'Renaming old API page ...'
    api_path = os.path.join(ABJADPATH, 'documentation', 'chapters', 'api')
    api_path = os.path.join(api_path, 'tools')
@@ -93,7 +93,7 @@ def _rename_api_pages(old_package, old_function, new_package, new_module):
    old_api_path = os.path.join(api_path, old_package, old_rst_file)
    new_rst_file = new_function + '.rst'
    new_api_path = os.path.join(api_path, new_package, new_rst_file)
-   command = 'svn mv %s %s' % (old_api_path, new_api_path)
+   command = 'svn mv %s %s > /dev/null' % (old_api_path, new_api_path)
    os.system(command)
    print ''
 
@@ -167,7 +167,7 @@ def _rename_old_module(old_package, old_function, new_package, new_function):
    old_path = os.path.join(ABJADPATH, 'tools', old_package, old_module)
    new_module = new_function + '.py'
    new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
-   command = 'svn mv %s %s' % (old_path, new_path)
+   command = 'svn mv %s %s > /dev/null' % (old_path, new_path)
    os.system(command)
    print ''
 
@@ -179,7 +179,7 @@ def _rename_old_test_file(old_package, old_function, new_package, new_function):
    new_test_file = 'test_%s_%s.py' % (new_package, new_function)
    new_path = os.path.join(ABJADPATH, 'tools', new_package, 'test')
    new_path = os.path.join(new_path, new_test_file)
-   command = 'svn mv %s %s' % (old_path, new_path)
+   command = 'svn mv %s %s > /dev/null' % (old_path, new_path)
    os.system(command)
    print ''
 
@@ -257,9 +257,9 @@ if __name__ == '__main__':
    old_package, old_function = _get_old_package_and_function( )
    new_package, new_function = _get_new_package_and_function( )
    _confirm_name_changes(old_package, old_function, new_package, new_function)
-   _rename_api_pages(old_package, old_function, new_package, new_function)
-   _make_new_api_page(new_package, new_function)
-   _update_api_toc(old_package, old_function, new_package, new_function)
+   _rename_old_api_page(old_package, old_function, new_package, new_function)
+   #_make_new_api_page(new_package, new_function)
+   #_update_api_toc(old_package, old_function, new_package, new_function)
    _rename_old_module(old_package, old_function, new_package, new_function)
    _rename_old_test_file(old_package, old_function, new_package, new_function)
    _update_codebase(old_package, old_function, new_package, new_function)

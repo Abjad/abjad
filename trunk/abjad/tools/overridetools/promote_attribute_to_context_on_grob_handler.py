@@ -1,13 +1,13 @@
 from abjad.core.grobhandler import _GrobHandler
 
 
-def promote(grob_handler, attribute, context):
+def promote_attribute_to_context_on_grob_handler(grob_handler, attribute, context):
    r'''Promote `attribute` to LilyPond `context`.
    Both `attribute` and `context` must be strings. ::
 
       abjad> staff = Staff(construct.scale(4))
       abjad> staff[0].clef.color = 'red'
-      abjad> overridetools.promote(staff[0].clef, 'color', 'Staff')
+      abjad> overridetools.promote_attribute_to_context_on_grob_handler(staff[0].clef, 'color', 'Staff')
 
       abjad> print staff.format
       \new Staff {
@@ -23,6 +23,10 @@ def promote(grob_handler, attribute, context):
    LilyPond staff context. This is important because the LilyPond
    engraver that creates clef symbols lives at the staff context
    and does not live at the lower level of the voice context.
+
+   .. versionchanged:: 1.1.2
+      renamed ``overridetools.promote( )`` to
+      ``overridetools.promote_attribute_to_context_on_grob_handler( )``.
    '''
 
    assert isinstance(grob_handler, _GrobHandler)

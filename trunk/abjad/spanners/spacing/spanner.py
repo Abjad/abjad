@@ -21,9 +21,9 @@ class SpacingSpanner(_GrobHandlerSpanner):
       abjad> spacing_spanner.strict_grace_spacing = True
       abjad> spacing_spanner.strict_note_spacing = True
       abjad> spacing_spanner.uniform_stretching = True
-      abjad> overridetools.promote(spacing_spanner, 'strict_grace_spacing', 'Score')
-      abjad> overridetools.promote(spacing_spanner, 'strict_note_spacing', 'Score')
-      abjad> overridetools.promote(spacing_spanner, 'uniform_stretching', 'Score')
+      abjad> overridetools.promote_attribute_to_context_on_grob_handler(spacing_spanner, 'strict_grace_spacing', 'Score')
+      abjad> overridetools.promote_attribute_to_context_on_grob_handler(spacing_spanner, 'strict_note_spacing', 'Score')
+      abjad> overridetools.promote_attribute_to_context_on_grob_handler(spacing_spanner, 'uniform_stretching', 'Score')
 
    ::
 

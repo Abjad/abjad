@@ -38,7 +38,7 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
          result.append(r'\newSpacingSection')
-         scorewide_spacing = spacing.get_scorewide(leaf)
+         scorewide_spacing = spacing.get_scorewide_spacing(leaf)
          if scorewide_spacing is not None:
             directive = self._make_proportional_directive(
                scorewide_spacing, spanner.tempo_indication)

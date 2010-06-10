@@ -35,13 +35,20 @@ def _remove_files(skip_files, files):
 
 def replace_in_files(dir, old, new, skip_dirs=['.svn'], confirm=True):
    skip_files = ['replace-in-files', '.pyc', '.rst']
-   print 'Replacing "%s" with "%s" globally ...' % (old, new)
+   print 'Replacing ...'
+   print '   "%s"' % old
+   print '   "%s"' % new
+   total_files_changed = 0
    for root, dirs, files in os.walk(dir):
       _remove_dirs(skip_dirs, dirs)
       _remove_files(skip_files, files)
       ## replace old with new
       for file in files:
-         _replace_in_file(root, file, old, new)
+         result = _replace_in_file(root, file, old, new)
+         if result:
+            total_files_changed += 1
+   print '... in %s file(s)' % total_files_changed
+   print ''
 
 
 def _replace_in_file(root, file, old, new):
@@ -65,9 +72,11 @@ def _replace_in_file(root, file, old, new):
       new_text.append(line)
    pf.close( )
    if file_is_changed:
-      print 'Writing new file ...'
       new_file = open(file, 'w')
       new_file.writelines(new_text)
+      return True
+   else:
+      return False
 
 
 if __name__ == '__main__':

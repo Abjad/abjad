@@ -236,7 +236,7 @@ def test_beam_interface_14( ):
    t = Note(0, (1, 32))
    t.beam.color = 'red'
    #t.beam.clear( )
-   overridetools.clear_all(t.beam)
+   overridetools.clear_all_overrides_on_grob_handler(t.beam)
    assert t.format == "c'32"
 
 

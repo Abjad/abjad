@@ -32,7 +32,7 @@ class _ContextSettingHandler(_Abjad):
 
    ## PUBLIC METHODS ##
 
-   def promote(self, setting, context):
+   def promote_attribute_to_context_on_grob_handler(self, setting, context):
       '''Promote ``setting`` to *LilyPond* ``context``.'''
       assert isinstance(context, str)
       if hasattr(self, setting):

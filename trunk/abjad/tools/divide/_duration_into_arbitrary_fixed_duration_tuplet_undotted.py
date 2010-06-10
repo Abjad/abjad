@@ -46,10 +46,10 @@ def _duration_into_arbitrary_fixed_duration_tuplet_undotted(
    if not tuplet.duration.multiplier == 1:
       if prolation == 'diminution':
          if not tuplet.duration.diminution:
-            tuplettools.augmentation_to_diminution(tuplet)
+            tuplettools.change_augmented_tuplets_in_expr_to_diminished(tuplet)
       else:
          if tuplet.duration.diminution:
-            tuplettools.diminution_to_augmentation(tuplet)
+            tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
 
 #   ## give leaf position in score structure to tuplet
 #   scoretools.donate([l], tuplet)

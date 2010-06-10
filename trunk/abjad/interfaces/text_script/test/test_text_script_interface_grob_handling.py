@@ -20,7 +20,7 @@ def test_text_script_interface_grob_handling_02( ):
 
    t = Note(0, (1, 4))
    t.text_script.color = 'red'
-   overridetools.promote(t.text_script, 'color', 'Staff')
+   overridetools.promote_attribute_to_context_on_grob_handler(t.text_script, 'color', 'Staff')
 
    r'''
    \once \override Staff.TextScript #'color = #red
@@ -57,6 +57,6 @@ def test_text_script_interface_grob_handling_04( ):
    t.text_script.color = 'red'
    t.text_script.size = 4
    #t.text.clear( )
-   overridetools.clear_all(t.text_script)
+   overridetools.clear_all_overrides_on_grob_handler(t.text_script)
 
    assert t.format == "c'4"

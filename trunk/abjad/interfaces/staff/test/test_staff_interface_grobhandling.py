@@ -33,7 +33,7 @@ def test_staff_interface_grobhandling_02( ):
 
    t = Staff(construct.scale(4))
    t[2].staff.color = 'red'
-   overridetools.promote(t[2].staff, 'color', 'Staff')
+   overridetools.promote_attribute_to_context_on_grob_handler(t[2].staff, 'color', 'Staff')
 
    r'''
    \new Staff {

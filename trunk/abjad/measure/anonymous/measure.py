@@ -39,4 +39,4 @@ class AnonymousMeasure(DynamicMeasure):
       DynamicMeasure.__init__(self, music = music)
       self.meter.stencil = False
       #self.meter.promote('stencil', 'Staff')
-      overridetools.promote(self.meter, 'stencil', 'Staff')
+      overridetools.promote_attribute_to_context_on_grob_handler(self.meter, 'stencil', 'Staff')

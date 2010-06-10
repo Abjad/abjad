@@ -48,7 +48,7 @@ def test_meter_interface_grob_handling_03( ):
    t = RigidMeasure((4, 8), construct.scale(4))
    t.meter.transparent = True
    #t.meter.promote('transparent', 'Staff')
-   overridetools.promote(t.meter, 'transparent', 'Staff')
+   overridetools.promote_attribute_to_context_on_grob_handler(t.meter, 'transparent', 'Staff')
 
    r'''
    {
@@ -71,6 +71,6 @@ def test_meter_interface_grob_handling_04( ):
    t = Note(0, (1, 4))
    t.meter.color = 'red'
    t.meter.transparent = True
-   overridetools.clear_all(t.meter)
+   overridetools.clear_all_overrides_on_grob_handler(t.meter)
 
    assert t.format == "c'4"
