@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_tuplettools_contents_scale_01( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01( ):
    '''Double tuplet.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
-   tuplettools.contents_scale(t, Rational(2))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2))
 
    r'''
    \times 2/3 {
@@ -19,11 +19,11 @@ def test_tuplettools_contents_scale_01( ):
    assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
 
 
-def test_tuplettools_contents_scale_02( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02( ):
    '''Halve tuplet.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
-   tuplettools.contents_scale(t, Rational(1, 2))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(1, 2))
 
    r'''
    \times 2/3 {
@@ -37,11 +37,11 @@ def test_tuplettools_contents_scale_02( ):
    assert t.format == "\\times 2/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_contents_scale_03( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03( ):
    '''Quadruple tuplet.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
-   tuplettools.contents_scale(t, Rational(4))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(4))
 
    r'''
    \times 2/3 {
@@ -55,11 +55,11 @@ def test_tuplettools_contents_scale_03( ):
    assert t.format == "\\times 2/3 {\n\tc'2\n\td'2\n\te'2\n}"
 
 
-def test_tuplettools_contents_scale_04( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04( ):
    '''Quarter tuplet.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
-   tuplettools.contents_scale(t, Rational(1, 4))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(1, 4))
 
    r'''
    \times 2/3 {
@@ -73,11 +73,11 @@ def test_tuplettools_contents_scale_04( ):
    assert t.format == "\\times 2/3 {\n\tc'32\n\td'32\n\te'32\n}"
 
 
-def test_tuplettools_contents_scale_05( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05( ):
    '''Multiply tuplet by 3/2.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
-   tuplettools.contents_scale(t, Rational(3, 2))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 2))
 
    r'''
    \times 2/3 {
@@ -91,11 +91,11 @@ def test_tuplettools_contents_scale_05( ):
    assert t.format == "\\times 2/3 {\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_tuplettools_contents_scale_06( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06( ):
    '''Multiply tuplet by 2/3.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
-   tuplettools.contents_scale(t, Rational(2, 3))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2, 3))
 
    r'''
    \times 8/9 {
@@ -109,11 +109,11 @@ def test_tuplettools_contents_scale_06( ):
    assert t.format == "\\times 8/9 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_contents_scale_07( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07( ):
    '''Multiply tuplet by 3/5.'''
 
    t = FixedDurationTuplet((2, 8), construct.scale(3))
-   tuplettools.contents_scale(t, Rational(3, 5))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 5))
 
    r'''
    \times 4/5 {
@@ -127,12 +127,12 @@ def test_tuplettools_contents_scale_07( ):
    assert t.format == "\\times 4/5 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_contents_scale_08( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08( ):
    '''Multiply undotted, unbracketted notes by 3/2;
       ie, add a single dot.'''
 
    t = FixedDurationTuplet((3, 8), construct.scale(3))
-   tuplettools.contents_scale(t, Rational(3, 2))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 2))
 
    r'''
    {
@@ -146,7 +146,7 @@ def test_tuplettools_contents_scale_08( ):
    assert t.format == "{\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_tuplettools_contents_scale_09( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09( ):
    '''Binary target duration.'''
 
    t = FixedDurationTuplet((3, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
@@ -158,7 +158,7 @@ def test_tuplettools_contents_scale_09( ):
    }
    '''
 
-   tuplettools.contents_scale(t, Rational(2, 3))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2, 3))
 
    r'''
    \times 4/5 {
@@ -171,7 +171,7 @@ def test_tuplettools_contents_scale_09( ):
    assert t.format == "\\times 4/5 {\n\tc'8\n\tc'8.\n}"
 
 
-def test_tuplettools_contents_scale_10( ):
+def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_10( ):
    '''Nonbinary target duration.'''
 
    t = FixedDurationTuplet((4, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
@@ -183,7 +183,7 @@ def test_tuplettools_contents_scale_10( ):
    }
    '''
 
-   tuplettools.contents_scale(t, Rational(2, 3))
+   tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2, 3))
 
    r'''
    \times 8/15 {

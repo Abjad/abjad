@@ -1078,8 +1078,8 @@ tuplettools
 
    tools/tuplettools/augmentation_to_diminution
    tools/tuplettools/beam_bottommost
-   tools/tuplettools/contents_fix
-   tools/tuplettools/contents_scale
    tools/tuplettools/diminution_to_augmentation
+   tools/tuplettools/fix_contents_of_tuplets_in_expr
    tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
    tools/tuplettools/remove_trivial_tuplets_in_expr
+   tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier

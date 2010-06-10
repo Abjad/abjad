@@ -40,7 +40,7 @@ def _duration_into_arbitrary_fixed_duration_tuplet_undotted(
    tuplet = FixedDurationTuplet(duration, notes)
 
    ## fix tuplet contents if necessary
-   tuplettools.contents_fix(tuplet)
+   tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
 
    ## switch prolation if necessary
    if not tuplet.duration.multiplier == 1:

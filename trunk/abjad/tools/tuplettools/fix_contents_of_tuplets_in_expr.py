@@ -6,7 +6,7 @@ from abjad.tuplet import FixedMultiplierTuplet
 import math
 
 
-def contents_fix(tuplet):
+def fix_contents_of_tuplets_in_expr(tuplet):
    '''Scale `tuplet` contents by power of two
    if tuplet multiplier less than 1/2 or greater than 2.
    Return tuplet. ::
@@ -14,8 +14,12 @@ def contents_fix(tuplet):
       abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3, Rational(1, 4)))
       abjad> tuplet   
       FixedDurationTuplet(1/4, [c'4, d'4, e'4])
-      abjad> tuplettools.contents_fix(tuplet)
+      abjad> tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
       FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+
+   .. versionchanged:: 1.1.2
+      renamed ``tuplettools.contents_fix( )`` to
+      ``tuplettools.fix_contents_of_tuplets_in_expr( )``.
    '''
 
    # check input

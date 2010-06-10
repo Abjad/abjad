@@ -39,7 +39,7 @@ def _leaf_into_arbitrary_fixed_duration_tuplet(l, divisions, prolation):
    tuplet = FixedDurationTuplet(target_duration, notes)
 
    ## fix tuplet contents if necessary
-   tuplettools.contents_fix(tuplet)
+   tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
 
    ## switch prolation if necessary
    if not tuplet.duration.multiplier == 1:

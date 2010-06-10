@@ -24,7 +24,6 @@ Start here
    chapters/introduction/examples/desordre/index
    chapters/introduction/examples/bartok/index
    chapters/introduction/examples/slicing/index
-   chapters/introduction/download/index
    chapters/introduction/configuration/index
    chapters/introduction/whatnext/index
 

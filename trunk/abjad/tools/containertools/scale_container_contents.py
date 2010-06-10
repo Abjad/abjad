@@ -97,7 +97,7 @@ def scale_container_contents(container, multiplier):
       if tietools.is_chain(expr):
          tietools.duration_scale(expr, multiplier)
       elif isinstance(expr, FixedDurationTuplet):
-         tuplettools.contents_scale(expr, multiplier)
+         tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(expr, multiplier)
       elif isinstance(expr, _Measure):
          ## TODO: Move import to higher level of scope? ##
          from abjad.tools import measuretools
