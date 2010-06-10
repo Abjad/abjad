@@ -38,7 +38,7 @@ tag:
 This is useful for generating and embedding rendered score images without
 showing any of the Abjad code.
 
-Use the write_ly(expr, name, template, title) function to have Abjad call 
+Use the write_expr_to_ly(expr, name, template, title) function to have Abjad call 
 LilyPond on the Abjad snippet and embed the rendered image in the document.
 
 All Abjad snippets *must* start with no indentation in the document. 
@@ -55,7 +55,7 @@ Example:
       <abjad>
       v = Voice(construct.run(8))
       Beam(v)
-      write_ly(v, 'example1') <hide ## this will insert an image. 
+      write_expr_to_ly(v, 'example1') <hide ## this will insert an image. 
       show(v)
       </abjad>
 

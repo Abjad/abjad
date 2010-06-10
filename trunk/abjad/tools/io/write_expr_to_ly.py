@@ -5,7 +5,7 @@ from abjad.cfg._write_title import _write_title
 import os
 
 
-def write_ly(expr, file_name, template = None, 
+def write_expr_to_ly(expr, file_name, template = None, 
    title = None, footer = None, lily_time = None):
    '''Format `expr` and write to `file_name`.
 
@@ -20,16 +20,20 @@ def write_ly(expr, file_name, template = None,
    Write ``t`` to ``foo.ly`` in the current directory. ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> write_ly(t, 'foo.ly')
+      abjad> write_expr_to_ly(t, 'foo.ly')
    
    Write ``t`` to ``foo.ly`` in the ``/home/user`` directory.
    Include the ``paris.ly`` template in ``foo.ly``. ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> write_ly(t, '/home/user/foo.ly', 'paris')
+      abjad> write_expr_to_ly(t, '/home/user/foo.ly', 'paris')
 
    .. versionadded:: 1.1.1
       Optional `footer` keyword.
+
+   .. versionchanged:: 1.1.2
+      renamed ``io.write_ly( )`` to
+      ``io.write_expr_to_ly( )``.
    '''
 
    file_name = os.path.expanduser(file_name)

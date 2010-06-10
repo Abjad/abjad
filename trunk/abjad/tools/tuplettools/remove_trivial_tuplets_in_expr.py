@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tuplet import _Tuplet
 
 
-def slip_trivial(expr):
+def remove_trivial_tuplets_in_expr(expr):
    r'''Iterate `expr`. Slip each trivial tuplet in expr out of score.
 
    Arguments:
@@ -24,7 +24,7 @@ def slip_trivial(expr):
       FixedDurationTuplet(1/4, [c'8, d'8, e'8])
       abjad> s[1]
       FixedDurationTuplet(1/4, [c'8, d'8])
-      abjad> tuplettools.slip_trivial(s)
+      abjad> tuplettools.remove_trivial_tuplets_in_expr(s)
       abjad> len(s)
       3
       abjad> s[0]
@@ -43,6 +43,10 @@ def slip_trivial(expr):
               c'8
               d'8
       }
+
+   .. versionchanged:: 1.1.2
+      renamed ``tuplettools.slip_trivial( )`` to
+      ``tuplettools.remove_trivial_tuplets_in_expr( )``.
    '''
    
    for tuplet in list(iterate.naive_forward_in(expr, _Tuplet)):

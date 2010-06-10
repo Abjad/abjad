@@ -1,7 +1,7 @@
 from abjad.tuplet import _Tuplet
 
 
-def scale_tuplet_contents_and_remove(tuplet):
+def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
    r'''Scale ``tuplet`` contents and then bequeath in-score \
    position of ``tuplet`` to contents.
 
@@ -23,7 +23,7 @@ def scale_tuplet_contents_and_remove(tuplet):
 
    ::
 
-      abjad> tuplettools.scale_tuplet_contents_and_remove(t[0])
+      abjad> tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(t[0])
       FixedDurationTuplet(3/8, [ ])
       abjad> print t.format
       \new Staff {
@@ -42,7 +42,7 @@ def scale_tuplet_contents_and_remove(tuplet):
 
    .. versionchanged:: 1.1.2
       renamed ``tuplettools.subsume( )`` to
-      ``tuplettools.scale_tuplet_contents_and_remove( )``.
+      ``tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet( )``.
    '''
 
    assert isinstance(tuplet, _Tuplet)

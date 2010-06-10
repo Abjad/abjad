@@ -3,14 +3,14 @@ from abjad.cfg._log_render_lilypond_input import _log_render_lilypond_input
 import os
 import shutil
 
-def write_pdf(expr, file_name, template = None, 
+def write_expr_to_pdf(expr, file_name, template = None, 
    title = None, footer = None, lily_time = 10):
    '''Render `expr` as LilyPond input.
 
    Call LilyPond and write the resulting PDF as `file_name`. ::
 
       abjad> t = Note(0, (1, 4))
-      abjad> write_pdf(t, 'one_note.pdf')
+      abjad> write_expr_to_pdf(t, 'one_note.pdf')
 
    .. versionadded:: 1.1.1
       Optional `footer` keyword.

@@ -2,6 +2,7 @@
 
 import os
 
+
 def _usage( ):
    result = [ ]
    result.append('')
@@ -17,10 +18,12 @@ def _usage( ):
    result = '\n'.join(['\t' + line for line in result])
    return result
 
+
 def _remove_dirs(skip_dirs, dirs):
    for dir in skip_dirs:
       if dir in dirs:
          dirs.remove(dir)
+
 
 def _remove_files(skip_files, files):
    for x in skip_files: 
@@ -29,34 +32,42 @@ def _remove_files(skip_files, files):
          if file.endswith(x):
             files.remove(file)
 
+
 def replace_in_files(dir, old, new, skip_dirs=['.svn'], confirm=True):
    skip_files = ['replace-in-files', '.pyc', '.rst']
-
    print 'Replacing "%s" with "%s" globally ...' % (old, new)
    for root, dirs, files in os.walk(dir):
       _remove_dirs(skip_dirs, dirs)
       _remove_files(skip_files, files)
       ## replace old with new
       for file in files:
-         file = os.path.join(root, file)
-         pf = open(file, 'r')
-         #print "Working on file: %s" % file
-         new_text = [ ]
-         old_text = pf.readlines( )
-         for line in old_text:
-            if old in line:
-               if confirm:
-                  print line,
-                  replace = raw_input('Replace [y/n]? ')
-                  if replace.lower( ) == 'y':
-                     line = line.replace(old, new)
-               else:
-                  line = line.replace(old, new)
-            new_text.append(line)
+         _replace_in_file(root, file, old, new)
 
-         pf.close( )
-         new_file = open(file, 'w')
-         new_file.writelines(new_text)
+
+def _replace_in_file(root, file, old, new):
+   file_is_changed = False
+   file = os.path.join(root, file)
+   pf = open(file, 'r')
+   #print "Working on file: %s" % file
+   new_text = [ ]
+   old_text = pf.readlines( )
+   for line in old_text:
+      if old in line:
+         if confirm:
+            print line,
+            replace = raw_input('Replace [y/n]? ')
+            if replace.lower( ) == 'y':
+               line = line.replace(old, new)
+               file_is_changed = True
+         else:
+            line = line.replace(old, new)
+            file_is_changed = True
+      new_text.append(line)
+   pf.close( )
+   if file_is_changed:
+      print 'Writing new file ...'
+      new_file = open(file, 'w')
+      new_file.writelines(new_text)
 
 
 if __name__ == '__main__':

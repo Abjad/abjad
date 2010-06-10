@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplettools_slip_trivial_01( ):
+def test_tuplettools_remove_trivial_tuplets_in_expr_01( ):
    t = Staff(FixedDurationTuplet((2, 8), construct.run(2)) * 2)
    pitchtools.diatonicize(t)
    assert len(t) == 2
@@ -15,7 +15,7 @@ def test_tuplettools_slip_trivial_01( ):
    }
    '''
 
-   tuplettools.slip_trivial(t)
+   tuplettools.remove_trivial_tuplets_in_expr(t)
 
    r'''
    \new Staff {

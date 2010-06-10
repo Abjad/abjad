@@ -416,9 +416,9 @@ io
    tools/io/play
    tools/io/redo
    tools/io/show
-   tools/io/write_and_show
-   tools/io/write_ly
-   tools/io/write_pdf
+   tools/io/write_expr_to_ly
+   tools/io/write_expr_to_ly_and_to_pdf_and_show
+   tools/io/write_expr_to_pdf
 
 
 iterate
@@ -1081,5 +1081,5 @@ tuplettools
    tools/tuplettools/contents_fix
    tools/tuplettools/contents_scale
    tools/tuplettools/diminution_to_augmentation
-   tools/tuplettools/scale_tuplet_contents_and_remove
-   tools/tuplettools/slip_trivial
+   tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
+   tools/tuplettools/remove_trivial_tuplets_in_expr
