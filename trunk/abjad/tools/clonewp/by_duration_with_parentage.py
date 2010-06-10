@@ -11,8 +11,10 @@ from abjad.tools.clonewp.by_leaf_range_with_parentage import \
    by_leaf_range_with_parentage
 
 
-def by_duration_with_parentage(expr, start = 0, stop = None):
-   r'''Clone `expr` from `start` to `stop` with parentage. ::
+def by_duration_with_parentage(component, start = 0, stop = None):
+   r'''Clone `component` together with children of `component` and with
+   sequential parentage of `component` from prolated duration `start`
+   to prolated duration `stop`::
 
       abjad> voice = Voice(construct.run(2))
       abjad> voice.append(FixedDurationTuplet((2, 8), construct.run(3)))
@@ -92,21 +94,33 @@ def by_duration_with_parentage(expr, start = 0, stop = None):
                 c'8
         }
       }
+
+   .. note:: function does NOT clone parentage of `component`
+      when `component` is a leaf.
+
+   ::
+
+      abjad> voice = Voice([Note(0, (1, 4))])
+      abjad> new_leaf = clonewp.by_duration_with_parentage(voice[0], 0, (1, 8))
+      abjad> f(new_leaf)
+      c'8
+      abjad> new_leaf.parentage.parent is None 
+      True
    '''
 
-   assert isinstance(expr, _Component)
+   assert isinstance(component, _Component)
    start = Rational(*durtools.token_unpack(start))
    if start < 0:
       start = Rational(0)
    if stop is None:
-      stop = expr.duration.prolated
+      stop = component.duration.prolated
    else:
       stop = Rational(*durtools.token_unpack(stop))
    assert start <= stop
-   if isinstance(expr, _Leaf):
-      return _scopy_leaf(expr, start, stop)
-   elif isinstance(expr, Container):
-      return _scopy_container(expr, start, stop)
+   if isinstance(component, _Leaf):
+      return _scopy_leaf(component, start, stop)
+   elif isinstance(component, Container):
+      return _scopy_container(component, start, stop)
    else:
       raise ValueError('must be leaf or container.')
 

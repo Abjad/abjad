@@ -26,6 +26,31 @@ def flip(component):
    Return none.
 
    .. todo:: add ``n = 1`` keyword to generalize flipped distance.
+
+   .. todo:: make ``componenttools.flip( )`` work when spanners
+      attach to children of component:
+
+   ::
+
+      abjad> voice = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+      abjad> Beam(voice.leaves[:4])
+      abjad> pitchtools.diatonicize(voice)
+      abjad> componenttools.flip(voice[0])
+      abjad> f(voice)
+      \new Voice {
+         \times 2/3 {
+            f'8 ]
+            g'8
+            a'8
+         }
+         \times 2/3 {
+            c'8 [
+            d'8
+            e'8
+         }
+      }
+      abjad> check.wf(voice) 
+      False   
    '''
 
    # swap positions in parent

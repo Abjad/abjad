@@ -9,7 +9,7 @@ from abjad.tuplet import FixedMultiplierTuplet
 
 
 def tuplets_by_reference(tuplets):
-   r'''Fuse `tuplets`::
+   r'''Fuse parent-contiguous `tuplets`::
 
       abjad> t1 = FixedDurationTuplet((2, 8), construct.scale(3))
       abjad> Beam(t1[:])

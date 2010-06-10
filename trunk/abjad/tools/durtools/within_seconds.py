@@ -1,3 +1,6 @@
+from abjad.rational import Rational
+
+
 def within_seconds(timepoint, component):
    '''True when `timepoint` is within the duration 
    of `component` in seconds. ::
@@ -16,6 +19,11 @@ def within_seconds(timepoint, component):
       abjad> durtools.within_seconds(0.5, t)
       False
    '''
+
+   try:
+      timepoint = Rational(timepoint)
+   except TypeError:
+      pass
 
    return component.offset.seconds.start <= timepoint < \
       component.offset.seconds.stop

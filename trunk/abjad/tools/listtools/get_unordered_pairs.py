@@ -34,6 +34,9 @@ def get_unordered_pairs(l):
 
    .. note:: pairs are tuples instead of sets to accommodate 
       duplicate value input in `l`.
+
+   .. todo:: make ``listtools.get_unordered_pairs( )`` return
+      a list of two-element multisets.
    '''
 
    result = [ ]

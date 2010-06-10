@@ -6,8 +6,10 @@ from abjad.tools import iterate
 from abjad.tools.clone.fracture import fracture
 
 
-def by_leaf_range_with_parentage(expr, start = 0, stop = None):
-   r'''Clone `expr` with parentage from `start` leaf to `stop` leaf. ::
+def by_leaf_range_with_parentage(component, start = 0, stop = None):
+   r'''Clone `component` together with children of `component` 
+   and with sequential parentage of `component` 
+   from `start` leaf to `stop` leaf::
 
       abjad> t = Staff([Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)])
       abjad> pitchtools.diatonicize(t)
@@ -44,39 +46,40 @@ def by_leaf_range_with_parentage(expr, start = 0, stop = None):
          }
       }
 
-   Clone all layers in leaves' parentage.
+   Clone sequential containers in leaves' parentage up to 
+   the first parallel container in leaves' parentage.
 
-   Trim and shrink parent containers as necessary.
+   Trim and shrink cloned containers as necessary.
 
-   When `stop` is none copy all leaves from `start`.
+   When `stop` is none copy all leaves from `start` forward.
    '''
 
    # trivial leaf lcopy
-   if isinstance(expr, _Leaf):
-      return fracture([expr])[0]
+   if isinstance(component, _Leaf):
+      return fracture([component])[0]
 
    # copy leaves from sequential containers only.
-   if expr.parallel:
+   if component.parallel:
       raise ContiguityError('can not lcopy leaves from parallel container.')
 
    # assert valid start and stop
-   leaves = expr.leaves
+   leaves = component.leaves
    assert start <= len(leaves)
    if stop is None:
       stop = len(leaves)
    assert start < stop
 
-   # new: find start and stop leaves in expr
-   start_leaf_in_expr = leaves[start]
-   stop_leaf_in_expr = leaves[stop - 1]
+   # new: find start and stop leaves in component
+   start_leaf_in_component = leaves[start]
+   stop_leaf_in_component = leaves[stop - 1]
 
    # find governor
    governor = leaves[start].parentage.governor
 
    # new: find start and stop leaves in governor
    governor_leaves = list(governor.leaves)
-   start_index_in_governor = governor_leaves.index(start_leaf_in_expr)
-   stop_index_in_governor = governor_leaves.index(stop_leaf_in_expr)
+   start_index_in_governor = governor_leaves.index(start_leaf_in_component)
+   stop_index_in_governor = governor_leaves.index(stop_leaf_in_component)
 
    # copy governor
    governor_copy = fracture([governor])[0]
