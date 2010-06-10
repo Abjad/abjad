@@ -8,3 +8,8 @@
     {{ super() }}
 {% endblock %}
 
+{# the sidebarrel block houses next and prev references in sidebar #}
+{# 'sidebarrel' stands for 'sidebar (site)-relative (navigation links)' #}
+{# the templating definition below defines an empty sidebarrel block #}
+{# the effect of this definition is to remove next and prev sidebar links #}
+{% block sidebarrel %}{% endblock %}
