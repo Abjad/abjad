@@ -6,7 +6,7 @@ from abjad.rest import Rest
 from abjad.tools import clone
 from abjad.tools import construct
 from abjad.tools import pitchtools
-from cast_defective import cast_defective
+from abjad.tools.chordtools.cast_defective import cast_defective
 
 
 def _split(chord, pitch = Pitch('b', 3), attr = 'number'):

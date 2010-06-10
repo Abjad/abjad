@@ -1,8 +1,9 @@
-from MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.chord import Chord
 from abjad.note import Note
 from abjad.pitch import Pitch
 from abjad.tools import clone
+from abjad.tools.pitchtools.MelodicChromaticInterval import \
+   MelodicChromaticInterval
 
 
 def transpose_by_melodic_chromatic_interval(

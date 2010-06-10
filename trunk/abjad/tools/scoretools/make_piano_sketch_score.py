@@ -1,8 +1,8 @@
 from abjad.markup import Markup
+from abjad.staff import Staff
 from abjad.tools import iterate
 from abjad.tools import lilytools
-from abjad.staff import Staff
-from make_piano_score import make_piano_score
+from abjad.tools.scoretools.make_piano_score import make_piano_score
 
 
 def make_piano_sketch_score(leaves):

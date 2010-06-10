@@ -1,0 +1,46 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+import pprint
+
+
+def _find_local_import_statements( ):
+   total_local_import_statements = 0
+   for path, subdirectories, files in os.walk(ABJADPATH):
+      if '.svn' not in path and 'documentation' not in path:
+         for f in files:
+            if f.endswith('.py') and not f == '__init__.py':
+               full_file_name = os.path.join(path, f)
+               result = _find_local_import_statements_in_file(full_file_name)
+               total_local_import_statements += result
+   print 'Total local import statements: %s' % total_local_import_statements
+   print ''
+
+
+def _find_local_import_statements_in_file(full_file_name):
+   total_local_import_statements = 0
+   file_parts = full_file_name.split(os.path.sep) 
+   module = file_parts[-2]
+   function = file_parts[-1]
+   shorter_module_name = '%s%s%s' % (module, os.path.sep, function)
+   fp = file(full_file_name, 'r')
+   for line in fp.readlines( ):
+      if line.startswith('from'):
+         line_parts = line.split( )
+         module_name = line_parts[1]
+         if not module_name in ('abjad', '__future__'):
+            if '.' not in module_name:
+               if total_local_import_statements == 0:
+                  print shorter_module_name
+                  total_local_import_statements += 1
+               print line.strip( )
+   fp.close( )
+   if 0 < total_local_import_statements:
+      print ''
+   return total_local_import_statements
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   _find_local_import_statements( )

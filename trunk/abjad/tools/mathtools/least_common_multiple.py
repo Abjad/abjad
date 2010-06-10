@@ -1,4 +1,4 @@
-from factors import factors
+from abjad.tools.mathtools.factors import factors
 
 
 def least_common_multiple(*positive_integers):

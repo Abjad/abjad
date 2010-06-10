@@ -1,5 +1,5 @@
 from abjad.component import _Component
-from depth_first import depth_first
+from abjad.tools.iterate.depth_first import depth_first
 
 
 def thread_forward_from(component, klass = None):

@@ -1,5 +1,5 @@
 from abjad.core.abjadcore import _Abjad
-from re import findall
+import re
 
 
 class _Check(_Abjad):
@@ -12,7 +12,7 @@ class _Check(_Abjad):
    @property
    def _message(self):
       name = self.__class__.__name__
-      parts = findall("[A-Z][a-z]*", name)
+      parts = re.findall("[A-Z][a-z]*", name)
       return ' '.join([p.lower( ) for p in parts])
 
    ## PUBLIC ATTRIBUTES ##

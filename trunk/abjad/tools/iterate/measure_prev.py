@@ -1,4 +1,4 @@
-from _measure_get import _measure_get
+from abjad.tools.iterate._measure_get import _measure_get
 
 
 def measure_prev(component):

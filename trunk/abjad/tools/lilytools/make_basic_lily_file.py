@@ -1,7 +1,7 @@
-from HeaderBlock import HeaderBlock
-from LayoutBlock import LayoutBlock
-from LilyFile import LilyFile
-from PaperBlock import PaperBlock
+from abjad.tools.lilytools.HeaderBlock import HeaderBlock
+from abjad.tools.lilytools.LayoutBlock import LayoutBlock
+from abjad.tools.lilytools.LilyFile import LilyFile
+from abjad.tools.lilytools.PaperBlock import PaperBlock
 
 
 def make_basic_lily_file(music = None):

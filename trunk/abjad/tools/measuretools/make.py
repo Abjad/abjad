@@ -1,7 +1,7 @@
 from abjad.measure import RigidMeasure
 from abjad.skip import Skip
 from abjad.tools import metertools
-from populate import populate
+from abjad.tools.measuretools.populate import populate
 
 
 def make(meters):
