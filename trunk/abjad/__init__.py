@@ -26,7 +26,13 @@ _import_functions_in_package_to_namespace(
    _exceptions_path, __builtins__, _skip)
 
 ## import tools and io
-from abjad.tools.io import *
+from abjad.tools.io import f
+from abjad.tools.io import log
+from abjad.tools.io import ly
+from abjad.tools.io import pdf
+from abjad.tools.io import play
+from abjad.tools.io import redo
+from abjad.tools.io import show
 from abjad.tools import *
 
 import sys
