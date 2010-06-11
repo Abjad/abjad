@@ -52,7 +52,8 @@ def greatest_power_of_two_less_equal(n, i = 0):
    Raise :exc:`ValueError` on nonpositive *n*::
 
       abjad> mathtools.greatest_power_of_two_less_equal(-1)
-      ValueError'''
+      ValueError
+   '''
 
    if not isinstance(n, (int, long, float, Rational)):
       raise TypeError

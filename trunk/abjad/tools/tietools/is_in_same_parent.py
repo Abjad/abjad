@@ -25,7 +25,8 @@ def is_in_same_parent(expr):
          abjad> assert tietools.is_in_same_parent(t.leaves[0].tie.chain)
          abjad> assert not tietools.is_in_same_parent(t.leaves[1].tie.chain)
          abjad> assert not tietools.is_in_same_parent(t.leaves[2].tie.chain)
-         abjad> assert tietools.is_in_same_parent(t.leaves[3].tie.chain)'''
+         abjad> assert tietools.is_in_same_parent(t.leaves[3].tie.chain)
+   '''
 
    return is_chain(expr) and \
       check.assess_components(list(expr), share = 'parent')

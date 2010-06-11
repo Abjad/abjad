@@ -31,7 +31,8 @@ def ly(target = -1):
             c'4
          }      
 
-      Exit ``vi`` in the usual way with ``:q`` or equivalent.'''
+      Exit ``vi`` in the usual way with ``:q`` or equivalent.
+   '''
 
    ABJADOUTPUT = _read_config_file( )['abjad_output']
    if isinstance(target, int) and target < 0:

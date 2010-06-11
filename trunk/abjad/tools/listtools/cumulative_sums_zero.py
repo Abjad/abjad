@@ -17,7 +17,8 @@ def cumulative_sums_zero(l):
    Raise :exc:`ValueError` when *l* is empty::
 
       abjad> listtools.cumulative_sums_zero([ ])
-      ValueError'''
+      ValueError
+   '''
 
    result = [0]
    for element in l:

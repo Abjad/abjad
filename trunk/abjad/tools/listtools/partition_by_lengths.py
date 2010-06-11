@@ -67,7 +67,8 @@ def partition_by_lengths(l, lengths, cyclic = False, overhang = False):
       abjad> l = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
       abjad> listtools.partition_by_lengths(
          l, [4, 3], cyclic = True, overhang = True)
-      [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]'''
+      [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]
+   '''
 
    assert all([isinstance(x, (int, long)) for x in lengths])
    ## TODO: Document boundary case change with examples and tests. ##

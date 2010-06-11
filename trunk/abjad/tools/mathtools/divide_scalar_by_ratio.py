@@ -22,7 +22,8 @@ def divide_scalar_by_ratio(scalar, ratio):
       TypeError
 
    .. todo:: Do we want ``mathtools.divide_scalar_by_ratio(1, [1, 1, 3])`` to \
-      return rational values instead of floats?'''
+      return rational values instead of floats?
+   '''
 
    if not isinstance(scalar, (int, float, long, Rational)):
       raise TypeError

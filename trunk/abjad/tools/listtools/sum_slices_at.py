@@ -25,7 +25,8 @@ def sum_slices_at(l, pairs, period = None, overhang = True):
          abjad> listtools.sum_slices_at(l, [(0, 4)], period = 4)
          [6, 22, 27]
 
-      When ``period`` is not ``None``, indices in ``pairs`` must be less than ``period``.'''
+      When ``period`` is not ``None``, indices in ``pairs`` must be less than ``period``.
+   '''
 
    assert isinstance(l, list)
    assert all([isinstance(x, (int, float, Rational)) for x in l])

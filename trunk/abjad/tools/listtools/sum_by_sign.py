@@ -80,7 +80,8 @@ def sum_by_sign(l, sign = [-1, 0, 1]):
       abjad> generator
       <generator object at 0x118bf30>
       abjad> list(generator)
-      [0, -2, 5, -5, 8, -11]'''
+      [0, -2, 5, -5, 8, -11]
+   '''
 
    generator = itertools.groupby(l, mathtools.sign)
    for cur_sign, group in generator:

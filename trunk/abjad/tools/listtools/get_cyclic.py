@@ -40,7 +40,8 @@ def get_cyclic(l, start_index, stop_index):
 
    Note that the output of this function is a generator.
 
-   .. todo:: Optimize the slow implementation given here.'''
+   .. todo:: Optimize the slow implementation given here.
+   '''
 
    len_l = len(l)
    cur_index = start_index

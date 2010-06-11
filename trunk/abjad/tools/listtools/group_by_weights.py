@@ -105,7 +105,8 @@ def group_by_weights(l, weights,
    ::
 
       abjad> listtools.group_by_weights(l, [3, 9], fill = 'greater', cyclic = True, overhang = True)
-      [[3], [3, 3, 3], [4], [4, 4, 4], [5], [5]]'''
+      [[3], [3, 3, 3], [4], [4, 4, 4], [5], [5]]
+   '''
 
    assert isinstance(l, list)
    assert all([isinstance(x, (int, long, float, Rational)) for x in l])

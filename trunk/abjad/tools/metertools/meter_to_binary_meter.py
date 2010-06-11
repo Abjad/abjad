@@ -4,13 +4,17 @@ from abjad.tools import durtools
 from abjad.tools import mathtools
 
 
-def make_binary(nonbinary_meter, contents_multiplier = Rational(1)):
+def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Rational(1)):
    '''Change nonbinary `meter` to binary::
 
-      abjad> metertools.make_binary(Meter(3, 12))
+      abjad> metertools.meter_to_binary_meter(Meter(3, 12))
       Meter(2, 8)
 
    Return `meter`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``metertools.make_binary( )`` to
+      ``metertools.meter_to_binary_meter( )``.
    '''
    
    # check input

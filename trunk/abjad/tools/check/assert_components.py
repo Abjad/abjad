@@ -2,6 +2,7 @@ from abjad.component import _Component
 from abjad.exceptions import ContiguityError
 from abjad.tools.check.assess_components import assess_components
 
+
 def assert_components(expr, klasses = (_Component, ),
    contiguity = None, share = None, allow_orphans = True):
    r'''Assert `expr` meets the criteria specified by the keyword parameters.

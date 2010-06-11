@@ -6,7 +6,8 @@ def withdraw_from_covered(components):
    '''Find every spanner covered by 'components'.
       Withdraw all components in 'components' from covered spanners.
       Return 'components'.
-      The operation always leaves all score trees in tact.'''
+      The operation always leaves all score trees in tact.
+   '''
 
    ## check components
    check.assert_components(components, contiguity = 'thread')

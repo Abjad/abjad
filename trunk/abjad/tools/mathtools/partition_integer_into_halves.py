@@ -50,7 +50,8 @@ def partition_integer_into_halves(n, bigger = 'left', even = 'allowed'):
    Raise :exc:`ValueError` on negative *n*::
 
       abjad> mathtools.partition_integer_into_halves(-1)
-      ValueError''' 
+      ValueError
+   ''' 
 
    if not isinstance(n, (int, long)):
       raise TypeError

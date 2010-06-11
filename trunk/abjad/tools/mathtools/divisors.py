@@ -31,7 +31,8 @@ def divisors(n):
    Raise :exc:`ValueError` on nonpositive integer `n`::
 
       abjad> mathtools.divisors(-1)
-      ValueError'''
+      ValueError
+   '''
 
    if not isinstance(n, (int, long)):
       raise TypeError

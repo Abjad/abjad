@@ -32,7 +32,8 @@ def partition_integer_into_thirds(n, smallest = 'middle', biggest = 'middle'):
    Raise :exc:`ValueError` on nonpositive *n*::
 
       abjad> mathtools.partition_integer_into_thirds(-1)
-      ValueError'''
+      ValueError
+   '''
 
    if not isinstance(n, int):
       raise TypeError

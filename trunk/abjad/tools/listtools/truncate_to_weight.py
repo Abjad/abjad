@@ -51,7 +51,8 @@ def truncate_to_weight(l, total):
    Raise :exc:`ValueError` on negative *total*::
 
       abjad> listtools.truncate_to_weight([2, 2, 2], -4)
-      ValueError'''
+      ValueError
+   '''
 
    if not isinstance(l, list):
       raise TypeError

@@ -10,7 +10,8 @@ from abjad.tuplet import FixedMultiplierTuplet
 def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
    '''Scale fixed-duration tuplet by multiplier.
       Preserve tuplet multiplier.
-      Return tuplet.'''
+      Return tuplet.
+   '''
 
    # check input
    if isinstance(tuplet, FixedMultiplierTuplet):

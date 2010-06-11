@@ -4,7 +4,8 @@ from abjad.tools.tietools.is_chain import is_chain
 
 def truncate(tie_chain):
    '''Detach all leaves of tie chain after the first.
-      Unspan and return length-1 tie chain.'''
+      Unspan and return length-1 tie chain.
+   '''
    
    assert is_chain(tie_chain)
 

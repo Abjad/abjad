@@ -25,7 +25,7 @@ def project(expr):
          contents_multiplier = componenttools.get_likely_multiplier(measure[:])
 
          # update nonbinary meter to binary
-         metertools.make_binary(measure.meter.effective, contents_multiplier)
+         metertools.meter_to_binary_meter(measure.meter.effective, contents_multiplier)
 
          # find target duration and create tuplet
          target_duration = meter_multiplier * measure.duration.contents

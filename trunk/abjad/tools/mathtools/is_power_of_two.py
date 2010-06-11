@@ -29,7 +29,8 @@ def is_power_of_two(expr):
    ::
 
       abjad> mathtools.is_power_of_two('foo')
-      False'''
+      False
+   '''
 
       
 

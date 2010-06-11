@@ -16,7 +16,8 @@ def truncate_subruns(l):
    Raise :exc:`TypeError` when *l* is not a list::
 
       abjad> listtools.truncate_subruns(1)
-      TypeError'''
+      TypeError
+   '''
 
    if not isinstance(l, list):
       raise TypeError

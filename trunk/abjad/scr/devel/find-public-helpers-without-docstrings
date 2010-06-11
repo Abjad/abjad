@@ -1,0 +1,65 @@
+#! /usr/bin/env python
+
+from abjad.cfg.cfg import ABJADPATH
+import os
+
+
+def _find_public_helpers_without_docstrings( ):
+   tools_path = os.path.join(ABJADPATH, 'tools')
+   total_undocumented_helpers = 0
+   total_without_close_quote = 0
+   for path, subdirectories, files in os.walk(tools_path):
+      for f in files:
+         if f.endswith('.py') and not f.startswith('test'):
+            if not f.startswith('_'):
+               p, q = _find_undocumented_helpers_in_file(path, f)
+               total_undocumented_helpers += p
+               total_without_close_quote += q
+   print ''
+   print 'Total undocumented helpers: %s' % total_undocumented_helpers
+   print 'Total without close quoute: %s' % total_without_close_quote
+   print ''
+
+
+def _find_undocumented_helpers_in_file(path, f): 
+   full_file_name = os.path.join(path, f)
+   module = path.split(os.path.sep)[-1]
+   function = f[:-3]
+   full_function = '%s.%s' % (module, function)
+   fp = file(full_file_name, 'r')
+   next_line_should_be_docstring = False
+   after_close_parenthesis_should_be_docstring = False
+   waiting_for_close_quote = False
+   total_undocumented = 0
+   total_without_close_quote = 0
+   for line in fp.readlines( ):
+      if next_line_should_be_docstring:
+         if line.startswith(("   r'''", "   '''", '   r"""', '   """')):
+            pass
+         else:
+            print 'No docstring: %s' % full_function
+            total_undocumented += 1
+         next_line_should_be_docstring = False
+         after_close_parenthesis_should_be_docstring = False
+      elif after_close_parenthesis_should_be_docstring:
+         if ')' in line:
+            next_line_should_be_docstring = True
+            waiting_for_close_quote = True
+      elif line.startswith('def ') and not line[4] == '_':
+         if line.count('(') == line.count(')'):
+            next_line_should_be_docstring = True
+            waiting_for_close_quote = True
+         else:
+            after_close_parenthesis_should_be_docstring = True
+      elif waiting_for_close_quote:
+         if "'''" in line or '"""' in line:
+            if not line in ("   '''\n", '   """\n'):
+               print 'No isolated close quote: %s' % full_function
+               total_without_close_quote += 1
+            waiting_for_close_quote = False
+   return total_undocumented, total_without_close_quote
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   _find_public_helpers_without_docstrings( )

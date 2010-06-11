@@ -12,7 +12,8 @@ def remove_weighted_subrun_at(l, weight, i):
 
       abjad> l = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
       abjad> listtools.remove_weighted_subrun_at(l, 13, 4)
-      [1, 1, 2, 3, 5, 5, 6]'''
+      [1, 1, 2, 3, 5, 5, 6]
+   '''
 
    result = l[:i]
    total = 0

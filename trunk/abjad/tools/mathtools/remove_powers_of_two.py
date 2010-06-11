@@ -24,7 +24,8 @@ def remove_powers_of_two(n):
    Raise :exc:`ValueError` on nonpositive *n*::
 
       abjad> mathtools.remove_powers_of_two(-1)
-      ValueError'''
+      ValueError
+   '''
 
    if not isinstance(n, (int, long)):
       raise TypeError

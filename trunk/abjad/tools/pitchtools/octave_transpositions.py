@@ -11,7 +11,6 @@ from abjad.tools.pitchtools.transpose_by_melodic_chromatic_interval import \
 
 ## TODO: Reimplement pitchtools.octave_transposition( ) with diatonic transposition. ##
 
-#def octave_transpositions(pitches, r):
 def octave_transpositions(pitches, pitch_range):
    r"""List octave transpositions of `pitches` in `pitch_range`.
 

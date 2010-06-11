@@ -34,7 +34,8 @@ def repeat_list_to_weight(l, total_weight, remainder = 'chop'):
 
       abjad> l = [-5, -5, 5]
       abjad> listtools.repeat_list_to_weight(l, 23)
-      [-5, -5, 5, -5, -3]'''
+      [-5, -5, 5, -5, -3]
+   '''
 
    assert isinstance(total_weight, (int, float, long, Rational))
    assert 0 <= total_weight

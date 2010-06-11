@@ -23,7 +23,8 @@ def increase_cyclic(l, s, shield = True, trim = True):
    Raise :exc:`TypeError` when *l* is neither list nor tuple::
 
       abjad> listtools.increase_cyclic('foo', [10, -10])
-      TypeError'''
+      TypeError
+   '''
 
    if not isinstance(l, (list, tuple)):
       raise TypeError

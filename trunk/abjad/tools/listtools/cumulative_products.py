@@ -19,7 +19,8 @@ def cumulative_products(l):
    Raise :exc:`ValueError` when *l* is empty::
 
       abjad> listtools.cumulative_products([ ])
-      ValueError'''
+      ValueError
+   '''
 
    if not isinstance(l, (list, tuple)):
       raise TypeError

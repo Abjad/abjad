@@ -33,7 +33,8 @@ def pdf(target = -1):
 
          By default, *Abjad* writes *LilyPond* input files
          to the ``~/.abjad/output`` directory. You may change this by
-         setting the ``abjad_output`` variable in the ``config.py`` file.'''
+         setting the ``abjad_output`` variable in the ``config.py`` file.
+   '''
    
    ABJADOUTPUT = _read_config_file( )['abjad_output']
    if isinstance(target, int) and target < 0:

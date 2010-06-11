@@ -8,7 +8,8 @@ def get_tie_chains(components):
    not encompass all the leaves spanned by its corresponding Tie spanner, 
    but only those found in the given list. i.e. the function returns the 
    intersection between all the leav es spanned by all tie spanners touching 
-   the components given and the leaves found in the given components list.'''
+   the components given and the leaves found in the given components list.
+   '''
 
    check.assert_components(components)
 

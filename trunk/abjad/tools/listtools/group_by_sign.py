@@ -80,7 +80,8 @@ def group_by_sign(l, sign = [-1, 0, 1]):
       abjad> generator
       <generator object at 0x118bf30>
       abjad> list(generator)
-      [[0, 0], [-1, -1], [2, 3], [-5], [1, 2, 5], [-5, -6]]'''
+      [[0, 0], [-1, -1], [2, 3], [-5], [1, 2, 5], [-5, -6]]
+   '''
 
    g = itertools.groupby(l, mathtools.sign)
    for cur_sign, group in g:

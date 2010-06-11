@@ -7,7 +7,7 @@ from abjad.tuplet.fd.tuplet import FixedDurationTuplet
 from abjad.tuplet.fm.tuplet import FixedMultiplierTuplet
 
 
-def pitch_and_rhythm_skeleton(component):
+def component_to_pitch_and_rhythm_skeleton(component):
    r'''.. versionadded:: 1.1.2
 
    Make pitch and rhythm skeleton of any Abjad `component`.
@@ -22,7 +22,7 @@ def pitch_and_rhythm_skeleton(component):
 
    ::
 
-      abjad> skeleton = persistencetools.pitch_and_rhythm_skeleton(score)
+      abjad> skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(score)
       abjad> print skeleton
       Score([
          Staff([
@@ -80,6 +80,10 @@ def pitch_and_rhythm_skeleton(component):
             }
          }
       >>
+
+   .. versionchanged:: 1.1.2
+      renamed ``persistencetools.pitch_and_rhythm_skeleton( )`` to
+      ``persistencetools.component_to_pitch_and_rhythm_skeleton( )``.
    '''
    
    if not isinstance(component, _Component):
@@ -106,7 +110,7 @@ def _container_skeleton(container):
    class_name = container.__class__.__name__
    contents = [ ]
    for x in container:
-      skeleton = pitch_and_rhythm_skeleton(x)
+      skeleton = component_to_pitch_and_rhythm_skeleton(x)
       skeleton = skeleton.split('\n')
       skeleton = ['\t' + line for line in skeleton]
       skeleton = '\n'.join(skeleton)

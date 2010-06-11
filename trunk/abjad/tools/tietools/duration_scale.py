@@ -9,7 +9,8 @@ from abjad.tools.tietools.get_duration_written import get_duration_written
 def duration_scale(tie_chain, multiplier):
    '''Scale tie chain by multiplier.
       Wraps tie_chain_duration_change.
-      Returns tie chain.'''
+      Returns tie chain.
+   '''
 
    ## TODO: Find out why get_tie_chain_duration_preprolated( )
    ##       fails split!

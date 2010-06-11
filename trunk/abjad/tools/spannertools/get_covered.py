@@ -7,7 +7,8 @@ def get_covered(components):
       within the time bounds of thread-contiguous components.
 
       Compare 'covered' spanners with 'contained' spanners.
-      Compare 'covered' spanners with 'dominant' spanners.'''
+      Compare 'covered' spanners with 'dominant' spanners.
+   '''
 
    check.assert_components(components, contiguity = 'thread') 
 

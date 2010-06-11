@@ -29,7 +29,8 @@ def get_with_indices(components):
       abjad> leaves
       [Note(g', 8), Note(a', 8)]
       abjad> parenttools.get_with_indices(leaves)
-      (Staff{6}, 4, 5)'''
+      (Staff{6}, 4, 5)
+   '''
 
    check.assert_components(components, contiguity = 'strict', share = 'thread')
 

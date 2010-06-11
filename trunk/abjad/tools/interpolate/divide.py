@@ -25,7 +25,8 @@ def divide(total, start_frac, stop_frac, exp='cosine'):
          [4.7986734489043181, 2.8792040693425909, 1.3263207210948171, 
          0.99580176065827419]
          abjad> sum(_)
-         10.0 '''
+         10.0 
+   '''
 
    if total <=0 :
       raise ValueError("'total' must be > 0.")

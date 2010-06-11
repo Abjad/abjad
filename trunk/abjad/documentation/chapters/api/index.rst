@@ -730,10 +730,10 @@ metertools
 
    tools/metertools/extract_meter_list
    tools/metertools/get_nonbinary_factor
-   tools/metertools/is_binary_equivalent
    tools/metertools/is_meter_token
+   tools/metertools/is_meter_with_equivalent_binary_representation
    tools/metertools/make_best
-   tools/metertools/make_binary
+   tools/metertools/meter_to_binary_meter
 
 
 overridetools
@@ -774,9 +774,9 @@ persistencetools
 .. toctree::
    :maxdepth: 1
 
+   tools/persistencetools/component_to_pitch_and_rhythm_skeleton
    tools/persistencetools/pickle_dump
    tools/persistencetools/pickle_load
-   tools/persistencetools/pitch_and_rhythm_skeleton
 
 
 pitchtools

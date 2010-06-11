@@ -34,7 +34,8 @@ def insert_slice_cyclic(l, s, overhang = (0, 0)):
    ::
 
       abjad> listtools.insert_slice_cyclic(l, s, overhang = (1, 1))
-      ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']'''
+      ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
+   '''
 
    result = [ ]
 

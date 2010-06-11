@@ -10,7 +10,8 @@ def bequeath(donors, recipients):
       Almost exactly the same as container setitem logic.
       This helper works with orphan donors.
       Container setitem logic can not work with orphan donors.
-      Return donors.'''
+      Return donors.
+   '''
 
    check.assert_components(donors, contiguity = 'strict', share = 'parent')
    check.assert_components(recipients, contiguity = 'strict', share = 'parent')

@@ -3,10 +3,11 @@ from abjad.rational import Rational
 from abjad.tools import mathtools
 
 
-def is_binary_equivalent(meter):
+def is_meter_with_equivalent_binary_representation(meter):
    '''True when meter is binary or when meter is nonbinary
       but mathematically equivalent to some binary meter,
-      otherwise False.'''
+      otherwise False.
+   '''
    
    # check input
    assert isinstance(meter, Meter)

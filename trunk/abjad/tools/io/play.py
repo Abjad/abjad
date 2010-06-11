@@ -23,7 +23,8 @@ def play(expr):
       *  *Abjad* outputs MIDI files of the format \
          ``filename.mid`` under Windows.
       *  *Abjad* outputs MIDI files of the format \
-         ``filename.midi`` under other operating systems.'''
+         ``filename.midi`` under other operating systems.
+   '''
 
    ABJADOUTPUT = _read_config_file( )['abjad_output']
    _verify_output_directory(ABJADOUTPUT)

@@ -49,7 +49,8 @@ def fracture_crossing(components):
             g'8 [
             a'8 ] \! \stopTrillSpan
          }
-      }'''
+      }
+   '''
 
    check.assert_components(components, contiguity = 'thread')
 

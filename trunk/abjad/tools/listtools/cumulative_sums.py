@@ -21,7 +21,8 @@ def cumulative_sums(l):
    Raise :exc:`ValueError` when *l* is empty::
 
       abjad> listtools.cumulative_sums([ ])
-      ValueError'''
+      ValueError
+   '''
 
 
    if not isinstance(l, (list, tuple)):

@@ -28,7 +28,8 @@ def binary_string(n):
          16 10000
 
    .. note:: ``mathtools.binary_string(n)`` will deprecate when \
-      Abjad migrates to Python 2.6.'''
+      Abjad migrates to Python 2.6.
+   '''
 
    if not isinstance(n, (int, long)):
       raise TypeError

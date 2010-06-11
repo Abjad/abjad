@@ -9,7 +9,8 @@ def increase_at_indices(l, addenda, indices):
 
       abjad> l = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
       abjad> listtools.increase_at_indices(l, [0.5, 0.5], [0, 4, 8])
-      [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]'''
+      [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]
+   '''
 
    # assert no overlaps
    tmp = flatten([range(i, len(addenda)) for i in indices])

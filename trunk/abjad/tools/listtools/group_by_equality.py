@@ -13,7 +13,8 @@ def group_by_equality(lst):
    ::
    
       abjad> list(listtools.group_by_equality(l))
-      [(0, 0), (-1, -1), (2,), (3,), (-5,), (1, 1), (5,), (-5,)] '''
+      [(0, 0), (-1, -1), (2,), (3,), (-5,), (1, 1), (5,), (-5,)] 
+   '''
 
 
    g = itertools.groupby(lst, lambda x: x)

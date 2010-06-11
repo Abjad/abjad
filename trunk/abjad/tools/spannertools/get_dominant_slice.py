@@ -7,7 +7,8 @@ def get_dominant_slice(container, start, stop):
       Each spanner dominates the components specified by slice 
       with start index 'start' and stop index 'stop'.
       Generalization of dominant spanner-finding functions for slices.
-      This exists for slices like t[2:2] that are empty lists.'''
+      This exists for slices like t[2:2] that are empty lists.
+   '''
 
    from abjad.container import Container
    if not isinstance(container, Container):

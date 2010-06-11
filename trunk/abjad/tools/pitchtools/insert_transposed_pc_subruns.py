@@ -54,7 +54,8 @@ def insert_transposed_pc_subruns(notes, subrun_indicators):
       implements no spanner-handling. \
       Specifically, this function is designed to be used during \
       precomposition when other, similar abstract pitch transforms \
-      may be common.'''
+      may be common.
+   '''
 
    assert isinstance(notes, list)
    assert all([isinstance(x, Note) for x in notes])

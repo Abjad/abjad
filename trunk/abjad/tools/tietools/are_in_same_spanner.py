@@ -4,7 +4,8 @@ from abjad.tools import check
 
 def are_in_same_spanner(components):
    '''True if all components in list share same tie spanner,
-      otherwise False.'''
+      otherwise False.
+   '''
 
    check.assert_components(components)
    

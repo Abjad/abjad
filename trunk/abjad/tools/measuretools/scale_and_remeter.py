@@ -23,7 +23,8 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
                       c'8
                       d'8
                       e'8
-              }'''
+              }
+   '''
 
    from abjad.tools import containertools
 

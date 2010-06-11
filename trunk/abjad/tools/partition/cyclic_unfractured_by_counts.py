@@ -5,7 +5,8 @@ def cyclic_unfractured_by_counts(components, counts):
    '''Partition container into parts of lengths equal to counts.
       Read counts ally to determine split points.
       Leave all spanners untouched.
-      Return Python list of partitioned parts.'''
+      Return Python list of partitioned parts.
+   '''
 
    return _by_counts(
       components, counts, spanners = 'unfractured', cyclic = True)

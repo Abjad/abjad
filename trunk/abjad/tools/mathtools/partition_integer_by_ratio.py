@@ -51,7 +51,8 @@ def partition_integer_by_ratio(n, ratio):
    Raise :exc:`ValueError` on nonpositive *n*::
 
       abjad> mathtools.partition_integer_by_ratio(-1, [1, 1, 3])
-      ValueError'''
+      ValueError
+   '''
 
    from abjad.tools import listtools
 

@@ -11,7 +11,8 @@ def permutations(l):
 
    .. note:: This is a stop-gap for Python 2.5 because the 2.6 \
    implementation of ``itertools`` includes a built-in ``permutations`` \
-   function.'''
+   function.
+   '''
 
    ## base case
    if len(l) == 1:

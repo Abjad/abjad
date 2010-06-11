@@ -26,7 +26,8 @@ def fragment(n, cell):
       abjad> mathtools.fragment(1, [Rational(3, 4), Rational(3, 4)]) 
       ValueError
 
-   .. todo:: Generalize and rename this function.'''
+   .. todo:: Generalize and rename this function.
+   '''
 
    if not isinstance(n, (int, float, long, Rational)):
       raise TypeError
