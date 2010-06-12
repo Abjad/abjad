@@ -2,18 +2,22 @@ from abjad.rational import Rational
 from abjad.tools import check
 
 
-def get_le_duration_prolated(components, prolated_duration):
+def list_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
    '''Return tuple of ``components[:i]`` together with 
    the prolated duration of ``components[:i]``. ::
 
       abjad> voice = Voice(construct.scale(4))
-      abjad> componenttools.get_le_duration_prolated(voice[:], Rational(1, 4))
+      abjad> componenttools.list_leftmost_components_with_prolated_duration_at_most(voice[:], Rational(1, 4))
       ([Note(c', 8), Note(d', 8)], Rational(1, 4))
 
    Maximize ``i`` such that the prolated duration of 
    ``components[:i]`` is no greater than `prolated_duration`.
 
    Input `components` must be thread-contiguous.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.get_le_duration_prolated( )`` to
+      ``componenttools.list_leftmost_components_with_prolated_duration_at_most( )``.
    '''
 
    check.assert_components(components, contiguity = 'thread')

@@ -2,21 +2,21 @@ from abjad import *
 import py.test
 
 
-def test_componenttools_get_duration_preprolated_01( ):
+def test_componenttools_get_preprolated_duration_of_components_01( ):
    '''Return sum of preprolated duration of components in list.'''
    
    t = FixedDurationTuplet((2, 8), construct.scale(3))
 
-   assert componenttools.get_duration_preprolated(t[:]) == Rational(3, 8)
+   assert componenttools.get_preprolated_duration_of_components(t[:]) == Rational(3, 8)
 
 
-def test_componenttools_get_duration_preprolated_02( ):
+def test_componenttools_get_preprolated_duration_of_components_02( ):
    '''Return zero for empty list.'''
 
-   assert componenttools.get_duration_preprolated([ ]) == Rational(0)
+   assert componenttools.get_preprolated_duration_of_components([ ]) == Rational(0)
 
 
-def test_componenttools_get_duration_preprolated_03( ):
+def test_componenttools_get_preprolated_duration_of_components_03( ):
    '''Raise ContiguityError for components not in same parent.'''
 
    t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
@@ -38,4 +38,4 @@ def test_componenttools_get_duration_preprolated_03( ):
    '''
 
    assert py.test.raises(ContiguityError,
-      'componenttools.get_duration_preprolated(t.leaves)')
+      'componenttools.get_preprolated_duration_of_components(t.leaves)')

@@ -61,7 +61,7 @@ def containers_by_reference(expr):
          check.assess_components([cmp, next], contiguity = 'strict', 
             share = 'score', allow_orphans = False):
          cmp.extend(next)
-         componenttools.detach([next])
+         componenttools.remove_component_subtree_from_score_and_spanners([next])
          merged = True
    if merged:
       #print expr
@@ -83,6 +83,6 @@ def containers_by_reference(expr):
 #   result = expr[0]
 #   for cmp in expr[1:]:
 #      if isinstance(cmp, Container) and not cmp.parallel:
-#         componenttools.detach([cmp])
+#         componenttools.remove_component_subtree_from_score_and_spanners([cmp])
 #         result.extend(cmp)
 #   return result

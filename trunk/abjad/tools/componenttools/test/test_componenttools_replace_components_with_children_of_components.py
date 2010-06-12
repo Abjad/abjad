@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_slip_01( ):
+def test_componenttools_replace_components_with_children_of_components_01( ):
    '''Containers can 'slip out' of score structure.'''
 
    t = Staff(Container(construct.run(2)) * 2)
@@ -22,7 +22,7 @@ def test_componenttools_slip_01( ):
    '''
 
    sequential = t[0]
-   componenttools.slip(t[0:1])
+   componenttools.replace_components_with_children_of_components(t[0:1])
 
    r'''
    \new Staff {
@@ -40,7 +40,7 @@ def test_componenttools_slip_01( ):
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_componenttools_slip_02( ):
+def test_componenttools_replace_components_with_children_of_components_02( ):
    '''Slip leaf from parentage and spanners.'''
 
    t = Voice(construct.scale(4))
@@ -48,7 +48,7 @@ def test_componenttools_slip_02( ):
    Glissando(t[:])
   
    note = t[1]
-   componenttools.slip([note])
+   componenttools.replace_components_with_children_of_components([note])
 
    r'''
    \new Voice {
@@ -62,7 +62,7 @@ def test_componenttools_slip_02( ):
    assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\te'8 \\glissando\n\tf'8 ]\n}"
 
 
-def test_componenttools_slip_03( ):
+def test_componenttools_replace_components_with_children_of_components_03( ):
    '''Slip multiple leaves.'''
 
    t = Voice(construct.scale(4))
@@ -78,7 +78,7 @@ def test_componenttools_slip_03( ):
    }
    '''
 
-   componenttools.slip(t[:2])
+   componenttools.replace_components_with_children_of_components(t[:2])
 
    r'''
    \new Voice {
@@ -91,7 +91,7 @@ def test_componenttools_slip_03( ):
    assert t.format == "\\new Voice {\n\te'8 [ \\glissando\n\tf'8 ]\n}"
 
 
-def test_componenttools_slip_04( ):
+def test_componenttools_replace_components_with_children_of_components_04( ):
    '''Slip multiple containers.'''
 
    t = Voice(Container(construct.run(2)) * 3)
@@ -116,7 +116,7 @@ def test_componenttools_slip_04( ):
    }
    '''
 
-   componenttools.slip(t[:2])
+   componenttools.replace_components_with_children_of_components(t[:2])
 
    r'''
    \new Voice {

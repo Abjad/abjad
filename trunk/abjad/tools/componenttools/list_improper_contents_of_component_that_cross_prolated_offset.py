@@ -3,7 +3,7 @@ from abjad.rational import Rational
 from abjad.tools import iterate
 
 
-def get_duration_crossers(component, prolated_offset):
+def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
    r'''List all components in `component` that cross `prolated_offset`. ::
 
       abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
@@ -26,28 +26,32 @@ def get_duration_crossers(component, prolated_offset):
       
    No components cross prolated offset ``0``::
       
-      abjad> componenttools.get_duration_crossers(staff, 0)
+      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 0)
       []
 
    Staff, measure and leaf cross prolated offset ``1/16``::
 
-      abjad> componenttools.get_duration_crossers(staff, Rational(1, 16))
+      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Rational(1, 16))
       [Staff{2}, RigidMeasure(2/8, [c'8, d'8]), Note(c', 8)]
 
    Staff and measure cross prolated offset ``1/8``::
 
-      abjad> componenttools.get_duration_crossers(staff, Rational(1, 8))
+      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Rational(1, 8))
       [Staff{2}, RigidMeasure(2/8, [c'8, d'8])]
 
    Staff crosses prolated offset ``1/4``::
 
-      abjad> componenttools.get_duration_crossers(staff, Rational(1, 4))
+      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Rational(1, 4))
       [Staff{2}]
 
    No components cross prolated offset ``99``::
 
-      abjad> componenttools.get_duration_crossers(staff, 99)
+      abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
       []
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.get_duration_crossers( )`` to
+      ``componenttools.list_improper_contents_of_component_that_cross_prolated_offset( )``.
    '''
 
    assert isinstance(component, _Component)

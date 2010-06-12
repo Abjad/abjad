@@ -1,4 +1,4 @@
-def flip(component):
+def move_component_subtree_to_right_in_score_and_spanners(component):
    r'''Flip `component` one index to the right in parent and spanners. ::
 
       abjad> t = Voice(construct.scale(4))
@@ -14,7 +14,7 @@ def flip(component):
       
    ::
       
-      abjad> componenttools.flip(t[1])
+      abjad> componenttools.move_component_subtree_to_right_in_score_and_spanners(t[1])
       abjad> f(t)
       \new Voice {
          c'8 [
@@ -27,7 +27,7 @@ def flip(component):
 
    .. todo:: add ``n = 1`` keyword to generalize flipped distance.
 
-   .. todo:: make ``componenttools.flip( )`` work when spanners
+   .. todo:: make ``componenttools.move_component_subtree_to_right_in_score_and_spanners( )`` work when spanners
       attach to children of component:
 
    ::
@@ -35,7 +35,7 @@ def flip(component):
       abjad> voice = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
       abjad> Beam(voice.leaves[:4])
       abjad> pitchtools.diatonicize(voice)
-      abjad> componenttools.flip(voice[0])
+      abjad> componenttools.move_component_subtree_to_right_in_score_and_spanners(voice[0])
       abjad> f(voice)
       \new Voice {
          \times 2/3 {
@@ -51,6 +51,10 @@ def flip(component):
       }
       abjad> check.wf(voice) 
       False   
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.flip( )`` to
+      ``componenttools.move_component_subtree_to_right_in_score_and_spanners( )``.
    '''
 
    # swap positions in parent

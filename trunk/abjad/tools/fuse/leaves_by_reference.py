@@ -27,6 +27,6 @@ def leaves_by_reference(leaves):
    if len(leaves) <= 1:
       return leaves
    total_preprolated = durtools.sum_preprolated(leaves)
-   componenttools.detach(leaves[1:])
+   componenttools.remove_component_subtree_from_score_and_spanners(leaves[1:])
    return leaftools.change_leaf_preprolated_duration(
       leaves[0], total_preprolated)

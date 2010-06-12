@@ -5,9 +5,9 @@ from abjad.tools import listtools
 from abjad.tools import mathtools
 
 
-## TODO: Maybe move get_likely_multiplier( ) from durtools to measuretools? ##
+## TODO: Maybe move get_likely_multiplier_of_components( ) from durtools to measuretools? ##
 
-def get_likely_multiplier(components):
+def get_likely_multiplier_of_components(components):
    r'''Get likely multiplier of arbitrary `components`. ::
 
       abjad> staff = Staff(construct.scale(4, (7, 32)))
@@ -18,7 +18,7 @@ def get_likely_multiplier(components):
          e'8..
          f'8..
       }
-      abjad> componenttools.get_likely_multiplier(staff[:])
+      abjad> componenttools.get_likely_multiplier_of_components(staff[:])
       Rational(7, 4)
    
    Return ``1`` on no likely multiplier. ::
@@ -31,7 +31,7 @@ def get_likely_multiplier(components):
          e'8
          f'8
       }
-      abjad> componenttools.get_likely_multiplier(staff[:])
+      abjad> componenttools.get_likely_multiplier_of_components(staff[:])
       Rational(1, 1)
 
    Return none on more than one likely multiplier. ::
@@ -44,12 +44,16 @@ def get_likely_multiplier(components):
          e'8.
          f'8..
       }
-      abjad> componenttools.get_likely_multiplier(staff[:]) is None
+      abjad> componenttools.get_likely_multiplier_of_components(staff[:]) is None
       True
 
    Function implemented to help reverse measure subsumption.
    
    .. todo:: move to ``durtools``?
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.get_likely_multiplier( )`` to
+      ``componenttools.get_likely_multiplier_of_components( )``.
    '''
 
    from abjad.tools import tietools

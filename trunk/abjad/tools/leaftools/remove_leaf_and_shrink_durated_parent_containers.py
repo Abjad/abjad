@@ -3,7 +3,7 @@ from abjad.meter import Meter
 from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.tools.componenttools.detach import detach
+from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
 from abjad.tuplet import FixedDurationTuplet
 
 
@@ -85,9 +85,9 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
       parent = parent.parentage.parent
       i += 1
    parentage = leaf.parentage.parentage[1:]
-   detach([leaf])
+   remove_component_subtree_from_score_and_spanners([leaf])
    for x in parentage:
       if not len(x):
-         detach([x])
+         remove_component_subtree_from_score_and_spanners([x])
       else:
          break

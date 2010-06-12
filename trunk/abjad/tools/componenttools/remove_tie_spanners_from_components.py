@@ -1,7 +1,7 @@
 from abjad.tools import check
 
 
-def untie_shallow(components):
+def remove_tie_spanners_from_components(components):
    r'''Untie thread-contiguous `components`. ::
 
       abjad> staff = Staff(construct.scale(2, (5, 16)))
@@ -15,7 +15,7 @@ def untie_shallow(components):
       
    ::
       
-      abjad> componenttools.untie_shallow(staff[:])
+      abjad> componenttools.remove_tie_spanners_from_components(staff[:])
       abjad> f(staff)
       \new Staff {
          c'4
@@ -27,6 +27,10 @@ def untie_shallow(components):
    Return `components`.
 
    .. todo:: move to ``tietools``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.untie_shallow( )`` to
+      ``componenttools.remove_tie_spanners_from_components( )``.
    '''
 
    check.assert_components(components, contiguity = 'thread')

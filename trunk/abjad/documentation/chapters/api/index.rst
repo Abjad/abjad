@@ -195,14 +195,14 @@ componenttools
    tools/componenttools/clone_components_and_remove_all_spanners
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
-   tools/componenttools/detach
-   tools/componenttools/flip
-   tools/componenttools/get_duration_crossers
-   tools/componenttools/get_duration_preprolated
-   tools/componenttools/get_le_duration_prolated
-   tools/componenttools/get_likely_multiplier
-   tools/componenttools/slip
-   tools/componenttools/untie_shallow
+   tools/componenttools/get_likely_multiplier_of_components
+   tools/componenttools/get_preprolated_duration_of_components
+   tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
+   tools/componenttools/list_leftmost_components_with_prolated_duration_at_most
+   tools/componenttools/move_component_subtree_to_right_in_score_and_spanners
+   tools/componenttools/remove_component_subtree_from_score_and_spanners
+   tools/componenttools/remove_tie_spanners_from_components
+   tools/componenttools/replace_components_with_children_of_components
 
 
 construct

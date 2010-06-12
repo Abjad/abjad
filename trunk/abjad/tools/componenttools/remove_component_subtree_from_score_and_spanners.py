@@ -3,7 +3,7 @@ from abjad.tools.spannertools.withdraw_from_contained import \
    _withdraw_from_contained
 
 
-def detach(components):
+def remove_component_subtree_from_score_and_spanners(components):
    r'''Remove arbitrary `components` and children of `components` 
    from score. ::
 
@@ -29,7 +29,7 @@ def detach(components):
 
    Remove one leaf from score::
       
-      abjad> componenttools.detach(score.leaves[1:2])
+      abjad> componenttools.remove_component_subtree_from_score_and_spanners(score.leaves[1:2])
       (Note(d', 8),)
       
    ::
@@ -45,7 +45,7 @@ def detach(components):
 
    Remove contiguous leaves from score::
 
-      abjad> result = componenttools.detach(score.leaves[:2])
+      abjad> result = componenttools.remove_component_subtree_from_score_and_spanners(score.leaves[:2])
       (Note(c', 8), Note(d', 8))
 
    ::
@@ -60,7 +60,7 @@ def detach(components):
 
    Remove noncontiguous leaves from score::
 
-      abjad> componenttools.detach([score.leaves[0], score.leaves[2]])
+      abjad> componenttools.remove_component_subtree_from_score_and_spanners([score.leaves[0], score.leaves[2]])
       [Note(c', 8), Note(e', 8)]
       
    ::
@@ -75,7 +75,7 @@ def detach(components):
 
    Remove container from score::
 
-      abjad> result = componenttools.detach(score[1:2])
+      abjad> result = componenttools.remove_component_subtree_from_score_and_spanners(score[1:2])
       abjad> result
       [{d'8, e'8}]
       
@@ -94,6 +94,10 @@ def detach(components):
    .. todo:: regularize return value of function.
 
    .. note:: rename to ``componenttools.remove_components_from_score_deep( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.detach( )`` to
+      ``componenttools.remove_component_subtree_from_score_and_spanners( )``.
    '''
 
    check.assert_components(components)

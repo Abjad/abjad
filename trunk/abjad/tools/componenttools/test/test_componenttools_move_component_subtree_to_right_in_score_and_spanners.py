@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_flip_01( ):
+def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_01( ):
    '''Flip leaf under continuous spanner.'''
 
    t = Voice(construct.scale(4))
@@ -16,7 +16,7 @@ def test_componenttools_flip_01( ):
    }
    '''
 
-   componenttools.flip(t[1])
+   componenttools.move_component_subtree_to_right_in_score_and_spanners(t[1])
 
    r'''
    \new Voice {
@@ -31,7 +31,7 @@ def test_componenttools_flip_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\td'8\n\tf'8 ]\n}"
 
 
-def test_componenttools_flip_02( ):
+def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_02( ):
    '''Flip leaf across spanner boundaries.'''
 
    t = Voice(construct.scale(4))
@@ -47,7 +47,7 @@ def test_componenttools_flip_02( ):
    }
    '''
 
-   componenttools.flip(t[1])
+   componenttools.move_component_subtree_to_right_in_score_and_spanners(t[1])
    
    r'''
    \new Voice {
@@ -62,7 +62,7 @@ def test_componenttools_flip_02( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8 [\n\tf'8 ]\n}"
 
 
-def test_componenttools_flip_03( ):
+def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_03( ):
    '''Flip leaf from within to without spanner.'''
 
    t = Voice(construct.scale(4))
@@ -77,7 +77,7 @@ def test_componenttools_flip_03( ):
    }
    '''
 
-   componenttools.flip(t[1])
+   componenttools.move_component_subtree_to_right_in_score_and_spanners(t[1])
 
    r'''
    \new Voice {

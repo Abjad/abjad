@@ -36,7 +36,7 @@ def _at_duration(
    global_split_point = component.offset.prolated.start + duration
 
    ## get duration crossers, if any
-   contents = componenttools.get_duration_crossers(component, duration) 
+   contents = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(component, duration) 
 
    #print component, global_split_point, contents
 
@@ -66,7 +66,7 @@ def _at_duration(
          measuretools.change_binary_measure_to_nonbinary(
             measure, nonbinary_product)
          ## rederive duration crosses with possibly new measure contents
-         contents = componenttools.get_duration_crossers(component, duration) 
+         contents = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(component, duration) 
    elif 1 < len(measures):
       raise ContainmentError('measures can not nest.')
 

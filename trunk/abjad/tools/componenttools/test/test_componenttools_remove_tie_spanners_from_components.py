@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_untie_shallow_01( ):
+def test_componenttools_remove_tie_spanners_from_components_01( ):
    t = Staff(construct.notes(0, [(5, 16), (5, 16)]))
 
    r'''
@@ -13,7 +13,7 @@ def test_componenttools_untie_shallow_01( ):
    }
    '''
    
-   componenttools.untie_shallow(t[:])
+   componenttools.remove_tie_spanners_from_components(t[:])
 
    r'''
    \new Staff {
@@ -28,8 +28,8 @@ def test_componenttools_untie_shallow_01( ):
    assert t.format == "\\new Staff {\n\tc'4\n\tc'16\n\tc'4\n\tc'16\n}"
 
 
-def test_componenttools_untie_shallow_02( ):
+def test_componenttools_remove_tie_spanners_from_components_02( ):
    '''Handles empty list without exception.'''
 
-   result = componenttools.untie_shallow([ ])
+   result = componenttools.remove_tie_spanners_from_components([ ])
    assert result == [ ]

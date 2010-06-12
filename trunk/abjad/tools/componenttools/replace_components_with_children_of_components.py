@@ -2,7 +2,7 @@ from abjad.tools import check
 from abjad.tools import parenttools
 
 
-def slip(components):
+def replace_components_with_children_of_components(components):
    r'''Remove arbitrary `components` from score 
    but retain children of `components` in score. ::
 
@@ -24,7 +24,7 @@ def slip(components):
       
    ::
       
-      abjad> componenttools.slip(staff[0:1])
+      abjad> componenttools.replace_components_with_children_of_components(staff[0:1])
       [{ }]
       
    ::
@@ -43,6 +43,10 @@ def slip(components):
 
    .. note:: should be renamed to 
       ``componenttools.remove_components_from_score_shallow( )``
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.slip( )`` to
+      ``componenttools.replace_components_with_children_of_components( )``.
    '''
 
    check.assert_components(components)

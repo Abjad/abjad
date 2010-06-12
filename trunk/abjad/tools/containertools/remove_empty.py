@@ -50,7 +50,7 @@ def remove_empty(expr):
    class Visitor(object):
       def _visit(self, node):
          if isinstance(node, Container) and len(node.leaves) == 0:
-            componenttools.detach([node])
+            componenttools.remove_component_subtree_from_score_and_spanners([node])
 
    v = Visitor( )
    expr._navigator._traverse(v, depthFirst = False)

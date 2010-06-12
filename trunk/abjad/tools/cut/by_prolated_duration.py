@@ -74,7 +74,7 @@ def by_prolated_duration(component, prolated_duration):
    else:
       container = component
       components, accumulated_duration = \
-         componenttools.get_le_duration_prolated(
+         componenttools.list_leftmost_components_with_prolated_duration_at_most(
          container[:], prolated_duration)
       del(container[:len(components)])
       remaining_subtrahend_duration = prolated_duration - accumulated_duration

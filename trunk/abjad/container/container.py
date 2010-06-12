@@ -104,7 +104,7 @@ class Container(_Component):
          _withdraw_from_crossing([expr])
          expr.parentage._switch(self)
          self._music.insert(i, expr)
-         componenttools.detach([old])
+         componenttools.remove_component_subtree_from_score_and_spanners([old])
          for spanner, index in spanners_receipt:
             spanner._insert(index, expr)
             expr.spanners._add(spanner)
@@ -118,7 +118,7 @@ class Container(_Component):
             start, stop, stride = i.indices(len(self))
          old = self[start:stop]
          spanners_receipt = spannertools.get_dominant_slice(self, start, stop)
-         componenttools.detach(old)
+         componenttools.remove_component_subtree_from_score_and_spanners(old)
          ## must withdraw before setting in self!
          ## otherwise circular withdraw ensues!
          _withdraw_from_crossing(expr)

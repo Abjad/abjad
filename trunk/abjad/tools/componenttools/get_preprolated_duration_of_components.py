@@ -1,16 +1,16 @@
 from abjad.tools import check
 
 
-def get_duration_preprolated(components):
+def get_preprolated_duration_of_components(components):
    r'''Sum the preprolated duration of each component in `components`. ::
 
       abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
-      abjad> componenttools.get_duration_preprolated(tuplet[:])
+      abjad> componenttools.get_preprolated_duration_of_components(tuplet[:])
       Rational(3, 8)
 
    Return zero on empty iterable. ::
 
-      abjad> componenttools.get_duration_preprolated([ ])
+      abjad> componenttools.get_preprolated_duration_of_components([ ])
       Rational(0)
 
    Raise contiguity error on nonparent-contiguous `components`. ::
@@ -30,8 +30,12 @@ def get_duration_preprolated(components):
             a'8
          }
       }
-      abjad> componenttools.get_duration_preprolated(t.leaves)
+      abjad> componenttools.get_preprolated_duration_of_components(t.leaves)
       ContiguityError
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.get_duration_preprolated( )`` to
+      ``componenttools.get_preprolated_duration_of_components( )``.
    '''
 
    ## check input

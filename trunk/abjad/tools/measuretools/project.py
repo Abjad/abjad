@@ -22,7 +22,7 @@ def project(expr):
 
          # find meter and contents multipliers
          meter_multiplier = measure.meter.effective.multiplier
-         contents_multiplier = componenttools.get_likely_multiplier(measure[:])
+         contents_multiplier = componenttools.get_likely_multiplier_of_components(measure[:])
 
          # update nonbinary meter to binary
          metertools.meter_to_binary_meter(measure.meter.effective, contents_multiplier)
