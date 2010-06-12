@@ -48,9 +48,9 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
       measure.meter.forced = new_meter
       remaining_multiplier = Rational(*reduced_pair)
       if remaining_multiplier != Rational(1):
-         containertools.scale_container_contents(measure, remaining_multiplier)
+         containertools.scale_contents_of_container(measure, remaining_multiplier)
    elif durtools.are_scalable(measure[:], multiplier):
-      containertools.scale_container_contents(measure, multiplier)
+      containertools.scale_contents_of_container(measure, multiplier)
       if old_meter.nonbinary or not mathtools.is_power_of_two(multiplier):
          new_pair = durtools.pair_multiply_reduce_factors(
             old_pair, multiplier)
@@ -72,5 +72,5 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
       measure.meter.forced = new_meter
       remaining_multiplier = multiplier / new_meter.multiplier
       if remaining_multiplier != Rational(1):
-         containertools.scale_container_contents(measure, remaining_multiplier)
+         containertools.scale_contents_of_container(measure, remaining_multiplier)
    return measure

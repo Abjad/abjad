@@ -33,5 +33,5 @@ def project(expr):
 
          # scale tuplet contents, if helpful
          if contents_multiplier is not None:
-            containertools.scale_container_contents(
+            containertools.scale_contents_of_container(
                tuplet, ~contents_multiplier)

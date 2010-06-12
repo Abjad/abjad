@@ -95,6 +95,6 @@ def tuplets_by_reference(tuplets):
    scoretools.donate(tuplets, new_tuplet)
 
    if wrapped:
-      containertools.contents_delete(dummy_container)
+      containertools.delete_contents_of_container(dummy_container)
    
    return new_tuplet

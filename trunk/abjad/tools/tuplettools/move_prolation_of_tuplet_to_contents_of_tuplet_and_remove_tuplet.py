@@ -49,7 +49,7 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
    from abjad.tools import containertools
    from abjad.tools import scoretools
    
-   containertools.scale_container_contents(tuplet, tuplet.duration.multiplier)
+   containertools.scale_contents_of_container(tuplet, tuplet.duration.multiplier)
    scoretools.bequeath([tuplet], tuplet[:])
 
    return tuplet

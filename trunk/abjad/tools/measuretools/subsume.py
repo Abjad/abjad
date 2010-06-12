@@ -44,4 +44,4 @@ def subsume(expr):
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
             scoretools.bequeath([tuplet], tuplet[:])
-            containertools.scale_container_contents(measure, written_adjustment)
+            containertools.scale_contents_of_container(measure, written_adjustment)

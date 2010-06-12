@@ -65,7 +65,7 @@ def containers_by_reference(expr):
          merged = True
    if merged:
       #print expr
-      containertools.remove_empty(expr)
+      containertools.remove_empty_containers_in_expr(expr)
       return expr.pop(0)
    else:
       print 'debug did not merge'

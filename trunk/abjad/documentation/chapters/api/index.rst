@@ -230,32 +230,27 @@ containertools
 .. toctree::
    :maxdepth: 1
 
-   tools/containertools/contents_color
-   tools/containertools/contents_delete
-   tools/containertools/contents_delete_starting_after_prolated_offset
-   tools/containertools/contents_delete_starting_before_prolated_offset
-   tools/containertools/contents_delete_starting_not_after_prolated_offset
-   tools/containertools/contents_delete_starting_not_before_prolated_offset
-   tools/containertools/contents_multiply
-   tools/containertools/contents_reverse
-   tools/containertools/extend_cyclic
-   tools/containertools/get_element_starting_at_prolated_offset
-   tools/containertools/get_index_starting_at_prolated_offset
-   tools/containertools/get_leftmost_element_starting_after_prolated_offset
-   tools/containertools/get_leftmost_element_starting_not_before_prolated_offset
-   tools/containertools/get_leftmost_index_starting_after_prolated_offset
-   tools/containertools/get_leftmost_index_starting_not_before_prolated_offset
-   tools/containertools/get_rightmost_element_starting_before_prolated_offset
-   tools/containertools/get_rightmost_element_starting_not_after_prolated_offset
-   tools/containertools/get_rightmost_index_starting_before_prolated_offset
-   tools/containertools/get_rightmost_index_starting_not_after_prolated_offset
-   tools/containertools/insert_and_do_not_fracture
-   tools/containertools/insert_and_fracture
-   tools/containertools/multiplier_set
-   tools/containertools/remove_empty
+   tools/containertools/color_contents_of_container
+   tools/containertools/delete_contents_of_container
+   tools/containertools/delete_contents_of_container_starting_at_or_after_prolated_offset
+   tools/containertools/delete_contents_of_container_starting_before_or_at_prolated_offset
+   tools/containertools/delete_contents_of_container_starting_strictly_after_prolated_offset
+   tools/containertools/delete_contents_of_container_starting_strictly_before_prolated_offset
+   tools/containertools/get_element_starting_at_exactly_prolated_offset
+   tools/containertools/get_first_element_starting_at_or_after_prolated_offset
+   tools/containertools/get_first_element_starting_before_or_at_prolated_offset
+   tools/containertools/get_first_element_starting_strictly_after_prolated_offset
+   tools/containertools/get_first_element_starting_strictly_before_prolated_offset
+   tools/containertools/insert_component_and_do_not_fracture_crossing_spanners
+   tools/containertools/insert_component_and_fracture_crossing_spanners
+   tools/containertools/remove_empty_containers_in_expr
+   tools/containertools/repeat_contents_of_container
+   tools/containertools/repeat_last_n_elements_of_container
    tools/containertools/rest_by_count
    tools/containertools/rest_half
-   tools/containertools/scale_container_contents
+   tools/containertools/reverse_contents_of_container
+   tools/containertools/scale_contents_of_container
+   tools/containertools/set_container_multiplier
 
 
 cut

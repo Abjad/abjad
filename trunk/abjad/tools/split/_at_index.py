@@ -53,13 +53,13 @@ def _at_index(component, i, spanners = 'unfractured'):
    elif isinstance(component, _Tuplet):
       left = component.__class__(1, left_music)
       right = component.__class__(1, right_music)
-      containertools.multiplier_set(left, container_multiplier)
-      containertools.multiplier_set(right, container_multiplier)
+      containertools.set_container_multiplier(left, container_multiplier)
+      containertools.set_container_multiplier(right, container_multiplier)
    else:
       left = component.__class__(left_music)
       right = component.__class__(right_music)
-      containertools.multiplier_set(left, container_multiplier)
-      containertools.multiplier_set(right, container_multiplier)
+      containertools.set_container_multiplier(left, container_multiplier)
+      containertools.set_container_multiplier(right, container_multiplier)
    
    ## save left and right halves together for iteration
    halves = [left, right]

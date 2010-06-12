@@ -68,7 +68,7 @@ class Container(_Component):
       '''Multiply contents of container 'total' times.
          Return multiplied container.'''
       from abjad.tools import containertools
-      return containertools.contents_multiply(self, total = total)
+      return containertools.repeat_contents_of_container(self, total = total)
 
    def __len__(self):
       '''Return nonnegative integer number of components in container.'''

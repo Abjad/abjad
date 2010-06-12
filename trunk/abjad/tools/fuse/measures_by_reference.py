@@ -96,10 +96,10 @@ def measures_by_reference(measures):
    for measure in measures:
       ## scale before reassignment to prevent tie chain scale drama
       multiplier = ~new_meter.multiplier * measure.meter.effective.multiplier
-      containertools.scale_container_contents(measure, multiplier)
+      containertools.scale_contents_of_container(measure, multiplier)
       measure_music = measure[:]
       _switch(measure_music, None)
-      #containertools.scale_container_contents(measure_music, multiplier)
+      #containertools.scale_contents_of_container(measure_music, multiplier)
       music += measure_music
 
    new_measure = RigidMeasure(new_meter, music)

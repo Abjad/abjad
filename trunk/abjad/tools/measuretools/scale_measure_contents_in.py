@@ -11,7 +11,7 @@ def scale_measure_contents_in(expr, multiplier = Rational(1)):
       1. multiply measure's meter by multiplier
       2. scale measure's contents to fit new meter
 
-   Extends containertools.scale_container_contents( ).
+   Extends containertools.scale_contents_of_container( ).
    Returns None because iterates possibly many measures.
 
    This might best be a bound method on RigidMeasure.
@@ -45,4 +45,4 @@ def scale_measure_contents_in(expr, multiplier = Rational(1)):
          mathtools.greatest_power_of_two_less_equal(multiplier._d)
       contents_multiplier = Rational(
          multiplier._n, contents_multiplier_denominator)
-      containertools.scale_container_contents(measure, contents_multiplier)
+      containertools.scale_contents_of_container(measure, contents_multiplier)

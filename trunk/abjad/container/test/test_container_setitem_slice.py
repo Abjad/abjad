@@ -372,7 +372,7 @@ def test_container_setitem_slice_13( ):
 
    On the other hand, if you want to empty a container and
    allow the emptied components to remain embedded within spanners,
-   use containertools.contents_delete( ) instead.'''
+   use containertools.delete_contents_of_container( ) instead.'''
 
    t = Staff(construct.scale(4))
    inner = Container(t[1:3])
@@ -416,14 +416,14 @@ def test_container_setitem_slice_13( ):
    ## inner container leaves DO withdraw from all spanners
    assert inner.format == "{\n\td'8\n\te'8\n}"
 
-   ## ALTERNATIVE: use containertools.contents_delete( )
+   ## ALTERNATIVE: use containertools.delete_contents_of_container( )
 
    t = Staff(construct.scale(4))
    inner = Container(t[1:3])
    outer = Container([inner])
    beam = Beam(inner[:])
 
-   containertools.contents_delete(outer)
+   containertools.delete_contents_of_container(outer)
 
    r'''
    \new Staff {
