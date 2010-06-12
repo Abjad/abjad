@@ -1,8 +1,7 @@
 from abjad.measure import AnonymousMeasure
 from abjad.score import Score
 from abjad.tools.scoretools.make_piano_staff import make_piano_staff
-from abjad.tools.chordtools.split_by_pitch_number import \
-   split_by_pitch_number
+from abjad.tools.chordtools.divide_chord_by_pitch_number import divide_chord_by_pitch_number
 
 
 def make_piano_score(leaves):
@@ -39,7 +38,7 @@ def make_piano_score(leaves):
 
    score, treble_staff, bass_staff = make_piano_staff( )
    for leaf in leaves:
-      treble_chord, bass_chord = split_by_pitch_number(leaf, -1)
+      treble_chord, bass_chord = divide_chord_by_pitch_number(leaf, -1)
       treble_staff.append(treble_chord)
       bass_staff.append(bass_chord)
 

@@ -6,7 +6,7 @@ from abjad.rest import Rest
 from abjad.tools import componenttools
 from abjad.tools import construct
 from abjad.tools import pitchtools
-from abjad.tools.chordtools.cast_defective import cast_defective
+from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
 
 
 def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
@@ -94,8 +94,8 @@ def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
 #         bass_note_head_attrs = [(k, v) for k, v in bass[0].__dict__.items( ) 
 #            if not k.startswith('_')]
 
-   treble = cast_defective(treble)
-   bass = cast_defective(bass)
+   treble = cast_defective_chord(treble)
+   bass = cast_defective_chord(bass)
 
 #   for k, v in treble_note_head_attrs:
 #      setattr(treble.note_head, k, v)

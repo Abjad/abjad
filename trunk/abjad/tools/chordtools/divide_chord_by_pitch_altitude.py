@@ -5,7 +5,7 @@ from abjad.tools import pitchtools
 from abjad.tools.chordtools._split import _split
 
 
-def split_by_altitude(chord, pitch = Pitch('b', 3)):
+def divide_chord_by_pitch_altitude(chord, pitch = Pitch('b', 3)):
    r'''Create two new disjunct `treble`, `bass` chords from `chord`,
    based on the altitude of `pitch`.
 
@@ -38,7 +38,7 @@ def split_by_altitude(chord, pitch = Pitch('b', 3)):
       abjad> chord = Chord(range(12), Rational(1, 4))
       abjad> chord
       Chord(c' cs' d' ef' e' f' fs' g' af' a' bf' b', 4)
-      abjad> chordtools.split_by_altitude(chord, Pitch(6))
+      abjad> chordtools.divide_chord_by_pitch_altitude(chord, Pitch(6))
       (Chord(fs' g' af' a' bf' b', 4), Chord(c' cs' d' ef' e' f', 4))
 
    Preserve note head coloring. ::
@@ -62,7 +62,7 @@ def split_by_altitude(chord, pitch = Pitch('b', 3)):
 
    ::
 
-      abjad> treble, bass = chordtools.split_by_altitude(t, 2)     
+      abjad> treble, bass = chordtools.divide_chord_by_pitch_altitude(t, 2)     
       abjad> f(treble)
       <
               \tweak #'color #blue
@@ -70,6 +70,10 @@ def split_by_altitude(chord, pitch = Pitch('b', 3)):
               \tweak #'color #blue
               ef'
       >4
+
+   .. versionchanged:: 1.1.2
+      renamed ``chordtools.split_by_altitude( )`` to
+      ``chordtools.divide_chord_by_pitch_altitude( )``.
    '''
 
    treble, bass = _split(chord, pitch = pitch, attr = 'altitude')

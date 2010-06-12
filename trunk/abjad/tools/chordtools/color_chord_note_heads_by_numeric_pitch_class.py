@@ -3,7 +3,7 @@ from abjad.note import Note
 from abjad.tools import pitchtools
 
 
-def color_note_heads_by_pc(chord, color_map):
+def color_chord_note_heads_by_numeric_pitch_class(chord, color_map):
    r'''.. versionadded:: 1.1.2
 
    Color note_heads in `chord` according to `color_map`.
@@ -17,7 +17,7 @@ def color_note_heads_by_pc(chord, color_map):
    ::
 
       abjad> chord = Chord([12, 14, 18, 21, 23], (1, 4))
-      abjad> chordtools.color_note_heads_by_pc(chord, color_map)
+      abjad> chordtools.color_chord_note_heads_by_numeric_pitch_class(chord, color_map)
       Chord(c'' d'' fs'' a'' b'', 4)
       abjad> f(chord)
       <
@@ -36,7 +36,7 @@ def color_note_heads_by_pc(chord, color_map):
    Also works on notes. ::
 
       abjad> note = Note(0, (1, 4))
-      abjad> chordtools.color_note_heads_by_pc(note, color_map)
+      abjad> chordtools.color_chord_note_heads_by_numeric_pitch_class(note, color_map)
       Note(c', 4)
       abjad> f(note)
       \once \override NoteHead #'color = #red
@@ -46,8 +46,12 @@ def color_note_heads_by_pc(chord, color_map):
    simply return input unaltered. ::
 
       abjad> staff = Staff([ ])
-      abjad> chordtools.color_note_heads_by_pc(staff, color_map)
+      abjad> chordtools.color_chord_note_heads_by_numeric_pitch_class(staff, color_map)
       Staff{ }
+
+   .. versionchanged:: 1.1.2
+      renamed ``chordtools.color_note_heads_by_pc( )`` to
+      ``chordtools.color_chord_note_heads_by_numeric_pitch_class( )``.
    '''
 
    assert isinstance(color_map, pitchtools.PitchClassColorMap)

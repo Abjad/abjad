@@ -5,28 +5,32 @@ from abjad.pitch import Pitch
 from abjad.rational import Rational
 
 
-def get_note_head(chord, pitch):
+def get_note_head_from_chord_by_pitch(chord, pitch):
    '''Return note head with `pitch` in `chord`.
 
    Set `pitch` to an Abjad pitch instance or a number. ::
 
       abjad> chord = Chord([12, 14, 23], Rational(1, 4))
-      abjad> chordtools.get_note_head(chord, 14)
+      abjad> chordtools.get_note_head_from_chord_by_pitch(chord, 14)
       NoteHead('d', 5)
 
    Raise missing note head error when `chord` contains no 
    note head with pitch equal to `pitch`. ::
 
       abjad> chord = Chord([12, 14, 23], Rational(1, 4))
-      abjad> chordtools.get_note_head(chord, 14)
+      abjad> chordtools.get_note_head_from_chord_by_pitch(chord, 14)
       MissingNoteHeadError
 
    Raise extra note head error when `chord` contains more than 
    one note head with pitch equal to `pitch`. ::
 
       abjad> chord = Chord([12, 12], Rational(1, 4))
-      abjad> chordtools.get_note_head(chord, 12)
+      abjad> chordtools.get_note_head_from_chord_by_pitch(chord, 12)
       ExtraNoteHeadError
+
+   .. versionchanged:: 1.1.2
+      renamed ``chordtools.get_note_head( )`` to
+      ``chordtools.get_note_head_from_chord_by_pitch( )``.
    '''
 
    if not isinstance(chord, Chord):

@@ -2,7 +2,7 @@ from abjad.chord import Chord
 from abjad.note import Note
 
 
-def arpeggiate(chord):
+def arpeggiate_chord(chord):
    '''Return a list of newly-instantiated notes
    derived from the pitches in `chord`. 
 
@@ -10,7 +10,7 @@ def arpeggiate(chord):
    from which they derive. ::
 
       abjad> chord = Chord([0, 14, 15], (3, 16))
-      abjad> chordtools.arpeggiate(chord)
+      abjad> chordtools.arpeggiate_chord(chord)
       [Note(c', 8.), Note(d'', 8.), Note(ef'', 8.)]
 
    Arpeggiated notes inherit neither articulations,
@@ -24,11 +24,15 @@ def arpeggiate(chord):
 
    ::
 
-      abjad> notes = chordtools.arpeggiate(chord)
+      abjad> notes = chordtools.arpeggiate_chord(chord)
       abjad> notes
       [Note(c', 8.), Note(d'', 8.), Note(ef'', 8.)]
       abjad> f(notes[0])
       c'8.
+
+   .. versionchanged:: 1.1.2
+      renamed ``chordtools.arpeggiate( )`` to
+      ``chordtools.arpeggiate_chord( )``.
    '''
    
    assert isinstance(chord, Chord)

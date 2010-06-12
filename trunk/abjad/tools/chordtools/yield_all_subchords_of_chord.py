@@ -1,9 +1,9 @@
 from abjad.tools import componenttools
 from abjad.tools import mathtools
-from abjad.tools.chordtools.cast_defective import cast_defective
+from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
 
 
-def subchords(chord):
+def yield_all_subchords_of_chord(chord):
    '''.. versionadded:: 1.1.2
 
    Yield all subchords of `chord`. 
@@ -16,7 +16,7 @@ def subchords(chord):
    ::
 
       abjad> chord = Chord([0, 2, 8, 9], (1, 4))
-      abjad> for subchord in chordtools.subchords(chord):
+      abjad> for subchord in chordtools.yield_all_subchords_of_chord(chord):
       ...     subchord
       ... 
       Rest(4)
@@ -35,6 +35,10 @@ def subchords(chord):
       Chord(c' af' a', 4)
       Chord(d' af' a', 4)
       Chord(c' d' af' a', 4)
+
+   .. versionchanged:: 1.1.2
+      renamed ``chordtools.subchords( )`` to
+      ``chordtools.yield_all_subchords_of_chord( )``.
    '''
 
    len_chord = len(chord)
@@ -48,5 +52,5 @@ def subchords(chord):
       for note_head in new_chord.note_heads:
          if getattr(note_head, '_remove_me', False):
             new_chord.remove(note_head)
-      new_chord = cast_defective(new_chord)
+      new_chord = cast_defective_chord(new_chord)
       yield new_chord

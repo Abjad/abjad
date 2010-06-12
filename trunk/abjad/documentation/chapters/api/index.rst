@@ -174,13 +174,13 @@ chordtools
 .. toctree::
    :maxdepth: 1
 
-   tools/chordtools/arpeggiate
-   tools/chordtools/cast_defective
-   tools/chordtools/color_note_heads_by_pc
-   tools/chordtools/get_note_head
-   tools/chordtools/split_by_altitude
-   tools/chordtools/split_by_pitch_number
-   tools/chordtools/subchords
+   tools/chordtools/arpeggiate_chord
+   tools/chordtools/cast_defective_chord
+   tools/chordtools/color_chord_note_heads_by_numeric_pitch_class
+   tools/chordtools/divide_chord_by_pitch_altitude
+   tools/chordtools/divide_chord_by_pitch_number
+   tools/chordtools/get_note_head_from_chord_by_pitch
+   tools/chordtools/yield_all_subchords_of_chord
 
 
 componenttools

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chordtools_color_note_heads_by_pc_01( ):
+def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_01( ):
    '''Works on chords.'''
 
    pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]] 
@@ -9,7 +9,7 @@ def test_chordtools_color_note_heads_by_pc_01( ):
    color_map = pitchtools.PitchClassColorMap(pitches, colors)
 
    chord = Chord([12, 14, 18, 21, 23], (1, 4))
-   chordtools.color_note_heads_by_pc(chord, color_map)
+   chordtools.color_chord_note_heads_by_numeric_pitch_class(chord, color_map)
 
    r'''
    <
@@ -30,7 +30,7 @@ def test_chordtools_color_note_heads_by_pc_01( ):
    assert chord.format == "<\n\t\\tweak #'color #red\n\tc''\n\t\\tweak #'color #red\n\td''\n\t\\tweak #'color #green\n\tfs''\n\t\\tweak #'color #green\n\ta''\n\t\\tweak #'color #blue\n\tb''\n>4"
 
 
-def test_chordtools_color_note_heads_by_pc_02( ):
+def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_02( ):
    '''Works on notes.'''
 
    pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]] 
@@ -38,7 +38,7 @@ def test_chordtools_color_note_heads_by_pc_02( ):
    color_map = pitchtools.PitchClassColorMap(pitches, colors)
 
    note = Note(0, (1, 4))
-   chordtools.color_note_heads_by_pc(note, color_map)
+   chordtools.color_chord_note_heads_by_numeric_pitch_class(note, color_map)
 
    r'''
    \once \override NoteHead #'color = #red
