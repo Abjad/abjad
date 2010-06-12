@@ -2,16 +2,16 @@ from abjad.component import _Component
 from abjad.exceptions import NegativeDurationError
 from abjad.leaf import _Leaf
 from abjad.rational import Rational
-from abjad.tools import componenttools
-from abjad.tools import leaftools
+from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most \
+   import list_leftmost_components_with_prolated_duration_at_most
 
 
-def by_prolated_duration(component, prolated_duration):
+def cut_component_at_prolated_duration(component, prolated_duration):
    r'''Cut `component` by dotted `prolated_duration`::
 
       abjad> staff = Staff(construct.scale(4))
       abjad> Beam(staff.leaves)
-      abjad> cut.by_prolated_duration(staff, Rational(1, 32))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(1, 32))
       abjad> f(staff)
       \new Staff {
          c'16. [
@@ -24,7 +24,7 @@ def by_prolated_duration(component, prolated_duration):
       
       abjad> staff = Staff(construct.scale(4))
       abjad> Beam(staff.leaves)
-      abjad> cut.by_prolated_duration(staff, Rational(3, 64))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(3, 64))
       abjad> f(staff)
       \new Staff {
          c'16 [ ~
@@ -38,7 +38,7 @@ def by_prolated_duration(component, prolated_duration):
       
       abjad> staff = Staff(construct.scale(4))
       abjad> Beam(staff.leaves)
-      abjad> cut.by_prolated_duration(staff, Rational(1, 24))
+      abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(1, 24))
       abjad> f(staff)
       \new Staff {
          \times 2/3 {
@@ -57,7 +57,12 @@ def by_prolated_duration(component, prolated_duration):
 
    .. todo:: allow large values of `prolated_duration` to empty
       container contents.
+
+   .. versionchanged:: 1.1.2
+      renamed ``cut.by_prolated_duration( )`` to
+      ``componenttools.cut_component_at_prolated_duration( )``.
    '''
+   from abjad.tools import leaftools
 
    assert isinstance(component, _Component)
    assert isinstance(prolated_duration, Rational)
@@ -74,8 +79,8 @@ def by_prolated_duration(component, prolated_duration):
    else:
       container = component
       components, accumulated_duration = \
-         componenttools.list_leftmost_components_with_prolated_duration_at_most(
+         list_leftmost_components_with_prolated_duration_at_most(
          container[:], prolated_duration)
       del(container[:len(components)])
       remaining_subtrahend_duration = prolated_duration - accumulated_duration
-      by_prolated_duration(container[0], remaining_subtrahend_duration)
+      cut_component_at_prolated_duration(container[0], remaining_subtrahend_duration)

@@ -195,6 +195,7 @@ componenttools
    tools/componenttools/clone_components_and_remove_all_spanners
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
+   tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/get_likely_multiplier_of_components
    tools/componenttools/get_preprolated_duration_of_components
    tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
@@ -251,14 +252,6 @@ containertools
    tools/containertools/reverse_contents_of_container
    tools/containertools/scale_contents_of_container
    tools/containertools/set_container_multiplier
-
-
-cut
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/cut/by_prolated_duration
 
 
 divide
