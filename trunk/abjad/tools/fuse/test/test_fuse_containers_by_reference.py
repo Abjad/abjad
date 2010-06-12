@@ -143,15 +143,15 @@ def test_fuse_containers_by_reference_09( ):
    t1 = Staff([v1, v2, v3])
    t1.parallel = True
    t1.name = 'staff1'
-   t2 = clone.fracture([t1])[0]
+   t2 = componenttools.clone_components_and_fracture_crossing_spanners([t1])[0]
    t2.parallel = True
    t2.name = 'staff2'
-   t3 = clone.fracture([t1])[0]
+   t3 = componenttools.clone_components_and_fracture_crossing_spanners([t1])[0]
    t3.parallel = True
    t3.name = 'staff3'
    s1 = StaffGroup([t1, t2, t3])
    s1.name = 'sg'
-   s2 = clone.fracture([s1])[0]
+   s2 = componenttools.clone_components_and_fracture_crossing_spanners([s1])[0]
    s2.name = 'sg'
    s = Container([s1, s2])
 
@@ -244,11 +244,11 @@ def test_fuse_containers_by_reference_10( ):
 
    sg1 = StaffGroup([s1, s2])
    sg1.name ='groupOne'
-   sg2 = clone.fracture([sg1])[0]
+   sg2 = componenttools.clone_components_and_fracture_crossing_spanners([sg1])[0]
    sg2.name ='groupTwo'
    sg_g = StaffGroup([sg1, sg2])
    sg_g.name = 'topGroup'
-   seq = fuse.containers_by_reference([sg_g, clone.fracture([sg_g])[0]])
+   seq = fuse.containers_by_reference([sg_g, componenttools.clone_components_and_fracture_crossing_spanners([sg_g])[0]])
 
    assert seq.format == '\\context StaffGroup = "topGroup" <<\n\t\\context StaffGroup = "groupOne" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n\t\\context StaffGroup = "groupTwo" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n>>'
 

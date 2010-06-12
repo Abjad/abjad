@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_clonewp_by_leaf_counts_with_parentage_01( ):
+def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_counts_01( ):
    '''Partition tuplet in voice.
       The helper wraps lcopy( ).
       This means that the original structure remains unchanged.
@@ -9,7 +9,7 @@ def test_clonewp_by_leaf_counts_with_parentage_01( ):
 
    t = Voice([FixedDurationTuplet((2, 8), construct.scale(3))])
    Beam(t[0][:])
-   left, right = clonewp.by_leaf_counts_with_parentage(t[0], [1, 2])
+   left, right = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t[0], [1, 2])
 
    r'''
    \new Voice {
@@ -35,12 +35,12 @@ def test_clonewp_by_leaf_counts_with_parentage_01( ):
    assert right.format == "\\new Voice {\n\t\\times 2/3 {\n\t\td'8 [\n\t\te'8 ]\n\t}\n}"
 
 
-def test_clonewp_by_leaf_counts_with_parentage_02( ):
+def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_counts_02( ):
    '''Partition voice.'''
 
    t = Voice(construct.scale(3))
    Beam(t[:])
-   result = clonewp.by_leaf_counts_with_parentage(t, [1, 2])
+   result = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t, [1, 2])
 
    r'''
    \new Voice {

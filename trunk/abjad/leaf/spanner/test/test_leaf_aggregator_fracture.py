@@ -9,7 +9,7 @@ def test_leaf_aggregator_fracture_01( ):
    The spanner aggregator of component t[i] in t knows that 
    p and only p references t[i].
 
-   Call fracture('left') on the zeroth component t[0] in t.
+   Call clone_components_and_fracture_crossing_spanners('left') on the zeroth component t[0] in t.
    Three-element receipt returns. 
    Source spanner returns unaltered and continues to hold references
    to all four components in t.

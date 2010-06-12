@@ -5,7 +5,7 @@ from abjad.tools import spannertools
 import copy
 
 
-def unspan(components, n = 1):
+def clone_components_and_remove_all_spanners(components, n = 1):
    r'''Clone thread-contiguous `components` and remove any spanners.
    
    The steps taken by this function are as follows.
@@ -37,7 +37,7 @@ def unspan(components, n = 1):
 
    ::
 
-      abjad> result = clone.unspan(voice.leaves[2:4])
+      abjad> result = componenttools.clone_components_and_remove_all_spanners(voice.leaves[2:4])
       abjad> result
       (Note(e', 8), Note(f', 8))
 
@@ -62,7 +62,7 @@ def unspan(components, n = 1):
 
    Clone `components` a total of `n` times. ::
 
-      abjad> result = clone.unspan(voice.leaves[2:4], n = 3)
+      abjad> result = componenttools.clone_components_and_remove_all_spanners(voice.leaves[2:4], n = 3)
       abjad> result
       (Note(e', 8), Note(f', 8), Note(e', 8), Note(f', 8), Note(e', 8), Note(f', 8))
 
@@ -79,6 +79,10 @@ def unspan(components, n = 1):
               f'8 
       }
 
+
+   .. versionchanged:: 1.1.2
+      renamed ``clone.unspan( )`` to
+      ``componenttools.clone_components_and_remove_all_spanners( )``.
    '''
 
    if n < 1:
@@ -102,6 +106,6 @@ def unspan(components, n = 1):
       spanner._unblockAllComponents( )
 
    for i in range(n - 1):
-      result += unspan(components)
+      result += clone_components_and_remove_all_spanners(components)
       
    return result

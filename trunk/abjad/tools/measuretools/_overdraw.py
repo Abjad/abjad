@@ -1,4 +1,4 @@
-from abjad.tools import clone
+from abjad.tools import componenttools
 from abjad.tools import iterate
 
 
@@ -25,7 +25,7 @@ def _overdraw(expr, source_count = 1, total_reps = 2):
       if i < source_count:
          source.append(measure)   
       elif i == source_count:
-         clone.fracture(source)
+         componenttools.clone_components_and_fracture_crossing_spanners(source)
       else:
          pass
       

@@ -1,5 +1,5 @@
 from abjad.leaf import _Leaf
-from abjad.tools import clone
+from abjad.tools import componenttools
 from abjad.tools import iterate
 
 
@@ -41,4 +41,4 @@ def clone_and_splice_leaf(leaf, total = 1):
    Return none.
    '''
 
-   leaf.splice(clone.unspan([leaf], total - 1))
+   leaf.splice(componenttools.clone_components_and_remove_all_spanners([leaf], total - 1))

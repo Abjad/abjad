@@ -26,7 +26,7 @@ def test_update_interface_03( ):
 
    t = Note(0, (1, 4))
    t.offset.prolated.start
-   new = clone.unspan([t])[0]
+   new = componenttools.clone_components_and_remove_all_spanners([t])[0]
    assert not new._update._current
 
 
@@ -35,7 +35,7 @@ def test_update_interface_04( ):
 
    t = Voice(construct.scale(4))
    t[-1].offset.prolated.start
-   new = clone.unspan([t])[0]
+   new = componenttools.clone_components_and_remove_all_spanners([t])[0]
    assert not new._update._current
 
 

@@ -1,7 +1,7 @@
 from abjad.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.spanners import Tie
-from abjad.tools import clone
+from abjad.tools import componenttools
 from abjad.tools import tietools
 from abjad.tools.leaftools.change_leaf_preprolated_duration import \
    change_leaf_preprolated_duration as \
@@ -29,7 +29,7 @@ def _leaf_at_duration(
    if leaf_multiplied_duration <= unprolated_split_dur:
       return ([leaf], [ ])
 
-   new_leaf = clone.unspan([leaf])[0]
+   new_leaf = componenttools.clone_components_and_remove_all_spanners([leaf])[0]
    leaf.splice([new_leaf])
    new_leaf.grace.before = None
    new_leaf.articulations = None

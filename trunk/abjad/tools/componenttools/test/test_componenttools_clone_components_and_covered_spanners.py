@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_clone_covered_01( ):
+def test_componenttools_clone_components_and_covered_spanners_01( ):
    '''Withdraw components in 'components' from crossing spanners.
       Preserve spanners covered by 'components'.
       Deep copy 'components'.
@@ -38,7 +38,7 @@ def test_clone_covered_01( ):
    }
    '''
 
-   result = clone.covered(t.leaves)
+   result = componenttools.clone_components_and_covered_spanners(t.leaves)
    new = Voice(result)
 
    r'''
@@ -59,7 +59,7 @@ def test_clone_covered_01( ):
    assert new.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tg'8\n\ta'8\n\tb'8\n\tc''8\n}"
 
 
-def test_clone_covered_02( ):
+def test_componenttools_clone_components_and_covered_spanners_02( ):
 
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
    pitchtools.diatonicize(t)
@@ -91,7 +91,7 @@ def test_clone_covered_02( ):
    }
    '''
 
-   result = clone.covered(t[-3:])
+   result = componenttools.clone_components_and_covered_spanners(t[-3:])
    new = Voice(result)
 
    r'''
@@ -119,7 +119,7 @@ def test_clone_covered_02( ):
    assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 (\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8 )\n\t}\n}"
 
 
-def test_clone_covered_03( ):
+def test_componenttools_clone_components_and_covered_spanners_03( ):
    '''With optional 'n' argument for multiple copies.'''
 
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
@@ -152,7 +152,7 @@ def test_clone_covered_03( ):
    }
    '''
 
-   result = clone.covered(t[-3:], 2)
+   result = componenttools.clone_components_and_covered_spanners(t[-3:], 2)
    new = Voice(result)
 
    r'''

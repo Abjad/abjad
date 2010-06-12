@@ -1,7 +1,7 @@
 from abjad.container import Container
 from abjad.note import Note
 from abjad.rest import Rest
-from abjad.tools import clonewp
+from abjad.tools import componenttools
 from abjad.tools import construct
 
 
@@ -46,7 +46,7 @@ def contents_by_counts(container, counts, target_type = Note,
       raise ValueError('sum of counts must equal length of container.')
 
    ## find preprolated durations of glommed parts of container
-   tokens = clonewp.by_leaf_counts_with_parentage(container, counts)
+   tokens = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(container, counts)
    durations = [sum([x.duration.preprolated for x in part]) for part in tokens]
 
    ## construct new notes or rests

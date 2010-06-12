@@ -127,8 +127,8 @@ class ParentageInterface(_Interface):
          True
 
       .. note:: Governor is an old and probably nonoptimal idea
-         in the codebase. The concept is used only in the `clonewp`
-         module to clone components with parentage.
+         in the codebase. The concept is used only 
+         to clone components with a certain part of parentage.
       '''
 
       from abjad.container import Container

@@ -5,7 +5,7 @@ from abjad.tools import spannertools
 import copy
 
 
-def covered(components, n = 1):
+def clone_components_and_covered_spanners(components, n = 1):
    r'''Clone thread-contiguous `components` together with 
    spanners that cover `components`.
 
@@ -40,7 +40,7 @@ def covered(components, n = 1):
 
    ::
 
-      abjad> result = clone.covered(voice.leaves)
+      abjad> result = componenttools.clone_components_and_covered_spanners(voice.leaves)
       abjad> result
       (Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8), Note(g', 8), Note(a', 8))
 
@@ -69,7 +69,7 @@ def covered(components, n = 1):
 
    Clone `components` a total of `n` times. ::
 
-      abjad> result = clone.covered(voice.leaves[:2], n = 3)
+      abjad> result = componenttools.clone_components_and_covered_spanners(voice.leaves[:2], n = 3)
       abjad> result
       (Note(c', 8), Note(d', 8), Note(c', 8), Note(d', 8), Note(c', 8), Note(d', 8))
 
@@ -85,6 +85,10 @@ def covered(components, n = 1):
               c'8
               d'8
       }
+
+   .. versionchanged:: 1.1.2
+      renamed ``clone.covered( )`` to
+      ``componenttools.clone_components_and_covered_spanners( )``.
    '''
    
    if n < 1:
@@ -108,6 +112,6 @@ def covered(components, n = 1):
       spanner._unblockAllComponents( )
 
    for i in range(n - 1):
-      result += covered(components)
+      result += clone_components_and_covered_spanners(components)
       
    return result

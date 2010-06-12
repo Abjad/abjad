@@ -139,8 +139,8 @@ class _Component(_Abjad):
    ## OVERLOADS ##
 
    def __mul__(self, n):
-      from abjad.tools import clone
-      return clone.unspan([self], n)
+      from abjad.tools import componenttools
+      return componenttools.clone_components_and_remove_all_spanners([self], n)
 
    def __rmul__(self, n):
       return self * n

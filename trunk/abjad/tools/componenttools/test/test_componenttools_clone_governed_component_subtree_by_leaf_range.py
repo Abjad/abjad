@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_clonewp_by_leaf_range_with_parentage_01( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_01( ):
    '''Copy consecutive notes across tuplet boundary, in staff.'''
 
    t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
@@ -23,7 +23,7 @@ def test_clonewp_by_leaf_range_with_parentage_01( ):
    }
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t, 1, 5)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 5)
 
    r'''
    \new Staff {
@@ -43,7 +43,7 @@ def test_clonewp_by_leaf_range_with_parentage_01( ):
    assert u.format == "\\new Staff {\n\t\\times 2/3 {\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_02( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_02( ):
    '''Copy consecutive notes across tuplet boundary, in voice and staff.'''
 
    t = Staff([Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)])
@@ -66,7 +66,7 @@ def test_clonewp_by_leaf_range_with_parentage_02( ):
    }
    '''
    
-   u = clonewp.by_leaf_range_with_parentage(t, 1, 5)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 5)
 
    r'''
    \new Staff {
@@ -88,7 +88,7 @@ def test_clonewp_by_leaf_range_with_parentage_02( ):
    assert u.format == "\\new Staff {\n\t\\new Voice {\n\t\t\\times 2/3 {\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t\\times 2/3 {\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_03( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_03( ):
    '''Copy leaves from sequential containers only.'''
 
    t = Staff(Voice(construct.run(4)) * 2)
@@ -96,10 +96,10 @@ def test_clonewp_by_leaf_range_with_parentage_03( ):
    t.parallel = True
 
    assert py.test.raises(ContiguityError, 
-      'clonewp.by_leaf_range_with_parentage(t, 1, 5)')
+      'componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 5)')
 
 
-def test_clonewp_by_leaf_range_with_parentage_04( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_04( ):
    '''Works fine on voices nested inside parallel context.'''
 
    t = Staff(Voice(construct.run(4)) * 2)
@@ -123,7 +123,7 @@ def test_clonewp_by_leaf_range_with_parentage_04( ):
    >>
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t[0], 1, 3)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t[0], 1, 3)
 
    r'''
    \new Voice {
@@ -137,11 +137,11 @@ def test_clonewp_by_leaf_range_with_parentage_04( ):
    assert u.format == "\\new Voice {\n\td'8\n\te'8\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_05( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_05( ):
    '''Copy consecutive notes in binary measure.'''
 
    t = RigidMeasure((4, 8), construct.scale(4))
-   u = clonewp.by_leaf_range_with_parentage(t, 1, 3)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 3)
 
    r'''
    {
@@ -155,12 +155,12 @@ def test_clonewp_by_leaf_range_with_parentage_05( ):
    assert u.format == "{\n\t\\time 2/8\n\td'8\n\te'8\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_06( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_06( ):
    '''Copy consecutive notes in staff and score.'''
 
    score = Score([Staff(construct.scale(4))])
    t = score[0]
-   new = clonewp.by_leaf_range_with_parentage(t, 1, 3)
+   new = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 3)
 
    r'''
    \new Staff {
@@ -174,7 +174,7 @@ def test_clonewp_by_leaf_range_with_parentage_06( ):
    assert new.format == "\\new Staff {\n\td'8\n\te'8\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_07( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_07( ):
    '''Copy consecutive leaves from tuplet in binary measure;
       nonbinary measure results.'''
 
@@ -193,7 +193,7 @@ def test_clonewp_by_leaf_range_with_parentage_07( ):
    }
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t, 1, 4)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 4)
 
    r'''
    {
@@ -213,7 +213,7 @@ def test_clonewp_by_leaf_range_with_parentage_07( ):
    assert u.format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_08( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
    '''Copy consecutive leaves from tuplet in measure and voice;
    nonbinary measure results.'''
 
@@ -235,7 +235,7 @@ def test_clonewp_by_leaf_range_with_parentage_08( ):
    }
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t, 1, 4)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 4)
 
    r'''
    \new Voice {
@@ -257,7 +257,7 @@ def test_clonewp_by_leaf_range_with_parentage_08( ):
    assert u.format == "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_09( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_09( ):
    '''RigidMeasures shrink down when we copy a partial tuplet.'''
 
    t = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), construct.run(3)) * 2)
@@ -279,7 +279,7 @@ def test_clonewp_by_leaf_range_with_parentage_09( ):
    }
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t, 1)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1)
 
    r'''
    {
@@ -303,7 +303,7 @@ def test_clonewp_by_leaf_range_with_parentage_09( ):
    assert u.format == "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_10( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_10( ):
    '''Copy consecutive leaves across measure boundary.'''
 
    t = Staff(RigidMeasure((3, 8), construct.run(3)) * 2)
@@ -326,7 +326,7 @@ def test_clonewp_by_leaf_range_with_parentage_10( ):
    }
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t, 2, 4)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 2, 4)
 
    r'''
    \new Staff {
@@ -346,7 +346,7 @@ def test_clonewp_by_leaf_range_with_parentage_10( ):
    assert u.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_11( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_11( ):
    '''Copy consecutive leaves from tuplet in staff;
       pass start and stop indices local to tuplet.'''
 
@@ -368,7 +368,7 @@ def test_clonewp_by_leaf_range_with_parentage_11( ):
    }
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t[1], 1, 3)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t[1], 1, 3)
 
    r'''
    \new Staff {
@@ -384,7 +384,7 @@ def test_clonewp_by_leaf_range_with_parentage_11( ):
    assert u.format == "\\new Staff {\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_12( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_12( ):
    '''Copy consecutive leaves from measure in staff;
       pass start and stop indices local to measure.'''
 
@@ -408,7 +408,7 @@ def test_clonewp_by_leaf_range_with_parentage_12( ):
    }
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t[1], 1, 3)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t[1], 1, 3)
 
    r'''
    \new Staff {
@@ -425,7 +425,7 @@ def test_clonewp_by_leaf_range_with_parentage_12( ):
    assert u.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 
-def test_clonewp_by_leaf_range_with_parentage_13( ):
+def test_componenttools_clone_governed_component_subtree_by_leaf_range_13( ):
    '''Copy consecutive leaves from nonbinary measure in staff;
       pass start and stop indices local to measure.'''
 
@@ -453,7 +453,7 @@ def test_clonewp_by_leaf_range_with_parentage_13( ):
    }
    '''
 
-   u = clonewp.by_leaf_range_with_parentage(t[1], 1, 3)
+   u = componenttools.clone_governed_component_subtree_by_leaf_range(t[1], 1, 3)
 
    r'''
    \new Staff {

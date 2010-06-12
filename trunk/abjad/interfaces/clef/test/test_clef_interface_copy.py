@@ -8,7 +8,7 @@ def test_clef_interface_copy_01( ):
    pitchtools.chromaticize(t)
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
-   t.extend(clonewp.with_parent(t[:2]))
+   t.extend(componenttools.clone_components_and_immediate_parent_of_first_component(t[:2]))
 
    r'''
    \new Staff {
@@ -50,7 +50,7 @@ def test_clef_interface_copy_02( ):
    pitchtools.chromaticize(t)
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
-   t.extend(clonewp.with_parent(t[2:4]))
+   t.extend(componenttools.clone_components_and_immediate_parent_of_first_component(t[2:4]))
 
    assert check.wf(t)
    assert t[0].clef.effective == Clef('treble')

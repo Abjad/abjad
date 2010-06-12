@@ -12,7 +12,7 @@ class _NoteInitializer(_Initializer):
       from abjad.chord import Chord
       from abjad.note import Note
       from abjad.skip import Skip
-      from abjad.tools import clone
+      from abjad.tools import componenttools
       client.note_head = None
       if len(args) == 1 and isinstance(args[0], _Leaf):
          if isinstance(args[0], Note):
@@ -29,7 +29,7 @@ class _NoteInitializer(_Initializer):
             _Leaf.__init__(client, chord.duration.written)
             # must copy chord BEFORE _transfer_all_attributes
             if len(chord) > 0:
-               copy = clone.fracture([chord])[0]
+               copy = componenttools.clone_components_and_fracture_crossing_spanners([chord])[0]
             _transfer_all_attributes(chord, client)
             del client._note_heads
             if len(chord) > 0:

@@ -1,7 +1,7 @@
 from abjad.rational import Rational
 from abjad.score import Score
 from abjad.staff import Staff
-from abjad.tools import clone
+from abjad.tools import componenttools
 from abjad.tools.construct.scale import scale
 
 
@@ -38,7 +38,7 @@ def scale_period(key_signature = None):
    '''
 
    ascending_notes = scale(8, Rational(1, 8), key_signature)
-   descending_notes = clone.unspan(ascending_notes[:-1])
+   descending_notes = componenttools.clone_components_and_remove_all_spanners(ascending_notes[:-1])
    descending_notes.reverse( )
    notes = ascending_notes + descending_notes
    notes[-1].duration.written = Rational(1, 4)

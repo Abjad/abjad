@@ -1,10 +1,11 @@
 from abjad.meter import Meter
 from abjad.tools import check
 from abjad.tools import durtools
-from abjad.tools import clone
+from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
+   clone_components_and_fracture_crossing_spanners
 
 
-def with_parent(components):
+def clone_components_and_immediate_parent_of_first_component(components):
    r'''Copy thread-contiguous `components`.
    
    Return in newly created container equal to type of 
@@ -36,7 +37,7 @@ def with_parent(components):
                       d''8
               }
       }
-      abjad> new_tuplet = clonewp.with_parent(voice.leaves[:2])
+      abjad> new_tuplet = componenttools.clone_components_and_immediate_parent_of_first_component(voice.leaves[:2])
       abjad> new_tuplet
       FixedDurationTuplet(1/6, [c'8, d'8])
       abjad> f(new_tuplet)
@@ -48,7 +49,7 @@ def with_parent(components):
    Parent-contiguity is not required.
    Thread-contiguous `components` suffice. ::
    
-      abjad> new_tuplet = clonewp.with_parent(voice.leaves[:5])
+      abjad> new_tuplet = componenttools.clone_components_and_immediate_parent_of_first_component(voice.leaves[:5])
       abjad> new_tuplet
       FixedDurationTuplet(5/12, [c'8, d'8, e'8, f'8, g'8])
       abjad> f(new_tuplet)
@@ -63,6 +64,10 @@ def with_parent(components):
    .. note:: this function copies only the *immediate parent* of
       the first element in `components`. This function ignores any further 
       parentage of `components` above the immediate parent of `components`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``clonewp.with_parent( )`` to
+      ``componenttools.clone_components_and_immediate_parent_of_first_component( )``.
    '''
 
    from abjad.measure import _Measure
@@ -89,7 +94,7 @@ def with_parent(components):
    parent._music = [ ]
 
    # copy parent without music
-   result = clone.fracture([parent])[0]
+   result = clone_components_and_fracture_crossing_spanners([parent])[0]
 
    # give music back to parent
    parent._music = parents_music
@@ -98,7 +103,7 @@ def with_parent(components):
    result._music.extend(components)
 
    # populate result with deepcopy of input list and fracture spanners
-   result = clone.fracture([result])[0]
+   result = clone_components_and_fracture_crossing_spanners([result])[0]
 
    # point elements in result to result as new parent
    for element in result:

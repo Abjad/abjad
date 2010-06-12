@@ -1,7 +1,7 @@
 from abjad.chord import Chord
 from abjad.note import Note
 from abjad.pitch import Pitch
-from abjad.tools import clone
+from abjad.tools import componenttools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import \
    MelodicDiatonicInterval
 from abjad.tools.pitchtools.diatonic_scale_degree_to_letter import \
@@ -27,13 +27,13 @@ def transpose_by_melodic_diatonic_interval(
       return _transpose_pitch_by_melodic_diatonic_interval(
          pitch_carrier, melodic_diatonic_interval)
    elif isinstance(pitch_carrier, Note):
-      new_note = clone.unspan([pitch_carrier])[0]
+      new_note = componenttools.clone_components_and_remove_all_spanners([pitch_carrier])[0]
       new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
          pitch_carrier.pitch, melodic_diatonic_interval)
       new_note.pitch = new_pitch
       return new_note
    elif isinstance(pitch_carrier, Chord):
-      new_chord = clone.unspan([pitch_carrier])[0]
+      new_chord = componenttools.clone_components_and_remove_all_spanners([pitch_carrier])[0]
       for new_nh, old_nh in zip(
          new_chord.note_heads, pitch_carrier.note_heads):
          new_pitch = _transpose_pitch_by_melodic_diatonic_interval(

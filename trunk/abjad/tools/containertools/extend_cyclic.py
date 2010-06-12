@@ -1,4 +1,4 @@
-from abjad.tools.clonewp.with_parent import with_parent
+from abjad.tools.componenttools.clone_components_and_immediate_parent_of_first_component import clone_components_and_immediate_parent_of_first_component
 
 
 def extend_cyclic(container, n = 1, total = 2):
@@ -48,7 +48,7 @@ def extend_cyclic(container, n = 1, total = 2):
    for x in range(total - 1):
 
       # copy last n elements of container
-      addendum = with_parent(container[start:stop])
+      addendum = clone_components_and_immediate_parent_of_first_component(container[start:stop])
 
       # extend container with addendum
       container.extend(addendum)

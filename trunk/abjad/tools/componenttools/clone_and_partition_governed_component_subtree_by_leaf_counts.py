@@ -1,12 +1,10 @@
 from abjad.container import Container
 from abjad.tools import listtools
-from abjad.tools.clonewp.by_leaf_range_with_parentage import \
-   by_leaf_range_with_parentage
 
 
 ## TODO: Implement in-place containertools.partition_by_lengths( ) that doesn't climb to governor ##
 
-def by_leaf_counts_with_parentage(container, leaf_counts):
+def clone_and_partition_governed_component_subtree_by_leaf_counts(container, leaf_counts):
    r'''Clone `container` and partition clone according to `leaf_counts`. ::
 
       abjad> voice = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
@@ -29,7 +27,7 @@ def by_leaf_counts_with_parentage(container, leaf_counts):
       
    ::
       
-      abjad> first, second, third = clonewp.by_leaf_counts_with_parentage(voice, [1, 2, 3])
+      abjad> first, second, third = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(voice, [1, 2, 3])
       
    ::
       
@@ -64,7 +62,13 @@ def by_leaf_counts_with_parentage(container, leaf_counts):
    Set `leaf_counts` to an iterable of zero or more positive integers.
 
    Return a list of parts equal in length to that of `leaf_counts`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``clonewp.by_leaf_counts_with_parentage( )`` to
+      ``componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts( )``.
    '''
+   from abjad.tools.componenttools.clone_governed_component_subtree_by_leaf_range import \
+      clone_governed_component_subtree_by_leaf_range
    
    assert isinstance(container, Container)
    assert all([isinstance(x, int) for x in leaf_counts])
@@ -73,6 +77,6 @@ def by_leaf_counts_with_parentage(container, leaf_counts):
    sums = listtools.cumulative_sums_zero(leaf_counts)
    for start, stop in listtools.pairwise(sums):
       result.append(
-         by_leaf_range_with_parentage(container, start, stop))
+         clone_governed_component_subtree_by_leaf_range(container, start, stop))
 
    return result

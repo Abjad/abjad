@@ -93,7 +93,7 @@ def _rename_old_api_page(old_package, old_function, new_package, new_module):
    old_api_path = os.path.join(api_path, old_package, old_rst_file)
    new_rst_file = new_function + '.rst'
    new_api_path = os.path.join(api_path, new_package, new_rst_file)
-   command = 'svn mv %s %s > /dev/null' % (old_api_path, new_api_path)
+   command = 'svn --force mv %s %s > /dev/null' % (old_api_path, new_api_path)
    os.system(command)
    print ''
 
@@ -167,7 +167,7 @@ def _rename_old_module(old_package, old_function, new_package, new_function):
    old_path = os.path.join(ABJADPATH, 'tools', old_package, old_module)
    new_module = new_function + '.py'
    new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
-   command = 'svn mv %s %s > /dev/null' % (old_path, new_path)
+   command = 'svn --force mv %s %s > /dev/null' % (old_path, new_path)
    os.system(command)
    print ''
 
@@ -179,7 +179,7 @@ def _rename_old_test_file(old_package, old_function, new_package, new_function):
    new_test_file = 'test_%s_%s.py' % (new_package, new_function)
    new_path = os.path.join(ABJADPATH, 'tools', new_package, 'test')
    new_path = os.path.join(new_path, new_test_file)
-   command = 'svn mv %s %s > /dev/null' % (old_path, new_path)
+   command = 'svn --force mv %s %s > /dev/null' % (old_path, new_path)
    os.system(command)
    print ''
 

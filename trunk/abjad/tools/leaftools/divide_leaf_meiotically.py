@@ -1,6 +1,6 @@
 from abjad.leaf import _Leaf
 from abjad.rational import Rational
-from abjad.tools import clone
+from abjad.tools import componenttools
 from abjad.tools import mathtools
 import math
 
@@ -57,7 +57,7 @@ def divide_leaf_meiotically(leaf, n = 2):
    assert mathtools.is_power_of_two(n)
    assert 0 < n
 
-   new_leaves = clone.unspan([leaf], n - 1)
+   new_leaves = componenttools.clone_components_and_remove_all_spanners([leaf], n - 1)
    leaf.splice(new_leaves)
    adjustment_multiplier = Rational(1, n)
    leaf.duration.written *= adjustment_multiplier

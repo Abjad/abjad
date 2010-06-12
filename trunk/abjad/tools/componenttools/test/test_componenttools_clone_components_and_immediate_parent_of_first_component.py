@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_clonewp_with_parent_01( ):
+def test_componenttools_clone_components_and_immediate_parent_of_first_component_01( ):
    '''Copy adjacent notes in staff.'''
 
    t = Staff(construct.scale(4))
-   u = clonewp.with_parent(t[:2])
+   u = componenttools.clone_components_and_immediate_parent_of_first_component(t[:2])
 
    r'''
    \new Staff {
@@ -19,11 +19,11 @@ def test_clonewp_with_parent_01( ):
    assert u.format == "\\new Staff {\n\tc'8\n\td'8\n}"
 
 
-def test_clonewp_with_parent_02( ):
+def test_componenttools_clone_components_and_immediate_parent_of_first_component_02( ):
    '''Copy adjacent notes in staff.'''
 
    t = Staff(construct.scale(4))
-   u = clonewp.with_parent(t[-2:])
+   u = componenttools.clone_components_and_immediate_parent_of_first_component(t[-2:])
 
    r'''
    \new Staff {
@@ -38,12 +38,12 @@ def test_clonewp_with_parent_02( ):
 
 
 
-def test_clonewp_with_parent_03( ):
+def test_componenttools_clone_components_and_immediate_parent_of_first_component_03( ):
    '''Copy notes from tuplet and adjust tuplet target duration
    in order to preserve tuplet multiplier.'''
 
    t = FixedDurationTuplet((4, 8), construct.scale(5))
-   u = clonewp.with_parent(t[:3])
+   u = componenttools.clone_components_and_immediate_parent_of_first_component(t[:3])
 
    r'''
    \times 4/5 {
@@ -60,12 +60,12 @@ def test_clonewp_with_parent_03( ):
    assert u.format == "\\times 4/5 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_clonewp_with_parent_04( ):
+def test_componenttools_clone_components_and_immediate_parent_of_first_component_04( ):
    '''Copy adjacent, whole tuplets from staff.'''
 
    t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 3)
    pitchtools.diatonicize(t)
-   u = clonewp.with_parent(t[1:])
+   u = componenttools.clone_components_and_immediate_parent_of_first_component(t[1:])
 
    r'''
    \new Staff {

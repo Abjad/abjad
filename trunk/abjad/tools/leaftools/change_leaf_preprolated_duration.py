@@ -2,7 +2,6 @@ from abjad.exceptions import AssignabilityError
 from abjad.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.spanners import Tie
-from abjad.tools import clone
 from abjad.tools import construct
 from abjad.tuplet import FixedMultiplierTuplet
 
@@ -81,6 +80,7 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
 
    Return list of `leaf` and leaves newly tied to `leaf`.
    '''
+   from abjad.tools import componenttools
 
    assert isinstance(leaf, _Leaf)
    assert isinstance(new_preprolated_duration, Rational)
@@ -99,7 +99,8 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
       duration_tokens = construct.notes(0, new_preprolated_duration)
       if isinstance(duration_tokens[0], _Leaf):
          num_tied_leaves = len(duration_tokens) - 1
-         tied_leaves = clone.unspan([leaf], num_tied_leaves)
+         tied_leaves = componenttools.clone_components_and_remove_all_spanners(
+            [leaf], num_tied_leaves)
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written
@@ -111,7 +112,8 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
          fmtuplet = duration_tokens[0]
          duration_tokens = fmtuplet[:]
          num_tied_leaves = len(duration_tokens) - 1
-         tied_leaves = clone.unspan([leaf], num_tied_leaves)
+         tied_leaves = componenttools.clone_components_and_remove_all_spanners(
+            [leaf], num_tied_leaves)
          all_leaves = [leaf] + tied_leaves
          for x, token in zip(all_leaves, duration_tokens):
             x.duration.written = token.duration.written

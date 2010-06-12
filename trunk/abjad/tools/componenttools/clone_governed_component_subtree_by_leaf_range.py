@@ -1,12 +1,10 @@
 from abjad.container import Container
 from abjad.exceptions import ContiguityError
 from abjad.leaf import _Leaf
-from abjad.tools import leaftools
 from abjad.tools import iterate
-from abjad.tools.clone.fracture import fracture
 
 
-def by_leaf_range_with_parentage(component, start = 0, stop = None):
+def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = None):
    r'''Clone `component` together with children of `component` 
    and with sequential parentage of `component` 
    from `start` leaf to `stop` leaf::
@@ -31,7 +29,7 @@ def by_leaf_range_with_parentage(component, start = 0, stop = None):
       
    ::
       
-      abjad> u = clonewp.by_leaf_range_with_parentage(t, 1, 5)
+      abjad> u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 5)
       abjad> f(u)
       \new Staff {
          \new Voice {
@@ -52,11 +50,17 @@ def by_leaf_range_with_parentage(component, start = 0, stop = None):
    Trim and shrink cloned containers as necessary.
 
    When `stop` is none copy all leaves from `start` forward.
+
+   .. versionchanged:: 1.1.2
+      renamed ``clonewp.by_leaf_range_with_parentage( )`` to
+      ``componenttools.clone_governed_component_subtree_by_leaf_range( )``.
    '''
+   from abjad.tools import leaftools
+   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import clone_components_and_fracture_crossing_spanners
 
    # trivial leaf lcopy
    if isinstance(component, _Leaf):
-      return fracture([component])[0]
+      return clone_components_and_fracture_crossing_spanners([component])[0]
 
    # copy leaves from sequential containers only.
    if component.parallel:
@@ -82,7 +86,7 @@ def by_leaf_range_with_parentage(component, start = 0, stop = None):
    stop_index_in_governor = governor_leaves.index(stop_leaf_in_component)
 
    # copy governor
-   governor_copy = fracture([governor])[0]
+   governor_copy = clone_components_and_fracture_crossing_spanners([governor])[0]
    copy_leaves = governor_copy.leaves
 
    # new: find start and stop leaves in copy of governor

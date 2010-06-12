@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_clone_fracture_01( ):
+def test_componenttools_clone_components_and_fracture_crossing_spanners_01( ):
    '''Deep copy components in 'components'.
    Deep copy spanners that attach to any component in 'components'.
    Fracture spanners that attach to components not in 'components'.
@@ -27,7 +27,7 @@ def test_clone_fracture_01( ):
    }
    '''
 
-   result = clone.fracture(t.leaves[2:4])
+   result = componenttools.clone_components_and_fracture_crossing_spanners(t.leaves[2:4])
    new = Voice(result)
 
    r'''
@@ -42,7 +42,7 @@ def test_clone_fracture_01( ):
    assert new.format == "\\new Voice {\n\te'8 \\startTrillSpan\n\tf'8 \\stopTrillSpan\n}"
    
 
-def test_clone_fracture_02( ):
+def test_componenttools_clone_components_and_fracture_crossing_spanners_02( ):
    '''Copy one measure and fracture spanners.'''
 
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
@@ -71,7 +71,7 @@ def test_clone_fracture_02( ):
    }
    '''
 
-   result = clone.fracture(t[1:2])
+   result = componenttools.clone_components_and_fracture_crossing_spanners(t[1:2])
    new = Voice(result)
 
    r'''
@@ -89,7 +89,7 @@ def test_clone_fracture_02( ):
    assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
 
 
-def test_clone_fracture_03( ):
+def test_componenttools_clone_components_and_fracture_crossing_spanners_03( ):
    '''Three notes crossing measure boundaries.'''
 
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
@@ -118,7 +118,7 @@ def test_clone_fracture_03( ):
    }
    '''
 
-   result = clone.fracture(t.leaves[-3:])
+   result = componenttools.clone_components_and_fracture_crossing_spanners(t.leaves[-3:])
    new = Voice(result)
 
    r'''
@@ -134,7 +134,7 @@ def test_clone_fracture_03( ):
    assert new.format == "\\new Voice {\n\tf'8 \\startTrillSpan\n\tg'8 [\n\ta'8 ] \\stopTrillSpan\n}"
 
 
-def test_clone_fracture_04( ):
+def test_componenttools_clone_components_and_fracture_crossing_spanners_04( ):
    '''Optional 'n' argument for multiple copies.'''
 
    t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
@@ -163,7 +163,7 @@ def test_clone_fracture_04( ):
    }
    '''
 
-   result = clone.fracture(t[1:2], 3)
+   result = componenttools.clone_components_and_fracture_crossing_spanners(t[1:2], 3)
    new = Voice(result)
 
    r'''

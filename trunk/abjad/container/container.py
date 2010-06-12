@@ -26,10 +26,10 @@ class Container(_Component):
          the content of both a and b.
          The operation is non-commutative: the content of the first
          operand will be placed before the content of the second operand.'''
-      from abjad.tools import clone
+      from abjad.tools import componenttools
       from abjad.tools import fuse
-      left = clone.fracture([self])[0]
-      right = clone.fracture([expr])[0]
+      left = componenttools.clone_components_and_fracture_crossing_spanners([self])[0]
+      right = componenttools.clone_components_and_fracture_crossing_spanners([expr])[0]
       return fuse.containers_by_reference([left, right])
 
    def __contains__(self, expr):
@@ -59,9 +59,10 @@ class Container(_Component):
             
    def __iadd__(self, expr):
       '''__iadd__ avoids unnecessary copying of structures.'''
-      from abjad.tools import clone
+      from abjad.tools import componenttools
       from abjad.tools import fuse
-      return fuse.containers_by_reference([self, clone.fracture([expr])[0]])
+      return fuse.containers_by_reference([self, 
+         componenttools.clone_components_and_fracture_crossing_spanners([expr])[0]])
 
    def __imul__(self, total):
       '''Multiply contents of container 'total' times.

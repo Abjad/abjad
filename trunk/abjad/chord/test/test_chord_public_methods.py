@@ -15,7 +15,7 @@ def test_chord_public_methods_01( ):
 def test_chord_public_methods_02( ):
    '''Chords can be copied. Python ids differ.'''
    t = Chord([2, 4], (1, 4))
-   new = clone.fracture([t])[0]
+   new = componenttools.clone_components_and_fracture_crossing_spanners([t])[0]
    assert isinstance(new, Chord)
    assert len(t) == len(new)
    assert t.pitches[0].number == new.pitches[0].number

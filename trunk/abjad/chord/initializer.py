@@ -21,7 +21,7 @@ class _ChordInitializer(_Initializer):
       from abjad.note import Note
       from abjad.rest import Rest
       from abjad.skip import Skip
-      from abjad.tools import clone
+      from abjad.tools import componenttools
       from abjad.tools.scoretools.transfer_all_attributes import \
          _transfer_all_attributes
       client.pitches = [ ]
@@ -34,7 +34,7 @@ class _ChordInitializer(_Initializer):
             # _transfer_all_attributes;
             # otherwise note copy will fail to fracture spanners
             if note.note_head is not None:
-               copy = clone.fracture([note])[0]
+               copy = componenttools.clone_components_and_fracture_crossing_spanners([note])[0]
             _transfer_all_attributes(note, client)
             #del client._note_head
             client._note_head = NoteHeadInterface(client)

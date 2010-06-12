@@ -7,7 +7,7 @@ from abjad.tools import spannertools
 import copy
 
 
-def fracture(components, n = 1):
+def clone_components_and_fracture_crossing_spanners(components, n = 1):
    r'''Clone thread-contiguous `components` and fracture 
    spanners that cover `components`.
 
@@ -41,7 +41,7 @@ def fracture(components, n = 1):
 
    ::
 
-      abjad> result = clone.fracture(voice.leaves[2:4])
+      abjad> result = componenttools.clone_components_and_fracture_crossing_spanners(voice.leaves[2:4])
       abjad> result
       (Note(e', 8), Note(f', 8))
 
@@ -66,7 +66,7 @@ def fracture(components, n = 1):
 
    Clone `components` a total of `n` times. ::
 
-      abjad> result = clone.fracture(voice.leaves[2:4], n = 3)
+      abjad> result = componenttools.clone_components_and_fracture_crossing_spanners(voice.leaves[2:4], n = 3)
       abjad> result
       (Note(e', 8), Note(f', 8), Note(e', 8), Note(f', 8), Note(e', 8), Note(f', 8))
 
@@ -82,6 +82,10 @@ def fracture(components, n = 1):
               e'8 [
               f'8 ]
       }
+
+   .. versionchanged:: 1.1.2
+      renamed ``clone.fracture( )`` to
+      ``componenttools.clone_components_and_fracture_crossing_spanners( )``.
    '''
 
    if n < 1:
@@ -114,6 +118,6 @@ def fracture(components, n = 1):
       spanner.extend(list(contents))
 
    for i in range(n - 1):
-      result += fracture(components)
+      result += clone_components_and_fracture_crossing_spanners(components)
 
    return result

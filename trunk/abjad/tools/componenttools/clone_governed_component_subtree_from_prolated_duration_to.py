@@ -4,14 +4,9 @@ from abjad.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import iterate
-from abjad.tools import leaftools
-from abjad.tools import split
-from abjad.tools.clone.fracture import fracture
-from abjad.tools.clonewp.by_leaf_range_with_parentage import \
-   by_leaf_range_with_parentage
 
 
-def by_duration_with_parentage(component, start = 0, stop = None):
+def clone_governed_component_subtree_from_prolated_duration_to(component, start = 0, stop = None):
    r'''Clone `component` together with children of `component` and with
    sequential parentage of `component` from prolated duration `start`
    to prolated duration `stop`::
@@ -32,7 +27,7 @@ def by_duration_with_parentage(component, start = 0, stop = None):
       
    ::
       
-      abjad> new = clonewp.by_duration_with_parentage(voice, (0, 8), (3, 8))
+      abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, (0, 8), (3, 8))
       abjad> f(new)
       \new Voice {
         c'8
@@ -58,14 +53,14 @@ def by_duration_with_parentage(component, start = 0, stop = None):
                 d'8
         }
       >>
-      abjad> clonewp.by_duration_with_parentage(staff, 0, (1, 8))
+      abjad> componenttools.clone_governed_component_subtree_from_prolated_duration_to(staff, 0, (1, 8))
       ContiguityError
 
    .. note:: cases with ``0 = start`` work correctly.
 
    ::
 
-      abjad> new = clonewp.by_duration_with_parentage(voice, (0, 8), (1, 8))
+      abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, (0, 8), (1, 8))
       abjad> f(new)
       \new Voice {
         c'8
@@ -75,7 +70,7 @@ def by_duration_with_parentage(component, start = 0, stop = None):
 
    ::
       
-      abjad> new = clonewp.by_duration_with_parentage(voice, (1, 8), (2, 8))
+      abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, (1, 8), (2, 8))
       abjad> f(new)
       \new Voice {
         c'8
@@ -87,7 +82,7 @@ def by_duration_with_parentage(component, start = 0, stop = None):
    ::
 
       abjad> voice = Voice([Note(0, (1, 4))])
-      abjad> new = clonewp.by_duration_with_parentage(voice, 0, (1, 12))
+      abjad> new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice, 0, (1, 12))
       abjad> f(new)
       \new Voice {
         \times 2/3 {
@@ -101,12 +96,13 @@ def by_duration_with_parentage(component, start = 0, stop = None):
    ::
 
       abjad> voice = Voice([Note(0, (1, 4))])
-      abjad> new_leaf = clonewp.by_duration_with_parentage(voice[0], 0, (1, 8))
+      abjad> new_leaf = componenttools.clone_governed_component_subtree_from_prolated_duration_to(voice[0], 0, (1, 8))
       abjad> f(new_leaf)
       c'8
       abjad> new_leaf.parentage.parent is None 
       True
    '''
+   from abjad.tools import split
 
    assert isinstance(component, _Component)
    start = Rational(*durtools.token_unpack(start))
@@ -126,6 +122,9 @@ def by_duration_with_parentage(component, start = 0, stop = None):
 
 
 def _scopy_leaf(leaf, start, stop):
+   from abjad.tools import leaftools
+   from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
+      clone_components_and_fracture_crossing_spanners
    if start >= leaf.duration.prolated:
       return None
    if stop > leaf.duration.prolated:
@@ -133,12 +132,14 @@ def _scopy_leaf(leaf, start, stop):
    total = stop - start
    if total == 0:
       return None
-   new = fracture([leaf])[0]
+   new = clone_components_and_fracture_crossing_spanners([leaf])[0]
    leaftools.change_leaf_preprolated_duration(new, total)
    return new
 
 
 def _scopy_container(container, start, stop):
+   from abjad.tools import leaftools
+   from abjad.tools import split
    container, first_dif, second_dif = _get_lcopy(container, start, stop)
    #print first_dif, second_dif
    leaf_start = container.leaves[0]
@@ -159,6 +160,8 @@ def _scopy_container(container, start, stop):
 
 
 def _get_lcopy(container, start, stop):
+   from abjad.tools.componenttools.clone_governed_component_subtree_by_leaf_range import \
+      clone_governed_component_subtree_by_leaf_range
    total_dur = Rational(0)
    start_leaf, stop_leaf = None, None
    first_dif = second_dif = 0
@@ -181,6 +184,6 @@ def _get_lcopy(container, start, stop):
          #print 'breaking after stop'
          break
    #print start_leaf, stop_leaf
-   untrimmed_copy = by_leaf_range_with_parentage(
+   untrimmed_copy = clone_governed_component_subtree_by_leaf_range(
       container, start_leaf, stop_leaf)
    return untrimmed_copy, first_dif, second_dif

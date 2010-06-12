@@ -3,7 +3,7 @@ from abjad.leaf import _Leaf
 from abjad.note import Note
 from abjad.pitch import Pitch
 from abjad.rest import Rest
-from abjad.tools import clone
+from abjad.tools import componenttools
 from abjad.tools import construct
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.cast_defective import cast_defective
@@ -53,8 +53,8 @@ def _split(chord, pitch = Pitch('b', 3), attr = 'number'):
    assert attr in ('number', 'altitude')
 
    pitch = Pitch(pitch)
-   treble = clone.unspan([chord])[0]
-   bass = clone.unspan([chord])[0]
+   treble = componenttools.clone_components_and_remove_all_spanners([chord])[0]
+   bass = componenttools.clone_components_and_remove_all_spanners([chord])[0]
 
    treble.markup.down[:] = [ ]
    bass.markup.up[:] = [ ]

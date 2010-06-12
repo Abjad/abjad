@@ -1,4 +1,4 @@
-from abjad.tools import clone
+from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.chordtools.cast_defective import cast_defective
 
@@ -39,7 +39,7 @@ def subchords(chord):
 
    len_chord = len(chord)
    for i in range(2 ** len_chord):
-      new_chord = clone.unspan([chord])[0]
+      new_chord = componenttools.clone_components_and_remove_all_spanners([chord])[0]
       binary_string = mathtools.binary_string(i)
       binary_string = binary_string.zfill(len_chord)
       for j, digit in enumerate(reversed(binary_string)):

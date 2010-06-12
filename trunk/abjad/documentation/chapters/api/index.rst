@@ -183,32 +183,18 @@ chordtools
    tools/chordtools/subchords
 
 
-clone
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/clone/covered
-   tools/clone/fracture
-   tools/clone/unspan
-
-
-clonewp
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/clonewp/by_duration_with_parentage
-   tools/clonewp/by_leaf_counts_with_parentage
-   tools/clonewp/by_leaf_range_with_parentage
-   tools/clonewp/with_parent
-
-
 componenttools
 
 .. toctree::
    :maxdepth: 1
 
+   tools/componenttools/clone_and_partition_governed_component_subtree_by_leaf_counts
+   tools/componenttools/clone_components_and_covered_spanners
+   tools/componenttools/clone_components_and_fracture_crossing_spanners
+   tools/componenttools/clone_components_and_immediate_parent_of_first_component
+   tools/componenttools/clone_components_and_remove_all_spanners
+   tools/componenttools/clone_governed_component_subtree_by_leaf_range
+   tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
    tools/componenttools/detach
    tools/componenttools/flip
    tools/componenttools/get_duration_crossers
