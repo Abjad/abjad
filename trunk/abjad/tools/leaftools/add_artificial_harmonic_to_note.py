@@ -4,19 +4,21 @@ from abjad.tools import pitchtools
 
 perfect_fourth = pitchtools.MelodicDiatonicInterval('perfect', 4)
 
-def add_artificial(note, melodic_diatonic_interval = perfect_fourth):
-   r'''Add artifical harmonic at `diatonic_interval` to `note`.
-
-   ::
+def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fourth):
+   r'''Add artifical harmonic to `note` at `melodic_diatonic_interval`::
 
       abjad> t = Note(0, (1, 4))
-      abjad> harmonictools.add_artificial(t)
+      abjad> leaftools.add_artificial_harmonic_to_note(t)
       abjad> f(t)
       <
               c'
               \\tweak #'style #'harmonic
               f'
       >4
+
+   .. versionchanged:: 1.1.2
+      renamed ``harmonictools.add_artificial( )`` to
+      ``leaftools.add_artificial_harmonic_to_note( )``.
    '''
 
    chord = Chord(note)

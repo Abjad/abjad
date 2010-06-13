@@ -358,14 +358,6 @@ fuse
    tools/fuse/tuplets_by_reference
 
 
-harmonictools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/harmonictools/add_artificial
-
-
 interpolate
 
 .. toctree::
@@ -494,6 +486,7 @@ leaftools
 .. toctree::
    :maxdepth: 1
 
+   tools/leaftools/add_artificial_harmonic_to_note
    tools/leaftools/change_leaf_preprolated_duration
    tools/leaftools/change_written_duration_and_preserve_preprolated_duration
    tools/leaftools/clone_and_splice_leaf

@@ -2,14 +2,29 @@ from abjad.leaf import _Leaf
 from abjad.rational import Rational
 
 
-def change_written_duration_and_preserve_preprolated_duration(
-   leaf, written_duration):
-   '''Change `leaf` to `written_duration` and add LilyPond multiplier
-   to preserve `leaf` preprolated duration::
+def change_written_duration_and_preserve_preprolated_duration(leaf, written_duration):
+   '''Change `leaf` written duration to `written_duration` and 
+   preserve `leaf` preprolated duration::
 
       abjad> note = Note(0, (1, 4))
-      abjad> leaftools.change_written_duration_and_preserve_preprolated_duration(note, Rational(3, 16))
+      abjad> note.duration.written 
+      Rational(1, 4)
+      abjad> note.duration.preprolated 
+      Rational(1, 4)
+      
+   ::
+      
+      abjad> leaftools.change_written_duration_and_preserve_preprolated_duration(note, Rational(3, 16)) 
       Note(c', 8. * 4/3)
+      
+   ::
+      
+      abjad> note.duration.written 
+      Rational(3, 16)
+      abjad> note.duration.preprolated 
+      Rational(1, 4)
+
+   Add LilyPond multiplier where necessary.
 
    Return `leaf`.
    

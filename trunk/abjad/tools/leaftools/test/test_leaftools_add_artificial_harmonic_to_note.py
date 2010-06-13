@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_harmonictools_add_artificial_01( ):
+def test_leaftools_add_artificial_harmonic_to_note_01( ):
    '''Adds a perfect fourth by default.'''
 
    t = Note(0, (1, 4))
-   t = harmonictools.add_artificial(t)
+   t = leaftools.add_artificial_harmonic_to_note(t)
    assert t.format == "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tf'\n>4"
 
    r'''
@@ -17,12 +17,12 @@ def test_harmonictools_add_artificial_01( ):
    '''
 
 
-def test_harmonictools_add_artificial_02( ):
+def test_leaftools_add_artificial_harmonic_to_note_02( ):
    '''Specify other diatonic intervals explicitly.'''
 
    t = Note(0, (1, 4))
    diatonic_interval = pitchtools.MelodicDiatonicInterval('minor', 3)
-   t = harmonictools.add_artificial(t, diatonic_interval)
+   t = leaftools.add_artificial_harmonic_to_note(t, diatonic_interval)
    assert t.format == "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tef'\n>4"
 
    r'''
@@ -34,11 +34,11 @@ def test_harmonictools_add_artificial_02( ):
    '''
 
 
-def test_harmonictools_add_artificial_03( ):
+def test_leaftools_add_artificial_harmonic_to_note_03( ):
    '''Works in staves.'''
 
    t = Staff([Note(n, (1, 8)) for n in range(8)])
-   harmonictools.add_artificial(t[2])
+   leaftools.add_artificial_harmonic_to_note(t[2])
 
    r'''
    \new Staff {

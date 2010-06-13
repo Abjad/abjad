@@ -6,7 +6,6 @@ from abjad.tools import containertools
 from abjad.tools import divide
 from abjad.tools import formattools
 from abjad.tools import fuse
-from abjad.tools import harmonictools
 from abjad.tools import interpolate
 from abjad.tools import iterate
 from abjad.tools import label
