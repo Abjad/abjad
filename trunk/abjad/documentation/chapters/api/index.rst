@@ -358,18 +358,6 @@ fuse
    tools/fuse/tuplets_by_reference
 
 
-interpolate
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/interpolate/cosine
-   tools/interpolate/divide
-   tools/interpolate/divide_multiple
-   tools/interpolate/exponential
-   tools/interpolate/linear
-
-
 io
 
 .. toctree::
@@ -642,6 +630,11 @@ mathtools
    tools/mathtools/greatest_power_of_two_less_equal
    tools/mathtools/integer_compositions
    tools/mathtools/integer_partitions
+   tools/mathtools/interpolate_cosine
+   tools/mathtools/interpolate_divide
+   tools/mathtools/interpolate_divide_multiple
+   tools/mathtools/interpolate_exponential
+   tools/mathtools/interpolate_linear
    tools/mathtools/is_assignable_integer
    tools/mathtools/is_dotted_integer
    tools/mathtools/is_power_of_two

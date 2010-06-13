@@ -1,7 +1,7 @@
 from abjad.note import Note
 from abjad.rational import Rational
 from abjad.tools import durtools
-from abjad.tools import interpolate
+from abjad.tools import mathtools
 
 
 def notes_curve(pitches, total, start, stop, exp='cosine', 
@@ -30,7 +30,7 @@ def notes_curve(pitches, total, start, stop, exp='cosine',
    stop = Rational(*durtools.token_unpack(stop))
    written = Rational(*durtools.token_unpack(written))
 
-   dts = interpolate.divide(total, start, stop, exp)
+   dts = mathtools.interpolate_divide(total, start, stop, exp)
 
    ## convert floats to rationals
    dts = [Rational(int(round(x * 2**10)), 2**10) for x in dts]
