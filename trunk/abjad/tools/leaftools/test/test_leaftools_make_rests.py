@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import construct
+
 
 def test_leaftools_make_rests_01( ):
    '''

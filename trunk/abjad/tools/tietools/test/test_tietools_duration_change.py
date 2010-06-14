@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import construct
 
 
 def test_tietools_duration_change_01( ):

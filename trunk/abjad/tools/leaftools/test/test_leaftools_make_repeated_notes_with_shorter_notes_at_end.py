@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import construct
 import py.test
 
 

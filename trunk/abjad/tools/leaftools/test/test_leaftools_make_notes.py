@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import construct
+
 
 def test_leaftools_make_notes_01( ):
    '''
@@ -11,6 +11,7 @@ def test_leaftools_make_notes_01( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert not t[0].tie.spanned
+
 
 def test_leaftools_make_notes_02( ):
    '''Tied durations result in more than one tied Note.'''
