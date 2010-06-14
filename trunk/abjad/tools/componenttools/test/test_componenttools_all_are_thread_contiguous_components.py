@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_check_assess_components_thread_contiguous_01( ):
+def test_componenttools_all_are_thread_contiguous_components_01( ):
    '''True for thread contiguous components even when
       components are not strictly contiguous.'''
 
@@ -24,10 +24,10 @@ def test_check_assess_components_thread_contiguous_01( ):
    '''
 
    outer = (0, 1, 4, 5)
-   assert check.assess_components([t.leaves[i] for i in outer], contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components([t.leaves[i] for i in outer])
 
 
-def test_check_assess_components_thread_contiguous_02( ):
+def test_componenttools_all_are_thread_contiguous_components_02( ):
    '''Temporal gaps between components are OK.
       So long as gaps are filled with foreign components
       that do not belong to thread.'''
@@ -55,13 +55,13 @@ def test_check_assess_components_thread_contiguous_02( ):
    }
    '''
    
-   assert check.assess_components(t[0:1] + t[-1:], contiguity = 'thread')
-   assert check.assess_components(t[0][:] + t[-1:], contiguity = 'thread')
-   assert check.assess_components(t[0:1] + t[-1][:], contiguity = 'thread')
-   assert check.assess_components(t[0][:] + t[-1][:], contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(t[0:1] + t[-1:])
+   assert componenttools.all_are_thread_contiguous_components(t[0][:] + t[-1:])
+   assert componenttools.all_are_thread_contiguous_components(t[0:1] + t[-1][:])
+   assert componenttools.all_are_thread_contiguous_components(t[0][:] + t[-1][:])
 
 
-def test_check_assess_components_thread_contiguous_03( ):
+def test_componenttools_all_are_thread_contiguous_components_03( ):
    '''Components that start at the same moment are bad.
       Even if components are all part of the same thread.'''
 
@@ -88,47 +88,46 @@ def test_check_assess_components_thread_contiguous_03( ):
    }
    '''
    
-   assert not check.assess_components([t, t[0]], contiguity = 'thread')
-   assert not check.assess_components(t[0:1] + t[0][:], contiguity = 'thread')
-   assert not check.assess_components(t[-1:] + t[-1][:], contiguity = 'thread')
+   assert not componenttools.all_are_thread_contiguous_components([t, t[0]])
+   assert not componenttools.all_are_thread_contiguous_components(t[0:1] + t[0][:])
+   assert not componenttools.all_are_thread_contiguous_components(t[-1:] + t[-1][:])
 
 
-def test_check_assess_components_thread_contiguous_04( ):
+def test_componenttools_all_are_thread_contiguous_components_04( ):
    '''True for strictly contiguous leaves in same staff.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-   assert check.assess_components(t[:], contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(t[:])
 
 
-def test_check_assess_components_thread_contiguous_05( ):
+def test_componenttools_all_are_thread_contiguous_components_05( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
-   assert check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), contiguity = 'thread')
-   assert not check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), 
-      contiguity = 'thread', allow_orphans = False)
+   assert componenttools.all_are_thread_contiguous_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   assert not componenttools.all_are_thread_contiguous_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), allow_orphans = False)
 
 
-def test_check_assess_components_thread_contiguous_06( ):
+def test_componenttools_all_are_thread_contiguous_components_06( ):
    '''False for time reordered leaves in staff.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-   assert not check.assess_components(t[2:] + t[:2], contiguity = 'thread')
+   assert not componenttools.all_are_thread_contiguous_components(t[2:] + t[:2])
 
 
-def test_check_assess_components_thread_contiguous_07( ):
+def test_componenttools_all_are_thread_contiguous_components_07( ):
    '''True for unincorporated component.'''
 
-   assert check.assess_components([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))], contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
 
 
-def test_check_assess_components_thread_contiguous_08( ):
+def test_componenttools_all_are_thread_contiguous_components_08( ):
    '''True for empty list.'''
 
-   assert check.assess_components([ ], contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components([ ])
 
 
-def test_check_assess_components_thread_contiguous_09( ):
+def test_componenttools_all_are_thread_contiguous_components_09( ):
    '''False when components belonging to same thread are ommitted.'''
 
    t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(6))
@@ -145,10 +144,10 @@ def test_check_assess_components_thread_contiguous_09( ):
    }
    '''
 
-   assert not check.assess_components(t[:2] + t[-2:], contiguity = 'thread')
+   assert not componenttools.all_are_thread_contiguous_components(t[:2] + t[-2:])
 
 
-def test_check_assess_components_thread_contiguous_10( ):
+def test_componenttools_all_are_thread_contiguous_components_10( ):
    '''False when components belonging to same thread are ommitted.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -172,4 +171,4 @@ def test_check_assess_components_thread_contiguous_10( ):
    }
    '''
 
-   assert not check.assess_components(t[:1] + t[-1:], contiguity = 'thread')
+   assert not componenttools.all_are_thread_contiguous_components(t[:1] + t[-1:])

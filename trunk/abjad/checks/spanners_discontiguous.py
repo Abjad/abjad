@@ -1,5 +1,4 @@
 from abjad.checks.check import _Check
-from abjad.tools.check.assess_components import assess_components
 
 
 class SpannersDiscontiguous(_Check):
@@ -10,11 +9,12 @@ class SpannersDiscontiguous(_Check):
    '''
 
    def _run(self, expr):
+      from abjad.tools import componenttools
       violators = [ ]
       total, bad = 0, 0
       for spanner in expr.spanners.contained:
          if spanner._contiguity_constraint == 'thread':
-            if not assess_components(spanner[:], contiguity = 'thread'):
+            if not componenttools.all_are_thread_contiguous_components(spanner[:]):
                violators.append(spanner)
          total += 1
       return violators, total

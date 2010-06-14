@@ -304,8 +304,8 @@ class _Navigator(_Abjad):
          
    def _isThreadable(self, expr):
       '''Check if expr is threadable with respect to self.'''
-      from abjad.tools import check
-      return check.assess_components([self._client, expr], share = 'thread')
+      from abjad.tools import componenttools
+      return componenttools.all_are_components_in_same_thread([self._client, expr])
 
    ## TODO: Move _Navigator._rank to Parentage._rank ##
 

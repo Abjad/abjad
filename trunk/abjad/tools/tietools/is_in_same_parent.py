@@ -1,4 +1,4 @@
-from abjad.tools import check
+from abjad.tools import componenttools
 from abjad.tools.tietools.is_chain import is_chain
 
 
@@ -28,5 +28,4 @@ def is_in_same_parent(expr):
          abjad> assert tietools.is_in_same_parent(t.leaves[3].tie.chain)
    '''
 
-   return is_chain(expr) and \
-      check.assess_components(list(expr), share = 'parent')
+   return is_chain(expr) and componenttools.all_are_components_in_same_parent(list(expr))

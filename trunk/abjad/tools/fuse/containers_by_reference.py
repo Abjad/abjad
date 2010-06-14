@@ -1,5 +1,4 @@
 from abjad.container import Container
-from abjad.tools import check
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import iterate
@@ -58,8 +57,8 @@ def containers_by_reference(expr):
       next = cmp._navigator._nextNamesake
       if isinstance(next, Container) and not next.parallel and \
          not isinstance(next, _Tuplet) and \
-         check.assess_components([cmp, next], contiguity = 'strict', 
-            share = 'score', allow_orphans = False):
+         componenttools.all_are_contiguous_components_in_same_score(
+            [cmp, next], allow_orphans = True):
          cmp.extend(next)
          componenttools.remove_component_subtree_from_score_and_spanners([next])
          merged = True

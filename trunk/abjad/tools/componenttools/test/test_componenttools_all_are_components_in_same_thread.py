@@ -3,17 +3,17 @@ from abjad.component.component import _Component
 import py.test
 
 
-def test_check_assess_components_none_thread_01( ):
+def test_componenttools_all_are_components_in_same_thread_01( ):
    '''Unincorporated leaves do not thread.
       Unicorporated leaves do not share a root component.
       False if not allow orphans; True if allow orphans.'''
 
-   assert check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), share = 'thread')
-   assert not check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), share = 'thread', 
+   assert componenttools.all_are_components_in_same_thread(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   assert not componenttools.all_are_components_in_same_thread(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), 
       allow_orphans = False)
 
 
-def test_check_assess_components_none_thread_02( ):
+def test_componenttools_all_are_components_in_same_thread_02( ):
    '''Container and leaves all thread.'''
 
    t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -27,10 +27,10 @@ def test_check_assess_components_none_thread_02( ):
    }
    '''
 
-   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_03( ):
+def test_componenttools_all_are_components_in_same_thread_03( ):
    '''Tuplet and leaves all thread.'''
    
    t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
@@ -43,10 +43,10 @@ def test_check_assess_components_none_thread_03( ):
    }
    '''
 
-   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 ## nonstructural in new parallel --> context model.
-#def test_check_assess_components_none_thread_04( ):
+#def test_componenttools_all_are_components_in_same_thread_04( ):
 #   '''LilyPond assigns each leaf here to not only
 #      a different voice but a different staff.
 #      Abjad mimics this behavior and assigns each leaf 
@@ -62,10 +62,10 @@ def test_check_assess_components_none_thread_03( ):
 #      f'8
 #   >>'''
 #
-#   assert not check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+#   assert not componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_05( ):
+def test_componenttools_all_are_components_in_same_thread_05( ):
    '''Voice and leaves all thread.'''
 
    t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -79,10 +79,10 @@ def test_check_assess_components_none_thread_05( ):
    }
    '''
 
-   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_06( ):
+def test_componenttools_all_are_components_in_same_thread_06( ):
    '''Anonymous staff and leaves all thread.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -96,10 +96,10 @@ def test_check_assess_components_none_thread_06( ):
    }
    '''
 
-   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_07( ):
+def test_componenttools_all_are_components_in_same_thread_07( ):
    '''Voice, sequential and leaves all thread.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(4)) * 2)
@@ -122,10 +122,10 @@ def test_check_assess_components_none_thread_07( ):
    }
    '''
 
-   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_08( ):
+def test_componenttools_all_are_components_in_same_thread_08( ):
    '''Anonymous voice, tuplets and leaves all thread.'''
 
    t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
@@ -146,10 +146,10 @@ def test_check_assess_components_none_thread_08( ):
    }
    '''
 
-   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_09( ):
+def test_componenttools_all_are_components_in_same_thread_09( ):
    '''Can not thread across anonymous voices.'''
 
    t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
@@ -172,13 +172,13 @@ def test_check_assess_components_none_thread_09( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
-   assert not check.assess_components(t[:], share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
+   assert not componenttools.all_are_components_in_same_thread(t[:])
    
 
-def test_check_assess_components_none_thread_10( ):
+def test_componenttools_all_are_components_in_same_thread_10( ):
    '''Can thread across like-named voices.'''
 
    t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
@@ -203,10 +203,10 @@ def test_check_assess_components_none_thread_10( ):
    }
    '''
 
-   assert check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_11( ):
+def test_componenttools_all_are_components_in_same_thread_11( ):
    '''Can not thread across differently named voices.'''
 
    t = Staff(Voice(leaftools.make_repeated_notes(2)) * 2)
@@ -227,10 +227,10 @@ def test_check_assess_components_none_thread_11( ):
    }
    '''
 
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_12( ):
+def test_componenttools_all_are_components_in_same_thread_12( ):
    '''Can not thread across anonymous voices.
       Can not thread across anonymous staves.'''
 
@@ -254,10 +254,10 @@ def test_check_assess_components_none_thread_12( ):
    }
    '''   
 
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_13( ):
+def test_componenttools_all_are_components_in_same_thread_13( ):
    '''Can not thread across anonymous voices.
       Can not thread across anonymous staves.'''
 
@@ -291,10 +291,10 @@ def test_check_assess_components_none_thread_13( ):
    }
    '''
 
-   assert not check.assess_components(t.leaves[:4], share = 'thread')
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[:4])
 
 
-def test_check_assess_components_none_thread_14( ):
+def test_componenttools_all_are_components_in_same_thread_14( ):
    '''Anonymous voice, sequentials and leaves all thread.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
@@ -313,10 +313,10 @@ def test_check_assess_components_none_thread_14( ):
    }
    '''
 
-   assert check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_15( ):
+def test_componenttools_all_are_components_in_same_thread_15( ):
    '''Can thread across like-named staves.
       Can not thread across differently named IMPLICIT voices.'''
 
@@ -342,11 +342,11 @@ def test_check_assess_components_none_thread_15( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_16( ):
+def test_componenttools_all_are_components_in_same_thread_16( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Container(leaftools.make_repeated_notes(4)), Voice(leaftools.make_repeated_notes(4))])
@@ -369,12 +369,12 @@ def test_check_assess_components_none_thread_16( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_17( ):
+def test_componenttools_all_are_components_in_same_thread_17( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Voice(leaftools.make_repeated_notes(4)), Container(leaftools.make_repeated_notes(4))])
@@ -397,12 +397,12 @@ def test_check_assess_components_none_thread_17( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
    
-def test_check_assess_components_none_thread_18( ):
+def test_componenttools_all_are_components_in_same_thread_18( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Container(leaftools.make_repeated_notes(4)), Voice(leaftools.make_repeated_notes(4))])
@@ -426,12 +426,12 @@ def test_check_assess_components_none_thread_18( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_19( ):
+def test_componenttools_all_are_components_in_same_thread_19( ):
    '''Can not thread over differently named IMPLICIT voices.'''
 
    t = Container([Voice(leaftools.make_repeated_notes(4)), Container(leaftools.make_repeated_notes(4))])
@@ -455,12 +455,12 @@ def test_check_assess_components_none_thread_19( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
    
 
-def test_check_assess_components_none_thread_20( ):
+def test_componenttools_all_are_components_in_same_thread_20( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Container(leaftools.make_repeated_notes(4)), Staff(leaftools.make_repeated_notes(4))])
@@ -483,12 +483,12 @@ def test_check_assess_components_none_thread_20( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_21( ):
+def test_componenttools_all_are_components_in_same_thread_21( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
@@ -511,12 +511,12 @@ def test_check_assess_components_none_thread_21( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_22( ):
+def test_componenttools_all_are_components_in_same_thread_22( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -537,12 +537,12 @@ def test_check_assess_components_none_thread_22( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_23( ):
+def test_componenttools_all_are_components_in_same_thread_23( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
@@ -564,12 +564,12 @@ def test_check_assess_components_none_thread_23( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
    
-def test_check_assess_components_none_thread_24( ):
+def test_componenttools_all_are_components_in_same_thread_24( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -591,12 +591,12 @@ def test_check_assess_components_none_thread_24( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_25( ):
+def test_componenttools_all_are_components_in_same_thread_25( ):
    '''Can not thread across differently named IMPLICIT voices.
       NOTE: THIS IS THE LILYPOND LACUNA.
       LilyPond *does* thread in this case.
@@ -621,12 +621,12 @@ def test_check_assess_components_none_thread_25( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
    
 
-def test_check_assess_components_none_thread_26( ):
+def test_componenttools_all_are_components_in_same_thread_26( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -647,12 +647,12 @@ def test_check_assess_components_none_thread_26( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_27( ):
+def test_componenttools_all_are_components_in_same_thread_27( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    t = Container(leaftools.make_repeated_notes(4))
@@ -674,12 +674,12 @@ def test_check_assess_components_none_thread_27( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_28( ):
+def test_componenttools_all_are_components_in_same_thread_28( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    v = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -704,12 +704,12 @@ def test_check_assess_components_none_thread_28( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_29( ):
+def test_componenttools_all_are_components_in_same_thread_29( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    v = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -735,12 +735,12 @@ def test_check_assess_components_none_thread_29( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_30( ):
+def test_componenttools_all_are_components_in_same_thread_30( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    v1 = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -767,12 +767,12 @@ def test_check_assess_components_none_thread_30( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_31( ):
+def test_componenttools_all_are_components_in_same_thread_31( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
    v1 = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -797,12 +797,12 @@ def test_check_assess_components_none_thread_31( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_32( ):
+def test_componenttools_all_are_components_in_same_thread_32( ):
    '''Can not thread across differently named IMPLICIT voices.'''
    
    notes = [Note(n, (1, 8)) for n in range(4)]
@@ -835,11 +835,11 @@ def test_check_assess_components_none_thread_32( ):
    }
    '''
 
-   assert not check.assess_components(t.leaves[:8], share = 'thread')
-   assert not check.assess_components(t.leaves[4:], share = 'thread')
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[:8])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[4:])
 
 
-def test_check_assess_components_none_thread_33( ):
+def test_componenttools_all_are_components_in_same_thread_33( ):
    '''Can not thread across differently named IMPLICIT voices.'''
    
    t = Container(
@@ -870,11 +870,11 @@ def test_check_assess_components_none_thread_33( ):
    }
    '''
 
-   assert not check.assess_components(t.leaves[:8], share = 'thread')
-   assert not check.assess_components(t.leaves[4:], share = 'thread')
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[:8])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[4:])
 
 
-def test_check_assess_components_none_thread_34( ):
+def test_componenttools_all_are_components_in_same_thread_34( ):
    '''Can thread across gaps.
       Can not thread across differently named voices.'''
 
@@ -909,13 +909,13 @@ def test_check_assess_components_none_thread_34( ):
    }
    '''
 
-   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert check.assess_components([t.leaves[i] for i in middle], share = 'thread')
-   assert check.assess_components([t.leaves[i] for i in inner], share = 'thread')
-   assert not check.assess_components(t.leaves[:4], share = 'thread')
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in middle])
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[:4])
 
 
-def test_check_assess_components_none_thread_35( ):
+def test_componenttools_all_are_components_in_same_thread_35( ):
    '''Can thread across gaps.
       Can not thread across differently named IMPLICIT voices.'''
 
@@ -950,13 +950,13 @@ def test_check_assess_components_none_thread_35( ):
    }
    '''
    
-   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert check.assess_components([t.leaves[i] for i in middle], share = 'thread')
-   assert check.assess_components([t.leaves[i] for i in inner], share = 'thread')
-   assert not check.assess_components(t.leaves[:4], share = 'thread')
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in middle])
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[:4])
 
 
-def test_check_assess_components_none_thread_36( ):
+def test_componenttools_all_are_components_in_same_thread_36( ):
    '''Containers and leaves all thread.'''
 
    a, b, t = Container(Note(0, (1, 8)) * 4) * 3
@@ -985,10 +985,10 @@ def test_check_assess_components_none_thread_36( ):
    }
    '''
 
-   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_37( ):
+def test_componenttools_all_are_components_in_same_thread_37( ):
    '''Tuplets and leaves all thread.'''
 
    a, b, t = FixedDurationTuplet((3, 8), Note(0, (1, 8)) * 4) * 3
@@ -1019,10 +1019,10 @@ def test_check_assess_components_none_thread_37( ):
    }
    '''
 
-   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_38( ):
+def test_componenttools_all_are_components_in_same_thread_38( ):
    '''Can not thread across differently named voices.'''
 
    t = Container(Note(0, (1, 8)) * 4)
@@ -1052,12 +1052,12 @@ def test_check_assess_components_none_thread_38( ):
    outer = (0, 1, 6, 7)
    inner = (2, 3, 4, 5)
 
-   assert check.assess_components([t.leaves[i] for i in outer]) 
-   assert check.assess_components([t.leaves[i] for i in inner]) 
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer]) 
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner]) 
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_39( ):
+def test_componenttools_all_are_components_in_same_thread_39( ):
    '''Can not thread over differently named voices.'''
 
    t = Container(Note(0, (1, 8)) * 4)
@@ -1084,12 +1084,12 @@ def test_check_assess_components_none_thread_39( ):
    }
    '''
   
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_40( ):
+def test_componenttools_all_are_components_in_same_thread_40( ):
    '''Can not nest across differently named implicit voices.'''
 
    t = Container(Note(0, (1, 8)) * 4)
@@ -1123,12 +1123,12 @@ def test_check_assess_components_none_thread_40( ):
    outer = (0, 1, 6, 7)
    inner = (2, 3, 4, 5)
 
-   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert check.assess_components([t.leaves[i] for i in inner], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
  
-def test_check_assess_components_none_thread_41( ):
+def test_componenttools_all_are_components_in_same_thread_41( ):
    '''Can not thread across differently named voices.'''
 
    v = Voice(Note(0, (1, 8)) * 4)
@@ -1172,12 +1172,12 @@ def test_check_assess_components_none_thread_41( ):
    outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
    inner = (6, 7, 8, 9)
 
-   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert check.assess_components([t.leaves[i] for i in inner], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 
-def test_check_assess_components_none_thread_42( ):
+def test_componenttools_all_are_components_in_same_thread_42( ):
    '''Can not thread across differently named anonymous voices.'''
 
    t = Container(leaftools.make_repeated_notes(4))
@@ -1205,15 +1205,15 @@ def test_check_assess_components_none_thread_42( ):
    }
    '''
 
-   assert check.assess_components(t.leaves[:4], share = 'thread')
-   assert check.assess_components(t.leaves[4:8], share = 'thread')
-   assert check.assess_components(t.leaves[8:], share = 'thread')
-   assert not check.assess_components(t.leaves[:8], share = 'thread')
-   assert not check.assess_components(t.leaves[4:], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[4:8])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[8:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[:8])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[4:])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_check_assess_components_none_thread_43( ):
+#def test_componenttools_all_are_components_in_same_thread_43( ):
 #   '''A parallel Staff and only leaves as it's content DO NOT thread.'''
 #
 #   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -1226,11 +1226,11 @@ def test_check_assess_components_none_thread_42( ):
 #      f'8
 #   >>'''
 #
-#   assert not check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+#   assert not componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_check_assess_components_none_thread_44( ):
+#def test_componenttools_all_are_components_in_same_thread_44( ):
 #   '''Leaves inside anonymous parallel Staff DO NOT thread.
 #   This mimics LilyPond's behavior of not collapsing then notes into
 #   a chord. '''
@@ -1245,11 +1245,11 @@ def test_check_assess_components_none_thread_42( ):
 #      f'8
 #   >>'''
 #
-#   assert not check.assess_components(t.leaves, share = 'thread')
+#   assert not componenttools.all_are_components_in_same_thread(t.leaves)
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_check_assess_components_none_thread_45( ):
+#def test_componenttools_all_are_components_in_same_thread_45( ):
 #   '''Parallel and sequential containers, and leaves, all thead.'''
 #
 #   t = Container(Note(0, (1, 8)) * 4)
@@ -1271,11 +1271,11 @@ def test_check_assess_components_none_thread_42( ):
 #      g'8
 #   }'''
 #
-#   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+#   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
  
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_check_assess_components_none_thread_46( ):
+#def test_componenttools_all_are_components_in_same_thread_46( ):
 #   '''Voice, containers and leaves all thread.'''
 #
 #   t = Voice(Note(0, (1, 8)) * 4)
@@ -1297,11 +1297,11 @@ def test_check_assess_components_none_thread_42( ):
 #      g'8
 #   }'''
 #
-#   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+#   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_check_assess_components_none_thread_47( ):
+#def test_componenttools_all_are_components_in_same_thread_47( ):
 #   '''Containers and leaves all thread.
 #      Iterating through here will be a little tricky.
 #      But all components do belong to the same thread.'''
@@ -1327,7 +1327,7 @@ def test_check_assess_components_none_thread_42( ):
 
 
 ## NONSTRUCTURAL  in new parallel --> context model.
-#def test_check_assess_components_none_thread_48( ):
+#def test_componenttools_all_are_components_in_same_thread_48( ):
 #   '''Everything threads.'''
 #
 #   p = Container(Container(Note(0, (1, 8)) * 4) * 2)
@@ -1357,10 +1357,10 @@ def test_check_assess_components_none_thread_42( ):
 #      b'8
 #   }'''
 #
-#   assert check.assess_components(list(iterate.naive_forward_in(t, _Component)), share = 'thread')
+#   assert componenttools.all_are_components_in_same_thread(list(iterate.naive_forward_in(t, _Component)))
 
 
-def test_check_assess_components_none_thread_49( ):
+def test_componenttools_all_are_components_in_same_thread_49( ):
    '''Can not thread across differently named anonymous voices.'''
 
    p = Container(Voice(Note(0, (1, 8)) * 4) * 2)
@@ -1394,8 +1394,8 @@ def test_check_assess_components_none_thread_49( ):
 
    outer = (0, 1, 10, 11)
 
-   assert check.assess_components([t.leaves[i] for i in outer], share = 'thread')
-   assert check.assess_components(t.leaves[2:6], share = 'thread')
-   assert check.assess_components(t.leaves[6:10], share = 'thread')
-   assert not check.assess_components(t.leaves[:6], share = 'thread')
-   assert not check.assess_components(t.leaves, share = 'thread')
+   assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[2:6])
+   assert componenttools.all_are_components_in_same_thread(t.leaves[6:10])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves[:6])
+   assert not componenttools.all_are_components_in_same_thread(t.leaves)

@@ -164,7 +164,6 @@ check
 
    tools/check/assert_components
    tools/check/assert_wf
-   tools/check/assess_components
    tools/check/profile
    tools/check/wf
 
