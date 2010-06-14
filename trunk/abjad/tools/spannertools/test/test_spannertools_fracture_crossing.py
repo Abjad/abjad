@@ -53,15 +53,6 @@ def test_spannertools_fracture_crossing_03( ):
 
 
 def test_spannertools_fracture_crossing_04( ):
-   '''Nonsuccessive components raise ContiguityError.'''
-
-   t1 = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-   t2 = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-   assert py.test.raises(
-      ContiguityError, 'spannertools.fracture_crossing(t1[:] + t2[:])')
-
-
-def test_spannertools_fracture_crossing_05( ):
    '''Fractures around components at only top level of list.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -109,7 +100,7 @@ def test_spannertools_fracture_crossing_05( ):
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [ \\<\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\!\n\t}\n}"
 
 
-def test_spannertools_fracture_crossing_06( ):
+def test_spannertools_fracture_crossing_05( ):
    '''Fractures around components at only top level of list.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(2)) * 3)

@@ -223,7 +223,7 @@ def test_thread_report_06( ):
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
    pitchtools.diatonicize(t)
-   py.test.raises(ContiguityError, 'Beam(t.leaves)')
+   py.test.raises(AssertionError, 'Beam(t.leaves)')
    Beam(t.leaves[:2])
    Beam(t.leaves[2:])
 

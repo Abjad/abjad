@@ -39,8 +39,7 @@ def test_tempo_spanner_contiguity_constraint_01( ):
    }
    '''
 
-   assert py.test.raises(
-      ContiguityError, 'TempoSpanner([score[0][0], score[1][0]])')
+   assert py.test.raises(AssertionError, 'TempoSpanner([score[0][0], score[1][0]])')
 
    tempo = TempoSpanner([ ], tempotools.TempoIndication(Rational(1, 4), 48))
    tempo._contiguity_constraint = None

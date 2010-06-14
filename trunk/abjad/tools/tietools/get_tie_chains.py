@@ -1,5 +1,5 @@
 from abjad.exceptions import MissingSpannerError
-from abjad.tools import check
+from abjad.tools import componenttools
 from abjad.tools import iterate
 
 
@@ -11,7 +11,7 @@ def get_tie_chains(components):
    the components given and the leaves found in the given components list.
    '''
 
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
 
    ## collect tie spanners in components
    tie_spanners = [ ]

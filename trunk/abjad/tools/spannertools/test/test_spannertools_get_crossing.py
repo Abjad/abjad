@@ -42,31 +42,6 @@ def test_spannertools_get_crossing_01( ):
 
 
 def test_spannertools_get_crossing_02( ):
-   '''Trying to get crossing spanners across 
-      non-thread-contiguous components raises ContiguityError.'''
-
-   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
-   Beam(t.leaves[:2])
-   Slur(t.leaves[2:])
-   
-   r'''
-   {
-           \new Voice {
-                   c'8 [
-                   d'8 ]
-           }
-           \new Voice {
-                   e'8 (
-                   f'8 )
-           }
-   }
-   '''
-   
-   assert py.test.raises(ContiguityError, 'spannertools.get_crossing(t.leaves)')
-
-
-def test_spannertools_get_crossing_03( ):
    '''Helper gets spanners that cross in from above.'''
 
    t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)

@@ -67,7 +67,7 @@ def test_container_parallel_05( ):
    It cannot take leaves.'''
 
    t = Container(leaftools.make_repeated_notes(4))
-   py.test.raises(TypeError, 't.parallel = True')
+   py.test.raises(AssertionError, 't.parallel = True')
 
 
 def test_container_parallel_06( ):
@@ -75,4 +75,4 @@ def test_container_parallel_06( ):
    It cannot take Containers.'''
 
    t = Container(Container(leaftools.make_repeated_notes(4)) * 2)
-   py.test.raises(TypeError, 't.parallel = True')
+   py.test.raises(AssertionError, 't.parallel = True')

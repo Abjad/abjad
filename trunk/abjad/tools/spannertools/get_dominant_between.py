@@ -1,5 +1,4 @@
 from abjad.component import _Component
-from abjad.tools import check
 
 
 def get_dominant_between(left, right):
@@ -14,11 +13,12 @@ def get_dominant_between(left, right):
    This version is useful for finding spanners that dominant
    a zero-length 'crack' between components, as in t[2:2].
    '''
+   from abjad.tools import componenttools
       
    if left is None or right is None:
       return set([ ])
 
-   check.assert_components([left, right], contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components([left, right])
 
    dominant_spanners = left.spanners.contained & right.spanners.contained
    components_after_gap = right._navigator._contemporaneousStartComponents

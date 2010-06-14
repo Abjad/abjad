@@ -2,7 +2,6 @@ from abjad.measure import _Measure
 from abjad.measure import RigidMeasure
 from abjad.meter import Meter
 from abjad.rational import Rational
-from abjad.tools import check
 from abjad.tools import containertools
 from abjad.tools import metertools
 from abjad.tools import parenttools
@@ -69,9 +68,10 @@ def measures_by_reference(measures):
 
    Leave `measures` empty, unspanned and outside-of-score.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(measures, 
-      klasses = (_Measure), contiguity = 'strict', share = 'parent')
+   assert componenttools.all_are_contiguous_components_in_same_parent(measures,
+      klasses = (_Measure))
 
    if len(measures) == 0:
       return None

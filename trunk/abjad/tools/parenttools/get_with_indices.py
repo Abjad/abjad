@@ -1,6 +1,3 @@
-from abjad.tools import check
-
-
 def get_with_indices(components):
    r'''Return ``(parent, start, stop)`` triple with
    
@@ -31,8 +28,9 @@ def get_with_indices(components):
       abjad> parenttools.get_with_indices(leaves)
       (Staff{6}, 4, 5)
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components, contiguity = 'strict', share = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    if len(components) > 0:
       first, last = components[0], components[-1]

@@ -1,5 +1,4 @@
 from abjad.rational import Rational
-from abjad.tools import check
 from abjad.tools.componenttools._split_component_at_duration import _split_component_at_duration
 
 
@@ -11,9 +10,10 @@ def _by_durations(components, durations,
       Interpret durations as prolated durations.
       Return list of newly split parts.
    '''
+   from abjad.tools import componenttools
 
    ## check input
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
    assert isinstance(durations, list)
    assert all([isinstance(x, (int, float, Rational)) for x in durations])
 

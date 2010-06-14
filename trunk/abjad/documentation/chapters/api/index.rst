@@ -162,7 +162,6 @@ check
 .. toctree::
    :maxdepth: 1
 
-   tools/check/assert_components
    tools/check/assert_wf
    tools/check/profile
    tools/check/wf

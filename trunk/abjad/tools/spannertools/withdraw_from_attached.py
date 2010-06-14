@@ -1,6 +1,3 @@
-from abjad.tools import check
-
-
 def _withdraw_from_attached(components):
    '''Input parameter:
 
@@ -14,10 +11,12 @@ def _withdraw_from_attached(components):
 
       Note that you can leave noncontiguous notes spanned
       after apply unspan_components to components in the
-      middle of some larger spanner.'''
+      middle of some larger spanner.
+   '''
+   from abjad.tools import componenttools
 
    # check input
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
 
    # detach spanners
    for component in components:

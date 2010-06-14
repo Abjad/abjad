@@ -1,4 +1,3 @@
-from abjad.tools import check
 from abjad.tools.spannertools.get_contained import get_contained
 
 
@@ -9,8 +8,9 @@ def get_covered(components):
       Compare 'covered' spanners with 'contained' spanners.
       Compare 'covered' spanners with 'dominant' spanners.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components, contiguity = 'thread') 
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    if not len(components):
       return set([ ])

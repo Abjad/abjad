@@ -154,17 +154,6 @@ def test_spannertools_get_dominant_08( ):
 
 
 def test_spannertools_get_dominant_09( ):
-   '''Lone components raise ContiguityError.'''
-
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)
-   b1 = Beam(notes[:2])
-   b2 = Beam(notes[2:])
-   crescendo = Crescendo(notes)
-
-   assert py.test.raises(ContiguityError, 'spannertools.get_dominant(notes[1:3])')
-
-
-def test_spannertools_get_dominant_10( ):
    '''Works on empty containers.
       Implementation does not depend on component duration.'''
 

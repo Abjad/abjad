@@ -255,7 +255,7 @@ def test_thread_signature_09( ):
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
    pitchtools.diatonicize(t)
-   assert py.test.raises(ContiguityError, 'Beam(t.leaves)')
+   assert py.test.raises(AssertionError, 'Beam(t.leaves)')
    Beam(t.leaves[:2])
    Beam(t.leaves[2:])
 

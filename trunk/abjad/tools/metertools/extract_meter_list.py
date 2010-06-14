@@ -1,4 +1,3 @@
-from abjad.tools import check
 from abjad.tools import iterate
 
 
@@ -16,9 +15,10 @@ def extract_meter_list(components):
 
    Useful as input to some rhythmic transforms.
    '''
+   from abjad.tools import componenttools
 
    ## make sure components is a Python list of Abjad components
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
 
    ## create empty list to hold result
    result = [ ]

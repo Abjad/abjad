@@ -1,5 +1,4 @@
 from abjad.rational import Rational
-from abjad.tools import check
 
 
 def list_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
@@ -19,8 +18,9 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
       renamed ``componenttools.get_le_duration_prolated( )`` to
       ``componenttools.list_leftmost_components_with_prolated_duration_at_most( )``.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components, contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    total_duration = Rational(0)
    result = [ ]

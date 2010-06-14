@@ -1,6 +1,3 @@
-from abjad.tools import check
-
-
 def remove_tie_spanners_from_components(components):
    r'''Untie thread-contiguous `components`. ::
 
@@ -32,8 +29,9 @@ def remove_tie_spanners_from_components(components):
       renamed ``componenttools.untie_shallow( )`` to
       ``componenttools.remove_tie_spanners_from_components( )``.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components, contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    for component in components:
       component.tie.unspan( )

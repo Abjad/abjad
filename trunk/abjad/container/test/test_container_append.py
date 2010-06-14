@@ -52,10 +52,10 @@ def test_container_append_03( ):
    t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    Beam(t[:])
 
-   assert py.test.raises(TypeError, "t.append('foo')")
-   assert py.test.raises(TypeError, "t.append(99)")
-   assert py.test.raises(TypeError, "t.append([ ])")
-   assert py.test.raises(TypeError, "t.append([Note(0, (1, 8))])")
+   assert py.test.raises(AssertionError, "t.append('foo')")
+   assert py.test.raises(AssertionError, "t.append(99)")
+   assert py.test.raises(AssertionError, "t.append([ ])")
+   assert py.test.raises(AssertionError, "t.append([Note(0, (1, 8))])")
 
 
 def test_container_append_04( ):

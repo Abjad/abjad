@@ -1,7 +1,6 @@
 from abjad.container import Container
 from abjad.exceptions import TupletFuseError
 from abjad.rational import Rational
-from abjad.tools import check
 from abjad.tools import containertools
 from abjad.tuplet import _Tuplet
 from abjad.tuplet import FixedDurationTuplet
@@ -62,10 +61,11 @@ def tuplets_by_reference(tuplets):
    All `tuplets` must be of the same type.
    '''
 
+   from abjad.tools import componenttools
    from abjad.tools import scoretools
 
-   check.assert_components(tuplets,
-      klasses = (_Tuplet), contiguity = 'strict', share = 'parent')
+   assert componenttools.all_are_contiguous_components_in_same_parent(tuplets,
+      klasses = (_Tuplet))
 
    if len(tuplets) == 0:
       return None

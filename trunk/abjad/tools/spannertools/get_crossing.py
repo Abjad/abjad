@@ -1,5 +1,4 @@
 from abjad.component import _Component
-from abjad.tools import check
 from abjad.tools import iterate
 from abjad.tools.spannertools.get_contained import get_contained
 from abjad.tools.spannertools.get_covered import get_covered
@@ -20,8 +19,9 @@ def get_crossing(components):
    Compare 'crossing' spanners with 'contained' spanners.
    Compare 'crossing' spanners with 'attached' spanners.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components, contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
 #   result = get_contained(components) - \
 #      get_covered(components)

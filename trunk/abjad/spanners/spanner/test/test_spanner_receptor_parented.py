@@ -30,7 +30,7 @@ def test_spanner_receptor_parented_03( ):
 
    t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
 
-   assert py.test.raises(ContiguityError, 'b = Beam(t)')
+   assert py.test.raises(AssertionError, 'b = Beam(t)')
 #   assert t.beam.parented
 #   for v in t:
 #      assert v.beam.parented

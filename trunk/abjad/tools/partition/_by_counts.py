@@ -1,6 +1,5 @@
 from abjad.container import Container
 from abjad.leaf import _Leaf
-from abjad.tools import check
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 
 
@@ -9,10 +8,12 @@ def _by_counts(components, counts, spanners = 'unfractured', cyclic = False):
       Partition by zero or more positive integers in counts list.
       Fracture spanners or not according to keyword.
       Read counts in list cyclically or not according to keyword.
-      Return Python list of partitioned parts.'''
+      Return Python list of partitioned parts.
+   '''
+   from abjad.tools import componenttools
 
    ## check input
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
    assert isinstance(counts, list)
    assert all([isinstance(x, (int)) and 0 < x for x in counts])
 

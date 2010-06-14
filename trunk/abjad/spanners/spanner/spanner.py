@@ -126,7 +126,7 @@ class Spanner(_Abjad):
   
    def _initializeMusic(self, music):
       from abjad.component import _Component
-      from abjad.tools import check
+      from abjad.tools import componenttools
       from abjad.tools import iterate
       music = music or [ ]
       if isinstance(music, _Component):
@@ -135,7 +135,7 @@ class Spanner(_Abjad):
       ##       Include optional staff-level contiguity check here. ##
       if self._contiguity_constraint == 'thread':
          leaves = list(iterate.leaves_forward_in(music))
-         check.assert_components(leaves, contiguity = 'thread')
+         assert componenttools.all_are_thread_contiguous_components(leaves)
       self.extend(music)
 
    def _insert(self, i, component):
@@ -363,9 +363,9 @@ class Spanner(_Abjad):
       '''
 
       if self._contiguity_constraint == 'thread':
-         from abjad.tools import check
+         from abjad.tools import componenttools
          components = self[-1:] + [component]
-         check.assert_components(components, contiguity = 'thread')
+         assert componenttools.all_are_thread_contiguous_components(components)
       component.spanners._add(self)
       self._components.append(component)
 
@@ -386,9 +386,9 @@ class Spanner(_Abjad):
          Spanner(d'8, e'8, f'8)
       '''
 
-      from abjad.tools import check
+      from abjad.tools import componenttools
       components = [component] + self[:1] 
-      check.assert_components(components, contiguity = 'thread')
+      assert componenttools.all_are_thread_contiguous_components(components)
       component.spanners._add(self)
       self._components.insert(0, component)
 
@@ -453,11 +453,11 @@ class Spanner(_Abjad):
          Spanner(c'8, d'8, e'8, f'8)
       '''
 
-      from abjad.tools import check
+      from abjad.tools import componenttools
       input = self[-1:]
       input.extend(components)
       if self._contiguity_constraint == 'thread':
-         check.assert_components(input, contiguity = 'thread')
+         assert componenttools.all_are_thread_contiguous_components(input)
       for component in components:
          self.append(component)
 
@@ -476,9 +476,9 @@ class Spanner(_Abjad):
          Spanner(c'8, d'8, e'8, f'8)
       '''
 
-      from abjad.tools import check
+      from abjad.tools import componenttools
       input = components + self[:1]
-      check.assert_components(input, contiguity = 'thread')
+      assert componenttools.all_are_thread_contiguous_components(input)
       for component in reversed(components):
          self.append_left(component)
 

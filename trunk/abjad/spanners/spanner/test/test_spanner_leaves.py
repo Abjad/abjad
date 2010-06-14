@@ -144,7 +144,7 @@ def test_spanner_leaves_06( ):
    }
    '''
 
-   assert py.test.raises(ContiguityError, 'p = Spanner(t)')
+   assert py.test.raises(AssertionError, 'p = Spanner(t)')
 #   assert len(p.components) == 1
 #   assert p.components[0] is t
 #   assert len(p.leaves) == 4
@@ -184,7 +184,7 @@ def test_spanner_leaves_07( ):
    }
    '''
 
-   assert py.test.raises(ContiguityError, 'p = Spanner(t[:])')
+   assert py.test.raises(AssertionError, 'p = Spanner(t[:])')
 #   for i, component in enumerate(t[:]):
 #      assert component is t[i]
 #   assert len(p.leaves) == 4

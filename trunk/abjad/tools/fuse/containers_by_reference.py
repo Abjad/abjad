@@ -77,8 +77,6 @@ def containers_by_reference(expr):
 #   '''Fuse containers in self that are strictly contiguous 
 #      and that have the same name.'''
 #   
-#   check.assert_components(expr)
-#
 #   result = expr[0]
 #   for cmp in expr[1:]:
 #      if isinstance(cmp, Container) and not cmp.parallel:

@@ -1,5 +1,4 @@
 from abjad.meter import Meter
-from abjad.tools import check
 from abjad.tools import durtools
 from abjad.tools.componenttools.clone_components_and_fracture_crossing_spanners import \
    clone_components_and_fracture_crossing_spanners
@@ -69,11 +68,11 @@ def clone_components_and_immediate_parent_of_first_component(components):
       renamed ``clonewp.with_parent( )`` to
       ``componenttools.clone_components_and_immediate_parent_of_first_component( )``.
    '''
-
+   from abjad.tools import componenttools
    from abjad.measure import _Measure
 
    # assert strictly contiguous components in same thread
-   check.assert_components(components, contiguity = 'strict', share = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    # remember parent
    parent = components[0].parentage.parent

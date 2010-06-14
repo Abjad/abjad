@@ -1,4 +1,3 @@
-from abjad.tools import check
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import leaftools
@@ -22,8 +21,10 @@ def leaves_by_reference(leaves):
 
    Return list of first leaf in `leaves`.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(leaves, contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(leaves)
+
    if len(leaves) <= 1:
       return leaves
    total_preprolated = durtools.sum_preprolated(leaves)

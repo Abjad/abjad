@@ -52,11 +52,11 @@ def test_beam_span_like_named_02( ):
    t[0][0].name, t[1][0].name = 'bar', 'bar'
    pitchtools.chromaticize(t)
    
-   assert py.test.raises(ContiguityError, 'p = Beam(t)')
+   assert py.test.raises(AssertionError, 'p = Beam(t)')
 
-   assert py.test.raises(ContiguityError, 'p = Beam(t[ : ])')
+   assert py.test.raises(AssertionError, 'p = Beam(t[ : ])')
 
-   assert py.test.raises(ContiguityError, 'p = Beam([t[0][0], t[1][0]])')
+   assert py.test.raises(AssertionError, 'p = Beam([t[0][0], t[1][0]])')
 
 
 def test_beam_span_like_named_03( ):

@@ -1,5 +1,4 @@
 from abjad.component import _Component
-from abjad.tools import check
 from abjad.tools import iterate
 
 
@@ -9,9 +8,10 @@ def _withdraw_from_contained(components):
    Return 'components'.
    The operation may leave discontiguous spanners.
    '''
+   from abjad.tools import componenttools
 
    ## check components
-   check.assert_components(components, contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    ## withdraw from contained spanners
    for component in iterate.naive_forward_in(components, _Component):

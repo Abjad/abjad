@@ -1,4 +1,3 @@
-from abjad.tools import check
 from abjad.tools.parenttools.get_with_indices import get_with_indices
 from abjad.tools.parenttools.switch import _switch
 
@@ -14,10 +13,12 @@ def _give_position_to(donors, recipients):
       Return 'donors'.
 
       Helper implements no spanner-handling at all.
-      Helper is not composer-safe and may cause discontiguous spanners.'''
+      Helper is not composer-safe and may cause discontiguous spanners.
+   '''
+   from abjad.tools import componenttools
 
-   check.assert_components(donors, contiguity = 'strict', share = 'parent')
-   check.assert_components(recipients)
+   assert componenttools.all_are_contiguous_components_in_same_parent(donors)
+   assert componenttools.all_are_components(recipients)
 
    parent, start, stop = get_with_indices(donors)
 

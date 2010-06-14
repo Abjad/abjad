@@ -274,8 +274,7 @@ def test_fuse_measures_by_reference_08( ):
    }
    '''
 
-   assert py.test.raises(ContiguityError, 
-      'fuse.measures_by_reference([t[0][1], t[1][0]])')
+   assert py.test.raises(AssertionError, 'fuse.measures_by_reference([t[0][1], t[1][0]])')
 
 
 def test_fuse_measures_by_reference_09( ):

@@ -93,7 +93,7 @@ def test_lily_voice_resolution_03( ):
    t[0][0].name = 'voicefoo'
    t[1][0].name = 'voicefoo'
    pitchtools.diatonicize(t)
-   py.test.raises(ContiguityError, 'Beam(t.leaves)')
+   py.test.raises(AssertionError, 'Beam(t.leaves)')
 
    '''LilyPond gives unterminated beam warnings.
    LilyPond gives grob direction programming errors.

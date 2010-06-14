@@ -1,5 +1,4 @@
 from abjad.rational import Rational
-from abjad.tools import check
 from abjad.tools import iterate
 from abjad.tools import listtools
 from abjad.tools import mathtools
@@ -55,9 +54,10 @@ def get_likely_multiplier_of_components(components):
       renamed ``componenttools.get_likely_multiplier( )`` to
       ``componenttools.get_likely_multiplier_of_components( )``.
    '''
-
+   from abjad.tools import componenttools
    from abjad.tools import tietools
-   check.assert_components(components)
+
+   assert componenttools.all_are_components(components)
 
    chain_duration_numerators = [ ]
    for expr in iterate.chained_contents(components):

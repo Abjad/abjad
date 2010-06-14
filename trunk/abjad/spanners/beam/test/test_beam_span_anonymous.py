@@ -480,5 +480,5 @@ def test_beam_span_anonymous_15( ):
    }
    '''
 
-   assert py.test.raises(ContiguityError, 'p = Beam([t[0], t[1]])')
-   assert py.test.raises(ContiguityError, 'p = Beam([t[1], t[2]])')
+   assert py.test.raises(AssertionError, 'p = Beam([t[0], t[1]])')
+   assert py.test.raises(AssertionError, 'p = Beam([t[1], t[2]])')

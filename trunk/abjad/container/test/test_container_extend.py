@@ -114,7 +114,7 @@ def test_container_extend_06( ):
    Beam(t[:])
 
    assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
-   assert py.test.raises(TypeError, "t.extend(Chord([2, 3, 5], (1, 4)))")
+   assert py.test.raises(AssertionError, "t.extend(Chord([2, 3, 5], (1, 4)))")
 
 
 def test_container_extend_07( ):

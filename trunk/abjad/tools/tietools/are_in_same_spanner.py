@@ -1,5 +1,5 @@
 from abjad.exceptions import MissingSpannerError
-from abjad.tools import check
+from abjad.tools import componenttools
 
 
 def are_in_same_spanner(components):
@@ -7,7 +7,7 @@ def are_in_same_spanner(components):
       otherwise False.
    '''
 
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
    
    try:
       first = components[0]

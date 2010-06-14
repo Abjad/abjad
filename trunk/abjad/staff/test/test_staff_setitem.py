@@ -80,7 +80,7 @@ def test_staff_setitem_04( ):
 def test_staff_setitem_05( ):
    '''Bark when user assigns a slice to an item.'''
    t = Staff(Note(0, (1, 4)) * 4)
-   assert raises(TypeError, 't[0] = [Note(2, (1, 4)), Note(2, (1, 4))]')
+   assert raises(AssertionError, 't[0] = [Note(2, (1, 4)), Note(2, (1, 4))]')
 
 
 def test_staff_setitem_06( ):

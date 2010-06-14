@@ -1,4 +1,3 @@
-from abjad.tools import check
 from abjad.tools import parenttools
 from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 from abjad.tools.spannertools.withdraw_from_crossing import \
@@ -12,9 +11,10 @@ def bequeath(donors, recipients):
       Container setitem logic can not work with orphan donors.
       Return donors.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(donors, contiguity = 'strict', share = 'parent')
-   check.assert_components(recipients, contiguity = 'strict', share = 'parent')
+   assert componenttools.all_are_contiguous_components_in_same_parent(donors)
+   assert componenttools.all_are_contiguous_components_in_same_parent(recipients)
 
    if len(donors) == 0:
       return donors

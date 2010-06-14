@@ -1,4 +1,3 @@
-from abjad.tools import check
 from abjad.tools.parenttools.ignore import _ignore
 from abjad.tools.parenttools.restore import _restore
 from abjad.tools import spannertools
@@ -84,11 +83,12 @@ def clone_components_and_remove_all_spanners(components, n = 1):
       renamed ``clone.unspan( )`` to
       ``componenttools.clone_components_and_remove_all_spanners( )``.
    '''
+   from abjad.tools import componenttools
 
    if n < 1:
       return [ ]
 
-   check.assert_components(components, contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    spanners = spannertools.get_contained(components) 
    for spanner in spanners:

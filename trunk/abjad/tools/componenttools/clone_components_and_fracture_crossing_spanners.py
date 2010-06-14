@@ -1,5 +1,4 @@
 from abjad.component import _Component
-from abjad.tools import check
 from abjad.tools import iterate
 from abjad.tools.parenttools.ignore import _ignore
 from abjad.tools.parenttools.restore import _restore
@@ -87,11 +86,12 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
       renamed ``clone.fracture( )`` to
       ``componenttools.clone_components_and_fracture_crossing_spanners( )``.
    '''
+   from abjad.tools import componenttools
 
    if n < 1:
       return [ ]
 
-   check.assert_components(components, contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    selection_components = set(iterate.naive_forward_in(components, _Component))
 

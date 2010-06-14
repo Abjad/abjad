@@ -1,4 +1,3 @@
-from abjad.tools import check
 from abjad.tools import parenttools
 
 
@@ -48,8 +47,10 @@ def replace_components_with_children_of_components(components):
       renamed ``componenttools.slip( )`` to
       ``componenttools.replace_components_with_children_of_components( )``.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
+
    for component in components:
       parent, start, stop = parenttools.get_with_indices([component])
       result = parent[start:stop+1] = list(component.music)

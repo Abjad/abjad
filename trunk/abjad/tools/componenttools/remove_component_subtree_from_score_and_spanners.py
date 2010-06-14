@@ -1,4 +1,3 @@
-from abjad.tools import check
 from abjad.tools.spannertools.withdraw_from_contained import \
    _withdraw_from_contained
 
@@ -99,8 +98,10 @@ def remove_component_subtree_from_score_and_spanners(components):
       renamed ``componenttools.detach( )`` to
       ``componenttools.remove_component_subtree_from_score_and_spanners( )``.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
+
    for component in components:
       component.parentage._cut( )
       _withdraw_from_contained([component])

@@ -43,28 +43,3 @@ def test_spannertools_get_covered_01( ):
 
    spanners = spannertools.get_covered(t.leaves[0:1])
    assert spanners == set([ ])
-
-
-def test_spannertools_get_covered_02( ):
-   '''Trying to get covered spanners across 
-      non-thread-contiguous components raises ContiguityError.'''
-
-   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
-   pitchtools.diatonicize(t)
-   Beam(t.leaves[:2])
-   Slur(t.leaves[2:])
-   
-   r'''
-   {
-           \new Voice {
-                   c'8 [
-                   d'8 ]
-           }
-           \new Voice {
-                   e'8 (
-                   f'8 )
-           }
-   }
-   '''
-   
-   assert py.test.raises(ContiguityError, 'spannertools.get_covered(t.leaves)')

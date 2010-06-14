@@ -557,9 +557,9 @@ class _Component(_Abjad):
          }
       '''
 
-      from abjad.tools import check
+      from abjad.tools import componenttools
       from abjad.tools import parenttools
-      check.assert_components(components)
+      assert componenttools.all_are_components(components)
       parent, start, stop = parenttools.get_with_indices([self])
       if parent is not None:
          after = stop + 1
@@ -590,9 +590,9 @@ class _Component(_Abjad):
          }
       '''
 
-      from abjad.tools import check
+      from abjad.tools import componenttools
       from abjad.tools import parenttools
-      check.assert_components(components)
+      assert componenttools.all_are_components(components)
       parent, start, stop = parenttools.get_with_indices([self])
       if parent is not None:
          parent[start:start] = components
@@ -601,10 +601,10 @@ class _Component(_Abjad):
    def splice(self, components):
       '''Splice `components` after `self`.
       Extend spanners rightwards to attach to all components in list.'''
-      from abjad.tools import check
+      from abjad.tools import componenttools
       from abjad.tools import parenttools
       from abjad.tools import spannertools
-      check.assert_components(components)
+      assert componenttools.all_are_components(components)
       insert_offset = self.offset.prolated.stop
       receipt = spannertools.get_dominant([self])
       for spanner, index in receipt:
@@ -627,10 +627,10 @@ class _Component(_Abjad):
    def splice_left(self, components):
       '''Splice `components` before `self`.
       Extend spanners leftwards to attach to all components in list.'''
-      from abjad.tools import check
+      from abjad.tools import componenttools
       from abjad.tools import parenttools
       from abjad.tools import spannertools
-      check.assert_components(components)
+      assert componenttools.all_are_components(components)
       offset = self.offset.prolated.start
       receipt = spannertools.get_dominant([self])
       for spanner, x in receipt:

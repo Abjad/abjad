@@ -29,7 +29,7 @@ def test_beam_span_differently_named_01( ):
    }
    '''
 
-   assert py.test.raises(ContiguityError, 'p = Beam(t)')
+   assert py.test.raises(AssertionError, 'p = Beam(t)')
 
    p = Beam(t[0])
 
@@ -99,5 +99,5 @@ def test_beam_span_differently_named_02( ):
    }
    '''
 
-   assert py.test.raises(ContiguityError, 'p = Beam([t[0][0], t[1][0]])')
+   assert py.test.raises(AssertionError, 'p = Beam([t[0][0], t[1][0]])')
 

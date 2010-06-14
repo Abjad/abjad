@@ -1,5 +1,4 @@
 from abjad.component import _Component
-from abjad.tools import check
 from abjad.tools import parenttools
 from abjad.tools import iterate
 
@@ -17,9 +16,10 @@ def get_dominant(components):
 
    This operation always leaves all expressions in tact.
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(
-      components, contiguity = 'thread', allow_orphans = False)
+   assert componenttools.all_are_thread_contiguous_components(components,
+      allow_orphans = False)
 
    receipt = set([ ])
 

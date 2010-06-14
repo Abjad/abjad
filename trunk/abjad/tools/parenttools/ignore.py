@@ -1,15 +1,14 @@
-from abjad.tools import check
-
-
 def _ignore(components):
    '''No contiguity requirements.
       Use to temporarily 'lift' parent references.
       Return receipt of unordered set of (component, parent) pairs.
       Then do some other operation, probably copy.
       Then reapply parent references.
-      Call _parenttools.restore(receipt).'''
+      Call _parenttools.restore(receipt).
+   '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components)
+   assert componenttools.all_are_components(components)
 
    receipt = set([ ])
    for component in components:

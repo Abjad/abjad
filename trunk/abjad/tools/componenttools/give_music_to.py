@@ -1,7 +1,6 @@
 from abjad.container import Container
 from abjad.exceptions import MusicContentsError
 from abjad.leaf import _Leaf
-from abjad.tools import check
 from abjad.tools.parenttools.switch import _switch
 
 
@@ -17,9 +16,11 @@ def _give_music_to(donors, recipient):
 
       Return donor components 'donors'.
 
-      Helper is not composer-safe and may cause discontiguous spanners.'''
+      Helper is not composer-safe and may cause discontiguous spanners.
+   '''
+   from abjad.tools import componenttools
 
-   check.assert_components(donors, contiguity = 'strict', share = 'parent')
+   assert componenttools.all_are_contiguous_components_in_same_parent(donors)
 
    ## if recipient is leaf or nonempty container, 
    ## make sure there's no music in donor components to hand over

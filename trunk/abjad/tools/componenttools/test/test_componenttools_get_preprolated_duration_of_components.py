@@ -17,7 +17,7 @@ def test_componenttools_get_preprolated_duration_of_components_02( ):
 
 
 def test_componenttools_get_preprolated_duration_of_components_03( ):
-   '''Raise ContiguityError for components not in same parent.'''
+   '''Raise assertion error for components not in same parent.'''
 
    t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
@@ -37,5 +37,5 @@ def test_componenttools_get_preprolated_duration_of_components_03( ):
    }
    '''
 
-   assert py.test.raises(ContiguityError,
+   assert py.test.raises(AssertionError,
       'componenttools.get_preprolated_duration_of_components(t.leaves)')

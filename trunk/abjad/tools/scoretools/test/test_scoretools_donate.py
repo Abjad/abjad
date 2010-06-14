@@ -344,7 +344,7 @@ def test_scoretools_donate_09( ):
 
 
 def test_scoretools_donate_10( ):
-   '''Donors that are not parent-contiguous raise ContiguityError.'''
+   '''Donors that are not parent-contiguous raises exception.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
@@ -368,4 +368,4 @@ def test_scoretools_donate_10( ):
    '''
 
    tuplet = FixedDurationTuplet((3, 8), [ ])
-   assert py.test.raises(ContiguityError, 'scoretools.donate([t[0], t[2]], tuplet)')
+   assert py.test.raises(AssertionError, 'scoretools.donate([t[0], t[2]], tuplet)')

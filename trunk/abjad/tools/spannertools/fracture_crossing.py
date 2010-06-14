@@ -1,6 +1,3 @@
-from abjad.tools import check
-
-
 def fracture_crossing(components):
    r'''Fracture to the left of the leftmost component.
    Fracture to the right of the rightmost component.
@@ -51,8 +48,9 @@ def fracture_crossing(components):
          }
       }
    '''
+   from abjad.tools import componenttools
 
-   check.assert_components(components, contiguity = 'thread')
+   assert componenttools.all_are_thread_contiguous_components(components)
 
    if len(components) > 0:
 

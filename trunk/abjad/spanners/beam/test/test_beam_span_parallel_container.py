@@ -22,7 +22,7 @@ def test_beam_span_parallel_container_02( ):
    t.parallel = True
    pitchtools.chromaticize(t)
 
-   assert py.test.raises(ContiguityError, 'p = Beam(t)')
+   assert py.test.raises(AssertionError, 'p = Beam(t)')
 
 #   assert len(p.components) == 1
 #   assert p.components[0] is t
@@ -84,7 +84,7 @@ def test_beam_span_parallel_container_04( ):
    t.insert(2, new)
    pitchtools.chromaticize(t)
 
-   assert py.test.raises(ContiguityError, 'p = Beam(t)')
+   assert py.test.raises(AssertionError, 'p = Beam(t)')
 
 
 def test_beam_span_parallel_container_05( ):

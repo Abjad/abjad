@@ -89,14 +89,13 @@ class Container(_Component):
          Replace contents at self[i] with 'expr'.
          Reattach spanners to new contents.
          This operation leaves all score trees always in tact.'''
-      from abjad.tools import check
       from abjad.tools import componenttools
       from abjad.tools import spannertools
       from abjad.tools.spannertools.withdraw_from_crossing import \
          _withdraw_from_crossing
       # item assignment
       if isinstance(i, int):
-         check.assert_components([expr])
+         assert componenttools.all_are_components([expr])
          old = self[i]
          spanners_receipt = spannertools.get_dominant([old])
          ## must withdraw from spanners before parentage!
@@ -110,7 +109,7 @@ class Container(_Component):
             expr.spanners._add(spanner)
       # slice assignment
       else:
-         check.assert_components(expr)
+         assert componenttools.all_are_components(expr)
          if i.start == i.stop and i.start is not None \
             and i.stop is not None and i.start <= -len(self):
             start, stop = 0, 0
@@ -163,10 +162,10 @@ class Container(_Component):
          return self._parallel
       def fset(self, expr):
          from abjad.context.context import _Context
-         from abjad.tools import check
+         from abjad.tools import componenttools
          assert isinstance(expr, bool)
          if expr == True:
-            check.assert_components(self._music, klasses = (_Context, ))
+            assert componenttools.all_are_components(self._music, klasses = (_Context, ))
          self._parallel = expr
       return property(**locals( ))
 
@@ -175,11 +174,11 @@ class Container(_Component):
    def _initializeMusic(self, music):
       '''Insert `music` components in in container.
       Set parent of `music` components to container.'''
-      from abjad.tools import check
+      from abjad.tools import componenttools
       from abjad.tools import parenttools
       from abjad.tools.parenttools.switch import _switch
       music = music or [ ]
-      check.assert_components(music, contiguity = 'strict', share = 'thread')
+      assert componenttools.all_are_contiguous_components_in_same_thread(music)
       parent, index, stop_index = parenttools.get_with_indices(music)
       self._music = list(music)
       _switch(self._music, self)
