@@ -1,4 +1,4 @@
-from abjad.cfg.cfg import ABJADPATH, home_path
+from abjad.cfg.cfg import ABJADPATH, HOME
 import os
 import time
 
@@ -26,7 +26,7 @@ def _write_config_file(path):
    f.write("# Set to the one directory you wish all Abjad generate files\n")
    f.write("# (such as PDFs, LilyPond, MIDI or log files) to be saved.\n") 
    f.write("abjad_output = '%s'\n\n" % \
-      os.path.join(home_path, '.abjad', 'output'))
+      os.path.join(HOME, '.abjad', 'output'))
 
    f.write("# List of directories where Abjad will look for LilyPond\n")
    f.write("# templates.\n")
