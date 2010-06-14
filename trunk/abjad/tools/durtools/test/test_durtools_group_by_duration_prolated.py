@@ -4,7 +4,7 @@ import py.test
 
 def test_durtools_group_by_duration_prolated_01( ):
 
-   notes = construct.notes(
+   notes = leaftools.make_notes(
       [0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
    groups = durtools.group_by_duration_prolated(notes)
 

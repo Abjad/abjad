@@ -3,7 +3,7 @@ from abjad import *
 
 def test_ChromaticIntervalVector___init___01( ):
 
-   staff = Staff(construct.scale(5))
+   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
 
    r'''
    \new Staff {

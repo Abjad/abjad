@@ -36,6 +36,6 @@ def test_pitchtools_suggest_clef_04( ):
 def test_pitchtools_suggest_clef_05( ):
    '''Works with arbitrary expression.'''
 
-   staff = Staff(construct.notes(range(-12, -6), [(1, 4)]))
+   staff = Staff(leaftools.make_notes(range(-12, -6), [(1, 4)]))
    
    assert pitchtools.suggest_clef(staff) == Clef('bass')

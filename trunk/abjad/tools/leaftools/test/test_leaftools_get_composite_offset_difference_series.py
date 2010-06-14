@@ -3,8 +3,8 @@ from abjad import *
 
 def test_leaftools_get_composite_offset_difference_series_01( ):
 
-   staff_1 = Staff([FixedDurationTuplet((4, 8), construct.run(3))])
-   staff_2 = Staff(construct.run(4))
+   staff_1 = Staff([FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(3))])
+   staff_2 = Staff(leaftools.make_repeated_notes(4))
    score = Score([staff_1, staff_2])
    pitchtools.diatonicize(score)
 

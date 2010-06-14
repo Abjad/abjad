@@ -7,7 +7,7 @@ class Bracket(TextSpanner):
    r'''Structural bracket to group any Abjad components at 
    composition-time. Defaults to red. ::
    
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Bracket(t[:])
       Bracket(c'8, d'8, e'8, f'8)
 

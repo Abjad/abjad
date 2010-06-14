@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplettools_fix_contents_of_tuplets_in_expr_01( ):
    '''Halve note durations.'''
 
-   t = FixedDurationTuplet((2, 8), construct.scale(3, Rational(1, 4)))
+   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3, Rational(1, 4)))
    assert not durtools.is_tuplet_multiplier(t.duration.multiplier)
 
    r'''
@@ -33,7 +33,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_01( ):
 def test_tuplettools_fix_contents_of_tuplets_in_expr_02( ):
    '''Double note duration.'''
 
-   t = FixedDurationTuplet((2, 8), construct.scale(3, Rational(1, 32)))
+   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3, Rational(1, 32)))
    assert not durtools.is_tuplet_multiplier(t.duration.multiplier)
 
    r'''
@@ -62,7 +62,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_02( ):
 def test_tuplettools_fix_contents_of_tuplets_in_expr_03( ):
    '''Halve note durations.'''
 
-   t = FixedDurationTuplet((5, 16), construct.scale(3, Rational(1, 4)))
+   t = FixedDurationTuplet((5, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3, Rational(1, 4)))
    assert not durtools.is_tuplet_multiplier(t.duration.multiplier)
 
    r'''

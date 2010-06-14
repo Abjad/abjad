@@ -6,7 +6,7 @@ def test_spacing_spanner_proportional_notation_duration_01( ):
    directly on the Abjad spacing spanner. Make sure to start
    a new spacing section, too.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    spacing_spanner_1 = SpacingSpanner(t[:2])
    spacing_spanner_1.new_section = True
    spacing_spanner_1.proportional_notation_duration = Rational(1, 15)

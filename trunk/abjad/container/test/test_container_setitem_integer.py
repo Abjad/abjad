@@ -5,7 +5,7 @@ import py.test
 def test_container_setitem_integer_01( ):
    '''Spanned leaves exchange correctly.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:2])
    Glissando(t.leaves)
 
@@ -36,7 +36,7 @@ def test_container_setitem_integer_01( ):
 def test_container_setitem_integer_02( ):
    '''Spanned leaf hands position over to container correctly.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:2])
    Glissando(t.leaves)
 
@@ -49,7 +49,7 @@ def test_container_setitem_integer_02( ):
    }
    '''
 
-   t[1] = Container(construct.run(3, Rational(1, 16)))
+   t[1] = Container(leaftools.make_repeated_notes(3, Rational(1, 16)))
 
    r'''
    \new Voice {
@@ -72,7 +72,7 @@ def test_container_setitem_integer_03( ):
    '''Directly spanned contains hand over correctly to a single leaf.
       Note here that only the sequentials are initially spanned.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)   
    Beam(t[:])
    Glissando(t[:])
@@ -110,7 +110,7 @@ def test_container_setitem_integer_04( ):
    '''Indirectly spanned containers hand over correctly to a single leaf.
       Notice here that only LEAVES are initially spanned.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)   
    Beam(t.leaves)
    Glissando(t.leaves)
@@ -147,7 +147,7 @@ def test_container_setitem_integer_04( ):
 def test_container_setitem_integer_05( ):
    '''Directly spanned containers hand over to other containers correctly.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)   
    Beam(t[:])
    Glissando(t[:])
@@ -165,7 +165,7 @@ def test_container_setitem_integer_05( ):
    }
    '''
 
-   t[1] = FixedDurationTuplet((2, 8), construct.scale(3))
+   t[1] = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
 
    r'''
    \new Voice {
@@ -188,7 +188,7 @@ def test_container_setitem_integer_05( ):
 def test_container_setitem_integer_06( ):
    '''Indirectly spanned containers hand over correctly to a single leaf.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)   
    Beam(t.leaves)
    Glissando(t.leaves)
@@ -226,7 +226,7 @@ def test_container_setitem_integer_07( ):
    '''Indirectly HALF-spanned containers hand over correctly to a 
    single leaf. WOW!'''
 
-   t = Voice(Container(construct.run(4)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.diatonicize(t)   
    Beam(t.leaves[0:6])
    r'''
@@ -269,7 +269,7 @@ def test_container_setitem_integer_08( ):
       and insert into recipient container.
       Both donor and recipient check after set item.'''
 
-   notes = construct.scale(6)
+   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(6)
 
    t = Voice(notes[:3])
    Beam(t[:])
@@ -326,7 +326,7 @@ def test_container_setitem_integer_09( ):
       from donor container and insert into recipient container.
       Both donor and recipient check after set item.'''
 
-   notes = construct.scale(7)
+   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(7)
 
    t = Voice(notes[:3])
    Beam(t[:])

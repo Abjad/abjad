@@ -8,7 +8,7 @@ def permute_by_row(pitches, row):
    
    ::
 
-      abjad> notes = construct.notes([17, -10, -2, 11], [Rational(1, 4)])
+      abjad> notes = leaftools.make_notes([17, -10, -2, 11], [Rational(1, 4)])
       abjad> row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
       abjad> pitchtools.permute_by_row(notes, row)
       [Note(bf, 4), Note(d, 4), Note(f'', 4), Note(b', 4)]

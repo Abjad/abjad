@@ -3,7 +3,7 @@ from abjad import *
 
 def test_iterate_get_measure_leaf_01( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
 
    assert iterate.get_measure_leaf(t, 1, 0) is t.leaves[0]

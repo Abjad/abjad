@@ -3,7 +3,7 @@ def pitch_and_clef_to_staff_position_number(pitch, clef):
 
    Convert `pitch` and `clef` to staff position number. ::
 
-      abjad> staff = Staff(construct.scale(8))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
       abjad> clef = Clef('treble')
       abjad> for note in staff:
       ...   pitch = note.pitch

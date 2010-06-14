@@ -4,7 +4,7 @@ import py.test
 
 def test_iterate_namesakes_forward_from_01( ):
 
-   container = Container(Staff(construct.run(2)) * 2)
+   container = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
    container.parallel = True
    container[0].name = 'staff 1'
    container[1].name = 'staff 2'
@@ -51,7 +51,7 @@ def test_iterate_namesakes_forward_from_01( ):
 
 def test_iterate_namesakes_forward_from_02( ):
 
-   container = Container(Staff(construct.run(2)) * 2)
+   container = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
    container.parallel = True
    container[0].name = 'staff 1'
    container[1].name = 'staff 2'
@@ -98,7 +98,7 @@ def test_iterate_namesakes_forward_from_02( ):
 def test_iterate_namesakes_forward_from_03( ):
    '''Optional start and stop keywords.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -127,7 +127,7 @@ def test_iterate_namesakes_forward_from_03( ):
 def test_iterate_namesakes_forward_from_04( ):
    '''Optional start and stop keywords.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''

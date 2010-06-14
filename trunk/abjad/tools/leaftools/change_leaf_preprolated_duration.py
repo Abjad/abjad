@@ -2,14 +2,14 @@ from abjad.exceptions import AssignabilityError
 from abjad.leaf import _Leaf
 from abjad.rational import Rational
 from abjad.spanners import Tie
-from abjad.tools import construct
+from abjad.tools.leaftools.make_notes import make_notes
 from abjad.tuplet import FixedMultiplierTuplet
 
    
 def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
    r'''Change `leaf` to dotted `preprolated_duration`::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(3, 16))
       [Note(d', 8.)]
@@ -23,7 +23,7 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
       
    Change `leaf` to tied `preprolated_duration`::
       
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(5, 32))
       [Note(d', 8), Note(d', 32)]
@@ -38,7 +38,7 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
       
    Change `leaf` to nonbinary `preprolated_duration`::
       
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(1, 12))
       [Note(d', 8)]
@@ -54,7 +54,7 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
       
    Change `leaf` to tied nonbinary `preprolated_duration`::
       
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(5, 48))
       [Note(d', 8), Note(d', 32)]
@@ -96,7 +96,7 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
       leaf.duration.written = new_preprolated_duration  
       all_leaves = [leaf]
    except AssignabilityError:
-      duration_tokens = construct.notes(0, new_preprolated_duration)
+      duration_tokens = make_notes(0, new_preprolated_duration)
       if isinstance(duration_tokens[0], _Leaf):
          num_tied_leaves = len(duration_tokens) - 1
          tied_leaves = componenttools.clone_components_and_remove_all_spanners(
@@ -123,6 +123,6 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
          tuplet_multiplier = fmtuplet.duration.multiplier
          FixedMultiplierTuplet(tuplet_multiplier, all_leaves)
       else:
-         raise ValueError('unexpected output from construct.notes.')
+         raise ValueError('unexpected output from leaftools.make_notes.')
 
    return all_leaves

@@ -9,7 +9,7 @@ def group_by_type_and_yield_groups_of_klass(expr, klass):
    Group elements in `expr` by type and yield only those
    groups with all elements of `klass`::
 
-      staff = Staff(construct.leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
+      staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
       abjad> for x in leaftools.subruns_of_type(staff, Note):
       ...     x
       ... 

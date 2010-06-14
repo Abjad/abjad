@@ -6,7 +6,7 @@ def test_spanner_receptor_position_01( ):
    '''Return position in spanner, if spanned;
       otherwise, raise MissingSpannerError.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[2:])
 
    r'''

@@ -5,7 +5,7 @@ import py.test
 def test_containertools_delete_contents_of_container_01( ):
    '''Eject container contents.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t)
 
    contents = containertools.delete_contents_of_container(t)

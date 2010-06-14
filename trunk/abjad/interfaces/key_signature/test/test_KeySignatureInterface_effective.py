@@ -4,7 +4,7 @@ from abjad import *
 def test_KeySignatureInterface_effective_01( ):
    '''Force a key signature.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    key_signature = KeySignature('c', 'major')
    t.key_signature.forced = key_signature
 
@@ -26,5 +26,5 @@ def test_KeySignatureInterface_effective_01( ):
 def test_KeySignatureInterface_effective_02( ):
    '''There is no default key signature.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    assert t.key_signature.effective is None

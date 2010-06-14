@@ -16,7 +16,7 @@ v = Voice( )
 or they may exist *implicitly* in certain score constructs in the absence of :class:`~abjad.voice.voice.Voice` containers:
 
 <abjad>
-staff = Staff(construct.scale(4))
+staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 </abjad>
 
 The existence of :class:`~abjad.voice.voice.Voice` objects does not, however, guarantee the existence of a thread between the element contained in different voices. Two contiguous voices *must* have the same name in order to be part of the same thread. 
@@ -24,8 +24,8 @@ The existence of :class:`~abjad.voice.voice.Voice` objects does not, however, gu
 Here a thread does *not* exist between notes in the different :class:`~abjad.voice.voice.Voice` contexts:
 
 <abjad>
-v_one = Voice(construct.scale(4, (1, 16)))
-v_two = Voice(construct.scale(2))
+v_one = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4, (1, 16)))
+v_two = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
 staff = Staff([v_one, v_two])
 f(staff)
 </abjad>
@@ -60,8 +60,8 @@ In Abjad, the ambiguity is resolved through the explicit use of named Voices, i.
 The above musical fragment is constructed with the following code:
 
 <abjad>
-vA = Voice(construct.notes([5, 7, 9, 11], [(1, 8)] * 4))
-vB = Voice(construct.notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
+vA = Voice(leaftools.make_notes([5, 7, 9, 11], [(1, 8)] * 4))
+vB = Voice(leaftools.make_notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
 vC = Voice(Note(12, (1, 4)) * 2)
 vA.voice.number = 1
 vB.voice.number = 1
@@ -200,7 +200,7 @@ Incidentally, we could have constructed this score in a simpler way with only tw
 
 
 <abjad>
-vX = Voice(construct.notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
+vX = Voice(leaftools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
 vY = Voice([Skip((2, 4))] + Note(12, (1, 4)) * 2)
 vX.voice.number = 1
 vY.voice.number = 2

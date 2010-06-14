@@ -4,7 +4,7 @@ from abjad import *
 def test_user_comments_before_01( ):
    '''Test context comments before.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    beam = Beam(t[:])
    beam.thickness = 3
    t.comments.before.append('Voice before comments here.')

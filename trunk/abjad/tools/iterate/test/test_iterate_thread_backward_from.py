@@ -4,7 +4,7 @@ from abjad import *
 def test_iterate_thread_backward_from_01( ):
    '''Iterate only notes.'''
 
-   container = Container(Voice(construct.run(2)) * 2)
+   container = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    container.parallel = True
    container[0].name = 'voice 1'
    container[1].name = 'vocie 2'
@@ -51,7 +51,7 @@ def test_iterate_thread_backward_from_01( ):
 def test_iterate_thread_backward_from_02( ):
    '''Iterate all components.'''
 
-   container = Container(Voice(construct.run(2)) * 2)
+   container = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    container.parallel = True
    container[0].name = 'voice 1'
    container[1].name = 'vocie 2'

@@ -10,7 +10,7 @@ def change_binary_measure_to_nonbinary(measure, new_denominator_factor):
    Change binary `measure` to nonbinary measure
    with `new_denominator_factor`::
 
-      abjad> measure = RigidMeasure((2, 8), construct.scale(2))
+      abjad> measure = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
       abjad> Beam(measure.leaves)
       abjad> f(measure)
       {

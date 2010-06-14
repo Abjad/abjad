@@ -7,7 +7,7 @@ def test_anonymous_measure_01( ):
    Anonymous measures print no meter.
    '''
 
-   t = AnonymousMeasure(construct.scale(4))
+   t = AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    
    r'''
    {
@@ -34,7 +34,7 @@ def test_anonymous_measure_02( ):
    Anonymous measures print no meter.
    '''
 
-   t = AnonymousMeasure(construct.scale(3))
+   t = AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    
    r'''
    {

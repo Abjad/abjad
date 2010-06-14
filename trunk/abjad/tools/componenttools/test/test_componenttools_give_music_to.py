@@ -7,7 +7,7 @@ def test_componenttools_give_music_to_01( ):
    '''Give spanned music from donor to recipient.
       Helper is not composer-safe and results here in bad spanners.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
@@ -80,8 +80,8 @@ def test_componenttools_give_music_to_03( ):
    '''When recipient is unable to accept donated music,
       raise MusicContentsError.'''
 
-   donor = Voice(construct.scale(4))
-   recipient = Voice(construct.scale(4))
+   donor = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   recipient = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    assert py.test.raises(
       MusicContentsError, '_give_music_to([donor], recipient)')

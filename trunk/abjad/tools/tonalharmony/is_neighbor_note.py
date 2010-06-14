@@ -11,7 +11,7 @@ def is_neighbor_note(note):
    and followed by a stepwise interval in the other direction.
    Otherwise false. ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> for note in t:
       ...     print '%s\t%s' % (note, tonalharmony.is_neighbor_note(note))
       ... 

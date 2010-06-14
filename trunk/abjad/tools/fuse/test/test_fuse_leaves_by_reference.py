@@ -3,7 +3,7 @@ from abjad import *
 
 def test_fuse_leaves_by_reference_01( ):
    '''Wokrs with list of leaves.'''
-   fused = fuse.leaves_by_reference(construct.run(8, Rational(1, 4)))
+   fused = fuse.leaves_by_reference(leaftools.make_repeated_notes(8, Rational(1, 4)))
    assert len(fused) == 1 
    assert fused[0].duration.written == Rational(2)
 

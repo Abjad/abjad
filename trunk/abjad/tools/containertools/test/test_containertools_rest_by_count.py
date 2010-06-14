@@ -6,34 +6,34 @@ def test_containertools_rest_by_count_01( ):
 
    ## Rest the lefthand part of the container
 
-   t = RigidMeasure((9, 8), construct.scale(9))
+   t = RigidMeasure((9, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
    t = containertools.rest_by_count(t, 5, 'left', direction = 'automatic')
    assert check.wf(t)
    assert str(t) == "|9/8, r8, r2, a'8, b'8, c''8, d''8|"
 
-   t = RigidMeasure((9, 8), construct.scale(9))
+   t = RigidMeasure((9, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
    t = containertools.rest_by_count(t, 5, 'left', direction = 'big-endian')
    assert check.wf(t)
    assert str(t) == "|9/8, r2, r8, a'8, b'8, c''8, d''8|"
 
-   t = RigidMeasure((9, 8), construct.scale(9))
+   t = RigidMeasure((9, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
    t = containertools.rest_by_count(t, 5, 'left', direction = 'little-endian')
    assert check.wf(t)
    assert str(t) == "|9/8, r8, r2, a'8, b'8, c''8, d''8|"
 
    ## Rest the righthand part of the container
 
-   t = RigidMeasure((9, 8), construct.scale(9))
+   t = RigidMeasure((9, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
    t = containertools.rest_by_count(t, 4, 'right', direction = 'automatic')
    assert check.wf(t)
    assert str(t) == "|9/8, c'8, d'8, e'8, f'8, r2, r8|"
 
-   t = RigidMeasure((9, 8), construct.scale(9))
+   t = RigidMeasure((9, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
    t = containertools.rest_by_count(t, 4, 'right', direction = 'big-endian')
    assert check.wf(t)
    assert str(t) == "|9/8, c'8, d'8, e'8, f'8, r2, r8|"
 
-   t = RigidMeasure((9, 8), construct.scale(9))
+   t = RigidMeasure((9, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
    t = containertools.rest_by_count(t, 4, 'right', direction = 'little-endian')
    assert check.wf(t)
    assert str(t) == "|9/8, c'8, d'8, e'8, f'8, r8, r2|"
@@ -42,7 +42,7 @@ def test_containertools_rest_by_count_01( ):
 def test_containertools_rest_by_count_02( ):
    '''Glom leftmost two 1/8th notes, then turn into rest.'''
 
-   t = RigidMeasure((5, 8), construct.scale(5))
+   t = RigidMeasure((5, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
    BeamComplexDurated(t)
    containertools.rest_by_count(t, 2, 'left')
 
@@ -70,7 +70,7 @@ def test_containertools_rest_by_count_03( ):
    '''Glom rightmost five - two = three 1/8th notes, 
       then turn into rest.'''
 
-   t = RigidMeasure((5, 8), construct.scale(5))
+   t = RigidMeasure((5, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
    BeamComplexDurated(t)
    containertools.rest_by_count(t, 2, 'right')
 

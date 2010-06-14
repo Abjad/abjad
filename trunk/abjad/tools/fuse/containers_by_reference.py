@@ -9,7 +9,7 @@ from abjad.tuplet import _Tuplet
 def containers_by_reference(expr):
    r'''Fuse like-named contiguous containers in `expr`::
 
-      abjad> staff = Staff(Voice(construct.run(2)) * 2)
+      abjad> staff = Staff(Voice(leaftools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.diatonicize(staff.leaves)
       abjad> staff[0].name = 'soprano'
       abjad> staff[1].name = 'soprano'

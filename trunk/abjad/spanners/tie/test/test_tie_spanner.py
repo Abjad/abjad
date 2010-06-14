@@ -3,7 +3,7 @@ from abjad import *
 
 def test_tie_spanner_01( ):
 
-   t = Voice(construct.scale(8))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    p = Tie(t[4:6])
 
    assert len(p) == 2

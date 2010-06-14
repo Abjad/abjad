@@ -5,7 +5,7 @@ import py.test
 def test_leaf_duration_interface_seconds_01( ):
    '''Clock duration equals prolated duration divide by effective tempo.'''
 
-   t = Container(construct.scale(4))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
    t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
 

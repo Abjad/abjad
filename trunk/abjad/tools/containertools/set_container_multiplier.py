@@ -4,7 +4,7 @@ from abjad.meter import Meter
 def set_container_multiplier(container, multiplier):
    r'''Set `container` `multiplier`::
 
-      abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
       abjad> containertools.set_container_multiplier(tuplet, Rational(3, 4))
       abjad> f(tuplet)
       \fraction \times 3/4 {

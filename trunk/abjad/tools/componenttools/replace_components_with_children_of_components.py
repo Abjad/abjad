@@ -6,7 +6,7 @@ def replace_components_with_children_of_components(components):
    r'''Remove arbitrary `components` from score 
    but retain children of `components` in score. ::
 
-      abjad> staff = Staff(Container(construct.run(2)) * 2)
+      abjad> staff = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.diatonicize(staff)
       abjad> Slur(staff[:])
       abjad> Beam(staff.leaves)

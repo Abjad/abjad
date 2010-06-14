@@ -4,7 +4,7 @@ from abjad import *
 def test_override_spanner___init___01( ):
    '''Five-argument form uses context specification.'''
 
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    override = Override(t[:4], 'Staff', 'Beam', 'positions', (8, 8))
 
    r'''
@@ -29,7 +29,7 @@ def test_override_spanner___init___01( ):
 def test_override_spanner___init___02( ):
    '''Four-argument form does not use context specification.'''
 
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    override = Override(t[:4], 'Beam', 'positions', (8, 8))
 
    r'''

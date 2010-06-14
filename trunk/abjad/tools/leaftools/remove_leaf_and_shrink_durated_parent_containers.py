@@ -10,7 +10,7 @@ from abjad.tuplet import FixedDurationTuplet
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
    r'''Remove `leaf` and shrink durated parent containers::
 
-      abjad> measure = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+      abjad> measure = RigidMeasure((4, 8), FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
       abjad> pitchtools.diatonicize(measure)
       abjad> Beam(measure.leaves)
       abjad> f(measure)

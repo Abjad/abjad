@@ -14,7 +14,7 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
 
       Example::
 
-         abjad> t = RigidMeasure((3, 8), construct.scale(3))
+         abjad> t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
          abjad> measuretools.scale_and_remeter(t, Rational(2, 3))
          abjad> print t.format
 

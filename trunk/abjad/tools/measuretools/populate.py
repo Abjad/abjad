@@ -1,9 +1,9 @@
 from abjad.note import Note
 from abjad.rational import Rational
 from abjad.skip import Skip
-from abjad.tools import construct
 from abjad.tools import durtools
 from abjad.tools import iterate
+from abjad.tools import leaftools
 from abjad.tools import mathtools
 
 
@@ -53,7 +53,7 @@ def _measures_populate_big_endian(expr, iterctrl):
       if iterctrl(measure, i):
          meter = measure.meter.effective
          written_duration = ~meter.multiplier * meter.duration
-         notes = construct.notes(0, written_duration)
+         notes = leaftools.make_notes(0, written_duration)
          measure[:] = notes
 
 
@@ -62,7 +62,7 @@ def _measures_populate_little_endian(expr, iterctrl):
       if iterctrl(measure, i):
          meter = measure.meter.effective
          written_duration = ~meter.multiplier * meter.duration
-         notes = construct.notes(
+         notes = leaftools.make_notes(
             0, written_duration, direction = 'little-endian')
          measure[:] = notes
 
@@ -74,7 +74,7 @@ def _measures_populate_duration_train(expr, written_duration, iterctrl):
          meter = measure.meter.effective
          total_duration = meter.duration
          prolation = meter.multiplier
-         notes = construct.note_train(
+         notes = leaftools.make_repeated_notes_with_shorter_notes_at_end(
             0, written_duration, total_duration, prolation)
          measure[:] = notes
 

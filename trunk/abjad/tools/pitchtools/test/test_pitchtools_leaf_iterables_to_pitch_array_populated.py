@@ -4,9 +4,9 @@ from abjad import *
 def test_pitchtools_leaf_iterables_to_pitch_array_populated_01( ):
 
    score = Score([ ])
-   score.append(Staff(construct.scale(6)))
-   score.append(Staff(construct.scale(3, Rational(1, 4))))
-   score.append(Staff(construct.scale(6)))
+   score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(6)))
+   score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3, Rational(1, 4))))
+   score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(6)))
 
    r'''
    \new Score <<
@@ -50,9 +50,9 @@ def test_pitchtools_leaf_iterables_to_pitch_array_populated_01( ):
 def test_pitchtools_leaf_iterables_to_pitch_array_populated_02( ):
 
    score = Score([ ])
-   score.append(Staff(construct.scale(4)))
-   score.append(Staff(construct.scale(2, Rational(1, 4))))
-   score.append(Staff(FixedDurationTuplet((2, 8), construct.scale(3)) * 2))
+   score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)))
+   score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(1, 4))))
+   score.append(Staff(FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)) * 2))
 
    r'''
    \new Score <<

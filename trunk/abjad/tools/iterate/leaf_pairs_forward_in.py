@@ -9,7 +9,7 @@ def leaf_pairs_forward_in(expr):
    Iterate left-to-right, top-to-bottom leaf pairs in `expr`. ::
 
       abjad> score = Score([ ])
-      abjad> notes = construct.scale(4) + [Note(7, (1, 4))]
+      abjad> notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) + [Note(7, (1, 4))]
       abjad> score.append(Staff(notes))
       abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
       abjad> score.append(Staff(notes))

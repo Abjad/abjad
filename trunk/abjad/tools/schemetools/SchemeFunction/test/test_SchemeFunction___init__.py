@@ -4,7 +4,7 @@ from abjad import *
 def test_SchemeFunction___init___01( ):
    '''Scheme function with only a name and no arguments.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.meter.break_visibility = schemetools.SchemeFunction(
       'end-of-line-invisible')
 
@@ -25,7 +25,7 @@ def test_SchemeFunction___init___01( ):
 def test_SchemeFunction___init___02( ):
    '''Scheme function with a name and a single numeric argument.'''
 
-   staff = Staff(construct.scale(4))
+   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    staff.staff.staff_space = schemetools.SchemeFunction('magstep', -3)
    staff.staff.thickness = schemetools.SchemeFunction('magstep', -3)
 

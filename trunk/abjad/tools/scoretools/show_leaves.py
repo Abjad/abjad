@@ -8,7 +8,7 @@ def show_leaves(leaves, template = None, title = None, suppress_pdf = False):
 
    Show `leaves` in temporary piano staff score::
    
-      abjad> leaves = construct.leaves([None, 1, (-24, -22, 7, 21), None], (1, 4))
+      abjad> leaves = leaftools.make_leaves([None, 1, (-24, -22, 7, 21), None], (1, 4))
       abjad> score = leaftools.show_leaves(leaves)
       \new Score <<
               \new PianoStaff <<

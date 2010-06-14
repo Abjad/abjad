@@ -20,7 +20,7 @@ An example
 Consider this score beginning with c'8.
 
 <abjad>
-tuplet = FixedDurationTuplet((2, 8), construct.run(3))
+tuplet = FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3))
 staff = Staff(tuplet * 2)
 score = Score([staff])
 pitchtools.diatonicize(score)

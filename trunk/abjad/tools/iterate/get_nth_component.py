@@ -9,8 +9,8 @@ def get_nth_component(expr, klasses, n = 0):
 
       abjad> staff = Staff([ ])
       abjad> durations = [Rational(n, 16) for n in range(1, 5)]
-      abjad> notes = construct.notes([0, 2, 4, 5], durations)
-      abjad> rests = construct.rests(durations)
+      abjad> notes = leaftools.make_notes([0, 2, 4, 5], durations)
+      abjad> rests = leaftools.make_rests(durations)
       abjad> leaves = listtools.interlace(notes, rests)
       abjad> staff.extend(leaves)
 

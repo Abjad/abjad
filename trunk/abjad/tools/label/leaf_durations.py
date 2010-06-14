@@ -8,7 +8,7 @@ def leaf_durations(expr,
    When ``show = ['written']`` label only the written duration of
    leaves in `expr`. ::
 
-      abjad> tuplet = FixedDurationTuplet((1, 4), construct.scale(3))
+      abjad> tuplet = FixedDurationTuplet((1, 4), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
       abjad> label.leaf_durations(tuplet, show = ['written'])
       abjad> f(tuplet)
       \times 2/3 {
@@ -20,7 +20,7 @@ def leaf_durations(expr,
    When ``show = ['prolated']`` label only the prolated duration of leaves
    in `expr`. ::
 
-      abjad> tuplet = FixedDurationTuplet((1, 4), construct.scale(3))
+      abjad> tuplet = FixedDurationTuplet((1, 4), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
       abjad> label.leaf_durations(tuplet, show = ['prolated'])
       abjad> f(tuplet)
       \times 2/3 {
@@ -32,7 +32,7 @@ def leaf_durations(expr,
    When ``show = ['written', 'prolated']`` label both the written and
    prolated duration of leaves in `expr`. ::
 
-      abjad> tuplet = FixedDurationTuplet((1, 4), construct.scale(3))
+      abjad> tuplet = FixedDurationTuplet((1, 4), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
       abjad> label.leaf_durations(tuplet)
       abjad> f(tuplet)
       \times 2/3 {

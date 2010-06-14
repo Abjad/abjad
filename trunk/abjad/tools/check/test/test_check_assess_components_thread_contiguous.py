@@ -6,8 +6,8 @@ def test_check_assess_components_thread_contiguous_01( ):
    '''True for thread contiguous components even when
       components are not strictly contiguous.'''
 
-   t = Voice(construct.run(4))
-   t.insert(2, Voice(construct.run(2)))
+   t = Voice(leaftools.make_repeated_notes(4))
+   t.insert(2, Voice(leaftools.make_repeated_notes(2)))
    pitchtools.diatonicize(t)
 
    r'''
@@ -32,8 +32,8 @@ def test_check_assess_components_thread_contiguous_02( ):
       So long as gaps are filled with foreign components
       that do not belong to thread.'''
 
-   t = Voice(construct.run(4))
-   t.insert(2, Voice(construct.run(2)))
+   t = Voice(leaftools.make_repeated_notes(4))
+   t.insert(2, Voice(leaftools.make_repeated_notes(2)))
    Container(t[:2])
    Container(t[-2:])
    pitchtools.diatonicize(t)
@@ -65,8 +65,8 @@ def test_check_assess_components_thread_contiguous_03( ):
    '''Components that start at the same moment are bad.
       Even if components are all part of the same thread.'''
 
-   t = Voice(construct.run(4))
-   t.insert(2, Voice(construct.run(2)))
+   t = Voice(leaftools.make_repeated_notes(4))
+   t.insert(2, Voice(leaftools.make_repeated_notes(2)))
    Container(t[:2])
    Container(t[-2:])
    pitchtools.diatonicize(t)
@@ -96,7 +96,7 @@ def test_check_assess_components_thread_contiguous_03( ):
 def test_check_assess_components_thread_contiguous_04( ):
    '''True for strictly contiguous leaves in same staff.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    assert check.assess_components(t[:], contiguity = 'thread')
 
 
@@ -104,22 +104,22 @@ def test_check_assess_components_thread_contiguous_05( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
-   assert check.assess_components(construct.scale(4), contiguity = 'thread')
-   assert not check.assess_components(construct.scale(4), 
+   assert check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), contiguity = 'thread')
+   assert not check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), 
       contiguity = 'thread', allow_orphans = False)
 
 
 def test_check_assess_components_thread_contiguous_06( ):
    '''False for time reordered leaves in staff.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    assert not check.assess_components(t[2:] + t[:2], contiguity = 'thread')
 
 
 def test_check_assess_components_thread_contiguous_07( ):
    '''True for unincorporated component.'''
 
-   assert check.assess_components([Staff(construct.scale(4))], contiguity = 'thread')
+   assert check.assess_components([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))], contiguity = 'thread')
 
 
 def test_check_assess_components_thread_contiguous_08( ):
@@ -131,7 +131,7 @@ def test_check_assess_components_thread_contiguous_08( ):
 def test_check_assess_components_thread_contiguous_09( ):
    '''False when components belonging to same thread are ommitted.'''
 
-   t = Voice(construct.scale(6))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(6))
    Beam(t[:])
 
    r'''
@@ -151,7 +151,7 @@ def test_check_assess_components_thread_contiguous_09( ):
 def test_check_assess_components_thread_contiguous_10( ):
    '''False when components belonging to same thread are ommitted.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 

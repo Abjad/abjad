@@ -6,7 +6,7 @@ def naive_backward_in(expr, klass = _Leaf, start = 0, stop = None):
 
    ::
 
-      abjad> staff = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+      abjad> staff = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
       abjad> pitchtools.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

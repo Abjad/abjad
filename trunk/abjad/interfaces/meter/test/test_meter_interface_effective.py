@@ -4,7 +4,7 @@ from abjad import *
 def test_meter_interface_effective_01( ):
    '''The default effective meter is 4/4.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    r'''
    \new Staff {
@@ -22,7 +22,7 @@ def test_meter_interface_effective_01( ):
 def test_meter_interface_effective_02( ):
    '''Forced meter settings propagate to later leaves.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t[0].meter.forced = Meter(2, 8)
 
    r'''
@@ -42,7 +42,7 @@ def test_meter_interface_effective_02( ):
 def test_meter_interface_effective_03( ):
    '''Setting and then clearing works as expected.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t[0].meter.forced = Meter(2, 8)
    t[0].meter.forced = None
 

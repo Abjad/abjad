@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_divide_leaf_meiotically_01( ):
 
-   staff = Staff(construct.scale(4))
+   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(staff.leaves)
 
    r'''

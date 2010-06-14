@@ -4,7 +4,7 @@ from abjad import *
 def test_navigator_contemporaneous_start_components_01( ):
    '''Notes.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
 
    r'''
@@ -58,7 +58,7 @@ def test_navigator_contemporaneous_start_components_01( ):
 #def test_navigator_contemporaneous_start_components_02( ):
 #   '''With parallel containers.'''
 #
-#   t = Voice([Container(Container(construct.run(2)) * 2)] + construct.run(2))
+#   t = Voice([Container(Container(leaftools.make_repeated_notes(2)) * 2)] + leaftools.make_repeated_notes(2))
 #   t[0].parallel = True
 #   pitchtools.diatonicize(t)
 #

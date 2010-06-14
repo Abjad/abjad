@@ -20,8 +20,8 @@ def test_pitchtools_has_duplicate_pitch_02( ):
 def test_pitchtools_has_duplicate_pitch_03( ):
    '''Works with containers.'''
 
-   staff = Staff(construct.run(4))
+   staff = Staff(leaftools.make_repeated_notes(4))
    assert pitchtools.has_duplicate_pitch(staff)
 
-   staff = Staff(construct.scale(4))
+   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    assert not pitchtools.has_duplicate_pitch(staff)

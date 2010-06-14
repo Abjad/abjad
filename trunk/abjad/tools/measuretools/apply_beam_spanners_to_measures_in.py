@@ -9,7 +9,7 @@ def apply_beam_spanners_to_measures_in(expr):
 
    Apply beam spanners to measures in `expr`::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

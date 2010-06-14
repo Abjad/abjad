@@ -1,12 +1,12 @@
 from abjad.rational import Rational
-from abjad.tools import construct
+from abjad.tools import leaftools
 
 
 def rest_by_count(container, i, rested_half, direction = 'automatic'):
    r'''Replace the `i` elements in the `rested_half` of `container` 
    with rests::
 
-      abjad> staff = Staff(construct.scale(7))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(7))
       abjad> containertools.rest_by_count(staff, 5, 'left', 'automatic')
       abjad> f(staff)
       \new Staff {
@@ -18,7 +18,7 @@ def rest_by_count(container, i, rested_half, direction = 'automatic'):
       
    ::
       
-      abjad> staff = Staff(construct.scale(7))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(7))
       abjad> containertools.rest_by_count(staff, 5, 'left', 'big-endian')
       abjad> f(staff)
       \new Staff {
@@ -30,7 +30,7 @@ def rest_by_count(container, i, rested_half, direction = 'automatic'):
       
    ::
       
-      abjad> staff = Staff(construct.scale(7))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(7))
       abjad> containertools.rest_by_count(staff, 5, 'left', 'little-endian')
       abjad> f(staff)
       \new Staff {
@@ -42,7 +42,7 @@ def rest_by_count(container, i, rested_half, direction = 'automatic'):
       
    ::
       
-      abjad> staff = Staff(construct.scale(7))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(7))
       abjad> containertools.rest_by_count(staff, 2, 'right', 'automatic')
       abjad> f(staff)
       \new Staff {
@@ -54,7 +54,7 @@ def rest_by_count(container, i, rested_half, direction = 'automatic'):
       
    ::
       
-      abjad> staff = Staff(construct.scale(7))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(7))
       abjad> containertools.rest_by_count(staff, 2, 'right', 'big-endian')
       abjad> f(staff)
       \new Staff {
@@ -66,7 +66,7 @@ def rest_by_count(container, i, rested_half, direction = 'automatic'):
       
    ::
       
-      abjad> staff = Staff(construct.scale(7))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(7))
       abjad> containertools.rest_by_count(staff, 2, 'right', 'little-endian')
       abjad> f(staff)
       \new Staff {
@@ -110,7 +110,7 @@ def rest_by_count(container, i, rested_half, direction = 'automatic'):
       duration = sum([x.duration.preprolated for x in elements_to_replace])
 
       ## construct rest chain equal in preprolated duration to replace
-      rests = construct.rests(duration, direction)
+      rests = leaftools.make_rests(duration, direction)
 
       ## replace elements in rested_half of container with rest chain
       if rested_half == 'left':

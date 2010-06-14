@@ -5,7 +5,7 @@ def unfractured_by_durations(components, durations, tie_after = False):
    r'''Partition `components` according to `durations`.
    Do not fracture spanners. ::
 
-      abjad> t = Staff(Container(construct.run(2)) * 2)
+      abjad> t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.diatonicize(t)
       abjad> Beam(t[0])
       abjad> Beam(t[1])

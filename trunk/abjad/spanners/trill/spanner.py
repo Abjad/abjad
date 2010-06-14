@@ -12,7 +12,7 @@ class Trill(_GrobHandlerSpanner):
 
    ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Trill(t[:])
       Trill(c'8, d'8, e'8, f'8)
       abjad> print t.format
@@ -45,7 +45,7 @@ class Trill(_GrobHandlerSpanner):
 
             ::
 
-               abjad> t = Staff(construct.scale(4))
+               abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
                abjad> trill = Trill(t[:2])
                abjad> trill.pitch = Pitch('cs', 4)
 

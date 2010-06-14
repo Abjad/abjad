@@ -5,7 +5,7 @@ def test_beam_complex_durated_lone_01( ):
    '''BeamComplexDurated with lone = True applies beam 
       to a lone note at format-time.'''
 
-   t = Voice(construct.scale(1))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(1))
    BeamComplexDurated(t, lone = True)
 
    r'''
@@ -22,7 +22,7 @@ def test_beam_complex_durated_lone_02( ):
    '''BeamComplexDurated with lone = False does not apply beam
       to a lone note at format-time.'''
 
-   t = Voice(construct.scale(1))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(1))
    BeamComplexDurated(t, lone = False)
 
    r'''
@@ -38,7 +38,7 @@ def test_beam_complex_durated_lone_02( ):
 def test_beam_complex_durated_lone_03( ):
    '''BeamComplexDurated with multiple leaves ignores 'lone' setting.'''
 
-   t = Voice(construct.scale(2))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    BeamComplexDurated(t, lone = False)
 
    r'''

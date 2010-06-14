@@ -5,7 +5,7 @@ from abjad.tools import construct
 def test_tietools_get_leaves_01( ):
    '''Leaves from nontrivial tie chain.'''
 
-   notes = construct.notes(0, [(5, 32)])
+   notes = leaftools.make_notes(0, [(5, 32)])
    assert tietools.get_leaves(notes[0].tie.chain) == tuple(notes)
 
 

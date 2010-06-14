@@ -7,8 +7,8 @@ def remove_component_subtree_from_score_and_spanners(components):
    r'''Remove arbitrary `components` and children of `components` 
    from score. ::
 
-      abjad> score = Voice(construct.run(2))
-      abjad> score.insert(1, Container(construct.run(2)))
+      abjad> score = Voice(leaftools.make_repeated_notes(2))
+      abjad> score.insert(1, Container(leaftools.make_repeated_notes(2)))
       abjad> pitchtools.diatonicize(score)
       abjad> Beam(score.leaves)
       abjad> Glissando(score.leaves)

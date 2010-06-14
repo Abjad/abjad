@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_apply_complex_beam_spanners_to_measures_in_01( ):
    '''Beam all measures in expr with plain old Beam spanner.'''
 
-   staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(staff)
 
    r'''

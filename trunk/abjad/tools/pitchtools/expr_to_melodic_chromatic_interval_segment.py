@@ -12,7 +12,7 @@ def expr_to_melodic_chromatic_interval_segment(expr):
    Return melodic chromatic interval segment corresponding to
    arbitrary input `expr`.  ::
 
-      abjad> staff = Staff(construct.scale(8))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
       abjad> pitchtools.expr_to_melodic_chromatic_interval_segment(staff)
       MelodicChromaticIntervalSegment(+2, +2, +1, +2, +2, +2, +1)
    '''

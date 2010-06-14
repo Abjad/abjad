@@ -6,7 +6,7 @@ def test_tempo_spanner_grob_handling_01( ):
    Note context promotion.
    '''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p = TempoSpanner(t[:], tempotools.TempoIndication(Rational(1, 4), 58))
    p.color = 'red'
    overridetools.promote_attribute_to_context_on_grob_handler(p, 'color', 'Staff')

@@ -14,7 +14,7 @@ def test_fuse_containers_by_reference_01( ):
 def test_fuse_containers_by_reference_02( ):
    '''Do not fuse unnamed voices.'''
 
-   t = Staff([Voice(construct.run(2)), Voice(construct.run(2))])
+   t = Staff([Voice(leaftools.make_repeated_notes(2)), Voice(leaftools.make_repeated_notes(2))])
    result = fuse.containers_by_reference(t) 
    assert result is None
 
@@ -22,7 +22,7 @@ def test_fuse_containers_by_reference_02( ):
 def test_fuse_containers_by_reference_03( ):
    '''Do not fuse nonthreads.'''
 
-   t = Staff([Voice(construct.run(2)), Voice(construct.run(2))])
+   t = Staff([Voice(leaftools.make_repeated_notes(2)), Voice(leaftools.make_repeated_notes(2))])
    t[0].name = 'one'
    t[1].name = 'two'
    result = fuse.containers_by_reference(t) 
@@ -32,8 +32,8 @@ def test_fuse_containers_by_reference_03( ):
 def test_fuse_containers_by_reference_04( ):
    '''Do not fuse tuplets.'''
 
-   t = Voice([FixedMultiplierTuplet((2, 3), construct.run(3)), 
-              FixedMultiplierTuplet((2, 3), construct.run(3))])
+   t = Voice([FixedMultiplierTuplet((2, 3), leaftools.make_repeated_notes(3)), 
+              FixedMultiplierTuplet((2, 3), leaftools.make_repeated_notes(3))])
    result = fuse.containers_by_reference(t)
    assert result is None
    assert len(t) == 2
@@ -42,7 +42,7 @@ def test_fuse_containers_by_reference_04( ):
 def test_fuse_containers_by_reference_05( ):
    '''Fuse like-named staves.'''
 
-   t = Staff(construct.run(4)) * 2
+   t = Staff(leaftools.make_repeated_notes(4)) * 2
    t[0].name = t[1].name = 'staffOne'
    result = fuse.containers_by_reference(t)
    assert isinstance(result, Staff)  
@@ -52,7 +52,7 @@ def test_fuse_containers_by_reference_05( ):
 def test_fuse_containers_by_reference_06( ):
    '''Fuse like-named staves but not differently named voices.'''
 
-   t = Container(Staff([Voice(construct.run(4))]) * 2)
+   t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
    t[0].name = t[1].name = 'staffOne'
 
    r'''
@@ -110,7 +110,7 @@ def test_fuse_containers_by_reference_06( ):
 def test_fuse_containers_by_reference_07( ):
    '''Fuse orphan components.'''
 
-   t = Voice(construct.run(4)) * 2
+   t = Voice(leaftools.make_repeated_notes(4)) * 2
    t[0].name = t[1].name = 'voiceOne'
    result = fuse.containers_by_reference(t)
    assert isinstance(result, Voice)  
@@ -121,7 +121,7 @@ def test_fuse_containers_by_reference_07( ):
 #def test_fuse_containers_by_reference_08( ):
 #   '''fuse.containers_by_reference( ) can take a list of parented 
 #   Components.'''
-#   t = Staff(Voice(construct.run(2)) * 2)
+#   t = Staff(Voice(leaftools.make_repeated_notes(2)) * 2)
 #   result = fuse.containers_by_reference(t[:])
 #   assert check.wf(t)
 #   assert len(t) == 1

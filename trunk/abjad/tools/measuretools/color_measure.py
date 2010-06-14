@@ -7,7 +7,7 @@ def color_measure(measure, color = 'red'):
 
    Color `measure` with `color`::
 
-      abjad> measure = RigidMeasure((2, 8), construct.scale(2))
+      abjad> measure = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
       abjad> f(measure)
       {
          \time 2/8

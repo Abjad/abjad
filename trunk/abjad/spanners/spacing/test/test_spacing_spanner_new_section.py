@@ -4,7 +4,7 @@ from abjad import *
 def test_spacing_spanner_new_section_01( ):
    r'''Apply LilyPond spacing section to Abjad leaves.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p = SpacingSpanner(t[:])
    p.new_section = True
 
@@ -26,7 +26,7 @@ def test_spacing_spanner_new_section_01( ):
 def test_spacing_spanner_new_section_02( ):
    '''Apply LilyPond spacing section to Abjad measures.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    p = SpacingSpanner(t[:])
    p.new_section = True
 

@@ -5,7 +5,7 @@ def within_seconds(timepoint, component):
    '''True when `timepoint` is within the duration 
    of `component` in seconds. ::
    
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 2), 60)
       abjad> staff.tempo.forced = tempo_indication
       abjad> leaf = staff.leaves[0]

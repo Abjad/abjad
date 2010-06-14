@@ -4,7 +4,7 @@ from abjad import *
 def test_tempo_spanner_repr_01( ):
    '''Tempo spanner repr gives tempo equation when possible.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    tempo_spanner = TempoSpanner(
       t[:], tempotools.TempoIndication(Rational(1, 8), 58))
 
@@ -26,7 +26,7 @@ def test_tempo_spanner_repr_02( ):
    '''Tempo spanner repr gives no equation when no 
    tempo indication is available.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    tempo_spanner = TempoSpanner(
       t[:], tempotools.TempoIndication(Rational(1, 8), 58))
    tempo_spanner.tempo_indication = None

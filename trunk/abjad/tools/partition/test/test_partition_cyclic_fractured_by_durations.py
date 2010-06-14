@@ -5,7 +5,7 @@ def test_partition_cyclic_fractured_by_durations_01( ):
    '''Cyclically duration partition one leaf in score.
       Fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -55,7 +55,7 @@ def test_partition_cyclic_fractured_by_durations_02( ):
    '''Cyclically duration partition multiple leaves in score.
       Fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -107,7 +107,7 @@ def test_partition_cyclic_fractured_by_durations_03( ):
    '''Cyclically duration partition one measure in score.
       Fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -163,7 +163,7 @@ def test_partition_cyclic_fractured_by_durations_04( ):
    '''Cyclically duration partition multiple measures in score.
       Fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -229,7 +229,7 @@ def test_partition_cyclic_fractured_by_durations_04( ):
 def test_partition_cyclic_fractured_by_durations_05( ):
    '''Cyclically duration partition list of leaves outside of score.'''
 
-   leaves = construct.scale(4)
+   leaves = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)
    durations = [Rational(3, 32)]
    parts = partition.cyclic_fractured_by_durations(leaves, durations)
 
@@ -260,7 +260,7 @@ def test_partition_cyclic_fractured_by_durations_06( ):
    '''Cyclically duration partition list of measures outside of score.
       Fracture spanners.'''
 
-   measures = RigidMeasure((2, 8), construct.run(2)) * 2
+   measures = RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2
    Beam(measures[0])
    Beam(measures[1])
    pitchtools.diatonicize(measures)
@@ -317,7 +317,7 @@ def test_partition_cyclic_fractured_by_durations_07( ):
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -371,7 +371,7 @@ def test_partition_cyclic_fractured_by_durations_08( ):
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -425,7 +425,7 @@ def test_partition_cyclic_fractured_by_durations_09( ):
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -487,7 +487,7 @@ def test_partition_cyclic_fractured_by_durations_10( ):
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])

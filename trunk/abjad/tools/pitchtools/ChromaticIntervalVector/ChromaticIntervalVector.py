@@ -7,7 +7,7 @@ class ChromaticIntervalVector(dict):
 
    Chromatic interval vector. ::
 
-      abjad> staff = Staff(construct.scale(5))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
       abjad> CIV = pitchtools.ChromaticIntervalVector(staff)
       abjad> CIV
       ChromaticIntervalVector(0: 0, 1: 1, 2: 3, 3: 2, 4: 1, 5: 2, 6: 0, 7: 1, 8: 0, 9: 0, 10: 0, 11: 0)

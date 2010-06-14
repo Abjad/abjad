@@ -3,7 +3,7 @@ from abjad import *
 
 def test_label_melodic_diatonic_interval_classes_01( ):
 
-   staff = Staff(construct.notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Rational(1, 8)]))
+   staff = Staff(leaftools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Rational(1, 8)]))
    label.melodic_diatonic_interval_classes(staff)
 
    r"""

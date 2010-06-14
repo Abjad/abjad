@@ -1,7 +1,7 @@
 from abjad.measure import RigidMeasure
 from abjad.meter import Meter
 from abjad.rational import Rational
-from abjad.tools import construct
+from abjad.tools import leaftools
 from abjad.tools.pitchtools.PitchArray.PitchArrayRow.PitchArrayRow \
    import PitchArrayRow
 
@@ -48,7 +48,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
          measure_pitches.append(cell_pitches)
       measure_duration = cell.width * basic_cell_duration
       measure_durations.append(measure_duration)
-   leaves = construct.leaves(measure_pitches, measure_durations)
+   leaves = leaftools.make_leaves(measure_pitches, measure_durations)
    measure.extend(leaves)
 
    return measure

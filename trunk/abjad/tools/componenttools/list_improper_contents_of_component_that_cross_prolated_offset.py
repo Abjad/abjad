@@ -6,7 +6,7 @@ from abjad.tools import iterate
 def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
    r'''List all components in `component` that cross `prolated_offset`. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

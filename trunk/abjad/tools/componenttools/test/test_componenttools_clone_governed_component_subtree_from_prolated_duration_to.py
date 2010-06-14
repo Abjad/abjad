@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_01( ):
    '''Container.'''
 
-   t = Container(construct.scale(3))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''
@@ -20,7 +20,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to002( ):
    '''Container with rest.'''
    
-   t = Container(construct.scale(3))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    Rest(t[1])
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
@@ -37,7 +37,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_03( ):
    '''RigidMeasure.'''
 
-   t = RigidMeasure((3, 8), construct.scale(3))
+   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''
@@ -54,7 +54,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_04( ):
    '''Fixed duration tuplet.'''
 
-   t = FixedDurationTuplet((1, 4), construct.scale(3))
+   t = FixedDurationTuplet((1, 4), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
    r'''
@@ -70,7 +70,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_05( ):
    '''Fixed multiplier tuplet.'''
 
-   t = FixedMultiplierTuplet((2, 3), construct.scale(3))
+   t = FixedMultiplierTuplet((2, 3), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (1, 8))
 
    r'''
@@ -86,7 +86,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_06( ):
    '''Voice.'''
 
-   t = Voice(construct.scale(3))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''
@@ -102,7 +102,7 @@ def test_componenttools_clone_governed_component_subtree_from_prolated_duration_
 def test_componenttools_clone_governed_component_subtree_from_prolated_duration_to_07( ):
    '''Staff.'''
 
-   t = Staff(construct.scale(3))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    new = componenttools.clone_governed_component_subtree_from_prolated_duration_to(t, 0, (3, 16))
 
    r'''

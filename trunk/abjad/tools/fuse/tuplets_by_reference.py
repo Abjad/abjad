@@ -11,9 +11,9 @@ from abjad.tuplet import FixedMultiplierTuplet
 def tuplets_by_reference(tuplets):
    r'''Fuse parent-contiguous `tuplets`::
 
-      abjad> t1 = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> t1 = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
       abjad> Beam(t1[:])
-      abjad> t2 = FixedDurationTuplet((2, 16), construct.scale(3, Rational(1, 16)))
+      abjad> t2 = FixedDurationTuplet((2, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3, Rational(1, 16)))
       abjad> Slur(t2[:])
       abjad> staff = Staff([t1, t2])
       abjad> f(staff)

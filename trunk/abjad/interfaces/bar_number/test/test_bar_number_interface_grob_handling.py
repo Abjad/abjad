@@ -4,7 +4,7 @@ from abjad import *
 def test_bar_number_interface_grob_handling_01( ):
    '''Handle the LilyPond BarNumber grob.'''
 
-   t = Score([Staff(construct.scale(4))])
+   t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    t.bar_number.color = 'red'
 
    r'''

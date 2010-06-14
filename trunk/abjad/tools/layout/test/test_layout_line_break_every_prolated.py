@@ -6,7 +6,7 @@ def test_layout_line_break_every_prolated_01( ):
    '''Iterate klasses in expr and accumulate prolated duration.
       Add line break after every total le line duration.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    layout.line_break_every_prolated(t, Rational(4, 8))
 
@@ -45,7 +45,7 @@ def test_layout_line_break_every_prolated_02( ):
    '''Iterate klasses in expr and accumulate prolated duration.
       Add line break after every total le line duration.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    layout.line_break_every_prolated(t, Rational(1, 8), klass = _Leaf)
 
@@ -89,7 +89,7 @@ def test_layout_line_break_every_prolated_02( ):
 def test_layout_line_break_every_prolated_03( ):
    '''With add_empty_bars keyword.'''
 
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    schema = layout.LayoutSchema(Rational(3, 8), (40, 5, 0), (0, ))
    layout.apply_layout_schema(t, schema, klass = Note, add_empty_bars = True)
 

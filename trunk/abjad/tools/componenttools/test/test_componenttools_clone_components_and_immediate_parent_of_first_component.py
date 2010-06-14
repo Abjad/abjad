@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_clone_components_and_immediate_parent_of_first_component_01( ):
    '''Copy adjacent notes in staff.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[:2])
 
    r'''
@@ -22,7 +22,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
 def test_componenttools_clone_components_and_immediate_parent_of_first_component_02( ):
    '''Copy adjacent notes in staff.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[-2:])
 
    r'''
@@ -42,7 +42,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
    '''Copy notes from tuplet and adjust tuplet target duration
    in order to preserve tuplet multiplier.'''
 
-   t = FixedDurationTuplet((4, 8), construct.scale(5))
+   t = FixedDurationTuplet((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[:3])
 
    r'''
@@ -63,7 +63,7 @@ def test_componenttools_clone_components_and_immediate_parent_of_first_component
 def test_componenttools_clone_components_and_immediate_parent_of_first_component_04( ):
    '''Copy adjacent, whole tuplets from staff.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 3)
+   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 3)
    pitchtools.diatonicize(t)
    u = componenttools.clone_components_and_immediate_parent_of_first_component(t[1:])
 

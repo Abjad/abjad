@@ -5,7 +5,7 @@ def within_prolated(timepoint, component):
    '''True when `timepoint` is within the prolated 
    duration of `component`. ::
    
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> leaf = staff.leaves[0]
       abjad> durtools.within_prolated(Rational(1, 16), leaf)
       True

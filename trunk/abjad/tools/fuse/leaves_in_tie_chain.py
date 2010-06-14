@@ -5,7 +5,7 @@ from abjad.tools.fuse.leaves_by_reference import leaves_by_reference
 def leaves_in_tie_chain(tie_chain):
    r'''Fuse leaves in `tie_chain` by parent::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
       abjad> Tie(staff.leaves)
       abjad> f(staff)
       \new Staff {

@@ -5,7 +5,7 @@ import py.test
 def test_scoretools_donate_01( ):
    '''Donate from multiple containers to tuplet.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
@@ -51,7 +51,7 @@ def test_scoretools_donate_01( ):
 def test_scoretools_donate_02( ):
    '''Donate from container to voice.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    t.name = 'foo'
    pitchtools.diatonicize(t)
    Glissando(t[:])
@@ -102,7 +102,7 @@ def test_scoretools_donate_02( ):
 def test_scoretools_donate_03( ):
    '''Donate from container to tuplet.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)
@@ -151,7 +151,7 @@ def test_scoretools_donate_03( ):
 def test_scoretools_donate_04( ):
    '''Donate from empty container to leaf.'''
 
-   t = Voice([Container(construct.scale(2)), Container([ ])])
+   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)), Container([ ])])
    Glissando(t[:])
    Beam(t[:])
 
@@ -185,7 +185,7 @@ def test_scoretools_donate_04( ):
 def test_scoretools_donate_05( ):
    '''Donate from empty container to nonempty container.'''
 
-   t = Voice([Container(construct.scale(2)), Container([ ])])
+   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)), Container([ ])])
    Glissando(t[:])
    Beam(t[:])
 
@@ -224,7 +224,7 @@ def test_scoretools_donate_06( ):
    '''Trying to bequeath from nonempty container 
       to leaf raises MusicContentsError.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    Beam(t[:])
    pitchtools.diatonicize(t)
 
@@ -235,18 +235,18 @@ def test_scoretools_donate_07( ):
    '''Trying to bequeath from nonempty container to 
       nonempty container raises MusicContentsError.'''
    
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    Beam(t[:])
    pitchtools.diatonicize(t)
 
-   tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
+   tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    assert py.test.raises(MusicContentsError, 'scoretools.donate(t[1:2], tuplet)')
 
 
 def test_scoretools_donate_08( ):
    '''Donate from note to rest.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)   
 
@@ -294,7 +294,7 @@ def test_scoretools_donate_08( ):
 def test_scoretools_donate_09( ):
    '''Donate from note to tuplet.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Glissando(t[:])
    Beam(t.leaves)   
@@ -346,7 +346,7 @@ def test_scoretools_donate_09( ):
 def test_scoretools_donate_10( ):
    '''Donors that are not parent-contiguous raise ContiguityError.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 

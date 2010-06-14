@@ -4,7 +4,7 @@ from abjad import *
 def test_glissando_spanner_grob_handling_01( ):
    '''The Abjad Glissando spanner handles the LilyPond Glissando grob.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p = Glissando(t[ : ])
    p.thickness = 3
 

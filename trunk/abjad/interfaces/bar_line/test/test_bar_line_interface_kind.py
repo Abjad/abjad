@@ -33,7 +33,7 @@ def test_bar_line_interface_kind_02( ):
 def test_bar_line_interface_kind_03( ):
    '''Empty LilyPond bar line string.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t[0].bar_line.kind = ''
 
    r'''

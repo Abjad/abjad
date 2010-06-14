@@ -46,7 +46,7 @@ class BeamInterface(_Interface, _GrobHandler, _ContextSettingHandler,
       
          ::
 
-            abjad> staff = Staff(construct.scale(4))
+            abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
             abjad> staff.beam.auto_beaming = False
             abjad> f(staff)
             \new Staff \with {

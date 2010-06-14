@@ -6,7 +6,7 @@ def test_tempo_spanner_contiguity_constraint_01( ):
    '''It is possible to turn off thread-contiguity checking
    for tempo spanners.'''
 
-   staff_chunk = Container(Staff(construct.scale(2)) * 2)
+   staff_chunk = Container(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
    staff_chunk[0].name = 'foo'
    staff_chunk[1].name = 'bar'
    staff_chunk.parallel = True

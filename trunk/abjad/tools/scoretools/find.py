@@ -14,9 +14,9 @@ def find(expr, name = None, klass = None, context = None):
 
    Example score. ::
 
-      abjad> flute_staff = Staff(construct.scale(4))
+      abjad> flute_staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> flute_staff.name = 'Flute'
-      abjad> violin_staff = Staff(construct.scale(4))
+      abjad> violin_staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> violin_staff.name = 'Violin'
       abjad> staff_group = StaffGroup([flute_staff, violin_staff])
       abjad> score = Score([staff_group])

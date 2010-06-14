@@ -7,7 +7,7 @@ def test_io_show_return_timing_01( ):
    time as integer number of seconds. Otherwise, return None.
    '''
 
-   t = Staff(construct.run(4))
+   t = Staff(leaftools.make_repeated_notes(4))
 
    ## we suppress the PDF here only while running py.test
    result = show(t, suppress_pdf = True)

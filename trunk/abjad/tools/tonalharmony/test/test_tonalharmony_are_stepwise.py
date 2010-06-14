@@ -34,7 +34,7 @@ def test_tonalharmony_are_stepwise_04( ):
 def test_tonalharmony_are_stepwise_05( ):
    '''Contour changes in note sequence qualifies as tepwise.'''
 
-   notes = construct.notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
+   notes = leaftools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
    t = Staff(notes)
 
    assert tonalharmony.are_stepwise(t)

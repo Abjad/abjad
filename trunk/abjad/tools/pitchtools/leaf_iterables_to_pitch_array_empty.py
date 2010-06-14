@@ -1,5 +1,3 @@
-#from abjad.tools import listtools
-#from abjad.tools.pitchtools.PitchArray import PitchArray
 from abjad.tools.pitchtools._leaf_iterables_to_pitch_array import \
    _leaf_iterables_to_pitch_array
 
@@ -10,9 +8,9 @@ def leaf_iterables_to_pitch_array_empty(leaf_iterables):
    Return empty pitch array corresponding to `leaf_iterables`. ::
 
       abjad> score = Score([ ])
-      abjad> score.append(Staff(construct.scale(4)))
-      abjad> score.append(Staff(construct.scale(2, Rational(1, 4))))
-      abjad> score.append(Staff(FixedDurationTuplet((2, 8), construct.scale(3)) * 2))
+      abjad> score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)))
+      abjad> score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(1, 4))))
+      abjad> score.append(Staff(FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)) * 2))
       abjad> f(score)
       \new Score <<
               \new Staff {
@@ -48,7 +46,6 @@ def leaf_iterables_to_pitch_array_empty(leaf_iterables):
       [ ] [     ] [ ] [ ] [     ] [ ]
    '''
 
-#   from abjad.tools import construct
 #   from abjad.tools import leaftools
 #   from abjad.tools import partition
 #
@@ -59,7 +56,7 @@ def leaf_iterables_to_pitch_array_empty(leaf_iterables):
 #
 #   pitch_array = PitchArray(array_depth, array_width)
 #
-#   tokens = construct.quarter_notes_with_multipliers([0], time_intervals)
+#   tokens = leaftools.make_quarter_notes_with_lilypond_multipliers([0], time_intervals)
 #   for leaf_list, pitch_array_row in zip(leaf_iterables, pitch_array.rows):
 #      durations = leaftools.get_durations_prolated(leaf_list)
 #      parts = partition.unfractured_by_durations(tokens, durations)

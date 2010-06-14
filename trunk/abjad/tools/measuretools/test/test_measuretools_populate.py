@@ -110,7 +110,7 @@ def test_measuretools_populate_06( ):
    '''Populate measures conditionally.
       Iteration control tests index of iteration.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
 
    r'''
@@ -174,7 +174,7 @@ def test_measuretools_populate_07( ):
    '''Populate measures conditionally.
       Iteration control tests measure length.'''
 
-   t = Staff([RigidMeasure((n, 8), construct.scale(n)) for n in (2, 3, 4)])
+   t = Staff([RigidMeasure((n, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(n)) for n in (2, 3, 4)])
 
    r'''
    \new Staff {

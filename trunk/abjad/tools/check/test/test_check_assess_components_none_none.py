@@ -2,12 +2,12 @@ from abjad import *
 
 
 def test_check_assess_components_none_none_01( ):
-   t = construct.scale(4)
+   t = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)
    assert check.assess_components(t)
 
 
 def test_check_assess_components_none_none_02( ):
-   t = Staff(construct.scale(4)) * 4
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)) * 4
    assert check.assess_components(t)
 
 

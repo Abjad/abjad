@@ -4,7 +4,7 @@ from abjad import *
 def test_tietools_are_in_same_spanner_01( ):
    '''True if all components in list share same tie spanner.'''
 
-   t = Voice(construct.run(4))
+   t = Voice(leaftools.make_repeated_notes(4))
    Tie(t[:2])
 
    r'''

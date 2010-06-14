@@ -3,7 +3,7 @@ from abjad import *
 
 def test_layout_insert_measure_padding_skip_01( ):
 
-   t = Staff(AnonymousMeasure(construct.scale(2)) * 2)
+   t = Staff(AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
 
    r'''
    \new Staff {
@@ -56,7 +56,7 @@ def test_layout_insert_measure_padding_skip_01( ):
 def test_layout_insert_measure_padding_skip_02( ):
    '''Works when measures contain stacked voices.'''
 
-   measure = DynamicMeasure(Voice(construct.run(2)) * 2)
+   measure = DynamicMeasure(Voice(leaftools.make_repeated_notes(2)) * 2)
    measure.parallel = True
    t = Staff(measure * 2)
    pitchtools.diatonicize(t)
@@ -132,7 +132,7 @@ def test_layout_insert_measure_padding_skip_02( ):
 def test_layout_insert_measure_padding_skip_03( ):
    '''Set splice = True to extend edge spanners over newly insert rests.'''
 
-   t = DynamicMeasure(construct.scale(2))
+   t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
    label.measure_numbers(t)
    layout.insert_measure_padding_skip(

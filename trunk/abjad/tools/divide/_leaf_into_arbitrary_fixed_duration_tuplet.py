@@ -1,8 +1,8 @@
 from abjad.exceptions import AssignabilityError
 from abjad.note import Note
 from abjad.rational import Rational
-from abjad.tools import construct
 from abjad.tools import durtools
+from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import tuplettools
 from abjad.tools import scoretools
@@ -33,7 +33,7 @@ def _leaf_into_arbitrary_fixed_duration_tuplet(l, divisions, prolation):
    except AssignabilityError:
       denominator = target_duration._denominator
       note_durations = [Rational(x, denominator) for x in divisions]
-      notes = construct.notes(0, note_durations)
+      notes = leaftools.make_notes(0, note_durations)
 
    ## make tuplet
    tuplet = FixedDurationTuplet(target_duration, notes)

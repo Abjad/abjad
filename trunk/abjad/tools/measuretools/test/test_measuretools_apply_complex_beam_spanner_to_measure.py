@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_apply_complex_beam_spanner_to_measure_01( ):
 
-   measure = RigidMeasure((2, 8), construct.run(2))
+   measure = RigidMeasure((2, 8), leaftools.make_repeated_notes(2))
 
    r'''
    {

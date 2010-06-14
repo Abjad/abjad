@@ -8,7 +8,7 @@ def test_componenttools_clone_components_and_covered_spanners_01( ):
       Reapply crossing spanners to 'components'.
       Return copy of 'components' with covered spanners.'''
 
-   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    beam = Beam(t.leaves[:4])
    slur = Slur(t[-2:])
@@ -61,7 +61,7 @@ def test_componenttools_clone_components_and_covered_spanners_01( ):
 
 def test_componenttools_clone_components_and_covered_spanners_02( ):
 
-   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    beam = Beam(t.leaves[:4])
    slur = Slur(t[-2:])
@@ -122,7 +122,7 @@ def test_componenttools_clone_components_and_covered_spanners_02( ):
 def test_componenttools_clone_components_and_covered_spanners_03( ):
    '''With optional 'n' argument for multiple copies.'''
 
-   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    beam = Beam(t.leaves[:4])
    slur = Slur(t[-2:])

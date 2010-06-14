@@ -5,8 +5,8 @@ def test_iterate_get_nth_component_01( ):
 
    staff = Staff([ ])
    durations = [Rational(n, 16) for n in range(1, 5)]
-   notes = construct.notes([0, 2, 4, 5], durations)
-   rests = construct.rests(durations)
+   notes = leaftools.make_notes([0, 2, 4, 5], durations)
+   rests = leaftools.make_rests(durations)
    leaves = listtools.interlace(notes, rests)
    staff.extend(leaves)
 
@@ -41,8 +41,8 @@ def test_iterate_get_nth_component_02( ):
 
    staff = Staff([ ])
    durations = [Rational(n, 16) for n in range(1, 5)]
-   notes = construct.notes([0, 2, 4, 5], durations)
-   rests = construct.rests(durations)
+   notes = leaftools.make_notes([0, 2, 4, 5], durations)
+   rests = leaftools.make_rests(durations)
    leaves = listtools.interlace(notes, rests)
    staff.extend(leaves)
 

@@ -9,7 +9,7 @@ def are_stepwise_descending(*expr):
 
    True when notes in `expr` are stepwise descending. ::
 
-      abjad> t = Staff(list(reversed(construct.scale(4))))
+      abjad> t = Staff(list(reversed(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))))
       abjad> tonalharmony.are_stepwise_desceding(t[:])
       True
 

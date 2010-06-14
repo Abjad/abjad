@@ -8,7 +8,7 @@ def test_spanner_remove_01( ):
       Not composer-safe. 
       Follow immediately with operation to remove component from score.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    pitchtools.diatonicize(t)
    p = Beam(t[:])
    
@@ -46,7 +46,7 @@ def test_spanner_remove_02( ):
       Still not composer-safe.
       Note spanner.pop( ) and spanner.pop_left( ) are composer-safe.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
    

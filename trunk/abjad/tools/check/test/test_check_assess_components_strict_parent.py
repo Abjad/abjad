@@ -5,7 +5,7 @@ def test_check_assess_components_strict_parent_01( ):
    '''True for strictly contiguous leaves in voice.
       False for other time orderings of leaves in voice.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    
    assert check.assess_components(t.leaves, 
       contiguity = 'strict', share = 'parent')
@@ -35,7 +35,7 @@ def test_check_assess_components_strict_parent_02( ):
    '''True for unincorporated components when orphans allowed.
       False to unincorporated components when orphans not allowed.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -68,7 +68,7 @@ def test_check_assess_components_strict_parent_03( ):
    '''True for orphan leaves when allow_orphans is True.
       False for orphan leaves when allow_orphans is False.'''
 
-   t = construct.scale(4)
+   t = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)
 
    assert check.assess_components(t, contiguity = 'strict', share = 'parent')
    assert not check.assess_components(t, allow_orphans = False, 

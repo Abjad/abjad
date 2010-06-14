@@ -7,7 +7,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
 
    Append spacer skip to underfull `measure`::
 
-      abjad> measure = RigidMeasure((4, 12), construct.scale(4))
+      abjad> measure = RigidMeasure((4, 12), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> measure.meter.forced = Meter(5, 12)
       abjad> measure.duration.is_underfull 
       True

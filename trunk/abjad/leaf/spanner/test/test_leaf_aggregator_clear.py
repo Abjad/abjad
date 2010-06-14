@@ -4,7 +4,7 @@ from abjad import *
 def test_leaf_aggregator_clear_01( ):
    '''Clear a single spanner.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -35,7 +35,7 @@ def test_leaf_aggregator_clear_01( ):
 def test_leaf_aggregator_clear_02( ):
    '''Clear multiple spanners.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p1 = Beam(t[:])
    p2 = Trill(t[:])
 

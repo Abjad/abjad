@@ -3,7 +3,7 @@ from abjad import *
 
 def test_RehearsalMarkInterface_grob_handling_01( ):
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.rehearsal_mark.staff_padding = 2
    t.rehearsal_mark.Y_extent = (-1.5, 1.5)
 

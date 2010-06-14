@@ -10,8 +10,8 @@ def timeline_backward_in(expr, klass = _Leaf):
    offset stop time. ::
 
       abjad> score = Score([ ])
-      abjad> score.append(Staff(construct.run(4, Rational(1, 4))))
-      abjad> score.append(Staff(construct.run(4)))
+      abjad> score.append(Staff(leaftools.make_repeated_notes(4, Rational(1, 4))))
+      abjad> score.append(Staff(leaftools.make_repeated_notes(4)))
       abjad> pitchtools.diatonicize(score)
       abjad> f(score)
       \new Score <<

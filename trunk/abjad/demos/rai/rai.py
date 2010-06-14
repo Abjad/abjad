@@ -23,7 +23,7 @@ statements.append(s)
 
 
 text = 'From these duration tokens we now create a list of Notes.'
-code = 'notes = construct.notes(0, durations)'
+code = 'notes = leaftools.make_notes(0, durations)'
 s = Statement(text, code)
 statements.append(s)
 
@@ -61,7 +61,7 @@ statements.append(s)
 p = Presentation(title, abstract, statements, subtitle)
 
 p.setup.append('from abjad import *')
-p.setup.append('from abjad.tools import construct')
+p.setup.append('from abjad.tools import leaftools')
 
 
 if __name__ == '__main__':

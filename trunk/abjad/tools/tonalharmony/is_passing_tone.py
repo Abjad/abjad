@@ -9,7 +9,7 @@ def is_passing_tone(note):
    True when `note` is both preceeded and followed by scalewise
    sibling notes. Otherwise false. ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> for note in t:
       ...     print '%s\t%s' % (note, tonalharmony.is_passing_tone(note))
       ... 

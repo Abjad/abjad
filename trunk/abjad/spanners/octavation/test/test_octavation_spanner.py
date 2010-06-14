@@ -5,7 +5,7 @@ from abjad.checks import OctavationsOverlapping
 def test_octavation_spanner_01( ):
    '''Octavation has default start and stop arguments set to 0.'''
 
-   t = Staff(construct.run(4))
+   t = Staff(leaftools.make_repeated_notes(4))
    o = Octavation(t[ : ])
 
    r'''

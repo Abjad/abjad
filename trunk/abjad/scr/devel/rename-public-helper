@@ -7,45 +7,52 @@ import pprint
 
 
 def _get_old_package_and_function( ):
-   full_helper_name = raw_input('Enter current helper name: ')
-   if '.' not in full_helper_name:
-      print ''
-      print 'Helper not in package.function format: %s' % full_helper_name
-      print ''
-      raise SystemExit
-   helper_parts = full_helper_name.split('.')
-   old_package = helper_parts[0]
-   old_function = helper_parts[1]
-   if old_package not in _get_packages( ):
-      print ''
-      print 'Error: can not find %s in Abjad tools.' % old_package
-      print ''
-      raise SystemExit
-   if old_function not in _get_functions( ):
-      print ''
-      print 'Error: can not find %s in %s.' % (old_function, old_package)
-      print ''
-      raise SystemExit
-   return old_package, old_function
+   while True:
+      full_helper_name = raw_input('Enter current helper name: ')
+      if '.' not in full_helper_name:
+         print ''
+         print 'Helper not in package.function format: %s' % full_helper_name
+         print ''
+         continue
+      helper_parts = full_helper_name.split('.')
+      old_package = helper_parts[0].lower( )
+      old_function = helper_parts[1].lower( )
+      if old_package not in _get_packages( ):
+         print ''
+         print 'Error: can not find %s in Abjad tools.' % old_package
+         print ''
+         continue
+      if old_function not in _get_functions( ):
+         print ''
+         print 'Error: can not find %s in %s.' % (old_function, old_package)
+         print ''
+         continue
+      return old_package, old_function
    
 
 def _get_new_package_and_function( ):
-   message = 'Enter new helper name:     '
-   helper_name = raw_input(message)
-   helper_parts = helper_name.split('.')
-   new_package = helper_parts[0]
-   new_function = helper_parts[1]
-   if new_package not in _get_packages( ):
-      print ''
-      print 'Error: can not find %s in Abjad packages.' % new_package
-      print ''
-      raise SystemExit
-   if new_function in _get_functions( ):
-      print ''
-      print 'Error: %s already exists in Abjad functions.' % new_function
-      print ''
-      raise SystemExit
-   return new_package, new_function
+   while True:
+      message = 'Enter new helper name:     '
+      helper_name = raw_input(message)
+      if '.' not in helper_name:
+         print ''
+         print 'Helper not in package.function format: %s' % helper_name
+         print ''
+         continue
+      helper_parts = helper_name.split('.')
+      new_package = helper_parts[0].lower( )
+      new_function = helper_parts[1].lower( )
+      if new_package not in _get_packages( ):
+         print ''
+         print 'Error: can not find %s in Abjad packages.' % new_package
+         print ''
+         continue
+      if new_function in _get_functions( ):
+         print ''
+         print 'Error: %s already exists in Abjad functions.' % new_function
+         print ''
+         continue
+      return new_package, new_function
 
 
 def _get_packages( ):

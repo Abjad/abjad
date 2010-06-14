@@ -4,7 +4,7 @@ from abjad import *
 def test_user_directives_contributions_01( ):
    '''Container user directives contributions.'''
 
-   t = Container(construct.scale(4))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    beam = Beam(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
@@ -43,7 +43,7 @@ def test_user_directives_contributions_01( ):
 def test_user_directives_contributions_02( ):
    '''Context user directives contributions.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    beam = Beam(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
@@ -82,7 +82,7 @@ def test_user_directives_contributions_02( ):
 def test_user_directives_contributions_03( ):
    '''Tuplet user directives contributions.'''
 
-   t = FixedDurationTuplet((2, 8), construct.scale(3))
+   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    beam = Beam(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")
@@ -120,7 +120,7 @@ def test_user_directives_contributions_03( ):
 def test_user_directives_contributions_04( ):
    '''Measure user directives contributions.'''
 
-   t = RigidMeasure((3, 8), construct.scale(3))
+   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    beam = Beam(t[:])
    beam.thickness = 3
    t.directives.before.append(r"\override BeforeFoo #'bar = #'blah")

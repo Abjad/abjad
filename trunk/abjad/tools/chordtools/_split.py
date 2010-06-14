@@ -4,7 +4,6 @@ from abjad.note import Note
 from abjad.pitch import Pitch
 from abjad.rest import Rest
 from abjad.tools import componenttools
-from abjad.tools import construct
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.cast_defective_chord import cast_defective_chord
 

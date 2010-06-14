@@ -14,7 +14,7 @@ def group_prolated(
 
    Examples all refer to the following. ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+      abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
       abjad> pitchtools.diatonicize(t)
       abjad> f(t)
       \new Staff {

@@ -23,7 +23,7 @@ def insert_measure_padding_rest(expr, front, back, splice = False):
 
    ::
 
-      abjad> t = Staff(AnonymousMeasure(construct.scale(2)) * 2)
+      abjad> t = Staff(AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
       abjad> front, back = Rational(1, 32), Rational(1, 64)
       abjad> layout.insert_measure_padding_rest(t, front, back)
       abjad> print t.format
@@ -47,7 +47,7 @@ def insert_measure_padding_rest(expr, front, back, splice = False):
 
    Works when measures contain stacked voices. ::
 
-      abjad> measure = DynamicMeasure(Voice(construct.run(2)) * 2)
+      abjad> measure = DynamicMeasure(Voice(leaftools.make_repeated_notes(2)) * 2)
       abjad> measure.parallel = True
       abjad> t = Staff(measure * 2)
       abjad> pitchtools.diatonicize(t)
@@ -88,7 +88,7 @@ def insert_measure_padding_rest(expr, front, back, splice = False):
    Set the optional `splice` keyword to ``True`` to extend edge
    spanners over newly inserted rests. ::
 
-      abjad> t = DynamicMeasure(construct.scale(2))
+      abjad> t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
       abjad> Beam(t[:])
       abjad> t.formatter.number.self = 'comment'
       abjad> layout.insert_measure_padding_rest(t, Rational(1, 32), Rational(1, 64), splice = True)
@@ -109,7 +109,7 @@ def insert_measure_padding_rest(expr, front, back, splice = False):
    Raise :exc:`ValueError` when `back` is neither a positive
    rational nor ``None``. ::
 
-      abjad> t = Staff(AnonymousMeasure(construct.scale(2)) * 2)
+      abjad> t = Staff(AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
       abjad> layout.insert_measure_padding_rest(t, 'foo', 'bar')
       ValueError
    '''

@@ -9,7 +9,7 @@ def append_spacer_skips_to_underfull_measures_in(expr):
 
    Append spacer skips to underfull measures in `expr`::
 
-      abjad> staff = Staff(RigidMeasure((3, 8), construct.scale(3)) * 3)
+      abjad> staff = Staff(RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)) * 3)
       abjad> staff[1].meter.forced = Meter(4, 8)
       abjad> staff[2].meter.forced = Meter(5, 8)
       abjad> staff[1].duration.is_underfull 

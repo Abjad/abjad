@@ -5,7 +5,7 @@ from abjad.tools import construct
 def test_tietools_truncate_01( ):
    '''Keep and unspan first note in tie chain only.'''
 
-   t = Staff(construct.notes(0, [(5, 16)]))
+   t = Staff(leaftools.make_notes(0, [(5, 16)]))
 
    r'''
    \new Staff {
@@ -29,7 +29,7 @@ def test_tietools_truncate_01( ):
 def test_tietools_truncate_02( ):
    '''No effect on length-1 tie chains.'''
 
-   t = Staff(construct.run(1))
+   t = Staff(leaftools.make_repeated_notes(1))
 
    tietools.truncate(t[0].tie.chain)
 

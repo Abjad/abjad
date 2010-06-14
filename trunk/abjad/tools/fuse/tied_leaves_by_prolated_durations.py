@@ -6,7 +6,7 @@ from abjad.tools.fuse.leaves_in_tie_chain import leaves_in_tie_chain
 def tied_leaves_by_prolated_durations(components, prolated_durations):
    r'''Fuse `components` tied leaves by `prolated_durations`::
 
-      abjad> staff = Staff(construct.run(8))
+      abjad> staff = Staff(leaftools.make_repeated_notes(8))
       abjad> Tie(staff.leaves)
       abjad> f(staff)
       \new Staff {

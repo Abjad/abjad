@@ -4,7 +4,7 @@ from abjad import *
 def test_container_grob_override_01( ):
    '''Noncontext containers bracket grob overrides at opening and closing.'''
 
-   t = Container(construct.scale(4))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.glissando.thickness = 3
 
    r'''

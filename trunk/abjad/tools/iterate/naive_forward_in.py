@@ -4,7 +4,7 @@ from abjad.leaf import _Leaf
 def naive_forward_in(expr, klass = _Leaf, start = 0, stop = None):
    r'''Yield left-to-right instances of `klass` in `expr`. ::
 
-      abjad> container = Container(Voice(construct.run(2)) * 2)
+      abjad> container = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
       abjad> container.parallel = True
       abjad> container[0].name = 'voice 1'
       abjad> container[1].name = 'vocie 2'

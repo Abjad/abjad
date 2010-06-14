@@ -7,7 +7,7 @@ def set_accidental_style(expr, accidental_style):
 
    Set `accidental_style` for sequential contexts in `expr`. ::
 
-      score = Score(Staff(construct.scale(2)) * 2)
+      score = Score(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
       scoretools.set_accidental_style(score, 'forget')
       \new Score <<
               \new Staff {

@@ -7,7 +7,7 @@ def chromaticize(expr):
    r'''Apply ascending chromatic pitches 
    to the notes and chords in `expr`. ::
 
-      abjad> staff = Voice(construct.notes(0, [(5, 32)] * 4))
+      abjad> staff = Voice(leaftools.make_notes(0, [(5, 32)] * 4))
       abjad> pitchtools.chromaticize(staff)
       abjad> f(staff)
       \new Voice {

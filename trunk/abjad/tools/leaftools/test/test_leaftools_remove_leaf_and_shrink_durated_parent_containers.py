@@ -247,8 +247,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
       trigger tuplet insertion.'''
 
    t = RigidMeasure((5, 6), 
-      [FixedDurationTuplet((4, 8), construct.run(7))] + 
-         construct.run(3, (1, 4)))
+      [FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(7))] + 
+         leaftools.make_repeated_notes(3, (1, 4)))
    pitchtools.chromaticize(t)
 
    r'''
@@ -321,8 +321,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
       does not trigger trivial 1:1 tuplet insertion.'''
 
    t = RigidMeasure((5, 6), 
-      [FixedDurationTuplet((4, 8), construct.run(7))] + 
-         construct.run(3, (1, 4)))
+      [FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(7))] + 
+         leaftools.make_repeated_notes(3, (1, 4)))
    pitchtools.chromaticize(t)
 
    r'''
@@ -741,7 +741,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23( ):
    '''Excise leaf from fixed-duration tuplet.'''
 
-   t = FixedDurationTuplet((4, 8), construct.scale(5))
+   t = FixedDurationTuplet((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
 
    r'''
    \times 4/5 {
@@ -771,7 +771,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24( ):
    '''Excise leaf from fixed-multiplier tuplet.'''
 
-   t = FixedMultiplierTuplet((4, 5), construct.scale(5))
+   t = FixedMultiplierTuplet((4, 5), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
 
    r'''
    \times 4/5 {

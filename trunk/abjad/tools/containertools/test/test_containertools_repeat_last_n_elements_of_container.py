@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_repeat_last_n_elements_of_container_01( ):
    '''Cyclic extend measures in voice.'''
 
-   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -61,7 +61,7 @@ def test_containertools_repeat_last_n_elements_of_container_01( ):
 def test_containertools_repeat_last_n_elements_of_container_02( ):
    '''Cyclic extend tuplets in voice.'''
    
-   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''

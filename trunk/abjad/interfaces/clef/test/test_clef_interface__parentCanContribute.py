@@ -6,7 +6,7 @@ def test_clef_interface__parentCanContribute_01( ):
    Both forced clefs should be obeyed.
    '''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.clef.forced = Clef('bass')
    t[2].clef.forced = Clef('treble')
 
@@ -20,7 +20,7 @@ def test_clef_interface__parentCanContribute_02( ):
    Only parent clef should be obeyed.
    '''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.clef.forced = Clef('bass')
    t[0].clef.forced = Clef('treble')
 

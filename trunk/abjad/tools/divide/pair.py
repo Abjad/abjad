@@ -2,7 +2,7 @@ from abjad.container import Container
 from abjad.exceptions import AssignabilityError
 from abjad.note import Note
 from abjad.rest import Rest
-from abjad.tools import construct
+from abjad.tools import leaftools
 from abjad.tools import listtools
 from abjad.tuplet import FixedDurationTuplet
 import math
@@ -57,12 +57,12 @@ def pair(l, (n, d), together = False):
          try:
             return Container([Note(0, duration)])
          except AssignabilityError:
-            return Container(construct.notes(0, duration))
+            return Container(leaftools.make_notes(0, duration))
       elif l[0] < 0:
          try:
             return Container([Rest(duration)])
          except AssignabilityError:
-            return Container(construct.rests(duration))
+            return Container(leaftools.make_rests(duration))
       else:
          raise ValueError('no divide zero values.')
 
@@ -77,7 +77,7 @@ def pair(l, (n, d), together = False):
             try:
                music.append(Note(0, (x, denominator)))
             except AssignabilityError:
-               music.extend(construct.notes(0, (x, denominator)))
+               music.extend(leaftools.make_notes(0, (x, denominator)))
          else:
             music.append(Rest((-x, denominator)))
       return FixedDurationTuplet(duration, music)

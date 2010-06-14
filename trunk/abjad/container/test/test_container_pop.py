@@ -7,7 +7,7 @@ def test_container_pop_01( ):
       Popped leaves withdraw from crossing spanners.
       Popped leaves carry covered spanners forward.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Slur(t[:])
    Beam(t[1])
 
@@ -43,7 +43,7 @@ def test_container_pop_02( ):
    '''Containers pop nested containers correctly.
       Popped containers detach from both parent and spanners.'''
 
-   t = Staff(Container(construct.run(2)) * 2)
+   t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 

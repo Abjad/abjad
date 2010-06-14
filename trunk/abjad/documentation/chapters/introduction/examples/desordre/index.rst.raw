@@ -30,7 +30,7 @@ The two "layers" of the *cell* we will model with two Voices inside a parallel C
 
 <abjad>
 pitches = [1,2,3]
-notes = construct.notes(pitches, [(1, 8)])
+notes = leaftools.make_notes(pitches, [(1, 8)])
 Beam(notes)
 Slur(notes)
 notes[0].dynamics.mark = 'f'

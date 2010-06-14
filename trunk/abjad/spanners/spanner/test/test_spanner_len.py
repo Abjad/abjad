@@ -4,7 +4,7 @@ from abjad import *
 def test_spanner_len_01( ):
    '''Spanner length equals length of components.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 
@@ -33,7 +33,7 @@ def test_spanner_len_01( ):
 def test_spanner_len_02( ):
    '''Spanner length equals length of components.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 

@@ -3,7 +3,7 @@ from abjad import *
 
 def test_staff_engraver_removals_01( ):
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.engraver_removals.add('Time_signature_engraver')
    t.engraver_removals.add('Bar_number_engraver')
 

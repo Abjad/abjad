@@ -6,7 +6,7 @@ def fractured_by_durations(components, durations, tie_after = False):
    Fracture all spanners attached to any component at
    any duration split-point.  ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+      abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.diatonicize(t)
       abjad> Beam(t[0])
       abjad> Beam(t[1])

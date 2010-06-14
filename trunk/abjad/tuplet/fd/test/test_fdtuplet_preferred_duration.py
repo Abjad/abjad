@@ -3,7 +3,7 @@ from abjad import *
 
 def test_fdtuplet_preferred_duration_01( ):
 
-   t = FixedDurationTuplet((4, 8), construct.scale(6))
+   t = FixedDurationTuplet((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6))
    t.duration.preferred_denominator = 4
 
    r'''

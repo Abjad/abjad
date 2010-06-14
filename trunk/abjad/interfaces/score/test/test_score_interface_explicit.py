@@ -5,7 +5,7 @@ def test_score_interface_explicit_01( ):
    '''First explicit *Abjad* ``Score`` in parentage of client.
       If no explicit ``Score`` in parentage, return ``None``.'''
 
-   t = Score([Staff(construct.scale(4))])
+   t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    t.name = 'foo'
 
    r'''
@@ -28,7 +28,7 @@ def test_score_interface_explicit_02( ):
    '''First explicit *Abjad* ``Score`` in parentage of client.
       If no explicit ``Score`` in parentage, return ``None``.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.name = 'foo'
 
    r'''

@@ -9,7 +9,7 @@ def get_harmonic_chromatic_intervals_in(expr):
 
    Return unordered set of harmonic chromatic intervals in `expr`. ::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> pitchtools.get_harmonic_chromatic_intervals_in(staff)
       abjad> for interval in pitchtools.get_harmonic_chromatic_intervals_in(staff):
       ...     interval

@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_clone_and_splice_leaves_in_01( ):
    '''Multiply each leaf in voice by 1.'''
 
-   t = Voice(construct.scale(3))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    p = Beam(t[:])
    leaftools.clone_and_splice_leaves_in(t, total = 2)
 
@@ -26,7 +26,7 @@ def test_leaftools_clone_and_splice_leaves_in_01( ):
 def test_leaftools_clone_and_splice_leaves_in_02( ):
    '''Multiply each leaf in voice by 2.'''
 
-   t = Voice(construct.scale(3))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    Beam(t[:])
    leaftools.clone_and_splice_leaves_in(t, total = 3)
 

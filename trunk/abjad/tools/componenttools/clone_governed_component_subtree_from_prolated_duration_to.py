@@ -11,8 +11,8 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
    sequential parentage of `component` from prolated duration `start`
    to prolated duration `stop`::
 
-      abjad> voice = Voice(construct.run(2))
-      abjad> voice.append(FixedDurationTuplet((2, 8), construct.run(3)))
+      abjad> voice = Voice(leaftools.make_repeated_notes(2))
+      abjad> voice.append(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)))
       abjad> pitchtools.diatonicize(voice)
       abjad> f(voice)
       \new Voice {
@@ -40,7 +40,7 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
 
    Raise contiguity error if asked to slice a parallel container. ::
 
-      abjad> staff = Staff(Voice(construct.scale(2)) * 2)
+      abjad> staff = Staff(Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
       abjad> staff.parallel = True
       abjad> f(staff)
       \new Staff <<

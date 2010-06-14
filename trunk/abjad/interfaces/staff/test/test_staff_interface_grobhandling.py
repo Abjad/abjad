@@ -4,7 +4,7 @@ from abjad import *
 def test_staff_interface_grobhandling_01( ):
    '''Grob handling on Staff.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.staff.color = 'red'
 
    r'''
@@ -31,7 +31,7 @@ def test_staff_interface_grobhandling_01( ):
 def test_staff_interface_grobhandling_02( ):
    '''grob handling on Leaf.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t[2].staff.color = 'red'
    overridetools.promote_attribute_to_context_on_grob_handler(t[2].staff, 'color', 'Staff')
 

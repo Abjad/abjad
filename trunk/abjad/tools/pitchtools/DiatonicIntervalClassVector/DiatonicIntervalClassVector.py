@@ -9,7 +9,7 @@ class DiatonicIntervalClassVector(dict):
 
    Diatonic interval class vector. ::
 
-      abjad> staff = Staff(construct.scale(5))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
 
    Vector is not quatertone-aware.
    '''

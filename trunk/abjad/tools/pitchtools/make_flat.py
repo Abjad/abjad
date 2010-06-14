@@ -11,7 +11,7 @@ def make_flat(expr):
 
    ::
 
-      abjad> staff = Staff(construct.run(6))
+      abjad> staff = Staff(leaftools.make_repeated_notes(6))
       abjad> pitchtools.chromaticize(staff)
       abjad> f(staff)
       \new Staff {

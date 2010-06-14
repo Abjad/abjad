@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_color_measure_01( ):
 
-   measure = RigidMeasure((2, 8), construct.scale(2))
+   measure = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
 
    r'''
    {

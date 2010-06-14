@@ -4,7 +4,7 @@ from abjad import *
 def test_tietools_group_by_parent_01( ):
    '''Group leaves in tie chain by immediate parent.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    Tie(t.leaves)
 
    r'''
@@ -28,7 +28,7 @@ def test_tietools_group_by_parent_01( ):
 def test_tietools_group_by_parent_02( ):
    '''Group leaves in tie chain by immediate parent.'''
 
-   t = Staff(construct.run(4))
+   t = Staff(leaftools.make_repeated_notes(4))
    Tie(t.leaves)
 
    r'''

@@ -21,7 +21,7 @@ def apply_layout_schema(expr, layout_schema,
    to alignment distance 0 and sets the second staff in each
    system to alignment distance 15. ::
 
-      abjad> score = Score(2 * Staff(RigidMeasure((2, 8), construct.run(2)) * 4))
+      abjad> score = Score(2 * Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4))
       abjad> pitchtools.diatonicize(score)
       abjad> schema = layout.LayoutSchema(Rational(4, 8), (40, 5, 1), (15, ))
       abjad> layout.apply_layout_schema(score[0], schema)

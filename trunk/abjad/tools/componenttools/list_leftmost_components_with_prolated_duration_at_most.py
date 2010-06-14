@@ -6,7 +6,7 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
    '''Return tuple of ``components[:i]`` together with 
    the prolated duration of ``components[:i]``. ::
 
-      abjad> voice = Voice(construct.scale(4))
+      abjad> voice = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> componenttools.list_leftmost_components_with_prolated_duration_at_most(voice[:], Rational(1, 4))
       ([Note(c', 8), Note(d', 8)], Rational(1, 4))
 

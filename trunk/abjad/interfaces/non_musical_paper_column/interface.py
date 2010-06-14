@@ -7,7 +7,7 @@ class NonMusicalPaperColumnInterface(_Interface, _GrobHandler):
 
    Handle the LilyPond NonMusicalPaperColumn grob. ::
 
-      abjad> t = Score([Staff(construct.scale(4))])
+      abjad> t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
       abjad> t.non_musical_paper_column.line_break_permission = False
       abjad> t.non_musical_paper_column.page_break_permission = False
 

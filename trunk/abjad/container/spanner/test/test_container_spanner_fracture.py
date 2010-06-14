@@ -5,7 +5,7 @@ import py.test
 def test_container_spanner_fracture_01( ):
    '''Fracture spanner either side of container.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -52,7 +52,7 @@ def test_container_spanner_fracture_01( ):
 def test_container_spanner_fracture_02( ):
    '''Fracture spanner to the left of container.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -102,7 +102,7 @@ def test_container_spanner_fracture_02( ):
 def test_container_spanner_fracture_03( ):
    '''Fracture spanner to the right of container.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -152,7 +152,7 @@ def test_container_spanner_fracture_03( ):
 def test_container_spanner_fracture_04( ):
    '''Fracturing nothing does nothing.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
 
    r'''

@@ -4,7 +4,7 @@ from abjad import *
 def test_iterate_pitch_pairs_forward_in_01( ):
 
    score = Score([ ])
-   notes = construct.scale(4) + [Note(7, (1, 4))]
+   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) + [Note(7, (1, 4))]
    score.append(Staff(notes))
    notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
    score.append(Staff(notes))

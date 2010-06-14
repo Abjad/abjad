@@ -5,7 +5,7 @@ from abjad.tools.split._leaf_at_duration import _leaf_at_duration
 def test_split__leaf_at_duration_01( ):
    '''Notehead-assignable split duration produces two notes.'''
 
-   t = Staff(construct.scale(3))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    Beam(t[:])
 
    r'''
@@ -34,7 +34,7 @@ def test_split__leaf_at_duration_01( ):
 def test_split__leaf_at_duration_02( ):
    '''Nonbinary denominator produces two one-note tuplets.'''
 
-   t = Staff(construct.scale(3))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    Beam(t[:])
 
    r'''
@@ -68,7 +68,7 @@ def test_split__leaf_at_duration_03( ):
    '''Notehead-assignable duration produces two notes.
       This test comes from a container-crossing spanner bug.'''
 
-   t = Voice(construct.run(1) + [FixedDurationTuplet((2, 8), construct.run(3))])
+   t = Voice(leaftools.make_repeated_notes(1) + [FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3))])
    pitchtools.diatonicize(t)
    Beam(t.leaves)
 
@@ -208,7 +208,7 @@ def test_split__leaf_at_duration_09( ):
 def test_split__leaf_at_duration_10( ):
    '''Spanners are unaffected by leaf split.'''
 
-   t = Staff(construct.run(4))
+   t = Staff(leaftools.make_repeated_notes(4))
    b = Beam(t.leaves)
    halves = _leaf_at_duration(t[0], Rational(1, 16))
 
@@ -240,7 +240,7 @@ def test_split__leaf_at_duration_12( ):
    '''Split leaf is not tied again when a Container 
       containing it is already Tie-spanned.'''
 
-   t = Staff(construct.run(4))
+   t = Staff(leaftools.make_repeated_notes(4))
    s = Tie(t)
    halves = _leaf_at_duration(t[0], Rational(5, 64))
 
@@ -255,7 +255,7 @@ def test_split__leaf_at_duration_13( ):
    '''Split leaf is not tied again when a Container containing it is 
       already Tie-spanned.'''
 
-   t = Staff(Container(construct.run(4)) * 2)
+   t = Staff(Container(leaftools.make_repeated_notes(4)) * 2)
    s = Tie(t[:])
    halves = _leaf_at_duration(t[0][0], Rational(5, 64))
 

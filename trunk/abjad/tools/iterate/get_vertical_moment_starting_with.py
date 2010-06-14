@@ -9,10 +9,10 @@ def get_vertical_moment_starting_with(expr, governor = None):
    ``expr.offset.prolated.start`` in ``expr.parentage.root``. ::
 
       abjad> score = Score([ ])
-      abjad> score.append(Staff([FixedDurationTuplet((4, 8), construct.run(3))]))
+      abjad> score.append(Staff([FixedDurationTuplet((4, 8), leaftools.make_repeated_notes(3))]))
       abjad> piano_staff = PianoStaff([ ])
-      abjad> piano_staff.append(Staff(construct.run(2, Rational(1, 4))))
-      abjad> piano_staff.append(Staff(construct.run(4)))
+      abjad> piano_staff.append(Staff(leaftools.make_repeated_notes(2, Rational(1, 4))))
+      abjad> piano_staff.append(Staff(leaftools.make_repeated_notes(4)))
       abjad> piano_staff[1].clef.forced = Clef('bass')
       abjad> score.append(piano_staff)
       abjad> pitchtools.diatonicize(list(reversed(score.leaves)))  

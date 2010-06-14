@@ -5,7 +5,7 @@ def test_spacing_interface_proportional_notation_duration_01( ):
    '''You can set the LilyPond propotionalNotationDuration context
    setting scorewide on any Abjad score.'''
 
-   t = Score([Staff(construct.scale(4))])
+   t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    t.spacing.proportional_notation_duration = Rational(1, 56)
 
    r'''

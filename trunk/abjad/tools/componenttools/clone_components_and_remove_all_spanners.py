@@ -13,7 +13,7 @@ def clone_components_and_remove_all_spanners(components, n = 1):
    Deep copy unspanned components in `components`.
    Reapply spanners to all components at any level in `components`. ::
    
-      abjad> voice = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
+      abjad> voice = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.diatonicize(voice)
       abjad> beam = Beam(voice.leaves[:4])
       abjad> f(voice)

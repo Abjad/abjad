@@ -7,7 +7,7 @@ def test_spannertools_withdraw_from_contained_01( ):
    '''Unspan every component in components.
       Navigate down into components and traverse deeply.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t)
    Crescendo(t[:])
 
@@ -29,7 +29,7 @@ def test_spannertools_withdraw_from_contained_01( ):
 def test_spannertools_withdraw_from_contained_02( ):
    '''Docs.'''
 
-   t = Staff(Container(construct.run(2)) * 3)
+   t = Staff(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves[:3])
    Beam(t.leaves[3:])

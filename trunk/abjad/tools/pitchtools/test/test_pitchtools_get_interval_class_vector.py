@@ -18,7 +18,7 @@ def test_pitchtools_get_interval_class_vector_01( ):
 
 def test_pitchtools_get_interval_class_vector_02( ):
 
-   t = Staff(construct.scale(4) + construct.scale(4) + construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) + leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) + leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    pitches = pitchtools.get_pitches(t)
    vector = pitchtools.get_interval_class_vector(pitches)
 

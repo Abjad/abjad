@@ -1,7 +1,7 @@
 def move_component_subtree_to_right_in_score_and_spanners(component):
    r'''Flip `component` one index to the right in parent and spanners. ::
 
-      abjad> t = Voice(construct.scale(4))
+      abjad> t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(t[:2])
       abjad> Beam(t[2:])
       abjad> f(t)
@@ -32,7 +32,7 @@ def move_component_subtree_to_right_in_score_and_spanners(component):
 
    ::
 
-      abjad> voice = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+      abjad> voice = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
       abjad> Beam(voice.leaves[:4])
       abjad> pitchtools.diatonicize(voice)
       abjad> componenttools.move_component_subtree_to_right_in_score_and_spanners(voice[0])

@@ -7,7 +7,7 @@ def test_spacing_spanner_grob_handling_01( ):
       Abjad SpacingSpanner overrides usually 
       require context promotion.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p = SpacingSpanner(t[:])
    p.strict_grace_spacing = True
    p.strict_note_spacing = True
@@ -41,7 +41,7 @@ def test_spacing_spanner_grob_handling_02( ):
       Abjad SpacingSpanner overrides usually 
       require context promotion.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    p = SpacingSpanner(t[:])
    p.strict_grace_spacing = True

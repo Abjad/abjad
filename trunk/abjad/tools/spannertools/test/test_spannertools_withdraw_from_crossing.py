@@ -7,7 +7,7 @@ import py.test
 def test_spannertools_withdraw_from_crossing_01( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
@@ -42,7 +42,7 @@ def test_spannertools_withdraw_from_crossing_01( ):
 def test_spannertools_withdraw_from_crossing_02( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
@@ -91,7 +91,7 @@ def test_spannertools_withdraw_from_crossing_02( ):
 def test_spannertools_withdraw_from_crossing_03( ):
    '''Withdraw thread-contiguous components from crossing spanners.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])

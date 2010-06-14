@@ -6,7 +6,7 @@ def group_by_type_and_yield_groups(expr):
 
    Group elements in `expr` by type and yield groups::
 
-      abjad> staff = Staff(construct.leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
+      abjad> staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
       abjad> for x in iterate.group_by_type_and_yield_groups(staff):
       ...     x
       ... 

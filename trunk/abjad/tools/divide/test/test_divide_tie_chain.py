@@ -5,7 +5,7 @@
 #def test_divide_tie_chain_01( ):
 #   '''Divide tie chain and bequeath spanners and parentage.'''
 #   
-#   t = Staff(construct.notes(0, [(5, 32), (5, 32)]))
+#   t = Staff(leaftools.make_notes(0, [(5, 32), (5, 32)]))
 #   Beam(t[:2])
 #   Beam(t[2:])
 #   Crescendo(t[:])
@@ -45,7 +45,7 @@
 #   '''You can NOT divide an orphan tie chain, 
 #      ie, not within a staff or voice.'''
 #
-#   notes = construct.notes(0, [(5, 32)])
+#   notes = leaftools.make_notes(0, [(5, 32)])
 #   Beam(notes)
 #   assert py.test.raises(Exception, 
 #      'divide.tie_chain_into_arbitrary_diminution_undotted(notes, [1, 1, 1])')
@@ -54,7 +54,7 @@
 #def test_divide_tie_chain_03( ):
 #   '''Divide a trivial (ie, length-one) tie chain.'''
 #
-#   t = Staff(construct.run(4))
+#   t = Staff(leaftools.make_repeated_notes(4))
 #   divide.tie_chain_into_arbitrary_diminution_undotted(
 #      t[1].tie.chain, [1, 1, 1])
 #

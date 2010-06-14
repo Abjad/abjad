@@ -7,8 +7,8 @@ def test_iterate_timeline_forward_from_01( ):
    and starting from expr.
    '''
 
-   staff_1 = Staff(construct.run(4, Rational(1, 4)))
-   staff_2 = Staff(construct.run(4, Rational(1, 8)))
+   staff_1 = Staff(leaftools.make_repeated_notes(4, Rational(1, 4)))
+   staff_2 = Staff(leaftools.make_repeated_notes(4, Rational(1, 8)))
    score_1 = Score([staff_1, staff_2])
    pitchtools.diatonicize(score_1)   
 
@@ -44,8 +44,8 @@ def test_iterate_timeline_forward_from_02( ):
    and starting from expr.
    '''
 
-   staff_1 = Staff(construct.run(4, Rational(1, 8)))
-   staff_2 = Staff(construct.run(4, Rational(1, 4)))
+   staff_1 = Staff(leaftools.make_repeated_notes(4, Rational(1, 8)))
+   staff_2 = Staff(leaftools.make_repeated_notes(4, Rational(1, 4)))
    score = Score([staff_1, staff_2])
    pitchtools.diatonicize(score)   
 

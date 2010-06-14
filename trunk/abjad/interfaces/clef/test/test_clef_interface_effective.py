@@ -3,14 +3,14 @@ from abjad import *
 
 def test_clef_interface_effective_01( ):
    '''Clef defaults to treble.'''
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    for note in t:
       assert note.clef.effective == Clef('treble')
    
 
 def test_clef_interface_effective_02( ):
    '''Clefs carry over to notes following.'''
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    t[0].clef.forced = Clef('treble')
    for note in t:
       assert note.clef.effective == Clef('treble')
@@ -19,7 +19,7 @@ def test_clef_interface_effective_02( ):
 def test_clef_interface_effective_03( ):
    '''Clef defaults to treble;
       clefs carry over to notes following.'''
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    t[4].clef.forced = Clef('bass')
    for i, note in enumerate(t):
       if i in (0, 1, 2, 3):
@@ -30,7 +30,7 @@ def test_clef_interface_effective_03( ):
 
 def test_clef_interface_effective_04( ):
    '''Clefs carry over to notes following.'''
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
    assert [note.clef.effective for note in t] == \
@@ -40,7 +40,7 @@ def test_clef_interface_effective_04( ):
 
 def test_clef_interface_effective_05( ):
    '''None cancels an explicit clef.'''
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('bass')
    t[4].clef.forced = None
@@ -50,7 +50,7 @@ def test_clef_interface_effective_05( ):
 
 def test_clef_interface_effective_06( ):
    '''None has no effect on an unassigned clef.'''
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    for note in t:
       note.clef.forced = None
    for note in t:
@@ -60,7 +60,7 @@ def test_clef_interface_effective_06( ):
 def test_clef_interface_effective_07( ):
    '''Redudant clefs are allowed.'''
 
-   t = Staff(construct.run(8))
+   t = Staff(leaftools.make_repeated_notes(8))
    pitchtools.chromaticize(t)
    t[0].clef.forced = Clef('treble')
    t[4].clef.forced = Clef('treble')
@@ -87,7 +87,7 @@ def test_clef_interface_effective_07( ):
 def test_clef_interface_effective_08( ):
    '''Clefs with transposition are allowed and work as expected.'''
 
-   t = Staff(construct.run(8))
+   t = Staff(leaftools.make_repeated_notes(8))
    pitchtools.chromaticize(t)
    t[0].clef.forced = Clef('treble_8')
    t[4].clef.forced = Clef('treble')
@@ -114,7 +114,7 @@ def test_clef_interface_effective_08( ):
 def test_clef_interface_effective_09( ):
    '''Setting and then clearing works as expected.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t[0].clef.forced = Clef('alto')
    t[0].clef.forced = None
 

@@ -6,7 +6,7 @@ def test_spannertools_get_covered_01( ):
    '''Return unordered set of spanners completely covered
       by the time bounds of thread-contiguous components.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
@@ -49,7 +49,7 @@ def test_spannertools_get_covered_02( ):
    '''Trying to get covered spanners across 
       non-thread-contiguous components raises ContiguityError.'''
 
-   t = Container(Voice(construct.run(2)) * 2)
+   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t.leaves[:2])
    Slur(t.leaves[2:])

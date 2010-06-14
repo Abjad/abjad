@@ -7,7 +7,7 @@ def unfractured_at_index(container, index):
    preserve container multiplier, preserve meter denominator.
    Return split parts. ::
 
-      abjad> t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
+      abjad> t = Voice(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
       abjad> pitchtools.diatonicize(t)
       abjad> p = Beam(t[:])
       abjad> f(t)

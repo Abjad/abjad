@@ -4,7 +4,7 @@ from abjad import *
 def test_partition_fractured_by_durations_01( ):
    '''Duration partition one container in score, and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -59,7 +59,7 @@ def test_partition_fractured_by_durations_02( ):
    '''Duration partition multiple containers in score, 
       and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -119,7 +119,7 @@ def test_partition_fractured_by_durations_03( ):
       This example includes no spanners.
       Spanners do not apply outside of score.'''
 
-   t = Container(construct.run(2)) * 2
+   t = Container(leaftools.make_repeated_notes(2)) * 2
    pitchtools.diatonicize(t)
 
    "[{c'8, d'8}, {e'8, f'8}]"

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_remove_tie_spanners_from_components_01( ):
-   t = Staff(construct.notes(0, [(5, 16), (5, 16)]))
+   t = Staff(leaftools.make_notes(0, [(5, 16), (5, 16)]))
 
    r'''
    \new Staff {

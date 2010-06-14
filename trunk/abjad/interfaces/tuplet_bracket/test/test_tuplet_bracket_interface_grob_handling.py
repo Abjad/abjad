@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplet_bracket_interface_grob_handling_01( ):
    '''Override LilyPond TupletBracket grob on Abjad voice.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    t.tuplet_bracket.direction = 'down'
 
@@ -26,7 +26,7 @@ def test_tuplet_bracket_interface_grob_handling_01( ):
 def test_tuplet_bracket_interface_grob_handling_02( ):
    '''Override LilyPond TupletBracket grob on Abjad leaf.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    t[1].tuplet_bracket.direction = 'down'
 

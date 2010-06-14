@@ -14,7 +14,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
 
    ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> t.instrument
       <InstrumentInterface>
 
@@ -51,7 +51,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
 
          ::
 
-            abjad> t = Staff(construct.scale(4))
+            abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
             abjad> t.instrument.name = 'Violini I'
 
 
@@ -82,7 +82,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
 
       ::
 
-         abjad> t = Staff(construct.scale(4))
+         abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
          abjad> t.instrument.name = 'Violini I'
          abjad> t.instrument.short_name = 'Vni. I'
          abjad> t.instrument.settings
@@ -115,7 +115,7 @@ class InstrumentInterface(_Interface, _GrobHandler, _ContextSettingHandler,
 
          ::
 
-            abjad> t = Staff(construct.scale(4))
+            abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
             abjad> t.instrument.short_name = 'Vni. I'
 
 

@@ -7,7 +7,7 @@ def fractured_at_index(container, index):
    of original contents.
    Return split parts. ::
 
-      abjad> t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+      abjad> t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
       abjad> tuplet = t[1]
       abjad> pitchtools.diatonicize(t)
       abjad> Beam(t[:])

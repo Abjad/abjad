@@ -9,7 +9,7 @@ from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_
 def cut_component_at_prolated_duration(component, prolated_duration):
    r'''Cut `component` by dotted `prolated_duration`::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(1, 32))
       abjad> f(staff)
@@ -22,7 +22,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       
    Cut `component` by tied `prolated_duration`::
       
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(3, 64))
       abjad> f(staff)
@@ -36,7 +36,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
       
    Cut `component` by nonbinary `prolated_duration`::
       
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> componenttools.cut_component_at_prolated_duration(staff, Rational(1, 24))
       abjad> f(staff)

@@ -3,7 +3,7 @@ from abjad import *
 
 def test_HairpinInterface_grob_handling_01( ):
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.hairpin.staff_padding = 2
    t.hairpin.Y_extent = (-1.5, 1.5)
 

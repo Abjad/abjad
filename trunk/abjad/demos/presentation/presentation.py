@@ -31,7 +31,7 @@ class Presentation(object):
       
    ### PUBLIC METHODS ###
 
-   def run(self, live=False):
+   def make_repeated_notes(self, live=False):
       '''
       This method runs the presentation. 
       Set live to True in live presentation. When live is True the commands

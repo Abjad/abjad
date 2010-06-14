@@ -5,7 +5,7 @@ import py.test
 def test_check_assess_components_strict_thread_01( ):
    '''True for strictly contiguous leaves in same staff.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    assert check.assess_components(t[:], contiguity = 'strict', share = 'thread')
 
 
@@ -13,15 +13,15 @@ def test_check_assess_components_strict_thread_02( ):
    '''True for orphan components when allow_orphans is True.
       False for orphan components when allow_orphans is False.'''
 
-   assert check.assess_components(construct.scale(4), contiguity = 'strict', share = 'thread')
-   assert not check.assess_components(construct.scale(4), allow_orphans = False, 
+   assert check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), contiguity = 'strict', share = 'thread')
+   assert not check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), allow_orphans = False, 
       contiguity = 'strict', share = 'thread')
 
 
 def test_check_assess_components_strict_thread_03( ):
    '''False for time reordered leaves in staff.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    assert not check.assess_components(t[2:] + t[:2], 
       contiguity = 'strict', share = 'thread')
 
@@ -29,7 +29,7 @@ def test_check_assess_components_strict_thread_03( ):
 def test_check_assess_components_strict_thread_04( ):
    '''False for unincorporated component.'''
 
-   assert check.assess_components([Staff(construct.scale(4))], 
+   assert check.assess_components([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))], 
       contiguity = 'strict', share = 'thread')
 
 

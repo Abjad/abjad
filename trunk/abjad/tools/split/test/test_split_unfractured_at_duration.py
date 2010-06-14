@@ -3,7 +3,7 @@ from abjad import *
 
 def test_split_unfractured_at_duration_01( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -51,7 +51,7 @@ def test_split_unfractured_at_duration_01( ):
 
 def test_split_unfractured_at_duration_02( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -102,7 +102,7 @@ def test_split_unfractured_at_duration_02( ):
 
 def test_split_unfractured_at_duration_03( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -162,7 +162,7 @@ def test_split_unfractured_at_duration_04( ):
    '''Duration split one leaf in score.
       Do not fracture spanners. But do tie after split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -213,7 +213,7 @@ def test_split_unfractured_at_duration_05( ):
    '''Duration split one measure in score.
       Do not fracture spanners. But do add tie after split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -267,7 +267,7 @@ def test_split_unfractured_at_duration_06( ):
    '''Duration split binary measure in score at nonbinary split point.
       Do not fracture spanners and do not tie leaves after split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -325,7 +325,7 @@ def test_split_unfractured_at_duration_07( ):
    '''Duration split binary measure in score at nonbinary split point.
       Do fracture spanners and do tie leaves after split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])

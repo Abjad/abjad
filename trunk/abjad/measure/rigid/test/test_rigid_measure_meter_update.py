@@ -4,7 +4,7 @@ from abjad import *
 def test_rigid_measure_meter_update_01( ):
    '''RigidMeasures allow meter update.'''
 
-   t = RigidMeasure((4, 8), construct.scale(4))
+   t = RigidMeasure((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    r'''
    {

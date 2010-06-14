@@ -5,7 +5,7 @@ import py.test
 def test_containertools_reverse_contents_of_container_01( ):
    '''Retrograde works on a depth-0 Container with no spanners and no parent.'''
 
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    leaves_rev = reversed(t.leaves)
    containertools.reverse_contents_of_container(t)
 
@@ -17,7 +17,7 @@ def test_containertools_reverse_contents_of_container_02( ):
    '''Retrograde works on a depth-0 Container with 
       one spanner attached and no parent.'''
 
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    beam = Beam(t)
    leaves_rev = reversed(t.leaves)
    containertools.reverse_contents_of_container(t)
@@ -31,7 +31,7 @@ def test_containertools_reverse_contents_of_container_03( ):
    '''Retrograde works on a depth-0 Container 
       with one spanner attached to its leaves and with no parent.'''
 
-   t = Staff(construct.scale(8))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    beam = Beam(t.leaves)
    leaves_rev = reversed(t.leaves)
    containertools.reverse_contents_of_container(t)
@@ -45,7 +45,7 @@ def test_containertools_reverse_contents_of_container_04( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to itself and with a parent.'''
 
-   t = Staff([DynamicMeasure(construct.scale(8))] + construct.run(2))
+   t = Staff([DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))] + leaftools.make_repeated_notes(2))
    beam = Beam(t[0])
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
@@ -58,7 +58,7 @@ def test_containertools_reverse_contents_of_container_05( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to its leaves and with a parent.'''
 
-   t = Staff([DynamicMeasure(construct.scale(8))] + construct.run(2))
+   t = Staff([DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))] + leaftools.make_repeated_notes(2))
    beam = Beam(t[0].leaves)
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
@@ -71,7 +71,7 @@ def test_containertools_reverse_contents_of_container_06( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to its parent.'''
 
-   t = Staff([DynamicMeasure(construct.scale(8))] + construct.scale(2))
+   t = Staff([DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))] + leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    beam = Beam(t)
    leaves_rev = reversed(t[0].leaves)
    containertools.reverse_contents_of_container(t[0])
@@ -84,8 +84,8 @@ def test_containertools_reverse_contents_of_container_07( ):
    '''Retrograde works on a depth-0 Container with one spanner 
       attached to its parent's contents.'''
 
-   notes = construct.scale(2)
-   measure = DynamicMeasure(construct.scale(8))
+   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)
+   measure = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    t = Staff([measure] + notes)
    beam = Beam(t[:])
    leaves_rev = reversed(t[0].leaves)
@@ -100,8 +100,8 @@ def test_containertools_reverse_contents_of_container_07( ):
 def test_containertools_reverse_contents_of_container_08( ):
    '''Retrograde unable to apply because of measure contiguity.'''
 
-   notes = construct.scale(2)
-   measure = DynamicMeasure(construct.scale(8))
+   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)
+   measure = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
    t = Staff([measure] + notes)
    beam = Beam(t[:])
 
@@ -131,8 +131,8 @@ def test_containertools_reverse_contents_of_container_09( ):
    '''Retrograde works on a depth-2 Container with 
       no parent and with spanners at all levels.'''
 
-   m1 = DynamicMeasure(construct.scale(4)) 
-   m2 = DynamicMeasure(construct.scale(3))
+   m1 = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)) 
+   m2 = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    staff = Staff([m1, m2])
    pedal = PianoPedal(staff)
    trill = Trill(staff[:])

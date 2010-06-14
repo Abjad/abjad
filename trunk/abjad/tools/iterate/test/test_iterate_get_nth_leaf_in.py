@@ -4,7 +4,7 @@ from abjad import *
 def test_iterate_get_nth_leaf_in_01( ):
    '''Read forwards for positive n.'''
 
-   staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(staff)
 
    r'''
@@ -38,7 +38,7 @@ def test_iterate_get_nth_leaf_in_01( ):
 def test_iterate_get_nth_leaf_in_02( ):
    '''Read backwards for negative n.'''
 
-   staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(staff)
 
    r'''

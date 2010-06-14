@@ -6,7 +6,7 @@ def is_bar_line_crossing_leaf(leaf):
 
    True when `leaf` crosses bar line::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> t[2].duration.written *= 2
       abjad> meter = Meter(2, 8)
       abjad> meter.partial = Rational(1, 8)

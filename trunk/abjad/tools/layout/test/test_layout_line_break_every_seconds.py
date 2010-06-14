@@ -5,7 +5,7 @@ def test_layout_line_break_every_seconds_01( ):
    '''Iterate klass instances in expr and accumulate duration in seconds.
    Add line break after every total less than or equal to line_duration.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
 
    tempo_spanner = TempoSpanner(t[:])

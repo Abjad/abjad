@@ -3,7 +3,7 @@ from abjad import *
 def test_fuse_tied_leaves_by_prolated_durations_01( ):
    '''Tied leaves inside containers can be fused.''' 
 
-   t = Voice(construct.run(4))
+   t = Voice(leaftools.make_repeated_notes(4))
    tie = Tie(t.leaves)
    fuse.tied_leaves_by_prolated_durations(t.leaves, [Rational(1, 4)])
 
@@ -30,7 +30,7 @@ def test_fuse_tied_leaves_by_prolated_durations_01( ):
 def test_fuse_tied_leaves_by_prolated_durations_02( ):
    '''Tied leaves inside containers can be fused.''' 
 
-   t = Voice(construct.run(4))
+   t = Voice(leaftools.make_repeated_notes(4))
    tie = Tie(t.leaves[1:])
    fuse.tied_leaves_by_prolated_durations(t.leaves, [Rational(1, 4)])
 
@@ -60,7 +60,7 @@ def test_fuse_tied_leaves_by_prolated_durations_02( ):
 def test_fuse_tied_leaves_by_prolated_durations_03( ):
    '''multiple ties inside the same duration span are independently fused.''' 
 
-   t = Voice(construct.run(4))
+   t = Voice(leaftools.make_repeated_notes(4))
    tie1 = Tie(t.leaves[0:2])
    tie2 = Tie(t.leaves[2:])
    fuse.tied_leaves_by_prolated_durations(t.leaves, [Rational(1, 4)] * 2)
@@ -85,7 +85,7 @@ def test_fuse_tied_leaves_by_prolated_durations_03( ):
 def test_fuse_tied_leaves_by_prolated_durations_04( ):
    '''multiple ties inside the same duration span are independently fused.''' 
 
-   t = Voice(construct.run(8))
+   t = Voice(leaftools.make_repeated_notes(8))
    Tie(t.leaves[0:4])
    Tie(t.leaves[4:])
 
@@ -123,7 +123,7 @@ def test_fuse_tied_leaves_by_prolated_durations_05( ):
    durations = [5, 7, 2, 11, 13, 5, 13, 3]
    durations = zip(durations, [16] * len(durations))
 
-   notes = construct.notes(0, durations)
+   notes = leaftools.make_notes(0, durations)
    t = RhythmicSketchStaff(notes)
 
    meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]

@@ -8,8 +8,8 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Container(construct.run(4))
-#   t.insert(2, Container(Container(construct.run(2)) * 2))
+#   t = Container(leaftools.make_repeated_notes(4))
+#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.note_head.color = 'red'
@@ -46,9 +46,9 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Voice(construct.run(4))
+#   t = Voice(leaftools.make_repeated_notes(4))
 #   t.name = 'foo'
-#   t.insert(2, Container(Container(construct.run(2)) * 2))
+#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.note_head.color = 'red'
@@ -85,8 +85,8 @@ import py.test
 #   '''Return _ContainmentSignature giving the root and
 #      first voice, staff and score in the parentage of component.'''
 #
-#   t = Voice(construct.run(4))
-#   t.insert(2, Container(Container(construct.run(2)) * 2))
+#   t = Voice(leaftools.make_repeated_notes(4))
+#   t.insert(2, Container(Container(leaftools.make_repeated_notes(2)) * 2))
 #   t[2].parallel = True
 #   pitchtools.diatonicize(t)
 #   t.note_head.color = 'red'
@@ -120,7 +120,7 @@ import py.test
 def test_thread_signature_04( ):
    '''An anonymous  Staff and it's contained unvoiced leaves share the 
    same signature.'''
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    containment = t.thread.signature
    for component in iterate.naive_forward_in(t, _Component):
@@ -131,7 +131,7 @@ def test_thread_signature_05( ):
    '''A named Staff and it's contained unvoiced leaves share the 
    same signature.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.name = 'foo'
 
    containment = t.thread.signature
@@ -143,7 +143,7 @@ def test_thread_signature_06( ):
    '''Leaves inside equally named sequential voices inside a Staff 
    share the same signature.'''
 
-   t = Staff(Voice(construct.scale(4)) * 2)
+   t = Staff(Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
 
@@ -156,8 +156,8 @@ def test_thread_signature_07( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in the parentage of component.'''
 
-   t = Voice(construct.run(4))
-   t.insert(2, Container(Voice(construct.run(2)) * 2))
+   t = Voice(leaftools.make_repeated_notes(4))
+   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    pitchtools.diatonicize(t)
    t.note_head.color = 'red'
@@ -198,9 +198,9 @@ def test_thread_signature_08( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Voice(construct.run(4))
+   t = Voice(leaftools.make_repeated_notes(4))
    t.name = 'foo'
-   t.insert(2, Container(Voice(construct.run(2)) * 2))
+   t.insert(2, Container(Voice(leaftools.make_repeated_notes(2)) * 2))
    t[2].parallel = True
    t[2][0].name = 'foo'
    pitchtools.diatonicize(t)
@@ -249,7 +249,7 @@ def test_thread_signature_09( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Container(Staff([Voice(construct.scale(2))]) * 2)
+   t = Container(Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
@@ -289,8 +289,8 @@ def test_thread_signature_10( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Container(construct.run(2))
-   t[1:1] = Container(Voice(construct.run(1)) * 2) * 2
+   t = Container(leaftools.make_repeated_notes(2))
+   t[1:1] = Container(Voice(leaftools.make_repeated_notes(1)) * 2) * 2
    t[1].parallel = True
    t[1][0].name = 'alto'
    t[1][1].name = 'soprano'
@@ -376,7 +376,7 @@ def test_thread_signature_12( ):
 def test_thread_signature_13( ):
    '''Measure and leaves must carry same thread signature.'''
 
-   t = Staff([DynamicMeasure(construct.scale(2))] + construct.run(2))
+   t = Staff([DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))] + leaftools.make_repeated_notes(2))
    pitchtools.diatonicize(t)
 
    r'''
@@ -397,7 +397,7 @@ def test_thread_signature_13( ):
 def test_thread_signature_14( ):
    '''Leaves inside different Staves have different thread signatures,
    even when the staves have the same name.'''
-   t = Container(Staff(construct.run(2)) * 2)
+   t = Container(Staff(leaftools.make_repeated_notes(2)) * 2)
    t[0].name = t[1].name = 'staff'
 
    r'''

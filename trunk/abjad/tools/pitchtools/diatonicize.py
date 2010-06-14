@@ -10,7 +10,7 @@ def diatonicize(expr, key_signature = None):
    r'''Apply ascending diatonic pitches to the notes
    and chords in `expr`. ::
 
-      abjad> staff = Staff(construct.notes(0, [(5, 32)] * 4))
+      abjad> staff = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
       abjad> pitchtools.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

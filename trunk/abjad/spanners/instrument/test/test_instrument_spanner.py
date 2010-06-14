@@ -4,7 +4,7 @@ from abjad import *
 def test_instrument_spanner_01( ):
    '''Instrument spanner with long and short names.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p = Instrument(t, 'Alto Flute in G', 'Fl. G')
 
    r'''
@@ -27,7 +27,7 @@ def test_instrument_spanner_01( ):
 def test_instrument_spanner_02( ):
    '''Works with markup.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    long_name = Markup(r'\italic { Alto Flute in G }')
    short_name = Markup(r'\italic { Fl. G }')
    p = Instrument(t, long_name, short_name)

@@ -7,8 +7,8 @@ def chained_contents(expr):
    r'''Yield the left-to-right, top-level contents of `expr`
    with chain-wrapped leaves. ::
 
-      t = Staff(construct.notes(0, [(5, 32)] * 4))
-      t.insert(4, FixedDurationTuplet((2, 8), construct.run(3)))
+      t = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
+      t.insert(4, FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)))
       pitchtools.diatonicize(t)
       abjad> print t.format
       \new Staff {

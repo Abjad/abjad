@@ -3,7 +3,7 @@ from abjad import *
 
 def test_beam_complex_measured_01( ):
 
-   t = Staff(RigidMeasure((2, 16), construct.run(2, Rational(1, 16))) * 3)
+   t = Staff(RigidMeasure((2, 16), leaftools.make_repeated_notes(2, Rational(1, 16))) * 3)
    pitchtools.diatonicize(t)
 
    r'''

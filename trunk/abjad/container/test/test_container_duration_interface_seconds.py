@@ -6,7 +6,7 @@ def test_container_duration_interface_seconds_01( ):
    '''Container duration in seconds equals 
       sum of leaf durations in seconds.'''
 
-   t = Container(construct.scale(4))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 4), 38)
    t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 4), 42)
 
@@ -28,5 +28,5 @@ def test_container_duration_interface_seconds_02( ):
    '''Container can not calculate duration in seconds 
       without tempo indication.'''
 
-   t = Container(construct.scale(4))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    assert py.test.raises(UndefinedTempoError, 't.duration.seconds')

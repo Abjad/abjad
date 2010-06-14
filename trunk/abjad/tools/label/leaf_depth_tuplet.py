@@ -6,7 +6,7 @@ def leaf_depth_tuplet(expr):
 
    ::
 
-      abjad> staff = Staff(construct.scale(5))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
       abjad> FixedDurationTuplet((2, 8), staff[-3:])
       abjad> label.leaf_depth_tuplet(staff)
       \new Staff {

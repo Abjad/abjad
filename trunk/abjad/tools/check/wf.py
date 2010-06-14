@@ -13,7 +13,7 @@ def wf(expr, delivery = 'boolean', runtime = 'composition'):
    The score is not well-formed because the score contains
    a beamed quarter note. ::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> staff[1].duration.written = Rational(1, 4)
       abjad> Beam(staff[:])
       abjad> f(staff)

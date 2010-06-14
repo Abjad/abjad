@@ -6,7 +6,7 @@ def get_measure_number(expr, measure_number):
 
    Return `measure_number` in `expr`. ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+      abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.diatonicize(t)
       abjad> f(t)
       \new Staff {

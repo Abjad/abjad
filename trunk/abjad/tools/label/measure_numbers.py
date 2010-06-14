@@ -7,7 +7,7 @@ def measure_numbers(container, style = 'comment'):
 
    Turn measure number labels on with ``style = 'comment'``. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.diatonicize(staff)
       abjad> label.measure_numbers(staff, style = 'comment')
       abjad> print staff.format

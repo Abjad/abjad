@@ -5,7 +5,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_01( ):
    '''Make binary measure into equivalent nonbinary measure.
       Assignable 3/2 multiplier conserves note_heads.'''
 
-   t = RigidMeasure((2, 8), construct.scale(2))
+   t = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
 
    r'''
@@ -36,7 +36,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_02( ):
    '''Make binary measure into equivalent nonbinary measure.
       Nonassignable 5/4 multiplier induces ties.'''
 
-   t = RigidMeasure((2, 8), construct.scale(2))
+   t = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
 
    r'''
@@ -69,7 +69,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_03( ):
    '''Make binary measure into equivalent nonbinary measure.
       Assignable 7/4 multiplier conserves note_heads.'''
 
-   t = RigidMeasure((2, 8), construct.scale(2))
+   t = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
 
    r'''
@@ -100,7 +100,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_04( ):
    '''Make binary measure into equivalent nonbinary measure.
       Nonassignable 9/8 multiplier induces ties.'''
 
-   t = RigidMeasure((2, 8), construct.scale(2))
+   t = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
 
    r'''

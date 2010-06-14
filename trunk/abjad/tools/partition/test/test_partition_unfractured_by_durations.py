@@ -5,7 +5,7 @@ def test_partition_unfractured_by_durations_01( ):
    '''Duration partition one container in score
       Do no fracture spanners.'''
 
-   t = Staff(Container(construct.run(2)) * 2)
+   t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -55,7 +55,7 @@ def test_partition_unfractured_by_durations_02( ):
    '''Duration partition multiple containers in score.
       Do not fracture spanners.'''
 
-   t = Staff(Container(construct.run(2)) * 2)
+   t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])

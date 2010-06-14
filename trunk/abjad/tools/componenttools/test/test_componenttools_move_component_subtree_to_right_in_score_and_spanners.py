@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_01( ):
    '''Flip leaf under continuous spanner.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
 
    r'''
@@ -34,7 +34,7 @@ def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_01
 def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_02( ):
    '''Flip leaf across spanner boundaries.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:2])
    Beam(t[2:])
 
@@ -65,7 +65,7 @@ def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_02
 def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_03( ):
    '''Flip leaf from within to without spanner.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:2])
 
    r'''

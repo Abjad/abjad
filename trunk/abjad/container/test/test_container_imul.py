@@ -3,7 +3,7 @@ from abjad import *
 
 def test_container_imul_01( ):
 
-   t = Voice(construct.scale(2))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
    t *= 2
 
@@ -22,7 +22,7 @@ def test_container_imul_01( ):
 
 def test_container_imul_02( ):
 
-   t = Voice(construct.scale(2))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
    t *= 1
 
@@ -39,7 +39,7 @@ def test_container_imul_02( ):
 
 def test_container_imul_03( ):
 
-   t = Voice(construct.scale(2))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
    t *= 0
 

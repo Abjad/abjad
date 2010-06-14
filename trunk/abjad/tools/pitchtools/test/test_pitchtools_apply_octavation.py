@@ -3,7 +3,7 @@ from abjad import *
 
 def test_pitchtools_apply_octavation_01( ):
 
-   t = Staff(construct.notes([24, 26, 27, 29], [(1, 8)]))
+   t = Staff(leaftools.make_notes([24, 26, 27, 29], [(1, 8)]))
    pitchtools.apply_octavation(t, ottava_altitude = 14)
 
    r"""\new Staff {

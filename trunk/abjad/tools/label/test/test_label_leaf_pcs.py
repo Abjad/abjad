@@ -4,7 +4,7 @@ from abjad import *
 def test_label_leaf_pcs_01( ):
    '''With number = True.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    label.leaf_pcs(t, number = True)
 
    r'''
@@ -23,7 +23,7 @@ def test_label_leaf_pcs_01( ):
 def test_label_leaf_pcs_02( ):
    '''With color = True.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    label.leaf_pcs(t, number = False, color = True)
 
    r'''

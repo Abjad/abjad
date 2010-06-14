@@ -6,13 +6,13 @@ def get_first_element_starting_at_or_after_prolated_offset(container, prolated_o
 
    Return leftmost `container` element starting not before `prolated_offset`::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> containertools.get_first_element_starting_at_or_after_prolated_offset(staff, Rational(1, 8))
       Note(d', 8)
 
    Return none when no `container` element starts not before `prolated_offset`::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> containertools.get_first_element_starting_at_or_after_prolated_offset(staff, 99) is None
       True
 

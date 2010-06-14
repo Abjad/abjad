@@ -5,7 +5,7 @@ from abjad import *
 def test_check_assess_components_none_score_01( ):
    '''All components here in the same score.'''
    
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -32,8 +32,8 @@ def test_check_assess_components_none_score_01( ):
 def test_check_assess_components_none_score_02( ):
    '''Components here divide between two different scores.'''
 
-   t1 = Voice(construct.scale(4))
-   t2 = Voice(construct.scale(4))
+   t1 = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t2 = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    assert check.assess_components([t1], share = 'score')
    assert check.assess_components(t1.leaves, share = 'score')

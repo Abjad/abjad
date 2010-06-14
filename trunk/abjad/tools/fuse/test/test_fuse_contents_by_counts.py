@@ -4,7 +4,7 @@ from abjad import *
 def test_fuse_contents_by_counts_01( ):
    '''Glom voice.'''
 
-   t = Voice(construct.run(5, Rational(1, 16)))
+   t = Voice(leaftools.make_repeated_notes(5, Rational(1, 16)))
    Slur(t[:])
    fuse.contents_by_counts(t, [1, 2, 2])
 
@@ -23,7 +23,7 @@ def test_fuse_contents_by_counts_01( ):
 def test_fuse_contents_by_counts_02( ):
    '''Glom voice and render big-endian tied values.'''
 
-   t = Voice(construct.run(5))
+   t = Voice(leaftools.make_repeated_notes(5))
    Slur(t[:])
    fuse.contents_by_counts(t, [5], direction = 'big-endian')
 
@@ -41,7 +41,7 @@ def test_fuse_contents_by_counts_02( ):
 def test_fuse_contents_by_counts_03( ):
    '''Glom voice and render big-endian tied values.'''
 
-   t = Voice(construct.run(5))
+   t = Voice(leaftools.make_repeated_notes(5))
    Slur(t)
    fuse.contents_by_counts(t, [5], direction = 'little-endian')
 
@@ -59,7 +59,7 @@ def test_fuse_contents_by_counts_03( ):
 def test_fuse_contents_by_counts_04( ):
    '''Glom voice into rests.'''
 
-   t = Voice(construct.run(5))
+   t = Voice(leaftools.make_repeated_notes(5))
    fuse.contents_by_counts(t, [1, 2, 2], Rest)
 
    r'''

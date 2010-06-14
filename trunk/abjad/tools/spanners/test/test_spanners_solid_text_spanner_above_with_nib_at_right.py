@@ -3,7 +3,7 @@ from abjad import *
 
 def test_spanners_solid_text_spanner_above_with_nib_at_right_01( ):
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    spanners.solid_text_spanner_above_with_nib_at_right('foo', t[:])
 
    r'''

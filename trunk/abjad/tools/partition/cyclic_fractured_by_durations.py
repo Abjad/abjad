@@ -5,7 +5,7 @@ def cyclic_fractured_by_durations(components, durations, tie_after = False):
    r'''Partition `components` cyclically by `durations`
    and fracture spanners in the process::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.diatonicize(staff)
       abjad> Beam(staff[0])
       abjad> Beam(staff[1])

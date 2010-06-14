@@ -20,7 +20,7 @@ def test_formattools_report_01( ):
 def test_formattools_report_02( ):
    '''You can report on spanners, too.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    spanner = Beam(t[2:])
 
    result = formattools.report(spanner, output = 'str')
@@ -30,7 +30,7 @@ def test_formattools_report_02( ):
 def test_formattools_report_03( ):
    '''You can report on tuplets.'''
 
-   t = FixedDurationTuplet((2, 8), construct.scale(3))
+   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    t.accidental.style = 'forget'
    t.bar_line.kind = '|.'
    t.clef.forced = Clef('treble')

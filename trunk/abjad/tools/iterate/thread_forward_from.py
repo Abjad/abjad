@@ -13,7 +13,7 @@ def thread_forward_from(component, klass = None):
    When `klass` is set to some other Abjad class,
    yield only `klass` instances in the thread of `component`. ::
 
-      abjad> container = Container(Voice(construct.run(2)) * 2)
+      abjad> container = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
       abjad> container.parallel = True
       abjad> container[0].name = 'voice 1'
       abjad> container[1].name = 'voice 2'

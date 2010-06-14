@@ -3,7 +3,7 @@ from abjad import *
 
 def test_iterate_leaves_forward_in_01( ):
 
-   staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(staff)
 
    r'''
@@ -40,7 +40,7 @@ def test_iterate_leaves_forward_in_01( ):
 def test_iterate_leaves_forward_in_02( ):
    '''Optional start and stop keyword parameters.'''
 
-   staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(staff)
 
    leaves = list(iterate.leaves_forward_in(staff, start = 3))

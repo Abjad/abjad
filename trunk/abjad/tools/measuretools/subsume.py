@@ -15,7 +15,7 @@ def subsume(expr):
    Example::
 
       abjad> t = RigidMeasure((2, 8), [
-         FixedDurationTuplet((2, 8), construct.scale(3))])
+         FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))])
       abjad> measuretools.subsume(t)
       abjad> print t.format
 

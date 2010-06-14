@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_divide_leaves_meiotically_in_01( ):
    '''Meiose each leaf in two.'''
 
-   t = Voice(construct.scale(3))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    Beam(t[:])
    leaftools.divide_leaves_meiotically_in(t)
 
@@ -26,7 +26,7 @@ def test_leaftools_divide_leaves_meiotically_in_01( ):
 def test_leaftools_divide_leaves_meiotically_in_02( ):
    '''Meiose one leaf in four.'''
 
-   t = Voice(construct.scale(3))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    Beam(t[:])
    leaftools.divide_leaves_meiotically_in(t[0], 4)
 

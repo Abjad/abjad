@@ -3,7 +3,7 @@ from abjad import *
 
 def test_meter_partial_01( ):
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    meter = Meter(2, 8)
    meter.partial = Rational(1, 8)
    t.meter.forced = meter   

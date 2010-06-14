@@ -3,7 +3,7 @@ from abjad import *
 
 def test_staff_interface_font_size_01( ):
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.staff.font_size = -3
 
    r'''

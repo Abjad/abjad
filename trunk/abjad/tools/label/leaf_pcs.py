@@ -9,7 +9,7 @@ def leaf_pcs(expr, number = True, color = False):
 
    ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> label.leaf_pcs(t)
       abjad> print t.format
       \new Staff {
@@ -23,7 +23,7 @@ def leaf_pcs(expr, number = True, color = False):
 
    ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> label.leaf_pcs(t)
       abjad> print t.format
       \new Staff {

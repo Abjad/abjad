@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_replace_components_with_children_of_components_01( ):
    '''Containers can 'slip out' of score structure.'''
 
-   t = Staff(Container(construct.run(2)) * 2)
+   t = Staff(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t.leaves)
 
@@ -43,7 +43,7 @@ def test_componenttools_replace_components_with_children_of_components_01( ):
 def test_componenttools_replace_components_with_children_of_components_02( ):
    '''Slip leaf from parentage and spanners.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    Glissando(t[:])
   
@@ -65,7 +65,7 @@ def test_componenttools_replace_components_with_children_of_components_02( ):
 def test_componenttools_replace_components_with_children_of_components_03( ):
    '''Slip multiple leaves.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    Glissando(t[:])
 
@@ -94,7 +94,7 @@ def test_componenttools_replace_components_with_children_of_components_03( ):
 def test_componenttools_replace_components_with_children_of_components_04( ):
    '''Slip multiple containers.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Beam(t.leaves)
    Glissando(t.leaves)

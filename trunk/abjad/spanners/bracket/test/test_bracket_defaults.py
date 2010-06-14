@@ -5,7 +5,7 @@ def test_bracket_defaults_01( ):
    '''Bracket defaults to solid red line with left and right nibs
    and with no nibs at left and right broken edges.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    Bracket(t[1])
 

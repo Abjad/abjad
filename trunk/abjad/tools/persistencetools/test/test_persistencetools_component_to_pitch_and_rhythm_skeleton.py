@@ -22,7 +22,7 @@ def test_persistencetools_component_to_pitch_and_rhythm_skeleton_01( ):
 
 def test_persistencetools_component_to_pitch_and_rhythm_skeleton_02( ):
 
-   staff = Staff(construct.scale(4))
+   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    skeleton = persistencetools.component_to_pitch_and_rhythm_skeleton(staff)
 
    r'''
@@ -45,7 +45,7 @@ def test_persistencetools_component_to_pitch_and_rhythm_skeleton_02( ):
 def test_persistencetools_component_to_pitch_and_rhythm_skeleton_03( ):
 
 
-   tuplet = FixedDurationTuplet((3, 8), construct.scale(4))
+   tuplet = FixedDurationTuplet((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    measure = RigidMeasure((6, 16), [tuplet])
    staff = Staff([measure])
    score = Score(staff * 2)

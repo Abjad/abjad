@@ -16,7 +16,7 @@ def clone_components_and_covered_spanners(components, n = 1):
    Reapply crossing spanners to source `components`.
    Return copied components with covered spanners. ::
 
-      abjad> voice = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
+      abjad> voice = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.diatonicize(voice)
       abjad> beam = Beam(voice.leaves[:4])
       abjad> f(voice)

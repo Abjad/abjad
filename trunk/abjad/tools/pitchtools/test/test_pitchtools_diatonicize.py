@@ -5,7 +5,7 @@ from abjad.tools import construct
 def test_pitchtools_diatonicize_01( ):
    '''Diatonicize notes in staff.'''
 
-   t = Staff(construct.run(4))
+   t = Staff(leaftools.make_repeated_notes(4))
    pitchtools.diatonicize(t)
 
    r'''
@@ -24,7 +24,7 @@ def test_pitchtools_diatonicize_01( ):
 def test_pitchtools_diatonicize_02( ):
    '''Diatonicize tie chains in staff.'''
 
-   t = Staff(construct.notes(0, [(5, 32)] * 4))
+   t = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
    pitchtools.diatonicize(t)
 
    r'''
@@ -47,7 +47,7 @@ def test_pitchtools_diatonicize_02( ):
 def test_pitchtools_diatonicize_03( ):
    '''Diatonicize tie chains in staff according to key signature.'''
 
-   t = Staff(construct.notes(0, [(5, 32)] * 4))
+   t = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
    pitchtools.diatonicize(t, KeySignature('fs', 'major'))
 
    r'''

@@ -3,7 +3,7 @@ def sum_prolated(components):
 
    ::
 
-      abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
       abjad> f(tuplet)
       \times 2/3 {
          c'8

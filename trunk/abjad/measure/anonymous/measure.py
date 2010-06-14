@@ -10,7 +10,7 @@ class AnonymousMeasure(DynamicMeasure):
 
    ::
 
-      abjad> measure = AnonymousMeasure(construct.scale(4))
+      abjad> measure = AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> print measure.format
         \override Staff.TimeSignature #'stencil = ##f
         \time 1/2
@@ -20,7 +20,7 @@ class AnonymousMeasure(DynamicMeasure):
         f'8
         \revert Staff.TimeSignature #'stencil
 
-      abjad> measure.extend(construct.scale(2))
+      abjad> measure.extend(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
       abjad> print measure.format
         \override Staff.TimeSignature #'stencil = ##f
         \time 3/4

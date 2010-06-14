@@ -5,8 +5,8 @@ from abjad.tools import construct
 def test_iterate_chained_contents_01( ):
    '''Iterate toplevel contents with tie chains in place of leaves.'''
 
-   t = Staff(construct.notes(0, [(5, 32)] * 4))
-   t.insert(4, FixedDurationTuplet((2, 8), construct.run(3)))
+   t = Staff(leaftools.make_notes(0, [(5, 32)] * 4))
+   t.insert(4, FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)))
    pitchtools.diatonicize(t)
 
    r'''

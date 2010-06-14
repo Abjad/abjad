@@ -41,7 +41,7 @@ def test_container_parallel_03( ):
 
 def test_container_parallel_04( ):
    '''A parallel container can hold Contexts.'''
-   t = Container(Voice(construct.run(2)) * 2)
+   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.chromaticize(t)
    t.parallel = True
    assert t.format == "<<\n\t\\new Voice {\n\t\tc'8\n\t\tcs'8\n\t}\n\t\\new Voice {\n\t\td'8\n\t\tef'8\n\t}\n>>"
@@ -66,7 +66,7 @@ def test_container_parallel_05( ):
    '''Parallel containers must contain only Contexts.
    It cannot take leaves.'''
 
-   t = Container(construct.run(4))
+   t = Container(leaftools.make_repeated_notes(4))
    py.test.raises(TypeError, 't.parallel = True')
 
 
@@ -74,5 +74,5 @@ def test_container_parallel_06( ):
    '''Parallel containers must contain only Contexts.
    It cannot take Containers.'''
 
-   t = Container(Container(construct.run(4)) * 2)
+   t = Container(Container(leaftools.make_repeated_notes(4)) * 2)
    py.test.raises(TypeError, 't.parallel = True')

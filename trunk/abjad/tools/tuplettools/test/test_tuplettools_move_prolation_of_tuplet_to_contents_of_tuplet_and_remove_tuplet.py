@@ -5,7 +5,7 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
    '''Scale tuplet contents and then bequeath in-score position
       of tuplet to contents.'''
 
-   t = Staff(FixedDurationTuplet((3, 8), construct.scale(2)) * 2)
+   t = Staff(FixedDurationTuplet((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
    Beam(t.leaves)
 
    r'''
@@ -42,7 +42,7 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
    '''Scale tuplet contents and then bequeath in-score position
       of tuplet to contents.'''
    
-   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''

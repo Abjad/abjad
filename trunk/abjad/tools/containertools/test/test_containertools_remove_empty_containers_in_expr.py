@@ -3,7 +3,7 @@ from abjad import *
 
 def test_containertools_remove_empty_containers_in_expr_01( ):
 
-   staff = Staff(Container(construct.run(2)) * 4)
+   staff = Staff(Container(leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(staff.leaves)
    Beam(staff[:])
    containertools.delete_contents_of_container(staff[1])

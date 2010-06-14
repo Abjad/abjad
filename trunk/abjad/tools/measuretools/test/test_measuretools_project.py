@@ -4,8 +4,8 @@ from abjad import *
 def test_measuretools_project_01( ):
    '''Project 3/12 meter onto measure contents.'''
 
-   inner = FixedDurationTuplet((2, 16), construct.run(3, Rational(1, 16)))
-   notes = construct.run(2)
+   inner = FixedDurationTuplet((2, 16), leaftools.make_repeated_notes(3, Rational(1, 16)))
+   notes = leaftools.make_repeated_notes(2)
    outer = FixedDurationTuplet((2, 8), [inner] + notes)
    t = RigidMeasure((2, 8), [outer])
    pitchtools.diatonicize(t)
@@ -52,7 +52,7 @@ def test_measuretools_project_01( ):
 def test_measuretools_project_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
 
-   t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), construct.scale(6))])
+   t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6))])
    measuretools.subsume(t)
 
    r'''

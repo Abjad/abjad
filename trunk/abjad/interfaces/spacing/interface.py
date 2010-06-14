@@ -72,7 +72,7 @@ class SpacingInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
          ::
 
-            abjad> t = Score([Staff(construct.scale(4))])
+            abjad> t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
             abjad> t.spacing.proportional_notation_duration = Rational(1, 56)
             abjad> print t.format
             \new Score \with {

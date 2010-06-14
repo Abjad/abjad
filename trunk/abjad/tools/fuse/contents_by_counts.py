@@ -2,7 +2,7 @@ from abjad.container import Container
 from abjad.note import Note
 from abjad.rest import Rest
 from abjad.tools import componenttools
-from abjad.tools import construct
+from abjad.tools import leaftools
 
 
 def contents_by_counts(container, counts, target_type = Note,
@@ -10,7 +10,7 @@ def contents_by_counts(container, counts, target_type = Note,
    r'''Fuse `container` contents by `counts` of `target_type` in
    `direction`::
 
-      abjad> staff = Staff(construct.scale(8))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
       abjad> fuse.contents_by_counts(staff, [2, 3, 3])
       abjad> f(staff)
       \new Staff {
@@ -22,7 +22,7 @@ def contents_by_counts(container, counts, target_type = Note,
    Raise value error when sum of `counts` does not equal 
    length of `container`::
 
-      abjad> staff = Staff(construct.scale(8))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
       abjad> fuse.contents_by_counts(staff, [99, 99, 99])
       ValueError
 
@@ -51,10 +51,10 @@ def contents_by_counts(container, counts, target_type = Note,
 
    ## construct new notes or rests
    if target_type == Note:
-      new_material = construct.notes(
+      new_material = leaftools.make_notes(
          0, durations, direction = direction)
    elif target_type == Rest:
-      new_material = construct.rests(
+      new_material = leaftools.make_rests(
          durations, direction = direction)
    else:
       raise ValueError('unknown type of material to construct.')

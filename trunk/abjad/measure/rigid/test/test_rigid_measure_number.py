@@ -13,14 +13,14 @@ def test_rigid_measure_number_01( ):
 def test_rigid_measure_number_02( ):
    '''Orphan measures number correctly starting from 1.'''
 
-   t = RigidMeasure((3, 8), construct.scale(3))
+   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    assert t.number == 1
 
 
 def test_rigid_measure_number_03( ):
    '''Mesaure numbering works correctly after contents rotation.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    
    assert t[0].number == 1

@@ -4,7 +4,7 @@ from abjad.tools import check
 def remove_tie_spanners_from_components(components):
    r'''Untie thread-contiguous `components`. ::
 
-      abjad> staff = Staff(construct.scale(2, (5, 16)))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, (5, 16)))
       abjad> f(staff)
       \new Staff {
          c'4 ~

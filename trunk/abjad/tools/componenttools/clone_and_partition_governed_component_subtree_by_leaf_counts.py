@@ -7,7 +7,7 @@ from abjad.tools import listtools
 def clone_and_partition_governed_component_subtree_by_leaf_counts(container, leaf_counts):
    r'''Clone `container` and partition clone according to `leaf_counts`. ::
 
-      abjad> voice = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+      abjad> voice = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
       abjad> Beam(voice[0].leaves)
       abjad> Beam(voice[1].leaves)
       abjad> pitchtools.diatonicize(voice)

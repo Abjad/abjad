@@ -7,9 +7,9 @@ def extract_meter_list(components):
 
    Example::
 
-      abjad> t = Staff([RigidMeasure((2, 8), construct.scale(2)),
-         RigidMeasure((3, 8), construct.scale(3)),
-         RigidMeasure((4, 8), construct.scale(4))])
+      abjad> t = Staff([RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)),
+         RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)),
+         RigidMeasure((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
 
       abjad> metertools.extract_meter_list(t[:])
       [(2, 8), (3, 8), (4, 8)]

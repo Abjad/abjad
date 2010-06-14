@@ -4,7 +4,7 @@ def regression(code, tab_width = 3):
    Format `code` for regression test::
 
       abjad> code = '''
-      ... staff = Staff(construct.scale(4))
+      ... staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       ... Beam(staff.leaves)
       ... f(staff)
       ... 
@@ -13,7 +13,7 @@ def regression(code, tab_width = 3):
       ... '''
       abjad> formattools.regression(code)
 
-         staff = Staff(construct.scale(4))
+         staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
          Beam(staff.leaves)
 
          r'''

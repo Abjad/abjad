@@ -5,9 +5,9 @@ import py.test
 def test_fuse_measures_by_reference_01( ):
    '''Fuse unicorporated binary measures.'''
 
-   t1 = RigidMeasure((1, 8), construct.scale(2, Rational(1, 16)))
+   t1 = RigidMeasure((1, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(1, 16)))
    Beam(t1[:])
-   t2 = RigidMeasure((2, 16), construct.scale(2, Rational(1, 16)))
+   t2 = RigidMeasure((2, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(1, 16)))
    Slur(t2[:])
 
    r'''
@@ -136,8 +136,8 @@ def test_fuse_measures_by_reference_04( ):
       Helpers selects least common multiple of denominators.
       Beams are OK because they attach to leaves rather than containers.'''
 
-   m1 = RigidMeasure((1, 8), construct.run(1))
-   m2 = RigidMeasure((1, 12), construct.run(1))
+   m1 = RigidMeasure((1, 8), leaftools.make_repeated_notes(1))
+   m2 = RigidMeasure((1, 12), leaftools.make_repeated_notes(1))
    t = Voice([m1, m2])
    pitchtools.diatonicize(t)
    Beam(t.leaves)
@@ -185,7 +185,7 @@ def test_fuse_measures_by_reference_05( ):
 def test_fuse_measures_by_reference_06( ):
    '''Fusing list of only one measure returns measure unaltered.'''
 
-   t = RigidMeasure((3, 8), construct.scale(3))
+   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    new = fuse.measures_by_reference([t])
 
    assert new is t
@@ -242,7 +242,7 @@ def test_fuse_measures_by_reference_07( ):
 def test_fuse_measures_by_reference_08( ):
    '''Measure fusion across intervening container boundaries is undefined.'''
 
-   t = Voice(Container(RigidMeasure((2, 8), construct.run(2)) * 2) * 2)
+   t = Voice(Container(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) * 2)
    pitchtools.diatonicize(t)
 
    r'''

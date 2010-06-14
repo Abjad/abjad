@@ -3,7 +3,7 @@ from abjad import *
 
 def test_layout_apply_fixed_staff_positioning_01( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    layout.line_break_every_prolated(t, Rational(4, 8))      
 
@@ -81,7 +81,7 @@ def test_layout_apply_fixed_staff_positioning_02( ):
    '''OK to use staff alignment distances instead of
    staff alignment offsets.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    layout.line_break_every_prolated(t, Rational(4, 8))      
 

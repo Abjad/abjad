@@ -8,7 +8,7 @@ def melodic_counterpoint_intervals(expr):
 
    Label the melodic counterpoint interval between every leaf in `expr`. ::
 
-      abjad> staff = Staff(construct.notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Rational(1, 8)]))
+      abjad> staff = Staff(leaftools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Rational(1, 8)]))
       abjad> label.melodic_counterpoint_intervals(staff)
       abjad> f(staff)
       \new Staff {

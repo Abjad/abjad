@@ -4,7 +4,7 @@ import py.test
 
 def test_iterate_measure_prev_01( ):
    
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    Container(t[:2])
    pitchtools.diatonicize(t)
 
@@ -47,6 +47,6 @@ def test_iterate_measure_prev_01( ):
 def test_iterate_measure_prev_02( ):
    '''Can retrieve last measure in a Python list.'''
 
-   t = [RigidMeasure((2, 8), construct.scale(2)), Note(0, (1, 4))]
+   t = [RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)), Note(0, (1, 4))]
 
    assert iterate.measure_prev(t) is t[0]

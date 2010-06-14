@@ -5,14 +5,14 @@ from abjad.tools.check.wf import wf
 def assert_wf(expr):
    '''Return none when `expr` is well-formed. ::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> check.assert_wf(staff) is None
       True      
 
    Report violators and raise well-formedness error
    when `expr` is not well-formed. ::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff[:])
       abjad> staff._music.pop( )
       abjad> check.assert_wf(staff)

@@ -5,7 +5,7 @@ from abjad.tools import componenttools
 def remove_empty_containers_in_expr(expr):
    r'''Remove empty containers in `expr`::
 
-      abjad> staff = Staff(Container(construct.run(2)) * 4)
+      abjad> staff = Staff(Container(leaftools.make_repeated_notes(2)) * 4)
       abjad> pitchtools.diatonicize(staff.leaves)
       abjad> Beam(staff[:])
       abjad> containertools.delete_contents_of_container(staff[1])

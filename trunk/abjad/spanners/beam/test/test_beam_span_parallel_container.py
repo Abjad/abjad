@@ -18,7 +18,7 @@ def test_beam_span_parallel_container_01( ):
 def test_beam_span_parallel_container_02( ):
    '''Nonempty spanned parallel container.'''
 
-   t = Container(Voice(construct.run(4)) * 2)
+   t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
    t.parallel = True
    pitchtools.chromaticize(t)
 
@@ -49,7 +49,7 @@ def test_beam_span_parallel_container_03( ):
    '''Voice accepts spanner,
       even lodged within parallel parent container.'''
 
-   t = Container(Voice(construct.run(4)) * 2)
+   t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
    t.parallel = True
    pitchtools.chromaticize(t)
    p = Beam(t[0])
@@ -78,8 +78,8 @@ def test_beam_span_parallel_container_03( ):
 def test_beam_span_parallel_container_04( ):
    '''Abjad forbids but LilyPond is happy.'''
 
-   t = Staff(construct.run(4))
-   new = Container(Voice(construct.run(4)) * 2)
+   t = Staff(leaftools.make_repeated_notes(4))
+   new = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
    new.parallel = True
    t.insert(2, new)
    pitchtools.chromaticize(t)
@@ -91,7 +91,7 @@ def test_beam_span_parallel_container_05( ):
    '''Abjad ignores empty parallel containers with no leaves.
       LilyPond is happy here.'''
 
-   t = Staff(construct.run(4))
+   t = Staff(leaftools.make_repeated_notes(4))
    new = Container([ ])
    new.parallel = True
    t.insert(2, new)
@@ -118,9 +118,9 @@ def test_beam_span_parallel_container_06( ):
    '''This is the proper way to 'thread through' parallel containers.
       LilyPond is happy here again.'''
 
-   t = Staff(Voice(construct.run(4)) * 2)
+   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
    t[0].name, t[1].name = 'foo', 'foo'
-   new = Container(Voice(construct.run(4)) * 2)
+   new = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
    new.parallel = True
    t.insert(1, new)
    t[1][0].name = 'foo'

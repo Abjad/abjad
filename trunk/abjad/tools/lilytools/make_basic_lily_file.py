@@ -9,7 +9,7 @@ def make_basic_lily_file(music = None):
 
    Make basic LilyPond file with `music`::
 
-      abjad> score = Score([Staff(construct.scale(4))])
+      abjad> score = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
       abjad> lily_file = lilytools.make_basic_lily_file(score)
       abjad> lily_file.header.composer = Markup('Josquin')
       abjad> lily_file.layout.indent = 0

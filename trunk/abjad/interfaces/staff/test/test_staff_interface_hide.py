@@ -4,7 +4,7 @@ from abjad import *
 def test_staff_interface_hide_01( ):
    '''Hide staff around one measure.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.scale(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 3)
    pitchtools.diatonicize(t)
 
    r'''

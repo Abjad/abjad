@@ -11,7 +11,7 @@ class TupletBracketInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
    ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> t.tuplet_bracket.bracket_visibility = True
       abjad> print t.format
       \new Staff \with {
@@ -38,7 +38,7 @@ class TupletBracketInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
          ::
 
-            abjad> staff = Staff(construct.scale(4))
+            abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
             abjad> staff.tuplet_bracket.tuplet_full_length = True
             abjad> f(staff)
             \new Staff \with {

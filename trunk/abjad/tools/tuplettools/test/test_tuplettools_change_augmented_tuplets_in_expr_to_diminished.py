@@ -3,7 +3,7 @@ from abjad import *
 
 def test_tuplettools_change_augmented_tuplets_in_expr_to_diminished_01( ):
 
-   tuplet = FixedDurationTuplet((2, 4), construct.scale(3))
+   tuplet = FixedDurationTuplet((2, 4), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    
    r'''
    \times 4/3 {

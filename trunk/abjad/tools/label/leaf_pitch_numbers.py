@@ -7,7 +7,7 @@ def leaf_pitch_numbers(expr):
 
    ::
 
-      abjad> staff = Staff(construct.leaves([None, 12, [13, 14, 15], None], [(1, 4)]))
+      abjad> staff = Staff(leaftools.make_leaves([None, 12, [13, 14, 15], None], [(1, 4)]))
       abjad> label.leaf_pitch_numbers(staff)
       abjad> f(staff)
       \new Staff {

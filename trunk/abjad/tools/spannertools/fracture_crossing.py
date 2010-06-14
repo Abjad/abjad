@@ -14,7 +14,7 @@ def fracture_crossing(components):
 
    Example::
 
-      t = Staff(Container(construct.run(2)) * 3)
+      t = Staff(Container(leaftools.make_repeated_notes(2)) * 3)
       pitchtools.diatonicize(t)
       Crescendo(t)
       Beam(t[:])

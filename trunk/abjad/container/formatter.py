@@ -6,7 +6,7 @@ from abjad.component.formatter import _ComponentFormatter
 class _ContainerFormatter(_ComponentFormatter):
    '''Encapsulate all container format logic. ::
 
-      abjad> container = Container(construct.scale(4))
+      abjad> container = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> container.formatter
       <_Container>
    '''
@@ -46,7 +46,7 @@ class _ContainerFormatter(_ComponentFormatter):
       '''Read-only reference to
       :class:`~abjad.container.number._ContainerFormatterNumberInterface`. ::
 
-         abjad> container = Container(construct.scale(4))
+         abjad> container = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
          abjad> container.formatter.number
          <_ContainerFormatterNumberInterface>'''
 
@@ -57,7 +57,7 @@ class _ContainerFormatter(_ComponentFormatter):
       '''Read-only reference to
       :class:`~abjad.container.slots._ContainerFormatterSlotsInterface`. ::
 
-         abjad> container = Container(construct.scale(4))
+         abjad> container = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
          abjad> container.formatter.slots
          <_ContainerFormatterSlotsInterface>'''
 
@@ -68,7 +68,7 @@ class _ContainerFormatter(_ComponentFormatter):
 #      r'''Read-only string representation of all parts of container
 #      format except container contents. ::
 #
-#         abjad> container = Container(construct.scale(12))
+#         abjad> container = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(12))
 #         abjad> container.note_head.color = 'red'
 #         abjad> container.note_head.style = 'harmonic'
 #         abjad> container.comments.before.append('Container comments')

@@ -8,7 +8,7 @@ class TempoIndication(_Abjad):
    
    Assign to :class:`~abjad.TempoSpanner` spanner ``indication``. ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> tempo_spanner = TempoSpanner(t[:])
       abjad> tempo_indication = TempoIndication(Rational(1, 8), 44)
       abjad> tempo_spanner.tempo_indication = tempo_indication

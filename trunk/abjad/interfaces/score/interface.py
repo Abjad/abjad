@@ -28,8 +28,8 @@ class ScoreInterface(_Interface):
       r'''Exact numeric location of component in score as
       a tuple of zero or more nonnegative integers. ::
 
-         abjad> staff_1 = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
-         abjad> staff_2 = Staff([FixedDurationTuplet((2, 8), construct.run(3))])
+         abjad> staff_1 = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
+         abjad> staff_2 = Staff([FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3))])
          abjad> score = Score([staff_1, staff_2])
          abjad> pitchtools.diatonicize(score)      
          abjad> f(score)

@@ -8,15 +8,15 @@ def test_check_assess_components_none_thread_01( ):
       Unicorporated leaves do not share a root component.
       False if not allow orphans; True if allow orphans.'''
 
-   assert check.assess_components(construct.scale(4), share = 'thread')
-   assert not check.assess_components(construct.scale(4), share = 'thread', 
+   assert check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), share = 'thread')
+   assert not check.assess_components(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), share = 'thread', 
       allow_orphans = False)
 
 
 def test_check_assess_components_none_thread_02( ):
    '''Container and leaves all thread.'''
 
-   t = Container(construct.scale(4))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    r'''
    {
@@ -33,7 +33,7 @@ def test_check_assess_components_none_thread_02( ):
 def test_check_assess_components_none_thread_03( ):
    '''Tuplet and leaves all thread.'''
    
-   t = FixedDurationTuplet((2, 8), construct.scale(3))
+   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    
    r'''
    \times 2/3 {
@@ -52,7 +52,7 @@ def test_check_assess_components_none_thread_03( ):
 #      Abjad mimics this behavior and assigns each leaf 
 #      to a different thread.'''
 #
-#   t = Container(construct.scale(4))
+#   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 #   t.parallel = True
 #
 #   r'''<<
@@ -68,7 +68,7 @@ def test_check_assess_components_none_thread_03( ):
 def test_check_assess_components_none_thread_05( ):
    '''Voice and leaves all thread.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    r'''
    \new Voice {
@@ -85,7 +85,7 @@ def test_check_assess_components_none_thread_05( ):
 def test_check_assess_components_none_thread_06( ):
    '''Anonymous staff and leaves all thread.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    r'''
    \new Staff {
@@ -102,7 +102,7 @@ def test_check_assess_components_none_thread_06( ):
 def test_check_assess_components_none_thread_07( ):
    '''Voice, sequential and leaves all thread.'''
 
-   t = Voice(Container(construct.run(4)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -128,7 +128,7 @@ def test_check_assess_components_none_thread_07( ):
 def test_check_assess_components_none_thread_08( ):
    '''Anonymous voice, tuplets and leaves all thread.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -152,7 +152,7 @@ def test_check_assess_components_none_thread_08( ):
 def test_check_assess_components_none_thread_09( ):
    '''Can not thread across anonymous voices.'''
 
-   t = Staff(Voice(construct.run(4)) * 2)
+   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -181,7 +181,7 @@ def test_check_assess_components_none_thread_09( ):
 def test_check_assess_components_none_thread_10( ):
    '''Can thread across like-named voices.'''
 
-   t = Staff(Voice(construct.run(4)) * 2)
+   t = Staff(Voice(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.diatonicize(t)
    t[0].name = 'foo'
    t[1].name = 'foo'
@@ -209,7 +209,7 @@ def test_check_assess_components_none_thread_10( ):
 def test_check_assess_components_none_thread_11( ):
    '''Can not thread across differently named voices.'''
 
-   t = Staff(Voice(construct.run(2)) * 2)
+   t = Staff(Voice(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    t[0].name = 'foo'
    t[1].name = 'bar'
@@ -234,7 +234,7 @@ def test_check_assess_components_none_thread_12( ):
    '''Can not thread across anonymous voices.
       Can not thread across anonymous staves.'''
 
-   t = Container(Staff([Voice(construct.run(2))]) * 2)
+   t = Container(Staff([Voice(leaftools.make_repeated_notes(2))]) * 2)
    pitchtools.diatonicize(t)
    
    r'''
@@ -261,7 +261,7 @@ def test_check_assess_components_none_thread_13( ):
    '''Can not thread across anonymous voices.
       Can not thread across anonymous staves.'''
 
-   t = Container(Staff(Voice(construct.run(2)) * 2) * 2)
+   t = Container(Staff(Voice(leaftools.make_repeated_notes(2)) * 2) * 2)
    pitchtools.diatonicize(t)
    t[0].parallel = True
    t[1].parallel = True
@@ -297,7 +297,7 @@ def test_check_assess_components_none_thread_13( ):
 def test_check_assess_components_none_thread_14( ):
    '''Anonymous voice, sequentials and leaves all thread.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -349,7 +349,7 @@ def test_check_assess_components_none_thread_15( ):
 def test_check_assess_components_none_thread_16( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(construct.run(4)), Voice(construct.run(4))])
+   t = Container([Container(leaftools.make_repeated_notes(4)), Voice(leaftools.make_repeated_notes(4))])
    pitchtools.diatonicize(t)
    
    r'''
@@ -377,7 +377,7 @@ def test_check_assess_components_none_thread_16( ):
 def test_check_assess_components_none_thread_17( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Voice(construct.run(4)), Container(construct.run(4))])
+   t = Container([Voice(leaftools.make_repeated_notes(4)), Container(leaftools.make_repeated_notes(4))])
    pitchtools.diatonicize(t)
 
    r'''
@@ -405,7 +405,7 @@ def test_check_assess_components_none_thread_17( ):
 def test_check_assess_components_none_thread_18( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(construct.run(4)), Voice(construct.run(4))])
+   t = Container([Container(leaftools.make_repeated_notes(4)), Voice(leaftools.make_repeated_notes(4))])
    t[1].name = 'foo'
    pitchtools.diatonicize(t)
 
@@ -434,7 +434,7 @@ def test_check_assess_components_none_thread_18( ):
 def test_check_assess_components_none_thread_19( ):
    '''Can not thread over differently named IMPLICIT voices.'''
 
-   t = Container([Voice(construct.run(4)), Container(construct.run(4))])
+   t = Container([Voice(leaftools.make_repeated_notes(4)), Container(leaftools.make_repeated_notes(4))])
    t[0].name = 'foo'
    pitchtools.diatonicize(t)
 
@@ -463,7 +463,7 @@ def test_check_assess_components_none_thread_19( ):
 def test_check_assess_components_none_thread_20( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container([Container(construct.run(4)), Staff(construct.run(4))])
+   t = Container([Container(leaftools.make_repeated_notes(4)), Staff(leaftools.make_repeated_notes(4))])
    pitchtools.diatonicize(t)
 
    r'''
@@ -655,8 +655,8 @@ def test_check_assess_components_none_thread_26( ):
 def test_check_assess_components_none_thread_27( ):
    '''Can not thread across differently named IMPLICIT voices.'''
 
-   t = Container(construct.run(4))
-   t.insert(0, Staff(construct.run(4)))
+   t = Container(leaftools.make_repeated_notes(4))
+   t.insert(0, Staff(leaftools.make_repeated_notes(4)))
    pitchtools.diatonicize(t)
 
    r'''
@@ -1180,8 +1180,8 @@ def test_check_assess_components_none_thread_41( ):
 def test_check_assess_components_none_thread_42( ):
    '''Can not thread across differently named anonymous voices.'''
 
-   t = Container(construct.run(4))
-   t[0:0] = Voice(construct.run(4)) * 2
+   t = Container(leaftools.make_repeated_notes(4))
+   t[0:0] = Voice(leaftools.make_repeated_notes(4)) * 2
    pitchtools.chromaticize(t)
 
    r'''
@@ -1216,7 +1216,7 @@ def test_check_assess_components_none_thread_42( ):
 #def test_check_assess_components_none_thread_43( ):
 #   '''A parallel Staff and only leaves as it's content DO NOT thread.'''
 #
-#   t = Staff(construct.scale(4))
+#   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 #   t.parallel = True
 #
 #   r'''\new Staff <<
@@ -1235,7 +1235,7 @@ def test_check_assess_components_none_thread_42( ):
 #   This mimics LilyPond's behavior of not collapsing then notes into
 #   a chord. '''
 #
-#   t = Staff(construct.scale(4))
+#   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 #   t.parallel = True
 #
 #   r'''\new Staff <<

@@ -6,7 +6,7 @@ def test_label_measure_numbers_01( ):
    each measure.
    '''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    label.measure_numbers(t, 'comment')
 
@@ -42,7 +42,7 @@ def test_label_measure_numbers_01( ):
 def test_label_measure_numbers_02( ):
    '''Turn measure number labelling off with None.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    label.measure_numbers(t, 'comment')
    label.measure_numbers(t, None)
@@ -73,7 +73,7 @@ def test_label_measure_numbers_02( ):
 def test_label_measure_numbers_03( ):
    '''Works on measures, too, in addition to contexts.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    label.measure_numbers(t[1], 'comment')
 

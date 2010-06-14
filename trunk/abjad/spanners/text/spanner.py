@@ -12,7 +12,7 @@ class TextSpanner(_PositionalGrobHandlerSpanner):
 
    Interface LilyPond ``\textSpannerUp``, ``\textSpannerDown`` commands. ::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> spanner = TextSpanner(staff[:])
       abjad> spanner.color = 'red'
       abjad> f(staff)

@@ -206,26 +206,6 @@ componenttools
    tools/componenttools/replace_components_with_children_of_components
 
 
-construct
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/construct/engender
-   tools/construct/leaves
-   tools/construct/note_train
-   tools/construct/notes
-   tools/construct/notes_curve
-   tools/construct/percussion_note
-   tools/construct/pitches
-   tools/construct/quarter_notes_with_multipliers
-   tools/construct/rests
-   tools/construct/run
-   tools/construct/scale
-   tools/construct/scale_period
-   tools/construct/skips_with_multipliers
-
-
 containertools
 
 .. toctree::
@@ -490,6 +470,17 @@ leaftools
    tools/leaftools/get_durations_written
    tools/leaftools/has_leaf_with_dotted_written_duration_in
    tools/leaftools/is_bar_line_crossing_leaf
+   tools/leaftools/make_accelerating_notes_with_lilypond_multipliers
+   tools/leaftools/make_all_notes_in_ascending_and_descending_diatonic_scale
+   tools/leaftools/make_first_n_notes_in_ascending_diatonic_scale
+   tools/leaftools/make_leaves
+   tools/leaftools/make_notes
+   tools/leaftools/make_percussion_note
+   tools/leaftools/make_quarter_notes_with_lilypond_multipliers
+   tools/leaftools/make_repeated_notes
+   tools/leaftools/make_repeated_notes_with_shorter_notes_at_end
+   tools/leaftools/make_rests
+   tools/leaftools/make_skips_with_multiplied_durations
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
    tools/leaftools/replace_leaves_with_skips_in
    tools/leaftools/scale_leaf_preprolated_duration
@@ -837,6 +828,7 @@ pitchtools
    tools/pitchtools/list_all_diatonic_interval_classes
    tools/pitchtools/make_all_aggregate_subsets
    tools/pitchtools/make_flat
+   tools/pitchtools/make_pitches
    tools/pitchtools/make_sharp
    tools/pitchtools/melodic_chromatic_interval_class_from_to
    tools/pitchtools/melodic_chromatic_interval_from_to

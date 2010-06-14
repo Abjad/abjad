@@ -6,7 +6,7 @@ def test_fdtuplet_color_01( ):
    both prints and colors trivial tuplets at format-time.'''
 
    FixedDurationTuplet.color = True
-   t = FixedDurationTuplet((3, 8), construct.scale(3))
+   t = FixedDurationTuplet((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
 
    r'''
    \tweak #'color #blue
@@ -29,7 +29,7 @@ def test_fdtuplet_color_02( ):
 
    FixedDurationTuplet.color = True
    t = FixedDurationTuplet((3, 8), FixedDurationTuplet((2, 8), 
-      construct.scale(2)) * 2)
+      leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
    pitchtools.diatonicize(t)
 
    r'''

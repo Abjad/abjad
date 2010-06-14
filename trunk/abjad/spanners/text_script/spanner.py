@@ -9,7 +9,7 @@ class TextScriptSpanner(_GrobHandlerSpanner):
 
    ::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> spanner = TextScriptSpanner(staff[:])
       abjad> spanner.color = 'red'
       abjad> staff[1].markup.up.append(r'\italic { espressivo }')

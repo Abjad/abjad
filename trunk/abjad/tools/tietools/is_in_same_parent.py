@@ -10,7 +10,7 @@ def is_in_same_parent(expr):
 
       Example::
 
-         abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+         abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
          abjad> Tie(t.leaves[1:3])
 
          \new Staff {

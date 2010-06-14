@@ -9,13 +9,13 @@ def get_pitches(expr):
    '''Get tuple of zero or more Abjad :class:`~abjad.Pitch` 
    instances from almost any expression. ::
 
-      abjad> t = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
       abjad> pitchtools.get_pitches(t)
       ((Pitch(c, 4), Pitch(d, 4), Pitch(e, 4))
 
    ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> beam = Beam(t[:])
       abjad> pitchtools.get_pitches(beam)
       ((Pitch(c, 4), Pitch(d, 4), Pitch(e, 4), Pitch(f, 4))

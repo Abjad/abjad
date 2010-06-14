@@ -9,7 +9,7 @@ def profile(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
 
    Set `strip_dirs` to ``True`` to strip directory names from output lines. ::
 
-      abjad> check.profile('Staff(construct.run(8))')
+      abjad> check.profile('Staff(leaftools.make_repeated_notes(8))')
       Sat Aug 15 15:29:14 2009    _tmp_abj_profile
 
                147262 function calls (123144 primitive calls) in 0.237 CPU seconds

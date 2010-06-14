@@ -7,7 +7,7 @@ def test_partition_fractured_by_counts_01( ):
    Fracture spanners attaching directly to container.
    Leave spanner attaching to container contents untouched.'''
 
-   t = Voice([Container(construct.scale(8))])
+   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))])
    Beam(t[0])
    Slur(t[0].leaves)
 
@@ -57,7 +57,7 @@ def test_partition_fractured_by_counts_02( ):
    Input container cedes contents to new instance.
    Expression appears unaltered.'''
 
-   t = Voice([Container(construct.scale(4))])
+   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    Beam(t[0])
    Slur(t[0].leaves)
    container = t[0]
@@ -97,7 +97,7 @@ def test_partition_fractured_by_counts_03( ):
    First part counts apply and extra part counts do not apply.
    Result contains no empty parts.'''
 
-   t = Voice([Container(construct.scale(4))])
+   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    Beam(t[0])
    Slur(t[0].leaves)
 
@@ -136,7 +136,7 @@ def test_partition_fractured_by_counts_04( ):
    '''Partition by empty part counts list.
    Input container returns within one-element result list.'''
 
-   t = Voice([Container(construct.scale(4))])
+   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    Beam(t[0])
    Slur(t[0].leaves)
 

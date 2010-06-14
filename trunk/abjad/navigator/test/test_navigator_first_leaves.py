@@ -5,7 +5,7 @@ import py.test
 def test_navigator_first_leaves_01( ):
    '''Return first leaf from sequential container.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    leaves = t._navigator._firstLeaves
 
    assert len(leaves) == 1
@@ -15,7 +15,7 @@ def test_navigator_first_leaves_01( ):
 def test_navigator_first_leaves_02( ):
    '''Return first leaves from parallel containers.'''
 
-   t = Container(Voice(construct.run(2)) * 2)
+   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    t.parallel = True
    pitchtools.diatonicize(t)
    leaves = t._navigator._firstLeaves

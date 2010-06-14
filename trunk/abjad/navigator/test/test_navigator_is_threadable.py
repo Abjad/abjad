@@ -5,7 +5,7 @@ import py.test
 def test_navigator_is_threadable_01( ):
    '''Voice and leaves all thread.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[2])
@@ -24,7 +24,7 @@ def test_navigator_is_threadable_01( ):
 def test_navigator_is_threadable_02( ):
    '''Staff and leaves all thread.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[2])
@@ -43,7 +43,7 @@ def test_navigator_is_threadable_02( ):
 def test_navigator_is_threadable_03( ):
    '''Paths exist between all notes in a sequential.'''
 
-   t = Container(construct.scale(4))
+   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[2])
@@ -76,7 +76,7 @@ def test_navigator_is_threadable_03( ):
 #   ## this is the current implementation behavior as of Apr. 3, 2009.
 #   ## See the next test. 
 #
-#   t = Container(construct.scale(4))
+#   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 #   t.parallel = True
 #
 #   assert not t[0]._navigator._isThreadable(t[1])
@@ -97,7 +97,7 @@ def test_navigator_is_threadable_03( ):
 #   contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating chords.'''
 #
-#   t = Container(construct.scale(4))
+#   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 #   t.parallel = True
 #   v = Voice([t])
 #
@@ -118,7 +118,7 @@ def test_navigator_is_threadable_03( ):
 def test_navigator_is_threadable_06( ):
    '''Tuplets and leaves all thread.'''
 
-   t = FixedDurationTuplet((2, 8), construct.scale(3))
+   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[0])
@@ -138,7 +138,7 @@ def test_navigator_is_threadable_06( ):
 def test_navigator_is_threadable_07( ):
    '''Voice and its noncontext contents all thread.'''
 
-   t = Voice(Container(construct.run(4)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -496,7 +496,7 @@ def test_navigator_is_threadable_15( ):
 def test_navigator_is_threadable_16( ):
    '''Can NOT thread across like-named voices in like-named staves.'''
 
-   t = Container(Staff([Voice(construct.run(4))]) * 2)
+   t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
    t[0].name = 'staff'
    t[0][0].name = 'voice'
    t[1].name = 'staff'
@@ -536,7 +536,7 @@ def test_navigator_is_threadable_17( ):
    '''Can thread across like-named voices.
       But can NOT thread across differently identified anonymous staves.'''
 
-   t = Container(Staff([Voice(construct.run(4))]) * 2)
+   t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
    t[0][0].name = 'voice'
    t[1][0].name = 'voice'
    pitchtools.diatonicize(t)
@@ -574,7 +574,7 @@ def test_navigator_is_threadable_17( ):
 def test_navigator_is_threadable_18( ):
    '''Like-named voices thread.'''
 
-   t = Container(Voice(construct.run(4)) * 2)
+   t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
    pitchtools.diatonicize(t)
@@ -607,8 +607,8 @@ def test_navigator_is_threadable_19( ):
    '''Can not thread from differently identified 
       anonymous and implicit voices.'''
 
-   t = Staff(construct.run(4))
-   t.insert(2, Voice(construct.run(2)))
+   t = Staff(leaftools.make_repeated_notes(4))
+   t.insert(2, Voice(leaftools.make_repeated_notes(2)))
    pitchtools.diatonicize(t)
 
    r'''
@@ -636,8 +636,8 @@ def test_navigator_is_threadable_19( ):
 def test_navigator_is_threadable_20( ):
    '''Like-named voices thread.'''
 
-   v1 = Voice(construct.run(4))
-   v2 = Voice(construct.run(4))
+   v1 = Voice(leaftools.make_repeated_notes(4))
+   v2 = Voice(leaftools.make_repeated_notes(4))
    v1.name = v2.name = 'voiceOne'
    t = Container([v1, v2])
    pitchtools.diatonicize(t)
@@ -666,8 +666,8 @@ def test_navigator_is_threadable_20( ):
 def test_navigator_is_threadable_21( ):
    '''Like-named voices thread.'''
 
-   v1 = Voice(construct.run(4))
-   v2 = Voice(construct.run(4))
+   v1 = Voice(leaftools.make_repeated_notes(4))
+   v2 = Voice(leaftools.make_repeated_notes(4))
    v1.name = v2.name = 'voiceOne'
    t = Container([Container([v1]), Container([v2])])
    t[0].parallel = True
@@ -703,8 +703,8 @@ def test_navigator_is_threadable_21( ):
 def test_navigator_is_threadable_22( ):
    '''Like-named voices in like-named staves do NOT thread.'''
 
-   v1 = Voice(construct.run(4))
-   v2 = Voice(construct.run(4))
+   v1 = Voice(leaftools.make_repeated_notes(4))
+   v2 = Voice(leaftools.make_repeated_notes(4))
    v1.name = v2.name = 'voiceOne'
    s1 = Staff([v1])
    s2 = Staff([v2])
@@ -761,7 +761,7 @@ def test_navigator_is_threadable_24( ):
    r'''Containers and leaves here all inhabit the same implicit voice.
       All components thread.'''
 
-   t = Container(Container(construct.run(4)) * 2)
+   t = Container(Container(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.chromaticize(t)
 
    assert t[0][-1]._navigator._isThreadable(t[1][0])
@@ -788,7 +788,7 @@ def test_navigator_is_threadable_24( ):
 def test_navigator_is_threadable_25( ):
    '''Differently identified anonymous voices do not thread.'''
 
-   t = Container(Voice(construct.run(4)) * 2)
+   t = Container(Voice(leaftools.make_repeated_notes(4)) * 2)
    pitchtools.chromaticize(t)
 
    assert not t[0][-1]._navigator._isThreadable(t[1][0])
@@ -816,7 +816,7 @@ def test_navigator_is_threadable_26( ):
    '''Differently identified anonymous voices do not thread.
       Differently identified anonymous staves do not thread.'''
 
-   t = Container(Staff([Voice(construct.run(4))]) * 2)
+   t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
    pitchtools.chromaticize(t)
    
    assert not t[0][0][-1]._navigator._isThreadable(t[1][0][0])

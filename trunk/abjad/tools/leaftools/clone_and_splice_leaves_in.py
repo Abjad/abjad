@@ -7,7 +7,7 @@ def clone_and_splice_leaves_in(expr, total = 1):
 
    Clone and splice leaves in `expr` `total` times::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> f(staff)
       \new Staff {

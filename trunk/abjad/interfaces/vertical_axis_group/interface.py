@@ -7,7 +7,7 @@ class VerticalAxisGroupInterface(_Interface, _GrobHandler):
 
    Handle LilyPond VerticalAxisGroup grob. ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> t.vertical_axis_group.staff_padding = 2
       abjad> t.vertical_axis_group.Y_extent = (-1.5, 1.5)
       \new Staff \with {

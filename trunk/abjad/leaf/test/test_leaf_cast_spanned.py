@@ -6,7 +6,7 @@ def test_leaf_cast_spanned_01( ):
    Spanned leaves cast correctly.
    '''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[ : ])
    Rest(t[-1])
 
@@ -27,7 +27,7 @@ def test_leaf_cast_spanned_02( ):
    Spanned leaves cast correctly.
    '''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[ : ])
    for note in t:
       Rest(note)

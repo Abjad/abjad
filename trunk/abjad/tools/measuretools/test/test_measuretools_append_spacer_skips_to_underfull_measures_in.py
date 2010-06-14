@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_append_spacer_skips_to_underfull_measures_in_01( ):
 
-   t = Staff(RigidMeasure((3, 8), construct.scale(3)) * 3)
+   t = Staff(RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)) * 3)
    t[1].meter.forced = Meter(4, 8)
    t[2].meter.forced = Meter(5, 8)
 

@@ -5,7 +5,7 @@ import py.test
 def test_split_unfractured_at_index_01( ):
    '''Index split tuplet in score and do not fracture spanners.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -50,7 +50,7 @@ def test_split_unfractured_at_index_01( ):
 def test_split_unfractured_at_index_02( ):
    '''Index split binary measure in score and do not fracture spanners.'''
 
-   t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
+   t = Voice(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -101,7 +101,7 @@ def test_split_unfractured_at_index_02( ):
 def test_split_unfractured_at_index_03( ):
    '''Index split nonbinary measure in score and do not frature spanners.'''
 
-   t = Voice(RigidMeasure((3, 9), construct.run(3)) * 2)
+   t = Voice(RigidMeasure((3, 9), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
    p = Beam(t[:])
 
@@ -162,7 +162,7 @@ def test_split_unfractured_at_index_04( ):
    '''A single container can be index split in two by the middle;
       no parent.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t1, t2 = split.unfractured_at_index(t, 2)
 
    r'''
@@ -187,7 +187,7 @@ def test_split_unfractured_at_index_05( ):
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
 
-   t = Staff([Voice(construct.scale(4))])
+   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
    Beam(v)
    left, right = split.unfractured_at_index(v, 0)
@@ -215,7 +215,7 @@ def test_split_unfractured_at_index_06( ):
       Righthand part instantiates empty.
       Original container empties contents.'''
 
-   t = Staff([Voice(construct.scale(4))])
+   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
    left, right = split.unfractured_at_index(v, 10)
 
@@ -229,7 +229,7 @@ def test_split_unfractured_at_index_06( ):
 def test_split_unfractured_at_index_07( ):
    '''Voice can be index split.'''
 
-   t = Staff([Voice(construct.scale(4))])
+   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
    #assert py.test.raises(ContiguityError, 'split.unfractured_at_index(v, -2)')
 
@@ -244,7 +244,7 @@ def test_split_unfractured_at_index_07( ):
 def test_split_unfractured_at_index_08( ):
    '''Index split container in score and do not fracture spanners.'''
 
-   t = Staff([Container(construct.scale(4))])
+   t = Staff([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
    Beam(v)
    left, right = split.unfractured_at_index(v, 2)
@@ -272,7 +272,7 @@ def test_split_unfractured_at_index_08( ):
 def test_split_unfractured_at_index_09( ):
    '''Index split tuplet in score and do not fracture spanners.'''
 
-   t = Staff([Voice([FixedMultiplierTuplet((4, 5), construct.run(5))])])
+   t = Staff([Voice([FixedMultiplierTuplet((4, 5), leaftools.make_repeated_notes(5))])])
    v = t[0]
    tuplet = v[0]
    Beam(tuplet)
@@ -305,7 +305,7 @@ def test_split_unfractured_at_index_09( ):
 def test_split_unfractured_at_index_10( ):
    '''Index split left of leaf in score and do not fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -355,7 +355,7 @@ def test_split_unfractured_at_index_10( ):
 def test_split_unfractured_at_index_11( ):
    '''Index split right of leaf in score and do not fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])

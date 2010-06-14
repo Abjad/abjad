@@ -3,7 +3,7 @@ def get_first(component, klass):
 
    Return first instance of `klass` in parentage of `component`. ::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> parenttools.get_first(staff[0], Staff)
       Staff{4}
 

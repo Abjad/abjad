@@ -3,7 +3,7 @@ from abjad import *
 
 def test_durtools_group_prolated_01( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
 
    r'''
@@ -33,7 +33,7 @@ def test_durtools_group_prolated_01( ):
 
 def test_durtools_group_prolated_02( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
 
    r'''
@@ -64,7 +64,7 @@ def test_durtools_group_prolated_02( ):
 
 def test_durtools_group_prolated_03( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
 
    r'''
@@ -97,7 +97,7 @@ def test_durtools_group_prolated_03( ):
 
 def test_durtools_group_prolated_04( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
 
    r'''
@@ -128,7 +128,7 @@ def test_durtools_group_prolated_04( ):
 
 def test_durtools_group_prolated_05( ):
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
 
    r'''

@@ -6,7 +6,7 @@ def get_durations_prolated(expr):
 
    Get the prolated duration of every leaf in `expr`::
 
-      abjad> staff = Staff(FixedDurationTuplet((2, 8), construct.scale(3)) * 2)
+      abjad> staff = Staff(FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)) * 2)
       abjad> leaftools.get_durations_prolated(staff)
       [Rational(1, 12), Rational(1, 12), Rational(1, 12), Rational(1, 12), Rational(1, 12), Rational(1, 12)]
    '''

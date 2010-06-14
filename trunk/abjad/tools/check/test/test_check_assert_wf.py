@@ -6,7 +6,7 @@ def test_check_assert_wf_01( ):
    '''Report violators and raise WellFormednessError
    when not well formed.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    t._music.pop( )
 
@@ -34,7 +34,7 @@ def test_check_assert_wf_01( ):
 def test_check_assert_wf_02( ):
    '''Pass silently when well formed.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    t.pop( )
 

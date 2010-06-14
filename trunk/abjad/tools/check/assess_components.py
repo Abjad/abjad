@@ -21,8 +21,8 @@ def assess_components(expr, klasses = (_Component, ),
 
    Examples all refer to the following score. ::
 
-      abjad> first_voice = Voice(construct.scale(3))
-      abjad> second_voice = Voice(construct.scale(2))
+      abjad> first_voice = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> second_voice = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
       abjad> pitchtools.diatonicize([first_voice, second_voice])
       abjad> staff = Staff([first_voice, second_voice])
       abjad> f(staff)
@@ -455,8 +455,8 @@ def __are_thread_contiguous_components(expr, klasses = (_Component),
 
       Example::
 
-         t = Voice(construct.run(4))
-         t.insert(2, Voice(construct.run(2)))
+         t = Voice(leaftools.make_repeated_notes(4))
+         t.insert(2, Voice(leaftools.make_repeated_notes(2)))
          Container(t[:2])
          Container(t[-2:])
          pitchtools.diatonicize(t)

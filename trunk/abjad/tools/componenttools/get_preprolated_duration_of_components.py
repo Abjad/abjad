@@ -4,7 +4,7 @@ from abjad.tools import check
 def get_preprolated_duration_of_components(components):
    r'''Sum the preprolated duration of each component in `components`. ::
 
-      abjad> tuplet = FixedDurationTuplet((2, 8), construct.scale(3))
+      abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
       abjad> componenttools.get_preprolated_duration_of_components(tuplet[:])
       Rational(3, 8)
 
@@ -15,7 +15,7 @@ def get_preprolated_duration_of_components(components):
 
    Raise contiguity error on nonparent-contiguous `components`. ::
 
-      abjad> t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+      abjad> t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
       abjad> pitchtools.diatonicize(t)
       abjad> f(t)
       \new Voice {

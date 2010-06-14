@@ -9,7 +9,7 @@ def partition_noncyclic_with_overhang_by_durations_prolated_not_less_than(
 
    ::
 
-      abjad> notes = construct.notes([0], [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)])
+      abjad> notes = leaftools.make_notes([0], [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)])
       abjad> pitchtools.diatonicize(notes)
       abjad> for part in durtools.partition_noncyclic_with_overhang_by_durations_prolated_not_less_than(notes, [(5, 16)]):
       ...   part

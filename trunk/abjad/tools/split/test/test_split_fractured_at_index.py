@@ -5,7 +5,7 @@ import py.test
 def test_split_fractured_at_index_01( ):
    '''Index split triplet, and fracture spanners.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    tuplet = t[1]
    pitchtools.diatonicize(t)
    Beam(t[:])
@@ -54,7 +54,7 @@ def test_split_fractured_at_index_01( ):
 def test_split_fractured_at_index_02( ):
    '''Index split binary measure, and fracture spanners.'''
 
-   t = Voice(RigidMeasure((3, 8), construct.run(3)) * 2)
+   t = Voice(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
    m = t[1]
    Beam(t[:])
    pitchtools.diatonicize(t)
@@ -108,7 +108,7 @@ def test_split_fractured_at_index_02( ):
 def test_split_fractured_at_index_03( ):
    '''Index split nonbinary measure, and fracture spanners.'''
 
-   t = Voice(RigidMeasure((3, 9), construct.run(3)) * 2)
+   t = Voice(RigidMeasure((3, 9), leaftools.make_repeated_notes(3)) * 2)
    m = t[1]
    Beam(t[:])
    pitchtools.diatonicize(t)
@@ -173,7 +173,7 @@ def test_split_fractured_at_index_04( ):
    '''Index split voice outside of score.
       Fracture spanners.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
 
    r'''
@@ -211,7 +211,7 @@ def test_split_fractured_at_index_05( ):
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
 
-   t = Staff([Voice(construct.scale(4))])
+   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
    Beam(v)
 
@@ -251,7 +251,7 @@ def test_split_fractured_at_index_06( ):
       Righthand part instantiates empty.
       Original container empties contents.'''
 
-   t = Staff([Voice(construct.scale(4))])
+   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
    Beam(v)
 
@@ -277,7 +277,7 @@ def test_split_fractured_at_index_06( ):
 def test_split_fractured_at_index_07( ):
    '''Index split measure in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -325,7 +325,7 @@ def test_split_fractured_at_index_07( ):
 def test_split_fractured_at_index_08( ):
    '''Index split left of leaf in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -373,7 +373,7 @@ def test_split_fractured_at_index_08( ):
 def test_split_fractured_at_index_09( ):
    '''Index split right of leaf in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2) 
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -423,7 +423,7 @@ def test_split_fractured_at_index_10( ):
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
 
-   t = Staff([RigidMeasure((3, 12), construct.scale(2, Rational(3, 16)))])
+   t = Staff([RigidMeasure((3, 12), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(3, 16)))])
    Beam(t[0])
    Slur(t.leaves)
 
@@ -468,7 +468,7 @@ def test_split_fractured_at_index_11( ):
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
 
-   t = Staff([RigidMeasure((3, 8), construct.scale(2, Rational(3, 16)))])
+   t = Staff([RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(3, 16)))])
    Beam(t[0])
    Slur(t.leaves)
 

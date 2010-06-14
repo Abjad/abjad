@@ -8,7 +8,7 @@ def split_leaf_at_prolated_duration_and_rest_right_half(
    Split `leaf` at `prolated_duration` and rest right half::
 
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Slur(t[:])
       Slur(c'8, d'8, e'8, f'8)
       abjad> f(t)

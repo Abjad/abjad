@@ -4,7 +4,7 @@ from abjad import *
 def test_harmonic_natural_cast_01( ):
    '''It is possible to cast notes into natural harmonics.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    HarmonicNatural(t[1])
 
    r'''

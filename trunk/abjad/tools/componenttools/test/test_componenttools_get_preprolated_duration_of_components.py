@@ -5,7 +5,7 @@ import py.test
 def test_componenttools_get_preprolated_duration_of_components_01( ):
    '''Return sum of preprolated duration of components in list.'''
    
-   t = FixedDurationTuplet((2, 8), construct.scale(3))
+   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
 
    assert componenttools.get_preprolated_duration_of_components(t[:]) == Rational(3, 8)
 
@@ -19,7 +19,7 @@ def test_componenttools_get_preprolated_duration_of_components_02( ):
 def test_componenttools_get_preprolated_duration_of_components_03( ):
    '''Raise ContiguityError for components not in same parent.'''
 
-   t = Voice(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''

@@ -8,7 +8,7 @@ def partition_noncyclic_with_overhang_by_durations_prolated(components,
 
    Yield tuples from `components` equal to successive `prolated_durations`. ::
 
-      abjad> notes = construct.notes([0], [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)])
+      abjad> notes = leaftools.make_notes([0], [(1, 8), (1, 8), (1, 4), (1, 8), (1, 8)])
       abjad> pitchtools.diatonicize(notes)
       abjad> for part in durtools.partition_noncyclic_with_overhang_by_durations_prolated(notes, [(1, 4)]):
       ...   part

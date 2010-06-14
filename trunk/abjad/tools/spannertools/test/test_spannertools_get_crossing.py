@@ -6,7 +6,7 @@ def test_spannertools_get_crossing_01( ):
    '''Return unordered set of spanners crossing
       over the begin- or end-bounds of thread-contiguous components.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    beam = Beam(t[0][:])
    slur = Slur(t[1][:])
@@ -45,7 +45,7 @@ def test_spannertools_get_crossing_02( ):
    '''Trying to get crossing spanners across 
       non-thread-contiguous components raises ContiguityError.'''
 
-   t = Container(Voice(construct.run(2)) * 2)
+   t = Container(Voice(leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t.leaves[:2])
    Slur(t.leaves[2:])
@@ -69,7 +69,7 @@ def test_spannertools_get_crossing_02( ):
 def test_spannertools_get_crossing_03( ):
    '''Helper gets spanners that cross in from above.'''
 
-   t = Voice(RigidMeasure((2, 8), construct.run(2)) * 3)
+   t = Voice(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    beam = Beam(t[1:2] + t[2][0:1])
 

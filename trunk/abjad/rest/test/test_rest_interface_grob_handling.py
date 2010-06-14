@@ -6,7 +6,7 @@ def test_rest_interface_grob_handling_01( ):
    RestInterface handles the LilyPond Rest grob.
    '''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.rest.transparent = True
 
    r'''
@@ -28,7 +28,7 @@ def test_rest_interface_grob_handling_02( ):
    Use clear to remove rest interace grob overrides.
    '''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.rest.transparent = True
    #t.rest.clear( )
    overridetools.clear_all_overrides_on_grob_handler(t.rest)

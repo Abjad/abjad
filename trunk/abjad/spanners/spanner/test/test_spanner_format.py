@@ -6,7 +6,7 @@ def test_spanner_format_01( ):
    However, base spanner causes no explosions at format-time, either.
    '''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p = Spanner(t[:])
 
    r'''

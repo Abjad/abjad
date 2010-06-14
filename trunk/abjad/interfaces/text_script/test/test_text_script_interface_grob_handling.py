@@ -33,7 +33,7 @@ def test_text_script_interface_grob_handling_02( ):
 def test_text_script_interface_grob_handling_03( ):
    '''Override text on context.'''
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.text_script.color = 'red'
 
    r'''

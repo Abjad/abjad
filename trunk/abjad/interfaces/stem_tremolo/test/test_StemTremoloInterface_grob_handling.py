@@ -3,7 +3,7 @@ from abjad import *
 
 def test_StemTremoloInterface_grob_handling_01( ):
 
-   t = Staff(construct.scale(4))
+   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    t.stem_tremolo.staff_padding = 2
    t.stem_tremolo.Y_extent = (-1.5, 1.5)
 

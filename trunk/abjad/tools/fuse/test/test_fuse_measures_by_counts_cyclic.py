@@ -4,7 +4,7 @@ from abjad import *
 def test_fuse_measures_by_counts_cyclic_01( ):
    '''Docs.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 5)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 5)
    pitchtools.diatonicize(t) 
 
    r'''
@@ -71,7 +71,7 @@ def test_fuse_measures_by_counts_cyclic_01( ):
 def test_fuse_measures_by_counts_cyclic_02( ):
    '''Docs.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 5)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 5)
    pitchtools.diatonicize(t) 
 
    r'''

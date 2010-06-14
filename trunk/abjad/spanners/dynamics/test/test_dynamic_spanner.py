@@ -3,7 +3,7 @@ from abjad import *
 
 def test_dynamic_spanner_01( ):
    
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    Dynamic(t[:2], 'f')
    Dynamic(t[2:], 'p')

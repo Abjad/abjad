@@ -7,7 +7,7 @@ class TrillPitchAccidentalInterface(_Interface, _GrobHandler):
 
    Handle LilyPond TrillPitchAccidental grob. ::
 
-      abjad> t = Staff(construct.scale(4))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> t.trill_pitch_accidental.staff_padding = 2
       abjad> t.trill_pitch_accidental.Y_extent = (-1.5, 1.5)
       \new Staff \with {

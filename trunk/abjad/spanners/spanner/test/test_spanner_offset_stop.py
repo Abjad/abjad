@@ -4,7 +4,7 @@ from abjad import *
 def test_spanner_offset_stop_01( ):
    '''Return stop time of spanner in score.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    beam = Beam(t[1:3])
    glissando = Glissando([t])
 

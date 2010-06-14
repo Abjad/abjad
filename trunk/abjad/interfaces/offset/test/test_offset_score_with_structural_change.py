@@ -6,7 +6,7 @@ from abjad import *
 def test_offset_score_with_structural_change_01( ):
    '''Insert note in voice.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    note = t[2]
    assert note.offset.prolated.start == Rational(1, 4)
@@ -18,7 +18,7 @@ def test_offset_score_with_structural_change_01( ):
 def test_offset_score_with_structural_change_02( ):
    '''Delete note in voice.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    Beam(t[:])
    note = t[2]
    assert note.offset.prolated.start == Rational(1, 4)

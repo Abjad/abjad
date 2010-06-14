@@ -4,9 +4,9 @@ from abjad import *
 def test_container_splice_01( ):
    '''Splice tuplet after tuplet.'''
 
-   t = Voice([FixedDurationTuplet((2, 8), construct.scale(3))])
+   t = Voice([FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))])
    Beam(t[0])
-   result = t[-1].splice([FixedDurationTuplet((2, 8), construct.scale(3))])
+   result = t[-1].splice([FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))])
 
    r'''
    \new Voice {
@@ -31,7 +31,7 @@ def test_container_splice_01( ):
 def test_container_splice_02( ):
    '''Splice after container with underspanners.'''
 
-   t = Voice(Container(construct.run(2)) * 2)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    Beam(t.leaves)
    result = t[0].splice([Note(2.5, (1, 8))])
 

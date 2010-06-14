@@ -6,7 +6,7 @@ def test_measuretools_apply_durated_complex_beam_spanner_to_measures_01( ):
    set p.durations equal to preprolated measure durations.
    '''
 
-   staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(staff)
 
    r'''

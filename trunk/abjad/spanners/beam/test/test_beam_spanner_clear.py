@@ -4,7 +4,7 @@ from abjad import *
 def test_beam_spanner_clear_01( ):
    '''Clear length-one spanner.'''
 
-   t = Staff(construct.run(8))
+   t = Staff(leaftools.make_repeated_notes(8))
    pitchtools.chromaticize(t)
    Beam(t[0])
 
@@ -43,7 +43,7 @@ def test_beam_spanner_clear_01( ):
 def test_beam_spanner_clear_02( ):
    '''Clear length-four spanner.'''
 
-   t = Staff(construct.run(8))
+   t = Staff(leaftools.make_repeated_notes(8))
    pitchtools.chromaticize(t)
    Beam(t[:4])
 

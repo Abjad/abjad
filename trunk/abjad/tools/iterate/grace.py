@@ -5,9 +5,9 @@ def grace(expr, klass):
 
    Include grace leaves after main leaves. ::
 
-      abjad> t = Voice(construct.scale(4))
+      abjad> t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(t[:])
-      abjad> notes = construct.scale(4, Rational(1, 16))
+      abjad> notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4, Rational(1, 16))
       abjad> t[1].grace.before.extend(notes[:2])
       abjad> t[1].grace.after.extend(notes[2:])
       abjad> print t.format

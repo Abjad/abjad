@@ -59,7 +59,7 @@ def test_iterate_naive_forward_in_07( ):
 def test_iterate_naive_forward_in_08( ):
    '''From start index.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -87,7 +87,7 @@ def test_iterate_naive_forward_in_08( ):
 def test_iterate_naive_forward_in_09( ):
    '''To stop index.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''
@@ -116,7 +116,7 @@ def test_iterate_naive_forward_in_09( ):
 def test_iterate_naive_forward_in_10( ):
    '''From start index to stop index.'''
 
-   t = Staff(FixedDurationTuplet((2, 8), construct.run(3)) * 2)
+   t = Staff(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
    pitchtools.diatonicize(t)
 
    r'''

@@ -12,7 +12,7 @@ def get_with_indices(components):
 
    ::
 
-      abjad> t = Staff(construct.scale(6))
+      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(6))
       abjad> print t.format
       \new Staff {
          c'8

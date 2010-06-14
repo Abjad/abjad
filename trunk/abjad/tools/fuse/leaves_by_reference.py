@@ -7,7 +7,7 @@ from abjad.tools import leaftools
 def leaves_by_reference(leaves):
    r'''Fuse thread-contiguous `leaves`::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> fuse.leaves_by_reference(staff[1:])
       [Note(d', 4.)]
       abjad> f(staff)

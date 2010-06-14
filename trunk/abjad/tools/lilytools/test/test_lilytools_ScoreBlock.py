@@ -3,7 +3,7 @@ from abjad import *
 
 def test_lilytools_ScoreBlock_01( ):
 
-   score = Score([Staff(construct.scale(4))])
+   score = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    score_block = lilytools.ScoreBlock( )
    layout_block = lilytools.LayoutBlock( )
    midi_block = lilytools.MidiBlock( )

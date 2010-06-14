@@ -5,7 +5,7 @@ import py.test
 def test_split_fractured_at_duration_01( ):
    '''Duration split leaf in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -55,7 +55,7 @@ def test_split_fractured_at_duration_01( ):
 def test_split_fractured_at_duration_02( ):
    '''Duration split measure in score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -107,7 +107,7 @@ def test_split_fractured_at_duration_02( ):
 def test_split_fractured_at_duration_03( ):
    '''Duration split staff outside of score and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -168,7 +168,7 @@ def test_split_fractured_at_duration_04( ):
       Fracture spanners.
       Test comes from a bug fix.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -216,7 +216,7 @@ def test_split_fractured_at_duration_05( ):
       Fracture spanners.
       Test results from bug fix.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -265,7 +265,7 @@ def test_split_fractured_at_duration_05( ):
 def test_split_fractured_at_duration_06( ):
    '''Duration split container between leaves and fracture spanners.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -334,7 +334,7 @@ def test_split_fractured_at_duration_08( ):
    '''Duration split leaf in score and fracture spanners.
       Tie leaves after split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -386,7 +386,7 @@ def test_split_fractured_at_duration_09( ):
    '''Duration split measure in score and fracture spanners.
       Tie leaves after split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -440,7 +440,7 @@ def test_split_fractured_at_duration_10( ):
    '''Duration split binary measure in score at nonbinary split point.
       Do fracture spanners but do not tie leaves after split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -497,7 +497,7 @@ def test_split_fractured_at_duration_11( ):
    '''Duration split binary measure in score at nonbinary split point.
       Do fracture spanners and do tie leaves after split.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    Beam(t[0])
    Beam(t[1])
@@ -556,7 +556,7 @@ def test_split_fractured_at_duration_12( ):
       This test results from a fix.
       What's being tested here is contents rederivation.'''
 
-   t = Staff(RigidMeasure((3, 8), construct.scale(3)) * 2)
+   t = Staff(RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)) * 2)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)
@@ -659,7 +659,7 @@ def test_split_fractured_at_duration_15( ):
       Split at binary split point between leaves.''
       Leaves remain unaltered.'''
 
-   t = Staff(RigidMeasure((2, 16), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 16), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
@@ -712,7 +712,7 @@ def test_split_fractured_at_duration_16( ):
       Split at binary split point through leaves.
       Leaf written durations stay the same but multipliers change.'''
 
-   t = Staff(RigidMeasure((2, 16), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 16), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
@@ -767,7 +767,7 @@ def test_split_fractured_at_duration_17( ):
       Leaf written durations adjust for binary-to-nonbinary change.
       Leaf multipliers also change.'''
 
-   t = Staff(RigidMeasure((2, 16), construct.run(2)) * 2)
+   t = Staff(RigidMeasure((2, 16), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
    for leaf in t.leaves:
       leaf.duration.multiplier = Rational(1, 2)
@@ -866,7 +866,7 @@ def test_split_fractured_at_duration_19( ):
       Measure multiplier and split point multiplier match.
       Split between leaves but do fracture spanners.'''
 
-   t = Staff([RigidMeasure((15, 80), construct.notes(
+   t = Staff([RigidMeasure((15, 80), leaftools.make_notes(
       0, [Rational(1, 32)] * 7 + [Rational(1, 64)]))])
    pitchtools.diatonicize(t)
    Beam(t[0])

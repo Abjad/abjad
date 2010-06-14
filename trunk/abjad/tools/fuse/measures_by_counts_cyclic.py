@@ -6,7 +6,7 @@ from abjad.tools.fuse.measures_by_reference import measures_by_reference
 def measures_by_counts_cyclic(container, counts, mark = False):
    r'''Fuse `container` measures cyclically by `counts`::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 5)
+      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 5)
       abjad> pitchtools.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

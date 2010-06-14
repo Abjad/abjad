@@ -6,7 +6,7 @@ def unfractured_at_duration(component, prolated_duration, tie_after = False):
    Leave spanners untouched.
    Return split parts. ::
 
-      abjad> t = Staff(RigidMeasure((2, 8), construct.run(2)) * 2)
+      abjad> t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
       abjad> pitchtools.diatonicize(t)
       abjad> Beam(t[0])
       abjad> Beam(t[1])

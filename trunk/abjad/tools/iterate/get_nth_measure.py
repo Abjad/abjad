@@ -7,7 +7,7 @@ def get_nth_measure(expr, n = 0):
 
    Return measure `n` in `expr`. ::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), construct.run(2)) * 3)
+      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 3)
       abjad> pitchtools.diatonicize(staff)
       abjad> f(staff)
       \new Staff {

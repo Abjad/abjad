@@ -6,7 +6,7 @@ def test_measuretools_scale_and_remeter_01( ):
    '''Scale binary to nonbinary.
       No note_head rewriting necessary.'''
 
-   t = RigidMeasure((3, 8), construct.scale(3))
+   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    measuretools.scale_and_remeter(t, Rational(2, 3))
 
    r'''
@@ -28,7 +28,7 @@ def test_measuretools_scale_and_remeter_02( ):
    '''Scale nonbinary meter to binary. 
       No note_head rewriting necessary.'''
   
-   t = RigidMeasure((3, 12), construct.scale(3))
+   t = RigidMeasure((3, 12), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    measuretools.scale_and_remeter(t, Rational(3, 2))
 
    r'''
@@ -48,7 +48,7 @@ def test_measuretools_scale_and_remeter_03( ):
    '''Scale binary meter to binary meter. 
       Noteheads rewrite with dots.'''
 
-   t = RigidMeasure((3, 8), construct.scale(3))
+   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    measuretools.scale_and_remeter(t, Rational(3, 2))
 
    r'''
@@ -68,7 +68,7 @@ def test_measuretools_scale_and_remeter_04( ):
    '''Scale binary meter to binary meter.
       Noteheads rewrite without dots.'''
 
-   t = RigidMeasure((9, 16), construct.scale(3, Rational(3, 16)))
+   t = RigidMeasure((9, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3, Rational(3, 16)))
    measuretools.scale_and_remeter(t, Rational(2, 3))
 
    r'''
@@ -88,7 +88,7 @@ def test_measuretools_scale_and_remeter_05( ):
    '''Scale binary meter to nonbinary meter.
       No note_head rewriting necessary.'''
 
-   t = RigidMeasure((9, 16), construct.scale(9, Rational(1, 16)))
+   t = RigidMeasure((9, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(9, Rational(1, 16)))
    measuretools.scale_and_remeter(t, Rational(2, 3))
 
    r'''
@@ -116,7 +116,7 @@ def test_measuretools_scale_and_remeter_06( ):
    '''Scale nonbinary meter to binary meter.
       Noteheads rewrite with double duration.'''
 
-   t = RigidMeasure((3, 12), construct.scale(3))
+   t = RigidMeasure((3, 12), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    measuretools.scale_and_remeter(t, Rational(3))
 
    r'''
@@ -137,7 +137,7 @@ def test_measuretools_scale_and_remeter_07( ):
       Noteheads rewrite with half duration.
       Meter rewrites with double denominator.'''
 
-   t = RigidMeasure((6, 16), construct.scale(6, Rational(1, 16)))
+   t = RigidMeasure((6, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6, Rational(1, 16)))
    measuretools.scale_and_remeter(t, Rational(1, 2))
 
    r'''
@@ -161,7 +161,7 @@ def test_measuretools_scale_and_remeter_08( ):
       Noteheads rewrite with quarter duration.
       Meter rewrites with quadruple denominator.'''
 
-   t = RigidMeasure((6, 16), construct.scale(6, Rational(1, 16)))
+   t = RigidMeasure((6, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6, Rational(1, 16)))
    measuretools.scale_and_remeter(t, Rational(1, 4))
 
    r'''
@@ -185,7 +185,7 @@ def test_measuretools_scale_and_remeter_09( ):
       Noteheads rewrite with double duration.
       Meter rewrites with half denominator.'''
 
-   t = RigidMeasure((6, 16), construct.scale(6, Rational(1, 16)))
+   t = RigidMeasure((6, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6, Rational(1, 16)))
    measuretools.scale_and_remeter(t, Rational(2))
 
    r'''
@@ -209,7 +209,7 @@ def test_measuretools_scale_and_remeter_10( ):
       Noteheads rewrite with quadruple duration.
       Meter rewrites with quarter denominator.'''
 
-   t = RigidMeasure((6, 16), construct.scale(6, Rational(1, 16)))
+   t = RigidMeasure((6, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6, Rational(1, 16)))
    measuretools.scale_and_remeter(t, Rational(4))
 
    r'''
@@ -231,5 +231,5 @@ def test_measuretools_scale_and_remeter_10( ):
 def test_measuretools_scale_and_remeter_11( ):
    '''Raise ZeroDivisionError when multiplier equals zero.'''
 
-   t = RigidMeasure((6, 16), construct.scale(6, Rational(1, 16)))
+   t = RigidMeasure((6, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6, Rational(1, 16)))
    py.test.raises(ZeroDivisionError, 'measuretools.scale_and_remeter(t, 0)')

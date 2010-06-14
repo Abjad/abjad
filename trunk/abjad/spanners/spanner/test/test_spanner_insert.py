@@ -8,7 +8,7 @@ def test_spanner_insert_01( ):
       Not composer-safe.
       Inserting into middle of spanner may leave discontiguous spanner.'''
 
-   t = Voice(construct.scale(4))
+   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    p = Beam(t[:2])
 
    r'''
@@ -33,7 +33,7 @@ def test_spanner_insert_02( ):
       Operation is still not composer-safe, however.
       Note that p.append( ) and p.append_left( ) are composer-safe.'''
 
-   t = Voice(Container(construct.run(2)) * 3)
+   t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
    p = Beam(t[1])
 

@@ -8,7 +8,7 @@ def delete_contents_of_container_starting_strictly_before_prolated_offset(
 
    Delete `container` contents starting before `prolated_offset`::
 
-      abjad> staff = Staff(construct.scale(4))
+      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
       abjad> Beam(staff.leaves)
       abjad> f(staff)
       \new Staff {

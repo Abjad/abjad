@@ -15,8 +15,8 @@ def remove_trivial_tuplets_in_expr(expr):
 
    Example::
 
-      abjad> t = FixedDurationTuplet((1, 4), construct.scale(3))
-      abjad> u = FixedDurationTuplet((1, 4), construct.scale(2))
+      abjad> t = FixedDurationTuplet((1, 4), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> u = FixedDurationTuplet((1, 4), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
       abjad> s = Staff([t, u])
       abjad> len(s)
       2

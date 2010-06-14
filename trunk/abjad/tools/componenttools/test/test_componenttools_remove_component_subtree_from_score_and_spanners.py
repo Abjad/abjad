@@ -4,8 +4,8 @@ from abjad import *
 def test_componenttools_remove_component_subtree_from_score_and_spanners_01( ):
    '''Detach sequential from score tree.'''
 
-   t = Voice(construct.run(2))
-   t.insert(1, Container(construct.run(2)))
+   t = Voice(leaftools.make_repeated_notes(2))
+   t.insert(1, Container(leaftools.make_repeated_notes(2)))
    pitchtools.diatonicize(t)
    Beam(t.leaves)
    Glissando(t.leaves)
@@ -39,8 +39,8 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01( ):
 def test_componenttools_remove_component_subtree_from_score_and_spanners_02( ):
    '''Detach leaf from score tree.'''
 
-   t = Voice(construct.run(2))
-   t.insert(1, Container(construct.run(2)))
+   t = Voice(leaftools.make_repeated_notes(2))
+   t.insert(1, Container(leaftools.make_repeated_notes(2)))
    pitchtools.diatonicize(t)
    Beam(t.leaves)
    Glissando(t.leaves)

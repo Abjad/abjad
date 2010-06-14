@@ -6,7 +6,7 @@ def test_durtools_group_seconds_01( ):
    Do not read durations cyclically.
    Do not return overhang group.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
@@ -43,7 +43,7 @@ def test_durtools_group_seconds_02( ):
    '''Read durations cyclically.
    If components remain, do not append final part.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
@@ -81,7 +81,7 @@ def test_durtools_group_seconds_03( ):
    '''Read durations cyclically.
    If components remain, do append final part.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
@@ -120,7 +120,7 @@ def test_durtools_group_seconds_03( ):
 def test_durtools_group_seconds_04( ):
    '''Fill parts less than durations.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
@@ -159,7 +159,7 @@ def test_durtools_group_seconds_05( ):
    Do read durations cyclically.
    If components remain, do not append final part.'''
 
-   t = Staff(RigidMeasure((2, 8), construct.run(2)) * 4)
+   t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
    tempo_spanner = TempoSpanner(t[:])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
