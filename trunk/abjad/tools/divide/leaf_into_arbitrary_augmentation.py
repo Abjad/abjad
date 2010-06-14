@@ -1,9 +1,11 @@
-from abjad.tools.divide._leaf_into_arbitrary_fixed_duration_tuplet import \
-   _leaf_into_arbitrary_fixed_duration_tuplet
+#from abjad.tools.divide._leaf_into_arbitrary_fixed_duration_tuplet import \
+#   _leaf_into_arbitrary_fixed_duration_tuplet
+from abjad.tools.leaftools._leaf_to_tuplet_with_proportions import \
+   _leaf_to_tuplet_with_proportions
 
 
-def leaf_into_arbitrary_augmentation(l, divisions):
-   '''Divide written duration of `l` into arbitrary `divisions`.
+def leaf_into_arbitrary_augmentation(leaf, proportions):
+   '''Divide written duration of `leaf` into arbitrary `proportions`.
 
    Return (augmented) fixed-duration tuplet. ::
 
@@ -22,5 +24,5 @@ def leaf_into_arbitrary_augmentation(l, divisions):
       {@ 5:8 c'128, c'64, c'64, c'64., c'64., c'32 @}
    '''
 
-   return _leaf_into_arbitrary_fixed_duration_tuplet(
-      l, divisions, 'augmentation') 
+   #return _leaf_into_arbitrary_fixed_duration_tuplet(leaf, proportions, 'augmentation') 
+   return _leaf_to_tuplet_with_proportions(leaf, proportions, 'augmentation') 

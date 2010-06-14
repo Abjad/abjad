@@ -9,7 +9,7 @@ from abjad.tools import scoretools
 from abjad.tuplet import FixedDurationTuplet
 
 
-def _duration_into_arbitrary_fixed_duration_tuplet_dotted(
+def _make_tuplet_from_duration_with_proportions_and_encourage_dots(
    duration, divisions, prolation):
    '''.. versionadded:: 1.1.2
 

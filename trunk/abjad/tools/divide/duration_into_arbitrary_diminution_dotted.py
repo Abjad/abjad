@@ -1,18 +1,20 @@
-from abjad.tools.divide._duration_into_arbitrary_fixed_duration_tuplet_dotted import \
-   _duration_into_arbitrary_fixed_duration_tuplet_dotted
+#from abjad.tools.divide._duration_into_arbitrary_fixed_duration_tuplet_dotted import \
+#   _duration_into_arbitrary_fixed_duration_tuplet_dotted
+from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_encourage_dots \
+   import _make_tuplet_from_duration_with_proportions_and_encourage_dots
 
 
-def duration_into_arbitrary_diminution_dotted(duration, divisions):
+def duration_into_arbitrary_diminution_dotted(duration, proportions):
    r'''.. versionadded:: 1.1.2
 
    Divide `duration` into fixed-duration tuplet 
-   according to arbitrary integer `divisions`.  
+   according to arbitrary integer `proportions`.  
 
-   Reduce the values in `divisions` relative to each other.
+   Reduce the values in `proportions` relative to each other.
 
    Return non-trivial tuplets as diminutions.
 
-   Where ``divisions[i] == 1`` for all ``i <= len(divisions) - 1``, 
+   Where ``proportions[i] == 1`` for all ``i <= len(proportions) - 1``, 
    allow tupletted notes to carry dots. ::
 
       abjad> duration = Rational(3, 16)
@@ -27,7 +29,7 @@ def duration_into_arbitrary_diminution_dotted(duration, divisions):
       abjad> print divide.duration_into_arbitrary_diminution_dotted(duration, [1, 1, 1, 1, 1])
       {@ 5:4 c'32., c'32., c'32., c'32., c'32. @}
 
-   Where ``divisions[i] != 1`` for some ``i <= len(divisions) - 1``, 
+   Where ``proportions[i] != 1`` for some ``i <= len(proportions) - 1``, 
    allow tupletted notes to return with dots. ::
 
       abjad> duration = Rational(3, 16)
@@ -44,5 +46,7 @@ def duration_into_arbitrary_diminution_dotted(duration, divisions):
 
    '''
 
-   return _duration_into_arbitrary_fixed_duration_tuplet_dotted(
-      duration, divisions, 'diminution')
+   #return _duration_into_arbitrary_fixed_duration_tuplet_dotted(
+   #   duration, proportions, 'diminution')
+   return _make_tuplet_from_duration_with_proportions_and_encourage_dots(
+      duration, proportions, 'diminution')

@@ -7,7 +7,7 @@ from abjad.tools import tietools
 from abjad.tuplet import FixedDurationTuplet
 
 
-def _tie_chain_arbitrarily(chain, divisions, prolation, dotted):
+def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
    '''.. versionadded:: 1.1.2
 
    Generalized tie-chain division function.

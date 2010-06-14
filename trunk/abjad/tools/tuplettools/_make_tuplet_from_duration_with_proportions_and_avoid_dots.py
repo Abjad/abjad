@@ -9,7 +9,7 @@ from abjad.tools import scoretools
 from abjad.tuplet import FixedDurationTuplet
 
 
-def _duration_into_arbitrary_fixed_duration_tuplet_undotted(
+def _make_tuplet_from_duration_with_proportions_and_avoid_dots(
    duration, divisions, prolation):
    '''Divide `duration` according to `divisions`
    and `prolation`.

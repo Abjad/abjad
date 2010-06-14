@@ -1,18 +1,19 @@
-from abjad.tools.divide._tie_chain_arbitrarily import _tie_chain_arbitrarily
+#from abjad.tools.divide._tie_chain_arbitrarily import _tie_chain_arbitrarily
+from abjad.tools.tietools._tie_chain_to_tuplet import _tie_chain_to_tuplet
 
 
-def tie_chain_into_arbitrary_diminution_undotted(tie_chain, divisions):
+def tie_chain_into_arbitrary_diminution_undotted(tie_chain, proportions):
    r'''.. versionadded:: 1.1.2
 
    Divide `tie_chain` into fixed-duration tuplet according to 
-   arbitrary integer `divisions`.
+   arbitrary integer `proportions`.
 
-   Interpret `divisions` as a ratio. That is, reduce integers
-   in `divisions` relative to each other.
+   Interpret `proportions` as a ratio. That is, reduce integers
+   in `proportions` relative to each other.
 
    Return non-trivial tuplet as diminution.
 
-   Where ``divisions[i] == 1`` for ``i < len(divisions)``, 
+   Where ``proportions[i] == 1`` for ``i < len(proportions)``, 
    do not allow tupletted notes to carry dots. ::
 
       abjad> staff = Staff([Note(0, (1, 8)), Note(0, (1, 16)), Note(0, (1, 16))])
@@ -69,4 +70,5 @@ def tie_chain_into_arbitrary_diminution_undotted(tie_chain, divisions):
    '''
 
    prolation, dotted = 'diminution', False
-   return _tie_chain_arbitrarily(tie_chain, divisions, prolation, dotted)
+   #return _tie_chain_arbitrarily(tie_chain, proportions, prolation, dotted)
+   return _tie_chain_to_tuplet(tie_chain, proportions, prolation, dotted)

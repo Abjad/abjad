@@ -9,7 +9,7 @@ from abjad.tools import scoretools
 from abjad.tuplet import FixedDurationTuplet
 
 
-def _leaf_into_arbitrary_fixed_duration_tuplet(l, divisions, prolation):
+def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
    '''Divide written duration of `l` according to `divisions`
    and `prolation`.
    '''
