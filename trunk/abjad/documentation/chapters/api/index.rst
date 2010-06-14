@@ -338,21 +338,21 @@ fuse
    tools/fuse/tuplets_by_reference
 
 
-io
+iotools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/io/f
-   tools/io/log
-   tools/io/ly
-   tools/io/pdf
-   tools/io/play
-   tools/io/redo
-   tools/io/show
-   tools/io/write_expr_to_ly
-   tools/io/write_expr_to_ly_and_to_pdf_and_show
-   tools/io/write_expr_to_pdf
+   tools/iotools/f
+   tools/iotools/log
+   tools/iotools/ly
+   tools/iotools/pdf
+   tools/iotools/play
+   tools/iotools/redo
+   tools/iotools/show
+   tools/iotools/write_expr_to_ly
+   tools/iotools/write_expr_to_ly_and_to_pdf_and_show
+   tools/iotools/write_expr_to_pdf
 
 
 iterate

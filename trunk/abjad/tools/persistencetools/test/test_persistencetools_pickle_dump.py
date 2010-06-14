@@ -1,4 +1,5 @@
 from abjad import *
+import os
 
 
 def test_persistencetools_pickle_dump_01( ):

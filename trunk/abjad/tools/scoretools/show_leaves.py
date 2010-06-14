@@ -1,4 +1,4 @@
-from abjad.tools.io.show import show
+from abjad.tools.iotools.show import show
 from abjad.tools.scoretools.make_piano_sketch_score import \
    make_piano_sketch_score
 
