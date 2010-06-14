@@ -188,6 +188,15 @@ componenttools
 .. toctree::
    :maxdepth: 1
 
+   tools/componenttools/all_are_components
+   tools/componenttools/all_are_components_in_same_parent
+   tools/componenttools/all_are_components_in_same_score
+   tools/componenttools/all_are_components_in_same_thread
+   tools/componenttools/all_are_contiguous_components
+   tools/componenttools/all_are_contiguous_components_in_same_parent
+   tools/componenttools/all_are_contiguous_components_in_same_score
+   tools/componenttools/all_are_contiguous_components_in_same_thread
+   tools/componenttools/all_are_thread_contiguous_components
    tools/componenttools/clone_and_partition_governed_component_subtree_by_leaf_counts
    tools/componenttools/clone_components_and_covered_spanners
    tools/componenttools/clone_components_and_fracture_crossing_spanners
