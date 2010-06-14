@@ -4,8 +4,13 @@ from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools import tuplettools
 from abjad.tools import scoretools
+from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import \
+   fix_contents_of_tuplets_in_expr
+from abjad.tools.tuplettools.change_augmented_tuplets_in_expr_to_diminished import \
+   change_augmented_tuplets_in_expr_to_diminished
+from abjad.tools.tuplettools.change_diminished_tuplets_in_expr_to_augmented import \
+   change_diminished_tuplets_in_expr_to_augmented
 from abjad.tuplet import FixedDurationTuplet
 
 
@@ -40,16 +45,16 @@ def _make_tuplet_from_duration_with_proportions_and_avoid_dots(
    tuplet = FixedDurationTuplet(duration, notes)
 
    ## fix tuplet contents if necessary
-   tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
+   fix_contents_of_tuplets_in_expr(tuplet)
 
    ## switch prolation if necessary
    if not tuplet.duration.multiplier == 1:
       if prolation == 'diminution':
          if not tuplet.duration.diminution:
-            tuplettools.change_augmented_tuplets_in_expr_to_diminished(tuplet)
+            change_augmented_tuplets_in_expr_to_diminished(tuplet)
       else:
          if tuplet.duration.diminution:
-            tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
+            change_diminished_tuplets_in_expr_to_augmented(tuplet)
 
 #   ## give leaf position in score structure to tuplet
 #   scoretools.donate([l], tuplet)

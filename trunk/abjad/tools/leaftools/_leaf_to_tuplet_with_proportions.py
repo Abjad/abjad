@@ -2,10 +2,9 @@ from abjad.exceptions import AssignabilityError
 from abjad.note import Note
 from abjad.rational import Rational
 from abjad.tools import durtools
-from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools import tuplettools
 from abjad.tools import scoretools
+from abjad.tools.leaftools.make_notes import make_notes
 from abjad.tuplet import FixedDurationTuplet
 
 
@@ -13,6 +12,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
    '''Divide written duration of `l` according to `divisions`
    and `prolation`.
    '''
+   from abjad.tools import tuplettools
 
    ## find target duration of fixed-duration tuplet
    target_duration = l.duration.written
@@ -33,7 +33,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
    except AssignabilityError:
       denominator = target_duration._denominator
       note_durations = [Rational(x, denominator) for x in divisions]
-      notes = leaftools.make_notes(0, note_durations)
+      notes = make_notes(0, note_durations)
 
    ## make tuplet
    tuplet = FixedDurationTuplet(target_duration, notes)

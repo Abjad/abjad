@@ -238,26 +238,6 @@ containertools
    tools/containertools/split_container_at_index_and_fracture_crossing_spanners
 
 
-divide
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/divide/duration_into_arbitrary_augmentation_dotted
-   tools/divide/duration_into_arbitrary_augmentation_undotted
-   tools/divide/duration_into_arbitrary_diminution_dotted
-   tools/divide/duration_into_arbitrary_diminution_undotted
-   tools/divide/leaf_into_arbitrary_augmentation
-   tools/divide/leaf_into_arbitrary_diminution
-   tools/divide/leaf_into_even_augmentation
-   tools/divide/leaf_into_even_diminution
-   tools/divide/pair
-   tools/divide/tie_chain_into_arbitrary_augmentation_dotted
-   tools/divide/tie_chain_into_arbitrary_augmentation_undotted
-   tools/divide/tie_chain_into_arbitrary_diminution_dotted
-   tools/divide/tie_chain_into_arbitrary_diminution_undotted
-
-
 durtools
 
 .. toctree::
@@ -474,6 +454,10 @@ leaftools
    tools/leaftools/get_durations_written
    tools/leaftools/has_leaf_with_dotted_written_duration_in
    tools/leaftools/is_bar_line_crossing_leaf
+   tools/leaftools/leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration
+   tools/leaftools/leaf_to_augmented_tuplet_with_proportions
+   tools/leaftools/leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration
+   tools/leaftools/leaf_to_diminished_tuplet_with_proportions
    tools/leaftools/make_accelerating_notes_with_lilypond_multipliers
    tools/leaftools/make_all_notes_in_ascending_and_descending_diatonic_scale
    tools/leaftools/make_first_n_notes_in_ascending_diatonic_scale
@@ -979,6 +963,10 @@ tietools
    tools/tietools/is_chain
    tools/tietools/is_in_same_parent
    tools/tietools/span_leaf_pair
+   tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots
+   tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots
+   tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
+   tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
    tools/tietools/truncate
 
 
@@ -1025,6 +1013,11 @@ tuplettools
    tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
    tools/tuplettools/fix_contents_of_tuplets_in_expr
+   tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots
+   tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots
+   tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots
+   tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots
+   tools/tuplettools/make_tuplet_from_proportions_and_pair
    tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
    tools/tuplettools/remove_trivial_tuplets_in_expr
    tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
