@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_split_unfractured_at_index_01( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_01( ):
    '''Index split tuplet in score and do not fracture spanners.'''
 
    t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
@@ -24,7 +24,7 @@ def test_split_unfractured_at_index_01( ):
    }
    '''
 
-   split.unfractured_at_index(t[1], 1)
+   containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(t[1], 1)
 
    r'''
    \new Voice {
@@ -47,7 +47,7 @@ def test_split_unfractured_at_index_01( ):
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t}\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_split_unfractured_at_index_02( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_02( ):
    '''Index split binary measure in score and do not fracture spanners.'''
 
    t = Voice(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
@@ -71,7 +71,7 @@ def test_split_unfractured_at_index_02( ):
    }
    '''
 
-   split.unfractured_at_index(t[1], 1)
+   containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(t[1], 1)
 
    r'''
    \new Voice {
@@ -98,7 +98,7 @@ def test_split_unfractured_at_index_02( ):
 
 
 
-def test_split_unfractured_at_index_03( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_03( ):
    '''Index split nonbinary measure in score and do not frature spanners.'''
 
    t = Voice(RigidMeasure((3, 9), leaftools.make_repeated_notes(3)) * 2)
@@ -126,7 +126,7 @@ def test_split_unfractured_at_index_03( ):
    }
    '''
 
-   split.unfractured_at_index(t[1], 1)
+   containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(t[1], 1)
 
    r'''
    \new Voice {
@@ -158,12 +158,12 @@ def test_split_unfractured_at_index_03( ):
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_split_unfractured_at_index_04( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_04( ):
    '''A single container can be index split in two by the middle;
       no parent.'''
 
    t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-   t1, t2 = split.unfractured_at_index(t, 2)
+   t1, t2 = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(t, 2)
 
    r'''
    \new Voice {
@@ -182,7 +182,7 @@ def test_split_unfractured_at_index_04( ):
    assert t2.format == "\\new Voice {\n\te'8\n\tf'8\n}"
    
 
-def test_split_unfractured_at_index_05( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_05( ):
    '''A single container 'split' at index 0 gives
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
@@ -190,7 +190,7 @@ def test_split_unfractured_at_index_05( ):
    t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
    Beam(v)
-   left, right = split.unfractured_at_index(v, 0)
+   left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, 0)
 
    r'''
    \new Staff {
@@ -209,7 +209,7 @@ def test_split_unfractured_at_index_05( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_split_unfractured_at_index_06( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_06( ):
    '''Split container at index > len(container).
       Lefthand part instantiates with all contents.
       Righthand part instantiates empty.
@@ -217,7 +217,7 @@ def test_split_unfractured_at_index_06( ):
 
    t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
-   left, right = split.unfractured_at_index(v, 10)
+   left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, 10)
 
    assert check.wf(t)
    assert left.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
@@ -226,14 +226,14 @@ def test_split_unfractured_at_index_06( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-def test_split_unfractured_at_index_07( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_07( ):
    '''Voice can be index split.'''
 
    t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
-   #assert py.test.raises(ContiguityError, 'split.unfractured_at_index(v, -2)')
+   #assert py.test.raises(ContiguityError, 'containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, -2)')
 
-   left, right = split.unfractured_at_index(v, -2)
+   left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, -2)
    assert check.wf(t)
    assert left.format == "\\new Voice {\n\tc'8\n\td'8\n}"
    assert right.format == "\\new Voice {\n\te'8\n\tf'8\n}"
@@ -241,13 +241,13 @@ def test_split_unfractured_at_index_07( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
-def test_split_unfractured_at_index_08( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_08( ):
    '''Index split container in score and do not fracture spanners.'''
 
    t = Staff([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
    v = t[0]
    Beam(v)
-   left, right = split.unfractured_at_index(v, 2)
+   left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, 2)
 
    r'''
    \new Staff {
@@ -269,14 +269,14 @@ def test_split_unfractured_at_index_08( ):
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_split_unfractured_at_index_09( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_09( ):
    '''Index split tuplet in score and do not fracture spanners.'''
 
    t = Staff([Voice([FixedMultiplierTuplet((4, 5), leaftools.make_repeated_notes(5))])])
    v = t[0]
    tuplet = v[0]
    Beam(tuplet)
-   left, right = split.unfractured_at_index(tuplet, 2)
+   left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(tuplet, 2)
 
    r'''
    \new Staff {
@@ -302,7 +302,7 @@ def test_split_unfractured_at_index_09( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\t\\times 4/5 {\n\t\t\tc'8 [\n\t\t\tc'8\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_split_unfractured_at_index_10( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_10( ):
    '''Index split left of leaf in score and do not fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
@@ -327,7 +327,7 @@ def test_split_unfractured_at_index_10( ):
    '''
 
    leaf = t.leaves[1]
-   left, right = split.unfractured_at_index(leaf, -100)
+   left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(leaf, -100)
 
    "Score is unchanged."
 
@@ -352,7 +352,7 @@ def test_split_unfractured_at_index_10( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_unfractured_at_index_11( ):
+def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_11( ):
    '''Index split right of leaf in score and do not fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
@@ -377,7 +377,7 @@ def test_split_unfractured_at_index_11( ):
    '''
 
    leaf = t.leaves[1]
-   left, right = split.unfractured_at_index(leaf, 100)
+   left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(leaf, 100)
 
    "Score is unchanged."
 

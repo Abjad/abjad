@@ -102,7 +102,6 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
       abjad> new_leaf.parentage.parent is None 
       True
    '''
-   from abjad.tools import split
 
    assert isinstance(component, _Component)
    start = Rational(*durtools.token_unpack(start))
@@ -139,20 +138,18 @@ def _scopy_leaf(leaf, start, stop):
 
 def _scopy_container(container, start, stop):
    from abjad.tools import leaftools
-   from abjad.tools import split
+   from abjad.tools.componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners import split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
    container, first_dif, second_dif = _get_lcopy(container, start, stop)
    #print first_dif, second_dif
    leaf_start = container.leaves[0]
    leaf_end = container.leaves[-1]
    # split first leaf
-   #leaf_start_splitted = split.leaf_at_duration(leaf_start, first_dif)
-   leaf_start_splitted = split.unfractured_at_duration(leaf_start, first_dif)
+   leaf_start_splitted = split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(leaf_start, first_dif)
    if len(leaf_start_splitted) == 2:
       leaftools.remove_leaf_and_shrink_durated_parent_containers(
          leaf_start_splitted[0][0])
    # split second leaf
-   #leaf_end_splitted = split.leaf_at_duration(leaf_end, second_dif)
-   leaf_end_splitted = split.unfractured_at_duration(leaf_end, second_dif)
+   leaf_end_splitted = split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(leaf_end, second_dif)
    if len(leaf_end_splitted) == 2:
       leaftools.remove_leaf_and_shrink_durated_parent_containers(
          leaf_end_splitted[1][0])

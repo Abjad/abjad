@@ -1,11 +1,10 @@
+from abjad.cfg import cfg
 import pprint
 import types
 
 
 def list_settings( ):
-   '''Pretty-print Abjad config settings.
-
-   ::
+   '''List Abjad config settings::
 
       abjad> cfgtools.list_settings( )
       ('ABJADCONFIG', '/Users/foo/bar/.abjad/config.py')
@@ -13,10 +12,8 @@ def list_settings( ):
       ('ABJADVERSIONFILE', '/Users/foo/bar/Documents/abjad/trunk/abjad/.version')
       ('HOME', '/Users/foo/bar')
 
-   Function lists public attribues of the ``abjad/cfg/cfg.py`` module.
+   Abjad config settings are defined in ``abjad/cfg/cfg.py``.
    '''
-
-   from abjad.cfg import cfg
 
    for key, value in sorted(vars(cfg).items( )):
       if not isinstance(value, types.ModuleType):

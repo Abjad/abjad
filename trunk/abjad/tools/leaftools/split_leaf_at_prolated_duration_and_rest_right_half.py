@@ -46,9 +46,9 @@ def split_leaf_at_prolated_duration_and_rest_right_half(
       ``leaftools.split_leaf_at_prolated_duration_and_rest_right_half( )``.
    '''
 
-   from abjad.tools.split.unfractured_at_duration import unfractured_at_duration
+   from abjad.tools.componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners import split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
 
-   left, right = unfractured_at_duration(leaf, prolated_duration)
+   left, right = split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(leaf, prolated_duration)
    for leaf in right:
       Rest(leaf)
 

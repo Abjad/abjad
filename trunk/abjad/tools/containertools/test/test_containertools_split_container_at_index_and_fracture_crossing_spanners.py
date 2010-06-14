@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_split_fractured_at_index_01( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_01( ):
    '''Index split triplet, and fracture spanners.'''
 
    t = Voice(FixedDurationTuplet((2, 8), leaftools.make_repeated_notes(3)) * 2)
@@ -25,7 +25,7 @@ def test_split_fractured_at_index_01( ):
    }
    '''
 
-   left, right = split.fractured_at_index(tuplet, 1)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(tuplet, 1)
 
    r'''
    \new Voice {
@@ -51,7 +51,7 @@ def test_split_fractured_at_index_01( ):
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8 ]\n\t}\n\t\\times 2/3 {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_split_fractured_at_index_02( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_02( ):
    '''Index split binary measure, and fracture spanners.'''
 
    t = Voice(RigidMeasure((3, 8), leaftools.make_repeated_notes(3)) * 2)
@@ -76,7 +76,7 @@ def test_split_fractured_at_index_02( ):
    }
    '''
 
-   left, right = split.fractured_at_index(m, 1)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(m, 1)
 
    r'''
    \new Voice {
@@ -105,7 +105,7 @@ def test_split_fractured_at_index_02( ):
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_split_fractured_at_index_03( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_03( ):
    '''Index split nonbinary measure, and fracture spanners.'''
 
    t = Voice(RigidMeasure((3, 9), leaftools.make_repeated_notes(3)) * 2)
@@ -134,7 +134,7 @@ def test_split_fractured_at_index_03( ):
    }
    '''
 
-   left, right = split.fractured_at_index(m, 1)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(m, 1)
 
    r'''
    \new Voice {
@@ -169,7 +169,7 @@ def test_split_fractured_at_index_03( ):
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8 [\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
 
-def test_split_fractured_at_index_04( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_04( ):
    '''Index split voice outside of score.
       Fracture spanners.'''
 
@@ -185,7 +185,7 @@ def test_split_fractured_at_index_04( ):
    }
    '''
 
-   left, right = split.fractured_at_index(t, 2)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(t, 2)
 
    r'''
    \new Voice {
@@ -206,7 +206,7 @@ def test_split_fractured_at_index_04( ):
    assert t.format == '\\new Voice {\n}'
 
 
-def test_split_fractured_at_index_05( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_05( ):
    '''A single container 'split' at index 0 gives
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
@@ -226,7 +226,7 @@ def test_split_fractured_at_index_05( ):
    }
    '''
 
-   left, right = split.fractured_at_index(v, 0)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(v, 0)
 
    r'''
    \new Staff {
@@ -245,7 +245,7 @@ def test_split_fractured_at_index_05( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_split_fractured_at_index_06( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_06( ):
    '''Split container at index > len(container).
       Lefthand part instantiates with all contents.
       Righthand part instantiates empty.
@@ -255,7 +255,7 @@ def test_split_fractured_at_index_06( ):
    v = t[0]
    Beam(v)
 
-   left, right = split.fractured_at_index(v, 10)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(v, 10)
 
    r'''
    \new Staff {
@@ -274,7 +274,7 @@ def test_split_fractured_at_index_06( ):
    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_split_fractured_at_index_07( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_07( ):
    '''Index split measure in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
@@ -298,7 +298,7 @@ def test_split_fractured_at_index_07( ):
    }
    '''
 
-   left, right = split.fractured_at_index(t[0], 1)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(t[0], 1)
 
    r'''
    \new Staff {
@@ -322,7 +322,7 @@ def test_split_fractured_at_index_07( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_fractured_at_index_08( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_08( ):
    '''Index split left of leaf in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
@@ -347,7 +347,7 @@ def test_split_fractured_at_index_08( ):
    '''
 
    leaf = t.leaves[1]
-   left, right = split.fractured_at_index(leaf, -100)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(leaf, -100)
 
    r'''
    \new Staff {
@@ -370,7 +370,7 @@ def test_split_fractured_at_index_08( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
    
-def test_split_fractured_at_index_09( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_09( ):
    '''Index split right of leaf in score and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2) 
@@ -395,7 +395,7 @@ def test_split_fractured_at_index_09( ):
    '''
 
    leaf = t.leaves[1]
-   left, right = split.fractured_at_index(leaf, 100)
+   left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(leaf, 100)
 
    r'''
    \new Staff {
@@ -418,7 +418,7 @@ def test_split_fractured_at_index_09( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_fractured_at_index_10( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_10( ):
    '''Index split nonbinary measure in score.
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
@@ -439,7 +439,7 @@ def test_split_fractured_at_index_10( ):
    }
    '''
 
-   halves = split.fractured_at_index(t[0], 1)
+   halves = containertools.split_container_at_index_and_fracture_crossing_spanners(t[0], 1)
    
    r'''
    \new Staff {
@@ -463,7 +463,7 @@ def test_split_fractured_at_index_10( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n\t}\n}"
 
 
-def test_split_fractured_at_index_11( ):
+def test_containertools_split_container_at_index_and_fracture_crossing_spanners_11( ):
    '''Index split binary measure in score.
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
@@ -482,7 +482,7 @@ def test_split_fractured_at_index_11( ):
    }
    '''
 
-   halves = split.fractured_at_index(t[0], 1)
+   halves = containertools.split_container_at_index_and_fracture_crossing_spanners(t[0], 1)
 
    r'''
    \new Staff {

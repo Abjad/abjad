@@ -1,7 +1,7 @@
-from abjad.tools.split._at_duration import _at_duration
+from abjad.tools.componenttools._split_component_at_duration import _split_component_at_duration
 
 
-def unfractured_at_duration(component, prolated_duration, tie_after = False):
+def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(component, prolated_duration, tie_after = False):
    r'''Split `component` at `prolated_duration`.
    Leave spanners untouched.
    Return split parts. ::
@@ -27,7 +27,7 @@ def unfractured_at_duration(component, prolated_duration, tie_after = False):
 
    ::
 
-      abjad> halves = split.unfractured_at_duration(t.leaves[0], Rational(1, 32))
+      abjad> halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], Rational(1, 32))
       abjad> f(t)
       \new Staff {
          {
@@ -44,7 +44,11 @@ def unfractured_at_duration(component, prolated_duration, tie_after = False):
       }
 
    Works on both leaves and containers.
+
+   .. versionchanged:: 1.1.2
+      renamed ``split.unfractured_at_duration( )`` to
+      ``componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners( )``.
    '''
 
-   return _at_duration(component, prolated_duration, 
+   return _split_component_at_duration(component, prolated_duration, 
       spanners = 'unfractured', tie_after = tie_after)

@@ -1,7 +1,6 @@
 from abjad.rational import Rational
 from abjad.tools import check
-from abjad.tools import split
-from abjad.tools.split._at_duration import _at_duration
+from abjad.tools.componenttools._split_component_at_duration import _split_component_at_duration
 
 
 ## TODO: Take care of bug that unintentionally fractures ties. ##
@@ -10,7 +9,8 @@ def _by_durations(components, durations,
    spanners = 'unfractured', cyclic = False, tie_after = False):
    '''Partition Python list of components according to durations.
       Interpret durations as prolated durations.
-      Return list of newly split parts.'''
+      Return list of newly split parts.
+   '''
 
    ## check input
    check.assert_components(components)
@@ -58,7 +58,7 @@ def _by_durations(components, durations,
          #print 'must split %s' % x
          local_split_duration = next_split_point - cum_duration
          #print cum_duration, next_split_point, x, part, local_split_duration
-         left_list, right_list = _at_duration(x, local_split_duration, 
+         left_list, right_list = _split_component_at_duration(x, local_split_duration, 
             spanners = spanners, tie_after = tie_after)
          #print 'left_list, right_list %s, %s' % (left_list, right_list)
          part.extend(left_list)

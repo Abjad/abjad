@@ -1,7 +1,7 @@
 from abjad.container import Container
 from abjad.leaf import _Leaf
 from abjad.tools import check
-from abjad.tools.split._at_index import _at_index
+from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 
 
 def _by_counts(components, counts, spanners = 'unfractured', cyclic = False):
@@ -52,12 +52,12 @@ def _by_counts(components, counts, spanners = 'unfractured', cyclic = False):
          comp_still_needed = count - cum_comp_in_this_part
          ## if part is now full, fracture spanners right of leaf
          if comp_still_needed == 0:
-            _at_index(x, 100, spanners = spanners)
+            _split_component_at_index(x, 100, spanners = spanners)
       ## if current component is container
       else:
          ## try to grab enough container contents to fill current part
          comp_still_needed = count - cum_comp_in_this_part
-         left, right = _at_index(x, comp_still_needed, 
+         left, right = _split_component_at_index(x, comp_still_needed, 
             spanners = spanners)
          ## accept whatever num of container contents came back and append
          part.append(left)

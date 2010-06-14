@@ -1,5 +1,6 @@
 from abjad.container import Container
-from abjad.tools import componenttools
+from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import \
+   remove_component_subtree_from_score_and_spanners
 
 
 def remove_empty_containers_in_expr(expr):
@@ -54,7 +55,7 @@ def remove_empty_containers_in_expr(expr):
    class Visitor(object):
       def _visit(self, node):
          if isinstance(node, Container) and len(node.leaves) == 0:
-            componenttools.remove_component_subtree_from_score_and_spanners([node])
+            remove_component_subtree_from_score_and_spanners([node])
 
    v = Visitor( )
    expr._navigator._traverse(v, depthFirst = False)

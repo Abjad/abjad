@@ -1,9 +1,8 @@
 from abjad.leaf import _Leaf
 from abjad.measure import _Measure
 from abjad.meter import Meter
-from abjad.tools import containertools
+#from abjad.tools.containertools.set_container_multiplier import set_container_multiplier
 from abjad.tools import durtools
-from abjad.tools import measuretools
 from abjad.tools import metertools
 from abjad.tools import parenttools
 from abjad.tools import spannertools
@@ -11,13 +10,15 @@ from abjad.tools.parenttools.switch import _switch
 from abjad.tuplet import _Tuplet
 
 
-def _at_index(component, i, spanners = 'unfractured'):
+def _split_component_at_index(component, i, spanners = 'unfractured'):
    '''General component index split algorithm.
    Works on leaves, tuplets, measures, contexts and unqualified containers.
    Keyword controls spanner behavior at split time.
-   Use split.fractured_at_index( ) to fracture spanners.
-   Use split.unfractured_at_index( ) to leave spanners unchanged.
+   Use containertools.split_container_at_index_and_fracture_crossing_spanners( ) to fracture spanners.
+   Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners( ) to leave spanners unchanged.
    '''
+   from abjad.tools import measuretools
+   from abjad.tools.containertools.set_container_multiplier import set_container_multiplier
 
    ## convenience leaf index split definition
    if isinstance(component, _Leaf):
@@ -53,13 +54,13 @@ def _at_index(component, i, spanners = 'unfractured'):
    elif isinstance(component, _Tuplet):
       left = component.__class__(1, left_music)
       right = component.__class__(1, right_music)
-      containertools.set_container_multiplier(left, container_multiplier)
-      containertools.set_container_multiplier(right, container_multiplier)
+      set_container_multiplier(left, container_multiplier)
+      set_container_multiplier(right, container_multiplier)
    else:
       left = component.__class__(left_music)
       right = component.__class__(right_music)
-      containertools.set_container_multiplier(left, container_multiplier)
-      containertools.set_container_multiplier(right, container_multiplier)
+      set_container_multiplier(left, container_multiplier)
+      set_container_multiplier(right, container_multiplier)
    
    ## save left and right halves together for iteration
    halves = [left, right]

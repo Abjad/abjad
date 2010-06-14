@@ -204,6 +204,8 @@ componenttools
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/remove_tie_spanners_from_components
    tools/componenttools/replace_components_with_children_of_components
+   tools/componenttools/split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
+   tools/componenttools/split_component_at_prolated_duration_and_fracture_crossing_spanners
 
 
 containertools
@@ -232,6 +234,8 @@ containertools
    tools/containertools/reverse_contents_of_container
    tools/containertools/scale_contents_of_container
    tools/containertools/set_container_multiplier
+   tools/containertools/split_container_at_index_and_do_not_fracture_crossing_spanners
+   tools/containertools/split_container_at_index_and_fracture_crossing_spanners
 
 
 divide
@@ -945,17 +949,6 @@ spannertools
    tools/spannertools/iterate_components_backward
    tools/spannertools/iterate_components_forward
    tools/spannertools/withdraw_from_covered
-
-
-split
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/split/fractured_at_duration
-   tools/split/fractured_at_index
-   tools/split/unfractured_at_duration
-   tools/split/unfractured_at_index
 
 
 tempotools

@@ -1,8 +1,8 @@
 from abjad import *
-from abjad.tools.split._leaf_at_duration import _leaf_at_duration
+from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duration
 
 
-def test_split__leaf_at_duration_01( ):
+def test_split__split_leaf_at_duration_01( ):
    '''Notehead-assignable split duration produces two notes.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
@@ -16,7 +16,7 @@ def test_split__leaf_at_duration_01( ):
    }
    '''
 
-   halves = _leaf_at_duration(t[1], Rational(1, 32))
+   halves = _split_leaf_at_duration(t[1], Rational(1, 32))
 
    r'''
    \new Staff {
@@ -31,7 +31,7 @@ def test_split__leaf_at_duration_01( ):
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
 
 
-def test_split__leaf_at_duration_02( ):
+def test_split__split_leaf_at_duration_02( ):
    '''Nonbinary denominator produces two one-note tuplets.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
@@ -45,7 +45,7 @@ def test_split__leaf_at_duration_02( ):
    }
    '''
 
-   halves = _leaf_at_duration(t[1], Rational(1, 24))
+   halves = _split_leaf_at_duration(t[1], Rational(1, 24))
 
    r'''
    \new Staff {
@@ -64,7 +64,7 @@ def test_split__leaf_at_duration_02( ):
    assert t.format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
 
 
-def test_split__leaf_at_duration_03( ):
+def test_split__split_leaf_at_duration_03( ):
    '''Notehead-assignable duration produces two notes.
       This test comes from a container-crossing spanner bug.'''
 
@@ -83,7 +83,7 @@ def test_split__leaf_at_duration_03( ):
    }
    '''
 
-   halves = _leaf_at_duration(t.leaves[1], Rational(1, 24))
+   halves = _split_leaf_at_duration(t.leaves[1], Rational(1, 24))
 
    r'''
    \new Voice {
@@ -101,12 +101,12 @@ def test_split__leaf_at_duration_03( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
-def test_split__leaf_at_duration_04( ):
+def test_split__split_leaf_at_duration_04( ):
    '''Split duration equal to zero produces no change.'''
 
    t = Note(0, (1, 4))
 
-   halves = _leaf_at_duration(t, Rational(0))
+   halves = _split_leaf_at_duration(t, Rational(0))
    left, right = halves
 
    assert len(halves) == 2
@@ -116,12 +116,12 @@ def test_split__leaf_at_duration_04( ):
    assert right[0].duration.written == Rational(1, 4)
 
 
-def test_split__leaf_at_duration_05( ):
+def test_split__split_leaf_at_duration_05( ):
    '''Leaf duration less than split duration produces no change.'''
 
    t = Note(0, (1, 4))
 
-   halves = _leaf_at_duration(t, Rational(3, 4))
+   halves = _split_leaf_at_duration(t, Rational(3, 4))
    left, right = halves
 
    assert len(halves) == 2
@@ -131,11 +131,11 @@ def test_split__leaf_at_duration_05( ):
    assert len(right) == 0
 
 
-def test_split__leaf_at_duration_06( ):
+def test_split__split_leaf_at_duration_06( ):
    '''Split returns two lists of zero or more leaves.'''
 
    t = Note(0, (1, 4))
-   halves = _leaf_at_duration(t, Rational(1, 8))
+   halves = _split_leaf_at_duration(t, Rational(1, 8))
 
    assert isinstance(halves, tuple)
    assert len(halves) == 2
@@ -151,11 +151,11 @@ def test_split__leaf_at_duration_06( ):
    assert not halves[1][0].tie.spanned
 
 
-def test_split__leaf_at_duration_07( ):
+def test_split__split_leaf_at_duration_07( ):
    '''Split returns two lists of zero or more.'''
 
    t = Note(0, (1, 4))
-   halves = _leaf_at_duration(t, Rational(1, 16))
+   halves = _split_leaf_at_duration(t, Rational(1, 16))
 
    assert isinstance(halves, tuple)
    assert len(halves) == 2
@@ -167,13 +167,13 @@ def test_split__leaf_at_duration_07( ):
    assert halves[1][0].duration.written == Rational(3, 16)
 
 
-def test_split__leaf_at_duration_08( ):
+def test_split__split_leaf_at_duration_08( ):
    '''Nonassignable binary split duration produces two lists.
       Left list contains two notes tied together.
       Right list contains only one note.'''
 
    t = Note(0, (1, 4))
-   halves = _leaf_at_duration(t, Rational(5, 32))
+   halves = _split_leaf_at_duration(t, Rational(5, 32))
 
    assert isinstance(halves, tuple)
    assert len(halves) == 2
@@ -191,12 +191,12 @@ def test_split__leaf_at_duration_08( ):
    assert not halves[1][0].tie.spanned
 
 
-def test_split__leaf_at_duration_09( ):
+def test_split__split_leaf_at_duration_09( ):
    '''Lone spanned Leaf results in two spanned leaves.'''
 
    t = Staff([Note(0, (1, 4))])
    s = Tie(t.leaves)
-   halves = _leaf_at_duration(t[0], Rational(1, 8))
+   halves = _split_leaf_at_duration(t[0], Rational(1, 8))
 
    assert len(t) == 2
    for leaf in t.leaves:
@@ -205,12 +205,12 @@ def test_split__leaf_at_duration_09( ):
    assert check.wf(t)
 
 
-def test_split__leaf_at_duration_10( ):
+def test_split__split_leaf_at_duration_10( ):
    '''Spanners are unaffected by leaf split.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
    b = Beam(t.leaves)
-   halves = _leaf_at_duration(t[0], Rational(1, 16))
+   halves = _split_leaf_at_duration(t[0], Rational(1, 16))
 
    assert len(t) == 5
    for l in t.leaves:
@@ -219,13 +219,13 @@ def test_split__leaf_at_duration_10( ):
    assert check.wf(t)
 
 
-def test_split__leaf_at_duration_11( ):
+def test_split__split_leaf_at_duration_11( ):
    '''Split returns three leaves, two are tied.
       Spanner is shared by all 3 leaves.'''
 
    t = Staff([Note(0, (1, 4))])
    s = Tie(t.leaves)
-   halves = _leaf_at_duration(t[0], Rational(5, 32))
+   halves = _split_leaf_at_duration(t[0], Rational(5, 32))
 
    assert len(halves) == 2
    assert len(halves[0]) == 2
@@ -236,13 +236,13 @@ def test_split__leaf_at_duration_11( ):
    assert check.wf(t)
    
 
-def test_split__leaf_at_duration_12( ):
+def test_split__split_leaf_at_duration_12( ):
    '''Split leaf is not tied again when a Container 
       containing it is already Tie-spanned.'''
 
    t = Staff(leaftools.make_repeated_notes(4))
    s = Tie(t)
-   halves = _leaf_at_duration(t[0], Rational(5, 64))
+   halves = _split_leaf_at_duration(t[0], Rational(5, 64))
 
    assert t.tie.spanner is s
    assert s.components == (t, )
@@ -251,13 +251,13 @@ def test_split__leaf_at_duration_12( ):
    assert check.wf(t)
 
 
-def test_split__leaf_at_duration_13( ):
+def test_split__split_leaf_at_duration_13( ):
    '''Split leaf is not tied again when a Container containing it is 
       already Tie-spanned.'''
 
    t = Staff(Container(leaftools.make_repeated_notes(4)) * 2)
    s = Tie(t[:])
-   halves = _leaf_at_duration(t[0][0], Rational(5, 64))
+   halves = _split_leaf_at_duration(t[0][0], Rational(5, 64))
 
    assert s.components == tuple(t[:])
    for v in t:
@@ -268,23 +268,23 @@ def test_split__leaf_at_duration_13( ):
    assert check.wf(t)
 
 
-def test_split__leaf_at_duration_14( ):
+def test_split__split_leaf_at_duration_14( ):
    '''After grace notes are removed from first leaf in bipartition.'''
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
-   halves = _leaf_at_duration(t, Rational(1, 8))
+   halves = _split_leaf_at_duration(t, Rational(1, 8))
 
    assert len(halves[0][0].grace.after) == 0
    assert len(halves[1][0].grace.after) == 1
 
 
-def test_split__leaf_at_duration_15( ):
+def test_split__split_leaf_at_duration_15( ):
    '''After grace notes are removed from first tied leaves in bipartition.'''
 
    t = Note(0, (1, 4))
    t.grace.after = Note(0, (1, 32))
-   halves = _leaf_at_duration(t, Rational(5, 32))
+   halves = _split_leaf_at_duration(t, Rational(5, 32))
 
    assert len(halves) == 2
    assert len(halves[0][0].grace.after) == 0
@@ -293,12 +293,12 @@ def test_split__leaf_at_duration_15( ):
    assert len(halves[1][0].grace.after) == 1
 
 
-def test_split__leaf_at_duration_16( ):
+def test_split__split_leaf_at_duration_16( ):
    '''Grace notes are removed from second leaf in bipartition.'''
 
    t = Note(0, (1, 4))
    t.grace.before = Note(0, (1, 32))
-   halves = _leaf_at_duration(t, Rational(1, 16))
+   halves = _split_leaf_at_duration(t, Rational(1, 16))
 
    assert len(halves[0]) == 1
    assert len(halves[1]) == 1

@@ -4,17 +4,13 @@ from abjad.leaf import _Leaf
 from abjad.measure import RigidMeasure
 from abjad.rational import Rational
 from abjad.spanners import Tie
-from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import iterate
 from abjad.tools import mathtools
-from abjad.tools import measuretools
-from abjad.tools import tietools
-from abjad.tools.split._leaf_at_duration import _leaf_at_duration
-from abjad.tools.split._at_index import _at_index
+from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 
 
-def _at_duration(
+def _split_component_at_duration(
    component, duration, spanners = 'unfractured', tie_after = False):
    '''General component duration split algorithm.
    Duration is interpreted as prolated duration.
@@ -23,6 +19,11 @@ def _at_duration(
    '''
 
    from abjad.tools import fuse
+   from abjad.tools import measuretools
+   from abjad.tools import tietools
+   from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duration
+   from abjad.tools.componenttools.list_improper_contents_of_component_that_cross_prolated_offset \
+      import list_improper_contents_of_component_that_cross_prolated_offset
 
    duration = Rational(duration)
    assert 0 <= duration
@@ -36,7 +37,7 @@ def _at_duration(
    global_split_point = component.offset.prolated.start + duration
 
    ## get duration crossers, if any
-   contents = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(component, duration) 
+   contents = list_improper_contents_of_component_that_cross_prolated_offset(component, duration) 
 
    #print component, global_split_point, contents
 
@@ -66,7 +67,8 @@ def _at_duration(
          measuretools.change_binary_measure_to_nonbinary(
             measure, nonbinary_product)
          ## rederive duration crosses with possibly new measure contents
-         contents = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(component, duration) 
+         contents = list_improper_contents_of_component_that_cross_prolated_offset(
+            component, duration) 
    elif 1 < len(measures):
       raise ContainmentError('measures can not nest.')
 
@@ -80,7 +82,7 @@ def _at_duration(
       assert isinstance(bottom, _Leaf)
       did_split_leaf = True
       split_point_in_bottom = global_split_point - bottom.offset.prolated.start
-      left_list, right_list = _leaf_at_duration(bottom, 
+      left_list, right_list = _split_leaf_at_duration(bottom, 
          split_point_in_bottom, spanners = spanners, tie_after = tie_after)
       right = right_list[0]
       leaf_right_of_split = right
@@ -112,7 +114,7 @@ def _at_duration(
       assert isinstance(cur, Container)
       prev = right
       i = cur.index(prev)
-      left, right = _at_index(cur, i, spanners = spanners)
+      left, right = _split_component_at_index(cur, i, spanners = spanners)
 
    ## NOTE: If tie chain here is convenience, then fusing is good.
    ##       If tie chain here is user-given, then fusing is less good.

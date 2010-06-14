@@ -1,7 +1,7 @@
-from abjad.tools.split._at_index import _at_index
+from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 
 
-def unfractured_at_index(container, index):
+def split_container_at_index_and_do_not_fracture_crossing_spanners(container, index):
    r'''Split `container` at `index`. 
    Leave spanners untouched, resize resizable containers, 
    preserve container multiplier, preserve meter denominator.
@@ -39,6 +39,10 @@ def unfractured_at_index(container, index):
       }
 
    Function leaves leaves untouched.
+
+   .. versionchanged:: 1.1.2
+      renamed ``split.unfractured_at_index( )`` to
+      ``containertools.split_container_at_index_and_do_not_fracture_crossing_spanners( )``.
    '''
    
-   return _at_index(container, index, spanners = 'unfractured')
+   return _split_component_at_index(container, index, spanners = 'unfractured')

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_split_unfractured_at_duration_01( ):
+def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_01( ):
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
@@ -24,7 +24,7 @@ def test_split_unfractured_at_duration_01( ):
    }
    '''
 
-   halves = split.unfractured_at_duration(t.leaves[0], Rational(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], Rational(1, 32))
 
    r'''
    \new Staff {
@@ -49,7 +49,7 @@ def test_split_unfractured_at_duration_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 [ (\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_unfractured_at_duration_02( ):
+def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_02( ):
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
@@ -72,7 +72,7 @@ def test_split_unfractured_at_duration_02( ):
    }
    '''
 
-   halves = split.unfractured_at_duration(t[0], Rational(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], Rational(1, 32))
 
    r'''
    \new Staff {
@@ -100,7 +100,7 @@ def test_split_unfractured_at_duration_02( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_unfractured_at_duration_03( ):
+def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_03( ):
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
    pitchtools.diatonicize(t)
@@ -123,7 +123,7 @@ def test_split_unfractured_at_duration_03( ):
    }
    '''
 
-   halves = split.unfractured_at_duration(t, Rational(1, 32))
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t, Rational(1, 32))
 
    "halves[0][0]"
 
@@ -158,7 +158,7 @@ def test_split_unfractured_at_duration_03( ):
    assert halves[1][0].format == "\\new Staff {\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_unfractured_at_duration_04( ):
+def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_04( ):
    '''Duration split one leaf in score.
       Do not fracture spanners. But do tie after split.'''
 
@@ -184,7 +184,7 @@ def test_split_unfractured_at_duration_04( ):
    '''
 
    d = Rational(1, 32)
-   halves = split.unfractured_at_duration(t.leaves[0], d, tie_after = True)
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], d, tie_after = True)
 
    r'''
    \new Staff {
@@ -209,7 +209,7 @@ def test_split_unfractured_at_duration_04( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 [ ( ~\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_unfractured_at_duration_05( ):
+def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_05( ):
    '''Duration split one measure in score.
       Do not fracture spanners. But do add tie after split.'''
 
@@ -235,7 +235,7 @@ def test_split_unfractured_at_duration_05( ):
    '''
 
    d = Rational(1, 32)
-   halves = split.unfractured_at_duration(t[0], d, tie_after = True)
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d, tie_after = True)
 
    r'''
    \new Staff {
@@ -263,7 +263,7 @@ def test_split_unfractured_at_duration_05( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ( ~\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_split_unfractured_at_duration_06( ):
+def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_06( ):
    '''Duration split binary measure in score at nonbinary split point.
       Do not fracture spanners and do not tie leaves after split.'''
 
@@ -289,7 +289,7 @@ def test_split_unfractured_at_duration_06( ):
    '''
 
    d = Rational(1, 5)
-   halves = split.unfractured_at_duration(t[0], d)
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d)
 
    r'''
    \new Staff {
@@ -321,7 +321,7 @@ def test_split_unfractured_at_duration_06( ):
    ##       Eventually should fix. ##
 
 
-def test_split_unfractured_at_duration_07( ):
+def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_07( ):
    '''Duration split binary measure in score at nonbinary split point.
       Do fracture spanners and do tie leaves after split.'''
 
@@ -347,7 +347,7 @@ def test_split_unfractured_at_duration_07( ):
    '''
 
    d = Rational(1, 5)
-   halves = split.unfractured_at_duration(t[0], d, tie_after = True)
+   halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d, tie_after = True)
 
    r'''
    \new Staff {

@@ -108,29 +108,6 @@ class MetricGrid(Spanner):
 
    def splitOnBar(self):
       from abjad.tools import partition
-#      from abjad.tools import split
-#      leaf = self.leaves[0]
-#      meters = self.meters
-#      meter = meters.next( )
-#      while leaf:
-#         if leaf.offset.prolated.start < meter.offset:
-#            if leaf.offset.prolated.stop > meter.offset and \
-#               self.splittingCondition(leaf):
-#               ## will split
-#               if not leaf.tie.parented:
-#                  Tie(leaf)
-#               splitdur = meter.offset - leaf.offset.prolated.start
-#               #leaves_splitted = split.leaf_at_duration(leaf, splitdur)
-#               leaves_splitted = split.unfractured_at_duration(leaf, splitdur)
-#               leaf = leaves_splitted[0][0]
-#            else:
-#               ## only advance if we have not split.
-#               leaf = leaf.next
-#         else:
-#            try:
-#               meter = meters.next( )
-#            except StopIteration:
-#               break 
       leaves = [leaf for leaf in self.leaves if self.splittingCondition(leaf)]
       partition.cyclic_unfractured_by_durations(leaves, [x.duration for x in self.meters], tie_after = True)
       self._fuseTiedLeavesWithinMeasures( )
