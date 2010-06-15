@@ -1,4 +1,5 @@
-from abjad.tools.durtools._group import _group
+#from abjad.tools.componenttools._group_components_by_durations \
+#   import _group_components_by_durations
 
 
 def group_seconds(
@@ -65,8 +66,10 @@ def group_seconds(
       abjad> durtools.group_seconds(t.leaves, [1.5], fill = 'exact', cyclic = True, overhang = True)
       [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)], [Note(b', 8), Note(c'', 8)]]
    '''
+   from abjad.tools.componenttools._group_components_by_durations \
+      import _group_components_by_durations
 
    duration_type = 'seconds'
 
-   return _group(duration_type, 
+   return _group_components_by_durations(duration_type, 
       components, durations, fill = fill, cyclic = cyclic, overhang = overhang)
