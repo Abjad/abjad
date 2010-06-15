@@ -9,7 +9,8 @@ def partition_components_cyclically_by_durations_in_seconds_le_without_overhang(
    do not allow for overhang components at end.
    '''
    
-   parts = _group_components_by_durations('prolated', components, prolated_duration, 
+   parts = _group_components_by_durations(
+      'seconds', components, durations_in_seconds, 
       fill = 'less', cyclic = True, overhang = False)
 
    return parts

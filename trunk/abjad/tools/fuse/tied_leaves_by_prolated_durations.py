@@ -38,8 +38,9 @@ def tied_leaves_by_prolated_durations(components, prolated_durations):
    '''
 
    ## get duration groups
-   groups = componenttools.partition_components_by_prolated_durations(
-      components, prolated_durations, fill = 'exact', cyclic = False, overhang = False)
+   groups = \
+      componenttools.partition_components_once_by_prolated_durations_exactly_without_overhang(
+      components, prolated_durations)
 
    for group in groups:
       ## get tie_chains intersecting this group

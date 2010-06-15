@@ -9,7 +9,7 @@ def partition_components_once_by_durations_in_seconds_exactly_without_overhang(
    '''
    
    parts = _group_components_by_durations(
-      'prolated', components, prolated_duration, 
-      fill = 'exact', cyclic = True, overhang = True)
+      'seconds', components, durations_in_seconds, 
+      fill = 'exact', cyclic = False, overhang = False)
 
    return parts
