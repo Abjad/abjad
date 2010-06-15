@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import componenttools
 from abjad.tools import tietools
 from abjad.tools.fuse.leaves_in_tie_chain import leaves_in_tie_chain
 
@@ -38,8 +38,8 @@ def tied_leaves_by_prolated_durations(components, prolated_durations):
    '''
 
    ## get duration groups
-   groups = durtools.group_prolated(components, prolated_durations, 
-      fill = 'exact', cyclic = False, overhang = False)
+   groups = componenttools.partition_components_by_prolated_durations(
+      components, prolated_durations, fill = 'exact', cyclic = False, overhang = False)
 
    for group in groups:
       ## get tie_chains intersecting this group

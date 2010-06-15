@@ -2,7 +2,7 @@
 #   import _group_components_by_durations
 
 
-def group_prolated(
+def partition_components_by_prolated_durations(
    components, durations, fill = 'exact', cyclic = False, overhang = False):
    r'''Group `components` according to prolated `durations`.
 
@@ -43,23 +43,27 @@ def group_prolated(
 
    Noncyclic exact fill with no overhang part. ::
 
-      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, overhang = False)
+      abjad> componenttools.partition_components_by_prolated_durations(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, overhang = False)
       [[Note(c', 8), Note(d', 8), Note(e', 8)]]
 
    Noncyclic exact fill with overhang part. ::
 
-      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, overhang = True)
+      abjad> componenttools.partition_components_by_prolated_durations(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = False, overhang = True)
       [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8), Note(b', 8), Note(c'', 8)]]
 
    Cyclic exact fill with no overhang part. ::
 
-      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, overhang = False)
+      abjad> componenttools.partition_components_by_prolated_durations(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, overhang = False)
       [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)]]
 
    Cyclic exact fill with overhang part. ::
 
-      abjad> durtools.group_prolated(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, overhang = True)
+      abjad> componenttools.partition_components_by_prolated_durations(t.leaves, [Rational(3, 8)], fill = 'exact', cyclic = True, overhang = True)
       [[Note(c', 8), Note(d', 8), Note(e', 8)], [Note(f', 8), Note(g', 8), Note(a', 8)], [Note(b', 8), Note(c'', 8)]]   
+
+   .. versionchanged:: 1.1.2
+      renamed ``durtools.group_prolated( )`` to
+      ``componenttools.partition_components_by_prolated_durations( )``.
    '''
    from abjad.tools.componenttools._group_components_by_durations \
       import _group_components_by_durations

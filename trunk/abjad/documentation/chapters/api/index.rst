@@ -204,6 +204,8 @@ componenttools
    tools/componenttools/move_component_subtree_to_right_in_score_and_spanners
    tools/componenttools/number_is_between_prolated_start_and_stop_offsets_of_component
    tools/componenttools/number_is_between_start_and_stop_offsets_of_component_in_seconds
+   tools/componenttools/partition_components_by_durations_in_seconds
+   tools/componenttools/partition_components_by_prolated_durations
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/remove_tie_spanners_from_components
    tools/componenttools/replace_components_with_children_of_components
@@ -256,8 +258,6 @@ durtools
    tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
    tools/durtools/duration_token_to_reduced_duration_pair
    tools/durtools/group_duration_tokens_by_like_implied_prolation
-   tools/durtools/group_prolated
-   tools/durtools/group_seconds
    tools/durtools/is_assignable_rational
    tools/durtools/is_binary_rational
    tools/durtools/is_duration_pair
