@@ -17,10 +17,10 @@ def _leaf_to_tuplet_with_n_notes_of_equal_written_duration(l, divisions, prolati
 
    # find written duration of each note in tuplet
    if prolation == 'diminution':
-      written_duration = durtools.prolated_to_written_not_less_than(
+      written_duration = durtools.rational_to_equal_or_greater_assignable_rational(
          prolated_duration)
    elif prolation == 'augmentation':
-      written_duration = durtools.prolated_to_written_not_greater_than(
+      written_duration = durtools.rational_to_equal_or_lesser_assignable_rational(
          prolated_duration)
    else:
       raise ValueError('must be diminution or augmentation.')

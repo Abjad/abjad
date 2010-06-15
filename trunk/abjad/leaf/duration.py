@@ -11,13 +11,13 @@ class _LeafDurationInterface(_ComponentDurationInterface):
    def __init__(self, _client, duration_token):
       _ComponentDurationInterface.__init__(self, _client)
       self.multiplier = None
-      self.written = Rational(*durtools.token_unpack(duration_token))
+      self.written = Rational(*durtools.duration_token_to_reduced_duration_pair(duration_token))
 
    ## OVERLOADS ##
 
    def __str__(self):
       from abjad.tools import durtools
-      duration_string = durtools.rational_to_duration_string(self.written)
+      duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.written)
       if self.multiplier is not None:
          return '%s * %s' % (duration_string, self.multiplier)
       else:
@@ -83,7 +83,7 @@ class _LeafDurationInterface(_ComponentDurationInterface):
             rational = Rational(expr)
          else:
             raise ValueError('can not set written duration.')
-         if not durtools.is_assignable_duration(rational):
+         if not durtools.is_assignable_rational(rational):
             raise AssignabilityError('%s' % str(rational))
          self._written = rational
       return property(**locals( ))

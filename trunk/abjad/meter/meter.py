@@ -95,7 +95,7 @@ class Meter(_GrobHandler):
 
    @property
    def multiplier(self):
-      return durtools.denominator_to_multiplier(self.denominator)
+      return durtools.integer_denominator_to_implied_prolation(self.denominator)
 
    @property
    def nonbinary(self):

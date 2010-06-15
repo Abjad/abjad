@@ -33,7 +33,7 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
 
    for pitch, duration in listtools.zip_cyclic(pitches, multiplied_durations):
       quarter_note = Note(pitch, Rational(1, 4))
-      duration_token = durtools.token_unpack(duration)
+      duration_token = durtools.duration_token_to_reduced_duration_pair(duration)
       duration = Rational(*duration_token)
       multiplier = duration / Rational(1, 4)
       quarter_note.duration.multiplier = multiplier

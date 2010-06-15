@@ -180,6 +180,7 @@ componenttools
    tools/componenttools/all_are_components_in_same_parent
    tools/componenttools/all_are_components_in_same_score
    tools/componenttools/all_are_components_in_same_thread
+   tools/componenttools/all_are_components_scalable_by_multiplier
    tools/componenttools/all_are_contiguous_components
    tools/componenttools/all_are_contiguous_components_in_same_parent
    tools/componenttools/all_are_contiguous_components_in_same_score
@@ -195,11 +196,15 @@ componenttools
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/get_likely_multiplier_of_components
    tools/componenttools/get_preprolated_duration_of_components
+   tools/componenttools/group_components_by_like_preprolated_duration
+   tools/componenttools/group_components_by_like_prolated_duration
    tools/componenttools/is_well_formed_component
    tools/componenttools/list_badly_formed_components_in_expr
    tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
    tools/componenttools/list_leftmost_components_with_prolated_duration_at_most
    tools/componenttools/move_component_subtree_to_right_in_score_and_spanners
+   tools/componenttools/number_is_between_prolated_start_and_stop_offsets_of_component
+   tools/componenttools/number_is_between_start_and_stop_offsets_of_component_in_seconds
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/remove_tie_spanners_from_components
    tools/componenttools/replace_components_with_children_of_components
@@ -243,57 +248,51 @@ durtools
 .. toctree::
    :maxdepth: 1
 
-   tools/durtools/agglomerate_by_prolation
-   tools/durtools/are_scalable
-   tools/durtools/denominator_to_multiplier
-   tools/durtools/diagonalize_all_assignable_durations
-   tools/durtools/diagonalize_all_positive_integer_pairs
-   tools/durtools/diagonalize_all_rationals
-   tools/durtools/diagonalize_all_rationals_unique
-   tools/durtools/duration_string_to_rational
-   tools/durtools/duration_string_to_rationals
-   tools/durtools/group_by_duration_preprolated
-   tools/durtools/group_by_duration_prolated
+   tools/durtools/assignable_rational_to_dot_count
+   tools/durtools/assignable_rational_to_lilypond_duration_string
+   tools/durtools/duration_pair_to_prolation_string
+   tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
+   tools/durtools/duration_token_to_reduced_duration_pair
+   tools/durtools/group_durations_by_like_implied_prolation
    tools/durtools/group_prolated
    tools/durtools/group_seconds
-   tools/durtools/in_terms_of
-   tools/durtools/in_terms_of_binary_multiple
-   tools/durtools/is_assignable_duration
+   tools/durtools/integer_denominator_to_implied_prolation
+   tools/durtools/is_assignable_rational
    tools/durtools/is_binary_rational
    tools/durtools/is_duration_pair
    tools/durtools/is_duration_token
-   tools/durtools/is_tuplet_multiplier
-   tools/durtools/naive_prolated_to_written_not_greater_than
-   tools/durtools/naive_prolated_to_written_not_less_than
-   tools/durtools/pair_multiply_constant_numerator
-   tools/durtools/pair_multiply_naive
-   tools/durtools/pair_multiply_reduce_factors
-   tools/durtools/pair_to_prolation_string
+   tools/durtools/lilypond_duration_string_to_rational
+   tools/durtools/lilypond_duration_string_to_rational_list
+   tools/durtools/multiply_duration_pair
+   tools/durtools/multiply_duration_pair_and_reduce_factors
+   tools/durtools/multiply_duration_pair_and_try_to_preserve_numerator
+   tools/durtools/numeric_seconds_to_clock_string
+   tools/durtools/numeric_seconds_to_escaped_clock_string
    tools/durtools/partition_noncyclic_with_overhang_by_durations_prolated
    tools/durtools/partition_noncyclic_with_overhang_by_durations_prolated_not_less_than
    tools/durtools/partition_noncyclic_without_overhang_by_durations_prolated
    tools/durtools/partition_noncyclic_without_overhang_by_durations_prolated_not_less_than
-   tools/durtools/prolated_to_prolated
-   tools/durtools/prolated_to_prolation_written_pairs
-   tools/durtools/prolated_to_written_not_greater_than
-   tools/durtools/prolated_to_written_not_less_than
-   tools/durtools/rational_to_dot_count
-   tools/durtools/rational_to_duration_string
+   tools/durtools/rational_to_duration_pair_with_integer_denominator
+   tools/durtools/rational_to_duration_pair_with_multiple_of_integer_denominator
+   tools/durtools/rational_to_equal_or_greater_assignable_rational
+   tools/durtools/rational_to_equal_or_greater_binary_rational
+   tools/durtools/rational_to_equal_or_lesser_assignable_rational
+   tools/durtools/rational_to_equal_or_lesser_binary_rational
    tools/durtools/rational_to_flag_count
    tools/durtools/rational_to_fraction_string
    tools/durtools/rational_to_prolation_string
    tools/durtools/rational_to_undotted_duration
-   tools/durtools/rational_to_undotted_duration_string
+   tools/durtools/rational_to_undotted_lilypond_duration_string
    tools/durtools/rationalize
-   tools/durtools/seconds_to_clock_string
-   tools/durtools/seconds_to_clock_string_escaped
+   tools/durtools/rewrite_rational_under_new_tempo
    tools/durtools/sum_preprolated
    tools/durtools/sum_prolated
    tools/durtools/sum_seconds
-   tools/durtools/token_decompose
-   tools/durtools/token_unpack
-   tools/durtools/within_prolated
-   tools/durtools/within_seconds
+   tools/durtools/yield_all_assignable_durations_in_cantor_diagonalized_order
+   tools/durtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
+   tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order
+   tools/durtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
+   tools/durtools/yield_all_unique_positive_rationals_in_cantor_diagonalized_order
 
 
 formattools
@@ -1014,6 +1013,7 @@ tuplettools
    tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
    tools/tuplettools/fix_contents_of_tuplets_in_expr
+   tools/tuplettools/is_proper_tuplet_multiplier
    tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots
    tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots
    tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots

@@ -58,7 +58,7 @@ def change_binary_measure_to_nonbinary(measure, new_denominator_factor):
       old_meter_duration, factor = new_denominator_factor)
 
    ## find new measure multiplier
-   new_measure_multiplier = durtools.denominator_to_multiplier(
+   new_measure_multiplier = durtools.integer_denominator_to_implied_prolation(
       new_denominator_factor) 
 
    ## inverse scale measure ... but throw away resultant meter

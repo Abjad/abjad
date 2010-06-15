@@ -3,7 +3,7 @@ def rational_to_prolation_string(rational):
 
    Format `rational` as a colon-delimited prolation string. ::
 
-      abjad> generator = durtools.diagonalize_all_rationals_unique( )
+      abjad> generator = durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_unique( )
       abjad> for n in range(16):
       ...     rational = generator.next( )
       ...     prolation_string = durtools.rational_to_prolation_string(rational)

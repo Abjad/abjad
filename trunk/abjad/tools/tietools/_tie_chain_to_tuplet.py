@@ -25,17 +25,17 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
    if prolation == 'diminution':
       if dotted:
          basic_written_duration = \
-            durtools.prolated_to_written_not_less_than(prolated_duration)
+            durtools.rational_to_equal_or_greater_assignable_rational(prolated_duration)
       else:
          basic_written_duration = \
-            durtools.naive_prolated_to_written_not_less_than(prolated_duration)
+            durtools.rational_to_equal_or_greater_binary_rational(prolated_duration)
    elif prolation == 'augmentation':
       if dotted:
          basic_written_duration = \
-            durtools.prolated_to_written_not_greater_than(prolated_duration)
+            durtools.rational_to_equal_or_lesser_assignable_rational(prolated_duration)
       else:
          basic_written_duration = \
-            durtools.naive_prolated_to_written_not_greater_than(
+            durtools.rational_to_equal_or_lesser_binary_rational(
             prolated_duration)
    else:
       raise ValueError('must be diminution or augmentation.')

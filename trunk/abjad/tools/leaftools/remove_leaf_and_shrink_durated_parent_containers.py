@@ -68,12 +68,12 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
       elif isinstance(parent, RigidMeasure):
          old_denominator = parent.meter.forced.denominator
          naive_meter = parent.meter.forced.duration - prolated_leaf_duration
-         better_meter = durtools.in_terms_of(naive_meter, old_denominator)
+         better_meter = durtools.rational_to_duration_pair_with_integer_denominator(naive_meter, old_denominator)
          parent.meter.forced = Meter(better_meter)
          new_denominator = parent.meter.forced.denominator
 
-         old_prolation = durtools.denominator_to_multiplier(old_denominator)
-         new_prolation = durtools.denominator_to_multiplier(new_denominator)
+         old_prolation = durtools.integer_denominator_to_implied_prolation(old_denominator)
+         new_prolation = durtools.integer_denominator_to_implied_prolation(new_denominator)
          adjusted_prolation = old_prolation / new_prolation
          for x in parent:
             if isinstance(x, FixedDurationTuplet):

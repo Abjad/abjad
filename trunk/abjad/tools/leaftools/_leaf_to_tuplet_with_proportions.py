@@ -21,7 +21,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
    basic_prolated_duration = target_duration / sum(divisions)
 
    ## find basic written duration of note in tuplet
-   basic_written_duration = durtools.prolated_to_written_not_less_than(
+   basic_written_duration = durtools.rational_to_equal_or_greater_assignable_rational(
       basic_prolated_duration)
    
    ## find written duration of each note in tuplet

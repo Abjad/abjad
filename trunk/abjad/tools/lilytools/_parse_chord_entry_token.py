@@ -19,7 +19,7 @@ def _parse_chord_entry_token(chord_entry_token):
    
    pitch_string, duration_string = match.groups( )
    pitch_list = pitch_string.split( )
-   duration = durtools.duration_string_to_rational(duration_string)
+   duration = durtools.lilypond_duration_string_to_rational(duration_string)
    chord = Chord(pitch_list, duration)
 
    return chord

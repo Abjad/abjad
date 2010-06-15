@@ -29,10 +29,10 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
       ``leaftools.make_accelerating_notes_with_lilypond_multipliers( )``.
    '''
 
-   total = Rational(*durtools.token_unpack(total))
-   start = Rational(*durtools.token_unpack(start))
-   stop = Rational(*durtools.token_unpack(stop))
-   written = Rational(*durtools.token_unpack(written))
+   total = Rational(*durtools.duration_token_to_reduced_duration_pair(total))
+   start = Rational(*durtools.duration_token_to_reduced_duration_pair(start))
+   stop = Rational(*durtools.duration_token_to_reduced_duration_pair(stop))
+   written = Rational(*durtools.duration_token_to_reduced_duration_pair(written))
 
    dts = mathtools.interpolate_divide(total, start, stop, exp)
 

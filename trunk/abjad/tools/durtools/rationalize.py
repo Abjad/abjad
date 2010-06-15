@@ -1,6 +1,6 @@
 from abjad.rational import Rational
 from abjad.tools.durtools.is_duration_token import is_duration_token
-from abjad.tools.durtools.token_unpack import token_unpack
+from abjad.tools.durtools.duration_token_to_reduced_duration_pair import duration_token_to_reduced_duration_pair
 
 
 def rationalize(duration_tokens):
@@ -21,7 +21,7 @@ def rationalize(duration_tokens):
    result = [ ]
    for element in duration_tokens:
       if is_duration_token(element):
-         r = Rational(*token_unpack(element))
+         r = Rational(*duration_token_to_reduced_duration_pair(element))
       else:
          r = rationalize(element)
       result.append(r)

@@ -3,6 +3,7 @@ from abjad.rational import Rational
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr
+from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
 from abjad.tuplet import FixedDurationTuplet
 from abjad.tuplet import FixedMultiplierTuplet
 
@@ -28,13 +29,13 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
    tuplet.duration.target = new_target_duration
 
    # if multiplier is note head assignable, scale contents graphically
-   if durtools.is_assignable_duration(multiplier):
+   if durtools.is_assignable_rational(multiplier):
       for component in tuplet[:]:
          if isinstance(component, _Leaf):
             leaftools.scale_leaf_preprolated_duration(component, multiplier)
 
    # otherwise doctor up tuplet multiplier, if necessary
-   elif not durtools.is_tuplet_multiplier(tuplet.duration.multiplier):
+   elif not is_proper_tuplet_multiplier(tuplet.duration.multiplier):
          fix_contents_of_tuplets_in_expr(tuplet)
 
    # return tuplet

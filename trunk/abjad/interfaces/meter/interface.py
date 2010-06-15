@@ -36,7 +36,7 @@ class MeterInterface(_Observer, _GrobHandler, _BacktrackingInterface):
          result.append(effective_meter.format)
          partial = effective_meter.partial
          if partial is not None:
-            string = durtools.rational_to_duration_string(partial)
+            string = durtools.assignable_rational_to_lilypond_duration_string(partial)
             result.append(r'\partial %s' % string)
       return result
 

@@ -49,8 +49,8 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
       ``leaftools.make_percussion_note( )``.
    '''
 
-   total_duration = Rational(*durtools.token_unpack(total_duration))
-   max_note_duration = Rational(*durtools.token_unpack(max_note_duration))
+   total_duration = Rational(*durtools.duration_token_to_reduced_duration_pair(total_duration))
+   max_note_duration = Rational(*durtools.duration_token_to_reduced_duration_pair(max_note_duration))
 
    if total_duration > max_note_duration:
       rest_duration = total_duration - max_note_duration

@@ -1,0 +1,10 @@
+from abjad import *
+
+
+def test_durtools_lilypond_duration_string_to_rational_list_01( ):
+
+   duration_string = '8.. 32 8.. 32'
+   rationals = durtools.lilypond_duration_string_to_rational_list(duration_string)
+
+   assert rationals == [
+      Rational(7, 32), Rational(1, 32), Rational(7, 32), Rational(1, 32)]

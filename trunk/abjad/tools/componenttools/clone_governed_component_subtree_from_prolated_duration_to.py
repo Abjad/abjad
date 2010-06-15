@@ -104,13 +104,13 @@ def clone_governed_component_subtree_from_prolated_duration_to(component, start 
    '''
 
    assert isinstance(component, _Component)
-   start = Rational(*durtools.token_unpack(start))
+   start = Rational(*durtools.duration_token_to_reduced_duration_pair(start))
    if start < 0:
       start = Rational(0)
    if stop is None:
       stop = component.duration.prolated
    else:
-      stop = Rational(*durtools.token_unpack(stop))
+      stop = Rational(*durtools.duration_token_to_reduced_duration_pair(stop))
    assert start <= stop
    if isinstance(component, _Leaf):
       return _scopy_leaf(component, start, stop)

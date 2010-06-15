@@ -26,7 +26,7 @@ def duration_change(tie_chain, new_written_duration):
    assert is_chain(tie_chain)
    assert isinstance(new_written_duration, Rational)
 
-   if durtools.is_assignable_duration(new_written_duration):
+   if durtools.is_assignable_rational(new_written_duration):
       tie_chain[0].duration.written = new_written_duration
       truncate(tie_chain)
    elif durtools.is_binary_rational(new_written_duration):

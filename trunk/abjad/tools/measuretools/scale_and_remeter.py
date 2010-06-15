@@ -1,5 +1,6 @@
 from abjad.meter import Meter
 from abjad.rational import Rational
+from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
 
@@ -36,37 +37,37 @@ def scale_and_remeter(measure, multiplier = Rational(1)):
    old_multiplier = old_meter.multiplier
    old_multiplier_pair = (old_multiplier._n, old_multiplier._d)
 
-   multiplied_pair = durtools.pair_multiply_naive(
+   multiplied_pair = durtools.multiply_duration_pair(
       old_multiplier_pair, multiplier)
-   reduced_pair = durtools.pair_multiply_reduce_factors(
+   reduced_pair = durtools.multiply_duration_pair_and_reduce_factors(
       old_multiplier_pair, multiplier)
 
    if reduced_pair != multiplied_pair:
-      new_pair = durtools.pair_multiply_constant_numerator(
+      new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
          old_pair, multiplier)      
       new_meter = Meter(new_pair)
       measure.meter.forced = new_meter
       remaining_multiplier = Rational(*reduced_pair)
       if remaining_multiplier != Rational(1):
          containertools.scale_contents_of_container(measure, remaining_multiplier)
-   elif durtools.are_scalable(measure[:], multiplier):
+   elif componenttools.all_are_components_scalable_by_multiplier(measure[:], multiplier):
       containertools.scale_contents_of_container(measure, multiplier)
       if old_meter.nonbinary or not mathtools.is_power_of_two(multiplier):
-         new_pair = durtools.pair_multiply_reduce_factors(
+         new_pair = durtools.multiply_duration_pair_and_reduce_factors(
             old_pair, multiplier)
       ## multiplier is a negative power of two, like 1/2, 1/4, etc.
       elif multiplier < Rational(0):
-         new_pair = durtools.pair_multiply_naive(old_pair, multiplier)
+         new_pair = durtools.multiply_duration_pair(old_pair, multiplier)
       ## multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
       elif multiplier > Rational(0):
-         new_pair = durtools.pair_multiply_constant_numerator(
+         new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
             old_pair, multiplier)
       elif multiplier == Rational(0):
          raise ZeroDivisionError
       new_meter = Meter(new_pair)
       measure.meter.forced = new_meter
    else:
-      new_pair = durtools.pair_multiply_constant_numerator(
+      new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
          old_pair, multiplier)
       new_meter = Meter(new_pair)
       measure.meter.forced = new_meter
