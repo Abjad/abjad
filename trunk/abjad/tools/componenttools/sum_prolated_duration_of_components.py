@@ -1,4 +1,4 @@
-def sum_prolated(components):
+def sum_prolated_duration_of_components(components):
    r'''Sum the prolated duration of `components`.
 
    ::
@@ -10,8 +10,12 @@ def sum_prolated(components):
          d'8
          e'8
       }
-      abjad> durtools.sum_prolated(tuplet[:])
+      abjad> componenttools.sum_prolated_duration_of_components(tuplet[:])
       Rational(1, 4)
+
+   .. versionchanged:: 1.1.2
+      renamed ``durtools.sum_prolated( )`` to
+      ``componenttools.sum_prolated_duration_of_components( )``.
    '''
 
    return sum([component.duration.prolated for component in components])

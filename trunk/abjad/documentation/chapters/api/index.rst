@@ -195,7 +195,6 @@ componenttools
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/get_likely_multiplier_of_components
-   tools/componenttools/get_preprolated_duration_of_components
    tools/componenttools/group_components_by_like_preprolated_duration
    tools/componenttools/group_components_by_like_prolated_duration
    tools/componenttools/is_well_formed_component
@@ -210,6 +209,9 @@ componenttools
    tools/componenttools/replace_components_with_children_of_components
    tools/componenttools/split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
    tools/componenttools/split_component_at_prolated_duration_and_fracture_crossing_spanners
+   tools/componenttools/sum_duration_of_components_in_seconds
+   tools/componenttools/sum_preprolated_duration_of_components
+   tools/componenttools/sum_prolated_duration_of_components
    tools/componenttools/tabulate_well_formedness_violations_in_expr
 
 
@@ -282,9 +284,6 @@ durtools
    tools/durtools/rational_to_fraction_string
    tools/durtools/rational_to_prolation_string
    tools/durtools/rewrite_rational_under_new_tempo
-   tools/durtools/sum_preprolated
-   tools/durtools/sum_prolated
-   tools/durtools/sum_seconds
    tools/durtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
    tools/durtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
    tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order

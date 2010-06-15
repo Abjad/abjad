@@ -1,5 +1,4 @@
 from abjad.tools import componenttools
-from abjad.tools import durtools
 from abjad.tools import leaftools
 
 
@@ -27,7 +26,8 @@ def leaves_by_reference(leaves):
 
    if len(leaves) <= 1:
       return leaves
-   total_preprolated = durtools.sum_preprolated(leaves)
+
+   total_preprolated = componenttools.sum_preprolated_duration_of_components(leaves)
    componenttools.remove_component_subtree_from_score_and_spanners(leaves[1:])
    return leaftools.change_leaf_preprolated_duration(
       leaves[0], total_preprolated)

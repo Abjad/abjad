@@ -1,13 +1,13 @@
-def get_preprolated_duration_of_components(components):
+def sum_preprolated_duration_of_components(components):
    r'''Sum the preprolated duration of each component in `components`. ::
 
       abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
-      abjad> componenttools.get_preprolated_duration_of_components(tuplet[:])
+      abjad> componenttools.sum_preprolated_duration_of_components(tuplet[:])
       Rational(3, 8)
 
    Return zero on empty iterable. ::
 
-      abjad> componenttools.get_preprolated_duration_of_components([ ])
+      abjad> componenttools.sum_preprolated_duration_of_components([ ])
       Rational(0)
 
    Raise contiguity error on nonparent-contiguous `components`. ::
@@ -27,12 +27,16 @@ def get_preprolated_duration_of_components(components):
             a'8
          }
       }
-      abjad> componenttools.get_preprolated_duration_of_components(t.leaves)
+      abjad> componenttools.sum_preprolated_duration_of_components(t.leaves)
       ContiguityError
 
    .. versionchanged:: 1.1.2
       renamed ``componenttools.get_duration_preprolated( )`` to
-      ``componenttools.get_preprolated_duration_of_components( )``.
+      ``componenttools.sum_preprolated_duration_of_components( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.get_preprolated_duration_of_components( )`` to
+      ``componenttools.sum_preprolated_duration_of_components( )``.
    '''
 
    ## sum preprolated durations

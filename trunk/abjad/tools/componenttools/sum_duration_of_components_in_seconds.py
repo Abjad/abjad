@@ -1,4 +1,4 @@
-def sum_seconds(components):
+def sum_duration_of_components_in_seconds(components):
    r'''Sum the duration of `components` in seconds.
 
    ::
@@ -15,8 +15,12 @@ def sum_seconds(components):
          e'8
          %% tempo 4=48 ends here
       }
-      abjad> durtools.sum_seconds(tuplet[:])
+      abjad> componenttools.sum_duration_of_components_in_seconds(tuplet[:])
       Rational(5, 4)
+
+   .. versionchanged:: 1.1.2
+      renamed ``durtools.sum_seconds( )`` to
+      ``componenttools.sum_duration_of_components_in_seconds( )``.
    '''
 
    assert isinstance(components, list)
