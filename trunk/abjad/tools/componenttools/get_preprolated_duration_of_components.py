@@ -34,10 +34,6 @@ def get_preprolated_duration_of_components(components):
       renamed ``componenttools.get_duration_preprolated( )`` to
       ``componenttools.get_preprolated_duration_of_components( )``.
    '''
-   from abjad.tools import componenttools
-
-   ## check input
-   assert componenttools.all_are_contiguous_components_in_same_parent(components)
 
    ## sum preprolated durations
    result = sum([component.duration.preprolated for component in components])
