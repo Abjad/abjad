@@ -16,18 +16,24 @@ def partition_noncyclic_without_overhang_by_durations_prolated_not_less_than(
       ...
       (Note(c', 8), Note(d', 8), Note(e', 4))
    '''
+   from abjad.tools import componenttools
 
-   cur_part, cur_sum = [ ], Rational(0)
-   prolated_durations = list(prolated_durations)
-   cur_prolated_duration = Rational(prolated_durations.pop(0))
+   parts = componenttools.partition_components_once_by_prolated_durations_ge_without_overhang(
+      components, prolated_durations)
+   for part in parts:
+      yield tuple(part)
 
-   for i, component in enumerate(components):
-      cur_part.append(component)
-      cur_sum += component.duration.prolated
-      if cur_prolated_duration <= cur_sum:
-         yield tuple(cur_part)
-         try:
-            cur_prolated_duration = Rational(prolated_durations.pop(0))
-         except IndexError:
-            break
-         cur_part, cur_sum = [ ], Rational(0)
+#   cur_part, cur_sum = [ ], Rational(0)
+#   prolated_durations = list(prolated_durations)
+#   cur_prolated_duration = Rational(prolated_durations.pop(0))
+#
+#   for i, component in enumerate(components):
+#      cur_part.append(component)
+#      cur_sum += component.duration.prolated
+#      if cur_prolated_duration <= cur_sum:
+#         yield tuple(cur_part)
+#         try:
+#            cur_prolated_duration = Rational(prolated_durations.pop(0))
+#         except IndexError:
+#            break
+#         cur_part, cur_sum = [ ], Rational(0)

@@ -19,9 +19,20 @@ def _group_components_by_durations(duration_type, components, durations,
    Return remaining components at end in final part when `overhang` is true.
    '''
 
-   assert isinstance(durations, list)
+   #assert isinstance(durations, list)
+   #assert all([isinstance(x, (int, float, Rational)) for x in durations])
+   _durations = [  ]
+   for duration in durations:
+      if isinstance(duration, (int, float, Rational)):
+         _durations.append(duration)
+      else:
+         try:
+            _durations.append(Rational(duration))
+         except TypeError:
+            raise AssertionError
+   durations = _durations
    assert all([isinstance(x, (int, float, Rational)) for x in durations])
-
+   
    len_durations = len(durations)
    result = [ ]
    part = [ ]

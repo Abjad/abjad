@@ -10,7 +10,7 @@ def partition_components_once_by_prolated_durations_ge_with_overhang(
    '''
    
    parts = _group_components_by_durations(
-      'prolated', components, prolated_duration, 
-      fille = 'greater', cyclic = False, overhang = True)
+      'prolated', components, prolated_durations, 
+      fill = 'greater', cyclic = False, overhang = True)
 
    return parts
