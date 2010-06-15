@@ -3,7 +3,7 @@ from abjad.tools.durtools.yield_all_positive_integer_pairs_in_cantor_diagonalize
    yield_all_positive_integer_pairs_in_cantor_diagonalized_order
 
 
-def yield_all_unique_positive_rationals_in_cantor_diagonalized_order( ):
+def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( ):
    r'''.. versionadded:: 1.1.2
 
    Cantor diagonalization of the rationals.
@@ -33,7 +33,11 @@ def yield_all_unique_positive_rationals_in_cantor_diagonalized_order( ):
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.diagonalize_all_rationals_unique( )`` to
-      ``durtools.yield_all_unique_positive_rationals_in_cantor_diagonalized_order( )``.
+      ``durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``durtools.yield_all_unique_positive_rationals_in_cantor_diagonalized_order( )`` to
+      ``durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( )``.
    '''
 
    generator = yield_all_positive_integer_pairs_in_cantor_diagonalized_order( )

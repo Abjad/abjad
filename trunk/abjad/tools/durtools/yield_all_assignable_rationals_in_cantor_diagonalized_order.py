@@ -1,14 +1,14 @@
-from abjad.tools.durtools.yield_all_unique_positive_rationals_in_cantor_diagonalized_order import \
-   yield_all_unique_positive_rationals_in_cantor_diagonalized_order
+from abjad.tools.durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely \
+   import yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
 from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
 
 
-def yield_all_assignable_durations_in_cantor_diagonalized_order( ):
+def yield_all_assignable_rationals_in_cantor_diagonalized_order( ):
    '''.. versionadded:: 1.1.2
 
    Cantor diagonalization of all note-head-assignable durations. ::
 
-      abjad> generator = durtools.yield_all_assignable_durations_in_cantor_diagonalized_order( )
+      abjad> generator = durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order( )
       abjad> for n in range(16):
       ...     generator.next( )
       ... 
@@ -31,11 +31,15 @@ def yield_all_assignable_durations_in_cantor_diagonalized_order( ):
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.diagonalize_all_assignable_durations( )`` to
-      ``durtools.yield_all_assignable_durations_in_cantor_diagonalized_order( )``.
+      ``durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``durtools.yield_all_assignable_durations_in_cantor_diagonalized_order( )`` to
+      ``durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order( )``.
    '''
 
 
-   generator = yield_all_unique_positive_rationals_in_cantor_diagonalized_order( )
+   generator = yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( )
    while True:
       duration = generator.next( )
       if is_assignable_rational(duration):

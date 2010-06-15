@@ -40,13 +40,11 @@ def rational_to_equal_or_lesser_binary_rational(prolated_duration):
       ``durtools.rational_to_equal_or_lesser_binary_rational( )``.
    '''
 
-   # find exponent of denominator
+   ## find exponent of denominator
    exponent = -int(math.floor(math.log(prolated_duration, 2)))
 
-   # find numerator, denominator and written duration
-   numerator = 1
-   denominator = 2 ** exponent
-   written_duration = Rational(numerator, denominator)
+   ## find written duration 
+   written_duration = Rational(1, 2) ** exponent
 
-   # return written duration
+   ## return written duration
    return written_duration

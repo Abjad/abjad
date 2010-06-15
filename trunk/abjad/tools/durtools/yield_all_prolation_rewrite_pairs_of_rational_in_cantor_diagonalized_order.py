@@ -1,6 +1,6 @@
 from abjad.rational import Rational
-from abjad.tools.durtools.yield_all_assignable_durations_in_cantor_diagonalized_order import \
-   yield_all_assignable_durations_in_cantor_diagonalized_order
+from abjad.tools.durtools.yield_all_assignable_rationals_in_cantor_diagonalized_order import \
+   yield_all_assignable_rationals_in_cantor_diagonalized_order
 
 
 def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
@@ -58,7 +58,7 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
    '''
    from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
 
-   generator = yield_all_assignable_durations_in_cantor_diagonalized_order( )
+   generator = yield_all_assignable_rationals_in_cantor_diagonalized_order( )
    pairs = [ ]
 
    while True:

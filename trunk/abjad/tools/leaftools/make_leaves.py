@@ -120,7 +120,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
    durations = listtools.repeat_list_to_length(durations, size)
    pitches = listtools.repeat_list_to_length(pitches, size)
 
-   durations = durtools.group_durations_by_like_implied_prolation(durations)
+   durations = durtools.group_duration_tokens_by_like_implied_prolation(durations)
 
    result = [ ]
    for ds in durations:

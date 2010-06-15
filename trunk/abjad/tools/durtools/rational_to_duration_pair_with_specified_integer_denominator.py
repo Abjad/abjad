@@ -2,13 +2,13 @@ from abjad.rational import Rational
 from abjad.tools.durtools.duration_token_to_reduced_duration_pair import duration_token_to_reduced_duration_pair
 
 
-def rational_to_duration_pair_with_integer_denominator(duration, desired_denominator):
+def rational_to_duration_pair_with_specified_integer_denominator(duration, desired_denominator):
    r'''Rewrite `duration` as a pair
    with positive integer `desired_denominator`. ::
 
       abjad> for n in range(1, 17):
       ...     rational = Rational(n, 16)
-      ...     pair = durtools.rational_to_duration_pair_with_integer_denominator(rational, 16)
+      ...     pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(rational, 16)
       ...     print '%s\t%s' % (rational, pair)
       ... 
       1/16    (1, 16)
@@ -30,7 +30,11 @@ def rational_to_duration_pair_with_integer_denominator(duration, desired_denomin
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.in_terms_of( )`` to
-      ``durtools.rational_to_duration_pair_with_integer_denominator( )``.
+      ``durtools.rational_to_duration_pair_with_specified_integer_denominator( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``durtools.rational_to_duration_pair_with_integer_denominator( )`` to
+      ``durtools.rational_to_duration_pair_with_specified_integer_denominator( )``.
    '''
 
    assert isinstance(duration, (Rational, int, long, tuple))

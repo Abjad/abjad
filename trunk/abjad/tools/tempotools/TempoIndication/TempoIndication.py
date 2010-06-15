@@ -47,7 +47,7 @@ class TempoIndication(_Abjad):
          new_quarters_per_minute = \
             self.quarters_per_minute + expr.quarters_per_minute
          minimum_denominator = min((self.duration._d, expr.duration._d))
-         new_units_per_minute, new_duration_denominator = durtools.rational_to_duration_pair_with_integer_denominator(
+         new_units_per_minute, new_duration_denominator = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             new_quarters_per_minute / 4, minimum_denominator)
          new_duration = Rational(1, new_duration_denominator)
          new_tempo_indication = TempoIndication(
@@ -86,7 +86,7 @@ class TempoIndication(_Abjad):
          new_quarters_per_minute = \
             self.quarters_per_minute - expr.quarters_per_minute
          minimum_denominator = min((self.duration._d, expr.duration._d))
-         new_units_per_minute, new_duration_denominator = durtools.rational_to_duration_pair_with_integer_denominator(
+         new_units_per_minute, new_duration_denominator = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             new_quarters_per_minute / 4, minimum_denominator)
          new_duration = Rational(1, new_duration_denominator)
          new_tempo_indication = TempoIndication(

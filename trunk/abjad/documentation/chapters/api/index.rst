@@ -253,10 +253,9 @@ durtools
    tools/durtools/duration_pair_to_prolation_string
    tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
    tools/durtools/duration_token_to_reduced_duration_pair
-   tools/durtools/group_durations_by_like_implied_prolation
+   tools/durtools/group_duration_tokens_by_like_implied_prolation
    tools/durtools/group_prolated
    tools/durtools/group_seconds
-   tools/durtools/integer_denominator_to_implied_prolation
    tools/durtools/is_assignable_rational
    tools/durtools/is_binary_rational
    tools/durtools/is_duration_pair
@@ -272,8 +271,9 @@ durtools
    tools/durtools/partition_noncyclic_with_overhang_by_durations_prolated_not_less_than
    tools/durtools/partition_noncyclic_without_overhang_by_durations_prolated
    tools/durtools/partition_noncyclic_without_overhang_by_durations_prolated_not_less_than
-   tools/durtools/rational_to_duration_pair_with_integer_denominator
-   tools/durtools/rational_to_duration_pair_with_multiple_of_integer_denominator
+   tools/durtools/positive_integer_to_implied_prolation_multipler
+   tools/durtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
+   tools/durtools/rational_to_duration_pair_with_specified_integer_denominator
    tools/durtools/rational_to_equal_or_greater_assignable_rational
    tools/durtools/rational_to_equal_or_greater_binary_rational
    tools/durtools/rational_to_equal_or_lesser_assignable_rational
@@ -281,18 +281,15 @@ durtools
    tools/durtools/rational_to_flag_count
    tools/durtools/rational_to_fraction_string
    tools/durtools/rational_to_prolation_string
-   tools/durtools/rational_to_undotted_duration
-   tools/durtools/rational_to_undotted_lilypond_duration_string
-   tools/durtools/rationalize
    tools/durtools/rewrite_rational_under_new_tempo
    tools/durtools/sum_preprolated
    tools/durtools/sum_prolated
    tools/durtools/sum_seconds
-   tools/durtools/yield_all_assignable_durations_in_cantor_diagonalized_order
+   tools/durtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
    tools/durtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
    tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order
+   tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
    tools/durtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
-   tools/durtools/yield_all_unique_positive_rationals_in_cantor_diagonalized_order
 
 
 formattools

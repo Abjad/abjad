@@ -42,12 +42,12 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
    if isinstance(component, _Measure):
       meter_denominator = component.meter.effective.denominator
       left_duration = sum([x.duration.prolated for x in left_music])
-      left_pair = durtools.rational_to_duration_pair_with_multiple_of_integer_denominator(
+      left_pair = durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
          left_duration, meter_denominator)
       left_meter = Meter(*left_pair)
       left = component.__class__(left_meter, left_music)
       right_duration = sum([x.duration.prolated for x in right_music])
-      right_pair = durtools.rational_to_duration_pair_with_multiple_of_integer_denominator(
+      right_pair = durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
          right_duration, meter_denominator)
       right_meter = Meter(*right_pair)
       right = component.__class__(right_meter, right_music)

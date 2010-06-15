@@ -54,7 +54,7 @@ def _split_component_at_duration(
       split_point_denominator = split_point_in_measure._d
       if measure.duration.nonbinary:
          measure_multiplier = measure.duration.multiplier
-         split_point_multiplier = durtools.integer_denominator_to_implied_prolation(
+         split_point_multiplier = durtools.positive_integer_to_implied_prolation_multipler(
             split_point_denominator)
          if not measure_multiplier == split_point_multiplier:
             raise Exception(NotImplemented)

@@ -33,7 +33,7 @@ def make_best(duration, denominators = None, factor = None):
          denominators = [d for d in denominators if factor in 
             mathtools.factors(d)]
       for desired_denominator in sorted(denominators):
-         candidate_pair = durtools.rational_to_duration_pair_with_integer_denominator(duration, desired_denominator)
+         candidate_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(duration, desired_denominator)
          if candidate_pair[-1] == desired_denominator:
             return Meter(candidate_pair)
 

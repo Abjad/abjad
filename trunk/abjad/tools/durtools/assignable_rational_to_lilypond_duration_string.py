@@ -1,8 +1,9 @@
 from abjad.exceptions import AssignabilityError
-from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
+from abjad.rational import Rational
 from abjad.tools.durtools.assignable_rational_to_dot_count import assignable_rational_to_dot_count
-from abjad.tools.durtools.rational_to_undotted_lilypond_duration_string import \
-   rational_to_undotted_lilypond_duration_string
+from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
+from abjad.tools.durtools.rational_to_equal_or_lesser_binary_rational \
+   import rational_to_equal_or_lesser_binary_rational
 
 
 def assignable_rational_to_lilypond_duration_string(rational):
@@ -26,9 +27,20 @@ def assignable_rational_to_lilypond_duration_string(rational):
    if not is_assignable_rational(rational):
       raise AssignabilityError
 
-   undotted_duration_string = rational_to_undotted_lilypond_duration_string(rational)
+   undotted_rational = rational_to_equal_or_lesser_binary_rational(rational)
+   if undotted_rational <= 1:
+      undotted_duration_string = str(undotted_rational._d)
+   elif undotted_rational == Rational(2, 1):
+      undotted_duration_string = r'\breve'
+   elif undotted_rational == Rational(4, 1):
+      undotted_duration_string = r'\longa'
+   elif undotted_rational == Rational(8, 1):
+      undotted_duration_string = r'\maxima'
+   else:
+      raise ValueError('can not process undotted rational: %s' % undotted_rational)
+
    dot_count = assignable_rational_to_dot_count(rational)
    dot_string = '.' * dot_count
-   duration_string = '%s%s' % (undotted_duration_string, dot_string)
+   dotted_duration_string = undotted_duration_string + dot_string
 
-   return duration_string
+   return dotted_duration_string

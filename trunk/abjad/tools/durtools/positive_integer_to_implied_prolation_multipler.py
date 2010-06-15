@@ -2,13 +2,13 @@ from abjad.rational import Rational
 from abjad.tools import mathtools
 
 
-def integer_denominator_to_implied_prolation(denominator):
+def positive_integer_to_implied_prolation_multipler(denominator):
    '''Return prolation attaching to integer `denominator`.
 
    ::
 
       abjad> for denominator in range(1, 17):
-      ...     multiplier = durtools.integer_denominator_to_implied_prolation(denominator)
+      ...     multiplier = durtools.positive_integer_to_implied_prolation_multipler(denominator)
       ...     print '%s\\t%s' % (denominator, multiplier)
       ... 
       1       1
@@ -32,7 +32,11 @@ def integer_denominator_to_implied_prolation(denominator):
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.denominator_to_multiplier( )`` to
-      ``durtools.integer_denominator_to_implied_prolation( )``.
+      ``durtools.positive_integer_to_implied_prolation_multipler( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``durtools.integer_denominator_to_implied_prolation( )`` to
+      ``durtools.positive_integer_to_implied_prolation_multipler( )``.
    '''
 
    return Rational(

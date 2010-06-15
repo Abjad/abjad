@@ -30,7 +30,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
    def _multiplier_fraction_string(self):
       from abjad.tools import durtools
       if self.preferred_denominator is not None:
-         d, n = durtools.rational_to_duration_pair_with_integer_denominator(
+         d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
             ~self.multiplier, self.preferred_denominator)
       else:
          n, d = self.multiplier._n, self.multiplier._d

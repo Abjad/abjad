@@ -29,7 +29,7 @@ class _DynamicMeasureMeterInterface(MeterInterface):
       client = self._client
       if client.denominator:
          return Meter(
-            durtools.rational_to_duration_pair_with_integer_denominator(client.duration.contents, client.denominator))
+            durtools.rational_to_duration_pair_with_specified_integer_denominator(client.duration.contents, client.denominator))
       else:
          return Meter(client.duration.contents)
 

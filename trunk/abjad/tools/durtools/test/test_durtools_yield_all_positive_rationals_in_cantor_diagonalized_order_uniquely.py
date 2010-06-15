@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_durtools_yield_all_unique_positive_rationals_in_cantor_diagonalized_order_01( ):
+def test_durtools_yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely_01( ):
 
-   generator = durtools.yield_all_unique_positive_rationals_in_cantor_diagonalized_order( )
+   generator = durtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely( )
 
    assert generator.next( ) == Rational(1, 1)
    assert generator.next( ) == Rational(2, 1)

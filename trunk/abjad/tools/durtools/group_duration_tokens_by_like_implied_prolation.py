@@ -1,18 +1,22 @@
 from abjad.tools import mathtools
 
 
-def group_durations_by_like_implied_prolation(durations):
+def group_duration_tokens_by_like_implied_prolation(durations):
    '''Partition `durations` by implied prolation.
    
    ::
 
       abjad> durations = [(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)]
-      abjad> durtools.group_durations_by_like_implied_prolation(durations)
+      abjad> durtools.group_duration_tokens_by_like_implied_prolation(durations)
       [[(1, 4), (1, 8)], [(1, 3), (1, 6)], [(1, 4)]]
 
    .. versionchanged:: 1.1.2
       renamed ``durtools.agglomerate_by_prolation( )`` to
-      ``durtools.group_durations_by_like_implied_prolation( )``.
+      ``durtools.group_duration_tokens_by_like_implied_prolation( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``durtools.group_durations_by_like_implied_prolation( )`` to
+      ``durtools.group_duration_tokens_by_like_implied_prolation( )``.
    '''
 
    assert isinstance(durations, list)

@@ -47,7 +47,7 @@ def set_measure_denominator_and_multiply_numerator(measure, denominator):
       else:
          old_meter = measure.meter.effective
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
-      new_meter = durtools.rational_to_duration_pair_with_integer_denominator(old_meter_pair, denominator)
+      new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(old_meter_pair, denominator)
       measure.meter.forced = Meter(new_meter)
 
    return measure

@@ -119,7 +119,7 @@ def clone_components_and_immediate_parent_of_first_component(components):
    if parent_denominator is not None:
       old_meter = result.meter.effective
       old_meter_pair = (old_meter.numerator, old_meter.denominator)
-      new_meter = durtools.rational_to_duration_pair_with_integer_denominator(old_meter_pair, parent_denominator)
+      new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(old_meter_pair, parent_denominator)
       result.meter.forced = Meter(new_meter)
 
    # return copy

@@ -34,7 +34,7 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = Rational(1)):
 
    # find binary pair
    nonbinary_pair = (nonbinary_meter.numerator, nonbinary_meter.denominator)
-   binary_pair = durtools.rational_to_duration_pair_with_integer_denominator(nonbinary_pair, binary_denominator)
+   binary_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(nonbinary_pair, binary_denominator)
 
    # update meter numerator and denominator
    nonbinary_meter.numerator = binary_pair[0]

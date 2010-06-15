@@ -127,7 +127,7 @@ def test_fuse_tied_leaves_by_prolated_durations_05( ):
    t = RhythmicSketchStaff(notes)
 
    meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
-   meters = durtools.rationalize(meters)
+   meters = [Rational(meter) for meter in meters]
 
    partition.unfractured_by_durations(t.leaves, meters, tie_after=True)
 
