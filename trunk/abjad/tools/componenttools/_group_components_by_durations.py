@@ -2,17 +2,21 @@ from abjad.exceptions import PartitionError
 from abjad.rational import Rational
 
 
-def _group_components_by_durations(duration_type,
-   components, durations, fill = 'exact', cyclic = False, overhang = False):
-   '''Group *components* according to succesive *durations*.
+def _group_components_by_durations(duration_type, components, durations, 
+   fill = 'exact', cyclic = False, overhang = False):
+   '''Partition `components` according to `durations`.
 
-   ``duration_type`` may be ``prolated`` or ``seconds``.
-   When fill == `exact`, then parts must equal durations exactly.
-   When fill == `less`, then parts must be less or equal to durations.
-   When fill == `greater`, then parts must be greater or equal to durations.
-   If *cyclic* is true, read *durations* cyclically.
-   If *overhang* is True and components remain, append as final part.
-   If *overhang* is False and components remain, do not append final part.
+   Set `duration_type` to ``'prolated'`` or ``'seconds'``.
+
+   When `fill` is ``'exact'`` then parts must equal `durations` exactly.
+
+   When `fill` is ``'less'`` then parts must be less than or equal to `durations`.
+
+   When `fill` is ``'greater'`` then parts must be greater or equal to `durations`.
+
+   Read `durations` cyclically when `cyclic` is true.
+   
+   Return remaining components at end in final part when `overhang` is true.
    '''
 
    assert isinstance(durations, list)
