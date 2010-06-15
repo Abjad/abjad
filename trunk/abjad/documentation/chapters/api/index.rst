@@ -291,10 +291,6 @@ durtools
    tools/durtools/multiply_duration_pair_and_try_to_preserve_numerator
    tools/durtools/numeric_seconds_to_clock_string
    tools/durtools/numeric_seconds_to_escaped_clock_string
-   tools/durtools/partition_noncyclic_with_overhang_by_durations_prolated
-   tools/durtools/partition_noncyclic_with_overhang_by_durations_prolated_not_less_than
-   tools/durtools/partition_noncyclic_without_overhang_by_durations_prolated
-   tools/durtools/partition_noncyclic_without_overhang_by_durations_prolated_not_less_than
    tools/durtools/positive_integer_to_implied_prolation_multipler
    tools/durtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
    tools/durtools/rational_to_duration_pair_with_specified_integer_denominator
