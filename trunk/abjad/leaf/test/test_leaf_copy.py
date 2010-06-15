@@ -50,8 +50,8 @@ def test_leaf_copy_06( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    u = componenttools.clone_components_and_fracture_crossing_spanners([t])[0]
    id(u) is not id(t)
-   check.wf(t)
-   check.wf(u)
+   componenttools.is_well_formed_component(t)
+   componenttools.is_well_formed_component(u)
 
 
 ### TEST COPY ONE TUPLETIZED NOTE ###

@@ -20,5 +20,5 @@ def test_pitchtools_chromaticize_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\tcs'8 ~\n\tcs'32\n\td'8 ~\n\td'32\n\tef'8 ~\n\tef'32\n}"

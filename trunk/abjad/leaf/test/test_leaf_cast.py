@@ -20,7 +20,7 @@ def test_leaf_cast_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tr8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
@@ -45,7 +45,7 @@ def test_leaf_cast_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    

@@ -31,5 +31,5 @@ def test_label_vertical_moment_chromatic_intervals_01( ):
    >>
    '''
 
-   assert check.wf(score)
+   assert componenttools.is_well_formed_component(score)
    assert score.format == '\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8 _ \\markup { \\small { \\column { 26 19 } } }\n\t\te\'8\n\t\tf\'8 _ \\markup { \\small { \\column { 29 17 } } }\n\t}\n\t\\new Staff {\n\t\t\\clef "alto"\n\t\tg4\n\t\tf4 _ \\markup { \\small { \\column { 28 17 } } }\n\t}\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc,2 _ \\markup { \\small { \\column { 24 19 } } }\n\t}\n>>'

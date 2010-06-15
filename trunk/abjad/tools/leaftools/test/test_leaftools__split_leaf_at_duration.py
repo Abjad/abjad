@@ -27,7 +27,7 @@ def test_leaftools__split_leaf_at_duration_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
 
 
@@ -60,7 +60,7 @@ def test_leaftools__split_leaf_at_duration_02( ):
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
 
 
@@ -97,7 +97,7 @@ def test_leaftools__split_leaf_at_duration_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
@@ -202,7 +202,7 @@ def test_leaftools__split_leaf_at_duration_09( ):
    for leaf in t.leaves:
       assert leaf.spanners.attached == set([s])
       assert leaf.tie.spanner is s
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools__split_leaf_at_duration_10( ):
@@ -216,7 +216,7 @@ def test_leaftools__split_leaf_at_duration_10( ):
    for l in t.leaves:
       assert l.spanners.attached == set([b])
       assert l.beam.spanner is b
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools__split_leaf_at_duration_11( ):
@@ -233,7 +233,7 @@ def test_leaftools__split_leaf_at_duration_11( ):
    for l in t.leaves:
       assert l.spanners.attached == set([s])
       assert l.tie.spanner is s
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    
 
 def test_leaftools__split_leaf_at_duration_12( ):
@@ -248,7 +248,7 @@ def test_leaftools__split_leaf_at_duration_12( ):
    assert s.components == (t, )
    for l in t.leaves:
       assert not l.spanners.attached 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools__split_leaf_at_duration_13( ):
@@ -265,7 +265,7 @@ def test_leaftools__split_leaf_at_duration_13( ):
       for l in v.leaves:
          assert not l.spanners.attached 
          assert l.parentage.parent is v
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools__split_leaf_at_duration_14( ):

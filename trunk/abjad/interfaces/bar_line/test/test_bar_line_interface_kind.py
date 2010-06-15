@@ -46,5 +46,5 @@ def test_bar_line_interface_kind_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Staff {\n\tc\'8\n\t\\bar ""\n\td\'8\n\te\'8\n\tf\'8\n}'

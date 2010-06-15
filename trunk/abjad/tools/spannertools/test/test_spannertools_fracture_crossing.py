@@ -20,7 +20,7 @@ def test_spannertools_fracture_crossing_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [\n\te'8 ]\n\tf'8 [ ]\n}"
    
 
@@ -41,7 +41,7 @@ def test_spannertools_fracture_crossing_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [ ]\n\te'8 [\n\tf'8 ]\n}"
 
 
@@ -96,7 +96,7 @@ def test_spannertools_fracture_crossing_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [ \\<\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\!\n\t}\n}"
 
 
@@ -145,5 +145,5 @@ def test_spannertools_fracture_crossing_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [ \\< \\startTrillSpan\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\! \\stopTrillSpan\n\t}\n}"

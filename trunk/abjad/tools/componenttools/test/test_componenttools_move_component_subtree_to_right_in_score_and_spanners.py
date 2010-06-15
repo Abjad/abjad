@@ -27,7 +27,7 @@ def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_01
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\td'8\n\tf'8 ]\n}"
 
 
@@ -58,7 +58,7 @@ def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_02
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8 [\n\tf'8 ]\n}"
 
 
@@ -88,5 +88,5 @@ def test_componenttools_move_component_subtree_to_right_in_score_and_spanners_03
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8\n\tf'8\n}"

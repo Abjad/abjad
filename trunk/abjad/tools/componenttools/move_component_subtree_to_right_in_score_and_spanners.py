@@ -49,7 +49,7 @@ def move_component_subtree_to_right_in_score_and_spanners(component):
             e'8
          }
       }
-      abjad> check.wf(voice) 
+      abjad> componenttools.is_well_formed_component(voice) 
       False   
 
    .. versionchanged:: 1.1.2

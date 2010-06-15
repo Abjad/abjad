@@ -16,5 +16,5 @@ def test_label_leaf_indices_01( ):
    } 
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 _ \\markup { \\small 0 }\n\td'8 _ \\markup { \\small 1 }\n\te'8 _ \\markup { \\small 2 }\n\tf'8 _ \\markup { \\small 3 }\n}"

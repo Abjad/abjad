@@ -19,7 +19,7 @@ def test_label_melodic_counterpoint_intervals_01( ):
       }
    '''
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +2 }\n\td'8 ^ \\markup { +2 }\n\te'8 ^ \\markup { +2 }\n\tf'8 ^ \\markup { +2 }\n\tg'8 ^ \\markup { +2 }\n\ta'8 ^ \\markup { +2 }\n\tb'8 ^ \\markup { +2 }\n\tc''8\n}"
 
 
@@ -43,5 +43,5 @@ def test_label_melodic_counterpoint_intervals_02( ):
    }
    """
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +15 }\n\tcs'''8 ^ \\markup { -9 }\n\tb'8 ^ \\markup { -9 }\n\taf8 ^ \\markup { -7 }\n\tbf,8 ^ \\markup { 1 }\n\tb,8 ^ \\markup { +14 }\n\ta'8 ^ \\markup { +2 }\n\tbf'8 ^ \\markup { -4 }\n\tfs'8 ^ \\markup { 1 }\n\tf'8\n}"

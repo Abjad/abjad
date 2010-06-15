@@ -107,7 +107,7 @@ slr.position = 'down'
 
 lower_staff.barline.kind = '||'
 
-print check.wf(piano)
+print componenttools.is_well_formed_component(piano)
 f(piano)
 show(piano)
 
@@ -193,6 +193,6 @@ show(piano)
 #slr.position = 'down'
 #
 #ps.append(s)
-#print check.wf(ps)
+#print componenttools.is_well_formed_component(ps)
 #f(ps)
 #show(ps)

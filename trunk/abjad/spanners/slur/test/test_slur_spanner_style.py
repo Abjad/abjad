@@ -18,7 +18,7 @@ def test_slur_spanner_style_01( ):
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\slurSolid\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
    slur.style = None
@@ -32,7 +32,7 @@ def test_slur_spanner_style_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
@@ -53,7 +53,7 @@ def test_slur_spanner_style_02( ):
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\slurDotted\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
    slur.style = None
@@ -67,5 +67,5 @@ def test_slur_spanner_style_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"

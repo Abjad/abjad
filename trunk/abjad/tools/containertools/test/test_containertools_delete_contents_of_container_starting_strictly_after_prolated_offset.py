@@ -14,7 +14,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_pro
    }
    '''
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -31,7 +31,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_pro
    }
    '''
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -51,7 +51,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_pro
    }
    '''
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -67,5 +67,5 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_pro
    }
    '''
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == '\\new Staff {\n}'

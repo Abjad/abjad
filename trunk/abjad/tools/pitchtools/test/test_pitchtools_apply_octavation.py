@@ -15,7 +15,7 @@ def test_pitchtools_apply_octavation_01( ):
       \ottava #0
    }"""
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'''8\n\td'''8\n\tef'''8\n\tf'''8\n\t\\ottava #0\n}"
 
 

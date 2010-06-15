@@ -39,5 +39,5 @@ def test_measuretools_pitch_array_to_measures_01( ):
    >>
    '''
    
-   assert check.wf(score)
+   assert componenttools.is_well_formed_component(score)
    assert score.format == "\\new Score <<\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 4/8\n\t\t\tr8\n\t\t\td'8\n\t\t\t<bf bqf>4\n\t\t}\n\t}\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 4/8\n\t\t\tg'4\n\t\t\tfs'8\n\t\t\tr8\n\t\t}\n\t}\n>>"

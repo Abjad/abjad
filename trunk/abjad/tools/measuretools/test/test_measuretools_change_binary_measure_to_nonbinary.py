@@ -28,7 +28,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8. [\n\t\td'8. ]\n\t}\n}"
 
    
@@ -61,7 +61,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 5/20\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8 [ ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32 ]\n\t}\n}"
 
 
@@ -92,7 +92,7 @@ def test_measuretools_change_binary_measure_to_nonbinary_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 7/28\n\t\\scaleDurations #'(4 . 7) {\n\t\tc'8.. [\n\t\td'8.. ]\n\t}\n}"
 
 
@@ -125,5 +125,5 @@ def test_measuretools_change_binary_measure_to_nonbinary_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 9/36\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'8 [ ~\n\t\tc'64\n\t\td'8 ~\n\t\td'64 ]\n\t}\n}"

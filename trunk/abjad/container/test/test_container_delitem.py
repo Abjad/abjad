@@ -42,7 +42,7 @@ def test_container_delitem_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
 
    "Deleted component is now ..."
@@ -54,7 +54,7 @@ def test_container_delitem_01( ):
    }
    '''
 
-   assert check.wf(old)
+   assert componenttools.is_well_formed_component(old)
    assert old.format == "{\n\tc'8 (\n\td'8 )\n}"
 
 
@@ -75,7 +75,7 @@ def test_container_delitem_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n}"
 
 
@@ -94,7 +94,7 @@ def test_container_delitem_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\tf'8 ]\n}"
 
 
@@ -113,7 +113,7 @@ def test_container_delitem_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\te'8 [\n\tf'8 ]\n}"
 
 
@@ -132,7 +132,7 @@ def test_container_delitem_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -149,7 +149,7 @@ def test_container_delitem_06( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Voice {\n}'
 
 
@@ -168,5 +168,5 @@ def test_container_delitem_07( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\tc'8 [\n\te'8 ]\n}"

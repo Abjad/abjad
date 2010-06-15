@@ -19,7 +19,7 @@ def test_leaf_extend_left_in_parent_01( ):
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert result == t[:4]
    assert t.format == "\\new Voice {\n\tc'16\n\td'16\n\te'16\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
@@ -40,6 +40,6 @@ def test_leaf_extend_left_in_parent_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\tdqf'8\n\td'8\n\te'8 ]\n}"
    assert result == t[1:3]

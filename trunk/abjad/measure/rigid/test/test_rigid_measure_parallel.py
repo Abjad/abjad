@@ -29,5 +29,5 @@ def test_rigid_measure_parallel_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t<<\n\t\t\\time 2/8\n\t\t\\new Voice {\n\t\t\t\\voiceOne\n\t\t\tc'8\n\t\t\td'8\n\t\t}\n\t\t\\new Voice {\n\t\t\t\\voiceTwo\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n}"

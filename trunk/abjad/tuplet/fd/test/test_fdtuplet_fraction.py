@@ -15,7 +15,7 @@ def test_fdtuplet_fraction_01( ):
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\fraction \\times 3/4 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -33,7 +33,7 @@ def test_fdtuplet_fraction_02( ):
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\fraction \\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
@@ -50,6 +50,6 @@ def test_fdtuplet_fraction_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    print t.format
    assert t.format == "{\n\tc'8\n\td'8\n\te'8\n}"

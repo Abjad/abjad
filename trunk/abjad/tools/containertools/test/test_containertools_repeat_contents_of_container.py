@@ -19,7 +19,7 @@ def test_containertools_repeat_contents_of_container_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -37,7 +37,7 @@ def test_containertools_repeat_contents_of_container_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -53,5 +53,5 @@ def test_containertools_repeat_contents_of_container_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Voice {\n}'

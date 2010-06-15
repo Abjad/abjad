@@ -354,20 +354,20 @@ def test_beam_interface_14( ):
 def test_beam_interface_20( ):
    '''Counts can set agrammatically but will not check.'''
    t = Note(0, (1, 32))
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    t.beam.counts = 1
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)
    t.beam.counts = 2
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)
    t.beam.counts = 3
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    t.beam.counts = 3, 1
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    t.beam.counts = 1, 3
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    t.beam.counts = 3, 4
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)
    t.beam.counts = 4
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)
    t.beam.counts = None
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)

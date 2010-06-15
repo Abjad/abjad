@@ -50,5 +50,5 @@ def test_rigid_measure_bar_line_override_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Staff {\n\t% start measure 1\n\t{\n\t\t\\time 2/8\n\t\tc\'8\n\t\td\'8\n\t\t\\override Staff.BarLine #\'color = #red\n\t\t\\bar "||"\n\t}\n\t% stop measure 1\n\t% start measure 2\n\t{\n\t\t\\time 2/8\n\t\te\'8\n\t\t\\revert Staff.BarLine #\'color\n\t\tf\'8\n\t}\n\t% stop measure 2\n\t% start measure 3\n\t{\n\t\t\\time 2/8\n\t\tg\'8\n\t\ta\'8\n\t}\n\t% stop measure 3\n}'

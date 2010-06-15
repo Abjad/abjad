@@ -17,7 +17,7 @@ def test_tempo_interface_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t[0].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
    assert t[1].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
    assert t[2].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
@@ -58,7 +58,7 @@ def test_tempo_interface_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t[0].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
    assert t[1].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
    assert t[2].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 42)

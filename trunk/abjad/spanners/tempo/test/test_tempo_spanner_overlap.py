@@ -8,4 +8,4 @@ def test_tempo_spanner_overlap_01( ):
    TempoSpanner(t[:])
    TempoSpanner(t[:])
 
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)

@@ -30,12 +30,12 @@ def test_container_pop_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
    "Result is now d'8 [ ]"
 
-   assert check.wf(result)
+   assert componenttools.is_well_formed_component(result)
    assert result.format == "d'8 [ ]"
 
 
@@ -72,7 +72,7 @@ def test_container_pop_02( ):
    '''
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n}"
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
    r'''
    {
@@ -82,4 +82,4 @@ def test_container_pop_02( ):
    '''
 
    assert sequential.format == "{\n\te'8\n\tf'8\n}"
-   assert check.wf(sequential)
+   assert componenttools.is_well_formed_component(sequential)

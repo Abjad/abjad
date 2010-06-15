@@ -21,7 +21,7 @@ def test_tietools_truncate_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'4\n}"
 
 
@@ -38,5 +38,5 @@ def test_tietools_truncate_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8\n}"

@@ -49,7 +49,7 @@ def test_spannertools_give_dominant_to_01( ):
 
    "Both crescendo and beam are now discontiguous."
 
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [ \\<\n\td'8 ]\n\te'8\n\tf'8 \\!\n}"
    
    "Recipient is now ..."
@@ -64,7 +64,7 @@ def test_spannertools_give_dominant_to_01( ):
 
    "Slur is contiguous but recipient participates in discont. cresc."
 
-   assert not check.wf(recipient)
+   assert not componenttools.is_well_formed_component(recipient)
    assert recipient.format == "\\new Voice {\n\tc'16 [ (\n\tc'16\n\tc'16 ] )\n}"
 
 
@@ -124,5 +124,5 @@ def test_spannertools_give_dominant_to_02( ):
 
    "Both container t and recipient container carry discontiguous spanners."
 
-   assert not check.wf(t)
-   assert not check.wf(recipient)
+   assert not componenttools.is_well_formed_component(t)
+   assert not componenttools.is_well_formed_component(recipient)

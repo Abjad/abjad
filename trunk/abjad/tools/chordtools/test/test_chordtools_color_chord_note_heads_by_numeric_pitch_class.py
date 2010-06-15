@@ -26,7 +26,7 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_01( ):
    >4
    '''
 
-   assert check.wf(chord)
+   assert componenttools.is_well_formed_component(chord)
    assert chord.format == "<\n\t\\tweak #'color #red\n\tc''\n\t\\tweak #'color #red\n\td''\n\t\\tweak #'color #green\n\tfs''\n\t\\tweak #'color #green\n\ta''\n\t\\tweak #'color #blue\n\tb''\n>4"
 
 
@@ -45,5 +45,5 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_02( ):
    c'4
    '''
 
-   assert check.wf(note)
+   assert componenttools.is_well_formed_component(note)
    assert note.format == "\\once \\override NoteHead #'color = #red\nc'4"

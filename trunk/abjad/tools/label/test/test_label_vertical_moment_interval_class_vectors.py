@@ -31,7 +31,7 @@ def test_label_vertical_moment_interval_class_vectors_01( ):
    >>
    '''
 
-   assert check.wf(score)
+   assert componenttools.is_well_formed_component(score)
    assert score.format == '\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8 _ \\markup { \\tiny { 0010020 } }\n\t\te\'8\n\t\tf\'8 _ \\markup { \\tiny { 1000020 } }\n\t}\n\t\\new Staff {\n\t\t\\clef "alto"\n\t\tg4\n\t\tf4 _ \\markup { \\tiny { 0100110 } }\n\t}\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc,2 _ \\markup { \\tiny { 1000020 } }\n\t}\n>>'
 
 

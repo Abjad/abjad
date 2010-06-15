@@ -28,7 +28,7 @@ def test_leaftools_change_leaf_preprolated_duration_01( ):
    }
    '''
 
-   assert check.wf(t) 
+   assert componenttools.is_well_formed_component(t) 
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ~\n\td'32 ]\n\te'8\n\tf'8\n}"
    
 
@@ -61,7 +61,7 @@ def test_leaftools_change_leaf_preprolated_duration_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert "\\new Voice {\n\tc'8 [ ~\n\tc'8 ~\n\tc'32 ]\n\tc'8\n\tc'8\n}"
 
 
@@ -92,7 +92,7 @@ def test_leaftools_change_leaf_preprolated_duration_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8. ]\n\te'8\n\tf'8\n}"
 
 
@@ -126,7 +126,7 @@ def test_leaftools_change_leaf_preprolated_duration_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32 ]\n\t}\n\te'8\n\tf'8\n}"
 
 
@@ -159,7 +159,7 @@ def test_leaftools_change_leaf_preprolated_duration_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ]\n\t}\n\te'8\n\tf'8\n}" 
 
 
@@ -174,7 +174,7 @@ def test_leaftools_change_leaf_preprolated_duration_06( ):
 
    leaftools.change_leaf_preprolated_duration(t, Rational(1, 32))
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 1/4"
 
 
@@ -189,7 +189,7 @@ def test_leaftools_change_leaf_preprolated_duration_07( ):
 
    leaftools.change_leaf_preprolated_duration(t, Rational(3, 32))
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 3/4"
 
 
@@ -204,7 +204,7 @@ def test_leaftools_change_leaf_preprolated_duration_08( ):
 
    leaftools.change_leaf_preprolated_duration(t, Rational(5, 32))
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 5/4"
 
 
@@ -219,7 +219,7 @@ def test_leaftools_change_leaf_preprolated_duration_09( ):
 
    leaftools.change_leaf_preprolated_duration(t, Rational(1, 24))
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 1/3"
 
 
@@ -235,5 +235,5 @@ def test_leaftools_change_leaf_preprolated_duration_10( ):
 
    leaftools.change_leaf_preprolated_duration(t, Rational(5, 24))
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "c'8 * 5/3"

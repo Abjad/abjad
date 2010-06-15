@@ -11,7 +11,7 @@ def test_note_column_interface_grob_handling_01( ):
    c'4
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\once \\override NoteColumn #'ignore-collision = ##t\nc'4"
 
 
@@ -31,5 +31,5 @@ def test_note_column_interface_grob_handling_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff \\with {\n\t\\override NoteColumn #'ignore-collision = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

@@ -16,7 +16,7 @@ def test_label_leaf_numbers_01( ):
    } 
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 _ \\markup { \\small 1 }\n\td'8 _ \\markup { \\small 2 }\n\te'8 _ \\markup { \\small 3 }\n\tf'8 _ \\markup { \\small 4 }\n}"
 
 
@@ -35,5 +35,5 @@ def test_label_leaf_numbers_02( ):
    } 
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 ^ \\markup { \\small 1 }\n\td'8 ^ \\markup { \\small 2 }\n\te'8 ^ \\markup { \\small 3 }\n\tf'8 ^ \\markup { \\small 4 }\n}"

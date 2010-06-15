@@ -21,7 +21,7 @@ def test_instrument_interface_name_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Staff \\with {\n\tinstrumentName = "Violini I"\n} {\n\tc\'8\n\td\'8\n\te\'8\n\tf\'8\n}'
 
 
@@ -42,5 +42,5 @@ def test_instrument_interface_name_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff \\with {\n\tinstrumentName = \\markup { \\circle { V } }\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

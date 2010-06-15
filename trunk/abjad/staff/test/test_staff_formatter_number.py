@@ -39,7 +39,7 @@ def test_staff_formatter_number_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t% start measure 1\n\t{\n\t\t\\time 2/16\n\t\tc'16\n\t\tc'16\n\t}\n\t% stop measure 1\n\t% start measure 2\n\t{\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\t% stop measure 2\n\t% start measure 3\n\t{\n\t\t\\time 3/16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\t% stop measure 3\n}"
 
 
@@ -74,7 +74,7 @@ def test_staff_formatter_number_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/16\n\t\tc'16 ^ \\markup { 0 }\n\t\tc'16 ^ \\markup { 1 }\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 2 }\n\t\tc'16 ^ \\markup { 3 }\n\t\tc'16 ^ \\markup { 4 }\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 5 }\n\t\tc'16 ^ \\markup { 6 }\n\t\tc'16 ^ \\markup { 7 }\n\t}\n}"
 
 
@@ -117,5 +117,5 @@ def test_staff_formatter_number_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t% start measure 1\n\t{\n\t\t\\time 2/16\n\t\tc'16 ^ \\markup { 0 }\n\t\tc'16 ^ \\markup { 1 }\n\t}\n\t% stop measure 1\n\t% start measure 2\n\t{\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 2 }\n\t\tc'16 ^ \\markup { 3 }\n\t\tc'16 ^ \\markup { 4 }\n\t}\n\t% stop measure 2\n\t% start measure 3\n\t{\n\t\t\\time 3/16\n\t\tc'16 ^ \\markup { 5 }\n\t\tc'16 ^ \\markup { 6 }\n\t\tc'16 ^ \\markup { 7 }\n\t}\n\t% stop measure 3\n}"

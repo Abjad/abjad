@@ -10,7 +10,7 @@ def test_containertools_reverse_contents_of_container_01( ):
    containertools.reverse_contents_of_container(t)
 
    assert list(leaves_rev) == list(t.leaves)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_containertools_reverse_contents_of_container_02( ):
@@ -24,7 +24,7 @@ def test_containertools_reverse_contents_of_container_02( ):
 
    assert list(leaves_rev) == list(t.leaves)
    assert beam.components == (t, )
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_containertools_reverse_contents_of_container_03( ):
@@ -38,7 +38,7 @@ def test_containertools_reverse_contents_of_container_03( ):
 
    assert list(leaves_rev) == list(t.leaves)
    assert beam.components == tuple(t.leaves)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_containertools_reverse_contents_of_container_04( ):
@@ -51,7 +51,7 @@ def test_containertools_reverse_contents_of_container_04( ):
    containertools.reverse_contents_of_container(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
    assert beam.components == (t[0], )
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_containertools_reverse_contents_of_container_05( ):
@@ -64,7 +64,7 @@ def test_containertools_reverse_contents_of_container_05( ):
    containertools.reverse_contents_of_container(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
    assert beam.components == tuple(t[0].leaves)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_containertools_reverse_contents_of_container_06( ):
@@ -77,7 +77,7 @@ def test_containertools_reverse_contents_of_container_06( ):
    containertools.reverse_contents_of_container(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
    assert beam.components == tuple([t])
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_containertools_reverse_contents_of_container_07( ):
@@ -92,10 +92,10 @@ def test_containertools_reverse_contents_of_container_07( ):
    containertools.reverse_contents_of_container(t[0])
    assert list(leaves_rev) == list(t[0].leaves)
    assert beam.components == tuple([measure] + notes)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
-## TODO: Added check.wf( ) check for measure contiguity. ##
+## TODO: Added componenttools.is_well_formed_component( ) check for measure contiguity. ##
 
 def test_containertools_reverse_contents_of_container_08( ):
    '''Retrograde unable to apply because of measure contiguity.'''
@@ -149,4 +149,4 @@ def test_containertools_reverse_contents_of_container_09( ):
    assert beam1.components == (m1, )
    assert beam2.components == (m2, )
    assert gliss.components == tuple(staff.leaves)
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)

@@ -61,7 +61,7 @@ def test_leaf_number_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\te'8\n\tf'8\n\tc'8\n\td'8\n}"
 
    assert t[0].number == 0

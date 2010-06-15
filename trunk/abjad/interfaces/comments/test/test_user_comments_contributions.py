@@ -35,7 +35,7 @@ def test_user_comments_contributions_01( ):
     ('closing', ('Comments closing.',)),
     ('after', ('Comments after.',)))
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert result == (('before', ('Comments before.',)), ('opening', ('Comments opening.',)), ('right', ('Unacknowledged comments right.',)), ('closing', ('Comments closing.',)), ('after', ('Comments after.',)))
 
 
@@ -66,7 +66,7 @@ def test_user_comments_contributions_02( ):
     ('closing', ('Comments closing.',)),
     ('after', ('Comments after.',)))
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert result == (('before', ('Comments before.',)), ('opening', ('Comments opening.',)), ('right', ('Comments right.',)), ('closing', ('Comments closing.',)), ('after', ('Comments after.',)))
 
 

@@ -28,5 +28,5 @@ def test_measuretools_apply_complex_beam_spanner_to_measure_01( ):
    }
    '''
 
-   assert check.wf(measure)
+   assert componenttools.is_well_formed_component(measure)
    assert measure.format == "{\n\t\\time 2/8\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #1\n\tc'8 [\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #0\n\tc'8 ]\n}"

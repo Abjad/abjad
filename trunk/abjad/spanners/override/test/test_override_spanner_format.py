@@ -18,5 +18,5 @@ def test_override_spanner_format_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\override Staff.BarLine #'stencil = ##f\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.BarLine #'stencil\n}"

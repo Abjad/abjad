@@ -46,7 +46,7 @@ def test_partition_unfractured_by_durations_01( ):
    '''
 
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(parts) == 3
    assert t.format == "\\new Staff {\n\t{\n\t\tc'32 [ (\n\t}\n\t{\n\t\tc'16.\n\t}\n\t{\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -98,6 +98,6 @@ def test_partition_unfractured_by_durations_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(parts) == 4
    assert t.format == "\\new Staff {\n\t{\n\t\tc'32 [ (\n\t}\n\t{\n\t\tc'16.\n\t}\n\t{\n\t\td'8 ]\n\t}\n\t{\n\t\te'32 [\n\t}\n\t{\n\t\te'16.\n\t\tf'8 ] )\n\t}\n}"

@@ -29,5 +29,5 @@ def test_spacing_spanner_proportional_notation_duration_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\newSpacingSection\n\t\\set Score.proportionalNotationDuration = #(ly:make-moment 1 15)\n\tc'8\n\td'8\n\t%%% spacing section ends here %%%\n\t\\newSpacingSection\n\t\\set Score.proportionalNotationDuration = #(ly:make-moment 1 30)\n\te'8\n\tf'8\n\t%%% spacing section ends here %%%\n}"

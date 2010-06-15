@@ -43,7 +43,7 @@ def test_componenttools_give_music_to_01( ):
 
    "Container t carries discontiguous spanners."
  
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
    "Recipient container is now ..."
@@ -57,7 +57,7 @@ def test_componenttools_give_music_to_01( ):
 
    "Recipient container carries discontiguous spanners."
 
-   assert not check.wf(recipient)
+   assert not componenttools.is_well_formed_component(recipient)
    assert recipient.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
 
 
@@ -69,10 +69,10 @@ def test_componenttools_give_music_to_02( ):
   
    _give_music_to([donor], recipient)
 
-   assert check.wf(donor)
+   assert componenttools.is_well_formed_component(donor)
    assert donor.format == "c'8"
 
-   assert check.wf(recipient)
+   assert componenttools.is_well_formed_component(recipient)
    assert recipient.format == '\\new Voice {\n}'
 
 

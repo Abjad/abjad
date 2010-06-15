@@ -1,5 +1,4 @@
 from abjad.tools import cfgtools
-from abjad.tools import check
 from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import containertools

@@ -157,16 +157,6 @@ cfgtools
    tools/cfgtools/list_settings
 
 
-check
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/check/assert_wf
-   tools/check/profile
-   tools/check/wf
-
-
 chordtools
 
 .. toctree::
@@ -205,6 +195,8 @@ componenttools
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/get_likely_multiplier_of_components
    tools/componenttools/get_preprolated_duration_of_components
+   tools/componenttools/is_well_formed_component
+   tools/componenttools/list_badly_formed_components_in_expr
    tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
    tools/componenttools/list_leftmost_components_with_prolated_duration_at_most
    tools/componenttools/move_component_subtree_to_right_in_score_and_spanners
@@ -213,6 +205,7 @@ componenttools
    tools/componenttools/replace_components_with_children_of_components
    tools/componenttools/split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
    tools/componenttools/split_component_at_prolated_duration_and_fracture_crossing_spanners
+   tools/componenttools/tabulate_well_formedness_violations_in_expr
 
 
 containertools
@@ -339,6 +332,7 @@ iotools
    tools/iotools/ly
    tools/iotools/pdf
    tools/iotools/play
+   tools/iotools/profile_expr
    tools/iotools/redo
    tools/iotools/show
    tools/iotools/write_expr_to_ly

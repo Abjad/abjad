@@ -16,7 +16,7 @@ def test_leaftools_make_repeated_notes_with_shorter_notes_at_end_01( ):
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
 
 
@@ -35,7 +35,7 @@ def test_leaftools_make_repeated_notes_with_shorter_notes_at_end_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'32\n}"
 
 
@@ -50,7 +50,7 @@ def test_leaftools_make_repeated_notes_with_shorter_notes_at_end_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'128\n}"
 
 
@@ -73,7 +73,7 @@ def test_leaftools_make_repeated_notes_with_shorter_notes_at_end_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\t\\times 4/5 {\n\t\tc'32\n\t}\n}"
 
 
@@ -96,5 +96,5 @@ def test_leaftools_make_repeated_notes_with_shorter_notes_at_end_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"

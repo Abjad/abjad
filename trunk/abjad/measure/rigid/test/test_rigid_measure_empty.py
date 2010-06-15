@@ -21,7 +21,7 @@ def test_rigid_measure_empty_02( ):
    assert len(t) == 0
    assert t.duration.preprolated == 0
    assert t.duration.prolated == 0
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)
 
 
 def test_rigid_measure_empty_03( ):
@@ -32,4 +32,4 @@ def test_rigid_measure_empty_03( ):
    assert len(t) == 0
    assert t.duration.preprolated == 0
    assert t.duration.prolated == 0
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)

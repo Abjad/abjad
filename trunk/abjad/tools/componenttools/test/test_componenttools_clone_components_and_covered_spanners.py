@@ -54,8 +54,8 @@ def test_componenttools_clone_components_and_covered_spanners_01( ):
    }
    '''
 
-   assert check.wf(t)
-   assert check.wf(new)
+   assert componenttools.is_well_formed_component(t)
+   assert componenttools.is_well_formed_component(new)
    assert new.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tg'8\n\ta'8\n\tb'8\n\tc''8\n}"
 
 
@@ -114,8 +114,8 @@ def test_componenttools_clone_components_and_covered_spanners_02( ):
    }
    '''
 
-   assert check.wf(t)
-   assert check.wf(new)
+   assert componenttools.is_well_formed_component(t)
+   assert componenttools.is_well_formed_component(new)
    assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 (\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8 )\n\t}\n}"
 
 
@@ -180,5 +180,5 @@ def test_componenttools_clone_components_and_covered_spanners_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 (\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8 )\n\t}\n}"

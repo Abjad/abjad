@@ -31,12 +31,12 @@ def test_container_remove_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
    "Result is now d'8 [ ]"
 
-   assert check.wf(result)
+   assert componenttools.is_well_formed_component(result)
    assert result.format == "d'8 [ ]"
 
 
@@ -76,7 +76,7 @@ def test_container_remove_02( ):
    }
    '''
  
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
    r'''
@@ -86,5 +86,5 @@ def test_container_remove_02( ):
    }
    '''
    
-   assert check.wf(sequential)
+   assert componenttools.is_well_formed_component(sequential)
    assert sequential.format == "{\n\tc'8\n\td'8\n}"

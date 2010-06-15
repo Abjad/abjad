@@ -19,7 +19,7 @@ def test_spacing_spanner_new_section_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\newSpacingSection\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t%%% spacing section ends here %%%\n}"
 
 
@@ -47,5 +47,5 @@ def test_spacing_spanner_new_section_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\newSpacingSection\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\tc'8\n\t\t%%% spacing section ends here %%%\n\t}\n}"

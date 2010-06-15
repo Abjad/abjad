@@ -24,5 +24,5 @@ def test_bar_number_interface_break_visibility_01( ):
    >>
    '''
 
-   assert check.wf(score)
+   assert componenttools.is_well_formed_component(score)
    assert score.format == "\\new Score \\with {\n\t\\override BarNumber #'break-visibility = #end-of-line-invisible\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t\tb'8\n\t\tc''8\n\t}\n>>"

@@ -21,5 +21,5 @@ def test_span_bar_interface_grob_handling_01( ):
    >>
    '''
 
-   assert check.wf(score)
+   assert componenttools.is_well_formed_component(score)
    assert score.format == '\\new Score \\with {\n\t\\override SpanBar #\'color = #red\n} <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t}\n\t>>\n>>'

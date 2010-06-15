@@ -23,7 +23,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"   
    
 def test_containertools_insert_component_and_fracture_crossing_spanners_02( ):
@@ -43,7 +43,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
 
 
@@ -64,7 +64,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -85,7 +85,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -106,7 +106,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
 
 
@@ -127,7 +127,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_06( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
 
 
@@ -140,7 +140,7 @@ def test_containertools_insert_component_and_fracture_crossing_spanners_07( ):
    note = v[0]
    containertools.insert_component_and_fracture_crossing_spanners(t, 1, v[0])
 
-   assert check.wf(v)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(v)
+   assert componenttools.is_well_formed_component(t)
    assert not note in v
    assert note.parentage.parent is t

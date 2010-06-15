@@ -21,5 +21,5 @@ def test_lilytools_parse_note_entry_string_01( ):
    }
    '''
    
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == '\\new Staff {\n\tg\'4\n\ta\'4 ~\n\ta\'2\n\t\\bar "||"\n\tg\'4.\n\tfs\'8\n\te\'4\n\td\'4 -\\fermata\n}'

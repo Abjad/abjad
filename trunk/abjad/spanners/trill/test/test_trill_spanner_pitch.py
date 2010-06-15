@@ -17,7 +17,7 @@ def test_trill_spanner_pitch_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\pitchedTrill c'8 \\startTrillSpan cs'\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
 
 
@@ -37,7 +37,7 @@ def test_trill_spanner_pitch_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\pitchedTrill c'8 \\startTrillSpan cs'\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
 
 
@@ -58,5 +58,5 @@ def test_trill_spanner_pitch_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 \\startTrillSpan\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"

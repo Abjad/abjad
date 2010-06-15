@@ -40,7 +40,7 @@ def test_user_comments_clear_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}"
 
 
@@ -69,5 +69,5 @@ def test_user_comments_clear_02( ):
    \once \override Beam #'thickness = #3
    c'8'''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\once \\override Beam #'thickness = #3\nc'8"

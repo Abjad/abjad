@@ -20,7 +20,7 @@ def test_tempo_spanner_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t%% tempo 8=38 ends here\n}"
 
    assert t[0].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
@@ -51,7 +51,7 @@ def test_tempo_spanner_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\t\\tempo 8=44\n\te'8\n\t\\tempo 8=38\n\tf'8\n\t%% tempo 8=38 ends here\n}"
 
    assert t[0].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)
@@ -83,7 +83,7 @@ def test_tempo_spanner_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\t\\tempo 8=38\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\tc'8\n\t\t%% tempo 8=38 ends here\n\t}\n}"
 
    assert t[0].tempo.effective == tempotools.TempoIndication(Rational(1, 8), 38)

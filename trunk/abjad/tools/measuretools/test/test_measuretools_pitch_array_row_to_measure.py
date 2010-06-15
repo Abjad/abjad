@@ -23,5 +23,5 @@ def test_measuretools_pitch_array_row_to_measure_01( ):
    }
    '''
 
-   assert check.wf(measure)
+   assert componenttools.is_well_formed_component(measure)
    assert measure.format == "{\n\t\\time 4/8\n\tr8\n\td'8\n\t<bf bqf>4\n}"

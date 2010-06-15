@@ -17,5 +17,5 @@ def test_dynamic_measure_meter_suppress_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

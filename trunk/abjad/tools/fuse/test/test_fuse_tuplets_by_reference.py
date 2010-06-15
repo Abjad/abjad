@@ -28,7 +28,7 @@ def test_fuse_tuplets_by_reference_01( ):
 
    new = fuse.tuplets_by_reference([t1, t2])
 
-   assert check.wf(new)
+   assert componenttools.is_well_formed_component(new)
    assert len(t1) == 0
    assert len(t2) == 0
    assert new is not t1 and new is not t2
@@ -87,7 +87,7 @@ def test_fuse_tuplets_by_reference_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
 
 
@@ -134,7 +134,7 @@ def test_fuse_tuplets_by_reference_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'8 (\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8 )\n\t}\n}"
 
 
@@ -189,5 +189,5 @@ def test_fuse_tuplets_by_reference_06( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 (\n\t\tc'4\n\t}\n\tc'4 )\n}"

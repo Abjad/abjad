@@ -73,7 +73,7 @@ def test_tempo_spanner_contiguity_constraint_01( ):
    }
    '''
 
-   assert check.wf(score)
+   assert componenttools.is_well_formed_component(score)
    assert score.format == '\\new Score {\n\t<<\n\t\t\\context Staff = "foo" {\n\t\t\t\\tempo 4=48\n\t\t\tc\'8\n\t\t\td\'8\n\t\t}\n\t\t\\context Staff = "bar" {\n\t\t\tc\'8\n\t\t\td\'8\n\t\t}\n\t>>\n\t<<\n\t\t\\context Staff = "foo" {\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\t%% tempo 4=48 ends here\n\t\t}\n\t\t\\context Staff = "bar" {\n\t\t\tc\'8\n\t\t\td\'8\n\t\t}\n\t>>\n}' 
    
    

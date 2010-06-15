@@ -61,6 +61,6 @@ def test_fuse_leaves_by_reference_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(result) == 1
    assert t.duration.prolated == Rational(3, 8)

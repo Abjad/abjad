@@ -15,7 +15,7 @@ def test_label_leaf_durations_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 2/3 {\n\tc'8 _ \\markup { \\small 1/8 }\n\td'8 _ \\markup { \\small 1/8 }\n\te'8 _ \\markup { \\small 1/8 }\n}"
 
 
@@ -33,7 +33,7 @@ def test_label_leaf_durations_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 2/3 {\n\tc'8 _ \\markup { \\small 1/12 }\n\td'8 _ \\markup { \\small 1/12 }\n\te'8 _ \\markup { \\small 1/12 }\n}"
 
 
@@ -51,5 +51,5 @@ def test_label_leaf_durations_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 2/3 {\n\tc'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n\td'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n\te'8 _ \\markup { \\column { \\small 1/8 \\small 1/12 } }\n}"

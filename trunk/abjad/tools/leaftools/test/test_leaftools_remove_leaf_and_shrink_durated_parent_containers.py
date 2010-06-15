@@ -43,7 +43,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 5/6\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'4\n\t\t\te'4\n\t\t}\n\t\t{\n\t\t\tf'4\n\t\t\tg'4\n\t\t\ta'4\n\t\t}\n\t}\n}"
 
 
@@ -97,7 +97,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 9/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t\t{\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t}\n\t}\n}"
 
 
@@ -160,7 +160,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 11/15\n\t\\scaleDurations #'(8 . 15) {\n\t\t\\fraction \\times 3/4 {\n\t\t\td'4\n\t\t\te'4\n\t\t\tf'4\n\t\t\tg'4\n\t\t}\n\t\t\\fraction \\times 5/7 {\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t\tf''8\n\t\t\tg''8\n\t\t}\n\t}\n}"
 
 
@@ -239,7 +239,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04( ):
    note = t[1][0]
    assert note.duration.written == Rational(1, 8)
    assert note.duration.prolated == Rational(1, 21)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
@@ -313,7 +313,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05( ):
    note = t[1][0]
    assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
@@ -376,7 +376,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06( ):
    note = t[1]
    assert note.duration.written == Rational(1, 4)
    assert note.duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07( ):
@@ -452,7 +452,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 4)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09( ):
@@ -466,7 +466,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 4)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10( ):
@@ -481,7 +481,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 4)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11( ):
@@ -495,7 +495,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11( ):
    assert isinstance(t[0], Note)
    assert t[0].duration.written == Rational(1, 4)
    assert t[0].duration.prolated == Rational(1, 4)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12( ):
@@ -513,7 +513,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13( ):
@@ -531,7 +531,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14( ):
@@ -549,7 +549,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15( ):
@@ -567,7 +567,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16( ):
@@ -585,7 +585,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17( ):
@@ -603,7 +603,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18( ):
@@ -621,7 +621,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19( ):
@@ -639,7 +639,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19( ):
    assert isinstance(t[0][0], Note)
    assert t[0][0].duration.written == Rational(1, 4)
    assert t[0][0].duration.prolated == Rational(1, 6)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20( ):
@@ -692,7 +692,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n}"
 
 
@@ -734,7 +734,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n\t{\n\t\t{\n\t\t\te'8\n\t\t}\n\t}\n}"
 
 
@@ -764,7 +764,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
 
 
@@ -794,7 +794,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
 
 
@@ -829,7 +829,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"
 
 
@@ -864,5 +864,5 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"

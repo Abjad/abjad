@@ -123,7 +123,7 @@ def test_fuse_containers_by_reference_07( ):
 #   Components.'''
 #   t = Staff(Voice(leaftools.make_repeated_notes(2)) * 2)
 #   result = fuse.containers_by_reference(t[:])
-#   assert check.wf(t)
+#   assert componenttools.is_well_formed_component(t)
 #   assert len(t) == 1
 
 

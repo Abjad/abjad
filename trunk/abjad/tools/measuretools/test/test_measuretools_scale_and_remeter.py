@@ -20,7 +20,7 @@ def test_measuretools_scale_and_remeter_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
 
 
@@ -40,7 +40,7 @@ def test_measuretools_scale_and_remeter_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
 
@@ -60,7 +60,7 @@ def test_measuretools_scale_and_remeter_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 9/16\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
@@ -80,7 +80,7 @@ def test_measuretools_scale_and_remeter_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
 
@@ -108,7 +108,7 @@ def test_measuretools_scale_and_remeter_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16\n\t\tb'16\n\t\tc''16\n\t\td''16\n\t}\n}"
 
 
@@ -128,7 +128,7 @@ def test_measuretools_scale_and_remeter_06( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 3/4\n\tc'4\n\td'4\n\te'4\n}"
 
 
@@ -152,7 +152,7 @@ def test_measuretools_scale_and_remeter_07( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 6/32\n\tc'32\n\td'32\n\te'32\n\tf'32\n\tg'32\n\ta'32\n}"
 
 
@@ -176,7 +176,7 @@ def test_measuretools_scale_and_remeter_08( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 6/64\n\tc'64\n\td'64\n\te'64\n\tf'64\n\tg'64\n\ta'64\n}"
 
 
@@ -200,7 +200,7 @@ def test_measuretools_scale_and_remeter_09( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 6/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
 
 
@@ -224,7 +224,7 @@ def test_measuretools_scale_and_remeter_10( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "{\n\t\\time 6/4\n\tc'4\n\td'4\n\te'4\n\tf'4\n\tg'4\n\ta'4\n}"
 
 

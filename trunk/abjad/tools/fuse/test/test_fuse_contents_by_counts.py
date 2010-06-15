@@ -16,7 +16,7 @@ def test_fuse_contents_by_counts_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'16 (\n\tc'8\n\tc'8 )\n}"
 
 
@@ -34,7 +34,7 @@ def test_fuse_contents_by_counts_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'2 ( ~\n\tc'8 )\n}"
 
 
@@ -52,7 +52,7 @@ def test_fuse_contents_by_counts_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 ( ~\n\tc'2 )\n}"
 
 
@@ -70,5 +70,5 @@ def test_fuse_contents_by_counts_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Voice {\n\tr8\n\tr4\n\tr4\n}'

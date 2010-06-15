@@ -40,7 +40,7 @@ def test_rigid_measure_add_01( ):
    assert new is not t1 and new is not t2
    assert len(t1) == 0
    assert len(t2) == 0
-   assert check.wf(new)
+   assert componenttools.is_well_formed_component(new)
    assert new.format == "{\n\t\\time 2/8\n\tc'16 [\n\td'16 ]\n\tc'16 (\n\td'16 )\n}"
 
    
@@ -83,5 +83,5 @@ def test_rigid_measure_add_02( ):
    assert new is not t1 and new is not t2
    assert len(t1) == 0
    assert len(t2) == 0
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16 ]\n\t\tc'16 (\n\t\td'16 )\n\t}\n}"

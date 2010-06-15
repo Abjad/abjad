@@ -19,8 +19,8 @@ def test_parentage_cut_01( ):
 
    assert t.format == "\\new Staff {\n\tc'8\n\te'8\n\tf'8\n}"
    
-   assert check.wf(t)
-   assert check.wf(note)
+   assert componenttools.is_well_formed_component(t)
+   assert componenttools.is_well_formed_component(note)
    assert note.parentage.parent is None
 
 
@@ -44,8 +44,8 @@ def test_parentage_cut_02( ):
    '''
 
    leaf.parentage._cut( )
-   assert not check.wf(t)
-   assert not check.wf(leaf)
+   assert not componenttools.is_well_formed_component(t)
+   assert not componenttools.is_well_formed_component(leaf)
 
    t._music.insert(0, leaf)
    leaf.parentage._switch(t)
@@ -61,8 +61,8 @@ def test_parentage_cut_02( ):
    }
    '''
 
-   assert check.wf(t)
-   assert check.wf(leaf)
+   assert componenttools.is_well_formed_component(t)
+   assert componenttools.is_well_formed_component(leaf)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t{\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
@@ -106,8 +106,8 @@ def test_parentage_cut_03( ):
    '''
 
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
-   assert check.wf(t)
-   assert check.wf(sequential)
+   assert componenttools.is_well_formed_component(t)
+   assert componenttools.is_well_formed_component(sequential)
 
 
 def test_parentage_cut_04( ):
@@ -136,8 +136,8 @@ def test_parentage_cut_04( ):
    '''
 
    tuplet.parentage._cut( )
-   assert not check.wf(t)
-   assert not check.wf(tuplet)
+   assert not componenttools.is_well_formed_component(t)
+   assert not componenttools.is_well_formed_component(tuplet)
 
    t._music.insert(0, tuplet)
    tuplet.parentage._switch(t)
@@ -159,5 +159,5 @@ def test_parentage_cut_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\times 2/3 {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8 ]\n\t\t}\n\t}\n}"

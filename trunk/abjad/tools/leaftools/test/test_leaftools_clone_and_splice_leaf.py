@@ -28,5 +28,5 @@ def test_leaftools_clone_and_splice_leaf_01( ):
    }
    '''
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == "\\new Staff {\n\tc'8 [\n\tc'8\n\tc'8\n\td'8\n\te'8\n\tf'8 ]\n}"   

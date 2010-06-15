@@ -27,4 +27,4 @@ def test_parenttools_give_position_to_01( ):
 
    "Container t now carries a discontiguous spanner."
 
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)

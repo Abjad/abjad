@@ -15,5 +15,5 @@ def test_text_spanner_interface_spanner_reception_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t[0].text_spanner.spanner is text_spanner

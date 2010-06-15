@@ -18,7 +18,7 @@ def test_parenttools_ignore_01( ):
 
    receipt = _ignore(t[:])
 
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)
 
    assert (t[0], t) in receipt
    assert (t[1], t) in receipt

@@ -16,7 +16,7 @@ def test_leaftools_replace_leaves_with_skips_in_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'
 
 
@@ -35,5 +35,5 @@ def test_leaftools_replace_leaves_with_skips_in_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'

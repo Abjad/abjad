@@ -20,6 +20,6 @@ def test_chord_append_01( ):
    >4
    '''
 
-   assert check.wf(chord)
+   assert componenttools.is_well_formed_component(chord)
    assert note_head._client is chord
    assert chord.format == "<\n\tc'\n\td'\n\t\\tweak #'style #'harmonic\n\tb'\n>4"

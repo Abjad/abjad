@@ -151,7 +151,7 @@ def test_chordtools_divide_chord_by_pitch_number_10( ):
    >4
    '''
 
-   assert check.wf(treble)
+   assert componenttools.is_well_formed_component(treble)
    assert treble.format == "<\n\t\\tweak #'color #blue\n\td'\n\t\\tweak #'color #blue\n\tef'\n>4"
 
    r'''
@@ -163,7 +163,7 @@ def test_chordtools_divide_chord_by_pitch_number_10( ):
    >4   
    '''
 
-   assert check.wf(bass)
+   assert componenttools.is_well_formed_component(bass)
    assert bass.format == "<\n\t\\tweak #'color #red\n\tc'\n\t\\tweak #'color #red\n\tcs'\n>4"
 
 
@@ -180,10 +180,10 @@ def test_chordtools_divide_chord_by_pitch_number_11( ):
 
    "<d' f'>4 ^ \markup { UP }"
 
-   assert check.wf(treble)
+   assert componenttools.is_well_formed_component(treble)
    assert treble.format == "<d' f'>4 ^ \\markup { UP }"
 
    "cs4 _ \markup { DOWN }"
 
-   assert check.wf(bass)
+   assert componenttools.is_well_formed_component(bass)
    assert bass.format == 'cs4 _ \\markup { DOWN }'

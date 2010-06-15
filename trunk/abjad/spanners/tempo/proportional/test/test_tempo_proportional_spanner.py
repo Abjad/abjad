@@ -35,5 +35,5 @@ def test_tempo_proportional_spanner_01( ):
    >>
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Score <<\n\t\\new Staff {\n\t\t\\tempo 4=60\n\t\t\\newSpacingSection\n\t\t\\set Score.proportionalNotationDuration = #(ly:make-moment 1 34)\n\t\tc'8\n\t\td'8\n\t\t%% tempo 4=60 ends here\n\t\t\\tempo 4=120\n\t\t\\newSpacingSection\n\t\t\\set Score.proportionalNotationDuration = #(ly:make-moment 1 17)\n\t\te'8\n\t\tf'8\n\t\t%% tempo 4=120 ends here\n\t}\n>>"

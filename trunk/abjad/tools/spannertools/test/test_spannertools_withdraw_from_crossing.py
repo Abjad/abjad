@@ -123,4 +123,4 @@ def test_spannertools_withdraw_from_crossing_03( ):
    "Operation leaves score tree in weird state."
    "Both slur and trill are now discontiguous."
 
-   assert not check.wf(t)
+   assert not componenttools.is_well_formed_component(t)

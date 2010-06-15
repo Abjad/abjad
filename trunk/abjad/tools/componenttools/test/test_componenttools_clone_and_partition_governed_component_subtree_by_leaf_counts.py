@@ -19,7 +19,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
    }
    '''
 
-   assert check.wf(left)
+   assert componenttools.is_well_formed_component(left)
    assert left.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [ ]\n\t}\n}"
 
    r'''
@@ -31,7 +31,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert right.format == "\\new Voice {\n\t\\times 2/3 {\n\t\td'8 [\n\t\te'8 ]\n\t}\n}"
 
 
@@ -50,7 +50,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
    r'''
@@ -59,7 +59,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
    }
    '''
 
-   assert check.wf(result[0])
+   assert componenttools.is_well_formed_component(result[0])
    assert result[0].format == "\\new Voice {\n\tc'8 [ ]\n}"
 
    r'''
@@ -69,5 +69,5 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
    }
    '''
 
-   assert check.wf(result[-1])
+   assert componenttools.is_well_formed_component(result[-1])
    assert result[-1].format == "\\new Voice {\n\td'8 [\n\te'8 ]\n}"

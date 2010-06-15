@@ -41,5 +41,5 @@ def test_SchemeFunction___init___02( ):
    }
    '''
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == "\\new Staff \\with {\n\t\\override StaffSymbol #'staff-space = #(magstep -3)\n\t\\override StaffSymbol #'thickness = #(magstep -3)\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

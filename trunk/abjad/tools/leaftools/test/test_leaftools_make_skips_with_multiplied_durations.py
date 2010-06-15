@@ -15,5 +15,5 @@ def test_leaftools_make_skips_with_multiplied_durations_01( ):
    }
    '''
    
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == '\\new Staff {\n\ts4 * 2\n\ts4 * 4/3\n\ts4 * 1\n\ts4 * 4/5\n}'

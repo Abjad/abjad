@@ -1,4 +1,4 @@
-def profile(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
+def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
    '''Profile `expr` with the built-in Python ``cProfile`` module.
 
    Set `expr` to any string of Abjad input.
@@ -9,7 +9,7 @@ def profile(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
 
    Set `strip_dirs` to ``True`` to strip directory names from output lines. ::
 
-      abjad> check.profile('Staff(leaftools.make_repeated_notes(8))')
+      abjad> iotools.profile_expr('Staff(leaftools.make_repeated_notes(8))')
       Sat Aug 15 15:29:14 2009    _tmp_abj_profile
 
                147262 function calls (123144 primitive calls) in 0.237 CPU seconds
@@ -40,6 +40,10 @@ def profile(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
    .. note:: For information on reading the output of the different
       Python profilers, see `the Python docs 
       <http://docs.python.org/library/profile.html>`_.
+
+   .. versionchanged:: 1.1.2
+      renamed ``check.profile( )`` to
+      ``iotools.profile_expr( )``.
    '''
 
    ## NOTE: this try block was added because, for some strange reason, 
@@ -65,7 +69,7 @@ def profile(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
 #import pstats
 #
 #
-#def profile(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
+#def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
 #   '''Profile expr, sort stats, print 12 lines.
 #      Set strip_dirs to True to strip directory path names.
 #      Sort by values include 'cum', 'time', 'calls'.'''

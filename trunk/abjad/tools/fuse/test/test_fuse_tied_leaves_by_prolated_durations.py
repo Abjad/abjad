@@ -23,7 +23,7 @@ def test_fuse_tied_leaves_by_prolated_durations_01( ):
    assert t[1] in tie
    assert t[2] in tie
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'4 ~\n\tc'8 ~\n\tc'8\n}"
 
 
@@ -53,7 +53,7 @@ def test_fuse_tied_leaves_by_prolated_durations_02( ):
    assert t[2] in tie
    assert t[3] in tie
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
 
 
@@ -78,7 +78,7 @@ def test_fuse_tied_leaves_by_prolated_durations_03( ):
    assert t[0] in tie1
    assert t[1] in tie2
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'4\n\tc'4\n}"
 
 
@@ -164,7 +164,7 @@ def test_fuse_tied_leaves_by_prolated_durations_05( ):
 
    fuse.tied_leaves_by_prolated_durations(t.leaves, meters)
 
-   check.wf(t, runtime='format')
+   componenttools.is_well_formed_component(t)
    assert t.format == "\\new RhythmicStaff \\with {\n\t\\override BarLine #'transparent = ##t\n\t\\override TimeSignature #'transparent = ##t\n} {\n\tc'4 ~\n\tc'16\n\tc'8. ~\n\tc'4\n\tc'8\n\tc'8 ~\n\tc'2 ~\n\tc'16\n\tc'8. ~\n\tc'4 ~\n\tc'4 ~\n\tc'8\n\tc'8 ~\n\tc'8.\n\tc'16 ~\n\tc'4 ~\n\tc'2\n\tc'8.\n}"
 
 

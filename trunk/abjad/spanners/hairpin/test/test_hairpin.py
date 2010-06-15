@@ -9,7 +9,7 @@ def test_hairpin_01( ):
    t = Staff([Note(n, (1, 8)) for n in range(8)])
    Crescendo(t[:4])
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    r'''
@@ -58,7 +58,7 @@ def test_hairpin_03( ):
    t[0].dynamics.mark = 'p'
    t[3].dynamics.mark = 'f'
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
    r'''
@@ -113,7 +113,7 @@ def test_hairpin_05( ):
    t[6].dynamics.mark = 'f'
 
    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
    r'''
    \new Staff {
@@ -136,7 +136,7 @@ def test_hairpin_06( ):
    Crescendo(t[ : ])
 
    assert t.format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
    r'''
    \new Staff {
@@ -171,7 +171,7 @@ def test_hairpin_07( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
 
 
@@ -182,7 +182,7 @@ def test_hairpin_08( ):
    Crescendo(t[ : ], trim = True)
 
    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
 
    r'''
    \new Staff {

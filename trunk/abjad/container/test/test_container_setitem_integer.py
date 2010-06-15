@@ -29,7 +29,7 @@ def test_container_setitem_integer_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\tc''8 ] \\glissando\n\te'8 \\glissando\n\tf'8\n}"
 
 
@@ -64,7 +64,7 @@ def test_container_setitem_integer_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [ \\glissando\n\t{\n\t\tc'16 \\glissando\n\t\tc'16 \\glissando\n\t\tc'16 ] \\glissando\n\t}\n\te'8 \\glissando\n\tf'8\n}"
 
 
@@ -102,7 +102,7 @@ def test_container_setitem_integer_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
 
 
@@ -140,7 +140,7 @@ def test_container_setitem_integer_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
 
 
@@ -181,7 +181,7 @@ def test_container_setitem_integer_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t\\times 2/3 {\n\t\tc'8 \\glissando\n\t\td'8 \\glissando\n\t\te'8 ]\n\t}\n}"
 
 
@@ -218,7 +218,7 @@ def test_container_setitem_integer_06( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
 
 
@@ -260,7 +260,7 @@ def test_container_setitem_integer_07( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n\tr2\n}"
 
 
@@ -305,7 +305,7 @@ def test_container_setitem_integer_08( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\tg'8\n\te'8 ]\n}"
 
    "Modified u:"
@@ -317,7 +317,7 @@ def test_container_setitem_integer_08( ):
    }
    '''
 
-   assert check.wf(u)
+   assert componenttools.is_well_formed_component(u)
    assert u.format == "\\new Voice {\n\tf'8 [\n\ta'8 ]\n}"
 
 
@@ -370,7 +370,7 @@ def test_container_setitem_integer_09( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\t{\n\t\tg'8 (\n\t\ta'8 )\n\t}\n\te'8 ]\n}"
 
    "Voice u is now ..."
@@ -382,5 +382,5 @@ def test_container_setitem_integer_09( ):
    }
    '''
 
-   assert check.wf(u)
+   assert componenttools.is_well_formed_component(u)
    assert u.format == "\\new Voice {\n\tf'8 \\glissando\n\tb'8\n}"

@@ -37,8 +37,8 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_01( ):
    }
    '''
 
-   assert check.wf(t)
-   assert check.wf(new)
+   assert componenttools.is_well_formed_component(t)
+   assert componenttools.is_well_formed_component(new)
    assert new.format == "\\new Voice {\n\te'8 \\startTrillSpan\n\tf'8 \\stopTrillSpan\n}"
    
 
@@ -84,8 +84,8 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_02( ):
    }
    '''
 
-   assert check.wf(t)
-   assert check.wf(new)
+   assert componenttools.is_well_formed_component(t)
+   assert componenttools.is_well_formed_component(new)
    assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
 
 
@@ -129,8 +129,8 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_03( ):
    }
    '''
 
-   assert check.wf(t)
-   assert check.wf(new)
+   assert componenttools.is_well_formed_component(t)
+   assert componenttools.is_well_formed_component(new)
    assert new.format == "\\new Voice {\n\tf'8 \\startTrillSpan\n\tg'8 [\n\ta'8 ] \\stopTrillSpan\n}"
 
 
@@ -186,5 +186,5 @@ def test_componenttools_clone_components_and_fracture_crossing_spanners_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert new.format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"

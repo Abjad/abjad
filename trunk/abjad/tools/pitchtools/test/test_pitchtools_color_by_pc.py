@@ -11,5 +11,5 @@ def test_pitchtools_color_by_pc_01( ):
    c''4
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\once \\override NoteHead #'color = #(x11-color 'red)\nc''4"

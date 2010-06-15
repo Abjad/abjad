@@ -47,6 +47,6 @@ def test_partition_unfractured_by_counts_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(parts) == 3
    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [ (\n\t}\n\t{\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t\tb'8\n\t\tc''8 ] )\n\t}\n}"

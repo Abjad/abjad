@@ -34,5 +34,5 @@ def test_measuretools_color_measure_01( ):
    }
    '''
 
-   assert check.wf(measure)
+   assert componenttools.is_well_formed_component(measure)
    assert measure.format == "{\n\t\\override Beam #'color = #red\n\t\\override Dots #'color = #red\n\t\\override Staff.TimeSignature #'color = #red\n\t\\override NoteHead #'color = #red\n\t\\override Stem #'color = #red\n\t\\time 2/8\n\tc'8\n\td'8\n\t\\revert Beam #'color\n\t\\revert Dots #'color\n\t\\revert Staff.TimeSignature #'color\n\t\\revert NoteHead #'color\n\t\\revert Stem #'color\n}"

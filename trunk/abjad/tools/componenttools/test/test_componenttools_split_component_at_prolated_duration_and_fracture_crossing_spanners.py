@@ -44,7 +44,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
@@ -97,7 +97,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
    assert isinstance(halves[1], list)
@@ -207,7 +207,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 )\n\t\td'16. ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
@@ -258,7 +258,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 7/32\n\t\tc'8 [ (\n\t\td'16. ] )\n\t}\n\t{\n\t\t\\time 1/32\n\t\td'32 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
@@ -306,7 +306,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert isinstance(parts, tuple)
    assert isinstance(parts[0], list)
    assert isinstance(parts[1], list)
@@ -324,10 +324,10 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Rational(1, 32))
 
    "c'32 [ ]"
-   assert check.wf(halves[0][0])
+   assert componenttools.is_well_formed_component(halves[0][0])
 
    "c'16. [ ]"
-   assert check.wf(halves[1][0])
+   assert componenttools.is_well_formed_component(halves[1][0])
 
 
 def test_componenttools_split_component_at_prolated_duration_and_fracture_crossing_spanners_08( ):
@@ -374,7 +374,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
@@ -429,7 +429,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
    assert isinstance(halves[1], list)
@@ -488,7 +488,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -545,7 +545,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ] ) ~\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -607,7 +607,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 14/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'8 ~\n\t\t\td'32\n\t\t\te'8 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\te'32 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8 ] )\n\t}\n}"
    
@@ -626,8 +626,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Rational(1, 32))
 
    assert len(halves) == 2
-   assert check.wf(halves[0][0])
-   assert check.wf(halves[1][0])
+   assert componenttools.is_well_formed_component(halves[0][0])
+   assert componenttools.is_well_formed_component(halves[1][0])
 
    assert halves[0][0].format == "c'8 * 1/4"
    assert halves[1][0].format == "c'8 * 1/4"
@@ -647,8 +647,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    halves = componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners(t, Rational(1, 48))
 
    assert len(halves) == 2
-   assert check.wf(halves[0][0])
-   assert check.wf(halves[1][0])
+   assert componenttools.is_well_formed_component(halves[0][0])
+   assert componenttools.is_well_formed_component(halves[1][0])
 
    assert halves[0][0].format == "c'8 * 1/6"
    assert halves[1][0].format == "c'8 * 1/3"
@@ -702,7 +702,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'8 * 1/2 [ ] ( )\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'8 * 1/2 [ ] (\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
@@ -756,7 +756,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'8 * 1/2 [ (\n\t\td'8 * 1/4 ] )\n\t}\n\t{\n\t\t\\time 1/32\n\t\td'8 * 1/4 [ ] (\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
@@ -815,7 +815,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. * 1/2 [ (\n\t\t\td'8. * 1/6 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. * 1/3 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
@@ -856,7 +856,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 16/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 1/4\n\t\t}\n\t}\n\t{\n\t\t\\time 9/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 9/64\n\t\t}\n\t}\n}"
 
@@ -915,6 +915,6 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 14/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'32 [ (\n\t\t\td'32\n\t\t\te'32\n\t\t\tf'32\n\t\t\tg'32\n\t\t\ta'32\n\t\t\tb'32 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc''64 [ ] ( )\n\t\t}\n\t}\n}"

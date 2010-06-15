@@ -23,5 +23,5 @@ def test_tuplettools_change_diminished_tuplets_in_expr_to_augmented_01( ):
    }
    '''
 
-   assert check.wf(tuplet)
+   assert componenttools.is_well_formed_component(tuplet)
    assert tuplet.format == "\\fraction \\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"

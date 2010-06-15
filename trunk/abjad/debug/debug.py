@@ -1,11 +1,12 @@
 from abjad.core.abjadcore import _Abjad
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.tools import check
+from abjad.tools import componenttools
 
 if _read_config_file( )['DEBUG'] == False:
    DEBUG = False
 else:
    DEBUG = True
+
 
 class _debug(_Abjad):
    '''Debug decorator class.  
@@ -31,7 +32,7 @@ class _debug(_Abjad):
          ...
    '''
 
-   def __init__(self, check_function=check.wf, verbose=False):
+   def __init__(self, check_function=componenttools.is_well_formed_component, verbose=False):
       self.check_function = check_function
       self.verbose = verbose
 
@@ -46,7 +47,7 @@ class _debug(_Abjad):
                
             component = args[0]
             if not self.check_function(component):
-               raise Warning("check( ) not passed in %s" % f.__name__)
+               raise Warning("check not passed in %s" % f.__name__)
          return result
 
       return wrapper 

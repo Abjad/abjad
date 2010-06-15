@@ -28,7 +28,7 @@ def test_staff_interface_01( ):
    >>
    '''
 
-   assert check.wf(piano)
+   assert componenttools.is_well_formed_component(piano)
    assert piano[0][0].staff.effective is piano[1]
    assert piano[0][1].staff.effective is piano[1]
    assert piano[0][2].staff.effective is piano[1]
@@ -70,7 +70,7 @@ def test_staff_interface_02( ):
    >>
    '''
 
-   assert check.wf(piano)
+   assert componenttools.is_well_formed_component(piano)
    assert piano[0][0].staff.effective is piano[1]
    assert piano[0][1].staff.effective is piano[1]
    assert piano[0][2].staff.effective is piano[0]
@@ -110,7 +110,7 @@ def test_staff_interface_03( ):
    >>
    '''
 
-   assert check.wf(piano)
+   assert componenttools.is_well_formed_component(piano)
    assert piano.format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\t\\change Staff = LH\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
@@ -142,7 +142,7 @@ def test_staff_interface_04( ):
    >>
    '''
 
-   assert check.wf(piano)
+   assert componenttools.is_well_formed_component(piano)
    assert piano[0][0].staff.effective is piano[1]
    assert piano[0][1].staff.effective is piano[1]
    assert piano[0][2].staff.effective is piano[1]

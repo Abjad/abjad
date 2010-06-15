@@ -42,7 +42,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
    assert isinstance(halves[1], list)
@@ -93,7 +93,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
    assert isinstance(halves[1], list)
@@ -202,7 +202,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
    assert isinstance(halves[1], list)
@@ -256,7 +256,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert isinstance(halves, tuple)
    assert isinstance(halves[0], list)
    assert isinstance(halves[1], list)
@@ -315,7 +315,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    ## TODO: The tie at the split locus here is a (small) bug. ##
    ##       Eventually should fix. ##
@@ -373,6 +373,6 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ~\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"

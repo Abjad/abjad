@@ -37,7 +37,7 @@ def regression(code, tab_width = 3):
               f'8 ]
          }
 
-         assert check.wf(staff)
+         assert componenttools.is_well_formed_component(staff)
          assert staff.format == "\\new Staff {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\tf'8 ]\n}"
          '''
 
@@ -72,7 +72,7 @@ def regression(code, tab_width = 3):
          most += line + '\n'
          print start + line
    last_variable = last_format_line[2:-1] 
-   print tab + 'assert check.wf(%s)' % last_variable
+   print tab + 'assert componenttools.is_well_formed_component(%s)' % last_variable
    format_string = _replace_line_with_format(most, last_format_line)
    format_string = repr(format_string)
    print tab + 'assert %s.format == %s' % (last_variable, format_string)

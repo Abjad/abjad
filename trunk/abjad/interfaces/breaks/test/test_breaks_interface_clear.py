@@ -23,5 +23,5 @@ def test_breaks_interface_clear_01( ):
 
    "c'4"
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "c'4"

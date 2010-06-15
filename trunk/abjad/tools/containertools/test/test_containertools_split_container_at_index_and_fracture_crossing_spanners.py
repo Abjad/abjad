@@ -44,7 +44,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert left.format == "\\times 2/3 {\n\tf'8 ]\n}"
    assert right.format == "\\times 2/3 {\n\tg'8 [\n\ta'8 ]\n}"
    assert tuplet.format == ''
@@ -98,7 +98,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert left.format == "{\n\t\\time 1/8\n\tf'8 ]\n}"
    assert right.format == "{\n\t\\time 2/8\n\tg'8 [\n\ta'8 ]\n}"
    assert py.test.raises(UnderfullMeasureError, 'm.format')
@@ -162,7 +162,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert left.format == "{\n\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}\n}"
    assert right.format == "{\n\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
    assert py.test.raises(UnderfullMeasureError, 'm.format')
@@ -318,7 +318,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
@@ -364,7 +364,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert left is None
    assert right is leaf
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
@@ -412,7 +412,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert left is leaf
    assert right is None
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
@@ -458,7 +458,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n\t}\n}"
 
@@ -497,6 +497,6 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(halves) == 2
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\tc'8. [ ] (\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8. [ ] )\n\t}\n}"

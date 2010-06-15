@@ -24,7 +24,7 @@ def test_container_insert_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
    
@@ -45,7 +45,7 @@ def test_container_insert_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -67,7 +67,7 @@ def test_container_insert_03( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -88,7 +88,7 @@ def test_container_insert_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -109,7 +109,7 @@ def test_container_insert_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\teqs'8\n\tf'8 ]\n}"
 
 
@@ -130,7 +130,7 @@ def test_container_insert_06( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -143,7 +143,7 @@ def test_container_insert_07( ):
    note = v[0]
    t.insert(1, v[0])
 
-   assert check.wf(v)
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(v)
+   assert componenttools.is_well_formed_component(t)
    assert not note in v
    assert note.parentage.parent is t

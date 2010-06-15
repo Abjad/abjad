@@ -13,7 +13,7 @@ def test_tuplet_bracket_interface_tuplet_full_length_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Staff \\with {\n\ttupletFullLength = ##t\n} {\n}'
 
    t.tuplet_bracket.tuplet_full_length = False
@@ -25,7 +25,7 @@ def test_tuplet_bracket_interface_tuplet_full_length_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Staff \\with {\n\ttupletFullLength = ##f\n} {\n}'
 
    t.tuplet_bracket.tuplet_full_length = None
@@ -35,5 +35,5 @@ def test_tuplet_bracket_interface_tuplet_full_length_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == '\\new Staff {\n}'

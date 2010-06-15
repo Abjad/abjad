@@ -6,7 +6,7 @@ def test_staff_append_01( ):
    '''Append one note.'''
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(Note(0, (1, 4)))
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(t) == 5
    assert t.duration.contents == Rational(5, 4)
 
@@ -15,7 +15,7 @@ def test_staff_append_02( ):
    '''Append one chord.'''
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(Chord([2, 3, 4], (1, 4)))
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(t) == 5
    assert t.duration.contents == Rational(5, 4)
 
@@ -24,7 +24,7 @@ def test_staff_append_03( ):
    '''Append one tuplet.'''
    t = Staff(Note(0, (1, 4)) * 4)
    t.append(FixedDurationTuplet((2, 8), Note(0, (1, 8)) * 3))
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert len(t) == 5
    assert t.duration.contents == Rational(5, 4)
 

@@ -19,7 +19,7 @@ def test_fdtuplet_formatter_number_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 4/5 {\n\tc'8 ^ \\markup { 0 }\n\td'8 ^ \\markup { 1 }\n\te'8 ^ \\markup { 2 }\n\tf'8 ^ \\markup { 3 }\n\tg'8 ^ \\markup { 4 }\n}"
 
 
@@ -41,5 +41,5 @@ def test_fdtuplet_formatter_number_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 4/5 {\n\tc'8 % leaf 0\n\td'8 % leaf 1\n\te'8 % leaf 2\n\tf'8 % leaf 3\n\tg'8 % leaf 4\n}"

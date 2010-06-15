@@ -49,5 +49,5 @@ def test_scoretools_pitch_arrays_to_score_01( ):
    >>
    '''
 
-   assert check.wf(score)
+   assert componenttools.is_well_formed_component(score)
    assert score.format == "\\new Score <<\n\t\\new StaffGroup <<\n\t\t\\new Staff {\n\t\t\t{\n\t\t\t\t\\time 4/8\n\t\t\t\tr8\n\t\t\t\td'8\n\t\t\t\t<bf bqf>4\n\t\t\t}\n\t\t\t{\n\t\t\t\t\\time 3/8\n\t\t\t\tr8\n\t\t\t\tr8\n\t\t\t\tr8\n\t\t\t}\n\t\t}\n\t\t\\new Staff {\n\t\t\t{\n\t\t\t\t\\time 4/8\n\t\t\t\tg'4\n\t\t\t\tfs'8\n\t\t\t\tr8\n\t\t\t}\n\t\t\t{\n\t\t\t\t\\time 3/8\n\t\t\t\tr8\n\t\t\t\tr8\n\t\t\t\tr8\n\t\t\t}\n\t\t}\n\t>>\n>>"

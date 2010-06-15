@@ -26,7 +26,7 @@ def test_tietools_tie_chain_to_augmented_tuplet_with_proportions_and_encourage_d
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'8. [\n\t}\n\tc'16 ]\n}"
 
 
@@ -47,7 +47,7 @@ def test_tietools_tie_chain_to_augmented_tuplet_with_proportions_and_encourage_d
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t{\n\t\tc'16 [\n\t\tc'8\n\t}\n\tc'16 ]\n}"
 
 
@@ -70,5 +70,5 @@ def test_tietools_tie_chain_to_augmented_tuplet_with_proportions_and_encourage_d
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\t\\fraction \\times 8/5 {\n\t\tc'64. [\n\t\tc'32.\n\t\tc'32.\n\t}\n\tc'16 ]\n}"

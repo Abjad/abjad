@@ -28,7 +28,7 @@ def test_clef_interface_copy_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t[0].clef.effective == Clef('treble')
    assert t[1].clef.effective == Clef('treble')
    assert t[2].clef.effective == Clef('treble')
@@ -52,7 +52,7 @@ def test_clef_interface_copy_02( ):
    t[4].clef.forced = Clef('bass')
    t.extend(componenttools.clone_components_and_immediate_parent_of_first_component(t[2:4]))
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t[0].clef.effective == Clef('treble')
    assert t[1].clef.effective == Clef('treble')
    assert t[2].clef.effective == Clef('treble')

@@ -21,7 +21,7 @@ def test_container_append_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\t{\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
@@ -41,7 +41,7 @@ def test_container_append_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\times 4/7 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'16\n}"
 
 
@@ -97,7 +97,7 @@ def test_container_append_04( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8\n}"
 
    "Container u is now ..."
@@ -110,7 +110,7 @@ def test_container_append_04( ):
    }
    '''
 
-   assert check.wf(u)
+   assert componenttools.is_well_formed_component(u)
    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
 
@@ -141,5 +141,5 @@ def test_container_append_05( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n\td'8\n}"

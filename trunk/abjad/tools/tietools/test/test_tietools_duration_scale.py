@@ -15,7 +15,7 @@ def test_tietools_duration_scale_01( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ~\n\tc'32 ]\n}"
 
 
@@ -32,5 +32,5 @@ def test_tietools_duration_scale_02( ):
    }
    '''
 
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff {\n\tc'8 [ ]\n}"

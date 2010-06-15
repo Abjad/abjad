@@ -19,5 +19,5 @@ def test_text_spanner_interface_grob_handling_01( ):
    }
    '''
    
-   assert check.wf(t)
+   assert componenttools.is_well_formed_component(t)
    assert t.format == "\\new Staff \\with {\n\t\\override TextSpanner #'staff-padding = #6\n} {\n\tc'8 \\startTextSpan\n\td'8\n\te'8\n\tf'8 \\stopTextSpan\n}"

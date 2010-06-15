@@ -53,5 +53,5 @@ def test_measuretools_color_nonbinary_measures_in_01( ):
    }
    '''
 
-   assert check.wf(staff)
+   assert componenttools.is_well_formed_component(staff)
    assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\override Beam #'color = #red\n\t\t\\override Dots #'color = #red\n\t\t\\override Staff.TimeSignature #'color = #red\n\t\t\\override NoteHead #'color = #red\n\t\t\\override Stem #'color = #red\n\t\t\\time 3/12\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8.\n\t\t\td'8.\n\t\t}\n\t\t\\revert Beam #'color\n\t\t\\revert Dots #'color\n\t\t\\revert Staff.TimeSignature #'color\n\t\t\\revert NoteHead #'color\n\t\t\\revert Stem #'color\n\t}\n}"
