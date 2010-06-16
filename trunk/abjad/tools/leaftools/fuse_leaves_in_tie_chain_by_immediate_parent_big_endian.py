@@ -1,8 +1,6 @@
-from abjad.tools import tietools
-from abjad.tools.fuse.leaves_by_reference import leaves_by_reference
 
 
-def leaves_in_tie_chain(tie_chain):
+def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
    r'''Fuse leaves in `tie_chain` by parent::
 
       abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
@@ -23,7 +21,7 @@ def leaves_in_tie_chain(tie_chain):
       
    ::
       
-      abjad> fuse.leaves_in_tie_chain(staff.leaves[0].tie.chain)
+      abjad> leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(staff.leaves[0].tie.chain)
       [[Note(c', 4)], [Note(c', 4)]]
 
    ::
@@ -45,7 +43,13 @@ def leaves_in_tie_chain(tie_chain):
    .. todo:: rename ``fuse.tied_leaves_by_parent( )``.
 
    .. todo:: rename ``tietools.fuse_tied_leaves_by_parent( )``?
+
+   .. versionchanged:: 1.1.2
+      renamed ``fuse.leaves_in_tie_chain( )`` to
+      ``leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian( )``.
    '''
+   from abjad.tools import tietools
+   from abjad.tools.leaftools.fuse_leaves_big_endian import fuse_leaves_big_endian
 
    ## check input
    if not tietools.is_chain(tie_chain):
@@ -59,7 +63,7 @@ def leaves_in_tie_chain(tie_chain):
    
    ## fuse leaves in each part
    for part in parts:
-      result.append(leaves_by_reference(part))
+      result.append(fuse_leaves_big_endian(part))
 
    ## return result
    return result

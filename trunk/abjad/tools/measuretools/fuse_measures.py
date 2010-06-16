@@ -9,7 +9,7 @@ from abjad.tools.parenttools.switch import _switch
 from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 
 
-def measures_by_reference(measures):
+def fuse_measures(measures):
    r'''Fuse `measures`::
 
       abjad> staff = Staff(measuretools.make([(1, 8), (2, 16)]))
@@ -32,7 +32,7 @@ def measures_by_reference(measures):
       
    ::
       
-      abjad> fuse.measures_by_reference(staff[:])
+      abjad> measuretools.fuse_measures(staff[:])
       RigidMeasure(2/8, [c'16, d'16, e'16, f'16])
 
    ::
@@ -67,6 +67,10 @@ def measures_by_reference(measures):
    Give `measures` parentage to new measure.
 
    Leave `measures` empty, unspanned and outside-of-score.
+
+   .. versionchanged:: 1.1.2
+      renamed ``fuse.measures_by_reference( )`` to
+      ``measuretools.fuse_measures( )``.
    '''
    from abjad.tools import componenttools
 

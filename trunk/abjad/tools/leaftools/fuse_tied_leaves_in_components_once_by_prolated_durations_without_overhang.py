@@ -1,9 +1,5 @@
-from abjad.tools import componenttools
-from abjad.tools import tietools
-from abjad.tools.fuse.leaves_in_tie_chain import leaves_in_tie_chain
-
-
-def tied_leaves_by_prolated_durations(components, prolated_durations):
+def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
+   components, prolated_durations):
    r'''Fuse `components` tied leaves by `prolated_durations`::
 
       abjad> staff = Staff(leaftools.make_repeated_notes(8))
@@ -22,7 +18,7 @@ def tied_leaves_by_prolated_durations(components, prolated_durations):
       
    ::
       
-      abjad> fuse.tied_leaves_by_prolated_durations(staff, [Rational(3, 8), Rational(3, 8)])
+      abjad> leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(staff, [Rational(3, 8), Rational(3, 8)])
 
    ::
  
@@ -35,7 +31,14 @@ def tied_leaves_by_prolated_durations(components, prolated_durations):
       }
 
    Return none.
+
+   .. versionchanged:: 1.1.2
+      renamed ``fuse.tied_leaves_by_prolated_durations( )`` to
+      ``leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang( )``.
    '''
+   from abjad.tools import componenttools
+   from abjad.tools import leaftools
+   from abjad.tools import tietools
 
    ## get duration groups
    groups = \
@@ -47,4 +50,4 @@ def tied_leaves_by_prolated_durations(components, prolated_durations):
       tie_chains = tietools.get_tie_chains(group)
 
       for chain in tie_chains:
-         leaves_in_tie_chain(chain)
+         leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(chain)

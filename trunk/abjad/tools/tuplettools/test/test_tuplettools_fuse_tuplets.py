@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_fuse_tuplets_by_reference_01( ):
+def test_tuplettools_fuse_tuplets_01( ):
    '''Fuse two unincorporated fixed-duration tuplets with same multiplier.'''
 
    t1 = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
@@ -26,7 +26,7 @@ def test_fuse_tuplets_by_reference_01( ):
    }
    '''
 
-   new = fuse.tuplets_by_reference([t1, t2])
+   new = tuplettools.fuse_tuplets([t1, t2])
 
    assert componenttools.is_well_formed_component(new)
    assert len(t1) == 0
@@ -48,7 +48,7 @@ def test_fuse_tuplets_by_reference_01( ):
 
 
 
-def test_fuse_tuplets_by_reference_02( ):
+def test_tuplettools_fuse_tuplets_02( ):
    '''Fuse fixed-duration tuplets with same multiplier in score.'''
 
    t1 = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
@@ -72,7 +72,7 @@ def test_fuse_tuplets_by_reference_02( ):
    }
    '''
 
-   fuse.tuplets_by_reference(t[:])
+   tuplettools.fuse_tuplets(t[:])
 
    r'''
    \new Voice {
@@ -91,7 +91,7 @@ def test_fuse_tuplets_by_reference_02( ):
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
 
 
-def test_fuse_tuplets_by_reference_03( ):
+def test_tuplettools_fuse_tuplets_03( ):
    '''Fuse fixed-multiplier tuplets with same multiplier in score.'''
 
    t1 = FixedMultiplierTuplet((2, 3), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
@@ -117,7 +117,7 @@ def test_fuse_tuplets_by_reference_03( ):
    }
    '''
 
-   fuse.tuplets_by_reference(t[:])
+   tuplettools.fuse_tuplets(t[:])
 
    r'''
    \new Voice {
@@ -138,25 +138,25 @@ def test_fuse_tuplets_by_reference_03( ):
    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'8 (\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8 )\n\t}\n}"
 
 
-def test_fuse_tuplets_by_reference_04( ):
+def test_tuplettools_fuse_tuplets_04( ):
    '''Tuplets must carry same multiplier.'''
 
    t1 = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    t2 = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
 
-   assert py.test.raises(TupletFuseError, 'fuse.tuplets_by_reference([t1, t2])')
+   assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
 
 
-def test_fuse_tuplets_by_reference_05( ):
+def test_tuplettools_fuse_tuplets_05( ):
    '''Tuplets must be same type.'''
 
    t1 = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
    t2 = FixedMultiplierTuplet((2, 3), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
 
-   assert py.test.raises(TupletFuseError, 'fuse.tuplets_by_reference([t1, t2])')
+   assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
 
 
-def test_fuse_tuplets_by_reference_06( ):
+def test_tuplettools_fuse_tuplets_06( ):
    '''Dominant spanners on contents are preserved.'''
 
    t = Voice([
@@ -177,7 +177,7 @@ def test_fuse_tuplets_by_reference_06( ):
    }
    '''
 
-   fuse.tuplets_by_reference(t[:2])
+   tuplettools.fuse_tuplets(t[:2])
 
    r'''
    \new Voice {

@@ -1,13 +1,12 @@
 from abjad.container import Container
 from abjad.exceptions import TupletFuseError
 from abjad.rational import Rational
-from abjad.tools import containertools
 from abjad.tuplet import _Tuplet
 from abjad.tuplet import FixedDurationTuplet
 from abjad.tuplet import FixedMultiplierTuplet
 
 
-def tuplets_by_reference(tuplets):
+def fuse_tuplets(tuplets):
    r'''Fuse parent-contiguous `tuplets`::
 
       abjad> t1 = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
@@ -31,7 +30,7 @@ def tuplets_by_reference(tuplets):
       
    ::
       
-      abjad> fuse.tuplets_by_reference(staff[:])
+      abjad> tuplettools.fuse_tuplets(staff[:])
       FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
 
    ::
@@ -59,9 +58,14 @@ def tuplets_by_reference(tuplets):
    All `tuplets` must carry the same multiplier.
 
    All `tuplets` must be of the same type.
+
+   .. versionchanged:: 1.1.2
+      renamed ``fuse.tuplets_by_reference( )`` to
+      ``tuplettools.fuse_tuplets( )``.
    '''
 
    from abjad.tools import componenttools
+   from abjad.tools import containertools
    from abjad.tools import scoretools
 
    assert componenttools.all_are_contiguous_components_in_same_parent(tuplets,

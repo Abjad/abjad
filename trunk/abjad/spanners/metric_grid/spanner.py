@@ -17,7 +17,7 @@ class MetricGrid(Spanner):
    ## PRIVATE METHODS ##
 
    def _fuseTiedLeavesWithinMeasures(self):
-      from abjad.tools import fuse
+      from abjad.tools import leaftools
       ## fuse tied notes
       meters = self.meters
       meter = meters.next( )
@@ -57,7 +57,7 @@ class MetricGrid(Spanner):
             ## TODO: this is very hacky. Find better solution
             if len(r) > 0:
                r[0].grace.after = r[-1].grace.after
-            fuse.leaves_by_reference(r)
+            leaftools.fuse_leaves_big_endian(r)
          
    def _matchingMeter(self, leaf):
       '''Return the MetricStrip for which meter.offset == leaf.offset'''

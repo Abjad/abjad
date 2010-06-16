@@ -1,11 +1,11 @@
 from abjad import *
 
-def test_fuse_tied_leaves_by_prolated_durations_01( ):
+def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_01( ):
    '''Tied leaves inside containers can be fused.''' 
 
    t = Voice(leaftools.make_repeated_notes(4))
    tie = Tie(t.leaves)
-   fuse.tied_leaves_by_prolated_durations(t.leaves, [Rational(1, 4)])
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)])
 
    r'''
    \new Voice {
@@ -27,12 +27,12 @@ def test_fuse_tied_leaves_by_prolated_durations_01( ):
    assert t.format == "\\new Voice {\n\tc'4 ~\n\tc'8 ~\n\tc'8\n}"
 
 
-def test_fuse_tied_leaves_by_prolated_durations_02( ):
+def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_02( ):
    '''Tied leaves inside containers can be fused.''' 
 
    t = Voice(leaftools.make_repeated_notes(4))
    tie = Tie(t.leaves[1:])
-   fuse.tied_leaves_by_prolated_durations(t.leaves, [Rational(1, 4)])
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)])
 
    r'''
    \new Voice {
@@ -57,13 +57,13 @@ def test_fuse_tied_leaves_by_prolated_durations_02( ):
    assert t.format == "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
 
 
-def test_fuse_tied_leaves_by_prolated_durations_03( ):
+def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_03( ):
    '''multiple ties inside the same duration span are independently fused.''' 
 
    t = Voice(leaftools.make_repeated_notes(4))
    tie1 = Tie(t.leaves[0:2])
    tie2 = Tie(t.leaves[2:])
-   fuse.tied_leaves_by_prolated_durations(t.leaves, [Rational(1, 4)] * 2)
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Rational(1, 4)] * 2)
 
    r'''
    \new Voice {
@@ -82,7 +82,7 @@ def test_fuse_tied_leaves_by_prolated_durations_03( ):
    assert t.format == "\\new Voice {\n\tc'4\n\tc'4\n}"
 
 
-def test_fuse_tied_leaves_by_prolated_durations_04( ):
+def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_04( ):
    '''multiple ties inside the same duration span are independently fused.''' 
 
    t = Voice(leaftools.make_repeated_notes(8))
@@ -102,7 +102,7 @@ def test_fuse_tied_leaves_by_prolated_durations_04( ):
    }
    '''
 
-   fuse.tied_leaves_by_prolated_durations(t.leaves[1:-1], [Rational(1, 4)] * 3)
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves[1:-1], [Rational(1, 4)] * 3)
 
    r'''
    \new Voice {
@@ -118,7 +118,7 @@ def test_fuse_tied_leaves_by_prolated_durations_04( ):
    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'4 ~\n\tc'8\n\tc'8 ~\n\tc'4 ~\n\tc'8\n}"
 
 
-def test_fuse_tied_leaves_by_prolated_durations_05( ):
+def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_05( ):
    '''Steve Lehman's "Rai" slicing example.'''
    durations = [5, 7, 2, 11, 13, 5, 13, 3]
    durations = zip(durations, [16] * len(durations))
@@ -162,7 +162,7 @@ def test_fuse_tied_leaves_by_prolated_durations_05( ):
    }
    '''
 
-   fuse.tied_leaves_by_prolated_durations(t.leaves, meters)
+   leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, meters)
 
    componenttools.is_well_formed_component(t)
    assert t.format == "\\new RhythmicStaff \\with {\n\t\\override BarLine #'transparent = ##t\n\t\\override TimeSignature #'transparent = ##t\n} {\n\tc'4 ~\n\tc'16\n\tc'8. ~\n\tc'4\n\tc'8\n\tc'8 ~\n\tc'2 ~\n\tc'16\n\tc'8. ~\n\tc'4 ~\n\tc'4 ~\n\tc'8\n\tc'8 ~\n\tc'8.\n\tc'16 ~\n\tc'4 ~\n\tc'2\n\tc'8.\n}"

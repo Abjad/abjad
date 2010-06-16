@@ -2,54 +2,54 @@ from abjad import *
 import py.test
 
 
-def test_fuse_containers_by_reference_01( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_01( ):
    '''Do nothing on leaf.'''
 
    t = Note(1, (1, 4))
-   result = fuse.containers_by_reference(t)
+   result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
    assert result is None
    assert isinstance(t, Note)
    
 
-def test_fuse_containers_by_reference_02( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_02( ):
    '''Do not fuse unnamed voices.'''
 
    t = Staff([Voice(leaftools.make_repeated_notes(2)), Voice(leaftools.make_repeated_notes(2))])
-   result = fuse.containers_by_reference(t) 
+   result = containertools.fuse_like_named_contiguous_containers_in_expr(t) 
    assert result is None
 
 
-def test_fuse_containers_by_reference_03( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_03( ):
    '''Do not fuse nonthreads.'''
 
    t = Staff([Voice(leaftools.make_repeated_notes(2)), Voice(leaftools.make_repeated_notes(2))])
    t[0].name = 'one'
    t[1].name = 'two'
-   result = fuse.containers_by_reference(t) 
+   result = containertools.fuse_like_named_contiguous_containers_in_expr(t) 
    assert result is None
 
 
-def test_fuse_containers_by_reference_04( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_04( ):
    '''Do not fuse tuplets.'''
 
    t = Voice([FixedMultiplierTuplet((2, 3), leaftools.make_repeated_notes(3)), 
               FixedMultiplierTuplet((2, 3), leaftools.make_repeated_notes(3))])
-   result = fuse.containers_by_reference(t)
+   result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
    assert result is None
    assert len(t) == 2
    
 
-def test_fuse_containers_by_reference_05( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_05( ):
    '''Fuse like-named staves.'''
 
    t = Staff(leaftools.make_repeated_notes(4)) * 2
    t[0].name = t[1].name = 'staffOne'
-   result = fuse.containers_by_reference(t)
+   result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
    assert isinstance(result, Staff)  
    assert len(result) == 8
 
 
-def test_fuse_containers_by_reference_06( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_06( ):
    '''Fuse like-named staves but not differently named voices.'''
 
    t = Container(Staff([Voice(leaftools.make_repeated_notes(4))]) * 2)
@@ -76,7 +76,7 @@ def test_fuse_containers_by_reference_06( ):
    }
    '''
 
-   result = fuse.containers_by_reference(t)
+   result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
    assert isinstance(result, Container)  
    assert len(result) == 1
    assert isinstance(result[0], Staff)
@@ -107,29 +107,29 @@ def test_fuse_containers_by_reference_06( ):
    '''
 
 
-def test_fuse_containers_by_reference_07( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_07( ):
    '''Fuse orphan components.'''
 
    t = Voice(leaftools.make_repeated_notes(4)) * 2
    t[0].name = t[1].name = 'voiceOne'
-   result = fuse.containers_by_reference(t)
+   result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
    assert isinstance(result, Voice)  
    assert len(result) == 8
 
 
 ## TODO this should work.
-#def test_fuse_containers_by_reference_08( ):
-#   '''fuse.containers_by_reference( ) can take a list of parented 
+#def test_containertools_fuse_like_named_contiguous_containers_in_expr_08( ):
+#   '''containertools.fuse_like_named_contiguous_containers_in_expr( ) can take a list of parented 
 #   Components.'''
 #   t = Staff(Voice(leaftools.make_repeated_notes(2)) * 2)
-#   result = fuse.containers_by_reference(t[:])
+#   result = containertools.fuse_like_named_contiguous_containers_in_expr(t[:])
 #   assert componenttools.is_well_formed_component(t)
 #   assert len(t) == 1
 
 
 ## NESTED PARALLEL STRUCTURES ##
 
-def test_fuse_containers_by_reference_09( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_09( ):
    '''Fuse parallel voices within parallel staves within parallel
    staff groups within a single container.
    '''
@@ -155,7 +155,7 @@ def test_fuse_containers_by_reference_09( ):
    s2.name = 'sg'
    s = Container([s1, s2])
 
-   fuse.containers_by_reference(s)
+   containertools.fuse_like_named_contiguous_containers_in_expr(s)
    assert len(s) == 1
    assert s.format == '{\n\t\\context StaffGroup = "sg" <<\n\t\t\\context Staff = "staff1" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t\t\\context Staff = "staff2" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t\t\\context Staff = "staff3" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t>>\n}'
  
@@ -226,7 +226,7 @@ def test_fuse_containers_by_reference_09( ):
    }
    '''
 
-def test_fuse_containers_by_reference_10( ):
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_10( ):
    '''Fuse nested parallel structures in sequence.'''
 
    v1a = Voice(Note(0, (1,4))*2)
@@ -248,7 +248,7 @@ def test_fuse_containers_by_reference_10( ):
    sg2.name ='groupTwo'
    sg_g = StaffGroup([sg1, sg2])
    sg_g.name = 'topGroup'
-   seq = fuse.containers_by_reference([sg_g, componenttools.clone_components_and_fracture_crossing_spanners([sg_g])[0]])
+   seq = containertools.fuse_like_named_contiguous_containers_in_expr([sg_g, componenttools.clone_components_and_fracture_crossing_spanners([sg_g])[0]])
 
    assert seq.format == '\\context StaffGroup = "topGroup" <<\n\t\\context StaffGroup = "groupOne" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n\t\\context StaffGroup = "groupTwo" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n>>'
 

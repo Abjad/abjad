@@ -18,10 +18,12 @@ def _split_component_at_duration(
    Keyword controls spanner behavior at split-time.
    '''
 
-   from abjad.tools import fuse
+   from abjad.tools import leaftools
    from abjad.tools import measuretools
    from abjad.tools import tietools
    from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duration
+   from abjad.tools.leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian \
+      import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
    from abjad.tools.componenttools.list_improper_contents_of_component_that_cross_prolated_offset \
       import list_improper_contents_of_component_that_cross_prolated_offset
 
@@ -119,8 +121,8 @@ def _split_component_at_duration(
    ## NOTE: If tie chain here is convenience, then fusing is good.
    ##       If tie chain here is user-given, then fusing is less good.
    ##       Maybe later model difference between user tie chains and not.
-   fuse.leaves_in_tie_chain(leaf_left_of_split.tie.chain)
-   fuse.leaves_in_tie_chain(leaf_right_of_split.tie.chain)
+   fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(leaf_left_of_split.tie.chain)
+   fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(leaf_right_of_split.tie.chain)
    
    ## crawl above will kill any tie applied to leaves
    ## reapply tie here if necessary

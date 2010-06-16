@@ -3,7 +3,6 @@ from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import formattools
-from abjad.tools import fuse
 from abjad.tools import iterate
 from abjad.tools import label
 from abjad.tools import layout

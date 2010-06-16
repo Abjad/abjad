@@ -1,11 +1,10 @@
 from abjad.container import Container
 from abjad.tools import componenttools
-from abjad.tools import containertools
 from abjad.tools import iterate
 from abjad.tuplet import _Tuplet
 
 
-def containers_by_reference(expr):
+def fuse_like_named_contiguous_containers_in_expr(expr):
    r'''Fuse like-named contiguous containers in `expr`::
 
       abjad> staff = Staff(Voice(leaftools.make_repeated_notes(2)) * 2)
@@ -26,7 +25,7 @@ def containers_by_reference(expr):
       
    ::
       
-      abjad> fuse.containers_by_reference(staff)
+      abjad> containertools.fuse_like_named_contiguous_containers_in_expr(staff)
       Staff{1}
 
    ::
@@ -45,7 +44,12 @@ def containers_by_reference(expr):
 
    .. todo:: change interface to ``fuse.containers_by_name(staff[:])``
       to pass containers-to-be-fused explicitly.
+
+   .. versionchanged:: 1.1.2
+      renamed ``fuse.containers_by_reference( )`` to
+      ``containertools.fuse_like_named_contiguous_containers_in_expr( )``.
    '''
+   from abjad.tools import containertools
 
    merged = False
    if not isinstance(expr, list):
@@ -73,7 +77,7 @@ def containers_by_reference(expr):
 
 ## TODO implement containers_by_reference as a simple, non-recursive
 ## container fuser, like below:
-#def containers_by_reference(expr):
+#def fuse_like_named_contiguous_containers_in_expr(expr):
 #   '''Fuse containers in self that are strictly contiguous 
 #      and that have the same name.'''
 #   

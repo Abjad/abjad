@@ -27,10 +27,10 @@ class Container(_Component):
          The operation is non-commutative: the content of the first
          operand will be placed before the content of the second operand.'''
       from abjad.tools import componenttools
-      from abjad.tools import fuse
+      from abjad.tools import containertools
       left = componenttools.clone_components_and_fracture_crossing_spanners([self])[0]
       right = componenttools.clone_components_and_fracture_crossing_spanners([expr])[0]
-      return fuse.containers_by_reference([left, right])
+      return containertools.fuse_like_named_contiguous_containers_in_expr([left, right])
 
    def __contains__(self, expr):
       '''True if expr is in container, otherwise False.'''
@@ -60,8 +60,8 @@ class Container(_Component):
    def __iadd__(self, expr):
       '''__iadd__ avoids unnecessary copying of structures.'''
       from abjad.tools import componenttools
-      from abjad.tools import fuse
-      return fuse.containers_by_reference([self, 
+      from abjad.tools import containertools
+      return containertools.fuse_like_named_contiguous_containers_in_expr([self, 
          componenttools.clone_components_and_fracture_crossing_spanners([expr])[0]])
 
    def __imul__(self, total):

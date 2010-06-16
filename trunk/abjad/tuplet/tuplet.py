@@ -20,9 +20,9 @@ class _Tuplet(Container):
 
    def __add__(self, arg):
       '''Add two tuplets of same type and with same multiplier.'''
-      from abjad.tools import fuse
+      from abjad.tools import tuplettools
       assert isinstance(arg, type(self))
-      new = fuse.tuplets_by_reference([self, arg])
+      new = tuplettools.fuse_tuplets([self, arg])
       return new
       
    def __repr__(self):

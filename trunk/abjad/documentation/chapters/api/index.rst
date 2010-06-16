@@ -250,6 +250,7 @@ containertools
    tools/containertools/delete_contents_of_container_starting_before_or_at_prolated_offset
    tools/containertools/delete_contents_of_container_starting_strictly_after_prolated_offset
    tools/containertools/delete_contents_of_container_starting_strictly_before_prolated_offset
+   tools/containertools/fuse_like_named_contiguous_containers_in_expr
    tools/containertools/get_element_starting_at_exactly_prolated_offset
    tools/containertools/get_first_element_starting_at_or_after_prolated_offset
    tools/containertools/get_first_element_starting_before_or_at_prolated_offset
@@ -318,21 +319,6 @@ formattools
    tools/formattools/regression
    tools/formattools/report
    tools/formattools/wrapper
-
-
-fuse
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/fuse/containers_by_reference
-   tools/fuse/contents_by_counts
-   tools/fuse/leaves_by_reference
-   tools/fuse/leaves_in_tie_chain
-   tools/fuse/measures_by_counts_cyclic
-   tools/fuse/measures_by_reference
-   tools/fuse/tied_leaves_by_prolated_durations
-   tools/fuse/tuplets_by_reference
 
 
 iotools
@@ -462,6 +448,13 @@ leaftools
    tools/leaftools/copy_written_duration_and_multiplier_from_to
    tools/leaftools/divide_leaf_meiotically
    tools/leaftools/divide_leaves_meiotically_in
+   tools/leaftools/fuse_leaves_big_endian
+   tools/leaftools/fuse_leaves_in_container_once_by_counts_into_big_endian_notes
+   tools/leaftools/fuse_leaves_in_container_once_by_counts_into_big_endian_rests
+   tools/leaftools/fuse_leaves_in_container_once_by_counts_into_little_endian_notes
+   tools/leaftools/fuse_leaves_in_container_once_by_counts_into_little_endian_rests
+   tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
+   tools/leaftools/fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang
    tools/leaftools/get_composite_offset_difference_series
    tools/leaftools/get_composite_offset_series
    tools/leaftools/get_durations_prolated
@@ -660,6 +653,8 @@ measuretools
    tools/measuretools/change_binary_measure_to_nonbinary
    tools/measuretools/color_measure
    tools/measuretools/color_nonbinary_measures_in
+   tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
+   tools/measuretools/fuse_measures
    tools/measuretools/make
    tools/measuretools/multiply_measure_contents_and_scale_meter_denominator_in
    tools/measuretools/multiply_measure_contents_in
@@ -1027,6 +1022,7 @@ tuplettools
    tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
    tools/tuplettools/fix_contents_of_tuplets_in_expr
+   tools/tuplettools/fuse_tuplets
    tools/tuplettools/is_proper_tuplet_multiplier
    tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots
    tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots

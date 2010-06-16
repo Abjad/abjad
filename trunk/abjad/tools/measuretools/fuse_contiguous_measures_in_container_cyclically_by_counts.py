@@ -1,9 +1,9 @@
 from abjad.container import Container
 from abjad.tools import iterate
-from abjad.tools.fuse.measures_by_reference import measures_by_reference
+from abjad.tools.measuretools.fuse_measures import fuse_measures
 
 
-def measures_by_counts_cyclic(container, counts, mark = False):
+def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts, mark = False):
    r'''Fuse `container` measures cyclically by `counts`::
 
       abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 5)
@@ -40,7 +40,7 @@ def measures_by_counts_cyclic(container, counts, mark = False):
    ::
       
       abjad> counts = (2, 1)
-      abjad> fuse.measures_by_counts_cyclic(staff, counts)
+      abjad> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, counts)
       
    ::
       
@@ -72,6 +72,10 @@ def measures_by_counts_cyclic(container, counts, mark = False):
    Set `mark` to true to mark fused measures for later reference.
 
    .. todo:: rename `counts` to `counts`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``fuse.measures_by_counts_cyclic( )`` to
+      ``measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts( )``.
    '''
 
    assert isinstance(container, Container)
@@ -98,7 +102,7 @@ def measures_by_counts_cyclic(container, counts, mark = False):
             meter_sum_str = ' + '.join([
                str(x.meter.effective) for x in measures_to_fuse])
             meter_sum_str = '"%s"' % meter_sum_str
-            new = measures_by_reference(measures_to_fuse)
+            new = fuse_measures(measures_to_fuse)
             if mark:
                new.leaves[0].markup.up.append(meter_sum_str)
             cur_measure = new

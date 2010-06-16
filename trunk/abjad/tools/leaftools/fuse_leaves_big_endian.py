@@ -1,12 +1,10 @@
-from abjad.tools import componenttools
-from abjad.tools import leaftools
 
 
-def leaves_by_reference(leaves):
+def fuse_leaves_big_endian(leaves):
    r'''Fuse thread-contiguous `leaves`::
 
       abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-      abjad> fuse.leaves_by_reference(staff[1:])
+      abjad> leaftools.fuse_leaves_big_endian(staff[1:])
       [Note(d', 4.)]
       abjad> f(staff)
       \new Staff {
@@ -19,8 +17,13 @@ def leaves_by_reference(leaves):
    Detach all leaves in `leaves` other than first leaf from score.
 
    Return list of first leaf in `leaves`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``fuse.leaves_by_reference( )`` to
+      ``leaftools.fuse_leaves_big_endian( )``.
    '''
    from abjad.tools import componenttools
+   from abjad.tools import leaftools
 
    assert componenttools.all_are_thread_contiguous_components(leaves)
 

@@ -17,10 +17,10 @@ class _Measure(Container):
 
    def __add__(self, arg):
       '''Add two measures together in-score or outside-of-score.
-         Wrapper around fuse.measures_by_reference.'''
+         Wrapper around measuretools.fuse_measures.'''
       assert isinstance(arg, _Measure)
-      from abjad.tools import fuse
-      new = fuse.measures_by_reference([self, arg])
+      from abjad.tools import measuretools
+      new = measuretools.fuse_measures([self, arg])
       return new
 
    def __repr__(self):
