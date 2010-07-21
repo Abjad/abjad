@@ -143,6 +143,7 @@ class NamedPitchClass(object):
 
    @property
    def symbolic_name(self):
+      '''Read-only letter plus punctuation of pitch name.'''
       accidental_to_symbol = {
          '': '', 's': '#', 'f': 'b', 'ss': '##', 'ff': 'bb',
          'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}

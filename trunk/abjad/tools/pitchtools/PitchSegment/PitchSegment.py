@@ -152,3 +152,11 @@ class PitchSegment(list):
    @property
    def pitches(self):
       return self[:]
+
+   ## PUBLIC METHODS ##
+
+   def transpose(self, melodic_interval):
+      '''Transpose pitches in pitch segment by melodic interval
+      and emit new pitch segment.'''
+      pitches = [pitch + melodic_interval for pitch in self]
+      return PitchSegment(pitches)
