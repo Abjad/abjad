@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SchemeFunction___init___01( ):
+def test_SchemeFunction___init____01( ):
    '''Scheme function with only a name and no arguments.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -22,7 +22,7 @@ def test_SchemeFunction___init___01( ):
    assert t.format == "\\new Staff \\with {\n\t\\override TimeSignature #'break-visibility = #end-of-line-invisible\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_SchemeFunction___init___02( ):
+def test_SchemeFunction___init____02( ):
    '''Scheme function with a name and a single numeric argument.'''
 
    staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))

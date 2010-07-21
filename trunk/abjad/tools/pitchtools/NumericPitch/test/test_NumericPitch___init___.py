@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_NumericPitch___init___01( ):
+def test_NumericPitch___init____01( ):
    '''Init with number.'''
 
    assert pitchtools.NumericPitch(0).number == 0
@@ -12,7 +12,7 @@ def test_NumericPitch___init___01( ):
    assert pitchtools.NumericPitch(-12.5).number == -12.5
 
 
-def test_NumericPitch___init___02( ):
+def test_NumericPitch___init____02( ):
    '''Init with other numeric pitch instance.'''
 
    assert pitchtools.NumericPitch(pitchtools.NumericPitch(12)).number == 12

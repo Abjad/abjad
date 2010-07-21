@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DiatonicIntervalClassVector___init___01( ):
+def test_DiatonicIntervalClassVector___init____01( ):
 
    dicv = pitchtools.DiatonicIntervalClassVector(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 

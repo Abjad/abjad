@@ -1,20 +1,20 @@
 from abjad import *
 
 
-def test_PitchClassSet___init___01( ):
+def test_PitchClassSet___init____01( ):
    '''Works with numbers.'''
 
    assert len(pitchtools.PitchClassSet([0, 2, 6, 7])) == 4
 
 
-def test_PitchClassSet___init___02( ):
+def test_PitchClassSet___init____02( ):
    '''Works with pitch classes.'''
 
    assert len(pitchtools.PitchClassSet(
       [pitchtools.PitchClass(x) for x in [0, 2, 6, 7]])) == 4
 
 
-def test_PitchClassSet___init___03( ):
+def test_PitchClassSet___init____03( ):
    '''Works with chords.'''
 
    chord = Chord([13, 14, 15], (1, 4))
@@ -22,7 +22,7 @@ def test_PitchClassSet___init___03( ):
    assert len(pitch_class_set) == 3
 
 
-def test_PitchClassSet___init___04( ):
+def test_PitchClassSet___init____04( ):
    '''Works with notes.'''
 
    note = Note(13, (1, 4))

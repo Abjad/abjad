@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_partition_components_once_by_durations_in_seconds_without_overhang_01( ):
+def test_componenttools_partition_components_once_by_durations_in_seconds_le_without_overhang_01( ):
    '''Fill parts less than durations.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)

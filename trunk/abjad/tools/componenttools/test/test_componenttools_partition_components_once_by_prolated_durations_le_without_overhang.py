@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_partition_components_by_prolated_durations_04( ):
+def test_componenttools_partition_components_once_by_prolated_durations_le_without_overhang_01( ):
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)

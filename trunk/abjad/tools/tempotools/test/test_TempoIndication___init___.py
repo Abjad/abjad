@@ -1,21 +1,21 @@
 from abjad import *
 
 
-def test_TempoIndication___init___01( ):
+def test_TempoIndication___init____01( ):
    '''Init tempo indication with integer-valued mark.'''
 
    t = tempotools.TempoIndication(Rational(3, 32), 52)
    assert t.format == '\\tempo 16.=52'
 
    
-def test_TempoIndication___init___02( ):
+def test_TempoIndication___init____02( ):
    '''Init tempo indication with float-valued mark.'''
 
    t = tempotools.TempoIndication(Rational(3, 32), 52.5)
    assert t.format == '\\tempo 16.=52.5'
 
 
-def test_TempoIndication___init___03( ):
+def test_TempoIndication___init____03( ):
    '''Init tempo indication from tempo indication.'''
 
    t = tempotools.TempoIndication(Rational(3, 32), 52)

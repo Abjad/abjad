@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ChordClass___init___01( ):
+def test_ChordClass___init____01( ):
 
    cc = tonalharmony.ChordClass('g', 'dominant', 7, 'root')
    assert repr(cc) == 'GDominantSeventhInRootPosition'

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_fuse_contents_by_counts_01( ):
+def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes_01( ):
    '''Glom voice.'''
 
    t = Voice(leaftools.make_repeated_notes(5, Rational(1, 16)))
@@ -21,7 +21,7 @@ def test_fuse_contents_by_counts_01( ):
    assert t.format == "\\new Voice {\n\tc'16 (\n\tc'8\n\tc'8 )\n}"
 
 
-def test_fuse_contents_by_counts_02( ):
+def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes_02( ):
    '''Glom voice and render big-endian tied values.'''
 
    t = Voice(leaftools.make_repeated_notes(5))

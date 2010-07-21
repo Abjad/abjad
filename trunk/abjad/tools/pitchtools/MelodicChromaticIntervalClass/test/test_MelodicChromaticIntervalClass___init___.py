@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicChromaticIntervalClass___init___01( ):
+def test_MelodicChromaticIntervalClass___init____01( ):
 
    mcic = pitchtools.MelodicChromaticIntervalClass(3)
 
@@ -10,7 +10,7 @@ def test_MelodicChromaticIntervalClass___init___01( ):
    assert mcic.number == 3
 
 
-def test_MelodicChromaticIntervalClass___init___02( ):
+def test_MelodicChromaticIntervalClass___init____02( ):
    '''Works with numbers less or equal to -12.'''
 
    mcic = pitchtools.MelodicChromaticIntervalClass(-12)
@@ -24,7 +24,7 @@ def test_MelodicChromaticIntervalClass___init___02( ):
    assert mcic.number == -1
 
 
-def test_MelodicChromaticIntervalClass___init___03( ):
+def test_MelodicChromaticIntervalClass___init____03( ):
    '''Works with numbers greater than 12.'''
 
    mcic = pitchtools.MelodicChromaticIntervalClass(12)
@@ -38,7 +38,7 @@ def test_MelodicChromaticIntervalClass___init___03( ):
    assert mcic.number == 1
 
 
-def test_MelodicChromaticIntervalClass___init___04( ):
+def test_MelodicChromaticIntervalClass___init____04( ):
    '''Works with other interval class instances.'''
 
    mcic = pitchtools.MelodicChromaticIntervalClass(12)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ChordQualityIndicator___init___01( ):
+def test_ChordQualityIndicator___init____01( ):
    '''Init root position triad.'''
 
    cqi = tonalharmony.ChordQualityIndicator('major', 'triad')
@@ -17,7 +17,7 @@ def test_ChordQualityIndicator___init___01( ):
    assert str(cqi) == '<P1, M3, aug5>'
 
    
-def test_ChordQualityIndicator___init___02( ):
+def test_ChordQualityIndicator___init____02( ):
    '''Init seventh and ninth.'''
 
    cqi = tonalharmony.ChordQualityIndicator('dominant', 7, 'root')
@@ -27,7 +27,7 @@ def test_ChordQualityIndicator___init___02( ):
    assert str(cqi) == '<P1, M3, P5, m7, M9>'
 
 
-def test_ChordQualityIndicator___init___03( ):
+def test_ChordQualityIndicator___init____03( ):
    '''Init with quality string and integer cardinality indicator.'''
 
    cqi = tonalharmony.ChordQualityIndicator('dominant', 7)

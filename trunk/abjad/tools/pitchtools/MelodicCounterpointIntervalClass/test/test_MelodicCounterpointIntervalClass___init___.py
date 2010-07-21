@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MelodicCounterpointIntervalClass___init___01( ):
+def test_MelodicCounterpointIntervalClass___init____01( ):
    '''Works with numbers 1 - 8.'''
    
    mcpic = pitchtools.MelodicCounterpointIntervalClass(1)
@@ -29,7 +29,7 @@ def test_MelodicCounterpointIntervalClass___init___01( ):
    assert mcpic.number == 8
 
 
-def test_MelodicCounterpointIntervalClass___init___02( ):
+def test_MelodicCounterpointIntervalClass___init____02( ):
    '''Works with numbers -1 to -8.'''
    
    mcpic = pitchtools.MelodicCounterpointIntervalClass(-1)
@@ -57,7 +57,7 @@ def test_MelodicCounterpointIntervalClass___init___02( ):
    assert mcpic.number == -8
 
 
-def test_MelodicCounterpointIntervalClass___init___03( ):
+def test_MelodicCounterpointIntervalClass___init____03( ):
    '''Works with numbers greater than 8.'''
    
    mcpic = pitchtools.MelodicCounterpointIntervalClass(9)
@@ -82,7 +82,7 @@ def test_MelodicCounterpointIntervalClass___init___03( ):
    assert mcpic.number == 8
 
 
-def test_MelodicCounterpointIntervalClass___init___04( ):
+def test_MelodicCounterpointIntervalClass___init____04( ):
    '''Works with numbers less than -8.'''
    
    mcpic = pitchtools.MelodicCounterpointIntervalClass(-9)

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_RC___init___01( ):
+def test_RC___init____01( ):
    '''Init from modulo and residue.'''
 
    rc = sievetools.RC(6, 0)
@@ -11,7 +11,7 @@ def test_RC___init___01( ):
    assert rc.residue == 0
 
 
-def test_RC___init___02( ):
+def test_RC___init____02( ):
    '''Init from other rc instance.'''
 
    rc = sievetools.RC(sievetools.RC(6, 0))

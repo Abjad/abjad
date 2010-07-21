@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_IntervalClass___init___01( ):
+def test_IntervalClass___init____01( ):
    '''Init from zero.'''
 
 
-def test_IntervalClass___init___02( ):
+def test_IntervalClass___init____02( ):
    '''Init from positive integer.'''
 
    ic = pitchtools.IntervalClass(1)
@@ -27,7 +27,7 @@ def test_IntervalClass___init___02( ):
    assert ic.number == 6
 
 
-def test_IntervalClass___init___03( ):
+def test_IntervalClass___init____03( ):
    '''Init from positive float.'''
 
    ic = pitchtools.IntervalClass(0.5)

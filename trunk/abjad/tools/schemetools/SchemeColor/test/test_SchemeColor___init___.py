@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SchemeColor___init___01( ):
+def test_SchemeColor___init____01( ):
 
    t = Note(0, (1, 4))
    t.note_head.color = schemetools.SchemeColor('ForestGreen')
@@ -14,7 +14,7 @@ def test_SchemeColor___init___01( ):
    assert t.format == "\\once \\override NoteHead #'color = #(x11-color 'ForestGreen)\nc'4"
 
 
-def test_SchemeColor___init___02( ):
+def test_SchemeColor___init____02( ):
    '''Normal (non-X11) color names specify with a string.'''
    
    t = Note(0, (1, 4))

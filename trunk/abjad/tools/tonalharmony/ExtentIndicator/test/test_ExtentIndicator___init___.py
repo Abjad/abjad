@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_ExtentIndicator___init___01( ):
+def test_ExtentIndicator___init____01( ):
    '''Init from number.'''
 
    assert tonalharmony.ExtentIndicator(7).number == 7
 
 
-def test_ExtentIndicator___init___02( ):
+def test_ExtentIndicator___init____02( ):
    '''Init by reference.'''
 
    extent_indicator = tonalharmony.ExtentIndicator(7)

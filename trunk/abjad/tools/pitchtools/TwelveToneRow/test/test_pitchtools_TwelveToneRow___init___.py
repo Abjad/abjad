@@ -2,14 +2,14 @@ from abjad import *
 import py.test
 
 
-def test_pitchtools_TwelveToneRow___init___01( ):
+def test_pitchtools_TwelveToneRow___init____01( ):
    '''Rows initialize with nonnegative integers.'''
 
    numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
    row = pitchtools.TwelveToneRow(numbers)
 
 
-def test_pitchtools_TwelveToneRow___init___02( ):
+def test_pitchtools_TwelveToneRow___init____02( ):
    '''Rows initialize with pitch classes.'''
 
    numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
@@ -17,7 +17,7 @@ def test_pitchtools_TwelveToneRow___init___02( ):
    row = pitchtools.TwelveToneRow(pitch_classes)
 
 
-def test_pitchtools_TwelveToneRow___init___03( ):
+def test_pitchtools_TwelveToneRow___init____03( ):
    '''Rows initialize from other rows.'''
 
    numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
@@ -25,7 +25,7 @@ def test_pitchtools_TwelveToneRow___init___03( ):
    new = pitchtools.TwelveToneRow(row)
 
 
-def test_pitchtools_TwelveToneRow___init___04( ):
+def test_pitchtools_TwelveToneRow___init____04( ):
    '''Rows do not initialize with defective pitch class content.'''
 
    assert py.test.raises(ValueError, 'pitchtools.TwelveToneRow([0, 1, 2, 3])')

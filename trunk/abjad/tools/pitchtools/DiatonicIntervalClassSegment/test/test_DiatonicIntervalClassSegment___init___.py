@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_DiatonicIntervalClassSegment___init___01( ):
+def test_DiatonicIntervalClassSegment___init____01( ):
 
    dicg = pitchtools.DiatonicIntervalClassSegment([
       ('major', 2), ('major', 2), ('minor', 2),
