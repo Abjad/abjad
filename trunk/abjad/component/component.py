@@ -21,6 +21,7 @@ from abjad.interfaces import InstrumentInterface
 from abjad.interfaces import InterfaceAggregator
 from abjad.interfaces import KeySignatureInterface
 from abjad.interfaces import MeterInterface
+from abjad.interfaces import MultiMeasureRestInterface
 from abjad.interfaces import NonMusicalPaperColumnInterface
 from abjad.interfaces import NoteColumnInterface
 from abjad.interfaces import NoteHeadInterface
@@ -95,6 +96,7 @@ class _Component(_Abjad):
       self._history = HistoryInterface(self)
       self._instrument = InstrumentInterface(self)
       self._lily_file = None
+      self._multi_measure_rest = MultiMeasureRestInterface(self)
       self._name = None
       self._navigator = _Navigator(self)
       self._non_musical_paper_column = NonMusicalPaperColumnInterface(self)
@@ -314,6 +316,12 @@ class _Component(_Abjad):
       '''Read-only reference to
       :class:`~abjad.interfaces.meter.interface.MeterInterface`.''' 
       return self._meter
+
+   @property
+   def multi_measure_rest(self):
+      '''Read-only reference to
+      :clas:`~abjad.interfaces.multi_measure_rest.interface.MultiMeasureRestInterface`.'''
+      return self._multi_measure_rest
 
    @property
    def music(self):

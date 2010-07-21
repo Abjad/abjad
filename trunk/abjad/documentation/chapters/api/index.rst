@@ -73,6 +73,7 @@ Interfaces
    interfaces/key_signature/interface
    interfaces/markup/interface
    interfaces/meter/interface
+   interfaces/multi_measure_rest/interface
    interfaces/non_musical_paper_column/interface
    interfaces/note_column/interface
    interfaces/note_head/interface
