@@ -85,7 +85,7 @@ def fuse_measures(measures):
    if len(measures) == 1:
       return measures[0]
 
-   parent, start, stop = parenttools.get_with_indices(measures)
+   parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(measures)
 
    old_denominators = [ ]
    new_duration = Rational(0)

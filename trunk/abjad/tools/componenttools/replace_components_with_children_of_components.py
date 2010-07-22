@@ -52,6 +52,6 @@ def replace_components_with_children_of_components(components):
    assert componenttools.all_are_components(components)
 
    for component in components:
-      parent, start, stop = parenttools.get_with_indices([component])
+      parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
       result = parent[start:stop+1] = list(component.music)
    return components

@@ -568,7 +568,7 @@ class _Component(_Abjad):
       from abjad.tools import componenttools
       from abjad.tools import parenttools
       assert componenttools.all_are_components(components)
-      parent, start, stop = parenttools.get_with_indices([self])
+      parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
          after = stop + 1
          parent[after:after] = components
@@ -601,7 +601,7 @@ class _Component(_Abjad):
       from abjad.tools import componenttools
       from abjad.tools import parenttools
       assert componenttools.all_are_components(components)
-      parent, start, stop = parenttools.get_with_indices([self])
+      parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
          parent[start:start] = components
       return components + [self] 
@@ -625,7 +625,7 @@ class _Component(_Abjad):
          for component in reversed(components):
             spanner._insert(insert_index, component)
             component.spanners._add(spanner)
-      parent, start, stop = parenttools.get_with_indices([self])
+      parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
          for component in reversed(components):
             component.parentage._switch(parent)
@@ -646,7 +646,7 @@ class _Component(_Abjad):
          for component in reversed(components):
             spanner._insert(index, component)
             component.spanners._add(spanner)
-      parent, start, stop = parenttools.get_with_indices([self])
+      parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([self])
       if parent is not None:
          for component in reversed(components):
             component.parentage._switch(parent)

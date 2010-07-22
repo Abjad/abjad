@@ -195,7 +195,9 @@ componenttools
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
    tools/componenttools/cut_component_at_prolated_duration
+   tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
    tools/componenttools/get_likely_multiplier_of_components
+   tools/componenttools/get_parent_and_start_stop_indices_of_components
    tools/componenttools/group_components_by_like_preprolated_duration
    tools/componenttools/group_components_by_like_prolated_duration
    tools/componenttools/is_well_formed_component
@@ -692,15 +694,6 @@ overridetools
 
    tools/overridetools/clear_all_overrides_on_grob_handler
    tools/overridetools/promote_attribute_to_context_on_grob_handler
-
-
-parenttools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/parenttools/get_first
-   tools/parenttools/get_with_indices
 
 
 partition

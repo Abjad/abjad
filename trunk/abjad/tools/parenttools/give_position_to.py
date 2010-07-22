@@ -1,4 +1,4 @@
-from abjad.tools.parenttools.get_with_indices import get_with_indices
+from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
 from abjad.tools.parenttools.switch import _switch
 
 
@@ -20,7 +20,7 @@ def _give_position_to(donors, recipients):
    assert componenttools.all_are_contiguous_components_in_same_parent(donors)
    assert componenttools.all_are_components(recipients)
 
-   parent, start, stop = get_with_indices(donors)
+   parent, start, stop = get_parent_and_start_stop_indices_of_components(donors)
 
    if parent is None:
       return donors

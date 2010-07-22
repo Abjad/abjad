@@ -1,13 +1,13 @@
 from abjad.leaf import _Leaf
 from abjad.measure import _Measure
 from abjad.meter import Meter
-#from abjad.tools.containertools.set_container_multiplier import set_container_multiplier
 from abjad.tools import durtools
 from abjad.tools import metertools
-from abjad.tools import parenttools
 from abjad.tools import spannertools
-from abjad.tools.parenttools.switch import _switch
 from abjad.tuplet import _Tuplet
+from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components \
+   import get_parent_and_start_stop_indices_of_components
+
 
 
 def _split_component_at_index(component, i, spanners = 'unfractured'):
@@ -70,7 +70,7 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
    spannertools.give_attached_to_children(component)
 
    ## incorporate left and right parents in score, if possible
-   parent, start, stop = parenttools.get_with_indices([component])
+   parent, start, stop = get_parent_and_start_stop_indices_of_components([component])
    if parent is not None:
       parent._music[start:stop+1] = nonempty_halves
       for part in nonempty_halves:

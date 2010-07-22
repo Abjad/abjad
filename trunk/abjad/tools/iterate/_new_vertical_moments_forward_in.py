@@ -38,10 +38,10 @@ def _buffer_components_starting_with(component, buffer, stop_offsets):
 
 
 def _next_in_parent(component):
-   from abjad.tools import parenttools
+   from abjad.tools import componenttools
    if not isinstance(component, _Component):
       raise TypeError('must be component.')
-   parent, start, stop = parenttools.get_with_indices([component])
+   parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
    assert start == stop
    if parent is None:
       raise StopIteration

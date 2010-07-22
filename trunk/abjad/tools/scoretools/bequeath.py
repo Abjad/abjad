@@ -19,7 +19,7 @@ def bequeath(donors, recipients):
    if len(donors) == 0:
       return donors
 
-   parent, start, stop = parenttools.get_with_indices(donors)
+   parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(donors)
    if parent:
       parent[start:stop+1] = recipients
       return donors

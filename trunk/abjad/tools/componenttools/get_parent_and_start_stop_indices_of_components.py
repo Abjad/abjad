@@ -1,4 +1,4 @@
-def get_with_indices(components):
+def get_parent_and_start_stop_indices_of_components(components):
    r'''Return ``(parent, start, stop)`` triple with
    
    *  ``parent`` a reference to the parent of ``components``
@@ -25,8 +25,12 @@ def get_with_indices(components):
       abjad> leaves = t[-2:]
       abjad> leaves
       [Note(g', 8), Note(a', 8)]
-      abjad> parenttools.get_with_indices(leaves)
+      abjad> componenttools.get_parent_and_start_stop_indices_of_components(leaves)
       (Staff{6}, 4, 5)
+
+   .. versionchanged:: 1.1.2
+      renamed ``parenttools.get_with_indices( )`` to
+      ``componenttools.get_parent_and_start_stop_indices_of_components( )``.
    '''
    from abjad.tools import componenttools
 

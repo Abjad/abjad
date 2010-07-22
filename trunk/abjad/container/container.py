@@ -179,7 +179,7 @@ class Container(_Component):
       from abjad.tools.parenttools.switch import _switch
       music = music or [ ]
       assert componenttools.all_are_contiguous_components_in_same_thread(music)
-      parent, index, stop_index = parenttools.get_with_indices(music)
+      parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(music)
       self._music = list(music)
       _switch(self._music, self)
       if parent is not None:
