@@ -1,5 +1,5 @@
-from abjad.tools.sievetools.RC import RC
-from abjad.tools.sievetools.RCExpression import RCExpression
+from abjad.tools.sievetools.ResidueClass import ResidueClass
+from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
 
 
 def _cycle_token_to_sieve(cycle_token):
@@ -12,19 +12,19 @@ def _cycle_token_to_sieve(cycle_token):
 
       abjad> cycle_token = (6, [0, 4, 5])
       abjad> sievetools.cycle_token_to_sieve(cycle_token)
-      {RC(6, 0) | RC(6, 4) | RC(6, 5)}
+      {ResidueClass(6, 0) | ResidueClass(6, 4) | ResidueClass(6, 5)}
 
    When `cycle_token` has length 3, interpret `cycle_token` as
    ``modulo, residues, offset`` triple. ::
 
       abjad> cycle_token = (10, [0, 1, 2], 6)
       abjad> sievetools.cycle_token_to_sieve(cycle_token)
-      {RC(10, 6) | RC(10, 7) | RC(10, 8)}
+      {ResidueClass(10, 6) | ResidueClass(10, 7) | ResidueClass(10, 8)}
    '''
 
    ## sieves count as cycle tokens in themselves
-   if isinstance(cycle_token, RCExpression):
-      return RCExpression(cycle_token)
+   if isinstance(cycle_token, ResidueClassExpression):
+      return ResidueClassExpression(cycle_token)
 
    ## parse cycle token
    modulo = cycle_token[0]
@@ -38,11 +38,11 @@ def _cycle_token_to_sieve(cycle_token):
    residue_classes = [ ]
    for residue in residues:
       adjusted_residue = (residue + offset) % modulo
-      residue_class = RC(modulo, adjusted_residue)
+      residue_class = ResidueClass(modulo, adjusted_residue)
       residue_classes.append(residue_class)
 
    residue_classes.sort(lambda x, y: cmp(x.residue, y.residue))
 
    ## return sieve as residue class combination
-   sieve = RCExpression(residue_classes, operator = 'or')
+   sieve = ResidueClassExpression(residue_classes, operator = 'or')
    return sieve

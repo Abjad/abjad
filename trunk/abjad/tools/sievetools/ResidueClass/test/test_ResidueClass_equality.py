@@ -1,7 +1,9 @@
-from abjad.tools.sievetools.RC import RC
-from abjad.tools.sievetools.RCExpression import RCExpression
+from abjad.tools.sievetools.ResidueClass import ResidueClass
+from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
 import py.test
 
+
+RC = ResidueClass
 
 def test_RC_equality_01( ):
    '''non-equal residue classes'''

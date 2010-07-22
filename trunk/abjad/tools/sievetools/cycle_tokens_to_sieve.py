@@ -1,6 +1,6 @@
 from abjad.tools.sievetools._cycle_token_to_sieve import \
    _cycle_token_to_sieve
-from abjad.tools.sievetools.RCExpression import RCExpression
+from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
 
 
 def cycle_tokens_to_sieve(*cycle_tokens):
@@ -27,6 +27,6 @@ def cycle_tokens_to_sieve(*cycle_tokens):
       for sieve in sieves[1:]:
          cur_sieve = cur_sieve | sieve   
    else:
-      cur_sieve = RCExpression([ ])
+      cur_sieve = ResidueClassExpression([ ])
 
    return cur_sieve

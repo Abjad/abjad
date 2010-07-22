@@ -1,5 +1,8 @@
-from abjad.tools.sievetools.RC import RC
+from abjad.tools.sievetools.ResidueClass import ResidueClass
 import py.test
+
+
+RC = ResidueClass
 
 def test_RC_01( ):
    '''modulo must be > 0.'''

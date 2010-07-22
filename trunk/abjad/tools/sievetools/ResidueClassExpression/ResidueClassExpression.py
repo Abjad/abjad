@@ -1,15 +1,14 @@
 from abjad.tools import mathtools
-from abjad.tools.sievetools._BaseRC import _BaseRC
-from abjad.tools.sievetools.process_min_max_attribute import \
-   _process_min_max_attribute
+from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
+from abjad.tools.sievetools.process_min_max_attribute import _process_min_max_attribute
 import operator
 
 
-class RCExpression(_BaseRC):
+class ResidueClassExpression(_BaseResidueClass):
 
    def __init__(self, rcs, operator = 'or'):
       ## init from other rc expression
-      if isinstance(rcs, RCExpression):
+      if isinstance(rcs, ResidueClassExpression):
          self.rcs = rcs.rcs[:]
          self.operator = rcs.operator
       ## init from rcs and operator
@@ -32,7 +31,7 @@ class RCExpression(_BaseRC):
    ## if the min and max parameters behaved more like the
    ## start and stop parameters passed to slice( ) objects in
    ## list slicing.
-   ## That is, RCExpression.get_congruent_bases(8) currently
+   ## That is, ResidueClassExpression.get_congruent_bases(8) currently
    ## returns a list of up to *nine* items; should probably
    ## return a list of up to only *eight* items.
    def _get_congruent_bases(self, min, max, op):
@@ -45,8 +44,8 @@ class RCExpression(_BaseRC):
       return sorted(result)
 
    def _sort_rcs(self): 
-      from abjad.tools.sievetools.RC import RC
-      if all([isinstance(rc, RC) for rc in self.rcs]):
+      from abjad.tools.sievetools.ResidueClass import ResidueClass
+      if all([isinstance(rc, ResidueClass) for rc in self.rcs]):
          self.rcs.sort( )
 
    ## PUBLIC ATTRIBUTES ##
@@ -85,6 +84,7 @@ class RCExpression(_BaseRC):
 
       Example::
 
+         abjad> RC = ResidueClass
          abjad> e = RC(3, 0) | RC(2, 0)
          abjad> e.get_boolean_train(6)
          [1, 0, 1, 1, 1, 0]

@@ -3,5 +3,5 @@ from abjad.tools.imports.import_functions_in_package_to_namespace import \
 
 _import_functions_in_package_to_namespace(__path__[0], globals( ))
 
-from RC import RC
-from RCExpression import RCExpression
+from ResidueClass import ResidueClass
+from ResidueClassExpression import ResidueClassExpression

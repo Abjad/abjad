@@ -1,9 +1,8 @@
-from abjad.tools.sievetools._BaseRC import _BaseRC
-from abjad.tools.sievetools.process_min_max_attribute import \
-   _process_min_max_attribute
+from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
+from abjad.tools.sievetools.process_min_max_attribute import _process_min_max_attribute
 
 
-class RC(_BaseRC):
+class ResidueClass(_BaseResidueClass):
    '''Residue class (or congruence class). 
    Residue classes form the basis of Xenakis sieves. They can be used to 
    construct any complex periodic integer (or boolean) sequence as a 
@@ -11,6 +10,7 @@ class RC(_BaseRC):
 
    Example from the opening of Xenakis's *Psappha* for solo percussion:: 
 
+      abjad> RC = ResidueClass
       abjad> s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
       abjad> s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
       abjad> s3 = RC(8, 3)
@@ -45,34 +45,34 @@ class RC(_BaseRC):
    ## OVERLOADS ##
 
    def __eq__(self, exp):
-      if isinstance(exp, RC):
+      if isinstance(exp, ResidueClass):
          return (self.modulo == exp.modulo) and (self.residue == exp.residue)
       else:
          return False
 
    def __gt__(self, expr):
-      if not isinstance(expr, RC):
+      if not isinstance(expr, ResidueClass):
          raise TypeError('must be residue class.')
       if self.modulo == expr.modulo:
          return self.residue > expr.residue
       return self.modulo > expr.modulo
 
    def __ge__(self, expr):
-      if not isinstance(expr, RC):
+      if not isinstance(expr, ResidueClass):
          raise TypeError('must be residue class.')
       if self.modulo == expr.modulo:
          return self.residue >= expr.residue
       return self.modulo >= expr.modulo
 
    def __lt__(self, expr):
-      if not isinstance(expr, RC):
+      if not isinstance(expr, ResidueClass):
          raise TypeError('must be residue class.')
       if self.modulo == expr.modulo:
          return self.residue < expr.residue
       return self.modulo < expr.modulo
 
    def __le__(self, expr):
-      if not isinstance(expr, RC):
+      if not isinstance(expr, ResidueClass):
          raise TypeError('must be residue class.')
       if self.modulo == expr.modulo:
          return self.residue <= expr.residue
@@ -82,12 +82,12 @@ class RC(_BaseRC):
       return not self == expr
 
    def __repr__(self):
-      return 'RC(%i, %i)' % (self.modulo, self.residue)
+      return '%s(%i, %i)' % (self.__class__.__name__, self.modulo, self.residue)
 
    ## PRIVATE METHODS ##
 
    def _init_by_rc_instance(self, rc):
-      if not isinstance(rc, RC):
+      if not isinstance(rc, ResidueClass):
          raise TypeError('must be rc instance.')
       self.modulo = rc.modulo # period
       self.residue = rc.residue # phase
@@ -111,7 +111,7 @@ class RC(_BaseRC):
 
       Example::
 
-         abjad> r = RC(3, 0) 
+         abjad> r = ResidueClass(3, 0) 
          abjad> r.get_boolean_train(6)
          [1, 0, 0, 1, 0, 0]
          abjad> k.get_congruent_bases(-6, 6)
@@ -136,7 +136,7 @@ class RC(_BaseRC):
       
       Example::
          
-         abjad> r = RC(3, 0)
+         abjad> r = ResidueClass(3, 0)
          abjad> r.get_congruent_bases(6)
          [0, 3, 6]
          abjad> r.get_congruent_bases(-6, 6)
@@ -153,6 +153,7 @@ class RC(_BaseRC):
 
 if __name__ == '__main__':
    print 'Psappha B2[0:40]'
+   RC = ResidueClass
    s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
    s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
    s3 = RC(8, 3) #&  RC(1, 0)

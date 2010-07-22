@@ -1,5 +1,5 @@
 from abjad import *
-RC = sievetools.RC
+RC = sievetools.ResidueClass
 
 
 def test_RCexpression_period_01( ):
