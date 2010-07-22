@@ -1,7 +1,7 @@
 from abjad.markup import Markup
 from abjad.staff import Staff
 from abjad.tools import iterate
-from abjad.tools import lilytools
+from abjad.tools import lilyfiletools
 from abjad.tools.scoretools.make_piano_score import make_piano_score
 
 
@@ -16,7 +16,7 @@ def make_piano_sketch_score(leaves):
    """
 
    score, treble_staff, bass_staff = make_piano_score(leaves)
-   lily_file = lilytools.make_basic_lily_file(score)
+   lily_file = lilyfiletools.make_basic_lily_file(score)
    score._lily_file = lily_file
    lily_file.layout.indent = 0
    lily_file.paper.tagline = Markup('')

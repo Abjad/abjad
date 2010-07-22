@@ -39,7 +39,7 @@ class _NoteInitializer(_Initializer):
             _Leaf.__init__(client, skip.duration.written)
             _transfer_all_attributes(skip, client)
       elif len(args) == 1 and isinstance(args[0], str):
-         from abjad.tools.lilytools._lilypond_leaf_regex import \
+         from abjad.tools.lilyfiletools._lilypond_leaf_regex import \
             _lilypond_leaf_regex
          match = re.match(_lilypond_leaf_regex, args[0])
          name, ticks, duration_body, dots = match.groups( )

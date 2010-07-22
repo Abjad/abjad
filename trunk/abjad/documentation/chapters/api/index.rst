@@ -483,23 +483,23 @@ leaftools
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
 
 
-lilytools
+lilyfiletools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/lilytools/BookBlock/BookBlock
-   tools/lilytools/BookpartBlock/BookpartBlock
-   tools/lilytools/HeaderBlock/HeaderBlock
-   tools/lilytools/LayoutBlock/LayoutBlock
-   tools/lilytools/LilyFile/LilyFile
-   tools/lilytools/MidiBlock/MidiBlock
-   tools/lilytools/PaperBlock/PaperBlock
-   tools/lilytools/ScoreBlock/ScoreBlock
-   tools/lilytools/make_basic_lily_file
-   tools/lilytools/parse_note_entry_string
-   tools/lilytools/save_ly_as
-   tools/lilytools/save_pdf_as
+   tools/lilyfiletools/BookBlock/BookBlock
+   tools/lilyfiletools/BookpartBlock/BookpartBlock
+   tools/lilyfiletools/HeaderBlock/HeaderBlock
+   tools/lilyfiletools/LayoutBlock/LayoutBlock
+   tools/lilyfiletools/LilyFile/LilyFile
+   tools/lilyfiletools/MidiBlock/MidiBlock
+   tools/lilyfiletools/PaperBlock/PaperBlock
+   tools/lilyfiletools/ScoreBlock/ScoreBlock
+   tools/lilyfiletools/make_basic_lily_file
+   tools/lilyfiletools/parse_note_entry_string
+   tools/lilyfiletools/save_ly_as
+   tools/lilyfiletools/save_pdf_as
 
 
 listtools
@@ -913,16 +913,6 @@ spacingtools
    tools/spacingtools/get_scorewide_spacing
 
 
-spanners
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/spanners/dynamic_spanner_below_with_nib_at_right
-   tools/spanners/solid_text_spanner_above_with_nib_at_right
-   tools/spanners/solid_text_spanner_below_with_nib_at_right
-
-
 spannertools
 
 .. toctree::
@@ -942,6 +932,9 @@ spannertools
    tools/spannertools/give_attached_to_children
    tools/spannertools/iterate_components_backward
    tools/spannertools/iterate_components_forward
+   tools/spannertools/make_dynamic_spanner_below_with_nib_at_right
+   tools/spannertools/make_solid_text_spanner_above_with_nib_at_right
+   tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
    tools/spannertools/withdraw_from_covered
 
 
