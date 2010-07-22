@@ -32,13 +32,13 @@ class _TempoProportionalFormatInterface(_TempoSpannerFormatInterface):
 
    def _before(self, leaf):
       '''Spanner format contribution before leaf.'''
-      from abjad.tools import spacing
+      from abjad.tools import spacingtools
       result = [ ]
       result.extend(_TempoSpannerFormatInterface._before(self, leaf))
       spanner = self.spanner
       if spanner._isMyFirstLeaf(leaf):
          result.append(r'\newSpacingSection')
-         scorewide_spacing = spacing.get_scorewide_spacing(leaf)
+         scorewide_spacing = spacingtools.get_scorewide_spacing(leaf)
          if scorewide_spacing is not None:
             directive = self._make_proportional_directive(
                scorewide_spacing, spanner.tempo_indication)

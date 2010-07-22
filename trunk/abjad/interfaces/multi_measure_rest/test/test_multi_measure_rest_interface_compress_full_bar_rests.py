@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MultiMeasureRestInterface_compress_full_bar_rests_01( ):
+def test_multi_measure_rest_interface_compress_full_bar_rests_01( ):
 
    staff = Staff([Note(0, (1, 4))])
    staff[0].multi_measure_rest.compress_full_bar_rests = True

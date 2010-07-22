@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_markup_big_centered_page_number_01( ):
+def test_markuptools_big_centered_page_number_01( ):
 
-   t = markup.big_centered_page_number( )
+   t = markuptools.big_centered_page_number( )
 
    r'''
    \markup { 

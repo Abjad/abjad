@@ -1,6 +1,6 @@
 from abjad.context.context import _Context
 from abjad.interfaces import ScoreSpacingInterface
-from abjad.tools.spacing import SpacingIndication
+from abjad.tools.spacingtools import SpacingIndication
 import types
 
 

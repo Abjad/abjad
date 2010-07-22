@@ -350,10 +350,12 @@ iterate
    tools/iterate/depth_first
    tools/iterate/get_leaf_at_index_from_measure_number_in_expr
    tools/iterate/get_measure_number_in_expr
+   tools/iterate/get_next_measure_from_component
    tools/iterate/get_nth_component_in_expr
    tools/iterate/get_nth_leaf_in_expr
    tools/iterate/get_nth_measure_in_expr
    tools/iterate/get_nth_namesake_from_component
+   tools/iterate/get_prev_measure_from_component
    tools/iterate/get_vertical_moment_at_prolated_offset_in_expr
    tools/iterate/get_vertical_moment_starting_with_component
    tools/iterate/group_by_type_and_yield_groups
@@ -367,11 +369,9 @@ iterate
    tools/iterate/naive_forward_in_expr
    tools/iterate/namesakes_backward_from_component
    tools/iterate/namesakes_forward_from_component
-   tools/iterate/next_measure_from_component
    tools/iterate/notes_backward_in_expr
    tools/iterate/notes_forward_in_expr
    tools/iterate/pitch_pairs_forward_in_expr
-   tools/iterate/prev_measure_from_component
    tools/iterate/thread_backward_from_component
    tools/iterate/thread_backward_in_expr
    tools/iterate/thread_forward_from_component
@@ -594,12 +594,12 @@ listtools
    tools/listtools/zip_nontruncating
 
 
-markup
+markuptools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/markup/big_centered_page_number
+   tools/markuptools/big_centered_page_number
 
 
 mathtools
@@ -904,13 +904,13 @@ sievetools
    tools/sievetools/cycle_tokens_to_sieve
 
 
-spacing
+spacingtools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/spacing/SpacingIndication/SpacingIndication
-   tools/spacing/get_scorewide_spacing
+   tools/spacingtools/SpacingIndication/SpacingIndication
+   tools/spacingtools/get_scorewide_spacing
 
 
 spanners
