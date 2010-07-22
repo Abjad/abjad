@@ -97,7 +97,7 @@ def scale_contents_of_container(container, multiplier):
       ``containertools.scale_contents_of_container( )``.
    '''
 
-   for expr in iterate.chained_contents(container[:]):
+   for expr in iterate.topmost_tie_chains_and_components_forward_in_expr(container[:]):
       if tietools.is_chain(expr):
          tietools.duration_scale(expr, multiplier)
       elif isinstance(expr, FixedDurationTuplet):

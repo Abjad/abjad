@@ -3,7 +3,7 @@ from abjad.exceptions import TieChainError
 from abjad.leaf import _Leaf
 
 
-def chained_contents(expr):
+def topmost_tie_chains_and_components_forward_in_expr(expr):
    r'''Yield the left-to-right, top-level contents of `expr`
    with chain-wrapped leaves. ::
 
@@ -29,7 +29,7 @@ def chained_contents(expr):
 
    ::
 
-      abjad> for x in iterate.chained_contents(t):
+      abjad> for x in iterate.topmost_tie_chains_and_components_forward_in_expr(t):
       ...     x
       ... 
       (Note(c', 8), Note(c', 32))
@@ -39,6 +39,10 @@ def chained_contents(expr):
       (Note(b', 8), Note(b', 32))
 
    Crossing ties raise :exc:`TieChainError`.
+
+   .. versionchanged:: 1.1.2
+      renamed ``iterate.chained_contents( )`` to
+      ``iterate.topmost_tie_chains_and_components_forward_in_expr( )``.
    '''
 
    if isinstance(expr, _Leaf):

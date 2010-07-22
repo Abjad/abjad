@@ -346,14 +346,13 @@ iterate
    :maxdepth: 1
 
    tools/iterate/VerticalMoment/VerticalMoment
-   tools/iterate/chained_contents
    tools/iterate/depth_first
-   tools/iterate/get_measure_leaf
-   tools/iterate/get_measure_number
-   tools/iterate/get_nth_component
-   tools/iterate/get_nth_leaf_in
-   tools/iterate/get_nth_measure
-   tools/iterate/get_nth_namesake_from
+   tools/iterate/get_leaf_at_index_from_measure_number_in_expr
+   tools/iterate/get_measure_number_in_expr
+   tools/iterate/get_nth_component_in_expr
+   tools/iterate/get_nth_leaf_in_expr
+   tools/iterate/get_nth_measure_in_expr
+   tools/iterate/get_nth_namesake_from_component
    tools/iterate/get_vertical_moment_at_prolated_offset_in
    tools/iterate/get_vertical_moment_starting_with
    tools/iterate/grace
@@ -383,6 +382,7 @@ iterate
    tools/iterate/timeline_backward_in
    tools/iterate/timeline_forward_from
    tools/iterate/timeline_forward_in
+   tools/iterate/topmost_tie_chains_and_components_forward_in_expr
    tools/iterate/vertical_moments_backward_in
    tools/iterate/vertical_moments_forward_in
 

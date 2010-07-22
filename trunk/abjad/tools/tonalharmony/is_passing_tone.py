@@ -23,8 +23,8 @@ def is_passing_tone(note):
       raise TypeError('must be note: %s' % note)
 
    try:
-      prev_note = iterate.get_nth_namesake_from(note, -1) 
-      next_note = iterate.get_nth_namesake_from(note, 1)
+      prev_note = iterate.get_nth_namesake_from_component(note, -1) 
+      next_note = iterate.get_nth_namesake_from_component(note, 1)
    except IndexError:
       return False
 

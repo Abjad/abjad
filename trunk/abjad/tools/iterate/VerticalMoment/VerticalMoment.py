@@ -114,7 +114,7 @@ class VerticalMoment(object):
          if leaf.offset.prolated.stop < \
             candidate_shortest_leaf.offset.prolated.stop:
             candidate_shortest_leaf = leaf
-      next_leaf = iterate.get_nth_namesake_from(candidate_shortest_leaf, 1)
+      next_leaf = iterate.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
       next_vertical_moment = iterate.get_vertical_moment_starting_with(
          next_leaf)
       return next_vertical_moment
@@ -139,7 +139,7 @@ class VerticalMoment(object):
          if leaf.offset.prolated.stop < \
             candidate_shortest_leaf.offset.prolated.stop:
             candidate_shortest_leaf = leaf
-      next_leaf = iterate.get_nth_namesake_from(candidate_shortest_leaf, 1)
+      next_leaf = iterate.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
       next_vertical_moment = iterate.get_vertical_moment_starting_with(
          next_leaf)
       return next_vertical_moment
@@ -199,7 +199,7 @@ class VerticalMoment(object):
          else:
             #print 'found leaf starting on this moment ...'
             try:
-               prev_leaf = iterate.get_nth_namesake_from(leaf, -1)
+               prev_leaf = iterate.get_nth_namesake_from_component(leaf, -1)
                start = prev_leaf.offset.prolated.start
                #print prev_leaf, start
                if most_recent_start_offset <= start:

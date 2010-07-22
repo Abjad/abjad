@@ -2,7 +2,7 @@ from abjad.tools.iterate.naive_backward_in import naive_backward_in
 from abjad.tools.iterate.naive_forward_in import naive_forward_in
 
 
-def get_nth_component(expr, klasses, n = 0):
+def get_nth_component_in_expr(expr, klasses, n = 0):
    r'''.. versionadded:: 1.1.1
 
    Return element `n` in the `klasses` of `expr`. ::
@@ -31,7 +31,7 @@ def get_nth_component(expr, klasses, n = 0):
    ::
    
       abjad> for n in range(4):
-      ...      iterate.get_nth_component(staff, Note, n)
+      ...      iterate.get_nth_component_in_expr(staff, Note, n)
       ...
       Note(c', 16)
       Note(d', 8)
@@ -41,7 +41,7 @@ def get_nth_component(expr, klasses, n = 0):
    ::
 
       abjad> for n in range(4):
-      ...      iterate.get_nth_component(staff, Rest, n)
+      ...      iterate.get_nth_component_in_expr(staff, Rest, n)
       ...
       Rest(16)
       Rest(8)
@@ -50,13 +50,13 @@ def get_nth_component(expr, klasses, n = 0):
 
    ::
 
-      abjad> iterate.get_nth_component(staff, Staff)
+      abjad> iterate.get_nth_component_in_expr(staff, Staff)
       Staff{8}
 
    Read right-to-left for negative values of `n`. ::
 
       abjad> for n in range(3, -1, -1):
-      ...      iterate.get_nth_component(staff, Rest, n)
+      ...      iterate.get_nth_component_in_expr(staff, Rest, n)
       ...
       Rest(4)
       Rest(8.)
@@ -66,7 +66,11 @@ def get_nth_component(expr, klasses, n = 0):
    .. todo:: combine with :func:`~abjad.tools.scoretools.find`.
 
    .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth( )`` to ``iterate.get_nth_component( )``.
+      renamed ``iterate.get_nth( )`` to ``iterate.get_nth_component_in_expr( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``iterate.get_nth_component( )`` to
+      ``iterate.get_nth_component_in_expr( )``.
    '''
 
    if not isinstance(n, (int, long)):

@@ -1,8 +1,8 @@
 from abjad.leaf import _Leaf
-from abjad.tools.iterate.get_nth_component import get_nth_component
+from abjad.tools.iterate.get_nth_component_in_expr import get_nth_component_in_expr
 
 
-def get_nth_leaf_in(expr, n = 0):
+def get_nth_leaf_in_expr(expr, n = 0):
    r'''.. versionadded:: 1.1.2
 
    Return leaf `n` in `expr`. ::
@@ -31,7 +31,7 @@ def get_nth_leaf_in(expr, n = 0):
    ::
 
       abjad> for n in range(6):
-      ...     iterate.get_nth_leaf_in(t, n)
+      ...     iterate.get_nth_leaf_in_expr(t, n)
       ... 
       Note(c', 8)
       Note(d', 8)
@@ -42,20 +42,24 @@ def get_nth_leaf_in(expr, n = 0):
 
    Read backwards for negative values of `n`. ::
 
-      abjad> iterate.get_nth_leaf_in(t, -1)
+      abjad> iterate.get_nth_leaf_in_expr(t, -1)
       Note(a', 8)
       
    .. note:: Because this function returns as soon as it finds instance
       `n` of `klasses`, it is more efficient to call
-      ``iterate.get_nth_leaf_in(expr, 0)`` than ``expr.leaves[0]``.
+      ``iterate.get_nth_leaf_in_expr(expr, 0)`` than ``expr.leaves[0]``.
       It is likewise more efficient to call
-      ``iterate.get_nth_leaf_in(expr, -1)`` than ``expr.leaves[-1]``.
+      ``iterate.get_nth_leaf_in_expr(expr, -1)`` than ``expr.leaves[-1]``.
 
    .. todo:: implement ``iterate.yield_leaves(expr, i = 0, j = None)``
       as a generalization of, and companion to, this function.
 
    .. versionchanged:: 1.1.2
-      renamed ``iterate.get_nth_leaf( )`` to ``iterate.get_nth_leaf_in( )``.
+      renamed ``iterate.get_nth_leaf( )`` to ``iterate.get_nth_leaf_in_expr( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``iterate.get_nth_leaf_in( )`` to
+      ``iterate.get_nth_leaf_in_expr( )``.
    '''
 
-   return get_nth_component(expr, _Leaf, n)
+   return get_nth_component_in_expr(expr, _Leaf, n)
