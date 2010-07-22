@@ -19,7 +19,7 @@ def leaf_indices(expr, direction = 'below'):
       new `direction` keyword parameter.
    '''
 
-   for i, leaf in enumerate(iterate.leaves_forward_in(expr)):
+   for i, leaf in enumerate(iterate.leaves_forward_in_expr(expr)):
       label = r'\small %s' % i
       if direction == 'below':
          leaf.markup.down.append(label)

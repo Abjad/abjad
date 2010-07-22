@@ -64,7 +64,7 @@ def replace_measure_contents_in(expr, new_contents):
    result = [ ]
 
    ## get first measure and first meter
-   cur_measure = iterate.measure_next(expr) 
+   cur_measure = iterate.get_next_measure_from_component(expr) 
    result.append(cur_measure)
    cur_meter = cur_measure.meter.effective
    del(cur_measure[:])
@@ -88,7 +88,7 @@ def replace_measure_contents_in(expr, new_contents):
       else:
          cur_measure.meter.forced = cur_meter
          append_spacer_skips_to_underfull_measures_in([cur_measure])
-         cur_measure = iterate.measure_next(cur_measure)
+         cur_measure = iterate.get_next_measure_from_component(cur_measure)
          if cur_measure is None:
             raise StopIteration
          result.append(cur_measure)

@@ -301,7 +301,7 @@ class _Component(_Abjad):
 
       .. versionchanged:: 1.1.1'''
       from abjad.tools import iterate
-      return tuple(iterate.leaves_forward_in(self))
+      return tuple(iterate.leaves_forward_in_expr(self))
 
    @property
    def lily_file(self):

@@ -32,7 +32,7 @@ def get_composite_offset_series(expr):
 
    offsets = [ ]
 
-   for leaf in iterate.leaves_forward_in(expr):
+   for leaf in iterate.leaves_forward_in_expr(expr):
       start_offset = leaf.offset.prolated.start
       if start_offset not in offsets:
          offsets.append(start_offset)

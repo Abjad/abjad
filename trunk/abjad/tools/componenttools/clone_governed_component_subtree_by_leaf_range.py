@@ -97,7 +97,7 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
    _found_start_leaf = False
 
    while not _found_start_leaf:
-      leaf = iterate.leaves_forward_in(governor_copy).next( )
+      leaf = iterate.leaves_forward_in_expr(governor_copy).next( )
       if leaf == start_leaf:
          _found_start_leaf = True
       else:
@@ -109,7 +109,7 @@ def clone_governed_component_subtree_by_leaf_range(component, start = 0, stop = 
    _found_stop_leaf = False
 
    while not _found_stop_leaf:
-      leaf = iterate.leaves_backward_in(governor_copy).next( )
+      leaf = iterate.leaves_backward_in_expr(governor_copy).next( )
       if leaf == stop_leaf:
          _found_stop_leaf = True
       else:

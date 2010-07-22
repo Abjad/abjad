@@ -8,7 +8,7 @@ class BeamsOverlapping(_Check):
 
    def _run(self, expr):
       violators = [ ]
-      for leaf in iterate.leaves_forward_in(expr):
+      for leaf in iterate.leaves_forward_in_expr(expr):
          beams = [p for p in leaf.spanners.attached
             if isinstance(p, Beam)]
          if len(beams) > 1:

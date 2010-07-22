@@ -44,7 +44,7 @@ def multiply_measure_contents_and_scale_meter_denominator_in(expr, concentration
 
    result = [ ]
    num_pairs = len(concentration_pairs)
-   for i, measure in enumerate(iterate.measures_forward_in(expr)):
+   for i, measure in enumerate(iterate.measures_forward_in_expr(expr)):
       concentration_pair = concentration_pairs[i % num_pairs]
       assert isinstance(concentration_pair, tuple)
       spin_count, scalar_denominator = concentration_pair

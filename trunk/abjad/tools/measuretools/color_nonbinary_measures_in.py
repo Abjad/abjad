@@ -67,7 +67,7 @@ def color_nonbinary_measures_in(expr, color = 'red'):
    measures_colored = [ ]
 
    ## color nonbinary measures in expr
-   for measure in iterate.measures_forward_in(expr):
+   for measure in iterate.measures_forward_in_expr(expr):
       if measure.meter.effective.nonbinary:
          color_measure(measure, color)
          measures_colored.append(measure)

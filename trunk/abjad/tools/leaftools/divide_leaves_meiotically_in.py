@@ -56,7 +56,7 @@ def divide_leaves_meiotically_in(expr, n = 2):
 
    ## can not wrap with update control because of leaf.splice( ) ##
    #expr.parentage.root._update._forbidUpdate( )
-   for leaf in iterate.leaves_backward_in(expr):
+   for leaf in iterate.leaves_backward_in_expr(expr):
       divide_leaf_meiotically(leaf, n)
    #expr.parentage.root._update._allowUpdate( )
    #expr.parentage.root._update._updateAll( )

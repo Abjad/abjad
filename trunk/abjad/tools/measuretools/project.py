@@ -17,7 +17,7 @@ def project(expr):
    '''
 
    from abjad.tools import containertools
-   for measure in iterate.measures_forward_in(expr):
+   for measure in iterate.measures_forward_in_expr(expr):
       if measure.meter.effective.nonbinary:
 
          # find meter and contents multipliers

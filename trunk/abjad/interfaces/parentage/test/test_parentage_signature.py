@@ -8,7 +8,7 @@ def test_parentage_signature_01( ):
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
 
    containment = t.parentage.signature
-   for component in iterate.naive_forward_in(t, _Component):
+   for component in iterate.naive_forward_in_expr(t, _Component):
       assert component.parentage.signature == containment
 
 
@@ -20,7 +20,7 @@ def test_parentage_signature_02( ):
    t.name = 'foo'
 
    containment = t.parentage.signature
-   for component in iterate.naive_forward_in(t, _Component):
+   for component in iterate.naive_forward_in_expr(t, _Component):
       assert component.parentage.signature == containment
 
 

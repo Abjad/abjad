@@ -346,6 +346,7 @@ iterate
    :maxdepth: 1
 
    tools/iterate/VerticalMoment/VerticalMoment
+   tools/iterate/components_and_grace_containers_forward_in_expr
    tools/iterate/depth_first
    tools/iterate/get_leaf_at_index_from_measure_number_in_expr
    tools/iterate/get_measure_number_in_expr
@@ -353,38 +354,37 @@ iterate
    tools/iterate/get_nth_leaf_in_expr
    tools/iterate/get_nth_measure_in_expr
    tools/iterate/get_nth_namesake_from_component
-   tools/iterate/get_vertical_moment_at_prolated_offset_in
-   tools/iterate/get_vertical_moment_starting_with
-   tools/iterate/grace
+   tools/iterate/get_vertical_moment_at_prolated_offset_in_expr
+   tools/iterate/get_vertical_moment_starting_with_component
    tools/iterate/group_by_type_and_yield_groups
    tools/iterate/group_by_type_and_yield_groups_of_klass
-   tools/iterate/leaf_pairs_forward_in
-   tools/iterate/leaves_backward_in
-   tools/iterate/leaves_forward_in
-   tools/iterate/measure_next
-   tools/iterate/measure_prev
-   tools/iterate/measures_backward_in
-   tools/iterate/measures_forward_in
-   tools/iterate/naive_backward_in
-   tools/iterate/naive_forward_in
-   tools/iterate/namesakes_backward_from
-   tools/iterate/namesakes_forward_from
-   tools/iterate/notes_backward_in
-   tools/iterate/notes_forward_in
-   tools/iterate/pitch_pairs_forward_in
-   tools/iterate/thread_backward_from
-   tools/iterate/thread_backward_in
-   tools/iterate/thread_forward_from
-   tools/iterate/thread_forward_in
-   tools/iterate/tie_chains_backward_in
-   tools/iterate/tie_chains_forward_in
-   tools/iterate/timeline_backward_from
-   tools/iterate/timeline_backward_in
-   tools/iterate/timeline_forward_from
-   tools/iterate/timeline_forward_in
+   tools/iterate/leaf_pairs_forward_in_expr
+   tools/iterate/leaves_backward_in_expr
+   tools/iterate/leaves_forward_in_expr
+   tools/iterate/measures_backward_in_expr
+   tools/iterate/measures_forward_in_expr
+   tools/iterate/naive_backward_in_expr
+   tools/iterate/naive_forward_in_expr
+   tools/iterate/namesakes_backward_from_component
+   tools/iterate/namesakes_forward_from_component
+   tools/iterate/next_measure_from_component
+   tools/iterate/notes_backward_in_expr
+   tools/iterate/notes_forward_in_expr
+   tools/iterate/pitch_pairs_forward_in_expr
+   tools/iterate/prev_measure_from_component
+   tools/iterate/thread_backward_from_component
+   tools/iterate/thread_backward_in_expr
+   tools/iterate/thread_forward_from_component
+   tools/iterate/thread_forward_in_expr
+   tools/iterate/tie_chains_backward_in_expr
+   tools/iterate/tie_chains_forward_in_expr
+   tools/iterate/timeline_backward_from_component
+   tools/iterate/timeline_backward_in_expr
+   tools/iterate/timeline_forward_from_component
+   tools/iterate/timeline_forward_in_expr
    tools/iterate/topmost_tie_chains_and_components_forward_in_expr
-   tools/iterate/vertical_moments_backward_in
-   tools/iterate/vertical_moments_forward_in
+   tools/iterate/vertical_moments_backward_in_expr
+   tools/iterate/vertical_moments_forward_in_expr
 
 
 label

@@ -23,7 +23,7 @@ def get_tie_chains(components):
 
    ## get leaves to fuse  
    result = [ ]
-   leaves_in_components = list(iterate.leaves_forward_in(components))
+   leaves_in_components = list(iterate.leaves_forward_in_expr(components))
    for spanner in tie_spanners:
       leaves_intersecting = [ ]
       for leaf in spanner.leaves:

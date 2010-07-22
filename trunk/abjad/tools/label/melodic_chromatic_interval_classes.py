@@ -25,8 +25,8 @@ def melodic_chromatic_interval_classes(expr):
       }
    """
 
-   for note in iterate.naive_forward_in(expr, Note):
-      thread_iterator = iterate.thread_forward_from(note, _Leaf)
+   for note in iterate.naive_forward_in_expr(expr, Note):
+      thread_iterator = iterate.thread_forward_from_component(note, _Leaf)
       try:
          thread_iterator.next( )
          next_leaf = thread_iterator.next( )

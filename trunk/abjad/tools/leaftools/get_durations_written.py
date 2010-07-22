@@ -13,7 +13,7 @@ def get_durations_written(expr):
 
    durations = [ ]
 
-   for leaf in iterate.leaves_forward_in(expr):
+   for leaf in iterate.leaves_forward_in_expr(expr):
       durations.append(leaf.duration.written)
 
    return durations

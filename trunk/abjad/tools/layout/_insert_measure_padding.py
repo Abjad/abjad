@@ -28,7 +28,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
    ## _Component.splice( ) call self.offset.prolated.stop  ##
    root._update._forbidUpdate( )
 
-   for measure in iterate.measures_forward_in(expr):
+   for measure in iterate.measures_forward_in_expr(expr):
       if front is not None:
          start_components = measure._navigator._contemporaneousStartContents
          start_leaves = [x for x in start_components if isinstance(x, _Leaf)]

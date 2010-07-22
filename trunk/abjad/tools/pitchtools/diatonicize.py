@@ -45,7 +45,7 @@ def diatonicize(expr, key_signature = None):
    octave_number = 4
    pitch = Pitch(scale[0], octave_number)
 
-   for i, tie_chain in enumerate(iterate.tie_chains_forward_in(expr)):
+   for i, tie_chain in enumerate(iterate.tie_chains_forward_in_expr(expr)):
       #pitch = int(i / length) * 12 + diatonic_residues[i % length] 
       #named_pitch_class = scale[i % length]
       #pitch_class_number = named_pitch_class.pitch_class.number

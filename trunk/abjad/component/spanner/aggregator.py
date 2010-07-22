@@ -55,7 +55,7 @@ class _ComponentSpannerAggregator(_Interface):
       from abjad.component.component import _Component
       from abjad.tools import iterate
       result = set([ ])
-      components = iterate.naive_forward_in(self._client, _Component)
+      components = iterate.naive_forward_in_expr(self._client, _Component)
       components.next( )
       for component in components:
          result.update(set(component.spanners.attached))
@@ -68,7 +68,7 @@ class _ComponentSpannerAggregator(_Interface):
       from abjad.component.component import _Component
       from abjad.tools import iterate
       result = set([ ])
-      for component in iterate.naive_forward_in(self._client, _Component):
+      for component in iterate.naive_forward_in_expr(self._client, _Component):
          result.update(set(component.spanners.attached))
       return result
 

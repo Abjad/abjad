@@ -24,7 +24,7 @@ def chromaticize(expr):
    Used primarily in generating test file examples.
    '''
 
-   for i, x in enumerate(iterate.tie_chains_forward_in(expr)):
+   for i, x in enumerate(iterate.tie_chains_forward_in_expr(expr)):
       pitch = i
       if isinstance(x[0], Note):
          for note in x:

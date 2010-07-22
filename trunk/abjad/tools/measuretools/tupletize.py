@@ -14,7 +14,7 @@ def tupletize(expr, supplement = None):
    notes, rests, chords, tuplets or whatever.
    '''
 
-   for measure in iterate.measures_forward_in(expr):
+   for measure in iterate.measures_forward_in_expr(expr):
       target_duration = measure.duration.preprolated
       tuplet = FixedDurationTuplet(target_duration, measure[:])
       if supplement:

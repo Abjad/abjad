@@ -37,7 +37,7 @@ def test_VerticalMoment_leaves_01( ):
    >>
    '''
 
-   vertical_moment = iterate.get_vertical_moment_at_prolated_offset_in(
+   vertical_moment = iterate.get_vertical_moment_at_prolated_offset_in_expr(
       score, Rational(1, 8))
    "(Note(d'', 8), Note(a', 4), Note(e', 8))"
    assert vertical_moment.leaves == (

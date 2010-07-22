@@ -8,7 +8,7 @@ class QuartersBeamed(_Check):
    def _run(self, expr):
       violators = [ ]
       total = 0
-      for leaf in iterate.leaves_forward_in(expr):
+      for leaf in iterate.leaves_forward_in_expr(expr):
          total += 1
          if hasattr(leaf, 'beam'):
             if leaf.beam.spanned:

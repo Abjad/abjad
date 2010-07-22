@@ -8,7 +8,7 @@ class OctavationsOverlapping(_Check):
 
    def _run(self, expr):
       violators = [ ]
-      for leaf in iterate.leaves_forward_in(expr):
+      for leaf in iterate.leaves_forward_in_expr(expr):
          octavations = leaf.spanners.contained
          octavations = [p for p in octavations if isinstance(p, Octavation)]
          if len(octavations) > 1:

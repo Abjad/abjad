@@ -9,7 +9,7 @@ class GlissandiOverlapping(_Check):
 
    def _run(self, expr):
       violators = [ ] 
-      for leaf in iterate.leaves_forward_in(expr):
+      for leaf in iterate.leaves_forward_in_expr(expr):
          glissandi = leaf.glissando.spanners
          if len(glissandi) > 1:
             if len(glissandi) == 2:

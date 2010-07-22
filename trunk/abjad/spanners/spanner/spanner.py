@@ -134,7 +134,7 @@ class Spanner(_Abjad):
       ## TODO: Author staff-level contiguity check in tools/check. ##
       ##       Include optional staff-level contiguity check here. ##
       if self._contiguity_constraint == 'thread':
-         leaves = list(iterate.leaves_forward_in(music))
+         leaves = list(iterate.leaves_forward_in_expr(music))
          assert componenttools.all_are_thread_contiguous_components(leaves)
       self.extend(music)
 

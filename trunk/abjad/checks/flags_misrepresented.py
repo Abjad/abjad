@@ -8,7 +8,7 @@ class FlagsMisrepresented(_Check):
    def _run(self, expr):
       violators = [ ] 
       total = 0
-      for leaf in iterate.leaves_forward_in(expr):
+      for leaf in iterate.leaves_forward_in_expr(expr):
          total += 1
          #flags = leaf.duration._flags
          flags = durtools.rational_to_flag_count(leaf.duration.written)

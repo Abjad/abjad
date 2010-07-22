@@ -31,7 +31,7 @@ def test_componenttools_all_are_components_in_same_parent_01( ):
 
    assert not componenttools.all_are_components_in_same_parent(t.leaves)
    assert not componenttools.all_are_components_in_same_parent(
-      list(iterate.naive_forward_in(t, _Component)))
+      list(iterate.naive_forward_in_expr(t, _Component)))
 
 
 def test_componenttools_all_are_components_in_same_parent_02( ):

@@ -34,7 +34,7 @@ def vertical_moment_pitch_classes(expr):
       >>
    '''
 
-   for vertical_moment in iterate.vertical_moments_forward_in(expr):
+   for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):
       leaves = vertical_moment.leaves
       pitches = pitchtools.get_pitches(leaves)
       if not pitches:

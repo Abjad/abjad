@@ -80,6 +80,6 @@ def get_pitches(expr):
          for x in expr:
             result.extend(get_pitches(x))
       else:
-         for leaf in iterate.leaves_forward_in(expr):
+         for leaf in iterate.leaves_forward_in_expr(expr):
             result.extend(leaf.pitches)
       return tuple(result)

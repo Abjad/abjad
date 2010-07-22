@@ -56,7 +56,7 @@ def append_spacer_skips_to_underfull_measures_in(expr):
    '''
 
    treated_measures = [ ]
-   for rigid_measure in iterate.naive_forward_in(expr, RigidMeasure):
+   for rigid_measure in iterate.naive_forward_in_expr(expr, RigidMeasure):
       if rigid_measure.duration.is_underfull:
          #spacer_skip = append_spacer_skip_to_underfull_measure(rigid_measure)
          #rigid_measure.append(spacer_skip)

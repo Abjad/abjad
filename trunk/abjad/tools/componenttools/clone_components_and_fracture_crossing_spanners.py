@@ -93,7 +93,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   selection_components = set(iterate.naive_forward_in(components, _Component))
+   selection_components = set(iterate.naive_forward_in_expr(components, _Component))
 
    spanners = spannertools.get_crossing(components) 
 

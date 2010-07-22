@@ -63,8 +63,8 @@ class StaffInterface(_Observer, _BacktrackingInterface, _GrobHandler,
       ## if client is a measure
       else:
          try:
-            #prev = iterate.measure_prev(self.client)
-            prev = iterate.measure_prev(self._client)
+            #prev = iterate.get_prev_measure_from_component(self.client)
+            prev = iterate.get_prev_measure_from_component(self._client)
          except:
             prev = None
          if self.change or (prev is None and self.forced):

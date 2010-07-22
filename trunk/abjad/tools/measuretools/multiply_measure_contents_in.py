@@ -47,7 +47,7 @@ def multiply_measure_contents_in(expr, n):
    assert isinstance(n, int)
    assert n > 0
 
-   for measure in iterate.measures_forward_in(expr):
+   for measure in iterate.measures_forward_in_expr(expr):
       old_meter = measure.meter.effective
       containertools.repeat_contents_of_container(measure, n)
       old_pair = (old_meter.numerator, old_meter.denominator)

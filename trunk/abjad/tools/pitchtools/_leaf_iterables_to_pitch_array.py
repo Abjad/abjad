@@ -26,7 +26,7 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):
       grouped_cells = listtools.partition_by_lengths(cells, part_lengths)
       for group in grouped_cells:
          pitch_array_row.merge(group)
-      leaves = iterate.leaves_forward_in(leaf_iterable)
+      leaves = iterate.leaves_forward_in_expr(leaf_iterable)
       if populate:
          for cell, leaf in zip(pitch_array_row.cells, leaves):
             cell.pitches.extend(get_pitches(leaf))

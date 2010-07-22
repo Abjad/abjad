@@ -22,7 +22,7 @@ def scale_measure_contents_in(expr, multiplier = Rational(1)):
    '''
 
    from abjad.tools import containertools
-   for measure in iterate.measures_forward_in(expr):
+   for measure in iterate.measures_forward_in_expr(expr):
 
       if multiplier == Rational(1):
          continue

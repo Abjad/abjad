@@ -46,7 +46,7 @@ def get_nth_measure_in_expr(expr, n = 0):
       RigidMeasure(2/8, [e'8, f'8])
       RigidMeasure(2/8, [c'8, d'8])
          
-   .. todo:: implement ``iterate.measures_forward_in(expr, i = 0, j = None)``
+   .. todo:: implement ``iterate.measures_forward_in_expr(expr, i = 0, j = None)``
       as a companion to this function.
 
    .. versionchanged:: 1.1.2

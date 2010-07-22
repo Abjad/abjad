@@ -46,5 +46,5 @@ def clone_and_splice_leaves_in(expr, total = 1):
       ``leaftools.clone_and_splice_leaves_in( )``.
    '''
 
-   for leaf in iterate.leaves_backward_in(expr):
+   for leaf in iterate.leaves_backward_in_expr(expr):
       clone_and_splice_leaf(leaf, total)

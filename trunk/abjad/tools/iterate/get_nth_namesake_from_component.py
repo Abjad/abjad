@@ -1,5 +1,5 @@
-from abjad.tools.iterate.namesakes_backward_from import namesakes_backward_from
-from abjad.tools.iterate.namesakes_forward_from import namesakes_forward_from
+from abjad.tools.iterate.namesakes_backward_from_component import namesakes_backward_from_component
+from abjad.tools.iterate.namesakes_forward_from_component import namesakes_forward_from_component
 
 
 def get_nth_namesake_from_component(component, n):
@@ -29,12 +29,12 @@ def get_nth_namesake_from_component(component, n):
    '''
 
    if 0 <= n:
-      for i, namesake in enumerate(namesakes_forward_from(component)):
+      for i, namesake in enumerate(namesakes_forward_from_component(component)):
          if i == n:
             return namesake
    else:
       n = abs(n)
-      for i, namesake in enumerate(namesakes_backward_from(component)):
+      for i, namesake in enumerate(namesakes_backward_from_component(component)):
          if i == n:
             return namesake
 

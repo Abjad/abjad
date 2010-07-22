@@ -57,7 +57,7 @@ def apply_beam_spanners_to_measures_in(expr):
    beams_created = [ ]
 
    ## apply beam spanners to measures in expr
-   for measure in iterate.measures_forward_in(expr):
+   for measure in iterate.measures_forward_in_expr(expr):
       beam = apply_beam_spanner_to_measure(measure)
       beams_created.append(beam)
 

@@ -8,7 +8,7 @@ class MeasuresMisdurated(_Check):
    def _run(self, expr):
       violators = [ ]
       total, bad = 0, 0
-      for t in iterate.measures_forward_in(expr):
+      for t in iterate.measures_forward_in_expr(expr):
          if t.meter.forced is not None:
             if t.duration.preprolated != t.meter.forced.duration:
                violators.append(t)

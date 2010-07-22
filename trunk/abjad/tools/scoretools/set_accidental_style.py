@@ -29,6 +29,6 @@ def set_accidental_style(expr, accidental_style):
       a top-level context like score with a single override.
    '''
 
-   for context in iterate.naive_forward_in(expr, _Context):
+   for context in iterate.naive_forward_in_expr(expr, _Context):
       if not context.parallel:
          context.accidental.style = accidental_style

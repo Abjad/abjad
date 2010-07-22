@@ -22,5 +22,5 @@ def replace_leaves_with_skips_in(expr):
    Return none.
    '''
 
-   for leaf in iterate.leaves_forward_in(expr):
+   for leaf in iterate.leaves_forward_in_expr(expr):
       Skip(leaf)

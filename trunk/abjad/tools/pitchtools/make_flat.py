@@ -38,7 +38,7 @@ def make_flat(expr):
    if isinstance(expr, Pitch):
       _pitch_renotate_flats(expr)
    else:
-      for leaf in iterate.leaves_forward_in(expr):
+      for leaf in iterate.leaves_forward_in_expr(expr):
          if hasattr(leaf, 'pitches'):
             for pitch in leaf.pitches:
                _pitch_renotate_flats(pitch)

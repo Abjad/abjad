@@ -20,6 +20,6 @@ def leaf_depth(expr):
       }
    '''
 
-   for leaf in iterate.leaves_forward_in(expr):
+   for leaf in iterate.leaves_forward_in_expr(expr):
       label = r'\small %s' % leaf.parentage.depth
       leaf.markup.down.append(label)

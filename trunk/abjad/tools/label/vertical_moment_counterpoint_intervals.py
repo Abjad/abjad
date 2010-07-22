@@ -35,7 +35,7 @@ def vertical_moment_counterpoint_intervals(expr):
       >>
    '''
 
-   for vertical_moment in iterate.vertical_moments_forward_in(expr):
+   for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):
       leaves = vertical_moment.leaves
       notes = [leaf for leaf in leaves if isinstance(leaf, Note)]
       if not notes:

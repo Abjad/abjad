@@ -20,7 +20,7 @@ def are_scalar(*expr):
    '''
 
    direction_string = None
-   for left, right in listtools.pairwise(iterate.naive_forward_in(expr, Note)):
+   for left, right in listtools.pairwise(iterate.naive_forward_in_expr(expr, Note)):
       try:
          assert not (left.pitch == right.pitch)
          mdi = pitchtools.melodic_diatonic_interval_from_to(left, right)

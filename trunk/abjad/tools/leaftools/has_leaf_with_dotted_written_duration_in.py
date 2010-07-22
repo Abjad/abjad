@@ -17,7 +17,7 @@ def has_leaf_with_dotted_written_duration_in(expr):
       False
    '''
 
-   for leaf in iterate.leaves_forward_in(expr):
+   for leaf in iterate.leaves_forward_in_expr(expr):
       if not leaf.duration.written._numerator == 1:
          return True
    return False

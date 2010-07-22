@@ -27,6 +27,6 @@ def clear_leaves(expr):
       }
    '''
 
-   for leaf in iterate.leaves_forward_in(expr):
+   for leaf in iterate.leaves_forward_in_expr(expr):
       leaf.markup.up = [ ]
       leaf.markup.down = [ ]   

@@ -115,7 +115,7 @@ class VerticalMoment(object):
             candidate_shortest_leaf.offset.prolated.stop:
             candidate_shortest_leaf = leaf
       next_leaf = iterate.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
-      next_vertical_moment = iterate.get_vertical_moment_starting_with(
+      next_vertical_moment = iterate.get_vertical_moment_starting_with_component(
          next_leaf)
       return next_vertical_moment
 
@@ -140,7 +140,7 @@ class VerticalMoment(object):
             candidate_shortest_leaf.offset.prolated.stop:
             candidate_shortest_leaf = leaf
       next_leaf = iterate.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
-      next_vertical_moment = iterate.get_vertical_moment_starting_with(
+      next_vertical_moment = iterate.get_vertical_moment_starting_with_component(
          next_leaf)
       return next_vertical_moment
 
@@ -211,7 +211,7 @@ class VerticalMoment(object):
       if token_leaf is None:
          token_leaf = leaf
          #print 'token_leaf is %s ...' % token_leaf
-      prev_vertical_moment = iterate.get_vertical_moment_starting_with(
+      prev_vertical_moment = iterate.get_vertical_moment_starting_with_component(
          token_leaf)
       return prev_vertical_moment
 

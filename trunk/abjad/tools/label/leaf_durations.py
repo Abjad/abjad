@@ -42,7 +42,7 @@ def leaf_durations(expr,
       }
    '''
    
-   for leaf in iterate.leaves_forward_in(expr):
+   for leaf in iterate.leaves_forward_in_expr(expr):
       if ties == 'together':
          if not leaf.tie.spanned:
             if leaf.duration.multiplier is not None:

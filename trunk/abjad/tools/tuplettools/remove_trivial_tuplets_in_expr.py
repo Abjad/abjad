@@ -49,6 +49,6 @@ def remove_trivial_tuplets_in_expr(expr):
       ``tuplettools.remove_trivial_tuplets_in_expr( )``.
    '''
    
-   for tuplet in list(iterate.naive_forward_in(expr, _Tuplet)):
+   for tuplet in list(iterate.naive_forward_in_expr(expr, _Tuplet)):
       if tuplet.trivial:
          scoretools.bequeath([tuplet], tuplet[:])

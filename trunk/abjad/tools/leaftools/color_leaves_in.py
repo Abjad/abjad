@@ -42,5 +42,5 @@ def color_leaves_in(expr, color):
    Return none.
    """
 
-   for leaf in iterate.leaves_forward_in(expr):
+   for leaf in iterate.leaves_forward_in_expr(expr):
       color_leaf(leaf, color)

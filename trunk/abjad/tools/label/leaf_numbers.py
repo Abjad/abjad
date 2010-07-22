@@ -19,7 +19,7 @@ def leaf_numbers(expr, direction = 'below'):
       new `direction` keyword parameter.
    '''
 
-   for i, leaf in enumerate(iterate.leaves_forward_in(expr)):
+   for i, leaf in enumerate(iterate.leaves_forward_in_expr(expr)):
       leaf_number = i + 1
       label = r'\small %s' % leaf_number
       if direction == 'below':
