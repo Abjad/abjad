@@ -134,7 +134,7 @@ def test_measuretools_pad_measures_in_expr_with_rests_03( ):
 
    t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
    Beam(t[:])
-   label.measure_numbers(t)
+   measuretools.comment_measures_in_container_with_measure_numbers(t)
    measuretools.pad_measures_in_expr_with_rests(
       t, Rational(1, 32), Rational(1, 64), splice = True)
 

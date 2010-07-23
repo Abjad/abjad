@@ -14,19 +14,19 @@ write_ly(staff, '1') <hide
 </abjad>
 
 You can use 
-:func:`label.measure_numbers() <abjad.tools.label.measure_numbers>` 
+:func:`measuretools.comment_measures_in_container_with_measure_numbers() <abjad.tools.measuretools.comment_measures_in_container_with_measure_numbers>` 
 to label measure numbers just before and just after each start and 
 stop brace. Abjad calls this 'comment numbering' because the labels 
 you create here are inserted as comments in your LilyPond code.
 
 <abjad>
-label.measure_numbers(staff)
+measuretools.comment_measures_in_container_with_measure_numbers(staff)
 print staff.format
 </abjad>
 
 Turn comment-numbering off with ``style = None``.
 
 <abjad>
-label.measure_numbers(staff, style = None)
+measuretools.comment_measures_in_container_with_measure_numbers(staff, style = None)
 print staff.format
 </abjad>

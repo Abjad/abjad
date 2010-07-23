@@ -1,0 +1,6 @@
+leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals
+==============================================================
+
+.. automodule:: abjad.tools.leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals
+
+.. autofunction:: abjad.tools.leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals

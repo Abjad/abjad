@@ -394,21 +394,6 @@ label
 .. toctree::
    :maxdepth: 1
 
-   tools/label/clear_leaves
-   tools/label/leaf_depth
-   tools/label/leaf_depth_tuplet
-   tools/label/leaf_durations
-   tools/label/leaf_indices
-   tools/label/leaf_numbers
-   tools/label/leaf_pcs
-   tools/label/leaf_pitch_numbers
-   tools/label/measure_numbers
-   tools/label/melodic_chromatic_interval_classes
-   tools/label/melodic_chromatic_intervals
-   tools/label/melodic_counterpoint_interval_classes
-   tools/label/melodic_counterpoint_intervals
-   tools/label/melodic_diatonic_interval_classes
-   tools/label/melodic_diatonic_intervals
    tools/label/vertical_moment_chromatic_interval_classes
    tools/label/vertical_moment_chromatic_intervals
    tools/label/vertical_moment_counterpoint_intervals
@@ -462,6 +447,19 @@ leaftools
    tools/leaftools/get_durations_written
    tools/leaftools/has_leaf_with_dotted_written_duration_in
    tools/leaftools/is_bar_line_crossing_leaf
+   tools/leaftools/label_leaves_in_expr_with_leaf_duration
+   tools/leaftools/label_leaves_in_expr_with_leaf_indices
+   tools/leaftools/label_leaves_in_expr_with_leaf_numbers
+   tools/leaftools/label_leaves_in_expr_with_melodic_chromatic_interval_classes
+   tools/leaftools/label_leaves_in_expr_with_melodic_chromatic_intervals
+   tools/leaftools/label_leaves_in_expr_with_melodic_counterpoint_interval_classes
+   tools/leaftools/label_leaves_in_expr_with_melodic_counterpoint_intervals
+   tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_intervals
+   tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_inteval_classes
+   tools/leaftools/label_leaves_in_expr_with_pitch_class_numbers
+   tools/leaftools/label_leaves_in_expr_with_pitch_numbers
+   tools/leaftools/label_leaves_in_expr_with_score_depth
+   tools/leaftools/label_leaves_in_expr_with_tuplet_depth
    tools/leaftools/leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration
    tools/leaftools/leaf_to_augmented_tuplet_with_proportions
    tools/leaftools/leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration
@@ -478,6 +476,7 @@ leaftools
    tools/leaftools/make_rests
    tools/leaftools/make_skips_with_multiplied_durations
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
+   tools/leaftools/remove_markup_from_leaves_in_expr
    tools/leaftools/replace_leaves_with_skips_in
    tools/leaftools/scale_leaf_preprolated_duration
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
@@ -654,6 +653,7 @@ measuretools
    tools/measuretools/change_binary_measure_to_nonbinary
    tools/measuretools/color_measure
    tools/measuretools/color_nonbinary_measures_in
+   tools/measuretools/comment_measures_in_container_with_measure_numbers
    tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
    tools/measuretools/fuse_measures
    tools/measuretools/make
