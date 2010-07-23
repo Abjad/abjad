@@ -3,7 +3,7 @@ from abjad.tools.layout._insert_measure_padding import \
    _insert_measure_padding as layout__insert_measure_padding
 
 
-def insert_measure_padding_skip(expr, front, back, splice = False):
+def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
    r'''.. versionadded:: 1.1.2
 
    Iterate all measures in `expr`. Insert skip with duration equal
@@ -25,7 +25,7 @@ def insert_measure_padding_skip(expr, front, back, splice = False):
 
       abjad> t = Staff(AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
       abjad> front, back = Rational(1, 32), Rational(1, 64)
-      abjad> layout.insert_measure_padding_skip(t, front, back)
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, front, back)
       abjad> print t.format
 
       \new Staff {
@@ -51,7 +51,7 @@ def insert_measure_padding_skip(expr, front, back, splice = False):
       abjad> measure.parallel = True
       abjad> t = Staff(measure * 2)
       abjad> pitchtools.diatonicize(t)
-      abjad> layout.insert_measure_padding_skip(t, Rational(1, 32), Rational(1, 64))
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, Rational(1, 32), Rational(1, 64))
 
    ::
 
@@ -91,7 +91,7 @@ def insert_measure_padding_skip(expr, front, back, splice = False):
       abjad> t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
       abjad> Beam(t[:])
       abjad> t.formatter.number.self = 'comment'
-      abjad> layout.insert_measure_padding_skip(t, Rational(1, 32), Rational(1, 64), splice = True)
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, Rational(1, 32), Rational(1, 64), splice = True)
 
    ::
 
@@ -110,8 +110,12 @@ def insert_measure_padding_skip(expr, front, back, splice = False):
    rational nor ``None``. ::
 
       abjad> t = Staff(AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
-      abjad> layout.insert_measure_padding_skip(t, 'foo', 'bar')
+      abjad> measuretools.pad_measures_in_expr_with_skips(t, 'foo', 'bar')
       ValueError
+
+   .. versionchanged:: 1.1.2
+      renamed ``layout.insert_measure_padding_skip( )`` to
+      ``measuretools.pad_measures_in_expr_with_skips( )``.
    '''
 
    klass_token = Skip((1, 4))

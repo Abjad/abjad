@@ -9,8 +9,8 @@ import types
 def _insert_measure_padding(expr, front, back, klass, splice = False):
    r'''.. versionadded:: 1.1.2
 
-   Generalizes layout.insert_measure_padding_rest( ) and
-   layout.insert_measure_padding_skip( ).
+   Generalizes measuretools.pad_measures_in_expr_with_rests( ) and
+   measuretools.pad_measures_in_expr_with_skips( ).
    '''
 
    if not isinstance(front, (Rational, types.NoneType)):

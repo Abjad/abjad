@@ -430,10 +430,8 @@ layout
    tools/layout/SystemYOffsets/SystemYOffsets
    tools/layout/apply_fixed_staff_positioning
    tools/layout/apply_layout_schema
-   tools/layout/insert_measure_padding_rest
-   tools/layout/insert_measure_padding_skip
-   tools/layout/line_break_every_prolated
-   tools/layout/line_break_every_seconds
+   tools/layout/set_line_breaks_cyclically_by_line_duration_ge
+   tools/layout/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
 
 leaftools
@@ -661,6 +659,8 @@ measuretools
    tools/measuretools/make
    tools/measuretools/multiply_measure_contents_and_scale_meter_denominator_in
    tools/measuretools/multiply_measure_contents_in
+   tools/measuretools/pad_measures_in_expr_with_rests
+   tools/measuretools/pad_measures_in_expr_with_skips
    tools/measuretools/pitch_array_row_to_measure
    tools/measuretools/pitch_array_to_measures
    tools/measuretools/populate

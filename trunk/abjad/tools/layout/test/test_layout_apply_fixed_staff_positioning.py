@@ -5,7 +5,7 @@ def test_layout_apply_fixed_staff_positioning_01( ):
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
-   layout.line_break_every_prolated(t, Rational(4, 8))      
+   layout.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))      
 
    r'''
    \new Staff {
@@ -83,7 +83,7 @@ def test_layout_apply_fixed_staff_positioning_02( ):
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
-   layout.line_break_every_prolated(t, Rational(4, 8))      
+   layout.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))      
 
    r'''
    \new Staff {

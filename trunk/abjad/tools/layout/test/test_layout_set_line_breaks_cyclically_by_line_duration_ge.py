@@ -2,13 +2,13 @@ from abjad import *
 from abjad.leaf import _Leaf
 
 
-def test_layout_line_break_every_prolated_01( ):
+def test_layout_set_line_breaks_cyclically_by_line_duration_ge_01( ):
    '''Iterate klasses in expr and accumulate prolated duration.
       Add line break after every total le line duration.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
-   layout.line_break_every_prolated(t, Rational(4, 8))
+   layout.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(4, 8))
 
    r'''
    \new Staff {
@@ -41,13 +41,13 @@ def test_layout_line_break_every_prolated_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t\t\\break\n\t}\n}"
 
 
-def test_layout_line_break_every_prolated_02( ):
+def test_layout_set_line_breaks_cyclically_by_line_duration_ge_02( ):
    '''Iterate klasses in expr and accumulate prolated duration.
       Add line break after every total le line duration.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
-   layout.line_break_every_prolated(t, Rational(1, 8), klass = _Leaf)
+   layout.set_line_breaks_cyclically_by_line_duration_ge(t, Rational(1, 8), klass = _Leaf)
 
    r'''
    \new Staff {
@@ -86,7 +86,7 @@ def test_layout_line_break_every_prolated_02( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\t\\break\n\t\td'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\t\\break\n\t\tf'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\t\\break\n\t\ta'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\t\\break\n\t\tc''8\n\t\t\\break\n\t}\n}"
 
 
-def test_layout_line_break_every_prolated_03( ):
+def test_layout_set_line_breaks_cyclically_by_line_duration_ge_03( ):
    '''With add_empty_bars keyword.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))

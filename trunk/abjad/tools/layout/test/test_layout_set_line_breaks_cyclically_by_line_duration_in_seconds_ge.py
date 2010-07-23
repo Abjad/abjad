@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_layout_line_break_every_seconds_01( ):
+def test_layout_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_01( ):
    '''Iterate klass instances in expr and accumulate duration in seconds.
    Add line break after every total less than or equal to line_duration.'''
 
@@ -39,7 +39,7 @@ def test_layout_line_break_every_seconds_01( ):
    }
    '''
 
-   layout.line_break_every_seconds(t, Rational(6))
+   layout.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(t, Rational(6))
 
    r'''
    \new Staff {

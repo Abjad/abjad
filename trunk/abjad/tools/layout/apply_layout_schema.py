@@ -1,11 +1,10 @@
 from abjad.measure.measure import _Measure
 from abjad.tools.layout.LayoutSchema import LayoutSchema
-from abjad.tools.layout.apply_fixed_staff_positioning import \
-   apply_fixed_staff_positioning
-from abjad.tools.layout.line_break_every_prolated import \
-   line_break_every_prolated
-from abjad.tools.layout.line_break_every_seconds import \
-   line_break_every_seconds
+from abjad.tools.layout.apply_fixed_staff_positioning import apply_fixed_staff_positioning
+from abjad.tools.layout.set_line_breaks_cyclically_by_line_duration_ge import \
+   set_line_breaks_cyclically_by_line_duration_ge
+from abjad.tools.layout.set_line_breaks_cyclically_by_line_duration_in_seconds_ge import \
+   set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
 
 def apply_layout_schema(expr, layout_schema, 
@@ -89,11 +88,11 @@ def apply_layout_schema(expr, layout_schema,
       raise TypeError('must be layout schema.')
 
    if layout_schema.in_seconds:
-      line_break_every_seconds(expr, layout_schema.line_break_duration, 
+      set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, layout_schema.line_break_duration, 
          klass = klass, adjust_eol = adjust_eol, 
          add_empty_bars = add_empty_bars)
    else:
-      line_break_every_prolated(expr, layout_schema.line_break_duration, 
+      set_line_breaks_cyclically_by_line_duration_ge(expr, layout_schema.line_break_duration, 
          klass = klass, adjust_eol = adjust_eol,
          add_empty_bars = add_empty_bars)
 
