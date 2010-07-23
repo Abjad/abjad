@@ -40,3 +40,4 @@ sys.ps1 = 'abjad> '
 del sys
 del os
 del imports
+del parenttools
