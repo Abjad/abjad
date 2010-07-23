@@ -157,7 +157,7 @@ class BreaksInterface(_Interface, _FormatContributor):
       result = [ ]
       whitespace = self.whitespace
       if whitespace:
-         from abjad.tools.layout._rational_to_whitespace_measure_string import \
+         from abjad.tools.layouttools._rational_to_whitespace_measure_string import \
             _rational_to_whitespace_measure_string as \
             layout__rational_to_whitespace_measure_string
          string = layout__rational_to_whitespace_measure_string(whitespace)

@@ -418,20 +418,20 @@ label
    tools/label/vertical_moment_pitch_numbers
 
 
-layout
+layouttools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/layout/FixedStaffPositioning/FixedStaffPositioning
-   tools/layout/LayoutSchema/LayoutSchema
-   tools/layout/StaffAlignmentDistances/StaffAlignmentDistances
-   tools/layout/StaffAlignmentOffsets/StaffAlignmentOffsets
-   tools/layout/SystemYOffsets/SystemYOffsets
-   tools/layout/apply_fixed_staff_positioning
-   tools/layout/apply_layout_schema
-   tools/layout/set_line_breaks_cyclically_by_line_duration_ge
-   tools/layout/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
+   tools/layouttools/FixedStaffPositioning/FixedStaffPositioning
+   tools/layouttools/LayoutSchema/LayoutSchema
+   tools/layouttools/StaffAlignmentDistances/StaffAlignmentDistances
+   tools/layouttools/StaffAlignmentOffsets/StaffAlignmentOffsets
+   tools/layouttools/SystemYOffsets/SystemYOffsets
+   tools/layouttools/apply_fixed_staff_positioning
+   tools/layouttools/apply_layout_schema
+   tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
+   tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
 
 leaftools
