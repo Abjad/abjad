@@ -1,7 +1,7 @@
 from abjad.tools.partition._by_counts import _by_counts
 
 
-def unfractured_by_counts(components, counts):
+def partition_components_once_by_counts_and_do_not_fracture_crossing_spanners(components, counts):
    r'''Partition `components` into parts of lengths equal to `counts`.
    Read `counts` only once; do not cycle.
    Leave spanners attaching to `components` untouched.
@@ -26,7 +26,7 @@ def unfractured_by_counts(components, counts):
 
    ::
 
-      abjad> parts = partition.unfractured_by_counts(t[:], [1, 3])
+      abjad> parts = componenttools.partition_components_once_by_counts_and_do_not_fracture_crossing_spanners(t[:], [1, 3])
       abjad> f(t)
       \new Voice {
          {
@@ -44,6 +44,10 @@ def unfractured_by_counts(components, counts):
             c''8 ] )
          }
       }
+
+   .. versionchanged:: 1.1.2
+      renamed ``partition.unfractured_by_counts( )`` to
+      ``componenttools.partition_components_once_by_counts_and_do_not_fracture_crossing_spanners( )``.
    '''
 
    return _by_counts(components, counts, spanners = 'unfractured')

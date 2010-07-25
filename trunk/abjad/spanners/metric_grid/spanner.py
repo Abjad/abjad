@@ -107,7 +107,8 @@ class MetricGrid(Spanner):
       return True
 
    def splitOnBar(self):
-      from abjad.tools import partition
+      from abjad.tools import componenttools
       leaves = [leaf for leaf in self.leaves if self.splittingCondition(leaf)]
-      partition.cyclic_unfractured_by_durations(leaves, [x.duration for x in self.meters], tie_after = True)
+      componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
+         leaves, [x.duration for x in self.meters], tie_after = True)
       self._fuseTiedLeavesWithinMeasures( )

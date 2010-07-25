@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_partition_unfractured_by_durations_01( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners_01( ):
    '''Duration partition one container in score
       Do no fracture spanners.'''
 
@@ -25,7 +25,7 @@ def test_partition_unfractured_by_durations_01( ):
    '''
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
-   parts = partition.unfractured_by_durations(t[:1], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:1], durations)
 
    r'''
    \new Staff {
@@ -51,7 +51,7 @@ def test_partition_unfractured_by_durations_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\tc'32 [ (\n\t}\n\t{\n\t\tc'16.\n\t}\n\t{\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_partition_unfractured_by_durations_02( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners_02( ):
    '''Duration partition multiple containers in score.
       Do not fracture spanners.'''
 
@@ -75,7 +75,7 @@ def test_partition_unfractured_by_durations_02( ):
    '''
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
-   parts = partition.unfractured_by_durations(t[:], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:], durations)
 
    r'''
    \new Staff {

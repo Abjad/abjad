@@ -1,7 +1,7 @@
 from abjad.tools.partition._by_durations import _by_durations
 
 
-def unfractured_by_durations(components, durations, tie_after = False):
+def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(components, durations, tie_after = False):
    r'''Partition `components` according to `durations`.
    Do not fracture spanners. ::
 
@@ -25,7 +25,7 @@ def unfractured_by_durations(components, durations, tie_after = False):
    ::
 
       abjad> durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
-      abjad> parts = partition.unfractured_by_durations(t[:1], durations)
+      abjad> parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:1], durations)
       \new Staff {
          {
             c'32 [ (
@@ -41,6 +41,10 @@ def unfractured_by_durations(components, durations, tie_after = False):
             f'8 ] )
          }
       }
+
+   .. versionchanged:: 1.1.2
+      renamed ``partition.unfractured_by_durations( )`` to
+      ``componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners( )``.
    '''
 
    return _by_durations(components, durations, 

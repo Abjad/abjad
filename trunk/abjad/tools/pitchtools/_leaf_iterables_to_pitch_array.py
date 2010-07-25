@@ -9,7 +9,7 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):
    '''
 
    from abjad.tools import leaftools
-   from abjad.tools import partition
+   from abjad.tools import componenttools
 
    time_intervals = leaftools.get_composite_offset_difference_series(
       leaf_iterables)
@@ -20,7 +20,8 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate = True):
    tokens = leaftools.make_quarter_notes_with_lilypond_multipliers([0], time_intervals)
    for leaf_iterable, pitch_array_row in zip(leaf_iterables, pitch_array.rows):
       durations = leaftools.get_durations_prolated(leaf_iterable)
-      parts = partition.unfractured_by_durations(tokens, durations)
+      parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(
+         tokens, durations)
       part_lengths = [len(part) for part in parts]
       cells = pitch_array_row.cells
       grouped_cells = listtools.partition_by_lengths(cells, part_lengths)

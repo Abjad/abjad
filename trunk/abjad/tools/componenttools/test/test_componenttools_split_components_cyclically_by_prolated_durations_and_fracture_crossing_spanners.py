@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_partition_cyclic_fractured_by_durations_01( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_01( ):
    '''Cyclically duration partition one leaf in score.
       Fracture spanners.'''
 
@@ -27,7 +27,7 @@ def test_partition_cyclic_fractured_by_durations_01( ):
    '''
 
    durations = [Rational(3, 64)]
-   parts = partition.cyclic_fractured_by_durations(t[0][1:2], durations)
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(t[0][1:2], durations)
 
    r'''
    \new Staff {
@@ -51,7 +51,7 @@ def test_partition_cyclic_fractured_by_durations_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. )\n\t\td'32. ( )\n\t\td'64 ( ~\n\t\td'64 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_partition_cyclic_fractured_by_durations_02( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_02( ):
    '''Cyclically duration partition multiple leaves in score.
       Fracture spanners.'''
 
@@ -77,7 +77,7 @@ def test_partition_cyclic_fractured_by_durations_02( ):
    '''
 
    durations = [Rational(3, 32)]
-   parts = partition.cyclic_fractured_by_durations(t.leaves, durations)
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(t.leaves, durations)
 
    r'''
    \new Staff {
@@ -103,7 +103,7 @@ def test_partition_cyclic_fractured_by_durations_02( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. ( ) [\n\t\tc'32 (\n\t\td'16 )\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'32 ) [\n\t\te'16. (\n\t\tf'16. )\n\t\tf'32 ] ( )\n\t}\n}"
 
 
-def test_partition_cyclic_fractured_by_durations_03( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_03( ):
    '''Cyclically duration partition one measure in score.
       Fracture spanners.'''
 
@@ -129,7 +129,7 @@ def test_partition_cyclic_fractured_by_durations_03( ):
    '''
 
    durations = [Rational(3, 32)]
-   parts = partition.cyclic_fractured_by_durations(t[:1], durations)
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(t[:1], durations)
 
    r'''
    \new Staff {
@@ -159,7 +159,7 @@ def test_partition_cyclic_fractured_by_durations_03( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_partition_cyclic_fractured_by_durations_04( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_04( ):
    '''Cyclically duration partition multiple measures in score.
       Fracture spanners.'''
 
@@ -185,7 +185,7 @@ def test_partition_cyclic_fractured_by_durations_04( ):
    '''
 
    durations = [Rational(3, 32)]
-   parts = partition.cyclic_fractured_by_durations(t[:], durations)
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(t[:], durations)
 
    r'''
    \new Staff {
@@ -226,12 +226,12 @@ def test_partition_cyclic_fractured_by_durations_04( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
 
 
-def test_partition_cyclic_fractured_by_durations_05( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_05( ):
    '''Cyclically duration partition list of leaves outside of score.'''
 
    leaves = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)
    durations = [Rational(3, 32)]
-   parts = partition.cyclic_fractured_by_durations(leaves, durations)
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(leaves, durations)
 
    assert len(parts) == 6
 
@@ -256,7 +256,7 @@ def test_partition_cyclic_fractured_by_durations_05( ):
    assert t.format == "\\new Staff {\n\tc'16.\n\tc'32\n\td'16\n\td'16\n\te'32\n\te'16.\n\tf'16.\n\tf'32\n}"
 
 
-def test_partition_cyclic_fractured_by_durations_06( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_06( ):
    '''Cyclically duration partition list of measures outside of score.
       Fracture spanners.'''
 
@@ -266,7 +266,7 @@ def test_partition_cyclic_fractured_by_durations_06( ):
    pitchtools.diatonicize(measures)
 
    durations = [Rational(3, 32)]
-   parts = partition.cyclic_fractured_by_durations(measures, durations)
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(measures, durations)
 
    assert len(parts) == 6
 
@@ -312,7 +312,7 @@ def test_partition_cyclic_fractured_by_durations_06( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
 
 
-def test_partition_cyclic_fractured_by_durations_07( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_07( ):
    '''Duration partition one leaf in score.
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
@@ -339,7 +339,7 @@ def test_partition_cyclic_fractured_by_durations_07( ):
    '''
 
    durations = [Rational(1, 32)]
-   parts = partition.cyclic_fractured_by_durations(
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(
       t[0][1:], durations, tie_after = True)
 
    r'''
@@ -366,7 +366,7 @@ def test_partition_cyclic_fractured_by_durations_07( ):
 
 
 
-def test_partition_cyclic_fractured_by_durations_08( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_08( ):
    '''Duration partition multiple leaves in score.
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
@@ -393,7 +393,7 @@ def test_partition_cyclic_fractured_by_durations_08( ):
    '''
 
    durations = [Rational(1, 16)]
-   parts = partition.cyclic_fractured_by_durations(
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(
       t.leaves, durations, tie_after = True)
 
    r'''
@@ -420,7 +420,7 @@ def test_partition_cyclic_fractured_by_durations_08( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 ( ) [ ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'16 ) [ ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
 
 
-def test_partition_cyclic_fractured_by_durations_09( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_09( ):
    '''Duration partition one measure in score.
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
@@ -447,7 +447,7 @@ def test_partition_cyclic_fractured_by_durations_09( ):
    '''
 
    durations = [Rational(1, 16)]
-   parts = partition.cyclic_fractured_by_durations(
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(
       t[:1], durations, tie_after = True)
 
    r'''
@@ -482,7 +482,7 @@ def test_partition_cyclic_fractured_by_durations_09( ):
 
 
 
-def test_partition_cyclic_fractured_by_durations_10( ):
+def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_10( ):
    '''Duration partition multiple measures in score.
       Read durations cyclically in list.
       Fracture spanners but add tie after each split.'''
@@ -509,7 +509,7 @@ def test_partition_cyclic_fractured_by_durations_10( ):
    '''
 
    durations = [Rational(3, 32)]
-   parts = partition.cyclic_fractured_by_durations(
+   parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(
       t[:], durations, tie_after = True)
 
    r'''

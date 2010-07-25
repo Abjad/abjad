@@ -1,7 +1,7 @@
 from abjad.tools.partition._by_durations import _by_durations
 
 
-def cyclic_unfractured_by_durations(components, durations, tie_after = False):
+def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(components, durations, tie_after = False):
    r'''Partition `components` cyclically by `durations`
    but do not fracture spanners in the process::
 
@@ -27,7 +27,7 @@ def cyclic_unfractured_by_durations(components, durations, tie_after = False):
    ::
       
       abjad> durations = [Rational(3, 32)]
-      abjad> partition.cyclic_unfractured_by_durations(staff.leaves, durations) 
+      abjad> componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(staff.leaves, durations) 
       [[Note(c', 16.)], [Note(c', 32), Note(d', 16)], 
       [Note(d', 16), Note(e', 32)], [Note(e', 16.)], [Note(f', 16.)], [Note(f', 32)]]
       
@@ -52,6 +52,10 @@ def cyclic_unfractured_by_durations(components, durations, tie_after = False):
       }
    
    Return list of partitioned components.
+
+   .. versionchanged:: 1.1.2
+      renamed ``partition.cyclic_unfractured_by_durations( )`` to
+      ``componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners( )``.
    '''
 
    return _by_durations(components, durations, 

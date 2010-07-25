@@ -51,7 +51,7 @@ flexibility and exactness of LilyPond's internal rhythmic model. We
 may not want these spanning notes in our final score, however. We may
 also want to show each beat by splitting notes every quarter or every
 half note duration. To do this we will slice the music to a second
-sequence of meters using the  ``partition.unfractured_by_durations( )``
+sequence of meters using the  ``componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners( )``
 function. Because tied note may be created by the partitioning function, we then
 fuse all tied notes within each of the metric units --via the 
 ``fuse.tie_chains_by_durations( )`` function-- to guarantee that our durations
@@ -60,7 +60,7 @@ are represented in the most compact form.
 <abjad> 
 meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
 meters = durtools.rationalize(meters)
-partition.unfractured_by_durations(staff.leaves, meters, tie_after=True)
+componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(staff.leaves, meters, tie_after=True)
 fuse.tie_chains_by_durations(staff.leaves, meters)
 write(staff, 'example3') <hide
 show(staff)

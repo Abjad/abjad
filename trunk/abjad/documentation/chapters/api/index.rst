@@ -207,6 +207,8 @@ componenttools
    tools/componenttools/move_component_subtree_to_right_in_score_and_spanners
    tools/componenttools/number_is_between_prolated_start_and_stop_offsets_of_component
    tools/componenttools/number_is_between_start_and_stop_offsets_of_component_in_seconds
+   tools/componenttools/partition_components_cyclically_by_counts_and_do_not_fracture_crossing_spanners
+   tools/componenttools/partition_components_cyclically_by_counts_and_fracture_crossing_spanners
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_exactly_with_overhang
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_exactly_without_overhang
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_ge_with_overhang
@@ -219,6 +221,8 @@ componenttools
    tools/componenttools/partition_components_cyclically_by_prolated_durations_ge_without_overhang
    tools/componenttools/partition_components_cyclically_by_prolated_durations_le_with_overhang
    tools/componenttools/partition_components_cyclically_by_prolated_durations_le_without_overhang
+   tools/componenttools/partition_components_once_by_counts_and_do_not_fracture_crossing_spanners
+   tools/componenttools/partition_components_once_by_counts_and_fracture_crossing_spanners
    tools/componenttools/partition_components_once_by_durations_in_seconds_exactly_with_overhang
    tools/componenttools/partition_components_once_by_durations_in_seconds_exactly_without_overhang
    tools/componenttools/partition_components_once_by_durations_in_seconds_ge_with_overhang
@@ -236,6 +240,10 @@ componenttools
    tools/componenttools/replace_components_with_children_of_components
    tools/componenttools/split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
    tools/componenttools/split_component_at_prolated_duration_and_fracture_crossing_spanners
+   tools/componenttools/split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners
+   tools/componenttools/split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners
+   tools/componenttools/split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners
+   tools/componenttools/split_components_once_by_prolated_durations_and_fracture_crossing_spanners
    tools/componenttools/sum_duration_of_components_in_seconds
    tools/componenttools/sum_preprolated_duration_of_components
    tools/componenttools/sum_prolated_duration_of_components
@@ -679,21 +687,6 @@ overridetools
 
    tools/overridetools/clear_all_overrides_on_grob_handler
    tools/overridetools/promote_attribute_to_context_on_grob_handler
-
-
-partition
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/partition/cyclic_fractured_by_counts
-   tools/partition/cyclic_fractured_by_durations
-   tools/partition/cyclic_unfractured_by_counts
-   tools/partition/cyclic_unfractured_by_durations
-   tools/partition/fractured_by_counts
-   tools/partition/fractured_by_durations
-   tools/partition/unfractured_by_counts
-   tools/partition/unfractured_by_durations
 
 
 persistencetools

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_partition_fractured_by_durations_01( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_01( ):
    '''Duration partition one container in score, and fracture spanners.'''
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 2)
@@ -26,7 +26,7 @@ def test_partition_fractured_by_durations_01( ):
    '''
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
-   parts = partition.fractured_by_durations(t[:1], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:1], durations)
 
    r'''
    \new Staff {
@@ -55,7 +55,7 @@ def test_partition_fractured_by_durations_01( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_partition_fractured_by_durations_02( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_02( ):
    '''Duration partition multiple containers in score, 
       and fracture spanners.'''
 
@@ -81,7 +81,7 @@ def test_partition_fractured_by_durations_02( ):
    '''
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
-   parts = partition.fractured_by_durations(t[:], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:], durations)
 
    r'''
    \new Staff {
@@ -114,7 +114,7 @@ def test_partition_fractured_by_durations_02( ):
    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_partition_fractured_by_durations_03( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_03( ):
    '''Duration partition container outside of score.
       This example includes no spanners.
       Spanners do not apply outside of score.'''
@@ -125,14 +125,14 @@ def test_partition_fractured_by_durations_03( ):
    "[{c'8, d'8}, {e'8, f'8}]"
 
    durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
-   parts = partition.fractured_by_durations(t, durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t, durations)
 
    "[[{c'32}], [{c'16.}], [{d'8}, {e'32}], [{e'16., f'8}]]"
 
    assert len(parts) == 4
 
 
-def test_partition_fractured_by_durations_04( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_04( ):
    '''Duration partition one leaf outside of score.'''
 
    t = Note(0, (1, 4))
@@ -140,14 +140,14 @@ def test_partition_fractured_by_durations_04( ):
    "c'4"
 
    durations = [Rational(1, 32), Rational(5, 32)]
-   parts = partition.fractured_by_durations([t], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners([t], durations)
 
    "[[Note(c', 32)], [Note(c', 8), Note(c', 32)], [Note(c', 16)]]"
 
    assert len(parts) == 3
 
 
-def test_partition_fractured_by_durations_05( ):
+def test_componenttools_split_components_once_by_prolated_durations_and_fracture_crossing_spanners_05( ):
    '''Duration partition leaf in score and fracture spanners.'''
 
    t = Staff([Note(0, (1, 8))])
@@ -160,7 +160,7 @@ def test_partition_fractured_by_durations_05( ):
    '''
 
    durations = [Rational(1, 64), Rational(5, 64)]
-   parts = partition.fractured_by_durations(t[:], durations)
+   parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:], durations)
 
    r'''
    \new Staff {

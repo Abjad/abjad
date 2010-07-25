@@ -1,7 +1,7 @@
 from abjad.tools.partition._by_durations import _by_durations
 
 
-def fractured_by_durations(components, durations, tie_after = False):
+def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(components, durations, tie_after = False):
    r'''Partition `components` by `durations`.
    Fracture all spanners attached to any component at
    any duration split-point.  ::
@@ -28,7 +28,7 @@ def fractured_by_durations(components, durations, tie_after = False):
    ::
 
       abjad> durations = [Rational(1, 32), Rational(3, 32), Rational(5, 32)]
-      abjad> parts = partition.fractured_by_durations(t[:1], durations)
+      abjad> parts = componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners(t[:1], durations)
       abjad> f(t)
       \new Staff {
               {
@@ -49,6 +49,10 @@ def fractured_by_durations(components, durations, tie_after = False):
                       f'8 ] )
               }
       }
+
+   .. versionchanged:: 1.1.2
+      renamed ``partition.fractured_by_durations( )`` to
+      ``componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners( )``.
    '''
 
    return _by_durations(components, durations, 

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_partition_unfractured_by_counts_01( ):
+def test_componenttools_partition_components_once_by_counts_and_do_not_fracture_crossing_spanners_01( ):
    '''Partition container into parts of lengths equal to counts.
       Read list of counts only once; do not cycle.
       Fracture spanners attaching directly to container.
@@ -26,7 +26,7 @@ def test_partition_unfractured_by_counts_01( ):
    }
    '''
 
-   parts = partition.unfractured_by_counts(t[:], [1, 3])
+   parts = componenttools.partition_components_once_by_counts_and_do_not_fracture_crossing_spanners(t[:], [1, 3])
 
    r'''
    \new Voice {
