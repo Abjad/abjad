@@ -27,11 +27,11 @@ _import_functions_in_package_to_namespace(
 
 ## import tools and io
 from abjad.tools.iotools import f
-from abjad.tools.iotools import log
-from abjad.tools.iotools import ly
-from abjad.tools.iotools import pdf
+#from abjad.tools.iotools import log
+#from abjad.tools.iotools import ly
+#from abjad.tools.iotools import pdf
 from abjad.tools.iotools import play
-from abjad.tools.iotools import redo
+#from abjad.tools.iotools import redo
 from abjad.tools.iotools import show
 from abjad.tools import *
 

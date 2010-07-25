@@ -5,11 +5,11 @@ class KeySignature(_GrobHandler):
 
    def __init__(self, tonic, mode):
       from abjad.tools import pitchtools
-      from abjad.tools import tonalharmony
+      from abjad.tools import tonalitytools
       _GrobHandler.__init__(self, 'KeySignature')
       tonic = pitchtools.NamedPitchClass(tonic)
       self._tonic = tonic
-      self._mode = tonalharmony.Mode(mode)
+      self._mode = tonalitytools.Mode(mode)
 
    ## OVERLOADS ##
 

@@ -1,0 +1,18 @@
+from abjad import *
+
+
+def test_ExtentIndicator___init____01( ):
+   '''Init from number.'''
+
+   assert tonalitytools.ExtentIndicator(7).number == 7
+
+
+def test_ExtentIndicator___init____02( ):
+   '''Init by reference.'''
+
+   extent_indicator = tonalitytools.ExtentIndicator(7)
+   new = tonalitytools.ExtentIndicator(extent_indicator)
+
+   assert new.number == 7
+   assert new == extent_indicator
+   assert new is not extent_indicator

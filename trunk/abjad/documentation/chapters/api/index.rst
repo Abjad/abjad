@@ -951,38 +951,38 @@ tietools
    tools/tietools/truncate
 
 
-tonalharmony
+tonalitytools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/tonalharmony/ChordClass/ChordClass
-   tools/tonalharmony/ChordQualityIndicator/ChordQualityIndicator
-   tools/tonalharmony/DoublingIndicator/DoublingIndicator
-   tools/tonalharmony/ExtentIndicator/ExtentIndicator
-   tools/tonalharmony/InversionIndicator/InversionIndicator
-   tools/tonalharmony/Mode/Mode
-   tools/tonalharmony/OmissionIndicator/OmissionIndicator
-   tools/tonalharmony/QualityIndicator/QualityIndicator
-   tools/tonalharmony/Scale/Scale
-   tools/tonalharmony/ScaleDegree/ScaleDegree
-   tools/tonalharmony/SuspensionIndicator/SuspensionIndicator
-   tools/tonalharmony/TonalFunction/TonalFunction
-   tools/tonalharmony/analyze_chord
-   tools/tonalharmony/analyze_incomplete_chord
-   tools/tonalharmony/analyze_incomplete_tonal_function
-   tools/tonalharmony/analyze_tonal_function
-   tools/tonalharmony/are_scalar
-   tools/tonalharmony/are_stepwise
-   tools/tonalharmony/are_stepwise_ascending
-   tools/tonalharmony/are_stepwise_descending
-   tools/tonalharmony/chord_class_cardinality_to_extent
-   tools/tonalharmony/chord_class_extent_to_cardinality
-   tools/tonalharmony/chord_class_extent_to_extent_name
-   tools/tonalharmony/diatonic_interval_class_segment_to_chord_quality_string
-   tools/tonalharmony/is_neighbor_note
-   tools/tonalharmony/is_passing_tone
-   tools/tonalharmony/is_unlikely_melodic_diatonic_interval_in_chorale
+   tools/tonalitytools/ChordClass/ChordClass
+   tools/tonalitytools/ChordQualityIndicator/ChordQualityIndicator
+   tools/tonalitytools/DoublingIndicator/DoublingIndicator
+   tools/tonalitytools/ExtentIndicator/ExtentIndicator
+   tools/tonalitytools/InversionIndicator/InversionIndicator
+   tools/tonalitytools/Mode/Mode
+   tools/tonalitytools/OmissionIndicator/OmissionIndicator
+   tools/tonalitytools/QualityIndicator/QualityIndicator
+   tools/tonalitytools/Scale/Scale
+   tools/tonalitytools/ScaleDegree/ScaleDegree
+   tools/tonalitytools/SuspensionIndicator/SuspensionIndicator
+   tools/tonalitytools/TonalFunction/TonalFunction
+   tools/tonalitytools/analyze_chord
+   tools/tonalitytools/analyze_incomplete_chord
+   tools/tonalitytools/analyze_incomplete_tonal_function
+   tools/tonalitytools/analyze_tonal_function
+   tools/tonalitytools/are_scalar
+   tools/tonalitytools/are_stepwise
+   tools/tonalitytools/are_stepwise_ascending
+   tools/tonalitytools/are_stepwise_descending
+   tools/tonalitytools/chord_class_cardinality_to_extent
+   tools/tonalitytools/chord_class_extent_to_cardinality
+   tools/tonalitytools/chord_class_extent_to_extent_name
+   tools/tonalitytools/diatonic_interval_class_segment_to_chord_quality_string
+   tools/tonalitytools/is_neighbor_note
+   tools/tonalitytools/is_passing_tone
+   tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
 
 
 tuplettools

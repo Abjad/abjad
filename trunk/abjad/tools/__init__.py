@@ -18,5 +18,5 @@ from abjad.tools import sievetools
 from abjad.tools import spacingtools
 from abjad.tools import spannertools
 from abjad.tools import tietools
-from abjad.tools import tonalharmony
+from abjad.tools import tonalitytools
 from abjad.tools import verticalitytools

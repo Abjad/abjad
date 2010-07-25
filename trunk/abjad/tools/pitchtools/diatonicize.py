@@ -29,15 +29,15 @@ def diatonicize(expr, key_signature = None):
    .. versionadded:: 1.1.2
       Optional `key_signature` keyword argument.
    '''
-   from abjad.tools import tonalharmony
+   from abjad.tools import tonalitytools
 
    #diatonic_residues = (0, 2, 4, 5, 7, 9, 11)
    #length = len(diatonic_residues)
 
    if key_signature is None:
-      scale = tonalharmony.Scale('C', 'major')
+      scale = tonalitytools.Scale('C', 'major')
    else:
-      scale = tonalharmony.Scale(key_signature)
+      scale = tonalitytools.Scale(key_signature)
 
    dicg = scale.diatonic_interval_class_segment
    length = len(dicg)
