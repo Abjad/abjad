@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_layout_apply_layout_schema_01( ):
+def test_layouttools_apply_layouttools_schema_01( ):
    '''Short-cut to avoid instantiating SystemYOffsets,
    StaffAlignmentOffsets, FixedStaffPositioning by hand.
    '''
@@ -81,7 +81,7 @@ def test_layout_apply_layout_schema_01( ):
    assert t.format == '\\new Staff {\n\t{\n\t\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t\t#\'line-break-system-details\n\t\t#\'((Y-offset . 40) (alignment-distances . (15)))\n\t\t\\time 2/8\n\t\tc\'8\n\t\td\'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te\'8\n\t\tf\'8\n\t\t\\break\n\t\t\\noPageBreak\n\t}\n\t{\n\t\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t\t#\'line-break-system-details\n\t\t#\'((Y-offset . 80) (alignment-distances . (15)))\n\t\t\\time 2/8\n\t\tg\'8\n\t\ta\'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb\'8\n\t\tc\'\'8\n\t\t\\break\n\t}\n}'
 
 
-def test_layout_apply_layout_schema_02( ):
+def test_layouttools_apply_layouttools_schema_02( ):
    '''Short-cut to avoid instantiating SystemYOffsets,
    StaffAlignmentOffsets, FixedStaffPositioning by hand.
 

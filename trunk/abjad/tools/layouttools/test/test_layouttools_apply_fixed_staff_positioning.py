@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_layout_apply_fixed_staff_positioning_01( ):
+def test_layouttools_apply_fixed_staff_positioning_01( ):
 
    t = Staff(RigidMeasure((2, 8), leaftools.make_repeated_notes(2)) * 4)
    pitchtools.diatonicize(t)
@@ -77,7 +77,7 @@ def test_layout_apply_fixed_staff_positioning_01( ):
    assert t.format == '\\new Staff {\n\t{\n\t\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t\t#\'line-break-system-details\n\t\t#\'((Y-offset . 0) (alignment-offsets . (0)))\n\t\t\\time 2/8\n\t\tc\'8\n\t\td\'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te\'8\n\t\tf\'8\n\t\t\\break\n\t\t\\pageBreak\n\t}\n\t{\n\t\t\\overrideProperty #"Score.NonMusicalPaperColumn"\n\t\t#\'line-break-system-details\n\t\t#\'((Y-offset . 0) (alignment-offsets . (0)))\n\t\t\\time 2/8\n\t\tg\'8\n\t\ta\'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb\'8\n\t\tc\'\'8\n\t\t\\break\n\t}\n}'
 
 
-def test_layout_apply_fixed_staff_positioning_02( ):
+def test_layouttools_apply_fixed_staff_positioning_02( ):
    '''OK to use staff alignment distances instead of
    staff alignment offsets.'''
 

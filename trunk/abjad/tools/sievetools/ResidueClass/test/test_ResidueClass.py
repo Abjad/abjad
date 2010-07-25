@@ -4,13 +4,13 @@ import py.test
 
 RC = ResidueClass
 
-def test_RC_01( ):
+def test_ResidueClass_01( ):
    '''modulo must be > 0.'''
 
    py.test.raises(ValueError, 't = RC(0, 1)')
 
 
-def test_RC_02( ):
+def test_ResidueClass_02( ):
    '''residue must be non-negative and < modulo.'''
 
    py.test.raises(ValueError, 't = RC(2, 13)')
@@ -18,7 +18,7 @@ def test_RC_02( ):
    py.test.raises(ValueError, 't = RC(2, -1)')
 
 
-def test_RC_03( ):
+def test_ResidueClass_03( ):
    '''modulo may be 1.'''
 
    t = RC(1, 0)
@@ -27,7 +27,7 @@ def test_RC_03( ):
    assert t.residue == 0
 
 
-def test_RC_04( ):
+def test_ResidueClass_04( ):
    
    t = RC(2, 0)
 
@@ -37,7 +37,7 @@ def test_RC_04( ):
    assert t.get_boolean_train(4) == [1,0,1,0]
 
 
-def test_RC_05( ):
+def test_ResidueClass_05( ):
 
    t = RC(2, 1)
 
@@ -47,7 +47,7 @@ def test_RC_05( ):
    assert t.get_boolean_train(4) == [0,1,0,1]
 
 
-def test_RC_06( ):
+def test_ResidueClass_06( ):
 
    t = RC(3, 0)
 
@@ -57,7 +57,7 @@ def test_RC_06( ):
    assert t.get_boolean_train(6) == [1,0,0,1,0,0]
 
 
-def test_RC_07( ):
+def test_ResidueClass_07( ):
 
    t = RC(3, 1)
 
@@ -67,7 +67,7 @@ def test_RC_07( ):
    assert t.get_boolean_train(6) == [0,1,0,0,1,0]
 
 
-def test_RC_08( ):
+def test_ResidueClass_08( ):
    '''get_congruent_bases( ) and get_boolean_train( ) must take 
    range parameters.'''
    

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_RCexpression__sort_rcs_01( ):
+def test_ResidueClassexpression__sort_rcs_01( ):
    '''Unsorted RCs are sorted on RC expression initialization.'''
 
    RC = sievetools.ResidueClass
@@ -9,7 +9,7 @@ def test_RCexpression__sort_rcs_01( ):
    assert rcexpression.rcs == [RC(8, 0), RC(9, 0), RC(10, 0)]
 
 
-def test_RCexpression__sort_rcs_02( ):
+def test_ResidueClassexpression__sort_rcs_02( ):
    '''Unsorted RCs are sorted on RC expression initialization.'''
 
    RC = sievetools.ResidueClass

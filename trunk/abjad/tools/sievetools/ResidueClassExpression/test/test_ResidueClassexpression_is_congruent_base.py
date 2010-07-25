@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_RCexpression_is_congruent_base_01( ):
+def test_ResidueClassexpression_is_congruent_base_01( ):
    '''Works with negative integers.'''
 
    sieve = sievetools.cycle_tokens_to_sieve((5, [0, 1]), (6, [0]))
@@ -19,7 +19,7 @@ def test_RCexpression_is_congruent_base_01( ):
    assert not sieve.is_congruent_base(-1)
 
 
-def test_RCexpression_is_congruent_base_02( ):
+def test_ResidueClassexpression_is_congruent_base_02( ):
    '''Works with zero.'''
 
    sieve = sievetools.cycle_tokens_to_sieve((5, [0, 1]), (6, [0]))
@@ -29,7 +29,7 @@ def test_RCexpression_is_congruent_base_02( ):
    assert sieve.is_congruent_base(0)
 
 
-def test_RCexpression_is_congruent_base_03( ):
+def test_ResidueClassexpression_is_congruent_base_03( ):
    '''Works with positive integers.'''
 
    sieve = sievetools.cycle_tokens_to_sieve((5, [0, 1]), (6, [0]))

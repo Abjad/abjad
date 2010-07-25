@@ -5,7 +5,7 @@ import py.test
 
 RC = ResidueClass
 
-def test_RC_operator_and_01( ):
+def test_ResidueClass_operator_and_01( ):
    '''RC AND RC returns a ResidueClassExpression.'''
 
    rc1 = RC(4, 0) 
@@ -19,7 +19,7 @@ def test_RC_operator_and_01( ):
    assert t.get_congruent_bases(6) == [ ]
 
 
-def test_RC_operator_and_02( ):
+def test_ResidueClass_operator_and_02( ):
    '''and-ResidueClassExpression AND RC returns a flat and-ResidueClassExpression.'''
 
    rcexpression = RC(4, 0) & RC(4, 1)
@@ -34,7 +34,7 @@ def test_RC_operator_and_02( ):
    assert rc in t.rcs
 
 
-def test_RC_operator_and_03( ):
+def test_ResidueClass_operator_and_03( ):
    '''RC AND and-ResidueClassExpression returns a flat and-ResidueClassExpression.'''
 
    rcexpression = RC(4, 0) & RC(4, 1)
@@ -49,7 +49,7 @@ def test_RC_operator_and_03( ):
    assert rc in t.rcs
 
 
-def test_RC_operator_and_04( ):
+def test_ResidueClass_operator_and_04( ):
    '''and-ResidueClassExpression AND and-ResidueClassExpression returns a flat and-ResidueClassExpression.'''
 
    rc1 = RC(4, 0) 
@@ -69,7 +69,7 @@ def test_RC_operator_and_04( ):
    assert rc4 in t.rcs
 
 
-def test_RC_operator_and_05( ):
+def test_ResidueClass_operator_and_05( ):
    '''AND'''
 
    t = RC(2, 0) & RC(3, 0)
@@ -80,7 +80,7 @@ def test_RC_operator_and_05( ):
    assert t.get_congruent_bases(6) == [0, 6]
 
 
-def test_RC_operator_and_06( ):
+def test_ResidueClass_operator_and_06( ):
    '''AND'''
 
    t = RC(2, 1) & RC(3, 0)

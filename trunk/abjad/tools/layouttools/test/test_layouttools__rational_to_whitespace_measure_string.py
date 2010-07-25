@@ -4,7 +4,7 @@ from abjad.tools.layouttools._rational_to_whitespace_measure_string import \
    layouttools__rational_to_whitespace_measure_string
 
 
-def test_layout__rational_to_whitespace_measure_string_01( ):
+def test_layouttools__rational_to_whitespace_measure_string_01( ):
    '''Turn nonbinary rational into whitespace measure string.'''
 
    t = layouttools__rational_to_whitespace_measure_string(Rational(1, 40))
@@ -25,7 +25,7 @@ def test_layout__rational_to_whitespace_measure_string_01( ):
    assert t == "{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 1/40\n\t\\stopStaff\n\t\\scaleDurations #'(4 . 5) {\n\t\ts1 * 1/32\n\t}\n\t\\startStaff\n\t\\revert Staff.TimeSignature #'stencil\n}"
 
 
-def test_layout__rational_to_whitespace_measure_string_02( ):
+def test_layouttools__rational_to_whitespace_measure_string_02( ):
    '''Turn binary rational into whitespace measure string.'''
 
    t = layouttools__rational_to_whitespace_measure_string(Rational(1, 32))
