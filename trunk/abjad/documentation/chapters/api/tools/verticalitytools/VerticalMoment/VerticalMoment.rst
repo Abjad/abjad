@@ -1,9 +1,9 @@
-iterate.VerticalMoment
-======================
+verticalitytools.VerticalMoment
+===============================
 
-.. automodule:: abjad.tools.iterate.VerticalMoment.VerticalMoment
+.. automodule:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment
 
-.. autoclass:: abjad.tools.iterate.VerticalMoment
+.. autoclass:: abjad.tools.verticalitytools.VerticalMoment
    :members:
    :undoc-members:
    :show-inheritance:

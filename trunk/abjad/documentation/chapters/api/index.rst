@@ -347,7 +347,6 @@ iterate
 .. toctree::
    :maxdepth: 1
 
-   tools/iterate/VerticalMoment/VerticalMoment
    tools/iterate/components_and_grace_containers_forward_in_expr
    tools/iterate/depth_first
    tools/iterate/get_leaf_at_index_from_measure_number_in_expr
@@ -1012,6 +1011,7 @@ verticalitytools
 .. toctree::
    :maxdepth: 1
 
+   tools/verticalitytools/VerticalMoment/VerticalMoment
    tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_interval_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_intervals
    tools/verticalitytools/label_vertical_moments_in_expr_with_counterpoint_intervals
