@@ -4,14 +4,12 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import formattools
 from abjad.tools import iterate
-from abjad.tools import label
 from abjad.tools import layouttools
 from abjad.tools import lilyfiletools
 from abjad.tools import markuptools
 from abjad.tools import measuretools
 from abjad.tools import metertools
 from abjad.tools import overridetools
-#from abjad.tools import parenttools
 from abjad.tools import partition
 from abjad.tools import persistencetools
 from abjad.tools import pitchtools
@@ -21,3 +19,4 @@ from abjad.tools import spacingtools
 from abjad.tools import spannertools
 from abjad.tools import tietools
 from abjad.tools import tonalharmony
+from abjad.tools import verticalitytools

@@ -3,7 +3,7 @@ from abjad.tools import iterate
 from abjad.tools import pitchtools
 
 
-def vertical_moment_chromatic_intervals(expr):
+def label_vertical_moments_in_expr_with_chromatic_intervals(expr):
    r'''.. versionadded:: 1.1.2
 
    Label harmonic chromatic intervals 
@@ -15,7 +15,7 @@ def vertical_moment_chromatic_intervals(expr):
       abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
       abjad> score[2].clef.forced = Clef('bass')
       abjad> score[2].append(Note(-24, (1, 2)))
-      abjad> label.vertical_moment_chromatic_intervals(score)
+      abjad> verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals(score)
       abjad> f(score)
       \new Score <<
               \new Staff {
@@ -34,6 +34,10 @@ def vertical_moment_chromatic_intervals(expr):
                       c,2 _ \markup { \small { \column { 24 19 } } }
               }
       >>
+
+   .. versionchanged:: 1.1.2
+      renamed ``label.vertical_moment_chromatic_intervals( )`` to
+      ``verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals( )``.
    '''
 
    for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):

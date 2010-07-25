@@ -389,20 +389,6 @@ iterate
    tools/iterate/vertical_moments_forward_in_expr
 
 
-label
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/label/vertical_moment_chromatic_interval_classes
-   tools/label/vertical_moment_chromatic_intervals
-   tools/label/vertical_moment_counterpoint_intervals
-   tools/label/vertical_moment_diatonic_intervals
-   tools/label/vertical_moment_interval_class_vectors
-   tools/label/vertical_moment_pitch_classes
-   tools/label/vertical_moment_pitch_numbers
-
-
 layouttools
 
 .. toctree::
@@ -1019,3 +1005,17 @@ tuplettools
    tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
    tools/tuplettools/remove_trivial_tuplets_in_expr
    tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
+
+
+verticalitytools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_interval_classes
+   tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_intervals
+   tools/verticalitytools/label_vertical_moments_in_expr_with_counterpoint_intervals
+   tools/verticalitytools/label_vertical_moments_in_expr_with_diatonic_intervals
+   tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
+   tools/verticalitytools/label_vertical_moments_in_expr_with_numeric_pitch_classes
+   tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers

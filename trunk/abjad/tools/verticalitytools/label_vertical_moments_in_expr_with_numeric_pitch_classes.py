@@ -2,7 +2,7 @@ from abjad.tools import iterate
 from abjad.tools import pitchtools
 
 
-def vertical_moment_pitch_classes(expr):
+def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr):
    r'''.. versionadded:: 1.1.2
 
    Label pitch classes of every vertical moment in `expr`. ::
@@ -13,7 +13,7 @@ def vertical_moment_pitch_classes(expr):
       abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
       abjad> score[2].clef.forced = Clef('bass')
       abjad> score[2].append(Note(-24, (1, 2)))
-      abjad> label.vertical_moment_pitch_classes(score)
+      abjad> verticalitytools.label_vertical_moments_in_expr_with_numeric_pitch_classes(score)
       abjad> f(score)
       \new Score <<
               \new Staff {
@@ -32,6 +32,10 @@ def vertical_moment_pitch_classes(expr):
                       c,2 _ \markup { \small { \column { 7 0 } } }
               }
       >>
+
+   .. versionchanged:: 1.1.2
+      renamed ``label.vertical_moment_pitch_classes( )`` to
+      ``verticalitytools.label_vertical_moments_in_expr_with_numeric_pitch_classes( )``.
    '''
 
    for vertical_moment in iterate.vertical_moments_forward_in_expr(expr):

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_label_vertical_moment_pitch_numbers_01( ):
+def test_verticalitytools_label_vertical_moments_in_expr_with_pitch_numbers_01( ):
 
    score = Score(Staff([ ]) * 3)
    score[0].extend(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -9,7 +9,7 @@ def test_label_vertical_moment_pitch_numbers_01( ):
    score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
    score[2].clef.forced = Clef('bass')
    score[2].append(Note(-24, (1, 2)))
-   label.vertical_moment_pitch_numbers(score)
+   verticalitytools.label_vertical_moments_in_expr_with_pitch_numbers(score)
 
    r'''
    \new Score <<
