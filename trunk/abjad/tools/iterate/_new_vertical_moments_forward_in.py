@@ -1,7 +1,6 @@
 from abjad.component import _Component
 from abjad.container import Container
 from abjad.rational import Rational
-from abjad.tools.iterate.VerticalMoment import VerticalMoment
 
 
 def _new_vertical_moments_forward_in(expr):
@@ -9,6 +8,7 @@ def _new_vertical_moments_forward_in(expr):
 
    Optimized to avoid full-score traversal.
    '''
+   from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
    if not isinstance(expr, _Component):
       raise TypeError('must be Abjad component.')

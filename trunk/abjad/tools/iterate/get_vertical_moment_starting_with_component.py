@@ -2,6 +2,7 @@ from abjad.tools.iterate.get_vertical_moment_at_prolated_offset_in_expr import \
    get_vertical_moment_at_prolated_offset_in_expr as \
    iterate_get_vertical_moment_at_prolated_offset_in_expr
 
+
 def get_vertical_moment_starting_with_component(expr, governor = None):
    r'''.. versionadded:: 1.1.2
 

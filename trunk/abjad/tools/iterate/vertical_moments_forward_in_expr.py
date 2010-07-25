@@ -1,6 +1,5 @@
 from abjad.component import _Component
 from abjad.rational import Rational
-from abjad.tools.iterate.VerticalMoment import VerticalMoment
 from abjad.tools.iterate._new_vertical_moments_forward_in import \
    _new_vertical_moments_forward_in
 
@@ -64,6 +63,7 @@ def vertical_moments_forward_in_expr(governor):
       renamed ``iterate.vertical_moments_forward_in( )`` to
       ``iterate.vertical_moments_forward_in_expr( )``.
    '''
+   from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
    ## OPTIMIZED DROP-IN REPLACEMENT ##
    for x in _new_vertical_moments_forward_in(governor):

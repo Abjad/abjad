@@ -1,6 +1,5 @@
 from abjad.component import _Component
 from abjad.rational import Rational
-from abjad.tools.iterate.VerticalMoment import VerticalMoment
 from abjad.tools.iterate.get_vertical_moment_at_prolated_offset_in_expr \
    import get_vertical_moment_at_prolated_offset_in_expr
 from abjad.tools.iterate.naive_forward_in_expr import naive_forward_in_expr
@@ -65,6 +64,7 @@ def vertical_moments_backward_in_expr(governor):
       renamed ``iterate.vertical_moments_backward_in( )`` to
       ``iterate.vertical_moments_backward_in_expr( )``.
    '''
+   from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
    moments_in_governor = [ ]
    for component in naive_forward_in_expr(governor, _Component):

@@ -1,5 +1,4 @@
 from abjad.component import _Component
-from abjad.tools.iterate.VerticalMoment import VerticalMoment
 from abjad.tools.iterate.naive_forward_in_expr import naive_forward_in_expr
 
 
@@ -51,6 +50,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
       renamed ``iterate.get_vertical_moment_at_prolated_offset_in( )`` to
       ``iterate.get_vertical_moment_at_prolated_offset_in_expr( )``.
    '''
+   from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
    governors = [ ]
    message = 'must be Abjad component or list or tuple of Abjad components.'
