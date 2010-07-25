@@ -695,8 +695,8 @@ persistencetools
    :maxdepth: 1
 
    tools/persistencetools/component_to_pitch_and_rhythm_skeleton
-   tools/persistencetools/pickle_dump
-   tools/persistencetools/pickle_load
+   tools/persistencetools/dump_pickle
+   tools/persistencetools/load_pickle
 
 
 pitchtools
