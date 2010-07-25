@@ -1,6 +1,6 @@
-from abjad.tools.imports.get_functions_in_module import \
+from abjad.tools.importtools.get_functions_in_module import \
    _get_functions_in_module
-from abjad.tools.imports.remove_modules_from_namespace import \
+from abjad.tools.importtools.remove_modules_from_namespace import \
    _remove_modules_from_namespace
 import os
 

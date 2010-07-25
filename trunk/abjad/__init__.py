@@ -1,4 +1,4 @@
-from abjad.tools.imports.import_functions_in_package_to_namespace import \
+from abjad.tools.importtools.import_functions_in_package_to_namespace import \
    _import_functions_in_package_to_namespace
 
 ## create list of directories to skip
@@ -16,7 +16,7 @@ for _key in globals( ).keys( ):
       del(globals( )[_key])
 
 ## reimport import tools since they were removed after previous import
-from abjad.tools.imports.import_functions_in_package_to_namespace import \
+from abjad.tools.importtools.import_functions_in_package_to_namespace import \
    _import_functions_in_package_to_namespace
 import os
 
@@ -39,5 +39,5 @@ import sys
 sys.ps1 = 'abjad> '
 del sys
 del os
-del imports
+del importtools
 del parenttools
