@@ -672,11 +672,11 @@ metertools
 .. toctree::
    :maxdepth: 1
 
-   tools/metertools/extract_meter_list
-   tools/metertools/get_nonbinary_factor
+   tools/metertools/duration_and_possible_denominators_to_meter
+   tools/metertools/extract_meters_from_measures_in_expr
+   tools/metertools/get_nonbinary_factor_from_meter_denominator
    tools/metertools/is_meter_token
    tools/metertools/is_meter_with_equivalent_binary_representation
-   tools/metertools/make_best
    tools/metertools/meter_to_binary_meter
 
 

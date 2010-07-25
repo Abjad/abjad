@@ -94,7 +94,7 @@ def fuse_measures(measures):
       old_denominators.append(effective_meter.denominator)
       new_duration += effective_meter.duration
 
-   new_meter = metertools.make_best(new_duration, old_denominators)
+   new_meter = metertools.duration_and_possible_denominators_to_meter(new_duration, old_denominators)
 
    music = [ ]
    for measure in measures:

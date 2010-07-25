@@ -54,7 +54,7 @@ def change_binary_measure_to_nonbinary(measure, new_denominator_factor):
    old_meter_duration = measure.meter.effective.duration
 
    ## find new meter
-   new_meter = metertools.make_best(
+   new_meter = metertools.duration_and_possible_denominators_to_meter(
       old_meter_duration, factor = new_denominator_factor)
 
    ## find new measure multiplier

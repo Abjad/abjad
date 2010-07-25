@@ -37,7 +37,7 @@ def scale_measure_contents_in(expr, multiplier = Rational(1)):
          old_denominator = old_meter.denominator
          old_duration = old_meter.duration
          new_duration = multiplier * old_duration
-         new_meter = metertools.make_best(
+         new_meter = metertools.duration_and_possible_denominators_to_meter(
             new_duration, [old_denominator], multiplier._d)
       measure.meter.forced = new_meter
 

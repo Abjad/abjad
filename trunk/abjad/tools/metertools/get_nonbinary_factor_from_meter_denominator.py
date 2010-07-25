@@ -2,7 +2,7 @@ from abjad.meter import Meter
 from abjad.tools import mathtools
 
 
-def get_nonbinary_factor(meter):
+def get_nonbinary_factor_from_meter_denominator(meter):
    '''Return nonbinary factor in denominator of meter, else 1.'''
 
    assert isinstance(meter, Meter)

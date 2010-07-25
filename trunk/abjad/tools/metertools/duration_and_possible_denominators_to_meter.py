@@ -3,29 +3,33 @@ from abjad.tools import mathtools
 from abjad.tools import durtools
 
 
-def make_best(duration, denominators = None, factor = None):
+def duration_and_possible_denominators_to_meter(duration, denominators = None, factor = None):
    '''Return new Abjad Meter equal in duration to 'duration'.
    Determine meter denominator based on 'denominators' or 'factor'.
    Take denominator from smallest workable value in 'denominators'.
    Or take denominator from smallest workable multiple of 'factor'::
 
-      abjad> metertools.make_best(Rational(3, 2), [5, 6, 7, 8])
+      abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), [5, 6, 7, 8])
       Meter(9, 6)
 
    ::
 
-      abjad> metertools.make_best(Rational(3, 2), [4, 8, 16, 32])
+      abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), [4, 8, 16, 32])
       Meter(6, 4)
 
    ::
 
-      abjad> metertools.make_best(Rational(3, 2), factor = 5)
+      abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2), factor = 5)
       Meter(15, 10)
 
    ::
 
-      abjad> metertools.make_best(Rational(3, 2))
+      abjad> metertools.duration_and_possible_denominators_to_meter(Rational(3, 2))
       Meter(3, 2)
+
+   .. versionchanged:: 1.1.2
+      renamed ``metertools.make_best( )`` to
+      ``metertools.duration_and_possible_denominators_to_meter( )``.
    '''
 
    if denominators is not None:
