@@ -98,8 +98,8 @@ def scale_contents_of_container(container, multiplier):
    '''
 
    for expr in iterate.topmost_tie_chains_and_components_forward_in_expr(container[:]):
-      if tietools.is_chain(expr):
-         tietools.duration_scale(expr, multiplier)
+      if tietools.is_tie_chain(expr):
+         tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(expr, multiplier)
       elif isinstance(expr, FixedDurationTuplet):
          tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(expr, multiplier)
       elif isinstance(expr, _Measure):

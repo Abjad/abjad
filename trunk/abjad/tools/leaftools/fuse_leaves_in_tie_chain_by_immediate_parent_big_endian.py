@@ -52,14 +52,14 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
    from abjad.tools.leaftools.fuse_leaves_big_endian import fuse_leaves_big_endian
 
    ## check input
-   if not tietools.is_chain(tie_chain):
+   if not tietools.is_tie_chain(tie_chain):
       raise TypeError('must be tie chain.')
 
    ## init result
    result = [ ]
 
    ## group leaves in tie chain by parent
-   parts = tietools.group_by_parent(tie_chain)
+   parts = tietools.group_leaves_in_tie_chain_by_immediate_parents(tie_chain)
    
    ## fuse leaves in each part
    for part in parts:

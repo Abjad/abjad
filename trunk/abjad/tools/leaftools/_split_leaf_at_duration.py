@@ -50,6 +50,6 @@ def _split_leaf_at_duration(
       raise ValueError("keyword must be 'fractured' or 'unfractured'.")
 
    if tie_after:
-      tietools.span_leaf_pair(leaf_left_of_split, leaf_right_of_split)
+      tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
 
    return left_leaf_list, right_leaf_list

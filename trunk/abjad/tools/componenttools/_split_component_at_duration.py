@@ -126,11 +126,11 @@ def _split_component_at_duration(
    
    ## crawl above will kill any tie applied to leaves
    ## reapply tie here if necessary
-   ## TODO: Possibly replace this with tietools.span_leaf_pair( )? ##
+   ## TODO: Possibly replace this with tietools.apply_tie_spanner_to_leaf_pair( )? ##
    if did_split_leaf:
       if tie_after:
          leaves_at_split = [leaf_left_of_split, leaf_right_of_split]
-         if not tietools.are_in_same_spanner(leaves_at_split):
+         if not tietools.are_components_in_same_tie_spanner(leaves_at_split):
             if all([x.tie.spanned for x in leaves_at_split]):
                leaf_left_of_split.tie.spanner.fuse(
                   leaf_right_of_split.tie.spanner)

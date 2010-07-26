@@ -47,7 +47,7 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
 
    for group in groups:
       ## get tie_chains intersecting this group
-      tie_chains = tietools.get_tie_chains(group)
+      tie_chains = tietools.get_tie_chains_in_expr(group)
 
       for chain in tie_chains:
          leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(chain)

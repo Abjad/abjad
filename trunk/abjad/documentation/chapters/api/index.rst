@@ -924,24 +924,24 @@ tietools
 .. toctree::
    :maxdepth: 1
 
-   tools/tietools/are_in_same_spanner
-   tools/tietools/duration_change
-   tools/tietools/duration_scale
-   tools/tietools/get_duration_prolated
-   tools/tietools/get_duration_seconds
-   tools/tietools/get_duration_written
-   tools/tietools/get_leaves
-   tools/tietools/get_tie_chain_duration_preprolated
-   tools/tietools/get_tie_chains
-   tools/tietools/group_by_parent
-   tools/tietools/is_chain
-   tools/tietools/is_in_same_parent
-   tools/tietools/span_leaf_pair
+   tools/tietools/add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration
+   tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
+   tools/tietools/apply_tie_spanner_to_leaf_pair
+   tools/tietools/are_components_in_same_tie_spanner
+   tools/tietools/get_leaves_in_tie_chain
+   tools/tietools/get_tie_chain_duration_in_seconds
+   tools/tietools/get_tie_chain_preprolated_duration
+   tools/tietools/get_tie_chain_prolated_duration
+   tools/tietools/get_tie_chain_written_duration
+   tools/tietools/get_tie_chains_in_expr
+   tools/tietools/group_leaves_in_tie_chain_by_immediate_parents
+   tools/tietools/is_tie_chain
+   tools/tietools/is_tie_chain_with_all_leaves_in_same_parent
+   tools/tietools/remove_all_leaves_in_tie_chain_except_first
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
-   tools/tietools/truncate
 
 
 tonalitytools
