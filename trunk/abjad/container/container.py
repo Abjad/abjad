@@ -97,7 +97,7 @@ class Container(_Component):
       if isinstance(i, int):
          assert componenttools.all_are_components([expr])
          old = self[i]
-         spanners_receipt = spannertools.get_dominant([old])
+         spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
          ## must withdraw from spanners before parentage!
          ## otherwise begin / end assessments don't work!
          _withdraw_from_crossing([expr])
@@ -116,7 +116,7 @@ class Container(_Component):
          else:
             start, stop, stride = i.indices(len(self))
          old = self[start:stop]
-         spanners_receipt = spannertools.get_dominant_slice(self, start, stop)
+         spanners_receipt = spannertools.get_spanners_that_dominate_container_components_from_to(self, start, stop)
          componenttools.remove_component_subtree_from_score_and_spanners(old)
          ## must withdraw before setting in self!
          ## otherwise circular withdraw ensues!

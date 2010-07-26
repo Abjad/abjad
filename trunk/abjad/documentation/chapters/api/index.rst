@@ -892,21 +892,21 @@ spannertools
    tools/spannertools/find_component_at_score_offset
    tools/spannertools/find_index_at_score_offset
    tools/spannertools/fracture_crossing
-   tools/spannertools/get_attached
    tools/spannertools/get_contained
-   tools/spannertools/get_covered
-   tools/spannertools/get_crossing
-   tools/spannertools/get_dominant
-   tools/spannertools/get_dominant_between
-   tools/spannertools/get_dominant_slice
-   tools/spannertools/get_nth_leaf
-   tools/spannertools/give_attached_to_children
-   tools/spannertools/iterate_components_backward
-   tools/spannertools/iterate_components_forward
+   tools/spannertools/get_nth_leaf_in_spanner
+   tools/spannertools/get_spanners_covered_by_components
+   tools/spannertools/get_spanners_on_components_or_component_children
+   tools/spannertools/get_spanners_that_cross_components
+   tools/spannertools/get_spanners_that_dominate_component_pair
+   tools/spannertools/get_spanners_that_dominate_components
+   tools/spannertools/get_spanners_that_dominate_container_components_from_to
+   tools/spannertools/iterate_components_backward_in_spanner
+   tools/spannertools/iterate_components_forward_in_spanner
    tools/spannertools/make_dynamic_spanner_below_with_nib_at_right
    tools/spannertools/make_solid_text_spanner_above_with_nib_at_right
    tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
-   tools/spannertools/withdraw_from_covered
+   tools/spannertools/move_spanners_from_component_to_children_of_component
+   tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
 
 tempotools

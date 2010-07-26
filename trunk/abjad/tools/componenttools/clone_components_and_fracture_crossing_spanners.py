@@ -95,7 +95,7 @@ def clone_components_and_fracture_crossing_spanners(components, n = 1):
 
    selection_components = set(iterate.naive_forward_in_expr(components, _Component))
 
-   spanners = spannertools.get_crossing(components) 
+   spanners = spannertools.get_spanners_that_cross_components(components) 
 
    spanner_map = set([ ])
    for spanner in spanners:

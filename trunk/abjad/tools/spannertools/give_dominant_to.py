@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.get_dominant import get_dominant
+from abjad.tools.spannertools.get_spanners_that_dominate_components import get_spanners_that_dominate_components
 
 
 def _give_dominant_to(donor_components, recipient_components):
@@ -15,7 +15,7 @@ def _give_dominant_to(donor_components, recipient_components):
    assert componenttools.all_are_thread_contiguous_components(donor_components)
    assert componenttools.all_are_thread_contiguous_components(recipient_components)
    
-   receipt = get_dominant(donor_components)
+   receipt = get_spanners_that_dominate_components(donor_components)
    for spanner, index in receipt:
       for recipient_component in reversed(recipient_components):
          spanner._insert(index, recipient_component)

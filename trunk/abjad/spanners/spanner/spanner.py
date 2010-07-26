@@ -161,23 +161,23 @@ class Spanner(_Abjad):
          return False
 
    def _isMyFirstLeaf(self, leaf):
-      from abjad.tools.spannertools.get_nth_leaf import get_nth_leaf
+      from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
       ## ! Full-leaf traversal extremely inefficient !
       #leaves = self.leaves
       #return leaves and leaf is leaves[0]
       try:
-         first_leaf = get_nth_leaf(self, 0)
+         first_leaf = get_nth_leaf_in_spanner(self, 0)
          return leaf is first_leaf
       except IndexError:
          return False
    
    def _isMyLastLeaf(self, leaf):
-      from abjad.tools.spannertools.get_nth_leaf import get_nth_leaf
+      from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
       ## ! Full-leaf traversal extremely inefficient !
       #leaves = self.leaves
       #return leaves and leaf is leaves[-1]
       try:
-         last_leaf = get_nth_leaf(self, -1)
+         last_leaf = get_nth_leaf_in_spanner(self, -1)
          return leaf is last_leaf
       except IndexError:
          False

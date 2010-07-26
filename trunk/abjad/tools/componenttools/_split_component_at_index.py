@@ -67,7 +67,7 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
    nonempty_halves = [half for half in halves if len(half)]
 
    ## give attached spanners to children
-   spannertools.give_attached_to_children(component)
+   spannertools.move_spanners_from_component_to_children_of_component(component)
 
    ## incorporate left and right parents in score, if possible
    parent, start, stop = get_parent_and_start_stop_indices_of_components([component])

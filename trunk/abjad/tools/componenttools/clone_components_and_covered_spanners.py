@@ -96,7 +96,7 @@ def clone_components_and_covered_spanners(components, n = 1):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   spanners = spannertools.get_crossing(components) 
+   spanners = spannertools.get_spanners_that_cross_components(components) 
    for spanner in spanners:
       spanner._blockAllComponents( )
 

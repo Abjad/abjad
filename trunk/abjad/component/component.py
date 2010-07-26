@@ -614,7 +614,7 @@ class _Component(_Abjad):
       from abjad.tools import spannertools
       assert componenttools.all_are_components(components)
       insert_offset = self.offset.prolated.stop
-      receipt = spannertools.get_dominant([self])
+      receipt = spannertools.get_spanners_that_dominate_components([self])
       for spanner, index in receipt:
          insert_component = spannertools.find_component_at_score_offset(
             spanner, insert_offset)
@@ -640,7 +640,7 @@ class _Component(_Abjad):
       from abjad.tools import spannertools
       assert componenttools.all_are_components(components)
       offset = self.offset.prolated.start
-      receipt = spannertools.get_dominant([self])
+      receipt = spannertools.get_spanners_that_dominate_components([self])
       for spanner, x in receipt:
          index = spannertools.find_index_at_score_offset(spanner, offset)
          for component in reversed(components):

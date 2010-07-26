@@ -1,6 +1,6 @@
 from abjad.component import _Component
 from abjad.tools import iterate
-from abjad.tools.spannertools.get_crossing import get_crossing
+from abjad.tools.spannertools.get_spanners_that_cross_components import get_spanners_that_cross_components
 
 
 def _withdraw_from_crossing(components):
@@ -17,7 +17,7 @@ def _withdraw_from_crossing(components):
 
    assert componenttools.all_are_thread_contiguous_components(components)
 
-   crossing_spanners = get_crossing(components) 
+   crossing_spanners = get_spanners_that_cross_components(components) 
 
    components_including_children = list(
       iterate.naive_forward_in_expr(components, _Component))
