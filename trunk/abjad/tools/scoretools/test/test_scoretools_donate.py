@@ -3,7 +3,7 @@ import py.test
 
 
 def test_scoretools_donate_01( ):
-   '''Donate from multiple containers to tuplet.'''
+   '''Donate from multiple containers to empty tuplet.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
@@ -49,7 +49,7 @@ def test_scoretools_donate_01( ):
 
 
 def test_scoretools_donate_02( ):
-   '''Donate from container to voice.'''
+   '''Donate from container to empty voice.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    t.name = 'foo'
@@ -100,7 +100,7 @@ def test_scoretools_donate_02( ):
 
 
 def test_scoretools_donate_03( ):
-   '''Donate from container to tuplet.'''
+   '''Donate from container to empty tuplet.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
@@ -167,6 +167,8 @@ def test_scoretools_donate_04( ):
    '''
 
    scoretools.donate(t[1:2], Note(4, (1, 8)))
+   ## ALSO WORKS:
+   #componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [Note(4, (1, 8))])
 
    r'''
    \new Voice {
@@ -202,6 +204,8 @@ def test_scoretools_donate_05( ):
 
    container = Container([Note(4, (1, 8)), Note(5, (1, 8))])
    scoretools.donate(t[1:2], container)
+   ## ALSO WORKS:
+   #componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [container])
 
    r'''
    \new Voice {
@@ -269,6 +273,8 @@ def test_scoretools_donate_08( ):
 
    old = t.leaves[2]
    scoretools.donate(t.leaves[2:3], Rest((1, 8)))
+   ## ALSO WORKS:
+   #componenttools.move_parentage_and_spanners_from_components_to_components(t.leaves[2:3], [Rest((1, 8))])
 
    r'''
    \new Voice {
@@ -316,7 +322,10 @@ def test_scoretools_donate_09( ):
    }
    '''
    
-   scoretools.donate(t[1][:1], FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3))
+   tuplet = FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3)
+   scoretools.donate(t[1][:1], tuplet)
+   ## ALSO WORKS:
+   #componenttools.move_parentage_and_spanners_from_components_to_components(t[1][:1], [tuplet])
 
    r'''
    \new Voice {
