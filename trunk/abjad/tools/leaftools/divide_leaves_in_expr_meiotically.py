@@ -3,7 +3,7 @@ from abjad.tools.leaftools.divide_leaf_meiotically import \
    divide_leaf_meiotically
 
 
-def divide_leaves_meiotically_in(expr, n = 2):
+def divide_leaves_in_expr_meiotically(expr, n = 2):
    r'''.. versionadded:: 1.1.1
 
    Divide leaves meiotically in `expr` `n` times::
@@ -20,7 +20,7 @@ def divide_leaves_meiotically_in(expr, n = 2):
       
    ::
       
-      abjad> leaftools.divide_leaves_meiotically_in(staff[2:], n = 4)
+      abjad> leaftools.divide_leaves_in_expr_meiotically(staff[2:], n = 4)
       
    ::
       
@@ -51,7 +51,11 @@ def divide_leaves_meiotically_in(expr, n = 2):
 
    .. versionchanged:: 1.1.2
       renamed ``leaftools.meiose( )`` to 
-      ``leaftools.divide_leaves_meiotically_in( )``.
+      ``leaftools.divide_leaves_in_expr_meiotically( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``leaftools.divide_leaves_meiotically_in( )`` to
+      ``leaftools.divide_leaves_in_expr_meiotically( )``.
    '''
 
    ## can not wrap with update control because of leaf.splice( ) ##

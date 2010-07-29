@@ -2,7 +2,7 @@ from abjad.tools import iterate
 from abjad.tools.leaftools.color_leaf import color_leaf
 
 
-def color_leaves_in(expr, color):
+def color_leaves_in_expr(expr, color):
    r""".. versionadded:: 1.1.2
 
    Color leaves in `expr` with `color`::
@@ -19,7 +19,7 @@ def color_leaves_in(expr, color):
       
    ::
       
-      abjad> leaftools.color_leaves_in(staff, 'red')
+      abjad> leaftools.color_leaves_in_expr(staff, 'red')
       
    ::
       

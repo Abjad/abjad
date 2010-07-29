@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_leaftools_clone_and_splice_leaves_in_01( ):
+def test_leaftools_clone_and_splice_leaves_in_expr_01( ):
    '''Multiply each leaf in voice by 1.'''
 
    t = Voice(macros.scale(3))
    p = Beam(t[:])
-   leaftools.clone_and_splice_leaves_in(t, total = 2)
+   leaftools.clone_and_splice_leaves_in_expr(t, total = 2)
 
    r'''
    \new Voice {
@@ -23,12 +23,12 @@ def test_leaftools_clone_and_splice_leaves_in_01( ):
    assert t.format == "\\new Voice {\n\tc'8 [\n\tc'8\n\td'8\n\td'8\n\te'8\n\te'8 ]\n}"
 
 
-def test_leaftools_clone_and_splice_leaves_in_02( ):
+def test_leaftools_clone_and_splice_leaves_in_expr_02( ):
    '''Multiply each leaf in voice by 2.'''
 
    t = Voice(macros.scale(3))
    Beam(t[:])
-   leaftools.clone_and_splice_leaves_in(t, total = 3)
+   leaftools.clone_and_splice_leaves_in_expr(t, total = 3)
 
    r'''
    \new Voice {

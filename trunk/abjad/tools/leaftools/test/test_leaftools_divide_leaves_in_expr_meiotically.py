@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_leaftools_divide_leaves_meiotically_in_01( ):
+def test_leaftools_divide_leaves_in_expr_meiotically_01( ):
    '''Meiose each leaf in two.'''
 
    t = Voice(macros.scale(3))
    Beam(t[:])
-   leaftools.divide_leaves_meiotically_in(t)
+   leaftools.divide_leaves_in_expr_meiotically(t)
 
    r'''
    \new Voice {
@@ -23,12 +23,12 @@ def test_leaftools_divide_leaves_meiotically_in_01( ):
    assert t.format == "\\new Voice {\n\tc'16 [\n\tc'16\n\td'16\n\td'16\n\te'16\n\te'16 ]\n}"
 
 
-def test_leaftools_divide_leaves_meiotically_in_02( ):
+def test_leaftools_divide_leaves_in_expr_meiotically_02( ):
    '''Meiose one leaf in four.'''
 
    t = Voice(macros.scale(3))
    Beam(t[:])
-   leaftools.divide_leaves_meiotically_in(t[0], 4)
+   leaftools.divide_leaves_in_expr_meiotically(t[0], 4)
 
    r'''
    \new Voice {

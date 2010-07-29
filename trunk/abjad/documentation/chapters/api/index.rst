@@ -425,12 +425,13 @@ leaftools
    tools/leaftools/change_leaf_preprolated_duration
    tools/leaftools/change_written_duration_and_preserve_preprolated_duration
    tools/leaftools/clone_and_splice_leaf
-   tools/leaftools/clone_and_splice_leaves_in
+   tools/leaftools/clone_and_splice_leaves_in_expr
    tools/leaftools/color_leaf
-   tools/leaftools/color_leaves_in
+   tools/leaftools/color_leaves_in_expr
    tools/leaftools/copy_written_duration_and_multiplier_from_to
    tools/leaftools/divide_leaf_meiotically
-   tools/leaftools/divide_leaves_meiotically_in
+   tools/leaftools/divide_leaves_in_expr_meiotically
+   tools/leaftools/expr_has_leaf_with_dotted_written_duration
    tools/leaftools/fuse_leaves_big_endian
    tools/leaftools/fuse_leaves_in_container_once_by_counts_into_big_endian_notes
    tools/leaftools/fuse_leaves_in_container_once_by_counts_into_big_endian_rests
@@ -442,7 +443,6 @@ leaftools
    tools/leaftools/get_composite_offset_series
    tools/leaftools/get_durations_prolated
    tools/leaftools/get_durations_written
-   tools/leaftools/has_leaf_with_dotted_written_duration_in
    tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/label_leaves_in_expr_with_leaf_duration
    tools/leaftools/label_leaves_in_expr_with_leaf_indices
