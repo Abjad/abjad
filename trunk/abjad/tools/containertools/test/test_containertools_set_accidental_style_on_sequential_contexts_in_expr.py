@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_scoretools_set_accidental_style_01( ):
+def test_containertools_set_accidental_style_on_sequential_contexts_in_expr_01( ):
 
    score = Score(Staff(macros.scale(2)) * 2)
-   scoretools.set_accidental_style(score, 'forget')
+   containertools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
 
    r'''
    \new Score <<

@@ -2,13 +2,13 @@ from abjad.context.context import _Context
 from abjad.tools import iterate
 
 
-def set_accidental_style(expr, accidental_style):
+def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
    r'''.. versionadded:: 1.1.2
 
    Set `accidental_style` for sequential contexts in `expr`. ::
 
       score = Score(Staff(macros.scale(2)) * 2)
-      scoretools.set_accidental_style(score, 'forget')
+      containertools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
       \new Score <<
               \new Staff {
                       #(set-accidental-style 'forget)
@@ -27,6 +27,10 @@ def set_accidental_style(expr, accidental_style):
       command to set accidental style.
       This means that it is not possible to set accidental style on 
       a top-level context like score with a single override.
+
+   .. versionchanged:: 1.1.2
+      renamed ``scoretools.set_accidental_style( )`` to
+      ``containertools.set_accidental_style_on_sequential_contexts_in_expr( )``.
    '''
 
    for context in iterate.naive_forward_in_expr(expr, _Context):
