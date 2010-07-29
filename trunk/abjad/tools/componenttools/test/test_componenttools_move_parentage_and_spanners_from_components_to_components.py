@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_01( ):
-   '''Bequeath parent and spanners of two old notes to five new notes.'''
+   '''Move parentage and spanners from two old notes to five new notes.'''
    
    t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
@@ -41,7 +41,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_02( ):
-   '''Bequeath parent and spaners of one old note to five new notes.'''
+   '''Move parentage and spanners from one old note to five new notes.'''
    
    t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
@@ -58,8 +58,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''
 
    new_notes = Note(12, (1, 16)) * 5
-   #componenttools.move_parentage_and_spanners_from_components_to_components(t[:1], new_notes)
-   t[:1] = new_notes
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[:1], new_notes)
+   #t[:1] = new_notes
 
    "Equivalent to t[:1] = new_notes."
 
@@ -81,7 +81,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_03( ):
-   '''Bequeath parent and spanners of two old notes to five new notes.'''
+   '''Move parentage and spanners from two old notes to five new notes.'''
 
    t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
@@ -98,8 +98,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''
 
    new_notes = Note(12, (1, 16)) * 5
-   #componenttools.move_parentage_and_spanners_from_components_to_components(t[:2], new_notes)
-   t[:2] = new_notes
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[:2], new_notes)
+   #t[:2] = new_notes
 
    "Equivalent to t[:2] = new_notes."
 
@@ -120,7 +120,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_04( ):
-   '''Bequeath parent and spanners of three old notes to five new notes.'''
+   '''Move parentage and spanners from three old notes to five new notes.'''
 
    t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
@@ -137,8 +137,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''
 
    new_notes = Note(12, (1, 16)) * 5
-   #componenttools.move_parentage_and_spanners_from_components_to_components(t[:3], new_notes)
-   t[:3] = new_notes
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[:3], new_notes)
+   #t[:3] = new_notes
 
    "Equivalent to t[:3] = new_notes."
 
@@ -158,6 +158,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_05( ):
+   '''Move parentage and spanners from four old notes to five new notes.'''
 
    t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
@@ -174,8 +175,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    '''
 
    new_notes = Note(12, (1, 16)) * 5
-   #componenttools.move_parentage_and_spanners_from_components_to_components(t[:], new_notes)
-   t[:] = new_notes
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[:], new_notes)
+   #t[:] = new_notes
 
    "Equivalent to t[:] = new_notes."
 
@@ -194,8 +195,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_06( ):
-   '''Bequeath parent and spanners of container to children of container.
-      This is bequeath generalizing Container.slip( ).'''
+   '''Move parentage and spanners from container to children of container.'''
 
    t = Staff([Voice(macros.scale(4))])
    Beam(t[0])
@@ -211,11 +211,11 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
    }
    '''
 
-   #old_components = componenttools.move_parentage_and_spanners_from_components_to_components(t[0:1], t[0][:])
-   #voice = old_components[0]
+   old_components = componenttools.move_parentage_and_spanners_from_components_to_components(t[0:1], t[0][:])
+   voice = old_components[0]
 
-   voice = t[0]
-   t[:1] = t[0][:]
+   #voice = t[0]
+   #t[:1] = t[0][:]
 
    "Equivalent to t[:1] = t[0][:]."
 

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_01( ):
-   '''Donate from multiple containers to empty tuplet.'''
+   '''Move parentage, children and spanners from multiple containers to empty tuplet.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
@@ -49,7 +49,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_02( ):
-   '''Donate from container to empty voice.'''
+   '''Move parentage, children and spanners from container to empty voice.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    t.name = 'foo'
@@ -100,7 +100,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_03( ):
-   '''Donate from container to empty tuplet.'''
+   '''Move parentage, children and spanners from container to empty tuplet.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
@@ -124,7 +124,8 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    }
    '''
 
-   containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], FixedDurationTuplet((3, 16), [ ]))
+   containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
+      t[1:2], FixedDurationTuplet((3, 16), [ ]))
 
    r'''
    \new Voice {
@@ -149,29 +150,32 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04( ):
-   '''Trying to donate to noncontainer raises type error.'''
+   '''Trying to move parentage, children and spanners to noncontainer raises type error.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    Beam(t[:])
    pitchtools.diatonicize(t)
 
-   assert py.test.raises(TypeError, 'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], Note(4, (1, 4)))')
+   assert py.test.raises(TypeError, 
+      'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], Note(4, (1, 4)))')
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_05( ):
-   '''Trying to donate from nonempty container to 
-      nonempty container raises MusicContentsError.'''
+   '''Trying to move parentage, children and spanners from nonempty container
+   to nonempty container raises music contents error.'''
    
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    Beam(t[:])
    pitchtools.diatonicize(t)
 
    tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
-   assert py.test.raises(MusicContentsError, 'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], tuplet)')
+   assert py.test.raises(MusicContentsError, 
+      'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], tuplet)')
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_06( ):
-   '''Donors that are not parent-contiguous raises exception.'''
+   '''Trying to move parentage, children and spanners from components that are not parent-contiguous
+   raises exception.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
    pitchtools.diatonicize(t)
@@ -195,4 +199,5 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
    '''
 
    tuplet = FixedDurationTuplet((3, 8), [ ])
-   assert py.test.raises(AssertionError, 'containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t[0], t[2]], tuplet)')
+   assert py.test.raises(AssertionError, 
+      'containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t[0], t[2]], tuplet)')
