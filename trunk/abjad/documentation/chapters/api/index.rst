@@ -270,6 +270,7 @@ containertools
    tools/containertools/get_first_element_starting_strictly_before_prolated_offset
    tools/containertools/insert_component_and_do_not_fracture_crossing_spanners
    tools/containertools/insert_component_and_fracture_crossing_spanners
+   tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
    tools/containertools/remove_empty_containers_in_expr
    tools/containertools/repeat_contents_of_container
    tools/containertools/repeat_last_n_elements_of_container
@@ -855,7 +856,6 @@ scoretools
 .. toctree::
    :maxdepth: 1
 
-   tools/scoretools/donate
    tools/scoretools/find
    tools/scoretools/make_piano_score
    tools/scoretools/make_piano_sketch_score

@@ -18,7 +18,7 @@ def test_dynamic_measure_bequeath_01( ):
    '''
 
    u = RigidMeasure((4, 8), [ ])
-   scoretools.donate([t], u)
+   containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t], u)
 
    r'''
    {

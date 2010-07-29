@@ -96,7 +96,7 @@ def fuse_tuplets(tuplets):
    if tuplets[0].parentage.root is not tuplets[-1].parentage.root:
       dummy_container = Container(tuplets) 
       wrapped = True
-   scoretools.donate(tuplets, new_tuplet)
+   containertools.move_parentage_children_and_spanners_from_components_to_empty_container(tuplets, new_tuplet)
 
    if wrapped:
       containertools.delete_contents_of_container(dummy_container)

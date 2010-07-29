@@ -58,7 +58,7 @@ def _make_tuplet_from_duration_with_proportions_and_encourage_dots(
             change_diminished_tuplets_in_expr_to_augmented(tuplet)
 
 #   ## give leaf position in score structure to tuplet
-#   scoretools.donate([l], tuplet)
+#   containertools.move_parentage_children_and_spanners_from_components_to_empty_container([l], tuplet)
 
    ## return tuplet
    return tuplet

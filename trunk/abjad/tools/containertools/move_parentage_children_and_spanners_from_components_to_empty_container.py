@@ -5,8 +5,12 @@ from abjad.tools.parenttools.give_position_to import _give_position_to
 from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 
 
-def donate(donors, recipient):
+def move_parentage_children_and_spanners_from_components_to_empty_container(donors, recipient):
    '''This helper hands over music, if any.
+
+   .. versionchanged:: 1.1.2
+      renamed ``scoretools.donate( )`` to
+      ``containertools.move_parentage_children_and_spanners_from_components_to_empty_container( )``.
    '''
    from abjad.tools import componenttools
 
