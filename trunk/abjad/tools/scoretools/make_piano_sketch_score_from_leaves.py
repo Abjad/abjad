@@ -2,10 +2,10 @@ from abjad.markup import Markup
 from abjad.staff import Staff
 from abjad.tools import iterate
 from abjad.tools import lilyfiletools
-from abjad.tools.scoretools.make_piano_score import make_piano_score
+from abjad.tools.scoretools.make_piano_score_from_leaves import make_piano_score_from_leaves
 
 
-def make_piano_sketch_score(leaves):
+def make_piano_sketch_score_from_leaves(leaves):
    r""".. versionadded:: 1.1.2
 
    Create a two-staff, treble / bass score of `leaves`.
@@ -15,7 +15,7 @@ def make_piano_sketch_score(leaves):
       * Set all staff accidental styles to forget.
    """
 
-   score, treble_staff, bass_staff = make_piano_score(leaves)
+   score, treble_staff, bass_staff = make_piano_score_from_leaves(leaves)
    lily_file = lilyfiletools.make_basic_lily_file(score)
    score._lily_file = lily_file
    lily_file.layout.indent = 0

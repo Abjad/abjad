@@ -476,6 +476,7 @@ leaftools
    tools/leaftools/remove_markup_from_leaves_in_expr
    tools/leaftools/replace_leaves_with_skips_in
    tools/leaftools/scale_leaf_preprolated_duration
+   tools/leaftools/show_leaves
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
 
 
@@ -858,11 +859,10 @@ scoretools
 .. toctree::
    :maxdepth: 1
 
-   tools/scoretools/make_piano_score
-   tools/scoretools/make_piano_sketch_score
-   tools/scoretools/make_piano_staff
-   tools/scoretools/pitch_arrays_to_score
-   tools/scoretools/show_leaves
+   tools/scoretools/make_empty_piano_score
+   tools/scoretools/make_piano_score_from_leaves
+   tools/scoretools/make_piano_sketch_score_from_leaves
+   tools/scoretools/make_pitch_array_score_from_pitch_arrays
 
 
 sievetools

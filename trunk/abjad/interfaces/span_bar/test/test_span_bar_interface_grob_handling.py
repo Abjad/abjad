@@ -3,7 +3,7 @@ from abjad import *
 
 def test_span_bar_interface_grob_handling_01( ):
 
-   score, treble, bass = scoretools.make_piano_staff( )
+   score, treble, bass = scoretools.make_empty_piano_score( )
    score.span_bar.color = 'red'
 
    r'''

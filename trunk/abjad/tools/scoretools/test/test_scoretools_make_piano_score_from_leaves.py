@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_scoretools_make_piano_score_01( ):
+def test_scoretools_make_piano_score_from_leaves_01( ):
    '''Works with notes.'''
 
    pitches = [-12, 37, -10, 27, 4, 17]
    notes = [Note(x, (1, 4)) for x in pitches]
-   score, treble_staff, bass_staff = scoretools.make_piano_score(notes)
+   score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves(notes)
 
    r"""
    \new Score <<

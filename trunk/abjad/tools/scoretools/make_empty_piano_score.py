@@ -4,7 +4,7 @@ from abjad.staff import Staff
 from abjad.staffgroup import PianoStaff
 
 
-def make_piano_staff( ):
+def make_empty_piano_score( ):
    r'''.. versionadded:: 1.1.1
    
    Return new score with piano staff. 
@@ -12,7 +12,7 @@ def make_piano_staff( ):
 
    All components are new and empty. ::
 
-      abjad> score, treble, bass = scoretools.make_piano_staff( )
+      abjad> score, treble, bass = scoretools.make_empty_piano_score( )
       abjad> print score.format
       \new Score <<
          \new PianoStaff <<
@@ -26,6 +26,10 @@ def make_piano_staff( ):
       >>
 
    References to the score, treble and bass staves return separately.
+
+   .. versionchanged:: 1.1.2
+      renamed ``scoretools.make_piano_staff( )`` to
+      ``scoretools.make_empty_piano_score( )``.
    '''
 
    treble_staff = Staff([ ])

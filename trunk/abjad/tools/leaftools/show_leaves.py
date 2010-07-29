@@ -1,6 +1,5 @@
 from abjad.tools.iotools.show import show
-from abjad.tools.scoretools.make_piano_sketch_score import \
-   make_piano_sketch_score
+from abjad.tools.scoretools.make_piano_sketch_score_from_leaves import make_piano_sketch_score_from_leaves
 
 
 def show_leaves(leaves, template = None, title = None, suppress_pdf = False):
@@ -34,10 +33,10 @@ def show_leaves(leaves, template = None, title = None, suppress_pdf = False):
    Useful when working with notes, rests, chords not yet added to score.
 
    .. versionchanged:: 1.1.2
-      renamed ``leaftools.show_leaves( )`` to ``scoretools.show_leaves( )``.
+      renamed ``leaftools.show_leaves( )`` to ``leaftools.show_leaves( )``.
    """
 
-   score, treble, bass = make_piano_sketch_score(leaves)
+   score, treble, bass = make_piano_sketch_score_from_leaves(leaves)
    show(score, template = template, title = title, suppress_pdf = suppress_pdf)
 
    return score

@@ -3,7 +3,7 @@ from abjad.staff import Staff
 from abjad.staffgroup import StaffGroup
 
 
-def pitch_arrays_to_score(pitch_arrays):
+def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
    r'''.. versionadded:: 1.1.2
 
    Change `pitch_arrays` to score with one staff per pitch array row. ::
@@ -17,7 +17,7 @@ def pitch_arrays_to_score(pitch_arrays):
 
    ::
 
-      abjad> score = scoretools.pitch_arrays_to_score(array_1, array_2)
+      abjad> score = scoretools.make_pitch_array_score_from_pitch_arrays(array_1, array_2)
       abjad> f(score)
       \new Score <<
               \new StaffGroup <<
@@ -51,6 +51,10 @@ def pitch_arrays_to_score(pitch_arrays):
                       }
               >>
       >>
+
+   .. versionchanged:: 1.1.2
+      renamed ``scoretools.pitch_arrays_to_score( )`` to
+      ``scoretools.make_pitch_array_score_from_pitch_arrays( )``.
    '''
 
    from abjad.tools import measuretools

@@ -1,13 +1,13 @@
 from abjad import *
 import math
 #from abjad.tools import template
-from abjad.tools.scoretools.make_piano_staff import make_piano_staff
+from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
 
 
 def desordre_build(pitches):
    '''Returns a complete PianoStaff with Ligeti music!'''
    assert len(pitches) == 2
-   #piano = make_piano_staff( )[0]
+   #piano = make_empty_piano_score( )[0]
    piano = PianoStaff([ ])
    ## set tempo indication...
    TempoSpanner(piano, tempotools.TempoIndication(Rational(1, 1), 60))
