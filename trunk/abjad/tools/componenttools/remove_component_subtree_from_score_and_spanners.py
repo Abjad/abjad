@@ -1,5 +1,4 @@
-from abjad.tools.spannertools.withdraw_from_contained import \
-   _withdraw_from_contained
+from abjad.tools.spannertools._withdraw_from_contained import _withdraw_from_contained
 
 
 def remove_component_subtree_from_score_and_spanners(components):

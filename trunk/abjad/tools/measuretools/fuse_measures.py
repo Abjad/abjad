@@ -5,8 +5,8 @@ from abjad.rational import Rational
 from abjad.tools import containertools
 from abjad.tools import metertools
 from abjad.tools import parenttools
-from abjad.tools.parenttools.switch import _switch
-from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
+from abjad.tools.parenttools._switch import _switch
+from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
 
 
 def fuse_measures(measures):

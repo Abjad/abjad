@@ -1,12 +1,9 @@
-from abjad.tools.importtools.get_functions_in_module import \
-   _get_functions_in_module
-from abjad.tools.importtools.remove_modules_from_namespace import \
-   _remove_modules_from_namespace
+from abjad.tools.importtools._get_functions_in_module import _get_functions_in_module
+from abjad.tools.importtools._remove_modules_from_namespace import _remove_modules_from_namespace
 import os
 
 
-def _import_functions_in_package_to_namespace(
-   package, namespace, skip_dirs=['test', '.svn']):
+def _import_functions_in_package_to_namespace(package, namespace, skip_dirs=['test', '.svn']):
    '''Import all the functions defined in the modules of the package given 
       as a string path into the given namespace.
 
@@ -21,7 +18,8 @@ def _import_functions_in_package_to_namespace(
          package.mod1_func1( )
          package.mod2_func1( )
          package.mod2_func2( )
-         package.mod3_func1( )'''
+         package.mod3_func1( )
+   '''
 
    functions = [ ]
    for root, dirs, files in os.walk(package):

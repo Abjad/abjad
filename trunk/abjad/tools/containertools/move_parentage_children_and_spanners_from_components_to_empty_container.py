@@ -1,8 +1,8 @@
 from abjad.container import Container
 from abjad.exceptions import MusicContentsError
-from abjad.tools.componenttools.give_music_to import _give_music_to
-from abjad.tools.parenttools.give_position_to import _give_position_to
-from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
+from abjad.tools.componenttools._give_music_to import _give_music_to
+from abjad.tools.parenttools._give_position_to import _give_position_to
+from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
 
 
 def move_parentage_children_and_spanners_from_components_to_empty_container(donors, recipient):

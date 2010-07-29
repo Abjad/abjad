@@ -1,5 +1,5 @@
-from abjad.tools.parenttools.ignore import _ignore
-from abjad.tools.parenttools.restore import _restore
+from abjad.tools.parenttools._ignore import _ignore
+from abjad.tools.parenttools._restore import _restore
 from abjad.tools import spannertools
 import copy
 

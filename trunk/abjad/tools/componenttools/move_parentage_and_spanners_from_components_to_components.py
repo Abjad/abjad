@@ -1,5 +1,5 @@
-from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
-from abjad.tools.spannertools.withdraw_from_crossing import _withdraw_from_crossing
+from abjad.tools.spannertools._give_dominant_to import _give_dominant_to
+from abjad.tools.spannertools._withdraw_from_crossing import _withdraw_from_crossing
 
 
 def move_parentage_and_spanners_from_components_to_components(donors, recipients):

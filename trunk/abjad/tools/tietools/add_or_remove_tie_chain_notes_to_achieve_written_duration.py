@@ -3,7 +3,7 @@ from abjad.spanners import Tie
 from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import leaftools
-from abjad.tools.spannertools.withdraw_from_attached import _withdraw_from_attached
+from abjad.tools.spannertools._withdraw_from_attached import _withdraw_from_attached
 from abjad.tools.tietools.get_tie_chain_preprolated_duration import get_tie_chain_preprolated_duration
 from abjad.tools.tietools.get_leaves_in_tie_chain import get_leaves_in_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain

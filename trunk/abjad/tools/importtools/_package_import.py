@@ -1,15 +1,15 @@
-from abjad.tools.importtools.get_functions_in_module import \
-   _get_functions_in_module
+from abjad.tools.importtools._get_functions_in_module import _get_functions_in_module
 import os
 
 
 def _package_import(path, namespace):
    r'''Nonrecursive import helper. 
-      All packages (nonleaf submodules) in `path` are imported to the 
-      given `namespace`.
+   All packages (nonleaf submodules) in `path` are imported to the 
+   given `namespace`.
 
-      All the functions and classes inside modules (leaf-modules, \*.py files) 
-      found in `path` are imported into `namespace`.'''
+   All the functions and classes inside modules (leaf-modules, \*.py files) 
+   found in `path` are imported into `namespace`.
+   '''
 
    module = path[path.rindex('abjad'):]
    module = module.replace(os.sep, '.')

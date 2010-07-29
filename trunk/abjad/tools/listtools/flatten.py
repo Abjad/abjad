@@ -26,13 +26,14 @@ def flatten(l, ltypes = (list, tuple), depth = -1):
 
    assert isinstance(l, ltypes)
    ltype = type(l)
-   return ltype(_flatten(l, ltypes, depth))
+   return ltype(_flatten_helper(l, ltypes, depth))
+
 
 # Creates an iterator that can generate a flattened list, 
 # descending down into child elements to a depth given in the
 # argments.
 # Note: depth < 0 is effectively equivalent to "infinity"
-def _flatten(lst, ltypes, depth):
+def _flatten_helper(lst, ltypes, depth):
    if not isinstance(lst, ltypes):
       yield lst
    elif depth==0:
@@ -41,5 +42,5 @@ def _flatten(lst, ltypes, depth):
    else:
       for i in lst:
          # Flatten an iterable by one level
-         for j in _flatten(i, ltypes, depth-1):
+         for j in _flatten_helper(i, ltypes, depth-1):
             yield j

@@ -24,13 +24,13 @@ def least_common_multiple(*positive_integers):
          raise ValueError('must be positive.')
       return positive_integers[0]
 
-   cur_lcm = _least_common_multiple(*positive_integers[:2])
+   cur_lcm = _least_common_multiple_helper(*positive_integers[:2])
    for remaining_positive_integer in positive_integers[2:]:
-      cur_lcm = _least_common_multiple(cur_lcm, remaining_positive_integer)
+      cur_lcm = _least_common_multiple_helper(cur_lcm, remaining_positive_integer)
    return cur_lcm
 
 
-def _least_common_multiple(m, n):
+def _least_common_multiple_helper(m, n):
    ## check input
    if not isinstance(m, int):
       raise TypeError

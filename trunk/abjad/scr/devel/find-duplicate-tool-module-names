@@ -33,5 +33,8 @@ def _find_duplicate_module_names( ):
 if __name__ == '__main__':
    os.system('clear')
    result = _find_duplicate_module_names( )
-   pprint.pprint(result)
+   if not result:
+      print 'No duplicate tools module names found.'
+   else:
+      pprint.pprint(result)
    print ''

@@ -1,6 +1,6 @@
 from abjad.tools import mathtools
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
-from abjad.tools.sievetools.process_min_max_attribute import _process_min_max_attribute
+from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 import operator
 
 
