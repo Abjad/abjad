@@ -1,6 +1,6 @@
 from abjad.note import Note
+from abjad.tools import componenttools
 from abjad.tools import durtools
-from abjad.tools import scoretools
 from abjad.tuplet import FixedDurationTuplet
 
 
@@ -32,7 +32,7 @@ def _leaf_to_tuplet_with_n_notes_of_equal_written_duration(l, divisions, prolati
    tuplet = FixedDurationTuplet(target_duration, notes)
 
    # give leaf position in score structure to tuplet
-   scoretools.donate([l], tuplet)
+   componenttools.move_parentage_and_spanners_from_components_to_components([l], [tuplet])
 
    # return tuplet
    return tuplet

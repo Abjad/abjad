@@ -166,9 +166,9 @@ def test_scoretools_donate_04( ):
    }
    '''
 
-   scoretools.donate(t[1:2], Note(4, (1, 8)))
+   #scoretools.donate(t[1:2], Note(4, (1, 8)))
    ## ALSO WORKS:
-   #componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [Note(4, (1, 8))])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [Note(4, (1, 8))])
 
    r'''
    \new Voice {
@@ -203,9 +203,9 @@ def test_scoretools_donate_05( ):
    '''
 
    container = Container([Note(4, (1, 8)), Note(5, (1, 8))])
-   scoretools.donate(t[1:2], container)
+   #scoretools.donate(t[1:2], container)
    ## ALSO WORKS:
-   #componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [container])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [container])
 
    r'''
    \new Voice {
@@ -225,18 +225,17 @@ def test_scoretools_donate_05( ):
 
 
 def test_scoretools_donate_06( ):
-   '''Trying to bequeath from nonempty container 
-      to leaf raises MusicContentsError.'''
+   '''Trying to donate to noncontainer raises type error.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
    Beam(t[:])
    pitchtools.diatonicize(t)
 
-   assert py.test.raises(MusicContentsError, 'scoretools.donate(t[1:2], Note(4, (1, 4)))')
+   assert py.test.raises(TypeError, 'scoretools.donate(t[1:2], Note(4, (1, 4)))')
 
 
 def test_scoretools_donate_07( ):
-   '''Trying to bequeath from nonempty container to 
+   '''Trying to donate from nonempty container to 
       nonempty container raises MusicContentsError.'''
    
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 2)
@@ -272,9 +271,9 @@ def test_scoretools_donate_08( ):
    '''
 
    old = t.leaves[2]
-   scoretools.donate(t.leaves[2:3], Rest((1, 8)))
+   #scoretools.donate(t.leaves[2:3], Rest((1, 8)))
    ## ALSO WORKS:
-   #componenttools.move_parentage_and_spanners_from_components_to_components(t.leaves[2:3], [Rest((1, 8))])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t.leaves[2:3], [Rest((1, 8))])
 
    r'''
    \new Voice {
@@ -323,9 +322,9 @@ def test_scoretools_donate_09( ):
    '''
    
    tuplet = FixedDurationTuplet((1, 8), Note(0, (1, 16)) * 3)
-   scoretools.donate(t[1][:1], tuplet)
+   #scoretools.donate(t[1][:1], tuplet)
    ## ALSO WORKS:
-   #componenttools.move_parentage_and_spanners_from_components_to_components(t[1][:1], [tuplet])
+   componenttools.move_parentage_and_spanners_from_components_to_components(t[1][:1], [tuplet])
 
    r'''
    \new Voice {

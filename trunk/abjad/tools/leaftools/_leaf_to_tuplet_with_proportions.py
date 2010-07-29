@@ -1,9 +1,9 @@
 from abjad.exceptions import AssignabilityError
 from abjad.note import Note
 from abjad.rational import Rational
+from abjad.tools import componenttools
 from abjad.tools import durtools
 from abjad.tools import mathtools
-from abjad.tools import scoretools
 from abjad.tools.leaftools.make_notes import make_notes
 from abjad.tuplet import FixedDurationTuplet
 
@@ -51,7 +51,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
             tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
 
    ## give leaf position in score structure to tuplet
-   scoretools.donate([l], tuplet)
+   componenttools.move_parentage_and_spanners_from_components_to_components([l], [tuplet])
 
    ## return tuplet
    return tuplet
