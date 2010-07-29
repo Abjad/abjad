@@ -43,5 +43,5 @@ def subsume(expr):
             measure.meter.forced = Meter(numerator, denominator)
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
-            componenttools.move_parentage_children_and_spanners_from_components_to_components([tuplet], tuplet[:])
+            componenttools.move_parentage_and_spanners_from_components_to_components([tuplet], tuplet[:])
             containertools.scale_contents_of_container(measure, written_adjustment)

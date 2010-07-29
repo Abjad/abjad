@@ -51,4 +51,4 @@ def remove_trivial_tuplets_in_expr(expr):
    
    for tuplet in list(iterate.naive_forward_in_expr(expr, _Tuplet)):
       if tuplet.trivial:
-         componenttools.move_parentage_children_and_spanners_from_components_to_components([tuplet], tuplet[:])
+         componenttools.move_parentage_and_spanners_from_components_to_components([tuplet], tuplet[:])

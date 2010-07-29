@@ -2,7 +2,7 @@ from abjad.tools.spannertools.give_dominant_to import _give_dominant_to
 from abjad.tools.spannertools.withdraw_from_crossing import _withdraw_from_crossing
 
 
-def move_parentage_children_and_spanners_from_components_to_components(donors, recipients):
+def move_parentage_and_spanners_from_components_to_components(donors, recipients):
    '''Give everything from donors to recipients.
       Almost exactly the same as container setitem logic.
       This helper works with orphan donors.
@@ -11,7 +11,11 @@ def move_parentage_children_and_spanners_from_components_to_components(donors, r
 
    .. versionchanged:: 1.1.2
       renamed ``scoretools.bequeath( )`` to
-      ``componenttools.move_parentage_children_and_spanners_from_components_to_components( )``.
+      ``componenttools.move_parentage_and_spanners_from_components_to_components( )``.
+
+   .. versionchanged:: 1.1.2
+      renamed ``componenttools.move_parentage_children_and_spanners_from_components_to_components( )`` to
+      ``componenttools.move_parentage_and_spanners_from_components_to_components( )``.
    '''
    from abjad.tools import componenttools
 

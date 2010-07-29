@@ -54,7 +54,7 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
    tuplet = FixedDurationTuplet(target_duration, notes)
 
    # bequeath tie chain position in score structure to tuplet
-   componenttools.move_parentage_children_and_spanners_from_components_to_components(list(chain), [tuplet])
+   componenttools.move_parentage_and_spanners_from_components_to_components(list(chain), [tuplet])
 
    # untie tuplet
    tuplet.tie.unspan( )
