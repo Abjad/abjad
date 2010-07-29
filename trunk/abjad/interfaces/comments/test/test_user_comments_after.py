@@ -4,7 +4,7 @@ from abjad import *
 def test_user_comments_after_01( ):
    '''Test context comments after.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    beam = Beam(t[:])
    beam.thickness = 3
    t.comments.after.append('Voice after comments here.')

@@ -229,7 +229,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_05( ):
    '''Cyclically duration partition list of leaves outside of score.'''
 
-   leaves = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)
+   leaves = macros.scale(4)
    durations = [Rational(3, 32)]
    parts = componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(leaves, durations)
 

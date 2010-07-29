@@ -4,7 +4,7 @@ from abjad import *
 def test_breaks_interface_01( ):
    '''Line break at closing of nonempty container.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.breaks.line = True
 
    r'''
@@ -24,7 +24,7 @@ def test_breaks_interface_01( ):
 def test_breaks_interface_02( ):
    '''Page break at closing of nonempty container.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.breaks.page = True
 
    r'''

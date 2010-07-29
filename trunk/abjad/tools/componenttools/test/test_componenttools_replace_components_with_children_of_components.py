@@ -43,7 +43,7 @@ def test_componenttools_replace_components_with_children_of_components_01( ):
 def test_componenttools_replace_components_with_children_of_components_02( ):
    '''Slip leaf from parentage and spanners.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    Glissando(t[:])
   
@@ -65,7 +65,7 @@ def test_componenttools_replace_components_with_children_of_components_02( ):
 def test_componenttools_replace_components_with_children_of_components_03( ):
    '''Slip multiple leaves.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    Glissando(t[:])
 

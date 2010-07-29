@@ -6,13 +6,13 @@ def get_pitch_numbers(expr):
 
    Get tuple or zero or more pitch numbers from almost any expression. ::
 
-      abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> pitchtools.get_pitch_numbers(tuplet)
       (0, 2, 4)
 
    ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> pitchtools.get_pitch_numbers(staff) 
       (0, 2, 4, 5)
    '''

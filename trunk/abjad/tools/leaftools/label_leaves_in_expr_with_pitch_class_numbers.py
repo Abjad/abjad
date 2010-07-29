@@ -9,7 +9,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
 
    ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t)
       abjad> print t.format
       \new Staff {
@@ -23,7 +23,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
 
    ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t)
       abjad> print t.format
       \new Staff {

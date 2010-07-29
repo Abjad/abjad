@@ -5,9 +5,9 @@ import py.test
 def test_measuretools_fuse_measures_01( ):
    '''Fuse unicorporated binary measures.'''
 
-   t1 = RigidMeasure((1, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(1, 16)))
+   t1 = RigidMeasure((1, 8), macros.scale(2, Rational(1, 16)))
    Beam(t1[:])
-   t2 = RigidMeasure((2, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(1, 16)))
+   t2 = RigidMeasure((2, 16), macros.scale(2, Rational(1, 16)))
    Slur(t2[:])
 
    r'''
@@ -185,7 +185,7 @@ def test_measuretools_fuse_measures_05( ):
 def test_measuretools_fuse_measures_06( ):
    '''Fusing list of only one measure returns measure unaltered.'''
 
-   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = RigidMeasure((3, 8), macros.scale(3))
    new = measuretools.fuse_measures([t])
 
    assert new is t

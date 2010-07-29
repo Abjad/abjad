@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_set_measure_denominator_and_multiply_numerator_01( ):
 
-   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = RigidMeasure((3, 8), macros.scale(3))
    measuretools.set_measure_denominator_and_multiply_numerator(t, 16)
 
    r'''

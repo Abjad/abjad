@@ -120,7 +120,7 @@ import py.test
 def test_thread_signature_04( ):
    '''An anonymous  Staff and it's contained unvoiced leaves share the 
    same signature.'''
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
 
    containment = t.thread.signature
    for component in iterate.naive_forward_in_expr(t, _Component):
@@ -131,7 +131,7 @@ def test_thread_signature_05( ):
    '''A named Staff and it's contained unvoiced leaves share the 
    same signature.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.name = 'foo'
 
    containment = t.thread.signature
@@ -143,7 +143,7 @@ def test_thread_signature_06( ):
    '''Leaves inside equally named sequential voices inside a Staff 
    share the same signature.'''
 
-   t = Staff(Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)) * 2)
+   t = Staff(Voice(macros.scale(4)) * 2)
    t[0].name = 'foo'
    t[1].name = 'foo'
 
@@ -249,7 +249,7 @@ def test_thread_signature_09( ):
    '''Return _ContainmentSignature giving the root and
       first voice, staff and score in parentage of component.'''
 
-   t = Container(Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))]) * 2)
+   t = Container(Staff([Voice(macros.scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'
@@ -376,7 +376,7 @@ def test_thread_signature_12( ):
 def test_thread_signature_13( ):
    '''Measure and leaves must carry same thread signature.'''
 
-   t = Staff([DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))] + leaftools.make_repeated_notes(2))
+   t = Staff([DynamicMeasure(macros.scale(2))] + leaftools.make_repeated_notes(2))
    pitchtools.diatonicize(t)
 
    r'''

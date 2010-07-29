@@ -4,7 +4,7 @@ from abjad import *
 def test_tempo_interface_01( ):
    '''Tempo interface works on nonempty staves.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
 
    r'''
@@ -44,7 +44,7 @@ def test_tempo_interface_02( ):
 def test_tempo_interface_03( ):
    '''Tempo interface works on pure containers.'''
 
-   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Container(macros.scale(4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 38)
    t[2].tempo.forced = tempotools.TempoIndication(Rational(1, 8), 42)
 

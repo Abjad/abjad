@@ -4,9 +4,9 @@ from abjad import *
 def test_iterate_components_and_grace_containers_forward_in_expr_01( ):
    '''Yield before-gracenotes and after-gracenotes.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4, Rational(1, 16))
+   notes = macros.scale(4, Rational(1, 16))
    t[1].grace.before.extend(notes[:2])
    t[1].grace.after.extend(notes[2:])
 

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_rigid_measure_empty_01( ):
-   assert py.test.raises(TypeError, 't = RigidMeasure(None, leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))')
+   assert py.test.raises(TypeError, 't = RigidMeasure(None, macros.scale(4))')
 #   assert repr(t) == 'RigidMeasure( )'
 #   assert str(t) == '| |'
 #   assert py.test.raises(UnderfullMeasureError, 't.format')

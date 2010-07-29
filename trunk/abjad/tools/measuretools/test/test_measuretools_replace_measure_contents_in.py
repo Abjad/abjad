@@ -22,7 +22,7 @@ def test_measuretools_replace_measure_contents_in_01( ):
    }
    '''
 
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4, Rational(1, 16)) 
+   notes = macros.scale(4, Rational(1, 16)) 
    measuretools.replace_measure_contents_in(t, notes)
 
    r'''
@@ -73,7 +73,7 @@ def test_measuretools_replace_measure_contents_in_02( ):
    }
    '''
 
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)
+   notes = macros.scale(2)
    measuretools.replace_measure_contents_in(t, notes)   
 
    r'''
@@ -108,7 +108,7 @@ def test_measuretools_replace_measure_contents_in_03( ):
    contains no measures.'''
 
    t = Note(0, (1, 4))
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)
+   notes = macros.scale(2)
 
    assert py.test.raises(MissingMeasureError, 
       'measuretools.replace_measure_contents_in(t, notes)')
@@ -118,7 +118,7 @@ def test_measuretools_replace_measure_contents_in_04( ):
    '''Raise StopIteration when not enough measures.'''
 
    t = Staff(measuretools.make([(1, 8), (1, 8)]))
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(6, Rational(1, 16))
+   notes = macros.scale(6, Rational(1, 16))
 
    assert py.test.raises(StopIteration, 
       'measuretools.replace_measure_contents_in(t, notes)')
@@ -128,7 +128,7 @@ def test_measuretools_replace_measure_contents_in_05( ):
    '''Populate measures even when not enough total measures.'''
 
    t = Staff(measuretools.make([(1, 8), (1, 8)]))
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(6, Rational(1, 16))
+   notes = macros.scale(6, Rational(1, 16))
 
    try:
       measuretools.replace_measure_contents_in(t, notes)

@@ -5,7 +5,7 @@ from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duratio
 def test_leaftools__split_leaf_at_duration_01( ):
    '''Notehead-assignable split duration produces two notes.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Staff(macros.scale(3))
    Beam(t[:])
 
    r'''
@@ -34,7 +34,7 @@ def test_leaftools__split_leaf_at_duration_01( ):
 def test_leaftools__split_leaf_at_duration_02( ):
    '''Nonbinary denominator produces two one-note tuplets.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Staff(macros.scale(3))
    Beam(t[:])
 
    r'''

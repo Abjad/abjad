@@ -8,7 +8,7 @@ def test_octavation_spanner_grob_handling_01( ):
    LilyPond Staff context.
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Octavation(t[ : ], 1)
    p.staff_position = 4
    overridetools.promote_attribute_to_context_on_grob_handler(p, 'staff_position', 'Staff')

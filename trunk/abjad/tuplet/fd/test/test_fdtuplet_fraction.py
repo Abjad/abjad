@@ -4,7 +4,7 @@ from abjad import *
 def test_fdtuplet_fraction_01( ):
    '''Fraction format nonbinary tuplets.'''
 
-   t = FixedDurationTuplet((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = FixedDurationTuplet((3, 8), macros.scale(4))
    
    r'''
    \fraction \times 3/4 {
@@ -22,7 +22,7 @@ def test_fdtuplet_fraction_01( ):
 def test_fdtuplet_fraction_02( ):
    '''Fraction format all augmentations, even binary ones.'''
 
-   t = FixedDurationTuplet((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((4, 8), macros.scale(3))
 
 
    r'''
@@ -40,7 +40,7 @@ def test_fdtuplet_fraction_02( ):
 def test_fdtuplet_fraction_03( ):
    '''Do not fraction format trivial tuplets.'''
 
-   t = FixedDurationTuplet((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((3, 8), macros.scale(3))
 
    r'''
    {

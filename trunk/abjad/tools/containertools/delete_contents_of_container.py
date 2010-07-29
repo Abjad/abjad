@@ -4,7 +4,7 @@ from abjad.container import Container
 def delete_contents_of_container(container):
    r'''Delete `container` contents::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff.leaves)
       abjad> f(staff)
       \new Staff {

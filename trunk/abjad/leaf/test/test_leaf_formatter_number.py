@@ -6,7 +6,7 @@ from abjad import *
 def test_leaf_formatter_number_01( ):
    '''_LeafFormatterNumberInterface can contribute markup.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
+   t = Staff(macros.scale(8))
    #t[0].formatter.number.self = 'markup'
    t[0]._formatter.number.self = 'markup'
 
@@ -29,7 +29,7 @@ def test_leaf_formatter_number_01( ):
 def test_leaf_formatter_number_02( ):
    '''_LeafFormatterNumberInterface can contribute LilyPond comments.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
+   t = Staff(macros.scale(8))
    #t[0].formatter.number.self = 'comment'
    t[0]._formatter.number.self = 'comment'
 

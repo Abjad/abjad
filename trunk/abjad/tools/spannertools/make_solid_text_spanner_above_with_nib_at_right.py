@@ -9,7 +9,7 @@ def make_solid_text_spanner_above_with_nib_at_right(left_text, components = None
    Position spanner above staff and configure with `left_text`,
    solid line and downward-pointing nib at right. ::
    
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> spannertools.make_solid_text_spanner_above_with_nib_at_right('foo', t[:])
       abjad> f(t)
       \new Staff {

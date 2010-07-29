@@ -25,8 +25,8 @@ def test_grace_parentage_03( ):
    t.grace.before = Note(4, (1, 16))
    assert t.grace.after._carrier is t
    assert t.grace.before._carrier is t
-   t.grace.after = Grace(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
-   t.grace.before = Grace(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+   t.grace.after = Grace(macros.scale(2))
+   t.grace.before = Grace(macros.scale(2))
    assert t.grace.after._carrier is t
    assert t.grace.before._carrier is t
    t.grace.after = None
@@ -82,8 +82,8 @@ def test_grace_parentage_04( ):
 #   t.grace.before = Note(4, (1, 16))
 #   assert t.grace.after._parent is t
 #   assert t.grace.before._parent is t
-#   t.grace.after = Grace(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
-#   t.grace.before = Grace(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+#   t.grace.after = Grace(macros.scale(2))
+#   t.grace.before = Grace(macros.scale(2))
 #   assert t.grace.after._parent is t
 #   assert t.grace.before._parent is t
 #   t.grace.after = None

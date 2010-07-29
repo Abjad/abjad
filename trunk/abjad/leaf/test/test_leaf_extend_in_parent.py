@@ -4,9 +4,9 @@ from abjad import *
 def test_leaf_extend_in_parent_01( ):
    '''Extend leaves rightwards after leaf.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Voice(macros.scale(3))
    Beam(t[:])
-   result = t[-1].extend_in_parent(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   result = t[-1].extend_in_parent(macros.scale(3))
 
    r'''
    \new Voice {
@@ -27,7 +27,7 @@ def test_leaf_extend_in_parent_01( ):
 def test_leaf_extend_in_parent_02( ):
    '''Extend leaf rightwards after interior leaf.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Voice(macros.scale(3))
    Beam(t[:])
    result = t[1].extend_in_parent([Note(2.5, (1, 8))])
 

@@ -5,7 +5,7 @@ def test_staff_interface_explicit_01( ):
    '''Return first explicit *Abjad* ``Staff`` in parentage of client.
       Otherwise ``None``.'''
 
-   t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Score([Staff(macros.scale(4))])
 
    r'''
    \new Score <<

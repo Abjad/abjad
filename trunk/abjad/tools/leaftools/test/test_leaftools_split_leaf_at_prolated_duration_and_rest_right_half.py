@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_split_leaf_at_prolated_duration_and_rest_right_half_01( ):
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    Slur(t[:])
 
    leaftools.split_leaf_at_prolated_duration_and_rest_right_half(

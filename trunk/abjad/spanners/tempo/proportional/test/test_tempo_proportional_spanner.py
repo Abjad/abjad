@@ -4,7 +4,7 @@ from abjad import *
 def test_tempo_proportional_spanner_01( ):
    '''Do special things with tempo and spacing.'''
 
-   t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Score([Staff(macros.scale(4))])
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
    spacing_indication = spacingtools.SpacingIndication(tempo_indication, Rational(1, 34))
    t.spacing.scorewide = spacing_indication

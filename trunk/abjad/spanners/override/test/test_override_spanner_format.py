@@ -4,7 +4,7 @@ from abjad import *
 def test_override_spanner_format_01( ):
    '''False is an acceptable value that formats as ##f.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    Override(t[:], 'Staff', 'BarLine', 'stencil', False)
 
    r'''

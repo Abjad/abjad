@@ -2,7 +2,7 @@ from abjad import *
 
 def test_slur_spanner_01( ):
    '''Slur spanner can attach to a container.'''
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    s = Slur(t)
    assert t.spanners.attached == set([s])
    assert t.format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
@@ -17,7 +17,7 @@ def test_slur_spanner_01( ):
 
 def test_slur_spanner_02( ):
    '''Slur spanner can attach to leaves.'''
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    s = Slur(t[:])
    assert len(t.spanners.attached) == 0
    for leaf in t.leaves:

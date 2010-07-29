@@ -5,7 +5,7 @@ def test_dynamic_measure_meter_suppress_01( ):
    '''It is possible to suppress meter from dynamic measures;
       set suppress on the meter interface.'''
 
-   t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = DynamicMeasure(macros.scale(4))
    t.meter.suppress = True
 
    r'''

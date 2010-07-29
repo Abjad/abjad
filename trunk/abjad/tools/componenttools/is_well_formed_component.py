@@ -4,14 +4,14 @@ from abjad import checks as _checks
 def is_well_formed_component(expr, allow_empty_containers = True):
    r'''True when `component` is well formed::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff[:])
       abjad> componenttools.is_well_formed_component(staff)
       True
 
    Otherwise false::
       
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> staff[1].duration.written = Rational(1, 4)
       abjad> Beam(staff[:])
       abjad> componenttools.is_well_formed_component(staff)

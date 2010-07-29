@@ -16,7 +16,7 @@ v = Voice( )
 or they may exist *implicitly* in certain score constructs in the absence of :class:`~abjad.voice.voice.Voice` containers:
 
 <abjad>
-staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+staff = Staff(macros.scale(4))
 </abjad>
 
 The existence of :class:`~abjad.voice.voice.Voice` objects does not, however, guarantee the existence of a thread between the element contained in different voices. Two contiguous voices *must* have the same name in order to be part of the same thread. 
@@ -24,8 +24,8 @@ The existence of :class:`~abjad.voice.voice.Voice` objects does not, however, gu
 Here a thread does *not* exist between notes in the different :class:`~abjad.voice.voice.Voice` contexts:
 
 <abjad>
-v_one = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4, (1, 16)))
-v_two = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+v_one = Voice(macros.scale(4, (1, 16)))
+v_two = Voice(macros.scale(2))
 staff = Staff([v_one, v_two])
 f(staff)
 </abjad>

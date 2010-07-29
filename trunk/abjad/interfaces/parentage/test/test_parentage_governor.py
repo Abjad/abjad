@@ -45,7 +45,7 @@ def test_parentage_governor_03( ):
       such that the next element in the parentage of client is
       either a parallel container or None.'''
 
-   t = Staff([Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])])
+   t = Staff([Voice([Container(macros.scale(4))])])
 
    r'''
    \new Staff {
@@ -71,7 +71,7 @@ def test_parentage_governor_04( ):
       such that the next element in the parentage of client is
       either a parallel container or None.'''
 
-   t = Staff([Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])])
+   t = Staff([Voice([Container(macros.scale(4))])])
 
    r'''
    \new Staff {

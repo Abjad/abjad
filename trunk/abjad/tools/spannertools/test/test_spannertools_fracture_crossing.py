@@ -7,7 +7,7 @@ def test_spannertools_fracture_crossing_01( ):
       fracture all spanners to the right of the rightmost component in list.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    Beam(t[:])
    spannertools.fracture_crossing(t[1:3])
 
@@ -28,7 +28,7 @@ def test_spannertools_fracture_crossing_02( ):
    '''Fracture to the left of leftmost component;
       fracture to the right of rightmost component.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    Beam(t[:])
    spannertools.fracture_crossing(t[1:2])
 

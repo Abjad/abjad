@@ -28,7 +28,7 @@ def test_container_append_01( ):
 def test_container_append_02( ):
    '''Append leaf to tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    Beam(t[:])
    t.append(Note(5, (1, 16)))
 
@@ -49,7 +49,7 @@ def test_container_append_03( ):
    '''Trying to append noncomponent to container
       raises TypeError.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Voice(macros.scale(3))
    Beam(t[:])
 
    assert py.test.raises(AssertionError, "t.append('foo')")
@@ -61,7 +61,7 @@ def test_container_append_03( ):
 def test_container_append_04( ):
    '''Append spanned leaf from donor container to recipient container.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Voice(macros.scale(3))
    Beam(t[:])
 
    r'''
@@ -72,7 +72,7 @@ def test_container_append_04( ):
    }
    '''
 
-   u = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   u = Voice(macros.scale(4))
    Beam(u[:])
 
    r'''
@@ -118,7 +118,7 @@ def test_container_append_05( ):
    '''Append spanned leaf from donor container to recipient container.
       Donor and recipient containers are the same.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
 
    r'''

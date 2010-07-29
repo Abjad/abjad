@@ -6,9 +6,9 @@ def extract_meters_from_measures_in_expr(components):
 
    Example::
 
-      abjad> t = Staff([RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)),
-         RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)),
-         RigidMeasure((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+      abjad> t = Staff([RigidMeasure((2, 8), macros.scale(2)),
+         RigidMeasure((3, 8), macros.scale(3)),
+         RigidMeasure((4, 8), macros.scale(4))])
 
       abjad> metertools.extract_meters_from_measures_in_expr(t[:])
       [(2, 8), (3, 8), (4, 8)]

@@ -6,7 +6,7 @@ def test_trill_spanner_grob_handling_01( ):
    The Abjad Trill spanner handles the LilyPond TrillSpanner grob.
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Trill(t[ : ])
    p.color = 'red'   
 

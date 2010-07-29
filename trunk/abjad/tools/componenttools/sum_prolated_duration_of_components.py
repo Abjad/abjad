@@ -3,7 +3,7 @@ def sum_prolated_duration_of_components(components):
 
    ::
 
-      abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> f(tuplet)
       \times 2/3 {
          c'8

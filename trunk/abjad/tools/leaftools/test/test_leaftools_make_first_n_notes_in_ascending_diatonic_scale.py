@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_make_first_n_notes_in_ascending_diatonic_scale_01( ):
    '''Allow nonassignable durations.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, (5, 16)))
+   t = Staff(macros.scale(2, (5, 16)))
 
    r'''
    \new Staff {

@@ -162,7 +162,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
    '''A single container can be index split in two by the middle;
       no parent.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    t1, t2 = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(t, 2)
 
    r'''
@@ -187,7 +187,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
 
-   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Staff([Voice(macros.scale(4))])
    v = t[0]
    Beam(v)
    left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, 0)
@@ -215,7 +215,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
       Righthand part instantiates empty.
       Original container empties contents.'''
 
-   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Staff([Voice(macros.scale(4))])
    v = t[0]
    left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, 10)
 
@@ -229,7 +229,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_07( ):
    '''Voice can be index split.'''
 
-   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Staff([Voice(macros.scale(4))])
    v = t[0]
    #assert py.test.raises(ContiguityError, 'containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, -2)')
 
@@ -244,7 +244,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_08( ):
    '''Index split container in score and do not fracture spanners.'''
 
-   t = Staff([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Staff([Container(macros.scale(4))])
    v = t[0]
    Beam(v)
    left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, 2)

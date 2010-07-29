@@ -8,7 +8,7 @@ def label_vertical_moments_in_expr_with_numeric_pitch_classes(expr):
    Label pitch classes of every vertical moment in `expr`. ::
 
       abjad> score = Score(Staff([ ]) * 3)
-      abjad> score[0].extend(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> score[0].extend(macros.scale(4))
       abjad> score[1].clef.forced = Clef('alto')
       abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
       abjad> score[2].clef.forced = Clef('bass')

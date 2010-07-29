@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_01( ):
    '''Bequeath parent and spanners of two old notes to five new notes.'''
    
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -43,7 +43,7 @@ def test_componenttools_move_parentage_children_and_spanners_from_components_to_
 def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_02( ):
    '''Bequeath parent and spaners of one old note to five new notes.'''
    
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -83,7 +83,7 @@ def test_componenttools_move_parentage_children_and_spanners_from_components_to_
 def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_03( ):
    '''Bequeath parent and spanners of two old notes to five new notes.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -122,7 +122,7 @@ def test_componenttools_move_parentage_children_and_spanners_from_components_to_
 def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_04( ):
    '''Bequeath parent and spanners of three old notes to five new notes.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -159,7 +159,7 @@ def test_componenttools_move_parentage_children_and_spanners_from_components_to_
 
 def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_05( ):
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t[:])
@@ -197,7 +197,7 @@ def test_componenttools_move_parentage_children_and_spanners_from_components_to_
    '''Bequeath parent and spanners of container to children of container.
       This is bequeath generalizing Container.slip( ).'''
 
-   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Staff([Voice(macros.scale(4))])
    Beam(t[0])
 
    r'''

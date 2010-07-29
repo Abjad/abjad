@@ -11,7 +11,7 @@ class TextScriptInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    Receive Abjad TextScriptSpanner. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> t[0].markup.up.append(r'\italic { Lento }')
       abjad> t.text_script.staff_padding = 6
       \new Staff \with {

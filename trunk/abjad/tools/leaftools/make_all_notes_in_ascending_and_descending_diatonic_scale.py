@@ -11,7 +11,7 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature = No
 
    Construct one up-down period of scale according to `key_signature`::
 
-      abjad> score = leaftools.make_first_n_notes_in_ascending_diatonic_scale_period(KeySignature('E', 'major'))
+      abjad> score = macros.scale_period(KeySignature('E', 'major'))
       abjad> f(score)
       \new Score \with {
               tempoWholesPerMinute = #(ly:make-moment 30 1)

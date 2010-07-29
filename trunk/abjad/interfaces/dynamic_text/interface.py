@@ -7,7 +7,7 @@ class DynamicTextInterface(_Interface, _GrobHandler):
 
    Handle LilyPond DynamicText grob. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> t.dynamic_line_spanner.staff_padding = 2
       abjad> t.dynamic_line_spanner.Y_extent = (-1.5, 1.5)
       \new Staff \with {

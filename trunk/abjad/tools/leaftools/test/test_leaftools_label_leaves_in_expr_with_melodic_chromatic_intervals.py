@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_label_leaves_in_expr_with_melodic_chromatic_intervals_01( ):
 
-   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
+   staff = Staff(macros.scale(8))
    leaftools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
 
    r'''

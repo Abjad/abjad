@@ -3,7 +3,7 @@ from abjad import *
 
 def test_containertools_insert_component_and_do_not_fracture_crossing_spanners_01( ):
 
-   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   staff = Staff(macros.scale(4))
    Beam(staff.leaves)
    containertools.insert_component_and_do_not_fracture_crossing_spanners(staff, 1, Note("cs'8"))
 

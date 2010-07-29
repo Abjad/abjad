@@ -3,7 +3,7 @@ from abjad import *
 
 def test_text_spanner_interface_spanner_reception_01( ):
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    text_spanner = TextSpanner(t[:])
 
    r'''

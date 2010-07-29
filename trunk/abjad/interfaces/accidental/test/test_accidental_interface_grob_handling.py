@@ -6,7 +6,7 @@ def test_accidental_interface_grob_handling_01( ):
    AccidentalInterface handles the LilyPond Accidental grob.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.accidental.color = 'red'
 
    r'''
@@ -28,7 +28,7 @@ def test_accidental_interface_grob_handling_02( ):
    AccidentalInterface handles the LilyPond Accidental grob.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t[1].accidental.color = 'red'
 
    r'''

@@ -7,19 +7,19 @@ def get_nth_namesake_from_component(component, n):
 
    For positive `n`, return namesake to the right of `component`. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> iterate.get_nth_namesake_from_component(t[1], 1)
       Note(e', 8)
 
    For negative `n`, return namesake to the left of `component`. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> iterate.get_nth_namesake_from_component(t[1], -1)
       Note(c', 8)
 
    Return `component` when `n` is zero. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> iterate.get_nth_namesake_from_component(t[1], 0)
       Note(d', 8)
 

@@ -5,7 +5,7 @@ import py.test
 def test_rigid_measure_duration_interface_01( ):
    '''Binary meter, properly filled.'''
 
-   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = RigidMeasure((3, 8), macros.scale(3))
 
    r'''
    {
@@ -27,7 +27,7 @@ def test_rigid_measure_duration_interface_01( ):
 def test_rigid_measure_duration_interface_02( ):
    '''Nonbinary meter, properly filled.'''
 
-   t = RigidMeasure((3, 10), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = RigidMeasure((3, 10), macros.scale(3))
 
    r'''
    {
@@ -51,7 +51,7 @@ def test_rigid_measure_duration_interface_02( ):
 def test_rigid_measure_duration_interface_03( ):
    '''Binary meter, improperly filled.'''
 
-   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = RigidMeasure((3, 8), macros.scale(4))
 
    assert py.test.raises(OverfullMeasureError, 't.format')
    
@@ -64,7 +64,7 @@ def test_rigid_measure_duration_interface_03( ):
 def test_rigid_measure_duration_interface_04( ):
    '''Nonbinary meter, improperly filled.'''
 
-   t = RigidMeasure((3, 10), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = RigidMeasure((3, 10), macros.scale(4))
 
    assert py.test.raises(OverfullMeasureError, 't.format')
 

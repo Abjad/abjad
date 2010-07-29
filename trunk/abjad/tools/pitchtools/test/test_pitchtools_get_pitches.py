@@ -4,7 +4,7 @@ from abjad import *
 def test_pitchtools_get_pitches_01( ):
    '''Works with containers.'''
 
-   tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
    t = pitchtools.get_pitches(tuplet)
 
    assert t == (Pitch('c', 4), Pitch('d', 4), Pitch('e', 4))
@@ -13,7 +13,7 @@ def test_pitchtools_get_pitches_01( ):
 def test_pitchtools_get_pitches_02( ):
    '''Works with spanners.'''
 
-   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   staff = Staff(macros.scale(4))
    beam = Beam(staff[:])
    t = pitchtools.get_pitches(beam)
 

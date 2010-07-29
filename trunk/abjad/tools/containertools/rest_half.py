@@ -8,7 +8,7 @@ def rest_half(container, rested_half, bigger_half,
    half of `container` holding a greater number of elements
    than the right half::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
+      abjad> staff = Staff(macros.scale(9))
       abjad> containertools.rest_half(staff, 'left', 'left')
       abjad> f(staff)
       \new Staff {
@@ -24,7 +24,7 @@ def rest_half(container, rested_half, bigger_half,
    half of `container` holding a greater number of elements
    than the left half::
       
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
+      abjad> staff = Staff(macros.scale(9))
       abjad> containertools.rest_half(staff, 'left', 'right')
       abjad> f(staff)
       \new Staff {
@@ -40,7 +40,7 @@ def rest_half(container, rested_half, bigger_half,
    half of `container` holding a greater number of elements
    than the right half::
       
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
+      abjad> staff = Staff(macros.scale(9))
       abjad> containertools.rest_half(staff, 'right', 'left')
       abjad> f(staff)
       \new Staff {
@@ -56,7 +56,7 @@ def rest_half(container, rested_half, bigger_half,
    half of `container` holding a greater number of elements
    than the left half::
       
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(9))
+      abjad> staff = Staff(macros.scale(9))
       abjad> containertools.rest_half(staff, 'right', 'right')
       abjad> f(staff)
       \new Staff {

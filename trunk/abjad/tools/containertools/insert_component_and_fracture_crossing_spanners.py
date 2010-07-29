@@ -6,7 +6,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
    r'''Insert `component` into `container` at index `i`
    and fracture spanners::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff.leaves)
       abjad> f(staff)
       \new Staff {

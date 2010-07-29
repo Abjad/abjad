@@ -4,7 +4,7 @@ from abjad import *
 def test_text_script_spanner_grob_handling_01( ):
    '''Abjad TextScriptSpanner handles the LilyPond TextScript grob.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    text_script_spanner = TextScriptSpanner(t[:])
    text_script_spanner.color = 'red'
 

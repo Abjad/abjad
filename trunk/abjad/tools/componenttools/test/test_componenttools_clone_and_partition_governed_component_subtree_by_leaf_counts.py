@@ -7,7 +7,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
       This means that the original structure remains unchanged.
       Also that resulting parts cut all the way up into voice.'''
 
-   t = Voice([FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))])
+   t = Voice([FixedDurationTuplet((2, 8), macros.scale(3))])
    Beam(t[0][:])
    left, right = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t[0], [1, 2])
 
@@ -38,7 +38,7 @@ def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_c
 def test_componenttools_clone_and_partition_governed_component_subtree_by_leaf_counts_02( ):
    '''Partition voice.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Voice(macros.scale(3))
    Beam(t[:])
    result = componenttools.clone_and_partition_governed_component_subtree_by_leaf_counts(t, [1, 2])
 

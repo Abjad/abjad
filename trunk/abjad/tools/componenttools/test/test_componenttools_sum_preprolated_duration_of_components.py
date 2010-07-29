@@ -5,7 +5,7 @@ import py.test
 def test_componenttools_sum_preprolated_duration_of_components_01( ):
    '''Return sum of preprolated duration of components in list.'''
    
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
 
    assert componenttools.sum_preprolated_duration_of_components(t[:]) == Rational(3, 8)
 

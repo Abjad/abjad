@@ -173,7 +173,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
    '''Index split voice outside of score.
       Fracture spanners.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
 
    r'''
@@ -211,7 +211,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       an empty lefthand part and a complete righthand part.
       Original container empties contents.'''
 
-   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Staff([Voice(macros.scale(4))])
    v = t[0]
    Beam(v)
 
@@ -251,7 +251,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Righthand part instantiates empty.
       Original container empties contents.'''
 
-   t = Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Staff([Voice(macros.scale(4))])
    v = t[0]
    Beam(v)
 
@@ -423,7 +423,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
 
-   t = Staff([RigidMeasure((3, 12), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(3, 16)))])
+   t = Staff([RigidMeasure((3, 12), macros.scale(2, Rational(3, 16)))])
    Beam(t[0])
    Slur(t.leaves)
 
@@ -468,7 +468,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
       Fractured spanners but do not tie over split locus.
       Measure contents necessitate denominator change.'''
 
-   t = Staff([RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(3, 16)))])
+   t = Staff([RigidMeasure((3, 8), macros.scale(2, Rational(3, 16)))])
    Beam(t[0])
    Slur(t.leaves)
 

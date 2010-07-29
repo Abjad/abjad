@@ -4,7 +4,7 @@ from abjad import *
 def test_slur_interface_01( ):
    '''Abjad SlurInterface handles the LilyPond Slur grob.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    t.slur.color = 'red'
 
    r'''

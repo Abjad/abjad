@@ -9,7 +9,7 @@ def test_spannertools_give_dominant_to_01( ):
       The operation can mangle spanners.
       Remove donor_components from parentage immediately after.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Crescendo(t[:])
    Beam(t[:2])
    Slur(t[1:3])
@@ -89,7 +89,7 @@ def test_spannertools_give_dominant_to_02( ):
    '''
 
    donor = t[0]
-   recipient = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   recipient = Voice(macros.scale(4))
    _give_dominant_to([donor], [recipient])
    
    "Container t is now ..."

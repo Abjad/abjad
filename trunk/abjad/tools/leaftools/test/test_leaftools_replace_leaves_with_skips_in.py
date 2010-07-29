@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_replace_leaves_with_skips_in_01( ):
    '''Works on Abjad components.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    leaftools.replace_leaves_with_skips_in(t)
 
    r'''
@@ -23,7 +23,7 @@ def test_leaftools_replace_leaves_with_skips_in_01( ):
 def test_leaftools_replace_leaves_with_skips_in_02( ):
    '''Works on Python lists of Abjad components.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    leaftools.replace_leaves_with_skips_in(t[:])
 
    r'''

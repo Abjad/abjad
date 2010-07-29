@@ -4,7 +4,7 @@ from abjad import *
 def test_beam_interface_unspan_01( ):
    '''BeamInterface clone_components_and_remove_all_spanners( ) clears any beam spanner attaching to leaf t.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''

@@ -7,7 +7,7 @@ def test_container_pop_01( ):
       Popped leaves withdraw from crossing spanners.
       Popped leaves carry covered spanners forward.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Slur(t[:])
    Beam(t[1])
 

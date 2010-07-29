@@ -741,7 +741,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23( ):
    '''Excise leaf from fixed-duration tuplet.'''
 
-   t = FixedDurationTuplet((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
+   t = FixedDurationTuplet((4, 8), macros.scale(5))
 
    r'''
    \times 4/5 {
@@ -771,7 +771,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23( ):
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24( ):
    '''Excise leaf from fixed-multiplier tuplet.'''
 
-   t = FixedMultiplierTuplet((4, 5), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
+   t = FixedMultiplierTuplet((4, 5), macros.scale(5))
 
    r'''
    \times 4/5 {

@@ -4,7 +4,7 @@ from abjad import *
 def test_meter_interface_grob_handling_01( ):
    '''Transparent meter on staff.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.meter.transparent = True
 
    r'''
@@ -24,7 +24,7 @@ def test_meter_interface_grob_handling_01( ):
 def test_meter_interface_grob_handling_02( ):
    '''(Nonpromoted) transparent meter on measure.'''
 
-   t = RigidMeasure((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = RigidMeasure((4, 8), macros.scale(4))
    t.meter.transparent = True
 
    r'''
@@ -45,7 +45,7 @@ def test_meter_interface_grob_handling_02( ):
 def test_meter_interface_grob_handling_03( ):
    '''Promoted transarent meter on measure.'''
 
-   t = RigidMeasure((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = RigidMeasure((4, 8), macros.scale(4))
    t.meter.transparent = True
    #t.meter.promote('transparent', 'Staff')
    overridetools.promote_attribute_to_context_on_grob_handler(t.meter, 'transparent', 'Staff')

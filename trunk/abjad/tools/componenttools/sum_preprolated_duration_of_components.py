@@ -1,7 +1,7 @@
 def sum_preprolated_duration_of_components(components):
    r'''Sum the preprolated duration of each component in `components`. ::
 
-      abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> componenttools.sum_preprolated_duration_of_components(tuplet[:])
       Rational(3, 8)
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_user_comments_closing_01( ):
    '''Test container comments closing.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    t.comments.closing.append('Voice closing comments here.')
    t.comments.closing.append('More voice closing comments.')

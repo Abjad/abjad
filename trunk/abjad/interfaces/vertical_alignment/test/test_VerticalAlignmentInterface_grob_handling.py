@@ -3,7 +3,7 @@ from abjad import *
 
 def test_VerticalAlignmentInterface_grob_handling_01( ):
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.vertical_alignment.staff_padding = 2
    t.vertical_alignment.Y_extent = (-1.5, 1.5)
 

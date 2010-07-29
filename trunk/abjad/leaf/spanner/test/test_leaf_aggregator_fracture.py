@@ -19,7 +19,7 @@ def test_leaf_aggregator_fracture_01( ):
    to all four components in t.
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -58,7 +58,7 @@ def test_leaf_aggregator_fracture_02( ):
    'left' and 'right' parts partition components in t.
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -96,7 +96,7 @@ def test_leaf_aggregator_fracture_03( ):
    'left' and 'right' parts partition components in t.
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -129,7 +129,7 @@ def test_leaf_aggregator_fracture_04( ):
    Fracture right of t[0].
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -162,7 +162,7 @@ def test_leaf_aggregator_fracture_05( ):
    Fracture right of t[1].
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -195,7 +195,7 @@ def test_leaf_aggregator_fracture_06( ):
    Fracture right of t[-1].
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -228,7 +228,7 @@ def test_leaf_aggregator_fracture_07( ):
    Fracture both sides of t[0].
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -261,7 +261,7 @@ def test_leaf_aggregator_fracture_08( ):
    Fracture both sides of t[1].
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -294,7 +294,7 @@ def test_leaf_aggregator_fracture_09( ):
    Fracture both sides of t[-1].
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[ : ])
 
    r'''
@@ -327,7 +327,7 @@ def test_leaf_aggregator_fracture_10( ):
    Fracture multiple spanners to either side of some component.
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p1 = Beam(t[ : ])
    p2 = Trill(t[ : ])
 

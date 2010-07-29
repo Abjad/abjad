@@ -7,7 +7,7 @@ def replace_leaves_with_skips_in(expr):
 
    Replace leaves with skips in `expr`::
 
-      abjad> staff = Staff(RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
+      abjad> staff = Staff(RigidMeasure((2, 8), macros.scale(2)) * 2)
       abjad> leaftools.replace_leaves_with_skips_in(staff[0])
       abjad> print staff.format
       \new Staff {

@@ -8,7 +8,7 @@ def multiply_measure_contents_in(expr, n):
    r'''Multiply contents ``n - 1`` times and adjust meter
    of every measure in `expr`::
 
-      abjad> measure = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> measure = RigidMeasure((3, 8), macros.scale(3))
       abjad> Beam(measure.leaves)
       abjad> f(measure)
       {

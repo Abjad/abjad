@@ -1,7 +1,7 @@
 def get_scorewide_spacing(component):
    '''Return scorewide spacing of explicit score of `compoment`. ::
 
-      abjad> score = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+      abjad> score = Score([Staff(macros.scale(4))])
       abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 8), 44)
       abjad> spacing_indication = spacing.SpacingIndication(tempo_indication, Rational(1, 68))
       abjad> score.spacing.scorewide = spacing_indication 

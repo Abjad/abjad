@@ -3,7 +3,7 @@ from abjad import *
 
 def test_measuretools_color_nonbinary_measures_in_01( ):
 
-   staff = Staff(RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
+   staff = Staff(RigidMeasure((2, 8), macros.scale(2)) * 2)
    measuretools.change_binary_measure_to_nonbinary(staff[1], 3)
 
    r'''

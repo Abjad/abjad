@@ -7,7 +7,7 @@ def test_spacing_spanner_grob_handling_01( ):
       Abjad SpacingSpanner overrides usually 
       require context promotion.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    p = SpacingSpanner(t[:])
    p.strict_grace_spacing = True
    p.strict_note_spacing = True

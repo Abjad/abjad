@@ -75,7 +75,7 @@ class SpacingSpanner(_GrobHandlerSpanner):
 
          Set to ``True``, ``False`` or ``None``. ::
 
-            abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+            abjad> staff = Staff(macros.scale(4))
             abjad> spacing_spanner = SpacingSpanner(staff[:])
             abjad> spacing_spanner.new_section = True
             abjad> print staff.format
@@ -102,7 +102,7 @@ class SpacingSpanner(_GrobHandlerSpanner):
 
          Set to a rational value or ``None``. ::
 
-            abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+            abjad> staff = Staff(macros.scale(4))
             abjad> spacing_spanner = SpacingSpanner(staff[2:])
             abjad> spacing_spanner.new_section = True
             abjad> spacing_spanner.proportional_notation_duration = Rational(1, 30)

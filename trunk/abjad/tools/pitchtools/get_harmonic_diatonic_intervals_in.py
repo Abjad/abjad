@@ -7,7 +7,7 @@ def get_harmonic_diatonic_intervals_in(expr):
 
    Return unordered set of diatonic intervals in `expr`. ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> pitchtools.get_harmonic_diatonic_intervals_in(staff)
       abjad> for interval in pitchtools.get_harmonic_diatonic_intervals_in(staff):
       ...     interval

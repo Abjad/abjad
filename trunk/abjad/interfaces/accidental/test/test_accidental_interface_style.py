@@ -5,7 +5,7 @@ def test_accidental_interface_style_01( ):
    '''AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.accidental.style = 'forget'
 
    r'''
@@ -25,7 +25,7 @@ def test_accidental_interface_style_02( ):
    '''AccidentalInterface.style manages LilyPond set-accidental-style.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t[1].accidental.style = 'forget'
 
    r'''

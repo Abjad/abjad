@@ -8,7 +8,7 @@ def test_spanner_insert_01( ):
       Not composer-safe.
       Inserting into middle of spanner may leave discontiguous spanner.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    p = Beam(t[:2])
 
    r'''

@@ -88,7 +88,7 @@ def test_layouttools_apply_layouttools_schema_02( ):
    Here operating on leaves instead of measures with optional klass keyword.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
+   t = Staff(macros.scale(8))
 
    r'''
    \new Staff {

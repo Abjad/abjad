@@ -6,7 +6,7 @@ def label_leaves_in_expr_with_score_depth(expr):
 
    ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))
+      abjad> staff = Staff(macros.scale(5))
       abjad> FixedDurationTuplet((2, 8), staff[-3:])
       abjad> leaftools.label_leaves_in_expr_with_score_depth(staff)
       \new Staff {

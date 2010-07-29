@@ -6,7 +6,7 @@ def test_tempo_interface_spanners_in_parentage_01( ):
    any component in the parentage of client, including client.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    tempo_indication = tempotools.TempoIndication(Rational(1, 4), 60)
    tempo_spanner = TempoSpanner(t, tempo_indication)
 

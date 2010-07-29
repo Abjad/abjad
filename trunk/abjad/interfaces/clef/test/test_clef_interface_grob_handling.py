@@ -43,7 +43,7 @@ def test_clef_interface_grob_handling_04( ):
    Clef override on staff.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.clef.color = 'red'
 
    r'''

@@ -5,7 +5,7 @@ def test_lilyfiletools_LilyFile_01( ):
    '''LilyFile implements managed default paper size and global
    staff size attributes.'''
    
-   t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Score([Staff(macros.scale(4))])
    lily_file = lilyfiletools.LilyFile( )
    lily_file.append(t)
    lily_file.default_paper_size = '11x17', 'landscape'

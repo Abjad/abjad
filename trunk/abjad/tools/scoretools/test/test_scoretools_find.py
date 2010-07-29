@@ -5,7 +5,7 @@ import py.test
 def test_scoretools_find_01( ):
    '''Find components by name.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    n = t[0]
    n.name = 'notename'
 
@@ -16,7 +16,7 @@ def test_scoretools_find_01( ):
 def test_scoretools_find_02( ):
    '''Find components by class.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
 
    #assert scoretools.find(t, klass = Note) == tuple(t[:])
    assert scoretools.find(t, klass = Note) == t[0]
@@ -25,7 +25,7 @@ def test_scoretools_find_02( ):
 def test_scoretools_find_03( ):
    '''Find components by both name and class.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    n = t[0]
    n.name = 'notename'
 
@@ -70,7 +70,7 @@ def test_scoretools_find_06( ):
 def test_scoretools_find_07( ):
    '''Find by context.'''
 
-   v = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   v = Voice(macros.scale(4))
    v.context = 'MyStrangeVoice'
    t = Staff([v])
 
@@ -81,7 +81,7 @@ def test_scoretools_find_07( ):
 def test_scoretools_find_08( ):
    '''Find by both name and context.'''
 
-   v = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   v = Voice(macros.scale(4))
    v.context = 'MyStrangeVoice'
    v.name = 'voice_1'
    t = Staff([v])
@@ -95,7 +95,7 @@ def test_scoretools_find_08( ):
 def test_scoretools_find_09( ):
    '''Return empty list on no match.'''
 
-   v = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   v = Voice(macros.scale(4))
    v.context = 'MyStrangeVoice'
    v.name = 'voice_1'
    t = Staff([v])

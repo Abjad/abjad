@@ -5,7 +5,7 @@ import py.test
 def test_navigator_is_threadable_01( ):
    '''Voice and leaves all thread.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[2])
@@ -24,7 +24,7 @@ def test_navigator_is_threadable_01( ):
 def test_navigator_is_threadable_02( ):
    '''Staff and leaves all thread.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[2])
@@ -43,7 +43,7 @@ def test_navigator_is_threadable_02( ):
 def test_navigator_is_threadable_03( ):
    '''Paths exist between all notes in a sequential.'''
 
-   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Container(macros.scale(4))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[2])
@@ -76,7 +76,7 @@ def test_navigator_is_threadable_03( ):
 #   ## this is the current implementation behavior as of Apr. 3, 2009.
 #   ## See the next test. 
 #
-#   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+#   t = Container(macros.scale(4))
 #   t.parallel = True
 #
 #   assert not t[0]._navigator._isThreadable(t[1])
@@ -97,7 +97,7 @@ def test_navigator_is_threadable_03( ):
 #   contained inside a Voice (an explicit thread).
 #   This parallels LilyPonds behavior of creating chords.'''
 #
-#   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+#   t = Container(macros.scale(4))
 #   t.parallel = True
 #   v = Voice([t])
 #
@@ -118,7 +118,7 @@ def test_navigator_is_threadable_03( ):
 def test_navigator_is_threadable_06( ):
    '''Tuplets and leaves all thread.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
 
    assert t[0]._navigator._isThreadable(t[1])
    assert t[1]._navigator._isThreadable(t[0])

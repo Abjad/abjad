@@ -13,20 +13,20 @@ class _MeasureFormatter(_ContainerFormatter):
    :class:`~abjad.measure.anonymous.measure.AnonymousMeasure` 
    format logic. ::
 
-      abjad> measure = AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> measure = AnonymousMeasure(macros.scale(3))
       abjad> measure.formatter
       <_MeasureFormatter>
 
    ::
 
-      abjad> measure = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> measure = DynamicMeasure(macros.scale(3))
       abjad> measure.formatter
       <_MeasureFormatter>
 
    :class:`~abjad.measure.rigid.measure.RigidMeasure` instances implement
    a special formatter which inherits from this base class. ::
 
-      abjad> measure = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> measure = RigidMeasure((3, 8), macros.scale(3))
       abjad> measure.formatter
       <_RigidMeasureFormatter>
    '''

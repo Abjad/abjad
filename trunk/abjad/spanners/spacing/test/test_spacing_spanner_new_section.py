@@ -4,7 +4,7 @@ from abjad import *
 def test_spacing_spanner_new_section_01( ):
    r'''Apply LilyPond spacing section to Abjad leaves.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    p = SpacingSpanner(t[:])
    p.new_section = True
 

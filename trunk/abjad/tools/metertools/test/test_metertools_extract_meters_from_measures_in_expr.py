@@ -4,9 +4,9 @@ from abjad import *
 def test_metertools_extract_meters_from_measures_in_expr_01( ):
    '''Extract ordered list of meter pairs from components.'''
 
-   t = Staff([RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)),
-      RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)),
-      RigidMeasure((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])   
+   t = Staff([RigidMeasure((2, 8), macros.scale(2)),
+      RigidMeasure((3, 8), macros.scale(3)),
+      RigidMeasure((4, 8), macros.scale(4))])   
 
    r'''
    \new Staff {
@@ -32,7 +32,7 @@ def test_metertools_extract_meters_from_measures_in_expr_01( ):
 def test_metertools_extract_meters_from_measures_in_expr_02( ):
    '''Extract ordered list of meter pairs from components.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
 
    r'''
    \new Staff {

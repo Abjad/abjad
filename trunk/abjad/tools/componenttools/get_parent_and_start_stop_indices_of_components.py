@@ -9,7 +9,7 @@ def get_parent_and_start_stop_indices_of_components(components):
 
    ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(6))
+      abjad> t = Staff(macros.scale(6))
       abjad> print t.format
       \new Staff {
          c'8

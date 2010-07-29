@@ -16,7 +16,7 @@ class TempoSpanner(_GrobHandlerSpanner):
 
    Invoke LilyPond ``\newSpacingSection`` command. ::
 
-      abjad> t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Voice(macros.scale(4))
       abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 8), 38)
       abjad> p = TempoSpanner(t[:], tempo_indication)
       abjad> f(t)

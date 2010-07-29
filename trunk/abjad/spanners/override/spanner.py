@@ -8,7 +8,7 @@ class Override(_GrobHandlerSpanner):
 
    Five-argument form of initializer uses context specification. ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
+      abjad> staff = Staff(macros.scale(8))
       abjad> Override(staff[:4], 'Staff', 'Beam', 'positions', (8, 8))
       abjad> print staff.format
       \new Staff {
@@ -26,7 +26,7 @@ class Override(_GrobHandlerSpanner):
 
    Four-argument form of initializer does not use context specification. ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))
+      abjad> staff = Staff(macros.scale(8))
       abjad> Override(staff[:4], 'Beam', 'positions', (8, 8))
       abjad> print staff.format
       \new Staff {

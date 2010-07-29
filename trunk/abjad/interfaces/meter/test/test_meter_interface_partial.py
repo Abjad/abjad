@@ -7,7 +7,7 @@ def test_meter_interface_partial_01( ):
 
    pass
 
-#   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+#   t = Staff(macros.scale(4))
 #   t.meter.forced = Meter(2, 8)
 #   t.meter.partial = Rational(1, 8)
 #

@@ -5,7 +5,7 @@ def test_beam_interface_auto_beaming_01( ):
    '''Interface to LilyPond autoBeaming context setting.
    Set to true or false.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.beam.auto_beaming = True
 
    r'''
@@ -26,7 +26,7 @@ def test_beam_interface_auto_beaming_01( ):
 def test_beam_interface_auto_beaming_02( ):
    '''Clear with none.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.beam.auto_beaming = True
    t.beam.auto_beaming = None
 

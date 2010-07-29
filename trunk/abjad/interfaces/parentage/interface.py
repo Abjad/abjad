@@ -44,7 +44,7 @@ class ParentageInterface(_Interface):
       '''Nonnegative integer number of components in the proper
       parentage of `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.depth
@@ -61,7 +61,7 @@ class ParentageInterface(_Interface):
       '''Nonnegative integer number of tuplets in the proper parentage 
       of `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.depth_tuplet
@@ -162,7 +162,7 @@ class ParentageInterface(_Interface):
    
       ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.parent
@@ -179,7 +179,7 @@ class ParentageInterface(_Interface):
       '''Read-only list of all of components in the parentage of 
       `component`, including `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.parentage
@@ -204,7 +204,7 @@ class ParentageInterface(_Interface):
       Read-only tuple of all of components in the parentage of 
       `component`, excluding `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.proper
@@ -220,7 +220,7 @@ class ParentageInterface(_Interface):
       '''Reference to root-level component in parentage 
       of `component`. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> note.parentage.root
@@ -238,7 +238,7 @@ class ParentageInterface(_Interface):
       Containment signature defined equal to first voice, first staff,
       first staffgroup, first score and root in parentage. ::
 
-         abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> staff = Staff([tuplet])
          abjad> note = staff.leaves[0]
          abjad> print note.parentage.signature

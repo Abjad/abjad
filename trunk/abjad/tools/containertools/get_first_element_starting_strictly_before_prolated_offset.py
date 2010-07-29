@@ -6,13 +6,13 @@ def get_first_element_starting_strictly_before_prolated_offset(container, prolat
 
    Return rightmost element in `container` starting before `prolated_offset`::
    
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Rational(1, 8))
       Note(c', 8)
 
    Return none when no element in `container` starts before `prolated_offset`::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Rational(0, 8)) is None
       True
 

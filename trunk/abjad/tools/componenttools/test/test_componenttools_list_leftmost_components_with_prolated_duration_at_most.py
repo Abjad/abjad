@@ -7,7 +7,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
    than prolated duration at input.
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
       t[:], Rational(1, 4))
 
@@ -17,7 +17,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
 
 def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_02( ):
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
       t[:], Rational(99))
 
@@ -27,7 +27,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
 
 def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_03( ):
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
       t[:], Rational(0))
 
@@ -37,7 +37,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
 
 def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_04( ):
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
       t[:], Rational(3, 16))
 

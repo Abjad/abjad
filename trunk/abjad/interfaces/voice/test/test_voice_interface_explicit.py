@@ -5,7 +5,7 @@ def test_voice_interface_explicit_01( ):
    '''Return first explicit *Abjad* ``Voice`` in parentage of client.
       Otherwise ``None``.'''
 
-   t = Score([Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])])
+   t = Score([Staff([Voice(macros.scale(4))])])
    voice = t[0][0]
 
    r'''

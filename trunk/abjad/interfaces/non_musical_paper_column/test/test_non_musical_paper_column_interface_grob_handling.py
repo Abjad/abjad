@@ -5,7 +5,7 @@ def test_non_musical_paper_column_interface_grob_handling_01( ):
    '''Abjad NonMusicalPaperColumnInterface handles the LilyPond
    NonMusicalPaperColumn grob.'''
 
-   t = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Score([Staff(macros.scale(4))])
    t.non_musical_paper_column.line_break_permission = False
    t.non_musical_paper_column.page_break_permission = False
 

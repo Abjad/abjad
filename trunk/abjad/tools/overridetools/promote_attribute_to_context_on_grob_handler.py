@@ -5,7 +5,7 @@ def promote_attribute_to_context_on_grob_handler(grob_handler, attribute, contex
    r'''Promote `attribute` to LilyPond `context`.
    Both `attribute` and `context` must be strings. ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> staff[0].clef.color = 'red'
       abjad> overridetools.promote_attribute_to_context_on_grob_handler(staff[0].clef, 'color', 'Staff')
 

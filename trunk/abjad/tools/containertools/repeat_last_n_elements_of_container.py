@@ -6,7 +6,7 @@ def repeat_last_n_elements_of_container(container, n = 1, total = 2):
 
    Extend `container` with last `n` elements `total` times::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff.leaves)
       abjad> f(staff)
       \new Staff {

@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplet_number_interface_grob_handling_01( ):
    '''Abjad tuplets wrap grob overrides at before and after.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    t.tuplet_number.fraction = True
 
    r'''
@@ -24,7 +24,7 @@ def test_tuplet_number_interface_grob_handling_01( ):
 def test_tuplet_number_interface_grob_handling_02( ):
    '''Override LilyPond TupletNumber grob on Abjad voice.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    t.tuplet_number.fraction = True
 
@@ -45,7 +45,7 @@ def test_tuplet_number_interface_grob_handling_02( ):
 def test_tuplet_number_interface_grob_handling_03( ):
    '''Override LilyPond TupletNumber grob on Abjad leaf.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    t[1].tuplet_number.fraction = True
 
@@ -66,7 +66,7 @@ def test_tuplet_number_interface_grob_handling_03( ):
 def test_tuplet_number_interface_grob_handling_04( ):
    '''Override LilyPond TupletNumber text attribute.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    t.tuplet_number.text = Markup('"6:4"')
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_spannertools_withdraw_components_from_spanners_covered_by_components_01( ):
    '''Withdraw from all spanners covered by components.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:2])
    Slur(t[:])
 

@@ -25,7 +25,7 @@ def get_interval_class_vector(pitches):
 
    ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) + leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) + leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4) + macros.scale(4) + macros.scale(4))
       abjad> pitches = pitchtools.get_pitches(staff)
       abjad> vector = pitchtools.get_interval_class_vector(pitches)
       abjad> for i in range(7):

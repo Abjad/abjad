@@ -3,7 +3,7 @@ from abjad import *
 
 def test_scoretools_set_accidental_style_01( ):
 
-   score = Score(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
+   score = Score(Staff(macros.scale(2)) * 2)
    scoretools.set_accidental_style(score, 'forget')
 
    r'''

@@ -4,7 +4,7 @@ from abjad import *
 def test_anonymous_measure_duration_interface_01( ):
    '''Notes as contents.'''
 
-   t = AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = AnonymousMeasure(macros.scale(4))
 
    r'''
    {
@@ -29,7 +29,7 @@ def test_anonymous_measure_duration_interface_01( ):
 def test_anonymous_measure_duration_interface_02( ):
    '''Works with binary tuplet as contents.'''
 
-   t = AnonymousMeasure([FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))])
+   t = AnonymousMeasure([FixedDurationTuplet((2, 8), macros.scale(3))])
 
    r'''
    {
@@ -55,7 +55,7 @@ def test_anonymous_measure_duration_interface_02( ):
 def test_anonymous_measure_duration_interface_03( ):
    '''Works with nonbinary tuplet.'''
 
-   t = AnonymousMeasure([FixedMultiplierTuplet((2, 3), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = AnonymousMeasure([FixedMultiplierTuplet((2, 3), macros.scale(4))])
    t.denominator = 12
 
    r'''

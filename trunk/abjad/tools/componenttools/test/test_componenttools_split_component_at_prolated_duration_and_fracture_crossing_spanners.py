@@ -556,7 +556,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
       This test results from a fix.
       What's being tested here is contents rederivation.'''
 
-   t = Staff(RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)) * 2)
+   t = Staff(RigidMeasure((3, 8), macros.scale(3)) * 2)
    Beam(t[0])
    Beam(t[1])
    Slur(t.leaves)

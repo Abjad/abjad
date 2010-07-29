@@ -5,7 +5,7 @@ def test_componenttools_all_are_contiguous_components_01( ):
    '''True for strictly contiguous leaves in voice.
       False for other time orderings of leaves in voice.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    
    assert componenttools.all_are_contiguous_components(t.leaves)
 
@@ -58,7 +58,7 @@ def test_componenttools_all_are_contiguous_components_02( ):
 def test_componenttools_all_are_contiguous_components_03( ):
    '''Unicorporated leaves can not be evaluated for contiguity.'''
 
-   t = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)
+   t = macros.scale(4)
 
    assert componenttools.all_are_contiguous_components(t)
    assert not componenttools.all_are_contiguous_components(t, 

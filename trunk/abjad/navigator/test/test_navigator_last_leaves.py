@@ -5,7 +5,7 @@ import py.test
 def test_navigator_last_leaves_01( ):
    '''Return last leaf from sequential container.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    leaves = t._navigator._lastLeaves
 
    assert len(leaves) == 1

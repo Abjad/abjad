@@ -4,7 +4,7 @@ from abjad import checks as _checks
 def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = True):
    r'''Tabulate well-formedness violations in `expr`::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> staff[1].duration.written = Rational(1, 4)
       abjad> Beam(staff[:])
       abjad> f(staff)

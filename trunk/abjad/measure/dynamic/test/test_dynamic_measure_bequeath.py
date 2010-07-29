@@ -5,7 +5,7 @@ import py.test
 def test_dynamic_measure_bequeath_01( ):
    '''Bequeath DynamicMeasure contents to RigidMeasure.'''
 
-   t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = DynamicMeasure(macros.scale(4))
 
    r'''
    {

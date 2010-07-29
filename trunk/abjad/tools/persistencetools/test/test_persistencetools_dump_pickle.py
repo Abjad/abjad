@@ -15,7 +15,7 @@ def test_persistencetools_dump_pickle_01( ):
 
 def test_persistencetools_dump_pickle_02( ):
   
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    file_name = '__test_pickle_02'
    persistencetools.dump_pickle(t, file_name)
    assert os.stat(file_name)

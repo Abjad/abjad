@@ -52,7 +52,7 @@ def test_measuretools_project_01( ):
 def test_measuretools_project_02( ):
    '''Project nonbinary meter onto measure with tied note values.'''
 
-   t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6))])
+   t = RigidMeasure((5, 8), [FixedDurationTuplet((5, 8), macros.scale(6))])
    measuretools.subsume(t)
 
    r'''

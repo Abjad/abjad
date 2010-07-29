@@ -80,8 +80,8 @@ def test_componenttools_give_music_to_03( ):
    '''When recipient is unable to accept donated music,
       raise MusicContentsError.'''
 
-   donor = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-   recipient = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   donor = Voice(macros.scale(4))
+   recipient = Voice(macros.scale(4))
 
    assert py.test.raises(
       MusicContentsError, '_give_music_to([donor], recipient)')

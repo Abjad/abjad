@@ -4,7 +4,7 @@ def docstring(code, tab_width = 3):
    Format `code` for docstring::
 
       abjad> code = '''
-      ... staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      ... staff = Staff(macros.scale(4))
       ... Beam(staff.leaves)
       ... f(staff)
       ... 
@@ -14,7 +14,7 @@ def docstring(code, tab_width = 3):
       ... '''
       abjad> formattools.docstring(code)
 
-            abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+            abjad> staff = Staff(macros.scale(4))
             abjad> Beam(staff.leaves)
             abjad> f(staff)
             \new Staff {

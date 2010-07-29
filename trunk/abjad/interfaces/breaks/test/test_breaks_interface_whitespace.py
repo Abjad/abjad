@@ -71,7 +71,7 @@ def test_breaks_interface_whitespace_02( ):
    '''Whitespace after leaf raises TypographicWhitespaceError.
       Otherwise would confuse LilyPond timekeeping.'''
 
-   t = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+   t = RigidMeasure((2, 8), macros.scale(2))
 
    assert py.test.raises(
       TypographicWhitespaceError, 't[0].breaks.whitespace = Rational(1, 32)')

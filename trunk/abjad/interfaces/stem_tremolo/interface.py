@@ -7,7 +7,7 @@ class StemTremoloInterface(_Interface, _GrobHandler):
 
    Handle LilyPond StemTremolo grob. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> t.stem_tremolo.staff_padding = 2
       abjad> t.stem_tremolo.Y_extent = (-1.5, 1.5)
       \new Staff \with {

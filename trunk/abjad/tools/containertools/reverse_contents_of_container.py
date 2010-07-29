@@ -6,7 +6,7 @@ def reverse_contents_of_container(container):
 
    Reverse `container` contents in place::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff.leaves[:2])
       abjad> Slur(staff.leaves[2:])
       abjad> f(staff)

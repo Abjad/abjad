@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_label_leaves_in_expr_with_leaf_duration_01( ):
    '''Label written duration of every leaf.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    leaftools.label_leaves_in_expr_with_leaf_duration(t, ['written'])
 
    r'''
@@ -22,7 +22,7 @@ def test_leaftools_label_leaves_in_expr_with_leaf_duration_01( ):
 def test_leaftools_label_leaves_in_expr_with_leaf_duration_02( ):
    '''Label prolated duration of every leaf.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    leaftools.label_leaves_in_expr_with_leaf_duration(t, ['prolated'])
 
    r'''
@@ -40,7 +40,7 @@ def test_leaftools_label_leaves_in_expr_with_leaf_duration_02( ):
 def test_leaftools_label_leaves_in_expr_with_leaf_duration_03( ):
    ''''Label written and prolated duration of every leaf.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    leaftools.label_leaves_in_expr_with_leaf_duration(t, ['written', 'prolated'])
 
    r'''

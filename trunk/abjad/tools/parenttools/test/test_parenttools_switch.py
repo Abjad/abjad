@@ -5,7 +5,7 @@ from abjad.tools.parenttools.switch import _switch
 def test_parenttools_switch_01( ):
 
    t = Voice([ ])
-   u = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   u = Voice(macros.scale(4))
 
    components = u[:]
    _switch(components, t)

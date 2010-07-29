@@ -7,7 +7,7 @@ def test_componenttools_partition_components_cyclically_by_counts_and_do_not_fra
       Fracture spanners attaching directly to container.
       Leave spanner attaching to container contents untouched.'''
 
-   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))])
+   t = Voice([Container(macros.scale(8))])
    Beam(t[0])
    Slur(t[0].leaves)
 
@@ -57,7 +57,7 @@ def test_componenttools_partition_components_cyclically_by_counts_and_do_not_fra
 def test_componenttools_partition_components_cyclically_by_counts_and_do_not_fracture_crossing_spanners_02( ):
    '''Cyclic by [1] splits all elements in container.'''
 
-   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Voice([Container(macros.scale(4))])
    Beam(t[0])
    Slur(t[0].leaves)
 

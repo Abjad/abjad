@@ -62,7 +62,7 @@ def test_container_delitem_02( ):
    '''Delete 1 leaf in container. 
    Spanner structure is preserved.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
 
    del(t[1])
@@ -82,7 +82,7 @@ def test_container_delitem_02( ):
 def test_container_delitem_03( ):
    '''Delete slice in middle of container.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
 
    del(t[1:3])
@@ -101,7 +101,7 @@ def test_container_delitem_03( ):
 def test_container_delitem_04( ):
    '''Delete slice from beginning to middle of container.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
 
    del(t[:2])
@@ -120,7 +120,7 @@ def test_container_delitem_04( ):
 def test_container_delitem_05( ):
    '''Delete slice from middle to end of container.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
 
    del(t[2:])
@@ -139,7 +139,7 @@ def test_container_delitem_05( ):
 def test_container_delitem_06( ):
    '''Delete slice from beginning to end of container.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)) 
+   t = Voice(macros.scale(4)) 
    Beam(t[:])
 
    del(t[:])
@@ -156,7 +156,7 @@ def test_container_delitem_06( ):
 def test_container_delitem_07( ):
    '''Detach leaf from tuplet and spanner.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    Beam(t[:])
 
    del(t[1])

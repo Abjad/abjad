@@ -17,7 +17,7 @@ def get_prev_measure_from_component(component):
    and when `component` contains no measure, 
    raise :exc:`MissingMeasureError`. ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> iterate.get_prev_measure_from_component(staff)
       MissingMeasureError
 
@@ -48,7 +48,7 @@ def get_prev_measure_from_component(component):
    When `component` is a leaf and there is no measure in the parentage
    of `component`, raise :exc:`MissingMeasureError`. ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> iterate.get_prev_measure_from_component(staff.leaves[0])
       MissingMeasureError
 

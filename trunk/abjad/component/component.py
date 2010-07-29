@@ -548,9 +548,9 @@ class _Component(_Abjad):
 
       Do not extend edge spanners. ::
 
-         abjad> t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> t = Voice(macros.scale(3))
          abjad> Beam(t[:])
-         abjad> t[-1].extend_in_parent(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> t[-1].extend_in_parent(macros.scale(3))
 
       ::
 
@@ -581,9 +581,9 @@ class _Component(_Abjad):
 
       Do not extend edge spanners. ::
 
-         abjad> t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> t = Voice(macros.scale(3))
          abjad> Beam(t[:])
-         abjad> t[0].extend_in_parent(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> t[0].extend_in_parent(macros.scale(3))
 
       ::
 

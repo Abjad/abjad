@@ -7,7 +7,7 @@ def test_componenttools_partition_components_once_by_counts_and_do_not_fracture_
       Fracture spanners attaching directly to container.
       Leave spanner attaching to container contents untouched.'''
 
-   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))])
+   t = Voice([Container(macros.scale(8))])
    Beam(t[0])
    Slur(t[0].leaves)
 

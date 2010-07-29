@@ -5,7 +5,7 @@ from abjad.tools.parenttools.restore import _restore
 
 def test_parenttools_restore_01( ):
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
 
    r'''

@@ -3,7 +3,7 @@ from abjad import *
 
 def test_ScriptInterface_grob_handling_01( ):
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.script.staff_padding = 2
    t.script.Y_extent = (-1.5, 1.5)
 

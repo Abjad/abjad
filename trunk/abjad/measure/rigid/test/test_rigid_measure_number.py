@@ -13,7 +13,7 @@ def test_rigid_measure_number_01( ):
 def test_rigid_measure_number_02( ):
    '''Orphan measures number correctly starting from 1.'''
 
-   t = RigidMeasure((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = RigidMeasure((3, 8), macros.scale(3))
    assert t.number == 1
 
 

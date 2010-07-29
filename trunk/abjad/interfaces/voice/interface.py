@@ -7,7 +7,7 @@ class VoiceInterface(_Interface, _FormatContributor):
    
       ::
 
-         abjad> t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+         abjad> t = Voice(macros.scale(4))
          abjad> t[0].voice      
          <VoiceInterface>'''
 

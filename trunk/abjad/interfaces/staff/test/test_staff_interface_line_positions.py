@@ -3,7 +3,7 @@ from abjad import *
 
 def test_staff_interface_line_positions_01( ):
 
-   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   staff = Staff(macros.scale(4))
    staff.staff.line_positions = schemetools.SchemeVector(-4, -2, 2, 4)
 
    r'''

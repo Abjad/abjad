@@ -4,7 +4,7 @@ from abjad import *
 def test_lilyfiletools_make_basic_lily_file_01( ):
 
 
-   score = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   score = Score([Staff(macros.scale(4))])
    lily_file = lilyfiletools.make_basic_lily_file(score)
    lily_file.header.composer = Markup('Josquin')
    lily_file.layout.indent = 0

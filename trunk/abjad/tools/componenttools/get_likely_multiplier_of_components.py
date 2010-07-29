@@ -9,7 +9,7 @@ from abjad.tools import mathtools
 def get_likely_multiplier_of_components(components):
    r'''Get likely multiplier of arbitrary `components`. ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4, (7, 32)))
+      abjad> staff = Staff(macros.scale(4, (7, 32)))
       abjad> f(staff)
       \new Staff {
          c'8..
@@ -22,7 +22,7 @@ def get_likely_multiplier_of_components(components):
    
    Return ``1`` on no likely multiplier. ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> f(staff)
       \new Staff {
          c'8

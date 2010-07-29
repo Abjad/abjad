@@ -4,7 +4,7 @@ from abjad import *
 def test_note_head_interface_01( ):
    '''Override LilyPond NoteHead grob on voice.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    t.note_head.color = 'red'
 
    r'''

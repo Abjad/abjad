@@ -3,7 +3,7 @@ from abjad import *
 
 def test_containertools_delete_contents_of_container_starting_at_or_after_prolated_offset_01( ):
    
-   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   staff = Staff(macros.scale(4))
    Beam(staff.leaves)
    containertools.delete_contents_of_container_starting_at_or_after_prolated_offset(staff, Rational(1, 8))
 
@@ -19,7 +19,7 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_prolat
 
 def test_containertools_delete_contents_of_container_starting_at_or_after_prolated_offset_02( ):
 
-   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   staff = Staff(macros.scale(4))
    Beam(staff.leaves)
    containertools.delete_contents_of_container_starting_at_or_after_prolated_offset(staff, Rational(3, 16))
 

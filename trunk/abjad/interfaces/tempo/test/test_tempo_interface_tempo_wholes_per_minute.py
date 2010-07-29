@@ -5,7 +5,7 @@ def test_tempo_interface_tempo_wholes_per_minute_01( ):
    r'''Works with score tempo interface.
    Does not include LilyPond \set command.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    score = Score([t])
    score.tempo.tempo_wholes_per_minute = 24
 
@@ -29,7 +29,7 @@ def test_tempo_interface_tempo_wholes_per_minute_02( ):
    r'''Works with leaf tempo interface.
    Includes LilyPond \set command.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    score = Score([t])
    score.leaves[1].tempo.tempo_wholes_per_minute = 24
 

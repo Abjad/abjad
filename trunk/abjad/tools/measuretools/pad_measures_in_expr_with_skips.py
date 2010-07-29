@@ -23,7 +23,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
 
    ::
 
-      abjad> t = Staff(AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
+      abjad> t = Staff(AnonymousMeasure(macros.scale(2)) * 2)
       abjad> front, back = Rational(1, 32), Rational(1, 64)
       abjad> measuretools.pad_measures_in_expr_with_skips(t, front, back)
       abjad> print t.format
@@ -88,7 +88,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
    Set the optional `splice` keyword to ``True`` to extend edge
    spanners over newly inserted skips. ::
 
-      abjad> t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+      abjad> t = DynamicMeasure(macros.scale(2))
       abjad> Beam(t[:])
       abjad> t.formatter.number.self = 'comment'
       abjad> measuretools.pad_measures_in_expr_with_skips(t, Rational(1, 32), Rational(1, 64), splice = True)
@@ -109,7 +109,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
    Raise :exc:`ValueError` when `back` is neither a positive
    rational nor ``None``. ::
 
-      abjad> t = Staff(AnonymousMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)) * 2)
+      abjad> t = Staff(AnonymousMeasure(macros.scale(2)) * 2)
       abjad> measuretools.pad_measures_in_expr_with_skips(t, 'foo', 'bar')
       ValueError
 

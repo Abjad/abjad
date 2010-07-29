@@ -87,7 +87,7 @@ def test_lily_voice_resolution_02( ):
 def test_lily_voice_resolution_03( ):
    '''Two like-named voices in two differently named staves.'''
 
-   t = Container(Staff([Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))]) * 2)
+   t = Container(Staff([Voice(macros.scale(2))]) * 2)
    t[0].name = 'staff1'
    t[1].name = 'staff2'
    t[0][0].name = 'voicefoo'

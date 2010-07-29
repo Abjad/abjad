@@ -4,9 +4,9 @@ from abjad import *
 def test_leaf_splice_01( ):
    '''Splice leaves after leaf.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Voice(macros.scale(3))
    Beam(t[:])
-   result = t[-1].splice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   result = t[-1].splice(macros.scale(3))
 
    r'''
    \new Voice {
@@ -27,7 +27,7 @@ def test_leaf_splice_01( ):
 def test_leaf_splice_02( ):
    '''Splice leaf after interior leaf.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = Voice(macros.scale(3))
    Beam(t[:])
    result = t[1].splice([Note(2.5, (1, 8))])
 

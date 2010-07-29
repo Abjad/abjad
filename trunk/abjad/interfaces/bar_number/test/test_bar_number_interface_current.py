@@ -4,7 +4,7 @@ from abjad import *
 def test_bar_number_interface_current_01( ):
    '''Handle LilyPond ``currentBarNumber`` context setting on note.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t[0].bar_number.current = 12
    overridetools.promote_attribute_to_context_on_grob_handler(t[0].bar_number, 'current', 'Score')
 

@@ -3,7 +3,7 @@ def color_contents_of_container(container, color):
 
    Set `container` contents to `color`::
 
-      abjad> measure = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+      abjad> measure = RigidMeasure((2, 8), macros.scale(2))
       abjad> containertools.color_contents_of_container(measure, 'red')
       {
               \override Accidental #'color = #red

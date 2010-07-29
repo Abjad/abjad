@@ -13,7 +13,7 @@ class AccidentalInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
    ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> t.accidental
       <AccidentalInterface>
    '''
@@ -72,7 +72,7 @@ class AccidentalInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
          ::
 
-            abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+            abjad> t = Staff(macros.scale(4))
             abjad> t.accidental.style = 'forget'
 
          ::

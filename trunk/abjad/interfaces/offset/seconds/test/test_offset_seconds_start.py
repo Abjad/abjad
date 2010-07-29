@@ -5,7 +5,7 @@ import py.test
 def test_offset_seconds_start_01( ):
    '''Offset seconds can not calculate without excplit tempo indication.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    
    r'''
    \new Staff {
@@ -23,7 +23,7 @@ def test_offset_seconds_start_01( ):
 def test_offset_seconds_start_02( ):
    '''Offset seconds work with explicit tempo indication.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 48)
    
    r'''

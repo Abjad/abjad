@@ -49,7 +49,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
       ::
 
-         abjad> t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.duration.augmentation
          False
       '''
@@ -66,7 +66,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
       ::
 
-         abjad> t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.duration.diminution
          True
       '''
@@ -100,7 +100,7 @@ class _TupletDurationInterface(_MultipliedContainerDurationInterface):
 
       ::
 
-         abjad> t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+         abjad> t = FixedDurationTuplet((2, 8), macros.scale(3))
          abjad> t.duration.preprolated
          Rational(1, 4)
       '''

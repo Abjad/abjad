@@ -7,7 +7,7 @@ def test_accidental_interface_suggest_accidentals_01( ):
    of contexts like staff.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.accidental.suggest_accidentals = True
 
    r'''
@@ -28,7 +28,7 @@ def test_accidental_interface_suggest_accidentals_01( ):
 def test_accidental_interface_suggest_accidentals_02( ):
    '''Format inline before leaves.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t[1].accidental.suggest_accidentals = True
    
    r'''

@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_remove_markup_from_leaves_in_expr_01( ):
    '''Clear multiple pieces of down-markup.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    leaftools.label_leaves_in_expr_with_leaf_duration(t)
 
    r'''

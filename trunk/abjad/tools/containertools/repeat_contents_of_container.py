@@ -7,7 +7,7 @@ def repeat_contents_of_container(container, total = 2):
 
    Multiply `container` contents to `total` repetitions::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+      abjad> staff = Staff(macros.scale(2))
       abjad> Beam(staff.leaves)
       abjad> containertools.repeat_contents_of_container(staff, 3)
       abjad> f(staff)
@@ -22,7 +22,7 @@ def repeat_contents_of_container(container, total = 2):
 
    Leave `container` unchanged when ``total = 1``::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+      abjad> staff = Staff(macros.scale(2))
       abjad> Beam(staff.leaves)
       abjad> containertools.repeat_contents_of_container(staff, 1)
       abjad> f(staff)
@@ -33,7 +33,7 @@ def repeat_contents_of_container(container, total = 2):
 
    Empty `container` when ``total = 0``::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+      abjad> staff = Staff(macros.scale(2))
       abjad> Beam(staff.leaves)
       abjad> containertools.repeat_contents_of_container(staff, 0)
       abjad> f(staff)

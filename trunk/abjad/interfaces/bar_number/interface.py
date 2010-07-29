@@ -12,7 +12,7 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
       ::
 
-         abjad> t = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+         abjad> t = RigidMeasure((2, 8), macros.scale(2))
          abjad> t.bar_number
          <BarNumberInterface>
    '''
@@ -34,7 +34,7 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
          :: 
 
-            abjad> t = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+            abjad> t = RigidMeasure((2, 8), macros.scale(2))
             abjad> t[0]
             abjad> t[0].bar_number.current = 22
             abjad> t[0].bar_number.current
@@ -57,7 +57,7 @@ class BarNumberInterface(_Interface, _GrobHandler, _ContextSettingHandler):
 
       ::
 
-         abjad> t = RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))
+         abjad> t = RigidMeasure((2, 8), macros.scale(2))
          abjad> t[0]
          abjad> t[0].bar_number.current = 22
          abjad> print t.format

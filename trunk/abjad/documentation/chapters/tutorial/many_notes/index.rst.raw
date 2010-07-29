@@ -3,7 +3,7 @@ Make many notes
 
 Type the following and hit return. ::
 
-   abjad> notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)
+   abjad> notes = macros.scale(4)
    abjad> notes
    [Note(c', 8), Note(d', 8), Note(e', 8), Note(f', 8)]
 
@@ -12,7 +12,7 @@ Abjad creates the first four notes of an ascending C major scale.
 Wrap these notes in a staff and then show.
 
 <abjad>
-notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) <hide
+notes = macros.scale(4) <hide
 staff = Staff(notes)
 show(staff)
 write_ly(staff, 'test') <hide
@@ -21,4 +21,4 @@ write_ly(staff, 'test') <hide
 The ``notes`` variable is now bound to a Python list of four Abjad notes.
 The ``staff`` variable is bound to an Abjad staff containing those notes.
 
-.. seealso:: See the API entry for :func:`leaftools.make_first_n_notes_in_ascending_diatonic_scale() <abjad.tools.leaftools.make_first_n_notes_in_ascending_diatonic_scale.scale>`.
+.. seealso:: See the API entry for :func:`macros.scale() <abjad.tools.macros.scale.scale>`.

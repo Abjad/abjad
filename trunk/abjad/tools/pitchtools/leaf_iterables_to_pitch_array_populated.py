@@ -8,9 +8,9 @@ def leaf_iterables_to_pitch_array_populated(leaf_iterables):
    Return populated pitch array corresponding to `leaf_iterables`. ::
 
       abjad> score = Score([ ])
-      abjad> score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)))
-      abjad> score.append(Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(2, Rational(1, 4))))
-      abjad> score.append(Staff(FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3)) * 2))
+      abjad> score.append(Staff(macros.scale(4)))
+      abjad> score.append(Staff(macros.scale(2, Rational(1, 4))))
+      abjad> score.append(Staff(FixedDurationTuplet((2, 8), macros.scale(3)) * 2))
       abjad> f(score)
       \new Score <<
               \new Staff {

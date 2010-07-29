@@ -47,6 +47,6 @@ def test_iterate_get_next_measure_from_component_01( ):
 def test_iterate_get_next_measure_from_component_02( ):
    '''Can retrieve first measure in a Python list.'''
 
-   t = [Note(0, (1, 4)), RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))]
+   t = [Note(0, (1, 4)), RigidMeasure((2, 8), macros.scale(2))]
 
    assert iterate.get_next_measure_from_component(t) is t[1]

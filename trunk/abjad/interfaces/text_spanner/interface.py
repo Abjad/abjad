@@ -11,7 +11,7 @@ class TextSpannerInterface(_Interface, _GrobHandler, _SpannerReceptor):
 
    Receive Abjad TextSpanner. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> t.text_spanner.staff_padding = 6
       abjad> TextSpanner(t[:])
       \new Staff \with {

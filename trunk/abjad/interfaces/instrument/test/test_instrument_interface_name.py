@@ -7,7 +7,7 @@ def test_instrument_interface_name_01( ):
    Works with strings.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.instrument.name = 'Violini I'
 
    r'''
@@ -28,7 +28,7 @@ def test_instrument_interface_name_01( ):
 def test_instrument_interface_name_02( ):
    '''Works with Markup.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.instrument.name = Markup(r'\circle { V }')
 
    r'''

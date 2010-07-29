@@ -5,7 +5,7 @@ import py.test
 def test_container_setitem_slice_01( ):
    '''Containers set single leaves correctly in an unspanned structure.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t[2:2] = [Note(7, (1, 8))]
 
    r'''
@@ -25,7 +25,7 @@ def test_container_setitem_slice_01( ):
 def test_container_setitem_slice_02( ):
    '''Set single leaf between spanned components.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    p = Beam(t[:])
    note = Note(7, (1, 8))
    t[2:2] = [note]
@@ -48,7 +48,7 @@ def test_container_setitem_slice_03( ):
    '''Containers set sequence of leaves 
       between spanned components.'''
 
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(6)
+   notes = macros.scale(6)
    beginning = notes[:2]
    middle = notes[2:4]
    end = notes[4:]
@@ -85,7 +85,7 @@ def test_container_setitem_slice_03( ):
 def test_container_setitem_slice_04( ):
    '''Replace sequence of spanned components with a single leaf.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    p = Beam(t[:])
    note = Note(12, (1, 8))
    t[1:3] = [note]
@@ -106,7 +106,7 @@ def test_container_setitem_slice_05( ):
    '''Replace a sequence of multiple components with
       a different sequence of multiple components.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    p = Beam(t[:])
    notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
    t[1:3] = notes
@@ -326,7 +326,7 @@ def test_container_setitem_slice_10( ):
 def test_container_setitem_slice_11( ):
    '''Extremely small coequal indices act as zero.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    t[-1000:-1000] = [Rest((1, 8))]
 
@@ -347,7 +347,7 @@ def test_container_setitem_slice_11( ):
 def test_container_setitem_slice_12( ):
    '''Extremely large, coequal indices work correctly.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    t[1000:1000] = [Rest((1, 8))]
 
@@ -374,7 +374,7 @@ def test_container_setitem_slice_13( ):
    allow the emptied components to remain embedded within spanners,
    use containertools.delete_contents_of_container( ) instead.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    inner = Container(t[1:3])
    outer = Container([inner])
    beam = Beam(inner[:])
@@ -418,7 +418,7 @@ def test_container_setitem_slice_13( ):
 
    ## ALTERNATIVE: use containertools.delete_contents_of_container( )
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    inner = Container(t[1:3])
    outer = Container([inner])
    beam = Beam(inner[:])

@@ -8,15 +8,15 @@ def test_componenttools_all_are_components_in_same_thread_01( ):
       Unicorporated leaves do not share a root component.
       False if not allow orphans; True if allow orphans.'''
 
-   assert componenttools.all_are_components_in_same_thread(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-   assert not componenttools.all_are_components_in_same_thread(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4), 
+   assert componenttools.all_are_components_in_same_thread(macros.scale(4))
+   assert not componenttools.all_are_components_in_same_thread(macros.scale(4), 
       allow_orphans = False)
 
 
 def test_componenttools_all_are_components_in_same_thread_02( ):
    '''Container and leaves all thread.'''
 
-   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Container(macros.scale(4))
 
    r'''
    {
@@ -33,7 +33,7 @@ def test_componenttools_all_are_components_in_same_thread_02( ):
 def test_componenttools_all_are_components_in_same_thread_03( ):
    '''Tuplet and leaves all thread.'''
    
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    
    r'''
    \times 2/3 {
@@ -52,7 +52,7 @@ def test_componenttools_all_are_components_in_same_thread_03( ):
 #      Abjad mimics this behavior and assigns each leaf 
 #      to a different thread.'''
 #
-#   t = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+#   t = Container(macros.scale(4))
 #   t.parallel = True
 #
 #   r'''<<
@@ -68,7 +68,7 @@ def test_componenttools_all_are_components_in_same_thread_03( ):
 def test_componenttools_all_are_components_in_same_thread_05( ):
    '''Voice and leaves all thread.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
 
    r'''
    \new Voice {
@@ -85,7 +85,7 @@ def test_componenttools_all_are_components_in_same_thread_05( ):
 def test_componenttools_all_are_components_in_same_thread_06( ):
    '''Anonymous staff and leaves all thread.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
 
    r'''
    \new Staff {
@@ -1216,7 +1216,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #def test_componenttools_all_are_components_in_same_thread_43( ):
 #   '''A parallel Staff and only leaves as it's content DO NOT thread.'''
 #
-#   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+#   t = Staff(macros.scale(4))
 #   t.parallel = True
 #
 #   r'''\new Staff <<
@@ -1235,7 +1235,7 @@ def test_componenttools_all_are_components_in_same_thread_42( ):
 #   This mimics LilyPond's behavior of not collapsing then notes into
 #   a chord. '''
 #
-#   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+#   t = Staff(macros.scale(4))
 #   t.parallel = True
 #
 #   r'''\new Staff <<

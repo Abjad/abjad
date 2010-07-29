@@ -3,7 +3,7 @@ def sum_duration_of_components_in_seconds(components):
 
    ::
 
-      abjad> tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+      abjad> tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
       abjad> tempo_spanner = TempoSpanner([tuplet])
       abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 4), 48)
       abjad> tempo_spanner.tempo_indication = tempo_indication

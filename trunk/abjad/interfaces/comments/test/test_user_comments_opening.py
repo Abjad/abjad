@@ -4,7 +4,7 @@ from abjad import *
 def test_user_comments_opening_01( ):
    '''Opening comments in container.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    t.comments.opening.append('Voice opening comments here.')
    t.comments.opening.append('More voice opening comments.')

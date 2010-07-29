@@ -174,7 +174,7 @@ def test_measuretools_populate_07( ):
    '''Populate measures conditionally.
       Iteration control tests measure length.'''
 
-   t = Staff([RigidMeasure((n, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(n)) for n in (2, 3, 4)])
+   t = Staff([RigidMeasure((n, 8), macros.scale(n)) for n in (2, 3, 4)])
 
    r'''
    \new Staff {

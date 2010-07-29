@@ -33,8 +33,8 @@ def test_componenttools_all_are_components_in_same_score_01( ):
 def test_componenttools_all_are_components_in_same_score_02( ):
    '''Components here divide between two different scores.'''
 
-   t1 = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
-   t2 = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t1 = Voice(macros.scale(4))
+   t2 = Voice(macros.scale(4))
 
    assert componenttools.all_are_components_in_same_score([t1])
    assert componenttools.all_are_components_in_same_score(t1.leaves)

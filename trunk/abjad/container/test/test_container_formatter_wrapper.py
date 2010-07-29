@@ -4,7 +4,7 @@ from abjad import *
 def test_container_formatter_wrapper_01( ):
    '''Context formatter wrapper.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    t.comments.before.append('Example voice')
    t.note_head.color = 'red'
    t.accidental.style = 'forget'
@@ -47,7 +47,7 @@ def test_container_formatter_wrapper_01( ):
 def test_container_formatter_wrapper_02( ):
    '''Tuplet formatter wrapper.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    t.comments.before.append('Example tuplet')
    t.note_head.color = 'red'
    t.accidental.style = 'forget'

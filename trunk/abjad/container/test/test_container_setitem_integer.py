@@ -5,7 +5,7 @@ import py.test
 def test_container_setitem_integer_01( ):
    '''Spanned leaves exchange correctly.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:2])
    Glissando(t.leaves)
 
@@ -36,7 +36,7 @@ def test_container_setitem_integer_01( ):
 def test_container_setitem_integer_02( ):
    '''Spanned leaf hands position over to container correctly.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:2])
    Glissando(t.leaves)
 
@@ -165,7 +165,7 @@ def test_container_setitem_integer_05( ):
    }
    '''
 
-   t[1] = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t[1] = FixedDurationTuplet((2, 8), macros.scale(3))
 
    r'''
    \new Voice {
@@ -269,7 +269,7 @@ def test_container_setitem_integer_08( ):
       and insert into recipient container.
       Both donor and recipient check after set item.'''
 
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(6)
+   notes = macros.scale(6)
 
    t = Voice(notes[:3])
    Beam(t[:])
@@ -326,7 +326,7 @@ def test_container_setitem_integer_09( ):
       from donor container and insert into recipient container.
       Both donor and recipient check after set item.'''
 
-   notes = leaftools.make_first_n_notes_in_ascending_diatonic_scale(7)
+   notes = macros.scale(7)
 
    t = Voice(notes[:3])
    Beam(t[:])

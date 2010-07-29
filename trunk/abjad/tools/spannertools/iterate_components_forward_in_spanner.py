@@ -7,7 +7,7 @@ def iterate_components_forward_in_spanner(spanner, klass = _Component):
 
    Yield components in `spanner` one at a time from left to right. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> p = Beam(t[2:])
       abjad> notes = spannertools.iterate_components_forward_in_spanner(p, class = Note)
       abjad> for note in notes:

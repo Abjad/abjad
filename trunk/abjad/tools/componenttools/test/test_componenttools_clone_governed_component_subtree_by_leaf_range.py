@@ -140,7 +140,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_04( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_05( ):
    '''Copy consecutive notes in binary measure.'''
 
-   t = RigidMeasure((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = RigidMeasure((4, 8), macros.scale(4))
    u = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 3)
 
    r'''
@@ -158,7 +158,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_05( ):
 def test_componenttools_clone_governed_component_subtree_by_leaf_range_06( ):
    '''Copy consecutive notes in staff and score.'''
 
-   score = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   score = Score([Staff(macros.scale(4))])
    t = score[0]
    new = componenttools.clone_governed_component_subtree_by_leaf_range(t, 1, 3)
 
@@ -178,7 +178,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_07( ):
    '''Copy consecutive leaves from tuplet in binary measure;
       nonbinary measure results.'''
 
-   t = RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))])
+   t = RigidMeasure((4, 8), [FixedDurationTuplet((4, 8), macros.scale(5))])
 
    r'''
    {
@@ -218,7 +218,7 @@ def test_componenttools_clone_governed_component_subtree_by_leaf_range_08( ):
    nonbinary measure results.'''
 
    t = Voice([RigidMeasure((4, 8), 
-      [FixedDurationTuplet((4, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5))])])
+      [FixedDurationTuplet((4, 8), macros.scale(5))])])
   
    r'''
    \new Voice {

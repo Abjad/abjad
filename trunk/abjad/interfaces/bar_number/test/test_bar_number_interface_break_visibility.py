@@ -3,7 +3,7 @@ from abjad import *
 
 def test_bar_number_interface_break_visibility_01( ):
 
-   score = Score([Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))])
+   score = Score([Staff(macros.scale(8))])
    score.bar_number.break_visibility = schemetools.SchemeFunction(
       'end-of-line-invisible')
 

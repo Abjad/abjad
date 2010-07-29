@@ -2,7 +2,7 @@ def wrapper(container):
    r'''Read-only string representation of all parts of container
    format except container contents::
 
-      abjad> container = Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(12))
+      abjad> container = Container(macros.scale(12))
       abjad> container.note_head.color = 'red'
       abjad> container.note_head.style = 'harmonic'
       abjad> container.comments.before.append('Container comments')

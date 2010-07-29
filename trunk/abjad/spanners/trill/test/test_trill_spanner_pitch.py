@@ -4,7 +4,7 @@ from abjad import *
 def test_trill_spanner_pitch_01( ):
    '''Assign Abjad pitch instance to create a pitched trill.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    trill = Trill(t[:2])
    trill.pitch = Pitch(1)
 
@@ -24,7 +24,7 @@ def test_trill_spanner_pitch_01( ):
 def test_trill_spanner_pitch_02( ):
    '''Any pitch init value will work.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    trill = Trill(t[:2])
    trill.pitch = 1
 
@@ -44,7 +44,7 @@ def test_trill_spanner_pitch_02( ):
 def test_trill_spanner_pitch_03( ):
    '''Clear with None.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    trill = Trill(t[:2])
    trill.pitch = Pitch(1)
    trill.pitch = None

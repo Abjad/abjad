@@ -41,7 +41,7 @@ def test_tietools_get_tie_chains_in_expr_04( ):
 def test_tietools_get_tie_chains_in_expr_05( ):
    '''returns an list of two elements if two Tie spanners are found.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Tie(t[0:2])
    Tie(t[2:])
    chains = tietools.get_tie_chains_in_expr(t.leaves)
@@ -53,7 +53,7 @@ def test_tietools_get_tie_chains_in_expr_06( ):
    '''returns an empty list if the given list of components is not 
    tie-spanned, while its decendents are.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Tie(t[0:2])
    Tie(t[2:])
    chains = tietools.get_tie_chains_in_expr([t])
@@ -65,7 +65,7 @@ def test_tietools_get_tie_chains_in_expr_07( ):
    '''returns an list those leaves that intersect a Tie spanner and the 
    components given.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Tie(t.leaves)
    chains = tietools.get_tie_chains_in_expr(t.leaves[1:3])
 
@@ -75,7 +75,7 @@ def test_tietools_get_tie_chains_in_expr_07( ):
 def test_tietools_get_tie_chains_in_expr_08( ):
    '''get_tie_chains( ) works across containers.'''
 
-   t = Voice(Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4)) * 3)
+   t = Voice(Container(macros.scale(4)) * 3)
    Tie(t[0:2])
    chains = tietools.get_tie_chains_in_expr(t[:])
 

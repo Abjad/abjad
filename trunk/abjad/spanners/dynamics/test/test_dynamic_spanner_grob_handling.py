@@ -3,7 +3,7 @@ from abjad import *
 
 def test_dynamic_spanner_grob_handling_01( ):
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    Beam(t[:])
    p = Dynamic(t[:], 'f')
    p.thickness = 3

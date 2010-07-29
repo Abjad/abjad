@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_label_leaves_in_expr_with_leaf_indices_01( ):
    '''Leaf indices start at 0.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    leaftools.label_leaves_in_expr_with_leaf_indices(t)
 
    r'''

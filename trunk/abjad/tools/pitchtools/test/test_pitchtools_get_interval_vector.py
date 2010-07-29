@@ -23,7 +23,7 @@ def test_pitchtools_get_interval_vector_01( ):
 
 def test_pitchtools_get_interval_vector_02( ):
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) + leaftools.make_first_n_notes_in_ascending_diatonic_scale(4) + leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4) + macros.scale(4) + macros.scale(4))
    pitches = pitchtools.get_pitches(t)
    vector = pitchtools.get_interval_vector(pitches)
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_beam_complex_durated_span_01( ):
    '''1-beam span between adjacent groups of 1/16th notes.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4, (1, 16)))
+   t = Voice(macros.scale(4, (1, 16)))
    BeamComplexDurated(t, durations = [(1, 8), (1, 8)], span = 1)
 
    r'''
@@ -32,7 +32,7 @@ def test_beam_complex_durated_span_01( ):
 def test_beam_complex_durated_span_02( ):
    '''2-beam span between adjacent groups of 1/16th notes.'''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4, (1, 16)))
+   t = Voice(macros.scale(4, (1, 16)))
    BeamComplexDurated(t, durations = [(1, 8), (1, 8)], span = 2)
 
    r'''

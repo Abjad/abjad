@@ -5,8 +5,8 @@ def test_spanner_duration_seconds_01( ):
    '''Spanner duration in seconds equals sum of duration
       of all leaves in spanner, in seconds.'''
 
-   t = Voice([RigidMeasure((2, 12), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2)), 
-      RigidMeasure((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(2))])
+   t = Voice([RigidMeasure((2, 12), macros.scale(2)), 
+      RigidMeasure((2, 8), macros.scale(2))])
    t.tempo.forced = tempotools.TempoIndication(Rational(1, 8), 42)
    beam = Beam(t.leaves)
    crescendo = Crescendo(t[0][:])

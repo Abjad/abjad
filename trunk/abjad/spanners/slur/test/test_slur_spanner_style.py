@@ -4,7 +4,7 @@ from abjad import *
 def test_slur_spanner_style_01( ):
    '''Slurs may be solid, dashed or dotted.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    slur = Slur(t[:])
    slur.style = 'solid'
 
@@ -39,7 +39,7 @@ def test_slur_spanner_style_01( ):
 def test_slur_spanner_style_02( ):
    '''Slurs may be solid, dashed or dotted.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    slur = Slur(t[:])
    slur.style = 'dotted'
 

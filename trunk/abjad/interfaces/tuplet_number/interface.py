@@ -7,7 +7,7 @@ class TupletNumberInterface(_Interface, _GrobHandler):
 
    ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> t.tuplet_number.transparent = True
       abjad> print t.format
       \new Staff \with {

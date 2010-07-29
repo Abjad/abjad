@@ -3,7 +3,7 @@ from abjad import *
 
 def test_staff_engraver_consists_01( ):
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.engraver_consists.add('Horizontal_bracket_engraver')
    t.engraver_consists.add('Instrument_name_engraver')
 

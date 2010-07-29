@@ -5,7 +5,7 @@ def test_context_grob_override_01( ):
    '''Contexts override grobs in their with block.
    '''
 
-   t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Voice(macros.scale(4))
    t.glissando.thickness = 3
 
    r'''

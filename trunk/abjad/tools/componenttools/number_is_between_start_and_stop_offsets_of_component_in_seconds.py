@@ -5,7 +5,7 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
    '''True when `timepoint` is within the duration 
    of `component` in seconds. ::
    
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> tempo_indication = tempotools.TempoIndication(Rational(1, 2), 60)
       abjad> staff.tempo.forced = tempo_indication
       abjad> leaf = staff.leaves[0]

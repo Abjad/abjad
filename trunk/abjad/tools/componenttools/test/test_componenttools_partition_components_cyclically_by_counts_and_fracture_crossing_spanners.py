@@ -7,7 +7,7 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
       Fracture spanners attaching directly to container.
       Leave spanner attaching to container contents untouched.'''
 
-   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(8))])
+   t = Voice([Container(macros.scale(8))])
    Beam(t[0])
    Slur(t[0].leaves)
 
@@ -57,7 +57,7 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
 def test_componenttools_partition_components_cyclically_by_counts_and_fracture_crossing_spanners_02( ):
    '''Cyclic by [1] splits all elements in container.'''
 
-   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Voice([Container(macros.scale(4))])
    Beam(t[0])
    Slur(t[0].leaves)
 
@@ -101,7 +101,7 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
       Input container cedes contents to new instance.
       Expression appears unaltered.'''
 
-   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Voice([Container(macros.scale(4))])
    Beam(t[0])
    Slur(t[0].leaves)
    container = t[0]
@@ -141,7 +141,7 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
       First part counts apply and extra part counts do not apply.
       Result contains no empty parts.'''
 
-   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Voice([Container(macros.scale(4))])
    Beam(t[0])
    Slur(t[0].leaves)
 
@@ -180,7 +180,7 @@ def test_componenttools_partition_components_cyclically_by_counts_and_fracture_c
    '''Partition by large empty part counts list.
       Empty list returns and expression remains unaltered.'''
 
-   t = Voice([Container(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))])
+   t = Voice([Container(macros.scale(4))])
    Beam(t[0])
    Slur(t[0].leaves)
 

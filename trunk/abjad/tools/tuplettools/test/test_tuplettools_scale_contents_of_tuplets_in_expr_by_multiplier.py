@@ -4,7 +4,7 @@ from abjad import *
 def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01( ):
    '''Double tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2))
 
    r'''
@@ -22,7 +22,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01( ):
 def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02( ):
    '''Halve tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(1, 2))
 
    r'''
@@ -40,7 +40,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02( ):
 def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03( ):
    '''Quadruple tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(4))
 
    r'''
@@ -58,7 +58,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03( ):
 def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04( ):
    '''Quarter tuplet.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(1, 4))
 
    r'''
@@ -76,7 +76,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04( ):
 def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05( ):
    '''Multiply tuplet by 3/2.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 2))
 
    r'''
@@ -94,7 +94,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05( ):
 def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06( ):
    '''Multiply tuplet by 2/3.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(2, 3))
 
    r'''
@@ -112,7 +112,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06( ):
 def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07( ):
    '''Multiply tuplet by 3/5.'''
 
-   t = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((2, 8), macros.scale(3))
    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 5))
 
    r'''
@@ -131,7 +131,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08( ):
    '''Multiply undotted, unbracketted notes by 3/2;
       ie, add a single dot.'''
 
-   t = FixedDurationTuplet((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   t = FixedDurationTuplet((3, 8), macros.scale(3))
    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Rational(3, 2))
 
    r'''

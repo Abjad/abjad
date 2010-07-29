@@ -9,7 +9,7 @@ from abjad.tuplet import FixedMultiplierTuplet
 def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
    r'''Change `leaf` to dotted `preprolated_duration`::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff.leaves)
       abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(3, 16))
       [Note(d', 8.)]
@@ -23,7 +23,7 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
       
    Change `leaf` to tied `preprolated_duration`::
       
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff.leaves)
       abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(5, 32))
       [Note(d', 8), Note(d', 32)]
@@ -38,7 +38,7 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
       
    Change `leaf` to nonbinary `preprolated_duration`::
       
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff.leaves)
       abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(1, 12))
       [Note(d', 8)]
@@ -54,7 +54,7 @@ def change_leaf_preprolated_duration(leaf, new_preprolated_duration):
       
    Change `leaf` to tied nonbinary `preprolated_duration`::
       
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> Beam(staff.leaves)
       abjad> leaftools.change_leaf_preprolated_duration(staff[1], Rational(5, 48))
       [Note(d', 8), Note(d', 32)]

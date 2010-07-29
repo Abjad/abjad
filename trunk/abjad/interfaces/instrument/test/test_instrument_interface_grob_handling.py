@@ -6,7 +6,7 @@ def test_instrument_interface_grob_handling_01( ):
    LilyPond InstrumentName grob.
    '''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.instrument.name = Markup(r'\circle { V }')
    t.instrument.color = 'red'
 

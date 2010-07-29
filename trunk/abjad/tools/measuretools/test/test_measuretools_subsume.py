@@ -4,7 +4,7 @@ from abjad import *
 def test_measuretools_subsume_01( ):
    '''Subsume complete binary tuplet.'''
 
-   t = RigidMeasure((2, 8), [FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))])
+   t = RigidMeasure((2, 8), [FixedDurationTuplet((2, 8), macros.scale(3))])
    measuretools.subsume(t)
 
    r'''
@@ -26,7 +26,7 @@ def test_measuretools_subsume_02( ):
    '''Subsume complete nonbinary tuplet.'''
 
    t = RigidMeasure((3, 16), [
-      FixedDurationTuplet((3, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(5, (1, 16)))])
+      FixedDurationTuplet((3, 16), macros.scale(5, (1, 16)))])
    measuretools.subsume(t)
 
    r'''
@@ -50,7 +50,7 @@ def test_measuretools_subsume_03( ):
    '''Subsume 7:6 tuplet.'''
 
    t = RigidMeasure((6, 8), [
-      FixedDurationTuplet((6, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(7))])
+      FixedDurationTuplet((6, 8), macros.scale(7))])
    measuretools.subsume(t)
 
    r'''
@@ -76,7 +76,7 @@ def test_measuretools_subsume_04( ):
    '''Subsume tuplet in nonassignable measure.'''
 
    t = RigidMeasure((5, 8), [
-      FixedDurationTuplet((5, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(6))])
+      FixedDurationTuplet((5, 8), macros.scale(6))])
    measuretools.subsume(t)
 
    r'''
@@ -151,7 +151,7 @@ def test_measuretools_subsume_05( ):
 def test_measuretools_subsume_06( ):
    '''Submsume 6:5. Meter should go from 5/16 to 15/48.'''
 
-   tuplet = FixedDurationTuplet((5, 16), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   tuplet = FixedDurationTuplet((5, 16), macros.scale(3))
    t = RigidMeasure((5, 16), [tuplet])
 
    r'''

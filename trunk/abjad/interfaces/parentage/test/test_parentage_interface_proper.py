@@ -3,7 +3,7 @@ from abjad import *
 
 def test_parentage_interface_proper_01( ):
 
-   tuplet = FixedDurationTuplet((2, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(3))
+   tuplet = FixedDurationTuplet((2, 8), macros.scale(3))
    staff = Staff([tuplet])
    note = staff.leaves[0]
 

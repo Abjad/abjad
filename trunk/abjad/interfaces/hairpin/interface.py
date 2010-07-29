@@ -7,7 +7,7 @@ class HairpinInterface(_Interface, _GrobHandler):
 
    Handle LilyPond Hairpin grob. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> t.hairpin.staff_padding = 2
       abjad> t.hairpin.Y_extent = (-1.5, 1.5)
       \new Staff \with {

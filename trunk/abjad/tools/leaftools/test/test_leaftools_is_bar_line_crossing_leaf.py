@@ -3,7 +3,7 @@ from abjad import *
 
 def test_leaftools_is_bar_line_crossing_leaf_01( ):
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t[2].duration.written *= 2
    meter = Meter(2, 8)
    meter.partial = Rational(1, 8)

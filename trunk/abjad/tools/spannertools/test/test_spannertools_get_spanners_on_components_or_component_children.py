@@ -4,7 +4,7 @@ from abjad import *
 def test_spannertools_get_spanners_on_components_or_component_children_01( ):
    '''Get all spanners attaching directly to any component in list.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    b1 = Beam(t[:2])
    b2 = Beam(t[2:])
    crescendo = Crescendo(t)
@@ -36,7 +36,7 @@ def test_spannertools_get_spanners_on_components_or_component_children_02( ):
 def test_spannertools_get_spanners_on_components_or_component_children_03( ):
    '''Return empty set when no spanners.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    spanners = spannertools.get_spanners_on_components_or_component_children(t[:])
 
    assert spanners == set([ ])

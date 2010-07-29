@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_label_leaves_in_expr_with_leaf_numbers_01( ):
    '''Leaf numbers start at 1.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    leaftools.label_leaves_in_expr_with_leaf_numbers(t)
 
    r'''
@@ -23,7 +23,7 @@ def test_leaftools_label_leaves_in_expr_with_leaf_numbers_01( ):
 def test_leaftools_label_leaves_in_expr_with_leaf_numbers_02( ):
    '''Optional direction keyword.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    leaftools.label_leaves_in_expr_with_leaf_numbers(t, direction = 'above')
 
    r'''

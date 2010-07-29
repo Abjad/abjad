@@ -14,7 +14,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
    Thin, bare-bones alternative to built-in pickle and cPickle modules. ::
 
-      abjad> tuplet = FixedDurationTuplet((3, 8), leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> tuplet = FixedDurationTuplet((3, 8), macros.scale(4))
       abjad> measure = RigidMeasure((6, 16), [tuplet])   
       abjad> staff = Staff([measure])   
       abjad> score = Score(staff * 2)   

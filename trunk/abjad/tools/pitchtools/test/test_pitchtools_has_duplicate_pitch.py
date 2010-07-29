@@ -23,5 +23,5 @@ def test_pitchtools_has_duplicate_pitch_03( ):
    staff = Staff(leaftools.make_repeated_notes(4))
    assert pitchtools.has_duplicate_pitch(staff)
 
-   staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   staff = Staff(macros.scale(4))
    assert not pitchtools.has_duplicate_pitch(staff)

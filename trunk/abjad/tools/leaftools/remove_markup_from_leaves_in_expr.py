@@ -6,7 +6,7 @@ def remove_markup_from_leaves_in_expr(expr):
 
    ::
 
-      abjad> staff = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> staff = Staff(macros.scale(4))
       abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(staff)
       \new Staff {
               c'8 _ \markup { \small 0 }

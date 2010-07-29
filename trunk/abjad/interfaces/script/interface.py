@@ -7,7 +7,7 @@ class ScriptInterface(_Interface, _GrobHandler):
 
    Handle LilyPond Script grob. ::
 
-      abjad> t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+      abjad> t = Staff(macros.scale(4))
       abjad> t.script.staff_padding = 2
       abjad> t.script.Y_extent = (-1.5, 1.5)
       \new Staff \with {

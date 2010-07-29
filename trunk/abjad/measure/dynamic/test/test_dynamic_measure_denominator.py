@@ -4,7 +4,7 @@ from abjad import *
 def test_dynamic_measure_denominator_01( ):
    '''You can control the denominator of dynamic measures.'''
 
-   t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = DynamicMeasure(macros.scale(4))
    t.denominator = 32
    
    r'''
@@ -23,7 +23,7 @@ def test_dynamic_measure_denominator_01( ):
 def test_dynamic_measure_denominator_02( ):
    '''Bad denominator values have no effect.'''
 
-   t = DynamicMeasure(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = DynamicMeasure(macros.scale(4))
    t.denominator = 117
 
    r'''

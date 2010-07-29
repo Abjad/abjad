@@ -4,7 +4,7 @@ from abjad import *
 def test_text_spanner_interface_grob_handling_01( ):
    '''Abjad TextSpannerInterface handles LilyPond TextSpanner grob.'''
 
-   t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
+   t = Staff(macros.scale(4))
    t.text_spanner.staff_padding = 6
    TextSpanner(t[:])
 
