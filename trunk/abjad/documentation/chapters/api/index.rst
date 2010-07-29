@@ -195,6 +195,7 @@ componenttools
    tools/componenttools/clone_governed_component_subtree_by_leaf_range
    tools/componenttools/clone_governed_component_subtree_from_prolated_duration_to
    tools/componenttools/cut_component_at_prolated_duration
+   tools/componenttools/get_first_component_in_expr_with_name
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
    tools/componenttools/get_likely_multiplier_of_components
    tools/componenttools/get_parent_and_start_stop_indices_of_components
@@ -278,6 +279,7 @@ containertools
    tools/containertools/rest_half
    tools/containertools/reverse_contents_of_container
    tools/containertools/scale_contents_of_container
+   tools/containertools/set_accidental_style_on_sequential_contexts_in_expr
    tools/containertools/set_container_multiplier
    tools/containertools/split_container_at_index_and_do_not_fracture_crossing_spanners
    tools/containertools/split_container_at_index_and_fracture_crossing_spanners
@@ -856,12 +858,10 @@ scoretools
 .. toctree::
    :maxdepth: 1
 
-   tools/scoretools/find
    tools/scoretools/make_piano_score
    tools/scoretools/make_piano_sketch_score
    tools/scoretools/make_piano_staff
    tools/scoretools/pitch_arrays_to_score
-   tools/scoretools/set_accidental_style
    tools/scoretools/show_leaves
 
 

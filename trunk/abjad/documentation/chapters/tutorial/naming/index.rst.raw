@@ -14,7 +14,7 @@ score = Score([staff_group])
 
 Component names make it easy to find components later. ::
 
-   scoretools.find(score, 'Flute')
+   componenttools.get_first_component_in_expr_with_name(score, 'Flute')
    [Staff-"Flute"{4}]
 
 Component names do not appear in musical output.

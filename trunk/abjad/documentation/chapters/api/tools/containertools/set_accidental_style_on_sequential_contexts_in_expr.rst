@@ -1,6 +1,6 @@
-scoretools.set_accidental_style
-===============================
+containertools.set_accidental_style_on_sequential_contexts_in_expr
+==================================================================
 
-.. automodule:: abjad.tools.scoretools.set_accidental_style
+.. automodule:: abjad.tools.containertools.set_accidental_style_on_sequential_contexts_in_expr
 
-.. autofunction:: abjad.tools.scoretools.set_accidental_style
+.. autofunction:: abjad.tools.containertools.set_accidental_style_on_sequential_contexts_in_expr

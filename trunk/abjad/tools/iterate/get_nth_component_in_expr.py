@@ -63,7 +63,7 @@ def get_nth_component_in_expr(expr, klasses, n = 0):
       Rest(8)
       Rest(16)      
 
-   .. todo:: combine with :func:`~abjad.tools.scoretools.find`.
+   .. todo:: combine with :func:`~abjad.tools.componenttools.get_first_component_in_expr_with_name`.
 
    .. versionchanged:: 1.1.2
       renamed ``iterate.get_nth( )`` to ``iterate.get_nth_component_in_expr( )``.
