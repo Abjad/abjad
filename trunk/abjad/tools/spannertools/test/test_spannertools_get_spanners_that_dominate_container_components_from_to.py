@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_get_spanners_that_dominate_components_slice_01( ):
+def test_spannertools_get_spanners_that_dominate_container_components_from_to_01( ):
    '''Get dominant spanners over zero-length 'crack'.'''
 
    t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -23,7 +23,7 @@ def test_spannertools_get_spanners_that_dominate_components_slice_01( ):
    assert (glissando, 2) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_slice_02( ):
+def test_spannertools_get_spanners_that_dominate_container_components_from_to_02( ):
    '''Get dominant spanners over one-component slice.'''
 
    t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -46,7 +46,7 @@ def test_spannertools_get_spanners_that_dominate_components_slice_02( ):
    assert (glissando, 1) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_slice_03( ):
+def test_spannertools_get_spanners_that_dominate_container_components_from_to_03( ):
    '''Get dominant spanners over four-component slice.'''
 
    t = Voice(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))

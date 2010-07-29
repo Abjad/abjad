@@ -1,8 +1,8 @@
 from abjad.meter import Meter
 from abjad.rational import Rational
+from abjad.tools import componenttools
 from abjad.tools import iterate
 from abjad.tools import mathtools
-from abjad.tools import scoretools
 from abjad.tuplet import _Tuplet
 
 
@@ -43,5 +43,5 @@ def subsume(expr):
             measure.meter.forced = Meter(numerator, denominator)
             meter_multiplier = measure.meter.effective.multiplier
             written_adjustment = tuplet_multiplier / meter_multiplier
-            scoretools.bequeath([tuplet], tuplet[:])
+            componenttools.move_parentage_children_and_spanners_from_components_to_components([tuplet], tuplet[:])
             containertools.scale_contents_of_container(measure, written_adjustment)

@@ -205,6 +205,7 @@ componenttools
    tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
    tools/componenttools/list_leftmost_components_with_prolated_duration_at_most
    tools/componenttools/move_component_subtree_to_right_in_score_and_spanners
+   tools/componenttools/move_parentage_children_and_spanners_from_components_to_components
    tools/componenttools/number_is_between_prolated_start_and_stop_offsets_of_component
    tools/componenttools/number_is_between_start_and_stop_offsets_of_component_in_seconds
    tools/componenttools/partition_components_cyclically_by_counts_and_do_not_fracture_crossing_spanners
@@ -854,7 +855,6 @@ scoretools
 .. toctree::
    :maxdepth: 1
 
-   tools/scoretools/bequeath
    tools/scoretools/donate
    tools/scoretools/find
    tools/scoretools/make_piano_score

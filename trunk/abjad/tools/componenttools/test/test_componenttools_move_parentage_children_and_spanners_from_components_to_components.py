@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_scoretools_bequeath_01( ):
+def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_01( ):
    '''Bequeath parent and spanners of two old notes to five new notes.'''
    
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -20,7 +20,7 @@ def test_scoretools_bequeath_01( ):
 
    old_notes = t[1:3]
    new_notes = Note(12, (1, 16)) * 5
-   scoretools.bequeath(old_notes, new_notes)
+   componenttools.move_parentage_children_and_spanners_from_components_to_components(old_notes, new_notes)
 
    "Equivalent to t[1:3] = new_notes"
 
@@ -40,7 +40,7 @@ def test_scoretools_bequeath_01( ):
    assert t.format == "\\new Staff {\n\tc'8 [ ] \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
-def test_scoretools_bequeath_02( ):
+def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_02( ):
    '''Bequeath parent and spaners of one old note to five new notes.'''
    
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -58,7 +58,7 @@ def test_scoretools_bequeath_02( ):
    '''
 
    new_notes = Note(12, (1, 16)) * 5
-   #scoretools.bequeath(t[:1], new_notes)
+   #componenttools.move_parentage_children_and_spanners_from_components_to_components(t[:1], new_notes)
    t[:1] = new_notes
 
    "Equivalent to t[:1] = new_notes."
@@ -80,7 +80,7 @@ def test_scoretools_bequeath_02( ):
    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\td'8 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
-def test_scoretools_bequeath_03( ):
+def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_03( ):
    '''Bequeath parent and spanners of two old notes to five new notes.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -98,7 +98,7 @@ def test_scoretools_bequeath_03( ):
    '''
 
    new_notes = Note(12, (1, 16)) * 5
-   #scoretools.bequeath(t[:2], new_notes)
+   #componenttools.move_parentage_children_and_spanners_from_components_to_components(t[:2], new_notes)
    t[:2] = new_notes
 
    "Equivalent to t[:2] = new_notes."
@@ -119,7 +119,7 @@ def test_scoretools_bequeath_03( ):
    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
-def test_scoretools_bequeath_04( ):
+def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_04( ):
    '''Bequeath parent and spanners of three old notes to five new notes.'''
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
@@ -137,7 +137,7 @@ def test_scoretools_bequeath_04( ):
    '''
 
    new_notes = Note(12, (1, 16)) * 5
-   #scoretools.bequeath(t[:3], new_notes)
+   #componenttools.move_parentage_children_and_spanners_from_components_to_components(t[:3], new_notes)
    t[:3] = new_notes
 
    "Equivalent to t[:3] = new_notes."
@@ -157,7 +157,7 @@ def test_scoretools_bequeath_04( ):
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
-def test_scoretools_bequeath_05( ):
+def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_05( ):
 
    t = Staff(leaftools.make_first_n_notes_in_ascending_diatonic_scale(4))
    b1 = Beam(t[:2])
@@ -174,7 +174,7 @@ def test_scoretools_bequeath_05( ):
    '''
 
    new_notes = Note(12, (1, 16)) * 5
-   #scoretools.bequeath(t[:], new_notes)
+   #componenttools.move_parentage_children_and_spanners_from_components_to_components(t[:], new_notes)
    t[:] = new_notes
 
    "Equivalent to t[:] = new_notes."
@@ -193,7 +193,7 @@ def test_scoretools_bequeath_05( ):
    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 \\!\n}"
 
 
-def test_scoretools_bequeath_06( ):
+def test_componenttools_move_parentage_children_and_spanners_from_components_to_components_06( ):
    '''Bequeath parent and spanners of container to children of container.
       This is bequeath generalizing Container.slip( ).'''
 
@@ -211,7 +211,7 @@ def test_scoretools_bequeath_06( ):
    }
    '''
 
-   #old_components = scoretools.bequeath(t[0:1], t[0][:])
+   #old_components = componenttools.move_parentage_children_and_spanners_from_components_to_components(t[0:1], t[0][:])
    #voice = old_components[0]
 
    voice = t[0]

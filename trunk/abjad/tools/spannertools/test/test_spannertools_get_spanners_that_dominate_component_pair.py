@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_spannertools_get_spanners_that_dominate_components_between_01( ):
+def test_spannertools_get_spanners_that_dominate_component_pair_01( ):
    '''Return Python list of (spanner, index) pairs.
       Each spanner dominates a *crack* between components.'''
 
@@ -36,7 +36,7 @@ def test_spannertools_get_spanners_that_dominate_components_between_01( ):
    assert receipt == set([ ])
 
 
-def test_spannertools_get_spanners_that_dominate_components_between_02( ):
+def test_spannertools_get_spanners_that_dominate_component_pair_02( ):
    '''Beam and trill both dominate crack at t[1:1].'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -52,7 +52,7 @@ def test_spannertools_get_spanners_that_dominate_components_between_02( ):
    assert (trill, 2) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_between_03( ):
+def test_spannertools_get_spanners_that_dominate_component_pair_03( ):
    '''Glissando and trill both dominate crack at t[2:2].'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)
@@ -68,7 +68,7 @@ def test_spannertools_get_spanners_that_dominate_components_between_03( ):
    assert (trill, 4) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_between_04( ):
+def test_spannertools_get_spanners_that_dominate_component_pair_04( ):
    '''No spanners dominate 'crack' following voice.'''
 
    t = Voice(Container(leaftools.make_repeated_notes(2)) * 3)

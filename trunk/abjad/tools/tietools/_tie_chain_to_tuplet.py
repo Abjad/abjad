@@ -1,8 +1,8 @@
 from abjad.exceptions import AssignabilityError
 from abjad.note import Note
 from abjad.rational import Rational
+from abjad.tools import componenttools
 from abjad.tools import durtools
-from abjad.tools import scoretools
 from abjad.tools.tietools.get_tie_chain_preprolated_duration import get_tie_chain_preprolated_duration
 from abjad.tuplet import FixedDurationTuplet
 
@@ -54,7 +54,7 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
    tuplet = FixedDurationTuplet(target_duration, notes)
 
    # bequeath tie chain position in score structure to tuplet
-   scoretools.bequeath(list(chain), [tuplet])
+   componenttools.move_parentage_children_and_spanners_from_components_to_components(list(chain), [tuplet])
 
    # untie tuplet
    tuplet.tie.unspan( )
